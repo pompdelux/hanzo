@@ -66,6 +66,7 @@ class OrdersTableMap extends TableMap
         $this->addColumn('BILLING_STATE_PROVINCE', 'BillingStateProvince', 'VARCHAR', false, 64, null);
         $this->addColumn('BILLING_COMPANY_NAME', 'BillingCompanyName', 'VARCHAR', false, 128, null);
         $this->addColumn('BILLING_METHOD', 'BillingMethod', 'VARCHAR', false, 64, null);
+        $this->addColumn('BILLING_EXTERNAL_ADDRESS_ID', 'BillingExternalAddressId', 'VARCHAR', false, 128, null);
         $this->addColumn('DELIVERY_FIRST_NAME', 'DeliveryFirstName', 'VARCHAR', true, 128, null);
         $this->addColumn('DELIVERY_LAST_NAME', 'DeliveryLastName', 'VARCHAR', true, 128, null);
         $this->addColumn('DELIVERY_ADDRESS_LINE_1', 'DeliveryAddressLine1', 'VARCHAR', false, 255, null);
@@ -77,6 +78,7 @@ class OrdersTableMap extends TableMap
         $this->addColumn('DELIVERY_STATE_PROVINCE', 'DeliveryStateProvince', 'VARCHAR', false, 64, null);
         $this->addColumn('DELIVERY_COMPANY_NAME', 'DeliveryCompanyName', 'VARCHAR', false, 128, null);
         $this->addColumn('DELIVERY_METHOD', 'DeliveryMethod', 'VARCHAR', false, 64, null);
+        $this->addColumn('DELIVERY_EXTERNAL_ADDRESS_ID', 'DeliveryExternalAddressId', 'VARCHAR', false, 128, null);
         $this->addForeignKey('EVENTS_ID', 'EventsId', 'INTEGER', 'events', 'ID', false, null, null);
         $this->addColumn('FINISHED_AT', 'FinishedAt', 'TIMESTAMP', false, null, null);
         $this->addColumn('CREATED_AT', 'CreatedAt', 'TIMESTAMP', false, null, null);

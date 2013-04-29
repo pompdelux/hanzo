@@ -60,21 +60,9 @@ class CheckoutListener
             Order state: '. $order->getState() .'<br>
             Billing method: '. $order->getBillingMethod() .'<br>
             In edit: '. $order->getInEdit() .'<br>
-            ';
+        ';
 
         Tools::log('Payment failed: '.str_replace('<br>',"", $message ));
-
-        // untill futher notice...
-        // try {
-        //     $this->mailer->setSubject( sprintf('[FEJL] Ordre nr: %d fejlede', $order->getId()) )
-        //         ->setBody('Beskeden er i HTML format')
-        //         ->addPart($message,'text/html')
-        //         ->setTo( 'hd@pompdelux.dk' , 'Mr. HD' )
-        //         ->setCc( 'hf@bellcom.dk', 'Mr. HF' )
-        //         ->send();
-        // } catch (\Swift_TransportException $e) {
-        //     Tools::log($e->getMessage());
-        // }
 
         $this->session->set('failed_order_mail_sent', true);
     }
@@ -156,8 +144,10 @@ class CheckoutListener
                 case 'ELEC':
                     $card_type = 'Visa Electron';
                     break;
-                case 'ABN':
-                    $card_type = 'ABN';
+                case 'PENSIO':
+                    if ('IDEALPAYMENT' == strtoupper($attributes->payment->nature)) {
+                        $card_type = 'iDEAL';
+                    }
                     break;
             }
         }

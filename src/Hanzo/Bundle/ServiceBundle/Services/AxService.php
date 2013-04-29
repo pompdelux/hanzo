@@ -93,6 +93,8 @@ class AxService
             $con = Propel::getConnection(null, Propel::CONNECTION_WRITE);
         }
 
+        // we reload to make sure we have the latest edition :)
+        $order->reload(true, $con);
         $attributes = $order->getAttributes($con);
         $lines = $order->getOrdersLiness(null, $con);
 
@@ -243,9 +245,6 @@ class AxService
                     case 'DK':
                         $custPaymMode = 'DanKort';
                         break;
-                    case 'ABN':
-                        $custPaymMode = 'ABN';
-                        break;
                 }
                 break;
 
@@ -255,6 +254,12 @@ class AxService
 
             case 'paybybill': // Should be COD, is _not_ Gothia
                 $custPaymMode = 'Bank';
+                break;
+
+            case 'pensio':
+                if ('IDEALPAYMENT' == strtoupper($attributes->payment->nature)) {
+                    $custPaymMode = 'iDEAL';
+                }
                 break;
         }
 
@@ -282,25 +287,13 @@ class AxService
         $salesTable->CustPaymMode            = $custPaymMode;
         $salesTable->SmoreContactInfo        = ''; // NICETO, når s-more kommer på banen igen
 
-        switch ($freight_type) {
-            case 12:
-                $salesTable->DeliveryCompanyName     = $order->getDeliveryFirstName();
-                $salesTable->DeliveryCity            = $order->getDeliveryCity();
-                $salesTable->DeliveryName            = $order->getDeliveryAddressLine1();
-                $salesTable->DeliveryStreet          = $order->getDeliveryAddressLine2();
-                $salesTable->DeliveryZipCode         = $order->getDeliveryPostalCode();
-                $salesTable->DeliveryCountryRegionId = $this->getIso2CountryCode($order->getDeliveryCountriesId());
-                break;
-
-            default:
-                $salesTable->DeliveryCompanyName     = $order->getDeliveryCompanyName();
-                $salesTable->DeliveryCity            = $order->getDeliveryCity();
-                $salesTable->DeliveryName            = $order->getDeliveryFirstName() . ' ' . $order->getDeliveryLastName();
-                $salesTable->DeliveryStreet          = $order->getDeliveryAddressLine1();
-                $salesTable->DeliveryZipCode         = $order->getDeliveryPostalCode();
-                $salesTable->DeliveryCountryRegionId = $this->getIso2CountryCode($order->getDeliveryCountriesId());
-                break;
-        }
+        $salesTable->DeliveryDropPointId     = $order->getDeliveryExternalAddressId();
+        $salesTable->DeliveryCompanyName     = $order->getDeliveryCompanyName();
+        $salesTable->DeliveryCity            = $order->getDeliveryCity();
+        $salesTable->DeliveryName            = $order->getDeliveryFirstName() . ' ' . $order->getDeliveryLastName();
+        $salesTable->DeliveryStreet          = $order->getDeliveryAddressLine1();
+        $salesTable->DeliveryZipCode         = $order->getDeliveryPostalCode();
+        $salesTable->DeliveryCountryRegionId = $this->getIso2CountryCode($order->getDeliveryCountriesId());
 
         $salesTable->SalesGroup = '';
         if ($event = $order->getEvents($con)) {

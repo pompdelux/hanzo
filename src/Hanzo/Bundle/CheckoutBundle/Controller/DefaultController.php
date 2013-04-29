@@ -121,6 +121,10 @@ class DefaultController extends CoreController
 
         // must be set, so er ensure that they are.
 
+        if (!$order->getCurrencyCode()) {
+            $order->setCurrencyCode($hanzo->get('core.currency'));
+        }
+
         if (empty($attributes->global->HomePartyId)) {
             $key = str_replace('Sales', '', $domain_key);
             $order->setAttribute('HomePartyId', 'global', 'WEB ' . $key);

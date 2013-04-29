@@ -18,7 +18,8 @@ class DefaultController extends CoreController
         'payment.dibsapi'      => 'Dibs',
         'payment.gothiaapi'    => 'Gothia',
         'payment.paybybillapi' => 'PayByBill',
-        'payment.couponapi'    => 'Coupon',  // pseudo payment module ...
+        'payment.couponapi'    => 'Coupon', // pseudo payment module ...
+        'payment.pensioapi'    => 'Pensio',
     ];
 
     /**
@@ -129,8 +130,18 @@ class DefaultController extends CoreController
         ];
 
         $order = OrdersPeer::getCurrent();
+        $order->reload();
+        $attributes = $order->getAttributes();
 
         // validation
+
+        // if the order has validation issues, we just return false to halt the checkout process
+        if (isset($attributes->global->not_valid)) {
+            return $this->json_response([
+                'status'  => false,
+                'message' => '',
+            ]);
+        }
 
         if ($order->getState() >= Orders::STATE_PRE_PAYMENT) {
             return $this->json_response([

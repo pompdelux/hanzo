@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="title">
+                <source>title</source>
+                <target>Dressing room: %title%</target>
+            </trans-unit>
+            <trans-unit id="product">
+                <source>product</source>
+                <target>Produkt</target>
+            </trans-unit>
+            <trans-unit id="price">
+                <source>price</source>
+                <target>Pris</target>
+            </trans-unit>
+            <trans-unit id="color">
+                <source>color</source>
+                <target>Farve</target>
+            </trans-unit>
+            <trans-unit id="size">
+                <source>size</source>
+                <target>Størrelse</target>
+            </trans-unit>
+            <trans-unit id="total">
+                <source>total</source>
+                <target>Total</target>
+            </trans-unit>
+            <trans-unit id="basket.notes">
+                <source>basket.notes</source>
+                <target><![CDATA[
+                    <h6>Bemærk</h6>
+                    1) For at tilføje en vare til kurven, skal du først vælge størrelse <img src="/fx/images/pencil.png" alt=""><br>
+                    2) Herefter skal du klikke på Tilføj til kurv <img src="/fx/images/basket_put.png" alt=""><br>
+                    3) Ønsker du at fjerne en vare fra dukken, skal du klikke på Slet <img src="/fx/images/delete.png" alt=""><br>
+                    4) Har du allerede lagt varen i kurven, kommer dette symbol frem <img src="/fx/images/bullet_green.png" alt="">
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="no.products.in.category">
+                <source>no.products.in.category</source>
+                <target>Alle varer i denne kategori er udsolgte.</target>
+            </trans-unit>
+            <trans-unit id="basket.heading" approved="no">
+                <source>basket.heading</source>
+                <target>Dukkens påklædning</target>
+            </trans-unit>
+            <trans-unit id="remove.all" approved="no">
+                <source>remove.all</source>
+                <target>Fjern alle</target>
+            </trans-unit>
+            <trans-unit id="to.basket" approved="no">
+                <source>to.basket</source>
+                <target>Overfør til kurv</target>
+            </trans-unit>
+            <trans-unit id="basket.trigger.on" approved="no">
+                <source>basket.trigger.on</source>
+                <target>Vis hvad dukken har på</target>
+            </trans-unit>
+            <trans-unit id="basket.trigger.off" approved="no">
+                <source>basket.trigger.off</source>
+                <target>Skjul</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

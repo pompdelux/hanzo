@@ -53,9 +53,7 @@ class CMSRouterLoader implements LoaderInterface
         $routes = new RouteCollection();
 
         $pages = CmsI18nQuery::create()
-            ->useCmsQuery()
-                ->filterByIsActive(true)
-            ->endUse()
+            ->filterByIsActive(true)
             ->rightJoinWithCms()
             ->orderByPath()
             ->findByLocale($this->locale)
@@ -87,7 +85,6 @@ class CMSRouterLoader implements LoaderInterface
 
             switch ($type) {
                 case 'category':
-
                     //test ... we should never enter this if tho...
                     if (!$settings instanceof \stdClass || !isset($settings->category_id)) {
                         Tools::log($page->toArray());
@@ -126,13 +123,9 @@ class CMSRouterLoader implements LoaderInterface
                         '_format' => 'html|json',
                     ));
                     $routes->add($category_path, $route);
-
-
-
                     break;
 
                 case 'look':
-
                     //test ... we should never enter this if tho...
                     if (!$settings instanceof \stdClass || !isset($settings->category_id)) {
                         Tools::log($page->toArray());
@@ -173,8 +166,6 @@ class CMSRouterLoader implements LoaderInterface
                         '_format' => 'html|json',
                     ));
                     $routes->add($product_path, $route);
-
-
                     break;
 
                 case 'page':

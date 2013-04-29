@@ -25,6 +25,9 @@ Tools::handleRobots();
 $tdl = explode('.', $_SERVER['HTTP_HOST']);
 $lang = '';
 switch (array_pop($tdl)) {
+    case 'de':
+        $lang = '/de_DE/';
+        break;
     case 'dk':
         $lang = '/da_DK/';
         break;
@@ -41,7 +44,7 @@ switch (array_pop($tdl)) {
         $lang = '/fi_FI/';
         break;
     case 'com':
-        if (!preg_match('/(da_DK|nb_NO|sv_SE|nl_NL|fi_FI|en_GB)/', $_SERVER['REQUEST_URI']) && ($_SERVER['REQUEST_URI'] != '/')) {
+        if (!preg_match('/(de_DE|da_DK|nb_NO|sv_SE|nl_NL|fi_FI|en_GB)/', $_SERVER['REQUEST_URI']) && ($_SERVER['REQUEST_URI'] != '/')) {
           $lang = '/en_GB/';
         }
         break;

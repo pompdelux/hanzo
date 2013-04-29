@@ -13,6 +13,7 @@ use Hanzo\Model\AddressesQuery;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\CountriesPeer;
 use Hanzo\Model\CountriesQuery;
+use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\ShippingMethods;
 
@@ -94,61 +95,38 @@ class AddressController extends CoreController
             $address->setCustomersId($customer_id);
 
             if ($order->getFirstName()) {
-                if ('overnightbox' === $type) {
-                    $address->setAddressLine1(trim($order->getFirstName().' '.$order->getLastName()));
-                } else {
-                    $address->setFirstName($order->getFirstName());
-                    $address->setLastName($order->getLastName());
-                }
+                $address->setFirstName($order->getFirstName());
+                $address->setLastName($order->getLastName());
             }
-        } else {
-            if ('overnightbox' === $type) {
-                $address = new Addresses();
-                $address->setType($type);
-                $address->setCustomersId($customer_id);
-                $address->setAddressLine1(trim($order->getFirstName().' '.$order->getLastName()));
-            }
+        } elseif ('overnightbox' == $type) {
+            $address->setFirstName($order->getFirstName());
+            $address->setLastName($order->getLastName());
         }
 
         $builder = $this->createFormBuilder($address, array(
             'validation_groups' => $type
         ));
 
-        if ('company_shipping' == $type) {
+        if (in_array($type, ['company_shipping', 'overnightbox'])) {
+            $label = 'company.name';
+            if ($type == 'overnightbox') {
+                $label = 'overnightbox.label';
+            }
             $builder->add('company_name', null, array(
-                'label' => 'company.name',
+                'label' => $label,
                 'required' => true,
                 'translation_domain' => 'account'
             ));
         }
 
-        if ('overnightbox' === $type) {
-            $builder->add('first_name', null, array(
-                'label' => 'overnightbox.name',
-                'required' => true,
-                'translation_domain' => 'account'
-            ));
-        } else {
-            $builder->add('first_name', null, array('required' => true, 'translation_domain' => 'account'));
-            $builder->add('last_name', null, array('required' => true, 'translation_domain' => 'account'));
+        $builder->add('first_name', null, array('required' => true, 'translation_domain' => 'account'));
+        $builder->add('last_name', null, array('required' => true, 'translation_domain' => 'account'));
+
+        if ($type == 'payment') {
+            $builder->add('phone', null, array('required' => true, 'translation_domain' => 'account'));
         }
 
-        if ('overnightbox' === $type) {
-            $builder->add('address_line_1', null, array(
-                'label' => 'att.label',
-                'required' => true,
-                'translation_domain' => 'account',
-                'max_length' => 150
-            ));
-            $builder->add('address_line_2', null, array(
-                'label' => 'overnightbox.label',
-                'required' => true,
-                'translation_domain' => 'account',
-                'max_length' => 150
-            ));
-        } else {
-            $builder->add('address_line_1', null, array('required' => true, 'translation_domain' => 'account', 'max_length' => 150));
-        }
+        $builder->add('address_line_1', null, array('required' => true, 'translation_domain' => 'account', 'max_length' => 150));
 
         $attr = [];
         if (in_array(Hanzo::getInstance()->get('core.domain_key'), ['DK', 'NO', 'SE'])) {
@@ -172,6 +150,7 @@ class AddressController extends CoreController
             $address->setCountry($country_name);
 
             $builder->add('countries_id', 'hidden', array('data' => $country_id));
+            $builder->add('external_address_id', 'hidden', array('data' => $address->getExternalAddressId()));
         } else {
             if (count($countries) > 1) {
                 $builder->add('countries_id', 'choice', array(
@@ -220,6 +199,7 @@ class AddressController extends CoreController
     public function processAction(Request $request, $type)
     {
         $status = false;
+        $short_domain_key = strtolower(substr(Hanzo::getInstance()->get('core.domain_key'), -2));
 
         if ('POST' === $request->getMethod()) {
             // TODO: not hardcoded
@@ -235,15 +215,14 @@ class AddressController extends CoreController
             $order = OrdersPeer::getCurrent();
             $data  = $request->get('form');
 
-            $validation_fields = ['first_name', 'last_name', 'address_line_1', 'postal_code', 'city'];
-            if ($type == 'shipping') {
+             if ($type == 'shipping') {
                 switch ($order->getDeliveryMethod()) {
                     case 11:
                         $method = 'company_shipping';
                         break;
                     case 12:
                         $method = 'overnightbox';
-                        $validation_fields = ['first_name', 'address_line_1', 'address_line_2', 'postal_code', 'city'];
+                        $validation_fields[] = 'company_name';
                         break;
                     default:
                         $method = 'shipping';
@@ -251,20 +230,6 @@ class AddressController extends CoreController
                 }
             } else {
                 $method = 'payment';
-            }
-
-            $missing = array();
-            foreach ($validation_fields as $field) {
-                if (!isset($data[$field])) {
-                    $missing[] = $field;
-                }
-            }
-
-            if (count($missing)) {
-                return $this->json_response(array(
-                    'status' => false,
-                    'message' => 'Et, eller flere felter mangler i dine adresser',
-                ));
             }
 
             $address = AddressesQuery::create()
@@ -283,10 +248,15 @@ class AddressController extends CoreController
             if (!empty($data['last_name'])) {
                 $address->setLastName($data['last_name']);
             }
+
             $address->setAddressLine1($data['address_line_1']);
+
             if (!empty($data['address_line_2'])) {
                 $address->setAddressLine2($data['address_line_2']);
+            } else {
+                $address->setAddressLine2(null);
             }
+
             $address->setPostalCode($data['postal_code']);
             $address->setCity($data['city']);
             $address->setStateProvince(null);
@@ -295,6 +265,8 @@ class AddressController extends CoreController
             if ($method == 'overnightbox') {
                 $address->setCountry('Denmark');
                 $address->setCountriesId(58);
+                $address->setExternalAddressId($data['external_address_id']);
+                $address->setAddressLine2(null);
             } else {
                 $country = CountriesQuery::create()->findOneById($data['countries_id']);
                 $address->setCountry($country->getName());
@@ -302,14 +274,66 @@ class AddressController extends CoreController
             }
 
             // remember to save the company name.
-            if ($method == 'company_shipping') {
+            if (in_array($method, ['company_shipping', 'overnightbox'])) {
                 if (empty($data['company_name'])) {
                     $data['company_name'] = 'N/A';
                 }
                 $address->setCompanyName($data['company_name']);
             }
 
+            if ('payment' == $method) {
+                $customer = $address->setPhone($data['phone']);
+            }
+
+
+            // validate the address
+            $validator = $this->get('validator');
+            $translator = $this->get('translator');
+
+            // fi uses different validation group to support different rules
+            $validation_group = $method;
+            if (in_array($short_domain_key, ['fi', 'se', 'nl'])) {
+                $validation_group = $method.'_'.$short_domain_key;
+            }
+
+            $object_errors = $validator->validate($address, [$validation_group]);
+
+            $errors = [];
+            foreach ($object_errors->getIterator() as $error) {
+                if (null === $error->getMessagePluralization()) {
+                    $errors[] = $translator->trans(
+                        $error->getMessageTemplate(),
+                        $error->getMessageParameters(),
+                        'validators'
+                    );
+                } else {
+                    $errors[] = $translator->transChoice(
+                        $error->getMessageTemplate(),
+                        $error->getMessagePluralization(),
+                        $error->getMessageParameters(),
+                        'validators'
+                    );
+                }
+            }
+
+            if (count($errors)) {
+                // needed or we cannot continue in the checkout
+                $order->setAttribute('not_valid', 'global', 1);
+                $order->save();
+
+                $message = '<ul class="error"><li>'.implode('</li><li>', $errors).'</li></ul>';
+                return $this->json_response(array(
+                    'status' => false,
+                    'message' => $message,
+                ));
+            }
+
             $address->save();
+
+            // change phone number
+            if (isset($customer) && ('payment' == $method)) {
+                $customer->save();
+            }
 
             if ($type == 'payment') {
                 $order->setBillingAddress($address);
@@ -317,6 +341,7 @@ class AddressController extends CoreController
                 $order->setDeliveryAddress($address);
             }
 
+            $order->clearAttributesByKey('not_valid');
             $order->save();
             $status = true;
         }

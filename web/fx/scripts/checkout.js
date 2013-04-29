@@ -15,6 +15,7 @@
       $('#body-checkout form input:checked').each(function (index, element) {
         if (element.name == 'method') {
           checkout.setStepStatus('shipping', true);
+          attachLocationForm($('#address-block form.location-locator'));
         } else if (element.name == 'paytype') {
           checkout.setStepStatus('payment', true);
           $('#coupon-block').removeClass('hidden');
@@ -172,6 +173,7 @@
 
         $(this).hide();
         dialoug.loading($('a#checkout-execute', '', 'after'));
+        $('form.address .error').remove();
 
         $('#main form').each(function(index, form) {
           var $form = $(form);
@@ -261,18 +263,7 @@
           $('#address-copy').parent().addClass('off');
         }
 
-        var $form = $('#address-block form.location-locator');
-        $form.on('submit', function(event) {
-
-          if ($('.locator-result', $form).length) {
-            $('.locator-result', $form).remove();
-          }
-
-          event.preventDefault();
-          dialoug.loading($('.button', $(this)));
-          jaiks.add('/location/locator', checkout.handleLocationLocatorUpdates, $form.formParams());
-          jaiks.exec();
-        });
+        attachLocationForm($('#address-block form.location-locator'));
 
         $('html,body').animate({scrollTop: $('#address-block').prev('h2').offset().top - 20});
         pub.setStepStatus('shipping', true);
@@ -294,16 +285,15 @@
         $('input.droppoint-locator', $form).on('change', function(event) {
           var $this = $(this);
           var data = $this.data('entry');
-
           var $address = $form.next('form');
 
-          $('input#form_first_name', $address).val(data.name);
-          $('input#form_address_line_2', $address).val(data.address);
+          $('input#form_company_name', $address).val(data.name);
+          $('input#form_address_line_1', $address).val(data.address);
           $('input#form_postal_code', $address).val(data.postal_code);
           $('input#form_city', $address).val(data.city);
+          $('input#form_external_address_id', $address).val(data.id);
         });
       } else {
-        console.log('here');
         $form.append('<div class="error"><p>'+response.response.message+'</p></div>');
       }
       dialoug.stopLoading();
@@ -354,6 +344,13 @@
       if (true === pub.getStepStatus('address')) {
         pub.setStepStatus('address', response.response.status);
       }
+
+      if (!pub.getStepStatus('address') && response.response.message) {
+        var $form = $("form[action$='"+response.action+"']");
+        $('ul.error', $form).remove();
+        $form.prepend(response.response.message);
+        $('html,body').animate({scrollTop: $('#address-block').prev('h2').offset().top - 20});
+      }
     };
 
     pub.processPaymentButton = function(response) {
@@ -365,10 +362,14 @@
       ) {
         // payment-process-form
         if (undefined !== response.response.data.url) {
-          if ('/' == response.response.data.url.substring(0, 1)) {
-            response.response.data.url = response.response.data.url.substring(1);
+          if ('http' == response.response.data.url.substring(0, 4)) {
+            document.location.href = response.response.data.url;
+          } else {
+            if ('/' == response.response.data.url.substring(0, 1)) {
+              response.response.data.url = response.response.data.url.substring(1);
+            }
+            document.location.href = base_url+response.response.data.url;
           }
-          document.location.href = base_url+response.response.data.url;
         } else if (undefined !== response.response.data.form) {
           $('#checkout-buttons').append(response.response.data.form);
           $('#checkout-buttons form').submit();
@@ -381,6 +382,11 @@
             Translator.get('js:checkout.payment.progress.alert.message', {'url' : base_url+'payment/cancel'})
           );
         }, 3000);
+      } else {
+        dialoug.stopLoading();
+        $('a#checkout-execute').show();
+        // reset address validation
+        pub.setStepStatus('address', true);
       }
     };
 
@@ -391,6 +397,20 @@
         dialoug.notice(response.response.message, 'error');
         $(document).scrollTop(50);
       }
+    };
+
+    attachLocationForm = function($form) {
+      $form.on('submit', function(event) {
+
+        if ($('.locator-result', $form).length) {
+          $('.locator-result', $form).remove();
+        }
+
+        event.preventDefault();
+        dialoug.loading($('.button', $(this)));
+        jaiks.add('/location/locator', checkout.handleLocationLocatorUpdates, $form.formParams());
+        jaiks.exec();
+      });
     };
 
     return pub;

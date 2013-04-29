@@ -1,12 +1,12 @@
 /**
-| _sprites.
+| _sprites
 */
 .da-sprite, body.da form.buy .submit-button, body.da .buy-set, body.da .new-price, body.da .out-of-stock {
-  background: url('/fx/2013s1/../images/icons/da-s3dafbbb1ae.png') no-repeat;
+  background: url('/fx/2013s1/../images/icons/da-sd69e9a5d05.png') no-repeat;
 }
 
 .icons-sprite, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-facebook, .icons-gplus, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf {
-  background: url('/fx/2013s1/../images/icons/icons-sd048972234.png') no-repeat;
+  background: url('/fx/2013s1/../images/icons/icons-s09df4e31f9.png') no-repeat;
 }
 
 .icons-arrow_down {
@@ -102,149 +102,174 @@
 }
 
 .fi-sprite, body.fi form.buy .submit-button, body.fi .buy-set, body.fi .new-price, body.fi .out-of-stock {
-  background: url('/fx/2013s1/../images/icons/fi-s8604d498b5.png') no-repeat;
+  background: url('/fx/2013s1/../images/icons/fi-s32736d1a36.png') no-repeat;
 }
 
 .nl-sprite, body.nl form.buy .submit-button, body.nl .buy-set, body.nl .new-price, body.nl .out-of-stock {
-  background: url('/fx/2013s1/../images/icons/nl-sbefbbddaa2.png') no-repeat;
+  background: url('/fx/2013s1/../images/icons/nl-s3d8b2e4fd8.png') no-repeat;
 }
 
 .no-sprite, body.nb form.buy .submit-button, body.nb .buy-set, body.nb .new-price, body.nb .out-of-stock {
-  background: url('/fx/2013s1/../images/icons/no-s6b225244c3.png') no-repeat;
+  background: url('/fx/2013s1/../images/icons/no-s82054f548a.png') no-repeat;
 }
 
 .se-sprite, body.sv form.buy .submit-button, body.sv .buy-set, body.sv .new-price, body.sv .out-of-stock {
-  background: url('/fx/2013s1/../images/icons/se-s6662484f39.png') no-repeat;
+  background: url('/fx/2013s1/../images/icons/se-s0c9b635c7c.png') no-repeat;
 }
 
 .en-sprite, body.en form.buy .submit-button, body.en .buy-set, body.en .new-price, body.en .out-of-stock {
-  background: url('/fx/2013s1/../images/icons/en-s329c28e89a.png') no-repeat;
+  background: url('/fx/2013s1/../images/icons/en-s9d987caa83.png') no-repeat;
+}
+
+.de-sprite, body.de form.buy .submit-button, body.de .buy-set, body.de .new-price, body.de .out-of-stock {
+  background: url('/fx/2013s1/../images/icons/de-s5694c04f28.png') no-repeat;
 }
 
 body.da form.buy .submit-button {
-  background-position: 0 -904px;
+  background-position: 0 -579px;
   height: 84px;
   width: 87px;
 }
 body.da .buy-set {
-  background-position: 0 -820px;
+  background-position: 0 -495px;
   height: 84px;
   width: 87px;
 }
 body.da .new-price {
-  background-position: 0 -410px;
-  height: 410px;
-  width: 234px;
-}
-body.da .out-of-stock {
   background-position: 0 0;
   height: 410px;
   width: 234px;
 }
+body.da .out-of-stock {
+  background-position: 0 -410px;
+  height: 85px;
+  width: 86px;
+}
+
+body.de form.buy .submit-button {
+  background-position: 0 -254px;
+  height: 84px;
+  width: 84px;
+}
+body.de .buy-set {
+  background-position: 0 -170px;
+  height: 84px;
+  width: 84px;
+}
+body.de .new-price {
+  background-position: 0 0;
+  height: 85px;
+  width: 86px;
+}
+body.de .out-of-stock {
+  background-position: 0 -85px;
+  height: 85px;
+  width: 86px;
+}
 
 body.en form.buy .submit-button {
-  background-position: 0 -820px;
+  background-position: 0 -496px;
   height: 84px;
   width: 84px;
 }
 body.en .buy-set {
-  background-position: 0 -904px;
+  background-position: 0 -580px;
   height: 84px;
   width: 84px;
 }
 body.en .new-price {
-  background-position: 0 -410px;
+  background-position: 0 -86px;
   height: 410px;
   width: 234px;
 }
 body.en .out-of-stock {
   background-position: 0 0;
-  height: 410px;
-  width: 234px;
+  height: 86px;
+  width: 85px;
 }
 
 body.fi form.buy .submit-button {
-  background-position: 0 -904px;
+  background-position: 0 -579px;
   height: 84px;
   width: 84px;
 }
 body.fi .buy-set {
-  background-position: 0 -820px;
+  background-position: 0 -495px;
   height: 84px;
   width: 84px;
 }
 body.fi .new-price {
-  background-position: 0 -410px;
+  background-position: 0 0;
   height: 410px;
   width: 234px;
 }
 body.fi .out-of-stock {
-  background-position: 0 0;
-  height: 410px;
-  width: 234px;
+  background-position: 0 -410px;
+  height: 85px;
+  width: 86px;
 }
 
 body.nb form.buy .submit-button {
-  background-position: 0 -2164px;
+  background-position: 0 -579px;
   height: 84px;
   width: 84px;
 }
 body.nb .buy-set {
-  background-position: 0 -2080px;
+  background-position: 0 -495px;
   height: 84px;
   width: 84px;
 }
 body.nb .new-price {
-  background-position: 0 -1670px;
+  background-position: 0 0;
   height: 410px;
   width: 234px;
 }
 body.nb .out-of-stock {
-  background-position: 0 0;
-  height: 1670px;
-  width: 954px;
+  background-position: 0 -410px;
+  height: 85px;
+  width: 86px;
 }
 
 body.nl form.buy .submit-button {
-  background-position: 0 -904px;
+  background-position: 0 -579px;
   height: 84px;
   width: 84px;
 }
 body.nl .buy-set {
-  background-position: 0 -820px;
+  background-position: 0 -495px;
   height: 84px;
   width: 84px;
 }
 body.nl .new-price {
-  background-position: 0 -410px;
+  background-position: 0 0;
   height: 410px;
   width: 234px;
 }
 body.nl .out-of-stock {
-  background-position: 0 0;
-  height: 410px;
-  width: 234px;
+  background-position: 0 -410px;
+  height: 85px;
+  width: 86px;
 }
 
 body.sv form.buy .submit-button {
-  background-position: 0 -904px;
+  background-position: 0 -579px;
   height: 84px;
   width: 84px;
 }
 body.sv .buy-set {
-  background-position: 0 -820px;
+  background-position: 0 -495px;
   height: 84px;
   width: 84px;
 }
 body.sv .new-price {
-  background-position: 0 -410px;
+  background-position: 0 0;
   height: 410px;
   width: 234px;
 }
 body.sv .out-of-stock {
-  background-position: 0 0;
-  height: 410px;
-  width: 234px;
+  background-position: 0 -410px;
+  height: 85px;
+  width: 86px;
 }
 
 /**
@@ -481,7 +506,10 @@ ul.breadcrumb li.last i.arrow-right {
 #body-create-account .main header,
 #body-event .main header,
 #body-gothia .main header,
-#body-login .main header {
+#body-login .main header,
+#body-pensio-payment-failed .main header,
+#body-pensio-pensio-payment-form .main header,
+#body-pensio-wait .main header {
   background: #d2c3c6;
   background: url("/fx/images/headers/Kategori_Min_side_960x100.jpg") no-repeat top center;
 }
@@ -541,7 +569,31 @@ ul.breadcrumb li.last i.arrow-right {
 #body-login .main header hgroup h5,
 #body-login .main header hgroup h6,
 #body-login .main header hgroup a,
-#body-login .main header hgroup p {
+#body-login .main header hgroup p,
+#body-pensio-payment-failed .main header hgroup h1,
+#body-pensio-payment-failed .main header hgroup h2,
+#body-pensio-payment-failed .main header hgroup h3,
+#body-pensio-payment-failed .main header hgroup h4,
+#body-pensio-payment-failed .main header hgroup h5,
+#body-pensio-payment-failed .main header hgroup h6,
+#body-pensio-payment-failed .main header hgroup a,
+#body-pensio-payment-failed .main header hgroup p,
+#body-pensio-pensio-payment-form .main header hgroup h1,
+#body-pensio-pensio-payment-form .main header hgroup h2,
+#body-pensio-pensio-payment-form .main header hgroup h3,
+#body-pensio-pensio-payment-form .main header hgroup h4,
+#body-pensio-pensio-payment-form .main header hgroup h5,
+#body-pensio-pensio-payment-form .main header hgroup h6,
+#body-pensio-pensio-payment-form .main header hgroup a,
+#body-pensio-pensio-payment-form .main header hgroup p,
+#body-pensio-wait .main header hgroup h1,
+#body-pensio-wait .main header hgroup h2,
+#body-pensio-wait .main header hgroup h3,
+#body-pensio-wait .main header hgroup h4,
+#body-pensio-wait .main header hgroup h5,
+#body-pensio-wait .main header hgroup h6,
+#body-pensio-wait .main header hgroup a,
+#body-pensio-wait .main header hgroup p {
   color: #444;
 }
 
@@ -1614,6 +1666,11 @@ form.address label {
   vertical-align: top;
   margin-top: 0 0 12px;
 }
+form.address .error {
+  border: 2px solid red;
+  margin: 10px 0;
+  padding: 10px;
+}
 
 #body-checkout #main form.address > h3 {
   margin-top: 0;
@@ -1710,6 +1767,47 @@ form.location-locator div.error {
 form.location-locator div.error p {
   border: 1px solid red;
   padding: 10px;
+}
+
+#body-pensio-wait #in-edit-warning,
+#body-checkout-process #in-edit-warning {
+  display: none;
+}
+
+#body-pensio-payment-form ul,
+#body-pensio-payment-form form {
+  margin: 20px 0;
+}
+#body-pensio-payment-form li.total {
+  padding-top: 10px;
+  font-weight: bold;
+}
+#body-pensio-payment-form .pensio_payment_form_submit_cell input {
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  background: #474749;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+  text-align: center;
+  padding: 6px;
+  font-weight: normal;
+  color: white !important;
+  line-height: 18px;
+  white-space: normal;
+  -webkit-appearance: none;
+  background: url(/fx/images/icons/icons/button-right.png) right no-repeat #474749;
+  border-right: 6px solid #474749;
+  padding: 6px 24px;
+}
+#body-pensio-payment-form .pensio_payment_form_submit_cell input:hover {
+  text-decoration: none;
+}
+#body-pensio-payment-form .pensio_payment_form_table {
+  width: auto;
+}
+#body-pensio-payment-form .pensio_payment_form_table td {
+  vertical-align: normal;
 }
 
 /**
@@ -1812,6 +1910,10 @@ form.location-locator div.error p {
 .social-buttons a.icons-pinterest {
   height: 32px;
   width: 32px;
+}
+
+html.consultant .social-buttons {
+  display: none;
 }
 
 .facebook-button {
@@ -1954,6 +2056,15 @@ nav.main-menu > ul > li > ul.on {
   text-transform: none;
   padding: 6px 0 0;
   letter-spacing: 0;
+}
+.body-pages #main .social-buttons {
+  float: right;
+}
+
+article div ul {
+  margin-left: 20px;
+  list-style-type: disc;
+  list-style-position: outside;
 }
 
 /**

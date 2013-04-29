@@ -30,6 +30,12 @@
         });
       });
 
+      $('.sortable-item.ui-state-disabled > ul').hide();
+      $('.sortable-item.ui-state-disabled > .sort-handle').on('click', function(event) {
+        event.preventDefault();
+        $(this).closest('li').find('ul').first().slideToggle();
+      });
+
       /* Admin Sortable list to show and update Cms pages' order*/
       $('#sortable-list').nestedSortable({
         listType: 'ul',

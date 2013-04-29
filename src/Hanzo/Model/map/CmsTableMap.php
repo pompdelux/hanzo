@@ -47,7 +47,6 @@ class CmsTableMap extends TableMap
         $this->addForeignKey('CMS_THREAD_ID', 'CmsThreadId', 'INTEGER', 'cms_thread', 'ID', true, null, null);
         $this->addColumn('SORT', 'Sort', 'INTEGER', true, null, 1);
         $this->addColumn('TYPE', 'Type', 'VARCHAR', true, 255, 'cms');
-        $this->addColumn('IS_ACTIVE', 'IsActive', 'BOOLEAN', true, 1, true);
         $this->addColumn('CREATED_AT', 'CreatedAt', 'TIMESTAMP', false, null, null);
         $this->addColumn('UPDATED_AT', 'UpdatedAt', 'TIMESTAMP', false, null, null);
         // validators
@@ -73,7 +72,7 @@ class CmsTableMap extends TableMap
     public function getBehaviors()
     {
         return array(
-            'i18n' => array('i18n_table' => '%TABLE%_i18n', 'i18n_phpname' => '%PHPNAME%I18n', 'i18n_columns' => 'title, path, old_path, content, settings, is_restricted', 'locale_column' => 'locale', 'default_locale' => 'da_DK', 'locale_alias' => '', ),
+            'i18n' => array('i18n_table' => '%TABLE%_i18n', 'i18n_phpname' => '%PHPNAME%I18n', 'i18n_columns' => 'title, path, old_path, content, settings, is_restricted, is_active', 'locale_column' => 'locale', 'default_locale' => 'da_DK', 'locale_alias' => '', ),
             'timestampable' => array('create_column' => 'created_at', 'update_column' => 'updated_at', 'disable_updated_at' => 'false', ),
         );
     } // getBehaviors()

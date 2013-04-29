@@ -55,7 +55,8 @@
         id     : $small.data('id'),
         color  : $small.data('color'),
         number : $small.data('number'),
-        type : $small.data('type')
+        type   : $small.data('type'),
+        alt    : $small_img.attr('alt')
       };
 
       var $large = $('.productimage-large a');
@@ -67,7 +68,8 @@
         id     : $large.data('id'),
         color  : $large.data('color'),
         number : $large.data('number'),
-        type : $large.data('type')
+        type   : $large.data('type'),
+        alt    : $large_img.attr('alt')
       };
 
       $large.data('src', small.small);
@@ -83,6 +85,7 @@
       $large.removeClass('type-'+large.type);
       $large.addClass('type-'+small.type);
       $large_img.attr('src', small.medium);
+      $large_img.attr('alt', small.alt);
 
       $small.data('src', large.medium);
       $small.attr('href', large.large);
@@ -97,6 +100,7 @@
       $small.removeClass('type-'+small.type);
       $small.addClass('type-'+large.type);
       $small_img.attr('src', large.small);
+      $small_img.attr('alt', large.alt);
 
       $('.style-guide .element').hide();
       $('.style-guide .' + small.id).show();

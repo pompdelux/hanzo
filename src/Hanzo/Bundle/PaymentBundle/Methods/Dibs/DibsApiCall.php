@@ -110,13 +110,6 @@ if ($function == 'cgi-adm/refund.cgi') {
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers );
         }
 
-        //if ( $this->debug )
-        //{
-        //$msg = 'Calling Dibs api on url: '.$url.PHP_EOL.'Params:'.print_r($headers,1).PHP_EOL.print_r($params,1);
-        //$logger->debug($msg)
-        //}
-        //$this->debugMsg( 'Action: "'. $this->currentAction .'" data: '. print_r($params,1) , __FUNCTION__, __LINE__ );
-
         $response = curl_exec($ch);
 
         curl_close($ch);

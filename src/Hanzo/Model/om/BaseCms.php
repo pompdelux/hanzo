@@ -77,13 +77,6 @@ abstract class BaseCms extends BaseObject implements Persistent
     protected $type;
 
     /**
-     * The value for the is_active field.
-     * Note: this column has a database default value of: true
-     * @var        boolean
-     */
-    protected $is_active;
-
-    /**
      * The value for the created_at field.
      * @var        string
      */
@@ -167,7 +160,6 @@ abstract class BaseCms extends BaseObject implements Persistent
     {
         $this->sort = 1;
         $this->type = 'cms';
-        $this->is_active = true;
     }
 
     /**
@@ -228,16 +220,6 @@ abstract class BaseCms extends BaseObject implements Persistent
     public function getType()
     {
         return $this->type;
-    }
-
-    /**
-     * Get the [is_active] column value.
-     *
-     * @return boolean
-     */
-    public function getIsActive()
-    {
-        return $this->is_active;
     }
 
     /**
@@ -432,35 +414,6 @@ abstract class BaseCms extends BaseObject implements Persistent
     } // setType()
 
     /**
-     * Sets the value of the [is_active] column.
-     * Non-boolean arguments are converted using the following rules:
-     *   * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
-     *   * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
-     * Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
-     *
-     * @param boolean|integer|string $v The new value
-     * @return Cms The current object (for fluent API support)
-     */
-    public function setIsActive($v)
-    {
-        if ($v !== null) {
-            if (is_string($v)) {
-                $v = in_array(strtolower($v), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
-            } else {
-                $v = (boolean) $v;
-            }
-        }
-
-        if ($this->is_active !== $v) {
-            $this->is_active = $v;
-            $this->modifiedColumns[] = CmsPeer::IS_ACTIVE;
-        }
-
-
-        return $this;
-    } // setIsActive()
-
-    /**
      * Sets the value of [created_at] column to a normalized version of the date/time value specified.
      *
      * @param mixed $v string, integer (timestamp), or DateTime value.
@@ -524,10 +477,6 @@ abstract class BaseCms extends BaseObject implements Persistent
                 return false;
             }
 
-            if ($this->is_active !== true) {
-                return false;
-            }
-
         // otherwise, everything was equal, so return true
         return true;
     } // hasOnlyDefaultValues()
@@ -555,9 +504,8 @@ abstract class BaseCms extends BaseObject implements Persistent
             $this->cms_thread_id = ($row[$startcol + 2] !== null) ? (int) $row[$startcol + 2] : null;
             $this->sort = ($row[$startcol + 3] !== null) ? (int) $row[$startcol + 3] : null;
             $this->type = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
-            $this->is_active = ($row[$startcol + 5] !== null) ? (boolean) $row[$startcol + 5] : null;
-            $this->created_at = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
-            $this->updated_at = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
+            $this->created_at = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
+            $this->updated_at = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -566,7 +514,7 @@ abstract class BaseCms extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
 
-            return $startcol + 8; // 8 = CmsPeer::NUM_HYDRATE_COLUMNS.
+            return $startcol + 7; // 7 = CmsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating Cms object", $e);
@@ -870,9 +818,6 @@ abstract class BaseCms extends BaseObject implements Persistent
         if ($this->isColumnModified(CmsPeer::TYPE)) {
             $modifiedColumns[':p' . $index++]  = '`TYPE`';
         }
-        if ($this->isColumnModified(CmsPeer::IS_ACTIVE)) {
-            $modifiedColumns[':p' . $index++]  = '`IS_ACTIVE`';
-        }
         if ($this->isColumnModified(CmsPeer::CREATED_AT)) {
             $modifiedColumns[':p' . $index++]  = '`CREATED_AT`';
         }
@@ -904,9 +849,6 @@ abstract class BaseCms extends BaseObject implements Persistent
                         break;
                     case '`TYPE`':
                         $stmt->bindValue($identifier, $this->type, PDO::PARAM_STR);
-                        break;
-                    case '`IS_ACTIVE`':
-                        $stmt->bindValue($identifier, (int) $this->is_active, PDO::PARAM_INT);
                         break;
                     case '`CREATED_AT`':
                         $stmt->bindValue($identifier, $this->created_at, PDO::PARAM_STR);
@@ -1098,12 +1040,9 @@ abstract class BaseCms extends BaseObject implements Persistent
                 return $this->getType();
                 break;
             case 5:
-                return $this->getIsActive();
-                break;
-            case 6:
                 return $this->getCreatedAt();
                 break;
-            case 7:
+            case 6:
                 return $this->getUpdatedAt();
                 break;
             default:
@@ -1140,9 +1079,8 @@ abstract class BaseCms extends BaseObject implements Persistent
             $keys[2] => $this->getCmsThreadId(),
             $keys[3] => $this->getSort(),
             $keys[4] => $this->getType(),
-            $keys[5] => $this->getIsActive(),
-            $keys[6] => $this->getCreatedAt(),
-            $keys[7] => $this->getUpdatedAt(),
+            $keys[5] => $this->getCreatedAt(),
+            $keys[6] => $this->getUpdatedAt(),
         );
         if ($includeForeignObjects) {
             if (null !== $this->aCmsThread) {
@@ -1207,12 +1145,9 @@ abstract class BaseCms extends BaseObject implements Persistent
                 $this->setType($value);
                 break;
             case 5:
-                $this->setIsActive($value);
-                break;
-            case 6:
                 $this->setCreatedAt($value);
                 break;
-            case 7:
+            case 6:
                 $this->setUpdatedAt($value);
                 break;
         } // switch()
@@ -1244,9 +1179,8 @@ abstract class BaseCms extends BaseObject implements Persistent
         if (array_key_exists($keys[2], $arr)) $this->setCmsThreadId($arr[$keys[2]]);
         if (array_key_exists($keys[3], $arr)) $this->setSort($arr[$keys[3]]);
         if (array_key_exists($keys[4], $arr)) $this->setType($arr[$keys[4]]);
-        if (array_key_exists($keys[5], $arr)) $this->setIsActive($arr[$keys[5]]);
-        if (array_key_exists($keys[6], $arr)) $this->setCreatedAt($arr[$keys[6]]);
-        if (array_key_exists($keys[7], $arr)) $this->setUpdatedAt($arr[$keys[7]]);
+        if (array_key_exists($keys[5], $arr)) $this->setCreatedAt($arr[$keys[5]]);
+        if (array_key_exists($keys[6], $arr)) $this->setUpdatedAt($arr[$keys[6]]);
     }
 
     /**
@@ -1263,7 +1197,6 @@ abstract class BaseCms extends BaseObject implements Persistent
         if ($this->isColumnModified(CmsPeer::CMS_THREAD_ID)) $criteria->add(CmsPeer::CMS_THREAD_ID, $this->cms_thread_id);
         if ($this->isColumnModified(CmsPeer::SORT)) $criteria->add(CmsPeer::SORT, $this->sort);
         if ($this->isColumnModified(CmsPeer::TYPE)) $criteria->add(CmsPeer::TYPE, $this->type);
-        if ($this->isColumnModified(CmsPeer::IS_ACTIVE)) $criteria->add(CmsPeer::IS_ACTIVE, $this->is_active);
         if ($this->isColumnModified(CmsPeer::CREATED_AT)) $criteria->add(CmsPeer::CREATED_AT, $this->created_at);
         if ($this->isColumnModified(CmsPeer::UPDATED_AT)) $criteria->add(CmsPeer::UPDATED_AT, $this->updated_at);
 
@@ -1333,7 +1266,6 @@ abstract class BaseCms extends BaseObject implements Persistent
         $copyObj->setCmsThreadId($this->getCmsThreadId());
         $copyObj->setSort($this->getSort());
         $copyObj->setType($this->getType());
-        $copyObj->setIsActive($this->getIsActive());
         $copyObj->setCreatedAt($this->getCreatedAt());
         $copyObj->setUpdatedAt($this->getUpdatedAt());
 
@@ -1980,7 +1912,6 @@ abstract class BaseCms extends BaseObject implements Persistent
         $this->cms_thread_id = null;
         $this->sort = null;
         $this->type = null;
-        $this->is_active = null;
         $this->created_at = null;
         $this->updated_at = null;
         $this->alreadyInSave = false;
@@ -2291,6 +2222,30 @@ abstract class BaseCms extends BaseObject implements Persistent
          */
         public function setIsRestricted($v)
         {    $this->getCurrentTranslation()->setIsRestricted($v);
+
+        return $this;
+    }
+
+
+        /**
+         * Get the [is_active] column value.
+         *
+         * @return boolean
+         */
+        public function getIsActive()
+        {
+        return $this->getCurrentTranslation()->getIsActive();
+    }
+
+
+        /**
+         * Set the value of [is_active] column.
+         *
+         * @param boolean $v new value
+         * @return CmsI18n The current object (for fluent API support)
+         */
+        public function setIsActive($v)
+        {    $this->getCurrentTranslation()->setIsActive($v);
 
         return $this;
     }

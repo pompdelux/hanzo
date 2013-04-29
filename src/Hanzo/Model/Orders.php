@@ -768,7 +768,8 @@ class Orders extends BaseOrders
             ->setBillingCompanyName( $address->getCompanyName() )
             ->setBillingFirstName( $address->getFirstName() )
             ->setBillingLastName( $address->getLastName() )
-            ;
+            ->setBillingExternalAddressId( $address->getExternalAddressId() )
+        ;
     }
 
     /**
@@ -894,6 +895,7 @@ class Orders extends BaseOrders
             ->setDeliveryCompanyName( $address->getCompanyName() )
             ->setDeliveryFirstName( $address->getFirstName() )
             ->setDeliveryLastName( $address->getLastName() )
+            ->setDeliveryExternalAddressId( $address->getExternalAddressId() )
         ;
     }
 
@@ -1027,13 +1029,11 @@ class Orders extends BaseOrders
         $customer = CustomersQuery::create()->findOneById( $this->getCustomersId(), $this->pdo_con );
         $response = $api->call()->cancel( $customer, $this );
 
-        if ( is_object($response) && $response->isError() )
-        {
+        if (is_object($response) && $response->isError()) {
             $debug = array();
             $msg = 'Could not cancel order';
 
-            if ( $paymentMethod == 'gothia' )
-            {
+            if ($paymentMethod == 'gothia') {
               $debug['TransactionId'] = $response->transactionId;
               $msg .= ' at Gothia (Transaction ID: '. $response->transactionId .')';
             }
@@ -1042,8 +1042,7 @@ class Orders extends BaseOrders
             throw new Exception( $msg );
         }
 
-        if ( !is_object($response) )
-        {
+        if (!is_object($response)) {
             $msg = 'Could not cancel order';
             Tools::debug( 'Cancel payment failed, response is not an object', __METHOD__, array( 'PaymentMethod' => $paymentMethod));
             throw new Exception( $msg );

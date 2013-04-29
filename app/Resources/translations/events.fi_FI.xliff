@@ -398,6 +398,10 @@
                 <source>events.no.events</source>
                 <target>Couldn't find any future events for you.</target>
             </trans-unit>
+            <trans-unit id="events.hostess.header.text" approved="no">
+                <source>events.hostess.header.text</source>
+                <target>Kundeoplysninger</target>
+            </trans-unit>
         </body>
    </file>
 </xliff>

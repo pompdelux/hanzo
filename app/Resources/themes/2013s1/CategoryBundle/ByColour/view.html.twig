@@ -35,7 +35,7 @@
             {#<strong>{{ product.color }} - {{ product.category }}</strong>#}
             <a href="{{ product.url }}" title="{{ "more.product.info"|trans({'%name%' : product.title}) }}" class="product flip-this">
               {{ product_image_tag(product.image, '234x410', {
-                'alt' : product.title,
+                'alt' : product.alt,
                 'data-flip': product_image_url(product.image_flip, '234x410')
               }) }}
               {% if product.prices.sales is defined and show_new_price_badge %}

@@ -29,13 +29,13 @@ class Hanzo
 
     protected static $hanzo;
 
-    public static function initialize($container = NULL, $environment = NULL)
+    public static function initialize($container = NULL)
     {
         if (empty(self::$hanzo)) {
             if (empty($container)) {
                 throw new \InvalidArgumentException('Service Container object needed !', 100);
             }
-            self::$hanzo = new Hanzo($container, $environment);
+            self::$hanzo = new Hanzo($container);
         }
 
         return self::$hanzo;
@@ -51,11 +51,13 @@ class Hanzo
     }
 
 
-    private function __construct($container, $environment = NULL)
+    private function __construct($container)
     {
         $this->container = $container;
         $this->kernel = $container->get('kernel');
-        $this->settings['core']['env'] = $environment;
+        $this->settings['core']['env'] = $this->kernel->getEnvironment();
+
+        $this->cache = $this->container->get('redis.main');
 
         if (('cli' !== PHP_SAPI) && empty($_SERVER['HTTP_SOAPACTION'])) {
 

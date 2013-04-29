@@ -27,18 +27,11 @@ propel:
                         user:         %prod_dk_database_slave_3_user%
                         password:     %prod_dk_database_slave_3_password%
                         dsn:          %prod_dk_database_slave_3_dsn%
-            pdldbse1:
+            pdldbde1:
                 driver:               %database_driver%
-                user:                 %prod_se_database_user%
-                password:             %prod_se_database_password%
-                dsn:                  mysql:host=%prod_se_database_host%;dbname=%prod_se_database_name%
-                options:              {}
-                attributes:           {}
-            pdldbno1:
-                driver:               %database_driver%
-                user:                 %prod_no_database_user%
-                password:             %prod_no_database_password%
-                dsn:                  mysql:host=%prod_no_database_host%;dbname=%prod_no_database_name%
+                user:                 %prod_de_database_user%
+                password:             %prod_de_database_password%
+                dsn:                  mysql:host=%prod_de_database_host%;dbname=%prod_de_database_name%
                 options:              {}
                 attributes:           {}
             pdldbfi1:
@@ -53,5 +46,19 @@ propel:
                 user:                 %prod_nl_database_user%
                 password:             %prod_nl_database_password%
                 dsn:                  mysql:host=%prod_nl_database_host%;dbname=%prod_nl_database_name%
+                options:              {}
+                attributes:           {}
+            pdldbno1:
+                driver:               %database_driver%
+                user:                 %prod_no_database_user%
+                password:             %prod_no_database_password%
+                dsn:                  mysql:host=%prod_no_database_host%;dbname=%prod_no_database_name%
+                options:              {}
+                attributes:           {}
+            pdldbse1:
+                driver:               %database_driver%
+                user:                 %prod_se_database_user%
+                password:             %prod_se_database_password%
+                dsn:                  mysql:host=%prod_se_database_host%;dbname=%prod_se_database_name%
                 options:              {}
                 attributes:           {}

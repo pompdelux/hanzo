@@ -35,6 +35,11 @@ form.address {
 		vertical-align: top;
 		margin-top: 0 0 12px;
 	}
+	.error {
+		border: 2px solid $form-error-color;
+		margin: 10px 0;
+		padding: 10px;
+	}
 }
 
 #body-checkout {
@@ -137,4 +142,9 @@ form.location-locator {
 			padding: 10px;
 		}
 	}
+}
+
+#body-pensio-wait #in-edit-warning,
+#body-checkout-process #in-edit-warning{
+	display:none;
 }
