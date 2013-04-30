@@ -4,42 +4,42 @@
         <body>
             <trans-unit id="404.title">
                 <source>404.title</source>
-                <target>Det søgte findes ikke.</target>
+                <target>Das Gesuchte existiert nicht.</target>
             </trans-unit>
             <trans-unit id="404.description">
                 <source>404.description</source>
                 <target><![CDATA[
-                    Du har forespurgt på noget indhold, som vi ikke har her på siden.<br><br>
-                    Prøv om ikke en af kategorierne indeholder det du søger eller benyt søgeformularen herunder.
+                    Sie haben Inhalt gesucht, den es auf dieser Seite nicht gibt.<br><br>
+                    Bitte untersuchen Sie, ob eine der Kategorien das enthält, wonach Sie suchen, oder verwenden Sie das Suchformular unten.
                 ]]></target>
             </trans-unit>
             <trans-unit id="404.webshop_closed.description" approved="no">
                 <source>404.webshop_closed.description</source>
                 <target><![CDATA[
-                    Du har forespurgt på noget indhold, som vi ikke har her på siden.<br><br>
-                    Prøv om ikke en af kategorierne indeholder det du søger eller benyt søgeformularen herunder.
+                    Sie haben Inhalt gesucht, den es auf dieser Seite nicht gibt.<br><br>
+                    Bitte untersuchen Sie, ob eine der Kategorien das enthält, wonach Sie suchen, oder verwenden Sie das Suchformular unten.
                 ]]></target>
             </trans-unit>
             <trans-unit id="500.title">
                 <source>500.title</source>
-                <target>Woops!</target>
+                <target>Hoppla!</target>
             </trans-unit>
             <trans-unit id="500.description">
                 <source>500.description</source>
                 <target><![CDATA[
-                    <p>Du er røget ind i afdelingen for tekniske vanskeligheder, vi beklager.</p>
-                    <p>Hvis problemet fortsætter eller genopstår kan du kontakte kundeservice på telefon: (+45) 8678 7871, eller skrive til os på <a href="mailto:mail@pompdelux.dk">mail@pompdelux.dk</a></p>
+                    <p>Sie sind in die Abteilung für technische Probleme geraten. Das tut uns Leid.</p>
+                    <p>Wenn das Problem nicht behoben wird oder erneut entsteht, können Sie sich an den Kundendienst wenden unter Tel.: (+45) 8678 7871 oder schreiben Sie uns unter <a href="mailto:mail@pompdelux.dk">mail@pompdelux.dk</a></p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="403.title">
                 <source>403.title</source>
-                <target>Woops!</target>
+                <target>Hoppla!</target>
             </trans-unit>
             <trans-unit id="403.description">
                 <source>403.description</source>
                 <target><![CDATA[
-                    <p>Du har ikke adgang til at se denne side.</p>
-                    <p>Hvis problemet fortsætter eller genopstår kan du kontakte kundeservice på telefon: (+45) 8678 7871, eller skrive til os på <a href="mailto:mail@pompdelux.dk">mail@pompdelux.dk</a></p>
+                    <p>Ihnen fehlt die Berechtigung, diese Seite zu sehen.</p>
+                    <p>Wenn das Problem nicht behoben wird oder erneut entsteht, können Sie sich an den Kundendienst wenden unter Tel.: (+45) 8678 7871 oder schreiben Sie uns unter <a href="mailto:mail@pompdelux.dk">mail@pompdelux.dk</a></p>
                 ]]></target>
             </trans-unit>
         </body>
