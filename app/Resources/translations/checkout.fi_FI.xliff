@@ -320,7 +320,8 @@
         <target>Rabat:</target>
       </trans-unit>
       <trans-unit id="discount.hostess" approved="no">
-        <source>Emännän ale:</target>
+	  <source>discount.hostess</source>
+        <target>Emännän ale:</target>
       </trans-unit>
       <trans-unit id="discount.friend" approved="no">
         <source>discount.friend</source>
