@@ -54,11 +54,11 @@
       </trans-unit>
       <trans-unit id="confirm.title">
         <source>confirm.title</source>
-        <target>Keur goed</target>
+        <target>Bevestig</target>
       </trans-unit>
       <trans-unit id="confirm.addresses.label" approved="no">
         <source>confirm.addresses.label</source>
-        <target>Ja, de bovenstaande adressen zijn correct.</target>
+        <target>Ja, postcode en huisnummer zijn correct.</target>
       </trans-unit>
       <trans-unit id="confirm.order_id">
         <source>confirm.order_id</source>
@@ -385,7 +385,7 @@
       </trans-unit>
             <trans-unit id="address.copy" approved="no">
          <source>address.copy</source>
-         <target>The deliveryaddress is the same as my Privateaddress</target>
+         <target>Het afleveradres is hetzelfde als het privé-adres.</target>
       </trans-unit>
             <trans-unit id="dibs.down.message">
          <source>dibs.down.message</source>
