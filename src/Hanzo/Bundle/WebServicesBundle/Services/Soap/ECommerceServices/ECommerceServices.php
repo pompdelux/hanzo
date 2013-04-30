@@ -480,6 +480,11 @@ class ECommerceServices extends SoapService
             return self::responseStatus('Error', 'SyncPriceListResult', array('Unknown ItemId: ' . $stock->ItemId));
         }
 
+        $last = false;
+        if (isset($stock->LastInCycle) && $stock->LastInCycle) {
+            $last = true;
+        }
+
         // ....................
         // .....<ze code>......
         // ....................
@@ -616,6 +621,16 @@ class ECommerceServices extends SoapService
 
         // purge varnish
         $this->event_dispatcher->dispatch('product.stock.zero', new FilterCategoryEvent($master, null, Propel::getConnection(null, Propel::CONNECTION_WRITE)));
+
+        // set sync flag
+        if ($last) {
+            $c = $this->hanzo->container;
+            $c->get('redis.permanent')->hset(
+                'stock.sync.time',
+                $c->get('kernel')->getSetting('domain_key'),
+                time()
+            );
+        }
 
         // ....................
         // .....</ze code>.....
