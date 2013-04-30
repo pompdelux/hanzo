@@ -4,23 +4,23 @@
         <body>
             <trans-unit id="1">
                 <source>title</source>
-                <target>Søg</target>
+                <target>Suchen</target>
             </trans-unit>
             <trans-unit id="2">
                 <source>description</source>
-                <target>Hvis du leder efter information, du ikke kan finde på vores website, så indtast et søgeord i feltet nedenfor og tryk "søg".</target>
+                <target>Wenn Sie Informationen suchen, die Sie auf unserer Webseite nicht finden können, dann geben Sie im Feld unten ein Suchwort ein und drücken auf "Suchen".</target>
             </trans-unit>
             <trans-unit id="3">
                 <source>button.label</source>
-                <target>Søg</target>
+                <target>Suchen</target>
             </trans-unit>
             <trans-unit id="4">
                 <source>result.products</source>
-                <target>Fundet %count% produkter</target>
+                <target>%count% Produkte gefunden</target>
             </trans-unit>
             <trans-unit id="5">
                 <source>result.pages</source>
-                <target>Fundet %count% sider</target>
+                <target>%count% Seiten gefunden</target>
             </trans-unit>
         </body>
     </file>
