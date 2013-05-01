@@ -4,6 +4,7 @@ namespace Hanzo\Bundle\BasketBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use Propel;
 use PropelException;
 
 use Hanzo\Core\Hanzo;
@@ -180,6 +181,8 @@ class DefaultController extends CoreController
     public function removeAction($product_id, $quantity)
     {
         $order = OrdersPeer::getCurrent();
+        $order->reload(true, Propel::getConnection(null, Propel::CONNECTION_WRITE));
+
         $order_lines = $order->getOrdersLiness();
         $product_found = FALSE;
 
@@ -194,8 +197,6 @@ class DefaultController extends CoreController
                     $line->setQuantity($line->getQuantity() - $quantity);
                     $order_lines[$k] = $line;
                 }
-
-                break;
             }
         }
 
