@@ -30,7 +30,7 @@ class CheckStockSyncCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $error = false;
-        $endpoint = $input->getArgument('endpoint');
+        $endpoint = strtoupper($input->getArgument('endpoint'));
 
         $output->writeln('Stoc sync checker initiated for: <info>'.$endpoint.'</info>');
 
@@ -52,7 +52,7 @@ class CheckStockSyncCommand extends ContainerAwareCommand
 
             mail(
                 'hd@pompdelux.dk',
-                'Fejl fra lagersync checker cron (' . $endpoint . ')', "Fejlbesked:\n" . $error . "\n\n-- \nMr. Miyagi",
+                'Fejl fra lagersync checkeren (' . $endpoint . ')', "Fejlbesked:\n" . $error . "\n\n-- \nMr. Miyagi",
                 implode("\r\n", $header),
                 '-fpompdelux@pompdelux.dk'
             );
