@@ -253,10 +253,17 @@
                 <target><![CDATA[
                 <h2>Homeshopping</h2>
                 <ul class="menu">
+<<<<<<< HEAD
                     <li><a href="/da_DK/forside/home-shopping" target="_blank">Über Homeshopping</a></li>
 					<li><a href="/da_DK/forside/home-shopping/find-konsulent" target="_blank">Beraterin finden</a></li>
 					<li><a href="/da_DK/forside/home-shopping/find-konsulent-paa-kort" target="_blank">Beraterin auf Karte finden</a></li>
 					<li><a href="/da_DK/forside/home-shopping/aabent-hus" target="_blank">Tag der offenen Tür</a></li>
+=======
+                    <li><a href="/da_DK/forside/home-shopping">Om Home shopping</a></li>
+					<li><a href="/da_DK/forside/home-shopping/find-konsulent">Find konsulent</a></li>
+					<li><a href="/da_DK/forside/home-shopping/find-konsulent-paa-kort">Find konsulent på kort</a></li>
+					<li><a href="/da_DK/forside/home-shopping/aabent-hus">Åbent hus</a></li>
+>>>>>>> _blank fjernet
                 </ul>
                 ]]></target>
             </trans-unit>
@@ -265,6 +272,7 @@
                 <target><![CDATA[
                 <h2>Mehr POMPdeLUX</h2>
                 <ul class="menu">
+<<<<<<< HEAD
 				    <li><a href="/da_DK/forside/katalog" target="_blank">Online-Katalog</a></li>
 					<li><a href="/da_DK/forside/katalog/image-video" target="_blank">Image-Video</a></li>
                     <li><a href="/da_DK/forside/nyheder" target="_blank">Neuigkeiten</a></li>
@@ -277,6 +285,20 @@
 					<li><a href="/da_DK/forside/webshop/info/oeko-tex" target="_blank">Oeko-Tex</a></li>
 					<li><a href="/da_DK/forside/webshop/info/credits" target="_blank">Danksagungen</a></li>
 					<li><a href="/da_DK/forside/om-pompdelux/kontakt" target="_blank">Kontakt</a></li>
+=======
+				    <li><a href="/da_DK/forside/katalog">Online katalog</a></li>
+					<li><a href="/da_DK/forside/katalog/image-video">Image Video</a></li>
+                    <li><a href="/da_DK/forside/nyheder">Nyheder</a></li>
+                    <li><a href="/da_DK/forside/om-pompdelux/koncept">Koncept</a></li>
+                    <li><a href="/da_DK/forside/om-pompdelux/social-ansvarlighed">Social ansvarlighed</a></li>
+                    <li><a href="/da_DK/forside/om-pompdelux/danmarks-indsamlingen">Danmarks Indsamlingen</a></li>
+					<li><a href="/da_DK/forside/om-pompdelux/sos-boernebyerne">SOS Børnebyerne</a></li>
+					<li><a href="/da_DK/forside/om-pompdelux/job">Job</a></li>
+					<li><a href="/da_DK/forside/webshop/info/gots-organic">GOTS (Organic)</a></li>
+					<li><a href="/da_DK/forside/webshop/info/oeko-tex">Oeko-Tex</a></li>
+					<li><a href="/da_DK/forside/webshop/info/credits">Credits</a></li>
+					<li><a href="/da_DK/forside/om-pompdelux/kontakt">Kontakt</a></li>
+>>>>>>> _blank fjernet
                 </ul>
                 ]]></target>
             </trans-unit>
@@ -285,6 +307,7 @@
                 <target><![CDATA[
                 <h2>Kundendienst</h2>
                 <ul class="menu">
+<<<<<<< HEAD
                     <li><a href="/da_DK/forside/kundeservice" target="_blank">Telefonzeiten</a></li>
                     <li><a href="/da_DK/forside/kundeservice/faq" target="_blank">FAQ</a></li>
                     <li><a href="/da_DK/forside/kundeservice/returnering" target="_blank">Rücksendung</a></li>
@@ -294,6 +317,17 @@
 					<li><a href="/da_DK/forside/webshop/info/sizeguide" target="_blank">Größentabelle</a></li>
 					<li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">AGB's</a></li>
 					<li><a href="/da_DK/forside/kundeservice/om-webshoppen" target="_blank">Über den Webshop</a></li>
+=======
+                    <li><a href="/da_DK/forside/kundeservice">Telefontider</a></li>
+                    <li><a href="/da_DK/forside/kundeservice/faq">FAQ</a></li>
+                    <li><a href="/da_DK/forside/kundeservice/returnering">Returnering</a></li>
+                    <li><a href="/da_DK/forside/kundeservice/ombytning">Ombytning</a></li>
+                    <li><a href="/da_DK/forside/kundeservice/returseddel">Returseddel</a></li>
+                    <li><a href="/da_DK/forside/webshop/info/vaske-raad">Vaskeråd</a></li>
+					<li><a href="/da_DK/forside/webshop/info/sizeguide">Sizeguide</a></li>
+					<li><a href="/da_DK/forside/kundeservice/vilkaar">Vilkår</a></li>
+					<li><a href="/da_DK/forside/kundeservice/om-webshoppen">Om webshoppen</a></li>
+>>>>>>> _blank fjernet
                 </ul>
                 ]]></target>
             </trans-unit>

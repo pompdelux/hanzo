@@ -245,10 +245,10 @@
                 <target><![CDATA[
                 <h2>Home shopping</h2>
                 <ul class="menu">
-                    <li><a href="/nl_NL/voorpagina/home-shopping" target="_blank">Over Home Shopping</a></li>
-                    <li><a href="/nl_NL/voorpagina/vind-een-consulente" target="_blank">Vind een consulent</a></li>
-                    <li><a href="/nl_NL/voorpagina/vind-een-consulente-op-de-kaart" target="_blank">Vind een consulent op de kaart</a></li>
-                    <li><a href="/nl_NL/voorpagina/open-huis" target="_blank">Open huis</a></li>
+                    <li><a href="/nl_NL/voorpagina/home-shopping">Over Home Shopping</a></li>
+                    <li><a href="/nl_NL/voorpagina/vind-een-consulente">Vind een consulent</a></li>
+                    <li><a href="/nl_NL/voorpagina/vind-een-consulente-op-de-kaart">Vind een consulent op de kaart</a></li>
+                    <li><a href="/nl_NL/voorpagina/open-huis">Open huis</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>
@@ -257,17 +257,17 @@
                 <target><![CDATA[
                 <h2>Meer POMPdeLUX</h2>
                 <ul class="menu">
-				    <li><a href="/nl_NL/voorpagina/catalogus" target="_blank">Online Catalogus</a></li>
-				    <li><a href="/nl_NL/voorpagina/catalogus/image-video" target="_blank">Image Video</a></li>
-                    <li><a href="/nl_NL/voorpagina/over-pompdelux" target="_blank">Over POMPdeLUX</a></li>
-                    <li><a href="/nl_NL/voorpagina/nieuws" target="_blank">Nieuws</a></li>
-                    <li><a href="/nl_NL/voorpagina/over-pompdelux/het-concept" target="_blank">Het concept</a></li>
-                    <li><a href="/nl_NL/voorpagina/over-pompdelux/sociale-verantwoordelijkheid" target="_blank">Sociale verantwoordelijkheid</a></li>
-					<li><a href="/nl_NL/voorpagina/over-pompdelux/job" target="_blank">Job</a></li>
-					<li><a href="/nl_NL/voorpagina/webshop/info/oeko-tex" target="_blank">Oeko-Tex</a></li>
-					<li><a href="/nl_NL/voorpagina/webshop/info/gots-organic" target="_blank">GOTS (Organic)</a></li>
-					<li><a href="/nl_NL/voorpagina/webshop/info/credits" target="_blank">Credits</a></li>
-					<li><a href="/nl_NL/voorpagina/over-pompdelux/contact" target="_blank">Contact</a></li>
+				    <li><a href="/nl_NL/voorpagina/catalogus">Online Catalogus</a></li>
+				    <li><a href="/nl_NL/voorpagina/catalogus/image-video">Image Video</a></li>
+                    <li><a href="/nl_NL/voorpagina/over-pompdelux">Over POMPdeLUX</a></li>
+                    <li><a href="/nl_NL/voorpagina/nieuws">Nieuws</a></li>
+                    <li><a href="/nl_NL/voorpagina/over-pompdelux/het-concept">Het concept</a></li>
+                    <li><a href="/nl_NL/voorpagina/over-pompdelux/sociale-verantwoordelijkheid">Sociale verantwoordelijkheid</a></li>
+					<li><a href="/nl_NL/voorpagina/over-pompdelux/job">Job</a></li>
+					<li><a href="/nl_NL/voorpagina/webshop/info/oeko-tex">Oeko-Tex</a></li>
+					<li><a href="/nl_NL/voorpagina/webshop/info/gots-organic">GOTS (Organic)</a></li>
+					<li><a href="/nl_NL/voorpagina/webshop/info/credits">Credits</a></li>
+					<li><a href="/nl_NL/voorpagina/over-pompdelux/contact">Contact</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>
@@ -276,15 +276,15 @@
                 <target><![CDATA[
                 <h2>Klantenservice</h2>
                 <ul class="menu">
-                    <li><a href="/nl_NL/klantenservice/telefoontijden" target="_blank">Telefoontijden</a></li>
-                    <li><a href="/nl_NL/voorpagina/klantenservice/faq" target="_blank">FAQ</a></li>
-                    <li><a href="/nl_NL/voorpagina/klantenservice/retourneren" target="_blank">Retourneren</a></li>
-                    <li><a href="/nl_NL/voorpagina/klantenservice/ruilen" target="_blank">Ruilen</a></li>
-                    <li><a href="/nl_NL/voorpagina/klantenservice/retourformulier" target="_blank">Retourformulier</a></li>
-                    <li><a href="/nl_NL/voorpagina/webshop/info/sizeguide" target="_blank">Sizeguide</a></li>
-					<li><a href="/nl_NL/voorpagina/webshop/info/het-wassen" target="_blank">Het wassen</a></li>
-					<li><a href="/nl_NL/voorpagina/klantenservice/voorwaarden" target="_blank">Voorwaarden</a></li>
-					<li><a href="/nl_NL/voorpagina/klantenservice/over-de-webshop" target="_blank">Over de webshop</a></li>
+                    <li><a href="/nl_NL/klantenservice/telefoontijden">Telefoontijden</a></li>
+                    <li><a href="/nl_NL/voorpagina/klantenservice/faq">FAQ</a></li>
+                    <li><a href="/nl_NL/voorpagina/klantenservice/retourneren">Retourneren</a></li>
+                    <li><a href="/nl_NL/voorpagina/klantenservice/ruilen">Ruilen</a></li>
+                    <li><a href="/nl_NL/voorpagina/klantenservice/retourformulier">Retourformulier</a></li>
+                    <li><a href="/nl_NL/voorpagina/webshop/info/sizeguide">Sizeguide</a></li>
+					<li><a href="/nl_NL/voorpagina/webshop/info/het-wassen">Het wassen</a></li>
+					<li><a href="/nl_NL/voorpagina/klantenservice/voorwaarden">Voorwaarden</a></li>
+					<li><a href="/nl_NL/voorpagina/klantenservice/over-de-webshop">Over de webshop</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>
