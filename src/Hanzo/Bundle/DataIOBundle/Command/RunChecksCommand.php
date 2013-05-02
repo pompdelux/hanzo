@@ -28,7 +28,7 @@ class RunChecksCommand extends ContainerAwareCommand
     /**
      * executes the job
      *
-     * @NICETO: catch errors
+     * TODO: seperate validators into services
      *
      * @param  InputInterface  $input
      * @param  OutputInterface $output
@@ -36,9 +36,14 @@ class RunChecksCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->validateXliff();
+
+        // must be last!
         $this->sendMail($input->getArgument('email'));
     }
 
+    /**
+     * validate xliff files for schematic errors
+     */
     protected function validateXliff()
     {
         $dir = $this->getContainer()->get('kernel')->getRootDir() . '/Resources/translations';
@@ -59,6 +64,11 @@ class RunChecksCommand extends ContainerAwareCommand
     }
 
 
+    /**
+     * send "go" or "no go" mail
+     *
+     * @param  string $email optional override email
+     */
     protected function sendMail($email)
     {
         $type = 'GO!';
@@ -67,12 +77,11 @@ class RunChecksCommand extends ContainerAwareCommand
         }
 
         $recipients = [
-            // 'hd@pompdelux.dk',
-            // 'lv@POMPdeLUX.dk',
-
+            'hd@pompdelux.dk',
+            'lv@POMPdeLUX.dk',
             'un@bellcom.dk',
-            // 'mmh@bellcom.dk',
-            // 'ab@bellcom.dk',
+            'mmh@bellcom.dk',
+            'ab@bellcom.dk',
         ];
 
         if ($email) {
