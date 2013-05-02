@@ -1176,19 +1176,15 @@ class ECommerceServices extends SoapService
                 $response = $call->refund($order, ($amount * -1));
                 $result = $response->debug();
                 $this->timer->lap('time in '.$provider.' gateway');
-
-// un: 2012.11.29 - test logging all refunds.
-Tools::log('->->->->->->->->->-');
-Tools::log($data);
-Tools::log($result);
-Tools::log('-<-<-<-<-<-<-<-<-<-');
-
+# un@bellcom.dk, 2013.05.02
+# tracing strange issue
+Tools::log('Status of refund is: '.$result['status']);
             } else {
                 // if no refund method is implemented, we just have to accept that the refund succeded
                 $result = ['status' => true];
             }
 
-            if (!in_array($result['status'], [0, true])) {
+            if (!in_array($result['status'], [0, true, 1, '1'], true)) {
                 $doSendError = true;
                 $errors = array(
                     'cound not refund order #' . $data->eOrderNumber,
