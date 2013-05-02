@@ -1,4 +1,4 @@
-# Hanzo - PDL shop v2.
+# Hanzo - PDL shop v2
 
 
 ## Requirements:
