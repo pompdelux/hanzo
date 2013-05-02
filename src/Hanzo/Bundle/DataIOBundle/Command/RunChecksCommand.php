@@ -20,6 +20,7 @@ class RunChecksCommand extends ContainerAwareCommand
     {
         $this->setName('hanzo:run-checks')
             ->setDescription('Run checks and tests before "allowing" deploy')
+            ->addArgument('email', InputArgument::OPTIONAL, 'Email address of the one testing, if set only this person will get a status mail.')
         ;
     }
 
@@ -35,7 +36,7 @@ class RunChecksCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->validateXliff();
-        $this->sendMail();
+        $this->sendMail($input->getArgument('email'));
     }
 
     protected function validateXliff()
@@ -58,7 +59,7 @@ class RunChecksCommand extends ContainerAwareCommand
     }
 
 
-    protected function sendMail()
+    protected function sendMail($email)
     {
         $type = 'GO!';
         if (count($this->errors)) {
@@ -73,6 +74,10 @@ class RunChecksCommand extends ContainerAwareCommand
             // 'mmh@bellcom.dk',
             // 'ab@bellcom.dk',
         ];
+
+        if ($email) {
+            $recipients = [$email];
+        }
 
         if ('GO!' == $type){
             $text = "Alle pre-deploy checks ok, der må deployes!";
