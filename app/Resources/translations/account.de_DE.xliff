@@ -429,7 +429,7 @@
             </trans-unit>
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
-                <target><![CDATA[<p>Auf "Meine Seite" können Sie Informationen ändern und sich für den Newsletter anmelden oder ihn abbestellen. Sie haben auch die Möglichkeit, Ihre Bestellung zu bearbeiten.<br><br>Ihre Bestellung kann folgenden Status haben:<br><br><b>Warten auf Bearbeitung</b><br>Ihre Bestellung wurde noch nicht bearbeitet und Sie haben zum Bearbeiten Ihrer Bestellung mind. 24 Stunden Zeit.
+                <target><![CDATA[<p>Auf Meine Seite können Sie Informationen ändern und sich für den Newsletter anmelden oder ihn abbestellen. Sie haben auch die Möglichkeit, Ihre Bestellung zu bearbeiten.<br><br>Ihre Bestellung kann folgenden Status haben:<br><br><b>Warten auf Bearbeitung</b><br>Ihre Bestellung wurde noch nicht bearbeitet und Sie haben zum Bearbeiten Ihrer Bestellung mind. 24 Stunden Zeit.
 Sie können Ihre Bestellung ändern oder etwas hinzufügen bzw. entfernen. Klicken Sie bei der Bearbeitung auf den Bleistift.
 Bitte beachten: Die Zahlung muss durchgeführt werden – frühere Zahlungsreservierungen werden automatisch gelöscht.
 Möchten Sie Ihre gesamte Bestellung löschen, dann klicken Sie bitte auf X.<br><br><b>Bearbeitung stoppen</b><br>Sie haben evtl. Ihre Bearbeitung abgebrochen. Drücken Sie auf die Schaltfläche ”Bearbeitung stoppen”, danach können Sie Ihre Bestellung erneut bearbeiten.<br><br><b>Wird bearbeitet</b><br>Ihre Bestellung wird jetzt in unserem Lager bearbeitet und im Laufe von 1-2 Tagen an Sie verschickt. Es ist nicht möglich, Ihre Bestellung zu bearbeiten/zu stoppen.<br><br><b>In Rechnung gestellt</b><br>Ihre Bestellung hat unser Lager verlassen. Die Rechnung finden Sie als beigefügte PDF-Datei in der Spalte Rechnung im Laufe von 24 Stunden nach dem Versand.<br><br>Für Rücksendungen von Waren finden Sie unseren <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel.pdf" target="_blank">Rücksendeschein hier</a>.<br><br></p>]]></target>
@@ -477,7 +477,7 @@ Möchten Sie Ihre gesamte Bestellung löschen, dann klicken Sie bitte auf X.<br>
             </trans-unit>
             <trans-unit id="my.account.login.header" approved="no">
                 <source>my.account.login.header</source>
-                <target><![CDATA[<h1>Willkommen auf "Meine Seite"</h1>]]></target>
+                <target><![CDATA[<h1>Willkommen auf Meine Seite</h1>]]></target>
             </trans-unit>
             <trans-unit id="create.pre-notice" approved="no">
                 <source>create.pre-notice</source>
