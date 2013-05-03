@@ -91,6 +91,7 @@ class RunChecksCommand extends ContainerAwareCommand
         if ('GO!' == $type){
             $text = "Alle pre-deploy checks ok, der må deployes!";
         } else {
+            $recipients[] = 'pdl@bellcom.dk';
             $text = "Såskudaogs! Der er fejl i skidtet, der må IKKE deployes!\n\n".implode("\n", $this->errors);
         }
 

@@ -62,7 +62,7 @@ Wenden Sie sich bitte an den Kundendienst von Gothia: +45 7027 2795<br>Bei ander
       <trans-unit id="page_txt40">
         <source>page.help_text</source>
         <target><![CDATA[Folgende Informationen werden verwendet, um Sie bei Gothia zu suchen.<br>
-        Wenn Ihre Adresse nicht mit den Informationen bei Gothia übereinstimmt, müssen Sie sie auf "Meine Seite" ändern.]]></target>
+        Wenn Ihre Adresse nicht mit den Informationen bei Gothia übereinstimmt, müssen Sie sie auf Meine Seite ändern.]]></target>
       </trans-unit>
       <trans-unit id="form_txt10">
         <source>form.submit_step1</source>

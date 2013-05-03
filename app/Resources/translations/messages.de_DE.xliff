@@ -140,10 +140,10 @@
                     <strong>Kundendienst</strong><br>
                     Telefon: (+45) 8678 7877<br>
                     E-Mail: <a href="mailto:mailde@pompdelux.com">mailde@pompdelux.com</a><br>
-                    Montags bis donnerstags 9 - 16 Uhr<br>
+                    Montags bis Donnerstags 9 - 16 Uhr<br>
                     Freitags 9 - 14 Uhr<br>
                     <!--Pause 12 - 12.45 Uhr<br>-->
-                    Samstags, sonntags und feiertags geschlossen.
+                    Samstags, Sonntags und Feiertags geschlossen.
                 ]]></target>
             </trans-unit>
             <trans-unit id="footer.address">
@@ -275,7 +275,7 @@
 					<li><a href="/de_DE/home/mehr-pompdelux/oeko-tex" target="_blank">Oeko-Tex</a></li>
 					<li><a href="/de_DE/home/mehr-pompdelux/danksagungen" target="_blank">Danksagungen</a></li>
 					<li><a href="/de_DE/home/uber-pompdelux/kontakt" target="_blank">Kontakt</a></li>
-				    <li><a href="/de_DE/home/katalog">Online katalog</a></li>
+				    <li><a href="/de_DE/home/katalog">Online Katalog</a></li>
 					<li><a href="/de_DE/home/katalog/image-video">Image Video</a></li>
                 </ul>
                 ]]></target>
@@ -293,6 +293,7 @@
                     <li><a href="/de_DE/home/kundendienst/waschtipps" target="_blank">Waschtipps</a></li>
 					<li><a href="/de_DE/home/kundendienst/sizeguide" target="_blank">Größentabelle</a></li>
 					<li><a href="/de_DE/home/kundendienst/abgs" target="_blank">AGB's</a></li>
+					<li><a href="/de_DE/home/kundendienst/impressum" target="_blank">Impressum</a></li>
 					<li><a href="/de_DE/home/kundendienst/uber-den-webshop" target="_blank">Über den Webshop</a></li>
                 </ul>
                 ]]></target>
