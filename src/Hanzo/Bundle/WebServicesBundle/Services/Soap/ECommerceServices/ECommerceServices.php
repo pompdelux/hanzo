@@ -1184,7 +1184,7 @@ Tools::log('Status of refund is: '.$result['status']);
                 $result = ['status' => true];
             }
 
-            if (!in_array($result['status'], [0, true, 1, '1'], true)) {
+            if (!in_array($result['status'], [0, true, 1, '1', 'ACCEPTED'], true)) {
                 $doSendError = true;
                 $errors = array(
                     'cound not refund order #' . $data->eOrderNumber,
