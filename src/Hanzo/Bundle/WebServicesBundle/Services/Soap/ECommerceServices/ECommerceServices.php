@@ -1077,6 +1077,13 @@ class ECommerceServices extends SoapService
             return true;
         }
 
+        if ('' == $provider) {
+            return [
+                'no billing method found for order #'.$data->eOrderNumber,
+                'line : ' . __LINE__
+            ];
+        }
+
         $attributes = $order->getAttributes();
 
         // work arround for iDEAL payments not supporting capture
