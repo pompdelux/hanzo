@@ -314,17 +314,14 @@ class GothiaController extends CoreController
                 if ( $paytype == 'gothia' && $order->getTotalPrice() != $oldOrder->getTotalPrice() )
                 {
                     $timer = new Timer('gothia', true);
-                    try
-                    {
+                    try {
                         $response = $api->call()->cancelReservation( $customer, $oldOrder );
-                    }
-                    catch( GothiaApiCallException $g )
-                    {
+                    } catch(GothiaApiCallException $e) {
                         $timer->logOne('cancelReservation call failed, orderId #'.$oldOrder->getId());
                         Tools::debug('Cancel reservation failed', __METHOD__, array('Message' => $e->getMessage()));
                         return $this->json_response(array(
                             'status' => FALSE,
-                            'message' => $translator->trans('json.cancelreservation.failed', array('%msg%' => $g->getMessage()), 'gothia'),
+                            'message' => $translator->trans('json.cancelreservation.failed', array('%msg%' => $e->getMessage()), 'gothia'),
                         ));
                     }
 
