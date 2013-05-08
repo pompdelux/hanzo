@@ -311,8 +311,7 @@ class GothiaController extends CoreController
                 // The new order amount is different from the old order amount
                 // We will remove the old reservation, and create a new one
                 // but only if the old paytype was gothia
-                if ( $paytype == 'gothia' && $order->getTotalPrice() != $oldOrder->getTotalPrice() )
-                {
+                if (($paytype == 'gothia') && ($order->getTotalPrice() != $oldOrder->getTotalPrice())) {
                     $timer = new Timer('gothia', true);
                     try {
                         $response = $api->call()->cancelReservation( $customer, $oldOrder );
