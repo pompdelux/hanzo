@@ -618,6 +618,7 @@ class ECommerceServices extends SoapService
         $this->event_dispatcher->dispatch('product.stock.zero', new FilterCategoryEvent($master, null, Propel::getConnection(null, Propel::CONNECTION_WRITE)));
 
         // set sync flag
+Tools::log($this->getDebugInfo());
         if (isset($stock->LastInCycle) && $stock->LastInCycle) {
             $c = $this->hanzo->container;
             $c->get('redis.permanent')->hset(
