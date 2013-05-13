@@ -279,7 +279,7 @@ class GothiaController extends CoreController
      **/
     public function confirmAction(Request $request)
     {
-        $order      = OrdersPeer::getCurrent();
+        $order      = OrdersPeer::getCurrent(true);
         $customer   = $order->getCustomers(Propel::getConnection(null, Propel::CONNECTION_WRITE));
         $api        = $this->get('payment.gothiaapi');
         $translator = $this->get('translator');

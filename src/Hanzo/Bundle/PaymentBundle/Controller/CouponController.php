@@ -28,7 +28,7 @@ class CouponController extends CoreController
     {
         $api = $this->get('payment.couponapi');
         $request = $this->get('request');
-        $order = OrdersPeer::getCurrent();
+        $order = OrdersPeer::getCurrent(true);
 
         if ( !($order instanceof Orders) ) {
             throw new Exception( 'Coupon callback found no valid order to proccess.' );

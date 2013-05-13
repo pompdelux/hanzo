@@ -53,6 +53,7 @@ class CheckoutListener
 
             $prices = ProductsDomainsPricesPeer::getProductsPrices($product_ids);
 
+            $total = 0;
             foreach ($lines as $line) {
                 if('product' == $line->getType()) {
                     $price = $prices[$line->getProductsId()];
@@ -60,10 +61,10 @@ class CheckoutListener
                     $line->setPrice($price['normal']['price']);
                     $line->setVat($price['normal']['vat']);
                     $line->setOriginalPrice($price['normal']['price']);
+
+                    $total += ($line->getPrice() * $line->getQuantity());
                 }
             }
-
-            $total = $order->getTotalProductPrice();
 
             // so far _all_ discounts are handled as % discounts
             $discount_amount = ($total / 100) * $discount;
