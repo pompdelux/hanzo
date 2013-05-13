@@ -24,7 +24,7 @@ use Hanzo\Core\Tools;
  */
 class OrdersPeer extends BaseOrdersPeer
 {
-    public static function getCurrent($force_reload = false)
+    public static function getCurrent($force_reload = true)
     {
         $hanzo = Hanzo::getInstance();
         $session = $hanzo->getSession();

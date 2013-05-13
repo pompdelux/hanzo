@@ -332,8 +332,6 @@ class AxService
             return false;
         }
 
-Tools::log($syncSalesOrder);
-
         $this->sendDebtor($order->getCustomers($con), $return, $con);
         $result = $this->Send('SyncSalesOrder', $syncSalesOrder);
 
