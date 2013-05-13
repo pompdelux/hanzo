@@ -94,17 +94,15 @@ class AxService
         }
 
         // we reload to make sure we have the latest edition :)
-        $order->reload(true, $con);
-        $attributes = $order->getAttributes($con);
-        $lines = $order->getOrdersLiness(null, $con);
-
-        $products = array();
-        $shipping_cost = 0;
-        $payment_cost = 0;
-        $handeling_fee = 0;
+        $attributes       = $order->getAttributes($con);
+        $lines            = $order->getOrdersLiness(null, $con);
+        $products         = array();
+        $shipping_cost    = 0;
+        $payment_cost     = 0;
+        $handeling_fee    = 0;
         $hostess_discount = 0;
-        $coupon_discount = 0;
-        $line_discount = 0;
+        $coupon_discount  = 0;
+        $line_discount    = 0;
 
         foreach ($lines as $line) {
             switch ($line->getType()) {
@@ -333,7 +331,6 @@ class AxService
             $this->logOrderSyncStatus($order->getId(), $syncSalesOrder, 'failed', 'Missing SalesResponsible or HomePartyId', $con);
             return false;
         }
-
 
         $this->sendDebtor($order->getCustomers($con), $return, $con);
         $result = $this->Send('SyncSalesOrder', $syncSalesOrder);

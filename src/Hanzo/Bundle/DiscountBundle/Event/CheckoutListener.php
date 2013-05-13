@@ -40,40 +40,31 @@ class CheckoutListener
             }
         }
 
+        // we do not stack discounts, so we need to recalculate the orderlines
         if ($discount <> 0.00) {
-            // // we do not stack discounts, so we need to recalculate the orderlines
-            // $lines = $order->getOrdersLiness();
+            $lines = $order->getOrdersLiness();
 
-            // $product_ids = array();
-            // foreach ($lines as $line) {
-            //     if('product' == $line->getType()) {
-            //         $product_ids[] = $line->getProductsId();
-            //     }
-            // }
+            $product_ids = array();
+            foreach ($lines as $line) {
+                if('product' == $line->getType()) {
+                    $product_ids[] = $line->getProductsId();
+                }
+            }
 
-            // OrdersLinesQuery::create()
-            //     ->filterByOrdersId($order->getId())
-            //     ->delete()
-            // ;
+            $prices = ProductsDomainsPricesPeer::getProductsPrices($product_ids);
 
-            // $prices = ProductsDomainsPricesPeer::getProductsPrices($product_ids);
-            // $collection = new PropelCollection();
+            $total = 0;
+            foreach ($lines as $line) {
+                if('product' == $line->getType()) {
+                    $price = $prices[$line->getProductsId()];
 
-            // foreach ($lines as $line) {
-            //     if('product' == $line->getType()) {
-            //         $price = $prices[$line->getProductsId()];
+                    $line->setPrice($price['normal']['price']);
+                    $line->setVat($price['normal']['vat']);
+                    $line->setOriginalPrice($price['normal']['price']);
 
-            //         $line->setPrice($price['normal']['price']);
-            //         $line->setVat($price['normal']['vat']);
-            //         $line->setOriginalPrice($price['normal']['price']);
-            //     }
-
-            //     $collection->prepend($line);
-            // }
-
-            // $order->setOrdersLiness($collection);
-
-            $total = $order->getTotalProductPrice();
+                    $total += ($line->getPrice() * $line->getQuantity());
+                }
+            }
 
             // so far _all_ discounts are handled as % discounts
             $discount_amount = ($total / 100) * $discount;
