@@ -707,3 +707,9 @@ admin_tools_clear_varnish:
     pattern: /admin/tools/cache/clear-varnish
     defaults:
         _controller: AdminBundle:Tools:clearVarnishCache
+
+admin_tools_dibs_tools:
+    pattern: /admin/tools/dibs/{action}
+    defaults:
+        _controller: AdminBundle:Tools:dibsTools
+        action: ''

@@ -1,0 +1,54 @@
+{% extends '::adminbase.html.twig' %}
+{% block content %}
+
+<h1>Knapper</h1>
+
+
+{% if app.session.hasFlash('notice') %}
+  <div class="message">
+    {{ app.session.flash('notice') }}
+  </div><br>
+{% endif %}
+
+
+<div class="message">
+  <h2>Heads up !</h2>
+  <ul>
+    <li>Det er <em>vigtigt</em> at man står i "default" databasen - se i højre hjørne, her skal stå: "default - Vælg domæne database"</li>
+    <li>Hvis der trykkes på "Synkroniser produktbilleder" ryger <em>alle</em> styleguides og sorteringer fra alle lande (pånær .dk)</li>
+    <li>Hvis der efterfølgende synkroniseres styleguides og sorteringer er man igen up-2-date.</li>
+  </ul>
+</div>
+
+<br>
+<h2>Billeder</h2>
+<p>Alle data synkroniseres <em>fra .dk</em> til alle de andre sites.</p>
+<ul>
+  <li><a href="{{ path('admin_tools_sync_categories') }}">Synkroniser kategorier</a></li>
+  <li><a href="{{ path('admin_tools_sync_images') }}">Synkroniser produktbilleder</a></li>
+  <li><a href="{{ path('admin_tools_sync_styleguide') }}">Synkroniser styleguides</a></li>
+  <li><a href="{{ path('admin_tools_sync_images_sort') }}">Synkroniser billedesortering</a></li>
+</ul>
+
+<h2>Cache</h2>
+<p>Når Varnish cleares, så ryger <em>al</em> varnish caching på <em>alle</em> domæner - bare til info...</p>
+<ul>
+  <li><a href="{{ path('admin_tools_clear_varnish') }}">Ryd Varnish cache</a></li>
+</ul>
+
+
+<h2>Misc</h2>
+<ul>
+  <li><a href="{{ path('admin_orders_bulk_resync_sync') }}">Bulk gensend ordre</a></li>
+  <li><a href="{{ path('admin_tools_dibs_tools') }}">Dibs værktøjer</a></li>
+</ul>
+
+{% endblock %}
+
+{% block javascript %}
+<script>
+$('#main ul li a').on('click', function() {
+  dialoug.loading($(this));
+});
+</script>
+{% endblock %}

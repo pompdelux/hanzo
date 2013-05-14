@@ -1149,7 +1149,12 @@ class ECommerceServices extends SoapService
             );
         }
 
-        return count($error) ? $error : true;
+        if (count($error)) {
+            Tools::log($error);
+            return $error;
+        }
+
+        return true;
     }
 
 
