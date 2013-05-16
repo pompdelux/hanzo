@@ -29,7 +29,7 @@ class DefaultController extends CoreController
 {
     public function indexAction()
     {
-        $order = OrdersPeer::getCurrent();
+        $order = OrdersPeer::getCurrent(true);
 
         if ( ($order->isNew() === true) || ($order->getTotalQuantity(true) == 0)) {
             return $this->redirect($this->generateUrl('basket_view'));

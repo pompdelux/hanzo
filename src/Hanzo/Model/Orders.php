@@ -501,13 +501,18 @@ class Orders extends BaseOrders
 
     public function getTotalPrice($products_only = false)
     {
-        $query = OrdersLinesQuery::create()->filterByOrdersId($this->getId());
+        // this is done so Orders::getOrderAtVersion don't throw up
+        if ($this->isNew()) {
+            $lines = $this->getOrdersLiness();
+        } else {
+            $query = OrdersLinesQuery::create()->filterByOrdersId($this->getId());
 
-        if ($products_only) {
-            $query->filterByType('product');
+            if ($products_only) {
+                $query->filterByType('product');
+            }
+
+            $lines = $query->find(Propel::getConnection(null, Propel::CONNECTION_WRITE));
         }
-
-        $lines = $query->find(Propel::getConnection(null, Propel::CONNECTION_WRITE));
 
         $total = 0;
         foreach ($lines as $line) {

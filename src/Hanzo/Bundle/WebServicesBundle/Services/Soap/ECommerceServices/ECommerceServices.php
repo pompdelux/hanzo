@@ -1088,6 +1088,13 @@ Tools::log($this->getDebugInfo());
             return true;
         }
 
+        if ('' == $provider) {
+            return [
+                'no billing method found for order #'.$data->eOrderNumber,
+                'line : ' . __LINE__
+            ];
+        }
+
         $attributes = $order->getAttributes();
 
         // work arround for iDEAL payments not supporting capture
@@ -1153,7 +1160,12 @@ Tools::log($this->getDebugInfo());
             );
         }
 
-        return count($error) ? $error : true;
+        if (count($error)) {
+            Tools::log($error);
+            return $error;
+        }
+
+        return true;
     }
 
 
@@ -1187,19 +1199,15 @@ Tools::log($this->getDebugInfo());
                 $response = $call->refund($order, ($amount * -1));
                 $result = $response->debug();
                 $this->timer->lap('time in '.$provider.' gateway');
-
-// un: 2012.11.29 - test logging all refunds.
-Tools::log('->->->->->->->->->-');
-Tools::log($data);
-Tools::log($result);
-Tools::log('-<-<-<-<-<-<-<-<-<-');
-
+# un@bellcom.dk, 2013.05.02
+# tracing strange issue
+Tools::log('Status of refund is: '.$result['status']);
             } else {
                 // if no refund method is implemented, we just have to accept that the refund succeded
                 $result = ['status' => true];
             }
 
-            if (!in_array($result['status'], [0, true])) {
+            if (!in_array($result['status'], [0, true, 1, '1', 'ACCEPTED'], true)) {
                 $doSendError = true;
                 $errors = array(
                     'cound not refund order #' . $data->eOrderNumber,

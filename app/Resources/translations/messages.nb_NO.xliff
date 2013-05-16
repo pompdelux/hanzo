@@ -159,7 +159,7 @@
                         <li>+47 2274 2600</li>
 						<li>Retur av varer: POMPdeLUX C/O Tollpost Globe</li>
                         <li>Postens Godssenter</li>
-                        <li>NO-0668 Oslo</li>
+                        <li>NO-0068 Oslo</li>
                         <li><img src="%cdn%fx/images/creditcards_se.png" alt="credit cards" title="credit cards"></li>
                         <li><a href="http://www.facebook.com/sharer.php?u=%url%" class="facebook-button social-button" title="Share this page on facebook">Share</a></li>
                     </ul>
@@ -253,10 +253,10 @@
                 <target><![CDATA[
                 <h2>Home shopping</h2>
                 <ul class="menu">
-                    <li><a href="/nb_NO/forside/home-shopping" target="_blank">Om Home Shopping</a></li>
-                    <li><a href="/nb_NO/forside/home-shopping/finn-konsulent" target="_blank">Finn konsulent</a></li>
-                    <li><a href="/nb_NO/forside/home-shopping/finn-konsulent-pa-kartet" target="_blank">Finn konsulent på kartet</a></li>
-                    <li><a href="/nb_NO/forside/home-shopping/apent-hus" target="_blank">Åpent hus</a></li>
+                    <li><a href="/nb_NO/forside/home-shopping">Om Home Shopping</a></li>
+                    <li><a href="/nb_NO/forside/home-shopping/finn-konsulent">Finn konsulent</a></li>
+                    <li><a href="/nb_NO/forside/home-shopping/finn-konsulent-pa-kartet">Finn konsulent på kartet</a></li>
+                    <li><a href="/nb_NO/forside/home-shopping/apent-hus">Åpent hus</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>
@@ -265,16 +265,16 @@
                 <target><![CDATA[
                 <h2>Mer POMPdeLUX</h2>
                 <ul class="menu">
-				    <li><a href="/nb_NO/forside/katalog" target="_blank">Online katalog</a></li>
-					<li><a href="/nb_NO/forside/katalog/image-video" target="_blank">Image Video</a></li>
-                    <li><a href="/nb_NO/forside/nyheter" target="_blank">Nyheter</a></li>
-                    <li><a href="/nb_NO/forside/om-pompdelux/konseptet" target="_blank">Konseptet</a></li>
-                    <li><a href="/nb_NO/forside/om-pompdelux/sosial-ansvarlighet" target="_blank">Sosial ansvarlighet</a></li>
-                    <li><a href="/nb_NO/forside/om-pompdelux/jobb" target="_blank">Jobb</a></li>
-					<li><a href="/nb_NO/forside/webshop/info/oeko-tex" target="_blank">Oeko-Tex</a></li>
-					<li><a href="/nb_NO/forside/webshop/info/gots-organic" target="_blank">GOTS (Organic)</a></li>
-					<li><a href="/nb_NO/forside/webshop/info/credits" target="_blank">Credits</a></li>
-					<li><a href="/nb_NO/forside/webshop/info/credits" target="_blank">Kontakt</a></li>
+				    <li><a href="/nb_NO/forside/katalog">Online katalog</a></li>
+					<li><a href="/nb_NO/forside/katalog/image-video">Image Video</a></li>
+                    <li><a href="/nb_NO/forside/nyheter">Nyheter</a></li>
+                    <li><a href="/nb_NO/forside/om-pompdelux/konseptet">Konseptet</a></li>
+                    <li><a href="/nb_NO/forside/om-pompdelux/sosial-ansvarlighet">Sosial ansvarlighet</a></li>
+                    <li><a href="/nb_NO/forside/om-pompdelux/jobb">Jobb</a></li>
+					<li><a href="/nb_NO/forside/webshop/info/oeko-tex">Oeko-Tex</a></li>
+					<li><a href="/nb_NO/forside/webshop/info/gots-organic">GOTS (Organic)</a></li>
+					<li><a href="/nb_NO/forside/webshop/info/credits">Credits</a></li>
+					<li><a href="/nb_NO/forside/webshop/info/credits">Kontakt</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>
@@ -283,15 +283,15 @@
                 <target><![CDATA[
                 <h2>Kundeservice</h2>
                 <ul class="menu">
-                    <li><a href="/nb_NO/kundservice/telefontider" target="_blank">Telefontider</a></li>
-                    <li><a href="/nb_NO/forside/kundeservice/fakta" target="_blank">Fakta</a></li>
-                    <li><a href="/nb_NO/forside/kundeservice/returnering" target="_blank">Returnering</a></li>
-                    <li><a href="/nb_NO/forside/kundeservice/bytting" target="_blank">Bytting</a></li>
-                    <li><a href="/nb_NO/forside/kundeservice/returskjema" target="_blank">Returskjema</a></li>
-                    <li><a href="/nb_NO/forside/webshop/info/vaskerad" target="_blank">Vaskeråd</a></li>
-					<li><a href="/nb_NO/forside/webshop/info/sizeguide" target="_blank">Sizeguide</a></li>
-					<li><a href="/nb_NO/forside/kundeservice/vilkar" target="_blank">Vilkår</a></li>
-					<li><a href="/nb_NO/forside/kundeservice/om-webshoppen" target="_blank">Om webshoppen</a></li>
+                    <li><a href="/nb_NO/kundservice/telefontider">Telefontider</a></li>
+                    <li><a href="/nb_NO/forside/kundeservice/fakta">Fakta</a></li>
+                    <li><a href="/nb_NO/forside/kundeservice/returnering">Returnering</a></li>
+                    <li><a href="/nb_NO/forside/kundeservice/bytting">Bytting</a></li>
+                    <li><a href="/nb_NO/forside/kundeservice/returskjema">Returskjema</a></li>
+                    <li><a href="/nb_NO/forside/webshop/info/vaskerad">Vaskeråd</a></li>
+					<li><a href="/nb_NO/forside/webshop/info/sizeguide">Sizeguide</a></li>
+					<li><a href="/nb_NO/forside/kundeservice/vilkar">Vilkår</a></li>
+					<li><a href="/nb_NO/forside/kundeservice/om-webshoppen">Om webshoppen</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>
