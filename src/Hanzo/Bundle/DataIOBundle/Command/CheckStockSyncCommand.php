@@ -36,8 +36,12 @@ class CheckStockSyncCommand extends ContainerAwareCommand
 
         $c = $this->getContainer();
         $last_run = $c->get('redis.permanent')->hget('stock.sync.time', $endpoint);
-        $now = new DateTime('- 2 hours');
 
+        if (empty($last_run)) {
+            return;
+        }
+
+        $now = new DateTime('- 2 hours');
         if ($last_run < $now->getTimestamp()) {
             $error = "Lagersynkroniseringen for {$endpoint} har ikke kørt siden den: ".date('Y-m-d H:i:s', $last_run);
         }

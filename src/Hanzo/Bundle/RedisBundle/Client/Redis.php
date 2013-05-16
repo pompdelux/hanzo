@@ -50,11 +50,11 @@ Class Redis
         $this->parameters = $parameters;
         $this->name = $name;
 
-        $postfix = $name.'.'.$environment.':';
+        $prefix = $name.'.'.$environment.':';
         if (empty($this->parameters['prefix'])) {
-            $this->parameters['prefix'] = $postfix;
+            $this->parameters['prefix'] = $prefix;
         } else {
-            $this->parameters['prefix'] .= '.'.$postfix;
+            $this->parameters['prefix'] .= '.'.$prefix;
         }
     }
 
