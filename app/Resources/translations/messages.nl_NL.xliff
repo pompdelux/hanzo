@@ -127,11 +127,11 @@
                 <target><![CDATA[
                     <h3>Let op:</h3>
                     <p>
-                        Je bent E-ordernummer <a href="%history_ulr%" title="se ordren">%order_id%</a> aan het wijzigen.<br>
+                        Je bent nu E-ordernummer <a href="%history_ulr%" title="se ordren">%order_id%</a> aan het bewerken.<br>
                         Wil je het wijzigen van je order onderbreken - <a href="%stop_url%" title="stop wijziging van order">klik dan hier.</a>
                     </p>
-                    <p>Wil je een andere kleur of maat, klik dan op het potloodje in je winkelmandje. Wil je meer artikelen toevoegen, klik dan op het menupunt Webshop.</p>
-                    <p class="last">Als je klaar bent met je wijzigingen, klik dan op "Toon winkelmandje" en doorloop daarna stappen 1 tot 6. Betaal je je order weer met een creditcard, dan wordt je eerdere betaling automatisch gewist.</p>
+                    <p>Wil je een kleur of maat wijzigen, klik dan op het potloodje. Wil je artikelen toevoegen, klik dan op Girl, Boy, Little Girl of Little Boy boven aan de pagina.</p>
+                    <p class="last">Als je klaar bent met je wijzigingen, klik dan op "Toon winkelmandje" en daarna op ”Ga door”. Als je je bestelling opnieuw met een creditcard hebt betaald, dan wordt je oude betaling automatisch gewist.<br><br> <b>Let op:</b> gebruik je tijdens het bewerken Visa Electron of MasterCard, dan wordt het totale bedrag voor je bestelling automatisch nogmaals gereserveerd. De reservering van het bedrag van je eerste bestelling wordt meteen door POMPdeLUX geannuleerd. Er kan echter 6 weken overheen gaan voordat deze reservering door je bank opgeheven wordt. </p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="customer.service.contact.info">
