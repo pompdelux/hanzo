@@ -124,7 +124,7 @@ abstract class BaseAddressesQuery extends ModelCriteria
      * Returns a new AddressesQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     AddressesQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   AddressesQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return AddressesQuery
      */
@@ -188,12 +188,12 @@ abstract class BaseAddressesQuery extends ModelCriteria
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   Addresses A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 Addresses A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `CUSTOMERS_ID`, `TYPE`, `FIRST_NAME`, `LAST_NAME`, `ADDRESS_LINE_1`, `ADDRESS_LINE_2`, `POSTAL_CODE`, `CITY`, `COUNTRY`, `COUNTRIES_ID`, `STATE_PROVINCE`, `COMPANY_NAME`, `EXTERNAL_ADDRESS_ID`, `LATITUDE`, `LONGITUDE`, `CREATED_AT`, `UPDATED_AT` FROM `addresses` WHERE `CUSTOMERS_ID` = :p0 AND `TYPE` = :p1';
+        $sql = 'SELECT `customers_id`, `type`, `first_name`, `last_name`, `address_line_1`, `address_line_2`, `postal_code`, `city`, `country`, `countries_id`, `state_province`, `company_name`, `external_address_id`, `latitude`, `longitude`, `created_at`, `updated_at` FROM `addresses` WHERE `customers_id` = :p0 AND `type` = :p1';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);
@@ -301,7 +301,8 @@ abstract class BaseAddressesQuery extends ModelCriteria
      * <code>
      * $query->filterByCustomersId(1234); // WHERE customers_id = 1234
      * $query->filterByCustomersId(array(12, 34)); // WHERE customers_id IN (12, 34)
-     * $query->filterByCustomersId(array('min' => 12)); // WHERE customers_id > 12
+     * $query->filterByCustomersId(array('min' => 12)); // WHERE customers_id >= 12
+     * $query->filterByCustomersId(array('max' => 12)); // WHERE customers_id <= 12
      * </code>
      *
      * @see       filterByCustomers()
@@ -316,8 +317,22 @@ abstract class BaseAddressesQuery extends ModelCriteria
      */
     public function filterByCustomersId($customersId = null, $comparison = null)
     {
-        if (is_array($customersId) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($customersId)) {
+            $useMinMax = false;
+            if (isset($customersId['min'])) {
+                $this->addUsingAlias(AddressesPeer::CUSTOMERS_ID, $customersId['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($customersId['max'])) {
+                $this->addUsingAlias(AddressesPeer::CUSTOMERS_ID, $customersId['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(AddressesPeer::CUSTOMERS_ID, $customersId, $comparison);
@@ -562,7 +577,8 @@ abstract class BaseAddressesQuery extends ModelCriteria
      * <code>
      * $query->filterByCountriesId(1234); // WHERE countries_id = 1234
      * $query->filterByCountriesId(array(12, 34)); // WHERE countries_id IN (12, 34)
-     * $query->filterByCountriesId(array('min' => 12)); // WHERE countries_id > 12
+     * $query->filterByCountriesId(array('min' => 12)); // WHERE countries_id >= 12
+     * $query->filterByCountriesId(array('max' => 12)); // WHERE countries_id <= 12
      * </code>
      *
      * @see       filterByCountries()
@@ -692,7 +708,8 @@ abstract class BaseAddressesQuery extends ModelCriteria
      * <code>
      * $query->filterByLatitude(1234); // WHERE latitude = 1234
      * $query->filterByLatitude(array(12, 34)); // WHERE latitude IN (12, 34)
-     * $query->filterByLatitude(array('min' => 12)); // WHERE latitude > 12
+     * $query->filterByLatitude(array('min' => 12)); // WHERE latitude >= 12
+     * $query->filterByLatitude(array('max' => 12)); // WHERE latitude <= 12
      * </code>
      *
      * @param     mixed $latitude The value to use as filter.
@@ -733,7 +750,8 @@ abstract class BaseAddressesQuery extends ModelCriteria
      * <code>
      * $query->filterByLongitude(1234); // WHERE longitude = 1234
      * $query->filterByLongitude(array(12, 34)); // WHERE longitude IN (12, 34)
-     * $query->filterByLongitude(array('min' => 12)); // WHERE longitude > 12
+     * $query->filterByLongitude(array('min' => 12)); // WHERE longitude >= 12
+     * $query->filterByLongitude(array('max' => 12)); // WHERE longitude <= 12
      * </code>
      *
      * @param     mixed $longitude The value to use as filter.
@@ -859,8 +877,8 @@ abstract class BaseAddressesQuery extends ModelCriteria
      * @param   Customers|PropelObjectCollection $customers The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   AddressesQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 AddressesQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByCustomers($customers, $comparison = null)
     {
@@ -935,8 +953,8 @@ abstract class BaseAddressesQuery extends ModelCriteria
      * @param   Countries|PropelObjectCollection $countries The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   AddressesQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 AddressesQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByCountries($countries, $comparison = null)
     {

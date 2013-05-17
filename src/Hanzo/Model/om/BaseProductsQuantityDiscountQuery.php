@@ -72,7 +72,7 @@ abstract class BaseProductsQuantityDiscountQuery extends ModelCriteria
      * Returns a new ProductsQuantityDiscountQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     ProductsQuantityDiscountQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   ProductsQuantityDiscountQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return ProductsQuantityDiscountQuery
      */
@@ -136,12 +136,12 @@ abstract class BaseProductsQuantityDiscountQuery extends ModelCriteria
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   ProductsQuantityDiscount A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 ProductsQuantityDiscount A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `PRODUCTS_MASTER`, `DOMAINS_ID`, `SPAN`, `DISCOUNT` FROM `products_quantity_discount` WHERE `PRODUCTS_MASTER` = :p0 AND `DOMAINS_ID` = :p1 AND `SPAN` = :p2';
+        $sql = 'SELECT `products_master`, `domains_id`, `span`, `discount` FROM `products_quantity_discount` WHERE `products_master` = :p0 AND `domains_id` = :p1 AND `span` = :p2';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_STR);
@@ -282,7 +282,8 @@ abstract class BaseProductsQuantityDiscountQuery extends ModelCriteria
      * <code>
      * $query->filterByDomainsId(1234); // WHERE domains_id = 1234
      * $query->filterByDomainsId(array(12, 34)); // WHERE domains_id IN (12, 34)
-     * $query->filterByDomainsId(array('min' => 12)); // WHERE domains_id > 12
+     * $query->filterByDomainsId(array('min' => 12)); // WHERE domains_id >= 12
+     * $query->filterByDomainsId(array('max' => 12)); // WHERE domains_id <= 12
      * </code>
      *
      * @see       filterByDomains()
@@ -297,8 +298,22 @@ abstract class BaseProductsQuantityDiscountQuery extends ModelCriteria
      */
     public function filterByDomainsId($domainsId = null, $comparison = null)
     {
-        if (is_array($domainsId) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($domainsId)) {
+            $useMinMax = false;
+            if (isset($domainsId['min'])) {
+                $this->addUsingAlias(ProductsQuantityDiscountPeer::DOMAINS_ID, $domainsId['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($domainsId['max'])) {
+                $this->addUsingAlias(ProductsQuantityDiscountPeer::DOMAINS_ID, $domainsId['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(ProductsQuantityDiscountPeer::DOMAINS_ID, $domainsId, $comparison);
@@ -311,7 +326,8 @@ abstract class BaseProductsQuantityDiscountQuery extends ModelCriteria
      * <code>
      * $query->filterBySpan(1234); // WHERE span = 1234
      * $query->filterBySpan(array(12, 34)); // WHERE span IN (12, 34)
-     * $query->filterBySpan(array('min' => 12)); // WHERE span > 12
+     * $query->filterBySpan(array('min' => 12)); // WHERE span >= 12
+     * $query->filterBySpan(array('max' => 12)); // WHERE span <= 12
      * </code>
      *
      * @param     mixed $span The value to use as filter.
@@ -324,8 +340,22 @@ abstract class BaseProductsQuantityDiscountQuery extends ModelCriteria
      */
     public function filterBySpan($span = null, $comparison = null)
     {
-        if (is_array($span) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($span)) {
+            $useMinMax = false;
+            if (isset($span['min'])) {
+                $this->addUsingAlias(ProductsQuantityDiscountPeer::SPAN, $span['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($span['max'])) {
+                $this->addUsingAlias(ProductsQuantityDiscountPeer::SPAN, $span['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(ProductsQuantityDiscountPeer::SPAN, $span, $comparison);
@@ -338,7 +368,8 @@ abstract class BaseProductsQuantityDiscountQuery extends ModelCriteria
      * <code>
      * $query->filterByDiscount(1234); // WHERE discount = 1234
      * $query->filterByDiscount(array(12, 34)); // WHERE discount IN (12, 34)
-     * $query->filterByDiscount(array('min' => 12)); // WHERE discount > 12
+     * $query->filterByDiscount(array('min' => 12)); // WHERE discount >= 12
+     * $query->filterByDiscount(array('max' => 12)); // WHERE discount <= 12
      * </code>
      *
      * @param     mixed $discount The value to use as filter.
@@ -378,8 +409,8 @@ abstract class BaseProductsQuantityDiscountQuery extends ModelCriteria
      * @param   Products|PropelObjectCollection $products The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   ProductsQuantityDiscountQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 ProductsQuantityDiscountQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByProducts($products, $comparison = null)
     {
@@ -454,8 +485,8 @@ abstract class BaseProductsQuantityDiscountQuery extends ModelCriteria
      * @param   Domains|PropelObjectCollection $domains The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   ProductsQuantityDiscountQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 ProductsQuantityDiscountQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByDomains($domains, $comparison = null)
     {

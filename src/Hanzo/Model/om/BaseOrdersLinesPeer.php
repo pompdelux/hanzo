@@ -39,47 +39,47 @@ abstract class BaseOrdersLinesPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 14;
 
-    /** the column name for the ID field */
-    const ID = 'orders_lines.ID';
+    /** the column name for the id field */
+    const ID = 'orders_lines.id';
 
-    /** the column name for the ORDERS_ID field */
-    const ORDERS_ID = 'orders_lines.ORDERS_ID';
+    /** the column name for the orders_id field */
+    const ORDERS_ID = 'orders_lines.orders_id';
 
-    /** the column name for the TYPE field */
-    const TYPE = 'orders_lines.TYPE';
+    /** the column name for the type field */
+    const TYPE = 'orders_lines.type';
 
-    /** the column name for the PRODUCTS_ID field */
-    const PRODUCTS_ID = 'orders_lines.PRODUCTS_ID';
+    /** the column name for the products_id field */
+    const PRODUCTS_ID = 'orders_lines.products_id';
 
-    /** the column name for the PRODUCTS_SKU field */
-    const PRODUCTS_SKU = 'orders_lines.PRODUCTS_SKU';
+    /** the column name for the products_sku field */
+    const PRODUCTS_SKU = 'orders_lines.products_sku';
 
-    /** the column name for the PRODUCTS_NAME field */
-    const PRODUCTS_NAME = 'orders_lines.PRODUCTS_NAME';
+    /** the column name for the products_name field */
+    const PRODUCTS_NAME = 'orders_lines.products_name';
 
-    /** the column name for the PRODUCTS_COLOR field */
-    const PRODUCTS_COLOR = 'orders_lines.PRODUCTS_COLOR';
+    /** the column name for the products_color field */
+    const PRODUCTS_COLOR = 'orders_lines.products_color';
 
-    /** the column name for the PRODUCTS_SIZE field */
-    const PRODUCTS_SIZE = 'orders_lines.PRODUCTS_SIZE';
+    /** the column name for the products_size field */
+    const PRODUCTS_SIZE = 'orders_lines.products_size';
 
-    /** the column name for the EXPECTED_AT field */
-    const EXPECTED_AT = 'orders_lines.EXPECTED_AT';
+    /** the column name for the expected_at field */
+    const EXPECTED_AT = 'orders_lines.expected_at';
 
-    /** the column name for the ORIGINAL_PRICE field */
-    const ORIGINAL_PRICE = 'orders_lines.ORIGINAL_PRICE';
+    /** the column name for the original_price field */
+    const ORIGINAL_PRICE = 'orders_lines.original_price';
 
-    /** the column name for the PRICE field */
-    const PRICE = 'orders_lines.PRICE';
+    /** the column name for the price field */
+    const PRICE = 'orders_lines.price';
 
-    /** the column name for the VAT field */
-    const VAT = 'orders_lines.VAT';
+    /** the column name for the vat field */
+    const VAT = 'orders_lines.vat';
 
-    /** the column name for the QUANTITY field */
-    const QUANTITY = 'orders_lines.QUANTITY';
+    /** the column name for the quantity field */
+    const QUANTITY = 'orders_lines.quantity';
 
-    /** the column name for the UNIT field */
-    const UNIT = 'orders_lines.UNIT';
+    /** the column name for the unit field */
+    const UNIT = 'orders_lines.unit';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -209,20 +209,20 @@ abstract class BaseOrdersLinesPeer
             $criteria->addSelectColumn(OrdersLinesPeer::QUANTITY);
             $criteria->addSelectColumn(OrdersLinesPeer::UNIT);
         } else {
-            $criteria->addSelectColumn($alias . '.ID');
-            $criteria->addSelectColumn($alias . '.ORDERS_ID');
-            $criteria->addSelectColumn($alias . '.TYPE');
-            $criteria->addSelectColumn($alias . '.PRODUCTS_ID');
-            $criteria->addSelectColumn($alias . '.PRODUCTS_SKU');
-            $criteria->addSelectColumn($alias . '.PRODUCTS_NAME');
-            $criteria->addSelectColumn($alias . '.PRODUCTS_COLOR');
-            $criteria->addSelectColumn($alias . '.PRODUCTS_SIZE');
-            $criteria->addSelectColumn($alias . '.EXPECTED_AT');
-            $criteria->addSelectColumn($alias . '.ORIGINAL_PRICE');
-            $criteria->addSelectColumn($alias . '.PRICE');
-            $criteria->addSelectColumn($alias . '.VAT');
-            $criteria->addSelectColumn($alias . '.QUANTITY');
-            $criteria->addSelectColumn($alias . '.UNIT');
+            $criteria->addSelectColumn($alias . '.id');
+            $criteria->addSelectColumn($alias . '.orders_id');
+            $criteria->addSelectColumn($alias . '.type');
+            $criteria->addSelectColumn($alias . '.products_id');
+            $criteria->addSelectColumn($alias . '.products_sku');
+            $criteria->addSelectColumn($alias . '.products_name');
+            $criteria->addSelectColumn($alias . '.products_color');
+            $criteria->addSelectColumn($alias . '.products_size');
+            $criteria->addSelectColumn($alias . '.expected_at');
+            $criteria->addSelectColumn($alias . '.original_price');
+            $criteria->addSelectColumn($alias . '.price');
+            $criteria->addSelectColumn($alias . '.vat');
+            $criteria->addSelectColumn($alias . '.quantity');
+            $criteria->addSelectColumn($alias . '.unit');
         }
     }
 
@@ -306,7 +306,7 @@ abstract class BaseOrdersLinesPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -411,8 +411,15 @@ abstract class BaseOrdersLinesPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (OrdersLinesPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         OrdersLinesPeer::$instances = array();
     }
 
@@ -1178,7 +1185,7 @@ abstract class BaseOrdersLinesPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return OrdersLinesPeer::OM_CLASS;
     }

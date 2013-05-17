@@ -38,17 +38,17 @@ abstract class BaseOrdersVersionsPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 4;
 
-    /** the column name for the ORDERS_ID field */
-    const ORDERS_ID = 'orders_versions.ORDERS_ID';
+    /** the column name for the orders_id field */
+    const ORDERS_ID = 'orders_versions.orders_id';
 
-    /** the column name for the VERSION_ID field */
-    const VERSION_ID = 'orders_versions.VERSION_ID';
+    /** the column name for the version_id field */
+    const VERSION_ID = 'orders_versions.version_id';
 
-    /** the column name for the CREATED_AT field */
-    const CREATED_AT = 'orders_versions.CREATED_AT';
+    /** the column name for the created_at field */
+    const CREATED_AT = 'orders_versions.created_at';
 
-    /** the column name for the CONTENT field */
-    const CONTENT = 'orders_versions.CONTENT';
+    /** the column name for the content field */
+    const CONTENT = 'orders_versions.content';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -168,10 +168,10 @@ abstract class BaseOrdersVersionsPeer
             $criteria->addSelectColumn(OrdersVersionsPeer::CREATED_AT);
             $criteria->addSelectColumn(OrdersVersionsPeer::CONTENT);
         } else {
-            $criteria->addSelectColumn($alias . '.ORDERS_ID');
-            $criteria->addSelectColumn($alias . '.VERSION_ID');
-            $criteria->addSelectColumn($alias . '.CREATED_AT');
-            $criteria->addSelectColumn($alias . '.CONTENT');
+            $criteria->addSelectColumn($alias . '.orders_id');
+            $criteria->addSelectColumn($alias . '.version_id');
+            $criteria->addSelectColumn($alias . '.created_at');
+            $criteria->addSelectColumn($alias . '.content');
         }
     }
 
@@ -255,7 +255,7 @@ abstract class BaseOrdersVersionsPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -360,8 +360,15 @@ abstract class BaseOrdersVersionsPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (OrdersVersionsPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         OrdersVersionsPeer::$instances = array();
     }
 
@@ -734,7 +741,7 @@ abstract class BaseOrdersVersionsPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return OrdersVersionsPeer::OM_CLASS;
     }

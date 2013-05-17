@@ -32,12 +32,12 @@ class OrdersPeer extends BaseOrdersPeer
 
         if ($session->has('order_id')) {
             $order = OrdersQuery::create()
+                ->leftJoinWithOrdersLines()
                 ->useOrdersLinesQuery()
                     ->orderByType()
                     ->orderByProductsName()
                     ->orderByPrice()
                 ->endUse()
-                ->leftJoinWithOrdersLines()
                 ->findOneById(
                     $session->get('order_id'),
                     Propel::getConnection(null, Propel::CONNECTION_WRITE)

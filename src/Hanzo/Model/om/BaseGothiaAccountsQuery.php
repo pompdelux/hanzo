@@ -39,7 +39,6 @@ use Hanzo\Model\GothiaAccountsQuery;
  * @method GothiaAccounts findOne(PropelPDO $con = null) Return the first GothiaAccounts matching the query
  * @method GothiaAccounts findOneOrCreate(PropelPDO $con = null) Return the first GothiaAccounts matching the query, or a new GothiaAccounts object populated from the query conditions when no match is found
  *
- * @method GothiaAccounts findOneByCustomersId(int $customers_id) Return the first GothiaAccounts filtered by the customers_id column
  * @method GothiaAccounts findOneByDistributionBy(string $distribution_by) Return the first GothiaAccounts filtered by the distribution_by column
  * @method GothiaAccounts findOneByDistributionType(string $distribution_type) Return the first GothiaAccounts filtered by the distribution_type column
  * @method GothiaAccounts findOneBySocialSecurityNum(string $social_security_num) Return the first GothiaAccounts filtered by the social_security_num column
@@ -67,7 +66,7 @@ abstract class BaseGothiaAccountsQuery extends ModelCriteria
      * Returns a new GothiaAccountsQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     GothiaAccountsQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   GothiaAccountsQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return GothiaAccountsQuery
      */
@@ -124,18 +123,32 @@ abstract class BaseGothiaAccountsQuery extends ModelCriteria
     }
 
     /**
+     * Alias of findPk to use instance pooling
+     *
+     * @param     mixed $key Primary key to use for the query
+     * @param     PropelPDO $con A connection object
+     *
+     * @return                 GothiaAccounts A model object, or null if the key is not found
+     * @throws PropelException
+     */
+     public function findOneByCustomersId($key, $con = null)
+     {
+        return $this->findPk($key, $con);
+     }
+
+    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   GothiaAccounts A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 GothiaAccounts A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `CUSTOMERS_ID`, `DISTRIBUTION_BY`, `DISTRIBUTION_TYPE`, `SOCIAL_SECURITY_NUM` FROM `gothia_accounts` WHERE `CUSTOMERS_ID` = :p0';
+        $sql = 'SELECT `customers_id`, `distribution_by`, `distribution_type`, `social_security_num` FROM `gothia_accounts` WHERE `customers_id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -231,7 +244,8 @@ abstract class BaseGothiaAccountsQuery extends ModelCriteria
      * <code>
      * $query->filterByCustomersId(1234); // WHERE customers_id = 1234
      * $query->filterByCustomersId(array(12, 34)); // WHERE customers_id IN (12, 34)
-     * $query->filterByCustomersId(array('min' => 12)); // WHERE customers_id > 12
+     * $query->filterByCustomersId(array('min' => 12)); // WHERE customers_id >= 12
+     * $query->filterByCustomersId(array('max' => 12)); // WHERE customers_id <= 12
      * </code>
      *
      * @see       filterByCustomers()
@@ -246,8 +260,22 @@ abstract class BaseGothiaAccountsQuery extends ModelCriteria
      */
     public function filterByCustomersId($customersId = null, $comparison = null)
     {
-        if (is_array($customersId) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($customersId)) {
+            $useMinMax = false;
+            if (isset($customersId['min'])) {
+                $this->addUsingAlias(GothiaAccountsPeer::CUSTOMERS_ID, $customersId['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($customersId['max'])) {
+                $this->addUsingAlias(GothiaAccountsPeer::CUSTOMERS_ID, $customersId['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(GothiaAccountsPeer::CUSTOMERS_ID, $customersId, $comparison);
@@ -346,8 +374,8 @@ abstract class BaseGothiaAccountsQuery extends ModelCriteria
      * @param   Customers|PropelObjectCollection $customers The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   GothiaAccountsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 GothiaAccountsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByCustomers($customers, $comparison = null)
     {

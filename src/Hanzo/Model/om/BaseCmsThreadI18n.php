@@ -77,6 +77,12 @@ abstract class BaseCmsThreadI18n extends BaseObject implements Persistent
     protected $alreadyInValidation = false;
 
     /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
+    /**
      * Applies default values to this object.
      * This method should be called from the object's constructor (or
      * equivalent initialization method).
@@ -135,7 +141,7 @@ abstract class BaseCmsThreadI18n extends BaseObject implements Persistent
      */
     public function setId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -160,7 +166,7 @@ abstract class BaseCmsThreadI18n extends BaseObject implements Persistent
      */
     public function setLocale($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -181,7 +187,7 @@ abstract class BaseCmsThreadI18n extends BaseObject implements Persistent
      */
     public function setTitle($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -240,7 +246,7 @@ abstract class BaseCmsThreadI18n extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
+            $this->postHydrate($row, $startcol, $rehydrate);
             return $startcol + 3; // 3 = CmsThreadI18nPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -466,13 +472,13 @@ abstract class BaseCmsThreadI18n extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(CmsThreadI18nPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`ID`';
+            $modifiedColumns[':p' . $index++]  = '`id`';
         }
         if ($this->isColumnModified(CmsThreadI18nPeer::LOCALE)) {
-            $modifiedColumns[':p' . $index++]  = '`LOCALE`';
+            $modifiedColumns[':p' . $index++]  = '`locale`';
         }
         if ($this->isColumnModified(CmsThreadI18nPeer::TITLE)) {
-            $modifiedColumns[':p' . $index++]  = '`TITLE`';
+            $modifiedColumns[':p' . $index++]  = '`title`';
         }
 
         $sql = sprintf(
@@ -485,13 +491,13 @@ abstract class BaseCmsThreadI18n extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`ID`':
+                    case '`id`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`LOCALE`':
+                    case '`locale`':
                         $stmt->bindValue($identifier, $this->locale, PDO::PARAM_STR);
                         break;
-                    case '`TITLE`':
+                    case '`title`':
                         $stmt->bindValue($identifier, $this->title, PDO::PARAM_STR);
                         break;
                 }
@@ -555,11 +561,11 @@ abstract class BaseCmsThreadI18n extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -925,12 +931,13 @@ abstract class BaseCmsThreadI18n extends BaseObject implements Persistent
      * Get the associated CmsThread object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return CmsThread The associated CmsThread object.
      * @throws PropelException
      */
-    public function getCmsThread(PropelPDO $con = null)
+    public function getCmsThread(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aCmsThread === null && ($this->id !== null)) {
+        if ($this->aCmsThread === null && ($this->id !== null) && $doQuery) {
             $this->aCmsThread = CmsThreadQuery::create()->findPk($this->id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -954,6 +961,7 @@ abstract class BaseCmsThreadI18n extends BaseObject implements Persistent
         $this->title = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->applyDefaultValues();
         $this->resetModified();
@@ -972,7 +980,13 @@ abstract class BaseCmsThreadI18n extends BaseObject implements Persistent
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
+            if ($this->aCmsThread instanceof Persistent) {
+              $this->aCmsThread->clearAllReferences($deep);
+            }
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
         $this->aCmsThread = null;

@@ -38,17 +38,17 @@ abstract class BaseOrdersAttributesPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 4;
 
-    /** the column name for the ORDERS_ID field */
-    const ORDERS_ID = 'orders_attributes.ORDERS_ID';
+    /** the column name for the orders_id field */
+    const ORDERS_ID = 'orders_attributes.orders_id';
 
-    /** the column name for the NS field */
-    const NS = 'orders_attributes.NS';
+    /** the column name for the ns field */
+    const NS = 'orders_attributes.ns';
 
-    /** the column name for the C_KEY field */
-    const C_KEY = 'orders_attributes.C_KEY';
+    /** the column name for the c_key field */
+    const C_KEY = 'orders_attributes.c_key';
 
-    /** the column name for the C_VALUE field */
-    const C_VALUE = 'orders_attributes.C_VALUE';
+    /** the column name for the c_value field */
+    const C_VALUE = 'orders_attributes.c_value';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -168,10 +168,10 @@ abstract class BaseOrdersAttributesPeer
             $criteria->addSelectColumn(OrdersAttributesPeer::C_KEY);
             $criteria->addSelectColumn(OrdersAttributesPeer::C_VALUE);
         } else {
-            $criteria->addSelectColumn($alias . '.ORDERS_ID');
-            $criteria->addSelectColumn($alias . '.NS');
-            $criteria->addSelectColumn($alias . '.C_KEY');
-            $criteria->addSelectColumn($alias . '.C_VALUE');
+            $criteria->addSelectColumn($alias . '.orders_id');
+            $criteria->addSelectColumn($alias . '.ns');
+            $criteria->addSelectColumn($alias . '.c_key');
+            $criteria->addSelectColumn($alias . '.c_value');
         }
     }
 
@@ -255,7 +255,7 @@ abstract class BaseOrdersAttributesPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -360,8 +360,15 @@ abstract class BaseOrdersAttributesPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (OrdersAttributesPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         OrdersAttributesPeer::$instances = array();
     }
 
@@ -734,7 +741,7 @@ abstract class BaseOrdersAttributesPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return OrdersAttributesPeer::OM_CLASS;
     }

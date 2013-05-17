@@ -39,26 +39,26 @@ abstract class BaseCmsPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 7;
 
-    /** the column name for the ID field */
-    const ID = 'cms.ID';
+    /** the column name for the id field */
+    const ID = 'cms.id';
 
-    /** the column name for the PARENT_ID field */
-    const PARENT_ID = 'cms.PARENT_ID';
+    /** the column name for the parent_id field */
+    const PARENT_ID = 'cms.parent_id';
 
-    /** the column name for the CMS_THREAD_ID field */
-    const CMS_THREAD_ID = 'cms.CMS_THREAD_ID';
+    /** the column name for the cms_thread_id field */
+    const CMS_THREAD_ID = 'cms.cms_thread_id';
 
-    /** the column name for the SORT field */
-    const SORT = 'cms.SORT';
+    /** the column name for the sort field */
+    const SORT = 'cms.sort';
 
-    /** the column name for the TYPE field */
-    const TYPE = 'cms.TYPE';
+    /** the column name for the type field */
+    const TYPE = 'cms.type';
 
-    /** the column name for the CREATED_AT field */
-    const CREATED_AT = 'cms.CREATED_AT';
+    /** the column name for the created_at field */
+    const CREATED_AT = 'cms.created_at';
 
-    /** the column name for the UPDATED_AT field */
-    const UPDATED_AT = 'cms.UPDATED_AT';
+    /** the column name for the updated_at field */
+    const UPDATED_AT = 'cms.updated_at';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -188,13 +188,13 @@ abstract class BaseCmsPeer
             $criteria->addSelectColumn(CmsPeer::CREATED_AT);
             $criteria->addSelectColumn(CmsPeer::UPDATED_AT);
         } else {
-            $criteria->addSelectColumn($alias . '.ID');
-            $criteria->addSelectColumn($alias . '.PARENT_ID');
-            $criteria->addSelectColumn($alias . '.CMS_THREAD_ID');
-            $criteria->addSelectColumn($alias . '.SORT');
-            $criteria->addSelectColumn($alias . '.TYPE');
-            $criteria->addSelectColumn($alias . '.CREATED_AT');
-            $criteria->addSelectColumn($alias . '.UPDATED_AT');
+            $criteria->addSelectColumn($alias . '.id');
+            $criteria->addSelectColumn($alias . '.parent_id');
+            $criteria->addSelectColumn($alias . '.cms_thread_id');
+            $criteria->addSelectColumn($alias . '.sort');
+            $criteria->addSelectColumn($alias . '.type');
+            $criteria->addSelectColumn($alias . '.created_at');
+            $criteria->addSelectColumn($alias . '.updated_at');
         }
     }
 
@@ -278,7 +278,7 @@ abstract class BaseCmsPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -383,8 +383,15 @@ abstract class BaseCmsPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (CmsPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         CmsPeer::$instances = array();
     }
 
@@ -987,7 +994,7 @@ abstract class BaseCmsPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return CmsPeer::OM_CLASS;
     }

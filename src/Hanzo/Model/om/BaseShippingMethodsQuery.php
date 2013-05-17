@@ -42,7 +42,6 @@ use Hanzo\Model\ShippingMethodsQuery;
  * @method ShippingMethods findOne(PropelPDO $con = null) Return the first ShippingMethods matching the query
  * @method ShippingMethods findOneOrCreate(PropelPDO $con = null) Return the first ShippingMethods matching the query, or a new ShippingMethods object populated from the query conditions when no match is found
  *
- * @method ShippingMethods findOneById(int $id) Return the first ShippingMethods filtered by the id column
  * @method ShippingMethods findOneByCarrier(string $carrier) Return the first ShippingMethods filtered by the carrier column
  * @method ShippingMethods findOneByMethod(string $method) Return the first ShippingMethods filtered by the method column
  * @method ShippingMethods findOneByExternalId(string $external_id) Return the first ShippingMethods filtered by the external_id column
@@ -80,7 +79,7 @@ abstract class BaseShippingMethodsQuery extends ModelCriteria
      * Returns a new ShippingMethodsQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     ShippingMethodsQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   ShippingMethodsQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return ShippingMethodsQuery
      */
@@ -137,18 +136,32 @@ abstract class BaseShippingMethodsQuery extends ModelCriteria
     }
 
     /**
+     * Alias of findPk to use instance pooling
+     *
+     * @param     mixed $key Primary key to use for the query
+     * @param     PropelPDO $con A connection object
+     *
+     * @return                 ShippingMethods A model object, or null if the key is not found
+     * @throws PropelException
+     */
+     public function findOneById($key, $con = null)
+     {
+        return $this->findPk($key, $con);
+     }
+
+    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   ShippingMethods A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 ShippingMethods A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `ID`, `CARRIER`, `METHOD`, `EXTERNAL_ID`, `CALC_ENGINE`, `PRICE`, `FEE`, `FEE_EXTERNAL_ID`, `IS_ACTIVE` FROM `shipping_methods` WHERE `ID` = :p0';
+        $sql = 'SELECT `id`, `carrier`, `method`, `external_id`, `calc_engine`, `price`, `fee`, `fee_external_id`, `is_active` FROM `shipping_methods` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -244,7 +257,8 @@ abstract class BaseShippingMethodsQuery extends ModelCriteria
      * <code>
      * $query->filterById(1234); // WHERE id = 1234
      * $query->filterById(array(12, 34)); // WHERE id IN (12, 34)
-     * $query->filterById(array('min' => 12)); // WHERE id > 12
+     * $query->filterById(array('min' => 12)); // WHERE id >= 12
+     * $query->filterById(array('max' => 12)); // WHERE id <= 12
      * </code>
      *
      * @param     mixed $id The value to use as filter.
@@ -257,8 +271,22 @@ abstract class BaseShippingMethodsQuery extends ModelCriteria
      */
     public function filterById($id = null, $comparison = null)
     {
-        if (is_array($id) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($id)) {
+            $useMinMax = false;
+            if (isset($id['min'])) {
+                $this->addUsingAlias(ShippingMethodsPeer::ID, $id['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($id['max'])) {
+                $this->addUsingAlias(ShippingMethodsPeer::ID, $id['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(ShippingMethodsPeer::ID, $id, $comparison);
@@ -387,7 +415,8 @@ abstract class BaseShippingMethodsQuery extends ModelCriteria
      * <code>
      * $query->filterByPrice(1234); // WHERE price = 1234
      * $query->filterByPrice(array(12, 34)); // WHERE price IN (12, 34)
-     * $query->filterByPrice(array('min' => 12)); // WHERE price > 12
+     * $query->filterByPrice(array('min' => 12)); // WHERE price >= 12
+     * $query->filterByPrice(array('max' => 12)); // WHERE price <= 12
      * </code>
      *
      * @param     mixed $price The value to use as filter.
@@ -428,7 +457,8 @@ abstract class BaseShippingMethodsQuery extends ModelCriteria
      * <code>
      * $query->filterByFee(1234); // WHERE fee = 1234
      * $query->filterByFee(array(12, 34)); // WHERE fee IN (12, 34)
-     * $query->filterByFee(array('min' => 12)); // WHERE fee > 12
+     * $query->filterByFee(array('min' => 12)); // WHERE fee >= 12
+     * $query->filterByFee(array('max' => 12)); // WHERE fee <= 12
      * </code>
      *
      * @param     mixed $fee The value to use as filter.
@@ -512,7 +542,7 @@ abstract class BaseShippingMethodsQuery extends ModelCriteria
     public function filterByIsActive($isActive = null, $comparison = null)
     {
         if (is_string($isActive)) {
-            $is_active = in_array(strtolower($isActive), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+            $isActive = in_array(strtolower($isActive), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
         }
 
         return $this->addUsingAlias(ShippingMethodsPeer::IS_ACTIVE, $isActive, $comparison);

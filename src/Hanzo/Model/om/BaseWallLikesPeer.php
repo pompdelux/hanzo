@@ -39,17 +39,17 @@ abstract class BaseWallLikesPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 4;
 
-    /** the column name for the ID field */
-    const ID = 'wall_likes.ID';
+    /** the column name for the id field */
+    const ID = 'wall_likes.id';
 
-    /** the column name for the WALL_ID field */
-    const WALL_ID = 'wall_likes.WALL_ID';
+    /** the column name for the wall_id field */
+    const WALL_ID = 'wall_likes.wall_id';
 
-    /** the column name for the CUSTOMERS_ID field */
-    const CUSTOMERS_ID = 'wall_likes.CUSTOMERS_ID';
+    /** the column name for the customers_id field */
+    const CUSTOMERS_ID = 'wall_likes.customers_id';
 
-    /** the column name for the STATUS field */
-    const STATUS = 'wall_likes.STATUS';
+    /** the column name for the status field */
+    const STATUS = 'wall_likes.status';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -169,10 +169,10 @@ abstract class BaseWallLikesPeer
             $criteria->addSelectColumn(WallLikesPeer::CUSTOMERS_ID);
             $criteria->addSelectColumn(WallLikesPeer::STATUS);
         } else {
-            $criteria->addSelectColumn($alias . '.ID');
-            $criteria->addSelectColumn($alias . '.WALL_ID');
-            $criteria->addSelectColumn($alias . '.CUSTOMERS_ID');
-            $criteria->addSelectColumn($alias . '.STATUS');
+            $criteria->addSelectColumn($alias . '.id');
+            $criteria->addSelectColumn($alias . '.wall_id');
+            $criteria->addSelectColumn($alias . '.customers_id');
+            $criteria->addSelectColumn($alias . '.status');
         }
     }
 
@@ -256,7 +256,7 @@ abstract class BaseWallLikesPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -361,8 +361,15 @@ abstract class BaseWallLikesPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (WallLikesPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         WallLikesPeer::$instances = array();
     }
 
@@ -1128,7 +1135,7 @@ abstract class BaseWallLikesPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return WallLikesPeer::OM_CLASS;
     }

@@ -42,18 +42,18 @@ class CountriesTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(true);
         // columns
-        $this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
-        $this->addColumn('NAME', 'Name', 'VARCHAR', true, 128, null);
-        $this->addColumn('LOCAL_NAME', 'LocalName', 'VARCHAR', true, 128, null);
-        $this->addColumn('CODE', 'Code', 'INTEGER', false, null, null);
-        $this->addColumn('ISO2', 'Iso2', 'VARCHAR', true, 2, null);
-        $this->addColumn('ISO3', 'Iso3', 'VARCHAR', true, 3, null);
-        $this->addColumn('CONTINENT', 'Continent', 'VARCHAR', true, 2, null);
-        $this->addColumn('CURRENCY_ID', 'CurrencyId', 'INTEGER', true, null, null);
-        $this->addColumn('CURRENCY_CODE', 'CurrencyCode', 'VARCHAR', true, 3, null);
-        $this->addColumn('CURRENCY_NAME', 'CurrencyName', 'VARCHAR', true, 32, null);
-        $this->addColumn('VAT', 'Vat', 'DECIMAL', false, 4, null);
-        $this->addColumn('CALLING_CODE', 'CallingCode', 'INTEGER', false, null, null);
+        $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
+        $this->addColumn('name', 'Name', 'VARCHAR', true, 128, null);
+        $this->addColumn('local_name', 'LocalName', 'VARCHAR', true, 128, null);
+        $this->addColumn('code', 'Code', 'INTEGER', false, null, null);
+        $this->addColumn('iso2', 'Iso2', 'VARCHAR', true, 2, null);
+        $this->addColumn('iso3', 'Iso3', 'VARCHAR', true, 3, null);
+        $this->addColumn('continent', 'Continent', 'VARCHAR', true, 2, null);
+        $this->addColumn('currency_id', 'CurrencyId', 'INTEGER', true, null, null);
+        $this->addColumn('currency_code', 'CurrencyCode', 'VARCHAR', true, 3, null);
+        $this->addColumn('currency_name', 'CurrencyName', 'VARCHAR', true, 32, null);
+        $this->addColumn('vat', 'Vat', 'DECIMAL', false, 4, null);
+        $this->addColumn('calling_code', 'CallingCode', 'INTEGER', false, null, null);
         // validators
     } // initialize()
 

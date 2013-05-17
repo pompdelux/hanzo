@@ -102,6 +102,12 @@ abstract class BaseMannequinImages extends BaseObject implements Persistent
     protected $alreadyInValidation = false;
 
     /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
+    /**
      * Applies default values to this object.
      * This method should be called from the object's constructor (or
      * equivalent initialization method).
@@ -201,7 +207,7 @@ abstract class BaseMannequinImages extends BaseObject implements Persistent
      */
     public function setMaster($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -226,7 +232,7 @@ abstract class BaseMannequinImages extends BaseObject implements Persistent
      */
     public function setColor($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -247,7 +253,7 @@ abstract class BaseMannequinImages extends BaseObject implements Persistent
      */
     public function setLayer($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -268,7 +274,7 @@ abstract class BaseMannequinImages extends BaseObject implements Persistent
      */
     public function setImage($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -289,7 +295,7 @@ abstract class BaseMannequinImages extends BaseObject implements Persistent
      */
     public function setIcon($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -310,7 +316,7 @@ abstract class BaseMannequinImages extends BaseObject implements Persistent
      */
     public function setWeight($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -406,7 +412,7 @@ abstract class BaseMannequinImages extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
+            $this->postHydrate($row, $startcol, $rehydrate);
             return $startcol + 7; // 7 = MannequinImagesPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -632,25 +638,25 @@ abstract class BaseMannequinImages extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(MannequinImagesPeer::MASTER)) {
-            $modifiedColumns[':p' . $index++]  = '`MASTER`';
+            $modifiedColumns[':p' . $index++]  = '`master`';
         }
         if ($this->isColumnModified(MannequinImagesPeer::COLOR)) {
-            $modifiedColumns[':p' . $index++]  = '`COLOR`';
+            $modifiedColumns[':p' . $index++]  = '`color`';
         }
         if ($this->isColumnModified(MannequinImagesPeer::LAYER)) {
-            $modifiedColumns[':p' . $index++]  = '`LAYER`';
+            $modifiedColumns[':p' . $index++]  = '`layer`';
         }
         if ($this->isColumnModified(MannequinImagesPeer::IMAGE)) {
-            $modifiedColumns[':p' . $index++]  = '`IMAGE`';
+            $modifiedColumns[':p' . $index++]  = '`image`';
         }
         if ($this->isColumnModified(MannequinImagesPeer::ICON)) {
-            $modifiedColumns[':p' . $index++]  = '`ICON`';
+            $modifiedColumns[':p' . $index++]  = '`icon`';
         }
         if ($this->isColumnModified(MannequinImagesPeer::WEIGHT)) {
-            $modifiedColumns[':p' . $index++]  = '`WEIGHT`';
+            $modifiedColumns[':p' . $index++]  = '`weight`';
         }
         if ($this->isColumnModified(MannequinImagesPeer::IS_MAIN)) {
-            $modifiedColumns[':p' . $index++]  = '`IS_MAIN`';
+            $modifiedColumns[':p' . $index++]  = '`is_main`';
         }
 
         $sql = sprintf(
@@ -663,25 +669,25 @@ abstract class BaseMannequinImages extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`MASTER`':
+                    case '`master`':
                         $stmt->bindValue($identifier, $this->master, PDO::PARAM_STR);
                         break;
-                    case '`COLOR`':
+                    case '`color`':
                         $stmt->bindValue($identifier, $this->color, PDO::PARAM_STR);
                         break;
-                    case '`LAYER`':
+                    case '`layer`':
                         $stmt->bindValue($identifier, $this->layer, PDO::PARAM_INT);
                         break;
-                    case '`IMAGE`':
+                    case '`image`':
                         $stmt->bindValue($identifier, $this->image, PDO::PARAM_STR);
                         break;
-                    case '`ICON`':
+                    case '`icon`':
                         $stmt->bindValue($identifier, $this->icon, PDO::PARAM_STR);
                         break;
-                    case '`WEIGHT`':
+                    case '`weight`':
                         $stmt->bindValue($identifier, $this->weight, PDO::PARAM_INT);
                         break;
-                    case '`IS_MAIN`':
+                    case '`is_main`':
                         $stmt->bindValue($identifier, (int) $this->is_main, PDO::PARAM_INT);
                         break;
                 }
@@ -745,11 +751,11 @@ abstract class BaseMannequinImages extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -1155,12 +1161,13 @@ abstract class BaseMannequinImages extends BaseObject implements Persistent
      * Get the associated Products object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Products The associated Products object.
      * @throws PropelException
      */
-    public function getProducts(PropelPDO $con = null)
+    public function getProducts(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aProducts === null && (($this->master !== "" && $this->master !== null))) {
+        if ($this->aProducts === null && (($this->master !== "" && $this->master !== null)) && $doQuery) {
             $this->aProducts = ProductsQuery::create()
                 ->filterByMannequinImages($this) // here
                 ->findOne($con);
@@ -1190,6 +1197,7 @@ abstract class BaseMannequinImages extends BaseObject implements Persistent
         $this->is_main = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->applyDefaultValues();
         $this->resetModified();
@@ -1208,7 +1216,13 @@ abstract class BaseMannequinImages extends BaseObject implements Persistent
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
+            if ($this->aProducts instanceof Persistent) {
+              $this->aProducts->clearAllReferences($deep);
+            }
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
         $this->aProducts = null;

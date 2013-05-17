@@ -38,17 +38,17 @@ abstract class BaseOrdersStateLogPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 4;
 
-    /** the column name for the ORDERS_ID field */
-    const ORDERS_ID = 'orders_state_log.ORDERS_ID';
+    /** the column name for the orders_id field */
+    const ORDERS_ID = 'orders_state_log.orders_id';
 
-    /** the column name for the STATE field */
-    const STATE = 'orders_state_log.STATE';
+    /** the column name for the state field */
+    const STATE = 'orders_state_log.state';
 
-    /** the column name for the CREATED_AT field */
-    const CREATED_AT = 'orders_state_log.CREATED_AT';
+    /** the column name for the created_at field */
+    const CREATED_AT = 'orders_state_log.created_at';
 
-    /** the column name for the MESSAGE field */
-    const MESSAGE = 'orders_state_log.MESSAGE';
+    /** the column name for the message field */
+    const MESSAGE = 'orders_state_log.message';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -168,10 +168,10 @@ abstract class BaseOrdersStateLogPeer
             $criteria->addSelectColumn(OrdersStateLogPeer::CREATED_AT);
             $criteria->addSelectColumn(OrdersStateLogPeer::MESSAGE);
         } else {
-            $criteria->addSelectColumn($alias . '.ORDERS_ID');
-            $criteria->addSelectColumn($alias . '.STATE');
-            $criteria->addSelectColumn($alias . '.CREATED_AT');
-            $criteria->addSelectColumn($alias . '.MESSAGE');
+            $criteria->addSelectColumn($alias . '.orders_id');
+            $criteria->addSelectColumn($alias . '.state');
+            $criteria->addSelectColumn($alias . '.created_at');
+            $criteria->addSelectColumn($alias . '.message');
         }
     }
 
@@ -255,7 +255,7 @@ abstract class BaseOrdersStateLogPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -298,7 +298,7 @@ abstract class BaseOrdersStateLogPeer
     {
         if (Propel::isInstancePoolingEnabled()) {
             if ($key === null) {
-                $key = serialize(array((string) $obj->getOrdersId(), (string) $obj->getState(), (string) $obj->getCreatedAt()));
+                $key = serialize(array((string) $obj->getOrdersId(), (string) $obj->getState(), (string) $obj->getCreatedAt('U')));
             } // if key === null
             OrdersStateLogPeer::$instances[$key] = $obj;
         }
@@ -360,8 +360,15 @@ abstract class BaseOrdersStateLogPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (OrdersStateLogPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         OrdersStateLogPeer::$instances = array();
     }
 
@@ -734,7 +741,7 @@ abstract class BaseOrdersStateLogPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return OrdersStateLogPeer::OM_CLASS;
     }

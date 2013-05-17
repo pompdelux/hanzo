@@ -42,10 +42,10 @@ class ProductsStockTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(true);
         // columns
-        $this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
-        $this->addForeignKey('PRODUCTS_ID', 'ProductsId', 'INTEGER', 'products', 'ID', true, null, null);
-        $this->addColumn('QUANTITY', 'Quantity', 'INTEGER', true, null, null);
-        $this->addColumn('AVAILABLE_FROM', 'AvailableFrom', 'DATE', true, null, '2000-01-01');
+        $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
+        $this->addForeignKey('products_id', 'ProductsId', 'INTEGER', 'products', 'id', true, null, null);
+        $this->addColumn('quantity', 'Quantity', 'INTEGER', true, null, null);
+        $this->addColumn('available_from', 'AvailableFrom', 'DATE', true, null, '2000-01-01');
         // validators
     } // initialize()
 

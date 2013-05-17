@@ -38,17 +38,17 @@ abstract class BaseGothiaAccountsPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 4;
 
-    /** the column name for the CUSTOMERS_ID field */
-    const CUSTOMERS_ID = 'gothia_accounts.CUSTOMERS_ID';
+    /** the column name for the customers_id field */
+    const CUSTOMERS_ID = 'gothia_accounts.customers_id';
 
-    /** the column name for the DISTRIBUTION_BY field */
-    const DISTRIBUTION_BY = 'gothia_accounts.DISTRIBUTION_BY';
+    /** the column name for the distribution_by field */
+    const DISTRIBUTION_BY = 'gothia_accounts.distribution_by';
 
-    /** the column name for the DISTRIBUTION_TYPE field */
-    const DISTRIBUTION_TYPE = 'gothia_accounts.DISTRIBUTION_TYPE';
+    /** the column name for the distribution_type field */
+    const DISTRIBUTION_TYPE = 'gothia_accounts.distribution_type';
 
-    /** the column name for the SOCIAL_SECURITY_NUM field */
-    const SOCIAL_SECURITY_NUM = 'gothia_accounts.SOCIAL_SECURITY_NUM';
+    /** the column name for the social_security_num field */
+    const SOCIAL_SECURITY_NUM = 'gothia_accounts.social_security_num';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -168,10 +168,10 @@ abstract class BaseGothiaAccountsPeer
             $criteria->addSelectColumn(GothiaAccountsPeer::DISTRIBUTION_TYPE);
             $criteria->addSelectColumn(GothiaAccountsPeer::SOCIAL_SECURITY_NUM);
         } else {
-            $criteria->addSelectColumn($alias . '.CUSTOMERS_ID');
-            $criteria->addSelectColumn($alias . '.DISTRIBUTION_BY');
-            $criteria->addSelectColumn($alias . '.DISTRIBUTION_TYPE');
-            $criteria->addSelectColumn($alias . '.SOCIAL_SECURITY_NUM');
+            $criteria->addSelectColumn($alias . '.customers_id');
+            $criteria->addSelectColumn($alias . '.distribution_by');
+            $criteria->addSelectColumn($alias . '.distribution_type');
+            $criteria->addSelectColumn($alias . '.social_security_num');
         }
     }
 
@@ -255,7 +255,7 @@ abstract class BaseGothiaAccountsPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -360,8 +360,15 @@ abstract class BaseGothiaAccountsPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (GothiaAccountsPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         GothiaAccountsPeer::$instances = array();
     }
 
@@ -735,7 +742,7 @@ abstract class BaseGothiaAccountsPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return GothiaAccountsPeer::OM_CLASS;
     }

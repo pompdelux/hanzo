@@ -96,6 +96,12 @@ abstract class BaseConsultants extends BaseObject implements Persistent
     protected $alreadyInValidation = false;
 
     /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
+    /**
      * Applies default values to this object.
      * This method should be called from the object's constructor (or
      * equivalent initialization method).
@@ -185,7 +191,7 @@ abstract class BaseConsultants extends BaseObject implements Persistent
      */
     public function setInitials($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -206,7 +212,7 @@ abstract class BaseConsultants extends BaseObject implements Persistent
      */
     public function setInfo($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -227,7 +233,7 @@ abstract class BaseConsultants extends BaseObject implements Persistent
      */
     public function setEventNotes($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -306,7 +312,7 @@ abstract class BaseConsultants extends BaseObject implements Persistent
      */
     public function setId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -376,7 +382,7 @@ abstract class BaseConsultants extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
+            $this->postHydrate($row, $startcol, $rehydrate);
             return $startcol + 6; // 6 = ConsultantsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -602,22 +608,22 @@ abstract class BaseConsultants extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(ConsultantsPeer::INITIALS)) {
-            $modifiedColumns[':p' . $index++]  = '`INITIALS`';
+            $modifiedColumns[':p' . $index++]  = '`initials`';
         }
         if ($this->isColumnModified(ConsultantsPeer::INFO)) {
-            $modifiedColumns[':p' . $index++]  = '`INFO`';
+            $modifiedColumns[':p' . $index++]  = '`info`';
         }
         if ($this->isColumnModified(ConsultantsPeer::EVENT_NOTES)) {
-            $modifiedColumns[':p' . $index++]  = '`EVENT_NOTES`';
+            $modifiedColumns[':p' . $index++]  = '`event_notes`';
         }
         if ($this->isColumnModified(ConsultantsPeer::HIDE_INFO)) {
-            $modifiedColumns[':p' . $index++]  = '`HIDE_INFO`';
+            $modifiedColumns[':p' . $index++]  = '`hide_info`';
         }
         if ($this->isColumnModified(ConsultantsPeer::MAX_NOTIFIED)) {
-            $modifiedColumns[':p' . $index++]  = '`MAX_NOTIFIED`';
+            $modifiedColumns[':p' . $index++]  = '`max_notified`';
         }
         if ($this->isColumnModified(ConsultantsPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`ID`';
+            $modifiedColumns[':p' . $index++]  = '`id`';
         }
 
         $sql = sprintf(
@@ -630,22 +636,22 @@ abstract class BaseConsultants extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`INITIALS`':
+                    case '`initials`':
                         $stmt->bindValue($identifier, $this->initials, PDO::PARAM_STR);
                         break;
-                    case '`INFO`':
+                    case '`info`':
                         $stmt->bindValue($identifier, $this->info, PDO::PARAM_STR);
                         break;
-                    case '`EVENT_NOTES`':
+                    case '`event_notes`':
                         $stmt->bindValue($identifier, $this->event_notes, PDO::PARAM_STR);
                         break;
-                    case '`HIDE_INFO`':
+                    case '`hide_info`':
                         $stmt->bindValue($identifier, (int) $this->hide_info, PDO::PARAM_INT);
                         break;
-                    case '`MAX_NOTIFIED`':
+                    case '`max_notified`':
                         $stmt->bindValue($identifier, (int) $this->max_notified, PDO::PARAM_INT);
                         break;
-                    case '`ID`':
+                    case '`id`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
                 }
@@ -709,11 +715,11 @@ abstract class BaseConsultants extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -1106,12 +1112,13 @@ abstract class BaseConsultants extends BaseObject implements Persistent
      * Get the associated Customers object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Customers The associated Customers object.
      * @throws PropelException
      */
-    public function getCustomers(PropelPDO $con = null)
+    public function getCustomers(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aCustomers === null && ($this->id !== null)) {
+        if ($this->aCustomers === null && ($this->id !== null) && $doQuery) {
             $this->aCustomers = CustomersQuery::create()->findPk($this->id, $con);
             // Because this foreign key represents a one-to-one relationship, we will create a bi-directional association.
             $this->aCustomers->setConsultants($this);
@@ -1133,6 +1140,7 @@ abstract class BaseConsultants extends BaseObject implements Persistent
         $this->id = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->applyDefaultValues();
         $this->resetModified();
@@ -1151,7 +1159,13 @@ abstract class BaseConsultants extends BaseObject implements Persistent
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
+            if ($this->aCustomers instanceof Persistent) {
+              $this->aCustomers->clearAllReferences($deep);
+            }
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
         $this->aCustomers = null;

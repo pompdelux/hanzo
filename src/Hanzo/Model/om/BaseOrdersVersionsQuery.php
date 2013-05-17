@@ -67,7 +67,7 @@ abstract class BaseOrdersVersionsQuery extends ModelCriteria
      * Returns a new OrdersVersionsQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     OrdersVersionsQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   OrdersVersionsQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return OrdersVersionsQuery
      */
@@ -131,12 +131,12 @@ abstract class BaseOrdersVersionsQuery extends ModelCriteria
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   OrdersVersions A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 OrdersVersions A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `ORDERS_ID`, `VERSION_ID`, `CREATED_AT`, `CONTENT` FROM `orders_versions` WHERE `ORDERS_ID` = :p0 AND `VERSION_ID` = :p1';
+        $sql = 'SELECT `orders_id`, `version_id`, `created_at`, `content` FROM `orders_versions` WHERE `orders_id` = :p0 AND `version_id` = :p1';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);
@@ -244,7 +244,8 @@ abstract class BaseOrdersVersionsQuery extends ModelCriteria
      * <code>
      * $query->filterByOrdersId(1234); // WHERE orders_id = 1234
      * $query->filterByOrdersId(array(12, 34)); // WHERE orders_id IN (12, 34)
-     * $query->filterByOrdersId(array('min' => 12)); // WHERE orders_id > 12
+     * $query->filterByOrdersId(array('min' => 12)); // WHERE orders_id >= 12
+     * $query->filterByOrdersId(array('max' => 12)); // WHERE orders_id <= 12
      * </code>
      *
      * @see       filterByOrders()
@@ -259,8 +260,22 @@ abstract class BaseOrdersVersionsQuery extends ModelCriteria
      */
     public function filterByOrdersId($ordersId = null, $comparison = null)
     {
-        if (is_array($ordersId) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($ordersId)) {
+            $useMinMax = false;
+            if (isset($ordersId['min'])) {
+                $this->addUsingAlias(OrdersVersionsPeer::ORDERS_ID, $ordersId['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($ordersId['max'])) {
+                $this->addUsingAlias(OrdersVersionsPeer::ORDERS_ID, $ordersId['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(OrdersVersionsPeer::ORDERS_ID, $ordersId, $comparison);
@@ -273,7 +288,8 @@ abstract class BaseOrdersVersionsQuery extends ModelCriteria
      * <code>
      * $query->filterByVersionId(1234); // WHERE version_id = 1234
      * $query->filterByVersionId(array(12, 34)); // WHERE version_id IN (12, 34)
-     * $query->filterByVersionId(array('min' => 12)); // WHERE version_id > 12
+     * $query->filterByVersionId(array('min' => 12)); // WHERE version_id >= 12
+     * $query->filterByVersionId(array('max' => 12)); // WHERE version_id <= 12
      * </code>
      *
      * @param     mixed $versionId The value to use as filter.
@@ -286,8 +302,22 @@ abstract class BaseOrdersVersionsQuery extends ModelCriteria
      */
     public function filterByVersionId($versionId = null, $comparison = null)
     {
-        if (is_array($versionId) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($versionId)) {
+            $useMinMax = false;
+            if (isset($versionId['min'])) {
+                $this->addUsingAlias(OrdersVersionsPeer::VERSION_ID, $versionId['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($versionId['max'])) {
+                $this->addUsingAlias(OrdersVersionsPeer::VERSION_ID, $versionId['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(OrdersVersionsPeer::VERSION_ID, $versionId, $comparison);
@@ -371,8 +401,8 @@ abstract class BaseOrdersVersionsQuery extends ModelCriteria
      * @param   Orders|PropelObjectCollection $orders The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   OrdersVersionsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 OrdersVersionsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByOrders($orders, $comparison = null)
     {

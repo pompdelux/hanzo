@@ -39,26 +39,26 @@ abstract class BaseWallPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 7;
 
-    /** the column name for the ID field */
-    const ID = 'wall.ID';
+    /** the column name for the id field */
+    const ID = 'wall.id';
 
-    /** the column name for the PARENT_ID field */
-    const PARENT_ID = 'wall.PARENT_ID';
+    /** the column name for the parent_id field */
+    const PARENT_ID = 'wall.parent_id';
 
-    /** the column name for the CUSTOMERS_ID field */
-    const CUSTOMERS_ID = 'wall.CUSTOMERS_ID';
+    /** the column name for the customers_id field */
+    const CUSTOMERS_ID = 'wall.customers_id';
 
-    /** the column name for the MESSATE field */
-    const MESSATE = 'wall.MESSATE';
+    /** the column name for the messate field */
+    const MESSATE = 'wall.messate';
 
-    /** the column name for the STATUS field */
-    const STATUS = 'wall.STATUS';
+    /** the column name for the status field */
+    const STATUS = 'wall.status';
 
-    /** the column name for the CREATED_AT field */
-    const CREATED_AT = 'wall.CREATED_AT';
+    /** the column name for the created_at field */
+    const CREATED_AT = 'wall.created_at';
 
-    /** the column name for the UPDATED_AT field */
-    const UPDATED_AT = 'wall.UPDATED_AT';
+    /** the column name for the updated_at field */
+    const UPDATED_AT = 'wall.updated_at';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -181,13 +181,13 @@ abstract class BaseWallPeer
             $criteria->addSelectColumn(WallPeer::CREATED_AT);
             $criteria->addSelectColumn(WallPeer::UPDATED_AT);
         } else {
-            $criteria->addSelectColumn($alias . '.ID');
-            $criteria->addSelectColumn($alias . '.PARENT_ID');
-            $criteria->addSelectColumn($alias . '.CUSTOMERS_ID');
-            $criteria->addSelectColumn($alias . '.MESSATE');
-            $criteria->addSelectColumn($alias . '.STATUS');
-            $criteria->addSelectColumn($alias . '.CREATED_AT');
-            $criteria->addSelectColumn($alias . '.UPDATED_AT');
+            $criteria->addSelectColumn($alias . '.id');
+            $criteria->addSelectColumn($alias . '.parent_id');
+            $criteria->addSelectColumn($alias . '.customers_id');
+            $criteria->addSelectColumn($alias . '.messate');
+            $criteria->addSelectColumn($alias . '.status');
+            $criteria->addSelectColumn($alias . '.created_at');
+            $criteria->addSelectColumn($alias . '.updated_at');
         }
     }
 
@@ -271,7 +271,7 @@ abstract class BaseWallPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -376,8 +376,15 @@ abstract class BaseWallPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (WallPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         WallPeer::$instances = array();
     }
 
@@ -980,7 +987,7 @@ abstract class BaseWallPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return WallPeer::OM_CLASS;
     }

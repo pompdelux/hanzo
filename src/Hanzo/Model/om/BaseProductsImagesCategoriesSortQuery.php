@@ -77,7 +77,7 @@ abstract class BaseProductsImagesCategoriesSortQuery extends ModelCriteria
      * Returns a new ProductsImagesCategoriesSortQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     ProductsImagesCategoriesSortQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   ProductsImagesCategoriesSortQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return ProductsImagesCategoriesSortQuery
      */
@@ -141,12 +141,12 @@ abstract class BaseProductsImagesCategoriesSortQuery extends ModelCriteria
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   ProductsImagesCategoriesSort A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 ProductsImagesCategoriesSort A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `PRODUCTS_ID`, `CATEGORIES_ID`, `PRODUCTS_IMAGES_ID`, `SORT` FROM `products_images_categories_sort` WHERE `PRODUCTS_ID` = :p0 AND `CATEGORIES_ID` = :p1 AND `PRODUCTS_IMAGES_ID` = :p2';
+        $sql = 'SELECT `products_id`, `categories_id`, `products_images_id`, `sort` FROM `products_images_categories_sort` WHERE `products_id` = :p0 AND `categories_id` = :p1 AND `products_images_id` = :p2';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);
@@ -258,7 +258,8 @@ abstract class BaseProductsImagesCategoriesSortQuery extends ModelCriteria
      * <code>
      * $query->filterByProductsId(1234); // WHERE products_id = 1234
      * $query->filterByProductsId(array(12, 34)); // WHERE products_id IN (12, 34)
-     * $query->filterByProductsId(array('min' => 12)); // WHERE products_id > 12
+     * $query->filterByProductsId(array('min' => 12)); // WHERE products_id >= 12
+     * $query->filterByProductsId(array('max' => 12)); // WHERE products_id <= 12
      * </code>
      *
      * @see       filterByProducts()
@@ -273,8 +274,22 @@ abstract class BaseProductsImagesCategoriesSortQuery extends ModelCriteria
      */
     public function filterByProductsId($productsId = null, $comparison = null)
     {
-        if (is_array($productsId) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($productsId)) {
+            $useMinMax = false;
+            if (isset($productsId['min'])) {
+                $this->addUsingAlias(ProductsImagesCategoriesSortPeer::PRODUCTS_ID, $productsId['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($productsId['max'])) {
+                $this->addUsingAlias(ProductsImagesCategoriesSortPeer::PRODUCTS_ID, $productsId['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(ProductsImagesCategoriesSortPeer::PRODUCTS_ID, $productsId, $comparison);
@@ -287,7 +302,8 @@ abstract class BaseProductsImagesCategoriesSortQuery extends ModelCriteria
      * <code>
      * $query->filterByCategoriesId(1234); // WHERE categories_id = 1234
      * $query->filterByCategoriesId(array(12, 34)); // WHERE categories_id IN (12, 34)
-     * $query->filterByCategoriesId(array('min' => 12)); // WHERE categories_id > 12
+     * $query->filterByCategoriesId(array('min' => 12)); // WHERE categories_id >= 12
+     * $query->filterByCategoriesId(array('max' => 12)); // WHERE categories_id <= 12
      * </code>
      *
      * @see       filterByCategories()
@@ -302,8 +318,22 @@ abstract class BaseProductsImagesCategoriesSortQuery extends ModelCriteria
      */
     public function filterByCategoriesId($categoriesId = null, $comparison = null)
     {
-        if (is_array($categoriesId) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($categoriesId)) {
+            $useMinMax = false;
+            if (isset($categoriesId['min'])) {
+                $this->addUsingAlias(ProductsImagesCategoriesSortPeer::CATEGORIES_ID, $categoriesId['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($categoriesId['max'])) {
+                $this->addUsingAlias(ProductsImagesCategoriesSortPeer::CATEGORIES_ID, $categoriesId['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(ProductsImagesCategoriesSortPeer::CATEGORIES_ID, $categoriesId, $comparison);
@@ -316,7 +346,8 @@ abstract class BaseProductsImagesCategoriesSortQuery extends ModelCriteria
      * <code>
      * $query->filterByProductsImagesId(1234); // WHERE products_images_id = 1234
      * $query->filterByProductsImagesId(array(12, 34)); // WHERE products_images_id IN (12, 34)
-     * $query->filterByProductsImagesId(array('min' => 12)); // WHERE products_images_id > 12
+     * $query->filterByProductsImagesId(array('min' => 12)); // WHERE products_images_id >= 12
+     * $query->filterByProductsImagesId(array('max' => 12)); // WHERE products_images_id <= 12
      * </code>
      *
      * @see       filterByProductsImages()
@@ -331,8 +362,22 @@ abstract class BaseProductsImagesCategoriesSortQuery extends ModelCriteria
      */
     public function filterByProductsImagesId($productsImagesId = null, $comparison = null)
     {
-        if (is_array($productsImagesId) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($productsImagesId)) {
+            $useMinMax = false;
+            if (isset($productsImagesId['min'])) {
+                $this->addUsingAlias(ProductsImagesCategoriesSortPeer::PRODUCTS_IMAGES_ID, $productsImagesId['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($productsImagesId['max'])) {
+                $this->addUsingAlias(ProductsImagesCategoriesSortPeer::PRODUCTS_IMAGES_ID, $productsImagesId['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(ProductsImagesCategoriesSortPeer::PRODUCTS_IMAGES_ID, $productsImagesId, $comparison);
@@ -345,7 +390,8 @@ abstract class BaseProductsImagesCategoriesSortQuery extends ModelCriteria
      * <code>
      * $query->filterBySort(1234); // WHERE sort = 1234
      * $query->filterBySort(array(12, 34)); // WHERE sort IN (12, 34)
-     * $query->filterBySort(array('min' => 12)); // WHERE sort > 12
+     * $query->filterBySort(array('min' => 12)); // WHERE sort >= 12
+     * $query->filterBySort(array('max' => 12)); // WHERE sort <= 12
      * </code>
      *
      * @param     mixed $sort The value to use as filter.
@@ -385,8 +431,8 @@ abstract class BaseProductsImagesCategoriesSortQuery extends ModelCriteria
      * @param   Products|PropelObjectCollection $products The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   ProductsImagesCategoriesSortQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 ProductsImagesCategoriesSortQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByProducts($products, $comparison = null)
     {
@@ -461,8 +507,8 @@ abstract class BaseProductsImagesCategoriesSortQuery extends ModelCriteria
      * @param   ProductsImages|PropelObjectCollection $productsImages The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   ProductsImagesCategoriesSortQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 ProductsImagesCategoriesSortQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByProductsImages($productsImages, $comparison = null)
     {
@@ -537,8 +583,8 @@ abstract class BaseProductsImagesCategoriesSortQuery extends ModelCriteria
      * @param   Categories|PropelObjectCollection $categories The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   ProductsImagesCategoriesSortQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 ProductsImagesCategoriesSortQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByCategories($categories, $comparison = null)
     {

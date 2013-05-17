@@ -39,17 +39,17 @@ abstract class BaseProductsQuantityDiscountPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 4;
 
-    /** the column name for the PRODUCTS_MASTER field */
-    const PRODUCTS_MASTER = 'products_quantity_discount.PRODUCTS_MASTER';
+    /** the column name for the products_master field */
+    const PRODUCTS_MASTER = 'products_quantity_discount.products_master';
 
-    /** the column name for the DOMAINS_ID field */
-    const DOMAINS_ID = 'products_quantity_discount.DOMAINS_ID';
+    /** the column name for the domains_id field */
+    const DOMAINS_ID = 'products_quantity_discount.domains_id';
 
-    /** the column name for the SPAN field */
-    const SPAN = 'products_quantity_discount.SPAN';
+    /** the column name for the span field */
+    const SPAN = 'products_quantity_discount.span';
 
-    /** the column name for the DISCOUNT field */
-    const DISCOUNT = 'products_quantity_discount.DISCOUNT';
+    /** the column name for the discount field */
+    const DISCOUNT = 'products_quantity_discount.discount';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -169,10 +169,10 @@ abstract class BaseProductsQuantityDiscountPeer
             $criteria->addSelectColumn(ProductsQuantityDiscountPeer::SPAN);
             $criteria->addSelectColumn(ProductsQuantityDiscountPeer::DISCOUNT);
         } else {
-            $criteria->addSelectColumn($alias . '.PRODUCTS_MASTER');
-            $criteria->addSelectColumn($alias . '.DOMAINS_ID');
-            $criteria->addSelectColumn($alias . '.SPAN');
-            $criteria->addSelectColumn($alias . '.DISCOUNT');
+            $criteria->addSelectColumn($alias . '.products_master');
+            $criteria->addSelectColumn($alias . '.domains_id');
+            $criteria->addSelectColumn($alias . '.span');
+            $criteria->addSelectColumn($alias . '.discount');
         }
     }
 
@@ -256,7 +256,7 @@ abstract class BaseProductsQuantityDiscountPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -361,8 +361,15 @@ abstract class BaseProductsQuantityDiscountPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (ProductsQuantityDiscountPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         ProductsQuantityDiscountPeer::$instances = array();
     }
 
@@ -1128,7 +1135,7 @@ abstract class BaseProductsQuantityDiscountPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return ProductsQuantityDiscountPeer::OM_CLASS;
     }

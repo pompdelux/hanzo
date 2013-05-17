@@ -42,12 +42,12 @@ class ConsultantsTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(false);
         // columns
-        $this->addColumn('INITIALS', 'Initials', 'VARCHAR', false, 10, null);
-        $this->addColumn('INFO', 'Info', 'LONGVARCHAR', false, null, null);
-        $this->addColumn('EVENT_NOTES', 'EventNotes', 'LONGVARCHAR', false, null, null);
-        $this->addColumn('HIDE_INFO', 'HideInfo', 'BOOLEAN', true, 1, false);
-        $this->addColumn('MAX_NOTIFIED', 'MaxNotified', 'BOOLEAN', true, 1, false);
-        $this->addForeignPrimaryKey('ID', 'Id', 'INTEGER' , 'customers', 'ID', true, null, null);
+        $this->addColumn('initials', 'Initials', 'VARCHAR', false, 10, null);
+        $this->addColumn('info', 'Info', 'LONGVARCHAR', false, null, null);
+        $this->addColumn('event_notes', 'EventNotes', 'LONGVARCHAR', false, null, null);
+        $this->addColumn('hide_info', 'HideInfo', 'BOOLEAN', true, 1, false);
+        $this->addColumn('max_notified', 'MaxNotified', 'BOOLEAN', true, 1, false);
+        $this->addForeignPrimaryKey('id', 'Id', 'INTEGER' , 'customers', 'id', true, null, null);
         // validators
     } // initialize()
 

@@ -39,7 +39,6 @@ use Hanzo\Model\ProductsStockQuery;
  * @method ProductsStock findOne(PropelPDO $con = null) Return the first ProductsStock matching the query
  * @method ProductsStock findOneOrCreate(PropelPDO $con = null) Return the first ProductsStock matching the query, or a new ProductsStock object populated from the query conditions when no match is found
  *
- * @method ProductsStock findOneById(int $id) Return the first ProductsStock filtered by the id column
  * @method ProductsStock findOneByProductsId(int $products_id) Return the first ProductsStock filtered by the products_id column
  * @method ProductsStock findOneByQuantity(int $quantity) Return the first ProductsStock filtered by the quantity column
  * @method ProductsStock findOneByAvailableFrom(string $available_from) Return the first ProductsStock filtered by the available_from column
@@ -67,7 +66,7 @@ abstract class BaseProductsStockQuery extends ModelCriteria
      * Returns a new ProductsStockQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     ProductsStockQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   ProductsStockQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return ProductsStockQuery
      */
@@ -124,18 +123,32 @@ abstract class BaseProductsStockQuery extends ModelCriteria
     }
 
     /**
+     * Alias of findPk to use instance pooling
+     *
+     * @param     mixed $key Primary key to use for the query
+     * @param     PropelPDO $con A connection object
+     *
+     * @return                 ProductsStock A model object, or null if the key is not found
+     * @throws PropelException
+     */
+     public function findOneById($key, $con = null)
+     {
+        return $this->findPk($key, $con);
+     }
+
+    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   ProductsStock A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 ProductsStock A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `ID`, `PRODUCTS_ID`, `QUANTITY`, `AVAILABLE_FROM` FROM `products_stock` WHERE `ID` = :p0';
+        $sql = 'SELECT `id`, `products_id`, `quantity`, `available_from` FROM `products_stock` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -231,7 +244,8 @@ abstract class BaseProductsStockQuery extends ModelCriteria
      * <code>
      * $query->filterById(1234); // WHERE id = 1234
      * $query->filterById(array(12, 34)); // WHERE id IN (12, 34)
-     * $query->filterById(array('min' => 12)); // WHERE id > 12
+     * $query->filterById(array('min' => 12)); // WHERE id >= 12
+     * $query->filterById(array('max' => 12)); // WHERE id <= 12
      * </code>
      *
      * @param     mixed $id The value to use as filter.
@@ -244,8 +258,22 @@ abstract class BaseProductsStockQuery extends ModelCriteria
      */
     public function filterById($id = null, $comparison = null)
     {
-        if (is_array($id) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($id)) {
+            $useMinMax = false;
+            if (isset($id['min'])) {
+                $this->addUsingAlias(ProductsStockPeer::ID, $id['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($id['max'])) {
+                $this->addUsingAlias(ProductsStockPeer::ID, $id['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(ProductsStockPeer::ID, $id, $comparison);
@@ -258,7 +286,8 @@ abstract class BaseProductsStockQuery extends ModelCriteria
      * <code>
      * $query->filterByProductsId(1234); // WHERE products_id = 1234
      * $query->filterByProductsId(array(12, 34)); // WHERE products_id IN (12, 34)
-     * $query->filterByProductsId(array('min' => 12)); // WHERE products_id > 12
+     * $query->filterByProductsId(array('min' => 12)); // WHERE products_id >= 12
+     * $query->filterByProductsId(array('max' => 12)); // WHERE products_id <= 12
      * </code>
      *
      * @see       filterByProducts()
@@ -301,7 +330,8 @@ abstract class BaseProductsStockQuery extends ModelCriteria
      * <code>
      * $query->filterByQuantity(1234); // WHERE quantity = 1234
      * $query->filterByQuantity(array(12, 34)); // WHERE quantity IN (12, 34)
-     * $query->filterByQuantity(array('min' => 12)); // WHERE quantity > 12
+     * $query->filterByQuantity(array('min' => 12)); // WHERE quantity >= 12
+     * $query->filterByQuantity(array('max' => 12)); // WHERE quantity <= 12
      * </code>
      *
      * @param     mixed $quantity The value to use as filter.
@@ -384,8 +414,8 @@ abstract class BaseProductsStockQuery extends ModelCriteria
      * @param   Products|PropelObjectCollection $products The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   ProductsStockQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 ProductsStockQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByProducts($products, $comparison = null)
     {

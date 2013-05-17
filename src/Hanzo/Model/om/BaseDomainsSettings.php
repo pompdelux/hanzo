@@ -88,6 +88,12 @@ abstract class BaseDomainsSettings extends BaseObject implements Persistent
     protected $alreadyInValidation = false;
 
     /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
+    /**
      * Get the [id] column value.
      *
      * @return int
@@ -145,7 +151,7 @@ abstract class BaseDomainsSettings extends BaseObject implements Persistent
      */
     public function setId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -166,7 +172,7 @@ abstract class BaseDomainsSettings extends BaseObject implements Persistent
      */
     public function setDomainKey($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -191,7 +197,7 @@ abstract class BaseDomainsSettings extends BaseObject implements Persistent
      */
     public function setCKey($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -212,7 +218,7 @@ abstract class BaseDomainsSettings extends BaseObject implements Persistent
      */
     public function setNs($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -233,7 +239,7 @@ abstract class BaseDomainsSettings extends BaseObject implements Persistent
      */
     public function setCValue($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -290,7 +296,7 @@ abstract class BaseDomainsSettings extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
+            $this->postHydrate($row, $startcol, $rehydrate);
             return $startcol + 5; // 5 = DomainsSettingsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -520,19 +526,19 @@ abstract class BaseDomainsSettings extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(DomainsSettingsPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`ID`';
+            $modifiedColumns[':p' . $index++]  = '`id`';
         }
         if ($this->isColumnModified(DomainsSettingsPeer::DOMAIN_KEY)) {
-            $modifiedColumns[':p' . $index++]  = '`DOMAIN_KEY`';
+            $modifiedColumns[':p' . $index++]  = '`domain_key`';
         }
         if ($this->isColumnModified(DomainsSettingsPeer::C_KEY)) {
-            $modifiedColumns[':p' . $index++]  = '`C_KEY`';
+            $modifiedColumns[':p' . $index++]  = '`c_key`';
         }
         if ($this->isColumnModified(DomainsSettingsPeer::NS)) {
-            $modifiedColumns[':p' . $index++]  = '`NS`';
+            $modifiedColumns[':p' . $index++]  = '`ns`';
         }
         if ($this->isColumnModified(DomainsSettingsPeer::C_VALUE)) {
-            $modifiedColumns[':p' . $index++]  = '`C_VALUE`';
+            $modifiedColumns[':p' . $index++]  = '`c_value`';
         }
 
         $sql = sprintf(
@@ -545,19 +551,19 @@ abstract class BaseDomainsSettings extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`ID`':
+                    case '`id`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`DOMAIN_KEY`':
+                    case '`domain_key`':
                         $stmt->bindValue($identifier, $this->domain_key, PDO::PARAM_STR);
                         break;
-                    case '`C_KEY`':
+                    case '`c_key`':
                         $stmt->bindValue($identifier, $this->c_key, PDO::PARAM_STR);
                         break;
-                    case '`NS`':
+                    case '`ns`':
                         $stmt->bindValue($identifier, $this->ns, PDO::PARAM_STR);
                         break;
-                    case '`C_VALUE`':
+                    case '`c_value`':
                         $stmt->bindValue($identifier, $this->c_value, PDO::PARAM_STR);
                         break;
                 }
@@ -628,11 +634,11 @@ abstract class BaseDomainsSettings extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -1011,12 +1017,13 @@ abstract class BaseDomainsSettings extends BaseObject implements Persistent
      * Get the associated Domains object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Domains The associated Domains object.
      * @throws PropelException
      */
-    public function getDomains(PropelPDO $con = null)
+    public function getDomains(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aDomains === null && (($this->domain_key !== "" && $this->domain_key !== null))) {
+        if ($this->aDomains === null && (($this->domain_key !== "" && $this->domain_key !== null)) && $doQuery) {
             $this->aDomains = DomainsQuery::create()
                 ->filterByDomainsSettings($this) // here
                 ->findOne($con);
@@ -1044,6 +1051,7 @@ abstract class BaseDomainsSettings extends BaseObject implements Persistent
         $this->c_value = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->resetModified();
         $this->setNew(true);
@@ -1061,7 +1069,13 @@ abstract class BaseDomainsSettings extends BaseObject implements Persistent
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
+            if ($this->aDomains instanceof Persistent) {
+              $this->aDomains->clearAllReferences($deep);
+            }
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
         $this->aDomains = null;
