@@ -75,4 +75,23 @@ $(function() {
       }
     });
   });
+
+  // send analytics some data
+  $('video').on('play pause ended', function(event) {
+    if (_gaq === undefined) {
+      return;
+    }
+
+    switch(event.type) {
+      case 'play':
+        _gaq.push(['_trackEvent', 'Videos', 'Play', this.currentSrc]);
+        break;
+      case 'play':
+        _gaq.push(['_trackEvent', 'Videos', 'Paused', this.currentSrc, parseInt(this.getTime(), 10)]);
+        break;
+      case 'ended':
+        _gaq.push(['_trackEvent', 'Videos', 'Ended', this.currentSrc]);
+        break;
+    }
+  });
 });
