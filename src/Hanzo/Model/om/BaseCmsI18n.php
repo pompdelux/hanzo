@@ -115,6 +115,12 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
     protected $alreadyInValidation = false;
 
     /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
+    /**
      * Applies default values to this object.
      * This method should be called from the object's constructor (or
      * equivalent initialization method).
@@ -235,7 +241,7 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
      */
     public function setId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -260,7 +266,7 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
      */
     public function setLocale($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -281,7 +287,7 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
      */
     public function setTitle($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -302,7 +308,7 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
      */
     public function setPath($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -323,7 +329,7 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
      */
     public function setOldPath($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -344,7 +350,7 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
      */
     public function setContent($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -365,7 +371,7 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
      */
     public function setSettings($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -496,7 +502,7 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
+            $this->postHydrate($row, $startcol, $rehydrate);
             return $startcol + 9; // 9 = CmsI18nPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -722,31 +728,31 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(CmsI18nPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`ID`';
+            $modifiedColumns[':p' . $index++]  = '`id`';
         }
         if ($this->isColumnModified(CmsI18nPeer::LOCALE)) {
-            $modifiedColumns[':p' . $index++]  = '`LOCALE`';
+            $modifiedColumns[':p' . $index++]  = '`locale`';
         }
         if ($this->isColumnModified(CmsI18nPeer::TITLE)) {
-            $modifiedColumns[':p' . $index++]  = '`TITLE`';
+            $modifiedColumns[':p' . $index++]  = '`title`';
         }
         if ($this->isColumnModified(CmsI18nPeer::PATH)) {
-            $modifiedColumns[':p' . $index++]  = '`PATH`';
+            $modifiedColumns[':p' . $index++]  = '`path`';
         }
         if ($this->isColumnModified(CmsI18nPeer::OLD_PATH)) {
-            $modifiedColumns[':p' . $index++]  = '`OLD_PATH`';
+            $modifiedColumns[':p' . $index++]  = '`old_path`';
         }
         if ($this->isColumnModified(CmsI18nPeer::CONTENT)) {
-            $modifiedColumns[':p' . $index++]  = '`CONTENT`';
+            $modifiedColumns[':p' . $index++]  = '`content`';
         }
         if ($this->isColumnModified(CmsI18nPeer::SETTINGS)) {
-            $modifiedColumns[':p' . $index++]  = '`SETTINGS`';
+            $modifiedColumns[':p' . $index++]  = '`settings`';
         }
         if ($this->isColumnModified(CmsI18nPeer::IS_RESTRICTED)) {
-            $modifiedColumns[':p' . $index++]  = '`IS_RESTRICTED`';
+            $modifiedColumns[':p' . $index++]  = '`is_restricted`';
         }
         if ($this->isColumnModified(CmsI18nPeer::IS_ACTIVE)) {
-            $modifiedColumns[':p' . $index++]  = '`IS_ACTIVE`';
+            $modifiedColumns[':p' . $index++]  = '`is_active`';
         }
 
         $sql = sprintf(
@@ -759,31 +765,31 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`ID`':
+                    case '`id`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`LOCALE`':
+                    case '`locale`':
                         $stmt->bindValue($identifier, $this->locale, PDO::PARAM_STR);
                         break;
-                    case '`TITLE`':
+                    case '`title`':
                         $stmt->bindValue($identifier, $this->title, PDO::PARAM_STR);
                         break;
-                    case '`PATH`':
+                    case '`path`':
                         $stmt->bindValue($identifier, $this->path, PDO::PARAM_STR);
                         break;
-                    case '`OLD_PATH`':
+                    case '`old_path`':
                         $stmt->bindValue($identifier, $this->old_path, PDO::PARAM_STR);
                         break;
-                    case '`CONTENT`':
+                    case '`content`':
                         $stmt->bindValue($identifier, $this->content, PDO::PARAM_STR);
                         break;
-                    case '`SETTINGS`':
+                    case '`settings`':
                         $stmt->bindValue($identifier, $this->settings, PDO::PARAM_STR);
                         break;
-                    case '`IS_RESTRICTED`':
+                    case '`is_restricted`':
                         $stmt->bindValue($identifier, (int) $this->is_restricted, PDO::PARAM_INT);
                         break;
-                    case '`IS_ACTIVE`':
+                    case '`is_active`':
                         $stmt->bindValue($identifier, (int) $this->is_active, PDO::PARAM_INT);
                         break;
                 }
@@ -847,11 +853,11 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -1277,12 +1283,13 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
      * Get the associated Cms object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Cms The associated Cms object.
      * @throws PropelException
      */
-    public function getCms(PropelPDO $con = null)
+    public function getCms(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aCms === null && ($this->id !== null)) {
+        if ($this->aCms === null && ($this->id !== null) && $doQuery) {
             $this->aCms = CmsQuery::create()->findPk($this->id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -1312,6 +1319,7 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
         $this->is_active = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->applyDefaultValues();
         $this->resetModified();
@@ -1330,7 +1338,13 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
+            if ($this->aCms instanceof Persistent) {
+              $this->aCms->clearAllReferences($deep);
+            }
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
         $this->aCms = null;

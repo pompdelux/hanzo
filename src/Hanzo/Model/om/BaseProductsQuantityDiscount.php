@@ -89,6 +89,12 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
     protected $alreadyInValidation = false;
 
     /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
+    /**
      * Get the [products_master] column value.
      *
      * @return string
@@ -136,7 +142,7 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
      */
     public function setProductsMaster($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -161,7 +167,7 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
      */
     public function setDomainsId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -186,7 +192,7 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
      */
     public function setSpan($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -207,7 +213,7 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
      */
     public function setDiscount($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -263,7 +269,7 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
+            $this->postHydrate($row, $startcol, $rehydrate);
             return $startcol + 4; // 4 = ProductsQuantityDiscountPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -500,16 +506,16 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(ProductsQuantityDiscountPeer::PRODUCTS_MASTER)) {
-            $modifiedColumns[':p' . $index++]  = '`PRODUCTS_MASTER`';
+            $modifiedColumns[':p' . $index++]  = '`products_master`';
         }
         if ($this->isColumnModified(ProductsQuantityDiscountPeer::DOMAINS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`DOMAINS_ID`';
+            $modifiedColumns[':p' . $index++]  = '`domains_id`';
         }
         if ($this->isColumnModified(ProductsQuantityDiscountPeer::SPAN)) {
-            $modifiedColumns[':p' . $index++]  = '`SPAN`';
+            $modifiedColumns[':p' . $index++]  = '`span`';
         }
         if ($this->isColumnModified(ProductsQuantityDiscountPeer::DISCOUNT)) {
-            $modifiedColumns[':p' . $index++]  = '`DISCOUNT`';
+            $modifiedColumns[':p' . $index++]  = '`discount`';
         }
 
         $sql = sprintf(
@@ -522,16 +528,16 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`PRODUCTS_MASTER`':
+                    case '`products_master`':
                         $stmt->bindValue($identifier, $this->products_master, PDO::PARAM_STR);
                         break;
-                    case '`DOMAINS_ID`':
+                    case '`domains_id`':
                         $stmt->bindValue($identifier, $this->domains_id, PDO::PARAM_INT);
                         break;
-                    case '`SPAN`':
+                    case '`span`':
                         $stmt->bindValue($identifier, $this->span, PDO::PARAM_INT);
                         break;
-                    case '`DISCOUNT`':
+                    case '`discount`':
                         $stmt->bindValue($identifier, $this->discount, PDO::PARAM_STR);
                         break;
                 }
@@ -595,11 +601,11 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -987,12 +993,13 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
      * Get the associated Products object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Products The associated Products object.
      * @throws PropelException
      */
-    public function getProducts(PropelPDO $con = null)
+    public function getProducts(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aProducts === null && (($this->products_master !== "" && $this->products_master !== null))) {
+        if ($this->aProducts === null && (($this->products_master !== "" && $this->products_master !== null)) && $doQuery) {
             $this->aProducts = ProductsQuery::create()
                 ->filterByProductsQuantityDiscount($this) // here
                 ->findOne($con);
@@ -1040,12 +1047,13 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
      * Get the associated Domains object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Domains The associated Domains object.
      * @throws PropelException
      */
-    public function getDomains(PropelPDO $con = null)
+    public function getDomains(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aDomains === null && ($this->domains_id !== null)) {
+        if ($this->aDomains === null && ($this->domains_id !== null) && $doQuery) {
             $this->aDomains = DomainsQuery::create()->findPk($this->domains_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -1070,6 +1078,7 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
         $this->discount = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->resetModified();
         $this->setNew(true);
@@ -1087,7 +1096,16 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
+            if ($this->aProducts instanceof Persistent) {
+              $this->aProducts->clearAllReferences($deep);
+            }
+            if ($this->aDomains instanceof Persistent) {
+              $this->aDomains->clearAllReferences($deep);
+            }
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
         $this->aProducts = null;

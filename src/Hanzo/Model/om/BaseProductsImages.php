@@ -106,6 +106,12 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
     protected $alreadyInValidation = false;
 
     /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
+    /**
      * An array of objects scheduled for deletion.
      * @var		PropelObjectCollection
      */
@@ -175,7 +181,7 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
      */
     public function setId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -196,7 +202,7 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
      */
     public function setProductsId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -221,7 +227,7 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
      */
     public function setImage($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -242,7 +248,7 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
      */
     public function setColor($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -263,7 +269,7 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
      */
     public function setType($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -320,7 +326,7 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
+            $this->postHydrate($row, $startcol, $rehydrate);
             return $startcol + 5; // 5 = ProductsImagesPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -538,7 +544,7 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
 
             if ($this->collProductsImagesCategoriesSorts !== null) {
                 foreach ($this->collProductsImagesCategoriesSorts as $referrerFK) {
-                    if (!$referrerFK->isDeleted()) {
+                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
@@ -555,7 +561,7 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
 
             if ($this->collProductsImagesProductReferencess !== null) {
                 foreach ($this->collProductsImagesProductReferencess as $referrerFK) {
-                    if (!$referrerFK->isDeleted()) {
+                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
@@ -585,19 +591,19 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(ProductsImagesPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`ID`';
+            $modifiedColumns[':p' . $index++]  = '`id`';
         }
         if ($this->isColumnModified(ProductsImagesPeer::PRODUCTS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`PRODUCTS_ID`';
+            $modifiedColumns[':p' . $index++]  = '`products_id`';
         }
         if ($this->isColumnModified(ProductsImagesPeer::IMAGE)) {
-            $modifiedColumns[':p' . $index++]  = '`IMAGE`';
+            $modifiedColumns[':p' . $index++]  = '`image`';
         }
         if ($this->isColumnModified(ProductsImagesPeer::COLOR)) {
-            $modifiedColumns[':p' . $index++]  = '`COLOR`';
+            $modifiedColumns[':p' . $index++]  = '`color`';
         }
         if ($this->isColumnModified(ProductsImagesPeer::TYPE)) {
-            $modifiedColumns[':p' . $index++]  = '`TYPE`';
+            $modifiedColumns[':p' . $index++]  = '`type`';
         }
 
         $sql = sprintf(
@@ -610,19 +616,19 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`ID`':
+                    case '`id`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`PRODUCTS_ID`':
+                    case '`products_id`':
                         $stmt->bindValue($identifier, $this->products_id, PDO::PARAM_INT);
                         break;
-                    case '`IMAGE`':
+                    case '`image`':
                         $stmt->bindValue($identifier, $this->image, PDO::PARAM_STR);
                         break;
-                    case '`COLOR`':
+                    case '`color`':
                         $stmt->bindValue($identifier, $this->color, PDO::PARAM_STR);
                         break;
-                    case '`TYPE`':
+                    case '`type`':
                         $stmt->bindValue($identifier, $this->type, PDO::PARAM_STR);
                         break;
                 }
@@ -695,11 +701,11 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -1112,12 +1118,13 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
      * Get the associated Products object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Products The associated Products object.
      * @throws PropelException
      */
-    public function getProducts(PropelPDO $con = null)
+    public function getProducts(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aProducts === null && ($this->products_id !== null)) {
+        if ($this->aProducts === null && ($this->products_id !== null) && $doQuery) {
             $this->aProducts = ProductsQuery::create()->findPk($this->products_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -1156,13 +1163,15 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
-     * @return void
+     * @return ProductsImages The current object (for fluent API support)
      * @see        addProductsImagesCategoriesSorts()
      */
     public function clearProductsImagesCategoriesSorts()
     {
         $this->collProductsImagesCategoriesSorts = null; // important to set this to null since that means it is uninitialized
         $this->collProductsImagesCategoriesSortsPartial = null;
+
+        return $this;
     }
 
     /**
@@ -1234,6 +1243,7 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
                       $this->collProductsImagesCategoriesSortsPartial = true;
                     }
 
+                    $collProductsImagesCategoriesSorts->getInternalIterator()->rewind();
                     return $collProductsImagesCategoriesSorts;
                 }
 
@@ -1261,12 +1271,15 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
      *
      * @param PropelCollection $productsImagesCategoriesSorts A Propel collection.
      * @param PropelPDO $con Optional connection object
+     * @return ProductsImages The current object (for fluent API support)
      */
     public function setProductsImagesCategoriesSorts(PropelCollection $productsImagesCategoriesSorts, PropelPDO $con = null)
     {
-        $this->productsImagesCategoriesSortsScheduledForDeletion = $this->getProductsImagesCategoriesSorts(new Criteria(), $con)->diff($productsImagesCategoriesSorts);
+        $productsImagesCategoriesSortsToDelete = $this->getProductsImagesCategoriesSorts(new Criteria(), $con)->diff($productsImagesCategoriesSorts);
 
-        foreach ($this->productsImagesCategoriesSortsScheduledForDeletion as $productsImagesCategoriesSortRemoved) {
+        $this->productsImagesCategoriesSortsScheduledForDeletion = unserialize(serialize($productsImagesCategoriesSortsToDelete));
+
+        foreach ($productsImagesCategoriesSortsToDelete as $productsImagesCategoriesSortRemoved) {
             $productsImagesCategoriesSortRemoved->setProductsImages(null);
         }
 
@@ -1277,6 +1290,8 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
 
         $this->collProductsImagesCategoriesSorts = $productsImagesCategoriesSorts;
         $this->collProductsImagesCategoriesSortsPartial = false;
+
+        return $this;
     }
 
     /**
@@ -1294,22 +1309,22 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
         if (null === $this->collProductsImagesCategoriesSorts || null !== $criteria || $partial) {
             if ($this->isNew() && null === $this->collProductsImagesCategoriesSorts) {
                 return 0;
-            } else {
-                if($partial && !$criteria) {
-                    return count($this->getProductsImagesCategoriesSorts());
-                }
-                $query = ProductsImagesCategoriesSortQuery::create(null, $criteria);
-                if ($distinct) {
-                    $query->distinct();
-                }
-
-                return $query
-                    ->filterByProductsImages($this)
-                    ->count($con);
             }
-        } else {
-            return count($this->collProductsImagesCategoriesSorts);
+
+            if($partial && !$criteria) {
+                return count($this->getProductsImagesCategoriesSorts());
+            }
+            $query = ProductsImagesCategoriesSortQuery::create(null, $criteria);
+            if ($distinct) {
+                $query->distinct();
+            }
+
+            return $query
+                ->filterByProductsImages($this)
+                ->count($con);
         }
+
+        return count($this->collProductsImagesCategoriesSorts);
     }
 
     /**
@@ -1325,7 +1340,7 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
             $this->initProductsImagesCategoriesSorts();
             $this->collProductsImagesCategoriesSortsPartial = true;
         }
-        if (!$this->collProductsImagesCategoriesSorts->contains($l)) { // only add it if the **same** object is not already associated
+        if (!in_array($l, $this->collProductsImagesCategoriesSorts->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddProductsImagesCategoriesSort($l);
         }
 
@@ -1343,6 +1358,7 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
 
     /**
      * @param	ProductsImagesCategoriesSort $productsImagesCategoriesSort The productsImagesCategoriesSort object to remove.
+     * @return ProductsImages The current object (for fluent API support)
      */
     public function removeProductsImagesCategoriesSort($productsImagesCategoriesSort)
     {
@@ -1352,9 +1368,11 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
                 $this->productsImagesCategoriesSortsScheduledForDeletion = clone $this->collProductsImagesCategoriesSorts;
                 $this->productsImagesCategoriesSortsScheduledForDeletion->clear();
             }
-            $this->productsImagesCategoriesSortsScheduledForDeletion[]= $productsImagesCategoriesSort;
+            $this->productsImagesCategoriesSortsScheduledForDeletion[]= clone $productsImagesCategoriesSort;
             $productsImagesCategoriesSort->setProductsImages(null);
         }
+
+        return $this;
     }
 
 
@@ -1413,13 +1431,15 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
-     * @return void
+     * @return ProductsImages The current object (for fluent API support)
      * @see        addProductsImagesProductReferencess()
      */
     public function clearProductsImagesProductReferencess()
     {
         $this->collProductsImagesProductReferencess = null; // important to set this to null since that means it is uninitialized
         $this->collProductsImagesProductReferencessPartial = null;
+
+        return $this;
     }
 
     /**
@@ -1491,6 +1511,7 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
                       $this->collProductsImagesProductReferencessPartial = true;
                     }
 
+                    $collProductsImagesProductReferencess->getInternalIterator()->rewind();
                     return $collProductsImagesProductReferencess;
                 }
 
@@ -1518,12 +1539,15 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
      *
      * @param PropelCollection $productsImagesProductReferencess A Propel collection.
      * @param PropelPDO $con Optional connection object
+     * @return ProductsImages The current object (for fluent API support)
      */
     public function setProductsImagesProductReferencess(PropelCollection $productsImagesProductReferencess, PropelPDO $con = null)
     {
-        $this->productsImagesProductReferencessScheduledForDeletion = $this->getProductsImagesProductReferencess(new Criteria(), $con)->diff($productsImagesProductReferencess);
+        $productsImagesProductReferencessToDelete = $this->getProductsImagesProductReferencess(new Criteria(), $con)->diff($productsImagesProductReferencess);
 
-        foreach ($this->productsImagesProductReferencessScheduledForDeletion as $productsImagesProductReferencesRemoved) {
+        $this->productsImagesProductReferencessScheduledForDeletion = unserialize(serialize($productsImagesProductReferencessToDelete));
+
+        foreach ($productsImagesProductReferencessToDelete as $productsImagesProductReferencesRemoved) {
             $productsImagesProductReferencesRemoved->setProductsImages(null);
         }
 
@@ -1534,6 +1558,8 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
 
         $this->collProductsImagesProductReferencess = $productsImagesProductReferencess;
         $this->collProductsImagesProductReferencessPartial = false;
+
+        return $this;
     }
 
     /**
@@ -1551,22 +1577,22 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
         if (null === $this->collProductsImagesProductReferencess || null !== $criteria || $partial) {
             if ($this->isNew() && null === $this->collProductsImagesProductReferencess) {
                 return 0;
-            } else {
-                if($partial && !$criteria) {
-                    return count($this->getProductsImagesProductReferencess());
-                }
-                $query = ProductsImagesProductReferencesQuery::create(null, $criteria);
-                if ($distinct) {
-                    $query->distinct();
-                }
-
-                return $query
-                    ->filterByProductsImages($this)
-                    ->count($con);
             }
-        } else {
-            return count($this->collProductsImagesProductReferencess);
+
+            if($partial && !$criteria) {
+                return count($this->getProductsImagesProductReferencess());
+            }
+            $query = ProductsImagesProductReferencesQuery::create(null, $criteria);
+            if ($distinct) {
+                $query->distinct();
+            }
+
+            return $query
+                ->filterByProductsImages($this)
+                ->count($con);
         }
+
+        return count($this->collProductsImagesProductReferencess);
     }
 
     /**
@@ -1582,7 +1608,7 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
             $this->initProductsImagesProductReferencess();
             $this->collProductsImagesProductReferencessPartial = true;
         }
-        if (!$this->collProductsImagesProductReferencess->contains($l)) { // only add it if the **same** object is not already associated
+        if (!in_array($l, $this->collProductsImagesProductReferencess->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddProductsImagesProductReferences($l);
         }
 
@@ -1600,6 +1626,7 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
 
     /**
      * @param	ProductsImagesProductReferences $productsImagesProductReferences The productsImagesProductReferences object to remove.
+     * @return ProductsImages The current object (for fluent API support)
      */
     public function removeProductsImagesProductReferences($productsImagesProductReferences)
     {
@@ -1609,9 +1636,11 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
                 $this->productsImagesProductReferencessScheduledForDeletion = clone $this->collProductsImagesProductReferencess;
                 $this->productsImagesProductReferencessScheduledForDeletion->clear();
             }
-            $this->productsImagesProductReferencessScheduledForDeletion[]= $productsImagesProductReferences;
+            $this->productsImagesProductReferencessScheduledForDeletion[]= clone $productsImagesProductReferences;
             $productsImagesProductReferences->setProductsImages(null);
         }
+
+        return $this;
     }
 
 
@@ -1651,6 +1680,7 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
         $this->type = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->resetModified();
         $this->setNew(true);
@@ -1668,7 +1698,8 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
             if ($this->collProductsImagesCategoriesSorts) {
                 foreach ($this->collProductsImagesCategoriesSorts as $o) {
                     $o->clearAllReferences($deep);
@@ -1679,6 +1710,11 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
                     $o->clearAllReferences($deep);
                 }
             }
+            if ($this->aProducts instanceof Persistent) {
+              $this->aProducts->clearAllReferences($deep);
+            }
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
         if ($this->collProductsImagesCategoriesSorts instanceof PropelCollection) {

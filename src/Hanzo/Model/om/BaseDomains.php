@@ -95,6 +95,12 @@ abstract class BaseDomains extends BaseObject implements Persistent
     protected $alreadyInValidation = false;
 
     /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
+    /**
      * An array of objects scheduled for deletion.
      * @var		PropelObjectCollection
      */
@@ -150,7 +156,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
      */
     public function setId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -171,7 +177,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
      */
     public function setDomainName($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -192,7 +198,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
      */
     public function setDomainKey($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -247,7 +253,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
+            $this->postHydrate($row, $startcol, $rehydrate);
             return $startcol + 3; // 3 = DomainsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -451,7 +457,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
 
             if ($this->collDomainsSettingss !== null) {
                 foreach ($this->collDomainsSettingss as $referrerFK) {
-                    if (!$referrerFK->isDeleted()) {
+                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
@@ -468,7 +474,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
 
             if ($this->collProductsDomainsPricess !== null) {
                 foreach ($this->collProductsDomainsPricess as $referrerFK) {
-                    if (!$referrerFK->isDeleted()) {
+                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
@@ -485,7 +491,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
 
             if ($this->collProductsQuantityDiscounts !== null) {
                 foreach ($this->collProductsQuantityDiscounts as $referrerFK) {
-                    if (!$referrerFK->isDeleted()) {
+                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
@@ -518,13 +524,13 @@ abstract class BaseDomains extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(DomainsPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`ID`';
+            $modifiedColumns[':p' . $index++]  = '`id`';
         }
         if ($this->isColumnModified(DomainsPeer::DOMAIN_NAME)) {
-            $modifiedColumns[':p' . $index++]  = '`DOMAIN_NAME`';
+            $modifiedColumns[':p' . $index++]  = '`domain_name`';
         }
         if ($this->isColumnModified(DomainsPeer::DOMAIN_KEY)) {
-            $modifiedColumns[':p' . $index++]  = '`DOMAIN_KEY`';
+            $modifiedColumns[':p' . $index++]  = '`domain_key`';
         }
 
         $sql = sprintf(
@@ -537,13 +543,13 @@ abstract class BaseDomains extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`ID`':
+                    case '`id`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`DOMAIN_NAME`':
+                    case '`domain_name`':
                         $stmt->bindValue($identifier, $this->domain_name, PDO::PARAM_STR);
                         break;
-                    case '`DOMAIN_KEY`':
+                    case '`domain_key`':
                         $stmt->bindValue($identifier, $this->domain_key, PDO::PARAM_STR);
                         break;
                 }
@@ -614,11 +620,11 @@ abstract class BaseDomains extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -1009,13 +1015,15 @@ abstract class BaseDomains extends BaseObject implements Persistent
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
-     * @return void
+     * @return Domains The current object (for fluent API support)
      * @see        addDomainsSettingss()
      */
     public function clearDomainsSettingss()
     {
         $this->collDomainsSettingss = null; // important to set this to null since that means it is uninitialized
         $this->collDomainsSettingssPartial = null;
+
+        return $this;
     }
 
     /**
@@ -1087,6 +1095,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
                       $this->collDomainsSettingssPartial = true;
                     }
 
+                    $collDomainsSettingss->getInternalIterator()->rewind();
                     return $collDomainsSettingss;
                 }
 
@@ -1114,12 +1123,15 @@ abstract class BaseDomains extends BaseObject implements Persistent
      *
      * @param PropelCollection $domainsSettingss A Propel collection.
      * @param PropelPDO $con Optional connection object
+     * @return Domains The current object (for fluent API support)
      */
     public function setDomainsSettingss(PropelCollection $domainsSettingss, PropelPDO $con = null)
     {
-        $this->domainsSettingssScheduledForDeletion = $this->getDomainsSettingss(new Criteria(), $con)->diff($domainsSettingss);
+        $domainsSettingssToDelete = $this->getDomainsSettingss(new Criteria(), $con)->diff($domainsSettingss);
 
-        foreach ($this->domainsSettingssScheduledForDeletion as $domainsSettingsRemoved) {
+        $this->domainsSettingssScheduledForDeletion = unserialize(serialize($domainsSettingssToDelete));
+
+        foreach ($domainsSettingssToDelete as $domainsSettingsRemoved) {
             $domainsSettingsRemoved->setDomains(null);
         }
 
@@ -1130,6 +1142,8 @@ abstract class BaseDomains extends BaseObject implements Persistent
 
         $this->collDomainsSettingss = $domainsSettingss;
         $this->collDomainsSettingssPartial = false;
+
+        return $this;
     }
 
     /**
@@ -1147,22 +1161,22 @@ abstract class BaseDomains extends BaseObject implements Persistent
         if (null === $this->collDomainsSettingss || null !== $criteria || $partial) {
             if ($this->isNew() && null === $this->collDomainsSettingss) {
                 return 0;
-            } else {
-                if($partial && !$criteria) {
-                    return count($this->getDomainsSettingss());
-                }
-                $query = DomainsSettingsQuery::create(null, $criteria);
-                if ($distinct) {
-                    $query->distinct();
-                }
-
-                return $query
-                    ->filterByDomains($this)
-                    ->count($con);
             }
-        } else {
-            return count($this->collDomainsSettingss);
+
+            if($partial && !$criteria) {
+                return count($this->getDomainsSettingss());
+            }
+            $query = DomainsSettingsQuery::create(null, $criteria);
+            if ($distinct) {
+                $query->distinct();
+            }
+
+            return $query
+                ->filterByDomains($this)
+                ->count($con);
         }
+
+        return count($this->collDomainsSettingss);
     }
 
     /**
@@ -1178,7 +1192,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
             $this->initDomainsSettingss();
             $this->collDomainsSettingssPartial = true;
         }
-        if (!$this->collDomainsSettingss->contains($l)) { // only add it if the **same** object is not already associated
+        if (!in_array($l, $this->collDomainsSettingss->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddDomainsSettings($l);
         }
 
@@ -1196,6 +1210,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
 
     /**
      * @param	DomainsSettings $domainsSettings The domainsSettings object to remove.
+     * @return Domains The current object (for fluent API support)
      */
     public function removeDomainsSettings($domainsSettings)
     {
@@ -1205,9 +1220,11 @@ abstract class BaseDomains extends BaseObject implements Persistent
                 $this->domainsSettingssScheduledForDeletion = clone $this->collDomainsSettingss;
                 $this->domainsSettingssScheduledForDeletion->clear();
             }
-            $this->domainsSettingssScheduledForDeletion[]= $domainsSettings;
+            $this->domainsSettingssScheduledForDeletion[]= clone $domainsSettings;
             $domainsSettings->setDomains(null);
         }
+
+        return $this;
     }
 
     /**
@@ -1216,13 +1233,15 @@ abstract class BaseDomains extends BaseObject implements Persistent
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
-     * @return void
+     * @return Domains The current object (for fluent API support)
      * @see        addProductsDomainsPricess()
      */
     public function clearProductsDomainsPricess()
     {
         $this->collProductsDomainsPricess = null; // important to set this to null since that means it is uninitialized
         $this->collProductsDomainsPricessPartial = null;
+
+        return $this;
     }
 
     /**
@@ -1294,6 +1313,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
                       $this->collProductsDomainsPricessPartial = true;
                     }
 
+                    $collProductsDomainsPricess->getInternalIterator()->rewind();
                     return $collProductsDomainsPricess;
                 }
 
@@ -1321,12 +1341,15 @@ abstract class BaseDomains extends BaseObject implements Persistent
      *
      * @param PropelCollection $productsDomainsPricess A Propel collection.
      * @param PropelPDO $con Optional connection object
+     * @return Domains The current object (for fluent API support)
      */
     public function setProductsDomainsPricess(PropelCollection $productsDomainsPricess, PropelPDO $con = null)
     {
-        $this->productsDomainsPricessScheduledForDeletion = $this->getProductsDomainsPricess(new Criteria(), $con)->diff($productsDomainsPricess);
+        $productsDomainsPricessToDelete = $this->getProductsDomainsPricess(new Criteria(), $con)->diff($productsDomainsPricess);
 
-        foreach ($this->productsDomainsPricessScheduledForDeletion as $productsDomainsPricesRemoved) {
+        $this->productsDomainsPricessScheduledForDeletion = unserialize(serialize($productsDomainsPricessToDelete));
+
+        foreach ($productsDomainsPricessToDelete as $productsDomainsPricesRemoved) {
             $productsDomainsPricesRemoved->setDomains(null);
         }
 
@@ -1337,6 +1360,8 @@ abstract class BaseDomains extends BaseObject implements Persistent
 
         $this->collProductsDomainsPricess = $productsDomainsPricess;
         $this->collProductsDomainsPricessPartial = false;
+
+        return $this;
     }
 
     /**
@@ -1354,22 +1379,22 @@ abstract class BaseDomains extends BaseObject implements Persistent
         if (null === $this->collProductsDomainsPricess || null !== $criteria || $partial) {
             if ($this->isNew() && null === $this->collProductsDomainsPricess) {
                 return 0;
-            } else {
-                if($partial && !$criteria) {
-                    return count($this->getProductsDomainsPricess());
-                }
-                $query = ProductsDomainsPricesQuery::create(null, $criteria);
-                if ($distinct) {
-                    $query->distinct();
-                }
-
-                return $query
-                    ->filterByDomains($this)
-                    ->count($con);
             }
-        } else {
-            return count($this->collProductsDomainsPricess);
+
+            if($partial && !$criteria) {
+                return count($this->getProductsDomainsPricess());
+            }
+            $query = ProductsDomainsPricesQuery::create(null, $criteria);
+            if ($distinct) {
+                $query->distinct();
+            }
+
+            return $query
+                ->filterByDomains($this)
+                ->count($con);
         }
+
+        return count($this->collProductsDomainsPricess);
     }
 
     /**
@@ -1385,7 +1410,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
             $this->initProductsDomainsPricess();
             $this->collProductsDomainsPricessPartial = true;
         }
-        if (!$this->collProductsDomainsPricess->contains($l)) { // only add it if the **same** object is not already associated
+        if (!in_array($l, $this->collProductsDomainsPricess->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddProductsDomainsPrices($l);
         }
 
@@ -1403,6 +1428,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
 
     /**
      * @param	ProductsDomainsPrices $productsDomainsPrices The productsDomainsPrices object to remove.
+     * @return Domains The current object (for fluent API support)
      */
     public function removeProductsDomainsPrices($productsDomainsPrices)
     {
@@ -1412,9 +1438,11 @@ abstract class BaseDomains extends BaseObject implements Persistent
                 $this->productsDomainsPricessScheduledForDeletion = clone $this->collProductsDomainsPricess;
                 $this->productsDomainsPricessScheduledForDeletion->clear();
             }
-            $this->productsDomainsPricessScheduledForDeletion[]= $productsDomainsPrices;
+            $this->productsDomainsPricessScheduledForDeletion[]= clone $productsDomainsPrices;
             $productsDomainsPrices->setDomains(null);
         }
+
+        return $this;
     }
 
 
@@ -1448,13 +1476,15 @@ abstract class BaseDomains extends BaseObject implements Persistent
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
-     * @return void
+     * @return Domains The current object (for fluent API support)
      * @see        addProductsQuantityDiscounts()
      */
     public function clearProductsQuantityDiscounts()
     {
         $this->collProductsQuantityDiscounts = null; // important to set this to null since that means it is uninitialized
         $this->collProductsQuantityDiscountsPartial = null;
+
+        return $this;
     }
 
     /**
@@ -1526,6 +1556,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
                       $this->collProductsQuantityDiscountsPartial = true;
                     }
 
+                    $collProductsQuantityDiscounts->getInternalIterator()->rewind();
                     return $collProductsQuantityDiscounts;
                 }
 
@@ -1553,12 +1584,15 @@ abstract class BaseDomains extends BaseObject implements Persistent
      *
      * @param PropelCollection $productsQuantityDiscounts A Propel collection.
      * @param PropelPDO $con Optional connection object
+     * @return Domains The current object (for fluent API support)
      */
     public function setProductsQuantityDiscounts(PropelCollection $productsQuantityDiscounts, PropelPDO $con = null)
     {
-        $this->productsQuantityDiscountsScheduledForDeletion = $this->getProductsQuantityDiscounts(new Criteria(), $con)->diff($productsQuantityDiscounts);
+        $productsQuantityDiscountsToDelete = $this->getProductsQuantityDiscounts(new Criteria(), $con)->diff($productsQuantityDiscounts);
 
-        foreach ($this->productsQuantityDiscountsScheduledForDeletion as $productsQuantityDiscountRemoved) {
+        $this->productsQuantityDiscountsScheduledForDeletion = unserialize(serialize($productsQuantityDiscountsToDelete));
+
+        foreach ($productsQuantityDiscountsToDelete as $productsQuantityDiscountRemoved) {
             $productsQuantityDiscountRemoved->setDomains(null);
         }
 
@@ -1569,6 +1603,8 @@ abstract class BaseDomains extends BaseObject implements Persistent
 
         $this->collProductsQuantityDiscounts = $productsQuantityDiscounts;
         $this->collProductsQuantityDiscountsPartial = false;
+
+        return $this;
     }
 
     /**
@@ -1586,22 +1622,22 @@ abstract class BaseDomains extends BaseObject implements Persistent
         if (null === $this->collProductsQuantityDiscounts || null !== $criteria || $partial) {
             if ($this->isNew() && null === $this->collProductsQuantityDiscounts) {
                 return 0;
-            } else {
-                if($partial && !$criteria) {
-                    return count($this->getProductsQuantityDiscounts());
-                }
-                $query = ProductsQuantityDiscountQuery::create(null, $criteria);
-                if ($distinct) {
-                    $query->distinct();
-                }
-
-                return $query
-                    ->filterByDomains($this)
-                    ->count($con);
             }
-        } else {
-            return count($this->collProductsQuantityDiscounts);
+
+            if($partial && !$criteria) {
+                return count($this->getProductsQuantityDiscounts());
+            }
+            $query = ProductsQuantityDiscountQuery::create(null, $criteria);
+            if ($distinct) {
+                $query->distinct();
+            }
+
+            return $query
+                ->filterByDomains($this)
+                ->count($con);
         }
+
+        return count($this->collProductsQuantityDiscounts);
     }
 
     /**
@@ -1617,7 +1653,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
             $this->initProductsQuantityDiscounts();
             $this->collProductsQuantityDiscountsPartial = true;
         }
-        if (!$this->collProductsQuantityDiscounts->contains($l)) { // only add it if the **same** object is not already associated
+        if (!in_array($l, $this->collProductsQuantityDiscounts->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddProductsQuantityDiscount($l);
         }
 
@@ -1635,6 +1671,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
 
     /**
      * @param	ProductsQuantityDiscount $productsQuantityDiscount The productsQuantityDiscount object to remove.
+     * @return Domains The current object (for fluent API support)
      */
     public function removeProductsQuantityDiscount($productsQuantityDiscount)
     {
@@ -1644,9 +1681,11 @@ abstract class BaseDomains extends BaseObject implements Persistent
                 $this->productsQuantityDiscountsScheduledForDeletion = clone $this->collProductsQuantityDiscounts;
                 $this->productsQuantityDiscountsScheduledForDeletion->clear();
             }
-            $this->productsQuantityDiscountsScheduledForDeletion[]= $productsQuantityDiscount;
+            $this->productsQuantityDiscountsScheduledForDeletion[]= clone $productsQuantityDiscount;
             $productsQuantityDiscount->setDomains(null);
         }
+
+        return $this;
     }
 
 
@@ -1684,6 +1723,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
         $this->domain_key = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->resetModified();
         $this->setNew(true);
@@ -1701,7 +1741,8 @@ abstract class BaseDomains extends BaseObject implements Persistent
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
             if ($this->collDomainsSettingss) {
                 foreach ($this->collDomainsSettingss as $o) {
                     $o->clearAllReferences($deep);
@@ -1717,6 +1758,8 @@ abstract class BaseDomains extends BaseObject implements Persistent
                     $o->clearAllReferences($deep);
                 }
             }
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
         if ($this->collDomainsSettingss instanceof PropelCollection) {

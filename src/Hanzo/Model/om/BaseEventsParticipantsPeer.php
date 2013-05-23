@@ -38,53 +38,53 @@ abstract class BaseEventsParticipantsPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 16;
 
-    /** the column name for the ID field */
-    const ID = 'events_participants.ID';
+    /** the column name for the id field */
+    const ID = 'events_participants.id';
 
-    /** the column name for the EVENTS_ID field */
-    const EVENTS_ID = 'events_participants.EVENTS_ID';
+    /** the column name for the events_id field */
+    const EVENTS_ID = 'events_participants.events_id';
 
-    /** the column name for the KEY field */
-    const KEY = 'events_participants.KEY';
+    /** the column name for the key field */
+    const KEY = 'events_participants.key';
 
-    /** the column name for the INVITED_BY field */
-    const INVITED_BY = 'events_participants.INVITED_BY';
+    /** the column name for the invited_by field */
+    const INVITED_BY = 'events_participants.invited_by';
 
-    /** the column name for the FIRST_NAME field */
-    const FIRST_NAME = 'events_participants.FIRST_NAME';
+    /** the column name for the first_name field */
+    const FIRST_NAME = 'events_participants.first_name';
 
-    /** the column name for the LAST_NAME field */
-    const LAST_NAME = 'events_participants.LAST_NAME';
+    /** the column name for the last_name field */
+    const LAST_NAME = 'events_participants.last_name';
 
-    /** the column name for the EMAIL field */
-    const EMAIL = 'events_participants.EMAIL';
+    /** the column name for the email field */
+    const EMAIL = 'events_participants.email';
 
-    /** the column name for the PHONE field */
-    const PHONE = 'events_participants.PHONE';
+    /** the column name for the phone field */
+    const PHONE = 'events_participants.phone';
 
-    /** the column name for the TELL_A_FRIEND field */
-    const TELL_A_FRIEND = 'events_participants.TELL_A_FRIEND';
+    /** the column name for the tell_a_friend field */
+    const TELL_A_FRIEND = 'events_participants.tell_a_friend';
 
-    /** the column name for the NOTIFY_BY_SMS field */
-    const NOTIFY_BY_SMS = 'events_participants.NOTIFY_BY_SMS';
+    /** the column name for the notify_by_sms field */
+    const NOTIFY_BY_SMS = 'events_participants.notify_by_sms';
 
-    /** the column name for the SMS_SEND_AT field */
-    const SMS_SEND_AT = 'events_participants.SMS_SEND_AT';
+    /** the column name for the sms_send_at field */
+    const SMS_SEND_AT = 'events_participants.sms_send_at';
 
-    /** the column name for the HAS_ACCEPTED field */
-    const HAS_ACCEPTED = 'events_participants.HAS_ACCEPTED';
+    /** the column name for the has_accepted field */
+    const HAS_ACCEPTED = 'events_participants.has_accepted';
 
-    /** the column name for the EXPIRES_AT field */
-    const EXPIRES_AT = 'events_participants.EXPIRES_AT';
+    /** the column name for the expires_at field */
+    const EXPIRES_AT = 'events_participants.expires_at';
 
-    /** the column name for the RESPONDED_AT field */
-    const RESPONDED_AT = 'events_participants.RESPONDED_AT';
+    /** the column name for the responded_at field */
+    const RESPONDED_AT = 'events_participants.responded_at';
 
-    /** the column name for the CREATED_AT field */
-    const CREATED_AT = 'events_participants.CREATED_AT';
+    /** the column name for the created_at field */
+    const CREATED_AT = 'events_participants.created_at';
 
-    /** the column name for the UPDATED_AT field */
-    const UPDATED_AT = 'events_participants.UPDATED_AT';
+    /** the column name for the updated_at field */
+    const UPDATED_AT = 'events_participants.updated_at';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -216,22 +216,22 @@ abstract class BaseEventsParticipantsPeer
             $criteria->addSelectColumn(EventsParticipantsPeer::CREATED_AT);
             $criteria->addSelectColumn(EventsParticipantsPeer::UPDATED_AT);
         } else {
-            $criteria->addSelectColumn($alias . '.ID');
-            $criteria->addSelectColumn($alias . '.EVENTS_ID');
-            $criteria->addSelectColumn($alias . '.KEY');
-            $criteria->addSelectColumn($alias . '.INVITED_BY');
-            $criteria->addSelectColumn($alias . '.FIRST_NAME');
-            $criteria->addSelectColumn($alias . '.LAST_NAME');
-            $criteria->addSelectColumn($alias . '.EMAIL');
-            $criteria->addSelectColumn($alias . '.PHONE');
-            $criteria->addSelectColumn($alias . '.TELL_A_FRIEND');
-            $criteria->addSelectColumn($alias . '.NOTIFY_BY_SMS');
-            $criteria->addSelectColumn($alias . '.SMS_SEND_AT');
-            $criteria->addSelectColumn($alias . '.HAS_ACCEPTED');
-            $criteria->addSelectColumn($alias . '.EXPIRES_AT');
-            $criteria->addSelectColumn($alias . '.RESPONDED_AT');
-            $criteria->addSelectColumn($alias . '.CREATED_AT');
-            $criteria->addSelectColumn($alias . '.UPDATED_AT');
+            $criteria->addSelectColumn($alias . '.id');
+            $criteria->addSelectColumn($alias . '.events_id');
+            $criteria->addSelectColumn($alias . '.key');
+            $criteria->addSelectColumn($alias . '.invited_by');
+            $criteria->addSelectColumn($alias . '.first_name');
+            $criteria->addSelectColumn($alias . '.last_name');
+            $criteria->addSelectColumn($alias . '.email');
+            $criteria->addSelectColumn($alias . '.phone');
+            $criteria->addSelectColumn($alias . '.tell_a_friend');
+            $criteria->addSelectColumn($alias . '.notify_by_sms');
+            $criteria->addSelectColumn($alias . '.sms_send_at');
+            $criteria->addSelectColumn($alias . '.has_accepted');
+            $criteria->addSelectColumn($alias . '.expires_at');
+            $criteria->addSelectColumn($alias . '.responded_at');
+            $criteria->addSelectColumn($alias . '.created_at');
+            $criteria->addSelectColumn($alias . '.updated_at');
         }
     }
 
@@ -315,7 +315,7 @@ abstract class BaseEventsParticipantsPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -420,8 +420,15 @@ abstract class BaseEventsParticipantsPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (EventsParticipantsPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         EventsParticipantsPeer::$instances = array();
     }
 
@@ -794,7 +801,7 @@ abstract class BaseEventsParticipantsPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return EventsParticipantsPeer::OM_CLASS;
     }

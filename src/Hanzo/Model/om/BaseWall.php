@@ -124,6 +124,12 @@ abstract class BaseWall extends BaseObject implements Persistent
     protected $alreadyInValidation = false;
 
     /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
+    /**
      * An array of objects scheduled for deletion.
      * @var		PropelObjectCollection
      */
@@ -227,22 +233,25 @@ abstract class BaseWall extends BaseObject implements Persistent
             // while technically this is not a default value of null,
             // this seems to be closest in meaning.
             return null;
-        } else {
-            try {
-                $dt = new DateTime($this->created_at);
-            } catch (Exception $x) {
-                throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->created_at, true), $x);
-            }
+        }
+
+        try {
+            $dt = new DateTime($this->created_at);
+        } catch (Exception $x) {
+            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->created_at, true), $x);
         }
 
         if ($format === null) {
             // We cast here to maintain BC in API; obviously we will lose data if we're dealing with pre-/post-epoch dates.
             return (int) $dt->format('U');
-        } elseif (strpos($format, '%') !== false) {
-            return strftime($format, $dt->format('U'));
-        } else {
-            return $dt->format($format);
         }
+
+        if (strpos($format, '%') !== false) {
+            return strftime($format, $dt->format('U'));
+        }
+
+        return $dt->format($format);
+
     }
 
     /**
@@ -266,22 +275,25 @@ abstract class BaseWall extends BaseObject implements Persistent
             // while technically this is not a default value of null,
             // this seems to be closest in meaning.
             return null;
-        } else {
-            try {
-                $dt = new DateTime($this->updated_at);
-            } catch (Exception $x) {
-                throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->updated_at, true), $x);
-            }
+        }
+
+        try {
+            $dt = new DateTime($this->updated_at);
+        } catch (Exception $x) {
+            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->updated_at, true), $x);
         }
 
         if ($format === null) {
             // We cast here to maintain BC in API; obviously we will lose data if we're dealing with pre-/post-epoch dates.
             return (int) $dt->format('U');
-        } elseif (strpos($format, '%') !== false) {
-            return strftime($format, $dt->format('U'));
-        } else {
-            return $dt->format($format);
         }
+
+        if (strpos($format, '%') !== false) {
+            return strftime($format, $dt->format('U'));
+        }
+
+        return $dt->format($format);
+
     }
 
     /**
@@ -292,7 +304,7 @@ abstract class BaseWall extends BaseObject implements Persistent
      */
     public function setId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -313,7 +325,7 @@ abstract class BaseWall extends BaseObject implements Persistent
      */
     public function setParentId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -338,7 +350,7 @@ abstract class BaseWall extends BaseObject implements Persistent
      */
     public function setCustomersId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -363,7 +375,7 @@ abstract class BaseWall extends BaseObject implements Persistent
      */
     public function setMessate($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -501,7 +513,7 @@ abstract class BaseWall extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
+            $this->postHydrate($row, $startcol, $rehydrate);
             return $startcol + 7; // 7 = WallPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -742,7 +754,7 @@ abstract class BaseWall extends BaseObject implements Persistent
 
             if ($this->collWallsRelatedById !== null) {
                 foreach ($this->collWallsRelatedById as $referrerFK) {
-                    if (!$referrerFK->isDeleted()) {
+                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
@@ -759,7 +771,7 @@ abstract class BaseWall extends BaseObject implements Persistent
 
             if ($this->collWallLikess !== null) {
                 foreach ($this->collWallLikess as $referrerFK) {
-                    if (!$referrerFK->isDeleted()) {
+                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
@@ -792,25 +804,25 @@ abstract class BaseWall extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(WallPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`ID`';
+            $modifiedColumns[':p' . $index++]  = '`id`';
         }
         if ($this->isColumnModified(WallPeer::PARENT_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`PARENT_ID`';
+            $modifiedColumns[':p' . $index++]  = '`parent_id`';
         }
         if ($this->isColumnModified(WallPeer::CUSTOMERS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`CUSTOMERS_ID`';
+            $modifiedColumns[':p' . $index++]  = '`customers_id`';
         }
         if ($this->isColumnModified(WallPeer::MESSATE)) {
-            $modifiedColumns[':p' . $index++]  = '`MESSATE`';
+            $modifiedColumns[':p' . $index++]  = '`messate`';
         }
         if ($this->isColumnModified(WallPeer::STATUS)) {
-            $modifiedColumns[':p' . $index++]  = '`STATUS`';
+            $modifiedColumns[':p' . $index++]  = '`status`';
         }
         if ($this->isColumnModified(WallPeer::CREATED_AT)) {
-            $modifiedColumns[':p' . $index++]  = '`CREATED_AT`';
+            $modifiedColumns[':p' . $index++]  = '`created_at`';
         }
         if ($this->isColumnModified(WallPeer::UPDATED_AT)) {
-            $modifiedColumns[':p' . $index++]  = '`UPDATED_AT`';
+            $modifiedColumns[':p' . $index++]  = '`updated_at`';
         }
 
         $sql = sprintf(
@@ -823,25 +835,25 @@ abstract class BaseWall extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`ID`':
+                    case '`id`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`PARENT_ID`':
+                    case '`parent_id`':
                         $stmt->bindValue($identifier, $this->parent_id, PDO::PARAM_INT);
                         break;
-                    case '`CUSTOMERS_ID`':
+                    case '`customers_id`':
                         $stmt->bindValue($identifier, $this->customers_id, PDO::PARAM_INT);
                         break;
-                    case '`MESSATE`':
+                    case '`messate`':
                         $stmt->bindValue($identifier, $this->messate, PDO::PARAM_STR);
                         break;
-                    case '`STATUS`':
+                    case '`status`':
                         $stmt->bindValue($identifier, (int) $this->status, PDO::PARAM_INT);
                         break;
-                    case '`CREATED_AT`':
+                    case '`created_at`':
                         $stmt->bindValue($identifier, $this->created_at, PDO::PARAM_STR);
                         break;
-                    case '`UPDATED_AT`':
+                    case '`updated_at`':
                         $stmt->bindValue($identifier, $this->updated_at, PDO::PARAM_STR);
                         break;
                 }
@@ -912,11 +924,11 @@ abstract class BaseWall extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -1358,12 +1370,13 @@ abstract class BaseWall extends BaseObject implements Persistent
      * Get the associated Wall object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Wall The associated Wall object.
      * @throws PropelException
      */
-    public function getWallRelatedByParentId(PropelPDO $con = null)
+    public function getWallRelatedByParentId(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aWallRelatedByParentId === null && ($this->parent_id !== null)) {
+        if ($this->aWallRelatedByParentId === null && ($this->parent_id !== null) && $doQuery) {
             $this->aWallRelatedByParentId = WallQuery::create()->findPk($this->parent_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -1409,12 +1422,13 @@ abstract class BaseWall extends BaseObject implements Persistent
      * Get the associated Customers object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Customers The associated Customers object.
      * @throws PropelException
      */
-    public function getCustomers(PropelPDO $con = null)
+    public function getCustomers(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aCustomers === null && ($this->customers_id !== null)) {
+        if ($this->aCustomers === null && ($this->customers_id !== null) && $doQuery) {
             $this->aCustomers = CustomersQuery::create()->findPk($this->customers_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -1453,13 +1467,15 @@ abstract class BaseWall extends BaseObject implements Persistent
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
-     * @return void
+     * @return Wall The current object (for fluent API support)
      * @see        addWallsRelatedById()
      */
     public function clearWallsRelatedById()
     {
         $this->collWallsRelatedById = null; // important to set this to null since that means it is uninitialized
         $this->collWallsRelatedByIdPartial = null;
+
+        return $this;
     }
 
     /**
@@ -1531,6 +1547,7 @@ abstract class BaseWall extends BaseObject implements Persistent
                       $this->collWallsRelatedByIdPartial = true;
                     }
 
+                    $collWallsRelatedById->getInternalIterator()->rewind();
                     return $collWallsRelatedById;
                 }
 
@@ -1558,12 +1575,15 @@ abstract class BaseWall extends BaseObject implements Persistent
      *
      * @param PropelCollection $wallsRelatedById A Propel collection.
      * @param PropelPDO $con Optional connection object
+     * @return Wall The current object (for fluent API support)
      */
     public function setWallsRelatedById(PropelCollection $wallsRelatedById, PropelPDO $con = null)
     {
-        $this->wallsRelatedByIdScheduledForDeletion = $this->getWallsRelatedById(new Criteria(), $con)->diff($wallsRelatedById);
+        $wallsRelatedByIdToDelete = $this->getWallsRelatedById(new Criteria(), $con)->diff($wallsRelatedById);
 
-        foreach ($this->wallsRelatedByIdScheduledForDeletion as $wallRelatedByIdRemoved) {
+        $this->wallsRelatedByIdScheduledForDeletion = unserialize(serialize($wallsRelatedByIdToDelete));
+
+        foreach ($wallsRelatedByIdToDelete as $wallRelatedByIdRemoved) {
             $wallRelatedByIdRemoved->setWallRelatedByParentId(null);
         }
 
@@ -1574,6 +1594,8 @@ abstract class BaseWall extends BaseObject implements Persistent
 
         $this->collWallsRelatedById = $wallsRelatedById;
         $this->collWallsRelatedByIdPartial = false;
+
+        return $this;
     }
 
     /**
@@ -1591,22 +1613,22 @@ abstract class BaseWall extends BaseObject implements Persistent
         if (null === $this->collWallsRelatedById || null !== $criteria || $partial) {
             if ($this->isNew() && null === $this->collWallsRelatedById) {
                 return 0;
-            } else {
-                if($partial && !$criteria) {
-                    return count($this->getWallsRelatedById());
-                }
-                $query = WallQuery::create(null, $criteria);
-                if ($distinct) {
-                    $query->distinct();
-                }
-
-                return $query
-                    ->filterByWallRelatedByParentId($this)
-                    ->count($con);
             }
-        } else {
-            return count($this->collWallsRelatedById);
+
+            if($partial && !$criteria) {
+                return count($this->getWallsRelatedById());
+            }
+            $query = WallQuery::create(null, $criteria);
+            if ($distinct) {
+                $query->distinct();
+            }
+
+            return $query
+                ->filterByWallRelatedByParentId($this)
+                ->count($con);
         }
+
+        return count($this->collWallsRelatedById);
     }
 
     /**
@@ -1622,7 +1644,7 @@ abstract class BaseWall extends BaseObject implements Persistent
             $this->initWallsRelatedById();
             $this->collWallsRelatedByIdPartial = true;
         }
-        if (!$this->collWallsRelatedById->contains($l)) { // only add it if the **same** object is not already associated
+        if (!in_array($l, $this->collWallsRelatedById->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddWallRelatedById($l);
         }
 
@@ -1640,6 +1662,7 @@ abstract class BaseWall extends BaseObject implements Persistent
 
     /**
      * @param	WallRelatedById $wallRelatedById The wallRelatedById object to remove.
+     * @return Wall The current object (for fluent API support)
      */
     public function removeWallRelatedById($wallRelatedById)
     {
@@ -1652,6 +1675,8 @@ abstract class BaseWall extends BaseObject implements Persistent
             $this->wallsRelatedByIdScheduledForDeletion[]= $wallRelatedById;
             $wallRelatedById->setWallRelatedByParentId(null);
         }
+
+        return $this;
     }
 
 
@@ -1685,13 +1710,15 @@ abstract class BaseWall extends BaseObject implements Persistent
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
-     * @return void
+     * @return Wall The current object (for fluent API support)
      * @see        addWallLikess()
      */
     public function clearWallLikess()
     {
         $this->collWallLikess = null; // important to set this to null since that means it is uninitialized
         $this->collWallLikessPartial = null;
+
+        return $this;
     }
 
     /**
@@ -1763,6 +1790,7 @@ abstract class BaseWall extends BaseObject implements Persistent
                       $this->collWallLikessPartial = true;
                     }
 
+                    $collWallLikess->getInternalIterator()->rewind();
                     return $collWallLikess;
                 }
 
@@ -1790,12 +1818,15 @@ abstract class BaseWall extends BaseObject implements Persistent
      *
      * @param PropelCollection $wallLikess A Propel collection.
      * @param PropelPDO $con Optional connection object
+     * @return Wall The current object (for fluent API support)
      */
     public function setWallLikess(PropelCollection $wallLikess, PropelPDO $con = null)
     {
-        $this->wallLikessScheduledForDeletion = $this->getWallLikess(new Criteria(), $con)->diff($wallLikess);
+        $wallLikessToDelete = $this->getWallLikess(new Criteria(), $con)->diff($wallLikess);
 
-        foreach ($this->wallLikessScheduledForDeletion as $wallLikesRemoved) {
+        $this->wallLikessScheduledForDeletion = unserialize(serialize($wallLikessToDelete));
+
+        foreach ($wallLikessToDelete as $wallLikesRemoved) {
             $wallLikesRemoved->setWall(null);
         }
 
@@ -1806,6 +1837,8 @@ abstract class BaseWall extends BaseObject implements Persistent
 
         $this->collWallLikess = $wallLikess;
         $this->collWallLikessPartial = false;
+
+        return $this;
     }
 
     /**
@@ -1823,22 +1856,22 @@ abstract class BaseWall extends BaseObject implements Persistent
         if (null === $this->collWallLikess || null !== $criteria || $partial) {
             if ($this->isNew() && null === $this->collWallLikess) {
                 return 0;
-            } else {
-                if($partial && !$criteria) {
-                    return count($this->getWallLikess());
-                }
-                $query = WallLikesQuery::create(null, $criteria);
-                if ($distinct) {
-                    $query->distinct();
-                }
-
-                return $query
-                    ->filterByWall($this)
-                    ->count($con);
             }
-        } else {
-            return count($this->collWallLikess);
+
+            if($partial && !$criteria) {
+                return count($this->getWallLikess());
+            }
+            $query = WallLikesQuery::create(null, $criteria);
+            if ($distinct) {
+                $query->distinct();
+            }
+
+            return $query
+                ->filterByWall($this)
+                ->count($con);
         }
+
+        return count($this->collWallLikess);
     }
 
     /**
@@ -1854,7 +1887,7 @@ abstract class BaseWall extends BaseObject implements Persistent
             $this->initWallLikess();
             $this->collWallLikessPartial = true;
         }
-        if (!$this->collWallLikess->contains($l)) { // only add it if the **same** object is not already associated
+        if (!in_array($l, $this->collWallLikess->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddWallLikes($l);
         }
 
@@ -1872,6 +1905,7 @@ abstract class BaseWall extends BaseObject implements Persistent
 
     /**
      * @param	WallLikes $wallLikes The wallLikes object to remove.
+     * @return Wall The current object (for fluent API support)
      */
     public function removeWallLikes($wallLikes)
     {
@@ -1881,9 +1915,11 @@ abstract class BaseWall extends BaseObject implements Persistent
                 $this->wallLikessScheduledForDeletion = clone $this->collWallLikess;
                 $this->wallLikessScheduledForDeletion->clear();
             }
-            $this->wallLikessScheduledForDeletion[]= $wallLikes;
+            $this->wallLikessScheduledForDeletion[]= clone $wallLikes;
             $wallLikes->setWall(null);
         }
+
+        return $this;
     }
 
 
@@ -1925,6 +1961,7 @@ abstract class BaseWall extends BaseObject implements Persistent
         $this->updated_at = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->applyDefaultValues();
         $this->resetModified();
@@ -1943,7 +1980,8 @@ abstract class BaseWall extends BaseObject implements Persistent
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
             if ($this->collWallsRelatedById) {
                 foreach ($this->collWallsRelatedById as $o) {
                     $o->clearAllReferences($deep);
@@ -1954,6 +1992,14 @@ abstract class BaseWall extends BaseObject implements Persistent
                     $o->clearAllReferences($deep);
                 }
             }
+            if ($this->aWallRelatedByParentId instanceof Persistent) {
+              $this->aWallRelatedByParentId->clearAllReferences($deep);
+            }
+            if ($this->aCustomers instanceof Persistent) {
+              $this->aCustomers->clearAllReferences($deep);
+            }
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
         if ($this->collWallsRelatedById instanceof PropelCollection) {

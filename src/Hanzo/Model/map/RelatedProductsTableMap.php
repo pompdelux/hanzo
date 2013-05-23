@@ -42,8 +42,8 @@ class RelatedProductsTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(false);
         // columns
-        $this->addForeignPrimaryKey('MASTER', 'Master', 'VARCHAR' , 'products', 'SKU', true, 128, null);
-        $this->addForeignPrimaryKey('SKU', 'Sku', 'VARCHAR' , 'products', 'SKU', true, 128, null);
+        $this->addForeignPrimaryKey('master', 'Master', 'VARCHAR' , 'products', 'sku', true, 128, null);
+        $this->addForeignPrimaryKey('sku', 'Sku', 'VARCHAR' , 'products', 'sku', true, 128, null);
         // validators
     } // initialize()
 

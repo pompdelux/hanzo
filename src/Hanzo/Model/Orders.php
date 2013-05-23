@@ -320,7 +320,8 @@ class Orders extends BaseOrders
     public function setOrderLineQty($product, $quantity, $exact = FALSE, $date = '1970-01-01')
     {
         // first update existing product lines, if any
-        $lines = $this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
+        #$lines = $this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
+        $lines = $this->getOrdersLiness();
 
         if ($this->getState() !== self::STATE_BUILDING) {
             $this->setState(self::STATE_BUILDING);
@@ -502,20 +503,14 @@ class Orders extends BaseOrders
     public function getTotalPrice($products_only = false)
     {
         // this is done so Orders::getOrderAtVersion don't throw up
-        if ($this->isNew()) {
-            $lines = $this->getOrdersLiness();
-        } else {
-            $query = OrdersLinesQuery::create()->filterByOrdersId($this->getId());
-
-            if ($products_only) {
-                $query->filterByType('product');
-            }
-
-            $lines = $query->find(Propel::getConnection(null, Propel::CONNECTION_WRITE));
-        }
+        $lines = $this->getOrdersLiness();
 
         $total = 0;
         foreach ($lines as $line) {
+            if ($products_only && ('product' != $line->getType())) {
+                continue;
+            }
+
             $total += ($line->getPrice() * $line->getQuantity());
         }
 
@@ -536,16 +531,14 @@ class Orders extends BaseOrders
 
     public function getTotalQuantity($products_only = false)
     {
-        $query = OrdersLinesQuery::create()->filterByOrdersId($this->getId());
-
-        if ($products_only) {
-            $query->filterByType('product');
-        }
-
-        $lines = $query->find(Propel::getConnection(null, Propel::CONNECTION_WRITE));
+        $lines = $this->getOrdersLiness();
 
         $total = 0;
         foreach ($lines as $line) {
+            if ($products_only && ('product' != $line->getType())) {
+                continue;
+            }
+
             $total += $line->getQuantity();
         }
 
@@ -568,10 +561,10 @@ class Orders extends BaseOrders
         $attributes = $this->getOrdersAttributess(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
 
         // Update existing attributes
-        foreach ($attributes as $index => $attribute)
-        {
-            if ( $attribute->getCKey() == $key && $attribute->getNs() == $ns )
-            {
+        foreach ($attributes as $index => $attribute) {
+            if (($attribute->getCKey() == $key) &&
+                ($attribute->getNs() == $ns)
+            ) {
                 $attribute->setCValue( $value );
                 return $this;
             }
@@ -705,7 +698,8 @@ class Orders extends BaseOrders
      */
     public function setOrderLine($type, $id, $name, $price = 0.00, $vat = 0.00, $quantity = 1)
     {
-        $lines = $this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
+        #$lines = $this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
+        $lines = $this->getOrdersLiness();
 
         foreach ($lines as $index => $line) {
             if ($line->getType() == $type) {
@@ -830,7 +824,7 @@ class Orders extends BaseOrders
      **/
     public function clearPaymentAttributes()
     {
-        $this->clearAttributesByNS( 'payment' );
+        $this->clearAttributesByNS('payment');
     }
 
     /**
@@ -985,7 +979,7 @@ class Orders extends BaseOrders
     public function hasProduct($product_id)
     {
         $isInt = preg_match('/^[0-9]+$/', $product_id);
-        foreach ($this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE)) as $line) {
+        foreach ($this->getOrdersLiness() as $line) {
             if ($isInt) {
                 if ($line->getProductsId() == $product_id) {
                     return true;
@@ -1072,7 +1066,7 @@ class Orders extends BaseOrders
         $result = $hanzo->get('HD.expected_delivery_date');
         $expected_at = is_null( $result ) ? '' : $result;
 
-        foreach ($this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE)) as $line) {
+        foreach ($this->getOrdersLiness() as $line) {
             $date = $line->getExpectedAt('Ymd');
             if (($date > $now) && ($date > $latest)) {
                 $latest = $date;
@@ -1172,9 +1166,10 @@ class Orders extends BaseOrders
         if ($this->isNew()) {
             $hanzo = Hanzo::getInstance();
             $this->setCurrencyCode($hanzo->get('core.currency'));
+            $this->setLanguagesId($hanzo->get('core.language_id'));
+            $this->setPaymentGatewayId(Tools::getPaymentGatewayId());
             $this->setAttribute('domain_name', 'global', $_SERVER['HTTP_HOST']);
             $this->setAttribute('domain_key', 'global', $hanzo->get('core.domain_key'));
-            $this->setPaymentGatewayId(Tools::getPaymentGatewayId());
         }
 
         // set billing address - if not already set.

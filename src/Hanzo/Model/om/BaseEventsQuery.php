@@ -83,7 +83,6 @@ use Hanzo\Model\Orders;
  * @method Events findOne(PropelPDO $con = null) Return the first Events matching the query
  * @method Events findOneOrCreate(PropelPDO $con = null) Return the first Events matching the query, or a new Events object populated from the query conditions when no match is found
  *
- * @method Events findOneById(int $id) Return the first Events filtered by the id column
  * @method Events findOneByCode(string $code) Return the first Events filtered by the code column
  * @method Events findOneByKey(string $key) Return the first Events filtered by the key column
  * @method Events findOneByConsultantsId(int $consultants_id) Return the first Events filtered by the consultants_id column
@@ -141,7 +140,7 @@ abstract class BaseEventsQuery extends ModelCriteria
      * Returns a new EventsQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     EventsQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   EventsQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return EventsQuery
      */
@@ -198,18 +197,32 @@ abstract class BaseEventsQuery extends ModelCriteria
     }
 
     /**
+     * Alias of findPk to use instance pooling
+     *
+     * @param     mixed $key Primary key to use for the query
+     * @param     PropelPDO $con A connection object
+     *
+     * @return                 Events A model object, or null if the key is not found
+     * @throws PropelException
+     */
+     public function findOneById($key, $con = null)
+     {
+        return $this->findPk($key, $con);
+     }
+
+    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   Events A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 Events A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `ID`, `CODE`, `KEY`, `CONSULTANTS_ID`, `CUSTOMERS_ID`, `EVENT_DATE`, `HOST`, `ADDRESS_LINE_1`, `ADDRESS_LINE_2`, `POSTAL_CODE`, `CITY`, `PHONE`, `EMAIL`, `DESCRIPTION`, `TYPE`, `IS_OPEN`, `NOTIFY_HOSTESS`, `CREATED_AT`, `UPDATED_AT` FROM `events` WHERE `ID` = :p0';
+        $sql = 'SELECT `id`, `code`, `key`, `consultants_id`, `customers_id`, `event_date`, `host`, `address_line_1`, `address_line_2`, `postal_code`, `city`, `phone`, `email`, `description`, `type`, `is_open`, `notify_hostess`, `created_at`, `updated_at` FROM `events` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -305,7 +318,8 @@ abstract class BaseEventsQuery extends ModelCriteria
      * <code>
      * $query->filterById(1234); // WHERE id = 1234
      * $query->filterById(array(12, 34)); // WHERE id IN (12, 34)
-     * $query->filterById(array('min' => 12)); // WHERE id > 12
+     * $query->filterById(array('min' => 12)); // WHERE id >= 12
+     * $query->filterById(array('max' => 12)); // WHERE id <= 12
      * </code>
      *
      * @param     mixed $id The value to use as filter.
@@ -318,8 +332,22 @@ abstract class BaseEventsQuery extends ModelCriteria
      */
     public function filterById($id = null, $comparison = null)
     {
-        if (is_array($id) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($id)) {
+            $useMinMax = false;
+            if (isset($id['min'])) {
+                $this->addUsingAlias(EventsPeer::ID, $id['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($id['max'])) {
+                $this->addUsingAlias(EventsPeer::ID, $id['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(EventsPeer::ID, $id, $comparison);
@@ -390,7 +418,8 @@ abstract class BaseEventsQuery extends ModelCriteria
      * <code>
      * $query->filterByConsultantsId(1234); // WHERE consultants_id = 1234
      * $query->filterByConsultantsId(array(12, 34)); // WHERE consultants_id IN (12, 34)
-     * $query->filterByConsultantsId(array('min' => 12)); // WHERE consultants_id > 12
+     * $query->filterByConsultantsId(array('min' => 12)); // WHERE consultants_id >= 12
+     * $query->filterByConsultantsId(array('max' => 12)); // WHERE consultants_id <= 12
      * </code>
      *
      * @see       filterByCustomersRelatedByConsultantsId()
@@ -433,7 +462,8 @@ abstract class BaseEventsQuery extends ModelCriteria
      * <code>
      * $query->filterByCustomersId(1234); // WHERE customers_id = 1234
      * $query->filterByCustomersId(array(12, 34)); // WHERE customers_id IN (12, 34)
-     * $query->filterByCustomersId(array('min' => 12)); // WHERE customers_id > 12
+     * $query->filterByCustomersId(array('min' => 12)); // WHERE customers_id >= 12
+     * $query->filterByCustomersId(array('max' => 12)); // WHERE customers_id <= 12
      * </code>
      *
      * @see       filterByCustomersRelatedByCustomersId()
@@ -794,7 +824,7 @@ abstract class BaseEventsQuery extends ModelCriteria
     public function filterByIsOpen($isOpen = null, $comparison = null)
     {
         if (is_string($isOpen)) {
-            $is_open = in_array(strtolower($isOpen), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+            $isOpen = in_array(strtolower($isOpen), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
         }
 
         return $this->addUsingAlias(EventsPeer::IS_OPEN, $isOpen, $comparison);
@@ -821,7 +851,7 @@ abstract class BaseEventsQuery extends ModelCriteria
     public function filterByNotifyHostess($notifyHostess = null, $comparison = null)
     {
         if (is_string($notifyHostess)) {
-            $notify_hostess = in_array(strtolower($notifyHostess), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+            $notifyHostess = in_array(strtolower($notifyHostess), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
         }
 
         return $this->addUsingAlias(EventsPeer::NOTIFY_HOSTESS, $notifyHostess, $comparison);
@@ -919,8 +949,8 @@ abstract class BaseEventsQuery extends ModelCriteria
      * @param   Customers|PropelObjectCollection $customers The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   EventsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 EventsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByCustomersRelatedByConsultantsId($customers, $comparison = null)
     {
@@ -995,8 +1025,8 @@ abstract class BaseEventsQuery extends ModelCriteria
      * @param   Customers|PropelObjectCollection $customers The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   EventsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 EventsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByCustomersRelatedByCustomersId($customers, $comparison = null)
     {
@@ -1071,8 +1101,8 @@ abstract class BaseEventsQuery extends ModelCriteria
      * @param   EventsParticipants|PropelObjectCollection $eventsParticipants  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   EventsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 EventsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByEventsParticipants($eventsParticipants, $comparison = null)
     {
@@ -1145,8 +1175,8 @@ abstract class BaseEventsQuery extends ModelCriteria
      * @param   Orders|PropelObjectCollection $orders  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   EventsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 EventsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByOrders($orders, $comparison = null)
     {

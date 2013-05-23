@@ -37,23 +37,23 @@ abstract class BaseSettingsPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 6;
 
-    /** the column name for the C_KEY field */
-    const C_KEY = 'settings.C_KEY';
+    /** the column name for the c_key field */
+    const C_KEY = 'settings.c_key';
 
-    /** the column name for the NS field */
-    const NS = 'settings.NS';
+    /** the column name for the ns field */
+    const NS = 'settings.ns';
 
-    /** the column name for the TITLE field */
-    const TITLE = 'settings.TITLE';
+    /** the column name for the title field */
+    const TITLE = 'settings.title';
 
-    /** the column name for the C_VALUE field */
-    const C_VALUE = 'settings.C_VALUE';
+    /** the column name for the c_value field */
+    const C_VALUE = 'settings.c_value';
 
-    /** the column name for the CREATED_AT field */
-    const CREATED_AT = 'settings.CREATED_AT';
+    /** the column name for the created_at field */
+    const CREATED_AT = 'settings.created_at';
 
-    /** the column name for the UPDATED_AT field */
-    const UPDATED_AT = 'settings.UPDATED_AT';
+    /** the column name for the updated_at field */
+    const UPDATED_AT = 'settings.updated_at';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -175,12 +175,12 @@ abstract class BaseSettingsPeer
             $criteria->addSelectColumn(SettingsPeer::CREATED_AT);
             $criteria->addSelectColumn(SettingsPeer::UPDATED_AT);
         } else {
-            $criteria->addSelectColumn($alias . '.C_KEY');
-            $criteria->addSelectColumn($alias . '.NS');
-            $criteria->addSelectColumn($alias . '.TITLE');
-            $criteria->addSelectColumn($alias . '.C_VALUE');
-            $criteria->addSelectColumn($alias . '.CREATED_AT');
-            $criteria->addSelectColumn($alias . '.UPDATED_AT');
+            $criteria->addSelectColumn($alias . '.c_key');
+            $criteria->addSelectColumn($alias . '.ns');
+            $criteria->addSelectColumn($alias . '.title');
+            $criteria->addSelectColumn($alias . '.c_value');
+            $criteria->addSelectColumn($alias . '.created_at');
+            $criteria->addSelectColumn($alias . '.updated_at');
         }
     }
 
@@ -264,7 +264,7 @@ abstract class BaseSettingsPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -369,8 +369,15 @@ abstract class BaseSettingsPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (SettingsPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         SettingsPeer::$instances = array();
     }
 
@@ -505,7 +512,7 @@ abstract class BaseSettingsPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return SettingsPeer::OM_CLASS;
     }

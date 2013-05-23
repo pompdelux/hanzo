@@ -42,11 +42,11 @@ class MessagesI18nTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(false);
         // columns
-        $this->addForeignPrimaryKey('ID', 'Id', 'INTEGER' , 'messages', 'ID', true, null, null);
-        $this->addPrimaryKey('LOCALE', 'Locale', 'VARCHAR', true, 5, 'da_DK');
-        $this->addColumn('SUBJECT', 'Subject', 'VARCHAR', true, 255, null);
-        $this->getColumn('SUBJECT', false)->setPrimaryString(true);
-        $this->addColumn('BODY', 'Body', 'LONGVARCHAR', false, null, null);
+        $this->addForeignPrimaryKey('id', 'Id', 'INTEGER' , 'messages', 'id', true, null, null);
+        $this->addPrimaryKey('locale', 'Locale', 'VARCHAR', true, 5, 'da_DK');
+        $this->addColumn('subject', 'Subject', 'VARCHAR', true, 255, null);
+        $this->getColumn('subject', false)->setPrimaryString(true);
+        $this->addColumn('body', 'Body', 'LONGVARCHAR', false, null, null);
         // validators
     } // initialize()
 

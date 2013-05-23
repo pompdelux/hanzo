@@ -40,14 +40,14 @@ abstract class BaseDomainsPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 3;
 
-    /** the column name for the ID field */
-    const ID = 'domains.ID';
+    /** the column name for the id field */
+    const ID = 'domains.id';
 
-    /** the column name for the DOMAIN_NAME field */
-    const DOMAIN_NAME = 'domains.DOMAIN_NAME';
+    /** the column name for the domain_name field */
+    const DOMAIN_NAME = 'domains.domain_name';
 
-    /** the column name for the DOMAIN_KEY field */
-    const DOMAIN_KEY = 'domains.DOMAIN_KEY';
+    /** the column name for the domain_key field */
+    const DOMAIN_KEY = 'domains.domain_key';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -166,9 +166,9 @@ abstract class BaseDomainsPeer
             $criteria->addSelectColumn(DomainsPeer::DOMAIN_NAME);
             $criteria->addSelectColumn(DomainsPeer::DOMAIN_KEY);
         } else {
-            $criteria->addSelectColumn($alias . '.ID');
-            $criteria->addSelectColumn($alias . '.DOMAIN_NAME');
-            $criteria->addSelectColumn($alias . '.DOMAIN_KEY');
+            $criteria->addSelectColumn($alias . '.id');
+            $criteria->addSelectColumn($alias . '.domain_name');
+            $criteria->addSelectColumn($alias . '.domain_key');
         }
     }
 
@@ -252,7 +252,7 @@ abstract class BaseDomainsPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -357,8 +357,15 @@ abstract class BaseDomainsPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (DomainsPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         DomainsPeer::$instances = array();
     }
 
@@ -502,7 +509,7 @@ abstract class BaseDomainsPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return DomainsPeer::OM_CLASS;
     }

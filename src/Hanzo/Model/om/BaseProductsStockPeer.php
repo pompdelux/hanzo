@@ -38,17 +38,17 @@ abstract class BaseProductsStockPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 4;
 
-    /** the column name for the ID field */
-    const ID = 'products_stock.ID';
+    /** the column name for the id field */
+    const ID = 'products_stock.id';
 
-    /** the column name for the PRODUCTS_ID field */
-    const PRODUCTS_ID = 'products_stock.PRODUCTS_ID';
+    /** the column name for the products_id field */
+    const PRODUCTS_ID = 'products_stock.products_id';
 
-    /** the column name for the QUANTITY field */
-    const QUANTITY = 'products_stock.QUANTITY';
+    /** the column name for the quantity field */
+    const QUANTITY = 'products_stock.quantity';
 
-    /** the column name for the AVAILABLE_FROM field */
-    const AVAILABLE_FROM = 'products_stock.AVAILABLE_FROM';
+    /** the column name for the available_from field */
+    const AVAILABLE_FROM = 'products_stock.available_from';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -168,10 +168,10 @@ abstract class BaseProductsStockPeer
             $criteria->addSelectColumn(ProductsStockPeer::QUANTITY);
             $criteria->addSelectColumn(ProductsStockPeer::AVAILABLE_FROM);
         } else {
-            $criteria->addSelectColumn($alias . '.ID');
-            $criteria->addSelectColumn($alias . '.PRODUCTS_ID');
-            $criteria->addSelectColumn($alias . '.QUANTITY');
-            $criteria->addSelectColumn($alias . '.AVAILABLE_FROM');
+            $criteria->addSelectColumn($alias . '.id');
+            $criteria->addSelectColumn($alias . '.products_id');
+            $criteria->addSelectColumn($alias . '.quantity');
+            $criteria->addSelectColumn($alias . '.available_from');
         }
     }
 
@@ -255,7 +255,7 @@ abstract class BaseProductsStockPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -360,8 +360,15 @@ abstract class BaseProductsStockPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (ProductsStockPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         ProductsStockPeer::$instances = array();
     }
 
@@ -734,7 +741,7 @@ abstract class BaseProductsStockPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return ProductsStockPeer::OM_CLASS;
     }

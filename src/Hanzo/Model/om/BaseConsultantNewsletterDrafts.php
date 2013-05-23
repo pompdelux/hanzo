@@ -82,6 +82,12 @@ abstract class BaseConsultantNewsletterDrafts extends BaseObject implements Pers
     protected $alreadyInValidation = false;
 
     /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
+    /**
      * Get the [id] column value.
      *
      * @return int
@@ -129,7 +135,7 @@ abstract class BaseConsultantNewsletterDrafts extends BaseObject implements Pers
      */
     public function setId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -150,7 +156,7 @@ abstract class BaseConsultantNewsletterDrafts extends BaseObject implements Pers
      */
     public function setConsultantsId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -175,7 +181,7 @@ abstract class BaseConsultantNewsletterDrafts extends BaseObject implements Pers
      */
     public function setSubject($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -196,7 +202,7 @@ abstract class BaseConsultantNewsletterDrafts extends BaseObject implements Pers
      */
     public function setContent($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -252,7 +258,7 @@ abstract class BaseConsultantNewsletterDrafts extends BaseObject implements Pers
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
+            $this->postHydrate($row, $startcol, $rehydrate);
             return $startcol + 4; // 4 = ConsultantNewsletterDraftsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -482,16 +488,16 @@ abstract class BaseConsultantNewsletterDrafts extends BaseObject implements Pers
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(ConsultantNewsletterDraftsPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`ID`';
+            $modifiedColumns[':p' . $index++]  = '`id`';
         }
         if ($this->isColumnModified(ConsultantNewsletterDraftsPeer::CONSULTANTS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`CONSULTANTS_ID`';
+            $modifiedColumns[':p' . $index++]  = '`consultants_id`';
         }
         if ($this->isColumnModified(ConsultantNewsletterDraftsPeer::SUBJECT)) {
-            $modifiedColumns[':p' . $index++]  = '`SUBJECT`';
+            $modifiedColumns[':p' . $index++]  = '`subject`';
         }
         if ($this->isColumnModified(ConsultantNewsletterDraftsPeer::CONTENT)) {
-            $modifiedColumns[':p' . $index++]  = '`CONTENT`';
+            $modifiedColumns[':p' . $index++]  = '`content`';
         }
 
         $sql = sprintf(
@@ -504,16 +510,16 @@ abstract class BaseConsultantNewsletterDrafts extends BaseObject implements Pers
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`ID`':
+                    case '`id`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`CONSULTANTS_ID`':
+                    case '`consultants_id`':
                         $stmt->bindValue($identifier, $this->consultants_id, PDO::PARAM_INT);
                         break;
-                    case '`SUBJECT`':
+                    case '`subject`':
                         $stmt->bindValue($identifier, $this->subject, PDO::PARAM_STR);
                         break;
-                    case '`CONTENT`':
+                    case '`content`':
                         $stmt->bindValue($identifier, $this->content, PDO::PARAM_STR);
                         break;
                 }
@@ -584,11 +590,11 @@ abstract class BaseConsultantNewsletterDrafts extends BaseObject implements Pers
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -957,12 +963,13 @@ abstract class BaseConsultantNewsletterDrafts extends BaseObject implements Pers
      * Get the associated Customers object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Customers The associated Customers object.
      * @throws PropelException
      */
-    public function getCustomers(PropelPDO $con = null)
+    public function getCustomers(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aCustomers === null && ($this->consultants_id !== null)) {
+        if ($this->aCustomers === null && ($this->consultants_id !== null) && $doQuery) {
             $this->aCustomers = CustomersQuery::create()->findPk($this->consultants_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -987,6 +994,7 @@ abstract class BaseConsultantNewsletterDrafts extends BaseObject implements Pers
         $this->content = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->resetModified();
         $this->setNew(true);
@@ -1004,7 +1012,13 @@ abstract class BaseConsultantNewsletterDrafts extends BaseObject implements Pers
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
+            if ($this->aCustomers instanceof Persistent) {
+              $this->aCustomers->clearAllReferences($deep);
+            }
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
         $this->aCustomers = null;

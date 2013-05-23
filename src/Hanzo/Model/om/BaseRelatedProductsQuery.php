@@ -63,7 +63,7 @@ abstract class BaseRelatedProductsQuery extends ModelCriteria
      * Returns a new RelatedProductsQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     RelatedProductsQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   RelatedProductsQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return RelatedProductsQuery
      */
@@ -127,12 +127,12 @@ abstract class BaseRelatedProductsQuery extends ModelCriteria
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   RelatedProducts A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 RelatedProducts A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `MASTER`, `SKU` FROM `related_products` WHERE `MASTER` = :p0 AND `SKU` = :p1';
+        $sql = 'SELECT `master`, `sku` FROM `related_products` WHERE `master` = :p0 AND `sku` = :p1';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_STR);
@@ -297,8 +297,8 @@ abstract class BaseRelatedProductsQuery extends ModelCriteria
      * @param   Products|PropelObjectCollection $products The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   RelatedProductsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 RelatedProductsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByProductsRelatedByMaster($products, $comparison = null)
     {
@@ -373,8 +373,8 @@ abstract class BaseRelatedProductsQuery extends ModelCriteria
      * @param   Products|PropelObjectCollection $products The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   RelatedProductsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 RelatedProductsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByProductsRelatedBySku($products, $comparison = null)
     {

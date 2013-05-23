@@ -122,7 +122,6 @@ use Hanzo\Model\RelatedProducts;
  * @method Products findOne(PropelPDO $con = null) Return the first Products matching the query
  * @method Products findOneOrCreate(PropelPDO $con = null) Return the first Products matching the query, or a new Products object populated from the query conditions when no match is found
  *
- * @method Products findOneById(int $id) Return the first Products filtered by the id column
  * @method Products findOneBySku(string $sku) Return the first Products filtered by the sku column
  * @method Products findOneByMaster(string $master) Return the first Products filtered by the master column
  * @method Products findOneBySize(string $size) Return the first Products filtered by the size column
@@ -166,7 +165,7 @@ abstract class BaseProductsQuery extends ModelCriteria
      * Returns a new ProductsQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     ProductsQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   ProductsQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return ProductsQuery
      */
@@ -223,18 +222,32 @@ abstract class BaseProductsQuery extends ModelCriteria
     }
 
     /**
+     * Alias of findPk to use instance pooling
+     *
+     * @param     mixed $key Primary key to use for the query
+     * @param     PropelPDO $con A connection object
+     *
+     * @return                 Products A model object, or null if the key is not found
+     * @throws PropelException
+     */
+     public function findOneById($key, $con = null)
+     {
+        return $this->findPk($key, $con);
+     }
+
+    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   Products A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 Products A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `ID`, `SKU`, `MASTER`, `SIZE`, `COLOR`, `UNIT`, `WASHING`, `HAS_VIDEO`, `IS_OUT_OF_STOCK`, `IS_ACTIVE`, `CREATED_AT`, `UPDATED_AT` FROM `products` WHERE `ID` = :p0';
+        $sql = 'SELECT `id`, `sku`, `master`, `size`, `color`, `unit`, `washing`, `has_video`, `is_out_of_stock`, `is_active`, `created_at`, `updated_at` FROM `products` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -330,7 +343,8 @@ abstract class BaseProductsQuery extends ModelCriteria
      * <code>
      * $query->filterById(1234); // WHERE id = 1234
      * $query->filterById(array(12, 34)); // WHERE id IN (12, 34)
-     * $query->filterById(array('min' => 12)); // WHERE id > 12
+     * $query->filterById(array('min' => 12)); // WHERE id >= 12
+     * $query->filterById(array('max' => 12)); // WHERE id <= 12
      * </code>
      *
      * @param     mixed $id The value to use as filter.
@@ -343,8 +357,22 @@ abstract class BaseProductsQuery extends ModelCriteria
      */
     public function filterById($id = null, $comparison = null)
     {
-        if (is_array($id) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($id)) {
+            $useMinMax = false;
+            if (isset($id['min'])) {
+                $this->addUsingAlias(ProductsPeer::ID, $id['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($id['max'])) {
+                $this->addUsingAlias(ProductsPeer::ID, $id['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(ProductsPeer::ID, $id, $comparison);
@@ -502,7 +530,8 @@ abstract class BaseProductsQuery extends ModelCriteria
      * <code>
      * $query->filterByWashing(1234); // WHERE washing = 1234
      * $query->filterByWashing(array(12, 34)); // WHERE washing IN (12, 34)
-     * $query->filterByWashing(array('min' => 12)); // WHERE washing > 12
+     * $query->filterByWashing(array('min' => 12)); // WHERE washing >= 12
+     * $query->filterByWashing(array('max' => 12)); // WHERE washing <= 12
      * </code>
      *
      * @see       filterByProductsWashingInstructions()
@@ -559,7 +588,7 @@ abstract class BaseProductsQuery extends ModelCriteria
     public function filterByHasVideo($hasVideo = null, $comparison = null)
     {
         if (is_string($hasVideo)) {
-            $has_video = in_array(strtolower($hasVideo), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+            $hasVideo = in_array(strtolower($hasVideo), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
         }
 
         return $this->addUsingAlias(ProductsPeer::HAS_VIDEO, $hasVideo, $comparison);
@@ -586,7 +615,7 @@ abstract class BaseProductsQuery extends ModelCriteria
     public function filterByIsOutOfStock($isOutOfStock = null, $comparison = null)
     {
         if (is_string($isOutOfStock)) {
-            $is_out_of_stock = in_array(strtolower($isOutOfStock), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+            $isOutOfStock = in_array(strtolower($isOutOfStock), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
         }
 
         return $this->addUsingAlias(ProductsPeer::IS_OUT_OF_STOCK, $isOutOfStock, $comparison);
@@ -613,7 +642,7 @@ abstract class BaseProductsQuery extends ModelCriteria
     public function filterByIsActive($isActive = null, $comparison = null)
     {
         if (is_string($isActive)) {
-            $is_active = in_array(strtolower($isActive), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+            $isActive = in_array(strtolower($isActive), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
         }
 
         return $this->addUsingAlias(ProductsPeer::IS_ACTIVE, $isActive, $comparison);
@@ -711,8 +740,8 @@ abstract class BaseProductsQuery extends ModelCriteria
      * @param   Products|PropelObjectCollection $products The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   ProductsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 ProductsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByProductsRelatedByMaster($products, $comparison = null)
     {
@@ -787,8 +816,8 @@ abstract class BaseProductsQuery extends ModelCriteria
      * @param   ProductsWashingInstructions|PropelObjectCollection $productsWashingInstructions The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   ProductsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 ProductsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByProductsWashingInstructions($productsWashingInstructions, $comparison = null)
     {
@@ -863,8 +892,8 @@ abstract class BaseProductsQuery extends ModelCriteria
      * @param   MannequinImages|PropelObjectCollection $mannequinImages  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   ProductsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 ProductsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByMannequinImages($mannequinImages, $comparison = null)
     {
@@ -937,8 +966,8 @@ abstract class BaseProductsQuery extends ModelCriteria
      * @param   Products|PropelObjectCollection $products  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   ProductsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 ProductsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByProductsRelatedBySku($products, $comparison = null)
     {
@@ -1011,8 +1040,8 @@ abstract class BaseProductsQuery extends ModelCriteria
      * @param   ProductsDomainsPrices|PropelObjectCollection $productsDomainsPrices  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   ProductsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 ProductsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByProductsDomainsPrices($productsDomainsPrices, $comparison = null)
     {
@@ -1085,8 +1114,8 @@ abstract class BaseProductsQuery extends ModelCriteria
      * @param   ProductsImages|PropelObjectCollection $productsImages  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   ProductsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 ProductsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByProductsImages($productsImages, $comparison = null)
     {
@@ -1159,8 +1188,8 @@ abstract class BaseProductsQuery extends ModelCriteria
      * @param   ProductsImagesCategoriesSort|PropelObjectCollection $productsImagesCategoriesSort  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   ProductsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 ProductsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByProductsImagesCategoriesSort($productsImagesCategoriesSort, $comparison = null)
     {
@@ -1233,8 +1262,8 @@ abstract class BaseProductsQuery extends ModelCriteria
      * @param   ProductsImagesProductReferences|PropelObjectCollection $productsImagesProductReferences  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   ProductsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 ProductsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByProductsImagesProductReferences($productsImagesProductReferences, $comparison = null)
     {
@@ -1307,8 +1336,8 @@ abstract class BaseProductsQuery extends ModelCriteria
      * @param   ProductsQuantityDiscount|PropelObjectCollection $productsQuantityDiscount  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   ProductsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 ProductsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByProductsQuantityDiscount($productsQuantityDiscount, $comparison = null)
     {
@@ -1381,8 +1410,8 @@ abstract class BaseProductsQuery extends ModelCriteria
      * @param   ProductsStock|PropelObjectCollection $productsStock  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   ProductsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 ProductsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByProductsStock($productsStock, $comparison = null)
     {
@@ -1455,8 +1484,8 @@ abstract class BaseProductsQuery extends ModelCriteria
      * @param   ProductsToCategories|PropelObjectCollection $productsToCategories  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   ProductsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 ProductsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByProductsToCategories($productsToCategories, $comparison = null)
     {
@@ -1529,8 +1558,8 @@ abstract class BaseProductsQuery extends ModelCriteria
      * @param   OrdersLines|PropelObjectCollection $ordersLines  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   ProductsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 ProductsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByOrdersLines($ordersLines, $comparison = null)
     {
@@ -1603,8 +1632,8 @@ abstract class BaseProductsQuery extends ModelCriteria
      * @param   RelatedProducts|PropelObjectCollection $relatedProducts  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   ProductsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 ProductsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByRelatedProductsRelatedByMaster($relatedProducts, $comparison = null)
     {
@@ -1677,8 +1706,8 @@ abstract class BaseProductsQuery extends ModelCriteria
      * @param   RelatedProducts|PropelObjectCollection $relatedProducts  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   ProductsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 ProductsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByRelatedProductsRelatedBySku($relatedProducts, $comparison = null)
     {
@@ -1751,8 +1780,8 @@ abstract class BaseProductsQuery extends ModelCriteria
      * @param   ProductsI18n|PropelObjectCollection $productsI18n  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   ProductsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 ProductsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByProductsI18n($productsI18n, $comparison = null)
     {

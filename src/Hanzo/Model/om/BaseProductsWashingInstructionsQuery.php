@@ -44,7 +44,6 @@ use Hanzo\Model\ProductsWashingInstructionsQuery;
  * @method ProductsWashingInstructions findOne(PropelPDO $con = null) Return the first ProductsWashingInstructions matching the query
  * @method ProductsWashingInstructions findOneOrCreate(PropelPDO $con = null) Return the first ProductsWashingInstructions matching the query, or a new ProductsWashingInstructions object populated from the query conditions when no match is found
  *
- * @method ProductsWashingInstructions findOneById(int $id) Return the first ProductsWashingInstructions filtered by the id column
  * @method ProductsWashingInstructions findOneByCode(int $code) Return the first ProductsWashingInstructions filtered by the code column
  * @method ProductsWashingInstructions findOneByLocale(string $locale) Return the first ProductsWashingInstructions filtered by the locale column
  * @method ProductsWashingInstructions findOneByDescription(string $description) Return the first ProductsWashingInstructions filtered by the description column
@@ -72,7 +71,7 @@ abstract class BaseProductsWashingInstructionsQuery extends ModelCriteria
      * Returns a new ProductsWashingInstructionsQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     ProductsWashingInstructionsQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   ProductsWashingInstructionsQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return ProductsWashingInstructionsQuery
      */
@@ -129,18 +128,32 @@ abstract class BaseProductsWashingInstructionsQuery extends ModelCriteria
     }
 
     /**
+     * Alias of findPk to use instance pooling
+     *
+     * @param     mixed $key Primary key to use for the query
+     * @param     PropelPDO $con A connection object
+     *
+     * @return                 ProductsWashingInstructions A model object, or null if the key is not found
+     * @throws PropelException
+     */
+     public function findOneById($key, $con = null)
+     {
+        return $this->findPk($key, $con);
+     }
+
+    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   ProductsWashingInstructions A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 ProductsWashingInstructions A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `ID`, `CODE`, `LOCALE`, `DESCRIPTION` FROM `products_washing_instructions` WHERE `ID` = :p0';
+        $sql = 'SELECT `id`, `code`, `locale`, `description` FROM `products_washing_instructions` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -236,7 +249,8 @@ abstract class BaseProductsWashingInstructionsQuery extends ModelCriteria
      * <code>
      * $query->filterById(1234); // WHERE id = 1234
      * $query->filterById(array(12, 34)); // WHERE id IN (12, 34)
-     * $query->filterById(array('min' => 12)); // WHERE id > 12
+     * $query->filterById(array('min' => 12)); // WHERE id >= 12
+     * $query->filterById(array('max' => 12)); // WHERE id <= 12
      * </code>
      *
      * @param     mixed $id The value to use as filter.
@@ -249,8 +263,22 @@ abstract class BaseProductsWashingInstructionsQuery extends ModelCriteria
      */
     public function filterById($id = null, $comparison = null)
     {
-        if (is_array($id) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($id)) {
+            $useMinMax = false;
+            if (isset($id['min'])) {
+                $this->addUsingAlias(ProductsWashingInstructionsPeer::ID, $id['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($id['max'])) {
+                $this->addUsingAlias(ProductsWashingInstructionsPeer::ID, $id['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(ProductsWashingInstructionsPeer::ID, $id, $comparison);
@@ -263,7 +291,8 @@ abstract class BaseProductsWashingInstructionsQuery extends ModelCriteria
      * <code>
      * $query->filterByCode(1234); // WHERE code = 1234
      * $query->filterByCode(array(12, 34)); // WHERE code IN (12, 34)
-     * $query->filterByCode(array('min' => 12)); // WHERE code > 12
+     * $query->filterByCode(array('min' => 12)); // WHERE code >= 12
+     * $query->filterByCode(array('max' => 12)); // WHERE code <= 12
      * </code>
      *
      * @param     mixed $code The value to use as filter.
@@ -361,8 +390,8 @@ abstract class BaseProductsWashingInstructionsQuery extends ModelCriteria
      * @param   Languages|PropelObjectCollection $languages The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   ProductsWashingInstructionsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 ProductsWashingInstructionsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByLanguages($languages, $comparison = null)
     {
@@ -437,8 +466,8 @@ abstract class BaseProductsWashingInstructionsQuery extends ModelCriteria
      * @param   Products|PropelObjectCollection $products  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   ProductsWashingInstructionsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 ProductsWashingInstructionsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByProducts($products, $comparison = null)
     {

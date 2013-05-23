@@ -42,13 +42,13 @@ class CmsTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(true);
         // columns
-        $this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
-        $this->addForeignKey('PARENT_ID', 'ParentId', 'INTEGER', 'cms', 'ID', false, null, null);
-        $this->addForeignKey('CMS_THREAD_ID', 'CmsThreadId', 'INTEGER', 'cms_thread', 'ID', true, null, null);
-        $this->addColumn('SORT', 'Sort', 'INTEGER', true, null, 1);
-        $this->addColumn('TYPE', 'Type', 'VARCHAR', true, 255, 'cms');
-        $this->addColumn('CREATED_AT', 'CreatedAt', 'TIMESTAMP', false, null, null);
-        $this->addColumn('UPDATED_AT', 'UpdatedAt', 'TIMESTAMP', false, null, null);
+        $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
+        $this->addForeignKey('parent_id', 'ParentId', 'INTEGER', 'cms', 'id', false, null, null);
+        $this->addForeignKey('cms_thread_id', 'CmsThreadId', 'INTEGER', 'cms_thread', 'id', true, null, null);
+        $this->addColumn('sort', 'Sort', 'INTEGER', true, null, 1);
+        $this->addColumn('type', 'Type', 'VARCHAR', true, 255, 'cms');
+        $this->addColumn('created_at', 'CreatedAt', 'TIMESTAMP', false, null, null);
+        $this->addColumn('updated_at', 'UpdatedAt', 'TIMESTAMP', false, null, null);
         // validators
     } // initialize()
 
@@ -72,8 +72,20 @@ class CmsTableMap extends TableMap
     public function getBehaviors()
     {
         return array(
-            'i18n' => array('i18n_table' => '%TABLE%_i18n', 'i18n_phpname' => '%PHPNAME%I18n', 'i18n_columns' => 'title, path, old_path, content, settings, is_restricted, is_active', 'locale_column' => 'locale', 'default_locale' => 'da_DK', 'locale_alias' => '', ),
-            'timestampable' => array('create_column' => 'created_at', 'update_column' => 'updated_at', 'disable_updated_at' => 'false', ),
+            'i18n' =>  array (
+  'i18n_table' => '%TABLE%_i18n',
+  'i18n_phpname' => '%PHPNAME%I18n',
+  'i18n_columns' => 'title, path, old_path, content, settings, is_restricted, is_active',
+  'i18n_pk_name' => NULL,
+  'locale_column' => 'locale',
+  'default_locale' => 'da_DK',
+  'locale_alias' => '',
+),
+            'timestampable' =>  array (
+  'create_column' => 'created_at',
+  'update_column' => 'updated_at',
+  'disable_updated_at' => 'false',
+),
         );
     } // getBehaviors()
 

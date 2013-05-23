@@ -42,10 +42,10 @@ class CategoriesTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(true);
         // columns
-        $this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
-        $this->addForeignKey('PARENT_ID', 'ParentId', 'INTEGER', 'categories', 'ID', false, null, null);
-        $this->addColumn('CONTEXT', 'Context', 'VARCHAR', false, 32, '');
-        $this->addColumn('IS_ACTIVE', 'IsActive', 'BOOLEAN', true, 1, true);
+        $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
+        $this->addForeignKey('parent_id', 'ParentId', 'INTEGER', 'categories', 'id', false, null, null);
+        $this->addColumn('context', 'Context', 'VARCHAR', false, 32, '');
+        $this->addColumn('is_active', 'IsActive', 'BOOLEAN', true, 1, true);
         // validators
     } // initialize()
 
@@ -70,7 +70,15 @@ class CategoriesTableMap extends TableMap
     public function getBehaviors()
     {
         return array(
-            'i18n' => array('i18n_table' => '%TABLE%_i18n', 'i18n_phpname' => '%PHPNAME%I18n', 'i18n_columns' => 'title, content', 'locale_column' => 'locale', 'default_locale' => 'da_DK', 'locale_alias' => '', ),
+            'i18n' =>  array (
+  'i18n_table' => '%TABLE%_i18n',
+  'i18n_phpname' => '%PHPNAME%I18n',
+  'i18n_columns' => 'title, content',
+  'i18n_pk_name' => NULL,
+  'locale_column' => 'locale',
+  'default_locale' => 'da_DK',
+  'locale_alias' => '',
+),
         );
     } // getBehaviors()
 

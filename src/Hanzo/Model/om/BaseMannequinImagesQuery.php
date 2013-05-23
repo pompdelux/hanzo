@@ -79,7 +79,7 @@ abstract class BaseMannequinImagesQuery extends ModelCriteria
      * Returns a new MannequinImagesQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     MannequinImagesQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   MannequinImagesQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return MannequinImagesQuery
      */
@@ -143,12 +143,12 @@ abstract class BaseMannequinImagesQuery extends ModelCriteria
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   MannequinImages A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 MannequinImages A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `MASTER`, `COLOR`, `LAYER`, `IMAGE`, `ICON`, `WEIGHT`, `IS_MAIN` FROM `mannequin_images` WHERE `MASTER` = :p0 AND `COLOR` = :p1';
+        $sql = 'SELECT `master`, `color`, `layer`, `image`, `icon`, `weight`, `is_main` FROM `mannequin_images` WHERE `master` = :p0 AND `color` = :p1';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_STR);
@@ -314,7 +314,8 @@ abstract class BaseMannequinImagesQuery extends ModelCriteria
      * <code>
      * $query->filterByLayer(1234); // WHERE layer = 1234
      * $query->filterByLayer(array(12, 34)); // WHERE layer IN (12, 34)
-     * $query->filterByLayer(array('min' => 12)); // WHERE layer > 12
+     * $query->filterByLayer(array('min' => 12)); // WHERE layer >= 12
+     * $query->filterByLayer(array('max' => 12)); // WHERE layer <= 12
      * </code>
      *
      * @param     mixed $layer The value to use as filter.
@@ -413,7 +414,8 @@ abstract class BaseMannequinImagesQuery extends ModelCriteria
      * <code>
      * $query->filterByWeight(1234); // WHERE weight = 1234
      * $query->filterByWeight(array(12, 34)); // WHERE weight IN (12, 34)
-     * $query->filterByWeight(array('min' => 12)); // WHERE weight > 12
+     * $query->filterByWeight(array('min' => 12)); // WHERE weight >= 12
+     * $query->filterByWeight(array('max' => 12)); // WHERE weight <= 12
      * </code>
      *
      * @param     mixed $weight The value to use as filter.
@@ -468,7 +470,7 @@ abstract class BaseMannequinImagesQuery extends ModelCriteria
     public function filterByIsMain($isMain = null, $comparison = null)
     {
         if (is_string($isMain)) {
-            $is_main = in_array(strtolower($isMain), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+            $isMain = in_array(strtolower($isMain), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
         }
 
         return $this->addUsingAlias(MannequinImagesPeer::IS_MAIN, $isMain, $comparison);
@@ -480,8 +482,8 @@ abstract class BaseMannequinImagesQuery extends ModelCriteria
      * @param   Products|PropelObjectCollection $products The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   MannequinImagesQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 MannequinImagesQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByProducts($products, $comparison = null)
     {

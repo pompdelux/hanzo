@@ -90,6 +90,12 @@ abstract class BaseWallLikes extends BaseObject implements Persistent
     protected $alreadyInValidation = false;
 
     /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
+    /**
      * Applies default values to this object.
      * This method should be called from the object's constructor (or
      * equivalent initialization method).
@@ -158,7 +164,7 @@ abstract class BaseWallLikes extends BaseObject implements Persistent
      */
     public function setId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -179,7 +185,7 @@ abstract class BaseWallLikes extends BaseObject implements Persistent
      */
     public function setWallId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -204,7 +210,7 @@ abstract class BaseWallLikes extends BaseObject implements Persistent
      */
     public function setCustomersId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -297,7 +303,7 @@ abstract class BaseWallLikes extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
+            $this->postHydrate($row, $startcol, $rehydrate);
             return $startcol + 4; // 4 = WallLikesPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -538,16 +544,16 @@ abstract class BaseWallLikes extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(WallLikesPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`ID`';
+            $modifiedColumns[':p' . $index++]  = '`id`';
         }
         if ($this->isColumnModified(WallLikesPeer::WALL_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`WALL_ID`';
+            $modifiedColumns[':p' . $index++]  = '`wall_id`';
         }
         if ($this->isColumnModified(WallLikesPeer::CUSTOMERS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`CUSTOMERS_ID`';
+            $modifiedColumns[':p' . $index++]  = '`customers_id`';
         }
         if ($this->isColumnModified(WallLikesPeer::STATUS)) {
-            $modifiedColumns[':p' . $index++]  = '`STATUS`';
+            $modifiedColumns[':p' . $index++]  = '`status`';
         }
 
         $sql = sprintf(
@@ -560,16 +566,16 @@ abstract class BaseWallLikes extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`ID`':
+                    case '`id`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`WALL_ID`':
+                    case '`wall_id`':
                         $stmt->bindValue($identifier, $this->wall_id, PDO::PARAM_INT);
                         break;
-                    case '`CUSTOMERS_ID`':
+                    case '`customers_id`':
                         $stmt->bindValue($identifier, $this->customers_id, PDO::PARAM_INT);
                         break;
-                    case '`STATUS`':
+                    case '`status`':
                         $stmt->bindValue($identifier, (int) $this->status, PDO::PARAM_INT);
                         break;
                 }
@@ -640,11 +646,11 @@ abstract class BaseWallLikes extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -1022,12 +1028,13 @@ abstract class BaseWallLikes extends BaseObject implements Persistent
      * Get the associated Wall object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Wall The associated Wall object.
      * @throws PropelException
      */
-    public function getWall(PropelPDO $con = null)
+    public function getWall(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aWall === null && ($this->wall_id !== null)) {
+        if ($this->aWall === null && ($this->wall_id !== null) && $doQuery) {
             $this->aWall = WallQuery::create()->findPk($this->wall_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -1073,12 +1080,13 @@ abstract class BaseWallLikes extends BaseObject implements Persistent
      * Get the associated Customers object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Customers The associated Customers object.
      * @throws PropelException
      */
-    public function getCustomers(PropelPDO $con = null)
+    public function getCustomers(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aCustomers === null && ($this->customers_id !== null)) {
+        if ($this->aCustomers === null && ($this->customers_id !== null) && $doQuery) {
             $this->aCustomers = CustomersQuery::create()->findPk($this->customers_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -1103,6 +1111,7 @@ abstract class BaseWallLikes extends BaseObject implements Persistent
         $this->status = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->applyDefaultValues();
         $this->resetModified();
@@ -1121,7 +1130,16 @@ abstract class BaseWallLikes extends BaseObject implements Persistent
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
+            if ($this->aWall instanceof Persistent) {
+              $this->aWall->clearAllReferences($deep);
+            }
+            if ($this->aCustomers instanceof Persistent) {
+              $this->aCustomers->clearAllReferences($deep);
+            }
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
         $this->aWall = null;

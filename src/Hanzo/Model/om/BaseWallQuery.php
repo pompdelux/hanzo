@@ -58,7 +58,6 @@ use Hanzo\Model\WallQuery;
  * @method Wall findOne(PropelPDO $con = null) Return the first Wall matching the query
  * @method Wall findOneOrCreate(PropelPDO $con = null) Return the first Wall matching the query, or a new Wall object populated from the query conditions when no match is found
  *
- * @method Wall findOneById(int $id) Return the first Wall filtered by the id column
  * @method Wall findOneByParentId(int $parent_id) Return the first Wall filtered by the parent_id column
  * @method Wall findOneByCustomersId(int $customers_id) Return the first Wall filtered by the customers_id column
  * @method Wall findOneByMessate(string $messate) Return the first Wall filtered by the messate column
@@ -92,7 +91,7 @@ abstract class BaseWallQuery extends ModelCriteria
      * Returns a new WallQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     WallQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   WallQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return WallQuery
      */
@@ -149,18 +148,32 @@ abstract class BaseWallQuery extends ModelCriteria
     }
 
     /**
+     * Alias of findPk to use instance pooling
+     *
+     * @param     mixed $key Primary key to use for the query
+     * @param     PropelPDO $con A connection object
+     *
+     * @return                 Wall A model object, or null if the key is not found
+     * @throws PropelException
+     */
+     public function findOneById($key, $con = null)
+     {
+        return $this->findPk($key, $con);
+     }
+
+    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   Wall A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 Wall A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `ID`, `PARENT_ID`, `CUSTOMERS_ID`, `MESSATE`, `STATUS`, `CREATED_AT`, `UPDATED_AT` FROM `wall` WHERE `ID` = :p0';
+        $sql = 'SELECT `id`, `parent_id`, `customers_id`, `messate`, `status`, `created_at`, `updated_at` FROM `wall` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -256,7 +269,8 @@ abstract class BaseWallQuery extends ModelCriteria
      * <code>
      * $query->filterById(1234); // WHERE id = 1234
      * $query->filterById(array(12, 34)); // WHERE id IN (12, 34)
-     * $query->filterById(array('min' => 12)); // WHERE id > 12
+     * $query->filterById(array('min' => 12)); // WHERE id >= 12
+     * $query->filterById(array('max' => 12)); // WHERE id <= 12
      * </code>
      *
      * @param     mixed $id The value to use as filter.
@@ -269,8 +283,22 @@ abstract class BaseWallQuery extends ModelCriteria
      */
     public function filterById($id = null, $comparison = null)
     {
-        if (is_array($id) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($id)) {
+            $useMinMax = false;
+            if (isset($id['min'])) {
+                $this->addUsingAlias(WallPeer::ID, $id['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($id['max'])) {
+                $this->addUsingAlias(WallPeer::ID, $id['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(WallPeer::ID, $id, $comparison);
@@ -283,7 +311,8 @@ abstract class BaseWallQuery extends ModelCriteria
      * <code>
      * $query->filterByParentId(1234); // WHERE parent_id = 1234
      * $query->filterByParentId(array(12, 34)); // WHERE parent_id IN (12, 34)
-     * $query->filterByParentId(array('min' => 12)); // WHERE parent_id > 12
+     * $query->filterByParentId(array('min' => 12)); // WHERE parent_id >= 12
+     * $query->filterByParentId(array('max' => 12)); // WHERE parent_id <= 12
      * </code>
      *
      * @see       filterByWallRelatedByParentId()
@@ -326,7 +355,8 @@ abstract class BaseWallQuery extends ModelCriteria
      * <code>
      * $query->filterByCustomersId(1234); // WHERE customers_id = 1234
      * $query->filterByCustomersId(array(12, 34)); // WHERE customers_id IN (12, 34)
-     * $query->filterByCustomersId(array('min' => 12)); // WHERE customers_id > 12
+     * $query->filterByCustomersId(array('min' => 12)); // WHERE customers_id >= 12
+     * $query->filterByCustomersId(array('max' => 12)); // WHERE customers_id <= 12
      * </code>
      *
      * @see       filterByCustomers()
@@ -510,8 +540,8 @@ abstract class BaseWallQuery extends ModelCriteria
      * @param   Wall|PropelObjectCollection $wall The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   WallQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 WallQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByWallRelatedByParentId($wall, $comparison = null)
     {
@@ -586,8 +616,8 @@ abstract class BaseWallQuery extends ModelCriteria
      * @param   Customers|PropelObjectCollection $customers The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   WallQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 WallQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByCustomers($customers, $comparison = null)
     {
@@ -662,8 +692,8 @@ abstract class BaseWallQuery extends ModelCriteria
      * @param   Wall|PropelObjectCollection $wall  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   WallQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 WallQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByWallRelatedById($wall, $comparison = null)
     {
@@ -736,8 +766,8 @@ abstract class BaseWallQuery extends ModelCriteria
      * @param   WallLikes|PropelObjectCollection $wallLikes  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   WallQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 WallQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByWallLikes($wallLikes, $comparison = null)
     {

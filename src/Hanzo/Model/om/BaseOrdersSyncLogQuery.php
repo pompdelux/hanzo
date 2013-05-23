@@ -71,7 +71,7 @@ abstract class BaseOrdersSyncLogQuery extends ModelCriteria
      * Returns a new OrdersSyncLogQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     OrdersSyncLogQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   OrdersSyncLogQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return OrdersSyncLogQuery
      */
@@ -135,12 +135,12 @@ abstract class BaseOrdersSyncLogQuery extends ModelCriteria
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   OrdersSyncLog A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 OrdersSyncLog A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `ORDERS_ID`, `CREATED_AT`, `STATE`, `CONTENT`, `COMMENT` FROM `orders_sync_log` WHERE `ORDERS_ID` = :p0 AND `CREATED_AT` = :p1';
+        $sql = 'SELECT `orders_id`, `created_at`, `state`, `content`, `comment` FROM `orders_sync_log` WHERE `orders_id` = :p0 AND `created_at` = :p1';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);
@@ -248,7 +248,8 @@ abstract class BaseOrdersSyncLogQuery extends ModelCriteria
      * <code>
      * $query->filterByOrdersId(1234); // WHERE orders_id = 1234
      * $query->filterByOrdersId(array(12, 34)); // WHERE orders_id IN (12, 34)
-     * $query->filterByOrdersId(array('min' => 12)); // WHERE orders_id > 12
+     * $query->filterByOrdersId(array('min' => 12)); // WHERE orders_id >= 12
+     * $query->filterByOrdersId(array('max' => 12)); // WHERE orders_id <= 12
      * </code>
      *
      * @see       filterByOrders()
@@ -263,8 +264,22 @@ abstract class BaseOrdersSyncLogQuery extends ModelCriteria
      */
     public function filterByOrdersId($ordersId = null, $comparison = null)
     {
-        if (is_array($ordersId) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($ordersId)) {
+            $useMinMax = false;
+            if (isset($ordersId['min'])) {
+                $this->addUsingAlias(OrdersSyncLogPeer::ORDERS_ID, $ordersId['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($ordersId['max'])) {
+                $this->addUsingAlias(OrdersSyncLogPeer::ORDERS_ID, $ordersId['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(OrdersSyncLogPeer::ORDERS_ID, $ordersId, $comparison);
@@ -406,8 +421,8 @@ abstract class BaseOrdersSyncLogQuery extends ModelCriteria
      * @param   Orders|PropelObjectCollection $orders The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   OrdersSyncLogQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 OrdersSyncLogQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByOrders($orders, $comparison = null)
     {
