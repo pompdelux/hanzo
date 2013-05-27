@@ -417,16 +417,16 @@
         },
         {
             "name": "kriswallsmith/assetic",
-            "version": "dev-master",
+            "version": "1.1.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kriswallsmith/assetic.git",
-                "reference": "c24f69222dc837625715a6fa902a3e2fa4fb5038"
+                "reference": "1853a98c521c194678d30a0d8f1583ba43a4a342"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/c24f69222dc837625715a6fa902a3e2fa4fb5038",
-                "reference": "c24f69222dc837625715a6fa902a3e2fa4fb5038",
+                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/1853a98c521c194678d30a0d8f1583ba43a4a342",
+                "reference": "1853a98c521c194678d30a0d8f1583ba43a4a342",
                 "shasum": ""
             },
             "require": {
@@ -455,7 +455,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.2-dev"
+                    "dev-master": "1.1-dev"
                 }
             },
             "autoload": {
@@ -484,7 +484,7 @@
                 "compression",
                 "minification"
             ],
-            "time": "2013-05-22 17:17:41"
+            "time": "2013-05-22 16:55:21"
         },
         {
             "name": "liip/theme-bundle",
@@ -493,20 +493,20 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/liip/LiipThemeBundle.git",
-                "reference": "202f2d4ccba4e4be620d4c20666c932ff912f7ec"
+                "reference": "86b35f4b2854d112a1085eab2fd7b835177089db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liip/LiipThemeBundle/zipball/202f2d4ccba4e4be620d4c20666c932ff912f7ec",
-                "reference": "202f2d4ccba4e4be620d4c20666c932ff912f7ec",
+                "url": "https://api.github.com/repos/liip/LiipThemeBundle/zipball/86b35f4b2854d112a1085eab2fd7b835177089db",
+                "reference": "86b35f4b2854d112a1085eab2fd7b835177089db",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.2",
-                "symfony/framework-bundle": ">=2.0,<=2.3-dev"
+                "php": ">=5.3.3",
+                "symfony/framework-bundle": ">=2.0,<3.0"
             },
             "require-dev": {
-                "symfony/console": ">=2.0,<=2.3-dev"
+                "symfony/console": ">=2.0,<3.0"
             },
             "type": "symfony-bundle",
             "autoload": {
@@ -533,7 +533,7 @@
                 "themes",
                 "theming"
             ],
-            "time": "2013-05-12 15:26:56"
+            "time": "2013-05-25 07:59:48"
         },
         {
             "name": "monolog/monolog",
@@ -1343,17 +1343,17 @@
         },
         {
             "name": "willdurand/expose-translation-bundle",
-            "version": "0.2.1",
+            "version": "0.3.0",
             "target-dir": "Bazinga/ExposeTranslationBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/willdurand/BazingaExposeTranslationBundle.git",
-                "reference": "0.2.1"
+                "reference": "0.3.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/willdurand/BazingaExposeTranslationBundle/zipball/0.2.1",
-                "reference": "0.2.1",
+                "url": "https://api.github.com/repos/willdurand/BazingaExposeTranslationBundle/zipball/0.3.0",
+                "reference": "0.3.0",
                 "shasum": ""
             },
             "require": {
@@ -1392,7 +1392,7 @@
                 "javascript",
                 "translation"
             ],
-            "time": "2013-03-15 23:21:26"
+            "time": "2013-05-24 09:08:10"
         },
         {
             "name": "willdurand/geocoder",
