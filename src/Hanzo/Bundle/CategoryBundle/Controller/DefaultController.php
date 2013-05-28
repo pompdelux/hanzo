@@ -182,9 +182,9 @@ class DefaultController extends CoreController
                 $html = $data; // Use the json data as the html returned to call
             } else {
                 $classes = 'category-'.preg_replace('/[^a-z]/', '-', strtolower($cms_page->getTitle()));
-                if (preg_match('/(pige|girl|tjej)/', $container->get('request')->getPathInfo())) {
+                if (preg_match('/(pige|girl|tjej|tytto)/', $container->get('request')->getPathInfo())) {
                     $classes .= ' category-girl';
-                } elseif (preg_match('/(dreng|boy|kille)/', $container->get('request')->getPathInfo())) {
+                } elseif (preg_match('/(dreng|boy|kille|poika)/', $container->get('request')->getPathInfo())) {
                     $classes .= ' category-boy';
                 }
 
