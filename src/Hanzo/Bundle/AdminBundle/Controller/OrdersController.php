@@ -124,7 +124,6 @@ class OrdersController extends CoreController
             $pages = array();
             foreach ($orders->getLinks(20) as $page) {
                 $pages[$page] = $router->generate($route, array('customer_id' => $customer_id, 'pager' => $page), TRUE);
-
             }
 
             $paginate = array(
@@ -153,6 +152,8 @@ class OrdersController extends CoreController
             return $this->redirect($this->generateUrl('admin'));
         }
 
+        $hanzo = Hanzo::getInstance();
+
         $order = OrdersQuery::create()
             ->filterById($order_id)
             ->findOne($this->getDbConnection())
@@ -168,8 +169,29 @@ class OrdersController extends CoreController
             ->filterByOrdersId($order_id)
             ->orderByNs()
             ->orderByCKey()
+            ->joinWithOrders()
             ->find($this->getDbConnection())
         ;
+
+        $attributes = array();
+        $attachments = array();
+        foreach ($order_attributes as $attribute) {
+            if ('attachment' == $attribute->getNs()) {
+                $o = $attribute->getOrders();
+                $folder = $this->mapLanguageToPdfDir($o->getLanguagesId()).'_'.$o->getCreatedAt('Y');
+                $attachments[] = [
+                    'key'  => $attribute->getCKey(),
+                    'file' => $attribute->getCValue(),
+                    'path' => $hanzo->get('core.cdn') . 'pdf.php?' . http_build_query(array(
+                        'folder' => $folder,
+                        'file'   => $attribute->getCValue(),
+                        'key'    => md5(time())
+                    ))
+                ];
+            } else {
+                $attributes[] = $attribute;
+            }
+        }
 
         $order_sync_states = OrdersSyncLogQuery::create()
             ->orderByCreatedAt('ASC')
@@ -205,7 +227,8 @@ class OrdersController extends CoreController
         return $this->render('AdminBundle:Orders:view.html.twig', array(
             'order'  => $order,
             'order_lines' => $order_lines,
-            'order_attributes' => $order_attributes,
+            'order_attributes' => $attributes,
+            'order_attachments' => $attachments,
             'order_sync_states' => $order_sync_states,
             'form_state' => $form_state->createView(),
             'database' => $this->getRequest()->getSession()->get('database')

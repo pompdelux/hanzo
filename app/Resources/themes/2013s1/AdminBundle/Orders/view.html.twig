@@ -279,6 +279,28 @@
 
 {% endif %}
 
+{% if order_attachments|length > 0 %}
+<h1>Filer</h1>
+<p>Faktra og kreditnota.</p>
+<table id="orders-attachments" class="list">
+  <thead>
+    <tr>
+      <th>{{ 'admin.orders.lines.c_key'|trans({}, 'admin') }}</th>
+      <th>{{ 'admin.orders.lines.c_value'|trans({}, 'admin') }}</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for attachment in order_attachments %}
+    <tr>
+      <td>{{ attachment.key }}</td>
+      <td><a href="{{ attachment.path }}">{{ attachment.file }}</a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endif %}
+
 <h1>{{ 'admin.order.sync_states.header.text'|trans({}, 'admin') }}</h1>
 
 {% if order_sync_states|length > 0 %}
