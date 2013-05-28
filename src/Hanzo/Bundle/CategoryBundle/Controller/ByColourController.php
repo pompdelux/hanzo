@@ -163,9 +163,9 @@ class ByColourController extends CoreController
             }
 
             $classes = 'bycolour-'.preg_replace('/[^a-z]/', '-', strtolower($page->getTitle()));
-            if (preg_match('/(little-girl|girl)/', $container->get('request')->getPathInfo())) {
+            if (preg_match('/(pige|girl|tjej)/', $container->get('request')->getPathInfo())) {
                 $classes .= ' category-girl';
-            } elseif (preg_match('/(little-boy|boy)/', $container->get('request')->getPathInfo())) {
+            } elseif (preg_match('/(dreng|boy|kille)/', $container->get('request')->getPathInfo())) {
                 $classes .= ' category-boy';
             }
 
