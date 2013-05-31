@@ -788,6 +788,7 @@ a.video-popper .sprite, #video-player-container a.video .sprite {
 .body-product .main h4 {
   padding: 6px 0;
   font-weight: 400;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
 }
 
 form.buy {
@@ -796,7 +797,7 @@ form.buy {
 form.buy label {
   display: block;
   padding: 0 6px 0 0;
-  margin: 3px 0;
+  margin: 10px 0;
 }
 form.buy label span {
   display: block;

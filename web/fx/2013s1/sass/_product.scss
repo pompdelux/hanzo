@@ -81,6 +81,7 @@ a.video-popper, #video-player-container a.video {
 	h4{
 		padding: 6px 0;
 		font-weight: $font-weight-thin;
+		font-family: $font-sans;
 	}
 }
 
@@ -89,7 +90,7 @@ form.buy{
 	label{
 		display: block;
 		padding: 0 6px 0 0;
-		margin: 3px 0;
+		margin: 10px 0;
 		span{
 			display: block;
 		}
