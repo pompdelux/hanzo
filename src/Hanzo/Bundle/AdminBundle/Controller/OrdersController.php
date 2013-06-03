@@ -573,11 +573,10 @@ class OrdersController extends CoreController
     public function gothiaGetOrderAction()
     {
         $return = array(
-            'status' => false,
-            'message'    => '',
-            'data'   => array(
-                ),
-            );
+            'status'  => false,
+            'message' => '',
+            'data'    => array(),
+        );
 
         $request = $this->getRequest();
 
@@ -585,18 +584,12 @@ class OrdersController extends CoreController
 
         $order = OrdersQuery::create()->findPK($id, $this->getDbConnection());
 
-        if ( !( $order instanceOf Orders ) )
-        {
+        if (!($order instanceOf Orders)) {
             $return['message'] = 'Ingen ordre med id "'.$id.'" fundet';
-        }
-        else
-        {
-            if ( $order->getBillingMethod() != 'gothia' )
-            {
+        } else {
+            if ($order->getBillingMethod() != 'gothia') {
                 $return['message'] = 'Der er ikke blevet brugt Gothia som betaling på ordre id "'.$id.'"';
-            }
-            else
-            {
+            } else {
                 $customer = $order->getCustomers($this->getDbConnection());
 
                 $return['status'] = true;
@@ -605,10 +598,10 @@ class OrdersController extends CoreController
                     'id'       => $id,
                     'customer' => array(
                         'name' => $customer->getFirstName().' '. $customer->getLastName(),
-                        ),
+                    ),
                     'amount'   => $order->getTotalPrice(),
                     'state'    => $order->getState(),
-                    );
+                );
             }
         }
 
