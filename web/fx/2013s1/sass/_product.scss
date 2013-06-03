@@ -110,6 +110,10 @@ form.buy{
 		@include image-replacement;
 		display: block;
 	}
+	h4.bordered {
+		font-family: $font-sans;
+		font-size: $paragraph-size;
+	}
 }
 
 .latest-seen-poducts,
