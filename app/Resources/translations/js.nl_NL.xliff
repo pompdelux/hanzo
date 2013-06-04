@@ -288,7 +288,7 @@
             </trans-unit>
             <trans-unit id="quickorder.choose.color">
                 <source>quickorder.choose.color</source>
-                <target>Color</target>
+                <target>Colour</target>
             </trans-unit>
             <trans-unit id="event.user.email.not.found">
                 <source>event.user.email.not.found</source>

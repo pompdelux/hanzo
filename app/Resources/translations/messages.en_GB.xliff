@@ -101,7 +101,7 @@
             </trans-unit>
             <trans-unit id="color">
                 <source>color</source>
-                <target>Color</target>
+                <target>Colour</target>
             </trans-unit>
             <trans-unit id="company.address">
                 <source>company.address</source>
