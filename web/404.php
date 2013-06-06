@@ -68,6 +68,10 @@ switch ($ext)
     // create the new image
     $im = new imagick($source . $image);
     $im->thumbnailImage($w, $h);
+    // progressive jpeg
+    if ('JPEG' == $im->getImageFormat()) {
+      $im->setInterlaceScheme(Imagick::INTERLACE_PLANE);
+    }
     $im->writeImage("{$target}{$dimensions},{$image}");
 
     // send header and image

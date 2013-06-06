@@ -50,6 +50,10 @@ foreach ($images_found as $file) {
         // create the new image
         $im = new imagick($source_image);
         $im->thumbnailImage($w, $h);
+        // progressive jpeg
+        if ('JPEG' == $im->getImageFormat()) {
+            $im->setInterlaceScheme(Imagick::INTERLACE_PLANE);
+        }
         $im->writeImage("{$target_dir}{$dimensions},{$image}");
         $im->destroy();
     }
