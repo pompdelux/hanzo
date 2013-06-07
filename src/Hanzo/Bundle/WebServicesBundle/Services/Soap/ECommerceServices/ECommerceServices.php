@@ -765,9 +765,8 @@ class ECommerceServices extends SoapService
 
             // user created, add him/her to phplist
             if ($group_id > 1) {
-                $hanzo = Hanzo::getInstance();
-                $domain_key = $hanzo->get('core.domain_key');
-                $newsletter_lists = $hanzo->get('phplist.lists');
+                $domain_key = $this->hanzo->get('core.domain_key');
+                $newsletter_lists = $this->hanzo->get('phplist.lists');
                 if (isset($newsletter_lists[$domain_key])) {
                     $newsletter = new NewsletterApi();
                     $result = $newsletter->subscribe($customer->getEmail(), $newsletter_lists[$domain_key]);
@@ -975,7 +974,7 @@ class ECommerceServices extends SoapService
             $this->timer->reset();
             try {
                 $name = trim($order->getFirstName() . ' ' . $order->getLastName());
-                $mailer = Hanzo::getInstance()->container->get('mail_manager');
+                $mailer = $this->hanzo->container->get('mail_manager');
                 $mailer->setTo($order->getEmail(), $name);
                 $mailer->setMessage('order.status_processing', array(
                     'order_id' => $order->getId()
