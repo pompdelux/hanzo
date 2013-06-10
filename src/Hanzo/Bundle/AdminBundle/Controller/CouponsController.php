@@ -12,6 +12,7 @@ use Hanzo\Core\Tools;
 
 use Hanzo\Model\CouponsQuery;
 use Hanzo\Model\Coupons;
+use Hanzo\Model\CouponsPeer;
 use Hanzo\Model\CouponsToCustomersQuery;
 use Hanzo\Model\OrdersToCouponsQuery;
 use Hanzo\Model\CouponsToCustomers;
@@ -103,19 +104,7 @@ class CouponsController extends CoreController
             $coupon = new Coupons();
 
             if ('GET' === $request->getMethod()) {
-                // make sure we have a uniq code for every coupon
-                while (true) {
-                    $code = substr(str_shuffle(str_shuffle(str_repeat('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789', 2))), 0, 9);
-                    $check = CouponsQuery::create()
-                        ->filterByCode($code)
-                        ->findOne()
-                    ;
-
-                    if (empty($check)) {
-                        break;
-                    }
-                }
-                $coupon->setCode($code);
+                $coupon->setCode(CouponsPeer::generateCode());
             }
         }
 

@@ -15,5 +15,6 @@ services:
         class: %ax.out.service.class%
         arguments:
             - %ax.wsdl%
+            - %ax.log_requests%
             - @logger
             - @event_dispatcher

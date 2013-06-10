@@ -22,8 +22,8 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->booleanNode('log_requests')->defaultFalse()->end()
                 ->scalarNode('wsdl')->defaultValue('')->end()
+                ->booleanNode('log_requests')->defaultFalse()->end()
             ->end()
         ;
 

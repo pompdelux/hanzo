@@ -338,7 +338,6 @@ class Orders extends BaseOrders
                 $lines[$index] = $line;
                 $this->setOrdersLiness($lines);
                 $line->setExpectedAt($date);
-
                 return;
             }
         }
@@ -366,6 +365,11 @@ class Orders extends BaseOrders
         $line->setType('product');
         $line->setUnit('Stk.');
         $line->setExpectedAt($date);
+
+        if ($product->getIsVoucher()) {
+            $line->setIsVoucher(true);
+        }
+
         $this->addOrdersLines($line);
     }
 
