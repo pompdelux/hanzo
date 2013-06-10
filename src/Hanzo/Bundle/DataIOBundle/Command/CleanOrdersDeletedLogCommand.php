@@ -2,9 +2,9 @@
 
 /**
  * usage:
- *     php /path/to/symfony/console --env=prod_dk --quiet hanzo:dataio:clean_orders
- *     php /path/to/symfony/console --env=prod_no --quiet hanzo:dataio:clean_orders
- *     php /path/to/symfony/console --env=prod_se --quiet hanzo:dataio:clean_orders
+ *     php /path/to/symfony/console --env=prod_dk --quiet hanzo:dataio:clean_deleted_orders_log
+ *     php /path/to/symfony/console --env=prod_no --quiet hanzo:dataio:clean_deleted_orders_log
+ *     php /path/to/symfony/console --env=prod_se --quiet hanzo:dataio:clean_deleted_orders_log
  */
 
 namespace Hanzo\Bundle\DataIOBundle\Command;
@@ -24,7 +24,7 @@ class CleanOrdersDeletedLogCommand extends ContainerAwareCommand
 {
     protected function configure()
     {
-        $this->setName('hanzo:dataio:clean_orders_deleted_log')
+        $this->setName('hanzo:dataio:clean_deleted_orders_log')
             ->setDescription('Delete logs older than three months')
             ->addOption('dry_run', null, InputOption::VALUE_NONE, 'If set, the task will not delete any logs')
         ;
