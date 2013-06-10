@@ -6,7 +6,6 @@ parameters:
     twig_string.class: Hanzo\Bundle\ServiceBundle\Services\TwigStringService
     cache_manager.class: Hanzo\Bundle\ServiceBundle\Services\CacheService
     cleanup_manager.class: Hanzo\Bundle\ServiceBundle\Services\CleanupService
-    ax_manager.class: Hanzo\Bundle\ServiceBundle\Services\AxService
     geoip_manager.class: Hanzo\Bundle\ServiceBundle\Services\GeoIPService
     replication_manager.class: Hanzo\Bundle\ServiceBundle\Services\ReplicationService
     deadorder_manager.class: Hanzo\Bundle\ServiceBundle\Services\DeadOrderService
@@ -62,15 +61,6 @@ services:
             parameters:  [@payment.dibsapi]
             class:       %cleanup_manager.class%
 
-    ax_manager:
-        class:           %ax_manager.class%
-        factory_service: service_factory
-        factory_method:  get
-        arguments:
-            service:     ax
-            parameters:  [@logger]
-            class:       %ax_manager.class%
-
     geoip_manager:
         class:           %geoip_manager.class%
         factory_service: service_factory
@@ -96,5 +86,5 @@ services:
         factory_method:  get
         arguments:
             service:     deadorder
-            parameters:  [@payment.dibsapi,@event_dispatcher,@ax_manager]
+            parameters:  [@payment.dibsapi, @event_dispatcher, @ax.out]
             class:       %deadorder_manager.class%

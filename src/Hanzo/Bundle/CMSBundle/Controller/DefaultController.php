@@ -20,6 +20,7 @@ class DefaultController extends CoreController
 {
     public function indexAction()
     {
+Tools::log(get_class($this->get('ax.out')));
         $hanzo = Hanzo::getInstance();
         $page = CmsPeer::getFrontpage($hanzo->get('core.locale'));
 

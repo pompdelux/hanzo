@@ -13,7 +13,7 @@ use Hanzo\Model\OrdersLinesQuery;
 use Hanzo\Model\OrdersSyncLogQuery;
 
 use Hanzo\Bundle\ServiceBundle\Services\MailService;
-use Hanzo\Bundle\ServiceBundle\Services\AxService;
+use Hanzo\Bundle\AxBundle\Actions\Out\AxService;
 
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;

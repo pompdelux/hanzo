@@ -1,6 +1,6 @@
 <?php
 
-namespace Hanzo\Bundle\WebServicesBundle\Services\Soap;
+namespace Hanzo\Bundle\AxBundle\Actions\In\Soap;
 
 use Monolog;
 
@@ -23,14 +23,9 @@ class SoapService
 
     public function __construct(Request $request, $logger, EventDispatcher $event_dispatcher)
     {
-        $this->timer = new Timer('soap');
-
-        $this->request = $request;
-        $this->logger = $logger;
+        $this->request          = $request;
+        $this->logger           = $logger;
         $this->event_dispatcher = $event_dispatcher;
-
-        $logger->addDebug('Soap call ... initialized.');
-        $this->hanzo = Hanzo::getInstance();
 
         if (method_exists($this, 'boot')) {
             $this->boot();
@@ -39,13 +34,16 @@ class SoapService
 
     public function exec($service)
     {
+        $this->timer = new Timer('soap');
+        $this->hanzo = Hanzo::getInstance();
+        $this->logger->addDebug('Soap call ... initialized.');
+
         $response = new Response();
         $response->headers->set('Content-Type', 'text/xml; charset=UTF-8');
 
         ob_start();
         $service->handle();
-        $var = ob_get_contents();
-        $response->setContent(trim($var));
+        $response->setContent(trim(ob_get_contents()));
 
         return $response;
     }

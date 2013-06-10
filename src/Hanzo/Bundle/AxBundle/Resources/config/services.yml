@@ -1,0 +1,19 @@
+parameters:
+    ax.ecommerce.services.class: Hanzo\Bundle\AxBundle\Actions\In\Soap\ECommerceServices\ECommerceServices
+    ax.out.service.class: Hanzo\Bundle\AxBundle\Actions\Out\AxService
+
+services:
+    # don't change naming format - the controller needs this
+    ax.ECommerceServices.service:
+        class: %ax.ecommerce.services.class%
+        arguments:
+            - @request
+            - @logger
+            - @event_dispatcher
+        scope: request
+    ax.out:
+        class: %ax.out.service.class%
+        arguments:
+            - %ax.wsdl%
+            - @logger
+            - @event_dispatcher

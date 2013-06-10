@@ -4,7 +4,7 @@ parameters:
 services:
     hanzo.checkout.checkout.listener:
         class: Hanzo\Bundle\CheckoutBundle\Event\CheckoutListener
-        arguments: [ @mail_manager, @ax_manager, @translator, @session ]
+        arguments: [ @mail_manager, @ax.out, @translator, @session ]
         tags:
             - { name: kernel.event_listener, event: order.payment.collected, method: onPaymentCollected }
             - { name: kernel.event_listener, event: order.payment.failed, method: onPaymentFailed }
@@ -12,7 +12,7 @@ services:
 
     hanzo.order:
         class: Hanzo\Bundle\CheckoutBundle\Event\OrderListener
-        arguments: [ @session, @ax_manager ]
+        arguments: [ @session, @ax.out ]
         tags:
             - { name: kernel.event_listener, event: order.edit.start, method: onEditStart }
             - { name: kernel.event_listener, event: order.edit.cancel, method: onEditCancel }

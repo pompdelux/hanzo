@@ -1,8 +1,8 @@
 <?php
 
-namespace Hanzo\Bundle\WebServicesBundle\Services\Soap\ECommerceServices;
+namespace Hanzo\Bundle\AxBundle\Actions\In\Soap\ECommerceServices;
 
-use Hanzo\Bundle\WebServicesBundle\Services\Soap\SoapService;
+use Hanzo\Bundle\AxBundle\Actions\In\Soap\SoapService;
 
 use Hanzo\Core\Tools;
 use Hanzo\Core\Hanzo;
@@ -81,6 +81,7 @@ class ECommerceServices extends SoapService
      *          <UnitId>Stk.</UnitId>
      *        </Sales>
      *        <WashInstruction/>
+     *        <IsVoucher/>
      *      </InventTable>
      *    </item>
      * @return object SyncItemResult
@@ -1022,7 +1023,7 @@ class ECommerceServices extends SoapService
 
         if (!$order instanceof Orders) {
             $this->logger->addCritical(__METHOD__.' '.__LINE__.': order #' . $data->eOrderNumber . ' does not exist.');
-            return self::responseStatus('Error', 'SalesOrderLockUnlockResult', array('order #' . $data->eOrderNumber . ' does not exist.'));
+            return self::responseStatus('Error', 'SalesOrderAddDocumentResult', array('order #' . $data->eOrderNumber . ' does not exist.'));
         }
 
         // ....................
@@ -1056,11 +1057,14 @@ class ECommerceServices extends SoapService
      *
      * @return object
      */
-    protected function responseStatus ($status, $var, $messages = array())
+    protected function responseStatus ($status, $var, $messages = [])
     {
-        $response = new \stdClass();
-        $response->{$var} = new \stdClass();
-        $response->{$var}->Status = new \SoapVar($status, \XSD_STRING, "", "http://schemas.pompdelux.dk/webintegration/ResponseStatus");
+        $response = (object) [
+            $var => (object) [
+                'Status'  => new \SoapVar($status, \XSD_STRING, "", "http://schemas.pompdelux.dk/webintegration/ResponseStatus"),
+                'Message' => [],
+            ]
+        ];
 
         foreach ($messages as $message) {
             $response->{$var}->Message[] = new \SoapVar($message, \XSD_STRING, "", "http://schemas.pompdelux.dk/webintegration/ResponseStatus");

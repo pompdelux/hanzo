@@ -1,6 +1,11 @@
+AxBundle:
+    resource: "@AxBundle/Resources/config/routing.yml"
+    prefix:   /{_locale}/
+
 LocationLocatorBundle:
     resource: "@LocationLocatorBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/
+
 DiscountBundle:
     resource: "@DiscountBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/

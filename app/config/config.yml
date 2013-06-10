@@ -177,3 +177,6 @@ liip_theme:
         bundle_resource_dir:
             - %%dir%%/themes/%%current_theme%%/%%bundle_name%%/%%template%%
             - %%dir%%/themes/2012s2/%%bundle_name%%/%%template%%
+
+ax:
+    wsdl: ""
