@@ -35,6 +35,8 @@ use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\OrdersLines;
 use Hanzo\Model\OrdersLinesPeer;
 use Hanzo\Model\OrdersLinesQuery;
+use Hanzo\Model\OrdersAttributes;
+use Hanzo\Model\OrdersAttributesQuery;
 
 use Hanzo\Bundle\NewsletterBundle\NewsletterApi;
 use Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCall;
@@ -1019,26 +1021,32 @@ class ECommerceServices extends SoapService
             return self::responseStatus('Error', 'SalesOrderAddDocumentResult', array('no eOrderNumber given.'));
         }
 
-        $order = OrdersQuery::create()->findOneById($data->eOrderNumber);
+        $order = OrdersQuery::create()
+            ->filterById($data->eOrderNumber)
+            ->count()
+        ;
 
-        if (!$order instanceof Orders) {
+        if (!$order) {
             $this->logger->addCritical(__METHOD__.' '.__LINE__.': order #' . $data->eOrderNumber . ' does not exist.');
-            return self::responseStatus('Error', 'SalesOrderLockUnlockResult', array('order #' . $data->eOrderNumber . ' does not exist.'));
+            return self::responseStatus('Error', 'SalesOrderAddDocumentResult', array('order #' . $data->eOrderNumber . ' does not exist.'));
         }
 
         // ....................
         // .....<ze code>......
         // ....................
 
-        $attributes = $order->getAttributes();
+        $attachment_index = OrdersAttributesQuery::create()
+            ->filterByOrdersId($data->eOrderNumber)
+            ->filterByNs('attachment')
+            ->count()
+        ;
 
-        $attachment_index = 0;
-        if (isset($attributes->attachment)) {
-            $attachment_index = count($attributes->attachment);
-        }
-
-        $order->setAttribute('attachment_'.$attachment_index, 'attachment', $data->fileName);
-        $order->save();
+        $attribute = new OrdersAttributes();
+        $attribute->setOrdersId($data->eOrderNumber);
+        $attribute->setNs('attachment');
+        $attribute->setCKey('attachment_'.$attachment_index);
+        $attribute->setCValue($data->fileName);
+        $attribute->save();
 
         // ....................
         // .....</ze code>.....
@@ -1084,7 +1092,7 @@ class ECommerceServices extends SoapService
         $error = [];
 
         $provider = strtolower($order->getBillingMethod());
-        if ('paybybill' == $provider) {
+        if (in_array($provider, ['paybybill', 'gothia'])) {
             return true;
         }
 
