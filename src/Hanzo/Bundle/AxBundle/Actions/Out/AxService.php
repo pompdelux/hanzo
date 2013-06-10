@@ -26,14 +26,15 @@ class AxService
     protected $wsdl;
     protected $logger;
     protected $event_dispatcher;
-
     protected $client;
-    protected $ax_state  = false;
-    protected $skip_send = false;
+    protected $ax_state     = false;
+    protected $skip_send    = false;
+    protected $log_requests = false;
 
-    public function __construct($wsdl, Logger $logger, EventDispatcher $event_dispatcher)
+    public function __construct($wsdl, $log_requests, Logger $logger, EventDispatcher $event_dispatcher)
     {
         $this->wsdl             = $wsdl;
+        $this->log_requests     = $log_requests;
         $this->logger           = $logger;
         $this->event_dispatcher = $event_dispatcher;
 
@@ -543,6 +544,10 @@ class AxService
      */
     protected function Send($service, $request)
     {
+        if ($this->log_requests) {
+            $this->logger->addDebug('Calling: '.$service, $request);
+        }
+
         if ($this->skip_send) {
             return true;
         }
