@@ -2568,7 +2568,7 @@ div.dialoug.like-pop li div {
 }
 
 /**
-| _base
+| _base.
 */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -2734,7 +2734,7 @@ hr {
   margin: 0;
   width: 100%;
   background-position: 0 -335px;
-  height: 15px;
+  height: 20px;
 }
 hr.left {
   background-position: 0 -86px;
