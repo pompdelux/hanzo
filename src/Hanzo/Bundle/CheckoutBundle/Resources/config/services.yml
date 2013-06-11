@@ -6,9 +6,9 @@ services:
         class: Hanzo\Bundle\CheckoutBundle\Event\CheckoutListener
         arguments: [ @mail_manager, @ax.out, @translator, @session ]
         tags:
-            - { name: kernel.event_listener, event: order.payment.collected, method: onPaymentCollected }
+            - { name: kernel.event_listener, event: order.payment.collected, method: onPaymentCollected, priority: 0 }
             - { name: kernel.event_listener, event: order.payment.failed, method: onPaymentFailed }
-            - { name: kernel.event_listener, event: order.summery.finalize, method: onFinalize, prioriy: 20 }
+            - { name: kernel.event_listener, event: order.summery.finalize, method: onFinalize, priority: 20 }
 
     hanzo.order:
         class: Hanzo\Bundle\CheckoutBundle\Event\OrderListener

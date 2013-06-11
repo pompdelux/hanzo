@@ -3,10 +3,10 @@ services:
         class: Hanzo\Bundle\DiscountBundle\Event\CheckoutListener
         arguments: [ @logger ]
         tags:
-            - { name: kernel.event_listener, event: order.summery.finalize, method: onFinalize, prioriy: 20 }
+            - { name: kernel.event_listener, event: order.summery.finalize, method: onFinalize, priority: 20 }
 
     hanzo.discount.checkout.listener:
         class: Hanzo\Bundle\DiscountBundle\Event\CheckoutListener
         arguments: [ @logger ]
         tags:
-            - { name: kernel.event_listener, event: order.payment.collected, method: onPaymentCollected, prioriy: 20 }
+            - { name: kernel.event_listener, event: order.payment.collected, method: onPaymentCollected, priority: 10 }

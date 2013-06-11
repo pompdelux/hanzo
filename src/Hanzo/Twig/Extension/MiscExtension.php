@@ -256,6 +256,10 @@ DOC;
      public function embed(Twig_Environment $env, $name, $parameters = array())
      {
         switch ($name) {
+            default:
+                return '';
+                break;
+
             case 'newsletter_form':
                 $view = '';
                 $customer = null;

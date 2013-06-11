@@ -87,6 +87,7 @@ class CheckoutListener
      */
     public function onPaymentCollected(FilterOrderEvent $event)
     {
+Tools::log(__METHOD__);
         $order = $event->getOrder();
 
         if ($order->getState() < Orders::STATE_PAYMENT_OK ) {

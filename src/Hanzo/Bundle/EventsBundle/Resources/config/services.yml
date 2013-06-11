@@ -3,4 +3,4 @@ services:
         class: Hanzo\Bundle\EventsBundle\Event\CheckoutListener
         arguments: [ @mail_manager, @ax.out, @translator ]
         tags:
-            - { name: kernel.event_listener, event: order.summery.finalize, method: onFinalize, prioriy: 10 }
+            - { name: kernel.event_listener, event: order.summery.finalize, method: onFinalize, priority: 10 }
