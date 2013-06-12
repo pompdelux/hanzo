@@ -51,5 +51,7 @@ class UnlockOrdersCommand extends ContainerAwareCommand
         if ($dry_run) {
             error_log("\n[".date('Y-m-d H:i:s').'] Would roll back '.$cancel_count.' stale orders.');
         }
+
+        $this->getContainer()->get('redis.permanent')->hset('cron.log', 'unlock_orders', time());
     }
 }

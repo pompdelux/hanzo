@@ -42,5 +42,7 @@ class SmsRemindersCommand extends ContainerAwareCommand
 
         $status = $sms->eventReminder($locale);
         $output->writeln('<info>Reminders send.</info>');
+
+        $this->getContainer()->get('redis.permanent')->hset('cron.log', 'sms_reminders', time());
     }
 }

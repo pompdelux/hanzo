@@ -48,5 +48,6 @@ class CleanOrdersDeletedLogCommand extends ContainerAwareCommand
             $query->delete();
         }
 
+        $this->getContainer()->get('redis.permanent')->hset('cron.log', 'clean_deleted_orders_log', time());
     }
 }

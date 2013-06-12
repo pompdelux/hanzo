@@ -47,15 +47,21 @@ Class Redis
      */
     public function __construct($name, $environment, array $parameters = [])
     {
-        $this->parameters = $parameters;
-        $this->name = $name;
 
-        $prefix = $name.'.'.$environment.':';
-        if (empty($this->parameters['prefix'])) {
-            $this->parameters['prefix'] = $prefix;
+        if ($parameters['skip_env']) {
+            $prefix = $name.':';
         } else {
-            $this->parameters['prefix'] .= '.'.$prefix;
+            $prefix = $name.'.'.$environment.':';
         }
+
+        if (empty($parameters['prefix'])) {
+            $parameters['prefix'] = $prefix;
+        } else {
+            $parameters['prefix'] .= '.'.$prefix;
+        }
+
+        $this->name = $name;
+        $this->parameters = $parameters;
     }
 
 
@@ -105,6 +111,7 @@ Class Redis
 
         if (method_exists($this->redis, $name)) {
             $ts = microtime(true);
+
             $result = call_user_func_array([$this->redis, $name], $arguments);
             $ts = (microtime(true) - $ts) * 1000;
 

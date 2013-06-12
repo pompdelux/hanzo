@@ -152,6 +152,7 @@ class AxService
 
             $line = new stdClass();
             $line->ItemId        = $product->getProductsName();
+            $line->lineText      = $product->getProductsName();
             $line->SalesPrice    = number_format($product->getOriginalPrice(), 4, '.', '');
             $line->SalesQty      = $product->getQuantity();
             $line->InventColorId = $product->getProductsColor();
@@ -170,7 +171,6 @@ class AxService
                 $line->LineDiscPercent = $line_discount;
             }
 
-            $line->lineText = $product->getProductsName();
             $salesLine[] = $line;
         }
 
