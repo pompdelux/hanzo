@@ -434,8 +434,8 @@ class Tools
                 die("User-agent: *\nDisallow: /\n");
             }
 
-            //die("User-agent: *\nDisallow:\n");
-            die("User-agent: *\nDisallow: /de_DE/\n");
+            die("User-agent: *\nDisallow:\n");
+            //die("User-agent: *\nDisallow: /de_DE/\n");
         }
     }
 
