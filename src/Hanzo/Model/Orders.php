@@ -625,6 +625,20 @@ class Orders extends BaseOrders
     }
 
     /**
+     * getPaymentPaytype
+     * @return string Payment type
+     **/
+    public function getPaymentPaytype()
+    {
+        $attributes = $this->getAttributes();
+
+        if (isset($attributes->payment->paytype)) {
+            return $attributes->payment->paytype;
+        }
+        return FALSE;
+    }
+
+    /**
      * setOrderLinePaymentFee
      *
      * Note, this only supports one line with payment fee
