@@ -30,8 +30,8 @@ class CheckJobsCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->stockSyncCheck();
-        $this->cronCheck();
+        $this->stockSyncCheck($output);
+        $this->cronCheck($output);
 
         // NICETO: not hardcoded ...
         if (count($this->errors)) {
@@ -50,7 +50,7 @@ class CheckJobsCommand extends ContainerAwareCommand
         }
     }
 
-    protected function stockSyncCheck()
+    protected function stockSyncCheck($output)
     {
         $output->writeln('Stock sync checker initialized.</info>');
         $runs = $this->getContainer()->get('redis.permanent')->hgetall('stock.sync.time');
@@ -68,7 +68,7 @@ class CheckJobsCommand extends ContainerAwareCommand
     }
 
 
-    protected function cronCheck()
+    protected function cronCheck($output)
     {
         $output->writeln('Dead order cron checker initialized.</info>');
         $runs = $this->getContainer()->get('redis.permanent')->hgetall('cron.log');
