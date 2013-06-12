@@ -72,7 +72,7 @@ class DomainVoter implements VoterInterface
         );
 
         // Restrict access to login webshop to only customers.
-        if (!in_array('ROLE_ADMIN', $user->getRoles()) && !in_array('ROLE_SALES', $user->getRoles()) && 'webshop' === $this->container->get('kernel')->getStoreMode() && $customer->getGroupsId() !== 1 ) {
+        if (!in_array('ROLE_ADMIN', $user->getRoles()) && !in_array('ROLE_SALES', $user->getRoles()) && ('webshop' === $this->container->get('kernel')->getStoreMode()) && $customer->getGroupsId() !== 1 ) {
             $useLocale = $countryIdToLocaleMap[$countryId][0]; // Use the first locale
 
             $msg = $translator->trans('login.restricted.only.customers',array( '%url%' => 'http://c.pompdelux.com/'.$useLocale.'/login', '%site_name%' => $country ),'account');
