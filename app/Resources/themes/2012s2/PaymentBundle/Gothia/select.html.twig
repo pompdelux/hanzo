@@ -1,7 +1,9 @@
 <h3>{{ 'payment.gothia.title'|trans({}, 'checkout') }}</h3>
 <ul class="payment-methods" id="payment-method-gothia" data-provider="gothia">
+{% for id,paymentname in cardtypes %}
   <li>
-    <input type="radio" value="gothia:gothia" id="gothia" name="paytype"{% if selected_payment_type == 'gothia:gothia' %} checked{% endif %}>
-    <label for="gothia"><img alt="gothia" src="{{ cdn }}fx/images/icons/gothia.gif"> {{ 'payment.gothia.desc'|trans({}, 'checkout')|raw }}</label>
+    <input type="radio" value="gothia:{{ paymentname }}" id="{{ paymentname }}" name="paytype"{% if selected_payment_type == 'gothia:'~paymentname %} checked{% endif %}>
+    <label for="{{ paymentname }}"><img alt="gothia" src="{{ cdn }}fx/images/icons/gothia.gif"> {{ ('payment.'~paymentname~'.desc')|trans({}, 'checkout')|raw }}</label>
   </li>
+{% endfor %}
 </ul>

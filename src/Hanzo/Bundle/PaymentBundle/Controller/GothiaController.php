@@ -50,6 +50,8 @@ class GothiaController extends CoreController
     public function paymentAction()
     {
         $order = OrdersPeer::getCurrent();
+        // Difference between gothia and gothia-lv payments.
+        $paytype = $order->getPaymentPaytype();
 
         if ($order->isNew()) {
             return $this->redirect($this->generateUrl('_checkout'));
@@ -74,6 +76,7 @@ class GothiaController extends CoreController
             $gothiaAccount = new GothiaAccounts();
         }
 
+
         // Build the form where the customer can enter his/hers information
         $form = $this->createFormBuilder( $gothiaAccount )
             ->add( 'social_security_num', 'text', array(
@@ -82,7 +85,26 @@ class GothiaController extends CoreController
                 'translation_domain' => 'gothia' ) )
             ->getForm();
 
-        return $this->render('PaymentBundle:Gothia:payment.html.twig',array('page_type' => 'gothia','step' => $step, 'form' => $form->createView()));
+
+        $form_step2 = $this->createFormBuilder( array('bank_account_no', 'bank_id') );
+        if ($paytype === 'gothia-lv') {
+            $form_step2 = $form_step2->add('bank_account_no', 'text', array(
+                    'label' => 'bank_account_no',
+                    'required' => true,
+                    'translation_domain' => 'gothia' ) )
+                ->add('bank_id', 'text', array(
+                    'label' => 'bank_id',
+                    'required' => true,
+                    'translation_domain' => 'gothia' ) );
+        }
+        $form_step2 = $form_step2->getForm();
+
+        return $this->render('PaymentBundle:Gothia:payment.html.twig',array(
+            'page_type' => 'gothia',
+            'step' => $step,
+            'form' => $form->createView(),
+            'form_step2' => $form_step2->createView(),
+        ));
     }
 
     /**
@@ -94,108 +116,116 @@ class GothiaController extends CoreController
      **/
     public function checkCustomerAction(Request $request)
     {
-        $form       = $request->request->get('form');
-        $SSN        = $form['social_security_num'];
-        $translator = $this->get('translator');
+        $form               = $request->request->get('form');
+        $SSN                = $form['social_security_num'];
+        $translator         = $this->get('translator');
 
         $hanzo = Hanzo::getInstance();
         $domainKey = $hanzo->get('core.domain_key');
 
         // Use form validation?
 
-        if ('FI' == str_replace('Sales', '', $domainKey)) {
-            /**
-             * Finland uses social security numbers with dash DDMMYY-CCCC
-             */
-            if(!strpos($SSN, '-')){ // FI has to have dash. If it isnt there, add it. Could be made better?
-                $SSN = substr($SSN, 0, 6).'-'.substr($SSN, 6);
-            }
+        switch (str_replace('Sales', '', $domainKey)) {
+            case 'FI':
+                /**
+                 * Finland uses social security numbers with dash DDMMYY-CCCC
+                 */
+                if(!strpos($SSN, '-')){ // FI has to have dash. If it isnt there, add it. Could be made better?
+                    $SSN = substr($SSN, 0, 6).'-'.substr($SSN, 6);
+                }
 
-            if (strlen($SSN) < 11) {
-                return $this->json_response(array(
-                    'status' => FALSE,
-                    'message' => $translator->trans('json.ssn.to_short', array(), 'gothia'),
-                ));
-            }
+                if (strlen($SSN) < 11) {
+                    return $this->json_response(array(
+                        'status' => FALSE,
+                        'message' => $translator->trans('json.ssn.to_short', array(), 'gothia'),
+                    ));
+                }
 
-            if (strlen($SSN) > 11) {
-                return $this->json_response(array(
-                    'status' => FALSE,
-                    'message' => $translator->trans('json.ssn.to_long', array(), 'gothia')
-                ));
-            }
-        } elseif ('NO' == str_replace('Sales', '', $domainKey)) {
-            /**
-             * Norway uses social security numbers without dash but with 5 digits DDMMYY-CCCCC
-             */
-            $SSN = strtr( $SSN, array( '-' => '', ' ' => '' ) );
+                if (strlen($SSN) > 11) {
+                    return $this->json_response(array(
+                        'status' => FALSE,
+                        'message' => $translator->trans('json.ssn.to_long', array(), 'gothia')
+                    ));
+                }
+                break;
+            case 'NO':
+                /**
+                 * Norway uses social security numbers without dash but with 5 digits DDMMYY-CCCCC
+                 */
+                $SSN = strtr( $SSN, array( '-' => '', ' ' => '' ) );
 
-            if (strlen($SSN) < 11) {
-                return $this->json_response(array(
-                    'status' => FALSE,
-                    'message' => $translator->trans('json.ssn.to_short', array(), 'gothia'),
-                ));
-            }
+                if (strlen($SSN) < 11) {
+                    return $this->json_response(array(
+                        'status' => FALSE,
+                        'message' => $translator->trans('json.ssn.to_short', array(), 'gothia'),
+                    ));
+                }
 
-            if (strlen($SSN) > 11) {
-                return $this->json_response(array(
-                    'status' => FALSE,
-                    'message' => $translator->trans('json.ssn.to_long', array(), 'gothia')
-                ));
-            }
-        } elseif (('DK' == str_replace('Sales', '', $domainKey)) || ('NL' == str_replace('Sales', '', $domainKey))) {
-            /**
-             * Denmark uses birthdate DDMMYYYY
-             * Netherland uses birthdate DDMMYYYY
-             */
+                if (strlen($SSN) > 11) {
+                    return $this->json_response(array(
+                        'status' => FALSE,
+                        'message' => $translator->trans('json.ssn.to_long', array(), 'gothia')
+                    ));
+                }
+                break;
+            case 'DK':
+            case 'NL':
+            case 'DE':
+            case 'COM':
+                /**
+                 * Denmark uses birthdate DDMMYYYY
+                 * Netherland uses birthdate DDMMYYYY
+                 * Germany uses birthdate DDMMYYYY
+                 */
 
-            $SSN = strtr( $SSN, array( '-' => '', ' ' => '' ) );
+                $SSN = strtr( $SSN, array( '-' => '', ' ' => '' ) );
 
-            if (strlen($SSN) < 8) {
-                return $this->json_response(array(
-                    'status' => FALSE,
-                    'message' => $translator->trans('json.ssn.to_short', array(), 'gothia'),
-                ));
-            }
+                if (strlen($SSN) < 8) {
+                    return $this->json_response(array(
+                        'status' => FALSE,
+                        'message' => $translator->trans('json.ssn.to_short', array(), 'gothia'),
+                    ));
+                }
 
-            if (strlen($SSN) > 8) {
-                return $this->json_response(array(
-                    'status' => FALSE,
-                    'message' => $translator->trans('json.ssn.to_long', array(), 'gothia')
-                ));
-            }
-        } else {
-            /**
-             * All others uses social security number without dash DDMMYYCCCC
-             */
+                if (strlen($SSN) > 8) {
+                    return $this->json_response(array(
+                        'status' => FALSE,
+                        'message' => $translator->trans('json.ssn.to_long', array(), 'gothia')
+                    ));
+                }
+                break;
+            default:
+                /**
+                 * All others uses social security number without dash DDMMYYCCCC
+                 */
 
-            $SSN = strtr( $SSN, array( '-' => '', ' ' => '' ) );
+                $SSN = strtr( $SSN, array( '-' => '', ' ' => '' ) );
 
-            //Every other domain
-            if (!is_numeric($SSN)) {
-                return $this->json_response(array(
-                    'status' => FALSE,
-                    'message' => $translator->trans('json.ssn.not_numeric', array(), 'gothia'),
-                ));
-            }
-            if (strlen($SSN) < 10) {
-                return $this->json_response(array(
-                    'status' => FALSE,
-                    'message' => $translator->trans('json.ssn.to_short', array(), 'gothia'),
-                ));
-            }
+                //Every other domain
+                if (!is_numeric($SSN)) {
+                    return $this->json_response(array(
+                        'status' => FALSE,
+                        'message' => $translator->trans('json.ssn.not_numeric', array(), 'gothia'),
+                    ));
+                }
+                if (strlen($SSN) < 10) {
+                    return $this->json_response(array(
+                        'status' => FALSE,
+                        'message' => $translator->trans('json.ssn.to_short', array(), 'gothia'),
+                    ));
+                }
 
-            if (strlen($SSN) > 10) {
-                return $this->json_response(array(
-                    'status' => FALSE,
-                    'message' => $translator->trans('json.ssn.to_long', array(), 'gothia')
-                ));
-            }
+                if (strlen($SSN) > 10) {
+                    return $this->json_response(array(
+                        'status' => FALSE,
+                        'message' => $translator->trans('json.ssn.to_long', array(), 'gothia')
+                    ));
+                }
+                break;
         }
 
         $order         = OrdersPeer::getCurrent();
         $customer      = $order->getCustomers(Propel::getConnection(null, Propel::CONNECTION_WRITE));
-
         if (!$customer instanceof Customers) {
             return $this->json_response(array(
                 'status' => FALSE,
@@ -218,9 +248,10 @@ class GothiaController extends CoreController
 
         try
         {
-            // Validate information @ gothia
             $api = $this->get('payment.gothiaapi');
+            // Validate information @ gothia
             $response = $api->call()->checkCustomer( $customer );
+
         }
         catch( GothiaApiCallException $e )
         {
@@ -281,9 +312,42 @@ class GothiaController extends CoreController
     {
         $order      = OrdersPeer::getCurrent(true);
         $customer   = $order->getCustomers(Propel::getConnection(null, Propel::CONNECTION_WRITE));
+        $form               = $request->request->get('form');
+        // Direct Debit - Gothia-LV
+        $bank_account_no    = isset($form['bank_account_no'])?$form['bank_account_no']:NULL;
+        $bank_id            = isset($form['bank_id'])?$form['bank_id']:NULL;
         $api        = $this->get('payment.gothiaapi');
         $translator = $this->get('translator');
 
+        $hanzo = Hanzo::getInstance();
+        $domainKey = $hanzo->get('core.domain_key');
+
+        // Validate bank info when using Gothia LV payments.
+        // Validation is per domain.
+        if($order->getPaymentPaytype() === 'gothia-lv') {
+            switch (str_replace('Sales', '', $domainKey)) {
+            case 'DE':
+                /**
+                 * Deutchland:
+                 *   Bank account <=10
+                 *   Bank id      =8
+                 */
+
+                if ((strlen($bank_account_no) > 10 || !is_numeric($bank_account_no))) {
+                    return $this->json_response(array(
+                        'status' => FALSE,
+                        'message' => $translator->trans('json.bank_account_no.to_long', array(), 'gothia')
+                    ));
+                }
+                if ((strlen($bank_id) != 8 || !is_numeric($bank_id))) {
+                    return $this->json_response(array(
+                        'status' => FALSE,
+                        'message' => $translator->trans('json.bank_id.to_long', array(), 'gothia')
+                    ));
+                }
+                break;
+            }
+        }
         if ( $order->getState() > Orders::STATE_PRE_PAYMENT )
         {
             return $this->json_response(array(
@@ -307,11 +371,10 @@ class GothiaController extends CoreController
                 $oldOrder = $order->getOrderAtVersion($oldOrderVersion);
 
                 $paytype = strtolower( $oldOrder->getBillingMethod() );
-
                 // The new order amount is different from the old order amount
                 // We will remove the old reservation, and create a new one
                 // but only if the old paytype was gothia
-                if (($paytype == 'gothia') && ($order->getTotalPrice() != $oldOrder->getTotalPrice())) {
+                if ((in_array($paytype, array('gothia', 'gothia-lv'))) && ($order->getTotalPrice() != $oldOrder->getTotalPrice())) {
                     $timer = new Timer('gothia', true);
                     try {
                         $response = $api->call()->cancelReservation( $customer, $oldOrder );
@@ -340,7 +403,12 @@ class GothiaController extends CoreController
         try
         {
             $timer = new Timer('gothia', true);
-            $response = $api->call()->placeReservation( $customer, $order );
+            if($order->getPaymentPaytype() === 'gothia-lv') {
+                $response = $api->call()->checkCustomerAndPlaceReservation( $customer, $order, array('bank_account_no' => $bank_account_no, 'bank_id' => $bank_id, 'payment_method' => 'DirectDebet') );
+            }
+            else {
+                $response = $api->call()->placeReservation( $customer, $order );
+            }
             $timer->logOne('placeReservation orderId #'.$order->getId());
         }
         catch( GothiaApiCallException $e )

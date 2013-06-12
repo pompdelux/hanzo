@@ -26,7 +26,10 @@
 <div id="gothia-payment-step-2" style="display: none">
   <h2>{{ 'page.heading_step2'|trans({},'gothia') }}</h2>
   <div id="gothia-confirm-container">
-    <form action="{{ path('PaymentBundle_gothia_payment_confirm') }}" method="post" {{ form_enctype(form) }}>
+    <form action="{{ path('PaymentBundle_gothia_payment_confirm') }}" method="post" {{ form_enctype(form_step2) }}>
+      <div class="row">
+        {{ form_widget(form_step2) }}
+      </div>
       <input class="button button-right" type="submit" value="{{ 'form.submit_step2'|trans({},'gothia') }}" name="action-submit-gothia-confirm" id="action-submit-gothia-confirm"/>
       <a href="{{ path('PaymentBundle_gothia_payment_cancel') }}" class="button button-left">{{ 'form.cancel'|trans({},'gothia') }}</a>
     </form>
