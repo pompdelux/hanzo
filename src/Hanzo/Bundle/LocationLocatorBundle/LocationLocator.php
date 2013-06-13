@@ -2,6 +2,8 @@
 
 namespace Hanzo\Bundle\LocationLocatorBundle;
 
+use InvalidArgumentException;
+
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\FormBuilder;
@@ -61,6 +63,7 @@ class LocationLocator
      *                            'streetNumber' => ''
      * @param  integer $limit   max number of elements to retrive
      * @return array
+     * @throws InvalidArgumentException
      */
     public function findByAddress(array $address = [], $limit = 5)
     {
@@ -129,12 +132,12 @@ class LocationLocator
         return $form;
     }
 
-
     /**
      * Perform the actual loockup
      *
-     * @param  string   $service names service
-     * @param  array    $data    request data
+     * @param  string $service names service
+     * @param  array  $data    request data
+     * @return array
      */
     protected function lookup($service, array $data = [])
     {
@@ -150,10 +153,9 @@ class LocationLocator
 
         $response = @file_get_contents($query, false, $context);
 
+        $records = [];
         if (!is_null($response)) {
             $json = json_decode($response);
-
-            $records = [];
 
             /**
              * record:
