@@ -453,7 +453,7 @@ Du har mulighet for å endre/tilføye/slette i ordren. Du skal klikke på blyant
             </trans-unit>
             <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>
-                <target><![CDATA[<p>Når du handler hos POMPdeLUX skal du være opprettet som kunde her på siden.<br><br>Det gir deg blant annet mulighet for å sjekke og rette din ordre inntil den blir pakket og sendt fra lageret vårt. Du kan endre farger og størrelser på de varene du har bestilt, og du kan tilføye eller slette varer så lenge det står "Avventer" ved din ordre, det vil si i minimum 24 timer etter at du har bestilt varene.<br><br><b>Merk:</b>Under salget kan vi dessverre ikke garantere 24 timers redigeringsmulighet på din ordre.<br><br>Som kunde hos POMPdeLUX kan du på Min side se dine tidligere bestillinger og finne gamle fakturaer.</p><h2>Er du ny kunde?</h2>]]></target>
+                <target><![CDATA[<p>Når du handler hos POMPdeLUX skal du være opprettet som kunde her på siden.<br><br>Det gir deg blant annet mulighet for å sjekke og rette din ordre inntil den blir pakket og sendt fra lageret vårt. Du kan endre farger og størrelser på de varene du har bestilt, og du kan tilføye eller slette varer så lenge det står "Avventer" ved din ordre, det vil si i minimum 24 timer etter at du har bestilt varene.<br><br><b>Merk:</b> Under salget kan vi dessverre ikke garantere 24 timers redigeringsmulighet på din ordre.<br><br>Som kunde hos POMPdeLUX kan du på Min side se dine tidligere bestillinger og finne gamle fakturaer.</p><h2>Er du ny kunde?</h2>]]></target>
             </trans-unit>
             <trans-unit id="my.account.login.header" approved="no">
                 <source>my.account.login.header</source>
