@@ -90,12 +90,11 @@ class DefaultController extends CoreController
                 $main_image = array_shift($images);
             }
 
-            $sorted = [];
+            $sorted_images = [];
             foreach ($images as $key => $data) {
-                $sorted[$data['type'].$key] = $data;
+                $sorted_images[$data['type'].$key] = $data;
             }
-            ksort($sorted);
-            $images = $sorted;
+            ksort($sorted_images);
 
             $current_color = $main_image['color'];
             $current_type  = $main_image['type'];
@@ -159,6 +158,22 @@ class DefaultController extends CoreController
                     ), TRUE),
                 );
             }
+            foreach ($images_references as $image_id => &$references) {
+
+                // If there are any references to this image,
+                // Add an overview of the current product at the top of the array.
+                if (count($references['references']) > 0) {
+                    array_unshift($references['references'], array(
+                        'title' => $product->getSku(),
+                        'color' => '',
+                        'image' => str_replace('set', 'overview', $images[$image_id]['name']),
+                        'url' => $router->generate($route, array(
+                            'product_id' => $product->getId(),
+                            'title'=> Tools::stripText($product->getSku()),
+                        ), TRUE),
+                    ));
+                }
+            }
 
             $translation_key = 'description.' . Tools::stripText($product->getSku(), '_', false);
 
@@ -186,7 +201,7 @@ class DefaultController extends CoreController
                 'description' => $description,
                 'washing' => $washing,
                 'main_image' => $main_image,
-                'images' => $images,
+                'images' => $sorted_images,
                 'prices' => [],
                 'out_of_stock' => $product->getIsOutOfStock(),
                 'colors' => $colors,
