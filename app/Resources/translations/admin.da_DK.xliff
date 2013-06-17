@@ -290,7 +290,7 @@
         <source>admin.category.add.translations.header.text</source>
         <target>Tilføj en ny oversættelse</target>
       </trans-unit>
-      <trans-unit id="edit.category.translation"> 
+      <trans-unit id="edit.category.translation">
         <source>edit.category.translation</source>
         <target>Rediger oversættelse</target>
       </trans-unit>
@@ -445,6 +445,10 @@
       <trans-unit id="admin.products.product.selector.description">
         <source>admin.products.product.selector.description</source>
         <target>Vælg og tilføj et nyt produkt...</target>
+      </trans-unit>
+      <trans-unit id="admin.products.color.selector.description">
+        <source>admin.products.color.selector.description</source>
+        <target>Vælg farve...</target>
       </trans-unit>
       <trans-unit id="admin.products.discounts">
         <source>admin.products.discounts</source>
@@ -1514,7 +1518,7 @@
         <source>admin.order.sync_states.header.text</source>
         <target>Synkroniserings Log</target>
       </trans-unit>
-      
+
       <trans-unit id="admin.washing.header.text">
         <source>admin.washing.header.text</source>
         <target>Vaskeanvisninger</target>

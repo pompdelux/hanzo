@@ -251,6 +251,9 @@
               }
             }
             else {
+              $color_select.find('option')
+                .not('.initial')
+                .remove();
               if(response.data.length > 0) {
                 $.each(response.data, function(key, value) {
                   $color_select
@@ -300,6 +303,8 @@
                 .find('option')
                 .not('.initial')
                 .remove();
+              $product_select.val(0);
+              $color_select.val(0);
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {

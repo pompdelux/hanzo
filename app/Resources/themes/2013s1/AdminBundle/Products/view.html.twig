@@ -143,8 +143,8 @@
           <option value="{{ product_image.image_id }}-{{ product.id }}">{{ product.sku }}</option>
           {% endfor %}
         </select>
-        <select class="product-color-selector" name="product-color-selector">
-          <option value="0" class="initial">{{ 'admin.products.product.selector.description'|trans({}, 'admin') }}</option>
+        <select class="product-color-selector" name="product-color-selector" disabled="disabled">
+          <option value="0" class="initial">{{ 'admin.products.color.selector.description'|trans({}, 'admin') }}</option>
         </select>
         <ul class="product-references">
           {% if product_image.product_ref_ids|length > 0 %}
