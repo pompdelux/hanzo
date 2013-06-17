@@ -74,7 +74,7 @@ class DefaultController extends CoreController
                 break;
         }
 
-        $result_set = array();
+        $result_set = [];
         if ('POST' === $this->getRequest()->getMethod()) {
             $size = $this->getRequest()->get('size');
 
@@ -116,6 +116,8 @@ class DefaultController extends CoreController
                     )
                 WHERE
                     p.size IN ('".implode("','", $sizes[$size])."')
+                AND
+                    p.is_out_of_stock = 0
                 AND
                     pdp.domains_id = {$domain_id}
                 AND
@@ -165,6 +167,8 @@ class DefaultController extends CoreController
                 WHERE
                     pdp.domains_id = {$domain_id}
                 AND
+                    p.is_out_of_stock = 0
+                AND
                     ci.locale = '{$locale}'
                 AND
                     p2c.categories_id IN ({$accessories})
@@ -209,7 +213,7 @@ class DefaultController extends CoreController
                                 $image_overview = str_replace('_set_', '_overview_', $product->getProductsImagess()->getFirst()->getImage());
                                 $image_set = str_replace('_overview_', '_set_', $product->getProductsImagess()->getFirst()->getImage());
 
-                                $category_map[$category][$id] = array(
+                                $result_set[$category][$id] = array(
                                     'sku' => $product->getSku(),
                                     'id' => $product->getId(),
                                     'out_of_stock' => $product->getIsOutOfStock(),
@@ -227,8 +231,6 @@ class DefaultController extends CoreController
                     }
                 }
             }
-
-            $result_set = $category_map;
         }
 
         $this->setSharedMaxAge(300);
