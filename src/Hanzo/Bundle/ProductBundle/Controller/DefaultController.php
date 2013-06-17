@@ -155,6 +155,7 @@ class DefaultController extends CoreController
                     'url' => $router->generate($route, array(
                         'product_id' => $ref->getProductsId(),
                         'title'=> Tools::stripText($ref->getProducts()->getSku()),
+                        'focus'=> $ref->getVirtualColumn('products_imagesID'),
                     ), TRUE),
                 );
             }
