@@ -55,7 +55,6 @@ class CheckoutListener
                     $product_ids[] = $line->getProductsId();
                 }
             }
-
             $prices = ProductsDomainsPricesPeer::getProductsPrices($product_ids);
 
             $total = 0;
