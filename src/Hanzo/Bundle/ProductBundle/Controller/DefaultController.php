@@ -132,11 +132,12 @@ class DefaultController extends CoreController
             $references = ProductsImagesProductReferencesQuery::create()
                 ->withColumn('products_images.ID')
                 ->withColumn('products_images.COLOR')
-                ->withColumn('ref.IMAGE')
+                ->withColumn('products_images.IMAGE')
                 ->filterByProductsImagesId($image_ids)
                 ->useProductsQuery()
                     ->useProductsImagesQuery('ref')
                         ->filterByType('overview')
+                        ->where('products_images.COLOR = products_images_product_references.COLOR')
                         ->groupByProductsId()
                     ->endUse()
                     ->joinWithProductsImages()
@@ -150,7 +151,7 @@ class DefaultController extends CoreController
                 $images_references[$ref->getProductsImagesId()]['references'][] = array(
                     'title' => $ref->getProducts()->getSku(),
                     'color' => $ref->getVirtualColumn('products_imagesCOLOR'),
-                    'image' => $ref->getRefIMAGE(),
+                    'image' => $ref->getVirtualColumn('products_imagesIMAGE'),
                     'url' => $router->generate($route, array(
                         'product_id' => $ref->getProductsId(),
                         'title'=> Tools::stripText($ref->getProducts()->getSku()),
