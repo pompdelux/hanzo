@@ -232,12 +232,14 @@
 
       //ProductsToImages on Products page
       $('.product-selector').change(function(){
-        var selectedOption = $(this).find('option:selected');
+        var $product_select = $(this);
+        var selectedOption = $product_select.find('option:selected');
+        var $color_select = $product_select.next('.product-color-selector');
         var reference = selectedOption.val().split('-');
         var image = reference[0];
         var product = reference[1];
         $.ajax({
-          url: '../add-reference/',
+          url: '../reference-get-color/',
           dataType: 'json',
           type: 'POST',
           data: {image : image, product : product},
@@ -249,14 +251,61 @@
               }
             }
             else {
-              $('#item-' + image + ' .product-references').append('<li><span class="actions"><a href="' + base_url + 'products/delete-reference/' + image + '/' + product + '" class="delete" title="Slet">Slet</a></span><span class="id">(#' + product + ')</span><span class="sku">' + selectedOption.text() + '</span></li>');
+              if(response.data.length > 0) {
+                $.each(response.data, function(key, value) {
+                  $color_select
+                    .append($("<option></option>")
+                    .attr("value",value)
+                    .text(value));
+                });
+                $color_select.removeAttr('disabled');
+              }
+              else {
+                $color_select.attr('disabled', 'disabled');
+                $color_select.val(0);
+              }
+              // $('#item-' + image + ' .product-references').append('<li><span class="actions"><a href="' + base_url + 'products/delete-reference/' + image + '/' + product + '" class="delete" title="Slet">Slet</a></span><span class="id">(#' + product + ')</span><span class="sku">' + selectedOption.text() + '</span></li>');
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {
             dialoug.error(Translator.get('js:notice'), Translator.get('js:an.error.occurred'));
           }
         });
-        $(this).val(0);
+      });
+
+      //ProductsToImages on Products page
+      $('.product-color-selector').change(function(){
+        var $color_select = $(this);
+        var $product_select = $color_select.prev('.product-selector');
+        var selectedOption = $product_select.find('option:selected');
+        var reference = selectedOption.val().split('-');
+        var image = reference[0];
+        var product = reference[1];
+        var color = $color_select.find('option:selected').val();
+        $.ajax({
+          url: '../add-reference/',
+          dataType: 'json',
+          type: 'POST',
+          data: {image : image, product : product, color : color},
+          async: false,
+          success: function(response, textStatus, jqXHR) {
+            if (false === response.status) {
+              if (response.message) {
+                dialoug.alert(Translator.get('js:notice', response.message));
+              }
+            }
+            else {
+              $('#item-' + image + ' .product-references').append('<li><span class="id">(#' + product + ')</span><span class="sku">' + selectedOption.text() + '</span> - <span class="color">' + color + '</span></li>');
+              $color_select.attr('disabled', 'disabled')
+                .find('option')
+                .not('.initial')
+                .remove();
+            }
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            dialoug.error(Translator.get('js:notice'), Translator.get('js:an.error.occurred'));
+          }
+        });
       });
 
 

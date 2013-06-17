@@ -143,6 +143,9 @@
           <option value="{{ product_image.image_id }}-{{ product.id }}">{{ product.sku }}</option>
           {% endfor %}
         </select>
+        <select class="product-color-selector" name="product-color-selector">
+          <option value="0" class="initial">{{ 'admin.products.product.selector.description'|trans({}, 'admin') }}</option>
+        </select>
         <ul class="product-references">
           {% if product_image.product_ref_ids|length > 0 %}
             {% for product_ref in product_image.product_ref_ids %}
@@ -152,8 +155,7 @@
                   {{ 'delete'|trans({}, 'admin') }}
                 </a>
               </span>
-              <span class="id">(#{{ product_ref.id }})</span>
-              <span class="sku">{{ product_ref.sku }}</span>
+              <span class="id">(#{{ product_ref.id }})</span> <span class="sku">{{ product_ref.sku }}</span> - <span class="color">{{ product_ref.color }}</span>
             </li>
             {% endfor %}
           {% endif %}
