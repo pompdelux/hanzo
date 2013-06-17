@@ -50,6 +50,7 @@ class CleanDeadOrdersCommand extends ContainerAwareCommand
         $deadOrderBuster = $this->getContainer()->get('deadorder_manager');
         $deadOrderBuster->autoCleanup( $dryrun, $debug );
 
-        $this->getContainer()->get('redis.permanent')->hset('cron.log', 'clean_dead_orders', time());
+        $prefix = substr($this->getContainer()->getParameter('locale'), -2);
+        $this->getContainer()->get('redis.permanent')->hset('cron.log', $prefix.':clean_dead_orders', time());
     }
 }
