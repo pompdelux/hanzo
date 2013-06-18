@@ -82,6 +82,9 @@ class DefaultController extends CoreController
                 );
             }
 
+            // Use to kkep an array of all images with keys. array_shift broke the keys.
+            $all_images = $images;
+
             // set focus image
             if ($focus && isset($images[$focus])) {
                 $main_image = $images[$focus];
@@ -166,7 +169,7 @@ class DefaultController extends CoreController
                     array_unshift($references['references'], array(
                         'title' => $product->getSku(),
                         'color' => '',
-                        'image' => str_replace('set', 'overview', $images[$image_id]['name']),
+                        'image' => str_replace('set', 'overview', $all_images[$image_id]['name']),
                         'url' => $router->generate($route, array(
                             'product_id' => $product->getId(),
                             'title'=> Tools::stripText($product->getSku()),
