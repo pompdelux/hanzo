@@ -18,3 +18,9 @@ services:
             - %ax.log_requests%
             - @logger
             - @event_dispatcher
+
+    ax.out.checkout.listener:
+        class: Hanzo\Bundle\AxBundle\Event\CheckoutListener
+        arguments: [ @ax.out, @logger ]
+        tags:
+            - { name: kernel.event_listener, event: order.payment.collected, method: onPaymentCollected, priority: 0 }

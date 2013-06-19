@@ -68,40 +68,49 @@ class CheckoutListener
     }
 
 
-    public function onPaymentCollected(FilterOrderEvent $event)
+    /**
+     * Closing order
+     * Note, this MUST be the first event triggered!
+     *
+     * If the order is in a wrong state, propagation is halted.
+     *
+     * @param  FilterOrderEvent $event
+     * @return void
+     */
+    public function onPaymentCollectedFirst(FilterOrderEvent $event)
     {
         $order = $event->getOrder();
 
         if ($order->getState() < Orders::STATE_PAYMENT_OK ) {
-            error_log(__LINE__.':'.__FILE__.' Could not sync order, state is: '.$order->getState()); // hf@bellcom.dk debugging
-            // woopsan!
+            $this->logger->addError('Order #'.$order->getId().' was in state "'.$order->getState().'" and was stopped in flow!');
+            $event->stopPropagation();
             return;
         }
 
         // need copy for later
-        $in_edit = $order->getInEdit();
+        $event->setInEdit($order->getInEdit());
 
         $order->setState( Orders::STATE_PENDING );
         $order->setInEdit(false);
         $order->setSessionId($order->getId());
         $order->setUpdatedAt(time());
         $order->save();
+    }
 
-        // trigger ax sync
-        $this->ax->sendOrder($order);
 
-        // ONLY send email and cancel payments if the order is logged !
-        $logged = OrdersSyncLogQuery::create()
-            ->select('State')
-            ->filterByOrdersId($order->getId())
-            ->findOne(Propel::getConnection(null, Propel::CONNECTION_WRITE))
-        ;
-        if (!$logged) {
-            return;
-        }
+    /**
+     * Build and send order confirmation to customer
+     * Event is triggered last.
+     *
+     * @param  FilterOrderEvent $event
+     * @return void
+     */
+    public function onPaymentCollected(FilterOrderEvent $event)
+    {
+        $order = $event->getOrder();
+        $in_edit = $event->getInEdit();
 
         // build and send order confirmation.
-
         $attributes = $order->getAttributes();
         $email = $order->getEmail();
         $name  = trim($order->getFirstName() . ' ' . $order->getLastName());

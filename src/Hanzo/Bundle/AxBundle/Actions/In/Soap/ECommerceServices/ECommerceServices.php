@@ -176,6 +176,10 @@ class ECommerceServices extends SoapService
                         $product->setId($products_id_map[strtolower($sku)]);
                         $product->setSku($sku);
 
+                        if (isset($entry->IsVoucher) && $entry->IsVoucher) {
+                            $product->setIsVoucher(true);
+                        }
+
                         // products i18n
                         $languages = LanguagesQuery::create()->find();
                         foreach ($languages as $language) {
@@ -241,6 +245,10 @@ class ECommerceServices extends SoapService
                 $washing = $item->WashInstruction;
                 if (is_scalar($washing) && !empty($washing)) {
                     $product->setWashing($washing);
+                }
+
+                if (isset($entry->IsVoucher) && $entry->IsVoucher) {
+                    $product->setIsVoucher(true);
                 }
 
                 $product->save();
@@ -465,9 +473,6 @@ class ECommerceServices extends SoapService
      */
     public function SyncInventoryOnHand($data)
     {
-#Tools::log($this->request->getLocale().' -> SyncInventoryOnHand');
-
-        //Tools::log($data);
         $now = date('Ymd');
         $errors = array();
         $stock = $data->inventoryOnHand->InventSum;
@@ -621,7 +626,6 @@ class ECommerceServices extends SoapService
         $this->event_dispatcher->dispatch('product.stock.zero', new FilterCategoryEvent($master, null, Propel::getConnection(null, Propel::CONNECTION_WRITE)));
 
         // set sync flag
-#Tools::log($this->getDebugInfo());
         if (isset($stock->LastInCycle) && $stock->LastInCycle) {
             $c = $this->hanzo->container;
             $c->get('redis.permanent')->hset(

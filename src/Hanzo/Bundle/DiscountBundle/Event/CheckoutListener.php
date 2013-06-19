@@ -13,6 +13,7 @@ use Hanzo\Model\OrdersLinesQuery;
 use Hanzo\Model\ProductsDomainsPricesPeer;
 use Hanzo\Model\Coupons;
 use Hanzo\Model\CouponsPeer;
+use Hanzo\Model\CouponsQuery;
 
 use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
 use Symfony\Bridge\Monolog\Logger;
@@ -91,7 +92,6 @@ class CheckoutListener
      */
     public function onPaymentCollected(FilterOrderEvent $event)
     {
-Tools::log(__METHOD__);
         $order = $event->getOrder();
 
         if ($order->getState() < Orders::STATE_PAYMENT_OK ) {
@@ -102,17 +102,30 @@ Tools::log(__METHOD__);
         $lines = $order->getOrdersLiness();
 
         foreach ($lines as $line) {
-            if ($line->getIsVoucher() && ('' == $line->getNote())) {
-                $now = new \DateTime();
-                $coupon = new Coupons();
-                $coupon->setCode(CouponsPeer::generateCode());
-                $coupon->setAmount($line->getPrice() * $line->getQuantity());
-                $coupon->setActiveFrom($now);
-                $coupon->setActiveTo($now->modify('+3 years'));
-                $coupon->setCurrencyCode($order->getCurrencyCode());
-                $coupon->save();
+            if ($line->getIsVoucher()) {
 
-                $line->setNote($coupon->getCode());
+                if ($line->getNote()) {
+                    $c = explode(';', $line->getNote());
+                    CouponsQuery::create()
+                        ->filterById($c)
+                        ->delete();
+                }
+
+                $codes = [];
+                for ($i=0;$i<$line->getQuantity();$i++) {
+                    $now = new \DateTime();
+                    $coupon = new Coupons();
+                    $coupon->setCode(CouponsPeer::generateCode());
+                    $coupon->setAmount($line->getPrice());
+                    $coupon->setActiveFrom($now);
+                    $coupon->setActiveTo($now->modify('+3 years'));
+                    $coupon->setCurrencyCode($order->getCurrencyCode());
+                    $coupon->save();
+
+                    $codes[] = $coupon->getCode();
+                }
+
+                $line->setNote(implode(';', $codes));
             }
         }
     }

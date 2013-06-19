@@ -9,4 +9,4 @@ services:
         class: Hanzo\Bundle\DiscountBundle\Event\CheckoutListener
         arguments: [ @logger ]
         tags:
-            - { name: kernel.event_listener, event: order.payment.collected, method: onPaymentCollected, priority: 10 }
+            - { name: kernel.event_listener, event: order.payment.collected, method: onPaymentCollected, priority: 100 }

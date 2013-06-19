@@ -164,6 +164,10 @@ class AxService
                 $line->LineDiscPercent = $line_discount;
             }
 
+            if ($product->getIsVoucher()) {
+                $line->VoucherCode = $product->getNote();
+            }
+
             $salesLine[] = $line;
         }
 
