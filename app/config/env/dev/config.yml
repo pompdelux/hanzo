@@ -14,7 +14,7 @@ monolog:
         main:
             type:           stream
             path:           %kernel.logs_dir%/%kernel.environment%.log
-            level:          error
+            level:          debug
         # logstash:
         #     type:           socket
         #     connection_string: tcp://logstash.bellcom.dk:5544
@@ -54,3 +54,6 @@ propel:
 
 cms:
     frontpage: 556
+
+ax:
+    log_requests: true

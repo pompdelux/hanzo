@@ -126,6 +126,7 @@ class CheckoutListener
                 }
 
                 $line->setNote(implode(';', $codes));
+                $line->save();
             }
         }
     }

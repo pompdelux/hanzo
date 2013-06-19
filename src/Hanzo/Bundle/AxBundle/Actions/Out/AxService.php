@@ -130,9 +130,10 @@ class AxService
                                 $line_discount = $line_discount * -1;
                             }
                             break;
-                        case 'coupon.code':
-                            $coupon_discount = $line;
-                            break;
+                    }
+
+                    if ('coupon.code' == $line->getProductsName()) {
+                        $coupon_discount = $line;
                     }
                     break;
             }
@@ -211,11 +212,12 @@ class AxService
         // gavekort
         if ($coupon_discount) {
             $line = new stdClass();
-            $line->ItemId     = 'COUPON';
-            $line->SalesPrice = number_format(($coupon_discount->getPrice() * -1), 4, '.', '');
-            $line->SalesQty   = 1;
-            $line->SalesUnit  = 'Stk.';
-            $salesLine[]      = $line;
+            $line->ItemId      = 'COUPON';
+            $line->SalesPrice  = number_format(($coupon_discount->getPrice() * -1), 4, '.', '');
+            $line->SalesQty    = 1;
+            $line->SalesUnit   = 'Stk.';
+            $line->VoucherCode = $attributes->coupon->code;
+            $salesLine[]       = $line;
         }
 
         // payment method
@@ -553,7 +555,8 @@ class AxService
     protected function Send($service, $request)
     {
         if ($this->log_requests) {
-            $this->logger->addDebug('Calling: '.$service, $request);
+            $this->logger->addDebug('Calling: '.$service, (array) $request);
+            Tools::log($request);
         }
 
         if ($this->skip_send) {
