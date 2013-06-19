@@ -120,7 +120,7 @@
             </trans-unit>
             <trans-unit id="store.address">
                 <source>store.address</source>
-                <target>POMPdeLUX ApS • Møgelhøj 8 • DK-8520 Lystrup • USt-IdNr. 29622035 • mailde@pompdelux.com • 040-35715072</target>
+                <target>POMPdeLUX ApS • Møgelhøj 8 • DK-8520 Lystrup • USt-IdNr. 29622035 • mailde@pompdelux.com • <!--040-35715072-->0045 8678 7871</target>
             </trans-unit>
             <trans-unit id="order.edit.global.notice">
                 <source>order.edit.global.notice</source>
@@ -155,7 +155,7 @@
                         <li>DK-8520 Lystrup</li>
                         <li>USt-IdNr. 29622035</li>
                         <li><a href="mailto:mailde@pompdelux.com">mailde@pompdelux.com</a></li>
-                        <li>040-35715072</li>
+                        <li><!--040-35715072--> 0045 8678 7171</li>
                         <li><img src="%cdn%fx/images/creditcards_dk.png" alt="credit cards" title="credit cards"></li>
                         <li><a href="http://www.facebook.com/sharer.php?u=%url%" class="facebook-button social-button" title="Del denne side på Facebook">Auf Facebook teilen</a></li>
                     </ul>
