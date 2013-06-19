@@ -1,5 +1,5 @@
 /**
-| _base
+| _base.
 */
 @import "compass/reset";
 @import "compass/utilities";
@@ -83,7 +83,7 @@ hr {
 	margin: 0;
 	width: 100%;
 	@include icons-sprite(divider);
-	height: icons-sprite-height(divider);
+	height: icons-sprite-height(divider) + 5px;
 	&.left {
 		@include icons-sprite(divider_left);
 	}

@@ -7,6 +7,7 @@ use PropelCollection;
 
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
+use Hanzo\Model\Customers;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersLinesQuery;
 use Hanzo\Model\ProductsDomainsPricesPeer;
@@ -27,11 +28,15 @@ class CheckoutListener
 
     public function onFinalize(FilterOrderEvent $event)
     {
-        $order = $event->getOrder();
-
+        $order    = $event->getOrder();
         $customer = $order->getCustomers();
-        $hanzo    = Hanzo::getInstance();
 
+        // strange edge case, but way better than a fatal error.
+        if (!$customer instanceof Customers) {
+            return;
+        }
+
+        $hanzo    = Hanzo::getInstance();
         $discount = 0;
 
         // apply group and private discounts if discounts is not disabled
@@ -57,7 +62,6 @@ class CheckoutListener
                     $product_ids[] = $line->getProductsId();
                 }
             }
-
             $prices = ProductsDomainsPricesPeer::getProductsPrices($product_ids);
 
             $total = 0;

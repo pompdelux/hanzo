@@ -1310,6 +1310,9 @@ Tools::log('Status of refund is: '.$result['status']);
 
             'eur.nld'     => array('currency' => 'NOK', 'domain' => 'NL', 'vat' => 19),
             'eur.salesnl' => array('currency' => 'NOK', 'domain' => 'SalesNL', 'vat' => 19),
+
+            'eur.de'      => array('currency' => 'EUR', 'domain' => 'DE', 'vat' => 19),
+            'eur.salesde' => array('currency' => 'EUR', 'domain' => 'SalesDE', 'vat' => 19),
         );
 
         return isset($c_map[$k]) ? $c_map[$k] : false;

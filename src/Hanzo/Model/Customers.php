@@ -7,7 +7,7 @@ use PropelPDO;
 use Hanzo\Model\om\BaseCustomers;
 use Hanzo\Model\CustomersQuery;
 
-use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
  * Skeleton subclass for representing a row from the 'customers' table.
@@ -20,7 +20,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *
  * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model
  */
-class Customers extends BaseCustomers implements UserInterface
+class Customers extends BaseCustomers implements AdvancedUserInterface
 {
     protected $acl;
 
@@ -83,10 +83,9 @@ class Customers extends BaseCustomers implements UserInterface
     {
         if ($email = $this->getEmail()) {
             $customer = CustomersQuery::create()->findOneByEmail($email);
-            if (!$customer instanceof Customers) {
-                return true;
+            if ($customer instanceof Customers) {
+                return false;
             }
-            return false;
         }
 
         return true;
@@ -142,6 +141,9 @@ class Customers extends BaseCustomers implements UserInterface
         'lv@pompdelux.dk',
      );
 
+    /**
+     * {@inheritDoc}
+     */
     public function getRoles()
     {
         $group = $this->getGroups();
@@ -162,20 +164,65 @@ class Customers extends BaseCustomers implements UserInterface
         return $roles;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getSalt()
     {
         return '';
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getUsername()
     {
         return $this->getEmail();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getUser()
     {
         return $this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function eraseCredentials() {}
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isEnabled()
+    {
+        return $this->getIsActive();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
 } // Customers

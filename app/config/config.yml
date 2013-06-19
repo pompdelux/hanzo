@@ -152,6 +152,7 @@ redis:
             host: %redis_cache1_host%
             port: %redis_cache1_port%
             prefix: hanzo
+            skip_env: true
             database: 2
 
 nno:
