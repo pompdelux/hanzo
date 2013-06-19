@@ -4,18 +4,18 @@
 <nav class="sub">
   <ul>
     <li>
-      <a href="{{ path('admin_coupons') }}">
+      <a href="{{ path('admin_gift_cards') }}">
         {{ 'admin.back.button'|trans({}, 'admin') }}
       </a>
     </li>
     <li>
-      <a href="{{ path('admin_coupons_edit') }}">
-        {{ 'admin.coupons.add_new.link'|trans({}, 'admin') }}
+      <a href="{{ path('admin_gift_cards_edit') }}">
+        {{ 'admin.gift_cards.add_new.link'|trans({}, 'admin') }}
       </a>
     </li>
   </ul>
 </nav>
-<h1>{{ 'admin.coupons.edit.header.text'|trans({}, 'admin') }}</h1>
+<h1>{{ 'admin.gift_cards.edit.header.text'|trans({}, 'admin') }}</h1>
 
 {% if app.session.hasFlash('notice') %}
 <div class="message notice">
@@ -23,21 +23,21 @@
 </div>
 {% endif %}
 
-<p>{{ 'admin.coupons.edit.description.text'|trans({}, 'admin') }}</p>
+<p>{{ 'admin.gift_cards.edit.description.text'|trans({}, 'admin') }}</p>
 
-<form action="{{ path('admin_coupons_edit', {'id' : coupon.id}) }}" method="post" {{ form_enctype(form) }} id="coupons-edit-form" class="edit-form">
-  <div id="coupons-edit">
+<form action="{{ path('admin_gift_cards_edit', {'id' : coupon.id}) }}" method="post" {{ form_enctype(form) }} id="gift-cards-edit-form" class="edit-form">
+  <div id="gift_cards-edit">
     {{ form_row(form._token) }}
     {{ form_rest(form) }}
   </div>
   <br>
-  <input class="button right" type="submit" value="{{ 'update.coupons'|trans({}, 'admin') }}">
-  <a class="button left" href="{{ path('admin_coupons') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
+  <input class="button right" type="submit" value="{{ 'update.gift_cards'|trans({}, 'admin') }}">
+  <a class="button left" href="{{ path('admin_gift_cards') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
 </form>
 
-{% if coupons_history|length > 0 %}
+{% if gift_cards_history|length > 0 %}
 
-<table id="coupons_history" class="list">
+<table id="gift_cards_history" class="list">
   <thead>
     <tr>
       <th>{{ 'amount'|trans({}, 'admin') }}</th>
@@ -45,7 +45,7 @@
     </tr>
   </thead>
   <tbody>
-  {% for entry in coupons_history %}
+  {% for entry in gift_cards_history %}
     <tr>
       <td>{{ entry.amount }}</td>
       <td>

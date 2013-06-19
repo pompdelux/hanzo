@@ -4,25 +4,25 @@
 <nav class="sub">
   <ul>
     <li>
-      <form action="{{ path('admin_coupons') }}" method="get">
+      <form action="{{ path('admin_gift_cards') }}" method="get">
         <input type="text" id="searh" name="q" placeholder="{{ 'search.label'|trans({}, 'admin') }}">
         <input class="button search" type="submit" value="{{ 'search'|trans({}, 'admin') }}">
       </form>
     </li>
     <li>
-      <a href="{{ path('admin_coupons') }}">
-        {{ 'admin.coupons.list.link'|trans({}, 'admin') }}
+      <a href="{{ path('admin_gift_cards') }}">
+        {{ 'admin.gift_cards.list.link'|trans({}, 'admin') }}
       </a>
     </li>
     <li>
-      <a href="{{ path('admin_coupons_edit') }}">
-        {{ 'admin.coupons.add_new.link'|trans({}, 'admin') }}
+      <a href="{{ path('admin_gift_cards_edit') }}">
+        {{ 'admin.gift_cards.add_new.link'|trans({}, 'admin') }}
       </a>
     </li>
   </ul>
 </nav>
 
-<h1>{{ 'admin.coupons.header.text'|trans({}, 'admin') }}</h1>
+<h1>{{ 'admin.gift_cards.header.text'|trans({}, 'admin') }}</h1>
 
 {% if app.session.hasFlash('notice') %}
 <div class="message notice">
@@ -31,32 +31,32 @@
 {% endif %}
 
 
-<p>{{ 'admin.coupons.description.text'|trans({}, 'admin') }}</p>
+<p>{{ 'admin.gift_cards.description.text'|trans({}, 'admin') }}</p>
 
 
-{% if coupons|length > 0 %}
+{% if gift_cards|length > 0 %}
 
   {% if paginate %}
     <div class="clearfix">
       {% import "::macro.pager.html.twig" as p %}
-      {{ p.pager(paginate, 'coupons') }}
+      {{ p.pager(paginate, 'gift_cards') }}
     </div>
   {% endif %}
-<table id="coupons" class="list">
+<table id="gift_cards" class="list">
   <thead>
     <tr>
-      <th>{{ 'admin.coupons.id'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.coupons.code'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.coupons.amount'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.coupons.currency'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.coupons.active_from'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.coupons.active_to'|trans({}, 'admin') }}</th>
+      <th>{{ 'admin.gift_cards.id'|trans({}, 'admin') }}</th>
+      <th>{{ 'admin.gift_cards.code'|trans({}, 'admin') }}</th>
+      <th>{{ 'admin.gift_cards.amount'|trans({}, 'admin') }}</th>
+      <th>{{ 'admin.gift_cards.currency'|trans({}, 'admin') }}</th>
+      <th>{{ 'admin.gift_cards.active_from'|trans({}, 'admin') }}</th>
+      <th>{{ 'admin.gift_cards.active_to'|trans({}, 'admin') }}</th>
       <th>{{ 'admin.customer.is_active'|trans({}, 'admin') }}</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
-  {% for coupon in coupons %}
+  {% for coupon in gift_cards %}
     <tr>
       <td>{{ coupon.id }}</td>
       <td>{{ coupon.code }}</td>
@@ -84,11 +84,11 @@
         {% endif %}
       </td>
       <th>
-        <a href="{{ path('admin_coupons_edit', {'id' : coupon.id }) }}">
-          {{ 'admin.coupons.edit.link'|trans({}, 'admin') }}
+        <a href="{{ path('admin_gift_cards_edit', {'id' : coupon.id }) }}">
+          {{ 'admin.gift_cards.edit.link'|trans({}, 'admin') }}
         </a>
-        <a href="{{ path('admin_coupons_delete', {'id' : coupon.id }) }}" class="delete">
-          {{ 'admin.coupons.delete.link'|trans({}, 'admin') }}
+        <a href="{{ path('admin_gift_cards_delete', {'id' : coupon.id }) }}" class="delete">
+          {{ 'admin.gift_cards.delete.link'|trans({}, 'admin') }}
         </a>
       </th>
     </tr>
@@ -98,12 +98,12 @@
   {% if paginate %}
     <div class="clearfix">
       {% import "::macro.pager.html.twig" as p %}
-      {{ p.pager(paginate, 'coupons') }}
+      {{ p.pager(paginate, 'gift_cards') }}
     </div>
   {% endif %}
 {% else %}
 
-<p>{{ 'admin.coupons.no.coupons.text'|trans({}, 'admin') }}</p>
+<p>{{ 'admin.gift_cards.no.gift_cards.text'|trans({}, 'admin') }}</p>
 
 {% endif %}
 
