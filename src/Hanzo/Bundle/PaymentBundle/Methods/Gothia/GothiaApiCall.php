@@ -409,7 +409,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
      * @return GothiaApiCallResponse
      * @author Anders Bryrup <ab@bellcom.dk>
      **/
-    public function checkCustomerAndPlaceReservation( Customers $customer, Orders $order, array $additional_info )
+    public function checkCustomerAndPlaceReservation( Customers $customer, Orders $order, array $additional_info = NULL )
     {
         $hanzo = Hanzo::getInstance();
         $domain_key = str_replace('Sales', '', $hanzo->get('core.domain_key'));
@@ -454,6 +454,14 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
             }
         }
 
+        if (!$additional_info) {
+          $additional_info = array(
+            'bank_account_no' => NULL,
+            'bank_id' => NULL,
+            'payment_method' => 'Invoice',
+          );
+        }
+
         $callString = AFSWS_CheckCustomerAndPlaceReservation(
           $this->userString(),
           AFSWS_Customer(
@@ -477,7 +485,11 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
               null
           ),
           AFSWS_Reservation('NoAccountOffer', $amount, $currency_code, $customerId, null),
-          isset($additional_info)?AFSWS_AdditionalReservationInfo($additional_info['bank_account_no'], $additional_info['bank_id'], $additional_info['payment_method']):''
+          AFSWS_AdditionalReservationInfo(
+            $additional_info['bank_account_no'],
+            $additional_info['bank_id'],
+            $additional_info['payment_method']
+          )
         );
 
         $response = $this->call('CheckCustomerAndPlaceReservation', $callString);

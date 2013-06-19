@@ -17,6 +17,7 @@ class DefaultController extends CoreController
     protected $services = [
         'payment.dibsapi'      => 'Dibs',
         'payment.gothiaapi'    => 'Gothia',
+        'payment.gothiadeapi'    => 'GothiaDE',
         'payment.paybybillapi' => 'PayByBill',
         'payment.couponapi'    => 'Coupon', // pseudo payment module ...
         'payment.pensioapi'    => 'Pensio',
@@ -43,7 +44,6 @@ class DefaultController extends CoreController
 
         $modules = [];
         foreach ($this->services as $service => $controller) {
-
             $service = $this->get($service);
             if ($service && $service->isActive()) {
 
@@ -150,8 +150,8 @@ class DefaultController extends CoreController
                 'data'    => ['name' => 'payment'],
             ]);
         }
-
         $provider = strtolower($order->getBillingMethod());
+
         $key = 'payment.'.$provider.'api';
 
         if (isset($this->services[$key])) {

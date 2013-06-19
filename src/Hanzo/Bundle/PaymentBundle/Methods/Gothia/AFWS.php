@@ -312,9 +312,10 @@ function AFSWS_CancelReservationObj( $customerNo, $orderNo = null, $amount = '' 
 
 // Include the additional Reservation Info block,
 // ab@bellcom.dk
-function AFSWS_AdditionalReservationInfo($bankAccount, $bankId, $PaymentMethod)
+function AFSWS_AdditionalReservationInfo($bankAccount = NULL, $bankId = NULL, $PaymentMethod)
 {
 	$ns = 'akt1';
+
 	$additionalInfos = AFSWS_Tag('DirectDebetBankAccount', $bankAccount, $ns);
 	$additionalInfos .= AFSWS_Tag('DirectDebetBankID', $bankId, $ns);
 	$additionalInfos .= AFSWS_Tag('PaymentMethod', $PaymentMethod, $ns);

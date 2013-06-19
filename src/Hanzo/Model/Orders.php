@@ -1068,7 +1068,7 @@ class Orders extends BaseOrders
             $debug = array();
             $msg = 'Could not cancel order';
 
-            if ($paymentMethod == 'gothia') {
+            if (in_array($paymentMethod, ['gothia', 'gothiade'])) {
               $debug['TransactionId'] = $response->transactionId;
               $msg .= ' at Gothia (Transaction ID: '. $response->transactionId .')';
             }

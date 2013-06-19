@@ -39,23 +39,6 @@ class GothiaApi implements PaymentMethodApiInterface
         {
             $this->checkSettings($settings);
         }
-
-        if ( isset($settings['paytypes']) )
-        {
-            $this->settings['paytypes'] = explode(',', $settings['paytypes']);
-        }
-
-        /*
-        Live settings:
-        'username' = 'PompDeLuxExternalSE'
-        'password' = 'i4F1FfFJ'
-        'clientId' = 7757
-
-        Test settings:
-        'username' = 'EXTPompDeLuxSETest'
-        'password' = 'o6K7IGPR'
-        'clientId' = 7012
-        */
     }
 
     /**
@@ -67,7 +50,6 @@ class GothiaApi implements PaymentMethodApiInterface
     {
         $requiredFields = array(
             'method_enabled',
-            'paytypes',
             'test',
             'username',
             'password',
@@ -134,15 +116,6 @@ class GothiaApi implements PaymentMethodApiInterface
     }
 
     /**
-     * getEnabledPaytypes
-     * @return void
-     **/
-    public function getEnabledPaytypes()
-    {
-        return $this->settings['paytypes'];
-    }
-
-    /**
      * someFunc
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
@@ -163,7 +136,7 @@ class GothiaApi implements PaymentMethodApiInterface
     public function updateOrderSuccess( Request $request, Orders $order )
     {
         $order->setState( Orders::STATE_PAYMENT_OK );
-        //$order->setAttribute( 'paytype' , 'payment', 'gothia' );
+        $order->setAttribute( 'paytype' , 'payment', 'gothia' );
         // Fee is handled in the checkout controller, as we need the information in the summery
         $order->save();
     }
@@ -179,7 +152,7 @@ class GothiaApi implements PaymentMethodApiInterface
     public function updateOrderFailed( Request $request, Orders $order)
     {
         $order->setState( Orders::STATE_ERROR_PAYMENT );
-        //$order->setAttribute( 'paytype' , 'payment', 'gothia' );
+        $order->setAttribute( 'paytype' , 'payment', 'gothia' );
         $order->save();
     }
 

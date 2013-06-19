@@ -50,8 +50,6 @@ class GothiaController extends CoreController
     public function paymentAction()
     {
         $order = OrdersPeer::getCurrent();
-        // Difference between gothia and gothia-lv payments.
-        $paytype = $order->getPaymentPaytype();
 
         if ($order->isNew()) {
             return $this->redirect($this->generateUrl('_checkout'));
@@ -85,25 +83,10 @@ class GothiaController extends CoreController
                 'translation_domain' => 'gothia' ) )
             ->getForm();
 
-
-        $form_step2 = $this->createFormBuilder( array('bank_account_no', 'bank_id') );
-        if ($paytype === 'gothia-lv') {
-            $form_step2 = $form_step2->add('bank_account_no', 'text', array(
-                    'label' => 'bank_account_no',
-                    'required' => true,
-                    'translation_domain' => 'gothia' ) )
-                ->add('bank_id', 'text', array(
-                    'label' => 'bank_id',
-                    'required' => true,
-                    'translation_domain' => 'gothia' ) );
-        }
-        $form_step2 = $form_step2->getForm();
-
         return $this->render('PaymentBundle:Gothia:payment.html.twig',array(
             'page_type' => 'gothia',
             'step' => $step,
             'form' => $form->createView(),
-            'form_step2' => $form_step2->createView(),
         ));
     }
 
@@ -312,42 +295,9 @@ class GothiaController extends CoreController
     {
         $order      = OrdersPeer::getCurrent(true);
         $customer   = $order->getCustomers(Propel::getConnection(null, Propel::CONNECTION_WRITE));
-        $form               = $request->request->get('form');
-        // Direct Debit - Gothia-LV
-        $bank_account_no    = isset($form['bank_account_no'])?$form['bank_account_no']:NULL;
-        $bank_id            = isset($form['bank_id'])?$form['bank_id']:NULL;
         $api        = $this->get('payment.gothiaapi');
         $translator = $this->get('translator');
 
-        $hanzo = Hanzo::getInstance();
-        $domainKey = $hanzo->get('core.domain_key');
-
-        // Validate bank info when using Gothia LV payments.
-        // Validation is per domain.
-        if($order->getPaymentPaytype() === 'gothia-lv') {
-            switch (str_replace('Sales', '', $domainKey)) {
-            case 'DE':
-                /**
-                 * Deutchland:
-                 *   Bank account <=10
-                 *   Bank id      =8
-                 */
-
-                if ((strlen($bank_account_no) > 10 || !is_numeric($bank_account_no))) {
-                    return $this->json_response(array(
-                        'status' => FALSE,
-                        'message' => $translator->trans('json.bank_account_no.to_long', array(), 'gothia')
-                    ));
-                }
-                if ((strlen($bank_id) != 8 || !is_numeric($bank_id))) {
-                    return $this->json_response(array(
-                        'status' => FALSE,
-                        'message' => $translator->trans('json.bank_id.to_long', array(), 'gothia')
-                    ));
-                }
-                break;
-            }
-        }
         if ( $order->getState() > Orders::STATE_PRE_PAYMENT )
         {
             return $this->json_response(array(
@@ -374,7 +324,7 @@ class GothiaController extends CoreController
                 // The new order amount is different from the old order amount
                 // We will remove the old reservation, and create a new one
                 // but only if the old paytype was gothia
-                if ((in_array($paytype, array('gothia', 'gothia-lv'))) && ($order->getTotalPrice() != $oldOrder->getTotalPrice())) {
+                if (($paytype == 'gothia') && ($order->getTotalPrice() != $oldOrder->getTotalPrice())) {
                     $timer = new Timer('gothia', true);
                     try {
                         $response = $api->call()->cancelReservation( $customer, $oldOrder );
@@ -403,12 +353,9 @@ class GothiaController extends CoreController
         try
         {
             $timer = new Timer('gothia', true);
-            if($order->getPaymentPaytype() === 'gothia-lv') {
-                $response = $api->call()->checkCustomerAndPlaceReservation( $customer, $order, array('bank_account_no' => $bank_account_no, 'bank_id' => $bank_id, 'payment_method' => 'DirectDebet') );
-            }
-            else {
-                $response = $api->call()->placeReservation( $customer, $order );
-            }
+
+            $response = $api->call()->placeReservation( $customer, $order );
+
             $timer->logOne('placeReservation orderId #'.$order->getId());
         }
         catch( GothiaApiCallException $e )
