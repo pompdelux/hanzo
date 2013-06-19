@@ -85,7 +85,7 @@
     </unique>
   </table>
 
-  <table name="coupons">
+  <table name="gift_cards">
     <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="code" type="VARCHAR" size="12" required="true"/>
     <column name="amount" type="DECIMAL" size="15" scale="4" required="true"/>
@@ -97,6 +97,42 @@
       <unique-column name="code"/>
     </unique>
     <index name="index3">
+      <index-column name="active_from"/>
+      <index-column name="active_to"/>
+    </index>
+    <index name="index4">
+      <index-column name="is_active"/>
+    </index>
+    <index name="index5">
+      <index-column name="currency_code"/>
+    </index>
+    <behavior name="timestampable" />
+  </table>
+
+  <table name="coupons">
+    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="code" type="VARCHAR" size="12" required="true"/>
+    <column name="amount" type="DECIMAL" size="15" scale="4" required="true"/>
+    <column name="min_purchase_amount" type="DECIMAL" size="15" scale="4" required="false"/>
+    <column name="currency_code" type="VARCHAR" size="3" required="true"/>
+    <column name="active_from" type="TIMESTAMP" required="false"/>
+    <column name="active_to" type="TIMESTAMP" required="false"/>
+    <column name="is_active" type="BOOLEAN" size="1" required="true" defaultValue="true"/>
+    <column name="is_used" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
+    <unique name="code_UNIQUE">
+      <unique-column name="code"/>
+    </unique>
+    <index name="index3">
+      <index-column name="active_from"/>
+      <index-column name="active_to"/>
+    </index>
+    <index name="index4">
+      <index-column name="is_active"/>
+    </index>
+    <index name="index5">
+      <index-column name="is_used"/>
+    </index>
+    <index name="index6">
       <index-column name="currency_code"/>
     </index>
     <behavior name="timestampable" />

@@ -95,12 +95,12 @@ CREATE TABLE `countries`
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
--- coupons
+-- gift_cards
 -- ---------------------------------------------------------------------
 
-DROP TABLE IF EXISTS `coupons`;
+DROP TABLE IF EXISTS `gift_cards`;
 
-CREATE TABLE `coupons`
+CREATE TABLE `gift_cards`
 (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `code` VARCHAR(12) NOT NULL,
@@ -113,7 +113,36 @@ CREATE TABLE `coupons`
     `updated_at` DATETIME,
     PRIMARY KEY (`id`),
     UNIQUE INDEX `code_UNIQUE` (`code`),
-    INDEX `index3` (`currency_code`)
+    INDEX `index3` (`active_from`, `active_to`),
+    INDEX `index4` (`is_active`),
+    INDEX `index5` (`currency_code`)
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
+-- coupons
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `coupons`;
+
+CREATE TABLE `coupons`
+(
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `code` VARCHAR(12) NOT NULL,
+    `amount` DECIMAL(15,4) NOT NULL,
+    `min_purchase_amount` DECIMAL(15,4),
+    `currency_code` VARCHAR(3) NOT NULL,
+    `active_from` DATETIME,
+    `active_to` DATETIME,
+    `is_active` TINYINT(1) DEFAULT 1 NOT NULL,
+    `is_used` TINYINT(1) DEFAULT 0 NOT NULL,
+    `created_at` DATETIME,
+    `updated_at` DATETIME,
+    PRIMARY KEY (`id`),
+    UNIQUE INDEX `code_UNIQUE` (`code`),
+    INDEX `index3` (`active_from`, `active_to`),
+    INDEX `index4` (`is_active`),
+    INDEX `index5` (`is_used`),
+    INDEX `index6` (`currency_code`)
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------

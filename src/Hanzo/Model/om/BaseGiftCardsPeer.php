@@ -9,76 +9,69 @@ use \PDOStatement;
 use \Propel;
 use \PropelException;
 use \PropelPDO;
-use Hanzo\Model\Coupons;
-use Hanzo\Model\CouponsPeer;
-use Hanzo\Model\OrdersToCouponsPeer;
-use Hanzo\Model\map\CouponsTableMap;
+use Hanzo\Model\GiftCards;
+use Hanzo\Model\GiftCardsPeer;
+use Hanzo\Model\map\GiftCardsTableMap;
 
-abstract class BaseCouponsPeer
+abstract class BaseGiftCardsPeer
 {
 
     /** the default database name for this class */
     const DATABASE_NAME = 'default';
 
     /** the table name for this class */
-    const TABLE_NAME = 'coupons';
+    const TABLE_NAME = 'gift_cards';
 
     /** the related Propel class for this table */
-    const OM_CLASS = 'Hanzo\\Model\\Coupons';
+    const OM_CLASS = 'Hanzo\\Model\\GiftCards';
 
     /** the related TableMap class for this table */
-    const TM_CLASS = 'CouponsTableMap';
+    const TM_CLASS = 'GiftCardsTableMap';
 
     /** The total number of columns. */
-    const NUM_COLUMNS = 11;
+    const NUM_COLUMNS = 9;
 
     /** The number of lazy-loaded columns. */
     const NUM_LAZY_LOAD_COLUMNS = 0;
 
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-    const NUM_HYDRATE_COLUMNS = 11;
+    const NUM_HYDRATE_COLUMNS = 9;
 
     /** the column name for the id field */
-    const ID = 'coupons.id';
+    const ID = 'gift_cards.id';
 
     /** the column name for the code field */
-    const CODE = 'coupons.code';
+    const CODE = 'gift_cards.code';
 
     /** the column name for the amount field */
-    const AMOUNT = 'coupons.amount';
-
-    /** the column name for the min_purchase_amount field */
-    const MIN_PURCHASE_AMOUNT = 'coupons.min_purchase_amount';
+    const AMOUNT = 'gift_cards.amount';
 
     /** the column name for the currency_code field */
-    const CURRENCY_CODE = 'coupons.currency_code';
+    const CURRENCY_CODE = 'gift_cards.currency_code';
 
     /** the column name for the active_from field */
-    const ACTIVE_FROM = 'coupons.active_from';
+    const ACTIVE_FROM = 'gift_cards.active_from';
 
     /** the column name for the active_to field */
-    const ACTIVE_TO = 'coupons.active_to';
+    const ACTIVE_TO = 'gift_cards.active_to';
 
     /** the column name for the is_active field */
-    const IS_ACTIVE = 'coupons.is_active';
-
-    /** the column name for the is_used field */
-    const IS_USED = 'coupons.is_used';
+    const IS_ACTIVE = 'gift_cards.is_active';
 
     /** the column name for the created_at field */
-    const CREATED_AT = 'coupons.created_at';
+    const CREATED_AT = 'gift_cards.created_at';
 
     /** the column name for the updated_at field */
-    const UPDATED_AT = 'coupons.updated_at';
+    const UPDATED_AT = 'gift_cards.updated_at';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
 
     /**
-     * An identiy map to hold any loaded instances of Coupons objects.
+     * An identiy map to hold any loaded instances of GiftCards objects.
      * This must be public so that other peer classes can access this when hydrating from JOIN
      * queries.
-     * @var        array Coupons[]
+     * @var        array GiftCards[]
      */
     public static $instances = array();
 
@@ -87,30 +80,30 @@ abstract class BaseCouponsPeer
      * holds an array of fieldnames
      *
      * first dimension keys are the type constants
-     * e.g. CouponsPeer::$fieldNames[CouponsPeer::TYPE_PHPNAME][0] = 'Id'
+     * e.g. GiftCardsPeer::$fieldNames[GiftCardsPeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('Id', 'Code', 'Amount', 'MinPurchaseAmount', 'CurrencyCode', 'ActiveFrom', 'ActiveTo', 'IsActive', 'IsUsed', 'CreatedAt', 'UpdatedAt', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'code', 'amount', 'minPurchaseAmount', 'currencyCode', 'activeFrom', 'activeTo', 'isActive', 'isUsed', 'createdAt', 'updatedAt', ),
-        BasePeer::TYPE_COLNAME => array (CouponsPeer::ID, CouponsPeer::CODE, CouponsPeer::AMOUNT, CouponsPeer::MIN_PURCHASE_AMOUNT, CouponsPeer::CURRENCY_CODE, CouponsPeer::ACTIVE_FROM, CouponsPeer::ACTIVE_TO, CouponsPeer::IS_ACTIVE, CouponsPeer::IS_USED, CouponsPeer::CREATED_AT, CouponsPeer::UPDATED_AT, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'CODE', 'AMOUNT', 'MIN_PURCHASE_AMOUNT', 'CURRENCY_CODE', 'ACTIVE_FROM', 'ACTIVE_TO', 'IS_ACTIVE', 'IS_USED', 'CREATED_AT', 'UPDATED_AT', ),
-        BasePeer::TYPE_FIELDNAME => array ('id', 'code', 'amount', 'min_purchase_amount', 'currency_code', 'active_from', 'active_to', 'is_active', 'is_used', 'created_at', 'updated_at', ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, )
+        BasePeer::TYPE_PHPNAME => array ('Id', 'Code', 'Amount', 'CurrencyCode', 'ActiveFrom', 'ActiveTo', 'IsActive', 'CreatedAt', 'UpdatedAt', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'code', 'amount', 'currencyCode', 'activeFrom', 'activeTo', 'isActive', 'createdAt', 'updatedAt', ),
+        BasePeer::TYPE_COLNAME => array (GiftCardsPeer::ID, GiftCardsPeer::CODE, GiftCardsPeer::AMOUNT, GiftCardsPeer::CURRENCY_CODE, GiftCardsPeer::ACTIVE_FROM, GiftCardsPeer::ACTIVE_TO, GiftCardsPeer::IS_ACTIVE, GiftCardsPeer::CREATED_AT, GiftCardsPeer::UPDATED_AT, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'CODE', 'AMOUNT', 'CURRENCY_CODE', 'ACTIVE_FROM', 'ACTIVE_TO', 'IS_ACTIVE', 'CREATED_AT', 'UPDATED_AT', ),
+        BasePeer::TYPE_FIELDNAME => array ('id', 'code', 'amount', 'currency_code', 'active_from', 'active_to', 'is_active', 'created_at', 'updated_at', ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, )
     );
 
     /**
      * holds an array of keys for quick access to the fieldnames array
      *
      * first dimension keys are the type constants
-     * e.g. CouponsPeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
+     * e.g. GiftCardsPeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Code' => 1, 'Amount' => 2, 'MinPurchaseAmount' => 3, 'CurrencyCode' => 4, 'ActiveFrom' => 5, 'ActiveTo' => 6, 'IsActive' => 7, 'IsUsed' => 8, 'CreatedAt' => 9, 'UpdatedAt' => 10, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'code' => 1, 'amount' => 2, 'minPurchaseAmount' => 3, 'currencyCode' => 4, 'activeFrom' => 5, 'activeTo' => 6, 'isActive' => 7, 'isUsed' => 8, 'createdAt' => 9, 'updatedAt' => 10, ),
-        BasePeer::TYPE_COLNAME => array (CouponsPeer::ID => 0, CouponsPeer::CODE => 1, CouponsPeer::AMOUNT => 2, CouponsPeer::MIN_PURCHASE_AMOUNT => 3, CouponsPeer::CURRENCY_CODE => 4, CouponsPeer::ACTIVE_FROM => 5, CouponsPeer::ACTIVE_TO => 6, CouponsPeer::IS_ACTIVE => 7, CouponsPeer::IS_USED => 8, CouponsPeer::CREATED_AT => 9, CouponsPeer::UPDATED_AT => 10, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'CODE' => 1, 'AMOUNT' => 2, 'MIN_PURCHASE_AMOUNT' => 3, 'CURRENCY_CODE' => 4, 'ACTIVE_FROM' => 5, 'ACTIVE_TO' => 6, 'IS_ACTIVE' => 7, 'IS_USED' => 8, 'CREATED_AT' => 9, 'UPDATED_AT' => 10, ),
-        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'code' => 1, 'amount' => 2, 'min_purchase_amount' => 3, 'currency_code' => 4, 'active_from' => 5, 'active_to' => 6, 'is_active' => 7, 'is_used' => 8, 'created_at' => 9, 'updated_at' => 10, ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, )
+        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Code' => 1, 'Amount' => 2, 'CurrencyCode' => 3, 'ActiveFrom' => 4, 'ActiveTo' => 5, 'IsActive' => 6, 'CreatedAt' => 7, 'UpdatedAt' => 8, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'code' => 1, 'amount' => 2, 'currencyCode' => 3, 'activeFrom' => 4, 'activeTo' => 5, 'isActive' => 6, 'createdAt' => 7, 'updatedAt' => 8, ),
+        BasePeer::TYPE_COLNAME => array (GiftCardsPeer::ID => 0, GiftCardsPeer::CODE => 1, GiftCardsPeer::AMOUNT => 2, GiftCardsPeer::CURRENCY_CODE => 3, GiftCardsPeer::ACTIVE_FROM => 4, GiftCardsPeer::ACTIVE_TO => 5, GiftCardsPeer::IS_ACTIVE => 6, GiftCardsPeer::CREATED_AT => 7, GiftCardsPeer::UPDATED_AT => 8, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'CODE' => 1, 'AMOUNT' => 2, 'CURRENCY_CODE' => 3, 'ACTIVE_FROM' => 4, 'ACTIVE_TO' => 5, 'IS_ACTIVE' => 6, 'CREATED_AT' => 7, 'UPDATED_AT' => 8, ),
+        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'code' => 1, 'amount' => 2, 'currency_code' => 3, 'active_from' => 4, 'active_to' => 5, 'is_active' => 6, 'created_at' => 7, 'updated_at' => 8, ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, )
     );
 
     /**
@@ -125,10 +118,10 @@ abstract class BaseCouponsPeer
      */
     public static function translateFieldName($name, $fromType, $toType)
     {
-        $toNames = CouponsPeer::getFieldNames($toType);
-        $key = isset(CouponsPeer::$fieldKeys[$fromType][$name]) ? CouponsPeer::$fieldKeys[$fromType][$name] : null;
+        $toNames = GiftCardsPeer::getFieldNames($toType);
+        $key = isset(GiftCardsPeer::$fieldKeys[$fromType][$name]) ? GiftCardsPeer::$fieldKeys[$fromType][$name] : null;
         if ($key === null) {
-            throw new PropelException("'$name' could not be found in the field names of type '$fromType'. These are: " . print_r(CouponsPeer::$fieldKeys[$fromType], true));
+            throw new PropelException("'$name' could not be found in the field names of type '$fromType'. These are: " . print_r(GiftCardsPeer::$fieldKeys[$fromType], true));
         }
 
         return $toNames[$key];
@@ -145,11 +138,11 @@ abstract class BaseCouponsPeer
      */
     public static function getFieldNames($type = BasePeer::TYPE_PHPNAME)
     {
-        if (!array_key_exists($type, CouponsPeer::$fieldNames)) {
+        if (!array_key_exists($type, GiftCardsPeer::$fieldNames)) {
             throw new PropelException('Method getFieldNames() expects the parameter $type to be one of the class constants BasePeer::TYPE_PHPNAME, BasePeer::TYPE_STUDLYPHPNAME, BasePeer::TYPE_COLNAME, BasePeer::TYPE_FIELDNAME, BasePeer::TYPE_NUM. ' . $type . ' was given.');
         }
 
-        return CouponsPeer::$fieldNames[$type];
+        return GiftCardsPeer::$fieldNames[$type];
     }
 
     /**
@@ -161,12 +154,12 @@ abstract class BaseCouponsPeer
      *		$c->addJoin(TablePeer::alias("alias1", TablePeer::PRIMARY_KEY_COLUMN), TablePeer::PRIMARY_KEY_COLUMN);
      * </code>
      * @param      string $alias The alias for the current table.
-     * @param      string $column The column name for current table. (i.e. CouponsPeer::COLUMN_NAME).
+     * @param      string $column The column name for current table. (i.e. GiftCardsPeer::COLUMN_NAME).
      * @return string
      */
     public static function alias($alias, $column)
     {
-        return str_replace(CouponsPeer::TABLE_NAME.'.', $alias.'.', $column);
+        return str_replace(GiftCardsPeer::TABLE_NAME.'.', $alias.'.', $column);
     }
 
     /**
@@ -184,27 +177,23 @@ abstract class BaseCouponsPeer
     public static function addSelectColumns(Criteria $criteria, $alias = null)
     {
         if (null === $alias) {
-            $criteria->addSelectColumn(CouponsPeer::ID);
-            $criteria->addSelectColumn(CouponsPeer::CODE);
-            $criteria->addSelectColumn(CouponsPeer::AMOUNT);
-            $criteria->addSelectColumn(CouponsPeer::MIN_PURCHASE_AMOUNT);
-            $criteria->addSelectColumn(CouponsPeer::CURRENCY_CODE);
-            $criteria->addSelectColumn(CouponsPeer::ACTIVE_FROM);
-            $criteria->addSelectColumn(CouponsPeer::ACTIVE_TO);
-            $criteria->addSelectColumn(CouponsPeer::IS_ACTIVE);
-            $criteria->addSelectColumn(CouponsPeer::IS_USED);
-            $criteria->addSelectColumn(CouponsPeer::CREATED_AT);
-            $criteria->addSelectColumn(CouponsPeer::UPDATED_AT);
+            $criteria->addSelectColumn(GiftCardsPeer::ID);
+            $criteria->addSelectColumn(GiftCardsPeer::CODE);
+            $criteria->addSelectColumn(GiftCardsPeer::AMOUNT);
+            $criteria->addSelectColumn(GiftCardsPeer::CURRENCY_CODE);
+            $criteria->addSelectColumn(GiftCardsPeer::ACTIVE_FROM);
+            $criteria->addSelectColumn(GiftCardsPeer::ACTIVE_TO);
+            $criteria->addSelectColumn(GiftCardsPeer::IS_ACTIVE);
+            $criteria->addSelectColumn(GiftCardsPeer::CREATED_AT);
+            $criteria->addSelectColumn(GiftCardsPeer::UPDATED_AT);
         } else {
             $criteria->addSelectColumn($alias . '.id');
             $criteria->addSelectColumn($alias . '.code');
             $criteria->addSelectColumn($alias . '.amount');
-            $criteria->addSelectColumn($alias . '.min_purchase_amount');
             $criteria->addSelectColumn($alias . '.currency_code');
             $criteria->addSelectColumn($alias . '.active_from');
             $criteria->addSelectColumn($alias . '.active_to');
             $criteria->addSelectColumn($alias . '.is_active');
-            $criteria->addSelectColumn($alias . '.is_used');
             $criteria->addSelectColumn($alias . '.created_at');
             $criteria->addSelectColumn($alias . '.updated_at');
         }
@@ -226,21 +215,21 @@ abstract class BaseCouponsPeer
         // We need to set the primary table name, since in the case that there are no WHERE columns
         // it will be impossible for the BasePeer::createSelectSql() method to determine which
         // tables go into the FROM clause.
-        $criteria->setPrimaryTableName(CouponsPeer::TABLE_NAME);
+        $criteria->setPrimaryTableName(GiftCardsPeer::TABLE_NAME);
 
         if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
             $criteria->setDistinct();
         }
 
         if (!$criteria->hasSelectClause()) {
-            CouponsPeer::addSelectColumns($criteria);
+            GiftCardsPeer::addSelectColumns($criteria);
         }
 
         $criteria->clearOrderByColumns(); // ORDER BY won't ever affect the count
-        $criteria->setDbName(CouponsPeer::DATABASE_NAME); // Set the correct dbName
+        $criteria->setDbName(GiftCardsPeer::DATABASE_NAME); // Set the correct dbName
 
         if ($con === null) {
-            $con = Propel::getConnection(CouponsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+            $con = Propel::getConnection(GiftCardsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
         }
         // BasePeer returns a PDOStatement
         $stmt = BasePeer::doCount($criteria, $con);
@@ -259,7 +248,7 @@ abstract class BaseCouponsPeer
      *
      * @param      Criteria $criteria object used to create the SELECT statement.
      * @param      PropelPDO $con
-     * @return                 Coupons
+     * @return                 GiftCards
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
@@ -267,7 +256,7 @@ abstract class BaseCouponsPeer
     {
         $critcopy = clone $criteria;
         $critcopy->setLimit(1);
-        $objects = CouponsPeer::doSelect($critcopy, $con);
+        $objects = GiftCardsPeer::doSelect($critcopy, $con);
         if ($objects) {
             return $objects[0];
         }
@@ -285,7 +274,7 @@ abstract class BaseCouponsPeer
      */
     public static function doSelect(Criteria $criteria, PropelPDO $con = null)
     {
-        return CouponsPeer::populateObjects(CouponsPeer::doSelectStmt($criteria, $con));
+        return GiftCardsPeer::populateObjects(GiftCardsPeer::doSelectStmt($criteria, $con));
     }
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
@@ -303,16 +292,16 @@ abstract class BaseCouponsPeer
     public static function doSelectStmt(Criteria $criteria, PropelPDO $con = null)
     {
         if ($con === null) {
-            $con = Propel::getConnection(CouponsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+            $con = Propel::getConnection(GiftCardsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
         }
 
         if (!$criteria->hasSelectClause()) {
             $criteria = clone $criteria;
-            CouponsPeer::addSelectColumns($criteria);
+            GiftCardsPeer::addSelectColumns($criteria);
         }
 
         // Set the correct dbName
-        $criteria->setDbName(CouponsPeer::DATABASE_NAME);
+        $criteria->setDbName(GiftCardsPeer::DATABASE_NAME);
 
         // BasePeer returns a PDOStatement
         return BasePeer::doSelect($criteria, $con);
@@ -326,7 +315,7 @@ abstract class BaseCouponsPeer
      * to the cache in order to ensure that the same objects are always returned by doSelect*()
      * and retrieveByPK*() calls.
      *
-     * @param      Coupons $obj A Coupons object.
+     * @param      GiftCards $obj A GiftCards object.
      * @param      string $key (optional) key to use for instance map (for performance boost if key was already calculated externally).
      */
     public static function addInstanceToPool($obj, $key = null)
@@ -335,7 +324,7 @@ abstract class BaseCouponsPeer
             if ($key === null) {
                 $key = (string) $obj->getId();
             } // if key === null
-            CouponsPeer::$instances[$key] = $obj;
+            GiftCardsPeer::$instances[$key] = $obj;
         }
     }
 
@@ -347,7 +336,7 @@ abstract class BaseCouponsPeer
      * methods in your stub classes -- you may need to explicitly remove objects
      * from the cache in order to prevent returning objects that no longer exist.
      *
-     * @param      mixed $value A Coupons object or a primary key value.
+     * @param      mixed $value A GiftCards object or a primary key value.
      *
      * @return void
      * @throws PropelException - if the value is invalid.
@@ -355,17 +344,17 @@ abstract class BaseCouponsPeer
     public static function removeInstanceFromPool($value)
     {
         if (Propel::isInstancePoolingEnabled() && $value !== null) {
-            if (is_object($value) && $value instanceof Coupons) {
+            if (is_object($value) && $value instanceof GiftCards) {
                 $key = (string) $value->getId();
             } elseif (is_scalar($value)) {
                 // assume we've been passed a primary key
                 $key = (string) $value;
             } else {
-                $e = new PropelException("Invalid value passed to removeInstanceFromPool().  Expected primary key or Coupons object; got " . (is_object($value) ? get_class($value) . ' object.' : var_export($value,true)));
+                $e = new PropelException("Invalid value passed to removeInstanceFromPool().  Expected primary key or GiftCards object; got " . (is_object($value) ? get_class($value) . ' object.' : var_export($value,true)));
                 throw $e;
             }
 
-            unset(CouponsPeer::$instances[$key]);
+            unset(GiftCardsPeer::$instances[$key]);
         }
     } // removeInstanceFromPool()
 
@@ -376,14 +365,14 @@ abstract class BaseCouponsPeer
      * a multi-column primary key, a serialize()d version of the primary key will be returned.
      *
      * @param      string $key The key (@see getPrimaryKeyHash()) for this instance.
-     * @return   Coupons Found object or null if 1) no instance exists for specified key or 2) instance pooling has been disabled.
+     * @return   GiftCards Found object or null if 1) no instance exists for specified key or 2) instance pooling has been disabled.
      * @see        getPrimaryKeyHash()
      */
     public static function getInstanceFromPool($key)
     {
         if (Propel::isInstancePoolingEnabled()) {
-            if (isset(CouponsPeer::$instances[$key])) {
-                return CouponsPeer::$instances[$key];
+            if (isset(GiftCardsPeer::$instances[$key])) {
+                return GiftCardsPeer::$instances[$key];
             }
         }
 
@@ -399,23 +388,20 @@ abstract class BaseCouponsPeer
     {
       if ($and_clear_all_references)
       {
-        foreach (CouponsPeer::$instances as $instance)
+        foreach (GiftCardsPeer::$instances as $instance)
         {
           $instance->clearAllReferences(true);
         }
       }
-        CouponsPeer::$instances = array();
+        GiftCardsPeer::$instances = array();
     }
 
     /**
-     * Method to invalidate the instance pool of all tables related to coupons
+     * Method to invalidate the instance pool of all tables related to gift_cards
      * by a foreign key with ON DELETE CASCADE
      */
     public static function clearRelatedInstancePool()
     {
-        // Invalidate objects in OrdersToCouponsPeer instance pool,
-        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
-        OrdersToCouponsPeer::clearInstancePool();
     }
 
     /**
@@ -465,11 +451,11 @@ abstract class BaseCouponsPeer
         $results = array();
 
         // set the class once to avoid overhead in the loop
-        $cls = CouponsPeer::getOMClass();
+        $cls = GiftCardsPeer::getOMClass();
         // populate the object(s)
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-            $key = CouponsPeer::getPrimaryKeyHashFromRow($row, 0);
-            if (null !== ($obj = CouponsPeer::getInstanceFromPool($key))) {
+            $key = GiftCardsPeer::getPrimaryKeyHashFromRow($row, 0);
+            if (null !== ($obj = GiftCardsPeer::getInstanceFromPool($key))) {
                 // We no longer rehydrate the object, since this can cause data loss.
                 // See http://www.propelorm.org/ticket/509
                 // $obj->hydrate($row, 0, true); // rehydrate
@@ -478,7 +464,7 @@ abstract class BaseCouponsPeer
                 $obj = new $cls();
                 $obj->hydrate($row);
                 $results[] = $obj;
-                CouponsPeer::addInstanceToPool($obj, $key);
+                GiftCardsPeer::addInstanceToPool($obj, $key);
             } // if key exists
         }
         $stmt->closeCursor();
@@ -492,21 +478,21 @@ abstract class BaseCouponsPeer
      * @param      int $startcol The 0-based offset for reading from the resultset row.
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
-     * @return array (Coupons object, last column rank)
+     * @return array (GiftCards object, last column rank)
      */
     public static function populateObject($row, $startcol = 0)
     {
-        $key = CouponsPeer::getPrimaryKeyHashFromRow($row, $startcol);
-        if (null !== ($obj = CouponsPeer::getInstanceFromPool($key))) {
+        $key = GiftCardsPeer::getPrimaryKeyHashFromRow($row, $startcol);
+        if (null !== ($obj = GiftCardsPeer::getInstanceFromPool($key))) {
             // We no longer rehydrate the object, since this can cause data loss.
             // See http://www.propelorm.org/ticket/509
             // $obj->hydrate($row, $startcol, true); // rehydrate
-            $col = $startcol + CouponsPeer::NUM_HYDRATE_COLUMNS;
+            $col = $startcol + GiftCardsPeer::NUM_HYDRATE_COLUMNS;
         } else {
-            $cls = CouponsPeer::OM_CLASS;
+            $cls = GiftCardsPeer::OM_CLASS;
             $obj = new $cls();
             $col = $obj->hydrate($row, $startcol);
-            CouponsPeer::addInstanceToPool($obj, $key);
+            GiftCardsPeer::addInstanceToPool($obj, $key);
         }
 
         return array($obj, $col);
@@ -521,7 +507,7 @@ abstract class BaseCouponsPeer
      */
     public static function getTableMap()
     {
-        return Propel::getDatabaseMap(CouponsPeer::DATABASE_NAME)->getTable(CouponsPeer::TABLE_NAME);
+        return Propel::getDatabaseMap(GiftCardsPeer::DATABASE_NAME)->getTable(GiftCardsPeer::TABLE_NAME);
     }
 
     /**
@@ -529,9 +515,9 @@ abstract class BaseCouponsPeer
      */
     public static function buildTableMap()
     {
-      $dbMap = Propel::getDatabaseMap(BaseCouponsPeer::DATABASE_NAME);
-      if (!$dbMap->hasTable(BaseCouponsPeer::TABLE_NAME)) {
-        $dbMap->addTableObject(new CouponsTableMap());
+      $dbMap = Propel::getDatabaseMap(BaseGiftCardsPeer::DATABASE_NAME);
+      if (!$dbMap->hasTable(BaseGiftCardsPeer::TABLE_NAME)) {
+        $dbMap->addTableObject(new GiftCardsTableMap());
       }
     }
 
@@ -543,13 +529,13 @@ abstract class BaseCouponsPeer
      */
     public static function getOMClass($row = 0, $colnum = 0)
     {
-        return CouponsPeer::OM_CLASS;
+        return GiftCardsPeer::OM_CLASS;
     }
 
     /**
-     * Performs an INSERT on the database, given a Coupons or Criteria object.
+     * Performs an INSERT on the database, given a GiftCards or Criteria object.
      *
-     * @param      mixed $values Criteria or Coupons object containing data that is used to create the INSERT statement.
+     * @param      mixed $values Criteria or GiftCards object containing data that is used to create the INSERT statement.
      * @param      PropelPDO $con the PropelPDO connection to use
      * @return mixed           The new primary key.
      * @throws PropelException Any exceptions caught during processing will be
@@ -558,22 +544,22 @@ abstract class BaseCouponsPeer
     public static function doInsert($values, PropelPDO $con = null)
     {
         if ($con === null) {
-            $con = Propel::getConnection(CouponsPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+            $con = Propel::getConnection(GiftCardsPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
         }
 
         if ($values instanceof Criteria) {
             $criteria = clone $values; // rename for clarity
         } else {
-            $criteria = $values->buildCriteria(); // build Criteria from Coupons object
+            $criteria = $values->buildCriteria(); // build Criteria from GiftCards object
         }
 
-        if ($criteria->containsKey(CouponsPeer::ID) && $criteria->keyContainsValue(CouponsPeer::ID) ) {
-            throw new PropelException('Cannot insert a value for auto-increment primary key ('.CouponsPeer::ID.')');
+        if ($criteria->containsKey(GiftCardsPeer::ID) && $criteria->keyContainsValue(GiftCardsPeer::ID) ) {
+            throw new PropelException('Cannot insert a value for auto-increment primary key ('.GiftCardsPeer::ID.')');
         }
 
 
         // Set the correct dbName
-        $criteria->setDbName(CouponsPeer::DATABASE_NAME);
+        $criteria->setDbName(GiftCardsPeer::DATABASE_NAME);
 
         try {
             // use transaction because $criteria could contain info
@@ -590,9 +576,9 @@ abstract class BaseCouponsPeer
     }
 
     /**
-     * Performs an UPDATE on the database, given a Coupons or Criteria object.
+     * Performs an UPDATE on the database, given a GiftCards or Criteria object.
      *
-     * @param      mixed $values Criteria or Coupons object containing data that is used to create the UPDATE statement.
+     * @param      mixed $values Criteria or GiftCards object containing data that is used to create the UPDATE statement.
      * @param      PropelPDO $con The connection to use (specify PropelPDO connection object to exert more control over transactions).
      * @return int             The number of affected rows (if supported by underlying database driver).
      * @throws PropelException Any exceptions caught during processing will be
@@ -601,35 +587,35 @@ abstract class BaseCouponsPeer
     public static function doUpdate($values, PropelPDO $con = null)
     {
         if ($con === null) {
-            $con = Propel::getConnection(CouponsPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+            $con = Propel::getConnection(GiftCardsPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
         }
 
-        $selectCriteria = new Criteria(CouponsPeer::DATABASE_NAME);
+        $selectCriteria = new Criteria(GiftCardsPeer::DATABASE_NAME);
 
         if ($values instanceof Criteria) {
             $criteria = clone $values; // rename for clarity
 
-            $comparison = $criteria->getComparison(CouponsPeer::ID);
-            $value = $criteria->remove(CouponsPeer::ID);
+            $comparison = $criteria->getComparison(GiftCardsPeer::ID);
+            $value = $criteria->remove(GiftCardsPeer::ID);
             if ($value) {
-                $selectCriteria->add(CouponsPeer::ID, $value, $comparison);
+                $selectCriteria->add(GiftCardsPeer::ID, $value, $comparison);
             } else {
-                $selectCriteria->setPrimaryTableName(CouponsPeer::TABLE_NAME);
+                $selectCriteria->setPrimaryTableName(GiftCardsPeer::TABLE_NAME);
             }
 
-        } else { // $values is Coupons object
+        } else { // $values is GiftCards object
             $criteria = $values->buildCriteria(); // gets full criteria
             $selectCriteria = $values->buildPkeyCriteria(); // gets criteria w/ primary key(s)
         }
 
         // set the correct dbName
-        $criteria->setDbName(CouponsPeer::DATABASE_NAME);
+        $criteria->setDbName(GiftCardsPeer::DATABASE_NAME);
 
         return BasePeer::doUpdate($selectCriteria, $criteria, $con);
     }
 
     /**
-     * Deletes all rows from the coupons table.
+     * Deletes all rows from the gift_cards table.
      *
      * @param      PropelPDO $con the connection to use
      * @return int             The number of affected rows (if supported by underlying database driver).
@@ -638,19 +624,19 @@ abstract class BaseCouponsPeer
     public static function doDeleteAll(PropelPDO $con = null)
     {
         if ($con === null) {
-            $con = Propel::getConnection(CouponsPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+            $con = Propel::getConnection(GiftCardsPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
         }
         $affectedRows = 0; // initialize var to track total num of affected rows
         try {
             // use transaction because $criteria could contain info
             // for more than one table or we could emulating ON DELETE CASCADE, etc.
             $con->beginTransaction();
-            $affectedRows += BasePeer::doDeleteAll(CouponsPeer::TABLE_NAME, $con, CouponsPeer::DATABASE_NAME);
+            $affectedRows += BasePeer::doDeleteAll(GiftCardsPeer::TABLE_NAME, $con, GiftCardsPeer::DATABASE_NAME);
             // Because this db requires some delete cascade/set null emulation, we have to
             // clear the cached instance *after* the emulation has happened (since
             // instances get re-added by the select statement contained therein).
-            CouponsPeer::clearInstancePool();
-            CouponsPeer::clearRelatedInstancePool();
+            GiftCardsPeer::clearInstancePool();
+            GiftCardsPeer::clearRelatedInstancePool();
             $con->commit();
 
             return $affectedRows;
@@ -661,9 +647,9 @@ abstract class BaseCouponsPeer
     }
 
     /**
-     * Performs a DELETE on the database, given a Coupons or Criteria object OR a primary key value.
+     * Performs a DELETE on the database, given a GiftCards or Criteria object OR a primary key value.
      *
-     * @param      mixed $values Criteria or Coupons object or primary key or array of primary keys
+     * @param      mixed $values Criteria or GiftCards object or primary key or array of primary keys
      *              which is used to create the DELETE statement
      * @param      PropelPDO $con the connection to use
      * @return int The number of affected rows (if supported by underlying database driver).  This includes CASCADE-related rows
@@ -674,32 +660,32 @@ abstract class BaseCouponsPeer
      public static function doDelete($values, PropelPDO $con = null)
      {
         if ($con === null) {
-            $con = Propel::getConnection(CouponsPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+            $con = Propel::getConnection(GiftCardsPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
         }
 
         if ($values instanceof Criteria) {
             // invalidate the cache for all objects of this type, since we have no
             // way of knowing (without running a query) what objects should be invalidated
             // from the cache based on this Criteria.
-            CouponsPeer::clearInstancePool();
+            GiftCardsPeer::clearInstancePool();
             // rename for clarity
             $criteria = clone $values;
-        } elseif ($values instanceof Coupons) { // it's a model object
+        } elseif ($values instanceof GiftCards) { // it's a model object
             // invalidate the cache for this single object
-            CouponsPeer::removeInstanceFromPool($values);
+            GiftCardsPeer::removeInstanceFromPool($values);
             // create criteria based on pk values
             $criteria = $values->buildPkeyCriteria();
         } else { // it's a primary key, or an array of pks
-            $criteria = new Criteria(CouponsPeer::DATABASE_NAME);
-            $criteria->add(CouponsPeer::ID, (array) $values, Criteria::IN);
+            $criteria = new Criteria(GiftCardsPeer::DATABASE_NAME);
+            $criteria->add(GiftCardsPeer::ID, (array) $values, Criteria::IN);
             // invalidate the cache for this object(s)
             foreach ((array) $values as $singleval) {
-                CouponsPeer::removeInstanceFromPool($singleval);
+                GiftCardsPeer::removeInstanceFromPool($singleval);
             }
         }
 
         // Set the correct dbName
-        $criteria->setDbName(CouponsPeer::DATABASE_NAME);
+        $criteria->setDbName(GiftCardsPeer::DATABASE_NAME);
 
         $affectedRows = 0; // initialize var to track total num of affected rows
 
@@ -709,7 +695,7 @@ abstract class BaseCouponsPeer
             $con->beginTransaction();
 
             $affectedRows += BasePeer::doDelete($criteria, $con);
-            CouponsPeer::clearRelatedInstancePool();
+            GiftCardsPeer::clearRelatedInstancePool();
             $con->commit();
 
             return $affectedRows;
@@ -720,13 +706,13 @@ abstract class BaseCouponsPeer
     }
 
     /**
-     * Validates all modified columns of given Coupons object.
+     * Validates all modified columns of given GiftCards object.
      * If parameter $columns is either a single column name or an array of column names
      * than only those columns are validated.
      *
      * NOTICE: This does not apply to primary or foreign keys for now.
      *
-     * @param      Coupons $obj The object to validate.
+     * @param      GiftCards $obj The object to validate.
      * @param      mixed $cols Column name or array of column names.
      *
      * @return mixed TRUE if all columns are valid or the error message of the first invalid column.
@@ -736,8 +722,8 @@ abstract class BaseCouponsPeer
         $columns = array();
 
         if ($cols) {
-            $dbMap = Propel::getDatabaseMap(CouponsPeer::DATABASE_NAME);
-            $tableMap = $dbMap->getTable(CouponsPeer::TABLE_NAME);
+            $dbMap = Propel::getDatabaseMap(GiftCardsPeer::DATABASE_NAME);
+            $tableMap = $dbMap->getTable(GiftCardsPeer::TABLE_NAME);
 
             if (! is_array($cols)) {
                 $cols = array($cols);
@@ -753,7 +739,7 @@ abstract class BaseCouponsPeer
 
         }
 
-        return BasePeer::doValidate(CouponsPeer::DATABASE_NAME, CouponsPeer::TABLE_NAME, $columns);
+        return BasePeer::doValidate(GiftCardsPeer::DATABASE_NAME, GiftCardsPeer::TABLE_NAME, $columns);
     }
 
     /**
@@ -761,23 +747,23 @@ abstract class BaseCouponsPeer
      *
      * @param      int $pk the primary key.
      * @param      PropelPDO $con the connection to use
-     * @return Coupons
+     * @return GiftCards
      */
     public static function retrieveByPK($pk, PropelPDO $con = null)
     {
 
-        if (null !== ($obj = CouponsPeer::getInstanceFromPool((string) $pk))) {
+        if (null !== ($obj = GiftCardsPeer::getInstanceFromPool((string) $pk))) {
             return $obj;
         }
 
         if ($con === null) {
-            $con = Propel::getConnection(CouponsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+            $con = Propel::getConnection(GiftCardsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
         }
 
-        $criteria = new Criteria(CouponsPeer::DATABASE_NAME);
-        $criteria->add(CouponsPeer::ID, $pk);
+        $criteria = new Criteria(GiftCardsPeer::DATABASE_NAME);
+        $criteria->add(GiftCardsPeer::ID, $pk);
 
-        $v = CouponsPeer::doSelect($criteria, $con);
+        $v = GiftCardsPeer::doSelect($criteria, $con);
 
         return !empty($v) > 0 ? $v[0] : null;
     }
@@ -787,31 +773,31 @@ abstract class BaseCouponsPeer
      *
      * @param      array $pks List of primary keys
      * @param      PropelPDO $con the connection to use
-     * @return Coupons[]
+     * @return GiftCards[]
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
     public static function retrieveByPKs($pks, PropelPDO $con = null)
     {
         if ($con === null) {
-            $con = Propel::getConnection(CouponsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+            $con = Propel::getConnection(GiftCardsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
         }
 
         $objs = null;
         if (empty($pks)) {
             $objs = array();
         } else {
-            $criteria = new Criteria(CouponsPeer::DATABASE_NAME);
-            $criteria->add(CouponsPeer::ID, $pks, Criteria::IN);
-            $objs = CouponsPeer::doSelect($criteria, $con);
+            $criteria = new Criteria(GiftCardsPeer::DATABASE_NAME);
+            $criteria->add(GiftCardsPeer::ID, $pks, Criteria::IN);
+            $objs = GiftCardsPeer::doSelect($criteria, $con);
         }
 
         return $objs;
     }
 
-} // BaseCouponsPeer
+} // BaseGiftCardsPeer
 
 // This is the static code needed to register the TableMap for this table with the main Propel class.
 //
-BaseCouponsPeer::buildTableMap();
+BaseGiftCardsPeer::buildTableMap();
 

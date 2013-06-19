@@ -7,7 +7,7 @@ use \TableMap;
 
 
 /**
- * This class defines the structure of the 'coupons' table.
+ * This class defines the structure of the 'gift_cards' table.
  *
  *
  *
@@ -18,13 +18,13 @@ use \TableMap;
  *
  * @package    propel.generator.src.Hanzo.Model.map
  */
-class CouponsTableMap extends TableMap
+class GiftCardsTableMap extends TableMap
 {
 
     /**
      * The (dot-path) name of this class
      */
-    const CLASS_NAME = 'src.Hanzo.Model.map.CouponsTableMap';
+    const CLASS_NAME = 'src.Hanzo.Model.map.GiftCardsTableMap';
 
     /**
      * Initialize the table attributes, columns and validators
@@ -36,21 +36,19 @@ class CouponsTableMap extends TableMap
     public function initialize()
     {
         // attributes
-        $this->setName('coupons');
-        $this->setPhpName('Coupons');
-        $this->setClassname('Hanzo\\Model\\Coupons');
+        $this->setName('gift_cards');
+        $this->setPhpName('GiftCards');
+        $this->setClassname('Hanzo\\Model\\GiftCards');
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(true);
         // columns
         $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
         $this->addColumn('code', 'Code', 'VARCHAR', true, 12, null);
         $this->addColumn('amount', 'Amount', 'DECIMAL', true, 15, null);
-        $this->addColumn('min_purchase_amount', 'MinPurchaseAmount', 'DECIMAL', false, 15, null);
         $this->addColumn('currency_code', 'CurrencyCode', 'VARCHAR', true, 3, null);
         $this->addColumn('active_from', 'ActiveFrom', 'TIMESTAMP', false, null, null);
         $this->addColumn('active_to', 'ActiveTo', 'TIMESTAMP', false, null, null);
         $this->addColumn('is_active', 'IsActive', 'BOOLEAN', true, 1, true);
-        $this->addColumn('is_used', 'IsUsed', 'BOOLEAN', true, 1, false);
         $this->addColumn('created_at', 'CreatedAt', 'TIMESTAMP', false, null, null);
         $this->addColumn('updated_at', 'UpdatedAt', 'TIMESTAMP', false, null, null);
         // validators
@@ -61,7 +59,6 @@ class CouponsTableMap extends TableMap
      */
     public function buildRelations()
     {
-        $this->addRelation('OrdersToCoupons', 'Hanzo\\Model\\OrdersToCoupons', RelationMap::ONE_TO_MANY, array('id' => 'coupons_id', ), 'CASCADE', null, 'OrdersToCouponss');
     } // buildRelations()
 
     /**
@@ -81,4 +78,4 @@ class CouponsTableMap extends TableMap
         );
     } // getBehaviors()
 
-} // CouponsTableMap
+} // GiftCardsTableMap
