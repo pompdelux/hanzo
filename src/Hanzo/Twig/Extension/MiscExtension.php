@@ -350,7 +350,7 @@ DOC;
                     $selected = $parameters['default'];
                 } else {
                     // old stuff
-                    $class = (!empty($slides['class']))?' '.$parameters['class']:' grid_6';
+                    $class = (!empty($slides['class']))?' '.$parameters['class']:'';
                     $html = '<div class="cycle-slideshow '.$class.'" data-cycle-slides="> a" data-pause-on-hover="true">'."\n";
 
                     foreach ($parameters['slides'] as $slide) {
