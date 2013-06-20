@@ -1,0 +1,67 @@
+<div class="basket">
+
+  {% if products %}
+    {% for group, items in products %}
+        {% if group != '0' %}
+          <h3>{{ group|trans({}, 'checkout') }}</h3>
+        {% endif %}
+      {% for product in items %}
+        <div class="item">
+        {% if product.basket_image %}
+          <a href="{{ product.url }}" class="image">{{ product_image_tag(product.basket_image, '57x100', { 'alt' : product.products_name }) }}</a>
+        {% endif %}
+          <div class="info">
+            <a href="{{ product.url }}" class="title">{{ product.products_name }}</a><br>
+            <div class="size">{{ "size"|trans }}: <span>{{ product.products_size }}</span></div>
+            <div class="color">{{ "color"|trans }}: <span>{{ product.products_color }}</span></div>
+            <div class="quantity">{{ "quantity"|trans }}: <span>{{ product.quantity }}</span></div>
+            {% if product.price != product.original_price %}
+            <span class="normal strike">{{ product.original_price|money }}</span>
+            {% endif %}
+            {{ product.price|money }}<br>
+
+            {% if product.expected_at %}
+              <span>{{ "latest.shipment.date"|trans }} {{ product.expected_at|date('d-m-Y') }}</span>
+            {% endif %}
+          </div>
+        {% if embedded == false %}
+          <div class="buttons">
+            <a href="{{ product.products_id }}" class="sprite edit"></a>
+            <a href="{{ url('basket_remove', { 'product_id' : product.products_id }) }}" class="sprite delete"></a>
+          </div>
+        {% endif %}
+        </div>
+
+      {% endfor %}
+    {% endfor %}
+      </tbody>
+    {% if embedded == false %}
+      <div class="total">
+          <div>{{ "total"|trans }}:</div>
+          <div class="right grand-total">{{ total|money }}</div>
+      </div>
+    {% endif %}
+
+    {% if embedded == false %}
+      <div class="delivery-notice">
+        {% if delivery_date %}
+          {{ 'late.delivery.date.notice'|trans({'%date%' : delivery_date|date('d-m-Y')}, 'checkout')|raw }}
+        {% else %}
+          {{ 'late.delivery.notice'|trans({}, 'checkout')|raw }}
+        {% endif %}
+      </div>
+
+      {% if app.user and app.user.user.groupsid in [2,3] %}
+        {% render 'EventsBundle:Events:selectEvent' %}
+      {% else %}
+        <div class="buttons">
+          <a class="button button-right proceed" href="{{ url('_checkout') }}">{{ "proceed"|trans({}, 'checkout') }}</a>
+        </div>
+      {% endif %}
+    {% endif %}
+
+  {% else %}
+    <p>{{ "cart.is.empty"|trans({}, 'checkout') }}</p>
+  {% endif %}
+
+</div>

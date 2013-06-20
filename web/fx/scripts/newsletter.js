@@ -103,7 +103,8 @@ var newsletter = (function($) {
       $('input[type="email"]', $form).removeClass('error');
 
       $.post(this.action, $form.serialize(), function(response) {
-        dialoug.notice(response.message, 'info', 3000, $form);
+        var type = (response.status? 'info' : 'error');
+        dialoug.notice(response.message, type, 3000, $form);
 
         if (response.status) {
           $('input[type="text"], input[type="email"]', $form).val('');

@@ -20,17 +20,17 @@
   <p>{{ 'create.pre-notice'|trans({}, 'account')|raw }}</p>
 
   {% if errors %}
-    <div class="form-errors">
+    <div class="form-errors-container">
       <h2>{{ 'create.account.error.title'|trans({}, 'account') }}</h2>
       <p>{{ 'create.account.error'|trans({}, 'account') }}</p>
       {{ errors|raw }}
+      {{ form_errors(form) }}
     </div>
   {% endif %}
 
 
   <form action="{{ path('_account_create') }}" method="post" {{ form_enctype(form) }} class="create full-width" novalidate>
     <div id="customers" class="">
-      {{ form_errors(form) }}
       <div class="grid_3 alpha">
         {{ form_row(form.first_name) }}
         {{ form_row(form.last_name) }}

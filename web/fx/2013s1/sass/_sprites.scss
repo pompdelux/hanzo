@@ -20,6 +20,9 @@
 @import "icons/de/*.png";
 //@include all-de-sprites; // Generates a sprite from all images inside the folder
 
+.sprite{display:inline-block;}
+.sprite-block{display:block;}
+
 body.da{
     form.buy .submit-button{
         @include da-sprite(put-to-basket);

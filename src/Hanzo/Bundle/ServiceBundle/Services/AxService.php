@@ -287,7 +287,7 @@ class AxService
         $salesTable->Completed               = 1;
         $salesTable->TransactionType         = 'Write';
         $salesTable->CustPaymMode            = $custPaymMode;
-        $salesTable->SmoreContactInfo        = ''; // NICETO, når s-more kommer på banen igen
+        $salesTable->SmoreContactInfo        = ''; // NICETO, når s-more kommer på banen igen.
 
         $salesTable->DeliveryDropPointId     = $order->getDeliveryExternalAddressId();
         $salesTable->DeliveryCompanyName     = $order->getDeliveryCompanyName();

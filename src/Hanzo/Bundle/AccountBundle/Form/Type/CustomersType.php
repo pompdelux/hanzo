@@ -28,7 +28,7 @@ class CustomersType extends AbstractType
             'attr' => array('autocomplete' => 'off'),
         ));
 
-        $builder->add('phone', null, array(
+        $builder->add('phone', 'integer', array(
             'required' => TRUE,
             'attr' => array('autocomplete' => 'off'),
         ));

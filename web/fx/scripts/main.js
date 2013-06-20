@@ -31,17 +31,6 @@
         break;
       }
 
-      // fix footer if mobile unit
-      if ($('html').hasClass('touch')) {
-        placeFooter();
-        window.onorientationchange = function() {
-          placeFooter();
-        };
-        $('body').bind('near-you-container.loaded', function() {
-          placeFooter();
-        });
-      }
-
       // use inline labels if the "real" labels are hidden
       if ($('form.newsletter-subscription-form label').is(':hidden')) {
         $('form.newsletter-subscription-form input[title]').each(function() {
@@ -81,8 +70,9 @@
         xhr.done(function (response) {
           $.each(response.data, function (i, element) {
             if (undefined !== element.mtime) {
-              var date = new Date(element.mtime);
-              date = date.getUTCDate()+'/'+(date.getUTCMonth()+1)+'/'+date.getUTCFullYear()+' '+date.getHours()+':'+date.getMinutes();
+              var date = element.mtime;
+              // var date = new Date(element.mtime);
+              // date = date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear()+' '+date.getHours()+':'+date.getMinutes();
               var $elm = $('a.media_file.index-'+element.index);
               var $em = $elm.next('em');
               var label = $elm.data('datelabel');
@@ -90,9 +80,73 @@
             }
           });
         });
-
       }
 
+      // menu handeling
+      if (false === $('body').hasClass('is-mobile')) {
+        var $menu = $('nav.main-menu');
+        var menu_width = 0;
+        $('li li.heading', $menu).each(function(index, element) {
+          var $element = $(element);
+          var tmp_width = $element.width() - 40;
+          if (menu_width < tmp_width) {
+            menu_width = tmp_width;
+          }
+
+          $element.addClass('floaded');
+        });
+        $('li li.heading').closest('ul').each(function(index, element) {
+          var $element = $(element);
+          var count = $('> li', $element).length;
+          $element.css('width', (menu_width * count) + 5);
+        });
+
+
+        $('> ul > li > a', $menu).click(function(event) {
+          event.stopPropagation();
+
+          var $this = $(this).parent();
+          var $element = $('> ul', $this);
+
+          $('> ul > li > ul.on', $menu).not($element).removeClass('on');
+          $element.toggleClass('on');
+
+          if ($('ul', $this).length) {
+            event.preventDefault();
+          }
+        });
+
+        $('html').click(function(event) {
+          $('.on', $menu).removeClass('on');
+        });
+      }
+
+      // handeling mobile->pc->mobile view switching
+      $.cookie.defaults = {
+        domain : cookie_params.domain,
+        path : cookie_params.path
+      };
+
+      var mode = $('body').hasClass('is-mobile') ? 'mobile' : 'pc';
+      var choice = mode;
+
+      if ($.cookie('X-UA-Device-force')) {
+        choice = $.cookie('X-UA-Device-force');
+      }
+
+      if (mode == 'pc') {
+        $('footer').before('<div class="container container_8"><a href="" title="Gå til den mobile version af siden" class="switch-site-view">Mobil version</a></div>');
+      }
+
+      $('.switch-site-view').on('click', function(event) {
+        event.preventDefault();
+        if ((choice == 'mobile')) {
+          $.cookie('X-UA-Device-force', 'pc');
+        } else {
+          $.removeCookie('X-UA-Device-force');
+        }
+        document.location.href = document.location.href;
+      });
     };
 
     /**
@@ -100,13 +154,13 @@
      */
      pub.initCountdown = function() {
       // frontpage count down
-      var $countdown = $('td.countdown strong');
+      var $countdown = $('.countdown');
 
       if ($countdown) {
         $countdown.countdown({
           timezone: +1,
           until: new Date(Translator.get('js:countdown.date')),
-          layout: '<strong>' + Translator.get('js:countdown.format') + '</strong>'
+          layout: '<span>' + Translator.get('js:countdown.format') + '</span>'
         });
         var lang = $('html').attr('lang');
         if (lang !== 'en') {
@@ -114,29 +168,6 @@
         }
       }
      };
-
-
-    /**
-     * animated effect on first menu level
-     */
-    pub.initAnimatedMenu = function() {
-      $('nav.main > ul > li > a').hover(function() {
-        var $this = $(this);
-        var left = $this.data('pl-save');
-        if (left === undefined) {
-          left = parseInt($this.css('padding-left'), 0);
-          $this.data('plsave', left);
-        }
-        $this.animate({
-          'padding-left': (left + 10) + 'px'
-        }, 'fast');
-      }, function() {
-        var $this = $(this);
-        $this.animate({
-          'padding-left': $this.data('plsave') + 'px'
-        }, 'fast');
-      });
-    };
 
     pub.initBasket = function() {
       var $basket = $('#mini-basket a');
@@ -159,7 +190,17 @@
       }
     };
 
+    pub.initToTop = function() {
+      $('.to-top').on('click', function(e){
+        e.preventDefault();
+        $("html, body").animate({
+          scrollTop: 0
+        }, "slow");
+      });
+    };
+
     var getDocHeight = function(){
+      var D = document;
       return Math.max(Math.max(
           document.body.scrollHeight,
           document.documentElement.scrollHeight
@@ -172,21 +213,12 @@
       ));
     };
 
-    var placeFooter = function() {
-      $("footer").css({
-        position : 'absolute',
-        height: $('footer').height() + 'px',
-        top : (getDocHeight() - $('footer').outerHeight(true)) + 'px',
-        width : $('body').width()
-      });
-    };
-
     return pub;
   })(jQuery);
 
   gui.initUI();
   gui.initCountdown();
-  gui.initAnimatedMenu();
   gui.initBasket();
+  gui.initToTop();
 
 })(document, jQuery);

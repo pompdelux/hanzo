@@ -62,6 +62,10 @@
         <source>cms.edit.label.is_restricted</source>
         <target>Approved IP required in offline mode</target>
       </trans-unit>
+      <trans-unit id="cms.edit.label.on_mobile">
+        <source>cms.edit.label.on_mobile</source>
+        <target>Vises på mobilsitet</target>
+      </trans-unit>
       <trans-unit id="admin.orders.dead_list.link">
         <source>admin.orders.dead_list.link</source>
         <target>Dead orders</target>

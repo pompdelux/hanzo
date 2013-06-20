@@ -1,7 +1,6 @@
 <?php
 header('Content-type: text/javascript');
 
-
 if (!empty($_GET['callback']) && !empty($_GET['data'])) {
 
     foreach ($_GET['data'] as $index => $file) {

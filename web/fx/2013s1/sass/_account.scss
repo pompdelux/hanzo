@@ -1,5 +1,5 @@
 /**
-| _account.
+| _account
 */
 #body-login .main{}
 form.create {
@@ -11,6 +11,9 @@ form.create {
 			content: ": *";
 		}
 	}
+    .button {
+        display: none;
+    }
 }
 #body-events-create-customer{
     input.button.off{

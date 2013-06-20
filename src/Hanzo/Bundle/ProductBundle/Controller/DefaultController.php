@@ -151,6 +151,7 @@ class DefaultController extends CoreController
                     'title' => $ref->getProducts()->getSku(),
                     'color' => $ref->getVirtualColumn('products_imagesCOLOR'),
                     'image' => $ref->getRefIMAGE(),
+                    'color' => $ref->getVirtualColumn('products_imagesCOLOR'),
                     'url' => $router->generate($route, array(
                         'product_id' => $ref->getProductsId(),
                         'title'=> Tools::stripText($ref->getProducts()->getSku()),

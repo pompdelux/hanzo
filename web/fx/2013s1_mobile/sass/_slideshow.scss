@@ -1,0 +1,24 @@
+
+// Slideshow Cycle2 styles
+.cycle-slideshow {
+	.cycle-pager{
+		padding-top:4px;
+		text-align: center;
+		span{
+			color: #DDD;
+			font-size: 31px;
+			line-height: 10px;
+			cursor: pointer;
+			&.cycle-pager-active,
+			&:hover{
+				color: #BBB;
+			}
+		}
+	}
+	.cycle-slide{
+		line-height: 0;
+		img{
+			width: 100%;
+		}
+	}
+}

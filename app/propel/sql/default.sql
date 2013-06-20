@@ -53,8 +53,6 @@ CREATE TABLE `cms`
     `created_at` DATETIME,
     `updated_at` DATETIME,
     PRIMARY KEY (`id`),
-    INDEX `cms_I_1` (`path`),
-    INDEX `cms_I_2` (`old_path`),
     INDEX `FI_cms_1` (`cms_thread_id`),
     INDEX `FI_cms_2` (`parent_id`),
     CONSTRAINT `fk_cms_1`
@@ -1107,6 +1105,7 @@ CREATE TABLE `cms_i18n`
     `settings` TEXT,
     `is_restricted` TINYINT(1) DEFAULT 0 NOT NULL,
     `is_active` TINYINT(1) DEFAULT 1 NOT NULL,
+    `on_mobile` TINYINT(1) DEFAULT 1 NOT NULL,
     PRIMARY KEY (`id`,`locale`),
     CONSTRAINT `cms_i18n_FK_1`
         FOREIGN KEY (`id`)

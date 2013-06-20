@@ -1,0 +1,54 @@
+footer {
+	border-top: 1px solid #000;
+	padding-top: 10px;
+	font-family: $font-sans;
+
+	margin-top: 30px;
+	text-align: center;
+	.newsletter-block{
+		display: block;
+		position: relative;
+		.sprite{
+			@include icons-sprite(newsletter);
+			height: icons-sprite-height(newsletter);
+			width: icons-sprite-width(newsletter);
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		.container {
+			padding-left: icons-sprite-width(newsletter);
+			h2 {
+				font-size: 1.4em;
+				line-height: 1.5em;
+				text-transform: uppercase;
+				text-align: left;
+				font-weight: normal;
+			}
+			form{
+				font-family:$font-sans !important;
+				input[type="email"],
+				input[type="text"] {
+					width: 90%;
+					display: block;
+					padding: 4px 5px;
+				}
+				input[type=submit] {
+					float: right;
+					font-size: 12px;
+					font-family: $font-sans !important;
+					letter-spacing: 0;
+					text-decoration: underline;
+				}
+			}
+		}
+		#dialoug-message{
+			width: 200px;
+			text-align: center;
+		}
+	}
+	.copy li{
+		display: inline-block;
+		margin: 0 2px;
+	}
+}

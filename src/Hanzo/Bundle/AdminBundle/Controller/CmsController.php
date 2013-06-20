@@ -321,6 +321,11 @@ class CmsController extends CoreController
                 'translation_domain' => 'admin',
                 'required'  => false
             ))
+            ->add('on_mobile', 'checkbox', array(
+                'label'     => 'cms.edit.label.on_mobile',
+                'translation_domain' => 'admin',
+                'required'  => false
+            ))
             ->add('title', null, array(
                 'label'     => 'cms.edit.label.title',
                 'required' => TRUE,

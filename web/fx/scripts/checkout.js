@@ -164,9 +164,16 @@
         var address_confirm = $('#address-block div.confirm');
 
         if ($('input::checked', address_confirm).length === 0) {
+          var is_mobile = $('body').hasClass('is-mobile');
+
           address_confirm.toggleClass('hidden');
 
-          var t = document.getElementById('address-block').offsetTop;
+          var t;
+          if (is_mobile) {
+            t = $('#address-block .confirm').offset().top - ($(window).height() / 2);
+          } else {
+            t = document.getElementById('address-block').offsetTop;
+          }
           $('html,body').animate({scrollTop: t});
           return false;
         }
@@ -257,7 +264,7 @@
         $(document).trigger('shipping.address.changed');
 
         var m = $('input[name=method]:checked').val();
-        if ((m === "10") || (m === "30") || (m === "70") || (m === "500")) { // Private postal
+        if ((m === "10") || (m === "30") || (m === "70") || (m === "500") || (m === "601")) { // Private postal
           $('#address-copy').prop('checked', false).parent().removeClass('off');
         } else {
           $('#address-copy').parent().addClass('off');

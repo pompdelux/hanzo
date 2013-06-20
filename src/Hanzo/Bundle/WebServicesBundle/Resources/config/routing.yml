@@ -2,6 +2,10 @@ ws_index:
     pattern:  /wolla/{name}
     defaults: { _controller: WebServicesBundle:Default:index }
 
+ws_cookie:
+    pattern:  /m.test
+    defaults: { _controller: WebServicesBundle:Default:cookie }
+
 ws_soap:
     pattern:  /soap/{version}/{service_name}/
     defaults: { _controller: WebServicesBundle:Soap:index, version: v1 }

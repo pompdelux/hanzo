@@ -447,6 +447,41 @@ class Tools
     }
 
 
+
+    /**
+     * try to get mobile useragent
+     *
+     * note:
+     *   this is a very crude detection method, if you need anything more
+     *   stable/precise you should look at http://wurfl.sourceforge.net/
+     *
+     * @return mixed useragent on success otherwise false.
+    */
+    public static function isMobileRequest()
+    {
+        $useragents = array(
+            "iphone",         // Apple iPhone
+            "ipod",           // Apple iPod touch
+            "aspen",          // iPhone simulator
+            "dream",          // Pre 1.5 Android
+            "android",        // 1.5+ Android
+            "cupcake",        // 1.5+ Android
+            "blackberry9500", // Storm
+            "blackberry9530", // Storm
+            "opera mini",     // Experimental
+            "webos",          // Experimental
+            "incognito",      // Other iPhone browser
+            "webmate"         // Other iPhone browser
+        );
+
+        if (preg_match('/('.implode('|', $useragents).')/i', $_SERVER['HTTP_USER_AGENT'], $matches)) {
+            return strtolower($matches[1]);
+        }
+
+        return false;
+    }
+
+
     /**
      * build and return "in order edit warning"
      *
