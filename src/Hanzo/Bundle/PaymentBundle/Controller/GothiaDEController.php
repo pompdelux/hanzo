@@ -253,6 +253,31 @@ class GothiaDEController extends CoreController
                     }
                     break;
             }
+
+            $gothiaAccount = $customer->getGothiaAccounts(Propel::getConnection(null, Propel::CONNECTION_WRITE));
+            if (is_null($gothiaAccount)) {
+                $gothiaAccount = new GothiaAccounts();
+            }
+
+            $gothiaAccount->setDistributionBy( 'NotSet' )
+                ->setDistributionType( 'NotSet' )
+                ->setSocialSecurityNum( $SSN )
+                ->setCustomersId( $customer->getId());
+            $customer->setGothiaAccounts( $gothiaAccount );
+        }
+        else {
+
+            $gothiaAccount = $customer->getGothiaAccounts(Propel::getConnection(null, Propel::CONNECTION_WRITE));
+            if ($gothiaAccount instanceof GothiaAccounts) {
+                $SSN = $gothiaAccount->getSocialSecurityNum();
+            }
+            else {
+                Tools::debug('Customer has no SSN . This is weird!', __METHOD__, array());
+                return $this->json_response(array(
+                    'status' => FALSE,
+                    'message' => $translator->trans('json.placereservation.error', array(), 'gothia'),
+                ));
+            }
         }
 
         // Validate bank info when using Gothia LV payments.
@@ -288,16 +313,6 @@ class GothiaDEController extends CoreController
             $order->save();
         }
 
-        $gothiaAccount = $customer->getGothiaAccounts(Propel::getConnection(null, Propel::CONNECTION_WRITE));
-        if (is_null($gothiaAccount)) {
-            $gothiaAccount = new GothiaAccounts();
-        }
-
-        $gothiaAccount->setDistributionBy( 'NotSet' )
-            ->setDistributionType( 'NotSet' )
-            ->setSocialSecurityNum( $SSN );
-
-        $customer->setGothiaAccounts( $gothiaAccount );
 
         if ( $order->getState() > Orders::STATE_PRE_PAYMENT )
         {
@@ -398,6 +413,7 @@ class GothiaDEController extends CoreController
         try
         {
             $api->updateOrderSuccess( $request, $order );
+            $gothiaAccount->save();
             $this->get('event_dispatcher')->dispatch('order.payment.collected', new FilterOrderEvent($order));
 
             return $this->json_response(array(
