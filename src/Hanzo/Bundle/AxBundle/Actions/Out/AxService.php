@@ -94,7 +94,7 @@ class AxService
         $payment_cost     = 0;
         $handeling_fee    = 0;
         $hostess_discount = 0;
-        $coupon_discount  = false;
+        $gift_card        = false;
         $line_discount    = 0;
 
         foreach ($lines as $line) {
@@ -132,8 +132,8 @@ class AxService
                             break;
                     }
 
-                    if ('coupon.code' == $line->getProductsName()) {
-                        $coupon_discount = $line;
+                    if ('gift_card.code' == $line->getProductsName()) {
+                        $gift_card = $line;
                     }
                     break;
             }
@@ -210,13 +210,13 @@ class AxService
         }
 
         // gavekort
-        if ($coupon_discount) {
+        if ($gift_card) {
             $line = new stdClass();
             $line->ItemId      = 'COUPON';
-            $line->SalesPrice  = number_format(($coupon_discount->getPrice() * -1), 4, '.', '');
+            $line->SalesPrice  = number_format(($gift_card->getPrice() * -1), 4, '.', '');
             $line->SalesQty    = 1;
             $line->SalesUnit   = 'Stk.';
-            $line->VoucherCode = $attributes->coupon->code;
+            $line->VoucherCode = $attributes->gift_card->code;
             $salesLine[]       = $line;
         }
 

@@ -11,9 +11,9 @@ use Hanzo\Model\Customers;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersLinesQuery;
 use Hanzo\Model\ProductsDomainsPricesPeer;
-use Hanzo\Model\Coupons;
-use Hanzo\Model\CouponsPeer;
-use Hanzo\Model\CouponsQuery;
+use Hanzo\Model\GiftCards;
+use Hanzo\Model\GiftCardsPeer;
+use Hanzo\Model\GiftCardsQuery;
 
 use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
 use Symfony\Bridge\Monolog\Logger;
@@ -86,7 +86,7 @@ class CheckoutListener
 
 
     /**
-     * Register Coupons if any is bought.
+     * Register GiftCards if any is bought.
      *
      * @param  FilterOrderEvent $event event object
      */
@@ -106,7 +106,7 @@ class CheckoutListener
 
                 if ($line->getNote()) {
                     $c = explode(';', $line->getNote());
-                    CouponsQuery::create()
+                    GiftCardsQuery::create()
                         ->filterById($c)
                         ->delete();
                 }
@@ -114,15 +114,15 @@ class CheckoutListener
                 $codes = [];
                 for ($i=0;$i<$line->getQuantity();$i++) {
                     $now = new \DateTime();
-                    $coupon = new Coupons();
-                    $coupon->setCode(CouponsPeer::generateCode());
-                    $coupon->setAmount($line->getPrice());
-                    $coupon->setActiveFrom($now);
-                    $coupon->setActiveTo($now->modify('+3 years'));
-                    $coupon->setCurrencyCode($order->getCurrencyCode());
-                    $coupon->save();
+                    $gift_card = new GiftCards();
+                    $gift_card->setCode(GiftCardsPeer::generateCode());
+                    $gift_card->setAmount($line->getPrice());
+                    $gift_card->setActiveFrom($now);
+                    $gift_card->setActiveTo($now->modify('+3 years'));
+                    $gift_card->setCurrencyCode($order->getCurrencyCode());
+                    $gift_card->save();
 
-                    $codes[] = $coupon->getCode();
+                    $codes[] = $gift_card->getCode();
                 }
 
                 $line->setNote(implode(';', $codes));

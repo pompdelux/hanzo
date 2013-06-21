@@ -1,5 +1,5 @@
-coupon_form:
-    pattern: /checkout/coupon/apply
+gift_card_form:
+    pattern: /checkout/gift-card/apply
     defaults:
-        _controller: DiscountBundle:Coupon:applyCoupon
+        _controller: DiscountBundle:GiftCard:applyGiftCard
 

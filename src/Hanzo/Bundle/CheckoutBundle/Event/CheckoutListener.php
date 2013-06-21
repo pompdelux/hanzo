@@ -204,9 +204,9 @@ class CheckoutListener
             $params['payment_gateway_id'] = $order->getPaymentGatewayId();
         }
 
-        if (isset($attributes->coupon->amount)) {
-            $params['coupon_amount'] = $attributes->coupon->amount;
-            $params['coupon_name'] = $attributes->coupon->text;
+        if (isset($attributes->gift_card->amount)) {
+            $params['gift_card_amount'] = $attributes->gift_card->amount;
+            $params['gift_card_name'] = $attributes->gift_card->text;
         }
 
         foreach ($order->getOrdersLiness() as $line) {
