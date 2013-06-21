@@ -129,12 +129,14 @@
 
       var mode = $('body').hasClass('is-mobile') ? 'mobile' : 'pc';
       var choice = mode;
+      var fixed_mode = false;
 
       if ($.cookie('X-UA-Device-force')) {
         choice = $.cookie('X-UA-Device-force');
+        fixed_mode = true;
       }
 
-      if (mode == 'pc') {
+      if (fixed_mode && (mode == 'pc')) {
         $('footer').before('<div class="container container_8"><a href="" title="Gå til den mobile version af siden" class="switch-site-view">Mobil version</a></div>');
       }
 
