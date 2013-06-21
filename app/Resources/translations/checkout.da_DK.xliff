@@ -377,28 +377,28 @@
         <source>product.group.lb</source>
         <target>Little Boy</target>
       </trans-unit>
-      <trans-unit id="coupon">
-         <source>coupon</source>
+      <trans-unit id="gift_card">
+         <source>gift_card</source>
          <target>Gavekort</target>
       </trans-unit>
-      <trans-unit id="toggle.coupon.form">
-         <source>toggle.coupon.form</source>
+      <trans-unit id="toggle.gift_card.form">
+         <source>toggle.gift_card.form</source>
          <target>» Tast din gavekortskode</target>
       </trans-unit>
-      <trans-unit id="invalid.coupon.code">
-         <source>invalid.coupon.code</source>
+      <trans-unit id="invalid.gift_card.code">
+         <source>invalid.gift_card.code</source>
          <target>Ugyldig gavekortskode</target>
       </trans-unit>
-      <trans-unit id="coupon.label">
-         <source>coupon.label</source>
+      <trans-unit id="gift_card.label">
+         <source>gift_card.label</source>
          <target>Gavekortskode:</target>
       </trans-unit>
-      <trans-unit id="apply.coupon.discount">
-         <source>apply.coupon.discount</source>
+      <trans-unit id="apply.gift_card.discount">
+         <source>apply.gift_card.discount</source>
          <target>Gem</target>
       </trans-unit>
-      <trans-unit id="coupon.description">
-         <source>coupon.description</source>
+      <trans-unit id="gift_card.description">
+         <source>gift_card.description</source>
          <target>Herunder kan du taste din gavekortskode. Bruger du ikke hele beløbet på dit gavekort, kan du anvende gavekortskoden igen, næste gang du handler hos POMPdeLUX.</target>
       </trans-unit>
       <trans-unit id="address.copy" approved="no">

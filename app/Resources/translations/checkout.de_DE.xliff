@@ -377,28 +377,28 @@
         <source>product.group.lb</source>
         <target>Little Boy</target>
       </trans-unit>
-      <trans-unit id="coupon">
-         <source>coupon</source>
+      <trans-unit id="gift_card">
+         <source>gift_card</source>
          <target>Geschenkgutschein</target>
       </trans-unit>
-      <trans-unit id="toggle.coupon.form">
-         <source>toggle.coupon.form</source>
+      <trans-unit id="toggle.gift_card.form">
+         <source>toggle.gift_card.form</source>
          <target>» Gutscheincode eingeben</target>
       </trans-unit>
-      <trans-unit id="invalid.coupon.code">
-         <source>invalid.coupon.code</source>
+      <trans-unit id="invalid.gift_card.code">
+         <source>invalid.gift_card.code</source>
          <target>Ungültiger Gutscheincode</target>
       </trans-unit>
-      <trans-unit id="coupon.label">
-         <source>coupon.label</source>
+      <trans-unit id="gift_card.label">
+         <source>gift_card.label</source>
          <target>Gutscheincode:</target>
       </trans-unit>
-      <trans-unit id="apply.coupon.discount">
-         <source>apply.coupon.discount</source>
+      <trans-unit id="apply.gift_card.discount">
+         <source>apply.gift_card.discount</source>
          <target>Speichern</target>
       </trans-unit>
-      <trans-unit id="coupon.description">
-         <source>coupon.description</source>
+      <trans-unit id="gift_card.description">
+         <source>gift_card.description</source>
          <target>Unten können Sie Ihren Gutscheincode eingeben. Wenn Sie nicht den gesamten Betrag Ihres Geschenkgutscheins gebrauchen, können Sie den Gutscheincode erneut für Einkäufe bei POMPdeLUX verwenden.</target>
       </trans-unit>
       <trans-unit id="address.copy" approved="no">
