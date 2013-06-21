@@ -1654,6 +1654,10 @@ form.create .button {
   display: none;
 }
 
+#event-edit-form .button {
+  display: inline-block;
+}
+
 .checkout-block {
   overflow: hidden;
   padding: 3px;
