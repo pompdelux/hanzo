@@ -123,5 +123,21 @@ if ($('#near-you-container').length) {
   maps.initContainer();
 }
 if ($('#consultants-map-canvas').length) {
+  if ($('body').hasClass('is-mobile')) {
+    gm_settings.zoom = gm_settings.zoom - 1;
+    $('#consultants-map-canvas').width('100%');
+  }
   maps.initConsultantsmap();
 }
+
+$('body').on('near-you-container.loaded', function() {
+  if ($('body').hasClass('is-mobile')) {
+    $('#near-you-container .box').each(function(i, element) {
+      var $box = $(element);
+      var note_height = $('.note', $box).height();
+      if (note_height > $box.height()) {
+        $box.height(note_height);
+      }
+    });
+  }
+});

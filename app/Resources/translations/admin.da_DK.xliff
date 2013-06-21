@@ -142,6 +142,10 @@
         <source>cms.edit.label.is_restricted</source>
         <target>Kræver godkendt IP i offline mode</target>
       </trans-unit>
+      <trans-unit id="cms.edit.label.on_mobile">
+        <source>cms.edit.label.on_mobile</source>
+        <target>Vises på mobilsitet</target>
+      </trans-unit>
       <trans-unit id="admin_cms_edit_title_text">
         <source>cms.edit.label.title</source>
         <target>Titel</target>
@@ -290,7 +294,7 @@
         <source>admin.category.add.translations.header.text</source>
         <target>Tilføj en ny oversættelse</target>
       </trans-unit>
-      <trans-unit id="edit.category.translation"> 
+      <trans-unit id="edit.category.translation">
         <source>edit.category.translation</source>
         <target>Rediger oversættelse</target>
       </trans-unit>
@@ -1514,7 +1518,7 @@
         <source>admin.order.sync_states.header.text</source>
         <target>Synkroniserings Log</target>
       </trans-unit>
-      
+
       <trans-unit id="admin.washing.header.text">
         <source>admin.washing.header.text</source>
         <target>Vaskeanvisninger</target>

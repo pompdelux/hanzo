@@ -24,9 +24,12 @@ class MenuController extends CoreController
     protected $cms_thread = 20;
     protected $menu = array();
 
+    protected $device = 'pc';
+
     public function menuAction($type, $thread = NULL, $from = NULL, $offset = NULL, $css_id = null, $include_self = null)
     {
         $request = $this->get('request');
+        $this->device = $request->attributes->get('_x_device');
 
         $cache_id = [
             'menu',
@@ -152,14 +155,26 @@ class MenuController extends CoreController
 
     protected function generateTree($parent_id = NULL, $type = 'main')
     {
-        $query = CmsQuery::create()
-            ->useCmsI18nQuery()
-                ->filterByIsActive(TRUE)
-            ->endUse()
-            ->joinWithI18n($this->locale)
-            ->filterByCmsThreadId($this->cms_thread)
-            ->orderBySort()
-        ;
+        if ('pc' == $this->device) {
+            $query = CmsQuery::create()
+                ->useCmsI18nQuery()
+                    ->filterByIsActive(true)
+                ->endUse()
+                ->joinWithI18n($this->locale)
+                ->filterByCmsThreadId($this->cms_thread)
+                ->orderBySort()
+            ;
+        } else {
+            $query = CmsQuery::create()
+                ->useCmsI18nQuery()
+                    ->filterByIsActive(true)
+                    ->filterByOnMobile(true)
+                ->endUse()
+                ->joinWithI18n($this->locale)
+                ->filterByCmsThreadId($this->cms_thread)
+                ->orderBySort()
+            ;
+        }
 
         if (empty($parent_id)) {
             $query->filterByParentId(NULL, \Criteria::ISNULL);
@@ -241,14 +256,26 @@ class MenuController extends CoreController
      */
     protected function generateFlat($parent_id = null, $type, $include_self = false)
     {
-        $query = CmsQuery::create()
-            ->useCmsI18nQuery()
-                ->filterByIsActive(TRUE)
-            ->endUse()
-            ->joinWithI18n($this->locale)
-            ->filterByCmsThreadId($this->cms_thread)
-            ->orderBySort()
-        ;
+        if ('pc' == $this->device) {
+            $query = CmsQuery::create()
+                ->useCmsI18nQuery()
+                    ->filterByIsActive(true)
+                ->endUse()
+                ->joinWithI18n($this->locale)
+                ->filterByCmsThreadId($this->cms_thread)
+                ->orderBySort()
+            ;
+        } else {
+            $query = CmsQuery::create()
+                ->useCmsI18nQuery()
+                    ->filterByIsActive(true)
+                    ->filterByOnMobile(true)
+                ->endUse()
+                ->joinWithI18n($this->locale)
+                ->filterByCmsThreadId($this->cms_thread)
+                ->orderBySort()
+            ;
+        }
 
         if (!$parent_id) {
             $parent_id = $this->getTopIdFromTrail();
@@ -328,14 +355,28 @@ class MenuController extends CoreController
 
     protected function generateFull($parent_id = NULL, $type, $from = NULL, $css_id = null)
     {
-        $query = CmsQuery::create()
-            ->useCmsI18nQuery()
-                ->filterByIsActive(TRUE)
-            ->endUse()
-            ->joinWithI18n($this->locale)
-            ->orderBySort()
-            ->filterByParentId($parent_id)
-        ;
+        static $is_first = true;
+
+        if ('pc' == $this->device) {
+            $query = CmsQuery::create()
+                ->useCmsI18nQuery()
+                    ->filterByIsActive(true)
+                ->endUse()
+                ->joinWithI18n($this->locale)
+                ->orderBySort()
+                ->filterByParentId($parent_id)
+            ;
+        } else {
+            $query = CmsQuery::create()
+                ->useCmsI18nQuery()
+                    ->filterByIsActive(true)
+                    ->filterByOnMobile(true)
+                ->endUse()
+                ->joinWithI18n($this->locale)
+                ->orderBySort()
+                ->filterByParentId($parent_id)
+            ;
+        }
 
         if(!empty($from)){
             $query->filterByCmsThreadId($from);
@@ -344,9 +385,15 @@ class MenuController extends CoreController
         $result = $query->find();
         if ($result->count()) {
 
-            $ul = '<ul>';
+            $css_class = '';
+            if ($is_first) {
+                $is_first = false;
+                $css_class = ' class="outer"';
+            }
+
+            $ul = '<ul'.$css_class.'>';
             if ($css_id) {
-                $ul = '<ul id="'.$css_id.'">';
+                $ul = '<ul id="'.$css_id.'"'.$css_class.'>';
             }
             $this->menu[$type] .= $ul;
 

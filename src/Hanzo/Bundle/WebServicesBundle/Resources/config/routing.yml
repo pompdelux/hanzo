@@ -2,11 +2,9 @@ ws_index:
     pattern:  /wolla/{name}
     defaults: { _controller: WebServicesBundle:Default:index }
 
-# ws_soap:
-#     pattern:  /soap/{version}/{service_name}/
-#     defaults: { _controller: WebServicesBundle:Soap:index, version: v1 }
-#     requirements:
-#         service_name: "[a-zA-Z0-9_]+"
+ws_cookie:
+    pattern:  /m.test
+    defaults: { _controller: WebServicesBundle:Default:cookie }
 
 # /rest/v1/stock-check/{10}?master=foo&color=bar&size=baz
 ws_stock:

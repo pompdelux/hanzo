@@ -1,0 +1,78 @@
+.basket {
+    h3 {
+        border-bottom: 1px solid #000;
+    }
+    .item {
+        border-bottom: 1px solid #000;
+        overflow: hidden;
+        padding: 10px 0;
+        .image {
+            width: 30%;
+            float: left;
+        }
+        .info {
+            width: 60%;
+            float: left;
+            a {
+                text-decoration: none;
+            }
+            .normal {}
+            .not-in-stock {}
+        }
+        .buttons {
+            width: 10%;
+            float: left;
+            text-align: center;
+            margin-top: 25px;
+            a {
+                margin-right: 10px;
+            }
+            .edit {
+                margin-bottom: 20px;
+            }
+        }
+    }
+    .total {
+        overflow: hidden;
+        border-bottom: 1px solid #000;
+        margin-bottom: 10px;
+        line-height: 2em;
+        div {
+            float: left;
+        }
+        .right {
+            float: right;
+        }
+    }
+    #cart-edit-element {
+        clear: both;
+        border-bottom: 1px solid #000;
+        overflow: hidden;
+        a.button.text-button {
+            background: url(/fx/images/icons/icons/button-right.png) right no-repeat #474749;
+            border-right: 6px solid #474749;
+            padding: 6px 24px;
+            float: right;
+            text-transform: none;
+            color: #fff !important;
+        }
+
+        .buttons {
+            display: none;
+        }
+        .info {
+            float: right;
+        }
+
+        .item div {
+            overflow: hidden;
+            select {
+                float: right;
+                clear: right;
+            }
+        }
+    }
+    .current {
+        display: none;
+    }
+}

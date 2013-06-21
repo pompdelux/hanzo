@@ -3,6 +3,7 @@
 namespace Hanzo\Core;
 
 use AppKernel;
+use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Core\RedisCache;
 
@@ -46,9 +47,30 @@ class HanzoBoot
      */
     protected function deviceCheck(GetResponseEvent $event)
     {
-        $attr = $event->getRequest()->attributes;
+        $container = $this->kernel->getContainer();
+        $request   = $event->getRequest();
+        $attr      = $request->attributes;
+
         $attr->set('_request_type', $event->getRequestType());
-        $attr->set('_x_device', 'pc');
+
+        if ($request->headers->has('x-ua-device')) {
+            $device = $request->headers->get('x-ua-device');
+        } else {
+            $device = 'pc';
+            if ($container->hasParameter('x_ua_device') &&
+                $container->getParameter('x_ua_device')
+            ) {
+                $device = $container->getParameter('x_ua_device');
+            }
+        }
+
+        $attr->set('_x_device', $device);
+
+        $theme = $container->get('liip_theme.active_theme');
+        // set theme to active name + '_mobile' ex: '2013s1_mobile'
+        if (preg_match('/^mobile/i', $device) && !preg_match('/mobile/', $theme->getName())) {
+            $theme->setName($theme->getName().'_mobile');
+        }
     }
 
 
@@ -59,7 +81,7 @@ class HanzoBoot
      */
     protected function webshopAccessRestrictionCheck(GetResponseEvent $event)
     {
-        $hanzo = \Hanzo\Core\Hanzo::getInstance();
+        $hanzo = Hanzo::getInstance();
 
         if (1 == $hanzo->get('webshop.closed', 0)) {
             $request = $event->getRequest();
@@ -118,6 +140,6 @@ class HanzoBoot
             return;
         }
 
-        setcookie("_x_device", $device, 0, '/', '', false, true);
+        Tools::setCookie("_x_device", $device, 0, true);
     }
 }

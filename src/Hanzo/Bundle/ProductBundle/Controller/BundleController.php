@@ -73,17 +73,18 @@ class BundleController extends CoreController
             $key = '_' . $locale . '_' . $products2category->getCategoriesId();
             $product_route = $router_keys[$key];
 
+            $image = $product->getProductsImagess()->getFirst();
             $products[$product->getId()] = array(
                 'id' => $product->getId(),
                 'master' => $product->getSku(),
-                'image' => $product->getProductsImagess()->getFirst()->getImage(),
+                'color' => $image->getColor(),
+                'image' => $image->getImage(),
                 'url' => $router->generate($product_route, array(
                     'product_id' => $product->getId(),
                     'title' => Tools::stripText($product->getSku()),
                 )),
                 'out_of_stock' => true,
             );
-
 
             $result = ProductsQuery::create()
                 ->useProductsImagesProductReferencesQuery()
@@ -159,6 +160,7 @@ class BundleController extends CoreController
         }
 
         $this->setSharedMaxAge(86400);
+        $this->get('twig')->addGlobal('body_classes', 'body-product body-buy-set');
         $responce = $this->render('ProductBundle:Bundle:view.html.twig', array(
             'page_type' => 'bundle',
             'products' => $products,

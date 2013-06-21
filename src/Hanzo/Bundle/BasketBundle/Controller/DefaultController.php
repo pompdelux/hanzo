@@ -218,7 +218,7 @@ class DefaultController extends CoreController
             ));
         }
 
-        return $this->response('remove from basket');
+        return $this->redirect($this->generateUrl('basket_view'));
     }
 
 
