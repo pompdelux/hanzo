@@ -25,7 +25,7 @@
 
 <p>{{ 'admin.gift_cards.edit.description.text'|trans({}, 'admin') }}</p>
 
-<form action="{{ path('admin_gift_cards_edit', {'id' : coupon.id}) }}" method="post" {{ form_enctype(form) }} id="gift-cards-edit-form" class="edit-form">
+<form action="{{ path('admin_gift_cards_edit', {'id' : gift_card.id}) }}" method="post" {{ form_enctype(form) }} id="gift-cards-edit-form" class="edit-form">
   <div id="gift_cards-edit">
     {{ form_row(form._token) }}
     {{ form_rest(form) }}

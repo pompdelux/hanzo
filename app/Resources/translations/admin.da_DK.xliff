@@ -1739,124 +1739,124 @@
         <source>admin.statistics.no.domain.choosen</source>
         <target>Du skal først vælge hvilken domæne du vil se statistik fra.</target>
       </trans-unit>
-      <trans-unit id="admin.coupons.list.link">
-        <source>admin.coupons.list.link</source>
+      <trans-unit id="admin.gift_cards.list.link">
+        <source>admin.gift_cards.list.link</source>
         <target>Alle Gavekort</target>
       </trans-unit>
-      <trans-unit id="admin.coupons.edit.link">
-        <source>admin.coupons.edit.link</source>
+      <trans-unit id="admin.gift_cards.edit.link">
+        <source>admin.gift_cards.edit.link</source>
         <target>Rediger</target>
       </trans-unit>
-      <trans-unit id="admin.coupons.delete.link">
-        <source>admin.coupons.delete.link</source>
+      <trans-unit id="admin.gift_cards.delete.link">
+        <source>admin.gift_cards.delete.link</source>
         <target>Slet</target>
       </trans-unit>
-      <trans-unit id="admin.coupons.add_new.link">
-        <source>admin.coupons.add_new.link</source>
+      <trans-unit id="admin.gift_cards.add_new.link">
+        <source>admin.gift_cards.add_new.link</source>
         <target>Opret Gavekort</target>
       </trans-unit>
-      <trans-unit id="update.coupons">
-        <source>update.coupons</source>
+      <trans-unit id="update.gift_cards">
+        <source>update.gift_cards</source>
         <target>Gem Gavekort</target>
       </trans-unit>
-      <trans-unit id="admin.coupon.inserted">
-        <source>admin.coupon.inserted</source>
+      <trans-unit id="admin.gift_card.inserted">
+        <source>admin.gift_card.inserted</source>
         <target>Gavekortet blev gemt!</target>
       </trans-unit>
-      <trans-unit id="add.coupon.customer.success">
-        <source>add.coupon.customer.success</source>
+      <trans-unit id="add.gift_card.customer.success">
+        <source>add.gift_card.customer.success</source>
         <target>Brugeren blev tilføjet til gavekortet!</target>
       </trans-unit>
-      <trans-unit id="add.coupon.customer.failed">
-        <source>add.coupon.customer.failed</source>
+      <trans-unit id="add.gift_card.customer.failed">
+        <source>add.gift_card.customer.failed</source>
         <target>Brugeren kunne ikke tilføjes til gavekortet!</target>
       </trans-unit>
-      <trans-unit id="delete.coupon.success">
-        <source>delete.coupon.success</source>
+      <trans-unit id="delete.gift_card.success">
+        <source>delete.gift_card.success</source>
         <target>Gavekortet blev slettet!</target>
       </trans-unit>
-      <trans-unit id="delete.coupon.failed">
-        <source>delete.coupon.failed</source>
+      <trans-unit id="delete.gift_card.failed">
+        <source>delete.gift_card.failed</source>
         <target>Der skete en fejl. Gavekortet kunne ikke slettes!</target>
       </trans-unit>
-      <trans-unit id="delete.coupon.customer.success">
-        <source>delete.coupon.customer.success</source>
+      <trans-unit id="delete.gift_card.customer.success">
+        <source>delete.gift_card.customer.success</source>
         <target>Brugeren blev fjernet!</target>
       </trans-unit>
-      <trans-unit id="delete.coupon.customer.failed">
-        <source>delete.coupon.customer.failed</source>
+      <trans-unit id="delete.gift_card.customer.failed">
+        <source>delete.gift_card.customer.failed</source>
         <target>Der skete en fejl. Brugeren kunne ikke fjernes!</target>
       </trans-unit>
-      <trans-unit id="admin.coupons.coupon-customer-selector.description">
-        <source>admin.coupons.coupon-customer-selector.description</source>
+      <trans-unit id="admin.gift_cards.gift_card-customer-selector.description">
+        <source>admin.gift_cards.gift_card-customer-selector.description</source>
         <target>Vælg en bruger der skal kunne bruge gavekortet...</target>
       </trans-unit>
-      <trans-unit id="admin.coupons.no.coupons.text">
-        <source>admin.coupons.no.coupons.text</source>
+      <trans-unit id="admin.gift_cards.no.gift_cards.text">
+        <source>admin.gift_cards.no.gift_cards.text</source>
         <target>Der kunnet ikke findes nogle gavekort.</target>
       </trans-unit>
-      <trans-unit id="admin.coupons.header.text">
-        <source>admin.coupons.header.text</source>
+      <trans-unit id="admin.gift_cards.header.text">
+        <source>admin.gift_cards.header.text</source>
         <target>Gavekort</target>
       </trans-unit>
-      <trans-unit id="admin.coupons.edit.header.text">
-        <source>admin.coupons.edit.header.text</source>
+      <trans-unit id="admin.gift_cards.edit.header.text">
+        <source>admin.gift_cards.edit.header.text</source>
         <target>Rediger Gavekort</target>
       </trans-unit>
-      <trans-unit id="admin.coupons.customers.header.text">
-        <source>admin.coupons.customers.header.text</source>
+      <trans-unit id="admin.gift_cards.customers.header.text">
+        <source>admin.gift_cards.customers.header.text</source>
         <target>Brugere der kan bruge dette gavekort:</target>
       </trans-unit>
-      <trans-unit id="admin.coupons.description.text">
-        <source>admin.coupons.description.text</source>
+      <trans-unit id="admin.gift_cards.description.text">
+        <source>admin.gift_cards.description.text</source>
         <target>Herunder kan du se alle gemte Gavekort. Du kan søge efter en specifik gavekort ved at søge på gavekortets kode.</target>
       </trans-unit>
-      <trans-unit id="admin.coupons.edit.description.text">
-        <source>admin.coupons.edit.description.text</source>
+      <trans-unit id="admin.gift_cards.edit.description.text">
+        <source>admin.gift_cards.edit.description.text</source>
         <target>Herunder kan du redigere eller opretten et nyt gavekort.</target>
       </trans-unit>
-      <trans-unit id="admin.coupons.customers.description.text">
-        <source>admin.coupons.customers.description.text</source>
+      <trans-unit id="admin.gift_cards.customers.description.text">
+        <source>admin.gift_cards.customers.description.text</source>
         <target>Rediger de brugere som skal have adgang til at bruge dette gavekort. Tilføj nye brugere ved at vælge et navn i feltet nedenunder. Slet et navn fra listen ved at trykke på x'et ud for.</target>
       </trans-unit>
-      <trans-unit id="admin.coupons.customers.need.to.save">
-        <source>admin.coupons.customers.need.to.save</source>
+      <trans-unit id="admin.gift_cards.customers.need.to.save">
+        <source>admin.gift_cards.customers.need.to.save</source>
         <target>For at kunne tilføje brugere, bliver du nødt til at gemme Gavekortet. Tryk på "Gem Gavekort".</target>
       </trans-unit>
-      <trans-unit id="admin.coupons.id">
-        <source>admin.coupons.id</source>
+      <trans-unit id="admin.gift_cards.id">
+        <source>admin.gift_cards.id</source>
         <target>ID</target>
       </trans-unit>
-      <trans-unit id="admin.coupons.code">
-        <source>admin.coupons.code</source>
+      <trans-unit id="admin.gift_cards.code">
+        <source>admin.gift_cards.code</source>
         <target>Kode</target>
       </trans-unit>
-      <trans-unit id="admin.coupons.amount">
-        <source>admin.coupons.amount</source>
+      <trans-unit id="admin.gift_cards.amount">
+        <source>admin.gift_cards.amount</source>
         <target>Beløb</target>
       </trans-unit>
-      <trans-unit id="admin.coupons.vat">
-        <source>admin.coupons.vat</source>
+      <trans-unit id="admin.gift_cards.vat">
+        <source>admin.gift_cards.vat</source>
         <target>Moms</target>
       </trans-unit>
-      <trans-unit id="admin.coupons.currency">
-        <source>admin.coupons.currency</source>
+      <trans-unit id="admin.gift_cards.currency">
+        <source>admin.gift_cards.currency</source>
         <target>Valuta</target>
       </trans-unit>
-      <trans-unit id="admin.coupons.uses_pr_coupon">
-        <source>admin.coupons.uses_pr_coupon</source>
+      <trans-unit id="admin.gift_cards.uses_pr_gift_card">
+        <source>admin.gift_cards.uses_pr_gift_card</source>
         <target>Antal per gavekort</target>
       </trans-unit>
-      <trans-unit id="admin.coupons.uses_pr_customer">
-        <source>admin.coupons.uses_pr_customer</source>
+      <trans-unit id="admin.gift_cards.uses_pr_customer">
+        <source>admin.gift_cards.uses_pr_customer</source>
         <target>Antal per bruger</target>
       </trans-unit>
-      <trans-unit id="admin.coupons.active_from">
-        <source>admin.coupons.active_from</source>
+      <trans-unit id="admin.gift_cards.active_from">
+        <source>admin.gift_cards.active_from</source>
         <target>Aktiv fra d.</target>
       </trans-unit>
-      <trans-unit id="admin.coupons.active_to">
-        <source>admin.coupons.active_to</source>
+      <trans-unit id="admin.gift_cards.active_to">
+        <source>admin.gift_cards.active_to</source>
         <target>Aktiv til d.</target>
       </trans-unit>
       <trans-unit id="admin.helpdesk.header.text">

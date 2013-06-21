@@ -56,38 +56,38 @@
     </tr>
   </thead>
   <tbody>
-  {% for coupon in gift_cards %}
+  {% for gift_card in gift_cards %}
     <tr>
-      <td>{{ coupon.id }}</td>
-      <td>{{ coupon.code }}</td>
-      <td>{{ coupon.amount|number_format(2, ',', '.') }}</td>
-      <td>{{ coupon.currencycode }}</td>
+      <td>{{ gift_card.id }}</td>
+      <td>{{ gift_card.code }}</td>
+      <td>{{ gift_card.amount|number_format(2, ',', '.') }}</td>
+      <td>{{ gift_card.currencycode }}</td>
       <td>
-      {% if coupon.activefrom %}
-        {{ coupon.activefrom|date("d-m-Y") }}
+      {% if gift_card.activefrom %}
+        {{ gift_card.activefrom|date("d-m-Y") }}
       {% else %}
         -
       {% endif %}
       </td>
       <td>
-      {% if coupon.activeto %}
-        {{ coupon.activeto|date("d-m-Y") }}
+      {% if gift_card.activeto %}
+        {{ gift_card.activeto|date("d-m-Y") }}
       {% else %}
         -
       {% endif %}
       </td>
       <td>
-        {% if coupon.isactive %}
+        {% if gift_card.isactive %}
           {{ 'admin.consultant.yes'|trans({}, 'admin') }}
         {% else %}
           {{ 'admin.consultant.no'|trans({}, 'admin') }}
         {% endif %}
       </td>
       <th>
-        <a href="{{ path('admin_gift_cards_edit', {'id' : coupon.id }) }}">
+        <a href="{{ path('admin_gift_cards_edit', {'id' : gift_card.id }) }}">
           {{ 'admin.gift_cards.edit.link'|trans({}, 'admin') }}
         </a>
-        <a href="{{ path('admin_gift_cards_delete', {'id' : coupon.id }) }}" class="delete">
+        <a href="{{ path('admin_gift_cards_delete', {'id' : gift_card.id }) }}" class="delete">
           {{ 'admin.gift_cards.delete.link'|trans({}, 'admin') }}
         </a>
       </th>

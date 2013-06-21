@@ -615,26 +615,26 @@ admin_statistics:
         _controller: AdminBundle:Statistics:index
         domain_key: null
 
-admin_coupons:
-    pattern: /admin/coupons/{pager}
+admin_gift_cards:
+    pattern: /admin/gift_cards/{pager}
     defaults:
-        _controller: AdminBundle:Coupons:index
+        _controller: AdminBundle:GiftCards:index
         pager: 1
     requirements:
         pager: \d+
 
-admin_coupons_edit:
-    pattern: /admin/coupons/id/{id}
+admin_gift_cards_edit:
+    pattern: /admin/gift_cards/id/{id}
     defaults:
-        _controller: AdminBundle:Coupons:view
+        _controller: AdminBundle:GiftCards:view
         id: null
     requirements:
         id: \d+
 
-admin_coupons_delete:
-    pattern: /admin/coupons/delete/{id}
+admin_gift_cards_delete:
+    pattern: /admin/gift_cards/delete/{id}
     defaults:
-        _controller: AdminBundle:Coupons:delete
+        _controller: AdminBundle:GiftCards:delete
         _format: json
     requirements:
         id: \d+
