@@ -24,6 +24,11 @@ class PensioCallResponse
         if (((string) $xml->Header[0]->ErrorCode[0]) != '0') {
             $this->is_error = true;
             $this->error_message = (string) $xml->Header[0]->ErrorMessage[0];
+        } else {
+            if (((string) $xml->Body[0]->Error[0]) == 'Error') {
+                $this->is_error = true;
+                $this->error_message = (string) $xml->Body[0]->CardHolderErrorMessage[0];
+            }
         }
 
         $this->xml = $xml;
