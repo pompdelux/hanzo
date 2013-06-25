@@ -40,17 +40,26 @@ class SoapController extends Controller
 
     public function testAction()
     {
-
         $client = new \SoapClient($this->generateUrl('ax_soap', ['version' => 'v1'], true).'?wsdl', ['trace' => 1]);
-        $client->__setLocation('http://'.$_SERVER['HTTP_HOST'].'/a_DK/soap/v3/ECommerceServices/');
-        #$client->__setLocation('http://ws.pompdelux.com/da_DK/soap/v3/ECommerceServices/');
+        $client->__setLocation('http://'.$_SERVER['HTTP_HOST'].'/da_DK/soap/v1/ECommerceServices/');
+        //$client->__setLocation('http://ws.pompdelux.com/nl_NL/soap/v1/ECommerceServices/')
 
-        $d = new \stdClass();
-        $d->eOrderNumber = 1000000000000;
-        $d->fileName = 'xyz.pdf';
+
+
+        $c = new \stdClass();
+        $c->eOrderNumber = '15164';
+        $c->amount = '-13.77';
+        $c->initials = 'un';
+
+
+
+        // $d = new \stdClass();
+        // $d->eOrderNumber = 1000000000000;
+        // $d->fileName = 'xyz.pdf';
 
         try {
-            $res = $client->SalesOrderAddDocument($d);
+            // $res = $client->SalesOrderAddDocument($d);
+            $res = $client->SalesOrderCaptureOrRefund($c);
             Tools::log($client->__getLastResponse());
             Tools::log($res);
         }
