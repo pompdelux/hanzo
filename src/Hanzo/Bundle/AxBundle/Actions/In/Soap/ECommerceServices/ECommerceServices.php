@@ -888,7 +888,7 @@ class ECommerceServices extends SoapService
         if (!$order instanceof Orders) {
             $msg = 'no order found with eOrderNumber "' . $data->eOrderNumber . '".';
             $this->logger->addCritical($msg);
-            return self::responseStatus('Error', 'DeleteSalesOrderResult', array($msg));
+            return self::responseStatus('Error', 'SalesOrderCaptureOrRefundResult', array($msg));
         }
 
         // ....................

@@ -45,12 +45,10 @@ class SoapController extends Controller
         //$client->__setLocation('http://ws.pompdelux.com/nl_NL/soap/v1/ECommerceServices/')
 
 
-
         $c = new \stdClass();
         $c->eOrderNumber = '15164';
         $c->amount = '-13.77';
         $c->initials = 'un';
-
 
 
         // $d = new \stdClass();
