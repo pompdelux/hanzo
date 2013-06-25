@@ -19,6 +19,7 @@
         } else if (element.name == 'paytype') {
           checkout.setStepStatus('payment', true);
           $('#gift-card-block').removeClass('hidden');
+          $('#coupon-block').removeClass('hidden');
         }
       });
 
@@ -208,19 +209,19 @@
       });
 
       $(document).on('payment.method.updated', function(event) {
-        $('#gift-card-block').removeClass('hidden');
+        $('.voucher-block').removeClass('hidden');
       });
 
-      var $gift_card = $('#gift-card-block');
-      $('a', $gift_card).on('click', function(event) {
+      var $block = $('.voucher-block');
+      $('a', $block).on('click', function(event) {
         event.preventDefault();
         $(this).next().toggle();
       });
 
-      $('form', $gift_card).on('submit', function(event) {
+      $('form', $block).on('submit', function(event) {
         event.preventDefault();
 
-        var $msg = $('form .msg', $gift_card);
+        var $msg = $('form .msg', $block);
         if (!$msg.hasClass('off')) {
           $msg.addClass('off');
         }
@@ -228,7 +229,14 @@
         var $form = $(this);
         dialoug.loading($('.button', $form));
 
-        jaiks.add('/checkout/gift-card/apply', checkout.handleGiftCardUpdates, {code: $('input#form_code', $form).val()});
+        var callback = checkout.handleGiftCardUpdates;
+        if ('apply-coupon' == $form.attr('id')) {
+          callback = checkout.handleCouponUpdates;
+        }
+
+        var action = $form.attr('action').replace(/^\/[a-z]{2}_[A-Z]{2}/, '');
+
+        jaiks.add(action, callback, {code: $('input#form_code', $form).val()});
         jaiks.add('/checkout/summery', checkout.handleSummeryUpdates);
         jaiks.exec();
       });
@@ -341,7 +349,18 @@
       if (response.response.status) {
         $('form', $gift_card).hide();
       } else {
-        $('form .msg', $gift_card).text(response.response.message).toggleClass('off');
+        $('form .msg', $gift_card).text(response.response.message).toggleClass('off hidden');
+      }
+    };
+
+    pub.handleCouponUpdates = function(response) {
+      if (stop) { return; }
+
+      var $coupon = $('#coupon-block');
+      if (response.response.status) {
+        $('form', $coupon).hide();
+      } else {
+        $('form .msg', $coupon).text(response.response.message).toggleClass('off hidden');
       }
     };
 

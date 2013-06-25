@@ -3,3 +3,8 @@ gift_card_form:
     defaults:
         _controller: DiscountBundle:GiftCard:applyGiftCard
 
+coupon_form:
+    pattern: /checkout/coupon/apply
+    defaults:
+        _controller: DiscountBundle:Coupon:apply
+

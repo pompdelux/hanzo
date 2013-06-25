@@ -1758,16 +1758,16 @@ form.address .error {
   border: 1px solid #7B7577;
 }
 
-#gift-card-block form {
+.voucher-block form {
   overflow: hidden;
   padding: 20px;
   margin: 10px;
   border: 1px solid #7B7577;
 }
-#gift-card-block form div.clearfix {
+.voucher-block form div.clearfix {
   float: left;
 }
-#gift-card-block #form_code {
+.voucher-block #form_code {
   margin: 0 10px;
 }
 
