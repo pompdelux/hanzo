@@ -125,7 +125,16 @@
 	.productimage-large img {
 		height: 260px;
 	}
+}
 
+.prices {
+	.normal,
+	.discount {
+		display: block;
+	}
+	.strike {
+		text-decoration: line-through;
+	}
 }
 
 .body-buy-set .main {
