@@ -18,7 +18,7 @@
           attachLocationForm($('#address-block form.location-locator'));
         } else if (element.name == 'paytype') {
           checkout.setStepStatus('payment', true);
-          $('#coupon-block').removeClass('hidden');
+          $('#gift-card-block').removeClass('hidden');
         }
       });
 
@@ -208,19 +208,19 @@
       });
 
       $(document).on('payment.method.updated', function(event) {
-        $('#coupon-block').removeClass('hidden');
+        $('#gift-card-block').removeClass('hidden');
       });
 
-      var $coupon = $('#coupon-block');
-      $('a', $coupon).on('click', function(event) {
+      var $gift_card = $('#gift-card-block');
+      $('a', $gift_card).on('click', function(event) {
         event.preventDefault();
         $(this).next().toggle();
       });
 
-      $('form', $coupon).on('submit', function(event) {
+      $('form', $gift_card).on('submit', function(event) {
         event.preventDefault();
 
-        var $msg = $('form .msg', $coupon);
+        var $msg = $('form .msg', $gift_card);
         if (!$msg.hasClass('off')) {
           $msg.addClass('off');
         }
@@ -228,7 +228,7 @@
         var $form = $(this);
         dialoug.loading($('.button', $form));
 
-        jaiks.add('/checkout/coupon/apply', checkout.handleCouponUpdates, {code: $('input#form_code', $form).val()});
+        jaiks.add('/checkout/gift-card/apply', checkout.handleGiftCardUpdates, {code: $('input#form_code', $form).val()});
         jaiks.add('/checkout/summery', checkout.handleSummeryUpdates);
         jaiks.exec();
       });
@@ -334,14 +334,14 @@
       pub.handleSummeryUpdates(response);
     };
 
-    pub.handleCouponUpdates = function(response) {
+    pub.handleGiftCardUpdates = function(response) {
       if (stop) { return; }
 
-      var $coupon = $('#coupon-block');
+      var $gift_card = $('#gift-card-block');
       if (response.response.status) {
-        $('form', $coupon).hide();
+        $('form', $gift_card).hide();
       } else {
-        $('form .msg', $coupon).text(response.response.message).toggleClass('off');
+        $('form .msg', $gift_card).text(response.response.message).toggleClass('off');
       }
     };
 
