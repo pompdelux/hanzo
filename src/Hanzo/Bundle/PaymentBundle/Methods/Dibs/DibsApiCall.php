@@ -175,18 +175,16 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      */
     public function capture( Orders $order, $amount )
     {
-        $attributes       = $order->getAttributes();
+        $attributes = $order->getAttributes();
 
-        if ( !isset($attributes->payment->transact) )
-        {
+        if (!isset($attributes->payment->transact)) {
             throw new DibsApiCallException( 'DIBS api capture action: order contains no transaction id, order id was: '.$order->getId() );
         }
 
         $transaction      = $attributes->payment->transact;
-
         $paymentGatewayId = $order->getPaymentGatewayId();
-
-        $stringToHash = 'merchant='. $this->settings[ 'merchant' ] .'&orderid='. $paymentGatewayId.'&transact='.$transaction.'&amount='.$amount;
+        $amount           = $this->api->formatAmount($amount);
+        $stringToHash     = 'merchant='. $this->settings[ 'merchant' ] .'&orderid='. $paymentGatewayId.'&transact='.$transaction.'&amount='.$amount;
 
         $params = array(
             'amount'    => $amount,
@@ -222,6 +220,7 @@ class DibsApiCall implements PaymentMethodApiCallInterface
         $transaction      = $attributes->payment->transact;
         $paymentGatewayId = $order->getPaymentGatewayId();
         $currency         = $this->api->currencyCodeToNum($order->getCurrencyCode());
+        $amount           = $this->api->formatAmount($amount);
 
         $stringToHash = 'merchant='. $this->settings[ 'merchant' ] .'&orderid='. $paymentGatewayId.'&transact='.$transaction.'&amount='.$amount;
 
@@ -353,7 +352,7 @@ class DibsApiCall implements PaymentMethodApiCallInterface
     {
         $paymentGatewayId = $order->getPaymentGatewayId();
         $currency         = $this->api->currencyCodeToNum($order->getCurrencyCode());
-        $amount           = $this->api->formatAmount( $order->getTotalPrice() );
+        $amount           = $this->api->formatAmount($order->getTotalPrice());
 
         $params = array(
             'merchant'  => $this->settings[ 'merchant' ],
