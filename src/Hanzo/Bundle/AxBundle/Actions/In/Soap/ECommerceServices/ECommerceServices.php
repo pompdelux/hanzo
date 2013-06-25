@@ -479,13 +479,13 @@ class ECommerceServices extends SoapService
 
         if (!$stock->ItemId) {
             $this->logger->addCritical(__METHOD__.' '.__LINE__.': no ItemId given');
-            return self::responseStatus('Error', 'SyncPriceListResult', array('no ItemId given'));
+            return self::responseStatus('Error', 'SyncInventoryOnHandResult', array('no ItemId given'));
         }
 
         $master = ProductsQuery::create()->findOneBySku($stock->ItemId);
         if (!$master instanceof Products) {
             $this->logger->addCritical(__METHOD__.' '.__LINE__.': Unknown product, ItemId: ' . $stock->ItemId);
-            return self::responseStatus('Error', 'SyncPriceListResult', array('Unknown ItemId: ' . $stock->ItemId));
+            return self::responseStatus('Error', 'SyncInventoryOnHandResult', array('Unknown ItemId: ' . $stock->ItemId));
         }
 
         // ....................
@@ -1142,15 +1142,11 @@ class ECommerceServices extends SoapService
         }
 
         try {
-            $tmpAmount = str_replace(',', '.', $data->amount);
-            list($large, $small) = explode('.', $tmpAmount);
-
-            $amount = $large . sprintf('%02d', $small);
             $gateway = $this->hanzo->container->get('payment.'.$provider.'api');
 
             $this->timer->reset();
             try {
-                $response = $gateway->call()->capture($order, $amount);
+                $response = $gateway->call()->capture($order, $data->amount);
                 $result = $response->debug();
             } catch (PaymentApiCallException $e) {
                 $error = array(
@@ -1197,10 +1193,6 @@ class ECommerceServices extends SoapService
         $setStatus = false;
         $errors = array();
 
-        $amount = str_replace(',', '.', $data->amount);
-        list($large, $small) = explode('.', $amount);
-        $amount = $large . sprintf('%02d', $small);
-
         $provider = strtolower($order->getBillingMethod());
         $gateway = $this->hanzo->container->get('payment.'.$provider.'api');
         $domain = strtoupper($order->getAttributes()->global->domain_key);
@@ -1211,7 +1203,7 @@ class ECommerceServices extends SoapService
 
             if (method_exists($call, 'refund'))  {
                 $this->timer->reset();
-                $response = $call->refund($order, ($amount * -1));
+                $response = $call->refund($order, ($data->amount * -1));
                 $result = $response->debug();
                 $this->timer->lap('time in '.$provider.' gateway');
             } else {
