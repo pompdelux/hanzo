@@ -473,13 +473,13 @@ class ECommerceServices extends SoapService
 
         if (!$stock->ItemId) {
             $this->logger->addCritical(__METHOD__.' '.__LINE__.': no ItemId given');
-            return self::responseStatus('Error', 'SyncPriceListResult', array('no ItemId given'));
+            return self::responseStatus('Error', 'SyncInventoryOnHandResult', array('no ItemId given'));
         }
 
         $master = ProductsQuery::create()->findOneBySku($stock->ItemId);
         if (!$master instanceof Products) {
             $this->logger->addCritical(__METHOD__.' '.__LINE__.': Unknown product, ItemId: ' . $stock->ItemId);
-            return self::responseStatus('Error', 'SyncPriceListResult', array('Unknown ItemId: ' . $stock->ItemId));
+            return self::responseStatus('Error', 'SyncInventoryOnHandResult', array('Unknown ItemId: ' . $stock->ItemId));
         }
 
         // ....................
