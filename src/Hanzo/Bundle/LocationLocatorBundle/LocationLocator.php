@@ -154,54 +154,56 @@ class LocationLocator
         $response = @file_get_contents($query, false, $context);
 
         $records = [];
-        if (!is_null($response)) {
-            $json = json_decode($response);
+        if (false === $response) {
+            throw new \Exception('Service does not responde. Proberbly down.');
+        }
 
-            /**
-             * record:
-             *     post [
-             *         'id' => 123,
-             *         'name' => 'some name',
-             *         'address' => 'address line',
-             *         'coordinate' => [
-             *             'id' => 'xyz',
-             *             'latitude' => 55.2234,
-             *             'longitude' => 55.222,
-             *         ],
-             *         'distance' => 1234,
-             *         'opening_hours' => [],
-             *         'raw' => {}
-             *     ]
-             */
+        $json = json_decode($response);
 
-            if (isset($json->servicePointInformationResponse) && isset($json->servicePointInformationResponse->servicePoints)) {
-                foreach ($json->servicePointInformationResponse->servicePoints as $point) {
-                    $opening_hours = [];
-                    foreach ($point->openingHours as $entry) {
-                        $entry->from1 = number_format(($entry->from1 / 100), 2, ':', '');
-                        $entry->to1   = number_format(($entry->to1 / 100), 2, ':', '');
+        /**
+         * record:
+         *     post [
+         *         'id' => 123,
+         *         'name' => 'some name',
+         *         'address' => 'address line',
+         *         'coordinate' => [
+         *             'id' => 'xyz',
+         *             'latitude' => 55.2234,
+         *             'longitude' => 55.222,
+         *         ],
+         *         'distance' => 1234,
+         *         'opening_hours' => [],
+         *         'raw' => {}
+         *     ]
+         */
 
-                        $opening_hours[$entry->from1.' - '.$entry->to1][] = $this->translator->trans('day.'.strtolower($entry->day), [], 'locator');
-                    }
+        if (isset($json->servicePointInformationResponse) && isset($json->servicePointInformationResponse->servicePoints)) {
+            foreach ($json->servicePointInformationResponse->servicePoints as $point) {
+                $opening_hours = [];
+                foreach ($point->openingHours as $entry) {
+                    $entry->from1 = number_format(($entry->from1 / 100), 2, ':', '');
+                    $entry->to1   = number_format(($entry->to1 / 100), 2, ':', '');
 
-                    $records[] = [
-                        'id'            => $point->servicePointId,
-                        'name'          => $point->name,
-                        'address'       => $point->deliveryAddress->streetName . ' ' . $point->deliveryAddress->streetNumber,
-                        'postal_code'   => $point->deliveryAddress->postalCode,
-                        'city'          => $point->deliveryAddress->city,
-                        'coordinate'    => [
-                            'id'        => $point->coordinate->srId,
-                            'latitude'  => number_format($point->coordinate->northing, 6, '.', ''),
-                            'longitude' => number_format($point->coordinate->easting, 6, '.', ''),
-                        ],
-                        'distance'      => $point->routeDistance,
-                        'opening_hours' => $opening_hours,
-                        // 'raw' => $point,
-                    ];
-
-
+                    $opening_hours[$entry->from1.' - '.$entry->to1][] = $this->translator->trans('day.'.strtolower($entry->day), [], 'locator');
                 }
+
+                $records[] = [
+                    'id'            => $point->servicePointId,
+                    'name'          => $point->name,
+                    'address'       => $point->deliveryAddress->streetName . ' ' . $point->deliveryAddress->streetNumber,
+                    'postal_code'   => $point->deliveryAddress->postalCode,
+                    'city'          => $point->deliveryAddress->city,
+                    'coordinate'    => [
+                        'id'        => $point->coordinate->srId,
+                        'latitude'  => number_format($point->coordinate->northing, 6, '.', ''),
+                        'longitude' => number_format($point->coordinate->easting, 6, '.', ''),
+                    ],
+                    'distance'      => $point->routeDistance,
+                    'opening_hours' => $opening_hours,
+                    // 'raw' => $point,
+                ];
+
+
             }
         }
 
