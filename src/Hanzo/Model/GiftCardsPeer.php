@@ -15,16 +15,15 @@ class GiftCardsPeer extends BaseGiftCardsPeer
      * @param  string  $prefix Code prefix, note this will not count as part of the length
      * @return string
      */
-    public static function generateCode($length = 9, $prefix = '')
+    public static function generateCode($length = 9, $prefix = '', $con = null)
     {
         // make sure we have a uniq code for every coupon
         while (true) {
             $code = $prefix.substr(str_shuffle(str_shuffle(str_repeat('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789', 2))), 0, $length);
 
-            if (0 == CouponsQuery::create()->filterByCode($code)->count()) {
+            if (0 == GiftCardsQuery::create()->filterByCode($code)->count($con)) {
                 return $code;
             }
         }
     }
-
 }

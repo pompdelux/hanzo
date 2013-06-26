@@ -640,6 +640,31 @@ admin_gift_cards_delete:
         id: \d+
         _format: html|json
 
+admin_coupons:
+    pattern: /admin/coupons/{pager}
+    defaults:
+        _controller: AdminBundle:Coupons:index
+        pager: 1
+    requirements:
+        pager: \d+
+
+admin_coupons_edit:
+    pattern: /admin/coupons/id/{id}
+    defaults:
+        _controller: AdminBundle:Coupons:view
+        id: null
+    requirements:
+        id: \d+
+
+admin_coupons_delete:
+    pattern: /admin/coupons/delete/{id}
+    defaults:
+        _controller: AdminBundle:Coupons:delete
+        _format: json
+    requirements:
+        id: \d+
+        _format: html|json
+
 admin_helpdesk:
     pattern: /admin/helpdesk/{pager}
     defaults:

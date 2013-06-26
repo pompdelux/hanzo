@@ -10,16 +10,16 @@ use Hanzo\Core\Hanzo;
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Tools;
 
-use Hanzo\Model\GiftCardsQuery;
-use Hanzo\Model\GiftCards;
-use Hanzo\Model\GiftCardsPeer;
-use Hanzo\Model\GiftCardsToCustomersQuery;
-use Hanzo\Model\OrdersToGiftCardsQuery;
-use Hanzo\Model\GiftCardsToCustomers;
+use Hanzo\Model\CouponsQuery;
+use Hanzo\Model\Coupons;
+use Hanzo\Model\CouponsPeer;
+use Hanzo\Model\CouponsToCustomersQuery;
+use Hanzo\Model\OrdersToCouponsQuery;
+use Hanzo\Model\CouponsToCustomers;
 use Hanzo\Model\CustomersQuery;
 use Hanzo\Model\DomainsSettingsQuery;
 
-class GiftCardsController extends CoreController
+class CouponsController extends CoreController
 {
     public function indexAction($pager)
     {
@@ -32,7 +32,7 @@ class GiftCardsController extends CoreController
         $route = $container->get('request')->get('_route');
         $router = $container->get('router');
 
-        $gift_cards = GiftCardsQuery::create()
+        $coupons = CouponsQuery::create()
             ->orderByActiveFrom(Criteria::DESC)
             ->orderByCreatedAt(Criteria::DESC)
         ;
@@ -41,45 +41,42 @@ class GiftCardsController extends CoreController
             $q_clean = $this->getRequest()->get('q', null);
             $q = '%'.$q_clean.'%';
 
-            $gift_cards->filterByCode($q);
+            $coupons->filterByCode($q);
         } else {
-            $gift_cards->filterByIsActive(true);
+            $coupons->filterByIsActive(true);
         }
 
-        $gift_cards = $gift_cards->paginate($pager, 20, $this->getDbConnection());
+        $coupons = $coupons->paginate($pager, 20, $this->getDbConnection());
 
         $paginate = null;
-        if ($gift_cards->haveToPaginate()) {
-
+        if ($coupons->haveToPaginate()) {
             $pages = array();
-            foreach ($gift_cards->getLinks(20) as $page) {
-                if (isset($_GET['q']))
+            foreach ($coupons->getLinks(20) as $page) {
+                if (isset($_GET['q'])) {
                     $pages[$page] = $router->generate($route, array('pager' => $page, 'q' => $_GET['q']), TRUE);
-                else
+                } else{
                     $pages[$page] = $router->generate($route, array('pager' => $page), TRUE);
-
+                }
             }
 
             if (isset($_GET['q'])) // If search query, add it to the route
                 $paginate = array(
-                    'next' => ($gift_cards->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $gift_cards->getNextPage(), 'q' => $_GET['q']), TRUE)),
-                    'prew' => ($gift_cards->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $gift_cards->getPreviousPage(), 'q' => $_GET['q']), TRUE)),
-
+                    'next' => ($coupons->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $coupons->getNextPage(), 'q' => $_GET['q']), TRUE)),
+                    'prew' => ($coupons->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $coupons->getPreviousPage(), 'q' => $_GET['q']), TRUE)),
                     'pages' => $pages,
                     'index' => $pager
                 );
             else
                 $paginate = array(
-                    'next' => ($gift_cards->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $gift_cards->getNextPage()), TRUE)),
-                    'prew' => ($gift_cards->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $gift_cards->getPreviousPage()), TRUE)),
-
+                    'next' => ($coupons->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $coupons->getNextPage()), TRUE)),
+                    'prew' => ($coupons->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $coupons->getPreviousPage()), TRUE)),
                     'pages' => $pages,
                     'index' => $pager
                 );
         }
 
-        return $this->render('AdminBundle:GiftCards:index.html.twig', array(
-            'gift_cards'     => $gift_cards,
+        return $this->render('AdminBundle:Coupons:index.html.twig', array(
+            'coupons'     => $coupons,
             'paginate'    => $paginate,
             'database'    => $this->getRequest()->getSession()->get('database')
         ));
@@ -92,19 +89,20 @@ class GiftCardsController extends CoreController
         }
 
         $request = $this->getRequest();
-        $gift_card = null;
-        $gift_cards_history = null;
+        $coupon = null;
+        $coupons_history = null;
         if ($id) {
-            $gift_card = GiftCardsQuery::create()
+            $coupon = CouponsQuery::create()
                 ->filterById($id)
                 ->findOne($this->getDbConnection())
             ;
-            $gift_cards_history = OrdersToGiftCardsQuery::create()->filterByGiftCardsId($id)->find();
+            $coupon->setActiveFrom($coupon->getActiveFrom());
+            $coupon->setActiveTo($coupon->getActiveTo());
         } else {
-            $gift_card = new GiftCards();
+            $coupon = new Coupons();
 
             if ('GET' === $request->getMethod()) {
-                $gift_card->setCode(GiftCardsPeer::generateCode(9, '', $this->getDbConnection()));
+                $coupon->setCode(CouponsPeer::generateCode(9, '', $this->getDbConnection()));
             }
         }
 
@@ -119,58 +117,64 @@ class GiftCardsController extends CoreController
             $currencies_data[$currency->getCValue()] = $currency->getCValue();
         }
 
-        $form = $this->createFormBuilder($gift_card)
+        $form = $this->createFormBuilder($coupon)
             ->add('code', 'text', array(
-                'label' => 'admin.gift_cards.code',
+                'label' => 'admin.coupons.code',
                 'translation_domain' => 'admin',
                 'required' => true
             ))->add('amount', 'text', array(
-                'label' => 'admin.gift_cards.amount',
+                'label' => 'admin.coupons.amount',
+                'translation_domain' => 'admin',
+                'required' => true
+            ))->add('min_purchase_amount', 'text', array(
+                'label' => 'admin.coupons.min.purchase.amount',
                 'translation_domain' => 'admin',
                 'required' => true
             ))->add('currency_code', 'choice', array(
                 'choices' => $currencies_data,
-                'label' => 'admin.gift_cards.currency',
+                'label' => 'admin.coupons.currency',
                 'translation_domain' => 'admin',
                 'required' => false
-            ))->add('active_from', 'date', array(
+            ))->add('active_from', 'datetime', array(
                 'input' => 'string',
                 'widget' => 'single_text',
                 'format' => 'dd-MM-yyyy',
-                'label' => 'admin.gift_cards.active_from',
+                'label' => 'admin.coupons.active_from',
                 'translation_domain' => 'admin',
                 'required' => false,
                 'attr' => array('class' => 'datepicker')
-            ))->add('active_to', 'date', array(
+            ))->add('active_to', 'datetime', array(
                 'input' => 'string',
                 'widget' => 'single_text',
                 'format' => 'dd-MM-yyyy',
-                'label' => 'admin.gift_cards.active_to',
+                'label' => 'admin.coupons.active_to',
                 'translation_domain' => 'admin',
                 'required' => false,
                 'attr' => array('class' => 'datepicker')
             ))->add('is_active', 'checkbox', array(
-                'label' => 'admin.customer.is_active',
+                'label' => 'admin.coupon.is_active',
                 'translation_domain' => 'admin',
                 'required' => false,
-            ))->getForm()
+            ))->add('is_used', 'checkbox', array(
+                'label' => 'admin.coupon.is_used',
+                'translation_domain' => 'admin',
+                'required' => false,
+            ))
+            ->getForm()
         ;
 
         if ('POST' === $request->getMethod()) {
             $form->bindRequest($request);
 
             if ($form->isValid()) {
-
-                $gift_card->save($this->getDbConnection());
-
-                $this->get('session')->setFlash('notice', 'admin.gift_card.inserted');
+                $coupon->save($this->getDbConnection());
+                $this->get('session')->setFlash('notice', 'admin.coupon.inserted');
             }
         }
 
-        return $this->render('AdminBundle:GiftCards:view.html.twig', array(
+        return $this->render('AdminBundle:Coupons:view.html.twig', array(
             'form' => $form->createView(),
-            'gift_card' => $gift_card,
-            'gift_cards_history' => $gift_cards_history,
+            'coupon' => $coupon,
             'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
@@ -181,19 +185,19 @@ class GiftCardsController extends CoreController
             throw new AccessDeniedException();
         }
 
-        $gift_card = GiftCardsQuery::create()
+        $coupon = CouponsQuery::create()
             ->filterById($id)
             ->findOne($this->getDbConnection())
         ;
 
-        if($gift_card instanceof GiftCards){
-            $gift_card->delete($this->getDbConnection());
+        if($coupon instanceof Coupons){
+            $coupon->delete($this->getDbConnection());
 
 
             if ($this->getFormat() == 'json') {
                 return $this->json_response(array(
                     'status' => TRUE,
-                    'message' => $this->get('translator')->trans('delete.gift_card.success', array(), 'admin'),
+                    'message' => $this->get('translator')->trans('delete.coupon.success', array(), 'admin'),
                 ));
             }
         }
@@ -201,7 +205,7 @@ class GiftCardsController extends CoreController
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
                 'status' => FALSE,
-                'message' => $this->get('translator')->trans('delete.gift_card.failed', array(), 'admin'),
+                'message' => $this->get('translator')->trans('delete.coupon.failed', array(), 'admin'),
             ));
         }
 
