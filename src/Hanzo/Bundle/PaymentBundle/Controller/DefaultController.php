@@ -58,7 +58,7 @@ class DefaultController extends CoreController
                 ];
 
                 // TODO: fix hardcoded "cardtypes"
-                if (method_exists($service, 'getEnabledPaytypes')) {
+                if (method_exists($service, 'methodExists') && $service->methodExists('getEnabledPaytypes')) {
                     $parameters['cardtypes'] = $service->getEnabledPaytypes();
                 }
 
@@ -163,7 +163,7 @@ class DefaultController extends CoreController
                 'data'    => $api->getProcessButton($order),
             ];
         }
-
+Tools::log($response);
         // If the customer cancels payment, state is back to building
         // Customer is only allowed to add products to the basket if state is >= pre payment
         $order->setState( Orders::STATE_PRE_PAYMENT );
@@ -181,7 +181,7 @@ class DefaultController extends CoreController
     public function cancelAction()
     {
         $translator = $this->get('translator');
-
+Tools::log($_POST);
         $order = OrdersPeer::getCurrent();
         $order->setState( Orders::STATE_BUILDING );
         $order->save();
