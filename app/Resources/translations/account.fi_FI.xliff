@@ -120,7 +120,7 @@
             </trans-unit>
             <trans-unit id="54">
                 <source>Phone</source>
-                <target>Puhelinnumero</target>
+                <target>Matkapuhelinnumero</target>
             </trans-unit>
             <trans-unit id="55">
                 <source>Address line 1</source>
