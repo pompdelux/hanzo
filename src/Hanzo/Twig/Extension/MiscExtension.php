@@ -378,7 +378,7 @@ DOC;
                     $html .= '<a href="'.$slide['href'].'"'.$params.'>'.Tools::imageTag($slide['src'], $attr)."</a>\n";
                 }
 
-                $class = (!empty($selected['class']))?' '.$selected['class']:' grid_6';
+                $class = (!empty($selected['class']))?' '.$selected['class']:' ';
 
                 return '<div class="cycle-slideshow '.$class.'" data-cycle-slides="> a" data-pause-on-hover="true">'."\n".$html.'<div class="cycle-pager"></div></div>'."\n";
                 break;
@@ -400,15 +400,19 @@ DOC;
                 if (isset($parameters[$theme])) {
                     $attr = ['class' => ''];
 
-                    if (isset($parameters[$theme]['alt']) && $parameters[$theme]['alt']) {
+                    if (!empty($parameters[$theme]['alt'])) {
                         $attr['alt'] = $parameters[$theme]['alt'];
                     }
 
-                    if (isset($parameters[$theme]['class']) && $parameters[$theme]['class']) {
+                    if (!empty($parameters[$theme]['class'])) {
                         $attr['class'] = $parameters[$theme]['class'];
                     }
 
                     $html = Tools::imageTag($parameters[$theme]['src'], $attr);
+
+                    if (!empty($parameters[$theme]['href'])) {
+                      $html = '<a href"'.$parameters[$theme]['href'].'">'.$html.'</a>';
+                    }
 
                     if (isset($parameters[$theme]['caption']) && $parameters[$theme]['caption']) {
                       $html = '<div class="image-caption ' . $attr['class'] . '">' . $html . '<span>' . $parameters[$theme]['caption'] . '</span></div>';
