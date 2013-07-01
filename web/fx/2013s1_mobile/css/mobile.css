@@ -2424,6 +2424,10 @@ footer .copy li {
   width: 56%;
 }
 
+a.product-color {
+  white-space: normal;
+}
+
 .cycle-slideshow .cycle-pager {
   padding-top: 4px;
   text-align: center;
