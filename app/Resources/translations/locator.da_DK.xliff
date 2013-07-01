@@ -66,6 +66,10 @@
                 <source>no.records.found</source>
                 <target>Der blev ikke fundet nogen steder der matcher din søgning.</target>
             </trans-unit>
+            <trans-unit id="service.down" approved="no">
+                <source>service.down</source>
+                <target><![CDATA[Post Danmarks postnummerservice svarer ikke i øjeblikket.<br>Prøv igen senere eller vælg privat- eller erhvervsfragt.]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -3301,6 +3301,13 @@ ol.list {
   margin-bottom: 6px;
 }
 
+.g33c {
+  width: 33%;
+  text-align: center;
+  float: left;
+  margin-bottom: 12px;
+}
+
 ul.form-errors li {
   color: red;
   padding: 5px 0;

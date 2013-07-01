@@ -487,6 +487,14 @@ ol{
 	margin-bottom: 6px;
 }
 
+// pseudo 33% centered grid cell
+.g33c {
+  width: 33%;
+  text-align: center;
+  float: left;
+  margin-bottom: 12px;
+}
+
 ul.form-errors li {
 	color: $form-error-color;
 	padding: 5px 0;

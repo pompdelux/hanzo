@@ -25,7 +25,7 @@
           <p>E-ordrenummer: <b>%id%</b></p>
 
           <h2>Ekspeditionstid</h2>
-          <p>Vores forventet ekspeditionstid: %date%.</p>
+          <p>Vores forventede ekspeditionstid: %date%.</p>
 
           <h2>Kontakt</h2>
           <p>Har du spørgsmål er du velkommen til at kontakte os.</p>
