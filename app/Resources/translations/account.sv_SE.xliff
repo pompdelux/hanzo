@@ -121,7 +121,7 @@
             </trans-unit>
             <trans-unit id="54" >
                 <source>Phone</source>
-                <target>Telefonnummer</target>
+                <target>Mobilnummer</target>
             </trans-unit>
             <trans-unit id="55">
                 <source>Address line 1</source>
