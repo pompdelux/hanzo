@@ -4,7 +4,7 @@
         <body>
             <trans-unit id="footer.goto.website.link">
                 <source>footer.goto.website.link</source>
-                <target>Website</target>
+                <target>Gå til almindeligt website</target>
             </trans-unit>
         </body>
     </file>
