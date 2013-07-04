@@ -155,10 +155,15 @@ class PayPalApi implements PaymentMethodApiInterface
             }
         }
 
+        $scheme = 'http';
+        if (isset($_SERVER['HTTPS']) && ('ON' == strtoupper($_SERVER['HTTPS']))) {
+            $scheme = 'https';
+        }
+
         $params = [
             'CANCELURL'          => $this->router->generate('_payment_cancel', $parameters, true),
             'RETURNURL'          => $this->router->generate('_paypal_callback', $parameters, true),
-            'LOGOIMG'            => 'http://static.pompdelux.com/fx/images/POMPdeLUX_logo_SS12.png',
+            'LOGOIMG'            => $scheme.'://static.pompdelux.com/fx/images/POMPdeLUX_logo_SS12.png',
             'LOCALECODE'         => $request->getLocale(),
             'BRANDNAME'          => 'POMPdeLUX',
             'NOSHIPPING'         => 1,
