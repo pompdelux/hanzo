@@ -154,6 +154,20 @@ div.sub-menu {
         text-transform: uppercase;
     }
 }
+
+.body-frontpage {
+    #main {
+        img {
+            max-width: auto;
+            height: auto;
+            width: 100%;
+        }
+        h2+p {
+            margin-bottom: 20px;
+        }
+    }
+}
+
     // flip rundt på underelementer i cms artikler
 .body-pages {
     article div {

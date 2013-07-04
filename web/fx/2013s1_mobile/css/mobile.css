@@ -2424,6 +2424,10 @@ footer .copy li {
   width: 56%;
 }
 
+a.product-color {
+  white-space: normal;
+}
+
 .cycle-slideshow .cycle-pager {
   padding-top: 4px;
   text-align: center;
@@ -2572,6 +2576,15 @@ div.sub-menu {
 .body-pages h4 {
   font-weight: normal;
   text-transform: uppercase;
+}
+
+.body-frontpage #main img {
+  max-width: auto;
+  height: auto;
+  width: 100%;
+}
+.body-frontpage #main h2 + p {
+  margin-bottom: 20px;
 }
 
 .body-pages article div {

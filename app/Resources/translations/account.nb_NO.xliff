@@ -120,7 +120,7 @@
             </trans-unit>
             <trans-unit id="54">
                 <source>Phone</source>
-                <target>Telefonnummer</target>
+                <target>Mobilnummer</target>
             </trans-unit>
             <trans-unit id="55">
                 <source>Address line 1</source>
@@ -417,7 +417,7 @@
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
                 <target><![CDATA[<p>På Min side kan du rette i opplysningene dine og melde deg av og på til nyhetsbrevet. Du har også mulighet for å redigere i din ordre.<br><br>Din ordre kan ha følgende status:<br><br><b>Venter</b><br>Din ordre er ikke ekspedert enda, og du har som minimum 24 timer til å redigere i ordren.
-Du har mulighet for å endre/tilføye/slette i ordren. Du skal klikke på blyanten ved redigering. Merk: Betalingen skal gjennomføres – tidligere betalingsreservasjon blir automatisk slettet. Ønsker du å slette hele ordren, skal du klikke på X.<br><br>Under salget kan vi dessverre ikke garantere 24 timers redigeringsmulighet på din ordre.<br><br><b>Stop editering</b><br>Du har eventuelt kommet til å avbryte redigeringen. Trykk på knappen ”Stop editering”, så kan du redigere ordren på nytt.<br><br><b>Under behandling</b><br>Din ordre er nå i gang med å bli behandlet på lageret vårt og blir sendt til deg i løpet av 1-2 dager. Det er ikke mulig å redigere/bremse ordren.<br><br><b>Fakturert</b><br>Din ordre er sendt fra vårt lager. Fakturaen er vedlagt som PDF-fil under kolonnen Faktura i løpet av 24 timer etter at ordren er sendt.<br><br>Ønsker du å returnere en vare, finner du en <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_NO.pdf" target="_blank">returseddel her</a>.</p>]]></target>
+Du har mulighet for å endre/tilføye/slette i ordren. Du skal klikke på blyanten ved redigering. Merk: Betalingen skal gjennomføres – tidligere betalingsreservasjon blir automatisk slettet. Ønsker du å slette hele ordren, skal du klikke på X.<br><br><b>Stop editering</b><br>Du har eventuelt kommet til å avbryte redigeringen. Trykk på knappen ”Stop editering”, så kan du redigere ordren på nytt.<br><br><b>Under behandling</b><br>Din ordre er nå i gang med å bli behandlet på lageret vårt og blir sendt til deg i løpet av 1-2 dager. Det er ikke mulig å redigere/bremse ordren.<br><br><b>Fakturert</b><br>Din ordre er sendt fra vårt lager. Fakturaen er vedlagt som PDF-fil under kolonnen Faktura i løpet av 24 timer etter at ordren er sendt.<br><br>Ønsker du å returnere en vare, finner du en <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_NO.pdf" target="_blank">returseddel her</a>.</p>]]></target>
             </trans-unit>
             <trans-unit id="newsletter" approved="no">
                 <source>newsletter</source>
@@ -453,7 +453,7 @@ Du har mulighet for å endre/tilføye/slette i ordren. Du skal klikke på blyant
             </trans-unit>
             <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>
-                <target><![CDATA[<p>Når du handler hos POMPdeLUX skal du være opprettet som kunde her på siden.<br><br>Det gir deg blant annet mulighet for å sjekke og rette din ordre inntil den blir pakket og sendt fra lageret vårt. Du kan endre farger og størrelser på de varene du har bestilt, og du kan tilføye eller slette varer så lenge det står "Avventer" ved din ordre, det vil si i minimum 24 timer etter at du har bestilt varene.<br><br><b>Merk:</b> Under salget kan vi dessverre ikke garantere 24 timers redigeringsmulighet på din ordre.<br><br>Som kunde hos POMPdeLUX kan du på Min side se dine tidligere bestillinger og finne gamle fakturaer.</p><h2>Er du ny kunde?</h2>]]></target>
+                <target><![CDATA[<p>Når du handler hos POMPdeLUX skal du være opprettet som kunde her på siden.<br><br>Det gir deg blant annet mulighet for å sjekke og rette din ordre inntil den blir pakket og sendt fra lageret vårt. Du kan endre farger og størrelser på de varene du har bestilt, og du kan tilføye eller slette varer så lenge det står "Avventer" ved din ordre, det vil si i minimum 24 timer etter at du har bestilt varene.<br><br>Som kunde hos POMPdeLUX kan du på Min side se dine tidligere bestillinger og finne gamle fakturaer.</p><h2>Er du ny kunde?</h2>]]></target>
             </trans-unit>
             <trans-unit id="my.account.login.header" approved="no">
                 <source>my.account.login.header</source>
