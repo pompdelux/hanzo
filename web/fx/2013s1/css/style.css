@@ -1658,6 +1658,10 @@ form.create .button {
   display: inline-block;
 }
 
+#body-edit-account form.create .button {
+  display: inline-block;
+}
+
 .checkout-block {
   overflow: hidden;
   padding: 3px;
