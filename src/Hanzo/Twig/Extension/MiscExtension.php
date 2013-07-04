@@ -382,7 +382,7 @@ DOC;
                     $html .= '<a href="'.$slide['href'].'"'.$params.'>'.Tools::imageTag($slide['src'], $attr)."</a>\n";
                 }
 
-                $class = (!empty($selected['class']))?' '.$selected['class']:' grid_6';
+                $class = (!empty($selected['class']))?' '.$selected['class']:' ';
 
                 return '<div class="cycle-slideshow '.$class.'" data-cycle-slides="> a" data-pause-on-hover="true">'."\n".$html.'<div class="cycle-pager"></div></div>'."\n";
                 break;
@@ -404,18 +404,30 @@ DOC;
                 if (isset($parameters[$theme])) {
                     $attr = ['class' => ''];
 
-                    if (isset($parameters[$theme]['alt']) && $parameters[$theme]['alt']) {
-                        $attr['alt'] = $parameters[$theme]['alt'];
+                    $block = $parameters[$theme];
+                    if (!empty($block['alt'])) {
+                        $attr['alt'] = $block['alt'];
                     }
 
-                    if (isset($parameters[$theme]['class']) && $parameters[$theme]['class']) {
-                        $attr['class'] = $parameters[$theme]['class'];
+                    if (!empty($block['class'])) {
+                        $attr['class'] = $block['class'];
                     }
 
-                    $html = Tools::imageTag($parameters[$theme]['src'], $attr);
+                    $html = Tools::imageTag($block['src'], $attr);
 
-                    if (isset($parameters[$theme]['caption']) && $parameters[$theme]['caption']) {
-                      $html = '<div class="image-caption ' . $attr['class'] . '">' . $html . '<span>' . $parameters[$theme]['caption'] . '</span></div>';
+                    if (!empty($block['href'])) {
+                      $params = '';
+                      if (isset($block['params']) && is_array($block['params'])) {
+                          foreach ($block['params'] as $k => $v) {
+                              $params .= ' '.$k.'="'.$v.'"';
+                          }
+                      }
+
+                      $html = '<a href="'.$block['href'].'"'.$params.'>'.$html.'</a>';
+                    }
+
+                    if (isset($block['caption']) && $block['caption']) {
+                      $html = '<div class="image-caption ' . $attr['class'] . '">' . $html . '<span>' . $block['caption'] . '</span></div>';
                     }
 
                     return $html;

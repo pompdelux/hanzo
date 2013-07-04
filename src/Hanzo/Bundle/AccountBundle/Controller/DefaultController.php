@@ -271,7 +271,7 @@ class DefaultController extends CoreController
         }
 
         return $this->render('AccountBundle:Default:edit.html.twig', array(
-            'page_type' => 'create-account',
+            'page_type' => 'edit-account',
             'errors' => $errors,
             'form' => $form->createView(),
         ));
