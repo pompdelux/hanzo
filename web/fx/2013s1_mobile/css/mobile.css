@@ -2578,6 +2578,15 @@ div.sub-menu {
   text-transform: uppercase;
 }
 
+.body-frontpage #main img {
+  max-width: auto;
+  height: auto;
+  width: 100%;
+}
+.body-frontpage #main h2 + p {
+  margin-bottom: 20px;
+}
+
 .body-pages article div {
   display: table;
 }
