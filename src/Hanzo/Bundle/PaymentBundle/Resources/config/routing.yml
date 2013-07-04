@@ -86,6 +86,14 @@ _pensio_process:
     requirements:
         _method: POST
 
+# PayPal }----------------------
+_paypal_callback:
+    pattern:  /payment/paypal/callback
+    defaults: { _controller: PaymentBundle:PayPal:callback }
+_paypal_cancel:
+    pattern:  /payment/paypal/cancel
+    defaults: { _controller: PaymentBundle:PayPal:cancel }
+
 
 # ALL }-------------------------
 _payment_set_method:

@@ -4,6 +4,7 @@ parameters:
     payment.paybybill.class: Hanzo\Bundle\PaymentBundle\Methods\PayByBill\PayByBillApi
     payment.coupon.class: Hanzo\Bundle\PaymentBundle\Methods\Coupon\CouponApi
     payment.pensio.class: Hanzo\Bundle\PaymentBundle\Methods\Pensio\PensioApi
+    payment.paypal.class: Hanzo\Bundle\PaymentBundle\Methods\PayPal\PayPalApi
 
 services:
     payment.dibsapi:
@@ -50,3 +51,12 @@ services:
             service:     pensioapi
             parameters:  [@router]
             class:       %payment.pensio.class%
+
+    payment.paypalapi:
+        class:           %payment.paypal.class%
+        factory_service: service_factory
+        factory_method:  get
+        arguments:
+            service:     paypalapi
+            parameters:  [@router]
+            class:       %payment.paypal.class%

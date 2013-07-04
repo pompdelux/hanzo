@@ -20,6 +20,7 @@ class DefaultController extends CoreController
         'payment.paybybillapi' => 'PayByBill',
         'payment.couponapi'    => 'Coupon', // pseudo payment module ...
         'payment.pensioapi'    => 'Pensio',
+        'payment.paypalapi'    => 'PayPal',
     ];
 
     /**
@@ -122,7 +123,7 @@ class DefaultController extends CoreController
     }
 
 
-    public function getProcessButtonAction()
+    public function getProcessButtonAction(Request $request)
     {
         $response = [
             'status'  => false,
@@ -160,7 +161,7 @@ class DefaultController extends CoreController
             $response = [
                 'status'  => true,
                 'message' => '',
-                'data'    => $api->getProcessButton($order),
+                'data'    => $api->getProcessButton($order, $request),
             ];
         }
 
