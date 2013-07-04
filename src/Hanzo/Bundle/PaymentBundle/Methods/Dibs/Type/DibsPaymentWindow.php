@@ -238,7 +238,7 @@ class DibsPaymentWindow implements PaymentMethodApiInterface
             'cardNumberMasked'      => 'card_number_masked',
             'expMonth'              => 'exp_month',
             'expYear'               => 'exp_year',
-            'cardTypeName'          => 'card_type_name',
+            'cardTypeName'          => 'paytype',
             'captureStatus'         => 'capture_status',
             'status3D'              => 'status_3D',
             'ECI'                   => 'eci',
@@ -304,7 +304,6 @@ class DibsPaymentWindow implements PaymentMethodApiInterface
         }
         $query = rtrim($query, '&');
 
-error_log($query);
         return hash_hmac("sha256", $query, $this->hmacKey());
     }
 
@@ -346,7 +345,7 @@ error_log($query);
         // Only send these fields, to many fields result in hitting a post limit or something
         $settings['shippingFirstName']   = $order->getBillingFirstName();
         $settings['shippingLastName']    = $order->getBillingLastName();
-        $settings['shippingAddress1']    = $order->getBillingAddressLine1();
+        $settings['shippingAddress']     = $order->getBillingAddressLine1();
         $settings['shippingAddress2']    = $order->getBillingAddressLine2();
         $settings['shippingPostalPlace'] = $order->getBillingCity();
         $settings['shippingPostalCode']  = $order->getBillingPostalCode();
