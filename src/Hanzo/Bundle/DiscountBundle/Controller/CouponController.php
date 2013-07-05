@@ -48,7 +48,7 @@ class CouponController extends CoreController
                 ->filterByIsUsed(0)
                 ->filterByIsActive(1)
                 ->filterByMinPurchaseAmount($total, Criteria::LESS_THAN)
-                ->filterByAmount($total, Criteria::GREATER_THAN)
+                ->filterByAmount($total, Criteria::LESS_THAN)
                 ->filterByActiveFrom($now, Criteria::LESS_EQUAL)
                 ->_or()
                     ->filterByActiveFrom(null, Criteria::ISNULL)

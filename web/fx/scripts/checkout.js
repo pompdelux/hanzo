@@ -23,7 +23,7 @@
         }
       });
 
-      // TODO: move to central place and re-use
+      // TODO: move to central place and re-use.
       // zip with auto city
       $(document).on('focusout', 'input.auto-city', function(event) {
         var $this = $(this);
