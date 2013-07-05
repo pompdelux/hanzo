@@ -70,7 +70,7 @@ class CouponController extends CoreController
 
             } else {
                 $discount = $coupon->getAmount();
-                $coupon->isUsed(1);
+                $coupon->setIsUsed(1);
                 $coupon->save();
 
                 $text = $translator->trans('coupon', [], 'checkout');
