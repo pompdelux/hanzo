@@ -5,6 +5,7 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\HttpFoundation\Response;
 
 use Hanzo\Core AS C;
+use Hanzo\Core\Tools;
 
 class AppKernel extends Kernel
 {
@@ -31,6 +32,7 @@ class AppKernel extends Kernel
             new Bazinga\ExposeTranslationBundle\BazingaExposeTranslationBundle(),
             new Ekino\Bundle\NewRelicBundle\EkinoNewRelicBundle(),
             new Liip\ThemeBundle\LiipThemeBundle(),
+            new Nelmio\SecurityBundle\NelmioSecurityBundle(),
 
             new Hanzo\Bundle\AccountBundle\AccountBundle(),
             new Hanzo\Bundle\AdminBundle\AdminBundle(),
@@ -102,8 +104,13 @@ class AppKernel extends Kernel
         $this->setSetting('store_mode', $store_mode);
         $this->setSetting('domain_key', $domain_key);
 
+        $scheme = 'http';
+        if (Tools::isSecure()) {
+            $scheme = 'https';
+        }
+
         $twig = $this->container->get('twig');
-        $twig->addGlobal('cdn', $this->container->getParameter('cdn'));
+        $twig->addGlobal('cdn', str_replace('http', $scheme, $this->container->getParameter('cdn')));
 
         $theme = $this->container->get('liip_theme.active_theme');
         $twig->addGlobal('current_theme', $theme->getName());
@@ -113,7 +120,8 @@ class AppKernel extends Kernel
             if ('/app.php' == $script) {
                 $script = '';
             }
-            $twig->addGlobal('baseurl', 'http://'.$_SERVER['HTTP_HOST'].($_SERVER['SERVER_PORT'] == 80 ? '' : $_SERVER['SERVER_PORT']).$script);
+
+            $twig->addGlobal('baseurl', $scheme.'://'.$_SERVER['HTTP_HOST'].($_SERVER['SERVER_PORT'] == 80 ? '' : $_SERVER['SERVER_PORT']).$script);
         }
 
         $twig_vars = $this->container->getParameter('cms.twig');
