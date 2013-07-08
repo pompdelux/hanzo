@@ -11,6 +11,7 @@ monolog:
 
 framework:
     test: ~
+    trusted_proxies: [ %proxy_ip% ]
     templating:
         assets_base_urls:
             http:                     [ %cdn% ]

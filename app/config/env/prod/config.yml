@@ -10,6 +10,7 @@ monolog:
             level: debug
 
 framework:
+    trusted_proxies: [ %proxy_ip% ]
     templating:
         assets_base_urls:
             http: [ %cdn% ]

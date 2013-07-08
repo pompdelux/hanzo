@@ -44,6 +44,10 @@ class HanzoBoot
 
     protected function sslHandeling($event)
     {
+        if (HttpKernelInterface::MASTER_REQUEST !== $event->getRequestType()) {
+            return;
+        }
+
         $request = $event->getRequest();
 
         if (in_array($request->get('_route'), ['_account_lost_password', '_account_phone_lookup', '_account_create', 'login', 'login_check', '_internal', 'bazinga_exposetranslation_js', '_wdt'])) {
