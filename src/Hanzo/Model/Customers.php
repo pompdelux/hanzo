@@ -140,7 +140,8 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
         'mc@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
         'mle@pompdelux.dk'       => ['ROLE_SALES', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
         // customer service
-        'cs@pompdelux.dk'        => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
+        'pf@pompdelux.dk'        => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
+        'tt@pompdelux.dk'        => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
     ];
 
     /**
