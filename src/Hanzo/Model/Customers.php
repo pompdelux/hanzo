@@ -105,6 +105,10 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
             'ROLE_EMPLOYEE',
             'ROLE_USER',
         ),
+        'customers_service' => array(
+            'ROLE_USER',
+            'ROLE_CUSTOMERS_SERVICE'
+        ),
         'admin' => array(
             'ROLE_ADMIN',
             'ROLE_EMPLOYEE',
@@ -114,32 +118,30 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
     );
 
     // NICETO: should not be hardcoded
-    private $admins = array(
-        // pompdelux
-        'pd@pompdelux.dk',
-        'mh@pompdelux.dk',
-        'hd@pompdelux.dk',
-        'lv@pompdelux.dk',
-        // bellcom
-        'hf@bellcom.dk',
-        'ulrik@bellcom.dk',
-        'mmh@bellcom.dk',
-        'andersbryrup@gmail.com',
-        'hanzo@bellcom.dk',
-    );
-
-    private $sales = array(
-        'kk@pompdelux.dk',
-        'ak@pompdelux.dk',
-        'sj@pompdelux.dk',
-        'nj@pompdelux.dk',
-        'pc@pompdelux.dk',
-        'mc@pompdelux.dk',
-        'mle@pompdelux.dk',
-        // admins
-        'hd@pompdelux.dk',
-        'lv@pompdelux.dk',
-     );
+    private $extended = [
+        // admin
+        'hd@pompdelux.dk'        => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
+        'lv@pompdelux.dk'        => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
+        // admin (bellcom)
+        'hf@bellcom.dk'          => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
+        'ulrik@bellcom.dk'       => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
+        'mmh@bellcom.dk'         => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
+        'andersbryrup@gmail.com' => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
+        'hanzo@bellcom.dk'       => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
+        // stats
+        'pd@pompdelux.dk'        => ['ROLE_STATS', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
+        'mh@pompdelux.dk'        => ['ROLE_STATS', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
+        // sales
+        'kk@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
+        'ak@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
+        'sj@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
+        'nj@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
+        'pc@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
+        'mc@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
+        'mle@pompdelux.dk'       => ['ROLE_SALES', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
+        // customer service
+        'cs@pompdelux.dk'        => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
+    ];
 
     /**
      * {@inheritDoc}
@@ -149,16 +151,8 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
         $group = $this->getGroups();
         $roles = $this->map[$group->getName()];
 
-        // NICETO: should not be hardcoded
-        if (in_array($this->getUsername(), $this->admins)) {
-            $roles[] = 'ROLE_EMPLOYEE';
-            $roles[] = 'ROLE_ADMIN';
-        }
-
-        // NICETO: should not be hardcoded
-        if (in_array($this->getUsername(), $this->sales)) {
-            $roles[] = 'ROLE_SALES';
-            $roles[] = 'ROLE_CONSULTANT';
+        if (isset($this->extended[$this->getUsername()])) {
+            $roles = array_merge($roles, $this->extended[$this->getUsername()]);
         }
 
         return $roles;

@@ -19,7 +19,7 @@ class StatisticsController extends CoreController
 {
     public function indexAction($domain_key)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (!$this->get('security.context')->isGranted('ROLE_STATS')) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
