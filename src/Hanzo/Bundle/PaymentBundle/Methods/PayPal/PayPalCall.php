@@ -71,14 +71,18 @@ class PayPalCall implements PaymentMethodApiCallInterface
     {
         $attributes = $order->getAttributes();
 
-        $parameters = [
-            'TRANSACTIONID' => $attributes->payment->PAYMENTINFO_0_TRANSACTIONID,
-            'PAYERID'       => $order->getCustomersId(),
-            'INVOICEID'     => $order->getPaymentGatewayId(),
-            'REFUNDTYPE'    => 'Full',
-        ];
+        if (isset($attributes->payment->PAYMENTSTATUS) &&
+            ('pending' == strtolower($attributes->payment->PAYMENTSTATUS)) &&
+            ('authorization' == strtolower($attributes->payment->PENDINGREASON))
+        ) {
+            return $this->doDoVoid($attributes->payment->TRANSACTIONID);
+        }
 
-        return $this->call('RefundTransaction', $parameters);
+        return $this->doRefundTransaction(
+            $attributes->payment->TRANSACTIONID,
+            $order->getCustomersId(),
+            $order->getPaymentGatewayId()
+        );
     }
 
 
@@ -94,14 +98,28 @@ class PayPalCall implements PaymentMethodApiCallInterface
         $attributes = $order->getAttributes();
 
         $parameters = [
-            'AUTHORIZATIONID' => $attributes->payment->PAYMENTINFO_0_TRANSACTIONID,
+            'AUTHORIZATIONID' => $attributes->payment->TRANSACTIONID,
             'AMT'             => number_format($amount, 2, '.', ''),
             'CURRENCYCODE'    => $order->getCurrencyCode(),
             'COMPLETETYPE'    => 'Complete',
             'INVNUM'          => $order->getPaymentGatewayId(),
         ];
 
-        return $this->call('DoCapture', $parameters);
+        $response = $this->call('DoCapture', $parameters);
+
+        if (!$response->isError()) {
+            foreach ([
+                'PAYMENTSTATUS' => 'PAYMENTSTATUS',
+                'PENDINGREASON' => 'PENDINGREASON',
+                'TIMESTAMP'     => 'CAPTURE_TS',
+                'TRANSACTIONID' => 'CAPTURE_TRANSACTIONID',
+            ] as $key => $code) {
+                $order->setAttribute($code , 'payment', $response->getResponseVar($key));
+            }
+            $order->save();
+        }
+
+        return $response;
     }
 
 
@@ -117,7 +135,7 @@ class PayPalCall implements PaymentMethodApiCallInterface
         $attributes = $order->getAttributes();
 
         $parameters = [
-            'TRANSACTIONID' => $attributes->payment->PAYMENTINFO_0_TRANSACTIONID,
+            'TRANSACTIONID' => $attributes->payment->TRANSACTIONID,
             'PAYERID'       => $attributes->payment->PAYERID,
             'INVOICEID'     => $order->getPaymentGatewayId(),
             'REFUNDTYPE'    => 'Partial',
@@ -166,5 +184,42 @@ class PayPalCall implements PaymentMethodApiCallInterface
         $response = @file_get_contents($query);
 
         return new PayPalCallResponse($http_response_header, $response, $function);
+    }
+
+
+    /**
+     * Void pending reservations (orders not processed by AX)
+     *
+     * @param  string $transaction_id
+     * @return PayPalCallResponse
+     */
+    protected function doDoVoid($transaction_id)
+    {
+        $parameters = [
+            'AUTHORIZATIONID' => $transaction_id,
+        ];
+
+        return $this->call('DoVoid', $parameters);
+    }
+
+
+    /**
+     * Fully refund an order (orders not processed by AX)
+     *
+     * @param  string $transaction_id
+     * @param  string $customer_id
+     * @param  string $payment_gateway_id
+     * @return PayPalCallResponse
+     */
+    protected function doRefundTransaction($transaction_id, $customer_id, $payment_gateway_id)
+    {
+        $parameters = [
+            'TRANSACTIONID' => $transaction_id,
+            'PAYERID'       => $customer_id,
+            'INVOICEID'     => $payment_gateway_id,
+            'REFUNDTYPE'    => 'Full',
+        ];
+
+        return $this->call('RefundTransaction', $parameters);
     }
 }

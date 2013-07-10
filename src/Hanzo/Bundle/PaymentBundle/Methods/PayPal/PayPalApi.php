@@ -222,8 +222,17 @@ class PayPalApi implements PaymentMethodApiInterface
             throw new Exception("Payment could not be completed: ".$response->getError());
         }
 
-        foreach(['PAYERID', 'PAYMENTINFO_0_TRANSACTIONID', 'CORRELATIONID', 'TIMESTAMP', 'TOKEN', 'L_LONGMESSAGE0'] as $key) {
-            $order->setAttribute($key , 'payment', $response->getResponseVar($key));
+        foreach([
+            'PAYERID'                     => 'PAYERID',
+            'PAYMENTINFO_0_TRANSACTIONID' => 'TRANSACTIONID',
+            'PAYMENTINFO_0_PAYMENTSTATUS' => 'PAYMENTSTATUS',
+            'PAYMENTINFO_0_PENDINGREASON' => 'PENDINGREASON',
+            'CORRELATIONID'               => 'CORRELATIONID',
+            'TIMESTAMP'                   => 'TIMESTAMP',
+            'TOKEN'                       => 'TOKEN',
+            'L_LONGMESSAGE0'              => 'MESSAGE',
+        ] as $key => $code) {
+            $order->setAttribute($code , 'payment', $response->getResponseVar($key));
         }
 
         $order->save();
@@ -272,6 +281,8 @@ class PayPalApi implements PaymentMethodApiInterface
         $params['PAYMENTREQUEST_0_SHIPPINGAMT']   = number_format($shipping, 2, '.', '');
         $params['PAYMENTREQUEST_0_CURRENCYCODE']  = $order->getCurrencyCode();
         $params['PAYMENTREQUEST_0_PAYMENTACTION'] = 'Authorization';
+
+        // TODO, handle discounts !!!
 
         $i=0;
         foreach ($order->getOrdersLiness() as $line) {

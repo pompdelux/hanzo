@@ -56,7 +56,7 @@ class TestCommand extends ContainerAwareCommand
         //
 
         $data = new \stdClass();
-        $data->eOrderNumber = 1013557;
+        $data->eOrderNumber = 1013567;
         $data->amount = -10.00;
         $data->initials = 'un';
         $result = $soap->SalesOrderCaptureOrRefund($data);
