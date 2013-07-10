@@ -8,12 +8,13 @@ use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\Customers;
 
+use Hanzo\Bundle\PaymentBundle\BasePaymentApi;
 use Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface;
 use Hanzo\Bundle\PaymentBundle\Methods\PayByBill\PayByBillCallResponse;
 
 use Symfony\Component\HttpFoundation\Request;
 
-class PayByBillApi implements PaymentMethodApiInterface
+class PayByBillApi extends BasePaymentApi implements PaymentMethodApiInterface
 {
     /**
      * undocumented class variable

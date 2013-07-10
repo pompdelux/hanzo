@@ -8,12 +8,13 @@ use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\Customers;
 
+use Hanzo\Bundle\PaymentBundle\BasePaymentApi;
 use Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface;
 use Hanzo\Bundle\PaymentBundle\Methods\Coupon\CouponCallResponse;
 
 use Symfony\Component\HttpFoundation\Request;
 
-class CouponApi implements PaymentMethodApiInterface
+class CouponApi extends BasePaymentApi implements PaymentMethodApiInterface
 {
     /**
      * undocumented class variable

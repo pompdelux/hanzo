@@ -53,14 +53,10 @@ class DefaultController extends CoreController
                 }
 
                 $parameters = [
-                    'order' => $order,
+                    'order'                 => $order,
+                    'cardtypes'             => $service->getPayTypes(),
                     'selected_payment_type' => $selected_payment_type,
                 ];
-
-                // TODO: fix hardcoded "cardtypes"
-                if (method_exists($service, 'getEnabledPaytypes')) {
-                    $parameters['cardtypes'] = $service->getEnabledPaytypes();
-                }
 
                 $modules[] = $this->render('PaymentBundle:'.$controller.':select.html.twig', $parameters)->getContent();
             }

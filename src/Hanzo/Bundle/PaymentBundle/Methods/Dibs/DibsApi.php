@@ -7,13 +7,14 @@ use Exception;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Model\Orders;
+use Hanzo\Bundle\PaymentBundle\BasePaymentApi;
 use Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface;
 use Hanzo\Bundle\PaymentBundle\Methods\Dibs\DibsApiCall;
 use Hanzo\Bundle\PaymentBundle\Methods\Dibs\DibsApiCallException;
 
 use Symfony\Component\HttpFoundation\Request;
 
-class DibsApi implements PaymentMethodApiInterface
+class DibsApi extends BasePaymentApi implements PaymentMethodApiInterface
 {
     /**
      * map currencies to dibs currency codes
@@ -146,7 +147,7 @@ class DibsApi implements PaymentMethodApiInterface
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function getEnabledPaytypes()
+    public function getPayTypes()
     {
         return $this->settings['paytypes'];
     }
