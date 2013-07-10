@@ -626,7 +626,7 @@ class CmsController extends CoreController
                 'title' => 'Postnumre',
             ],
             'admin_helpdesk' => [
-                'access' => ['ROLE_ADMIN', 'ROLE_CUSTOMERS_SERVICE'],
+                'access' => ['ROLE_ADMIN'],
                 'title' => 'Helpdesk',
             ],
             'admin_tools' => [
