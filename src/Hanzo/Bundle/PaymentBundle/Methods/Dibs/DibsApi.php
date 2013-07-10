@@ -8,6 +8,7 @@ use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Model\Orders;
 use Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface;
+use Hanzo\Bundle\PaymentBundle\BasePaymentApi;
 use Hanzo\Bundle\PaymentBundle\Methods\Dibs\DibsApiCall;
 use Hanzo\Bundle\PaymentBundle\Methods\Dibs\DibsApiCallException;
 
@@ -15,7 +16,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class DibsApi
 {
-
     /**
      * @var array
      */
@@ -68,16 +68,5 @@ class DibsApi
     public function __call($method, array $arguments = [])
     {
         return call_user_func_array([$this->service, $method], $arguments);
-    }
-
-    /**
-     * method_exists wrapper for nested services
-     *
-     * @param  string $method Method name
-     * @return bool
-     */
-    public function methodExists($method)
-    {
-        return method_exists($this->service, $method);
     }
 }

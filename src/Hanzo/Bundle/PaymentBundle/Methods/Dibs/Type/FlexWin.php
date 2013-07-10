@@ -8,12 +8,13 @@ use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Model\Orders;
 use Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface;
+use Hanzo\Bundle\PaymentBundle\BasePaymentApi;
 use Hanzo\Bundle\PaymentBundle\Methods\Dibs\DibsApiCall;
 use Hanzo\Bundle\PaymentBundle\Methods\Dibs\DibsApiCallException;
 
 use Symfony\Component\HttpFoundation\Request;
 
-class FlexWin implements PaymentMethodApiInterface
+class FlexWin extends BasePaymentApi implements PaymentMethodApiInterface
 {
     /**
      * map currencies to dibs currency codes
@@ -136,11 +137,12 @@ class FlexWin implements PaymentMethodApiInterface
     }
 
     /**
-     * getEnabledPaytypes
+     * getPayTypes
+     *
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    public function getEnabledPaytypes()
+     */
+    public function getPayTypes()
     {
         return $this->settings['paytypes'];
     }

@@ -23,7 +23,7 @@ class CouponController extends CoreController
         return $this->render('DiscountBundle:Coupon:block.html.twig');
     }
 
-    public function applyCouponAction(Request $request)
+    public function applyAction(Request $request)
     {
         $translator = $this->get('translator');
 
