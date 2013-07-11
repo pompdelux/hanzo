@@ -58,5 +58,5 @@ services:
         factory_method:  get
         arguments:
             service:     paypalapi
-            parameters:  [@router]
+            parameters:  [@router, @translator]
             class:       %payment.paypal.class%

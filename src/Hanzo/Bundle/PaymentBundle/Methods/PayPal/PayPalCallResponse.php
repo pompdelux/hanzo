@@ -22,7 +22,7 @@ class PayPalCallResponse
 
         parse_str(urldecode($response), $this->parameters);
 
-\Hanzo\Core\Tools::log($this->parameters);
+// \Hanzo\Core\Tools::log($this->parameters);
         if (isset($this->parameters['ACK']) && ('Failure' === $this->parameters['ACK'])) {
             $this->is_error = true;
 

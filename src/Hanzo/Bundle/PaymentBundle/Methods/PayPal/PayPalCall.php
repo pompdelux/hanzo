@@ -134,8 +134,12 @@ class PayPalCall implements PaymentMethodApiCallInterface
     {
         $attributes = $order->getAttributes();
 
+        if (empty($attributes->payment->CAPTURE_TRANSACTIONID)) {
+            throw new \Exception('Cannot refund orders wich is not captured.');
+        }
+
         $parameters = [
-            'TRANSACTIONID' => $attributes->payment->TRANSACTIONID,
+            'TRANSACTIONID' => $attributes->payment->CAPTURE_TRANSACTIONID,
             'PAYERID'       => $attributes->payment->PAYERID,
             'INVOICEID'     => $order->getPaymentGatewayId(),
             'REFUNDTYPE'    => 'Partial',
@@ -178,7 +182,7 @@ class PayPalCall implements PaymentMethodApiCallInterface
         $params['VERSION']   = $this->settings['api_version'];
         $params['METHOD']    = $function;
 
-\Hanzo\Core\Tools::log($params);
+// \Hanzo\Core\Tools::log($params);
 
         $query = $this->base_url.'?'.http_build_query($params);
         $response = @file_get_contents($query);

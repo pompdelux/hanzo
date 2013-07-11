@@ -75,27 +75,22 @@ class PayPalController extends CoreController
                 $status = 'ok';
             } catch (Exception $e) {
                 $status = 'failed';
+                $message = $e->getMessage();
                 Tools::log($e->getMessage());
             }
 
             if ('ok' === $status) {
-                // pensio fails when returning a body in the redirect, so we custom build the response header and exit
-                header('Location: '.$this->generateUrl('_checkout_success', [], true), 302);
-                exit;
+                return $this->redirect($this->generateUrl('_checkout_success'));
             }
 
             $api->updateOrderFailed($request, $order);
 
-            return $this->render('PaymentBundle:PayPal:failed.html.twig', [
-                'message'    => $request->get('error_message'),
-                'order_id'   => $order->getId(),
-                'amount'     => $order->getTotalPrice(),
-                'payment_id' => $order->getPaymentGatewayId(),
-                'back_url'   => $this->generateUrl('_checkout', [], true),
-            ]);
+            $this->get('session')->setFlash('notice', $this->get('translator')->trans($message, [], 'paypal'));
+        } else {
+            $this->get('session')->setFlash('notice', $this->get('translator')->trans('order.not.found', [], 'paypal'));
         }
 
-        return new Response('FAILED', 500, array('Content-Type' => 'text/plain'));
+        return $this->redirect($this->generateUrl('_checkout'));
     }
 
     public function processAction(Request $request){}
