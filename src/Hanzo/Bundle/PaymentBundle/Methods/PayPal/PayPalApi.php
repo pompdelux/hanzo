@@ -26,6 +26,7 @@ class PayPalApi implements PaymentMethodApiInterface
     protected $settings = array();
 
     protected $router;
+    protected $translator;
 
     /**
      * __construct
@@ -35,6 +36,7 @@ class PayPalApi implements PaymentMethodApiInterface
     public function __construct($parameters, $settings)
     {
         $this->router             = $parameters[0];
+        $this->translator         = $parameters[1];
         $this->settings           = $settings;
         $this->settings['active'] = (isset($this->settings['method_enabled']) && $this->settings['method_enabled'] ? true : false);
 
@@ -275,14 +277,13 @@ class PayPalApi implements PaymentMethodApiInterface
             $shipping += $line->getPrice();
         }
 
+        $total = $order->getTotalPrice();
         $params['PAYMENTREQUEST_0_INVNUM']        = $order->getPaymentGatewayId();
-        $params['PAYMENTREQUEST_0_AMT']           = number_format($order->getTotalPrice(),2, '.', '');
-        $params['PAYMENTREQUEST_0_ITEMAMT']       = number_format($order->getTotalProductPrice(),2, '.', '');
+        $params['PAYMENTREQUEST_0_AMT']           = number_format($total, 2, '.', '');
+        $params['PAYMENTREQUEST_0_ITEMAMT']       = number_format(($total - $shipping), 2, '.', '');
         $params['PAYMENTREQUEST_0_SHIPPINGAMT']   = number_format($shipping, 2, '.', '');
         $params['PAYMENTREQUEST_0_CURRENCYCODE']  = $order->getCurrencyCode();
         $params['PAYMENTREQUEST_0_PAYMENTACTION'] = 'Authorization';
-
-        // TODO, handle discounts !!!
 
         $i=0;
         foreach ($order->getOrdersLiness() as $line) {
@@ -291,6 +292,14 @@ class PayPalApi implements PaymentMethodApiInterface
             }
 
             $params['L_PAYMENTREQUEST_0_NAME'.$i]         = $line->getProductsName();
+            $params['L_PAYMENTREQUEST_0_AMT'.$i]          = number_format($line->getPrice(), 2, '.', '');
+            $params['L_PAYMENTREQUEST_0_QTY'.$i]          = $line->getQuantity();
+            $params['L_PAYMENTREQUEST_0_ITEMCATEGORY'.$i] = 'Physical';
+            $i++;
+        }
+
+        foreach ($order->getOrderLineDiscount() as $line) {
+            $params['L_PAYMENTREQUEST_0_NAME'.$i]         = $this->translator->trans($line->getProductsSku(), [], 'checkout');
             $params['L_PAYMENTREQUEST_0_AMT'.$i]          = number_format($line->getPrice(), 2, '.', '');
             $params['L_PAYMENTREQUEST_0_QTY'.$i]          = $line->getQuantity();
             $params['L_PAYMENTREQUEST_0_ITEMCATEGORY'.$i] = 'Physical';
