@@ -11,7 +11,7 @@ class PayPalCallResponse
     protected $response_headers;
     protected $error_message;
 
-    public function __construct($response_headers, $response, $function)
+    public function __construct($response_headers, $response, $function, $logger)
     {
         $this->response = $response;
         $this->response_headers = $response_headers;
@@ -22,7 +22,8 @@ class PayPalCallResponse
 
         parse_str(urldecode($response), $this->parameters);
 
-// \Hanzo\Core\Tools::log($this->parameters);
+        $logger->debug('PayPal response to "'.$function.'".', $this->parameters);
+
         if (isset($this->parameters['ACK']) && ('Failure' === $this->parameters['ACK'])) {
             $this->is_error = true;
 

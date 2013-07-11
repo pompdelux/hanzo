@@ -109,10 +109,10 @@ class PayPalCall implements PaymentMethodApiCallInterface
 
         if (!$response->isError()) {
             foreach ([
-                'PAYMENTSTATUS' => 'PAYMENTSTATUS',
-                'PENDINGREASON' => 'PENDINGREASON',
                 'TIMESTAMP'     => 'CAPTURE_TS',
+                'PAYMENTSTATUS' => 'CAPTURE_STATUS',
                 'TRANSACTIONID' => 'CAPTURE_TRANSACTIONID',
+                'PENDINGREASON' => 'CAPTURE_PENDINGREASON',
             ] as $key => $code) {
                 $order->setAttribute($code , 'payment', $response->getResponseVar($key));
             }
@@ -147,7 +147,21 @@ class PayPalCall implements PaymentMethodApiCallInterface
             'CURRENCYCODE'  => $order->getCurrencyCode(),
         ];
 
-        return $this->call('RefundTransaction', $parameters);
+        $response = $this->call('RefundTransaction', $parameters);
+
+        if (!$response->isError()) {
+            foreach ([
+                'TIMESTAMP'           => 'REFUND_TS',
+                'REFUNDSTATUS'        => 'REFUND_STATUS',
+                'REFUNDTRANSACTIONID' => 'REFUND_TRANSACTIONID',
+                'PENDINGREASON'       => 'REFUND_PENDINGREASON',
+            ] as $key => $code) {
+                $order->setAttribute($code , 'payment', $response->getResponseVar($key));
+            }
+            $order->save();
+        }
+
+        return $response;
     }
 
 
@@ -182,12 +196,14 @@ class PayPalCall implements PaymentMethodApiCallInterface
         $params['VERSION']   = $this->settings['api_version'];
         $params['METHOD']    = $function;
 
-// \Hanzo\Core\Tools::log($params);
-
         $query = $this->base_url.'?'.http_build_query($params);
+
+        $logger = $this->api->getLogger();
+        $logger->debug('PayPal call to "'.$function.'" send to "'.$this->base_url.'".', $params);
+
         $response = @file_get_contents($query);
 
-        return new PayPalCallResponse($http_response_header, $response, $function);
+        return new PayPalCallResponse($http_response_header, $response, $function, $logger);
     }
 
 

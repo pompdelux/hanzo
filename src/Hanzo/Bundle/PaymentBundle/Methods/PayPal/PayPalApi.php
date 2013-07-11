@@ -27,6 +27,7 @@ class PayPalApi implements PaymentMethodApiInterface
 
     protected $router;
     protected $translator;
+    protected $logger;
 
     /**
      * __construct
@@ -37,11 +38,12 @@ class PayPalApi implements PaymentMethodApiInterface
     {
         $this->router             = $parameters[0];
         $this->translator         = $parameters[1];
+        $this->logger             = $parameters[2];
         $this->settings           = $settings;
         $this->settings['active'] = (isset($this->settings['method_enabled']) && $this->settings['method_enabled'] ? true : false);
 
-        // must explicit be set to "not YES" to disable test.
-        if (empty($this->settings['test'])) {
+        // must explicit be set to "NO" to disable test.
+        if (empty($this->settings['test']) || ('NO' !== $this->settings['test'])) {
             $this->settings['test'] = 'YES';
         }
 
@@ -242,6 +244,17 @@ class PayPalApi implements PaymentMethodApiInterface
         return true;
     }
 
+
+    public function getLogger()
+    {
+        return $this->logger;
+    }
+
+
+    public function getTranslator()
+    {
+        return $this->translator;
+    }
 
 
     /**
