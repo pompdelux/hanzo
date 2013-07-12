@@ -284,7 +284,7 @@ class AxService
         $salesTable->TransactionType         = 'Write';
         $salesTable->CustPaymMode            = $custPaymMode;
         $salesTable->SmoreContactInfo        = ''; // NICETO, når s-more kommer på banen igen
-        $salesTable->BankAccountNumber       = isset( $attributes->payment->bank_account_nuo) ? $attributes->payment->bank_account_no : '';;
+        $salesTable->BankAccountNumber       = isset( $attributes->payment->bank_account_no) ? $attributes->payment->bank_account_no : '';;
         $salesTable->BankId                  = isset( $attributes->payment->bank_id ) ? $attributes->payment->bank_id : '';;
 
         $salesTable->DeliveryDropPointId     = $order->getDeliveryExternalAddressId();
