@@ -1,6 +1,6 @@
 <?php
 
-namespace Hanzo\Bundle\NnoBundle\DependencyInjection;
+namespace Hanzo\Bundle\MunerisBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -18,11 +18,11 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('nno');
+        $rootNode = $treeBuilder->root('muneris');
 
         $rootNode
             ->children()
-                ->scalarNode('api_key')->defaultValue('')->end()
+                ->scalarNode('host')->defaultValue('')->end()
             ->end()
         ;
 

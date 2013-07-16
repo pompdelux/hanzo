@@ -1,7 +1,0 @@
-parameters:
-    nno.class: Hanzo\Bundle\NnoBundle\Nno
-
-services:
-    nno:
-        class: %nno.class%
-        arguments: [%nno.api_key%, @logger]

@@ -7,7 +7,6 @@ parameters:
     cache_manager.class: Hanzo\Bundle\ServiceBundle\Services\CacheService
     cleanup_manager.class: Hanzo\Bundle\ServiceBundle\Services\CleanupService
     ax_manager.class: Hanzo\Bundle\ServiceBundle\Services\AxService
-    geoip_manager.class: Hanzo\Bundle\ServiceBundle\Services\GeoIPService
     replication_manager.class: Hanzo\Bundle\ServiceBundle\Services\ReplicationService
     deadorder_manager.class: Hanzo\Bundle\ServiceBundle\Services\DeadOrderService
 
@@ -70,16 +69,6 @@ services:
             service:     ax
             parameters:  [@logger]
             class:       %ax_manager.class%
-
-    geoip_manager:
-        class:           %geoip_manager.class%
-        factory_service: service_factory
-        factory_method:  get
-        arguments:
-            service:     geoip
-            parameters:  [@request]
-            class:       %geoip_manager.class%
-        scope: request
 
     replication_manager:
         class:           %replication_manager.class%

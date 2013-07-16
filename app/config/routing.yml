@@ -1,6 +1,11 @@
+muneris:
+    resource: "@MunerisBundle/Resources/config/routing.yml"
+    prefix:   /{_locale}/
+
 LocationLocatorBundle:
     resource: "@LocationLocatorBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/
+
 DiscountBundle:
     resource: "@DiscountBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/
@@ -106,9 +111,11 @@ liip_theme:
     resource: "@LiipThemeBundle/Resources/config/routing.xml"
     prefix: /{_locale}/theme
 
-NnoBundle:
-    resource: "@NnoBundle/Resources/config/routing.yml"
-    prefix:   /{_locale}/
+
+# Moved to MunerisBundle
+# NnoBundle:
+#     resource: "@NnoBundle/Resources/config/routing.yml"
+#     prefix:   /{_locale}/
 
 
 
