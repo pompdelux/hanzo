@@ -224,7 +224,7 @@ class AxService
         // payment method
         $custPaymMode = 'Bank';
 
-        switch ($order->getBillingMethod())
+        switch (strtolower($order->getBillingMethod()))
         {
             case 'dibs':
                 switch (trim(strtoupper($attributes->payment->paytype))) {
@@ -247,6 +247,7 @@ class AxService
                 break;
 
             case 'gothia':
+            case 'gothiade':
                 $custPaymMode = 'PayByBill';
                 break;
 
