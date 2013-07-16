@@ -124,13 +124,14 @@ var account = (function($) {
         // fetch data
         $.getJSON(this.action + '/' + $input.val() , function(result) {
           if (result.status) {
+            var data = result.data.number;
             var $target = $('form.create');
-            $target.find('#customers_first_name').val(result.data.christianname);
-            $target.find('#customers_last_name').val(result.data.surname);
-            $target.find('#customers_addresses_0_address_line_1').val(result.data.address);
-            $target.find('#customers_addresses_0_postal_code').val(result.data.zipcode);
-            $target.find('#customers_addresses_0_city').val(result.data.district);
-            $target.find('#customers_phone').val(result.data.phone);
+            $target.find('#customers_first_name').val(data.christianname);
+            $target.find('#customers_last_name').val(data.surname);
+            $target.find('#customers_addresses_0_address_line_1').val(data.address);
+            $target.find('#customers_addresses_0_postal_code').val(data.zipcode);
+            $target.find('#customers_addresses_0_city').val(data.district);
+            $target.find('#customers_phone').val(data.phone);
           }
           else {
             dialoug.alert('Woops!', result.message);

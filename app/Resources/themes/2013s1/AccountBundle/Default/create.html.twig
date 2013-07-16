@@ -14,7 +14,12 @@
   <p>{{ 'create.notice'|trans({'%url%' : url('_account') }, 'account')|raw }}</p>
 
   {% if domain_key == 'DK' %}
-    {% render 'NnoBundle:Default:widget' %}
+    <p>{{ 'nno.description'|trans({}, 'account') }}</p>
+
+    <form action="{{ url('muneris_nno_lookup') }}" class="nno">
+      <input type="tel" name="phone" id="nno-phone">
+      <input type="submit" value="{{ 'nno.fetch'|trans({}, 'account') }}" class="button button-black">
+    </form>
   {% endif %}
 
   <p>{{ 'create.pre-notice'|trans({}, 'account')|raw }}</p>
