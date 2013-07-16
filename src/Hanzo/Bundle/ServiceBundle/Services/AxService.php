@@ -405,6 +405,7 @@ class AxService
         // Use: $syncSalesOrder->endpointDomain = $attributes->global->domain_key; ??
         $sc->endpointDomain = 'DK';
         switch ($ct->AddressCountryRegionId) {
+            case 'DE':
             case 'SE':
             case 'NO':
             case 'FI':
