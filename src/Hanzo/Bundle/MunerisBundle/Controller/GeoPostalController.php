@@ -3,9 +3,8 @@
 namespace Hanzo\Bundle\MunerisBundle\Controller;
 
 use Hanzo\Core\Hanzo;
-use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
-use Symfony\Component\HttpFoundation\Request;
+use Guzzle\Http\Exception\ClientErrorResponseException;
 
 class GeoPostalController extends CoreController
 {
@@ -79,12 +78,20 @@ class GeoPostalController extends CoreController
     protected function send($client)
     {
         $client->setHeader('Accept', 'application/json');
-        $response = $client->send();
+
+        try {
+            $response = $client->send();
+            $status   = true;
+            $message  = json_decode($response->getBody());
+        } catch (ClientErrorResponseException $e) {
+            $status  = false;
+            $message = '';
+        }
 
         return $this->json_response([
-            'status'  => true,
+            'status'  => $status,
             'message' => '',
-            'data'    => json_decode($response->getBody()),
+            'data'    => $message,
             '_time'   => (int) ((microtime(true) * 1000) - $this->start) .'ms',
         ]);
     }

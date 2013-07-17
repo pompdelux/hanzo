@@ -9,7 +9,7 @@ var maps = (function($) {
       var url = base_url + "muneris/gpc/" + encodeURI($("#geo-zipcode-container #geo-zipcode").val());
 
       $.getJSON(url, function(response) {
-        if (1 == response.data.status) {
+        if (false === response.status) {
           dialoug.stopLoading();
           return;
         }
