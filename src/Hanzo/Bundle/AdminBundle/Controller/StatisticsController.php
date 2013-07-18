@@ -6,6 +6,7 @@ use Propel;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
 
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
@@ -19,7 +20,7 @@ class StatisticsController extends CoreController
 {
     public function indexAction($domain_key)
     {
-        if (!$this->get('security.context')->isGranted('ROLE_STATS')) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_STATS") or hasRole("ROLE_ADMIN")'))) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
