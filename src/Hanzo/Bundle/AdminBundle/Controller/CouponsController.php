@@ -5,6 +5,8 @@ namespace Hanzo\Bundle\AdminBundle\Controller;
 use Criteria;
 
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Finder\Finder;
 
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\CoreController;
@@ -208,7 +210,148 @@ class CouponsController extends CoreController
                 'message' => $this->get('translator')->trans('delete.coupon.failed', array(), 'admin'),
             ));
         }
+    }
 
+    public function batchAction(Request $request)
+    {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
 
+        $coupon = new Coupons();
+
+        $currencies_data = array();
+        $currencies = DomainsSettingsQuery::create()
+            ->filterByNs('core')
+            ->filterByCKey('currency')
+            ->find($this->getDbConnection())
+        ;
+
+        foreach ($currencies as $currency) {
+            $currencies_data[$currency->getCValue()] = $currency->getCValue();
+        }
+
+        $form = $this->createFormBuilder($coupon)
+            ->add('code', 'text', array(
+                'label' => 'Prefix:',
+                'translation_domain' => 'admin',
+                'required' => true
+            ))->add('amount', 'text', array(
+                'label' => 'Beløb:',
+                'translation_domain' => 'admin',
+                'required' => true
+            ))->add('currency_code', 'choice', array(
+                'choices' => $currencies_data,
+                'label' => 'Valuta:',
+                'translation_domain' => 'admin',
+                'required' => false
+            ))->add('quantity', 'text', array(
+                'label' => 'Antal rabatkoder:',
+                'translation_domain' => 'admin',
+                'required' => true
+            ))->add('min_purchase_amount', 'text', array(
+                'label' => 'Mindstekøb:',
+                'translation_domain' => 'admin',
+                'required' => true
+            ))->add('active_from', 'date', array(
+                'input' => 'string',
+                'widget' => 'single_text',
+                'format' => 'dd-MM-yyyy',
+                'label' => 'Aktiv fra den:',
+                'translation_domain' => 'admin',
+                'required' => false,
+                'attr' => array('class' => 'datepicker')
+            ))->add('active_to', 'date', array(
+                'input' => 'string',
+                'widget' => 'single_text',
+                'format' => 'dd-MM-yyyy',
+                'label' => 'Aktiv til den:',
+                'translation_domain' => 'admin',
+                'required' => false,
+                'attr' => array('class' => 'datepicker')
+            ))->getForm()
+        ;
+
+        if ('POST' === $request->getMethod()) {
+            $form->bindRequest($request);
+            if ($form->isValid()) {
+
+                $out      = [];
+                $post     = $form->getData();
+                $quantity = (int) $post->getQuantity();
+
+                for ($i=0; $i<$quantity; $i++) {
+                    $code = $post->getCode().CouponsPeer::generateCode(9, '', $this->getDbConnection());
+
+                    $c = new Coupons();
+                    $c->setCode($code);
+                    $c->setAmount($post->getAmount());
+                    $c->setMinPurchaseAmount($post->getMinPurchaseAmount());
+                    $c->setActiveFrom($post->getActiveFrom());
+                    $c->setActiveTo($post->getActiveTo());
+                    $c->setCurrencyCode($post->getCurrencyCode());
+                    $c->setIsActive(true);
+                    $c->setIsUsed(false);
+                    $c->save();
+
+                    $data = $c->toArray();
+                    unset($data['Id'], $data['CreatedAt'], $data['UpdatedAt'], $data['IsActive'], $data['IsUsed']);
+                    $out[] = '"'.implode('";"', $data).'"';
+                }
+
+                if (count($out)) {
+                    $this->writeCouponFile($out);
+                    $this->get('session')->setFlash('notice', 'Der er nu oprettet '.$quantity.' nye rabatkoder, filen kan downloades herunder.');
+                }
+            }
+
+            return $this->redirect($this->generateUrl('admin_coupons_batch'));
+        }
+
+        return $this->render('AdminBundle:Coupons:batch.html.twig', array(
+            'coupon'   => $coupon,
+            'database' => $this->getRequest()->getSession()->get('database'),
+            'files'    => $this->listCouponFiles(),
+            'form'     => $form->createView(),
+        ));
+    }
+
+    public function deleteCouponFileAction(Request $request)
+    {
+        $target = $this->getCouponsDir().basename($request->query->get('filename'));
+        if (is_file($target)) {
+            unlink($target);
+        }
+
+        return $this->redirect($this->generateUrl('admin_coupons_batch'));
+    }
+
+    protected function writeCouponFile($data)
+    {
+        $target = $this->getCouponsDir().''.time().'.csv';
+        return file_put_contents($target, implode("\r\n", $data));
+    }
+
+    protected function listCouponFiles()
+    {
+        $root = $this->get('request')->server->get('DOCUMENT_ROOT');
+
+        $files = [];
+        $finder = new Finder();
+        $finder->files()->name('*.csv');
+
+        foreach ($finder->in($this->getCouponsDir()) as $file) {
+            $files[] = [
+                'name' => date('Y-m-d H:i:s', $file->getBasename('.csv')),
+                'path' => str_replace($root, '', $file->getRealPath()),
+            ];
+        }
+
+        return $files;
+    }
+
+    protected function getCouponsDir()
+    {
+        return realpath($this->get('kernel')->getRootDir().'/../web/uploads/').'/';
     }
 }

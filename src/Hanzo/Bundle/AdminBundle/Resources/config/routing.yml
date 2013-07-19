@@ -665,6 +665,16 @@ admin_coupons_delete:
         id: \d+
         _format: html|json
 
+admin_coupons_batch:
+    pattern: /admin/coupons/batch
+    defaults:
+        _controller: AdminBundle:Coupons:batch
+
+admin_coupons_batch_delete_file:
+    pattern: /admin/coupons/batch/delete/file
+    defaults:
+        _controller: AdminBundle:Coupons:deleteCouponFile
+
 admin_helpdesk:
     pattern: /admin/helpdesk/{pager}
     defaults:
