@@ -122,6 +122,7 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
         // admin
         'hd@pompdelux.dk'        => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
         'lv@pompdelux.dk'        => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
+        'jm@pompdelux.dk'        => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
         // admin (bellcom)
         'hf@bellcom.dk'          => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
         'ulrik@bellcom.dk'       => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
@@ -158,9 +159,10 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
     {
         $group = $this->getGroups();
         $roles = $this->map[$group->getName()];
+        $email = strtolower($this->getUsername());
 
-        if (isset($this->extended[$this->getUsername()])) {
-            $roles = array_merge($roles, $this->extended[$this->getUsername()]);
+        if (isset($this->extended[$email])) {
+            $roles = array_merge($roles, $this->extended[$email]);
         }
 
         return $roles;
