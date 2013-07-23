@@ -1,6 +1,6 @@
 <?php /* vim: set sw=4: */
 
-namespace Hanzo\Bundle\PaymentBundle\Methods\Coupon;
+namespace Hanzo\Bundle\PaymentBundle\Methods\GiftCard;
 
 use Exception;
 
@@ -9,25 +9,24 @@ use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\Customers;
 
 use Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface;
-use Hanzo\Bundle\PaymentBundle\Methods\Coupon\CouponCallResponse;
+use Hanzo\Bundle\PaymentBundle\Methods\GiftCard\GiftCardCallResponse;
 
 use Symfony\Component\HttpFoundation\Request;
 
-class CouponApi implements PaymentMethodApiInterface
+class GiftCardApi implements PaymentMethodApiInterface
 {
     /**
      * undocumented class variable
      *
      * @var array
-     **/
+     */
     protected $settings = array();
 
     /**
      * __construct
      *
      * @return void
-     * @author Ulrik Nielsen <un@bellcom.dk>
-     **/
+     */
     public function __construct( $params, $settings )
     {
         $this->settings = $settings;
@@ -38,8 +37,7 @@ class CouponApi implements PaymentMethodApiInterface
      * call
      * Dummy implementation as this method does not use an api call
      * @return boolean
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function call()
     {
         return $this;
@@ -48,12 +46,11 @@ class CouponApi implements PaymentMethodApiInterface
     /**
      * cancel
      *
-     * @return CouponCallResponse
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     * @return GiftCardCallResponse
+     */
     public function cancel( Customers $customer, Orders $order )
     {
-        return new CouponCallResponse();
+        return new GiftCardCallResponse();
     }
 
     /**
@@ -61,8 +58,7 @@ class CouponApi implements PaymentMethodApiInterface
      * Checks if the api is active for the current configuration
      *
      * @return bool
-     * @author Ulrik Nielsen <un@bellcom.dk>
-     **/
+     */
     public function isActive()
     {
         $order = OrdersPeer::getCurrent();
@@ -76,8 +72,7 @@ class CouponApi implements PaymentMethodApiInterface
     /**
      * getFee
      * @return float
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function getFee()
     {
         return ( isset($this->settings['fee']) ) ? $this->settings['fee'] : 0.00;
@@ -86,8 +81,7 @@ class CouponApi implements PaymentMethodApiInterface
     /**
      * getFeeExternalId
      * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function getFeeExternalId()
     {
         return ( isset($this->settings['fee.id']) ) ? $this->settings['fee.id'] : null;
@@ -99,12 +93,11 @@ class CouponApi implements PaymentMethodApiInterface
      * TODO: priority: low, should use shared methods between all payment methods
      *
      * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function updateOrderFailed( Request $request, Orders $order)
     {
         $order->setState( Orders::STATE_ERROR_PAYMENT );
-        $order->setAttribute( 'paytype' , 'payment', 'coupon' );
+        $order->setAttribute( 'paytype' , 'payment', 'gift_card' );
         $order->save();
     }
 
@@ -114,18 +107,17 @@ class CouponApi implements PaymentMethodApiInterface
      * TODO: priority: low, should use shared methods between all payment methods
      *
      * @return void
-     * @author Ulrik Nielsen <un@bellcom.dk>
-     **/
+     */
     public function updateOrderSuccess( Request $request, Orders $order )
     {
         $order->setState( Orders::STATE_PAYMENT_OK );
-        $order->setAttribute( 'paytype' , 'payment', 'coupon' );
+        $order->setAttribute( 'paytype' , 'payment', 'gift_card' );
         $order->save();
     }
 
 
     public function getProcessButton(Orders $order)
     {
-        return ['url' => 'payment/coupon/callback'];
+        return ['url' => 'payment/gift-card/callback'];
     }
 }

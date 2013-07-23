@@ -13,11 +13,11 @@ use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
-use Hanzo\Bundle\PaymentBundle\Methods\Coupon\CouponApi;
+use Hanzo\Bundle\PaymentBundle\Methods\GiftCard\GiftCardApi;
 
 use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
 
-class CouponController extends CoreController
+class GiftCardController extends CoreController
 {
     /**
      * callbackAction
@@ -26,12 +26,12 @@ class CouponController extends CoreController
      **/
     public function callbackAction()
     {
-        $api = $this->get('payment.couponapi');
+        $api = $this->get('payment.giftcardapi');
         $request = $this->get('request');
         $order = OrdersPeer::getCurrent(true);
 
         if ( !($order instanceof Orders) ) {
-            throw new Exception( 'Coupon callback found no valid order to proccess.' );
+            throw new Exception( 'GiftCard callback found no valid order to proccess.' );
         }
 
         try {
@@ -62,12 +62,12 @@ class CouponController extends CoreController
      **/
     public function blockAction()
     {
-        $api = $this->get('payment.couponapi');
+        $api = $this->get('payment.giftcardapi');
 
         if (!$api->isActive()) {
             return new Response( '', 200, array('Content-Type' => 'text/html'));
         }
 
-        return $this->render('PaymentBundle:coupon:block.html.twig');
+        return $this->render('PaymentBundle:GiftCard:block.html.twig');
     }
 }

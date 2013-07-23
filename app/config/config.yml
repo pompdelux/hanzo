@@ -179,3 +179,6 @@ liip_theme:
 
 muneris:
     host: http://muneris.bellcom.dk/
+ax:
+    wsdl: ""
+

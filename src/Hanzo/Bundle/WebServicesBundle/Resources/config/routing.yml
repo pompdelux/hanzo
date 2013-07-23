@@ -6,12 +6,6 @@ ws_cookie:
     pattern:  /m.test
     defaults: { _controller: WebServicesBundle:Default:cookie }
 
-ws_soap:
-    pattern:  /soap/{version}/{service_name}/
-    defaults: { _controller: WebServicesBundle:Soap:index, version: v1 }
-    requirements:
-        service_name: "[a-zA-Z0-9_]+"
-
 # /rest/v1/stock-check/{10}?master=foo&color=bar&size=baz
 ws_stock:
     pattern:    /rest/{version}/stock-check/{id}

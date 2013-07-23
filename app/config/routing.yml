@@ -2,6 +2,10 @@ muneris:
     resource: "@MunerisBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/
 
+AxBundle:
+    resource: "@AxBundle/Resources/config/routing.yml"
+    prefix:   /{_locale}/
+
 LocationLocatorBundle:
     resource: "@LocationLocatorBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/

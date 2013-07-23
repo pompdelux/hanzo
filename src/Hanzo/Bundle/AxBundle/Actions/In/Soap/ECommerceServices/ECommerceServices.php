@@ -1,8 +1,8 @@
 <?php
 
-namespace Hanzo\Bundle\WebServicesBundle\Services\Soap\ECommerceServices;
+namespace Hanzo\Bundle\AxBundle\Actions\In\Soap\ECommerceServices;
 
-use Hanzo\Bundle\WebServicesBundle\Services\Soap\SoapService;
+use Hanzo\Bundle\AxBundle\Actions\In\Soap\SoapService;
 
 use Hanzo\Core\Tools;
 use Hanzo\Core\Hanzo;
@@ -83,6 +83,7 @@ class ECommerceServices extends SoapService
      *          <UnitId>Stk.</UnitId>
      *        </Sales>
      *        <WashInstruction/>
+     *        <IsVoucher/>
      *      </InventTable>
      *    </item>
      * @return object SyncItemResult
@@ -175,6 +176,10 @@ class ECommerceServices extends SoapService
                         $product->setId($products_id_map[strtolower($sku)]);
                         $product->setSku($sku);
 
+                        if (isset($entry->IsVoucher) && $entry->IsVoucher) {
+                            $product->setIsVoucher(true);
+                        }
+
                         // products i18n
                         $languages = LanguagesQuery::create()->find();
                         foreach ($languages as $language) {
@@ -240,6 +245,10 @@ class ECommerceServices extends SoapService
                 $washing = $item->WashInstruction;
                 if (is_scalar($washing) && !empty($washing)) {
                     $product->setWashing($washing);
+                }
+
+                if (isset($entry->IsVoucher) && $entry->IsVoucher) {
+                    $product->setIsVoucher(true);
                 }
 
                 $product->save();
@@ -464,9 +473,6 @@ class ECommerceServices extends SoapService
      */
     public function SyncInventoryOnHand($data)
     {
-#Tools::log($this->request->getLocale().' -> SyncInventoryOnHand');
-
-        //Tools::log($data);
         $now = date('Ymd');
         $errors = array();
         $stock = $data->inventoryOnHand->InventSum;
@@ -620,7 +626,6 @@ class ECommerceServices extends SoapService
         $this->event_dispatcher->dispatch('product.stock.zero', new FilterCategoryEvent($master, null, Propel::getConnection(null, Propel::CONNECTION_WRITE)));
 
         // set sync flag
-#Tools::log($this->getDebugInfo());
         if (isset($stock->LastInCycle) && $stock->LastInCycle) {
             $c = $this->hanzo->container;
             $c->get('redis.permanent')->hset(
@@ -767,9 +772,8 @@ class ECommerceServices extends SoapService
 
             // user created, add him/her to phplist
             if ($group_id > 1) {
-                $hanzo = Hanzo::getInstance();
-                $domain_key = $hanzo->get('core.domain_key');
-                $newsletter_lists = $hanzo->get('phplist.lists');
+                $domain_key = $this->hanzo->get('core.domain_key');
+                $newsletter_lists = $this->hanzo->get('phplist.lists');
                 if (isset($newsletter_lists[$domain_key])) {
                     $newsletter = new NewsletterApi();
                     $result = $newsletter->subscribe($customer->getEmail(), $newsletter_lists[$domain_key]);
@@ -884,7 +888,7 @@ class ECommerceServices extends SoapService
         if (!$order instanceof Orders) {
             $msg = 'no order found with eOrderNumber "' . $data->eOrderNumber . '".';
             $this->logger->addCritical($msg);
-            return self::responseStatus('Error', 'DeleteSalesOrderResult', array($msg));
+            return self::responseStatus('Error', 'SalesOrderCaptureOrRefundResult', array($msg));
         }
 
         // ....................
@@ -977,7 +981,7 @@ class ECommerceServices extends SoapService
             $this->timer->reset();
             try {
                 $name = trim($order->getFirstName() . ' ' . $order->getLastName());
-                $mailer = Hanzo::getInstance()->container->get('mail_manager');
+                $mailer = $this->hanzo->container->get('mail_manager');
                 $mailer->setTo($order->getEmail(), $name);
                 $mailer->setMessage('order.status_processing', array(
                     'order_id' => $order->getId()
@@ -1065,11 +1069,14 @@ class ECommerceServices extends SoapService
      *
      * @return object
      */
-    protected function responseStatus ($status, $var, $messages = array())
+    protected function responseStatus ($status, $var, $messages = [])
     {
-        $response = new \stdClass();
-        $response->{$var} = new \stdClass();
-        $response->{$var}->Status = new \SoapVar($status, \XSD_STRING, "", "http://schemas.pompdelux.dk/webintegration/ResponseStatus");
+        $response = (object) [
+            $var => (object) [
+                'Status'  => new \SoapVar($status, \XSD_STRING, "", "http://schemas.pompdelux.dk/webintegration/ResponseStatus"),
+                'Message' => [],
+            ]
+        ];
 
         foreach ($messages as $message) {
             $response->{$var}->Message[] = new \SoapVar($message, \XSD_STRING, "", "http://schemas.pompdelux.dk/webintegration/ResponseStatus");

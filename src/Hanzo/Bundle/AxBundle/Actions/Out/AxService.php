@@ -1,6 +1,6 @@
 <?php
 
-namespace Hanzo\Bundle\ServiceBundle\Services;
+namespace Hanzo\Bundle\AxBundle\Actions\Out;
 
 use Propel;
 use SoapClient;
@@ -9,6 +9,7 @@ use stdClass;
 use Exception;
 
 use Symfony\Bridge\Monolog\Logger;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
@@ -22,30 +23,22 @@ use Hanzo\Model\OrdersSyncLog;
 
 class AxService
 {
-    protected $parameters;
-    protected $settings;
-
-    protected $logger;
-
     protected $wsdl;
+    protected $logger;
+    protected $event_dispatcher;
     protected $client;
-    protected $ax_state = false;
-    protected $skip_send = false;
+    protected $ax_state     = false;
+    protected $skip_send    = false;
+    protected $log_requests = false;
 
-    public function __construct($parameters, $settings)
+    public function __construct($wsdl, $log_requests, Logger $logger, EventDispatcher $event_dispatcher)
     {
-        if (!$parameters[0] instanceof Logger) {
-            throw new \InvalidArgumentException('Monolog\Logger expected as first parameter.');
-        }
+        $this->wsdl             = $wsdl;
+        $this->log_requests     = $log_requests;
+        $this->logger           = $logger;
+        $this->event_dispatcher = $event_dispatcher;
 
-        $this->parameters = $parameters;
-        $this->settings = $settings;
-
-        $this->logger = $parameters[0];
-
-        $this->wsdl = 'http://'.$settings['host'].'/DynamicsAxServices.asmx?wsdl';
-
-        if (isset($settings['skip_send']) && ($settings['skip_send'] == 1)) {
+        if (empty($wsdl)) {
             $this->skip_send = true;
         }
     }
@@ -101,7 +94,8 @@ class AxService
         $payment_cost     = 0;
         $handeling_fee    = 0;
         $hostess_discount = 0;
-        $coupon_discount  = 0;
+        $gift_card        = false;
+        $coupon           = false;
         $line_discount    = 0;
 
         foreach ($lines as $line) {
@@ -119,7 +113,7 @@ class AxService
                     break;
 
                 case 'shipping.fee':
-                case 'payment.fee': // TODO: hf@bellcom.dk: eh... only for gothia?
+                case 'payment.fee':
                     $handeling_fee += $line->getPrice();
                     break;
 
@@ -137,9 +131,14 @@ class AxService
                                 $line_discount = $line_discount * -1;
                             }
                             break;
-                        case 'coupon.code':
-                            $coupon_discount = $line->getPrice();
-                            break;
+                    }
+
+                    if ('gift_card.code' == $line->getProductsName()) {
+                        $gift_card = $line;
+                    }
+
+                    if ('coupon.code' == $line->getProductsName()) {
+                        $coupon = $line;
                     }
                     break;
             }
@@ -171,16 +170,20 @@ class AxService
                 $line->LineDiscPercent = $line_discount;
             }
 
+            if ($product->getIsVoucher()) {
+                $line->VoucherCode = $product->getNote();
+            }
+
             $salesLine[] = $line;
         }
 
         if ($hostess_discount) {
             $line = new stdClass();
-            $line->ItemId = 'HOSTESSDISCOUNT';
+            $line->ItemId     = 'HOSTESSDISCOUNT';
             $line->SalesPrice = number_format($hostess_discount, 4, '.', '');
-            $line->SalesQty = 1;
-            $line->SalesUnit = 'Stk.';
-            $salesLine[] = $line;
+            $line->SalesQty   = 1;
+            $line->SalesUnit  = 'Stk.';
+            $salesLine[]      = $line;
 
             switch(str_replace('SALES', '', strtoupper($attributes->global->domain_key))) {
                 case 'DK':
@@ -201,24 +204,35 @@ class AxService
             }
 
             $line = new stdClass();
-            $line->ItemId = 'POMP BIG BAG';
-            $line->SalesPrice = $bag_price;
+            $line->ItemId          = 'POMP BIG BAG';
+            $line->SalesPrice      = $bag_price;
             $line->LineDiscPercent = 100;
-            $line->SalesQty = 1;
-            $line->InventColorId = 'Khaki';
-            $line->InventSizeId = 'One Size';
-            $line->SalesUnit = 'Stk.';
-            $salesLine[] = $line;
+            $line->SalesQty        = 1;
+            $line->InventColorId   = 'Khaki';
+            $line->InventSizeId    = 'One Size';
+            $line->SalesUnit       = 'Stk.';
+            $salesLine[]           = $line;
         }
 
         // gavekort
-        if ($coupon_discount) {
+        if ($gift_card) {
             $line = new stdClass();
-            $line->ItemId = 'COUPON';
-            $line->SalesPrice = number_format($coupon_discount, 4, '.', '');
-            $line->SalesQty = 1;
-            $line->SalesUnit = 'Stk.';
-            $salesLine[] = $line;
+            $line->ItemId      = 'GIFTCARD';
+            $line->SalesPrice  = number_format(($gift_card->getPrice()), 4, '.', '');
+            $line->SalesQty    = 1;
+            $line->SalesUnit   = 'Stk.';
+            $line->VoucherCode = $attributes->gift_card->code;
+            $salesLine[]       = $line;
+        }
+
+        // kuponkode
+        if ($coupon) {
+            $line = new stdClass();
+            $line->ItemId      = 'COUPON';
+            $line->SalesPrice  = number_format(($coupon->getPrice()), 4, '.', '');
+            $line->SalesQty    = 1;
+            $line->SalesUnit   = 'Stk.';
+            $salesLine[]       = $line;
         }
 
         // payment method
@@ -287,8 +301,7 @@ class AxService
         $salesTable->Completed               = 1;
         $salesTable->TransactionType         = 'Write';
         $salesTable->CustPaymMode            = $custPaymMode;
-        $salesTable->SmoreContactInfo        = ''; // NICETO, når s-more kommer på banen igen.
-
+        $salesTable->SmoreContactInfo        = ''; // NICETO, når s-more kommer på banen igen
         $salesTable->DeliveryDropPointId     = $order->getDeliveryExternalAddressId();
         $salesTable->DeliveryCompanyName     = $order->getDeliveryCompanyName();
         $salesTable->DeliveryCity            = $order->getDeliveryCity();
@@ -316,7 +329,7 @@ class AxService
         $salesOrder->SalesTable = $salesTable;
 
         $syncSalesOrder = new stdClass();
-        $syncSalesOrder->salesOrder = $salesOrder;
+        $syncSalesOrder->salesOrder     = $salesOrder;
         $syncSalesOrder->endpointDomain = str_replace('SALES', '', strtoupper($attributes->global->domain_key));
 
         // NICETO, would be nice if this was not static..
@@ -386,22 +399,23 @@ class AxService
             ->findOne($con)
         ;
 
-        $ct->AddressCity = $address->getCity();
+        $ct->AddressCity            = $address->getCity();
         $ct->AddressCountryRegionId = $address->getCountries()->getIso2();
+        $ct->AddressStreet          = $address->getAddressLine1();
+        $ct->AddressZipCode         = $address->getPostalCode();
+        $ct->CustName               = $address->getFirstName() . ' ' . $address->getLastName();
+        $ct->Email                  = $debitor->getEmail();
+        $ct->Phone = $debitor->getPhone();
 
-        $ct->AddressStreet = $address->getAddressLine1();
-        $ct->AddressZipCode = $address->getPostalCode();
-        $ct->CustName = $address->getFirstName() . ' ' . $address->getLastName();
-        $ct->Email = $debitor->getEmail();
         if (2 == $debitor->getGroupsId()) {
             $ct->InitialsId = $debitor->getInitials();
         }
-        $ct->Phone = $debitor->getPhone();
 
         $cu = new stdClass();
         $cu->CustTable = $ct;
+
         $sc = new stdClass();
-        $sc->customer = $cu;
+        $sc->customer  = $cu;
 
         // NICETO: no hardcoded switches
         // Use: $syncSalesOrder->endpointDomain = $attributes->global->domain_key; ??
@@ -447,19 +461,18 @@ class AxService
         $attributes = $order->getAttributes($con);
 
         $salesTable = new stdClass();
-        $salesTable->CustAccount = $order->getCustomersId();
-        $salesTable->EOrderNumber = $order->getId();
-        $salesTable->PaymentId = isset( $attributes->payment->transact ) ? $attributes->payment->transact : '';
-        $salesTable->SalesType = 'Sales';
-        $salesTable->Completed = 1;
+        $salesTable->CustAccount     = $order->getCustomersId();
+        $salesTable->EOrderNumber    = $order->getId();
+        $salesTable->PaymentId       = isset( $attributes->payment->transact ) ? $attributes->payment->transact : '';
+        $salesTable->SalesType       = 'Sales';
+        $salesTable->Completed       = 1;
         $salesTable->TransactionType = 'Delete';
 
         $salesOrder = new stdClass();
         $salesOrder->SalesTable = $salesTable;
 
         $syncSalesOrder = new stdClass();
-        $syncSalesOrder->salesOrder = $salesOrder;
-
+        $syncSalesOrder->salesOrder     = $salesOrder;
         $syncSalesOrder->endpointDomain = str_replace('SALES', '', strtoupper($attributes->global->domain_key));
 
         // NICETO, would be nice if this was not static..
@@ -500,8 +513,8 @@ class AxService
         $attributes = $order->getAttributes();
 
         $lock = new stdClass();
-        $lock->eOrderNumber = $order->getId();
-        $lock->lockOrder = $status ? 1 : 0;
+        $lock->eOrderNumber   = $order->getId();
+        $lock->lockOrder      = $status ? 1 : 0;
         $lock->endpointDomain = str_replace('SALES', '', strtoupper($attributes->global->domain_key));
 
         // NICETO, would be nice if this was not static..
@@ -556,6 +569,11 @@ class AxService
      */
     protected function Send($service, $request)
     {
+        if ($this->log_requests) {
+            $this->logger->addDebug('Calling: '.$service, (array) $request);
+            Tools::log($request);
+        }
+
         if ($this->skip_send) {
             return true;
         }
@@ -609,8 +627,8 @@ class AxService
         }
 
         $this->client = new SoapClient($this->wsdl, array(
-            'trace' => true,
-            'exceptions' => true,
+            'trace'              => true,
+            'exceptions'         => true,
             'connection_timeout' => 600,
         ));
         $this->client->__setLocation(str_replace('?wsdl', '', $this->wsdl));

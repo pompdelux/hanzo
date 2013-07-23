@@ -3,16 +3,9 @@
 {% block content %}
 <nav class="sub">
   <ul>
-    <li>
-      <a href="{{ path('admin_coupons') }}">
-        {{ 'admin.back.button'|trans({}, 'admin') }}
-      </a>
-    </li>
-    <li>
-      <a href="{{ path('admin_coupons_edit') }}">
-        {{ 'admin.coupons.add_new.link'|trans({}, 'admin') }}
-      </a>
-    </li>
+    <li><a href="{{ path('admin_coupons') }}">{{ 'admin.coupons.list.link'|trans({}, 'admin') }}</a></li>
+    <li><a href="{{ path('admin_coupons_edit') }}">{{ 'admin.coupons.add_new.link'|trans({}, 'admin') }}</a></li>
+    <li><a href="{{ path('admin_coupons_batch') }}">Batch opret</a></li>
   </ul>
 </nav>
 <h1>{{ 'admin.coupons.edit.header.text'|trans({}, 'admin') }}</h1>
@@ -35,27 +28,4 @@
   <a class="button left" href="{{ path('admin_coupons') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
 </form>
 
-{% if coupons_history|length > 0 %}
-
-<table id="coupons_history" class="list">
-  <thead>
-    <tr>
-      <th>{{ 'amount'|trans({}, 'admin') }}</th>
-      <th>{{ 'order.id'|trans({}, 'admin') }}</th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for entry in coupons_history %}
-    <tr>
-      <td>{{ entry.amount }}</td>
-      <td>
-        <a href="{{ path('admin_customer_order', {'order_id' : entry.ordersid}) }}">
-          {{ entry.ordersid }}
-        </a>
-      </td>
-    </tr>
-  {% endfor %}
-  </tbody>
-</table>
-{% endif %}
 {% endblock %}

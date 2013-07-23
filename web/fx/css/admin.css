@@ -352,18 +352,18 @@ ul.list li a.right{
  */
 select#product-category-selector,
 select#product-related-products-selector,
-select#coupon-customer-selector{
+select#gift-card-customer-selector{
   display: block;
   margin:15px 40px;
 }
 ul#product-categories,
 ul#product-related-products,
-ul#coupons-to-customers {
+ul#gift-cards-to-customers {
   display: inline-block;
 }
 ul#product-categories li,
 ul#product-related-products li,
-ul#coupons-to-customers li {
+ul#gift-cards-to-customers li {
   list-style-type: none;
   border: 1px solid #DBDBDB;
   margin: 2px 0;
@@ -372,7 +372,7 @@ ul#coupons-to-customers li {
 }
 ul#product-categories li a.delete,
 ul#product-related-products li a.delete,
-ul#coupons-to-customers li a.delete {
+ul#gift-cards-to-customers li a.delete {
   position: absolute;
   right: -23px;
 }
