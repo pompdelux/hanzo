@@ -343,7 +343,7 @@ class CouponsController extends CoreController
         foreach ($finder->in($this->getCouponsDir()) as $file) {
             $files[] = [
                 'name' => date('Y-m-d H:i:s', $file->getBasename('.csv')),
-                'path' => str_replace($root, '', $file->getRealPath()),
+                'path' => '/uploads/'.$file->getBasename(),
             ];
         }
 
