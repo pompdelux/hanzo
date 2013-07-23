@@ -10,14 +10,22 @@ use Hanzo\Core\Tools;
 use Hanzo\Model\Customers;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersLinesQuery;
-
 use Hanzo\Model\ProductsDomainsPricesPeer;
+use Hanzo\Model\GiftCards;
+use Hanzo\Model\GiftCardsPeer;
+use Hanzo\Model\GiftCardsQuery;
 
 use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
+use Symfony\Bridge\Monolog\Logger;
 
 class CheckoutListener
 {
-    public function __construct() {}
+    protected $logger;
+
+    public function __construct(Logger $logger)
+    {
+        $this->logger = $logger;
+    }
 
     public function onFinalize(FilterOrderEvent $event)
     {
@@ -73,6 +81,53 @@ class CheckoutListener
             // so far _all_ discounts are handled as % discounts
             $discount_amount = ($total / 100) * $discount;
             $order->setDiscountLine($discount_label, $discount_amount, $discount);
+        }
+    }
+
+
+    /**
+     * Register GiftCards if any is bought.
+     *
+     * @param  FilterOrderEvent $event event object
+     */
+    public function onPaymentCollected(FilterOrderEvent $event)
+    {
+        $order = $event->getOrder();
+
+        if ($order->getState() < Orders::STATE_PAYMENT_OK ) {
+            $this->logger->addDebug('Could not process order, state is: '.$order->getState());
+            return;
+        }
+
+        $lines = $order->getOrdersLiness();
+
+        foreach ($lines as $line) {
+            if ($line->getIsVoucher()) {
+
+                if ($line->getNote()) {
+                    $c = explode(';', $line->getNote());
+                    GiftCardsQuery::create()
+                        ->filterById($c)
+                        ->delete();
+                }
+
+                $codes = [];
+                for ($i=0;$i<$line->getQuantity();$i++) {
+                    $now = new \DateTime();
+                    $gift_card = new GiftCards();
+                    $gift_card->setCode(GiftCardsPeer::generateCode());
+                    $gift_card->setAmount($line->getPrice());
+                    $gift_card->setActiveFrom($now);
+                    $gift_card->setActiveTo($now->modify('+3 years'));
+                    $gift_card->setCurrencyCode($order->getCurrencyCode());
+                    $gift_card->save();
+
+                    $codes[] = $gift_card->getCode();
+                }
+
+                $line->setNote(implode(';', $codes));
+                $line->save();
+            }
         }
     }
 }

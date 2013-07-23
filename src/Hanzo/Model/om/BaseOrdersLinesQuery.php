@@ -33,6 +33,8 @@ use Hanzo\Model\Products;
  * @method OrdersLinesQuery orderByVat($order = Criteria::ASC) Order by the vat column
  * @method OrdersLinesQuery orderByQuantity($order = Criteria::ASC) Order by the quantity column
  * @method OrdersLinesQuery orderByUnit($order = Criteria::ASC) Order by the unit column
+ * @method OrdersLinesQuery orderByIsVoucher($order = Criteria::ASC) Order by the is_voucher column
+ * @method OrdersLinesQuery orderByNote($order = Criteria::ASC) Order by the note column
  *
  * @method OrdersLinesQuery groupById() Group by the id column
  * @method OrdersLinesQuery groupByOrdersId() Group by the orders_id column
@@ -48,6 +50,8 @@ use Hanzo\Model\Products;
  * @method OrdersLinesQuery groupByVat() Group by the vat column
  * @method OrdersLinesQuery groupByQuantity() Group by the quantity column
  * @method OrdersLinesQuery groupByUnit() Group by the unit column
+ * @method OrdersLinesQuery groupByIsVoucher() Group by the is_voucher column
+ * @method OrdersLinesQuery groupByNote() Group by the note column
  *
  * @method OrdersLinesQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method OrdersLinesQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -77,6 +81,8 @@ use Hanzo\Model\Products;
  * @method OrdersLines findOneByVat(string $vat) Return the first OrdersLines filtered by the vat column
  * @method OrdersLines findOneByQuantity(int $quantity) Return the first OrdersLines filtered by the quantity column
  * @method OrdersLines findOneByUnit(string $unit) Return the first OrdersLines filtered by the unit column
+ * @method OrdersLines findOneByIsVoucher(boolean $is_voucher) Return the first OrdersLines filtered by the is_voucher column
+ * @method OrdersLines findOneByNote(string $note) Return the first OrdersLines filtered by the note column
  *
  * @method array findById(int $id) Return OrdersLines objects filtered by the id column
  * @method array findByOrdersId(int $orders_id) Return OrdersLines objects filtered by the orders_id column
@@ -92,6 +98,8 @@ use Hanzo\Model\Products;
  * @method array findByVat(string $vat) Return OrdersLines objects filtered by the vat column
  * @method array findByQuantity(int $quantity) Return OrdersLines objects filtered by the quantity column
  * @method array findByUnit(string $unit) Return OrdersLines objects filtered by the unit column
+ * @method array findByIsVoucher(boolean $is_voucher) Return OrdersLines objects filtered by the is_voucher column
+ * @method array findByNote(string $note) Return OrdersLines objects filtered by the note column
  */
 abstract class BaseOrdersLinesQuery extends ModelCriteria
 {
@@ -193,7 +201,7 @@ abstract class BaseOrdersLinesQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `orders_id`, `type`, `products_id`, `products_sku`, `products_name`, `products_color`, `products_size`, `expected_at`, `original_price`, `price`, `vat`, `quantity`, `unit` FROM `orders_lines` WHERE `id` = :p0';
+        $sql = 'SELECT `id`, `orders_id`, `type`, `products_id`, `products_sku`, `products_name`, `products_color`, `products_size`, `expected_at`, `original_price`, `price`, `vat`, `quantity`, `unit`, `is_voucher`, `note` FROM `orders_lines` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -795,6 +803,62 @@ abstract class BaseOrdersLinesQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(OrdersLinesPeer::UNIT, $unit, $comparison);
+    }
+
+    /**
+     * Filter the query on the is_voucher column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByIsVoucher(true); // WHERE is_voucher = true
+     * $query->filterByIsVoucher('yes'); // WHERE is_voucher = true
+     * </code>
+     *
+     * @param     boolean|string $isVoucher The value to use as filter.
+     *              Non-boolean arguments are converted using the following rules:
+     *                * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
+     *                * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
+     *              Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return OrdersLinesQuery The current query, for fluid interface
+     */
+    public function filterByIsVoucher($isVoucher = null, $comparison = null)
+    {
+        if (is_string($isVoucher)) {
+            $isVoucher = in_array(strtolower($isVoucher), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+        }
+
+        return $this->addUsingAlias(OrdersLinesPeer::IS_VOUCHER, $isVoucher, $comparison);
+    }
+
+    /**
+     * Filter the query on the note column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByNote('fooValue');   // WHERE note = 'fooValue'
+     * $query->filterByNote('%fooValue%'); // WHERE note LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $note The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return OrdersLinesQuery The current query, for fluid interface
+     */
+    public function filterByNote($note = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($note)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $note)) {
+                $note = str_replace('*', '%', $note);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(OrdersLinesPeer::NOTE, $note, $comparison);
     }
 
     /**

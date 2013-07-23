@@ -20,3 +20,6 @@ varnish:
     host: %varnish_host%
     port: %varnish_port%
     secret: %varnish_secret%
+
+ax:
+    wsdl: "http://193.89.255.251:8000/DynamicsAxServices.asmx?wsdl"

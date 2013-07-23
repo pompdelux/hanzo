@@ -129,6 +129,19 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
     protected $unit;
 
     /**
+     * The value for the is_voucher field.
+     * Note: this column has a database default value of: false
+     * @var        boolean
+     */
+    protected $is_voucher;
+
+    /**
+     * The value for the note field.
+     * @var        string
+     */
+    protected $note;
+
+    /**
      * @var        Orders
      */
     protected $aOrders;
@@ -168,6 +181,7 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
     {
         $this->expected_at = '1970-01-01';
         $this->vat = '0.00';
+        $this->is_voucher = false;
     }
 
     /**
@@ -350,6 +364,26 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
     public function getUnit()
     {
         return $this->unit;
+    }
+
+    /**
+     * Get the [is_voucher] column value.
+     *
+     * @return boolean
+     */
+    public function getIsVoucher()
+    {
+        return $this->is_voucher;
+    }
+
+    /**
+     * Get the [note] column value.
+     *
+     * @return string
+     */
+    public function getNote()
+    {
+        return $this->note;
     }
 
     /**
@@ -659,6 +693,56 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
     } // setUnit()
 
     /**
+     * Sets the value of the [is_voucher] column.
+     * Non-boolean arguments are converted using the following rules:
+     *   * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
+     *   * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
+     * Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
+     *
+     * @param boolean|integer|string $v The new value
+     * @return OrdersLines The current object (for fluent API support)
+     */
+    public function setIsVoucher($v)
+    {
+        if ($v !== null) {
+            if (is_string($v)) {
+                $v = in_array(strtolower($v), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+            } else {
+                $v = (boolean) $v;
+            }
+        }
+
+        if ($this->is_voucher !== $v) {
+            $this->is_voucher = $v;
+            $this->modifiedColumns[] = OrdersLinesPeer::IS_VOUCHER;
+        }
+
+
+        return $this;
+    } // setIsVoucher()
+
+    /**
+     * Set the value of [note] column.
+     *
+     * @param string $v new value
+     * @return OrdersLines The current object (for fluent API support)
+     */
+    public function setNote($v)
+    {
+        if ($v !== null && is_numeric($v)) {
+            $v = (string) $v;
+        }
+
+        if ($this->note !== $v) {
+            $this->note = $v;
+            $this->modifiedColumns[] = OrdersLinesPeer::NOTE;
+        }
+
+
+        return $this;
+    } // setNote()
+
+    /**
      * Indicates whether the columns in this object are only set to default values.
      *
      * This method can be used in conjunction with isModified() to indicate whether an object is both
@@ -673,6 +757,10 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
             }
 
             if ($this->vat !== '0.00') {
+                return false;
+            }
+
+            if ($this->is_voucher !== false) {
                 return false;
             }
 
@@ -712,6 +800,8 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
             $this->vat = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
             $this->quantity = ($row[$startcol + 12] !== null) ? (int) $row[$startcol + 12] : null;
             $this->unit = ($row[$startcol + 13] !== null) ? (string) $row[$startcol + 13] : null;
+            $this->is_voucher = ($row[$startcol + 14] !== null) ? (boolean) $row[$startcol + 14] : null;
+            $this->note = ($row[$startcol + 15] !== null) ? (string) $row[$startcol + 15] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -720,7 +810,7 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
-            return $startcol + 14; // 14 = OrdersLinesPeer::NUM_HYDRATE_COLUMNS.
+            return $startcol + 16; // 16 = OrdersLinesPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating OrdersLines object", $e);
@@ -1001,6 +1091,12 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
         if ($this->isColumnModified(OrdersLinesPeer::UNIT)) {
             $modifiedColumns[':p' . $index++]  = '`unit`';
         }
+        if ($this->isColumnModified(OrdersLinesPeer::IS_VOUCHER)) {
+            $modifiedColumns[':p' . $index++]  = '`is_voucher`';
+        }
+        if ($this->isColumnModified(OrdersLinesPeer::NOTE)) {
+            $modifiedColumns[':p' . $index++]  = '`note`';
+        }
 
         $sql = sprintf(
             'INSERT INTO `orders_lines` (%s) VALUES (%s)',
@@ -1053,6 +1149,12 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
                         break;
                     case '`unit`':
                         $stmt->bindValue($identifier, $this->unit, PDO::PARAM_STR);
+                        break;
+                    case '`is_voucher`':
+                        $stmt->bindValue($identifier, (int) $this->is_voucher, PDO::PARAM_INT);
+                        break;
+                    case '`note`':
+                        $stmt->bindValue($identifier, $this->note, PDO::PARAM_STR);
                         break;
                 }
             }
@@ -1248,6 +1350,12 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
             case 13:
                 return $this->getUnit();
                 break;
+            case 14:
+                return $this->getIsVoucher();
+                break;
+            case 15:
+                return $this->getNote();
+                break;
             default:
                 return null;
                 break;
@@ -1291,6 +1399,8 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
             $keys[11] => $this->getVat(),
             $keys[12] => $this->getQuantity(),
             $keys[13] => $this->getUnit(),
+            $keys[14] => $this->getIsVoucher(),
+            $keys[15] => $this->getNote(),
         );
         if ($includeForeignObjects) {
             if (null !== $this->aOrders) {
@@ -1375,6 +1485,12 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
             case 13:
                 $this->setUnit($value);
                 break;
+            case 14:
+                $this->setIsVoucher($value);
+                break;
+            case 15:
+                $this->setNote($value);
+                break;
         } // switch()
     }
 
@@ -1413,6 +1529,8 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
         if (array_key_exists($keys[11], $arr)) $this->setVat($arr[$keys[11]]);
         if (array_key_exists($keys[12], $arr)) $this->setQuantity($arr[$keys[12]]);
         if (array_key_exists($keys[13], $arr)) $this->setUnit($arr[$keys[13]]);
+        if (array_key_exists($keys[14], $arr)) $this->setIsVoucher($arr[$keys[14]]);
+        if (array_key_exists($keys[15], $arr)) $this->setNote($arr[$keys[15]]);
     }
 
     /**
@@ -1438,6 +1556,8 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
         if ($this->isColumnModified(OrdersLinesPeer::VAT)) $criteria->add(OrdersLinesPeer::VAT, $this->vat);
         if ($this->isColumnModified(OrdersLinesPeer::QUANTITY)) $criteria->add(OrdersLinesPeer::QUANTITY, $this->quantity);
         if ($this->isColumnModified(OrdersLinesPeer::UNIT)) $criteria->add(OrdersLinesPeer::UNIT, $this->unit);
+        if ($this->isColumnModified(OrdersLinesPeer::IS_VOUCHER)) $criteria->add(OrdersLinesPeer::IS_VOUCHER, $this->is_voucher);
+        if ($this->isColumnModified(OrdersLinesPeer::NOTE)) $criteria->add(OrdersLinesPeer::NOTE, $this->note);
 
         return $criteria;
     }
@@ -1514,6 +1634,8 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
         $copyObj->setVat($this->getVat());
         $copyObj->setQuantity($this->getQuantity());
         $copyObj->setUnit($this->getUnit());
+        $copyObj->setIsVoucher($this->getIsVoucher());
+        $copyObj->setNote($this->getNote());
 
         if ($deepCopy && !$this->startCopy) {
             // important: temporarily setNew(false) because this affects the behavior of
@@ -1695,6 +1817,8 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
         $this->vat = null;
         $this->quantity = null;
         $this->unit = null;
+        $this->is_voucher = null;
+        $this->note = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
         $this->alreadyInClearAllReferencesDeep = false;
