@@ -57,35 +57,8 @@ var cdn_url = '{{ cdn }}';
     {{ fx_image_tag('images/POMPdeLUX_logo_SS12.png', '', {'id':'logo', 'alt':'POMPdeLUX'}) }}
   </a>
 
-  {% if is_granted('ROLE_ADMIN') %}
-  <nav class="main">
-    <ul>
-      <li><a href="{{ path('admin') }}">Forside</a></li>
-      <li><a href="{{ path('admin_statistics') }}">Salgs statistik</a></li>
-      <li><a href="{{ path('admin_settings') }}">Indstillinger</a></li>
-      <li><a href="{{ path('admin_cms') }}">CMS</a></li>
-      <li><a href="{{ path('admin_customers') }}">Kunder</a></li>
-      <li><a href="{{ path('admin_consultants') }}">Konsulenter</a></li>
-      <li><a href="{{ path('admin_employees') }}">Medarbejdere</a></li>
-      <li><a href="{{ path('admin_orders') }}">Ordrer</a></li>
-      <li><a href="{{ path('admin_products') }}">Katalog</a></li>
-      <li><a href="{{ path('admin_settings_washing_instructions') }}">Vaskeanvisninger</a></li>
-      <li><a href="{{ path('admin_gift_cards') }}">Gavekort</a></li>
-      <li><a href="{{ path('admin_coupons') }}">Rabatkoder</a></li>
-      <li><a href="{{ path('admin_postalcode') }}">Post Numre</a></li>
-      <li><a href="{{ path('admin_helpdesk') }}">Helpdesk</a></li>
-      <li><a href="{{ path('admin_tools') }}">Tools</a></li>
-    </ul>
-  </nav><!-- /nav.main -->
-  {% endif %}
-  {% if is_granted('ROLE_SALES') and not is_granted('ROLE_ADMIN')  %}
-  <nav class="main">
-    <ul>
-      <li><a href="{{ path('admin_consultants') }}">Konsulenter</a></li>
-      <li><a href="{{ path('admin_products') }}">Katalog</a></li>
-    </ul>
-  </nav><!-- /nav.main -->
-  {% endif %}
+  {# see: AdminBundle->CmsController->adminMenuAction #}
+  {% render 'AdminBundle:Cms:adminMenu' %}
 
   <div id="main" role="main">
     {% block content %}

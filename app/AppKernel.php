@@ -31,6 +31,7 @@ class AppKernel extends Kernel
             new Bazinga\ExposeTranslationBundle\BazingaExposeTranslationBundle(),
             new Ekino\Bundle\NewRelicBundle\EkinoNewRelicBundle(),
             new Liip\ThemeBundle\LiipThemeBundle(),
+            new Misd\GuzzleBundle\MisdGuzzleBundle(),
 
             new Hanzo\Bundle\AccountBundle\AccountBundle(),
             new Hanzo\Bundle\AdminBundle\AdminBundle(),
@@ -54,8 +55,8 @@ class AppKernel extends Kernel
             new Hanzo\Bundle\WebServicesBundle\WebServicesBundle(),
             new Hanzo\Bundle\VarnishBundle\VarnishBundle(),
             new Hanzo\Bundle\RedisBundle\RedisBundle(),
-            new Hanzo\Bundle\NnoBundle\NnoBundle(),
             new Hanzo\Bundle\LocationLocatorBundle\LocationLocatorBundle(),
+            new Hanzo\Bundle\MunerisBundle\MunerisBundle(),
             new Hanzo\Bundle\AxBundle\AxBundle(),
         );
 

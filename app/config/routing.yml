@@ -1,3 +1,7 @@
+muneris:
+    resource: "@MunerisBundle/Resources/config/routing.yml"
+    prefix:   /{_locale}/
+
 AxBundle:
     resource: "@AxBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/
@@ -111,9 +115,11 @@ liip_theme:
     resource: "@LiipThemeBundle/Resources/config/routing.xml"
     prefix: /{_locale}/theme
 
-NnoBundle:
-    resource: "@NnoBundle/Resources/config/routing.yml"
-    prefix:   /{_locale}/
+
+# Moved to MunerisBundle
+# NnoBundle:
+#     resource: "@NnoBundle/Resources/config/routing.yml"
+#     prefix:   /{_locale}/
 
 
 

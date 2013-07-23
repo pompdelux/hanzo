@@ -1113,9 +1113,10 @@ class ECommerceServices extends SoapService
         $attributes = $order->getAttributes();
 
         // work arround for iDEAL payments not supporting capture
-        if ((isset($attributes->payment)) &&
-            (isset($attributes->payment->paytype)) &&
-            ('ideal' == $attributes->payment->paytype)
+        if (('pensio' == $provider) &&
+            (isset($attributes->payment)) &&
+            (isset($attributes->payment->nature)) &&
+            ('idealpayment' == strtolower($attributes->payment->nature))
         ) {
             $this->timer->reset();
             $status = true;

@@ -22,9 +22,10 @@
         "willdurand/geocoder": "*",
         "willdurand/expose-translation-bundle": "*",
         "mrbase/smesg": "*",
-        "ekino/newrelic-bundle": "master-dev",
+        "ekino/newrelic-bundle": "1.*",
         "liip/theme-bundle": "dev-master",
-        "drak/native-session": "master-dev"
+        "drak/native-session": "master-dev",
+        "misd/guzzle-bundle": "~1.0"
     },
     "scripts": {
         "post-install-cmd": [

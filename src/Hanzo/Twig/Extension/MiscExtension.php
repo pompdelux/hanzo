@@ -275,7 +275,7 @@ DOC;
                 $template = 'NewsletterBundle:Default:'.$view.'block.html.twig';
                 $parameters = array(
                     'customer' => $customer,
-                    'listid' => Hanzo::getInstance()->  container->get('newsletterapi')->getListIdAvaliableForDomain(),
+                    'listid' => Hanzo::getInstance()->container->get('newsletterapi')->getListIdAvaliableForDomain(),
                 );
 
                 break;
