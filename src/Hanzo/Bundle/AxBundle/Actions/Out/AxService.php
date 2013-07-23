@@ -218,7 +218,7 @@ class AxService
         if ($gift_card) {
             $line = new stdClass();
             $line->ItemId      = 'GIFTCARD';
-            $line->SalesPrice  = number_format(($gift_card->getPrice() * -1), 4, '.', '');
+            $line->SalesPrice  = number_format(($gift_card->getPrice()), 4, '.', '');
             $line->SalesQty    = 1;
             $line->SalesUnit   = 'Stk.';
             $line->VoucherCode = $attributes->gift_card->code;
@@ -229,7 +229,7 @@ class AxService
         if ($coupon) {
             $line = new stdClass();
             $line->ItemId      = 'COUPON';
-            $line->SalesPrice  = number_format(($coupon->getPrice() * -1), 4, '.', '');
+            $line->SalesPrice  = number_format(($coupon->getPrice()), 4, '.', '');
             $line->SalesQty    = 1;
             $line->SalesUnit   = 'Stk.';
             $salesLine[]       = $line;
