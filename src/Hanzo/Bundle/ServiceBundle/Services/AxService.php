@@ -240,6 +240,7 @@ class AxService
                         $custPaymMode = 'MasterCard';
                         break;
                     case 'V-DK':
+                    case 'VISA-DANKORT':
                     case 'DK':
                         $custPaymMode = 'DanKort';
                         break;
