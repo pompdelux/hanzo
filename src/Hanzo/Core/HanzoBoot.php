@@ -66,13 +66,13 @@ class HanzoBoot
             return;
         }
 
-        if (($request->isSecure()) &&
-            (!$this->kernel->getContainer()->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY'))
-        ) {
-            $request->server->set('HTTPS', false);
-            $request->server->set('SERVER_PORT', 80);
-            return $event->setResponse(new RedirectResponse($request->getUri()));
-        }
+        // if (($request->isSecure()) &&
+        //     (!$this->kernel->getContainer()->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY'))
+        // ) {
+        //     $request->server->set('HTTPS', false);
+        //     $request->server->set('SERVER_PORT', 80);
+        //     return $event->setResponse(new RedirectResponse($request->getUri()));
+        // }
     }
 
 
