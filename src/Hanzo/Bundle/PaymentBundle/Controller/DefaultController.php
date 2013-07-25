@@ -159,7 +159,7 @@ class DefaultController extends CoreController
                 'data'    => $api->getProcessButton($order),
             ];
         }
-Tools::log($response);
+// Tools::log($response);
         // If the customer cancels payment, state is back to building
         // Customer is only allowed to add products to the basket if state is >= pre payment
         $order->setState( Orders::STATE_PRE_PAYMENT );

@@ -7,6 +7,7 @@ use Exception;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Model\Orders;
+
 use Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface;
 use Hanzo\Bundle\PaymentBundle\BasePaymentApi;
 use Hanzo\Bundle\PaymentBundle\Methods\Dibs\DibsApiCall;
@@ -450,7 +451,7 @@ class FlexWin extends BasePaymentApi implements PaymentMethodApiInterface
     }
 
 
-    public function getProcessButton(Orders $order)
+    public function getProcessButton(Orders $order, Request $request)
     {
         $fields = '';
         foreach ($this->buildFormFields($order) as $name => $value) {
