@@ -451,7 +451,7 @@ class FlexWin extends BasePaymentApi implements PaymentMethodApiInterface
     }
 
 
-    public function getProcessButton(Orders $order, Request $request)
+    public function getProcessButton(Orders $order)
     {
         $fields = '';
         foreach ($this->buildFormFields($order) as $name => $value) {
