@@ -83,7 +83,6 @@ class DibsPaymentWindow extends BasePaymentApi implements PaymentMethodApiInterf
         if (isset($settings['paytypes'])) {
             $this->settings['paytypes'] = unserialize($settings['paytypes']);
         }
-        Tools::log($this->settings);
     }
 
     /**
