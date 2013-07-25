@@ -9,6 +9,7 @@ use Hanzo\Core\RedisCache;
 
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 
 class HanzoBoot
@@ -35,8 +36,62 @@ class HanzoBoot
      */
     public function onKernelRequest(GetResponseEvent $event)
     {
+        $this->sslHandeling($event);
         $this->deviceCheck($event);
         $this->webshopAccessRestrictionCheck($event);
+    }
+
+
+    protected function sslHandeling($event)
+    {
+return; // WIP: work in progress...
+
+        // only scan MASTER_REQUESTS
+        if (HttpKernelInterface::MASTER_REQUEST !== $event->getRequestType()) {
+            return;
+        }
+
+        $request = $event->getRequest();
+
+        // skip ssl check for these routes
+        if (in_array($request->get('_route'), [
+            // misc routes
+            '_account_create',
+            '_account_lost_password',
+            '_account_phone_lookup',
+            '_internal',
+            '_wdt',
+            'bazinga_exposetranslation_js',
+            'login',
+            'login_check',
+            'muneris_nno_lookup',
+
+            // dibs callbacks
+            'PaymentBundle_dibs_callback',
+
+            // pensio callbacks
+            '_pensio_form',
+            '_pensio_wait',
+            '_pensio_callback',
+            '_pensio_process',
+
+            // ax calls
+            'ax_soap',
+
+            // paypal
+            '_paypal_callback',
+            '_paypal_cancel',
+        ])) {
+            return;
+        }
+
+        if (($request->isSecure()) &&
+            (!$this->kernel->getContainer()->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY'))
+        ) {
+            $request->server->set('HTTPS', false);
+            $request->server->set('SERVER_PORT', 80);
+            return $event->setResponse(new RedirectResponse($request->getUri()));
+        }
     }
 
 

@@ -8,7 +8,7 @@ use Hanzo\Core\Tools;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\OrdersQuery;
-use Hanzo\Bundle\ServiceBundle\Services\AxService;
+use Hanzo\Bundle\AxBundle\Actions\Out\AxService;
 
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Response;

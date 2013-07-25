@@ -18,11 +18,12 @@
           attachLocationForm($('#address-block form.location-locator'));
         } else if (element.name == 'paytype') {
           checkout.setStepStatus('payment', true);
+          $('#gift-card-block').removeClass('hidden');
           $('#coupon-block').removeClass('hidden');
         }
       });
 
-      // TODO: move to central place and re-use
+      // TODO: move to central place and re-use.
       // zip with auto city
       $(document).on('focusout', 'input.auto-city', function(event) {
         var $this = $(this);
@@ -208,19 +209,19 @@
       });
 
       $(document).on('payment.method.updated', function(event) {
-        $('#coupon-block').removeClass('hidden');
+        $('.voucher-block').removeClass('hidden');
       });
 
-      var $coupon = $('#coupon-block');
-      $('a', $coupon).on('click', function(event) {
+      var $block = $('.voucher-block');
+      $('a', $block).on('click', function(event) {
         event.preventDefault();
         $(this).next().toggle();
       });
 
-      $('form', $coupon).on('submit', function(event) {
+      $('form', $block).on('submit', function(event) {
         event.preventDefault();
 
-        var $msg = $('form .msg', $coupon);
+        var $msg = $('form .msg', $block);
         if (!$msg.hasClass('off')) {
           $msg.addClass('off');
         }
@@ -228,7 +229,14 @@
         var $form = $(this);
         dialoug.loading($('.button', $form));
 
-        jaiks.add('/checkout/coupon/apply', checkout.handleCouponUpdates, {code: $('input#form_code', $form).val()});
+        var callback = checkout.handleGiftCardUpdates;
+        if ('apply-coupon' == $form.attr('id')) {
+          callback = checkout.handleCouponUpdates;
+        }
+
+        var action = $form.attr('action').replace(/^\/[a-z]{2}_[A-Z]{2}/, '');
+
+        jaiks.add(action, callback, {code: $('input#form_code', $form).val()});
         jaiks.add('/checkout/summery', checkout.handleSummeryUpdates);
         jaiks.exec();
       });
@@ -334,6 +342,17 @@
       pub.handleSummeryUpdates(response);
     };
 
+    pub.handleGiftCardUpdates = function(response) {
+      if (stop) { return; }
+
+      var $gift_card = $('#gift-card-block');
+      if (response.response.status) {
+        $('form', $gift_card).hide();
+      } else {
+        $('form .msg', $gift_card).text(response.response.message).toggleClass('off hidden');
+      }
+    };
+
     pub.handleCouponUpdates = function(response) {
       if (stop) { return; }
 
@@ -341,7 +360,7 @@
       if (response.response.status) {
         $('form', $coupon).hide();
       } else {
-        $('form .msg', $coupon).text(response.response.message).toggleClass('off');
+        $('form .msg', $coupon).text(response.response.message).toggleClass('off hidden');
       }
     };
 

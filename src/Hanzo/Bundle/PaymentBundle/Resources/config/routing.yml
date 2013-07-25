@@ -57,10 +57,10 @@ _paybybill_callback:
     pattern:  /payment/paybybill/callback
     defaults: { _controller: PaymentBundle:PayByBill:callback }
 
-# Coupon }-------------------------
-_coupon_callback:
-    pattern:  /payment/coupon/callback
-    defaults: { _controller: PaymentBundle:Coupon:callback }
+# GiftCard }----------------------
+_gift_card_callback:
+    pattern:  /payment/gift-card/callback
+    defaults: { _controller: PaymentBundle:GiftCard:callback }
 
 # Pensio }-------------------------
 _pensio_form:
