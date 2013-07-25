@@ -9,11 +9,12 @@ use Hanzo\Model\Orders;
 use Hanzo\Model\LanguagesQuery;
 use Hanzo\Model\Customers;
 
+use Hanzo\Bundle\PaymentBundle\BasePaymentApi;
 use Hanzo\Bundle\PaymentBundle\Methods\Pensio\PensioCallResponse;
 
 use Symfony\Component\HttpFoundation\Request;
 
-class PensioApi
+class PensioApi extends BasePaymentApi
 {
     /**
      * api settings

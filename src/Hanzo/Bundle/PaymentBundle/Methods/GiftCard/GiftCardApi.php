@@ -9,11 +9,12 @@ use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\Customers;
 
 use Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface;
+use Hanzo\Bundle\PaymentBundle\BasePaymentApi;
 use Hanzo\Bundle\PaymentBundle\Methods\GiftCard\GiftCardCallResponse;
 
 use Symfony\Component\HttpFoundation\Request;
 
-class GiftCardApi implements PaymentMethodApiInterface
+class GiftCardApi extends BasePaymentApi implements PaymentMethodApiInterface
 {
     /**
      * undocumented class variable

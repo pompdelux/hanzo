@@ -1207,6 +1207,7 @@ class Orders extends BaseOrders
                 $address = $customer->getAddressess($c)->getFirst();
                 if ($address) {
                     $this->setBillingAddress($address);
+                    $this->setPhone($customer->getPhone());
                 } else {
                     Tools::log('Missing payment address: '.$customer->getId());
                 }

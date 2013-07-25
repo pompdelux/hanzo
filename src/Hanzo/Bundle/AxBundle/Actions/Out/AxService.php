@@ -254,6 +254,7 @@ class AxService
                         $custPaymMode = 'MasterCard';
                         break;
                     case 'V-DK':
+                    case 'VISA-DANKORT':
                     case 'DK':
                         $custPaymMode = 'DanKort';
                         break;
@@ -284,7 +285,7 @@ class AxService
         $salesTable = new stdClass();
         $salesTable->CustAccount             = $order->getCustomersId();
         $salesTable->EOrderNumber            = $order->getId();
-        $salesTable->PaymentId               = isset( $attributes->payment->transact ) ? $attributes->payment->transact : '';
+        $salesTable->PaymentId               = isset($attributes->payment->transact) ? $attributes->payment->transact : '';
         $salesTable->HomePartyId             = isset($attributes->global->HomePartyId) ? $attributes->global->HomePartyId : '';
         $salesTable->SalesResponsible        = isset($attributes->global->SalesResponsible) ? $attributes->global->SalesResponsible : '';
         $salesTable->CurrencyCode            = $order->getCurrencyCode();

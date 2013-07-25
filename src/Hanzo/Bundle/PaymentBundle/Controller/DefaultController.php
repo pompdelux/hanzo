@@ -53,14 +53,10 @@ class DefaultController extends CoreController
                 }
 
                 $parameters = [
-                    'order' => $order,
+                    'order'                 => $order,
+                    'cardtypes'             => $service->getPayTypes(),
                     'selected_payment_type' => $selected_payment_type,
                 ];
-
-                // TODO: fix hardcoded "cardtypes"
-                if (method_exists($service, 'getEnabledPaytypes')) {
-                    $parameters['cardtypes'] = $service->getEnabledPaytypes();
-                }
 
                 $modules[] = $this->render('PaymentBundle:'.$controller.':select.html.twig', $parameters)->getContent();
             }
@@ -163,7 +159,7 @@ class DefaultController extends CoreController
                 'data'    => $api->getProcessButton($order),
             ];
         }
-
+// Tools::log($response);
         // If the customer cancels payment, state is back to building
         // Customer is only allowed to add products to the basket if state is >= pre payment
         $order->setState( Orders::STATE_PRE_PAYMENT );
@@ -181,7 +177,7 @@ class DefaultController extends CoreController
     public function cancelAction()
     {
         $translator = $this->get('translator');
-
+Tools::log($_POST);
         $order = OrdersPeer::getCurrent();
         $order->setState( Orders::STATE_BUILDING );
         $order->save();
