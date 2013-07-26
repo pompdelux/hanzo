@@ -24,7 +24,7 @@ use Hanzo\Core\Tools;
  */
 class OrdersPeer extends BaseOrdersPeer
 {
-    public static function getCurrent()
+    public static function getCurrent($force_reload = true)
     {
         $hanzo = Hanzo::getInstance();
         $session = $hanzo->getSession();
@@ -38,24 +38,30 @@ class OrdersPeer extends BaseOrdersPeer
                     ->orderByPrice()
                 ->endUse()
                 ->leftJoinWithOrdersLines()
-                ->findPk(
+                ->findOneById(
                     $session->get('order_id'),
                     Propel::getConnection(null, Propel::CONNECTION_WRITE)
                 )
             ;
 
             // attach the customer to the order.
-            if (($order instanceOf Orders) && !$order->getCustomersId()) {
-                $security = $hanzo->container->get('security.context');
+            if ($order instanceOf Orders) {
+                if (!$order->getCustomersId()) {
+                    $security = $hanzo->container->get('security.context');
 
-                if ($security->isGranted('ROLE_USER')) {
-                    $user = $security->getToken()->getUser();
+                    if ($security->isGranted('ROLE_USER')) {
+                        $user = $security->getToken()->getUser();
 
-                    $order->setCustomersId($user->getId());
-                    $order->setEmail($user->getEmail());
-                    $order->setFirstName($user->getFirstName());
-                    $order->setLastName($user->getLastName());
-                    $order->save();
+                        $order->setCustomersId($user->getId());
+                        $order->setEmail($user->getEmail());
+                        $order->setFirstName($user->getFirstName());
+                        $order->setLastName($user->getLastName());
+                        $order->save();
+                    }
+                }
+
+                if ($force_reload) {
+                    $order->reload(true);
                 }
             }
         }
@@ -72,11 +78,13 @@ class OrdersPeer extends BaseOrdersPeer
      */
     public static function retriveByPaymentGatewayId($gateway_id)
     {
-        return OrdersQuery::create()
+        $order = OrdersQuery::create()
             ->findOneByPaymentGatewayId(
                 $gateway_id,
                 Propel::getConnection(null, Propel::CONNECTION_WRITE)
         );
+        $order->reload(true);
+        return $order;
     }
 
 

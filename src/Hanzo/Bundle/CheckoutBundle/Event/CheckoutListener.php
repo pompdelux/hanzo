@@ -11,11 +11,10 @@ use Hanzo\Core\Tools;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersLinesQuery;
 use Hanzo\Model\OrdersSyncLogQuery;
-use Hanzo\Model\ProductsDomainsPricesPeer;
 
 use Hanzo\Bundle\AccountBundle\AddressFormatter;
 use Hanzo\Bundle\ServiceBundle\Services\MailService;
-use Hanzo\Bundle\ServiceBundle\Services\AxService;
+use Hanzo\Bundle\AxBundle\Actions\Out\AxService;
 
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
@@ -72,40 +71,49 @@ class CheckoutListener
     }
 
 
-    public function onPaymentCollected(FilterOrderEvent $event)
+    /**
+     * Closing order
+     * Note, this MUST be the first event triggered!
+     *
+     * If the order is in a wrong state, propagation is halted.
+     *
+     * @param  FilterOrderEvent $event
+     * @return void
+     */
+    public function onPaymentCollectedFirst(FilterOrderEvent $event)
     {
         $order = $event->getOrder();
 
         if ($order->getState() < Orders::STATE_PAYMENT_OK ) {
-            error_log(__LINE__.':'.__FILE__.' Could not sync order, state is: '.$order->getState()); // hf@bellcom.dk debugging
-            // woopsan!
+            $this->logger->addError('Order #'.$order->getId().' was in state "'.$order->getState().'" and was stopped in flow!');
+            $event->stopPropagation();
             return;
         }
 
         // need copy for later
-        $in_edit = $order->getInEdit();
+        $event->setInEdit($order->getInEdit());
 
         $order->setState( Orders::STATE_PENDING );
         $order->setInEdit(false);
         $order->setSessionId($order->getId());
         $order->setUpdatedAt(time());
         $order->save();
+    }
 
-        // trigger ax sync
-        $this->ax->sendOrder($order);
 
-        // ONLY send email and cancel payments if the order is logged !
-        $logged = OrdersSyncLogQuery::create()
-            ->select('State')
-            ->filterByOrdersId($order->getId())
-            ->findOne(Propel::getConnection(null, Propel::CONNECTION_WRITE))
-        ;
-        if (!$logged) {
-            return;
-        }
+    /**
+     * Build and send order confirmation to customer
+     * Event is triggered last.
+     *
+     * @param  FilterOrderEvent $event
+     * @return void
+     */
+    public function onPaymentCollected(FilterOrderEvent $event)
+    {
+        $order = $event->getOrder();
+        $in_edit = $event->getInEdit();
 
         // build and send order confirmation.
-
         $attributes = $order->getAttributes();
         $email = $order->getEmail();
         $name  = trim($order->getFirstName() . ' ' . $order->getLastName());
@@ -199,9 +207,9 @@ class CheckoutListener
             $params['payment_gateway_id'] = $order->getPaymentGatewayId();
         }
 
-        if (isset($attributes->coupon->amount)) {
-            $params['coupon_amount'] = $attributes->coupon->amount;
-            $params['coupon_name'] = $attributes->coupon->text;
+        if (isset($attributes->gift_card->amount)) {
+            $params['gift_card_amount'] = $attributes->gift_card->amount;
+            $params['gift_card_name'] = $attributes->gift_card->text;
         }
 
         foreach ($order->getOrdersLiness() as $line) {
@@ -267,7 +275,6 @@ class CheckoutListener
     public function onFinalize(FilterOrderEvent $event)
     {
         $order = $event->getOrder();
-
         $customer = $order->getCustomers();
         $hanzo = Hanzo::getInstance();
 
@@ -287,59 +294,8 @@ class CheckoutListener
           $order->clearPaymentAttributes();
         }
 
-        $discount = 0;
-
-        // apply group and private discounts if discounts is not disabled
-        if (0 == $hanzo->get('webshop.disable_discounts')) {
-            if ($customer->getDiscount()) {
-                $discount_label = 'discount.private';
-                $discount = $customer->getDiscount();
-            } else {
-                if ($customer->getGroups()) {
-                    $discount_label = 'discount.group';
-                    $discount = $customer->getGroups()->getDiscount();
-                }
-            }
-        }
-
-        if ($discount <> 0.00) {
-            // we do not stack discounts, so we need to recalculate the orderlines
-            $lines = $order->getOrdersLiness();
-
-            $product_ids = array();
-            foreach ($lines as $line) {
-                if('product' == $line->getType()) {
-                    $product_ids[] = $line->getProductsId();
-                }
-            }
-
-            $prices = ProductsDomainsPricesPeer::getProductsPrices($product_ids);
-            $collection = new PropelCollection();
-
-            foreach ($lines as $line) {
-                if('product' == $line->getType()) {
-                    $price = $prices[$line->getProductsId()];
-
-                    $line->setPrice($price['normal']['price']);
-                    $line->setVat($price['normal']['vat']);
-                    $line->setOriginalPrice($price['normal']['price']);
-                }
-
-                $collection->prepend($line);
-            }
-
-            $order->setOrdersLiness($collection);
-
-            $total = $order->getTotalProductPrice();
-
-            // so far _all_ discounts are handled as % discounts
-            $discount_amount = ($total / 100) * $discount;
-            $order->setDiscountLine($discount_label, $discount_amount, $discount);
-        }
-
-        $domain_key = $hanzo->get('core.domain_key');
-
         // set once, newer touch agian
+        $domain_key = $hanzo->get('core.domain_key');
         if (!$order->getInEdit() && (false === strpos($domain_key, 'Sales'))) {
             $order->setAttribute('HomePartyId', 'global', 'WEB ' . $domain_key);
             $order->setAttribute('SalesResponsible', 'global', 'WEB ' . $domain_key);

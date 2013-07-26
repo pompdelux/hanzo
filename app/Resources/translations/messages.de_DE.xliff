@@ -4,107 +4,107 @@
         <body>
             <trans-unit id="out.of.stock">
                 <source>out.of.stock</source>
-                <target>Udsolgt</target>
+                <target>Ausverkauft</target>
             </trans-unit>
             <trans-unit id="home">
                 <source>home</source>
-                <target>Til forsiden</target>
+                <target>Home</target>
             </trans-unit>
             <trans-unit id="show.basket">
                 <source>show.basket</source>
-                <target>Vis kurv</target>
+                <target>Warenkorb anzeigen</target>
             </trans-unit>
             <trans-unit id="choose">
                 <source>choose</source>
-                <target>Vælg</target>
+                <target>Wählen</target>
             </trans-unit>
             <trans-unit id="quantity">
                 <source>quantity</source>
-                <target>Antal</target>
+                <target>Menge</target>
             </trans-unit>
             <trans-unit id="loading">
                 <source>loading</source>
-                <target>Loading</target>
+                <target>Wird geladen</target>
             </trans-unit>
             <trans-unit id="more.product.info">
                 <source>more.product.info</source>
-                <target>Klik her for at mere information om %name%.</target>
+                <target>Hier klicken für weitere Informationen über %name%.</target>
             </trans-unit>
             <trans-unit id="all.products.out.of.stock">
                 <source>all.products.out.of.stock</source>
-                <target>Alle varer i denne kategori er udsolgte.</target>
+                <target>Alle Waren in dieser Kategorie sind ausverkauft.</target>
             </trans-unit>
             <trans-unit id="pager.previous.page">
                 <source>pager.previous.page</source>
-                <target>Vis forrige side</target>
+                <target>Vorherige Seite anzeigen</target>
             </trans-unit>
             <trans-unit id="previous">
                 <source>previous</source>
-                <target>Forrige</target>
+                <target>Vorherige</target>
             </trans-unit>
             <trans-unit id="pager.page">
                 <source>pager.page</source>
-                <target>Vis side %page%</target>
+                <target>Seite %page% anzeigen</target>
             </trans-unit>
             <trans-unit id="pager.next.page">
                 <source>pager.next.page</source>
-                <target>Vis næste side</target>
+                <target>Nächste Seite anzeigen</target>
             </trans-unit>
             <trans-unit id="next">
                 <source>next</source>
-                <target>Næste</target>
+                <target>Nächste</target>
             </trans-unit>
             <trans-unit id="product.details">
                 <source>product.details</source>
-                <target>Varebeskrivelse</target>
+                <target>Warenbeschreibung</target>
             </trans-unit>
             <trans-unit id="care.instructions">
                 <source>care.instructions</source>
-                <target>Vaskeanvisning</target>
+                <target>Waschanleitung</target>
             </trans-unit>
             <trans-unit id="add.to.basket">
                 <source>add.to.basket</source>
-                <target>Læg i kurv</target>
+                <target>In den Warenkorb legen</target>
             </trans-unit>
             <trans-unit id="product.added.to.cart">
                 <source>product.added.to.cart</source>
-                <target>"%product%" er nu lagt i din kurv</target>
+                <target>"%product%" ist jetzt in Ihrem Warenkorb</target>
             </trans-unit>
             <trans-unit id="product.out.of.stock">
                 <source>product.out.of.stock</source>
-                <target>"%product%" er desværre udsolgt</target>
+                <target>"%product%" ist leider ausverkauft</target>
             </trans-unit>
             <trans-unit id="products">
                 <source>products</source>
-                <target>Produkt(er)</target>
+                <target>Produkt(e)</target>
             </trans-unit>
             <trans-unit id="latest.shipment.date">
                 <source>latest.shipment.date</source>
-                <target>Afsendes senest</target>
+                <target>Wird spätestens verschickt am</target>
             </trans-unit>
             <trans-unit id="price">
                 <source>price</source>
-                <target>Pris</target>
+                <target>Preis</target>
             </trans-unit>
             <trans-unit id="total">
                 <source>total</source>
-                <target>Samlet Beløb</target>
+                <target>Gesamtbetrag</target>
             </trans-unit>
             <trans-unit id="edit">
                 <source>edit</source>
-                <target>Rediger</target>
+                <target>Bearbeiten</target>
             </trans-unit>
             <trans-unit id="delete">
                 <source>delete</source>
-                <target>Slet</target>
+                <target>Entfernen</target>
             </trans-unit>
             <trans-unit id="size">
                 <source>size</source>
-                <target>Size</target>
+                <target>Größe</target>
             </trans-unit>
             <trans-unit id="color">
                 <source>color</source>
-                <target>Color</target>
+                <target>Farbe</target>
             </trans-unit>
             <trans-unit id="company.address">
                 <source>company.address</source>
@@ -112,38 +112,38 @@
             </trans-unit>
             <trans-unit id="date">
                 <source>date</source>
-                <target>Dato</target>
+                <target>Datum</target>
             </trans-unit>
             <trans-unit id="event.id">
                 <source>event.id</source>
-                <target>Arrangenments nr.</target>
+                <target>Veranstaltung Nr.</target>
             </trans-unit>
             <trans-unit id="store.address">
                 <source>store.address</source>
-                <target>POMPdeLUX ApS · Møgelhøj 8 · DK-8520 Lystrup · CVR-nr 29622035 · mail@pompdelux.dk · (+45) 8678 7871</target>
+                <target>POMPdeLUX ApS • Møgelhøj 8 • DK-8520 Lystrup • USt-IdNr. 29622035 • mailde@pompdelux.com • <!--040-35715072-->0045 8678 7871</target>
             </trans-unit>
             <trans-unit id="order.edit.global.notice">
                 <source>order.edit.global.notice</source>
                 <target><![CDATA[
-                  <h2>Bemærk:</h2>
+                  <h2>Bitte beachten:</h2>
                   <p>
-                    Du er ved at redigere E-ordrenummer <a href="%history_url%" title="se ordren">%order_id%</a>.<br>
-                    Ønsker du at afbryde redigeringen af din ordre - <a href="%stop_url%" title="stop editering af ordren">klik her.</a>
+                    Sie bearbeiten gerade die E-Bestellnummer <a href="%history_url%" title="se ordren">%order_id%</a>.<br>
+                    Möchten Sie die Bearbeitung Ihrer Bestellung beenden - <a href="%stop_url%" title="stop editering af ordren">hier klicken.</a>
                   </p>
-                  <p>Ønsker du at ændre en farve eller en størrelse, skal du klikke på blyanten i kurven. Ønsker du at tilføje varer, skal du klikke på menuen Webshop.</p>
-                  <p class="last">Når du er færdig med dine ændringer, skal du klikke på "Vis kurv" og følge trin 1 til 6. Når du har gennemført din ordre med ny kreditkortbetaling, vil den gamle betaling automatisk blive slettet.</p>
+                  <p>Möchten Sie eine Farbe oder Größe ändern, dann klicken Sie bitte auf den Bleistift im Warenkorb. Möchten Sie Waren hinzufügen, dann klicken Sie bitte auf das Menü Webshop.</p>
+                  <p class="last">Nach Abschluss Ihrer Änderungen klicken Sie bitte auf "Warenkorb anzeigen" und führen die Schritte 1 bis 6 aus. Wenn Sie Ihre Bestellung mit einer neuen Kreditkartenzahlung durchgeführt haben, wird die vorherige Zahlung automatisch gelöscht.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="customer.service.contact.info">
                 <source>customer.service.contact.info</source>
                 <target><![CDATA[
-                    <strong>Kundeservice</strong><br>
-                    Telefon: (+45) 8678 7871<br>
-                    E-mail: <a href="mailto:mail@pompdelux.dk">mail@pompdelux.dk</a><br>
-                    Mandag til torsdag kl. 9 - 16<br>
-                    Fredag 9 - 14<br>
-                    <!--Pause kl. 12 - 12.45<br>-->
-                    Lørdag, søndag og helligdage lukket.
+                    <strong>Kundendienst</strong><br>
+                    Telefon: 040-35715072<br>
+                    E-Mail: <a href="mailto:mailde@pompdelux.com">mailde@pompdelux.com</a><br>
+                    Montags bis Donnerstags 9 - 16 Uhr<br>
+                    Freitags 9 - 14 Uhr<br>
+                    <!--Pause 12 - 12.45 Uhr<br>-->
+                    Samstags, Sonntags und Feiertags geschlossen.
                 ]]></target>
             </trans-unit>
             <trans-unit id="footer.address">
@@ -153,38 +153,38 @@
                         <li>POMPdeLUX ApS</li>
                         <li>Møgelhøj 8</li>
                         <li>DK-8520 Lystrup</li>
-                        <li>CVR-nr 29622035</li>
-                        <li><a href="mailto:mail@pompdelux.dk">mail@pompdelux.dk</a></li>
-                        <li>(+45) 8678 7871</li>
+                        <li>USt-IdNr. 29622035</li>
+                        <li><a href="mailto:mailde@pompdelux.com">mailde@pompdelux.com</a></li>
+                        <li><!--040-35715072--> 0045 8678 7171</li>
                         <li><img src="%cdn%fx/images/creditcards_dk.png" alt="credit cards" title="credit cards"></li>
-                        <li><a href="http://www.facebook.com/sharer.php?u=%url%" class="facebook-button social-button" title="Del denne side på Facebook">Del på Facebook</a></li>
+                        <li><a href="http://www.facebook.com/sharer.php?u=%url%" class="facebook-button social-button" title="Del denne side på Facebook">Auf Facebook teilen</a></li>
                     </ul>
                 ]]></target>
             </trans-unit>
             <trans-unit id="order.deleted">
                 <source>order.deleted</source>
-                <target>E-ordrenummer %id% er slettet</target>
+                <target>E-Bestellnummer %id% wurde gelöscht</target>
             </trans-unit>
             <trans-unit id="buy.set">
                 <source>buy.set</source>
-                <target>Køb hele sættet</target>
+                <target>Das ganze Set kaufen</target>
             </trans-unit>
             <trans-unit id="button.back">
                 <source>button.back</source>
-                <target>Tilbage</target>
+                <target>Zurück</target>
             </trans-unit>
             <trans-unit id="button.find">
                 <source>button.find</source>
-                <target>Find</target>
+                <target>Finden</target>
             </trans-unit>
             <trans-unit id="browser.title">
                 <source>browser.title</source>
-                <target>POMPdeLUX - Vild med børnetøj</target>
+                <target>POMPdeLUX - wir lieben Kinderbekleidung</target>
             </trans-unit>
             <trans-unit id="create.account.vilkaar.link">
                 <source>create.account.vilkaar.link</source>
                 <target><![CDATA[
-                    <a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a>
+                    <a href="/de_DE/home/kundendienst/abgs" target="_blank">POMPdeLUX AGB's.</a>
                 ]]></target>
             </trans-unit>
             <trans-unit id="category.selector.look" approved="no">
@@ -193,19 +193,19 @@
             </trans-unit>
             <trans-unit id="category.selector.overview" approved="no">
                 <source>category.selector.overview</source>
-                <target>Overview</target>
+                <target>Übersicht</target>
             </trans-unit>
             <trans-unit id="options.title" approved="no">
                 <source>options.title</source>
-                <target>Farve og størrelse</target>
+                <target>Farbe und Größe</target>
             </trans-unit>
             <trans-unit id="choose.size.note" approved="no">
                 <source>choose.size.note</source>
-                <target>(Størrelsen er barnets højde i cm.)</target>
+                <target>(Die Größe ist die Größe des Kindes in cm.)</target>
             </trans-unit>
             <trans-unit id="click.to.zoom" approved="no">
                 <source>click.to.zoom</source>
-                <target>Klik for zoom</target>
+                <target>Zum Zoomen klicken</target>
             </trans-unit>
             <trans-unit id="click.to.video" approved="no">
                 <source>click.to.video</source>
@@ -213,101 +213,102 @@
             </trans-unit>
             <trans-unit id="product.pictures.title" approved="no">
                 <source>product.pictures.title</source>
-                <target>Billeder</target>
+                <target>Fotos</target>
             </trans-unit>
             <trans-unit id="buy.the.set.title" approved="no">
                 <source>buy.the.set.title</source>
-                <target>Køb sættet</target>
+                <target>Das Set kaufen</target>
             </trans-unit>
             <trans-unit id="latest.seen.products.title" approved="no">
                 <source>latest.seen.products.title</source>
-                <target>Jeg har også kigget på</target>
+                <target>Ich habe mir auch angesehen</target>
             </trans-unit>
             <trans-unit id="delivery.title" approved="no">
                 <source>delivery.title</source>
-                <target>Levering</target>
+                <target>Lieferung</target>
             </trans-unit>
             <trans-unit id="delivery.info" approved="no">
                 <source>delivery.info</source>
                 <target><![CDATA[
-                    <p>Alle varer sendes som pakkepost med <a href="http://www.postdanmark.dk" target="_blank">Post Danmark</a>. Du har derfor mulighed for at f&oslash;lge din pakke via <a href="http://www.postdanmark.dk/contentfull.dk?content=/cms/da-dk/app/tracktrace/track_og_trace.htm&amp;menufile=" target="_blank">track &amp; trace</a> fra den afsendes, til den bliver leveret. <br />
-    Du kan v&aelig;lge mellem tre forsendelsesmuligheder:
+                    <p>Alle Waren werden als Pakete mit<a href="http://www.postdanmark.dk" target="_blank">Post Danmark verschickt</a>. Daher haben Sie die Möglichkeit, Ihr Paket ab dem Versand bis zum Empfang mit Hilfe von <a href="http://www.postdanmark.dk/contentfull.dk?content=/cms/da-dk/app/tracktrace/track_og_trace.htm&amp;menufile=" target="_blank">Track &amp; Trace</a> zu verfolgen. <br />
+    Sie können zwischen drei Versandarten wählen:
     <br /><br />
-      Erhvervspakke: Hvis du gerne vil have leveret pakken på din arbejdsplads, vælger du erhvervspakke. Det koster DKK 39,00 (dog kun DKK 29,00 hvis du køber varerne til et Home shopping eller Åbent hus arrangement). Husk at udfylde firmanavn, kontaktperson og firmaadresse i leveringsadressen.
-      <br /><br />Privatpakke: Hvis du gerne vil have leveret pakken på din privatadresse, koster det DKK 59,00 (DKK 49,00 hvis du køber varerne til et Home shopping eller Åbent hus arrangement).<br /><br />Døgnpost: For at du kan få sendt pakker til Døgnposten, skal du oplyse dit navn og det ID, du valgte ved tilmeldingen til Døgnposten. Det koster DKK 39,00 at få leveret pakker til Døgnposten (dog kun DKK 29,00 hvis du køber varerne til et Home shopping eller Åbent hus arrangement) Oplys Døgnpostens nummer og adresse som leveringsadresse og din egen adresse som betalingsadresse.<br /><br />
-    N&aring;r du har modtaget pakken, b&oslash;r du kontrollere varerne. Hvis pakken og/eller indholdet er beskadiget, bedes du straks tage kontakt til vores <a href="/da_DK/forside/kundeservice">Kundeservice</a> eller til <a href="http://www.postdanmark.dk" target="_blank">Post Danmark</a>.</p>
+      Firmenpaket: Wenn das Paket an Ihren Arbeitsplatz geliefert werden soll, wählen Sie bitte Firmenpaket. Das kostet 39,00 Euro (jedoch nur 29,00 Euro, wenn Sie die Waren bei einer Homeshopping- oder Tag der offenen Tür-Veranstaltung gekauft haben). Bitte Firmennamen, Kontaktperson und Firmenanschrift im Feld Lieferanschrift angeben.
+      <br /><br />Privatpaket: Wenn das Paket an Ihre Privatadresse geliefert werden soll, kostet dies 59,00 Euro (49,00 Euro, wenn Sie die Waren bei einer Homeshopping- oder Tag der offenen Tür-Veranstaltung gekauft haben).<br /><br />Packstation: Für den Versand von Paketen zu einer Packstation geben Sie bitte Ihren Namen und die ID an, die Sie bei der Anmeldung für die Packstation gewählt haben. Der Versand zu einer Packstation kostet 39,00 Euro (jedoch nur 29,00 Euro, wenn Sie die Waren bei einer Homeshopping- oder Tag der offenen Tür-Veranstaltung gekauft haben). Geben Sie die Nummer und Adresse der Packstation als Lieferanschrift sowie Ihre eigene Adresse als Rechnungsanschrift an.<br /><br />
+    Wenn Sie das Paket empfangen haben, sollten Sie die Waren überprüfen. Wenn das Paket und/oder der Inhalt beschädigt sind, wenden Sie sich bitte umgehend an unseren <a href="/de_DE/kundendienst/telefonzeiten">Kundendienst</a> oder an <a href="http://www.postdanmark.dk" target="_blank">Post Danmark</a>.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="return.title" approved="no">
                 <source>return.title</source>
-                <target>Returnering</target>
+                <target>Rücksendung</target>
             </trans-unit>
             <trans-unit id="return.info" approved="no">
                 <source>return.info</source>
                 <target><![CDATA[
-                    <p>Varerne skal være ubrugte og returneres i original emballage, med hængemærker osv. Strømper, leggings og strømpebukser kan kun returneres i ubrudt emballage. Postposen, som du modtager dine varer i, er lavet, så den kan bruges to gange. På posen kan du se, hvor du skal klippe, så du kan anvende den igen. Vi refunderer derfor ikke penge for returemballage, ligesom vi ikke refunderer penge for porto, hvis du kun sender dele af din ordre retur. Vi modtager ikke returvarer, der bliver sendt pr. efterkrav.</p>
+                    <p>Die Waren müssen ungebraucht sein und in Originalverpackung, mit Textiletiketten usw. zurückgeschickt werden. Die Rücksendung von Strümpfen, Leggings und Strumpfhosen kann nur in ungeöffneter Originalverpackung erfolgen. Die Postverpackung, in der Sie Ihre Waren erhalten, ist so ausgelegt, dass sie zweimal verwendet werden kann. Auf der Verpackung können Sie sehen, wo man schneiden muss, um sie erneut verwenden zu können. Wir erstatten daher kein Geld für Rückverpackungen zurück. Dasselbe gilt für Portokosten, wenn Sie uns nur Teile Ihrer Bestellung zurückschicken. Wir nehmen keine Rücksendungen entgegen, die per Nachname verschickt werden.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="footer.menu_1" approved="no">
                 <source>footer.menu_1</source>
                 <target><![CDATA[
-                <h2>Home shopping</h2>
+                <h2>Homeshopping</h2>
                 <ul class="menu">
-                    <li><a href="/da_DK/forside/home-shopping" target="_blank">Om Home shopping</a></li>
-					<li><a href="/da_DK/forside/home-shopping/find-konsulent" target="_blank">Find konsulent</a></li>
-					<li><a href="/da_DK/forside/home-shopping/find-konsulent-paa-kort" target="_blank">Find konsulent på kort</a></li>
-					<li><a href="/da_DK/forside/home-shopping/aabent-hus" target="_blank">Åbent hus</a></li>
+                    <li><a href="/de_DE/home/uber-home-shopping" target="_blank">Über Homeshopping</a></li>
+					<li><a href="/de_DE/home/home-shopping/beraterin-finden" target="_blank">Beraterin finden</a></li>
+					<li><a href="/de_DE/home/home-shopping/beraterin-auf-karte-finden" target="_blank">Beraterin auf Karte finden</a></li>
+					<li><a href="/de_DE/home/home-shopping/tag-der-offenen-tur" target="_blank">Tag der offenen Tür</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>
             <trans-unit id="footer.menu_2" approved="no">
                 <source>footer.menu_2</source>
                 <target><![CDATA[
-                <h2>Mere POMPdeLUX</h2>
+                <h2>Mehr POMPdeLUX</h2>
                 <ul class="menu">
-				    <li><a href="/da_DK/forside/katalog" target="_blank">Online katalog</a></li>
-					<li><a href="/da_DK/forside/katalog/image-video" target="_blank">Image Video</a></li>
-                    <li><a href="/da_DK/forside/nyheder" target="_blank">Nyheder</a></li>
-                    <li><a href="/da_DK/forside/om-pompdelux/koncept" target="_blank">Koncept</a></li>
-                    <li><a href="/da_DK/forside/om-pompdelux/social-ansvarlighed" target="_blank">Social ansvarlighed</a></li>
-                    <li><a href="/da_DK/forside/om-pompdelux/danmarks-indsamlingen" target="_blank">Danmarks Indsamlingen</a></li>
-					<li><a href="/da_DK/forside/om-pompdelux/sos-boernebyerne" target="_blank">SOS Børnebyerne</a></li>
-					<li><a href="/da_DK/forside/om-pompdelux/job" target="_blank">Job</a></li>
-					<li><a href="/da_DK/forside/webshop/info/gots-organic" target="_blank">GOTS (Organic)</a></li>
-					<li><a href="/da_DK/forside/webshop/info/oeko-tex" target="_blank">Oeko-Tex</a></li>
-					<li><a href="/da_DK/forside/webshop/info/credits" target="_blank">Credits</a></li>
-					<li><a href="/da_DK/forside/om-pompdelux/kontakt" target="_blank">Kontakt</a></li>
+				    <li><a href="/de_DE/home/katalog" target="_blank">Online-Katalog</a></li>
+					<li><a href="/de_DE/home/katalog/image-video" target="_blank">Image-Video</a></li>
+                    <li><a href="/de_DE/home/neuigkeiten" target="_blank">Neuigkeiten</a></li>
+                    <li><a href="/de_DE/home/uber-pompdelux/konzept" target="_blank">Konzept</a></li>
+                    <li><a href="/de_DE/home/uber-pompdelux/soziale-verantwortung" target="_blank">Soziale Verantwortung</a></li>
+					<li><a href="/de_DE/home/uber-pompdelux/jobs" target="_blank">Jobs</a></li>
+					<li><a href="/de_DE/home/mehr-pompdelux/gots-organic" target="_blank">GOTS (Organic)</a></li>
+					<li><a href="/de_DE/home/mehr-pompdelux/oeko-tex" target="_blank">Oeko-Tex</a></li>
+					<li><a href="/de_DE/home/mehr-pompdelux/danksagungen" target="_blank">Danksagungen</a></li>
+					<li><a href="/de_DE/home/uber-pompdelux/kontakt" target="_blank">Kontakt</a></li>
+				    <li><a href="/de_DE/home/katalog">Online Katalog</a></li>
+					<li><a href="/de_DE/home/katalog/image-video">Image Video</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>
             <trans-unit id="footer.menu_3" approved="no">
                 <source>footer.menu_3</source>
                 <target><![CDATA[
-                <h2>Kundeservice</h2>
+                <h2>Kundendienst</h2>
                 <ul class="menu">
-                    <li><a href="/da_DK/forside/kundeservice" target="_blank">Telefontider</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/faq" target="_blank">FAQ</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/returnering" target="_blank">Returnering</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/ombytning" target="_blank">Ombytning</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/returseddel" target="_blank">Returseddel</a></li>
-                    <li><a href="/da_DK/forside/webshop/info/vaske-raad" target="_blank">Vaskeråd</a></li>
-					<li><a href="/da_DK/forside/webshop/info/sizeguide" target="_blank">Sizeguide</a></li>
-					<li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">Vilkår</a></li>
-					<li><a href="/da_DK/forside/kundeservice/om-webshoppen" target="_blank">Om webshoppen</a></li>
+                    <li><a href="/de_DE/kundendienst/telefonzeiten" target="_blank">Telefonzeiten</a></li>
+                    <li><a href="/de_DE/kundendienst/telefonzeiten/faq" target="_blank">FAQ</a></li>
+                    <li><a href="/de_DE/home/kundendienst/rucksendung" target="_blank">Rücksendung</a></li>
+                    <li><a href="/de_DE/home/kundendienst/umtausch" target="_blank">Umtausch</a></li>
+                    <li><a href="/de_DE/home/kundendienst/rucksendeschein" target="_blank">Rücksendeschein</a></li>
+                    <li><a href="/de_DE/home/kundendienst/waschtipps" target="_blank">Waschtipps</a></li>
+					<li><a href="/de_DE/home/kundendienst/sizeguide" target="_blank">Größentabelle</a></li>
+					<li><a href="/de_DE/home/kundendienst/abgs" target="_blank">AGB's</a></li>
+					<li><a href="/de_DE/home/kundendienst/impressum" target="_blank">Impressum</a></li>
+					<li><a href="/de_DE/home/kundendienst/uber-den-webshop" target="_blank">Über den Webshop</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>
             <trans-unit id="share.to.%method%" approved="no">
                 <source>share.to.%method%</source>
-                <target>Del på %method%</target>
+                <target>Teilen auf %method%</target>
             </trans-unit>
             <trans-unit id="back.to.category" approved="no">
                 <source>back.to.category</source>
-                <target>Tilbage til oversigten</target>
+                <target>Zurück zur Übersicht</target>
             </trans-unit>
             <trans-unit id="on.stock" approved="no">
                 <source>on.stock</source>
-                <target>På lager</target>
+                <target>Auf Lager</target>
             </trans-unit>
             <trans-unit id="on.stock.yes" approved="no">
                 <source>on.stock.yes</source>
@@ -315,23 +316,23 @@
             </trans-unit>
             <trans-unit id="on.stock.no" approved="no">
                 <source>on.stock.no</source>
-                <target>Nej</target>
+                <target>Nein</target>
             </trans-unit>
             <trans-unit id="pager.pages.%total%" approved="no">
                 <source>pager.pages.%total%</source>
-                <target>af %total%</target>
+                <target>von %total%</target>
             </trans-unit>
             <trans-unit id="pager.see_all.%total%" approved="no">
                 <source>pager.see_all.%total%</source>
-                <target>se alle(%total%)</target>
+                <target>alle (%total%) anzeigen</target>
             </trans-unit>
             <trans-unit id="more.bundle.info" approved="no">
                 <source>more.bundle.info</source>
-                <target>Klik her for at mere information.</target>
+                <target>Hier klicken für weitere Informationen.</target>
             </trans-unit>
             <trans-unit id="goto.top.link" approved="no">
                 <source>goto.top.link</source>
-                <target>Til top</target>
+                <target>Nach oben</target>
             </trans-unit>
         </body>
     </file>

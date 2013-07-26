@@ -52,6 +52,7 @@ class ProductsTableMap extends TableMap
         $this->addColumn('has_video', 'HasVideo', 'BOOLEAN', true, 1, true);
         $this->addColumn('is_out_of_stock', 'IsOutOfStock', 'BOOLEAN', true, 1, false);
         $this->addColumn('is_active', 'IsActive', 'BOOLEAN', true, 1, true);
+        $this->addColumn('is_voucher', 'IsVoucher', 'BOOLEAN', true, 1, false);
         $this->addColumn('created_at', 'CreatedAt', 'TIMESTAMP', false, null, null);
         $this->addColumn('updated_at', 'UpdatedAt', 'TIMESTAMP', false, null, null);
         // validators

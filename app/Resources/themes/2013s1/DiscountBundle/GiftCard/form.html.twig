@@ -1,0 +1,11 @@
+<form action="{{ path('gift_card_form') }}" method="post" {{ form_enctype(form) }} id="apply-gift-card" class="off">
+  <div class="msg off error"></div>
+  <p>{{ 'gift_card.description'|trans({}, 'checkout')|raw }}</p>
+
+  <div class="clearfix">
+    {{ form_label(form.code) }}
+    {{ form_errors(form.code) }}
+    {{ form_widget(form.code) }}
+    <input type="submit" value="{{ 'apply.gift_card.discount'|trans({}, 'checkout') }}" class="button">
+  </div>
+</form>

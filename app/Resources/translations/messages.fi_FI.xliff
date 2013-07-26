@@ -125,7 +125,7 @@
             <trans-unit id="order.edit.global.notice">
                 <source>order.edit.global.notice</source>
                 <target><![CDATA[
-                  <h2>Huomaa:</h2> <p> Olet muokkaamassa E-tilausnumeroa<a href="%history_url%" title="se ordren">%order_id%</a>.<br> Jos haluat keskeyttää tilauksen muokkaamisen - <a href="%stop_url%" title="stop editering af ordren">napsauta tätä.</a> </p> <p>Jos haluat muuttaa väriä tai kokoa, napsauta ostoskorissa olevaa kynää. Jos haluat lisätä tuotteita, napsauta verkkokaupan valikoita. </p> <p class="last">Kun muutokset ovat valmiit, napsauta "Näytä ostoskori" ja suorita vaiheet 1–6. Kun olet maksanut tilauksen uudelleen luottokortilla, vanha maksu poistetaan automaattisesti.</p>]]>
+                  <h2>Huomaa:</h2> <p> Olet muokkaamassa E-tilausnumeroa<a href="%history_url%" title="se ordren">%order_id%</a>.<br> Jos haluat keskeyttää tilauksen muokkaamisen - <a href="%stop_url%" title="stop editering af ordren">napsauta tätä.</a> </p> <p>Jos haluat muuttaa väriä tai kokoa, napsauta lyijykynän kuvaa. Jos haluat lisätä tuotteita, napsauta Girl, Boy, Little Girl tai Little Boy valikkoa sivun yläreunassa. </p> <p class="last">Kun saat muutokset tehtyä, napsauta "Näytä ostoskori" ja valitse ”Jatka”. Kun olet maksanut tilauksen uudelleen luottokortilla, vanha maksu poistetaan automaattisesti. <br><br><b>Huomaa:</b>Jos käytät muokkauksen yhteydessä Visa Electronia tai MasterCardia, kortillasi säilyy vielä automaattisesti tilauksesi kokonaissummaa vastaava varaus. POMPdeLUX peruuttaa kuitenkin heti alkuperäisen tilauksesi kokonaissummaa vastaavan varauksen. Saattaa silti kulua jopa 6 viikkoa ennen kuin oma pankkisi poistaa varauksen. </p>]]>
                 </target>
             </trans-unit>
             <trans-unit id="customer.service.contact.info">
@@ -231,10 +231,10 @@
                 <target><![CDATA[
                 <h2>Home shopping</h2>
                 <ul class="menu">
-                    <li><a href="/fi_FI/koti/home-shopping" target="_blank">Tietoa Home shopping</a></li>
-                    <li><a href="/fi_FI/koti/home-shopping/etsi-myyntiedustaja" target="_blank">Etsi myyntiedustaja</a></li>
-                    <li><a href="/fi_FI/forside/home-shopping/etsi-myyntiedustaja-kartalta" target="_blank">Etsi myyntiedustaja kartalta</a></li>
-                    <li><a href="/fi_FI/koti/home-shopping/avoimet-ovet" target="_blank">Avoimet ovet</a></li>         
+                    <li><a href="/fi_FI/koti/home-shopping">Tietoa Home shopping</a></li>
+                    <li><a href="/fi_FI/koti/home-shopping/etsi-myyntiedustaja">Etsi myyntiedustaja</a></li>
+                    <li><a href="/fi_FI/forside/home-shopping/etsi-myyntiedustaja-kartalta">Etsi myyntiedustaja kartalta</a></li>
+                    <li><a href="/fi_FI/koti/home-shopping/avoimet-ovet">Avoimet ovet</a></li>         
                 </ul>
                 ]]></target>
             </trans-unit>
@@ -243,17 +243,17 @@
                 <target><![CDATA[
                 <h2>Lisää POMPdeLUXista</h2>
                 <ul class="menu">
-                    <li><a href="/fi_FI/koti/kuvasto" target="_blank">Online kuvasto</a></li>
-                    <li><a href="/fi_FI/koti/kuvasto/image-video" target="_blank">Image Video</a></li>
-                    <li><a href="/fi_FI/koti/tietoa-pompdeluxista" target="_blank">Tietoa POMPdeLUXista</a></li>
-                    <li><a href="/fi_FI/koti/uutiset" target="_blank">Uutiset</a></li>
-					<li><a href="/fi_FI/koti/tietoa-pompdeluxista/konsepti" target="_blank">Konsepti</a></li>
-					<li><a href="/fi_FI/koti/tietoa-pompdeluxista/sosiaalinen-vastuullisuus" target="_blank">Sosiaalinen vastuullisuus</a></li>
-					<li><a href="/fi_FI/koti/webshop/info/oeko-tex" target="_blank">Oeko-Tex</a></li>
-					<li><a href="/fi_FI/koti/webshop/info/gots-organic" target="_blank">GOTS (Organic)</a></li>
-					<li><a href="/fi_FI/koti/webshop/info/kiitokset" target="_blank">Kiitokset</a></li>
-					<li><a href="/fi_FI/koti/tietoa-pompdeluxista/tyopaikat" target="_blank">Työpaikat</a></li>
-					<li><a href="/fi_FI/koti/tietoa-pompdeluxista/yhteystiedot" target="_blank">Yhteystiedot</a></li>
+                    <li><a href="/fi_FI/koti/kuvasto">Online kuvasto</a></li>
+                    <li><a href="/fi_FI/koti/kuvasto/image-video">Image Video</a></li>
+                    <li><a href="/fi_FI/koti/tietoa-pompdeluxista">Tietoa POMPdeLUXista</a></li>
+                    <li><a href="/fi_FI/koti/uutiset">Uutiset</a></li>
+					<li><a href="/fi_FI/koti/tietoa-pompdeluxista/konsepti">Konsepti</a></li>
+					<li><a href="/fi_FI/koti/tietoa-pompdeluxista/sosiaalinen-vastuullisuus">Sosiaalinen vastuullisuus</a></li>
+					<li><a href="/fi_FI/koti/webshop/info/oeko-tex">Oeko-Tex</a></li>
+					<li><a href="/fi_FI/koti/webshop/info/gots-organic">GOTS (Organic)</a></li>
+					<li><a href="/fi_FI/koti/webshop/info/kiitokset">Kiitokset</a></li>
+					<li><a href="/fi_FI/koti/tietoa-pompdeluxista/tyopaikat">Työpaikat</a></li>
+					<li><a href="/fi_FI/koti/tietoa-pompdeluxista/yhteystiedot">Yhteystiedot</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>
@@ -262,15 +262,15 @@
                 <target><![CDATA[
                 <h2>Asiakaspalvelu</h2>
                 <ul class="menu">
-                    <li><a href="/fi_FI/koti/asiakaspalvelu/puhelinajat" target="_blank">Puhelinajat</a></li>
-                    <li><a href="/fi_FI/koti/asiakaspalvelu/faq" target="_blank">FAQ</a></li>
-                    <li><a href="/fi_FI/koti/asiakaspalvelu/palautukset" target="_blank">Palautukset</a></li>
-                    <li><a href="/fi_FI/koti/asiakaspalvelu/vaihtaminen" target="_blank">Vaihtaminen</a></li>
-                    <li><a href="/fi_FI/koti/webshop/info/sizeguide" target="_blank">Sizeguide</a></li>
-                    <li><a href="/fi_FI/koti/asiakaspalvelu/palautuslomake" target="_blank">Palautuslomake</a></li>
-					<li><a href="/fi_FI/koti/webshop/info/pesuohjeet" target="_blank">Pesuohjeet</a></li>
-					<li><a href="/fi_FI/koti/asiakaspalvelu/ehdot" target="_blank">Ehdot</a></li>
-					<li><a href="/fi_FI/koti/asiakaspalvelu/tietoa-verkkokaupasta" target="_blank">Tietoa verkkokaupasta</a></li>
+                    <li><a href="/fi_FI/koti/asiakaspalvelu/puhelinajat">Puhelinajat</a></li>
+                    <li><a href="/fi_FI/koti/asiakaspalvelu/faq">FAQ</a></li>
+                    <li><a href="/fi_FI/koti/asiakaspalvelu/palautukset">Palautukset</a></li>
+                    <li><a href="/fi_FI/koti/asiakaspalvelu/vaihtaminen">Vaihtaminen</a></li>
+                    <li><a href="/fi_FI/koti/webshop/info/sizeguide">Sizeguide</a></li>
+                    <li><a href="/fi_FI/koti/asiakaspalvelu/palautuslomake">Palautuslomake</a></li>
+					<li><a href="/fi_FI/koti/webshop/info/pesuohjeet">Pesuohjeet</a></li>
+					<li><a href="/fi_FI/koti/asiakaspalvelu/ehdot">Ehdot</a></li>
+					<li><a href="/fi_FI/koti/asiakaspalvelu/tietoa-verkkokaupasta">Tietoa verkkokaupasta</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>

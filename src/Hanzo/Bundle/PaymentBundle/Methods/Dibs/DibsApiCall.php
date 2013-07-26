@@ -59,7 +59,7 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public static function getInstance( Array $settings, DibsApi $api )
+    public static function getInstance( Array $settings, $api )
     {
         if ( self::$instance === null )
         {
@@ -83,10 +83,6 @@ class DibsApiCall implements PaymentMethodApiCallInterface
     protected function call( $function, array $params, $useAuthHeaders = false )
     {
         //$logger = Hanzo::getInstance()->container->get('logger');
-if ($function == 'cgi-adm/refund.cgi') {
-    \Hanzo\Core\Tools::log($params);
-}
-
         $ch = curl_init();
 
         $url = $this->baseUrl . $function;
@@ -98,10 +94,8 @@ if ($function == 'cgi-adm/refund.cgi') {
 
         $headers = array();
 
-        if ( $useAuthHeaders )
-        {
-            if ( !isset($this->settings['api_user']) || !isset($this->settings['api_pass']) )
-            {
+        if ($useAuthHeaders) {
+            if (!isset($this->settings['api_user']) || !isset($this->settings['api_pass'])) {
                 throw new DibsApiCallException( 'DIBS api: Missing api username or/and password' );
             }
 
@@ -114,8 +108,7 @@ if ($function == 'cgi-adm/refund.cgi') {
 
         curl_close($ch);
 
-        if ( $response === false )
-        {
+        if ($response === false) {
             throw new DibsApiCallException('Kommunikation med DIBS fejlede, fejlen var: "'.curl_error($ch).'"');
         }
 
@@ -182,18 +175,16 @@ if ($function == 'cgi-adm/refund.cgi') {
      */
     public function capture( Orders $order, $amount )
     {
-        $attributes       = $order->getAttributes();
+        $attributes = $order->getAttributes();
 
-        if ( !isset($attributes->payment->transact) )
-        {
+        if (!isset($attributes->payment->transact)) {
             throw new DibsApiCallException( 'DIBS api capture action: order contains no transaction id, order id was: '.$order->getId() );
         }
 
         $transaction      = $attributes->payment->transact;
-
         $paymentGatewayId = $order->getPaymentGatewayId();
-
-        $stringToHash = 'merchant='. $this->settings[ 'merchant' ] .'&orderid='. $paymentGatewayId.'&transact='.$transaction.'&amount='.$amount;
+        $amount           = $this->api->formatAmount($amount);
+        $stringToHash     = 'merchant='. $this->settings[ 'merchant' ] .'&orderid='. $paymentGatewayId.'&transact='.$transaction.'&amount='.$amount;
 
         $params = array(
             'amount'    => $amount,
@@ -223,14 +214,13 @@ if ($function == 'cgi-adm/refund.cgi') {
 
         if ( !isset($attributes->payment->transact) )
         {
-\Hanzo\Core\Tools::log('Throw Exception');
             throw new DibsApiCallException( 'DIBS api refund action: order contains no transaction id, order id was: '.$order->getId() );
-\Hanzo\Core\Tools::log('After Exception is thrown ????');
         }
 
         $transaction      = $attributes->payment->transact;
         $paymentGatewayId = $order->getPaymentGatewayId();
         $currency         = $this->api->currencyCodeToNum($order->getCurrencyCode());
+        $amount           = $this->api->formatAmount($amount);
 
         $stringToHash = 'merchant='. $this->settings[ 'merchant' ] .'&orderid='. $paymentGatewayId.'&transact='.$transaction.'&amount='.$amount;
 
@@ -362,7 +352,7 @@ if ($function == 'cgi-adm/refund.cgi') {
     {
         $paymentGatewayId = $order->getPaymentGatewayId();
         $currency         = $this->api->currencyCodeToNum($order->getCurrencyCode());
-        $amount           = $this->api->formatAmount( $order->getTotalPrice() );
+        $amount           = $this->api->formatAmount($order->getTotalPrice());
 
         $params = array(
             'merchant'  => $this->settings[ 'merchant' ],

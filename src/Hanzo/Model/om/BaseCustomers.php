@@ -2430,7 +2430,6 @@ abstract class BaseCustomers extends BaseObject implements Persistent
     public function setEventssRelatedByConsultantsId(PropelCollection $eventssRelatedByConsultantsId, PropelPDO $con = null)
     {
         $eventssRelatedByConsultantsIdToDelete = $this->getEventssRelatedByConsultantsId(new Criteria(), $con)->diff($eventssRelatedByConsultantsId);
-
         $this->eventssRelatedByConsultantsIdScheduledForDeletion = unserialize(serialize($eventssRelatedByConsultantsIdToDelete));
 
         foreach ($eventssRelatedByConsultantsIdToDelete as $eventsRelatedByConsultantsIdRemoved) {
@@ -3159,7 +3158,6 @@ abstract class BaseCustomers extends BaseObject implements Persistent
     public function setWalls(PropelCollection $walls, PropelPDO $con = null)
     {
         $wallsToDelete = $this->getWalls(new Criteria(), $con)->diff($walls);
-
         $this->wallsScheduledForDeletion = unserialize(serialize($wallsToDelete));
 
         foreach ($wallsToDelete as $wallRemoved) {
@@ -3402,7 +3400,6 @@ abstract class BaseCustomers extends BaseObject implements Persistent
     public function setWallLikess(PropelCollection $wallLikess, PropelPDO $con = null)
     {
         $wallLikessToDelete = $this->getWallLikess(new Criteria(), $con)->diff($wallLikess);
-
         $this->wallLikessScheduledForDeletion = unserialize(serialize($wallLikessToDelete));
 
         foreach ($wallLikessToDelete as $wallLikesRemoved) {

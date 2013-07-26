@@ -18,7 +18,7 @@ class DefaultController extends CoreController
         'payment.dibsapi'      => 'Dibs',
         'payment.gothiaapi'    => 'Gothia',
         'payment.paybybillapi' => 'PayByBill',
-        'payment.couponapi'    => 'Coupon', // pseudo payment module ...
+        'payment.giftcardapi'  => 'GiftCard', // pseudo payment module ...
         'payment.pensioapi'    => 'Pensio',
     ];
 
@@ -53,14 +53,10 @@ class DefaultController extends CoreController
                 }
 
                 $parameters = [
-                    'order' => $order,
+                    'order'                 => $order,
+                    'cardtypes'             => $service->getPayTypes(),
                     'selected_payment_type' => $selected_payment_type,
                 ];
-
-                // TODO: fix hardcoded "cardtypes"
-                if (method_exists($service, 'getEnabledPaytypes')) {
-                    $parameters['cardtypes'] = $service->getEnabledPaytypes();
-                }
 
                 $modules[] = $this->render('PaymentBundle:'.$controller.':select.html.twig', $parameters)->getContent();
             }
@@ -99,7 +95,6 @@ class DefaultController extends CoreController
             return $this->json_response($response);
         }
 
-
         $order->setPaymentMethod( $provider );
         $order->setPaymentPaytype( $method );
 
@@ -108,7 +103,7 @@ class DefaultController extends CoreController
         // It also only supports one order line with payment fee, as all others are deleted
 
         if ('DOWN' !== $this->get('redis.permanent')->hget('service.status', 'dibs')) {
-            $order->setOrderLinePaymentFee($method, $api->getFee(), 0, $api->getFeeExternalId());
+            $order->setPaymentFee($method, $api->getFee(), 0, $api->getFeeExternalId());
         }
 
         $order->setUpdatedAt(time());
@@ -164,7 +159,7 @@ class DefaultController extends CoreController
                 'data'    => $api->getProcessButton($order),
             ];
         }
-
+// Tools::log($response);
         // If the customer cancels payment, state is back to building
         // Customer is only allowed to add products to the basket if state is >= pre payment
         $order->setState( Orders::STATE_PRE_PAYMENT );
@@ -182,7 +177,7 @@ class DefaultController extends CoreController
     public function cancelAction()
     {
         $translator = $this->get('translator');
-
+Tools::log($_POST);
         $order = OrdersPeer::getCurrent();
         $order->setState( Orders::STATE_BUILDING );
         $order->save();

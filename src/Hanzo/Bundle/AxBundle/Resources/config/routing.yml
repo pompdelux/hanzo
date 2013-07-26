@@ -1,0 +1,14 @@
+ax_soap:
+    pattern:  /soap/{version}/ECommerceServices/
+    defaults:
+        _controller: AxBundle:Soap:index
+        version: v1
+        service_name: ECommerceServices
+    requirements:
+        version: "v[0-9]+"
+
+ax_soap_test:
+    pattern:  /soap/{version}/test
+    defaults:
+        _controller: AxBundle:Soap:test
+        version: v1

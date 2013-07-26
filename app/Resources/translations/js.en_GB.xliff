@@ -204,7 +204,7 @@
             </trans-unit>
             <trans-unit id="color">
                 <source>color</source>
-                <target>Color</target>
+                <target>Colour</target>
             </trans-unit>
             <trans-unit id="proceed">
                 <source>proceed</source>

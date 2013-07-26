@@ -130,12 +130,12 @@ class DefaultController extends CoreController
             }
 
             $references = ProductsImagesProductReferencesQuery::create()
-                ->withColumn('products_images.ID') // Terrible way to do it.!
-                ->withColumn('products_images.COLOR') // Terrible way to do it.!
-                ->withColumn('ref.IMAGE') // But it works!
+                ->withColumn('products_images.ID')
+                ->withColumn('products_images.COLOR')
+                ->withColumn('ref.IMAGE')
                 ->filterByProductsImagesId($image_ids)
                 ->useProductsQuery()
-                    ->useProductsImagesQuery('ref') // I think!
+                    ->useProductsImagesQuery('ref')
                         ->filterByType('overview')
                         ->groupByProductsId()
                     ->endUse()
@@ -144,10 +144,12 @@ class DefaultController extends CoreController
                 ->joinWithProducts()
                 ->find()
             ;
+
             $images_references = array();
             foreach ($references as $ref) {
                 $images_references[$ref->getProductsImagesId()]['references'][] = array(
                     'title' => $ref->getProducts()->getSku(),
+                    'color' => $ref->getVirtualColumn('products_imagesCOLOR'),
                     'image' => $ref->getRefIMAGE(),
                     'color' => $ref->getVirtualColumn('products_imagesCOLOR'),
                     'url' => $router->generate($route, array(

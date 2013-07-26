@@ -25,6 +25,7 @@
 }
 
 #cboxContent {
+  outline: 0;
   .dialoug {
     h2!, div.message! {}
     .buttons {
@@ -33,6 +34,9 @@
     }
   }
   .alert!, .confirm! {}
+  #cboxClose {
+    display: none;
+  }
 }
 
 #dialoug-message {

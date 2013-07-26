@@ -222,7 +222,7 @@ class GothiaController extends CoreController
             $api = $this->get('payment.gothiaapi');
             $response = $api->call()->checkCustomer( $customer );
         }
-        catch( GothiaApiCallException $g )
+        catch( GothiaApiCallException $e )
         {
             if (Tools::isBellcomRequest()) {
                 Tools::debug('Check Customer Failed', __METHOD__, array('Message' => $e->getMessage()));
@@ -230,7 +230,7 @@ class GothiaController extends CoreController
             $timer->logOne('checkCustomer call failed orderId #'.$order->getId());
             return $this->json_response(array(
                 'status' => FALSE,
-                'message' => $translator->trans('json.checkcustomer.failed', array('%msg%' => $g->getMessage()), 'gothia'),
+                'message' => $translator->trans('json.checkcustomer.failed', array('%msg%' => $e->getMessage()), 'gothia'),
             ));
         }
 
@@ -279,7 +279,7 @@ class GothiaController extends CoreController
      **/
     public function confirmAction(Request $request)
     {
-        $order      = OrdersPeer::getCurrent();
+        $order      = OrdersPeer::getCurrent(true);
         $customer   = $order->getCustomers(Propel::getConnection(null, Propel::CONNECTION_WRITE));
         $api        = $this->get('payment.gothiaapi');
         $translator = $this->get('translator');
@@ -311,20 +311,16 @@ class GothiaController extends CoreController
                 // The new order amount is different from the old order amount
                 // We will remove the old reservation, and create a new one
                 // but only if the old paytype was gothia
-                if ( $paytype == 'gothia' && $order->getTotalPrice() != $oldOrder->getTotalPrice() )
-                {
+                if (($paytype == 'gothia') && ($order->getTotalPrice() != $oldOrder->getTotalPrice())) {
                     $timer = new Timer('gothia', true);
-                    try
-                    {
+                    try {
                         $response = $api->call()->cancelReservation( $customer, $oldOrder );
-                    }
-                    catch( GothiaApiCallException $g )
-                    {
+                    } catch(GothiaApiCallException $e) {
                         $timer->logOne('cancelReservation call failed, orderId #'.$oldOrder->getId());
                         Tools::debug('Cancel reservation failed', __METHOD__, array('Message' => $e->getMessage()));
                         return $this->json_response(array(
                             'status' => FALSE,
-                            'message' => $translator->trans('json.cancelreservation.failed', array('%msg%' => $g->getMessage()), 'gothia'),
+                            'message' => $translator->trans('json.cancelreservation.failed', array('%msg%' => $e->getMessage()), 'gothia'),
                         ));
                     }
 
@@ -347,15 +343,15 @@ class GothiaController extends CoreController
             $response = $api->call()->placeReservation( $customer, $order );
             $timer->logOne('placeReservation orderId #'.$order->getId());
         }
-        catch( GothiaApiCallException $g )
+        catch( GothiaApiCallException $e )
         {
             if (Tools::isBellcomRequest()) {
-                Tools::debug('Place Reservation Exception', __METHOD__, array('Message' => $g->getMessage()));
+                Tools::debug('Place Reservation Exception', __METHOD__, array('Message' => $e->getMessage()));
             }
             $api->updateOrderFailed( $request, $order );
             return $this->json_response(array(
                 'status' => FALSE,
-                'message' => $translator->trans('json.placereservation.failed', array('%msg%' => $g->getMessage()), 'gothia'),
+                'message' => $translator->trans('json.placereservation.failed', array('%msg%' => $e->getMessage()), 'gothia'),
             ));
         }
 
@@ -385,7 +381,7 @@ class GothiaController extends CoreController
         catch (Exception $e)
         {
             if (Tools::isBellcomRequest()) {
-                Tools::debug('Place Reservation Exception', __METHOD__, array('Message' => $g->getMessage()));
+                Tools::debug('Place Reservation Exception', __METHOD__, array('Message' => $e->getMessage()));
             }
             #Tools::debug( $e->getMessage(), __METHOD__);
             $api->updateOrderFailed( $request, $order );

@@ -4,51 +4,51 @@
         <body>
             <trans-unit id="email.exists">
                 <source>email.exists</source>
-                <target>E-mailadressen eksisterer allerede!</target>
+                <target>Die E-Mail-Adresse existiert bereits!</target>
             </trans-unit>
             <trans-unit id="phone.required" approved="no">
                 <source>phone.required</source>
-                <target>Telefonnummer skal udfyldes</target>
+                <target>Bitte Telefonnummer ausfüllen</target>
             </trans-unit>
             <trans-unit id="phone.min.length" approved="no">
                 <source>phone.min.length</source>
-                <target>Et telefonnummer består af {{ limit }} tal|Et telefonnummer består af {{ limit }} tal</target>
+                <target>Eine Telefonnummer besteht aus {{ limit }} Ziffern|Eine Telefonnummer besteht aus {{ limit }} Ziffern</target>
             </trans-unit>
             <trans-unit id="phone.not.valid" approved="no">
                 <source>phone.not.valid</source>
-                <target>Telefonnummeret må kun bestå af tal</target>
+                <target>Die Telefonnummer darf nur aus Ziffern bestehen</target>
             </trans-unit>
             <trans-unit id="email.required" approved="no">
                 <source>email.required</source>
-                <target>Du skal angive E-mailadresse</target>
+                <target>Bitte eine E-Mail-Adresse angeben</target>
             </trans-unit>
             <trans-unit id="email.invalid.match" approved="no">
                 <source>email.invalid.match</source>
-                <target>De to e-mailadresser matcher ikke</target>
+                <target>Die beiden E-Mail-Adressen stimmen nicht überein</target>
             </trans-unit>
             <trans-unit id="email.not.valid">
                 <source>email.not.valid</source>
-                <target>Du skal indtaste samme e-mailadresse i begge felter.</target>
+                <target>Bitte in beiden Feldern dieselbe E-Mail-Adresse eingeben.</target>
             </trans-unit>
             <trans-unit id="address.first_name.required" approved="no">
                 <source>address.first_name.required</source>
-                <target>Du skal udfylde fornavn</target>
+                <target>Bitte einen Vornamen eingeben</target>
             </trans-unit>
             <trans-unit id="address.last_name.required" approved="no">
                 <source>address.last_name.required</source>
-                <target>Du skal udfylde efternavn</target>
+                <target>Bitte einen Nachnamen eingeben</target>
             </trans-unit>
             <trans-unit id="host.required" approved="no">
                 <source>host.required</source>
-                <target>Du skal angive værtinde</target>
+                <target>Bitte eine Gastgeberin angeben</target>
             </trans-unit>
             <trans-unit id="address_line_1.required" approved="no">
                 <source>address_line_1.required</source>
-                <target>Du skal udfylde adressen|Du skal udfylde adressen</target>
+                <target>Bitte Adresse ausfüllen|Bitte Adresse ausfüllen</target>
             </trans-unit>
             <trans-unit id="postal_code.required" approved="no">
                 <source>postal_code.required</source>
-                <target>Du skal udfylde postnummer</target>
+                <target>Bitte Postleitzahl ausfüllen</target>
             </trans-unit>
             <trans-unit id="postal_code.length" approved="no">
                 <source>postal_code.length</source>
@@ -56,27 +56,27 @@
             </trans-unit>
             <trans-unit id="city.required" approved="no">
                 <source>city.required</source>
-                <target>Du skal udfylde by|Du skal udfylde by</target>
+                <target>Bitte Stadt ausfüllen|Bitte Stadt ausfüllen</target>
             </trans-unit>
             <trans-unit id="address.first_name.min.length" approved="no">
                 <source>address.first_name.min.length</source>
-                <target>Fornavn skal være min {{ limit }} tegn|Fornavn skal være min {{ limit }} tegn</target>
+                <target>Der Vorname muss aus mind. {{ limit }} Zeichen bestehen|Der Vorname muss aus mind. {{ limit }} Zeichen bestehen</target>
             </trans-unit>
             <trans-unit id="address.last_name.min.length" approved="no">
                 <source>address.last_name.min.length</source>
-                <target>Efternavn skal være min {{ limit }} tegn|Efternavn skal være min {{ limit }} tegn</target>
+                <target>Der Nachname muss aus mind. {{ limit }} Zeichen bestehen|Der Nachname muss aus mind. {{ limit }} Zeichen bestehen</target>
             </trans-unit>
             <trans-unit id="password.required">
                 <source>password.required</source>
-                <target>Adgangskode skal være min 5 tegn</target>
+                <target>Das Passwort muss aus mind. 5 Zeichen bestehen</target>
             </trans-unit>
             <trans-unit id="password.min.length" approved="no">
                 <source>password.min.length</source>
-                <target>Dit kodeord skal bestå af minimum {{ limit }} tegn|Dit kodeord skal bestå af minimum {{ limit }} tegn</target>
+                <target>Ihr Passwort muss aus mind. {{ limit }} Zeichen bestehen|Ihr Passwort muss aus mind. {{ limit }} Zeichen bestehen</target>
             </trans-unit>
             <trans-unit id="password.invalid.match">
                 <source>password.invalid.match</source>
-                <target>Adgangskode bekræftigelsen skal være den samme som dit adgangskoden.</target>
+                <target>Die Passwortbestätigung muss dieselbe sein wie Ihr Passwort.</target>
             </trans-unit>
         </body>
     </file>

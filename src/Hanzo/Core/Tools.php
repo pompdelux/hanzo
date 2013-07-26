@@ -357,8 +357,8 @@ class Tools
                 die("User-agent: *\nDisallow: /\n");
             }
 
-            //die("User-agent: *\nDisallow:\n");
-            die("User-agent: *\nDisallow: /de_DE/\n");
+            die("User-agent: *\nDisallow:\n");
+            //die("User-agent: *\nDisallow: /de_DE/\n");
         }
     }
 
@@ -367,6 +367,41 @@ class Tools
     {
         $unit = array('b','kb','mb','gb','tb','pb');
         return @round($size/pow(1024, ($i = floor(log($size, 1024)))), 2) . ' ' . $unit[$i];
+    }
+
+
+
+    /**
+     * try to get mobile useragent
+     *
+     * note:
+     *   this is a very crude detection method, if you need anything more
+     *   stable/precise you should look at http://wurfl.sourceforge.net/
+     *
+     * @return mixed useragent on success otherwise false.
+    */
+    public static function isMobileRequest()
+    {
+        $useragents = array(
+            "iphone",         // Apple iPhone
+            "ipod",           // Apple iPod touch
+            "aspen",          // iPhone simulator
+            "dream",          // Pre 1.5 Android
+            "android",        // 1.5+ Android
+            "cupcake",        // 1.5+ Android
+            "blackberry9500", // Storm
+            "blackberry9530", // Storm
+            "opera mini",     // Experimental
+            "webos",          // Experimental
+            "incognito",      // Other iPhone browser
+            "webmate"         // Other iPhone browser
+        );
+
+        if (preg_match('/('.implode('|', $useragents).')/i', $_SERVER['HTTP_USER_AGENT'], $matches)) {
+            return strtolower($matches[1]);
+        }
+
+        return false;
     }
 
 
@@ -445,6 +480,22 @@ class Tools
             '90.185.206.100', // office@kolding
             '87.104.21.83',   // un@home
         ]));
+    }
+
+
+    /**
+     * detect if a request is a secure (SSL) request
+     *
+     * @return boolean
+     */
+    public static function isSecure()
+    {
+        $is_secure = isset($_SERVER['HTTPS']) && ('ON' == strtoupper($_SERVER['HTTPS']));
+        if (!$is_secure) {
+            $is_secure = isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && ('HTTPS' == strtoupper($_SERVER['HTTP_X_FORWARDED_PROTO']));
+        }
+
+        return $is_secure;
     }
 
 
@@ -531,6 +582,10 @@ class Tools
         if (empty($url['scheme'])) {
             $url['scheme'] = 'http';
             $url['host'] = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
+        }
+
+        if (self::isSecure()) {
+            $url['scheme'] = 'https';
         }
 
         return $url['scheme'].'://'.$url['host'].$url['path'].'?'.$url['query'];

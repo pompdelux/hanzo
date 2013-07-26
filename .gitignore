@@ -13,3 +13,5 @@
 /.tags*
 /*.sublime-project
 /*.sublime-workspace
+.vagrant
+.idea/

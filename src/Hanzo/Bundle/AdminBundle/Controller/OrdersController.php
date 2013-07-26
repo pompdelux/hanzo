@@ -124,7 +124,6 @@ class OrdersController extends CoreController
             $pages = array();
             foreach ($orders->getLinks(20) as $page) {
                 $pages[$page] = $router->generate($route, array('customer_id' => $customer_id, 'pager' => $page), TRUE);
-
             }
 
             $paginate = array(
@@ -153,6 +152,8 @@ class OrdersController extends CoreController
             return $this->redirect($this->generateUrl('admin'));
         }
 
+        $hanzo = Hanzo::getInstance();
+
         $order = OrdersQuery::create()
             ->filterById($order_id)
             ->findOne($this->getDbConnection())
@@ -168,8 +169,29 @@ class OrdersController extends CoreController
             ->filterByOrdersId($order_id)
             ->orderByNs()
             ->orderByCKey()
+            ->joinWithOrders()
             ->find($this->getDbConnection())
         ;
+
+        $attributes = array();
+        $attachments = array();
+        foreach ($order_attributes as $attribute) {
+            if ('attachment' == $attribute->getNs()) {
+                $o = $attribute->getOrders();
+                $folder = $this->mapLanguageToPdfDir($o->getLanguagesId()).'_'.$o->getCreatedAt('Y');
+                $attachments[] = [
+                    'key'  => $attribute->getCKey(),
+                    'file' => $attribute->getCValue(),
+                    'path' => $hanzo->get('core.cdn') . 'pdf.php?' . http_build_query(array(
+                        'folder' => $folder,
+                        'file'   => $attribute->getCValue(),
+                        'key'    => md5(time())
+                    ))
+                ];
+            } else {
+                $attributes[] = $attribute;
+            }
+        }
 
         $order_sync_states = OrdersSyncLogQuery::create()
             ->orderByCreatedAt('ASC')
@@ -205,7 +227,8 @@ class OrdersController extends CoreController
         return $this->render('AdminBundle:Orders:view.html.twig', array(
             'order'  => $order,
             'order_lines' => $order_lines,
-            'order_attributes' => $order_attributes,
+            'order_attributes' => $attributes,
+            'order_attachments' => $attachments,
             'order_sync_states' => $order_sync_states,
             'form_state' => $form_state->createView(),
             'database' => $this->getRequest()->getSession()->get('database')
@@ -232,8 +255,8 @@ class OrdersController extends CoreController
             return $this->response('Der findes ingen ordre med ID #' . $order_id);
         }
 
-        $debtor = $this->get('ax_manager')->sendDebtor($order->getCustomers($this->getDbConnection()), true, $this->getDbConnection());
-        $order = $this->get('ax_manager')->sendOrder($order, true, $this->getDbConnection());
+        $debtor = $this->get('ax.out')->sendDebtor($order->getCustomers($this->getDbConnection()), true, $this->getDbConnection());
+        $order = $this->get('ax.out')->sendOrder($order, true, $this->getDbConnection());
 
         if ('json' === $this->getFormat()) {
             $html = '<h2>Debtor:</h2><pre>'.print_r($debtor, 1).'</pre><h2>Order:</h2><pre>'.print_r($order,1).'</pre>';
@@ -295,7 +318,7 @@ class OrdersController extends CoreController
         }
 
         try {
-            $this->get('ax_manager')->sendOrder($order, false, $this->getDbConnection());
+            $this->get('ax.out')->sendOrder($order, false, $this->getDbConnection());
         } catch (Exception $e) {
             if ('json' === $this->getFormat()) {
                 return $this->json_response(array(
@@ -550,11 +573,10 @@ class OrdersController extends CoreController
     public function gothiaGetOrderAction()
     {
         $return = array(
-            'status' => false,
-            'message'    => '',
-            'data'   => array(
-                ),
-            );
+            'status'  => false,
+            'message' => '',
+            'data'    => array(),
+        );
 
         $request = $this->getRequest();
 
@@ -562,18 +584,12 @@ class OrdersController extends CoreController
 
         $order = OrdersQuery::create()->findPK($id, $this->getDbConnection());
 
-        if ( !( $order instanceOf Orders ) )
-        {
+        if (!($order instanceOf Orders)) {
             $return['message'] = 'Ingen ordre med id "'.$id.'" fundet';
-        }
-        else
-        {
-            if ( $order->getBillingMethod() != 'gothia' )
-            {
+        } else {
+            if ($order->getBillingMethod() != 'gothia') {
                 $return['message'] = 'Der er ikke blevet brugt Gothia som betaling på ordre id "'.$id.'"';
-            }
-            else
-            {
+            } else {
                 $customer = $order->getCustomers($this->getDbConnection());
 
                 $return['status'] = true;
@@ -582,10 +598,10 @@ class OrdersController extends CoreController
                     'id'       => $id,
                     'customer' => array(
                         'name' => $customer->getFirstName().' '. $customer->getLastName(),
-                        ),
+                    ),
                     'amount'   => $order->getTotalPrice(),
                     'state'    => $order->getState(),
-                    );
+                );
             }
         }
 

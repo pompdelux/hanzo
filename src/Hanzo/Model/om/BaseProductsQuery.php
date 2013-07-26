@@ -39,6 +39,7 @@ use Hanzo\Model\RelatedProducts;
  * @method ProductsQuery orderByHasVideo($order = Criteria::ASC) Order by the has_video column
  * @method ProductsQuery orderByIsOutOfStock($order = Criteria::ASC) Order by the is_out_of_stock column
  * @method ProductsQuery orderByIsActive($order = Criteria::ASC) Order by the is_active column
+ * @method ProductsQuery orderByIsVoucher($order = Criteria::ASC) Order by the is_voucher column
  * @method ProductsQuery orderByCreatedAt($order = Criteria::ASC) Order by the created_at column
  * @method ProductsQuery orderByUpdatedAt($order = Criteria::ASC) Order by the updated_at column
  *
@@ -52,6 +53,7 @@ use Hanzo\Model\RelatedProducts;
  * @method ProductsQuery groupByHasVideo() Group by the has_video column
  * @method ProductsQuery groupByIsOutOfStock() Group by the is_out_of_stock column
  * @method ProductsQuery groupByIsActive() Group by the is_active column
+ * @method ProductsQuery groupByIsVoucher() Group by the is_voucher column
  * @method ProductsQuery groupByCreatedAt() Group by the created_at column
  * @method ProductsQuery groupByUpdatedAt() Group by the updated_at column
  *
@@ -131,6 +133,7 @@ use Hanzo\Model\RelatedProducts;
  * @method Products findOneByHasVideo(boolean $has_video) Return the first Products filtered by the has_video column
  * @method Products findOneByIsOutOfStock(boolean $is_out_of_stock) Return the first Products filtered by the is_out_of_stock column
  * @method Products findOneByIsActive(boolean $is_active) Return the first Products filtered by the is_active column
+ * @method Products findOneByIsVoucher(boolean $is_voucher) Return the first Products filtered by the is_voucher column
  * @method Products findOneByCreatedAt(string $created_at) Return the first Products filtered by the created_at column
  * @method Products findOneByUpdatedAt(string $updated_at) Return the first Products filtered by the updated_at column
  *
@@ -144,6 +147,7 @@ use Hanzo\Model\RelatedProducts;
  * @method array findByHasVideo(boolean $has_video) Return Products objects filtered by the has_video column
  * @method array findByIsOutOfStock(boolean $is_out_of_stock) Return Products objects filtered by the is_out_of_stock column
  * @method array findByIsActive(boolean $is_active) Return Products objects filtered by the is_active column
+ * @method array findByIsVoucher(boolean $is_voucher) Return Products objects filtered by the is_voucher column
  * @method array findByCreatedAt(string $created_at) Return Products objects filtered by the created_at column
  * @method array findByUpdatedAt(string $updated_at) Return Products objects filtered by the updated_at column
  */
@@ -247,7 +251,7 @@ abstract class BaseProductsQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `sku`, `master`, `size`, `color`, `unit`, `washing`, `has_video`, `is_out_of_stock`, `is_active`, `created_at`, `updated_at` FROM `products` WHERE `id` = :p0';
+        $sql = 'SELECT `id`, `sku`, `master`, `size`, `color`, `unit`, `washing`, `has_video`, `is_out_of_stock`, `is_active`, `is_voucher`, `created_at`, `updated_at` FROM `products` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -646,6 +650,33 @@ abstract class BaseProductsQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(ProductsPeer::IS_ACTIVE, $isActive, $comparison);
+    }
+
+    /**
+     * Filter the query on the is_voucher column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByIsVoucher(true); // WHERE is_voucher = true
+     * $query->filterByIsVoucher('yes'); // WHERE is_voucher = true
+     * </code>
+     *
+     * @param     boolean|string $isVoucher The value to use as filter.
+     *              Non-boolean arguments are converted using the following rules:
+     *                * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
+     *                * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
+     *              Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return ProductsQuery The current query, for fluid interface
+     */
+    public function filterByIsVoucher($isVoucher = null, $comparison = null)
+    {
+        if (is_string($isVoucher)) {
+            $isVoucher = in_array(strtolower($isVoucher), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+        }
+
+        return $this->addUsingAlias(ProductsPeer::IS_VOUCHER, $isVoucher, $comparison);
     }
 
     /**

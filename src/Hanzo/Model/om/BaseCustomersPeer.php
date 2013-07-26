@@ -50,9 +50,6 @@ abstract class BaseCustomersPeer
     /** the column name for the groups_id field */
     const GROUPS_ID = 'customers.groups_id';
 
-    /** the column name for the title field */
-    const TITLE = 'customers.title';
-
     /** the column name for the first_name field */
     const FIRST_NAME = 'customers.first_name';
 

@@ -133,7 +133,7 @@
             </trans-unit>
             <trans-unit id="54">
                 <source>Phone</source>
-                <target>Telefoonnummer</target>
+                <target>Mobiel</target>
             </trans-unit>
             			<trans-unit id="55">
                 <source>Address line 1</source>
@@ -393,11 +393,11 @@
             </trans-unit>
             <trans-unit id="address.delivery">
                 <source>address.delivery</source>
-                <target>Verzendadres</target>
+                <target>Afleveradres</target>
             </trans-unit>
             <trans-unit id="address.billing">
                 <source>address.billing</source>
-                <target>Huisadres</target>
+                <target>Privé-adres</target>
             </trans-unit>
             <trans-unit id="password.min.length" approved="no">
                 <source>password.min.length</source>

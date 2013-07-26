@@ -9,6 +9,7 @@ use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
 
+use Hanzo\Model\ProductsDomainsPricesQuery;
 use Hanzo\Model\ProductsImagesCategoriesSortQuery;
 use Hanzo\Model\ProductsImagesCategoriesSort;
 use Hanzo\Model\ProductsImagesProductReferences;
@@ -242,6 +243,25 @@ class ProductsController extends CoreController
                 $current_product->save($this->getDbConnection());
             }
         }
+
+        $prices_result = ProductsDomainsPricesQuery::create()
+            ->filterByProductsId($id)
+            ->joinWithDomains()
+            ->orderByProductsId()
+            ->orderByFromDate()
+            ->find($this->getDbConnection());
+
+        $prices = [];
+        foreach ($prices_result as $price) {
+            $prices[] = [
+                'domain'    => $price->getDomains()->getDomainKey(),
+                'price'     => number_format($price->getPrice()+$price->getVat(), 2, ',', ''),
+                'from_date' => $price->getFromDate('Y-m-d H:i'),
+                'to_date'   => ($price->getToDate() ? $price->getToDate('Y-m-d H:i') : '-'),
+            ];
+        }
+
+
         return $this->render('AdminBundle:Products:view.html.twig', array(
             'styles'                => $styles,
             'product_categories'    => $product_categories,
@@ -251,6 +271,7 @@ class ProductsController extends CoreController
             'products'              => $all_products,
             'related_products'      => $related_products,
             'has_video_form'        => $form_hasVideo->createView(),
+            'prices'                => $prices,
             'database' => $this->getRequest()->getSession()->get('database')
         ));
     }

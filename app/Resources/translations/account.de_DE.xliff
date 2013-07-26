@@ -4,92 +4,92 @@
         <body>
             <trans-unit id="The presented password is invalid.">
                 <source>The presented password is invalid.</source>
-                <target>Adgangskoden er ikke gyldig. </target>
+                <target>Das Passwort ist ungültig. </target>
             </trans-unit>
             <trans-unit id="The presented password cannot be empty.">
                 <source>The presented password cannot be empty.</source>
-                <target>Adgangskoden kan ikke være tom.</target>
+                <target>Das Passwort darf nicht leer sein.</target>
             </trans-unit>
             <trans-unit id="User account is disabled." approved="no">
                 <source>User account is disabled.</source>
-                <target>Din konto er deaktiveret.</target>
+                <target>Ihr Konto wurde deaktiviert.</target>
             </trans-unit>
             <trans-unit id="fetch.invoice">
                 <source>fetch.invoice</source>
-                <target>Hent faktura som pdf</target>
+                <target>Rechnung als PDF herunterladen</target>
             </trans-unit>
             <trans-unit id="fetch.credit_note">
                 <source>fetch.credit_note</source>
-                <target>Hent kreditnota som pdf</target>
+                <target>Gutschrift als PDF herunterladen</target>
             </trans-unit>
             <trans-unit id="previous.orders" approved="no">
                 <source>previous.orders</source>
-                <target>Tidligere ordrer</target>
+                <target>Frühere Bestellungen</target>
             </trans-unit>
             <trans-unit id="account.details">
                 <source>account.details</source>
-                <target>Se eller ret kontoinformationer.</target>
+                <target>Kontoinformationen anzeigen oder ändern.</target>
             </trans-unit>
             <trans-unit id="my.account.order.view" approved="no">
                 <source>my.account.order.view</source>
-                <target>Min konto - ordre nummer #%order_id%</target>
+                <target>Mein Konto - Bestellnummer #%order_id%</target>
             </trans-unit>
             <trans-unit id="address.delivery">
                 <source>address.delivery</source>
-                <target>Leveringsadresse</target>
+                <target>Lieferanschrift</target>
             </trans-unit>
             <trans-unit id="address.billing">
                 <source>address.billing</source>
-                <target>Fakturaadresse</target>
+                <target>Rechnungsanschrift</target>
             </trans-unit>
             <trans-unit id="create.account.link">
                 <source>create.account.link</source>
-                <target>Ny kunde</target>
+                <target>Neuer Kunde</target>
             </trans-unit>
             <trans-unit id="password.forgotten">
                 <source>password.forgotten</source>
-                <target>Jeg har glemt min adgangskode</target>
+                <target>Ich habe mein Passwort vergessen</target>
             </trans-unit>
             <trans-unit id="password.forgotten.text">
                 <source>password.forgotten.text</source>
                 <target><![CDATA[
-                    <h2>Har du har glemt din adgangskode?</h2>
-                    <p>Indtast din e-mailadresse herunder og klik på knappen ”Fortsæt”. I løbet af få minutter vil du modtage en mail fra POMPdeLUX med din adgangskode.</p>
+                    <h2>Haben Sie Ihr Passwort vergessen?</h2>
+                    <p>Geben Sie Ihre E-Mail-Adresse unten ein und klicken Sie auf die Schaltfläche ”Weiter”. Im Laufe weniger Minuten erhalten Sie von POMPdeLUX eine E-Mail mit Ihrem Passwort.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="password.forgotten.not_found">
                 <source>password.forgotten.not_found</source>
                 <target><![CDATA[
-                    <p>Vi kunne desværre ikke finde den indtastede e-mailadresse. Prøv igen og kontroller at du har indtastet korrekt e-mailadresse.</p>
-                    <p>Har du indtastet din e-mailadresse korrekt og denne besked bliver ved med at komme frem, findes du ikke i vores system. Du skal kontakte kundeservice, da det er muligt, at du er blevet oprettet forkert.</p>
-                    <a href="/da_DK/forside/kundeservice">» Kundeservice</a>
+                    <p>Wir konnten die eingegebene E-Mail-Adresse leider nicht finden. Versuchen Sie es bitte erneut und überprüfen Sie, ob Sie Ihre E-Mail-Adresse korrekt eingegeben haben.</p>
+                    <p>Wenn Sie Ihre E-Mail-Adresse korrekt eingegeben haben und diese Nachricht weiterhin erscheint, sind Sie nicht in unserem System registriert. Wenden Sie sich bitte an den Kundendienst, da es sein kann, dass Sie falsch registriert worden sind.</p>
+                    <a href="/de_DE/kundendienst/telefonzeiten">» Kundendienst</a>
                 ]]></target>
             </trans-unit>
             <trans-unit id="password.forgotten.resend">
                 <source>password.forgotten.resend</source>
                 <target><![CDATA[
-                    <p>Din adgangskode er sendt til den indtastede e-mailadresse.</p>
+                    <p>Ihr Passwort wurde an die eingegebene E-Mail-Adresse verschickt.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="proceed">
                 <source>proceed</source>
-                <target>Fortsæt</target>
+                <target>Weiter</target>
             </trans-unit>
             <trans-unit id="back">
                 <source>back</source>
-                <target>Tilbage</target>
+                <target>Zurück</target>
             </trans-unit>
             <trans-unit id="retrive.password">
                 <source>retrive.password</source>
-                <target>» Få din adgangskode tilsendt pr. e-post</target>
+                <target>» Erhalten Sie Ihr Passwort per E-Post</target>
             </trans-unit>
             <trans-unit id="new.customer">
                 <source>new.customer</source>
-                <target>Ny kunde</target>
+                <target>Neuer Kunde</target>
             </trans-unit>
             <trans-unit id="existing.customer">
                 <source>existing.customer</source>
-                <target>Eksisterende kunde</target>
+                <target>Existierender Kunde</target>
             </trans-unit>
             <trans-unit id="title">
                 <source>title</source>
@@ -109,39 +109,39 @@
             </trans-unit>
             <trans-unit id="email">
                 <source>email</source>
-                <target>E-mailadresse</target>
+                <target>E-Mail-Adresse</target>
             </trans-unit>
             <trans-unit id="password">
                 <source>password</source>
-                <target>Adgangskode</target>
+                <target>Passwort</target>
             </trans-unit>
             <trans-unit id="my.account">
                 <source>my.account</source>
-                <target>Min side</target>
+                <target>Meine Seite</target>
             </trans-unit>
             <trans-unit id="my.account.header" approved="no">
                 <source>my.account.header</source>
-                <target><![CDATA[<h1>Velkommen!</h1>]]></target>
+                <target><![CDATA[<h1>Willkommen!</h1>]]></target>
             </trans-unit>
             <trans-unit id="my.account.logout">
                 <source>my.account.logout</source>
-                <target>Log ud</target>
+                <target>Ausloggen</target>
             </trans-unit>
             <trans-unit id="my.account.login">
                 <source>my.account.login</source>
-                <target>Log ind</target>
+                <target>Einloggen</target>
             </trans-unit>
             <trans-unit id="51">
                 <source>First name</source>
-                <target>Fornavn</target>
+                <target>Vorname</target>
             </trans-unit>
             <trans-unit id="52">
                 <source>Last name</source>
-                <target>Efternavn</target>
+                <target>Nachname</target>
             </trans-unit>
             <trans-unit id="53">
                 <source>Initials</source>
-                <target>Initialer</target>
+                <target>Initialen</target>
             </trans-unit>
             <trans-unit id="54">
                 <source>Phone</source>
@@ -149,7 +149,7 @@
             </trans-unit>
             <trans-unit id="55">
                 <source>Address line 1</source>
-                <target>Gade (husk husnummer og etage/dør)</target>
+                <target>Straße (sowie Hausnummer und Etage/Türnummer)</target>
             </trans-unit>
             <trans-unit id="56">
                 <source>Address line 2</source>
@@ -157,27 +157,27 @@
             </trans-unit>
             <trans-unit id="57">
                 <source>Postal code</source>
-                <target>Postnr.</target>
+                <target>Postleitzahl</target>
             </trans-unit>
             <trans-unit id="58">
                 <source>City</source>
-                <target>By</target>
+                <target>Ort</target>
             </trans-unit>
             <trans-unit id="59">
                 <source>Password repeated</source>
-                <target>Bekræft adgangskode</target>
+                <target>Passwort bestätigen</target>
             </trans-unit>
             <trans-unit id="password.invalid.match">
                 <source>password.invalid.match</source>
-                <target>Adgangskode bekræftigelsen skal være den samme som dit adgangskoden.</target>
+                <target>Die Passwortbestätigung muss dieselbe sein wie Ihr Passwort.</target>
             </trans-unit>
             <trans-unit id="61">
                 <source>Email repeated</source>
-                <target>Gentag e-mailadressen</target>
+                <target>E-Mail-Adresse bestätigen</target>
             </trans-unit>
             <trans-unit id="email.invalid.match">
                 <source>email.invalid.match</source>
-                <target>Du skal indtaste samme e-mailadresse i begge felter.</target>
+                <target>Bitte in beiden Feldern dieselbe E-Mail-Adresse eingeben.</target>
             </trans-unit>
             <trans-unit id="63">
                 <source>Country</source>
@@ -189,87 +189,87 @@
             </trans-unit>
             <trans-unit id="choose.country">
                 <source>choose.country</source>
-                <target>Vælg land</target>
+                <target>Land wählen</target>
             </trans-unit>
             <trans-unit id="64">
                 <source>account.created</source>
-                <target>Din konto er nu oprettet.</target>
+                <target>Ihr Konto wurde erfolgreich erstellt.</target>
             </trans-unit>
             <trans-unit id="account_newsletter_warning">
                 <source>account.newsletter.warning</source>
-                <target>Din e-mail blev ikke tilmeldt nyhedsbrevet</target>
+                <target>Ihre E-Mail wurde nicht für den Newsletter angemeldet</target>
             </trans-unit>
             <trans-unit id="65">
                 <source>create.account</source>
-                <target>Opret konto</target>
+                <target>Konto erstellen</target>
             </trans-unit>
             <trans-unit id="create.account.header" approved="no">
                 <source>create.account.header</source>
-                <target><![CDATA[<h1>Velkommen - Opret dig som kunde</h1>]]></target>
+                <target><![CDATA[<h1>Willkommen - Erstellen Sie ein Benutzerkonto</h1>]]></target>
             </trans-unit>
             <trans-unit id="edit.account">
                 <source>edit.account</source>
-                <target>Ret konto</target>
+                <target>Konto bearbeiten</target>
             </trans-unit>
             <trans-unit id="update.account">
                 <source>update.account</source>
-                <target>Opdatér konto</target>
+                <target>Konto aktualisieren</target>
             </trans-unit>
             <trans-unit id="66">
                 <source>Email repeated</source>
-                <target>Gentag e-mailadressen</target>
+                <target>E-Mail-Adresse bestätigen</target>
             </trans-unit>
             <trans-unit id="67">
                 <source>create.notice</source>
-                <target><![CDATA[<strong>Bemærk:</strong> Hvis du allerede har en konto hos os, skal du logge ind på <a href="%url%">Min side</a>]]></target>
+                <target><![CDATA[<strong>Bitte beachten:</strong> Wenn Sie bereits ein Konto bei uns haben, dann loggen Sie sich ein auf <a href="%url%">Meine Seite</a>]]></target>
             </trans-unit>
             <trans-unit id="68">
                 <source>nno.title</source>
-                <target>Hent dine adresseoplysninger fra De Gule Sider (TDC).</target>
+                <target>Holen Sie Ihre Adresseninformationen von den Gelben Seiten.</target>
             </trans-unit>
             <trans-unit id="69">
                 <source>nno.description</source>
-                <target>Indtast dit telefonnummer og få autoudfyldt din adresse.</target>
+                <target>Geben Sie Ihre Telefonnummer ein und lassen Sie Ihre Adresse automatisch ausfüllen.</target>
             </trans-unit>
             <trans-unit id="70">
                 <source>nno.fetch</source>
-                <target>Hent</target>
+                <target>Holen</target>
             </trans-unit>
             <trans-unit id="71">
                 <source>create.accept</source>
-                <target>Jeg bestiller hermed overstående og bekræfter, at jeg har læst og accepterer </target>
+                <target>Ich bestelle hiermit das oben Angeführte und bestätige, dass ich Folgendes gelesen habe und akzeptiere </target>
             </trans-unit>
             <trans-unit id="72">
                 <source>create.newsletter</source>
-                <target>Tilmeld nyhedsbrev</target>
+                <target>Newsletter bestellen</target>
             </trans-unit>
             <trans-unit id="73">
                 <source>create.terms</source>
-                <target>POMPdeLUX vilkår.</target>
+                <target>POMPdeLUX AGB's.</target>
             </trans-unit>
             <trans-unit id="74">
                 <source>create.nno.address_found</source>
-                <target>Adressen der matcher det indtastede telefonnummer er indsat i formen herunder.</target>
+                <target>Die Adresse, die zu der eingegebenen Telefonnummer passt, wurde in das Formular unten übertragen.</target>
             </trans-unit>
             <trans-unit id="75">
                 <source>create.nno.no_address_found</source>
-                <target>Der blev ikke fundet nogen adresse på det indtastede telefonnummer.</target>
+                <target>Es wurde keine Adresse für die eingegebene Telefonnummer gefunden.</target>
             </trans-unit>
             <trans-unit id="76">
                 <source>The password fields must match.</source>
-                <target>De to felter med kodeord skal være ens.</target>
+                <target>Die Passwörter in den beiden Feldern müssen übereinstimmen.</target>
             </trans-unit>
             <trans-unit id="77">
                 <source>The email fields must match.</source>
-                <target>De to felter med e-mailadresser skal være ens.</target>
+                <target>Die E-Mail-Adressen in den beiden Feldern müssen übereinstimmen.</target>
             </trans-unit>
             <trans-unit id="order.number">
                 <source>order.number</source>
-                <target>Ordre nr.</target>
+                <target>Bestellung Nr.</target>
             </trans-unit>
             <trans-unit id="order.date">
                 <source>order.date</source>
-                <target>Dato</target>
+                <target>Datum</target>
             </trans-unit>
             <trans-unit id="order.status">
                 <source>order.status</source>
@@ -277,47 +277,47 @@
             </trans-unit>
             <trans-unit id="order.total">
                 <source>order.total</source>
-                <target>Total</target>
+                <target>Insgesamt</target>
             </trans-unit>
             <trans-unit id="order.invoice">
                 <source>order.invoice</source>
-                <target>Faktura</target>
+                <target>Rechnung</target>
             </trans-unit>
             <trans-unit id="order.invoice.title">
                 <source>order.invoice.title</source>
-                <target>Vis detaljer</target>
+                <target>Details anzeigen</target>
             </trans-unit>
             <trans-unit id="order.edit.title">
                 <source>order.edit.title</source>
-                <target>Redigér ordre</target>
+                <target>Bestellung bearbeiten</target>
             </trans-unit>
             <trans-unit id="order.delete.title">
                 <source>order.delete.title</source>
-                <target>Slet ordre</target>
+                <target>Bestellung entfernen</target>
             </trans-unit>
             <trans-unit id="order.actions">
                 <source>order.actions</source>
-                <target>Handlinger</target>
+                <target>Handlungen</target>
             </trans-unit>
             <trans-unit id="cancel">
                 <source>cancel</source>
-                <target>Annuller</target>
+                <target>Abbrechen</target>
             </trans-unit>
             <trans-unit id="company.name">
                 <source>company.name</source>
-                <target>Firmanavn</target>
+                <target>Firmenname</target>
             </trans-unit>
             <trans-unit id="edit.address">
                 <source>edit.address</source>
-                <target>Ret adresse</target>
+                <target>Adresse ändern</target>
             </trans-unit>
             <trans-unit id="add.address">
                 <source>add.address</source>
-                <target>Opret ny adresse</target>
+                <target>Neue Adresse erstellen</target>
             </trans-unit>
             <trans-unit id="save">
                 <source>save</source>
-                <target>Gem</target>
+                <target>Speichern</target>
             </trans-unit>
             <trans-unit id="overnightbox.label">
                 <source>overnightbox.label</source>
@@ -325,51 +325,51 @@
             </trans-unit>
             <trans-unit id="overnightbox.name">
                 <source>overnightbox.name</source>
-                <target>Opsamlingssted</target>
+                <target>Abholort</target>
             </trans-unit>
             <trans-unit id="att.label">
                 <source>att.label</source>
-                <target>Att</target>
+                <target>z. Hd.</target>
             </trans-unit>
             <trans-unit id="address.first_name.required">
                 <source>address.first_name.required</source>
-                <target>Fornavn skal udfyldes</target>
+                <target>Bitte Vornamen ausfüllen</target>
             </trans-unit>
             <trans-unit id="address.last_name.required">
                 <source>address.last_name.required</source>
-                <target>Efternavn skal udfyldes</target>
+                <target>Bitte Nachnamen ausfüllen</target>
             </trans-unit>
             <trans-unit id="address.first_name.min.length" approved="no">
                 <source>address.first_name.min.length</source>
-                <target>Fornavn skal være min 2 tegn</target>
+                <target>Der Vorname muss aus mind. 2 Zeichen bestehen</target>
             </trans-unit>
             <trans-unit id="address.last_name.min.length" approved="no">
                 <source>address.last_name.min.length</source>
-                <target>Efternavn skal være min 2 tegn</target>
+                <target>Der Nachname muss aus mind. 2 Zeichen bestehen</target>
             </trans-unit>
             <trans-unit id="address.address_line_1.required">
                 <source>address.address_line_1.required</source>
-                <target>Du skal udfylde din adresse</target>
+                <target>Bitte Adresse ausfüllen</target>
             </trans-unit>
             <trans-unit id="address.postal_code.required">
                 <source>address.postal_code.required</source>
-                <target>Postnummer skal udfyldes</target>
+                <target>Bitte Postleitzahl ausfüllen</target>
             </trans-unit>
             <trans-unit id="address.city.required">
                 <source>address.city.required</source>
-                <target>By skal udfyldes</target>
+                <target>Bitte Ort ausfüllen</target>
             </trans-unit>
             <trans-unit id="address.countries_id.required">
                 <source>address.countries_id.required</source>
-                <target>Du skal vælge et land</target>
+                <target>Bitte ein Land wählen</target>
             </trans-unit>
             <trans-unit id="address.company_name.required">
                 <source>address.company_name.required</source>
-                <target>Du skal angive firmanavn</target>
+                <target>Bitte Firmennamen angeben</target>
             </trans-unit>
             <trans-unit id="Bad credentials">
                 <source>Bad credentials</source>
-                <target>Kan ikke finde e-mailadressen og/eller adgangskode.</target>
+                <target>E-Mail-Adresse und/oder Passwort wurde nicht gefunden.</target>
             </trans-unit>
             <trans-unit id="update.notice" approved="no">
                 <source>update.notice</source>
@@ -377,51 +377,51 @@
             </trans-unit>
             <trans-unit id="update.password_notice" approved="no">
                 <source>update.password_notice</source>
-                <target>Skal kun udfyldes hvis du ønsker at ændre dit nuværende kodeord.</target>
+                <target>Nur ausfüllen, wenn Sie Ihr aktuelles Passwort ändern möchten.</target>
             </trans-unit>
             <trans-unit id="history.empty" approved="no">
                 <source>history.empty</source>
-                <target>Din indkøbshistorik er tom.</target>
+                <target>Ihr Einkaufsverlauf ist leer.</target>
             </trans-unit>
             <trans-unit id="account.updated" approved="no">
                 <source>account.updated</source>
-                <target>Dine kontoinformationer er blevet opdateret.</target>
+                <target>Ihre Kontoinformationen wurden aktualisiert.</target>
             </trans-unit>
             <trans-unit id="create.account.error.title" approved="no">
                 <source>create.account.error.title</source>
-                <target>Der opstod en fejl</target>
+                <target>Es ist ein Fehler aufgetreten</target>
             </trans-unit>
             <trans-unit id="create.account.error" approved="no">
                 <source>create.account.error</source>
-                <target>Du har ikke udfyldt formularen korrekt, se detaljer herunder:</target>
+                <target>Sie haben das Formular nicht korrekt ausgefüllt, Details sehen Sie unten:</target>
             </trans-unit>
             <trans-unit id="phone.required" approved="no">
                 <source>phone.required</source>
-                <target>Du skal angive dit telefonnummer</target>
+                <target>Bitte Ihre Telefonnummer angeben</target>
             </trans-unit>
             <trans-unit id="phone.not.valid" approved="no">
                 <source>phone.not.valid</source>
-                <target>Telefonnummer må kun indeholder tal</target>
+                <target>Die Telefonnummer darf nur Ziffern enthalten</target>
             </trans-unit>
             <trans-unit id="phone.min.length" approved="no">
                 <source>phone.min.length</source>
-                <target>Dit telefonnummer skal bestå af minimum 8 tegn</target>
+                <target>Ihre Telefonnummer muss aus mind. 8 Zeichen bestehen</target>
             </trans-unit>
             <trans-unit id="email.required" approved="no">
                 <source>email.required</source>
-                <target>Du skal angive din e-mailadresse</target>
+                <target>Bitte Ihre E-Mail-Adresse angeben</target>
             </trans-unit>
             <trans-unit id="password.required">
                 <source>password.required</source>
-                <target>Adgangskode skal være min 5 tegn</target>
+                <target>Das Passwort muss aus mind. 5 Zeichen bestehen</target>
             </trans-unit>
             <trans-unit id="password.min.length" approved="no">
                 <source>password.min.length</source>
-                <target>Dit kodeord skal bestå af minimum 5 tegn</target>
+                <target>Ihr Passwort muss aus mind. 5 Zeichen bestehen</target>
             </trans-unit>
             <trans-unit id="email.already.in.use">
                 <source>email.already.in.use</source>
-                <target>E-mailadressen eksisterer allerede!</target>
+                <target>Die E-Mail-Adresse existiert bereits!</target>
             </trans-unit>
             <trans-unit id="login.restricted.other_locale">
                 <source>login.restricted.other_locale</source>
@@ -433,71 +433,71 @@
             </trans-unit>
             <trans-unit id="stop.editing.order">
                 <source>stop.editing.order</source>
-                <target>Stop ordreredigering</target>
+                <target>Bestellbearbeitung stoppen</target>
             </trans-unit>
             <trans-unit id="unable.to.lock.order" approved="no">
                 <source>unable.to.lock.order</source>
-                <target>Ordren kan ikke redigeres i øjeblikket. Prøv igen senere.</target>
+                <target>Die Bestellung kann im Augenblick nicht bearbeitet werden. Bitte versuchen Sie es später erneut.</target>
             </trans-unit>
             <trans-unit id="my.account.%name%" approved="no">
                 <source>my.account.%name%</source>
-                <target>Velkommen %name%!</target>
+                <target>Willkommen %name%!</target>
             </trans-unit>
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
-                <target><![CDATA[<p>På Min side kan du rette dine informationer og til- og afmelde nyhedsbrev. Du har ligeledes mulighed for at redigere i din ordre.<br><br>Din ordre kan have følgende status:<br><br><b>Afventer</b><br>Din ordre er endnu ikke ekspederet, og du har som minimum 24 timer til at redigere i din ordre.
-Du har mulighed for at ændre/tilføje/slette på din ordre. Du skal klikke på blyanten ved redigering.
-Bemærk: Betalingen skal gennemføres – tidligere betalingsreservation bliver automatisk slettet.
-Ønsker du at slette hele din ordre, klikker du på X.<br><br><b>Stop editering</b><br>Du er eventuelt kommet til at afbryde din redigering. Tryk på knappen ”Stop editering”, og du kan efterfølgende redigere din ordre på ny.<br><br><b>Under behandling</b><br>Din ordre er nu i gang med at blive behandlet på vores lager og bliver afsendt til dig inden for 1-2 dage. Det er ikke muligt at redigere/bremse din ordre.<br><br><b>Faktureret</b><br>Din ordre er afsendt fra vores lager. Fakturaen finder du vedhæftet som PDF fil, under kolonnen faktura, i løbet af 24 timer efter afsendelsen.<br><br>Ønsker du at returnere en vare, finder du vores <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel.pdf" target="_blank">returseddel her</a>.<br><br></p>]]></target>
+                <target><![CDATA[<p>Auf Meine Seite können Sie Informationen ändern und sich für den Newsletter anmelden oder ihn abbestellen. Sie haben auch die Möglichkeit, Ihre Bestellung zu bearbeiten.<br><br>Ihre Bestellung kann folgenden Status haben:<br><br><b>Warten auf Bearbeitung</b><br>Ihre Bestellung wurde noch nicht bearbeitet und Sie haben zum Bearbeiten Ihrer Bestellung mind. 24 Stunden Zeit.
+Sie können Ihre Bestellung ändern oder etwas hinzufügen bzw. entfernen. Klicken Sie bei der Bearbeitung auf den Bleistift.
+Bitte beachten: Die Zahlung muss durchgeführt werden – frühere Zahlungsreservierungen werden automatisch gelöscht.
+Möchten Sie Ihre gesamte Bestellung löschen, dann klicken Sie bitte auf X.<br><br><b>Bearbeitung stoppen</b><br>Sie haben evtl. Ihre Bearbeitung abgebrochen. Drücken Sie auf die Schaltfläche ”Bearbeitung stoppen”, danach können Sie Ihre Bestellung erneut bearbeiten.<br><br><b>Wird bearbeitet</b><br>Ihre Bestellung wird jetzt in unserem Lager bearbeitet und im Laufe von 1-2 Tagen an Sie verschickt. Es ist nicht möglich, Ihre Bestellung zu bearbeiten/zu stoppen.<br><br><b>In Rechnung gestellt</b><br>Ihre Bestellung hat unser Lager verlassen. Die Rechnung finden Sie als beigefügte PDF-Datei in der Spalte Rechnung im Laufe von 24 Stunden nach dem Versand.<br><br>Für Rücksendungen von Waren finden Sie unseren <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel.pdf" target="_blank">Rücksendeschein hier</a>.<br><br></p>]]></target>
             </trans-unit>
             <trans-unit id="newsletter" approved="no">
                 <source>newsletter</source>
-                <target>Nyhedsbreve</target>
+                <target>Newsletter</target>
             </trans-unit>
             <trans-unit id="acc.1">
                 <source>Email address</source>
-                <target>E-mailadresse</target>
+                <target>E-Mail-Adresse</target>
             </trans-unit>
             <trans-unit id="acc.2">
                 <source>Email address repeated</source>
-                <target>Gentag e-mailadressen</target>
+                <target>E-Mail-Adresse bestätigen</target>
             </trans-unit>
             <trans-unit id="acc.3">
                 <source>Pass</source>
-                <target>Valgfrit adgangskode</target>
+                <target>Wahlfreies Passwort</target>
             </trans-unit>
             <trans-unit id="acc.4">
                 <source>Pass repeated</source>
-                <target>Gentag adgangskode</target>
+                <target>Passwort bestätigen</target>
             </trans-unit>
             <trans-unit id="my.account.my.events" approved="no">
                 <source>my.account.my.events</source>
-                <target>Mine arrangementer</target>
+                <target>Meine Veranstaltungen</target>
             </trans-unit>
             <trans-unit id="account.history.see.all.orders" approved="no">
                 <source>account.history.see.all.orders</source>
-                <target>Se alle ordrer</target>
+                <target>Alle Bestellungen anzeigen</target>
             </trans-unit>
             <trans-unit id="my.account.login.notice" approved="no">
                 <source>my.account.login.notice</source>
-                <target><![CDATA[<p>Velkommen til - opret dig som kunde!</p>]]></target>
+                <target><![CDATA[<p>Willkommen - erstellen Sie ein Benutzerkonto!</p>]]></target>
             </trans-unit>
             <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>
-                <target><![CDATA[<h3>Min side - Log in</h3><p>Når du handler hos POMPdeLUX, skal du være oprettet som kunde her på siden. Det giver dig blandt andet mulighed for at tjekke og rette din ordre, indtil den bliver pakket og sendt fra vores lager. Du kan ændre farver og størrelser på de varer, du har bestilt, og du kan tilføje eller slette varer, så længe der står "Afventer" ud for din ordre, det vil sige i minimum 24 timer efter, du har bestilt varerne.<br><br>Som kunde hos POMPdeLUX  kan du på denne side også se dine tidligere bestillinger og finde gamle fakturaer.</p>]]></target>
+                <target><![CDATA[<h3>Meine Seite - Login</h3><p>Wenn Sie bei POMPdeLUX einkaufen, müssen Sie ein Benutzerkonto auf dieser Seite haben. Es ermöglicht Ihnen u. a., Ihre Bestellung zu prüfen und zu ändern, bevor sie in unserem Lager verpackt wird und verschickt wird. Sie können Farben und Größen der bestellten Waren ändern und Sie können Waren hinzufügen und ändern, solange bei Ihrer Bestellung "Warten auf Bearbeitung" steht, d. h. mindestens 24 Stunden nach der Warenbestellung.<br><br>Als Kunde bei POMPdeLUX  können Sie auf dieser Seite auch frühere Bestellungen sehen und alte Rechnungen finden.</p>]]></target>
             </trans-unit>
 
             <trans-unit id="my.account.login.title">
                 <source>my.account.login.title</source>
-                <target>Min side - Log in</target>
+                <target>Meine Seite - Login</target>
             </trans-unit>
             <trans-unit id="my.account.login.header" approved="no">
                 <source>my.account.login.header</source>
-                <target><![CDATA[<h1>Velkommen til min side</h1>]]></target>
+                <target><![CDATA[<h1>Willkommen auf Meine Seite</h1>]]></target>
             </trans-unit>
             <trans-unit id="create.pre-notice" approved="no">
                 <source>create.pre-notice</source>
-                <target><![CDATA[På denne side skal du udfylde dine privatoplysninger (og <u>ikke</u> evt. firmaoplysninger).]]></target>
+                <target><![CDATA[Auf dieser Seite sollen Sie Ihre privaten Informationen ausfüllen (<u>nicht</u> evtl. Firmeninformationen).]]></target>
             </trans-unit>
         </body>
     </file>

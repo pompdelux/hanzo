@@ -53,10 +53,10 @@ class DefaultController extends CoreController
 
             $order = OrdersPeer::getCurrent(true);
             $order->setDeliveryMethod($request->get('method'));
-            $order->setOrderLineShipping($method, ShippingMethods::TYPE_NORMAL);
+            $order->setShipping($method, ShippingMethods::TYPE_NORMAL);
 
             if ($method->getFee()) {
-                $order->setOrderLineShipping($method, ShippingMethods::TYPE_FEE);
+                $order->setShipping($method, ShippingMethods::TYPE_FEE);
             }
 
             $order->setUpdatedAt(time());

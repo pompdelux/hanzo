@@ -1,6 +1,5 @@
 {% extends layout %}
 
-
 {% block meta %}
     {% if page_type|default('page') != 'frontpage' %}
         {{ meta_tags(false) }}
@@ -16,7 +15,7 @@
 {% block content %}
 
 {% if page_type|default('page') != 'frontpage' %}
-    <div class="grid_8 alpha omega row">
+    <div class="grid_8 alpha omega row breadcrumb">
       {% render 'CMSBundle:Menu:menu' with {'type': 'breadcrumb', 'thread': left_menu.thread} %}
     </div>
 

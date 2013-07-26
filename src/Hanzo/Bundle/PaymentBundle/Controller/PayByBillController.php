@@ -28,7 +28,7 @@ class PayByBillController extends CoreController
     {
         $api = $this->get('payment.paybybillapi');
         $request = $this->get('request');
-        $order = OrdersPeer::getCurrent();
+        $order = OrdersPeer::getCurrent(true);
 
         if ( !($order instanceof Orders) ) {
             throw new Exception( 'PayByBill callback found no valid order to proccess.' );

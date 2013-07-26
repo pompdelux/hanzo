@@ -11,9 +11,21 @@ form.create {
 			content: ": *";
 		}
 	}
+    .button {
+        display: none;
+    }
 }
 #body-events-create-customer{
     input.button.off{
         display: none;
     }
+}
+
+#event-edit-form .button {
+    display: inline-block;
+}
+
+#body-event form.create .button,
+#body-edit-account form.create .button {
+    display: inline-block;
 }

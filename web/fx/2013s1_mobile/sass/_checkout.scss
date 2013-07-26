@@ -1,0 +1,101 @@
+.product-table {
+    width: 100%;
+    border-bottom: 1px solid #000;
+    margin-bottom: 10px;
+}
+
+#shipping-block h3 {
+    background: url(/fx/images/icons/icons/arrow_right.png) center right no-repeat;
+    cursor: pointer;
+    border-bottom: 1px solid #F0F0F0;
+    line-height: 1.8em;
+    font-weight: normal;
+    &.on {
+        background: url(/fx/images/icons/icons/arrow_down.png) center right no-repeat;
+    }
+    +p {
+        border-bottom: 1px solid #F0F0F0;
+        display: none;
+    }
+}
+
+#body-checkout #main h2 {
+    -webkit-box-shadow: none;
+       -moz-box-shadow: none;
+            box-shadow: none;
+    padding: 5px 0;
+    text-transform: uppercase;
+    font-weight: normal;
+}
+
+.shipping-method,
+.payment-module {
+    margin: 12px 0;
+    padding: 6px;
+    -webkit-box-shadow: none;
+       -moz-box-shadow: none;
+            box-shadow: none;
+    border: #F0F0F0 1px solid;
+
+}
+
+.checkout-block {
+    padding: 0;
+    h3 {
+        margin-top: 0;
+    }
+    .payment-methods {
+        margin-left: 5px;
+    }
+}
+
+form.location-locator {
+    label {
+        display: none;
+    }
+    .locator-result {
+        border: #F0F0F0 1px solid;
+        padding: 5px;
+        th {
+            font-weight: bold;
+        }
+        label {
+            display: inline-block;
+        }
+        tr:nth-child(odd) {
+            background-color:#F0F0F0;
+        }
+    }
+}
+
+#body-checkout-success h2 {
+    margin-top: 20px;
+}
+
+#in-edit-warning {
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    margin-bottom: 10px;
+    h2 {
+        background-color: #ffea89;
+        cursor: pointer;
+        line-height: 1.8em;
+        span {
+            display: block;
+            margin: 0 5px;
+            background: url(/fx/images/icons/icons/arrow_right.png) center right no-repeat;
+        }
+        &.on  {
+            border-bottom: 1px solid #000;
+            span {
+                background: url(/fx/images/icons/icons/arrow_down.png) center right no-repeat;
+            }
+        }
+    }
+    p {
+        display: none;
+        a {
+            font-weight: bold;
+        }
+    }
+}

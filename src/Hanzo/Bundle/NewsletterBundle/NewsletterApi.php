@@ -147,6 +147,10 @@ class NewsletterApi
             case 'FI':
                 $listid = 30;
                 break;
+            case 'SalesDE':
+            case 'DE':
+                $listid = 53;
+                break;
         }
 
         return $listid;
