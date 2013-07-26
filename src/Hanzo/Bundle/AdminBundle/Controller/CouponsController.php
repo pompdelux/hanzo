@@ -166,7 +166,7 @@ class CouponsController extends CoreController
         ;
 
         if ('POST' === $request->getMethod()) {
-            $form->bindRequest($request);
+            $form->bind($request);
 
             if ($form->isValid()) {
                 $coupon->save($this->getDbConnection());
@@ -273,7 +273,7 @@ class CouponsController extends CoreController
         ;
 
         if ('POST' === $request->getMethod()) {
-            $form->bindRequest($request);
+            $form->bind($request);
             if ($form->isValid()) {
 
                 $out      = [];

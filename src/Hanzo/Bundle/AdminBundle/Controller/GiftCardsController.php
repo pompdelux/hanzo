@@ -157,7 +157,7 @@ class GiftCardsController extends CoreController
         ;
 
         if ('POST' === $request->getMethod()) {
-            $form->bindRequest($request);
+            $form->bind($request);
 
             if ($form->isValid()) {
 

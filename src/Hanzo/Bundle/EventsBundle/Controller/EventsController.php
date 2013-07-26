@@ -587,7 +587,7 @@ class EventsController extends CoreController
 
             $request = $this->getRequest();
             if ('POST' === $request->getMethod()) {
-                $form->bindRequest($request);
+                $form->bind($request);
 
                 if ($events_participant->getEmail()) {
                     $res = EventsParticipantsQuery::create()
@@ -739,7 +739,7 @@ class EventsController extends CoreController
 
             $request = $this->getRequest();
             if ('POST' === $request->getMethod()) {
-                $form_rsvp->bindRequest($request);
+                $form_rsvp->bind($request);
 
                 if ($form_rsvp->isValid()) {
                     $events_participant->setRespondedAt(time());
@@ -801,7 +801,7 @@ class EventsController extends CoreController
 
             $request = $this->getRequest();
             if ('POST' === $request->getMethod()) {
-                $form->bindRequest($request);
+                $form->bind($request);
 
                 if ($form->isValid()) {
                     $events_participant->setKey(sha1(time()));
@@ -1008,7 +1008,7 @@ class EventsController extends CoreController
         if ('POST' === $request->getMethod()) {
 
             $form = &$myEvents[$request->request->get('form')['event_id']]['form']; // Get the correct form instance for the given event. The eventid is sent with a hidden field
-            $form->bindRequest($request);
+            $form->bind($request);
 
             $data = $form->getData();
 

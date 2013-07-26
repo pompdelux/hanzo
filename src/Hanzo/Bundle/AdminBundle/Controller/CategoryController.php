@@ -71,7 +71,7 @@ class CategoryController extends CoreController
         ;
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
-            $form_add->bindRequest($request);
+            $form_add->bind($request);
 
             if ($form_add->isValid()) {
 
@@ -181,7 +181,7 @@ class CategoryController extends CoreController
         $request = $this->getRequest();
 
         if ('POST' === $request->getMethod()) {
-            $form->bindRequest($request);
+            $form->bind($request);
 
             if ($form->isValid()) {
 

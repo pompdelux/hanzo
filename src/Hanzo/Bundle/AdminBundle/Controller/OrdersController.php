@@ -211,7 +211,7 @@ class OrdersController extends CoreController
 
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
-            $form_state->bindRequest($request);
+            $form_state->bind($request);
 
             if ($form_state->isValid()) {
 
@@ -463,7 +463,7 @@ class OrdersController extends CoreController
         $request = $this->getRequest();
         $updated_orders = array();
         if ('POST' === $request->getMethod()) {
-            $form_state->bindRequest($request);
+            $form_state->bind($request);
 
             if ($form_state->isValid()) {
 

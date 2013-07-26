@@ -237,7 +237,7 @@ class ProductsController extends CoreController
 
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
-            $form_hasVideo->bindRequest($request);
+            $form_hasVideo->bind($request);
 
             if ($form_hasVideo->isValid()) {
                 $current_product->save($this->getDbConnection());
@@ -317,7 +317,7 @@ class ProductsController extends CoreController
 
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
-            $form->bindRequest($request);
+            $form->bind($request);
 
             if ($form->isValid()) {
 

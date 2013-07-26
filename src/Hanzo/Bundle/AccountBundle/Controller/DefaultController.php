@@ -252,7 +252,7 @@ class DefaultController extends CoreController
 
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
-            $form->bindRequest($request);
+            $form->bind($request);
 
             if ($form->isValid()) {
                 if (!$customer->getPassword()) {
@@ -386,7 +386,7 @@ class DefaultController extends CoreController
 
         $form = $builder->getForm();
         if ($request->getMethod() == 'POST') {
-            $form->bindRequest($request);
+            $form->bind($request);
             if ($form->isValid()) {
 
                 $address->save();
@@ -475,9 +475,10 @@ class DefaultController extends CoreController
 
             $translator = $this->get('translator');
             $account = CustomersQuery::create()
-            ->filterById($customer->getId(), \Criteria::NOT_EQUAL)
-            ->findOneByEmail($this->getRequest()->get('email'))
+                ->filterById($customer->getId(), \Criteria::NOT_EQUAL)
+                ->findOneByEmail($this->getRequest()->get('email'))
             ;
+
             if ($account instanceof Customers) {
                 $status = false;
                 $message = $translator->trans('email.already.in.use', array(), 'account');
@@ -491,7 +492,7 @@ class DefaultController extends CoreController
                 'status' => $status,
                 'message' => $message,
                 'data' => $data,
-                ));
+            ));
         }
     }
 
