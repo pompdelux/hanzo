@@ -101,7 +101,6 @@ use Hanzo\Model\WallLikes;
  * @method Customers findOne(PropelPDO $con = null) Return the first Customers matching the query
  * @method Customers findOneOrCreate(PropelPDO $con = null) Return the first Customers matching the query, or a new Customers object populated from the query conditions when no match is found
  *
- * @method Customers findOneById(int $id) Return the first Customers filtered by the id column
  * @method Customers findOneByGroupsId(int $groups_id) Return the first Customers filtered by the groups_id column
  * @method Customers findOneByTitle(string $title) Return the first Customers filtered by the title column
  * @method Customers findOneByFirstName(string $first_name) Return the first Customers filtered by the first_name column
@@ -147,7 +146,7 @@ abstract class BaseCustomersQuery extends ModelCriteria
      * Returns a new CustomersQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     CustomersQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   CustomersQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return CustomersQuery
      */
@@ -204,18 +203,32 @@ abstract class BaseCustomersQuery extends ModelCriteria
     }
 
     /**
+     * Alias of findPk to use instance pooling
+     *
+     * @param     mixed $key Primary key to use for the query
+     * @param     PropelPDO $con A connection object
+     *
+     * @return                 Customers A model object, or null if the key is not found
+     * @throws PropelException
+     */
+     public function findOneById($key, $con = null)
+     {
+        return $this->findPk($key, $con);
+     }
+
+    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   Customers A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 Customers A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `ID`, `GROUPS_ID`, `TITLE`, `FIRST_NAME`, `LAST_NAME`, `EMAIL`, `PHONE`, `PASSWORD`, `PASSWORD_CLEAR`, `DISCOUNT`, `IS_ACTIVE`, `CREATED_AT`, `UPDATED_AT` FROM `customers` WHERE `ID` = :p0';
+        $sql = 'SELECT `id`, `groups_id`, `title`, `first_name`, `last_name`, `email`, `phone`, `password`, `password_clear`, `discount`, `is_active`, `created_at`, `updated_at` FROM `customers` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -311,7 +324,8 @@ abstract class BaseCustomersQuery extends ModelCriteria
      * <code>
      * $query->filterById(1234); // WHERE id = 1234
      * $query->filterById(array(12, 34)); // WHERE id IN (12, 34)
-     * $query->filterById(array('min' => 12)); // WHERE id > 12
+     * $query->filterById(array('min' => 12)); // WHERE id >= 12
+     * $query->filterById(array('max' => 12)); // WHERE id <= 12
      * </code>
      *
      * @param     mixed $id The value to use as filter.
@@ -324,8 +338,22 @@ abstract class BaseCustomersQuery extends ModelCriteria
      */
     public function filterById($id = null, $comparison = null)
     {
-        if (is_array($id) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($id)) {
+            $useMinMax = false;
+            if (isset($id['min'])) {
+                $this->addUsingAlias(CustomersPeer::ID, $id['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($id['max'])) {
+                $this->addUsingAlias(CustomersPeer::ID, $id['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(CustomersPeer::ID, $id, $comparison);
@@ -338,7 +366,8 @@ abstract class BaseCustomersQuery extends ModelCriteria
      * <code>
      * $query->filterByGroupsId(1234); // WHERE groups_id = 1234
      * $query->filterByGroupsId(array(12, 34)); // WHERE groups_id IN (12, 34)
-     * $query->filterByGroupsId(array('min' => 12)); // WHERE groups_id > 12
+     * $query->filterByGroupsId(array('min' => 12)); // WHERE groups_id >= 12
+     * $query->filterByGroupsId(array('max' => 12)); // WHERE groups_id <= 12
      * </code>
      *
      * @see       filterByGroups()
@@ -584,7 +613,8 @@ abstract class BaseCustomersQuery extends ModelCriteria
      * <code>
      * $query->filterByDiscount(1234); // WHERE discount = 1234
      * $query->filterByDiscount(array(12, 34)); // WHERE discount IN (12, 34)
-     * $query->filterByDiscount(array('min' => 12)); // WHERE discount > 12
+     * $query->filterByDiscount(array('min' => 12)); // WHERE discount >= 12
+     * $query->filterByDiscount(array('max' => 12)); // WHERE discount <= 12
      * </code>
      *
      * @param     mixed $discount The value to use as filter.
@@ -639,7 +669,7 @@ abstract class BaseCustomersQuery extends ModelCriteria
     public function filterByIsActive($isActive = null, $comparison = null)
     {
         if (is_string($isActive)) {
-            $is_active = in_array(strtolower($isActive), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+            $isActive = in_array(strtolower($isActive), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
         }
 
         return $this->addUsingAlias(CustomersPeer::IS_ACTIVE, $isActive, $comparison);
@@ -737,8 +767,8 @@ abstract class BaseCustomersQuery extends ModelCriteria
      * @param   Groups|PropelObjectCollection $groups The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   CustomersQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 CustomersQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByGroups($groups, $comparison = null)
     {
@@ -813,8 +843,8 @@ abstract class BaseCustomersQuery extends ModelCriteria
      * @param   Addresses|PropelObjectCollection $addresses  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   CustomersQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 CustomersQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByAddresses($addresses, $comparison = null)
     {
@@ -887,8 +917,8 @@ abstract class BaseCustomersQuery extends ModelCriteria
      * @param   Events|PropelObjectCollection $events  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   CustomersQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 CustomersQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByEventsRelatedByConsultantsId($events, $comparison = null)
     {
@@ -961,8 +991,8 @@ abstract class BaseCustomersQuery extends ModelCriteria
      * @param   Events|PropelObjectCollection $events  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   CustomersQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 CustomersQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByEventsRelatedByCustomersId($events, $comparison = null)
     {
@@ -1035,8 +1065,8 @@ abstract class BaseCustomersQuery extends ModelCriteria
      * @param   Orders|PropelObjectCollection $orders  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   CustomersQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 CustomersQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByOrders($orders, $comparison = null)
     {
@@ -1109,8 +1139,8 @@ abstract class BaseCustomersQuery extends ModelCriteria
      * @param   Wall|PropelObjectCollection $wall  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   CustomersQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 CustomersQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByWall($wall, $comparison = null)
     {
@@ -1183,8 +1213,8 @@ abstract class BaseCustomersQuery extends ModelCriteria
      * @param   WallLikes|PropelObjectCollection $wallLikes  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   CustomersQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 CustomersQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByWallLikes($wallLikes, $comparison = null)
     {
@@ -1257,8 +1287,8 @@ abstract class BaseCustomersQuery extends ModelCriteria
      * @param   ConsultantNewsletterDrafts|PropelObjectCollection $consultantNewsletterDrafts  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   CustomersQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 CustomersQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByConsultantNewsletterDrafts($consultantNewsletterDrafts, $comparison = null)
     {
@@ -1331,8 +1361,8 @@ abstract class BaseCustomersQuery extends ModelCriteria
      * @param   GothiaAccounts|PropelObjectCollection $gothiaAccounts  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   CustomersQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 CustomersQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByGothiaAccounts($gothiaAccounts, $comparison = null)
     {
@@ -1405,8 +1435,8 @@ abstract class BaseCustomersQuery extends ModelCriteria
      * @param   Consultants|PropelObjectCollection $consultants  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   CustomersQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 CustomersQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByConsultants($consultants, $comparison = null)
     {

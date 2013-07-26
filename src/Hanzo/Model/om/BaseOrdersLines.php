@@ -153,6 +153,12 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
     protected $alreadyInValidation = false;
 
     /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
+    /**
      * Applies default values to this object.
      * This method should be called from the object's constructor (or
      * equivalent initialization method).
@@ -275,22 +281,25 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
             // while technically this is not a default value of null,
             // this seems to be closest in meaning.
             return null;
-        } else {
-            try {
-                $dt = new DateTime($this->expected_at);
-            } catch (Exception $x) {
-                throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->expected_at, true), $x);
-            }
+        }
+
+        try {
+            $dt = new DateTime($this->expected_at);
+        } catch (Exception $x) {
+            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->expected_at, true), $x);
         }
 
         if ($format === null) {
             // We cast here to maintain BC in API; obviously we will lose data if we're dealing with pre-/post-epoch dates.
             return (int) $dt->format('U');
-        } elseif (strpos($format, '%') !== false) {
-            return strftime($format, $dt->format('U'));
-        } else {
-            return $dt->format($format);
         }
+
+        if (strpos($format, '%') !== false) {
+            return strftime($format, $dt->format('U'));
+        }
+
+        return $dt->format($format);
+
     }
 
     /**
@@ -351,7 +360,7 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      */
     public function setId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -372,7 +381,7 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      */
     public function setOrdersId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -397,7 +406,7 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      */
     public function setType($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -418,7 +427,7 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      */
     public function setProductsId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -443,7 +452,7 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      */
     public function setProductsSku($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -464,7 +473,7 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      */
     public function setProductsName($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -485,7 +494,7 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      */
     public function setProductsColor($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -506,7 +515,7 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      */
     public function setProductsSize($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -552,7 +561,7 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      */
     public function setOriginalPrice($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -573,7 +582,7 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      */
     public function setPrice($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -594,7 +603,7 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      */
     public function setVat($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -615,7 +624,7 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      */
     public function setQuantity($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -636,7 +645,7 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      */
     public function setUnit($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -710,7 +719,7 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
+            $this->postHydrate($row, $startcol, $rehydrate);
             return $startcol + 14; // 14 = OrdersLinesPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -951,46 +960,46 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(OrdersLinesPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`ID`';
+            $modifiedColumns[':p' . $index++]  = '`id`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::ORDERS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`ORDERS_ID`';
+            $modifiedColumns[':p' . $index++]  = '`orders_id`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::TYPE)) {
-            $modifiedColumns[':p' . $index++]  = '`TYPE`';
+            $modifiedColumns[':p' . $index++]  = '`type`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::PRODUCTS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`PRODUCTS_ID`';
+            $modifiedColumns[':p' . $index++]  = '`products_id`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::PRODUCTS_SKU)) {
-            $modifiedColumns[':p' . $index++]  = '`PRODUCTS_SKU`';
+            $modifiedColumns[':p' . $index++]  = '`products_sku`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::PRODUCTS_NAME)) {
-            $modifiedColumns[':p' . $index++]  = '`PRODUCTS_NAME`';
+            $modifiedColumns[':p' . $index++]  = '`products_name`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::PRODUCTS_COLOR)) {
-            $modifiedColumns[':p' . $index++]  = '`PRODUCTS_COLOR`';
+            $modifiedColumns[':p' . $index++]  = '`products_color`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::PRODUCTS_SIZE)) {
-            $modifiedColumns[':p' . $index++]  = '`PRODUCTS_SIZE`';
+            $modifiedColumns[':p' . $index++]  = '`products_size`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::EXPECTED_AT)) {
-            $modifiedColumns[':p' . $index++]  = '`EXPECTED_AT`';
+            $modifiedColumns[':p' . $index++]  = '`expected_at`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::ORIGINAL_PRICE)) {
-            $modifiedColumns[':p' . $index++]  = '`ORIGINAL_PRICE`';
+            $modifiedColumns[':p' . $index++]  = '`original_price`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::PRICE)) {
-            $modifiedColumns[':p' . $index++]  = '`PRICE`';
+            $modifiedColumns[':p' . $index++]  = '`price`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::VAT)) {
-            $modifiedColumns[':p' . $index++]  = '`VAT`';
+            $modifiedColumns[':p' . $index++]  = '`vat`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::QUANTITY)) {
-            $modifiedColumns[':p' . $index++]  = '`QUANTITY`';
+            $modifiedColumns[':p' . $index++]  = '`quantity`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::UNIT)) {
-            $modifiedColumns[':p' . $index++]  = '`UNIT`';
+            $modifiedColumns[':p' . $index++]  = '`unit`';
         }
 
         $sql = sprintf(
@@ -1003,46 +1012,46 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`ID`':
+                    case '`id`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`ORDERS_ID`':
+                    case '`orders_id`':
                         $stmt->bindValue($identifier, $this->orders_id, PDO::PARAM_INT);
                         break;
-                    case '`TYPE`':
+                    case '`type`':
                         $stmt->bindValue($identifier, $this->type, PDO::PARAM_STR);
                         break;
-                    case '`PRODUCTS_ID`':
+                    case '`products_id`':
                         $stmt->bindValue($identifier, $this->products_id, PDO::PARAM_INT);
                         break;
-                    case '`PRODUCTS_SKU`':
+                    case '`products_sku`':
                         $stmt->bindValue($identifier, $this->products_sku, PDO::PARAM_STR);
                         break;
-                    case '`PRODUCTS_NAME`':
+                    case '`products_name`':
                         $stmt->bindValue($identifier, $this->products_name, PDO::PARAM_STR);
                         break;
-                    case '`PRODUCTS_COLOR`':
+                    case '`products_color`':
                         $stmt->bindValue($identifier, $this->products_color, PDO::PARAM_STR);
                         break;
-                    case '`PRODUCTS_SIZE`':
+                    case '`products_size`':
                         $stmt->bindValue($identifier, $this->products_size, PDO::PARAM_STR);
                         break;
-                    case '`EXPECTED_AT`':
+                    case '`expected_at`':
                         $stmt->bindValue($identifier, $this->expected_at, PDO::PARAM_STR);
                         break;
-                    case '`ORIGINAL_PRICE`':
+                    case '`original_price`':
                         $stmt->bindValue($identifier, $this->original_price, PDO::PARAM_STR);
                         break;
-                    case '`PRICE`':
+                    case '`price`':
                         $stmt->bindValue($identifier, $this->price, PDO::PARAM_STR);
                         break;
-                    case '`VAT`':
+                    case '`vat`':
                         $stmt->bindValue($identifier, $this->vat, PDO::PARAM_STR);
                         break;
-                    case '`QUANTITY`':
+                    case '`quantity`':
                         $stmt->bindValue($identifier, $this->quantity, PDO::PARAM_INT);
                         break;
-                    case '`UNIT`':
+                    case '`unit`':
                         $stmt->bindValue($identifier, $this->unit, PDO::PARAM_STR);
                         break;
                 }
@@ -1113,11 +1122,11 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -1595,12 +1604,13 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      * Get the associated Orders object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Orders The associated Orders object.
      * @throws PropelException
      */
-    public function getOrders(PropelPDO $con = null)
+    public function getOrders(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aOrders === null && ($this->orders_id !== null)) {
+        if ($this->aOrders === null && ($this->orders_id !== null) && $doQuery) {
             $this->aOrders = OrdersQuery::create()->findPk($this->orders_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -1646,12 +1656,13 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      * Get the associated Products object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Products The associated Products object.
      * @throws PropelException
      */
-    public function getProducts(PropelPDO $con = null)
+    public function getProducts(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aProducts === null && ($this->products_id !== null)) {
+        if ($this->aProducts === null && ($this->products_id !== null) && $doQuery) {
             $this->aProducts = ProductsQuery::create()->findPk($this->products_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -1686,6 +1697,7 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
         $this->unit = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->applyDefaultValues();
         $this->resetModified();
@@ -1704,7 +1716,16 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
+            if ($this->aOrders instanceof Persistent) {
+              $this->aOrders->clearAllReferences($deep);
+            }
+            if ($this->aProducts instanceof Persistent) {
+              $this->aProducts->clearAllReferences($deep);
+            }
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
         $this->aOrders = null;

@@ -40,7 +40,6 @@ use Hanzo\Model\OrdersDeletedLogQuery;
  * @method OrdersDeletedLog findOne(PropelPDO $con = null) Return the first OrdersDeletedLog matching the query
  * @method OrdersDeletedLog findOneOrCreate(PropelPDO $con = null) Return the first OrdersDeletedLog matching the query, or a new OrdersDeletedLog object populated from the query conditions when no match is found
  *
- * @method OrdersDeletedLog findOneByOrdersId(int $orders_id) Return the first OrdersDeletedLog filtered by the orders_id column
  * @method OrdersDeletedLog findOneByCustomersId(int $customers_id) Return the first OrdersDeletedLog filtered by the customers_id column
  * @method OrdersDeletedLog findOneByName(string $name) Return the first OrdersDeletedLog filtered by the name column
  * @method OrdersDeletedLog findOneByEmail(string $email) Return the first OrdersDeletedLog filtered by the email column
@@ -76,7 +75,7 @@ abstract class BaseOrdersDeletedLogQuery extends ModelCriteria
      * Returns a new OrdersDeletedLogQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     OrdersDeletedLogQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   OrdersDeletedLogQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return OrdersDeletedLogQuery
      */
@@ -133,18 +132,32 @@ abstract class BaseOrdersDeletedLogQuery extends ModelCriteria
     }
 
     /**
+     * Alias of findPk to use instance pooling
+     *
+     * @param     mixed $key Primary key to use for the query
+     * @param     PropelPDO $con A connection object
+     *
+     * @return                 OrdersDeletedLog A model object, or null if the key is not found
+     * @throws PropelException
+     */
+     public function findOneByOrdersId($key, $con = null)
+     {
+        return $this->findPk($key, $con);
+     }
+
+    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   OrdersDeletedLog A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 OrdersDeletedLog A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `ORDERS_ID`, `CUSTOMERS_ID`, `NAME`, `EMAIL`, `TRIGGER`, `CONTENT`, `DELETED_BY`, `DELETED_AT` FROM `orders_deleted_log` WHERE `ORDERS_ID` = :p0';
+        $sql = 'SELECT `orders_id`, `customers_id`, `name`, `email`, `trigger`, `content`, `deleted_by`, `deleted_at` FROM `orders_deleted_log` WHERE `orders_id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -240,7 +253,8 @@ abstract class BaseOrdersDeletedLogQuery extends ModelCriteria
      * <code>
      * $query->filterByOrdersId(1234); // WHERE orders_id = 1234
      * $query->filterByOrdersId(array(12, 34)); // WHERE orders_id IN (12, 34)
-     * $query->filterByOrdersId(array('min' => 12)); // WHERE orders_id > 12
+     * $query->filterByOrdersId(array('min' => 12)); // WHERE orders_id >= 12
+     * $query->filterByOrdersId(array('max' => 12)); // WHERE orders_id <= 12
      * </code>
      *
      * @param     mixed $ordersId The value to use as filter.
@@ -253,8 +267,22 @@ abstract class BaseOrdersDeletedLogQuery extends ModelCriteria
      */
     public function filterByOrdersId($ordersId = null, $comparison = null)
     {
-        if (is_array($ordersId) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($ordersId)) {
+            $useMinMax = false;
+            if (isset($ordersId['min'])) {
+                $this->addUsingAlias(OrdersDeletedLogPeer::ORDERS_ID, $ordersId['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($ordersId['max'])) {
+                $this->addUsingAlias(OrdersDeletedLogPeer::ORDERS_ID, $ordersId['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(OrdersDeletedLogPeer::ORDERS_ID, $ordersId, $comparison);
@@ -267,7 +295,8 @@ abstract class BaseOrdersDeletedLogQuery extends ModelCriteria
      * <code>
      * $query->filterByCustomersId(1234); // WHERE customers_id = 1234
      * $query->filterByCustomersId(array(12, 34)); // WHERE customers_id IN (12, 34)
-     * $query->filterByCustomersId(array('min' => 12)); // WHERE customers_id > 12
+     * $query->filterByCustomersId(array('min' => 12)); // WHERE customers_id >= 12
+     * $query->filterByCustomersId(array('max' => 12)); // WHERE customers_id <= 12
      * </code>
      *
      * @param     mixed $customersId The value to use as filter.

@@ -39,26 +39,26 @@ abstract class BaseProductsDomainsPricesPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 7;
 
-    /** the column name for the PRODUCTS_ID field */
-    const PRODUCTS_ID = 'products_domains_prices.PRODUCTS_ID';
+    /** the column name for the products_id field */
+    const PRODUCTS_ID = 'products_domains_prices.products_id';
 
-    /** the column name for the DOMAINS_ID field */
-    const DOMAINS_ID = 'products_domains_prices.DOMAINS_ID';
+    /** the column name for the domains_id field */
+    const DOMAINS_ID = 'products_domains_prices.domains_id';
 
-    /** the column name for the PRICE field */
-    const PRICE = 'products_domains_prices.PRICE';
+    /** the column name for the price field */
+    const PRICE = 'products_domains_prices.price';
 
-    /** the column name for the VAT field */
-    const VAT = 'products_domains_prices.VAT';
+    /** the column name for the vat field */
+    const VAT = 'products_domains_prices.vat';
 
-    /** the column name for the CURRENCY_ID field */
-    const CURRENCY_ID = 'products_domains_prices.CURRENCY_ID';
+    /** the column name for the currency_id field */
+    const CURRENCY_ID = 'products_domains_prices.currency_id';
 
-    /** the column name for the FROM_DATE field */
-    const FROM_DATE = 'products_domains_prices.FROM_DATE';
+    /** the column name for the from_date field */
+    const FROM_DATE = 'products_domains_prices.from_date';
 
-    /** the column name for the TO_DATE field */
-    const TO_DATE = 'products_domains_prices.TO_DATE';
+    /** the column name for the to_date field */
+    const TO_DATE = 'products_domains_prices.to_date';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -181,13 +181,13 @@ abstract class BaseProductsDomainsPricesPeer
             $criteria->addSelectColumn(ProductsDomainsPricesPeer::FROM_DATE);
             $criteria->addSelectColumn(ProductsDomainsPricesPeer::TO_DATE);
         } else {
-            $criteria->addSelectColumn($alias . '.PRODUCTS_ID');
-            $criteria->addSelectColumn($alias . '.DOMAINS_ID');
-            $criteria->addSelectColumn($alias . '.PRICE');
-            $criteria->addSelectColumn($alias . '.VAT');
-            $criteria->addSelectColumn($alias . '.CURRENCY_ID');
-            $criteria->addSelectColumn($alias . '.FROM_DATE');
-            $criteria->addSelectColumn($alias . '.TO_DATE');
+            $criteria->addSelectColumn($alias . '.products_id');
+            $criteria->addSelectColumn($alias . '.domains_id');
+            $criteria->addSelectColumn($alias . '.price');
+            $criteria->addSelectColumn($alias . '.vat');
+            $criteria->addSelectColumn($alias . '.currency_id');
+            $criteria->addSelectColumn($alias . '.from_date');
+            $criteria->addSelectColumn($alias . '.to_date');
         }
     }
 
@@ -271,7 +271,7 @@ abstract class BaseProductsDomainsPricesPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -314,7 +314,7 @@ abstract class BaseProductsDomainsPricesPeer
     {
         if (Propel::isInstancePoolingEnabled()) {
             if ($key === null) {
-                $key = serialize(array((string) $obj->getProductsId(), (string) $obj->getDomainsId(), (string) $obj->getFromDate()));
+                $key = serialize(array((string) $obj->getProductsId(), (string) $obj->getDomainsId(), (string) $obj->getFromDate('U')));
             } // if key === null
             ProductsDomainsPricesPeer::$instances[$key] = $obj;
         }
@@ -376,8 +376,15 @@ abstract class BaseProductsDomainsPricesPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (ProductsDomainsPricesPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         ProductsDomainsPricesPeer::$instances = array();
     }
 
@@ -1143,7 +1150,7 @@ abstract class BaseProductsDomainsPricesPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return ProductsDomainsPricesPeer::OM_CLASS;
     }

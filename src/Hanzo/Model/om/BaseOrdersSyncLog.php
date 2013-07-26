@@ -91,6 +91,12 @@ abstract class BaseOrdersSyncLog extends BaseObject implements Persistent
     protected $alreadyInValidation = false;
 
     /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
+    /**
      * Applies default values to this object.
      * This method should be called from the object's constructor (or
      * equivalent initialization method).
@@ -142,22 +148,25 @@ abstract class BaseOrdersSyncLog extends BaseObject implements Persistent
             // while technically this is not a default value of null,
             // this seems to be closest in meaning.
             return null;
-        } else {
-            try {
-                $dt = new DateTime($this->created_at);
-            } catch (Exception $x) {
-                throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->created_at, true), $x);
-            }
+        }
+
+        try {
+            $dt = new DateTime($this->created_at);
+        } catch (Exception $x) {
+            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->created_at, true), $x);
         }
 
         if ($format === null) {
             // We cast here to maintain BC in API; obviously we will lose data if we're dealing with pre-/post-epoch dates.
             return (int) $dt->format('U');
-        } elseif (strpos($format, '%') !== false) {
-            return strftime($format, $dt->format('U'));
-        } else {
-            return $dt->format($format);
         }
+
+        if (strpos($format, '%') !== false) {
+            return strftime($format, $dt->format('U'));
+        }
+
+        return $dt->format($format);
+
     }
 
     /**
@@ -198,7 +207,7 @@ abstract class BaseOrdersSyncLog extends BaseObject implements Persistent
      */
     public function setOrdersId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -246,7 +255,7 @@ abstract class BaseOrdersSyncLog extends BaseObject implements Persistent
      */
     public function setState($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -267,7 +276,7 @@ abstract class BaseOrdersSyncLog extends BaseObject implements Persistent
      */
     public function setContent($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -288,7 +297,7 @@ abstract class BaseOrdersSyncLog extends BaseObject implements Persistent
      */
     public function setComment($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -349,7 +358,7 @@ abstract class BaseOrdersSyncLog extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
+            $this->postHydrate($row, $startcol, $rehydrate);
             return $startcol + 5; // 5 = OrdersSyncLogPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -575,19 +584,19 @@ abstract class BaseOrdersSyncLog extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(OrdersSyncLogPeer::ORDERS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`ORDERS_ID`';
+            $modifiedColumns[':p' . $index++]  = '`orders_id`';
         }
         if ($this->isColumnModified(OrdersSyncLogPeer::CREATED_AT)) {
-            $modifiedColumns[':p' . $index++]  = '`CREATED_AT`';
+            $modifiedColumns[':p' . $index++]  = '`created_at`';
         }
         if ($this->isColumnModified(OrdersSyncLogPeer::STATE)) {
-            $modifiedColumns[':p' . $index++]  = '`STATE`';
+            $modifiedColumns[':p' . $index++]  = '`state`';
         }
         if ($this->isColumnModified(OrdersSyncLogPeer::CONTENT)) {
-            $modifiedColumns[':p' . $index++]  = '`CONTENT`';
+            $modifiedColumns[':p' . $index++]  = '`content`';
         }
         if ($this->isColumnModified(OrdersSyncLogPeer::COMMENT)) {
-            $modifiedColumns[':p' . $index++]  = '`COMMENT`';
+            $modifiedColumns[':p' . $index++]  = '`comment`';
         }
 
         $sql = sprintf(
@@ -600,19 +609,19 @@ abstract class BaseOrdersSyncLog extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`ORDERS_ID`':
+                    case '`orders_id`':
                         $stmt->bindValue($identifier, $this->orders_id, PDO::PARAM_INT);
                         break;
-                    case '`CREATED_AT`':
+                    case '`created_at`':
                         $stmt->bindValue($identifier, $this->created_at, PDO::PARAM_STR);
                         break;
-                    case '`STATE`':
+                    case '`state`':
                         $stmt->bindValue($identifier, $this->state, PDO::PARAM_STR);
                         break;
-                    case '`CONTENT`':
+                    case '`content`':
                         $stmt->bindValue($identifier, $this->content, PDO::PARAM_STR);
                         break;
-                    case '`COMMENT`':
+                    case '`comment`':
                         $stmt->bindValue($identifier, $this->comment, PDO::PARAM_STR);
                         break;
                 }
@@ -676,11 +685,11 @@ abstract class BaseOrdersSyncLog extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -1066,12 +1075,13 @@ abstract class BaseOrdersSyncLog extends BaseObject implements Persistent
      * Get the associated Orders object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Orders The associated Orders object.
      * @throws PropelException
      */
-    public function getOrders(PropelPDO $con = null)
+    public function getOrders(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aOrders === null && ($this->orders_id !== null)) {
+        if ($this->aOrders === null && ($this->orders_id !== null) && $doQuery) {
             $this->aOrders = OrdersQuery::create()->findPk($this->orders_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -1097,6 +1107,7 @@ abstract class BaseOrdersSyncLog extends BaseObject implements Persistent
         $this->comment = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->applyDefaultValues();
         $this->resetModified();
@@ -1115,7 +1126,13 @@ abstract class BaseOrdersSyncLog extends BaseObject implements Persistent
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
+            if ($this->aOrders instanceof Persistent) {
+              $this->aOrders->clearAllReferences($deep);
+            }
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
         $this->aOrders = null;

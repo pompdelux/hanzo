@@ -211,6 +211,12 @@ abstract class BaseCustomers extends BaseObject implements Persistent
     protected $alreadyInValidation = false;
 
     /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
+    /**
      * An array of objects scheduled for deletion.
      * @var		PropelObjectCollection
      */
@@ -418,22 +424,25 @@ abstract class BaseCustomers extends BaseObject implements Persistent
             // while technically this is not a default value of null,
             // this seems to be closest in meaning.
             return null;
-        } else {
-            try {
-                $dt = new DateTime($this->created_at);
-            } catch (Exception $x) {
-                throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->created_at, true), $x);
-            }
+        }
+
+        try {
+            $dt = new DateTime($this->created_at);
+        } catch (Exception $x) {
+            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->created_at, true), $x);
         }
 
         if ($format === null) {
             // We cast here to maintain BC in API; obviously we will lose data if we're dealing with pre-/post-epoch dates.
             return (int) $dt->format('U');
-        } elseif (strpos($format, '%') !== false) {
-            return strftime($format, $dt->format('U'));
-        } else {
-            return $dt->format($format);
         }
+
+        if (strpos($format, '%') !== false) {
+            return strftime($format, $dt->format('U'));
+        }
+
+        return $dt->format($format);
+
     }
 
     /**
@@ -457,22 +466,25 @@ abstract class BaseCustomers extends BaseObject implements Persistent
             // while technically this is not a default value of null,
             // this seems to be closest in meaning.
             return null;
-        } else {
-            try {
-                $dt = new DateTime($this->updated_at);
-            } catch (Exception $x) {
-                throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->updated_at, true), $x);
-            }
+        }
+
+        try {
+            $dt = new DateTime($this->updated_at);
+        } catch (Exception $x) {
+            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->updated_at, true), $x);
         }
 
         if ($format === null) {
             // We cast here to maintain BC in API; obviously we will lose data if we're dealing with pre-/post-epoch dates.
             return (int) $dt->format('U');
-        } elseif (strpos($format, '%') !== false) {
-            return strftime($format, $dt->format('U'));
-        } else {
-            return $dt->format($format);
         }
+
+        if (strpos($format, '%') !== false) {
+            return strftime($format, $dt->format('U'));
+        }
+
+        return $dt->format($format);
+
     }
 
     /**
@@ -483,7 +495,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      */
     public function setId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -504,7 +516,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      */
     public function setGroupsId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -529,7 +541,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      */
     public function setTitle($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -550,7 +562,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      */
     public function setFirstName($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -571,7 +583,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      */
     public function setLastName($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -592,7 +604,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      */
     public function setEmail($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -613,7 +625,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      */
     public function setPhone($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -634,7 +646,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      */
     public function setPassword($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -655,7 +667,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      */
     public function setPasswordClear($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -676,7 +688,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      */
     public function setDiscount($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -828,7 +840,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
+            $this->postHydrate($row, $startcol, $rehydrate);
             return $startcol + 13; // 13 = CustomersPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -1071,7 +1083,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
 
             if ($this->collAddressess !== null) {
                 foreach ($this->collAddressess as $referrerFK) {
-                    if (!$referrerFK->isDeleted()) {
+                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
@@ -1088,7 +1100,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
 
             if ($this->collEventssRelatedByConsultantsId !== null) {
                 foreach ($this->collEventssRelatedByConsultantsId as $referrerFK) {
-                    if (!$referrerFK->isDeleted()) {
+                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
@@ -1105,7 +1117,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
 
             if ($this->collEventssRelatedByCustomersId !== null) {
                 foreach ($this->collEventssRelatedByCustomersId as $referrerFK) {
-                    if (!$referrerFK->isDeleted()) {
+                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
@@ -1123,7 +1135,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
 
             if ($this->collOrderss !== null) {
                 foreach ($this->collOrderss as $referrerFK) {
-                    if (!$referrerFK->isDeleted()) {
+                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
@@ -1140,7 +1152,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
 
             if ($this->collWalls !== null) {
                 foreach ($this->collWalls as $referrerFK) {
-                    if (!$referrerFK->isDeleted()) {
+                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
@@ -1157,7 +1169,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
 
             if ($this->collWallLikess !== null) {
                 foreach ($this->collWallLikess as $referrerFK) {
-                    if (!$referrerFK->isDeleted()) {
+                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
@@ -1174,7 +1186,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
 
             if ($this->collConsultantNewsletterDraftss !== null) {
                 foreach ($this->collConsultantNewsletterDraftss as $referrerFK) {
-                    if (!$referrerFK->isDeleted()) {
+                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
@@ -1190,7 +1202,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
             }
 
             if ($this->singleGothiaAccounts !== null) {
-                if (!$this->singleGothiaAccounts->isDeleted()) {
+                if (!$this->singleGothiaAccounts->isDeleted() && ($this->singleGothiaAccounts->isNew() || $this->singleGothiaAccounts->isModified())) {
                         $affectedRows += $this->singleGothiaAccounts->save($con);
                 }
             }
@@ -1205,7 +1217,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
             }
 
             if ($this->singleConsultants !== null) {
-                if (!$this->singleConsultants->isDeleted()) {
+                if (!$this->singleConsultants->isDeleted() && ($this->singleConsultants->isNew() || $this->singleConsultants->isModified())) {
                         $affectedRows += $this->singleConsultants->save($con);
                 }
             }
@@ -1234,43 +1246,43 @@ abstract class BaseCustomers extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(CustomersPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`ID`';
+            $modifiedColumns[':p' . $index++]  = '`id`';
         }
         if ($this->isColumnModified(CustomersPeer::GROUPS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`GROUPS_ID`';
+            $modifiedColumns[':p' . $index++]  = '`groups_id`';
         }
         if ($this->isColumnModified(CustomersPeer::TITLE)) {
-            $modifiedColumns[':p' . $index++]  = '`TITLE`';
+            $modifiedColumns[':p' . $index++]  = '`title`';
         }
         if ($this->isColumnModified(CustomersPeer::FIRST_NAME)) {
-            $modifiedColumns[':p' . $index++]  = '`FIRST_NAME`';
+            $modifiedColumns[':p' . $index++]  = '`first_name`';
         }
         if ($this->isColumnModified(CustomersPeer::LAST_NAME)) {
-            $modifiedColumns[':p' . $index++]  = '`LAST_NAME`';
+            $modifiedColumns[':p' . $index++]  = '`last_name`';
         }
         if ($this->isColumnModified(CustomersPeer::EMAIL)) {
-            $modifiedColumns[':p' . $index++]  = '`EMAIL`';
+            $modifiedColumns[':p' . $index++]  = '`email`';
         }
         if ($this->isColumnModified(CustomersPeer::PHONE)) {
-            $modifiedColumns[':p' . $index++]  = '`PHONE`';
+            $modifiedColumns[':p' . $index++]  = '`phone`';
         }
         if ($this->isColumnModified(CustomersPeer::PASSWORD)) {
-            $modifiedColumns[':p' . $index++]  = '`PASSWORD`';
+            $modifiedColumns[':p' . $index++]  = '`password`';
         }
         if ($this->isColumnModified(CustomersPeer::PASSWORD_CLEAR)) {
-            $modifiedColumns[':p' . $index++]  = '`PASSWORD_CLEAR`';
+            $modifiedColumns[':p' . $index++]  = '`password_clear`';
         }
         if ($this->isColumnModified(CustomersPeer::DISCOUNT)) {
-            $modifiedColumns[':p' . $index++]  = '`DISCOUNT`';
+            $modifiedColumns[':p' . $index++]  = '`discount`';
         }
         if ($this->isColumnModified(CustomersPeer::IS_ACTIVE)) {
-            $modifiedColumns[':p' . $index++]  = '`IS_ACTIVE`';
+            $modifiedColumns[':p' . $index++]  = '`is_active`';
         }
         if ($this->isColumnModified(CustomersPeer::CREATED_AT)) {
-            $modifiedColumns[':p' . $index++]  = '`CREATED_AT`';
+            $modifiedColumns[':p' . $index++]  = '`created_at`';
         }
         if ($this->isColumnModified(CustomersPeer::UPDATED_AT)) {
-            $modifiedColumns[':p' . $index++]  = '`UPDATED_AT`';
+            $modifiedColumns[':p' . $index++]  = '`updated_at`';
         }
 
         $sql = sprintf(
@@ -1283,43 +1295,43 @@ abstract class BaseCustomers extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`ID`':
+                    case '`id`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`GROUPS_ID`':
+                    case '`groups_id`':
                         $stmt->bindValue($identifier, $this->groups_id, PDO::PARAM_INT);
                         break;
-                    case '`TITLE`':
+                    case '`title`':
                         $stmt->bindValue($identifier, $this->title, PDO::PARAM_STR);
                         break;
-                    case '`FIRST_NAME`':
+                    case '`first_name`':
                         $stmt->bindValue($identifier, $this->first_name, PDO::PARAM_STR);
                         break;
-                    case '`LAST_NAME`':
+                    case '`last_name`':
                         $stmt->bindValue($identifier, $this->last_name, PDO::PARAM_STR);
                         break;
-                    case '`EMAIL`':
+                    case '`email`':
                         $stmt->bindValue($identifier, $this->email, PDO::PARAM_STR);
                         break;
-                    case '`PHONE`':
+                    case '`phone`':
                         $stmt->bindValue($identifier, $this->phone, PDO::PARAM_STR);
                         break;
-                    case '`PASSWORD`':
+                    case '`password`':
                         $stmt->bindValue($identifier, $this->password, PDO::PARAM_STR);
                         break;
-                    case '`PASSWORD_CLEAR`':
+                    case '`password_clear`':
                         $stmt->bindValue($identifier, $this->password_clear, PDO::PARAM_STR);
                         break;
-                    case '`DISCOUNT`':
+                    case '`discount`':
                         $stmt->bindValue($identifier, $this->discount, PDO::PARAM_STR);
                         break;
-                    case '`IS_ACTIVE`':
+                    case '`is_active`':
                         $stmt->bindValue($identifier, (int) $this->is_active, PDO::PARAM_INT);
                         break;
-                    case '`CREATED_AT`':
+                    case '`created_at`':
                         $stmt->bindValue($identifier, $this->created_at, PDO::PARAM_STR);
                         break;
-                    case '`UPDATED_AT`':
+                    case '`updated_at`':
                         $stmt->bindValue($identifier, $this->updated_at, PDO::PARAM_STR);
                         break;
                 }
@@ -1392,11 +1404,11 @@ abstract class BaseCustomers extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -2002,12 +2014,13 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      * Get the associated Groups object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Groups The associated Groups object.
      * @throws PropelException
      */
-    public function getGroups(PropelPDO $con = null)
+    public function getGroups(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aGroups === null && ($this->groups_id !== null)) {
+        if ($this->aGroups === null && ($this->groups_id !== null) && $doQuery) {
             $this->aGroups = GroupsQuery::create()->findPk($this->groups_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -2061,13 +2074,15 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
-     * @return void
+     * @return Customers The current object (for fluent API support)
      * @see        addAddressess()
      */
     public function clearAddressess()
     {
         $this->collAddressess = null; // important to set this to null since that means it is uninitialized
         $this->collAddressessPartial = null;
+
+        return $this;
     }
 
     /**
@@ -2139,6 +2154,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
                       $this->collAddressessPartial = true;
                     }
 
+                    $collAddressess->getInternalIterator()->rewind();
                     return $collAddressess;
                 }
 
@@ -2166,12 +2182,15 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      *
      * @param PropelCollection $addressess A Propel collection.
      * @param PropelPDO $con Optional connection object
+     * @return Customers The current object (for fluent API support)
      */
     public function setAddressess(PropelCollection $addressess, PropelPDO $con = null)
     {
-        $this->addressessScheduledForDeletion = $this->getAddressess(new Criteria(), $con)->diff($addressess);
+        $addressessToDelete = $this->getAddressess(new Criteria(), $con)->diff($addressess);
 
-        foreach ($this->addressessScheduledForDeletion as $addressesRemoved) {
+        $this->addressessScheduledForDeletion = unserialize(serialize($addressessToDelete));
+
+        foreach ($addressessToDelete as $addressesRemoved) {
             $addressesRemoved->setCustomers(null);
         }
 
@@ -2182,6 +2201,8 @@ abstract class BaseCustomers extends BaseObject implements Persistent
 
         $this->collAddressess = $addressess;
         $this->collAddressessPartial = false;
+
+        return $this;
     }
 
     /**
@@ -2199,22 +2220,22 @@ abstract class BaseCustomers extends BaseObject implements Persistent
         if (null === $this->collAddressess || null !== $criteria || $partial) {
             if ($this->isNew() && null === $this->collAddressess) {
                 return 0;
-            } else {
-                if($partial && !$criteria) {
-                    return count($this->getAddressess());
-                }
-                $query = AddressesQuery::create(null, $criteria);
-                if ($distinct) {
-                    $query->distinct();
-                }
-
-                return $query
-                    ->filterByCustomers($this)
-                    ->count($con);
             }
-        } else {
-            return count($this->collAddressess);
+
+            if($partial && !$criteria) {
+                return count($this->getAddressess());
+            }
+            $query = AddressesQuery::create(null, $criteria);
+            if ($distinct) {
+                $query->distinct();
+            }
+
+            return $query
+                ->filterByCustomers($this)
+                ->count($con);
         }
+
+        return count($this->collAddressess);
     }
 
     /**
@@ -2230,7 +2251,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
             $this->initAddressess();
             $this->collAddressessPartial = true;
         }
-        if (!$this->collAddressess->contains($l)) { // only add it if the **same** object is not already associated
+        if (!in_array($l, $this->collAddressess->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddAddresses($l);
         }
 
@@ -2248,6 +2269,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
 
     /**
      * @param	Addresses $addresses The addresses object to remove.
+     * @return Customers The current object (for fluent API support)
      */
     public function removeAddresses($addresses)
     {
@@ -2257,9 +2279,11 @@ abstract class BaseCustomers extends BaseObject implements Persistent
                 $this->addressessScheduledForDeletion = clone $this->collAddressess;
                 $this->addressessScheduledForDeletion->clear();
             }
-            $this->addressessScheduledForDeletion[]= $addresses;
+            $this->addressessScheduledForDeletion[]= clone $addresses;
             $addresses->setCustomers(null);
         }
+
+        return $this;
     }
 
 
@@ -2293,13 +2317,15 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
-     * @return void
+     * @return Customers The current object (for fluent API support)
      * @see        addEventssRelatedByConsultantsId()
      */
     public function clearEventssRelatedByConsultantsId()
     {
         $this->collEventssRelatedByConsultantsId = null; // important to set this to null since that means it is uninitialized
         $this->collEventssRelatedByConsultantsIdPartial = null;
+
+        return $this;
     }
 
     /**
@@ -2371,6 +2397,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
                       $this->collEventssRelatedByConsultantsIdPartial = true;
                     }
 
+                    $collEventssRelatedByConsultantsId->getInternalIterator()->rewind();
                     return $collEventssRelatedByConsultantsId;
                 }
 
@@ -2398,12 +2425,15 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      *
      * @param PropelCollection $eventssRelatedByConsultantsId A Propel collection.
      * @param PropelPDO $con Optional connection object
+     * @return Customers The current object (for fluent API support)
      */
     public function setEventssRelatedByConsultantsId(PropelCollection $eventssRelatedByConsultantsId, PropelPDO $con = null)
     {
-        $this->eventssRelatedByConsultantsIdScheduledForDeletion = $this->getEventssRelatedByConsultantsId(new Criteria(), $con)->diff($eventssRelatedByConsultantsId);
+        $eventssRelatedByConsultantsIdToDelete = $this->getEventssRelatedByConsultantsId(new Criteria(), $con)->diff($eventssRelatedByConsultantsId);
 
-        foreach ($this->eventssRelatedByConsultantsIdScheduledForDeletion as $eventsRelatedByConsultantsIdRemoved) {
+        $this->eventssRelatedByConsultantsIdScheduledForDeletion = unserialize(serialize($eventssRelatedByConsultantsIdToDelete));
+
+        foreach ($eventssRelatedByConsultantsIdToDelete as $eventsRelatedByConsultantsIdRemoved) {
             $eventsRelatedByConsultantsIdRemoved->setCustomersRelatedByConsultantsId(null);
         }
 
@@ -2414,6 +2444,8 @@ abstract class BaseCustomers extends BaseObject implements Persistent
 
         $this->collEventssRelatedByConsultantsId = $eventssRelatedByConsultantsId;
         $this->collEventssRelatedByConsultantsIdPartial = false;
+
+        return $this;
     }
 
     /**
@@ -2431,22 +2463,22 @@ abstract class BaseCustomers extends BaseObject implements Persistent
         if (null === $this->collEventssRelatedByConsultantsId || null !== $criteria || $partial) {
             if ($this->isNew() && null === $this->collEventssRelatedByConsultantsId) {
                 return 0;
-            } else {
-                if($partial && !$criteria) {
-                    return count($this->getEventssRelatedByConsultantsId());
-                }
-                $query = EventsQuery::create(null, $criteria);
-                if ($distinct) {
-                    $query->distinct();
-                }
-
-                return $query
-                    ->filterByCustomersRelatedByConsultantsId($this)
-                    ->count($con);
             }
-        } else {
-            return count($this->collEventssRelatedByConsultantsId);
+
+            if($partial && !$criteria) {
+                return count($this->getEventssRelatedByConsultantsId());
+            }
+            $query = EventsQuery::create(null, $criteria);
+            if ($distinct) {
+                $query->distinct();
+            }
+
+            return $query
+                ->filterByCustomersRelatedByConsultantsId($this)
+                ->count($con);
         }
+
+        return count($this->collEventssRelatedByConsultantsId);
     }
 
     /**
@@ -2462,7 +2494,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
             $this->initEventssRelatedByConsultantsId();
             $this->collEventssRelatedByConsultantsIdPartial = true;
         }
-        if (!$this->collEventssRelatedByConsultantsId->contains($l)) { // only add it if the **same** object is not already associated
+        if (!in_array($l, $this->collEventssRelatedByConsultantsId->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddEventsRelatedByConsultantsId($l);
         }
 
@@ -2480,6 +2512,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
 
     /**
      * @param	EventsRelatedByConsultantsId $eventsRelatedByConsultantsId The eventsRelatedByConsultantsId object to remove.
+     * @return Customers The current object (for fluent API support)
      */
     public function removeEventsRelatedByConsultantsId($eventsRelatedByConsultantsId)
     {
@@ -2489,9 +2522,11 @@ abstract class BaseCustomers extends BaseObject implements Persistent
                 $this->eventssRelatedByConsultantsIdScheduledForDeletion = clone $this->collEventssRelatedByConsultantsId;
                 $this->eventssRelatedByConsultantsIdScheduledForDeletion->clear();
             }
-            $this->eventssRelatedByConsultantsIdScheduledForDeletion[]= $eventsRelatedByConsultantsId;
+            $this->eventssRelatedByConsultantsIdScheduledForDeletion[]= clone $eventsRelatedByConsultantsId;
             $eventsRelatedByConsultantsId->setCustomersRelatedByConsultantsId(null);
         }
+
+        return $this;
     }
 
     /**
@@ -2500,13 +2535,15 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
-     * @return void
+     * @return Customers The current object (for fluent API support)
      * @see        addEventssRelatedByCustomersId()
      */
     public function clearEventssRelatedByCustomersId()
     {
         $this->collEventssRelatedByCustomersId = null; // important to set this to null since that means it is uninitialized
         $this->collEventssRelatedByCustomersIdPartial = null;
+
+        return $this;
     }
 
     /**
@@ -2578,6 +2615,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
                       $this->collEventssRelatedByCustomersIdPartial = true;
                     }
 
+                    $collEventssRelatedByCustomersId->getInternalIterator()->rewind();
                     return $collEventssRelatedByCustomersId;
                 }
 
@@ -2605,12 +2643,15 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      *
      * @param PropelCollection $eventssRelatedByCustomersId A Propel collection.
      * @param PropelPDO $con Optional connection object
+     * @return Customers The current object (for fluent API support)
      */
     public function setEventssRelatedByCustomersId(PropelCollection $eventssRelatedByCustomersId, PropelPDO $con = null)
     {
-        $this->eventssRelatedByCustomersIdScheduledForDeletion = $this->getEventssRelatedByCustomersId(new Criteria(), $con)->diff($eventssRelatedByCustomersId);
+        $eventssRelatedByCustomersIdToDelete = $this->getEventssRelatedByCustomersId(new Criteria(), $con)->diff($eventssRelatedByCustomersId);
 
-        foreach ($this->eventssRelatedByCustomersIdScheduledForDeletion as $eventsRelatedByCustomersIdRemoved) {
+        $this->eventssRelatedByCustomersIdScheduledForDeletion = unserialize(serialize($eventssRelatedByCustomersIdToDelete));
+
+        foreach ($eventssRelatedByCustomersIdToDelete as $eventsRelatedByCustomersIdRemoved) {
             $eventsRelatedByCustomersIdRemoved->setCustomersRelatedByCustomersId(null);
         }
 
@@ -2621,6 +2662,8 @@ abstract class BaseCustomers extends BaseObject implements Persistent
 
         $this->collEventssRelatedByCustomersId = $eventssRelatedByCustomersId;
         $this->collEventssRelatedByCustomersIdPartial = false;
+
+        return $this;
     }
 
     /**
@@ -2638,22 +2681,22 @@ abstract class BaseCustomers extends BaseObject implements Persistent
         if (null === $this->collEventssRelatedByCustomersId || null !== $criteria || $partial) {
             if ($this->isNew() && null === $this->collEventssRelatedByCustomersId) {
                 return 0;
-            } else {
-                if($partial && !$criteria) {
-                    return count($this->getEventssRelatedByCustomersId());
-                }
-                $query = EventsQuery::create(null, $criteria);
-                if ($distinct) {
-                    $query->distinct();
-                }
-
-                return $query
-                    ->filterByCustomersRelatedByCustomersId($this)
-                    ->count($con);
             }
-        } else {
-            return count($this->collEventssRelatedByCustomersId);
+
+            if($partial && !$criteria) {
+                return count($this->getEventssRelatedByCustomersId());
+            }
+            $query = EventsQuery::create(null, $criteria);
+            if ($distinct) {
+                $query->distinct();
+            }
+
+            return $query
+                ->filterByCustomersRelatedByCustomersId($this)
+                ->count($con);
         }
+
+        return count($this->collEventssRelatedByCustomersId);
     }
 
     /**
@@ -2669,7 +2712,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
             $this->initEventssRelatedByCustomersId();
             $this->collEventssRelatedByCustomersIdPartial = true;
         }
-        if (!$this->collEventssRelatedByCustomersId->contains($l)) { // only add it if the **same** object is not already associated
+        if (!in_array($l, $this->collEventssRelatedByCustomersId->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddEventsRelatedByCustomersId($l);
         }
 
@@ -2687,6 +2730,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
 
     /**
      * @param	EventsRelatedByCustomersId $eventsRelatedByCustomersId The eventsRelatedByCustomersId object to remove.
+     * @return Customers The current object (for fluent API support)
      */
     public function removeEventsRelatedByCustomersId($eventsRelatedByCustomersId)
     {
@@ -2696,9 +2740,11 @@ abstract class BaseCustomers extends BaseObject implements Persistent
                 $this->eventssRelatedByCustomersIdScheduledForDeletion = clone $this->collEventssRelatedByCustomersId;
                 $this->eventssRelatedByCustomersIdScheduledForDeletion->clear();
             }
-            $this->eventssRelatedByCustomersIdScheduledForDeletion[]= $eventsRelatedByCustomersId;
+            $this->eventssRelatedByCustomersIdScheduledForDeletion[]= clone $eventsRelatedByCustomersId;
             $eventsRelatedByCustomersId->setCustomersRelatedByCustomersId(null);
         }
+
+        return $this;
     }
 
     /**
@@ -2707,13 +2753,15 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
-     * @return void
+     * @return Customers The current object (for fluent API support)
      * @see        addOrderss()
      */
     public function clearOrderss()
     {
         $this->collOrderss = null; // important to set this to null since that means it is uninitialized
         $this->collOrderssPartial = null;
+
+        return $this;
     }
 
     /**
@@ -2785,6 +2833,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
                       $this->collOrderssPartial = true;
                     }
 
+                    $collOrderss->getInternalIterator()->rewind();
                     return $collOrderss;
                 }
 
@@ -2812,12 +2861,15 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      *
      * @param PropelCollection $orderss A Propel collection.
      * @param PropelPDO $con Optional connection object
+     * @return Customers The current object (for fluent API support)
      */
     public function setOrderss(PropelCollection $orderss, PropelPDO $con = null)
     {
-        $this->orderssScheduledForDeletion = $this->getOrderss(new Criteria(), $con)->diff($orderss);
+        $orderssToDelete = $this->getOrderss(new Criteria(), $con)->diff($orderss);
 
-        foreach ($this->orderssScheduledForDeletion as $ordersRemoved) {
+        $this->orderssScheduledForDeletion = unserialize(serialize($orderssToDelete));
+
+        foreach ($orderssToDelete as $ordersRemoved) {
             $ordersRemoved->setCustomers(null);
         }
 
@@ -2828,6 +2880,8 @@ abstract class BaseCustomers extends BaseObject implements Persistent
 
         $this->collOrderss = $orderss;
         $this->collOrderssPartial = false;
+
+        return $this;
     }
 
     /**
@@ -2845,22 +2899,22 @@ abstract class BaseCustomers extends BaseObject implements Persistent
         if (null === $this->collOrderss || null !== $criteria || $partial) {
             if ($this->isNew() && null === $this->collOrderss) {
                 return 0;
-            } else {
-                if($partial && !$criteria) {
-                    return count($this->getOrderss());
-                }
-                $query = OrdersQuery::create(null, $criteria);
-                if ($distinct) {
-                    $query->distinct();
-                }
-
-                return $query
-                    ->filterByCustomers($this)
-                    ->count($con);
             }
-        } else {
-            return count($this->collOrderss);
+
+            if($partial && !$criteria) {
+                return count($this->getOrderss());
+            }
+            $query = OrdersQuery::create(null, $criteria);
+            if ($distinct) {
+                $query->distinct();
+            }
+
+            return $query
+                ->filterByCustomers($this)
+                ->count($con);
         }
+
+        return count($this->collOrderss);
     }
 
     /**
@@ -2876,7 +2930,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
             $this->initOrderss();
             $this->collOrderssPartial = true;
         }
-        if (!$this->collOrderss->contains($l)) { // only add it if the **same** object is not already associated
+        if (!in_array($l, $this->collOrderss->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddOrders($l);
         }
 
@@ -2894,6 +2948,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
 
     /**
      * @param	Orders $orders The orders object to remove.
+     * @return Customers The current object (for fluent API support)
      */
     public function removeOrders($orders)
     {
@@ -2906,6 +2961,8 @@ abstract class BaseCustomers extends BaseObject implements Persistent
             $this->orderssScheduledForDeletion[]= $orders;
             $orders->setCustomers(null);
         }
+
+        return $this;
     }
 
 
@@ -2989,13 +3046,15 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
-     * @return void
+     * @return Customers The current object (for fluent API support)
      * @see        addWalls()
      */
     public function clearWalls()
     {
         $this->collWalls = null; // important to set this to null since that means it is uninitialized
         $this->collWallsPartial = null;
+
+        return $this;
     }
 
     /**
@@ -3067,6 +3126,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
                       $this->collWallsPartial = true;
                     }
 
+                    $collWalls->getInternalIterator()->rewind();
                     return $collWalls;
                 }
 
@@ -3094,12 +3154,15 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      *
      * @param PropelCollection $walls A Propel collection.
      * @param PropelPDO $con Optional connection object
+     * @return Customers The current object (for fluent API support)
      */
     public function setWalls(PropelCollection $walls, PropelPDO $con = null)
     {
-        $this->wallsScheduledForDeletion = $this->getWalls(new Criteria(), $con)->diff($walls);
+        $wallsToDelete = $this->getWalls(new Criteria(), $con)->diff($walls);
 
-        foreach ($this->wallsScheduledForDeletion as $wallRemoved) {
+        $this->wallsScheduledForDeletion = unserialize(serialize($wallsToDelete));
+
+        foreach ($wallsToDelete as $wallRemoved) {
             $wallRemoved->setCustomers(null);
         }
 
@@ -3110,6 +3173,8 @@ abstract class BaseCustomers extends BaseObject implements Persistent
 
         $this->collWalls = $walls;
         $this->collWallsPartial = false;
+
+        return $this;
     }
 
     /**
@@ -3127,22 +3192,22 @@ abstract class BaseCustomers extends BaseObject implements Persistent
         if (null === $this->collWalls || null !== $criteria || $partial) {
             if ($this->isNew() && null === $this->collWalls) {
                 return 0;
-            } else {
-                if($partial && !$criteria) {
-                    return count($this->getWalls());
-                }
-                $query = WallQuery::create(null, $criteria);
-                if ($distinct) {
-                    $query->distinct();
-                }
-
-                return $query
-                    ->filterByCustomers($this)
-                    ->count($con);
             }
-        } else {
-            return count($this->collWalls);
+
+            if($partial && !$criteria) {
+                return count($this->getWalls());
+            }
+            $query = WallQuery::create(null, $criteria);
+            if ($distinct) {
+                $query->distinct();
+            }
+
+            return $query
+                ->filterByCustomers($this)
+                ->count($con);
         }
+
+        return count($this->collWalls);
     }
 
     /**
@@ -3158,7 +3223,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
             $this->initWalls();
             $this->collWallsPartial = true;
         }
-        if (!$this->collWalls->contains($l)) { // only add it if the **same** object is not already associated
+        if (!in_array($l, $this->collWalls->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddWall($l);
         }
 
@@ -3176,6 +3241,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
 
     /**
      * @param	Wall $wall The wall object to remove.
+     * @return Customers The current object (for fluent API support)
      */
     public function removeWall($wall)
     {
@@ -3185,9 +3251,11 @@ abstract class BaseCustomers extends BaseObject implements Persistent
                 $this->wallsScheduledForDeletion = clone $this->collWalls;
                 $this->wallsScheduledForDeletion->clear();
             }
-            $this->wallsScheduledForDeletion[]= $wall;
+            $this->wallsScheduledForDeletion[]= clone $wall;
             $wall->setCustomers(null);
         }
+
+        return $this;
     }
 
 
@@ -3221,13 +3289,15 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
-     * @return void
+     * @return Customers The current object (for fluent API support)
      * @see        addWallLikess()
      */
     public function clearWallLikess()
     {
         $this->collWallLikess = null; // important to set this to null since that means it is uninitialized
         $this->collWallLikessPartial = null;
+
+        return $this;
     }
 
     /**
@@ -3299,6 +3369,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
                       $this->collWallLikessPartial = true;
                     }
 
+                    $collWallLikess->getInternalIterator()->rewind();
                     return $collWallLikess;
                 }
 
@@ -3326,12 +3397,15 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      *
      * @param PropelCollection $wallLikess A Propel collection.
      * @param PropelPDO $con Optional connection object
+     * @return Customers The current object (for fluent API support)
      */
     public function setWallLikess(PropelCollection $wallLikess, PropelPDO $con = null)
     {
-        $this->wallLikessScheduledForDeletion = $this->getWallLikess(new Criteria(), $con)->diff($wallLikess);
+        $wallLikessToDelete = $this->getWallLikess(new Criteria(), $con)->diff($wallLikess);
 
-        foreach ($this->wallLikessScheduledForDeletion as $wallLikesRemoved) {
+        $this->wallLikessScheduledForDeletion = unserialize(serialize($wallLikessToDelete));
+
+        foreach ($wallLikessToDelete as $wallLikesRemoved) {
             $wallLikesRemoved->setCustomers(null);
         }
 
@@ -3342,6 +3416,8 @@ abstract class BaseCustomers extends BaseObject implements Persistent
 
         $this->collWallLikess = $wallLikess;
         $this->collWallLikessPartial = false;
+
+        return $this;
     }
 
     /**
@@ -3359,22 +3435,22 @@ abstract class BaseCustomers extends BaseObject implements Persistent
         if (null === $this->collWallLikess || null !== $criteria || $partial) {
             if ($this->isNew() && null === $this->collWallLikess) {
                 return 0;
-            } else {
-                if($partial && !$criteria) {
-                    return count($this->getWallLikess());
-                }
-                $query = WallLikesQuery::create(null, $criteria);
-                if ($distinct) {
-                    $query->distinct();
-                }
-
-                return $query
-                    ->filterByCustomers($this)
-                    ->count($con);
             }
-        } else {
-            return count($this->collWallLikess);
+
+            if($partial && !$criteria) {
+                return count($this->getWallLikess());
+            }
+            $query = WallLikesQuery::create(null, $criteria);
+            if ($distinct) {
+                $query->distinct();
+            }
+
+            return $query
+                ->filterByCustomers($this)
+                ->count($con);
         }
+
+        return count($this->collWallLikess);
     }
 
     /**
@@ -3390,7 +3466,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
             $this->initWallLikess();
             $this->collWallLikessPartial = true;
         }
-        if (!$this->collWallLikess->contains($l)) { // only add it if the **same** object is not already associated
+        if (!in_array($l, $this->collWallLikess->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddWallLikes($l);
         }
 
@@ -3408,6 +3484,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
 
     /**
      * @param	WallLikes $wallLikes The wallLikes object to remove.
+     * @return Customers The current object (for fluent API support)
      */
     public function removeWallLikes($wallLikes)
     {
@@ -3417,9 +3494,11 @@ abstract class BaseCustomers extends BaseObject implements Persistent
                 $this->wallLikessScheduledForDeletion = clone $this->collWallLikess;
                 $this->wallLikessScheduledForDeletion->clear();
             }
-            $this->wallLikessScheduledForDeletion[]= $wallLikes;
+            $this->wallLikessScheduledForDeletion[]= clone $wallLikes;
             $wallLikes->setCustomers(null);
         }
+
+        return $this;
     }
 
 
@@ -3453,13 +3532,15 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
-     * @return void
+     * @return Customers The current object (for fluent API support)
      * @see        addConsultantNewsletterDraftss()
      */
     public function clearConsultantNewsletterDraftss()
     {
         $this->collConsultantNewsletterDraftss = null; // important to set this to null since that means it is uninitialized
         $this->collConsultantNewsletterDraftssPartial = null;
+
+        return $this;
     }
 
     /**
@@ -3531,6 +3612,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
                       $this->collConsultantNewsletterDraftssPartial = true;
                     }
 
+                    $collConsultantNewsletterDraftss->getInternalIterator()->rewind();
                     return $collConsultantNewsletterDraftss;
                 }
 
@@ -3558,12 +3640,15 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      *
      * @param PropelCollection $consultantNewsletterDraftss A Propel collection.
      * @param PropelPDO $con Optional connection object
+     * @return Customers The current object (for fluent API support)
      */
     public function setConsultantNewsletterDraftss(PropelCollection $consultantNewsletterDraftss, PropelPDO $con = null)
     {
-        $this->consultantNewsletterDraftssScheduledForDeletion = $this->getConsultantNewsletterDraftss(new Criteria(), $con)->diff($consultantNewsletterDraftss);
+        $consultantNewsletterDraftssToDelete = $this->getConsultantNewsletterDraftss(new Criteria(), $con)->diff($consultantNewsletterDraftss);
 
-        foreach ($this->consultantNewsletterDraftssScheduledForDeletion as $consultantNewsletterDraftsRemoved) {
+        $this->consultantNewsletterDraftssScheduledForDeletion = unserialize(serialize($consultantNewsletterDraftssToDelete));
+
+        foreach ($consultantNewsletterDraftssToDelete as $consultantNewsletterDraftsRemoved) {
             $consultantNewsletterDraftsRemoved->setCustomers(null);
         }
 
@@ -3574,6 +3659,8 @@ abstract class BaseCustomers extends BaseObject implements Persistent
 
         $this->collConsultantNewsletterDraftss = $consultantNewsletterDraftss;
         $this->collConsultantNewsletterDraftssPartial = false;
+
+        return $this;
     }
 
     /**
@@ -3591,22 +3678,22 @@ abstract class BaseCustomers extends BaseObject implements Persistent
         if (null === $this->collConsultantNewsletterDraftss || null !== $criteria || $partial) {
             if ($this->isNew() && null === $this->collConsultantNewsletterDraftss) {
                 return 0;
-            } else {
-                if($partial && !$criteria) {
-                    return count($this->getConsultantNewsletterDraftss());
-                }
-                $query = ConsultantNewsletterDraftsQuery::create(null, $criteria);
-                if ($distinct) {
-                    $query->distinct();
-                }
-
-                return $query
-                    ->filterByCustomers($this)
-                    ->count($con);
             }
-        } else {
-            return count($this->collConsultantNewsletterDraftss);
+
+            if($partial && !$criteria) {
+                return count($this->getConsultantNewsletterDraftss());
+            }
+            $query = ConsultantNewsletterDraftsQuery::create(null, $criteria);
+            if ($distinct) {
+                $query->distinct();
+            }
+
+            return $query
+                ->filterByCustomers($this)
+                ->count($con);
         }
+
+        return count($this->collConsultantNewsletterDraftss);
     }
 
     /**
@@ -3622,7 +3709,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
             $this->initConsultantNewsletterDraftss();
             $this->collConsultantNewsletterDraftssPartial = true;
         }
-        if (!$this->collConsultantNewsletterDraftss->contains($l)) { // only add it if the **same** object is not already associated
+        if (!in_array($l, $this->collConsultantNewsletterDraftss->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddConsultantNewsletterDrafts($l);
         }
 
@@ -3640,6 +3727,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
 
     /**
      * @param	ConsultantNewsletterDrafts $consultantNewsletterDrafts The consultantNewsletterDrafts object to remove.
+     * @return Customers The current object (for fluent API support)
      */
     public function removeConsultantNewsletterDrafts($consultantNewsletterDrafts)
     {
@@ -3649,9 +3737,11 @@ abstract class BaseCustomers extends BaseObject implements Persistent
                 $this->consultantNewsletterDraftssScheduledForDeletion = clone $this->collConsultantNewsletterDraftss;
                 $this->consultantNewsletterDraftssScheduledForDeletion->clear();
             }
-            $this->consultantNewsletterDraftssScheduledForDeletion[]= $consultantNewsletterDrafts;
+            $this->consultantNewsletterDraftssScheduledForDeletion[]= clone $consultantNewsletterDrafts;
             $consultantNewsletterDrafts->setCustomers(null);
         }
+
+        return $this;
     }
 
     /**
@@ -3683,7 +3773,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
         $this->singleGothiaAccounts = $v;
 
         // Make sure that that the passed-in GothiaAccounts isn't already associated with this object
-        if ($v !== null && $v->getCustomers() === null) {
+        if ($v !== null && $v->getCustomers(null, false) === null) {
             $v->setCustomers($this);
         }
 
@@ -3719,7 +3809,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
         $this->singleConsultants = $v;
 
         // Make sure that that the passed-in Consultants isn't already associated with this object
-        if ($v !== null && $v->getCustomers() === null) {
+        if ($v !== null && $v->getCustomers(null, false) === null) {
             $v->setCustomers($this);
         }
 
@@ -3746,6 +3836,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
         $this->updated_at = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->applyDefaultValues();
         $this->resetModified();
@@ -3764,7 +3855,8 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
             if ($this->collAddressess) {
                 foreach ($this->collAddressess as $o) {
                     $o->clearAllReferences($deep);
@@ -3806,6 +3898,11 @@ abstract class BaseCustomers extends BaseObject implements Persistent
             if ($this->singleConsultants) {
                 $this->singleConsultants->clearAllReferences($deep);
             }
+            if ($this->aGroups instanceof Persistent) {
+              $this->aGroups->clearAllReferences($deep);
+            }
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
         if ($this->collAddressess instanceof PropelCollection) {

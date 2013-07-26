@@ -39,11 +39,11 @@ abstract class BaseCmsThreadPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 2;
 
-    /** the column name for the ID field */
-    const ID = 'cms_thread.ID';
+    /** the column name for the id field */
+    const ID = 'cms_thread.id';
 
-    /** the column name for the IS_ACTIVE field */
-    const IS_ACTIVE = 'cms_thread.IS_ACTIVE';
+    /** the column name for the is_active field */
+    const IS_ACTIVE = 'cms_thread.is_active';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -168,8 +168,8 @@ abstract class BaseCmsThreadPeer
             $criteria->addSelectColumn(CmsThreadPeer::ID);
             $criteria->addSelectColumn(CmsThreadPeer::IS_ACTIVE);
         } else {
-            $criteria->addSelectColumn($alias . '.ID');
-            $criteria->addSelectColumn($alias . '.IS_ACTIVE');
+            $criteria->addSelectColumn($alias . '.id');
+            $criteria->addSelectColumn($alias . '.is_active');
         }
     }
 
@@ -253,7 +253,7 @@ abstract class BaseCmsThreadPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -358,8 +358,15 @@ abstract class BaseCmsThreadPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (CmsThreadPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         CmsThreadPeer::$instances = array();
     }
 
@@ -500,7 +507,7 @@ abstract class BaseCmsThreadPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return CmsThreadPeer::OM_CLASS;
     }

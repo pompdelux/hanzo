@@ -82,6 +82,12 @@ abstract class BaseGothiaAccounts extends BaseObject implements Persistent
     protected $alreadyInValidation = false;
 
     /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
+    /**
      * Get the [customers_id] column value.
      *
      * @return int
@@ -129,7 +135,7 @@ abstract class BaseGothiaAccounts extends BaseObject implements Persistent
      */
     public function setCustomersId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -154,7 +160,7 @@ abstract class BaseGothiaAccounts extends BaseObject implements Persistent
      */
     public function setDistributionBy($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -175,7 +181,7 @@ abstract class BaseGothiaAccounts extends BaseObject implements Persistent
      */
     public function setDistributionType($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -196,7 +202,7 @@ abstract class BaseGothiaAccounts extends BaseObject implements Persistent
      */
     public function setSocialSecurityNum($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -252,7 +258,7 @@ abstract class BaseGothiaAccounts extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
+            $this->postHydrate($row, $startcol, $rehydrate);
             return $startcol + 4; // 4 = GothiaAccountsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -478,16 +484,16 @@ abstract class BaseGothiaAccounts extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(GothiaAccountsPeer::CUSTOMERS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`CUSTOMERS_ID`';
+            $modifiedColumns[':p' . $index++]  = '`customers_id`';
         }
         if ($this->isColumnModified(GothiaAccountsPeer::DISTRIBUTION_BY)) {
-            $modifiedColumns[':p' . $index++]  = '`DISTRIBUTION_BY`';
+            $modifiedColumns[':p' . $index++]  = '`distribution_by`';
         }
         if ($this->isColumnModified(GothiaAccountsPeer::DISTRIBUTION_TYPE)) {
-            $modifiedColumns[':p' . $index++]  = '`DISTRIBUTION_TYPE`';
+            $modifiedColumns[':p' . $index++]  = '`distribution_type`';
         }
         if ($this->isColumnModified(GothiaAccountsPeer::SOCIAL_SECURITY_NUM)) {
-            $modifiedColumns[':p' . $index++]  = '`SOCIAL_SECURITY_NUM`';
+            $modifiedColumns[':p' . $index++]  = '`social_security_num`';
         }
 
         $sql = sprintf(
@@ -500,16 +506,16 @@ abstract class BaseGothiaAccounts extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`CUSTOMERS_ID`':
+                    case '`customers_id`':
                         $stmt->bindValue($identifier, $this->customers_id, PDO::PARAM_INT);
                         break;
-                    case '`DISTRIBUTION_BY`':
+                    case '`distribution_by`':
                         $stmt->bindValue($identifier, $this->distribution_by, PDO::PARAM_STR);
                         break;
-                    case '`DISTRIBUTION_TYPE`':
+                    case '`distribution_type`':
                         $stmt->bindValue($identifier, $this->distribution_type, PDO::PARAM_STR);
                         break;
-                    case '`SOCIAL_SECURITY_NUM`':
+                    case '`social_security_num`':
                         $stmt->bindValue($identifier, $this->social_security_num, PDO::PARAM_STR);
                         break;
                 }
@@ -573,11 +579,11 @@ abstract class BaseGothiaAccounts extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -950,12 +956,13 @@ abstract class BaseGothiaAccounts extends BaseObject implements Persistent
      * Get the associated Customers object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Customers The associated Customers object.
      * @throws PropelException
      */
-    public function getCustomers(PropelPDO $con = null)
+    public function getCustomers(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aCustomers === null && ($this->customers_id !== null)) {
+        if ($this->aCustomers === null && ($this->customers_id !== null) && $doQuery) {
             $this->aCustomers = CustomersQuery::create()->findPk($this->customers_id, $con);
             // Because this foreign key represents a one-to-one relationship, we will create a bi-directional association.
             $this->aCustomers->setGothiaAccounts($this);
@@ -975,6 +982,7 @@ abstract class BaseGothiaAccounts extends BaseObject implements Persistent
         $this->social_security_num = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->resetModified();
         $this->setNew(true);
@@ -992,7 +1000,13 @@ abstract class BaseGothiaAccounts extends BaseObject implements Persistent
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
+            if ($this->aCustomers instanceof Persistent) {
+              $this->aCustomers->clearAllReferences($deep);
+            }
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
         $this->aCustomers = null;

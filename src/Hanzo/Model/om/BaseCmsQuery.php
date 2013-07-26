@@ -58,7 +58,6 @@ use Hanzo\Model\CmsThread;
  * @method Cms findOne(PropelPDO $con = null) Return the first Cms matching the query
  * @method Cms findOneOrCreate(PropelPDO $con = null) Return the first Cms matching the query, or a new Cms object populated from the query conditions when no match is found
  *
- * @method Cms findOneById(int $id) Return the first Cms filtered by the id column
  * @method Cms findOneByParentId(int $parent_id) Return the first Cms filtered by the parent_id column
  * @method Cms findOneByCmsThreadId(int $cms_thread_id) Return the first Cms filtered by the cms_thread_id column
  * @method Cms findOneBySort(int $sort) Return the first Cms filtered by the sort column
@@ -92,7 +91,7 @@ abstract class BaseCmsQuery extends ModelCriteria
      * Returns a new CmsQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     CmsQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   CmsQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return CmsQuery
      */
@@ -149,18 +148,32 @@ abstract class BaseCmsQuery extends ModelCriteria
     }
 
     /**
+     * Alias of findPk to use instance pooling
+     *
+     * @param     mixed $key Primary key to use for the query
+     * @param     PropelPDO $con A connection object
+     *
+     * @return                 Cms A model object, or null if the key is not found
+     * @throws PropelException
+     */
+     public function findOneById($key, $con = null)
+     {
+        return $this->findPk($key, $con);
+     }
+
+    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   Cms A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 Cms A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `ID`, `PARENT_ID`, `CMS_THREAD_ID`, `SORT`, `TYPE`, `CREATED_AT`, `UPDATED_AT` FROM `cms` WHERE `ID` = :p0';
+        $sql = 'SELECT `id`, `parent_id`, `cms_thread_id`, `sort`, `type`, `created_at`, `updated_at` FROM `cms` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -256,7 +269,8 @@ abstract class BaseCmsQuery extends ModelCriteria
      * <code>
      * $query->filterById(1234); // WHERE id = 1234
      * $query->filterById(array(12, 34)); // WHERE id IN (12, 34)
-     * $query->filterById(array('min' => 12)); // WHERE id > 12
+     * $query->filterById(array('min' => 12)); // WHERE id >= 12
+     * $query->filterById(array('max' => 12)); // WHERE id <= 12
      * </code>
      *
      * @param     mixed $id The value to use as filter.
@@ -269,8 +283,22 @@ abstract class BaseCmsQuery extends ModelCriteria
      */
     public function filterById($id = null, $comparison = null)
     {
-        if (is_array($id) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($id)) {
+            $useMinMax = false;
+            if (isset($id['min'])) {
+                $this->addUsingAlias(CmsPeer::ID, $id['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($id['max'])) {
+                $this->addUsingAlias(CmsPeer::ID, $id['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(CmsPeer::ID, $id, $comparison);
@@ -283,7 +311,8 @@ abstract class BaseCmsQuery extends ModelCriteria
      * <code>
      * $query->filterByParentId(1234); // WHERE parent_id = 1234
      * $query->filterByParentId(array(12, 34)); // WHERE parent_id IN (12, 34)
-     * $query->filterByParentId(array('min' => 12)); // WHERE parent_id > 12
+     * $query->filterByParentId(array('min' => 12)); // WHERE parent_id >= 12
+     * $query->filterByParentId(array('max' => 12)); // WHERE parent_id <= 12
      * </code>
      *
      * @see       filterByCmsRelatedByParentId()
@@ -326,7 +355,8 @@ abstract class BaseCmsQuery extends ModelCriteria
      * <code>
      * $query->filterByCmsThreadId(1234); // WHERE cms_thread_id = 1234
      * $query->filterByCmsThreadId(array(12, 34)); // WHERE cms_thread_id IN (12, 34)
-     * $query->filterByCmsThreadId(array('min' => 12)); // WHERE cms_thread_id > 12
+     * $query->filterByCmsThreadId(array('min' => 12)); // WHERE cms_thread_id >= 12
+     * $query->filterByCmsThreadId(array('max' => 12)); // WHERE cms_thread_id <= 12
      * </code>
      *
      * @see       filterByCmsThread()
@@ -369,7 +399,8 @@ abstract class BaseCmsQuery extends ModelCriteria
      * <code>
      * $query->filterBySort(1234); // WHERE sort = 1234
      * $query->filterBySort(array(12, 34)); // WHERE sort IN (12, 34)
-     * $query->filterBySort(array('min' => 12)); // WHERE sort > 12
+     * $query->filterBySort(array('min' => 12)); // WHERE sort >= 12
+     * $query->filterBySort(array('max' => 12)); // WHERE sort <= 12
      * </code>
      *
      * @param     mixed $sort The value to use as filter.
@@ -524,8 +555,8 @@ abstract class BaseCmsQuery extends ModelCriteria
      * @param   CmsThread|PropelObjectCollection $cmsThread The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   CmsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 CmsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByCmsThread($cmsThread, $comparison = null)
     {
@@ -600,8 +631,8 @@ abstract class BaseCmsQuery extends ModelCriteria
      * @param   Cms|PropelObjectCollection $cms The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   CmsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 CmsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByCmsRelatedByParentId($cms, $comparison = null)
     {
@@ -676,8 +707,8 @@ abstract class BaseCmsQuery extends ModelCriteria
      * @param   Cms|PropelObjectCollection $cms  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   CmsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 CmsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByCmsRelatedById($cms, $comparison = null)
     {
@@ -750,8 +781,8 @@ abstract class BaseCmsQuery extends ModelCriteria
      * @param   CmsI18n|PropelObjectCollection $cmsI18n  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   CmsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 CmsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByCmsI18n($cmsI18n, $comparison = null)
     {

@@ -46,134 +46,134 @@ abstract class BaseOrdersPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 43;
 
-    /** the column name for the ID field */
-    const ID = 'orders.ID';
+    /** the column name for the id field */
+    const ID = 'orders.id';
 
-    /** the column name for the VERSION_ID field */
-    const VERSION_ID = 'orders.VERSION_ID';
+    /** the column name for the version_id field */
+    const VERSION_ID = 'orders.version_id';
 
-    /** the column name for the SESSION_ID field */
-    const SESSION_ID = 'orders.SESSION_ID';
+    /** the column name for the session_id field */
+    const SESSION_ID = 'orders.session_id';
 
-    /** the column name for the PAYMENT_GATEWAY_ID field */
-    const PAYMENT_GATEWAY_ID = 'orders.PAYMENT_GATEWAY_ID';
+    /** the column name for the payment_gateway_id field */
+    const PAYMENT_GATEWAY_ID = 'orders.payment_gateway_id';
 
-    /** the column name for the STATE field */
-    const STATE = 'orders.STATE';
+    /** the column name for the state field */
+    const STATE = 'orders.state';
 
-    /** the column name for the IN_EDIT field */
-    const IN_EDIT = 'orders.IN_EDIT';
+    /** the column name for the in_edit field */
+    const IN_EDIT = 'orders.in_edit';
 
-    /** the column name for the CUSTOMERS_ID field */
-    const CUSTOMERS_ID = 'orders.CUSTOMERS_ID';
+    /** the column name for the customers_id field */
+    const CUSTOMERS_ID = 'orders.customers_id';
 
-    /** the column name for the FIRST_NAME field */
-    const FIRST_NAME = 'orders.FIRST_NAME';
+    /** the column name for the first_name field */
+    const FIRST_NAME = 'orders.first_name';
 
-    /** the column name for the LAST_NAME field */
-    const LAST_NAME = 'orders.LAST_NAME';
+    /** the column name for the last_name field */
+    const LAST_NAME = 'orders.last_name';
 
-    /** the column name for the EMAIL field */
-    const EMAIL = 'orders.EMAIL';
+    /** the column name for the email field */
+    const EMAIL = 'orders.email';
 
-    /** the column name for the PHONE field */
-    const PHONE = 'orders.PHONE';
+    /** the column name for the phone field */
+    const PHONE = 'orders.phone';
 
-    /** the column name for the LANGUAGES_ID field */
-    const LANGUAGES_ID = 'orders.LANGUAGES_ID';
+    /** the column name for the languages_id field */
+    const LANGUAGES_ID = 'orders.languages_id';
 
-    /** the column name for the CURRENCY_CODE field */
-    const CURRENCY_CODE = 'orders.CURRENCY_CODE';
+    /** the column name for the currency_code field */
+    const CURRENCY_CODE = 'orders.currency_code';
 
-    /** the column name for the BILLING_TITLE field */
-    const BILLING_TITLE = 'orders.BILLING_TITLE';
+    /** the column name for the billing_title field */
+    const BILLING_TITLE = 'orders.billing_title';
 
-    /** the column name for the BILLING_FIRST_NAME field */
-    const BILLING_FIRST_NAME = 'orders.BILLING_FIRST_NAME';
+    /** the column name for the billing_first_name field */
+    const BILLING_FIRST_NAME = 'orders.billing_first_name';
 
-    /** the column name for the BILLING_LAST_NAME field */
-    const BILLING_LAST_NAME = 'orders.BILLING_LAST_NAME';
+    /** the column name for the billing_last_name field */
+    const BILLING_LAST_NAME = 'orders.billing_last_name';
 
-    /** the column name for the BILLING_ADDRESS_LINE_1 field */
-    const BILLING_ADDRESS_LINE_1 = 'orders.BILLING_ADDRESS_LINE_1';
+    /** the column name for the billing_address_line_1 field */
+    const BILLING_ADDRESS_LINE_1 = 'orders.billing_address_line_1';
 
-    /** the column name for the BILLING_ADDRESS_LINE_2 field */
-    const BILLING_ADDRESS_LINE_2 = 'orders.BILLING_ADDRESS_LINE_2';
+    /** the column name for the billing_address_line_2 field */
+    const BILLING_ADDRESS_LINE_2 = 'orders.billing_address_line_2';
 
-    /** the column name for the BILLING_POSTAL_CODE field */
-    const BILLING_POSTAL_CODE = 'orders.BILLING_POSTAL_CODE';
+    /** the column name for the billing_postal_code field */
+    const BILLING_POSTAL_CODE = 'orders.billing_postal_code';
 
-    /** the column name for the BILLING_CITY field */
-    const BILLING_CITY = 'orders.BILLING_CITY';
+    /** the column name for the billing_city field */
+    const BILLING_CITY = 'orders.billing_city';
 
-    /** the column name for the BILLING_COUNTRY field */
-    const BILLING_COUNTRY = 'orders.BILLING_COUNTRY';
+    /** the column name for the billing_country field */
+    const BILLING_COUNTRY = 'orders.billing_country';
 
-    /** the column name for the BILLING_COUNTRIES_ID field */
-    const BILLING_COUNTRIES_ID = 'orders.BILLING_COUNTRIES_ID';
+    /** the column name for the billing_countries_id field */
+    const BILLING_COUNTRIES_ID = 'orders.billing_countries_id';
 
-    /** the column name for the BILLING_STATE_PROVINCE field */
-    const BILLING_STATE_PROVINCE = 'orders.BILLING_STATE_PROVINCE';
+    /** the column name for the billing_state_province field */
+    const BILLING_STATE_PROVINCE = 'orders.billing_state_province';
 
-    /** the column name for the BILLING_COMPANY_NAME field */
-    const BILLING_COMPANY_NAME = 'orders.BILLING_COMPANY_NAME';
+    /** the column name for the billing_company_name field */
+    const BILLING_COMPANY_NAME = 'orders.billing_company_name';
 
-    /** the column name for the BILLING_METHOD field */
-    const BILLING_METHOD = 'orders.BILLING_METHOD';
+    /** the column name for the billing_method field */
+    const BILLING_METHOD = 'orders.billing_method';
 
-    /** the column name for the BILLING_EXTERNAL_ADDRESS_ID field */
-    const BILLING_EXTERNAL_ADDRESS_ID = 'orders.BILLING_EXTERNAL_ADDRESS_ID';
+    /** the column name for the billing_external_address_id field */
+    const BILLING_EXTERNAL_ADDRESS_ID = 'orders.billing_external_address_id';
 
-    /** the column name for the DELIVERY_TITLE field */
-    const DELIVERY_TITLE = 'orders.DELIVERY_TITLE';
+    /** the column name for the delivery_title field */
+    const DELIVERY_TITLE = 'orders.delivery_title';
 
-    /** the column name for the DELIVERY_FIRST_NAME field */
-    const DELIVERY_FIRST_NAME = 'orders.DELIVERY_FIRST_NAME';
+    /** the column name for the delivery_first_name field */
+    const DELIVERY_FIRST_NAME = 'orders.delivery_first_name';
 
-    /** the column name for the DELIVERY_LAST_NAME field */
-    const DELIVERY_LAST_NAME = 'orders.DELIVERY_LAST_NAME';
+    /** the column name for the delivery_last_name field */
+    const DELIVERY_LAST_NAME = 'orders.delivery_last_name';
 
-    /** the column name for the DELIVERY_ADDRESS_LINE_1 field */
-    const DELIVERY_ADDRESS_LINE_1 = 'orders.DELIVERY_ADDRESS_LINE_1';
+    /** the column name for the delivery_address_line_1 field */
+    const DELIVERY_ADDRESS_LINE_1 = 'orders.delivery_address_line_1';
 
-    /** the column name for the DELIVERY_ADDRESS_LINE_2 field */
-    const DELIVERY_ADDRESS_LINE_2 = 'orders.DELIVERY_ADDRESS_LINE_2';
+    /** the column name for the delivery_address_line_2 field */
+    const DELIVERY_ADDRESS_LINE_2 = 'orders.delivery_address_line_2';
 
-    /** the column name for the DELIVERY_POSTAL_CODE field */
-    const DELIVERY_POSTAL_CODE = 'orders.DELIVERY_POSTAL_CODE';
+    /** the column name for the delivery_postal_code field */
+    const DELIVERY_POSTAL_CODE = 'orders.delivery_postal_code';
 
-    /** the column name for the DELIVERY_CITY field */
-    const DELIVERY_CITY = 'orders.DELIVERY_CITY';
+    /** the column name for the delivery_city field */
+    const DELIVERY_CITY = 'orders.delivery_city';
 
-    /** the column name for the DELIVERY_COUNTRY field */
-    const DELIVERY_COUNTRY = 'orders.DELIVERY_COUNTRY';
+    /** the column name for the delivery_country field */
+    const DELIVERY_COUNTRY = 'orders.delivery_country';
 
-    /** the column name for the DELIVERY_COUNTRIES_ID field */
-    const DELIVERY_COUNTRIES_ID = 'orders.DELIVERY_COUNTRIES_ID';
+    /** the column name for the delivery_countries_id field */
+    const DELIVERY_COUNTRIES_ID = 'orders.delivery_countries_id';
 
-    /** the column name for the DELIVERY_STATE_PROVINCE field */
-    const DELIVERY_STATE_PROVINCE = 'orders.DELIVERY_STATE_PROVINCE';
+    /** the column name for the delivery_state_province field */
+    const DELIVERY_STATE_PROVINCE = 'orders.delivery_state_province';
 
-    /** the column name for the DELIVERY_COMPANY_NAME field */
-    const DELIVERY_COMPANY_NAME = 'orders.DELIVERY_COMPANY_NAME';
+    /** the column name for the delivery_company_name field */
+    const DELIVERY_COMPANY_NAME = 'orders.delivery_company_name';
 
-    /** the column name for the DELIVERY_METHOD field */
-    const DELIVERY_METHOD = 'orders.DELIVERY_METHOD';
+    /** the column name for the delivery_method field */
+    const DELIVERY_METHOD = 'orders.delivery_method';
 
-    /** the column name for the DELIVERY_EXTERNAL_ADDRESS_ID field */
-    const DELIVERY_EXTERNAL_ADDRESS_ID = 'orders.DELIVERY_EXTERNAL_ADDRESS_ID';
+    /** the column name for the delivery_external_address_id field */
+    const DELIVERY_EXTERNAL_ADDRESS_ID = 'orders.delivery_external_address_id';
 
-    /** the column name for the EVENTS_ID field */
-    const EVENTS_ID = 'orders.EVENTS_ID';
+    /** the column name for the events_id field */
+    const EVENTS_ID = 'orders.events_id';
 
-    /** the column name for the FINISHED_AT field */
-    const FINISHED_AT = 'orders.FINISHED_AT';
+    /** the column name for the finished_at field */
+    const FINISHED_AT = 'orders.finished_at';
 
-    /** the column name for the CREATED_AT field */
-    const CREATED_AT = 'orders.CREATED_AT';
+    /** the column name for the created_at field */
+    const CREATED_AT = 'orders.created_at';
 
-    /** the column name for the UPDATED_AT field */
-    const UPDATED_AT = 'orders.UPDATED_AT';
+    /** the column name for the updated_at field */
+    const UPDATED_AT = 'orders.updated_at';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -332,49 +332,49 @@ abstract class BaseOrdersPeer
             $criteria->addSelectColumn(OrdersPeer::CREATED_AT);
             $criteria->addSelectColumn(OrdersPeer::UPDATED_AT);
         } else {
-            $criteria->addSelectColumn($alias . '.ID');
-            $criteria->addSelectColumn($alias . '.VERSION_ID');
-            $criteria->addSelectColumn($alias . '.SESSION_ID');
-            $criteria->addSelectColumn($alias . '.PAYMENT_GATEWAY_ID');
-            $criteria->addSelectColumn($alias . '.STATE');
-            $criteria->addSelectColumn($alias . '.IN_EDIT');
-            $criteria->addSelectColumn($alias . '.CUSTOMERS_ID');
-            $criteria->addSelectColumn($alias . '.FIRST_NAME');
-            $criteria->addSelectColumn($alias . '.LAST_NAME');
-            $criteria->addSelectColumn($alias . '.EMAIL');
-            $criteria->addSelectColumn($alias . '.PHONE');
-            $criteria->addSelectColumn($alias . '.LANGUAGES_ID');
-            $criteria->addSelectColumn($alias . '.CURRENCY_CODE');
-            $criteria->addSelectColumn($alias . '.BILLING_TITLE');
-            $criteria->addSelectColumn($alias . '.BILLING_FIRST_NAME');
-            $criteria->addSelectColumn($alias . '.BILLING_LAST_NAME');
-            $criteria->addSelectColumn($alias . '.BILLING_ADDRESS_LINE_1');
-            $criteria->addSelectColumn($alias . '.BILLING_ADDRESS_LINE_2');
-            $criteria->addSelectColumn($alias . '.BILLING_POSTAL_CODE');
-            $criteria->addSelectColumn($alias . '.BILLING_CITY');
-            $criteria->addSelectColumn($alias . '.BILLING_COUNTRY');
-            $criteria->addSelectColumn($alias . '.BILLING_COUNTRIES_ID');
-            $criteria->addSelectColumn($alias . '.BILLING_STATE_PROVINCE');
-            $criteria->addSelectColumn($alias . '.BILLING_COMPANY_NAME');
-            $criteria->addSelectColumn($alias . '.BILLING_METHOD');
-            $criteria->addSelectColumn($alias . '.BILLING_EXTERNAL_ADDRESS_ID');
-            $criteria->addSelectColumn($alias . '.DELIVERY_TITLE');
-            $criteria->addSelectColumn($alias . '.DELIVERY_FIRST_NAME');
-            $criteria->addSelectColumn($alias . '.DELIVERY_LAST_NAME');
-            $criteria->addSelectColumn($alias . '.DELIVERY_ADDRESS_LINE_1');
-            $criteria->addSelectColumn($alias . '.DELIVERY_ADDRESS_LINE_2');
-            $criteria->addSelectColumn($alias . '.DELIVERY_POSTAL_CODE');
-            $criteria->addSelectColumn($alias . '.DELIVERY_CITY');
-            $criteria->addSelectColumn($alias . '.DELIVERY_COUNTRY');
-            $criteria->addSelectColumn($alias . '.DELIVERY_COUNTRIES_ID');
-            $criteria->addSelectColumn($alias . '.DELIVERY_STATE_PROVINCE');
-            $criteria->addSelectColumn($alias . '.DELIVERY_COMPANY_NAME');
-            $criteria->addSelectColumn($alias . '.DELIVERY_METHOD');
-            $criteria->addSelectColumn($alias . '.DELIVERY_EXTERNAL_ADDRESS_ID');
-            $criteria->addSelectColumn($alias . '.EVENTS_ID');
-            $criteria->addSelectColumn($alias . '.FINISHED_AT');
-            $criteria->addSelectColumn($alias . '.CREATED_AT');
-            $criteria->addSelectColumn($alias . '.UPDATED_AT');
+            $criteria->addSelectColumn($alias . '.id');
+            $criteria->addSelectColumn($alias . '.version_id');
+            $criteria->addSelectColumn($alias . '.session_id');
+            $criteria->addSelectColumn($alias . '.payment_gateway_id');
+            $criteria->addSelectColumn($alias . '.state');
+            $criteria->addSelectColumn($alias . '.in_edit');
+            $criteria->addSelectColumn($alias . '.customers_id');
+            $criteria->addSelectColumn($alias . '.first_name');
+            $criteria->addSelectColumn($alias . '.last_name');
+            $criteria->addSelectColumn($alias . '.email');
+            $criteria->addSelectColumn($alias . '.phone');
+            $criteria->addSelectColumn($alias . '.languages_id');
+            $criteria->addSelectColumn($alias . '.currency_code');
+            $criteria->addSelectColumn($alias . '.billing_title');
+            $criteria->addSelectColumn($alias . '.billing_first_name');
+            $criteria->addSelectColumn($alias . '.billing_last_name');
+            $criteria->addSelectColumn($alias . '.billing_address_line_1');
+            $criteria->addSelectColumn($alias . '.billing_address_line_2');
+            $criteria->addSelectColumn($alias . '.billing_postal_code');
+            $criteria->addSelectColumn($alias . '.billing_city');
+            $criteria->addSelectColumn($alias . '.billing_country');
+            $criteria->addSelectColumn($alias . '.billing_countries_id');
+            $criteria->addSelectColumn($alias . '.billing_state_province');
+            $criteria->addSelectColumn($alias . '.billing_company_name');
+            $criteria->addSelectColumn($alias . '.billing_method');
+            $criteria->addSelectColumn($alias . '.billing_external_address_id');
+            $criteria->addSelectColumn($alias . '.delivery_title');
+            $criteria->addSelectColumn($alias . '.delivery_first_name');
+            $criteria->addSelectColumn($alias . '.delivery_last_name');
+            $criteria->addSelectColumn($alias . '.delivery_address_line_1');
+            $criteria->addSelectColumn($alias . '.delivery_address_line_2');
+            $criteria->addSelectColumn($alias . '.delivery_postal_code');
+            $criteria->addSelectColumn($alias . '.delivery_city');
+            $criteria->addSelectColumn($alias . '.delivery_country');
+            $criteria->addSelectColumn($alias . '.delivery_countries_id');
+            $criteria->addSelectColumn($alias . '.delivery_state_province');
+            $criteria->addSelectColumn($alias . '.delivery_company_name');
+            $criteria->addSelectColumn($alias . '.delivery_method');
+            $criteria->addSelectColumn($alias . '.delivery_external_address_id');
+            $criteria->addSelectColumn($alias . '.events_id');
+            $criteria->addSelectColumn($alias . '.finished_at');
+            $criteria->addSelectColumn($alias . '.created_at');
+            $criteria->addSelectColumn($alias . '.updated_at');
         }
     }
 
@@ -458,7 +458,7 @@ abstract class BaseOrdersPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -563,8 +563,15 @@ abstract class BaseOrdersPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (OrdersPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         OrdersPeer::$instances = array();
     }
 
@@ -2040,7 +2047,7 @@ abstract class BaseOrdersPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return OrdersPeer::OM_CLASS;
     }

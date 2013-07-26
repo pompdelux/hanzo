@@ -28,7 +28,6 @@ use Hanzo\Model\SequencesQuery;
  * @method Sequences findOne(PropelPDO $con = null) Return the first Sequences matching the query
  * @method Sequences findOneOrCreate(PropelPDO $con = null) Return the first Sequences matching the query, or a new Sequences object populated from the query conditions when no match is found
  *
- * @method Sequences findOneByName(string $name) Return the first Sequences filtered by the name column
  * @method Sequences findOneById(string $id) Return the first Sequences filtered by the id column
  *
  * @method array findByName(string $name) Return Sequences objects filtered by the name column
@@ -52,7 +51,7 @@ abstract class BaseSequencesQuery extends ModelCriteria
      * Returns a new SequencesQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     SequencesQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   SequencesQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return SequencesQuery
      */
@@ -109,18 +108,32 @@ abstract class BaseSequencesQuery extends ModelCriteria
     }
 
     /**
+     * Alias of findPk to use instance pooling
+     *
+     * @param     mixed $key Primary key to use for the query
+     * @param     PropelPDO $con A connection object
+     *
+     * @return                 Sequences A model object, or null if the key is not found
+     * @throws PropelException
+     */
+     public function findOneByName($key, $con = null)
+     {
+        return $this->findPk($key, $con);
+     }
+
+    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   Sequences A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 Sequences A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `NAME`, `ID` FROM `sequences` WHERE `NAME` = :p0';
+        $sql = 'SELECT `name`, `id` FROM `sequences` WHERE `name` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_STR);
@@ -245,7 +258,8 @@ abstract class BaseSequencesQuery extends ModelCriteria
      * <code>
      * $query->filterById(1234); // WHERE id = 1234
      * $query->filterById(array(12, 34)); // WHERE id IN (12, 34)
-     * $query->filterById(array('min' => 12)); // WHERE id > 12
+     * $query->filterById(array('min' => 12)); // WHERE id >= 12
+     * $query->filterById(array('max' => 12)); // WHERE id <= 12
      * </code>
      *
      * @param     mixed $id The value to use as filter.

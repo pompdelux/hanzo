@@ -37,29 +37,29 @@ abstract class BaseOrdersDeletedLogPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 8;
 
-    /** the column name for the ORDERS_ID field */
-    const ORDERS_ID = 'orders_deleted_log.ORDERS_ID';
+    /** the column name for the orders_id field */
+    const ORDERS_ID = 'orders_deleted_log.orders_id';
 
-    /** the column name for the CUSTOMERS_ID field */
-    const CUSTOMERS_ID = 'orders_deleted_log.CUSTOMERS_ID';
+    /** the column name for the customers_id field */
+    const CUSTOMERS_ID = 'orders_deleted_log.customers_id';
 
-    /** the column name for the NAME field */
-    const NAME = 'orders_deleted_log.NAME';
+    /** the column name for the name field */
+    const NAME = 'orders_deleted_log.name';
 
-    /** the column name for the EMAIL field */
-    const EMAIL = 'orders_deleted_log.EMAIL';
+    /** the column name for the email field */
+    const EMAIL = 'orders_deleted_log.email';
 
-    /** the column name for the TRIGGER field */
-    const TRIGGER = 'orders_deleted_log.TRIGGER';
+    /** the column name for the trigger field */
+    const TRIGGER = 'orders_deleted_log.trigger';
 
-    /** the column name for the CONTENT field */
-    const CONTENT = 'orders_deleted_log.CONTENT';
+    /** the column name for the content field */
+    const CONTENT = 'orders_deleted_log.content';
 
-    /** the column name for the DELETED_BY field */
-    const DELETED_BY = 'orders_deleted_log.DELETED_BY';
+    /** the column name for the deleted_by field */
+    const DELETED_BY = 'orders_deleted_log.deleted_by';
 
-    /** the column name for the DELETED_AT field */
-    const DELETED_AT = 'orders_deleted_log.DELETED_AT';
+    /** the column name for the deleted_at field */
+    const DELETED_AT = 'orders_deleted_log.deleted_at';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -183,14 +183,14 @@ abstract class BaseOrdersDeletedLogPeer
             $criteria->addSelectColumn(OrdersDeletedLogPeer::DELETED_BY);
             $criteria->addSelectColumn(OrdersDeletedLogPeer::DELETED_AT);
         } else {
-            $criteria->addSelectColumn($alias . '.ORDERS_ID');
-            $criteria->addSelectColumn($alias . '.CUSTOMERS_ID');
-            $criteria->addSelectColumn($alias . '.NAME');
-            $criteria->addSelectColumn($alias . '.EMAIL');
-            $criteria->addSelectColumn($alias . '.TRIGGER');
-            $criteria->addSelectColumn($alias . '.CONTENT');
-            $criteria->addSelectColumn($alias . '.DELETED_BY');
-            $criteria->addSelectColumn($alias . '.DELETED_AT');
+            $criteria->addSelectColumn($alias . '.orders_id');
+            $criteria->addSelectColumn($alias . '.customers_id');
+            $criteria->addSelectColumn($alias . '.name');
+            $criteria->addSelectColumn($alias . '.email');
+            $criteria->addSelectColumn($alias . '.trigger');
+            $criteria->addSelectColumn($alias . '.content');
+            $criteria->addSelectColumn($alias . '.deleted_by');
+            $criteria->addSelectColumn($alias . '.deleted_at');
         }
     }
 
@@ -274,7 +274,7 @@ abstract class BaseOrdersDeletedLogPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -379,8 +379,15 @@ abstract class BaseOrdersDeletedLogPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (OrdersDeletedLogPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         OrdersDeletedLogPeer::$instances = array();
     }
 
@@ -515,7 +522,7 @@ abstract class BaseOrdersDeletedLogPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return OrdersDeletedLogPeer::OM_CLASS;
     }

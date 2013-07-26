@@ -87,7 +87,7 @@ abstract class BaseCmsI18nQuery extends ModelCriteria
      * Returns a new CmsI18nQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     CmsI18nQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   CmsI18nQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return CmsI18nQuery
      */
@@ -151,12 +151,12 @@ abstract class BaseCmsI18nQuery extends ModelCriteria
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   CmsI18n A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 CmsI18n A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `ID`, `LOCALE`, `TITLE`, `PATH`, `OLD_PATH`, `CONTENT`, `SETTINGS`, `IS_RESTRICTED`, `IS_ACTIVE` FROM `cms_i18n` WHERE `ID` = :p0 AND `LOCALE` = :p1';
+        $sql = 'SELECT `id`, `locale`, `title`, `path`, `old_path`, `content`, `settings`, `is_restricted`, `is_active` FROM `cms_i18n` WHERE `id` = :p0 AND `locale` = :p1';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);
@@ -264,7 +264,8 @@ abstract class BaseCmsI18nQuery extends ModelCriteria
      * <code>
      * $query->filterById(1234); // WHERE id = 1234
      * $query->filterById(array(12, 34)); // WHERE id IN (12, 34)
-     * $query->filterById(array('min' => 12)); // WHERE id > 12
+     * $query->filterById(array('min' => 12)); // WHERE id >= 12
+     * $query->filterById(array('max' => 12)); // WHERE id <= 12
      * </code>
      *
      * @see       filterByCms()
@@ -279,8 +280,22 @@ abstract class BaseCmsI18nQuery extends ModelCriteria
      */
     public function filterById($id = null, $comparison = null)
     {
-        if (is_array($id) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($id)) {
+            $useMinMax = false;
+            if (isset($id['min'])) {
+                $this->addUsingAlias(CmsI18nPeer::ID, $id['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($id['max'])) {
+                $this->addUsingAlias(CmsI18nPeer::ID, $id['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(CmsI18nPeer::ID, $id, $comparison);
@@ -481,7 +496,7 @@ abstract class BaseCmsI18nQuery extends ModelCriteria
     public function filterByIsRestricted($isRestricted = null, $comparison = null)
     {
         if (is_string($isRestricted)) {
-            $is_restricted = in_array(strtolower($isRestricted), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+            $isRestricted = in_array(strtolower($isRestricted), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
         }
 
         return $this->addUsingAlias(CmsI18nPeer::IS_RESTRICTED, $isRestricted, $comparison);
@@ -508,7 +523,7 @@ abstract class BaseCmsI18nQuery extends ModelCriteria
     public function filterByIsActive($isActive = null, $comparison = null)
     {
         if (is_string($isActive)) {
-            $is_active = in_array(strtolower($isActive), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+            $isActive = in_array(strtolower($isActive), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
         }
 
         return $this->addUsingAlias(CmsI18nPeer::IS_ACTIVE, $isActive, $comparison);
@@ -520,8 +535,8 @@ abstract class BaseCmsI18nQuery extends ModelCriteria
      * @param   Cms|PropelObjectCollection $cms The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   CmsI18nQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 CmsI18nQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByCms($cms, $comparison = null)
     {

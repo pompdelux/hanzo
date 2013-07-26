@@ -38,11 +38,11 @@ abstract class BaseRelatedProductsPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 2;
 
-    /** the column name for the MASTER field */
-    const MASTER = 'related_products.MASTER';
+    /** the column name for the master field */
+    const MASTER = 'related_products.master';
 
-    /** the column name for the SKU field */
-    const SKU = 'related_products.SKU';
+    /** the column name for the sku field */
+    const SKU = 'related_products.sku';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -160,8 +160,8 @@ abstract class BaseRelatedProductsPeer
             $criteria->addSelectColumn(RelatedProductsPeer::MASTER);
             $criteria->addSelectColumn(RelatedProductsPeer::SKU);
         } else {
-            $criteria->addSelectColumn($alias . '.MASTER');
-            $criteria->addSelectColumn($alias . '.SKU');
+            $criteria->addSelectColumn($alias . '.master');
+            $criteria->addSelectColumn($alias . '.sku');
         }
     }
 
@@ -245,7 +245,7 @@ abstract class BaseRelatedProductsPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -350,8 +350,15 @@ abstract class BaseRelatedProductsPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (RelatedProductsPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         RelatedProductsPeer::$instances = array();
     }
 
@@ -1065,7 +1072,7 @@ abstract class BaseRelatedProductsPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return RelatedProductsPeer::OM_CLASS;
     }

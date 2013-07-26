@@ -44,44 +44,44 @@ abstract class BaseCustomersPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 13;
 
-    /** the column name for the ID field */
-    const ID = 'customers.ID';
+    /** the column name for the id field */
+    const ID = 'customers.id';
 
-    /** the column name for the GROUPS_ID field */
-    const GROUPS_ID = 'customers.GROUPS_ID';
+    /** the column name for the groups_id field */
+    const GROUPS_ID = 'customers.groups_id';
 
-    /** the column name for the TITLE field */
-    const TITLE = 'customers.TITLE';
+    /** the column name for the title field */
+    const TITLE = 'customers.title';
 
-    /** the column name for the FIRST_NAME field */
-    const FIRST_NAME = 'customers.FIRST_NAME';
+    /** the column name for the first_name field */
+    const FIRST_NAME = 'customers.first_name';
 
-    /** the column name for the LAST_NAME field */
-    const LAST_NAME = 'customers.LAST_NAME';
+    /** the column name for the last_name field */
+    const LAST_NAME = 'customers.last_name';
 
-    /** the column name for the EMAIL field */
-    const EMAIL = 'customers.EMAIL';
+    /** the column name for the email field */
+    const EMAIL = 'customers.email';
 
-    /** the column name for the PHONE field */
-    const PHONE = 'customers.PHONE';
+    /** the column name for the phone field */
+    const PHONE = 'customers.phone';
 
-    /** the column name for the PASSWORD field */
-    const PASSWORD = 'customers.PASSWORD';
+    /** the column name for the password field */
+    const PASSWORD = 'customers.password';
 
-    /** the column name for the PASSWORD_CLEAR field */
-    const PASSWORD_CLEAR = 'customers.PASSWORD_CLEAR';
+    /** the column name for the password_clear field */
+    const PASSWORD_CLEAR = 'customers.password_clear';
 
-    /** the column name for the DISCOUNT field */
-    const DISCOUNT = 'customers.DISCOUNT';
+    /** the column name for the discount field */
+    const DISCOUNT = 'customers.discount';
 
-    /** the column name for the IS_ACTIVE field */
-    const IS_ACTIVE = 'customers.IS_ACTIVE';
+    /** the column name for the is_active field */
+    const IS_ACTIVE = 'customers.is_active';
 
-    /** the column name for the CREATED_AT field */
-    const CREATED_AT = 'customers.CREATED_AT';
+    /** the column name for the created_at field */
+    const CREATED_AT = 'customers.created_at';
 
-    /** the column name for the UPDATED_AT field */
-    const UPDATED_AT = 'customers.UPDATED_AT';
+    /** the column name for the updated_at field */
+    const UPDATED_AT = 'customers.updated_at';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -210,19 +210,19 @@ abstract class BaseCustomersPeer
             $criteria->addSelectColumn(CustomersPeer::CREATED_AT);
             $criteria->addSelectColumn(CustomersPeer::UPDATED_AT);
         } else {
-            $criteria->addSelectColumn($alias . '.ID');
-            $criteria->addSelectColumn($alias . '.GROUPS_ID');
-            $criteria->addSelectColumn($alias . '.TITLE');
-            $criteria->addSelectColumn($alias . '.FIRST_NAME');
-            $criteria->addSelectColumn($alias . '.LAST_NAME');
-            $criteria->addSelectColumn($alias . '.EMAIL');
-            $criteria->addSelectColumn($alias . '.PHONE');
-            $criteria->addSelectColumn($alias . '.PASSWORD');
-            $criteria->addSelectColumn($alias . '.PASSWORD_CLEAR');
-            $criteria->addSelectColumn($alias . '.DISCOUNT');
-            $criteria->addSelectColumn($alias . '.IS_ACTIVE');
-            $criteria->addSelectColumn($alias . '.CREATED_AT');
-            $criteria->addSelectColumn($alias . '.UPDATED_AT');
+            $criteria->addSelectColumn($alias . '.id');
+            $criteria->addSelectColumn($alias . '.groups_id');
+            $criteria->addSelectColumn($alias . '.title');
+            $criteria->addSelectColumn($alias . '.first_name');
+            $criteria->addSelectColumn($alias . '.last_name');
+            $criteria->addSelectColumn($alias . '.email');
+            $criteria->addSelectColumn($alias . '.phone');
+            $criteria->addSelectColumn($alias . '.password');
+            $criteria->addSelectColumn($alias . '.password_clear');
+            $criteria->addSelectColumn($alias . '.discount');
+            $criteria->addSelectColumn($alias . '.is_active');
+            $criteria->addSelectColumn($alias . '.created_at');
+            $criteria->addSelectColumn($alias . '.updated_at');
         }
     }
 
@@ -306,7 +306,7 @@ abstract class BaseCustomersPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -411,8 +411,15 @@ abstract class BaseCustomersPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (CustomersPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         CustomersPeer::$instances = array();
     }
 
@@ -803,7 +810,7 @@ abstract class BaseCustomersPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return CustomersPeer::OM_CLASS;
     }

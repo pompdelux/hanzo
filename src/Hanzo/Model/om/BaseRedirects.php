@@ -75,6 +75,12 @@ abstract class BaseRedirects extends BaseObject implements Persistent
     protected $alreadyInValidation = false;
 
     /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
+    /**
      * Get the [id] column value.
      *
      * @return int
@@ -122,7 +128,7 @@ abstract class BaseRedirects extends BaseObject implements Persistent
      */
     public function setId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -143,7 +149,7 @@ abstract class BaseRedirects extends BaseObject implements Persistent
      */
     public function setSource($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -164,7 +170,7 @@ abstract class BaseRedirects extends BaseObject implements Persistent
      */
     public function setTarget($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -185,7 +191,7 @@ abstract class BaseRedirects extends BaseObject implements Persistent
      */
     public function setDomainKey($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -241,7 +247,7 @@ abstract class BaseRedirects extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
+            $this->postHydrate($row, $startcol, $rehydrate);
             return $startcol + 4; // 4 = RedirectsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -455,16 +461,16 @@ abstract class BaseRedirects extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(RedirectsPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`ID`';
+            $modifiedColumns[':p' . $index++]  = '`id`';
         }
         if ($this->isColumnModified(RedirectsPeer::SOURCE)) {
-            $modifiedColumns[':p' . $index++]  = '`SOURCE`';
+            $modifiedColumns[':p' . $index++]  = '`source`';
         }
         if ($this->isColumnModified(RedirectsPeer::TARGET)) {
-            $modifiedColumns[':p' . $index++]  = '`TARGET`';
+            $modifiedColumns[':p' . $index++]  = '`target`';
         }
         if ($this->isColumnModified(RedirectsPeer::DOMAIN_KEY)) {
-            $modifiedColumns[':p' . $index++]  = '`DOMAIN_KEY`';
+            $modifiedColumns[':p' . $index++]  = '`domain_key`';
         }
 
         $sql = sprintf(
@@ -477,16 +483,16 @@ abstract class BaseRedirects extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`ID`':
+                    case '`id`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`SOURCE`':
+                    case '`source`':
                         $stmt->bindValue($identifier, $this->source, PDO::PARAM_STR);
                         break;
-                    case '`TARGET`':
+                    case '`target`':
                         $stmt->bindValue($identifier, $this->target, PDO::PARAM_STR);
                         break;
-                    case '`DOMAIN_KEY`':
+                    case '`domain_key`':
                         $stmt->bindValue($identifier, $this->domain_key, PDO::PARAM_STR);
                         break;
                 }
@@ -557,11 +563,11 @@ abstract class BaseRedirects extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -879,6 +885,7 @@ abstract class BaseRedirects extends BaseObject implements Persistent
         $this->domain_key = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->resetModified();
         $this->setNew(true);
@@ -896,7 +903,10 @@ abstract class BaseRedirects extends BaseObject implements Persistent
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
     }

@@ -42,19 +42,19 @@ class CustomersTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(true);
         // columns
-        $this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
-        $this->addForeignKey('GROUPS_ID', 'GroupsId', 'INTEGER', 'groups', 'ID', true, null, 1);
-        $this->addColumn('TITLE', 'Title', 'VARCHAR', false, 12, null);
-        $this->addColumn('FIRST_NAME', 'FirstName', 'VARCHAR', true, 128, null);
-        $this->addColumn('LAST_NAME', 'LastName', 'VARCHAR', true, 128, null);
-        $this->addColumn('EMAIL', 'Email', 'VARCHAR', true, 255, null);
-        $this->addColumn('PHONE', 'Phone', 'VARCHAR', false, 32, null);
-        $this->addColumn('PASSWORD', 'Password', 'VARCHAR', true, 128, null);
-        $this->addColumn('PASSWORD_CLEAR', 'PasswordClear', 'VARCHAR', false, 45, null);
-        $this->addColumn('DISCOUNT', 'Discount', 'DECIMAL', false, 8, 0);
-        $this->addColumn('IS_ACTIVE', 'IsActive', 'BOOLEAN', true, 1, true);
-        $this->addColumn('CREATED_AT', 'CreatedAt', 'TIMESTAMP', false, null, null);
-        $this->addColumn('UPDATED_AT', 'UpdatedAt', 'TIMESTAMP', false, null, null);
+        $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
+        $this->addForeignKey('groups_id', 'GroupsId', 'INTEGER', 'groups', 'id', true, null, 1);
+        $this->addColumn('title', 'Title', 'VARCHAR', false, 12, null);
+        $this->addColumn('first_name', 'FirstName', 'VARCHAR', true, 128, null);
+        $this->addColumn('last_name', 'LastName', 'VARCHAR', true, 128, null);
+        $this->addColumn('email', 'Email', 'VARCHAR', true, 255, null);
+        $this->addColumn('phone', 'Phone', 'VARCHAR', false, 32, null);
+        $this->addColumn('password', 'Password', 'VARCHAR', true, 128, null);
+        $this->addColumn('password_clear', 'PasswordClear', 'VARCHAR', false, 45, null);
+        $this->addColumn('discount', 'Discount', 'DECIMAL', false, 8, 0);
+        $this->addColumn('is_active', 'IsActive', 'BOOLEAN', true, 1, true);
+        $this->addColumn('created_at', 'CreatedAt', 'TIMESTAMP', false, null, null);
+        $this->addColumn('updated_at', 'UpdatedAt', 'TIMESTAMP', false, null, null);
         // validators
     } // initialize()
 
@@ -84,8 +84,14 @@ class CustomersTableMap extends TableMap
     public function getBehaviors()
     {
         return array(
-            'timestampable' => array('create_column' => 'created_at', 'update_column' => 'updated_at', 'disable_updated_at' => 'false', ),
-            'delegate' => array('to' => 'consultants', ),
+            'timestampable' =>  array (
+  'create_column' => 'created_at',
+  'update_column' => 'updated_at',
+  'disable_updated_at' => 'false',
+),
+            'delegate' =>  array (
+  'to' => 'consultants',
+),
         );
     } // getBehaviors()
 

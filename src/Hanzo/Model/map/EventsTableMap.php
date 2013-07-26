@@ -42,25 +42,25 @@ class EventsTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(true);
         // columns
-        $this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
-        $this->addColumn('CODE', 'Code', 'VARCHAR', true, 32, null);
-        $this->addColumn('KEY', 'Key', 'VARCHAR', true, 64, null);
-        $this->addForeignKey('CONSULTANTS_ID', 'ConsultantsId', 'INTEGER', 'customers', 'ID', true, null, null);
-        $this->addForeignKey('CUSTOMERS_ID', 'CustomersId', 'INTEGER', 'customers', 'ID', true, null, null);
-        $this->addColumn('EVENT_DATE', 'EventDate', 'TIMESTAMP', true, null, null);
-        $this->addColumn('HOST', 'Host', 'VARCHAR', true, 128, null);
-        $this->addColumn('ADDRESS_LINE_1', 'AddressLine1', 'VARCHAR', true, 128, null);
-        $this->addColumn('ADDRESS_LINE_2', 'AddressLine2', 'VARCHAR', false, 128, null);
-        $this->addColumn('POSTAL_CODE', 'PostalCode', 'VARCHAR', true, 12, null);
-        $this->addColumn('CITY', 'City', 'VARCHAR', true, 64, null);
-        $this->addColumn('PHONE', 'Phone', 'VARCHAR', true, 32, null);
-        $this->addColumn('EMAIL', 'Email', 'VARCHAR', true, 255, null);
-        $this->addColumn('DESCRIPTION', 'Description', 'LONGVARCHAR', false, null, null);
-        $this->addColumn('TYPE', 'Type', 'VARCHAR', true, 3, 'AR');
-        $this->addColumn('IS_OPEN', 'IsOpen', 'BOOLEAN', false, 1, null);
-        $this->addColumn('NOTIFY_HOSTESS', 'NotifyHostess', 'BOOLEAN', true, 1, true);
-        $this->addColumn('CREATED_AT', 'CreatedAt', 'TIMESTAMP', false, null, null);
-        $this->addColumn('UPDATED_AT', 'UpdatedAt', 'TIMESTAMP', false, null, null);
+        $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
+        $this->addColumn('code', 'Code', 'VARCHAR', true, 32, null);
+        $this->addColumn('key', 'Key', 'VARCHAR', true, 64, null);
+        $this->addForeignKey('consultants_id', 'ConsultantsId', 'INTEGER', 'customers', 'id', true, null, null);
+        $this->addForeignKey('customers_id', 'CustomersId', 'INTEGER', 'customers', 'id', true, null, null);
+        $this->addColumn('event_date', 'EventDate', 'TIMESTAMP', true, null, null);
+        $this->addColumn('host', 'Host', 'VARCHAR', true, 128, null);
+        $this->addColumn('address_line_1', 'AddressLine1', 'VARCHAR', true, 128, null);
+        $this->addColumn('address_line_2', 'AddressLine2', 'VARCHAR', false, 128, null);
+        $this->addColumn('postal_code', 'PostalCode', 'VARCHAR', true, 12, null);
+        $this->addColumn('city', 'City', 'VARCHAR', true, 64, null);
+        $this->addColumn('phone', 'Phone', 'VARCHAR', true, 32, null);
+        $this->addColumn('email', 'Email', 'VARCHAR', true, 255, null);
+        $this->addColumn('description', 'Description', 'LONGVARCHAR', false, null, null);
+        $this->addColumn('type', 'Type', 'VARCHAR', true, 3, 'AR');
+        $this->addColumn('is_open', 'IsOpen', 'BOOLEAN', false, 1, null);
+        $this->addColumn('notify_hostess', 'NotifyHostess', 'BOOLEAN', true, 1, true);
+        $this->addColumn('created_at', 'CreatedAt', 'TIMESTAMP', false, null, null);
+        $this->addColumn('updated_at', 'UpdatedAt', 'TIMESTAMP', false, null, null);
         // validators
     } // initialize()
 
@@ -84,7 +84,11 @@ class EventsTableMap extends TableMap
     public function getBehaviors()
     {
         return array(
-            'timestampable' => array('create_column' => 'created_at', 'update_column' => 'updated_at', 'disable_updated_at' => 'false', ),
+            'timestampable' =>  array (
+  'create_column' => 'created_at',
+  'update_column' => 'updated_at',
+  'disable_updated_at' => 'false',
+),
         );
     } // getBehaviors()
 

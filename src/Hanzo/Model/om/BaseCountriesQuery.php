@@ -69,7 +69,6 @@ use Hanzo\Model\ZipToCity;
  * @method Countries findOne(PropelPDO $con = null) Return the first Countries matching the query
  * @method Countries findOneOrCreate(PropelPDO $con = null) Return the first Countries matching the query, or a new Countries object populated from the query conditions when no match is found
  *
- * @method Countries findOneById(int $id) Return the first Countries filtered by the id column
  * @method Countries findOneByName(string $name) Return the first Countries filtered by the name column
  * @method Countries findOneByLocalName(string $local_name) Return the first Countries filtered by the local_name column
  * @method Countries findOneByCode(int $code) Return the first Countries filtered by the code column
@@ -113,7 +112,7 @@ abstract class BaseCountriesQuery extends ModelCriteria
      * Returns a new CountriesQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     CountriesQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   CountriesQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return CountriesQuery
      */
@@ -170,18 +169,32 @@ abstract class BaseCountriesQuery extends ModelCriteria
     }
 
     /**
+     * Alias of findPk to use instance pooling
+     *
+     * @param     mixed $key Primary key to use for the query
+     * @param     PropelPDO $con A connection object
+     *
+     * @return                 Countries A model object, or null if the key is not found
+     * @throws PropelException
+     */
+     public function findOneById($key, $con = null)
+     {
+        return $this->findPk($key, $con);
+     }
+
+    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   Countries A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 Countries A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `ID`, `NAME`, `LOCAL_NAME`, `CODE`, `ISO2`, `ISO3`, `CONTINENT`, `CURRENCY_ID`, `CURRENCY_CODE`, `CURRENCY_NAME`, `VAT`, `CALLING_CODE` FROM `countries` WHERE `ID` = :p0';
+        $sql = 'SELECT `id`, `name`, `local_name`, `code`, `iso2`, `iso3`, `continent`, `currency_id`, `currency_code`, `currency_name`, `vat`, `calling_code` FROM `countries` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -277,7 +290,8 @@ abstract class BaseCountriesQuery extends ModelCriteria
      * <code>
      * $query->filterById(1234); // WHERE id = 1234
      * $query->filterById(array(12, 34)); // WHERE id IN (12, 34)
-     * $query->filterById(array('min' => 12)); // WHERE id > 12
+     * $query->filterById(array('min' => 12)); // WHERE id >= 12
+     * $query->filterById(array('max' => 12)); // WHERE id <= 12
      * </code>
      *
      * @param     mixed $id The value to use as filter.
@@ -290,8 +304,22 @@ abstract class BaseCountriesQuery extends ModelCriteria
      */
     public function filterById($id = null, $comparison = null)
     {
-        if (is_array($id) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($id)) {
+            $useMinMax = false;
+            if (isset($id['min'])) {
+                $this->addUsingAlias(CountriesPeer::ID, $id['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($id['max'])) {
+                $this->addUsingAlias(CountriesPeer::ID, $id['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(CountriesPeer::ID, $id, $comparison);
@@ -362,7 +390,8 @@ abstract class BaseCountriesQuery extends ModelCriteria
      * <code>
      * $query->filterByCode(1234); // WHERE code = 1234
      * $query->filterByCode(array(12, 34)); // WHERE code IN (12, 34)
-     * $query->filterByCode(array('min' => 12)); // WHERE code > 12
+     * $query->filterByCode(array('min' => 12)); // WHERE code >= 12
+     * $query->filterByCode(array('max' => 12)); // WHERE code <= 12
      * </code>
      *
      * @param     mixed $code The value to use as filter.
@@ -490,7 +519,8 @@ abstract class BaseCountriesQuery extends ModelCriteria
      * <code>
      * $query->filterByCurrencyId(1234); // WHERE currency_id = 1234
      * $query->filterByCurrencyId(array(12, 34)); // WHERE currency_id IN (12, 34)
-     * $query->filterByCurrencyId(array('min' => 12)); // WHERE currency_id > 12
+     * $query->filterByCurrencyId(array('min' => 12)); // WHERE currency_id >= 12
+     * $query->filterByCurrencyId(array('max' => 12)); // WHERE currency_id <= 12
      * </code>
      *
      * @param     mixed $currencyId The value to use as filter.
@@ -589,7 +619,8 @@ abstract class BaseCountriesQuery extends ModelCriteria
      * <code>
      * $query->filterByVat(1234); // WHERE vat = 1234
      * $query->filterByVat(array(12, 34)); // WHERE vat IN (12, 34)
-     * $query->filterByVat(array('min' => 12)); // WHERE vat > 12
+     * $query->filterByVat(array('min' => 12)); // WHERE vat >= 12
+     * $query->filterByVat(array('max' => 12)); // WHERE vat <= 12
      * </code>
      *
      * @param     mixed $vat The value to use as filter.
@@ -630,7 +661,8 @@ abstract class BaseCountriesQuery extends ModelCriteria
      * <code>
      * $query->filterByCallingCode(1234); // WHERE calling_code = 1234
      * $query->filterByCallingCode(array(12, 34)); // WHERE calling_code IN (12, 34)
-     * $query->filterByCallingCode(array('min' => 12)); // WHERE calling_code > 12
+     * $query->filterByCallingCode(array('min' => 12)); // WHERE calling_code >= 12
+     * $query->filterByCallingCode(array('max' => 12)); // WHERE calling_code <= 12
      * </code>
      *
      * @param     mixed $callingCode The value to use as filter.
@@ -670,8 +702,8 @@ abstract class BaseCountriesQuery extends ModelCriteria
      * @param   Addresses|PropelObjectCollection $addresses  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   CountriesQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 CountriesQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByAddresses($addresses, $comparison = null)
     {
@@ -744,8 +776,8 @@ abstract class BaseCountriesQuery extends ModelCriteria
      * @param   ZipToCity|PropelObjectCollection $zipToCity  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   CountriesQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 CountriesQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByZipToCity($zipToCity, $comparison = null)
     {
@@ -818,8 +850,8 @@ abstract class BaseCountriesQuery extends ModelCriteria
      * @param   Orders|PropelObjectCollection $orders  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   CountriesQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 CountriesQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByOrdersRelatedByBillingCountriesId($orders, $comparison = null)
     {
@@ -892,8 +924,8 @@ abstract class BaseCountriesQuery extends ModelCriteria
      * @param   Orders|PropelObjectCollection $orders  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   CountriesQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 CountriesQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByOrdersRelatedByDeliveryCountriesId($orders, $comparison = null)
     {

@@ -40,7 +40,6 @@ use Hanzo\Model\CmsThreadQuery;
  * @method CmsThread findOne(PropelPDO $con = null) Return the first CmsThread matching the query
  * @method CmsThread findOneOrCreate(PropelPDO $con = null) Return the first CmsThread matching the query, or a new CmsThread object populated from the query conditions when no match is found
  *
- * @method CmsThread findOneById(int $id) Return the first CmsThread filtered by the id column
  * @method CmsThread findOneByIsActive(boolean $is_active) Return the first CmsThread filtered by the is_active column
  *
  * @method array findById(int $id) Return CmsThread objects filtered by the id column
@@ -64,7 +63,7 @@ abstract class BaseCmsThreadQuery extends ModelCriteria
      * Returns a new CmsThreadQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     CmsThreadQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   CmsThreadQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return CmsThreadQuery
      */
@@ -121,18 +120,32 @@ abstract class BaseCmsThreadQuery extends ModelCriteria
     }
 
     /**
+     * Alias of findPk to use instance pooling
+     *
+     * @param     mixed $key Primary key to use for the query
+     * @param     PropelPDO $con A connection object
+     *
+     * @return                 CmsThread A model object, or null if the key is not found
+     * @throws PropelException
+     */
+     public function findOneById($key, $con = null)
+     {
+        return $this->findPk($key, $con);
+     }
+
+    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   CmsThread A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 CmsThread A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `ID`, `IS_ACTIVE` FROM `cms_thread` WHERE `ID` = :p0';
+        $sql = 'SELECT `id`, `is_active` FROM `cms_thread` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -228,7 +241,8 @@ abstract class BaseCmsThreadQuery extends ModelCriteria
      * <code>
      * $query->filterById(1234); // WHERE id = 1234
      * $query->filterById(array(12, 34)); // WHERE id IN (12, 34)
-     * $query->filterById(array('min' => 12)); // WHERE id > 12
+     * $query->filterById(array('min' => 12)); // WHERE id >= 12
+     * $query->filterById(array('max' => 12)); // WHERE id <= 12
      * </code>
      *
      * @param     mixed $id The value to use as filter.
@@ -241,8 +255,22 @@ abstract class BaseCmsThreadQuery extends ModelCriteria
      */
     public function filterById($id = null, $comparison = null)
     {
-        if (is_array($id) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($id)) {
+            $useMinMax = false;
+            if (isset($id['min'])) {
+                $this->addUsingAlias(CmsThreadPeer::ID, $id['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($id['max'])) {
+                $this->addUsingAlias(CmsThreadPeer::ID, $id['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(CmsThreadPeer::ID, $id, $comparison);
@@ -269,7 +297,7 @@ abstract class BaseCmsThreadQuery extends ModelCriteria
     public function filterByIsActive($isActive = null, $comparison = null)
     {
         if (is_string($isActive)) {
-            $is_active = in_array(strtolower($isActive), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+            $isActive = in_array(strtolower($isActive), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
         }
 
         return $this->addUsingAlias(CmsThreadPeer::IS_ACTIVE, $isActive, $comparison);
@@ -281,8 +309,8 @@ abstract class BaseCmsThreadQuery extends ModelCriteria
      * @param   Cms|PropelObjectCollection $cms  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   CmsThreadQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 CmsThreadQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByCms($cms, $comparison = null)
     {
@@ -355,8 +383,8 @@ abstract class BaseCmsThreadQuery extends ModelCriteria
      * @param   CmsThreadI18n|PropelObjectCollection $cmsThreadI18n  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   CmsThreadQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 CmsThreadQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByCmsThreadI18n($cmsThreadI18n, $comparison = null)
     {
