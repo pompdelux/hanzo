@@ -78,7 +78,7 @@ class CategoryController extends CoreController
                 $categories_i18n->setId($id);
                 $categories_i18n->save($this->getDbConnection());
 
-                $this->get('session')->setFlash('notice', 'category.updated');
+                $this->get('session')->getFlashBag()->add('notice', 'category.updated');
             }
         }
         return $this->redirect($this->generateUrl('admin_category_edit', array('id' => $id)));
@@ -187,7 +187,7 @@ class CategoryController extends CoreController
 
                 $category->save($this->getDbConnection());
 
-                $this->get('session')->setFlash('notice', 'category.updated');
+                $this->get('session')->getFlashBag()->add('notice', 'category.updated');
                 $this->get('event_dispatcher')->dispatch('category.node.updated', new FilterCategoryEvent($category, $locale, $this->getDbConnection()));
 
                 if(!$id) {

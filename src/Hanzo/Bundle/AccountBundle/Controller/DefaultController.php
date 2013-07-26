@@ -133,7 +133,7 @@ class DefaultController extends CoreController
                     $api = $this->get('newsletterapi');
                     $response = $api->subscribe($customer->getEmail(), $api->getListIdAvaliableForDomain());
                     if ( is_object($response) && $response->is_error ) {
-                        $this->get('session')->setFlash('warning', 'account.newsletter.warning');
+                        $this->get('session')->getFlashBag()->add('warning', 'account.newsletter.warning');
                     }
                 }
 
@@ -141,7 +141,7 @@ class DefaultController extends CoreController
                 $token = new UsernamePasswordToken($customer, null, 'secured_area', $customer->getRoles());
 
                 $this->container->get('security.context')->setToken($token);
-                $this->get('session')->setFlash('notice', $translator->trans('account.created', [], 'account'));
+                $this->get('session')->getFlashBag()->add('notice', $translator->trans('account.created', [], 'account'));
 
                 $name = $customer->getFirstName() . ' ' . $customer->getLastName();
 
@@ -265,7 +265,7 @@ class DefaultController extends CoreController
                 }
                 $customer->save();
 
-                $this->get('session')->setFlash('notice', 'account.updated');
+                $this->get('session')->getFlashBag()->add('notice', 'account.updated');
                 return $this->redirect($this->generateUrl('_account'));
             } else {
                 $errors = new FormErrors($form, $this->get('translator'), 'account');

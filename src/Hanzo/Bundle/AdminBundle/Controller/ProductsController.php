@@ -339,7 +339,7 @@ class ProductsController extends CoreController
 
                 }
 
-                $this->get('session')->setFlash('notice', 'admin.products.discount.saved');
+                $this->get('session')->getFlashBag()->add('notice', 'admin.products.discount.saved');
             }
         }
 
@@ -381,7 +381,7 @@ class ProductsController extends CoreController
                 ));
             }
 
-            $this->get('session')->setFlash('notice', 'delete.products.discount.success');
+            $this->get('session')->getFlashBag()->add('notice', 'delete.products.discount.success');
 
             return $this->redirect($this->generateUrl('admin_products_discount', array('product_id' => $master->getId())));
         }
@@ -393,7 +393,7 @@ class ProductsController extends CoreController
             ));
         }
 
-        $this->get('session')->setFlash('notice', 'delete.products.discount.failed');
+        $this->get('session')->getFlashBag()->add('notice', 'delete.products.discount.failed');
 
         return $this->redirect($this->generateUrl('admin_products_discount', array('product_id' => $master->getId())));
 
@@ -418,12 +418,12 @@ class ProductsController extends CoreController
         if($styles instanceof \PropelObjectCollection){
             $styles->delete($this->getDbConnection());
 
-            $this->get('session')->setFlash('notice', 'delete.products.styles.success');
+            $this->get('session')->getFlashBag()->add('notice', 'delete.products.styles.success');
 
             return $this->redirect($this->generateUrl('admin_product', array('id' => $id)));
         }
 
-        $this->get('session')->setFlash('notice', 'delete.products.styles.failed');
+        $this->get('session')->getFlashBag()->add('notice', 'delete.products.styles.failed');
 
         return $this->redirect($this->generateUrl('admin_product', array('id' => $id)));
 
@@ -449,7 +449,7 @@ class ProductsController extends CoreController
                     'message' => $this->get('translator')->trans('delete.products.style.success', array(), 'admin')
                 ));
             }
-            $this->get('session')->setFlash('notice', 'delete.products.style.success');
+            $this->get('session')->getFlashBag()->add('notice', 'delete.products.style.success');
 
             return $this->redirect($this->generateUrl('admin_product', array('id' => $id)));
         }
@@ -461,7 +461,7 @@ class ProductsController extends CoreController
             ));
         }
 
-        $this->get('session')->setFlash('notice', 'delete.products.style.failed');
+        $this->get('session')->getFlashBag()->add('notice', 'delete.products.style.failed');
 
         return $this->redirect($this->generateUrl('admin_product', array('id' => $id)));
 

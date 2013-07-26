@@ -67,10 +67,10 @@ class SettingsController extends CoreController
 
                     }
                 }catch(PropelException $e){
-                    $this->get('session')->setFlash('notice', 'settings.updated.failed.'.$e);
+                    $this->get('session')->getFlashBag()->add('notice', 'settings.updated.failed.'.$e);
                 }
             }
-            $this->get('session')->setFlash('notice', 'settings.updated');
+            $this->get('session')->getFlashBag()->add('notice', 'settings.updated');
         }
 
         $form_add_global_setting = $this->createFormBuilder(new Settings())
@@ -157,10 +157,10 @@ class SettingsController extends CoreController
                     }
 
                 }catch(PropelException $e){
-                    $this->get('session')->setFlash('notice', 'settings.updated.failed.'.$e);
+                    $this->get('session')->getFlashBag()->add('notice', 'settings.updated.failed.'.$e);
                 }
             }
-            $this->get('session')->setFlash('notice', 'settings.updated');
+            $this->get('session')->getFlashBag()->add('notice', 'settings.updated');
         }
 
         $domains_settings = new DomainsSettings();
@@ -255,10 +255,10 @@ class SettingsController extends CoreController
 
                     }
                 }catch(PropelException $e){
-                    $this->get('session')->setFlash('notice', 'settings.updated.failed.'.$e);
+                    $this->get('session')->getFlashBag()->add('notice', 'settings.updated.failed.'.$e);
                 }
             }
-            $this->get('session')->setFlash('notice', 'settings.updated');
+            $this->get('session')->getFlashBag()->add('notice', 'settings.updated');
         }
 
         $domains_settings = new DomainsSettings();
@@ -343,7 +343,7 @@ class SettingsController extends CoreController
             try {
                 $setting->save($this->getDbConnection());
             } catch (PropelException $e) {
-                $this->get('session')->setFlash('notice', 'settings.update.failed');
+                $this->get('session')->getFlashBag()->add('notice', 'settings.update.failed');
             }
             return $this->redirect($referer);
             // return $this->redirect($this->generateUrl('admin_settings_domain',
@@ -363,7 +363,7 @@ class SettingsController extends CoreController
             try {
                 $setting->save($this->getDbConnection());
             } catch (PropelException $e) {
-                $this->get('session')->setFlash('notice', 'settings.update.failed');
+                $this->get('session')->getFlashBag()->add('notice', 'settings.update.failed');
             }
 
             return $this->redirect($referer);
@@ -461,7 +461,7 @@ class SettingsController extends CoreController
 
                 $washing_instruction->save($this->getDbConnection());
 
-                $this->get('session')->setFlash('notice', 'admin.washing.inserted');
+                $this->get('session')->getFlashBag()->add('notice', 'admin.washing.inserted');
             }
         }
 
@@ -596,7 +596,7 @@ class SettingsController extends CoreController
 
                 $message->save($this->getDbConnection());
 
-                $this->get('session')->setFlash('notice', 'admin.message.inserted');
+                $this->get('session')->getFlashBag()->add('notice', 'admin.message.inserted');
             }
         }
 
@@ -647,7 +647,7 @@ class SettingsController extends CoreController
 
                 $message->save($this->getDbConnection());
 
-                $this->get('session')->setFlash('notice', 'admin.message.ns.inserted');
+                $this->get('session')->getFlashBag()->add('notice', 'admin.message.ns.inserted');
                 return $this->redirect($this->generateUrl('admin_settings_messages_edit', array('id' => $message->getId())));
             }
         }
@@ -741,7 +741,7 @@ class SettingsController extends CoreController
 
                 $language->save($this->getDbConnection());
 
-                $this->get('session')->setFlash('notice', 'admin.languages.inserted');
+                $this->get('session')->getFlashBag()->add('notice', 'admin.languages.inserted');
             }
         }
 

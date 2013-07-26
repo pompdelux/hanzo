@@ -172,7 +172,7 @@ class PostalCodeController extends CoreController
 
                 $zip_to_city->save($this->getDbConnection());
 
-                $this->get('session')->setFlash('notice', 'zip_to_city.updated');
+                $this->get('session')->getFlashBag()->add('notice', 'zip_to_city.updated');
             }
         }
 
@@ -261,7 +261,7 @@ class PostalCodeController extends CoreController
                     $loop++;
                 }
 
-                $this->get('session')->setFlash('notice', $loop.' postnumre er nu importeret til: '.$form_data['domain']);
+                $this->get('session')->getFlashBag()->add('notice', $loop.' postnumre er nu importeret til: '.$form_data['domain']);
                 return $this->redirect($this->generateUrl('admin_postalcode_import'));
             }
         }

@@ -223,7 +223,7 @@ class CustomersController extends CoreController
                 $customer->setPassword(sha1($customer->getPasswordClear()));
                 $customer->save($this->getDbConnection());
 
-                $this->get('session')->setFlash('notice', 'customer.updated');
+                $this->get('session')->getFlashBag()->add('notice', 'customer.updated');
             }
         }
 
@@ -343,7 +343,7 @@ class CustomersController extends CoreController
 
                 $address->save($this->getDbConnection());
 
-                $this->get('session')->setFlash('notice', 'address.updated');
+                $this->get('session')->getFlashBag()->add('notice', 'address.updated');
             }
         }
 

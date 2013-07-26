@@ -131,7 +131,7 @@ class EventsController extends CoreController
 
             // no editing old events
             if ($event->getEventDate('U') < time()) {
-                $this->get('session')->setFlash('notice', 'event.too.old.to.edit');
+                $this->get('session')->getFlashBag()->add('notice', 'event.too.old.to.edit');
                 return $this->redirect($this->generateUrl('events_index'));
             }
         } else {
@@ -394,7 +394,7 @@ class EventsController extends CoreController
                     }
                 }
 
-                $this->get('session')->setFlash('notice', 'events.created');
+                $this->get('session')->getFlashBag()->add('notice', 'events.created');
                 return $this->redirect($this->generateUrl('events_index'));
             }
         }
@@ -457,7 +457,7 @@ class EventsController extends CoreController
             $event->save();
         }
 
-        $this->getRequest()->getSession()->setFlash('notice', $this->get('translator')->trans('event.closed', array(), 'events'));
+        $this->getRequest()->getSession()->getFlashBag()->add('notice', $this->get('translator')->trans('event.closed', array(), 'events'));
         return $this->redirect($this->generateUrl('events_index'));
     }
 
@@ -473,7 +473,7 @@ class EventsController extends CoreController
 
             // no deleting old events
             if ($event->getEventDate('U') < time()) {
-                $this->get('session')->setFlash('notice', 'event.too.old.to.delete');
+                $this->get('session')->getFlashBag()->add('notice', 'event.too.old.to.delete');
                 return $this->redirect($this->generateUrl('events_index'));
             }
 
@@ -532,7 +532,7 @@ class EventsController extends CoreController
             ));
         }
 
-        $this->get('session')->setFlash('notice', 'events.delete.success');
+        $this->get('session')->getFlashBag()->add('notice', 'events.delete.success');
 
         return $this->redirect($this->generateUrl('events_index'));
     }
@@ -635,7 +635,7 @@ class EventsController extends CoreController
                         $this->get('sms_manager')->sendEventInvite($events_participant);
                     }
 
-                    $this->get('session')->setFlash('notice', 'events.participant.invited');
+                    $this->get('session')->getFlashBag()->add('notice', 'events.participant.invited');
                 }
             }
 
@@ -745,7 +745,7 @@ class EventsController extends CoreController
                     $events_participant->setRespondedAt(time());
                     $events_participant->save();
 
-                    $this->get('session')->setFlash('notice', 'events.participant.rsvp.success');
+                    $this->get('session')->getFlashBag()->add('notice', 'events.participant.rsvp.success');
                 }
             }
             $form_rsvp = $form_rsvp->createView();
@@ -840,13 +840,13 @@ class EventsController extends CoreController
                     $friend->setTellAFriend(false);
                     $friend->save();
 
-                    $this->get('session')->setFlash('notice', 'events.participant.invited');
+                    $this->get('session')->getFlashBag()->add('notice', 'events.participant.invited');
                     return $this->redirect($this->generateUrl('events_rsvp', array('key' => $key)));
                 }
             }
         }
 
-        $this->get('session')->setFlash('notice', 'events.participant.invite.failed');
+        $this->get('session')->getFlashBag()->add('notice', 'events.participant.invite.failed');
         return $this->redirect($this->generateUrl('events_rsvp', array('key' => $key)));
     }
 
@@ -1072,7 +1072,7 @@ class EventsController extends CoreController
                     $this->get('sms_manager')->sendEventInvite($events_participant);
                 }
 
-                $this->get('session')->setFlash('notice', 'events.participant.invited');
+                $this->get('session')->getFlashBag()->add('notice', 'events.participant.invited');
             }
         }
 

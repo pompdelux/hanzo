@@ -290,7 +290,7 @@ class ConsultantsController extends CoreController
                     ->save($this->getDbConnection())
                 ;
 
-                $this->get('session')->setFlash('notice', 'consultant.updated');
+                $this->get('session')->getFlashBag()->add('notice', 'consultant.updated');
             }
         }
 
@@ -591,7 +591,7 @@ class ConsultantsController extends CoreController
                 $cache = $this->get('cache_manager');
                 $cache->clearRedisCache();
 
-                $this->get('session')->setFlash('notice', 'admin.consultants.fronpage.content.updated');
+                $this->get('session')->getFlashBag()->add('notice', 'admin.consultants.fronpage.content.updated');
             }
         }
 

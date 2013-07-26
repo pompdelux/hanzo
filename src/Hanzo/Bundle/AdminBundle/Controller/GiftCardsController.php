@@ -163,7 +163,7 @@ class GiftCardsController extends CoreController
 
                 $gift_card->save($this->getDbConnection());
 
-                $this->get('session')->setFlash('notice', 'admin.gift_card.inserted');
+                $this->get('session')->getFlashBag()->add('notice', 'admin.gift_card.inserted');
             }
         }
 
