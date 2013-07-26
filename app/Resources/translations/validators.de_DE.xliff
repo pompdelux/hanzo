@@ -44,15 +44,19 @@
             </trans-unit>
             <trans-unit id="address_line_1.required" approved="no">
                 <source>address_line_1.required</source>
-                <target>Bitte Adresse ausfüllen</target>
+                <target>Bitte Adresse ausfüllen|Bitte Adresse ausfüllen</target>
             </trans-unit>
             <trans-unit id="postal_code.required" approved="no">
                 <source>postal_code.required</source>
                 <target>Bitte Postleitzahl ausfüllen</target>
             </trans-unit>
+            <trans-unit id="postal_code.length" approved="no">
+                <source>postal_code.length</source>
+                <target>Dit postnummer består af {{ limit }} tal|Dit postnummer består af {{ limit }} tal</target>
+            </trans-unit>
             <trans-unit id="city.required" approved="no">
                 <source>city.required</source>
-                <target>Bitte Stadt ausfüllen</target>
+                <target>Bitte Stadt ausfüllen|Bitte Stadt ausfüllen</target>
             </trans-unit>
             <trans-unit id="address.first_name.min.length" approved="no">
                 <source>address.first_name.min.length</source>

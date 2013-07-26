@@ -791,6 +791,7 @@ class Orders extends BaseOrders
             ->setBillingCountriesId( $address->getCountriesId() )
             ->setBillingStateProvince( $address->getStateProvince() )
             ->setBillingCompanyName( $address->getCompanyName() )
+            ->setBillingTitle( $address->getTitle() )
             ->setBillingFirstName( $address->getFirstName() )
             ->setBillingLastName( $address->getLastName() )
             ->setBillingExternalAddressId( $address->getExternalAddressId() )
@@ -918,6 +919,7 @@ class Orders extends BaseOrders
             ->setDeliveryCountriesId( $address->getCountriesId() )
             ->setDeliveryStateProvince( $address->getStateProvince() )
             ->setDeliveryCompanyName( $address->getCompanyName() )
+            ->setDeliveryTitle( $address->getTitle() )
             ->setDeliveryFirstName( $address->getFirstName() )
             ->setDeliveryLastName( $address->getLastName() )
             ->setDeliveryExternalAddressId( $address->getExternalAddressId() )
@@ -1183,6 +1185,39 @@ class Orders extends BaseOrders
     }
 
 
+    /**
+     * build and return a order Addresses object based on the type
+     *
+     * @param  string $type Can be either of the types set in the addresses table
+     * @return Addresses
+     */
+    public function getOrderAddress($type = 'payment')
+    {
+        $part = 'billing_';
+        if ('payment' != $type) {
+            $type = $this->getDeliveryMethod();
+            $part = 'delivery_';
+        }
+
+        $address = [
+            'customers_id' => $this->getCustomersId(),
+            'type' => $type,
+        ];
+
+        foreach ($this->toArray(\BasePeer::TYPE_FIELDNAME) as $key => $value) {
+            $key = str_replace($part, '', $key, $count);
+            if ($count) {
+                $address[$key] = $value;
+            }
+        }
+
+        $a = new Addresses();
+        $a->fromArray($address, \BasePeer::TYPE_FIELDNAME);
+
+        return $a;
+    }
+
+
     public function preSave(PropelPDO $con = null)
     {
         if (!$this->getSessionId()) {
@@ -1310,4 +1345,5 @@ class Orders extends BaseOrders
 
         return parent::preDelete($con);
     }
+
 } // Orders

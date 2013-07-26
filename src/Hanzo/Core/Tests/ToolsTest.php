@@ -26,68 +26,6 @@ class ToolsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('test test', Tools::stripTags($src));
     }
 
-    public function testOrderAddress()
-    {
-        $order = new Orders();
-        $order
-            ->setFirstName('first name')
-            ->setLastName('last name')
-            ->setBillingAddressLine1('address line 1')
-            ->setBillingAddressLine2('address line 2')
-            ->setBillingCity('city name')
-            ->setBillingPostalCode('postal code')
-            ->setBillingCountry('country name')
-            ->setBillingStateProvince('some state')
-            ->setBillingFirstName('first name')
-            ->setBillingLastName('last name')
-            ->setDeliveryAddressLine1('address line 1')
-            ->setDeliveryAddressLine2('address line 2')
-            ->setDeliveryCity('city name')
-            ->setDeliveryPostalCode('postal code')
-            ->setDeliveryCountry('country name')
-            ->setDeliveryStateProvince('some state')
-            ->setDeliveryFirstName('first name')
-            ->setDeliveryLastName('last name')
-        ;
-
-        $address = Tools::orderAddress('payment', $order);
-        $this->assertEquals('first name last name
-address line 1
-address line 2
-postal code city name
-country name', $address);
-
-        $address = Tools::orderAddress('shipping', $order);
-        $this->assertEquals('first name last name
-address line 1
-address line 2
-postal code city name
-country name', $address);
-
-        $order
-            ->setBillingCompanyName('company name')
-            ->setDeliveryCompanyName('company name')
-        ;
-
-        $address = Tools::orderAddress('billing', $order);
-        $this->assertEquals('company name
-Att: first name last name
-address line 1
-address line 2
-postal code city name
-country name', $address);
-
-        $address = Tools::orderAddress('delivery', $order);
-        $this->assertEquals('company name
-Att: first name last name
-address line 1
-address line 2
-postal code city name
-country name', $address);
-
-
-    }
-
 
     public function testMoneyFormat()
     {

@@ -123,7 +123,7 @@ class AppKernel extends Kernel
                 $script = '';
             }
 
-            $twig->addGlobal('baseurl', $scheme.'://'.$_SERVER['HTTP_HOST'].($_SERVER['SERVER_PORT'] == 80 ? '' : $_SERVER['SERVER_PORT']).$script);
+            $twig->addGlobal('baseurl', $scheme.'://'.$_SERVER['HTTP_HOST'].$script);
         }
 
         $twig_vars = $this->container->getParameter('cms.twig');

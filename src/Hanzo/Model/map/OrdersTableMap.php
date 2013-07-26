@@ -55,6 +55,7 @@ class OrdersTableMap extends TableMap
         $this->addColumn('phone', 'Phone', 'VARCHAR', false, 32, null);
         $this->addColumn('languages_id', 'LanguagesId', 'INTEGER', true, null, null);
         $this->addColumn('currency_code', 'CurrencyCode', 'VARCHAR', true, 12, '');
+        $this->addColumn('billing_title', 'BillingTitle', 'VARCHAR', false, 12, null);
         $this->addColumn('billing_first_name', 'BillingFirstName', 'VARCHAR', true, 128, null);
         $this->addColumn('billing_last_name', 'BillingLastName', 'VARCHAR', true, 128, null);
         $this->addColumn('billing_address_line_1', 'BillingAddressLine1', 'VARCHAR', false, 255, null);
@@ -67,6 +68,7 @@ class OrdersTableMap extends TableMap
         $this->addColumn('billing_company_name', 'BillingCompanyName', 'VARCHAR', false, 128, null);
         $this->addColumn('billing_method', 'BillingMethod', 'VARCHAR', false, 64, null);
         $this->addColumn('billing_external_address_id', 'BillingExternalAddressId', 'VARCHAR', false, 128, null);
+        $this->addColumn('delivery_title', 'DeliveryTitle', 'VARCHAR', false, 12, null);
         $this->addColumn('delivery_first_name', 'DeliveryFirstName', 'VARCHAR', true, 128, null);
         $this->addColumn('delivery_last_name', 'DeliveryLastName', 'VARCHAR', true, 128, null);
         $this->addColumn('delivery_address_line_1', 'DeliveryAddressLine1', 'VARCHAR', false, 255, null);

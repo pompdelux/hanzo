@@ -12,6 +12,7 @@ use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersLinesQuery;
 use Hanzo\Model\OrdersSyncLogQuery;
 
+use Hanzo\Bundle\AccountBundle\AddressFormatter;
 use Hanzo\Bundle\ServiceBundle\Services\MailService;
 use Hanzo\Bundle\AxBundle\Actions\Out\AxService;
 
@@ -25,13 +26,15 @@ class CheckoutListener
     protected $ax;
     protected $translator;
     protected $session;
+    protected $formatter;
 
-    public function __construct(MailService $mailer, AxService $ax, Translator $translator, Session $session)
+    public function __construct(MailService $mailer, AxService $ax, Translator $translator, Session $session, AddressFormatter $formatter)
     {
         $this->mailer     = $mailer;
         $this->ax         = $ax;
         $this->translator = $translator;
         $this->session    = $session;
+        $this->formatter  = $formatter;
     }
 
     /**
@@ -168,9 +171,9 @@ class CheckoutListener
 
         $params = array(
             'order' => $order,
-            'payment_address'  => Tools::orderAddress('payment', $order),
+            'payment_address'  => $this->formatter->format($order->getOrderAddress('payment'), 'txt'),
             'company_address'  => $company_address,
-            'delivery_address' => Tools::orderAddress('shipping', $order),
+            'delivery_address' => $this->formatter->format($order->getOrderAddress('shipping'), 'txt'),
             'customer_id'      => $order->getCustomersId(),
             'order_date'       => $order->getCreatedAt('Y-m-d'),
             'payment_method'   => $this->translator->trans('payment.'. $order->getBillingMethod() .'.title', [],'checkout'),

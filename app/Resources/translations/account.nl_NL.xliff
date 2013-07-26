@@ -87,6 +87,18 @@
                 <source>existing.customer</source>
                 <target>Bestaande klant</target>
             </trans-unit>
+            <trans-unit id="title">
+                <source>title</source>
+                <target>Title</target>
+            </trans-unit>
+            <trans-unit id="title.male">
+                <source>title.male</source>
+                <target>Herr</target>
+            </trans-unit>
+            <trans-unit id="title.female">
+                <source>title.female</source>
+                <target>Frau</target>
+            </trans-unit>
             <trans-unit id="email">
                 <source>email</source>
                 <target>E-mailadres</target>
