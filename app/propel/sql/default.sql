@@ -620,7 +620,6 @@ CREATE TABLE `products_washing_instructions`
     `locale` VARCHAR(5) NOT NULL,
     `description` TEXT NOT NULL,
     PRIMARY KEY (`id`),
-    INDEX `I_referenced_products_FK_2_1` (`code`),
     INDEX `FI_products_washing_instructions_1` (`locale`),
     CONSTRAINT `fk_products_washing_instructions_1`
         FOREIGN KEY (`locale`)
@@ -705,6 +704,7 @@ CREATE TABLE `orders`
     `phone` VARCHAR(32),
     `languages_id` INTEGER NOT NULL,
     `currency_code` VARCHAR(12) DEFAULT '' NOT NULL,
+    `billing_title` VARCHAR(12),
     `billing_first_name` VARCHAR(128) NOT NULL,
     `billing_last_name` VARCHAR(128) NOT NULL,
     `billing_address_line_1` VARCHAR(255),
@@ -717,6 +717,7 @@ CREATE TABLE `orders`
     `billing_company_name` VARCHAR(128),
     `billing_method` VARCHAR(64),
     `billing_external_address_id` VARCHAR(128),
+    `delivery_title` VARCHAR(12),
     `delivery_first_name` VARCHAR(128) NOT NULL,
     `delivery_last_name` VARCHAR(128) NOT NULL,
     `delivery_address_line_1` VARCHAR(255),
