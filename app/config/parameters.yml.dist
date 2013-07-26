@@ -1,0 +1,45 @@
+parameters:
+    database_driver:           "mysql"
+    database_host:             "localhost"
+    database_port:             ""
+    database_name:             "hanzo"
+    database_user:             "root"
+    database_password:         ""
+    database_slave_1_user:     ""
+    database_slave_1_password: ""
+    database_slave_1_dsn:      ""
+
+    mailer_transport: "mail"
+    mailer_host:      "localhost"
+    mailer_user:      ""
+    mailer_password:  ""
+
+    locale: "da_DK"
+    secret: "31f7be90d71a82859f16bc1e2109379a4"
+
+    redis_session_host:     "localhost"
+    redis_session_port:     "6379"
+    redis_session_database: "1"
+
+    redis_cache1_host:     "localhost"
+    redis_cache1_port:     "6380"
+    redis_cache1_database: "0"
+
+    cdn:  "http://cdn.hanzo.dk/"
+    cdn2: "http://cdn.hanzo.dk/"
+
+    sass_bin:     "/usr/local/bin/sass"
+    compass_bin:  "/usr/local/bin/compass"
+    node_bin:     "/usr/local/bin/node"
+    uglifyjs_bin: "/usr/local/bin/uglify"
+
+    varnish_host:    ""
+    varnish_port:    ""
+    varnish_secret:  ""
+    varnish_timeout: ""
+
+# same as varnish_host - must be set on servers behind varnish
+    proxy_ip:         ""
+    nno_api_key:      ""
+    nagios_ip:        ""
+    postnord_api_key: ""
