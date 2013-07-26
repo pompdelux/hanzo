@@ -54,7 +54,7 @@
 
   {% if simple_layout is not defined %}
     <nav class="menu main-menu">
-      {% render 'CMSBundle:Menu:menu' with {'type': left_menu.type, 'thread': left_menu.thread, 'from': left_menu.from } %}
+      {% render(controller('CMSBundle:Menu:menu', {'type': left_menu.type, 'thread': left_menu.thread, 'from': left_menu.from })) %}
     </nav><!-- /nav.main -->
   {% endif %}
     <hr class="right">
@@ -90,7 +90,7 @@
     <ul class="horizontal menu right second">
       <li id="mini-basket" class="basket">
         <span class="sprite"></span>
-        <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" title="{{ "show.basket"|trans }}"> {% render 'BasketBundle:Default:miniBasket' %} </a>
+        <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" title="{{ "show.basket"|trans }}"> {% render(controller('BasketBundle:Default:miniBasket')) %} </a>
       </li>
       <li class="last"><a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}">{{ "show.basket"|trans }}</a></li>
     </ul>
@@ -216,7 +216,7 @@
 {% block javascript %}
 {% endblock %}
 
-{% render 'NewsletterBundle:Default:js' %}
+{% render(controller('NewsletterBundle:Default:js')) %}
 
 <script>if (jaiks) {jaiks.exec();}</script>
 {#

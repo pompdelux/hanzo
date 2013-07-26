@@ -3,12 +3,11 @@
 
 <h1>Knapper</h1>
 
-
-{% if app.session.hasFlash('notice') %}
+{% for message in app.session.flashbag.get('notice') %}
   <div class="message">
-    {{ app.session.flash('notice') }}
+    {{ message }}
   </div><br>
-{% endif %}
+{% endfor %}
 
 
 <div class="message">

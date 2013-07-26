@@ -15,11 +15,11 @@
 
 <p>{{ 'admin.products.discount.description.text'|trans({}, 'admin') }}</p>
 
-{% if app.session.hasFlash('notice') %}
+{% for message in app.session.flashbag.get('notice') %}
 <div class="message notice">
-  {{ app.session.flash('notice')|trans({}, 'admin') }}
+  {{ message|trans({}, 'admin') }}
 </div>
-{% endif %}
+{% endfor %}
 
 <form action="{{ path('admin_products_discount', {'product_id' : current_product.id }) }}" method="post" {{ form_enctype(form) }} id="discount-edit-form" class="inline">
   <div id="discount-edit">

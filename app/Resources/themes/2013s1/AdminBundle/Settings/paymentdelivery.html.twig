@@ -31,11 +31,11 @@
 </nav>
 <h1>{{ 'admin.settings.paymentdelivery.header.text.%domain_key%'|trans({'%domain_key%' : domain}, 'admin') }}</h1>
 
-{% if app.session.hasFlash('notice') %}
+{% for message in app.session.flashbag.get('notice') %}
 <div class="message notice">
-  {{ app.session.flash('notice')|trans({}, 'admin') }}
+  {{ message|trans({}, 'admin') }}
 </div>
-{% endif %}
+{% endfor %}
 
 <div>
   <p>{{ 'admin.settings.paymentdelivery.description.text'|trans({}, 'admin') }}</p>

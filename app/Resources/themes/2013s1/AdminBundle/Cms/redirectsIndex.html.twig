@@ -46,11 +46,11 @@
   <h1>{{ 'admin.cms.redirects.header.text'|trans({}, 'admin') }}</h1>
 {% endif %}
 
-{% if app.session.hasFlash('notice') %}
+{% for message in app.session.flashbag.get('notice') %}
 <div class="message notice">
-  {{ app.session.flash('notice')|trans({}, 'admin') }}
+  {{ message|trans({}, 'admin') }}
 </div>
-{% endif %}
+{% endfor %}
 
 {% if redirects|length > 0 %}
 

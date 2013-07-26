@@ -1,16 +1,16 @@
 {% extends layout %}
 {% block content %}
 
-{% if app.session.hasFlash('notice') %}
+{% for message in app.session.flashbag.get('notice') %}
     <div class="message error">
-        {{ app.session.flash('notice') }}
+        {{ message }}
     </div>
-{% endif %}
+{% endfor %}
 
-  {% render 'ShippingBundle:Default:block' %}
-  {% render 'CheckoutBundle:Default:addresses' %}
-  {% render 'PaymentBundle:Default:block' %}
-  {% render 'CheckoutBundle:Default:confirm' %}
+  {% render(controller('ShippingBundle:Default:block')) %}
+  {% render(controller('CheckoutBundle:Default:addresses')) %}
+  {% render(controller('PaymentBundle:Default:block')) %}
+  {% render(controller('CheckoutBundle:Default:confirm')) %}
 
 {% endblock %}
 

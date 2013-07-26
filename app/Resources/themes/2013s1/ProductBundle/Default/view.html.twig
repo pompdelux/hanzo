@@ -11,7 +11,7 @@
 {% block content %}
 
 <div class="grid_8 alpha omega">
-  {% render 'CMSBundle:Menu:menu' with {'type': 'breadcrumb', 'thread': 20} %}
+  {% render(controller('CMSBundle:Menu:menu', {'type': 'breadcrumb', 'thread': 20})) %}
 </div>
 <div class="grid_8 alpha omega container_16">
   <div class="grid_8 alpha">

@@ -15,11 +15,11 @@
 
 <p>{{ 'admin.languages.description.text'|trans({}, 'admin') }}</p>
 
-{% if app.session.hasFlash('notice') %}
+{% for message in app.session.flashbag.get('notice') %}
 <div class="message notice">
-  {{ app.session.flash('notice')|trans({}, 'admin') }}
+  {{ message|trans({}, 'admin') }}
 </div>
-{% endif %}
+{% endfor %}
 
 <form action="{{ path('admin_settings_languages', {'id' : language_id}) }}" method="post" {{ form_enctype(form) }} id="languages-edit-form" class="inline">
   <div id="languages-edit">

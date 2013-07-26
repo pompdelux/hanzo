@@ -58,7 +58,7 @@ var cdn_url = '{{ cdn }}';
   </a>
 
   {# see: AdminBundle->CmsController->adminMenuAction #}
-  {% render 'AdminBundle:Cms:adminMenu' %}
+  {% render(controller('AdminBundle:Cms:adminMenu')) %}
 
   <div id="main" role="main">
     {% block content %}

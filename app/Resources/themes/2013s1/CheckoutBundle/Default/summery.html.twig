@@ -1,4 +1,4 @@
-{% render 'BasketBundle:Default:view' with { 'embed': true } %}
+{% render(controller('BasketBundle:Default:view', { 'embed': true })) %}
 {% include 'CheckoutBundle:Default:order_block.html.twig' with {'order': order} %}
 
 <div class="notice">

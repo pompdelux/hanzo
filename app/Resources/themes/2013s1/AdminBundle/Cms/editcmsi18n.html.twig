@@ -29,11 +29,11 @@
 
 <h1>{{ 'update.cms.header.text'|trans({}, 'admin') }}</h1>
 
-{% if app.session.hasFlash('notice') %}
+{% for message in app.session.flashbag.get('notice') %}
 <div class="message notice">
-  {{ app.session.flash('notice')|trans({}, 'admin') }}
+  {{ message|trans({}, 'admin') }}
 </div>
-{% endif %}
+{% endfor %}
 
 <form action="{{ path('admin_cms_edit', {'id' : node.id, 'locale' : node.locale}) }}" method="post" {{ form_enctype(form) }} id="cms-edit-form">
   {{ form_errors(form) }}

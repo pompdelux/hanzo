@@ -12,11 +12,11 @@
 </nav>
 <h1>{{ 'add.cms.header.text'|trans({}, 'admin') }}</h1>
 
-{% if app.session.hasFlash('notice') %}
+{% for message in app.session.flashbag.get('notice') %}
 <div class="message notice">
-  {{ app.session.flash('notice')|trans({}, 'admin') }}
+  {{ message|trans({}, 'admin') }}
 </div>
-{% endif %}
+{% endfor %}
 
 <form action="{{ path('admin_cms_add') }}" method="post" {{ form_enctype(form) }}>
   <div id="cms-edit">
