@@ -1,0 +1,38 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="all">
+
+<meta property="og:url" content="{{ app.request.uri }}">
+
+{% block meta %}
+  {{ meta_tags() }}
+{% endblock %}
+
+<link rel="dns-prefetch" href="{{ cdn|replace({'http:':''}) }}">
+<link rel="dns-prefetch" href="//cdn.jquerytools.org">
+<link rel="dns-prefetch" href="//html5shim.googlecode.com">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+
+<link href="//fonts.googleapis.com/css?family=Merriweather:400,700,900" rel="stylesheet" type="text/css">
+<link rel="shortcut icon" href="/fx/images/favicon.ico" title="POMPdeLUX" type="image/ico">
+
+{% stylesheets
+  'fx/2013s1/css/960_8_3_3.css'
+  'fx/2013s1/css/jquery.fullimagebox.css'
+
+  'fx/css/colorbox/theme4/colorbox.css'
+  'fx/css/jquery-ui.css'
+  'fx/scripts/video-js/video-js.css'
+  'fx/scripts/fullcalendar/fullcalendar.css'
+
+  'fx/2013s1/css/screen.css'
+  'fx/2013s1/css/style.css'
+
+  output='fx/cache/2013s1.css'
+  combine=true
+%}
+<link rel="stylesheet" href="{{ asset_url }}" />
+{% endstylesheets %}
+
+<script type="text/javascript" src="{{ cdn }}fx/scripts/modernizr.js"></script>
