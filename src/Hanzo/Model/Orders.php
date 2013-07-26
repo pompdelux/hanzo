@@ -1185,6 +1185,39 @@ class Orders extends BaseOrders
     }
 
 
+    /**
+     * build and return a order Addresses object based on the type
+     *
+     * @param  string $type Can be either of the types set in the addresses table
+     * @return Addresses
+     */
+    public function getOrderAddress($type = 'payment')
+    {
+        $part = 'billing_';
+        if ('payment' != $type) {
+            $type = $this->getDeliveryMethod();
+            $part = 'delivery_';
+        }
+
+        $address = [
+            'customers_id' => $this->getCustomersId(),
+            'type' => $type,
+        ];
+
+        foreach ($this->toArray(\BasePeer::TYPE_FIELDNAME) as $key => $value) {
+            $key = str_replace($part, '', $key, $count);
+            if ($count) {
+                $address[$key] = $value;
+            }
+        }
+
+        $a = new Addresses();
+        $a->fromArray($address, \BasePeer::TYPE_FIELDNAME);
+
+        return $a;
+    }
+
+
     public function preSave(PropelPDO $con = null)
     {
         if (!$this->getSessionId()) {
@@ -1311,107 +1344,6 @@ class Orders extends BaseOrders
         }
 
         return parent::preDelete($con);
-    }
-
-
-    public function recalculate()
-    {
-        $hanzo = Hanzo::getInstance();
-
-        if ('' == $this->getBillingFirstName()) {
-            // $customer = CustomersPeer::getCurrent();
-            $customer = $this->getCustomers();
-            $c = new Criteria;
-            $c->add(AddressesPeer::TYPE, 'payment');
-            $this->setBillingAddress($customer->getAddressess($c)->getFirst());
-        }
-
-        if ('COM' == $hanzo->get('core.domain_key')) {
-            $country = $this->getCountriesRelatedByBillingCountriesId();
-            if ($country && $country->getVat()) {
-                return;
-            }
-
-            $lines = $this->getOrdersLiness();
-
-            $product_ids = array();
-            foreach ($lines as $line) {
-                if('product' == $line->getType()) {
-                    $product_ids[] = $line->getProductsId();
-                }
-            }
-
-            $prices = ProductsDomainsPricesPeer::getProductsPrices($product_ids);
-            $collection = new PropelCollection();
-
-            foreach ($lines as $line) {
-                if('product' == $line->getType()) {
-                    $price = $prices[$line->getProductsId()];
-
-                    $sales = $price['normal'];
-                    if (isset($price['sales'])) {
-                        $sales = $price['sales'];
-                    }
-
-                    $line->setPrice($sales['price']);
-                    $line->setVat(0);
-                    $line->setOriginalPrice($price['normal']['price']);
-                }
-
-                $collection->prepend($line);
-            }
-
-            $this->setOrdersLiness($collection);
-        }
-
-        return $this;
-    }
-
-    /**
-     * figure out if the order is for a hostess or not
-     *
-     * @return boolean
-     */
-    public function isHostessOrder()
-    {
-        $attributes = $this->getAttributes();
-        if (isset($attributes->event->is_hostess_order)) {
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * build and return a order Addresses object based on the type
-     *
-     * @param  string $type Can be either of the types set in the addresses table
-     * @return Addresses
-     */
-    public function getOrderAddress($type = 'payment')
-    {
-        $part = 'billing_';
-        if ('payment' != $type) {
-            $type = $this->getDeliveryMethod();
-            $part = 'delivery_';
-        }
-
-        $address = [
-            'customers_id' => $this->getCustomersId(),
-            'type' => $type,
-        ];
-
-        foreach ($this->toArray(\BasePeer::TYPE_FIELDNAME) as $key => $value) {
-            $key = str_replace($part, '', $key, $count);
-            if ($count) {
-                $address[$key] = $value;
-            }
-        }
-
-        $a = new Addresses();
-        $a->fromArray($address, \BasePeer::TYPE_FIELDNAME);
-
-        return $a;
     }
 
 } // Orders
