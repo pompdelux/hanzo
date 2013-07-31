@@ -49,13 +49,15 @@ class OrdersLinesTableMap extends TableMap
         $this->addColumn('products_sku', 'ProductsSku', 'VARCHAR', false, 255, null);
         $this->addColumn('products_name', 'ProductsName', 'VARCHAR', true, 255, null);
         $this->addColumn('products_color', 'ProductsColor', 'VARCHAR', false, 128, null);
-        $this->addColumn('products_size', 'ProductsSize', 'VARCHAR', false, 32, null);
+        $this->addColumn('products_size', 'ProductsSize', 'VARCHAR', true, 32, null);
         $this->addColumn('expected_at', 'ExpectedAt', 'DATE', false, null, '1970-01-01');
         $this->addColumn('original_price', 'OriginalPrice', 'DECIMAL', false, 15, null);
         $this->addColumn('price', 'Price', 'DECIMAL', false, 15, null);
         $this->addColumn('vat', 'Vat', 'DECIMAL', false, 15, 0);
         $this->addColumn('quantity', 'Quantity', 'INTEGER', false, null, null);
         $this->addColumn('unit', 'Unit', 'VARCHAR', false, 12, null);
+        $this->addColumn('is_voucher', 'IsVoucher', 'BOOLEAN', true, 1, false);
+        $this->addColumn('note', 'Note', 'VARCHAR', false, 255, null);
         // validators
     } // initialize()
 

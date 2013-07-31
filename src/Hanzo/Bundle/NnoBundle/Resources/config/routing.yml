@@ -1,6 +1,0 @@
-nno_lookup:
-    pattern: /nno/lookup/{number}
-    defaults:
-        _controller: NnoBundle:Default:lookup
-        _format: json
-        number: ''

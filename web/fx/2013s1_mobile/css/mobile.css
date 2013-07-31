@@ -1501,16 +1501,16 @@ form.address .error {
   border: 1px solid #7B7577;
 }
 
-#coupon-block form {
+.voucher-block form {
   overflow: hidden;
   padding: 20px;
   margin: 10px;
   border: 1px solid #7B7577;
 }
-#coupon-block form div.clearfix {
+.voucher-block form div.clearfix {
   float: left;
 }
-#coupon-block #form_code {
+.voucher-block #form_code {
   margin: 0 10px;
 }
 

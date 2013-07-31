@@ -13,15 +13,19 @@ security:
                 target: _homepage
                 invalidate_session: true
                 success_handler: hanzo.logout_success_handler
+                handlers:
+                    - nelmio_security.flexible_ssl_listener
 
     access_control:
         - { path: ^/fx/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/_wdt, roles: IS_AUTHENTICATED_ANONYMOUSLY }
 
-        - { path: ^/.*/account/password-forgotten, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/.*/account/create, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/.*/account/check/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/.*/account/nno, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+
+        - { path: ^/.*/account/password-forgotten, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        - { path: ^/.*/account/create, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        - { path: ^/.*/account/check/, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        - { path: ^/.*/account/nno, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
 
         - { path: ^/.*/account, roles: ROLE_USER }
         - { path: ^/.*/checkout, roles: ROLE_USER }

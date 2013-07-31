@@ -13,6 +13,8 @@ security:
                 target: /%locale%
                 invalidate_session: true
                 success_handler: hanzo.logout_success_handler
+                handlers:
+                    - nelmio_security.flexible_ssl_listener
 
         login_firewall:
             pattern:    login
@@ -21,8 +23,8 @@ security:
     access_control:
         - { path: ^/.*/i18n/js, roles: IS_AUTHENTICATED_ANONYMOUSLY}
         - { path: ^/.*/payment/dibs/callback, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/.*/account/password-forgotten, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/.*/account/password-forgotten, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        - { path: login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
         - { path: ^/.*/admin, roles: ROLE_EMPLOYEE }
         - { path: ^/fx, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/_wdt, roles: IS_AUTHENTICATED_ANONYMOUSLY }

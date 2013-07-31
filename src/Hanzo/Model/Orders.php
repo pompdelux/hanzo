@@ -338,7 +338,6 @@ class Orders extends BaseOrders
                 $lines[$index] = $line;
                 $this->setOrdersLiness($lines);
                 $line->setExpectedAt($date);
-
                 return;
             }
         }
@@ -366,6 +365,11 @@ class Orders extends BaseOrders
         $line->setType('product');
         $line->setUnit('Stk.');
         $line->setExpectedAt($date);
+
+        if ($product->getIsVoucher()) {
+            $line->setIsVoucher(true);
+        }
+
         $this->addOrdersLines($line);
     }
 
@@ -1203,6 +1207,7 @@ class Orders extends BaseOrders
                 $address = $customer->getAddressess($c)->getFirst();
                 if ($address) {
                     $this->setBillingAddress($address);
+                    $this->setPhone($customer->getPhone());
                 } else {
                     Tools::log('Missing payment address: '.$customer->getId());
                 }
@@ -1239,11 +1244,11 @@ class Orders extends BaseOrders
         if (($this->getState() >= self::STATE_PAYMENT_OK) || $this->getIgnoreDeleteConstraints()) {
             try {
                 $this->cancelPayment();
-                Hanzo::getInstance()->container->get('ax_manager')->deleteOrder($this, $con);
+                Hanzo::getInstance()->container->get('ax.out')->deleteOrder($this, $con);
             } catch ( Exception $e ) {
                 if ($this->getIgnoreDeleteConstraints()) {
                     // allow delete for priority deletes
-                    Hanzo::getInstance()->container->get('ax_manager')->deleteOrder($this, $con);
+                    Hanzo::getInstance()->container->get('ax.out')->deleteOrder($this, $con);
                 } else {
                     throw $e;
                 }

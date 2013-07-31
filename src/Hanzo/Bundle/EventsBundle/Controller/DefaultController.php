@@ -261,16 +261,17 @@ class DefaultController extends CoreController
                     break;
                 }
 
-                $result = $this->get('nno')->findOne($value);
+                $result = $this->forward('MunerisBundle:Nno:lookup', ['number' => $value]);
 
-                if ($result) {
+                if (200 == $result->getStatusCode()) {
+                    $result = json_decode($result->getContent());
                     $data = array(
-                        'first_name' => $result['christianname'],
-                        'last_name'  => $result['surname'],
-                        'phone' => $result['phone'],
-                        'address_line_1' => $result['address'],
-                        'postal_code' => $result['zipcode'],
-                        'city' => $result['district'],
+                        'first_name' => $result->data->number->christianname,
+                        'last_name'  => $result->data->number->surname,
+                        'phone' => $result->data->number->phone,
+                        'address_line_1' => $result->data->number->address,
+                        'postal_code' => $result->data->number->zipcode,
+                        'city' => $result->data->number->district,
                         'countries_id' => 58,
                         'country' => 'Denmark',
                     );
