@@ -242,7 +242,7 @@ nav.sub li.dropdown-menu a span.cat-id,
 #sortable-list .sortable-item.collapsed > div.record .record-id:before{
   content: '▼';
   padding-right: 5px;
-  color: white;
+  color: black;
 }
 #sortable-list li.helper{
   border:2px dashed black;
