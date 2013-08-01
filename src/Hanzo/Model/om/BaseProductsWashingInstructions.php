@@ -92,6 +92,12 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
     protected $alreadyInValidation = false;
 
     /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
+    /**
      * An array of objects scheduled for deletion.
      * @var		PropelObjectCollection
      */
@@ -145,7 +151,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
      */
     public function setId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -166,7 +172,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
      */
     public function setCode($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -187,7 +193,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
      */
     public function setLocale($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -212,7 +218,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
      */
     public function setDescription($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -268,7 +274,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
+            $this->postHydrate($row, $startcol, $rehydrate);
             return $startcol + 4; // 4 = ProductsWashingInstructionsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -485,7 +491,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
 
             if ($this->collProductss !== null) {
                 foreach ($this->collProductss as $referrerFK) {
-                    if (!$referrerFK->isDeleted()) {
+                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
@@ -518,16 +524,16 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(ProductsWashingInstructionsPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`ID`';
+            $modifiedColumns[':p' . $index++]  = '`id`';
         }
         if ($this->isColumnModified(ProductsWashingInstructionsPeer::CODE)) {
-            $modifiedColumns[':p' . $index++]  = '`CODE`';
+            $modifiedColumns[':p' . $index++]  = '`code`';
         }
         if ($this->isColumnModified(ProductsWashingInstructionsPeer::LOCALE)) {
-            $modifiedColumns[':p' . $index++]  = '`LOCALE`';
+            $modifiedColumns[':p' . $index++]  = '`locale`';
         }
         if ($this->isColumnModified(ProductsWashingInstructionsPeer::DESCRIPTION)) {
-            $modifiedColumns[':p' . $index++]  = '`DESCRIPTION`';
+            $modifiedColumns[':p' . $index++]  = '`description`';
         }
 
         $sql = sprintf(
@@ -540,16 +546,16 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`ID`':
+                    case '`id`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`CODE`':
+                    case '`code`':
                         $stmt->bindValue($identifier, $this->code, PDO::PARAM_INT);
                         break;
-                    case '`LOCALE`':
+                    case '`locale`':
                         $stmt->bindValue($identifier, $this->locale, PDO::PARAM_STR);
                         break;
-                    case '`DESCRIPTION`':
+                    case '`description`':
                         $stmt->bindValue($identifier, $this->description, PDO::PARAM_STR);
                         break;
                 }
@@ -620,11 +626,11 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -1010,12 +1016,13 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
      * Get the associated Languages object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Languages The associated Languages object.
      * @throws PropelException
      */
-    public function getLanguages(PropelPDO $con = null)
+    public function getLanguages(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aLanguages === null && (($this->locale !== "" && $this->locale !== null))) {
+        if ($this->aLanguages === null && (($this->locale !== "" && $this->locale !== null)) && $doQuery) {
             $this->aLanguages = LanguagesQuery::create()
                 ->filterByProductsWashingInstructions($this) // here
                 ->findOne($con);
@@ -1053,13 +1060,15 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
-     * @return void
+     * @return ProductsWashingInstructions The current object (for fluent API support)
      * @see        addProductss()
      */
     public function clearProductss()
     {
         $this->collProductss = null; // important to set this to null since that means it is uninitialized
         $this->collProductssPartial = null;
+
+        return $this;
     }
 
     /**
@@ -1131,6 +1140,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
                       $this->collProductssPartial = true;
                     }
 
+                    $collProductss->getInternalIterator()->rewind();
                     return $collProductss;
                 }
 
@@ -1158,12 +1168,15 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
      *
      * @param PropelCollection $productss A Propel collection.
      * @param PropelPDO $con Optional connection object
+     * @return ProductsWashingInstructions The current object (for fluent API support)
      */
     public function setProductss(PropelCollection $productss, PropelPDO $con = null)
     {
-        $this->productssScheduledForDeletion = $this->getProductss(new Criteria(), $con)->diff($productss);
+        $productssToDelete = $this->getProductss(new Criteria(), $con)->diff($productss);
 
-        foreach ($this->productssScheduledForDeletion as $productsRemoved) {
+        $this->productssScheduledForDeletion = unserialize(serialize($productssToDelete));
+
+        foreach ($productssToDelete as $productsRemoved) {
             $productsRemoved->setProductsWashingInstructions(null);
         }
 
@@ -1174,6 +1187,8 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
 
         $this->collProductss = $productss;
         $this->collProductssPartial = false;
+
+        return $this;
     }
 
     /**
@@ -1191,22 +1206,22 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
         if (null === $this->collProductss || null !== $criteria || $partial) {
             if ($this->isNew() && null === $this->collProductss) {
                 return 0;
-            } else {
-                if($partial && !$criteria) {
-                    return count($this->getProductss());
-                }
-                $query = ProductsQuery::create(null, $criteria);
-                if ($distinct) {
-                    $query->distinct();
-                }
-
-                return $query
-                    ->filterByProductsWashingInstructions($this)
-                    ->count($con);
             }
-        } else {
-            return count($this->collProductss);
+
+            if($partial && !$criteria) {
+                return count($this->getProductss());
+            }
+            $query = ProductsQuery::create(null, $criteria);
+            if ($distinct) {
+                $query->distinct();
+            }
+
+            return $query
+                ->filterByProductsWashingInstructions($this)
+                ->count($con);
         }
+
+        return count($this->collProductss);
     }
 
     /**
@@ -1222,7 +1237,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
             $this->initProductss();
             $this->collProductssPartial = true;
         }
-        if (!$this->collProductss->contains($l)) { // only add it if the **same** object is not already associated
+        if (!in_array($l, $this->collProductss->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddProducts($l);
         }
 
@@ -1240,6 +1255,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
 
     /**
      * @param	Products $products The products object to remove.
+     * @return ProductsWashingInstructions The current object (for fluent API support)
      */
     public function removeProducts($products)
     {
@@ -1252,6 +1268,8 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
             $this->productssScheduledForDeletion[]= $products;
             $products->setProductsWashingInstructions(null);
         }
+
+        return $this;
     }
 
 
@@ -1290,6 +1308,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
         $this->description = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->resetModified();
         $this->setNew(true);
@@ -1307,12 +1326,18 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
             if ($this->collProductss) {
                 foreach ($this->collProductss as $o) {
                     $o->clearAllReferences($deep);
                 }
             }
+            if ($this->aLanguages instanceof Persistent) {
+              $this->aLanguages->clearAllReferences($deep);
+            }
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
         if ($this->collProductss instanceof PropelCollection) {

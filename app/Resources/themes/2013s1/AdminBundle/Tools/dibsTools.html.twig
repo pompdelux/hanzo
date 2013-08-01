@@ -1,0 +1,54 @@
+{% extends '::adminbase.html.twig' %}
+{% block content %}
+
+<h1>Dibs tingester</h1>
+
+
+{% if app.session.hasFlash('notice') %}
+  <div class="message">
+    {{ app.session.flash('notice') }}
+  </div><br>
+{% endif %}
+
+
+<h2>Fiks ordre med manglende transaktions id'er:</h2>
+<form action="{{ path('admin_tools_dibs_tools', {'action': 'transinfo'}) }}" method="post">
+<pre>
+  Ordre id, range eller alle: <input name="ids"> <input type="submit">
+
+  Id...: 123
+  Range: 123-456 (fra og med - til og med)
+  Alle.: "tom" subimt
+</pre>
+
+{% if action == 'transinfo' %}
+  {% if message %}
+    <div class="message">
+      {{ message }}
+    </div>
+  {% endif %}
+
+  {% for id in data.fixed %}
+    {% if loop.first %}
+    <h3>{{ data.fixed_message }}</h3><hr>
+    {% endif %}
+    #{{ id }}<br>
+  {% endfor %}
+  {% for id in data.missing %}
+    {% if loop.first %}
+    <h3>{{ data.missing_message }}</h3><hr>
+    {% endif %}
+    #{{ id }}<br>
+  {% endfor %}
+{% endif %}
+</form>
+
+{% endblock %}
+
+{% block javascript %}
+<script>
+$('#main ul li a').on('click', function() {
+  dialoug.loading($(this));
+});
+</script>
+{% endblock %}

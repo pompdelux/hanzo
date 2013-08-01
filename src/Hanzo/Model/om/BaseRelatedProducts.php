@@ -75,6 +75,12 @@ abstract class BaseRelatedProducts extends BaseObject implements Persistent
     protected $alreadyInValidation = false;
 
     /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
+    /**
      * Get the [master] column value.
      *
      * @return string
@@ -102,7 +108,7 @@ abstract class BaseRelatedProducts extends BaseObject implements Persistent
      */
     public function setMaster($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -127,7 +133,7 @@ abstract class BaseRelatedProducts extends BaseObject implements Persistent
      */
     public function setSku($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -185,7 +191,7 @@ abstract class BaseRelatedProducts extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
+            $this->postHydrate($row, $startcol, $rehydrate);
             return $startcol + 2; // 2 = RelatedProductsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -422,10 +428,10 @@ abstract class BaseRelatedProducts extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(RelatedProductsPeer::MASTER)) {
-            $modifiedColumns[':p' . $index++]  = '`MASTER`';
+            $modifiedColumns[':p' . $index++]  = '`master`';
         }
         if ($this->isColumnModified(RelatedProductsPeer::SKU)) {
-            $modifiedColumns[':p' . $index++]  = '`SKU`';
+            $modifiedColumns[':p' . $index++]  = '`sku`';
         }
 
         $sql = sprintf(
@@ -438,10 +444,10 @@ abstract class BaseRelatedProducts extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`MASTER`':
+                    case '`master`':
                         $stmt->bindValue($identifier, $this->master, PDO::PARAM_STR);
                         break;
-                    case '`SKU`':
+                    case '`sku`':
                         $stmt->bindValue($identifier, $this->sku, PDO::PARAM_STR);
                         break;
                 }
@@ -505,11 +511,11 @@ abstract class BaseRelatedProducts extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -874,12 +880,13 @@ abstract class BaseRelatedProducts extends BaseObject implements Persistent
      * Get the associated Products object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Products The associated Products object.
      * @throws PropelException
      */
-    public function getProductsRelatedByMaster(PropelPDO $con = null)
+    public function getProductsRelatedByMaster(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aProductsRelatedByMaster === null && (($this->master !== "" && $this->master !== null))) {
+        if ($this->aProductsRelatedByMaster === null && (($this->master !== "" && $this->master !== null)) && $doQuery) {
             $this->aProductsRelatedByMaster = ProductsQuery::create()
                 ->filterByRelatedProductsRelatedByMaster($this) // here
                 ->findOne($con);
@@ -927,12 +934,13 @@ abstract class BaseRelatedProducts extends BaseObject implements Persistent
      * Get the associated Products object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Products The associated Products object.
      * @throws PropelException
      */
-    public function getProductsRelatedBySku(PropelPDO $con = null)
+    public function getProductsRelatedBySku(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aProductsRelatedBySku === null && (($this->sku !== "" && $this->sku !== null))) {
+        if ($this->aProductsRelatedBySku === null && (($this->sku !== "" && $this->sku !== null)) && $doQuery) {
             $this->aProductsRelatedBySku = ProductsQuery::create()
                 ->filterByRelatedProductsRelatedBySku($this) // here
                 ->findOne($con);
@@ -957,6 +965,7 @@ abstract class BaseRelatedProducts extends BaseObject implements Persistent
         $this->sku = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->resetModified();
         $this->setNew(true);
@@ -974,7 +983,16 @@ abstract class BaseRelatedProducts extends BaseObject implements Persistent
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
+            if ($this->aProductsRelatedByMaster instanceof Persistent) {
+              $this->aProductsRelatedByMaster->clearAllReferences($deep);
+            }
+            if ($this->aProductsRelatedBySku instanceof Persistent) {
+              $this->aProductsRelatedBySku->clearAllReferences($deep);
+            }
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
         $this->aProductsRelatedByMaster = null;

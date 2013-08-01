@@ -39,11 +39,11 @@ abstract class BaseProductsImagesProductReferencesPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 2;
 
-    /** the column name for the PRODUCTS_IMAGES_ID field */
-    const PRODUCTS_IMAGES_ID = 'products_images_product_references.PRODUCTS_IMAGES_ID';
+    /** the column name for the products_images_id field */
+    const PRODUCTS_IMAGES_ID = 'products_images_product_references.products_images_id';
 
-    /** the column name for the PRODUCTS_ID field */
-    const PRODUCTS_ID = 'products_images_product_references.PRODUCTS_ID';
+    /** the column name for the products_id field */
+    const PRODUCTS_ID = 'products_images_product_references.products_id';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -161,8 +161,8 @@ abstract class BaseProductsImagesProductReferencesPeer
             $criteria->addSelectColumn(ProductsImagesProductReferencesPeer::PRODUCTS_IMAGES_ID);
             $criteria->addSelectColumn(ProductsImagesProductReferencesPeer::PRODUCTS_ID);
         } else {
-            $criteria->addSelectColumn($alias . '.PRODUCTS_IMAGES_ID');
-            $criteria->addSelectColumn($alias . '.PRODUCTS_ID');
+            $criteria->addSelectColumn($alias . '.products_images_id');
+            $criteria->addSelectColumn($alias . '.products_id');
         }
     }
 
@@ -246,7 +246,7 @@ abstract class BaseProductsImagesProductReferencesPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -351,8 +351,15 @@ abstract class BaseProductsImagesProductReferencesPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (ProductsImagesProductReferencesPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         ProductsImagesProductReferencesPeer::$instances = array();
     }
 
@@ -1118,7 +1125,7 @@ abstract class BaseProductsImagesProductReferencesPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return ProductsImagesProductReferencesPeer::OM_CLASS;
     }

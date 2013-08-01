@@ -93,8 +93,8 @@
         <div class="element image-id-{{ id }}">
         {% spaceless %}
         {% for item in references.references %}
-          <a href="{{ item.url }}" title="{{ item.image }}">{{ product_image_tag(item.image, '114x200',
-              {'alt': product.title ~ ' ' ~ item.color}) }}</a>
+          <a href="{{ item.url }}" title="{{ product.title ~ ', ' ~ item.color }}">{{ product_image_tag(item.image, '114x200',
+              {'alt': product.title ~ ', ' ~ item.color}) }}</a>
         {% endfor %}
         {% endspaceless %}
         <a href="{{ path('product_set', {'image_id': id}) }}" class="buy-set last">» {{ 'buy.set'|trans }}</a>

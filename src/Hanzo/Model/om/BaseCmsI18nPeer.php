@@ -30,40 +30,43 @@ abstract class BaseCmsI18nPeer
     const TM_CLASS = 'CmsI18nTableMap';
 
     /** The total number of columns. */
-    const NUM_COLUMNS = 9;
+    const NUM_COLUMNS = 10;
 
     /** The number of lazy-loaded columns. */
     const NUM_LAZY_LOAD_COLUMNS = 0;
 
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-    const NUM_HYDRATE_COLUMNS = 9;
+    const NUM_HYDRATE_COLUMNS = 10;
 
-    /** the column name for the ID field */
-    const ID = 'cms_i18n.ID';
+    /** the column name for the id field */
+    const ID = 'cms_i18n.id';
 
-    /** the column name for the LOCALE field */
-    const LOCALE = 'cms_i18n.LOCALE';
+    /** the column name for the locale field */
+    const LOCALE = 'cms_i18n.locale';
 
-    /** the column name for the TITLE field */
-    const TITLE = 'cms_i18n.TITLE';
+    /** the column name for the title field */
+    const TITLE = 'cms_i18n.title';
 
-    /** the column name for the PATH field */
-    const PATH = 'cms_i18n.PATH';
+    /** the column name for the path field */
+    const PATH = 'cms_i18n.path';
 
-    /** the column name for the OLD_PATH field */
-    const OLD_PATH = 'cms_i18n.OLD_PATH';
+    /** the column name for the old_path field */
+    const OLD_PATH = 'cms_i18n.old_path';
 
-    /** the column name for the CONTENT field */
-    const CONTENT = 'cms_i18n.CONTENT';
+    /** the column name for the content field */
+    const CONTENT = 'cms_i18n.content';
 
-    /** the column name for the SETTINGS field */
-    const SETTINGS = 'cms_i18n.SETTINGS';
+    /** the column name for the settings field */
+    const SETTINGS = 'cms_i18n.settings';
 
-    /** the column name for the IS_RESTRICTED field */
-    const IS_RESTRICTED = 'cms_i18n.IS_RESTRICTED';
+    /** the column name for the is_restricted field */
+    const IS_RESTRICTED = 'cms_i18n.is_restricted';
 
-    /** the column name for the IS_ACTIVE field */
-    const IS_ACTIVE = 'cms_i18n.IS_ACTIVE';
+    /** the column name for the is_active field */
+    const IS_ACTIVE = 'cms_i18n.is_active';
+
+    /** the column name for the on_mobile field */
+    const ON_MOBILE = 'cms_i18n.on_mobile';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -84,12 +87,12 @@ abstract class BaseCmsI18nPeer
      * e.g. CmsI18nPeer::$fieldNames[CmsI18nPeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('Id', 'Locale', 'Title', 'Path', 'OldPath', 'Content', 'Settings', 'IsRestricted', 'IsActive', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'locale', 'title', 'path', 'oldPath', 'content', 'settings', 'isRestricted', 'isActive', ),
-        BasePeer::TYPE_COLNAME => array (CmsI18nPeer::ID, CmsI18nPeer::LOCALE, CmsI18nPeer::TITLE, CmsI18nPeer::PATH, CmsI18nPeer::OLD_PATH, CmsI18nPeer::CONTENT, CmsI18nPeer::SETTINGS, CmsI18nPeer::IS_RESTRICTED, CmsI18nPeer::IS_ACTIVE, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'LOCALE', 'TITLE', 'PATH', 'OLD_PATH', 'CONTENT', 'SETTINGS', 'IS_RESTRICTED', 'IS_ACTIVE', ),
-        BasePeer::TYPE_FIELDNAME => array ('id', 'locale', 'title', 'path', 'old_path', 'content', 'settings', 'is_restricted', 'is_active', ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, )
+        BasePeer::TYPE_PHPNAME => array ('Id', 'Locale', 'Title', 'Path', 'OldPath', 'Content', 'Settings', 'IsRestricted', 'IsActive', 'OnMobile', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'locale', 'title', 'path', 'oldPath', 'content', 'settings', 'isRestricted', 'isActive', 'onMobile', ),
+        BasePeer::TYPE_COLNAME => array (CmsI18nPeer::ID, CmsI18nPeer::LOCALE, CmsI18nPeer::TITLE, CmsI18nPeer::PATH, CmsI18nPeer::OLD_PATH, CmsI18nPeer::CONTENT, CmsI18nPeer::SETTINGS, CmsI18nPeer::IS_RESTRICTED, CmsI18nPeer::IS_ACTIVE, CmsI18nPeer::ON_MOBILE, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'LOCALE', 'TITLE', 'PATH', 'OLD_PATH', 'CONTENT', 'SETTINGS', 'IS_RESTRICTED', 'IS_ACTIVE', 'ON_MOBILE', ),
+        BasePeer::TYPE_FIELDNAME => array ('id', 'locale', 'title', 'path', 'old_path', 'content', 'settings', 'is_restricted', 'is_active', 'on_mobile', ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, )
     );
 
     /**
@@ -99,12 +102,12 @@ abstract class BaseCmsI18nPeer
      * e.g. CmsI18nPeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Locale' => 1, 'Title' => 2, 'Path' => 3, 'OldPath' => 4, 'Content' => 5, 'Settings' => 6, 'IsRestricted' => 7, 'IsActive' => 8, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'locale' => 1, 'title' => 2, 'path' => 3, 'oldPath' => 4, 'content' => 5, 'settings' => 6, 'isRestricted' => 7, 'isActive' => 8, ),
-        BasePeer::TYPE_COLNAME => array (CmsI18nPeer::ID => 0, CmsI18nPeer::LOCALE => 1, CmsI18nPeer::TITLE => 2, CmsI18nPeer::PATH => 3, CmsI18nPeer::OLD_PATH => 4, CmsI18nPeer::CONTENT => 5, CmsI18nPeer::SETTINGS => 6, CmsI18nPeer::IS_RESTRICTED => 7, CmsI18nPeer::IS_ACTIVE => 8, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'LOCALE' => 1, 'TITLE' => 2, 'PATH' => 3, 'OLD_PATH' => 4, 'CONTENT' => 5, 'SETTINGS' => 6, 'IS_RESTRICTED' => 7, 'IS_ACTIVE' => 8, ),
-        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'locale' => 1, 'title' => 2, 'path' => 3, 'old_path' => 4, 'content' => 5, 'settings' => 6, 'is_restricted' => 7, 'is_active' => 8, ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, )
+        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Locale' => 1, 'Title' => 2, 'Path' => 3, 'OldPath' => 4, 'Content' => 5, 'Settings' => 6, 'IsRestricted' => 7, 'IsActive' => 8, 'OnMobile' => 9, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'locale' => 1, 'title' => 2, 'path' => 3, 'oldPath' => 4, 'content' => 5, 'settings' => 6, 'isRestricted' => 7, 'isActive' => 8, 'onMobile' => 9, ),
+        BasePeer::TYPE_COLNAME => array (CmsI18nPeer::ID => 0, CmsI18nPeer::LOCALE => 1, CmsI18nPeer::TITLE => 2, CmsI18nPeer::PATH => 3, CmsI18nPeer::OLD_PATH => 4, CmsI18nPeer::CONTENT => 5, CmsI18nPeer::SETTINGS => 6, CmsI18nPeer::IS_RESTRICTED => 7, CmsI18nPeer::IS_ACTIVE => 8, CmsI18nPeer::ON_MOBILE => 9, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'LOCALE' => 1, 'TITLE' => 2, 'PATH' => 3, 'OLD_PATH' => 4, 'CONTENT' => 5, 'SETTINGS' => 6, 'IS_RESTRICTED' => 7, 'IS_ACTIVE' => 8, 'ON_MOBILE' => 9, ),
+        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'locale' => 1, 'title' => 2, 'path' => 3, 'old_path' => 4, 'content' => 5, 'settings' => 6, 'is_restricted' => 7, 'is_active' => 8, 'on_mobile' => 9, ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, )
     );
 
     /**
@@ -187,16 +190,18 @@ abstract class BaseCmsI18nPeer
             $criteria->addSelectColumn(CmsI18nPeer::SETTINGS);
             $criteria->addSelectColumn(CmsI18nPeer::IS_RESTRICTED);
             $criteria->addSelectColumn(CmsI18nPeer::IS_ACTIVE);
+            $criteria->addSelectColumn(CmsI18nPeer::ON_MOBILE);
         } else {
-            $criteria->addSelectColumn($alias . '.ID');
-            $criteria->addSelectColumn($alias . '.LOCALE');
-            $criteria->addSelectColumn($alias . '.TITLE');
-            $criteria->addSelectColumn($alias . '.PATH');
-            $criteria->addSelectColumn($alias . '.OLD_PATH');
-            $criteria->addSelectColumn($alias . '.CONTENT');
-            $criteria->addSelectColumn($alias . '.SETTINGS');
-            $criteria->addSelectColumn($alias . '.IS_RESTRICTED');
-            $criteria->addSelectColumn($alias . '.IS_ACTIVE');
+            $criteria->addSelectColumn($alias . '.id');
+            $criteria->addSelectColumn($alias . '.locale');
+            $criteria->addSelectColumn($alias . '.title');
+            $criteria->addSelectColumn($alias . '.path');
+            $criteria->addSelectColumn($alias . '.old_path');
+            $criteria->addSelectColumn($alias . '.content');
+            $criteria->addSelectColumn($alias . '.settings');
+            $criteria->addSelectColumn($alias . '.is_restricted');
+            $criteria->addSelectColumn($alias . '.is_active');
+            $criteria->addSelectColumn($alias . '.on_mobile');
         }
     }
 
@@ -280,7 +285,7 @@ abstract class BaseCmsI18nPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -385,8 +390,15 @@ abstract class BaseCmsI18nPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (CmsI18nPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         CmsI18nPeer::$instances = array();
     }
 
@@ -759,7 +771,7 @@ abstract class BaseCmsI18nPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return CmsI18nPeer::OM_CLASS;
     }

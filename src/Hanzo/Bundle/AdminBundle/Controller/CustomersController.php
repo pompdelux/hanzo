@@ -3,26 +3,26 @@
 namespace Hanzo\Bundle\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-use Hanzo\Core\Hanzo,
-    Hanzo\Core\CoreController,
-    Hanzo\Core\Tools;
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\CoreController;
+use Hanzo\Core\Tools;
 
-use Hanzo\Model\CustomersQuery,
-    Hanzo\Model\Addresses,
-    Hanzo\Model\AddressesQuery,
-    Hanzo\Model\DomainsQuery,
-    Hanzo\Model\GroupsQuery;
+use Hanzo\Model\CustomersQuery;
+use Hanzo\Model\Addresses;
+use Hanzo\Model\AddressesQuery;
+use Hanzo\Model\DomainsQuery;
+use Hanzo\Model\GroupsQuery;
+
+use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
 
 class CustomersController extends CoreController
 {
 
     public function indexAction($domain_key, $pager)
     {
-
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_CUSTOMERS_SERVICE")'))) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
@@ -125,9 +125,11 @@ class CustomersController extends CoreController
 
     public function viewAction($id)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_CUSTOMERS_SERVICE")'))) {
             return $this->redirect($this->generateUrl('admin'));
         }
+
+        $read_only = !$this->get('security.context')->isGranted('ROLE_ADMIN');
 
         $customer = CustomersQuery::create()
             ->filterById($id)
@@ -150,39 +152,45 @@ class CustomersController extends CoreController
             ->add('first_name', 'text',
                 array(
                     'label' => 'admin.customer.first_name.label',
-                    'translation_domain' => 'admin'
+                    'translation_domain' => 'admin',
+                    'disabled' => $read_only,
                 )
             )
             ->add('last_name', 'text',
                 array(
                     'label' => 'admin.customer.last_name.label',
-                    'translation_domain' => 'admin'
+                    'translation_domain' => 'admin',
+                    'disabled' => $read_only,
                 )
             )
             ->add('groups_id', 'choice',
                 array(
                     'choices' => $group_choices,
                     'label' => 'admin.customer.group.label',
-                    'translation_domain' => 'admin'
+                    'translation_domain' => 'admin',
+                    'disabled' => $read_only,
                 )
             )
             ->add('email', 'text',
                 array(
                     'label' => 'admin.customer.email.label',
-                    'translation_domain' => 'admin'
+                    'translation_domain' => 'admin',
+                    'disabled' => $read_only,
                 )
             )
             ->add('phone', 'text',
                 array(
                     'label' => 'admin.customer.phone.label',
                     'translation_domain' => 'admin',
-                    'required' => false
+                    'required' => false,
+                    'disabled' => $read_only,
                 )
             )
             ->add('discount', 'text',
                 array(
                     'label' => 'admin.customer.discount.label',
-                    'translation_domain' => 'admin'
+                    'translation_domain' => 'admin',
+                    'disabled' => $read_only,
                 )
             )
             ->add('password_clear', 'text', // Puha
@@ -195,7 +203,8 @@ class CustomersController extends CoreController
                 array(
                     'label' => 'admin.customer.is_active.label',
                     'translation_domain' => 'admin',
-                    'required' => false
+                    'required' => false,
+                    'disabled' => $read_only,
                 )
             )
             ->getForm()
@@ -212,7 +221,6 @@ class CustomersController extends CoreController
                  */
 
                 $customer->setPassword(sha1($customer->getPasswordClear()));
-
                 $customer->save($this->getDbConnection());
 
                 $this->get('session')->setFlash('notice', 'customer.updated');

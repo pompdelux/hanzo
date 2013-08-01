@@ -8,7 +8,7 @@
         "php": ">=5.3.3",
         "symfony/symfony": "2.1.*",
         "twig/extensions": "1.0.*@dev",
-        "symfony/assetic-bundle": "2.1.*",
+        "symfony/assetic-bundle": "2.3.*",
         "symfony/swiftmailer-bundle": "2.1.*",
         "symfony/monolog-bundle": "2.1.*",
         "sensio/distribution-bundle": "2.1.*",
@@ -22,9 +22,11 @@
         "willdurand/geocoder": "*",
         "willdurand/expose-translation-bundle": "*",
         "mrbase/smesg": "*",
-        "ekino/newrelic-bundle": "master-dev",
+        "ekino/newrelic-bundle": "1.*",
         "liip/theme-bundle": "dev-master",
-        "drak/native-session": "master-dev"
+        "drak/native-session": "master-dev",
+        "nelmio/security-bundle": "~1.0",
+        "misd/guzzle-bundle": "~1.0"
     },
     "scripts": {
         "post-install-cmd": [

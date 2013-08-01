@@ -42,13 +42,13 @@ class MannequinImagesTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(false);
         // columns
-        $this->addForeignPrimaryKey('MASTER', 'Master', 'VARCHAR' , 'products', 'SKU', true, 128, null);
-        $this->addPrimaryKey('COLOR', 'Color', 'VARCHAR', true, 32, null);
-        $this->addColumn('LAYER', 'Layer', 'INTEGER', true, null, null);
-        $this->addColumn('IMAGE', 'Image', 'VARCHAR', true, 128, null);
-        $this->addColumn('ICON', 'Icon', 'VARCHAR', true, 128, null);
-        $this->addColumn('WEIGHT', 'Weight', 'INTEGER', true, null, 0);
-        $this->addColumn('IS_MAIN', 'IsMain', 'BOOLEAN', true, 1, false);
+        $this->addForeignPrimaryKey('master', 'Master', 'VARCHAR' , 'products', 'sku', true, 128, null);
+        $this->addPrimaryKey('color', 'Color', 'VARCHAR', true, 32, null);
+        $this->addColumn('layer', 'Layer', 'INTEGER', true, null, null);
+        $this->addColumn('image', 'Image', 'VARCHAR', true, 128, null);
+        $this->addColumn('icon', 'Icon', 'VARCHAR', true, 128, null);
+        $this->addColumn('weight', 'Weight', 'INTEGER', true, null, 0);
+        $this->addColumn('is_main', 'IsMain', 'BOOLEAN', true, 1, false);
         // validators
     } // initialize()
 

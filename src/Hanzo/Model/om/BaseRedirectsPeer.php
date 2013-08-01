@@ -37,17 +37,17 @@ abstract class BaseRedirectsPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 4;
 
-    /** the column name for the ID field */
-    const ID = 'redirects.ID';
+    /** the column name for the id field */
+    const ID = 'redirects.id';
 
-    /** the column name for the SOURCE field */
-    const SOURCE = 'redirects.SOURCE';
+    /** the column name for the source field */
+    const SOURCE = 'redirects.source';
 
-    /** the column name for the TARGET field */
-    const TARGET = 'redirects.TARGET';
+    /** the column name for the target field */
+    const TARGET = 'redirects.target';
 
-    /** the column name for the DOMAIN_KEY field */
-    const DOMAIN_KEY = 'redirects.DOMAIN_KEY';
+    /** the column name for the domain_key field */
+    const DOMAIN_KEY = 'redirects.domain_key';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -167,10 +167,10 @@ abstract class BaseRedirectsPeer
             $criteria->addSelectColumn(RedirectsPeer::TARGET);
             $criteria->addSelectColumn(RedirectsPeer::DOMAIN_KEY);
         } else {
-            $criteria->addSelectColumn($alias . '.ID');
-            $criteria->addSelectColumn($alias . '.SOURCE');
-            $criteria->addSelectColumn($alias . '.TARGET');
-            $criteria->addSelectColumn($alias . '.DOMAIN_KEY');
+            $criteria->addSelectColumn($alias . '.id');
+            $criteria->addSelectColumn($alias . '.source');
+            $criteria->addSelectColumn($alias . '.target');
+            $criteria->addSelectColumn($alias . '.domain_key');
         }
     }
 
@@ -254,7 +254,7 @@ abstract class BaseRedirectsPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -359,8 +359,15 @@ abstract class BaseRedirectsPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (RedirectsPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         RedirectsPeer::$instances = array();
     }
 
@@ -495,7 +502,7 @@ abstract class BaseRedirectsPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return RedirectsPeer::OM_CLASS;
     }

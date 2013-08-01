@@ -40,17 +40,17 @@ abstract class BaseCategoriesPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 4;
 
-    /** the column name for the ID field */
-    const ID = 'categories.ID';
+    /** the column name for the id field */
+    const ID = 'categories.id';
 
-    /** the column name for the PARENT_ID field */
-    const PARENT_ID = 'categories.PARENT_ID';
+    /** the column name for the parent_id field */
+    const PARENT_ID = 'categories.parent_id';
 
-    /** the column name for the CONTEXT field */
-    const CONTEXT = 'categories.CONTEXT';
+    /** the column name for the context field */
+    const CONTEXT = 'categories.context';
 
-    /** the column name for the IS_ACTIVE field */
-    const IS_ACTIVE = 'categories.IS_ACTIVE';
+    /** the column name for the is_active field */
+    const IS_ACTIVE = 'categories.is_active';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -177,10 +177,10 @@ abstract class BaseCategoriesPeer
             $criteria->addSelectColumn(CategoriesPeer::CONTEXT);
             $criteria->addSelectColumn(CategoriesPeer::IS_ACTIVE);
         } else {
-            $criteria->addSelectColumn($alias . '.ID');
-            $criteria->addSelectColumn($alias . '.PARENT_ID');
-            $criteria->addSelectColumn($alias . '.CONTEXT');
-            $criteria->addSelectColumn($alias . '.IS_ACTIVE');
+            $criteria->addSelectColumn($alias . '.id');
+            $criteria->addSelectColumn($alias . '.parent_id');
+            $criteria->addSelectColumn($alias . '.context');
+            $criteria->addSelectColumn($alias . '.is_active');
         }
     }
 
@@ -264,7 +264,7 @@ abstract class BaseCategoriesPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -369,8 +369,15 @@ abstract class BaseCategoriesPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (CategoriesPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         CategoriesPeer::$instances = array();
     }
 
@@ -612,7 +619,7 @@ abstract class BaseCategoriesPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return CategoriesPeer::OM_CLASS;
     }

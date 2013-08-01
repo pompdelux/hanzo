@@ -83,6 +83,12 @@ abstract class BaseOrdersToCoupons extends BaseObject implements Persistent
     protected $alreadyInValidation = false;
 
     /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
+    /**
      * Get the [orders_id] column value.
      *
      * @return int
@@ -120,7 +126,7 @@ abstract class BaseOrdersToCoupons extends BaseObject implements Persistent
      */
     public function setOrdersId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -145,7 +151,7 @@ abstract class BaseOrdersToCoupons extends BaseObject implements Persistent
      */
     public function setCouponsId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -170,7 +176,7 @@ abstract class BaseOrdersToCoupons extends BaseObject implements Persistent
      */
     public function setAmount($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -225,7 +231,7 @@ abstract class BaseOrdersToCoupons extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
+            $this->postHydrate($row, $startcol, $rehydrate);
             return $startcol + 3; // 3 = OrdersToCouponsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -462,13 +468,13 @@ abstract class BaseOrdersToCoupons extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(OrdersToCouponsPeer::ORDERS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`ORDERS_ID`';
+            $modifiedColumns[':p' . $index++]  = '`orders_id`';
         }
         if ($this->isColumnModified(OrdersToCouponsPeer::COUPONS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`COUPONS_ID`';
+            $modifiedColumns[':p' . $index++]  = '`coupons_id`';
         }
         if ($this->isColumnModified(OrdersToCouponsPeer::AMOUNT)) {
-            $modifiedColumns[':p' . $index++]  = '`AMOUNT`';
+            $modifiedColumns[':p' . $index++]  = '`amount`';
         }
 
         $sql = sprintf(
@@ -481,13 +487,13 @@ abstract class BaseOrdersToCoupons extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`ORDERS_ID`':
+                    case '`orders_id`':
                         $stmt->bindValue($identifier, $this->orders_id, PDO::PARAM_INT);
                         break;
-                    case '`COUPONS_ID`':
+                    case '`coupons_id`':
                         $stmt->bindValue($identifier, $this->coupons_id, PDO::PARAM_INT);
                         break;
-                    case '`AMOUNT`':
+                    case '`amount`':
                         $stmt->bindValue($identifier, $this->amount, PDO::PARAM_STR);
                         break;
                 }
@@ -551,11 +557,11 @@ abstract class BaseOrdersToCoupons extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -930,12 +936,13 @@ abstract class BaseOrdersToCoupons extends BaseObject implements Persistent
      * Get the associated Coupons object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Coupons The associated Coupons object.
      * @throws PropelException
      */
-    public function getCoupons(PropelPDO $con = null)
+    public function getCoupons(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aCoupons === null && ($this->coupons_id !== null)) {
+        if ($this->aCoupons === null && ($this->coupons_id !== null) && $doQuery) {
             $this->aCoupons = CouponsQuery::create()->findPk($this->coupons_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -981,12 +988,13 @@ abstract class BaseOrdersToCoupons extends BaseObject implements Persistent
      * Get the associated Orders object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Orders The associated Orders object.
      * @throws PropelException
      */
-    public function getOrders(PropelPDO $con = null)
+    public function getOrders(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aOrders === null && ($this->orders_id !== null)) {
+        if ($this->aOrders === null && ($this->orders_id !== null) && $doQuery) {
             $this->aOrders = OrdersQuery::create()->findPk($this->orders_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -1010,6 +1018,7 @@ abstract class BaseOrdersToCoupons extends BaseObject implements Persistent
         $this->amount = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->resetModified();
         $this->setNew(true);
@@ -1027,7 +1036,16 @@ abstract class BaseOrdersToCoupons extends BaseObject implements Persistent
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
+            if ($this->aCoupons instanceof Persistent) {
+              $this->aCoupons->clearAllReferences($deep);
+            }
+            if ($this->aOrders instanceof Persistent) {
+              $this->aOrders->clearAllReferences($deep);
+            }
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
         $this->aCoupons = null;

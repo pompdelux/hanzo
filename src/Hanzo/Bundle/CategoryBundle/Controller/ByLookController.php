@@ -63,9 +63,9 @@ class ByLookController extends CoreController
 
 
             $classes = 'bylook-'.preg_replace('/[^a-z]/', '-', strtolower($cms_page->getTitle()));
-            if (preg_match('/(little-girl|girl)/', $container->get('request')->getPathInfo())) {
+            if (preg_match('/(pige|girl|tjej|tytto|jente)/', $container->get('request')->getPathInfo())) {
                 $classes .= ' category-girl';
-            } elseif (preg_match('/(little-boy|boy)/', $container->get('request')->getPathInfo())) {
+            } elseif (preg_match('/(dreng|boy|kille|poika|gutt)/', $container->get('request')->getPathInfo())) {
                 $classes .= ' category-boy';
             }
 

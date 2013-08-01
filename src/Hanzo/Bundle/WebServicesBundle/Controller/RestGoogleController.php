@@ -26,34 +26,6 @@ class RestGoogleController extends CoreController
 
     }
 
-    /**
-     * prozy function for getting zip code coordinates from google.
-     *
-     * NICETO: implement caching, zip codes does not often change location
-     *
-     * @param string $query
-     * @param string $country
-     * @return object A Json encoded response object
-     */
-    public function proxyAction($query = null, $country = null)
-    {
-        // hack to get google to accept 21111 as malmö
-        if ($country == 'Sweden' && $query == 21111) {
-            $query = 'malmö';
-        }
-
-        $query = rawurlencode($query);
-        $country = rawurlencode($country);
-
-        $request = sprintf('http://maps.googleapis.com/maps/api/geocode/json?address=%s&sensor=false', ($query.','.$country));
-        $response = array(
-            'status' => TRUE,
-            'data' => json_decode(file_get_contents($request))
-        );
-
-        return $this->json_response($response);
-    }
-
 
     /**
      * This method handles "near you" pages.
@@ -70,15 +42,20 @@ class RestGoogleController extends CoreController
     public function nearYouAction($type = 'near', $latitude = 0.00, $longitude = 0.00)
     {
         if ((0 == $latitude) || (0 == $longitude)){
-            $geoip = $this->get('geoip_manager')->lookup();
+            $maxmind = $this->get('muneris.maxmind');
+            $geoip = $maxmind->lookup($this->getRequest()->getClientIp());
+
+            unset($response);
+            $geoip = $geoip->city;
 
             if (0 == $latitude) {
-                $latitude =  number_format($geoip['lat'], 8, '.', '');
+                $latitude =  number_format($geoip->location->latitude, 8, '.', '');
             }
             if (0 == $longitude) {
-                $longitude = number_format($geoip['lon'], 8, '.', '');
+                $longitude = number_format($geoip->location->longitude, 8, '.', '');
             }
         }
+
 
 // TODO: switch the custom query to this:
 // $lat = 55.494099;
@@ -115,6 +92,12 @@ class RestGoogleController extends CoreController
         if ($latitude == 57.5752035 && $longitude == 17.1677372) {
           $latitude = 57.815504;
           $longitude = 12.268982;
+        }
+
+        // ab@bellcom.dk, fix danish koordinats for valby in KBH when searching for zip 2500 - note this is a google maps issue!
+        if ($latitude == 56.05579 && $longitude == 12.20289) {
+          $latitude = 55.661658;
+          $longitude = 12.516775;
         }
 
         $radius = 100;

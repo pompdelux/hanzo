@@ -33,6 +33,12 @@ class CoreController extends Controller
         7 => 'DE',
     );
 
+
+    /**
+     * Get request format
+     *
+     * @return string
+     */
     protected function getFormat()
     {
         if (empty($this->request_format)) {
@@ -48,6 +54,13 @@ class CoreController extends Controller
         return $this->request_format;
     }
 
+
+    /**
+     * Get redis cache entry
+     *
+     * @param  mixed $key Cache key
+     * @return mixed
+     */
     protected function getCache($key)
     {
         if (empty($this->cache)) {
@@ -57,6 +70,14 @@ class CoreController extends Controller
         return $this->cache->get($this->cache->generateKey($key));
     }
 
+
+    /**
+     * Set cache entry
+     *
+     * @param mixed   $key  Cache key
+     * @param mixed   $data Data to cache
+     * @param integer $ttl  Cache lifetime
+     */
     protected function setCache($key, $data, $ttl = 3600)
     {
         if (empty($this->cache)) {
@@ -67,9 +88,19 @@ class CoreController extends Controller
     }
 
 
+    /**
+     * Wrap the render method to enable us to add extra headers
+     *
+     * @param  string   $view       Template to render
+     * @param  array    $parameters Template parameters
+     * @param  Response $response   Optional Response object
+     * @return Response
+     */
     public function render($view, array $parameters = array(), Response $response = null)
     {
         $response = new Response();
+        $response->setVary('X-UA-Device');
+
         if ($this->getSharedMaxAge() && 'webshop' == $this->get('kernel')->getSetting('store_mode')) {
             $response->setSharedMaxAge($this->getSharedMaxAge());
         }
@@ -78,21 +109,42 @@ class CoreController extends Controller
     }
 
 
+    /**
+     * Set shared max age header
+     *
+     * @param integer $ttl Cache max age
+     */
     public function setSharedMaxAge($ttl)
     {
         $this->shares_max_age = (int) $ttl;
     }
 
+
+    /**
+     * Get shared max age
+     *
+     * @return integer
+     */
     public function getSharedMaxAge()
     {
         return $this->shares_max_age;
     }
 
 
+    /**
+     * Custom Response object
+     *
+     * @param  mixed   $content Data or Response object
+     * @param  integer $status  HTTP Status code
+     * @param  array   $headers Optional headers
+     * @return Response
+     */
     public function response($content, $status = 200, $headers = array())
     {
         // no need to doubble "encode"
         if ($content instanceof Response) {
+            $content->setVary('X-UA-Device');
+
             if ('webshop' == $this->get('kernel')->getSetting('store_mode')) {
                 if ($this->getSharedMaxAge()) {
                     $content->setSharedMaxAge($this->getSharedMaxAge());
@@ -115,6 +167,8 @@ class CoreController extends Controller
             }
             $headers['Cache-Control'] = 'no-cache';
         }
+
+        $headers['Vary'] = 'X-UA-Device';
 
         $response = new Response($content, $status, $headers);
 

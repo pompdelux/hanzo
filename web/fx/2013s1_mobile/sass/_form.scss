@@ -1,0 +1,168 @@
+/**
+| _form
+*/
+form{
+	&.create {
+	    label{
+	        &:after {
+	            content: ":";
+	        }
+	        &.required:after {
+	            content: ": *";
+	        }
+	    }
+	}
+	label{
+		margin-top: 12px;
+		display: inline-block;
+		width: 90%;
+	}
+	&.full-width{
+		input{
+			&[type="text"],
+			&[type="tel"],
+			&[type="number"],
+			&[type="email"],
+			&[type="date"],
+			&[type="datetime"],
+			&[type="password"]{
+				width: 100%;
+			}
+		}
+		textarea{
+			width: 100%;
+			height: 120px;
+		}
+	}
+	input,
+	textarea {
+		padding: 6px 5px;
+		margin: 2px 0;
+		color: $font-color;
+		font-family: $font-sans;
+	}
+	textarea,
+	input[type="text"],
+	input[type="number"],
+	input[type="tel"],
+	input[type="email"],
+	input[type="date"],
+	input[type="datetime"],
+	input[type="password"]{
+		box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		border: 1px solid $font-color;
+		border-radius: 0px;
+		&.inline{
+			width: auto;
+		}
+	}
+	input.error{
+		border-color: $form-error-color;
+	}
+
+	.form-radio-group {
+		label,
+		input[type=radio] {
+			float: left;
+		}
+		input[type=radio] {
+			display: inline;
+			clear: both;
+			margin: 5px;
+			margin-top: 12px;
+		}
+		&:after {
+			display:table;
+			content: "";
+			clear: both;
+		}
+	}
+
+}
+
+input.button,
+button.button,
+a.button,
+.main article a.button {
+	border: none;
+	cursor: pointer;
+	display: inline-block;
+	background: #474749;
+	font-family: $font-sans;
+	font-size: $font-size;
+	text-align: center;
+	padding: 6px;
+	font-weight: normal;
+	color: white !important;
+	line-height: 18px;
+	white-space: normal;
+	-webkit-appearance: none; // Ipad default lookalike
+	text-decoration: none;
+	border-radius: 0px;
+
+	&.text-button {
+		border: none;
+		background: transparent;
+		color: $font-color !important;
+		font-size: $font-size;
+		font-family: $font-sans;
+		font-weight: $font-weight-thin;
+		text-transform: uppercase;
+	}
+	&.button-right {
+		background: url(/fx/images/icons/icons/button-right.png) right no-repeat #474749;
+		border-right: 6px solid #474749;
+		padding: 6px 24px;
+		float: right;
+	}
+	&.button-left {
+		background: url(/fx/images/icons/icons/button-left.png) left no-repeat #474749;
+		border-left: 6px solid #474749;
+		padding: 6px 24px;
+	}
+	&.button-small {
+		font-size: $small-size;
+		padding: 3px;
+		line-height: $small-line-height;
+		font-weight: $small-weight;
+	}
+	&.button-large {
+		padding: 6px 12px;
+		width: 234px;
+	}
+	&.button-full-width {
+		width: 100%;
+	}
+}
+
+.back-button{
+	font-size: $side-menu-size;
+	font-family: $side-menu-family;
+	color:$side-menu-color;
+	.sprite{
+		height: icons-sprite-height(arrow_left);
+		width: icons-sprite-width(arrow_left);
+	}
+}
+
+.form-errors-container {
+	h2 {
+		margin-bottom: 5px;
+	}
+	margin: 1em 0;
+	padding: 1em;
+	background: $form-error-background;
+	color: $form-error-color;
+	border: 1px solid red;
+	.form-errors {
+		margin-top: 5px;
+		margin-left: 0;
+		padding-left: 0;
+		li {
+			margin-left: 0;
+			padding-left: 5px;
+		}
+	}
+}

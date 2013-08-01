@@ -37,7 +37,6 @@ use Hanzo\Model\GroupsQuery;
  * @method Groups findOne(PropelPDO $con = null) Return the first Groups matching the query
  * @method Groups findOneOrCreate(PropelPDO $con = null) Return the first Groups matching the query, or a new Groups object populated from the query conditions when no match is found
  *
- * @method Groups findOneById(int $id) Return the first Groups filtered by the id column
  * @method Groups findOneByName(string $name) Return the first Groups filtered by the name column
  * @method Groups findOneByDiscount(string $discount) Return the first Groups filtered by the discount column
  *
@@ -63,7 +62,7 @@ abstract class BaseGroupsQuery extends ModelCriteria
      * Returns a new GroupsQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     GroupsQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   GroupsQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return GroupsQuery
      */
@@ -120,18 +119,32 @@ abstract class BaseGroupsQuery extends ModelCriteria
     }
 
     /**
+     * Alias of findPk to use instance pooling
+     *
+     * @param     mixed $key Primary key to use for the query
+     * @param     PropelPDO $con A connection object
+     *
+     * @return                 Groups A model object, or null if the key is not found
+     * @throws PropelException
+     */
+     public function findOneById($key, $con = null)
+     {
+        return $this->findPk($key, $con);
+     }
+
+    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   Groups A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 Groups A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `ID`, `NAME`, `DISCOUNT` FROM `groups` WHERE `ID` = :p0';
+        $sql = 'SELECT `id`, `name`, `discount` FROM `groups` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -227,7 +240,8 @@ abstract class BaseGroupsQuery extends ModelCriteria
      * <code>
      * $query->filterById(1234); // WHERE id = 1234
      * $query->filterById(array(12, 34)); // WHERE id IN (12, 34)
-     * $query->filterById(array('min' => 12)); // WHERE id > 12
+     * $query->filterById(array('min' => 12)); // WHERE id >= 12
+     * $query->filterById(array('max' => 12)); // WHERE id <= 12
      * </code>
      *
      * @param     mixed $id The value to use as filter.
@@ -240,8 +254,22 @@ abstract class BaseGroupsQuery extends ModelCriteria
      */
     public function filterById($id = null, $comparison = null)
     {
-        if (is_array($id) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($id)) {
+            $useMinMax = false;
+            if (isset($id['min'])) {
+                $this->addUsingAlias(GroupsPeer::ID, $id['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($id['max'])) {
+                $this->addUsingAlias(GroupsPeer::ID, $id['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(GroupsPeer::ID, $id, $comparison);
@@ -283,7 +311,8 @@ abstract class BaseGroupsQuery extends ModelCriteria
      * <code>
      * $query->filterByDiscount(1234); // WHERE discount = 1234
      * $query->filterByDiscount(array(12, 34)); // WHERE discount IN (12, 34)
-     * $query->filterByDiscount(array('min' => 12)); // WHERE discount > 12
+     * $query->filterByDiscount(array('min' => 12)); // WHERE discount >= 12
+     * $query->filterByDiscount(array('max' => 12)); // WHERE discount <= 12
      * </code>
      *
      * @param     mixed $discount The value to use as filter.
@@ -323,8 +352,8 @@ abstract class BaseGroupsQuery extends ModelCriteria
      * @param   Customers|PropelObjectCollection $customers  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   GroupsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 GroupsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByCustomers($customers, $comparison = null)
     {

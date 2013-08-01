@@ -3,9 +3,21 @@ var account = (function($) {
 
   pub.init = function() {
     nnoInit();
-    zipToCityInit();
+    pub.zipToCityInit();
 
-    if($('form.create').length) {
+    if ($('form.create').length) {
+
+      if ($('#customers_accept:checked').length) {
+          $('form.create input.button').show();
+      }
+      $('#customers_accept').on('change', function() {
+          if ($(this).prop("checked")) {
+              $('form.create input.button').show();
+          } else {
+              $('form.create input.button').hide();
+          }
+      });
+
       var $form = $('form.create');
       var $a = $('form.create a');
       $form.find('label[for="customers_accept"]').append($a);
@@ -14,9 +26,14 @@ var account = (function($) {
       $('#customers_email_email_address', $form).blur(function() {
         $form.removeClass('hasError');
         var $element = $('#customers_email_email_address', $form);
+        $element.removeClass('error');
 
+        // regex source: http://stackoverflow.com/questions/46155/validate-email-address-in-javascript
+        var email_regex = RegExp(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
         if (!$element.val()) {
           return;
+        }else if (!email_regex.test($element.val())){
+          scrollToAndShowError($element, $form, Translator.get('js:email.invalid'));
         }
 
         $.ajax({
@@ -28,17 +45,71 @@ var account = (function($) {
           cache: false,
           success: function(response) {
             if (response.status === false) {
-              $form.addClass('hasError');
-              dialoug.notice(response.message, 'error', 4800, $element.parent());
-              $element.focus();
-              $element.select();
+              scrollToAndShowError($element, $form, response.message);
             }
           }
         });
       });
-    }
 
-    $('a[rel="colorbox"]').colorbox();
+      $('#customers_email_email_address_repeated', $form).blur(function() {
+        $form.removeClass('hasError');
+        $email = $('#customers_email_email_address', $form);
+        $element = $('#customers_email_email_address_repeated', $form);
+
+        if ($element.val() && $email.val() !== $element.val()){
+          scrollToAndShowError($element, $form, Translator.get('js:email.repeat.invalid'));
+        }
+      });
+
+      $('#customers_password_pass', $form).blur(function() {
+        $form.removeClass('hasError');
+        $element = $('#customers_password_pass', $form);
+        $element.removeClass('error');
+
+        if ($element.val() && $element.val().length < 5){
+          scrollToAndShowError($element, $form, Translator.get('js:password.min.length'));
+        }
+      });
+
+      $('#customers_password_pass_repeated', $form).blur(function() {
+        $form.removeClass('hasError');
+        $password = $('#customers_password_pass', $form);
+        $element = $('#customers_password_pass_repeated', $form);
+        $element.removeClass('error');
+
+        if ($element.val() && $password.val() !== $element.val()){
+          scrollToAndShowError($element, $form, Translator.get('js:password.invalid.match'));
+        }
+
+      });
+
+      $('#customers_phone', $form).blur(function() {
+        $form.removeClass('hasError');
+        $element = $('#customers_phone', $form);
+        $element.removeClass('error');
+
+        if ($element.val() && (/^\d+$/.test($element.val()) !== true || $element.val().length < 8)){
+          scrollToAndShowError($element, $form, Translator.get('js:phone.invalid'));
+        }
+      });
+
+      $form.on('submit', function(e){
+        $('input[required]', $form).each(function(i){
+          if (!$(this).val()){
+            e.preventDefault();
+            $form.addClass('hasError');
+            dialoug.notice(Translator.get('js:field.required'), 'error', 4800, $form);
+            $(this).focus();
+            $(this).select();
+            return false;
+          }
+          if ($(this).is(':checkbox') && !$(this).attr('checked')){
+            e.preventDefault();
+            scrollToAndShowError($(this), $form, Translator.get('js:approve.conditions.required'));
+          }
+        });
+      });
+    }
   };
 
   function nnoInit()
@@ -53,13 +124,14 @@ var account = (function($) {
         // fetch data
         $.getJSON(this.action + '/' + $input.val() , function(result) {
           if (result.status) {
+            var data = result.data.number;
             var $target = $('form.create');
-            $target.find('#customers_first_name').val(result.data.christianname);
-            $target.find('#customers_last_name').val(result.data.surname);
-            $target.find('#customers_addresses_0_address_line_1').val(result.data.address);
-            $target.find('#customers_addresses_0_postal_code').val(result.data.zipcode);
-            $target.find('#customers_addresses_0_city').val(result.data.district);
-            $target.find('#customers_phone').val(result.data.phone);
+            $target.find('#customers_first_name').val(data.christianname);
+            $target.find('#customers_last_name').val(data.surname);
+            $target.find('#customers_addresses_0_address_line_1').val(data.address);
+            $target.find('#customers_addresses_0_postal_code').val(data.zipcode);
+            $target.find('#customers_addresses_0_city').val(data.district);
+            $target.find('#customers_phone').val(data.phone);
           }
           else {
             dialoug.alert('Woops!', result.message);
@@ -74,7 +146,13 @@ var account = (function($) {
     });
   }
 
-  function zipToCityInit()
+  function scrollToAndShowError($element, $form, error) {
+    $form.addClass('hasError');
+    dialoug.notice(error, 'error', 4800, $element);
+    $element.addClass('error');
+  }
+
+  pub.zipToCityInit = function ()
   {
     /**
      * auto complete city names when entering zip codes.
@@ -92,11 +170,11 @@ var account = (function($) {
           this.value = '';
           if ($('#customers_addresses_0_postal_code').val() === '') {
             $('#customers_addresses_0_postal_code')
-            .css('border-color', '#a10000')
-            .fadeOut(100).fadeIn(100)
-            .fadeOut(100).fadeIn(100)
-            .fadeOut(100).fadeIn(100)
-            .focus();
+              .css('border-color', '#a10000')
+              .fadeOut(100).fadeIn(100)
+              .fadeOut(100).fadeIn(100)
+              .fadeOut(100).fadeIn(100)
+              .focus();
             dialoug.stopLoading();
             return;
           }
@@ -124,7 +202,7 @@ var account = (function($) {
         });
       }
     } catch (e) {}
-  }
+  };
 
   pub.orderHistoryInit = function() {
     $('a.edit').on('click', function(event) {
@@ -153,17 +231,9 @@ var account = (function($) {
 
 if ($("#body-create-account").length) {
   account.init();
-
-  if ($('#customers_accept:checked').length) {
-    $('form.create input.button').show();
-  }
-  $('#customers_accept').on('change', function() {
-    if ($(this).prop("checked")) {
-      $('form.create input.button').show();
-    } else {
-      $('form.create input.button').hide();
-    }
-  });
+}
+if ($("#body-events-create-customer").length) {
+  account.zipToCityInit();
 }
 
 if ($("table#order-status").length) {

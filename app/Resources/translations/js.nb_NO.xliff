@@ -96,7 +96,7 @@
             </trans-unit>
             <trans-unit id="edit.order.notice">
                 <source>edit.order.notice</source>
-                <target><![CDATA[<p>For å redigere din ordre skal du gjøre følgende:</p><p>1) Klikk på "Rediger" for å redigere ordren. Dine varer vil deretter legges tilbake i handlekurven.</p><p>2) Ønsker du å endre en farge eller en størrelse, skal du klikke på blyanten i kurven. Ønsker du å legge til flere varer, skal du klikke på menyen Webshop.</p><p>3) Når du er ferdig med endringene skal du klikke på "Vis kurv" og følge trinn 1 til 5. Når du har gjennomført ordren med ny kredittkortbetaling, vil den gamle betalingen bli slettet automatisk.</p><p><b style="color:#A10000">Merk: Hvis du redigerer i ordren, må du være oppmerksom på at selv om POMPdeLUX har annullert din første betaling, vil beløpet stå som reservert i opptil 6 virkedager før banken opphever reservasjonen og beløpet igjen blir disponibelt på din konto.</b></p>]]></target>
+                <target><![CDATA[<p>For å redigere ordren din skal du gjøre følgende:</p><p>1) Klikk på "Blyanten" for å redigere ordren.</p><p>2) Velg farge, størrelse og antall. Ønsker du å tilføye varer, skal du klikke på menyen Girl, Boy, Little Girl eller Little Boy øverst på siden.</p><p>3) Når du er ferdig med endringene, skal du klikke på "Vis kurv" og trykke på ”Fortsett”. Når du har gjennomført ordren med ny kredittkortbetaling, vil den gamle betalingen automatisk bli slettet.</p><p><b style="color:#A10000"><b>Merk:</b> Hvis du bruker Visa Electron eller MasterCard ved redigeringen, foretas det automatisk enda en reservasjon av totalbeløpet på ordren. Reservasjonen av totalbeløpet på din opprinnelige ordre blir før øvrig straks annullert av POMPdeLUX. Det kan derimot gå opptil 6 uker før reservasjonen oppheves av pengeinstituttet ditt.</b></p>]]></target>
             </trans-unit>
             <trans-unit id="delete.order.notice">
                 <source>delete.order.notice</source>
@@ -289,7 +289,7 @@
             </trans-unit>
             <trans-unit id="quickorder.choose.color">
                 <source>quickorder.choose.color</source>
-                <target>Color</target>
+                <target>Colour</target>
             </trans-unit>
             <trans-unit id="event.user.email.not.found">
                 <source>event.user.email.not.found</source>

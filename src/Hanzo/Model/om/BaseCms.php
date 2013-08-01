@@ -124,6 +124,12 @@ abstract class BaseCms extends BaseObject implements Persistent
      */
     protected $alreadyInValidation = false;
 
+    /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
     // i18n behavior
 
     /**
@@ -243,22 +249,25 @@ abstract class BaseCms extends BaseObject implements Persistent
             // while technically this is not a default value of null,
             // this seems to be closest in meaning.
             return null;
-        } else {
-            try {
-                $dt = new DateTime($this->created_at);
-            } catch (Exception $x) {
-                throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->created_at, true), $x);
-            }
+        }
+
+        try {
+            $dt = new DateTime($this->created_at);
+        } catch (Exception $x) {
+            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->created_at, true), $x);
         }
 
         if ($format === null) {
             // We cast here to maintain BC in API; obviously we will lose data if we're dealing with pre-/post-epoch dates.
             return (int) $dt->format('U');
-        } elseif (strpos($format, '%') !== false) {
-            return strftime($format, $dt->format('U'));
-        } else {
-            return $dt->format($format);
         }
+
+        if (strpos($format, '%') !== false) {
+            return strftime($format, $dt->format('U'));
+        }
+
+        return $dt->format($format);
+
     }
 
     /**
@@ -282,22 +291,25 @@ abstract class BaseCms extends BaseObject implements Persistent
             // while technically this is not a default value of null,
             // this seems to be closest in meaning.
             return null;
-        } else {
-            try {
-                $dt = new DateTime($this->updated_at);
-            } catch (Exception $x) {
-                throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->updated_at, true), $x);
-            }
+        }
+
+        try {
+            $dt = new DateTime($this->updated_at);
+        } catch (Exception $x) {
+            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->updated_at, true), $x);
         }
 
         if ($format === null) {
             // We cast here to maintain BC in API; obviously we will lose data if we're dealing with pre-/post-epoch dates.
             return (int) $dt->format('U');
-        } elseif (strpos($format, '%') !== false) {
-            return strftime($format, $dt->format('U'));
-        } else {
-            return $dt->format($format);
         }
+
+        if (strpos($format, '%') !== false) {
+            return strftime($format, $dt->format('U'));
+        }
+
+        return $dt->format($format);
+
     }
 
     /**
@@ -308,7 +320,7 @@ abstract class BaseCms extends BaseObject implements Persistent
      */
     public function setId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -329,7 +341,7 @@ abstract class BaseCms extends BaseObject implements Persistent
      */
     public function setParentId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -354,7 +366,7 @@ abstract class BaseCms extends BaseObject implements Persistent
      */
     public function setCmsThreadId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -379,7 +391,7 @@ abstract class BaseCms extends BaseObject implements Persistent
      */
     public function setSort($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -400,7 +412,7 @@ abstract class BaseCms extends BaseObject implements Persistent
      */
     public function setType($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -513,7 +525,7 @@ abstract class BaseCms extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
+            $this->postHydrate($row, $startcol, $rehydrate);
             return $startcol + 7; // 7 = CmsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -754,7 +766,7 @@ abstract class BaseCms extends BaseObject implements Persistent
 
             if ($this->collCmssRelatedById !== null) {
                 foreach ($this->collCmssRelatedById as $referrerFK) {
-                    if (!$referrerFK->isDeleted()) {
+                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
@@ -771,7 +783,7 @@ abstract class BaseCms extends BaseObject implements Persistent
 
             if ($this->collCmsI18ns !== null) {
                 foreach ($this->collCmsI18ns as $referrerFK) {
-                    if (!$referrerFK->isDeleted()) {
+                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
@@ -804,25 +816,25 @@ abstract class BaseCms extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(CmsPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`ID`';
+            $modifiedColumns[':p' . $index++]  = '`id`';
         }
         if ($this->isColumnModified(CmsPeer::PARENT_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`PARENT_ID`';
+            $modifiedColumns[':p' . $index++]  = '`parent_id`';
         }
         if ($this->isColumnModified(CmsPeer::CMS_THREAD_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`CMS_THREAD_ID`';
+            $modifiedColumns[':p' . $index++]  = '`cms_thread_id`';
         }
         if ($this->isColumnModified(CmsPeer::SORT)) {
-            $modifiedColumns[':p' . $index++]  = '`SORT`';
+            $modifiedColumns[':p' . $index++]  = '`sort`';
         }
         if ($this->isColumnModified(CmsPeer::TYPE)) {
-            $modifiedColumns[':p' . $index++]  = '`TYPE`';
+            $modifiedColumns[':p' . $index++]  = '`type`';
         }
         if ($this->isColumnModified(CmsPeer::CREATED_AT)) {
-            $modifiedColumns[':p' . $index++]  = '`CREATED_AT`';
+            $modifiedColumns[':p' . $index++]  = '`created_at`';
         }
         if ($this->isColumnModified(CmsPeer::UPDATED_AT)) {
-            $modifiedColumns[':p' . $index++]  = '`UPDATED_AT`';
+            $modifiedColumns[':p' . $index++]  = '`updated_at`';
         }
 
         $sql = sprintf(
@@ -835,25 +847,25 @@ abstract class BaseCms extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`ID`':
+                    case '`id`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`PARENT_ID`':
+                    case '`parent_id`':
                         $stmt->bindValue($identifier, $this->parent_id, PDO::PARAM_INT);
                         break;
-                    case '`CMS_THREAD_ID`':
+                    case '`cms_thread_id`':
                         $stmt->bindValue($identifier, $this->cms_thread_id, PDO::PARAM_INT);
                         break;
-                    case '`SORT`':
+                    case '`sort`':
                         $stmt->bindValue($identifier, $this->sort, PDO::PARAM_INT);
                         break;
-                    case '`TYPE`':
+                    case '`type`':
                         $stmt->bindValue($identifier, $this->type, PDO::PARAM_STR);
                         break;
-                    case '`CREATED_AT`':
+                    case '`created_at`':
                         $stmt->bindValue($identifier, $this->created_at, PDO::PARAM_STR);
                         break;
-                    case '`UPDATED_AT`':
+                    case '`updated_at`':
                         $stmt->bindValue($identifier, $this->updated_at, PDO::PARAM_STR);
                         break;
                 }
@@ -924,11 +936,11 @@ abstract class BaseCms extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -1370,12 +1382,13 @@ abstract class BaseCms extends BaseObject implements Persistent
      * Get the associated CmsThread object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return CmsThread The associated CmsThread object.
      * @throws PropelException
      */
-    public function getCmsThread(PropelPDO $con = null)
+    public function getCmsThread(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aCmsThread === null && ($this->cms_thread_id !== null)) {
+        if ($this->aCmsThread === null && ($this->cms_thread_id !== null) && $doQuery) {
             $this->aCmsThread = CmsThreadQuery::create()->findPk($this->cms_thread_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -1421,12 +1434,13 @@ abstract class BaseCms extends BaseObject implements Persistent
      * Get the associated Cms object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Cms The associated Cms object.
      * @throws PropelException
      */
-    public function getCmsRelatedByParentId(PropelPDO $con = null)
+    public function getCmsRelatedByParentId(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aCmsRelatedByParentId === null && ($this->parent_id !== null)) {
+        if ($this->aCmsRelatedByParentId === null && ($this->parent_id !== null) && $doQuery) {
             $this->aCmsRelatedByParentId = CmsQuery::create()->findPk($this->parent_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -1465,13 +1479,15 @@ abstract class BaseCms extends BaseObject implements Persistent
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
-     * @return void
+     * @return Cms The current object (for fluent API support)
      * @see        addCmssRelatedById()
      */
     public function clearCmssRelatedById()
     {
         $this->collCmssRelatedById = null; // important to set this to null since that means it is uninitialized
         $this->collCmssRelatedByIdPartial = null;
+
+        return $this;
     }
 
     /**
@@ -1543,6 +1559,7 @@ abstract class BaseCms extends BaseObject implements Persistent
                       $this->collCmssRelatedByIdPartial = true;
                     }
 
+                    $collCmssRelatedById->getInternalIterator()->rewind();
                     return $collCmssRelatedById;
                 }
 
@@ -1570,12 +1587,15 @@ abstract class BaseCms extends BaseObject implements Persistent
      *
      * @param PropelCollection $cmssRelatedById A Propel collection.
      * @param PropelPDO $con Optional connection object
+     * @return Cms The current object (for fluent API support)
      */
     public function setCmssRelatedById(PropelCollection $cmssRelatedById, PropelPDO $con = null)
     {
-        $this->cmssRelatedByIdScheduledForDeletion = $this->getCmssRelatedById(new Criteria(), $con)->diff($cmssRelatedById);
+        $cmssRelatedByIdToDelete = $this->getCmssRelatedById(new Criteria(), $con)->diff($cmssRelatedById);
 
-        foreach ($this->cmssRelatedByIdScheduledForDeletion as $cmsRelatedByIdRemoved) {
+        $this->cmssRelatedByIdScheduledForDeletion = unserialize(serialize($cmssRelatedByIdToDelete));
+
+        foreach ($cmssRelatedByIdToDelete as $cmsRelatedByIdRemoved) {
             $cmsRelatedByIdRemoved->setCmsRelatedByParentId(null);
         }
 
@@ -1586,6 +1606,8 @@ abstract class BaseCms extends BaseObject implements Persistent
 
         $this->collCmssRelatedById = $cmssRelatedById;
         $this->collCmssRelatedByIdPartial = false;
+
+        return $this;
     }
 
     /**
@@ -1603,22 +1625,22 @@ abstract class BaseCms extends BaseObject implements Persistent
         if (null === $this->collCmssRelatedById || null !== $criteria || $partial) {
             if ($this->isNew() && null === $this->collCmssRelatedById) {
                 return 0;
-            } else {
-                if($partial && !$criteria) {
-                    return count($this->getCmssRelatedById());
-                }
-                $query = CmsQuery::create(null, $criteria);
-                if ($distinct) {
-                    $query->distinct();
-                }
-
-                return $query
-                    ->filterByCmsRelatedByParentId($this)
-                    ->count($con);
             }
-        } else {
-            return count($this->collCmssRelatedById);
+
+            if($partial && !$criteria) {
+                return count($this->getCmssRelatedById());
+            }
+            $query = CmsQuery::create(null, $criteria);
+            if ($distinct) {
+                $query->distinct();
+            }
+
+            return $query
+                ->filterByCmsRelatedByParentId($this)
+                ->count($con);
         }
+
+        return count($this->collCmssRelatedById);
     }
 
     /**
@@ -1634,7 +1656,7 @@ abstract class BaseCms extends BaseObject implements Persistent
             $this->initCmssRelatedById();
             $this->collCmssRelatedByIdPartial = true;
         }
-        if (!$this->collCmssRelatedById->contains($l)) { // only add it if the **same** object is not already associated
+        if (!in_array($l, $this->collCmssRelatedById->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddCmsRelatedById($l);
         }
 
@@ -1652,6 +1674,7 @@ abstract class BaseCms extends BaseObject implements Persistent
 
     /**
      * @param	CmsRelatedById $cmsRelatedById The cmsRelatedById object to remove.
+     * @return Cms The current object (for fluent API support)
      */
     public function removeCmsRelatedById($cmsRelatedById)
     {
@@ -1664,6 +1687,8 @@ abstract class BaseCms extends BaseObject implements Persistent
             $this->cmssRelatedByIdScheduledForDeletion[]= $cmsRelatedById;
             $cmsRelatedById->setCmsRelatedByParentId(null);
         }
+
+        return $this;
     }
 
 
@@ -1697,13 +1722,15 @@ abstract class BaseCms extends BaseObject implements Persistent
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
-     * @return void
+     * @return Cms The current object (for fluent API support)
      * @see        addCmsI18ns()
      */
     public function clearCmsI18ns()
     {
         $this->collCmsI18ns = null; // important to set this to null since that means it is uninitialized
         $this->collCmsI18nsPartial = null;
+
+        return $this;
     }
 
     /**
@@ -1775,6 +1802,7 @@ abstract class BaseCms extends BaseObject implements Persistent
                       $this->collCmsI18nsPartial = true;
                     }
 
+                    $collCmsI18ns->getInternalIterator()->rewind();
                     return $collCmsI18ns;
                 }
 
@@ -1802,12 +1830,15 @@ abstract class BaseCms extends BaseObject implements Persistent
      *
      * @param PropelCollection $cmsI18ns A Propel collection.
      * @param PropelPDO $con Optional connection object
+     * @return Cms The current object (for fluent API support)
      */
     public function setCmsI18ns(PropelCollection $cmsI18ns, PropelPDO $con = null)
     {
-        $this->cmsI18nsScheduledForDeletion = $this->getCmsI18ns(new Criteria(), $con)->diff($cmsI18ns);
+        $cmsI18nsToDelete = $this->getCmsI18ns(new Criteria(), $con)->diff($cmsI18ns);
 
-        foreach ($this->cmsI18nsScheduledForDeletion as $cmsI18nRemoved) {
+        $this->cmsI18nsScheduledForDeletion = unserialize(serialize($cmsI18nsToDelete));
+
+        foreach ($cmsI18nsToDelete as $cmsI18nRemoved) {
             $cmsI18nRemoved->setCms(null);
         }
 
@@ -1818,6 +1849,8 @@ abstract class BaseCms extends BaseObject implements Persistent
 
         $this->collCmsI18ns = $cmsI18ns;
         $this->collCmsI18nsPartial = false;
+
+        return $this;
     }
 
     /**
@@ -1835,22 +1868,22 @@ abstract class BaseCms extends BaseObject implements Persistent
         if (null === $this->collCmsI18ns || null !== $criteria || $partial) {
             if ($this->isNew() && null === $this->collCmsI18ns) {
                 return 0;
-            } else {
-                if($partial && !$criteria) {
-                    return count($this->getCmsI18ns());
-                }
-                $query = CmsI18nQuery::create(null, $criteria);
-                if ($distinct) {
-                    $query->distinct();
-                }
-
-                return $query
-                    ->filterByCms($this)
-                    ->count($con);
             }
-        } else {
-            return count($this->collCmsI18ns);
+
+            if($partial && !$criteria) {
+                return count($this->getCmsI18ns());
+            }
+            $query = CmsI18nQuery::create(null, $criteria);
+            if ($distinct) {
+                $query->distinct();
+            }
+
+            return $query
+                ->filterByCms($this)
+                ->count($con);
         }
+
+        return count($this->collCmsI18ns);
     }
 
     /**
@@ -1870,7 +1903,7 @@ abstract class BaseCms extends BaseObject implements Persistent
             $this->initCmsI18ns();
             $this->collCmsI18nsPartial = true;
         }
-        if (!$this->collCmsI18ns->contains($l)) { // only add it if the **same** object is not already associated
+        if (!in_array($l, $this->collCmsI18ns->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddCmsI18n($l);
         }
 
@@ -1888,6 +1921,7 @@ abstract class BaseCms extends BaseObject implements Persistent
 
     /**
      * @param	CmsI18n $cmsI18n The cmsI18n object to remove.
+     * @return Cms The current object (for fluent API support)
      */
     public function removeCmsI18n($cmsI18n)
     {
@@ -1897,9 +1931,11 @@ abstract class BaseCms extends BaseObject implements Persistent
                 $this->cmsI18nsScheduledForDeletion = clone $this->collCmsI18ns;
                 $this->cmsI18nsScheduledForDeletion->clear();
             }
-            $this->cmsI18nsScheduledForDeletion[]= $cmsI18n;
+            $this->cmsI18nsScheduledForDeletion[]= clone $cmsI18n;
             $cmsI18n->setCms(null);
         }
+
+        return $this;
     }
 
     /**
@@ -1916,6 +1952,7 @@ abstract class BaseCms extends BaseObject implements Persistent
         $this->updated_at = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->applyDefaultValues();
         $this->resetModified();
@@ -1934,7 +1971,8 @@ abstract class BaseCms extends BaseObject implements Persistent
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
             if ($this->collCmssRelatedById) {
                 foreach ($this->collCmssRelatedById as $o) {
                     $o->clearAllReferences($deep);
@@ -1945,6 +1983,14 @@ abstract class BaseCms extends BaseObject implements Persistent
                     $o->clearAllReferences($deep);
                 }
             }
+            if ($this->aCmsThread instanceof Persistent) {
+              $this->aCmsThread->clearAllReferences($deep);
+            }
+            if ($this->aCmsRelatedByParentId instanceof Persistent) {
+              $this->aCmsRelatedByParentId->clearAllReferences($deep);
+            }
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
         // i18n behavior
@@ -2246,6 +2292,30 @@ abstract class BaseCms extends BaseObject implements Persistent
          */
         public function setIsActive($v)
         {    $this->getCurrentTranslation()->setIsActive($v);
+
+        return $this;
+    }
+
+
+        /**
+         * Get the [on_mobile] column value.
+         *
+         * @return boolean
+         */
+        public function getOnMobile()
+        {
+        return $this->getCurrentTranslation()->getOnMobile();
+    }
+
+
+        /**
+         * Set the value of [on_mobile] column.
+         *
+         * @param boolean $v new value
+         * @return CmsI18n The current object (for fluent API support)
+         */
+        public function setOnMobile($v)
+        {    $this->getCurrentTranslation()->setOnMobile($v);
 
         return $this;
     }

@@ -85,6 +85,12 @@ abstract class BaseProductsStock extends BaseObject implements Persistent
     protected $alreadyInValidation = false;
 
     /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
+    /**
      * Applies default values to this object.
      * This method should be called from the object's constructor (or
      * equivalent initialization method).
@@ -156,22 +162,25 @@ abstract class BaseProductsStock extends BaseObject implements Persistent
             // while technically this is not a default value of null,
             // this seems to be closest in meaning.
             return null;
-        } else {
-            try {
-                $dt = new DateTime($this->available_from);
-            } catch (Exception $x) {
-                throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->available_from, true), $x);
-            }
+        }
+
+        try {
+            $dt = new DateTime($this->available_from);
+        } catch (Exception $x) {
+            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->available_from, true), $x);
         }
 
         if ($format === null) {
             // We cast here to maintain BC in API; obviously we will lose data if we're dealing with pre-/post-epoch dates.
             return (int) $dt->format('U');
-        } elseif (strpos($format, '%') !== false) {
-            return strftime($format, $dt->format('U'));
-        } else {
-            return $dt->format($format);
         }
+
+        if (strpos($format, '%') !== false) {
+            return strftime($format, $dt->format('U'));
+        }
+
+        return $dt->format($format);
+
     }
 
     /**
@@ -182,7 +191,7 @@ abstract class BaseProductsStock extends BaseObject implements Persistent
      */
     public function setId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -203,7 +212,7 @@ abstract class BaseProductsStock extends BaseObject implements Persistent
      */
     public function setProductsId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -228,7 +237,7 @@ abstract class BaseProductsStock extends BaseObject implements Persistent
      */
     public function setQuantity($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -313,7 +322,7 @@ abstract class BaseProductsStock extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
+            $this->postHydrate($row, $startcol, $rehydrate);
             return $startcol + 4; // 4 = ProductsStockPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -543,16 +552,16 @@ abstract class BaseProductsStock extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(ProductsStockPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`ID`';
+            $modifiedColumns[':p' . $index++]  = '`id`';
         }
         if ($this->isColumnModified(ProductsStockPeer::PRODUCTS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`PRODUCTS_ID`';
+            $modifiedColumns[':p' . $index++]  = '`products_id`';
         }
         if ($this->isColumnModified(ProductsStockPeer::QUANTITY)) {
-            $modifiedColumns[':p' . $index++]  = '`QUANTITY`';
+            $modifiedColumns[':p' . $index++]  = '`quantity`';
         }
         if ($this->isColumnModified(ProductsStockPeer::AVAILABLE_FROM)) {
-            $modifiedColumns[':p' . $index++]  = '`AVAILABLE_FROM`';
+            $modifiedColumns[':p' . $index++]  = '`available_from`';
         }
 
         $sql = sprintf(
@@ -565,16 +574,16 @@ abstract class BaseProductsStock extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`ID`':
+                    case '`id`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`PRODUCTS_ID`':
+                    case '`products_id`':
                         $stmt->bindValue($identifier, $this->products_id, PDO::PARAM_INT);
                         break;
-                    case '`QUANTITY`':
+                    case '`quantity`':
                         $stmt->bindValue($identifier, $this->quantity, PDO::PARAM_INT);
                         break;
-                    case '`AVAILABLE_FROM`':
+                    case '`available_from`':
                         $stmt->bindValue($identifier, $this->available_from, PDO::PARAM_STR);
                         break;
                 }
@@ -645,11 +654,11 @@ abstract class BaseProductsStock extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -1018,12 +1027,13 @@ abstract class BaseProductsStock extends BaseObject implements Persistent
      * Get the associated Products object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Products The associated Products object.
      * @throws PropelException
      */
-    public function getProducts(PropelPDO $con = null)
+    public function getProducts(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aProducts === null && ($this->products_id !== null)) {
+        if ($this->aProducts === null && ($this->products_id !== null) && $doQuery) {
             $this->aProducts = ProductsQuery::create()->findPk($this->products_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -1048,6 +1058,7 @@ abstract class BaseProductsStock extends BaseObject implements Persistent
         $this->available_from = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->applyDefaultValues();
         $this->resetModified();
@@ -1066,7 +1077,13 @@ abstract class BaseProductsStock extends BaseObject implements Persistent
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
+            if ($this->aProducts instanceof Persistent) {
+              $this->aProducts->clearAllReferences($deep);
+            }
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
         $this->aProducts = null;

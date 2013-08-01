@@ -38,20 +38,20 @@ abstract class BaseDomainsSettingsPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 5;
 
-    /** the column name for the ID field */
-    const ID = 'domains_settings.ID';
+    /** the column name for the id field */
+    const ID = 'domains_settings.id';
 
-    /** the column name for the DOMAIN_KEY field */
-    const DOMAIN_KEY = 'domains_settings.DOMAIN_KEY';
+    /** the column name for the domain_key field */
+    const DOMAIN_KEY = 'domains_settings.domain_key';
 
-    /** the column name for the C_KEY field */
-    const C_KEY = 'domains_settings.C_KEY';
+    /** the column name for the c_key field */
+    const C_KEY = 'domains_settings.c_key';
 
-    /** the column name for the NS field */
-    const NS = 'domains_settings.NS';
+    /** the column name for the ns field */
+    const NS = 'domains_settings.ns';
 
-    /** the column name for the C_VALUE field */
-    const C_VALUE = 'domains_settings.C_VALUE';
+    /** the column name for the c_value field */
+    const C_VALUE = 'domains_settings.c_value';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -172,11 +172,11 @@ abstract class BaseDomainsSettingsPeer
             $criteria->addSelectColumn(DomainsSettingsPeer::NS);
             $criteria->addSelectColumn(DomainsSettingsPeer::C_VALUE);
         } else {
-            $criteria->addSelectColumn($alias . '.ID');
-            $criteria->addSelectColumn($alias . '.DOMAIN_KEY');
-            $criteria->addSelectColumn($alias . '.C_KEY');
-            $criteria->addSelectColumn($alias . '.NS');
-            $criteria->addSelectColumn($alias . '.C_VALUE');
+            $criteria->addSelectColumn($alias . '.id');
+            $criteria->addSelectColumn($alias . '.domain_key');
+            $criteria->addSelectColumn($alias . '.c_key');
+            $criteria->addSelectColumn($alias . '.ns');
+            $criteria->addSelectColumn($alias . '.c_value');
         }
     }
 
@@ -260,7 +260,7 @@ abstract class BaseDomainsSettingsPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -365,8 +365,15 @@ abstract class BaseDomainsSettingsPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (DomainsSettingsPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         DomainsSettingsPeer::$instances = array();
     }
 
@@ -739,7 +746,7 @@ abstract class BaseDomainsSettingsPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return DomainsSettingsPeer::OM_CLASS;
     }

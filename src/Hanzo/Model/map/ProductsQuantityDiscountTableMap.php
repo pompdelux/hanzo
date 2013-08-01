@@ -42,10 +42,10 @@ class ProductsQuantityDiscountTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(false);
         // columns
-        $this->addForeignPrimaryKey('PRODUCTS_MASTER', 'ProductsMaster', 'VARCHAR' , 'products', 'SKU', true, 128, null);
-        $this->addForeignPrimaryKey('DOMAINS_ID', 'DomainsId', 'INTEGER' , 'domains', 'ID', true, null, null);
-        $this->addPrimaryKey('SPAN', 'Span', 'INTEGER', true, null, null);
-        $this->addColumn('DISCOUNT', 'Discount', 'DECIMAL', true, 15, null);
+        $this->addForeignPrimaryKey('products_master', 'ProductsMaster', 'VARCHAR' , 'products', 'sku', true, 128, null);
+        $this->addForeignPrimaryKey('domains_id', 'DomainsId', 'INTEGER' , 'domains', 'id', true, null, null);
+        $this->addPrimaryKey('span', 'Span', 'INTEGER', true, null, null);
+        $this->addColumn('discount', 'Discount', 'DECIMAL', true, 15, null);
         // validators
     } // initialize()
 

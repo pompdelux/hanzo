@@ -37,11 +37,11 @@ abstract class BaseSequencesPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 2;
 
-    /** the column name for the NAME field */
-    const NAME = 'sequences.NAME';
+    /** the column name for the name field */
+    const NAME = 'sequences.name';
 
-    /** the column name for the ID field */
-    const ID = 'sequences.ID';
+    /** the column name for the id field */
+    const ID = 'sequences.id';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -159,8 +159,8 @@ abstract class BaseSequencesPeer
             $criteria->addSelectColumn(SequencesPeer::NAME);
             $criteria->addSelectColumn(SequencesPeer::ID);
         } else {
-            $criteria->addSelectColumn($alias . '.NAME');
-            $criteria->addSelectColumn($alias . '.ID');
+            $criteria->addSelectColumn($alias . '.name');
+            $criteria->addSelectColumn($alias . '.id');
         }
     }
 
@@ -244,7 +244,7 @@ abstract class BaseSequencesPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -349,8 +349,15 @@ abstract class BaseSequencesPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (SequencesPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         SequencesPeer::$instances = array();
     }
 
@@ -485,7 +492,7 @@ abstract class BaseSequencesPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return SequencesPeer::OM_CLASS;
     }

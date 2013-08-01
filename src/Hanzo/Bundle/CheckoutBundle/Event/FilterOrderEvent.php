@@ -10,6 +10,7 @@ class FilterOrderEvent extends Event
 {
     protected $order;
     protected $status = null;
+    protected $in_edit = false;
 
     public function __construct(Orders $order)
     {
@@ -32,6 +33,8 @@ class FilterOrderEvent extends Event
         if (false === $code) {
           $this->stopPropagation();
         }
+
+        return $this;
     }
 
     public function getStatusCode()
@@ -47,5 +50,17 @@ class FilterOrderEvent extends Event
     public function getStatus()
     {
         return $this->status;
+    }
+
+    public function setInEdit($state = true)
+    {
+        $this->in_edit = (bool) $state;
+
+        return $this;
+    }
+
+    public function getInEdit()
+    {
+        return $this->in_edit;
     }
 }

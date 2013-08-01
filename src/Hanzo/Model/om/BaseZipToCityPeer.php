@@ -38,26 +38,26 @@ abstract class BaseZipToCityPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 7;
 
-    /** the column name for the ID field */
-    const ID = 'zip_to_city.ID';
+    /** the column name for the id field */
+    const ID = 'zip_to_city.id';
 
-    /** the column name for the ZIP field */
-    const ZIP = 'zip_to_city.ZIP';
+    /** the column name for the zip field */
+    const ZIP = 'zip_to_city.zip';
 
-    /** the column name for the COUNTRIES_ISO2 field */
-    const COUNTRIES_ISO2 = 'zip_to_city.COUNTRIES_ISO2';
+    /** the column name for the countries_iso2 field */
+    const COUNTRIES_ISO2 = 'zip_to_city.countries_iso2';
 
-    /** the column name for the CITY field */
-    const CITY = 'zip_to_city.CITY';
+    /** the column name for the city field */
+    const CITY = 'zip_to_city.city';
 
-    /** the column name for the COUNTY_ID field */
-    const COUNTY_ID = 'zip_to_city.COUNTY_ID';
+    /** the column name for the county_id field */
+    const COUNTY_ID = 'zip_to_city.county_id';
 
-    /** the column name for the COUNTY_NAME field */
-    const COUNTY_NAME = 'zip_to_city.COUNTY_NAME';
+    /** the column name for the county_name field */
+    const COUNTY_NAME = 'zip_to_city.county_name';
 
-    /** the column name for the COMMENT field */
-    const COMMENT = 'zip_to_city.COMMENT';
+    /** the column name for the comment field */
+    const COMMENT = 'zip_to_city.comment';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -180,13 +180,13 @@ abstract class BaseZipToCityPeer
             $criteria->addSelectColumn(ZipToCityPeer::COUNTY_NAME);
             $criteria->addSelectColumn(ZipToCityPeer::COMMENT);
         } else {
-            $criteria->addSelectColumn($alias . '.ID');
-            $criteria->addSelectColumn($alias . '.ZIP');
-            $criteria->addSelectColumn($alias . '.COUNTRIES_ISO2');
-            $criteria->addSelectColumn($alias . '.CITY');
-            $criteria->addSelectColumn($alias . '.COUNTY_ID');
-            $criteria->addSelectColumn($alias . '.COUNTY_NAME');
-            $criteria->addSelectColumn($alias . '.COMMENT');
+            $criteria->addSelectColumn($alias . '.id');
+            $criteria->addSelectColumn($alias . '.zip');
+            $criteria->addSelectColumn($alias . '.countries_iso2');
+            $criteria->addSelectColumn($alias . '.city');
+            $criteria->addSelectColumn($alias . '.county_id');
+            $criteria->addSelectColumn($alias . '.county_name');
+            $criteria->addSelectColumn($alias . '.comment');
         }
     }
 
@@ -270,7 +270,7 @@ abstract class BaseZipToCityPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -375,8 +375,15 @@ abstract class BaseZipToCityPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (ZipToCityPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         ZipToCityPeer::$instances = array();
     }
 
@@ -749,7 +756,7 @@ abstract class BaseZipToCityPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return ZipToCityPeer::OM_CLASS;
     }

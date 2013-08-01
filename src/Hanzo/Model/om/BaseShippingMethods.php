@@ -108,6 +108,12 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
     protected $alreadyInValidation = false;
 
     /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
+    /**
      * Applies default values to this object.
      * This method should be called from the object's constructor (or
      * equivalent initialization method).
@@ -228,7 +234,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
      */
     public function setId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -249,7 +255,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
      */
     public function setCarrier($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -270,7 +276,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
      */
     public function setMethod($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -291,7 +297,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
      */
     public function setExternalId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -312,7 +318,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
      */
     public function setCalcEngine($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -333,7 +339,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
      */
     public function setPrice($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -354,7 +360,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
      */
     public function setFee($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -375,7 +381,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
      */
     public function setFeeExternalId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -477,7 +483,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
+            $this->postHydrate($row, $startcol, $rehydrate);
             return $startcol + 9; // 9 = ShippingMethodsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -691,31 +697,31 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(ShippingMethodsPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`ID`';
+            $modifiedColumns[':p' . $index++]  = '`id`';
         }
         if ($this->isColumnModified(ShippingMethodsPeer::CARRIER)) {
-            $modifiedColumns[':p' . $index++]  = '`CARRIER`';
+            $modifiedColumns[':p' . $index++]  = '`carrier`';
         }
         if ($this->isColumnModified(ShippingMethodsPeer::METHOD)) {
-            $modifiedColumns[':p' . $index++]  = '`METHOD`';
+            $modifiedColumns[':p' . $index++]  = '`method`';
         }
         if ($this->isColumnModified(ShippingMethodsPeer::EXTERNAL_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`EXTERNAL_ID`';
+            $modifiedColumns[':p' . $index++]  = '`external_id`';
         }
         if ($this->isColumnModified(ShippingMethodsPeer::CALC_ENGINE)) {
-            $modifiedColumns[':p' . $index++]  = '`CALC_ENGINE`';
+            $modifiedColumns[':p' . $index++]  = '`calc_engine`';
         }
         if ($this->isColumnModified(ShippingMethodsPeer::PRICE)) {
-            $modifiedColumns[':p' . $index++]  = '`PRICE`';
+            $modifiedColumns[':p' . $index++]  = '`price`';
         }
         if ($this->isColumnModified(ShippingMethodsPeer::FEE)) {
-            $modifiedColumns[':p' . $index++]  = '`FEE`';
+            $modifiedColumns[':p' . $index++]  = '`fee`';
         }
         if ($this->isColumnModified(ShippingMethodsPeer::FEE_EXTERNAL_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`FEE_EXTERNAL_ID`';
+            $modifiedColumns[':p' . $index++]  = '`fee_external_id`';
         }
         if ($this->isColumnModified(ShippingMethodsPeer::IS_ACTIVE)) {
-            $modifiedColumns[':p' . $index++]  = '`IS_ACTIVE`';
+            $modifiedColumns[':p' . $index++]  = '`is_active`';
         }
 
         $sql = sprintf(
@@ -728,31 +734,31 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`ID`':
+                    case '`id`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`CARRIER`':
+                    case '`carrier`':
                         $stmt->bindValue($identifier, $this->carrier, PDO::PARAM_STR);
                         break;
-                    case '`METHOD`':
+                    case '`method`':
                         $stmt->bindValue($identifier, $this->method, PDO::PARAM_STR);
                         break;
-                    case '`EXTERNAL_ID`':
+                    case '`external_id`':
                         $stmt->bindValue($identifier, $this->external_id, PDO::PARAM_STR);
                         break;
-                    case '`CALC_ENGINE`':
+                    case '`calc_engine`':
                         $stmt->bindValue($identifier, $this->calc_engine, PDO::PARAM_STR);
                         break;
-                    case '`PRICE`':
+                    case '`price`':
                         $stmt->bindValue($identifier, $this->price, PDO::PARAM_STR);
                         break;
-                    case '`FEE`':
+                    case '`fee`':
                         $stmt->bindValue($identifier, $this->fee, PDO::PARAM_STR);
                         break;
-                    case '`FEE_EXTERNAL_ID`':
+                    case '`fee_external_id`':
                         $stmt->bindValue($identifier, $this->fee_external_id, PDO::PARAM_STR);
                         break;
-                    case '`IS_ACTIVE`':
+                    case '`is_active`':
                         $stmt->bindValue($identifier, (int) $this->is_active, PDO::PARAM_INT);
                         break;
                 }
@@ -823,11 +829,11 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -1200,6 +1206,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
         $this->is_active = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->applyDefaultValues();
         $this->resetModified();
@@ -1218,7 +1225,10 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
     }

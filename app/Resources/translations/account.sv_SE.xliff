@@ -121,7 +121,7 @@
             </trans-unit>
             <trans-unit id="54" >
                 <source>Phone</source>
-                <target>Telefonnummer</target>
+                <target>Mobilnummer</target>
             </trans-unit>
             <trans-unit id="55">
                 <source>Address line 1</source>
@@ -450,7 +450,7 @@ Du har möjlighet att ändra/lägga till/radera i din order. Du ska klicka på p
             </trans-unit>
             <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>
-                <target><![CDATA[<p>När du handlar hos POMPdeLUX ska du vara upprättad som kund här på sidan. <br /><br />Det ger dig bland annat möjlighet att kontrollera och ändra din order fram till att den blir packad och skickad från vårt lager. Du kan ändra färger och storlekar på de varor du har beställt, och du kan lägga till eller radera varor, så länge det står "Väntar" bredvid din order, det vill säga i minst 24 timmar efter att du har beställt varorna. <br /><br />Som kund hos POMPdeLUX kan du se dina tidigare beställningar samt hitta gamla fakturor på Min sida.</p><h2>Är du ny kund?</h2>]]></target>
+                <target><![CDATA[<p>När du handlar hos POMPdeLUX ska du vara upprättad som kund här på sidan. <br /><br />Det ger dig bland annat möjlighet att kontrollera och ändra din order fram till att den blir packad och skickad från vårt lager. Du kan ändra färger och storlekar på de varor du har beställt, och du kan lägga till eller radera varor, så länge det står "Väntar" bredvid din order, det vill säga i minst 24 timmar efter att du har beställt varorna.<br /><br />Som kund hos POMPdeLUX kan du se dina tidigare beställningar samt hitta gamla fakturor på Min sida.</p><h2>Är du ny kund?</h2>]]></target>
             </trans-unit>
             <trans-unit id="my.account.login.header" approved="no">
                 <source>my.account.login.header</source>

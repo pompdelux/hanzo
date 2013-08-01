@@ -42,9 +42,9 @@ class DomainsTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(true);
         // columns
-        $this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
-        $this->addColumn('DOMAIN_NAME', 'DomainName', 'VARCHAR', true, 255, null);
-        $this->addColumn('DOMAIN_KEY', 'DomainKey', 'VARCHAR', true, 12, null);
+        $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
+        $this->addColumn('domain_name', 'DomainName', 'VARCHAR', true, 255, null);
+        $this->addColumn('domain_key', 'DomainKey', 'VARCHAR', true, 12, null);
         // validators
     } // initialize()
 

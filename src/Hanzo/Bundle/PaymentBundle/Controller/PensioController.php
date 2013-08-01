@@ -110,6 +110,7 @@ class PensioController extends CoreController
                 Propel::getConnection(null, Propel::CONNECTION_WRITE)
             )
         ;
+        $order->reload(true);
 
         if ($order instanceof Orders) {
             $api = $this->get('payment.pensioapi');

@@ -96,6 +96,13 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
     protected $is_active;
 
     /**
+     * The value for the on_mobile field.
+     * Note: this column has a database default value of: true
+     * @var        boolean
+     */
+    protected $on_mobile;
+
+    /**
      * @var        Cms
      */
     protected $aCms;
@@ -115,6 +122,12 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
     protected $alreadyInValidation = false;
 
     /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
+    /**
      * Applies default values to this object.
      * This method should be called from the object's constructor (or
      * equivalent initialization method).
@@ -125,6 +138,7 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
         $this->locale = 'da_DK';
         $this->is_restricted = false;
         $this->is_active = true;
+        $this->on_mobile = true;
     }
 
     /**
@@ -228,6 +242,16 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
     }
 
     /**
+     * Get the [on_mobile] column value.
+     *
+     * @return boolean
+     */
+    public function getOnMobile()
+    {
+        return $this->on_mobile;
+    }
+
+    /**
      * Set the value of [id] column.
      *
      * @param int $v new value
@@ -235,7 +259,7 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
      */
     public function setId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -260,7 +284,7 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
      */
     public function setLocale($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -281,7 +305,7 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
      */
     public function setTitle($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -302,7 +326,7 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
      */
     public function setPath($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -323,7 +347,7 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
      */
     public function setOldPath($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -344,7 +368,7 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
      */
     public function setContent($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -365,7 +389,7 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
      */
     public function setSettings($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -437,6 +461,35 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
     } // setIsActive()
 
     /**
+     * Sets the value of the [on_mobile] column.
+     * Non-boolean arguments are converted using the following rules:
+     *   * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
+     *   * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
+     * Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
+     *
+     * @param boolean|integer|string $v The new value
+     * @return CmsI18n The current object (for fluent API support)
+     */
+    public function setOnMobile($v)
+    {
+        if ($v !== null) {
+            if (is_string($v)) {
+                $v = in_array(strtolower($v), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+            } else {
+                $v = (boolean) $v;
+            }
+        }
+
+        if ($this->on_mobile !== $v) {
+            $this->on_mobile = $v;
+            $this->modifiedColumns[] = CmsI18nPeer::ON_MOBILE;
+        }
+
+
+        return $this;
+    } // setOnMobile()
+
+    /**
      * Indicates whether the columns in this object are only set to default values.
      *
      * This method can be used in conjunction with isModified() to indicate whether an object is both
@@ -455,6 +508,10 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
             }
 
             if ($this->is_active !== true) {
+                return false;
+            }
+
+            if ($this->on_mobile !== true) {
                 return false;
             }
 
@@ -489,6 +546,7 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
             $this->settings = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
             $this->is_restricted = ($row[$startcol + 7] !== null) ? (boolean) $row[$startcol + 7] : null;
             $this->is_active = ($row[$startcol + 8] !== null) ? (boolean) $row[$startcol + 8] : null;
+            $this->on_mobile = ($row[$startcol + 9] !== null) ? (boolean) $row[$startcol + 9] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -496,8 +554,8 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
-            return $startcol + 9; // 9 = CmsI18nPeer::NUM_HYDRATE_COLUMNS.
+            $this->postHydrate($row, $startcol, $rehydrate);
+            return $startcol + 10; // 10 = CmsI18nPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating CmsI18n object", $e);
@@ -722,31 +780,34 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(CmsI18nPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`ID`';
+            $modifiedColumns[':p' . $index++]  = '`id`';
         }
         if ($this->isColumnModified(CmsI18nPeer::LOCALE)) {
-            $modifiedColumns[':p' . $index++]  = '`LOCALE`';
+            $modifiedColumns[':p' . $index++]  = '`locale`';
         }
         if ($this->isColumnModified(CmsI18nPeer::TITLE)) {
-            $modifiedColumns[':p' . $index++]  = '`TITLE`';
+            $modifiedColumns[':p' . $index++]  = '`title`';
         }
         if ($this->isColumnModified(CmsI18nPeer::PATH)) {
-            $modifiedColumns[':p' . $index++]  = '`PATH`';
+            $modifiedColumns[':p' . $index++]  = '`path`';
         }
         if ($this->isColumnModified(CmsI18nPeer::OLD_PATH)) {
-            $modifiedColumns[':p' . $index++]  = '`OLD_PATH`';
+            $modifiedColumns[':p' . $index++]  = '`old_path`';
         }
         if ($this->isColumnModified(CmsI18nPeer::CONTENT)) {
-            $modifiedColumns[':p' . $index++]  = '`CONTENT`';
+            $modifiedColumns[':p' . $index++]  = '`content`';
         }
         if ($this->isColumnModified(CmsI18nPeer::SETTINGS)) {
-            $modifiedColumns[':p' . $index++]  = '`SETTINGS`';
+            $modifiedColumns[':p' . $index++]  = '`settings`';
         }
         if ($this->isColumnModified(CmsI18nPeer::IS_RESTRICTED)) {
-            $modifiedColumns[':p' . $index++]  = '`IS_RESTRICTED`';
+            $modifiedColumns[':p' . $index++]  = '`is_restricted`';
         }
         if ($this->isColumnModified(CmsI18nPeer::IS_ACTIVE)) {
-            $modifiedColumns[':p' . $index++]  = '`IS_ACTIVE`';
+            $modifiedColumns[':p' . $index++]  = '`is_active`';
+        }
+        if ($this->isColumnModified(CmsI18nPeer::ON_MOBILE)) {
+            $modifiedColumns[':p' . $index++]  = '`on_mobile`';
         }
 
         $sql = sprintf(
@@ -759,32 +820,35 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`ID`':
+                    case '`id`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`LOCALE`':
+                    case '`locale`':
                         $stmt->bindValue($identifier, $this->locale, PDO::PARAM_STR);
                         break;
-                    case '`TITLE`':
+                    case '`title`':
                         $stmt->bindValue($identifier, $this->title, PDO::PARAM_STR);
                         break;
-                    case '`PATH`':
+                    case '`path`':
                         $stmt->bindValue($identifier, $this->path, PDO::PARAM_STR);
                         break;
-                    case '`OLD_PATH`':
+                    case '`old_path`':
                         $stmt->bindValue($identifier, $this->old_path, PDO::PARAM_STR);
                         break;
-                    case '`CONTENT`':
+                    case '`content`':
                         $stmt->bindValue($identifier, $this->content, PDO::PARAM_STR);
                         break;
-                    case '`SETTINGS`':
+                    case '`settings`':
                         $stmt->bindValue($identifier, $this->settings, PDO::PARAM_STR);
                         break;
-                    case '`IS_RESTRICTED`':
+                    case '`is_restricted`':
                         $stmt->bindValue($identifier, (int) $this->is_restricted, PDO::PARAM_INT);
                         break;
-                    case '`IS_ACTIVE`':
+                    case '`is_active`':
                         $stmt->bindValue($identifier, (int) $this->is_active, PDO::PARAM_INT);
+                        break;
+                    case '`on_mobile`':
+                        $stmt->bindValue($identifier, (int) $this->on_mobile, PDO::PARAM_INT);
                         break;
                 }
             }
@@ -847,11 +911,11 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -952,6 +1016,9 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
             case 8:
                 return $this->getIsActive();
                 break;
+            case 9:
+                return $this->getOnMobile();
+                break;
             default:
                 return null;
                 break;
@@ -990,6 +1057,7 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
             $keys[6] => $this->getSettings(),
             $keys[7] => $this->getIsRestricted(),
             $keys[8] => $this->getIsActive(),
+            $keys[9] => $this->getOnMobile(),
         );
         if ($includeForeignObjects) {
             if (null !== $this->aCms) {
@@ -1056,6 +1124,9 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
             case 8:
                 $this->setIsActive($value);
                 break;
+            case 9:
+                $this->setOnMobile($value);
+                break;
         } // switch()
     }
 
@@ -1089,6 +1160,7 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
         if (array_key_exists($keys[6], $arr)) $this->setSettings($arr[$keys[6]]);
         if (array_key_exists($keys[7], $arr)) $this->setIsRestricted($arr[$keys[7]]);
         if (array_key_exists($keys[8], $arr)) $this->setIsActive($arr[$keys[8]]);
+        if (array_key_exists($keys[9], $arr)) $this->setOnMobile($arr[$keys[9]]);
     }
 
     /**
@@ -1109,6 +1181,7 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
         if ($this->isColumnModified(CmsI18nPeer::SETTINGS)) $criteria->add(CmsI18nPeer::SETTINGS, $this->settings);
         if ($this->isColumnModified(CmsI18nPeer::IS_RESTRICTED)) $criteria->add(CmsI18nPeer::IS_RESTRICTED, $this->is_restricted);
         if ($this->isColumnModified(CmsI18nPeer::IS_ACTIVE)) $criteria->add(CmsI18nPeer::IS_ACTIVE, $this->is_active);
+        if ($this->isColumnModified(CmsI18nPeer::ON_MOBILE)) $criteria->add(CmsI18nPeer::ON_MOBILE, $this->on_mobile);
 
         return $criteria;
     }
@@ -1188,6 +1261,7 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
         $copyObj->setSettings($this->getSettings());
         $copyObj->setIsRestricted($this->getIsRestricted());
         $copyObj->setIsActive($this->getIsActive());
+        $copyObj->setOnMobile($this->getOnMobile());
 
         if ($deepCopy && !$this->startCopy) {
             // important: temporarily setNew(false) because this affects the behavior of
@@ -1277,12 +1351,13 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
      * Get the associated Cms object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Cms The associated Cms object.
      * @throws PropelException
      */
-    public function getCms(PropelPDO $con = null)
+    public function getCms(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aCms === null && ($this->id !== null)) {
+        if ($this->aCms === null && ($this->id !== null) && $doQuery) {
             $this->aCms = CmsQuery::create()->findPk($this->id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -1310,8 +1385,10 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
         $this->settings = null;
         $this->is_restricted = null;
         $this->is_active = null;
+        $this->on_mobile = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->applyDefaultValues();
         $this->resetModified();
@@ -1330,7 +1407,13 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
+            if ($this->aCms instanceof Persistent) {
+              $this->aCms->clearAllReferences($deep);
+            }
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
         $this->aCms = null;

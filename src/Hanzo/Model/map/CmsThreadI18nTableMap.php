@@ -42,10 +42,10 @@ class CmsThreadI18nTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(false);
         // columns
-        $this->addForeignPrimaryKey('ID', 'Id', 'INTEGER' , 'cms_thread', 'ID', true, null, null);
-        $this->addPrimaryKey('LOCALE', 'Locale', 'VARCHAR', true, 5, 'da_DK');
-        $this->addColumn('TITLE', 'Title', 'VARCHAR', true, 255, null);
-        $this->getColumn('TITLE', false)->setPrimaryString(true);
+        $this->addForeignPrimaryKey('id', 'Id', 'INTEGER' , 'cms_thread', 'id', true, null, null);
+        $this->addPrimaryKey('locale', 'Locale', 'VARCHAR', true, 5, 'da_DK');
+        $this->addColumn('title', 'Title', 'VARCHAR', true, 255, null);
+        $this->getColumn('title', false)->setPrimaryString(true);
         // validators
     } // initialize()
 

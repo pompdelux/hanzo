@@ -18,4 +18,16 @@ use Hanzo\Model\om\BaseCoupons;
  */
 class Coupons extends BaseCoupons {
 
+    protected $quantity;
+
+    public function setQuantity($v)
+    {
+        $this->quantity = $v;
+    }
+
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
+
 } // Coupons

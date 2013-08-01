@@ -63,7 +63,6 @@ use Hanzo\Model\EventsParticipantsQuery;
  * @method EventsParticipants findOne(PropelPDO $con = null) Return the first EventsParticipants matching the query
  * @method EventsParticipants findOneOrCreate(PropelPDO $con = null) Return the first EventsParticipants matching the query, or a new EventsParticipants object populated from the query conditions when no match is found
  *
- * @method EventsParticipants findOneById(int $id) Return the first EventsParticipants filtered by the id column
  * @method EventsParticipants findOneByEventsId(int $events_id) Return the first EventsParticipants filtered by the events_id column
  * @method EventsParticipants findOneByKey(string $key) Return the first EventsParticipants filtered by the key column
  * @method EventsParticipants findOneByInvitedBy(int $invited_by) Return the first EventsParticipants filtered by the invited_by column
@@ -115,7 +114,7 @@ abstract class BaseEventsParticipantsQuery extends ModelCriteria
      * Returns a new EventsParticipantsQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     EventsParticipantsQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   EventsParticipantsQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return EventsParticipantsQuery
      */
@@ -172,18 +171,32 @@ abstract class BaseEventsParticipantsQuery extends ModelCriteria
     }
 
     /**
+     * Alias of findPk to use instance pooling
+     *
+     * @param     mixed $key Primary key to use for the query
+     * @param     PropelPDO $con A connection object
+     *
+     * @return                 EventsParticipants A model object, or null if the key is not found
+     * @throws PropelException
+     */
+     public function findOneById($key, $con = null)
+     {
+        return $this->findPk($key, $con);
+     }
+
+    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   EventsParticipants A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 EventsParticipants A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `ID`, `EVENTS_ID`, `KEY`, `INVITED_BY`, `FIRST_NAME`, `LAST_NAME`, `EMAIL`, `PHONE`, `TELL_A_FRIEND`, `NOTIFY_BY_SMS`, `SMS_SEND_AT`, `HAS_ACCEPTED`, `EXPIRES_AT`, `RESPONDED_AT`, `CREATED_AT`, `UPDATED_AT` FROM `events_participants` WHERE `ID` = :p0';
+        $sql = 'SELECT `id`, `events_id`, `key`, `invited_by`, `first_name`, `last_name`, `email`, `phone`, `tell_a_friend`, `notify_by_sms`, `sms_send_at`, `has_accepted`, `expires_at`, `responded_at`, `created_at`, `updated_at` FROM `events_participants` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -279,7 +292,8 @@ abstract class BaseEventsParticipantsQuery extends ModelCriteria
      * <code>
      * $query->filterById(1234); // WHERE id = 1234
      * $query->filterById(array(12, 34)); // WHERE id IN (12, 34)
-     * $query->filterById(array('min' => 12)); // WHERE id > 12
+     * $query->filterById(array('min' => 12)); // WHERE id >= 12
+     * $query->filterById(array('max' => 12)); // WHERE id <= 12
      * </code>
      *
      * @param     mixed $id The value to use as filter.
@@ -292,8 +306,22 @@ abstract class BaseEventsParticipantsQuery extends ModelCriteria
      */
     public function filterById($id = null, $comparison = null)
     {
-        if (is_array($id) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($id)) {
+            $useMinMax = false;
+            if (isset($id['min'])) {
+                $this->addUsingAlias(EventsParticipantsPeer::ID, $id['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($id['max'])) {
+                $this->addUsingAlias(EventsParticipantsPeer::ID, $id['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(EventsParticipantsPeer::ID, $id, $comparison);
@@ -306,7 +334,8 @@ abstract class BaseEventsParticipantsQuery extends ModelCriteria
      * <code>
      * $query->filterByEventsId(1234); // WHERE events_id = 1234
      * $query->filterByEventsId(array(12, 34)); // WHERE events_id IN (12, 34)
-     * $query->filterByEventsId(array('min' => 12)); // WHERE events_id > 12
+     * $query->filterByEventsId(array('min' => 12)); // WHERE events_id >= 12
+     * $query->filterByEventsId(array('max' => 12)); // WHERE events_id <= 12
      * </code>
      *
      * @see       filterByEvents()
@@ -378,7 +407,8 @@ abstract class BaseEventsParticipantsQuery extends ModelCriteria
      * <code>
      * $query->filterByInvitedBy(1234); // WHERE invited_by = 1234
      * $query->filterByInvitedBy(array(12, 34)); // WHERE invited_by IN (12, 34)
-     * $query->filterByInvitedBy(array('min' => 12)); // WHERE invited_by > 12
+     * $query->filterByInvitedBy(array('min' => 12)); // WHERE invited_by >= 12
+     * $query->filterByInvitedBy(array('max' => 12)); // WHERE invited_by <= 12
      * </code>
      *
      * @param     mixed $invitedBy The value to use as filter.
@@ -549,7 +579,7 @@ abstract class BaseEventsParticipantsQuery extends ModelCriteria
     public function filterByTellAFriend($tellAFriend = null, $comparison = null)
     {
         if (is_string($tellAFriend)) {
-            $tell_a_friend = in_array(strtolower($tellAFriend), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+            $tellAFriend = in_array(strtolower($tellAFriend), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
         }
 
         return $this->addUsingAlias(EventsParticipantsPeer::TELL_A_FRIEND, $tellAFriend, $comparison);
@@ -576,7 +606,7 @@ abstract class BaseEventsParticipantsQuery extends ModelCriteria
     public function filterByNotifyBySms($notifyBySms = null, $comparison = null)
     {
         if (is_string($notifyBySms)) {
-            $notify_by_sms = in_array(strtolower($notifyBySms), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+            $notifyBySms = in_array(strtolower($notifyBySms), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
         }
 
         return $this->addUsingAlias(EventsParticipantsPeer::NOTIFY_BY_SMS, $notifyBySms, $comparison);
@@ -646,7 +676,7 @@ abstract class BaseEventsParticipantsQuery extends ModelCriteria
     public function filterByHasAccepted($hasAccepted = null, $comparison = null)
     {
         if (is_string($hasAccepted)) {
-            $has_accepted = in_array(strtolower($hasAccepted), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+            $hasAccepted = in_array(strtolower($hasAccepted), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
         }
 
         return $this->addUsingAlias(EventsParticipantsPeer::HAS_ACCEPTED, $hasAccepted, $comparison);
@@ -830,8 +860,8 @@ abstract class BaseEventsParticipantsQuery extends ModelCriteria
      * @param   Events|PropelObjectCollection $events The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   EventsParticipantsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 EventsParticipantsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByEvents($events, $comparison = null)
     {

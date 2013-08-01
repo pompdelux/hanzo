@@ -42,9 +42,9 @@ class HelpdeskDataLogTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(false);
         // columns
-        $this->addPrimaryKey('KEY', 'Key', 'VARCHAR', true, 64, null);
-        $this->addColumn('DATA', 'Data', 'CLOB', true, null, null);
-        $this->addColumn('CREATED_AT', 'CreatedAt', 'TIMESTAMP', true, null, null);
+        $this->addPrimaryKey('key', 'Key', 'VARCHAR', true, 64, null);
+        $this->addColumn('data', 'Data', 'CLOB', true, null, null);
+        $this->addColumn('created_at', 'CreatedAt', 'TIMESTAMP', true, null, null);
         // validators
     } // initialize()
 

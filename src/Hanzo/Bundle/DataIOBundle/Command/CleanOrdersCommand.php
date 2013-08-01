@@ -55,5 +55,8 @@ class CleanOrdersCommand extends ContainerAwareCommand
             error_log("\n[".date('Y-m-d H:i:s').'] Would roll back '.$cancel_count.' stale orders.');
             error_log('['.date('Y-m-d H:i:s').'] Would delete '.$delete_count.' stale orders.');
         }
+
+        $prefix = substr($this->getContainer()->getParameter('locale'), -2);
+        $this->getContainer()->get('redis.permanent')->hset('cron.log', $prefix.':clean_orders', time());
     }
 }

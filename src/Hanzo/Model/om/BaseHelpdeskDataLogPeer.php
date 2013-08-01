@@ -37,14 +37,14 @@ abstract class BaseHelpdeskDataLogPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 3;
 
-    /** the column name for the KEY field */
-    const KEY = 'helpdesk_data_log.KEY';
+    /** the column name for the key field */
+    const KEY = 'helpdesk_data_log.key';
 
-    /** the column name for the DATA field */
-    const DATA = 'helpdesk_data_log.DATA';
+    /** the column name for the data field */
+    const DATA = 'helpdesk_data_log.data';
 
-    /** the column name for the CREATED_AT field */
-    const CREATED_AT = 'helpdesk_data_log.CREATED_AT';
+    /** the column name for the created_at field */
+    const CREATED_AT = 'helpdesk_data_log.created_at';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -163,9 +163,9 @@ abstract class BaseHelpdeskDataLogPeer
             $criteria->addSelectColumn(HelpdeskDataLogPeer::DATA);
             $criteria->addSelectColumn(HelpdeskDataLogPeer::CREATED_AT);
         } else {
-            $criteria->addSelectColumn($alias . '.KEY');
-            $criteria->addSelectColumn($alias . '.DATA');
-            $criteria->addSelectColumn($alias . '.CREATED_AT');
+            $criteria->addSelectColumn($alias . '.key');
+            $criteria->addSelectColumn($alias . '.data');
+            $criteria->addSelectColumn($alias . '.created_at');
         }
     }
 
@@ -249,7 +249,7 @@ abstract class BaseHelpdeskDataLogPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -354,8 +354,15 @@ abstract class BaseHelpdeskDataLogPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (HelpdeskDataLogPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         HelpdeskDataLogPeer::$instances = array();
     }
 
@@ -490,7 +497,7 @@ abstract class BaseHelpdeskDataLogPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return HelpdeskDataLogPeer::OM_CLASS;
     }

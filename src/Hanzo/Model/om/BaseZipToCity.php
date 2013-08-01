@@ -100,6 +100,12 @@ abstract class BaseZipToCity extends BaseObject implements Persistent
     protected $alreadyInValidation = false;
 
     /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
+    /**
      * Get the [id] column value.
      *
      * @return int
@@ -177,7 +183,7 @@ abstract class BaseZipToCity extends BaseObject implements Persistent
      */
     public function setId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -198,7 +204,7 @@ abstract class BaseZipToCity extends BaseObject implements Persistent
      */
     public function setZip($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -219,7 +225,7 @@ abstract class BaseZipToCity extends BaseObject implements Persistent
      */
     public function setCountriesIso2($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -244,7 +250,7 @@ abstract class BaseZipToCity extends BaseObject implements Persistent
      */
     public function setCity($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -265,7 +271,7 @@ abstract class BaseZipToCity extends BaseObject implements Persistent
      */
     public function setCountyId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -286,7 +292,7 @@ abstract class BaseZipToCity extends BaseObject implements Persistent
      */
     public function setCountyName($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -307,7 +313,7 @@ abstract class BaseZipToCity extends BaseObject implements Persistent
      */
     public function setComment($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -366,7 +372,7 @@ abstract class BaseZipToCity extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
+            $this->postHydrate($row, $startcol, $rehydrate);
             return $startcol + 7; // 7 = ZipToCityPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -596,25 +602,25 @@ abstract class BaseZipToCity extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(ZipToCityPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`ID`';
+            $modifiedColumns[':p' . $index++]  = '`id`';
         }
         if ($this->isColumnModified(ZipToCityPeer::ZIP)) {
-            $modifiedColumns[':p' . $index++]  = '`ZIP`';
+            $modifiedColumns[':p' . $index++]  = '`zip`';
         }
         if ($this->isColumnModified(ZipToCityPeer::COUNTRIES_ISO2)) {
-            $modifiedColumns[':p' . $index++]  = '`COUNTRIES_ISO2`';
+            $modifiedColumns[':p' . $index++]  = '`countries_iso2`';
         }
         if ($this->isColumnModified(ZipToCityPeer::CITY)) {
-            $modifiedColumns[':p' . $index++]  = '`CITY`';
+            $modifiedColumns[':p' . $index++]  = '`city`';
         }
         if ($this->isColumnModified(ZipToCityPeer::COUNTY_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`COUNTY_ID`';
+            $modifiedColumns[':p' . $index++]  = '`county_id`';
         }
         if ($this->isColumnModified(ZipToCityPeer::COUNTY_NAME)) {
-            $modifiedColumns[':p' . $index++]  = '`COUNTY_NAME`';
+            $modifiedColumns[':p' . $index++]  = '`county_name`';
         }
         if ($this->isColumnModified(ZipToCityPeer::COMMENT)) {
-            $modifiedColumns[':p' . $index++]  = '`COMMENT`';
+            $modifiedColumns[':p' . $index++]  = '`comment`';
         }
 
         $sql = sprintf(
@@ -627,25 +633,25 @@ abstract class BaseZipToCity extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`ID`':
+                    case '`id`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`ZIP`':
+                    case '`zip`':
                         $stmt->bindValue($identifier, $this->zip, PDO::PARAM_STR);
                         break;
-                    case '`COUNTRIES_ISO2`':
+                    case '`countries_iso2`':
                         $stmt->bindValue($identifier, $this->countries_iso2, PDO::PARAM_STR);
                         break;
-                    case '`CITY`':
+                    case '`city`':
                         $stmt->bindValue($identifier, $this->city, PDO::PARAM_STR);
                         break;
-                    case '`COUNTY_ID`':
+                    case '`county_id`':
                         $stmt->bindValue($identifier, $this->county_id, PDO::PARAM_STR);
                         break;
-                    case '`COUNTY_NAME`':
+                    case '`county_name`':
                         $stmt->bindValue($identifier, $this->county_name, PDO::PARAM_STR);
                         break;
-                    case '`COMMENT`':
+                    case '`comment`':
                         $stmt->bindValue($identifier, $this->comment, PDO::PARAM_STR);
                         break;
                 }
@@ -716,11 +722,11 @@ abstract class BaseZipToCity extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -1119,12 +1125,13 @@ abstract class BaseZipToCity extends BaseObject implements Persistent
      * Get the associated Countries object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Countries The associated Countries object.
      * @throws PropelException
      */
-    public function getCountries(PropelPDO $con = null)
+    public function getCountries(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aCountries === null && (($this->countries_iso2 !== "" && $this->countries_iso2 !== null))) {
+        if ($this->aCountries === null && (($this->countries_iso2 !== "" && $this->countries_iso2 !== null)) && $doQuery) {
             $this->aCountries = CountriesQuery::create()
                 ->filterByZipToCity($this) // here
                 ->findOne($con);
@@ -1154,6 +1161,7 @@ abstract class BaseZipToCity extends BaseObject implements Persistent
         $this->comment = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->resetModified();
         $this->setNew(true);
@@ -1171,7 +1179,13 @@ abstract class BaseZipToCity extends BaseObject implements Persistent
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
+            if ($this->aCountries instanceof Persistent) {
+              $this->aCountries->clearAllReferences($deep);
+            }
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
         $this->aCountries = null;

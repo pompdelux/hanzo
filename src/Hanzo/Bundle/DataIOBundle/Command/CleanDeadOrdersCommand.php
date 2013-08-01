@@ -23,7 +23,7 @@ class CleanDeadOrdersCommand extends ContainerAwareCommand
             ->setDescription('Removes stale and dead orders')
             ->addOption('dryrun', null, InputOption::VALUE_NONE, 'If set, the task will not change any orders')
             ->addOption('debug', null, InputOption::VALUE_NONE, 'If set, output debugging info')
-            ;
+        ;
     }
 
     /**
@@ -49,5 +49,8 @@ class CleanDeadOrdersCommand extends ContainerAwareCommand
 
         $deadOrderBuster = $this->getContainer()->get('deadorder_manager');
         $deadOrderBuster->autoCleanup( $dryrun, $debug );
+
+        $prefix = substr($this->getContainer()->getParameter('locale'), -2);
+        $this->getContainer()->get('redis.permanent')->hset('cron.log', $prefix.':clean_dead_orders', time());
     }
 }

@@ -64,7 +64,7 @@ abstract class BaseProductsImagesProductReferencesQuery extends ModelCriteria
      * Returns a new ProductsImagesProductReferencesQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     ProductsImagesProductReferencesQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   ProductsImagesProductReferencesQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return ProductsImagesProductReferencesQuery
      */
@@ -128,12 +128,12 @@ abstract class BaseProductsImagesProductReferencesQuery extends ModelCriteria
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   ProductsImagesProductReferences A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 ProductsImagesProductReferences A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `PRODUCTS_IMAGES_ID`, `PRODUCTS_ID` FROM `products_images_product_references` WHERE `PRODUCTS_IMAGES_ID` = :p0 AND `PRODUCTS_ID` = :p1';
+        $sql = 'SELECT `products_images_id`, `products_id` FROM `products_images_product_references` WHERE `products_images_id` = :p0 AND `products_id` = :p1';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);
@@ -241,7 +241,8 @@ abstract class BaseProductsImagesProductReferencesQuery extends ModelCriteria
      * <code>
      * $query->filterByProductsImagesId(1234); // WHERE products_images_id = 1234
      * $query->filterByProductsImagesId(array(12, 34)); // WHERE products_images_id IN (12, 34)
-     * $query->filterByProductsImagesId(array('min' => 12)); // WHERE products_images_id > 12
+     * $query->filterByProductsImagesId(array('min' => 12)); // WHERE products_images_id >= 12
+     * $query->filterByProductsImagesId(array('max' => 12)); // WHERE products_images_id <= 12
      * </code>
      *
      * @see       filterByProductsImages()
@@ -256,8 +257,22 @@ abstract class BaseProductsImagesProductReferencesQuery extends ModelCriteria
      */
     public function filterByProductsImagesId($productsImagesId = null, $comparison = null)
     {
-        if (is_array($productsImagesId) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($productsImagesId)) {
+            $useMinMax = false;
+            if (isset($productsImagesId['min'])) {
+                $this->addUsingAlias(ProductsImagesProductReferencesPeer::PRODUCTS_IMAGES_ID, $productsImagesId['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($productsImagesId['max'])) {
+                $this->addUsingAlias(ProductsImagesProductReferencesPeer::PRODUCTS_IMAGES_ID, $productsImagesId['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(ProductsImagesProductReferencesPeer::PRODUCTS_IMAGES_ID, $productsImagesId, $comparison);
@@ -270,7 +285,8 @@ abstract class BaseProductsImagesProductReferencesQuery extends ModelCriteria
      * <code>
      * $query->filterByProductsId(1234); // WHERE products_id = 1234
      * $query->filterByProductsId(array(12, 34)); // WHERE products_id IN (12, 34)
-     * $query->filterByProductsId(array('min' => 12)); // WHERE products_id > 12
+     * $query->filterByProductsId(array('min' => 12)); // WHERE products_id >= 12
+     * $query->filterByProductsId(array('max' => 12)); // WHERE products_id <= 12
      * </code>
      *
      * @see       filterByProducts()
@@ -285,8 +301,22 @@ abstract class BaseProductsImagesProductReferencesQuery extends ModelCriteria
      */
     public function filterByProductsId($productsId = null, $comparison = null)
     {
-        if (is_array($productsId) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($productsId)) {
+            $useMinMax = false;
+            if (isset($productsId['min'])) {
+                $this->addUsingAlias(ProductsImagesProductReferencesPeer::PRODUCTS_ID, $productsId['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($productsId['max'])) {
+                $this->addUsingAlias(ProductsImagesProductReferencesPeer::PRODUCTS_ID, $productsId['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(ProductsImagesProductReferencesPeer::PRODUCTS_ID, $productsId, $comparison);
@@ -298,8 +328,8 @@ abstract class BaseProductsImagesProductReferencesQuery extends ModelCriteria
      * @param   ProductsImages|PropelObjectCollection $productsImages The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   ProductsImagesProductReferencesQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 ProductsImagesProductReferencesQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByProductsImages($productsImages, $comparison = null)
     {
@@ -374,8 +404,8 @@ abstract class BaseProductsImagesProductReferencesQuery extends ModelCriteria
      * @param   Products|PropelObjectCollection $products The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   ProductsImagesProductReferencesQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 ProductsImagesProductReferencesQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByProducts($products, $comparison = null)
     {

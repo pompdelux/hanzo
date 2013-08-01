@@ -28,6 +28,12 @@ class DeadOrderService
     protected $dryrun = false;
     protected $debug  = false;
 
+    protected $currency_map = [
+        58  => 'DKK',
+        161 => 'NOK',
+        207 => 'SEK',
+    ];
+
     public function __construct($parameters, $settings)
     {
         $this->dibsApi         = $parameters[0];
@@ -125,6 +131,15 @@ class DeadOrderService
             'id'                => $order->getId(),
             'order_last_update' => $order->getUpdatedAt()
         );
+
+        // fix broken currency code
+        if (!$order->getCurrencyCode()) {
+            $code = 'EUR';
+            if (isset($this->currency_map[$order->getBillingCountriesId()])){
+                $code = $this->currency_map[$order->getBillingCountriesId()];
+            }
+            $order->setCurrencyCode($code);
+        }
 
         $pgId = $order->getPaymentGatewayId();
         $this->debug("Processing: order id: ".$order->getId()." (payment gateway id:".$pgId."), in state: ".$order->getState());

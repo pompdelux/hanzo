@@ -42,47 +42,47 @@ class OrdersTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(true);
         // columns
-        $this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
-        $this->addColumn('VERSION_ID', 'VersionId', 'INTEGER', true, null, 1);
-        $this->addColumn('SESSION_ID', 'SessionId', 'VARCHAR', true, 32, null);
-        $this->addColumn('PAYMENT_GATEWAY_ID', 'PaymentGatewayId', 'INTEGER', false, null, null);
-        $this->addColumn('STATE', 'State', 'INTEGER', true, null, -50);
-        $this->addColumn('IN_EDIT', 'InEdit', 'BOOLEAN', true, 1, false);
-        $this->addForeignKey('CUSTOMERS_ID', 'CustomersId', 'INTEGER', 'customers', 'ID', false, null, null);
-        $this->addColumn('FIRST_NAME', 'FirstName', 'VARCHAR', false, 128, null);
-        $this->addColumn('LAST_NAME', 'LastName', 'VARCHAR', false, 128, null);
-        $this->addColumn('EMAIL', 'Email', 'VARCHAR', false, 255, null);
-        $this->addColumn('PHONE', 'Phone', 'VARCHAR', false, 32, null);
-        $this->addColumn('LANGUAGES_ID', 'LanguagesId', 'INTEGER', true, null, null);
-        $this->addColumn('CURRENCY_CODE', 'CurrencyCode', 'VARCHAR', true, 12, '');
-        $this->addColumn('BILLING_FIRST_NAME', 'BillingFirstName', 'VARCHAR', true, 128, null);
-        $this->addColumn('BILLING_LAST_NAME', 'BillingLastName', 'VARCHAR', true, 128, null);
-        $this->addColumn('BILLING_ADDRESS_LINE_1', 'BillingAddressLine1', 'VARCHAR', false, 255, null);
-        $this->addColumn('BILLING_ADDRESS_LINE_2', 'BillingAddressLine2', 'VARCHAR', false, 255, null);
-        $this->addColumn('BILLING_POSTAL_CODE', 'BillingPostalCode', 'VARCHAR', false, 12, null);
-        $this->addColumn('BILLING_CITY', 'BillingCity', 'VARCHAR', false, 64, null);
-        $this->addColumn('BILLING_COUNTRY', 'BillingCountry', 'VARCHAR', false, 128, null);
-        $this->addForeignKey('BILLING_COUNTRIES_ID', 'BillingCountriesId', 'INTEGER', 'countries', 'ID', false, null, null);
-        $this->addColumn('BILLING_STATE_PROVINCE', 'BillingStateProvince', 'VARCHAR', false, 64, null);
-        $this->addColumn('BILLING_COMPANY_NAME', 'BillingCompanyName', 'VARCHAR', false, 128, null);
-        $this->addColumn('BILLING_METHOD', 'BillingMethod', 'VARCHAR', false, 64, null);
-        $this->addColumn('BILLING_EXTERNAL_ADDRESS_ID', 'BillingExternalAddressId', 'VARCHAR', false, 128, null);
-        $this->addColumn('DELIVERY_FIRST_NAME', 'DeliveryFirstName', 'VARCHAR', true, 128, null);
-        $this->addColumn('DELIVERY_LAST_NAME', 'DeliveryLastName', 'VARCHAR', true, 128, null);
-        $this->addColumn('DELIVERY_ADDRESS_LINE_1', 'DeliveryAddressLine1', 'VARCHAR', false, 255, null);
-        $this->addColumn('DELIVERY_ADDRESS_LINE_2', 'DeliveryAddressLine2', 'VARCHAR', false, 255, null);
-        $this->addColumn('DELIVERY_POSTAL_CODE', 'DeliveryPostalCode', 'VARCHAR', false, 12, null);
-        $this->addColumn('DELIVERY_CITY', 'DeliveryCity', 'VARCHAR', false, 64, null);
-        $this->addColumn('DELIVERY_COUNTRY', 'DeliveryCountry', 'VARCHAR', false, 128, null);
-        $this->addForeignKey('DELIVERY_COUNTRIES_ID', 'DeliveryCountriesId', 'INTEGER', 'countries', 'ID', false, null, null);
-        $this->addColumn('DELIVERY_STATE_PROVINCE', 'DeliveryStateProvince', 'VARCHAR', false, 64, null);
-        $this->addColumn('DELIVERY_COMPANY_NAME', 'DeliveryCompanyName', 'VARCHAR', false, 128, null);
-        $this->addColumn('DELIVERY_METHOD', 'DeliveryMethod', 'VARCHAR', false, 64, null);
-        $this->addColumn('DELIVERY_EXTERNAL_ADDRESS_ID', 'DeliveryExternalAddressId', 'VARCHAR', false, 128, null);
-        $this->addForeignKey('EVENTS_ID', 'EventsId', 'INTEGER', 'events', 'ID', false, null, null);
-        $this->addColumn('FINISHED_AT', 'FinishedAt', 'TIMESTAMP', false, null, null);
-        $this->addColumn('CREATED_AT', 'CreatedAt', 'TIMESTAMP', false, null, null);
-        $this->addColumn('UPDATED_AT', 'UpdatedAt', 'TIMESTAMP', false, null, null);
+        $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
+        $this->addColumn('version_id', 'VersionId', 'INTEGER', true, null, 1);
+        $this->addColumn('session_id', 'SessionId', 'VARCHAR', true, 32, null);
+        $this->addColumn('payment_gateway_id', 'PaymentGatewayId', 'INTEGER', false, null, null);
+        $this->addColumn('state', 'State', 'INTEGER', true, null, -50);
+        $this->addColumn('in_edit', 'InEdit', 'BOOLEAN', true, 1, false);
+        $this->addForeignKey('customers_id', 'CustomersId', 'INTEGER', 'customers', 'id', false, null, null);
+        $this->addColumn('first_name', 'FirstName', 'VARCHAR', false, 128, null);
+        $this->addColumn('last_name', 'LastName', 'VARCHAR', false, 128, null);
+        $this->addColumn('email', 'Email', 'VARCHAR', false, 255, null);
+        $this->addColumn('phone', 'Phone', 'VARCHAR', false, 32, null);
+        $this->addColumn('languages_id', 'LanguagesId', 'INTEGER', true, null, null);
+        $this->addColumn('currency_code', 'CurrencyCode', 'VARCHAR', true, 12, '');
+        $this->addColumn('billing_first_name', 'BillingFirstName', 'VARCHAR', true, 128, null);
+        $this->addColumn('billing_last_name', 'BillingLastName', 'VARCHAR', true, 128, null);
+        $this->addColumn('billing_address_line_1', 'BillingAddressLine1', 'VARCHAR', false, 255, null);
+        $this->addColumn('billing_address_line_2', 'BillingAddressLine2', 'VARCHAR', false, 255, null);
+        $this->addColumn('billing_postal_code', 'BillingPostalCode', 'VARCHAR', false, 12, null);
+        $this->addColumn('billing_city', 'BillingCity', 'VARCHAR', false, 64, null);
+        $this->addColumn('billing_country', 'BillingCountry', 'VARCHAR', false, 128, null);
+        $this->addForeignKey('billing_countries_id', 'BillingCountriesId', 'INTEGER', 'countries', 'id', false, null, null);
+        $this->addColumn('billing_state_province', 'BillingStateProvince', 'VARCHAR', false, 64, null);
+        $this->addColumn('billing_company_name', 'BillingCompanyName', 'VARCHAR', false, 128, null);
+        $this->addColumn('billing_method', 'BillingMethod', 'VARCHAR', false, 64, null);
+        $this->addColumn('billing_external_address_id', 'BillingExternalAddressId', 'VARCHAR', false, 128, null);
+        $this->addColumn('delivery_first_name', 'DeliveryFirstName', 'VARCHAR', true, 128, null);
+        $this->addColumn('delivery_last_name', 'DeliveryLastName', 'VARCHAR', true, 128, null);
+        $this->addColumn('delivery_address_line_1', 'DeliveryAddressLine1', 'VARCHAR', false, 255, null);
+        $this->addColumn('delivery_address_line_2', 'DeliveryAddressLine2', 'VARCHAR', false, 255, null);
+        $this->addColumn('delivery_postal_code', 'DeliveryPostalCode', 'VARCHAR', false, 12, null);
+        $this->addColumn('delivery_city', 'DeliveryCity', 'VARCHAR', false, 64, null);
+        $this->addColumn('delivery_country', 'DeliveryCountry', 'VARCHAR', false, 128, null);
+        $this->addForeignKey('delivery_countries_id', 'DeliveryCountriesId', 'INTEGER', 'countries', 'id', false, null, null);
+        $this->addColumn('delivery_state_province', 'DeliveryStateProvince', 'VARCHAR', false, 64, null);
+        $this->addColumn('delivery_company_name', 'DeliveryCompanyName', 'VARCHAR', false, 128, null);
+        $this->addColumn('delivery_method', 'DeliveryMethod', 'VARCHAR', false, 64, null);
+        $this->addColumn('delivery_external_address_id', 'DeliveryExternalAddressId', 'VARCHAR', false, 128, null);
+        $this->addForeignKey('events_id', 'EventsId', 'INTEGER', 'events', 'id', false, null, null);
+        $this->addColumn('finished_at', 'FinishedAt', 'TIMESTAMP', false, null, null);
+        $this->addColumn('created_at', 'CreatedAt', 'TIMESTAMP', false, null, null);
+        $this->addColumn('updated_at', 'UpdatedAt', 'TIMESTAMP', false, null, null);
         // validators
     } // initialize()
 
@@ -112,7 +112,11 @@ class OrdersTableMap extends TableMap
     public function getBehaviors()
     {
         return array(
-            'timestampable' => array('create_column' => 'created_at', 'update_column' => 'updated_at', 'disable_updated_at' => 'false', ),
+            'timestampable' =>  array (
+  'create_column' => 'created_at',
+  'update_column' => 'updated_at',
+  'disable_updated_at' => 'false',
+),
         );
     } // getBehaviors()
 

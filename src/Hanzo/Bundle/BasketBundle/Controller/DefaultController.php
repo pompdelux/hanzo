@@ -58,75 +58,66 @@ class DefaultController extends CoreController
             $date = $this->get('stock')->decrease($product, $quantity);
             $order = OrdersPeer::getCurrent();
 
-            // hf@bellcom.dk, 23-jun-2012: check order state -->>
-            if ( $order->getState() >= Orders::STATE_PRE_PAYMENT )
-            {
+            if ($order->getState() >= Orders::STATE_PRE_PAYMENT) {
                 return $this->json_response(array(
                     'status' => FALSE,
                     'message' => $translator->trans('order.state_pre_payment.locked', array(), 'checkout')
                 ));
             }
-            // <<-- hf@bellcom.dk, 23-jun-2012: check order state
-
-            if ($order->isNew()) {
-                $order->setLanguagesId(Hanzo::getInstance()->get('core.language_id'));
-            }
 
             $order->setOrderLineQty($product, $quantity, false, $date);
+            $order->setUpdatedAt(time());
 
-            if ($order->validate()) {
-                $order->setUpdatedAt(time());
-                try {
-                    $order->save();
-                } catch(PropelException $e) {
-                    // if the session is expired, we issue the user a new session and send him on his way
-                    $session = $request->getSession();
-                    $test = "Integrity constraint violation: 1062 Duplicate entry '".$session->getId()."' for key";
-                    if (false !== strpos($e->getMessage(), $test)) {
-                        $session->migrate();
-                        $session->save();
+            try {
+                $order->save();
+            } catch(PropelException $e) {
+                // if the session is expired, we issue the user a new session and send him on his way
+                $session = $request->getSession();
+                $test = "Integrity constraint violation: 1062 Duplicate entry '".$session->getId()."' for key";
+                if (false !== strpos($e->getMessage(), $test)) {
+                    $session->migrate();
+                    $session->save();
 
-                        Tools::setCookie('basket', '(0) '.Tools::moneyFormat(0.00), 0, false);
-                        return $this->json_response(array(
-                            'status' => FALSE,
-                            'message' => 'session.died',
-                            'data' => [
-                                'location' => $this->generateUrl('_homepage')
-                            ]
-                        ));
-                    }
-                }
-
-                $price = ProductsDomainsPricesPeer::getProductsPrices(array($product->getId()));
-
-                $price = array_shift($price);
-                $original_price = $price['normal'];
-                $price = array_shift($price);
-
-                $latest = array(
-                    'id' => $product->getId(),
-                    'single_price' => Tools::moneyFormat($price['price']),
-                    'price' => Tools::moneyFormat($price['price'] * $quantity),
-                    'expected_at' => ''
-                );
-
-                $t = new \DateTime($date);
-                $t = $t->getTimestamp();
-                if (($t > 0) && ($t > time())) {
-                    $latest['expected_at'] = $date;
-                }
-
-                Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
-
-                if ($this->getFormat() == 'json') {
+                    Tools::setCookie('basket', '(0) '.Tools::moneyFormat(0.00), 0, false);
                     return $this->json_response(array(
-                        'status' => TRUE,
-                        'message' => $translator->trans('product.added.to.cart', array('%product%' => $product)),
-                        'data' => $this->miniBasketAction(TRUE),
-                        'latest' => $latest,
-                        'total' => $order->getTotalQuantity(true),
+                        'status' => FALSE,
+                        'message' => 'session.died',
+                        'data' => [
+                            'location' => $this->generateUrl('_homepage')
+                        ]
                     ));
                 }
+            }
+
+            $price = ProductsDomainsPricesPeer::getProductsPrices(array($product->getId()));
+
+            $price = array_shift($price);
+            $original_price = $price['normal'];
+            $price = array_shift($price);
+
+            $latest = array(
+                'id' => $product->getId(),
+                'single_price' => Tools::moneyFormat($price['price']),
+                'price' => Tools::moneyFormat($price['price'] * $quantity),
+                'expected_at' => ''
+            );
+
+            $t = new \DateTime($date);
+            $t = $t->getTimestamp();
+            if (($t > 0) && ($t > time())) {
+                $latest['expected_at'] = $date;
+            }
+
+            Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
+
+            if ($this->getFormat() == 'json') {
+                return $this->json_response(array(
+                    'status' => TRUE,
+                    'message' => $translator->trans('product.added.to.cart', array('%product%' => $product)),
+                    'data' => $this->miniBasketAction(TRUE),
+                    'latest' => $latest,
+                    'total' => $order->getTotalQuantity(true),
+                ));
             }
         }
 
@@ -181,7 +172,6 @@ class DefaultController extends CoreController
     public function removeAction($product_id, $quantity)
     {
         $order = OrdersPeer::getCurrent();
-        $order->reload(true, Propel::getConnection(null, Propel::CONNECTION_WRITE));
 
         $order_lines = $order->getOrdersLiness();
         $product_found = FALSE;
@@ -228,7 +218,7 @@ class DefaultController extends CoreController
             ));
         }
 
-        return $this->response('remove from basket');
+        return $this->redirect($this->generateUrl('basket_view'));
     }
 
 

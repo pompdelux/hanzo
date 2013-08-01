@@ -39,56 +39,56 @@ abstract class BaseAddressesPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 17;
 
-    /** the column name for the CUSTOMERS_ID field */
-    const CUSTOMERS_ID = 'addresses.CUSTOMERS_ID';
+    /** the column name for the customers_id field */
+    const CUSTOMERS_ID = 'addresses.customers_id';
 
-    /** the column name for the TYPE field */
-    const TYPE = 'addresses.TYPE';
+    /** the column name for the type field */
+    const TYPE = 'addresses.type';
 
-    /** the column name for the FIRST_NAME field */
-    const FIRST_NAME = 'addresses.FIRST_NAME';
+    /** the column name for the first_name field */
+    const FIRST_NAME = 'addresses.first_name';
 
-    /** the column name for the LAST_NAME field */
-    const LAST_NAME = 'addresses.LAST_NAME';
+    /** the column name for the last_name field */
+    const LAST_NAME = 'addresses.last_name';
 
-    /** the column name for the ADDRESS_LINE_1 field */
-    const ADDRESS_LINE_1 = 'addresses.ADDRESS_LINE_1';
+    /** the column name for the address_line_1 field */
+    const ADDRESS_LINE_1 = 'addresses.address_line_1';
 
-    /** the column name for the ADDRESS_LINE_2 field */
-    const ADDRESS_LINE_2 = 'addresses.ADDRESS_LINE_2';
+    /** the column name for the address_line_2 field */
+    const ADDRESS_LINE_2 = 'addresses.address_line_2';
 
-    /** the column name for the POSTAL_CODE field */
-    const POSTAL_CODE = 'addresses.POSTAL_CODE';
+    /** the column name for the postal_code field */
+    const POSTAL_CODE = 'addresses.postal_code';
 
-    /** the column name for the CITY field */
-    const CITY = 'addresses.CITY';
+    /** the column name for the city field */
+    const CITY = 'addresses.city';
 
-    /** the column name for the COUNTRY field */
-    const COUNTRY = 'addresses.COUNTRY';
+    /** the column name for the country field */
+    const COUNTRY = 'addresses.country';
 
-    /** the column name for the COUNTRIES_ID field */
-    const COUNTRIES_ID = 'addresses.COUNTRIES_ID';
+    /** the column name for the countries_id field */
+    const COUNTRIES_ID = 'addresses.countries_id';
 
-    /** the column name for the STATE_PROVINCE field */
-    const STATE_PROVINCE = 'addresses.STATE_PROVINCE';
+    /** the column name for the state_province field */
+    const STATE_PROVINCE = 'addresses.state_province';
 
-    /** the column name for the COMPANY_NAME field */
-    const COMPANY_NAME = 'addresses.COMPANY_NAME';
+    /** the column name for the company_name field */
+    const COMPANY_NAME = 'addresses.company_name';
 
-    /** the column name for the EXTERNAL_ADDRESS_ID field */
-    const EXTERNAL_ADDRESS_ID = 'addresses.EXTERNAL_ADDRESS_ID';
+    /** the column name for the external_address_id field */
+    const EXTERNAL_ADDRESS_ID = 'addresses.external_address_id';
 
-    /** the column name for the LATITUDE field */
-    const LATITUDE = 'addresses.LATITUDE';
+    /** the column name for the latitude field */
+    const LATITUDE = 'addresses.latitude';
 
-    /** the column name for the LONGITUDE field */
-    const LONGITUDE = 'addresses.LONGITUDE';
+    /** the column name for the longitude field */
+    const LONGITUDE = 'addresses.longitude';
 
-    /** the column name for the CREATED_AT field */
-    const CREATED_AT = 'addresses.CREATED_AT';
+    /** the column name for the created_at field */
+    const CREATED_AT = 'addresses.created_at';
 
-    /** the column name for the UPDATED_AT field */
-    const UPDATED_AT = 'addresses.UPDATED_AT';
+    /** the column name for the updated_at field */
+    const UPDATED_AT = 'addresses.updated_at';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -235,23 +235,23 @@ abstract class BaseAddressesPeer
             $criteria->addSelectColumn(AddressesPeer::CREATED_AT);
             $criteria->addSelectColumn(AddressesPeer::UPDATED_AT);
         } else {
-            $criteria->addSelectColumn($alias . '.CUSTOMERS_ID');
-            $criteria->addSelectColumn($alias . '.TYPE');
-            $criteria->addSelectColumn($alias . '.FIRST_NAME');
-            $criteria->addSelectColumn($alias . '.LAST_NAME');
-            $criteria->addSelectColumn($alias . '.ADDRESS_LINE_1');
-            $criteria->addSelectColumn($alias . '.ADDRESS_LINE_2');
-            $criteria->addSelectColumn($alias . '.POSTAL_CODE');
-            $criteria->addSelectColumn($alias . '.CITY');
-            $criteria->addSelectColumn($alias . '.COUNTRY');
-            $criteria->addSelectColumn($alias . '.COUNTRIES_ID');
-            $criteria->addSelectColumn($alias . '.STATE_PROVINCE');
-            $criteria->addSelectColumn($alias . '.COMPANY_NAME');
-            $criteria->addSelectColumn($alias . '.EXTERNAL_ADDRESS_ID');
-            $criteria->addSelectColumn($alias . '.LATITUDE');
-            $criteria->addSelectColumn($alias . '.LONGITUDE');
-            $criteria->addSelectColumn($alias . '.CREATED_AT');
-            $criteria->addSelectColumn($alias . '.UPDATED_AT');
+            $criteria->addSelectColumn($alias . '.customers_id');
+            $criteria->addSelectColumn($alias . '.type');
+            $criteria->addSelectColumn($alias . '.first_name');
+            $criteria->addSelectColumn($alias . '.last_name');
+            $criteria->addSelectColumn($alias . '.address_line_1');
+            $criteria->addSelectColumn($alias . '.address_line_2');
+            $criteria->addSelectColumn($alias . '.postal_code');
+            $criteria->addSelectColumn($alias . '.city');
+            $criteria->addSelectColumn($alias . '.country');
+            $criteria->addSelectColumn($alias . '.countries_id');
+            $criteria->addSelectColumn($alias . '.state_province');
+            $criteria->addSelectColumn($alias . '.company_name');
+            $criteria->addSelectColumn($alias . '.external_address_id');
+            $criteria->addSelectColumn($alias . '.latitude');
+            $criteria->addSelectColumn($alias . '.longitude');
+            $criteria->addSelectColumn($alias . '.created_at');
+            $criteria->addSelectColumn($alias . '.updated_at');
         }
     }
 
@@ -335,7 +335,7 @@ abstract class BaseAddressesPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -440,8 +440,15 @@ abstract class BaseAddressesPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (AddressesPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         AddressesPeer::$instances = array();
     }
 
@@ -1207,7 +1214,7 @@ abstract class BaseAddressesPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return AddressesPeer::OM_CLASS;
     }

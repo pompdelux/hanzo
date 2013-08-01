@@ -77,6 +77,12 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
     protected $alreadyInValidation = false;
 
     /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
+    /**
      * Get the [products_images_id] column value.
      *
      * @return int
@@ -104,7 +110,7 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
      */
     public function setProductsImagesId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -129,7 +135,7 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
      */
     public function setProductsId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -187,7 +193,7 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
+            $this->postHydrate($row, $startcol, $rehydrate);
             return $startcol + 2; // 2 = ProductsImagesProductReferencesPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -424,10 +430,10 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(ProductsImagesProductReferencesPeer::PRODUCTS_IMAGES_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`PRODUCTS_IMAGES_ID`';
+            $modifiedColumns[':p' . $index++]  = '`products_images_id`';
         }
         if ($this->isColumnModified(ProductsImagesProductReferencesPeer::PRODUCTS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`PRODUCTS_ID`';
+            $modifiedColumns[':p' . $index++]  = '`products_id`';
         }
 
         $sql = sprintf(
@@ -440,10 +446,10 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`PRODUCTS_IMAGES_ID`':
+                    case '`products_images_id`':
                         $stmt->bindValue($identifier, $this->products_images_id, PDO::PARAM_INT);
                         break;
-                    case '`PRODUCTS_ID`':
+                    case '`products_id`':
                         $stmt->bindValue($identifier, $this->products_id, PDO::PARAM_INT);
                         break;
                 }
@@ -507,11 +513,11 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -876,12 +882,13 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
      * Get the associated ProductsImages object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return ProductsImages The associated ProductsImages object.
      * @throws PropelException
      */
-    public function getProductsImages(PropelPDO $con = null)
+    public function getProductsImages(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aProductsImages === null && ($this->products_images_id !== null)) {
+        if ($this->aProductsImages === null && ($this->products_images_id !== null) && $doQuery) {
             $this->aProductsImages = ProductsImagesQuery::create()->findPk($this->products_images_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -927,12 +934,13 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
      * Get the associated Products object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Products The associated Products object.
      * @throws PropelException
      */
-    public function getProducts(PropelPDO $con = null)
+    public function getProducts(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aProducts === null && ($this->products_id !== null)) {
+        if ($this->aProducts === null && ($this->products_id !== null) && $doQuery) {
             $this->aProducts = ProductsQuery::create()->findPk($this->products_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -955,6 +963,7 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
         $this->products_id = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->resetModified();
         $this->setNew(true);
@@ -972,7 +981,16 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
+            if ($this->aProductsImages instanceof Persistent) {
+              $this->aProductsImages->clearAllReferences($deep);
+            }
+            if ($this->aProducts instanceof Persistent) {
+              $this->aProducts->clearAllReferences($deep);
+            }
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
         $this->aProductsImages = null;

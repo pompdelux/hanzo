@@ -321,6 +321,7 @@ class Orders extends BaseOrders
     {
         // first update existing product lines, if any
         $lines = $this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
+        #$lines = $this->getOrdersLiness();
 
         if ($this->getState() !== self::STATE_BUILDING) {
             $this->setState(self::STATE_BUILDING);
@@ -337,7 +338,6 @@ class Orders extends BaseOrders
                 $lines[$index] = $line;
                 $this->setOrdersLiness($lines);
                 $line->setExpectedAt($date);
-
                 return;
             }
         }
@@ -365,6 +365,11 @@ class Orders extends BaseOrders
         $line->setType('product');
         $line->setUnit('Stk.');
         $line->setExpectedAt($date);
+
+        if ($product->getIsVoucher()) {
+            $line->setIsVoucher(true);
+        }
+
         $this->addOrdersLines($line);
     }
 
@@ -501,16 +506,26 @@ class Orders extends BaseOrders
 
     public function getTotalPrice($products_only = false)
     {
-        $query = OrdersLinesQuery::create()->filterByOrdersId($this->getId());
+        // this is done so Orders::getOrderAtVersion don't throw up
+        #$lines = $this->getOrdersLiness();
+        if ($this->isNew()) {
+            $lines = $this->getOrdersLiness();
+        } else {
+            $query = OrdersLinesQuery::create()->filterByOrdersId($this->getId());
 
-        if ($products_only) {
-            $query->filterByType('product');
+            if ($products_only) {
+                $query->filterByType('product');
+            }
+
+            $lines = $query->find(Propel::getConnection(null, Propel::CONNECTION_WRITE));
         }
-
-        $lines = $query->find(Propel::getConnection(null, Propel::CONNECTION_WRITE));
 
         $total = 0;
         foreach ($lines as $line) {
+            // if ($products_only && ('product' != $line->getType())) {
+            //     continue;
+            // }
+
             $total += ($line->getPrice() * $line->getQuantity());
         }
 
@@ -531,16 +546,25 @@ class Orders extends BaseOrders
 
     public function getTotalQuantity($products_only = false)
     {
-        $query = OrdersLinesQuery::create()->filterByOrdersId($this->getId());
+        #$lines = $this->getOrdersLiness();
+        if ($this->isNew()) {
+            $lines = $this->getOrdersLiness();
+        } else {
+            $query = OrdersLinesQuery::create()->filterByOrdersId($this->getId());
 
-        if ($products_only) {
-            $query->filterByType('product');
+            if ($products_only) {
+                $query->filterByType('product');
+            }
+
+            $lines = $query->find(Propel::getConnection(null, Propel::CONNECTION_WRITE));
         }
-
-        $lines = $query->find(Propel::getConnection(null, Propel::CONNECTION_WRITE));
 
         $total = 0;
         foreach ($lines as $line) {
+            // if ($products_only && ('product' != $line->getType())) {
+            //     continue;
+            // }
+
             $total += $line->getQuantity();
         }
 
@@ -563,10 +587,10 @@ class Orders extends BaseOrders
         $attributes = $this->getOrdersAttributess(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
 
         // Update existing attributes
-        foreach ($attributes as $index => $attribute)
-        {
-            if ( $attribute->getCKey() == $key && $attribute->getNs() == $ns )
-            {
+        foreach ($attributes as $index => $attribute) {
+            if (($attribute->getCKey() == $key) &&
+                ($attribute->getNs() == $ns)
+            ) {
                 $attribute->setCValue( $value );
                 return $this;
             }
@@ -701,6 +725,7 @@ class Orders extends BaseOrders
     public function setOrderLine($type, $id, $name, $price = 0.00, $vat = 0.00, $quantity = 1)
     {
         $lines = $this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
+        // $lines = $this->getOrdersLiness();
 
         foreach ($lines as $index => $line) {
             if ($line->getType() == $type) {
@@ -825,7 +850,7 @@ class Orders extends BaseOrders
      **/
     public function clearPaymentAttributes()
     {
-        $this->clearAttributesByNS( 'payment' );
+        $this->clearAttributesByNS('payment');
     }
 
     /**
@@ -1167,9 +1192,10 @@ class Orders extends BaseOrders
         if ($this->isNew()) {
             $hanzo = Hanzo::getInstance();
             $this->setCurrencyCode($hanzo->get('core.currency'));
+            $this->setLanguagesId($hanzo->get('core.language_id'));
+            $this->setPaymentGatewayId(Tools::getPaymentGatewayId());
             $this->setAttribute('domain_name', 'global', $_SERVER['HTTP_HOST']);
             $this->setAttribute('domain_key', 'global', $hanzo->get('core.domain_key'));
-            $this->setPaymentGatewayId(Tools::getPaymentGatewayId());
         }
 
         // set billing address - if not already set.
@@ -1181,6 +1207,7 @@ class Orders extends BaseOrders
                 $address = $customer->getAddressess($c)->getFirst();
                 if ($address) {
                     $this->setBillingAddress($address);
+                    $this->setPhone($customer->getPhone());
                 } else {
                     Tools::log('Missing payment address: '.$customer->getId());
                 }
@@ -1217,11 +1244,11 @@ class Orders extends BaseOrders
         if (($this->getState() >= self::STATE_PAYMENT_OK) || $this->getIgnoreDeleteConstraints()) {
             try {
                 $this->cancelPayment();
-                Hanzo::getInstance()->container->get('ax_manager')->deleteOrder($this, $con);
+                Hanzo::getInstance()->container->get('ax.out')->deleteOrder($this, $con);
             } catch ( Exception $e ) {
                 if ($this->getIgnoreDeleteConstraints()) {
                     // allow delete for priority deletes
-                    Hanzo::getInstance()->container->get('ax_manager')->deleteOrder($this, $con);
+                    Hanzo::getInstance()->container->get('ax.out')->deleteOrder($this, $con);
                 } else {
                     throw $e;
                 }

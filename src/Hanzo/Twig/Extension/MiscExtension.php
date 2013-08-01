@@ -3,6 +3,7 @@
 namespace Hanzo\Twig\Extension;
 
 use Hanzo\Bundle\ServiceBundle\Services\TwigStringService;
+use Liip\ThemeBundle\ActiveTheme;
 
 use Twig_Environment;
 use Twig_Extension;
@@ -19,11 +20,13 @@ use Hanzo\Model\OrdersPeer;
 class MiscExtension extends Twig_Extension
 {
     protected $twig_string;
+    protected $theme;
     protected $settings;
 
-    public function __construct(TwigStringService $twig_string)
+    public function __construct(TwigStringService $twig_string, ActiveTheme $theme)
     {
         $this->twig_string = $twig_string;
+        $this->theme = $theme;
     }
 
     /**
@@ -256,6 +259,10 @@ DOC;
      public function embed(Twig_Environment $env, $name, $parameters = array())
      {
         switch ($name) {
+            default:
+                return '';
+                break;
+
             case 'newsletter_form':
                 $view = '';
                 $customer = null;
@@ -307,14 +314,124 @@ DOC;
                 return '';
 
                 break;
+
+            // eks:
+            // {{ embed("slideshow", {
+            //     "2013s1": {
+            //         "slides": [{
+            //                 "href": "/da_DK/forside/home-shopping",
+            //                 "src": "images/frontpage/Carousel05_uge7_SS13_ALL.jpg",
+            //                 "alt": "alt image text"
+            //             },{
+            //                 "href": "/da_DK/forside/om-pompdelux",
+            //                 "src": "images/frontpage/Carousel04_uge7_SS13_DK.jpg",
+            //                 "alt": "alt image text"
+            //             }
+            //         ],
+            //         "class": "grid_6 alpha"
+            //     },
+            //     "2013s1_mobile": {
+            //         "slides": [{
+            //                 "href": "/da_DK/forside/home-shopping/aabent-hus",
+            //                 "src": "images/frontpage/Carousel01_uge8_SS13_DK.jpg",
+            //                 "alt": "alt image text"
+            //             },{
+            //                 "href": "/da_DK/forside/om-pompdelux",
+            //                 "src": "images/frontpage/Carousel04_uge7_SS13_DK.jpg",
+            //                 "alt": "alt image text"
+            //             }
+            //         ],
+            //         "class": "grid_6 alpha"
+            //     }
+            // }) }}
             case 'slideshow':
-                $class = (!empty($parameters['class']))?' '.$parameters['class']:' grid_6';
-                $html = '<div class="cycle-slideshow '.$class.'" data-cycle-slides="> a" data-pause-on-hover="true">';
-                foreach ($parameters['slides'] as $slide) {
-                    $html .= $slide;
+                // get slides
+                $theme = $this->theme->getName();
+
+                if (isset($parameters[$theme]['slides'])) {
+                    $selected = $parameters[$theme];
+                } elseif (isset($parameters['default']['slides'])) {
+                    $selected = $parameters['default'];
+                } else {
+                    // old stuff
+                    $class = (!empty($slides['class']))?' '.$parameters['class']:'';
+                    $html = '<div class="cycle-slideshow '.$class.'" data-cycle-slides="> a" data-pause-on-hover="true">'."\n";
+
+                    foreach ($parameters['slides'] as $slide) {
+                        $html .= $slide."\n";
+                    }
+
+                    $html .= '<div class="cycle-pager"></div></div>'."\n";
+                    return $html;
                 }
-                $html .= '<div class="cycle-pager"></div></div>';
-                return $html;
+
+                $html = '';
+                foreach ($selected['slides'] as $slide) {
+                    $params = '';
+                    if (isset($slide['params'])) {
+                        foreach ($slide['params'] as $k => $v) {
+                            $params .= ' '.$k.'="'.$v.'"';
+                        }
+                    }
+
+                    $attr = [];
+                    if (isset($slide['alt']) && $slide['alt']) {
+                        $attr['alt'] = $slide['alt'];
+                    }
+
+                    $html .= '<a href="'.$slide['href'].'"'.$params.'>'.Tools::imageTag($slide['src'], $attr)."</a>\n";
+                }
+
+                $class = (!empty($selected['class']))?' '.$selected['class']:' ';
+
+                return '<div class="cycle-slideshow '.$class.'" data-cycle-slides="> a" data-pause-on-hover="true">'."\n".$html.'<div class="cycle-pager"></div></div>'."\n";
+                break;
+
+            // {{ embed("image", {
+            //    "2013s1": {
+            //      "src": "path/to/image.jpg",
+            //      "alt": "image alt text",
+            //      "caption": "optional image caption"
+            //    },
+            //    "2013s1_mobile": {
+            //      "src": "path/to/mobile/image.jpg",
+            //      "alt": "image alt text",
+            //      "caption": "optional image caption"
+            //    }
+            // }) }}
+            case 'image':
+                $theme = $this->theme->getName();
+                if (isset($parameters[$theme])) {
+                    $attr = ['class' => ''];
+
+                    $block = $parameters[$theme];
+                    if (!empty($block['alt'])) {
+                        $attr['alt'] = $block['alt'];
+                    }
+
+                    if (!empty($block['class'])) {
+                        $attr['class'] = $block['class'];
+                    }
+
+                    $html = Tools::imageTag($block['src'], $attr);
+
+                    if (!empty($block['href'])) {
+                      $params = '';
+                      if (isset($block['params']) && is_array($block['params'])) {
+                          foreach ($block['params'] as $k => $v) {
+                              $params .= ' '.$k.'="'.$v.'"';
+                          }
+                      }
+
+                      $html = '<a href="'.$block['href'].'"'.$params.'>'.$html.'</a>';
+                    }
+
+                    if (isset($block['caption']) && $block['caption']) {
+                      $html = '<div class="image-caption ' . $attr['class'] . '">' . $html . '<span>' . $block['caption'] . '</span></div>';
+                    }
+
+                    return $html;
+                }
                 break;
         }
 

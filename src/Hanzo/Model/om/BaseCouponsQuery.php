@@ -21,20 +21,24 @@ use Hanzo\Model\OrdersToCoupons;
  * @method CouponsQuery orderById($order = Criteria::ASC) Order by the id column
  * @method CouponsQuery orderByCode($order = Criteria::ASC) Order by the code column
  * @method CouponsQuery orderByAmount($order = Criteria::ASC) Order by the amount column
+ * @method CouponsQuery orderByMinPurchaseAmount($order = Criteria::ASC) Order by the min_purchase_amount column
  * @method CouponsQuery orderByCurrencyCode($order = Criteria::ASC) Order by the currency_code column
  * @method CouponsQuery orderByActiveFrom($order = Criteria::ASC) Order by the active_from column
  * @method CouponsQuery orderByActiveTo($order = Criteria::ASC) Order by the active_to column
  * @method CouponsQuery orderByIsActive($order = Criteria::ASC) Order by the is_active column
+ * @method CouponsQuery orderByIsUsed($order = Criteria::ASC) Order by the is_used column
  * @method CouponsQuery orderByCreatedAt($order = Criteria::ASC) Order by the created_at column
  * @method CouponsQuery orderByUpdatedAt($order = Criteria::ASC) Order by the updated_at column
  *
  * @method CouponsQuery groupById() Group by the id column
  * @method CouponsQuery groupByCode() Group by the code column
  * @method CouponsQuery groupByAmount() Group by the amount column
+ * @method CouponsQuery groupByMinPurchaseAmount() Group by the min_purchase_amount column
  * @method CouponsQuery groupByCurrencyCode() Group by the currency_code column
  * @method CouponsQuery groupByActiveFrom() Group by the active_from column
  * @method CouponsQuery groupByActiveTo() Group by the active_to column
  * @method CouponsQuery groupByIsActive() Group by the is_active column
+ * @method CouponsQuery groupByIsUsed() Group by the is_used column
  * @method CouponsQuery groupByCreatedAt() Group by the created_at column
  * @method CouponsQuery groupByUpdatedAt() Group by the updated_at column
  *
@@ -49,23 +53,26 @@ use Hanzo\Model\OrdersToCoupons;
  * @method Coupons findOne(PropelPDO $con = null) Return the first Coupons matching the query
  * @method Coupons findOneOrCreate(PropelPDO $con = null) Return the first Coupons matching the query, or a new Coupons object populated from the query conditions when no match is found
  *
- * @method Coupons findOneById(int $id) Return the first Coupons filtered by the id column
  * @method Coupons findOneByCode(string $code) Return the first Coupons filtered by the code column
  * @method Coupons findOneByAmount(string $amount) Return the first Coupons filtered by the amount column
+ * @method Coupons findOneByMinPurchaseAmount(string $min_purchase_amount) Return the first Coupons filtered by the min_purchase_amount column
  * @method Coupons findOneByCurrencyCode(string $currency_code) Return the first Coupons filtered by the currency_code column
  * @method Coupons findOneByActiveFrom(string $active_from) Return the first Coupons filtered by the active_from column
  * @method Coupons findOneByActiveTo(string $active_to) Return the first Coupons filtered by the active_to column
  * @method Coupons findOneByIsActive(boolean $is_active) Return the first Coupons filtered by the is_active column
+ * @method Coupons findOneByIsUsed(boolean $is_used) Return the first Coupons filtered by the is_used column
  * @method Coupons findOneByCreatedAt(string $created_at) Return the first Coupons filtered by the created_at column
  * @method Coupons findOneByUpdatedAt(string $updated_at) Return the first Coupons filtered by the updated_at column
  *
  * @method array findById(int $id) Return Coupons objects filtered by the id column
  * @method array findByCode(string $code) Return Coupons objects filtered by the code column
  * @method array findByAmount(string $amount) Return Coupons objects filtered by the amount column
+ * @method array findByMinPurchaseAmount(string $min_purchase_amount) Return Coupons objects filtered by the min_purchase_amount column
  * @method array findByCurrencyCode(string $currency_code) Return Coupons objects filtered by the currency_code column
  * @method array findByActiveFrom(string $active_from) Return Coupons objects filtered by the active_from column
  * @method array findByActiveTo(string $active_to) Return Coupons objects filtered by the active_to column
  * @method array findByIsActive(boolean $is_active) Return Coupons objects filtered by the is_active column
+ * @method array findByIsUsed(boolean $is_used) Return Coupons objects filtered by the is_used column
  * @method array findByCreatedAt(string $created_at) Return Coupons objects filtered by the created_at column
  * @method array findByUpdatedAt(string $updated_at) Return Coupons objects filtered by the updated_at column
  */
@@ -87,7 +94,7 @@ abstract class BaseCouponsQuery extends ModelCriteria
      * Returns a new CouponsQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     CouponsQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   CouponsQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return CouponsQuery
      */
@@ -144,18 +151,32 @@ abstract class BaseCouponsQuery extends ModelCriteria
     }
 
     /**
+     * Alias of findPk to use instance pooling
+     *
+     * @param     mixed $key Primary key to use for the query
+     * @param     PropelPDO $con A connection object
+     *
+     * @return                 Coupons A model object, or null if the key is not found
+     * @throws PropelException
+     */
+     public function findOneById($key, $con = null)
+     {
+        return $this->findPk($key, $con);
+     }
+
+    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   Coupons A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 Coupons A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `ID`, `CODE`, `AMOUNT`, `CURRENCY_CODE`, `ACTIVE_FROM`, `ACTIVE_TO`, `IS_ACTIVE`, `CREATED_AT`, `UPDATED_AT` FROM `coupons` WHERE `ID` = :p0';
+        $sql = 'SELECT `id`, `code`, `amount`, `min_purchase_amount`, `currency_code`, `active_from`, `active_to`, `is_active`, `is_used`, `created_at`, `updated_at` FROM `coupons` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -251,7 +272,8 @@ abstract class BaseCouponsQuery extends ModelCriteria
      * <code>
      * $query->filterById(1234); // WHERE id = 1234
      * $query->filterById(array(12, 34)); // WHERE id IN (12, 34)
-     * $query->filterById(array('min' => 12)); // WHERE id > 12
+     * $query->filterById(array('min' => 12)); // WHERE id >= 12
+     * $query->filterById(array('max' => 12)); // WHERE id <= 12
      * </code>
      *
      * @param     mixed $id The value to use as filter.
@@ -264,8 +286,22 @@ abstract class BaseCouponsQuery extends ModelCriteria
      */
     public function filterById($id = null, $comparison = null)
     {
-        if (is_array($id) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($id)) {
+            $useMinMax = false;
+            if (isset($id['min'])) {
+                $this->addUsingAlias(CouponsPeer::ID, $id['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($id['max'])) {
+                $this->addUsingAlias(CouponsPeer::ID, $id['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(CouponsPeer::ID, $id, $comparison);
@@ -307,7 +343,8 @@ abstract class BaseCouponsQuery extends ModelCriteria
      * <code>
      * $query->filterByAmount(1234); // WHERE amount = 1234
      * $query->filterByAmount(array(12, 34)); // WHERE amount IN (12, 34)
-     * $query->filterByAmount(array('min' => 12)); // WHERE amount > 12
+     * $query->filterByAmount(array('min' => 12)); // WHERE amount >= 12
+     * $query->filterByAmount(array('max' => 12)); // WHERE amount <= 12
      * </code>
      *
      * @param     mixed $amount The value to use as filter.
@@ -339,6 +376,48 @@ abstract class BaseCouponsQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(CouponsPeer::AMOUNT, $amount, $comparison);
+    }
+
+    /**
+     * Filter the query on the min_purchase_amount column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByMinPurchaseAmount(1234); // WHERE min_purchase_amount = 1234
+     * $query->filterByMinPurchaseAmount(array(12, 34)); // WHERE min_purchase_amount IN (12, 34)
+     * $query->filterByMinPurchaseAmount(array('min' => 12)); // WHERE min_purchase_amount >= 12
+     * $query->filterByMinPurchaseAmount(array('max' => 12)); // WHERE min_purchase_amount <= 12
+     * </code>
+     *
+     * @param     mixed $minPurchaseAmount The value to use as filter.
+     *              Use scalar values for equality.
+     *              Use array values for in_array() equivalent.
+     *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return CouponsQuery The current query, for fluid interface
+     */
+    public function filterByMinPurchaseAmount($minPurchaseAmount = null, $comparison = null)
+    {
+        if (is_array($minPurchaseAmount)) {
+            $useMinMax = false;
+            if (isset($minPurchaseAmount['min'])) {
+                $this->addUsingAlias(CouponsPeer::MIN_PURCHASE_AMOUNT, $minPurchaseAmount['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($minPurchaseAmount['max'])) {
+                $this->addUsingAlias(CouponsPeer::MIN_PURCHASE_AMOUNT, $minPurchaseAmount['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
+        }
+
+        return $this->addUsingAlias(CouponsPeer::MIN_PURCHASE_AMOUNT, $minPurchaseAmount, $comparison);
     }
 
     /**
@@ -477,10 +556,37 @@ abstract class BaseCouponsQuery extends ModelCriteria
     public function filterByIsActive($isActive = null, $comparison = null)
     {
         if (is_string($isActive)) {
-            $is_active = in_array(strtolower($isActive), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+            $isActive = in_array(strtolower($isActive), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
         }
 
         return $this->addUsingAlias(CouponsPeer::IS_ACTIVE, $isActive, $comparison);
+    }
+
+    /**
+     * Filter the query on the is_used column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByIsUsed(true); // WHERE is_used = true
+     * $query->filterByIsUsed('yes'); // WHERE is_used = true
+     * </code>
+     *
+     * @param     boolean|string $isUsed The value to use as filter.
+     *              Non-boolean arguments are converted using the following rules:
+     *                * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
+     *                * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
+     *              Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return CouponsQuery The current query, for fluid interface
+     */
+    public function filterByIsUsed($isUsed = null, $comparison = null)
+    {
+        if (is_string($isUsed)) {
+            $isUsed = in_array(strtolower($isUsed), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+        }
+
+        return $this->addUsingAlias(CouponsPeer::IS_USED, $isUsed, $comparison);
     }
 
     /**
@@ -575,8 +681,8 @@ abstract class BaseCouponsQuery extends ModelCriteria
      * @param   OrdersToCoupons|PropelObjectCollection $ordersToCoupons  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   CouponsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 CouponsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByOrdersToCoupons($ordersToCoupons, $comparison = null)
     {

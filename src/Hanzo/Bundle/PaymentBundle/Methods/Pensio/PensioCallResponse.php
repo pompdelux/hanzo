@@ -21,9 +21,14 @@ class PensioCallResponse
     {
         $this->headers = $headers;
 
-        if (((string) $xml->Header[0]->ErrorCode[0]) != '0') {
+        if (((string) $xml->Header->ErrorCode) != '0') {
             $this->is_error = true;
-            $this->error_message = (string) $xml->Header[0]->ErrorMessage[0];
+            $this->error_message = (string) $xml->Header->ErrorMessage;
+        } else {
+            if (((string) $xml->Body->Result) == 'Error') {
+                $this->is_error = true;
+                $this->error_message = (string) $xml->Body->CardHolderErrorMessage;
+            }
         }
 
         $this->xml = $xml;
