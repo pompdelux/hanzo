@@ -57,16 +57,16 @@ form.address label {
   border: 1px solid #7B7577;
 }
 
-#coupon-block form {
+#gift-card-block form {
   overflow: hidden;
   padding: 20px;
   margin: 10px;
   border: 1px solid #7B7577;
 }
-#coupon-block form div.clearfix {
+#gift-card-block form div.clearfix {
   float: left;
 }
-#coupon-block #form_code {
+#gift-card-block #form_code {
   margin: 0 10px;
 }
 

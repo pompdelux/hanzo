@@ -52,32 +52,37 @@ class DefaultController extends CoreController
 
     public function createAction()
     {
-        $hanzo = Hanzo::getInstance();
-        $request = $this->getRequest();
+        $hanzo      = Hanzo::getInstance();
+        $request    = $this->getRequest();
         $translator = $this->get('translator');
+        $domainKey  = $hanzo->get('core.domain_key');
 
-        $domainKey = $hanzo->get('core.domain_key');
-
-        $customer = new Customers();
+        $customer  = new Customers();
         $addresses = new Addresses();
 
         $countries = CountriesPeer::getAvailableDomainCountries();
 
         // for .dk, .se, .no and maybe .nl
         if ( count( $countries ) == 1 ) {
-            $addresses->setCountry( $countries[0]->getLocalName() );
-            $addresses->setCountriesId( $countries[0]->getId() );
+            $addresses->setCountry($countries[0]->getLocalName());
+            $addresses->setCountriesId($countries[0]->getId());
         } else {
             // If the customer is located in Denmark, but browsing the en_GB site, the geoip will set country to Denmark,
             // and fail to select a country id in the dropdown as Denmark is excluded from that list
             // But when the customer submits the form "Denmark" is still send as a country so we try to override that here
 
             if ('POST' !== $request->getMethod()) {
-                $geoip = $this->get('geoip_manager');
+                $geoip = $this->get('muneris.maxmind');
                 $geoipResult = $geoip->lookup();
-                if ( !is_null( $geoipResult['country_id'] ) ) {
-                    $addresses->setCountry( $geoipResult['country_localname'] );
-                    $addresses->setCountriesId( $geoipResult['country_id'] );
+
+                if (!empty($geoipResult->city->country->code)) {
+                    $c = CountriesQuery::create()
+                        ->filterByIso2($geoipResult->city->country->code)
+                        ->findOne()
+                    ;
+
+                    $addresses->setCountry($c->getLocalName());
+                    $addresses->setCountriesId($c->getId());
                 }
             }
         }
@@ -210,9 +215,8 @@ class DefaultController extends CoreController
                     $mailer->send();
                 }
                 catch (Exception $e) {}
-                    $message = 'password.forgotten.resend';
-            }
-            else {
+                $message = 'password.forgotten.resend';
+            } else {
                 $message = 'password.forgotten.not_found';
             }
         }
@@ -271,7 +275,7 @@ class DefaultController extends CoreController
         }
 
         return $this->render('AccountBundle:Default:edit.html.twig', array(
-            'page_type' => 'create-account',
+            'page_type' => 'edit-account',
             'errors' => $errors,
             'form' => $form->createView(),
         ));
@@ -319,8 +323,7 @@ class DefaultController extends CoreController
         $validation_group = $type;
         if ($shipping_id == 11) {
             $validation_group = 'company_' . $type;
-        }
-        else {
+        } else {
           $address->setCompanyName(null);
         }
 
@@ -424,7 +427,7 @@ class DefaultController extends CoreController
                                 $errors[$id][] = $translator->trans($error->getMessageTemplate(), array(), 'account');
                             }
                         }
-                     }
+                    }
 
                     if (count($errors)) {
                         return $this->json_response(array(
@@ -455,7 +458,6 @@ class DefaultController extends CoreController
         return $html;
     }
 
-
     /**
      * used to validate via ajax
      *
@@ -473,8 +475,8 @@ class DefaultController extends CoreController
 
             $translator = $this->get('translator');
             $account = CustomersQuery::create()
-                ->filterById($customer->getId(), \Criteria::NOT_EQUAL)
-                ->findOneByEmail($this->getRequest()->get('email'))
+            ->filterById($customer->getId(), \Criteria::NOT_EQUAL)
+            ->findOneByEmail($this->getRequest()->get('email'))
             ;
             if ($account instanceof Customers) {
                 $status = false;
@@ -489,7 +491,7 @@ class DefaultController extends CoreController
                 'status' => $status,
                 'message' => $message,
                 'data' => $data,
-            ));
+                ));
         }
     }
 
@@ -513,42 +515,5 @@ class DefaultController extends CoreController
         }
 
         return $this->redirect($this->generateUrl('_account'));
-    }
-
-
-    /**
-     * try to find customers by phone nuber
-     *
-     * @param  integer $number phone number
-     * @return Response
-     */
-    public function phoneLookupAction(Request $request, $number)
-    {
-        $address = AddressesQuery::create()
-            ->useCustomersQuery()
-                ->filterByPhone($number)
-            ->endUse()
-            ->joinWithCustomers()
-            ->filterByType('payment')
-            ->findOne()
-        ;
-
-        // if not found, and in .dk, try NNO
-        if ((!$address instanceof Addresses) && ('da_DK' == $request->getLocale())) {
-            return $this->forward('NnoBundle:Default:lookup', ['number' => $number]);
-        }
-
-        return $this->json_response([
-            'status' => TRUE,
-            'message' => $this->get('translator')->trans('create.nno.address_found', [], 'account'),
-            'data' => [
-                'christianname' => $address->getFirstName(),
-                'surname' => $address->getLastName(),
-                'zipcode' => $address->getPostalCode(),
-                'district' => $address->getCity(),
-                'address' => $address->getAddressLine1(),
-                'phone' => $number,
-            ]
-        ]);
     }
 }

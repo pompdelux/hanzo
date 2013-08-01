@@ -23,7 +23,7 @@ class CouponController extends CoreController
         return $this->render('DiscountBundle:Coupon:block.html.twig');
     }
 
-    public function applyCouponAction(Request $request)
+    public function applyAction(Request $request)
     {
         $translator = $this->get('translator');
 
@@ -38,65 +38,46 @@ class CouponController extends CoreController
 
         if ($request->getMethod() == 'POST') {
             $values = $request->get('form');
-            // handle sub-requests
-            $code = $values ?: $request->get('code');
+            $code   = $values ?: $request->get('code');
+            $order  = OrdersPeer::getCurrent();
+            $total  = $order->getTotalPrice();
 
+            $now = time();
             $coupon = CouponsQuery::create()
                 ->filterByCode($code)
-                ->filterByAmount(0, Criteria::GREATER_THAN)
-                ->filterByActiveFrom(time(), Criteria::LESS_EQUAL)
+                ->filterByIsUsed(0)
+                ->filterByIsActive(1)
+                ->filterByMinPurchaseAmount($total, Criteria::LESS_THAN)
+                ->filterByAmount($total, Criteria::LESS_THAN)
+                ->filterByActiveFrom($now, Criteria::LESS_EQUAL)
                 ->_or()
-                ->filterByActiveFrom(null, Criteria::ISNULL)
-                ->filterByActiveTo(time(), Criteria::GREATER_EQUAL)
+                    ->filterByActiveFrom(null, Criteria::ISNULL)
+                ->filterByActiveTo($now, Criteria::GREATER_EQUAL)
                 ->_or()
-                ->filterByActiveTo(null, Criteria::ISNULL)
+                    ->filterByActiveTo(null, Criteria::ISNULL)
                 ->findOne()
             ;
 
             if (!$coupon instanceof Coupons) {
-                $form->addError(new FormError('invalid.coupon.code'));
+                $form->addError(new FormError('coupon.invalid.code'));
 
                 if ($this->getFormat() == 'json') {
                     return $this->json_response(array(
                         'status'  => false,
-                        'message' => $translator->trans('invalid.coupon.code', [], 'checkout'),
+                        'message' => $translator->trans('coupon.invalid.code', [], 'checkout'),
                     ));
                 }
 
             } else {
-                $order    = OrdersPeer::getCurrent();
-                $total    = $order->getTotalPrice();
                 $discount = $coupon->getAmount();
-
-                if ($total < $discount) {
-                    $discount = $total;
-                    $coupon->setAmount($coupon->getAmount() - $total);
-                    $coupon->save();
-
-                    // change the payment method, you should not go through gothia/dibs/... if the total is 0.00
-                    $order->setPaymentMethod('coupon');
-                    $order->setPaymentPaytype('coupon');
-                } else {
-                    $coupon->setAmount(0);
-                }
-
-                if (0 == $coupon->getAmount()) {
-                    $coupon->setIsActive(false);
-                }
-
+                $coupon->setIsUsed(1);
                 $coupon->save();
 
-                $relation = new OrdersToCoupons();
-                $relation->setOrdersId($order->getId());
-                $relation->setCouponsId($coupon->getId());
-                $relation->setAmount($discount);
-                $relation->save();
-
-                $name = $translator->trans('coupon', [], 'checkout');
-                $order->setDiscountLine($name, -$discount, 'coupon.code');
+                $text = $translator->trans('coupon', [], 'checkout');
+                $order->setDiscountLine($text, -$discount, 'coupon.code');
                 $order->setAttribute('amount', 'coupon', $discount);
                 $order->setAttribute('code', 'coupon', $coupon->getCode());
-                $order->setAttribute('text', 'coupon', $name);
+                $order->setAttribute('text', 'coupon', $text);
                 $order->save();
 
                 if ($this->getFormat() == 'json') {

@@ -259,6 +259,10 @@ DOC;
      public function embed(Twig_Environment $env, $name, $parameters = array())
      {
         switch ($name) {
+            default:
+                return '';
+                break;
+
             case 'newsletter_form':
                 $view = '';
                 $customer = null;
@@ -271,7 +275,7 @@ DOC;
                 $template = 'NewsletterBundle:Default:'.$view.'block.html.twig';
                 $parameters = array(
                     'customer' => $customer,
-                    'listid' => Hanzo::getInstance()->  container->get('newsletterapi')->getListIdAvaliableForDomain(),
+                    'listid' => Hanzo::getInstance()->container->get('newsletterapi')->getListIdAvaliableForDomain(),
                 );
 
                 break;

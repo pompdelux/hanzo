@@ -75,10 +75,3 @@ _account_check:
     pattern: /account/check/{type}
     defaults:
         _controller: AccountBundle:Default:check
-
-_account_phone_lookup:
-    pattern: /account/nno/{number}
-    defaults:
-        _controller: AccountBundle:Default:phoneLookup
-        _format: json
-        number: ''

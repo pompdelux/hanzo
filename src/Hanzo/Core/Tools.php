@@ -561,6 +561,22 @@ class Tools
 
 
     /**
+     * detect if a request is a secure (SSL) request
+     *
+     * @return boolean
+     */
+    public static function isSecure()
+    {
+        $is_secure = isset($_SERVER['HTTPS']) && ('ON' == strtoupper($_SERVER['HTTPS']));
+        if (!$is_secure) {
+            $is_secure = isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && ('HTTPS' == strtoupper($_SERVER['HTTP_X_FORWARDED_PROTO']));
+        }
+
+        return $is_secure;
+    }
+
+
+    /**
      * image helpers
      * @NICETO move to own class...
      */
@@ -643,6 +659,10 @@ class Tools
         if (empty($url['scheme'])) {
             $url['scheme'] = 'http';
             $url['host'] = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
+        }
+
+        if (self::isSecure()) {
+            $url['scheme'] = 'https';
         }
 
         return $url['scheme'].'://'.$url['host'].$url['path'].'?'.$url['query'];

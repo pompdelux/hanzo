@@ -1,0 +1,20 @@
+muneris_nno_lookup:
+    pattern:  /muneris/nno/{number}
+    defaults:
+        _controller: MunerisBundle:Nno:lookup
+        number: ''
+muneris_mm_lookup:
+    pattern:  /muneris/mm/{number}
+    defaults:
+        _controller: MunerisBundle:MaxMind:lookup
+muneris_gpc_lookup_z:
+    pattern:  /muneris/gpc/{zip}
+    defaults:
+        _controller: MunerisBundle:GeoPostal:lookup
+        zip: ''
+muneris_gpc_lookup_c_n_z:
+    pattern:  /muneris/gpc/{country}/{zip}
+    defaults:
+        _controller: MunerisBundle:GeoPostal:lookup
+        country: ''
+        zip: ''

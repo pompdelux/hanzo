@@ -26,7 +26,7 @@
 
 <p>{{ 'admin.customer.address.description.text'|trans({}, 'admin') }}</p>
 
-<form action="{{ path('admin_customer_address', {'id' : address.customersid, 'type' : address.type}) }}" method="post" {{ form_enctype(form) }} id="customer-edit-form">
+<form action="{{ path('admin_customer_address', {'id' : address.customersid, 'type' : address.type}) }}" method="post" {{ form_enctype(form) }} id="customer-edit-form" autocomplete="off">
   <div id="customeraddress-edit">
     {{ form_rest(form) }}
     {{ form_row(form._token) }}
