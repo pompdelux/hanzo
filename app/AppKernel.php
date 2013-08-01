@@ -34,6 +34,7 @@ class AppKernel extends Kernel
             new Liip\ThemeBundle\LiipThemeBundle(),
             new Nelmio\SecurityBundle\NelmioSecurityBundle(),
             new Misd\GuzzleBundle\MisdGuzzleBundle(),
+            new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
 
             new Hanzo\Bundle\AccountBundle\AccountBundle(),
             new Hanzo\Bundle\AdminBundle\AdminBundle(),
