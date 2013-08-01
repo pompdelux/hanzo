@@ -94,6 +94,12 @@ class RestGoogleController extends CoreController
           $longitude = 12.268982;
         }
 
+        // ab@bellcom.dk, fix danish koordinats for valby in KBH when searching for zip 2500 - note this is a google maps issue!
+        if ($latitude == 56.05579 && $longitude == 12.20289) {
+          $latitude = 55.661658;
+          $longitude = 12.516775;
+        }
+
         $radius = 100;
         $num_items = 12;
 
