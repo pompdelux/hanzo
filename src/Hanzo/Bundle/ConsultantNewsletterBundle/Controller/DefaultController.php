@@ -8,9 +8,9 @@ use Hanzo\Core\CoreController;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 
-use Hanzo\Model\CustomersQuery,
-    Hanzo\Model\ConsultantNewsletterDraftsQuery,
-    Hanzo\Model\ConsultantNewsletterDrafts;
+use Hanzo\Model\CustomersQuery;
+use Hanzo\Model\ConsultantNewsletterDraftsQuery;
+use Hanzo\Model\ConsultantNewsletterDrafts;
 
 use Hanzo\Bundle\ConsultantNewsletterBundle\ConsultantNewsletterApi;
 
@@ -22,7 +22,7 @@ class DefaultController extends CoreController
     {
         $api = $this->get('consultantnewsletterapi');
         $consultant = CustomersQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
-        
+
         $drafts = ConsultantNewsletterDraftsQuery::create()
             ->filterByConsultantsId($this->get('security.context')->getToken()->getUser()->getPrimaryKey())
             ->find()
@@ -31,7 +31,8 @@ class DefaultController extends CoreController
         $draft = null;
         $subject = '';
         $message = '';
-        if($draft_id){
+
+        if ($draft_id){
             $draft = ConsultantNewsletterDraftsQuery::create()
                 ->filterByConsultantsId($this->get('security.context')->getToken()->getUser()->getPrimaryKey())
                 ->findOneById($draft_id)
@@ -45,16 +46,12 @@ class DefaultController extends CoreController
 
         $env = substr( $this->container->getParameter('kernel.environment'), 0, 3 );
 
-        switch ($env) 
-        {
+        switch ($env) {
           case 'dev':
           case 'tes':
-            if ( substr( $serverName, 0, 1 ) == 'c' )
-            {
+            if ( substr( $serverName, 0, 1 ) == 'c' ) {
               $domain = str_replace( 'c.', '', $serverName );
-            }
-            else
-            {
+            } else {
               $domain = $serverName;
             }
             break;
@@ -79,14 +76,14 @@ class DefaultController extends CoreController
         $subject = $request->get('subject');
         $content = $request->get('message');
         $draft_id = $request->get('draft_id');
-    	
+
         $draft = null;
 
-        if(!empty($draft_id)){
+        if (!empty($draft_id)) {
             $draft = ConsultantNewsletterDraftsQuery::create()
                 ->findPK($draft_id)
             ;
-        }else{
+        } else {
             $draft = new ConsultantNewsletterDrafts();
             $draft->setConsultantsId($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
         }
@@ -94,7 +91,7 @@ class DefaultController extends CoreController
         $draft->setSubject($subject);
         $draft->setContent($content);
 
-        if($draft instanceof ConsultantNewsletterDrafts){
+        if ($draft instanceof ConsultantNewsletterDrafts) {
             $draft->save();
             if ($this->getFormat() == 'json') {
                 return $this->json_response(array(
@@ -113,9 +110,11 @@ class DefaultController extends CoreController
             ->filterByConsultantsId($this->get('security.context')->getToken()->getUser()->getPrimaryKey())
             ->findOneById($draft_id)
         ;
-        if($draft instanceof ConsultantNewsletterDrafts){
+
+        if ($draft instanceof ConsultantNewsletterDrafts) {
             $draft->delete();
         }
+
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
                 'status' => TRUE,
@@ -127,11 +126,10 @@ class DefaultController extends CoreController
     public function sendNewsletterAction()
     {
         $api = $this->get('consultantnewsletterapi');
-        
+
         $consultant = CustomersQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
 
-    	if(!$api->doesAdminUserExist($consultant->getEmail())){
-    		
+    	if (!$api->doesAdminUserExist($consultant->getEmail())) {
     		$admin = new \stdClass();
     		$admin->loginname = $consultant->getName();
     		$admin->email = $consultant->getEmail();
@@ -141,22 +139,24 @@ class DefaultController extends CoreController
     		$access = array();
     		$api->addAdminUser( $admin , (object) $access);
     	}
+
     	$admin_user = $api->getAdminUserByEmail( $consultant->getEmail() );
         $lists = $api->getListsByOwner($admin_user->id);
-        if(empty($lists)){
+        if (empty($lists)) {
 
             $list = new \stdClass();
             $list->name = 'Konsulent '.$consultant->getName();
             $list->description = 'Oprettet til '.$consultant->getName();
             $list->owner = $admin_user->id;
             $list->active = true;
-            try{
+            try {
                 $api->createList($list);
-            }catch(Exception $e){
+            } catch(Exception $e) {
                 error_log(__LINE__.':'.__FILE__.' '.$e->getMessage());
             }
             $lists = $api->getListsByOwner($admin_user->id);
         }
+
         $listIds = array();
         foreach ($lists as $list) {
             $listIds[] = $list->id;
@@ -259,7 +259,7 @@ class DefaultController extends CoreController
         $consultant = CustomersQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
 
         if(!$api->doesAdminUserExist($consultant->getEmail())){
-            
+
             $admin = new \stdClass();
             $admin->loginname = $consultant->getName();
             $admin->email = $consultant->getEmail();
@@ -285,7 +285,7 @@ class DefaultController extends CoreController
             }
             $lists = $api->getListsByOwner($admin_user->id);
         }
-        
+
         $subscribed_users = $api->getAllUsersSubscribedToList($lists[0]->id);
 
     	return $this->render('ConsultantNewsletterBundle:Default:editUsers.html.twig',
@@ -303,7 +303,7 @@ class DefaultController extends CoreController
         $consultant = CustomersQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
 
         if(!$api->doesAdminUserExist($consultant->getEmail())){
-            
+
             $admin = new \stdClass();
             $admin->loginname = $consultant->getName();
             $admin->email = $consultant->getEmail();
@@ -357,7 +357,7 @@ class DefaultController extends CoreController
         $consultant = CustomersQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
 
         if(!$api->doesAdminUserExist($consultant->getEmail())){
-            
+
             $admin = new \stdClass();
             $admin->loginname = $consultant->getName();
             $admin->email = $consultant->getEmail();
@@ -407,10 +407,10 @@ class DefaultController extends CoreController
 	        		'email_address' => trim($email),
 	        		'attributes'	=> array()
 	        	);
-				
+
 				$api->subscribeUser($userData, $listIds, true );
 	        }
-        	
+
 	        if ($this->getFormat() == 'json') {
 	            return $this->json_response(array(
 	                'status' => TRUE,
@@ -428,7 +428,7 @@ class DefaultController extends CoreController
         $consultant = CustomersQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
 
         if(!$api->doesAdminUserExist($consultant->getEmail())){
-            
+
             $admin = new \stdClass();
             $admin->loginname = $consultant->getName();
             $admin->email = $consultant->getEmail();
@@ -444,12 +444,12 @@ class DefaultController extends CoreController
 
     	// Workaround. Crap content receivet from phplist :-(
     	$histSize = count($history);
-    	for ($i=0; $i < $histSize; $i++) { 
+    	for ($i=0; $i < $histSize; $i++) {
 			$history[$i]['message'] = htmlspecialchars_decode($history[$i]['message']);
     	}
 
         krsort($history);
-    	
+
     	return $this->render('ConsultantNewsletterBundle:Default:history.html.twig',
         	array(
         		'page_type' => 'consultant-newsletter',

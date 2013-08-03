@@ -29,14 +29,14 @@ class ConsultantNewsletterApi
     {
         $this->domainKey = Hanzo::getInstance()->get('core.domain_key');
 
-        try
-        {
-            if ( empty($wsdl) )
+        try {
+            if (empty($wsdl)) {
                 $wsdl = 'http://phplist.bellcom.dk/integration/phplist.konsulent.pompdelux.dk/wsdl';
+            }
 
             $this->soapClient = new \Soapclient( $wsdl );
 
-        }catch (Exception $e){
+        } catch (Exception $e) {
             throw new Exception( "Could not create soap client: ". $e->getMessage() );
         }
     }
@@ -63,17 +63,19 @@ class ConsultantNewsletterApi
             $old_list = $this->soapClient->getSubscribedListsForUserWithEmail( $customerData['email_address'] );
 
             foreach ($listIds as $listId) {
-                if(!empty($old_list) && in_array($listId, $old_list))
+                if (!empty($old_list) && in_array($listId, $old_list)) {
                     $dublicate_lists[] = $listId;
-                else
+                } else {
                     $new_lists[] = $listId;
+                }
             }
         }else{
             $new_lists = $listIds; // If the user is new just subscribe to all lists
         }
 
-        if(!empty($dublicate_lists) && empty($new_lists))
+        if(!empty($dublicate_lists) && empty($new_lists)){
             return false;
+        }
 
         //subscribe the new user to the correct lists
         $firstName = (isset($customerData['firstname']) ? $customerData['firstname'] : '');
@@ -196,8 +198,8 @@ class ConsultantNewsletterApi
     * @author Henrik Farre <hf@bellcom.dk>
     **/
     public function addAdminUser( \stdClass $user, \stdClass $access )
-    {   
-        return $this->soapClient->addAdminUser( $user, $access );  
+    {
+        return $this->soapClient->addAdminUser( $user, $access );
     }
 
     /**
@@ -267,7 +269,7 @@ class ConsultantNewsletterApi
      **/
     public function sendNotificationEmail( $mailer, $tpl, $email, $name = '' )
     {
-        
+
         $mailer->setMessage($tpl, array(
             'name'  => $name,
             'email' => $email,
