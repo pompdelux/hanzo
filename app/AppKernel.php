@@ -9,10 +9,7 @@ use Hanzo\Core\Tools;
 
 class AppKernel extends Kernel
 {
-    protected $terminate_events = array();
     protected $settings = array();
-
-    public $locale;
 
     public function registerBundles()
     {
