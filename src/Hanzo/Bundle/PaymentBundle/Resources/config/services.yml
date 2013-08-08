@@ -2,7 +2,7 @@ parameters:
     payment.dibsapi.class: Hanzo\Bundle\PaymentBundle\Methods\Dibs\DibsApi
     payment.gothiaapi.class: Hanzo\Bundle\PaymentBundle\Methods\Gothia\GothiaApi
     payment.paybybill.class: Hanzo\Bundle\PaymentBundle\Methods\PayByBill\PayByBillApi
-    payment.coupon.class: Hanzo\Bundle\PaymentBundle\Methods\Coupon\CouponApi
+    payment.giftcard.class: Hanzo\Bundle\PaymentBundle\Methods\GiftCard\GiftCardApi
     payment.pensio.class: Hanzo\Bundle\PaymentBundle\Methods\Pensio\PensioApi
     payment.paypal.class: Hanzo\Bundle\PaymentBundle\Methods\PayPal\PayPalApi
 
@@ -34,14 +34,14 @@ services:
             parameters:  ~
             class:       %payment.paybybill.class%
 
-    payment.couponapi:
-        class:           %payment.coupon.class%
+    payment.giftcardapi:
+        class:           %payment.giftcard.class%
         factory_service: service_factory
         factory_method:  get
         arguments:
-            service:     couponapi
+            service:     giftcardapi
             parameters:  ~
-            class:       %payment.coupon.class%
+            class:       %payment.giftcard.class%
 
     payment.pensioapi:
         class:           %payment.pensio.class%

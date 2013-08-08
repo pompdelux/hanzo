@@ -9,16 +9,9 @@
         <input class="button search" type="submit" value="{{ 'search'|trans({}, 'admin') }}">
       </form>
     </li>
-    <li>
-      <a href="{{ path('admin_coupons') }}">
-        {{ 'admin.coupons.list.link'|trans({}, 'admin') }}
-      </a>
-    </li>
-    <li>
-      <a href="{{ path('admin_coupons_edit') }}">
-        {{ 'admin.coupons.add_new.link'|trans({}, 'admin') }}
-      </a>
-    </li>
+    <li><a href="{{ path('admin_coupons') }}">{{ 'admin.coupons.list.link'|trans({}, 'admin') }}</a></li>
+    <li><a href="{{ path('admin_coupons_edit') }}">{{ 'admin.coupons.add_new.link'|trans({}, 'admin') }}</a></li>
+    <li><a href="{{ path('admin_coupons_batch') }}">Batch opret</a></li>
   </ul>
 </nav>
 
@@ -48,10 +41,12 @@
       <th>{{ 'admin.coupons.id'|trans({}, 'admin') }}</th>
       <th>{{ 'admin.coupons.code'|trans({}, 'admin') }}</th>
       <th>{{ 'admin.coupons.amount'|trans({}, 'admin') }}</th>
+      <th>{{ 'admin.coupons.min.purchase.amount'|trans({}, 'admin') }}</th>
       <th>{{ 'admin.coupons.currency'|trans({}, 'admin') }}</th>
       <th>{{ 'admin.coupons.active_from'|trans({}, 'admin') }}</th>
       <th>{{ 'admin.coupons.active_to'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.customer.is_active'|trans({}, 'admin') }}</th>
+      <th>{{ 'admin.coupon.is_active'|trans({}, 'admin') }}</th>
+      <th>{{ 'admin.coupon.is_used'|trans({}, 'admin') }}</th>
       <th></th>
     </tr>
   </thead>
@@ -61,6 +56,7 @@
       <td>{{ coupon.id }}</td>
       <td>{{ coupon.code }}</td>
       <td>{{ coupon.amount|number_format(2, ',', '.') }}</td>
+      <td>{{ coupon.minpurchaseamount|number_format(2, ',', '.') }}</td>
       <td>{{ coupon.currencycode }}</td>
       <td>
       {% if coupon.activefrom %}
@@ -78,6 +74,13 @@
       </td>
       <td>
         {% if coupon.isactive %}
+          {{ 'admin.consultant.yes'|trans({}, 'admin') }}
+        {% else %}
+          {{ 'admin.consultant.no'|trans({}, 'admin') }}
+        {% endif %}
+      </td>
+      <td>
+        {% if coupon.isused %}
           {{ 'admin.consultant.yes'|trans({}, 'admin') }}
         {% else %}
           {{ 'admin.consultant.no'|trans({}, 'admin') }}
@@ -106,5 +109,4 @@
 <p>{{ 'admin.coupons.no.coupons.text'|trans({}, 'admin') }}</p>
 
 {% endif %}
-
 {% endblock %}

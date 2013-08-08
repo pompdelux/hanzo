@@ -1,0 +1,27 @@
+parameters:
+    muneris.service.maxmind.class: Hanzo\Bundle\MunerisBundle\Services\MaxMind;
+#    muneris.service.geopostal.class: Hanzo\Bundle\MunerisBundle\Services\GeoPostal;
+#    muneris.service.nno.class: Hanzo\Bundle\MunerisBundle\Services\Nno;
+
+services:
+    muneris.guzzle.client:
+        class: "%guzzle.client.class%"
+        arguments:
+            -  "%muneris.host%"
+        tags:
+            -  { name: guzzle.client }
+
+    muneris.maxmind:
+        class: Hanzo\Bundle\MunerisBundle\Services\MaxMind
+        arguments:
+            - @service_container
+            - @muneris.guzzle.client
+            - @redis.permanent
+            - @logger
+
+    # muneris.geopostal:
+    #     class: %muneris.service.geopostal.class%
+    #     arguments: [@muneris.guzzle.client, @redis.permanent, @logger]
+    # muneris.nno:
+    #     class: %muneris.service.nno.class%
+    #     arguments: [@muneris.guzzle.client, @redis.permanent, @logger]

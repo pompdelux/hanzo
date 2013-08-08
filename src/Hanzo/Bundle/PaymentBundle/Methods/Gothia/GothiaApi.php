@@ -4,11 +4,12 @@ namespace Hanzo\Bundle\PaymentBundle\Methods\Gothia;
 
 use Hanzo\Model\Orders;
 use Symfony\Component\HttpFoundation\Request;
+use Hanzo\Bundle\PaymentBundle\BasePaymentApi;
 use Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface;
 
 use Exception;
 
-class GothiaApi implements PaymentMethodApiInterface
+class GothiaApi extends BasePaymentApi implements PaymentMethodApiInterface
 {
     /**
      * undocumented class variable

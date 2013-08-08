@@ -39,4 +39,7 @@
     varnish_secret=""
     varnish_timeout=""
 
+; same as varnish_host - must be set on test and prod servers
+    proxy_ip=""
+
     nno_api_key="delux"

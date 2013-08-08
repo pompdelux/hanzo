@@ -27,35 +27,39 @@ class DibsController extends CoreController
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function callbackAction()
+    public function callbackAction(Request $request)
     {
         $api = $this->get('payment.dibsapi');
 
-        $request = $this->get('request');
-        $orderId = $request->get('orderid');
+        $payment_gateway_id = false;
+        if ($request->request->has('orderId')) {
+            $payment_gateway_id = $request->request->get('orderId');
+        } elseif ($request->request->has('orderid')) {
+            $payment_gateway_id = $request->request->get('orderid');
+        }
 
-        if ( $orderId === false ) {
-            Tools::log( 'Dibs callback did not supply a valid order id' );
-            Tools::log( $_POST );
+        if (false === $payment_gateway_id) {
+            Tools::log('Dibs callback did not supply a valid payment gateway id');
+            Tools::log($_POST);
             return new Response('Failed', 500, array('Content-Type' => 'text/plain'));
         }
 
-        $order = OrdersPeer::retriveByPaymentGatewayId( $orderId );
+        $order = OrdersPeer::retriveByPaymentGatewayId($payment_gateway_id);
 
-        if ( !($order instanceof Orders) ) {
-            Tools::log( 'Dibs callback did not supply a valid order id: "'. $orderId .'"' );
-            Tools::log( $_POST );
+        if (!($order instanceof Orders)) {
+            Tools::log('No order matched payment gateway id: "'. $payment_gateway_id .'"');
+            Tools::log($_POST);
             return new Response('Failed', 500, array('Content-Type' => 'text/plain'));
         }
 
         try {
-            $api->verifyCallback( $request, $order );
-            $api->updateOrderSuccess( $request, $order );
+            $api->verifyCallback($request, $order);
+            $api->updateOrderSuccess($request, $order);
 
             $this->get('event_dispatcher')->dispatch('order.payment.collected', new FilterOrderEvent($order));
         } catch (Exception $e) {
-            Tools::log( $e->getMessage() );
-            $api->updateOrderFailed( $request, $order );
+            Tools::log($e->getMessage());
+            $api->updateOrderFailed($request, $order);
         }
 
         return new Response('Ok', 200, array('Content-Type' => 'text/plain'));

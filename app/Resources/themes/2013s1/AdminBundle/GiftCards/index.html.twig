@@ -1,0 +1,110 @@
+{% extends '::adminbase.html.twig' %}
+
+{% block content %}
+<nav class="sub">
+  <ul>
+    <li>
+      <form action="{{ path('admin_gift_cards') }}" method="get">
+        <input type="text" id="searh" name="q" placeholder="{{ 'search.label'|trans({}, 'admin') }}">
+        <input class="button search" type="submit" value="{{ 'search'|trans({}, 'admin') }}">
+      </form>
+    </li>
+    <li>
+      <a href="{{ path('admin_gift_cards') }}">
+        {{ 'admin.gift_cards.list.link'|trans({}, 'admin') }}
+      </a>
+    </li>
+    <li>
+      <a href="{{ path('admin_gift_cards_edit') }}">
+        {{ 'admin.gift_cards.add_new.link'|trans({}, 'admin') }}
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<h1>{{ 'admin.gift_cards.header.text'|trans({}, 'admin') }}</h1>
+
+{% if app.session.hasFlash('notice') %}
+<div class="message notice">
+  {{ app.session.flash('notice')|trans({}, 'admin') }}
+</div>
+{% endif %}
+
+
+<p>{{ 'admin.gift_cards.description.text'|trans({}, 'admin') }}</p>
+
+
+{% if gift_cards|length > 0 %}
+
+  {% if paginate %}
+    <div class="clearfix">
+      {% import "::macro.pager.html.twig" as p %}
+      {{ p.pager(paginate, 'gift_cards') }}
+    </div>
+  {% endif %}
+<table id="gift_cards" class="list">
+  <thead>
+    <tr>
+      <th>{{ 'admin.gift_cards.id'|trans({}, 'admin') }}</th>
+      <th>{{ 'admin.gift_cards.code'|trans({}, 'admin') }}</th>
+      <th>{{ 'admin.gift_cards.amount'|trans({}, 'admin') }}</th>
+      <th>{{ 'admin.gift_cards.currency'|trans({}, 'admin') }}</th>
+      <th>{{ 'admin.gift_cards.active_from'|trans({}, 'admin') }}</th>
+      <th>{{ 'admin.gift_cards.active_to'|trans({}, 'admin') }}</th>
+      <th>{{ 'admin.customer.is_active'|trans({}, 'admin') }}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for gift_card in gift_cards %}
+    <tr>
+      <td>{{ gift_card.id }}</td>
+      <td>{{ gift_card.code }}</td>
+      <td>{{ gift_card.amount|number_format(2, ',', '.') }}</td>
+      <td>{{ gift_card.currencycode }}</td>
+      <td>
+      {% if gift_card.activefrom %}
+        {{ gift_card.activefrom|date("d-m-Y") }}
+      {% else %}
+        -
+      {% endif %}
+      </td>
+      <td>
+      {% if gift_card.activeto %}
+        {{ gift_card.activeto|date("d-m-Y") }}
+      {% else %}
+        -
+      {% endif %}
+      </td>
+      <td>
+        {% if gift_card.isactive %}
+          {{ 'admin.consultant.yes'|trans({}, 'admin') }}
+        {% else %}
+          {{ 'admin.consultant.no'|trans({}, 'admin') }}
+        {% endif %}
+      </td>
+      <th>
+        <a href="{{ path('admin_gift_cards_edit', {'id' : gift_card.id }) }}">
+          {{ 'admin.gift_cards.edit.link'|trans({}, 'admin') }}
+        </a>
+        <a href="{{ path('admin_gift_cards_delete', {'id' : gift_card.id }) }}" class="delete">
+          {{ 'admin.gift_cards.delete.link'|trans({}, 'admin') }}
+        </a>
+      </th>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+  {% if paginate %}
+    <div class="clearfix">
+      {% import "::macro.pager.html.twig" as p %}
+      {{ p.pager(paginate, 'gift_cards') }}
+    </div>
+  {% endif %}
+{% else %}
+
+<p>{{ 'admin.gift_cards.no.gift_cards.text'|trans({}, 'admin') }}</p>
+
+{% endif %}
+
+{% endblock %}
