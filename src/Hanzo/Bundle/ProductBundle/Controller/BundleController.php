@@ -73,10 +73,12 @@ class BundleController extends CoreController
             $key = '_' . $locale . '_' . $products2category->getCategoriesId();
             $product_route = $router_keys[$key];
 
+            $image = $product->getProductsImagess()->getFirst();
             $products[$product->getId()] = array(
                 'id' => $product->getId(),
                 'master' => $product->getSku(),
-                'image' => $product->getProductsImagess()->getFirst()->getImage(),
+                'color' => $image->getColor(),
+                'image' => $image->getImage(),
                 'url' => $router->generate($product_route, array(
                     'product_id' => $product->getId(),
                     'title' => Tools::stripText($product->getSku()),
@@ -97,6 +99,11 @@ class BundleController extends CoreController
                     ->condition('c1', ProductsDomainsPricesPeer::FROM_DATE . ' <= NOW()')
                     ->condition('c2', ProductsDomainsPricesPeer::TO_DATE . ' >= NOW()')
                     ->where(array('c1', 'c2'), 'AND')
+                ->endUse()
+                ->useProductsImagesQuery()
+                    ->filterByType('overview')
+                    ->where('products_images.COLOR = products_images_product_references.COLOR')
+                    ->groupByProductsId()
                 ->endUse()
                 ->joinWithProductsImages()
                 ->find()
