@@ -250,7 +250,7 @@ class ProductsController extends CoreController
             ->joinWithDomains()
             ->orderByProductsId()
             ->orderByFromDate()
-            ->find();
+            ->find($this->getDbConnection());
 
         $prices = [];
         foreach ($prices_result as $price) {

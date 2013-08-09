@@ -30,13 +30,13 @@ abstract class BaseCouponsPeer
     const TM_CLASS = 'CouponsTableMap';
 
     /** The total number of columns. */
-    const NUM_COLUMNS = 9;
+    const NUM_COLUMNS = 11;
 
     /** The number of lazy-loaded columns. */
     const NUM_LAZY_LOAD_COLUMNS = 0;
 
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-    const NUM_HYDRATE_COLUMNS = 9;
+    const NUM_HYDRATE_COLUMNS = 11;
 
     /** the column name for the id field */
     const ID = 'coupons.id';
@@ -46,6 +46,9 @@ abstract class BaseCouponsPeer
 
     /** the column name for the amount field */
     const AMOUNT = 'coupons.amount';
+
+    /** the column name for the min_purchase_amount field */
+    const MIN_PURCHASE_AMOUNT = 'coupons.min_purchase_amount';
 
     /** the column name for the currency_code field */
     const CURRENCY_CODE = 'coupons.currency_code';
@@ -58,6 +61,9 @@ abstract class BaseCouponsPeer
 
     /** the column name for the is_active field */
     const IS_ACTIVE = 'coupons.is_active';
+
+    /** the column name for the is_used field */
+    const IS_USED = 'coupons.is_used';
 
     /** the column name for the created_at field */
     const CREATED_AT = 'coupons.created_at';
@@ -84,12 +90,12 @@ abstract class BaseCouponsPeer
      * e.g. CouponsPeer::$fieldNames[CouponsPeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('Id', 'Code', 'Amount', 'CurrencyCode', 'ActiveFrom', 'ActiveTo', 'IsActive', 'CreatedAt', 'UpdatedAt', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'code', 'amount', 'currencyCode', 'activeFrom', 'activeTo', 'isActive', 'createdAt', 'updatedAt', ),
-        BasePeer::TYPE_COLNAME => array (CouponsPeer::ID, CouponsPeer::CODE, CouponsPeer::AMOUNT, CouponsPeer::CURRENCY_CODE, CouponsPeer::ACTIVE_FROM, CouponsPeer::ACTIVE_TO, CouponsPeer::IS_ACTIVE, CouponsPeer::CREATED_AT, CouponsPeer::UPDATED_AT, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'CODE', 'AMOUNT', 'CURRENCY_CODE', 'ACTIVE_FROM', 'ACTIVE_TO', 'IS_ACTIVE', 'CREATED_AT', 'UPDATED_AT', ),
-        BasePeer::TYPE_FIELDNAME => array ('id', 'code', 'amount', 'currency_code', 'active_from', 'active_to', 'is_active', 'created_at', 'updated_at', ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, )
+        BasePeer::TYPE_PHPNAME => array ('Id', 'Code', 'Amount', 'MinPurchaseAmount', 'CurrencyCode', 'ActiveFrom', 'ActiveTo', 'IsActive', 'IsUsed', 'CreatedAt', 'UpdatedAt', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'code', 'amount', 'minPurchaseAmount', 'currencyCode', 'activeFrom', 'activeTo', 'isActive', 'isUsed', 'createdAt', 'updatedAt', ),
+        BasePeer::TYPE_COLNAME => array (CouponsPeer::ID, CouponsPeer::CODE, CouponsPeer::AMOUNT, CouponsPeer::MIN_PURCHASE_AMOUNT, CouponsPeer::CURRENCY_CODE, CouponsPeer::ACTIVE_FROM, CouponsPeer::ACTIVE_TO, CouponsPeer::IS_ACTIVE, CouponsPeer::IS_USED, CouponsPeer::CREATED_AT, CouponsPeer::UPDATED_AT, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'CODE', 'AMOUNT', 'MIN_PURCHASE_AMOUNT', 'CURRENCY_CODE', 'ACTIVE_FROM', 'ACTIVE_TO', 'IS_ACTIVE', 'IS_USED', 'CREATED_AT', 'UPDATED_AT', ),
+        BasePeer::TYPE_FIELDNAME => array ('id', 'code', 'amount', 'min_purchase_amount', 'currency_code', 'active_from', 'active_to', 'is_active', 'is_used', 'created_at', 'updated_at', ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, )
     );
 
     /**
@@ -99,12 +105,12 @@ abstract class BaseCouponsPeer
      * e.g. CouponsPeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Code' => 1, 'Amount' => 2, 'CurrencyCode' => 3, 'ActiveFrom' => 4, 'ActiveTo' => 5, 'IsActive' => 6, 'CreatedAt' => 7, 'UpdatedAt' => 8, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'code' => 1, 'amount' => 2, 'currencyCode' => 3, 'activeFrom' => 4, 'activeTo' => 5, 'isActive' => 6, 'createdAt' => 7, 'updatedAt' => 8, ),
-        BasePeer::TYPE_COLNAME => array (CouponsPeer::ID => 0, CouponsPeer::CODE => 1, CouponsPeer::AMOUNT => 2, CouponsPeer::CURRENCY_CODE => 3, CouponsPeer::ACTIVE_FROM => 4, CouponsPeer::ACTIVE_TO => 5, CouponsPeer::IS_ACTIVE => 6, CouponsPeer::CREATED_AT => 7, CouponsPeer::UPDATED_AT => 8, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'CODE' => 1, 'AMOUNT' => 2, 'CURRENCY_CODE' => 3, 'ACTIVE_FROM' => 4, 'ACTIVE_TO' => 5, 'IS_ACTIVE' => 6, 'CREATED_AT' => 7, 'UPDATED_AT' => 8, ),
-        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'code' => 1, 'amount' => 2, 'currency_code' => 3, 'active_from' => 4, 'active_to' => 5, 'is_active' => 6, 'created_at' => 7, 'updated_at' => 8, ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, )
+        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Code' => 1, 'Amount' => 2, 'MinPurchaseAmount' => 3, 'CurrencyCode' => 4, 'ActiveFrom' => 5, 'ActiveTo' => 6, 'IsActive' => 7, 'IsUsed' => 8, 'CreatedAt' => 9, 'UpdatedAt' => 10, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'code' => 1, 'amount' => 2, 'minPurchaseAmount' => 3, 'currencyCode' => 4, 'activeFrom' => 5, 'activeTo' => 6, 'isActive' => 7, 'isUsed' => 8, 'createdAt' => 9, 'updatedAt' => 10, ),
+        BasePeer::TYPE_COLNAME => array (CouponsPeer::ID => 0, CouponsPeer::CODE => 1, CouponsPeer::AMOUNT => 2, CouponsPeer::MIN_PURCHASE_AMOUNT => 3, CouponsPeer::CURRENCY_CODE => 4, CouponsPeer::ACTIVE_FROM => 5, CouponsPeer::ACTIVE_TO => 6, CouponsPeer::IS_ACTIVE => 7, CouponsPeer::IS_USED => 8, CouponsPeer::CREATED_AT => 9, CouponsPeer::UPDATED_AT => 10, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'CODE' => 1, 'AMOUNT' => 2, 'MIN_PURCHASE_AMOUNT' => 3, 'CURRENCY_CODE' => 4, 'ACTIVE_FROM' => 5, 'ACTIVE_TO' => 6, 'IS_ACTIVE' => 7, 'IS_USED' => 8, 'CREATED_AT' => 9, 'UPDATED_AT' => 10, ),
+        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'code' => 1, 'amount' => 2, 'min_purchase_amount' => 3, 'currency_code' => 4, 'active_from' => 5, 'active_to' => 6, 'is_active' => 7, 'is_used' => 8, 'created_at' => 9, 'updated_at' => 10, ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, )
     );
 
     /**
@@ -181,20 +187,24 @@ abstract class BaseCouponsPeer
             $criteria->addSelectColumn(CouponsPeer::ID);
             $criteria->addSelectColumn(CouponsPeer::CODE);
             $criteria->addSelectColumn(CouponsPeer::AMOUNT);
+            $criteria->addSelectColumn(CouponsPeer::MIN_PURCHASE_AMOUNT);
             $criteria->addSelectColumn(CouponsPeer::CURRENCY_CODE);
             $criteria->addSelectColumn(CouponsPeer::ACTIVE_FROM);
             $criteria->addSelectColumn(CouponsPeer::ACTIVE_TO);
             $criteria->addSelectColumn(CouponsPeer::IS_ACTIVE);
+            $criteria->addSelectColumn(CouponsPeer::IS_USED);
             $criteria->addSelectColumn(CouponsPeer::CREATED_AT);
             $criteria->addSelectColumn(CouponsPeer::UPDATED_AT);
         } else {
             $criteria->addSelectColumn($alias . '.id');
             $criteria->addSelectColumn($alias . '.code');
             $criteria->addSelectColumn($alias . '.amount');
+            $criteria->addSelectColumn($alias . '.min_purchase_amount');
             $criteria->addSelectColumn($alias . '.currency_code');
             $criteria->addSelectColumn($alias . '.active_from');
             $criteria->addSelectColumn($alias . '.active_to');
             $criteria->addSelectColumn($alias . '.is_active');
+            $criteria->addSelectColumn($alias . '.is_used');
             $criteria->addSelectColumn($alias . '.created_at');
             $criteria->addSelectColumn($alias . '.updated_at');
         }

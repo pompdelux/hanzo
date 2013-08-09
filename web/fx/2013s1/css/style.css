@@ -5,8 +5,8 @@
   background: url('/fx/2013s1/../images/icons/da-sd69e9a5d05.png') no-repeat;
 }
 
-.icons-sprite, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-facebook, .icons-gplus, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf {
-  background: url('/fx/2013s1/../images/icons/icons-s6390654f6c.png') no-repeat;
+.icons-sprite, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-facebook, .icons-gplus, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf {
+  background: url('/fx/2013s1/../images/icons/icons-sbcb022061e.png') no-repeat;
 }
 
 .icons-arrow_down {
@@ -25,8 +25,16 @@
   background-position: 0 -122px;
 }
 
+.icons-button-left-black {
+  background-position: 0 -605px;
+}
+
 .icons-button-left {
   background-position: 0 -517px;
+}
+
+.icons-button-right-black {
+  background-position: 0 -586px;
 }
 
 .icons-button-right {
@@ -69,12 +77,16 @@
   background-position: 0 -414px;
 }
 
+.icons-magnifier {
+  background-position: 0 -554px;
+}
+
 .icons-newsletter {
   background-position: 0 0;
 }
 
 .icons-pdf {
-  background-position: 0 -554px;
+  background-position: 0 -570px;
 }
 
 .icons-pinterest {
@@ -86,7 +98,7 @@
 }
 
 .icons-show {
-  background-position: 0 -570px;
+  background-position: 0 -624px;
 }
 
 .icons-twitter {
@@ -123,6 +135,14 @@
 
 .de-sprite, body.de form.buy .submit-button, body.de .buy-set, body.de .new-price, body.de .out-of-stock {
   background: url('/fx/2013s1/../images/icons/de-s5694c04f28.png') no-repeat;
+}
+
+.sprite {
+  display: inline-block;
+}
+
+.sprite-block {
+  display: block;
 }
 
 body.da form.buy .submit-button {
@@ -1618,7 +1638,7 @@ html.touch .product-list .buy-set {
 }
 
 /**
-| _account.
+| _account
 */
 form.create label:after {
   content: ":";
@@ -1626,9 +1646,21 @@ form.create label:after {
 form.create label.required:after {
   content: ": *";
 }
+form.create .button {
+  display: none;
+}
 
 #body-events-create-customer input.button.off {
   display: none;
+}
+
+#event-edit-form .button {
+  display: inline-block;
+}
+
+#body-event form.create .button,
+#body-edit-account form.create .button {
+  display: inline-block;
 }
 
 .checkout-block {
@@ -1731,16 +1763,16 @@ form.address .error {
   border: 1px solid #7B7577;
 }
 
-#coupon-block form {
+.voucher-block form {
   overflow: hidden;
   padding: 20px;
   margin: 10px;
   border: 1px solid #7B7577;
 }
-#coupon-block form div.clearfix {
+.voucher-block form div.clearfix {
   float: left;
 }
-#coupon-block #form_code {
+.voucher-block #form_code {
   margin: 0 10px;
 }
 
@@ -1921,6 +1953,7 @@ html.consultant .social-buttons {
   display: none;
 }
 
+a.facebook-button,
 .facebook-button {
   background: #eceef5;
   -webkit-border-radius: 3px;
@@ -1932,9 +1965,14 @@ html.consultant .social-buttons {
   display: inline-block;
   text-align: center;
   font-size: 11px;
+  text-decoration: none;
 }
-.facebook-button:hover {
+a.facebook-button:hover, a.facebook-button:active, a.facebook-button:focus,
+.facebook-button:hover,
+.facebook-button:active,
+.facebook-button:focus {
   border-color: #9dacce;
+  text-decoration: underline;
 }
 
 /**
@@ -2024,8 +2062,14 @@ nav.main-menu > ul > li > ul.on {
   background-position: 0 25px;
 }
 
+#cboxContent {
+  outline: 0;
+}
 #cboxContent .dialoug .buttons {
   padding: 0 10px;
+}
+#cboxContent #cboxClose {
+  display: none;
 }
 
 #dialoug-message {
@@ -2626,14 +2670,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
 }
 
-.sprite {
-  display: inline-block;
-}
-
-.sprite-block {
-  display: block;
-}
-
 html {
   overflow-y: scroll;
 }
@@ -2961,6 +2997,25 @@ table.horizontal th {
   font-weight: bold;
 }
 
+.image-caption {
+  position: relative;
+  margin-bottom: 3px;
+}
+.image-caption span {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: white;
+  font-size: 16px;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  text-transform: uppercase;
+  padding: 10px;
+}
+.image-caption.caption-right span {
+  right: 0;
+  text-align: right;
+}
+
 .align-left,
 .left {
   text-align: left;
@@ -3081,12 +3136,12 @@ button.right {
   width: 23px;
 }
 .sprite.show {
-  background-position: 0 -570px;
+  background-position: 0 -624px;
   height: 16px;
   width: 16px;
 }
 .sprite.pdf {
-  background-position: 0 -554px;
+  background-position: 0 -570px;
   height: 16px;
   width: 16px;
 }
@@ -3249,6 +3304,13 @@ ol.list {
 .main > .grid_4-5,
 .container_8 .row {
   margin-bottom: 6px;
+}
+
+.g33c {
+  width: 33%;
+  text-align: center;
+  float: left;
+  margin-bottom: 12px;
 }
 
 ul.form-errors li {

@@ -22,6 +22,7 @@ html.consultant .social-buttons{
 	display: none;
 }
 
+a.facebook-button,
 .facebook-button{
 	background: #eceef5;
 	-webkit-border-radius: 3px;
@@ -33,8 +34,10 @@ html.consultant .social-buttons{
 	display: inline-block;
 	text-align: center;
 	font-size: 11px;
-	&:hover{
+	text-decoration: none;
+	&:hover, &:active, &:focus{
 		border-color: #9dacce;
+		text-decoration: underline;
 	}
 	// button{
 	// 	background: transparent;

@@ -12,6 +12,13 @@ use Hanzo\Model\AddressesPeer;
 
 class DefaultController extends Controller
 {
+    public function cookieAction()
+    {
+        Tools::setCookie('x_mobile_x', '1');
+        header('Location: http://'.$_SERVER['HTTP_HOST'].'/'.$this->getRequest()->getLocale());
+        header('cache-control: no-cache');
+        exit;
+    }
 
     public function indexAction($name)
     {

@@ -121,7 +121,7 @@
             </trans-unit>
             <trans-unit id="54">
                 <source>Phone</source>
-                <target>Telefoonnummer</target>
+                <target>Mobiel</target>
             </trans-unit>
             			<trans-unit id="55">
                 <source>Address line 1</source>
@@ -419,7 +419,7 @@
                 <source>my.account.description</source>
                  <target><![CDATA[<p>Op Mijn Pagina kun je je gegevens wijzigen en je aan- of afmelden voor de nieuwsbrief. Je kunt ook je bestelling bewerken.<br><br>Je bestelling heeft de volgende status:<br><br><b>Afwachten</b><br>Je bestelling is nog niet behandeld en je hebt minstens 24 uur om die te bewerken.
 Je hebt de mogelijkheid om je bestelling te wijzigen/er meer aan toe te voegen/eruit te verwijderen. Klik op het potloodje om je bestelling te bewerken.
-Let op: de betaling moet uitgevoerd worden – eerdere betalingen worden automatisch gewist.Wil je je hele bestelling wissen, klik dan op X.<br><br>Tijdens de SALE kunnen we helaas niet garanderen dat je je order 24 uur lang zult kunnen bewerken.<br><br><b>Stoppen met bewerken</b><br>Misschien heb je per ongeluk het bewerken afgebroken. Druk op de knop ”Stoppen met bewerken” en daarna kun je je bestelling opnieuw bewerken.<br><br><b>In behandeling</b><br>Je bestelling wordt nu in ons magazijn behandeld en zal binnen 1-2 dagen verzonden worden. Het is niet meer mogelijk om je bestelling te bewerken/annuleren.<br><br><b>Gefactureerd</b><br>Je bestelling is nu verstuurd. Je factuur vind je 24 uur na verzending bijgesloten als PDF-bestand in de kolom factuur.<br><br>Wil je een artikel retourneren, dan vind je hier ons <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_NL.pdf" target="_blank">retourformulier</a>.<br><br></p>]]></target>
+Let op: de betaling moet uitgevoerd worden – eerdere betalingen worden automatisch gewist.Wil je je hele bestelling wissen, klik dan op X.<br><br><b>Stoppen met bewerken</b><br>Misschien heb je per ongeluk het bewerken afgebroken. Druk op de knop ”Stoppen met bewerken” en daarna kun je je bestelling opnieuw bewerken.<br><br><b>In behandeling</b><br>Je bestelling wordt nu in ons magazijn behandeld en zal binnen 1-2 dagen verzonden worden. Het is niet meer mogelijk om je bestelling te bewerken/annuleren.<br><br><b>Gefactureerd</b><br>Je bestelling is nu verstuurd. Je factuur vind je 24 uur na verzending bijgesloten als PDF-bestand in de kolom factuur.<br><br>Wil je een artikel retourneren, dan vind je hier ons <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_NL.pdf" target="_blank">retourformulier</a>.<br><br></p>]]></target>
             </trans-unit>
             <trans-unit id="newsletter" approved="no">
                 <source>newsletter</source>
@@ -455,7 +455,7 @@ Let op: de betaling moet uitgevoerd worden – eerdere betalingen worden automat
             </trans-unit>
             <trans-unit id="my.account.login.text">
                 <source>my.account.login.text</source>
-                <target><![CDATA[<p>Om op de website van POMPdeLUX te kunnen bestellen, moet je geregistreerd zijn als klant. Als geregistreerde klant kun je je order controleren en wijzigen totdat deze verstuurd wordt. Je kunt de maat en kleur van de artikelen, die je besteld hebt, wijzigen en artikelen toevoegen of verwijderen zo lang je order op "Afwachten" staat, dwz. minimaal 24 uur nadat je besteld hebt.<br><br>Tijdens de SALE kunnen we helaas niet garanderen dat je je order 24 uur lang zult kunnen bewerken.<br><br>Als klant bij POMPdeLUX  kun je op deze pagina ook je eerdere orders en facturen bekijken.</p><h2>Nieuwe klant?</h2>]]></target>
+                <target><![CDATA[<p>Om op de website van POMPdeLUX te kunnen bestellen, moet je geregistreerd zijn als klant. Als geregistreerde klant kun je je order controleren en wijzigen totdat deze verstuurd wordt. Je kunt de maat en kleur van de artikelen, die je besteld hebt, wijzigen en artikelen toevoegen of verwijderen zo lang je order op "Afwachten" staat, dwz. minimaal 24 uur nadat je besteld hebt.<br><br>Als klant bij POMPdeLUX  kun je op deze pagina ook je eerdere orders en facturen bekijken.</p><h2>Nieuwe klant?</h2>]]></target>
             </trans-unit>
             <trans-unit id="my.account.login.header" approved="no">
                 <source>my.account.login.header</source>

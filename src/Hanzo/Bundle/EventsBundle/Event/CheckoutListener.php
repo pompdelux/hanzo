@@ -11,8 +11,8 @@ use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\CustomersPeer;
+use Hanzo\Bundle\AxBundle\Actions\Out\AxService;
 use Hanzo\Bundle\ServiceBundle\Services\MailService;
-use Hanzo\Bundle\ServiceBundle\Services\AxService;
 use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
 
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;

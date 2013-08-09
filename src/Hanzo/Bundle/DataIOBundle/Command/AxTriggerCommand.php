@@ -32,7 +32,7 @@ class AxTriggerCommand extends ContainerAwareCommand
         $endpoint = $input->getArgument('endpoint');
 
         $output->writeln('Stoc sync trigger initiated for: <info>'.$endpoint.'</info>');
-        $ax = $this->getContainer()->get('ax_manager');
+        $ax = $this->getContainer()->get('ax.out');
 
         $status = $ax->triggerStockSync($endpoint);
 

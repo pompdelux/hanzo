@@ -86,7 +86,6 @@ class BundleController extends CoreController
                 'out_of_stock' => true,
             );
 
-
             $result = ProductsQuery::create()
                 ->useProductsImagesProductReferencesQuery()
                     ->filterByProductsImagesId($image_id)
@@ -166,6 +165,7 @@ class BundleController extends CoreController
         }
 
         $this->setSharedMaxAge(86400);
+        $this->get('twig')->addGlobal('body_classes', 'body-product body-buy-set');
         $responce = $this->render('ProductBundle:Bundle:view.html.twig', array(
             'page_type' => 'bundle',
             'products' => $products,

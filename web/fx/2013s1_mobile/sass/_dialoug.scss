@@ -1,0 +1,65 @@
+#slide-notice-box {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background: white;
+	color: black;
+	border-bottom: 1px solid black;
+	font-family: $font-sans;
+	font-size: 15px;
+	padding: 10px;
+	z-index: 101;
+
+	-webkit-box-shadow: 0 8px 6px -6px #A3A3A3;
+	   -moz-box-shadow: 0 8px 6px -6px #A3A3A3;
+	        box-shadow: 0 8px 6px -6px #A3A3A3;
+}
+
+#cboxContent {
+  .dialoug {
+    h2!, div.message! {}
+    .buttons {
+      padding: 0 10px;
+      a! {}
+    }
+  }
+  .alert!, .confirm! {}
+}
+#cboxClose {
+	display: none;
+}
+#colorbox{
+	outline: 0;
+}
+
+.dialoug-loading {
+    display: inline-block;
+    height: 16px;
+    background: url(/fx/images/loader-bar.gif) no-repeat left center;
+    padding-left: 20px;
+    margin-left: 5px;
+    div {
+        display: none;
+    }
+}
+
+.message,
+.msg,
+.dialoug-message{
+	padding: 2px 5px;
+	margin: 5px 0;
+	border: 1px solid black;
+	&.warning {
+		background: red;
+	}
+	&.error {
+		background: $form-error-background;
+		color: $form-error-color;
+		border: 1px solid red;
+	}
+	&.info,
+	&.notice {
+		background: #E0ECFF;
+		color: black;
+	}
+}

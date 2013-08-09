@@ -61,14 +61,8 @@
     </tbody>
   </table>
   {% else %}
-
-  <p>{{ 'admin.products.no.styles.text'|trans({}, 'admin') }}</p>
-
+    <p>{{ 'admin.products.no.styles.text'|trans({}, 'admin') }}</p>
   {% endif %}
-
-{% endif %}
-
-{% if is_granted('ROLE_ADMIN') %}
 
   <h1>Priser:</h1>
   <table id="styles" class="list">
@@ -91,7 +85,6 @@
     {% endfor %}
     </tbody>
   </table>
-
 
   <h1>{{ 'admin.product.categories.header.text.%product-name%'|trans({'%product-name%' : current_product.sku}, 'admin') }}</h1>
   <p>{{ 'admin.product.categories.description.text'|trans({}, 'admin') }}</p>
@@ -123,12 +116,10 @@
 
 {% if product_images|length > 0 %}
 
-<h1>{{ 'admin.product.images.header.text.%product-name%'|trans({'%product-name%' : current_product.sku}, 'admin') }}</h1>
+  <h1>{{ 'admin.product.images.header.text.%product-name%'|trans({'%product-name%' : current_product.sku}, 'admin') }}</h1>
+  <p>{{ 'admin.product.images.description.text'|trans({}, 'admin') }}</p>
 
-
-<p>{{ 'admin.product.images.description.text'|trans({}, 'admin') }}</p>
-
- <ul id="product-images-list">
+  <ul id="product-images-list">
   {% for product_image in product_images %}
 
     <li id="item-{{ product_image.image_id }}">
@@ -187,14 +178,13 @@
     </li>
 
   {% endfor %}
- </ul>
+  </ul>
 
 {% endif %}
 
 {% if is_granted('ROLE_ADMIN') %}
 
   <h1>{{ 'admin.product.has_video.header'|trans({}, 'admin') }}</h1>
-
   <form action="{{ path('admin_product', {'id' : current_product.id}) }}" method="post" {{ form_enctype(has_video_form) }} id="product-edit-form">
     <div id="product-edit">
       {{ form_rest(has_video_form) }}
@@ -202,7 +192,6 @@
     </div>
     <input class="button right" type="submit" value="{{ 'product.has_video.submit'|trans({}, 'admin') }}">
   </form>
-
 
   <h1>{{ 'admin.product.related_products.header.text.%product-name%'|trans({'%product-name%' : current_product.sku}, 'admin') }}</h1>
   <p>{{ 'admin.product.related_products.description.text'|trans({}, 'admin') }}</p>

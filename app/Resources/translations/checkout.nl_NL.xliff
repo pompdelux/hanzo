@@ -81,7 +81,7 @@
         <target>Verzendadres</target>
       </trans-unit>
       <trans-unit id="shipping.address.overnight">
-        <source>shipping.address.overnight</source>	
+        <source>shipping.address.overnight</source>
         <target>Verzendadres</target>
       </trans-unit>
       <trans-unit id="shipping.address.overnight.edit">
@@ -127,7 +127,7 @@
       <trans-unit id="payment.paybybill.text">
         <source>payment.paybybill.text</source>
         <target><![CDATA[Kies betaalwijze<br><br><b>Let op: </b> Bankoverschrijving alleen gebruiken als er geen internetverbinding is.]]></target>
-      </trans-unit> 
+      </trans-unit>
      <trans-unit id="payment.paybybill.label">
         <source>payment.paybybill.label</source>
         <target>Geld overmaken per bank</target>
@@ -359,28 +359,28 @@
         <source>product.group.lb</source>
         <target>Little Boy</target>
       </trans-unit>
-           <trans-unit id="coupon">
-         <source>coupon</source>
+           <trans-unit id="gift_card">
+         <source>gift_card</source>
          <target>Cadeaubon</target>
       </trans-unit>
-      <trans-unit id="toggle.coupon.form">
-         <source>toggle.coupon.form</source>
+      <trans-unit id="toggle.gift_card.form">
+         <source>toggle.gift_card.form</source>
          <target>» Typ je cadeauboncode</target>
       </trans-unit>
-            <trans-unit id="invalid.coupon.code">
-         <source>invalid.coupon.code</source>
+            <trans-unit id="invalid.gift_card.code">
+         <source>invalid.gift_card.code</source>
          <target>Ongeldige cadeauboncode</target>
       </trans-unit>
-     <trans-unit id="coupon.label">
-         <source>coupon.label</source>
+     <trans-unit id="gift_card.label">
+         <source>gift_card.label</source>
          <target>Cadeauboncode:</target>
       </trans-unit>
-      <trans-unit id="apply.coupon.discount">
-         <source>apply.coupon.discount</source>
+      <trans-unit id="apply.gift_card.discount">
+         <source>apply.gift_card.discount</source>
          <target>Sla op</target>
       </trans-unit>
-     <trans-unit id="coupon.description">
-         <source>coupon.description</source>
+     <trans-unit id="gift_card.description">
+         <source>gift_card.description</source>
          <target>Hieronder kun je je cadeauboncode invullen. Gebruik je niet het volledige tegoed op je cadeaubon, dan kun je de code nogmaals gebruiken als je de volgende keer bij POMPdeLUX winkelt.</target>
       </trans-unit>
             <trans-unit id="address.copy" approved="no">
@@ -405,6 +405,30 @@
         <target>Je gastvrouwkorting is groter dan het totale aankoopbedrag.
 Je moet meer artikelen toevoegen.
 </target>
+      </trans-unit>
+      <trans-unit id="coupon" approved="no">
+        <source>coupon</source>
+        <target>Rabatskode</target>
+      </trans-unit>
+      <trans-unit id="coupon.toggle.form" approved="no">
+        <source>coupon.toggle.form</source>
+        <target>» Tast din rabatskode</target>
+      </trans-unit>
+      <trans-unit id="coupon.description" approved="no">
+        <source>coupon.description</source>
+        <target>Hvis du har en rabatkode .......</target>
+      </trans-unit>
+      <trans-unit id="coupon.apply.discount" approved="no">
+        <source>coupon.apply.discount</source>
+        <target>Gem</target>
+      </trans-unit>
+      <trans-unit id="coupon.label" approved="no">
+        <source>coupon.label</source>
+        <target>Indtast rabatkode</target>
+      </trans-unit>
+      <trans-unit id="coupon.invalid.code" approved="no">
+        <source>coupon.invalid.code</source>
+        <target>Ugyldig rabatkode</target>
       </trans-unit>
     </body>
   </file>

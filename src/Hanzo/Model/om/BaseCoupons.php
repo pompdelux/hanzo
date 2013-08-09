@@ -61,6 +61,12 @@ abstract class BaseCoupons extends BaseObject implements Persistent
     protected $amount;
 
     /**
+     * The value for the min_purchase_amount field.
+     * @var        string
+     */
+    protected $min_purchase_amount;
+
+    /**
      * The value for the currency_code field.
      * @var        string
      */
@@ -84,6 +90,13 @@ abstract class BaseCoupons extends BaseObject implements Persistent
      * @var        boolean
      */
     protected $is_active;
+
+    /**
+     * The value for the is_used field.
+     * Note: this column has a database default value of: false
+     * @var        boolean
+     */
+    protected $is_used;
 
     /**
      * The value for the created_at field.
@@ -138,6 +151,7 @@ abstract class BaseCoupons extends BaseObject implements Persistent
     public function applyDefaultValues()
     {
         $this->is_active = true;
+        $this->is_used = false;
     }
 
     /**
@@ -178,6 +192,16 @@ abstract class BaseCoupons extends BaseObject implements Persistent
     public function getAmount()
     {
         return $this->amount;
+    }
+
+    /**
+     * Get the [min_purchase_amount] column value.
+     *
+     * @return string
+     */
+    public function getMinPurchaseAmount()
+    {
+        return $this->min_purchase_amount;
     }
 
     /**
@@ -282,6 +306,16 @@ abstract class BaseCoupons extends BaseObject implements Persistent
     public function getIsActive()
     {
         return $this->is_active;
+    }
+
+    /**
+     * Get the [is_used] column value.
+     *
+     * @return boolean
+     */
+    public function getIsUsed()
+    {
+        return $this->is_used;
     }
 
     /**
@@ -432,6 +466,27 @@ abstract class BaseCoupons extends BaseObject implements Persistent
     } // setAmount()
 
     /**
+     * Set the value of [min_purchase_amount] column.
+     *
+     * @param string $v new value
+     * @return Coupons The current object (for fluent API support)
+     */
+    public function setMinPurchaseAmount($v)
+    {
+        if ($v !== null && is_numeric($v)) {
+            $v = (string) $v;
+        }
+
+        if ($this->min_purchase_amount !== $v) {
+            $this->min_purchase_amount = $v;
+            $this->modifiedColumns[] = CouponsPeer::MIN_PURCHASE_AMOUNT;
+        }
+
+
+        return $this;
+    } // setMinPurchaseAmount()
+
+    /**
      * Set the value of [currency_code] column.
      *
      * @param string $v new value
@@ -528,6 +583,35 @@ abstract class BaseCoupons extends BaseObject implements Persistent
     } // setIsActive()
 
     /**
+     * Sets the value of the [is_used] column.
+     * Non-boolean arguments are converted using the following rules:
+     *   * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
+     *   * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
+     * Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
+     *
+     * @param boolean|integer|string $v The new value
+     * @return Coupons The current object (for fluent API support)
+     */
+    public function setIsUsed($v)
+    {
+        if ($v !== null) {
+            if (is_string($v)) {
+                $v = in_array(strtolower($v), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+            } else {
+                $v = (boolean) $v;
+            }
+        }
+
+        if ($this->is_used !== $v) {
+            $this->is_used = $v;
+            $this->modifiedColumns[] = CouponsPeer::IS_USED;
+        }
+
+
+        return $this;
+    } // setIsUsed()
+
+    /**
      * Sets the value of [created_at] column to a normalized version of the date/time value specified.
      *
      * @param mixed $v string, integer (timestamp), or DateTime value.
@@ -587,6 +671,10 @@ abstract class BaseCoupons extends BaseObject implements Persistent
                 return false;
             }
 
+            if ($this->is_used !== false) {
+                return false;
+            }
+
         // otherwise, everything was equal, so return true
         return true;
     } // hasOnlyDefaultValues()
@@ -612,12 +700,14 @@ abstract class BaseCoupons extends BaseObject implements Persistent
             $this->id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
             $this->code = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
             $this->amount = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
-            $this->currency_code = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
-            $this->active_from = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
-            $this->active_to = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
-            $this->is_active = ($row[$startcol + 6] !== null) ? (boolean) $row[$startcol + 6] : null;
-            $this->created_at = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
-            $this->updated_at = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
+            $this->min_purchase_amount = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
+            $this->currency_code = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
+            $this->active_from = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
+            $this->active_to = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
+            $this->is_active = ($row[$startcol + 7] !== null) ? (boolean) $row[$startcol + 7] : null;
+            $this->is_used = ($row[$startcol + 8] !== null) ? (boolean) $row[$startcol + 8] : null;
+            $this->created_at = ($row[$startcol + 9] !== null) ? (string) $row[$startcol + 9] : null;
+            $this->updated_at = ($row[$startcol + 10] !== null) ? (string) $row[$startcol + 10] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -626,7 +716,7 @@ abstract class BaseCoupons extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
-            return $startcol + 9; // 9 = CouponsPeer::NUM_HYDRATE_COLUMNS.
+            return $startcol + 11; // 11 = CouponsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating Coupons object", $e);
@@ -877,6 +967,9 @@ abstract class BaseCoupons extends BaseObject implements Persistent
         if ($this->isColumnModified(CouponsPeer::AMOUNT)) {
             $modifiedColumns[':p' . $index++]  = '`amount`';
         }
+        if ($this->isColumnModified(CouponsPeer::MIN_PURCHASE_AMOUNT)) {
+            $modifiedColumns[':p' . $index++]  = '`min_purchase_amount`';
+        }
         if ($this->isColumnModified(CouponsPeer::CURRENCY_CODE)) {
             $modifiedColumns[':p' . $index++]  = '`currency_code`';
         }
@@ -888,6 +981,9 @@ abstract class BaseCoupons extends BaseObject implements Persistent
         }
         if ($this->isColumnModified(CouponsPeer::IS_ACTIVE)) {
             $modifiedColumns[':p' . $index++]  = '`is_active`';
+        }
+        if ($this->isColumnModified(CouponsPeer::IS_USED)) {
+            $modifiedColumns[':p' . $index++]  = '`is_used`';
         }
         if ($this->isColumnModified(CouponsPeer::CREATED_AT)) {
             $modifiedColumns[':p' . $index++]  = '`created_at`';
@@ -915,6 +1011,9 @@ abstract class BaseCoupons extends BaseObject implements Persistent
                     case '`amount`':
                         $stmt->bindValue($identifier, $this->amount, PDO::PARAM_STR);
                         break;
+                    case '`min_purchase_amount`':
+                        $stmt->bindValue($identifier, $this->min_purchase_amount, PDO::PARAM_STR);
+                        break;
                     case '`currency_code`':
                         $stmt->bindValue($identifier, $this->currency_code, PDO::PARAM_STR);
                         break;
@@ -926,6 +1025,9 @@ abstract class BaseCoupons extends BaseObject implements Persistent
                         break;
                     case '`is_active`':
                         $stmt->bindValue($identifier, (int) $this->is_active, PDO::PARAM_INT);
+                        break;
+                    case '`is_used`':
+                        $stmt->bindValue($identifier, (int) $this->is_used, PDO::PARAM_INT);
                         break;
                     case '`created_at`':
                         $stmt->bindValue($identifier, $this->created_at, PDO::PARAM_STR);
@@ -1085,21 +1187,27 @@ abstract class BaseCoupons extends BaseObject implements Persistent
                 return $this->getAmount();
                 break;
             case 3:
-                return $this->getCurrencyCode();
+                return $this->getMinPurchaseAmount();
                 break;
             case 4:
-                return $this->getActiveFrom();
+                return $this->getCurrencyCode();
                 break;
             case 5:
-                return $this->getActiveTo();
+                return $this->getActiveFrom();
                 break;
             case 6:
-                return $this->getIsActive();
+                return $this->getActiveTo();
                 break;
             case 7:
-                return $this->getCreatedAt();
+                return $this->getIsActive();
                 break;
             case 8:
+                return $this->getIsUsed();
+                break;
+            case 9:
+                return $this->getCreatedAt();
+                break;
+            case 10:
                 return $this->getUpdatedAt();
                 break;
             default:
@@ -1134,12 +1242,14 @@ abstract class BaseCoupons extends BaseObject implements Persistent
             $keys[0] => $this->getId(),
             $keys[1] => $this->getCode(),
             $keys[2] => $this->getAmount(),
-            $keys[3] => $this->getCurrencyCode(),
-            $keys[4] => $this->getActiveFrom(),
-            $keys[5] => $this->getActiveTo(),
-            $keys[6] => $this->getIsActive(),
-            $keys[7] => $this->getCreatedAt(),
-            $keys[8] => $this->getUpdatedAt(),
+            $keys[3] => $this->getMinPurchaseAmount(),
+            $keys[4] => $this->getCurrencyCode(),
+            $keys[5] => $this->getActiveFrom(),
+            $keys[6] => $this->getActiveTo(),
+            $keys[7] => $this->getIsActive(),
+            $keys[8] => $this->getIsUsed(),
+            $keys[9] => $this->getCreatedAt(),
+            $keys[10] => $this->getUpdatedAt(),
         );
         if ($includeForeignObjects) {
             if (null !== $this->collOrdersToCouponss) {
@@ -1189,21 +1299,27 @@ abstract class BaseCoupons extends BaseObject implements Persistent
                 $this->setAmount($value);
                 break;
             case 3:
-                $this->setCurrencyCode($value);
+                $this->setMinPurchaseAmount($value);
                 break;
             case 4:
-                $this->setActiveFrom($value);
+                $this->setCurrencyCode($value);
                 break;
             case 5:
-                $this->setActiveTo($value);
+                $this->setActiveFrom($value);
                 break;
             case 6:
-                $this->setIsActive($value);
+                $this->setActiveTo($value);
                 break;
             case 7:
-                $this->setCreatedAt($value);
+                $this->setIsActive($value);
                 break;
             case 8:
+                $this->setIsUsed($value);
+                break;
+            case 9:
+                $this->setCreatedAt($value);
+                break;
+            case 10:
                 $this->setUpdatedAt($value);
                 break;
         } // switch()
@@ -1233,12 +1349,14 @@ abstract class BaseCoupons extends BaseObject implements Persistent
         if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
         if (array_key_exists($keys[1], $arr)) $this->setCode($arr[$keys[1]]);
         if (array_key_exists($keys[2], $arr)) $this->setAmount($arr[$keys[2]]);
-        if (array_key_exists($keys[3], $arr)) $this->setCurrencyCode($arr[$keys[3]]);
-        if (array_key_exists($keys[4], $arr)) $this->setActiveFrom($arr[$keys[4]]);
-        if (array_key_exists($keys[5], $arr)) $this->setActiveTo($arr[$keys[5]]);
-        if (array_key_exists($keys[6], $arr)) $this->setIsActive($arr[$keys[6]]);
-        if (array_key_exists($keys[7], $arr)) $this->setCreatedAt($arr[$keys[7]]);
-        if (array_key_exists($keys[8], $arr)) $this->setUpdatedAt($arr[$keys[8]]);
+        if (array_key_exists($keys[3], $arr)) $this->setMinPurchaseAmount($arr[$keys[3]]);
+        if (array_key_exists($keys[4], $arr)) $this->setCurrencyCode($arr[$keys[4]]);
+        if (array_key_exists($keys[5], $arr)) $this->setActiveFrom($arr[$keys[5]]);
+        if (array_key_exists($keys[6], $arr)) $this->setActiveTo($arr[$keys[6]]);
+        if (array_key_exists($keys[7], $arr)) $this->setIsActive($arr[$keys[7]]);
+        if (array_key_exists($keys[8], $arr)) $this->setIsUsed($arr[$keys[8]]);
+        if (array_key_exists($keys[9], $arr)) $this->setCreatedAt($arr[$keys[9]]);
+        if (array_key_exists($keys[10], $arr)) $this->setUpdatedAt($arr[$keys[10]]);
     }
 
     /**
@@ -1253,10 +1371,12 @@ abstract class BaseCoupons extends BaseObject implements Persistent
         if ($this->isColumnModified(CouponsPeer::ID)) $criteria->add(CouponsPeer::ID, $this->id);
         if ($this->isColumnModified(CouponsPeer::CODE)) $criteria->add(CouponsPeer::CODE, $this->code);
         if ($this->isColumnModified(CouponsPeer::AMOUNT)) $criteria->add(CouponsPeer::AMOUNT, $this->amount);
+        if ($this->isColumnModified(CouponsPeer::MIN_PURCHASE_AMOUNT)) $criteria->add(CouponsPeer::MIN_PURCHASE_AMOUNT, $this->min_purchase_amount);
         if ($this->isColumnModified(CouponsPeer::CURRENCY_CODE)) $criteria->add(CouponsPeer::CURRENCY_CODE, $this->currency_code);
         if ($this->isColumnModified(CouponsPeer::ACTIVE_FROM)) $criteria->add(CouponsPeer::ACTIVE_FROM, $this->active_from);
         if ($this->isColumnModified(CouponsPeer::ACTIVE_TO)) $criteria->add(CouponsPeer::ACTIVE_TO, $this->active_to);
         if ($this->isColumnModified(CouponsPeer::IS_ACTIVE)) $criteria->add(CouponsPeer::IS_ACTIVE, $this->is_active);
+        if ($this->isColumnModified(CouponsPeer::IS_USED)) $criteria->add(CouponsPeer::IS_USED, $this->is_used);
         if ($this->isColumnModified(CouponsPeer::CREATED_AT)) $criteria->add(CouponsPeer::CREATED_AT, $this->created_at);
         if ($this->isColumnModified(CouponsPeer::UPDATED_AT)) $criteria->add(CouponsPeer::UPDATED_AT, $this->updated_at);
 
@@ -1324,10 +1444,12 @@ abstract class BaseCoupons extends BaseObject implements Persistent
     {
         $copyObj->setCode($this->getCode());
         $copyObj->setAmount($this->getAmount());
+        $copyObj->setMinPurchaseAmount($this->getMinPurchaseAmount());
         $copyObj->setCurrencyCode($this->getCurrencyCode());
         $copyObj->setActiveFrom($this->getActiveFrom());
         $copyObj->setActiveTo($this->getActiveTo());
         $copyObj->setIsActive($this->getIsActive());
+        $copyObj->setIsUsed($this->getIsUsed());
         $copyObj->setCreatedAt($this->getCreatedAt());
         $copyObj->setUpdatedAt($this->getUpdatedAt());
 
@@ -1661,10 +1783,12 @@ abstract class BaseCoupons extends BaseObject implements Persistent
         $this->id = null;
         $this->code = null;
         $this->amount = null;
+        $this->min_purchase_amount = null;
         $this->currency_code = null;
         $this->active_from = null;
         $this->active_to = null;
         $this->is_active = null;
+        $this->is_used = null;
         $this->created_at = null;
         $this->updated_at = null;
         $this->alreadyInSave = false;

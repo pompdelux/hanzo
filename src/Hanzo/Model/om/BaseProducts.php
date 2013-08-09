@@ -128,6 +128,13 @@ abstract class BaseProducts extends BaseObject implements Persistent
     protected $is_active;
 
     /**
+     * The value for the is_voucher field.
+     * Note: this column has a database default value of: false
+     * @var        boolean
+     */
+    protected $is_voucher;
+
+    /**
      * The value for the created_at field.
      * @var        string
      */
@@ -350,6 +357,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
         $this->has_video = true;
         $this->is_out_of_stock = false;
         $this->is_active = true;
+        $this->is_voucher = false;
     }
 
     /**
@@ -460,6 +468,16 @@ abstract class BaseProducts extends BaseObject implements Persistent
     public function getIsActive()
     {
         return $this->is_active;
+    }
+
+    /**
+     * Get the [is_voucher] column value.
+     *
+     * @return boolean
+     */
+    public function getIsVoucher()
+    {
+        return $this->is_voucher;
     }
 
     /**
@@ -789,6 +807,35 @@ abstract class BaseProducts extends BaseObject implements Persistent
     } // setIsActive()
 
     /**
+     * Sets the value of the [is_voucher] column.
+     * Non-boolean arguments are converted using the following rules:
+     *   * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
+     *   * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
+     * Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
+     *
+     * @param boolean|integer|string $v The new value
+     * @return Products The current object (for fluent API support)
+     */
+    public function setIsVoucher($v)
+    {
+        if ($v !== null) {
+            if (is_string($v)) {
+                $v = in_array(strtolower($v), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+            } else {
+                $v = (boolean) $v;
+            }
+        }
+
+        if ($this->is_voucher !== $v) {
+            $this->is_voucher = $v;
+            $this->modifiedColumns[] = ProductsPeer::IS_VOUCHER;
+        }
+
+
+        return $this;
+    } // setIsVoucher()
+
+    /**
      * Sets the value of [created_at] column to a normalized version of the date/time value specified.
      *
      * @param mixed $v string, integer (timestamp), or DateTime value.
@@ -856,6 +903,10 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 return false;
             }
 
+            if ($this->is_voucher !== false) {
+                return false;
+            }
+
         // otherwise, everything was equal, so return true
         return true;
     } // hasOnlyDefaultValues()
@@ -888,8 +939,9 @@ abstract class BaseProducts extends BaseObject implements Persistent
             $this->has_video = ($row[$startcol + 7] !== null) ? (boolean) $row[$startcol + 7] : null;
             $this->is_out_of_stock = ($row[$startcol + 8] !== null) ? (boolean) $row[$startcol + 8] : null;
             $this->is_active = ($row[$startcol + 9] !== null) ? (boolean) $row[$startcol + 9] : null;
-            $this->created_at = ($row[$startcol + 10] !== null) ? (string) $row[$startcol + 10] : null;
-            $this->updated_at = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
+            $this->is_voucher = ($row[$startcol + 10] !== null) ? (boolean) $row[$startcol + 10] : null;
+            $this->created_at = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
+            $this->updated_at = ($row[$startcol + 12] !== null) ? (string) $row[$startcol + 12] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -898,7 +950,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
-            return $startcol + 12; // 12 = ProductsPeer::NUM_HYDRATE_COLUMNS.
+            return $startcol + 13; // 13 = ProductsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating Products object", $e);
@@ -1424,6 +1476,9 @@ abstract class BaseProducts extends BaseObject implements Persistent
         if ($this->isColumnModified(ProductsPeer::IS_ACTIVE)) {
             $modifiedColumns[':p' . $index++]  = '`is_active`';
         }
+        if ($this->isColumnModified(ProductsPeer::IS_VOUCHER)) {
+            $modifiedColumns[':p' . $index++]  = '`is_voucher`';
+        }
         if ($this->isColumnModified(ProductsPeer::CREATED_AT)) {
             $modifiedColumns[':p' . $index++]  = '`created_at`';
         }
@@ -1470,6 +1525,9 @@ abstract class BaseProducts extends BaseObject implements Persistent
                         break;
                     case '`is_active`':
                         $stmt->bindValue($identifier, (int) $this->is_active, PDO::PARAM_INT);
+                        break;
+                    case '`is_voucher`':
+                        $stmt->bindValue($identifier, (int) $this->is_voucher, PDO::PARAM_INT);
                         break;
                     case '`created_at`':
                         $stmt->bindValue($identifier, $this->created_at, PDO::PARAM_STR);
@@ -1766,9 +1824,12 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 return $this->getIsActive();
                 break;
             case 10:
-                return $this->getCreatedAt();
+                return $this->getIsVoucher();
                 break;
             case 11:
+                return $this->getCreatedAt();
+                break;
+            case 12:
                 return $this->getUpdatedAt();
                 break;
             default:
@@ -1810,8 +1871,9 @@ abstract class BaseProducts extends BaseObject implements Persistent
             $keys[7] => $this->getHasVideo(),
             $keys[8] => $this->getIsOutOfStock(),
             $keys[9] => $this->getIsActive(),
-            $keys[10] => $this->getCreatedAt(),
-            $keys[11] => $this->getUpdatedAt(),
+            $keys[10] => $this->getIsVoucher(),
+            $keys[11] => $this->getCreatedAt(),
+            $keys[12] => $this->getUpdatedAt(),
         );
         if ($includeForeignObjects) {
             if (null !== $this->aProductsRelatedByMaster) {
@@ -1924,9 +1986,12 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 $this->setIsActive($value);
                 break;
             case 10:
-                $this->setCreatedAt($value);
+                $this->setIsVoucher($value);
                 break;
             case 11:
+                $this->setCreatedAt($value);
+                break;
+            case 12:
                 $this->setUpdatedAt($value);
                 break;
         } // switch()
@@ -1963,8 +2028,9 @@ abstract class BaseProducts extends BaseObject implements Persistent
         if (array_key_exists($keys[7], $arr)) $this->setHasVideo($arr[$keys[7]]);
         if (array_key_exists($keys[8], $arr)) $this->setIsOutOfStock($arr[$keys[8]]);
         if (array_key_exists($keys[9], $arr)) $this->setIsActive($arr[$keys[9]]);
-        if (array_key_exists($keys[10], $arr)) $this->setCreatedAt($arr[$keys[10]]);
-        if (array_key_exists($keys[11], $arr)) $this->setUpdatedAt($arr[$keys[11]]);
+        if (array_key_exists($keys[10], $arr)) $this->setIsVoucher($arr[$keys[10]]);
+        if (array_key_exists($keys[11], $arr)) $this->setCreatedAt($arr[$keys[11]]);
+        if (array_key_exists($keys[12], $arr)) $this->setUpdatedAt($arr[$keys[12]]);
     }
 
     /**
@@ -1986,6 +2052,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
         if ($this->isColumnModified(ProductsPeer::HAS_VIDEO)) $criteria->add(ProductsPeer::HAS_VIDEO, $this->has_video);
         if ($this->isColumnModified(ProductsPeer::IS_OUT_OF_STOCK)) $criteria->add(ProductsPeer::IS_OUT_OF_STOCK, $this->is_out_of_stock);
         if ($this->isColumnModified(ProductsPeer::IS_ACTIVE)) $criteria->add(ProductsPeer::IS_ACTIVE, $this->is_active);
+        if ($this->isColumnModified(ProductsPeer::IS_VOUCHER)) $criteria->add(ProductsPeer::IS_VOUCHER, $this->is_voucher);
         if ($this->isColumnModified(ProductsPeer::CREATED_AT)) $criteria->add(ProductsPeer::CREATED_AT, $this->created_at);
         if ($this->isColumnModified(ProductsPeer::UPDATED_AT)) $criteria->add(ProductsPeer::UPDATED_AT, $this->updated_at);
 
@@ -2060,6 +2127,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
         $copyObj->setHasVideo($this->getHasVideo());
         $copyObj->setIsOutOfStock($this->getIsOutOfStock());
         $copyObj->setIsActive($this->getIsActive());
+        $copyObj->setIsVoucher($this->getIsVoucher());
         $copyObj->setCreatedAt($this->getCreatedAt());
         $copyObj->setUpdatedAt($this->getUpdatedAt());
 
@@ -5411,6 +5479,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
         $this->has_video = null;
         $this->is_out_of_stock = null;
         $this->is_active = null;
+        $this->is_voucher = null;
         $this->created_at = null;
         $this->updated_at = null;
         $this->alreadyInSave = false;

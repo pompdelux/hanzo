@@ -29,7 +29,7 @@ services:
 
     hanzo.misc.twig.extension:
         class: Hanzo\Twig\Extension\MiscExtension
-        arguments: ['@twig_string']
+        arguments: ['@twig_string', '@liip_theme.active_theme']
         tags:
             -   { name: twig.extension }
     hanzo.asset.twig.extension:
@@ -38,7 +38,7 @@ services:
             -   { name: twig.extension }
     hanzo.maps.twig.extension:
         class: Hanzo\Twig\Extension\MapsExtension
-        arguments: ['@twig_string']
+        arguments: ['@twig_string', '@muneris.maxmind']
         tags:
             -   { name: twig.extension }
 
@@ -155,9 +155,6 @@ redis:
             skip_env: true
             database: 2
 
-nno:
-    api_key: %nno_api_key%
-
 # @see https://github.com/ekino/EkinoNewRelicBundle
 ekino_new_relic:
     application_name: Pompdelux
@@ -165,16 +162,27 @@ ekino_new_relic:
 
 # @see https://github.com/liip/LiipThemeBundle
 liip_theme:
-    themes: ['2012s2', '2013s1']
+    load_controllers: false
+    themes: ['2013s1', '2013s1_mobile']
     active_theme: '2013s1'
     path_patterns:
         app_resource:
             - %%app_path%%/themes/%%current_theme%%/%%template%%
-            - %%app_path%%/themes/2012s2/%%template%%
+            - %%app_path%%/themes/2013s1/%%template%%
             - %%app_path%%/views/%%template%%
         bundle_resource:
             - %%bundle_path%%/Resources/themes/%%current_theme%%/%%template%%
-            - %%bundle_path%%/Resources/themes/2012s2/%%template%%
+            - %%bundle_path%%/Resources/themes/2013s1/%%template%%
         bundle_resource_dir:
             - %%dir%%/themes/%%current_theme%%/%%bundle_name%%/%%template%%
-            - %%dir%%/themes/2012s2/%%bundle_name%%/%%template%%
+            - %%dir%%/themes/2013s1/%%bundle_name%%/%%template%%
+
+nelmio_security:
+    flexible_ssl:
+        cookie_name: auth
+        unsecured_logout: false
+muneris:
+    host: http://muneris.bellcom.dk/
+ax:
+    wsdl: ""
+

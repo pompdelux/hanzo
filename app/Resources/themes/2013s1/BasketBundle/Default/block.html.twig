@@ -21,7 +21,7 @@
         </tr>
         {% endif %}
       {% for product in items %}
-        <tr>
+        <tr class="item">
           <td class="image left">
           {% if product.basket_image %}
             {{ product_image_tag(product.basket_image, '57x100', { 'alt' : product.products_name }) }}
@@ -72,7 +72,7 @@
       <tfoot>
         <tr>
           <td colspan="5">{{ "total"|trans }}:</td>
-          <td class="right total">{{ total|money }}</td>
+          <td class="right total grand-total">{{ total|money }}</td>
         </tr>
       </tfoot>
     {% endif %}

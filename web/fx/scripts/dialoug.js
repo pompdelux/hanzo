@@ -8,7 +8,7 @@ var dialoug = (function($) {
   var templates = {
     'alert' : '<div class="dialoug alert %type%"><h2>%title%</h2><p class="message">%message%</p></div>',
     'confirm' : '<div class="dialoug confirm"><h2>%title%</h2><div class="message">%message%</div><div class="buttons"><a class="button right dialoug-confirm" data-case="ok" href="">%ok%</a><a class="button left dialoug-confirm" data-case="cancel" href="">%cancel%</a></div></div>',
-    'notice' : '<div id="dialoug-message" class="%type%"><p>%message%</p></div>'
+    'notice' : '<div id="dialoug-message" class="dialoug-message %type%"><p>%message%</p></div>'
   };
 
 
@@ -132,11 +132,16 @@ var dialoug = (function($) {
                        .replace('%type%', type)
     ;
 
-    if ($notice.length) {
+    if ($notice.length && !$('body').hasClass('is-mobile')) {
       $notice.after(tpl);
     }
     else {
-      $main.prepend(tpl);
+      if ($main.is('input')) {
+        $main.before(tpl);
+        $main = $main.parent();
+      } else {
+        $main.prepend(tpl);
+      }
     }
 
     var $message = $('div#dialoug-message',$main);
@@ -184,6 +189,8 @@ var dialoug = (function($) {
    */
   pub.slideNotice = function(message, duration, selector) {
 
+    var is_mobile = $('body').hasClass('is-mobile');
+
     if (undefined === duration) {
       duration = 2000;
     }
@@ -202,26 +209,44 @@ var dialoug = (function($) {
     var offset = $basket.offset();
     var slideWidth = $slide.outerWidth();
 
-    $('html,body').animate({ scrollTop : 0 });
 
-    $('div', $slide).css({
-      width : $slide.innerWidth()
-    });
+    if(is_mobile == false){
 
-    $slide.css({
-      left: (offset.left - 7),
-      width: 0
-    });
+      // Desktops slides in from right.
+      $('html,body').animate({ scrollTop : 0 });
 
-    $slide.animate({
-      width: (slideWidth),
-      left: (offset.left - (slideWidth + 7))
-    }).delay(duration).animate({
-      left: offset.left,
-      width: 0
-    }, function() {
-      $slide.remove();
-    });
+      $('div', $slide).css({
+        width : $slide.innerWidth()
+      });
+
+      $slide.css({
+        left: (offset.left - 7),
+        width: 0
+      });
+
+      $slide.animate({
+        width: (slideWidth),
+        left: (offset.left - (slideWidth + 7))
+      }).delay(duration).animate({
+        left: offset.left,
+        width: 0
+      }, function() {
+        $slide.remove();
+      });
+    }
+    else {
+
+      // Mobile devices slide down from top in fixed view.
+
+      $slide.hide();
+
+      $slide.slideDown(300, function(){
+        $slide.delay(duration)
+          .slideUp(400, function() {
+            $slide.remove();
+          });
+      });
+    }
   };
 
 
@@ -237,14 +262,20 @@ var dialoug = (function($) {
   pub.loading = function(selector, message, position) {
     if (loading_status) { return; }
 
+    // if ($('body').hasClass('is-mobile')) {
+    //   selector = $('body');
+    //   position = 'append';
+    // } else
+
     if (typeof(selector) === 'string') {
       selector = $(selector);
     }
 
+
     selector.each(function() {
       var $this = $(this);
       var msg = (undefined === message ? '' : message);
-      var tpl = '<div class="dialoug-loading">' + msg + '</div>';
+      var tpl = '<div class="dialoug-loading"><div>' + msg + '</div></div>';
 
       if (undefined === position) {
         $this.after(tpl);
@@ -257,6 +288,7 @@ var dialoug = (function($) {
       }
       loading_status = true;
     });
+    return true;
   };
 
 
