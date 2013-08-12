@@ -299,7 +299,13 @@ class PayPalApi implements PaymentMethodApiInterface
         $params['PAYMENTREQUEST_0_PAYMENTACTION'] = 'Authorization';
 
         $i=0;
+
+        $payment_fee = 0;
         foreach ($order->getOrdersLiness() as $line) {
+            if ('payment.fee' ===  $line->getType()) {
+                $payment_fee += $line->getPrice();
+            }
+
             if ('product' !== $line->getType()) {
                 continue;
             }
@@ -315,6 +321,14 @@ class PayPalApi implements PaymentMethodApiInterface
             $params['L_PAYMENTREQUEST_0_NAME'.$i]         = $this->translator->trans($line->getProductsSku(), [], 'checkout');
             $params['L_PAYMENTREQUEST_0_AMT'.$i]          = number_format($line->getPrice(), 2, '.', '');
             $params['L_PAYMENTREQUEST_0_QTY'.$i]          = $line->getQuantity();
+            $params['L_PAYMENTREQUEST_0_ITEMCATEGORY'.$i] = 'Physical';
+            $i++;
+        }
+
+        if ($payment_fee > 0) {
+            $params['L_PAYMENTREQUEST_0_NAME'.$i]         = $this->translator->trans('payment.fee', [], 'checkout');
+            $params['L_PAYMENTREQUEST_0_AMT'.$i]          = number_format($payment_fee, 2, '.', '');
+            $params['L_PAYMENTREQUEST_0_QTY'.$i]          = 1;
             $params['L_PAYMENTREQUEST_0_ITEMCATEGORY'.$i] = 'Physical';
             $i++;
         }
