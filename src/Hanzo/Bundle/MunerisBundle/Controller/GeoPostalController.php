@@ -61,7 +61,7 @@ class GeoPostalController extends CoreController
      */
     protected function getByName($country, $city)
     {
-        $client = $this->guzzle->get(strtr('/gpc/countries/{country}/cities/{city}', [
+        $client = $this->guzzle->get(strtr('/gpc/countries/{country}/fuzies/{city}', [
             '{country}' => $country,
             '{city}'    => $city
         ]));
