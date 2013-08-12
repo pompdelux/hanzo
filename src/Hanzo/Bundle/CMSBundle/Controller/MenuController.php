@@ -31,10 +31,14 @@ class MenuController extends CoreController
         $request = $this->get('request');
         $this->device = $request->attributes->get('_x_device');
 
+        // note, due to the fact that we cannot in sf 2.3.x get the master request, we hack a little.
+        $__path__ = explode($request->getLocale().'/', $_SERVER['DOCUMENT_URI']);
+        $__path__ = array_pop($__path__);
+
         $cache_id = [
             'menu',
             $type,
-            $request->getRequestUri()
+            $__path__
         ];
         $html = $this->getCache($cache_id);
 
@@ -49,7 +53,7 @@ class MenuController extends CoreController
             }
 
             if (empty($this->path)) {
-                $this->path = str_replace($this->locale, '', $request->getPathInfo());
+                $this->path = $__path__;
 
                 // NICETO this could be done better, but how ?
                 if (preg_match('~(?:/(?:overview|[0-9]+)/?([a-z0-9\-]+)?)~', $this->path, $matches)) {
