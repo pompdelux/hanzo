@@ -187,6 +187,7 @@ class BundleController extends CoreController
 
         if (empty($products)) {
             $set = explode(',', $set);
+
             $where = [];
             $products_ids = [];
             foreach ($set as $product) {
@@ -207,19 +208,17 @@ class BundleController extends CoreController
                     ->filterByType('overview')
             ;
             // Add all sets to conditions seperately.
+            $combines = [];
             foreach ($where as $i => $where_clause) {
-
                 $result = $result->condition('id_' . $i, 'products_images.products_id = ?', $where_clause['ProductsId'])
                     ->condition('color_' . $i, 'products_images.color = ?', $where_clause['Color'])
                     ->combine(array('id_' . $i, 'color_' . $i), 'and', 'combine_' . $i)
                 ;
 
-                if ($where_clause !== reset($where)) {
-                    // If not first set.
-                    $result = $result->where(array('combine_' . $i--, 'combine_' . $i), 'or');
-                }
+                $combines[] = 'combine_' . $i;
             }
-            $result = $result->groupByProductsId()
+            $result = $result->where($combines, 'or')
+                ->groupByProductsId()
                 ->endUse()
                 ->joinWithProductsImages()
                 ->useProductsDomainsPricesQuery()
