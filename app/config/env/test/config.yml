@@ -12,6 +12,7 @@ monolog:
 framework:
     test: ~
     trusted_proxies: [ %proxy_ip% ]
+    trusted_hosts: [ '.*?\.?pompdelux.com' ]
     templating:
         assets_base_urls:
             http:                     [ %cdn% ]
