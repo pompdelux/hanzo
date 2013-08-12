@@ -239,6 +239,11 @@ nav.sub li.dropdown-menu a span.cat-id,
   border-radius:5px;
   height:25px;
 }
+#sortable-list .sortable-item.collapsed > div.record .record-id:before{
+  content: '▼';
+  padding-right: 5px;
+  color: black;
+}
 #sortable-list li.helper{
   border:2px dashed black;
   border-left:2px dashed black;

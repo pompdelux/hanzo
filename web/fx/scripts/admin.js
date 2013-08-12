@@ -30,10 +30,16 @@
         });
       });
 
-      $('.sortable-item.ui-state-disabled > ul').hide();
-      $('.sortable-item.ui-state-disabled > .sort-handle').on('click', function(event) {
+      $('.sortable-item.ui-state-disabled').addClass('collapsed').find(' > ul').hide();
+      $('.sortable-item > div.record .record-id').on('click', function(event) {
         event.preventDefault();
-        $(this).closest('li').find('ul').first().slideToggle();
+        var $li = $(this).closest('li');
+        $li.find('ul').first().slideToggle();
+        if ($li.hasClass('collapsed')) {
+          $li.removeClass('collapsed');
+        } else {
+          $li.addClass('collapsed');
+        }
       });
 
       /* Admin Sortable list to show and update Cms pages' order*/

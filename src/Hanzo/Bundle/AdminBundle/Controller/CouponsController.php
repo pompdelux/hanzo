@@ -292,7 +292,7 @@ class CouponsController extends CoreController
                     $c->setCurrencyCode($post->getCurrencyCode());
                     $c->setIsActive(true);
                     $c->setIsUsed(false);
-                    $c->save();
+                    $c->save($this->getDbConnection());
 
                     $data = $c->toArray();
                     unset($data['Id'], $data['CreatedAt'], $data['UpdatedAt'], $data['IsActive'], $data['IsUsed']);
