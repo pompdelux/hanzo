@@ -397,7 +397,7 @@ class DibsPaymentWindow extends BasePaymentApi implements PaymentMethodApiInterf
      * @param  Orders $order Ordes object
      * @return string
      */
-    public function getProcessButton(Orders $order)
+    public function getProcessButton(Orders $order, Request $request)
     {
         $fields = '';
         foreach ($this->buildFormFields($order) as $name => $value) {

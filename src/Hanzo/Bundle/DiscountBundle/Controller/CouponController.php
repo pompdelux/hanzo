@@ -73,17 +73,11 @@ class CouponController extends CoreController
                 $coupon->setIsUsed(1);
                 $coupon->save();
 
-                $relation = new OrdersToCoupons();
-                $relation->setOrdersId($order->getId());
-                $relation->setCouponsId($coupon->getId());
-                $relation->setAmount($discount);
-                $relation->save();
-
-                $name = $translator->trans('coupon', [], 'checkout');
-                $order->setDiscountLine($name, -$discount, 'coupon.code');
+                $text = $translator->trans('coupon', [], 'checkout');
+                $order->setDiscountLine($text, -$discount, 'coupon.code');
                 $order->setAttribute('amount', 'coupon', $discount);
                 $order->setAttribute('code', 'coupon', $coupon->getCode());
-                $order->setAttribute('text', 'coupon', $name);
+                $order->setAttribute('text', 'coupon', $text);
                 $order->save();
 
                 if ($this->getFormat() == 'json') {
