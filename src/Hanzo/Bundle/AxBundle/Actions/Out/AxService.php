@@ -265,6 +265,10 @@ class AxService
                 $custPaymMode = 'PayByBill';
                 break;
 
+            case 'paypal':
+                $custPaymMode = 'PayPal';
+                break;
+
             case 'paybybill': // Should be COD, is _not_ Gothia
                 $custPaymMode = 'Bank';
                 break;
