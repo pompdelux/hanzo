@@ -140,14 +140,12 @@ class EventsController extends CoreController
 
         $form = $this->createFormBuilder($event, array('translation_domain' => 'events'))
             ->add('customers_id', 'hidden')
-            ->add('event_date', 'datetime',
+            ->add('event_date', 'text',
                 array(
-                    'input' => 'string',
-                    'widget' => 'single_text',
-                    'date_format' => 'yyyy-MM-dd hH:im',
                     'attr' => array('class' => 'datetimepicker'),
                     'label' => 'events.event_date.label',
                     'translation_domain' => 'events',
+                    'data' => $event->getEventDate('m/d/Y H:i')
                 )
             )->add('host', 'text',
                 array(
@@ -205,7 +203,6 @@ class EventsController extends CoreController
 
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
-
 
             $changed = isset($id) ? true : false; // Keep track of which this is a new event or an old event
             if ($changed) {
