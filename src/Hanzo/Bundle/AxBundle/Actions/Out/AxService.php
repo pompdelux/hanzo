@@ -185,7 +185,8 @@ class AxService
             $line->SalesUnit  = 'Stk.';
             $salesLine[]      = $line;
 
-            switch(str_replace('SALES', '', strtoupper($attributes->global->domain_key))) {
+            $domain_key = strtoupper($attributes->global->domain_key);
+            switch(str_replace('SALES', '', $domain_key)) {
                 case 'DK':
                     $bag_price = '40.00';
                     break;
@@ -212,6 +213,19 @@ class AxService
             $line->InventSizeId    = 'One Size';
             $line->SalesUnit       = 'Stk.';
             $salesLine[]           = $line;
+
+            $date = date('Ymd');
+            if ((20130826 <= $date) && (20130901 >= $date)) {
+                $line = new stdClass();
+                $line->ItemId          = 'VOUCHER';
+                $line->SalesPrice      = 0.00;
+                //$line->LineDiscPercent = 100;
+                $line->SalesQty        = 1;
+                $line->InventColorId   = $domain_key;
+                $line->InventSizeId    = 'One Size';
+                $line->SalesUnit       = 'Stk.';
+                $salesLine[]           = $line;
+            }
         }
 
         // gavekort
