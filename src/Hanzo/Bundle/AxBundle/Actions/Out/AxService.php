@@ -152,7 +152,7 @@ class AxService
             $line = new stdClass();
             $line->ItemId        = $product->getProductsName();
             $line->lineText      = $product->getProductsName();
-            $line->SalesPrice    = number_format($product->getOriginalPrice(), 4, '.', '');
+            $line->SalesPrice    = number_format($product->getOriginalPrice(), 2, '.', '');
             $line->SalesQty      = $product->getQuantity();
             $line->InventColorId = $product->getProductsColor();
             $line->InventSizeId  = $product->getProductsSize();
@@ -165,7 +165,7 @@ class AxService
             }
 
             if ($discount_in_percent) {
-                $line->LineDiscPercent = number_format($discount_in_percent, 4, '.', '');
+                $line->LineDiscPercent = number_format($discount_in_percent, 2, '.', '');
             } elseif ($line_discount) {
                 $line->LineDiscPercent = $line_discount;
             }
@@ -180,7 +180,7 @@ class AxService
         if ($hostess_discount) {
             $line = new stdClass();
             $line->ItemId     = 'HOSTESSDISCOUNT';
-            $line->SalesPrice = number_format($hostess_discount, 4, '.', '');
+            $line->SalesPrice = number_format($hostess_discount, 2, '.', '');
             $line->SalesQty   = 1;
             $line->SalesUnit  = 'Stk.';
             $salesLine[]      = $line;
@@ -234,7 +234,7 @@ class AxService
         if ($gift_card) {
             $line = new stdClass();
             $line->ItemId      = 'GIFTCARD';
-            $line->SalesPrice  = number_format(($gift_card->getPrice()), 4, '.', '');
+            $line->SalesPrice  = number_format(($gift_card->getPrice()), 2, '.', '');
             $line->SalesQty    = 1;
             $line->SalesUnit   = 'Stk.';
             $line->VoucherCode = $attributes->gift_card->code;
@@ -245,7 +245,7 @@ class AxService
         if ($coupon) {
             $line = new stdClass();
             $line->ItemId      = 'COUPON';
-            $line->SalesPrice  = number_format(($coupon->getPrice()), 4, '.', '');
+            $line->SalesPrice  = number_format(($coupon->getPrice()), 2, '.', '');
             $line->SalesQty    = 1;
             $line->SalesUnit   = 'Stk.';
             $salesLine[]       = $line;
@@ -308,12 +308,12 @@ class AxService
         $salesTable->SalesType               = 'Sales';
         $salesTable->SalesLine               = $salesLine;
         $salesTable->InvoiceAccount          = $order->getCustomersId();
-        $salesTable->FreightFeeAmt           = number_format((float) $shipping_cost, 4, '.', '');
+        $salesTable->FreightFeeAmt           = number_format((float) $shipping_cost, 2, '.', '');
         $salesTable->FreightType             = $freight_type;
         $salesTable->HandlingFeeType         = 90;
-        $salesTable->HandlingFeeAmt          = number_format((float) $handeling_fee, 4, '.', '');
+        $salesTable->HandlingFeeAmt          = number_format((float) $handeling_fee, 2, '.', '');
         $salesTable->PayByBillFeeType        = 91;
-        $salesTable->PayByBillFeeAmt         = number_format((float) $payment_cost, 4, '.', ''); // TODO: only for gothia?
+        $salesTable->PayByBillFeeAmt         = number_format((float) $payment_cost, 2, '.', ''); // TODO: only for gothia?
         $salesTable->Completed               = 1;
         $salesTable->TransactionType         = 'Write';
         $salesTable->CustPaymMode            = $custPaymMode;
