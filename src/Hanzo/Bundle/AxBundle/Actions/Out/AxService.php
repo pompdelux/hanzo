@@ -38,6 +38,7 @@ class AxService
         $this->logger           = $logger;
         $this->event_dispatcher = $event_dispatcher;
 
+        // primarily used in dev mode where ax is not available
         if (empty($wsdl)) {
             $this->skip_send = true;
         }
@@ -421,7 +422,7 @@ class AxService
         $ct->AddressZipCode         = $address->getPostalCode();
         $ct->CustName               = $address->getFirstName() . ' ' . $address->getLastName();
         $ct->Email                  = $debitor->getEmail();
-        $ct->Phone = $debitor->getPhone();
+        $ct->Phone                  = $debitor->getPhone();
 
         if (2 == $debitor->getGroupsId()) {
             $ct->InitialsId = $debitor->getInitials();
@@ -437,6 +438,7 @@ class AxService
         // Use: $syncSalesOrder->endpointDomain = $attributes->global->domain_key; ??
         $sc->endpointDomain = 'DK';
         switch ($ct->AddressCountryRegionId) {
+            case 'DE':
             case 'SE':
             case 'NO':
             case 'FI':
