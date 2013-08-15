@@ -683,6 +683,11 @@ admin_coupons_batch_delete_file:
     defaults:
         _controller: AdminBundle:Coupons:deleteCouponFile
 
+admin_coupons_stats:
+    pattern: /admin/coupons/stats
+    defaults:
+        _controller: AdminBundle:Coupons:stats
+
 admin_helpdesk:
     pattern: /admin/helpdesk/{pager}
     defaults:
