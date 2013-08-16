@@ -61,3 +61,14 @@ foreach ($images_found as $file) {
 }
 _dbug("\n", false);
 _dbug("images resized to these presets: ".implode(', ', $_sizes));
+
+if (substr(PHP_SAPI, 0, 3) === 'cgi') {
+    mail(
+        //'hd@pompdelux.dk,un@bellcom.dk',
+        'un@bellcom.dk',
+        'billedeimporten er nu færdig !',
+        "Hej der,\n\nSå er produktbilledeimporten færdig for denne gang.\n\nover and out.\n",
+        "Reply-To: hd@pompdelux.dk\r\nReturn-Path: hd@pompdelux.dk\r\nErrors-To: hd@pompdelux.dk\r\n",
+        '-fhd@pompdelux.dk'
+    );
+}
