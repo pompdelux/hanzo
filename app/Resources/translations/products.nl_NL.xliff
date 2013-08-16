@@ -2,10 +2,14 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="file.ext">
     <body>
+      <trans-unit id="size.guide.link">
+        <source>size.guide.link</source>
+        <target><![CDATA[<a href="/skal/være/den/relative/sti" target="_blank" title="Size guide">» Size guide</a>]]></target>
+      </trans-unit>
       <trans-unit id="Abelone SHORT SUIT">
         <source>description.Abelone_SHORT_SUIT</source>
         <target>
-          <![CDATA[Abelone is een meisjesachtig en sportief pakje met korte pijpjes, perfect voor naar school of voor thuis. 
+          <![CDATA[Abelone is een meisjesachtig en sportief pakje met korte pijpjes, perfect voor naar school of voor thuis.
             Het pakje heeft een gesmokte tailleband met ceintuur. Abelone is voorzien van het Ecotex certificaat.
             <br><br>	Verkrijgbaar in: Blue (blauw) en Grey Melange (gemêleerd grijs).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
@@ -13,16 +17,16 @@
       <trans-unit id="Abigail DRESS">
         <source>description.Abigail_DRESS</source>
         <target>
-          <![CDATA[Abigail is perfect voor zomer, strand en ijsjes. 
-            Door het wijde rokje is het een ideaal jurkje om in rond te zwieren. 
+          <![CDATA[Abigail is perfect voor zomer, strand en ijsjes.
+            Door het wijde rokje is het een ideaal jurkje om in rond te zwieren.
             De schouderbandjes lopen uit in een meisjesachtig strikje.<br><br>	Verkrijgbaar in: Green (groen), Peach (perzik), Rose (roze) en White (wit).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen                Voering: 100% katoen]]>
         </target>
       </trans-unit>
       <trans-unit id="Abigail Little DRESS">
         <source>description.Abigail_Little_DRESS</source>
         <target>
-          <![CDATA[Abigail is perfect voor zomer, strand en ijsjes. 
-            Door het wijde rokje is het een ideaal jurkje om in rond te zwieren. 
+          <![CDATA[Abigail is perfect voor zomer, strand en ijsjes.
+            Door het wijde rokje is het een ideaal jurkje om in rond te zwieren.
             De schouderbandjes lopen uit in een meisjesachtig strikje.<br><br>	Verkrijgbaar in: Green (groen), Peach (perzik), Rose (roze) en White (wit).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen                Voering: 100% katoen]]>
         </target>
       </trans-unit>
@@ -56,7 +60,7 @@
       <trans-unit id="Adele PANTS">
         <source>description.Adele_PANTS</source>
         <target>
-          <![CDATA[Comfortabele Adele is een meisjesachtige broek van superzachte stof met gouden glitter en een streep pailletjes op de pijp, zakken met rits aan de voorkant en een zachte elastische tailleband. 
+          <![CDATA[Comfortabele Adele is een meisjesachtige broek van superzachte stof met gouden glitter en een streep pailletjes op de pijp, zakken met rits aan de voorkant en een zachte elastische tailleband.
             <br><br>	Verkrijgbaar in: Light Grey Melange (gemêleerd lichtgrijs) en Blue (blauw).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 65% katoen, 28% polyamide, 7% metaalvezel]]>
         </target>
       </trans-unit>
@@ -70,9 +74,9 @@
       <trans-unit id="Alisha SHORTS">
         <source>description.Alisha_SHORTS</source>
         <target>
-          <![CDATA[Schattige shorts! 
+          <![CDATA[Schattige shorts!
             Supermeisjesachtige en sportieve look met stof vol pailletjes en in de taille een lekker zacht ribboord met ceintuur.
-            
+
             <br><br>	Verkrijgbaar in: Grey (grijs).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
       </trans-unit>
@@ -136,18 +140,18 @@
       <trans-unit id="Amber Little TUNIC">
         <source>description.Amber_Little_TUNIC</source>
         <target>
-          <![CDATA[Amber is zowel oma-achtig gezellig als lief. 
-            
+          <![CDATA[Amber is zowel oma-achtig gezellig als lief.
+
             <br><br>	Verkrijgbaar in: Blue (blauw), Peach (perzik) en Rose (roze).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen                Voering: 100% katoen]]>
         </target>
       </trans-unit>
       <trans-unit id="Amber SCARF">
         <source>description.Amber_SCARF</source>
         <target>
-          <![CDATA[Amber is heerlijk luchtig en zomers en fleurt je dag en avond op. 
-            Je kunt de sjaal met wat je maar wilt combineren. 
-            Door de kleine bloemetjes straalt Amber speelsheid en een voorliefde voor limonade en warme zomerdagen uit. 
-            Pssst… Mamma kan hem ook gebruiken! De afmetingen zijn 63 cm x 165 cm. 
+          <![CDATA[Amber is heerlijk luchtig en zomers en fleurt je dag en avond op.
+            Je kunt de sjaal met wat je maar wilt combineren.
+            Door de kleine bloemetjes straalt Amber speelsheid en een voorliefde voor limonade en warme zomerdagen uit.
+            Pssst… Mamma kan hem ook gebruiken! De afmetingen zijn 63 cm x 165 cm.
             <br><br>	Verkrijgbaar in: Blue (blauw), Peach (perzik) en Rose (roze).	<br><br>	One size	<br><br>	Materiaal: 100% katoen]]>
         </target>
       </trans-unit>
@@ -161,7 +165,7 @@
         <source>description.Anton_JACKET</source>
         <target>
           <![CDATA[Met volle kracht vooruit! Sportief en heerlijk warm voor de wat koudere zomerdagen.
-            Anton is gewatteerd en heeft een boel zakken, voor alles wat een jongen onderweg bij zich moet hebben of op zijn pad tegenkomt. Er is ruimte voor een mobieltje, een mp3-speler, drop, sleutels en nog veel meer. 
+            Anton is gewatteerd en heeft een boel zakken, voor alles wat een jongen onderweg bij zich moet hebben of op zijn pad tegenkomt. Er is ruimte voor een mobieltje, een mp3-speler, drop, sleutels en nog veel meer.
             <br><br>	Verkrijgbaar in: Navy (marineblauw), Blue (blauw) en Red (rood).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% polyamide              Voering: 100% katoen]]>
         </target>
       </trans-unit>
@@ -169,33 +173,33 @@
         <source>description.Anton_Little_JACKET</source>
         <target>
           <![CDATA[Met volle kracht vooruit! Sportief en heerlijk warm voor de wat koudere zomerdagen.
-            Anton is gewatteerd en heeft een boel zakken, voor alles wat een jongen onderweg bij zich moet hebben of op zijn pad tegenkomt. Er is ruimte voor kleine steentjes, drop en nog veel meer. 
+            Anton is gewatteerd en heeft een boel zakken, voor alles wat een jongen onderweg bij zich moet hebben of op zijn pad tegenkomt. Er is ruimte voor kleine steentjes, drop en nog veel meer.
             <br><br>	Verkrijgbaar in: Navy (marineblauw), Blue (blauw) en Red (rood).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% polyamide              Voering: 100% katoen]]>
         </target>
       </trans-unit>
       <trans-unit id="April JEANS">
         <source>description.April_JEANS</source>
         <target>
-          <![CDATA[We zijn dol op jeans en onze April is beslist om van te houden. 
-            Een brutale baggy broek van zachte, aangename stof. En ze hebben natuurlijk onze verstelbare tailleband. 
-            Je kunt erin rondspringen, spelen en dansen! Je kunt erin doen wat je wilt, want daar is hij voor gemaakt. 
+          <![CDATA[We zijn dol op jeans en onze April is beslist om van te houden.
+            Een brutale baggy broek van zachte, aangename stof. En ze hebben natuurlijk onze verstelbare tailleband.
+            Je kunt erin rondspringen, spelen en dansen! Je kunt erin doen wat je wilt, want daar is hij voor gemaakt.
             <br><br>	Verkrijgbaar in: Blue Denim.	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
       </trans-unit>
       <trans-unit id="April Little JEANS">
         <source>description.April_Little_JEANS</source>
         <target>
-          <![CDATA[We zijn dol op jeans en onze April is beslist om van te houden. 
+          <![CDATA[We zijn dol op jeans en onze April is beslist om van te houden.
             Een brutale baggy broek van zachte, aangename stof met een zachte elastische tailleband.
-            Je kunt erin rondspringen, spelen en dansen! Je kunt erin doen wat je wilt, want daar is hij voor gemaakt. 
+            Je kunt erin rondspringen, spelen en dansen! Je kunt erin doen wat je wilt, want daar is hij voor gemaakt.
             <br><br>	Verkrijgbaar in: Blue Denim.	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
       </trans-unit>
       <trans-unit id="April Little SHORTS">
         <source>description.April_Little_SHORTS</source>
         <target>
-          <![CDATA[Op een mooie zomerdag is onze April Little SHORTS zo heerlijk licht en luchtig. 
-            Tijdens de wat koudere dagen is de korte broek superchic met een legging eronder. Je kunt allerlei topjes dragen op deze fantastische korte broek met ruches. En ze hebben natuurlijk onze verstelbare tailleband. 
+          <![CDATA[Op een mooie zomerdag is onze April Little SHORTS zo heerlijk licht en luchtig.
+            Tijdens de wat koudere dagen is de korte broek superchic met een legging eronder. Je kunt allerlei topjes dragen op deze fantastische korte broek met ruches. En ze hebben natuurlijk onze verstelbare tailleband.
             <br><br>	Verkrijgbaar in: Blue Denim.	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
       </trans-unit>
@@ -218,7 +222,7 @@
       <trans-unit id="Audrey SHORTS">
         <source>description.Audrey_SHORTS</source>
         <target>
-          <![CDATA[Lange shorts met kant! We zijn dol op Audrey! 
+          <![CDATA[Lange shorts met kant! We zijn dol op Audrey!
             Met blote zomerbenen tijdens het spelen of met een legging eronder naar een feestje…  Audrey is een succes!
             <br><br>	Verkrijgbaar in: Navy (marineblauw), Off White en Grey (grijs).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 75% katoen, 25% nylon  Voering: 100% katoen]]>
         </target>
@@ -226,7 +230,7 @@
       <trans-unit id="Austin Little POLO">
         <source>description.Austin_Little_POLO</source>
         <target>
-          <![CDATA[Austin is zowel sportief, high school als urban. 
+          <![CDATA[Austin is zowel sportief, high school als urban.
             We houden van de hartslag van de stad en van energieke jongens en we vinden dat Austin dit allemaal belichaamt. Austin is voorzien van het Ecotex certificaat.
             <br><br>	Verkrijgbaar in: Blue (blauw), Turquoise (turkoois) en White (wit).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 95% katoen, 5% elastaan]]>
         </target>
@@ -234,7 +238,7 @@
       <trans-unit id="Austin POLO">
         <source>description.Austin_POLO</source>
         <target>
-          <![CDATA[Austin is zowel sportief, high school als urban. 
+          <![CDATA[Austin is zowel sportief, high school als urban.
             We houden van de hartslag van de stad en van energieke jongens en we vinden dat Austin dit allemaal belichaamt. Austin is voorzien van het Ecotex certificaat.
             <br><br>	Verkrijgbaar in: Blue (blauw), Turquoise (turkoois) en White (wit).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 95% katoen, 5% elastaan]]>
         </target>
@@ -242,8 +246,8 @@
       <trans-unit id="Ava JACKET">
         <source>description.Ava_JACKET</source>
         <target>
-          <![CDATA[Mmm, op een koude lentedag is ons Ava fleece jack zo heerlijk zacht en warm. 
-            Met de bekende POMPdeLUX bobbelfleece erin en een ritssluiting aan de voorkant. 
+          <![CDATA[Mmm, op een koude lentedag is ons Ava fleece jack zo heerlijk zacht en warm.
+            Met de bekende POMPdeLUX bobbelfleece erin en een ritssluiting aan de voorkant.
             Door de ceintuur in het middel wordt het geheel nog meisjesachtiger.
             <br><br>	Verkrijgbaar in: Khaki, Rose (roze) en Green (groen).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% polyester]]>
         </target>
@@ -251,8 +255,8 @@
       <trans-unit id="Ava Little JACKET">
         <source>description.Ava_Little_JACKET</source>
         <target>
-          <![CDATA[Mmm, op een koude lentedag is ons Ava fleece jack zo heerlijk zacht en warm. 
-            Met de bekende POMPdeLUX bobbelfleece erin en een ritssluiting aan de voorkant. 
+          <![CDATA[Mmm, op een koude lentedag is ons Ava fleece jack zo heerlijk zacht en warm.
+            Met de bekende POMPdeLUX bobbelfleece erin en een ritssluiting aan de voorkant.
             Het A-lijn model met aan de onderkant een strookje is leuk voor een klein meisje.
             <br><br>	Verkrijgbaar in: Khaki, Rose (roze) en Green (groen).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% polyester]]>
         </target>
@@ -260,9 +264,9 @@
       <trans-unit id="Barry REGULAR JEANS">
         <source>description.Barry_REGULAR_JEANS</source>
         <target>
-          <![CDATA[Jongens en spijkerbroeken - die twee dingen horen bij elkaar. 
+          <![CDATA[Jongens en spijkerbroeken - die twee dingen horen bij elkaar.
             Klaar om in bomen te klimmen, hutten te bouwen en te ravotten. De Barry heeft vintage slijtage details en een mooie pasvorm. Doe de broek aan en speel er op los.
-            
+
             <br><br>	Verkrijgbaar in: Blue Denim.	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
       </trans-unit>
@@ -281,8 +285,8 @@
       <trans-unit id="Billy BAGGY JEANS">
         <source>description.Billy_BAGGY_JEANS</source>
         <target>
-          <![CDATA[De combinatie van jongens en spijkerbroeken is altijd een succes.  
-            Billy BAGGY JEANS zorgt voor een leuke, energieke look. 
+          <![CDATA[De combinatie van jongens en spijkerbroeken is altijd een succes.
+            Billy BAGGY JEANS zorgt voor een leuke, energieke look.
             Er is ruimte om een extra ijsje te eten en om nog wat te groeien want de tailleband kan versteld worden. We hebben een versleten wash gekozen die het brutale van de Billy benadrukt. Met extra wijdte in de taille.
             <br><br>	Verkrijgbaar in: Blue Denim.	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
@@ -290,8 +294,8 @@
       <trans-unit id="Billy BAGGY LONG SHORTS">
         <source>description.Billy_BAGGY_LONG_SHORTS</source>
         <target>
-          <![CDATA[De combinatie van jongens en spijkerbroeken is altijd een succes. 
-            Billy BAGGY LONG SHORTS zorgt met zijn korte piratenpijpen voor een leuke, energieke look. 
+          <![CDATA[De combinatie van jongens en spijkerbroeken is altijd een succes.
+            Billy BAGGY LONG SHORTS zorgt met zijn korte piratenpijpen voor een leuke, energieke look.
             We hebben een versleten wash en extra grote achterzakken gekozen die het brutale van de Billy benadrukken. Met extra wijdte in de taille.
             <br><br>	Verkrijgbaar in: Blue Denim.	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
@@ -299,7 +303,7 @@
       <trans-unit id="Billy Little BAGGY JEANS">
         <source>description.Billy_Little_BAGGY_JEANS</source>
         <target>
-          <![CDATA[De combinatie van jongens en spijkerbroeken is altijd een succes. En we zijn gek op een jochie in een spijkerbroek. Billy Little BAGGY JEANS zorgt voor een leuke, energieke look. 
+          <![CDATA[De combinatie van jongens en spijkerbroeken is altijd een succes. En we zijn gek op een jochie in een spijkerbroek. Billy Little BAGGY JEANS zorgt voor een leuke, energieke look.
             Er is ruimte om een extra ijsje te eten en om nog wat te groeien, want de tailleband kan versteld worden.
             We hebben een versleten wash gekozen die het brutale van de Billy benadrukt.
             <br><br>	Verkrijgbaar in: Blue Denim.	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
@@ -308,9 +312,9 @@
       <trans-unit id="Bjork SLIMFIT JEANS">
         <source>description.Bjork_SLIMFIT_JEANS</source>
         <target>
-          <![CDATA[Ja -we zijn gek op jeans!  
-            Je kunt zowel een split als een spagaat maken in de Bjork, die namelijk slimfit en elastisch is. 
-            Een spijkerbroek moet fijn zijn om aan te hebben en mag niet te strak zitten. 
+          <![CDATA[Ja -we zijn gek op jeans!
+            Je kunt zowel een split als een spagaat maken in de Bjork, die namelijk slimfit en elastisch is.
+            Een spijkerbroek moet fijn zijn om aan te hebben en mag niet te strak zitten.
             We hebben er een paar leuke details en extra zakken aan toegevoegd.
             <br><br>	Verkrijgbaar in: Blue Denim.	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 98% katoen, 2% elastaan]]>
         </target>
@@ -318,8 +322,8 @@
       <trans-unit id="Blossom SHORTS">
         <source>description.Blossom_SHORTS</source>
         <target>
-          <![CDATA[Het wachten is op voorjaarszon en zomerpret. 
-            Blossom SHORTS is er klaar voor. Doe een legging aan en daarover de korte broek of op een warme zomerse dag draag je hem met blote benen. De korte broek is zacht en elastisch en er zit een hartje op de ene achterzak. 
+          <![CDATA[Het wachten is op voorjaarszon en zomerpret.
+            Blossom SHORTS is er klaar voor. Doe een legging aan en daarover de korte broek of op een warme zomerse dag draag je hem met blote benen. De korte broek is zacht en elastisch en er zit een hartje op de ene achterzak.
             <br><br>	Verkrijgbaar in: Blue Denim.	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 98% katoen, 2% elastaan]]>
         </target>
       </trans-unit>
@@ -351,8 +355,8 @@
       <trans-unit id="Burl Little SS GRANDDAD">
         <source>description.Burl_Little_SS_GRANDDAD</source>
         <target>
-          <![CDATA[Sterke bovenarmpjes in een granddadhemd versierd met stiertjes. 
-            Dat is leuk, en fijn en zacht om aan te hebben! 
+          <![CDATA[Sterke bovenarmpjes in een granddadhemd versierd met stiertjes.
+            Dat is leuk, en fijn en zacht om aan te hebben!
             Burl is Ecotex gecertificeerd.
             <br><br>	Verkrijgbaar in: Grey Melange (gemêleerd grijs), Turquoise (turkoois) en Blue (blauw).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 95% katoen, 5% elastaan]]>
         </target>
@@ -360,8 +364,8 @@
       <trans-unit id="Burl SS GRANDDAD">
         <source>description.Burl_SS_GRANDDAD</source>
         <target>
-          <![CDATA[Sterke bovenarmpjes in een granddadhemd versierd met stiertjes. 
-            Dat is leuk, en fijn en zacht om aan te hebben! 
+          <![CDATA[Sterke bovenarmpjes in een granddadhemd versierd met stiertjes.
+            Dat is leuk, en fijn en zacht om aan te hebben!
             Burl is Ecotex gecertificeerd.
             <br><br>	Verkrijgbaar in: Grey Melange (gemêleerd grijs), Turquoise (turkoois) en Blue (blauw).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 95% katoen, 5% elastaan]]>
         </target>
@@ -369,8 +373,8 @@
       <trans-unit id="Calvin CARDIGAN">
         <source>description.Calvin_CARDIGAN</source>
         <target>
-          <![CDATA[We hebben de klassieke sailor gemixt met de Amerikaanse collegejongen. 
-            Deze style is een van onze favorieten en misschien heeft pappa ook zon vest in zijn garderobe? 
+          <![CDATA[We hebben de klassieke sailor gemixt met de Amerikaanse collegejongen.
+            Deze style is een van onze favorieten en misschien heeft pappa ook zon vest in zijn garderobe?
             Je krijgt een trendy jongetje met de Calvin CARDIGAN.
             <br><br>	Verkrijgbaar in: Honey (geel), Blue (blauw) en Grey Melange (gemêleerd grijs).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
@@ -378,8 +382,8 @@
       <trans-unit id="Calvin Little CARDIGAN">
         <source>description.Calvin_Little_CARDIGAN</source>
         <target>
-          <![CDATA[We hebben de klassieke sailor gemixt met de Amerikaanse collegejongen. 
-            Deze style is een van onze favorieten en misschien heeft pappa ook zon vest in zijn garderobe? 
+          <![CDATA[We hebben de klassieke sailor gemixt met de Amerikaanse collegejongen.
+            Deze style is een van onze favorieten en misschien heeft pappa ook zon vest in zijn garderobe?
             Je krijgt een trendy jongetje met de Calvin Little CARDIGAN.
             <br><br>	Verkrijgbaar in: Honey (geel), Blue (blauw) en Grey Melange (gemêleerd grijs).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
@@ -387,8 +391,8 @@
       <trans-unit id="Cameron Little POLO">
         <source>description.Cameron_Little_POLO</source>
         <target>
-          <![CDATA[Broem broem! 
-            Autos en jongens passen prima bij elkaar! 
+          <![CDATA[Broem broem!
+            Autos en jongens passen prima bij elkaar!
             Dus we hebben een echte racerpolo gemaakt voor jongens met BROEM in hun bloed. De Cameron is Ecotex gecertificeerd.
             <br><br>	Verkrijgbaar in: Blue (blauw), Wine (wijnrood) en Navy (marineblauw).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
@@ -396,8 +400,8 @@
       <trans-unit id="Cameron POLO">
         <source>description.Cameron_POLO</source>
         <target>
-          <![CDATA[Broem broem! 
-            Autos en jongens passen prima bij elkaar! 
+          <![CDATA[Broem broem!
+            Autos en jongens passen prima bij elkaar!
             Dus we hebben een echte racerpolo gemaakt voor jongens met BROEM in hun bloed. De Cameron is Ecotex gecertificeerd.
             <br><br>	Verkrijgbaar in: Blue (blauw), Wine (wijnrood) en Navy (marineblauw).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
@@ -413,7 +417,7 @@
       <trans-unit id="Cate PANTS">
         <source>description.Cate_PANTS</source>
         <target>
-          <![CDATA[Met een leuke, gevlochten suède ceintuur en een modern flowerpower design is de Cate PANTS een broek die overal leuk bij staat. Bloemendetails in de vorm van bloemenknoopjes aan de voorkant en een bedrukte stof die heerlijk zomers is. En ze hebben natuurlijk onze verstelbare tailleband. 
+          <![CDATA[Met een leuke, gevlochten suède ceintuur en een modern flowerpower design is de Cate PANTS een broek die overal leuk bij staat. Bloemendetails in de vorm van bloemenknoopjes aan de voorkant en een bedrukte stof die heerlijk zomers is. En ze hebben natuurlijk onze verstelbare tailleband.
             <br><br>	Verkrijgbaar in: Blue (blauw), Grey (grijs) en Sand.	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 75% katoen, 25% linnen]]>
         </target>
       </trans-unit>
@@ -436,7 +440,7 @@
       <trans-unit id="Cecilia SOCKS">
         <source>description.Cecilia_SOCKS</source>
         <target>
-          <![CDATA[Brede strepen en stippeltjes zitten er op Cecilia SOCKS die verkrijgbaar zijn in alle kleuren van de collectie. 
+          <![CDATA[Brede strepen en stippeltjes zitten er op Cecilia SOCKS die verkrijgbaar zijn in alle kleuren van de collectie.
             Cecilia is Ecotex gecertificeerd.
             <br><br>	Verkrijgbaar in: Yellow (geel), Peach (perzik), Rose (roze), Green (groen), Grey Melange (gemêleerd grijs), Khaki, Blue (blauw) en Black (zwart).	<br><br>	De maat is de schoenmaat van het kind.	<br><br>	Materiaal: 77% katoen,19% polyamide, 4% elastaan]]>
         </target>
@@ -458,7 +462,7 @@
       <trans-unit id="Chloe TOP">
         <source>description.Chloe_TOP</source>
         <target>
-          <![CDATA[Chloe is sportief en zomers. 
+          <![CDATA[Chloe is sportief en zomers.
             Hij is zo mooi door de zachte gesmokte mouwen en hals en het dunne leren koordje in de taille. Ga eropuit! Chloe kun je overal dragen.<br><b>Riem mag niet gewassen worden.</b>
             <br><br>	Verkrijgbaar in: Grey (grijs), Brown (bruin), Blue (blauw) en Black (zwart).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 95% viscose, 5% elastaan]]>
         </target>
@@ -466,7 +470,7 @@
       <trans-unit id="Christopher Little SS TSHIRT">
         <source>description.Christopher_Little_SS_TSHIRT</source>
         <target>
-          <![CDATA[Navy style! 
+          <![CDATA[Navy style!
             Op een warme zomerdag doe je het Christopher Little TSHIRT aan, je lievelingsshorts, je schoenen en je gaat erop uit en speelt erop los. Christopher is Ecotex gecertificeerd.
             <br><br>	Verkrijgbaar in: Grey Melange (gemêleerd grijs) en Navy (marineblauw).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
@@ -474,7 +478,7 @@
       <trans-unit id="Christopher TANKTOP">
         <source>description.Christopher_TANKTOP</source>
         <target>
-          <![CDATA[Navy style! 
+          <![CDATA[Navy style!
             Op een warme zomerdag doe je de Christopher TANKTOP aan, je lievelingsshorts, je schoenen en je gaat erop uit en speelt erop los. Christopher is Ecotex gecertificeerd.
             <br><br>	Verkrijgbaar in: Grey Melange (gemêleerd grijs) en Navy (marineblauw).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
@@ -482,14 +486,14 @@
       <trans-unit id="Claire CARDIGAN">
         <source>description.Claire_CARDIGAN</source>
         <target>
-          <![CDATA[Dit vest hoort in de garderobe van elk meisje. Met een klassieke pasvorm en aandacht voor details. Welk meisje kan nou strikjes, kantjes en gouden prints weerstaan? Past bij bijna alles uit onze collectie. 
+          <![CDATA[Dit vest hoort in de garderobe van elk meisje. Met een klassieke pasvorm en aandacht voor details. Welk meisje kan nou strikjes, kantjes en gouden prints weerstaan? Past bij bijna alles uit onze collectie.
             <br><br>	Verkrijgbaar in: Blue (blauw), Rose (roze), Grey Melange (gemêleerd grijs) en Peach (perzik).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 65% bamboe, 18% polyamide, 17% katoen]]>
         </target>
       </trans-unit>
       <trans-unit id="Claire Little CARDIGAN">
         <source>description.Claire_Little_CARDIGAN</source>
         <target>
-          <![CDATA[Dit vest hoort in de garderobe van elk meisje. Met een klassieke pasvorm en aandacht voor details. Welk meisje kan nou strikjes, kantjes en gouden prints weerstaan? Past bij bijna alles uit onze collectie. 
+          <![CDATA[Dit vest hoort in de garderobe van elk meisje. Met een klassieke pasvorm en aandacht voor details. Welk meisje kan nou strikjes, kantjes en gouden prints weerstaan? Past bij bijna alles uit onze collectie.
             <br><br>	Verkrijgbaar in: Blue (blauw), Rose (roze), Grey Melange (gemêleerd grijs) en Peach (perzik).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 65% bamboe, 18% polyamide, 17% katoen]]>
         </target>
       </trans-unit>
@@ -503,7 +507,7 @@
         <source>description.Cooper_Little_LS_GRANDDAD</source>
         <target>
           <![CDATA[Sterke bovenarmpjes in een granddadhemd versierd met leuke strepen.
-            Dat is leuk, en zacht en aangenaam om te dragen! 
+            Dat is leuk, en zacht en aangenaam om te dragen!
             Het hemd is Ecotex gecertificeerd.
             <br><br>	Verkrijgbaar in: Navy (marineblauw), Red (rood), Blue (blauw) en Green (groen).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
@@ -512,7 +516,7 @@
         <source>description.Cooper_LS_GRANDDAD</source>
         <target>
           <![CDATA[Sterke bovenarmpjes in een granddadhemd versierd met leuke strepen.
-            Dat is leuk, en zacht en aangenaam om te dragen! 
+            Dat is leuk, en zacht en aangenaam om te dragen!
             Het hemd is Ecotex gecertificeerd.
             <br><br>	Verkrijgbaar in: Navy (marineblauw), Red (rood), Blue (blauw) en Green (groen).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
@@ -536,8 +540,8 @@
       <trans-unit id="Danny JACKET">
         <source>description.Danny_JACKET</source>
         <target>
-          <![CDATA[Sportief en heerlijk zacht. 
-            Fijn voor als je op een koude zomeravond wilt ballen en spelen.  
+          <![CDATA[Sportief en heerlijk zacht.
+            Fijn voor als je op een koude zomeravond wilt ballen en spelen.
             En nooit meer hoodies waar de koordjes uitvallen of in verdwijnen want het Danny JACKET heeft geen losse koordjes. En Danny is ook Ecotex gecertificeerd.
             <br><br>	Verkrijgbaar in: Green (groen), Red (rood) en Blue (blauw).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
@@ -545,8 +549,8 @@
       <trans-unit id="Darren Little SHIRT">
         <source>description.Darren_Little_SHIRT</source>
         <target>
-          <![CDATA[Ik zie, ik zie, wat jij niet ziet en het begint met een D - van Darren Little SHIRT! 
-            Voor een kleine, schattige schipper. Een leuk overhemd waardoor junior op een stijlvol zeemannetje lijkt. 
+          <![CDATA[Ik zie, ik zie, wat jij niet ziet en het begint met een D - van Darren Little SHIRT!
+            Voor een kleine, schattige schipper. Een leuk overhemd waardoor junior op een stijlvol zeemannetje lijkt.
             <br><br>	Verkrijgbaar in: Blue (blauw).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 55% linnen, 45% katoen]]>
         </target>
       </trans-unit>
@@ -554,7 +558,7 @@
         <source>description.Darren_SHIRT</source>
         <target>
           <![CDATA[Ahoi schipper! Darren SHIRT is een echte must-have!
-            Een cool overhemd waarin junior op een stijlvolle zeeman lijkt. 
+            Een cool overhemd waarin junior op een stijlvolle zeeman lijkt.
             <br><br>	Verkrijgbaar in: Blue (blauw).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 55% linnen, 45% katoen]]>
         </target>
       </trans-unit>
@@ -570,46 +574,46 @@
         <source>description.Dexter_BOARD_SHORTS</source>
         <target>
           <![CDATA[Supercool met sterren en strepen in rasechte surferstijl.
-            Alle waterratten moeten een Dexter BOARD SHORTS hebben. 
+            Alle waterratten moeten een Dexter BOARD SHORTS hebben.
             <br><br>	Verkrijgbaar in: Navy (marineblauw).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 60% katoen, 40% polyester]]>
         </target>
       </trans-unit>
       <trans-unit id="Dicte Little TUNIC">
         <source>description.Dicte_Little_TUNIC</source>
         <target>
-          <![CDATA[Betoverende Dicte! 
-            Een schattige A-lijn tuniek met leuke ruches en knoopsluiting aan de voorkant.  
+          <![CDATA[Betoverende Dicte!
+            Een schattige A-lijn tuniek met leuke ruches en knoopsluiting aan de voorkant.
             <br><br>	Verkrijgbaar in: Blue (blauw) en White (wit).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
       </trans-unit>
       <trans-unit id="Dicte TUNIC">
         <source>description.Dicte_TUNIC</source>
         <target>
-          <![CDATA[Betoverende Dicte! 
-            Een schattige A-lijn tuniek met leuke ruches en knoopsluiting aan de voorkant.  
+          <![CDATA[Betoverende Dicte!
+            Een schattige A-lijn tuniek met leuke ruches en knoopsluiting aan de voorkant.
             <br><br>	Verkrijgbaar in: Blue (blauw) en White (wit).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
       </trans-unit>
       <trans-unit id="Dolph BAGGY LONG SHORTS">
         <source>description.Dolph_BAGGY_LONG_SHORTS</source>
         <target>
-          <![CDATA[Een must have voor elke jongen! Dolph BAGGY LONG SHORTS voor de lichte zomerdagen. Geïnspireerd door vliegtuigen en van een lichte, zachte soort katoen, dus klaar voor energieke activiteiten. En met onze bekende verstelbare tailleband en extra taillewijdte. 
-            
+          <![CDATA[Een must have voor elke jongen! Dolph BAGGY LONG SHORTS voor de lichte zomerdagen. Geïnspireerd door vliegtuigen en van een lichte, zachte soort katoen, dus klaar voor energieke activiteiten. En met onze bekende verstelbare tailleband en extra taillewijdte.
+
             <br><br>	Verkrijgbaar in: Honey (geel), Sand en Blue (blauw).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 98% katoen, 2% elastaan]]>
         </target>
       </trans-unit>
       <trans-unit id="Dolph BAGGY PANTS">
         <source>description.Dolph_BAGGY_PANTS</source>
         <target>
-          <![CDATA[Een must have voor elke mini-man! Dolph BAGGY PANTS is voor de lichte zomerdagen. Geïnspireerd door vliegtuigen en van een lichte, zachte soort katoen. Witte knopen aan de voorkant, leren badge op de achterzak en klaar voor energieke activiteiten. En met onze bekende verstelbare tailleband en extra taillewijdte. 
-            
+          <![CDATA[Een must have voor elke mini-man! Dolph BAGGY PANTS is voor de lichte zomerdagen. Geïnspireerd door vliegtuigen en van een lichte, zachte soort katoen. Witte knopen aan de voorkant, leren badge op de achterzak en klaar voor energieke activiteiten. En met onze bekende verstelbare tailleband en extra taillewijdte.
+
             <br><br>	Verkrijgbaar in: Honey (geel), Sand en Blue (blauw).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 98% katoen, 2% elastaan]]>
         </target>
       </trans-unit>
       <trans-unit id="Dolph Little BAGGY PANTS">
         <source>description.Dolph_Little_BAGGY_PANTS</source>
         <target>
-          <![CDATA[Een must have voor elke mini-man! Geïnspireerd door vliegtuigen en van een lichte, zachte soort katoen. Met nepknopen aan de voorkant en een leren badge op de achterzak is Dolph een broek voor energieke activiteiten. En natuurlijk met onze bekende, verstelbare tailleband. 
+          <![CDATA[Een must have voor elke mini-man! Geïnspireerd door vliegtuigen en van een lichte, zachte soort katoen. Met nepknopen aan de voorkant en een leren badge op de achterzak is Dolph een broek voor energieke activiteiten. En natuurlijk met onze bekende, verstelbare tailleband.
             <br><br>	Verkrijgbaar in: Honey (geel), Sand en Blue (blauw).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 98% katoen, 2% elastaan]]>
         </target>
       </trans-unit>
@@ -641,16 +645,16 @@
       <trans-unit id="Eddie Little SHORTS">
         <source>description.Eddie_Little_SHORTS</source>
         <target>
-          <![CDATA[Eddie Little SHORTS is cool door de baggy piratencut en laagzittende zakken met leren badge erop. 
-            Eddie heeft een tailleband met heerlijk zacht elastiek erin. 
+          <![CDATA[Eddie Little SHORTS is cool door de baggy piratencut en laagzittende zakken met leren badge erop.
+            Eddie heeft een tailleband met heerlijk zacht elastiek erin.
             <br><br>	Verkrijgbaar in: Blue Denim.	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
       </trans-unit>
       <trans-unit id="Eddie LONG SHORTS">
         <source>description.Eddie_LONG_SHORTS</source>
         <target>
-          <![CDATA[Eddie LONG SHORTS is cool door de baggy piratencut en laagzittende zakken met leren badge erop. 
-            Eddie heeft een tailleband met heerlijk zacht elastiek erin. 
+          <![CDATA[Eddie LONG SHORTS is cool door de baggy piratencut en laagzittende zakken met leren badge erop.
+            Eddie heeft een tailleband met heerlijk zacht elastiek erin.
             <br><br>	Verkrijgbaar in: Blue Denim.	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
       </trans-unit>
@@ -693,22 +697,22 @@
       <trans-unit id="Edward Little POLO">
         <source>description.Edward_Little_POLO</source>
         <target>
-          <![CDATA[Geïnspireerd door de high school look, onze voorliefde voor grote steden en jongenssporten, 
+          <![CDATA[Geïnspireerd door de high school look, onze voorliefde voor grote steden en jongenssporten,
             met op de voorkant een badge met de Engelse vlag en op de rug een zachte print in vintage stijl. Edward is zowel voor de klassieke jongen als de sportliefhebber en is Ecotex gecertificeerd.<br><br>	Verkrijgbaar in: Grey Melange (gemêleerd grijs), Red (rood) en Blue (blauw).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
       </trans-unit>
       <trans-unit id="Edward POLO">
         <source>description.Edward_POLO</source>
         <target>
-          <![CDATA[Geïnspireerd door de high school look, onze voorliefde voor grote steden en jongenssporten, 
+          <![CDATA[Geïnspireerd door de high school look, onze voorliefde voor grote steden en jongenssporten,
             met op de voorkant de Engelse vlag en op de rug een zachte print in vintage stijl. Edward is zowel voor de klassieke jongen als de sportliefhebber en is Ecotex gecertificeerd.<br><br>	Verkrijgbaar in: Grey Melange (gemêleerd grijs), Red (rood) en Blue (blauw).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
       </trans-unit>
       <trans-unit id="Elba CARDIGAN">
         <source>description.Elba_CARDIGAN</source>
         <target>
-          <![CDATA[Elba is een romantisch, kort vestje met gaatjespatroon en aan de voorkant knopen. 
-            Precies zoals oma het gebreid zou hebben. Draag het over een leuk jurkje of creëer een stoerdere look met een strakke chinobroek en laarzen. 
+          <![CDATA[Elba is een romantisch, kort vestje met gaatjespatroon en aan de voorkant knopen.
+            Precies zoals oma het gebreid zou hebben. Draag het over een leuk jurkje of creëer een stoerdere look met een strakke chinobroek en laarzen.
             <br><br>	Verkrijgbaar in: Off White, Blue (blauw), Khaki en Black (zwart).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
       </trans-unit>
@@ -784,25 +788,25 @@
       <trans-unit id="Ethan BAGGY LONG SHORTS">
         <source>description.Ethan_BAGGY_LONG_SHORTS</source>
         <target>
-          <![CDATA[Met Ethan BAGGY LONG SHORTS ben je klaar voor zomerpret en spelletjes. 
-            Ethan heeft aan de zijkant extra grote zakken, zodat er plek is om op het strand stenen te verzamelen of om je yoyo of iets anders leuks mee te nemen. Extra taillewijdte en natuurlijk met verstelbare tailleband. 
-            
+          <![CDATA[Met Ethan BAGGY LONG SHORTS ben je klaar voor zomerpret en spelletjes.
+            Ethan heeft aan de zijkant extra grote zakken, zodat er plek is om op het strand stenen te verzamelen of om je yoyo of iets anders leuks mee te nemen. Extra taillewijdte en natuurlijk met verstelbare tailleband.
+
             <br><br>	Verkrijgbaar in: Sand, Grey (grijs) en  Blue (blauw).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 70% katoen, 30% elastaan]]>
         </target>
       </trans-unit>
       <trans-unit id="Ethan Little PANTS">
         <source>description.Ethan_Little_PANTS</source>
         <target>
-          <![CDATA[Baggy pants voor junior: zowel schattig als stoer. 
-            Ethan is stijlvol en stevig met slijtvaste lappen op de knieën en mooie details in de zachte stof. 
-            Extra taillewijdte en een tailleband met heerlijk zacht elastiek erin. 
+          <![CDATA[Baggy pants voor junior: zowel schattig als stoer.
+            Ethan is stijlvol en stevig met slijtvaste lappen op de knieën en mooie details in de zachte stof.
+            Extra taillewijdte en een tailleband met heerlijk zacht elastiek erin.
             <br><br>	Verkrijgbaar in: Sand, Grey (grijs) en  Blue (blauw).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 70% katoen, 30% elastaan]]>
         </target>
       </trans-unit>
       <trans-unit id="Ethan Little SHORTS">
         <source>description.Ethan_Little_SHORTS</source>
         <target>
-          <![CDATA[Ethan Little SHORTS is een coole korte broek met een baggy piratencut en sterren op de laagzittende zakken. Ethan heeft een tailleband met heerlijk zacht elastiek erin. 
+          <![CDATA[Ethan Little SHORTS is een coole korte broek met een baggy piratencut en sterren op de laagzittende zakken. Ethan heeft een tailleband met heerlijk zacht elastiek erin.
             <br><br>	Verkrijgbaar in: Sand, Grey (grijs) en  Blue (blauw).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 70% katoen, 30% elastaan]]>
         </target>
       </trans-unit>
@@ -810,54 +814,54 @@
         <source>description.Faith_BLOUSE</source>
         <target>
           <![CDATA[Hier is een oversized bloes die zowel meisjesachtig als sportief is. Faith is gemaakt van superzachte jersey en heeft leuk gouden glitterband op de mouwen en als strikje op de heup. Combineer de bloes met een strak topje en een slimfit jeans.
-            
-            
+
+
             <br><br>	Verkrijgbaar in: Grey Melange (gemêleerd grijs) en Blue (blauw).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 95% viscose, 5% elastaan]]>
         </target>
       </trans-unit>
       <trans-unit id="Faith PANTS">
         <source>description.Faith_PANTS</source>
         <target>
-          <![CDATA[Hier is de ultieme broek van de zachtst vindbare soort jersey met trendy tailleband met gouden glitterceintuur, en stoere ritsen aan de enkels. 
-            Steek je handen in je zakken en zie er stijlvol en ontspannen uit. 
+          <![CDATA[Hier is de ultieme broek van de zachtst vindbare soort jersey met trendy tailleband met gouden glitterceintuur, en stoere ritsen aan de enkels.
+            Steek je handen in je zakken en zie er stijlvol en ontspannen uit.
             <br><br>	Verkrijgbaar in: Grey Melange (gemêleerd grijs) en Blue (blauw).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 95% viscose, 5% elastaan]]>
         </target>
       </trans-unit>
       <trans-unit id="Felix Little PULLOVER">
         <source>description.Felix_Little_PULLOVER</source>
         <target>
-          <![CDATA[Felix is een leuke gestreepte trui! Voor de details is zachte denim gebruikt, die de verder zo klasieke trui iets extras geven. Style de trui met een coole chino- of spijkerbroek en zorg ervoor dat je hem tijdens de wat koudere zomeravonden altijd bij je hebt in je tas. 
+          <![CDATA[Felix is een leuke gestreepte trui! Voor de details is zachte denim gebruikt, die de verder zo klasieke trui iets extras geven. Style de trui met een coole chino- of spijkerbroek en zorg ervoor dat je hem tijdens de wat koudere zomeravonden altijd bij je hebt in je tas.
             <br><br>	Verkrijgbaar in: Navy/Camel (marineblauw/camel) en Navy/White (marineblauw/wit).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
       </trans-unit>
       <trans-unit id="Felix PULLOVER">
         <source>description.Felix_PULLOVER</source>
         <target>
-          <![CDATA[Felix is een leuke gestreepte trui! Voor de details is zachte denim gebruikt, die de verder zo klasieke trui iets extras geven. Style de trui met een coole chino- of spijkerbroek en zorg ervoor dat je hem tijdens de wat koudere zomeravonden altijd bij je hebt in je tas. 
+          <![CDATA[Felix is een leuke gestreepte trui! Voor de details is zachte denim gebruikt, die de verder zo klasieke trui iets extras geven. Style de trui met een coole chino- of spijkerbroek en zorg ervoor dat je hem tijdens de wat koudere zomeravonden altijd bij je hebt in je tas.
             <br><br>	Verkrijgbaar in: Navy/Camel (marineblauw/camel) en Navy/White (marineblauw/wit).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
       </trans-unit>
       <trans-unit id="Finley CARDIGAN">
         <source>description.Finley_CARDIGAN</source>
         <target>
-          <![CDATA[Finley CARDIGAN is een leuk gestreept vest! Ideaal voor een wat koudere barbecue-avond. 
-            Style het vest met een coole chino- of spijkerbroek en zorg ervoor dat je hem tijdens de wat koudere momenten altijd bij je hebt in je tas. 
+          <![CDATA[Finley CARDIGAN is een leuk gestreept vest! Ideaal voor een wat koudere barbecue-avond.
+            Style het vest met een coole chino- of spijkerbroek en zorg ervoor dat je hem tijdens de wat koudere momenten altijd bij je hebt in je tas.
             <br><br>	Verkrijgbaar in: Navy (marineblauw) en Grey Melange (gemêleerd grijs).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
       </trans-unit>
       <trans-unit id="Finley Little CARDIGAN">
         <source>description.Finley_Little_CARDIGAN</source>
         <target>
-          <![CDATA[Finley Little CARDIGAN is een leuk gestreept vest! Ideaal voor een wat koudere barbecue-avond. 
-            Style het vest met een coole chino- of spijkerbroek en zorg ervoor dat je hem tijdens de wat koudere momenten altijd bij je hebt in je tas. 
+          <![CDATA[Finley Little CARDIGAN is een leuk gestreept vest! Ideaal voor een wat koudere barbecue-avond.
+            Style het vest met een coole chino- of spijkerbroek en zorg ervoor dat je hem tijdens de wat koudere momenten altijd bij je hebt in je tas.
             <br><br>	Verkrijgbaar in: Navy (marineblauw) en Grey Melange (gemêleerd grijs).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
       </trans-unit>
       <trans-unit id="Finley Little PULLOVER">
         <source>description.Finley_Little_SLIPOVER</source>
         <target>
-          <![CDATA[Finley is een mooi gestreept vest met leuke gebreide details. Style het vest met een neutraal overhemd, een coole chino- of spijkerbroek en zorg ervoor dat je hem tijdens de wat koudere momenten altijd bij je hebt in je tas. 
-            
+          <![CDATA[Finley is een mooi gestreept vest met leuke gebreide details. Style het vest met een neutraal overhemd, een coole chino- of spijkerbroek en zorg ervoor dat je hem tijdens de wat koudere momenten altijd bij je hebt in je tas.
+
             <br><br>	Verkrijgbaar in: Navy (marineblauw) en Grey Melange (gemêleerd grijs).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
       </trans-unit>
@@ -870,7 +874,7 @@
       <trans-unit id="Fitz Little JUMPSUIT">
         <source>description.Fitz_Little_JUMPSUIT</source>
         <target>
-          <![CDATA[Tijd om te genieten! Fijne jumpsuit met een lekkere zachte voering. 
+          <![CDATA[Tijd om te genieten! Fijne jumpsuit met een lekkere zachte voering.
             Prettig voor thuis en heerlijk warm voor buiten. En de Fitz is ook Ecotex gecertificeerd.
             <br><br>	Verkrijgbaar in: Grey Melange (gemêleerd grijs) en Navy (marineblauw).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
@@ -902,30 +906,30 @@
       <trans-unit id="Gary JACKET">
         <source>description.Gary_JACKET</source>
         <target>
-          <![CDATA[Zo lekker en zacht! Gary JACKET is gemaakt van fleece met sportieve details en vintage applicaties. 
-            Supercool op een t-shirt en jeans.   
+          <![CDATA[Zo lekker en zacht! Gary JACKET is gemaakt van fleece met sportieve details en vintage applicaties.
+            Supercool op een t-shirt en jeans.
             <br><br>	Verkrijgbaar in: Grey Melange (gemêleerd grijs) en Blue (blauw).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% polyester]]>
         </target>
       </trans-unit>
       <trans-unit id="Gary Little JACKET">
         <source>description.Gary_Little_JACKET</source>
         <target>
-          <![CDATA[Zo lekker en zacht! Gary JACKET is gemaakt van fleece met sportieve details en vintage applicaties. 
-            Supercool op een t-shirt en jeans.   
+          <![CDATA[Zo lekker en zacht! Gary JACKET is gemaakt van fleece met sportieve details en vintage applicaties.
+            Supercool op een t-shirt en jeans.
             <br><br>	Verkrijgbaar in: Grey Melange (gemêleerd grijs) en Blue (blauw).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% polyester]]>
         </target>
       </trans-unit>
       <trans-unit id="George SS TSHIRT">
         <source>description.George_SS_TSHIRT</source>
         <target>
-          <![CDATA[Voel het ritme van de stad! Met George hoor je erbij en het t-shirt is ook voorzien van het Ecotex certificaat. 
+          <![CDATA[Voel het ritme van de stad! Met George hoor je erbij en het t-shirt is ook voorzien van het Ecotex certificaat.
             <br><br>	Verkrijgbaar in: Grey (grijs) en White (wit).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
       </trans-unit>
       <trans-unit id="Gordon Little SS TSHIRT">
         <source>description.Gordon_Little_SS_TSHIRT</source>
         <target>
-          <![CDATA[Race erop los in Gordon Little SS TSHIRT. Heerlijke zachte katoen met een 3D druk op de borst die leuk is om aan te raken. Gordon is Ecotex gecertificeerd.  
+          <![CDATA[Race erop los in Gordon Little SS TSHIRT. Heerlijke zachte katoen met een 3D druk op de borst die leuk is om aan te raken. Gordon is Ecotex gecertificeerd.
             <br><br>	Verkrijgbaar in: Grey Melange (gemêleerd grijs), Green (groen) en Blue (blauw).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 95% katoen, 5% elastaan]]>
         </target>
       </trans-unit>
@@ -944,7 +948,7 @@
       <trans-unit id="Gwynneth SS TSHIRT">
         <source>description.Gwynneth_SS_TSHIRT</source>
         <target>
-          <![CDATA[Door de pauwenprint op de zachte, golvende stof en het Ecotex certificaat is 
+          <![CDATA[Door de pauwenprint op de zachte, golvende stof en het Ecotex certificaat is
             Gwynneth SS TSHIRT gewoonweg mooi en superschattig.<br><br>	Verkrijgbaar in: Green (groen), Rose (roze) en Peach (perzik).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 92% viscose, 8% elastaan]]>
         </target>
       </trans-unit>
@@ -969,7 +973,7 @@
       <trans-unit id="Hannibal Little PANTS">
         <source>description.Hannibal_Little_PANTS</source>
         <target>
-          <![CDATA[Stijlvol en casual op een coole manier! 
+          <![CDATA[Stijlvol en casual op een coole manier!
             De gezellige en lieve Hannibal Little PANTS is een fijne broek in een baggy style. Heerlijk zacht, zowel aan de binnen- als de buitenkant. Voor thuis, doordeweeks en om in te spelen. Hannibal is Ecotex gecertificeerd.<br><b>Let op:</b> Het artikel moet nat opgerekt worden na het wassen.
             <br><br>	Verkrijgbaar in: Grey Melange (gemêleerd grijs) en Navy (marineblauw).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
@@ -977,7 +981,7 @@
       <trans-unit id="Hannibal LONG SHORTS">
         <source>description.Hannibal_LONG_SHORTS</source>
         <target>
-          <![CDATA[Stijlvol en casual op een coole manier! 
+          <![CDATA[Stijlvol en casual op een coole manier!
             De gezellige en lieve Hannibal LONG SHORTS is een fijne korte broek in een baggy style. Heerlijk zacht, zowel aan de binnen- als de buitenkant. Voor thuis, doordeweeks en om in te spelen. Hannibal is Ecotex gecertificeerd.<br><b>Let op:</b> Het artikel moet nat opgerekt worden na het wassen.
             <br><br>	Verkrijgbaar in: Grey Melange (gemêleerd grijs) en Navy (marineblauw).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
@@ -1005,7 +1009,7 @@
         <source>description.Hector_Little_SHORTS</source>
         <target>
           <![CDATA[Gestreepte shorts voor de lieve matroos, de gevaarlijke piraat, de succesvolle voetballer – strepen zijn er voor iedereen. We hebben een elastische en slijtvaste stof gekozen en deze een versleten, gekreukelde vintage look gegeven, waardoor hij nog brutaler overkomt. Hector is om in te spelen en naar zomerfeestjes te gaan.
-            
+
             <br><br>	Verkrijgbaar in: Blue Denim.	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 80% katoen, 18% polyester, 2% elastaan]]>
         </target>
       </trans-unit>
@@ -1013,7 +1017,7 @@
         <source>description.Hector_SHORTS</source>
         <target>
           <![CDATA[Gestreepte shorts voor de lieve matroos, de gevaarlijke piraat, de succesvolle voetballer – strepen zijn er voor iedereen. We hebben een elastische en slijtvaste stof gekozen en deze een versleten, gekreukelde vintage look gegeven, waardoor hij nog brutaler overkomt. Hector is om in te spelen en naar zomerfeestjes te gaan.
-            
+
             <br><br>	Verkrijgbaar in: Blue Denim.	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 80% katoen, 18% polyester, 2% elastaan]]>
         </target>
       </trans-unit>
@@ -1038,7 +1042,7 @@
       <trans-unit id="Jagger SHORTS">
         <source>description.Jagger_SHORTS</source>
         <target>
-          <![CDATA[Denim look-a-like, op een coole manier! 
+          <![CDATA[Denim look-a-like, op een coole manier!
             Jagger is gemaakt van zachte sweatstof met denim effect, zodat deze korte broek op jeansshorts lijkt. Lekker zacht en gezellig.
             <br><br>	Verkrijgbaar in: Blue Denim.	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
@@ -1070,8 +1074,8 @@
       <trans-unit id="Jason SOCKS">
         <source>description.Jason_SOCKS</source>
         <target>
-          <![CDATA[Smalle of brede strepen op je kousen? - Je hoeft niet te kiezen, want in alle verpakkingen zit er één paar van elke soort. 
-            Jason is superzacht en natuurlijk verkrijgbaar in kleuren die bij de hele collectie passen. 
+          <![CDATA[Smalle of brede strepen op je kousen? - Je hoeft niet te kiezen, want in alle verpakkingen zit er één paar van elke soort.
+            Jason is superzacht en natuurlijk verkrijgbaar in kleuren die bij de hele collectie passen.
             Jason is ook voorzien van het Ecotex certificaat.
             <br><br>	Verkrijgbaar in: Red (rood), Camel, Blue (blauw) en Grey (grijs).	<br><br>	De maat is de schoenmaat van het kind.	<br><br>	Materiaal: 77% katoen, 19% polyamide, 4% elastaan]]>
         </target>
@@ -1080,7 +1084,7 @@
         <source>description.Joan_KNEE_SOCKS</source>
         <target>
           <![CDATA[Meisjes zijn goud en glitter waard!
-            Daarom zitten de Joan KNEE SOCKS vol van de zachtste en mooiste soort glitter. 
+            Daarom zitten de Joan KNEE SOCKS vol van de zachtste en mooiste soort glitter.
             Bovendien is Joan Ecotex gecertificeerd.
             <br><br>	Verkrijgbaar in: White/Off White (wit/off white), Rose (roze), Peach (perzik) en Green/Grey (groen/grijs).	<br><br>	De maat is de schoenmaat van het kind.	<br><br>	Materiaal: 74% katoen, 21% polyamide, 3% metaalvezel, 2% elastaan]]>
         </target>
@@ -1089,9 +1093,9 @@
         <source>description.Joan_LEGGINGS</source>
         <target>
           <![CDATA[Meisjes zijn goud en glitter waard!
-            Daarom zit de Joan LEGGINGS vol van de zachtste en mooiste soort glitter. 
+            Daarom zit de Joan LEGGINGS vol van de zachtste en mooiste soort glitter.
             Bovendien is Joan Ecotex gecertificeerd.
-            
+
             .<br><br>	Verkrijgbaar in: White/Off White (wit/off white), Rose (roze), Peach (perzik) en Green/Grey (groen/grijs).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 74% katoen, 21% polyamide, 3% metaalvezel, 2% elastaan]]>
         </target>
       </trans-unit>
@@ -1099,9 +1103,9 @@
         <source>description.Joan_Little_LEGGINGS</source>
         <target>
           <![CDATA[Meisjes zijn goud en glitter waard!
-            Daarom zit de Joan Little LEGGINGS vol van de zachtste en mooiste soort glitter. 
+            Daarom zit de Joan Little LEGGINGS vol van de zachtste en mooiste soort glitter.
             Bovendien is Joan Ecotex gecertificeerd.
-            
+
             .<br><br>	Verkrijgbaar in: White/Off White (wit/off white), Rose (roze), Peach (perzik) en Green/Grey (groen/grijs).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 74% katoen, 21% polyamide, 3% metaalvezel, 2% elastaan]]>
         </target>
       </trans-unit>
@@ -1232,7 +1236,7 @@
       <trans-unit id="Madison CARDIGAN">
         <source>description.Madison_CARDIGAN</source>
         <target>
-          <![CDATA[Onze nieuwe en wat helderdere kleuren staan dit vestje goed. Door de fijne tricot past het perfect bij onze mooie jurkjes en daarnaast kan het je doordeweekse kleding opfleuren. 
+          <![CDATA[Onze nieuwe en wat helderdere kleuren staan dit vestje goed. Door de fijne tricot past het perfect bij onze mooie jurkjes en daarnaast kan het je doordeweekse kleding opfleuren.
             Het vestje heeft een kantje in de nek en een mooi biesje aan de knoopsluiting.
             <br><br>	Verkrijgbaar in: Peach (perzik), Rose (roze), Yellow (geel) en Green (groen).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 82% viscose, 18% elastaan]]>
         </target>
@@ -1240,7 +1244,7 @@
       <trans-unit id="Madison Little CARDIGAN">
         <source>description.Madison_Little_CARDIGAN</source>
         <target>
-          <![CDATA[Onze nieuwe en wat helderdere kleuren staan dit vestje goed. Door de fijne tricot past het perfect bij onze mooie jurkjes en daarnaast kan het je doordeweekse kleding opfleuren. 
+          <![CDATA[Onze nieuwe en wat helderdere kleuren staan dit vestje goed. Door de fijne tricot past het perfect bij onze mooie jurkjes en daarnaast kan het je doordeweekse kleding opfleuren.
             Het vestje heeft een kantje in de nek en een mooi biesje aan de knoopsluiting.
             <br><br>	Verkrijgbaar in: Peach (perzik), Rose (roze), Yellow (geel) en Green (groen).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 82% viscose, 18% elastaan]]>
         </target>
@@ -1248,14 +1252,14 @@
       <trans-unit id="Malou Little PANTS">
         <source>description.Malou_Little_PANTS</source>
         <target>
-          <![CDATA[Schattig en comfortabel. Malou Little PANTS heeft ons klassieke ballonmodel en past bij bijna al je lievelingsbloesjes en -schoenen en natuurlijk met verstelbare tailleband. Bovendien is de Malou broek Ecotex gecertificeerd. 
+          <![CDATA[Schattig en comfortabel. Malou Little PANTS heeft ons klassieke ballonmodel en past bij bijna al je lievelingsbloesjes en -schoenen en natuurlijk met verstelbare tailleband. Bovendien is de Malou broek Ecotex gecertificeerd.
             <br><br>	Verkrijgbaar in: Khaki, White (wit) en Black (zwart).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen Voering: 100% katoen]]>
         </target>
       </trans-unit>
       <trans-unit id="Malou Little SHORTS">
         <source>description.Malou_Little_SHORTS</source>
         <target>
-          <![CDATA[Malou Little SHORTS is schattig en supercomfortabel. 
+          <![CDATA[Malou Little SHORTS is schattig en supercomfortabel.
             Met of zonder legging eronder is het een chique korte broek voor de wat koudere en de warmere dagen en natuurlijk met verstelbare tailleband. Daarnaast is Malou shorts Ecotex gecertificeerd.
             <br><br>	Verkrijgbaar in: Khaki, White (wit) en Black (zwart).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
@@ -1270,7 +1274,7 @@
       <trans-unit id="Mary BLOUSE">
         <source>description.Mary_BLOUSE</source>
         <target>
-          <![CDATA[Strookjes horen erbij als je meisjesachtig bent en er zitten een boel strookjes op de Mary BLOUSE. 
+          <![CDATA[Strookjes horen erbij als je meisjesachtig bent en er zitten een boel strookjes op de Mary BLOUSE.
             Ze zitten aan de hals en fungeren als mouwtjes. De bloes heeft een lint op de heup dat aan de zijkant geknoopt kan worden. Strookjes zijn fantastisch.
             <br><br>	Verkrijgbaar in: Off White, Rose (roze) en Green (groen).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
@@ -1317,20 +1321,20 @@
       <trans-unit id="Nola Little LS TSHIRT">
         <source>description.Nola_Little_LS_TSHIRT</source>
         <target>
-          <![CDATA[Zacht en comfortabel t-shirt uit ons basisprogramma, makkelijk te combineren met alles. 
-            En Ecotex gecertificeerd, dus vriendelijk voor je huid.  
+          <![CDATA[Zacht en comfortabel t-shirt uit ons basisprogramma, makkelijk te combineren met alles.
+            En Ecotex gecertificeerd, dus vriendelijk voor je huid.
             Combineer het met de bijpassende Nola Little LEGGINGS, doe je lievelingsjurk aan en je bent klaar.
-            
+
             <br><br>	Verkrijgbaar in: Rose (roze), Green (groen), Khaki en Peach (perzik).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 46% katoen, 46% modaal, 8% elastaan]]>
         </target>
       </trans-unit>
       <trans-unit id="Nola LS TSHIRT">
         <source>description.Nola_LS_TSHIRT</source>
         <target>
-          <![CDATA[Zacht en comfortabel t-shirt uit ons basisprogramma, makkelijk te combineren met alles. 
-            En Ecotex gecertificeerd, dus vriendelijk voor je huid.  
+          <![CDATA[Zacht en comfortabel t-shirt uit ons basisprogramma, makkelijk te combineren met alles.
+            En Ecotex gecertificeerd, dus vriendelijk voor je huid.
             Combineer het met de bijpassende Nola LEGGINGS, doe je lievelingsjurk aan en je bent klaar.
-            
+
             <br><br>	Verkrijgbaar in: Rose (roze), Green (groen), Khaki en Peach (perzik).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 46% katoen, 46% modaal, 8% elastaan]]>
         </target>
       </trans-unit>
@@ -1364,7 +1368,7 @@
       <trans-unit id="Polly Little TOP">
         <source>description.Polly_Little_TOP</source>
         <target>
-          <![CDATA[Polly Little TOP is onze fonkelende glittertop met schattige details. 
+          <![CDATA[Polly Little TOP is onze fonkelende glittertop met schattige details.
             Strokenmouwtjes, een naad onder de borst en een A-lijn snit zorgen ervoor dat de snoezige Polly zowel geschikt is voor doordeweeks als voor een feestje.
             <br><br>	Verkrijgbaar in: Rose (roze) en Grey (grijs).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 95% viscose, 5% elastaan]]>
         </target>
@@ -1372,8 +1376,8 @@
       <trans-unit id="Polly TOP">
         <source>description.Polly_TOP</source>
         <target>
-          <![CDATA[Polly TOP is onze fonkelende glittertop die je aan de voorkant vastknoopt. 
-            Polly geeft je legging, jeans en shorts net even iets extras en past bij alles. 
+          <![CDATA[Polly TOP is onze fonkelende glittertop die je aan de voorkant vastknoopt.
+            Polly geeft je legging, jeans en shorts net even iets extras en past bij alles.
             <br><br>	Verkrijgbaar in: Rose (roze) en Grey (grijs).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 95% viscose, 5% elastaan]]>
         </target>
       </trans-unit>
@@ -1417,7 +1421,7 @@
         <source>description.Preston_TANKTOP</source>
         <target>
           <![CDATA[Supercool hemd! Preston is leuk en stoer met zijn malle torretjes erop. Op de ene top krioelen er overal torretjes en op de andere zit er één torretje in de nek te kijken. Ook leuk s zomers zonder overhemd erover!
-            En bovendien Ecotex en GOTS gecertificeerd. 
+            En bovendien Ecotex en GOTS gecertificeerd.
             <br><br>	Verkrijgbaar in: Navy/ Off White (marineblauw/off white) en Grey/Off White (grijs/off white).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 95% ecologische katoen,  5% elastaan]]>
         </target>
       </trans-unit>
@@ -1444,7 +1448,7 @@
       <trans-unit id="Rosemary JUMPSUIT">
         <source>description.Rosemary_JUMPSUIT</source>
         <target>
-          <![CDATA[We zijn gek op de Rosemary serie! Sportief met glitter en pailletjes! Yes! 
+          <![CDATA[We zijn gek op de Rosemary serie! Sportief met glitter en pailletjes! Yes!
             Rosemary JUMPSUIT is zacht en luchtig. Super voor supergirls tijdens zomerpret.
             <br><br>	Verkrijgbaar in: Grey Melange (gemêleerd grijs), Blue (blauw) en Green (groen).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 85% viscose, 11% metaalvezel, 4% elastaan]]>
         </target>
@@ -1452,7 +1456,7 @@
       <trans-unit id="Rosemary Little SS TSHIRT">
         <source>description.Rosemary_Little_SS_TSHIRT</source>
         <target>
-          <![CDATA[We zijn gek op de Rosemary serie! Sportief met glitter en pailletjes! Yes! 
+          <![CDATA[We zijn gek op de Rosemary serie! Sportief met glitter en pailletjes! Yes!
             Rosemary Little SS TSHIRT is zacht en luchtig. Super voor supergirls tijdens zomerpret.
             <br><br>	Verkrijgbaar in: Grey Melange (gemêleerd grijs), Blue (blauw) en Green (groen).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 85% viscose, 11% metaalvezel, 4% elastaan]]>
         </target>
@@ -1460,7 +1464,7 @@
       <trans-unit id="Rosemary SS TSHIRT">
         <source>description.Rosemary_SS_TSHIRT</source>
         <target>
-          <![CDATA[We zijn gek op de Rosemary serie! Sportief met glitter en pailletjes! Yes! 
+          <![CDATA[We zijn gek op de Rosemary serie! Sportief met glitter en pailletjes! Yes!
             Rosemary SS TSHIRT is zacht en luchtig. Super voor supergirls tijdens zomerpret.
             <br><br>	Verkrijgbaar in: Grey Melange (gemêleerd grijs), Blue (blauw) en Green (groen).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 85% viscose, 11% metaalvezel, 4% elastaan]]>
         </target>
@@ -1469,7 +1473,7 @@
         <source>description.Samantha_CARDIGAN</source>
         <target>
           <![CDATA[Speel met contrasten en draag het A-lijn vest Samantha over je wijde jurken en tunieken.
-            Het materiaal bevat onder meer bamboe, waardoor het vest superzacht is. 
+            Het materiaal bevat onder meer bamboe, waardoor het vest superzacht is.
             <br><br>	Verkrijgbaar in: Blue (blauw), Black (zwart) en Grey (grijs).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 65% bamboe, 18% polyamide, 17% katoen]]>
         </target>
       </trans-unit>
@@ -1477,8 +1481,8 @@
         <source>description.Samantha_Little_CARDIGAN</source>
         <target>
           <![CDATA[Speel met contrasten en draag het A-lijn vest Samantha over je wijde jurken en tunieken.
-            De rimpels op de borst en rug benadrukken het meisjesachtige aspect van het vest. 
-            Het materiaal bevat onder meer bamboe, waardoor het vest superzacht is. 
+            De rimpels op de borst en rug benadrukken het meisjesachtige aspect van het vest.
+            Het materiaal bevat onder meer bamboe, waardoor het vest superzacht is.
             <br><br>	Verkrijgbaar in: Blue (blauw), Black (zwart) en Grey (grijs).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 65% bamboe, 18% polyamide, 17% katoen]]>
         </target>
       </trans-unit>
@@ -1504,7 +1508,7 @@
       <trans-unit id="Shane SS TSHIRT">
         <source>description.Shane_SS_TSHIRT</source>
         <target>
-          <![CDATA[Mooie kleuren en een supercoole bedrukking! Shane staat met zijn ”Old Indian” mooi bij bijna alles. 
+          <![CDATA[Mooie kleuren en een supercoole bedrukking! Shane staat met zijn ”Old Indian” mooi bij bijna alles.
             Is perfect voor de lichte zomertijd. En Ecotex gecertificeerd.
             <br><br>	Verkrijgbaar in: Red (rood), Navy (marineblauw) en Yellow (geel).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
@@ -1512,35 +1516,35 @@
       <trans-unit id="Shelly DRESS">
         <source>description.Shelly_DRESS</source>
         <target>
-          <![CDATA[Mooie Shelly! Deze jurk is gewoonweg een must have in elke prinsessengarderobe. 
+          <![CDATA[Mooie Shelly! Deze jurk is gewoonweg een must have in elke prinsessengarderobe.
             Met 1000 laagjes tule - of in elk geval bijna 1000 - en een grote strik in het middel, word je in deze jurk bij toverslag meegevoerd naar je favoriete sprookje. <br><br>	Verkrijgbaar in: Off White, Green (groen) en Rose (roze).<br><b>Riem apart wassen.</b>	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal 1: 50% katoen, 47% polyester, 3% elastaan             Materiaal 2: 100% polyester]]>
         </target>
       </trans-unit>
       <trans-unit id="Shelly Little DRESS">
         <source>description.Shelly_Little_DRESS</source>
         <target>
-          <![CDATA[Mooie Shelly! Deze jurk is gewoonweg een must have in elke prinsessengarderobe. 
+          <![CDATA[Mooie Shelly! Deze jurk is gewoonweg een must have in elke prinsessengarderobe.
             Met 1000 laagjes tule - of in elk geval bijna 1000 - en een grote strik in het middel, word je in deze jurk bij toverslag meegevoerd naar je favoriete sprookje. <br><br>	Verkrijgbaar in: Off White, Green (groen) en Rose (roze).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal 1: 50% katoen, 47% polyester, 3% elastaan             Materiaal 2: 100% polyester]]>
         </target>
       </trans-unit>
       <trans-unit id="Shelly Little SKIRT">
         <source>description.Shelly_Little_SKIRT</source>
         <target>
-          <![CDATA[Echte meisjes moeten een Shelly rok hebben! Een wijd uitstaand, charmant en mooi skirt. 
+          <![CDATA[Echte meisjes moeten een Shelly rok hebben! Een wijd uitstaand, charmant en mooi skirt.
             Shelly verandert ieder meisje in een rasechte dansdiva! Zoals gewoonlijk met verstelbare tailleband.<br><br>	Verkrijgbaar in: Off White, Green (groen) en Rose (roze).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal 1: 50% katoen, 47% polyester, 3% elastaan             Materiaal 2: 100% polyester]]>
         </target>
       </trans-unit>
       <trans-unit id="Shelly SKIRT">
         <source>description.Shelly_SKIRT</source>
         <target>
-          <![CDATA[Echte meisjes moeten een Shelly rok hebben! Een wijd uitstaand, charmant en mooi skirt. 
+          <![CDATA[Echte meisjes moeten een Shelly rok hebben! Een wijd uitstaand, charmant en mooi skirt.
             Shelly verandert ieder meisje in een rasechte dansdiva! Zoals gewoonlijk met verstelbare tailleband.<br><br>	Verkrijgbaar in: Off White, Green (groen) en Rose (roze).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal 1: 50% katoen, 47% polyester, 3% elastaan             Materiaal 2: 100% polyester]]>
         </target>
       </trans-unit>
       <trans-unit id="Sophia Little PANTS ">
         <source>description.Sophia_Little_PANTS</source>
         <target>
-          <![CDATA[Leuk gestippeld dessin en een baggy harembroek -  een klassieker waar we van houden. 
+          <![CDATA[Leuk gestippeld dessin en een baggy harembroek -  een klassieker waar we van houden.
             Een broek die je niet alleen maar aandoet, maar waar je in woont omdat hij zo zacht en mooi is.
             <br><br>	Verkrijgbaar in: Peach (perzik), Rose (roze) en Yellow (geel).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen          Voering: 100 % katoen]]>
         </target>
@@ -1548,7 +1552,7 @@
       <trans-unit id="Sophia Little SHORT SUIT">
         <source>description.Sophia_Little_SHORT_SUIT</source>
         <target>
-          <![CDATA[Door het leuke gestippelde dessin, het strikje op de borst, de spaghettibandjes en de korte pofbroek met sluiting die je knoopt is Sophia Little SHORT SUIT de perfecte look voor iedere kleine zomerdiva. 
+          <![CDATA[Door het leuke gestippelde dessin, het strikje op de borst, de spaghettibandjes en de korte pofbroek met sluiting die je knoopt is Sophia Little SHORT SUIT de perfecte look voor iedere kleine zomerdiva.
             <br><br>	Verkrijgbaar in: Peach (perzik), Rose (roze) en Yellow (geel).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
       </trans-unit>
@@ -1569,7 +1573,7 @@
       <trans-unit id="Stella DRESS">
         <source>description.Stella_DRESS</source>
         <target>
-          <![CDATA[Gekleed in één mooi vogeljurkje is beter dan tien vogeljurkjes in je kast.  
+          <![CDATA[Gekleed in één mooi vogeljurkje is beter dan tien vogeljurkjes in je kast.
             Stella DRESS heeft een elastische tailleband, dat een trendy oversize silhouet geeft.<br><br>	Verkrijgbaar in: Peach (perzik), Rose (roze) en Yellow (geel).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
       </trans-unit>
@@ -1621,14 +1625,14 @@
       <trans-unit id="Theodore Little LS GRANDDAD">
         <source>description.Theodore_Little_LS_GRANDDAD</source>
         <target>
-          <![CDATA[Een opahemd kun je overal bij gebruiken, met en zonder iets erover. 
+          <![CDATA[Een opahemd kun je overal bij gebruiken, met en zonder iets erover.
             En het allerbeste is dat het superzacht is om te dragen met katoenen ribboorden en details in de vorm van knopen. Theodore is natuurlijk ook Ecotex gecertificeerd.<br><br>	Verkrijgbaar in: Blue (blauw), Grey Melange (gemêleerd grijs) en White (wit).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 95% katoen, 5% elastaan]]>
         </target>
       </trans-unit>
       <trans-unit id="Theodore LS GRANDDAD">
         <source>description.Theodore_LS_GRANDDAD</source>
         <target>
-          <![CDATA[Een opahemd kun je overal bij gebruiken, met en zonder iets erover. 
+          <![CDATA[Een opahemd kun je overal bij gebruiken, met en zonder iets erover.
             En het allerbeste is dat het superzacht is om te dragen met katoenen ribboorden en details in de vorm van knopen. Theodore is natuurlijk ook Ecotex gecertificeerd.<br><br>	Verkrijgbaar in: Blue (blauw), Grey Melange (gemêleerd grijs) en White (wit).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 95% katoen, 5% elastaan]]>
         </target>
       </trans-unit>
@@ -1647,7 +1651,7 @@
       <trans-unit id="Tiana LEGGINGS">
         <source>description.Tiana_LEGGINGS</source>
         <target>
-          <![CDATA[Doe de Tiana LEGGINGS aan en je lievelingstop, -jurk of -bloes en je kunt op pad. 
+          <![CDATA[Doe de Tiana LEGGINGS aan en je lievelingstop, -jurk of -bloes en je kunt op pad.
             Klaar voor doordeweeks, voor feestelijke gelegenheden en malle spelletjes.
             <br><br>	Verkrijgbaar in: Black (zwart), Khaki en Blue (blauw).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 98% katoen, 2% elastaan]]>
         </target>
@@ -1674,9 +1678,9 @@
       <trans-unit id="Victoria Little JEANS">
         <source>description.Victoria_Little_JEANS</source>
         <target>
-          <![CDATA[Een sprookjesachtige denim broek met 1000 sterren erop. 
-            Zeer comfortabel, met elastiek in de taille en de pijpen en een verstelbare tailleband. 
-            In de zakken is genoeg ruimte voor avontuurlijke geheimen en fonkelende stenen. 
+          <![CDATA[Een sprookjesachtige denim broek met 1000 sterren erop.
+            Zeer comfortabel, met elastiek in de taille en de pijpen en een verstelbare tailleband.
+            In de zakken is genoeg ruimte voor avontuurlijke geheimen en fonkelende stenen.
             <br><br>	Verkrijgbaar in: Blue Denim.	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
       </trans-unit>
@@ -1684,14 +1688,14 @@
         <source>description.Victoria_Little_SKIRT</source>
         <target>
           <![CDATA[Een sprookjesachtig ballonrokje met 1000 sterren erop. Zeer comfortabel, met gesmokte, elastische tailleband, een leuk strikje op de buik en kleine, stoere achterzakken.
-            Combineer de rok met een bedrukt t-shirt en één van onze leuke pantys. 
+            Combineer de rok met een bedrukt t-shirt en één van onze leuke pantys.
             <br><br>	Verkrijgbaar in: Blue Denim.	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
       </trans-unit>
       <trans-unit id="Victoria SHORTS">
         <source>description.Victoria_SHORTS</source>
         <target>
-          <![CDATA[In Victoria ben je ingepakt in een zachte soort denim vol met de sterren van de nacht, en klaar voor de avonturen van de dag. En ze hebben natuurlijk onze verstelbare tailleband. 
+          <![CDATA[In Victoria ben je ingepakt in een zachte soort denim vol met de sterren van de nacht, en klaar voor de avonturen van de dag. En ze hebben natuurlijk onze verstelbare tailleband.
             <br><br>	Verkrijgbaar in: Blue Denim.	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
       </trans-unit>
@@ -1716,7 +1720,7 @@
       <trans-unit id="Zoe SHORTS">
         <source>description.Zoe_SHORTS</source>
         <target>
-          <![CDATA[Sterren, nog eens sterren en stippels. Zoe is onze leuke korte broek vol met sterren. 
+          <![CDATA[Sterren, nog eens sterren en stippels. Zoe is onze leuke korte broek vol met sterren.
             In het middel zit een ceintuur van stippeltjesstof. Vol met de sterren van de nacht en klaar voor de avonturen van de dag. Pssst... je kunt de ceintuur ook als sjaal of bandana gebruiken.
             <br><br>	Verkrijgbaar in: Khaki, Rose (roze) en Grey (grijs).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
