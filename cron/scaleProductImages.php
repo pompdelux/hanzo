@@ -62,7 +62,7 @@ foreach ($images_found as $file) {
 _dbug("\n", false);
 _dbug("images resized to these presets: ".implode(', ', $_sizes));
 
-if (substr(PHP_SAPI, 0, 3) === 'cgi') {
+if (substr(PHP_SAPI, 0, 3) === 'cli') {
     mail(
         //'hd@pompdelux.dk,un@bellcom.dk',
         'un@bellcom.dk',
