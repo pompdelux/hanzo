@@ -154,22 +154,32 @@
     /**
      * js countdown
      */
-     pub.initCountdown = function() {
+    pub.initCountdown = function() {
       // frontpage count down
       var $countdown = $('.countdown');
-
       if ($countdown) {
         $countdown.countdown({
-          timezone: +1,
-          until: new Date(Translator.get('js:countdown.date')),
-          layout: '<span>' + Translator.get('js:countdown.format') + '</span>'
+          until : new Date(Translator.get('js:countdown.date')),
+          layout : '<span>' + Translator.get('js:countdown.format') + '</span>',
+          timezone : +1,
+          serverSync : function () {
+            var time = null;
+            $.ajax({url: '/tools.php?action=timestamp',
+              async: false, dataType: 'text',
+              success: function(text) {
+                time = new Date(text);
+              }, error: function(http, message, exc) {
+                time = new Date();
+            }});
+            return time;
+          }
         });
 
         var lang = $('html').attr('lang');
         $countdown.countdown('option', $.countdown.regional[lang]);
         $.countdown.setDefaults($.countdown.regional['']);
       }
-     };
+    };
 
     pub.initBasket = function() {
       var $basket = $('#mini-basket a');
