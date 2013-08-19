@@ -62,16 +62,16 @@ class Orders extends BaseOrders
     const TYPE_NORMAL           = -10;
 
     public static $state_message_map = array(
-        self::STATE_ERROR_PAYMENT => 'Payment error',
-        self::STATE_ERROR => 'General error',
-        self::STATE_BUILDING => 'Building order',
-        self::STATE_PRE_CONFIRM => 'Order in pre confirm state',
-        self::STATE_PRE_PAYMENT => 'Order in pre payment state',
-        self::STATE_POST_PAYMENT => 'Order in post confirm state',
-        self::STATE_PAYMENT_OK => 'Order payment confirmed',
-        self::STATE_PENDING => 'Order pending',
+        self::STATE_ERROR_PAYMENT   => 'Payment error',
+        self::STATE_ERROR           => 'General error',
+        self::STATE_BUILDING        => 'Building order',
+        self::STATE_PRE_CONFIRM     => 'Order in pre confirm state',
+        self::STATE_PRE_PAYMENT     => 'Order in pre payment state',
+        self::STATE_POST_PAYMENT    => 'Order in post confirm state',
+        self::STATE_PAYMENT_OK      => 'Order payment confirmed',
+        self::STATE_PENDING         => 'Order pending',
         self::STATE_BEING_PROCESSED => 'Order beeing processed',
-        self::STATE_SHIPPED => 'Order shipped/done',
+        self::STATE_SHIPPED         => 'Order shipped/done',
     );
 
     protected $ignore_delete_constraints = false;
