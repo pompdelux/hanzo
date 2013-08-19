@@ -73,7 +73,7 @@ class RunChecksCommand extends ContainerAwareCommand
     {
         $type = 'GO!';
         if (count($this->errors)) {
-            $type = 'NO GO!';
+            $type = 'NEEEEEEEJ !!!! HVAD LAVER DU ???';
         }
 
         $recipients = [
