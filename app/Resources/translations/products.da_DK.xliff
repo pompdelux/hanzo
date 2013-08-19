@@ -2,7 +2,7 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="file.ext">
     <body>
-	<trans-unit id="Amsterdam CARDIGAN">
+      <trans-unit id="Amsterdam CARDIGAN">
         <source>description.Amsterdam CARDIGAN</source>
         <target>
           <![CDATA[Amsterdam cardiganen med de fineste små detaljer. Hulmønster i ribben og smalle kontrastkanter af lurex tråd. En rigtig fin style, som er meget mere end en basis cardigan.	<br><br>	Fås i: Grey Melange, Blue og Wine	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 65% Bamboo, 18% Polyamide, 17% Cotton]]>
@@ -64,7 +64,6 @@
       </trans-unit>
       <trans-unit id="Athens PANTIES">
         <source>description.Athens PANTIES</source>
->>>>>>> Products.DK
         <target>
           <![CDATA[Bløde trusser i 2-pak med to forskellige fugleprints med søde kantbånd. De er produceret efter Oeko-Tex standard 100 og GOTS mærket. Tæt på kroppen med god samvittighed.	<br><br>	Fås i: Rose og Ice Blue	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 95 Organic cotton, 5% Elastane]]>
         </target>
@@ -102,7 +101,7 @@
       <trans-unit id="Bakersfield BLOUSE">
         <source>description.Bakersfield BLOUSE</source>
         <target>
-          <![CDATA[Vi har en særlig kærlighed til fugle i denne sæson, og denne her måtte vi bare ha med! Blusen er i en dejlig blød jersey kvalitet og er en lidt sej style. Det bliver svært at vælge farve! Produceret efter Oeko-Tex standard 100.	<br><br>	Fås i: Rose, Wine og Curry	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 95% Cotton og 5% Elastane]]>
+          <![CDATA[Vi har en særlig kærlighed til fugle i denne sæson, og denne her måtte vi bare hamed! Blusen er i en dejlig blød jersey kvalitet og er en lidt sej style. Det bliver svært at vælge farve! Produceret efter Oeko-Tex standard 100.	<br><br>	Fås i: Rose, Wine og Curry	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 95% Cotton og 5% Elastane]]>
         </target>
       </trans-unit>
       <trans-unit id="Bangkok Little LS BLOUSE">
@@ -198,13 +197,13 @@
       <trans-unit id="Bradford CARDIGAN">
         <source>description.Bradford CARDIGAN</source>
         <target>
-          <![CDATA[Bradford er en rigtig skøn og trendy cardigan med striber og små lommer. Fine perlemorsknapper og et matchende vævet bånd ned langs knapperne. Jackie O. ville ha elsket den.	<br><br>	Fås i: Black, Ice Blue og Curry	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 65% Bamboo, 18% Polyamide, 17% Cotton]]>
+          <![CDATA[Bradford er en rigtig skøn og trendy cardigan med striber og små lommer. Fine perlemorsknapper og et matchende vævet bånd ned langs knapperne. Jackie O. ville haelsket den.	<br><br>	Fås i: Black, Ice Blue og Curry	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 65% Bamboo, 18% Polyamide, 17% Cotton]]>
         </target>
       </trans-unit>
       <trans-unit id="Bradford Little CARDIGAN">
         <source>description.Bradford Little CARDIGAN</source>
         <target>
-          <![CDATA[Bradford er en rigtig skøn og trendy cardigan med striber og små lommer. Fine perlemorsknapper og et matchende vævet bånd ned langs knapperne. Jackie O. ville ha elsket den.	<br><br>	Fås i: Black, Ice Blue og Curry	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 65% Bamboo, 18% Polyamide, 17% Cotton]]>
+          <![CDATA[Bradford er en rigtig skøn og trendy cardigan med striber og små lommer. Fine perlemorsknapper og et matchende vævet bånd ned langs knapperne. Jackie O. ville haelsket den.	<br><br>	Fås i: Black, Ice Blue og Curry	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 65% Bamboo, 18% Polyamide, 17% Cotton]]>
         </target>
       </trans-unit>
       <trans-unit id="Brisbane SLIMFIT PANTS">
@@ -714,7 +713,7 @@
       <trans-unit id="Huntsville LEGGINGS">
         <source>description.Huntsville LEGGINGS</source>
         <target>
-          <![CDATA[Huntsville er en basis serie med fine smalle eventyrlige guldstriber. Sæt disse leggings under kjoler og gi hverdagen et festligt twist. Kvaliteten er blød og behagelig at have på.	<br><br>	Fås i: Rose, Black, Curry og Blue	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 86% Viscose, 8% Metallic fibre, 6% Elastane]]>
+          <![CDATA[Huntsville er en basis serie med fine smalle eventyrlige guldstriber. Sæt disse leggings under kjoler og gihverdagen et festligt twist. Kvaliteten er blød og behagelig at have på.	<br><br>	Fås i: Rose, Black, Curry og Blue	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 86% Viscose, 8% Metallic fibre, 6% Elastane]]>
         </target>
       </trans-unit>
       <trans-unit id="Huntsville Little LEGGINGS">
