@@ -1,3 +1,5 @@
+# Hanzo\Model\Customers:
+#     properties:
 Hanzo\Model\Addresses:
     properties:
         phone:
@@ -69,8 +71,8 @@ Hanzo\Model\Addresses:
             - NotBlank:
                 message: postal_code.required
             - Length:
-                min: 2
-                max: 10
+                min: 4
+                max: 7
                 minMessage: postal_code.length
                 maxMessage: postal_code.length
                 groups:

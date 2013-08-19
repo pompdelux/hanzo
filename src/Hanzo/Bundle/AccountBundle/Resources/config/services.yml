@@ -1,11 +1,15 @@
 services:
-
     security.access.domain_restriction:
         class:      Hanzo\Bundle\AccountBundle\Security\Authorization\Voter\DomainVoter
         arguments:  [@service_container]
         public:     false
         tags:
             -       { name: security.voter }
+
+    hanzo.address_formatter:
+        class:     Hanzo\Bundle\AccountBundle\AddressFormatter
+        arguments: ['%locale%', @templating, @translator]
+
 
     hanzo.logout_success_handler:
         class:  Hanzo\Bundle\AccountBundle\Handler\LogoutSuccessHandler

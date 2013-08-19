@@ -39,6 +39,7 @@ use Hanzo\Model\OrdersVersions;
  * @method OrdersQuery orderByPhone($order = Criteria::ASC) Order by the phone column
  * @method OrdersQuery orderByLanguagesId($order = Criteria::ASC) Order by the languages_id column
  * @method OrdersQuery orderByCurrencyCode($order = Criteria::ASC) Order by the currency_code column
+ * @method OrdersQuery orderByBillingTitle($order = Criteria::ASC) Order by the billing_title column
  * @method OrdersQuery orderByBillingFirstName($order = Criteria::ASC) Order by the billing_first_name column
  * @method OrdersQuery orderByBillingLastName($order = Criteria::ASC) Order by the billing_last_name column
  * @method OrdersQuery orderByBillingAddressLine1($order = Criteria::ASC) Order by the billing_address_line_1 column
@@ -51,6 +52,7 @@ use Hanzo\Model\OrdersVersions;
  * @method OrdersQuery orderByBillingCompanyName($order = Criteria::ASC) Order by the billing_company_name column
  * @method OrdersQuery orderByBillingMethod($order = Criteria::ASC) Order by the billing_method column
  * @method OrdersQuery orderByBillingExternalAddressId($order = Criteria::ASC) Order by the billing_external_address_id column
+ * @method OrdersQuery orderByDeliveryTitle($order = Criteria::ASC) Order by the delivery_title column
  * @method OrdersQuery orderByDeliveryFirstName($order = Criteria::ASC) Order by the delivery_first_name column
  * @method OrdersQuery orderByDeliveryLastName($order = Criteria::ASC) Order by the delivery_last_name column
  * @method OrdersQuery orderByDeliveryAddressLine1($order = Criteria::ASC) Order by the delivery_address_line_1 column
@@ -81,6 +83,7 @@ use Hanzo\Model\OrdersVersions;
  * @method OrdersQuery groupByPhone() Group by the phone column
  * @method OrdersQuery groupByLanguagesId() Group by the languages_id column
  * @method OrdersQuery groupByCurrencyCode() Group by the currency_code column
+ * @method OrdersQuery groupByBillingTitle() Group by the billing_title column
  * @method OrdersQuery groupByBillingFirstName() Group by the billing_first_name column
  * @method OrdersQuery groupByBillingLastName() Group by the billing_last_name column
  * @method OrdersQuery groupByBillingAddressLine1() Group by the billing_address_line_1 column
@@ -93,6 +96,7 @@ use Hanzo\Model\OrdersVersions;
  * @method OrdersQuery groupByBillingCompanyName() Group by the billing_company_name column
  * @method OrdersQuery groupByBillingMethod() Group by the billing_method column
  * @method OrdersQuery groupByBillingExternalAddressId() Group by the billing_external_address_id column
+ * @method OrdersQuery groupByDeliveryTitle() Group by the delivery_title column
  * @method OrdersQuery groupByDeliveryFirstName() Group by the delivery_first_name column
  * @method OrdersQuery groupByDeliveryLastName() Group by the delivery_last_name column
  * @method OrdersQuery groupByDeliveryAddressLine1() Group by the delivery_address_line_1 column
@@ -169,6 +173,7 @@ use Hanzo\Model\OrdersVersions;
  * @method Orders findOneByPhone(string $phone) Return the first Orders filtered by the phone column
  * @method Orders findOneByLanguagesId(int $languages_id) Return the first Orders filtered by the languages_id column
  * @method Orders findOneByCurrencyCode(string $currency_code) Return the first Orders filtered by the currency_code column
+ * @method Orders findOneByBillingTitle(string $billing_title) Return the first Orders filtered by the billing_title column
  * @method Orders findOneByBillingFirstName(string $billing_first_name) Return the first Orders filtered by the billing_first_name column
  * @method Orders findOneByBillingLastName(string $billing_last_name) Return the first Orders filtered by the billing_last_name column
  * @method Orders findOneByBillingAddressLine1(string $billing_address_line_1) Return the first Orders filtered by the billing_address_line_1 column
@@ -181,6 +186,7 @@ use Hanzo\Model\OrdersVersions;
  * @method Orders findOneByBillingCompanyName(string $billing_company_name) Return the first Orders filtered by the billing_company_name column
  * @method Orders findOneByBillingMethod(string $billing_method) Return the first Orders filtered by the billing_method column
  * @method Orders findOneByBillingExternalAddressId(string $billing_external_address_id) Return the first Orders filtered by the billing_external_address_id column
+ * @method Orders findOneByDeliveryTitle(string $delivery_title) Return the first Orders filtered by the delivery_title column
  * @method Orders findOneByDeliveryFirstName(string $delivery_first_name) Return the first Orders filtered by the delivery_first_name column
  * @method Orders findOneByDeliveryLastName(string $delivery_last_name) Return the first Orders filtered by the delivery_last_name column
  * @method Orders findOneByDeliveryAddressLine1(string $delivery_address_line_1) Return the first Orders filtered by the delivery_address_line_1 column
@@ -211,6 +217,7 @@ use Hanzo\Model\OrdersVersions;
  * @method array findByPhone(string $phone) Return Orders objects filtered by the phone column
  * @method array findByLanguagesId(int $languages_id) Return Orders objects filtered by the languages_id column
  * @method array findByCurrencyCode(string $currency_code) Return Orders objects filtered by the currency_code column
+ * @method array findByBillingTitle(string $billing_title) Return Orders objects filtered by the billing_title column
  * @method array findByBillingFirstName(string $billing_first_name) Return Orders objects filtered by the billing_first_name column
  * @method array findByBillingLastName(string $billing_last_name) Return Orders objects filtered by the billing_last_name column
  * @method array findByBillingAddressLine1(string $billing_address_line_1) Return Orders objects filtered by the billing_address_line_1 column
@@ -223,6 +230,7 @@ use Hanzo\Model\OrdersVersions;
  * @method array findByBillingCompanyName(string $billing_company_name) Return Orders objects filtered by the billing_company_name column
  * @method array findByBillingMethod(string $billing_method) Return Orders objects filtered by the billing_method column
  * @method array findByBillingExternalAddressId(string $billing_external_address_id) Return Orders objects filtered by the billing_external_address_id column
+ * @method array findByDeliveryTitle(string $delivery_title) Return Orders objects filtered by the delivery_title column
  * @method array findByDeliveryFirstName(string $delivery_first_name) Return Orders objects filtered by the delivery_first_name column
  * @method array findByDeliveryLastName(string $delivery_last_name) Return Orders objects filtered by the delivery_last_name column
  * @method array findByDeliveryAddressLine1(string $delivery_address_line_1) Return Orders objects filtered by the delivery_address_line_1 column
@@ -340,7 +348,7 @@ abstract class BaseOrdersQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `version_id`, `session_id`, `payment_gateway_id`, `state`, `in_edit`, `customers_id`, `first_name`, `last_name`, `email`, `phone`, `languages_id`, `currency_code`, `billing_first_name`, `billing_last_name`, `billing_address_line_1`, `billing_address_line_2`, `billing_postal_code`, `billing_city`, `billing_country`, `billing_countries_id`, `billing_state_province`, `billing_company_name`, `billing_method`, `billing_external_address_id`, `delivery_first_name`, `delivery_last_name`, `delivery_address_line_1`, `delivery_address_line_2`, `delivery_postal_code`, `delivery_city`, `delivery_country`, `delivery_countries_id`, `delivery_state_province`, `delivery_company_name`, `delivery_method`, `delivery_external_address_id`, `events_id`, `finished_at`, `created_at`, `updated_at` FROM `orders` WHERE `id` = :p0';
+        $sql = 'SELECT `id`, `version_id`, `session_id`, `payment_gateway_id`, `state`, `in_edit`, `customers_id`, `first_name`, `last_name`, `email`, `phone`, `languages_id`, `currency_code`, `billing_title`, `billing_first_name`, `billing_last_name`, `billing_address_line_1`, `billing_address_line_2`, `billing_postal_code`, `billing_city`, `billing_country`, `billing_countries_id`, `billing_state_province`, `billing_company_name`, `billing_method`, `billing_external_address_id`, `delivery_title`, `delivery_first_name`, `delivery_last_name`, `delivery_address_line_1`, `delivery_address_line_2`, `delivery_postal_code`, `delivery_city`, `delivery_country`, `delivery_countries_id`, `delivery_state_province`, `delivery_company_name`, `delivery_method`, `delivery_external_address_id`, `events_id`, `finished_at`, `created_at`, `updated_at` FROM `orders` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -885,6 +893,35 @@ abstract class BaseOrdersQuery extends ModelCriteria
     }
 
     /**
+     * Filter the query on the billing_title column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByBillingTitle('fooValue');   // WHERE billing_title = 'fooValue'
+     * $query->filterByBillingTitle('%fooValue%'); // WHERE billing_title LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $billingTitle The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return OrdersQuery The current query, for fluid interface
+     */
+    public function filterByBillingTitle($billingTitle = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($billingTitle)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $billingTitle)) {
+                $billingTitle = str_replace('*', '%', $billingTitle);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(OrdersPeer::BILLING_TITLE, $billingTitle, $comparison);
+    }
+
+    /**
      * Filter the query on the billing_first_name column
      *
      * Example usage:
@@ -1245,6 +1282,35 @@ abstract class BaseOrdersQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(OrdersPeer::BILLING_EXTERNAL_ADDRESS_ID, $billingExternalAddressId, $comparison);
+    }
+
+    /**
+     * Filter the query on the delivery_title column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByDeliveryTitle('fooValue');   // WHERE delivery_title = 'fooValue'
+     * $query->filterByDeliveryTitle('%fooValue%'); // WHERE delivery_title LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $deliveryTitle The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return OrdersQuery The current query, for fluid interface
+     */
+    public function filterByDeliveryTitle($deliveryTitle = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($deliveryTitle)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $deliveryTitle)) {
+                $deliveryTitle = str_replace('*', '%', $deliveryTitle);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(OrdersPeer::DELIVERY_TITLE, $deliveryTitle, $comparison);
     }
 
     /**

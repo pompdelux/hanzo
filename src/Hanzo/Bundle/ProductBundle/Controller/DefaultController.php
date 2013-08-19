@@ -34,9 +34,9 @@ class DefaultController extends CoreController
         $route = $this->get('request')->get('_route');
         $focus = $this->get('request')->get('focus', FALSE);
         $cache_id = array('product', $product_id, $focus);
-        $data = $this->getCache($cache_id);
+//        $data = $this->getCache($cache_id);
 
-        if (!$data) {
+        if (empty($data)) {
             $products = ProductsI18nQuery::create()
                 ->joinWithProducts()
                 ->filterByLocale($hanzo->get('core.locale'))

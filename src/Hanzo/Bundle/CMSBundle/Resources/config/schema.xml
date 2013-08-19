@@ -148,6 +148,7 @@
   <table name="customers" allowPkInsert="true">
     <column name="id" type="INTEGER" primaryKey="true" required="true" autoIncrement="true"/>
     <column name="groups_id" type="INTEGER" required="true" defaultValue="1"/>
+    <column name="title" type="VARCHAR" size="12" required="false"/>
     <column name="first_name" type="VARCHAR" size="128" required="true"/>
     <column name="last_name" type="VARCHAR" size="128" required="true"/>
     <column name="email" type="VARCHAR" size="255" required="true"/>
@@ -179,6 +180,7 @@
   <table name="addresses">
     <column name="customers_id" type="INTEGER" primaryKey="true" required="true"/>
     <column name="type" type="VARCHAR" size="32" primaryKey="true" required="true" defaultValue="payment"/>
+    <column name="title" type="VARCHAR" size="12" required="false"/>
     <column name="first_name" type="VARCHAR" size="128" required="true"/>
     <column name="last_name" type="VARCHAR" size="128" required="true"/>
     <column name="address_line_1" type="VARCHAR" size="255" required="true"/>
@@ -522,6 +524,7 @@
     <column name="phone" type="VARCHAR" size="32" required="false"/>
     <column name="languages_id" type="INTEGER" required="true"/>
     <column name="currency_code" type="VARCHAR" size="12" required="true" defaultValue=""/>
+    <column name="billing_title" type="VARCHAR" size="12" required="false"/>
     <column name="billing_first_name" type="VARCHAR" size="128" required="true"/>
     <column name="billing_last_name" type="VARCHAR" size="128" required="true"/>
     <column name="billing_address_line_1" type="VARCHAR" size="255" required="false"/>
@@ -534,6 +537,7 @@
     <column name="billing_company_name" type="VARCHAR" size="128" required="false"/>
     <column name="billing_method" type="VARCHAR" size="64" required="false"/>
     <column name="billing_external_address_id" type="VARCHAR" size="128" required="false"/>
+    <column name="delivery_title" type="VARCHAR" size="12" required="false"/>
     <column name="delivery_first_name" type="VARCHAR" size="128" required="true"/>
     <column name="delivery_last_name" type="VARCHAR" size="128" required="true"/>
     <column name="delivery_address_line_1" type="VARCHAR" size="255" required="false"/>

@@ -44,6 +44,7 @@ class AddressesTableMap extends TableMap
         // columns
         $this->addForeignPrimaryKey('customers_id', 'CustomersId', 'INTEGER' , 'customers', 'id', true, null, null);
         $this->addPrimaryKey('type', 'Type', 'VARCHAR', true, 32, 'payment');
+        $this->addColumn('title', 'Title', 'VARCHAR', false, 12, null);
         $this->addColumn('first_name', 'FirstName', 'VARCHAR', true, 128, null);
         $this->addColumn('last_name', 'LastName', 'VARCHAR', true, 128, null);
         $this->addColumn('address_line_1', 'AddressLine1', 'VARCHAR', true, 255, null);

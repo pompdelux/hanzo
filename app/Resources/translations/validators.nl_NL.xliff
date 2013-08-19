@@ -56,7 +56,7 @@
             </trans-unit>
             <trans-unit id="city.required" approved="no">
                 <source>city.required</source>
-                <target>Du skal udfylde by</target>
+                <target>Du skal udfylde by|Du skal udfylde by</target>
             </trans-unit>
             <trans-unit id="address.first_name.min.length" approved="no">
                 <source>address.first_name.min.length</source>

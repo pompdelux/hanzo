@@ -21,6 +21,7 @@ use Hanzo\Model\Customers;
 /**
  * @method AddressesQuery orderByCustomersId($order = Criteria::ASC) Order by the customers_id column
  * @method AddressesQuery orderByType($order = Criteria::ASC) Order by the type column
+ * @method AddressesQuery orderByTitle($order = Criteria::ASC) Order by the title column
  * @method AddressesQuery orderByFirstName($order = Criteria::ASC) Order by the first_name column
  * @method AddressesQuery orderByLastName($order = Criteria::ASC) Order by the last_name column
  * @method AddressesQuery orderByAddressLine1($order = Criteria::ASC) Order by the address_line_1 column
@@ -39,6 +40,7 @@ use Hanzo\Model\Customers;
  *
  * @method AddressesQuery groupByCustomersId() Group by the customers_id column
  * @method AddressesQuery groupByType() Group by the type column
+ * @method AddressesQuery groupByTitle() Group by the title column
  * @method AddressesQuery groupByFirstName() Group by the first_name column
  * @method AddressesQuery groupByLastName() Group by the last_name column
  * @method AddressesQuery groupByAddressLine1() Group by the address_line_1 column
@@ -72,6 +74,7 @@ use Hanzo\Model\Customers;
  *
  * @method Addresses findOneByCustomersId(int $customers_id) Return the first Addresses filtered by the customers_id column
  * @method Addresses findOneByType(string $type) Return the first Addresses filtered by the type column
+ * @method Addresses findOneByTitle(string $title) Return the first Addresses filtered by the title column
  * @method Addresses findOneByFirstName(string $first_name) Return the first Addresses filtered by the first_name column
  * @method Addresses findOneByLastName(string $last_name) Return the first Addresses filtered by the last_name column
  * @method Addresses findOneByAddressLine1(string $address_line_1) Return the first Addresses filtered by the address_line_1 column
@@ -90,6 +93,7 @@ use Hanzo\Model\Customers;
  *
  * @method array findByCustomersId(int $customers_id) Return Addresses objects filtered by the customers_id column
  * @method array findByType(string $type) Return Addresses objects filtered by the type column
+ * @method array findByTitle(string $title) Return Addresses objects filtered by the title column
  * @method array findByFirstName(string $first_name) Return Addresses objects filtered by the first_name column
  * @method array findByLastName(string $last_name) Return Addresses objects filtered by the last_name column
  * @method array findByAddressLine1(string $address_line_1) Return Addresses objects filtered by the address_line_1 column
@@ -193,7 +197,7 @@ abstract class BaseAddressesQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `customers_id`, `type`, `first_name`, `last_name`, `address_line_1`, `address_line_2`, `postal_code`, `city`, `country`, `countries_id`, `state_province`, `company_name`, `external_address_id`, `latitude`, `longitude`, `created_at`, `updated_at` FROM `addresses` WHERE `customers_id` = :p0 AND `type` = :p1';
+        $sql = 'SELECT `customers_id`, `type`, `title`, `first_name`, `last_name`, `address_line_1`, `address_line_2`, `postal_code`, `city`, `country`, `countries_id`, `state_province`, `company_name`, `external_address_id`, `latitude`, `longitude`, `created_at`, `updated_at` FROM `addresses` WHERE `customers_id` = :p0 AND `type` = :p1';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);
@@ -365,6 +369,35 @@ abstract class BaseAddressesQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(AddressesPeer::TYPE, $type, $comparison);
+    }
+
+    /**
+     * Filter the query on the title column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByTitle('fooValue');   // WHERE title = 'fooValue'
+     * $query->filterByTitle('%fooValue%'); // WHERE title LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $title The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return AddressesQuery The current query, for fluid interface
+     */
+    public function filterByTitle($title = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($title)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $title)) {
+                $title = str_replace('*', '%', $title);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(AddressesPeer::TITLE, $title, $comparison);
     }
 
     /**

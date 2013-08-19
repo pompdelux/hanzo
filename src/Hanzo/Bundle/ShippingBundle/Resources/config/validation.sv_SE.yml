@@ -69,10 +69,9 @@ Hanzo\Model\Addresses:
             - NotBlank:
                 message: postal_code.required
             - Length:
-                min: 2
-                max: 10
-                minMessage: postal_code.length
-                maxMessage: postal_code.length
+                min: 5
+                max: 5
+                exactMessage: postal_code.length
                 groups:
                     - shipping_bundle_company_shipping
                     - shipping_bundle_overnightbox
