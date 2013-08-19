@@ -1,13 +1,14 @@
 /* http://keith-wood.name/countdown.html
    Norwegian Bokmål translation
-   Written by Kristian Ravnevand
-*/
+   Written by Kristian Ravnevand */
 (function($) {
     $.countdown.regional['no'] = {
-        labels: ['år', 'måneder', 'uker', 'dager', 'timer', 'minutter', 'sekunder'],
-        labels1: ['år', 'måned', 'uke', 'dag', 'time', 'minutt', 'sekund'],
+        labels: ['År', 'Måneder', 'Uker', 'Dager', 'Timer', 'Minutter', 'Sekunder'],
+        labels1: ['År', 'Måned', 'Uke', 'Dag', 'Time', 'Minutt', 'Sekund'],
         compactLabels: ['Å', 'M', 'U', 'D'],
         whichLabels: null,
-        timeSeparator: ':', isRTL: false
-  };
+        digits: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
+        timeSeparator: ':',
+        isRTL: false
+    };
 })(jQuery);

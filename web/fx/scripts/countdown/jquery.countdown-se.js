@@ -1,13 +1,14 @@
 /* http://keith-wood.name/countdown.html
    Swedish initialisation for the jQuery countdown extension
-   Written by Carl (carl@nordenfelt.com).
-*/
+   Written by Carl (carl@nordenfelt.com). */
 (function($) {
     $.countdown.regional['se'] = {
-        labels: ['år', 'månader', 'veckor', 'dagar', 'timmar', 'minuter', 'sekunder'],
-        labels1: ['år', 'månad', 'vecka', 'dag', 'timme', 'minut', 'sekund'],
+        labels: ['År', 'Månader', 'Veckor', 'Dagar', 'Timmar', 'Minuter', 'Sekunder'],
+        labels1: ['År', 'Månad', 'Vecka', 'Dag', 'Timme', 'Minut', 'Sekund'],
         compactLabels: ['Å', 'M', 'V', 'D'],
         whichLabels: null,
-        timeSeparator: ':', isRTL: false
-  };
+        digits: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
+        timeSeparator: ':',
+        isRTL: false
+    };
 })(jQuery);

@@ -164,11 +164,10 @@
           until: new Date(Translator.get('js:countdown.date')),
           layout: '<span>' + Translator.get('js:countdown.format') + '</span>'
         });
-        var lang = $('html').attr('lang');
 
-        if (lang !== 'en') {
-          $countdown.countdown('change', $.countdown.regional[lang]);
-        }
+        var lang = $('html').attr('lang');
+        $countdown.countdown('option', $.countdown.regional[lang]);
+        $.countdown.setDefaults($.countdown.regional['']);
       }
      };
 
