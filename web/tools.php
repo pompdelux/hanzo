@@ -1,6 +1,11 @@
 <?php
 
-switch ((empty($_GET['action']) ? '' : $_GET['action'])) {
+require __DIR__.'/../vendor/autoload.php';
+use Symfony\Component\HttpFoundation\Request;
+
+$request = Request::createFromGlobals();
+
+switch ($request->query->get('action')) {
 
     // get timestamp for countdown, used to sync time.
     case 'timestamp':
