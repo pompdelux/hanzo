@@ -224,7 +224,7 @@ class AxService
                 $line->SalesPrice      = 0.00;
                 //$line->LineDiscPercent = 100;
                 $line->SalesQty        = 1;
-                $line->InventColorId   = $domain_key;
+                $line->InventColorId   = str_replace('Sales', '', $attributes->global->domain_key);
                 $line->InventSizeId    = 'One Size';
                 $line->SalesUnit       = 'Stk.';
                 $salesLine[]           = $line;
