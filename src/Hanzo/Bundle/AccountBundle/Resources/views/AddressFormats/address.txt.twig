@@ -1,8 +1,9 @@
 {% if company_name %}
 {{ company_name }}
 {{ 'attention.label'|trans({}, 'account') }} {% if title %}{{ ('title.' ~ title)|trans({}, 'account') }} {% endif %}{{ first_name }} {{ last_name }}
+{% elseif title %}
+{{ ('title.' ~ title)|trans({}, 'account') }} {{ first_name }} {{ last_name }}
 {% else %}
-{{ ('title.' ~ title)|trans({}, 'account') }}
 {{ first_name }} {{ last_name }}
 {% endif %}
 {{ address_line_1 }}
