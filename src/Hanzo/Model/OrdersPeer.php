@@ -61,7 +61,9 @@ class OrdersPeer extends BaseOrdersPeer
                 }
 
                 if ($force_reload) {
-                    $order->reload(true);
+                    try {
+                        $order->reload(true);
+                    } catch(\PropelException $e) {}
                 }
             }
         }

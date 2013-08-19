@@ -21,9 +21,11 @@ use Hanzo\Model\ProductsImagesProductReferencesQuery;
 /**
  * @method ProductsImagesProductReferencesQuery orderByProductsImagesId($order = Criteria::ASC) Order by the products_images_id column
  * @method ProductsImagesProductReferencesQuery orderByProductsId($order = Criteria::ASC) Order by the products_id column
+ * @method ProductsImagesProductReferencesQuery orderByColor($order = Criteria::ASC) Order by the color column
  *
  * @method ProductsImagesProductReferencesQuery groupByProductsImagesId() Group by the products_images_id column
  * @method ProductsImagesProductReferencesQuery groupByProductsId() Group by the products_id column
+ * @method ProductsImagesProductReferencesQuery groupByColor() Group by the color column
  *
  * @method ProductsImagesProductReferencesQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method ProductsImagesProductReferencesQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -42,9 +44,11 @@ use Hanzo\Model\ProductsImagesProductReferencesQuery;
  *
  * @method ProductsImagesProductReferences findOneByProductsImagesId(int $products_images_id) Return the first ProductsImagesProductReferences filtered by the products_images_id column
  * @method ProductsImagesProductReferences findOneByProductsId(int $products_id) Return the first ProductsImagesProductReferences filtered by the products_id column
+ * @method ProductsImagesProductReferences findOneByColor(string $color) Return the first ProductsImagesProductReferences filtered by the color column
  *
  * @method array findByProductsImagesId(int $products_images_id) Return ProductsImagesProductReferences objects filtered by the products_images_id column
  * @method array findByProductsId(int $products_id) Return ProductsImagesProductReferences objects filtered by the products_id column
+ * @method array findByColor(string $color) Return ProductsImagesProductReferences objects filtered by the color column
  */
 abstract class BaseProductsImagesProductReferencesQuery extends ModelCriteria
 {
@@ -133,7 +137,7 @@ abstract class BaseProductsImagesProductReferencesQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `products_images_id`, `products_id` FROM `products_images_product_references` WHERE `products_images_id` = :p0 AND `products_id` = :p1';
+        $sql = 'SELECT `products_images_id`, `products_id`, `color` FROM `products_images_product_references` WHERE `products_images_id` = :p0 AND `products_id` = :p1';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);
@@ -320,6 +324,35 @@ abstract class BaseProductsImagesProductReferencesQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(ProductsImagesProductReferencesPeer::PRODUCTS_ID, $productsId, $comparison);
+    }
+
+    /**
+     * Filter the query on the color column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByColor('fooValue');   // WHERE color = 'fooValue'
+     * $query->filterByColor('%fooValue%'); // WHERE color LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $color The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return ProductsImagesProductReferencesQuery The current query, for fluid interface
+     */
+    public function filterByColor($color = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($color)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $color)) {
+                $color = str_replace('*', '%', $color);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(ProductsImagesProductReferencesPeer::COLOR, $color, $comparison);
     }
 
     /**

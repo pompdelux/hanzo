@@ -44,6 +44,7 @@ class ProductsImagesProductReferencesTableMap extends TableMap
         // columns
         $this->addForeignPrimaryKey('products_images_id', 'ProductsImagesId', 'INTEGER' , 'products_images', 'id', true, null, null);
         $this->addForeignPrimaryKey('products_id', 'ProductsId', 'INTEGER' , 'products', 'id', true, null, null);
+        $this->addColumn('color', 'Color', 'VARCHAR', false, 255, null);
         // validators
     } // initialize()
 

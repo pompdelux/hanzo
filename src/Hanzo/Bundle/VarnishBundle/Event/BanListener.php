@@ -105,6 +105,10 @@ class BanListener
      */
     protected function purgeUrlsBasedOnCategory($category, $locale = null)
     {
+        if (!$category instanceof Categories) {
+            return;
+        }
+
         $query = CmsI18nQuery::create()
             ->select(['Path', 'Locale'])
             ->filterBySettings('%category%')

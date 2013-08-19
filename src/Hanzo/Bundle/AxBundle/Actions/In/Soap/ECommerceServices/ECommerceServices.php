@@ -1299,11 +1299,11 @@ class ECommerceServices extends SoapService
             'sek.sek'     => array('currency' => 'NOK', 'domain' => 'SE', 'vat' => 25),
             'sek.salesse' => array('currency' => 'NOK', 'domain' => 'SalesSE', 'vat' => 25),
 
-            'eur.fin'     => array('currency' => 'NOK', 'domain' => 'FI', 'vat' => 23),
-            'eur.salesfi' => array('currency' => 'NOK', 'domain' => 'SalesFI', 'vat' => 23),
+            'eur.fin'     => array('currency' => 'NOK', 'domain' => 'FI', 'vat' => 24),
+            'eur.salesfi' => array('currency' => 'NOK', 'domain' => 'SalesFI', 'vat' => 24),
 
-            'eur.nld'     => array('currency' => 'NOK', 'domain' => 'NL', 'vat' => 19),
-            'eur.salesnl' => array('currency' => 'NOK', 'domain' => 'SalesNL', 'vat' => 19),
+            'eur.nld'     => array('currency' => 'NOK', 'domain' => 'NL', 'vat' => 21),
+            'eur.salesnl' => array('currency' => 'NOK', 'domain' => 'SalesNL', 'vat' => 21),
 
             'eur.de'      => array('currency' => 'EUR', 'domain' => 'DE', 'vat' => 19),
             'eur.salesde' => array('currency' => 'EUR', 'domain' => 'SalesDE', 'vat' => 19),
