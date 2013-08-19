@@ -56,7 +56,7 @@
             </trans-unit>
             <trans-unit id="countdown.date">
                 <source>countdown.date</source>
-                <target>August 26, 2013 10:00:00<</target>
+                <target>August 26, 2013 10:00:00</target>
             </trans-unit>
             <trans-unit id="countdown.format">
                 <source>countdown.format</source>
