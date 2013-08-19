@@ -165,6 +165,7 @@
           layout: '<span>' + Translator.get('js:countdown.format') + '</span>'
         });
         var lang = $('html').attr('lang');
+
         if (lang !== 'en') {
           $countdown.countdown('change', $.countdown.regional[lang]);
         }

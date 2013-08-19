@@ -15,11 +15,16 @@
   'fx/scripts/jquery.min.js'
   'fx/scripts/json2.js'
   'fx/scripts/jquery.tools.min.js'
-  'fx/scripts/jquery.cycle2.min.js'
+  'fx/scripts/tinymce/jscripts/tiny_mce/jquery.tinymce.js'
   'fx/scripts/colorbox/jquery.colorbox-min.js'
-  'fx/scripts/jaiks/jaiks.min.js'
+  'fx/scripts/zoom/jquery.zoom.js'
   'fx/scripts/accounting/accounting.min.js'
   'fx/scripts/jquery.formparams.js'
+  'fx/scripts/jquery.cycle2.min.js'
+  'fx/scripts/jquery.fullimagebox.js'
+  'fx/scripts/jquery-cookie/jquery.cookie.js'
+
+  'fx/scripts/flowplayer/flowplayer-3.2.11.min.js'
   'fx/scripts/countdown/jquery.countdown.js'
   'fx/scripts/countdown/jquery.countdown-da.js'
   'fx/scripts/countdown/jquery.countdown-de.js'
@@ -27,40 +32,48 @@
   'fx/scripts/countdown/jquery.countdown-sv.js'
   'fx/scripts/countdown/jquery.countdown-fi.js'
   'fx/scripts/countdown/jquery.countdown-nl.js'
-  'fx/scripts/jquery-cookie/jquery.cookie.js'
-  'fx/scripts/jqm-mobile-bookmark-bubble-master/bookmark_bubble.js'
+  'fx/scripts/video-js/video.js'
+  'fx/scripts/history.js/scripts/bundled/html4+html5/jquery.history.js'
 
-  'fx/scripts/dialoug.js'
+  'fx/scripts/jaiks/jaiks.min.js'
   'fx/scripts/yatzy.js'
-
+  'fx/scripts/dialoug.js'
+  'fx/scripts/colorbox.js'
+  'fx/scripts/flowplayer.js'
+  'fx/scripts/video.js'
   'fx/scripts/main.js'
+  'fx/scripts/social-buttons.js'
+
+  'fx/scripts/category.js'
+  'fx/scripts/product.js'
   'fx/scripts/cart.js'
+  'fx/scripts/account.js'
+  'fx/scripts/preload.js'
   'fx/scripts/checkout.js'
   'fx/scripts/dibs-process.js'
-  'fx/scripts/gothia.js'
+  'fx/scripts/wall.js'
   'fx/scripts/events.js'
+  'fx/scripts/quickorder.js'
+
+  'fx/scripts/newsletter.js'
+
+  'fx/scripts/gothia.js'
   'fx/scripts/maps.js'
+  'fx/scripts/search.js'
+  'fx/scripts/mannequin.js'
   'fx/scripts/faq.js'
 
-  'fx/2013s1_mobile/scripts/colorbox.js'
-  'fx/2013s1_mobile/scripts/jquery.hammer.js'
-  'fx/2013s1_mobile/scripts/bookmark_bubble.js'
-  'fx/2013s1_mobile/scripts/menu.js'
-  'fx/2013s1_mobile/scripts/account.js'
-  'fx/2013s1_mobile/scripts/video.js'
-  'fx/2013s1_mobile/scripts/product.js'
-  'fx/2013s1_mobile/scripts/accordion.js'
+  'fx/scripts/jquery.placeholder-enhanced.min.js'
+  'fx/scripts/oldie.js'
 
-  'fx/scripts/account.js'
-  'fx/scripts/newsletter.js'
-  'fx/scripts/events.js'
-  'fx/2013s1_mobile/scripts/checkout.js'
-
-  output='fx/cache/2013s1_mobile.js'
+  output='fx/cache/2013s1.js'
   combine=true
 %}
 <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
+
+{% block javascript %}
+{% endblock %}
 
 {% render 'NewsletterBundle:Default:js' %}
 
@@ -80,5 +93,6 @@
   }
 </script>
 {% endif %}
-
 {{ google_analytics_tag() }}
+
+{{ include('::footer-'~app.request.locale~'.html.twig', ignore_missing = true) }}
