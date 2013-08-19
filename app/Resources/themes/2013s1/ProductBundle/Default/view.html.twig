@@ -138,7 +138,7 @@
               {% for size in product.sizes %}
                 <option value="{{ size }}">{{ size }}</option>
               {% endfor %}
-              </select><a href="{{ cdn }}/images/sizeguide/{{ product.title|replace({" ":""}) }}.jpg" rel="colorbox">» Size guide</a>
+              </select>{{ 'size.guide.link'|trans|raw }}
             </div>
             <div><span class="small">{{ 'choose.size.note'|trans }}</span></div>
           </label>

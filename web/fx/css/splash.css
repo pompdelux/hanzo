@@ -42,3 +42,30 @@ li a {
 li a:hover {
   font-weight: bold;
 }
+
+@media all and (max-width: 780px) {
+  body {
+    background: #fff url(/fx/images/POMPdeLUX_logo_SS12.png) no-repeat center 24px;
+  }
+  h1 {
+    padding: 0;
+  }
+  #selector {
+    background: none;
+    position: relative;
+    width: 100%;
+    left: 0px;
+    top: 200px;
+    height: auto;
+    text-align: center;
+  }
+  #selector ul {
+    left: 0;
+    padding: 0;
+    top: 0;
+  }
+  #selector ul li a {
+    padding: 5px;
+    display: inline-block;
+  }
+}

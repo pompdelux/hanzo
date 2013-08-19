@@ -450,6 +450,10 @@
         <source>admin.products.product.selector.description</source>
         <target>Vælg og tilføj et nyt produkt...</target>
       </trans-unit>
+      <trans-unit id="admin.products.color.selector.description">
+        <source>admin.products.color.selector.description</source>
+        <target>Vælg farve...</target>
+      </trans-unit>
       <trans-unit id="admin.products.discounts">
         <source>admin.products.discounts</source>
         <target>Mængderabatter</target>

@@ -2,6 +2,10 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
+            <trans-unit id="size.guide.link">
+                <source>size.guide.link</source>
+                <target><![CDATA[<a href="/de_DE/home/kundendienst/sizeguide" target="_blank" title="Size guide">» Size guide</a>]]></target>
+            </trans-unit>
             <trans-unit id="out.of.stock">
                 <source>out.of.stock</source>
                 <target>Ausverkauft</target>
@@ -266,7 +270,7 @@
                 <h2>Mehr POMPdeLUX</h2>
                 <ul class="menu">
 				    <li><a href="/de_DE/home/katalog" target="_blank">Online-Katalog</a></li>
-					<li><a href="/de_DE/home/katalog/image-video" target="_blank">Image-Video</a></li>
+					<li><a href="/de_DE/home/katalog/backstage-video" target="_blank">Backstage video</a></li>
                     <li><a href="/de_DE/home/neuigkeiten" target="_blank">Neuigkeiten</a></li>
                     <li><a href="/de_DE/home/uber-pompdelux/konzept" target="_blank">Konzept</a></li>
                     <li><a href="/de_DE/home/uber-pompdelux/soziale-verantwortung" target="_blank">Soziale Verantwortung</a></li>

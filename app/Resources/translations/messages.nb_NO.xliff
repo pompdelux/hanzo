@@ -2,6 +2,10 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
+            <trans-unit id="size.guide.link">
+                <source>size.guide.link</source>
+                <target><![CDATA[<a href="/nb_NO/forside/webshop/info/sizeguide" target="_blank" title="Size guide">» Size guide</a>]]></target>
+            </trans-unit>
             <trans-unit id="out.of.stock">
                 <source>out.of.stock</source>
                 <target>Utsolgt</target>
@@ -266,7 +270,7 @@
                 <h2>Mer POMPdeLUX</h2>
                 <ul class="menu">
 				    <li><a href="/nb_NO/forside/katalog">Online katalog</a></li>
-					<li><a href="/nb_NO/forside/katalog/image-video">Image Video</a></li>
+					<li><a href="/nb_NO/forside/katalog/backstage-video">Backstage video</a></li>
                     <li><a href="/nb_NO/forside/nyheter">Nyheter</a></li>
                     <li><a href="/nb_NO/forside/om-pompdelux/konseptet">Konseptet</a></li>
                     <li><a href="/nb_NO/forside/om-pompdelux/sosial-ansvarlighet">Sosial ansvarlighet</a></li>

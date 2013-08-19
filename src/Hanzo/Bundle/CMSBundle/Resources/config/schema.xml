@@ -419,6 +419,7 @@
   <table name="products_images_product_references">
     <column name="products_images_id" type="INTEGER" primaryKey="true" required="true"/>
     <column name="products_id" type="INTEGER" primaryKey="true" required="true"/>
+    <column name="color" type="VARCHAR" size="255" required="false"/>
     <foreign-key foreignTable="products_images" name="fk_products_images_product_references_1" onDelete="CASCADE">
       <reference local="products_images_id" foreign="id"/>
     </foreign-key>

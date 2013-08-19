@@ -129,15 +129,3 @@ if ($('#consultants-map-canvas').length) {
   }
   maps.initConsultantsmap();
 }
-
-$('body').on('near-you-container.loaded', function() {
-  if ($('body').hasClass('is-mobile')) {
-    $('#near-you-container .box').each(function(i, element) {
-      var $box = $(element);
-      var note_height = $('.note', $box).height();
-      if (note_height > $box.height()) {
-        $box.height(note_height);
-      }
-    });
-  }
-});

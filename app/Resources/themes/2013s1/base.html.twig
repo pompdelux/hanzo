@@ -235,5 +235,8 @@
 </script>
 {% endif %}
 {{ google_analytics_tag() }}
+
+{{ include('::footer-'~app.request.locale~'.html.twig', ignore_missing = true) }}
+
 </body>
 </html>

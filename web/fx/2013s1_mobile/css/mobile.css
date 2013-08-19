@@ -2187,9 +2187,6 @@ a.button.button-full-width,
   width: 50%;
   float: right;
 }
-.near-you-container .note {
-  position: absolute;
-}
 .near-you-container .note i {
   display: block;
 }

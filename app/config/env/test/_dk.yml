@@ -14,6 +14,13 @@ propel:
                 dsn:                  mysql:host=%test_dk_database_host%;dbname=%test_dk_database_name%
                 options:              {}
                 attributes:           {}
+            pdldbde1:
+                driver:               %database_driver%
+                user:                 %test_de_database_user%
+                password:             %test_de_database_password%
+                dsn:                  mysql:host=%test_de_database_host%;dbname=%test_de_database_name%
+                options:              {}
+                attributes:           {}
             pdldbnl1:
                 driver:               %database_driver%
                 user:                 %test_nl_database_user%
