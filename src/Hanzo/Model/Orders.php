@@ -10,6 +10,7 @@ use PropelPDO;
 use PropelCollection;
 use PropelException;
 use OutOfBoundsException;
+use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
@@ -76,6 +77,27 @@ class Orders extends BaseOrders
     protected $ignore_delete_constraints = false;
 
     protected $pdo_con = null;
+
+
+    public function getDeliveryTitle(Translator $translator = null)
+    {
+        return $this->translateNameTitle($translator, parent::getDeliveryTitle());
+    }
+
+    public function getBillingTitle(Translator $translator = null)
+    {
+        return $this->translateNameTitle($translator, parent::getBillingTitle());
+    }
+
+    private function translateNameTitle($translator, $title)
+    {
+        if ($title && ($translator instanceof Translator)) {
+            $title = $translator->trans('title.'.$title, [], 'account');
+        }
+
+        return $title;
+    }
+
 
     /**
      * Create a new version of the current order.
