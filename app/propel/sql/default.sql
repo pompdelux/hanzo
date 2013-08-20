@@ -176,6 +176,7 @@ CREATE TABLE `customers`
 (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `groups_id` INTEGER DEFAULT 1 NOT NULL,
+    `title` VARCHAR(12),
     `first_name` VARCHAR(128) NOT NULL,
     `last_name` VARCHAR(128) NOT NULL,
     `email` VARCHAR(255) NOT NULL,
@@ -226,6 +227,7 @@ CREATE TABLE `addresses`
 (
     `customers_id` INTEGER NOT NULL,
     `type` VARCHAR(32) DEFAULT 'payment' NOT NULL,
+    `title` VARCHAR(12),
     `first_name` VARCHAR(128) NOT NULL,
     `last_name` VARCHAR(128) NOT NULL,
     `address_line_1` VARCHAR(255) NOT NULL,
@@ -731,6 +733,7 @@ CREATE TABLE `orders`
     `phone` VARCHAR(32),
     `languages_id` INTEGER NOT NULL,
     `currency_code` VARCHAR(12) DEFAULT '' NOT NULL,
+    `billing_title` VARCHAR(12),
     `billing_first_name` VARCHAR(128) NOT NULL,
     `billing_last_name` VARCHAR(128) NOT NULL,
     `billing_address_line_1` VARCHAR(255),
@@ -743,6 +746,7 @@ CREATE TABLE `orders`
     `billing_company_name` VARCHAR(128),
     `billing_method` VARCHAR(64),
     `billing_external_address_id` VARCHAR(128),
+    `delivery_title` VARCHAR(12),
     `delivery_first_name` VARCHAR(128) NOT NULL,
     `delivery_last_name` VARCHAR(128) NOT NULL,
     `delivery_address_line_1` VARCHAR(255),

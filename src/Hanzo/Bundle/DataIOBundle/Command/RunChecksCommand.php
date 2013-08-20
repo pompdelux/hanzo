@@ -73,7 +73,7 @@ class RunChecksCommand extends ContainerAwareCommand
     {
         $type = 'GO!';
         if (count($this->errors)) {
-            $type = 'NO GO!';
+            $type = 'NEEEEEEEJ !!!! HVAD LAVER DU ???';
         }
 
         $recipients = [
@@ -92,7 +92,7 @@ class RunChecksCommand extends ContainerAwareCommand
             $text = "Alle pre-deploy checks ok, der må deployes!";
         } else {
             $recipients[] = 'pdl@bellcom.dk';
-            $text = "Såskudaogs! Der er fejl i skidtet, der må IKKE deployes!\n\n".implode("\n", $this->errors);
+            $text = "Såskudaogs! Der er fejl i skidtet, der må IKKE deployes!\n\nhttp://www.nooooooooooooooo.com/\n\n".implode("\n", $this->errors);
         }
 
         $text .= "\n\nmvh\n-- \nMr. Miyagi";

@@ -117,15 +117,15 @@ class DefaultController extends CoreController
                 $customer->setPasswordClear($customer->getPassword());
                 $customer->setPassword(sha1($customer->getPassword()));
 
-                $addresses->setFirstName( $customer->getFirstName() );
-                $addresses->setLastName( $customer->getLastName() );
+                $addresses->setTitle($customer->getTitle());
+                $addresses->setFirstName($customer->getFirstName());
+                $addresses->setLastName($customer->getLastName());
 
                 $formData = $request->request->get('customers');
 
                 // for .dk, .se, .no and maybe .nl
-                if ( count( $countries ) != 1 ) {
-                    $countryById = CountriesQuery::create()
-                        ->findPk($formData['addresses'][0]['countries_id']);
+                if (1 != count($countries)) {
+                    $countryById = CountriesQuery::create()->findPk($formData['addresses'][0]['countries_id']);
                     $addresses->setCountry($countryById->getName());
                 }
 

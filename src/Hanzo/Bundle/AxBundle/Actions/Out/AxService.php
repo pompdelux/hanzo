@@ -10,6 +10,7 @@ use Exception;
 
 use Symfony\Bridge\Monolog\Logger;
 use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
@@ -27,16 +28,18 @@ class AxService
     protected $logger;
     protected $event_dispatcher;
     protected $client;
+    protected $translator;
     protected $ax_state     = false;
     protected $skip_send    = false;
     protected $log_requests = false;
 
-    public function __construct($wsdl, $log_requests, Logger $logger, EventDispatcher $event_dispatcher)
+    public function __construct($wsdl, $log_requests, Logger $logger, EventDispatcher $event_dispatcher, Translator $translator)
     {
         $this->wsdl             = $wsdl;
         $this->log_requests     = $log_requests;
         $this->logger           = $logger;
         $this->event_dispatcher = $event_dispatcher;
+        $this->translator       = $translator;
 
         // primarily used in dev mode where ax is not available
         if (empty($wsdl)) {
@@ -326,7 +329,7 @@ class AxService
         $salesTable->DeliveryDropPointId     = $order->getDeliveryExternalAddressId();
         $salesTable->DeliveryCompanyName     = $order->getDeliveryCompanyName();
         $salesTable->DeliveryCity            = $order->getDeliveryCity();
-        $salesTable->DeliveryName            = $order->getDeliveryFirstName() . ' ' . $order->getDeliveryLastName();
+        $salesTable->DeliveryName            = trim($order->getDeliveryTitle($this->translator).' '.$order->getDeliveryFirstName() . ' ' . $order->getDeliveryLastName());
         $salesTable->DeliveryStreet          = $order->getDeliveryAddressLine1();
         $salesTable->DeliveryZipCode         = $order->getDeliveryPostalCode();
         $salesTable->DeliveryCountryRegionId = $this->getIso2CountryCode($order->getDeliveryCountriesId());
@@ -424,7 +427,7 @@ class AxService
         $ct->AddressCountryRegionId = $address->getCountries()->getIso2();
         $ct->AddressStreet          = $address->getAddressLine1();
         $ct->AddressZipCode         = $address->getPostalCode();
-        $ct->CustName               = $address->getFirstName() . ' ' . $address->getLastName();
+        $ct->CustName               = trim($address->getTitle($this->translator).' '.$address->getFirstName().' '.$address->getLastName());
         $ct->Email                  = $debitor->getEmail();
         $ct->Phone                  = $debitor->getPhone();
 

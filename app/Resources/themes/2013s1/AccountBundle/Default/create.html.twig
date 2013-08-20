@@ -37,6 +37,10 @@
   <form action="{{ path('_account_create') }}" method="post" {{ form_enctype(form) }} class="create full-width" novalidate>
     <div id="customers" class="">
       <div class="grid_3 alpha">
+        {% if form.title is defined %}
+          {{ form_row(form.title) }}
+        {% endif %}
+
         {{ form_row(form.first_name) }}
         {{ form_row(form.last_name) }}
         {{ form_row(form.addresses.0.address_line_1) }}
