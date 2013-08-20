@@ -1,0 +1,73 @@
+{% extends layout %}
+{% block content %}
+
+<h1>{{ 'rma.form.title.order_id'|trans({'%order_id%': order.id}, 'rma') }}</h1>
+<div class="grid_8 alpha omega">
+  <div class="basket clearfix">
+    {% if order_lines %}
+      <table class="product-table">
+        <thead>
+          <tr>
+            <th class="left">{{ "products"|trans }}</th>
+            <th class="right">{{ "price"|trans }}</th>
+            <th class="center">{{ "quantity"|trans }}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for product in order_lines %}
+          <tr class="item">
+            <td class="image left">
+            {% if product.basket_image %}
+              {{ product_image_tag(product.basket_image, '57x100', { 'alt' : product.products_name }) }}
+            {% endif %}
+              <div class="info" data-product_id="{{ product.products_id }}" data-confirmed="">
+                <span class="title">{{ product.products_name }}</span>
+                <div class="size">
+                  <label>{{ "size"|trans }}:</label>
+                  <span>{{ product.products_size }}</span>
+                </div>
+                <div class="color">
+                  <label>{{ "color"|trans }}:</label>
+                  <span>{{ product.products_color }}</span>
+                </div>
+              </div>
+            </td>
+            <td class="right price">
+            {% if product.price != product.original_price %}
+              <span class="normal strike">{{ product.original_price|money }}</span><br>
+            {% endif %}
+              {{ product.price|money }}
+            </td>
+            <td class="center quantity">{{ product.quantity }}</td>
+
+            <td class="left actions">
+              <label>
+                {{ 'rma.form.label.activitycode'|trans({}, 'rma') }}
+                <select name="product[{{ product.products_id }}][activity_code]" id="activitycode-productid-{{ product.products_id }}" class="rma-activitycode" data-id="{{ product.products_id }}">
+                  <option value="" selected>{{ 'rma.form.activity.default'|trans({}, 'rma') }}</option>
+                  <option value="money-back">{{ 'rma.form.activity.money_back'|trans({}, 'rma') }}</option>
+                  <option value="replacement">{{ 'rma.form.activity.replacement'|trans({}, 'rma') }}</option>
+                </select>
+              </label>
+              <label class="off">
+                {{ 'rma.form.label.description'|trans({}, 'rma') }}
+                <textarea name="product[{{ product.products_id }}][description]" id="description-productid-{{ product.products_id }}" class="rma-description" data-id="{{ product.products_id }}"></textarea>
+              </label>
+            </td>
+
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      <input id="rma-submit" type="button" class="button right" value="{{ 'rma.form.submit'|trans({}, 'rma') }}">
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script>
+  var rma_order_id = {{ order.id }};
+</script>
+{% endblock %}

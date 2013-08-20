@@ -2511,6 +2511,28 @@ div.dialoug.like-pop li div {
 }
 
 /**
+| _rma
+*/
+#body-rma .product-table label {
+  margin: 0 0 10px;
+}
+#body-rma .product-table label select, #body-rma .product-table label textarea {
+  display: block;
+}
+#body-rma .product-table label textarea {
+  width: 100%;
+  height: 120px;
+}
+
+.rma-icon {
+  text-transform: uppercase;
+  font-family: "Lucida Sans Typewriter", "Lucida Console", Monaco, "Bitstream Vera Sans Mono", monospace;
+  font-size: 12px;
+  height: 15px;
+  display: inline-block;
+}
+
+/**
 | _ie
 */
 .ie7 footer .copy ul,

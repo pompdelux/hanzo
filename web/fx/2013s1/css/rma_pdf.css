@@ -1,0 +1,37 @@
+/**
+| rma_pdf
+*/
+table.rma_products thead {
+  font-weight: bold;
+  font-size: 21px;
+}
+table.rma_products tbody tr {
+  border-bottom: 1px solid gray;
+  padding: 20px 0;
+}
+table.rma_products tbody .title {
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 30px;
+  font-weight: bold;
+  padding: 40px 0 20px;
+}
+
+p {
+  padding: 0 0 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.company_details #logo {
+  float: left;
+}
+.company_details ul {
+  display: inline-block;
+  margin: 10px;
+}
+.company_details ul li {
+  margin-bottom: 10px;
+}
