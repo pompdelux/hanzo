@@ -860,9 +860,12 @@
           <![CDATA[Vores kendte A-formede tunika med et sødt småblomstret allover print. Smalt vævet bånd rundt i halsåbningen, knaplukning i nakken samt inderfoer.	<br><br>	Fås i: Curry, Blue og Rose	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 100% Cotton]]>
         </target>
       </trans-unit>
-      Kiev HAIRDECO		Kiev_HAIRDECO		"Pakken som fuldender ethvert POMPdeLUX outfit. Pakken består af en hårbøjle i læder med dekoration på siden; et blonde hårbånd samt et par spænder med fine læderblomster. 
-      
-      "		Fås i: Camel, Rose, Black og Ice Blue		One size
+      <trans-unit id="	Kiev HAIRDECO">
+        <source>description.	Kiev_HAIRDECO</source>
+        <target>
+          <![CDATA["Pakken som fuldender ethvert POMPdeLUX outfit. Pakken består af en hårbøjle i læder med dekoration på siden; et blonde hårbånd samt et par spænder med fine læderblomster. <br><br>	Fås i: Camel, Rose, Black og Ice Blue	<br><br>	One size	<br><br>]]>
+        </target>
+      </trans-unit>
       <trans-unit id="Lagos Little SKIRT">
         <source>description.Lagos_Little_SKIRT</source>
         <target>
@@ -1480,7 +1483,7 @@
       <trans-unit id="Tokyo PY">
         <source>description.Tokyo_PY</source>
         <target>
-          <![CDATA[Lækker blød pyjamas til sød nattesøvn - med hvide stikninger for et fedt look.                                                      Produceret efter Oeko-Tex standard 100 og GOTS (Økologisk bomuld).	<br><br>	Fås i: Grey og Navy	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 95 Organic cotton, 5% Elastane]]>
+          <![CDATA[Lækker blød pyjamas til sød nattesøvn - med hvide stikninger for et fedt look. Produceret efter Oeko-Tex standard 100 og GOTS (Økologisk bomuld).<br><br>Fås i: Grey og Navy	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 95 Organic cotton, 5% Elastane]]>
         </target>
       </trans-unit>
       <trans-unit id="Tokyo TANKTOP">
