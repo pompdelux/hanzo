@@ -3,10 +3,9 @@
 #
 
 # needed to get verbose output. -v doesnt work. Use below to see commands run if deploy fails
-logger.level = Logger::MAX_LEVEL
+# logger.level = Logger::MAX_LEVEL
 
-# temp
-set :update_vendors,        false
+set :update_vendors, false
 
 set :application, "Hanzo"
 set :app_path,    "app"
