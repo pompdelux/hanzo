@@ -368,12 +368,7 @@
           <![CDATA[Nämä collegehousut sopivat yhtä hyvin kotona oleskeluun kuin leikkipuistoonkin. Ne ovat aivan ehdottomat kaikille tytöille. Paljeteissa ja kimalteissa ei ole säästelty. Clarksville-housuissa on ribbineulosta ja nauha vyötäröllä sekä vetoketjut taskuissa.<br><br>Saatavana: Ice Blue, Rose ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 65 % puuvillaa, 28% polyesteria, 7 % metallikuitua]]>
         </target>
       </trans-unit>
-      <trans-unit id="Clarksville Little ZIP SWEAT">
-        <source>description.Clarksville_Little_ZIP_SWEAT</source>
-        <target>
-          <![CDATA[Tämä collegetakki sopii yhtä hyvin kotona oleskeluun kuin leikkipuistoonkin. Se on aivan ehdoton kaikille tytöille. Paljeteissa ja kimalteissa ei ole säästelty. Hienoa kimaltavaa nauhaa vetoketjun yhteydessä ja taskuissa. Tosi hieno collegetakki pikkutytölle.<br><br>Saatavana: Ice Blue, Rose ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 65 % puuvillaa, 28% polyesteria, 7 % metallikuitua]]>
-        </target>
-      </trans-unit>
+      <trans-unit id="	Clarksville ZIP SWEAT	"><source>description.	Clarksville_ZIP_SWEAT	</source><target><![CDATA[	Tämä collegetakki sopii yhtä hyvin kotona oleskeluun kuin leikkipuistoonkin. Se on aivan ehdoton kaikille tytöille. Paljeteissa ja kimalteissa ei ole säästelty. Hienoa kimaltavaa nauhaa vetoketjun yhteydessä ja taskuissa. Tosi hieno collegetakki pikkutytölle.	<br><br>	Saatavana: Ice Blue, Rose ja Blue	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 65 % puuvillaa, 28% polyesteria, 7 % metallikuitua	]]></target></trans-unit>
       <trans-unit id="Copenhagen BLOUSE">
         <source>description.Copenhagen_BLOUSE</source>
         <target>
