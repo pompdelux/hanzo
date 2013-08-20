@@ -3,7 +3,10 @@
 #
 
 # needed to get verbose output. -v doesnt work. Use below to see commands run if deploy fails
-#logger.level = Logger::MAX_LEVEL
+logger.level = Logger::MAX_LEVEL
+
+# temp
+set :update_vendors,        false
 
 set :application, "Hanzo"
 set :app_path,    "app"
@@ -57,7 +60,7 @@ set :use_sudo, false
 ssh_options[:forward_agent] = true
 
 # own rules for running tasks after deploy
-after 'deploy:restart', 'deploy:symlinks', 'symfony:cache:assets_update', 'symfony:cache:redis_clear', 'deploy:apcclear', 'symfony:cache:varnish_clear', 'deploy:cleanup', 'deploy:send_email'
+after 'deploy:restart', 'deploy:symlinks', 'symfony:cache:assets_update', 'symfony:cache:redis_clear', 'deploy:apcclear', 'symfony:cache:varnish_clear', 'deploy:cleanup', 'deploy:update_permissions', 'deploy:update_permissions_shared', 'deploy:send_email'
 ## also clear redis when calling cache:clear
 after 'symfony:cache:clear', 'symfony:cache:redis_clear', 'symfony:cache:varnish_clear'
 # mail after rollback and warn about clearing cache. Doesnt seem to work with "after 'deploy:rollback", because it tries to clear the old current dir
