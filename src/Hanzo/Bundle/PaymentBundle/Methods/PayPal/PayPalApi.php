@@ -11,12 +11,13 @@ use Hanzo\Model\Customers;
 use Hanzo\Model\CountriesQuery;
 
 use Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface;
+use Hanzo\Bundle\PaymentBundle\BasePaymentApi;
 use Hanzo\Bundle\PaymentBundle\Methods\PayPal\PayPalCallResponse;
 use Hanzo\Bundle\PaymentBundle\Methods\PayPal\PayPalCall;
 
 use Symfony\Component\HttpFoundation\Request;
 
-class PayPalApi implements PaymentMethodApiInterface
+class PayPalApi extends BasePaymentApi implements PaymentMethodApiInterface
 {
     /**
      * undocumented class variable

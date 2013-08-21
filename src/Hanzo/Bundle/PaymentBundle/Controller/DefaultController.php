@@ -48,7 +48,7 @@ class DefaultController extends CoreController
             $service = $this->get($service);
             if ($service && $service->isActive()) {
 
-                if ('Dibs' == $controller && 'DOWN' === $dibs_status) {
+                if (('Dibs' == $controller) && ('DOWN' === $dibs_status)) {
                     $modules[] = '<div class="down">'.$this->get('translator')->trans('dibs.down.message', [], 'checkout').'</div>';
                     continue;
                 }
