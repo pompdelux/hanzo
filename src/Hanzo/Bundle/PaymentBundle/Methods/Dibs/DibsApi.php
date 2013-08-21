@@ -14,7 +14,7 @@ use Hanzo\Bundle\PaymentBundle\Methods\Dibs\DibsApiCallException;
 
 use Symfony\Component\HttpFoundation\Request;
 
-class DibsApi extends BasePaymentApi implements PaymentMethodApiInterface
+class DibsApi
 {
     /**
      * @var array

@@ -57,18 +57,8 @@ class GothiaDEApi extends GothiaApi
     /**
      * Overridden getProcessButton function.
      */
-    public function getProcessButton(Orders $order)
+    public function getProcessButton(Orders $order, Request $request)
     {
         return ['url' => 'payment/gothia-de'];
-    }
-
-    /**
-     * Overridden getFee function
-     *
-     * Different fees depending on which paytype is choosen.
-     **/
-    public function getFee($method = NULL)
-    {
-        return ( isset($this->settings[$method . '.fee']) ) ? $this->settings[$method . '.fee'] : parent::getFee();
     }
 }

@@ -98,15 +98,6 @@ class PayPalApi extends BasePaymentApi implements PaymentMethodApiInterface
     }
 
     /**
-     * getFee
-     * @return float
-     */
-    public function getFee()
-    {
-        return (isset($this->settings['fee'])) ? $this->settings['fee'] : 0.00;
-    }
-
-    /**
      * getFeeExternalId
      * @return void
      */

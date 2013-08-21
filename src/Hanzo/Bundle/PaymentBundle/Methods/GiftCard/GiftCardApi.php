@@ -10,7 +10,6 @@ use Hanzo\Model\Customers;
 
 use Hanzo\Bundle\PaymentBundle\BasePaymentApi;
 use Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface;
-use Hanzo\Bundle\PaymentBundle\BasePaymentApi;
 use Hanzo\Bundle\PaymentBundle\Methods\GiftCard\GiftCardCallResponse;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -69,15 +68,6 @@ class GiftCardApi extends BasePaymentApi implements PaymentMethodApiInterface
         }
 
         return ( isset($this->settings['active']) ) ? $this->settings['active'] : false;
-    }
-
-    /**
-     * getFee
-     * @return float
-     **/
-    public function getFee($method = NULL)
-    {
-        return ( isset($this->settings['fee']) ) ? $this->settings['fee'] : 0.00;
     }
 
     /**
