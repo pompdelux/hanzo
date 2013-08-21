@@ -25,10 +25,10 @@ class GothiaDEApi extends GothiaApi
 
 
     /**
-     * getEnabledPaytypes
+     * getPaytypes
      * @return void
      **/
-    public function getEnabledPaytypes()
+    public function getPayTypes()
     {
         return $this->settings['paytypes'];
     }
@@ -59,7 +59,16 @@ class GothiaDEApi extends GothiaApi
      */
     public function getProcessButton(Orders $order)
     {
-        error_log('get Process button');
         return ['url' => 'payment/gothia-de'];
+    }
+
+    /**
+     * Overridden getFee function
+     *
+     * Different fees depending on which paytype is choosen.
+     **/
+    public function getFee($method = NULL)
+    {
+        return ( isset($this->settings[$method . '.fee']) ) ? $this->settings[$method . '.fee'] : parent::getFee();
     }
 }

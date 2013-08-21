@@ -83,7 +83,7 @@ class PensioApi extends BasePaymentApi
      * getFee
      * @return float
      */
-    public function getFee()
+    public function getFee($method = NULL)
     {
         return $this->settings['fee'];
     }

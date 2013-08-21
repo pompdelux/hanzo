@@ -91,7 +91,7 @@ class GothiaApi extends BasePaymentApi implements PaymentMethodApiInterface
      * @return float
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function getFee()
+    public function getFee($method = NULL)
     {
         return ( isset($this->settings['fee']) ) ? $this->settings['fee'] : 0.00;
     }
