@@ -284,6 +284,9 @@ class AxService
             case 'gothia':
             case 'gothiade':
                 $custPaymMode = 'PayByBill';
+                if ('GOTHIA-LV' == strtoupper($attributes->payment->paytype)) {
+                    $custPaymMode = 'ELV';
+                }
                 break;
 
             case 'paypal':
