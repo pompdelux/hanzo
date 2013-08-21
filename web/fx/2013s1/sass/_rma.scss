@@ -4,14 +4,17 @@
 #body-rma {
     .product-table{
         label{
-            margin: 0 0 10px;
             select, textarea {
                 display: block;
+                margin: 0 0 10px;
             }
             textarea {
                 width: 100%;
                 height: 120px;
             }
+        }
+        td.actions {
+            width: 610px;
         }
     }
 }

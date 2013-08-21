@@ -9,8 +9,6 @@
         <thead>
           <tr>
             <th class="left">{{ "products"|trans }}</th>
-            <th class="right">{{ "price"|trans }}</th>
-            <th class="center">{{ "quantity"|trans }}</th>
             <th></th>
           </tr>
         </thead>
@@ -33,21 +31,13 @@
                 </div>
               </div>
             </td>
-            <td class="right price">
-            {% if product.price != product.original_price %}
-              <span class="normal strike">{{ product.original_price|money }}</span><br>
-            {% endif %}
-              {{ product.price|money }}
-            </td>
-            <td class="center quantity">{{ product.quantity }}</td>
-
             <td class="left actions">
               <label>
                 {{ 'rma.form.label.activitycode'|trans({}, 'rma') }}
                 <select name="product[{{ product.products_id }}][activity_code]" id="activitycode-productid-{{ product.products_id }}" class="rma-activitycode" data-id="{{ product.products_id }}">
                   <option value="" selected>{{ 'rma.form.activity.default'|trans({}, 'rma') }}</option>
-                  <option value="money-back">{{ 'rma.form.activity.money_back'|trans({}, 'rma') }}</option>
-                  <option value="replacement">{{ 'rma.form.activity.replacement'|trans({}, 'rma') }}</option>
+                  <option value="rma.form.activity.money_back">{{ 'rma.form.activity.money_back'|trans({}, 'rma') }}</option>
+                  <option value="rma.form.activity.replacement">{{ 'rma.form.activity.replacement'|trans({}, 'rma') }}</option>
                 </select>
               </label>
               <label class="off">

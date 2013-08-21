@@ -48,6 +48,14 @@
           </tr>
           <tr>
             <th>
+              {{ 'rma.slip.phone'|trans({}, 'rma') }}
+            </th>
+            <td>
+              {{ customer.phone }}
+            </td>
+          </tr>
+          <tr>
+            <th>
               {{ 'rma.slip.order_id'|trans({}, 'rma') }}
             </th>
             <td>
@@ -57,9 +65,10 @@
         </tbody>
       </table>
     </div>
+    <hr class="right">
     <div class="grid_8 alpha omega">
       <h1>{{ 'rma.slip.title.order_id'|trans({'%order_id%': order.id}, 'rma') }}</h1>
-      <p>{{ 'rma.slip.description'|trans({}, 'rma') }}</p>
+      <p>{{ 'rma.slip.description'|trans({}, 'rma')|raw }}</p>
     </div>
     <div class="grid_8 alpha omega">
       {% if products %}
@@ -67,8 +76,6 @@
           <thead>
             <tr>
               <th class="left">{{ "products"|trans }}</th>
-              <th class="right">{{ "price"|trans }}</th>
-              <th class="center">{{ "quantity"|trans }}</th>
               <th class="left">{{ "rma.slip.thead.activitycode"|trans({}, 'rma') }}</th>
               <th class="left">{{ "rma.slip.thead.description"|trans({}, 'rma') }}</th>
             </tr>
@@ -92,15 +99,8 @@
                   </div>
                 </div>
               </td>
-              <td class="right price">
-              {% if product.price != product.original_price %}
-                <span class="normal strike">{{ product.original_price|money }}</span><br>
-              {% endif %}
-                {{ product.price|money }}
-              </td>
-              <td class="center quantity">{{ product.quantity }}</td>
               <td class="rma-activitycode">{{ product.rma_activitycode|trans({}, 'rma')|upper }}</td>
-              <td class="rma-description">{{ product.rma_description }}</td>
+              <td class="rma-description">{{ product.rma_description|nl2br }}</td>
             </tr>
           {% endfor %}
           </tbody>

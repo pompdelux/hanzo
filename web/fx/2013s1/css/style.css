@@ -2513,15 +2513,16 @@ div.dialoug.like-pop li div {
 /**
 | _rma
 */
-#body-rma .product-table label {
-  margin: 0 0 10px;
-}
 #body-rma .product-table label select, #body-rma .product-table label textarea {
   display: block;
+  margin: 0 0 10px;
 }
 #body-rma .product-table label textarea {
   width: 100%;
   height: 120px;
+}
+#body-rma .product-table td.actions {
+  width: 610px;
 }
 
 .rma-icon {
