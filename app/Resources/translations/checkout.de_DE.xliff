@@ -303,11 +303,11 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target><![CDATA[Gothia-Rechnung (Gebühr 39,00 Euro). Die Rechnung wird per E-Mail verschickt, wenn alle Waren unser Lager verlassen haben. Sie finden die Rechnung im Laufe von 24 Stunden als PDF auf "Meine Seite".]]></target>
+        <target><![CDATA[Gothia-Rechnung (Gebühr 5,00 Euro). Die Rechnung wird per E-Mail verschickt, wenn alle Waren unser Lager verlassen haben. Sie finden die Rechnung im Laufe von 24 Stunden als PDF auf "Meine Seite".]]></target>
       </trans-unit>
       <trans-unit id="payment.gothia-lv.desc" approved="no">
         <source>payment.gothia-lv.desc</source>
-        <target><![CDATA[Gothia-LV-Rechnung (Gebühr 39,00 Euro). Die Rechnung wird per E-Mail verschickt, wenn alle Waren unser Lager verlassen haben. Sie finden die Rechnung im Laufe von 24 Stunden als PDF auf "Meine Seite".]]></target>
+        <target><![CDATA[Gothia-LV-Rechnung. Die Rechnung wird per E-Mail verschickt, wenn alle Waren unser Lager verlassen haben. Sie finden die Rechnung im Laufe von 24 Stunden als PDF auf "Meine Seite".]]></target>
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>
