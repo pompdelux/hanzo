@@ -2,6 +2,12 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="file.ext">
     <body>
+      <trans-unit id="Adelaide BELT">
+        <source>description.Adelaide_BELT</source>
+        <target>
+          <![CDATA[Ruskindsbælte med en blomst midtfor. Et bælte som giver et lækkert og fuldendt look på outfittet. Bæltet er justerbart og har en længde på 83 cm.	<br><br>	Fås i: Camel, Black og Rose	<br><br>	One size	<br><br>	Kvalitet: 100% Suede]]>
+        </target>
+      </trans-unit>
       <trans-unit id="Amsterdam CARDIGAN">
         <source>description.Amsterdam_CARDIGAN</source>
         <target>
@@ -294,6 +300,66 @@
         <source>description.Charleston_Little_DRESS</source>
         <target>
           <![CDATA[En stor tyl drøm til de pynteglade små piger. For at sætte prikken over i´et er der fyldt med pailletter på den øverste del. Kjolen har usynlig lynlås i siden, knaplukning i nakken og fuldt for. Perfekt at snurre rundt i.	<br><br>	Fås i: Blue, Ice Blue, Grey og Rose	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 100% Polyester]]>
+        </target>
+      </trans-unit>
+      <trans-unit id="Cirkus BOY CAP">
+        <source>description.Cirkus_BOY_CAP</source>
+        <target>
+          <![CDATA[<br><br>	Fås i: 	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet:]]>
+        </target>
+      </trans-unit>
+      <trans-unit id="Cirkus Boy TSHIRT">
+        <source>description.Cirkus_Boy_TSHIRT</source>
+        <target>
+          <![CDATA[<br><br>	Fås i: 	<br><br>	Størrelsen er barnets skostørrelse.	<br><br>	Kvalitet:]]>
+        </target>
+      </trans-unit>
+      <trans-unit id="Cirkus CREW HOODIE Unisex">
+        <source>description.Cirkus_CREW_HOODIE_Unisex</source>
+        <target>
+          <![CDATA[<br><br>	Fås i: 	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet:]]>
+        </target>
+      </trans-unit>
+      <trans-unit id="Cirkus CREW TSHIRT Unisex">
+        <source>description.Cirkus_CREW_TSHIRT_Unisex</source>
+        <target>
+          <![CDATA[<br><br>	Fås i: 	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet:]]>
+        </target>
+      </trans-unit>
+      <trans-unit id="Cirkus Girl HAT">
+        <source>description.Cirkus_Girl_HAT</source>
+        <target>
+          <![CDATA[<br><br>	Fås i: 	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet:]]>
+        </target>
+      </trans-unit>
+      <trans-unit id="Cirkus Girl TSHIRT">
+        <source>description.Cirkus_Girl_TSHIRT</source>
+        <target>
+          <![CDATA[<br><br>	Fås i: 	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet:]]>
+        </target>
+      </trans-unit>
+      <trans-unit id="Clarksville JUMPSUIT">
+        <source>description.Clarksville_JUMPSUIT</source>
+        <target>
+          <![CDATA[Super smart! Denne heldragt må din pige bare eje. Her har vi ikke sparet på pailletter og glimmertråd. Fint bånd med glimmer langs lynlås og pailletbånd ned langs ærmer og ben. En meget fin heldragt til den trendy pige.	<br><br>	Fås i: Ice Blue, Rose og Blue	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 65% Cotton, 28% Polyester, 7% Metallic fibre]]>
+        </target>
+      </trans-unit>
+      <trans-unit id="Clarksville Little JUMPSUIT">
+        <source>description.Clarksville_Little_JUMPSUIT</source>
+        <target>
+          <![CDATA[Så hyggelig og fin! Om det er til afslapning hjemme eller til leg på legepladsen gør ingen forskel. Denne heldragt må din pige bare eje. Her har vi ikke sparet på pailletter og glimmertråd. Fint bånd med glimmer langs lynlås og pailletbånd ned langs ærmer og på skulder. En meget fin heldragt til den lille pige.	<br><br>	Fås i: Ice Blue, Rose og Blue	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 65% Cotton, 28% Polyester, 7% Metallic fibre]]>
+        </target>
+      </trans-unit>
+      <trans-unit id="Clarksville Little PANTS">
+        <source>description.Clarksville_Little_PANTS</source>
+        <target>
+          <![CDATA[Om det er til afslapning hjemme eller til leg på legepladsen gør ingen forskel. Disse sweat bukser må din pige bare eje. Her har vi ikke sparet på pailletter og glimmertråd. Clarksville har rib og bånd i taljen samt rå lynlåse på lommerne.	<br><br>	Fås i: Ice Blue, Rose og Blue	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 65% Cotton, 28% Polyester, 7% Metallic fibre]]>
+        </target>
+      </trans-unit>
+      <trans-unit id="Clarksville Little ZIP SWEAT">
+        <source>description.Clarksville_Little_ZIP_SWEAT</source>
+        <target>
+          <![CDATA[Om det er til afslapning hjemme eller til leg på legepladsen gør ingen forskel. Denne sweat må din pige bare eje. Her har vi ikke sparet på pailletter og glimmertråd. Fint bånd med glimmer langs lynlås og lommer. En meget fin sweat til den lille pige.	<br><br>	Fås i: Ice Blue, Rose og Blue	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 65% Cotton, 28% Polyester, 7% Metallic fibre]]>
         </target>
       </trans-unit>
       <trans-unit id="Clarksville PANTS">
@@ -674,6 +740,12 @@
           <![CDATA[Huntsville er en basis serie med fine smalle eventyrlige guldstriber. Tag T-shirten indenunder forskellige kjoler, tunikaer eller strik og gi´hverdagen et festligt twist. Kvaliteten er lækker blød og behagelig at have på.	<br><br>	Fås i: Rose, Black, Curry og Blue	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 86% Viscose, 8% Metallic fibre, 6% Elastane]]>
         </target>
       </trans-unit>
+      <trans-unit id="Huntsville TOP">
+        <source>description.Huntsville_TOP</source>
+        <target>
+          <![CDATA[Huntsville er en basis serie med fine smalle eventyrlige guldstriber. Tag toppen indenunder forskellige bluser eller strik og gi´hverdagen et festligt twist. Kvaliteten er lækker blød og behagelig at have på.	<br><br>	Fås i: Rose, Black, Curry og Blue	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 86% Viscose, 8% Metallic fibre, 6% Elastane]]>
+        </target>
+      </trans-unit>
       <trans-unit id="Idaho Little DRESS">
         <source>description.Idaho_Little_DRESS</source>
         <target>
@@ -788,6 +860,12 @@
           <![CDATA[Vores kendte A-formede tunika med et sødt småblomstret allover print. Smalt vævet bånd rundt i halsåbningen, knaplukning i nakken samt inderfoer.	<br><br>	Fås i: Curry, Blue og Rose	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 100% Cotton]]>
         </target>
       </trans-unit>
+      <trans-unit id="	Kiev HAIRDECO">
+        <source>description.Kiev_HAIRDECO</source>
+        <target>
+          <![CDATA[Pakken som fuldender ethvert POMPdeLUX outfit. Pakken består af en hårbøjle i læder med dekoration på siden; et blonde hårbånd samt et par spænder med fine læderblomster. <br><br>	Fås i: Camel, Rose, Black og Ice Blue	<br><br>	One size	<br><br>]]>
+        </target>
+      </trans-unit>
       <trans-unit id="Lagos Little SKIRT">
         <source>description.Lagos_Little_SKIRT</source>
         <target>
@@ -845,14 +923,14 @@
       <trans-unit id="London Little LS TSHIRT">
         <source>description.London_Little_LS_TSHIRT</source>
         <target>
-          <![CDATA["Blød og behagelig T-shirt fra vores basis program, helt perfekt til at kombinere med alt. 
+          <![CDATA[Blød og behagelig T-shirt fra vores basis program, helt perfekt til at kombinere med alt. 
             Sæt den sammen med de matchende London Little LEGGINGS, træk yndlingskjolen over hovedet, og hun er klar. Produceret efter Oeko-Tex standard 100.<br><br>	Fås i: Rose, Ice Blue, Grey og Blue	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 46% Cotton, 46% Modal, 8% Elastane]]>
         </target>
       </trans-unit>
       <trans-unit id="London LS TSHIRT">
         <source>description.London_LS_TSHIRT</source>
         <target>
-          <![CDATA["Blød og behagelig T-shirt fra vores basis program, helt perfekt til at kombinere med alt. 
+          <![CDATA[Blød og behagelig T-shirt fra vores basis program, helt perfekt til at kombinere med alt. 
             Sæt den sammen med de matchende London LEGGINGS, træk yndlingskjolen over hovedet, og hun er klar. Produceret efter Oeko-Tex standard 100.<br><br>	Fås i: Rose, Ice Blue, Grey og Blue	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 46% Cotton, 46% Modal, 8% Elastane]]>
         </target>
       </trans-unit>
@@ -943,7 +1021,7 @@
       <trans-unit id="Mombasa LS TSHIRT">
         <source>description.Mombasa_LS_TSHIRT</source>
         <target>
-          <![CDATA[Denne skønne langærmede T-shirt er med print designet af Sara på 6 år fra Ry i Danmark. Sara vandt vores "Design en forskel"- konkurrence, og overskuddet fra salget af denne style vil ubeskåret blive doneret til velgørende formål. Mombasa findes i 4 skønne farver - og er både til dreng og pige.	<br><br>	Fås i: Blue, Grey Melange, Rose og Wine	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 95% Cotton, 5% Elastane]]>
+          <![CDATA[Denne skønne langærmede T-shirt er med print designet af Sara på 6 år fra Ry i Danmark. Sara vandt vores"Design en forskel"- konkurrence, og overskuddet fra salget af denne style vil ubeskåret blive doneret til velgørende formål. Mombasa findes i 4 skønne farver - og er både til dreng og pige.	<br><br>	Fås i: Blue, Grey Melange, Rose og Wine	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 95% Cotton, 5% Elastane]]>
         </target>
       </trans-unit>
       <trans-unit id="Moscow Little JUMPSUIT">
@@ -1207,13 +1285,13 @@
       <trans-unit id="Rostock Little POLO">
         <source>description.Rostock_Little_POLO</source>
         <target>
-          <![CDATA[Klassisk jersey polo med lange ærmer og syede striber i tre fede farvekombinationer. Med masser af lækre detaljer og skjorte krave i vævet metervare. Brug den sammen med favorit bukserne, og så har du et hurtigt "klar til at hænge ud" sæt. Poloen er produceret efter Oeko-Tex standard 100.	<br><br>	Fås i: Navy, Grey Melange og Green  	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 95% Cotton, 5% Elastane]]>
+          <![CDATA[Klassisk jersey polo med lange ærmer og syede striber i tre fede farvekombinationer. Med masser af lækre detaljer og skjorte krave i vævet metervare. Brug den sammen med favorit bukserne, og så har du et hurtigt, klar til at hænge ud sæt. Poloen er produceret efter Oeko-Tex standard 100.	<br><br>	Fås i: Navy, Grey Melange og Green  	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 95% Cotton, 5% Elastane]]>
         </target>
       </trans-unit>
       <trans-unit id="Rostock POLO">
         <source>description.Rostock_POLO</source>
         <target>
-          <![CDATA[Klassisk jersey polo med lange ærmer og syede striber i tre fede farvekombinationer. Med masser af lækre detaljer og skjorte krave i vævet metervare. Brug den sammen med favorit bukserne, og så har du et hurtigt "klar til at hænge ud" sæt. Poloen er produceret efter Oeko-Tex standard 100.	<br><br>	Fås i: Navy, Grey Melange og Green  	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 95% Cotton, 5% Elastane]]>
+          <![CDATA[Klassisk jersey polo med lange ærmer og syede striber i tre fede farvekombinationer. Med masser af lækre detaljer og skjorte krave i vævet metervare. Brug den sammen med favorit bukserne, og så har du et hurtigt, klar til at hænge ud sæt. Poloen er produceret efter Oeko-Tex standard 100.	<br><br>	Fås i: Navy, Grey Melange og Green  	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 95% Cotton, 5% Elastane]]>
         </target>
       </trans-unit>
       <trans-unit id="Salem Little SPORTS JACKET">
@@ -1405,7 +1483,7 @@
       <trans-unit id="Tokyo PY">
         <source>description.Tokyo_PY</source>
         <target>
-          <![CDATA[Lækker blød pyjamas til sød nattesøvn - med hvide stikninger for et fedt look.                                                      Produceret efter Oeko-Tex standard 100 og GOTS (Økologisk bomuld).	<br><br>	Fås i: Grey og Navy	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 95 Organic cotton, 5% Elastane]]>
+          <![CDATA[Lækker blød pyjamas til sød nattesøvn - med hvide stikninger for et fedt look. Produceret efter Oeko-Tex standard 100 og GOTS (Økologisk bomuld).<br><br>Fås i: Grey og Navy	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 95 Organic cotton, 5% Elastane]]>
         </target>
       </trans-unit>
       <trans-unit id="Tokyo TANKTOP">
@@ -1525,13 +1603,13 @@
       <trans-unit id="POMP BAG">
         <source>description.POMP_BAG</source>
         <target>
-          <![CDATA[Super cool og holdbar BAG til strandtur, shopping badetøj eller som gavepose med en sløjfe på. Du bestemmer mulighederne er mange.]]>
+          <![CDATA[Super cool og holdbar BAG til strandtur, shopping badetøj eller som gavepose med en sløjfe på. Du bestemmer mulighederne er mange.	<br><br>		<br><br>		<br><br>]]>
         </target>
       </trans-unit>
       <trans-unit id="POMP BIG BAG">
         <source>description.POMP_BIG_BAG</source>
         <target>
-          <![CDATA[Stor lækker skøn og stærk ! Ta den med til stranden fyldt med tæpper og picnic-pick-pak. Eller brug den til overtøjs taske på vej til børnehaven, lej i sejler i den... Det er din fantasi der sætter grenser.]]>
+          <![CDATA[Stor lækker skøn og stærk ! Ta den med til stranden fyldt med tæpper og picnic-pick-pak. Eller brug den til overtøjs taske på vej til børnehaven, lej i sejler i den... Det er din fantasi der sætter grenser.	<br><br>		<br><br>		<br><br>]]>
         </target>
       </trans-unit>
     </body>
