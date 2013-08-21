@@ -5,7 +5,7 @@
 	<trans-unit id="Adelaide BELT">
         <source>description.Adelaide_BELT</source>
         <target>
-          <![CDATA[Ruskindsbælte med en blomst midtfor. Et bælte som giver et lækkert og fuldendt look på outfittet. Bæltet er justerbart og har en længde på 83 cm.<br><br>Fås i: Camel, Black og Rose<br><br>One size<br><br>Kvalitet: 100% Suede]]>
+          <![CDATA[Suède riem met een bloem middenvoor. Een riem die je outfit helemaal perfect maakt. De riem is verstelbaar en is 83 cm lang.<br><br>Verkrijgbaar in: Camel, Black en Rose<br><br>One size<br><br>Materiaal: 100% suède]]>
         </target>
       </trans-unit>
       <trans-unit id="Amsterdam CARDIGAN">
@@ -1567,25 +1567,25 @@
 	  <trans-unit id="Kiev HAIRDECO">
         <source>description.Kiev_HAIRDECO</source>
         <target>
-          <![CDATA[Pakken som fuldender ethvert POMPdeLUX outfit. Pakken består af en hårbøjle i læder med dekoration på siden; et blonde hårbånd samt et par spænder med fine læderblomster. <br><br>Fås i: Camel, Rose, Black og Ice Blue<br><br>One size<br><br>]]>
+          <![CDATA[Het pakje dat elke POMPdeLUX outfit helemaal perfect maakt. Het pakje bestaat uit een leren haarband met versiering aan de zijkant, een kanten haarband en haarspeldjes met mooie leren bloemen erop.<br><br>Verkrijgbaar in: Camel, Rose, Black en Ice Blue<br><br>One size<br><br>]]>
         </target>
       </trans-unit>
 	   <trans-unit id="Huntsville TOP">
         <source>description.Huntsville_TOP</source>
         <target>
-          <![CDATA[Huntsville er en basis serie med fine smalle eventyrlige guldstriber. Tag toppen indenunder forskellige bluser eller strik og gi´hverdagen et festligt twist. Kvaliteten er lækker blød og behagelig at have på.<br><br>Fås i: Rose, Black, Curry og Blue<br><br>Størrelsen er barnets højde angivet i cm.<br><br>Kvalitet: 86% Viscose, 8% Metallic fibre, 6% Elastane]]>
+          <![CDATA[Huntsville is een basisserie met mooie, smalle gouden streepjes. Draag de top onder verschillende bloezen of truien/vestjes en geef je dag een feestelijk tintje. Het materiaal is lekker zacht en aangenaam om te dragen.<br><br>Verkrijgbaar in: Rose, Black, Curry en Blue<br><br>De maat is de lengte van het kind in cm.<br><br>Materiaal: 86% viscose, 8% metaalvezel, 6% elastaan]]>
         </target>
       </trans-unit>
 	  <trans-unit id="POMP BAG">
         <source>description.POMP_BAG</source>
         <target>
-          <![CDATA[Super cool og holdbar BAG til strandtur, shopping badetøj eller som gavepose med en sløjfe på. Du bestemmer mulighederne er mange.<br><br><br><br><br><br>]]>
+          <![CDATA[Supercoole en bruikbare BAG voor een dagje naar het strand, om mee te winkelen of als cadeauverpakking met een strik erop. Jij beslist! Er zijn een boel mogelijkheden.<br><br><br><br><br><br>]]>
         </target>
       </trans-unit>
       <trans-unit id="POMP BIG BAG">
         <source>description.POMP_BIG_BAG</source>
         <target>
-          <![CDATA[Stor lækker skøn og stærk ! Ta den med til stranden fyldt med tæpper og picnic-pick-pak. Eller brug den til overtøjs taske på vej til børnehaven, lej i sejler i den... Det er din fantasi der sætter grenser.<br><br><br><br><br><br>]]>
+          <![CDATA[Groot, mooi en sterk! Neem hem mee naar het strand met dekens en een picknick kit erin. Of gebruik hem als tas voor je buitenkleding op weg naar het kinderdagverblijf, speel dat je ermee zeilt... De mogelijkheden zijn onbeperkt.<br><br><br><br><br><br>]]>
         </target>
       </trans-unit>
     </body>

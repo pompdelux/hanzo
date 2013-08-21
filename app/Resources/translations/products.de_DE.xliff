@@ -5,7 +5,7 @@
 	<trans-unit id="Adelaide BELT">
         <source>description.Adelaide_BELT</source>
         <target>
-          <![CDATA[Ruskindsbælte med en blomst midtfor. Et bælte som giver et lækkert og fuldendt look på outfittet. Bæltet er justerbart og har en længde på 83 cm.<br><br>Fås i: Camel, Black og Rose<br><br>One size<br><br>Kvalitet: 100% Suede]]>
+          <![CDATA[Wildledergürtel mit Blume in der Mitte. Ein Gürtel, der dem Outfit einen schicken und vollendeten Look verpasst. Der Gürtel ist einstellbar und hat eine Länge von 83 cm.<br><br>Erhältlich in: Camel, Black und Rose<br><br>One size<br><br>Qualität: 100% Wildleder]]>
         </target>
       </trans-unit>
       <trans-unit id="Amsterdam CARDIGAN">
@@ -1555,25 +1555,25 @@
 	  <trans-unit id="Kiev HAIRDECO">
         <source>description.Kiev_HAIRDECO</source>
         <target>
-          <![CDATA[Pakken som fuldender ethvert POMPdeLUX outfit. Pakken består af en hårbøjle i læder med dekoration på siden; et blonde hårbånd samt et par spænder med fine læderblomster. <br><br>Fås i: Camel, Rose, Black og Ice Blue<br><br>One size<br><br>]]>
+          <![CDATA[Das Paket, das ein jedes POMPdeLUX Outfit vervollständigt. Das Paket besteht aus einer Haarspange aus Leder mit Dekoration an der Seite, einem Spitzenhaarband sowie zwei Spangen mit feinen Lederblumen. <br><br>Erhältlich in: Camel, Rose, Black und Ice Blue<br><br>One size<br><br>]]>
         </target>
       </trans-unit>
 	   <trans-unit id="Huntsville TOP">
         <source>description.Huntsville_TOP</source>
         <target>
-          <![CDATA[Huntsville er en basis serie med fine smalle eventyrlige guldstriber. Tag toppen indenunder forskellige bluser eller strik og gi´hverdagen et festligt twist. Kvaliteten er lækker blød og behagelig at have på.<br><br>Fås i: Rose, Black, Curry og Blue<br><br>Størrelsen er barnets højde angivet i cm.<br><br>Kvalitet: 86% Viscose, 8% Metallic fibre, 6% Elastane]]>
+          <![CDATA[Huntsville ist eine Basis-Serie mit feinen, schmalen, märchenhaften Goldstreifen. Mit dem Top unter verschiedenen Blusen oder Strickwaren erhält der Alltag einen festlichen Touch. Die Qualität ist schön weich und angenehm zu tragen.<br><br>Erhältlich in: Rose, Black, Curry und Blue<br><br>Die Größe ist die Größe des Kindes in cm.<br><br>Qualität: 86% Viskose, 8% Metallfasern, 6% Elasthan]]>
         </target>
       </trans-unit>
 	  <trans-unit id="POMP BAG">
         <source>description.POMP_BAG</source>
         <target>
-          <![CDATA[Super cool og holdbar BAG til strandtur, shopping badetøj eller som gavepose med en sløjfe på. Du bestemmer mulighederne er mange.<br><br><br><br><br><br>]]>
+          <![CDATA[Echt cooler und haltbarer BAG für den Strand, Shopping, Badesachen oder als Geschenkbeutel mit Schleife. Sie bestimmen selbst, es gibt so viele Möglichkeiten.<br><br><br><br><br><br>]]>
         </target>
       </trans-unit>
       <trans-unit id="POMP BIG BAG">
         <source>description.POMP_BIG_BAG</source>
         <target>
-          <![CDATA[Stor lækker skøn og stærk ! Ta den med til stranden fyldt med tæpper og picnic-pick-pak. Eller brug den til overtøjs taske på vej til børnehaven, lej i sejler i den... Det er din fantasi der sætter grenser.<br><br><br><br><br><br>]]>
+          <![CDATA[Groß, schick, schön und stark! Nehmen Sie ihn mit zum Strand, gefüllt mit Decken und dem Picknick. Oder verwenden Sie ihn als Tasche für den Kindergarten oder zum Segelboot spielen... Nur Ihre Fantasie setzt hier Grenzen.<br><br><br><br><br><br>]]>
         </target>
       </trans-unit>
     </body>
