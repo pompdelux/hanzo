@@ -63,19 +63,19 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .icons-sprite, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-facebook, .icons-gplus, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, table#order-status td a.trigger, footer .newsletter-block .sprite, #secondary-links li.basket .sprite, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.arrow-right, .sprite.arrow-left {
-  background: url('/fx/mobile/../images/icons/icons-sbcb022061e.png') no-repeat;
+  background: url('/fx/mobile/../images/icons/icons-se334b6897c.png') no-repeat;
 }
 
 .icons-arrow_down {
-  background-position: 0 -543px;
+  background-position: 0 -507px;
 }
 
 .icons-arrow_left {
-  background-position: 0 -536px;
+  background-position: 0 -500px;
 }
 
 .icons-arrow_right {
-  background-position: 0 -547px;
+  background-position: 0 -511px;
 }
 
 .icons-basket {
@@ -83,19 +83,19 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .icons-button-left-black {
-  background-position: 0 -605px;
+  background-position: 0 -569px;
 }
 
 .icons-button-left {
-  background-position: 0 -517px;
+  background-position: 0 -481px;
 }
 
 .icons-button-right-black {
-  background-position: 0 -586px;
+  background-position: 0 -550px;
 }
 
 .icons-button-right {
-  background-position: 0 -498px;
+  background-position: 0 -462px;
 }
 
 .icons-delete {
@@ -111,7 +111,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .icons-divider {
-  background-position: 0 -335px;
+  background-position: 0 -235px;
 }
 
 .icons-divider_left {
@@ -119,7 +119,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .icons-divider_right {
-  background-position: 0 -446px;
+  background-position: 0 -282px;
 }
 
 .icons-edit {
@@ -127,15 +127,15 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .icons-facebook {
-  background-position: 0 -466px;
+  background-position: 0 -430px;
 }
 
 .icons-gplus {
-  background-position: 0 -414px;
+  background-position: 0 -250px;
 }
 
 .icons-magnifier {
-  background-position: 0 -554px;
+  background-position: 0 -518px;
 }
 
 .icons-newsletter {
@@ -143,31 +143,31 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .icons-pdf {
-  background-position: 0 -570px;
+  background-position: 0 -534px;
 }
 
 .icons-pinterest {
-  background-position: 0 -350px;
+  background-position: 0 -302px;
 }
 
 .icons-shopping-bag {
-  background-position: 0 -292px;
-}
-
-.icons-show {
-  background-position: 0 -624px;
-}
-
-.icons-twitter {
-  background-position: 0 -382px;
-}
-
-.icons-video {
   background-position: 0 -192px;
 }
 
+.icons-show {
+  background-position: 0 -588px;
+}
+
+.icons-twitter {
+  background-position: 0 -366px;
+}
+
+.icons-video {
+  background-position: 0 -398px;
+}
+
 .icons-zoom {
-  background-position: 0 -242px;
+  background-position: 0 -334px;
 }
 
 .fi-sprite, body.fi form.buy .submit-button, body.fi .buy-set, body.fi .new-price, body.fi .out-of-stock {
@@ -615,9 +615,9 @@ div.panes > div {
   margin-right: 5px;
 }
 .zoom .sprite {
-  background-position: 0 -242px;
-  height: 50px;
-  width: 45px;
+  background-position: 0 -334px;
+  height: 32px;
+  width: 32px;
 }
 
 .body-product .breadcrumb {
@@ -629,9 +629,9 @@ a.video-popper, #video-player-container a.video {
   text-align: center;
 }
 a.video-popper .sprite, #video-player-container a.video .sprite {
-  background-position: 0 -192px;
-  height: 50px;
-  width: 58px;
+  background-position: 0 -398px;
+  height: 32px;
+  width: 32px;
 }
 
 .body-product .main h1.title,
@@ -1926,7 +1926,7 @@ table#order-status tr.off {
   display: none;
 }
 table#order-status td a.trigger {
-  background-position: 0 -554px;
+  background-position: 0 -518px;
   width: 16px;
   height: 16px;
 }
@@ -2899,24 +2899,24 @@ table.horizontal th {
   width: 23px;
 }
 .sprite.show {
-  background-position: 0 -624px;
+  background-position: 0 -588px;
   height: 16px;
   width: 16px;
 }
 .sprite.pdf {
-  background-position: 0 -570px;
+  background-position: 0 -534px;
   height: 16px;
   width: 16px;
 }
 .sprite.arrow-right {
   margin-left: 6px;
-  background-position: 0 -547px;
+  background-position: 0 -511px;
   height: 7px;
   width: 4px;
 }
 .sprite.arrow-left {
   margin-right: 6px;
-  background-position: 0 -536px;
+  background-position: 0 -500px;
   height: 7px;
   width: 4px;
 }
