@@ -34,9 +34,9 @@ class DefaultController extends CoreController
         $route = $this->get('request')->get('_route');
         $focus = $this->get('request')->get('focus', FALSE);
         $cache_id = array('product', $product_id, $focus);
-        $data = $this->getCache($cache_id);
+//        $data = $this->getCache($cache_id);
 
-        if (!$data) {
+        if (empty($data)) {
             $products = ProductsI18nQuery::create()
                 ->joinWithProducts()
                 ->filterByLocale($hanzo->get('core.locale'))
@@ -82,6 +82,9 @@ class DefaultController extends CoreController
                 );
             }
 
+            // Use to kkep an array of all images with keys. array_shift broke the keys.
+            $all_images = $images;
+
             // set focus image
             if ($focus && isset($images[$focus])) {
                 $main_image = $images[$focus];
@@ -90,12 +93,11 @@ class DefaultController extends CoreController
                 $main_image = array_shift($images);
             }
 
-            $sorted = [];
+            $sorted_images = [];
             foreach ($images as $key => $data) {
-                $sorted[$data['type'].$key] = $data;
+                $sorted_images[$data['type'].$key] = $data;
             }
-            ksort($sorted);
-            $images = $sorted;
+            ksort($sorted_images);
 
             $current_color = $main_image['color'];
             $current_type  = $main_image['type'];
@@ -132,11 +134,12 @@ class DefaultController extends CoreController
             $references = ProductsImagesProductReferencesQuery::create()
                 ->withColumn('products_images.ID')
                 ->withColumn('products_images.COLOR')
-                ->withColumn('ref.IMAGE')
+                ->withColumn('products_images.IMAGE')
                 ->filterByProductsImagesId($image_ids)
                 ->useProductsQuery()
                     ->useProductsImagesQuery('ref')
                         ->filterByType('overview')
+                        ->where('products_images.COLOR = products_images_product_references.COLOR')
                         ->groupByProductsId()
                     ->endUse()
                     ->joinWithProductsImages()
@@ -150,12 +153,29 @@ class DefaultController extends CoreController
                 $images_references[$ref->getProductsImagesId()]['references'][] = array(
                     'title' => $ref->getProducts()->getSku(),
                     'color' => $ref->getVirtualColumn('products_imagesCOLOR'),
-                    'image' => $ref->getRefIMAGE(),
+                    'image' => $ref->getVirtualColumn('products_imagesIMAGE'),
                     'url' => $router->generate($route, array(
                         'product_id' => $ref->getProductsId(),
                         'title'=> Tools::stripText($ref->getProducts()->getSku()),
+                        'focus'=> $ref->getVirtualColumn('products_imagesID'),
                     ), TRUE),
                 );
+            }
+            foreach ($images_references as $image_id => &$references) {
+
+                // If there are any references to this image,
+                // Add an overview of the current product at the top of the array.
+                if (count($references['references']) > 0) {
+                    array_unshift($references['references'], array(
+                        'title' => $product->getSku(),
+                        'color' => '',
+                        'image' => str_replace('set', 'overview', $all_images[$image_id]['name']),
+                        'url' => $router->generate($route, array(
+                            'product_id' => $product->getId(),
+                            'title'=> Tools::stripText($product->getSku()),
+                        ), TRUE),
+                    ));
+                }
             }
 
             $translation_key = 'description.' . Tools::stripText($product->getSku(), '_', false);
@@ -184,7 +204,7 @@ class DefaultController extends CoreController
                 'description' => $description,
                 'washing' => $washing,
                 'main_image' => $main_image,
-                'images' => $images,
+                'images' => $sorted_images,
                 'prices' => [],
                 'out_of_stock' => $product->getIsOutOfStock(),
                 'colors' => $colors,

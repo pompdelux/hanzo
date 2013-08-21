@@ -158,7 +158,7 @@ class GothiaApi extends BasePaymentApi implements PaymentMethodApiInterface
     }
 
 
-    public function getProcessButton(Orders $order)
+    public function getProcessButton(Orders $order, Request $request)
     {
         return ['url' => 'payment/gothia'];
     }

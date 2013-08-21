@@ -35,6 +35,7 @@ class Configuration implements ConfigurationInterface
                             ->scalarNode('timeout')->defaultValue(0)->end()
                             ->scalarNode('prefix')->defaultValue('')->end()
                             ->scalarNode('auth')->defaultNull()->end()
+                            ->booleanNode('skip_env')->defaultFalse()->end()
                         ->end()
                     ->end()
                 ->end()

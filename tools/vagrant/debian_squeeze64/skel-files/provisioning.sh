@@ -19,7 +19,6 @@ locale-gen
 
 # i need ll
 sed -i -e 's/#alias ll/alias ll/' /home/vagrant/.bashrc
-sed -i -e 's/#alias ll/alias ll/' /home/root/.bashrc
 
 # setup dotdeb
 echo -e '# dotdeb\ndeb http://packages.dotdeb.org squeeze all\ndeb-src http://packages.dotdeb.org squeeze all\ndeb http://packages.dotdeb.org squeeze-php54 all\ndeb-src http://packages.dotdeb.org squeeze-php54 all\n' > /etc/apt/sources.list.d/dotdeb.list

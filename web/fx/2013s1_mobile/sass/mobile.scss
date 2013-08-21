@@ -1,0 +1,296 @@
+@charset "UTF-8";
+@import "../../2013s1/sass/_global_variables";
+@import "compass/reset";
+@import "../../2013s1/sass/_mixins";
+@import "../../2013s1/sass/_sprites";
+
+html {
+	font-size: 12px;
+    line-height: 1.6em;
+    body {
+        background: $html-background-color;
+        font-family: $font-sans;
+        color: black;
+        width: 100%;
+
+        #container {
+            padding: 10px 10px 50px;
+        }
+    }
+}
+
+
+
+a, a:link {
+    color: $link-color;
+    text-decoration: none;
+}
+.main a {
+    text-decoration: underline;
+}
+
+/*  Typography presets
+    Stolen from less
+    ------------------  */
+
+.gigantic {
+    font-size: 2.5em;
+}
+
+.huge, h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.large, h2 {
+    font-size: 1.5em;
+}
+
+.bigger, h3 {
+    font-size: 1.17em;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.big, h4 {
+    font-size: 0.83em;
+}
+h5 {
+    font-size: 0.75em;
+}
+
+h1, h2, h3, h4 {
+    font-weight: bold;
+}
+
+.small, small {
+    word-break: break-all;
+	font-size: 0.7em;
+}
+
+img {
+	max-width: 100%;
+    height: auto;
+}
+
+hgroup h1 {
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: normal;
+}
+
+b, strong {
+    font-weight: bold;
+}
+
+.image-caption {
+	position: relative;
+	margin-bottom: 3px;
+	span {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		color: white;
+		font-size: $heading-size;
+		font-family: $font-sans;
+		text-transform: uppercase;
+
+		padding: 10px;
+	}
+	&.caption-right span {
+		right: 0;
+		text-align: right;
+	}
+}
+
+@import "../../2013s1/sass/_social";
+@import "../../2013s1/sass/_category";
+@import "../../2013s1/sass/_product";
+@import "../../2013s1/sass/_checkout";
+@import "../../2013s1/sass/_faq";
+@import "account";
+@import "basket";
+@import "category";
+@import "checkout";
+@import "dialoug";
+@import "events";
+@import "form";
+@import "gmaps";
+@import "footer";
+@import "header";
+@import "product";
+@import "slideshow";
+@import "topmenu";
+@import "video";
+
+/* Selection colours (easy to forget) */
+
+::selection 	 	{background: #CCCCCC;}
+::-moz-selection 	{background: #CCCCCC;}
+img::selection 		{background: transparent;}
+img::-moz-selection	{background: transparent;}
+body {-webkit-tap-highlight-color: #CCCCCC;}
+
+.clearfix:before,
+.clearfix:after {
+    content:"";
+    display:table;
+}
+.clearfix:after {
+    clear:both;
+}
+
+// skulle drønes helt ud også af templaten, men det kræver at vi overrider den...
+.breadcrumb,
+div.sub-menu {
+    display: none;
+}
+
+.body-frontpage,
+.body-buy-set,
+.body-pages {
+    h1, h2, h3, h4 {
+        font-weight: normal;
+        text-transform: uppercase;
+    }
+}
+
+.body-frontpage {
+    #main {
+        img {
+            max-width: auto;
+            height: auto;
+            width: 100%;
+        }
+        h2+p {
+            margin-bottom: 20px;
+        }
+    }
+}
+
+    // flip rundt på underelementer i cms artikler
+.body-pages {
+    article div {
+        display: table;
+        > div:nth-child(1) {
+            display: table-footer-group;
+            h2 {
+                margin-top: 10px;
+            }
+        }
+        > div:nth-child(n+2) {
+            display: table-header-group;
+        }
+    }
+}
+
+table{
+    width: 100%;
+    margin: 6px 0 12px;
+    thead, tfoot{
+        border-bottom: 1px solid $font-color;
+    }
+    tfoot{
+        border-top: 1px solid $font-color;
+    }
+    thead{
+        font-family: $font-serif;
+        th{
+            padding:3px 6px;
+        }
+    }
+    tbody{
+        td{
+            padding: 12px 6px;
+            vertical-align: top;
+        }
+    }
+    tfoot{
+        td{
+            padding: 6px;
+        }
+    }
+    &.horizontal{
+        th{
+            font-weight: bold;
+        }
+    }
+}
+
+.right {
+    float:right;
+}
+.left {
+    float:left;
+}
+.center {
+    text-align:center;
+}
+.off,
+.hidden {
+    display:none;
+}
+
+.to-top {
+    display: inline-block;
+    padding: 10px 4px;
+}
+
+.bottom-space {
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.sprite{
+    &.delete,
+    &.edit,
+    &.show,
+    &.pdf{
+        display: inline-block;
+    }
+    &.delete{
+        @include icons-sprite(delete);
+        height: icons-sprite-height(delete);
+        width: icons-sprite-width(delete);
+    }
+    &.edit{
+        @include icons-sprite(edit);
+        height: icons-sprite-height(edit);
+        width: icons-sprite-width(edit);
+    }
+    &.show{
+        @include icons-sprite(show);
+        height: icons-sprite-height(show);
+        width: icons-sprite-width(show);
+    }
+    &.pdf{
+        @include icons-sprite(pdf);
+        height: icons-sprite-height(pdf);
+        width: icons-sprite-width(pdf);
+    }
+    &.arrow-right{
+        margin-left: 6px;
+        @include icons-sprite(arrow_right);
+        height: icons-sprite-height(arrow_right);
+        width: icons-sprite-width(arrow_right);
+    }
+    &.arrow-left{
+        margin-right: 6px;
+        @include icons-sprite(arrow_left);
+        height: icons-sprite-height(arrow_left);
+        width: icons-sprite-width(arrow_left);
+    }
+    &.arrow-right,
+    &.arrow-left{
+        display:inline-block;
+        vertical-align:text-top;
+        margin-top: 5px;
+    }
+}
+
+
+#consultants-map-canvas,
+#consultants-map-canvas-2,
+#near-you-container {
+    max-width: 100%;
+}

@@ -48,5 +48,7 @@ class CleanOrdersDeletedLogCommand extends ContainerAwareCommand
             $query->delete();
         }
 
+        $prefix = substr($this->getContainer()->getParameter('locale'), -2);
+        $this->getContainer()->get('redis.permanent')->hset('cron.log', $prefix.':clean_deleted_orders_log', time());
     }
 }

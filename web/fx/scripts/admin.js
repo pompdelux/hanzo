@@ -30,10 +30,16 @@
         });
       });
 
-      $('.sortable-item.ui-state-disabled > ul').hide();
-      $('.sortable-item.ui-state-disabled > .sort-handle').on('click', function(event) {
+      $('.sortable-item.ui-state-disabled').addClass('collapsed').find(' > ul').hide();
+      $('.sortable-item > div.record .record-id').on('click', function(event) {
         event.preventDefault();
-        $(this).closest('li').find('ul').first().slideToggle();
+        var $li = $(this).closest('li');
+        $li.find('ul').first().slideToggle();
+        if ($li.hasClass('collapsed')) {
+          $li.removeClass('collapsed');
+        } else {
+          $li.addClass('collapsed');
+        }
       });
 
       /* Admin Sortable list to show and update Cms pages' order*/
@@ -232,12 +238,14 @@
 
       //ProductsToImages on Products page
       $('.product-selector').change(function(){
-        var selectedOption = $(this).find('option:selected');
+        var $product_select = $(this);
+        var selectedOption = $product_select.find('option:selected');
+        var $color_select = $product_select.next('.product-color-selector');
         var reference = selectedOption.val().split('-');
         var image = reference[0];
         var product = reference[1];
         $.ajax({
-          url: '../add-reference/',
+          url: '../reference-get-color/',
           dataType: 'json',
           type: 'POST',
           data: {image : image, product : product},
@@ -249,14 +257,66 @@
               }
             }
             else {
-              $('#item-' + image + ' .product-references').append('<li><span class="actions"><a href="' + base_url + 'products/delete-reference/' + image + '/' + product + '" class="delete" title="Slet">Slet</a></span><span class="id">(#' + product + ')</span><span class="sku">' + selectedOption.text() + '</span></li>');
+              $color_select.find('option')
+                .not('.initial')
+                .remove();
+              if(response.data.length > 0) {
+                $.each(response.data, function(key, value) {
+                  $color_select
+                    .append($("<option></option>")
+                    .attr("value",value)
+                    .text(value));
+                });
+                $color_select.removeAttr('disabled');
+              }
+              else {
+                $color_select.attr('disabled', 'disabled');
+                $color_select.val(0);
+              }
+              // $('#item-' + image + ' .product-references').append('<li><span class="actions"><a href="' + base_url + 'products/delete-reference/' + image + '/' + product + '" class="delete" title="Slet">Slet</a></span><span class="id">(#' + product + ')</span><span class="sku">' + selectedOption.text() + '</span></li>');
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {
             dialoug.error(Translator.get('js:notice'), Translator.get('js:an.error.occurred'));
           }
         });
-        $(this).val(0);
+      });
+
+      //ProductsToImages on Products page
+      $('.product-color-selector').change(function(){
+        var $color_select = $(this);
+        var $product_select = $color_select.prev('.product-selector');
+        var selectedOption = $product_select.find('option:selected');
+        var reference = selectedOption.val().split('-');
+        var image = reference[0];
+        var product = reference[1];
+        var color = $color_select.find('option:selected').val();
+        $.ajax({
+          url: '../add-reference/',
+          dataType: 'json',
+          type: 'POST',
+          data: {image : image, product : product, color : color},
+          async: false,
+          success: function(response, textStatus, jqXHR) {
+            if (false === response.status) {
+              if (response.message) {
+                dialoug.alert(Translator.get('js:notice', response.message));
+              }
+            }
+            else {
+              $('#item-' + image + ' .product-references').append('<li><span class="id">(#' + product + ')</span><span class="sku">' + selectedOption.text() + '</span> - <span class="color">' + color + '</span></li>');
+              $color_select.attr('disabled', 'disabled')
+                .find('option')
+                .not('.initial')
+                .remove();
+              $product_select.val(0);
+              $color_select.val(0);
+            }
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            dialoug.error(Translator.get('js:notice'), Translator.get('js:an.error.occurred'));
+          }
+        });
       });
 
 
@@ -585,7 +645,7 @@
         $(this).val(0);
       });
 
-      $('#coupons a.delete').live('click',function(e){
+      $('#gift-cards a.delete').live('click',function(e){
         e.preventDefault();
         var $a = $(this);
         dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> Gavekortet ?',function(choice) {
@@ -605,7 +665,7 @@
           }
         });
       });
-      $('#coupons-to-customers a.delete').live('click',function(e){
+      $('#gift-cards-to-customers a.delete').live('click',function(e){
         e.preventDefault();
         var $a = $(this);
         dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>fjerne</strong> denne bruger ?',function(choice) {
@@ -625,16 +685,16 @@
           }
         });
       });
-      $('#coupon-customer-selector').change(function(){
+      $('#gift-card-customer-selector').change(function(){
         var selectedOption = $(this).find('option:selected');
         var reference = selectedOption.val().split('-');
         var customer = reference[0];
-        var coupon = reference[1];
+        var gift_card = reference[1];
         $.ajax({
-          url: base_url + 'coupons/add-customer',
+          url: base_url + 'gift-cards/add-customer',
           dataType: 'json',
           type: 'POST',
-          data: {customer : customer, coupon : coupon},
+          data: {customer : customer, gift_card : gift_card},
           async: false,
           success: function(response, textStatus, jqXHR) {
             if (false === response.status) {
@@ -643,7 +703,7 @@
               }
             }
             else {
-              $('#coupons-to-customers').append('<li><span class="actions"><a href="' + base_url + 'products/delete-category/' + customer + '/' + coupon + '" class="delete" title="Slet">Slet</a></span><span class="name"> ' + selectedOption.text() + '</span></li>');
+              $('#gift-cards-to-customers').append('<li><span class="actions"><a href="' + base_url + 'products/delete-category/' + customer + '/' + gift_card + '" class="delete" title="Slet">Slet</a></span><span class="name"> ' + selectedOption.text() + '</span></li>');
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {

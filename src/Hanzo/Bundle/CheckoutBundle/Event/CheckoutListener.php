@@ -12,8 +12,9 @@ use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersLinesQuery;
 use Hanzo\Model\OrdersSyncLogQuery;
 
+use Hanzo\Bundle\AccountBundle\AddressFormatter;
 use Hanzo\Bundle\ServiceBundle\Services\MailService;
-use Hanzo\Bundle\ServiceBundle\Services\AxService;
+use Hanzo\Bundle\AxBundle\Actions\Out\AxService;
 
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
@@ -25,13 +26,15 @@ class CheckoutListener
     protected $ax;
     protected $translator;
     protected $session;
+    protected $formatter;
 
-    public function __construct(MailService $mailer, AxService $ax, Translator $translator, Session $session)
+    public function __construct(MailService $mailer, AxService $ax, Translator $translator, Session $session, AddressFormatter $formatter)
     {
         $this->mailer     = $mailer;
         $this->ax         = $ax;
         $this->translator = $translator;
         $this->session    = $session;
+        $this->formatter  = $formatter;
     }
 
     /**
@@ -68,40 +71,49 @@ class CheckoutListener
     }
 
 
-    public function onPaymentCollected(FilterOrderEvent $event)
+    /**
+     * Closing order
+     * Note, this MUST be the first event triggered!
+     *
+     * If the order is in a wrong state, propagation is halted.
+     *
+     * @param  FilterOrderEvent $event
+     * @return void
+     */
+    public function onPaymentCollectedFirst(FilterOrderEvent $event)
     {
         $order = $event->getOrder();
 
         if ($order->getState() < Orders::STATE_PAYMENT_OK ) {
-            error_log(__LINE__.':'.__FILE__.' Could not sync order, state is: '.$order->getState()); // hf@bellcom.dk debugging
-            // woopsan!
+            $this->logger->addError('Order #'.$order->getId().' was in state "'.$order->getState().'" and was stopped in flow!');
+            $event->stopPropagation();
             return;
         }
 
         // need copy for later
-        $in_edit = $order->getInEdit();
+        $event->setInEdit($order->getInEdit());
 
         $order->setState( Orders::STATE_PENDING );
         $order->setInEdit(false);
         $order->setSessionId($order->getId());
         $order->setUpdatedAt(time());
         $order->save();
+    }
 
-        // trigger ax sync
-        $this->ax->sendOrder($order);
 
-        // ONLY send email and cancel payments if the order is logged !
-        $logged = OrdersSyncLogQuery::create()
-            ->select('State')
-            ->filterByOrdersId($order->getId())
-            ->findOne(Propel::getConnection(null, Propel::CONNECTION_WRITE))
-        ;
-        if (!$logged) {
-            return;
-        }
+    /**
+     * Build and send order confirmation to customer
+     * Event is triggered last.
+     *
+     * @param  FilterOrderEvent $event
+     * @return void
+     */
+    public function onPaymentCollected(FilterOrderEvent $event)
+    {
+        $order = $event->getOrder();
+        $in_edit = $event->getInEdit();
 
         // build and send order confirmation.
-
         $attributes = $order->getAttributes();
         $email = $order->getEmail();
         $name  = trim($order->getFirstName() . ' ' . $order->getLastName());
@@ -159,9 +171,9 @@ class CheckoutListener
 
         $params = array(
             'order' => $order,
-            'payment_address'  => Tools::orderAddress('payment', $order),
+            'payment_address'  => $this->formatter->format($order->getOrderAddress('payment'), 'txt'),
             'company_address'  => $company_address,
-            'delivery_address' => Tools::orderAddress('shipping', $order),
+            'delivery_address' => $this->formatter->format($order->getOrderAddress('shipping'), 'txt'),
             'customer_id'      => $order->getCustomersId(),
             'order_date'       => $order->getCreatedAt('Y-m-d'),
             'payment_method'   => $this->translator->trans('payment.'. $order->getBillingMethod() .'.title', [],'checkout'),
@@ -195,9 +207,9 @@ class CheckoutListener
             $params['payment_gateway_id'] = $order->getPaymentGatewayId();
         }
 
-        if (isset($attributes->coupon->amount)) {
-            $params['coupon_amount'] = $attributes->coupon->amount;
-            $params['coupon_name'] = $attributes->coupon->text;
+        if (isset($attributes->gift_card->amount)) {
+            $params['gift_card_amount'] = $attributes->gift_card->amount;
+            $params['gift_card_name'] = $attributes->gift_card->text;
         }
 
         foreach ($order->getOrdersLiness() as $line) {

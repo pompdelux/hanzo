@@ -83,6 +83,22 @@
                 <source>existing.customer</source>
                 <target>Existing customer</target>
             </trans-unit>
+            <trans-unit id="title">
+                <source>title</source>
+                <target>Title</target>
+            </trans-unit>
+            <trans-unit id="attention.label">
+                <source>attention.label</source>
+                <target>Att:</target>
+            </trans-unit>
+            <trans-unit id="title.male">
+                <source>title.male</source>
+                <target>Hr.</target>
+            </trans-unit>
+            <trans-unit id="title.female">
+                <source>title.female</source>
+                <target>Fru</target>
+            </trans-unit>
             <trans-unit id="email">
                 <source>email</source>
                 <target>E-mail address</target>
@@ -121,7 +137,7 @@
             </trans-unit>
             <trans-unit id="54">
                 <source>Phone</source>
-                <target>Phone</target>
+                <target>Mobile number</target>
             </trans-unit>
             <trans-unit id="55">
                 <source>Address line 1</source>
@@ -461,7 +477,7 @@
             </trans-unit>
             <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>
-                <target><![CDATA[<p>If you wish to shop at POMPdeLUX you have to open an account here on this page.<br /><br />You will always be able to check and change your order until it is being packed and shipped from our warehouse. You can change colour and size on the items you have ordered, and you can add or cancel items, as long as it says "Pending" next to your order. It is possible to change your order minimum 24 hours after you have placed the order.<br /><br />As a customer at POMPdeLUX you can see your previous orders and find old invoices on my account</p><!--<h2>New customer?</h2>]]>--></target>
+                <target><![CDATA[<p>If you wish to shop at POMPdeLUX you have to open an account here on this page.<br /><br />You will always be able to check and change your order until it is being packed and shipped from our warehouse. You can change colour and size on the items you have ordered, and you can add or cancel items, as long as it says "Pending" next to your order. It is possible to change your order minimum 24 hours after you have placed the order. <br /><br />As a customer at POMPdeLUX you can see your previous orders and find old invoices on my account</p><!--<h2>New customer?</h2>]]>--></target>
             </trans-unit>
             <trans-unit id="my.account.login.header" approved="no">
                 <source>my.account.login.header</source>

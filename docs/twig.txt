@@ -6,3 +6,55 @@
 {{ FILETIME_LONG ..../../*.xls }}      {{ !! }}
 {{ FILETIME_SHORT .../../*.pdf }}      {{ !! }}
 
+
+------------------------------------------------------------------------------------
+Til slideshow embed på forsiden:
+------------------------------------------------------------------------------------
+{{ embed("slideshow", {
+  "2013s1": {
+    "slides": [
+      {
+        "href": "/da_DK/forside/home-shopping",
+        "src": "images/frontpage/Carousel05_uge7_SS13_ALL.jpg"
+      },
+      {
+        "href": "/da_DK/forside/om-pompdelux",
+        "src": "images/frontpage/Carousel04_uge7_SS13_DK.jpg"
+      }
+    ],
+    "class": "grid_6 alpha"
+  },
+  "2013s1_mobile": {
+    "slides": [
+      {
+        "href": "http://ipaper.ipapercms.dk/POMPdeLUX/DK/SPRINGSUMMER13/",
+        "src": "images/frontpage/Carousel01_uge7_SS13_ALL.jpg",
+        "params": { "target": "_blank" }
+      },
+      {
+        "href": "/da_DK/forside/om-pompdelux",
+        "src": "images/frontpage/Carousel04_uge7_SS13_DK.jpg"
+      }
+    ],
+    "class": "grid_6 alpha"
+  }
+}) }}
+------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------
+Til at embedde enkeltbilleder med:
+------------------------------------------------------------------------------------
+{{ embed("image", {
+  "2013s1": {
+    "src": "path/to/image.jpg",
+    "alt": "image alt text",
+    "caption": "optional image caption"
+  },
+  "2013s1_mobile": {
+    "src": "path/to/mobile/image.jpg",
+    "alt": "image alt text",
+    "caption": "Budskab",
+    "class": "caption-right"
+  }
+}) }}
+------------------------------------------------------------------------------------

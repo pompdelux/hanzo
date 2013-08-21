@@ -5,8 +5,9 @@ namespace Hanzo\Bundle\AdminBundle\Controller;
 use Hanzo\Core\CoreController;
 
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
 
-use \PropelCollection;
+use PropelCollection;
 use Hanzo\Model\HelpdeskDataLogQuery;
 use Hanzo\Model\HelpdeskDataLog;
 
@@ -14,7 +15,7 @@ class HelpdeskController extends CoreController
 {
     public function indexAction($pager)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_CUSTOMERS_SERVICE")'))) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
@@ -63,7 +64,7 @@ class HelpdeskController extends CoreController
 
     public function deleteAction($key)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_CUSTOMERS_SERVICE")'))) {
             return $this->redirect($this->generateUrl('admin'));
         }
 

@@ -10,6 +10,7 @@ use Hanzo\Model\Customers;
 
 use Hanzo\Bundle\PaymentBundle\BasePaymentApi;
 use Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface;
+use Hanzo\Bundle\PaymentBundle\BasePaymentApi;
 use Hanzo\Bundle\PaymentBundle\Methods\PayByBill\PayByBillCallResponse;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -126,7 +127,7 @@ class PayByBillApi extends BasePaymentApi implements PaymentMethodApiInterface
     }
 
 
-    public function getProcessButton(Orders $order)
+    public function getProcessButton(Orders $order, Request $request)
     {
         return ['url' => 'payment/paybybill/callback'];
     }

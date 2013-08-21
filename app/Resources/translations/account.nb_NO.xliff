@@ -86,6 +86,22 @@
                 <source>existing.customer</source>
                 <target>Eksisterende kunde</target>
             </trans-unit>
+            <trans-unit id="title">
+                <source>title</source>
+                <target>Title</target>
+            </trans-unit>
+            <trans-unit id="attention.label">
+                <source>attention.label</source>
+                <target>Att:</target>
+            </trans-unit>
+            <trans-unit id="title.male">
+                <source>title.male</source>
+                <target>Hr.</target>
+            </trans-unit>
+            <trans-unit id="title.female">
+                <source>title.female</source>
+                <target>Fru</target>
+            </trans-unit>
             <trans-unit id="email">
                 <source>email</source>
                 <target>E-postadresse</target>
@@ -120,7 +136,7 @@
             </trans-unit>
             <trans-unit id="54">
                 <source>Phone</source>
-                <target>Telefonnummer</target>
+                <target>Mobilnummer</target>
             </trans-unit>
             <trans-unit id="55">
                 <source>Address line 1</source>

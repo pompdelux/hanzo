@@ -53,8 +53,6 @@ CREATE TABLE `cms`
     `created_at` DATETIME,
     `updated_at` DATETIME,
     PRIMARY KEY (`id`),
-    INDEX `cms_I_1` (`path`),
-    INDEX `cms_I_2` (`old_path`),
     INDEX `FI_cms_1` (`cms_thread_id`),
     INDEX `FI_cms_2` (`parent_id`),
     CONSTRAINT `fk_cms_1`
@@ -95,12 +93,12 @@ CREATE TABLE `countries`
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
--- coupons
+-- gift_cards
 -- ---------------------------------------------------------------------
 
-DROP TABLE IF EXISTS `coupons`;
+DROP TABLE IF EXISTS `gift_cards`;
 
-CREATE TABLE `coupons`
+CREATE TABLE `gift_cards`
 (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `code` VARCHAR(12) NOT NULL,
@@ -113,7 +111,36 @@ CREATE TABLE `coupons`
     `updated_at` DATETIME,
     PRIMARY KEY (`id`),
     UNIQUE INDEX `code_UNIQUE` (`code`),
-    INDEX `index3` (`currency_code`)
+    INDEX `index3` (`active_from`, `active_to`),
+    INDEX `index4` (`is_active`),
+    INDEX `index5` (`currency_code`)
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
+-- coupons
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `coupons`;
+
+CREATE TABLE `coupons`
+(
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `code` VARCHAR(12) NOT NULL,
+    `amount` DECIMAL(15,4) NOT NULL,
+    `min_purchase_amount` DECIMAL(15,4),
+    `currency_code` VARCHAR(3) NOT NULL,
+    `active_from` DATETIME,
+    `active_to` DATETIME,
+    `is_active` TINYINT(1) DEFAULT 1 NOT NULL,
+    `is_used` TINYINT(1) DEFAULT 0 NOT NULL,
+    `created_at` DATETIME,
+    `updated_at` DATETIME,
+    PRIMARY KEY (`id`),
+    UNIQUE INDEX `code_UNIQUE` (`code`),
+    INDEX `index3` (`active_from`, `active_to`),
+    INDEX `index4` (`is_active`),
+    INDEX `index5` (`is_used`),
+    INDEX `index6` (`currency_code`)
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
@@ -149,6 +176,7 @@ CREATE TABLE `customers`
 (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `groups_id` INTEGER DEFAULT 1 NOT NULL,
+    `title` VARCHAR(12),
     `first_name` VARCHAR(128) NOT NULL,
     `last_name` VARCHAR(128) NOT NULL,
     `email` VARCHAR(255) NOT NULL,
@@ -199,6 +227,7 @@ CREATE TABLE `addresses`
 (
     `customers_id` INTEGER NOT NULL,
     `type` VARCHAR(32) DEFAULT 'payment' NOT NULL,
+    `title` VARCHAR(12),
     `first_name` VARCHAR(128) NOT NULL,
     `last_name` VARCHAR(128) NOT NULL,
     `address_line_1` VARCHAR(255) NOT NULL,
@@ -422,12 +451,14 @@ CREATE TABLE `products`
     `has_video` TINYINT(1) DEFAULT 1 NOT NULL,
     `is_out_of_stock` TINYINT(1) DEFAULT 0 NOT NULL,
     `is_active` TINYINT(1) DEFAULT 1 NOT NULL,
+    `is_voucher` TINYINT(1) DEFAULT 0 NOT NULL,
     `created_at` DATETIME,
     `updated_at` DATETIME,
     PRIMARY KEY (`id`),
     UNIQUE INDEX `sku_UNIQUE` (`sku`),
     INDEX `key_size_color` (`size`, `color`),
     INDEX `key_out_of_stock` (`is_out_of_stock`),
+    INDEX `key_is_voucher` (`is_voucher`),
     INDEX `index5` (`master`),
     INDEX `products_FI_2` (`washing`),
     CONSTRAINT `products_FK_1`
@@ -702,6 +733,7 @@ CREATE TABLE `orders`
     `phone` VARCHAR(32),
     `languages_id` INTEGER NOT NULL,
     `currency_code` VARCHAR(12) DEFAULT '' NOT NULL,
+    `billing_title` VARCHAR(12),
     `billing_first_name` VARCHAR(128) NOT NULL,
     `billing_last_name` VARCHAR(128) NOT NULL,
     `billing_address_line_1` VARCHAR(255),
@@ -714,6 +746,7 @@ CREATE TABLE `orders`
     `billing_company_name` VARCHAR(128),
     `billing_method` VARCHAR(64),
     `billing_external_address_id` VARCHAR(128),
+    `delivery_title` VARCHAR(12),
     `delivery_first_name` VARCHAR(128) NOT NULL,
     `delivery_last_name` VARCHAR(128) NOT NULL,
     `delivery_address_line_1` VARCHAR(255),
@@ -791,13 +824,15 @@ CREATE TABLE `orders_lines`
     `products_sku` VARCHAR(255),
     `products_name` VARCHAR(255) NOT NULL,
     `products_color` VARCHAR(128),
-    `products_size` VARCHAR(32),
+    `products_size` VARCHAR(32) NOT NULL,
     `expected_at` DATE DEFAULT '1970-01-01',
     `original_price` DECIMAL(15,4),
     `price` DECIMAL(15,4),
     `vat` DECIMAL(15,4) DEFAULT 0.00,
     `quantity` INTEGER,
     `unit` VARCHAR(12),
+    `is_voucher` TINYINT(1) DEFAULT 0 NOT NULL,
+    `note` VARCHAR(255),
     PRIMARY KEY (`id`),
     INDEX `FI_orders_lines_1` (`orders_id`),
     INDEX `FI_orders_lines_2` (`products_id`),
@@ -1107,6 +1142,7 @@ CREATE TABLE `cms_i18n`
     `settings` TEXT,
     `is_restricted` TINYINT(1) DEFAULT 0 NOT NULL,
     `is_active` TINYINT(1) DEFAULT 1 NOT NULL,
+    `on_mobile` TINYINT(1) DEFAULT 1 NOT NULL,
     PRIMARY KEY (`id`,`locale`),
     CONSTRAINT `cms_i18n_FK_1`
         FOREIGN KEY (`id`)

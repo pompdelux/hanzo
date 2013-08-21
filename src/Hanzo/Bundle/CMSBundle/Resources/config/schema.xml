@@ -42,20 +42,15 @@
     <column name="settings" type="LONGVARCHAR" defaultValue="null" />
     <column name="is_active" type="BOOLEAN" required="true" defaultValue="TRUE" />
     <column name="is_restricted" type="BOOLEAN" required="true" defaultValue="FALSE" />
+    <column name="on_mobile" type="BOOLEAN" required="true" defaultValue="TRUE" />
     <foreign-key foreignTable="cms_thread" name="fk_cms_1" onDelete="CASCADE" onUpdate="CASCADE">
       <reference local="cms_thread_id" foreign="id" />
     </foreign-key>
     <foreign-key foreignTable="cms" name="fk_cms_2" onDelete="CASCADE">
       <reference local="parent_id" foreign="id" />
     </foreign-key>
-    <index>
-      <index-column name="path" />
-    </index>
-    <index>
-      <index-column name="old_path" />
-    </index>
     <behavior name="i18n">
-      <parameter name="i18n_columns" value="title, path, old_path, content, settings, is_restricted, is_active" />
+      <parameter name="i18n_columns" value="title, path, old_path, content, settings, is_restricted, is_active, on_mobile" />
       <parameter name="default_locale" value="da_DK" />
     </behavior>
     <behavior name="timestampable" />
@@ -85,7 +80,7 @@
     </unique>
   </table>
 
-  <table name="coupons">
+  <table name="gift_cards">
     <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="code" type="VARCHAR" size="12" required="true"/>
     <column name="amount" type="DECIMAL" size="15" scale="4" required="true"/>
@@ -97,6 +92,42 @@
       <unique-column name="code"/>
     </unique>
     <index name="index3">
+      <index-column name="active_from"/>
+      <index-column name="active_to"/>
+    </index>
+    <index name="index4">
+      <index-column name="is_active"/>
+    </index>
+    <index name="index5">
+      <index-column name="currency_code"/>
+    </index>
+    <behavior name="timestampable" />
+  </table>
+
+  <table name="coupons">
+    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="code" type="VARCHAR" size="12" required="true"/>
+    <column name="amount" type="DECIMAL" size="15" scale="4" required="true"/>
+    <column name="min_purchase_amount" type="DECIMAL" size="15" scale="4" required="false"/>
+    <column name="currency_code" type="VARCHAR" size="3" required="true"/>
+    <column name="active_from" type="TIMESTAMP" required="false"/>
+    <column name="active_to" type="TIMESTAMP" required="false"/>
+    <column name="is_active" type="BOOLEAN" size="1" required="true" defaultValue="true"/>
+    <column name="is_used" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
+    <unique name="code_UNIQUE">
+      <unique-column name="code"/>
+    </unique>
+    <index name="index3">
+      <index-column name="active_from"/>
+      <index-column name="active_to"/>
+    </index>
+    <index name="index4">
+      <index-column name="is_active"/>
+    </index>
+    <index name="index5">
+      <index-column name="is_used"/>
+    </index>
+    <index name="index6">
       <index-column name="currency_code"/>
     </index>
     <behavior name="timestampable" />
@@ -117,6 +148,7 @@
   <table name="customers" allowPkInsert="true">
     <column name="id" type="INTEGER" primaryKey="true" required="true" autoIncrement="true"/>
     <column name="groups_id" type="INTEGER" required="true" defaultValue="1"/>
+    <column name="title" type="VARCHAR" size="12" required="false"/>
     <column name="first_name" type="VARCHAR" size="128" required="true"/>
     <column name="last_name" type="VARCHAR" size="128" required="true"/>
     <column name="email" type="VARCHAR" size="255" required="true"/>
@@ -148,6 +180,7 @@
   <table name="addresses">
     <column name="customers_id" type="INTEGER" primaryKey="true" required="true"/>
     <column name="type" type="VARCHAR" size="32" primaryKey="true" required="true" defaultValue="payment"/>
+    <column name="title" type="VARCHAR" size="12" required="false"/>
     <column name="first_name" type="VARCHAR" size="128" required="true"/>
     <column name="last_name" type="VARCHAR" size="128" required="true"/>
     <column name="address_line_1" type="VARCHAR" size="255" required="true"/>
@@ -308,6 +341,7 @@
     <column name="has_video" type="BOOLEAN" size="1" required="true" defaultValue="true"/>
     <column name="is_out_of_stock" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
     <column name="is_active" type="BOOLEAN" size="1" required="true" defaultValue="true"/>
+    <column name="is_voucher" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
     <column name="title" type="VARCHAR" required="true" primaryString="true" />
     <column name="content" type="LONGVARCHAR" />
     <foreign-key foreignTable="products" onDelete="CASCADE">
@@ -325,6 +359,9 @@
     </index>
     <index name="key_out_of_stock">
       <index-column name="is_out_of_stock"/>
+    </index>
+    <index name="key_is_voucher">
+      <index-column name="is_voucher"/>
     </index>
     <index name="index5">
       <index-column name="master"/>
@@ -382,6 +419,7 @@
   <table name="products_images_product_references">
     <column name="products_images_id" type="INTEGER" primaryKey="true" required="true"/>
     <column name="products_id" type="INTEGER" primaryKey="true" required="true"/>
+    <column name="color" type="VARCHAR" size="255" required="false"/>
     <foreign-key foreignTable="products_images" name="fk_products_images_product_references_1" onDelete="CASCADE">
       <reference local="products_images_id" foreign="id"/>
     </foreign-key>
@@ -486,6 +524,7 @@
     <column name="phone" type="VARCHAR" size="32" required="false"/>
     <column name="languages_id" type="INTEGER" required="true"/>
     <column name="currency_code" type="VARCHAR" size="12" required="true" defaultValue=""/>
+    <column name="billing_title" type="VARCHAR" size="12" required="false"/>
     <column name="billing_first_name" type="VARCHAR" size="128" required="true"/>
     <column name="billing_last_name" type="VARCHAR" size="128" required="true"/>
     <column name="billing_address_line_1" type="VARCHAR" size="255" required="false"/>
@@ -498,6 +537,7 @@
     <column name="billing_company_name" type="VARCHAR" size="128" required="false"/>
     <column name="billing_method" type="VARCHAR" size="64" required="false"/>
     <column name="billing_external_address_id" type="VARCHAR" size="128" required="false"/>
+    <column name="delivery_title" type="VARCHAR" size="12" required="false"/>
     <column name="delivery_first_name" type="VARCHAR" size="128" required="true"/>
     <column name="delivery_last_name" type="VARCHAR" size="128" required="true"/>
     <column name="delivery_address_line_1" type="VARCHAR" size="255" required="false"/>
@@ -557,13 +597,15 @@
     <column name="products_sku" type="VARCHAR" size="255" required="false"/>
     <column name="products_name" type="VARCHAR" size="255" required="true"/>
     <column name="products_color" type="VARCHAR" size="128" required="false"/>
-    <column name="products_size" type="VARCHAR" size="32" required="false"/>
+    <column name="products_size" type="VARCHAR" size="32" required="true"/>
     <column name="expected_at" type="DATE" required="false" defaultValue="1970-01-01"/>
     <column name="original_price" type="DECIMAL" size="15" scale="4" required="false"/>
     <column name="price" type="DECIMAL" size="15" scale="4" required="false"/>
     <column name="vat" type="DECIMAL" size="15" scale="4" required="false" defaultValue="0.00"/>
     <column name="quantity" type="INTEGER" required="false"/>
     <column name="unit" type="VARCHAR" size="12" required="false"/>
+    <column name="is_voucher" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
+    <column name="note" type="VARCHAR" size="255" required="false"/>
     <foreign-key foreignTable="orders" name="fk_orders_lines_1" onDelete="CASCADE">
       <reference local="orders_id" foreign="id"/>
     </foreign-key>

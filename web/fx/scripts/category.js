@@ -33,7 +33,7 @@
         var
           State = History.getState(),
           url = State.url;
-
+        event.preventDefault();
         // start loading anim
         dialoug.loading('.pager.ajax ul', Translator.get('js:loading.std'));
 
@@ -73,51 +73,62 @@
         var vid = matches ? matches[0] : 1;
 
         // settings for the pager animation
-        var direction = 'next';
+        var direction = 'left';
         var anim_params_in = {left : 0};
-        var anim_params_out = {left : -744};
+        var anim_params_out = {left : -714};
 
         if (currtent_pager_id > vid) {
-          direction = 'prev';
+          direction = 'right';
           anim_params_in = {left : 0};
-          anim_params_out = {left : 744};
+          anim_params_out = {left : 714};
         }
 
         currtent_pager_id = vid;
         var current = cache[url];
 
         // append the result to the document
-        $target.append(yatzy.render('productItems', current.products));
-        $new_item = $('.new-item', $target);
-        $new_item.addClass(direction);
+        $new_item = $(yatzy.render('productItems', current.products));
+        $target.append($new_item);
 
         // run the swithc page animation
-        $('.old-item', $target).animate(anim_params_out, function() {
+        $('.old-item', $target).hide('500', function() {
           $(this).remove();
+          $new_item.show('500', function() {
+            $new_item.addClass('old-item').removeClass('new-item');
+          });
         });
-        $new_item.animate(anim_params_in, function() {
-          $new_item.addClass('old-item').removeClass('new-item').removeClass(direction);
-        });
+        $('html, body').animate({
+          scrollTop: $target.offset().top - 100
+        }, 500);
 
         // setup pager links
-        var $next = $('.pager.ajax li.next');
-        var $prew = $('.pager.ajax li.prew');
+        if(typeof current.paginate !== "undefined" && current.paginate !== null){
+          var $next = $('.pager.ajax li.next');
+          var $prew = $('.pager.ajax li.prew');
 
-        $('.pager.ajax li').removeClass('current');
-        $('.pager.ajax li:eq(' + current.paginate.index + ')').addClass('current');
+          $('.pager.ajax li').removeClass('current');
+          $('.pager.ajax').each(function(i){
+            $(this).find('li:eq(' + current.paginate.index + ')').addClass('current');
+          });
 
-        $next.addClass('off');
-        $prew.addClass('off');
+          $next.addClass('off');
+          $prew.addClass('off');
 
-        $next.children('a').attr('href', current.paginate.next);
-        $prew.children('a').attr('href', current.paginate.prew);
+          $next.children('a').attr('href', current.paginate.next);
+          $prew.children('a').attr('href', current.paginate.prew);
 
-        // switch on/off next and prev links
-        if ((undefined !== current.paginate.next) && current.paginate.next) {
-          $next.removeClass('off');
-        }
-        if ((undefined !== current.paginate.prew) && current.paginate.prew) {
-          $prew.removeClass('off');
+          // switch on/off next and prev links
+          if ((undefined !== current.paginate.next) && current.paginate.next) {
+            $next.removeClass('off');
+          }
+          if ((undefined !== current.paginate.prew) && current.paginate.prew) {
+            $prew.removeClass('off');
+          }
+        }else{
+          // No need off pagination. Remove if they exists
+          $('.pager.ajax').hide('300',function(e){
+            $(this).remove();
+          });
         }
 
         // stop loading anim
@@ -130,9 +141,29 @@
       });
     };
 
+    pub.initFlip = function() {
+      var originalPicture = null;
+      $(document).on({
+        mouseenter: function () {
+          $img = $(this).find('img[data-flip]');
+          if($img.data('flip')){
+            originalPicture = $img.attr('src');
+            $img.attr('src', $img.data('flip'));
+          }
+        },
+        mouseleave: function () {
+          $img = $(this).find('img[data-flip]');
+          if(originalPicture){
+            $img.attr('src',originalPicture);
+            originalPicture = null;
+          }
+        }
+      }, '.flip-this');
+    };
     return pub;
   })(jQuery);
 
   category.initPager();
+  category.initFlip();
 
 })(document, jQuery);

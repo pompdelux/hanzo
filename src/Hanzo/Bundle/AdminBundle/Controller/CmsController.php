@@ -321,6 +321,11 @@ class CmsController extends CoreController
                 'translation_domain' => 'admin',
                 'required'  => false
             ))
+            ->add('on_mobile', 'checkbox', array(
+                'label'     => 'cms.edit.label.on_mobile',
+                'translation_domain' => 'admin',
+                'required'  => false
+            ))
             ->add('title', null, array(
                 'label'     => 'cms.edit.label.title',
                 'required' => TRUE,
@@ -567,6 +572,96 @@ class CmsController extends CoreController
             ));
         }
     }
+
+
+    public function adminMenuAction()
+    {
+        $pages = [
+            'admin' => [
+                'access' => ['ROLE_ADMIN', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE', 'ROLE_SALES', 'ROLE_STATS'],
+                'title' => 'Forside',
+            ],
+            'admin_statistics' => [
+                'access' => ['ROLE_ADMIN', 'ROLE_STATS', 'ROLE_SALES'],
+                'title' => 'Salgs statistik',
+            ],
+            'admin_settings' => [
+                'access' => ['ROLE_ADMIN'],
+                'title' => 'Indstillinger',
+            ],
+            'admin_cms' => [
+                'access' => ['ROLE_ADMIN'],
+                'title' => 'CMS',
+            ],
+            'admin_customers' => [
+                'access' => ['ROLE_ADMIN', 'ROLE_CUSTOMERS_SERVICE'],
+                'title' => 'Kunder',
+            ],
+            'admin_consultants' => [
+                'access' => ['ROLE_ADMIN', 'ROLE_SALES'],
+                'title' => 'Konsulenter',
+            ],
+            'admin_employees' => [
+                'access' => ['ROLE_ADMIN', 'ROLE_SALES'],
+                'title' => 'Medarbejdere',
+            ],
+            'admin_orders' => [
+                'access' => ['ROLE_ADMIN', 'ROLE_SALES'],
+                'title' => 'Ordrer',
+            ],
+            'admin_products' => [
+                'access' => ['ROLE_ADMIN'],
+                'title' => 'Katalog',
+            ],
+            'admin_settings_washing_instructions' => [
+                'access' => ['ROLE_ADMIN'],
+                'title' => 'Vaskeanvisninger',
+            ],
+            'admin_gift_cards' => [
+                'access' => ['ROLE_ADMIN'],
+                'title' => 'Gavekort',
+            ],
+            'admin_coupons' => [
+                'access' => ['ROLE_ADMIN'],
+                'title' => 'Rabatkoder',
+            ],
+            'admin_postalcode' => [
+                'access' => ['ROLE_ADMIN'],
+                'title' => 'Postnumre',
+            ],
+            'admin_helpdesk' => [
+                'access' => ['ROLE_ADMIN'],
+                'title' => 'Helpdesk',
+            ],
+            'admin_tools' => [
+                'access' => ['ROLE_ADMIN'],
+                'title' => 'Tools',
+            ],
+        ];
+
+        $roles = $this->get('security.context')->getToken()->getUser()->getRoles();
+
+        $links = '';
+        $router = $this->get('router');
+
+        foreach ($pages as $key => $content) {
+            foreach ($content['access'] as $value) {
+                if (in_array($value, $roles)) {
+                    $links .= '<li><a href="'.$router->generate($key).'">'.$content['title'].'</a></li>'."\n";
+                    break;
+                }
+            }
+        }
+
+        return $this->response('
+            <nav class="main">
+              <ul>
+              '.$links.'
+              </ul>
+            </nav>
+        ');
+    }
+
 
     /**
      * Creates the html for a System Tree of the CMS. Works recursivly.

@@ -61,14 +61,8 @@
     </tbody>
   </table>
   {% else %}
-
-  <p>{{ 'admin.products.no.styles.text'|trans({}, 'admin') }}</p>
-
+    <p>{{ 'admin.products.no.styles.text'|trans({}, 'admin') }}</p>
   {% endif %}
-
-{% endif %}
-
-{% if is_granted('ROLE_ADMIN') %}
 
   <h1>Priser:</h1>
   <table id="styles" class="list">
@@ -91,7 +85,6 @@
     {% endfor %}
     </tbody>
   </table>
-
 
   <h1>{{ 'admin.product.categories.header.text.%product-name%'|trans({'%product-name%' : current_product.sku}, 'admin') }}</h1>
   <p>{{ 'admin.product.categories.description.text'|trans({}, 'admin') }}</p>
@@ -123,12 +116,10 @@
 
 {% if product_images|length > 0 %}
 
-<h1>{{ 'admin.product.images.header.text.%product-name%'|trans({'%product-name%' : current_product.sku}, 'admin') }}</h1>
+  <h1>{{ 'admin.product.images.header.text.%product-name%'|trans({'%product-name%' : current_product.sku}, 'admin') }}</h1>
+  <p>{{ 'admin.product.images.description.text'|trans({}, 'admin') }}</p>
 
-
-<p>{{ 'admin.product.images.description.text'|trans({}, 'admin') }}</p>
-
- <ul id="product-images-list">
+  <ul id="product-images-list">
   {% for product_image in product_images %}
 
     <li id="item-{{ product_image.image_id }}">
@@ -143,6 +134,9 @@
           <option value="{{ product_image.image_id }}-{{ product.id }}">{{ product.sku }}</option>
           {% endfor %}
         </select>
+        <select class="product-color-selector" name="product-color-selector" disabled="disabled">
+          <option value="0" class="initial">{{ 'admin.products.color.selector.description'|trans({}, 'admin') }}</option>
+        </select>
         <ul class="product-references">
           {% if product_image.product_ref_ids|length > 0 %}
             {% for product_ref in product_image.product_ref_ids %}
@@ -152,8 +146,7 @@
                   {{ 'delete'|trans({}, 'admin') }}
                 </a>
               </span>
-              <span class="id">(#{{ product_ref.id }})</span>
-              <span class="sku">{{ product_ref.sku }}</span>
+              <span class="id">(#{{ product_ref.id }})</span> <span class="sku">{{ product_ref.sku }}</span> - <span class="color">{{ product_ref.color }}</span>
             </li>
             {% endfor %}
           {% endif %}
@@ -185,14 +178,13 @@
     </li>
 
   {% endfor %}
- </ul>
+  </ul>
 
 {% endif %}
 
 {% if is_granted('ROLE_ADMIN') %}
 
   <h1>{{ 'admin.product.has_video.header'|trans({}, 'admin') }}</h1>
-
   <form action="{{ path('admin_product', {'id' : current_product.id}) }}" method="post" {{ form_enctype(has_video_form) }} id="product-edit-form">
     <div id="product-edit">
       {{ form_rest(has_video_form) }}
@@ -200,7 +192,6 @@
     </div>
     <input class="button right" type="submit" value="{{ 'product.has_video.submit'|trans({}, 'admin') }}">
   </form>
-
 
   <h1>{{ 'admin.product.related_products.header.text.%product-name%'|trans({'%product-name%' : current_product.sku}, 'admin') }}</h1>
   <p>{{ 'admin.product.related_products.description.text'|trans({}, 'admin') }}</p>

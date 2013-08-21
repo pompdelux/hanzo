@@ -19,8 +19,9 @@ class DefaultController extends CoreController
         'payment.gothiaapi'    => 'Gothia',
         'payment.gothiadeapi'    => 'GothiaDE',
         'payment.paybybillapi' => 'PayByBill',
-        'payment.couponapi'    => 'Coupon', // pseudo payment module ...
+        'payment.giftcardapi'  => 'GiftCard', // pseudo payment module ...
         'payment.pensioapi'    => 'Pensio',
+        'payment.paypalapi'    => 'PayPal',
     ];
 
     /**
@@ -47,7 +48,7 @@ class DefaultController extends CoreController
             $service = $this->get($service);
             if ($service && $service->isActive()) {
 
-                if ('Dibs' == $controller && 'DOWN' === $dibs_status) {
+                if (('Dibs' == $controller) && ('DOWN' === $dibs_status)) {
                     $modules[] = '<div class="down">'.$this->get('translator')->trans('dibs.down.message', [], 'checkout').'</div>';
                     continue;
                 }
@@ -118,7 +119,7 @@ class DefaultController extends CoreController
     }
 
 
-    public function getProcessButtonAction()
+    public function getProcessButtonAction(Request $request)
     {
         $response = [
             'status'  => false,
@@ -156,10 +157,10 @@ class DefaultController extends CoreController
             $response = [
                 'status'  => true,
                 'message' => '',
-                'data'    => $api->getProcessButton($order),
+                'data'    => $api->getProcessButton($order, $request),
             ];
         }
-
+// Tools::log($response);
         // If the customer cancels payment, state is back to building
         // Customer is only allowed to add products to the basket if state is >= pre payment
         $order->setState( Orders::STATE_PRE_PAYMENT );
@@ -177,7 +178,7 @@ class DefaultController extends CoreController
     public function cancelAction()
     {
         $translator = $this->get('translator');
-
+Tools::log($_POST);
         $order = OrdersPeer::getCurrent();
         $order->setState( Orders::STATE_BUILDING );
         $order->save();

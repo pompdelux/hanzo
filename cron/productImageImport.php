@@ -296,7 +296,7 @@ $product_stmt = $pdo->prepare('SELECT COUNT(id) FROM products WHERE color = :col
 $image_records_to_delete = array();
 while ($record = $images_stmt->fetchObject()) {
 
-    if (!file_exists($target_dir.$record->image)) {
+    if (!file_exists($source_dir.$record->image)) {
         $image_records_to_delete[$record->id] = $record->image;
         continue;
     }

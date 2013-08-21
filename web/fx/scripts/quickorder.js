@@ -190,35 +190,38 @@ var quickorder = (function($) {
                         $.cookie('basket', response.data);
                         $('#mini-basket a').html(response.data);
                         dialoug.slideNotice(response.message);
-                        var img = master.toString().replace(/[^a-zA-Z0-9_]/g, "-") + '_basket_' + color.toString().replace(/[^a-zA-Z0-9_]/g, "");
-                        img = cdn_url + 'images/products/thumb/60x60,' + img + '.jpg';
 
-                        $('table tbody').prepend(' \
-                            <tr> \
-                              <td class="image"><img src="'+img+'" alt="'+master+'"> \
-                                <div class="info" data-product_id="'+response.latest.id+'" data-confirmed=""> \
-                                  <a href="'+base_url+'product/view/'+response.latest.id+'">'+master+'</a> \
-                                  <div class="size"> \
-                                    <label>'+Translator.get('js:size')+':</label> \
-                                    <span>'+size+'</span> \
-                                  </div> \
-                                  <div class="color"> \
-                                    <label>'+Translator.get('js:color')+':</label> \
-                                    <span>'+color+'</span> \
-                                  </div> \
-                                </div> \
-                              </td> \
-                              <td class="right date"> \
-                              '+response.latest.expected_at+' \
-                              </td> \
-                              <td class="right price">'+response.latest.single_price+'</td> \
-                              <td class="right quantity">'+quantity+'</td> \
-                              <td class="right total">'+response.latest.price+'</td> \
-                              <td class="actions"> \
-                                <a href="'+base_url+'remove-from-basket/'+response.latest.id+'" class="delete"><img src="'+cdn_url+'fx/images/delete_icon.png" alt="'+Translator.get('js:delete')+'"></a> \
-                                <a href="'+response.latest.id+'" class="edit"><img src="'+cdn_url+'fx/images/edit_icon.png" alt="'+Translator.get('js:edit')+'"></a> \
-                              </td> \
-                            </tr>');
+                        var c = color.toString();
+                        c = c.replace('/', '9');
+                        var img = master.toString().replace(/[^a-zA-Z0-9_]/g, "-") + '_' + c.replace(/[^a-zA-Z0-9_]/g, "-");
+                        img = cdn_url + 'images/products/thumb/57x100,' + img + '_overview_01.jpg';
+
+                        $('table tbody').prepend(' ' +
+                            '<tr> ' +
+                              '<td class="image"><img src="'+img+'" alt="'+master+'"> '+
+                                '<div class="info" data-product_id="'+response.latest.id+'" data-confirmed=""> '+
+                                  '<a href="'+base_url+'product/view/'+response.latest.id+'">'+master+'</a> '+
+                                  '<div class="size"> '+
+                                    '<label>'+Translator.get('js:size')+':</label> '+
+                                    '<span>'+size+'</span> '+
+                                  '</div> '+
+                                  '<div class="color"> '+
+                                    '<label>'+Translator.get('js:color')+':</label> '+
+                                    '<span>'+color+'</span> '+
+                                  '</div> '+
+                                '</div> '+
+                              '</td> '+
+                              '<td class="right date"> '+
+                              ''+response.latest.expected_at+' '+
+                              '</td> '+
+                              '<td class="right price">'+response.latest.single_price+'</td> '+
+                              '<td class="center quantity">'+quantity+'</td> '+
+                              '<td class="actions"> '+
+                                '<a href="'+base_url+'remove-from-basket/'+response.latest.id+'" class="delete"><img src="'+cdn_url+'fx/images/delete_icon.png" alt="'+Translator.get('js:delete')+'"></a> '+
+                                '<a href="'+response.latest.id+'" class="edit"><img src="'+cdn_url+'fx/images/edit_icon.png" alt="'+Translator.get('js:edit')+'"></a> '+
+                              '</td> '+
+                              '<td class="right total">'+response.latest.price+'</td> '+
+                            '</tr>');
                         $('table tfoot td.total').html(response.data);
                         if($('.buttons a.proceed-to-basket').length > 0){
                             $('.buttons a.proceed-to-basket').show();

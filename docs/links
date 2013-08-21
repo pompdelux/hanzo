@@ -4,19 +4,7 @@ http://www.slideshare.net/kriswallsmith/introducing-assetic-asset-management-for
 git flow:
 https://github.com/nvie/gitflow
 
-admin: ?
-http://symfony2admingenerator.org/
-
-deploy: ?
-http://capifony.org/
-
-
 http://www.dev-talk.info/propel-paginate-meets-twig-macros/
-
-
-til admin:
-http://mjsarfatti.com/sandbox/nestedSortable/
-
 
 mobil debugging:
 http://people.apache.org/~pmuellr/weinre/docs/latest/

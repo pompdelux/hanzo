@@ -255,8 +255,8 @@ class OrdersController extends CoreController
             return $this->response('Der findes ingen ordre med ID #' . $order_id);
         }
 
-        $debtor = $this->get('ax_manager')->sendDebtor($order->getCustomers($this->getDbConnection()), true, $this->getDbConnection());
-        $order = $this->get('ax_manager')->sendOrder($order, true, $this->getDbConnection());
+        $debtor = $this->get('ax.out')->sendDebtor($order->getCustomers($this->getDbConnection()), true, $this->getDbConnection());
+        $order = $this->get('ax.out')->sendOrder($order, true, $this->getDbConnection());
 
         if ('json' === $this->getFormat()) {
             $html = '<h2>Debtor:</h2><pre>'.print_r($debtor, 1).'</pre><h2>Order:</h2><pre>'.print_r($order,1).'</pre>';
@@ -318,7 +318,7 @@ class OrdersController extends CoreController
         }
 
         try {
-            $this->get('ax_manager')->sendOrder($order, false, $this->getDbConnection());
+            $this->get('ax.out')->sendOrder($order, false, $this->getDbConnection());
         } catch (Exception $e) {
             if ('json' === $this->getFormat()) {
                 return $this->json_response(array(

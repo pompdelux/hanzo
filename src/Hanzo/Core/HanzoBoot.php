@@ -3,11 +3,13 @@
 namespace Hanzo\Core;
 
 use AppKernel;
+use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Core\RedisCache;
 
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 
 class HanzoBoot
@@ -34,8 +36,62 @@ class HanzoBoot
      */
     public function onKernelRequest(GetResponseEvent $event)
     {
+        $this->sslHandeling($event);
         $this->deviceCheck($event);
         $this->webshopAccessRestrictionCheck($event);
+    }
+
+
+    protected function sslHandeling($event)
+    {
+return; // WIP: work in progress...
+
+        // only scan MASTER_REQUESTS
+        if (HttpKernelInterface::MASTER_REQUEST !== $event->getRequestType()) {
+            return;
+        }
+
+        $request = $event->getRequest();
+
+        // skip ssl check for these routes
+        if (in_array($request->get('_route'), [
+            // misc routes
+            '_account_create',
+            '_account_lost_password',
+            '_account_phone_lookup',
+            '_internal',
+            '_wdt',
+            'bazinga_exposetranslation_js',
+            'login',
+            'login_check',
+            'muneris_nno_lookup',
+
+            // dibs callbacks
+            'PaymentBundle_dibs_callback',
+
+            // pensio callbacks
+            '_pensio_form',
+            '_pensio_wait',
+            '_pensio_callback',
+            '_pensio_process',
+
+            // ax calls
+            'ax_soap',
+
+            // paypal
+            '_paypal_callback',
+            '_paypal_cancel',
+        ])) {
+            return;
+        }
+
+        if (($request->isSecure()) &&
+            (!$this->kernel->getContainer()->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY'))
+        ) {
+            $request->server->set('HTTPS', false);
+            $request->server->set('SERVER_PORT', 80);
+            return $event->setResponse(new RedirectResponse($request->getUri()));
+        }
     }
 
 
@@ -46,9 +102,30 @@ class HanzoBoot
      */
     protected function deviceCheck(GetResponseEvent $event)
     {
-        $attr = $event->getRequest()->attributes;
+        $container = $this->kernel->getContainer();
+        $request   = $event->getRequest();
+        $attr      = $request->attributes;
+
         $attr->set('_request_type', $event->getRequestType());
-        $attr->set('_x_device', 'pc');
+
+        if ($request->headers->has('x-ua-device')) {
+            $device = $request->headers->get('x-ua-device');
+        } else {
+            $device = 'pc';
+            if ($container->hasParameter('x_ua_device') &&
+                $container->getParameter('x_ua_device')
+            ) {
+                $device = $container->getParameter('x_ua_device');
+            }
+        }
+
+        $attr->set('_x_device', $device);
+
+        $theme = $container->get('liip_theme.active_theme');
+        // set theme to active name + '_mobile' ex: '2013s1_mobile'
+        if (preg_match('/^mobile/i', $device) && !preg_match('/mobile/', $theme->getName())) {
+            $theme->setName($theme->getName().'_mobile');
+        }
     }
 
 
@@ -59,7 +136,7 @@ class HanzoBoot
      */
     protected function webshopAccessRestrictionCheck(GetResponseEvent $event)
     {
-        $hanzo = \Hanzo\Core\Hanzo::getInstance();
+        $hanzo = Hanzo::getInstance();
 
         if (1 == $hanzo->get('webshop.closed', 0)) {
             $request = $event->getRequest();
@@ -118,6 +195,6 @@ class HanzoBoot
             return;
         }
 
-        setcookie("_x_device", $device, 0, '/', '', false, true);
+        Tools::setCookie("_x_device", $device, 0, true);
     }
 }

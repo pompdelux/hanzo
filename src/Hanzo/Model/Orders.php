@@ -10,6 +10,7 @@ use PropelPDO;
 use PropelCollection;
 use PropelException;
 use OutOfBoundsException;
+use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
@@ -61,21 +62,42 @@ class Orders extends BaseOrders
     const TYPE_NORMAL           = -10;
 
     public static $state_message_map = array(
-        self::STATE_ERROR_PAYMENT => 'Payment error',
-        self::STATE_ERROR => 'General error',
-        self::STATE_BUILDING => 'Building order',
-        self::STATE_PRE_CONFIRM => 'Order in pre confirm state',
-        self::STATE_PRE_PAYMENT => 'Order in pre payment state',
-        self::STATE_POST_PAYMENT => 'Order in post confirm state',
-        self::STATE_PAYMENT_OK => 'Order payment confirmed',
-        self::STATE_PENDING => 'Order pending',
+        self::STATE_ERROR_PAYMENT   => 'Payment error',
+        self::STATE_ERROR           => 'General error',
+        self::STATE_BUILDING        => 'Building order',
+        self::STATE_PRE_CONFIRM     => 'Order in pre confirm state',
+        self::STATE_PRE_PAYMENT     => 'Order in pre payment state',
+        self::STATE_POST_PAYMENT    => 'Order in post confirm state',
+        self::STATE_PAYMENT_OK      => 'Order payment confirmed',
+        self::STATE_PENDING         => 'Order pending',
         self::STATE_BEING_PROCESSED => 'Order beeing processed',
-        self::STATE_SHIPPED => 'Order shipped/done',
+        self::STATE_SHIPPED         => 'Order shipped/done',
     );
 
     protected $ignore_delete_constraints = false;
 
     protected $pdo_con = null;
+
+
+    public function getDeliveryTitle(Translator $translator = null)
+    {
+        return $this->translateNameTitle($translator, parent::getDeliveryTitle());
+    }
+
+    public function getBillingTitle(Translator $translator = null)
+    {
+        return $this->translateNameTitle($translator, parent::getBillingTitle());
+    }
+
+    private function translateNameTitle($translator, $title)
+    {
+        if ($title && ($translator instanceof Translator)) {
+            $title = $translator->trans('title.'.$title, [], 'account');
+        }
+
+        return $title;
+    }
+
 
     /**
      * Create a new version of the current order.
@@ -338,7 +360,6 @@ class Orders extends BaseOrders
                 $lines[$index] = $line;
                 $this->setOrdersLiness($lines);
                 $line->setExpectedAt($date);
-
                 return;
             }
         }
@@ -366,6 +387,11 @@ class Orders extends BaseOrders
         $line->setType('product');
         $line->setUnit('Stk.');
         $line->setExpectedAt($date);
+
+        if ($product->getIsVoucher()) {
+            $line->setIsVoucher(true);
+        }
+
         $this->addOrdersLines($line);
     }
 
@@ -801,6 +827,7 @@ class Orders extends BaseOrders
             ->setBillingCountriesId( $address->getCountriesId() )
             ->setBillingStateProvince( $address->getStateProvince() )
             ->setBillingCompanyName( $address->getCompanyName() )
+            ->setBillingTitle( $address->getTitle() )
             ->setBillingFirstName( $address->getFirstName() )
             ->setBillingLastName( $address->getLastName() )
             ->setBillingExternalAddressId( $address->getExternalAddressId() )
@@ -928,6 +955,7 @@ class Orders extends BaseOrders
             ->setDeliveryCountriesId( $address->getCountriesId() )
             ->setDeliveryStateProvince( $address->getStateProvince() )
             ->setDeliveryCompanyName( $address->getCompanyName() )
+            ->setDeliveryTitle( $address->getTitle() )
             ->setDeliveryFirstName( $address->getFirstName() )
             ->setDeliveryLastName( $address->getLastName() )
             ->setDeliveryExternalAddressId( $address->getExternalAddressId() )
@@ -1193,6 +1221,39 @@ class Orders extends BaseOrders
     }
 
 
+    /**
+     * build and return a order Addresses object based on the type
+     *
+     * @param  string $type Can be either of the types set in the addresses table
+     * @return Addresses
+     */
+    public function getOrderAddress($type = 'payment')
+    {
+        $part = 'billing_';
+        if ('payment' != $type) {
+            $type = $this->getDeliveryMethod();
+            $part = 'delivery_';
+        }
+
+        $address = [
+            'customers_id' => $this->getCustomersId(),
+            'type' => $type,
+        ];
+
+        foreach ($this->toArray(\BasePeer::TYPE_FIELDNAME) as $key => $value) {
+            $key = str_replace($part, '', $key, $count);
+            if ($count) {
+                $address[$key] = $value;
+            }
+        }
+
+        $a = new Addresses();
+        $a->fromArray($address, \BasePeer::TYPE_FIELDNAME);
+
+        return $a;
+    }
+
+
     public function preSave(PropelPDO $con = null)
     {
         if (!$this->getSessionId()) {
@@ -1217,6 +1278,7 @@ class Orders extends BaseOrders
                 $address = $customer->getAddressess($c)->getFirst();
                 if ($address) {
                     $this->setBillingAddress($address);
+                    $this->setPhone($customer->getPhone());
                 } else {
                     Tools::log('Missing payment address: '.$customer->getId());
                 }
@@ -1253,11 +1315,11 @@ class Orders extends BaseOrders
         if (($this->getState() >= self::STATE_PAYMENT_OK) || $this->getIgnoreDeleteConstraints()) {
             try {
                 $this->cancelPayment();
-                Hanzo::getInstance()->container->get('ax_manager')->deleteOrder($this, $con);
+                Hanzo::getInstance()->container->get('ax.out')->deleteOrder($this, $con);
             } catch ( Exception $e ) {
                 if ($this->getIgnoreDeleteConstraints()) {
                     // allow delete for priority deletes
-                    Hanzo::getInstance()->container->get('ax_manager')->deleteOrder($this, $con);
+                    Hanzo::getInstance()->container->get('ax.out')->deleteOrder($this, $con);
                 } else {
                     throw $e;
                 }
@@ -1319,4 +1381,5 @@ class Orders extends BaseOrders
 
         return parent::preDelete($con);
     }
+
 } // Orders

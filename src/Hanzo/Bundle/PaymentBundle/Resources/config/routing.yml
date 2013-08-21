@@ -79,10 +79,10 @@ _paybybill_callback:
     pattern:  /payment/paybybill/callback
     defaults: { _controller: PaymentBundle:PayByBill:callback }
 
-# Coupon }-------------------------
-_coupon_callback:
-    pattern:  /payment/coupon/callback
-    defaults: { _controller: PaymentBundle:Coupon:callback }
+# GiftCard }----------------------
+_gift_card_callback:
+    pattern:  /payment/gift-card/callback
+    defaults: { _controller: PaymentBundle:GiftCard:callback }
 
 # Pensio }-------------------------
 _pensio_form:
@@ -107,6 +107,14 @@ _pensio_process:
         _controller: PaymentBundle:Pensio:process
     requirements:
         _method: POST
+
+# PayPal }----------------------
+_paypal_callback:
+    pattern:  /payment/paypal/callback
+    defaults: { _controller: PaymentBundle:PayPal:callback }
+_paypal_cancel:
+    pattern:  /payment/paypal/cancel
+    defaults: { _controller: PaymentBundle:PayPal:cancel }
 
 
 # ALL }-------------------------

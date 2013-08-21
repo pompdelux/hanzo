@@ -1,0 +1,31 @@
+.body-pages article div.near-you-container div.info,
+.body-pages article div.near-you-container div.note,
+.body-pages article div.near-you-container div.box,
+.body-pages article div.near-you-container div.grid_2,
+.body-pages article div.near-you-container div.row {
+    display: block;
+}
+
+.near-you-container {
+    width: 100%;
+    overflow: hidden;
+    .info {
+        width: 50%;
+        float: right;
+    }
+    .note {
+        i {
+            display: block;
+        }
+        b {
+            display: inline-block;
+            margin-top: 5px;
+        }
+    }
+    .box {
+        margin-bottom: 5px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #000;
+        overflow: hidden;
+    }
+}

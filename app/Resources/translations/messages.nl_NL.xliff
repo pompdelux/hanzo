@@ -2,6 +2,10 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
+            <trans-unit id="size.guide.link">
+                <source>size.guide.link</source>
+                <target><![CDATA[<a href="/nl_NL/voorpagina/webshop/info/sizeguide" target="_blank" title="Size guide">» Size guide</a>]]></target>
+            </trans-unit>
             <trans-unit id="out.of.stock">
                 <source>out.of.stock</source>
                 <target>Uitverkocht</target>
@@ -131,7 +135,8 @@
                         Wil je het wijzigen van je order onderbreken - <a href="%stop_url%" title="stop wijziging van order">klik dan hier.</a>
                     </p>
                     <p>Wil je een kleur of maat wijzigen, klik dan op het potloodje. Wil je artikelen toevoegen, klik dan op Girl, Boy, Little Girl of Little Boy boven aan de pagina.</p>
-                    <p class="last">Als je klaar bent met je wijzigingen, klik dan op "Toon winkelmandje" en daarna op ”Ga door”. Als je je bestelling opnieuw met een creditcard hebt betaald, dan wordt je oude betaling automatisch gewist.<br><br> <b>Let op:</b> gebruik je tijdens het bewerken Visa Electron of MasterCard, dan wordt het totale bedrag voor je bestelling automatisch nogmaals gereserveerd. De reservering van het bedrag van je eerste bestelling wordt meteen door POMPdeLUX geannuleerd. Er kan echter 6 weken overheen gaan voordat deze reservering door je bank opgeheven wordt. </p>
+                    <p class="last">Als je klaar bent met je wijzigingen, klik dan op "Toon winkelmandje" en daarna op ”Ga door”. Als je je bestelling opnieuw met een creditcard hebt betaald, dan wordt je oude betaling automatisch gewist.<br><br> <b>Let op:</b> gebruik je tijdens het bewerken Visa Electron of MasterCard, dan wordt het totale bedrag voor je bestelling automatisch nogmaals gereserveerd. De reservering van het bedrag van je eerste bestelling wordt meteen door POMPdeLUX geannuleerd. Er kan echter 6 weken overheen gaan voordat deze reservering door je bank opgeheven wordt.<br><br><b>Let op</b> – als je iDEAL als betaalwijze hebt gebruikt!
+Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wordt het bedrag van de originele iDEAL betaling binnen 5 werkdagen teruggestort.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="customer.service.contact.info">
@@ -258,7 +263,7 @@
                 <h2>Meer POMPdeLUX</h2>
                 <ul class="menu">
 				    <li><a href="/nl_NL/voorpagina/catalogus">Online Catalogus</a></li>
-				    <li><a href="/nl_NL/voorpagina/catalogus/image-video">Image Video</a></li>
+				    <li><a href="/nl_NL/voorpagina/catalogus/backstage-video">Backstage video</a></li>
                     <li><a href="/nl_NL/voorpagina/over-pompdelux">Over POMPdeLUX</a></li>
                     <li><a href="/nl_NL/voorpagina/nieuws">Nieuws</a></li>
                     <li><a href="/nl_NL/voorpagina/over-pompdelux/het-concept">Het concept</a></li>

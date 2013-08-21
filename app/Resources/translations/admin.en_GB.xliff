@@ -62,9 +62,105 @@
         <source>cms.edit.label.is_restricted</source>
         <target>Approved IP required in offline mode</target>
       </trans-unit>
+      <trans-unit id="cms.edit.label.on_mobile">
+        <source>cms.edit.label.on_mobile</source>
+        <target>Vises på mobilsitet</target>
+      </trans-unit>
       <trans-unit id="admin.orders.dead_list.link">
         <source>admin.orders.dead_list.link</source>
         <target>Dead orders</target>
+      </trans-unit>
+      <trans-unit id="admin.coupons.list.link">
+        <source>admin.coupons.list.link</source>
+        <target>Alle Rabatkoder</target>
+      </trans-unit>
+      <trans-unit id="admin.coupons.edit.link">
+        <source>admin.coupons.edit.link</source>
+        <target>Rediger</target>
+      </trans-unit>
+      <trans-unit id="admin.coupons.delete.link">
+        <source>admin.coupons.delete.link</source>
+        <target>Slet</target>
+      </trans-unit>
+      <trans-unit id="admin.coupons.add_new.link">
+        <source>admin.coupons.add_new.link</source>
+        <target>Opret Rabatkode</target>
+      </trans-unit>
+      <trans-unit id="update.coupons">
+        <source>update.coupons</source>
+        <target>Gem Rabatkode</target>
+      </trans-unit>
+      <trans-unit id="admin.coupon.inserted">
+        <source>admin.coupon.inserted</source>
+        <target>Rabatkoden blev gemt!</target>
+      </trans-unit>
+      <trans-unit id="delete.coupon.success">
+        <source>delete.coupon.success</source>
+        <target>Rabatkoden blev slettet!</target>
+      </trans-unit>
+      <trans-unit id="delete.coupon.failed">
+        <source>delete.coupon.failed</source>
+        <target>Der skete en fejl. Rabatkoden kunne ikke slettes!</target>
+      </trans-unit>
+      <trans-unit id="admin.coupons.no.coupons.text">
+        <source>admin.coupons.no.coupons.text</source>
+        <target>Der kunnet ikke findes nogle rabatkode.</target>
+      </trans-unit>
+      <trans-unit id="admin.coupons.header.text">
+        <source>admin.coupons.header.text</source>
+        <target>Rabatkoder</target>
+      </trans-unit>
+      <trans-unit id="admin.coupons.edit.header.text">
+        <source>admin.coupons.edit.header.text</source>
+        <target>Rediger Rabatkoder</target>
+      </trans-unit>
+      <trans-unit id="admin.coupons.description.text">
+        <source>admin.coupons.description.text</source>
+        <target>Herunder kan du se alle gemte Rabatkoder. Du kan søge efter en specifik rabatkode ved at søge på rabatkodens kode.</target>
+      </trans-unit>
+      <trans-unit id="admin.coupons.edit.description.text">
+        <source>admin.coupons.edit.description.text</source>
+        <target>Herunder kan du redigere eller opretten en ny rabatkode.</target>
+      </trans-unit>
+      <trans-unit id="admin.coupons.id">
+        <source>admin.coupons.id</source>
+        <target>ID</target>
+      </trans-unit>
+      <trans-unit id="admin.coupons.code">
+        <source>admin.coupons.code</source>
+        <target>Kode</target>
+      </trans-unit>
+      <trans-unit id="admin.coupons.amount">
+        <source>admin.coupons.amount</source>
+        <target>Beløb</target>
+      </trans-unit>
+      <trans-unit id="admin.coupons.min.purchase.amount">
+        <source>admin.coupons.min.purchase.amount</source>
+        <target>Mindste købsbeløb</target>
+      </trans-unit>
+      <trans-unit id="admin.coupons.vat">
+        <source>admin.coupons.vat</source>
+        <target>Moms</target>
+      </trans-unit>
+      <trans-unit id="admin.coupons.currency">
+        <source>admin.coupons.currency</source>
+        <target>Valuta</target>
+      </trans-unit>
+      <trans-unit id="admin.coupons.active_from">
+        <source>admin.coupons.active_from</source>
+        <target>Aktiv fra d.</target>
+      </trans-unit>
+      <trans-unit id="admin.coupons.active_to">
+        <source>admin.coupons.active_to</source>
+        <target>Aktiv til d.</target>
+      </trans-unit>
+      <trans-unit id="admin.coupon.is_active">
+        <source>admin.coupon.is_active</source>
+        <target>Aktiv</target>
+      </trans-unit>
+      <trans-unit id="admin.coupon.is_used">
+        <source>admin.coupon.is_used</source>
+        <target>Brugt</target>
       </trans-unit>
     </body>
   </file>

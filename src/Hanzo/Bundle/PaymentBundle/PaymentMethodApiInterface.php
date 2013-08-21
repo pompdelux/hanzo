@@ -31,7 +31,7 @@ interface PaymentMethodApiInterface
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function updateOrderSuccess( Request $request, Orders $order );
+    public function updateOrderSuccess(Request $request, Orders $order);
 
     /**
      * updateOrderFailed
@@ -39,7 +39,7 @@ interface PaymentMethodApiInterface
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function updateOrderFailed( Request $request, Orders $order);
+    public function updateOrderFailed(Request $request, Orders $order);
 
     /**
      * getFee
@@ -63,5 +63,5 @@ interface PaymentMethodApiInterface
      *
      * @return array
      */
-    public function getProcessButton(Orders $order);
+    public function getProcessButton(Orders $order, Request $request);
 }
