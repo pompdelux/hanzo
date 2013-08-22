@@ -1,3 +1,4 @@
+
 <script type="text/javascript">
   var cookie_params = {
     'domain' : '{{ app.request.getHttpHost() }}',
@@ -71,27 +72,5 @@
 <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
 
-{% block javascript %}
-{% endblock %}
-
-{% render 'NewsletterBundle:Default:js' %}
-
-<script>if (jaiks) {jaiks.exec();}</script>
-{#
- # TODO: find a better solution.
- # we need this hack to get single shipping types to play nice...
-#}
-{% if page_type is defined and page_type == 'checkout' %}
-<script>
-  if (1 == $('#shipping-block input').length) {
-    $('#shipping-block input').first().click();
-    {# ie7 has some issues with click, apparently #}
-    if ($('html').hasClass('ie7')) {
-      $('#shipping-block input').first().click();
-    }
-  }
-</script>
-{% endif %}
+{{ include('::footer-'~app.request.locale~'.html.twig', ignore_missing = true, with_context = true) }}
 {{ google_analytics_tag() }}
-
-{{ include('::footer-'~app.request.locale~'.html.twig', ignore_missing = true) }}
