@@ -100,7 +100,7 @@
                 </div>
               </td>
               <td class="rma-activitycode">{{ product.rma_activitycode|trans({}, 'rma')|upper }}</td>
-              <td class="rma-description">{{ product.rma_description|nl2br }}</td>
+              <td class="rma-description">{{ product.rma_description|raw|nl2br }}</td>
             </tr>
           {% endfor %}
           </tbody>
