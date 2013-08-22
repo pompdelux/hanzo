@@ -6,7 +6,7 @@ set :deploy_to,   "/var/www/pompdelux"
 
 # default environment, used by default functions
 set :symfony_env_prod, "prod_dk"
-set :symfony_env_prods, ["prod_fi", "prod_se", "prod_no", "prod_com", "prod_nl", "prod_dk", "prod_fi_consultant", "prod_se_consultant", "prod_no_consultant", "prod_nl_consultant", "prod_dk_consultant"]
+set :symfony_env_prods, ["prod_de", "prod_fi", "prod_se", "prod_no", "prod_com", "prod_nl", "prod_dk", "prod_de_consultant", "prod_fi_consultant", "prod_se_consultant", "prod_no_consultant", "prod_nl_consultant", "prod_dk_consultant"]
 
 set :adminserver, "pdladmin"
 set :staticserver, "pdlstatic1"

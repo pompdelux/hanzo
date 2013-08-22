@@ -3,4 +3,5 @@ To add a new payment method:
 - Create one based on an existing (Dibs/gothia)
 - Edit app/Resources/PaymentBundle/views/Default/block.html.twig
 - Make sure that method_enabled is set for the right domain in domain_settings
-- Update cancelPayment() in src/Hanzo/Model/Orders.php  
+- Update cancelPayment() in src/Hanzo/Model/Orders.php
+- Add new payment method to service.yml in Resources/config

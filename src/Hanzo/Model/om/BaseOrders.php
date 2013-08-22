@@ -141,6 +141,12 @@ abstract class BaseOrders extends BaseObject implements Persistent
     protected $currency_code;
 
     /**
+     * The value for the billing_title field.
+     * @var        string
+     */
+    protected $billing_title;
+
+    /**
      * The value for the billing_first_name field.
      * @var        string
      */
@@ -211,6 +217,12 @@ abstract class BaseOrders extends BaseObject implements Persistent
      * @var        string
      */
     protected $billing_external_address_id;
+
+    /**
+     * The value for the delivery_title field.
+     * @var        string
+     */
+    protected $delivery_title;
 
     /**
      * The value for the delivery_first_name field.
@@ -575,6 +587,16 @@ abstract class BaseOrders extends BaseObject implements Persistent
     }
 
     /**
+     * Get the [billing_title] column value.
+     *
+     * @return string
+     */
+    public function getBillingTitle()
+    {
+        return $this->billing_title;
+    }
+
+    /**
      * Get the [billing_first_name] column value.
      *
      * @return string
@@ -692,6 +714,16 @@ abstract class BaseOrders extends BaseObject implements Persistent
     public function getBillingExternalAddressId()
     {
         return $this->billing_external_address_id;
+    }
+
+    /**
+     * Get the [delivery_title] column value.
+     *
+     * @return string
+     */
+    public function getDeliveryTitle()
+    {
+        return $this->delivery_title;
     }
 
     /**
@@ -1236,6 +1268,27 @@ abstract class BaseOrders extends BaseObject implements Persistent
     } // setCurrencyCode()
 
     /**
+     * Set the value of [billing_title] column.
+     *
+     * @param string $v new value
+     * @return Orders The current object (for fluent API support)
+     */
+    public function setBillingTitle($v)
+    {
+        if ($v !== null && is_numeric($v)) {
+            $v = (string) $v;
+        }
+
+        if ($this->billing_title !== $v) {
+            $this->billing_title = $v;
+            $this->modifiedColumns[] = OrdersPeer::BILLING_TITLE;
+        }
+
+
+        return $this;
+    } // setBillingTitle()
+
+    /**
      * Set the value of [billing_first_name] column.
      *
      * @param string $v new value
@@ -1490,6 +1543,27 @@ abstract class BaseOrders extends BaseObject implements Persistent
 
         return $this;
     } // setBillingExternalAddressId()
+
+    /**
+     * Set the value of [delivery_title] column.
+     *
+     * @param string $v new value
+     * @return Orders The current object (for fluent API support)
+     */
+    public function setDeliveryTitle($v)
+    {
+        if ($v !== null && is_numeric($v)) {
+            $v = (string) $v;
+        }
+
+        if ($this->delivery_title !== $v) {
+            $this->delivery_title = $v;
+            $this->modifiedColumns[] = OrdersPeer::DELIVERY_TITLE;
+        }
+
+
+        return $this;
+    } // setDeliveryTitle()
 
     /**
      * Set the value of [delivery_first_name] column.
@@ -1902,34 +1976,36 @@ abstract class BaseOrders extends BaseObject implements Persistent
             $this->phone = ($row[$startcol + 10] !== null) ? (string) $row[$startcol + 10] : null;
             $this->languages_id = ($row[$startcol + 11] !== null) ? (int) $row[$startcol + 11] : null;
             $this->currency_code = ($row[$startcol + 12] !== null) ? (string) $row[$startcol + 12] : null;
-            $this->billing_first_name = ($row[$startcol + 13] !== null) ? (string) $row[$startcol + 13] : null;
-            $this->billing_last_name = ($row[$startcol + 14] !== null) ? (string) $row[$startcol + 14] : null;
-            $this->billing_address_line_1 = ($row[$startcol + 15] !== null) ? (string) $row[$startcol + 15] : null;
-            $this->billing_address_line_2 = ($row[$startcol + 16] !== null) ? (string) $row[$startcol + 16] : null;
-            $this->billing_postal_code = ($row[$startcol + 17] !== null) ? (string) $row[$startcol + 17] : null;
-            $this->billing_city = ($row[$startcol + 18] !== null) ? (string) $row[$startcol + 18] : null;
-            $this->billing_country = ($row[$startcol + 19] !== null) ? (string) $row[$startcol + 19] : null;
-            $this->billing_countries_id = ($row[$startcol + 20] !== null) ? (int) $row[$startcol + 20] : null;
-            $this->billing_state_province = ($row[$startcol + 21] !== null) ? (string) $row[$startcol + 21] : null;
-            $this->billing_company_name = ($row[$startcol + 22] !== null) ? (string) $row[$startcol + 22] : null;
-            $this->billing_method = ($row[$startcol + 23] !== null) ? (string) $row[$startcol + 23] : null;
-            $this->billing_external_address_id = ($row[$startcol + 24] !== null) ? (string) $row[$startcol + 24] : null;
-            $this->delivery_first_name = ($row[$startcol + 25] !== null) ? (string) $row[$startcol + 25] : null;
-            $this->delivery_last_name = ($row[$startcol + 26] !== null) ? (string) $row[$startcol + 26] : null;
-            $this->delivery_address_line_1 = ($row[$startcol + 27] !== null) ? (string) $row[$startcol + 27] : null;
-            $this->delivery_address_line_2 = ($row[$startcol + 28] !== null) ? (string) $row[$startcol + 28] : null;
-            $this->delivery_postal_code = ($row[$startcol + 29] !== null) ? (string) $row[$startcol + 29] : null;
-            $this->delivery_city = ($row[$startcol + 30] !== null) ? (string) $row[$startcol + 30] : null;
-            $this->delivery_country = ($row[$startcol + 31] !== null) ? (string) $row[$startcol + 31] : null;
-            $this->delivery_countries_id = ($row[$startcol + 32] !== null) ? (int) $row[$startcol + 32] : null;
-            $this->delivery_state_province = ($row[$startcol + 33] !== null) ? (string) $row[$startcol + 33] : null;
-            $this->delivery_company_name = ($row[$startcol + 34] !== null) ? (string) $row[$startcol + 34] : null;
-            $this->delivery_method = ($row[$startcol + 35] !== null) ? (string) $row[$startcol + 35] : null;
-            $this->delivery_external_address_id = ($row[$startcol + 36] !== null) ? (string) $row[$startcol + 36] : null;
-            $this->events_id = ($row[$startcol + 37] !== null) ? (int) $row[$startcol + 37] : null;
-            $this->finished_at = ($row[$startcol + 38] !== null) ? (string) $row[$startcol + 38] : null;
-            $this->created_at = ($row[$startcol + 39] !== null) ? (string) $row[$startcol + 39] : null;
-            $this->updated_at = ($row[$startcol + 40] !== null) ? (string) $row[$startcol + 40] : null;
+            $this->billing_title = ($row[$startcol + 13] !== null) ? (string) $row[$startcol + 13] : null;
+            $this->billing_first_name = ($row[$startcol + 14] !== null) ? (string) $row[$startcol + 14] : null;
+            $this->billing_last_name = ($row[$startcol + 15] !== null) ? (string) $row[$startcol + 15] : null;
+            $this->billing_address_line_1 = ($row[$startcol + 16] !== null) ? (string) $row[$startcol + 16] : null;
+            $this->billing_address_line_2 = ($row[$startcol + 17] !== null) ? (string) $row[$startcol + 17] : null;
+            $this->billing_postal_code = ($row[$startcol + 18] !== null) ? (string) $row[$startcol + 18] : null;
+            $this->billing_city = ($row[$startcol + 19] !== null) ? (string) $row[$startcol + 19] : null;
+            $this->billing_country = ($row[$startcol + 20] !== null) ? (string) $row[$startcol + 20] : null;
+            $this->billing_countries_id = ($row[$startcol + 21] !== null) ? (int) $row[$startcol + 21] : null;
+            $this->billing_state_province = ($row[$startcol + 22] !== null) ? (string) $row[$startcol + 22] : null;
+            $this->billing_company_name = ($row[$startcol + 23] !== null) ? (string) $row[$startcol + 23] : null;
+            $this->billing_method = ($row[$startcol + 24] !== null) ? (string) $row[$startcol + 24] : null;
+            $this->billing_external_address_id = ($row[$startcol + 25] !== null) ? (string) $row[$startcol + 25] : null;
+            $this->delivery_title = ($row[$startcol + 26] !== null) ? (string) $row[$startcol + 26] : null;
+            $this->delivery_first_name = ($row[$startcol + 27] !== null) ? (string) $row[$startcol + 27] : null;
+            $this->delivery_last_name = ($row[$startcol + 28] !== null) ? (string) $row[$startcol + 28] : null;
+            $this->delivery_address_line_1 = ($row[$startcol + 29] !== null) ? (string) $row[$startcol + 29] : null;
+            $this->delivery_address_line_2 = ($row[$startcol + 30] !== null) ? (string) $row[$startcol + 30] : null;
+            $this->delivery_postal_code = ($row[$startcol + 31] !== null) ? (string) $row[$startcol + 31] : null;
+            $this->delivery_city = ($row[$startcol + 32] !== null) ? (string) $row[$startcol + 32] : null;
+            $this->delivery_country = ($row[$startcol + 33] !== null) ? (string) $row[$startcol + 33] : null;
+            $this->delivery_countries_id = ($row[$startcol + 34] !== null) ? (int) $row[$startcol + 34] : null;
+            $this->delivery_state_province = ($row[$startcol + 35] !== null) ? (string) $row[$startcol + 35] : null;
+            $this->delivery_company_name = ($row[$startcol + 36] !== null) ? (string) $row[$startcol + 36] : null;
+            $this->delivery_method = ($row[$startcol + 37] !== null) ? (string) $row[$startcol + 37] : null;
+            $this->delivery_external_address_id = ($row[$startcol + 38] !== null) ? (string) $row[$startcol + 38] : null;
+            $this->events_id = ($row[$startcol + 39] !== null) ? (int) $row[$startcol + 39] : null;
+            $this->finished_at = ($row[$startcol + 40] !== null) ? (string) $row[$startcol + 40] : null;
+            $this->created_at = ($row[$startcol + 41] !== null) ? (string) $row[$startcol + 41] : null;
+            $this->updated_at = ($row[$startcol + 42] !== null) ? (string) $row[$startcol + 42] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -1938,7 +2014,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
-            return $startcol + 41; // 41 = OrdersPeer::NUM_HYDRATE_COLUMNS.
+            return $startcol + 43; // 43 = OrdersPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating Orders object", $e);
@@ -2360,6 +2436,9 @@ abstract class BaseOrders extends BaseObject implements Persistent
         if ($this->isColumnModified(OrdersPeer::CURRENCY_CODE)) {
             $modifiedColumns[':p' . $index++]  = '`currency_code`';
         }
+        if ($this->isColumnModified(OrdersPeer::BILLING_TITLE)) {
+            $modifiedColumns[':p' . $index++]  = '`billing_title`';
+        }
         if ($this->isColumnModified(OrdersPeer::BILLING_FIRST_NAME)) {
             $modifiedColumns[':p' . $index++]  = '`billing_first_name`';
         }
@@ -2395,6 +2474,9 @@ abstract class BaseOrders extends BaseObject implements Persistent
         }
         if ($this->isColumnModified(OrdersPeer::BILLING_EXTERNAL_ADDRESS_ID)) {
             $modifiedColumns[':p' . $index++]  = '`billing_external_address_id`';
+        }
+        if ($this->isColumnModified(OrdersPeer::DELIVERY_TITLE)) {
+            $modifiedColumns[':p' . $index++]  = '`delivery_title`';
         }
         if ($this->isColumnModified(OrdersPeer::DELIVERY_FIRST_NAME)) {
             $modifiedColumns[':p' . $index++]  = '`delivery_first_name`';
@@ -2494,6 +2576,9 @@ abstract class BaseOrders extends BaseObject implements Persistent
                     case '`currency_code`':
                         $stmt->bindValue($identifier, $this->currency_code, PDO::PARAM_STR);
                         break;
+                    case '`billing_title`':
+                        $stmt->bindValue($identifier, $this->billing_title, PDO::PARAM_STR);
+                        break;
                     case '`billing_first_name`':
                         $stmt->bindValue($identifier, $this->billing_first_name, PDO::PARAM_STR);
                         break;
@@ -2529,6 +2614,9 @@ abstract class BaseOrders extends BaseObject implements Persistent
                         break;
                     case '`billing_external_address_id`':
                         $stmt->bindValue($identifier, $this->billing_external_address_id, PDO::PARAM_STR);
+                        break;
+                    case '`delivery_title`':
+                        $stmt->bindValue($identifier, $this->delivery_title, PDO::PARAM_STR);
                         break;
                     case '`delivery_first_name`':
                         $stmt->bindValue($identifier, $this->delivery_first_name, PDO::PARAM_STR);
@@ -2832,87 +2920,93 @@ abstract class BaseOrders extends BaseObject implements Persistent
                 return $this->getCurrencyCode();
                 break;
             case 13:
-                return $this->getBillingFirstName();
+                return $this->getBillingTitle();
                 break;
             case 14:
-                return $this->getBillingLastName();
+                return $this->getBillingFirstName();
                 break;
             case 15:
-                return $this->getBillingAddressLine1();
+                return $this->getBillingLastName();
                 break;
             case 16:
-                return $this->getBillingAddressLine2();
+                return $this->getBillingAddressLine1();
                 break;
             case 17:
-                return $this->getBillingPostalCode();
+                return $this->getBillingAddressLine2();
                 break;
             case 18:
-                return $this->getBillingCity();
+                return $this->getBillingPostalCode();
                 break;
             case 19:
-                return $this->getBillingCountry();
+                return $this->getBillingCity();
                 break;
             case 20:
-                return $this->getBillingCountriesId();
+                return $this->getBillingCountry();
                 break;
             case 21:
-                return $this->getBillingStateProvince();
+                return $this->getBillingCountriesId();
                 break;
             case 22:
-                return $this->getBillingCompanyName();
+                return $this->getBillingStateProvince();
                 break;
             case 23:
-                return $this->getBillingMethod();
+                return $this->getBillingCompanyName();
                 break;
             case 24:
-                return $this->getBillingExternalAddressId();
+                return $this->getBillingMethod();
                 break;
             case 25:
-                return $this->getDeliveryFirstName();
+                return $this->getBillingExternalAddressId();
                 break;
             case 26:
-                return $this->getDeliveryLastName();
+                return $this->getDeliveryTitle();
                 break;
             case 27:
-                return $this->getDeliveryAddressLine1();
+                return $this->getDeliveryFirstName();
                 break;
             case 28:
-                return $this->getDeliveryAddressLine2();
+                return $this->getDeliveryLastName();
                 break;
             case 29:
-                return $this->getDeliveryPostalCode();
+                return $this->getDeliveryAddressLine1();
                 break;
             case 30:
-                return $this->getDeliveryCity();
+                return $this->getDeliveryAddressLine2();
                 break;
             case 31:
-                return $this->getDeliveryCountry();
+                return $this->getDeliveryPostalCode();
                 break;
             case 32:
-                return $this->getDeliveryCountriesId();
+                return $this->getDeliveryCity();
                 break;
             case 33:
-                return $this->getDeliveryStateProvince();
+                return $this->getDeliveryCountry();
                 break;
             case 34:
-                return $this->getDeliveryCompanyName();
+                return $this->getDeliveryCountriesId();
                 break;
             case 35:
-                return $this->getDeliveryMethod();
+                return $this->getDeliveryStateProvince();
                 break;
             case 36:
-                return $this->getDeliveryExternalAddressId();
+                return $this->getDeliveryCompanyName();
                 break;
             case 37:
-                return $this->getEventsId();
+                return $this->getDeliveryMethod();
                 break;
             case 38:
-                return $this->getFinishedAt();
+                return $this->getDeliveryExternalAddressId();
                 break;
             case 39:
-                return $this->getCreatedAt();
+                return $this->getEventsId();
                 break;
             case 40:
+                return $this->getFinishedAt();
+                break;
+            case 41:
+                return $this->getCreatedAt();
+                break;
+            case 42:
                 return $this->getUpdatedAt();
                 break;
             default:
@@ -2957,34 +3051,36 @@ abstract class BaseOrders extends BaseObject implements Persistent
             $keys[10] => $this->getPhone(),
             $keys[11] => $this->getLanguagesId(),
             $keys[12] => $this->getCurrencyCode(),
-            $keys[13] => $this->getBillingFirstName(),
-            $keys[14] => $this->getBillingLastName(),
-            $keys[15] => $this->getBillingAddressLine1(),
-            $keys[16] => $this->getBillingAddressLine2(),
-            $keys[17] => $this->getBillingPostalCode(),
-            $keys[18] => $this->getBillingCity(),
-            $keys[19] => $this->getBillingCountry(),
-            $keys[20] => $this->getBillingCountriesId(),
-            $keys[21] => $this->getBillingStateProvince(),
-            $keys[22] => $this->getBillingCompanyName(),
-            $keys[23] => $this->getBillingMethod(),
-            $keys[24] => $this->getBillingExternalAddressId(),
-            $keys[25] => $this->getDeliveryFirstName(),
-            $keys[26] => $this->getDeliveryLastName(),
-            $keys[27] => $this->getDeliveryAddressLine1(),
-            $keys[28] => $this->getDeliveryAddressLine2(),
-            $keys[29] => $this->getDeliveryPostalCode(),
-            $keys[30] => $this->getDeliveryCity(),
-            $keys[31] => $this->getDeliveryCountry(),
-            $keys[32] => $this->getDeliveryCountriesId(),
-            $keys[33] => $this->getDeliveryStateProvince(),
-            $keys[34] => $this->getDeliveryCompanyName(),
-            $keys[35] => $this->getDeliveryMethod(),
-            $keys[36] => $this->getDeliveryExternalAddressId(),
-            $keys[37] => $this->getEventsId(),
-            $keys[38] => $this->getFinishedAt(),
-            $keys[39] => $this->getCreatedAt(),
-            $keys[40] => $this->getUpdatedAt(),
+            $keys[13] => $this->getBillingTitle(),
+            $keys[14] => $this->getBillingFirstName(),
+            $keys[15] => $this->getBillingLastName(),
+            $keys[16] => $this->getBillingAddressLine1(),
+            $keys[17] => $this->getBillingAddressLine2(),
+            $keys[18] => $this->getBillingPostalCode(),
+            $keys[19] => $this->getBillingCity(),
+            $keys[20] => $this->getBillingCountry(),
+            $keys[21] => $this->getBillingCountriesId(),
+            $keys[22] => $this->getBillingStateProvince(),
+            $keys[23] => $this->getBillingCompanyName(),
+            $keys[24] => $this->getBillingMethod(),
+            $keys[25] => $this->getBillingExternalAddressId(),
+            $keys[26] => $this->getDeliveryTitle(),
+            $keys[27] => $this->getDeliveryFirstName(),
+            $keys[28] => $this->getDeliveryLastName(),
+            $keys[29] => $this->getDeliveryAddressLine1(),
+            $keys[30] => $this->getDeliveryAddressLine2(),
+            $keys[31] => $this->getDeliveryPostalCode(),
+            $keys[32] => $this->getDeliveryCity(),
+            $keys[33] => $this->getDeliveryCountry(),
+            $keys[34] => $this->getDeliveryCountriesId(),
+            $keys[35] => $this->getDeliveryStateProvince(),
+            $keys[36] => $this->getDeliveryCompanyName(),
+            $keys[37] => $this->getDeliveryMethod(),
+            $keys[38] => $this->getDeliveryExternalAddressId(),
+            $keys[39] => $this->getEventsId(),
+            $keys[40] => $this->getFinishedAt(),
+            $keys[41] => $this->getCreatedAt(),
+            $keys[42] => $this->getUpdatedAt(),
         );
         if ($includeForeignObjects) {
             if (null !== $this->aCustomers) {
@@ -3091,87 +3187,93 @@ abstract class BaseOrders extends BaseObject implements Persistent
                 $this->setCurrencyCode($value);
                 break;
             case 13:
-                $this->setBillingFirstName($value);
+                $this->setBillingTitle($value);
                 break;
             case 14:
-                $this->setBillingLastName($value);
+                $this->setBillingFirstName($value);
                 break;
             case 15:
-                $this->setBillingAddressLine1($value);
+                $this->setBillingLastName($value);
                 break;
             case 16:
-                $this->setBillingAddressLine2($value);
+                $this->setBillingAddressLine1($value);
                 break;
             case 17:
-                $this->setBillingPostalCode($value);
+                $this->setBillingAddressLine2($value);
                 break;
             case 18:
-                $this->setBillingCity($value);
+                $this->setBillingPostalCode($value);
                 break;
             case 19:
-                $this->setBillingCountry($value);
+                $this->setBillingCity($value);
                 break;
             case 20:
-                $this->setBillingCountriesId($value);
+                $this->setBillingCountry($value);
                 break;
             case 21:
-                $this->setBillingStateProvince($value);
+                $this->setBillingCountriesId($value);
                 break;
             case 22:
-                $this->setBillingCompanyName($value);
+                $this->setBillingStateProvince($value);
                 break;
             case 23:
-                $this->setBillingMethod($value);
+                $this->setBillingCompanyName($value);
                 break;
             case 24:
-                $this->setBillingExternalAddressId($value);
+                $this->setBillingMethod($value);
                 break;
             case 25:
-                $this->setDeliveryFirstName($value);
+                $this->setBillingExternalAddressId($value);
                 break;
             case 26:
-                $this->setDeliveryLastName($value);
+                $this->setDeliveryTitle($value);
                 break;
             case 27:
-                $this->setDeliveryAddressLine1($value);
+                $this->setDeliveryFirstName($value);
                 break;
             case 28:
-                $this->setDeliveryAddressLine2($value);
+                $this->setDeliveryLastName($value);
                 break;
             case 29:
-                $this->setDeliveryPostalCode($value);
+                $this->setDeliveryAddressLine1($value);
                 break;
             case 30:
-                $this->setDeliveryCity($value);
+                $this->setDeliveryAddressLine2($value);
                 break;
             case 31:
-                $this->setDeliveryCountry($value);
+                $this->setDeliveryPostalCode($value);
                 break;
             case 32:
-                $this->setDeliveryCountriesId($value);
+                $this->setDeliveryCity($value);
                 break;
             case 33:
-                $this->setDeliveryStateProvince($value);
+                $this->setDeliveryCountry($value);
                 break;
             case 34:
-                $this->setDeliveryCompanyName($value);
+                $this->setDeliveryCountriesId($value);
                 break;
             case 35:
-                $this->setDeliveryMethod($value);
+                $this->setDeliveryStateProvince($value);
                 break;
             case 36:
-                $this->setDeliveryExternalAddressId($value);
+                $this->setDeliveryCompanyName($value);
                 break;
             case 37:
-                $this->setEventsId($value);
+                $this->setDeliveryMethod($value);
                 break;
             case 38:
-                $this->setFinishedAt($value);
+                $this->setDeliveryExternalAddressId($value);
                 break;
             case 39:
-                $this->setCreatedAt($value);
+                $this->setEventsId($value);
                 break;
             case 40:
+                $this->setFinishedAt($value);
+                break;
+            case 41:
+                $this->setCreatedAt($value);
+                break;
+            case 42:
                 $this->setUpdatedAt($value);
                 break;
         } // switch()
@@ -3211,34 +3313,36 @@ abstract class BaseOrders extends BaseObject implements Persistent
         if (array_key_exists($keys[10], $arr)) $this->setPhone($arr[$keys[10]]);
         if (array_key_exists($keys[11], $arr)) $this->setLanguagesId($arr[$keys[11]]);
         if (array_key_exists($keys[12], $arr)) $this->setCurrencyCode($arr[$keys[12]]);
-        if (array_key_exists($keys[13], $arr)) $this->setBillingFirstName($arr[$keys[13]]);
-        if (array_key_exists($keys[14], $arr)) $this->setBillingLastName($arr[$keys[14]]);
-        if (array_key_exists($keys[15], $arr)) $this->setBillingAddressLine1($arr[$keys[15]]);
-        if (array_key_exists($keys[16], $arr)) $this->setBillingAddressLine2($arr[$keys[16]]);
-        if (array_key_exists($keys[17], $arr)) $this->setBillingPostalCode($arr[$keys[17]]);
-        if (array_key_exists($keys[18], $arr)) $this->setBillingCity($arr[$keys[18]]);
-        if (array_key_exists($keys[19], $arr)) $this->setBillingCountry($arr[$keys[19]]);
-        if (array_key_exists($keys[20], $arr)) $this->setBillingCountriesId($arr[$keys[20]]);
-        if (array_key_exists($keys[21], $arr)) $this->setBillingStateProvince($arr[$keys[21]]);
-        if (array_key_exists($keys[22], $arr)) $this->setBillingCompanyName($arr[$keys[22]]);
-        if (array_key_exists($keys[23], $arr)) $this->setBillingMethod($arr[$keys[23]]);
-        if (array_key_exists($keys[24], $arr)) $this->setBillingExternalAddressId($arr[$keys[24]]);
-        if (array_key_exists($keys[25], $arr)) $this->setDeliveryFirstName($arr[$keys[25]]);
-        if (array_key_exists($keys[26], $arr)) $this->setDeliveryLastName($arr[$keys[26]]);
-        if (array_key_exists($keys[27], $arr)) $this->setDeliveryAddressLine1($arr[$keys[27]]);
-        if (array_key_exists($keys[28], $arr)) $this->setDeliveryAddressLine2($arr[$keys[28]]);
-        if (array_key_exists($keys[29], $arr)) $this->setDeliveryPostalCode($arr[$keys[29]]);
-        if (array_key_exists($keys[30], $arr)) $this->setDeliveryCity($arr[$keys[30]]);
-        if (array_key_exists($keys[31], $arr)) $this->setDeliveryCountry($arr[$keys[31]]);
-        if (array_key_exists($keys[32], $arr)) $this->setDeliveryCountriesId($arr[$keys[32]]);
-        if (array_key_exists($keys[33], $arr)) $this->setDeliveryStateProvince($arr[$keys[33]]);
-        if (array_key_exists($keys[34], $arr)) $this->setDeliveryCompanyName($arr[$keys[34]]);
-        if (array_key_exists($keys[35], $arr)) $this->setDeliveryMethod($arr[$keys[35]]);
-        if (array_key_exists($keys[36], $arr)) $this->setDeliveryExternalAddressId($arr[$keys[36]]);
-        if (array_key_exists($keys[37], $arr)) $this->setEventsId($arr[$keys[37]]);
-        if (array_key_exists($keys[38], $arr)) $this->setFinishedAt($arr[$keys[38]]);
-        if (array_key_exists($keys[39], $arr)) $this->setCreatedAt($arr[$keys[39]]);
-        if (array_key_exists($keys[40], $arr)) $this->setUpdatedAt($arr[$keys[40]]);
+        if (array_key_exists($keys[13], $arr)) $this->setBillingTitle($arr[$keys[13]]);
+        if (array_key_exists($keys[14], $arr)) $this->setBillingFirstName($arr[$keys[14]]);
+        if (array_key_exists($keys[15], $arr)) $this->setBillingLastName($arr[$keys[15]]);
+        if (array_key_exists($keys[16], $arr)) $this->setBillingAddressLine1($arr[$keys[16]]);
+        if (array_key_exists($keys[17], $arr)) $this->setBillingAddressLine2($arr[$keys[17]]);
+        if (array_key_exists($keys[18], $arr)) $this->setBillingPostalCode($arr[$keys[18]]);
+        if (array_key_exists($keys[19], $arr)) $this->setBillingCity($arr[$keys[19]]);
+        if (array_key_exists($keys[20], $arr)) $this->setBillingCountry($arr[$keys[20]]);
+        if (array_key_exists($keys[21], $arr)) $this->setBillingCountriesId($arr[$keys[21]]);
+        if (array_key_exists($keys[22], $arr)) $this->setBillingStateProvince($arr[$keys[22]]);
+        if (array_key_exists($keys[23], $arr)) $this->setBillingCompanyName($arr[$keys[23]]);
+        if (array_key_exists($keys[24], $arr)) $this->setBillingMethod($arr[$keys[24]]);
+        if (array_key_exists($keys[25], $arr)) $this->setBillingExternalAddressId($arr[$keys[25]]);
+        if (array_key_exists($keys[26], $arr)) $this->setDeliveryTitle($arr[$keys[26]]);
+        if (array_key_exists($keys[27], $arr)) $this->setDeliveryFirstName($arr[$keys[27]]);
+        if (array_key_exists($keys[28], $arr)) $this->setDeliveryLastName($arr[$keys[28]]);
+        if (array_key_exists($keys[29], $arr)) $this->setDeliveryAddressLine1($arr[$keys[29]]);
+        if (array_key_exists($keys[30], $arr)) $this->setDeliveryAddressLine2($arr[$keys[30]]);
+        if (array_key_exists($keys[31], $arr)) $this->setDeliveryPostalCode($arr[$keys[31]]);
+        if (array_key_exists($keys[32], $arr)) $this->setDeliveryCity($arr[$keys[32]]);
+        if (array_key_exists($keys[33], $arr)) $this->setDeliveryCountry($arr[$keys[33]]);
+        if (array_key_exists($keys[34], $arr)) $this->setDeliveryCountriesId($arr[$keys[34]]);
+        if (array_key_exists($keys[35], $arr)) $this->setDeliveryStateProvince($arr[$keys[35]]);
+        if (array_key_exists($keys[36], $arr)) $this->setDeliveryCompanyName($arr[$keys[36]]);
+        if (array_key_exists($keys[37], $arr)) $this->setDeliveryMethod($arr[$keys[37]]);
+        if (array_key_exists($keys[38], $arr)) $this->setDeliveryExternalAddressId($arr[$keys[38]]);
+        if (array_key_exists($keys[39], $arr)) $this->setEventsId($arr[$keys[39]]);
+        if (array_key_exists($keys[40], $arr)) $this->setFinishedAt($arr[$keys[40]]);
+        if (array_key_exists($keys[41], $arr)) $this->setCreatedAt($arr[$keys[41]]);
+        if (array_key_exists($keys[42], $arr)) $this->setUpdatedAt($arr[$keys[42]]);
     }
 
     /**
@@ -3263,6 +3367,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
         if ($this->isColumnModified(OrdersPeer::PHONE)) $criteria->add(OrdersPeer::PHONE, $this->phone);
         if ($this->isColumnModified(OrdersPeer::LANGUAGES_ID)) $criteria->add(OrdersPeer::LANGUAGES_ID, $this->languages_id);
         if ($this->isColumnModified(OrdersPeer::CURRENCY_CODE)) $criteria->add(OrdersPeer::CURRENCY_CODE, $this->currency_code);
+        if ($this->isColumnModified(OrdersPeer::BILLING_TITLE)) $criteria->add(OrdersPeer::BILLING_TITLE, $this->billing_title);
         if ($this->isColumnModified(OrdersPeer::BILLING_FIRST_NAME)) $criteria->add(OrdersPeer::BILLING_FIRST_NAME, $this->billing_first_name);
         if ($this->isColumnModified(OrdersPeer::BILLING_LAST_NAME)) $criteria->add(OrdersPeer::BILLING_LAST_NAME, $this->billing_last_name);
         if ($this->isColumnModified(OrdersPeer::BILLING_ADDRESS_LINE_1)) $criteria->add(OrdersPeer::BILLING_ADDRESS_LINE_1, $this->billing_address_line_1);
@@ -3275,6 +3380,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
         if ($this->isColumnModified(OrdersPeer::BILLING_COMPANY_NAME)) $criteria->add(OrdersPeer::BILLING_COMPANY_NAME, $this->billing_company_name);
         if ($this->isColumnModified(OrdersPeer::BILLING_METHOD)) $criteria->add(OrdersPeer::BILLING_METHOD, $this->billing_method);
         if ($this->isColumnModified(OrdersPeer::BILLING_EXTERNAL_ADDRESS_ID)) $criteria->add(OrdersPeer::BILLING_EXTERNAL_ADDRESS_ID, $this->billing_external_address_id);
+        if ($this->isColumnModified(OrdersPeer::DELIVERY_TITLE)) $criteria->add(OrdersPeer::DELIVERY_TITLE, $this->delivery_title);
         if ($this->isColumnModified(OrdersPeer::DELIVERY_FIRST_NAME)) $criteria->add(OrdersPeer::DELIVERY_FIRST_NAME, $this->delivery_first_name);
         if ($this->isColumnModified(OrdersPeer::DELIVERY_LAST_NAME)) $criteria->add(OrdersPeer::DELIVERY_LAST_NAME, $this->delivery_last_name);
         if ($this->isColumnModified(OrdersPeer::DELIVERY_ADDRESS_LINE_1)) $criteria->add(OrdersPeer::DELIVERY_ADDRESS_LINE_1, $this->delivery_address_line_1);
@@ -3366,6 +3472,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
         $copyObj->setPhone($this->getPhone());
         $copyObj->setLanguagesId($this->getLanguagesId());
         $copyObj->setCurrencyCode($this->getCurrencyCode());
+        $copyObj->setBillingTitle($this->getBillingTitle());
         $copyObj->setBillingFirstName($this->getBillingFirstName());
         $copyObj->setBillingLastName($this->getBillingLastName());
         $copyObj->setBillingAddressLine1($this->getBillingAddressLine1());
@@ -3378,6 +3485,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
         $copyObj->setBillingCompanyName($this->getBillingCompanyName());
         $copyObj->setBillingMethod($this->getBillingMethod());
         $copyObj->setBillingExternalAddressId($this->getBillingExternalAddressId());
+        $copyObj->setDeliveryTitle($this->getDeliveryTitle());
         $copyObj->setDeliveryFirstName($this->getDeliveryFirstName());
         $copyObj->setDeliveryLastName($this->getDeliveryLastName());
         $copyObj->setDeliveryAddressLine1($this->getDeliveryAddressLine1());
@@ -4089,7 +4197,6 @@ abstract class BaseOrders extends BaseObject implements Persistent
     public function setOrdersAttributess(PropelCollection $ordersAttributess, PropelPDO $con = null)
     {
         $ordersAttributessToDelete = $this->getOrdersAttributess(new Criteria(), $con)->diff($ordersAttributess);
-
         $this->ordersAttributessScheduledForDeletion = unserialize(serialize($ordersAttributessToDelete));
 
         foreach ($ordersAttributessToDelete as $ordersAttributesRemoved) {
@@ -4768,7 +4875,6 @@ abstract class BaseOrders extends BaseObject implements Persistent
     public function setOrdersSyncLogs(PropelCollection $ordersSyncLogs, PropelPDO $con = null)
     {
         $ordersSyncLogsToDelete = $this->getOrdersSyncLogs(new Criteria(), $con)->diff($ordersSyncLogs);
-
         $this->ordersSyncLogsScheduledForDeletion = unserialize(serialize($ordersSyncLogsToDelete));
 
         foreach ($ordersSyncLogsToDelete as $ordersSyncLogRemoved) {
@@ -5103,6 +5209,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
         $this->phone = null;
         $this->languages_id = null;
         $this->currency_code = null;
+        $this->billing_title = null;
         $this->billing_first_name = null;
         $this->billing_last_name = null;
         $this->billing_address_line_1 = null;
@@ -5115,6 +5222,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
         $this->billing_company_name = null;
         $this->billing_method = null;
         $this->billing_external_address_id = null;
+        $this->delivery_title = null;
         $this->delivery_first_name = null;
         $this->delivery_last_name = null;
         $this->delivery_address_line_1 = null;

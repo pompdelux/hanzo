@@ -83,6 +83,22 @@
                 <source>existing.customer</source>
                 <target>Existing customer</target>
             </trans-unit>
+            <trans-unit id="title">
+                <source>title</source>
+                <target>Title</target>
+            </trans-unit>
+            <trans-unit id="attention.label">
+                <source>attention.label</source>
+                <target>Att:</target>
+            </trans-unit>
+            <trans-unit id="title.male">
+                <source>title.male</source>
+                <target>Hr.</target>
+            </trans-unit>
+            <trans-unit id="title.female">
+                <source>title.female</source>
+                <target>Fru</target>
+            </trans-unit>
             <trans-unit id="email">
                 <source>email</source>
                 <target>E-mail address</target>

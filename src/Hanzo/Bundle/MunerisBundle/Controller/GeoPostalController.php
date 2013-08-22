@@ -61,7 +61,21 @@ class GeoPostalController extends CoreController
      */
     protected function getByName($country, $city)
     {
-        $client = $this->guzzle->get(strtr('/gpc/countries/{country}/cities/{city}', [
+        $country = strtolower($country);
+        $city    = strtolower($city);
+
+        // we need to remap some cities, for some reason - guess people do not know where they live...
+        $remap = [
+            'nl' => [
+                'lattrop' => 'lattrop-breklenkamp'
+            ],
+        ];
+
+        if (isset($remap[$country][$city])) {
+            $city = $remap[$country][$city];
+        }
+
+        $client = $this->guzzle->get(strtr('/gpc/countries/{country}/fuzies/{city}', [
             '{country}' => $country,
             '{city}'    => $city
         ]));

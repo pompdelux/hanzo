@@ -10,6 +10,7 @@ use PropelPDO;
 use PropelCollection;
 use PropelException;
 use OutOfBoundsException;
+use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
@@ -61,21 +62,42 @@ class Orders extends BaseOrders
     const TYPE_NORMAL           = -10;
 
     public static $state_message_map = array(
-        self::STATE_ERROR_PAYMENT => 'Payment error',
-        self::STATE_ERROR => 'General error',
-        self::STATE_BUILDING => 'Building order',
-        self::STATE_PRE_CONFIRM => 'Order in pre confirm state',
-        self::STATE_PRE_PAYMENT => 'Order in pre payment state',
-        self::STATE_POST_PAYMENT => 'Order in post confirm state',
-        self::STATE_PAYMENT_OK => 'Order payment confirmed',
-        self::STATE_PENDING => 'Order pending',
+        self::STATE_ERROR_PAYMENT   => 'Payment error',
+        self::STATE_ERROR           => 'General error',
+        self::STATE_BUILDING        => 'Building order',
+        self::STATE_PRE_CONFIRM     => 'Order in pre confirm state',
+        self::STATE_PRE_PAYMENT     => 'Order in pre payment state',
+        self::STATE_POST_PAYMENT    => 'Order in post confirm state',
+        self::STATE_PAYMENT_OK      => 'Order payment confirmed',
+        self::STATE_PENDING         => 'Order pending',
         self::STATE_BEING_PROCESSED => 'Order beeing processed',
-        self::STATE_SHIPPED => 'Order shipped/done',
+        self::STATE_SHIPPED         => 'Order shipped/done',
     );
 
     protected $ignore_delete_constraints = false;
 
     protected $pdo_con = null;
+
+
+    public function getDeliveryTitle(Translator $translator = null)
+    {
+        return $this->translateNameTitle($translator, parent::getDeliveryTitle());
+    }
+
+    public function getBillingTitle(Translator $translator = null)
+    {
+        return $this->translateNameTitle($translator, parent::getBillingTitle());
+    }
+
+    private function translateNameTitle($translator, $title)
+    {
+        if ($title && ($translator instanceof Translator)) {
+            $title = $translator->trans('title.'.$title, [], 'account');
+        }
+
+        return $title;
+    }
+
 
     /**
      * Create a new version of the current order.
@@ -629,6 +651,20 @@ class Orders extends BaseOrders
     }
 
     /**
+     * getPaymentPaytype
+     * @return string Payment type
+     **/
+    public function getPaymentPaytype()
+    {
+        $attributes = $this->getAttributes();
+
+        if (isset($attributes->payment->paytype)) {
+            return $attributes->payment->paytype;
+        }
+        return FALSE;
+    }
+
+    /**
      * setOrderLinePaymentFee
      *
      * Note, this only supports one line with payment fee
@@ -791,6 +827,7 @@ class Orders extends BaseOrders
             ->setBillingCountriesId( $address->getCountriesId() )
             ->setBillingStateProvince( $address->getStateProvince() )
             ->setBillingCompanyName( $address->getCompanyName() )
+            ->setBillingTitle( $address->getTitle() )
             ->setBillingFirstName( $address->getFirstName() )
             ->setBillingLastName( $address->getLastName() )
             ->setBillingExternalAddressId( $address->getExternalAddressId() )
@@ -918,6 +955,7 @@ class Orders extends BaseOrders
             ->setDeliveryCountriesId( $address->getCountriesId() )
             ->setDeliveryStateProvince( $address->getStateProvince() )
             ->setDeliveryCompanyName( $address->getCompanyName() )
+            ->setDeliveryTitle( $address->getTitle() )
             ->setDeliveryFirstName( $address->getFirstName() )
             ->setDeliveryLastName( $address->getLastName() )
             ->setDeliveryExternalAddressId( $address->getExternalAddressId() )
@@ -1050,7 +1088,16 @@ class Orders extends BaseOrders
         }
         // <<-- hf@bellcom.dk, 12-jun-2012: handle old junk
 
-        $api = Hanzo::getInstance()->container->get('payment.'.$paymentMethod.'api');
+        if (empty($paymentMethod)) {
+            return;
+        }
+
+        try {
+            $api = Hanzo::getInstance()->container->get('payment.'.$paymentMethod.'api');
+        } catch (Exception $e) {
+            return;
+        }
+
         $customer = CustomersQuery::create()->findOneById( $this->getCustomersId(), $this->pdo_con );
         $response = $api->call()->cancel( $customer, $this );
 
@@ -1058,7 +1105,7 @@ class Orders extends BaseOrders
             $debug = array();
             $msg = 'Could not cancel order';
 
-            if ($paymentMethod == 'gothia') {
+            if (in_array($paymentMethod, ['gothia', 'gothiade'])) {
               $debug['TransactionId'] = $response->transactionId;
               $msg .= ' at Gothia (Transaction ID: '. $response->transactionId .')';
             }
@@ -1183,6 +1230,39 @@ class Orders extends BaseOrders
     }
 
 
+    /**
+     * build and return a order Addresses object based on the type
+     *
+     * @param  string $type Can be either of the types set in the addresses table
+     * @return Addresses
+     */
+    public function getOrderAddress($type = 'payment')
+    {
+        $part = 'billing_';
+        if ('payment' != $type) {
+            $type = $this->getDeliveryMethod();
+            $part = 'delivery_';
+        }
+
+        $address = [
+            'customers_id' => $this->getCustomersId(),
+            'type' => $type,
+        ];
+
+        foreach ($this->toArray(\BasePeer::TYPE_FIELDNAME) as $key => $value) {
+            $key = str_replace($part, '', $key, $count);
+            if ($count) {
+                $address[$key] = $value;
+            }
+        }
+
+        $a = new Addresses();
+        $a->fromArray($address, \BasePeer::TYPE_FIELDNAME);
+
+        return $a;
+    }
+
+
     public function preSave(PropelPDO $con = null)
     {
         if (!$this->getSessionId()) {
@@ -1241,11 +1321,14 @@ class Orders extends BaseOrders
         if ($con) {
             $this->pdo_con = $con;
         }
+
         if (($this->getState() >= self::STATE_PAYMENT_OK) || $this->getIgnoreDeleteConstraints()) {
             try {
                 $this->cancelPayment();
                 Hanzo::getInstance()->container->get('ax.out')->deleteOrder($this, $con);
             } catch ( Exception $e ) {
+                Tools::log($e->getMessage());
+
                 if ($this->getIgnoreDeleteConstraints()) {
                     // allow delete for priority deletes
                     Hanzo::getInstance()->container->get('ax.out')->deleteOrder($this, $con);
@@ -1310,4 +1393,5 @@ class Orders extends BaseOrders
 
         return parent::preDelete($con);
     }
+
 } // Orders

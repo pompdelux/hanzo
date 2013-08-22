@@ -98,6 +98,7 @@ class DeadOrderService
                     if ( !$this->dryrun )
                     {
                         $this->debug("  Deleting order: ".$order->getId());
+                        $order->setIgnoreDeleteConstraints(true);
                         $order->delete();
                     }
                     else
@@ -321,6 +322,7 @@ class DeadOrderService
             if ( !$this->dryrun )
             {
                 $this->debug("Deleting order: ".$order->getId());
+                $order->setIgnoreDeleteConstraints(true);
                 $order->delete();
             }
             else

@@ -2,6 +2,6 @@
 <ul class="payment-methods" id="payment-method-gothia" data-provider="gothia">
   <li>
     <input type="radio" value="gothia:gothia" id="gothia" name="paytype"{% if selected_payment_type == 'gothia:gothia' %} checked{% endif %}>
-    <label for="gothia"><img alt="gothia" src="{{ cdn }}fx/images/icons/gothia.gif"> {{ 'payment.gothia.desc'|trans({}, 'checkout')|raw }}</label>
+    <label for="gothia"><img alt="gothia" src="{{ cdn }}fx/images/icons/gothia.gif"> {{ ('payment.gothia.desc')|trans({}, 'checkout')|raw }}</label>
   </li>
 </ul>

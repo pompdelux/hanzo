@@ -2,6 +2,10 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
+            <trans-unit id="size.guide.link">
+                <source>size.guide.link</source>
+                <target><![CDATA[<a href="/de_DE/home/kundendienst/sizeguide" target="_blank" title="Size guide">» Size guide</a>]]></target>
+            </trans-unit>
             <trans-unit id="out.of.stock">
                 <source>out.of.stock</source>
                 <target>Ausverkauft</target>
@@ -120,7 +124,7 @@
             </trans-unit>
             <trans-unit id="store.address">
                 <source>store.address</source>
-                <target>POMPdeLUX ApS • Møgelhøj 8 • DK-8520 Lystrup • USt-IdNr. 29622035 • mailde@pompdelux.com • <!--040-35715072-->0045 8678 7871</target>
+                <target>POMPdeLUX ApS • Møgelhøj 8 • DK-8520 Lystrup • USt-IdNr. DE290402183 • mailde@pompdelux.com • <!--040-35715072-->0045 8678 7871</target>
             </trans-unit>
             <trans-unit id="order.edit.global.notice">
                 <source>order.edit.global.notice</source>
@@ -153,7 +157,7 @@
                         <li>POMPdeLUX ApS</li>
                         <li>Møgelhøj 8</li>
                         <li>DK-8520 Lystrup</li>
-                        <li>USt-IdNr. 29622035</li>
+                        <li>USt-IdNr. DE290402183</li>
                         <li><a href="mailto:mailde@pompdelux.com">mailde@pompdelux.com</a></li>
                         <li><!--040-35715072--> 0045 8678 7171</li>
                         <li><img src="%cdn%fx/images/creditcards_dk.png" alt="credit cards" title="credit cards"></li>
@@ -266,7 +270,7 @@
                 <h2>Mehr POMPdeLUX</h2>
                 <ul class="menu">
 				    <li><a href="/de_DE/home/katalog" target="_blank">Online-Katalog</a></li>
-					<li><a href="/de_DE/home/katalog/image-video" target="_blank">Image-Video</a></li>
+					<li><a href="/de_DE/home/katalog/backstage-video" target="_blank">Backstage video</a></li>
                     <li><a href="/de_DE/home/neuigkeiten" target="_blank">Neuigkeiten</a></li>
                     <li><a href="/de_DE/home/uber-pompdelux/konzept" target="_blank">Konzept</a></li>
                     <li><a href="/de_DE/home/uber-pompdelux/soziale-verantwortung" target="_blank">Soziale Verantwortung</a></li>

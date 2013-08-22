@@ -1,0 +1,81 @@
+{% extends '::adminbase.html.twig' %}
+
+{% block content %}
+<nav class="sub">
+  <ul>
+    {% include 'AdminBundle:Coupons:menu.html.twig' %}
+  </ul>
+</nav>
+<h1>Stats</h1>
+
+{% if app.session.hasFlash('notice') %}
+<div class="message notice">
+  {{ app.session.flash('notice')|trans({}, 'admin') }}
+</div>
+{% endif %}
+
+<form action="{{ path('admin_coupons_stats') }}" method="get" id="statistics-periode" class="inline">
+    <label for="start">Fra dato:</label>
+    <input type="text" name="start" id="start" class="datepicker" value="{{ 'now'|date('d-m-Y') }}">
+    <label for="end">Til dato:</label>
+    <input type="text" name="end" id="end" class="datepicker" value="{{ 'now'|date('d-m-Y') }}">
+    <input class="button right" type="submit" value="{{ 'admin.statistics.periode.submit'|trans({}, 'admin') }}">
+</form>
+
+<hr>
+
+{% if data.used is defined %}
+
+<table id="statistics" class="list">
+    <tr>
+        <th>Totale Antal / Beløb:</th>
+        <td>{{ data.total }}</td>
+        <td>{{ data.total_amount|number_format(2, ',', '.') }}</td>
+    </tr>
+    <tr>
+        <th>Brugt / Beløb:</th>
+        <td>{{ data.used }}</td>
+        <td>{{ data.used_amount|number_format(2, ',', '.') }}</td>
+    </tr>
+    <tr>
+        <th>Ubrugt / Beløb:</th>
+        <td>{{ data.unused }}</td>
+        <td>{{ data.unused_amount|number_format(2, ',', '.') }}</td>
+    </tr>
+    <tr>
+        <th>Udløbene / Beløb:</th>
+        <td>{{ data.expired }}</td>
+        <td>{{ data.expired_amount|number_format(2, ',', '.') }}</td>
+    </tr>
+</table>
+
+<div id="donutchart" style="width: 400px; height: 300px;"></div>
+
+{% endif %}
+
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+  google.load("visualization", "1", {packages:["corechart"]});
+  google.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+        ['Task', 'Fordeling af kuponkoder'],
+        ['Brugte' , {{ data.used }}],
+        ['Ubrugte' , {{ data.unused }}],
+        ['Udløbne' , {{ data.expired }}]
+    ]);
+
+    var options = {
+      title: 'Fordeling af kuponkode',
+      pieHole: 0.4,
+      backgroundColor: '#eceaea'
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+    chart.draw(data, options);
+  }
+</script>
+{% endblock %}

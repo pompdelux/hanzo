@@ -206,6 +206,14 @@ admin_product_ref_add:
     requirements:
         _format: html|json
 
+admin_product_ref_get_color:
+    pattern:  /admin/products/reference-get-color/
+    defaults:
+        _controller: AdminBundle:Products:addReferenceGetColors
+        _format: json
+    requirements:
+        _format: html|json
+
 admin_product_ref_delete:
     pattern:  /admin/products/delete-reference/{image_id}/{product_id}
     defaults:
@@ -674,6 +682,11 @@ admin_coupons_batch_delete_file:
     pattern: /admin/coupons/batch/delete/file
     defaults:
         _controller: AdminBundle:Coupons:deleteCouponFile
+
+admin_coupons_stats:
+    pattern: /admin/coupons/stats
+    defaults:
+        _controller: AdminBundle:Coupons:stats
 
 admin_helpdesk:
     pattern: /admin/helpdesk/{pager}

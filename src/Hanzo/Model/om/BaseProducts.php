@@ -2763,7 +2763,6 @@ abstract class BaseProducts extends BaseObject implements Persistent
     public function setProductssRelatedBySku(PropelCollection $productssRelatedBySku, PropelPDO $con = null)
     {
         $productssRelatedBySkuToDelete = $this->getProductssRelatedBySku(new Criteria(), $con)->diff($productssRelatedBySku);
-
         $this->productssRelatedBySkuScheduledForDeletion = unserialize(serialize($productssRelatedBySkuToDelete));
 
         foreach ($productssRelatedBySkuToDelete as $productsRelatedBySkuRemoved) {
@@ -3249,7 +3248,6 @@ abstract class BaseProducts extends BaseObject implements Persistent
     public function setProductsImagess(PropelCollection $productsImagess, PropelPDO $con = null)
     {
         $productsImagessToDelete = $this->getProductsImagess(new Criteria(), $con)->diff($productsImagess);
-
         $this->productsImagessScheduledForDeletion = unserialize(serialize($productsImagessToDelete));
 
         foreach ($productsImagessToDelete as $productsImagesRemoved) {
@@ -3467,7 +3465,6 @@ abstract class BaseProducts extends BaseObject implements Persistent
     public function setProductsImagesCategoriesSorts(PropelCollection $productsImagesCategoriesSorts, PropelPDO $con = null)
     {
         $productsImagesCategoriesSortsToDelete = $this->getProductsImagesCategoriesSorts(new Criteria(), $con)->diff($productsImagesCategoriesSorts);
-
         $this->productsImagesCategoriesSortsScheduledForDeletion = unserialize(serialize($productsImagesCategoriesSortsToDelete));
 
         foreach ($productsImagesCategoriesSortsToDelete as $productsImagesCategoriesSortRemoved) {
@@ -4221,7 +4218,6 @@ abstract class BaseProducts extends BaseObject implements Persistent
     public function setProductsStocks(PropelCollection $productsStocks, PropelPDO $con = null)
     {
         $productsStocksToDelete = $this->getProductsStocks(new Criteria(), $con)->diff($productsStocks);
-
         $this->productsStocksScheduledForDeletion = unserialize(serialize($productsStocksToDelete));
 
         foreach ($productsStocksToDelete as $productsStockRemoved) {
@@ -4682,7 +4678,6 @@ abstract class BaseProducts extends BaseObject implements Persistent
     public function setOrdersLiness(PropelCollection $ordersLiness, PropelPDO $con = null)
     {
         $ordersLinessToDelete = $this->getOrdersLiness(new Criteria(), $con)->diff($ordersLiness);
-
         $this->ordersLinessScheduledForDeletion = unserialize(serialize($ordersLinessToDelete));
 
         foreach ($ordersLinessToDelete as $ordersLinesRemoved) {
@@ -4925,7 +4920,6 @@ abstract class BaseProducts extends BaseObject implements Persistent
     public function setRelatedProductssRelatedByMaster(PropelCollection $relatedProductssRelatedByMaster, PropelPDO $con = null)
     {
         $relatedProductssRelatedByMasterToDelete = $this->getRelatedProductssRelatedByMaster(new Criteria(), $con)->diff($relatedProductssRelatedByMaster);
-
         $this->relatedProductssRelatedByMasterScheduledForDeletion = unserialize(serialize($relatedProductssRelatedByMasterToDelete));
 
         foreach ($relatedProductssRelatedByMasterToDelete as $relatedProductsRelatedByMasterRemoved) {

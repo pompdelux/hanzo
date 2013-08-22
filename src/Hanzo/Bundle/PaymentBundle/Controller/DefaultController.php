@@ -17,9 +17,11 @@ class DefaultController extends CoreController
     protected $services = [
         'payment.dibsapi'      => 'Dibs',
         'payment.gothiaapi'    => 'Gothia',
+        'payment.gothiadeapi'    => 'GothiaDE',
         'payment.paybybillapi' => 'PayByBill',
         'payment.giftcardapi'  => 'GiftCard', // pseudo payment module ...
         'payment.pensioapi'    => 'Pensio',
+        'payment.paypalapi'    => 'PayPal',
     ];
 
     /**
@@ -43,11 +45,10 @@ class DefaultController extends CoreController
 
         $modules = [];
         foreach ($this->services as $service => $controller) {
-
             $service = $this->get($service);
             if ($service && $service->isActive()) {
 
-                if ('Dibs' == $controller && 'DOWN' === $dibs_status) {
+                if (('Dibs' == $controller) && ('DOWN' === $dibs_status)) {
                     $modules[] = '<div class="down">'.$this->get('translator')->trans('dibs.down.message', [], 'checkout').'</div>';
                     continue;
                 }
@@ -103,7 +104,7 @@ class DefaultController extends CoreController
         // It also only supports one order line with payment fee, as all others are deleted
 
         if ('DOWN' !== $this->get('redis.permanent')->hget('service.status', 'dibs')) {
-            $order->setPaymentFee($method, $api->getFee(), 0, $api->getFeeExternalId());
+            $order->setPaymentFee($method, $api->getFee($method), 0, $api->getFeeExternalId());
         }
 
         $order->setUpdatedAt(time());
@@ -118,7 +119,7 @@ class DefaultController extends CoreController
     }
 
 
-    public function getProcessButtonAction()
+    public function getProcessButtonAction(Request $request)
     {
         $response = [
             'status'  => false,
@@ -146,8 +147,8 @@ class DefaultController extends CoreController
                 'data'    => ['name' => 'payment'],
             ]);
         }
-
         $provider = strtolower($order->getBillingMethod());
+
         $key = 'payment.'.$provider.'api';
 
         if (isset($this->services[$key])) {
@@ -156,7 +157,7 @@ class DefaultController extends CoreController
             $response = [
                 'status'  => true,
                 'message' => '',
-                'data'    => $api->getProcessButton($order),
+                'data'    => $api->getProcessButton($order, $request),
             ];
         }
 // Tools::log($response);

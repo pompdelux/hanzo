@@ -4,6 +4,7 @@ namespace Hanzo\Bundle\AdminBundle\Controller;
 
 use Criteria;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Finder\Finder;
@@ -292,7 +293,7 @@ class CouponsController extends CoreController
                     $c->setCurrencyCode($post->getCurrencyCode());
                     $c->setIsActive(true);
                     $c->setIsUsed(false);
-                    $c->save();
+                    $c->save($this->getDbConnection());
 
                     $data = $c->toArray();
                     unset($data['Id'], $data['CreatedAt'], $data['UpdatedAt'], $data['IsActive'], $data['IsUsed']);
@@ -325,6 +326,62 @@ class CouponsController extends CoreController
 
         return $this->redirect($this->generateUrl('admin_coupons_batch'));
     }
+
+
+    /**
+     * statsAction
+     *
+     * @param  Request $request
+     * @return array
+     *
+     * @Template("AdminBundle:Coupons:stats.html.twig")
+     */
+    public function statsAction(Request $request)
+    {
+        $data = [];
+        if ($request->query->get('start') && $request->query->get('end')) {
+            $coupons = CouponsQuery::create()
+                ->filterByCreatedAt([
+                    'max' => new \DateTime($request->query->get('end')),
+                    'min' => new \DateTime($request->query->get('start')),
+                ])
+                ->find()
+            ;
+
+            $data['total_amount'] = 0;
+            $data['used'] = 0;
+            $data['used_amount'] = 0;
+            $data['unused'] = 0;
+            $data['unused_amount'] = 0;
+            $data['expired'] = 0;
+            $data['expired_amount'] = 0;
+            foreach ($coupons as $coupon) {
+                $data['total_amount'] += $coupon->getAmount();
+
+                if ($coupon->getIsUsed()) {
+                    $data['used']++;
+                    $data['used_amount'] += $coupon->getAmount();
+                } else if ((date('YmdHi') <= $coupon->getActiveTo('YmdHi'))) {
+                    $data['unused']++;
+                    $data['unused_amount'] += $coupon->getAmount();
+                }
+
+                if ((date('YmdHi') > $coupon->getActiveTo('YmdHi')) && (false === $coupon->getIsUsed())) {
+                    $data['expired']++;
+                    $data['expired_amount'] += $coupon->getAmount();
+                }
+            }
+
+            $data['total'] = $coupons->count();
+            unset($coupon, $coupons);
+        }
+
+        return [
+            'database' => $this->getRequest()->getSession()->get('database'),
+            'data'     => $data,
+        ];
+    }
+
 
     protected function writeCouponFile($data)
     {

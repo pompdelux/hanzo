@@ -161,16 +161,6 @@ class FlexWin extends BasePaymentApi implements PaymentMethodApiInterface
     }
 
     /**
-     * getFee
-     * @return float
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    public function getFee()
-    {
-        return ( isset($this->settings['fee']) ) ? $this->settings['fee'] : 0.00;
-    }
-
-    /**
      * getFeeExternalId
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
@@ -451,7 +441,7 @@ class FlexWin extends BasePaymentApi implements PaymentMethodApiInterface
     }
 
 
-    public function getProcessButton(Orders $order)
+    public function getProcessButton(Orders $order, Request $request)
     {
         $fields = '';
         foreach ($this->buildFormFields($order) as $name => $value) {

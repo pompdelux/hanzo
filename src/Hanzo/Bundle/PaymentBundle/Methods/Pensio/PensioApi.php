@@ -80,15 +80,6 @@ class PensioApi extends BasePaymentApi
     }
 
     /**
-     * getFee
-     * @return float
-     */
-    public function getFee()
-    {
-        return $this->settings['fee'];
-    }
-
-    /**
      * getFeeExternalId
      * @return void
      */
@@ -177,7 +168,7 @@ class PensioApi extends BasePaymentApi
      * @param  Orders $order The order object
      * @return string The form used to proceed to the Pensio payment window
      */
-    public function getProcessButton(Orders $order)
+    public function getProcessButton(Orders $order, Request $request)
     {
         $language = LanguagesQuery::create()->select('iso2')->findOneById($order->getLanguagesId());
 
