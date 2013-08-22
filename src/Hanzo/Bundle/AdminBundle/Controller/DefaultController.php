@@ -34,7 +34,7 @@ class DefaultController extends CoreController
 
     public function setDatabaseConnectionAction($name)
     {
-    	$request->getSession()->set('database', $name);
+    	$this->getRequest()->getSession()->set('database', $name);
     	return $this->redirect($this->generateUrl('admin'));
     }
 }
