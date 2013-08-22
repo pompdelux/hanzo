@@ -63,7 +63,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .icons-sprite, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-facebook, .icons-gplus, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, table#order-status td a.trigger, footer .newsletter-block .sprite, #secondary-links li.basket .sprite, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.arrow-right, .sprite.arrow-left {
-  background: url('/fx/mobile/../images/icons/icons-s38ac72e4ee.png') no-repeat;
+  background: url('/fx/mobile/../images/icons/icons-se2ff75170b.png') no-repeat;
 }
 
 .icons-arrow_down {
@@ -79,7 +79,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .icons-basket {
-  background-position: 0 -242px;
+  background-position: 0 0;
 }
 
 .icons-button-left-black {
@@ -99,23 +99,23 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .icons-delete {
-  background-position: 0 -122px;
+  background-position: 0 -172px;
 }
 
 .icons-delete_black {
-  background-position: 0 -132px;
+  background-position: 0 -182px;
 }
 
 .icons-delete_white {
-  background-position: 0 -142px;
+  background-position: 0 -192px;
 }
 
 .icons-divider {
-  background-position: 0 -195px;
+  background-position: 0 -245px;
 }
 
 .icons-divider_left {
-  background-position: 0 -86px;
+  background-position: 0 -136px;
 }
 
 .icons-divider_right {
@@ -123,7 +123,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .icons-edit {
-  background-position: 0 -106px;
+  background-position: 0 -156px;
 }
 
 .icons-facebook {
@@ -131,7 +131,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .icons-gplus {
-  background-position: 0 -210px;
+  background-position: 0 -260px;
 }
 
 .icons-magnifier {
@@ -139,7 +139,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .icons-newsletter {
-  background-position: 0 0;
+  background-position: 0 -50px;
 }
 
 .icons-pdf {
@@ -151,7 +151,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .icons-shopping-bag {
-  background-position: 0 -152px;
+  background-position: 0 -202px;
 }
 
 .icons-show {
@@ -2447,7 +2447,7 @@ footer .newsletter-block {
   position: relative;
 }
 footer .newsletter-block .sprite {
-  background-position: 0 0;
+  background-position: 0 -50px;
   height: 86px;
   width: 86px;
   position: absolute;
@@ -2517,7 +2517,7 @@ footer .copy li {
 #secondary-links li.basket .sprite {
   display: inline-block;
   vertical-align: middle;
-  background-position: 0 -242px;
+  background-position: 0 0;
   height: 50px;
   width: 50px;
 }
@@ -2889,12 +2889,12 @@ table.horizontal th {
   display: inline-block;
 }
 .sprite.delete {
-  background-position: 0 -122px;
+  background-position: 0 -172px;
   height: 10px;
   width: 15px;
 }
 .sprite.edit {
-  background-position: 0 -106px;
+  background-position: 0 -156px;
   height: 16px;
   width: 23px;
 }
