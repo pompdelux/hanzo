@@ -80,15 +80,6 @@ class PensioApi extends BasePaymentApi
     }
 
     /**
-     * getFee
-     * @return float
-     */
-    public function getFee()
-    {
-        return $this->settings['fee'];
-    }
-
-    /**
      * getFeeExternalId
      * @return void
      */

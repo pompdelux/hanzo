@@ -2,6 +2,18 @@
 
 namespace Hanzo\Bundle\PaymentBundle\Methods\Dibs;
 
+use Exception;
+
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
+use Hanzo\Model\Orders;
+use Hanzo\Bundle\PaymentBundle\BasePaymentApi;
+use Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface;
+use Hanzo\Bundle\PaymentBundle\Methods\Dibs\DibsApiCall;
+use Hanzo\Bundle\PaymentBundle\Methods\Dibs\DibsApiCallException;
+
+use Symfony\Component\HttpFoundation\Request;
+
 class DibsApi
 {
     /**
@@ -34,6 +46,7 @@ class DibsApi
         if (isset($settings['paytypes'])) {
             $this->settings['paytypes'] = unserialize($settings['paytypes']);
         }
+
 
         // FlexWin as default - catches "old" gateways. DibsPaymentWindow is the new "black"
         $settings['type'] = isset($settings['type']) ?

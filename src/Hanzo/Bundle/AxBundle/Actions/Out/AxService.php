@@ -258,7 +258,8 @@ class AxService
         // payment method
         $custPaymMode = 'Bank';
 
-        switch ($order->getBillingMethod()) {
+        switch (strtolower($order->getBillingMethod()))
+        {
             case 'dibs':
                 switch (trim(strtoupper($attributes->payment->paytype))) {
                     case 'VISA':
@@ -281,7 +282,11 @@ class AxService
                 break;
 
             case 'gothia':
+            case 'gothiade':
                 $custPaymMode = 'PayByBill';
+                if ('GOTHIA-LV' == strtoupper($attributes->payment->paytype)) {
+                    $custPaymMode = 'ELV';
+                }
                 break;
 
             case 'paypal':
@@ -326,6 +331,8 @@ class AxService
         $salesTable->TransactionType         = 'Write';
         $salesTable->CustPaymMode            = $custPaymMode;
         $salesTable->SmoreContactInfo        = ''; // NICETO, når s-more kommer på banen igen
+        $salesTable->BankAccountNumber       = isset( $attributes->payment->bank_account_no) ? $attributes->payment->bank_account_no : '';
+        $salesTable->BankId                  = isset( $attributes->payment->bank_id ) ? $attributes->payment->bank_id : '';
         $salesTable->DeliveryDropPointId     = $order->getDeliveryExternalAddressId();
         $salesTable->DeliveryCompanyName     = $order->getDeliveryCompanyName();
         $salesTable->DeliveryCity            = $order->getDeliveryCity();

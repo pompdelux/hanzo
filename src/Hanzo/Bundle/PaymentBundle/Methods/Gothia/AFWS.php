@@ -307,4 +307,29 @@ function AFSWS_CancelReservationObj( $customerNo, $orderNo = null, $amount = '' 
 
 // <<-- hf@bellcom.dk, 17-aug-2011: added extra calls
 
-?>
+// <<-- ab@bellcom.dk, 10-06-13: added check'n'place
+
+
+// Include the additional Reservation Info block,
+// ab@bellcom.dk
+function AFSWS_AdditionalReservationInfo($bankAccount = NULL, $bankId = NULL, $PaymentMethod)
+{
+	$ns = 'akt1';
+
+	$additionalInfos = AFSWS_Tag('DirectDebetBankAccount', $bankAccount, $ns);
+	$additionalInfos .= AFSWS_Tag('DirectDebetBankID', $bankId, $ns);
+	$additionalInfos .= AFSWS_Tag('PaymentMethod', $PaymentMethod, $ns);
+
+	return AFSWS_Tag('additionalReservationInfo', $additionalInfos);
+}
+/**
+ * AFSWS_PlaceReservation
+ * @param string $user Output of AFSWS_Customer function
+ * @param string $reservation Output of AFSWS_Reservation function
+ * @return string
+ * @author Henrik Farre <hf@bellcom.dk>
+ **/
+function AFSWS_CheckCustomerAndPlaceReservation( $user, $customer, $reservation, $additionalReservationInfo = '' )
+{
+  return '<CheckCustomerAndPlaceReservation xmlns="http://tempuri.org/">'.$user.$customer.$reservation.$additionalReservationInfo.'</CheckCustomerAndPlaceReservation>';
+}

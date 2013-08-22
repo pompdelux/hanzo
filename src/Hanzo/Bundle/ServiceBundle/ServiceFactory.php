@@ -29,7 +29,6 @@ class ServiceFactory
             $service = ucfirst($settings_key) . 'Service';
             $service =  __NAMESPACE__ . '\\Services\\' . $service;
         }
-
         // return the instance
         return new $service($parameters, $this->hanzo->getByNs($settings_key));
     }

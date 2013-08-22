@@ -17,6 +17,7 @@ class DefaultController extends CoreController
     protected $services = [
         'payment.dibsapi'      => 'Dibs',
         'payment.gothiaapi'    => 'Gothia',
+        'payment.gothiadeapi'    => 'GothiaDE',
         'payment.paybybillapi' => 'PayByBill',
         'payment.giftcardapi'  => 'GiftCard', // pseudo payment module ...
         'payment.pensioapi'    => 'Pensio',
@@ -44,7 +45,6 @@ class DefaultController extends CoreController
 
         $modules = [];
         foreach ($this->services as $service => $controller) {
-
             $service = $this->get($service);
             if ($service && $service->isActive()) {
 
@@ -104,7 +104,7 @@ class DefaultController extends CoreController
         // It also only supports one order line with payment fee, as all others are deleted
 
         if ('DOWN' !== $this->get('redis.permanent')->hget('service.status', 'dibs')) {
-            $order->setPaymentFee($method, $api->getFee(), 0, $api->getFeeExternalId());
+            $order->setPaymentFee($method, $api->getFee($method), 0, $api->getFeeExternalId());
         }
 
         $order->setUpdatedAt(time());
@@ -147,8 +147,8 @@ class DefaultController extends CoreController
                 'data'    => ['name' => 'payment'],
             ]);
         }
-
         $provider = strtolower($order->getBillingMethod());
+
         $key = 'payment.'.$provider.'api';
 
         if (isset($this->services[$key])) {

@@ -44,10 +44,11 @@ interface PaymentMethodApiInterface
     /**
      * getFee
      * Returns the fee for the current payment method, or 0 if none
+     * @param string The method to retrive for
      * @return float
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function getFee();
+    public function getFee($method = NULL);
 
     /**
      * getFeeExternalId

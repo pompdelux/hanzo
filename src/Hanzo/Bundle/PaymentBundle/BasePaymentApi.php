@@ -24,4 +24,21 @@ class BasePaymentApi
     {
         return null;
     }
+
+    /**
+     * Get the fee for this payment.
+     *
+     * @param  string Method
+     * @return float
+     */
+    public function getFee($method = NULL)
+    {
+        // Fee defined for specific method in settings.
+        if (isset($this->settings[$method . '.fee'])) {
+            return $this->settings[$method . '.fee'];
+        }
+
+        // Default fee for module, or zero.
+        return ( isset($this->settings['fee']) ) ? $this->settings['fee'] : 0.00;
+    }
 }
