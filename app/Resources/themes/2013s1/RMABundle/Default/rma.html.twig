@@ -16,7 +16,7 @@
 <body>
   <div id="container" class="container container_8">
     <div class="grid_4 alpha company_details">
-      <img src="{{ app.request.scheme ~'://' ~ app.request.httpHost ~ image_path('images/POMPdeLUX_logo_SS12.png', '0x100') }}" alt="POMPdeLUX" id="logo">
+      <img src="{{ image_path('/fx/images/POMPdeLUX_logo_SS12.png', '0x100') }}" alt="POMPdeLUX" id="logo">
       {{ 'rma.slip.company_details'|trans({}, 'rma')|raw }}
     </div>
     <div class="grid_4 omega">
