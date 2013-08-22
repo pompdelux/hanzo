@@ -1088,7 +1088,16 @@ class Orders extends BaseOrders
         }
         // <<-- hf@bellcom.dk, 12-jun-2012: handle old junk
 
-        $api = Hanzo::getInstance()->container->get('payment.'.$paymentMethod.'api');
+        if (empty($paymentMethod)) {
+            return;
+        }
+
+        try {
+            $api = Hanzo::getInstance()->container->get('payment.'.$paymentMethod.'api');
+        } catch (Exception $e) {
+            return;
+        }
+
         $customer = CustomersQuery::create()->findOneById( $this->getCustomersId(), $this->pdo_con );
         $response = $api->call()->cancel( $customer, $this );
 
@@ -1312,11 +1321,14 @@ class Orders extends BaseOrders
         if ($con) {
             $this->pdo_con = $con;
         }
+
         if (($this->getState() >= self::STATE_PAYMENT_OK) || $this->getIgnoreDeleteConstraints()) {
             try {
                 $this->cancelPayment();
                 Hanzo::getInstance()->container->get('ax.out')->deleteOrder($this, $con);
             } catch ( Exception $e ) {
+                Tools::log($e->getMessage());
+
                 if ($this->getIgnoreDeleteConstraints()) {
                     // allow delete for priority deletes
                     Hanzo::getInstance()->container->get('ax.out')->deleteOrder($this, $con);

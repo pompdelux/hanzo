@@ -6,55 +6,55 @@
 }
 
 .icons-sprite, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-facebook, .icons-gplus, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf {
-  background: url('/fx/2013s1/../images/icons/icons-se334b6897c.png') no-repeat;
+  background: url('/fx/2013s1/../images/icons/icons-s38ac72e4ee.png') no-repeat;
 }
 
 .icons-arrow_down {
-  background-position: 0 -507px;
+  background-position: 0 -517px;
 }
 
 .icons-arrow_left {
-  background-position: 0 -500px;
+  background-position: 0 -510px;
 }
 
 .icons-arrow_right {
-  background-position: 0 -511px;
+  background-position: 0 -521px;
 }
 
 .icons-basket {
-  background-position: 0 -122px;
+  background-position: 0 -242px;
 }
 
 .icons-button-left-black {
-  background-position: 0 -569px;
+  background-position: 0 -579px;
 }
 
 .icons-button-left {
-  background-position: 0 -481px;
+  background-position: 0 -491px;
 }
 
 .icons-button-right-black {
-  background-position: 0 -550px;
+  background-position: 0 -560px;
 }
 
 .icons-button-right {
-  background-position: 0 -462px;
+  background-position: 0 -472px;
 }
 
 .icons-delete {
-  background-position: 0 -162px;
+  background-position: 0 -122px;
 }
 
 .icons-delete_black {
-  background-position: 0 -172px;
+  background-position: 0 -132px;
 }
 
 .icons-delete_white {
-  background-position: 0 -182px;
+  background-position: 0 -142px;
 }
 
 .icons-divider {
-  background-position: 0 -235px;
+  background-position: 0 -195px;
 }
 
 .icons-divider_left {
@@ -62,7 +62,7 @@
 }
 
 .icons-divider_right {
-  background-position: 0 -282px;
+  background-position: 0 -292px;
 }
 
 .icons-edit {
@@ -70,15 +70,15 @@
 }
 
 .icons-facebook {
-  background-position: 0 -430px;
+  background-position: 0 -440px;
 }
 
 .icons-gplus {
-  background-position: 0 -250px;
+  background-position: 0 -210px;
 }
 
 .icons-magnifier {
-  background-position: 0 -518px;
+  background-position: 0 -528px;
 }
 
 .icons-newsletter {
@@ -86,31 +86,31 @@
 }
 
 .icons-pdf {
-  background-position: 0 -534px;
+  background-position: 0 -544px;
 }
 
 .icons-pinterest {
-  background-position: 0 -302px;
+  background-position: 0 -312px;
 }
 
 .icons-shopping-bag {
-  background-position: 0 -192px;
+  background-position: 0 -152px;
 }
 
 .icons-show {
-  background-position: 0 -588px;
+  background-position: 0 -598px;
 }
 
 .icons-twitter {
-  background-position: 0 -366px;
+  background-position: 0 -376px;
 }
 
 .icons-video {
-  background-position: 0 -398px;
+  background-position: 0 -408px;
 }
 
 .icons-zoom {
-  background-position: 0 -334px;
+  background-position: 0 -344px;
 }
 
 .fi-sprite, body.fi form.buy .submit-button, body.fi .buy-set, body.fi .new-price, body.fi .out-of-stock {
@@ -427,13 +427,18 @@ ul.horizontal li,
 #secondary-links li.basket .sprite {
   display: inline-block;
   vertical-align: middle;
-  background-position: 0 -122px;
-  height: 40px;
-  width: 31px;
+  background-position: 0 -242px;
+  height: 50px;
+  width: 50px;
 }
 #secondary-links li.basket a {
+  color: #a4876d;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: "Merriweather", serif;
   display: inline-block;
   vertical-align: middle;
+  margin-left: 5px;
 }
 #secondary-links li a, #secondary-links li input {
   font-size: 0.8em;
@@ -447,6 +452,12 @@ ul.horizontal li,
 }
 #secondary-links .second {
   z-index: 1;
+}
+#secondary-links .second a {
+  color: #a4876d;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: "Merriweather", serif;
 }
 
 ul.breadcrumb {
@@ -775,7 +786,7 @@ div.panes > div {
   margin-right: 5px;
 }
 .zoom .sprite {
-  background-position: 0 -334px;
+  background-position: 0 -344px;
   height: 32px;
   width: 32px;
 }
@@ -789,7 +800,7 @@ a.video-popper, #video-player-container a.video {
   text-align: center;
 }
 a.video-popper .sprite, #video-player-container a.video .sprite {
-  background-position: 0 -398px;
+  background-position: 0 -408px;
   height: 32px;
   width: 32px;
 }
@@ -2806,7 +2817,7 @@ div.dialoug.like-pop li div {
   line-height: 14px;
 }
 .oldie #secondary-links .menu.horizontal.second li a {
-  line-height: 40px;
+  line-height: 50px;
   display: inline;
 }
 .oldie hr {
@@ -3003,14 +3014,14 @@ hr {
   clear: both;
   margin: 0;
   width: 100%;
-  background-position: 0 -235px;
+  background-position: 0 -195px;
   height: 20px;
 }
 hr.left {
   background-position: 0 -86px;
 }
 hr.right {
-  background-position: 0 -282px;
+  background-position: 0 -292px;
 }
 
 strong, b {
@@ -3185,14 +3196,14 @@ a.button.button-full-width,
 
 .arrow-right {
   margin-left: 6px;
-  background-position: 0 -511px;
+  background-position: 0 -521px;
   height: 7px;
   width: 4px;
 }
 
 .arrow-left {
   margin-right: 6px;
-  background-position: 0 -500px;
+  background-position: 0 -510px;
   height: 7px;
   width: 4px;
 }
@@ -3360,7 +3371,7 @@ button.right {
   display: inline-block;
 }
 .sprite.delete {
-  background-position: 0 -162px;
+  background-position: 0 -122px;
   height: 10px;
   width: 15px;
 }
@@ -3370,12 +3381,12 @@ button.right {
   width: 23px;
 }
 .sprite.show {
-  background-position: 0 -588px;
+  background-position: 0 -598px;
   height: 16px;
   width: 16px;
 }
 .sprite.pdf {
-  background-position: 0 -534px;
+  background-position: 0 -544px;
   height: 16px;
   width: 16px;
 }
