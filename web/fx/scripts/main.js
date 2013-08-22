@@ -1,21 +1,9 @@
 (function($) {
-
   var gui = (function($) {
     var pub = {};
 
     pub.initUI = function() {
       jaiks.init({'url': base_url+'rest/v1/jaiks'});
-
-      // open in a new window
-      $('li.facebook a, a[rel="external"]').on('click', function(event) {
-        event.preventDefault();
-
-        var url = this.href;
-        if ($(this).parent().hasClass('facebook')) {
-          url = 'https://www.facebook.com/POMPdeLUXDK';
-        }
-        window.open(url);
-      });
 
       $("#select-domain a.open-menu").on('click', function(event) {
         event.preventDefault();
