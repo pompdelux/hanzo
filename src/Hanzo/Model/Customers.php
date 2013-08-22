@@ -132,6 +132,8 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
         // stats
         'pd@pompdelux.dk'        => ['ROLE_STATS', 'ROLE_EMPLOYEE'],
         'mh@pompdelux.dk'        => ['ROLE_STATS', 'ROLE_EMPLOYEE'],
+        // marketing
+        'tj@pompdelux.dk'        => ['ROLE_MARKETING', 'ROLE_EMPLOYEE'],
         // sales
         'kk@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
         'ak@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],

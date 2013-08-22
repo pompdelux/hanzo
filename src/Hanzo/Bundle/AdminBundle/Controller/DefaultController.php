@@ -4,10 +4,11 @@ namespace Hanzo\Bundle\AdminBundle\Controller;
 
 use Hanzo\Core\CoreController;
 use Symfony\Component\HttpFoundation\Session;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends CoreController
 {
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         // redirect hack
         if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
@@ -16,19 +17,24 @@ class DefaultController extends CoreController
             }
 
             $username = $this->get('security.context')->getToken()->getUser()->getUsername();
+
             if (in_array($username, ['pd@pompdelux.dk', 'mh@pompdelux.dk'])) {
                 return $this->redirect($this->generateUrl('admin_statistics'));
+            }
+
+            if (in_array($username, ['tj@pompdelux.dk'])) {
+                return $this->redirect($this->generateUrl('admin_cms'));
             }
         }
 
         return $this->render('AdminBundle:Default:index.html.twig', array(
-            'database' => $this->getRequest()->getSession()->get('database'))
+            'database' => $request->getSession()->get('database'))
         );
     }
 
     public function setDatabaseConnectionAction($name)
     {
-    	$this->getRequest()->getSession()->set('database', $name);
+    	$request->getSession()->set('database', $name);
     	return $this->redirect($this->generateUrl('admin'));
     }
 }
