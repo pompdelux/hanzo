@@ -212,6 +212,7 @@ class CmsController extends CoreController
                         break;
                 }
 
+                $node->setUpdatedBy($this->get('security.context')->getToken()->getUser()->getUsername());
                 $node->save($this->getDbConnection());
 
                 try {
@@ -299,10 +300,12 @@ class CmsController extends CoreController
             ->filterById($node->getParentId())
             ->findOne($this->getDbConnection())
         ;
-        if($parent)
-            $parent_path = $parent->getPath();
-        if($parent && (empty($parent_path) || $parent_path === '#')){
 
+        if ($parent) {
+            $parent_path = $parent->getPath();
+        }
+
+        if ($parent && (empty($parent_path) || $parent_path === '#')){
             $parent = CmsQuery::create()
                 ->joinWithI18n($locale)
                 ->filterById($parent->getParentId())
@@ -351,6 +354,8 @@ class CmsController extends CoreController
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
             $form->bind($request);
+error_log(get_class($node));
+            $node->setUpdatedBy($this->get('security.context')->getToken()->getUser()->getUsername());
 
             $data = $form->getData();
 

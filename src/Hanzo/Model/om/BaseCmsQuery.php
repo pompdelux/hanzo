@@ -24,6 +24,7 @@ use Hanzo\Model\CmsThread;
  * @method CmsQuery orderByCmsThreadId($order = Criteria::ASC) Order by the cms_thread_id column
  * @method CmsQuery orderBySort($order = Criteria::ASC) Order by the sort column
  * @method CmsQuery orderByType($order = Criteria::ASC) Order by the type column
+ * @method CmsQuery orderByUpdatedBy($order = Criteria::ASC) Order by the updated_by column
  * @method CmsQuery orderByCreatedAt($order = Criteria::ASC) Order by the created_at column
  * @method CmsQuery orderByUpdatedAt($order = Criteria::ASC) Order by the updated_at column
  *
@@ -32,6 +33,7 @@ use Hanzo\Model\CmsThread;
  * @method CmsQuery groupByCmsThreadId() Group by the cms_thread_id column
  * @method CmsQuery groupBySort() Group by the sort column
  * @method CmsQuery groupByType() Group by the type column
+ * @method CmsQuery groupByUpdatedBy() Group by the updated_by column
  * @method CmsQuery groupByCreatedAt() Group by the created_at column
  * @method CmsQuery groupByUpdatedAt() Group by the updated_at column
  *
@@ -62,6 +64,7 @@ use Hanzo\Model\CmsThread;
  * @method Cms findOneByCmsThreadId(int $cms_thread_id) Return the first Cms filtered by the cms_thread_id column
  * @method Cms findOneBySort(int $sort) Return the first Cms filtered by the sort column
  * @method Cms findOneByType(string $type) Return the first Cms filtered by the type column
+ * @method Cms findOneByUpdatedBy(string $updated_by) Return the first Cms filtered by the updated_by column
  * @method Cms findOneByCreatedAt(string $created_at) Return the first Cms filtered by the created_at column
  * @method Cms findOneByUpdatedAt(string $updated_at) Return the first Cms filtered by the updated_at column
  *
@@ -70,6 +73,7 @@ use Hanzo\Model\CmsThread;
  * @method array findByCmsThreadId(int $cms_thread_id) Return Cms objects filtered by the cms_thread_id column
  * @method array findBySort(int $sort) Return Cms objects filtered by the sort column
  * @method array findByType(string $type) Return Cms objects filtered by the type column
+ * @method array findByUpdatedBy(string $updated_by) Return Cms objects filtered by the updated_by column
  * @method array findByCreatedAt(string $created_at) Return Cms objects filtered by the created_at column
  * @method array findByUpdatedAt(string $updated_at) Return Cms objects filtered by the updated_at column
  */
@@ -173,7 +177,7 @@ abstract class BaseCmsQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `parent_id`, `cms_thread_id`, `sort`, `type`, `created_at`, `updated_at` FROM `cms` WHERE `id` = :p0';
+        $sql = 'SELECT `id`, `parent_id`, `cms_thread_id`, `sort`, `type`, `updated_by`, `created_at`, `updated_at` FROM `cms` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -461,6 +465,35 @@ abstract class BaseCmsQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(CmsPeer::TYPE, $type, $comparison);
+    }
+
+    /**
+     * Filter the query on the updated_by column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByUpdatedBy('fooValue');   // WHERE updated_by = 'fooValue'
+     * $query->filterByUpdatedBy('%fooValue%'); // WHERE updated_by LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $updatedBy The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return CmsQuery The current query, for fluid interface
+     */
+    public function filterByUpdatedBy($updatedBy = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($updatedBy)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $updatedBy)) {
+                $updatedBy = str_replace('*', '%', $updatedBy);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(CmsPeer::UPDATED_BY, $updatedBy, $comparison);
     }
 
     /**
