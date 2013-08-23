@@ -88,8 +88,7 @@ class DefaultController extends CoreController
             // set focus image
             if ($focus && isset($images[$focus])) {
                 $main_image = $images[$focus];
-            }
-            else {
+            } else {
                 $main_image = array_shift($images);
             }
 
@@ -113,7 +112,6 @@ class DefaultController extends CoreController
 
             // find the sizes and colors on stock
             if (!$product->getIsOutOfStock()) {
-
                 foreach ($variants as $v) {
                     $product_ids[] = $v->getId();
                 }
@@ -136,33 +134,33 @@ class DefaultController extends CoreController
                 ->withColumn('products_images.COLOR')
                 ->withColumn('products_images.IMAGE')
                 ->filterByProductsImagesId($image_ids)
+                ->joinWithProducts()
                 ->useProductsQuery()
-                    ->useProductsImagesQuery('ref')
+                    ->joinWithProductsImages()
+                    ->useProductsImagesQuery()
                         ->filterByType('overview')
                         ->where('products_images.COLOR = products_images_product_references.COLOR')
-                        ->groupByProductsId()
                     ->endUse()
-                    ->joinWithProductsImages()
                 ->endUse()
-                ->joinWithProducts()
                 ->find()
             ;
 
             $images_references = array();
             foreach ($references as $ref) {
-                $images_references[$ref->getProductsImagesId()]['references'][] = array(
-                    'title' => $ref->getProducts()->getSku(),
+                $sku = $ref->getProducts()->getSku();
+                $images_references[$ref->getProductsImagesId()]['references'][$ref->getProductsId()] = array(
+                    'title' => $sku,
                     'color' => $ref->getVirtualColumn('products_imagesCOLOR'),
                     'image' => $ref->getVirtualColumn('products_imagesIMAGE'),
                     'url' => $router->generate($route, array(
                         'product_id' => $ref->getProductsId(),
-                        'title'=> Tools::stripText($ref->getProducts()->getSku()),
+                        'title'=> Tools::stripText($sku),
                         'focus'=> $ref->getVirtualColumn('products_imagesID'),
                     ), TRUE),
                 );
             }
-            foreach ($images_references as $image_id => &$references) {
 
+            foreach ($images_references as $image_id => &$references) {
                 // If there are any references to this image,
                 // Add an overview of the current product at the top of the array.
                 if (count($references['references']) > 0) {
