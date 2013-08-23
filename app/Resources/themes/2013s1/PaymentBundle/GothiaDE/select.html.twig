@@ -3,7 +3,7 @@
 {% for id,paymentname in cardtypes %}
   <li>
     <input type="radio" value="gothiade:{{ paymentname }}" id="{{ paymentname }}" name="paytype"{% if selected_payment_type == 'gothiade:'~paymentname %} checked{% endif %}>
-    <label for="{{ paymentname }}"><img alt="gothia" src="{{ cdn }}fx/images/icons/{{ paymentname }}.gif"> {{ ('payment.'~paymentname~'.desc')|trans({}, 'checkout')|raw }}</label>
+    <label for="{{ paymentname }}"><img alt="gothia" src="{{ cdn }}fx/images/icons/{{ paymentname }}.jpg"> {{ ('payment.'~paymentname~'.desc')|trans({}, 'checkout')|raw }}</label>
   </li>
 {% endfor %}
 </ul>

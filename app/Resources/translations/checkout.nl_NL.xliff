@@ -424,7 +424,7 @@ Je moet meer artikelen toevoegen.
       </trans-unit>
       <trans-unit id="coupon.label" approved="no">
         <source>coupon.label</source>
-        <target>Indtast rabatkode</target>
+        <target>Toets je kortingscode</target>
       </trans-unit>
       <trans-unit id="coupon.invalid.code" approved="no">
         <source>coupon.invalid.code</source>
