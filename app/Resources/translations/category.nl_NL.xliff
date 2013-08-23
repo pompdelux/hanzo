@@ -277,8 +277,8 @@
                 <target><![CDATA[<h1>Blue & Red</h1>
                 <p></p>]]></target>
             </trans-unit>
-			<trans-unit id="headers.bycolour-659" approved="no">
-                <source>headers.bycolour-659</source>
+			<trans-unit id="headers.bycolour-696" approved="no">
+                <source>headers.bycolour-696</source>
                 <target><![CDATA[<h1>Green & Brown</h1>
                 <p></p>]]></target>
             </trans-unit>	

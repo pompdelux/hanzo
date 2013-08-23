@@ -407,7 +407,7 @@
       </trans-unit>
       <trans-unit id="address.copy" approved="no">
          <source>address.copy</source>
-         <target>Die Lieferanschrift ist dieselbe wie die Privatadresse</target>
+         <target>Die Lieferanschrift ist die gleiche wie die Privatadresse</target>
       </trans-unit>
       <trans-unit id="dibs.down.message">
          <source>dibs.down.message</source>
