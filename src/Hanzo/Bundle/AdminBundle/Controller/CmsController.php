@@ -354,7 +354,6 @@ class CmsController extends CoreController
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
             $form->bind($request);
-error_log(get_class($node));
             $node->setUpdatedBy($this->get('security.context')->getToken()->getUser()->getUsername());
 
             $data = $form->getData();
