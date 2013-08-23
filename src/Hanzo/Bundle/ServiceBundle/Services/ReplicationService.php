@@ -73,7 +73,10 @@ class ReplicationService
                     $c->setTitle($category->getTitle());
                     $c->setContent($category->getContent());
                 }
-                $c->save($conn);
+
+                try {
+                    $c->save($conn);
+                } catch (\Exception $e) {}
             }
         }
     }
@@ -102,7 +105,10 @@ class ReplicationService
                 $i->setImage($image->getImage());
                 $i->setColor($image->getColor());
                 $i->setType($image->getType());
-                $i->save($conn);
+
+                try {
+                    $i->save($conn);
+                } catch (\Exception $e) {}
             }
         }
     }
@@ -126,7 +132,11 @@ class ReplicationService
                 $g = new ProductsImagesProductReferences();
                 $g->setProductsImagesId($guide->getProductsImagesId());
                 $g->setProductsId($guide->getProductsId());
-                $g->save($conn);
+                $g->setColor($guide->getColor());
+
+                try {
+                    $g->save($conn);
+                } catch (\Exception $e) {}
             }
         }
     }
@@ -152,7 +162,10 @@ class ReplicationService
                 $s->setCategoriesId($image->getCategoriesId());
                 $s->setProductsImagesId($image->getProductsImagesId());
                 $s->setSort($image->getSort());
-                $s->save($conn);
+
+                try {
+                    $s->save($conn);
+                } catch (\Exception $e) {}
             }
         }
     }
