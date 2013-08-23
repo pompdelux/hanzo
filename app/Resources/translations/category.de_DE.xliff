@@ -65,7 +65,7 @@
 			<trans-unit id="headers.category-21" approved="no">
                 <source>headers.category-21</source>
                 <target><![CDATA[<h1>Unterwäsche-Nachtwäsche</h1>
-                <p></p>]]></target>
+                <p></p>]]></target></trans-unit>
 			<trans-unit id="headers.category-12" approved="no">
                 <source>headers.category-12</source>
                 <target><![CDATA[<h1>Accessories</h1>
