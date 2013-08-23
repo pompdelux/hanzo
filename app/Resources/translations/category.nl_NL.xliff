@@ -292,13 +292,13 @@
                 <target><![CDATA[<h1>Denim</h1>
                 <p></p>]]></target>
             </trans-unit>		
-			<trans-unit id="headers.bycolour-648" approved="no">
-                <source>headers.bycolour-648</source>
+			<trans-unit id="headers.bycolour-646" approved="no">
+                <source>headers.bycolour-646</source>
                 <target><![CDATA[<h1>Rose</h1>
                 <p></p>]]></target>
             </trans-unit>
-			<trans-unit id="headers.bycolour-648" approved="no">
-                <source>headers.bycolour-648</source>
+			<trans-unit id="headers.bycolour-647" approved="no">
+                <source>headers.bycolour-647</source>
                 <target><![CDATA[<h1>Ice Blue</h1>
                 <p></p>]]></target>
             </trans-unit>
