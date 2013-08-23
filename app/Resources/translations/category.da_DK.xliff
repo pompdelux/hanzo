@@ -326,16 +326,6 @@
                 <target><![CDATA[<h1>Denim</h1>
                 <p></p>]]></target>
             </trans-unit>
-			<trans-unit id="headers.bycolour-690" approved="no">
-                <source>headers.bycolour-690</source>
-                <target><![CDATA[<h1>Grey</h1>
-                <p></p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.bycolour-691" approved="no">
-                <source>headers.bycolour-691</source>
-                <target><![CDATA[<h1>Denim</h1>
-                <p></p>]]></target>
-            </trans-unit>
 			<trans-unit id="headers.bycolour-696" approved="no">
                 <source>headers.bycolour-696</source>
                 <target><![CDATA[<h1>Navy/Curry</h1>
