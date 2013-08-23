@@ -124,7 +124,7 @@
             </trans-unit>
             <trans-unit id="store.address">
                 <source>store.address</source>
-                <target>POMPdeLUX ApS · Møgelhøj 8 · DK-8520 Lystrup · Y-tunnus 29622035 · mailfi@pompdelux.dk · 09 34870870</target>
+                <target>POMPdeLUX FI OY c/o POMPdeLUX ApS · Møgelhøj 8 · DK-8520 Lystrup · CRN 2482288-5 · mailfi@pompdelux.dk · 09 34870870</target>
             </trans-unit>
             <trans-unit id="order.edit.global.notice">
                 <source>order.edit.global.notice</source>
@@ -139,7 +139,7 @@
             <trans-unit id="footer.address">
                 <source>footer.address</source>
                 <target><![CDATA[<ul>
-                        <li>POMPdeLUX ApS</li>
+                        <li>POMPdeLUX FI OY c/o POMPdeLUX ApS</li>
                         <li>Møgelhøj 8</li>
                         <li>DK-8520 Lystrup</li>
                         <li>CRN 2482288-5</li>
