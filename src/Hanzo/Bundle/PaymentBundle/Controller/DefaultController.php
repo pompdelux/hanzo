@@ -178,7 +178,7 @@ class DefaultController extends CoreController
     public function cancelAction()
     {
         $translator = $this->get('translator');
-Tools::log($_POST);
+
         $order = OrdersPeer::getCurrent();
         $order->setState( Orders::STATE_BUILDING );
         $order->save();
