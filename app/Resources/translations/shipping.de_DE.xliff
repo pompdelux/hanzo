@@ -11,16 +11,16 @@
         <target>Die richtige Versandart wählen.</target>
       </trans-unit>
       <trans-unit id="shipping_method.name.601">
-        <source>shipping_method.name.10</source>
-        <target>Privatpaket</target>
+        <source>shipping_method.name.601</source>
+        <target>DHL</target>
       </trans-unit>
       <trans-unit id="shipping_method.desc.601 ">
-        <source>shipping_method.desc.10</source>
+        <source>shipping_method.desc.601</source>
         <target>Ihre Bestellung wird an Ihre Privatadresse geschickt. Wenn Sie möchten, dass Ihre Bestellung an eine andere Privatadresse (z. B. Nachbarn) geschickt werden soll, dann ändern Sie die Lieferanschrift durch Klicken auf "Lieferanschrift ändern".</target>
       </trans-unit>
       <trans-unit id="shipping_method.label.601">
-        <source>shipping_method.label.10</source>
-        <target>Post Danmark Privat %price%</target>
+        <source>shipping_method.label.601</source>
+        <target>DHL %price%</target>
       </trans-unit>
       <trans-unit id="shipping_method.name.11">
         <source>shipping_method.name.11</source>
