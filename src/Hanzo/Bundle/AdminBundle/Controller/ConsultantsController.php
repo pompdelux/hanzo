@@ -6,34 +6,33 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-use Hanzo\Core\Hanzo,
-    Hanzo\Core\Tools,
-    Hanzo\Core\CoreController;
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
+use Hanzo\Core\CoreController;
 
-use Hanzo\Model\ConsultantsQuery,
-    Hanzo\Model\CustomersQuery,
-    Hanzo\Model\SettingsQuery,
-    Hanzo\Model\Settings,
-    Hanzo\Model\EventsQuery,
-    Hanzo\Model\Events;
+use Hanzo\Model\ConsultantsQuery;
+use Hanzo\Model\CustomersQuery;
+use Hanzo\Model\SettingsQuery;
+use Hanzo\Model\Settings;
+use Hanzo\Model\EventsQuery;
+use Hanzo\Model\Events;
 
 use Propel\Runtime\Parser\PropelCSVParser;
 
 class ConsultantsController extends CoreController
 {
-    public function indexAction($pager)
+    public function indexAction(Request $request, $pager)
     {
-        $hanzo = Hanzo::getInstance();
-        $container = $hanzo->container;
-        $route = $container->get('request')->get('_route');
-        $router = $container->get('router');
+        $route       = $request->get('_route');
+        $router      = $this->get('router');
         $consultants = null;
 
         // Search parameter
-        if (isset($_GET['q'])) {
-            $q_clean = $this->getRequest()->get('q', null);
+        if ($request->query->has('q')) {
+            $q_clean = $request->query->get('q', null);
             $q = '%'.$q_clean.'%';
 
             /**
@@ -76,22 +75,24 @@ class ConsultantsController extends CoreController
 
             $pages = array();
             foreach ($consultants->getLinks(20) as $page) {
-                if (isset($_GET['q']))
-                    $pages[$page] = $router->generate($route, array('pager' => $page, 'q' => $_GET['q']), TRUE);
-                else
+                if ($request->query->has('q')) {
+                    $pages[$page] = $router->generate($route, array('pager' => $page, 'q' => $request->query->get('q')), TRUE);
+                } else {
                     $pages[$page] = $router->generate($route, array('pager' => $page), TRUE);
+                }
 
             }
 
-            if (isset($_GET['q'])) // If search query, add it to the route
+             // If search query, add it to the route
+            if ($request->query->has('q')) {
                 $paginate = array(
-                    'next' => ($consultants->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $consultants->getNextPage(), 'q' => $_GET['q']), TRUE)),
-                    'prew' => ($consultants->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $consultants->getPreviousPage(), 'q' => $_GET['q']), TRUE)),
+                    'next' => ($consultants->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $consultants->getNextPage(), 'q' => $request->query->get('q')), TRUE)),
+                    'prew' => ($consultants->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $consultants->getPreviousPage(), 'q' => $request->query->get('q')), TRUE)),
 
                     'pages' => $pages,
                     'index' => $pager
                 );
-            else
+            } else {
                 $paginate = array(
                     'next' => ($consultants->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $consultants->getNextPage()), TRUE)),
                     'prew' => ($consultants->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $consultants->getPreviousPage()), TRUE)),
@@ -99,6 +100,7 @@ class ConsultantsController extends CoreController
                     'pages' => $pages,
                     'index' => $pager
                 );
+            }
         }
 
         $consultant_settings = SettingsQuery::create()
@@ -115,72 +117,70 @@ class ConsultantsController extends CoreController
         $form_settings = $this->createFormBuilder($consultant_settings_data)
             ->add('date', 'date',
                 array(
-                    'input'  => 'string',
-                    'widget' => 'choice',
-                    'label' => 'admin.consultant.date.label',
+                    'input'              => 'string',
+                    'widget'             => 'choice',
+                    'label'              => 'admin.consultant.date.label',
                     'translation_domain' => 'admin'
                 )
             )->add('max_amount', 'text',
                 array(
-                    'label' => 'admin.consultant.max_amount.label',
-                    'translation_domain' => 'admin'
-                )
-            )->getForm();
-        $form_export = $this->createFormBuilder(
-                array(
-                    'start' => date('Y-m-d', time()),
-                    'end' => date('Y-m-d', strtotime('-1 month', time() ))
-                )
-            )->add('start', 'date', array(
-                    'input'  => 'string',
-                    'widget' => 'single_text',
-                    'format' => 'yy-MM-dd',
-                    'label' => 'admin.consultant.export.start.label',
-                    'translation_domain' => 'admin'
-                )
-            )->add('end', 'date', array(
-                    'input'  => 'string',
-                    'widget' => 'single_text',
-                    'format' => 'yy-MM-dd',
-                    'label' => 'admin.consultant.export.start.label',
+                    'label'              => 'admin.consultant.max_amount.label',
                     'translation_domain' => 'admin'
                 )
             )->getForm()
         ;
+        $form_export = $this->createFormBuilder(array(
+                'start' => date('Y-m-d', time()),
+                'end'   => date('Y-m-d', strtotime('-1 month', time() ))
+            ))->add('start', 'date', array(
+                'input'              => 'string',
+                'widget'             => 'single_text',
+                'format'             => 'yy-MM-dd',
+                'label'              => 'admin.consultant.export.start.label',
+                'translation_domain' => 'admin'
+            ))->add('end', 'date', array(
+                'input'              => 'string',
+                'widget'             => 'single_text',
+                'format'             => 'yy-MM-dd',
+                'label'              => 'admin.consultant.export.start.label',
+                'translation_domain' => 'admin'
+            ))->getForm()
+        ;
+
         return $this->render('AdminBundle:Consultants:list.html.twig', array(
-            'consultants'     => $consultants,
-            'paginate'      => $paginate,
+            'consultants'         => $consultants,
+            'paginate'            => $paginate,
             'consultant_settings' => $form_settings->createView(),
-            'form_export' => $form_export->createView(),
-            'database' => $this->getRequest()->getSession()->get('database')
+            'form_export'         => $form_export->createView(),
+            'database'            => $request->getSession()->get('database')
         ));
 
     }
 
-    public function viewAction($id)
+    public function viewAction(Request $request, $id)
     {
-        $hanzo = Hanzo::getInstance();
-        $security = $hanzo->container->get('security.context');
+        $security = $this->get('security.context');
 
         $consultant = ConsultantsQuery::create()
             ->joinWithCustomers()
             ->filterById($id)
             ->findOne($this->getDbConnection())
         ;
+
         $customer = $consultant->getCustomers();
         $consultant_data = array(
-            'first_name' => $customer->getFirstName(),
-            'last_name' => $customer->getLastName(),
-            'email' => $customer->getEmail(),
-            'phone' => $customer->getPhone(),
-            'discount' => $customer->getDiscount(),
+            'first_name'     => $customer->getFirstName(),
+            'last_name'      => $customer->getLastName(),
+            'email'          => $customer->getEmail(),
+            'phone'          => $customer->getPhone(),
+            'discount'       => $customer->getDiscount(),
             'password_clear' => $customer->getPasswordClear(),
-            'is_active' => $customer->getIsActive(),
-            'initials' => $consultant->getInitials(),
-            'info' => $consultant->getInfo(),
-            'event_notes' => $consultant->getEventNotes(),
-            'max_notified' => $consultant->getMaxNotified(),
-            'hide_info' => $consultant->getHideInfo()
+            'is_active'      => $customer->getIsActive(),
+            'initials'       => $consultant->getInitials(),
+            'info'           => $consultant->getInfo(),
+            'event_notes'    => $consultant->getEventNotes(),
+            'max_notified'   => $consultant->getMaxNotified(),
+            'hide_info'      => $consultant->getHideInfo()
         );
 
         $form = $this->createFormBuilder($consultant_data);
@@ -258,8 +258,6 @@ class ConsultantsController extends CoreController
             )->getForm()
         ;
 
-
-        $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
             $form->bindRequest($request);
 
@@ -297,16 +295,14 @@ class ConsultantsController extends CoreController
         return $this->render('AdminBundle:Consultants:view.html.twig', array(
             'form'      => $form->createView(),
             'consultant'  => $consultant,
-            'database' => $this->getRequest()->getSession()->get('database')
+            'database' => $request->getSession()->get('database')
         ));
     }
 
-    public function indexEventsAction($pager)
+    public function indexEventsAction(Request $request, $pager)
     {
-        $hanzo = Hanzo::getInstance();
-        $container = $hanzo->container;
-        $route = $container->get('request')->get('_route');
-        $router = $container->get('router');
+        $route  = $request->get('_route');
+        $router = $this->get('router');
 
         $events = EventsQuery::create()
             ->orderByEventDate()
@@ -318,8 +314,8 @@ class ConsultantsController extends CoreController
 
             $pages = array();
             foreach ($events->getLinks(20) as $page) {
-                if (isset($_GET['q']))
-                    $pages[$page] = $router->generate($route, array('pager' => $page, 'q' => $_GET['q']), TRUE);
+                if ($request->query->has('q'))
+                    $pages[$page] = $router->generate($route, array('pager' => $page, 'q' => $request->query->get('q')), TRUE);
                 else
                     $pages[$page] = $router->generate($route, array('pager' => $page), TRUE);
 
@@ -338,7 +334,7 @@ class ConsultantsController extends CoreController
             'paginate'  => $paginate,
             'start'     => date('d-m-Y', strtotime('-1 month', time() )),
             'end'       => date('d-m-Y', time()),
-            'database'  => $this->getRequest()->getSession()->get('database')
+            'database'  => $request->getSession()->get('database')
         ));
     }
 
@@ -356,7 +352,6 @@ class ConsultantsController extends CoreController
         if($event instanceof Events){
             $event->delete($this->getDbConnection());
 
-
             if ($this->getFormat() == 'json') {
                 return $this->json_response(array(
                     'status' => TRUE,
@@ -373,15 +368,15 @@ class ConsultantsController extends CoreController
         }
     }
 
-    public function exportAction()
+    public function exportAction(Request $request)
     {
 
         $parser = new \PropelCSVParser();
         $parser->delimiter = ';';
         $start = $end = NULL;
-        if (isset($_GET['start']) && isset($_GET['end'])) {
-            $start = $this->getRequest()->get('start', null);
-            $end = $this->getRequest()->get('end', null);
+        if ($request->query->has('start') && $request->query->has('end')) {
+            $start = $request->query->get('start', null);
+            $end   = $request->query->get('end', null);
         }
         $date_filter = array();
         if($start && $end){
@@ -535,24 +530,24 @@ class ConsultantsController extends CoreController
             $info = str_replace('src="/', 'src="'.$cdn, $info);
 
             $consultants_array[] = array(
-                'id' => $consultant['Customers.Id'],
-                'name' => $consultant['Customers.FirstName'] .' '. $consultant['Customers.LastName'],
-                'zip' => $consultant['Addresses.PostalCode'],
-                'city' => $consultant['Addresses.City'],
-                'email' => $consultant['Customers.Email'],
-                'phone' => $consultant['Customers.Phone'],
-                'info' => $info,
+                'id'        => $consultant['Customers.Id'],
+                'name'      => $consultant['Customers.FirstName'] .' '. $consultant['Customers.LastName'],
+                'zip'       => $consultant['Addresses.PostalCode'],
+                'city'      => $consultant['Addresses.City'],
+                'email'     => $consultant['Customers.Email'],
+                'phone'     => $consultant['Customers.Phone'],
+                'info'      => $info,
                 'hide_info' => $consultant['HideInfo'],
             );
         }
 
         return $this->render('AdminBundle:Consultants:openHouseList.html.twig', array(
-            'consultants'     => $consultants_array,
-            'database' => $this->getRequest()->getSession()->get('database')
+            'consultants' => $consultants_array,
+            'database'    => $request->getSession()->get('database')
         ));
     }
 
-    public function consultantsFrontpageEditAction()
+    public function consultantsFrontpageEditAction(Request $request)
     {
         $setting = SettingsQuery::create()
             ->filterByNs('c')
@@ -562,8 +557,8 @@ class ConsultantsController extends CoreController
         if(!$setting instanceof Settings){
             $setting = new Settings();
             $setting->setNs('c')
-                    ->setCKey('frontpage')
-                    ->setTitle('Consultant Frontpage Content')
+                ->setCKey('frontpage')
+                ->setTitle('Consultant Frontpage Content')
             ;
         }
 
@@ -577,7 +572,6 @@ class ConsultantsController extends CoreController
             )->getForm()
         ;
 
-        $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
             $form->bindRequest($request);
 
@@ -596,8 +590,8 @@ class ConsultantsController extends CoreController
         }
 
         return $this->render('AdminBundle:Consultants:consultantsFrontpageEdit.html.twig', array(
-            'form'      => $form->createView(),
-            'database' => $this->getRequest()->getSession()->get('database')
+            'form'     => $form->createView(),
+            'database' => $request->getSession()->get('database')
         ));
     }
 }
