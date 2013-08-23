@@ -124,7 +124,7 @@
             </trans-unit>
             <trans-unit id="store.address">
                 <source>store.address</source>
-                <target>POMPdeLUX ApS • Møgelhøj 8 • DK-8520 Lystrup • USt-IdNr. DE290402183 • mailde@pompdelux.com • <!--040-35715072-->0045 8678 7871</target>
+                <target>POMPdeLUX DE GmbH • Dammtorstraβe 12 • DE-20354 Hamburg • USt-IdNr. DE290402183 • mailde@pompdelux.com • 040-35715072</target>
             </trans-unit>
             <trans-unit id="order.edit.global.notice">
                 <source>order.edit.global.notice</source>
