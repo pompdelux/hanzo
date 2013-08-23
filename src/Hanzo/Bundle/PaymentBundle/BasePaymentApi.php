@@ -34,8 +34,8 @@ class BasePaymentApi
     public function getFee($method = NULL)
     {
         // Fee defined for specific method in settings.
-        if (isset($this->settings[$method . '.fee'])) {
-            return $this->settings[$method . '.fee'];
+        if (isset($this->settings[$method . '-fee'])) {
+            return $this->settings[$method . '-fee'];
         }
 
         // Default fee for module, or zero.
