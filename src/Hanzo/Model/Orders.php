@@ -1329,7 +1329,7 @@ class Orders extends BaseOrders
                 $this->cancelPayment();
                 Hanzo::getInstance()->container->get('ax.out')->deleteOrder($this, $con);
             } catch ( Exception $e ) {
-                Tools::log($e->getMessage());
+                // Tools::log($e->getMessage());
 
                 if ($this->getIgnoreDeleteConstraints()) {
                     // allow delete for priority deletes
