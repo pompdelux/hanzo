@@ -11,6 +11,10 @@ label {
   margin-top:5px;
 }
 
+form #cms-meta {
+  float:right;
+}
+
 form #cms-edit textarea{
   width:90%;
   height:350px;

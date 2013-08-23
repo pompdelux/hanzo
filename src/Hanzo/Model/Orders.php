@@ -25,6 +25,8 @@ use Hanzo\Model\OrdersAttributesPeer;
 use Hanzo\Model\OrdersAttributesQuery;
 use Hanzo\Model\OrdersVersions;
 use Hanzo\Model\OrdersVersionsQuery;
+use Hanzo\Model\OrdersDeletedLog;
+use Hanzo\Model\OrdersDeletedLogQuery;
 use Hanzo\Model\ShippingMethods;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\AddressesPeer;
@@ -1375,11 +1377,15 @@ class Orders extends BaseOrders
             $deleted_by = 'cid: '.CustomersPeer::getCurrent()->getId();
         }
 
-        $entry = new OrdersDeletedLog();
-        $entry->setOrdersId($this->getId());
-        $entry->setCustomersId($this->getCustomersId());
-        $entry->setName($this->getFirstName().' '.$this->getLastName());
-        $entry->setEmail($this->getEmail());
+        $entry = OrdersDeletedLogQuery::create()->findOneByOrdersId($this->getId());
+        if (!$entry instanceof OrdersDeletedLog) {
+            $entry = new OrdersDeletedLog();
+            $entry->setOrdersId($this->getId());
+            $entry->setCustomersId($this->getCustomersId());
+            $entry->setName($this->getFirstName().' '.$this->getLastName());
+            $entry->setEmail($this->getEmail());
+        }
+
         $entry->setTrigger($trigger);
         $entry->setContent(serialize($data));
         $entry->setDeletedBy($deleted_by);

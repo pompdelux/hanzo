@@ -4197,6 +4197,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     public function setOrdersAttributess(PropelCollection $ordersAttributess, PropelPDO $con = null)
     {
         $ordersAttributessToDelete = $this->getOrdersAttributess(new Criteria(), $con)->diff($ordersAttributess);
+
         $this->ordersAttributessScheduledForDeletion = unserialize(serialize($ordersAttributessToDelete));
 
         foreach ($ordersAttributessToDelete as $ordersAttributesRemoved) {
@@ -4875,6 +4876,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     public function setOrdersSyncLogs(PropelCollection $ordersSyncLogs, PropelPDO $con = null)
     {
         $ordersSyncLogsToDelete = $this->getOrdersSyncLogs(new Criteria(), $con)->diff($ordersSyncLogs);
+
         $this->ordersSyncLogsScheduledForDeletion = unserialize(serialize($ordersSyncLogsToDelete));
 
         foreach ($ordersSyncLogsToDelete as $ordersSyncLogRemoved) {

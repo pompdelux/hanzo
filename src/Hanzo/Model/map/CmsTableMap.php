@@ -47,6 +47,7 @@ class CmsTableMap extends TableMap
         $this->addForeignKey('cms_thread_id', 'CmsThreadId', 'INTEGER', 'cms_thread', 'id', true, null, null);
         $this->addColumn('sort', 'Sort', 'INTEGER', true, null, 1);
         $this->addColumn('type', 'Type', 'VARCHAR', true, 255, 'cms');
+        $this->addColumn('updated_by', 'UpdatedBy', 'VARCHAR', false, 255, null);
         $this->addColumn('created_at', 'CreatedAt', 'TIMESTAMP', false, null, null);
         $this->addColumn('updated_at', 'UpdatedAt', 'TIMESTAMP', false, null, null);
         // validators

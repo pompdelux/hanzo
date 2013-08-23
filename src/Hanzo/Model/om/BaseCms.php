@@ -77,6 +77,12 @@ abstract class BaseCms extends BaseObject implements Persistent
     protected $type;
 
     /**
+     * The value for the updated_by field.
+     * @var        string
+     */
+    protected $updated_by;
+
+    /**
      * The value for the created_at field.
      * @var        string
      */
@@ -226,6 +232,16 @@ abstract class BaseCms extends BaseObject implements Persistent
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * Get the [updated_by] column value.
+     *
+     * @return string
+     */
+    public function getUpdatedBy()
+    {
+        return $this->updated_by;
     }
 
     /**
@@ -426,6 +442,27 @@ abstract class BaseCms extends BaseObject implements Persistent
     } // setType()
 
     /**
+     * Set the value of [updated_by] column.
+     *
+     * @param string $v new value
+     * @return Cms The current object (for fluent API support)
+     */
+    public function setUpdatedBy($v)
+    {
+        if ($v !== null && is_numeric($v)) {
+            $v = (string) $v;
+        }
+
+        if ($this->updated_by !== $v) {
+            $this->updated_by = $v;
+            $this->modifiedColumns[] = CmsPeer::UPDATED_BY;
+        }
+
+
+        return $this;
+    } // setUpdatedBy()
+
+    /**
      * Sets the value of [created_at] column to a normalized version of the date/time value specified.
      *
      * @param mixed $v string, integer (timestamp), or DateTime value.
@@ -516,8 +553,9 @@ abstract class BaseCms extends BaseObject implements Persistent
             $this->cms_thread_id = ($row[$startcol + 2] !== null) ? (int) $row[$startcol + 2] : null;
             $this->sort = ($row[$startcol + 3] !== null) ? (int) $row[$startcol + 3] : null;
             $this->type = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
-            $this->created_at = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
-            $this->updated_at = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
+            $this->updated_by = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
+            $this->created_at = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
+            $this->updated_at = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -526,7 +564,7 @@ abstract class BaseCms extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
-            return $startcol + 7; // 7 = CmsPeer::NUM_HYDRATE_COLUMNS.
+            return $startcol + 8; // 8 = CmsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating Cms object", $e);
@@ -830,6 +868,9 @@ abstract class BaseCms extends BaseObject implements Persistent
         if ($this->isColumnModified(CmsPeer::TYPE)) {
             $modifiedColumns[':p' . $index++]  = '`type`';
         }
+        if ($this->isColumnModified(CmsPeer::UPDATED_BY)) {
+            $modifiedColumns[':p' . $index++]  = '`updated_by`';
+        }
         if ($this->isColumnModified(CmsPeer::CREATED_AT)) {
             $modifiedColumns[':p' . $index++]  = '`created_at`';
         }
@@ -861,6 +902,9 @@ abstract class BaseCms extends BaseObject implements Persistent
                         break;
                     case '`type`':
                         $stmt->bindValue($identifier, $this->type, PDO::PARAM_STR);
+                        break;
+                    case '`updated_by`':
+                        $stmt->bindValue($identifier, $this->updated_by, PDO::PARAM_STR);
                         break;
                     case '`created_at`':
                         $stmt->bindValue($identifier, $this->created_at, PDO::PARAM_STR);
@@ -1052,9 +1096,12 @@ abstract class BaseCms extends BaseObject implements Persistent
                 return $this->getType();
                 break;
             case 5:
-                return $this->getCreatedAt();
+                return $this->getUpdatedBy();
                 break;
             case 6:
+                return $this->getCreatedAt();
+                break;
+            case 7:
                 return $this->getUpdatedAt();
                 break;
             default:
@@ -1091,8 +1138,9 @@ abstract class BaseCms extends BaseObject implements Persistent
             $keys[2] => $this->getCmsThreadId(),
             $keys[3] => $this->getSort(),
             $keys[4] => $this->getType(),
-            $keys[5] => $this->getCreatedAt(),
-            $keys[6] => $this->getUpdatedAt(),
+            $keys[5] => $this->getUpdatedBy(),
+            $keys[6] => $this->getCreatedAt(),
+            $keys[7] => $this->getUpdatedAt(),
         );
         if ($includeForeignObjects) {
             if (null !== $this->aCmsThread) {
@@ -1157,9 +1205,12 @@ abstract class BaseCms extends BaseObject implements Persistent
                 $this->setType($value);
                 break;
             case 5:
-                $this->setCreatedAt($value);
+                $this->setUpdatedBy($value);
                 break;
             case 6:
+                $this->setCreatedAt($value);
+                break;
+            case 7:
                 $this->setUpdatedAt($value);
                 break;
         } // switch()
@@ -1191,8 +1242,9 @@ abstract class BaseCms extends BaseObject implements Persistent
         if (array_key_exists($keys[2], $arr)) $this->setCmsThreadId($arr[$keys[2]]);
         if (array_key_exists($keys[3], $arr)) $this->setSort($arr[$keys[3]]);
         if (array_key_exists($keys[4], $arr)) $this->setType($arr[$keys[4]]);
-        if (array_key_exists($keys[5], $arr)) $this->setCreatedAt($arr[$keys[5]]);
-        if (array_key_exists($keys[6], $arr)) $this->setUpdatedAt($arr[$keys[6]]);
+        if (array_key_exists($keys[5], $arr)) $this->setUpdatedBy($arr[$keys[5]]);
+        if (array_key_exists($keys[6], $arr)) $this->setCreatedAt($arr[$keys[6]]);
+        if (array_key_exists($keys[7], $arr)) $this->setUpdatedAt($arr[$keys[7]]);
     }
 
     /**
@@ -1209,6 +1261,7 @@ abstract class BaseCms extends BaseObject implements Persistent
         if ($this->isColumnModified(CmsPeer::CMS_THREAD_ID)) $criteria->add(CmsPeer::CMS_THREAD_ID, $this->cms_thread_id);
         if ($this->isColumnModified(CmsPeer::SORT)) $criteria->add(CmsPeer::SORT, $this->sort);
         if ($this->isColumnModified(CmsPeer::TYPE)) $criteria->add(CmsPeer::TYPE, $this->type);
+        if ($this->isColumnModified(CmsPeer::UPDATED_BY)) $criteria->add(CmsPeer::UPDATED_BY, $this->updated_by);
         if ($this->isColumnModified(CmsPeer::CREATED_AT)) $criteria->add(CmsPeer::CREATED_AT, $this->created_at);
         if ($this->isColumnModified(CmsPeer::UPDATED_AT)) $criteria->add(CmsPeer::UPDATED_AT, $this->updated_at);
 
@@ -1278,6 +1331,7 @@ abstract class BaseCms extends BaseObject implements Persistent
         $copyObj->setCmsThreadId($this->getCmsThreadId());
         $copyObj->setSort($this->getSort());
         $copyObj->setType($this->getType());
+        $copyObj->setUpdatedBy($this->getUpdatedBy());
         $copyObj->setCreatedAt($this->getCreatedAt());
         $copyObj->setUpdatedAt($this->getUpdatedAt());
 
@@ -1948,6 +2002,7 @@ abstract class BaseCms extends BaseObject implements Persistent
         $this->cms_thread_id = null;
         $this->sort = null;
         $this->type = null;
+        $this->updated_by = null;
         $this->created_at = null;
         $this->updated_at = null;
         $this->alreadyInSave = false;

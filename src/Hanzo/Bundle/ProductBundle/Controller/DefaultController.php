@@ -169,7 +169,7 @@ class DefaultController extends CoreController
                     array_unshift($references['references'], array(
                         'title' => $product->getSku(),
                         'color' => '',
-                        'image' => str_replace('set', 'overview', $all_images[$image_id]['name']),
+                        'image' => preg_replace('/_set_[0-9]+/', '_overview_01', $all_images[$image_id]['name']),
                         'url' => $router->generate($route, array(
                             'product_id' => $product->getId(),
                             'title'=> Tools::stripText($product->getSku()),
