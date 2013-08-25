@@ -45,7 +45,7 @@
         </thead>
         <tbody>
       {% for product in products %}
-          <tr>
+          <tr class="item">
             <td class="image left">
               {{ product_image_tag(product.basket_image, '57x100', { 'alt' : product.products_name }) }}
               <div class="info" data-product_id="{{ product.products_id }}" data-confirmed="">
