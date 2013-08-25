@@ -246,9 +246,7 @@ var quickorder = (function($) {
 
   };
 
-    pub.getColor = function() {
-
-    };
+    pub.getColor = function() {};
 
     _resetForm = function() {
         $('#master').val('').focus();
