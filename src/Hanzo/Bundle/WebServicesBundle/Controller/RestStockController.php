@@ -118,7 +118,7 @@ class RestStockController extends CoreController
 
                 foreach ($result as $record) {
                     if ($dato = $stock->check($record)) {
-                        $date = ($dato instanceof \DateTime ? $dato->format('Y m/d') : '');
+                        $date = ($dato instanceof \DateTime ? $dato->format('d.m.Y') : '');
 
                         $data[] = array(
                             'product_id' => $record->getId(),
