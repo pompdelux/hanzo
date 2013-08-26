@@ -398,7 +398,7 @@
       </trans-unit>
       <trans-unit id="coupon.toggle.form" approved="no">
         <source>coupon.toggle.form</source>
-        <target>» Tast din rabatskode</target>
+        <target>» Kirjoita alennuskoodi</target>
       </trans-unit>
       <trans-unit id="coupon.description" approved="no">
         <source>coupon.description</source>
