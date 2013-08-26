@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="{{ html_lang }}" xmlns:og="http://ogp.me/ns#"> <!--<![endif]-->
 <head>
 
-{% if browser_title is defined %}
+{% if browser_title is defined and page_type|default('page') != 'frontpage' %}
   <title>{{ browser_title }} - {{ 'browser.title'|trans }}</title>
 {% else %}
   <title>{{ 'browser.title'|trans }}</title>
