@@ -271,11 +271,13 @@ class AxService
                     case 'MC':
                     case 'MC(DK)':
                     case 'MC(SE)':
+                    case 'MasterCard':
                         $custPaymMode = 'MasterCard';
                         break;
                     case 'V-DK':
                     case 'VISA-DANKORT':
                     case 'DK':
+                    case 'DANKORT':
                         $custPaymMode = 'DanKort';
                         break;
                 }
