@@ -430,7 +430,7 @@ Sie müssen Waren hinzufügen.
       </trans-unit>
       <trans-unit id="coupon" approved="no">
         <source>coupon</source>
-        <target>Rabatskode</target>
+        <target>Rabattcode</target>
       </trans-unit>
       <trans-unit id="coupon.toggle.form" approved="no">
         <source>coupon.toggle.form</source>
@@ -438,11 +438,11 @@ Sie müssen Waren hinzufügen.
       </trans-unit>
       <trans-unit id="coupon.description" approved="no">
         <source>coupon.description</source>
-        <target>Hvis du har en rabatkode .......</target>
+        <target>Haben Sie einen Rabattcode .......</target>
       </trans-unit>
       <trans-unit id="coupon.apply.discount" approved="no">
         <source>coupon.apply.discount</source>
-        <target>Gem</target>
+        <target>speichern</target>
       </trans-unit>
       <trans-unit id="coupon.label" approved="no">
         <source>coupon.label</source>
@@ -450,7 +450,7 @@ Sie müssen Waren hinzufügen.
       </trans-unit>
       <trans-unit id="coupon.invalid.code" approved="no">
         <source>coupon.invalid.code</source>
-        <target>Ugyldig rabatkode</target>
+        <target>Der Rabattcode ist unkorrekt</target>
       </trans-unit>
     </body>
   </file>
