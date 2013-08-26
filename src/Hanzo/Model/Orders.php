@@ -28,6 +28,7 @@ use Hanzo\Model\OrdersVersionsQuery;
 use Hanzo\Model\OrdersDeletedLog;
 use Hanzo\Model\OrdersDeletedLogQuery;
 use Hanzo\Model\ShippingMethods;
+use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\AddressesPeer;
 
@@ -1168,11 +1169,12 @@ class Orders extends BaseOrders
         $hanzo = Hanzo::getInstance();
 
         if ('' == $this->getBillingFirstName()) {
-            // $customer = CustomersPeer::getCurrent();
             $customer = $this->getCustomers();
-            $c = new Criteria;
-            $c->add(AddressesPeer::TYPE, 'payment');
-            $this->setBillingAddress($customer->getAddressess($c)->getFirst());
+            if ($customer instanceof Customers) {
+                $c = new Criteria;
+                $c->add(AddressesPeer::TYPE, 'payment');
+                $this->setBillingAddress($customer->getAddressess($c)->getFirst());
+            }
         }
 
         if ('COM' == $hanzo->get('core.domain_key')) {
