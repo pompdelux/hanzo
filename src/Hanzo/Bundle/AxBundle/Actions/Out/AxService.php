@@ -213,7 +213,7 @@ class AxService
             $line->SalesPrice      = $bag_price;
             $line->LineDiscPercent = 100;
             $line->SalesQty        = 1;
-            $line->InventColorId   = 'Khaki';
+            $line->InventColorId   = 'Off White';
             $line->InventSizeId    = 'One Size';
             $line->SalesUnit       = 'Stk.';
             $salesLine[]           = $line;
