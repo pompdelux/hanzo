@@ -233,7 +233,7 @@ class GothiaController extends CoreController
         {
             $api = $this->get('payment.gothiaapi');
             // Validate information @ gothia
-            $response = $api->call()->checkCustomer( $customer );
+            $response = $api->call()->checkCustomer( $customer, $order );
 
         }
         catch( GothiaApiCallException $e )
@@ -417,9 +417,10 @@ class GothiaController extends CoreController
     public function testAction()
     {
         $customer  = CustomersPeer::getCurrent();
+        $order     = OrdersPeer::getCurrent();
 
         $api = $this->get('payment.gothiaapi');
-        $response = $api->call()->checkCustomer( $customer );
+        $response = $api->call()->checkCustomer( $customer, $order );
 
         error_log(__LINE__.':'.__FILE__.' '.print_r($response,1)); // hf@bellcom.dk debugging
 
