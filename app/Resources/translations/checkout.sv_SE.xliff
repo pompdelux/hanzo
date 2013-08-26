@@ -418,19 +418,19 @@ Du måste lägga till fler varor.
       </trans-unit>
       <trans-unit id="coupon" approved="no">
         <source>coupon</source>
-        <target>Rabatskode</target>
+        <target>Rabattkod</target>
       </trans-unit>
       <trans-unit id="coupon.toggle.form" approved="no">
         <source>coupon.toggle.form</source>
-        <target>» Tast din rabatskode</target>
+        <target>» Skriv din rabattkod</target>
       </trans-unit>
       <trans-unit id="coupon.description" approved="no">
         <source>coupon.description</source>
-        <target>Hvis du har en rabatkode .......</target>
+        <target>Om du har en rabattkod .......</target>
       </trans-unit>
       <trans-unit id="coupon.apply.discount" approved="no">
         <source>coupon.apply.discount</source>
-        <target>Gem</target>
+        <target>Spara</target>
       </trans-unit>
       <trans-unit id="coupon.label" approved="no">
         <source>coupon.label</source>
@@ -438,7 +438,7 @@ Du måste lägga till fler varor.
       </trans-unit>
       <trans-unit id="coupon.invalid.code" approved="no">
         <source>coupon.invalid.code</source>
-        <target>Ugyldig rabatkode</target>
+        <target>Ogiltig rabattkod</target>
       </trans-unit>
     </body>
   </file>

@@ -2,15 +2,6 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
-            <trans-unit id="611.settings">
-                <source>611.settings</source>
-                <target><![CDATA[
-                    {
-                        "category_id" : "14",
-                        "colors" : "Rose,Black/Rose,Blue,Off White/Blue,Navy/Off White,Peach,Peach/Grey Melange,Green,Green/Grey,Yellow,Khaki,Sand,Brown,Off White,White,White/Off White,Blue Denim,Grey Melange,Light Grey Melange,Grey,Black,Camel,Gold"
-                    }
-                ]]></target>
-            </trans-unit>
             <trans-unit id="xxx.settings">
                 <source>xxx.settings</source>
                 <target><![CDATA[
