@@ -445,9 +445,10 @@ class GothiaDEController extends CoreController
     public function testAction()
     {
         $customer  = CustomersPeer::getCurrent();
+        $order     = OrdersPeer::getCurrent();
 
         $api = $this->get('payment.gothiadeapi');
-        $response = $api->call()->checkCustomer( $customer );
+        $response = $api->call()->checkCustomer( $customer, $order );
 
         error_log(__LINE__.':'.__FILE__.' '.print_r($response,1)); // hf@bellcom.dk debugging
 
