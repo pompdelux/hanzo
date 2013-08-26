@@ -420,7 +420,7 @@ Du må tilføye flere varer.
       </trans-unit>
       <trans-unit id="coupon.toggle.form" approved="no">
         <source>coupon.toggle.form</source>
-        <target>» Tast din rabatskode</target>
+        <target>» Tast inn din rabattkode</target>
       </trans-unit>
       <trans-unit id="coupon.description" approved="no">
         <source>coupon.description</source>
