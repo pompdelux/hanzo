@@ -59,7 +59,13 @@ class DefaultController extends CoreController
         $page->setContent($html);
 
         $this->setSharedMaxAge(86400);
-        return $this->render('CMSBundle:Default:view.html.twig', array('page_type' => $type, 'body_classes' => 'body-'.$type, 'page' => $page, 'parent_id' => $page->getParentId()));
+        return $this->render('CMSBundle:Default:view.html.twig', array(
+            'page_type' => $type,
+            'body_classes' => 'body-'.$type,
+            'page' => $page,
+            'parent_id' => $page->getParentId(),
+            'browser_title' => $page->getTitle()
+        ));
     }
 
     public function blockAction($page = NULL)

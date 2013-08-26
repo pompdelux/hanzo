@@ -225,7 +225,8 @@ class DefaultController extends CoreController
         $response = $this->render('ProductBundle:Default:view.html.twig', array(
             'page_type' => 'product',
             'product' => $data,
-            'references' => $images_references
+            'references' => $images_references,
+            'browser_title' => $product->getSku()
         ));
         return $response;
     }
