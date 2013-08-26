@@ -265,16 +265,33 @@ class DefaultController extends CoreController
 
                 if (200 == $result->getStatusCode()) {
                     $result = json_decode($result->getContent());
-                    $data = array(
-                        'first_name' => $result->data->number->christianname,
-                        'last_name'  => $result->data->number->surname,
-                        'phone' => $result->data->number->phone,
-                        'address_line_1' => $result->data->number->address,
-                        'postal_code' => $result->data->number->zipcode,
-                        'city' => $result->data->number->district,
-                        'countries_id' => 58,
-                        'country' => 'Denmark',
-                    );
+                    if (isset($result->data)) {
+                        $data = array(
+                            'first_name'     => '',
+                            'last_name'      => '',
+                            'phone'          => '',
+                            'address_line_1' => '',
+                            'postal_code'    => '',
+                            'city'           => '',
+                            'countries_id'   => 58,
+                            'country'        => 'Denmark',
+                        );
+
+                        $map = [
+                            'first_name'  => 'christianname',
+                            'last_name'   => 'surname',
+                            'phone'       => 'phone',
+                            'address'     => 'address_line_1',
+                            'postal_code' => 'zipcode',
+                            'city'        => 'district',
+                        ];
+
+                        foreach ($map as $key => $prop) {
+                            if (isset($result->data->number->$prop)){
+                                $data[$key] = $result->data->number->$prop;
+                            }
+                        }
+                    }
                 }
 
                 break;
