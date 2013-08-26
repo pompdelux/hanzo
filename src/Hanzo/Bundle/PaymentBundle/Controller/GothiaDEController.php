@@ -399,7 +399,7 @@ class GothiaDEController extends CoreController
                 ));
             }
 
-            Tools::debug( 'Confirm action error', __METHOD__, array( 'Transaction id' => $response->transactionId, 'Data' => $response ));
+            Tools::debug( 'Confirm action error', __METHOD__, array( 'Transaction id' => $response->transactionId, 'Data' => $response->data ));
 
             $api->updateOrderFailed( $request, $order );
             return $this->json_response(array(
