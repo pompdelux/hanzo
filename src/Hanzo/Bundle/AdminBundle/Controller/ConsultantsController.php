@@ -293,9 +293,9 @@ class ConsultantsController extends CoreController
         }
 
         return $this->render('AdminBundle:Consultants:view.html.twig', array(
-            'form'      => $form->createView(),
-            'consultant'  => $consultant,
-            'database' => $request->getSession()->get('database')
+            'form'       => $form->createView(),
+            'consultant' => $consultant,
+            'database'   => $request->getSession()->get('database')
         ));
     }
 
@@ -491,7 +491,7 @@ class ConsultantsController extends CoreController
         }
     }
 
-    public function consultantsOpenhouseAction()
+    public function consultantsOpenhouseAction(Request $request)
     {
         $consultants = ConsultantsQuery::create()
             ->joinCustomers()
