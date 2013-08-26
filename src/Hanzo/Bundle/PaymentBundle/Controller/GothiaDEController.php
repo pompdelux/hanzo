@@ -60,7 +60,7 @@ class GothiaDEController extends CoreController
     public function paymentAction()
     {
         $order = OrdersPeer::getCurrent();
-        // Difference between gothia and gothia-lv payments.
+        // Difference between gothia and gothia_lv payments.
         $paytype = $order->getPaymentPaytype();
 
         if ($order->isNew()) {
@@ -86,7 +86,7 @@ class GothiaDEController extends CoreController
             $additional_data[] = 'social_security_num';
         }
 
-        if ($paytype === 'gothia-lv') {
+        if ($paytype === 'gothia_lv') {
             $additional_data[] = 'bank_account_no';
             $additional_data[] = 'bank_id';
         }
@@ -102,7 +102,7 @@ class GothiaDEController extends CoreController
                 'translation_domain' => 'gothia' ) );
         }
 
-        if ($paytype === 'gothia-lv') {
+        if ($paytype === 'gothia_lv') {
             $form = $form->add('bank_account_no', 'text', array(
                     'label' => 'bank_account_no',
                     'required' => true,
@@ -139,7 +139,7 @@ class GothiaDEController extends CoreController
         $domainKey          = $hanzo->get('core.domain_key');
         $form               = $request->request->get('form');
         $SSN                = isset($form['social_security_num']) ? $form['social_security_num'] : NULL;
-        // Direct Debit - Gothia-LV
+        // Direct Debit - Gothia_LV
         $bank_account_no    = isset($form['bank_account_no']) ? $form['bank_account_no'] : NULL;
         $bank_id            = isset($form['bank_id']) ? $form['bank_id'] : NULL;
 
@@ -282,7 +282,7 @@ class GothiaDEController extends CoreController
 
         // Validate bank info when using Gothia LV payments.
         // Validation is per domain.
-        if($order->getPaymentPaytype() === 'gothia-lv') {
+        if($order->getPaymentPaytype() === 'gothia_lv') {
             switch (str_replace('Sales', '', $domainKey)) {
                 case 'DE':
                     /**
@@ -367,7 +367,7 @@ class GothiaDEController extends CoreController
 
         try
         {
-            if($order->getPaymentPaytype() === 'gothia-lv') {
+            if($order->getPaymentPaytype() === 'gothia_lv') {
                 $response = $api->call()->checkCustomerAndPlaceReservation( $customer, $order, array('bank_account_no' => $bank_account_no, 'bank_id' => $bank_id, 'payment_method' => 'DirectDebet') );
             }
             else {
