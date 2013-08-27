@@ -2,6 +2,12 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="file.ext">
     <body>
+      <trans-unit id="Adelaide BELT">
+        <source>description.Adelaide_BELT</source>
+        <target>
+          <![CDATA[Wildledergürtel mit Blume in der Mitte. Ein Gürtel, der dem Outfit einen schicken und vollendeten Look verpasst. Der Gürtel ist einstellbar und hat eine Länge von 83 cm.	<br><br>	Erhältlich in: Camel, Black und Rose	<br><br>	Onesize	<br><br>	Qualität: 100% Wildleder]]>
+        </target>
+      </trans-unit>
       <trans-unit id="Amsterdam CARDIGAN">
         <source>description.Amsterdam_CARDIGAN</source>
         <target>
@@ -276,12 +282,6 @@
         <source>description.Cannes_SHORTS</source>
         <target>
           <![CDATA[Es ist magisch! Der Rock ist in Wirklichkeit eine Shorts. So ist man schick und praktisch zugleich. Genäht in weicher, elastischer Qualität mit Reißverschluss an der Seite und vollem Futter.	<br><br>	Erhältlich in: Grey Melange und Black	<br><br>	Die Größe ist die Größe des Kindes in cm.	<br><br>	Qualität: 75% Viskose, 20% Polyamid, 5% Elasthan]]>
-        </target>
-      </trans-unit>
-      <trans-unit id="Carla BEDLINEN">
-        <source>description.Carla_BEDLINEN</source>
-        <target>
-          <![CDATA[<br><br>	Erhältlich in: 	<br><br>	Die Größe ist die Größe des Kindes in cm.	<br><br>	Qualität:]]>
         </target>
       </trans-unit>
       <trans-unit id="Charleston DRESS">
@@ -886,8 +886,8 @@
           <![CDATA[Schicke gestrickte Strumpfhose mit einem feinen gestrickten Muster. Kombinieren Sie sie mit dem Lieblingskleid und das Set ist komplett für die kleinen Abenteuer des Tages. Hergestellt nach Oeko-Tex Standard 100. 2er-Pack.	<br><br>	Erhältlich in: Cerise/Grey, Grey Melange, Curry/Grey und Wine/Grey	<br><br>	Die Größe ist die Größe des Kindes in cm.	<br><br>	Qualität: 75% Acryl, 23% Polyamid und 2% Elasthan]]>
         </target>
       </trans-unit>
-      <trans-unit id="Lowel">
-        <source>description.Lowel</source>
+      <trans-unit id="Lowel TIGHTS">
+        <source>description.Lowel_TIGHTS</source>
         <target>
           <![CDATA[Schicke gestrickte Strumpfhose mit einem feinen gestrickten Muster. Kombinieren Sie sie mit dem Lieblingskleid und das Set ist komplett für die kleinen Abenteuer des Tages. Hergestellt nach Oeko-Tex Standard 100. 2er-Pack.	<br><br>	Erhältlich in: Cerise/Grey, Grey Melange, Curry/Grey und Wine/Grey	<br><br>	Die Größe ist die Größe des Kindes in cm.	<br><br>	Qualität: 75% Acryl, 23% Polyamid und 2% Elasthan]]>
         </target>
@@ -1225,7 +1225,7 @@
       <trans-unit id="Rostock POLO">
         <source>description.Rostock_POLO</source>
         <target>
-          <![CDATA[Klassischer Jersey-Polo mit langen Ärmeln und genähten Streifen in drei coolen Farbkombinationen. Mit vielen schicken Details und Hemdkragen in gewebter Meterware. Verwenden Sie ihn zusammen mit der Lieblingshose. So haben Sie schnell ein "Bereit zum Abhängen"-Set zusammengestellt. Der Polo wurde hergestellt nach Oeko-Tex Standard 100.	<br><br>	Erhältlich in: Navy, Grey Melange und Green  	<br><br>	Die Größe ist die Größe des Kindes in cm.	<br><br>	Qualität: 95% Baumwolle, 5% Elasthan]]>
+          <![CDATA[Klassischer Jersey-Polo mit langen Ärmeln und genähten Streifen in drei coolen Farbkombinationen. Mit vielen schicken Details und Hemdkragen in gewebter Meterware. Verwenden Sie ihn zusammen mit der Lieblingshose. So haben Sie schnell ein Bereit zum Abhängen-Set zusammengestellt. Der Polo wurde hergestellt nach Oeko-Tex Standard 100.	<br><br>	Erhältlich in: Navy, Grey Melange und Green  	<br><br>	Die Größe ist die Größe des Kindes in cm.	<br><br>	Qualität: 95% Baumwolle, 5% Elasthan]]>
         </target>
       </trans-unit>
       <trans-unit id="Salem Little SPORTS JACKET">
@@ -1510,17 +1510,10 @@
           <![CDATA[Schicker gewebter Gürtel im 2er-Pack. Enthält eine gestreifte und eine einfarbige Version. Die Hosen anbehalten ist wichtig. Mindestens genauso wichtig ist es, dass Ihr stilbewusster Junge etwas Schickes für den Alltag im Schrank hat. 	<br><br>	Erhältlich in: Blue und Grey	<br><br>	One size	<br><br>	Qualität: 100% Baumwolle]]>
         </target>
       </trans-unit>
-      <trans-unit id="Adelaide BELT">
-        <source>description.Adelaide_BELT</source>
-        <target>
-          <![CDATA[Wildledergürtel mit Blume in der Mitte. Ein Gürtel, der dem Outfit einen schicken und vollendeten Look verpasst. Der Gürtel ist einstellbar und hat eine Länge von 83 cm.	<br><br>	Erhältlich in: Camel, Black und Rose	<br><br>	Onesize	<br><br>	Qualität: 100% Wildleder]]>
-        </target>
-      </trans-unit>
       <trans-unit id="Kiev HAIRDECO">
         <source>description.Kiev_HAIRDECO</source>
         <target>
           <![CDATA["Das Paket, das ein jedes POMPdeLUX Outfit vervollständigt. Das Paket besteht aus einer Haarspange aus Leder mit Dekoration an der Seite, einem Spitzenhaarband sowie zwei Spangen mit feinen Lederblumen. 
-            
             <br><br>	Erhältlich in: Camel, Rose, Black und Ice Blue	<br><br>	Onesize	<br><br>]]>
         </target>
       </trans-unit>
