@@ -59,9 +59,19 @@ class DefaultController extends CoreController
                     'selected_payment_type' => $selected_payment_type,
                 ];
 
-                $modules[] = $this->render('PaymentBundle:'.$controller.':select.html.twig', $parameters)->getContent();
+                $payment_html = $this->render('PaymentBundle:'.$controller.':select.html.twig', $parameters)->getContent();
+
+                // If the service has an specific order. Add it to that index.
+                if ($service->getOrder()) {
+                    $modules[$service->getOrder()] = $payment_html;
+                } else {
+                    $modules[$controller] = $payment_html;
+                }
             }
         }
+        // Order the modules by index, and reverse them so the highest index get in top.
+        ksort($modules);
+        $modules = array_reverse($modules);
 
         return $this->render('PaymentBundle:Default:block.html.twig', [
             'modules' => $modules,

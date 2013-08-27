@@ -41,4 +41,13 @@ class BasePaymentApi
         // Default fee for module, or zero.
         return ( isset($this->settings['fee']) ) ? $this->settings['fee'] : 0.00;
     }
+
+    /**
+     * Get the order in which the method should be displayed.
+     * @return int An integer to order the payment from. NULL if none.
+     */
+    public function getOrder()
+    {
+        return ( isset($this->settings['order']) ) ? $this->settings['order'] : NULL;
+    }
 }
