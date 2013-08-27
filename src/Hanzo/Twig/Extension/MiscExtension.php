@@ -133,28 +133,30 @@ class MiscExtension extends Twig_Extension
 
 
     /**
-     * Returns any meta data associated with this domain.
-     *
-     * @param bool choose to include or exclude all OG tags
-     * @return string
-     */
-     public function metaTags($includeOG = TRUE)
-     {
-         $meta = Hanzo::getInstance()->getByNs('meta');
+    * Returns any meta data associated with this domain.
+    *
+    * @param array exclude specific tag names.
+    * @return string
+    */
+    public function metaTags($exclude = '')
+    {
+      $exclude = explode(',', trim($exclude));
 
-         $result = '';
-         foreach ($meta as $key => $value) {
-            if(!$includeOG && 0 === strpos($key, 'og:'))
-                continue;
-             $attr = 'name';
-             if (0 === strpos($key, 'og:')) {
-                 $attr = 'property';
-             }
-             $result .= '<meta '.$attr.'="'.$key.'" content="'.$value.'">'."\n";
-         }
+      $meta = Hanzo::getInstance()->getByNs('meta');
 
-         return $result;
-     }
+      $result = '';
+      foreach ($meta as $key => $value) {
+        if(!in_array($key, $exclude)) {
+          $attr = 'name';
+          if (0 === strpos($key, 'og:')) {
+            $attr = 'property';
+          }
+          $result .= '<meta '.$attr.'="'.$key.'" content="'.$value.'">'."\n";
+        }
+      }
+
+      return $result;
+    }
 
 
      /**
