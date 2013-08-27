@@ -2,7 +2,6 @@
 
 namespace Hanzo\Bundle\WebServicesBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Monolog;
@@ -35,22 +34,21 @@ class RestStockController extends CoreController
      * @param str $version
      * @return Response json encoded responce
      */
-    public function checkAction($product_id = null, $version = 'v1')
+    public function checkAction(Request $request, $product_id = null, $version = 'v1')
     {
-        $request = $this->get('request');
-        $quantity = $request->get('quantity', 0);
+        $quantity = $request->query->get('quantity', 0);
         $translator = $this->get('translator');
 
         $filters = array();
         if (empty($product_id)) {
-            if ($request->get('master')){
-                $filters['Master'] = $request->get('master');
+            if ($request->query->get('master')){
+                $filters['Master'] = $request->query->get('master');
             }
-            if ($request->get('size')){
-                $filters['Size'] = $request->get('size');
+            if ($request->query->get('size')){
+                $filters['Size'] = $request->query->get('size');
             }
-            if ($request->get('color')){
-                $filters['Color'] = $request->get('color');
+            if ($request->query->get('color')){
+                $filters['Color'] = $request->query->get('color');
             }
         }
 
@@ -81,10 +79,10 @@ class RestStockController extends CoreController
                 'message' => 'Product out of stock',
                 'data' => array(
                     'product_id' => $product->getId(),
-                    'master' => $product->getMaster(),
-                    'size' => $product->getSize(),
-                    'color' => $product->getColor(),
-                    'date' => '',
+                    'master'     => $product->getMaster(),
+                    'size'       => $product->getSize(),
+                    'color'      => $product->getColor(),
+                    'date'       => '',
             ));
 
             if ($result) {
@@ -94,8 +92,7 @@ class RestStockController extends CoreController
 
                 return $this->json_response($data, 200);
             }
-        }
-        else {
+        } else {
             $query = ProductsQuery::create()
                 ->filterByIsOutOfStock(FALSE)
                 ->useProductsDomainsPricesQuery()
@@ -122,10 +119,10 @@ class RestStockController extends CoreController
 
                         $data[] = array(
                             'product_id' => $record->getId(),
-                            'master' => $record->getMaster(),
-                            'size' => $record->getSize(),
-                            'color' => $record->getColor(),
-                            'date' => $date
+                            'master'     => $record->getMaster(),
+                            'size'       => $record->getSize(),
+                            'color'      => $record->getColor(),
+                            'date'       => $date
                         );
 
                         if ($date) {

@@ -41,16 +41,14 @@ class RestController extends CoreController
 
     public function checkStockAction(){}
 
-    public function videoAction()
+    public function videoAction(Request $request)
     {
-        //bc_log($this->get('request'))
-        $request = $this->get('request');
         $data = array(
-            'video'  => $request->get('src', false),
-            'width'  => $request->get('width', false),
-            'height' => $request->get('height', false),
-            'banner' => $request->get('banner', 'video_bg'),
-            'embed'  => (boolean) $request->get('embed', 0),
+            'video'  => $request->query->get('src', false),
+            'width'  => $request->query->get('width', false),
+            'height' => $request->query->get('height', false),
+            'banner' => $request->query->get('banner', 'video_bg'),
+            'embed'  => (boolean) $request->query->get('embed', 0),
         );
     }
 
@@ -59,7 +57,7 @@ class RestController extends CoreController
     {
         $router  = $this->get('router');
         $kernel  = $this->get('kernel');
-        $payload = json_decode($request->get('payload'), true);
+        $payload = json_decode($request->request->get('payload'), true);
 
         foreach($payload as $index => $call) {
             try {
