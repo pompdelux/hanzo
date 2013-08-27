@@ -38,11 +38,11 @@ class SmsController extends CoreController
         //     [sessionid] => 4529927366:20120730221204
         // )
 
-        $sender    = trim($request->get('sender'));
-        $appnr     = trim($request->get('appnr'));
-        $smsc      = trim($request->get('smsc'));
-        $text      = trim($request->get('text'));
-        $sessionid = trim($request->get('sessionid'));
+        $sender    = trim($request->query->get('sender'));
+        $appnr     = trim($request->query->get('appnr'));
+        $smsc      = trim($request->query->get('smsc'));
+        $text      = trim($request->query->get('text'));
+        $sessionid = trim($request->query->get('sessionid'));
 
 Tools::log($_GET);
 Tools::log($_POST);

@@ -205,7 +205,7 @@ class DefaultController extends CoreController
     public function fetchCustomerAction()
     {
         $request = $this->getRequest();
-        $value = $request->get('value');
+        $value = $request->request->get('value');
         $type = strpos($value, '@') ? 'email' : 'phone';
 
         // hf@bellcom.dk: get phplist ids so the customer can be subscribed
