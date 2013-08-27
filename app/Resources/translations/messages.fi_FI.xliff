@@ -213,11 +213,11 @@
             <trans-unit id="delivery.info" approved="no">
                 <source>delivery.info</source>
                 <target><![CDATA[
-                    <p>Kaikki tuotteet lähetetään postipakettina <a href="http://www.mypack.fi" target="_blank">My pack</a> palvelun kautta. Tämän ansiosta voit seurata lähetyksen kulkua lähetyshetkestä toimitushetkeen asti. <br />
+                    <p>Kaikki tuotteet lähetetään postipakettina <a href="http://www.mypack.fi" target="_blank">MyPack-</a> palvelun kautta. Tämän ansiosta voit seurata lähetyksen kulkua lähetyshetkestä toimitushetkeen asti.<br />
       <br />
-      Paketit toimitetaan Mypack noutopisteeseen. Rahtikulu on rahtikulu on EUR 8,50 (EUR 7,50, mikäli ostat tuotteet edustajan kautta esim. kotimyyntitilaisuudesta tai Avoimet ovet –tilaisuudesta).
+      Paketit toimitetaan MyPack-noutopisteeseen. Rahtikulu on EUR 8,50 (EUR 7,50, mikäli ostat tuotteet edustajan kautta esim. kotimyyntitilaisuudesta tai Avoimet ovet -tilaisuudesta).
       <br />
-      Saapunut lähetys tulee tarkastaa heti. Jos pakkaus ja/tai tuotteet ovat vioittuneet, ota yhteyttä heti POMPdeLUXin asiakaspalveluun tai <a href="http://www.mypack.fi" target="_blank">My pack</a></p>
+      Saapunut lähetys tulee tarkastaa heti. Jos pakkaus ja/tai tuotteet ovat vioittuneet, ota yhteyttä heti POMPdeLUXin asiakaspalveluun tai <a href="http://www.mypack.fi" target="_blank">MyPack-</a>noutopisteeseen.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="return.title" approved="no">
