@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\BasketBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Propel;
@@ -37,7 +38,7 @@ class DefaultController extends CoreController
 
         // product_id,master,size,color,quantity
         $request = $this->get('request');
-        $quantity = $request->get('quantity', 1);
+        $quantity = $request->request->get('quantity', 1);
         $product = ProductsPeer::findFromRequest($request);
 
         // could not find matching product, throw 404 ?
@@ -234,13 +235,13 @@ class DefaultController extends CoreController
         // 4. add the new
 
         $request = $this->get('request');
-        $product_to_replace = $request->get('product_to_replace');
+        $product_to_replace = $request->request->get('product_to_replace');
 
         $request_data = array(
-            'quantity' => $request->get('quantity'),
-            'master' => $request->get('master'),
-            'size' => $request->get('size'),
-            'color' => $request->get('color'),
+            'quantity' => $request->request->get('quantity'),
+            'master' => $request->request->get('master'),
+            'size' => $request->request->get('size'),
+            'color' => $request->request->get('color'),
         );
 
         $response = $this->forward('WebServicesBundle:RestStock:check', $request_data);
@@ -250,7 +251,7 @@ class DefaultController extends CoreController
             $product = $response['data']['products'][0];
 
             // if the product is backordered, require a confirmation to continue
-            if ($product['date'] && (FALSE === $request->get('confirmed', FALSE))) {
+            if ($product['date'] && (FALSE === $request->request->get('confirmed', FALSE))) {
                 return $this->json_response($response);
             }
 
@@ -271,7 +272,7 @@ class DefaultController extends CoreController
                 $prices = array_shift($prices);
 
                 foreach ($prices as $key => $price) {
-                    $response['data'][$key.'_total'] = Tools::moneyFormat($price['price'] * $request->get('quantity'));
+                    $response['data'][$key.'_total'] = Tools::moneyFormat($price['price'] * $request->request->get('quantity'));
                     $response['data'][$key] = Tools::moneyFormat($price['price']);
                 }
                 $response['data']['basket'] = $this->miniBasketAction(TRUE);

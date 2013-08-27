@@ -100,7 +100,7 @@ class DefaultController extends CoreController
         $api      = $this->get('newsletterapi');
 
         if ('POST' === $request->getMethod()) {
-            $api->subscribe($customer->getEmail(), $request->get('lists'));
+            $api->subscribe($customer->getEmail(), $request->request->get('lists'));
             return $this->redirect($this->generateUrl('_account'));
         }
 
@@ -124,8 +124,8 @@ class DefaultController extends CoreController
             return $this->redirect($this->generateUrl('_homepage'));
         }
 
-        $email = $request->get('email');
-        $name  = $request->get('name');
+        $email = $request->request->get('email');
+        $name  = $request->request->get('name');
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return $this->json_response([

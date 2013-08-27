@@ -5,6 +5,7 @@ namespace Hanzo\Bundle\EventsBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Form\FormError;
+use Symfony\Component\HttpFoundation\Request;
 
 use Propel;
 
@@ -50,14 +51,14 @@ class EventsController extends CoreController
         ));
     }
 
-    public function getEventsAction()
+    public function getEventsAction(Request $request)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') && false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
 
-        $start = $this->getRequest()->get('start', null);
-        $end = $this->getRequest()->get('end', null);
+        $start = $request->query->get('start', null);
+        $end = $request->query->get('end', null);
 
         $date_filter['min'] =  gmdate("Y-m-d H:i:s", $start);
         $date_filter['max'] =  gmdate("Y-m-d H:i:s", $end);
