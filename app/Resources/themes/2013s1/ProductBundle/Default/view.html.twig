@@ -14,7 +14,9 @@
 <div class="grid_8 alpha omega">
   {% render 'CMSBundle:Menu:menu' with {'type': 'breadcrumb', 'thread': 20} %}
 </div>
-<div class="grid_8 alpha omega container_16">
+<div class="grid_8 alpha omega container_16" itemscope itemtype="http://data-vocabulary.org/Product">
+  <meta itemprop="brand" content="POMPdeLUX" />
+  <meta itemprop="identifier" content="sku:{{ product.title }}" />
   <div class="grid_8 alpha">
     <div class="grid_8 alpha omega history-link">
         <a href="javascript:history.go(-1)" title="{{ 'back.to.category'|trans }}" class="back-button"><i class="sprite icons-arrow_left"></i>  {{ 'back.to.category'|trans }}</a>
@@ -44,7 +46,7 @@
           {{ product_image_tag(
               product.main_image.name,
               '234x410',
-              {'alt': product.title ~ ', ' ~ product.main_image.color}
+              {'alt': product.title ~ ', ' ~ product.main_image.color, 'itemprop' : 'image'}
             )
           }}
         </a>
@@ -109,14 +111,16 @@
   </div>
 
   <div class="grid_7 push_1 omega">
-    <h1 class="title">{{ product.title }}</h1>
+    <h1 class="title" itemprop="name">{{ product.title }}</h1>
 
     <div class="prices">
     {% if product.prices.sales is defined %}
       <span class="normal strike">{{ product.prices.normal.price|money }}</span>
       <span class="discount">{{ product.prices.sales.price|money }}</span>
+      <meta itemprop="price" content="{{ product.prices.sales.price }}" />
     {% else %}
       <span class="normal">{{ product.prices.normal.price|money }}</span>
+      <meta itemprop="price" content="{{ product.prices.normal.price }}" />
     {% endif %}
     </div>
 
@@ -183,7 +187,7 @@
 
       <div class="panes">
         <div>
-          <p>{{ product.description|raw }}</p>
+          <p itemprop="description">{{ product.description|raw }}</p>
         </div>
       {% if product.washing %}
         <div class="off"><p>{{ product.washing|raw }}</p></div>
