@@ -113,14 +113,12 @@
   <div class="grid_7 push_1 omega">
     <h1 class="title" itemprop="name">{{ product.title }}</h1>
 
-    <div class="prices">
+    <div class="prices" itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">
     {% if product.prices.sales is defined %}
       <span class="normal strike">{{ product.prices.normal.price|money }}</span>
-      <span class="discount">{{ product.prices.sales.price|money }}</span>
-      <meta itemprop="price" content="{{ product.prices.sales.price }}" />
+      <span class="discount" itemprop="price">{{ product.prices.sales.price|money }}</span>
     {% else %}
-      <span class="normal">{{ product.prices.normal.price|money }}</span>
-      <meta itemprop="price" content="{{ product.prices.normal.price }}" />
+      <span class="normal" itemprop="price">{{ product.prices.normal.price|money }}</span>
     {% endif %}
     </div>
 
