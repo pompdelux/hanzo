@@ -54,7 +54,7 @@ return; // WIP: work in progress...
         $request = $event->getRequest();
 
         // skip ssl check for these routes
-        if (in_array($request->get('_route'), [
+        if (in_array($request->attributes->get('_route'), [
             // misc routes
             '_account_create',
             '_account_lost_password',
@@ -90,7 +90,11 @@ return; // WIP: work in progress...
         ) {
             $request->server->set('HTTPS', false);
             $request->server->set('SERVER_PORT', 80);
-            return $event->setResponse(new RedirectResponse($request->getUri()));
+
+            $response = new RedirectResponse($request->getUri());
+            $response->headers->clearCookie('auth');
+
+            return $event->setResponse($response);
         }
     }
 

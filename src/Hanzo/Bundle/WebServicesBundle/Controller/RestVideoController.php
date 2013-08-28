@@ -2,32 +2,28 @@
 
 namespace Hanzo\Bundle\WebServicesBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Monolog;
 
 use Hanzo\Core\Tools;
 use Hanzo\Core\Hanzo;
 
-use Hanzo\Model\ProductsQuery,
-    Hanzo\Model\Products,
-    Hanzo\Model\ProductsDomainsPricesQuery
-;
+use Hanzo\Model\ProductsQuery;
+use Hanzo\Model\Products;
+use Hanzo\Model\ProductsDomainsPricesQuery;
+
 use Hanzo\Core\CoreController;
 
 class RestVideoController extends CoreController
 {
-    public function getAction()
+    public function getAction(Request $request)
     {
-        $request = $this->get('request');
-
         $params = array(
-            'video' => $request->get('src'),
-            'banner' => $request->get('banner', 'video_bg'),
-            'height' => (int) $request->get('height'),
-            'width' => (int) $request->get('width'),
-            'embed' => (bool) $request->get('embed', false),
+            'video'         => $request->query->get('src'),
+            'banner'        => $request->query->get('banner', 'video_bg'),
+            'height'        => (int) $request->query->get('height'),
+            'width'         => (int) $request->query->get('width'),
+            'embed'         => (bool) $request->query->get('embed', false),
             'video_counter' => uniqid(),
         );
 
