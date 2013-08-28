@@ -99,14 +99,14 @@
                 if(image.src !== tempImage.src){ // Workaround. fade was firing multiple times.
 
                     $image.animate({opacity: 'hide'}, 400, function() {
-                        if (jQuery.browser.msie)
+                        if ($('html').hasClass('ie'))
                             this.style.removeAttribute('filter');
 
                         image.src = tempImage.src;
                         _renderButtons();
 
                         $image.animate({opacity: 'show'}, 400, function() {
-                            if (jQuery.browser.msie)
+                            if ($('html').hasClass('ie'))
                                 this.style.removeAttribute('filter');
                             $('.loader').animate({opacity: 'hide'}, 240);
                         });

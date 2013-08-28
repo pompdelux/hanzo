@@ -12,6 +12,7 @@
 <script type="text/javascript" src="{{ url('bazinga_exposetranslation_js', { 'domain_name': 'js', '_locale' : app.request.locale }) }}"></script>
 
 {% javascripts
+  'fx/scripts/jquery.min.js'
   'fx/scripts/json2.js'
 
   'fx/scripts/jquerytools/src/tabs/tabs.js'
@@ -77,6 +78,6 @@
 %}
 <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
-
+<script src="//code.jquery.com/jquery-migrate-1.2.1.js"></script>
 {{ include('::footer-'~app.request.locale~'.html.twig', ignore_missing = true, with_context = true) }}
 {{ google_analytics_tag() }}

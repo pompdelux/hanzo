@@ -34,7 +34,7 @@
 
 var wall = (function($) {
   var pub = {};
-  var $target = $('div.#wall-posts');
+  var $target = $('div#wall-posts');
 
   pub.init = function() {
     jQuery.data(document.body, 'page', 1);
@@ -87,7 +87,7 @@ var wall = (function($) {
   }
   }
 
-  $('div.like').live('click', function(e) {
+  $('div.like').on('click', function(e) {
     $.colorbox({
       'top' : '25%',
       'width' : '50%',
@@ -112,7 +112,7 @@ var wall = (function($) {
 
 $(function() {
 
-  if ($("div.#wall-posts").length) {
+  if ($("div#wall-posts").length) {
     wall.init();
   }
 
@@ -134,7 +134,7 @@ $(function() {
     });
   });
 
-  $('.wall-subpost .show-all').live('click', function() {
+  $('.wall-subpost .show-all').on('click', function() {
     $(this).next('div.hide').slideDown();
     $(this).remove();
   });
@@ -142,7 +142,7 @@ $(function() {
   $('textarea.grow').simpleautogrow();
   $('textarea.grow:hidden').css({top : "-2000px", left : "-2000px"});
 
-  $('div.wall-post a[rel="wall-comment"]').live('click', function(e){
+  $('div.wall-post a[rel="wall-comment"]').on('click', function(e){
     e.preventDefault();
     $form = $($(this).parent().find('.dialoug').html());
     $.colorbox({
@@ -182,7 +182,7 @@ $(function() {
     });
   });
 
-  $('div.wall-post a[rel="wall-edit"]').live('click', function(e){
+  $('div.wall-post a[rel="wall-edit"]').on('click', function(e){
     e.preventDefault();
     $form = $($(this).parent().find('.dialoug').html());
     $.colorbox({
@@ -248,7 +248,7 @@ $(function() {
     });
   });
 
-  $('div.wall-post a[rel="wall-like"]').live('click', function(e){
+  $('div.wall-post a[rel="wall-like"]').on('click', function(e){
     e.preventDefault();
     $a = $(this);
     $.ajax({
@@ -272,7 +272,7 @@ $(function() {
     });
   });
 
-  $('div.wall-post a[rel="wall-delete"]').live('click', function(e){
+  $('div.wall-post a[rel="wall-delete"]').on('click', function(e){
     e.preventDefault();
     $a = $(this);
     dialoug.confirm(Translator.get('js:notice'), Translator.get('js:wall.delete.entry.confirm'),function(choice) {

@@ -320,7 +320,7 @@
       });
 
 
-      $('#product-images-list a.delete').live('click',function(e){
+      $('#product-images-list a.delete').on('click',function(e){
         e.preventDefault();
         var $a = $(this);
         dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> Billede referencen?',function(choice) {
@@ -399,7 +399,7 @@
         $(this).val(0);
       });
 
-      $('#product-categories a.delete').live('click',function(e){
+      $('#product-categories a.delete').on('click',function(e){
         e.preventDefault();
         var $a = $(this);
         dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> Kategorien fra produktet ?',function(choice) {
@@ -449,7 +449,7 @@
         $(this).val(0);
       });
 
-      $('#product-related-products a.delete').live('click',function(e){
+      $('#product-related-products a.delete').on('click',function(e){
         e.preventDefault();
         var $a = $(this);
         dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> produktet fra realterede produkter ?',function(choice) {
@@ -470,7 +470,7 @@
         });
       });
 
-      $('#translation-list a.delete').live('click',function(e){
+      $('#translation-list a.delete').on('click',function(e){
         e.preventDefault();
         var $a = $(this);
         dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> oversættelsen til kategorien ?',function(choice) {
@@ -491,7 +491,7 @@
         });
       });
 
-      $('#category-list a.delete').live('click',function(e){
+      $('#category-list a.delete').on('click',function(e){
         e.preventDefault();
         var $a = $(this);
         dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> denne kategori ?',function(choice) {
@@ -512,7 +512,7 @@
         });
       });
 
-      $('#washing a.delete').live('click',function(e){
+      $('#washing a.delete').on('click',function(e){
         e.preventDefault();
         var $a = $(this);
         dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> denne kategori ?', function(choice) {
@@ -533,7 +533,7 @@
         });
       });
 
-      $('#messages a.delete').live('click',function(e){
+      $('#messages a.delete').on('click',function(e){
         e.preventDefault();
         var $a = $(this);
         dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> denne besked ?',function(choice) {
@@ -554,7 +554,7 @@
         });
       });
 
-      $('#redirects a.delete').live('click',function(e){
+      $('#redirects a.delete').on('click',function(e){
         e.preventDefault();
         var $a = $(this);
         dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> denne Redirect ?', function(choice) {
@@ -575,7 +575,7 @@
         });
       });
 
-      $('#zip_to_city a.delete').live('click',function(e){
+      $('#zip_to_city a.delete').on('click',function(e){
         e.preventDefault();
         var $a = $(this);
         dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> dette Post Nummer ?',function(choice) {
@@ -596,7 +596,7 @@
         });
       });
 
-      $('#customers a.delete').live('click',function(e){
+      $('#customers a.delete').on('click',function(e){
         e.preventDefault();
         var $a = $(this);
         dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> denne kunde ?',function(choice) {
@@ -645,7 +645,7 @@
         $(this).val(0);
       });
 
-      $('#gift-cards a.delete').live('click',function(e){
+      $('#gift-cards a.delete').on('click',function(e){
         e.preventDefault();
         var $a = $(this);
         dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> Gavekortet ?',function(choice) {
@@ -665,7 +665,7 @@
           }
         });
       });
-      $('#gift-cards-to-customers a.delete').live('click',function(e){
+      $('#gift-cards-to-customers a.delete').on('click',function(e){
         e.preventDefault();
         var $a = $(this);
         dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>fjerne</strong> denne bruger ?',function(choice) {
@@ -712,7 +712,7 @@
         });
         $(this).val(0);
       });
-      $('#helpdesk a.delete').live('click',function(e){
+      $('#helpdesk a.delete').on('click',function(e){
         e.preventDefault();
         var $a = $(this);
         dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>fjerne</strong> denne ?',function(choice) {
@@ -733,7 +733,7 @@
         });
       });
       /* Products View */
-      $('#styles a.delete').live('click',function(e){
+      $('#styles a.delete').on('click',function(e){
         e.preventDefault();
         var $a = $(this);
         dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>fjerne</strong> denne style?',function(choice) {
@@ -753,7 +753,7 @@
           }
         });
       });
-      $('#quantity_discounts a.delete').live('click',function(e){
+      $('#quantity_discounts a.delete').on('click',function(e){
         e.preventDefault();
         var $a = $(this);
         dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>fjerne</strong> denne rabat?',function(choice) {
@@ -774,7 +774,7 @@
         });
       });
       /* Settings Languages */
-      $('#languages a.delete').live('click',function(e){
+      $('#languages a.delete').on('click',function(e){
         e.preventDefault();
         var $a = $(this);
         dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>fjerne</strong> dette sprog?',function(choice) {
@@ -795,7 +795,7 @@
         });
       });
       /* Delete event */
-      $('#events a.delete').live('click',function(e){
+      $('#events a.delete').on('click',function(e){
         e.preventDefault();
         var $a = $(this);
         dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>fjerne</strong> dette event?',function(choice) {
