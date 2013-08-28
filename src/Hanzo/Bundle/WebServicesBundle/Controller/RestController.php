@@ -33,25 +33,9 @@ class RestController extends CoreController
         $service_class = str_replace('Controller', 'Services\Rest', __NAMESPACE__) . "\\{$service_name}\\$service_name";
         $handler = new $service_class($this);
 
-
         $response = array();
         return new Response(json_encode($response), 200, array(‘Content-type’ => ‘application/json’));
     }
-
-
-    public function checkStockAction(){}
-
-    public function videoAction(Request $request)
-    {
-        $data = array(
-            'video'  => $request->query->get('src', false),
-            'width'  => $request->query->get('width', false),
-            'height' => $request->query->get('height', false),
-            'banner' => $request->query->get('banner', 'video_bg'),
-            'embed'  => (boolean) $request->query->get('embed', 0),
-        );
-    }
-
 
     public function jaiksAction(Request $request)
     {
