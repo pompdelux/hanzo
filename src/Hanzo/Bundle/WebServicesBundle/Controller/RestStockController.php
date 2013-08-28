@@ -41,14 +41,22 @@ class RestStockController extends CoreController
 
         $filters = array();
         if (empty($product_id)) {
-            if ($request->query->get('master')){
-                $filters['Master'] = $request->query->get('master');
+            if ($m = $request->query->get('master')){
+                $filters['Master'] = $m;
+            } elseif ($m = $request->request->get('master')) {
+                $filters['Master'] = $m;
             }
-            if ($request->query->get('size')){
-                $filters['Size'] = $request->query->get('size');
+
+            if ($s = $request->query->get('size')){
+                $filters['Size'] = $s;
+            } elseif ($s = $request->request->get('size')){
+                $filters['Size'] = $s;
             }
-            if ($request->query->get('color')){
-                $filters['Color'] = $request->query->get('color');
+
+            if ($c = $request->query->get('color')){
+                $filters['Color'] = $c;
+            } elseif ($c = $request->query->get('color')){
+                $filters['Color'] = $c;
             }
         }
 
