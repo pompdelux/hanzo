@@ -96,9 +96,9 @@ class DefaultController extends CoreController
     public function getSkuAction()
     {
         $request = $this->get('request');
-        $max_rows = $request->get('max_rows', 12);
-        $name = $request->get('name');
-        $callback = $request->get('callback');
+        $max_rows = $request->request->get('max_rows', 12);
+        $name = $request->request->get('name');
+        $callback = $request->request->get('callback');
 
     	$products = ProductsQuery::create()
             ->where('products.MASTER IS NULL')

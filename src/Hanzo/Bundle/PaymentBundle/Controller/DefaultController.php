@@ -87,7 +87,7 @@ class DefaultController extends CoreController
             'message' => 'unknown payment method',
         );
 
-        list($provider, $method) = explode(':', $request->get('method'));
+        list($provider, $method) = explode(':', $request->request->get('method'));
 
         $key = 'payment.'.$provider.'api';
 

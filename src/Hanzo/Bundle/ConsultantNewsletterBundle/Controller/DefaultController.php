@@ -22,7 +22,7 @@ class DefaultController extends CoreController
     {
         $api = $this->get('consultantnewsletterapi');
         $consultant = CustomersQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
-        
+
         $drafts = ConsultantNewsletterDraftsQuery::create()
             ->filterByConsultantsId($this->get('security.context')->getToken()->getUser()->getPrimaryKey())
             ->find()
@@ -76,10 +76,10 @@ class DefaultController extends CoreController
     public function saveDraftAction()
     {
         $request = $this->getRequest();
-        $subject = $request->get('subject');
-        $content = $request->get('message');
-        $draft_id = $request->get('draft_id');
-    	
+        $subject = $request->request->get('subject');
+        $content = $request->request->get('message');
+        $draft_id = $request->request->get('draft_id');
+
         $draft = null;
 
         if(!empty($draft_id)){
@@ -127,11 +127,11 @@ class DefaultController extends CoreController
     public function sendNewsletterAction()
     {
         $api = $this->get('consultantnewsletterapi');
-        
+
         $consultant = CustomersQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
 
     	if(!$api->doesAdminUserExist($consultant->getEmail())){
-    		
+
     		$admin = new \stdClass();
     		$admin->loginname = $consultant->getName();
     		$admin->email = $consultant->getEmail();
@@ -163,17 +163,15 @@ class DefaultController extends CoreController
         }
 
     	$request  = $this->getRequest();
-        $test     = $request->get('actionSendTest');
-        $test_reciever = $request->get('test_reciever');
-		$status   = $request->get('status');
-        // $subject  = htmlentities( utf8_decode( $request->get('subject') ) );
-		$subject  = htmlentities($request->get('subject'),ENT_QUOTES,'UTF-8') ;
-		$message  = stripslashes( utf8_decode( $request->get('message') ) );
-		//$from     = $this->get('translator')->trans('consultant.newsletter.from.field.%name%.%email%', array('%name%' => $consultant->getName(), '%email%' => $consultant->getEmail()), 'consultant');
+        $test     = $request->request->get('actionSendTest');
+        $test_reciever = $request->request->get('test_reciever');
+		$status   = $request->request->get('status');
+		$subject  = htmlentities($request->request->get('subject'),ENT_QUOTES,'UTF-8') ;
+		$message  = stripslashes( utf8_decode( $request->request->get('message') ) );
         $from     = $consultant->getEmail();
         $to       = $consultant->getEmail();
 		$replyto  = $consultant->getEmail();
-		$template = $request->get('template');
+		$template = $request->request->get('template');
 		$lists    = $listIds;
 		$status   = ( isset( $status ) ? $status : ConsultantNewsletterApi::STATUS_DRAFT );
 
@@ -259,7 +257,7 @@ class DefaultController extends CoreController
         $consultant = CustomersQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
 
         if(!$api->doesAdminUserExist($consultant->getEmail())){
-            
+
             $admin = new \stdClass();
             $admin->loginname = $consultant->getName();
             $admin->email = $consultant->getEmail();
@@ -285,7 +283,7 @@ class DefaultController extends CoreController
             }
             $lists = $api->getListsByOwner($admin_user->id);
         }
-        
+
         $subscribed_users = $api->getAllUsersSubscribedToList($lists[0]->id);
 
     	return $this->render('ConsultantNewsletterBundle:Default:editUsers.html.twig',
@@ -303,7 +301,7 @@ class DefaultController extends CoreController
         $consultant = CustomersQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
 
         if(!$api->doesAdminUserExist($consultant->getEmail())){
-            
+
             $admin = new \stdClass();
             $admin->loginname = $consultant->getName();
             $admin->email = $consultant->getEmail();
@@ -357,7 +355,7 @@ class DefaultController extends CoreController
         $consultant = CustomersQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
 
         if(!$api->doesAdminUserExist($consultant->getEmail())){
-            
+
             $admin = new \stdClass();
             $admin->loginname = $consultant->getName();
             $admin->email = $consultant->getEmail();
@@ -407,10 +405,10 @@ class DefaultController extends CoreController
 	        		'email_address' => trim($email),
 	        		'attributes'	=> array()
 	        	);
-				
+
 				$api->subscribeUser($userData, $listIds, true );
 	        }
-        	
+
 	        if ($this->getFormat() == 'json') {
 	            return $this->json_response(array(
 	                'status' => TRUE,
@@ -428,7 +426,7 @@ class DefaultController extends CoreController
         $consultant = CustomersQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
 
         if(!$api->doesAdminUserExist($consultant->getEmail())){
-            
+
             $admin = new \stdClass();
             $admin->loginname = $consultant->getName();
             $admin->email = $consultant->getEmail();
@@ -444,12 +442,12 @@ class DefaultController extends CoreController
 
     	// Workaround. Crap content receivet from phplist :-(
     	$histSize = count($history);
-    	for ($i=0; $i < $histSize; $i++) { 
+    	for ($i=0; $i < $histSize; $i++) {
 			$history[$i]['message'] = htmlspecialchars_decode($history[$i]['message']);
     	}
 
         krsort($history);
-    	
+
     	return $this->render('ConsultantNewsletterBundle:Default:history.html.twig',
         	array(
         		'page_type' => 'consultant-newsletter',

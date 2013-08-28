@@ -48,11 +48,11 @@ class DefaultController extends CoreController
         $api     = $this->get('shipping.shippingapi');
         $methods = $api->getMethods();
 
-        if (isset($methods[$request->get('method')])) {
-            $method = $methods[$request->get('method')];
+        if (isset($methods[$request->request->get('method')])) {
+            $method = $methods[$request->request->get('method')];
 
             $order = OrdersPeer::getCurrent(true);
-            $order->setDeliveryMethod($request->get('method'));
+            $order->setDeliveryMethod($request->request->get('method'));
             $order->setShipping($method, ShippingMethods::TYPE_NORMAL);
 
             if ($method->getFee()) {
