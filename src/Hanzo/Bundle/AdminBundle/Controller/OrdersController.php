@@ -123,12 +123,12 @@ class OrdersController extends CoreController
 
             $pages = array();
             foreach ($orders->getLinks(20) as $page) {
-                $pages[$page] = $router->generate($route, array('customer_id' => $customer_id, 'pager' => $page), TRUE);
+                $pages[$page] = $router->generate($route, array('customer_id' => $customer_id, 'domain_key' => $domain_key, 'pager' => $page), TRUE);
             }
 
             $paginate = array(
-                'next' => ($orders->getNextPage() == $pager ? '' : $router->generate($route, array('customer_id' => $customer_id, 'pager' => $orders->getNextPage()), TRUE)),
-                'prew' => ($orders->getPreviousPage() == $pager ? '' : $router->generate($route, array('customer_id' => $customer_id, 'pager' => $orders->getPreviousPage()), TRUE)),
+                'next' => ($orders->getNextPage() == $pager ? '' : $router->generate($route, array('customer_id' => $customer_id, 'domain_key' => $domain_key, 'pager' => $orders->getNextPage()), TRUE)),
+                'prew' => ($orders->getPreviousPage() == $pager ? '' : $router->generate($route, array('customer_id' => $customer_id, 'domain_key' => $domain_key, 'pager' => $orders->getPreviousPage()), TRUE)),
 
                 'pages' => $pages,
                 'index' => $pager
