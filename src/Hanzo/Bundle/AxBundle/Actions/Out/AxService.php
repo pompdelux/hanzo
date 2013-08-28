@@ -280,6 +280,9 @@ class AxService
                     case 'DANKORT':
                         $custPaymMode = 'DanKort';
                         break;
+                    default:
+                        $custPaymMode = 'VISA';
+                        break;
                 }
                 break;
 
