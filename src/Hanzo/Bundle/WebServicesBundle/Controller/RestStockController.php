@@ -36,33 +36,27 @@ class RestStockController extends CoreController
      */
     public function checkAction(Request $request, $product_id = null, $version = 'v1')
     {
-        $quantity = $request->query->get('quantity', 0);
+        $quantity = $request->get('quantity', 0);
         $translator = $this->get('translator');
 
         $filters = array();
         if (empty($product_id)) {
-            if ($m = $request->query->get('master')){
-                $filters['Master'] = $m;
-            } elseif ($m = $request->request->get('master')) {
+            if ($m = $request->get('master')){
                 $filters['Master'] = $m;
             }
 
-            if ($s = $request->query->get('size')){
-                $filters['Size'] = $s;
-            } elseif ($s = $request->request->get('size')){
+            if ($s = $request->get('size')){
                 $filters['Size'] = $s;
             }
 
-            if ($c = $request->query->get('color')){
-                $filters['Color'] = $c;
-            } elseif ($c = $request->query->get('color')){
+            if ($c = $request->get('color')){
                 $filters['Color'] = $c;
             }
         }
 
         if (empty($product_id) && empty($filters['Master'])) {
             return $this->json_response(array(
-                'status' => FALSE,
+                'status'  => FALSE,
                 'message' => $translator->trans('Missing parameters.'),
             ), 400);
         }
@@ -75,7 +69,7 @@ class RestStockController extends CoreController
 
             if (!$product instanceof Products) {
                 return $this->json_response(array(
-                    'status' => FALSE,
+                    'status'  => FALSE,
                     'message' => $translator->trans('No such product (#' . $product_id . ')'),
                 ), 400);
             }
@@ -146,9 +140,9 @@ class RestStockController extends CoreController
             }
 
             return $this->json_response(array(
-                'status' => TRUE,
+                'status'  => TRUE,
                 'message' => $message,
-                'data' => $data
+                'data'    => $data
             ));
         }
 
