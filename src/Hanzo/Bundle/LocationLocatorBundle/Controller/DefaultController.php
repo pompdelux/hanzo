@@ -38,7 +38,7 @@ class DefaultController extends CoreController
         $form = $api->getLookupForm($this->createFormBuilder(), $request);
 
         if ('POST' === $request->getMethod()) {
-            $values = $request->get('form');
+            $values = $request->request->get('form');
 
             if (isset($values['q'])) {
                 $pcs = explode(',', $values['q']);

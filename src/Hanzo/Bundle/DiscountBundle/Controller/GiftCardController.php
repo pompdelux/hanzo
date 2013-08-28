@@ -37,9 +37,9 @@ class GiftCardController extends CoreController
         ;
 
         if ($request->getMethod() == 'POST') {
-            $values = $request->get('form');
+            $values = $request->request->get('form');
             // handle sub-requests
-            $code = $values ?: $request->get('code');
+            $code = $values ?: $request->request->get('code');
 
             $gift_card = GiftCardsQuery::create()
                 ->filterByCode($code)
