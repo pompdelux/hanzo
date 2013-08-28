@@ -226,7 +226,8 @@ class DefaultController extends CoreController
             'page_type' => 'product',
             'product' => $data,
             'references' => $images_references,
-            'browser_title' => $product->getSku()
+            'browser_title' => $product->getSku(),
+            '_route' => $route
         ));
         return $response;
     }
