@@ -318,6 +318,10 @@
                 <source>order.deleted</source>
                 <target>E-tilausnro %id% on peruttu.</target>
             </trans-unit>
+            <trans-unit id="product.prices.description" approved="no">
+                <source>product.prices.description</source>
+                <target></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

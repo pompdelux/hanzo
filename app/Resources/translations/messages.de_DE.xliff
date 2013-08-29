@@ -337,6 +337,10 @@
                 <source>goto.top.link</source>
                 <target>Nach oben</target>
             </trans-unit>
+            <trans-unit id="product.prices.description" approved="no">
+                <source>product.prices.description</source>
+                <target>inkl. gesetzl. MwSt, zzgl. Versandkosten</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
