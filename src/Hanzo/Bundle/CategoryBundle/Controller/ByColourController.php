@@ -104,6 +104,7 @@ class ByColourController extends CoreController
                             ProductsToCategoriesPeer::CATEGORIES_ID,
                             implode(',', $includes)
                         ))
+                        ->filterByCategoriesId($includes)
                     ->endUse()
                     ->filterById($ids)
                 ->endUse()
