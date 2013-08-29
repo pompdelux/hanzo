@@ -141,7 +141,7 @@ class PensioController extends CoreController
                 'order_id'   => $order->getId(),
                 'amount'     => $order->getTotalPrice(),
                 'payment_id' => $order->getPaymentGatewayId(),
-                'back_url'   => $this->generateUrl('_checkout', [], true),
+                'back_url'   => $this->generateUrl('_payment_cancel', [], true),
             ]);
         }
 
