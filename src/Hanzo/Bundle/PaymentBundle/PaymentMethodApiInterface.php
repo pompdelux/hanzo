@@ -31,7 +31,7 @@ interface PaymentMethodApiInterface
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function updateOrderSuccess( Request $request, Orders $order );
+    public function updateOrderSuccess(Request $request, Orders $order);
 
     /**
      * updateOrderFailed
@@ -39,15 +39,16 @@ interface PaymentMethodApiInterface
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function updateOrderFailed( Request $request, Orders $order);
+    public function updateOrderFailed(Request $request, Orders $order);
 
     /**
      * getFee
      * Returns the fee for the current payment method, or 0 if none
+     * @param string The method to retrive for
      * @return float
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function getFee();
+    public function getFee($method = NULL);
 
     /**
      * getFeeExternalId
@@ -62,5 +63,5 @@ interface PaymentMethodApiInterface
      *
      * @return array
      */
-    public function getProcessButton(Orders $order);
+    public function getProcessButton(Orders $order, Request $request);
 }

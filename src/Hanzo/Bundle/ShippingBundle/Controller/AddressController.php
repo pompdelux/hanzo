@@ -227,7 +227,7 @@ class AddressController extends CoreController
             }
 
             $order = OrdersPeer::getCurrent();
-            $data  = $request->get('form');
+            $data  = $request->request->get('form');
 
              if ($type == 'shipping') {
                 switch ($order->getDeliveryMethod()) {

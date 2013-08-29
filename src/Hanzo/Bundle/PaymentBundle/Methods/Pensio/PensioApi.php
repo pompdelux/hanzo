@@ -80,15 +80,6 @@ class PensioApi extends BasePaymentApi
     }
 
     /**
-     * getFee
-     * @return float
-     */
-    public function getFee()
-    {
-        return $this->settings['fee'];
-    }
-
-    /**
      * getFeeExternalId
      * @return void
      */
@@ -159,12 +150,12 @@ class PensioApi extends BasePaymentApi
         }
 
         if ('succeeded' !== $_POST['status']) {
-            throw new PaymentFailedException('Payment failed: '.$request->get('error_message').' ('.$request->get('merchant_error_message').')');
+            throw new PaymentFailedException('Payment failed: '.$request->request->get('error_message').' ('.$request->request->get('merchant_error_message').')');
         }
 
-        if ($request->get('checksum') && $this->settings['secret']) {
+        if ($request->request->get('checksum') && $this->settings['secret']) {
             $md5 = md5($order->getTotalPrice().$order->getCurrencyCode().$order->getPaymentGatewayId().$this->settings['secret']);
-            if (0 !== strcmp($md5, $request->get('checksum'))) {
+            if (0 !== strcmp($md5, $request->request->get('checksum'))) {
                 throw new Exception('Payment failed: checksum mismatch');
             }
         }
@@ -177,7 +168,7 @@ class PensioApi extends BasePaymentApi
      * @param  Orders $order The order object
      * @return string The form used to proceed to the Pensio payment window
      */
-    public function getProcessButton(Orders $order)
+    public function getProcessButton(Orders $order, Request $request)
     {
         $language = LanguagesQuery::create()->select('iso2')->findOneById($order->getLanguagesId());
 

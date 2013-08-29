@@ -82,7 +82,7 @@ class SmsService
         // if ((0 == $this->settings['send.event.confirmations'])) {
         //     return;
         // }
-Tools::log('sending sms conformation to:'.$participant->getPhone());
+// Tools::log('sending sms conformation to:'.$participant->getPhone());
 
         $event = $participant->getEvents();
         $parameters = array(
@@ -103,9 +103,9 @@ Tools::log('sending sms conformation to:'.$participant->getPhone());
 
         $response = $provider->send();
 
-$parameters['%to%'] = $to;
-Tools::log($parameters);
-Tools::log($response);
+// $parameters['%to%'] = $to;
+// Tools::log($parameters);
+// Tools::log($response);
         return $response;
     }
 

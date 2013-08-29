@@ -174,14 +174,14 @@ class DefaultController extends CoreController
             $request = $this->get('request');
             if ('POST' === $request->getMethod()) {
 
-                $wall_entry->setMessate($request->get('message')); // messate = message :-)
+                $wall_entry->setMessate($request->request->get('message')); // messate = message :-)
                 $wall_entry->save();
 
                 if ($this->getFormat() == 'json') {
                     return $this->json_response(array(
                         'status' => true,
                         'message' => $this->get('translator')->trans('wall.edit.entry.success', array(), 'wall'),
-                        'input' => $request->get('message'),
+                        'input' => $request->request->get('message'),
                         'id' => $id
                     ));
                 }
@@ -216,7 +216,7 @@ class DefaultController extends CoreController
             }
 
             $wall_entry->setCustomersId($creator->getPrimaryKey());
-            $wall_entry->setMessate($request->get('message')); // messate = message :-)
+            $wall_entry->setMessate($request->request->get('message')); // messate = message :-)
             $wall_entry->setStatus(true);
             $wall_entry->save();
 

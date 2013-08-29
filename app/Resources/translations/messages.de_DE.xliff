@@ -2,6 +2,10 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
+            <trans-unit id="size.guide.link">
+                <source>size.guide.link</source>
+                <target><![CDATA[<a href="/de_DE/home/kundendienst/sizeguide" target="_blank" title="Size guide">» Size guide</a>]]></target>
+            </trans-unit>
             <trans-unit id="out.of.stock">
                 <source>out.of.stock</source>
                 <target>Ausverkauft</target>
@@ -120,7 +124,7 @@
             </trans-unit>
             <trans-unit id="store.address">
                 <source>store.address</source>
-                <target>POMPdeLUX ApS • Møgelhøj 8 • DK-8520 Lystrup • USt-IdNr. 29622035 • mailde@pompdelux.com • <!--040-35715072-->0045 8678 7871</target>
+                <target>POMPdeLUX DE GmbH • Dammtorstraβe 12 • DE-20354 Hamburg • USt-IdNr. DE290402183 • mailde@pompdelux.com • 040-35715072</target>
             </trans-unit>
             <trans-unit id="order.edit.global.notice">
                 <source>order.edit.global.notice</source>
@@ -140,7 +144,7 @@
                     <strong>Kundendienst</strong><br>
                     Telefon: 040-35715072<br>
                     E-Mail: <a href="mailto:mailde@pompdelux.com">mailde@pompdelux.com</a><br>
-                    Montags bis Donnerstags 9 - 16 Uhr<br>
+                    Montags bis Donnerstags 9 - 18 Uhr<br>
                     Freitags 9 - 14 Uhr<br>
                     <!--Pause 12 - 12.45 Uhr<br>-->
                     Samstags, Sonntags und Feiertags geschlossen.
@@ -150,13 +154,13 @@
                 <source>footer.address</source>
                 <target><![CDATA[
                     <ul>
-                        <li>POMPdeLUX ApS</li>
-                        <li>Møgelhøj 8</li>
-                        <li>DK-8520 Lystrup</li>
-                        <li>USt-IdNr. 29622035</li>
+                        <li>POMPdeLUX DE GmbH</li>
+                        <li>Dammtorstraβe 12</li>
+                        <li>DE-20354 Hamburg</li>
+                        <li>USt-IdNr. DE290402183</li>
                         <li><a href="mailto:mailde@pompdelux.com">mailde@pompdelux.com</a></li>
-                        <li><!--040-35715072--> 0045 8678 7171</li>
-                        <li><img src="%cdn%fx/images/creditcards_dk.png" alt="credit cards" title="credit cards"></li>
+                        <li>040-35715072</li>
+                        <li><img src="%cdn%fx/images/creditcards_de.png" alt="credit cards" title="credit cards"></li>
                         <li><a href="http://www.facebook.com/sharer.php?u=%url%" class="facebook-button social-button" title="Del denne side på Facebook">Auf Facebook teilen</a></li>
                     </ul>
                 ]]></target>
@@ -230,14 +234,12 @@
             <trans-unit id="delivery.info" approved="no">
                 <source>delivery.info</source>
                 <target><![CDATA[
-                    <p>Alle Waren werden als Pakete mit<a href="http://www.postdanmark.dk" target="_blank">Post Danmark verschickt</a>. Daher haben Sie die Möglichkeit, Ihr Paket ab dem Versand bis zum Empfang mit Hilfe von <a href="http://www.postdanmark.dk/contentfull.dk?content=/cms/da-dk/app/tracktrace/track_og_trace.htm&amp;menufile=" target="_blank">Track &amp; Trace</a> zu verfolgen. <br />
-    Sie können zwischen drei Versandarten wählen:
-    <br /><br />
-      Firmenpaket: Wenn das Paket an Ihren Arbeitsplatz geliefert werden soll, wählen Sie bitte Firmenpaket. Das kostet 39,00 Euro (jedoch nur 29,00 Euro, wenn Sie die Waren bei einer Homeshopping- oder Tag der offenen Tür-Veranstaltung gekauft haben). Bitte Firmennamen, Kontaktperson und Firmenanschrift im Feld Lieferanschrift angeben.
-      <br /><br />Privatpaket: Wenn das Paket an Ihre Privatadresse geliefert werden soll, kostet dies 59,00 Euro (49,00 Euro, wenn Sie die Waren bei einer Homeshopping- oder Tag der offenen Tür-Veranstaltung gekauft haben).<br /><br />Packstation: Für den Versand von Paketen zu einer Packstation geben Sie bitte Ihren Namen und die ID an, die Sie bei der Anmeldung für die Packstation gewählt haben. Der Versand zu einer Packstation kostet 39,00 Euro (jedoch nur 29,00 Euro, wenn Sie die Waren bei einer Homeshopping- oder Tag der offenen Tür-Veranstaltung gekauft haben). Geben Sie die Nummer und Adresse der Packstation als Lieferanschrift sowie Ihre eigene Adresse als Rechnungsanschrift an.<br /><br />
-    Wenn Sie das Paket empfangen haben, sollten Sie die Waren überprüfen. Wenn das Paket und/oder der Inhalt beschädigt sind, wenden Sie sich bitte umgehend an unseren <a href="/de_DE/kundendienst/telefonzeiten">Kundendienst</a> oder an <a href="http://www.postdanmark.dk" target="_blank">Post Danmark</a>.</p>
-                ]]></target>
-            </trans-unit>
+                    <p>Alle Waren werden als Pakete mit DHL verschickt. Daher haben Sie die Möglichkeit, Ihr Paket ab dem Versand bis zum Empfang mit Hilfe von Track & Trace zu verfolgen.<br>
+  Sie können zwischen drei Versand wählen:<br><br> Paket:Das Paket wird an Ihre Adresse geliefert und kostet EUR 4,95 (EUR 3,95, wenn Sie die Waren bei einer Homeshopping- oder Tag der offenen Tür-Veranstaltung gekauft haben). Wenn Sie zum Zeitpunkt der Lieferung nicht zu Hause sind, können Sie das Paket anschließend bei der Post abholen.<br><br> Wenn Sie das Paket empfangen haben, sollten Sie die Waren überprüfen. Wenn das Paket und/oder der Inhalt beschädigt sind, wenden Sie sich bitte umgehend an unseren Kundendienst oder an DHL. </p>
+]]>
+</target>
+</trans-unit>
+
             <trans-unit id="return.title" approved="no">
                 <source>return.title</source>
                 <target>Rücksendung</target>
@@ -245,7 +247,8 @@
             <trans-unit id="return.info" approved="no">
                 <source>return.info</source>
                 <target><![CDATA[
-                    <p>Die Waren müssen ungebraucht sein und in Originalverpackung, mit Textiletiketten usw. zurückgeschickt werden. Die Rücksendung von Strümpfen, Leggings und Strumpfhosen kann nur in ungeöffneter Originalverpackung erfolgen. Die Postverpackung, in der Sie Ihre Waren erhalten, ist so ausgelegt, dass sie zweimal verwendet werden kann. Auf der Verpackung können Sie sehen, wo man schneiden muss, um sie erneut verwenden zu können. Wir erstatten daher kein Geld für Rückverpackungen zurück. Dasselbe gilt für Portokosten, wenn Sie uns nur Teile Ihrer Bestellung zurückschicken. Wir nehmen keine Rücksendungen entgegen, die per Nachname verschickt werden.</p>
+                    <p>Sie haben ein 21-tägiges Rückgaberecht auf alle Waren ab dem Tag des Empfangs der Ware (jedoch nur 14-tägig auf reduzierte Waren). Wenn Sie eine Ware in eine andere Größe oder Farbe umtauschen möchten, kann dies anhand des Rücksendescheins  geschehen. Ausverkaufte Waren sind jedoch vorbehalten.<br><br>
+					Die Waren müssen ungebraucht sein und in Originalverpackung, mit Textiletiketten usw. zurückgeschickt werden. Die Rücksendung von Strümpfen, Leggings und Strumpfhosen kann nur in ungeöffneter Originalverpackung erfolgen. Die Postverpackung, in der Sie Ihre Waren erhalten, ist so ausgelegt, dass sie zweimal verwendet werden kann. Auf der Verpackung können Sie sehen, wo man schneiden muss, um sie erneut verwenden zu können. Wir erstatten daher kein Geld für Rückverpackungen zurück. Dasselbe gilt für Portokosten, wenn Sie uns nur Teile Ihrer Bestellung zurückschicken. Wir nehmen keine Rücksendungen entgegen, die per Nachname verschickt werden. </p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="footer.menu_1" approved="no">
@@ -266,7 +269,7 @@
                 <h2>Mehr POMPdeLUX</h2>
                 <ul class="menu">
 				    <li><a href="/de_DE/home/katalog" target="_blank">Online-Katalog</a></li>
-					<li><a href="/de_DE/home/katalog/image-video" target="_blank">Image-Video</a></li>
+					<li><a href="/de_DE/home/katalog/backstage-video" target="_blank">Backstage video</a></li>
                     <li><a href="/de_DE/home/neuigkeiten" target="_blank">Neuigkeiten</a></li>
                     <li><a href="/de_DE/home/uber-pompdelux/konzept" target="_blank">Konzept</a></li>
                     <li><a href="/de_DE/home/uber-pompdelux/soziale-verantwortung" target="_blank">Soziale Verantwortung</a></li>

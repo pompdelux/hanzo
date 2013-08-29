@@ -303,7 +303,11 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target><![CDATA[Gothia-Rechnung (Gebühr 39,00 Euro). Die Rechnung wird per E-Mail verschickt, wenn alle Waren unser Lager verlassen haben. Sie finden die Rechnung im Laufe von 24 Stunden als PDF auf "Meine Seite".]]></target>
+        <target><![CDATA[Gothia-Rechnung (Gebühr 5,00 Euro). Die Rechnung wird per E-Mail verschickt, wenn alle Waren unser Lager verlassen haben. Sie finden die Rechnung im Laufe von 24 Stunden als PDF auf "Meine Seite".]]></target>
+      </trans-unit>
+      <trans-unit id="payment.gothia_lv.desc" approved="no">
+        <source>payment.gothia_lv.desc</source>
+        <target><![CDATA[Gothia-LV-Rechnung. Die Rechnung wird per E-Mail verschickt, wenn alle Waren unser Lager verlassen haben. Sie finden die Rechnung im Laufe von 24 Stunden als PDF auf "Meine Seite".]]></target>
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>
@@ -403,7 +407,7 @@
       </trans-unit>
       <trans-unit id="address.copy" approved="no">
          <source>address.copy</source>
-         <target>Die Lieferanschrift ist dieselbe wie die Privatadresse</target>
+         <target>Die Lieferanschrift ist die gleiche wie die Privatadresse</target>
       </trans-unit>
       <trans-unit id="dibs.down.message">
          <source>dibs.down.message</source>
@@ -426,27 +430,27 @@ Sie müssen Waren hinzufügen.
       </trans-unit>
       <trans-unit id="coupon" approved="no">
         <source>coupon</source>
-        <target>Rabatskode</target>
+        <target>Rabattcode</target>
       </trans-unit>
       <trans-unit id="coupon.toggle.form" approved="no">
         <source>coupon.toggle.form</source>
-        <target>» Tast din rabatskode</target>
+        <target>» Rabattgutschein eintragen</target>
       </trans-unit>
       <trans-unit id="coupon.description" approved="no">
         <source>coupon.description</source>
-        <target>Hvis du har en rabatkode .......</target>
+        <target>Haben Sie einen Rabattcode .......</target>
       </trans-unit>
       <trans-unit id="coupon.apply.discount" approved="no">
         <source>coupon.apply.discount</source>
-        <target>Gem</target>
+        <target>speichern</target>
       </trans-unit>
       <trans-unit id="coupon.label" approved="no">
         <source>coupon.label</source>
-        <target>Indtast rabatkode</target>
+        <target>Rabattgutschein eintragen</target>
       </trans-unit>
       <trans-unit id="coupon.invalid.code" approved="no">
         <source>coupon.invalid.code</source>
-        <target>Ugyldig rabatkode</target>
+        <target>Der Rabattcode ist unkorrekt</target>
       </trans-unit>
     </body>
   </file>

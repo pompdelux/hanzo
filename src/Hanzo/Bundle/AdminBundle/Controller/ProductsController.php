@@ -211,7 +211,8 @@ class ProductsController extends CoreController
 
                     $products_refs_list[] = array(
                         'id' => $product_ref->getId(),
-                        'sku' => $product_ref->getSku()
+                        'sku' => $product_ref->getSku(),
+                        'color' => $ref->getColor()
                     );
                 }
             }
@@ -590,10 +591,12 @@ class ProductsController extends CoreController
         $requests = $this->get('request');
         $image_id = $requests->get('image');
         $product_id = $requests->get('product');
+        $color = $requests->get('color');
 
         $reference = new ProductsImagesProductReferences();
         $reference->setProductsImagesId($image_id);
         $reference->setProductsId($product_id);
+        $reference->setColor($color);
 
         try {
             $reference->save($this->getDbConnection());
@@ -612,6 +615,28 @@ class ProductsController extends CoreController
                 'message' => $this->get('translator')->trans('save.changes.success', array(), 'admin')
             ));
         }
+    }
+
+    public function addReferenceGetColorsAction()
+    {
+        $requests = $this->get('request');
+        $product_id = $requests->get('product');
+
+        $images = ProductsImagesQuery::create()
+            ->filterByProductsId($product_id)
+            ->groupBy('Color')
+            ->find($this->getDbConnection());
+
+        $all_colors = [];
+
+        foreach ($images as $image) {
+            $all_colors[] = $image->getColor();
+        }
+        return $this->json_response(array(
+            'status' => TRUE,
+            'message' => $this->get('translator')->trans('save.changes.failed', array(), 'admin'),
+            'data' => $all_colors
+        ));
     }
 
     public function deleteReferenceAction($image_id, $product_id)

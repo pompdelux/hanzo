@@ -72,10 +72,10 @@ class DefaultController extends CoreController
 
     public function saveDraftAction()
     {
-        $request = $this->getRequest();
-        $subject = $request->get('subject');
-        $content = $request->get('message');
-        $draft_id = $request->get('draft_id');
+        $request  = $this->getRequest();
+        $subject  = $request->request->get('subject');
+        $content  = $request->request->get('message');
+        $draft_id = $request->request->get('draft_id');
 
         $draft = null;
 
@@ -163,17 +163,15 @@ class DefaultController extends CoreController
         }
 
     	$request  = $this->getRequest();
-        $test     = $request->get('actionSendTest');
-        $test_reciever = $request->get('test_reciever');
-		$status   = $request->get('status');
-        // $subject  = htmlentities( utf8_decode( $request->get('subject') ) );
-		$subject  = htmlentities($request->get('subject'),ENT_QUOTES,'UTF-8') ;
-		$message  = stripslashes( utf8_decode( $request->get('message') ) );
-		//$from     = $this->get('translator')->trans('consultant.newsletter.from.field.%name%.%email%', array('%name%' => $consultant->getName(), '%email%' => $consultant->getEmail()), 'consultant');
+        $test     = $request->request->get('actionSendTest');
+        $test_reciever = $request->request->get('test_reciever');
+		$status   = $request->request->get('status');
+		$subject  = htmlentities($request->request->get('subject'),ENT_QUOTES,'UTF-8') ;
+		$message  = stripslashes( utf8_decode( $request->request->get('message') ) );
         $from     = $consultant->getEmail();
         $to       = $consultant->getEmail();
 		$replyto  = $consultant->getEmail();
-		$template = $request->get('template');
+		$template = $request->request->get('template');
 		$lists    = $listIds;
 		$status   = ( isset( $status ) ? $status : ConsultantNewsletterApi::STATUS_DRAFT );
 

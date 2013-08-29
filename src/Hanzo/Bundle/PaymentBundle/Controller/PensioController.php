@@ -41,7 +41,8 @@ class PensioController extends CoreController
      */
     public function formAction(Request $request)
     {
-        if ('77.66.40.133' !== $request->getClientIp()) {
+        if (!in_array($request->getClientIp(), ['77.66.40.133', '127.0.0.1'])) {
+            Tools::log('Access denied for '.$request->getClientIp().' to '.__METHOD__);
             throw new AccessDeniedException();
         }
 
@@ -69,7 +70,8 @@ class PensioController extends CoreController
      */
     public function waitAction(Request $request)
     {
-        if ('77.66.40.133' !== $request->getClientIp()) {
+        if (!in_array($request->getClientIp(), ['77.66.40.133', '127.0.0.1'])) {
+            Tools::log('Access denied for '.$request->getClientIp().' to '.__METHOD__);
             throw new AccessDeniedException();
         }
 
@@ -100,7 +102,8 @@ class PensioController extends CoreController
      */
     public function callbackAction(Request $request, $status = 'failed')
     {
-        if ('77.66.40.133' !== $request->getClientIp()) {
+        if (!in_array($request->getClientIp(), ['77.66.40.133', '127.0.0.1'])) {
+            Tools::log('Access denied for '.$request->getClientIp().' to '.__METHOD__);
             throw new AccessDeniedException();
         }
 

@@ -4,6 +4,7 @@ namespace Hanzo\Bundle\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use Hanzo\Core\Hanzo,
@@ -31,16 +32,15 @@ class SettingsController extends CoreController
     /**
      * Shows all globale settings.
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
-        $request = $this->getRequest();
         if ($request->getMethod() == 'POST') {
 
-            $data = $request->get('form');
+            $data = $request->request->get('form');
             foreach ($data as $key_ns => $c_value) {
 
                 if('_token' == $key_ns) continue;
@@ -114,7 +114,7 @@ class SettingsController extends CoreController
             'form'      => $form->getForm()->createView(),
             'add_global_setting_form' => $form_add_global_setting->createView(),
             'domains_availible' => $domains_availible,
-            'database' => $this->getRequest()->getSession()->get('database')
+            'database' => $request->getSession()->get('database')
         ));
     }
 
@@ -123,7 +123,7 @@ class SettingsController extends CoreController
      *
      * @param domain_key The domain key
      */
-    public function domainAction($domain_key)
+    public function domainAction(Request $request, $domain_key)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
@@ -132,11 +132,9 @@ class SettingsController extends CoreController
         if(!$domain_key)
             $domain_key = DomainsQuery::create()->orderById()->findOne($this->getDbConnection())->getDomainKey();
 
-        $request = $this->getRequest();
-
         if ($request->getMethod() == 'POST') {
 
-            $data = $request->get('form');
+            $data = $request->request->get('form');
             foreach ($data as $key_ns => $c_value) {
 
                 if('_token' == $key_ns) continue;
@@ -207,7 +205,7 @@ class SettingsController extends CoreController
             'add_domain_setting_form' => $form_add_domain_setting->createView(),
             'domains_availible' => $domains_availible,
             'domain' => $domain_key,
-            'database' => $this->getRequest()->getSession()->get('database')
+            'database' => $request->getSession()->get('database')
         ));
     }
     /**
@@ -215,7 +213,7 @@ class SettingsController extends CoreController
      *
      * @param domain_key The domain key
      */
-    public function paymentdeliveryAction($domain_key)
+    public function paymentdeliveryAction(Request $request, $domain_key)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
@@ -228,10 +226,9 @@ class SettingsController extends CoreController
                 ->getDomainKey()
             ;
 
-        $request = $this->getRequest();
         if ($request->getMethod() == 'POST') {
 
-            $data = $request->get('form');
+            $data = $request->request->get('form');
             foreach ($data as $key_ns => $c_value) {
 
                 if('_token' == $key_ns) continue;
@@ -308,7 +305,7 @@ class SettingsController extends CoreController
             'add_domain_setting_form' => $form_add_domain_setting->createView(),
             'domains_availible' => $domains_availible,
             'domain' => $domain_key,
-            'database' => $this->getRequest()->getSession()->get('database')
+            'database' => $request->getSession()->get('database')
         ));
     }
 
@@ -317,15 +314,14 @@ class SettingsController extends CoreController
      *
      * @param domain_setting If the setting are a domain specific setting othervise it will be added to globale settings
      */
-    public function addSettingAction($domain_setting = false)
+    public function addSettingAction(Request $request, $domain_setting = false)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
-        $request = $this->getRequest();
         $referer = $request->headers->get('referer');
-        $data = $request->get('form');
+        $data = $request->request->get('form');
         $c_key = $data['c_key'];
         $ns = $data['ns'];
         $c_value = $data['c_value'];

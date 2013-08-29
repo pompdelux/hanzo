@@ -17,9 +17,11 @@ class DefaultController extends CoreController
     protected $services = [
         'payment.dibsapi'      => 'Dibs',
         'payment.gothiaapi'    => 'Gothia',
+        'payment.gothiadeapi'    => 'GothiaDE',
         'payment.paybybillapi' => 'PayByBill',
         'payment.giftcardapi'  => 'GiftCard', // pseudo payment module ...
         'payment.pensioapi'    => 'Pensio',
+        'payment.paypalapi'    => 'PayPal',
     ];
 
     /**
@@ -43,11 +45,10 @@ class DefaultController extends CoreController
 
         $modules = [];
         foreach ($this->services as $service => $controller) {
-
             $service = $this->get($service);
             if ($service && $service->isActive()) {
 
-                if ('Dibs' == $controller && 'DOWN' === $dibs_status) {
+                if (('Dibs' == $controller) && ('DOWN' === $dibs_status)) {
                     $modules[] = '<div class="down">'.$this->get('translator')->trans('dibs.down.message', [], 'checkout').'</div>';
                     continue;
                 }
@@ -58,9 +59,19 @@ class DefaultController extends CoreController
                     'selected_payment_type' => $selected_payment_type,
                 ];
 
-                $modules[] = $this->render('PaymentBundle:'.$controller.':select.html.twig', $parameters)->getContent();
+                $payment_html = $this->render('PaymentBundle:'.$controller.':select.html.twig', $parameters)->getContent();
+
+                // If the service has an specific order. Add it to that index.
+                if ($service->getOrder()) {
+                    $modules[$service->getOrder()] = $payment_html;
+                } else {
+                    $modules[$controller] = $payment_html;
+                }
             }
         }
+        // Order the modules by index, and reverse them so the highest index get in top.
+        ksort($modules);
+        $modules = array_reverse($modules);
 
         return $this->render('PaymentBundle:Default:block.html.twig', [
             'modules' => $modules,
@@ -76,7 +87,7 @@ class DefaultController extends CoreController
             'message' => 'unknown payment method',
         );
 
-        list($provider, $method) = explode(':', $request->get('method'));
+        list($provider, $method) = explode(':', $request->request->get('method'));
 
         $key = 'payment.'.$provider.'api';
 
@@ -103,7 +114,7 @@ class DefaultController extends CoreController
         // It also only supports one order line with payment fee, as all others are deleted
 
         if ('DOWN' !== $this->get('redis.permanent')->hget('service.status', 'dibs')) {
-            $order->setPaymentFee($method, $api->getFee(), 0, $api->getFeeExternalId());
+            $order->setPaymentFee($method, $api->getFee($method), 0, $api->getFeeExternalId());
         }
 
         $order->setUpdatedAt(time());
@@ -118,7 +129,7 @@ class DefaultController extends CoreController
     }
 
 
-    public function getProcessButtonAction()
+    public function getProcessButtonAction(Request $request)
     {
         $response = [
             'status'  => false,
@@ -146,8 +157,8 @@ class DefaultController extends CoreController
                 'data'    => ['name' => 'payment'],
             ]);
         }
-
         $provider = strtolower($order->getBillingMethod());
+
         $key = 'payment.'.$provider.'api';
 
         if (isset($this->services[$key])) {
@@ -156,7 +167,7 @@ class DefaultController extends CoreController
             $response = [
                 'status'  => true,
                 'message' => '',
-                'data'    => $api->getProcessButton($order),
+                'data'    => $api->getProcessButton($order, $request),
             ];
         }
 // Tools::log($response);

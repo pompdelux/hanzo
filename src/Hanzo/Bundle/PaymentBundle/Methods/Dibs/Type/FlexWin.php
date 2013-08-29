@@ -161,16 +161,6 @@ class FlexWin extends BasePaymentApi implements PaymentMethodApiInterface
     }
 
     /**
-     * getFee
-     * @return float
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    public function getFee()
-    {
-        return ( isset($this->settings['fee']) ) ? $this->settings['fee'] : 0.00;
-    }
-
-    /**
      * getFeeExternalId
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
@@ -217,9 +207,9 @@ class FlexWin extends BasePaymentApi implements PaymentMethodApiInterface
             throw new Exception( $msg );
         }
 
-        if ( $callbackRequest->get('merchant') != $this->settings['merchant'] )
+        if ( $callbackRequest->request->get('merchant') != $this->settings['merchant'] )
         {
-            throw new Exception( 'Wrong merchant "'. $callbackRequest->get('merchant') .'"' );
+            throw new Exception( 'Wrong merchant "'. $callbackRequest->request->get('merchant') .'"' );
         }
 
         $currency = $this->currencyCodeToNum($order->getCurrencyCode());
@@ -229,32 +219,32 @@ class FlexWin extends BasePaymentApi implements PaymentMethodApiInterface
 
         $calculated = $this->md5key( $gateway_id, $currency, $amount );
 
-        if ( $callbackRequest->get('md5key') != $calculated )
+        if ( $callbackRequest->request->get('md5key') != $calculated )
         {
             Tools::debug( 'Md5 sum mismatch', __METHOD__, array(
                 'POST'              => $_POST,
                 'GatewayID'         => $gateway_id,
                 'Amount'            => $amount,
                 'md5 Calculated'    => $calculated,
-                'md5 From callback' => $callbackRequest->get('md5key'),
+                'md5 From callback' => $callbackRequest->request->get('md5key'),
                 ));
 
-            throw new Exception( 'Md5 sum mismatch, got: "'. $callbackRequest->get('md5key') .'" expected: "'. $calculated .'"' );
+            throw new Exception( 'Md5 sum mismatch, got: "'. $callbackRequest->request->get('md5key') .'" expected: "'. $calculated .'"' );
         }
 
-        $calculated = $this->md5AuthKey( $callbackRequest->get('transact'), $currency, $amount );
+        $calculated = $this->md5AuthKey( $callbackRequest->request->get('transact'), $currency, $amount );
 
-        if ( $callbackRequest->get('authkey') != $calculated )
+        if ( $callbackRequest->request->get('authkey') != $calculated )
         {
             Tools::debug( 'Authkey md5 sum mismatch', __METHOD__, array(
                 'POST'              => $_POST,
                 'GatewayID'         => $gateway_id,
                 'Amount'            => $amount,
                 'md5 Calculated'    => $calculated,
-                'md5 From callback' => $callbackRequest->get('authkey'),
+                'md5 From callback' => $callbackRequest->request->get('authkey'),
                 ));
 
-            throw new Exception( 'Authkey md5 sum mismatch, got: "'. $callbackRequest->get('authkey') .'" expected: "'. $calculated .'"' );
+            throw new Exception( 'Authkey md5 sum mismatch, got: "'. $callbackRequest->request->get('authkey') .'" expected: "'. $calculated .'"' );
         }
     }
 
@@ -451,7 +441,7 @@ class FlexWin extends BasePaymentApi implements PaymentMethodApiInterface
     }
 
 
-    public function getProcessButton(Orders $order)
+    public function getProcessButton(Orders $order, Request $request)
     {
         $fields = '';
         foreach ($this->buildFormFields($order) as $name => $value) {

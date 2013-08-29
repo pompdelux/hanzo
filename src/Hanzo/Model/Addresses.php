@@ -3,7 +3,7 @@
 namespace Hanzo\Model;
 
 use Hanzo\Model\om\BaseAddresses;
-
+use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 
 /**
  * Skeleton subclass for representing a row from the 'addresses' table.
@@ -58,5 +58,15 @@ class Addresses extends BaseAddresses
         }
 
         return null;
+    }
+
+    public function getTitle(Translator $translator = null)
+    {
+        $title = parent::getTitle();
+        if ($title && ($translator instanceof Translator)) {
+            $title = $translator->trans('title.'.parent::getTitle(), [], 'account');
+        }
+
+        return $title;
     }
 } // Addresses

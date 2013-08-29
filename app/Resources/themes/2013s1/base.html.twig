@@ -4,9 +4,12 @@
 <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="{{ html_lang }}" xmlns:og="http://ogp.me/ns#"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="{{ html_lang }}" xmlns:og="http://ogp.me/ns#"> <!--<![endif]-->
 <head>
-<title>{{ 'browser.title'|trans }} {{ browser_title|default('') }}</title>
-{% include '::web-header.html.twig' %}
-
+{% if browser_title is defined and page_type|default('page') != 'frontpage' %}
+  <title>{{ browser_title }} - {{ 'browser.title'|trans }}</title>
+{% else %}
+  <title>{{ 'browser.title'|trans }}</title>
+{% endif %}
+{{ include('::web-header.html.twig') }}
 </head>
 <body id="body-{{ page_type|default('page') }}" class="{{ body_classes|default('') }} {{ html_lang }}">
 
@@ -104,8 +107,26 @@
   </footer>
 </div>
 
-{% include '::web-footer.html.twig' %}
-{% include '::footer-'~app.request.locale~'.html.twig' ignore missing %}
+{{ include('::web-footer.html.twig') }}
+{% block javascript %}{% endblock %}
+{% render(controller('NewsletterBundle:Default:js')) %}
+
+<script>if (jaiks) {jaiks.exec();}</script>
+{#
+ # TODO: find a better solution.
+ # we need this hack to get single shipping types to play nice...
+#}
+{% if page_type is defined and page_type == 'checkout' %}
+<script>
+  if (1 == $('#shipping-block input').length) {
+    $('#shipping-block input').first().click();
+    {# ie7+8 has some issues with click, apparently #}
+    if ($('html').hasClass('ie7') || $('html').hasClass('ie8')) {
+      $('#shipping-block input').first().click();
+    }
+  }
+</script>
+{% endif %}
 
 </body>
 </html>

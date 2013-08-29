@@ -138,15 +138,6 @@ class DibsPaymentWindow extends BasePaymentApi implements PaymentMethodApiInterf
     }
 
     /**
-     * getFee
-     * @return float
-     */
-    public function getFee()
-    {
-        return isset($this->settings['fee']) ? $this->settings['fee'] : 0.00;
-    }
-
-    /**
      * getFeeExternalId
      * @return void
      */
@@ -397,7 +388,7 @@ class DibsPaymentWindow extends BasePaymentApi implements PaymentMethodApiInterf
      * @param  Orders $order Ordes object
      * @return string
      */
-    public function getProcessButton(Orders $order)
+    public function getProcessButton(Orders $order, Request $request)
     {
         $fields = '';
         foreach ($this->buildFormFields($order) as $name => $value) {

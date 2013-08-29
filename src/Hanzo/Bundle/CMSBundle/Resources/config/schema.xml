@@ -43,6 +43,7 @@
     <column name="is_active" type="BOOLEAN" required="true" defaultValue="TRUE" />
     <column name="is_restricted" type="BOOLEAN" required="true" defaultValue="FALSE" />
     <column name="on_mobile" type="BOOLEAN" required="true" defaultValue="TRUE" />
+    <column name="updated_by" type="VARCHAR" required="false" />
     <foreign-key foreignTable="cms_thread" name="fk_cms_1" onDelete="CASCADE" onUpdate="CASCADE">
       <reference local="cms_thread_id" foreign="id" />
     </foreign-key>
@@ -419,6 +420,7 @@
   <table name="products_images_product_references">
     <column name="products_images_id" type="INTEGER" primaryKey="true" required="true"/>
     <column name="products_id" type="INTEGER" primaryKey="true" required="true"/>
+    <column name="color" type="VARCHAR" size="255" required="false"/>
     <foreign-key foreignTable="products_images" name="fk_products_images_product_references_1" onDelete="CASCADE">
       <reference local="products_images_id" foreign="id"/>
     </foreign-key>

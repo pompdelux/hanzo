@@ -1,7 +1,6 @@
 <?php /* vim: set sw=4: */
 namespace Hanzo\Bundle\AccountBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\FormError;
@@ -30,9 +29,8 @@ use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
 
 class DefaultController extends CoreController
 {
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        $request = $this->getRequest();
         $session = $request->getSession();
 
         // if we access the account page vith an active "edit" we close it.
@@ -50,10 +48,9 @@ class DefaultController extends CoreController
         ));
     }
 
-    public function createAction()
+    public function createAction(Request $request)
     {
         $hanzo      = Hanzo::getInstance();
-        $request    = $this->getRequest();
         $translator = $this->get('translator');
         $domainKey  = $hanzo->get('core.domain_key');
 
@@ -180,9 +177,9 @@ class DefaultController extends CoreController
         }
 
         return $this->render('AccountBundle:Default:create.html.twig', array(
-            'page_type' => 'create-account',
-            'form' => $form->createView(),
-            'errors' => $errors,
+            'page_type'  => 'create-account',
+            'form'       => $form->createView(),
+            'errors'     => $errors,
             'domain_key' => $domainKey
         ));
     }
@@ -192,20 +189,19 @@ class DefaultController extends CoreController
      *
      * @return Responce object
      */
-    public function passwordForgottenAction()
+    public function passwordForgottenAction(Request $request)
     {
         $message = '';
-        $request = $this->getRequest();
 
         if ('POST' === $request->getMethod()) {
             // find the user by email address
-            $customer = CustomersPeer::getByEmail($request->get('email'));
+            $customer = CustomersPeer::getByEmail($request->request->get('email'));
             if ($customer instanceof Customers) {
                 $name = trim($customer->getFirstName() . ' ' . $customer->getLastName());
 
                 $mailer = $this->get('mail_manager');
                 $mailer->setMessage('password.forgotten', array(
-                    'name' => $name,
+                    'name'     => $name,
                     'username' => $customer->getEmail(),
                     'password' => $customer->getPasswordClear(),
                 ));
@@ -223,7 +219,7 @@ class DefaultController extends CoreController
 
         return $this->render('AccountBundle:Default:password_forgotten.html.twig', array(
             'page_type' => 'password-forgotten',
-            'message' => $message
+            'message'   => $message
         ));
     }
 
@@ -232,7 +228,7 @@ class DefaultController extends CoreController
      *
      * @return Response object
      */
-    public function editAction()
+    public function editAction(Request $request)
     {
         $customer = CustomersPeer::getCurrent();
 
@@ -250,7 +246,6 @@ class DefaultController extends CoreController
             array('validation_groups' => 'customer_edit')
         );
 
-        $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
             $form->bind($request);
 
@@ -276,15 +271,14 @@ class DefaultController extends CoreController
 
         return $this->render('AccountBundle:Default:edit.html.twig', array(
             'page_type' => 'edit-account',
-            'errors' => $errors,
-            'form' => $form->createView(),
+            'errors'    => $errors,
+            'form'      => $form->createView(),
         ));
     }
 
 
-    public function editAddressAction($type = 'payment', $shipping_id = null)
+    public function editAddressAction(Request $request, $type = 'payment', $shipping_id = null)
     {
-        $request = $this->getRequest();
         $translator = $this->get('translator');
 
         // hack...
@@ -354,9 +348,9 @@ class DefaultController extends CoreController
 
             if (count($countries) > 1) {
                 $builder->add('countries_id', 'choice', array(
-                    'empty_value' => 'choose.country',
-                    'choices' => $countries,
-                    'required' => true,
+                    'empty_value'        => 'choose.country',
+                    'choices'            => $countries,
+                    'required'           => true,
                     'translation_domain' => 'account'
                 ));
             } else {
@@ -367,7 +361,7 @@ class DefaultController extends CoreController
 
                 $builder->add('countries_id', 'hidden', array('data' => $country_id));
                 $builder->add('country', null, array(
-                    'read_only' => true,
+                    'read_only'          => true,
                     'translation_domain' => 'account'
                 ));
             }
@@ -378,8 +372,8 @@ class DefaultController extends CoreController
 
             $builder->add('countries_id', 'hidden', array('data' => $country_id));
             $builder->add('address_line_1', null, array(
-                'label' => 'overnightbox.label',
-                'required' => true,
+                'label'              => 'overnightbox.label',
+                'required'           => true,
                 'translation_domain' => 'account'
             ));
         }
@@ -411,9 +405,9 @@ class DefaultController extends CoreController
 
                 if ('json' === $this->getFormat()) {
                     return $this->json_response(array(
-                        'status' => true,
+                        'status'  => true,
                         'message' => '',
-                        'data' => array(
+                        'data'    => array(
                             'address' => $address->toArray(\BasePeer::TYPE_FIELDNAME)
                         ),
                     ));
@@ -431,9 +425,9 @@ class DefaultController extends CoreController
 
                     if (count($errors)) {
                         return $this->json_response(array(
-                            'status' => false,
+                            'status'  => false,
                             'message' => $translator->trans('create.account.error', array(), 'account'),
-                            'data' => $errors,
+                            'data'    => $errors,
                         ));
                     }
                 }
@@ -442,16 +436,16 @@ class DefaultController extends CoreController
 
         $html = $this->render('AccountBundle:Default:address_form_block.html.twig', array(
             'page_type' => 'edit-address-block',
-            'title' => ($address->isNew() ? 'add.address' : 'edit.address'),
-            'form' => $form->createView(),
-            'callback' => 'postal'
+            'title'     => ($address->isNew() ? 'add.address' : 'edit.address'),
+            'form'      => $form->createView(),
+            'callback'  => 'postal'
         ));
 
         if ('json' === $this->getFormat()) {
             return $this->json_response(array(
-                'status' => true,
+                'status'  => true,
                 'message' => '',
-                'data' => array('html' => $html->getContent()),
+                'data'    => array('html' => $html->getContent()),
             ));
         }
 
@@ -480,18 +474,18 @@ class DefaultController extends CoreController
             ;
 
             if ($account instanceof Customers) {
-                $status = false;
+                $status  = false;
                 $message = $translator->trans('email.already.in.use', array(), 'account');
-                $data = array('title' => $translator->trans('create.account.error.title', array(), 'account'));
+                $data    = array('title' => $translator->trans('create.account.error.title', array(), 'account'));
             }
         }
 
 
         if ('json' === $this->getFormat()) {
             return $this->json_response(array(
-                'status' => $status,
+                'status'  => $status,
                 'message' => $message,
-                'data' => $data,
+                'data'    => $data,
             ));
         }
     }
@@ -509,8 +503,6 @@ class DefaultController extends CoreController
 
     public function stopOrderEditAction($order_id)
     {
-        $request = $this->getRequest();
-
         if ($order_id) {
             $this->get('event_dispatcher')->dispatch('order.edit.cancel', new FilterOrderEvent(OrdersQuery::create()->findPk($order_id)));
         }

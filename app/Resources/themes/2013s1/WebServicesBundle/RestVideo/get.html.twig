@@ -16,8 +16,8 @@
 
   <div class="video-js-box">
     <video id="pdl_video_{{ video_counter }}" class="video-js" width="{{ width }}" height="{{ height }}" controls="controls" preload="auto" poster="{{ cdn }}fx/images/{{ banner }}.jpg">
-        <source src="{{ cdn }}video/{{ video }}.mp4" type='video/mp4;' />
         <source src="{{ cdn }}video/{{ video }}.ogv" type='video/ogg; codecs="theora, vorbis"' />
+        <source src="{{ cdn }}video/{{ video }}.mp4" type='video/mp4;' />
       <object id="flash_fallback_{{ video_counter }}" class="vjs-flash-fallback" width="{{ width }}" height="{{ height }}" type="application/x-shockwave-flash" data="{{ cdn }}fx/scripts/flowplayer/flowplayer.commercial-3.2.12.swf">
         <param name="movie" value="{{ cdn }}fx/scripts/flowplayer/flowplayer.commercial-3.2.12.swf" />
         <param name="allowfullscreen" value="true" />

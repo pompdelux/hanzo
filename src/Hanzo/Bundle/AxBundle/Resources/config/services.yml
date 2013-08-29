@@ -18,6 +18,7 @@ services:
             - %ax.log_requests%
             - @logger
             - @event_dispatcher
+            - @translator
 
     ax.out.checkout.listener:
         class: Hanzo\Bundle\AxBundle\Event\CheckoutListener

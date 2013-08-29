@@ -2,6 +2,10 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
+            <trans-unit id="size.guide.link">
+                <source>size.guide.link</source>
+                <target><![CDATA[<a href="/nl_NL/voorpagina/webshop/info/sizeguide" target="_blank" title="Size guide">» Size guide</a>]]></target>
+            </trans-unit>
             <trans-unit id="out.of.stock">
                 <source>out.of.stock</source>
                 <target>Uitverkocht</target>
@@ -120,7 +124,7 @@
             </trans-unit>
             <trans-unit id="store.address">
                 <source>store.address</source>
-                <target>POMPdeLUX ApS • Møgelhøj 8 DK-8520 Lystrup • BTW 851856147B01 • mail@pompdelux.nl • 085-3001100 (Nederlands en Engels)</target>
+                <target>POMPdeLUX NL B.V. c/o POMPdeLUX ApS • Møgelhøj 8 DK-8520 Lystrup • BTW 851856147B01 • mail@pompdelux.nl • 085-3001100 (Nederlands en Engels)</target>
             </trans-unit>
             <trans-unit id="order.edit.global.notice">
                 <source>order.edit.global.notice</source>
@@ -141,7 +145,7 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
                     <strong>Klantenservice</strong><br>
                     Telefoon: 085-3001100 (Nederlands en Engels)<br>
                     E-mail: <a href="mailto:mail@pompdelux.nl">mail@pompdelux.nl</a><br>
-                    Maandag t/m donderdag 9 - 16<br>
+                    Maandag t/m donderdag 9 - 18<br>
                     Vrijdag 9 - 14<br>
                     Zaterdag en zon-en Deense feestdagen gesloten.
                 ]]></target>
@@ -150,7 +154,7 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
                 <source>footer.address</source>
                 <target><![CDATA[
                     <ul>
-                        <li>POMPdeLUX ApS</li>
+                        <li>POMPdeLUX NL B.V. c/o POMPdeLUX ApS</li>
                         <li>Møgelhøj 8</li>
                         <li>DK-8520 Lystrup</li>
                         <li>BTW 851856147B01</li>
@@ -259,7 +263,7 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
                 <h2>Meer POMPdeLUX</h2>
                 <ul class="menu">
 				    <li><a href="/nl_NL/voorpagina/catalogus">Online Catalogus</a></li>
-				    <li><a href="/nl_NL/voorpagina/catalogus/image-video">Image Video</a></li>
+				    <li><a href="/nl_NL/voorpagina/catalogus/backstage-video">Backstage video</a></li>
                     <li><a href="/nl_NL/voorpagina/over-pompdelux">Over POMPdeLUX</a></li>
                     <li><a href="/nl_NL/voorpagina/nieuws">Nieuws</a></li>
                     <li><a href="/nl_NL/voorpagina/over-pompdelux/het-concept">Het concept</a></li>

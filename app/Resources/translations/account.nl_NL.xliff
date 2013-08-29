@@ -91,6 +91,10 @@
                 <source>title</source>
                 <target>Title</target>
             </trans-unit>
+            <trans-unit id="attention.label">
+                <source>attention.label</source>
+                <target>Att:</target>
+            </trans-unit>
             <trans-unit id="title.male">
                 <source>title.male</source>
                 <target>Herr</target>

@@ -52,6 +52,28 @@ PaymentBundle_gothia_payment_cancel:
     pattern:  /payment/gothia/cancel
     defaults: { _controller: PaymentBundle:Default:cancel }
 
+# GOTHIA DE }-------------------------
+PaymentBundle_gothiade_process:
+    pattern:  /payment/gothia-de/process
+    defaults: { _controller: PaymentBundle:GothiaDE:process }
+
+PaymentBundle_gothiade_payment:
+    pattern:  /payment/gothia-de
+    defaults: { _controller: PaymentBundle:GothiaDE:payment }
+
+PaymentBundle_gothiade_payment_test:
+    pattern:  /payment/gothia-de/test
+    defaults: { _controller: PaymentBundle:GothiaDE:test }
+
+PaymentBundle_gothiade_payment_confirm:
+    pattern:  /payment/gothia-de/confirm
+    defaults: { _controller: PaymentBundle:GothiaDE:confirm, _format: json }
+    requirements: { _format: (xml|json), _method: POST }
+
+PaymentBundle_gothiade_payment_cancel:
+    pattern:  /payment/gothia-de/cancel
+    defaults: { _controller: PaymentBundle:Default:cancel }
+
 # COD }-------------------------
 _paybybill_callback:
     pattern:  /payment/paybybill/callback
@@ -85,6 +107,14 @@ _pensio_process:
         _controller: PaymentBundle:Pensio:process
     requirements:
         _method: POST
+
+# PayPal }----------------------
+_paypal_callback:
+    pattern:  /payment/paypal/callback
+    defaults: { _controller: PaymentBundle:PayPal:callback }
+_paypal_cancel:
+    pattern:  /payment/paypal/cancel
+    defaults: { _controller: PaymentBundle:PayPal:cancel }
 
 
 # ALL }-------------------------

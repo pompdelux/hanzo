@@ -114,6 +114,7 @@
   'fx/scripts/flowplayer/flowplayer-3.2.11.min.js'
   'fx/scripts/countdown/jquery.countdown.js'
   'fx/scripts/countdown/jquery.countdown-da.js'
+  'fx/scripts/countdown/jquery.countdown-de.js'
   'fx/scripts/countdown/jquery.countdown-nb.js'
   'fx/scripts/countdown/jquery.countdown-sv.js'
   'fx/scripts/countdown/jquery.countdown-fi.js'
@@ -171,7 +172,7 @@
   if (1 == $('#shipping-block input').length) {
     $('#shipping-block input').first().click();
     {# ie7 has some issues with click, apparently #}
-    if ($('html').hasClass('ie7')) {
+    if ($('html').hasClass('ie7') || $('html').hasClass('ie8')) {
       $('#shipping-block input').first().click();
     }
   }

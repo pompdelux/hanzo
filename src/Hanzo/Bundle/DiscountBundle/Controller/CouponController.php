@@ -37,8 +37,8 @@ class CouponController extends CoreController
         ;
 
         if ($request->getMethod() == 'POST') {
-            $values = $request->get('form');
-            $code   = $values ?: $request->get('code');
+            $values = $request->request->get('form');
+            $code   = $values ?: $request->request->get('code');
             $order  = OrdersPeer::getCurrent();
             $total  = $order->getTotalPrice();
 
