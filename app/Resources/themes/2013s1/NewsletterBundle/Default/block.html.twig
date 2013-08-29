@@ -11,6 +11,9 @@
       <input type="email" class="newsletter-subscriber-email" name="email" value="" title="{{ 'block.subscribe.email_label'|trans({}, 'newsletter') }}" placeholder="{{ 'block.subscribe.email_label'|trans({}, 'newsletter') }}">
     </div>
     <div class="clearfix">
+      {{ 'terms.link'|trans({}, 'newsletter')|raw }}
+    </div>
+    <div class="clearfix">
       <input type="submit" data-action="unsubscribe" class="button text-button" value="{{ 'block.unsubscribe.submit_button'|trans({}, 'newsletter') }}">
       <input type="submit" data-action="subscribe" class="button text-button" value="{{ 'block.subscribe.submit_button'|trans({}, 'newsletter') }}">
     </div>

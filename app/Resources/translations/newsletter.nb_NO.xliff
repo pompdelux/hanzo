@@ -38,6 +38,12 @@
         <source>invalid.email.address</source>
         <target>E-mail-adressen du har tastet inn er ugyldig.</target>
       </trans-unit>
+      <trans-unit id="terms.link">
+        <source>terms.link</source>
+        <target><![CDATA[
+          <a href="/nb_NO/forside/kundeservice/vilkar" target="_blank">POMPdeLUX vilkår.</a>
+        ]]></target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

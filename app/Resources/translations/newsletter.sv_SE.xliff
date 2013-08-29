@@ -38,6 +38,12 @@
         <source>invalid.email.address</source>
         <target>Emailadressen är inte giltig.</target>
       </trans-unit>
+      <trans-unit id="terms.link">
+        <source>terms.link</source>
+        <target><![CDATA[
+          <a href="/sv_SE/forside/kundservice/villkor" target="_blank">POMPdeLUX Villkor.</a>
+        ]]></target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
