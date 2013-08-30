@@ -446,7 +446,7 @@ Du skal tilføje flere varer.
       </trans-unit>
       <trans-unit id="coupon.invalid.code" approved="no">
         <source>coupon.invalid.code</source>
-        <target>Ugyldig rabatkode</target>
+        <target>Ugyldig rabatkode </target>
       </trans-unit>
     </body>
   </file>
