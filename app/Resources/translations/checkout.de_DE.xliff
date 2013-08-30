@@ -438,7 +438,7 @@ Sie müssen Waren hinzufügen.
       </trans-unit>
       <trans-unit id="coupon.description" approved="no">
         <source>coupon.description</source>
-        <target>Haben Sie einen Rabattcode .......</target>
+        <target>Rabattgutschein eintragen. Pro Bestellung kann nur ein Rabattcode verwendet werden.</target>
       </trans-unit>
       <trans-unit id="coupon.apply.discount" approved="no">
         <source>coupon.apply.discount</source>
@@ -446,7 +446,7 @@ Sie müssen Waren hinzufügen.
       </trans-unit>
       <trans-unit id="coupon.label" approved="no">
         <source>coupon.label</source>
-        <target><![CDATA[Rabattgutschein eintragen. <br>Pro Bestellung kann nur ein Rabattcode verwendet werden.]]></target>
+        <target>Rabattgutschein eintragen.</target>
       </trans-unit>
       <trans-unit id="coupon.invalid.code" approved="no">
         <source>coupon.invalid.code</source>

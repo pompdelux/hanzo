@@ -402,7 +402,7 @@
       </trans-unit>
       <trans-unit id="coupon.description" approved="no">
         <source>coupon.description</source>
-        <target>Jos sinulla on alennuskoodi .......</target>
+        <target>Kirjoita alennuskoodi. Yhdessä tilauksessa voi käyttää vain yhden alennuskoodin.</target>
       </trans-unit>
       <trans-unit id="coupon.apply.discount" approved="no">
         <source>coupon.apply.discount</source>
@@ -410,7 +410,7 @@
       </trans-unit>
       <trans-unit id="coupon.label" approved="no">
         <source>coupon.label</source>
-        <target><![CDATA[Kirjoita alennuskoodi. <br>Yhdessä tilauksessa voi käyttää vain yhden alennuskoodin.]]></target>
+        <target>Kirjoita alennuskoodi.</target>
       </trans-unit>
       <trans-unit id="coupon.invalid.code" approved="no">
         <source>coupon.invalid.code</source>
