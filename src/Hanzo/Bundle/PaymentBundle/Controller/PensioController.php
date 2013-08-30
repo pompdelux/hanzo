@@ -160,4 +160,27 @@ class PensioController extends CoreController
     {
         return new Response('Ok', 200, array('Content-Type' => 'text/plain'));
     }
+
+
+    /**
+     * Get transaction information on a order id
+     *
+     * @param  Request $request
+     * @param  Integer $order_id
+     * @return Response
+     */
+    public function lookupAction(Request $request, $order_id)
+    {
+        $order = OrdersQuery::create()
+            ->findOneById(
+                $order_id, // 19653
+                Propel::getConnection(null, Propel::CONNECTION_WRITE)
+            )
+        ;
+
+        $api = $this->get('payment.pensioapi');
+        $result = $api->call()->getPayment($order, true);
+
+        return new Response('<pre>'.print_r($result,1).'</pre>', 200, array('Content-Type' => 'text/plain'));
+    }
 }
