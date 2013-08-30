@@ -4,7 +4,7 @@
 #body-rma {
     .product-table{
         label{
-            select, textarea {
+            input, select, textarea {
                 display: block;
                 margin: 0 0 10px;
             }
@@ -16,6 +16,9 @@
         td.actions {
             width: 610px;
         }
+    }
+    div.quickorder{
+        padding: 0;
     }
 }
 .rma-icon {

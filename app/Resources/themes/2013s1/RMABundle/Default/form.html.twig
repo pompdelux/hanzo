@@ -43,6 +43,8 @@
               </label>
 
               {#
+                Causes for activities
+
                 We need a select for each activity. Different causes.
               #}
               <label class="off rma-cause rma-return-causes">
@@ -73,13 +75,35 @@
                 </select>
               </label>
 
+              {#
+                Quickorder to select a new product
+              #}
+              <div class="off rma-productreplacement quickorder">
+                <label>
+                  {{ 'quickorder.master.placeholder'|trans({}, 'quickorder') }}<br>
+                  <input type="text" id="replacement-master-productid-{{ product.products_id }}" placeholder="{{ 'quickorder.master.placeholder'|trans({}, 'quickorder') }}" class="master">
+                </label>
+                <label class="off">
+                  <select id="replacement-size-productid-{{ product.products_id }}" class="size"></select>
+                </label>
+                <label class="off">
+                  <select id="replacement-color-productid-{{ product.products_id }}" class="color"></select>
+                </label>
+                <label class="off">
+                  {{ 'quickorder.quantity.placeholder'|trans({}, 'quickorder') }}
+                  <input type="text" id="replacement-quantity-productid-{{ product.products_id }}" placeholder="{{ 'quickorder.quantity.placeholder'|trans({}, 'quickorder') }}" class="quantity">
+                </label>
+                <div class="autocomplete-container"></div>
+              </div>
+
+              {#
+                Description
+              #}
               <label class="off rma-description">
                 {{ 'rma.form.label.description'|trans({}, 'rma') }}
                 <textarea name="product[{{ product.products_id }}][description]" id="description-productid-{{ product.products_id }}" data-id="{{ product.products_id }}"></textarea>
               </label>
-              div.
             </td>
-
           </tr>
         {% endfor %}
         </tbody>
@@ -91,6 +115,7 @@
 {% endblock %}
 
 {% block javascript %}
+<script src="{{ asset('/fx/scripts/bootstrap-typeahead.js') }}"></script>
 <script>
   var rma_order_id = {{ order.id }};
 </script>

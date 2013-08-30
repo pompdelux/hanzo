@@ -32,14 +32,15 @@ class DefaultController extends Controller
             if ($order_line->getType() == 'product') {
 
                 $product = $order_line->toArray(\BasePeer::TYPE_FIELDNAME);
-
-                $product['basket_image'] =
-                    preg_replace('/[^a-z0-9]/i', '-', $product['products_name']) .
-                    '_' .
-                    preg_replace('/[^a-z0-9]/i', '-', str_replace('/', '9', $product['products_color'])) .
-                    '_overview_01.jpg'
-                ;
-                $products['product_' . $product['products_id']] = $product;
+                if (isset($product['products_id'])) {
+                    $product['basket_image'] =
+                        preg_replace('/[^a-z0-9]/i', '-', $product['products_name']) .
+                        '_' .
+                        preg_replace('/[^a-z0-9]/i', '-', str_replace('/', '9', $product['products_color'])) .
+                        '_overview_01.jpg'
+                    ;
+                    $products['product_' . $product['products_id']] = $product;
+                }
             }
         }
 

@@ -5,13 +5,15 @@ var rma = (function($) {
 
     $('.rma-activitycode').on('change', function(e) {
         $select = $(this);
+        $context = $select.parent().parent();
+        $('.rma-cause, .rma-description, .rma-productreplacement', $context).hide();
         if($select.val()) {
             // Show the appopriate dropdown for causes.
-            $select.parent().parent().find('.rma-' + $select.val() + '-causes').slideDown('fast');
-            $select.parent().parent().find('.rma-description').slideDown('fast');
-        } else {
-            $select.parent().parent().find('.rma-cause').slideUp('fast');
-            $select.parent().parent().find('.rma-description').slideUp('fast');
+            $context.find('.rma-' + $select.val() + '-causes').slideDown('fast');
+            $context.find('.rma-description').slideDown('fast');
+            if($select.val() === 'return' || $select.val() === 'warranty') {
+                $context.find('.rma-productreplacement').slideDown('fast');
+            }
         }
     });
 
@@ -26,7 +28,12 @@ var rma = (function($) {
                     'id' : id,
                     'rma_activitycode' : $(el).val(),
                     'rma_cause' : $('#' + $(el).val() + '-cause-productid-' + id).val(),
-                    'rma_description' : $('#description-productid-' + id).val()
+                    'rma_description' : $('#description-productid-' + id).val(),
+                    'rma_replacement' : {
+                        'master' : $('#replacement-master-productid-' + id).val(),
+                        'size' : $('#replacement-size-productid-' + id).val(),
+                        'color' : $('#replacement-color-productid-' + id).val(),
+                    }
                 });
             }
         });

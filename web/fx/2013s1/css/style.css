@@ -2674,25 +2674,32 @@ div.dialoug.like-pop li div {
   background-image: url(/fx/images/wall/emo/12.png);
 }
 
-#quickorder form {
+form.quickorder,
+div.quickorder {
   padding-bottom: 50px;
 }
-#quickorder form label {
+form.quickorder label,
+div.quickorder label {
   display: inline-block;
   width: auto;
 }
-#quickorder form input, #quickorder form select {
+form.quickorder input, form.quickorder select,
+div.quickorder input,
+div.quickorder select {
   margin-right: 5px;
 }
-#quickorder .ui-autocomplete {
+form.quickorder .ui-autocomplete,
+div.quickorder .ui-autocomplete {
   list-style-type: none;
   padding: 0px 5px;
   display: inline-block;
 }
-#quickorder .ui-autocomplete .ui-menu-item {
+form.quickorder .ui-autocomplete .ui-menu-item,
+div.quickorder .ui-autocomplete .ui-menu-item {
   cursor: pointer;
 }
-#quickorder input#quantity {
+form.quickorder input.quantity,
+div.quickorder input.quantity {
   width: 50px;
   text-align: center;
 }
@@ -2758,7 +2765,7 @@ div.dialoug.like-pop li div {
 /**
 | _rma
 */
-#body-rma .product-table label select, #body-rma .product-table label textarea {
+#body-rma .product-table label input, #body-rma .product-table label select, #body-rma .product-table label textarea {
   display: block;
   margin: 0 0 10px;
 }
@@ -2768,6 +2775,9 @@ div.dialoug.like-pop li div {
 }
 #body-rma .product-table td.actions {
   width: 610px;
+}
+#body-rma div.quickorder {
+  padding: 0;
 }
 
 .rma-icon {
