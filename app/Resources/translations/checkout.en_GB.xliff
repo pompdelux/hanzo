@@ -412,7 +412,7 @@
       </trans-unit>
       <trans-unit id="coupon.label" approved="no">
         <source>coupon.label</source>
-        <target>Enter your discount code</target>
+        <target><![CDATA[Enter your discount code. <br>Only one discount code can be used per order.]]></target>
       </trans-unit>
       <trans-unit id="coupon.invalid.code" approved="no">
         <source>coupon.invalid.code</source>

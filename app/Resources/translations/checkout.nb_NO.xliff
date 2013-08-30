@@ -432,7 +432,7 @@ Du må tilføye flere varer.
       </trans-unit>
       <trans-unit id="coupon.label" approved="no">
         <source>coupon.label</source>
-        <target>Tast inn din rabattkode</target>
+        <target><![CDATA[Tast inn din rabattkode. <br>Det kan bare brukes én rabattkode per ordre.]]></target>
       </trans-unit>
       <trans-unit id="coupon.invalid.code" approved="no">
         <source>coupon.invalid.code</source>

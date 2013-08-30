@@ -434,7 +434,7 @@ Du måste lägga till fler varor.
       </trans-unit>
       <trans-unit id="coupon.label" approved="no">
         <source>coupon.label</source>
-        <target>Skriv din rabattkod</target>
+        <target><![CDATA[Skriv din rabattkod. <br>Man kan endast använda en rabattkod per order.]]></target>
       </trans-unit>
       <trans-unit id="coupon.invalid.code" approved="no">
         <source>coupon.invalid.code</source>

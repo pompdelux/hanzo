@@ -424,7 +424,7 @@ Je moet meer artikelen toevoegen.
       </trans-unit>
       <trans-unit id="coupon.label" approved="no">
         <source>coupon.label</source>
-        <target>Toets je kortingscode</target>
+        <target><![CDATA[Toets je kortingscode. <br>Je mag maar één kortingscode per bestelling gebruiken.]]></target>
       </trans-unit>
       <trans-unit id="coupon.invalid.code" approved="no">
         <source>coupon.invalid.code</source>
