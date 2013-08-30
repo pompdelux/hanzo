@@ -10,13 +10,11 @@ use PropelException;
 
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
-use Hanzo\Core\Stock;
 use Hanzo\Core\CoreController;
 
 use Hanzo\Model\Products;
 use Hanzo\Model\ProductsPeer;
 use Hanzo\Model\ProductsQuery;
-use Hanzo\Model\ProductsStockQuery;
 use Hanzo\Model\ProductsDomainsPricesPeer;
 use Hanzo\Model\ProductsDomainsPricesQuery;
 use Hanzo\Model\ProductsToCategoriesQuery;
