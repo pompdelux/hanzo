@@ -416,7 +416,7 @@ Je moet meer artikelen toevoegen.
       </trans-unit>
       <trans-unit id="coupon.description" approved="no">
         <source>coupon.description</source>
-        <target>Hvis du har en rabatkode .......</target>
+        <target>Toets je kortingscode. Je mag maar één kortingscode per bestelling gebruiken.</target>
       </trans-unit>
       <trans-unit id="coupon.apply.discount" approved="no">
         <source>coupon.apply.discount</source>
@@ -424,7 +424,7 @@ Je moet meer artikelen toevoegen.
       </trans-unit>
       <trans-unit id="coupon.label" approved="no">
         <source>coupon.label</source>
-        <target><![CDATA[Toets je kortingscode. <br>Je mag maar één kortingscode per bestelling gebruiken.]]></target>
+        <target>Toets je kortingscode. Je mag maar één kortingscode per bestelling gebruiken.</target>
       </trans-unit>
       <trans-unit id="coupon.invalid.code" approved="no">
         <source>coupon.invalid.code</source>
