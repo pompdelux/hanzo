@@ -6,9 +6,12 @@ var rma = (function($) {
     $('.rma-activitycode').on('change', function(e) {
         $select = $(this);
         if($select.val()) {
-            $select.parent().next('label').slideDown('fast');
+            // Show the appopriate dropdown for causes.
+            $select.parent().parent().find('.rma-' + $select.val() + '-causes').slideDown('fast');
+            $select.parent().parent().find('.rma-description').slideDown('fast');
         } else {
-            $select.parent().next('label').slideUp('fast');
+            $select.parent().parent().find('.rma-cause').slideUp('fast');
+            $select.parent().parent().find('.rma-description').slideUp('fast');
         }
     });
 
@@ -22,6 +25,7 @@ var rma = (function($) {
                 products.push({
                     'id' : id,
                     'rma_activitycode' : $(el).val(),
+                    'rma_cause' : $('#' + $(el).val() + '-cause-productid-' + id).val(),
                     'rma_description' : $('#description-productid-' + id).val()
                 });
             }

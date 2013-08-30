@@ -8,27 +8,51 @@
             </trans-unit>
             <trans-unit id="rma.form.title.order_id">
                 <source>rma.form.title.order_id</source>
-                <target>Opret returseddel for ordre #%order_id%.</target>
+                <target>Opret returseddel for ordre %order_id%.</target>
             </trans-unit>
             <trans-unit id="rma.form.label.activitycode">
                 <source>rma.form.label.activitycode</source>
-                <target>Retunér denne vare?</target>
+                <target>Aktivitet</target>
+            </trans-unit>
+            <trans-unit id="rma.form.label.cause">
+                <source>rma.form.label.cause</source>
+                <target>Årsag</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.default">
                 <source>rma.form.activity.default</source>
                 <target>-- Vælg aktiviet --</target>
             </trans-unit>
-            <trans-unit id="rma.form.activity.money_back">
-                <source>rma.form.activity.money_back</source>
-                <target>Penge retur</target>
+            <trans-unit id="rma.form.cause.default">
+                <source>rma.form.cause.default</source>
+                <target>-- Vælg årsag --</target>
+            </trans-unit>
+            <trans-unit id="rma.form.activity.return">
+                <source>rma.form.activity.return</source>
+                <target>Retunering</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.replacement">
                 <source>rma.form.activity.replacement</source>
-                <target>Byt til anden vare</target>
+                <target>Ombytning</target>
+            </trans-unit>
+            <trans-unit id="rma.form.activity.warranty">
+                <source>rma.form.activity.warranty</source>
+                <target>Reklamation</target>
+            </trans-unit>
+            <trans-unit id="rma.form.activity.return.causes">
+                <source>rma.form.activity.return.causes</source>
+                <target>Ødelagt|itu|smadret|virker ikke|lugter|hd størrelser</target>
+            </trans-unit>
+            <trans-unit id="rma.form.activity.replacement.causes">
+                <source>rma.form.activity.replacement.causes</source>
+                <target>Ødelagt|itu|smadret|virker ikke|lugter|hd størrelser</target>
+            </trans-unit>
+            <trans-unit id="rma.form.activity.warranty.causes">
+                <source>rma.form.activity.warranty.causes</source>
+                <target>Ødelagt|itu|smadret|virker ikke|lugter|hd størrelser</target>
             </trans-unit>
             <trans-unit id="rma.form.label.description">
                 <source>rma.form.label.description</source>
-                <target>Kommentar (Inkluder evt. vare/farve/størrelse)</target>
+                <target>Evt. kommentar</target>
             </trans-unit>
             <trans-unit id="rma.form.submit">
                 <source>rma.form.submit</source>
@@ -67,7 +91,7 @@
             </trans-unit>
             <trans-unit id="rma.slip.title.order_id">
                 <source>rma.slip.title.order_id</source>
-                <target>POMPdeLUX returseddel Ordre #ID %order_id%</target>
+                <target>POMPdeLUX returseddel Ordre ID %order_id%</target>
             </trans-unit>
             <trans-unit id="rma.slip.description">
                 <source>rma.slip.description</source>
@@ -89,9 +113,13 @@
                 <source>rma.slip.thead.activitycode</source>
                 <target>Aktivitet</target>
             </trans-unit>
+            <trans-unit id="rma.slip.thead.cause">
+                <source>rma.slip.thead.cause</source>
+                <target>Årsag</target>
+            </trans-unit>
             <trans-unit id="rma.slip.thead.description">
                 <source>rma.slip.thead.description</source>
-                <target>Din kommentar</target>
+                <target>Din kommentaræø</target>
             </trans-unit>
             <trans-unit id="rma.history.title">
                 <source>rma.history.title</source>

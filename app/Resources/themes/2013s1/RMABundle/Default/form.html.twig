@@ -36,14 +36,48 @@
                 {{ 'rma.form.label.activitycode'|trans({}, 'rma') }}
                 <select name="product[{{ product.products_id }}][activity_code]" id="activitycode-productid-{{ product.products_id }}" class="rma-activitycode" data-id="{{ product.products_id }}">
                   <option value="" selected>{{ 'rma.form.activity.default'|trans({}, 'rma') }}</option>
-                  <option value="rma.form.activity.money_back">{{ 'rma.form.activity.money_back'|trans({}, 'rma') }}</option>
-                  <option value="rma.form.activity.replacement">{{ 'rma.form.activity.replacement'|trans({}, 'rma') }}</option>
+                  <option value="return">{{ 'rma.form.activity.return'|trans({}, 'rma') }}</option>
+                  <option value="replacement">{{ 'rma.form.activity.replacement'|trans({}, 'rma') }}</option>
+                  <option value="warranty">{{ 'rma.form.activity.warranty'|trans({}, 'rma') }}</option>
                 </select>
               </label>
-              <label class="off">
-                {{ 'rma.form.label.description'|trans({}, 'rma') }}
-                <textarea name="product[{{ product.products_id }}][description]" id="description-productid-{{ product.products_id }}" class="rma-description" data-id="{{ product.products_id }}"></textarea>
+
+              {#
+                We need a select for each activity. Different causes.
+              #}
+              <label class="off rma-cause rma-return-causes">
+                {{ 'rma.form.label.cause'|trans({}, 'rma') }}
+                <select name="product[{{ product.products_id }}][return][cause]" id="return-cause-productid-{{ product.products_id }}" data-id="{{ product.products_id }}">
+                  <option value="" selected>{{ 'rma.form.cause.default'|trans({}, 'rma') }}</option>
+                  {% for cause in 'rma.form.activity.return.causes'|trans({}, 'rma')|split('|') %}
+                  <option value="{{ cause }}">{{ cause }}</option>
+                  {% endfor %}
+                </select>
               </label>
+              <label class="off rma-cause rma-replacement-causes">
+                {{ 'rma.form.label.cause'|trans({}, 'rma') }}
+                <select name="product[{{ product.products_id }}][replacement][cause]" id="replacement-cause-productid-{{ product.products_id }}" data-id="{{ product.products_id }}">
+                  <option value="" selected>{{ 'rma.form.cause.default'|trans({}, 'rma') }}</option>
+                  {% for cause in 'rma.form.activity.replacement.causes'|trans({}, 'rma')|split('|') %}
+                  <option value="{{ cause }}">{{ cause }}</option>
+                  {% endfor %}
+                </select>
+              </label>
+              <label class="off rma-cause rma-warranty-causes">
+                {{ 'rma.form.label.cause'|trans({}, 'rma') }}
+                <select name="product[{{ product.products_id }}][warranty][cause]" id="warranty-cause-productid-{{ product.products_id }}" data-id="{{ product.products_id }}">
+                  <option value="" selected>{{ 'rma.form.cause.default'|trans({}, 'rma') }}</option>
+                  {% for cause in 'rma.form.activity.warranty.causes'|trans({}, 'rma')|split('|') %}
+                  <option value="{{ cause }}">{{ cause }}</option>
+                  {% endfor %}
+                </select>
+              </label>
+
+              <label class="off rma-description">
+                {{ 'rma.form.label.description'|trans({}, 'rma') }}
+                <textarea name="product[{{ product.products_id }}][description]" id="description-productid-{{ product.products_id }}" data-id="{{ product.products_id }}"></textarea>
+              </label>
+              div.
             </td>
 
           </tr>

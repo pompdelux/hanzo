@@ -46,12 +46,12 @@ class DefaultController extends Controller
         $rma_products = json_decode($request->query->get('products'), TRUE);
         // Time to generate some pdf's!
         if (count($rma_products)) {
-        // if ($request->getMethod() == 'POST') {
 
             // Only show the products which are choosed to RMA.
             foreach ($rma_products as &$rma_product) {
                 if (isset($products['product_' . $rma_product['id']])) {
                     $rma_product['rma_description'] = mb_convert_encoding($rma_product['rma_description'], 'HTML-ENTITIES', 'UTF-8');
+                    $rma_product['rma_cause'] = mb_convert_encoding($rma_product['rma_cause'], 'HTML-ENTITIES', 'UTF-8');
                     $rma_product += $products['product_' . $rma_product['id']];
                 }
             }

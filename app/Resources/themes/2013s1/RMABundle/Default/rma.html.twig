@@ -75,9 +75,15 @@
         <table class="rma_products">
           <thead>
             <tr>
+              {% if false %}
+                {{ product_image_tag(product.basket_image, '57x100', { 'alt' : product.products_name }) }}
+              {% endif %}
+{% autoescape %}
               <th class="left">{{ "products"|trans }}</th>
               <th class="left">{{ "rma.slip.thead.activitycode"|trans({}, 'rma') }}</th>
-              <th class="left">{{ "rma.slip.thead.description"|trans({}, 'rma') }}</th>
+              <th class="left">{{ "rma.slip.thead.cause"|trans({}, 'rma') }}</th>
+              <th class="left">{{ "rma.slip.thead.description"|trans({}, 'rma')|raw }}</th>
+{% endautoescape %}
             </tr>
           </thead>
           <tbody>
@@ -99,7 +105,8 @@
                   </div>
                 </div>
               </td>
-              <td class="rma-activitycode">{{ product.rma_activitycode|trans({}, 'rma')|upper }}</td>
+              <td class="rma-activitycode">{{ ('rma.form.activity.' ~ product.rma_activitycode)|trans({}, 'rma') }}</td>
+              <td class="rma-cause">{{ product.rma_cause|raw }}</td>
               <td class="rma-description">{{ product.rma_description|raw|nl2br }}</td>
             </tr>
           {% endfor %}
