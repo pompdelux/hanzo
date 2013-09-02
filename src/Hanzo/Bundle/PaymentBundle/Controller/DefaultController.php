@@ -18,7 +18,7 @@ class DefaultController extends CoreController
         'payment.dibsapi'          => 'Dibs',
         'payment.gothiaapi'        => 'Gothia',
         'payment.gothiadeapi'      => 'GothiaDE',
-        'payment.manualpaymentapi' => 'ManuelPayment',
+        'payment.manualpaymentapi' => 'ManualPayment',
         'payment.giftcardapi'      => 'GiftCard',
         'payment.pensioapi'        => 'Pensio',
         'payment.paypalapi'        => 'PayPal',

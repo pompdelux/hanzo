@@ -92,7 +92,7 @@ class ManualPaymentApi extends BasePaymentApi implements PaymentMethodApiInterfa
     public function updateOrderFailed( Request $request, Orders $order)
     {
         $order->setState( Orders::STATE_ERROR_PAYMENT );
-        $order->setAttribute( 'paytype' , 'payment', 'cashondelivery' );
+        $order->setAttribute( 'paytype' , 'payment', 'manualpayment' );
         $order->save();
     }
 
@@ -107,13 +107,13 @@ class ManualPaymentApi extends BasePaymentApi implements PaymentMethodApiInterfa
     public function updateOrderSuccess( Request $request, Orders $order )
     {
         $order->setState( Orders::STATE_PAYMENT_OK );
-        $order->setAttribute( 'paytype' , 'payment', 'cashondelivery' );
+        $order->setAttribute( 'paytype' , 'payment', 'manualpayment' );
         $order->save();
     }
 
 
     public function getProcessButton(Orders $order, Request $request)
     {
-        return ['url' => 'payment/cashondelivery/callback'];
+        return ['url' => 'payment/manualpayment/callback'];
     }
 }
