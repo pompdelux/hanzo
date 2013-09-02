@@ -9,9 +9,9 @@ var rma = (function($) {
         $('.rma-cause, .rma-description, .rma-productreplacement', $context).hide();
         if($select.val()) {
             // Show the appopriate dropdown for causes.
-            $context.find('.rma-' + $select.val() + '-causes').slideDown('fast').css('display', 'inline-block');;
-            $context.find('.rma-description').slideDown('fast').css('display', 'inline-block');;
+            $context.find('.rma-' + $select.val() + '-causes').slideDown('fast').css('display', 'inline-block');
             if($select.val() === 'replacement' || $select.val() === 'warranty') {
+                $context.find('.rma-description').slideDown('fast').css('display', 'inline-block');
                 $context.find('.rma-productreplacement').slideDown('fast');
             }
         }
