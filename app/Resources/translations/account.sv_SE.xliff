@@ -85,7 +85,7 @@
             </trans-unit>
             <trans-unit id="existing.customer">
                 <source>existing.customer</source>
-                <target>Eksisterende kunde</target>
+                <target>Existerande kund</target>
             </trans-unit>
             <trans-unit id="title">
                 <source>title</source>
