@@ -221,7 +221,7 @@ class AxService
 
         if ($order->getEventsId()) {
             $date = date('Ymd');
-            if ((20130812 <= $date) && (20130901 >= $date)) {
+            if (((20130812 <= $date) && (20130901 >= $date)) || $order->getInEdit()) {
                 $line = new stdClass();
                 $line->ItemId          = 'VOUCHER';
                 $line->SalesPrice      = 0.00;
