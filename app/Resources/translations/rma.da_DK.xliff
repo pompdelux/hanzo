@@ -40,15 +40,15 @@
             </trans-unit>
             <trans-unit id="rma.form.activity.return.causes">
                 <source>rma.form.activity.return.causes</source>
-                <target>Ødelagt|itu|smadret|virker ikke|lugter|hd størrelser</target>
+                <target>Ødelagt|Aliens|Andet</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.replacement.causes">
                 <source>rma.form.activity.replacement.causes</source>
-                <target>Ødelagt|itu|smadret|virker ikke|lugter|hd størrelser</target>
+                <target>Ødelagt|Aliens|Andet</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.warranty.causes">
                 <source>rma.form.activity.warranty.causes</source>
-                <target>Ødelagt|itu|smadret|virker ikke|lugter|hd størrelser</target>
+                <target>Ødelagt|Aliens|Andet</target>
             </trans-unit>
             <trans-unit id="rma.form.label.description">
                 <source>rma.form.label.description</source>
