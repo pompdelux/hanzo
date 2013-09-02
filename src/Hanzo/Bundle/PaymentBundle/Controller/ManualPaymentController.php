@@ -13,11 +13,11 @@ use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
-use Hanzo\Bundle\PaymentBundle\Methods\PayByBill\PayByBillApi;
+use Hanzo\Bundle\PaymentBundle\Methods\ManualPayment\ManualPaymentApi;
 
 use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
 
-class PayByBillController extends CoreController
+class ManualPaymentController extends CoreController
 {
     /**
      * callbackAction
@@ -26,12 +26,12 @@ class PayByBillController extends CoreController
      **/
     public function callbackAction()
     {
-        $api = $this->get('payment.paybybillapi');
+        $api = $this->get('payment.manualpaymentapi');
         $request = $this->get('request');
         $order = OrdersPeer::getCurrent(true);
 
         if ( !($order instanceof Orders) ) {
-            throw new Exception( 'PayByBill callback found no valid order to proccess.' );
+            throw new Exception( 'ManualPayment callback found no valid order to proccess.' );
         }
 
         try {
@@ -52,12 +52,12 @@ class PayByBillController extends CoreController
      **/
     public function blockAction()
     {
-        $api = $this->get('payment.paybybillapi');
+        $api = $this->get('payment.manualpaymentapi');
 
         if (!$api->isActive()) {
             return new Response( '', 200, array('Content-Type' => 'text/html'));
         }
 
-        return $this->render('PaymentBundle:PayByBill:block.html.twig');
+        return $this->render('PaymentBundle:ManualPayment:block.html.twig');
     }
 }

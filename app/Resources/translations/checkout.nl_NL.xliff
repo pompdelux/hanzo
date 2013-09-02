@@ -120,16 +120,16 @@
         <source>confirm.total</source>
         <target>Totale bedrag</target>
       </trans-unit>
-           <trans-unit id="payment.paybybill.title">
-        <source>payment.paybybill.title</source>
+           <trans-unit id="payment.manualpayment.title">
+        <source>payment.manualpayment.title</source>
         <target>Geld overmaken per bank</target>
       </trans-unit>
-      <trans-unit id="payment.paybybill.text">
-        <source>payment.paybybill.text</source>
+      <trans-unit id="payment.manualpayment.text">
+        <source>payment.manualpayment.text</source>
         <target><![CDATA[Kies betaalwijze<br><br><b>Let op: </b> Bankoverschrijving alleen gebruiken als er geen internetverbinding is.]]></target>
       </trans-unit>
-     <trans-unit id="payment.paybybill.label">
-        <source>payment.paybybill.label</source>
+     <trans-unit id="payment.manualpayment.label">
+        <source>payment.manualpayment.label</source>
         <target>Geld overmaken per bank</target>
       </trans-unit>
      <trans-unit id="payment.gateway_id">

@@ -131,16 +131,16 @@
         <source>confirm.total</source>
         <target>Samlet beløp</target>
       </trans-unit>
-      <trans-unit id="payment.paybybill.title">
-        <source>payment.paybybill.title</source>
+      <trans-unit id="payment.manualpayment.title">
+        <source>payment.manualpayment.title</source>
         <target>Bankoverføring</target>
       </trans-unit>
-      <trans-unit id="payment.paybybill.text">
-        <source>payment.paybybill.text</source>
+      <trans-unit id="payment.manualpayment.text">
+        <source>payment.manualpayment.text</source>
         <target><![CDATA[Velg betalingsmåte<br><br><b>Bemerk:</b> Bankoverføring må brukes dersom internettforbindelse mangler.]]></target>
       </trans-unit>
-      <trans-unit id="payment.paybybill.label">
-        <source>payment.paybybill.label</source>
+      <trans-unit id="payment.manualpayment.label">
+        <source>payment.manualpayment.label</source>
         <target>Bankoverføring</target>
       </trans-unit>
       <trans-unit id="payment.gateway_id">
