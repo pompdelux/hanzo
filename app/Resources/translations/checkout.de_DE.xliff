@@ -438,7 +438,7 @@ Sie müssen Waren hinzufügen.
       </trans-unit>
       <trans-unit id="coupon.description" approved="no">
         <source>coupon.description</source>
-        <target>Rabattgutschein eintragen. Pro Bestellung kann nur ein Rabattcode verwendet werden.</target>
+        <target>Pro Bestellung kann nur ein Rabattcode verwendet werden.</target>
       </trans-unit>
       <trans-unit id="coupon.apply.discount" approved="no">
         <source>coupon.apply.discount</source>

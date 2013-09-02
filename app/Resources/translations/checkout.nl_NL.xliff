@@ -416,7 +416,7 @@ Je moet meer artikelen toevoegen.
       </trans-unit>
       <trans-unit id="coupon.description" approved="no">
         <source>coupon.description</source>
-        <target>Toets je kortingscode. Je mag maar één kortingscode per bestelling gebruiken.</target>
+        <target>Je mag maar één kortingscode per bestelling gebruiken.</target>
       </trans-unit>
       <trans-unit id="coupon.apply.discount" approved="no">
         <source>coupon.apply.discount</source>

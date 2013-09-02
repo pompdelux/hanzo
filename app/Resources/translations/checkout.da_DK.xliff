@@ -434,7 +434,7 @@ Du skal tilføje flere varer.
       </trans-unit>
       <trans-unit id="coupon.description" approved="no">
         <source>coupon.description</source>
-        <target>Indtast din rabatkode. Der kan kun anvendes én rabatkode pr. ordre</target>
+        <target>Der kan kun anvendes én rabatkode pr. ordre</target>
       </trans-unit>
       <trans-unit id="coupon.apply.discount" approved="no">
         <source>coupon.apply.discount</source>
@@ -446,7 +446,7 @@ Du skal tilføje flere varer.
       </trans-unit>
       <trans-unit id="coupon.invalid.code" approved="no">
         <source>coupon.invalid.code</source>
-        <target>Ugyldig rabatkode </target>
+        <target>Ugyldig rabatkode</target>
       </trans-unit>
     </body>
   </file>
