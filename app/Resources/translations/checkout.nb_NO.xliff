@@ -424,7 +424,7 @@ Du må tilføye flere varer.
       </trans-unit>
       <trans-unit id="coupon.description" approved="no">
         <source>coupon.description</source>
-        <target>Tast inn din rabattkode. Det kan bare brukes én rabattkode per ordre.</target>
+        <target>Det kan bare brukes én rabattkode per ordre.</target>
       </trans-unit>
       <trans-unit id="coupon.apply.discount" approved="no">
         <source>coupon.apply.discount</source>

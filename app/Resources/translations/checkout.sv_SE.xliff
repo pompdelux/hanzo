@@ -426,7 +426,7 @@ Du måste lägga till fler varor.
       </trans-unit>
       <trans-unit id="coupon.description" approved="no">
         <source>coupon.description</source>
-        <target>Skriv din rabattkod. Man kan endast använda en rabattkod per order.</target>
+        <target>Man kan endast använda en rabattkod per order.</target>
       </trans-unit>
       <trans-unit id="coupon.apply.discount" approved="no">
         <source>coupon.apply.discount</source>

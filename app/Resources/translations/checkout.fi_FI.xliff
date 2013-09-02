@@ -402,7 +402,7 @@
       </trans-unit>
       <trans-unit id="coupon.description" approved="no">
         <source>coupon.description</source>
-        <target>Kirjoita alennuskoodi. Yhdessä tilauksessa voi käyttää vain yhden alennuskoodin.</target>
+        <target>Yhdessä tilauksessa voi käyttää vain yhden alennuskoodin.</target>
       </trans-unit>
       <trans-unit id="coupon.apply.discount" approved="no">
         <source>coupon.apply.discount</source>
