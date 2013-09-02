@@ -2765,6 +2765,9 @@ div.quickorder input.quantity {
 /**
 | _rma
 */
+#body-rma .product-table label {
+  width: 100%;
+}
 #body-rma .product-table label input, #body-rma .product-table label select, #body-rma .product-table label textarea {
   display: block;
   margin: 0 0 10px;
@@ -2772,6 +2775,10 @@ div.quickorder input.quantity {
 #body-rma .product-table label textarea {
   width: 100%;
   height: 120px;
+}
+#body-rma .product-table .quickorder label, #body-rma .product-table .quickorder input, #body-rma .product-table .quickorder select {
+  display: inline;
+  width: auto;
 }
 #body-rma .product-table td.actions {
   width: 610px;

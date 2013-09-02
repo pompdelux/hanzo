@@ -58,6 +58,14 @@
                 <source>rma.form.submit</source>
                 <target>Opret returseddel...</target>
             </trans-unit>
+            <trans-unit id="rma.form.label.replacement">
+                <source>rma.form.label.replacement</source>
+                <target>Indtast produkt navn for den du vil bytte med</target>
+            </trans-unit>
+            <trans-unit id="rma.form.placeholder.produkt">
+                <source>rma.form.placeholder.produkt</source>
+                <target>fx. Copenhagen</target>
+            </trans-unit>
             <trans-unit id="rma.slip.company_details">
                 <source>rma.slip.company_details</source>
                 <target><![CDATA[
@@ -115,11 +123,15 @@
             </trans-unit>
             <trans-unit id="rma.slip.thead.cause">
                 <source>rma.slip.thead.cause</source>
-                <target>Årsag</target>
+                <target><![CDATA[&Aring;rsag]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.thead.replacement">
+                <source>rma.slip.thead.replacement</source>
+                <target>Byttes til</target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.description">
                 <source>rma.slip.thead.description</source>
-                <target>Din kommentaræø</target>
+                <target>Din kommentar</target>
             </trans-unit>
             <trans-unit id="rma.history.title">
                 <source>rma.history.title</source>

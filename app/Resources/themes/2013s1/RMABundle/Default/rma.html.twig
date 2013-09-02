@@ -78,12 +78,11 @@
               {% if false %}
                 {{ product_image_tag(product.basket_image, '57x100', { 'alt' : product.products_name }) }}
               {% endif %}
-{% autoescape %}
               <th class="left">{{ "products"|trans }}</th>
               <th class="left">{{ "rma.slip.thead.activitycode"|trans({}, 'rma') }}</th>
-              <th class="left">{{ "rma.slip.thead.cause"|trans({}, 'rma') }}</th>
-              <th class="left">{{ "rma.slip.thead.description"|trans({}, 'rma')|raw }}</th>
-{% endautoescape %}
+              <th class="left">{{ "rma.slip.thead.cause"|trans({}, 'rma')|raw }}</th>
+              <th class="left">{{ "rma.slip.thead.replacement"|trans({}, 'rma') }}</th>
+              <th class="left">{{ "rma.slip.thead.description"|trans({}, 'rma') }}</th>
             </tr>
           </thead>
           <tbody>
@@ -93,7 +92,7 @@
               {% if false %}
                 {{ product_image_tag(product.basket_image, '57x100', { 'alt' : product.products_name }) }}
               {% endif %}
-                <div class="info" data-product_id="{{ product.products_id }}" data-confirmed="">
+                <div class="info">
                   <span class="title">{{ product.products_name }}</span>
                   <div class="size">
                     <label>{{ "size"|trans }}:</label>
@@ -107,6 +106,21 @@
               </td>
               <td class="rma-activitycode">{{ ('rma.form.activity.' ~ product.rma_activitycode)|trans({}, 'rma') }}</td>
               <td class="rma-cause">{{ product.rma_cause|raw }}</td>
+              <td class="rma-cause">
+                {% if product.rma_replacement.master %}
+                <div class="info">
+                  <span class="title">{{ product.rma_replacement.master }}</span>
+                  <div class="size">
+                    <label>{{ "size"|trans }}:</label>
+                    <span>{{ product.rma_replacement.size }}</span>
+                  </div>
+                  <div class="color">
+                    <label>{{ "color"|trans }}:</label>
+                    <span>{{ product.rma_replacement.color }}</span>
+                  </div>
+                </div>
+                {% endif %}
+              </td>
               <td class="rma-description">{{ product.rma_description|raw|nl2br }}</td>
             </tr>
           {% endfor %}
