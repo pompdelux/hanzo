@@ -38,6 +38,12 @@
         <source>invalid.email.address</source>
         <target>De ingevoerde e-mail is ongeldig</target>
       </trans-unit>
+      <trans-unit id="terms.link">
+        <source>terms.link</source>
+        <target><![CDATA[
+          <a href="/nl_NL/voorpagina/klantenservice/voorwaarden" target="_blank">POMPdeLUX Voorwaarden.</a>
+        ]]></target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

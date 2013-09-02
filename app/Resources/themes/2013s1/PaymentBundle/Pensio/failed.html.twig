@@ -14,7 +14,7 @@
         <li class="total">{{ 'form.amount'|trans({'%amount%': amount|money}, 'pensio') }}</li>
     </ul>
     <div class="description">
-        {{ 'failed.go.back.description'|trans({'%back_url%': back_url}, 'pensio') }}
+        {{ 'failed.go.back.description'|trans({'%back_url%': back_url}, 'pensio')|raw }}
     </div>
 
 {% endblock %}

@@ -38,6 +38,12 @@
         <source>invalid.email.address</source>
         <target>Annettu sähköpostiosoite ei kelpaa.</target>
       </trans-unit>
+      <trans-unit id="terms.link">
+        <source>terms.link</source>
+        <target><![CDATA[
+          <a href="/fi_FI/koti/asiakaspalvelu/ehdot" target="_blank">POMPdeLUXin ehdot.</a>
+        ]]></target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

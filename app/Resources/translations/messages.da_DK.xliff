@@ -144,9 +144,8 @@
                     <strong>Kundeservice</strong><br>
                     Telefon: (+45) 8678 7871<br>
                     E-mail: <a href="mailto:mail@pompdelux.dk">mail@pompdelux.dk</a><br>
-                    Mandag til torsdag kl. 9 - 18<br>
+                    Mandag til torsdag kl. 9 - 16<br>
                     Fredag 9 - 14<br>
-                    <!--Pause kl. 12 - 12.45<br>-->
                     Lørdag, søndag og helligdage lukket.
                 ]]></target>
             </trans-unit>
@@ -336,6 +335,10 @@
             <trans-unit id="goto.top.link" approved="no">
                 <source>goto.top.link</source>
                 <target>Til top</target>
+            </trans-unit>
+            <trans-unit id="product.prices.description" approved="no">
+                <source>product.prices.description</source>
+                <target></target>
             </trans-unit>
         </body>
     </file>

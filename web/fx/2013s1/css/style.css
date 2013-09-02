@@ -816,6 +816,10 @@ a.video-popper .sprite, #video-player-container a.video .sprite {
 .body-product .main .prices {
   padding: 0 0 12px;
 }
+.body-product .main .prices .description {
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 11px;
+}
 .body-product .main h4 {
   padding: 6px 0;
   font-weight: 400;

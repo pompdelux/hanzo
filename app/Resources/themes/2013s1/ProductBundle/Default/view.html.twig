@@ -121,6 +121,7 @@
     {% else %}
       <span class="normal" itemprop="price">{{ product.prices.normal.price|money }}</span>
     {% endif %}
+      <div class="description">{{ "product.prices.description"|trans }}</div>
     </div>
 
     <div class="buybox clearfix">

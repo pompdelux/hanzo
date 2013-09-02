@@ -142,7 +142,7 @@
                 <source>customer.service.contact.info</source>
                 <target><![CDATA[
                     <strong>Kundeservice</strong><br>
-                    Mandag til torsdag kl. 9 - 18<br>
+                    Mandag til torsdag kl. 9 - 16<br>
                     Fredag 9 - 14<br>
                     <!--Stengt 12 - 12.45<br>-->
                     Lørdag og søndag stengt.<br>
@@ -334,6 +334,10 @@
             <trans-unit id="goto.top.link" approved="no">
                 <source>goto.top.link</source>
                 <target>Gå til toppen</target>
+            </trans-unit>
+            <trans-unit id="product.prices.description" approved="no">
+                <source>product.prices.description</source>
+                <target></target>
             </trans-unit>
         </body>
     </file>

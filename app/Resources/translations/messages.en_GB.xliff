@@ -141,7 +141,7 @@
                     <strong>Customer service</strong><br>
                     Phone.: +45 8736 1000<br>
                     E-mail: <a href="mailto:mail@pompdelux.com">mail@pompdelux.com</a><br>
-                    Monday - Thursday: 9 am - 6 pm<br>
+                    Monday - Thursday: 9 am - 4 pm<br>
                     Friday: 9 am - 2 pm<br>
                     <!--Lunch break 12 pm - 12.45 pm<br>-->
                     Saturday, Sunday and holidays closed.
@@ -332,6 +332,10 @@
             <trans-unit id="goto.top.link" approved="no">
                 <source>goto.top.link</source>
                 <target>Go to top</target>
+            </trans-unit>
+            <trans-unit id="product.prices.description" approved="no">
+                <source>product.prices.description</source>
+                <target></target>
             </trans-unit>
         </body>
     </file>

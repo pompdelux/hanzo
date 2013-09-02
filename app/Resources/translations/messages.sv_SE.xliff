@@ -143,7 +143,7 @@
                 <target><![CDATA[
                     <strong>Kundservice</strong><br>
                     Telefon: 08-6117103<br>
-                    M&aring;ndag till torsdag kl. 9 - 18<br>
+                    M&aring;ndag till torsdag kl. 9 - 16<br>
                     Fredag 9 - 14<br>
                     <!--Lunchstängt 12 - 12.45<br>-->
                     Email: <a href="mailto:mail@pompdelux.se">mail@pompdelux.se</a><br>
@@ -333,6 +333,10 @@
             <trans-unit id="goto.top.link" approved="no">
                 <source>goto.top.link</source>
                 <target>Gå till toppen</target>
+            </trans-unit>
+            <trans-unit id="product.prices.description" approved="no">
+                <source>product.prices.description</source>
+                <target></target>
             </trans-unit>
         </body>
     </file>

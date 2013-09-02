@@ -76,6 +76,10 @@ a.video-popper, #video-player-container a.video {
 	}
 	.prices{
 		padding: 0 0 12px;
+		.description {
+			font-family: $font-sans;
+			font-size: $small_size
+		}
 	}
 
 	h4{
