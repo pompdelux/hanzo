@@ -209,7 +209,7 @@
             </trans-unit>
             <trans-unit id="edit.account">
                 <source>edit.account</source>
-                <target>Konto bearbeiten</target>
+                <target>Weiter</target>
             </trans-unit>
             <trans-unit id="update.account">
                 <source>update.account</source>

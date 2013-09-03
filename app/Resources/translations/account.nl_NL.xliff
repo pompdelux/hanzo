@@ -193,7 +193,7 @@
             </trans-unit>
             <trans-unit id="edit.account">
                 <source>edit.account</source>
-                <target>Wijzig account</target>
+                <target>Verder</target>
             </trans-unit>
             <trans-unit id="update.account">
                 <source>update.account</source>
