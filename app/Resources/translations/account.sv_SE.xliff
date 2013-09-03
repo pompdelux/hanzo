@@ -189,7 +189,7 @@
             </trans-unit>
             <trans-unit id="edit.account">
                 <source>edit.account</source>
-                <target>Ändra konto</target>
+                <target>Fortsätt</target>
             </trans-unit>
             <trans-unit id="update.account">
                 <source>update.account</source>
