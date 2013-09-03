@@ -84,7 +84,7 @@ class AxService
      * @param  boolean  $return   Returns the object we intend to send to AX.
      * @return boolean
      */
-    public function sendOrder(Orders $order, $return = false, $con = null)
+    public function sendOrder(Orders $order, $return = false, $con = null, $in_edit = false)
     {
         if (null === $con) {
             $con = Propel::getConnection(null, Propel::CONNECTION_WRITE);
@@ -224,14 +224,14 @@ class AxService
 
 if (1207410 == $order->getId()) {
     $info = ['---- 1207410 ----'];
-    $info[] = "InEdit...: ".(int)$order->getInEdit();
+    $info[] = "InEdit...: ".(int)$in_edit;
     $info[] = "CreatedAt: ".$order->getCreatedAt('Ymd');
     $info[] = "20130901 >= ".$order->getCreatedAt('Ymd');
     Tools::log($info);
 }
 
             if (((20130812 <= $date) && (20130901 >= $date)) ||
-                ($order->getInEdit() && (20130901 >= $order->getCreatedAt('Ymd')))
+                ($in_edit && (20130901 >= $order->getCreatedAt('Ymd')))
             ) {
                 $line = new stdClass();
                 $line->ItemId          = 'VOUCHER';
