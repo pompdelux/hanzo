@@ -10,6 +10,10 @@
                 <source>rma.form.title.order_id</source>
                 <target>Opret returseddel for ordre %order_id%.</target>
             </trans-unit>
+            <trans-unit id="rma.form.description">
+                <source>rma.form.description</source>
+                <target><![CDATA[<p>&gt;&gt;&gt; Beskrivelse her Heinrich &lt;&lt;&lt;</p>]]></target>
+            </trans-unit>
             <trans-unit id="rma.form.label.activitycode">
                 <source>rma.form.label.activitycode</source>
                 <target>Aktivitet</target>

@@ -2,6 +2,7 @@
 {% block content %}
 
 <h1>{{ 'rma.form.title.order_id'|trans({'%order_id%': order.id}, 'rma') }}</h1>
+<div>{{ 'rma.form.description'|trans({}, 'rma')|raw }}</div>
 <div class="grid_8 alpha omega">
   <div class="basket clearfix">
     {% if order_lines %}
