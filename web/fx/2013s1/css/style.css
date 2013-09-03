@@ -5,7 +5,7 @@
   background: url('/fx/2013s1/../images/icons/da-sd69e9a5d05.png') no-repeat;
 }
 
-.icons-sprite, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-facebook, .icons-gplus, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf {
+.icons-sprite, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-facebook, .icons-gplus, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, .body-pages .newsletter-form-simple .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf {
   background: url('/fx/2013s1/../images/icons/icons-se2ff75170b.png') no-repeat;
 }
 
@@ -2357,6 +2357,42 @@ nav.main-menu > ul > li > ul.on {
 }
 .body-pages #main .social-buttons {
   float: right;
+}
+.body-pages .newsletter-form-simple {
+  display: block;
+  float: none;
+  margin: 10px 0;
+}
+.body-pages .newsletter-form-simple .container {
+  text-align: left;
+  display: inline-block;
+}
+.body-pages .newsletter-form-simple .container input[type=submit] {
+  float: right;
+  font-size: 12px;
+  font-family: "Merriweather", serif;
+  letter-spacing: 0;
+}
+.body-pages .newsletter-form-simple .sprite {
+  background-position: 0 -50px;
+  height: 86px;
+  width: 86px;
+  float: left;
+}
+.body-pages .newsletter-form-simple input[type="email"],
+.body-pages .newsletter-form-simple input[type="text"] {
+  width: 252px;
+  display: block;
+  padding: 4px 5px;
+}
+.body-pages .newsletter-form-simple #dialoug-message {
+  width: 200px;
+  border: 2px solid red;
+  text-align: center;
+}
+.body-pages .newsletter-form-simple form {
+  font-family: Tahoma, Geneva, Verdana, sans-serif !important;
+  width: 264px;
 }
 
 article div ul {
