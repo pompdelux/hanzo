@@ -221,8 +221,17 @@ class AxService
 
         if ($order->getEventsId()) {
             $date = date('Ymd');
+
+if (1207410 == $order->getId()) {
+    $info = ['---- 1207410 ----'];
+    $info[] = "InEdit...: ".(int)$order->getInEdit();
+    $info[] = "CreatedAt: ".$order->getCreatedAt('Ymd');
+    $info[] = "20130901 >= ".$order->getCreatedAt('Ymd');
+    Tools::log($info);
+}
+
             if (((20130812 <= $date) && (20130901 >= $date)) ||
-                ($order->getInEdit() && (20130901 <= $order->getCreatedAt('Ymd')))
+                ($order->getInEdit() && (20130901 >= $order->getCreatedAt('Ymd')))
             ) {
                 $line = new stdClass();
                 $line->ItemId          = 'VOUCHER';
