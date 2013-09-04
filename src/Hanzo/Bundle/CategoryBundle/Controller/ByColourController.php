@@ -60,7 +60,6 @@ class ByColourController extends CoreController
             }
             unset ($resultset);
 
-
             $index = 1;
             $products = array();
             $masters = ProductsToCategoriesQuery::create()
