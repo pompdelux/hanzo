@@ -2382,7 +2382,7 @@ nav.main-menu > ul > li > ul.on {
 }
 .body-pages .newsletter-form-simple input[type="email"],
 .body-pages .newsletter-form-simple input[type="text"] {
-  width: 252px;
+  width: 250px;
   display: block;
   padding: 4px 5px;
 }

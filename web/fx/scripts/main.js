@@ -11,12 +11,12 @@
       });
 
       // ios class added to body
-      switch (navigator.platform) {
-      case 'iPad':
-      case 'iPhone':
-      case 'iPod':
-        $('html').addClass('ios');
-        break;
+      switch (navigator.platfom) {
+          case 'iPad':
+          case 'iPhone':
+          case 'iPod':
+            $('html').addClass('ios');
+            break;
       }
 
       // use inline labels if the "real" labels are hidden

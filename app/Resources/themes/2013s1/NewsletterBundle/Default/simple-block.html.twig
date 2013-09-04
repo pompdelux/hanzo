@@ -2,7 +2,8 @@
     <div class="sprite"></div>
     <div class="container">
         <h2>{{ 'block.subscribe.newsletter_heading'|trans({}, 'newsletter') }}</h2>
-        <form action="{{ path('_newsletter_subscribe') }}" method="post">
+        <form action="{{ path('_newsletter_subscribe') }}" method="post" class="js-newsletter-form">
+            <input type="hidden" name="action" value="">
             <div>
                 <input type="text" name="name" value="" title="{{ 'block.subscribe.name_label'|trans({}, 'newsletter') }}" placeholder="{{ 'block.subscribe.name_label'|trans({}, 'newsletter') }}">
                 <input type="email" class="newsletter-subscriber-email" name="email" value="" title="{{ 'block.subscribe.email_label'|trans({}, 'newsletter') }}" placeholder="{{ 'block.subscribe.email_label'|trans({}, 'newsletter') }}">
@@ -11,7 +12,8 @@
                 {{ 'terms.link'|trans({}, 'newsletter')|raw }}
             </div>
             <div class="clearfix right">
-                <input type="submit" class="button text-button" value="{{ 'block.subscribe.submit_button'|trans({}, 'newsletter') }}">
+                <input type="submit" data-action="unsubscribe" class="button text-button" value="{{ 'block.unsubscribe.submit_button'|trans({}, 'newsletter') }}">
+                <input type="submit" data-action="subscribe" class="button text-button" value="{{ 'block.subscribe.submit_button'|trans({}, 'newsletter') }}">
             </div>
         </form>
     </div>
