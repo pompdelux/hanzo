@@ -14,13 +14,19 @@ use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 /**
  * Post Nord Location provider
  *
+ *   Installasjonsid: 90290000026
+ *   WebShopID: 114
+ *   UserName: PompDelux32344
+ *   Password: S/SOgkhDUw==pMM
+ *
+ *
  * INSERT INTO domains_settings
  *   (domain_key, ns, c_key, c_value)
  * VALUES
  *   ('DK', 'locator', 'provider', 'edisoft'),
  *   ('DK', 'locator', 'username', ''),
  *   ('DK', 'locator', 'password', ''),
- *   ('DK', 'locator', 'installationID', ''),
+ *   ('DK', 'locator', 'installationID', '9029000023'),
  *   ('DK', 'locator', 'productConceptID', '')
  *
  * @author Ulrik Nielsen <un@bellcom.dk>
@@ -93,7 +99,7 @@ class EdiSoftProvider extends BaseProvider
      *
      * @var string
      */
-    protected $prod_endpoint = '';
+    protected $prod_endpoint = 'http://qa-ws01.facility.dir.dk/ShipAdvisor/Main.asmx?WSDL';
 
 
     /**
