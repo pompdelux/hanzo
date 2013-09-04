@@ -155,6 +155,7 @@ class DeadOrderService
                 $callbackData = $this->dibsApi->call()->callback($order);
                 if ( isset($callbackData['orderid']) )
                 {
+                    mail('un@bellcom.dk', 'setPaymentGatewayId', 'for order id: '.$order->getId()."\n\n".__FILE__.' '.__LINE__."\n\n");
                     $order->setPaymentGatewayId($callbackData['orderid']);
                     $pgId = $callbackData['orderid'];
                 }
