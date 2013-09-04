@@ -692,10 +692,11 @@ footer .footer-menu.footer-menu-4 .sprite {
   height: 86px;
   width: 86px;
   float: left;
+  margin-left: 40px;
 }
 footer .footer-menu.footer-menu-4 input[type="email"],
 footer .footer-menu.footer-menu-4 input[type="text"] {
-  width: 252px;
+  width: 222px;
   display: block;
   padding: 4px 5px;
 }
@@ -706,7 +707,7 @@ footer .footer-menu.footer-menu-4 #dialoug-message {
 }
 footer .footer-menu.footer-menu-4 form {
   font-family: Tahoma, Geneva, Verdana, sans-serif !important;
-  width: 264px;
+  width: 234px;
 }
 footer .copy {
   margin-top: 3px;
