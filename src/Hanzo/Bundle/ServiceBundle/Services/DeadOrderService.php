@@ -9,7 +9,6 @@ use Propel;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 
-
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\OrdersQuery;
@@ -397,8 +396,9 @@ class DeadOrderService
         $orders = OrdersQuery::create()
             ->filterByUpdatedAt(date('Y-m-d H:i:s', strtotime('3 hours ago')), Criteria::LESS_THAN)
             ->filterByBillingMethod('dibs')
-            ->filterByState(array( 'max' => Orders::STATE_PAYMENT_OK) )
-            ->find(Propel::getConnection(null, Propel::CONNECTION_WRITE));
+            ->filterByState(array('max' => Orders::STATE_PAYMENT_OK))
+            ->find(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+        ;
 
         return $orders;
     }
