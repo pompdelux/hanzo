@@ -42,4 +42,9 @@ namespace :deploy do
   task :copy_vhost, :roles => :apache do
     run("sudo wget -q --output-document=/etc/apache2/sites-available/pompdelux http://tools.bellcom.dk/hanzo/pompdelux-vhost.txt")
   end
+# own tasks. enable vhost
+  desc "Enable vhost from stat"
+  task :enable_vhost, :roles => :apache do
+    run("sudo a2ensite pompdelux")
+  end
 end
