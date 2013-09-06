@@ -184,15 +184,15 @@
             </trans-unit>
             <trans-unit id="65">
                 <source>create.account</source>
-                <target>Opprett konto</target>
+                <target>Neste</target>
             </trans-unit>
             <trans-unit id="create.account.header" approved="no">
                 <source>create.account.header</source>
-                <target>Welcome - Create your account</target>
+                <target>Velkommen - du kan nå opprette din konto</target>
             </trans-unit>
             <trans-unit id="edit.account">
                 <source>edit.account</source>
-                <target>Rett konto</target>
+                <target>Neste</target>
             </trans-unit>
             <trans-unit id="update.account">
                 <source>update.account</source>
@@ -473,19 +473,19 @@ Du har mulighet for å endre/tilføye/slette i ordren. Du skal klikke på blyant
             </trans-unit>
             <trans-unit id="my.account.login.header" approved="no">
                 <source>my.account.login.header</source>
-                <target><![CDATA[<h1>Welcome to my page</h1>]]></target>
+                <target><![CDATA[<h1>Velkommen til min side</h1>]]></target>
             </trans-unit>
             <trans-unit id="my.account.header" approved="no">
                 <source>my.account.header</source>
-                <target><![CDATA[<h1>Welcome!</h1>]]></target>
+                <target><![CDATA[<h1>Velkommen!</h1>]]></target>
             </trans-unit>
             <trans-unit id="address.first_name.min.length" approved="no">
                 <source>address.first_name.min.length</source>
-                <target>Your first name muist be at least 2 characters long</target>
+                <target>Ditt fornavn må inneholde minst to bokstaver</target>
             </trans-unit>
             <trans-unit id="address.last_name.min.length" approved="no">
                 <source>address.last_name.min.length</source>
-                <target>Your last name muist be at least 2 characters long</target>
+                <target>Ditt etternavn må inneholde minst to bokstaver</target>
             </trans-unit>
             <trans-unit id="create.pre-notice" approved="no">
                 <source>create.pre-notice</source>

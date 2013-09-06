@@ -124,7 +124,7 @@
             </trans-unit>
             <trans-unit id="store.address">
                 <source>store.address</source>
-                <target>POMPdeLUX ApS • Møgelhøj 8 DK-8520 Lystrup • BTW 851856147B01 • mail@pompdelux.nl • 085-3001100 (Nederlands en Engels)</target>
+                <target>POMPdeLUX NL B.V. c/o POMPdeLUX ApS • Møgelhøj 8 DK-8520 Lystrup • BTW 851856147B01 • mail@pompdelux.nl • 085-3001100 (Nederlands en Engels)</target>
             </trans-unit>
             <trans-unit id="order.edit.global.notice">
                 <source>order.edit.global.notice</source>
@@ -154,7 +154,7 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
                 <source>footer.address</source>
                 <target><![CDATA[
                     <ul>
-                        <li>POMPdeLUX ApS</li>
+                        <li>POMPdeLUX NL B.V. c/o POMPdeLUX ApS</li>
                         <li>Møgelhøj 8</li>
                         <li>DK-8520 Lystrup</li>
                         <li>BTW 851856147B01</li>
@@ -332,6 +332,10 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
             <trans-unit id="order.deleted" approved="no">
                 <source>order.deleted</source>
                 <target>E.order no. %id% is geannuleerd.</target>
+            </trans-unit>
+            <trans-unit id="product.prices.description" approved="no">
+                <source>product.prices.description</source>
+                <target></target>
             </trans-unit>
         </body>
     </file>

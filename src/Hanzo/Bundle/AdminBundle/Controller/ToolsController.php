@@ -88,7 +88,7 @@ class ToolsController extends CoreController
             case 'transinfo':
 
                 if ('POST' === $request->getMethod()) {
-                    $ids = explode('-', $request->get('ids'));
+                    $ids = explode('-', $request->request->get('ids'));
 
                     if ('' == $ids[0]) {
                         unset($ids[0]);

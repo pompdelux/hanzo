@@ -34,9 +34,19 @@
         <source>subscribed.text</source>
         <target>Du är nu registrerad till vårt nyhetsbrev.</target>
       </trans-unit>
+      <trans-unit id="unsubscribed.text" approved="no">
+        <source>unsubscribed.text</source>
+        <target>Du är nu registrerad till vårt nyhetsbrev.</target>
+      </trans-unit>
       <trans-unit id="invalid.email.address" approved="no">
         <source>invalid.email.address</source>
         <target>Emailadressen är inte giltig.</target>
+      </trans-unit>
+      <trans-unit id="terms.link">
+        <source>terms.link</source>
+        <target><![CDATA[
+          <a href="/sv_SE/forside/kundservice/villkor" target="_blank">POMPdeLUX Villkor.</a>
+        ]]></target>
       </trans-unit>
     </body>
   </file>

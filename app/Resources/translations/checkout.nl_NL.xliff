@@ -412,11 +412,11 @@ Je moet meer artikelen toevoegen.
       </trans-unit>
       <trans-unit id="coupon.toggle.form" approved="no">
         <source>coupon.toggle.form</source>
-        <target>» Tast din rabatskode</target>
+        <target>» Toets je kortingscode</target>
       </trans-unit>
       <trans-unit id="coupon.description" approved="no">
         <source>coupon.description</source>
-        <target>Hvis du har en rabatkode .......</target>
+        <target>Je mag maar één kortingscode per bestelling gebruiken.</target>
       </trans-unit>
       <trans-unit id="coupon.apply.discount" approved="no">
         <source>coupon.apply.discount</source>
@@ -424,7 +424,7 @@ Je moet meer artikelen toevoegen.
       </trans-unit>
       <trans-unit id="coupon.label" approved="no">
         <source>coupon.label</source>
-        <target>Indtast rabatkode</target>
+        <target>Toets je kortingscode. Je mag maar één kortingscode per bestelling gebruiken.</target>
       </trans-unit>
       <trans-unit id="coupon.invalid.code" approved="no">
         <source>coupon.invalid.code</source>

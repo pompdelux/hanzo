@@ -333,6 +333,10 @@
                 <source>goto.top.link</source>
                 <target>Go to top</target>
             </trans-unit>
+            <trans-unit id="product.prices.description" approved="no">
+                <source>product.prices.description</source>
+                <target></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

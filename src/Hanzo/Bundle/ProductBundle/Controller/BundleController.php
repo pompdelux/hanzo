@@ -8,16 +8,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
-use Hanzo\Core\Stock;
 use Hanzo\Core\CoreController;
 
 use Hanzo\Model\ProductsDomainsPricesPeer;
 use Hanzo\Model\Products;
 use Hanzo\Model\ProductsI18nQuery;
-use Hanzo\Model\ProductsStockPeer;
 use Hanzo\Model\ProductsQuery;
-use Hanzo\Model\ProductsStock;
-use Hanzo\Model\ProductsStockQuery;
 use Hanzo\Model\ProductsImagesProductReferencesQuery;
 use Hanzo\Model\ProductsWashingInstructions;
 use Hanzo\Model\ProductsWashingInstructionsQuery;

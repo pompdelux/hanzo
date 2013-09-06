@@ -41,7 +41,7 @@ Wenden Sie sich bitte an den Kundendienst von Gothia: +45 7027 2795<br>Bei ander
       </trans-unit>
       <trans-unit id="json_err80">
         <source>json.placereservation.error</source>
-        <target>Ihre Bestellung konnte bei Gothia nicht erstellt werden</target>
+        <target>Sehr geehrter Kunde, die Bezahlarten Rechnung und Lastschrift stehen Ihnen leider nicht zur Verfügung. Dies kann daran liegen, dass Sie an der angegebenen Adresse nicht bekannt sind, mit dieser Bestellung das Kundenlimit überschreiten würden oder über keine ausreichende Bonität verfügen. Bitte prüfen Sie, ob Sie Ihre Personendaten korrekt angegeben haben und wählen Sie ggf. eine andere Bezahlart. Vielen Dank für Ihr Verständnis.</target>
       </trans-unit>
       <trans-unit id="json_err90" approved="no">
         <source>json.order.state_pre_payment.locked</source>

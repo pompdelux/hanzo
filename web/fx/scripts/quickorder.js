@@ -209,7 +209,7 @@ var quickorder = (function($) {
                         img = cdn_url + 'images/products/thumb/57x100,' + img + '_overview_01.jpg';
 
                         $('table tbody').prepend(' ' +
-                            '<tr> ' +
+                            '<tr class="item"> ' +
                               '<td class="image"><img src="'+img+'" alt="'+master+'"> '+
                                 '<div class="info" data-product_id="'+response.latest.id+'" data-confirmed=""> '+
                                   '<a href="'+base_url+'product/view/'+response.latest.id+'">'+master+'</a> '+

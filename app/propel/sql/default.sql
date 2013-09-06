@@ -50,6 +50,7 @@ CREATE TABLE `cms`
     `cms_thread_id` INTEGER NOT NULL,
     `sort` INTEGER DEFAULT 1 NOT NULL,
     `type` VARCHAR(255) DEFAULT 'cms' NOT NULL,
+    `updated_by` VARCHAR(255),
     `created_at` DATETIME,
     `updated_at` DATETIME,
     PRIMARY KEY (`id`),
@@ -557,6 +558,7 @@ CREATE TABLE `products_images_product_references`
 (
     `products_images_id` INTEGER NOT NULL,
     `products_id` INTEGER NOT NULL,
+    `color` VARCHAR(255),
     PRIMARY KEY (`products_images_id`,`products_id`),
     INDEX `FI_products_images_product_references_2` (`products_id`),
     CONSTRAINT `fk_products_images_product_references_1`

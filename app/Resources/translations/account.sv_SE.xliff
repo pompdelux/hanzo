@@ -85,7 +85,7 @@
             </trans-unit>
             <trans-unit id="existing.customer">
                 <source>existing.customer</source>
-                <target>Eksisterende kunde</target>
+                <target>Existerande kund</target>
             </trans-unit>
             <trans-unit id="title">
                 <source>title</source>
@@ -189,7 +189,7 @@
             </trans-unit>
             <trans-unit id="edit.account">
                 <source>edit.account</source>
-                <target>Ändra konto</target>
+                <target>Fortsätt</target>
             </trans-unit>
             <trans-unit id="update.account">
                 <source>update.account</source>

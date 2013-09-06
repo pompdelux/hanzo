@@ -2,8 +2,6 @@
 
 namespace Hanzo\Bundle\CMSBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
 use Hanzo\Core\Hanzo;
@@ -12,9 +10,6 @@ use Hanzo\Core\CoreController;
 
 use Hanzo\Model\Cms;
 use Hanzo\Model\CmsPeer;
-
-use Hanzo\Model\CustomersPeer;
-use Hanzo\Model\ProductsStockPeer;
 
 class DefaultController extends CoreController
 {
@@ -59,7 +54,13 @@ class DefaultController extends CoreController
         $page->setContent($html);
 
         $this->setSharedMaxAge(86400);
-        return $this->render('CMSBundle:Default:view.html.twig', array('page_type' => $type, 'body_classes' => 'body-'.$type, 'page' => $page, 'parent_id' => $page->getParentId()));
+        return $this->render('CMSBundle:Default:view.html.twig', array(
+            'page_type' => $type,
+            'body_classes' => 'body-'.$type,
+            'page' => $page,
+            'parent_id' => $page->getParentId(),
+            'browser_title' => $page->getTitle()
+        ));
     }
 
     public function blockAction($page = NULL)

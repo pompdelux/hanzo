@@ -84,7 +84,7 @@ class AxService
      * @param  boolean  $return   Returns the object we intend to send to AX.
      * @return boolean
      */
-    public function sendOrder(Orders $order, $return = false, $con = null)
+    public function sendOrder(Orders $order, $return = false, $con = null, $in_edit = false)
     {
         if (null === $con) {
             $con = Propel::getConnection(null, Propel::CONNECTION_WRITE);
@@ -213,7 +213,7 @@ class AxService
             $line->SalesPrice      = $bag_price;
             $line->LineDiscPercent = 100;
             $line->SalesQty        = 1;
-            $line->InventColorId   = 'Khaki';
+            $line->InventColorId   = 'Off White';
             $line->InventSizeId    = 'One Size';
             $line->SalesUnit       = 'Stk.';
             $salesLine[]           = $line;
@@ -221,7 +221,10 @@ class AxService
 
         if ($order->getEventsId()) {
             $date = date('Ymd');
-            if ((20130812 <= $date) && (20130901 >= $date)) {
+
+            if (((20130812 <= $date) && (20130901 >= $date)) ||
+                ($in_edit && (20130901 >= $order->getCreatedAt('Ymd')))
+            ) {
                 $line = new stdClass();
                 $line->ItemId          = 'VOUCHER';
                 $line->SalesPrice      = 0.00;
@@ -234,7 +237,6 @@ class AxService
             }
         }
 
-        // gavekort
         if ($gift_card) {
             $line = new stdClass();
             $line->ItemId      = 'GIFTCARD';
@@ -245,7 +247,6 @@ class AxService
             $salesLine[]       = $line;
         }
 
-        // kuponkode
         if ($coupon) {
             $line = new stdClass();
             $line->ItemId      = 'COUPON';
@@ -271,12 +272,17 @@ class AxService
                     case 'MC':
                     case 'MC(DK)':
                     case 'MC(SE)':
+                    case 'MasterCard':
                         $custPaymMode = 'MasterCard';
                         break;
                     case 'V-DK':
                     case 'VISA-DANKORT':
                     case 'DK':
+                    case 'DANKORT':
                         $custPaymMode = 'DanKort';
+                        break;
+                    default:
+                        $custPaymMode = 'VISA';
                         break;
                 }
                 break;
@@ -284,7 +290,7 @@ class AxService
             case 'gothia':
             case 'gothiade':
                 $custPaymMode = 'PayByBill';
-                if ('GOTHIA-LV' == strtoupper($attributes->payment->paytype)) {
+                if ('GOTHIA_LV' == strtoupper($attributes->payment->paytype)) {
                     $custPaymMode = 'ELV';
                 }
                 break;

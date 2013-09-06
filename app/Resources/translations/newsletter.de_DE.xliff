@@ -34,9 +34,19 @@
         <source>subscribed.text</source>
         <target>Sie haben sich erfolgreich für unseren Newsletter angemeldet.</target>
       </trans-unit>
+      <trans-unit id="unsubscribed.text">
+        <source>unsubscribed.text</source>
+        <target>Sie haben sich erfolgreich für unseren Newsletter aufgemeldet.</target>
+      </trans-unit>
       <trans-unit id="invalid.email.address">
         <source>invalid.email.address</source>
         <target>Die eingegebene E-Mail-Adresse ist ungültig.</target>
+      </trans-unit>
+      <trans-unit id="terms.link">
+        <source>terms.link</source>
+        <target><![CDATA[
+          <a href="/de_DE/home/kundendienst/abgs" target="_blank">POMPdeLUX AGB's.</a>
+        ]]></target>
       </trans-unit>
     </body>
   </file>

@@ -39,7 +39,7 @@ class GothiaDEApi extends GothiaApi
     public function updateOrderSuccess( Request $request, Orders $order )
     {
         $order->setState( Orders::STATE_PAYMENT_OK );
-        $order->setAttribute( 'paytype' , 'payment', 'gothiade' );
+        // $order->setAttribute( 'paytype' , 'payment', 'gothiade' );
         // Fee is handled in the checkout controller, as we need the information in the summery
         $order->save();
     }
@@ -50,7 +50,7 @@ class GothiaDEApi extends GothiaApi
     public function updateOrderFailed( Request $request, Orders $order)
     {
         $order->setState( Orders::STATE_ERROR_PAYMENT );
-        $order->setAttribute( 'paytype' , 'payment', 'gothiade' );
+        // $order->setAttribute( 'paytype' , 'payment', 'gothiade' );
         $order->save();
     }
 

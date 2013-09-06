@@ -25,7 +25,10 @@ use Hanzo\Model\OrdersAttributesPeer;
 use Hanzo\Model\OrdersAttributesQuery;
 use Hanzo\Model\OrdersVersions;
 use Hanzo\Model\OrdersVersionsQuery;
+use Hanzo\Model\OrdersDeletedLog;
+use Hanzo\Model\OrdersDeletedLogQuery;
 use Hanzo\Model\ShippingMethods;
+use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\AddressesPeer;
 
@@ -1166,11 +1169,12 @@ class Orders extends BaseOrders
         $hanzo = Hanzo::getInstance();
 
         if ('' == $this->getBillingFirstName()) {
-            // $customer = CustomersPeer::getCurrent();
             $customer = $this->getCustomers();
-            $c = new Criteria;
-            $c->add(AddressesPeer::TYPE, 'payment');
-            $this->setBillingAddress($customer->getAddressess($c)->getFirst());
+            if ($customer instanceof Customers) {
+                $c = new Criteria;
+                $c->add(AddressesPeer::TYPE, 'payment');
+                $this->setBillingAddress($customer->getAddressess($c)->getFirst());
+            }
         }
 
         if ('COM' == $hanzo->get('core.domain_key')) {
@@ -1327,7 +1331,7 @@ class Orders extends BaseOrders
                 $this->cancelPayment();
                 Hanzo::getInstance()->container->get('ax.out')->deleteOrder($this, $con);
             } catch ( Exception $e ) {
-                Tools::log($e->getMessage());
+                // Tools::log($e->getMessage());
 
                 if ($this->getIgnoreDeleteConstraints()) {
                     // allow delete for priority deletes
@@ -1375,11 +1379,15 @@ class Orders extends BaseOrders
             $deleted_by = 'cid: '.CustomersPeer::getCurrent()->getId();
         }
 
-        $entry = new OrdersDeletedLog();
-        $entry->setOrdersId($this->getId());
-        $entry->setCustomersId($this->getCustomersId());
-        $entry->setName($this->getFirstName().' '.$this->getLastName());
-        $entry->setEmail($this->getEmail());
+        $entry = OrdersDeletedLogQuery::create()->findOneByOrdersId($this->getId());
+        if (!$entry instanceof OrdersDeletedLog) {
+            $entry = new OrdersDeletedLog();
+            $entry->setOrdersId($this->getId());
+            $entry->setCustomersId($this->getCustomersId());
+            $entry->setName($this->getFirstName().' '.$this->getLastName());
+            $entry->setEmail($this->getEmail());
+        }
+
         $entry->setTrigger($trigger);
         $entry->setContent(serialize($data));
         $entry->setDeletedBy($deleted_by);

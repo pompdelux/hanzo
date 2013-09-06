@@ -34,9 +34,19 @@
         <source>subscribed.text</source>
         <target>You are now subscribed to our newsletter.</target>
       </trans-unit>
+      <trans-unit id="unsubscribed.text" approved="no">
+        <source>unsubscribed.text</source>
+        <target>You are now longer subscribed to our newsletter.</target>
+      </trans-unit>
       <trans-unit id="invalid.email.address" approved="no">
         <source>invalid.email.address</source>
         <target>The entered email isnt valid</target>
+      </trans-unit>
+      <trans-unit id="terms.link">
+        <source>terms.link</source>
+        <target><![CDATA[
+          <a href="/en_GB/home/customer-service/terms-and-conditions" target="_blank">Terms and conditions</a>
+        ]]></target>
       </trans-unit>
     </body>
   </file>

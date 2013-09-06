@@ -131,32 +131,15 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
     /**
      * callAcquirersStatus
      * @param Customers $customer
+     * @param Orders $order
      * @return GothiaApiCallResponse
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function checkCustomer( Customers $customer )
+    public function checkCustomer( Customers $customer, Orders $order )
     {
         $hanzo = Hanzo::getInstance();
         $domain_key = str_replace('Sales', '', $hanzo->get('core.domain_key'));
-        // Used default currency from domain_settings instead
-        // $currency_map = array(
-        //     'SE' => 'SEK',
-        //     'FI' => 'EUR',
-        //     'NL' => 'EUR',
-        //     'NO' => 'NOK',
-        //     'DK' => 'DKK'
-        // );
 
-        $c = new Criteria;
-        $c->add(AddressesPeer::TYPE, 'payment');
-        $addresses = $customer->getAddressess($c, Propel::getConnection(null, Propel::CONNECTION_WRITE));
-
-        if (!isset($addresses[0])) {
-            #Tools::debug( 'Customer is missing an address', __METHOD__ );
-            throw new GothiaApiCallException( 'Missing address' );
-        }
-
-        $address       = $addresses[0];
         $gothiaAccount = $customer->getGothiaAccounts(Propel::getConnection(null, Propel::CONNECTION_WRITE));
         $customerId    = $customer->getId();
 
@@ -170,7 +153,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
             //throw new GothiaApiCallException( 'Missing customer id' );
         }
 
-        $street = trim($address->getAddressLine1().' '.$address->getAddressLine2());
+        $street = trim($order->getBillingAddressLine1().' '.$order->getBillingAddressLine2());
 
         // nl hacks
         if ('NL' === $domain_key) {
@@ -188,7 +171,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
             AFSWS_Customer(
                 $street,
                 $domain_key,
-                $hanzo->get('core.currency'), // $currency_map[$domain_key], ab@bellcom.dk 070213
+                $hanzo->get('core.currency'),
                 $customerId,
                 'Person',
                 null,
@@ -196,13 +179,13 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
                 $gothiaAccount->getDistributionType(),
                 $customer->getEmail(),
                 null,
-                $customer->getFirstName(),
-                $customer->getLastName(),
+                $order->getBillingFirstName(),
+                $order->getBillingLastName(),
                 null,
                 $gothiaAccount->getSocialSecurityNum(),
                 $customer->getPhone(),
-                str_replace(' ', '', $address->getPostalCode()),
-                $address->getCity(),
+                str_replace(' ', '', $order->getBillingPostalCode()),
+                $order->getBillingCity(),
                 null
             )
         );
@@ -414,16 +397,6 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         $hanzo = Hanzo::getInstance();
         $domain_key = str_replace('Sales', '', $hanzo->get('core.domain_key'));
 
-        $c = new Criteria;
-        $c->add(AddressesPeer::TYPE, 'payment');
-        $addresses = $customer->getAddressess($c, Propel::getConnection(null, Propel::CONNECTION_WRITE));
-
-        if (!isset($addresses[0])) {
-            #Tools::debug( 'Customer is missing an address', __METHOD__ );
-            throw new GothiaApiCallException( 'Missing address' );
-        }
-
-        $address       = $addresses[0];
         $gothiaAccount = $customer->getGothiaAccounts(Propel::getConnection(null, Propel::CONNECTION_WRITE));
         $customerId    = $customer->getId();
         $amount         = number_format( $order->getTotalPrice(), 2, '.', '' );
@@ -441,7 +414,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
             // throw new GothiaApiCallException( 'Missing customer id' );
         }
 
-        $street = trim($address->getAddressLine1().' '.$address->getAddressLine2());
+        $street = trim($order->getBillingAddressLine1().' '.$order->getBillingAddressLine2());
 
         // nl hacks
         if ('NL' === $domain_key) {
@@ -475,13 +448,13 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
               $gothiaAccount->getDistributionType(),
               $customer->getEmail(),
               null,
-              $customer->getFirstName(),
-              $customer->getLastName(),
+              $order->getBillingFirstName(),
+              $order->getBillingLastName(),
               null,
               $gothiaAccount->getSocialSecurityNum(),
               $customer->getPhone(),
-              str_replace(' ', '', $address->getPostalCode()),
-              $address->getCity(),
+              str_replace(' ', '', $order->getBillingPostalCode()),
+              $order->getBillingCity(),
               null
           ),
           AFSWS_Reservation('NoAccountOffer', $amount, $currency_code, $customerId, null),

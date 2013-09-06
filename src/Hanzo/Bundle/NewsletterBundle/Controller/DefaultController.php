@@ -100,7 +100,7 @@ class DefaultController extends CoreController
         $api      = $this->get('newsletterapi');
 
         if ('POST' === $request->getMethod()) {
-            $api->subscribe($customer->getEmail(), $request->get('lists'));
+            $api->subscribe($customer->getEmail(), $request->request->get('lists'));
             return $this->redirect($this->generateUrl('_account'));
         }
 
@@ -124,8 +124,8 @@ class DefaultController extends CoreController
             return $this->redirect($this->generateUrl('_homepage'));
         }
 
-        $email = $request->get('email');
-        $name  = $request->get('name');
+        $email = $request->request->get('email');
+        $name  = $request->request->get('name');
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return $this->json_response([
@@ -157,4 +157,30 @@ class DefaultController extends CoreController
         ]);
     }
 
+    public function unsubscribeAction(Request $request)
+    {
+        if ('POST' !== $request->getMethod()) {
+            return $this->redirect($this->generateUrl('_homepage'));
+        }
+
+        $email = $request->request->get('email');
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return $this->json_response([
+                'status'  => false,
+                'message' => $this->get('translator')->trans('invalid.email.address', [], 'newsletter'),
+            ]);
+        }
+
+        $api    = $this->get('newsletterapi');
+        $id     = $api->getListIdAvaliableForDomain();
+        $active = [$id => $id];
+        $result = $api->unsubscribe($email, $active);
+        $api->sendNotificationEmail('unsubscribe', $email);
+
+        return $this->json_response([
+            'status'  => true,
+            'message' => $this->get('translator')->trans('unsubscribed.text', [], 'newsletter'),
+        ]);
+    }
 }

@@ -60,7 +60,6 @@ class ByColourController extends CoreController
             }
             unset ($resultset);
 
-
             $index = 1;
             $products = array();
             $masters = ProductsToCategoriesQuery::create()
@@ -104,6 +103,7 @@ class ByColourController extends CoreController
                             ProductsToCategoriesPeer::CATEGORIES_ID,
                             implode(',', $includes)
                         ))
+                        ->filterByCategoriesId($includes)
                     ->endUse()
                     ->filterById($ids)
                 ->endUse()

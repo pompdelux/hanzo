@@ -4,7 +4,13 @@
 <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="{{ html_lang }}" xmlns:og="http://ogp.me/ns#"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="{{ html_lang }}" xmlns:og="http://ogp.me/ns#"> <!--<![endif]-->
 <head>
-<title>{{ 'browser.title'|trans }} {{ browser_title|default('') }}</title>
+
+{% if browser_title is defined and page_type|default('page') != 'frontpage' %}
+  <title>{{ browser_title }} - {{ 'browser.title'|trans }}</title>
+{% else %}
+  <title>{{ 'browser.title'|trans }}</title>
+{% endif %}
+
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -124,6 +130,9 @@
             <input type="text" name="name" value="" title="{{ 'block.subscribe.name_label'|trans({}, 'newsletter') }}" placeholder="{{ 'block.subscribe.name_label'|trans({}, 'newsletter') }}">
             <input type="email" class="newsletter-subscriber-email" name="email" value="" title="{{ 'block.subscribe.email_label'|trans({}, 'newsletter') }}" placeholder="{{ 'block.subscribe.email_label'|trans({}, 'newsletter') }}">
           </div>
+          <div class="clearfix right">
+            {{ 'terms.link'|trans({}, 'newsletter')|raw }}
+          </div>
           <div class="clearfix">
             <input type="submit" class="button text-button" value="{{ 'block.subscribe.submit_button'|trans({}, 'newsletter') }}">
           </div>
@@ -156,7 +165,8 @@
   if (1 == $('#shipping-block input').length) {
     $('#shipping-block input').first().click();
     {# ie7 has some issues with click, apparently #}
-    if ($('html').hasClass('ie7')) {
+    {# ie8 apparently also #}
+    if ($('html').hasClass('ie7') || $('html').hasClass('ie8')) {
       $('#shipping-block input').first().click();
     }
   }
