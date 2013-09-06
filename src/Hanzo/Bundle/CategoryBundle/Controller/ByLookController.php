@@ -28,9 +28,9 @@ class ByLookController extends CoreController
      * @param $category_id
      * @param $pager
      */
-    public function viewAction($cms_id, $category_id, $pager = 1)
+    public function viewAction(Request $request, $cms_id, $category_id, $pager = 1)
     {
-        $cache_id = explode('_', $this->get('request')->get('_route'));
+        $cache_id = explode('_', $request->get('_route'));
         $cache_id = array($cache_id[0], $cache_id[2], $cache_id[1], $pager);
 
         // json requests
@@ -63,9 +63,9 @@ class ByLookController extends CoreController
 
 
             $classes = 'bylook-'.preg_replace('/[^a-z]/', '-', strtolower($cms_page->getTitle()));
-            if (preg_match('/(pige|girl|tjej|tytto|jente)/', $container->get('request')->getPathInfo())) {
+            if (preg_match('/(pige|girl|tjej|tytto|jente)/', $request->getPathInfo())) {
                 $classes .= ' category-girl';
-            } elseif (preg_match('/(dreng|boy|kille|poika|gutt)/', $container->get('request')->getPathInfo())) {
+            } elseif (preg_match('/(dreng|boy|kille|poika|gutt)/', $request->getPathInfo())) {
                 $classes .= ' category-boy';
             }
 
