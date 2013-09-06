@@ -36,7 +36,7 @@
       </trans-unit>
       <trans-unit id="unsubscribed.text" approved="no">
         <source>unsubscribed.text</source>
-        <target>Du är nu registrerad till vårt nyhetsbrev.</target>
+        <target>Du har nu blivit avregistrerad från POMPdeLUX nyhetsbrev.</target>
       </trans-unit>
       <trans-unit id="invalid.email.address" approved="no">
         <source>invalid.email.address</source>
@@ -45,7 +45,7 @@
       <trans-unit id="terms.link">
         <source>terms.link</source>
         <target><![CDATA[
-          <a href="/sv_SE/forside/kundservice/villkor" target="_blank">POMPdeLUX Villkor.</a>
+          <a href="/sv_SE/forside/kundservice/villkor" target="_blank">Vid registrering accepterar jag POMPdeLUX´s generella villkor.</a>
         ]]></target>
       </trans-unit>
     </body>

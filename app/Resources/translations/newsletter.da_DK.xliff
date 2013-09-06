@@ -36,7 +36,7 @@
       </trans-unit>
       <trans-unit id="unsubscribed.text">
         <source>unsubscribed.text</source>
-        <target>Du er nu afmeldt vores nyhedsbrev.</target>
+        <target>Du er nu afmeldt POMPdeLUX nyhedsbrev.</target>
       </trans-unit>
       <trans-unit id="invalid.email.address">
         <source>invalid.email.address</source>
@@ -45,7 +45,7 @@
       <trans-unit id="terms.link">
         <source>terms.link</source>
         <target><![CDATA[
-            <a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a>
+            <a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">Ved tilmelding accepterer jeg POMPdeLUX’s generelle vilkår.</a>
         ]]></target>
       </trans-unit>
     </body>

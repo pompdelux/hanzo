@@ -36,7 +36,7 @@
       </trans-unit>
       <trans-unit id="unsubscribed.text">
         <source>unsubscribed.text</source>
-        <target>Sie haben sich erfolgreich für unseren Newsletter aufgemeldet.</target>
+        <target>Sie haben sich erfolgreich vom Newsletter von POMPdeLUX abgemeldet.</target>
       </trans-unit>
       <trans-unit id="invalid.email.address">
         <source>invalid.email.address</source>
@@ -45,7 +45,7 @@
       <trans-unit id="terms.link">
         <source>terms.link</source>
         <target><![CDATA[
-          <a href="/de_DE/home/kundendienst/abgs" target="_blank">POMPdeLUX AGB's.</a>
+          <a href="/de_DE/home/kundendienst/abgs" target="_blank">Durch die Anmeldung akzeptiere ich POMPdeLUX allgemeine Bedingungen.</a>
         ]]></target>
       </trans-unit>
     </body>
