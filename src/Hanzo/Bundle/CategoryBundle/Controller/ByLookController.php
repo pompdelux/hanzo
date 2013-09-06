@@ -4,6 +4,7 @@ namespace Hanzo\Bundle\CategoryBundle\Controller;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Hanzo;
