@@ -379,8 +379,7 @@ class GothiaController extends CoreController
 
         // NICETO: priority: low, refacture gothia to look more like DibsController
 
-        try
-        {
+        try {
             $api->updateOrderSuccess( $request, $order );
             $this->get('event_dispatcher')->dispatch('order.payment.collected', new FilterOrderEvent($order));
 
@@ -388,13 +387,11 @@ class GothiaController extends CoreController
                 'status' => TRUE,
                 'message' => '',
             ));
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             if (Tools::isBellcomRequest()) {
                 Tools::debug('Place Reservation Exception', __METHOD__, array('Message' => $e->getMessage()));
             }
-            #Tools::debug( $e->getMessage(), __METHOD__);
+
             $api->updateOrderFailed( $request, $order );
 
             Tools::debug('Place reservation failed', __METHOD__, array('Message' => $e->getMessage()));
