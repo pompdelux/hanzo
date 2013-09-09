@@ -65,6 +65,7 @@
               var $em = $elm.next('em');
               var label = $elm.data('datelabel');
               $em.text(label.replace('%date%', date)).css('display', 'block');
+              $elm.attr('href', $elm.attr('href')+'?'+element.mtime);
             }
           });
         });
