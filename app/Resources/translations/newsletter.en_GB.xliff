@@ -34,6 +34,10 @@
         <source>subscribed.text</source>
         <target>You are now subscribed to our newsletter.</target>
       </trans-unit>
+      <trans-unit id="unsubscribed.text" approved="no">
+        <source>unsubscribed.text</source>
+        <target>You have now unsubscribed from POMPdeLUX newsletter.</target>
+      </trans-unit>
       <trans-unit id="invalid.email.address" approved="no">
         <source>invalid.email.address</source>
         <target>The entered email isnt valid</target>
@@ -41,7 +45,7 @@
       <trans-unit id="terms.link">
         <source>terms.link</source>
         <target><![CDATA[
-          <a href="/en_GB/home/customer-service/terms-and-conditions" target="_blank">Terms and conditions</a>
+          <a href="/en_GB/home/customer-service/terms-and-conditions" target="_blank">When signing up I accept the general terms of POMPdeLUX.</a>
         ]]></target>
       </trans-unit>
     </body>

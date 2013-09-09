@@ -81,7 +81,7 @@ class OrdersController extends CoreController
             $orders_count = OrdersLinesQuery::create()
                 ->filterByOrdersId($order->getId())
                 ->withColumn('SUM(orders_lines.quantity)','TotalLines')
-                ->withColumn('SUM(orders_lines.price)','TotalPrice')
+                ->withColumn('SUM(orders_lines.price * orders_lines.quantity)','TotalPrice')
                 ->groupByOrdersId()
                 ->findOne($this->getDbConnection())
             ;

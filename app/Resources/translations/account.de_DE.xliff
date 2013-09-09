@@ -201,7 +201,7 @@
             </trans-unit>
             <trans-unit id="65">
                 <source>create.account</source>
-                <target>Konto erstellen</target>
+                <target>Weiter</target>
             </trans-unit>
             <trans-unit id="create.account.header" approved="no">
                 <source>create.account.header</source>
@@ -209,7 +209,7 @@
             </trans-unit>
             <trans-unit id="edit.account">
                 <source>edit.account</source>
-                <target>Konto bearbeiten</target>
+                <target>Weiter</target>
             </trans-unit>
             <trans-unit id="update.account">
                 <source>update.account</source>

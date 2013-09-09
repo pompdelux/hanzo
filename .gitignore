@@ -10,6 +10,14 @@
 /src/Hanzo/Bundle/BasketBundle/Resources/config/category_map.php
 /.rsync_cache/
 /web/images/frontpage/*.jpg
+/web/images/frontpage/*.gif
+/web/images/consultants*/
+/web/images/debitor*/
+/web/images/games/
+/web/images/xhjkpiydjns/
+/web/images/pdf/
+/web/images/nyhedsbrev/
+/web/uploads/
 .sass-cache
 /.tags*
 /*.sublime-project

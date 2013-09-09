@@ -115,7 +115,30 @@ var newsletter = (function($) {
     });
   };
 
+  pub.allover = function() {
+    $('.js-newsletter-form .button').on('click', function(event) {
+      event.preventDefault();
+      var $this = $(this);
+      var $form = $this.closest('form');
+      var a = $this.data('action');
+      var u = $form.attr('action').replace(/[un]?subscribe/, a);
+
+      $.post(u, $form.serialize(), function(response) {
+        var type = (response.status? 'info' : 'error');
+        dialoug.notice(response.message, type, 3000, $form);
+
+        if (response.status) {
+          $('input[type="text"], input[type="email"]', $form).val('');
+          $('input[type="text"], input[type="email"]', $form).removeClass('error');
+        } else {
+          $('input[type="email"]', $form).addClass('error');
+        }
+      }, 'json');
+    });
+  };
+
   return pub;
 })(jQuery);
 
 newsletter.footer();
+newsletter.allover();

@@ -31,7 +31,7 @@ class CheckoutListener
     public function onPaymentCollected(FilterOrderEvent $event)
     {
         $order = $event->getOrder();
-        $this->ax->sendOrder($order);
+        $this->ax->sendOrder($order, false, null, $event->getInEdit());
 
         $logged = OrdersSyncLogQuery::create()
             ->select('State')

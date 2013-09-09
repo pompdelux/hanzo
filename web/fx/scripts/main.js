@@ -11,12 +11,12 @@
       });
 
       // ios class added to body
-      switch (navigator.platform) {
-      case 'iPad':
-      case 'iPhone':
-      case 'iPod':
-        $('html').addClass('ios');
-        break;
+      switch (navigator.platfom) {
+          case 'iPad':
+          case 'iPhone':
+          case 'iPod':
+            $('html').addClass('ios');
+            break;
       }
 
       // use inline labels if the "real" labels are hidden
@@ -65,6 +65,7 @@
               var $em = $elm.next('em');
               var label = $elm.data('datelabel');
               $em.text(label.replace('%date%', date)).css('display', 'block');
+              $elm.attr('href', $elm.attr('href')+'?'+element.mtime);
             }
           });
         });
