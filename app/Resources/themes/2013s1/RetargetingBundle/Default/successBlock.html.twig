@@ -1,0 +1,19 @@
+<script src="https://de17a.com/o/1214.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+  with (OrderRegistration) {
+    var random_uid = new Date().getTime()+Math.floor(999999 * Math.random());
+    reference_id = random_uid;
+    status = ACCEPTED;
+
+    register({
+      ti: {{ tid }},
+      pn: "ProductName",
+      pg: "ProductGroup",
+      cn: {{ order_id }},
+      va: {{ total }},
+      cy: '{{ currency }}'
+
+    });
+  }
+</script>
+<img src="//track.idtargeting.com/cnv/{{ cid }}?amt={{ currency }}{{ total }}&oid=" height="0" width="0">

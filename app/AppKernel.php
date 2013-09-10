@@ -60,6 +60,7 @@ class AppKernel extends Kernel
             new Hanzo\Bundle\LocationLocatorBundle\LocationLocatorBundle(),
             new Hanzo\Bundle\MunerisBundle\MunerisBundle(),
             new Hanzo\Bundle\AxBundle\AxBundle(),
+            new Hanzo\Bundle\RetargetingBundle\RetargetingBundle(),
         );
 
         if (preg_match('/^(test|dev)_/', $this->getEnvironment())) {

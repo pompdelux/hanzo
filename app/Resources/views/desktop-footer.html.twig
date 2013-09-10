@@ -74,3 +74,5 @@
 
 {{ include('::footer-'~app.request.locale~'.html.twig', ignore_missing = true, with_context = true) }}
 {{ google_analytics_tag() }}
+
+{% render 'RetargetingBundle:Default:jsBlock' %}
