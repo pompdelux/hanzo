@@ -3,11 +3,17 @@
 namespace Hanzo\Bundle\RetargetingBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
+use Hanzo\Core\Tools;
 use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\ProductsQuery;
+use Hanzo\Model\ProductsImagesQuery;
+use Hanzo\Model\ProductsDomainsPricesPeer;
 
 class DefaultController extends Controller
 {
@@ -66,6 +72,92 @@ class DefaultController extends Controller
         return [
             'cid' => $this->getTrackingId('cid')
         ];
+    }
+
+
+    /**
+     * @Cache(smaxage="3600")
+     * @Route("/retarteging/feed", defaults={"_format"="xml"})
+     */
+    public function feedAction(Request $request)
+    {
+        $router = $this->get('router');
+        $routes = [];
+
+        foreach ($router->getRouteCollection()->all() as $route => $data) {
+            if ('product_' === substr($route, 0, 8)) {
+                $category_id = $data->getDefault('category_id');
+                if (is_numeric($category_id)) {
+                    $routes[$route][] = $category_id;
+                }
+            }
+        }
+
+        $items = [];
+        $product_ids = [];
+        foreach ($routes as $route => $category_id) {
+            $products = ProductsQuery::create()
+                ->filterByMaster(null, \Criteria::ISNULL)
+                ->joinWithProductsImages()
+                ->useProductsToCategoriesQuery()
+                    ->filterByCategoriesId($category_id)
+                ->endUse()
+                ->find()
+            ;
+
+            foreach ($products as $product) {
+                $product_id = $product->getId();
+                $product_sku = $product->getSku();
+                $product_sku_stripped = Tools::stripText($product_sku);
+
+                $product_ids[] = $product_id;
+                $images = ProductsImagesQuery::create()
+                    ->filterByProductsId($product_id)
+                    ->find()
+                ;
+
+                $items[] = [
+                    'product_id' => $product_id,
+                    'url'   => $router->generate($route, [
+                        'product_id' => $product_id,
+                        'title'      => $product_sku_stripped,
+                    ], true),
+                    'name'  => $product_sku,
+                    'price' => 0,
+                    'image' => Tools::productImageUrl($product->getProductsImagess()->getFirst()->getImage(), '0x0'),
+                ];
+
+                foreach ($images as $image) {
+                    $items[] = [
+                        'product_id' => $product_id,
+                        'url'   => $router->generate($route, [
+                            'product_id' => $product_id,
+                            'title'      => $product_sku_stripped,
+                            'focus'      => $image->getId()
+                        ], true),
+                        'name'  => $product_sku,
+                        'price' => 0,
+                        'image' => Tools::productImageUrl($image->getImage(), '0x0'),
+                    ];
+                }
+            }
+        }
+
+        foreach (ProductsDomainsPricesPeer::getProductsPrices($product_ids) as $id => $prices) {
+            if (isset($prices['sales'])) {
+                $price = number_format($prices['sales']['price'], 2, '.', '');
+            } else {
+                $price = number_format($prices['normal']['price'], 2, '.', '');
+            }
+
+            foreach ($items as $i => $item) {
+                if ($item['product_id'] == $id) {
+                    $items[$i]['price'] = $price;
+                }
+            }
+        }
+
+        return $this->render('RetargetingBundle:Default:feed.xml.twig', ['items' => $items]);
     }
 
 
