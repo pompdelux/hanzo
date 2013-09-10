@@ -44,15 +44,15 @@
             </trans-unit>
             <trans-unit id="rma.form.activity.return.causes">
                 <source>rma.form.activity.return.causes</source>
-                <target>Ødelagt|Aliens|Andet</target>
+                <target>Byttes til anden str. (venligst notér ny str.)|Byttes til anden farve (venligst notér farve)|Pakkefejl|Reklamation (venligst notér fejl)|Fortrudt køb (pengene retur)</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.replacement.causes">
                 <source>rma.form.activity.replacement.causes</source>
-                <target>Ødelagt|Aliens|Andet</target>
+                <target>Byttes til anden str. (venligst notér ny str.)|Byttes til anden farve (venligst notér farve)|Pakkefejl|Reklamation (venligst notér fejl)|Fortrudt køb (pengene retur)</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.warranty.causes">
                 <source>rma.form.activity.warranty.causes</source>
-                <target>Ødelagt|Aliens|Andet</target>
+                <target>Byttes til anden str. (venligst notér ny str.)|Byttes til anden farve (venligst notér farve)|Pakkefejl|Reklamation (venligst notér fejl)|Fortrudt køb (pengene retur)</target>
             </trans-unit>
             <trans-unit id="rma.form.label.description">
                 <source>rma.form.label.description</source>
