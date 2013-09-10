@@ -1,14 +1,14 @@
 <?php
-
 require __DIR__.'/../vendor/autoload.php';
 use Symfony\Component\Process\Process;
 
-$job = __DIR__.'/../cron/productImageImport.php --debug';
-$log = __DIR__.'/../app/logs/php.log';
+if (!empty($_GET['go'])) {
+    $job = __DIR__.'/../cron/productImageImport.php --debug';
+    $log = __DIR__.'/../app/logs/php.log';
 
-$process = new Process('nohup php '.$job.' >> '.$log.' 2>&1 & echo $!');
-$process->run();
-
+    $process = new Process('nohup php '.$job.' >> '.$log.' 2>&1 & echo $!');
+    $process->run();
+}
 ?>
 <!DOCTYPE html>
 <html>
