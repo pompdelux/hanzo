@@ -54,7 +54,7 @@ $failed = array();
 
 $pdo = $_databases['vip'];
 $products_stmt = $pdo->prepare('SELECT id FROM products WHERE sku = :master and master IS NULL', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-$categories_stmt = $pdo->prepare('SELECT categories_id FROM products_to_categories WHERE products_id = :products_id', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+$categories_stmt = $pdo->prepare('SELECT p2c.categories_id FROM products_to_categories AS p2c JOIN categories AS c ON (c.id = p2c.categories_id AND c.context LIKE "%\_%") WHERE p2c.products_id = :products_id', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 $product_image_stmt = $pdo->prepare('SELECT id FROM products WHERE color = :color and master = :master', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 
 _dbug("finding images product and category reference.");
