@@ -57,6 +57,7 @@
 
         xhr.done(function (response) {
           $.each(response.data, function (i, element) {
+            try { console.log(element); } catch (e) {}
             if (undefined !== element.mtime) {
               var date = element.mtime;
               var $elm = $('a.media_file.index-'+element.index);
