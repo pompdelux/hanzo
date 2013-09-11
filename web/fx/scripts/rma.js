@@ -11,7 +11,7 @@ var rma = (function($) {
             // Show the appopriate dropdown for causes.
             $context.find('.rma-' + $select.val() + '-causes').slideDown('fast').css('display', 'inline-block');
             $context.find('.rma-description').slideDown('fast').css('display', 'inline-block');
-            if($select.val() === 'replacement' || $select.val() === 'warranty') {
+            if($select.val() === 'replacement') {
                 $context.find('.rma-productreplacement').slideDown('fast');
             }
         }
