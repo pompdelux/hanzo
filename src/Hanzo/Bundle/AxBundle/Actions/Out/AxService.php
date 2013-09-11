@@ -297,6 +297,9 @@ class AxService
 
             case 'paypal':
                 $custPaymMode = 'PayPal';
+                if (isset($attributes->payment->TRANSACTIONID)) {
+                    $attributes->payment->transact = $attributes->payment->TRANSACTIONID;
+                }
                 break;
 
             case 'paybybill': // Should be COD, is _not_ Gothia

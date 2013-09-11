@@ -57,7 +57,6 @@ class ByLookController extends CoreController
         $html = $this->getCache($cache_id);
 
         if (!$html) {
-
             $data = CategoriesPeer::getStylesByCategoryId($category_id, $pager);
             $data['products'] = $this->setAlt($data['products'], $category_id);
             $cms_page = CmsQuery::create()->findOneById($cms_id);

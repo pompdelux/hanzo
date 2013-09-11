@@ -4,18 +4,15 @@ namespace Hanzo\Model;
 
 use Hanzo\Model\om\BaseOrdersLines;
 
+class OrdersLines extends BaseOrdersLines
+{
+    public function setPrice($v)
+    {
+        return parent::setPrice(number_format($v, 2, '.', ''));
+    }
 
-/**
- * Skeleton subclass for representing a row from the 'orders_lines' table.
- *
- * 
- *
- * You should add additional methods to this class to meet the
- * application requirements.  This class will only be generated as
- * long as it does not already exist in the output directory.
- *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model
- */
-class OrdersLines extends BaseOrdersLines {
-
-} // OrdersLines
+    public function setOriginalPrice($v)
+    {
+        return parent::setOriginalPrice(number_format($v, 2, '.', ''));
+    }
+}

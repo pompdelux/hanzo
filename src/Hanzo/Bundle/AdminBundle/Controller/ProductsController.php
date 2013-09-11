@@ -674,6 +674,19 @@ class ProductsController extends CoreController
         $reference->setProductsImagesId($image_id);
         $reference->setCategoriesId($category_id);
 
+        $c = ProductsToCategoriesQuery::create()
+            ->filterByProductsId($image->getProductsId())
+            ->filterByCategoriesId($category_id)
+            ->findOne($this->getDbConnection())
+        ;
+
+        if (!$c instanceof ProductsToCategories) {
+            $c = new ProductsToCategories();
+            $c->setProductsId($image->getProductsId());
+            $c->setCategoriesId($category_id);
+            $c->save($this->getDbConnection());
+        }
+
         try {
             $reference->save($this->getDbConnection());
 
