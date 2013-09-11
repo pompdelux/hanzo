@@ -178,7 +178,7 @@ class ReplicationService
                         $p = new ProductsToCategories();
                         $p->setProductsId($image->getProductsId());
                         $p->setCategoriesId($image->getCategoriesId());
-                        $p->save();
+                        $p->save($conn);
                     }
                 } catch (\Exception $e) {}
             }
