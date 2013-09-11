@@ -10,8 +10,8 @@ var rma = (function($) {
         if($select.val()) {
             // Show the appopriate dropdown for causes.
             $context.find('.rma-' + $select.val() + '-causes').slideDown('fast').css('display', 'inline-block');
+            $context.find('.rma-description').slideDown('fast').css('display', 'inline-block');
             if($select.val() === 'replacement' || $select.val() === 'warranty') {
-                $context.find('.rma-description').slideDown('fast').css('display', 'inline-block');
                 $context.find('.rma-productreplacement').slideDown('fast');
             }
         }
@@ -24,7 +24,23 @@ var rma = (function($) {
     $('.rma-form').on('submit', function(event) {
         event.preventDefault();
         generatePdf();
-    })
+    });
+
+    $('#rma-return-all-order').on('change', function(e) {
+        if($(this).attr('checked')) {
+            // Return all products.
+            // 1. Hide products
+            // 2. Set all product to return activity
+            // 3. Set all causes to Fortrudt Køb
+
+            $('.rma-form .rma-activitycode').val('return');
+            $('.rma-form .rma-return-causes')
+                .slideDown('fast')
+                .css('display', 'inline-block')
+                .find('select')
+                    .val('Fortrudt køb (pengene retur)');
+        }
+    });
 
   };
 

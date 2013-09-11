@@ -48,7 +48,7 @@
             </trans-unit>
             <trans-unit id="rma.form.activity.replacement.causes">
                 <source>rma.form.activity.replacement.causes</source>
-                <target>Byttes til anden str. (venligst notér ny str.)|Byttes til anden farve (venligst notér farve)|</target>
+                <target>Byttes til anden str.|Byttes til anden farve</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.warranty.causes">
                 <source>rma.form.activity.warranty.causes</source>
@@ -61,6 +61,10 @@
             <trans-unit id="rma.form.submit">
                 <source>rma.form.submit</source>
                 <target>Opret returseddel...</target>
+            </trans-unit>
+            <trans-unit id="rma.form.label.return.order">
+                <source>rma.form.label.return.order</source>
+                <target>Returner hele ordren</target>
             </trans-unit>
             <trans-unit id="rma.form.label.replacement">
                 <source>rma.form.label.replacement</source>

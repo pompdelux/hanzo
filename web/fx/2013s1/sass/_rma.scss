@@ -14,6 +14,9 @@
                 height: 60px;
             }
         }
+        thead input[type=checkbox]{
+            display: inline-block;
+        }
         .quickorder {
             label, input, select {
                 display: inline;

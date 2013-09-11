@@ -10,7 +10,12 @@
         <thead>
           <tr>
             <th class="left">{{ "products"|trans }}</th>
-            <th></th>
+            <th>
+              <label>
+                {{ 'rma.form.label.return.order'|trans({}, 'rma') }}
+                <input type="checkbox" id="rma-return-all-order">
+              </label>
+            </th>
           </tr>
         </thead>
         <tbody>

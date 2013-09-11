@@ -2861,6 +2861,9 @@ div.quickorder input.quantity {
   width: 60%;
   height: 60px;
 }
+#body-rma .product-table thead input[type=checkbox] {
+  display: inline-block;
+}
 #body-rma .product-table .quickorder label, #body-rma .product-table .quickorder input, #body-rma .product-table .quickorder select {
   display: inline;
   width: auto;
