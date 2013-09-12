@@ -12,9 +12,9 @@
             </trans-unit>
             <trans-unit id="rma.form.description">
                 <source>rma.form.description</source>
-                <target>
-                    For hver vare du ønsker at returnere, bedes du venligst vælge en aktivitet og en årsag. Noter ligeledes eventuelle kommentarer til den enkelte vare. Returnerer du varer fra flere forskellige ordrer, skal du oprette en retursedel pr. ordre. Dine returvarer sender du naturligvis blot i en og samme pakke, uanset om de kommer fra flere ordrer. Husk at vedlægge retursedlen / retursedlerne i din pakke. Læs mere om returneringen på retursedlen, som bliver oprettet, når du klikker på "Opret returseddel" knappen.
-                </target>
+                <target><![CDATA[
+                    <p>For hver vare du ønsker at returnere, bedes du venligst vælge en aktivitet og en årsag. Noter ligeledes eventuelle kommentarer til den enkelte vare.<br>Returnerer du varer fra flere forskellige ordrer, skal du oprette en retursedel pr. ordre. Dine returvarer sender du naturligvis blot i en og samme pakke, uanset om de kommer fra flere ordrer. Husk at vedlægge retursedlen / retursedlerne i din pakke. Læs mere om returneringen på retursedlen, som bliver oprettet, når du klikker på "Opret returseddel" knappen.</p>
+                ]]></target>
             </trans-unit>
             <trans-unit id="rma.form.label.activitycode">
                 <source>rma.form.label.activitycode</source>
