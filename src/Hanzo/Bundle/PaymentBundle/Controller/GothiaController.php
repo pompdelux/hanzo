@@ -68,9 +68,7 @@ class GothiaController extends CoreController
         ;
 
         // No gothia account has been created and associated with the customer, so lets do that
-        $step = 2;
         if (is_null($gothiaAccount)) {
-            $step = 1;
             $gothiaAccount = new GothiaAccounts();
         }
 
@@ -85,7 +83,6 @@ class GothiaController extends CoreController
 
         return $this->render('PaymentBundle:Gothia:payment.html.twig',array(
             'page_type' => 'gothia',
-            'step' => $step,
             'form' => $form->createView(),
         ));
     }

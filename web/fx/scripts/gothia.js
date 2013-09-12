@@ -56,7 +56,7 @@ var gothia = (function($) {
             $("#gothia-payment-step-1").slideUp();
             $("#gothia-payment-step-2").slideDown();
             confirmInit();
-            //$("#gothia-payment-step-2 form").submit(); TODO: Dette burde gøre så vi slap for et step!
+            $("#gothia-payment-step-2 form").submit(); // TODO: Dette burde gøre så vi slap for et step!
           }
           else
           {
@@ -71,6 +71,11 @@ var gothia = (function($) {
         }
       });
     });
+
+    // If the SSN is already known, do the submit to trigger checkCustomer
+    if($('#form_social_security_num').val() && $('#form_bank_account_no').length === 0) {
+      $("#gothia-account-container form").submit();
+    }
   };
 
   pub.init = function( step ) {
