@@ -156,7 +156,8 @@ class ReplicationService
 
             ProductsImagesCategoriesSortQuery::create()
                 ->filterByProductsId(0, \Criteria::GREATER_THAN)
-                ->delete($conn);
+                ->delete($conn)
+            ;
 
             foreach ($images as $image) {
                 $s = new ProductsImagesCategoriesSort();
