@@ -186,3 +186,10 @@ muneris:
 ax:
     wsdl: ""
 
+# @see https://github.com/KnpLabs/KnpSnappyBundle
+knp_snappy:
+    pdf:
+        enabled:    true
+        binary:     %wkhtmltopdf_bin%
+    image:
+        enabled:    false

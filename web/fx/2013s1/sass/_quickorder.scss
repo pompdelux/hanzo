@@ -1,13 +1,12 @@
-#quickorder {
-  form {
-    padding-bottom: 50px;
-    label{
-      display: inline-block;
-      width: auto;
-    }
-    input, select {
-      margin-right: 5px;
-    }
+form.quickorder,
+div.quickorder {
+  padding-bottom: 50px;
+  label{
+    display: inline-block;
+    width: auto;
+  }
+  input, select {
+    margin-right: 5px;
   }
   .ui-autocomplete {
     list-style-type: none;
@@ -17,7 +16,7 @@
       cursor: pointer;
     }
   }
-  input#quantity {
+  input.quantity {
     width: 50px;
     text-align: center;
   }
