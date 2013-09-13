@@ -98,7 +98,7 @@ foreach ($images as $image) {
         ));
 
         foreach ($categories_stmt->fetchAll(PDO::FETCH_OBJ) as $record) {
-            if (false !== strpos($record->context, '_')) {
+            if (preg_match('/[_|-]/', $record->context)) {
                 $product_categories_ids[$products_id][$record->categories_id] = $record->categories_id;
             }
 
