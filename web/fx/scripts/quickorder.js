@@ -110,7 +110,7 @@ var quickorder = (function($) {
                                 }
                             });
 
-                            $select.parent().show()
+                            $select.parent().show();
                             $select.focus().select();
                         }else{
                             if (response.message) {
