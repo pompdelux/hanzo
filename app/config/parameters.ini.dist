@@ -33,6 +33,7 @@
     compass_bin="/usr/local/bin/compass"
     node_bin="/usr/local/bin/node"
     uglifyjs_bin="/usr/local/bin/uglify"
+    wkhtmltopdf_bin="/usr/bin/wkhtmltopdf"
 
     varnish_host=""
     varnish_port=""

@@ -355,6 +355,7 @@ button {
 	&.delete,
 	&.edit,
 	&.show,
+	&.return,
 	&.pdf{
 		display: inline-block;
 	}
@@ -377,6 +378,11 @@ button {
 		@include icons-sprite(pdf);
 		height: icons-sprite-height(pdf);
 		width: icons-sprite-width(pdf);
+	}
+	&.return{
+		@include icons-sprite(return);
+		height: icons-sprite-height(return);
+		width: icons-sprite-width(return);
 	}
 }
 
