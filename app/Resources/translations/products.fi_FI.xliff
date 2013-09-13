@@ -109,20 +109,20 @@
         <target>
           <![CDATA[Olemme tällä kaudella erityisen ihastuneita lintuihin, ja tämä oli pakko saada mukaan mallistoon! Pusero on ihanan pehmeää jerseymateriaalia ja näyttää tosi kivalta. Värin valinnasta tulee vaikeaa! Valmistettu Öko-Tex-standardin 100 mukaisesti.	<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex.png">	<br><br>	Saatavana: Rose, Wine ja Curry	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 95 % puuvillaa ja 5 % elastaania]]>
         </target>
-      </trans-unit>
-      <trans-unit id="Bangkok Little Blouse">
-        <source>description.Bangkok_Little_Blouse</source>
+      </trans-unit>	  
+	  <trans-unit id="Bangkok Little BLOUSE">
+        <source>description.Bangkok_Little_BLOUSE</source>
         <target>
-          <![CDATA[Pitkähihainen T-paita, jossa on supertrendikäs spray-tyyli. Ehkä äidin vaatekaapista löytyy jotain samantapaista? Valmistettu Öko-Tex-standardin 100 mukaisesti. Pestävä erillään tai samankaltaisten värien kanssa, koska vaatteesta voi irrota väriä.	<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex.png">	<br><br>	Saatavana: Grey, Rose, Ice Blue ja Blue	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Pitkähihainen T-paita, jossa on supertrendikäs spray-tyyli. Ehkä äidin vaatekaapista löytyy jotain samantapaista? Valmistettu Öko-Tex-standardin 100 mukaisesti. Pestävä erillään tai samankaltaisten värien kanssa, koska vaatteesta voi irrota väriä.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex.png">	<br><br>	Saatavana: Grey, Rose, Ice Blue ja Blue	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
-      <trans-unit id="Bangkok Blouse">
-        <source>description.Bangkok_Blouse</source>
+      <trans-unit id="Bangkok BLOUSE">
+        <source>description.Bangkok_BLOUSE</source>
         <target>
-          <![CDATA[Pitkähihainen T-paita, jossa on supertrendikäs spray-tyyli. Ehkä äidin vaatekaapista löytyy jotain samantapaista? Valmistettu Öko-Tex-standardin 100 mukaisesti. Pestävä erillään tai samankaltaisten värien kanssa, koska vaatteesta voi irrota väriä.	<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex.png">	<br><br>	Saatavana: Grey, Rose, Ice Blue ja Blue	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Pitkähihainen T-paita, jossa on supertrendikäs spray-tyyli. Ehkä äidin vaatekaapista löytyy jotain samantapaista? Valmistettu Öko-Tex-standardin 100 mukaisesti. Pestävä erillään tai samankaltaisten värien kanssa, koska vaatteesta voi irrota väriä.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex.png">	<br><br>	Saatavana: Grey, Rose, Ice Blue ja Blue	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
-      <trans-unit id="Barcelona PANTS">
+	       <trans-unit id="Barcelona PANTS">
         <source>description.Barcelona_PANTS</source>
         <target>
           <![CDATA[Tyylikkäät housut ihanaa materiaalia. Hienot passpoaltaskut ja pieni laskos edessä. Lahkeensuissa on rypytykset ja sisäpuolelta löytyy lisää yksityiskohtia. Housuissa on säädettävä vyötärö. 		<br><br>	Saatavana: Rose, Sand ja Black 	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 64 % puuvillaa, 35 % polyesteria, 1 % elastaania]]>
