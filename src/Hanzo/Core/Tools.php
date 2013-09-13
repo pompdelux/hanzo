@@ -69,8 +69,11 @@ class Tools
      */
     public static function stripTags($text)
     {
-        $v = preg_replace('/<+\s*\/*\s*([A-Z][A-Z0-9]*)\b[^>]*\/*\s*>+/i', ' ', $text);
+        $v = preg_replace('/<+\s*\/*\s*([A-Z][A-Z0-9]*)\b[^>]*\/*\s*>+/i', ' ', strip_tags($text));
+        // Remove twig tags.
+        $v = preg_replace('/(\{(\{|%)|\{\#).*(#\}|(\}|%)\})/', ' ', $v);
         $v = preg_replace('/[ ]+/', ' ', trim($v));
+
         return $v;
     }
 

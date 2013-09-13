@@ -73,7 +73,7 @@ class MiscExtension extends Twig_Extension
         return array(
             'money'  => new Twig_Filter_Method($this, 'moneyFormat'),
             'og_description' => new Twig_Filter_Method($this, 'ogDescription'),
-            'strip_text' => new Twig_Filter_Method($this, 'stripText'),
+            'strip_tags' => new Twig_Filter_Method($this, 'stripTags'),
         );
     }
 
@@ -457,15 +457,14 @@ DOC;
     }
 
     /**
-     * Wrap the Tools::stripText function to an twig function.
+     * Wrap the Tools::stripTags function to an twig function.
      *
-     * @param  string  $value   The value to strip
-     * @param  string  $with    Replace spaces with this.
-     * @param  boolean $lower   Lower?
+     * @param string $value
+     *   The value to strip
      * @return string
      */
-    public function stripText($value, $with = '-', $lower = TRUE)
+    public function stripTags($value)
     {
-      return Tools::stripText($value, $with, $lower);
+      return Tools::stripTags($value);
     }
 }
