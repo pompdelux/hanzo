@@ -229,8 +229,8 @@ var quickorder = (function($) {
                               '<td class="right price">'+response.latest.single_price+'</td> '+
                               '<td class="center quantity">'+quantity+'</td> '+
                               '<td class="actions"> '+
-                                '<a href="'+base_url+'remove-from-basket/'+response.latest.id+'" class="delete"><img src="'+cdn_url+'fx/images/delete_icon.png" alt="'+Translator.get('js:delete')+'"></a> '+
-                                '<a href="'+response.latest.id+'" class="edit"><img src="'+cdn_url+'fx/images/edit_icon.png" alt="'+Translator.get('js:edit')+'"></a> '+
+                                '<a href="'+base_url+'remove-from-basket/'+response.latest.id+'" class="sprite delete"></a> '+
+                                '<a href="'+response.latest.id+'" class="sprite edit"></a> '+
                               '</td> '+
                               '<td class="right total">'+response.latest.price+'</td> '+
                             '</tr>');
