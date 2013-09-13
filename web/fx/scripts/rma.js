@@ -55,12 +55,12 @@ var rma = (function($) {
             products.push({
                 'id' : id,
                 'rma_activitycode' : $(el).val(),
-                'rma_cause' : $('#' + $(el).val() + '-cause-productid-' + id).val(),
-                'rma_description' : $('#description-productid-' + id).val(),
+                'rma_cause' : $('#' + $(el).val() + '-cause-lineid-' + id).val(),
+                'rma_description' : $('#description-lineid-' + id).val(),
                 'rma_replacement' : {
-                    'master' : $('#replacement-master-productid-' + id).val(),
-                    'size' : $('#replacement-size-productid-' + id).val(),
-                    'color' : $('#replacement-color-productid-' + id).val(),
+                    'master' : $('#replacement-master-lineid-' + id).val(),
+                    'size' : $('#replacement-size-lineid-' + id).val(),
+                    'color' : $('#replacement-color-lineid-' + id).val(),
                 }
             });
         }
