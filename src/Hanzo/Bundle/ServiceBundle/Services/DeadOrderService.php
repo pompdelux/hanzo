@@ -179,6 +179,7 @@ class DeadOrderService
 
                 if (!$this->dryrun) {
                     $order->toPreviousVersion();
+                    $this->ax->lockUnlockSalesOrder($order, false);
                 } else {
                     $this->debug( '  Should role back to prew version of order... ' . implode(', ', $order->getVersionIds()));
                 }
