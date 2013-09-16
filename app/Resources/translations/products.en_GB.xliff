@@ -109,15 +109,15 @@
         <target>
           <![CDATA[This season we have a lot of styles influenced by birds and this one is a must-have! The blouse is made from soft jersey quality - a really cool style. Choosing colour will be difficult! The blouse is Oeko Tex standard 100 certified.	<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex.png">	<br><br>	Available in: Rose, Wine and Curry	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 95% Cotton and 5% Elasthane]]>
         </target>
-      </trans-unit>
-      <trans-unit id="Bangkok Little Blouse">
-        <source>description.Bangkok_Little_Blouse</source>
+      </trans-unit>	  
+	  <trans-unit id="Bangkok Little BLOUSE">
+        <source>description.Bangkok_Little_BLOUSE</source>
         <target>
           <![CDATA[Long sleeve T-shirt with a super trendy spray look. Maybe Mum has one similar in her wardrobe? The T-shirt is Oeko Tex standard 100 certified. Note: Wash separately or wash with similar colours due to excess dye.	<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex.png">	<br><br>	Available in: Grey, Rose, Ice Blue and Blue	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 100% Cotton]]>
         </target>
       </trans-unit>
-      <trans-unit id="Bangkok Blouse">
-        <source>description.Bangkok_Blouse</source>
+      <trans-unit id="Bangkok BLOUSE">
+        <source>description.Bangkok_BLOUSE</source>
         <target>
           <![CDATA[Long sleeve T-shirt with a super trendy spray look. Maybe Mum has one similar in her wardrobe? The T-shirt is Oeko Tex standard 100 certified. Note: Wash separately or wash with similar colours due to excess dye.	<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex.png">	<br><br>	Available in: Grey, Rose, Ice Blue and Blue	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 100% Cotton]]>
         </target>
@@ -797,7 +797,7 @@
       <trans-unit id="Kentucky Little TUNIC">
         <source>description.Kentucky_Little_TUNIC</source>
         <target>
-          <![CDATA[Our well-known A-shape tunic in a pretty allover print. It is fully lined and has narrow woven ribbon trim around the neckline and back button closure. 		<br><br>	Available in: Curry, Blue and Rose	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 100% Cotton]]>
+          <![CDATA[Pretty A-shape tunic, fully lined, in a lovely allover floral print. With cute gathered sleeves and ruffle hem.<br><br>	Available in: Curry, Blue and Rose	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 100% Cotton]]>
         </target>
       </trans-unit>
       <trans-unit id="Kentucky TUNIC">

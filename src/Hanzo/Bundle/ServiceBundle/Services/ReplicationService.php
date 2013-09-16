@@ -16,6 +16,8 @@ use Hanzo\Model\ProductsImagesProductReferences;
 use Hanzo\Model\ProductsImagesProductReferencesQuery;
 use Hanzo\Model\ProductsImagesCategoriesSort;
 use Hanzo\Model\ProductsImagesCategoriesSortQuery;
+use Hanzo\Model\ProductsToCategories;
+use Hanzo\Model\ProductsToCategoriesQuery;
 
 class ReplicationService
 {
@@ -154,7 +156,8 @@ class ReplicationService
 
             ProductsImagesCategoriesSortQuery::create()
                 ->filterByProductsId(0, \Criteria::GREATER_THAN)
-                ->delete($conn);
+                ->delete($conn)
+            ;
 
             foreach ($images as $image) {
                 $s = new ProductsImagesCategoriesSort();
@@ -165,6 +168,19 @@ class ReplicationService
 
                 try {
                     $s->save($conn);
+
+                    $c = ProductsToCategoriesQuery::create()
+                        ->filterByProductsId($image->getProductsId())
+                        ->filterByCategoriesId($image->getCategoriesId())
+                        ->count($conn)
+                    ;
+
+                    if (0 == $c) {
+                        $p = new ProductsToCategories();
+                        $p->setProductsId($image->getProductsId());
+                        $p->setCategoriesId($image->getCategoriesId());
+                        $p->save($conn);
+                    }
                 } catch (\Exception $e) {}
             }
         }

@@ -1,0 +1,7 @@
+parameters:
+#    rma.example.class: Hanzo\Bundle\RMABundle\Example
+
+services:
+#    rma.example:
+#        class: %rma.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

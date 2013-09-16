@@ -31,6 +31,7 @@ class AppKernel extends Kernel
             new Liip\ThemeBundle\LiipThemeBundle(),
             new Nelmio\SecurityBundle\NelmioSecurityBundle(),
             new Misd\GuzzleBundle\MisdGuzzleBundle(),
+            new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
 
             new Hanzo\Bundle\AccountBundle\AccountBundle(),
             new Hanzo\Bundle\AdminBundle\AdminBundle(),
@@ -57,6 +58,7 @@ class AppKernel extends Kernel
             new Hanzo\Bundle\LocationLocatorBundle\LocationLocatorBundle(),
             new Hanzo\Bundle\MunerisBundle\MunerisBundle(),
             new Hanzo\Bundle\AxBundle\AxBundle(),
+            new Hanzo\Bundle\RMABundle\RMABundle(),
         );
 
         if (preg_match('/^(test|dev)_/', $this->getEnvironment())) {

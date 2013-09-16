@@ -8,11 +8,11 @@ class OrdersLines extends BaseOrdersLines
 {
     public function setPrice($v)
     {
-        return parent::setPrice(round($v, 2));
+        return parent::setPrice(number_format($v, 2, '.', ''));
     }
 
     public function setOriginalPrice($v)
     {
-        return parent::setOriginalPrice(round($v, 2));
+        return parent::setOriginalPrice(number_format($v, 2, '.', ''));
     }
 }
