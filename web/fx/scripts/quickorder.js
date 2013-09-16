@@ -152,22 +152,22 @@ var quickorder = (function($) {
     //$('#color').on('keydown mouseup touchend' ,function(e){
     $('.quickorder .color').on('keydown mouseup blur' ,function(e){
         $context = $(this).parent().parent();
+        $quantity_select = $context.find('.quantity');
         if (e.type == 'keydown') {
             var keyCode = e.keyCode || e.which;
             if (keyCode === 9 || keyCode === 13) {
                 e.preventDefault();
 
                 if($(this).val() !== ''){
-                    $context.next('label').show()
-                        .find('select').focus().select();
+                    $quantity_select.parent().show();
+                    $quantity_select.focus().select();
                     $('input[type=submit]', $context).show();
                 }
             }
         }else{
             if($(this).val() !== ''){
-
-                $context.next('label').show()
-                    .find('select').focus().select();
+                $quantity_select.parent().show();
+                $quantity_select.focus().select();
                 $('input[type=submit]', $context).show();
             }
         }
