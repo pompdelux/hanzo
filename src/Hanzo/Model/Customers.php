@@ -7,7 +7,7 @@ use PropelPDO;
 use Hanzo\Model\om\BaseCustomers;
 use Hanzo\Model\CustomersQuery;
 
-use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
  * Skeleton subclass for representing a row from the 'customers' table.
@@ -20,7 +20,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *
  * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model
  */
-class Customers extends BaseCustomers implements UserInterface
+class Customers extends BaseCustomers implements AdvancedUserInterface
 {
     protected $acl;
 
@@ -83,10 +83,9 @@ class Customers extends BaseCustomers implements UserInterface
     {
         if ($email = $this->getEmail()) {
             $customer = CustomersQuery::create()->findOneByEmail($email);
-            if (!$customer instanceof Customers) {
-                return true;
+            if ($customer instanceof Customers) {
+                return false;
             }
-            return false;
         }
 
         return true;
@@ -106,6 +105,10 @@ class Customers extends BaseCustomers implements UserInterface
             'ROLE_EMPLOYEE',
             'ROLE_USER',
         ),
+        'customers_service' => array(
+            'ROLE_USER',
+            'ROLE_CUSTOMERS_SERVICE'
+        ),
         'admin' => array(
             'ROLE_ADMIN',
             'ROLE_EMPLOYEE',
@@ -115,67 +118,117 @@ class Customers extends BaseCustomers implements UserInterface
     );
 
     // NICETO: should not be hardcoded
-    private $admins = array(
-        // pompdelux
-        'pd@pompdelux.dk',
-        'mh@pompdelux.dk',
-        'hd@pompdelux.dk',
-        'lv@pompdelux.dk',
-        // bellcom
-        'hf@bellcom.dk',
-        'ulrik@bellcom.dk',
-        'mmh@bellcom.dk',
-        'andersbryrup@gmail.com',
-        'hanzo@bellcom.dk',
-    );
+    private $extended = [
+        // admin
+        'hd@pompdelux.dk'        => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
+        'lv@pompdelux.dk'        => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
+        'jm@pompdelux.dk'        => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
+        // admin (bellcom)
+        'hf@bellcom.dk'          => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
+        'ulrik@bellcom.dk'       => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
+        'mmh@bellcom.dk'         => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
+        'andersbryrup@gmail.com' => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
+        'hanzo@bellcom.dk'       => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
+        // stats
+        'pd@pompdelux.dk'        => ['ROLE_STATS', 'ROLE_EMPLOYEE'],
+        'mh@pompdelux.dk'        => ['ROLE_STATS', 'ROLE_EMPLOYEE'],
+        // marketing
+        'tj@pompdelux.dk'        => ['ROLE_MARKETING', 'ROLE_EMPLOYEE'],
+        // sales
+        'kk@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
+        'ak@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
+        'sj@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
+        'nj@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
+        'pc@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
+        'mc@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
+        'mle@pompdelux.dk'       => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
+        // customer service
+        'pf@pompdelux.dk'        => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
+        'tt@pompdelux.dk'        => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
+        'cd@pompdelux.dk'        => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
+        'ml@pompdelux.dk'        => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
+        'mpe@pompdelux.dk'       => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
+        'ln@pompdelux.dk'        => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
+        'ia@pompdelux.dk'        => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
+        'hbo@pompdelux.dk'       => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
+        'js@pompdelux.dk'        => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
+    ];
 
-    private $sales = array(
-        'kk@pompdelux.dk',
-        'ak@pompdelux.dk',
-        'sj@pompdelux.dk',
-        'nj@pompdelux.dk',
-        'pc@pompdelux.dk',
-        'mc@pompdelux.dk',
-        'mle@pompdelux.dk',
-        // admins
-        'hd@pompdelux.dk',
-        'lv@pompdelux.dk',
-     );
-
+    /**
+     * {@inheritDoc}
+     */
     public function getRoles()
     {
         $group = $this->getGroups();
         $roles = $this->map[$group->getName()];
+        $email = strtolower($this->getUsername());
 
-        // NICETO: should not be hardcoded
-        if (in_array($this->getUsername(), $this->admins)) {
-            $roles[] = 'ROLE_EMPLOYEE';
-            $roles[] = 'ROLE_ADMIN';
-        }
-
-        // NICETO: should not be hardcoded
-        if (in_array($this->getUsername(), $this->sales)) {
-            $roles[] = 'ROLE_SALES';
-            $roles[] = 'ROLE_CONSULTANT';
+        if (isset($this->extended[$email])) {
+            $roles = array_merge($roles, $this->extended[$email]);
         }
 
         return $roles;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getSalt()
     {
         return '';
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getUsername()
     {
         return $this->getEmail();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getUser()
     {
         return $this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function eraseCredentials() {}
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isEnabled()
+    {
+        return $this->getIsActive();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
 } // Customers

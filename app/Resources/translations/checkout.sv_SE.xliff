@@ -369,28 +369,28 @@
         <source>product.group.lb</source>
         <target>Little Boy</target>
       </trans-unit>
-      <trans-unit id="coupon" approved="no">
-         <source>coupon</source>
+      <trans-unit id="gift_card" approved="no">
+         <source>gift_card</source>
          <target>Presentkort</target>
       </trans-unit>
-      <trans-unit id="toggle.coupon.form" approved="no">
-         <source>toggle.coupon.form</source>
+      <trans-unit id="toggle.gift_card.form" approved="no">
+         <source>toggle.gift_card.form</source>
          <target>» Skriv in din presentkortskod</target>
       </trans-unit>
-      <trans-unit id="invalid.coupon.code" approved="no">
-         <source>invalid.coupon.code</source>
+      <trans-unit id="invalid.gift_card.code" approved="no">
+         <source>invalid.gift_card.code</source>
          <target>Ogiltig presentkortskod</target>
       </trans-unit>
-      <trans-unit id="coupon.label" approved="no">
-         <source>coupon.label</source>
+      <trans-unit id="gift_card.label" approved="no">
+         <source>gift_card.label</source>
          <target>Presentkortskod:</target>
       </trans-unit>
-      <trans-unit id="apply.coupon.discount" approved="no">
-         <source>apply.coupon.discount</source>
+      <trans-unit id="apply.gift_card.discount" approved="no">
+         <source>apply.gift_card.discount</source>
          <target>Spara</target>
       </trans-unit>
-      <trans-unit id="coupon.description" approved="no">
-         <source>coupon.description</source>
+      <trans-unit id="gift_card.description" approved="no">
+         <source>gift_card.description</source>
          <target>Nedan kan du skriva din presentkortskod. Om du inte använder hela beloppet på ditt presentkort, kan du använda presentkortskoden igen nästa gång du handlar hos POMPdeLUX.</target>
       </trans-unit>
       <trans-unit id="address.copy" approved="no">
@@ -415,6 +415,30 @@
         <target>Din värdinnerabatt är större än beställningsbeloppet.
 Du måste lägga till fler varor.
 </target>
+      </trans-unit>
+      <trans-unit id="coupon" approved="no">
+        <source>coupon</source>
+        <target>Rabattkod</target>
+      </trans-unit>
+      <trans-unit id="coupon.toggle.form" approved="no">
+        <source>coupon.toggle.form</source>
+        <target>» Skriv din rabattkod</target>
+      </trans-unit>
+      <trans-unit id="coupon.description" approved="no">
+        <source>coupon.description</source>
+        <target>Man kan endast använda en rabattkod per order.</target>
+      </trans-unit>
+      <trans-unit id="coupon.apply.discount" approved="no">
+        <source>coupon.apply.discount</source>
+        <target>Spara</target>
+      </trans-unit>
+      <trans-unit id="coupon.label" approved="no">
+        <source>coupon.label</source>
+        <target>Skriv din rabattkod.</target>
+      </trans-unit>
+      <trans-unit id="coupon.invalid.code" approved="no">
+        <source>coupon.invalid.code</source>
+        <target>Ogiltig rabattkod</target>
       </trans-unit>
     </body>
   </file>

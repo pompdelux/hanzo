@@ -38,14 +38,14 @@ abstract class BaseCmsThreadI18nPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 3;
 
-    /** the column name for the ID field */
-    const ID = 'cms_thread_i18n.ID';
+    /** the column name for the id field */
+    const ID = 'cms_thread_i18n.id';
 
-    /** the column name for the LOCALE field */
-    const LOCALE = 'cms_thread_i18n.LOCALE';
+    /** the column name for the locale field */
+    const LOCALE = 'cms_thread_i18n.locale';
 
-    /** the column name for the TITLE field */
-    const TITLE = 'cms_thread_i18n.TITLE';
+    /** the column name for the title field */
+    const TITLE = 'cms_thread_i18n.title';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -164,9 +164,9 @@ abstract class BaseCmsThreadI18nPeer
             $criteria->addSelectColumn(CmsThreadI18nPeer::LOCALE);
             $criteria->addSelectColumn(CmsThreadI18nPeer::TITLE);
         } else {
-            $criteria->addSelectColumn($alias . '.ID');
-            $criteria->addSelectColumn($alias . '.LOCALE');
-            $criteria->addSelectColumn($alias . '.TITLE');
+            $criteria->addSelectColumn($alias . '.id');
+            $criteria->addSelectColumn($alias . '.locale');
+            $criteria->addSelectColumn($alias . '.title');
         }
     }
 
@@ -250,7 +250,7 @@ abstract class BaseCmsThreadI18nPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -355,8 +355,15 @@ abstract class BaseCmsThreadI18nPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (CmsThreadI18nPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         CmsThreadI18nPeer::$instances = array();
     }
 
@@ -729,7 +736,7 @@ abstract class BaseCmsThreadI18nPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return CmsThreadI18nPeer::OM_CLASS;
     }

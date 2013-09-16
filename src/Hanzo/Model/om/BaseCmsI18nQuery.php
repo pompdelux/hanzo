@@ -27,6 +27,7 @@ use Hanzo\Model\CmsI18nQuery;
  * @method CmsI18nQuery orderBySettings($order = Criteria::ASC) Order by the settings column
  * @method CmsI18nQuery orderByIsRestricted($order = Criteria::ASC) Order by the is_restricted column
  * @method CmsI18nQuery orderByIsActive($order = Criteria::ASC) Order by the is_active column
+ * @method CmsI18nQuery orderByOnMobile($order = Criteria::ASC) Order by the on_mobile column
  *
  * @method CmsI18nQuery groupById() Group by the id column
  * @method CmsI18nQuery groupByLocale() Group by the locale column
@@ -37,6 +38,7 @@ use Hanzo\Model\CmsI18nQuery;
  * @method CmsI18nQuery groupBySettings() Group by the settings column
  * @method CmsI18nQuery groupByIsRestricted() Group by the is_restricted column
  * @method CmsI18nQuery groupByIsActive() Group by the is_active column
+ * @method CmsI18nQuery groupByOnMobile() Group by the on_mobile column
  *
  * @method CmsI18nQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method CmsI18nQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -58,6 +60,7 @@ use Hanzo\Model\CmsI18nQuery;
  * @method CmsI18n findOneBySettings(string $settings) Return the first CmsI18n filtered by the settings column
  * @method CmsI18n findOneByIsRestricted(boolean $is_restricted) Return the first CmsI18n filtered by the is_restricted column
  * @method CmsI18n findOneByIsActive(boolean $is_active) Return the first CmsI18n filtered by the is_active column
+ * @method CmsI18n findOneByOnMobile(boolean $on_mobile) Return the first CmsI18n filtered by the on_mobile column
  *
  * @method array findById(int $id) Return CmsI18n objects filtered by the id column
  * @method array findByLocale(string $locale) Return CmsI18n objects filtered by the locale column
@@ -68,6 +71,7 @@ use Hanzo\Model\CmsI18nQuery;
  * @method array findBySettings(string $settings) Return CmsI18n objects filtered by the settings column
  * @method array findByIsRestricted(boolean $is_restricted) Return CmsI18n objects filtered by the is_restricted column
  * @method array findByIsActive(boolean $is_active) Return CmsI18n objects filtered by the is_active column
+ * @method array findByOnMobile(boolean $on_mobile) Return CmsI18n objects filtered by the on_mobile column
  */
 abstract class BaseCmsI18nQuery extends ModelCriteria
 {
@@ -87,7 +91,7 @@ abstract class BaseCmsI18nQuery extends ModelCriteria
      * Returns a new CmsI18nQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     CmsI18nQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   CmsI18nQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return CmsI18nQuery
      */
@@ -151,12 +155,12 @@ abstract class BaseCmsI18nQuery extends ModelCriteria
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   CmsI18n A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 CmsI18n A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `ID`, `LOCALE`, `TITLE`, `PATH`, `OLD_PATH`, `CONTENT`, `SETTINGS`, `IS_RESTRICTED`, `IS_ACTIVE` FROM `cms_i18n` WHERE `ID` = :p0 AND `LOCALE` = :p1';
+        $sql = 'SELECT `id`, `locale`, `title`, `path`, `old_path`, `content`, `settings`, `is_restricted`, `is_active`, `on_mobile` FROM `cms_i18n` WHERE `id` = :p0 AND `locale` = :p1';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);
@@ -264,7 +268,8 @@ abstract class BaseCmsI18nQuery extends ModelCriteria
      * <code>
      * $query->filterById(1234); // WHERE id = 1234
      * $query->filterById(array(12, 34)); // WHERE id IN (12, 34)
-     * $query->filterById(array('min' => 12)); // WHERE id > 12
+     * $query->filterById(array('min' => 12)); // WHERE id >= 12
+     * $query->filterById(array('max' => 12)); // WHERE id <= 12
      * </code>
      *
      * @see       filterByCms()
@@ -279,8 +284,22 @@ abstract class BaseCmsI18nQuery extends ModelCriteria
      */
     public function filterById($id = null, $comparison = null)
     {
-        if (is_array($id) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($id)) {
+            $useMinMax = false;
+            if (isset($id['min'])) {
+                $this->addUsingAlias(CmsI18nPeer::ID, $id['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($id['max'])) {
+                $this->addUsingAlias(CmsI18nPeer::ID, $id['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(CmsI18nPeer::ID, $id, $comparison);
@@ -481,7 +500,7 @@ abstract class BaseCmsI18nQuery extends ModelCriteria
     public function filterByIsRestricted($isRestricted = null, $comparison = null)
     {
         if (is_string($isRestricted)) {
-            $is_restricted = in_array(strtolower($isRestricted), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+            $isRestricted = in_array(strtolower($isRestricted), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
         }
 
         return $this->addUsingAlias(CmsI18nPeer::IS_RESTRICTED, $isRestricted, $comparison);
@@ -508,10 +527,37 @@ abstract class BaseCmsI18nQuery extends ModelCriteria
     public function filterByIsActive($isActive = null, $comparison = null)
     {
         if (is_string($isActive)) {
-            $is_active = in_array(strtolower($isActive), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+            $isActive = in_array(strtolower($isActive), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
         }
 
         return $this->addUsingAlias(CmsI18nPeer::IS_ACTIVE, $isActive, $comparison);
+    }
+
+    /**
+     * Filter the query on the on_mobile column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByOnMobile(true); // WHERE on_mobile = true
+     * $query->filterByOnMobile('yes'); // WHERE on_mobile = true
+     * </code>
+     *
+     * @param     boolean|string $onMobile The value to use as filter.
+     *              Non-boolean arguments are converted using the following rules:
+     *                * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
+     *                * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
+     *              Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return CmsI18nQuery The current query, for fluid interface
+     */
+    public function filterByOnMobile($onMobile = null, $comparison = null)
+    {
+        if (is_string($onMobile)) {
+            $onMobile = in_array(strtolower($onMobile), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+        }
+
+        return $this->addUsingAlias(CmsI18nPeer::ON_MOBILE, $onMobile, $comparison);
     }
 
     /**
@@ -520,8 +566,8 @@ abstract class BaseCmsI18nQuery extends ModelCriteria
      * @param   Cms|PropelObjectCollection $cms The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   CmsI18nQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 CmsI18nQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByCms($cms, $comparison = null)
     {

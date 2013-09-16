@@ -33,10 +33,14 @@
     compass_bin="/usr/local/bin/compass"
     node_bin="/usr/local/bin/node"
     uglifyjs_bin="/usr/local/bin/uglify"
+    wkhtmltopdf_bin="/usr/bin/wkhtmltopdf"
 
     varnish_host=""
     varnish_port=""
     varnish_secret=""
     varnish_timeout=""
+
+; same as varnish_host - must be set on test and prod servers
+    proxy_ip=""
 
     nno_api_key="delux"

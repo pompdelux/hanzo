@@ -27,7 +27,7 @@ use Hanzo\Bundle\PaymentBundle\Gothia\GothiaApiCallException;
 class OrdersController extends CoreController
 {
 
-    public function indexAction($customer_id, $domain_key, $pager)
+    public function indexAction(Request $request, $customer_id, $domain_key, $pager)
     {
 
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
@@ -36,7 +36,7 @@ class OrdersController extends CoreController
 
         $hanzo = Hanzo::getInstance();
         $container = $hanzo->container;
-        $route = $container->get('request')->get('_route');
+        $route = $request->get('_route');
         $router = $container->get('router');
 
         $orders = OrdersQuery::create();
@@ -55,12 +55,12 @@ class OrdersController extends CoreController
         }
 
         if (isset($_GET['debitor'])) {
-            $debitor = $this->getRequest()->get('debitor', null);
+            $debitor = $request->query->get('debitor', null);
 
             $orders = $orders->filterByCustomersId($debitor);
         }
         if (isset($_GET['q'])) {
-            $q_clean = $this->getRequest()->get('q', null);
+            $q_clean = $request->query->get('q', null);
             $q = '%'.$q_clean.'%';
             $orders = $orders->filterByCustomersId($q_clean)
                 ->_or()
@@ -81,7 +81,7 @@ class OrdersController extends CoreController
             $orders_count = OrdersLinesQuery::create()
                 ->filterByOrdersId($order->getId())
                 ->withColumn('SUM(orders_lines.quantity)','TotalLines')
-                ->withColumn('SUM(orders_lines.price)','TotalPrice')
+                ->withColumn('SUM(orders_lines.price * orders_lines.quantity)','TotalPrice')
                 ->groupByOrdersId()
                 ->findOne($this->getDbConnection())
             ;
@@ -123,13 +123,12 @@ class OrdersController extends CoreController
 
             $pages = array();
             foreach ($orders->getLinks(20) as $page) {
-                $pages[$page] = $router->generate($route, array('customer_id' => $customer_id, 'pager' => $page), TRUE);
-
+                $pages[$page] = $router->generate($route, array('customer_id' => $customer_id, 'domain_key' => $domain_key, 'pager' => $page), TRUE);
             }
 
             $paginate = array(
-                'next' => ($orders->getNextPage() == $pager ? '' : $router->generate($route, array('customer_id' => $customer_id, 'pager' => $orders->getNextPage()), TRUE)),
-                'prew' => ($orders->getPreviousPage() == $pager ? '' : $router->generate($route, array('customer_id' => $customer_id, 'pager' => $orders->getPreviousPage()), TRUE)),
+                'next' => ($orders->getNextPage() == $pager ? '' : $router->generate($route, array('customer_id' => $customer_id, 'domain_key' => $domain_key, 'pager' => $orders->getNextPage()), TRUE)),
+                'prew' => ($orders->getPreviousPage() == $pager ? '' : $router->generate($route, array('customer_id' => $customer_id, 'domain_key' => $domain_key, 'pager' => $orders->getPreviousPage()), TRUE)),
 
                 'pages' => $pages,
                 'index' => $pager
@@ -143,15 +142,17 @@ class OrdersController extends CoreController
             'paginate' => $paginate,
             'domains_availible' => $domains_availible,
             'domain_key' => $domain_key,
-            'database' => $this->getRequest()->getSession()->get('database')
+            'database' => $request->getSession()->get('database')
         ));
     }
 
-    public function viewAction($order_id)
+    public function viewAction(Request $request, $order_id)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
+
+        $hanzo = Hanzo::getInstance();
 
         $order = OrdersQuery::create()
             ->filterById($order_id)
@@ -168,8 +169,29 @@ class OrdersController extends CoreController
             ->filterByOrdersId($order_id)
             ->orderByNs()
             ->orderByCKey()
+            ->joinWithOrders()
             ->find($this->getDbConnection())
         ;
+
+        $attributes = array();
+        $attachments = array();
+        foreach ($order_attributes as $attribute) {
+            if ('attachment' == $attribute->getNs()) {
+                $o = $attribute->getOrders();
+                $folder = $this->mapLanguageToPdfDir($o->getLanguagesId()).'_'.$o->getCreatedAt('Y');
+                $attachments[] = [
+                    'key'  => $attribute->getCKey(),
+                    'file' => $attribute->getCValue(),
+                    'path' => $hanzo->get('core.cdn') . 'pdf.php?' . http_build_query(array(
+                        'folder' => $folder,
+                        'file'   => $attribute->getCValue(),
+                        'key'    => md5(time())
+                    ))
+                ];
+            } else {
+                $attributes[] = $attribute;
+            }
+        }
 
         $order_sync_states = OrdersSyncLogQuery::create()
             ->orderByCreatedAt('ASC')
@@ -187,7 +209,6 @@ class OrdersController extends CoreController
             )->getForm()
         ;
 
-        $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
             $form_state->bindRequest($request);
 
@@ -205,10 +226,11 @@ class OrdersController extends CoreController
         return $this->render('AdminBundle:Orders:view.html.twig', array(
             'order'  => $order,
             'order_lines' => $order_lines,
-            'order_attributes' => $order_attributes,
+            'order_attributes' => $attributes,
+            'order_attachments' => $attachments,
             'order_sync_states' => $order_sync_states,
             'form_state' => $form_state->createView(),
-            'database' => $this->getRequest()->getSession()->get('database')
+            'database' => $request->getSession()->get('database')
         ));
     }
 
@@ -232,8 +254,8 @@ class OrdersController extends CoreController
             return $this->response('Der findes ingen ordre med ID #' . $order_id);
         }
 
-        $debtor = $this->get('ax_manager')->sendDebtor($order->getCustomers($this->getDbConnection()), true, $this->getDbConnection());
-        $order = $this->get('ax_manager')->sendOrder($order, true, $this->getDbConnection());
+        $debtor = $this->get('ax.out')->sendDebtor($order->getCustomers($this->getDbConnection()), true, $this->getDbConnection());
+        $order = $this->get('ax.out')->sendOrder($order, true, $this->getDbConnection());
 
         if ('json' === $this->getFormat()) {
             $html = '<h2>Debtor:</h2><pre>'.print_r($debtor, 1).'</pre><h2>Order:</h2><pre>'.print_r($order,1).'</pre>';
@@ -245,7 +267,7 @@ class OrdersController extends CoreController
         }
     }
 
-    public function syncStatusAction($status = 'failed')
+    public function syncStatusAction(Request $request, $status = 'failed')
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
@@ -259,7 +281,7 @@ class OrdersController extends CoreController
         }
         return $this->render('AdminBundle:Orders:failed_orders_list.html.twig', array(
             'orders'  => $orders,
-            'database' => $this->getRequest()->getSession()->get('database')
+            'database' => $request->getSession()->get('database')
         ));
     }
 
@@ -295,7 +317,7 @@ class OrdersController extends CoreController
         }
 
         try {
-            $this->get('ax_manager')->sendOrder($order, false, $this->getDbConnection());
+            $this->get('ax.out')->sendOrder($order, false, $this->getDbConnection());
         } catch (Exception $e) {
             if ('json' === $this->getFormat()) {
                 return $this->json_response(array(
@@ -359,7 +381,7 @@ class OrdersController extends CoreController
      * deleteOrder
      * @return void
      **/
-    public function deleteAction($order_id)
+    public function deleteAction(Request $request, $order_id)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
@@ -437,7 +459,6 @@ class OrdersController extends CoreController
             )->getForm()
         ;
 
-        $request = $this->getRequest();
         $updated_orders = array();
         if ('POST' === $request->getMethod()) {
             $form_state->bindRequest($request);
@@ -470,7 +491,7 @@ class OrdersController extends CoreController
         return $this->render('AdminBundle:Orders:change_state.html.twig', array(
           'form' => $form_state->createView(),
           'updated_orders' => $updated_orders,
-          'database' => $this->getRequest()->getSession()->get('database')
+          'database' => $request->getSession()->get('database')
         ));
     }
 
@@ -479,7 +500,7 @@ class OrdersController extends CoreController
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function viewDeadAction()
+    public function viewDeadAction(Request $request)
     {
         $deadOrderBuster = $this->get('deadorder_manager');
         $orders = $deadOrderBuster->getOrders(null);
@@ -490,7 +511,7 @@ class OrdersController extends CoreController
 
         return $this->render('AdminBundle:Orders:dead_orders_list.html.twig', array(
               'orders' => $orders,
-              'database' => $this->getRequest()->getSession()->get('database')
+              'database' => $request->getSession()->get('database')
             ));
     }
 
@@ -535,10 +556,10 @@ class OrdersController extends CoreController
      * @return Response
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function gothiaAction()
+    public function gothiaAction(Request $request)
     {
         return $this->render('AdminBundle:Orders:gothia.html.twig', [
-            'database' => $this->getRequest()->getSession()->get('database')
+            'database' => $request->getSession()->get('database')
         ] );
     }
 
@@ -547,33 +568,24 @@ class OrdersController extends CoreController
      * @return Response
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function gothiaGetOrderAction()
+    public function gothiaGetOrderAction(Request $request)
     {
         $return = array(
-            'status' => false,
-            'message'    => '',
-            'data'   => array(
-                ),
-            );
-
-        $request = $this->getRequest();
+            'status'  => false,
+            'message' => '',
+            'data'    => array(),
+        );
 
         $id = $request->request->get('order-id');
 
         $order = OrdersQuery::create()->findPK($id, $this->getDbConnection());
 
-        if ( !( $order instanceOf Orders ) )
-        {
+        if (!($order instanceOf Orders)) {
             $return['message'] = 'Ingen ordre med id "'.$id.'" fundet';
-        }
-        else
-        {
-            if ( $order->getBillingMethod() != 'gothia' )
-            {
+        } else {
+            if ($order->getBillingMethod() != 'gothia') {
                 $return['message'] = 'Der er ikke blevet brugt Gothia som betaling på ordre id "'.$id.'"';
-            }
-            else
-            {
+            } else {
                 $customer = $order->getCustomers($this->getDbConnection());
 
                 $return['status'] = true;
@@ -582,10 +594,10 @@ class OrdersController extends CoreController
                     'id'       => $id,
                     'customer' => array(
                         'name' => $customer->getFirstName().' '. $customer->getLastName(),
-                        ),
+                    ),
                     'amount'   => $order->getTotalPrice(),
                     'state'    => $order->getState(),
-                    );
+                );
             }
         }
 
@@ -597,9 +609,8 @@ class OrdersController extends CoreController
      * @return Response
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function gothiaPlaceReservationAction()
+    public function gothiaPlaceReservationAction(Request $request)
     {
-        $request    = $this->getRequest();
         $api        = $this->get('payment.gothiaapi');
         $id         = $request->request->get('order-id');
         $order      = OrdersQuery::create()->findPK($id, $this->getDbConnection());
@@ -676,9 +687,8 @@ class OrdersController extends CoreController
      * @return Response
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function gothiaCancelReservationAction()
+    public function gothiaCancelReservationAction(Request $request)
     {
-        $request    = $this->getRequest();
         $api        = $this->get('payment.gothiaapi');
         $id         = $request->request->get('order-id');
         $order      = OrdersQuery::create()->findPK($id, $this->getDbConnection());

@@ -68,7 +68,7 @@ abstract class BaseSettingsQuery extends ModelCriteria
      * Returns a new SettingsQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     SettingsQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   SettingsQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return SettingsQuery
      */
@@ -132,12 +132,12 @@ abstract class BaseSettingsQuery extends ModelCriteria
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   Settings A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 Settings A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `C_KEY`, `NS`, `TITLE`, `C_VALUE`, `CREATED_AT`, `UPDATED_AT` FROM `settings` WHERE `C_KEY` = :p0 AND `NS` = :p1';
+        $sql = 'SELECT `c_key`, `ns`, `title`, `c_value`, `created_at`, `updated_at` FROM `settings` WHERE `c_key` = :p0 AND `ns` = :p1';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_STR);

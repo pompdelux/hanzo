@@ -1,12 +1,8 @@
 /**
-| _base
+| _base.
 */
 @import "compass/reset";
 @import "compass/utilities";
-
-
-.sprite{display:inline-block;}
-.sprite-block{display:block;}
 
 html {
     overflow-y: scroll;
@@ -83,7 +79,7 @@ hr {
 	margin: 0;
 	width: 100%;
 	@include icons-sprite(divider);
-	height: icons-sprite-height(divider);
+	height: icons-sprite-height(divider) + 5px;
 	&.left {
 		@include icons-sprite(divider_left);
 	}
@@ -288,6 +284,25 @@ table{
 	}
 }
 
+.image-caption {
+	position: relative;
+	margin-bottom: 3px;
+	span {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		color: white;
+		font-size: $heading-size;
+		font-family: $font-sans;
+		text-transform: uppercase;
+
+		padding: 10px;
+	}
+	&.caption-right span {
+		right: 0;
+		text-align: right;
+	}
+}
 
 // Helpers
 .align-left,
@@ -340,6 +355,7 @@ button {
 	&.delete,
 	&.edit,
 	&.show,
+	&.return,
 	&.pdf{
 		display: inline-block;
 	}
@@ -362,6 +378,11 @@ button {
 		@include icons-sprite(pdf);
 		height: icons-sprite-height(pdf);
 		width: icons-sprite-width(pdf);
+	}
+	&.return{
+		@include icons-sprite(return);
+		height: icons-sprite-height(return);
+		width: icons-sprite-width(return);
 	}
 }
 
@@ -470,6 +491,14 @@ ol{
 .main > .grid_4-5,
 .container_8 .row{
 	margin-bottom: 6px;
+}
+
+// pseudo 33% centered grid cell
+.g33c {
+  width: 33%;
+  text-align: center;
+  float: left;
+  margin-bottom: 12px;
 }
 
 ul.form-errors li {

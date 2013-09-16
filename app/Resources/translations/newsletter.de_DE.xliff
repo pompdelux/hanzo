@@ -4,39 +4,49 @@
     <body>
       <trans-unit id="newsletter_1">
         <source>block.subscribe.newsletter_heading</source>
-        <target>Tilmeld nyhedsbrev</target>
+        <target>Newsletter bestellen</target>
       </trans-unit>
       <trans-unit id="newsletter_2">
         <source>block.subscribe.name_label</source>
-        <target>Navn</target>
+        <target>Name</target>
       </trans-unit>
       <trans-unit id="newsletter_3">
         <source>block.subscribe.email_label</source>
-        <target>E-mailadresse</target>
+        <target>E-Mail-Adresse</target>
       </trans-unit>
       <trans-unit id="newsletter_4">
         <source>block.subscribe.submit_button</source>
-        <target>Tilmeld</target>
+        <target>Bestellen</target>
       </trans-unit>
       <trans-unit id="newsletter_5">
         <source>block.your.newsletters_heading</source>
-        <target>Dine tilmeldinger til nyhedsbreve</target>
+        <target>Ihre Anmeldungen zu Newslettern</target>
       </trans-unit>
       <trans-unit id="block.update.submit_button">
         <source>block.update.submit_button</source>
-        <target>Opdater dine tilmeldninger til nyhedsbreve</target>
+        <target>Ihre Anmeldungen zu Newslettern aktualisieren</target>
       </trans-unit>
       <trans-unit id="block.unsubscribe.submit_button">
         <source>block.unsubscribe.submit_button</source>
-        <target>Afmeld</target>
+        <target>Abmelden</target>
       </trans-unit>
       <trans-unit id="subscribed.text">
         <source>subscribed.text</source>
-        <target>Du er nu tilmeldt vores nyhedsbrev.</target>
+        <target>Sie haben sich erfolgreich für unseren Newsletter angemeldet.</target>
+      </trans-unit>
+      <trans-unit id="unsubscribed.text">
+        <source>unsubscribed.text</source>
+        <target>Sie haben sich erfolgreich vom Newsletter von POMPdeLUX abgemeldet.</target>
       </trans-unit>
       <trans-unit id="invalid.email.address">
         <source>invalid.email.address</source>
-        <target>Den indtastede e-mailaddresse er ikke en gyldig adresse.</target>
+        <target>Die eingegebene E-Mail-Adresse ist ungültig.</target>
+      </trans-unit>
+      <trans-unit id="terms.link">
+        <source>terms.link</source>
+        <target><![CDATA[
+          <a href="/de_DE/home/kundendienst/abgs" target="_blank">Durch die Anmeldung akzeptiere ich POMPdeLUX allgemeine Bedingungen.</a>
+        ]]></target>
       </trans-unit>
     </body>
   </file>

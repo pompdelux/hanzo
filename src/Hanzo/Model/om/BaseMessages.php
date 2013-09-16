@@ -92,6 +92,12 @@ abstract class BaseMessages extends BaseObject implements Persistent
      */
     protected $alreadyInValidation = false;
 
+    /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
     // i18n behavior
 
     /**
@@ -163,22 +169,25 @@ abstract class BaseMessages extends BaseObject implements Persistent
             // while technically this is not a default value of null,
             // this seems to be closest in meaning.
             return null;
-        } else {
-            try {
-                $dt = new DateTime($this->created_at);
-            } catch (Exception $x) {
-                throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->created_at, true), $x);
-            }
+        }
+
+        try {
+            $dt = new DateTime($this->created_at);
+        } catch (Exception $x) {
+            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->created_at, true), $x);
         }
 
         if ($format === null) {
             // We cast here to maintain BC in API; obviously we will lose data if we're dealing with pre-/post-epoch dates.
             return (int) $dt->format('U');
-        } elseif (strpos($format, '%') !== false) {
-            return strftime($format, $dt->format('U'));
-        } else {
-            return $dt->format($format);
         }
+
+        if (strpos($format, '%') !== false) {
+            return strftime($format, $dt->format('U'));
+        }
+
+        return $dt->format($format);
+
     }
 
     /**
@@ -202,22 +211,25 @@ abstract class BaseMessages extends BaseObject implements Persistent
             // while technically this is not a default value of null,
             // this seems to be closest in meaning.
             return null;
-        } else {
-            try {
-                $dt = new DateTime($this->updated_at);
-            } catch (Exception $x) {
-                throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->updated_at, true), $x);
-            }
+        }
+
+        try {
+            $dt = new DateTime($this->updated_at);
+        } catch (Exception $x) {
+            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->updated_at, true), $x);
         }
 
         if ($format === null) {
             // We cast here to maintain BC in API; obviously we will lose data if we're dealing with pre-/post-epoch dates.
             return (int) $dt->format('U');
-        } elseif (strpos($format, '%') !== false) {
-            return strftime($format, $dt->format('U'));
-        } else {
-            return $dt->format($format);
         }
+
+        if (strpos($format, '%') !== false) {
+            return strftime($format, $dt->format('U'));
+        }
+
+        return $dt->format($format);
+
     }
 
     /**
@@ -228,7 +240,7 @@ abstract class BaseMessages extends BaseObject implements Persistent
      */
     public function setId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -249,7 +261,7 @@ abstract class BaseMessages extends BaseObject implements Persistent
      */
     public function setNs($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -270,7 +282,7 @@ abstract class BaseMessages extends BaseObject implements Persistent
      */
     public function setKey($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -373,7 +385,7 @@ abstract class BaseMessages extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
+            $this->postHydrate($row, $startcol, $rehydrate);
             return $startcol + 5; // 5 = MessagesPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -584,7 +596,7 @@ abstract class BaseMessages extends BaseObject implements Persistent
 
             if ($this->collMessagesI18ns !== null) {
                 foreach ($this->collMessagesI18ns as $referrerFK) {
-                    if (!$referrerFK->isDeleted()) {
+                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
@@ -617,19 +629,19 @@ abstract class BaseMessages extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(MessagesPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`ID`';
+            $modifiedColumns[':p' . $index++]  = '`id`';
         }
         if ($this->isColumnModified(MessagesPeer::NS)) {
-            $modifiedColumns[':p' . $index++]  = '`NS`';
+            $modifiedColumns[':p' . $index++]  = '`ns`';
         }
         if ($this->isColumnModified(MessagesPeer::KEY)) {
-            $modifiedColumns[':p' . $index++]  = '`KEY`';
+            $modifiedColumns[':p' . $index++]  = '`key`';
         }
         if ($this->isColumnModified(MessagesPeer::CREATED_AT)) {
-            $modifiedColumns[':p' . $index++]  = '`CREATED_AT`';
+            $modifiedColumns[':p' . $index++]  = '`created_at`';
         }
         if ($this->isColumnModified(MessagesPeer::UPDATED_AT)) {
-            $modifiedColumns[':p' . $index++]  = '`UPDATED_AT`';
+            $modifiedColumns[':p' . $index++]  = '`updated_at`';
         }
 
         $sql = sprintf(
@@ -642,19 +654,19 @@ abstract class BaseMessages extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`ID`':
+                    case '`id`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`NS`':
+                    case '`ns`':
                         $stmt->bindValue($identifier, $this->ns, PDO::PARAM_STR);
                         break;
-                    case '`KEY`':
+                    case '`key`':
                         $stmt->bindValue($identifier, $this->key, PDO::PARAM_STR);
                         break;
-                    case '`CREATED_AT`':
+                    case '`created_at`':
                         $stmt->bindValue($identifier, $this->created_at, PDO::PARAM_STR);
                         break;
-                    case '`UPDATED_AT`':
+                    case '`updated_at`':
                         $stmt->bindValue($identifier, $this->updated_at, PDO::PARAM_STR);
                         break;
                 }
@@ -725,11 +737,11 @@ abstract class BaseMessages extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -1100,13 +1112,15 @@ abstract class BaseMessages extends BaseObject implements Persistent
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
-     * @return void
+     * @return Messages The current object (for fluent API support)
      * @see        addMessagesI18ns()
      */
     public function clearMessagesI18ns()
     {
         $this->collMessagesI18ns = null; // important to set this to null since that means it is uninitialized
         $this->collMessagesI18nsPartial = null;
+
+        return $this;
     }
 
     /**
@@ -1178,6 +1192,7 @@ abstract class BaseMessages extends BaseObject implements Persistent
                       $this->collMessagesI18nsPartial = true;
                     }
 
+                    $collMessagesI18ns->getInternalIterator()->rewind();
                     return $collMessagesI18ns;
                 }
 
@@ -1205,12 +1220,15 @@ abstract class BaseMessages extends BaseObject implements Persistent
      *
      * @param PropelCollection $messagesI18ns A Propel collection.
      * @param PropelPDO $con Optional connection object
+     * @return Messages The current object (for fluent API support)
      */
     public function setMessagesI18ns(PropelCollection $messagesI18ns, PropelPDO $con = null)
     {
-        $this->messagesI18nsScheduledForDeletion = $this->getMessagesI18ns(new Criteria(), $con)->diff($messagesI18ns);
+        $messagesI18nsToDelete = $this->getMessagesI18ns(new Criteria(), $con)->diff($messagesI18ns);
 
-        foreach ($this->messagesI18nsScheduledForDeletion as $messagesI18nRemoved) {
+        $this->messagesI18nsScheduledForDeletion = unserialize(serialize($messagesI18nsToDelete));
+
+        foreach ($messagesI18nsToDelete as $messagesI18nRemoved) {
             $messagesI18nRemoved->setMessages(null);
         }
 
@@ -1221,6 +1239,8 @@ abstract class BaseMessages extends BaseObject implements Persistent
 
         $this->collMessagesI18ns = $messagesI18ns;
         $this->collMessagesI18nsPartial = false;
+
+        return $this;
     }
 
     /**
@@ -1238,22 +1258,22 @@ abstract class BaseMessages extends BaseObject implements Persistent
         if (null === $this->collMessagesI18ns || null !== $criteria || $partial) {
             if ($this->isNew() && null === $this->collMessagesI18ns) {
                 return 0;
-            } else {
-                if($partial && !$criteria) {
-                    return count($this->getMessagesI18ns());
-                }
-                $query = MessagesI18nQuery::create(null, $criteria);
-                if ($distinct) {
-                    $query->distinct();
-                }
-
-                return $query
-                    ->filterByMessages($this)
-                    ->count($con);
             }
-        } else {
-            return count($this->collMessagesI18ns);
+
+            if($partial && !$criteria) {
+                return count($this->getMessagesI18ns());
+            }
+            $query = MessagesI18nQuery::create(null, $criteria);
+            if ($distinct) {
+                $query->distinct();
+            }
+
+            return $query
+                ->filterByMessages($this)
+                ->count($con);
         }
+
+        return count($this->collMessagesI18ns);
     }
 
     /**
@@ -1273,7 +1293,7 @@ abstract class BaseMessages extends BaseObject implements Persistent
             $this->initMessagesI18ns();
             $this->collMessagesI18nsPartial = true;
         }
-        if (!$this->collMessagesI18ns->contains($l)) { // only add it if the **same** object is not already associated
+        if (!in_array($l, $this->collMessagesI18ns->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddMessagesI18n($l);
         }
 
@@ -1291,6 +1311,7 @@ abstract class BaseMessages extends BaseObject implements Persistent
 
     /**
      * @param	MessagesI18n $messagesI18n The messagesI18n object to remove.
+     * @return Messages The current object (for fluent API support)
      */
     public function removeMessagesI18n($messagesI18n)
     {
@@ -1300,9 +1321,11 @@ abstract class BaseMessages extends BaseObject implements Persistent
                 $this->messagesI18nsScheduledForDeletion = clone $this->collMessagesI18ns;
                 $this->messagesI18nsScheduledForDeletion->clear();
             }
-            $this->messagesI18nsScheduledForDeletion[]= $messagesI18n;
+            $this->messagesI18nsScheduledForDeletion[]= clone $messagesI18n;
             $messagesI18n->setMessages(null);
         }
+
+        return $this;
     }
 
     /**
@@ -1317,6 +1340,7 @@ abstract class BaseMessages extends BaseObject implements Persistent
         $this->updated_at = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->resetModified();
         $this->setNew(true);
@@ -1334,12 +1358,15 @@ abstract class BaseMessages extends BaseObject implements Persistent
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
             if ($this->collMessagesI18ns) {
                 foreach ($this->collMessagesI18ns as $o) {
                     $o->clearAllReferences($deep);
                 }
             }
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
         // i18n behavior

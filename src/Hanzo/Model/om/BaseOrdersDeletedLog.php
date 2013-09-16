@@ -101,6 +101,12 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
     protected $alreadyInValidation = false;
 
     /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
+    /**
      * Get the [orders_id] column value.
      *
      * @return int
@@ -191,22 +197,25 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
             // while technically this is not a default value of null,
             // this seems to be closest in meaning.
             return null;
-        } else {
-            try {
-                $dt = new DateTime($this->deleted_at);
-            } catch (Exception $x) {
-                throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->deleted_at, true), $x);
-            }
+        }
+
+        try {
+            $dt = new DateTime($this->deleted_at);
+        } catch (Exception $x) {
+            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->deleted_at, true), $x);
         }
 
         if ($format === null) {
             // We cast here to maintain BC in API; obviously we will lose data if we're dealing with pre-/post-epoch dates.
             return (int) $dt->format('U');
-        } elseif (strpos($format, '%') !== false) {
-            return strftime($format, $dt->format('U'));
-        } else {
-            return $dt->format($format);
         }
+
+        if (strpos($format, '%') !== false) {
+            return strftime($format, $dt->format('U'));
+        }
+
+        return $dt->format($format);
+
     }
 
     /**
@@ -217,7 +226,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
      */
     public function setOrdersId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -238,7 +247,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
      */
     public function setCustomersId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -259,7 +268,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
      */
     public function setName($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -280,7 +289,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
      */
     public function setEmail($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -301,7 +310,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
      */
     public function setTrigger($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -322,7 +331,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
      */
     public function setContent($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -343,7 +352,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
      */
     public function setDeletedBy($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -426,7 +435,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
+            $this->postHydrate($row, $startcol, $rehydrate);
             return $startcol + 8; // 8 = OrdersDeletedLogPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -636,28 +645,28 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(OrdersDeletedLogPeer::ORDERS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`ORDERS_ID`';
+            $modifiedColumns[':p' . $index++]  = '`orders_id`';
         }
         if ($this->isColumnModified(OrdersDeletedLogPeer::CUSTOMERS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`CUSTOMERS_ID`';
+            $modifiedColumns[':p' . $index++]  = '`customers_id`';
         }
         if ($this->isColumnModified(OrdersDeletedLogPeer::NAME)) {
-            $modifiedColumns[':p' . $index++]  = '`NAME`';
+            $modifiedColumns[':p' . $index++]  = '`name`';
         }
         if ($this->isColumnModified(OrdersDeletedLogPeer::EMAIL)) {
-            $modifiedColumns[':p' . $index++]  = '`EMAIL`';
+            $modifiedColumns[':p' . $index++]  = '`email`';
         }
         if ($this->isColumnModified(OrdersDeletedLogPeer::TRIGGER)) {
-            $modifiedColumns[':p' . $index++]  = '`TRIGGER`';
+            $modifiedColumns[':p' . $index++]  = '`trigger`';
         }
         if ($this->isColumnModified(OrdersDeletedLogPeer::CONTENT)) {
-            $modifiedColumns[':p' . $index++]  = '`CONTENT`';
+            $modifiedColumns[':p' . $index++]  = '`content`';
         }
         if ($this->isColumnModified(OrdersDeletedLogPeer::DELETED_BY)) {
-            $modifiedColumns[':p' . $index++]  = '`DELETED_BY`';
+            $modifiedColumns[':p' . $index++]  = '`deleted_by`';
         }
         if ($this->isColumnModified(OrdersDeletedLogPeer::DELETED_AT)) {
-            $modifiedColumns[':p' . $index++]  = '`DELETED_AT`';
+            $modifiedColumns[':p' . $index++]  = '`deleted_at`';
         }
 
         $sql = sprintf(
@@ -670,28 +679,28 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`ORDERS_ID`':
+                    case '`orders_id`':
                         $stmt->bindValue($identifier, $this->orders_id, PDO::PARAM_INT);
                         break;
-                    case '`CUSTOMERS_ID`':
+                    case '`customers_id`':
                         $stmt->bindValue($identifier, $this->customers_id, PDO::PARAM_INT);
                         break;
-                    case '`NAME`':
+                    case '`name`':
                         $stmt->bindValue($identifier, $this->name, PDO::PARAM_STR);
                         break;
-                    case '`EMAIL`':
+                    case '`email`':
                         $stmt->bindValue($identifier, $this->email, PDO::PARAM_STR);
                         break;
-                    case '`TRIGGER`':
+                    case '`trigger`':
                         $stmt->bindValue($identifier, $this->trigger, PDO::PARAM_STR);
                         break;
-                    case '`CONTENT`':
+                    case '`content`':
                         $stmt->bindValue($identifier, $this->content, PDO::PARAM_STR);
                         break;
-                    case '`DELETED_BY`':
+                    case '`deleted_by`':
                         $stmt->bindValue($identifier, $this->deleted_by, PDO::PARAM_STR);
                         break;
-                    case '`DELETED_AT`':
+                    case '`deleted_at`':
                         $stmt->bindValue($identifier, $this->deleted_at, PDO::PARAM_STR);
                         break;
                 }
@@ -755,11 +764,11 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -1121,6 +1130,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
         $this->deleted_at = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->resetModified();
         $this->setNew(true);
@@ -1138,7 +1148,10 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
     }

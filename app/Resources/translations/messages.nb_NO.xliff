@@ -2,6 +2,10 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
+            <trans-unit id="size.guide.link">
+                <source>size.guide.link</source>
+                <target><![CDATA[<a href="/nb_NO/forside/webshop/info/sizeguide" target="_blank" title="Size guide">» Size guide</a>]]></target>
+            </trans-unit>
             <trans-unit id="out.of.stock">
                 <source>out.of.stock</source>
                 <target>Utsolgt</target>
@@ -120,7 +124,7 @@
             </trans-unit>
             <trans-unit id="store.address">
                 <source>store.address</source>
-                <target>Administrasjon: POMPdeLUX • c/o Granly Økonomiservice AS • Nordseterveien 14 • NO-1176 Oslo • Org.nr. 994798510 • mail@pompdelux.no • +47 2274 2600</target>
+                <target>Administrasjon: POMPdeLUX NO AS c/o Granly Økonomiservice AS • Nordseterveien 14 • NO-1176 Oslo • Org.nr. 994798510 • mail@pompdelux.no • +47 2274 2600</target>
             </trans-unit>
             <trans-unit id="order.edit.global.notice">
                 <source>order.edit.global.notice</source>
@@ -130,8 +134,8 @@
                         Du er i gang med å redigere E-ordrenummer <a href="%history_url%" title="se ordren">%order_id%</a>.<br>
                         Ønsker du å avbryte redigeringen av ordre - <a href="%stop_url%" title="stop editering af ordren">klikk her.</a>
                     </p>
-                    <p>Ønsker du å endre en farge eller en størrelse, skal du klikke på blyanten i kurven. Ønsker du å legge til flere varer, skal du klikke på menyen Webshop.</p>
-                    <p class="last">Når du er ferdig med dine endringer, skal du klikke på "Vis kurv" og følge trinn 1 til 6. Når du har gjennomført din ordre med ny kredittkortbetaling, vil den gamle betalingen blir slettet automatisk.</p>
+                    <p>Ønsker du å endre en farge eller en størrelse, skal du klikke på blyanten. Ønsker du å tilføye varer, skal du klikke på Girl, Boy, Little Girl eller Little Boy øverst på siden.</p>
+                    <p class="last">Når du er ferdig med endringene, skal du klikke på "Vis kurv" og trykke på ”Fortsett”. Når du har gjennomført ordren med ny kredittkortbetaling, vil den gamle betalingen automatisk bli slettet.<br><br><b>Merk:</b> Hvis du bruker Visa Electron eller MasterCard ved redigeringen, foretas det automatisk enda en reservasjon av totalbeløpet på ordren. Reservasjonen av totalbeløpet på din opprinnelige ordre blir førøvrig straks annullert av POMPdeLUX. Det kan derimot gå opptil 6 uker før reservasjonen oppheves av pengeinstituttet ditt.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="customer.service.contact.info">
@@ -150,7 +154,7 @@
                 <source>footer.address</source>
                 <target><![CDATA[
                     <ul>
-                        <li>Administrasjon: POMPdeLUX</li>
+                        <li>Administrasjon: POMPdeLUX NO AS</li>
                         <li>c/o Granly Økonomiservice AS</li>
                         <li>Nordseterveien 14</li>
                         <li>NO-1176 Oslo</li>
@@ -159,7 +163,7 @@
                         <li>+47 2274 2600</li>
 						<li>Retur av varer: POMPdeLUX C/O Tollpost Globe</li>
                         <li>Postens Godssenter</li>
-                        <li>NO-0668 Oslo</li>
+                        <li>NO-0068 Oslo</li>
                         <li><img src="%cdn%fx/images/creditcards_se.png" alt="credit cards" title="credit cards"></li>
                         <li><a href="http://www.facebook.com/sharer.php?u=%url%" class="facebook-button social-button" title="Share this page on facebook">Share</a></li>
                     </ul>
@@ -253,10 +257,10 @@
                 <target><![CDATA[
                 <h2>Home shopping</h2>
                 <ul class="menu">
-                    <li><a href="/nb_NO/forside/home-shopping" target="_blank">Om Home Shopping</a></li>
-                    <li><a href="/nb_NO/forside/home-shopping/finn-konsulent" target="_blank">Finn konsulent</a></li>
-                    <li><a href="/nb_NO/forside/home-shopping/finn-konsulent-pa-kartet" target="_blank">Finn konsulent på kartet</a></li>
-                    <li><a href="/nb_NO/forside/home-shopping/apent-hus" target="_blank">Åpent hus</a></li>
+                    <li><a href="/nb_NO/forside/home-shopping">Om Home Shopping</a></li>
+                    <li><a href="/nb_NO/forside/home-shopping/finn-konsulent">Finn konsulent</a></li>
+                    <li><a href="/nb_NO/forside/home-shopping/finn-konsulent-pa-kartet">Finn konsulent på kartet</a></li>
+                    <li><a href="/nb_NO/forside/home-shopping/apent-hus">Åpent hus</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>
@@ -265,16 +269,16 @@
                 <target><![CDATA[
                 <h2>Mer POMPdeLUX</h2>
                 <ul class="menu">
-				    <li><a href="/nb_NO/forside/katalog" target="_blank">Online katalog</a></li>
-					<li><a href="/nb_NO/forside/katalog/image-video" target="_blank">Image Video</a></li>
-                    <li><a href="/nb_NO/forside/nyheter" target="_blank">Nyheter</a></li>
-                    <li><a href="/nb_NO/forside/om-pompdelux/konseptet" target="_blank">Konseptet</a></li>
-                    <li><a href="/nb_NO/forside/om-pompdelux/sosial-ansvarlighet" target="_blank">Sosial ansvarlighet</a></li>
-                    <li><a href="/nb_NO/forside/om-pompdelux/jobb" target="_blank">Jobb</a></li>
-					<li><a href="/nb_NO/forside/webshop/info/oeko-tex" target="_blank">Oeko-Tex</a></li>
-					<li><a href="/nb_NO/forside/webshop/info/gots-organic" target="_blank">GOTS (Organic)</a></li>
-					<li><a href="/nb_NO/forside/webshop/info/credits" target="_blank">Credits</a></li>
-					<li><a href="/nb_NO/forside/webshop/info/credits" target="_blank">Kontakt</a></li>
+				    <li><a href="/nb_NO/forside/katalog">Online katalog</a></li>
+					<li><a href="/nb_NO/forside/katalog/backstage-video">Backstage video</a></li>
+                    <li><a href="/nb_NO/forside/nyheter">Nyheter</a></li>
+                    <li><a href="/nb_NO/forside/om-pompdelux/konseptet">Konseptet</a></li>
+                    <li><a href="/nb_NO/forside/om-pompdelux/sosial-ansvarlighet">Sosial ansvarlighet</a></li>
+                    <li><a href="/nb_NO/forside/om-pompdelux/jobb">Jobb</a></li>
+					<li><a href="/nb_NO/forside/webshop/info/oeko-tex">Oeko-Tex</a></li>
+					<li><a href="/nb_NO/forside/webshop/info/gots-organic">GOTS (Organic)</a></li>
+					<li><a href="/nb_NO/forside/webshop/info/credits">Credits</a></li>
+					<li><a href="/nb_NO/forside/webshop/info/credits">Kontakt</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>
@@ -283,15 +287,15 @@
                 <target><![CDATA[
                 <h2>Kundeservice</h2>
                 <ul class="menu">
-                    <li><a href="/nb_NO/kundservice/telefontider" target="_blank">Telefontider</a></li>
-                    <li><a href="/nb_NO/forside/kundeservice/fakta" target="_blank">Fakta</a></li>
-                    <li><a href="/nb_NO/forside/kundeservice/returnering" target="_blank">Returnering</a></li>
-                    <li><a href="/nb_NO/forside/kundeservice/bytting" target="_blank">Bytting</a></li>
-                    <li><a href="/nb_NO/forside/kundeservice/returskjema" target="_blank">Returskjema</a></li>
-                    <li><a href="/nb_NO/forside/webshop/info/vaskerad" target="_blank">Vaskeråd</a></li>
-					<li><a href="/nb_NO/forside/webshop/info/sizeguide" target="_blank">Sizeguide</a></li>
-					<li><a href="/nb_NO/forside/kundeservice/vilkar" target="_blank">Vilkår</a></li>
-					<li><a href="/nb_NO/forside/kundeservice/om-webshoppen" target="_blank">Om webshoppen</a></li>
+                    <li><a href="/nb_NO/kundservice/telefontider">Telefontider</a></li>
+                    <li><a href="/nb_NO/forside/kundeservice/fakta">Fakta</a></li>
+                    <li><a href="/nb_NO/forside/kundeservice/returnering">Returnering</a></li>
+                    <li><a href="/nb_NO/forside/kundeservice/bytting">Bytting</a></li>
+                    <li><a href="/nb_NO/forside/kundeservice/returskjema">Returskjema</a></li>
+                    <li><a href="/nb_NO/forside/webshop/info/vaskerad">Vaskeråd</a></li>
+					<li><a href="/nb_NO/forside/webshop/info/sizeguide">Sizeguide</a></li>
+					<li><a href="/nb_NO/forside/kundeservice/vilkar">Vilkår</a></li>
+					<li><a href="/nb_NO/forside/kundeservice/om-webshoppen">Om webshoppen</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>
@@ -330,6 +334,10 @@
             <trans-unit id="goto.top.link" approved="no">
                 <source>goto.top.link</source>
                 <target>Gå til toppen</target>
+            </trans-unit>
+            <trans-unit id="product.prices.description" approved="no">
+                <source>product.prices.description</source>
+                <target></target>
             </trans-unit>
         </body>
     </file>

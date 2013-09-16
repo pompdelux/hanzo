@@ -38,17 +38,17 @@ abstract class BaseConsultantNewsletterDraftsPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 4;
 
-    /** the column name for the ID field */
-    const ID = 'consultant_newsletter_drafts.ID';
+    /** the column name for the id field */
+    const ID = 'consultant_newsletter_drafts.id';
 
-    /** the column name for the CONSULTANTS_ID field */
-    const CONSULTANTS_ID = 'consultant_newsletter_drafts.CONSULTANTS_ID';
+    /** the column name for the consultants_id field */
+    const CONSULTANTS_ID = 'consultant_newsletter_drafts.consultants_id';
 
-    /** the column name for the SUBJECT field */
-    const SUBJECT = 'consultant_newsletter_drafts.SUBJECT';
+    /** the column name for the subject field */
+    const SUBJECT = 'consultant_newsletter_drafts.subject';
 
-    /** the column name for the CONTENT field */
-    const CONTENT = 'consultant_newsletter_drafts.CONTENT';
+    /** the column name for the content field */
+    const CONTENT = 'consultant_newsletter_drafts.content';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -168,10 +168,10 @@ abstract class BaseConsultantNewsletterDraftsPeer
             $criteria->addSelectColumn(ConsultantNewsletterDraftsPeer::SUBJECT);
             $criteria->addSelectColumn(ConsultantNewsletterDraftsPeer::CONTENT);
         } else {
-            $criteria->addSelectColumn($alias . '.ID');
-            $criteria->addSelectColumn($alias . '.CONSULTANTS_ID');
-            $criteria->addSelectColumn($alias . '.SUBJECT');
-            $criteria->addSelectColumn($alias . '.CONTENT');
+            $criteria->addSelectColumn($alias . '.id');
+            $criteria->addSelectColumn($alias . '.consultants_id');
+            $criteria->addSelectColumn($alias . '.subject');
+            $criteria->addSelectColumn($alias . '.content');
         }
     }
 
@@ -255,7 +255,7 @@ abstract class BaseConsultantNewsletterDraftsPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -360,8 +360,15 @@ abstract class BaseConsultantNewsletterDraftsPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (ConsultantNewsletterDraftsPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         ConsultantNewsletterDraftsPeer::$instances = array();
     }
 
@@ -734,7 +741,7 @@ abstract class BaseConsultantNewsletterDraftsPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return ConsultantNewsletterDraftsPeer::OM_CLASS;
     }

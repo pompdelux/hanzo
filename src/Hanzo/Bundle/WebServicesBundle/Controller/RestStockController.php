@@ -2,7 +2,6 @@
 
 namespace Hanzo\Bundle\WebServicesBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Monolog;
@@ -35,28 +34,29 @@ class RestStockController extends CoreController
      * @param str $version
      * @return Response json encoded responce
      */
-    public function checkAction($product_id = null, $version = 'v1')
+    public function checkAction(Request $request, $product_id = null, $version = 'v1')
     {
-        $request = $this->get('request');
         $quantity = $request->get('quantity', 0);
         $translator = $this->get('translator');
 
         $filters = array();
         if (empty($product_id)) {
-            if ($request->get('master')){
-                $filters['Master'] = $request->get('master');
+            if ($m = $request->get('master')){
+                $filters['Master'] = $m;
             }
-            if ($request->get('size')){
-                $filters['Size'] = $request->get('size');
+
+            if ($s = $request->get('size')){
+                $filters['Size'] = $s;
             }
-            if ($request->get('color')){
-                $filters['Color'] = $request->get('color');
+
+            if ($c = $request->get('color')){
+                $filters['Color'] = $c;
             }
         }
 
         if (empty($product_id) && empty($filters['Master'])) {
             return $this->json_response(array(
-                'status' => FALSE,
+                'status'  => FALSE,
                 'message' => $translator->trans('Missing parameters.'),
             ), 400);
         }
@@ -69,7 +69,7 @@ class RestStockController extends CoreController
 
             if (!$product instanceof Products) {
                 return $this->json_response(array(
-                    'status' => FALSE,
+                    'status'  => FALSE,
                     'message' => $translator->trans('No such product (#' . $product_id . ')'),
                 ), 400);
             }
@@ -81,10 +81,10 @@ class RestStockController extends CoreController
                 'message' => 'Product out of stock',
                 'data' => array(
                     'product_id' => $product->getId(),
-                    'master' => $product->getMaster(),
-                    'size' => $product->getSize(),
-                    'color' => $product->getColor(),
-                    'date' => '',
+                    'master'     => $product->getMaster(),
+                    'size'       => $product->getSize(),
+                    'color'      => $product->getColor(),
+                    'date'       => '',
             ));
 
             if ($result) {
@@ -94,8 +94,7 @@ class RestStockController extends CoreController
 
                 return $this->json_response($data, 200);
             }
-        }
-        else {
+        } else {
             $query = ProductsQuery::create()
                 ->filterByIsOutOfStock(FALSE)
                 ->useProductsDomainsPricesQuery()
@@ -118,14 +117,14 @@ class RestStockController extends CoreController
 
                 foreach ($result as $record) {
                     if ($dato = $stock->check($record)) {
-                        $date = ($dato instanceof \DateTime ? $dato->format('Y m/d') : '');
+                        $date = ($dato instanceof \DateTime ? $dato->format('d.m.Y') : '');
 
                         $data[] = array(
                             'product_id' => $record->getId(),
-                            'master' => $record->getMaster(),
-                            'size' => $record->getSize(),
-                            'color' => $record->getColor(),
-                            'date' => $date
+                            'master'     => $record->getMaster(),
+                            'size'       => $record->getSize(),
+                            'color'      => $record->getColor(),
+                            'date'       => $date
                         );
 
                         if ($date) {
@@ -141,9 +140,9 @@ class RestStockController extends CoreController
             }
 
             return $this->json_response(array(
-                'status' => TRUE,
+                'status'  => TRUE,
                 'message' => $message,
-                'data' => $data
+                'data'    => $data
             ));
         }
 

@@ -38,23 +38,23 @@ abstract class BaseConsultantsPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 6;
 
-    /** the column name for the INITIALS field */
-    const INITIALS = 'consultants.INITIALS';
+    /** the column name for the initials field */
+    const INITIALS = 'consultants.initials';
 
-    /** the column name for the INFO field */
-    const INFO = 'consultants.INFO';
+    /** the column name for the info field */
+    const INFO = 'consultants.info';
 
-    /** the column name for the EVENT_NOTES field */
-    const EVENT_NOTES = 'consultants.EVENT_NOTES';
+    /** the column name for the event_notes field */
+    const EVENT_NOTES = 'consultants.event_notes';
 
-    /** the column name for the HIDE_INFO field */
-    const HIDE_INFO = 'consultants.HIDE_INFO';
+    /** the column name for the hide_info field */
+    const HIDE_INFO = 'consultants.hide_info';
 
-    /** the column name for the MAX_NOTIFIED field */
-    const MAX_NOTIFIED = 'consultants.MAX_NOTIFIED';
+    /** the column name for the max_notified field */
+    const MAX_NOTIFIED = 'consultants.max_notified';
 
-    /** the column name for the ID field */
-    const ID = 'consultants.ID';
+    /** the column name for the id field */
+    const ID = 'consultants.id';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -176,12 +176,12 @@ abstract class BaseConsultantsPeer
             $criteria->addSelectColumn(ConsultantsPeer::MAX_NOTIFIED);
             $criteria->addSelectColumn(ConsultantsPeer::ID);
         } else {
-            $criteria->addSelectColumn($alias . '.INITIALS');
-            $criteria->addSelectColumn($alias . '.INFO');
-            $criteria->addSelectColumn($alias . '.EVENT_NOTES');
-            $criteria->addSelectColumn($alias . '.HIDE_INFO');
-            $criteria->addSelectColumn($alias . '.MAX_NOTIFIED');
-            $criteria->addSelectColumn($alias . '.ID');
+            $criteria->addSelectColumn($alias . '.initials');
+            $criteria->addSelectColumn($alias . '.info');
+            $criteria->addSelectColumn($alias . '.event_notes');
+            $criteria->addSelectColumn($alias . '.hide_info');
+            $criteria->addSelectColumn($alias . '.max_notified');
+            $criteria->addSelectColumn($alias . '.id');
         }
     }
 
@@ -265,7 +265,7 @@ abstract class BaseConsultantsPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -370,8 +370,15 @@ abstract class BaseConsultantsPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (ConsultantsPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         ConsultantsPeer::$instances = array();
     }
 
@@ -745,7 +752,7 @@ abstract class BaseConsultantsPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return ConsultantsPeer::OM_CLASS;
     }

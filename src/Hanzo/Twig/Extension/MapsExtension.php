@@ -17,10 +17,12 @@ use Hanzo\Core\Tools;
 class MapsExtension extends Twig_Extension
 {
     protected $twig_string;
+    protected $maxmind;
 
-    public function __construct(TwigStringService $twig_string)
+    public function __construct(TwigStringService $twig_string, $maxmind)
     {
         $this->twig_string = $twig_string;
+        $this->maxmind = $maxmind;
     }
 
     /**
@@ -65,13 +67,12 @@ class MapsExtension extends Twig_Extension
 
     public function consultants_near_you(Twig_Environment $env, $type = 'near')
     {
-        $geoip = Hanzo::getInstance()->container->get('geoip_manager');
-        $result = $geoip->lookup();
+        $result = $this->maxmind->lookup();
 
         return $env->render('CMSBundle:Twig:consultants_near_you.html.twig', array(
             'type' => $type,
-            'lat' => number_format((double) $result['lat'], 8, '.', ''),
-            'lon' => number_format((double) $result['lon'], 8, '.', ''),
+            'lat' => number_format((double) $result->city->location->latitude, 8, '.', ''),
+            'lon' => number_format((double) $result->city->location->longitude, 8, '.', ''),
         ));
     }
 }

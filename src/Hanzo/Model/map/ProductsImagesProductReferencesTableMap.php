@@ -42,8 +42,9 @@ class ProductsImagesProductReferencesTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(false);
         // columns
-        $this->addForeignPrimaryKey('PRODUCTS_IMAGES_ID', 'ProductsImagesId', 'INTEGER' , 'products_images', 'ID', true, null, null);
-        $this->addForeignPrimaryKey('PRODUCTS_ID', 'ProductsId', 'INTEGER' , 'products', 'ID', true, null, null);
+        $this->addForeignPrimaryKey('products_images_id', 'ProductsImagesId', 'INTEGER' , 'products_images', 'id', true, null, null);
+        $this->addForeignPrimaryKey('products_id', 'ProductsId', 'INTEGER' , 'products', 'id', true, null, null);
+        $this->addColumn('color', 'Color', 'VARCHAR', false, 255, null);
         // validators
     } // initialize()
 

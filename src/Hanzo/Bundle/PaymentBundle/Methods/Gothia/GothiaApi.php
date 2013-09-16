@@ -4,11 +4,12 @@ namespace Hanzo\Bundle\PaymentBundle\Methods\Gothia;
 
 use Hanzo\Model\Orders;
 use Symfony\Component\HttpFoundation\Request;
+use Hanzo\Bundle\PaymentBundle\BasePaymentApi;
 use Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface;
 
 use Exception;
 
-class GothiaApi implements PaymentMethodApiInterface
+class GothiaApi extends BasePaymentApi implements PaymentMethodApiInterface
 {
     /**
      * undocumented class variable
@@ -39,18 +40,6 @@ class GothiaApi implements PaymentMethodApiInterface
         {
             $this->checkSettings($settings);
         }
-
-        /*
-        Live settings:
-        'username' = 'PompDeLuxExternalSE'
-        'password' = 'i4F1FfFJ'
-        'clientId' = 7757
-
-        Test settings:
-        'username' = 'EXTPompDeLuxSETest'
-        'password' = 'o6K7IGPR'
-        'clientId' = 7012
-        */
     }
 
     /**
@@ -95,16 +84,6 @@ class GothiaApi implements PaymentMethodApiInterface
     public function isActive()
     {
         return ( isset($this->settings['active']) ) ? $this->settings['active'] : false;
-    }
-
-    /**
-     * getFee
-     * @return float
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    public function getFee()
-    {
-        return ( isset($this->settings['fee']) ) ? $this->settings['fee'] : 0.00;
     }
 
     /**
@@ -169,7 +148,7 @@ class GothiaApi implements PaymentMethodApiInterface
     }
 
 
-    public function getProcessButton(Orders $order)
+    public function getProcessButton(Orders $order, Request $request)
     {
         return ['url' => 'payment/gothia'];
     }

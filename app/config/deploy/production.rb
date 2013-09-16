@@ -6,7 +6,7 @@ set :deploy_to,   "/var/www/pompdelux"
 
 # default environment, used by default functions
 set :symfony_env_prod, "prod_dk"
-set :symfony_env_prods, ["prod_fi", "prod_se", "prod_no", "prod_com", "prod_nl", "prod_dk", "prod_fi_consultant", "prod_se_consultant", "prod_no_consultant", "prod_nl_consultant", "prod_dk_consultant"]
+set :symfony_env_prods, ["prod_de", "prod_fi", "prod_se", "prod_no", "prod_com", "prod_nl", "prod_dk", "prod_de_consultant", "prod_fi_consultant", "prod_se_consultant", "prod_no_consultant", "prod_nl_consultant", "prod_dk_consultant"]
 
 set :adminserver, "pdladmin"
 set :staticserver, "pdlstatic1"
@@ -41,5 +41,10 @@ namespace :deploy do
   desc "Copy default vhost from stat"
   task :copy_vhost, :roles => :apache do
     run("sudo wget -q --output-document=/etc/apache2/sites-available/pompdelux http://tools.bellcom.dk/hanzo/pompdelux-vhost.txt")
+  end
+# own tasks. enable vhost
+  desc "Enable vhost from stat"
+  task :enable_vhost, :roles => :apache do
+    run("sudo a2ensite pompdelux")
   end
 end

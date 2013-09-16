@@ -42,15 +42,15 @@ class ShippingMethodsTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(true);
         // columns
-        $this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
-        $this->addColumn('CARRIER', 'Carrier', 'VARCHAR', true, 255, null);
-        $this->addColumn('METHOD', 'Method', 'VARCHAR', true, 255, null);
-        $this->addColumn('EXTERNAL_ID', 'ExternalId', 'VARCHAR', true, 32, null);
-        $this->addColumn('CALC_ENGINE', 'CalcEngine', 'VARCHAR', true, 32, 'flat');
-        $this->addColumn('PRICE', 'Price', 'DECIMAL', true, 15, null);
-        $this->addColumn('FEE', 'Fee', 'DECIMAL', false, 15, 0);
-        $this->addColumn('FEE_EXTERNAL_ID', 'FeeExternalId', 'VARCHAR', false, 32, null);
-        $this->addColumn('IS_ACTIVE', 'IsActive', 'BOOLEAN', true, 1, true);
+        $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
+        $this->addColumn('carrier', 'Carrier', 'VARCHAR', true, 255, null);
+        $this->addColumn('method', 'Method', 'VARCHAR', true, 255, null);
+        $this->addColumn('external_id', 'ExternalId', 'VARCHAR', true, 32, null);
+        $this->addColumn('calc_engine', 'CalcEngine', 'VARCHAR', true, 32, 'flat');
+        $this->addColumn('price', 'Price', 'DECIMAL', true, 15, null);
+        $this->addColumn('fee', 'Fee', 'DECIMAL', false, 15, 0);
+        $this->addColumn('fee_external_id', 'FeeExternalId', 'VARCHAR', false, 32, null);
+        $this->addColumn('is_active', 'IsActive', 'BOOLEAN', true, 1, true);
         // validators
     } // initialize()
 

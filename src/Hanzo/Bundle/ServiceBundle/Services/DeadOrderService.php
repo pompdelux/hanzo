@@ -9,7 +9,6 @@ use Propel;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 
-
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\OrdersQuery;
@@ -27,6 +26,12 @@ class DeadOrderService
 
     protected $dryrun = false;
     protected $debug  = false;
+
+    protected $currency_map = [
+        58  => 'DKK',
+        161 => 'NOK',
+        207 => 'SEK',
+    ];
 
     public function __construct($parameters, $settings)
     {
@@ -92,6 +97,7 @@ class DeadOrderService
                     if ( !$this->dryrun )
                     {
                         $this->debug("  Deleting order: ".$order->getId());
+                        $order->setIgnoreDeleteConstraints(true);
                         $order->delete();
                     }
                     else
@@ -126,6 +132,15 @@ class DeadOrderService
             'order_last_update' => $order->getUpdatedAt()
         );
 
+        // fix broken currency code
+        if (!$order->getCurrencyCode()) {
+            $code = 'EUR';
+            if (isset($this->currency_map[$order->getBillingCountriesId()])){
+                $code = $this->currency_map[$order->getBillingCountriesId()];
+            }
+            $order->setCurrencyCode($code);
+        }
+
         $pgId = $order->getPaymentGatewayId();
         $this->debug("Processing: order id: ".$order->getId()." (payment gateway id:".$pgId."), in state: ".$order->getState());
 
@@ -140,6 +155,7 @@ class DeadOrderService
                 $callbackData = $this->dibsApi->call()->callback($order);
                 if ( isset($callbackData['orderid']) )
                 {
+                    mail('un@bellcom.dk', 'setPaymentGatewayId', 'for order id: '.$order->getId()."\n\n".__FILE__.' '.__LINE__."\n\n");
                     $order->setPaymentGatewayId($callbackData['orderid']);
                     $pgId = $callbackData['orderid'];
                 }
@@ -163,6 +179,7 @@ class DeadOrderService
 
                 if (!$this->dryrun) {
                     $order->toPreviousVersion();
+                    $this->ax->lockUnlockSalesOrder($order, false);
                 } else {
                     $this->debug( '  Should role back to prew version of order... ' . implode(', ', $order->getVersionIds()));
                 }
@@ -306,6 +323,7 @@ class DeadOrderService
             if ( !$this->dryrun )
             {
                 $this->debug("Deleting order: ".$order->getId());
+                $order->setIgnoreDeleteConstraints(true);
                 $order->delete();
             }
             else
@@ -380,8 +398,9 @@ class DeadOrderService
         $orders = OrdersQuery::create()
             ->filterByUpdatedAt(date('Y-m-d H:i:s', strtotime('3 hours ago')), Criteria::LESS_THAN)
             ->filterByBillingMethod('dibs')
-            ->filterByState(array( 'max' => Orders::STATE_PAYMENT_OK) )
-            ->find(Propel::getConnection(null, Propel::CONNECTION_WRITE));
+            ->filterByState(array('max' => Orders::STATE_PAYMENT_OK))
+            ->find(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+        ;
 
         return $orders;
     }

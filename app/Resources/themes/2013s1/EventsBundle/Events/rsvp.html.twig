@@ -48,10 +48,12 @@
                             <th>{{ 'events.email'|trans({}, 'events') }}</th>
                             <td>{{ event.email }}</td>
                         </tr>
+                    {% if is_granted('ROLE_CONSULTANT') %}
                         <tr>
                             <th>{{ 'events.description'|trans({}, 'events') }}</th>
                             <td>{{ event.description }}</td>
                         </tr>
+                    {% endif %}
                     </tbody>
                 </table>
             </div>
@@ -64,6 +66,9 @@
                 <div class="grid_3 alpha">
                     <form action="{{ path('events_rsvp', {'key' : key}) }}" method="post" {{ form_enctype(form_rsvp) }} id="event-edit-form" class="create full-width">
                         <div class="row">
+
+                            {{ form_label(form_rsvp.has_accepted) }}
+                            {{ form_widget(form_rsvp.has_accepted, { 'attr': {'class': 'form-radio-group'} }) }}
                             {{ form_rest(form_rsvp) }}
                             {{ form_row(form_rsvp._token) }}
                         </div>

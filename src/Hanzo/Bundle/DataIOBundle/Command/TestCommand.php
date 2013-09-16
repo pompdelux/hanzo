@@ -49,19 +49,34 @@ class TestCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $accounts = GothiaAccountsQuery::create()
-            ->find();
 
-        foreach ($accounts as $account) 
-        {
-            $account->setExternalId( $account->getCustomersId() );
-            $account->save();
-        }
+        $soap = new \SoapClient('http://pdl.un/da_DK/soap/v1/ECommerceServices/?wsdl');
+        $soap->__setLocation('http://pdl.un/da_DK/soap/v1/ECommerceServices/');
+        //print_r($soap->__getFunctions());
+        //
+
+        $data = new \stdClass();
+        $data->eOrderNumber = 1013569;
+        $data->amount = -10.00;
+        $data->initials = 'un';
+        $result = $soap->SalesOrderCaptureOrRefund($data);
+
+
+        print_r($result);
+
+        // $accounts = GothiaAccountsQuery::create()
+        //     ->find();
+
+        // foreach ($accounts as $account)
+        // {
+        //     $account->setExternalId( $account->getCustomersId() );
+        //     $account->save();
+        // }
 
         /*$accounts = GothiaAccountsQuery::create()
             ->find();
 
-        foreach ($accounts as $account) 
+        foreach ($accounts as $account)
         {
             $ssn = $account->getSocialSecurityNum();
             $newssn = $ssn;
@@ -78,19 +93,19 @@ class TestCommand extends ContainerAwareCommand
         /*$missingNames = array(
         );
 
-        foreach ($missingNames as $orderId) 
+        foreach ($missingNames as $orderId)
         {
             $order     = OrdersPeer::retrieveByPK($orderId);
             $customer  = $order->getCustomers();
             $addresses = $customer->getAddresses();
 
-            foreach ($addresses as $address) 
+            foreach ($addresses as $address)
             {
                 $address->setFirstName( $order->getFirstName() );
                 $address->setLastName( $order->getLastName() );
                 $address->save();
 
-                switch ($address->getType()) 
+                switch ($address->getType())
                 {
                     case 'payment':
                         $order->setBillingFirstName( $address->getFirstName() );
@@ -142,7 +157,7 @@ class TestCommand extends ContainerAwareCommand
             ->find()
         ;
 
-        foreach ($prices as $price) 
+        foreach ($prices as $price)
         {
           $vat = ( $price->getPrice() * 1.25 ) - $price->getPrice();
           $price->setVat( number_format( $vat, 2, '.', '' ) );

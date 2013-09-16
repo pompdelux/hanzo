@@ -1,9 +1,11 @@
 parameters:
     payment.dibsapi.class: Hanzo\Bundle\PaymentBundle\Methods\Dibs\DibsApi
     payment.gothiaapi.class: Hanzo\Bundle\PaymentBundle\Methods\Gothia\GothiaApi
+    payment.gothiadeapi.class: Hanzo\Bundle\PaymentBundle\Methods\Gothia\GothiaDEApi
     payment.paybybill.class: Hanzo\Bundle\PaymentBundle\Methods\PayByBill\PayByBillApi
-    payment.coupon.class: Hanzo\Bundle\PaymentBundle\Methods\Coupon\CouponApi
+    payment.giftcard.class: Hanzo\Bundle\PaymentBundle\Methods\GiftCard\GiftCardApi
     payment.pensio.class: Hanzo\Bundle\PaymentBundle\Methods\Pensio\PensioApi
+    payment.paypal.class: Hanzo\Bundle\PaymentBundle\Methods\PayPal\PayPalApi
 
 services:
     payment.dibsapi:
@@ -24,6 +26,15 @@ services:
             parameters:  ~
             class:       %payment.gothiaapi.class%
 
+    payment.gothiadeapi:
+        class:           %payment.gothiadeapi.class%
+        factory_service: service_factory
+        factory_method:  get
+        arguments:
+            service:     gothiadeapi
+            parameters:  ~
+            class:       %payment.gothiadeapi.class%
+
     payment.paybybillapi:
         class:           %payment.paybybill.class%
         factory_service: service_factory
@@ -33,14 +44,14 @@ services:
             parameters:  ~
             class:       %payment.paybybill.class%
 
-    payment.couponapi:
-        class:           %payment.coupon.class%
+    payment.giftcardapi:
+        class:           %payment.giftcard.class%
         factory_service: service_factory
         factory_method:  get
         arguments:
-            service:     couponapi
+            service:     giftcardapi
             parameters:  ~
-            class:       %payment.coupon.class%
+            class:       %payment.giftcard.class%
 
     payment.pensioapi:
         class:           %payment.pensio.class%
@@ -50,3 +61,12 @@ services:
             service:     pensioapi
             parameters:  [@router]
             class:       %payment.pensio.class%
+
+    payment.paypalapi:
+        class:           %payment.paypal.class%
+        factory_service: service_factory
+        factory_method:  get
+        arguments:
+            service:     paypalapi
+            parameters:  [@router, @translator, @logger]
+            class:       %payment.paypal.class%

@@ -82,6 +82,12 @@ abstract class BaseOrdersAttributes extends BaseObject implements Persistent
     protected $alreadyInValidation = false;
 
     /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
+    /**
      * Get the [orders_id] column value.
      *
      * @return int
@@ -129,7 +135,7 @@ abstract class BaseOrdersAttributes extends BaseObject implements Persistent
      */
     public function setOrdersId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -154,7 +160,7 @@ abstract class BaseOrdersAttributes extends BaseObject implements Persistent
      */
     public function setNs($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -175,7 +181,7 @@ abstract class BaseOrdersAttributes extends BaseObject implements Persistent
      */
     public function setCKey($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -196,7 +202,7 @@ abstract class BaseOrdersAttributes extends BaseObject implements Persistent
      */
     public function setCValue($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -252,7 +258,7 @@ abstract class BaseOrdersAttributes extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
+            $this->postHydrate($row, $startcol, $rehydrate);
             return $startcol + 4; // 4 = OrdersAttributesPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -478,16 +484,16 @@ abstract class BaseOrdersAttributes extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(OrdersAttributesPeer::ORDERS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`ORDERS_ID`';
+            $modifiedColumns[':p' . $index++]  = '`orders_id`';
         }
         if ($this->isColumnModified(OrdersAttributesPeer::NS)) {
-            $modifiedColumns[':p' . $index++]  = '`NS`';
+            $modifiedColumns[':p' . $index++]  = '`ns`';
         }
         if ($this->isColumnModified(OrdersAttributesPeer::C_KEY)) {
-            $modifiedColumns[':p' . $index++]  = '`C_KEY`';
+            $modifiedColumns[':p' . $index++]  = '`c_key`';
         }
         if ($this->isColumnModified(OrdersAttributesPeer::C_VALUE)) {
-            $modifiedColumns[':p' . $index++]  = '`C_VALUE`';
+            $modifiedColumns[':p' . $index++]  = '`c_value`';
         }
 
         $sql = sprintf(
@@ -500,16 +506,16 @@ abstract class BaseOrdersAttributes extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`ORDERS_ID`':
+                    case '`orders_id`':
                         $stmt->bindValue($identifier, $this->orders_id, PDO::PARAM_INT);
                         break;
-                    case '`NS`':
+                    case '`ns`':
                         $stmt->bindValue($identifier, $this->ns, PDO::PARAM_STR);
                         break;
-                    case '`C_KEY`':
+                    case '`c_key`':
                         $stmt->bindValue($identifier, $this->c_key, PDO::PARAM_STR);
                         break;
-                    case '`C_VALUE`':
+                    case '`c_value`':
                         $stmt->bindValue($identifier, $this->c_value, PDO::PARAM_STR);
                         break;
                 }
@@ -573,11 +579,11 @@ abstract class BaseOrdersAttributes extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -956,12 +962,13 @@ abstract class BaseOrdersAttributes extends BaseObject implements Persistent
      * Get the associated Orders object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Orders The associated Orders object.
      * @throws PropelException
      */
-    public function getOrders(PropelPDO $con = null)
+    public function getOrders(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aOrders === null && ($this->orders_id !== null)) {
+        if ($this->aOrders === null && ($this->orders_id !== null) && $doQuery) {
             $this->aOrders = OrdersQuery::create()->findPk($this->orders_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -986,6 +993,7 @@ abstract class BaseOrdersAttributes extends BaseObject implements Persistent
         $this->c_value = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->resetModified();
         $this->setNew(true);
@@ -1003,7 +1011,13 @@ abstract class BaseOrdersAttributes extends BaseObject implements Persistent
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
+            if ($this->aOrders instanceof Persistent) {
+              $this->aOrders->clearAllReferences($deep);
+            }
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
         $this->aOrders = null;

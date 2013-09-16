@@ -60,7 +60,6 @@ class ByColourController extends CoreController
             }
             unset ($resultset);
 
-
             $index = 1;
             $products = array();
             $masters = ProductsToCategoriesQuery::create()
@@ -104,6 +103,7 @@ class ByColourController extends CoreController
                             ProductsToCategoriesPeer::CATEGORIES_ID,
                             implode(',', $includes)
                         ))
+                        ->filterByCategoriesId($includes)
                     ->endUse()
                     ->filterById($ids)
                 ->endUse()
@@ -163,9 +163,9 @@ class ByColourController extends CoreController
             }
 
             $classes = 'bycolour-'.preg_replace('/[^a-z]/', '-', strtolower($page->getTitle()));
-            if (preg_match('/(little-girl|girl)/', $container->get('request')->getPathInfo())) {
+            if (preg_match('/(pige|girl|tjej|tytto|jente)/', $container->get('request')->getPathInfo())) {
                 $classes .= ' category-girl';
-            } elseif (preg_match('/(little-boy|boy)/', $container->get('request')->getPathInfo())) {
+            } elseif (preg_match('/(dreng|boy|kille|poika|gutt)/', $container->get('request')->getPathInfo())) {
                 $classes .= ' category-boy';
             }
 

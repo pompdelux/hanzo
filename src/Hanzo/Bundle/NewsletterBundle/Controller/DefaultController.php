@@ -25,9 +25,9 @@ class DefaultController extends CoreController
      **/
     public function handleAction( $action )
     {
-        $name     = $this->get('request')->get('name');
-        $email    = $this->get('request')->get('email');
-        $api      = $this->get('newsletterapi');
+        $name  = $this->get('request')->get('name');
+        $email = $this->get('request')->get('email');
+        $api   = $this->get('newsletterapi');
 
         $api->sendNotificationEmail( $action, $email, $name );
         return $this->json_response( array('error' => false) );
@@ -66,7 +66,7 @@ class DefaultController extends CoreController
 
         return $this->render('NewsletterBundle:Default:block.html.twig', array(
             'customer' => $customer,
-            'listid' => $listId,
+            'listid'   => $listId,
             )
         );
     }
@@ -100,7 +100,7 @@ class DefaultController extends CoreController
         $api      = $this->get('newsletterapi');
 
         if ('POST' === $request->getMethod()) {
-            $api->subscribe($customer->getEmail(), $request->get('lists'));
+            $api->subscribe($customer->getEmail(), $request->request->get('lists'));
             return $this->redirect($this->generateUrl('_account'));
         }
 
@@ -112,32 +112,75 @@ class DefaultController extends CoreController
     }
 
 
+    /**
+     * subscribe a user to a newsletter, will take existing subscriptions into account.
+     *
+     * @param  Request $request
+     * @return Response
+     */
     public function subscribeAction(Request $request)
     {
         if ('POST' !== $request->getMethod()) {
             return $this->redirect($this->generateUrl('_homepage'));
         }
 
-        $api = $this->get('newsletterapi');
-        $id  = $api->getListIdAvaliableForDomain();
-
-        $email = $request->get('email');
-        $name = $request->get('name');
+        $email = $request->request->get('email');
+        $name  = $request->request->get('name');
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return $this->json_response([
-                'status' => false,
+                'status'  => false,
                 'message' => $this->get('translator')->trans('invalid.email.address', [], 'newsletter'),
             ]);
         }
 
-        $result = $api->subscribe($email, $id);
+        $api    = $this->get('newsletterapi');
+        $id     = $api->getListIdAvaliableForDomain();
+        $lists  = $api->getAllLists($email);
+        $active = [$id => $id];
+
+        // handle existing subscriptions
+        if (isset($lists->content->lists)) {
+            foreach ($lists->content->lists as $id => $list) {
+                if ($list->is_subscribed) {
+                    $active[$id] = $id;
+                }
+            }
+        }
+
+        $result = $api->subscribe($email, $active);
         $api->sendNotificationEmail('subscribe', $email, $name);
 
         return $this->json_response([
-            'status' => true,
+            'status'  => true,
             'message' => $this->get('translator')->trans('subscribed.text', [], 'newsletter'),
         ]);
     }
 
+    public function unsubscribeAction(Request $request)
+    {
+        if ('POST' !== $request->getMethod()) {
+            return $this->redirect($this->generateUrl('_homepage'));
+        }
+
+        $email = $request->request->get('email');
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return $this->json_response([
+                'status'  => false,
+                'message' => $this->get('translator')->trans('invalid.email.address', [], 'newsletter'),
+            ]);
+        }
+
+        $api    = $this->get('newsletterapi');
+        $id     = $api->getListIdAvaliableForDomain();
+        $active = [$id => $id];
+        $result = $api->unsubscribe($email, $active);
+        $api->sendNotificationEmail('unsubscribe', $email);
+
+        return $this->json_response([
+            'status'  => true,
+            'message' => $this->get('translator')->trans('unsubscribed.text', [], 'newsletter'),
+        ]);
+    }
 }

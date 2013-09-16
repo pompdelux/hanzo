@@ -21,6 +21,7 @@ use Hanzo\Model\Customers;
 /**
  * @method AddressesQuery orderByCustomersId($order = Criteria::ASC) Order by the customers_id column
  * @method AddressesQuery orderByType($order = Criteria::ASC) Order by the type column
+ * @method AddressesQuery orderByTitle($order = Criteria::ASC) Order by the title column
  * @method AddressesQuery orderByFirstName($order = Criteria::ASC) Order by the first_name column
  * @method AddressesQuery orderByLastName($order = Criteria::ASC) Order by the last_name column
  * @method AddressesQuery orderByAddressLine1($order = Criteria::ASC) Order by the address_line_1 column
@@ -39,6 +40,7 @@ use Hanzo\Model\Customers;
  *
  * @method AddressesQuery groupByCustomersId() Group by the customers_id column
  * @method AddressesQuery groupByType() Group by the type column
+ * @method AddressesQuery groupByTitle() Group by the title column
  * @method AddressesQuery groupByFirstName() Group by the first_name column
  * @method AddressesQuery groupByLastName() Group by the last_name column
  * @method AddressesQuery groupByAddressLine1() Group by the address_line_1 column
@@ -72,6 +74,7 @@ use Hanzo\Model\Customers;
  *
  * @method Addresses findOneByCustomersId(int $customers_id) Return the first Addresses filtered by the customers_id column
  * @method Addresses findOneByType(string $type) Return the first Addresses filtered by the type column
+ * @method Addresses findOneByTitle(string $title) Return the first Addresses filtered by the title column
  * @method Addresses findOneByFirstName(string $first_name) Return the first Addresses filtered by the first_name column
  * @method Addresses findOneByLastName(string $last_name) Return the first Addresses filtered by the last_name column
  * @method Addresses findOneByAddressLine1(string $address_line_1) Return the first Addresses filtered by the address_line_1 column
@@ -90,6 +93,7 @@ use Hanzo\Model\Customers;
  *
  * @method array findByCustomersId(int $customers_id) Return Addresses objects filtered by the customers_id column
  * @method array findByType(string $type) Return Addresses objects filtered by the type column
+ * @method array findByTitle(string $title) Return Addresses objects filtered by the title column
  * @method array findByFirstName(string $first_name) Return Addresses objects filtered by the first_name column
  * @method array findByLastName(string $last_name) Return Addresses objects filtered by the last_name column
  * @method array findByAddressLine1(string $address_line_1) Return Addresses objects filtered by the address_line_1 column
@@ -124,7 +128,7 @@ abstract class BaseAddressesQuery extends ModelCriteria
      * Returns a new AddressesQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     AddressesQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   AddressesQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return AddressesQuery
      */
@@ -188,12 +192,12 @@ abstract class BaseAddressesQuery extends ModelCriteria
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   Addresses A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 Addresses A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `CUSTOMERS_ID`, `TYPE`, `FIRST_NAME`, `LAST_NAME`, `ADDRESS_LINE_1`, `ADDRESS_LINE_2`, `POSTAL_CODE`, `CITY`, `COUNTRY`, `COUNTRIES_ID`, `STATE_PROVINCE`, `COMPANY_NAME`, `EXTERNAL_ADDRESS_ID`, `LATITUDE`, `LONGITUDE`, `CREATED_AT`, `UPDATED_AT` FROM `addresses` WHERE `CUSTOMERS_ID` = :p0 AND `TYPE` = :p1';
+        $sql = 'SELECT `customers_id`, `type`, `title`, `first_name`, `last_name`, `address_line_1`, `address_line_2`, `postal_code`, `city`, `country`, `countries_id`, `state_province`, `company_name`, `external_address_id`, `latitude`, `longitude`, `created_at`, `updated_at` FROM `addresses` WHERE `customers_id` = :p0 AND `type` = :p1';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);
@@ -301,7 +305,8 @@ abstract class BaseAddressesQuery extends ModelCriteria
      * <code>
      * $query->filterByCustomersId(1234); // WHERE customers_id = 1234
      * $query->filterByCustomersId(array(12, 34)); // WHERE customers_id IN (12, 34)
-     * $query->filterByCustomersId(array('min' => 12)); // WHERE customers_id > 12
+     * $query->filterByCustomersId(array('min' => 12)); // WHERE customers_id >= 12
+     * $query->filterByCustomersId(array('max' => 12)); // WHERE customers_id <= 12
      * </code>
      *
      * @see       filterByCustomers()
@@ -316,8 +321,22 @@ abstract class BaseAddressesQuery extends ModelCriteria
      */
     public function filterByCustomersId($customersId = null, $comparison = null)
     {
-        if (is_array($customersId) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($customersId)) {
+            $useMinMax = false;
+            if (isset($customersId['min'])) {
+                $this->addUsingAlias(AddressesPeer::CUSTOMERS_ID, $customersId['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($customersId['max'])) {
+                $this->addUsingAlias(AddressesPeer::CUSTOMERS_ID, $customersId['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(AddressesPeer::CUSTOMERS_ID, $customersId, $comparison);
@@ -350,6 +369,35 @@ abstract class BaseAddressesQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(AddressesPeer::TYPE, $type, $comparison);
+    }
+
+    /**
+     * Filter the query on the title column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByTitle('fooValue');   // WHERE title = 'fooValue'
+     * $query->filterByTitle('%fooValue%'); // WHERE title LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $title The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return AddressesQuery The current query, for fluid interface
+     */
+    public function filterByTitle($title = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($title)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $title)) {
+                $title = str_replace('*', '%', $title);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(AddressesPeer::TITLE, $title, $comparison);
     }
 
     /**
@@ -562,7 +610,8 @@ abstract class BaseAddressesQuery extends ModelCriteria
      * <code>
      * $query->filterByCountriesId(1234); // WHERE countries_id = 1234
      * $query->filterByCountriesId(array(12, 34)); // WHERE countries_id IN (12, 34)
-     * $query->filterByCountriesId(array('min' => 12)); // WHERE countries_id > 12
+     * $query->filterByCountriesId(array('min' => 12)); // WHERE countries_id >= 12
+     * $query->filterByCountriesId(array('max' => 12)); // WHERE countries_id <= 12
      * </code>
      *
      * @see       filterByCountries()
@@ -692,7 +741,8 @@ abstract class BaseAddressesQuery extends ModelCriteria
      * <code>
      * $query->filterByLatitude(1234); // WHERE latitude = 1234
      * $query->filterByLatitude(array(12, 34)); // WHERE latitude IN (12, 34)
-     * $query->filterByLatitude(array('min' => 12)); // WHERE latitude > 12
+     * $query->filterByLatitude(array('min' => 12)); // WHERE latitude >= 12
+     * $query->filterByLatitude(array('max' => 12)); // WHERE latitude <= 12
      * </code>
      *
      * @param     mixed $latitude The value to use as filter.
@@ -733,7 +783,8 @@ abstract class BaseAddressesQuery extends ModelCriteria
      * <code>
      * $query->filterByLongitude(1234); // WHERE longitude = 1234
      * $query->filterByLongitude(array(12, 34)); // WHERE longitude IN (12, 34)
-     * $query->filterByLongitude(array('min' => 12)); // WHERE longitude > 12
+     * $query->filterByLongitude(array('min' => 12)); // WHERE longitude >= 12
+     * $query->filterByLongitude(array('max' => 12)); // WHERE longitude <= 12
      * </code>
      *
      * @param     mixed $longitude The value to use as filter.
@@ -859,8 +910,8 @@ abstract class BaseAddressesQuery extends ModelCriteria
      * @param   Customers|PropelObjectCollection $customers The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   AddressesQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 AddressesQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByCustomers($customers, $comparison = null)
     {
@@ -935,8 +986,8 @@ abstract class BaseAddressesQuery extends ModelCriteria
      * @param   Countries|PropelObjectCollection $countries The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   AddressesQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 AddressesQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByCountries($countries, $comparison = null)
     {

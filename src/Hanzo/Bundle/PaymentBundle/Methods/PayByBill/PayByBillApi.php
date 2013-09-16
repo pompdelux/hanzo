@@ -8,12 +8,13 @@ use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\Customers;
 
+use Hanzo\Bundle\PaymentBundle\BasePaymentApi;
 use Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface;
 use Hanzo\Bundle\PaymentBundle\Methods\PayByBill\PayByBillCallResponse;
 
 use Symfony\Component\HttpFoundation\Request;
 
-class PayByBillApi implements PaymentMethodApiInterface
+class PayByBillApi extends BasePaymentApi implements PaymentMethodApiInterface
 {
     /**
      * undocumented class variable
@@ -75,16 +76,6 @@ class PayByBillApi implements PaymentMethodApiInterface
     }
 
     /**
-     * getFee
-     * @return float
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    public function getFee()
-    {
-        return ( isset($this->settings['fee']) ) ? $this->settings['fee'] : 0.00;
-    }
-
-    /**
      * getFeeExternalId
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
@@ -125,7 +116,7 @@ class PayByBillApi implements PaymentMethodApiInterface
     }
 
 
-    public function getProcessButton(Orders $order)
+    public function getProcessButton(Orders $order, Request $request)
     {
         return ['url' => 'payment/paybybill/callback'];
     }

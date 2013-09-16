@@ -82,6 +82,22 @@
                 <source>existing.customer</source>
                 <target>Nykyinen asiakas</target>
             </trans-unit>
+            <trans-unit id="title">
+                <source>title</source>
+                <target>Title</target>
+            </trans-unit>
+            <trans-unit id="attention.label">
+                <source>attention.label</source>
+                <target>Att:</target>
+            </trans-unit>
+            <trans-unit id="title.male">
+                <source>title.male</source>
+                <target>Hr.</target>
+            </trans-unit>
+            <trans-unit id="title.female">
+                <source>title.female</source>
+                <target>Fru</target>
+            </trans-unit>
             <trans-unit id="email">
                 <source>email</source>
                 <target>Sähköpostiosoite</target>
@@ -120,7 +136,7 @@
             </trans-unit>
             <trans-unit id="54">
                 <source>Phone</source>
-                <target>Puhelinnumero</target>
+                <target>Matkapuhelinnumero</target>
             </trans-unit>
             <trans-unit id="55">
                 <source>Address line 1</source>
@@ -176,11 +192,11 @@
             </trans-unit>
             <trans-unit id="65">
                 <source>create.account</source>
-                <target>Luo tili</target>
+                <target>Jatka</target>
             </trans-unit>
             <trans-unit id="create.account.header" approved="no">
                 <source>create.account.header</source>
-                <target>Luo tili</target>
+                <target>Jatka</target>
             </trans-unit>
             <trans-unit id="edit.account">
                 <source>edit.account</source>
@@ -413,7 +429,7 @@
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
                  <target><![CDATA[<p>Omilla sivuilla voit muuttaa tietojasi sekä tilata uutiskirjeen tai perua sen tilauksen. Voit myös muokata tilaustasi.<br><br>Tilauksellasi voi olla seuraavat tilat:<br><br><b>Odottaa</b><br>Tilaustasi ei ole vielä toimitettu, ja sinulla on vähintään 24 tuntia aikaa muokata tilaustasi.
-Voit muuttaa tilaustasi, lisätä siihen tuotteita tai poistaa tuotteita. Napsauta kynän kuvaa, jos haluat muokata tilausta. Huomaa: Sinun tulee suorittaa maksu – aiempi maksuvaraus poistuu automaattisesti. Jos haluat poistaa koko tilauksen, napsauta X-kohtaa.<br><br><b>Keskeytä muokkaus</b><br>Voit halutessasi keskeyttää muokkauksen. Napsauta ”Keskeytä muokkaus” -painiketta ja voit aloittaa tilauksen muokkaamisen alusta.<br><br><b>Käsittelyssä</b><br>Tilaus on nyt käsittelyssä ja lähetetään sinulle 1–2 päivän kuluessa. Tilausta ei voi enää muokata/viivästyttää.<br><br><b>Laskutettu</b><br>Tilauksesi on lähetetty varastostamme. Lasku näkyy PDF-tiedostona Lasku-sarakkeessa 24 tunnin kuluessa tilauksen lähettämisestä.<br><br>Jos haluat palauttaa tuotteen, löydät<a href="http://static.pompdelux.com/images/pdf/POMPdeLUX_Returseddel_FI.pdf" target="_blank">palautuslomakkeemme täältä</a>.<br><br></p>]]></target>
+Voit muuttaa tilaustasi, lisätä siihen tuotteita tai poistaa tuotteita. Napsauta kynän kuvaa, jos haluat muokata tilausta. Huomaa: Sinun tulee suorittaa maksu – aiempi maksuvaraus poistuu automaattisesti. Jos haluat poistaa koko tilauksen, napsauta X-kohtaa.<br><br><b>Keskeytä muokkaus</b><br>Voit halutessasi keskeyttää muokkauksen. Napsauta ”Keskeytä muokkaus” -painiketta ja voit aloittaa tilauksen muokkaamisen alusta.<br><br><b>Käsittelyssä</b><br>Tilaus on nyt käsittelyssä ja lähetetään sinulle 1–2 päivän kuluessa. Tilausta ei voi enää muokata/viivästyttää.<br><br><b>Laskutettu</b><br>Tilauksesi on lähetetty varastostamme. Lasku näkyy PDF-tiedostona Lasku-sarakkeessa 24 tunnin kuluessa tilauksen lähettämisestä.<br><br>Jos haluat palauttaa tuotteen, löydät <a href="http://static.pompdelux.com/images/pdf/POMPdeLUX_Returseddel_FI.pdf" target="_blank"> palautuslomakkeemme täältä</a>.<br><br></p>]]></target>
             </trans-unit>
             <trans-unit id="newsletter" approved="no">
                 <source>newsletter</source>

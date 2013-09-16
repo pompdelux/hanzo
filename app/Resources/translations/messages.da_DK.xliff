@@ -2,6 +2,10 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
+            <trans-unit id="size.guide.link">
+                <source>size.guide.link</source>
+                <target><![CDATA[<a href="/da_DK/forside/webshop/info/sizeguide" target="_blank" title="Size guide">» Size guide</a>]]></target>
+            </trans-unit>
             <trans-unit id="out.of.stock">
                 <source>out.of.stock</source>
                 <target>Udsolgt</target>
@@ -104,7 +108,7 @@
             </trans-unit>
             <trans-unit id="color">
                 <source>color</source>
-                <target>Color</target>
+                <target>Colour</target>
             </trans-unit>
             <trans-unit id="company.address">
                 <source>company.address</source>
@@ -130,8 +134,8 @@
                     Du er ved at redigere E-ordrenummer <a href="%history_url%" title="se ordren">%order_id%</a>.<br>
                     Ønsker du at afbryde redigeringen af din ordre - <a href="%stop_url%" title="stop editering af ordren">klik her.</a>
                   </p>
-                  <p>Ønsker du at ændre en farve eller en størrelse, skal du klikke på blyanten i kurven. Ønsker du at tilføje varer, skal du klikke på menuen Webshop.</p>
-                  <p class="last">Når du er færdig med dine ændringer, skal du klikke på "Vis kurv" og følge trin 1 til 6. Når du har gennemført din ordre med ny kreditkortbetaling, vil den gamle betaling automatisk blive slettet.</p>
+                  <p>Ønsker du at ændre en farve eller en størrelse, skal du klikke på blyanten. Ønsker du at tilføje varer, skal du klikke på Girl, Boy, Little Girl eller Little Boy øverst på siden.</p>
+                  <p class="last">Når du er færdig med dine ændringer, skal du klikke på "Vis kurv" og trykke på ”Fortsæt”. Når du har gennemført din ordre med ny kreditkortbetaling, vil den gamle betaling automatisk blive slettet.<br><br> <b>Bemærk:</b> Hvis du anvender Visa Electron eller MasterCard ved redigeringen, foretages der automatisk endnu en reservation af totalbeløbet på din ordre. Reservationen af totalbeløbet på din oprindelige ordre bliver dog straks annulleret af POMPdeLUX. Der kan derimod  gå op til 6 uger, før reservationen ophæves af dit pengeinstitut. </p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="customer.service.contact.info">
@@ -142,7 +146,6 @@
                     E-mail: <a href="mailto:mail@pompdelux.dk">mail@pompdelux.dk</a><br>
                     Mandag til torsdag kl. 9 - 16<br>
                     Fredag 9 - 14<br>
-                    <!--Pause kl. 12 - 12.45<br>-->
                     Lørdag, søndag og helligdage lukket.
                 ]]></target>
             </trans-unit>
@@ -245,7 +248,16 @@
             <trans-unit id="return.info" approved="no">
                 <source>return.info</source>
                 <target><![CDATA[
-                    <p>Varerne skal være ubrugte og returneres i original emballage, med hængemærker osv. Strømper, leggings og strømpebukser kan kun returneres i ubrudt emballage. Postposen, som du modtager dine varer i, er lavet, så den kan bruges to gange. På posen kan du se, hvor du skal klippe, så du kan anvende den igen. Vi refunderer derfor ikke penge for returemballage, ligesom vi ikke refunderer penge for porto, hvis du kun sender dele af din ordre retur. Vi modtager ikke returvarer, der bliver sendt pr. efterkrav.</p>
+                    <p>Sådan gør du.<br>
+    Hos POMPdeLUX er det nemt at returnere en vare. Postposen som du modtager dine varer i, er lavet, så du let kan anvende den til tilbagesendelse af varen du ønsker at returnere – følg blot vejledningen på posen. Med denne mulighed, sparer vi dig for at skulle investere i dyr returemballage – til gavn for både dig og miljøet. <br>
+ Da din returvare skal sælges igen, vil det være en stor hjælp at du returnerer varen i original indpakning med hængemærker etc.<br>
+ Varerne returneres sammen med en udfyldt returseddel. På retursedlen kan du se, hvilke oplysninger vi skal bruge fra dig, og hvor du skal sende varerne til. Posen afleveres som pakkepost på posthuset eller i en Døgnpost pakkeautomat. <br>
+ <b>Bemærk:</b> Sammen med dine varer modtager du en returseddel, som du kan anvende ved returnering. Denne label har en værdi af DKK 29,00 som vi modregner i værdien på de returnerede varer – uanset returpakkens størrelse.<br>
+    <br>
+    Reklamation og fejlleverede varer.<br>
+    Hvis du har modtaget en vare med fejl, eller hvis vi har sendt dig en forkert vare, returnerer du blot varen som beskrevet ovenfor. Hvis vi vurderer din reklamation er berettiget, sender vi dig en ny vare fragtfrit. Hvis varen er udsolgt, tilbagefører vi varens købspris dig.<br>
+	<br>
+<b>Bemærk:</b>Sammen med dine varer har du modtaget en returlabel som du kan anvende ved tilbagesendelse af din reklamation eller fejlleverede vare. Denne forsendelse er naturligvis fragtfri for dig.<br></p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="footer.menu_1" approved="no">
@@ -253,10 +265,10 @@
                 <target><![CDATA[
                 <h2>Home shopping</h2>
                 <ul class="menu">
-                    <li><a href="/da_DK/forside/home-shopping" target="_blank">Om Home shopping</a></li>
-					<li><a href="/da_DK/forside/home-shopping/find-konsulent" target="_blank">Find konsulent</a></li>
-					<li><a href="/da_DK/forside/home-shopping/find-konsulent-paa-kort" target="_blank">Find konsulent på kort</a></li>
-					<li><a href="/da_DK/forside/home-shopping/aabent-hus" target="_blank">Åbent hus</a></li>
+                    <li><a href="/da_DK/forside/home-shopping">Om Home shopping</a></li>
+					<li><a href="/da_DK/forside/home-shopping/find-konsulent">Find konsulent</a></li>
+					<li><a href="/da_DK/forside/home-shopping/find-konsulent-paa-kort">Find konsulent på kort</a></li>
+					<li><a href="/da_DK/forside/home-shopping/aabent-hus">Åbent hus</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>
@@ -265,18 +277,18 @@
                 <target><![CDATA[
                 <h2>Mere POMPdeLUX</h2>
                 <ul class="menu">
-				    <li><a href="/da_DK/forside/katalog" target="_blank">Online katalog</a></li>
-					<li><a href="/da_DK/forside/katalog/image-video" target="_blank">Image Video</a></li>
-                    <li><a href="/da_DK/forside/nyheder" target="_blank">Nyheder</a></li>
-                    <li><a href="/da_DK/forside/om-pompdelux/koncept" target="_blank">Koncept</a></li>
-                    <li><a href="/da_DK/forside/om-pompdelux/social-ansvarlighed" target="_blank">Social ansvarlighed</a></li>
-                    <li><a href="/da_DK/forside/om-pompdelux/danmarks-indsamlingen" target="_blank">Danmarks Indsamlingen</a></li>
-					<li><a href="/da_DK/forside/om-pompdelux/sos-boernebyerne" target="_blank">SOS Børnebyerne</a></li>
-					<li><a href="/da_DK/forside/om-pompdelux/job" target="_blank">Job</a></li>
-					<li><a href="/da_DK/forside/webshop/info/gots-organic" target="_blank">GOTS (Organic)</a></li>
-					<li><a href="/da_DK/forside/webshop/info/oeko-tex" target="_blank">Oeko-Tex</a></li>
-					<li><a href="/da_DK/forside/webshop/info/credits" target="_blank">Credits</a></li>
-					<li><a href="/da_DK/forside/om-pompdelux/kontakt" target="_blank">Kontakt</a></li>
+				    <li><a href="/da_DK/forside/katalog">Online katalog</a></li>
+					<li><a href="/da_DK/forside/katalog/backstage-video">Backstage video</a></li>
+                    <li><a href="/da_DK/forside/nyheder">Nyheder</a></li>
+                    <li><a href="/da_DK/forside/om-pompdelux/koncept">Koncept</a></li>
+                    <li><a href="/da_DK/forside/om-pompdelux/social-ansvarlighed">Social ansvarlighed</a></li>
+                    <li><a href="/da_DK/forside/om-pompdelux/danmarks-indsamlingen">Danmarks Indsamlingen</a></li>
+					<li><a href="/da_DK/forside/om-pompdelux/sos-boernebyerne">SOS Børnebyerne</a></li>
+					<li><a href="/da_DK/forside/om-pompdelux/job">Job</a></li>
+					<li><a href="/da_DK/forside/webshop/info/gots-organic">GOTS (Organic)</a></li>
+					<li><a href="/da_DK/forside/webshop/info/oeko-tex">Oeko-Tex</a></li>
+					<li><a href="/da_DK/forside/webshop/info/credits">Credits</a></li>
+					<li><a href="/da_DK/forside/om-pompdelux/kontakt">Kontakt</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>
@@ -285,15 +297,15 @@
                 <target><![CDATA[
                 <h2>Kundeservice</h2>
                 <ul class="menu">
-                    <li><a href="/da_DK/forside/kundeservice" target="_blank">Telefontider</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/faq" target="_blank">FAQ</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/returnering" target="_blank">Returnering</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/ombytning" target="_blank">Ombytning</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/returseddel" target="_blank">Returseddel</a></li>
-                    <li><a href="/da_DK/forside/webshop/info/vaske-raad" target="_blank">Vaskeråd</a></li>
-					<li><a href="/da_DK/forside/webshop/info/sizeguide" target="_blank">Sizeguide</a></li>
-					<li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">Vilkår</a></li>
-					<li><a href="/da_DK/forside/kundeservice/om-webshoppen" target="_blank">Om webshoppen</a></li>
+                    <li><a href="/da_DK/forside/kundeservice">Telefontider</a></li>
+                    <li><a href="/da_DK/forside/kundeservice/faq">FAQ</a></li>
+                    <li><a href="/da_DK/forside/kundeservice/returnering">Returnering</a></li>
+                    <li><a href="/da_DK/forside/kundeservice/ombytning">Ombytning</a></li>
+                    <li><a href="/da_DK/forside/kundeservice/returseddel">Returseddel</a></li>
+                    <li><a href="/da_DK/forside/webshop/info/vaske-raad">Vaskeråd</a></li>
+					<li><a href="/da_DK/forside/webshop/info/sizeguide">Sizeguide</a></li>
+					<li><a href="/da_DK/forside/kundeservice/vilkaar">Vilkår</a></li>
+					<li><a href="/da_DK/forside/kundeservice/om-webshoppen">Om webshoppen</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>
@@ -332,6 +344,10 @@
             <trans-unit id="goto.top.link" approved="no">
                 <source>goto.top.link</source>
                 <target>Til top</target>
+            </trans-unit>
+            <trans-unit id="product.prices.description" approved="no">
+                <source>product.prices.description</source>
+                <target></target>
             </trans-unit>
         </body>
     </file>

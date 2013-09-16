@@ -9,11 +9,12 @@ use Hanzo\Model\Orders;
 use Hanzo\Model\LanguagesQuery;
 use Hanzo\Model\Customers;
 
+use Hanzo\Bundle\PaymentBundle\BasePaymentApi;
 use Hanzo\Bundle\PaymentBundle\Methods\Pensio\PensioCallResponse;
 
 use Symfony\Component\HttpFoundation\Request;
 
-class PensioApi
+class PensioApi extends BasePaymentApi
 {
     /**
      * api settings
@@ -76,15 +77,6 @@ class PensioApi
     public function isActive()
     {
         return $this->settings['active'];
-    }
-
-    /**
-     * getFee
-     * @return float
-     */
-    public function getFee()
-    {
-        return $this->settings['fee'];
     }
 
     /**
@@ -158,12 +150,12 @@ class PensioApi
         }
 
         if ('succeeded' !== $_POST['status']) {
-            throw new PaymentFailedException('Payment failed: '.$request->get('error_message').' ('.$request->get('merchant_error_message').')');
+            throw new PaymentFailedException('Payment failed: '.$request->request->get('error_message').' ('.$request->request->get('merchant_error_message').')');
         }
 
-        if ($request->get('checksum') && $this->settings['secret']) {
+        if ($request->request->get('checksum') && $this->settings['secret']) {
             $md5 = md5($order->getTotalPrice().$order->getCurrencyCode().$order->getPaymentGatewayId().$this->settings['secret']);
-            if (0 !== strcmp($md5, $request->get('checksum'))) {
+            if (0 !== strcmp($md5, $request->request->get('checksum'))) {
                 throw new Exception('Payment failed: checksum mismatch');
             }
         }
@@ -176,7 +168,7 @@ class PensioApi
      * @param  Orders $order The order object
      * @return string The form used to proceed to the Pensio payment window
      */
-    public function getProcessButton(Orders $order)
+    public function getProcessButton(Orders $order, Request $request)
     {
         $language = LanguagesQuery::create()->select('iso2')->findOneById($order->getLanguagesId());
 

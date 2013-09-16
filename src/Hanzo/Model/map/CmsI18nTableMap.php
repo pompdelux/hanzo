@@ -42,16 +42,17 @@ class CmsI18nTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(false);
         // columns
-        $this->addForeignPrimaryKey('ID', 'Id', 'INTEGER' , 'cms', 'ID', true, null, null);
-        $this->addPrimaryKey('LOCALE', 'Locale', 'VARCHAR', true, 5, 'da_DK');
-        $this->addColumn('TITLE', 'Title', 'VARCHAR', true, 255, null);
-        $this->getColumn('TITLE', false)->setPrimaryString(true);
-        $this->addColumn('PATH', 'Path', 'VARCHAR', true, 255, null);
-        $this->addColumn('OLD_PATH', 'OldPath', 'VARCHAR', false, 255, null);
-        $this->addColumn('CONTENT', 'Content', 'LONGVARCHAR', false, null, null);
-        $this->addColumn('SETTINGS', 'Settings', 'LONGVARCHAR', false, null, null);
-        $this->addColumn('IS_RESTRICTED', 'IsRestricted', 'BOOLEAN', true, 1, false);
-        $this->addColumn('IS_ACTIVE', 'IsActive', 'BOOLEAN', true, 1, true);
+        $this->addForeignPrimaryKey('id', 'Id', 'INTEGER' , 'cms', 'id', true, null, null);
+        $this->addPrimaryKey('locale', 'Locale', 'VARCHAR', true, 5, 'da_DK');
+        $this->addColumn('title', 'Title', 'VARCHAR', true, 255, null);
+        $this->getColumn('title', false)->setPrimaryString(true);
+        $this->addColumn('path', 'Path', 'VARCHAR', true, 255, null);
+        $this->addColumn('old_path', 'OldPath', 'VARCHAR', false, 255, null);
+        $this->addColumn('content', 'Content', 'LONGVARCHAR', false, null, null);
+        $this->addColumn('settings', 'Settings', 'LONGVARCHAR', false, null, null);
+        $this->addColumn('is_restricted', 'IsRestricted', 'BOOLEAN', true, 1, false);
+        $this->addColumn('is_active', 'IsActive', 'BOOLEAN', true, 1, true);
+        $this->addColumn('on_mobile', 'OnMobile', 'BOOLEAN', true, 1, true);
         // validators
     } // initialize()
 

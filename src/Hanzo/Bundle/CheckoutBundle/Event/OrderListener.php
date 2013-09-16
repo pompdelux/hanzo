@@ -8,7 +8,7 @@ use Hanzo\Core\Tools;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\OrdersQuery;
-use Hanzo\Bundle\ServiceBundle\Services\AxService;
+use Hanzo\Bundle\AxBundle\Actions\Out\AxService;
 
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Response;
@@ -52,16 +52,19 @@ class OrderListener
             $this->session->getId(),
             Propel::getConnection(OrdersPeer::DATABASE_NAME, Propel::CONNECTION_WRITE)
         );
+
         if ($o instanceof Orders) {
             $this->session->migrate();
         }
+
+        unset($o);
 
         // first we create the edit version.
         $order->createNewVersion();
 
         // then we set edit stuff on the order.
         $order->setSessionId($this->session->getId());
-        $order->setState( Orders::STATE_BUILDING ); // Old order state is probably payment ok
+        $order->setState(Orders::STATE_BUILDING);
         $order->clearFees();
         $order->clearPaymentAttributes();
         $order->setInEdit(true);

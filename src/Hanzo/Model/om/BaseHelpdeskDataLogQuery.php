@@ -30,7 +30,6 @@ use Hanzo\Model\HelpdeskDataLogQuery;
  * @method HelpdeskDataLog findOne(PropelPDO $con = null) Return the first HelpdeskDataLog matching the query
  * @method HelpdeskDataLog findOneOrCreate(PropelPDO $con = null) Return the first HelpdeskDataLog matching the query, or a new HelpdeskDataLog object populated from the query conditions when no match is found
  *
- * @method HelpdeskDataLog findOneByKey(string $key) Return the first HelpdeskDataLog filtered by the key column
  * @method HelpdeskDataLog findOneByData(string $data) Return the first HelpdeskDataLog filtered by the data column
  * @method HelpdeskDataLog findOneByCreatedAt(string $created_at) Return the first HelpdeskDataLog filtered by the created_at column
  *
@@ -56,7 +55,7 @@ abstract class BaseHelpdeskDataLogQuery extends ModelCriteria
      * Returns a new HelpdeskDataLogQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     HelpdeskDataLogQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   HelpdeskDataLogQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return HelpdeskDataLogQuery
      */
@@ -113,18 +112,32 @@ abstract class BaseHelpdeskDataLogQuery extends ModelCriteria
     }
 
     /**
+     * Alias of findPk to use instance pooling
+     *
+     * @param     mixed $key Primary key to use for the query
+     * @param     PropelPDO $con A connection object
+     *
+     * @return                 HelpdeskDataLog A model object, or null if the key is not found
+     * @throws PropelException
+     */
+     public function findOneByKey($key, $con = null)
+     {
+        return $this->findPk($key, $con);
+     }
+
+    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   HelpdeskDataLog A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 HelpdeskDataLog A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `KEY`, `DATA`, `CREATED_AT` FROM `helpdesk_data_log` WHERE `KEY` = :p0';
+        $sql = 'SELECT `key`, `data`, `created_at` FROM `helpdesk_data_log` WHERE `key` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_STR);

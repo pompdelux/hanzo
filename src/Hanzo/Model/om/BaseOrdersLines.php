@@ -129,6 +129,19 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
     protected $unit;
 
     /**
+     * The value for the is_voucher field.
+     * Note: this column has a database default value of: false
+     * @var        boolean
+     */
+    protected $is_voucher;
+
+    /**
+     * The value for the note field.
+     * @var        string
+     */
+    protected $note;
+
+    /**
      * @var        Orders
      */
     protected $aOrders;
@@ -153,6 +166,12 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
     protected $alreadyInValidation = false;
 
     /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
+    /**
      * Applies default values to this object.
      * This method should be called from the object's constructor (or
      * equivalent initialization method).
@@ -162,6 +181,7 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
     {
         $this->expected_at = '1970-01-01';
         $this->vat = '0.00';
+        $this->is_voucher = false;
     }
 
     /**
@@ -275,22 +295,25 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
             // while technically this is not a default value of null,
             // this seems to be closest in meaning.
             return null;
-        } else {
-            try {
-                $dt = new DateTime($this->expected_at);
-            } catch (Exception $x) {
-                throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->expected_at, true), $x);
-            }
+        }
+
+        try {
+            $dt = new DateTime($this->expected_at);
+        } catch (Exception $x) {
+            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->expected_at, true), $x);
         }
 
         if ($format === null) {
             // We cast here to maintain BC in API; obviously we will lose data if we're dealing with pre-/post-epoch dates.
             return (int) $dt->format('U');
-        } elseif (strpos($format, '%') !== false) {
-            return strftime($format, $dt->format('U'));
-        } else {
-            return $dt->format($format);
         }
+
+        if (strpos($format, '%') !== false) {
+            return strftime($format, $dt->format('U'));
+        }
+
+        return $dt->format($format);
+
     }
 
     /**
@@ -344,6 +367,26 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
     }
 
     /**
+     * Get the [is_voucher] column value.
+     *
+     * @return boolean
+     */
+    public function getIsVoucher()
+    {
+        return $this->is_voucher;
+    }
+
+    /**
+     * Get the [note] column value.
+     *
+     * @return string
+     */
+    public function getNote()
+    {
+        return $this->note;
+    }
+
+    /**
      * Set the value of [id] column.
      *
      * @param int $v new value
@@ -351,7 +394,7 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      */
     public function setId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -372,7 +415,7 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      */
     public function setOrdersId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -397,7 +440,7 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      */
     public function setType($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -418,7 +461,7 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      */
     public function setProductsId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -443,7 +486,7 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      */
     public function setProductsSku($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -464,7 +507,7 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      */
     public function setProductsName($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -485,7 +528,7 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      */
     public function setProductsColor($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -506,7 +549,7 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      */
     public function setProductsSize($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -552,7 +595,7 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      */
     public function setOriginalPrice($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -573,7 +616,7 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      */
     public function setPrice($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -594,7 +637,7 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      */
     public function setVat($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -615,7 +658,7 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      */
     public function setQuantity($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -636,7 +679,7 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      */
     public function setUnit($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -648,6 +691,56 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
 
         return $this;
     } // setUnit()
+
+    /**
+     * Sets the value of the [is_voucher] column.
+     * Non-boolean arguments are converted using the following rules:
+     *   * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
+     *   * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
+     * Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
+     *
+     * @param boolean|integer|string $v The new value
+     * @return OrdersLines The current object (for fluent API support)
+     */
+    public function setIsVoucher($v)
+    {
+        if ($v !== null) {
+            if (is_string($v)) {
+                $v = in_array(strtolower($v), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+            } else {
+                $v = (boolean) $v;
+            }
+        }
+
+        if ($this->is_voucher !== $v) {
+            $this->is_voucher = $v;
+            $this->modifiedColumns[] = OrdersLinesPeer::IS_VOUCHER;
+        }
+
+
+        return $this;
+    } // setIsVoucher()
+
+    /**
+     * Set the value of [note] column.
+     *
+     * @param string $v new value
+     * @return OrdersLines The current object (for fluent API support)
+     */
+    public function setNote($v)
+    {
+        if ($v !== null && is_numeric($v)) {
+            $v = (string) $v;
+        }
+
+        if ($this->note !== $v) {
+            $this->note = $v;
+            $this->modifiedColumns[] = OrdersLinesPeer::NOTE;
+        }
+
+
+        return $this;
+    } // setNote()
 
     /**
      * Indicates whether the columns in this object are only set to default values.
@@ -664,6 +757,10 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
             }
 
             if ($this->vat !== '0.00') {
+                return false;
+            }
+
+            if ($this->is_voucher !== false) {
                 return false;
             }
 
@@ -703,6 +800,8 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
             $this->vat = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
             $this->quantity = ($row[$startcol + 12] !== null) ? (int) $row[$startcol + 12] : null;
             $this->unit = ($row[$startcol + 13] !== null) ? (string) $row[$startcol + 13] : null;
+            $this->is_voucher = ($row[$startcol + 14] !== null) ? (boolean) $row[$startcol + 14] : null;
+            $this->note = ($row[$startcol + 15] !== null) ? (string) $row[$startcol + 15] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -710,8 +809,8 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
-            return $startcol + 14; // 14 = OrdersLinesPeer::NUM_HYDRATE_COLUMNS.
+            $this->postHydrate($row, $startcol, $rehydrate);
+            return $startcol + 16; // 16 = OrdersLinesPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating OrdersLines object", $e);
@@ -951,46 +1050,52 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(OrdersLinesPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`ID`';
+            $modifiedColumns[':p' . $index++]  = '`id`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::ORDERS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`ORDERS_ID`';
+            $modifiedColumns[':p' . $index++]  = '`orders_id`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::TYPE)) {
-            $modifiedColumns[':p' . $index++]  = '`TYPE`';
+            $modifiedColumns[':p' . $index++]  = '`type`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::PRODUCTS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`PRODUCTS_ID`';
+            $modifiedColumns[':p' . $index++]  = '`products_id`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::PRODUCTS_SKU)) {
-            $modifiedColumns[':p' . $index++]  = '`PRODUCTS_SKU`';
+            $modifiedColumns[':p' . $index++]  = '`products_sku`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::PRODUCTS_NAME)) {
-            $modifiedColumns[':p' . $index++]  = '`PRODUCTS_NAME`';
+            $modifiedColumns[':p' . $index++]  = '`products_name`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::PRODUCTS_COLOR)) {
-            $modifiedColumns[':p' . $index++]  = '`PRODUCTS_COLOR`';
+            $modifiedColumns[':p' . $index++]  = '`products_color`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::PRODUCTS_SIZE)) {
-            $modifiedColumns[':p' . $index++]  = '`PRODUCTS_SIZE`';
+            $modifiedColumns[':p' . $index++]  = '`products_size`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::EXPECTED_AT)) {
-            $modifiedColumns[':p' . $index++]  = '`EXPECTED_AT`';
+            $modifiedColumns[':p' . $index++]  = '`expected_at`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::ORIGINAL_PRICE)) {
-            $modifiedColumns[':p' . $index++]  = '`ORIGINAL_PRICE`';
+            $modifiedColumns[':p' . $index++]  = '`original_price`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::PRICE)) {
-            $modifiedColumns[':p' . $index++]  = '`PRICE`';
+            $modifiedColumns[':p' . $index++]  = '`price`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::VAT)) {
-            $modifiedColumns[':p' . $index++]  = '`VAT`';
+            $modifiedColumns[':p' . $index++]  = '`vat`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::QUANTITY)) {
-            $modifiedColumns[':p' . $index++]  = '`QUANTITY`';
+            $modifiedColumns[':p' . $index++]  = '`quantity`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::UNIT)) {
-            $modifiedColumns[':p' . $index++]  = '`UNIT`';
+            $modifiedColumns[':p' . $index++]  = '`unit`';
+        }
+        if ($this->isColumnModified(OrdersLinesPeer::IS_VOUCHER)) {
+            $modifiedColumns[':p' . $index++]  = '`is_voucher`';
+        }
+        if ($this->isColumnModified(OrdersLinesPeer::NOTE)) {
+            $modifiedColumns[':p' . $index++]  = '`note`';
         }
 
         $sql = sprintf(
@@ -1003,47 +1108,53 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`ID`':
+                    case '`id`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`ORDERS_ID`':
+                    case '`orders_id`':
                         $stmt->bindValue($identifier, $this->orders_id, PDO::PARAM_INT);
                         break;
-                    case '`TYPE`':
+                    case '`type`':
                         $stmt->bindValue($identifier, $this->type, PDO::PARAM_STR);
                         break;
-                    case '`PRODUCTS_ID`':
+                    case '`products_id`':
                         $stmt->bindValue($identifier, $this->products_id, PDO::PARAM_INT);
                         break;
-                    case '`PRODUCTS_SKU`':
+                    case '`products_sku`':
                         $stmt->bindValue($identifier, $this->products_sku, PDO::PARAM_STR);
                         break;
-                    case '`PRODUCTS_NAME`':
+                    case '`products_name`':
                         $stmt->bindValue($identifier, $this->products_name, PDO::PARAM_STR);
                         break;
-                    case '`PRODUCTS_COLOR`':
+                    case '`products_color`':
                         $stmt->bindValue($identifier, $this->products_color, PDO::PARAM_STR);
                         break;
-                    case '`PRODUCTS_SIZE`':
+                    case '`products_size`':
                         $stmt->bindValue($identifier, $this->products_size, PDO::PARAM_STR);
                         break;
-                    case '`EXPECTED_AT`':
+                    case '`expected_at`':
                         $stmt->bindValue($identifier, $this->expected_at, PDO::PARAM_STR);
                         break;
-                    case '`ORIGINAL_PRICE`':
+                    case '`original_price`':
                         $stmt->bindValue($identifier, $this->original_price, PDO::PARAM_STR);
                         break;
-                    case '`PRICE`':
+                    case '`price`':
                         $stmt->bindValue($identifier, $this->price, PDO::PARAM_STR);
                         break;
-                    case '`VAT`':
+                    case '`vat`':
                         $stmt->bindValue($identifier, $this->vat, PDO::PARAM_STR);
                         break;
-                    case '`QUANTITY`':
+                    case '`quantity`':
                         $stmt->bindValue($identifier, $this->quantity, PDO::PARAM_INT);
                         break;
-                    case '`UNIT`':
+                    case '`unit`':
                         $stmt->bindValue($identifier, $this->unit, PDO::PARAM_STR);
+                        break;
+                    case '`is_voucher`':
+                        $stmt->bindValue($identifier, (int) $this->is_voucher, PDO::PARAM_INT);
+                        break;
+                    case '`note`':
+                        $stmt->bindValue($identifier, $this->note, PDO::PARAM_STR);
                         break;
                 }
             }
@@ -1113,11 +1224,11 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -1239,6 +1350,12 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
             case 13:
                 return $this->getUnit();
                 break;
+            case 14:
+                return $this->getIsVoucher();
+                break;
+            case 15:
+                return $this->getNote();
+                break;
             default:
                 return null;
                 break;
@@ -1282,6 +1399,8 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
             $keys[11] => $this->getVat(),
             $keys[12] => $this->getQuantity(),
             $keys[13] => $this->getUnit(),
+            $keys[14] => $this->getIsVoucher(),
+            $keys[15] => $this->getNote(),
         );
         if ($includeForeignObjects) {
             if (null !== $this->aOrders) {
@@ -1366,6 +1485,12 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
             case 13:
                 $this->setUnit($value);
                 break;
+            case 14:
+                $this->setIsVoucher($value);
+                break;
+            case 15:
+                $this->setNote($value);
+                break;
         } // switch()
     }
 
@@ -1404,6 +1529,8 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
         if (array_key_exists($keys[11], $arr)) $this->setVat($arr[$keys[11]]);
         if (array_key_exists($keys[12], $arr)) $this->setQuantity($arr[$keys[12]]);
         if (array_key_exists($keys[13], $arr)) $this->setUnit($arr[$keys[13]]);
+        if (array_key_exists($keys[14], $arr)) $this->setIsVoucher($arr[$keys[14]]);
+        if (array_key_exists($keys[15], $arr)) $this->setNote($arr[$keys[15]]);
     }
 
     /**
@@ -1429,6 +1556,8 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
         if ($this->isColumnModified(OrdersLinesPeer::VAT)) $criteria->add(OrdersLinesPeer::VAT, $this->vat);
         if ($this->isColumnModified(OrdersLinesPeer::QUANTITY)) $criteria->add(OrdersLinesPeer::QUANTITY, $this->quantity);
         if ($this->isColumnModified(OrdersLinesPeer::UNIT)) $criteria->add(OrdersLinesPeer::UNIT, $this->unit);
+        if ($this->isColumnModified(OrdersLinesPeer::IS_VOUCHER)) $criteria->add(OrdersLinesPeer::IS_VOUCHER, $this->is_voucher);
+        if ($this->isColumnModified(OrdersLinesPeer::NOTE)) $criteria->add(OrdersLinesPeer::NOTE, $this->note);
 
         return $criteria;
     }
@@ -1505,6 +1634,8 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
         $copyObj->setVat($this->getVat());
         $copyObj->setQuantity($this->getQuantity());
         $copyObj->setUnit($this->getUnit());
+        $copyObj->setIsVoucher($this->getIsVoucher());
+        $copyObj->setNote($this->getNote());
 
         if ($deepCopy && !$this->startCopy) {
             // important: temporarily setNew(false) because this affects the behavior of
@@ -1595,12 +1726,13 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      * Get the associated Orders object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Orders The associated Orders object.
      * @throws PropelException
      */
-    public function getOrders(PropelPDO $con = null)
+    public function getOrders(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aOrders === null && ($this->orders_id !== null)) {
+        if ($this->aOrders === null && ($this->orders_id !== null) && $doQuery) {
             $this->aOrders = OrdersQuery::create()->findPk($this->orders_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -1646,12 +1778,13 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      * Get the associated Products object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Products The associated Products object.
      * @throws PropelException
      */
-    public function getProducts(PropelPDO $con = null)
+    public function getProducts(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aProducts === null && ($this->products_id !== null)) {
+        if ($this->aProducts === null && ($this->products_id !== null) && $doQuery) {
             $this->aProducts = ProductsQuery::create()->findPk($this->products_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -1684,8 +1817,11 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
         $this->vat = null;
         $this->quantity = null;
         $this->unit = null;
+        $this->is_voucher = null;
+        $this->note = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->applyDefaultValues();
         $this->resetModified();
@@ -1704,7 +1840,16 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
+            if ($this->aOrders instanceof Persistent) {
+              $this->aOrders->clearAllReferences($deep);
+            }
+            if ($this->aProducts instanceof Persistent) {
+              $this->aProducts->clearAllReferences($deep);
+            }
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
         $this->aOrders = null;

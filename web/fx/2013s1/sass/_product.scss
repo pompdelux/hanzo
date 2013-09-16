@@ -76,11 +76,16 @@ a.video-popper, #video-player-container a.video {
 	}
 	.prices{
 		padding: 0 0 12px;
+		.description {
+			font-family: $font-sans;
+			font-size: $small_size
+		}
 	}
 
 	h4{
 		padding: 6px 0;
 		font-weight: $font-weight-thin;
+		font-family: $font-sans;
 	}
 }
 
@@ -89,7 +94,7 @@ form.buy{
 	label{
 		display: block;
 		padding: 0 6px 0 0;
-		margin: 3px 0;
+		margin: 10px 0;
 		span{
 			display: block;
 		}
@@ -108,6 +113,10 @@ form.buy{
 		margin-top: 18px;
 		@include image-replacement;
 		display: block;
+	}
+	h4.bordered {
+		font-family: $font-sans;
+		font-size: $paragraph-size;
 	}
 }
 
@@ -161,7 +170,7 @@ a.product-color{
 	margin: 3px;
 	display: inline-block;
 	text-align: center;
-	width: 65px;
+	width: 105px;
 	font-size: $product-size;
 	vertical-align: top;
 	white-space: nowrap;
@@ -169,42 +178,56 @@ a.product-color{
 		display: block;
 		margin: 0 auto;
 	}
+
 	@include colorbutton(black9rose);
 	@include colorbutton(black);
-	@include colorbutton(blue-denim);
-	@include colorbutton(blue9grey-melange);
-	@include colorbutton(blue);
-	@include colorbutton(brown);
-	@include colorbutton(camel);
-	@include colorbutton(gold);
-	@include colorbutton(green9grey);
-	@include colorbutton(green);
-	@include colorbutton(grey9off-white);
-	@include colorbutton(grey-melange);
-	@include colorbutton(grey-melange9white);
-	@include colorbutton(grey);
-	@include colorbutton(honey);
-	@include colorbutton(khaki);
-	@include colorbutton(light-blue);
-	@include colorbutton(light-grey-melange);
-	@include colorbutton(navy9camel);
-	@include colorbutton(navy9honey);
-	@include colorbutton(navy9off-white);
-	@include colorbutton(navy9white);
-	@include colorbutton(navy-melange);
-	@include colorbutton(navy);
-	@include colorbutton(off-white9blue);
-	@include colorbutton(off-white);
-	@include colorbutton(peach9grey-melange);
-	@include colorbutton(peach);
-	@include colorbutton(red);
-	@include colorbutton(rose);
-	@include colorbutton(sand);
-	@include colorbutton(turquoise);
-	@include colorbutton(white9off-white);
-	@include colorbutton(white);
-	@include colorbutton(wine);
-	@include colorbutton(yellow);
+    @include colorbutton(blue-denim);
+    @include colorbutton(blue9grey-melange);
+    @include colorbutton(blue);
+    @include colorbutton(brown);
+    @include colorbutton(camel);
+    @include colorbutton(cerise);
+    @include colorbutton(cerise9grey);
+    @include colorbutton(curry);
+    @include colorbutton(curry9grey);
+    @include colorbutton(dark-grey);
+    @include colorbutton(dark-grey-melange);
+    @include colorbutton(gold);
+    @include colorbutton(green9grey);
+    @include colorbutton(green);
+    @include colorbutton(green-navy);
+    @include colorbutton(grey9off-white);
+    @include colorbutton(grey-melange);
+    @include colorbutton(grey-melange9white);
+    @include colorbutton(grey-star);
+    @include colorbutton(grey);
+    @include colorbutton(honey);
+    @include colorbutton(ice-blue);
+    @include colorbutton(khaki);
+    @include colorbutton(light-blue);
+    @include colorbutton(light-grey);
+    @include colorbutton(light-grey-melange);
+    @include colorbutton(navy9camel);
+    @include colorbutton(navy9curry);
+    @include colorbutton(navy9honey);
+    @include colorbutton(navy9off-white);
+    @include colorbutton(navy9white);
+    @include colorbutton(navy9wine);
+    @include colorbutton(navy-melange);
+    @include colorbutton(navy);
+    @include colorbutton(off-white9blue);
+    @include colorbutton(off-white);
+    @include colorbutton(peach9grey-melange);
+    @include colorbutton(peach);
+    @include colorbutton(red);
+    @include colorbutton(rose);
+    @include colorbutton(sand);
+    @include colorbutton(turquoise);
+    @include colorbutton(white9off-white);
+    @include colorbutton(white);
+    @include colorbutton(wine);
+    @include colorbutton(wine9grey);
+    @include colorbutton(yellow);
 
 	// .colorbuttons {
 	// 	// We need all colors ruled here::

@@ -42,13 +42,13 @@ class ZipToCityTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(true);
         // columns
-        $this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
-        $this->addColumn('ZIP', 'Zip', 'VARCHAR', true, 12, null);
-        $this->addForeignKey('COUNTRIES_ISO2', 'CountriesIso2', 'VARCHAR', 'countries', 'ISO2', true, 2, null);
-        $this->addColumn('CITY', 'City', 'VARCHAR', true, 128, null);
-        $this->addColumn('COUNTY_ID', 'CountyId', 'VARCHAR', false, 12, null);
-        $this->addColumn('COUNTY_NAME', 'CountyName', 'VARCHAR', false, 128, null);
-        $this->addColumn('COMMENT', 'Comment', 'VARCHAR', false, 255, null);
+        $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
+        $this->addColumn('zip', 'Zip', 'VARCHAR', true, 12, null);
+        $this->addForeignKey('countries_iso2', 'CountriesIso2', 'VARCHAR', 'countries', 'iso2', true, 2, null);
+        $this->addColumn('city', 'City', 'VARCHAR', true, 128, null);
+        $this->addColumn('county_id', 'CountyId', 'VARCHAR', false, 12, null);
+        $this->addColumn('county_name', 'CountyName', 'VARCHAR', false, 128, null);
+        $this->addColumn('comment', 'Comment', 'VARCHAR', false, 255, null);
         // validators
     } // initialize()
 

@@ -10,3 +10,7 @@ _newsletter_account_action:
 _newsletter_subscribe:
     pattern:  /newsletter/subscribe/current
     defaults: { _controller: NewsletterBundle:Default:subscribe }
+
+_newsletter_unsubscribe:
+    pattern:  /newsletter/unsubscribe/current
+    defaults: { _controller: NewsletterBundle:Default:unsubscribe }

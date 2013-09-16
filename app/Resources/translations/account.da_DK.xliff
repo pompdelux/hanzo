@@ -91,6 +91,22 @@
                 <source>existing.customer</source>
                 <target>Eksisterende kunde</target>
             </trans-unit>
+            <trans-unit id="title">
+                <source>title</source>
+                <target>Title</target>
+            </trans-unit>
+            <trans-unit id="attention.label">
+                <source>attention.label</source>
+                <target>Att:</target>
+            </trans-unit>
+            <trans-unit id="title.male">
+                <source>title.male</source>
+                <target>Hr.</target>
+            </trans-unit>
+            <trans-unit id="title.female">
+                <source>title.female</source>
+                <target>Fru</target>
+            </trans-unit>
             <trans-unit id="email">
                 <source>email</source>
                 <target>E-mailadresse</target>
@@ -129,7 +145,7 @@
             </trans-unit>
             <trans-unit id="54">
                 <source>Phone</source>
-                <target>Telefonnummer</target>
+                <target>Mobilnummer</target>
             </trans-unit>
             <trans-unit id="55">
                 <source>Address line 1</source>
@@ -185,7 +201,7 @@
             </trans-unit>
             <trans-unit id="65">
                 <source>create.account</source>
-                <target>Opret konto</target>
+                <target>Videre</target>
             </trans-unit>
             <trans-unit id="create.account.header" approved="no">
                 <source>create.account.header</source>
@@ -193,7 +209,7 @@
             </trans-unit>
             <trans-unit id="edit.account">
                 <source>edit.account</source>
-                <target>Ret konto</target>
+                <target>Videre</target>
             </trans-unit>
             <trans-unit id="update.account">
                 <source>update.account</source>

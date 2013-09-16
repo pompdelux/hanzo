@@ -41,7 +41,6 @@ use Hanzo\Model\DomainsSettingsQuery;
  * @method DomainsSettings findOne(PropelPDO $con = null) Return the first DomainsSettings matching the query
  * @method DomainsSettings findOneOrCreate(PropelPDO $con = null) Return the first DomainsSettings matching the query, or a new DomainsSettings object populated from the query conditions when no match is found
  *
- * @method DomainsSettings findOneById(int $id) Return the first DomainsSettings filtered by the id column
  * @method DomainsSettings findOneByDomainKey(string $domain_key) Return the first DomainsSettings filtered by the domain_key column
  * @method DomainsSettings findOneByCKey(string $c_key) Return the first DomainsSettings filtered by the c_key column
  * @method DomainsSettings findOneByNs(string $ns) Return the first DomainsSettings filtered by the ns column
@@ -71,7 +70,7 @@ abstract class BaseDomainsSettingsQuery extends ModelCriteria
      * Returns a new DomainsSettingsQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     DomainsSettingsQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   DomainsSettingsQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return DomainsSettingsQuery
      */
@@ -128,18 +127,32 @@ abstract class BaseDomainsSettingsQuery extends ModelCriteria
     }
 
     /**
+     * Alias of findPk to use instance pooling
+     *
+     * @param     mixed $key Primary key to use for the query
+     * @param     PropelPDO $con A connection object
+     *
+     * @return                 DomainsSettings A model object, or null if the key is not found
+     * @throws PropelException
+     */
+     public function findOneById($key, $con = null)
+     {
+        return $this->findPk($key, $con);
+     }
+
+    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   DomainsSettings A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 DomainsSettings A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `ID`, `DOMAIN_KEY`, `C_KEY`, `NS`, `C_VALUE` FROM `domains_settings` WHERE `ID` = :p0';
+        $sql = 'SELECT `id`, `domain_key`, `c_key`, `ns`, `c_value` FROM `domains_settings` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -235,7 +248,8 @@ abstract class BaseDomainsSettingsQuery extends ModelCriteria
      * <code>
      * $query->filterById(1234); // WHERE id = 1234
      * $query->filterById(array(12, 34)); // WHERE id IN (12, 34)
-     * $query->filterById(array('min' => 12)); // WHERE id > 12
+     * $query->filterById(array('min' => 12)); // WHERE id >= 12
+     * $query->filterById(array('max' => 12)); // WHERE id <= 12
      * </code>
      *
      * @param     mixed $id The value to use as filter.
@@ -248,8 +262,22 @@ abstract class BaseDomainsSettingsQuery extends ModelCriteria
      */
     public function filterById($id = null, $comparison = null)
     {
-        if (is_array($id) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($id)) {
+            $useMinMax = false;
+            if (isset($id['min'])) {
+                $this->addUsingAlias(DomainsSettingsPeer::ID, $id['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($id['max'])) {
+                $this->addUsingAlias(DomainsSettingsPeer::ID, $id['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(DomainsSettingsPeer::ID, $id, $comparison);
@@ -377,8 +405,8 @@ abstract class BaseDomainsSettingsQuery extends ModelCriteria
      * @param   Domains|PropelObjectCollection $domains The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   DomainsSettingsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 DomainsSettingsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByDomains($domains, $comparison = null)
     {

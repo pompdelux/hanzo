@@ -31,19 +31,22 @@ abstract class BaseProductsImagesProductReferencesPeer
     const TM_CLASS = 'ProductsImagesProductReferencesTableMap';
 
     /** The total number of columns. */
-    const NUM_COLUMNS = 2;
+    const NUM_COLUMNS = 3;
 
     /** The number of lazy-loaded columns. */
     const NUM_LAZY_LOAD_COLUMNS = 0;
 
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-    const NUM_HYDRATE_COLUMNS = 2;
+    const NUM_HYDRATE_COLUMNS = 3;
 
-    /** the column name for the PRODUCTS_IMAGES_ID field */
-    const PRODUCTS_IMAGES_ID = 'products_images_product_references.PRODUCTS_IMAGES_ID';
+    /** the column name for the products_images_id field */
+    const PRODUCTS_IMAGES_ID = 'products_images_product_references.products_images_id';
 
-    /** the column name for the PRODUCTS_ID field */
-    const PRODUCTS_ID = 'products_images_product_references.PRODUCTS_ID';
+    /** the column name for the products_id field */
+    const PRODUCTS_ID = 'products_images_product_references.products_id';
+
+    /** the column name for the color field */
+    const COLOR = 'products_images_product_references.color';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -64,12 +67,12 @@ abstract class BaseProductsImagesProductReferencesPeer
      * e.g. ProductsImagesProductReferencesPeer::$fieldNames[ProductsImagesProductReferencesPeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('ProductsImagesId', 'ProductsId', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('productsImagesId', 'productsId', ),
-        BasePeer::TYPE_COLNAME => array (ProductsImagesProductReferencesPeer::PRODUCTS_IMAGES_ID, ProductsImagesProductReferencesPeer::PRODUCTS_ID, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('PRODUCTS_IMAGES_ID', 'PRODUCTS_ID', ),
-        BasePeer::TYPE_FIELDNAME => array ('products_images_id', 'products_id', ),
-        BasePeer::TYPE_NUM => array (0, 1, )
+        BasePeer::TYPE_PHPNAME => array ('ProductsImagesId', 'ProductsId', 'Color', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('productsImagesId', 'productsId', 'color', ),
+        BasePeer::TYPE_COLNAME => array (ProductsImagesProductReferencesPeer::PRODUCTS_IMAGES_ID, ProductsImagesProductReferencesPeer::PRODUCTS_ID, ProductsImagesProductReferencesPeer::COLOR, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('PRODUCTS_IMAGES_ID', 'PRODUCTS_ID', 'COLOR', ),
+        BasePeer::TYPE_FIELDNAME => array ('products_images_id', 'products_id', 'color', ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, )
     );
 
     /**
@@ -79,12 +82,12 @@ abstract class BaseProductsImagesProductReferencesPeer
      * e.g. ProductsImagesProductReferencesPeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('ProductsImagesId' => 0, 'ProductsId' => 1, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('productsImagesId' => 0, 'productsId' => 1, ),
-        BasePeer::TYPE_COLNAME => array (ProductsImagesProductReferencesPeer::PRODUCTS_IMAGES_ID => 0, ProductsImagesProductReferencesPeer::PRODUCTS_ID => 1, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('PRODUCTS_IMAGES_ID' => 0, 'PRODUCTS_ID' => 1, ),
-        BasePeer::TYPE_FIELDNAME => array ('products_images_id' => 0, 'products_id' => 1, ),
-        BasePeer::TYPE_NUM => array (0, 1, )
+        BasePeer::TYPE_PHPNAME => array ('ProductsImagesId' => 0, 'ProductsId' => 1, 'Color' => 2, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('productsImagesId' => 0, 'productsId' => 1, 'color' => 2, ),
+        BasePeer::TYPE_COLNAME => array (ProductsImagesProductReferencesPeer::PRODUCTS_IMAGES_ID => 0, ProductsImagesProductReferencesPeer::PRODUCTS_ID => 1, ProductsImagesProductReferencesPeer::COLOR => 2, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('PRODUCTS_IMAGES_ID' => 0, 'PRODUCTS_ID' => 1, 'COLOR' => 2, ),
+        BasePeer::TYPE_FIELDNAME => array ('products_images_id' => 0, 'products_id' => 1, 'color' => 2, ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, )
     );
 
     /**
@@ -160,9 +163,11 @@ abstract class BaseProductsImagesProductReferencesPeer
         if (null === $alias) {
             $criteria->addSelectColumn(ProductsImagesProductReferencesPeer::PRODUCTS_IMAGES_ID);
             $criteria->addSelectColumn(ProductsImagesProductReferencesPeer::PRODUCTS_ID);
+            $criteria->addSelectColumn(ProductsImagesProductReferencesPeer::COLOR);
         } else {
-            $criteria->addSelectColumn($alias . '.PRODUCTS_IMAGES_ID');
-            $criteria->addSelectColumn($alias . '.PRODUCTS_ID');
+            $criteria->addSelectColumn($alias . '.products_images_id');
+            $criteria->addSelectColumn($alias . '.products_id');
+            $criteria->addSelectColumn($alias . '.color');
         }
     }
 
@@ -246,7 +251,7 @@ abstract class BaseProductsImagesProductReferencesPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -351,8 +356,15 @@ abstract class BaseProductsImagesProductReferencesPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (ProductsImagesProductReferencesPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         ProductsImagesProductReferencesPeer::$instances = array();
     }
 
@@ -1118,7 +1130,7 @@ abstract class BaseProductsImagesProductReferencesPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return ProductsImagesProductReferencesPeer::OM_CLASS;
     }

@@ -10,7 +10,20 @@ var calendar = (function($) {
 // Used by events create customer
 var events = (function($) {
   var pub = {};
-
+  pub.init = function(){
+    $('form.invite-form').submit(function(e){
+      // regex source: http://stackoverflow.com/questions/46155/validate-email-address-in-javascript
+      var email_regex = RegExp(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+      if(!$('#form_email', $(this)).val() && !$('#form_phone', $(this)).val()){
+        e.preventDefault();
+        dialoug.notice(Translator.get('js:events.error.email.or.phone'), 'error',3000, $(this));
+      }
+      if($('#form_email', $(this)).val() && !email_regex.test($('#form_email', $(this)).val())){
+        e.preventDefault();
+        dialoug.notice(Translator.get('js:email.invalid'), 'error',3000, $(this));
+      }
+    });
+  };
   pub.choose_evet_type_init = function() {
     var $select = $('select#sales-type');
     var $hostess = $select.next();
@@ -102,7 +115,7 @@ var events = (function($) {
 
   return pub;
 })(jQuery);
-
+events.init();
 if ($("#calendar").length) {
   calendar.init();
 }
@@ -116,7 +129,7 @@ $('#select-archived-events .open-menu').on('click', function(event){
 });
 
 
-$('#body-event #participants a.delete').on('click', function(event) {
+$('#body-event .participants a.delete').on('click', function(event) {
   event.preventDefault();
   var $this = $(this);
   var tr = $this.closest('tr');
@@ -144,7 +157,7 @@ $('#find-customer-by-phone-form').submit(function(e){
   $submit.attr('disabled', true);
   var phone = $('#find-customer-by-phone').val();
   $.ajax({
-      url: base_url + 'account/nno/' + phone,
+      url: base_url + 'muneris/nno/' + phone,
       dataType: 'json',
       async: false,
       success: function(response, textStatus, jqXHR) {
@@ -153,11 +166,12 @@ $('#find-customer-by-phone-form').submit(function(e){
             dialoug.alert(Translator.get('js:notice'), response.message);
           }
         } else {
-          $('#form_host').val(response.data.christianname + ' ' + response.data.surname);
-          $('#form_address_line_1').val(response.data.address);
-          $('#form_postal_code').val(response.data.zipcode);
-          $('#form_city').val(response.data.district);
-          $('#form_phone').val(response.data.phone);
+          var data = response.data.number;
+          $('#form_host').val(data.christianname + ' ' + data.surname);
+          $('#form_address_line_1').val(data.address);
+          $('#form_postal_code').val(data.zipcode);
+          $('#form_city').val(data.district);
+          $('#form_phone').val(data.phone);
         }
 
         $submit.attr('disabled', false);

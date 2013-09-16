@@ -84,7 +84,7 @@ abstract class BaseProductsDomainsPricesQuery extends ModelCriteria
      * Returns a new ProductsDomainsPricesQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     ProductsDomainsPricesQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   ProductsDomainsPricesQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return ProductsDomainsPricesQuery
      */
@@ -148,12 +148,12 @@ abstract class BaseProductsDomainsPricesQuery extends ModelCriteria
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   ProductsDomainsPrices A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 ProductsDomainsPrices A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `PRODUCTS_ID`, `DOMAINS_ID`, `PRICE`, `VAT`, `CURRENCY_ID`, `FROM_DATE`, `TO_DATE` FROM `products_domains_prices` WHERE `PRODUCTS_ID` = :p0 AND `DOMAINS_ID` = :p1 AND `FROM_DATE` = :p2';
+        $sql = 'SELECT `products_id`, `domains_id`, `price`, `vat`, `currency_id`, `from_date`, `to_date` FROM `products_domains_prices` WHERE `products_id` = :p0 AND `domains_id` = :p1 AND `from_date` = :p2';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);
@@ -265,7 +265,8 @@ abstract class BaseProductsDomainsPricesQuery extends ModelCriteria
      * <code>
      * $query->filterByProductsId(1234); // WHERE products_id = 1234
      * $query->filterByProductsId(array(12, 34)); // WHERE products_id IN (12, 34)
-     * $query->filterByProductsId(array('min' => 12)); // WHERE products_id > 12
+     * $query->filterByProductsId(array('min' => 12)); // WHERE products_id >= 12
+     * $query->filterByProductsId(array('max' => 12)); // WHERE products_id <= 12
      * </code>
      *
      * @see       filterByProducts()
@@ -280,8 +281,22 @@ abstract class BaseProductsDomainsPricesQuery extends ModelCriteria
      */
     public function filterByProductsId($productsId = null, $comparison = null)
     {
-        if (is_array($productsId) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($productsId)) {
+            $useMinMax = false;
+            if (isset($productsId['min'])) {
+                $this->addUsingAlias(ProductsDomainsPricesPeer::PRODUCTS_ID, $productsId['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($productsId['max'])) {
+                $this->addUsingAlias(ProductsDomainsPricesPeer::PRODUCTS_ID, $productsId['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(ProductsDomainsPricesPeer::PRODUCTS_ID, $productsId, $comparison);
@@ -294,7 +309,8 @@ abstract class BaseProductsDomainsPricesQuery extends ModelCriteria
      * <code>
      * $query->filterByDomainsId(1234); // WHERE domains_id = 1234
      * $query->filterByDomainsId(array(12, 34)); // WHERE domains_id IN (12, 34)
-     * $query->filterByDomainsId(array('min' => 12)); // WHERE domains_id > 12
+     * $query->filterByDomainsId(array('min' => 12)); // WHERE domains_id >= 12
+     * $query->filterByDomainsId(array('max' => 12)); // WHERE domains_id <= 12
      * </code>
      *
      * @see       filterByDomains()
@@ -309,8 +325,22 @@ abstract class BaseProductsDomainsPricesQuery extends ModelCriteria
      */
     public function filterByDomainsId($domainsId = null, $comparison = null)
     {
-        if (is_array($domainsId) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($domainsId)) {
+            $useMinMax = false;
+            if (isset($domainsId['min'])) {
+                $this->addUsingAlias(ProductsDomainsPricesPeer::DOMAINS_ID, $domainsId['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($domainsId['max'])) {
+                $this->addUsingAlias(ProductsDomainsPricesPeer::DOMAINS_ID, $domainsId['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(ProductsDomainsPricesPeer::DOMAINS_ID, $domainsId, $comparison);
@@ -323,7 +353,8 @@ abstract class BaseProductsDomainsPricesQuery extends ModelCriteria
      * <code>
      * $query->filterByPrice(1234); // WHERE price = 1234
      * $query->filterByPrice(array(12, 34)); // WHERE price IN (12, 34)
-     * $query->filterByPrice(array('min' => 12)); // WHERE price > 12
+     * $query->filterByPrice(array('min' => 12)); // WHERE price >= 12
+     * $query->filterByPrice(array('max' => 12)); // WHERE price <= 12
      * </code>
      *
      * @param     mixed $price The value to use as filter.
@@ -364,7 +395,8 @@ abstract class BaseProductsDomainsPricesQuery extends ModelCriteria
      * <code>
      * $query->filterByVat(1234); // WHERE vat = 1234
      * $query->filterByVat(array(12, 34)); // WHERE vat IN (12, 34)
-     * $query->filterByVat(array('min' => 12)); // WHERE vat > 12
+     * $query->filterByVat(array('min' => 12)); // WHERE vat >= 12
+     * $query->filterByVat(array('max' => 12)); // WHERE vat <= 12
      * </code>
      *
      * @param     mixed $vat The value to use as filter.
@@ -405,7 +437,8 @@ abstract class BaseProductsDomainsPricesQuery extends ModelCriteria
      * <code>
      * $query->filterByCurrencyId(1234); // WHERE currency_id = 1234
      * $query->filterByCurrencyId(array(12, 34)); // WHERE currency_id IN (12, 34)
-     * $query->filterByCurrencyId(array('min' => 12)); // WHERE currency_id > 12
+     * $query->filterByCurrencyId(array('min' => 12)); // WHERE currency_id >= 12
+     * $query->filterByCurrencyId(array('max' => 12)); // WHERE currency_id <= 12
      * </code>
      *
      * @param     mixed $currencyId The value to use as filter.
@@ -531,8 +564,8 @@ abstract class BaseProductsDomainsPricesQuery extends ModelCriteria
      * @param   Products|PropelObjectCollection $products The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   ProductsDomainsPricesQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 ProductsDomainsPricesQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByProducts($products, $comparison = null)
     {
@@ -607,8 +640,8 @@ abstract class BaseProductsDomainsPricesQuery extends ModelCriteria
      * @param   Domains|PropelObjectCollection $domains The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   ProductsDomainsPricesQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 ProductsDomainsPricesQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByDomains($domains, $comparison = null)
     {

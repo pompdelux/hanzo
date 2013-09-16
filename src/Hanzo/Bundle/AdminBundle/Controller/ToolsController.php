@@ -3,10 +3,14 @@
 namespace Hanzo\Bundle\AdminBundle\Controller;
 
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
+
+use Hanzo\Model\OrdersQuery;
 
 class ToolsController extends CoreController
 {
@@ -60,5 +64,124 @@ class ToolsController extends CoreController
 
         $this->getRequest()->getSession()->setFlash('notice', 'Varnish cache tømt.');
         return $this->redirect($this->generateUrl('admin_tools'));
+    }
+
+    /**
+     * [dibsToolsAction description]
+     *
+     * @Template("AdminBundle:Tools:dibsTools.html.twig")
+     * @param  Request $request
+     */
+    public function dibsToolsAction(Request $request, $action = '')
+    {
+        $return = [
+            'action'   => $action,
+            'database' => $this->getRequest()->getSession()->get('database'),
+            'message'  => '',
+            'data'     => [
+                'fixed'   => '',
+                'missing' => '',
+            ],
+        ];
+
+        switch ($action) {
+            case 'transinfo':
+
+                if ('POST' === $request->getMethod()) {
+                    $ids = explode('-', $request->request->get('ids'));
+
+                    if ('' == $ids[0]) {
+                        unset($ids[0]);
+                    }
+
+                    switch (count($ids)) {
+                        case 0: // alle
+
+                            $con = \Propel::getConnection();
+                            $query = "SELECT id, payment_gateway_id, customers_id FROM orders WHERE state > 30 AND billing_method = 'dibs' AND finished_at > '2012-08-20 00:00:01'";
+                            $result = $con->query($query);
+
+                            $ids = [];
+                            foreach ($result as $record) {
+                                $ids[$record['id']] = $record;
+                            }
+
+                            if (empty($ids)) {
+                                $return['message'] = 'Ingen ordre er i stykker pt.';
+                                break;
+                            }
+
+                            $query = "SELECT orders_id, c_value FROM orders_attributes WHERE orders_id IN (".implode(',', array_keys($ids)).") AND ns = 'payment' AND c_key = 'transact'";
+
+                            $result = $con->query($query);
+                            foreach ($result as $record) {
+                                if (isset($ids[$record['orders_id']])) {
+                                    unset($ids[$record['orders_id']]);
+                                }
+                            }
+
+                            if (empty($ids)) {
+                                $return['message'] = 'Ingen ordre er i stykker pt.';
+                                break;
+                            }
+
+                            $return = $this->fixTransactionId($return, $ids);
+                            break;
+                        case 1:
+                            $return = $this->fixTransactionId($return, [$ids[0] => $ids[0]]);
+                            break;
+
+                        case 2:
+                            $con = \Propel::getConnection();
+                            $query = "SELECT id FROM orders WHERE state > 30 AND billing_method = 'dibs' AND id >= ".trim($ids[0]).' AND id <= '.trim($ids[1]);
+                            $result = $con->query($query);
+
+                            $ids = [];
+                            foreach ($result as $record) {
+                                $ids[$record['id']] = $record;
+                            }
+
+                            $return = $this->fixTransactionId($return, $ids);
+                            break;
+                    }
+                }
+
+                break;
+
+            default:
+                break;
+        }
+
+        return $return;
+    }
+
+    protected function fixTransactionId($return, $ids)
+    {
+        $api = $this->get('payment.dibsapi');
+        foreach ($ids as $id => $item) {
+            $order = OrdersQuery::create()->findOneById($id);
+            if (!$order) {
+                $return['message'] = 'Ordren #'.$id.' findes altså ikke...';
+                continue;
+            }
+
+            $result = $api->call()->transinfo($order);
+
+            if (isset($result->data['transact'])) {
+                $order->setAttribute('transact', 'payment', $result->data['transact']);
+                $order->save();
+                $return['data']['fixed_message'] = 'Fiksede ordre:';
+                $return['data']['fixed'][] = $id.' -> '.$result->data['transact'];
+            } else {
+                $missing[$id] = $result->data;
+            }
+        }
+
+        if (isset($missing) && count($missing)) {
+            $return['data']['missing_message'] = 'Gah, der var nogen ordre der ikke kunne fikses:';
+            $return['data']['missing'] = $missing;
+        }
+
+        return $return;
     }
 }

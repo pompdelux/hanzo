@@ -87,7 +87,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         }
         catch (Exception $e)
         {
-            #Tools::debug( $e->getMessage(), __METHOD__, array( 'Function' => $function, 'Callstring' => $request));
+            Tools::debug( $e->getMessage(), __METHOD__, array( 'Function' => $function, 'Callstring' => $request));
             throw new GothiaApiCallException( $e->getMessage() );
         }
 
@@ -131,32 +131,15 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
     /**
      * callAcquirersStatus
      * @param Customers $customer
+     * @param Orders $order
      * @return GothiaApiCallResponse
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function checkCustomer( Customers $customer )
+    public function checkCustomer( Customers $customer, Orders $order )
     {
         $hanzo = Hanzo::getInstance();
         $domain_key = str_replace('Sales', '', $hanzo->get('core.domain_key'));
-        // Used default currency from domain_settings instead
-        // $currency_map = array(
-        //     'SE' => 'SEK',
-        //     'FI' => 'EUR',
-        //     'NL' => 'EUR',
-        //     'NO' => 'NOK',
-        //     'DK' => 'DKK'
-        // );
 
-        $c = new Criteria;
-        $c->add(AddressesPeer::TYPE, 'payment');
-        $addresses = $customer->getAddressess($c, Propel::getConnection(null, Propel::CONNECTION_WRITE));
-
-        if (!isset($addresses[0])) {
-            #Tools::debug( 'Customer is missing an address', __METHOD__ );
-            throw new GothiaApiCallException( 'Missing address' );
-        }
-
-        $address       = $addresses[0];
         $gothiaAccount = $customer->getGothiaAccounts(Propel::getConnection(null, Propel::CONNECTION_WRITE));
         $customerId    = $customer->getId();
 
@@ -165,11 +148,12 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         }
 
         if (empty($customerId)) {
-            #Tools::debug( 'Missing customer id', __METHOD__ );
-            throw new GothiaApiCallException( 'Missing customer id' );
+            Tools::debug( 'Missing customer id', __METHOD__ );
+            $customerId = $customer->getId();
+            //throw new GothiaApiCallException( 'Missing customer id' );
         }
 
-        $street = trim($address->getAddressLine1().' '.$address->getAddressLine2());
+        $street = trim($order->getBillingAddressLine1().' '.$order->getBillingAddressLine2());
 
         // nl hacks
         if ('NL' === $domain_key) {
@@ -187,7 +171,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
             AFSWS_Customer(
                 $street,
                 $domain_key,
-                $hanzo->get('core.currency'), // $currency_map[$domain_key], ab@bellcom.dk 070213
+                $hanzo->get('core.currency'),
                 $customerId,
                 'Person',
                 null,
@@ -195,13 +179,13 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
                 $gothiaAccount->getDistributionType(),
                 $customer->getEmail(),
                 null,
-                $customer->getFirstName(),
-                $customer->getLastName(),
+                $order->getBillingFirstName(),
+                $order->getBillingLastName(),
                 null,
                 $gothiaAccount->getSocialSecurityNum(),
                 $customer->getPhone(),
-                str_replace(' ', '', $address->getPostalCode()),
-                $address->getCity(),
+                str_replace(' ', '', $order->getBillingPostalCode()),
+                $order->getBillingCity(),
                 null
             )
         );
@@ -278,6 +262,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
           case "01051982": // Netherland cases
               $customerId = 'T1234';
               break;
+
         }
 
         return $customerId;
@@ -301,6 +286,13 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
             $gothiaAccount = $customer->getGothiaAccounts(Propel::getConnection(null, Propel::CONNECTION_WRITE));
             $customerId = $this->getTestCustomerId($gothiaAccount->getSocialSecurityNum());
             #Tools::debug( 'Test Gothia', __METHOD__, array('Amount' => $amount, 'customerId' => $customerId, 'currency_code' => $currency_code));
+        }
+
+        if ( empty($customerId) )
+        {
+            Tools::debug( 'Missing customer id', __METHOD__ );
+            $customerId = $customer->getId();
+            //throw new GothiaApiCallException( 'Missing customer id' );
         }
 
         // hf@bellcom.dk, 29-aug-2011: remove last param to Reservation, @see comment in cancelReservation function -->>
@@ -356,7 +348,8 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         if ( empty($customerId) )
         {
             Tools::debug( 'Missing customer id', __METHOD__ );
-            throw new GothiaApiCallException( 'Missing customer id' );
+            $customerId = $customer->getId();
+            //throw new GothiaApiCallException( 'Missing customer id' );
         }
 
         if ( empty($amount) )
@@ -389,5 +382,91 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
     private function userString()
     {
         return AFSWS_User($this->settings['username'], $this->settings['password'], $this->settings['clientId']);
+    }
+
+    /**
+     * checkCustomerAndPlaceReservation
+     * @param Customers $customer
+     * @param Orders $order
+     * @param Array $additional_info
+     * @return GothiaApiCallResponse
+     * @author Anders Bryrup <ab@bellcom.dk>
+     **/
+    public function checkCustomerAndPlaceReservation( Customers $customer, Orders $order, array $additional_info = NULL )
+    {
+        $hanzo = Hanzo::getInstance();
+        $domain_key = str_replace('Sales', '', $hanzo->get('core.domain_key'));
+
+        $gothiaAccount = $customer->getGothiaAccounts(Propel::getConnection(null, Propel::CONNECTION_WRITE));
+        $customerId    = $customer->getId();
+        $amount         = number_format( $order->getTotalPrice(), 2, '.', '' );
+        $currency_code  = $order->getCurrencyCode();
+
+        if ($this->api->getTest()) {
+            $customerId = $this->getTestCustomerId($gothiaAccount->getSocialSecurityNum());
+            $gothiaAccount = $customer->getGothiaAccounts(Propel::getConnection(null, Propel::CONNECTION_WRITE));
+        }
+
+        if (empty($customerId)) {
+            Tools::debug( 'Missing customer id', __METHOD__ );
+
+            $customerId = $customer->getId();
+            // throw new GothiaApiCallException( 'Missing customer id' );
+        }
+
+        $street = trim($order->getBillingAddressLine1().' '.$order->getBillingAddressLine2());
+
+        // nl hacks
+        if ('NL' === $domain_key) {
+            $pcs = preg_split('/ ([0-9]+)/', $street, 2, PREG_SPLIT_DELIM_CAPTURE);
+
+            if (count($pcs) == 3) {
+                $street = $pcs[0].' '.$pcs[1].str_replace(' ', '', $pcs[2]);
+            } else {
+                $street = implode('', $pcs);
+            }
+        }
+
+        if (!$additional_info) {
+          $additional_info = array(
+            'bank_account_no' => NULL,
+            'bank_id' => NULL,
+            'payment_method' => 'Invoice',
+          );
+        }
+
+        $callString = AFSWS_CheckCustomerAndPlaceReservation(
+          $this->userString(),
+          AFSWS_Customer(
+              $street,
+              $domain_key,
+              $hanzo->get('core.currency'),
+              $customerId,
+              'Person',
+              null,
+              $gothiaAccount->getDistributionBy(),
+              $gothiaAccount->getDistributionType(),
+              $customer->getEmail(),
+              null,
+              $order->getBillingFirstName(),
+              $order->getBillingLastName(),
+              null,
+              $gothiaAccount->getSocialSecurityNum(),
+              $customer->getPhone(),
+              str_replace(' ', '', $order->getBillingPostalCode()),
+              $order->getBillingCity(),
+              null
+          ),
+          AFSWS_Reservation('NoAccountOffer', $amount, $currency_code, $customerId, null),
+          AFSWS_AdditionalReservationInfo(
+            $additional_info['bank_account_no'],
+            $additional_info['bank_id'],
+            $additional_info['payment_method']
+          )
+        );
+
+        $response = $this->call('CheckCustomerAndPlaceReservation', $callString);
+
+        return $response;
     }
 }

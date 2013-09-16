@@ -38,20 +38,20 @@ abstract class BaseOrdersSyncLogPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 5;
 
-    /** the column name for the ORDERS_ID field */
-    const ORDERS_ID = 'orders_sync_log.ORDERS_ID';
+    /** the column name for the orders_id field */
+    const ORDERS_ID = 'orders_sync_log.orders_id';
 
-    /** the column name for the CREATED_AT field */
-    const CREATED_AT = 'orders_sync_log.CREATED_AT';
+    /** the column name for the created_at field */
+    const CREATED_AT = 'orders_sync_log.created_at';
 
-    /** the column name for the STATE field */
-    const STATE = 'orders_sync_log.STATE';
+    /** the column name for the state field */
+    const STATE = 'orders_sync_log.state';
 
-    /** the column name for the CONTENT field */
-    const CONTENT = 'orders_sync_log.CONTENT';
+    /** the column name for the content field */
+    const CONTENT = 'orders_sync_log.content';
 
-    /** the column name for the COMMENT field */
-    const COMMENT = 'orders_sync_log.COMMENT';
+    /** the column name for the comment field */
+    const COMMENT = 'orders_sync_log.comment';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -172,11 +172,11 @@ abstract class BaseOrdersSyncLogPeer
             $criteria->addSelectColumn(OrdersSyncLogPeer::CONTENT);
             $criteria->addSelectColumn(OrdersSyncLogPeer::COMMENT);
         } else {
-            $criteria->addSelectColumn($alias . '.ORDERS_ID');
-            $criteria->addSelectColumn($alias . '.CREATED_AT');
-            $criteria->addSelectColumn($alias . '.STATE');
-            $criteria->addSelectColumn($alias . '.CONTENT');
-            $criteria->addSelectColumn($alias . '.COMMENT');
+            $criteria->addSelectColumn($alias . '.orders_id');
+            $criteria->addSelectColumn($alias . '.created_at');
+            $criteria->addSelectColumn($alias . '.state');
+            $criteria->addSelectColumn($alias . '.content');
+            $criteria->addSelectColumn($alias . '.comment');
         }
     }
 
@@ -260,7 +260,7 @@ abstract class BaseOrdersSyncLogPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -303,7 +303,7 @@ abstract class BaseOrdersSyncLogPeer
     {
         if (Propel::isInstancePoolingEnabled()) {
             if ($key === null) {
-                $key = serialize(array((string) $obj->getOrdersId(), (string) $obj->getCreatedAt()));
+                $key = serialize(array((string) $obj->getOrdersId(), (string) $obj->getCreatedAt('U')));
             } // if key === null
             OrdersSyncLogPeer::$instances[$key] = $obj;
         }
@@ -365,8 +365,15 @@ abstract class BaseOrdersSyncLogPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (OrdersSyncLogPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         OrdersSyncLogPeer::$instances = array();
     }
 
@@ -739,7 +746,7 @@ abstract class BaseOrdersSyncLogPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return OrdersSyncLogPeer::OM_CLASS;
     }

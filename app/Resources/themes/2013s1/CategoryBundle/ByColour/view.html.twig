@@ -45,7 +45,7 @@
               <div class="out-of-stock"></div>
               {% endif %}
             </a>
-            <a href="{{ product.url }}" title="{{ "more.product.info"|trans({'%name%' : product.title}) }}">
+            <a href="{{ product.url }}" title="{{ "more.product.info"|trans({'%name%' : product.title}) }}" class="product-description">
               <span class="title">{{ product.title }}</span>
               <span class="prices">
               {% if product.prices.sales is defined %}

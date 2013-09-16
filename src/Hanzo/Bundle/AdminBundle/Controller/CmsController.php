@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Locale\Locale;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
 
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputArgument;
@@ -40,7 +41,7 @@ class CmsController extends CoreController
 
     public function indexAction($locale)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_MARKETING") or hasRole("ROLE_ADMIN")'))) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
@@ -103,7 +104,7 @@ class CmsController extends CoreController
 
     public function addAction($locale)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_MARKETING") or hasRole("ROLE_ADMIN")'))) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
@@ -211,6 +212,7 @@ class CmsController extends CoreController
                         break;
                 }
 
+                $node->setUpdatedBy($this->get('security.context')->getToken()->getUser()->getUsername());
                 $node->save($this->getDbConnection());
 
                 try {
@@ -243,7 +245,7 @@ class CmsController extends CoreController
 
     public function editAction($id, $locale)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_MARKETING") or hasRole("ROLE_ADMIN")'))) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
@@ -298,10 +300,12 @@ class CmsController extends CoreController
             ->filterById($node->getParentId())
             ->findOne($this->getDbConnection())
         ;
-        if($parent)
-            $parent_path = $parent->getPath();
-        if($parent && (empty($parent_path) || $parent_path === '#')){
 
+        if ($parent) {
+            $parent_path = $parent->getPath();
+        }
+
+        if ($parent && (empty($parent_path) || $parent_path === '#')){
             $parent = CmsQuery::create()
                 ->joinWithI18n($locale)
                 ->filterById($parent->getParentId())
@@ -318,6 +322,11 @@ class CmsController extends CoreController
             ))
             ->add('is_restricted', 'checkbox', array(
                 'label'     => 'cms.edit.label.is_restricted',
+                'translation_domain' => 'admin',
+                'required'  => false
+            ))
+            ->add('on_mobile', 'checkbox', array(
+                'label'     => 'cms.edit.label.on_mobile',
                 'translation_domain' => 'admin',
                 'required'  => false
             ))
@@ -345,6 +354,7 @@ class CmsController extends CoreController
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
             $form->bind($request);
+            $node->setUpdatedBy($this->get('security.context')->getToken()->getUser()->getUsername());
 
             $data = $form->getData();
 
@@ -450,7 +460,7 @@ class CmsController extends CoreController
 
     public function redirectsIndexAction($domain_key)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_MARKETING") or hasRole("ROLE_ADMIN")'))) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
@@ -479,7 +489,7 @@ class CmsController extends CoreController
 
     public function redirectEditAction($id = null)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_MARKETING") or hasRole("ROLE_ADMIN")'))) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
@@ -567,6 +577,96 @@ class CmsController extends CoreController
             ));
         }
     }
+
+
+    public function adminMenuAction()
+    {
+        $pages = [
+            'admin' => [
+                'access' => ['ROLE_ADMIN', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE', 'ROLE_SALES', 'ROLE_STATS'],
+                'title' => 'Forside',
+            ],
+            'admin_statistics' => [
+                'access' => ['ROLE_ADMIN', 'ROLE_STATS', 'ROLE_SALES'],
+                'title' => 'Salgs statistik',
+            ],
+            'admin_settings' => [
+                'access' => ['ROLE_ADMIN'],
+                'title' => 'Indstillinger',
+            ],
+            'admin_cms' => [
+                'access' => ['ROLE_ADMIN', 'ROLE_MARKETING'],
+                'title' => 'CMS',
+            ],
+            'admin_customers' => [
+                'access' => ['ROLE_ADMIN', 'ROLE_CUSTOMERS_SERVICE'],
+                'title' => 'Kunder',
+            ],
+            'admin_consultants' => [
+                'access' => ['ROLE_ADMIN', 'ROLE_SALES'],
+                'title' => 'Konsulenter',
+            ],
+            'admin_employees' => [
+                'access' => ['ROLE_ADMIN', 'ROLE_SALES'],
+                'title' => 'Medarbejdere',
+            ],
+            'admin_orders' => [
+                'access' => ['ROLE_ADMIN', 'ROLE_SALES'],
+                'title' => 'Ordrer',
+            ],
+            'admin_products' => [
+                'access' => ['ROLE_ADMIN'],
+                'title' => 'Katalog',
+            ],
+            'admin_settings_washing_instructions' => [
+                'access' => ['ROLE_ADMIN'],
+                'title' => 'Vaskeanvisninger',
+            ],
+            'admin_gift_cards' => [
+                'access' => ['ROLE_ADMIN'],
+                'title' => 'Gavekort',
+            ],
+            'admin_coupons' => [
+                'access' => ['ROLE_ADMIN'],
+                'title' => 'Rabatkoder',
+            ],
+            'admin_postalcode' => [
+                'access' => ['ROLE_ADMIN'],
+                'title' => 'Postnumre',
+            ],
+            'admin_helpdesk' => [
+                'access' => ['ROLE_ADMIN'],
+                'title' => 'Helpdesk',
+            ],
+            'admin_tools' => [
+                'access' => ['ROLE_ADMIN'],
+                'title' => 'Tools',
+            ],
+        ];
+
+        $roles = $this->get('security.context')->getToken()->getUser()->getRoles();
+
+        $links = '';
+        $router = $this->get('router');
+
+        foreach ($pages as $key => $content) {
+            foreach ($content['access'] as $value) {
+                if (in_array($value, $roles)) {
+                    $links .= '<li><a href="'.$router->generate($key).'">'.$content['title'].'</a></li>'."\n";
+                    break;
+                }
+            }
+        }
+
+        return $this->response('
+            <nav class="main">
+              <ul>
+              '.$links.'
+              </ul>
+            </nav>
+        ');
+    }
+
 
     /**
      * Creates the html for a System Tree of the CMS. Works recursivly.

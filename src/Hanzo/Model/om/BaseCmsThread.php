@@ -81,6 +81,12 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
      */
     protected $alreadyInValidation = false;
 
+    /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
     // i18n behavior
 
     /**
@@ -156,7 +162,7 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
      */
     public function setId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -243,7 +249,7 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
+            $this->postHydrate($row, $startcol, $rehydrate);
             return $startcol + 2; // 2 = CmsThreadPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -445,7 +451,7 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
 
             if ($this->collCmss !== null) {
                 foreach ($this->collCmss as $referrerFK) {
-                    if (!$referrerFK->isDeleted()) {
+                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
@@ -462,7 +468,7 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
 
             if ($this->collCmsThreadI18ns !== null) {
                 foreach ($this->collCmsThreadI18ns as $referrerFK) {
-                    if (!$referrerFK->isDeleted()) {
+                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
@@ -495,10 +501,10 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(CmsThreadPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`ID`';
+            $modifiedColumns[':p' . $index++]  = '`id`';
         }
         if ($this->isColumnModified(CmsThreadPeer::IS_ACTIVE)) {
-            $modifiedColumns[':p' . $index++]  = '`IS_ACTIVE`';
+            $modifiedColumns[':p' . $index++]  = '`is_active`';
         }
 
         $sql = sprintf(
@@ -511,10 +517,10 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`ID`':
+                    case '`id`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`IS_ACTIVE`':
+                    case '`is_active`':
                         $stmt->bindValue($identifier, (int) $this->is_active, PDO::PARAM_INT);
                         break;
                 }
@@ -585,11 +591,11 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -950,13 +956,15 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
-     * @return void
+     * @return CmsThread The current object (for fluent API support)
      * @see        addCmss()
      */
     public function clearCmss()
     {
         $this->collCmss = null; // important to set this to null since that means it is uninitialized
         $this->collCmssPartial = null;
+
+        return $this;
     }
 
     /**
@@ -1028,6 +1036,7 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
                       $this->collCmssPartial = true;
                     }
 
+                    $collCmss->getInternalIterator()->rewind();
                     return $collCmss;
                 }
 
@@ -1055,12 +1064,15 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
      *
      * @param PropelCollection $cmss A Propel collection.
      * @param PropelPDO $con Optional connection object
+     * @return CmsThread The current object (for fluent API support)
      */
     public function setCmss(PropelCollection $cmss, PropelPDO $con = null)
     {
-        $this->cmssScheduledForDeletion = $this->getCmss(new Criteria(), $con)->diff($cmss);
+        $cmssToDelete = $this->getCmss(new Criteria(), $con)->diff($cmss);
 
-        foreach ($this->cmssScheduledForDeletion as $cmsRemoved) {
+        $this->cmssScheduledForDeletion = unserialize(serialize($cmssToDelete));
+
+        foreach ($cmssToDelete as $cmsRemoved) {
             $cmsRemoved->setCmsThread(null);
         }
 
@@ -1071,6 +1083,8 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
 
         $this->collCmss = $cmss;
         $this->collCmssPartial = false;
+
+        return $this;
     }
 
     /**
@@ -1088,22 +1102,22 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
         if (null === $this->collCmss || null !== $criteria || $partial) {
             if ($this->isNew() && null === $this->collCmss) {
                 return 0;
-            } else {
-                if($partial && !$criteria) {
-                    return count($this->getCmss());
-                }
-                $query = CmsQuery::create(null, $criteria);
-                if ($distinct) {
-                    $query->distinct();
-                }
-
-                return $query
-                    ->filterByCmsThread($this)
-                    ->count($con);
             }
-        } else {
-            return count($this->collCmss);
+
+            if($partial && !$criteria) {
+                return count($this->getCmss());
+            }
+            $query = CmsQuery::create(null, $criteria);
+            if ($distinct) {
+                $query->distinct();
+            }
+
+            return $query
+                ->filterByCmsThread($this)
+                ->count($con);
         }
+
+        return count($this->collCmss);
     }
 
     /**
@@ -1119,7 +1133,7 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
             $this->initCmss();
             $this->collCmssPartial = true;
         }
-        if (!$this->collCmss->contains($l)) { // only add it if the **same** object is not already associated
+        if (!in_array($l, $this->collCmss->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddCms($l);
         }
 
@@ -1137,6 +1151,7 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
 
     /**
      * @param	Cms $cms The cms object to remove.
+     * @return CmsThread The current object (for fluent API support)
      */
     public function removeCms($cms)
     {
@@ -1146,9 +1161,11 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
                 $this->cmssScheduledForDeletion = clone $this->collCmss;
                 $this->cmssScheduledForDeletion->clear();
             }
-            $this->cmssScheduledForDeletion[]= $cms;
+            $this->cmssScheduledForDeletion[]= clone $cms;
             $cms->setCmsThread(null);
         }
+
+        return $this;
     }
 
 
@@ -1182,13 +1199,15 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
-     * @return void
+     * @return CmsThread The current object (for fluent API support)
      * @see        addCmsThreadI18ns()
      */
     public function clearCmsThreadI18ns()
     {
         $this->collCmsThreadI18ns = null; // important to set this to null since that means it is uninitialized
         $this->collCmsThreadI18nsPartial = null;
+
+        return $this;
     }
 
     /**
@@ -1260,6 +1279,7 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
                       $this->collCmsThreadI18nsPartial = true;
                     }
 
+                    $collCmsThreadI18ns->getInternalIterator()->rewind();
                     return $collCmsThreadI18ns;
                 }
 
@@ -1287,12 +1307,15 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
      *
      * @param PropelCollection $cmsThreadI18ns A Propel collection.
      * @param PropelPDO $con Optional connection object
+     * @return CmsThread The current object (for fluent API support)
      */
     public function setCmsThreadI18ns(PropelCollection $cmsThreadI18ns, PropelPDO $con = null)
     {
-        $this->cmsThreadI18nsScheduledForDeletion = $this->getCmsThreadI18ns(new Criteria(), $con)->diff($cmsThreadI18ns);
+        $cmsThreadI18nsToDelete = $this->getCmsThreadI18ns(new Criteria(), $con)->diff($cmsThreadI18ns);
 
-        foreach ($this->cmsThreadI18nsScheduledForDeletion as $cmsThreadI18nRemoved) {
+        $this->cmsThreadI18nsScheduledForDeletion = unserialize(serialize($cmsThreadI18nsToDelete));
+
+        foreach ($cmsThreadI18nsToDelete as $cmsThreadI18nRemoved) {
             $cmsThreadI18nRemoved->setCmsThread(null);
         }
 
@@ -1303,6 +1326,8 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
 
         $this->collCmsThreadI18ns = $cmsThreadI18ns;
         $this->collCmsThreadI18nsPartial = false;
+
+        return $this;
     }
 
     /**
@@ -1320,22 +1345,22 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
         if (null === $this->collCmsThreadI18ns || null !== $criteria || $partial) {
             if ($this->isNew() && null === $this->collCmsThreadI18ns) {
                 return 0;
-            } else {
-                if($partial && !$criteria) {
-                    return count($this->getCmsThreadI18ns());
-                }
-                $query = CmsThreadI18nQuery::create(null, $criteria);
-                if ($distinct) {
-                    $query->distinct();
-                }
-
-                return $query
-                    ->filterByCmsThread($this)
-                    ->count($con);
             }
-        } else {
-            return count($this->collCmsThreadI18ns);
+
+            if($partial && !$criteria) {
+                return count($this->getCmsThreadI18ns());
+            }
+            $query = CmsThreadI18nQuery::create(null, $criteria);
+            if ($distinct) {
+                $query->distinct();
+            }
+
+            return $query
+                ->filterByCmsThread($this)
+                ->count($con);
         }
+
+        return count($this->collCmsThreadI18ns);
     }
 
     /**
@@ -1355,7 +1380,7 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
             $this->initCmsThreadI18ns();
             $this->collCmsThreadI18nsPartial = true;
         }
-        if (!$this->collCmsThreadI18ns->contains($l)) { // only add it if the **same** object is not already associated
+        if (!in_array($l, $this->collCmsThreadI18ns->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddCmsThreadI18n($l);
         }
 
@@ -1373,6 +1398,7 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
 
     /**
      * @param	CmsThreadI18n $cmsThreadI18n The cmsThreadI18n object to remove.
+     * @return CmsThread The current object (for fluent API support)
      */
     public function removeCmsThreadI18n($cmsThreadI18n)
     {
@@ -1382,9 +1408,11 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
                 $this->cmsThreadI18nsScheduledForDeletion = clone $this->collCmsThreadI18ns;
                 $this->cmsThreadI18nsScheduledForDeletion->clear();
             }
-            $this->cmsThreadI18nsScheduledForDeletion[]= $cmsThreadI18n;
+            $this->cmsThreadI18nsScheduledForDeletion[]= clone $cmsThreadI18n;
             $cmsThreadI18n->setCmsThread(null);
         }
+
+        return $this;
     }
 
     /**
@@ -1396,6 +1424,7 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
         $this->is_active = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->applyDefaultValues();
         $this->resetModified();
@@ -1414,7 +1443,8 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
             if ($this->collCmss) {
                 foreach ($this->collCmss as $o) {
                     $o->clearAllReferences($deep);
@@ -1425,6 +1455,8 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
                     $o->clearAllReferences($deep);
                 }
             }
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
         // i18n behavior

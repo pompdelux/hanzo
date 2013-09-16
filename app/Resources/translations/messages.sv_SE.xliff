@@ -2,6 +2,10 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
+            <trans-unit id="size.guide.link">
+                <source>size.guide.link</source>
+                <target><![CDATA[<a href="/sv_SE/forside/webshop/info/sizeguide" target="_blank" title="Size guide">» Size guide</a>]]></target>
+            </trans-unit>
             <trans-unit id="out.of.stock">
                 <source>out.of.stock</source>
                 <target>Utsåld</target>
@@ -125,13 +129,13 @@
             <trans-unit id="order.edit.global.notice">
                 <source>order.edit.global.notice</source>
                 <target><![CDATA[
-                    <h3>Observera:</h3>
+                    <h3>OBSERVERA:</h3>
                     <p>
                         Du kommer nu att redigera E-ordernummer <a href="%history_url%" title="se ordren">%order_id%</a>.<br>
                         Om du önskar att avbryta redigeringen av din order - <a href="%stop_url%" title="stop editering af ordren"> – klicka här.</a>
                     </p>
-                    <p>Om du önskar att ändra en färg eller en storlek, ska du klicka på pennan i korgen. Om du önskar att lägga till varor, ska du klicka på menyn Webshop.</p>
-                    <p class="last">När du är färdig med dina ändringar, ska du klicka på "Visa korg" och följa steg 1 till 6. När du har genomfört din order med en ny kortbetalning, kommer den gamla betalningen automatiskt att bli raderad, och din första reservation blir tillgänglig på ditt konto igen efter ca 5 vardagar.</p>
+                    <p>Om du önskar att ändra en färg eller storlek, ska du klicka på pennan. Om du önskar att lägga till varor, ska du klicka på Girl, Boy, Little Girl eller Little Boy, överst på sidan.</p>
+                    <p class="last">När du är färdig med dina ändringar, ska du klicka på ”Visa korg” och trycka på ”Fortsätt”. När du har genomfört din order med en ny kortbetalning, blir den gamla betalningen automatiskt raderad. <b>Observera:</b> Om du använder kort som betalningssätt vid redigeringen, upprättas automatiskt en ny kortreservation av totalbeloppet på din order. Reservationen av totalbeloppet på din ursprungsorder blir automatiskt annullerad av POMPdeLUX. Det kan dock gå upp till 5 vardagar, innan reservationen släpps av din bank.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="customer.service.contact.info">
@@ -251,10 +255,10 @@
                 <target><![CDATA[
                 <h2>Home shopping</h2>
                 <ul class="menu">
-                    <li><a href="/sv_SE/forside/home-shopping" target="_blank">Om Home Shopping</a></li>
-                    <li><a href="/sv_SE/forside/home-shopping/hitta-saljare" target="_blank">Hitta säljare</a></li>
-                    <li><a href="/sv_SE/forside/home-shopping/hitta-saljare-via-kartan" target="_blank">Hitta säljare via kartan</a></li>
-                    <li><a href="/sv_SE/forside/home-shopping/appet-hus" target="_blank">Öppet hus</a></li>
+                    <li><a href="/sv_SE/forside/home-shopping">Om Home Shopping</a></li>
+                    <li><a href="/sv_SE/forside/home-shopping/hitta-saljare">Hitta säljare</a></li>
+                    <li><a href="/sv_SE/forside/home-shopping/hitta-saljare-via-kartan">Hitta säljare via kartan</a></li>
+                    <li><a href="/sv_SE/forside/home-shopping/appet-hus">Öppet hus</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>
@@ -263,17 +267,17 @@
                 <target><![CDATA[
                 <h2>Mer POMPdeLUX</h2>
                 <ul class="menu">
-                    <li><a href="/sv_SE/forside/katalog" target="_blank">Online katalog</a></li>
-                    <li><a href="/sv_SE/forside/katalog/image-video" target="_blank">Image Video</a></li>
-                    <li><a href="/sv_SE/forside/om-pompdelux" target="_blank">Om POMPdeLUX</a></li>
-                    <li><a href="/sv_SE/forside/nyheter" target="_blank">Nyheter</a></li>
-					<li><a href="/sv_SE/forside/om-pompdelux/konceptet" target="_blank">Konceptet</a></li>
-					<li><a href="/sv_SE/forside/om-pompdelux/socialt-ansvar" target="_blank">Socialt ansvar</a></li>
-					<li><a href="/sv_SE/forside/om-pompdelux/jobb" target="_blank">Jobb</a></li>
-					<li><a href="/sv_SE/forside/webshop/info/gots-organic" target="_blank">GOTS (Organic)</a></li>
-					<li><a href="/sv_SE/forside/webshop/info/oeko-tex" target="_blank">Oeko-Tex</a></li>
-					<li><a href="/sv_SE/forside/webshop/info/credits" target="_blank">Credits</a></li>
-					<li><a href="/sv_SE/forside/om-pompdelux/kontakt" target="_blank">Kontakt</a></li>
+                    <li><a href="/sv_SE/forside/katalog">Online katalog</a></li>
+                    <li><a href="/sv_SE/forside/katalog/backstage-video">Backstage video</a></li>
+                    <li><a href="/sv_SE/forside/om-pompdelux">Om POMPdeLUX</a></li>
+                    <li><a href="/sv_SE/forside/nyheter">Nyheter</a></li>
+					<li><a href="/sv_SE/forside/om-pompdelux/konceptet">Konceptet</a></li>
+					<li><a href="/sv_SE/forside/om-pompdelux/socialt-ansvar">Socialt ansvar</a></li>
+					<li><a href="/sv_SE/forside/om-pompdelux/jobb">Jobb</a></li>
+					<li><a href="/sv_SE/forside/webshop/info/gots-organic">GOTS (Organic)</a></li>
+					<li><a href="/sv_SE/forside/webshop/info/oeko-tex">Oeko-Tex</a></li>
+					<li><a href="/sv_SE/forside/webshop/info/credits">Credits</a></li>
+					<li><a href="/sv_SE/forside/om-pompdelux/kontakt">Kontakt</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>
@@ -282,15 +286,15 @@
                 <target><![CDATA[
                 <h2>Kundservice</h2>
                 <ul class="menu">
-                    <li><a href="/sv_SE/kundservice/telefontider" target="_blank">Telefontider</a></li>
-                    <li><a href="/sv_SE/forside/kundservice/fragor-och-svar" target="_blank">Frågor och Svar</a></li>
-                    <li><a href="/sv_SE/forside/kundservice/returnering" target="_blank">Returnering</a></li>
-                    <li><a href="/sv_SE/forside/kundservice/byte" target="_blank">Byte</a></li>
-                    <li><a href="/sv_SE/forside/kundservice/retursedel" target="_blank">Retursedel</a></li>
-                    <li><a href="/sv_SE/forside/webshop/info/sizeguide" target="_blank">Sizeguide</a></li>
-					<li><a href="/sv_SE/forside/webshop/info/tvattrad" target="_blank">Tvättråd</a></li>
-					<li><a href="/sv_SE/forside/kundservice/villkor" target="_blank">Villkor</a></li>
-					<li><a href="/sv_SE/forside/kundservice/om-webshopen" target="_blank">Om webshopen</a></li>
+                    <li><a href="/sv_SE/kundservice/telefontider">Telefontider</a></li>
+                    <li><a href="/sv_SE/forside/kundservice/fragor-och-svar">Frågor och Svar</a></li>
+                    <li><a href="/sv_SE/forside/kundservice/returnering">Returnering</a></li>
+                    <li><a href="/sv_SE/forside/kundservice/byte">Byte</a></li>
+                    <li><a href="/sv_SE/forside/kundservice/retursedel">Retursedel</a></li>
+                    <li><a href="/sv_SE/forside/webshop/info/sizeguide">Sizeguide</a></li>
+					<li><a href="/sv_SE/forside/webshop/info/tvattrad">Tvättråd</a></li>
+					<li><a href="/sv_SE/forside/kundservice/villkor">Villkor</a></li>
+					<li><a href="/sv_SE/forside/kundservice/om-webshopen">Om webshopen</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>
@@ -329,6 +333,10 @@
             <trans-unit id="goto.top.link" approved="no">
                 <source>goto.top.link</source>
                 <target>Gå till toppen</target>
+            </trans-unit>
+            <trans-unit id="product.prices.description" approved="no">
+                <source>product.prices.description</source>
+                <target></target>
             </trans-unit>
         </body>
     </file>

@@ -38,17 +38,17 @@ abstract class BaseMessagesI18nPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 4;
 
-    /** the column name for the ID field */
-    const ID = 'messages_i18n.ID';
+    /** the column name for the id field */
+    const ID = 'messages_i18n.id';
 
-    /** the column name for the LOCALE field */
-    const LOCALE = 'messages_i18n.LOCALE';
+    /** the column name for the locale field */
+    const LOCALE = 'messages_i18n.locale';
 
-    /** the column name for the SUBJECT field */
-    const SUBJECT = 'messages_i18n.SUBJECT';
+    /** the column name for the subject field */
+    const SUBJECT = 'messages_i18n.subject';
 
-    /** the column name for the BODY field */
-    const BODY = 'messages_i18n.BODY';
+    /** the column name for the body field */
+    const BODY = 'messages_i18n.body';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -168,10 +168,10 @@ abstract class BaseMessagesI18nPeer
             $criteria->addSelectColumn(MessagesI18nPeer::SUBJECT);
             $criteria->addSelectColumn(MessagesI18nPeer::BODY);
         } else {
-            $criteria->addSelectColumn($alias . '.ID');
-            $criteria->addSelectColumn($alias . '.LOCALE');
-            $criteria->addSelectColumn($alias . '.SUBJECT');
-            $criteria->addSelectColumn($alias . '.BODY');
+            $criteria->addSelectColumn($alias . '.id');
+            $criteria->addSelectColumn($alias . '.locale');
+            $criteria->addSelectColumn($alias . '.subject');
+            $criteria->addSelectColumn($alias . '.body');
         }
     }
 
@@ -255,7 +255,7 @@ abstract class BaseMessagesI18nPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -360,8 +360,15 @@ abstract class BaseMessagesI18nPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (MessagesI18nPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         MessagesI18nPeer::$instances = array();
     }
 
@@ -734,7 +741,7 @@ abstract class BaseMessagesI18nPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return MessagesI18nPeer::OM_CLASS;
     }

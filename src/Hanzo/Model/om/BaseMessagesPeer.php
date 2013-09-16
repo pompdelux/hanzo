@@ -38,20 +38,20 @@ abstract class BaseMessagesPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 5;
 
-    /** the column name for the ID field */
-    const ID = 'messages.ID';
+    /** the column name for the id field */
+    const ID = 'messages.id';
 
-    /** the column name for the NS field */
-    const NS = 'messages.NS';
+    /** the column name for the ns field */
+    const NS = 'messages.ns';
 
-    /** the column name for the KEY field */
-    const KEY = 'messages.KEY';
+    /** the column name for the key field */
+    const KEY = 'messages.key';
 
-    /** the column name for the CREATED_AT field */
-    const CREATED_AT = 'messages.CREATED_AT';
+    /** the column name for the created_at field */
+    const CREATED_AT = 'messages.created_at';
 
-    /** the column name for the UPDATED_AT field */
-    const UPDATED_AT = 'messages.UPDATED_AT';
+    /** the column name for the updated_at field */
+    const UPDATED_AT = 'messages.updated_at';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -179,11 +179,11 @@ abstract class BaseMessagesPeer
             $criteria->addSelectColumn(MessagesPeer::CREATED_AT);
             $criteria->addSelectColumn(MessagesPeer::UPDATED_AT);
         } else {
-            $criteria->addSelectColumn($alias . '.ID');
-            $criteria->addSelectColumn($alias . '.NS');
-            $criteria->addSelectColumn($alias . '.KEY');
-            $criteria->addSelectColumn($alias . '.CREATED_AT');
-            $criteria->addSelectColumn($alias . '.UPDATED_AT');
+            $criteria->addSelectColumn($alias . '.id');
+            $criteria->addSelectColumn($alias . '.ns');
+            $criteria->addSelectColumn($alias . '.key');
+            $criteria->addSelectColumn($alias . '.created_at');
+            $criteria->addSelectColumn($alias . '.updated_at');
         }
     }
 
@@ -267,7 +267,7 @@ abstract class BaseMessagesPeer
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
      *
-     * Use this method directly if you want to work with an executed statement durirectly (for example
+     * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
      * @param      Criteria $criteria The Criteria object used to build the SELECT statement.
@@ -372,8 +372,15 @@ abstract class BaseMessagesPeer
      *
      * @return void
      */
-    public static function clearInstancePool()
+    public static function clearInstancePool($and_clear_all_references = false)
     {
+      if ($and_clear_all_references)
+      {
+        foreach (MessagesPeer::$instances as $instance)
+        {
+          $instance->clearAllReferences(true);
+        }
+      }
         MessagesPeer::$instances = array();
     }
 
@@ -511,7 +518,7 @@ abstract class BaseMessagesPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass()
+    public static function getOMClass($row = 0, $colnum = 0)
     {
         return MessagesPeer::OM_CLASS;
     }

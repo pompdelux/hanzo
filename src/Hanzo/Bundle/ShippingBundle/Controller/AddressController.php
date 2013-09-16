@@ -21,6 +21,7 @@ class AddressController extends CoreController
 {
     public function formAction(Request $request, $type = 'payment', $customer_id = null)
     {
+        $short_domain_key = substr(Hanzo::getInstance()->get('core.domain_key'), -2);
         $order = OrdersPeer::getCurrent();
 
         if (null === $customer_id) {
@@ -104,7 +105,7 @@ class AddressController extends CoreController
         }
 
         $builder = $this->createFormBuilder($address, array(
-            'validation_groups' => $type
+            'validation_groups' => 'shipping_bundle_'.$type
         ));
 
         if (in_array($type, ['company_shipping', 'overnightbox'])) {
@@ -119,6 +120,19 @@ class AddressController extends CoreController
             ));
         }
 
+        if (in_array($short_domain_key, ['DE'])) {
+            $builder->add('title', 'choice', [
+                'choices' => [
+                    'female' => 'title.female',
+                    'male' => 'title.male',
+                ],
+                'label' => 'title',
+                'required' => true,
+                'trim' => true,
+                'translation_domain' => 'account',
+            ]);
+        }
+
         $builder->add('first_name', null, array('required' => true, 'translation_domain' => 'account'));
         $builder->add('last_name', null, array('required' => true, 'translation_domain' => 'account'));
 
@@ -129,7 +143,7 @@ class AddressController extends CoreController
         $builder->add('address_line_1', null, array('required' => true, 'translation_domain' => 'account', 'max_length' => 150));
 
         $attr = [];
-        if (in_array(Hanzo::getInstance()->get('core.domain_key'), ['DK', 'NO', 'SE'])) {
+        if (in_array($short_domain_key, ['DK', 'NO', 'SE'])) {
             $attr = ['class' => 'auto-city'];
         }
 
@@ -213,7 +227,7 @@ class AddressController extends CoreController
             }
 
             $order = OrdersPeer::getCurrent();
-            $data  = $request->get('form');
+            $data  = $request->request->get('form');
 
              if ($type == 'shipping') {
                 switch ($order->getDeliveryMethod()) {
@@ -242,6 +256,10 @@ class AddressController extends CoreController
                 $address = new Addresses();
                 $address->setCustomersId($data['customers_id']);
                 $address->setType($method);
+            }
+
+            if (!empty($data['title'])) {
+                $address->setTitle($data['title']);
             }
 
             $address->setFirstName($data['first_name']);
@@ -291,10 +309,7 @@ class AddressController extends CoreController
             $translator = $this->get('translator');
 
             // fi uses different validation group to support different rules
-            $validation_group = $method;
-            if (in_array($short_domain_key, ['fi', 'se', 'nl'])) {
-                $validation_group = $method.'_'.$short_domain_key;
-            }
+            $validation_group = 'shipping_bundle_'.$method;
 
             $object_errors = $validator->validate($address, [$validation_group]);
 

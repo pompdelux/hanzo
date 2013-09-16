@@ -87,6 +87,22 @@
                 <source>existing.customer</source>
                 <target>Bestaande klant</target>
             </trans-unit>
+            <trans-unit id="title">
+                <source>title</source>
+                <target>Title</target>
+            </trans-unit>
+            <trans-unit id="attention.label">
+                <source>attention.label</source>
+                <target>Att:</target>
+            </trans-unit>
+            <trans-unit id="title.male">
+                <source>title.male</source>
+                <target>Herr</target>
+            </trans-unit>
+            <trans-unit id="title.female">
+                <source>title.female</source>
+                <target>Frau</target>
+            </trans-unit>
             <trans-unit id="email">
                 <source>email</source>
                 <target>E-mailadres</target>
@@ -121,7 +137,7 @@
             </trans-unit>
             <trans-unit id="54">
                 <source>Phone</source>
-                <target>Telefoonnummer</target>
+                <target>Mobiel</target>
             </trans-unit>
             			<trans-unit id="55">
                 <source>Address line 1</source>
@@ -169,7 +185,7 @@
             </trans-unit>
             <trans-unit id="65">
                 <source>create.account</source>
-                <target>Maak account aan</target>
+                <target>Verder</target>
             </trans-unit>
             <trans-unit id="create.account.header" approved="no">
                 <source>create.account.header</source>
@@ -177,7 +193,7 @@
             </trans-unit>
             <trans-unit id="edit.account">
                 <source>edit.account</source>
-                <target>Wijzig account</target>
+                <target>Verder</target>
             </trans-unit>
             <trans-unit id="update.account">
                 <source>update.account</source>
@@ -381,11 +397,11 @@
             </trans-unit>
             <trans-unit id="address.delivery">
                 <source>address.delivery</source>
-                <target>Verzendadres</target>
+                <target>Afleveradres</target>
             </trans-unit>
             <trans-unit id="address.billing">
                 <source>address.billing</source>
-                <target>Huisadres</target>
+                <target>Privé-adres</target>
             </trans-unit>
             <trans-unit id="password.min.length" approved="no">
                 <source>password.min.length</source>

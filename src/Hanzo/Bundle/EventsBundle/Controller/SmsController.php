@@ -30,7 +30,7 @@ class SmsController extends CoreController
 
     public function rsvpAction(Request $request)
     {
-        // Array (
+        // _GET: Array (
         //     [sender] => 4529927366
         //     [smsc] => tdc
         //     [appnr] => 1231
@@ -38,14 +38,11 @@ class SmsController extends CoreController
         //     [sessionid] => 4529927366:20120730221204
         // )
 
-        $sender    = trim($request->get('sender'));
-        $appnr     = trim($request->get('appnr'));
-        $smsc      = trim($request->get('smsc'));
-        $text      = trim($request->get('text'));
-        $sessionid = trim($request->get('sessionid'));
-
-Tools::log($_GET);
-Tools::log($_POST);
+        $sender    = trim($request->query->get('sender'));
+        $appnr     = trim($request->query->get('appnr'));
+        $smsc      = trim($request->query->get('smsc'));
+        $text      = trim($request->query->get('text'));
+        $sessionid = trim($request->query->get('sessionid'));
 
         // TODO should not be bardcoded
         if (in_array($appnr, array(1231, 2201, 17163, 72445)) &&

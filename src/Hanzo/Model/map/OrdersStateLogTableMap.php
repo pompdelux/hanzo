@@ -42,10 +42,10 @@ class OrdersStateLogTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(false);
         // columns
-        $this->addForeignPrimaryKey('ORDERS_ID', 'OrdersId', 'INTEGER' , 'orders', 'ID', true, null, null);
-        $this->addPrimaryKey('STATE', 'State', 'INTEGER', true, null, null);
-        $this->addPrimaryKey('CREATED_AT', 'CreatedAt', 'TIMESTAMP', true, null, null);
-        $this->addColumn('MESSAGE', 'Message', 'VARCHAR', true, 128, null);
+        $this->addForeignPrimaryKey('orders_id', 'OrdersId', 'INTEGER' , 'orders', 'id', true, null, null);
+        $this->addPrimaryKey('state', 'State', 'INTEGER', true, null, null);
+        $this->addPrimaryKey('created_at', 'CreatedAt', 'TIMESTAMP', true, null, null);
+        $this->addColumn('message', 'Message', 'VARCHAR', true, 128, null);
         // validators
     } // initialize()
 

@@ -101,19 +101,24 @@ ul.horizontal,
 		vertical-align: middle;
 		&.last{
 			padding-right: 0;
-		}
-		// Mini-basket in secondary links!
-		&.basket {
-			.sprite{
-				display: inline-block;
-				vertical-align: middle;
-				@include icons-sprite(basket);
-				height: icons-sprite-height(basket);
-				width: icons-sprite-width(basket);
-			}
-			a{
+        }
+        // Mini-basket in secondary links!
+        &.basket {
+            .sprite{
+                display: inline-block;
+                vertical-align: middle;
+                @include icons-sprite(basket);
+                height: icons-sprite-height(basket);
+                width: icons-sprite-width(basket);
+            }
+            a {
+                color: $basket-color;
+                font-size: $basket-font-size;
+                font-weight: $basket-font-weight;
+                font-family: $font-sans;
 				display:inline-block;
 				vertical-align: middle;
+                margin-left: 5px;
 			}
 		}
 		a,input{
@@ -129,6 +134,12 @@ ul.horizontal,
 	}
 	.second{
 		z-index: 1;
+        a {
+            color: $basket-color;
+            font-size: $basket-font-size;
+            font-weight: $basket-font-weight;
+            font-family: $font-sans;
+        }
 	}
 }
 

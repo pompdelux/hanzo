@@ -1,0 +1,39 @@
+{% extends '::adminbase.html.twig' %}
+
+{% block content %}
+<nav class="sub">
+  <ul>
+    {% include 'AdminBundle:Coupons:menu.html.twig' %}
+  </ul>
+</nav>
+<h1>Batchoprettelse af rabatkoder.</h1>
+
+{% if app.session.hasFlash('notice') %}
+<div class="message notice">
+  {{ app.session.flash('notice')|trans({}, 'admin') }}
+</div>
+{% endif %}
+
+<p>Udfyld formen og tryk "Generer"</p>
+
+<form action="{{ path('admin_coupons_batch') }}" method="post" {{ form_enctype(form) }} id="coupons-batch-form" class="batch-form">
+  <div id="coupons-batch">
+    {{ form_row(form._token) }}
+    {{ form_rest(form) }}
+  </div>
+  <br>
+  <input class="button right" type="submit" value="Generer">
+  <a class="button left" href="{{ path('admin_coupons') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
+</form>
+
+<br><br>
+<h2>Rabatkodefiler:</h2>
+<ul>
+{% for file in files %}
+  <li>{{ file.name }}: <a href="{{ file.path }}">Download</a>, <a href="{{ path('admin_coupons_batch_delete_file', {'filename' : file.path}) }}" class="delete confirm">Delete</a></li>
+{% endfor %}
+</ul>
+
+<p>Bemærk, når du sletter, sletter du <strong>kun</strong> .csv filen <strong>ikke</strong> rabatkoderne!.</p>
+
+{% endblock %}

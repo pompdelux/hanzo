@@ -21,6 +21,7 @@ class DefaultController extends CoreController
 
         $data = [];
         $records = [];
+        $error = '';
 
         if ($customer instanceof Customers) {
             $c = new Criteria();
@@ -37,7 +38,7 @@ class DefaultController extends CoreController
         $form = $api->getLookupForm($this->createFormBuilder(), $request);
 
         if ('POST' === $request->getMethod()) {
-            $values = $request->get('form');
+            $values = $request->request->get('form');
 
             if (isset($values['q'])) {
                 $pcs = explode(',', $values['q']);
@@ -54,27 +55,37 @@ class DefaultController extends CoreController
                     }
                 }
 
-                $records = $api->findByAddress([
-                    'countryCode'  => $values['countryCode'],
-                    'city'         => $city,
-                    'postalCode'   => $zip,
-                    'streetName'   => $street,
-                ]);
+                try {
+                    $records = $api->findByAddress([
+                        'countryCode'  => $values['countryCode'],
+                        'city'         => $city,
+                        'postalCode'   => $zip,
+                        'streetName'   => $street,
+                    ]);
+                } catch (\Exception $e) {
+                    $records = [];
+                    $error = $this->get('translator')->trans('service.down', [], 'locator');
+                }
 
                 if ($this->getFormat() == 'json') {
                     if (count($records)) {
                         $response = [
-                            'status' => true,
+                            'status'  => true,
                             'message' => '',
-                            'data' => ['html' => $this->renderView('LocationLocatorBundle:Default:result.html.twig', [
+                            'data'    => ['html' => $this->renderView('LocationLocatorBundle:Default:result.html.twig', [
                                 'service' => 'postnord',
                                 'records' => $records,
                             ])]
                         ];
                     } else {
+                        if ($error) {
+                            $message = $error;
+                        } else {
+                            $message = $this->get('translator')->trans('no.records.found', [], 'locator');
+                        }
                         $response = [
-                            'status' => false,
-                            'message' => $this->get('translator')->trans('no.records.found', [], 'locator'),
+                            'status'  => false,
+                            'message' => $message,
                         ];
                     }
 
@@ -87,6 +98,7 @@ class DefaultController extends CoreController
             'service' => 'postnord',
             'form'    => $form->createView(),
             'records' => $records,
+            'error'   => $error,
         ]);
     }
 }

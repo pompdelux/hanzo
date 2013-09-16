@@ -32,7 +32,6 @@ use Hanzo\Model\RedirectsQuery;
  * @method Redirects findOne(PropelPDO $con = null) Return the first Redirects matching the query
  * @method Redirects findOneOrCreate(PropelPDO $con = null) Return the first Redirects matching the query, or a new Redirects object populated from the query conditions when no match is found
  *
- * @method Redirects findOneById(int $id) Return the first Redirects filtered by the id column
  * @method Redirects findOneBySource(string $source) Return the first Redirects filtered by the source column
  * @method Redirects findOneByTarget(string $target) Return the first Redirects filtered by the target column
  * @method Redirects findOneByDomainKey(string $domain_key) Return the first Redirects filtered by the domain_key column
@@ -60,7 +59,7 @@ abstract class BaseRedirectsQuery extends ModelCriteria
      * Returns a new RedirectsQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     RedirectsQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   RedirectsQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return RedirectsQuery
      */
@@ -117,18 +116,32 @@ abstract class BaseRedirectsQuery extends ModelCriteria
     }
 
     /**
+     * Alias of findPk to use instance pooling
+     *
+     * @param     mixed $key Primary key to use for the query
+     * @param     PropelPDO $con A connection object
+     *
+     * @return                 Redirects A model object, or null if the key is not found
+     * @throws PropelException
+     */
+     public function findOneById($key, $con = null)
+     {
+        return $this->findPk($key, $con);
+     }
+
+    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   Redirects A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 Redirects A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `ID`, `SOURCE`, `TARGET`, `DOMAIN_KEY` FROM `redirects` WHERE `ID` = :p0';
+        $sql = 'SELECT `id`, `source`, `target`, `domain_key` FROM `redirects` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -224,7 +237,8 @@ abstract class BaseRedirectsQuery extends ModelCriteria
      * <code>
      * $query->filterById(1234); // WHERE id = 1234
      * $query->filterById(array(12, 34)); // WHERE id IN (12, 34)
-     * $query->filterById(array('min' => 12)); // WHERE id > 12
+     * $query->filterById(array('min' => 12)); // WHERE id >= 12
+     * $query->filterById(array('max' => 12)); // WHERE id <= 12
      * </code>
      *
      * @param     mixed $id The value to use as filter.
@@ -237,8 +251,22 @@ abstract class BaseRedirectsQuery extends ModelCriteria
      */
     public function filterById($id = null, $comparison = null)
     {
-        if (is_array($id) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($id)) {
+            $useMinMax = false;
+            if (isset($id['min'])) {
+                $this->addUsingAlias(RedirectsPeer::ID, $id['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($id['max'])) {
+                $this->addUsingAlias(RedirectsPeer::ID, $id['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(RedirectsPeer::ID, $id, $comparison);

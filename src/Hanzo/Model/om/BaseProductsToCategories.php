@@ -77,6 +77,12 @@ abstract class BaseProductsToCategories extends BaseObject implements Persistent
     protected $alreadyInValidation = false;
 
     /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
+    /**
      * Get the [products_id] column value.
      *
      * @return int
@@ -104,7 +110,7 @@ abstract class BaseProductsToCategories extends BaseObject implements Persistent
      */
     public function setProductsId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -129,7 +135,7 @@ abstract class BaseProductsToCategories extends BaseObject implements Persistent
      */
     public function setCategoriesId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -187,7 +193,7 @@ abstract class BaseProductsToCategories extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
+            $this->postHydrate($row, $startcol, $rehydrate);
             return $startcol + 2; // 2 = ProductsToCategoriesPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -424,10 +430,10 @@ abstract class BaseProductsToCategories extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(ProductsToCategoriesPeer::PRODUCTS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`PRODUCTS_ID`';
+            $modifiedColumns[':p' . $index++]  = '`products_id`';
         }
         if ($this->isColumnModified(ProductsToCategoriesPeer::CATEGORIES_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`CATEGORIES_ID`';
+            $modifiedColumns[':p' . $index++]  = '`categories_id`';
         }
 
         $sql = sprintf(
@@ -440,10 +446,10 @@ abstract class BaseProductsToCategories extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`PRODUCTS_ID`':
+                    case '`products_id`':
                         $stmt->bindValue($identifier, $this->products_id, PDO::PARAM_INT);
                         break;
-                    case '`CATEGORIES_ID`':
+                    case '`categories_id`':
                         $stmt->bindValue($identifier, $this->categories_id, PDO::PARAM_INT);
                         break;
                 }
@@ -507,11 +513,11 @@ abstract class BaseProductsToCategories extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -876,12 +882,13 @@ abstract class BaseProductsToCategories extends BaseObject implements Persistent
      * Get the associated Products object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Products The associated Products object.
      * @throws PropelException
      */
-    public function getProducts(PropelPDO $con = null)
+    public function getProducts(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aProducts === null && ($this->products_id !== null)) {
+        if ($this->aProducts === null && ($this->products_id !== null) && $doQuery) {
             $this->aProducts = ProductsQuery::create()->findPk($this->products_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -927,12 +934,13 @@ abstract class BaseProductsToCategories extends BaseObject implements Persistent
      * Get the associated Categories object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Categories The associated Categories object.
      * @throws PropelException
      */
-    public function getCategories(PropelPDO $con = null)
+    public function getCategories(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aCategories === null && ($this->categories_id !== null)) {
+        if ($this->aCategories === null && ($this->categories_id !== null) && $doQuery) {
             $this->aCategories = CategoriesQuery::create()->findPk($this->categories_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -955,6 +963,7 @@ abstract class BaseProductsToCategories extends BaseObject implements Persistent
         $this->categories_id = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->resetModified();
         $this->setNew(true);
@@ -972,7 +981,16 @@ abstract class BaseProductsToCategories extends BaseObject implements Persistent
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
+            if ($this->aProducts instanceof Persistent) {
+              $this->aProducts->clearAllReferences($deep);
+            }
+            if ($this->aCategories instanceof Persistent) {
+              $this->aCategories->clearAllReferences($deep);
+            }
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
         $this->aProducts = null;

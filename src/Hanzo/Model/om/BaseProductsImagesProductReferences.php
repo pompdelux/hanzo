@@ -53,6 +53,12 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
     protected $products_id;
 
     /**
+     * The value for the color field.
+     * @var        string
+     */
+    protected $color;
+
+    /**
      * @var        ProductsImages
      */
     protected $aProductsImages;
@@ -77,6 +83,12 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
     protected $alreadyInValidation = false;
 
     /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
+    /**
      * Get the [products_images_id] column value.
      *
      * @return int
@@ -97,6 +109,16 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
     }
 
     /**
+     * Get the [color] column value.
+     *
+     * @return string
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+    /**
      * Set the value of [products_images_id] column.
      *
      * @param int $v new value
@@ -104,7 +126,7 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
      */
     public function setProductsImagesId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -129,7 +151,7 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
      */
     public function setProductsId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -145,6 +167,27 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
 
         return $this;
     } // setProductsId()
+
+    /**
+     * Set the value of [color] column.
+     *
+     * @param string $v new value
+     * @return ProductsImagesProductReferences The current object (for fluent API support)
+     */
+    public function setColor($v)
+    {
+        if ($v !== null && is_numeric($v)) {
+            $v = (string) $v;
+        }
+
+        if ($this->color !== $v) {
+            $this->color = $v;
+            $this->modifiedColumns[] = ProductsImagesProductReferencesPeer::COLOR;
+        }
+
+
+        return $this;
+    } // setColor()
 
     /**
      * Indicates whether the columns in this object are only set to default values.
@@ -180,6 +223,7 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
 
             $this->products_images_id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
             $this->products_id = ($row[$startcol + 1] !== null) ? (int) $row[$startcol + 1] : null;
+            $this->color = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -187,8 +231,8 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
-            return $startcol + 2; // 2 = ProductsImagesProductReferencesPeer::NUM_HYDRATE_COLUMNS.
+            $this->postHydrate($row, $startcol, $rehydrate);
+            return $startcol + 3; // 3 = ProductsImagesProductReferencesPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating ProductsImagesProductReferences object", $e);
@@ -424,10 +468,13 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(ProductsImagesProductReferencesPeer::PRODUCTS_IMAGES_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`PRODUCTS_IMAGES_ID`';
+            $modifiedColumns[':p' . $index++]  = '`products_images_id`';
         }
         if ($this->isColumnModified(ProductsImagesProductReferencesPeer::PRODUCTS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`PRODUCTS_ID`';
+            $modifiedColumns[':p' . $index++]  = '`products_id`';
+        }
+        if ($this->isColumnModified(ProductsImagesProductReferencesPeer::COLOR)) {
+            $modifiedColumns[':p' . $index++]  = '`color`';
         }
 
         $sql = sprintf(
@@ -440,11 +487,14 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`PRODUCTS_IMAGES_ID`':
+                    case '`products_images_id`':
                         $stmt->bindValue($identifier, $this->products_images_id, PDO::PARAM_INT);
                         break;
-                    case '`PRODUCTS_ID`':
+                    case '`products_id`':
                         $stmt->bindValue($identifier, $this->products_id, PDO::PARAM_INT);
+                        break;
+                    case '`color`':
+                        $stmt->bindValue($identifier, $this->color, PDO::PARAM_STR);
                         break;
                 }
             }
@@ -507,11 +557,11 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -597,6 +647,9 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
             case 1:
                 return $this->getProductsId();
                 break;
+            case 2:
+                return $this->getColor();
+                break;
             default:
                 return null;
                 break;
@@ -628,6 +681,7 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
         $result = array(
             $keys[0] => $this->getProductsImagesId(),
             $keys[1] => $this->getProductsId(),
+            $keys[2] => $this->getColor(),
         );
         if ($includeForeignObjects) {
             if (null !== $this->aProductsImages) {
@@ -676,6 +730,9 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
             case 1:
                 $this->setProductsId($value);
                 break;
+            case 2:
+                $this->setColor($value);
+                break;
         } // switch()
     }
 
@@ -702,6 +759,7 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
 
         if (array_key_exists($keys[0], $arr)) $this->setProductsImagesId($arr[$keys[0]]);
         if (array_key_exists($keys[1], $arr)) $this->setProductsId($arr[$keys[1]]);
+        if (array_key_exists($keys[2], $arr)) $this->setColor($arr[$keys[2]]);
     }
 
     /**
@@ -715,6 +773,7 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
 
         if ($this->isColumnModified(ProductsImagesProductReferencesPeer::PRODUCTS_IMAGES_ID)) $criteria->add(ProductsImagesProductReferencesPeer::PRODUCTS_IMAGES_ID, $this->products_images_id);
         if ($this->isColumnModified(ProductsImagesProductReferencesPeer::PRODUCTS_ID)) $criteria->add(ProductsImagesProductReferencesPeer::PRODUCTS_ID, $this->products_id);
+        if ($this->isColumnModified(ProductsImagesProductReferencesPeer::COLOR)) $criteria->add(ProductsImagesProductReferencesPeer::COLOR, $this->color);
 
         return $criteria;
     }
@@ -787,6 +846,7 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
     {
         $copyObj->setProductsImagesId($this->getProductsImagesId());
         $copyObj->setProductsId($this->getProductsId());
+        $copyObj->setColor($this->getColor());
 
         if ($deepCopy && !$this->startCopy) {
             // important: temporarily setNew(false) because this affects the behavior of
@@ -876,12 +936,13 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
      * Get the associated ProductsImages object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return ProductsImages The associated ProductsImages object.
      * @throws PropelException
      */
-    public function getProductsImages(PropelPDO $con = null)
+    public function getProductsImages(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aProductsImages === null && ($this->products_images_id !== null)) {
+        if ($this->aProductsImages === null && ($this->products_images_id !== null) && $doQuery) {
             $this->aProductsImages = ProductsImagesQuery::create()->findPk($this->products_images_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -927,12 +988,13 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
      * Get the associated Products object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Products The associated Products object.
      * @throws PropelException
      */
-    public function getProducts(PropelPDO $con = null)
+    public function getProducts(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aProducts === null && ($this->products_id !== null)) {
+        if ($this->aProducts === null && ($this->products_id !== null) && $doQuery) {
             $this->aProducts = ProductsQuery::create()->findPk($this->products_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -953,8 +1015,10 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
     {
         $this->products_images_id = null;
         $this->products_id = null;
+        $this->color = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->resetModified();
         $this->setNew(true);
@@ -972,7 +1036,16 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
+            if ($this->aProductsImages instanceof Persistent) {
+              $this->aProductsImages->clearAllReferences($deep);
+            }
+            if ($this->aProducts instanceof Persistent) {
+              $this->aProducts->clearAllReferences($deep);
+            }
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
         $this->aProductsImages = null;

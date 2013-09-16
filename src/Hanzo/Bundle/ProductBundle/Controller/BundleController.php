@@ -8,16 +8,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
-use Hanzo\Core\Stock;
 use Hanzo\Core\CoreController;
 
 use Hanzo\Model\ProductsDomainsPricesPeer;
 use Hanzo\Model\Products;
 use Hanzo\Model\ProductsI18nQuery;
-use Hanzo\Model\ProductsStockPeer;
 use Hanzo\Model\ProductsQuery;
-use Hanzo\Model\ProductsStock;
-use Hanzo\Model\ProductsStockQuery;
 use Hanzo\Model\ProductsImagesProductReferencesQuery;
 use Hanzo\Model\ProductsWashingInstructions;
 use Hanzo\Model\ProductsWashingInstructionsQuery;
@@ -73,17 +69,18 @@ class BundleController extends CoreController
             $key = '_' . $locale . '_' . $products2category->getCategoriesId();
             $product_route = $router_keys[$key];
 
+            $image = $product->getProductsImagess()->getFirst();
             $products[$product->getId()] = array(
                 'id' => $product->getId(),
                 'master' => $product->getSku(),
-                'image' => $product->getProductsImagess()->getFirst()->getImage(),
+                'color' => $image->getColor(),
+                'image' => $image->getImage(),
                 'url' => $router->generate($product_route, array(
                     'product_id' => $product->getId(),
                     'title' => Tools::stripText($product->getSku()),
                 )),
                 'out_of_stock' => true,
             );
-
 
             $result = ProductsQuery::create()
                 ->useProductsImagesProductReferencesQuery()
@@ -97,6 +94,11 @@ class BundleController extends CoreController
                     ->condition('c1', ProductsDomainsPricesPeer::FROM_DATE . ' <= NOW()')
                     ->condition('c2', ProductsDomainsPricesPeer::TO_DATE . ' >= NOW()')
                     ->where(array('c1', 'c2'), 'AND')
+                ->endUse()
+                ->useProductsImagesQuery()
+                    ->filterByType('overview')
+                    ->where('products_images.COLOR = products_images_product_references.COLOR')
+                    ->groupByProductsId()
                 ->endUse()
                 ->joinWithProductsImages()
                 ->find()
@@ -159,6 +161,7 @@ class BundleController extends CoreController
         }
 
         $this->setSharedMaxAge(86400);
+        $this->get('twig')->addGlobal('body_classes', 'body-product body-buy-set');
         $responce = $this->render('ProductBundle:Bundle:view.html.twig', array(
             'page_type' => 'bundle',
             'products' => $products,
@@ -176,16 +179,44 @@ class BundleController extends CoreController
         $router = $this->get('router');
 
         $cache_id = array('product.bundle.custom', str_replace(',', '-', $set));
-        //$products = $this->getCache($cache_id);
+        $products = $this->getCache($cache_id);
 
         if (empty($products)) {
-            $product_ids = explode(',', $set);
+            $set = explode(',', $set);
+
+            $where = [];
+            $products_ids = [];
+            foreach ($set as $product) {
+                $pieces = explode('-', $product, 2);
+                $where[] = array(
+                    'ProductsId' => $pieces[0],
+                    'Color' => str_replace(['9', '-'], ['/', ' '], $pieces[1]),
+                );
+                $product_ids[] = $pieces[0];
+            }
+
             $router_keys = include $this->container->parameters['kernel.cache_dir'] . '/category_map.php';
             $locale = strtolower($hanzo->get('core.locale'));
 
             $result = ProductsQuery::create()
                 ->filterByIsActive(TRUE)
-                ->filterById($product_ids)
+                ->useProductsImagesQuery()
+                    ->filterByType('overview')
+            ;
+            // Add all sets to conditions seperately.
+            $combines = [];
+            foreach ($where as $i => $where_clause) {
+                $result = $result->condition('id_' . $i, 'products_images.products_id = ?', $where_clause['ProductsId'])
+                    ->condition('color_' . $i, 'products_images.color = ?', $where_clause['Color'])
+                    ->combine(array('id_' . $i, 'color_' . $i), 'and', 'combine_' . $i)
+                ;
+
+                $combines[] = 'combine_' . $i;
+            }
+            $result = $result->where($combines, 'or')
+                ->groupByProductsId()
+                ->endUse()
+                ->joinWithProductsImages()
                 ->useProductsDomainsPricesQuery()
                     ->filterByDomainsId($hanzo->get('core.domain_id'))
                     ->filterByFromDate(array('max' => 'now'))
@@ -194,10 +225,10 @@ class BundleController extends CoreController
                     ->condition('c2', ProductsDomainsPricesPeer::TO_DATE . ' >= NOW()')
                     ->where(array('c1', 'c2'), 'AND')
                 ->endUse()
-                ->joinWithProductsImages()
                 ->find()
             ;
 
+            $products = [];
             foreach ($result as $product) {
                 $products2category = ProductsToCategoriesQuery::create()
                     ->useProductsQuery()

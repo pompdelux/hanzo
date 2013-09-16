@@ -109,6 +109,12 @@ abstract class BaseProductsDomainsPrices extends BaseObject implements Persisten
     protected $alreadyInValidation = false;
 
     /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
+    /**
      * Get the [products_id] column value.
      *
      * @return int
@@ -179,22 +185,25 @@ abstract class BaseProductsDomainsPrices extends BaseObject implements Persisten
             // while technically this is not a default value of null,
             // this seems to be closest in meaning.
             return null;
-        } else {
-            try {
-                $dt = new DateTime($this->from_date);
-            } catch (Exception $x) {
-                throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->from_date, true), $x);
-            }
+        }
+
+        try {
+            $dt = new DateTime($this->from_date);
+        } catch (Exception $x) {
+            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->from_date, true), $x);
         }
 
         if ($format === null) {
             // We cast here to maintain BC in API; obviously we will lose data if we're dealing with pre-/post-epoch dates.
             return (int) $dt->format('U');
-        } elseif (strpos($format, '%') !== false) {
-            return strftime($format, $dt->format('U'));
-        } else {
-            return $dt->format($format);
         }
+
+        if (strpos($format, '%') !== false) {
+            return strftime($format, $dt->format('U'));
+        }
+
+        return $dt->format($format);
+
     }
 
     /**
@@ -218,22 +227,25 @@ abstract class BaseProductsDomainsPrices extends BaseObject implements Persisten
             // while technically this is not a default value of null,
             // this seems to be closest in meaning.
             return null;
-        } else {
-            try {
-                $dt = new DateTime($this->to_date);
-            } catch (Exception $x) {
-                throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->to_date, true), $x);
-            }
+        }
+
+        try {
+            $dt = new DateTime($this->to_date);
+        } catch (Exception $x) {
+            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->to_date, true), $x);
         }
 
         if ($format === null) {
             // We cast here to maintain BC in API; obviously we will lose data if we're dealing with pre-/post-epoch dates.
             return (int) $dt->format('U');
-        } elseif (strpos($format, '%') !== false) {
-            return strftime($format, $dt->format('U'));
-        } else {
-            return $dt->format($format);
         }
+
+        if (strpos($format, '%') !== false) {
+            return strftime($format, $dt->format('U'));
+        }
+
+        return $dt->format($format);
+
     }
 
     /**
@@ -244,7 +256,7 @@ abstract class BaseProductsDomainsPrices extends BaseObject implements Persisten
      */
     public function setProductsId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -269,7 +281,7 @@ abstract class BaseProductsDomainsPrices extends BaseObject implements Persisten
      */
     public function setDomainsId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -294,7 +306,7 @@ abstract class BaseProductsDomainsPrices extends BaseObject implements Persisten
      */
     public function setPrice($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -315,7 +327,7 @@ abstract class BaseProductsDomainsPrices extends BaseObject implements Persisten
      */
     public function setVat($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -336,7 +348,7 @@ abstract class BaseProductsDomainsPrices extends BaseObject implements Persisten
      */
     public function setCurrencyId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -441,7 +453,7 @@ abstract class BaseProductsDomainsPrices extends BaseObject implements Persisten
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
+            $this->postHydrate($row, $startcol, $rehydrate);
             return $startcol + 7; // 7 = ProductsDomainsPricesPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -678,25 +690,25 @@ abstract class BaseProductsDomainsPrices extends BaseObject implements Persisten
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(ProductsDomainsPricesPeer::PRODUCTS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`PRODUCTS_ID`';
+            $modifiedColumns[':p' . $index++]  = '`products_id`';
         }
         if ($this->isColumnModified(ProductsDomainsPricesPeer::DOMAINS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`DOMAINS_ID`';
+            $modifiedColumns[':p' . $index++]  = '`domains_id`';
         }
         if ($this->isColumnModified(ProductsDomainsPricesPeer::PRICE)) {
-            $modifiedColumns[':p' . $index++]  = '`PRICE`';
+            $modifiedColumns[':p' . $index++]  = '`price`';
         }
         if ($this->isColumnModified(ProductsDomainsPricesPeer::VAT)) {
-            $modifiedColumns[':p' . $index++]  = '`VAT`';
+            $modifiedColumns[':p' . $index++]  = '`vat`';
         }
         if ($this->isColumnModified(ProductsDomainsPricesPeer::CURRENCY_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`CURRENCY_ID`';
+            $modifiedColumns[':p' . $index++]  = '`currency_id`';
         }
         if ($this->isColumnModified(ProductsDomainsPricesPeer::FROM_DATE)) {
-            $modifiedColumns[':p' . $index++]  = '`FROM_DATE`';
+            $modifiedColumns[':p' . $index++]  = '`from_date`';
         }
         if ($this->isColumnModified(ProductsDomainsPricesPeer::TO_DATE)) {
-            $modifiedColumns[':p' . $index++]  = '`TO_DATE`';
+            $modifiedColumns[':p' . $index++]  = '`to_date`';
         }
 
         $sql = sprintf(
@@ -709,25 +721,25 @@ abstract class BaseProductsDomainsPrices extends BaseObject implements Persisten
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`PRODUCTS_ID`':
+                    case '`products_id`':
                         $stmt->bindValue($identifier, $this->products_id, PDO::PARAM_INT);
                         break;
-                    case '`DOMAINS_ID`':
+                    case '`domains_id`':
                         $stmt->bindValue($identifier, $this->domains_id, PDO::PARAM_INT);
                         break;
-                    case '`PRICE`':
+                    case '`price`':
                         $stmt->bindValue($identifier, $this->price, PDO::PARAM_STR);
                         break;
-                    case '`VAT`':
+                    case '`vat`':
                         $stmt->bindValue($identifier, $this->vat, PDO::PARAM_STR);
                         break;
-                    case '`CURRENCY_ID`':
+                    case '`currency_id`':
                         $stmt->bindValue($identifier, $this->currency_id, PDO::PARAM_INT);
                         break;
-                    case '`FROM_DATE`':
+                    case '`from_date`':
                         $stmt->bindValue($identifier, $this->from_date, PDO::PARAM_STR);
                         break;
-                    case '`TO_DATE`':
+                    case '`to_date`':
                         $stmt->bindValue($identifier, $this->to_date, PDO::PARAM_STR);
                         break;
                 }
@@ -791,11 +803,11 @@ abstract class BaseProductsDomainsPrices extends BaseObject implements Persisten
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -1213,12 +1225,13 @@ abstract class BaseProductsDomainsPrices extends BaseObject implements Persisten
      * Get the associated Products object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Products The associated Products object.
      * @throws PropelException
      */
-    public function getProducts(PropelPDO $con = null)
+    public function getProducts(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aProducts === null && ($this->products_id !== null)) {
+        if ($this->aProducts === null && ($this->products_id !== null) && $doQuery) {
             $this->aProducts = ProductsQuery::create()->findPk($this->products_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -1264,12 +1277,13 @@ abstract class BaseProductsDomainsPrices extends BaseObject implements Persisten
      * Get the associated Domains object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Domains The associated Domains object.
      * @throws PropelException
      */
-    public function getDomains(PropelPDO $con = null)
+    public function getDomains(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aDomains === null && ($this->domains_id !== null)) {
+        if ($this->aDomains === null && ($this->domains_id !== null) && $doQuery) {
             $this->aDomains = DomainsQuery::create()->findPk($this->domains_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -1297,6 +1311,7 @@ abstract class BaseProductsDomainsPrices extends BaseObject implements Persisten
         $this->to_date = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->resetModified();
         $this->setNew(true);
@@ -1314,7 +1329,16 @@ abstract class BaseProductsDomainsPrices extends BaseObject implements Persisten
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
+            if ($this->aProducts instanceof Persistent) {
+              $this->aProducts->clearAllReferences($deep);
+            }
+            if ($this->aDomains instanceof Persistent) {
+              $this->aDomains->clearAllReferences($deep);
+            }
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
         $this->aProducts = null;

@@ -1,16 +1,3 @@
-{#
-<div id="checkout-block-payment" class="checkout-block">
-  <h1>{{ 'payment.title'|trans({}, 'checkout') }}</h1>
-  <div class="msg hidden"></div>
-
-  <p>{{ 'payment.text'|trans({}, 'checkout') }}</p>
-  {% render 'PaymentBundle:Dibs:block' %}
-  {% render 'PaymentBundle:Gothia:block' %}
-  {% render 'PaymentBundle:PayByBill:block' %}
-
-</div>
-#}
-
 <h2>{{ 'payment.title'|trans({}, 'checkout') }}</h2>
 <div class="checkout-block" id="payment-block">
   <div class="msg hidden"></div>
@@ -23,6 +10,6 @@
     </div>
   {% endfor %}
 
-    <input type="hidden" value="coupon:coupon" name="paytype"{% if selected_payment_type == 'coupon:coupon' %} checked{% endif %}>
+    <input type="hidden" value="gift_card:gift_card" name="paytype"{% if selected_payment_type == 'gift_card:gift_card' %} checked{% endif %}>
   </form>
 </div>

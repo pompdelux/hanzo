@@ -2,6 +2,8 @@
 
 namespace Hanzo\Core;
 
+use Hanzo\Core\Tools;
+
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
@@ -86,9 +88,14 @@ class Hanzo
             }
         }
 
-        $config['core']['cdn'] = $this->container->getParameter('cdn');
+        $scheme = 'http:';
+        if (Tools::isSecure()) {
+            $scheme = 'https:';
+        }
+
+        $config['core']['cdn'] = str_replace('http:', $scheme, $this->container->getParameter('cdn'));
         if ($this->container->hasParameter('cdn2')) {
-            $config['core']['cdn2'] = $this->container->getParameter('cdn2');
+            $config['core']['cdn2'] = str_replace('http:', $scheme, $this->container->getParameter('cdn2'));
         } else {
             $config['core']['cdn2'] = $config['core']['cdn'];
         }

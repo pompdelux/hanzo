@@ -29,7 +29,7 @@ class DefaultController extends CoreController
 {
     public function indexAction()
     {
-        $order = OrdersPeer::getCurrent();
+        $order = OrdersPeer::getCurrent(true);
 
         if ( ($order->isNew() === true) || ($order->getTotalQuantity(true) == 0)) {
             return $this->redirect($this->generateUrl('basket_view'));
@@ -154,8 +154,16 @@ class DefaultController extends CoreController
             }
         }
 
+        // make sure to remove doubble discount
+        if (isset($attributes->purchase) &&
+            isset($attributes->purchase->type) &&
+            ($attributes->purchase->type !== 'private')) {
+            $order->removeDiscountLine('discount.private');
+        }
+
         /* ------------------------------------------------- */
         $order->save();
+        $order->reload(true, Propel::getConnection(OrdersPeer::DATABASE_NAME, Propel::CONNECTION_READ));
         /* ------------------------------------------------- */
 
         $attributes = array();

@@ -1,11 +1,13 @@
 {% extends layout %}
 
 {% block meta %}
-  {{ meta_tags(false) }}
+  {{ meta_tags('og:type,og:title,og:image,og:description,description') }}
   <meta property="og:type" content="website">
   <meta property="og:title" content="{{ product.title }}">
   <meta property="og:image" content="{{ product_image_url(product.main_image.name, '0x200') }}">
   <meta property="og:description" content="{{ product.description|og_description }}">
+  <meta name="description" content="{{ product.description|og_description }}">
+  <link rel="canonical" href="{{ url(_route, {'product_id' : product.id, 'title' : product.sku|strip_tags }) }}"/>
 {% endblock %}
 
 {% block content %}
@@ -13,7 +15,9 @@
 <div class="grid_8 alpha omega">
   {% render 'CMSBundle:Menu:menu' with {'type': 'breadcrumb', 'thread': 20} %}
 </div>
-<div class="grid_8 alpha omega container_16">
+<div class="grid_8 alpha omega container_16" itemscope itemtype="http://data-vocabulary.org/Product">
+  <meta itemprop="brand" content="POMPdeLUX" />
+  <meta itemprop="identifier" content="sku:{{ product.title }}" />
   <div class="grid_8 alpha">
     <div class="grid_8 alpha omega history-link">
         <a href="javascript:history.go(-1)" title="{{ 'back.to.category'|trans }}" class="back-button"><i class="sprite icons-arrow_left"></i>  {{ 'back.to.category'|trans }}</a>
@@ -43,7 +47,7 @@
           {{ product_image_tag(
               product.main_image.name,
               '234x410',
-              {'alt': product.title ~ ', ' ~ product.main_image.color}
+              {'alt': product.title ~ ', ' ~ product.main_image.color, 'itemprop' : 'image'}
             )
           }}
         </a>
@@ -93,8 +97,8 @@
         <div class="element image-id-{{ id }}">
         {% spaceless %}
         {% for item in references.references %}
-          <a href="{{ item.url }}" title="{{ item.image }}">{{ product_image_tag(item.image, '114x200',
-              {'alt': product.title ~ ' ' ~ item.color}) }}</a>
+          <a href="{{ item.url }}" title="{{ product.title ~ ', ' ~ item.color }}">{{ product_image_tag(item.image, '114x200',
+              {'alt': product.title ~ ', ' ~ item.color}) }}</a>
         {% endfor %}
         {% endspaceless %}
         <a href="{{ path('product_set', {'image_id': id}) }}" class="buy-set last">» {{ 'buy.set'|trans }}</a>
@@ -108,15 +112,16 @@
   </div>
 
   <div class="grid_7 push_1 omega">
-    <h1 class="title">{{ product.title }}</h1>
+    <h1 class="title" itemprop="name">{{ product.title }}</h1>
 
-    <div class="prices">
+    <div class="prices" itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">
     {% if product.prices.sales is defined %}
       <span class="normal strike">{{ product.prices.normal.price|money }}</span>
-      <span class="discount">{{ product.prices.sales.price|money }}</span>
+      <span class="discount" itemprop="price">{{ product.prices.sales.price|money }}</span>
     {% else %}
-      <span class="normal">{{ product.prices.normal.price|money }}</span>
+      <span class="normal" itemprop="price">{{ product.prices.normal.price|money }}</span>
     {% endif %}
+      <div class="description">{{ "product.prices.description"|trans }}</div>
     </div>
 
     <div class="buybox clearfix">
@@ -138,7 +143,7 @@
               {% for size in product.sizes %}
                 <option value="{{ size }}">{{ size }}</option>
               {% endfor %}
-              </select><a href="{{ cdn }}/images/sizeguide/{{ product.title|replace({" ":""}) }}.jpg" rel="colorbox">» Size guide</a>
+              </select>{{ 'size.guide.link'|trans|raw }}
             </div>
             <div><span class="small">{{ 'choose.size.note'|trans }}</span></div>
           </label>
@@ -182,7 +187,7 @@
 
       <div class="panes">
         <div>
-          <p>{{ product.description|raw }}</p>
+          <p itemprop="description">{{ product.description|raw }}</p>
         </div>
       {% if product.washing %}
         <div class="off"><p>{{ product.washing|raw }}</p></div>

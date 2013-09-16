@@ -2,7 +2,6 @@
 
 namespace Hanzo\Bundle\LocationLocatorBundle;
 
-use Exception;
 use InvalidArgumentException;
 
 use Hanzo\Core\Hanzo;
@@ -39,6 +38,7 @@ class LocationLocator
      * __construct
      *
      * @param ServiceContainer $container
+     * @param string           $environment
      */
     public function __construct($container, $environment)
     {
@@ -66,7 +66,7 @@ class LocationLocator
 
         try {
             $provider = $this->container->get('hanzo_location_provider_'.$settings['provider']);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             throw new InvalidArgumentException('Service "hanzo_location_provider_'.$settings['provider'].'" not found');
         }
 

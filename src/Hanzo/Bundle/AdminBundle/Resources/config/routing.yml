@@ -206,6 +206,14 @@ admin_product_ref_add:
     requirements:
         _format: html|json
 
+admin_product_ref_get_color:
+    pattern:  /admin/products/reference-get-color/
+    defaults:
+        _controller: AdminBundle:Products:addReferenceGetColors
+        _format: json
+    requirements:
+        _format: html|json
+
 admin_product_ref_delete:
     pattern:  /admin/products/delete-reference/{image_id}/{product_id}
     defaults:
@@ -615,6 +623,31 @@ admin_statistics:
         _controller: AdminBundle:Statistics:index
         domain_key: null
 
+admin_gift_cards:
+    pattern: /admin/gift_cards/{pager}
+    defaults:
+        _controller: AdminBundle:GiftCards:index
+        pager: 1
+    requirements:
+        pager: \d+
+
+admin_gift_cards_edit:
+    pattern: /admin/gift_cards/id/{id}
+    defaults:
+        _controller: AdminBundle:GiftCards:view
+        id: null
+    requirements:
+        id: \d+
+
+admin_gift_cards_delete:
+    pattern: /admin/gift_cards/delete/{id}
+    defaults:
+        _controller: AdminBundle:GiftCards:delete
+        _format: json
+    requirements:
+        id: \d+
+        _format: html|json
+
 admin_coupons:
     pattern: /admin/coupons/{pager}
     defaults:
@@ -639,6 +672,21 @@ admin_coupons_delete:
     requirements:
         id: \d+
         _format: html|json
+
+admin_coupons_batch:
+    pattern: /admin/coupons/batch
+    defaults:
+        _controller: AdminBundle:Coupons:batch
+
+admin_coupons_batch_delete_file:
+    pattern: /admin/coupons/batch/delete/file
+    defaults:
+        _controller: AdminBundle:Coupons:deleteCouponFile
+
+admin_coupons_stats:
+    pattern: /admin/coupons/stats
+    defaults:
+        _controller: AdminBundle:Coupons:stats
 
 admin_helpdesk:
     pattern: /admin/helpdesk/{pager}
@@ -707,3 +755,9 @@ admin_tools_clear_varnish:
     pattern: /admin/tools/cache/clear-varnish
     defaults:
         _controller: AdminBundle:Tools:clearVarnishCache
+
+admin_tools_dibs_tools:
+    pattern: /admin/tools/dibs/{action}
+    defaults:
+        _controller: AdminBundle:Tools:dibsTools
+        action: ''

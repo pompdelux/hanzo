@@ -1,0 +1,71 @@
+// topmenu styles
+
+nav.main-menu {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #000;
+    font-size: 1.4em;
+    line-height: 1.6;
+
+    .menu-trigger {
+        display: block;
+        text-transform: uppercase;
+        font-weight: bold;
+        &.active {
+            background: url(/fx/images/icons/icons/arrow_down.png) center right no-repeat;
+        }
+    }
+
+    .outer {
+        border-top: none;
+        display: block;
+    }
+    .nested ul.outer {
+        display: none;
+        border-top: 1px solid #000;
+    }
+
+    a {
+        display: block;
+        padding: 2px 0px 2px 5px;
+        margin-right: 5px;
+        background: url(/fx/images/icons/icons/arrow_right.png) center right no-repeat;
+        text-decoration: none;
+    }
+
+    ul {
+        border-top: 1px solid #000;
+        display: none;
+
+        &.open {
+            display: block;
+            a.heading {
+                font-weight: bold;
+            }
+        }
+        li {
+            display: block;
+            border-bottom: 1px solid #000;
+            &.active a {
+                background: url(/fx/images/icons/icons/arrow_down.png) center right no-repeat;
+                font-weight: bold;
+            }
+            &.active li.inactive a {
+                background: url(/fx/images/icons/icons/arrow_right.png) center right no-repeat;
+                font-weight: normal;
+            }
+            &.last {
+                border-bottom: none;
+            }
+
+            ul li {
+                a {
+                    padding-left: 15px;
+                    text-transform: uppercase;
+                }
+                li a {
+                    padding-left: 30px;
+                }
+            }
+        }
+    }
+}

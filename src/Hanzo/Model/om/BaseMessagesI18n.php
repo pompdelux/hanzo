@@ -83,6 +83,12 @@ abstract class BaseMessagesI18n extends BaseObject implements Persistent
     protected $alreadyInValidation = false;
 
     /**
+     * Flag to prevent endless clearAllReferences($deep=true) loop, if this object is referenced
+     * @var        boolean
+     */
+    protected $alreadyInClearAllReferencesDeep = false;
+
+    /**
      * Applies default values to this object.
      * This method should be called from the object's constructor (or
      * equivalent initialization method).
@@ -151,7 +157,7 @@ abstract class BaseMessagesI18n extends BaseObject implements Persistent
      */
     public function setId($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
@@ -176,7 +182,7 @@ abstract class BaseMessagesI18n extends BaseObject implements Persistent
      */
     public function setLocale($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -197,7 +203,7 @@ abstract class BaseMessagesI18n extends BaseObject implements Persistent
      */
     public function setSubject($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -218,7 +224,7 @@ abstract class BaseMessagesI18n extends BaseObject implements Persistent
      */
     public function setBody($v)
     {
-        if ($v !== null) {
+        if ($v !== null && is_numeric($v)) {
             $v = (string) $v;
         }
 
@@ -278,7 +284,7 @@ abstract class BaseMessagesI18n extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-
+            $this->postHydrate($row, $startcol, $rehydrate);
             return $startcol + 4; // 4 = MessagesI18nPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -504,16 +510,16 @@ abstract class BaseMessagesI18n extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(MessagesI18nPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`ID`';
+            $modifiedColumns[':p' . $index++]  = '`id`';
         }
         if ($this->isColumnModified(MessagesI18nPeer::LOCALE)) {
-            $modifiedColumns[':p' . $index++]  = '`LOCALE`';
+            $modifiedColumns[':p' . $index++]  = '`locale`';
         }
         if ($this->isColumnModified(MessagesI18nPeer::SUBJECT)) {
-            $modifiedColumns[':p' . $index++]  = '`SUBJECT`';
+            $modifiedColumns[':p' . $index++]  = '`subject`';
         }
         if ($this->isColumnModified(MessagesI18nPeer::BODY)) {
-            $modifiedColumns[':p' . $index++]  = '`BODY`';
+            $modifiedColumns[':p' . $index++]  = '`body`';
         }
 
         $sql = sprintf(
@@ -526,16 +532,16 @@ abstract class BaseMessagesI18n extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`ID`':
+                    case '`id`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`LOCALE`':
+                    case '`locale`':
                         $stmt->bindValue($identifier, $this->locale, PDO::PARAM_STR);
                         break;
-                    case '`SUBJECT`':
+                    case '`subject`':
                         $stmt->bindValue($identifier, $this->subject, PDO::PARAM_STR);
                         break;
-                    case '`BODY`':
+                    case '`body`':
                         $stmt->bindValue($identifier, $this->body, PDO::PARAM_STR);
                         break;
                 }
@@ -599,11 +605,11 @@ abstract class BaseMessagesI18n extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
-        } else {
-            $this->validationFailures = $res;
-
-            return false;
         }
+
+        $this->validationFailures = $res;
+
+        return false;
     }
 
     /**
@@ -979,12 +985,13 @@ abstract class BaseMessagesI18n extends BaseObject implements Persistent
      * Get the associated Messages object
      *
      * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
      * @return Messages The associated Messages object.
      * @throws PropelException
      */
-    public function getMessages(PropelPDO $con = null)
+    public function getMessages(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aMessages === null && ($this->id !== null)) {
+        if ($this->aMessages === null && ($this->id !== null) && $doQuery) {
             $this->aMessages = MessagesQuery::create()->findPk($this->id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -1009,6 +1016,7 @@ abstract class BaseMessagesI18n extends BaseObject implements Persistent
         $this->body = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
+        $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
         $this->applyDefaultValues();
         $this->resetModified();
@@ -1027,7 +1035,13 @@ abstract class BaseMessagesI18n extends BaseObject implements Persistent
      */
     public function clearAllReferences($deep = false)
     {
-        if ($deep) {
+        if ($deep && !$this->alreadyInClearAllReferencesDeep) {
+            $this->alreadyInClearAllReferencesDeep = true;
+            if ($this->aMessages instanceof Persistent) {
+              $this->aMessages->clearAllReferences($deep);
+            }
+
+            $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
         $this->aMessages = null;

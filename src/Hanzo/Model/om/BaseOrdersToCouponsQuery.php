@@ -68,7 +68,7 @@ abstract class BaseOrdersToCouponsQuery extends ModelCriteria
      * Returns a new OrdersToCouponsQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     OrdersToCouponsQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   OrdersToCouponsQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return OrdersToCouponsQuery
      */
@@ -132,12 +132,12 @@ abstract class BaseOrdersToCouponsQuery extends ModelCriteria
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   OrdersToCoupons A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 OrdersToCoupons A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `ORDERS_ID`, `COUPONS_ID`, `AMOUNT` FROM `orders_to_coupons` WHERE `ORDERS_ID` = :p0 AND `COUPONS_ID` = :p1';
+        $sql = 'SELECT `orders_id`, `coupons_id`, `amount` FROM `orders_to_coupons` WHERE `orders_id` = :p0 AND `coupons_id` = :p1';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);
@@ -245,7 +245,8 @@ abstract class BaseOrdersToCouponsQuery extends ModelCriteria
      * <code>
      * $query->filterByOrdersId(1234); // WHERE orders_id = 1234
      * $query->filterByOrdersId(array(12, 34)); // WHERE orders_id IN (12, 34)
-     * $query->filterByOrdersId(array('min' => 12)); // WHERE orders_id > 12
+     * $query->filterByOrdersId(array('min' => 12)); // WHERE orders_id >= 12
+     * $query->filterByOrdersId(array('max' => 12)); // WHERE orders_id <= 12
      * </code>
      *
      * @see       filterByOrders()
@@ -260,8 +261,22 @@ abstract class BaseOrdersToCouponsQuery extends ModelCriteria
      */
     public function filterByOrdersId($ordersId = null, $comparison = null)
     {
-        if (is_array($ordersId) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($ordersId)) {
+            $useMinMax = false;
+            if (isset($ordersId['min'])) {
+                $this->addUsingAlias(OrdersToCouponsPeer::ORDERS_ID, $ordersId['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($ordersId['max'])) {
+                $this->addUsingAlias(OrdersToCouponsPeer::ORDERS_ID, $ordersId['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(OrdersToCouponsPeer::ORDERS_ID, $ordersId, $comparison);
@@ -274,7 +289,8 @@ abstract class BaseOrdersToCouponsQuery extends ModelCriteria
      * <code>
      * $query->filterByCouponsId(1234); // WHERE coupons_id = 1234
      * $query->filterByCouponsId(array(12, 34)); // WHERE coupons_id IN (12, 34)
-     * $query->filterByCouponsId(array('min' => 12)); // WHERE coupons_id > 12
+     * $query->filterByCouponsId(array('min' => 12)); // WHERE coupons_id >= 12
+     * $query->filterByCouponsId(array('max' => 12)); // WHERE coupons_id <= 12
      * </code>
      *
      * @see       filterByCoupons()
@@ -289,8 +305,22 @@ abstract class BaseOrdersToCouponsQuery extends ModelCriteria
      */
     public function filterByCouponsId($couponsId = null, $comparison = null)
     {
-        if (is_array($couponsId) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($couponsId)) {
+            $useMinMax = false;
+            if (isset($couponsId['min'])) {
+                $this->addUsingAlias(OrdersToCouponsPeer::COUPONS_ID, $couponsId['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($couponsId['max'])) {
+                $this->addUsingAlias(OrdersToCouponsPeer::COUPONS_ID, $couponsId['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(OrdersToCouponsPeer::COUPONS_ID, $couponsId, $comparison);
@@ -303,7 +333,8 @@ abstract class BaseOrdersToCouponsQuery extends ModelCriteria
      * <code>
      * $query->filterByAmount(1234); // WHERE amount = 1234
      * $query->filterByAmount(array(12, 34)); // WHERE amount IN (12, 34)
-     * $query->filterByAmount(array('min' => 12)); // WHERE amount > 12
+     * $query->filterByAmount(array('min' => 12)); // WHERE amount >= 12
+     * $query->filterByAmount(array('max' => 12)); // WHERE amount <= 12
      * </code>
      *
      * @param     mixed $amount The value to use as filter.
@@ -343,8 +374,8 @@ abstract class BaseOrdersToCouponsQuery extends ModelCriteria
      * @param   Coupons|PropelObjectCollection $coupons The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   OrdersToCouponsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 OrdersToCouponsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByCoupons($coupons, $comparison = null)
     {
@@ -419,8 +450,8 @@ abstract class BaseOrdersToCouponsQuery extends ModelCriteria
      * @param   Orders|PropelObjectCollection $orders The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   OrdersToCouponsQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 OrdersToCouponsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByOrders($orders, $comparison = null)
     {

@@ -205,7 +205,7 @@ class DefaultController extends CoreController
     public function fetchCustomerAction()
     {
         $request = $this->getRequest();
-        $value = $request->get('value');
+        $value = $request->request->get('value');
         $type = strpos($value, '@') ? 'email' : 'phone';
 
         // hf@bellcom.dk: get phplist ids so the customer can be subscribed
@@ -261,19 +261,37 @@ class DefaultController extends CoreController
                     break;
                 }
 
-                $result = $this->get('nno')->findOne($value);
+                $result = $this->forward('MunerisBundle:Nno:lookup', ['number' => $value]);
 
-                if ($result) {
-                    $data = array(
-                        'first_name' => $result['christianname'],
-                        'last_name'  => $result['surname'],
-                        'phone' => $result['phone'],
-                        'address_line_1' => $result['address'],
-                        'postal_code' => $result['zipcode'],
-                        'city' => $result['district'],
-                        'countries_id' => 58,
-                        'country' => 'Denmark',
-                    );
+                if (200 == $result->getStatusCode()) {
+                    $result = json_decode($result->getContent());
+                    if (isset($result->data)) {
+                        $data = array(
+                            'first_name'     => '',
+                            'last_name'      => '',
+                            'phone'          => '',
+                            'address_line_1' => '',
+                            'postal_code'    => '',
+                            'city'           => '',
+                            'countries_id'   => 58,
+                            'country'        => 'Denmark',
+                        );
+
+                        $map = [
+                            'first_name'  => 'christianname',
+                            'last_name'   => 'surname',
+                            'phone'       => 'phone',
+                            'address'     => 'address_line_1',
+                            'postal_code' => 'zipcode',
+                            'city'        => 'district',
+                        ];
+
+                        foreach ($map as $key => $prop) {
+                            if (isset($result->data->number->$prop)){
+                                $data[$key] = $result->data->number->$prop;
+                            }
+                        }
+                    }
                 }
 
                 break;

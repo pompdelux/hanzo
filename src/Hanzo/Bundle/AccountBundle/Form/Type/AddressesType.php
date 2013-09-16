@@ -17,8 +17,9 @@ class AddressesType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->setErrorBubbling(true);
+        $short_domain_key = substr(Hanzo::getInstance()->get('core.domain_key'), -2);
 
+        $builder->setErrorBubbling(true);
         $builder->add('type', 'hidden', array('translation_domain' => 'account'));
 
         $builder->add('address_line_1', null, array(
@@ -29,7 +30,7 @@ class AddressesType extends AbstractType
         ));
 
         $attr = [];
-        if (in_array(Hanzo::getInstance()->get('core.domain_key'), ['DK', 'NO', 'SE', 'SalesDK', 'SalesNO', 'SalesSE'])) {
+        if (in_array($short_domain_key, ['DK', 'NO', 'SE'])) {
             $attr = ['class' => 'auto-city'];
         }
 

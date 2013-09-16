@@ -320,8 +320,8 @@
         <target>Rabat:</target>
       </trans-unit>
       <trans-unit id="discount.hostess" approved="no">
-        <source>discount.hostess</source>
-        <target>Værtinderabat:</target>
+	  <source>discount.hostess</source>
+        <target>Emännän ale:</target>
       </trans-unit>
       <trans-unit id="discount.friend" approved="no">
         <source>discount.friend</source>
@@ -347,33 +347,33 @@
         <source>product.group.lb</source>
         <target>Little Boy</target>
       </trans-unit>
-      <trans-unit id="coupon">
-         <source>coupon</source>
+      <trans-unit id="gift_card">
+         <source>gift_card</source>
          <target>Lahjakortti</target>
       </trans-unit>
-      <trans-unit id="toggle.coupon.form">
-         <source>toggle.coupon.form</source>
+      <trans-unit id="toggle.gift_card.form">
+         <source>toggle.gift_card.form</source>
          <target>» Anna lahjakortin koodi</target>
       </trans-unit>
-      <trans-unit id="invalid.coupon.code">
-         <source>invalid.coupon.code</source>
+      <trans-unit id="invalid.gift_card.code">
+         <source>invalid.gift_card.code</source>
          <target>Lahjakortin koodi ei kelpaa</target>
       </trans-unit>
-      <trans-unit id="coupon.label">
-         <source>coupon.label</source>
+      <trans-unit id="gift_card.label">
+         <source>gift_card.label</source>
          <target>Lahjakortin koodi:</target>
       </trans-unit>
-      <trans-unit id="apply.coupon.discount">
-         <source>apply.coupon.discount</source>
+      <trans-unit id="apply.gift_card.discount">
+         <source>apply.gift_card.discount</source>
          <target>Tallenna</target>
       </trans-unit>
-      <trans-unit id="coupon.description">
-         <source>coupon.description</source>
+      <trans-unit id="gift_card.description">
+         <source>gift_card.description</source>
          <target>Tähän voit antaa lahjakorttisi koodin. Jos et käytä lahjakorttiasi kokonaan, voit käyttää lahjakortin koodia uudelleen, kun seuraavan kerran teet ostoksia POMPdeLUXilla.</target>
       </trans-unit>
       <trans-unit id="address.copy" approved="no">
          <source>address.copy</source>
-         <target>The deliveryaddress is the same as my Privateaddress</target>
+         <target>Toimitusosoite on sama kuin yksityisosoite</target>
       </trans-unit>
       <trans-unit id="dibs.down.message">
          <source>dibs.down.message</source>
@@ -391,6 +391,30 @@
       <trans-unit id="order.amount.to.low" approved="no">
         <source>order.amount.to.low</source>
         <target>Order amount is too low</target>
+      </trans-unit>
+      <trans-unit id="coupon" approved="no">
+        <source>coupon</source>
+        <target>Alennuskoodi</target>
+      </trans-unit>
+      <trans-unit id="coupon.toggle.form" approved="no">
+        <source>coupon.toggle.form</source>
+        <target>» Kirjoita alennuskoodi</target>
+      </trans-unit>
+      <trans-unit id="coupon.description" approved="no">
+        <source>coupon.description</source>
+        <target>Yhdessä tilauksessa voi käyttää vain yhden alennuskoodin.</target>
+      </trans-unit>
+      <trans-unit id="coupon.apply.discount" approved="no">
+        <source>coupon.apply.discount</source>
+        <target>Tallenna</target>
+      </trans-unit>
+      <trans-unit id="coupon.label" approved="no">
+        <source>coupon.label</source>
+        <target>Kirjoita alennuskoodi.</target>
+      </trans-unit>
+      <trans-unit id="coupon.invalid.code" approved="no">
+        <source>coupon.invalid.code</source>
+        <target>Väärä alennuskoodi</target>
       </trans-unit>
     </body>
   </file>

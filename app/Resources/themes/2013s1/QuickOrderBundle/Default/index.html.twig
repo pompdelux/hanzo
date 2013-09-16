@@ -12,22 +12,22 @@
 
 
 <p>{{ 'quickorder.description.text'|trans({}, 'quickorder') }}</p>
-<div id="quickorder">
-  <form action="{{ url('basket_add', {}, true) }}" method="post">
-    <label id="master-label">{{ 'quickorder.master.placeholder'|trans({}, 'quickorder') }}<br>
-      <input type="text" id="master" name="master" placeholder="{{ 'quickorder.master.placeholder'|trans({}, 'quickorder') }}">
+<div>
+  <form action="{{ url('basket_add', {}, true) }}" method="post" class="quickorder">
+    <label>{{ 'quickorder.master.placeholder'|trans({}, 'quickorder') }}<br>
+      <input type="text" id="master" name="master" class="master" placeholder="{{ 'quickorder.master.placeholder'|trans({}, 'quickorder') }}">
     </label>
-    <label id="size-label" style="display:none"><br>
-      <select id="size" name="size"></select>
+    <label class="off"><br>
+      <select id="size" class="size" name="size"></select>
     </label>
-    <label id="color-label" style="display:none"><br>
-      <select id="color" name="color"></select>
+    <label class="off"><br>
+      <select id="color" class="color" name="color"></select>
     </label>
-    <label id="quantity-label" style="display:none">{{ 'quickorder.quantity.placeholder'|trans({}, 'quickorder') }}<br>
-      <input type="text" id="quantity" name="quantity" placeholder="{{ 'quickorder.quantity.placeholder'|trans({}, 'quickorder') }}">
+    <label class="off">{{ 'quickorder.quantity.placeholder'|trans({}, 'quickorder') }}<br>
+      <input type="text" id="quantity" class="quantity" name="quantity" placeholder="{{ 'quickorder.quantity.placeholder'|trans({}, 'quickorder') }}">
     </label>
-      <input type="submit" id="submit" name="submit" class="off button" value="{{ 'quickorder.submit.placeholder'|trans({}, 'quickorder') }}">
-      <input type="button" id="reset" name="reset" class="off" value="{{ 'quickorder.reset.placeholder'|trans({}, 'quickorder') }}">
+      <input type="submit" id="submit" name="submit" class="off button submit" value="{{ 'quickorder.submit.placeholder'|trans({}, 'quickorder') }}">
+      <input type="button" id="reset" name="reset" class="off reset" value="{{ 'quickorder.reset.placeholder'|trans({}, 'quickorder') }}">
       <div id="autocomplete-container"></div>
   </form>
   <div class="basket">
@@ -45,7 +45,7 @@
         </thead>
         <tbody>
       {% for product in products %}
-          <tr>
+          <tr class="item">
             <td class="image left">
               {{ product_image_tag(product.basket_image, '57x100', { 'alt' : product.products_name }) }}
               <div class="info" data-product_id="{{ product.products_id }}" data-confirmed="">

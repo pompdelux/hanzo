@@ -33,6 +33,8 @@ use Hanzo\Model\Products;
  * @method OrdersLinesQuery orderByVat($order = Criteria::ASC) Order by the vat column
  * @method OrdersLinesQuery orderByQuantity($order = Criteria::ASC) Order by the quantity column
  * @method OrdersLinesQuery orderByUnit($order = Criteria::ASC) Order by the unit column
+ * @method OrdersLinesQuery orderByIsVoucher($order = Criteria::ASC) Order by the is_voucher column
+ * @method OrdersLinesQuery orderByNote($order = Criteria::ASC) Order by the note column
  *
  * @method OrdersLinesQuery groupById() Group by the id column
  * @method OrdersLinesQuery groupByOrdersId() Group by the orders_id column
@@ -48,6 +50,8 @@ use Hanzo\Model\Products;
  * @method OrdersLinesQuery groupByVat() Group by the vat column
  * @method OrdersLinesQuery groupByQuantity() Group by the quantity column
  * @method OrdersLinesQuery groupByUnit() Group by the unit column
+ * @method OrdersLinesQuery groupByIsVoucher() Group by the is_voucher column
+ * @method OrdersLinesQuery groupByNote() Group by the note column
  *
  * @method OrdersLinesQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method OrdersLinesQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -64,7 +68,6 @@ use Hanzo\Model\Products;
  * @method OrdersLines findOne(PropelPDO $con = null) Return the first OrdersLines matching the query
  * @method OrdersLines findOneOrCreate(PropelPDO $con = null) Return the first OrdersLines matching the query, or a new OrdersLines object populated from the query conditions when no match is found
  *
- * @method OrdersLines findOneById(int $id) Return the first OrdersLines filtered by the id column
  * @method OrdersLines findOneByOrdersId(int $orders_id) Return the first OrdersLines filtered by the orders_id column
  * @method OrdersLines findOneByType(string $type) Return the first OrdersLines filtered by the type column
  * @method OrdersLines findOneByProductsId(int $products_id) Return the first OrdersLines filtered by the products_id column
@@ -78,6 +81,8 @@ use Hanzo\Model\Products;
  * @method OrdersLines findOneByVat(string $vat) Return the first OrdersLines filtered by the vat column
  * @method OrdersLines findOneByQuantity(int $quantity) Return the first OrdersLines filtered by the quantity column
  * @method OrdersLines findOneByUnit(string $unit) Return the first OrdersLines filtered by the unit column
+ * @method OrdersLines findOneByIsVoucher(boolean $is_voucher) Return the first OrdersLines filtered by the is_voucher column
+ * @method OrdersLines findOneByNote(string $note) Return the first OrdersLines filtered by the note column
  *
  * @method array findById(int $id) Return OrdersLines objects filtered by the id column
  * @method array findByOrdersId(int $orders_id) Return OrdersLines objects filtered by the orders_id column
@@ -93,6 +98,8 @@ use Hanzo\Model\Products;
  * @method array findByVat(string $vat) Return OrdersLines objects filtered by the vat column
  * @method array findByQuantity(int $quantity) Return OrdersLines objects filtered by the quantity column
  * @method array findByUnit(string $unit) Return OrdersLines objects filtered by the unit column
+ * @method array findByIsVoucher(boolean $is_voucher) Return OrdersLines objects filtered by the is_voucher column
+ * @method array findByNote(string $note) Return OrdersLines objects filtered by the note column
  */
 abstract class BaseOrdersLinesQuery extends ModelCriteria
 {
@@ -112,7 +119,7 @@ abstract class BaseOrdersLinesQuery extends ModelCriteria
      * Returns a new OrdersLinesQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     OrdersLinesQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   OrdersLinesQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return OrdersLinesQuery
      */
@@ -169,18 +176,32 @@ abstract class BaseOrdersLinesQuery extends ModelCriteria
     }
 
     /**
+     * Alias of findPk to use instance pooling
+     *
+     * @param     mixed $key Primary key to use for the query
+     * @param     PropelPDO $con A connection object
+     *
+     * @return                 OrdersLines A model object, or null if the key is not found
+     * @throws PropelException
+     */
+     public function findOneById($key, $con = null)
+     {
+        return $this->findPk($key, $con);
+     }
+
+    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   OrdersLines A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 OrdersLines A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `ID`, `ORDERS_ID`, `TYPE`, `PRODUCTS_ID`, `PRODUCTS_SKU`, `PRODUCTS_NAME`, `PRODUCTS_COLOR`, `PRODUCTS_SIZE`, `EXPECTED_AT`, `ORIGINAL_PRICE`, `PRICE`, `VAT`, `QUANTITY`, `UNIT` FROM `orders_lines` WHERE `ID` = :p0';
+        $sql = 'SELECT `id`, `orders_id`, `type`, `products_id`, `products_sku`, `products_name`, `products_color`, `products_size`, `expected_at`, `original_price`, `price`, `vat`, `quantity`, `unit`, `is_voucher`, `note` FROM `orders_lines` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -276,7 +297,8 @@ abstract class BaseOrdersLinesQuery extends ModelCriteria
      * <code>
      * $query->filterById(1234); // WHERE id = 1234
      * $query->filterById(array(12, 34)); // WHERE id IN (12, 34)
-     * $query->filterById(array('min' => 12)); // WHERE id > 12
+     * $query->filterById(array('min' => 12)); // WHERE id >= 12
+     * $query->filterById(array('max' => 12)); // WHERE id <= 12
      * </code>
      *
      * @param     mixed $id The value to use as filter.
@@ -289,8 +311,22 @@ abstract class BaseOrdersLinesQuery extends ModelCriteria
      */
     public function filterById($id = null, $comparison = null)
     {
-        if (is_array($id) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($id)) {
+            $useMinMax = false;
+            if (isset($id['min'])) {
+                $this->addUsingAlias(OrdersLinesPeer::ID, $id['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($id['max'])) {
+                $this->addUsingAlias(OrdersLinesPeer::ID, $id['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(OrdersLinesPeer::ID, $id, $comparison);
@@ -303,7 +339,8 @@ abstract class BaseOrdersLinesQuery extends ModelCriteria
      * <code>
      * $query->filterByOrdersId(1234); // WHERE orders_id = 1234
      * $query->filterByOrdersId(array(12, 34)); // WHERE orders_id IN (12, 34)
-     * $query->filterByOrdersId(array('min' => 12)); // WHERE orders_id > 12
+     * $query->filterByOrdersId(array('min' => 12)); // WHERE orders_id >= 12
+     * $query->filterByOrdersId(array('max' => 12)); // WHERE orders_id <= 12
      * </code>
      *
      * @see       filterByOrders()
@@ -375,7 +412,8 @@ abstract class BaseOrdersLinesQuery extends ModelCriteria
      * <code>
      * $query->filterByProductsId(1234); // WHERE products_id = 1234
      * $query->filterByProductsId(array(12, 34)); // WHERE products_id IN (12, 34)
-     * $query->filterByProductsId(array('min' => 12)); // WHERE products_id > 12
+     * $query->filterByProductsId(array('min' => 12)); // WHERE products_id >= 12
+     * $query->filterByProductsId(array('max' => 12)); // WHERE products_id <= 12
      * </code>
      *
      * @see       filterByProducts()
@@ -577,7 +615,8 @@ abstract class BaseOrdersLinesQuery extends ModelCriteria
      * <code>
      * $query->filterByOriginalPrice(1234); // WHERE original_price = 1234
      * $query->filterByOriginalPrice(array(12, 34)); // WHERE original_price IN (12, 34)
-     * $query->filterByOriginalPrice(array('min' => 12)); // WHERE original_price > 12
+     * $query->filterByOriginalPrice(array('min' => 12)); // WHERE original_price >= 12
+     * $query->filterByOriginalPrice(array('max' => 12)); // WHERE original_price <= 12
      * </code>
      *
      * @param     mixed $originalPrice The value to use as filter.
@@ -618,7 +657,8 @@ abstract class BaseOrdersLinesQuery extends ModelCriteria
      * <code>
      * $query->filterByPrice(1234); // WHERE price = 1234
      * $query->filterByPrice(array(12, 34)); // WHERE price IN (12, 34)
-     * $query->filterByPrice(array('min' => 12)); // WHERE price > 12
+     * $query->filterByPrice(array('min' => 12)); // WHERE price >= 12
+     * $query->filterByPrice(array('max' => 12)); // WHERE price <= 12
      * </code>
      *
      * @param     mixed $price The value to use as filter.
@@ -659,7 +699,8 @@ abstract class BaseOrdersLinesQuery extends ModelCriteria
      * <code>
      * $query->filterByVat(1234); // WHERE vat = 1234
      * $query->filterByVat(array(12, 34)); // WHERE vat IN (12, 34)
-     * $query->filterByVat(array('min' => 12)); // WHERE vat > 12
+     * $query->filterByVat(array('min' => 12)); // WHERE vat >= 12
+     * $query->filterByVat(array('max' => 12)); // WHERE vat <= 12
      * </code>
      *
      * @param     mixed $vat The value to use as filter.
@@ -700,7 +741,8 @@ abstract class BaseOrdersLinesQuery extends ModelCriteria
      * <code>
      * $query->filterByQuantity(1234); // WHERE quantity = 1234
      * $query->filterByQuantity(array(12, 34)); // WHERE quantity IN (12, 34)
-     * $query->filterByQuantity(array('min' => 12)); // WHERE quantity > 12
+     * $query->filterByQuantity(array('min' => 12)); // WHERE quantity >= 12
+     * $query->filterByQuantity(array('max' => 12)); // WHERE quantity <= 12
      * </code>
      *
      * @param     mixed $quantity The value to use as filter.
@@ -764,13 +806,69 @@ abstract class BaseOrdersLinesQuery extends ModelCriteria
     }
 
     /**
+     * Filter the query on the is_voucher column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByIsVoucher(true); // WHERE is_voucher = true
+     * $query->filterByIsVoucher('yes'); // WHERE is_voucher = true
+     * </code>
+     *
+     * @param     boolean|string $isVoucher The value to use as filter.
+     *              Non-boolean arguments are converted using the following rules:
+     *                * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
+     *                * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
+     *              Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return OrdersLinesQuery The current query, for fluid interface
+     */
+    public function filterByIsVoucher($isVoucher = null, $comparison = null)
+    {
+        if (is_string($isVoucher)) {
+            $isVoucher = in_array(strtolower($isVoucher), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+        }
+
+        return $this->addUsingAlias(OrdersLinesPeer::IS_VOUCHER, $isVoucher, $comparison);
+    }
+
+    /**
+     * Filter the query on the note column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByNote('fooValue');   // WHERE note = 'fooValue'
+     * $query->filterByNote('%fooValue%'); // WHERE note LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $note The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return OrdersLinesQuery The current query, for fluid interface
+     */
+    public function filterByNote($note = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($note)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $note)) {
+                $note = str_replace('*', '%', $note);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(OrdersLinesPeer::NOTE, $note, $comparison);
+    }
+
+    /**
      * Filter the query by a related Orders object
      *
      * @param   Orders|PropelObjectCollection $orders The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   OrdersLinesQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 OrdersLinesQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByOrders($orders, $comparison = null)
     {
@@ -845,8 +943,8 @@ abstract class BaseOrdersLinesQuery extends ModelCriteria
      * @param   Products|PropelObjectCollection $products The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   OrdersLinesQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 OrdersLinesQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByProducts($products, $comparison = null)
     {

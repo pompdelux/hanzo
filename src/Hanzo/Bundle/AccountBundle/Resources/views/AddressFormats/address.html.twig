@@ -1,0 +1,19 @@
+<div class="{{ type }}-address">
+{% if company_name %}
+{{ company_name }}<br>
+{{ 'attention.label'|trans({}, 'account') }}&nbsp;
+{% endif %}
+{% if title %}
+{{ ('title.' ~ title)|trans({}, 'account') }}<br>
+{% endif %}
+{{ first_name }} {{ last_name }}<br>
+{{ address_line_1 }}<br>
+{% if address_line_2 %}
+{{ address_line_2 }}<br>
+{% endif %}
+{{ postal_code }} {{ city }}<br>
+{% if state_province %}
+{{ state_province }}<br>
+{% endif %}
+{{ country }}<br>
+</div>

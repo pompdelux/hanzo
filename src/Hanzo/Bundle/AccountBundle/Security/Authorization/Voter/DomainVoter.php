@@ -30,6 +30,16 @@ class DomainVoter implements VoterInterface
 
     public function vote(TokenInterface $token, $object, array $attributes)
     {
+        $countryIdToLocaleMap = array(
+            80  => array( 'de_DE' ), // Germany
+            58  => array( 'da_DK' ), // Denmark
+            72  => array( 'fi_FI', 'sv_FI' ), // Finland
+            80  => array( 'de_DE' ), // Germany
+            151 => array( 'nl_NL' ), // Netherlands
+            161 => array( 'nb_NO' ), // Norway
+            207 => array( 'sv_SE' ), // Sweden
+        );
+
         if (!($object instanceof Request)) {
           return VoterInterface::ACCESS_ABSTAIN;
         }
@@ -63,16 +73,14 @@ class DomainVoter implements VoterInterface
         $locale    = $request->getLocale();
         $translator = $this->container->get('translator');
 
-        $countryIdToLocaleMap = array(
-            58  => array( 'da_DK' ), // Denmark
-            72  => array( 'fi_FI', 'sv_FI' ), // Finland
-            151 => array( 'nl_NL' ), // Netherlands
-            161 => array( 'nb_NO' ), // Norway
-            207 => array( 'sv_SE' ), // Sweden
-        );
-
         // Restrict access to login webshop to only customers.
-        if (!in_array('ROLE_ADMIN', $user->getRoles()) && !in_array('ROLE_SALES', $user->getRoles()) && 'webshop' === $this->container->get('kernel')->getStoreMode() && $customer->getGroupsId() !== 1 ) {
+        if (!in_array('ROLE_ADMIN', $user->getRoles()) &&
+            !in_array('ROLE_SALES', $user->getRoles()) &&
+            !in_array('ROLE_STATS', $user->getRoles()) &&
+            !in_array('ROLE_CUSTOMERS_SERVICE', $user->getRoles()) &&
+            ('webshop' === $this->container->get('kernel')->getStoreMode()) &&
+            ($customer->getGroupsId() !== 1)
+        ) {
             $useLocale = $countryIdToLocaleMap[$countryId][0]; // Use the first locale
 
             $msg = $translator->trans('login.restricted.only.customers',array( '%url%' => 'http://c.pompdelux.com/'.$useLocale.'/login', '%site_name%' => $country ),'account');

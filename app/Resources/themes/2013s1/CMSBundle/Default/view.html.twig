@@ -1,13 +1,13 @@
 {% extends layout %}
 
-
 {% block meta %}
     {% if page_type|default('page') != 'frontpage' %}
-        {{ meta_tags(false) }}
+        {{ meta_tags('og:type,og:title,og:image,og:description,description') }}
         <meta property="og:type" content="website">
         <meta property="og:title" content="{{ page.title|title }}">
         <meta property="og:image" content="{{ fx_image_url('images/POMPdeLUX_logo_SS12.png', '200x200') }}">
-        <meta property="og:description" content="{{ page.content|trim|striptags|slice(0,150) }}">
+        <meta property="og:description" content="{{ page.content|trim|strip_tags|slice(0,150) }}">
+        <meta name="description" content="{{ page.content|trim|strip_tags|slice(0,150) }}">
     {% else %}
         {{ meta_tags() }}
     {% endif %}
@@ -16,7 +16,7 @@
 {% block content %}
 
 {% if page_type|default('page') != 'frontpage' %}
-    <div class="grid_8 alpha omega row">
+    <div class="grid_8 alpha omega row breadcrumb">
       {% render 'CMSBundle:Menu:menu' with {'type': 'breadcrumb', 'thread': left_menu.thread} %}
     </div>
 

@@ -1,0 +1,110 @@
+Hanzo\Model\Addresses:
+    properties:
+        phone:
+            - NotBlank:
+                message: phone.required
+                groups:
+                    - shipping_bundle_payment
+            - Regex:
+                pattern: "/^0[0-9]+$/"
+                match:   true
+                message: phone.not.valid
+                groups:
+                    - shipping_bundle_payment
+        first_name:
+            - NotBlank:
+                groups:
+                    - shipping_bundle_company_shipping
+                    - shipping_bundle_overnightbox
+                    - shipping_bundle_shipping
+                    - shipping_bundle_payment
+                message: address.first_name.required
+            - MinLength:
+                groups:
+                    - shipping_bundle_company_shipping
+                    - shipping_bundle_overnightbox
+                    - shipping_bundle_shipping
+                    - shipping_bundle_payment
+                limit:  2
+                message: address.first_name.min.length
+        last_name:
+            - NotBlank:
+                groups:
+                    - shipping_bundle_company_shipping
+                    - shipping_bundle_shipping
+                    - shipping_bundle_payment
+                message: address.last_name.required
+            - MinLength:
+                groups:
+                    - shipping_bundle_company_shipping
+                    - shipping_bundle_shipping
+                    - shipping_bundle_payment
+                limit:  2
+                message: address.last_name.min.length
+        address_line_1:
+            - NotBlank:
+                groups:
+                    - shipping_bundle_company_shipping
+                    - shipping_bundle_overnightbox
+                    - shipping_bundle_shipping
+                    - shipping_bundle_payment
+                message: address_line_1.required
+            - MinLength:
+                groups:
+                    - shipping_bundle_company_shipping
+                    - shipping_bundle_overnightbox
+                    - shipping_bundle_shipping
+                    - shipping_bundle_payment
+                limit:  2
+                message: address_line_1.required
+            - MaxLength:
+                groups:
+                    - shipping_bundle_company_shipping
+                    - shipping_bundle_overnightbox
+                    - shipping_bundle_shipping
+                    - shipping_bundle_payment
+                message: address_line_1.required
+                limit:  150
+        postal_code:
+            - NotBlank:
+                message: postal_code.required
+            - Length:
+                min: 5
+                max: 5
+                exactMessage: postal_code.length
+                groups:
+                    - shipping_bundle_company_shipping
+                    - shipping_bundle_overnightbox
+                    - shipping_bundle_shipping
+                    - shipping_bundle_payment
+        city:
+            - NotBlank:
+                message: city.required
+                groups:
+                    - shipping_bundle_company_shipping
+                    - shipping_bundle_overnightbox
+                    - shipping_bundle_shipping
+                    - shipping_bundle_payment
+            - MinLength:
+                groups:
+                    - shipping_bundle_company_shipping
+                    - shipping_bundle_overnightbox
+                    - shipping_bundle_shipping
+                    - shipping_bundle_payment
+                limit:  2
+                message: city.required
+        countries_id:
+            - NotBlank:
+                message: address.countries_id.required
+                groups:
+                    - shipping_bundle_company_shipping
+                    - shipping_bundle_overnightbox
+                    - shipping_bundle_shipping
+                    - shipping_bundle_payment
+            - Type:
+                type: integer
+        company_name:
+            - NotBlank:
+                message: address.company_name.required
+                groups:
+                    - shipping_bundle_company_shipping

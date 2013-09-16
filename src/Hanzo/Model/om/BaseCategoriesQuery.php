@@ -57,7 +57,6 @@ use Hanzo\Model\ProductsToCategories;
  * @method Categories findOne(PropelPDO $con = null) Return the first Categories matching the query
  * @method Categories findOneOrCreate(PropelPDO $con = null) Return the first Categories matching the query, or a new Categories object populated from the query conditions when no match is found
  *
- * @method Categories findOneById(int $id) Return the first Categories filtered by the id column
  * @method Categories findOneByParentId(int $parent_id) Return the first Categories filtered by the parent_id column
  * @method Categories findOneByContext(string $context) Return the first Categories filtered by the context column
  * @method Categories findOneByIsActive(boolean $is_active) Return the first Categories filtered by the is_active column
@@ -85,7 +84,7 @@ abstract class BaseCategoriesQuery extends ModelCriteria
      * Returns a new CategoriesQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     CategoriesQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   CategoriesQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return CategoriesQuery
      */
@@ -142,18 +141,32 @@ abstract class BaseCategoriesQuery extends ModelCriteria
     }
 
     /**
+     * Alias of findPk to use instance pooling
+     *
+     * @param     mixed $key Primary key to use for the query
+     * @param     PropelPDO $con A connection object
+     *
+     * @return                 Categories A model object, or null if the key is not found
+     * @throws PropelException
+     */
+     public function findOneById($key, $con = null)
+     {
+        return $this->findPk($key, $con);
+     }
+
+    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   Categories A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 Categories A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `ID`, `PARENT_ID`, `CONTEXT`, `IS_ACTIVE` FROM `categories` WHERE `ID` = :p0';
+        $sql = 'SELECT `id`, `parent_id`, `context`, `is_active` FROM `categories` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -249,7 +262,8 @@ abstract class BaseCategoriesQuery extends ModelCriteria
      * <code>
      * $query->filterById(1234); // WHERE id = 1234
      * $query->filterById(array(12, 34)); // WHERE id IN (12, 34)
-     * $query->filterById(array('min' => 12)); // WHERE id > 12
+     * $query->filterById(array('min' => 12)); // WHERE id >= 12
+     * $query->filterById(array('max' => 12)); // WHERE id <= 12
      * </code>
      *
      * @param     mixed $id The value to use as filter.
@@ -262,8 +276,22 @@ abstract class BaseCategoriesQuery extends ModelCriteria
      */
     public function filterById($id = null, $comparison = null)
     {
-        if (is_array($id) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($id)) {
+            $useMinMax = false;
+            if (isset($id['min'])) {
+                $this->addUsingAlias(CategoriesPeer::ID, $id['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($id['max'])) {
+                $this->addUsingAlias(CategoriesPeer::ID, $id['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(CategoriesPeer::ID, $id, $comparison);
@@ -276,7 +304,8 @@ abstract class BaseCategoriesQuery extends ModelCriteria
      * <code>
      * $query->filterByParentId(1234); // WHERE parent_id = 1234
      * $query->filterByParentId(array(12, 34)); // WHERE parent_id IN (12, 34)
-     * $query->filterByParentId(array('min' => 12)); // WHERE parent_id > 12
+     * $query->filterByParentId(array('min' => 12)); // WHERE parent_id >= 12
+     * $query->filterByParentId(array('max' => 12)); // WHERE parent_id <= 12
      * </code>
      *
      * @see       filterByCategoriesRelatedByParentId()
@@ -362,7 +391,7 @@ abstract class BaseCategoriesQuery extends ModelCriteria
     public function filterByIsActive($isActive = null, $comparison = null)
     {
         if (is_string($isActive)) {
-            $is_active = in_array(strtolower($isActive), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+            $isActive = in_array(strtolower($isActive), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
         }
 
         return $this->addUsingAlias(CategoriesPeer::IS_ACTIVE, $isActive, $comparison);
@@ -374,8 +403,8 @@ abstract class BaseCategoriesQuery extends ModelCriteria
      * @param   Categories|PropelObjectCollection $categories The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   CategoriesQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 CategoriesQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByCategoriesRelatedByParentId($categories, $comparison = null)
     {
@@ -450,8 +479,8 @@ abstract class BaseCategoriesQuery extends ModelCriteria
      * @param   Categories|PropelObjectCollection $categories  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   CategoriesQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 CategoriesQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByCategoriesRelatedById($categories, $comparison = null)
     {
@@ -524,8 +553,8 @@ abstract class BaseCategoriesQuery extends ModelCriteria
      * @param   ProductsImagesCategoriesSort|PropelObjectCollection $productsImagesCategoriesSort  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   CategoriesQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 CategoriesQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByProductsImagesCategoriesSort($productsImagesCategoriesSort, $comparison = null)
     {
@@ -598,8 +627,8 @@ abstract class BaseCategoriesQuery extends ModelCriteria
      * @param   ProductsToCategories|PropelObjectCollection $productsToCategories  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   CategoriesQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 CategoriesQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByProductsToCategories($productsToCategories, $comparison = null)
     {
@@ -672,8 +701,8 @@ abstract class BaseCategoriesQuery extends ModelCriteria
      * @param   CategoriesI18n|PropelObjectCollection $categoriesI18n  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   CategoriesQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 CategoriesQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByCategoriesI18n($categoriesI18n, $comparison = null)
     {

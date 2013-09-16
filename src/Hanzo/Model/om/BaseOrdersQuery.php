@@ -39,6 +39,7 @@ use Hanzo\Model\OrdersVersions;
  * @method OrdersQuery orderByPhone($order = Criteria::ASC) Order by the phone column
  * @method OrdersQuery orderByLanguagesId($order = Criteria::ASC) Order by the languages_id column
  * @method OrdersQuery orderByCurrencyCode($order = Criteria::ASC) Order by the currency_code column
+ * @method OrdersQuery orderByBillingTitle($order = Criteria::ASC) Order by the billing_title column
  * @method OrdersQuery orderByBillingFirstName($order = Criteria::ASC) Order by the billing_first_name column
  * @method OrdersQuery orderByBillingLastName($order = Criteria::ASC) Order by the billing_last_name column
  * @method OrdersQuery orderByBillingAddressLine1($order = Criteria::ASC) Order by the billing_address_line_1 column
@@ -51,6 +52,7 @@ use Hanzo\Model\OrdersVersions;
  * @method OrdersQuery orderByBillingCompanyName($order = Criteria::ASC) Order by the billing_company_name column
  * @method OrdersQuery orderByBillingMethod($order = Criteria::ASC) Order by the billing_method column
  * @method OrdersQuery orderByBillingExternalAddressId($order = Criteria::ASC) Order by the billing_external_address_id column
+ * @method OrdersQuery orderByDeliveryTitle($order = Criteria::ASC) Order by the delivery_title column
  * @method OrdersQuery orderByDeliveryFirstName($order = Criteria::ASC) Order by the delivery_first_name column
  * @method OrdersQuery orderByDeliveryLastName($order = Criteria::ASC) Order by the delivery_last_name column
  * @method OrdersQuery orderByDeliveryAddressLine1($order = Criteria::ASC) Order by the delivery_address_line_1 column
@@ -81,6 +83,7 @@ use Hanzo\Model\OrdersVersions;
  * @method OrdersQuery groupByPhone() Group by the phone column
  * @method OrdersQuery groupByLanguagesId() Group by the languages_id column
  * @method OrdersQuery groupByCurrencyCode() Group by the currency_code column
+ * @method OrdersQuery groupByBillingTitle() Group by the billing_title column
  * @method OrdersQuery groupByBillingFirstName() Group by the billing_first_name column
  * @method OrdersQuery groupByBillingLastName() Group by the billing_last_name column
  * @method OrdersQuery groupByBillingAddressLine1() Group by the billing_address_line_1 column
@@ -93,6 +96,7 @@ use Hanzo\Model\OrdersVersions;
  * @method OrdersQuery groupByBillingCompanyName() Group by the billing_company_name column
  * @method OrdersQuery groupByBillingMethod() Group by the billing_method column
  * @method OrdersQuery groupByBillingExternalAddressId() Group by the billing_external_address_id column
+ * @method OrdersQuery groupByDeliveryTitle() Group by the delivery_title column
  * @method OrdersQuery groupByDeliveryFirstName() Group by the delivery_first_name column
  * @method OrdersQuery groupByDeliveryLastName() Group by the delivery_last_name column
  * @method OrdersQuery groupByDeliveryAddressLine1() Group by the delivery_address_line_1 column
@@ -157,7 +161,6 @@ use Hanzo\Model\OrdersVersions;
  * @method Orders findOne(PropelPDO $con = null) Return the first Orders matching the query
  * @method Orders findOneOrCreate(PropelPDO $con = null) Return the first Orders matching the query, or a new Orders object populated from the query conditions when no match is found
  *
- * @method Orders findOneById(int $id) Return the first Orders filtered by the id column
  * @method Orders findOneByVersionId(int $version_id) Return the first Orders filtered by the version_id column
  * @method Orders findOneBySessionId(string $session_id) Return the first Orders filtered by the session_id column
  * @method Orders findOneByPaymentGatewayId(int $payment_gateway_id) Return the first Orders filtered by the payment_gateway_id column
@@ -170,6 +173,7 @@ use Hanzo\Model\OrdersVersions;
  * @method Orders findOneByPhone(string $phone) Return the first Orders filtered by the phone column
  * @method Orders findOneByLanguagesId(int $languages_id) Return the first Orders filtered by the languages_id column
  * @method Orders findOneByCurrencyCode(string $currency_code) Return the first Orders filtered by the currency_code column
+ * @method Orders findOneByBillingTitle(string $billing_title) Return the first Orders filtered by the billing_title column
  * @method Orders findOneByBillingFirstName(string $billing_first_name) Return the first Orders filtered by the billing_first_name column
  * @method Orders findOneByBillingLastName(string $billing_last_name) Return the first Orders filtered by the billing_last_name column
  * @method Orders findOneByBillingAddressLine1(string $billing_address_line_1) Return the first Orders filtered by the billing_address_line_1 column
@@ -182,6 +186,7 @@ use Hanzo\Model\OrdersVersions;
  * @method Orders findOneByBillingCompanyName(string $billing_company_name) Return the first Orders filtered by the billing_company_name column
  * @method Orders findOneByBillingMethod(string $billing_method) Return the first Orders filtered by the billing_method column
  * @method Orders findOneByBillingExternalAddressId(string $billing_external_address_id) Return the first Orders filtered by the billing_external_address_id column
+ * @method Orders findOneByDeliveryTitle(string $delivery_title) Return the first Orders filtered by the delivery_title column
  * @method Orders findOneByDeliveryFirstName(string $delivery_first_name) Return the first Orders filtered by the delivery_first_name column
  * @method Orders findOneByDeliveryLastName(string $delivery_last_name) Return the first Orders filtered by the delivery_last_name column
  * @method Orders findOneByDeliveryAddressLine1(string $delivery_address_line_1) Return the first Orders filtered by the delivery_address_line_1 column
@@ -212,6 +217,7 @@ use Hanzo\Model\OrdersVersions;
  * @method array findByPhone(string $phone) Return Orders objects filtered by the phone column
  * @method array findByLanguagesId(int $languages_id) Return Orders objects filtered by the languages_id column
  * @method array findByCurrencyCode(string $currency_code) Return Orders objects filtered by the currency_code column
+ * @method array findByBillingTitle(string $billing_title) Return Orders objects filtered by the billing_title column
  * @method array findByBillingFirstName(string $billing_first_name) Return Orders objects filtered by the billing_first_name column
  * @method array findByBillingLastName(string $billing_last_name) Return Orders objects filtered by the billing_last_name column
  * @method array findByBillingAddressLine1(string $billing_address_line_1) Return Orders objects filtered by the billing_address_line_1 column
@@ -224,6 +230,7 @@ use Hanzo\Model\OrdersVersions;
  * @method array findByBillingCompanyName(string $billing_company_name) Return Orders objects filtered by the billing_company_name column
  * @method array findByBillingMethod(string $billing_method) Return Orders objects filtered by the billing_method column
  * @method array findByBillingExternalAddressId(string $billing_external_address_id) Return Orders objects filtered by the billing_external_address_id column
+ * @method array findByDeliveryTitle(string $delivery_title) Return Orders objects filtered by the delivery_title column
  * @method array findByDeliveryFirstName(string $delivery_first_name) Return Orders objects filtered by the delivery_first_name column
  * @method array findByDeliveryLastName(string $delivery_last_name) Return Orders objects filtered by the delivery_last_name column
  * @method array findByDeliveryAddressLine1(string $delivery_address_line_1) Return Orders objects filtered by the delivery_address_line_1 column
@@ -259,7 +266,7 @@ abstract class BaseOrdersQuery extends ModelCriteria
      * Returns a new OrdersQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param     OrdersQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   OrdersQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return OrdersQuery
      */
@@ -316,18 +323,32 @@ abstract class BaseOrdersQuery extends ModelCriteria
     }
 
     /**
+     * Alias of findPk to use instance pooling
+     *
+     * @param     mixed $key Primary key to use for the query
+     * @param     PropelPDO $con A connection object
+     *
+     * @return                 Orders A model object, or null if the key is not found
+     * @throws PropelException
+     */
+     public function findOneById($key, $con = null)
+     {
+        return $this->findPk($key, $con);
+     }
+
+    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return   Orders A model object, or null if the key is not found
-     * @throws   PropelException
+     * @return                 Orders A model object, or null if the key is not found
+     * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `ID`, `VERSION_ID`, `SESSION_ID`, `PAYMENT_GATEWAY_ID`, `STATE`, `IN_EDIT`, `CUSTOMERS_ID`, `FIRST_NAME`, `LAST_NAME`, `EMAIL`, `PHONE`, `LANGUAGES_ID`, `CURRENCY_CODE`, `BILLING_FIRST_NAME`, `BILLING_LAST_NAME`, `BILLING_ADDRESS_LINE_1`, `BILLING_ADDRESS_LINE_2`, `BILLING_POSTAL_CODE`, `BILLING_CITY`, `BILLING_COUNTRY`, `BILLING_COUNTRIES_ID`, `BILLING_STATE_PROVINCE`, `BILLING_COMPANY_NAME`, `BILLING_METHOD`, `BILLING_EXTERNAL_ADDRESS_ID`, `DELIVERY_FIRST_NAME`, `DELIVERY_LAST_NAME`, `DELIVERY_ADDRESS_LINE_1`, `DELIVERY_ADDRESS_LINE_2`, `DELIVERY_POSTAL_CODE`, `DELIVERY_CITY`, `DELIVERY_COUNTRY`, `DELIVERY_COUNTRIES_ID`, `DELIVERY_STATE_PROVINCE`, `DELIVERY_COMPANY_NAME`, `DELIVERY_METHOD`, `DELIVERY_EXTERNAL_ADDRESS_ID`, `EVENTS_ID`, `FINISHED_AT`, `CREATED_AT`, `UPDATED_AT` FROM `orders` WHERE `ID` = :p0';
+        $sql = 'SELECT `id`, `version_id`, `session_id`, `payment_gateway_id`, `state`, `in_edit`, `customers_id`, `first_name`, `last_name`, `email`, `phone`, `languages_id`, `currency_code`, `billing_title`, `billing_first_name`, `billing_last_name`, `billing_address_line_1`, `billing_address_line_2`, `billing_postal_code`, `billing_city`, `billing_country`, `billing_countries_id`, `billing_state_province`, `billing_company_name`, `billing_method`, `billing_external_address_id`, `delivery_title`, `delivery_first_name`, `delivery_last_name`, `delivery_address_line_1`, `delivery_address_line_2`, `delivery_postal_code`, `delivery_city`, `delivery_country`, `delivery_countries_id`, `delivery_state_province`, `delivery_company_name`, `delivery_method`, `delivery_external_address_id`, `events_id`, `finished_at`, `created_at`, `updated_at` FROM `orders` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -423,7 +444,8 @@ abstract class BaseOrdersQuery extends ModelCriteria
      * <code>
      * $query->filterById(1234); // WHERE id = 1234
      * $query->filterById(array(12, 34)); // WHERE id IN (12, 34)
-     * $query->filterById(array('min' => 12)); // WHERE id > 12
+     * $query->filterById(array('min' => 12)); // WHERE id >= 12
+     * $query->filterById(array('max' => 12)); // WHERE id <= 12
      * </code>
      *
      * @param     mixed $id The value to use as filter.
@@ -436,8 +458,22 @@ abstract class BaseOrdersQuery extends ModelCriteria
      */
     public function filterById($id = null, $comparison = null)
     {
-        if (is_array($id) && null === $comparison) {
-            $comparison = Criteria::IN;
+        if (is_array($id)) {
+            $useMinMax = false;
+            if (isset($id['min'])) {
+                $this->addUsingAlias(OrdersPeer::ID, $id['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($id['max'])) {
+                $this->addUsingAlias(OrdersPeer::ID, $id['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
         }
 
         return $this->addUsingAlias(OrdersPeer::ID, $id, $comparison);
@@ -450,7 +486,8 @@ abstract class BaseOrdersQuery extends ModelCriteria
      * <code>
      * $query->filterByVersionId(1234); // WHERE version_id = 1234
      * $query->filterByVersionId(array(12, 34)); // WHERE version_id IN (12, 34)
-     * $query->filterByVersionId(array('min' => 12)); // WHERE version_id > 12
+     * $query->filterByVersionId(array('min' => 12)); // WHERE version_id >= 12
+     * $query->filterByVersionId(array('max' => 12)); // WHERE version_id <= 12
      * </code>
      *
      * @param     mixed $versionId The value to use as filter.
@@ -520,7 +557,8 @@ abstract class BaseOrdersQuery extends ModelCriteria
      * <code>
      * $query->filterByPaymentGatewayId(1234); // WHERE payment_gateway_id = 1234
      * $query->filterByPaymentGatewayId(array(12, 34)); // WHERE payment_gateway_id IN (12, 34)
-     * $query->filterByPaymentGatewayId(array('min' => 12)); // WHERE payment_gateway_id > 12
+     * $query->filterByPaymentGatewayId(array('min' => 12)); // WHERE payment_gateway_id >= 12
+     * $query->filterByPaymentGatewayId(array('max' => 12)); // WHERE payment_gateway_id <= 12
      * </code>
      *
      * @param     mixed $paymentGatewayId The value to use as filter.
@@ -561,7 +599,8 @@ abstract class BaseOrdersQuery extends ModelCriteria
      * <code>
      * $query->filterByState(1234); // WHERE state = 1234
      * $query->filterByState(array(12, 34)); // WHERE state IN (12, 34)
-     * $query->filterByState(array('min' => 12)); // WHERE state > 12
+     * $query->filterByState(array('min' => 12)); // WHERE state >= 12
+     * $query->filterByState(array('max' => 12)); // WHERE state <= 12
      * </code>
      *
      * @param     mixed $state The value to use as filter.
@@ -616,7 +655,7 @@ abstract class BaseOrdersQuery extends ModelCriteria
     public function filterByInEdit($inEdit = null, $comparison = null)
     {
         if (is_string($inEdit)) {
-            $in_edit = in_array(strtolower($inEdit), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+            $inEdit = in_array(strtolower($inEdit), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
         }
 
         return $this->addUsingAlias(OrdersPeer::IN_EDIT, $inEdit, $comparison);
@@ -629,7 +668,8 @@ abstract class BaseOrdersQuery extends ModelCriteria
      * <code>
      * $query->filterByCustomersId(1234); // WHERE customers_id = 1234
      * $query->filterByCustomersId(array(12, 34)); // WHERE customers_id IN (12, 34)
-     * $query->filterByCustomersId(array('min' => 12)); // WHERE customers_id > 12
+     * $query->filterByCustomersId(array('min' => 12)); // WHERE customers_id >= 12
+     * $query->filterByCustomersId(array('max' => 12)); // WHERE customers_id <= 12
      * </code>
      *
      * @see       filterByCustomers()
@@ -788,7 +828,8 @@ abstract class BaseOrdersQuery extends ModelCriteria
      * <code>
      * $query->filterByLanguagesId(1234); // WHERE languages_id = 1234
      * $query->filterByLanguagesId(array(12, 34)); // WHERE languages_id IN (12, 34)
-     * $query->filterByLanguagesId(array('min' => 12)); // WHERE languages_id > 12
+     * $query->filterByLanguagesId(array('min' => 12)); // WHERE languages_id >= 12
+     * $query->filterByLanguagesId(array('max' => 12)); // WHERE languages_id <= 12
      * </code>
      *
      * @param     mixed $languagesId The value to use as filter.
@@ -849,6 +890,35 @@ abstract class BaseOrdersQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(OrdersPeer::CURRENCY_CODE, $currencyCode, $comparison);
+    }
+
+    /**
+     * Filter the query on the billing_title column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByBillingTitle('fooValue');   // WHERE billing_title = 'fooValue'
+     * $query->filterByBillingTitle('%fooValue%'); // WHERE billing_title LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $billingTitle The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return OrdersQuery The current query, for fluid interface
+     */
+    public function filterByBillingTitle($billingTitle = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($billingTitle)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $billingTitle)) {
+                $billingTitle = str_replace('*', '%', $billingTitle);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(OrdersPeer::BILLING_TITLE, $billingTitle, $comparison);
     }
 
     /**
@@ -1061,7 +1131,8 @@ abstract class BaseOrdersQuery extends ModelCriteria
      * <code>
      * $query->filterByBillingCountriesId(1234); // WHERE billing_countries_id = 1234
      * $query->filterByBillingCountriesId(array(12, 34)); // WHERE billing_countries_id IN (12, 34)
-     * $query->filterByBillingCountriesId(array('min' => 12)); // WHERE billing_countries_id > 12
+     * $query->filterByBillingCountriesId(array('min' => 12)); // WHERE billing_countries_id >= 12
+     * $query->filterByBillingCountriesId(array('max' => 12)); // WHERE billing_countries_id <= 12
      * </code>
      *
      * @see       filterByCountriesRelatedByBillingCountriesId()
@@ -1211,6 +1282,35 @@ abstract class BaseOrdersQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(OrdersPeer::BILLING_EXTERNAL_ADDRESS_ID, $billingExternalAddressId, $comparison);
+    }
+
+    /**
+     * Filter the query on the delivery_title column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByDeliveryTitle('fooValue');   // WHERE delivery_title = 'fooValue'
+     * $query->filterByDeliveryTitle('%fooValue%'); // WHERE delivery_title LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $deliveryTitle The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return OrdersQuery The current query, for fluid interface
+     */
+    public function filterByDeliveryTitle($deliveryTitle = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($deliveryTitle)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $deliveryTitle)) {
+                $deliveryTitle = str_replace('*', '%', $deliveryTitle);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(OrdersPeer::DELIVERY_TITLE, $deliveryTitle, $comparison);
     }
 
     /**
@@ -1423,7 +1523,8 @@ abstract class BaseOrdersQuery extends ModelCriteria
      * <code>
      * $query->filterByDeliveryCountriesId(1234); // WHERE delivery_countries_id = 1234
      * $query->filterByDeliveryCountriesId(array(12, 34)); // WHERE delivery_countries_id IN (12, 34)
-     * $query->filterByDeliveryCountriesId(array('min' => 12)); // WHERE delivery_countries_id > 12
+     * $query->filterByDeliveryCountriesId(array('min' => 12)); // WHERE delivery_countries_id >= 12
+     * $query->filterByDeliveryCountriesId(array('max' => 12)); // WHERE delivery_countries_id <= 12
      * </code>
      *
      * @see       filterByCountriesRelatedByDeliveryCountriesId()
@@ -1582,7 +1683,8 @@ abstract class BaseOrdersQuery extends ModelCriteria
      * <code>
      * $query->filterByEventsId(1234); // WHERE events_id = 1234
      * $query->filterByEventsId(array(12, 34)); // WHERE events_id IN (12, 34)
-     * $query->filterByEventsId(array('min' => 12)); // WHERE events_id > 12
+     * $query->filterByEventsId(array('min' => 12)); // WHERE events_id >= 12
+     * $query->filterByEventsId(array('max' => 12)); // WHERE events_id <= 12
      * </code>
      *
      * @see       filterByEvents()
@@ -1753,8 +1855,8 @@ abstract class BaseOrdersQuery extends ModelCriteria
      * @param   Customers|PropelObjectCollection $customers The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   OrdersQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 OrdersQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByCustomers($customers, $comparison = null)
     {
@@ -1829,8 +1931,8 @@ abstract class BaseOrdersQuery extends ModelCriteria
      * @param   Countries|PropelObjectCollection $countries The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   OrdersQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 OrdersQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByCountriesRelatedByBillingCountriesId($countries, $comparison = null)
     {
@@ -1905,8 +2007,8 @@ abstract class BaseOrdersQuery extends ModelCriteria
      * @param   Countries|PropelObjectCollection $countries The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   OrdersQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 OrdersQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByCountriesRelatedByDeliveryCountriesId($countries, $comparison = null)
     {
@@ -1981,8 +2083,8 @@ abstract class BaseOrdersQuery extends ModelCriteria
      * @param   Events|PropelObjectCollection $events The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   OrdersQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 OrdersQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByEvents($events, $comparison = null)
     {
@@ -2057,8 +2159,8 @@ abstract class BaseOrdersQuery extends ModelCriteria
      * @param   OrdersToCoupons|PropelObjectCollection $ordersToCoupons  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   OrdersQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 OrdersQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByOrdersToCoupons($ordersToCoupons, $comparison = null)
     {
@@ -2131,8 +2233,8 @@ abstract class BaseOrdersQuery extends ModelCriteria
      * @param   OrdersAttributes|PropelObjectCollection $ordersAttributes  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   OrdersQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 OrdersQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByOrdersAttributes($ordersAttributes, $comparison = null)
     {
@@ -2205,8 +2307,8 @@ abstract class BaseOrdersQuery extends ModelCriteria
      * @param   OrdersLines|PropelObjectCollection $ordersLines  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   OrdersQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 OrdersQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByOrdersLines($ordersLines, $comparison = null)
     {
@@ -2279,8 +2381,8 @@ abstract class BaseOrdersQuery extends ModelCriteria
      * @param   OrdersStateLog|PropelObjectCollection $ordersStateLog  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   OrdersQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 OrdersQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByOrdersStateLog($ordersStateLog, $comparison = null)
     {
@@ -2353,8 +2455,8 @@ abstract class BaseOrdersQuery extends ModelCriteria
      * @param   OrdersSyncLog|PropelObjectCollection $ordersSyncLog  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   OrdersQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 OrdersQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByOrdersSyncLog($ordersSyncLog, $comparison = null)
     {
@@ -2427,8 +2529,8 @@ abstract class BaseOrdersQuery extends ModelCriteria
      * @param   OrdersVersions|PropelObjectCollection $ordersVersions  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return   OrdersQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
+     * @return                 OrdersQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
      */
     public function filterByOrdersVersions($ordersVersions, $comparison = null)
     {

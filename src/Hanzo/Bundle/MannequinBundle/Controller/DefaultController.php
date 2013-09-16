@@ -157,12 +157,12 @@ class DefaultController extends CoreController
         $locale = $hanzo->get('core.locale');
         $domain_id = $hanzo->get('core.domain_id');
 
-        $master = $request->get('master');
-        $color = $request->get('color');
-        $layer = $request->get('layer');
-        $price = $request->get('price');
-        $key = $request->get('key');
-        $category_id = $request->get('category_id');
+        $master = $request->request->get('master');
+        $color = $request->request->get('color');
+        $layer = $request->request->get('layer');
+        $price = $request->request->get('price');
+        $key = $request->request->get('key');
+        $category_id = $request->request->get('category_id');
 
         $product = ProductsQuery::create()
             ->findOneBySku($master)
@@ -227,8 +227,8 @@ class DefaultController extends CoreController
                         ->filterByDomainsId($domain_id)
                     ->endUse()
                     ->groupById()
-                    ->filterByMaster($request->get('master'))
-                    ->filterByColor($request->get('color'))
+                    ->filterByMaster($request->request->get('master'))
+                    ->filterByColor($request->request->get('color'))
                     ->find()
                 ;
                 if ($sizes->count()) {
@@ -263,9 +263,9 @@ class DefaultController extends CoreController
                         ->filterByDomainsId($domain_id)
                     ->endUse()
                     ->groupById()
-                    ->filterByMaster($request->get('master'))
-                    ->filterByColor($request->get('color'))
-                    ->filterBySize($request->get('size'))
+                    ->filterByMaster($request->request->get('master'))
+                    ->filterByColor($request->request->get('color'))
+                    ->filterBySize($request->request->get('size'))
                     ->findOne()
                 ;
 
