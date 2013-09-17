@@ -728,9 +728,9 @@ class ProductsController extends CoreController
                 ->count($this->getDbConnection())
             ;
 
-            if (0 == $image_count) {
+            if (0 === $image_count) {
                 ProductsToCategoriesQuery::create()
-                    ->filterByProductsId($image_id)
+                    ->filterByProductsId($product_id)
                     ->filterByCategoriesId($category_id)
                     ->delete($this->getDbConnection())
                 ;

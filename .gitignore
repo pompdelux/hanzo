@@ -17,6 +17,8 @@
 /web/images/xhjkpiydjns/
 /web/images/pdf/
 /web/images/nyhedsbrev/
+/web/images/products/thumb/*.jpg
+/web/images/products/thumb/*.png
 /web/uploads/
 .sass-cache
 /.tags*

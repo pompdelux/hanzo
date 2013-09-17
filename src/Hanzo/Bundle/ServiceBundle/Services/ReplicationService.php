@@ -150,9 +150,25 @@ class ReplicationService
     public function syncImageSorting()
     {
         $images = ProductsImagesCategoriesSortQuery::create()->find();
+        $categories = ProductsToCategoriesQuery::create()->find();
 
         foreach ($this->replicated_connections as $name) {
             $conn = $this->getConnection($name);
+
+            ProductsToCategoriesQuery::create()
+                ->filterByProductsId(0, \Criteria::GREATER_THAN)
+                ->delete($conn)
+            ;
+
+            foreach ($categories as $category) {
+                $s = new ProductsToCategories();
+                $s->setProductsId($category->getProductsId());
+                $s->setCategoriesId($category->getCategoriesId());
+
+                try {
+                    $s->save($conn);
+                } catch (\Exception $e) {}
+            }
 
             ProductsImagesCategoriesSortQuery::create()
                 ->filterByProductsId(0, \Criteria::GREATER_THAN)
@@ -168,19 +184,6 @@ class ReplicationService
 
                 try {
                     $s->save($conn);
-
-                    $c = ProductsToCategoriesQuery::create()
-                        ->filterByProductsId($image->getProductsId())
-                        ->filterByCategoriesId($image->getCategoriesId())
-                        ->count($conn)
-                    ;
-
-                    if (0 == $c) {
-                        $p = new ProductsToCategories();
-                        $p->setProductsId($image->getProductsId());
-                        $p->setCategoriesId($image->getCategoriesId());
-                        $p->save($conn);
-                    }
                 } catch (\Exception $e) {}
             }
         }
