@@ -49,7 +49,7 @@ class DefaultController extends CoreController
                 } else {
                     $zip = '';
                     $city = '';
-                    if (preg_match('/^[0-9]+$/', $street)) {
+                    if (preg_match('/[0-9]+/', $street)) {
                         $zip = $street;
                         $street = '';
                     }
