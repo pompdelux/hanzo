@@ -2,10 +2,6 @@
 
 namespace Hanzo\Bundle\LocationLocatorBundle\Providers;
 
-use Exception;
-use SoapClient;
-use SoapHeader;
-
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\FormBuilder;
@@ -14,10 +10,11 @@ use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 /**
  * Post Nord Location provider
  *
- *   Installasjonsid: 90290000026
- *   WebShopID: 114
- *   UserName: PompDelux32344
- *   Password: S/SOgkhDUw==pMM
+ *   Installasjonsid : 90290000026
+ *   WebShopID       : 114
+ *   UserName        : PompDelux32344
+ *   Password        : S/SOgkhDUw==pMM
+ *   productConceptID: 30 (test)
  *
  *
  * INSERT INTO domains_settings
@@ -76,8 +73,9 @@ class EdiSoftProvider extends BaseProvider
     protected $settings = [
         'username'         => 'Flexerman21073',
         'password'         => 'Gm15/46exRF',
-        'installationID'   => '10916000028',
-        'productConceptID' => '92',
+        'installationID'   => 10916000028,
+        'productConceptID' => 32,
+        'WebShopID'        => 1,
     ];
 
     /**
@@ -120,19 +118,22 @@ class EdiSoftProvider extends BaseProvider
             $address_parts['postalCode'] = trim($result[1]);
             $address_parts['city'] = trim($result[2]);
         }
-
+$address_parts['countryCode'] = 'NL';
+        $lookup = [
+            'productConceptID' => $this->settings['productConceptID'],
+            'installationID'   => $this->settings['installationID'],
+            'country'          => $address_parts['countryCode'],
+            'address'          => $address_parts['streetName'],
+            'postCode'         => $address_parts['postalCode'],
+            'city'             => $address_parts['city'],
+            'limit'            => $limit,
+        ];
         try {
-            $lookup = [
-                'productConceptID' => $this->settings['productConceptID'],
-                'installationID'   => $this->settings['installationID'],
-                'country'          => $address_parts['countryCode'],
-                'address'          => $address_parts['streetName'],
-                'postCode'         => $address_parts['postalCode'],
-                'city'             => $address_parts['city'],
-                'limit'            => $limit,
-            ];
             $result = $client->SearchForDropPoints($lookup);
-        } catch (Exception $e) {
+\Hanzo\Core\Tools::log($result);
+        } catch (\Exception $e) {
+\Hanzo\Core\Tools::log($e->getMessage());
+\Hanzo\Core\Tools::log($client->__getLastRequest());
             $this->logger->err($e->getMessage());
             return [];
         }
@@ -157,7 +158,7 @@ class EdiSoftProvider extends BaseProvider
                 'postCode'         => $postal_code,
                 'limit'            => $limit,
             ]);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->logger->err($e->getMessage());
             return [];
         }
@@ -186,7 +187,7 @@ class EdiSoftProvider extends BaseProvider
                 'mapWidth'          => 800,
                 'mapHeight'         => 800,
             ]);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->logger->err($e->getMessage());
             return [];
         }
@@ -206,15 +207,18 @@ class EdiSoftProvider extends BaseProvider
         static $client;
 
         if (empty($client)) {
-            $endpoint = ($this->environment == 'prod') ? $this->prod_endpoint : $this->test_endpoint;
+            $endpoint = (substr($this->environment, 0, 4) == 'prod')
+                ? $this->prod_endpoint
+                : $this->test_endpoint
+            ;
 
-            $client = new SoapClient($endpoint, [
+            $client = new \SoapClient($endpoint, [
                 'connection_timeout' => 5, // five seconds is a really long time ...
                 'exceptions'         => true,
                 'trace'              => true,
             ]);
 
-            $client->__setSoapHeaders(new SoapHeader('SoapAuthenticator', 'ServiceAuthenticationHeader', [
+            $client->__setSoapHeaders(new \SoapHeader('SoapAuthenticator', 'ServiceAuthenticationHeader', [
                 'Username' => $this->settings['username'],
                 'Password' => $this->settings['password'],
             ]));

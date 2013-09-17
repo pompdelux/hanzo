@@ -64,6 +64,16 @@ class LocationLocator
             Hanzo::getInstance()->getByNs('locator')
         );
 
+
+$settings = [
+    'provider'         => 'edisoft',
+    'username'         => 'PompDelux32344',
+    'password'         => 'S/SOgkhDUw==pMM',
+    'installationID'   => 90290000026,
+    'productConceptID' => 30,
+    'WebShopID'        => 114,
+];
+
         try {
             $provider = $this->container->get('hanzo_location_provider_'.$settings['provider']);
         } catch (\Exception $e) {
