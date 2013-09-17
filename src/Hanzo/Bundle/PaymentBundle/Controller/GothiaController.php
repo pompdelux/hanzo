@@ -68,9 +68,7 @@ class GothiaController extends CoreController
         ;
 
         // No gothia account has been created and associated with the customer, so lets do that
-        $step = 2;
         if (is_null($gothiaAccount)) {
-            $step = 1;
             $gothiaAccount = new GothiaAccounts();
         }
 
@@ -85,7 +83,6 @@ class GothiaController extends CoreController
 
         return $this->render('PaymentBundle:Gothia:payment.html.twig',array(
             'page_type' => 'gothia',
-            'step' => $step,
             'form' => $form->createView(),
         ));
     }
@@ -298,8 +295,7 @@ class GothiaController extends CoreController
         $api        = $this->get('payment.gothiaapi');
         $translator = $this->get('translator');
 
-        if ( $order->getState() > Orders::STATE_PRE_PAYMENT )
-        {
+        if ($order->getState() > Orders::STATE_PRE_PAYMENT) {
             return $this->json_response(array(
                 'status' => FALSE,
                 'message' => $translator->trans('json.order.state_pre_payment.locked', array(), 'gothia'),
@@ -310,13 +306,11 @@ class GothiaController extends CoreController
         // A customer can max reserve 7.000 SEK currently, so if they edit an order to 3.500+ SEK
         // it will fail because we have not removed the old reservation first, this should fix it
 
-        if ( $order->getInEdit() )
-        {
+        if ($order->getInEdit()) {
             $currentVersion = $order->getVersionId();
 
             // If the version number is less than 2 there is no previous version
-            if ( !( $currentVersion < 2 ) )
-            {
+            if (!($currentVersion < 2)) {
                 $oldOrderVersion = ( $currentVersion - 1);
                 $oldOrder = $order->getOrderAtVersion($oldOrderVersion);
 
@@ -339,8 +333,7 @@ class GothiaController extends CoreController
 
                     $timer->logOne('cancelReservation, orderId #'.$oldOrder->getId());
 
-                    if ( $response->isError() )
-                    {
+                    if ($response->isError()) {
                         return $this->json_response(array(
                             'status' => FALSE,
                             'message' => $translator->trans('json.cancelreservation.error', array(), 'gothia'),
@@ -350,29 +343,29 @@ class GothiaController extends CoreController
             }
         }
 
-        try
-        {
+        try {
             $timer = new Timer('gothia', true);
-
             $response = $api->call()->placeReservation( $customer, $order );
-
             $timer->logOne('placeReservation orderId #'.$order->getId());
-        }
-        catch( GothiaApiCallException $e )
-        {
+        } catch(GothiaApiCallException $e) {
             if (Tools::isBellcomRequest()) {
                 Tools::debug('Place Reservation Exception', __METHOD__, array('Message' => $e->getMessage()));
             }
+
             $api->updateOrderFailed( $request, $order );
+
             return $this->json_response(array(
                 'status' => FALSE,
                 'message' => $translator->trans('json.placereservation.failed', array('%msg%' => $e->getMessage()), 'gothia'),
             ));
         }
 
-        if ( $response->isError() )
-        {
-            Tools::debug( 'Confirm action error', __METHOD__, array( 'Transaction id' => $response->transactionId, 'Data' => $response->data ));
+        if ( $response->isError() ) {
+            $error = $response->data;
+            if (empty($error) && !empty($response->errors)) {
+                $error = implode("\n", $response->errors);
+            }
+            Tools::debug( 'Confirm action error', __METHOD__, array( 'Transaction id' => $response->transactionId, 'Data' => $error));
 
             $api->updateOrderFailed( $request, $order );
             return $this->json_response(array(
@@ -383,8 +376,7 @@ class GothiaController extends CoreController
 
         // NICETO: priority: low, refacture gothia to look more like DibsController
 
-        try
-        {
+        try {
             $api->updateOrderSuccess( $request, $order );
             $this->get('event_dispatcher')->dispatch('order.payment.collected', new FilterOrderEvent($order));
 
@@ -392,13 +384,11 @@ class GothiaController extends CoreController
                 'status' => TRUE,
                 'message' => '',
             ));
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             if (Tools::isBellcomRequest()) {
                 Tools::debug('Place Reservation Exception', __METHOD__, array('Message' => $e->getMessage()));
             }
-            #Tools::debug( $e->getMessage(), __METHOD__);
+
             $api->updateOrderFailed( $request, $order );
 
             Tools::debug('Place reservation failed', __METHOD__, array('Message' => $e->getMessage()));

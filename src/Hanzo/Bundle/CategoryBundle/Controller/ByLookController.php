@@ -4,6 +4,7 @@ namespace Hanzo\Bundle\CategoryBundle\Controller;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Hanzo;
@@ -28,9 +29,9 @@ class ByLookController extends CoreController
      * @param $category_id
      * @param $pager
      */
-    public function viewAction($cms_id, $category_id, $pager = 1)
+    public function viewAction(Request $request, $cms_id, $category_id, $pager = 1)
     {
-        $cache_id = explode('_', $this->get('request')->get('_route'));
+        $cache_id = explode('_', $request->get('_route'));
         $cache_id = array($cache_id[0], $cache_id[2], $cache_id[1], $pager);
 
         // json requests
@@ -56,16 +57,15 @@ class ByLookController extends CoreController
         $html = $this->getCache($cache_id);
 
         if (!$html) {
-
             $data = CategoriesPeer::getStylesByCategoryId($category_id, $pager);
             $data['products'] = $this->setAlt($data['products'], $category_id);
             $cms_page = CmsQuery::create()->findOneById($cms_id);
 
 
             $classes = 'bylook-'.preg_replace('/[^a-z]/', '-', strtolower($cms_page->getTitle()));
-            if (preg_match('/(pige|girl|tjej|tytto|jente)/', $container->get('request')->getPathInfo())) {
+            if (preg_match('/(pige|girl|tjej|tytto|jente)/', $request->getPathInfo())) {
                 $classes .= ' category-girl';
-            } elseif (preg_match('/(dreng|boy|kille|poika|gutt)/', $container->get('request')->getPathInfo())) {
+            } elseif (preg_match('/(dreng|boy|kille|poika|gutt)/', $request->getPathInfo())) {
                 $classes .= ' category-boy';
             }
 

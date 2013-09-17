@@ -5,20 +5,36 @@
   background: url('/fx/2013s1/../images/icons/da-sd69e9a5d05.png') no-repeat;
 }
 
-.icons-sprite, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-facebook, .icons-gplus, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf {
-  background: url('/fx/2013s1/../images/icons/icons-se2ff75170b.png') no-repeat;
+.icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-return, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, .body-pages .newsletter-form-simple .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.return {
+  background: url('/fx/2013s1/../images/icons/icons-s282dcdbd9c.png') no-repeat;
+}
+
+.icons-Kundeservice_Green {
+  background-position: 0 -614px;
+}
+
+.icons-Kundeservice_Red {
+  background-position: 0 -486px;
+}
+
+.icons-Kundeservice_Yellow {
+  background-position: 0 -550px;
+}
+
+.icons-Oeko_Tex {
+  background-position: 0 -100px;
 }
 
 .icons-arrow_down {
-  background-position: 0 -517px;
+  background-position: 0 -1013px;
 }
 
 .icons-arrow_left {
-  background-position: 0 -510px;
+  background-position: 0 -1006px;
 }
 
 .icons-arrow_right {
-  background-position: 0 -521px;
+  background-position: 0 -1017px;
 }
 
 .icons-basket {
@@ -26,91 +42,119 @@
 }
 
 .icons-button-left-black {
-  background-position: 0 -579px;
+  background-position: 0 -1059px;
 }
 
 .icons-button-left {
-  background-position: 0 -491px;
+  background-position: 0 -987px;
 }
 
 .icons-button-right-black {
-  background-position: 0 -560px;
+  background-position: 0 -1040px;
 }
 
 .icons-button-right {
-  background-position: 0 -472px;
+  background-position: 0 -968px;
 }
 
 .icons-delete {
-  background-position: 0 -172px;
+  background-position: 0 -890px;
 }
 
 .icons-delete_black {
-  background-position: 0 -182px;
+  background-position: 0 -324px;
+}
+
+.icons-delete_icon {
+  background-position: 0 -768px;
 }
 
 .icons-delete_white {
-  background-position: 0 -192px;
+  background-position: 0 -334px;
 }
 
 .icons-divider {
-  background-position: 0 -245px;
+  background-position: 0 -387px;
 }
 
 .icons-divider_left {
-  background-position: 0 -136px;
+  background-position: 0 -304px;
 }
 
 .icons-divider_right {
-  background-position: 0 -292px;
+  background-position: 0 -434px;
 }
 
 .icons-edit {
-  background-position: 0 -156px;
+  background-position: 0 -942px;
+}
+
+.icons-edit_icon {
+  background-position: 0 -800px;
 }
 
 .icons-facebook {
-  background-position: 0 -440px;
+  background-position: 0 -832px;
+}
+
+.icons-faq_icon {
+  background-position: 0 -646px;
+}
+
+.icons-gots {
+  background-position: 0 -158px;
 }
 
 .icons-gplus {
-  background-position: 0 -260px;
+  background-position: 0 -402px;
 }
 
-.icons-magnifier {
-  background-position: 0 -528px;
+.icons-instagram {
+  background-position: 0 -582px;
 }
 
-.icons-newsletter {
+.icons-kurv {
   background-position: 0 -50px;
 }
 
+.icons-magnifier {
+  background-position: 0 -1024px;
+}
+
+.icons-newsletter {
+  background-position: 0 -218px;
+}
+
 .icons-pdf {
-  background-position: 0 -544px;
+  background-position: 0 -710px;
 }
 
 .icons-pinterest {
-  background-position: 0 -312px;
+  background-position: 0 -454px;
+}
+
+.icons-return {
+  background-position: 0 -916px;
 }
 
 .icons-shopping-bag {
-  background-position: 0 -202px;
+  background-position: 0 -344px;
 }
 
 .icons-show {
-  background-position: 0 -598px;
+  background-position: 0 -864px;
 }
 
 .icons-twitter {
-  background-position: 0 -376px;
+  background-position: 0 -678px;
 }
 
 .icons-video {
-  background-position: 0 -408px;
+  background-position: 0 -736px;
 }
 
 .icons-zoom {
-  background-position: 0 -344px;
+  background-position: 0 -518px;
 }
 
 .fi-sprite, body.fi form.buy .submit-button, body.fi .buy-set, body.fi .new-price, body.fi .out-of-stock {
@@ -688,14 +732,15 @@ footer .footer-menu.footer-menu-4 .container input[type=submit] {
   letter-spacing: 0;
 }
 footer .footer-menu.footer-menu-4 .sprite {
-  background-position: 0 -50px;
+  background-position: 0 -218px;
   height: 86px;
   width: 86px;
   float: left;
+  margin-left: 40px;
 }
 footer .footer-menu.footer-menu-4 input[type="email"],
 footer .footer-menu.footer-menu-4 input[type="text"] {
-  width: 252px;
+  width: 222px;
   display: block;
   padding: 4px 5px;
 }
@@ -706,7 +751,7 @@ footer .footer-menu.footer-menu-4 #dialoug-message {
 }
 footer .footer-menu.footer-menu-4 form {
   font-family: Tahoma, Geneva, Verdana, sans-serif !important;
-  width: 264px;
+  width: 234px;
 }
 footer .copy {
   margin-top: 3px;
@@ -786,7 +831,7 @@ div.panes > div {
   margin-right: 5px;
 }
 .zoom .sprite {
-  background-position: 0 -344px;
+  background-position: 0 -518px;
   height: 32px;
   width: 32px;
 }
@@ -800,7 +845,7 @@ a.video-popper, #video-player-container a.video {
   text-align: center;
 }
 a.video-popper .sprite, #video-player-container a.video .sprite {
-  background-position: 0 -408px;
+  background-position: 0 -736px;
   height: 32px;
   width: 32px;
 }
@@ -2358,6 +2403,42 @@ nav.main-menu > ul > li > ul.on {
 .body-pages #main .social-buttons {
   float: right;
 }
+.body-pages .newsletter-form-simple {
+  display: block;
+  float: none;
+  margin: 10px 0;
+}
+.body-pages .newsletter-form-simple .container {
+  text-align: left;
+  display: inline-block;
+}
+.body-pages .newsletter-form-simple .container input[type=submit] {
+  float: right;
+  font-size: 12px;
+  font-family: "Merriweather", serif;
+  letter-spacing: 0;
+}
+.body-pages .newsletter-form-simple .sprite {
+  background-position: 0 -218px;
+  height: 86px;
+  width: 86px;
+  float: left;
+}
+.body-pages .newsletter-form-simple input[type="email"],
+.body-pages .newsletter-form-simple input[type="text"] {
+  width: 250px;
+  display: block;
+  padding: 4px 5px;
+}
+.body-pages .newsletter-form-simple #dialoug-message {
+  width: 200px;
+  border: 2px solid red;
+  text-align: center;
+}
+.body-pages .newsletter-form-simple form {
+  font-family: Tahoma, Geneva, Verdana, sans-serif !important;
+  width: 264px;
+}
 
 article div ul {
   margin-left: 20px;
@@ -2678,25 +2759,32 @@ div.dialoug.like-pop li div {
   background-image: url(/fx/images/wall/emo/12.png);
 }
 
-#quickorder form {
+form.quickorder,
+div.quickorder {
   padding-bottom: 50px;
 }
-#quickorder form label {
+form.quickorder label,
+div.quickorder label {
   display: inline-block;
   width: auto;
 }
-#quickorder form input, #quickorder form select {
+form.quickorder input, form.quickorder select,
+div.quickorder input,
+div.quickorder select {
   margin-right: 5px;
 }
-#quickorder .ui-autocomplete {
+form.quickorder .ui-autocomplete,
+div.quickorder .ui-autocomplete {
   list-style-type: none;
   padding: 0px 5px;
   display: inline-block;
 }
-#quickorder .ui-autocomplete .ui-menu-item {
+form.quickorder .ui-autocomplete .ui-menu-item,
+div.quickorder .ui-autocomplete .ui-menu-item {
   cursor: pointer;
 }
-#quickorder input#quantity {
+form.quickorder input.quantity,
+div.quickorder input.quantity {
   width: 50px;
   text-align: center;
 }
@@ -2757,6 +2845,42 @@ div.dialoug.like-pop li div {
 }
 .near-you-container .row:last-child {
   border-bottom: none;
+}
+
+/**
+| _rma
+*/
+#body-rma .product-table label {
+  width: 100%;
+}
+#body-rma .product-table label input, #body-rma .product-table label select, #body-rma .product-table label textarea {
+  display: block;
+  margin: 0 0 10px;
+}
+#body-rma .product-table label textarea {
+  width: 60%;
+  height: 60px;
+}
+#body-rma .product-table thead input[type=checkbox] {
+  display: inline-block;
+}
+#body-rma .product-table .quickorder label, #body-rma .product-table .quickorder input, #body-rma .product-table .quickorder select {
+  display: inline;
+  width: auto;
+}
+#body-rma .product-table td.actions {
+  width: 610px;
+}
+#body-rma div.quickorder {
+  padding: 0;
+}
+
+.rma-icon {
+  text-transform: uppercase;
+  font-family: "Lucida Sans Typewriter", "Lucida Console", Monaco, "Bitstream Vera Sans Mono", monospace;
+  font-size: 12px;
+  height: 15px;
+  display: inline-block;
 }
 
 /**
@@ -3021,14 +3145,14 @@ hr {
   clear: both;
   margin: 0;
   width: 100%;
-  background-position: 0 -245px;
+  background-position: 0 -387px;
   height: 20px;
 }
 hr.left {
-  background-position: 0 -136px;
+  background-position: 0 -304px;
 }
 hr.right {
-  background-position: 0 -292px;
+  background-position: 0 -434px;
 }
 
 strong, b {
@@ -3203,14 +3327,14 @@ a.button.button-full-width,
 
 .arrow-right {
   margin-left: 6px;
-  background-position: 0 -521px;
+  background-position: 0 -1017px;
   height: 7px;
   width: 4px;
 }
 
 .arrow-left {
   margin-right: 6px;
-  background-position: 0 -510px;
+  background-position: 0 -1006px;
   height: 7px;
   width: 4px;
 }
@@ -3374,28 +3498,33 @@ button.right {
   margin-right: 12px;
 }
 
-.sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf {
+.sprite.delete, .sprite.edit, .sprite.show, .sprite.return, .sprite.pdf {
   display: inline-block;
 }
 .sprite.delete {
-  background-position: 0 -172px;
-  height: 10px;
-  width: 15px;
+  background-position: 0 -890px;
+  height: 26px;
+  width: 26px;
 }
 .sprite.edit {
-  background-position: 0 -156px;
-  height: 16px;
-  width: 23px;
+  background-position: 0 -942px;
+  height: 26px;
+  width: 26px;
 }
 .sprite.show {
-  background-position: 0 -598px;
-  height: 16px;
-  width: 16px;
+  background-position: 0 -864px;
+  height: 26px;
+  width: 26px;
 }
 .sprite.pdf {
-  background-position: 0 -544px;
-  height: 16px;
-  width: 16px;
+  background-position: 0 -710px;
+  height: 26px;
+  width: 26px;
+}
+.sprite.return {
+  background-position: 0 -916px;
+  height: 26px;
+  width: 26px;
 }
 
 ul {

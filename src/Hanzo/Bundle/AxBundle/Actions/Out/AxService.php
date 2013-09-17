@@ -84,7 +84,7 @@ class AxService
      * @param  boolean  $return   Returns the object we intend to send to AX.
      * @return boolean
      */
-    public function sendOrder(Orders $order, $return = false, $con = null)
+    public function sendOrder(Orders $order, $return = false, $con = null, $in_edit = false)
     {
         if (null === $con) {
             $con = Propel::getConnection(null, Propel::CONNECTION_WRITE);
@@ -221,7 +221,10 @@ class AxService
 
         if ($order->getEventsId()) {
             $date = date('Ymd');
-            if ((20130812 <= $date) && (20130901 >= $date)) {
+
+            if (((20130812 <= $date) && (20130901 >= $date)) ||
+                ($in_edit && (20130901 >= $order->getCreatedAt('Ymd')))
+            ) {
                 $line = new stdClass();
                 $line->ItemId          = 'VOUCHER';
                 $line->SalesPrice      = 0.00;
@@ -234,7 +237,6 @@ class AxService
             }
         }
 
-        // gavekort
         if ($gift_card) {
             $line = new stdClass();
             $line->ItemId      = 'GIFTCARD';
@@ -245,7 +247,6 @@ class AxService
             $salesLine[]       = $line;
         }
 
-        // kuponkode
         if ($coupon) {
             $line = new stdClass();
             $line->ItemId      = 'COUPON';
@@ -296,6 +297,9 @@ class AxService
 
             case 'paypal':
                 $custPaymMode = 'PayPal';
+                if (isset($attributes->payment->TRANSACTIONID)) {
+                    $attributes->payment->transact = $attributes->payment->TRANSACTIONID;
+                }
                 break;
 
             case 'manualpayment':

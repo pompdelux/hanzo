@@ -91,7 +91,6 @@ namespace :deploy do
     run "sudo chmod -R g+rwX #{shared_path}/app && sudo chgrp -R www-data #{shared_path}/app"
     run "sudo chmod -R g+rwX #{shared_path}/cron && sudo chgrp -R www-data #{shared_path}/cron"
     run "sudo chmod -R g+rwX #{shared_path}/cached-copy && sudo chgrp -R www-data #{shared_path}/cached-copy"
-    run "sudo chmod -R g+rwX #{shared_path}/logs && sudo chgrp -R www-data #{shared_path}/logs"
     run "sudo chmod -R g+rwX #{shared_path}/vendor && sudo chgrp -R www-data #{shared_path}/vendor"
   end
   desc "Send email after deploy"

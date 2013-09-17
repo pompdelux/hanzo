@@ -109,15 +109,15 @@
         <target>
           <![CDATA[Vi är väldigt förtjusta i fåglar den här säsongen och den här blusen var vi helt enkelt tvungna att ta med. Blusen är av mjuk och skön jerseykvalitet och ger en avslappnad stil. Problemet blir att välja färg! Tillverkad enligt Öko-Tex-standard 100.	<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex.png">	<br><br>	Finns i: Rose (rosa), Wine (vinröd) och Curry (orange)	<br><br>	Storleken är barnets längd i cm.	<br><br>	Material: 95 % bomull och 5 % elastan]]>
         </target>
-      </trans-unit>
-      <trans-unit id="Bangkok Little Blouse">
-        <source>description.Bangkok_Little_Blouse</source>
+      </trans-unit>	  
+	  <trans-unit id="Bangkok Little BLOUSE">
+        <source>description.Bangkok_Little_BLOUSE</source>
         <target>
-          <![CDATA[Långärmad t-shirt med supertrendig sliten look. Kanske har mamma något liknande i sin garderob? Tillverkad enligt Öko-Tex-standard 100. Tvättas separat eller med liknande färger eftersom tyget kan färga av sig.	<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex.png">	<br><br>	Finns i: Grey (grå), Rose (rosa), Ice Blue (isblå) och Blue (blå)	<br><br>	Storleken är barnets längd i cm.	<br><br>	Material: 100 % bomull]]>
+          <![CDATA[Långärmad t-shirt med supertrendig sliten look. Kanske har mamma något liknande i sin garderob? Tillverkad enligt Öko-Tex-standard 100. Tvättas separat eller med liknande färger eftersom tyget kan färga av sig.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex.png">	<br><br>	Finns i: Grey (grå), Rose (rosa), Ice Blue (isblå) och Blue (blå)	<br><br>	Storleken är barnets längd i cm.	<br><br>	Material: 100 % bomull]]>
         </target>
       </trans-unit>
-      <trans-unit id="Bangkok Blouse">
-        <source>description.Bangkok_Blouse</source>
+      <trans-unit id="Bangkok BLOUSE">
+        <source>description.Bangkok_BLOUSE</source>
         <target>
           <![CDATA[Långärmad t-shirt med supertrendig sliten look. Kanske har mamma något liknande i sin garderob? Tillverkad enligt Öko-Tex-standard 100. Tvättas separat eller med liknande färger eftersom tyget kan färga av sig.	<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex.png">	<br><br>	Finns i: Grey (grå), Rose (rosa), Ice Blue (isblå) och Blue (blå)	<br><br>	Storleken är barnets längd i cm.	<br><br>	Material: 100 % bomull]]>
         </target>
@@ -791,7 +791,7 @@
       <trans-unit id="Kentucky Little TUNIC">
         <source>description.Kentucky_Little_TUNIC</source>
         <target>
-          <![CDATA[Vår välkända A-linjeformade tunika med ett sött småblommigt mönster. Smalt vävt band runt halsringningen och knappar i nacken. Fodrad.		<br><br>	Finns i: Curry (orange), Blue (blå) och Rose (rosa)	<br><br>	Storleken är barnets längd i cm.	<br><br>	Material: 100 % bomull]]>
+          <![CDATA[Fin A-formad tunika med ett sött småblommigt allover print. Söta ärmar med lite rynk, volang längst ner samt innerfoder.<br><br>	Finns i: Curry (orange), Blue (blå) och Rose (rosa)	<br><br>	Storleken är barnets längd i cm.	<br><br>	Material: 100 % bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Kentucky TUNIC">

@@ -110,14 +110,14 @@
           <![CDATA[In dieser Saison sind wir ganz verliebt in Vögel und dieser musste einfach mit dabei sein! Die Bluse in schöner, weicher Jersey-Qualität hat einen etwas coolen Style. Die Farbe wählen wird nicht einfach! Hergestellt nach Oeko-Tex Standard 100.	<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex.png">	<br><br>	Erhältlich in: Rose, Wine und Curry	<br><br>	Die Größe ist die Größe des Kindes in cm.	<br><br>	Qualität: 95% Baumwolle und 5% Elasthan]]>
         </target>
       </trans-unit>
-      <trans-unit id="Bangkok Little Blouse">
-        <source>description.Bangkok_Little_Blouse</source>
+	  <trans-unit id="Bangkok Little BLOUSE">
+        <source>description.Bangkok_Little_BLOUSE</source>
         <target>
-          <![CDATA[Langärmeliges T-Shirt mit einem echt trendy Spray-Look. Vielleicht hat Mama etwas Ähnliches in ihrem Schrank? Hergestellt nach Oeko-Tex Standard 100. Separat oder mit ähnlichen Farben waschen, da überschüssige Farbe vorkommen kann.	<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex.png">	<br><br>	Erhältlich in: Grey, Rose, Ice Blue und Blue	<br><br>	Die Größe ist die Größe des Kindes in cm.	<br><br>	Qualität: 100% Baumwolle]]>
+          <![CDATA[Langärmeliges T-Shirt mit einem echt trendy Spray-Look. Vielleicht hat Mama etwas Ähnliches in ihrem Schrank? Hergestellt nach Oeko-Tex Standard 100. Separat oder mit ähnlichen Farben waschen, da überschüssige Farbe vorkommen kann.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex.png">	<br><br>	Erhältlich in: Grey, Rose, Ice Blue und Blue	<br><br>	Die Größe ist die Größe des Kindes in cm.	<br><br>	Qualität: 100% Baumwolle]]>
         </target>
       </trans-unit>
-      <trans-unit id="Bangkok Blouse">
-        <source>description.Bangkok_Blouse</source>
+      <trans-unit id="Bangkok BLOUSE">
+        <source>description.Bangkok_BLOUSE</source>
         <target>
           <![CDATA[Langärmeliges T-Shirt mit einem echt trendy Spray-Look. Vielleicht hat Mama etwas Ähnliches in ihrem Schrank? Hergestellt nach Oeko-Tex Standard 100. Separat oder mit ähnlichen Farben waschen, da überschüssige Farbe vorkommen kann.	<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex.png">	<br><br>	Erhältlich in: Grey, Rose, Ice Blue und Blue	<br><br>	Die Größe ist die Größe des Kindes in cm.	<br><br>	Qualität: 100% Baumwolle]]>
         </target>
@@ -797,7 +797,7 @@
       <trans-unit id="Kentucky Little TUNIC">
         <source>description.Kentucky_Little_TUNIC</source>
         <target>
-          <![CDATA[Unsere bekannte A-geformte Tunika mit einem süßen Alloverprint mit kleinen Blumen. Schmal gewebtes Band um die Halsöffnung herum, Knopfverschluss im Nacken und Innenfutter.		<br><br>	Erhältlich in: Curry, Blue und Rose	<br><br>	Die Größe ist die Größe des Kindes in cm.	<br><br>	Qualität: 100% Baumwolle]]>
+          <![CDATA[Hübsche  A-geformte Tunika mit süßen Alloverprint mit kleinen Blumen. Ärmel leicht gerüscht, Säumen mit Rüschenkante und Innenfutter.<br><br>	Erhältlich in: Curry, Blue und Rose	<br><br>	Die Größe ist die Größe des Kindes in cm.	<br><br>	Qualität: 100% Baumwolle]]>
         </target>
       </trans-unit>
       <trans-unit id="Kentucky TUNIC">

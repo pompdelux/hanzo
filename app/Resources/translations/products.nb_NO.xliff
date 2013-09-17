@@ -109,21 +109,17 @@
         <target>
           <![CDATA[Vi har en spesiell kjærlighet til fugler i denne sesongen og denne måtte vi bare ta med! Blusen er i en deilig myk jerseykvalitet og er i en litt kul style. Det blir vanskelig å velge farge! Produsert etter Oeko-Tex standard 100.	<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex.png">	<br><br>	Fås i: Rose, Wine og Curry	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 95% Bomull og 5% Elastan]]>
         </target>
-      </trans-unit>
-      <trans-unit id="Bangkok Little Blouse">
-        <source>description.Bangkok_Little_Blouse</source>
+      </trans-unit>	  
+	  <trans-unit id="Bangkok Little BLOUSE">
+        <source>description.Bangkok_Little_BLOUSE</source>
         <target>
-          <![CDATA["Langermet T-skjorte med et super stilig spray-look. Kanskje mamma har noe lignende i skapet sitt? Produsert etter Oeko-Tex standard 100. Bør vaskes separat eller med lignende farger, da overskuddsfarge kan forekomme.
-            
-            <br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex.png">	<br><br>	Fås i: Grey, Rose, Ice Blue og Blue	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100% Bomull]]>
+          <![CDATA[Langermet T-skjorte med et super stilig spray-look. Kanskje mamma har noe lignende i skapet sitt? Produsert etter Oeko-Tex standard 100. Bør vaskes separat eller med lignende farger, da overskuddsfarge kan forekomme.	<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex.png">	<br><br>	Fås i: Grey, Rose, Ice Blue og Blue	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 100% Bomuld]]>
         </target>
       </trans-unit>
-      <trans-unit id="Bangkok Blouse">
-        <source>description.Bangkok_Blouse</source>
+      <trans-unit id="Bangkok BLOUSE">
+        <source>description.Bangkok_BLOUSE</source>
         <target>
-          <![CDATA["Langermet T-skjorte med et super stilig spray-look. Kanskje mamma har noe lignende i skapet sitt? Produsert etter Oeko-Tex standard 100. Bør vaskes separat eller med lignende farger, da overskuddsfarge kan forekomme.
-            
-            <br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex.png">	<br><br>	Fås i: Grey, Rose, Ice Blue og Blue	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100% Bomull]]>
+          <![CDATA[Langermet T-skjorte med et super stilig spray-look. Kanskje mamma har noe lignende i skapet sitt? Produsert etter Oeko-Tex standard 100. Bør vaskes separat eller med lignende farger, da overskuddsfarge kan forekomme.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex.png">	<br><br>	Fås i: Grey, Rose, Ice Blue og Blue	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100% Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Barcelona PANTS">
@@ -801,7 +797,7 @@
       <trans-unit id="Kentucky Little TUNIC">
         <source>description.Kentucky_Little_TUNIC</source>
         <target>
-          <![CDATA[Vår kjente A-formede tunika med et søtt småblomstrete allover print. Smalt vevd bånd rundt i halsåpningen, knappelukking i nakken og innerfôr.		<br><br>	Fås i: Curry, Blue og Rose	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100% Bomull]]>
+          <![CDATA[Fin A-formet tunika med et søtt småblomstrete allover print. Søte ermer med litt rynk, to rysjekanter nederst samt innerfôr.<br><br>	Fås i: Curry, Blue og Rose	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100% Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Kentucky TUNIC">
