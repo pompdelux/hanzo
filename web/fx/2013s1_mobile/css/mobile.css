@@ -2881,7 +2881,7 @@ div.sub-menu {
 }
 .body-frontpage #main article .grid_2:nth-child(even) {
   float: right;
-  clear: noneM;
+  clear: none;
 }
 
 .body-pages article div {
