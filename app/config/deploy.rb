@@ -64,7 +64,8 @@ after 'deploy:restart', 'deploy:symlinks', 'symfony:cache:assets_update', 'symfo
 after 'symfony:cache:clear', 'symfony:cache:redis_clear', 'symfony:cache:varnish_clear'
 # mail after rollback and warn about clearing cache. Doesnt seem to work with "after 'deploy:rollback", because it tries to clear the old current dir
 after 'deploy:rollback', 'deploy:send_email_rollback', 'deploy:rollback_warning'
-
+# send diff mails after updating code
+before "deploy:update_code", "deploy:pending:default"
 
 ## own tasks. copy apc-clear.php, apcclear and reload apache tasks
 namespace :deploy do
@@ -113,6 +114,18 @@ namespace :deploy do
   desc "Send deploy to New Relic"
   task :newrelic_notify do
     run_locally("curl -s -H 'x-api-key:75916fb33fa70e01ddca4bd9a761c56989504595a94d03a' -d 'deployment[application_id]=697785' -d 'deployment[host]=#{hostname}' -d 'deployment[user]=#{whoami}' https://rpm.newrelic.com/deployments.xml")
+  end
+# send diff mails
+  namespace :pending do
+    desc <<-DESC
+      Show the commits since the last deploy
+    DESC
+    task :default, :except => { :no_release => true } do
+      deployed_already = current_revision
+      to_be_deployed = `cd .rsync_cache && git rev-parse --short "HEAD" && cd ..`
+      deploydiff = `cd .rsync_cache && git log --no-merges --pretty=format:"* %s %b (%cn)" #{deployed_already}..#{to_be_deployed}`
+      system("echo 'Starting deploy of hanzo branch: #{branch}. New current release: #{current_release}. Run from: #{hostname}:#{pwd}. By user: #{whoami} (#{hosts}). Whats new:\n#{deploydiff}'| mail -s 'Hanzo #{branch} deploy started' mmh@bellcom.dk")
+    end
   end
 end
 
