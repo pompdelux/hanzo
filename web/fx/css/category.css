@@ -30,7 +30,7 @@
   width: 115px;
   height: 300px;
   font-weight: normal;
-  color: #c29954;
+  color: #998670;
 }
 .product-list .block a img {
   width: 115px;
@@ -43,7 +43,7 @@
 .product-list .prices,
 .product-list .title {
   font-family: 'Merriweather';
-  display: block; 
+  display: block;
   text-align: center;
 }
 .product-list .prices span {
@@ -78,14 +78,14 @@
   float: right;
 }
 .pager ul li {
-  color: #c29954;
+  color: #998670;
   list-style: none;
   float: left;
   padding: 0 10px;
   border-right: 1px solid #7b7577;
 }
 .pager ul li.current a {
-  color: #c29954;
+  color: #998670;
 }
 .pager ul li:last-child {
   border-right: none;
