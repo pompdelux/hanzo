@@ -165,6 +165,15 @@ div.sub-menu {
         h2+p {
             margin-bottom: 20px;
         }
+        article {
+            .grid_2 {
+                width: 49%;
+                float: left;
+                &:nth-child(even) {
+                    float: right;
+                }
+            }
+        }
     }
 }
 

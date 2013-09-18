@@ -2869,6 +2869,13 @@ div.sub-menu {
 .body-frontpage #main h2 + p {
   margin-bottom: 20px;
 }
+.body-frontpage #main article .grid_2 {
+  width: 49%;
+  float: left;
+}
+.body-frontpage #main article .grid_2:nth-child(even) {
+  float: right;
+}
 
 .body-pages article div {
   display: table;
