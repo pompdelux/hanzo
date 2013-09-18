@@ -2874,6 +2874,9 @@ div.sub-menu {
 .body-frontpage #main h2 + p {
   margin-bottom: 20px;
 }
+.body-frontpage #main article {
+  overflow: hidden;
+}
 .body-frontpage #main article .grid_2 {
   width: 49%;
   float: left;
