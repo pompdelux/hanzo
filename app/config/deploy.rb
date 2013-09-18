@@ -65,7 +65,8 @@ after 'symfony:cache:clear', 'symfony:cache:redis_clear', 'symfony:cache:varnish
 # mail after rollback and warn about clearing cache. Doesnt seem to work with "after 'deploy:rollback", because it tries to clear the old current dir
 after 'deploy:rollback', 'deploy:send_email_rollback', 'deploy:rollback_warning'
 # send diff mails after updating code
-before "deploy:update_code", "deploy:pending:default"
+#enable when we are sure it works
+#before "deploy:update_code", "deploy:pending:default"
 
 ## own tasks. copy apc-clear.php, apcclear and reload apache tasks
 namespace :deploy do
