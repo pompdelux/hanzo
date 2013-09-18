@@ -610,6 +610,11 @@ html.touch .product-list .buy-set {
 /**
 | _product
 */
+#cboxClose {
+  border: none;
+  background-color: transparent;
+}
+
 .bordered,
 .bordered-bottom {
   border-bottom: 1px solid #888;
