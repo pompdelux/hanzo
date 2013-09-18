@@ -2877,9 +2877,11 @@ div.sub-menu {
 .body-frontpage #main article .grid_2 {
   width: 49%;
   float: left;
+  clear: left;
 }
 .body-frontpage #main article .grid_2:nth-child(even) {
   float: right;
+  clear: noneM;
 }
 
 .body-pages article div {

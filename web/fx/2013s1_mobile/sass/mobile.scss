@@ -169,8 +169,10 @@ div.sub-menu {
             .grid_2 {
                 width: 49%;
                 float: left;
+                clear: left;
                 &:nth-child(even) {
                     float: right;
+                    clear: none;
                 }
             }
         }
