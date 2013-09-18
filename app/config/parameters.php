@@ -32,7 +32,7 @@ if ('dev' != $env[0]) {
             $db_prefix = $env[0].'_de_';
             break;
       // case 'nl':
-      //   $db_prefix = $env[0].'_se_';
+      //   $db_prefix = $env[0].'_nl_';
       //   break;
     }
 }

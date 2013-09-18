@@ -340,7 +340,7 @@ class Tools
             'nl_nl' => 'nl',
             'sv_se' => 'se',
             'de_at' => 'at',
-            'de_at' => 'ch',
+            'de_ch' => 'ch',
         );
 
         $path = explode('/', trim(str_replace($_SERVER['SCRIPT_NAME'], '', strtolower($_SERVER['REQUEST_URI'])), '/'));
