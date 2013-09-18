@@ -1,9 +1,7 @@
 {% extends layout %}
 
 {% block content %}
-
 <h1>{{ 'edit.account'|trans({}, 'account') }}</h1>
-
 <p>{{ 'update.notice'|trans({'%url%' : url('_account') }, 'account')|raw }}</p>
 
 {% if errors %}
@@ -40,8 +38,7 @@
 		</form>
 	</div>
 	<div class="grid_2 push_1 omega">
-		{% include 'AccountBundle:Default:aside.html.twig' %}
+		{{ include('AccountBundle:Default:aside.html.twig') }}
 	</div>
 </div>
-
 {% endblock %}

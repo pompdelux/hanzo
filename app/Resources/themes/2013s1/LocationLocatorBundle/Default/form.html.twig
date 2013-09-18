@@ -15,5 +15,5 @@
 </form>
 
 {% if records|length > 0 %}
-    {% include 'LocationLocatorBundle:Default:result.html.twig' %}
+    {{ include('LocationLocatorBundle:Default:result.html.twig') }}
 {% endif %}

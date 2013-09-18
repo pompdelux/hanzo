@@ -9,7 +9,7 @@
         <input class="button search" type="submit" value="{{ 'search'|trans({}, 'admin') }}">
       </form>
     </li>
-    {% include 'AdminBundle:Coupons:menu.html.twig' %}
+    {{ include('AdminBundle:Coupons:menu.html.twig') }}
   </ul>
 </nav>
 

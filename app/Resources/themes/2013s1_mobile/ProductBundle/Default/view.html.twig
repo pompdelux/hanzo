@@ -161,11 +161,11 @@
     </div>
 
     <div class="grid_8 alpha omega">
-      {% include 'CMSBundle:Social:share.html.twig' with {
-        'url': app.request.uri,
-        'image': product_image_url(product.main_image.name, '0x1670'),
-        'description': product.title }
-      %}
+        {{ include('CMSBundle:Social:share.html.twig', {
+            'url': app.request.uri,
+            'image': product_image_url(product.main_image.name, '0x1670'),
+            'description': product.title
+        }) }}
     </div>
   </div>
 

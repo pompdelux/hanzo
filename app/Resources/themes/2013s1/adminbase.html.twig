@@ -3,7 +3,7 @@
 <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="{{ html_lang }}"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="{{ html_lang }}"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="{{ html_lang }}"> <!--<![endif]-->
-{% include '::admin-header.html.twig' %}
+{{ include('::admin-header.html.twig') }}
 <body id="body-{{ page_type|default('admin') }}" class="{{ body_classes|default('cms global') }}">
 
 <div id="container">
@@ -12,7 +12,7 @@
   </a>
 
   {# see: AdminBundle->CmsController->adminMenuAction #}
-  {% render(controller('AdminBundle:Cms:adminMenu')) %}
+  {{ render(controller('AdminBundle:Cms:adminMenu')) }}
 
   <div id="main" role="main">
     {% block content %}
@@ -73,7 +73,6 @@
   </ul>
 </footer>
 
-{% include '::admin-footer.html.twig' %}
-
+{{ include('::admin-footer.html.twig') }}
 </body>
 </html>

@@ -3,7 +3,7 @@
 {% block content %}
 <nav class="sub">
   <ul>
-    {% include 'AdminBundle:Coupons:menu.html.twig' %}
+    {{ include('AdminBundle:Coupons:menu.html.twig') }}
   </ul>
 </nav>
 <h1>{{ 'admin.coupons.edit.header.text'|trans({}, 'admin') }}</h1>
