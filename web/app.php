@@ -3,7 +3,7 @@
 // start parse time timer
 $ts = microtime(1);
 
-// let's send 404 headers for none existing images, javascripts and styles
+// let's send 404 headers for non existing images, javascripts and styles
 $ignore = array('jpg', 'png', 'gif', 'js', 'css');
 $ext = explode('.', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 $ext = array_pop($ext);
@@ -43,8 +43,14 @@ switch (array_pop($tdl)) {
     case 'fi':
         $lang = '/fi_FI/';
         break;
+    case 'at':
+        $lang = '/de_AT/';
+        break;
+    case 'ch':
+        $lang = '/de_CH/';
+        break;
     case 'com':
-        if (!preg_match('/(de_DE|da_DK|nb_NO|sv_SE|nl_NL|fi_FI|en_GB)/', $_SERVER['REQUEST_URI']) && ($_SERVER['REQUEST_URI'] != '/')) {
+        if (!preg_match('/(de_DE|da_DK|nb_NO|sv_SE|nl_NL|fi_FI|de_AT|de_CH|en_GB)/', $_SERVER['REQUEST_URI']) && ($_SERVER['REQUEST_URI'] != '/')) {
           $lang = '/en_GB/';
         }
         break;

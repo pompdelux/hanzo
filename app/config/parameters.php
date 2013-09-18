@@ -46,6 +46,8 @@ $locale_map = [
     'nl'  => 'nl_NL',
     'no'  => 'nb_NO',
     'se'  => 'sv_SE',
+    'at'  => 'de_AT',
+    'ch'  => 'de_CH',
 ];
 $container->setParameter('locale', $locale_map[$lang]);
 
