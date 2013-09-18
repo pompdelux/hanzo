@@ -56,7 +56,7 @@ switch (array_pop($tdl)) {
 }
 
 if ($lang) {
-    error_log('app.php redirecting to: '.$lang);
+    //error_log('app.php redirecting to: '.$lang);
     $goto = 'http://www.pompdelux.com'.str_replace('//', '/', $lang.str_replace($_SERVER['SCRIPT_NAME'], '', $_SERVER['REQUEST_URI']));
     header('Location: '.$goto , true, 301);
     exit;
