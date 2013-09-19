@@ -21,8 +21,8 @@
             <trans-unit id="500.description">
                 <source>500.description</source>
                 <target><![CDATA[
-                    <p>Je bent nu beland op de afdeling voor technische problemen, onze excuses daarvoor.</p>
-                    <p>Blijft het probleem zich voordoen of gaat er opnieuw iets fout, dan kun je contact opnemen met de klantenservice via telefoonnummer: +45 8678 7871, of schrijven naar <a href="mailto:mail@pompdelux.dk">mail@pompdelux.nl</a></p>
+                    <p>Er ging iets mis. Probeer de pagina nogmaals te laden.</p>
+                    <p>Gaat er nog steeds iets mis met de pagina, dan kun je contact opnemen met de klantenservice via telefoonnummer 085-3001100, of ons een e-mail sturen via <a href="mailto:mail@pompdelux.nl">mail@pompdelux.nl</a>. Onze excuses voor het ongemak!</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="403.title">
@@ -32,8 +32,8 @@
             <trans-unit id="403.description">
                 <source>403.description</source>
                 <target><![CDATA[
-                    <p>Je bent nu beland op de afdeling voor technische problemen, onze excuses daarvoor.</p>
-                    <p>Blijft het probleem zich voordoen of gaat er opnieuw iets fout, dan kun je contact opnemen met de klantenservice via telefoonnummer: +45 8678 7871, of schrijven naar <a href="mailto:mail@pompdelux.dk">mail@pompdelux.nl</a></p>
+                    <p>Er ging iets mis. Probeer de pagina nogmaals te laden.</p>
+                    <p>Gaat er nog steeds iets mis met de pagina, dan kun je contact opnemen met de klantenservice via telefoonnummer 085-3001100, of ons een e-mail sturen via <a href="mailto:mail@pompdelux.nl">mail@pompdelux.nl</a>. Onze excuses voor het ongemak!</p>
                 ]]></target>
             </trans-unit>
         </body>

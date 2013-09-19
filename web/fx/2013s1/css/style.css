@@ -782,6 +782,11 @@ footer .menu {
 /**
 | _product
 */
+#cboxClose {
+  border: none;
+  background-color: transparent;
+}
+
 .bordered,
 .bordered-bottom {
   border-bottom: 1px solid #888;
@@ -3075,7 +3080,7 @@ a:hover {
 }
 
 .main article a {
-  color: #c29954;
+  color: #998670;
 }
 
 h1, h2, h3, h4, h5, h6 {

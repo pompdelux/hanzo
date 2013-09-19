@@ -28,7 +28,9 @@ $(function() {
       iframe : true,
       href: this.href + '?src=' + $this.data('src') + '&height=' + height + '&width=' + width,
       innerHeight: (height + 20) + 'px',
-      innerWidth: (width + 15) + 'px'
+      innerWidth: (width + 15) + 'px',
+      className: 'js-keep-close-button',
+      close: ''
     });
   });
 

@@ -112,7 +112,7 @@
     pub.initSlideshow = function() {
       $('#slideshow .productimage-large').on('click', function (e) {
         e.preventDefault();
-      })
+      });
 
       $('#slideshow .navigation a').on('click', function (e) {
         e.preventDefault();

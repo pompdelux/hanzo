@@ -179,9 +179,9 @@
     </div>
     <div class="productdescription tab-box">
       <ul class="tabs bordered">
-        <li><a href="#">{{ "product.details"|trans }}</a></li>
+        <li><a href="">{{ "product.details"|trans }}</a></li>
       {% if product.washing %}
-        <li><a href="#">{{ "care.instructions"|trans }}</a></li>
+        <li><a href="">{{ "care.instructions"|trans }}</a></li>
       {% endif %}
       </ul>
 
@@ -197,15 +197,15 @@
 
     <div class="deliverydescription tab-box">
       <ul class="tabs bordered">
-        <li><a href="#">{{ "delivery.title"|trans }}</a></li>
-        <li><a href="#">{{ "return.title"|trans }}</a></li>
+        <li><a href="" data-pane="1">{{ "delivery.title"|trans }}</a></li>
+        <li><a href="" data-pane="2">{{ "return.title"|trans }}</a></li>
       </ul>
 
       <div class="panes">
-        <div>
+        <div class="off pane-1">
           {{ 'delivery.info'|trans({'%delivery.date%': parameter('expected_delivery_date') })|raw }}
         </div>
-        <div class="off">{{ 'return.info'|trans|raw }}</div>
+        <div class="off pane-2">{{ 'return.info'|trans|raw }}</div>
       </div>
     </div>
   </div>
