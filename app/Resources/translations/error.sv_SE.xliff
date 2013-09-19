@@ -16,24 +16,24 @@
             </trans-unit>
             <trans-unit id="500.title">
                 <source>500.title</source>
-                <target>Woops!</target>
+                <target>Oops!</target>
             </trans-unit>
             <trans-unit id="500.description">
                 <source>500.description</source>
                 <target><![CDATA[
-                    <p>Det har uppstått ett tekniskt fel.</p>
-                    <p>Om problemet fortsätter kan du kontakta kundservice på telefon 08-6117103, eller skriva till oss på <a href="mailto:mail@pompdelux.se">mail@pompdelux.se</a></p>
+                    <p>Det har uppstått ett fel. Försök att uppdatera sidan. </p>
+                    <p>Om felet fortsätter, kan du kontakta kundservice på telefon 08-6117103 eller skicka ett mail till oss på <a href="mailto:mail@pompdelux.se">mail@pompdelux.se</a>. Vi beklagar felet!</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="403.title">
                 <source>403.title</source>
-                <target>Woops!</target>
+                <target>Oops!</target>
             </trans-unit>
             <trans-unit id="403.description">
                 <source>403.description</source>
                 <target><![CDATA[
-                    <p>Det har uppstått ett tekniskt fel.</p>
-                    <p>Om problemet fortsätter kan du kontakta kundservice på telefon 08-6117103, eller skriva till oss på <a href="mailto:mail@pompdelux.se">mail@pompdelux.se</a></p>
+                    <p>Det har uppstått ett fel. Försök att uppdatera sidan.</p>
+                    <p>Om felet fortsätter, kan du kontakta kundservice på telefon 08-6117103 eller skicka ett mail till oss på <a href="mailto:mail@pompdelux.se">mail@pompdelux.se</a>. Vi beklagar felet!</p>
                 ]]></target>
             </trans-unit>
         </body>

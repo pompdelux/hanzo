@@ -31,6 +31,8 @@ class CoreController extends Controller
         5 => 'NL',
         6 => 'FI',
         7 => 'DE',
+        8 => 'AT',
+        9 => 'CH',
     );
 
 

@@ -1,0 +1,447 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="events.calendar.header.text">
+                <source>events.calendar.header.text</source>
+                <target>Veranstaltungskalender</target>
+            </trans-unit>
+            <trans-unit id="events.account.title">
+                <source>events.account.title</source>
+                <target>Homeshopping-Veranstaltungen</target>
+            </trans-unit>
+            <trans-unit id="events.calendar.description.text">
+                <source>events.calendar.description.text</source>
+                <target>Mit grün gekennzeichnete Veranstaltungen sind Ihre offenen Veranstaltungen und rote Ihre geschlossenen Veranstaltungen. Klicken Sie auf eine Veranstaltung, um Details zu sehen oder die Veranstaltung zu ändern/löschen.</target>
+            </trans-unit>
+            <trans-unit id="events.calendar.archived.header.text">
+                <source>events.calendar.archived.header.text</source>
+                <target>Archivierte Veranstaltungen</target>
+            </trans-unit>
+            <trans-unit id="events.view_event.header.text">
+                <source>events.view_event.header.text</source>
+                <target>Veranstaltungsdetails</target>
+            </trans-unit>
+            <trans-unit id="events.view_event.description.text">
+                <source>events.view_event.description.text</source>
+                <target>Unten werden alle Informationen über die Veranstaltung angezeigt.</target>
+            </trans-unit>
+            <trans-unit id="events.create_event.header.text">
+                <source>events.create_event.header.text</source>
+                <target>Eine Veranstaltung erstellen/bearbeiten</target>
+            </trans-unit>
+            <trans-unit id="events.create_event.description.text">
+                <source>events.create_event.description.text</source>
+                <target>Die Informationen für Ihre Veranstaltung ausfüllen.</target>
+            </trans-unit>
+            <trans-unit id="events.calendar.link">
+                <source>events.calendar.link</source>
+                <target>Kalender</target>
+            </trans-unit>
+            <trans-unit id="events.calendar.link.back.to" approved="no">
+                <source>events.calendar.link.back.to</source>
+                <target>Zurück zum Kalender</target>
+            </trans-unit>
+            <trans-unit id="events.create_event.link">
+                <source>events.create_event.link</source>
+                <target>Eine neue Veranstaltung erstellen</target>
+            </trans-unit>
+            <trans-unit id="events.update_event.link">
+                <source>events.update_event.link</source>
+                <target>Veranstaltung bearbeiten</target>
+            </trans-unit>
+            <trans-unit id="events.delete_event.link">
+                <source>events.delete_event.link</source>
+                <target>Veranstaltung löschen</target>
+            </trans-unit>
+            <trans-unit id="events.update.event">
+                <source>events.update.event</source>
+                <target>Veranstaltung speichern</target>
+            </trans-unit>
+            <trans-unit id="cancel">
+                <source>cancel</source>
+                <target>Zurück</target>
+            </trans-unit>
+            <trans-unit id="events.created">
+                <source>events.created</source>
+                <target>Die Veranstaltung wurde gespeichert!</target>
+            </trans-unit>
+            <trans-unit id="events.delete.confirm.%id%">
+                <source>events.delete.confirm.%id%</source>
+                <target>Sind Sie sicher, dass Sie folgende Veranstaltung löschen möchten: %id%</target>
+            </trans-unit>
+            <trans-unit id="events.delete.success">
+                <source>events.delete.success</source>
+                <target>Die Veranstaltung wurde gelöscht!</target>
+            </trans-unit>
+            <trans-unit id="events.find_customer_by_phone.placeholder">
+                <source>events.find_customer_by_phone.placeholder</source>
+                <target>Handynummer</target>
+            </trans-unit>
+            <trans-unit id="events.find_customer_by_phone.button">
+                <source>events.find_customer_by_phone.button</source>
+                <target>Mit Telefonnummer suchen</target>
+            </trans-unit>
+            <trans-unit id="events.find_customer_by_email.placeholder">
+                <source>events.find_customer_by_email.placeholder</source>
+                <target>E-Mail</target>
+            </trans-unit>
+            <trans-unit id="events.find_customer_by_email.button">
+                <source>events.find_customer_by_email.button</source>
+                <target>Mit E-Mail suchen</target>
+            </trans-unit>
+            <trans-unit id="events.code">
+                <source>events.code</source>
+                <target>Veranstaltungsname</target>
+            </trans-unit>
+            <trans-unit id="events.event_date">
+                <source>events.event_date</source>
+                <target>Datum</target>
+            </trans-unit>
+            <trans-unit id="events.host">
+                <source>events.host</source>
+                <target>Gastgeberin</target>
+            </trans-unit>
+            <trans-unit id="events.host.required.error">
+                <source>events.host.required.error</source>
+                <target>Bitte Gastgeberin/Tag der offenen Tür ausfüllen.</target>
+            </trans-unit>
+            <trans-unit id="events.address_line_1">
+                <source>events.address_line_1</source>
+                <target>Adressenzeile 1</target>
+            </trans-unit>
+            <trans-unit id="events.address_line_1.required.error">
+                <source>events.address_line_1.required.error</source>
+                <target>Bitte Adresse ausfüllen.</target>
+            </trans-unit>
+            <trans-unit id="events.address_line_2">
+                <source>events.address_line_2</source>
+                <target>Adressenzeile 2</target>
+            </trans-unit>
+            <trans-unit id="events.postal_code">
+                <source>events.postal_code</source>
+                <target>Postleitzahl</target>
+            </trans-unit>
+            <trans-unit id="events.postal_code.required.error">
+                <source>events.postal_code.required.error</source>
+                <target>Bitte Postleitzahl ausfüllen.</target>
+            </trans-unit>
+            <trans-unit id="events.city">
+                <source>events.city</source>
+                <target>Ort</target>
+            </trans-unit>
+            <trans-unit id="events.city.required.error">
+                <source>events.city.required.error</source>
+                <target>Bitte Ort ausfüllen.</target>
+            </trans-unit>
+            <trans-unit id="events.phone">
+                <source>events.phone</source>
+                <target>Handynummer</target>
+            </trans-unit>
+            <trans-unit id="events.phone.required.error">
+                <source>events.phone.required.error</source>
+                <target>Bitte Handynummer ausfüllen.</target>
+            </trans-unit>
+            <trans-unit id="events.email">
+                <source>events.email</source>
+                <target>E-Mail</target>
+            </trans-unit>
+            <trans-unit id="events.email.required.error">
+                <source>events.email.required.error</source>
+                <target>Bitte E-Mail ausfüllen.</target>
+            </trans-unit>
+            <trans-unit id="events.hasaccepted">
+                <source>events.hasaccepted</source>
+                <target>Antwort</target>
+            </trans-unit>
+            <trans-unit id="events.first_name">
+                <source>events.first_name</source>
+                <target>Vorname</target>
+            </trans-unit>
+            <trans-unit id="events.last_name">
+                <source>events.last_name</source>
+                <target>Nachname</target>
+            </trans-unit>
+            <trans-unit id="events.description">
+                <source>events.description</source>
+                <target>Beschreibung</target>
+            </trans-unit>
+            <trans-unit id="events.code.label">
+                <source>events.code.label</source>
+                <target>Veranstaltungsnummer</target>
+            </trans-unit>
+            <trans-unit id="events.event_date.label">
+                <source>events.event_date.label</source>
+                <target>Datum</target>
+            </trans-unit>
+            <trans-unit id="events.host.label">
+                <source>events.host.label</source>
+                <target>Gastgeberin</target>
+            </trans-unit>
+            <trans-unit id="events.address_line_1.label">
+                <source>events.address_line_1.label</source>
+                <target>Adressenzeile 1</target>
+            </trans-unit>
+            <trans-unit id="events.address_line_2.label">
+                <source>events.address_line_2.label</source>
+                <target>Adressenzeile 2</target>
+            </trans-unit>
+            <trans-unit id="events.postal_code.label">
+                <source>events.postal_code.label</source>
+                <target>Postleitzahl</target>
+            </trans-unit>
+            <trans-unit id="events.city.label">
+                <source>events.city.label</source>
+                <target>Ort</target>
+            </trans-unit>
+            <trans-unit id="events.phone.label">
+                <source>events.phone.label</source>
+                <target>Tel.</target>
+            </trans-unit>
+            <trans-unit id="events.email.label">
+                <source>events.email.label</source>
+                <target>E-Mail</target>
+            </trans-unit>
+            <trans-unit id="events.description.label">
+                <source>events.description.label</source>
+                <target>Beschreibung</target>
+            </trans-unit>
+            <trans-unit id="events.type.label">
+                <source>events.type.label</source>
+                <target>Typ</target>
+            </trans-unit>
+            <trans-unit id="events.type.choice.ar">
+                <source>events.type.choice.ar</source>
+                <target>Homeshopping-Veranstaltung</target>
+            </trans-unit>
+            <trans-unit id="events.type.choice.hus">
+                <source>events.type.choice.hus</source>
+                <target>Tag der offenen Tür</target>
+            </trans-unit>
+            <trans-unit id="events.is_open.label">
+                <source>events.is_open.label</source>
+                <target>Offen für Warenkäufe bei der Veranstaltung</target>
+            </trans-unit>
+            <trans-unit id="events.notify_hostess.label">
+                <source>events.notify_hostess.label</source>
+                <target>Gastgeberin benachrichtigen?</target>
+            </trans-unit>
+            <trans-unit id="events.customer.found">
+                <source>events.customer.found</source>
+                <target>Der Kunde wurde gefunden!</target>
+            </trans-unit>
+            <trans-unit id="events.customer.notfound">
+                <source>events.customer.notfound</source>
+                <target>Der Kunde wurde nicht gefunden!</target>
+            </trans-unit>
+            <trans-unit id="events.rsvp.top.header.text">
+                <source>events.rsvp.top.header.text</source>
+                <target>Sie wurden zu einer Homeshopping-Veranstaltung eingeladen.</target>
+            </trans-unit>
+            <trans-unit id="events.not_found.header.text">
+                <source>events.not_found.header.text</source>
+                <target>Es ist ein Fehler aufgetreten</target>
+            </trans-unit>
+            <trans-unit id="events.not_found.description.text">
+                <source>events.not_found.description.text</source>
+                <target>Wir haben Ihre Einladung nicht finden können. Stellen Sie sicher, dass Sie den gesamten Link kopiert haben.</target>
+            </trans-unit>
+            <trans-unit id="events.too_late_to_rsvp.text">
+                <source>events.too_late_to_rsvp.text</source>
+                <target>Die Veranstaltung hat bereits stattgefunden. Es kann nicht mehr geantwortet werden.</target>
+            </trans-unit>
+            <trans-unit id="events.too_late_to_invite.text">
+                <source>events.too_late_to_invite.text</source>
+                <target>Die Veranstaltung hat bereits stattgefunden. Es können keine Personen mehr eingeladen werden.</target>
+            </trans-unit>
+            <trans-unit id="events.invite.top.header.text">
+                <source>events.invite.top.header.text</source>
+                <target>Es wurde eine Veranstaltung mit Ihnen als Gastgeberin erstellt.</target>
+            </trans-unit>
+            <trans-unit id="events.invite.header.text">
+                <source>events.invite.header.text</source>
+                <target>Einladen</target>
+            </trans-unit>
+            <trans-unit id="events.invite.description.text">
+                <source>events.invite.description.text</source>
+                <target>Gäste zu Ihrer Homeshopping-Veranstaltung einladen. Wenn Sie Handynummer ausfüllen, schicken wir Ihrem Gast eine SMS. Wenn Sie E-Mail-Adresse ausfüllen, schicken wir Ihrem Gast eine E-Mail. Sie können sowohl Handynummer als auch E-Mail-Adresse ausfüllen.</target>
+            </trans-unit>
+            <trans-unit id="events.invite.participant.button">
+                <source>events.invite.participant.button</source>
+                <target>Einladen</target>
+            </trans-unit>
+            <trans-unit id="events.invite.participants.header.text">
+                <source>events.invite.participants.header.text</source>
+                <target>Alle Teilnehmer</target>
+            </trans-unit>
+            <trans-unit id="events.participants.no.participants">
+                <source>events.participants.no.participants</source>
+                <target>Es gibt keine Teilnehmer für diese Veranstaltung</target>
+            </trans-unit>
+            <trans-unit id="events.rsvp.header.text">
+                <source>events.rsvp.header.text</source>
+                <target>Ihre Antwort</target>
+            </trans-unit>
+            <trans-unit id="events.rsvp.description.text">
+                <source>events.rsvp.description.text</source>
+                <target>Schicken Sie Ihre Antwort, ob Sie an der Homeshopping-Veranstaltung teilnehmen. Aktualisieren Sie Ihre Informationen.</target>
+            </trans-unit>
+            <trans-unit id="events.tell_a_friend.header.text">
+                <source>events.tell_a_friend.header.text</source>
+                <target>Eine Freundin einladen</target>
+            </trans-unit>
+            <trans-unit id="events.tell_a_friend.description.text">
+                <source>events.tell_a_friend.description.text</source>
+                <target>Sie können eine Freundin zu der Veranstaltung einladen. Füllen Sie die Felder aus und drücken Sie auf "Freundin einladen". Danach wird eine E-Mail an den eingeladenen Gast verschickt.</target>
+            </trans-unit>
+            <trans-unit id="events.participant.rsvp.button">
+                <source>events.participant.rsvp.button</source>
+                <target>Ihre Antwort aktualisieren</target>
+            </trans-unit>
+            <trans-unit id="events.participant.tell_a_friend.button">
+                <source>events.participant.tell_a_friend.button</source>
+                <target>Freundin einladen</target>
+            </trans-unit>
+            <trans-unit id="events.participants.first_name.label">
+                <source>events.participants.first_name.label</source>
+                <target>Vorname</target>
+            </trans-unit>
+            <trans-unit id="events.participants.last_name.label">
+                <source>events.participants.last_name.label</source>
+                <target>Nachname</target>
+            </trans-unit>
+            <trans-unit id="events.participants.phone.label">
+                <source>events.participants.phone.label</source>
+                <target>Handynummer</target>
+            </trans-unit>
+            <trans-unit id="events.participants.email.label">
+                <source>events.participants.email.label</source>
+                <target>E-Mail</target>
+            </trans-unit>
+            <trans-unit id="events.participants.notify_by_sms.label">
+                <source>events.participants.notify_by_sms.label</source>
+                <target>Wünschen Sie eine Erinnerung per SMS?</target>
+            </trans-unit>
+            <trans-unit id="events.participants.has_accepted.label">
+                <source>events.participants.has_accepted.label</source>
+                <target>Ich komme</target>
+            </trans-unit>
+            <trans-unit id="events.hasaccepted.yes">
+                <source>events.hasaccepted.yes</source>
+                <target>Ja</target>
+            </trans-unit>
+            <trans-unit id="events.hasaccepted.no">
+                <source>events.hasaccepted.no</source>
+                <target>Nein</target>
+            </trans-unit>
+            <trans-unit id="events.participants.tell_a_friend.label">
+                <source>events.participants.tell_a_friend.label</source>
+                <target>Möglichkeit, eine Freundin einzuladen?</target>
+            </trans-unit>
+            <trans-unit id="events.participant.invited">
+                <source>events.participant.invited</source>
+                <target>Die Person wurde zur Liste hinzugefügt und hat eine E-Mail erhalten.</target>
+            </trans-unit>
+            <trans-unit id="events.participant.invite.failed">
+                <source>events.participant.invite.failed</source>
+                <target>Es ist leider ein Fehler aufgetreten. Bitte versuchen Sie es erneut.</target>
+            </trans-unit>
+            <trans-unit id="events.participant.rsvp.success">
+                <source>events.participant.rsvp.success</source>
+                <target>Ihre Antwort ist angekommen.</target>
+            </trans-unit>
+            <trans-unit id="event.sms.confirmation.reply">
+                <source>event.sms.confirmation.reply</source>
+                <target>Hallo %name%, vielen Dank für Ihre Anmeldung zur POMPdeLUX Homeshopping-Veranstaltung am %event_date% um %event_time% Uhr an der Adresse %address%, %zip% %city%. Ich freue mich, Sie begrüßen zu dürfen! %hostess%</target>
+            </trans-unit>
+            <trans-unit id="event.sms.invite">
+                <source>event.sms.invite</source>
+                <target>Hallo %name%, %hostess% möchte Sie zur POMPdeLUX Homeshopping-Veranstaltung am %event_date% um %event_time% Uhr an der Adresse %address%, %zip% %city% einladen. Möchten Sie dabei sein und schicke Kinderbekleidung erleben, dann antworten Sie auf dieses SMS mit dem Text "pdl %event_id%". Ich hoffe, Sie begrüßen zu dürfen!</target>
+            </trans-unit>
+            <trans-unit id="event.sms.reminder">
+                <source>event.sms.reminder</source>
+                <target>Hallo %name%, vergessen Sie bitte die POMPdeLUX Homeshopping-Veranstaltung am %event_date% um %event_time% Uhr an folgender Adresse nicht: %address%, %zip% %city% Mit freundlichen Grüßen POMPdeLUX</target>
+            </trans-unit>
+            <trans-unit id="events.name">
+                <source>events.name</source>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="event.email.exists">
+                <source>event.email.exists</source>
+                <target>Der eingegebene Gast ist bereits registriert.</target>
+            </trans-unit>
+            <trans-unit id="event.too.old.to.edit">
+                <source>event.too.old.to.edit</source>
+                <target>Die Veranstaltung hat bereits stattgefunden und kann daher nicht bearbeitet oder gelöscht werden.</target>
+            </trans-unit>
+            <trans-unit id="event.too.old.to.delete">
+                <source>event.too.old.to.delete</source>
+                <target>Die Veranstaltung hat bereits stattgefunden und kann daher nicht bearbeitet oder gelöscht werden.</target>
+            </trans-unit>
+            <trans-unit id="events.create_customer.header.text">
+                <source>events.create_customer.header.text</source>
+                <target>Kundeninformationen holen</target>
+            </trans-unit>
+            <trans-unit id="events.create_customer.description.text">
+                <source>events.create_customer.description.text</source>
+                <target><![CDATA[<b>Neuer Kunde:</b> Geben Sie die Telefonnummer des Kunden ein und klicken Sie auf die Schaltfläche Holen.<br><b>Existierender Kunde:</b> Geben Sie die E-Mail-Adresse des Kunden ein und klicken Sie auf die Schaltfläche Holen.<br><br><span style="font-weight:bold; color:#A10000;">Bitte beachten:</span> Auf dieser Seite sollen Sie Ihre privaten Informationen ausfüllen (<u>nicht</u> evtl. Firmeninformationen)]]></target>
+            </trans-unit>
+            <trans-unit id="events.fetch_customer.placeholder" approved="no">
+                <source>events.fetch_customer.placeholder</source>
+                <target>E-Mail oder Tel. Nr.</target>
+            </trans-unit>
+            <trans-unit id="events.fetch_customer.button">
+                <source>events.fetch_customer.button</source>
+                <target>Holen</target>
+            </trans-unit>
+            <trans-unit id="choose.event.type">
+                <source>choose.event.type</source>
+                <target>Veranstaltungstyp wählen</target>
+            </trans-unit>
+            <trans-unit id="event.type.private">
+                <source>event.type.private</source>
+                <target>Privatkäufe</target>
+            </trans-unit>
+            <trans-unit id="event.type.gift">
+                <source>event.type.gift</source>
+                <target>Geschenkkäufe</target>
+            </trans-unit>
+            <trans-unit id="event.type.friend">
+                <source>event.type.friend</source>
+                <target>Freundinnenkäufe</target>
+            </trans-unit>
+            <trans-unit id="event.type.other">
+                <source>event.type.other</source>
+                <target>Außerhalb der Veranstaltung</target>
+            </trans-unit>
+            <trans-unit id="hostess.discount">
+                <source>hostess.discount</source>
+                <target>Gastgeberinnenermäßigung</target>
+            </trans-unit>
+            <trans-unit id="event.close">
+                <source>event.close</source>
+                <target>Veranstaltung schließen</target>
+            </trans-unit>
+            <trans-unit id="event.closed">
+                <source>event.closed</source>
+                <target>Die Veranstaltung wurde jetzt geschlossen</target>
+            </trans-unit>
+            <trans-unit id="events.fetch_customer.newsletter.update">
+                <source>events.fetch_customer.newsletter.update</source>
+                <target>Newsletteranmeldung ändern</target>
+            </trans-unit>
+            <trans-unit id="events.myevents.header" approved="no">
+                <source>events.myevents.header</source>
+                <target><![CDATA[<h1>Meine Veranstaltungen</h1><p>Hier werden alle Veranstaltungen angezeigt, bei denen <b>Sie</b> die Gastgeberin sind</p>]]></target>
+            </trans-unit>
+            <trans-unit id="events.event.header.text.%date%" approved="no">
+                <source>events.event.header.text.%date%</source>
+                <target>Veranstaltung am %date%:</target>
+            </trans-unit>
+            <trans-unit id="events.no.events" approved="no">
+                <source>events.no.events</source>
+                <target>Es wurden keine kommenden Veranstaltungen gefunden.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

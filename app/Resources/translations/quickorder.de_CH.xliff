@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="quickorder.header.text">
+                <source>quickorder.header.text</source>
+                <target>Schnellbestellung</target>
+            </trans-unit>
+            <trans-unit id="quickorder.description.text">
+                <source>quickorder.description.text</source>
+                <target>Geben Sie die ersten Buchstaben des Styles ein, den Sie zum Warenkorb hinzufügen möchten. Drücken Sie auf [TAB], um zum nächsten Feld zu gelangen.</target>
+            </trans-unit>
+            <trans-unit id="quickorder.master.placeholder">
+                <source>quickorder.master.placeholder</source>
+                <target>Produkt</target>
+            </trans-unit>
+            <trans-unit id="quickorder.quantity.placeholder">
+                <source>quickorder.quantity.placeholder</source>
+                <target>Menge</target>
+            </trans-unit>
+            <trans-unit id="quickorder.submit.placeholder">
+                <source>quickorder.submit.placeholder</source>
+                <target>Zum Warenkorb hinzufügen</target>
+            </trans-unit>
+            <trans-unit id="quickorder.reset.placeholder">
+                <source>quickorder.reset.placeholder</source>
+                <target>Alles entfernen</target>
+            </trans-unit>
+            <trans-unit id="quickorder.products.header.text">
+                <source>quickorder.products.header.text</source>
+                <target>Warenkorb</target>
+            </trans-unit>
+            <trans-unit id="quickorder.sku.table">
+                <source>quickorder.sku.table</source>
+                <target>Produkt</target>
+            </trans-unit>
+            <trans-unit id="quickorder.quantity.table">
+                <source>quickorder.quantity.table</source>
+                <target>Menge</target>
+            </trans-unit>
+            <trans-unit id="quickorder.no.products.found">
+                <source>quickorder.no.products.found</source>
+                <target>Produkt wurde nicht gefunden.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

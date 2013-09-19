@@ -109,6 +109,14 @@ class Tools
                     case 'SalesSE':
                         $to = 'order@pompdelux.se';
                         break;
+                    case 'AT':
+                    case 'SalesAT':
+                        $to = 'order@pompdelux.at';
+                        break;
+                    case 'CH':
+                    case 'SalesCH':
+                        $to = 'order@pompdelux.ch';
+                        break;
                     default:
                         $to = 'order@pompdelux.dk';
                         break;
@@ -136,6 +144,14 @@ class Tools
                     case 'SE':
                     case 'SalesSE':
                         $to = 'returse@pompdelux.dk';
+                        break;
+                    case 'AT':
+                    case 'SalesAT':
+                        $to = 'returat@pompdelux.dk';
+                        break;
+                    case 'CH':
+                    case 'SalesCH':
+                        $to = 'returch@pompdelux.dk';
                         break;
                     default:
                         $to = 'retur@pompdelux.dk';
@@ -323,6 +339,8 @@ class Tools
             'nb_no' => 'no',
             'nl_nl' => 'nl',
             'sv_se' => 'se',
+            'de_at' => 'at',
+            'de_ch' => 'ch',
         );
 
         $path = explode('/', trim(str_replace($_SERVER['SCRIPT_NAME'], '', strtolower($_SERVER['REQUEST_URI'])), '/'));
@@ -360,8 +378,8 @@ class Tools
                 die("User-agent: *\nDisallow: /\n");
             }
 
-            die("User-agent: *\nDisallow:\n");
-            //die("User-agent: *\nDisallow: /de_DE/\n");
+            #die("User-agent: *\nDisallow:\n");
+            die("User-agent: *\nDisallow: /de_CH/\nDisallow: /de_AT/\n");
         }
     }
 

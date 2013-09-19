@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "7ff11ad8cc5b7732793bff4e7207dc3f",
+    "hash": "1b44d443ee8bb3077cc72846ec2754be",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -445,12 +445,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekino/EkinoNewRelicBundle.git",
-                "reference": "749df89fad626c7e47ce1d81c1ad9a67e75f2a5f"
+                "reference": "bb69e1cd05bb870225ec3577e14cb0a2018ee392"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekino/EkinoNewRelicBundle/zipball/749df89fad626c7e47ce1d81c1ad9a67e75f2a5f",
-                "reference": "749df89fad626c7e47ce1d81c1ad9a67e75f2a5f",
+                "url": "https://api.github.com/repos/ekino/EkinoNewRelicBundle/zipball/bb69e1cd05bb870225ec3577e14cb0a2018ee392",
+                "reference": "bb69e1cd05bb870225ec3577e14cb0a2018ee392",
                 "shasum": ""
             },
             "require": {
@@ -485,7 +485,7 @@
                 "monitoring",
                 "performance"
             ],
-            "time": "2013-08-19 20:19:36"
+            "time": "2013-09-18 13:22:46"
         },
         {
             "name": "guzzle/guzzle",
@@ -721,12 +721,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/JMSDiExtraBundle.git",
-                "reference": "81954bf90728cb2a0501eae6ead77fcd1ef8c146"
+                "reference": "782ecc42faff1a40e38ab587862f74564cee1dd7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/JMSDiExtraBundle/zipball/81954bf90728cb2a0501eae6ead77fcd1ef8c146",
-                "reference": "81954bf90728cb2a0501eae6ead77fcd1ef8c146",
+                "url": "https://api.github.com/repos/schmittjoh/JMSDiExtraBundle/zipball/782ecc42faff1a40e38ab587862f74564cee1dd7",
+                "reference": "782ecc42faff1a40e38ab587862f74564cee1dd7",
                 "shasum": ""
             },
             "require": {
@@ -779,7 +779,7 @@
                 "annotations",
                 "dependency injection"
             ],
-            "time": "2013-08-06 07:00:52"
+            "time": "2013-09-17 09:48:21"
         },
         {
             "name": "jms/metadata",
@@ -1493,17 +1493,17 @@
         },
         {
             "name": "propel/propel-bundle",
-            "version": "1.2.7",
+            "version": "1.2.8",
             "target-dir": "Propel/PropelBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/propelorm/PropelBundle.git",
-                "reference": "d9d8e9879fa3ec6bb99e505f703fcba89a469401"
+                "reference": "2c0342f927d1675a586710847aac551476752fc6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/propelorm/PropelBundle/zipball/d9d8e9879fa3ec6bb99e505f703fcba89a469401",
-                "reference": "d9d8e9879fa3ec6bb99e505f703fcba89a469401",
+                "url": "https://api.github.com/repos/propelorm/PropelBundle/zipball/2c0342f927d1675a586710847aac551476752fc6",
+                "reference": "2c0342f927d1675a586710847aac551476752fc6",
                 "shasum": ""
             },
             "require": {
@@ -1537,7 +1537,7 @@
                 "persistence",
                 "propel"
             ],
-            "time": "2013-06-19 15:16:47"
+            "time": "2013-09-18 14:23:38"
         },
         {
             "name": "propel/propel1",
@@ -1834,27 +1834,27 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/AsseticBundle.git",
-                "reference": "146dd3cb46b302bd471560471c6aaa930483dac1"
+                "reference": "v2.3.0-beta1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/AsseticBundle/zipball/146dd3cb46b302bd471560471c6aaa930483dac1",
-                "reference": "146dd3cb46b302bd471560471c6aaa930483dac1",
+                "url": "https://api.github.com/repos/symfony/AsseticBundle/zipball/v2.3.0-beta1",
+                "reference": "v2.3.0-beta1",
                 "shasum": ""
             },
             "require": {
-                "kriswallsmith/assetic": "~1.1",
+                "kriswallsmith/assetic": ">=1.1-beta1,<1.2",
                 "php": ">=5.3.0",
-                "symfony/framework-bundle": "~2.1"
+                "symfony/framework-bundle": ">=2.1,<3.0"
             },
             "require-dev": {
-                "symfony/class-loader": "~2.1",
-                "symfony/console": "~2.1",
-                "symfony/css-selector": "~2.1",
-                "symfony/dom-crawler": "~2.1",
-                "symfony/form": "~2.1",
-                "symfony/twig-bundle": "~2.1",
-                "symfony/yaml": "~2.1"
+                "symfony/class-loader": ">=2.1,<3.0",
+                "symfony/console": ">=2.1,<3.0",
+                "symfony/css-selector": ">=2.1,<3.0",
+                "symfony/dom-crawler": ">=2.1,<3.0",
+                "symfony/form": ">=2.1,<3.0",
+                "symfony/twig-bundle": ">=2.1,<3.0",
+                "symfony/yaml": ">=2.1,<3.0"
             },
             "suggest": {
                 "symfony/twig-bundle": "~2.1"
@@ -1888,7 +1888,7 @@
                 "compression",
                 "minification"
             ],
-            "time": "2013-05-16 05:32:23"
+            "time": "2013-05-13 15:39:47"
         },
         {
             "name": "symfony/icu",
@@ -1998,17 +1998,17 @@
         },
         {
             "name": "symfony/swiftmailer-bundle",
-            "version": "v2.3.2",
+            "version": "v2.3.4",
             "target-dir": "Symfony/Bundle/SwiftmailerBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/SwiftmailerBundle.git",
-                "reference": "5573e119252f4026c7d0e989b6820c6f687f6d4c"
+                "reference": "f5e5d12629c26a835c7aa1d74e2e041486b92d93"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/SwiftmailerBundle/zipball/5573e119252f4026c7d0e989b6820c6f687f6d4c",
-                "reference": "5573e119252f4026c7d0e989b6820c6f687f6d4c",
+                "url": "https://api.github.com/repos/symfony/SwiftmailerBundle/zipball/f5e5d12629c26a835c7aa1d74e2e041486b92d93",
+                "reference": "f5e5d12629c26a835c7aa1d74e2e041486b92d93",
                 "shasum": ""
             },
             "require": {
@@ -2049,7 +2049,7 @@
             ],
             "description": "Symfony SwiftmailerBundle",
             "homepage": "http://symfony.com",
-            "time": "2013-05-15 08:38:58"
+            "time": "2013-08-22 13:32:58"
         },
         {
             "name": "symfony/symfony",
@@ -2257,32 +2257,32 @@
         },
         {
             "name": "willdurand/expose-translation-bundle",
-            "version": "0.3.0",
+            "version": "1.0.0",
             "target-dir": "Bazinga/ExposeTranslationBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/willdurand/BazingaExposeTranslationBundle.git",
-                "reference": "0.3.0"
+                "reference": "72f6567cdb6cf4b8cd20570d45ad8aaf3c311c79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/willdurand/BazingaExposeTranslationBundle/zipball/0.3.0",
-                "reference": "0.3.0",
+                "url": "https://api.github.com/repos/willdurand/BazingaExposeTranslationBundle/zipball/72f6567cdb6cf4b8cd20570d45ad8aaf3c311c79",
+                "reference": "72f6567cdb6cf4b8cd20570d45ad8aaf3c311c79",
                 "shasum": ""
             },
             "require": {
-                "symfony/console": ">=2.0,<2.4-dev",
-                "symfony/finder": ">=2.0,<2.4-dev",
-                "symfony/framework-bundle": ">=2.0,<2.4-dev"
+                "symfony/console": "~2.0",
+                "symfony/finder": "~2.0",
+                "symfony/framework-bundle": "~2.0"
             },
             "require-dev": {
-                "symfony/browser-kit": ">=2.0,<2.4-dev",
-                "symfony/yaml": ">=2.0,<2.4-dev"
+                "symfony/browser-kit": "~2.0",
+                "symfony/yaml": "~2.0"
             },
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.2.x-dev"
+                    "dev-master": "0.3.x-dev"
                 }
             },
             "autoload": {
@@ -2306,20 +2306,20 @@
                 "javascript",
                 "translation"
             ],
-            "time": "2013-05-24 09:08:10"
+            "time": "2013-09-18 08:13:56"
         },
         {
             "name": "willdurand/geocoder",
-            "version": "2.1.0",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/geocoder-php/Geocoder.git",
-                "reference": "39722583edd5611c9bab1f7d0fe9a75f7abf0441"
+                "reference": "5c3a0d43bdf44d9846e92f2258652616ee0fc67b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/geocoder-php/Geocoder/zipball/39722583edd5611c9bab1f7d0fe9a75f7abf0441",
-                "reference": "39722583edd5611c9bab1f7d0fe9a75f7abf0441",
+                "url": "https://api.github.com/repos/geocoder-php/Geocoder/zipball/5c3a0d43bdf44d9846e92f2258652616ee0fc67b",
+                "reference": "5c3a0d43bdf44d9846e92f2258652616ee0fc67b",
                 "shasum": ""
             },
             "require": {
@@ -2342,7 +2342,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0-dev"
+                    "dev-master": "2.2-dev"
                 }
             },
             "autoload": {
@@ -2369,7 +2369,7 @@
                 "geocoding",
                 "geoip"
             ],
-            "time": "2013-08-27 11:38:53"
+            "time": "2013-09-16 08:29:30"
         }
     ],
     "packages-dev": [
