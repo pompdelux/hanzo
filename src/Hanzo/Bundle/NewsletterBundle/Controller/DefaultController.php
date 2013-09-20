@@ -100,7 +100,12 @@ class DefaultController extends CoreController
         $api      = $this->get('newsletterapi');
 
         if ('POST' === $request->getMethod()) {
-            $api->subscribe($customer->getEmail(), $request->request->get('lists'));
+            $lists = $request->request->get('lists');
+            if (empty($lists)) {
+                $api->unsubscribe($customer->getEmail(), 'ALL');
+            } else {
+                $api->subscribe($customer->getEmail(), $lists);
+            }
             return $this->redirect($this->generateUrl('_account'));
         }
 

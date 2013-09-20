@@ -797,7 +797,7 @@
       <trans-unit id="Kentucky Little TUNIC">
         <source>description.Kentucky_Little_TUNIC</source>
         <target>
-          <![CDATA[Tuttu A-linjainen tunikamme, jossa on kauniita kukkakuvioita allover-painatuksena. Kapea kangasnauha kaula-aukossa, nappi niskassa sekä sisävuori.		<br><br>	Saatavana: Curry, Blue ja Rose	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Ihana A-linjainen tunika somalla pienellä kukkakuosilla. Hihat pienellä rypytyksellä, kaksi rimpsua alareunassa, tunikassa on ohut vuori.<br><br>	Saatavana: Curry, Blue ja Rose	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="Kentucky TUNIC">
@@ -1152,14 +1152,14 @@
           <![CDATA[Hyvännäköiset chinot kestävää ja pehmeää materiaalia. Polvissa on lisävahvikkeet vauhdikkaille pojille. Niissä on tyylikäs kulutuspesu ja saatavana on kolme erittäin käyttökelpoista väriä. Säädettävä vyötärö.		<br><br>	Saatavana: Curry, Blue ja Brown	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
-      <trans-unit id="Pittsburghh CARDIGAN">
-        <source>description.Pittsburghh_CARDIGAN</source>
+      <trans-unit id="Pittsburgh CARDIGAN">
+        <source>description.Pittsburgh_CARDIGAN</source>
         <target>
           <![CDATA[Ehdoton suosikkineule, jossa on puunapit ja kyynärpaikat. Sopii täydellisesti kylmiin talvipäiviin... ja näyttää tyylikkäältä.  		<br><br>	Saatavana: Off White ja Grey Melange	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 80 % puuvillaa, 20 % villaa]]>
         </target>
       </trans-unit>
-      <trans-unit id="Pittsburghh Little CARDIGAN">
-        <source>description.Pittsburghh_Little_CARDIGAN</source>
+      <trans-unit id="Pittsburgh Little CARDIGAN">
+        <source>description.Pittsburgh_Little_CARDIGAN</source>
         <target>
           <![CDATA[Ehdoton suosikkineule, jossa on puunapit ja kyynärpaikat. Sopii täydellisesti kylmiin talvipäiviin... ja näyttää tyylikkäältä.  		<br><br>	Saatavana: Off White ja Grey Melange	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 80 % puuvillaa, 20 % villaa]]>
         </target>

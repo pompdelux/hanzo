@@ -1,6 +1,6 @@
 <?php /* vim: set sw=4: */
 
-namespace Hanzo\Bundle\PaymentBundle\Methods\PayByBill;
+namespace Hanzo\Bundle\PaymentBundle\Methods\ManualPayment;
 
 use Exception;
 
@@ -10,11 +10,11 @@ use Hanzo\Model\Customers;
 
 use Hanzo\Bundle\PaymentBundle\BasePaymentApi;
 use Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface;
-use Hanzo\Bundle\PaymentBundle\Methods\PayByBill\PayByBillCallResponse;
+use Hanzo\Bundle\PaymentBundle\Methods\ManualPayment\ManualPaymentCallResponse;
 
 use Symfony\Component\HttpFoundation\Request;
 
-class PayByBillApi extends BasePaymentApi implements PaymentMethodApiInterface
+class ManualPaymentApi extends BasePaymentApi implements PaymentMethodApiInterface
 {
     /**
      * undocumented class variable
@@ -39,7 +39,6 @@ class PayByBillApi extends BasePaymentApi implements PaymentMethodApiInterface
      * call
      * Dummy implementation as this method does not use an api call
      * @return boolean
-     * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function call()
     {
@@ -49,12 +48,11 @@ class PayByBillApi extends BasePaymentApi implements PaymentMethodApiInterface
     /**
      * cancel
      *
-     * @return PayByBillCallResponse
-     * @author Henrik Farre <hf@bellcom.dk>
+     * @return ManualPaymentCallResponse
      **/
     public function cancel( Customers $customer, Orders $order )
     {
-        return new PayByBillCallResponse();
+        return new ManualPaymentCallResponse();
     }
 
     /**
@@ -62,11 +60,9 @@ class PayByBillApi extends BasePaymentApi implements PaymentMethodApiInterface
      * Checks if the api is active for the current configuration
      *
      * @return bool
-     * @author Ulrik Nielsen <un@bellcom.dk>
      **/
     public function isActive()
     {
-
         $order = OrdersPeer::getCurrent();
         if ($order->getInEdit() && ($_SERVER['REMOTE_ADDR'] !== '127.0.0.1')) {
             return false;
@@ -96,7 +92,7 @@ class PayByBillApi extends BasePaymentApi implements PaymentMethodApiInterface
     public function updateOrderFailed( Request $request, Orders $order)
     {
         $order->setState( Orders::STATE_ERROR_PAYMENT );
-        $order->setAttribute( 'paytype' , 'payment', 'paybybill' );
+        $order->setAttribute( 'paytype' , 'payment', 'manualpayment' );
         $order->save();
     }
 
@@ -111,13 +107,13 @@ class PayByBillApi extends BasePaymentApi implements PaymentMethodApiInterface
     public function updateOrderSuccess( Request $request, Orders $order )
     {
         $order->setState( Orders::STATE_PAYMENT_OK );
-        $order->setAttribute( 'paytype' , 'payment', 'paybybill' );
+        $order->setAttribute( 'paytype' , 'payment', 'manualpayment' );
         $order->save();
     }
 
 
     public function getProcessButton(Orders $order, Request $request)
     {
-        return ['url' => 'payment/paybybill/callback'];
+        return ['url' => 'payment/manualpayment/callback'];
     }
 }

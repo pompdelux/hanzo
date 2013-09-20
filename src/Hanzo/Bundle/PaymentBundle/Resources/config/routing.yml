@@ -75,9 +75,9 @@ PaymentBundle_gothiade_payment_cancel:
     defaults: { _controller: PaymentBundle:Default:cancel }
 
 # COD }-------------------------
-_paybybill_callback:
-    pattern:  /payment/paybybill/callback
-    defaults: { _controller: PaymentBundle:PayByBill:callback }
+_manualpayment_callback:
+    pattern:  /payment/manualpayment/callback
+    defaults: { _controller: PaymentBundle:ManualPayment:callback }
 
 # GiftCard }----------------------
 _gift_card_callback:

@@ -32,7 +32,7 @@ if ('dev' != $env[0]) {
             $db_prefix = $env[0].'_de_';
             break;
       // case 'nl':
-      //   $db_prefix = $env[0].'_se_';
+      //   $db_prefix = $env[0].'_nl_';
       //   break;
     }
 }
@@ -46,6 +46,8 @@ $locale_map = [
     'nl'  => 'nl_NL',
     'no'  => 'nb_NO',
     'se'  => 'sv_SE',
+    'at'  => 'de_AT',
+    'ch'  => 'de_CH',
 ];
 $container->setParameter('locale', $locale_map[$lang]);
 

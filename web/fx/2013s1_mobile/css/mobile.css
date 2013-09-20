@@ -610,6 +610,11 @@ html.touch .product-list .buy-set {
 /**
 | _product
 */
+#cboxClose {
+  border: none;
+  background-color: transparent;
+}
+
 .bordered,
 .bordered-bottom {
   border-bottom: 1px solid #888;
@@ -2868,6 +2873,18 @@ div.sub-menu {
 }
 .body-frontpage #main h2 + p {
   margin-bottom: 20px;
+}
+.body-frontpage #main article {
+  overflow: hidden;
+}
+.body-frontpage #main article .grid_2 {
+  width: 49%;
+  float: left;
+  clear: left;
+}
+.body-frontpage #main article .grid_2:nth-child(even) {
+  float: right;
+  clear: none;
 }
 
 .body-pages article div {

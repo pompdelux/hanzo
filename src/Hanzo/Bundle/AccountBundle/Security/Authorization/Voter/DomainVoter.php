@@ -38,6 +38,8 @@ class DomainVoter implements VoterInterface
             151 => array( 'nl_NL' ), // Netherlands
             161 => array( 'nb_NO' ), // Norway
             207 => array( 'sv_SE' ), // Sweden
+            14  => array( 'de_AT' ), // Austria
+            208 => array( 'de_CH' ), // Switzerland
         );
 
         if (!($object instanceof Request)) {
