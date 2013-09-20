@@ -115,25 +115,9 @@
             </trans-unit>
             <trans-unit id="rma.slip.description">
                 <source>rma.slip.description</source>
-                <target><![CDATA[
-                    <p>Hvis du ønsker, at bytte eller returnere varer, skal du udfylde og medsende denne returseddel.<br>
-Da din returvare skal sælges igen, vil det være en stor hjælp, at du returnerer varen i original indpakning med hængemærker etc.<br>
- <br>
-Sammen med dine varer modtog du en returlabel – benyt denne, så modregner vi kun DKK 29,- fra værdien af dine returvarer.<br>
- <br>
-Returnerer du en reklamation eller fejlleveret vare, er forsendelsen naturligvis fragtfri for dig. Hvis du ønsker at ombytte til en anden
+                <target><![CDATA[<p>Hvis du ønsker, at bytte eller returnere varer, skal du udfylde og medsende denne returseddel.<br>Da din returvare skal sælges igen, vil det være en stor hjælp, at du returnerer varen i original indpakning med hængemærker etc.<br><br>Sammen med dine varer modtog du en returlabel – benyt denne, så modregner vi kun DKK 29,- fra værdien af dine returvarer.<br><br>Returnerer du en reklamation eller fejlleveret vare, er forsendelsen naturligvis fragtfri for dig. Hvis du ønsker at ombytte til en anden
 Størrelse, farve, eller til en helt anden vare, er forsendelsen ligeledes fragtfri. Varens pris må dog ikke overstige prisen på varen
-du returnerer.<br>
- <br>
-Er varen du ønsker at ombytte til udsolgt, refunderer vi beløbet til dig.<br>
- <br>
-Har du benyttet kortbetaling overføres dit returbeløb til det betalingskort du anvendte ved bestilling.<br>
- <br>
-Har du benyttet PayByBill, beder vi dig kontakte Gothia Finans A/S på tlf.: 7027 2795.<br>
-<b>Bemærk:</b> Selvom du afventer en kreditnota på dine returvarer, skal du betale din udestående faktura indenfor 30 dage.<br>
- <br>
-For yderligere information se venligst: <a href="/da_DK/" target="_blank">www.pompdelux.dk</a></p>
-                ]]></target>
+du returnerer.<br><br>Er varen du ønsker at ombytte til udsolgt, refunderer vi beløbet til dig.<br><br>Har du benyttet kortbetaling overføres dit returbeløb til det betalingskort du anvendte ved bestilling.<br><br>Har du benyttet PayByBill, beder vi dig kontakte Gothia Finans A/S på tlf.: 7027 2795.<br><b>Bemærk:</b> Selvom du afventer en kreditnota på dine returvarer, skal du betale din udestående faktura indenfor 30 dage.<br><br>For yderligere information se venligst: <a href="/da_DK/" target="_blank">www.pompdelux.dk</a></p>]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.activitycode">
                 <source>rma.slip.thead.activitycode</source>
