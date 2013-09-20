@@ -70,7 +70,7 @@ $settings = [
     'username'         => 'PompDelux32344',
     'password'         => 'S/SOgkhDUw==pMM',
     'installationID'   => 90290000026,
-    'productConceptID' => 30,
+    'productConceptID' => 1518, // 30 ?
     'WebShopID'        => 114,
 ];
 

@@ -123,9 +123,9 @@ $address_parts['countryCode'] = 'NL';
             'productConceptID' => $this->settings['productConceptID'],
             'installationID'   => $this->settings['installationID'],
             'country'          => $address_parts['countryCode'],
-            'address'          => $address_parts['streetName'],
+            // 'address'          => $address_parts['streetName'],
             'postCode'         => $address_parts['postalCode'],
-            'city'             => $address_parts['city'],
+            // 'city'             => $address_parts['city'],
             'limit'            => $limit,
         ];
         try {
@@ -219,8 +219,9 @@ $address_parts['countryCode'] = 'NL';
             ]);
 
             $client->__setSoapHeaders(new \SoapHeader('SoapAuthenticator', 'ServiceAuthenticationHeader', [
-                'Username' => $this->settings['username'],
-                'Password' => $this->settings['password'],
+                'Username'    => $this->settings['username'],
+                'Password'    => $this->settings['password'],
+                'IsEncrypted' => false,
             ]));
         }
 
