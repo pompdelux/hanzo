@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="title">
+                <source>title</source>
+                <target>Ankleidezimmer: %title%</target>
+            </trans-unit>
+            <trans-unit id="product">
+                <source>product</source>
+                <target>Produkt</target>
+            </trans-unit>
+            <trans-unit id="price">
+                <source>price</source>
+                <target>Preis</target>
+            </trans-unit>
+            <trans-unit id="color">
+                <source>color</source>
+                <target>Farbe</target>
+            </trans-unit>
+            <trans-unit id="size">
+                <source>size</source>
+                <target>Größe</target>
+            </trans-unit>
+            <trans-unit id="total">
+                <source>total</source>
+                <target>Insgesamt</target>
+            </trans-unit>
+            <trans-unit id="basket.notes">
+                <source>basket.notes</source>
+                <target><![CDATA[
+                    <h6>Bitte beachten</h6>
+                    1) Um eine Ware zum Warenkorb hinzuzufügen, müssen Sie zunächst eine Größe wählen <img src="/fx/images/pencil.png" alt=""><br>
+                    2) Danach klicken Sie bitte auf Zum Warenkorb hinzufügen <img src="/fx/images/basket_put.png" alt=""><br>
+                    3) Wenn Sie eine Ware von der Puppe entfernen möchten, klicken Sie bitte auf Entfernen <img src="/fx/images/delete.png" alt=""><br>
+                    4) Wenn Sie die Ware bereits in den Warenkorb gelegt haben, erscheint dieses Symbol <img src="/fx/images/bullet_green.png" alt="">
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="no.products.in.category">
+                <source>no.products.in.category</source>
+                <target>Alle Waren in dieser Kategorie sind ausverkauft.</target>
+            </trans-unit>
+            <trans-unit id="basket.heading" approved="no">
+                <source>basket.heading</source>
+                <target>Bekleidung der Puppe</target>
+            </trans-unit>
+            <trans-unit id="remove.all" approved="no">
+                <source>remove.all</source>
+                <target>Alle entfernen</target>
+            </trans-unit>
+            <trans-unit id="to.basket" approved="no">
+                <source>to.basket</source>
+                <target>Auf den Warenkorb übertragen</target>
+            </trans-unit>
+            <trans-unit id="basket.trigger.on" approved="no">
+                <source>basket.trigger.on</source>
+                <target>Anzeigen, was die Puppe trägt</target>
+            </trans-unit>
+            <trans-unit id="basket.trigger.off" approved="no">
+                <source>basket.trigger.off</source>
+                <target>Ausblenden</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
