@@ -4,7 +4,9 @@
     <thead>
         <tr>
             <th colspan="2">{{ 'point.header'|trans({}, 'locator') }}:</th>
+        {% if entry.distance is defined %}
             <th>{{ 'distance.header'|trans({}, 'locator') }}</th>
+        {% endif %}
         </tr>
     </thead>
     <tbody>
@@ -42,7 +44,9 @@
         {% endfor %}
     {% endif %}
             </td>
+        {% if entry.distance is defined %}
             <td>{{ 'distance'|trans({'%distance%' : (entry.distance / 1000)|number_format(1) }, 'locator') }}</td>
+        {% endif %}
         </tr>
     {% if loop.last %}
     </tbody>

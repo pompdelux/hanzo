@@ -12,6 +12,14 @@ use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 /**
  * Post Nord Location provider
  *
+ *
+ * INSERT INTO domains_settings
+ *   (domain_key, ns, c_key, c_value)
+ * VALUES
+ *   ('DK', 'locator', 'provider', 'postnord'),
+ *   ('DK', 'locator', 'api_key', 'bfba285c-6719-456b-849b-79c1e27624b1');
+ *
+ *
  * @author Ulrik Nielsen <un@bellcom.dk>
  */
 class PostNordProvider extends BaseProvider

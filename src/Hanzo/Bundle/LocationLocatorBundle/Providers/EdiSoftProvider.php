@@ -10,13 +10,6 @@ use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 /**
  * Post Nord Location provider
  *
- *   Installasjonsid : 90290000026
- *   WebShopID       : 114
- *   UserName        : PompDelux32344
- *   Password        : S/SOgkhDUw==pMM
- *   productConceptID: 30 (test)
- *
- *
  * INSERT INTO domains_settings
  *   (domain_key, ns, c_key, c_value)
  * VALUES
@@ -90,14 +83,14 @@ class EdiSoftProvider extends BaseProvider
      *
      * @var string
      */
-    protected $test_endpoint  = 'http://qa-ws01.facility.dir.dk/ShipAdvisor/Main.asmx?WSDL';
+    protected $dev_endpoint  = 'http://qa-ws01.facility.dir.dk/ShipAdvisor/Main.asmx?WSDL';
 
     /**
      * webservice api prod endpoint
      *
      * @var string
      */
-    protected $prod_endpoint = 'http://qa-ws01.facility.dir.dk/ShipAdvisor/Main.asmx?WSDL';
+    protected $prod_endpoint = 'http://edi-ws01.facility.dir.dk/ShipAdvisor/main.asmx?WSDL';
 
 
     /**
@@ -118,22 +111,20 @@ class EdiSoftProvider extends BaseProvider
             $address_parts['postalCode'] = trim($result[1]);
             $address_parts['city'] = trim($result[2]);
         }
-$address_parts['countryCode'] = 'NL';
+
         $lookup = [
             'productConceptID' => $this->settings['productConceptID'],
             'installationID'   => $this->settings['installationID'],
             'country'          => $address_parts['countryCode'],
-            // 'address'          => $address_parts['streetName'],
+            'address'          => $address_parts['streetName'],
             'postCode'         => $address_parts['postalCode'],
-            // 'city'             => $address_parts['city'],
+            'city'             => $address_parts['city'],
             'limit'            => $limit,
         ];
+
         try {
             $result = $client->SearchForDropPoints($lookup);
-\Hanzo\Core\Tools::log($result);
         } catch (\Exception $e) {
-\Hanzo\Core\Tools::log($e->getMessage());
-\Hanzo\Core\Tools::log($client->__getLastRequest());
             $this->logger->err($e->getMessage());
             return [];
         }
@@ -207,9 +198,9 @@ $address_parts['countryCode'] = 'NL';
         static $client;
 
         if (empty($client)) {
-            $endpoint = (substr($this->environment, 0, 4) == 'prod')
+            $endpoint = (in_array(substr($this->environment, 0, 4), ['prod', 'test']))
                 ? $this->prod_endpoint
-                : $this->test_endpoint
+                : $this->dev_endpoint
             ;
 
             $client = new \SoapClient($endpoint, [
@@ -250,8 +241,10 @@ $address_parts['countryCode'] = 'NL';
         $set = [];
 
         if (!empty($result->$key->DropPointData)) {
+
+            $i=0;
             foreach ($result->$key->DropPointData as $record) {
-                $set[] = [
+                $set[$i] = [
                     'id'            => $record->OriginalId,
                     'custom_id'     => $record->ESId,
                     'name'          => $record->Name1,
@@ -259,15 +252,23 @@ $address_parts['countryCode'] = 'NL';
                     'postal_code'   => $record->PostalCode,
                     'city'          => $record->City,
                     'country_code'  => $record->CountryCode,
-                    'phone'         => $record->Phone,
+                    'opening_hours' => [],
                     'coordinate'    => [
                         'longitude' => number_format($record->MapRefX, 6, '.', ''),
                         'latitude'  => number_format($record->MapRefY, 6, '.', ''),
                     ],
-                    'distance'      => number_format($record->Distance, 6, '.', ''),
-                    'opening_hours' => [],
                     'raw'           => $record,
                 ];
+
+                if (!empty($record->Phone)) {
+                    $set[$i]['phone'] = $record->Phone;
+                }
+
+                if (!empty($record->Distance)) {
+                    $set[$i]['distance'] = number_format(1000 * $record->Distance, 6, '.', '');
+                }
+
+                $i++;
             }
         }
 
