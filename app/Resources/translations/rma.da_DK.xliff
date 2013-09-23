@@ -13,7 +13,9 @@
             <trans-unit id="rma.form.description">
                 <source>rma.form.description</source>
                 <target><![CDATA[
-                    <p>For hver vare du ønsker at returnere, bedes du venligst vælge en aktivitet og en årsag. Noter ligeledes eventuelle kommentarer til den enkelte vare.<br>Returnerer du varer fra flere forskellige ordrer, skal du oprette en retursedel pr. ordre. Dine returvarer sender du naturligvis blot i en og samme pakke, uanset om de kommer fra flere ordrer. Husk at vedlægge retursedlen / retursedlerne i din pakke. Læs mere om returneringen på retursedlen, som bliver oprettet, når du klikker på "Opret returseddel" knappen.</p>
+                    <p>For hver vare du ønsker at returnere, bedes du venligst vælge en aktivitet og en årsag. Noter ligeledes eventuelle kommentarer til den enkelte vare.<br>Returnerer du varer fra flere forskellige ordrer, skal du oprette en retursedel pr. ordre. Dine returvarer sender du naturligvis blot i en og samme pakke, uanset om de kommer fra flere ordrer. Husk at vedlægge retursedlen / retursedlerne i din pakke. Læs mere om returneringen på retursedlen, som bliver oprettet, når du klikker på "Opret returseddel" knappen.<br><br>For at kunne se sedlen, skal du have det gratis program Adobe Reader. Hvis du ikke har Adobe Reader installeret, kan du downloade programmet her. <br />
+    <br />
+    <a href="http://www.adobe.com/products/acrobat/readstep2.html" target="_blank"><img src="http://static.pompdelux.com/images/pages/PDF_logo.jpg" width="158" height="39" border="0" title="POMPdeLUX" /></a><br /></p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="rma.form.label.activitycode">
@@ -113,19 +115,9 @@
             </trans-unit>
             <trans-unit id="rma.slip.description">
                 <source>rma.slip.description</source>
-                <target><![CDATA[
-                    <p>Hvis du &oslash;nsker at bytte eller returnere varer, skal du udfylde og medsende denne returseddel.
-                    Alle varer skal returneres i original emballage med h&aelig;ngem&aelig;rker etc.
-                    Benyt medsendte returlabel, s&aring; modregner vi kun DKK 29, - fra v&aelig;rdien af dine returvarer.
-                    Ved kortbetaling overf&oslash;res dit returbel&oslash;b til det betalingskort du anvendte ved bestilling.
-                    Ved Gothia fakturabetaling beder vi dig kontakte Gothia Finans A/S tlf.: 7027 2795.
-                    For yderligere information se www.pompdelux.dk</p>
-                    <h2>Bytte til anden st&oslash;rrelse/farve/vare</h2>
-                    <p>Hvis den &oslash;nskede st&oslash;rrelse eller farve er udsolgt, refunderer vi bel&oslash;bet, eller vi kan ombytte til en anden vare til samme eller lavere pris.</p>
-                    <h2>Reklamation</h2>
-                    <p>Hvis den &oslash;nskede st&oslash;rrelse eller farve er udsolgt, refunderer vi bel&oslash;bet.
-                    Ved reklamation vil returlabel v&aelig;re uden beregning.</p>
-                ]]></target>
+                <target><![CDATA[<p>Hvis du &oslash;nsker, at bytte eller returnere varer, skal du udfylde og medsende denne returseddel.<br>Da din returvare skal s&aelig;lges igen, vil det v&aelig;re en stor hj&aelig;lp, at du returnerer varen i original indpakning med h&aelig;ngem&aelig;rker etc.<br><br>Sammen med dine varer modtog du en returlabel – benyt denne, s&aring; modregner vi kun DKK 29,- fra v&aelig;rdien af dine returvarer.<br><br>Returnerer du en reklamation eller fejlleveret vare, er forsendelsen naturligvis fragtfri for dig. Hvis du &oslash;nsker at ombytte til en anden
+St&oslash;rrelse, farve, eller til en helt anden vare, er forsendelsen ligeledes fragtfri. Varens pris m&aring; dog ikke overstige prisen p&aring; varen
+du returnerer.<br><br>Er varen du &oslash;nsker at ombytte til udsolgt, refunderer vi bel&oslash;bet til dig.<br><br>Har du benyttet kortbetaling overf&oslash;res dit returbel&oslash;b til det betalingskort du anvendte ved bestilling.<br><br>Har du benyttet PayByBill, beder vi dig kontakte Gothia Finans A/S p&aring; tlf.: 7027 2795.<br><b>Bem&aelig;rk:</b> Selvom du afventer en kreditnota p&aring; dine returvarer, skal du betale din udest&aring;ende faktura indenfor 30 dage.<br><br>For yderligere information se venligst: <a href="/da_DK/" target="_blank">www.pompdelux.dk</a></p>]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.activitycode">
                 <source>rma.slip.thead.activitycode</source>
