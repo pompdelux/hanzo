@@ -94,6 +94,13 @@ class NewsletterApi
 
     public function unsubscribe($email, $list_id)
     {
+        if ($list_id == 'ALL') {
+            $lists = $this->getAllLists($email);
+            if (isset($lists->content->lists)) {
+                $list_id = array_keys($lists->content->lists);
+            }
+        }
+
         if (!is_array($list_id)) {
             $list_id = [$list_id];
         }

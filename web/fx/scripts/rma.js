@@ -33,6 +33,7 @@ var rma = (function($) {
             // 2. Set all product to return activity
             // 3. Set all causes to Fortrudt Køb
 
+            $('.rma-form .rma-cause, .rma-form .rma-description, .rma-form .rma-productreplacement').hide();
             $('.rma-form .rma-activitycode').val('return');
             $('.rma-form .rma-return-causes')
                 .slideDown('fast')

@@ -66,7 +66,7 @@ after 'symfony:cache:clear', 'symfony:cache:redis_clear', 'symfony:cache:varnish
 after 'deploy:rollback', 'deploy:send_email_rollback', 'deploy:rollback_warning'
 # send diff mails after updating code
 #enable when we are sure it works
-#before "deploy:update_code", "deploy:pending:default"
+after "deploy:update_code", "deploy:pending:default"
 
 ## own tasks. copy apc-clear.php, apcclear and reload apache tasks
 namespace :deploy do
@@ -123,8 +123,15 @@ namespace :deploy do
     DESC
     task :default, :except => { :no_release => true } do
       deployed_already = current_revision
-      to_be_deployed = `cd .rsync_cache && git rev-parse --short "HEAD" && cd ..`
+      puts "deployed_already: #{deployed_already}"
+      to_be_deployed = `cd .rsync_cache && git rev-parse --short "HEAD" && cd ..`.strip
+      puts "to_be_deployed: #{to_be_deployed}"
+      puts "cd .rsync_cache && git log --no-merges --pretty=format:'* %s %b (%cn)' #{to_be_deployed}..#{deployed_already};cd .."
+#      deploydiff2 = `cd .rsync_cache && git log --no-merges --pretty=format:"* %s %b (%cn)" #{to_be_deployed}..#{deployed_already}`
+#      puts "#{deploydiff2}"
+      puts "cd .rsync_cache && git log --no-merges --pretty=format:'* %s %b (%cn)' #{deployed_already}..#{to_be_deployed};cd .."
       deploydiff = `cd .rsync_cache && git log --no-merges --pretty=format:"* %s %b (%cn)" #{deployed_already}..#{to_be_deployed}`
+      puts "#{deploydiff}"
       system("echo 'Starting deploy of hanzo branch: #{branch}. New current release: #{current_release}. Run from: #{hostname}:#{pwd}. By user: #{whoami} (#{hosts}). Whats new:\n#{deploydiff}'| mail -s 'Hanzo #{branch} deploy started' mmh@bellcom.dk")
     end
   end
