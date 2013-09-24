@@ -219,6 +219,17 @@ namespace :symfony do
       capifony_puts_ok
     end
   end
+
+# FROM symfony2/symfony.rb - Overridden here to only run assetic dump on static server
+  namespace :assetic do
+    desc "Dumps all assets to the filesystem"
+    task :dump, :roles => :static,  :except => { :no_release => true } do
+      capifony_pretty_print "--> Dumping all assets to the filesystem"
+
+      run "#{try_sudo} sh -c 'cd #{latest_release} && #{php_bin} #{symfony_console} assetic:dump --env=#{symfony_env_prod} --no-debug'"
+      capifony_puts_ok
+    end
+  end
 end
 
 
