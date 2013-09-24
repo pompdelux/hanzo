@@ -198,6 +198,7 @@ namespace :symfony do
       end
     end
   end
+  # We seem to only run assets:install on pdladmin/redis. Dont know why. Maybe it should be static? But the assets should also be pusted to git.
   namespace :assets do
     desc "Installs bundle's assets"
     task :install, :roles => :redis, :except => { :no_release => true } do
@@ -220,7 +221,7 @@ namespace :symfony do
     end
   end
 
-# FROM symfony2/symfony.rb - Overridden here to only run assetic dump on static server
+# FROM symfony2/symfony.rb - Overridden here to only run assetic dump on static server. We dont loop environments because css and js is combined for all
   namespace :assetic do
     desc "Dumps all assets to the filesystem"
     task :dump, :roles => :static,  :except => { :no_release => true } do
