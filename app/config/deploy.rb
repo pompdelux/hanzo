@@ -64,8 +64,7 @@ after 'deploy:restart', 'deploy:symlinks', 'symfony:cache:assets_update', 'symfo
 after 'symfony:cache:clear', 'symfony:cache:redis_clear', 'symfony:cache:varnish_clear'
 # mail after rollback and warn about clearing cache. Doesnt seem to work with "after 'deploy:rollback", because it tries to clear the old current dir
 after 'deploy:rollback', 'deploy:send_email_rollback', 'deploy:rollback_warning'
-# send diff mails after updating code
-#enable when we are sure it works
+# save whats new diff just after updating the code
 after "deploy:update_code", "deploy:pending:default"
 
 ## own tasks. copy apc-clear.php, apcclear and reload apache tasks
@@ -97,7 +96,7 @@ namespace :deploy do
   end
   desc "Send email after deploy"
   task :send_email do
-    run_locally "echo 'New deploy of hanzo branch: #{branch}. New current release: #{current_release}. Run from: #{hostname}:#{pwd}. By user: #{whoami} (#{hosts})' | mail -s 'Hanzo #{branch} deployed' -c hd@pompdelux.dk -c lv@pompdelux.dk -c un@bellcom.dk mmh@bellcom.dk"
+    run_locally "echo 'New deploy of hanzo branch: #{branch}.\nNew current release: #{current_release}.\nRun from: #{hostname}:#{pwd}.\nBy user: #{whoami}\nOn hosts (empty if all): #{hosts}\nWhats new:\n#{deploydiff}' | mail -s 'Hanzo #{branch} deployed' -c hd@pompdelux.dk -c lv@pompdelux.dk -c un@bellcom.dk mmh@bellcom.dk"
   end
   desc "Send email after rollback"
   task :send_email_rollback do
@@ -116,23 +115,15 @@ namespace :deploy do
   task :newrelic_notify do
     run_locally("curl -s -H 'x-api-key:75916fb33fa70e01ddca4bd9a761c56989504595a94d03a' -d 'deployment[application_id]=697785' -d 'deployment[host]=#{hostname}' -d 'deployment[user]=#{whoami}' https://rpm.newrelic.com/deployments.xml")
   end
-# send diff mails
+# save whats new in a variable used later in send_email
   namespace :pending do
     desc <<-DESC
       Show the commits since the last deploy
     DESC
     task :default, :except => { :no_release => true } do
       deployed_already = current_revision
-      puts "deployed_already: #{deployed_already}"
       to_be_deployed = `cd .rsync_cache && git rev-parse --short "HEAD" && cd ..`.strip
-      puts "to_be_deployed: #{to_be_deployed}"
-      puts "cd .rsync_cache && git log --no-merges --pretty=format:'* %s %b (%cn)' #{to_be_deployed}..#{deployed_already};cd .."
-#      deploydiff2 = `cd .rsync_cache && git log --no-merges --pretty=format:"* %s %b (%cn)" #{to_be_deployed}..#{deployed_already}`
-#      puts "#{deploydiff2}"
-      puts "cd .rsync_cache && git log --no-merges --pretty=format:'* %s %b (%cn)' #{deployed_already}..#{to_be_deployed};cd .."
-      deploydiff = `cd .rsync_cache && git log --no-merges --pretty=format:"* %s %b (%cn)" #{deployed_already}..#{to_be_deployed}`
-      puts "#{deploydiff}"
-      system("echo 'Starting deploy of hanzo branch: #{branch}. New current release: #{current_release}. Run from: #{hostname}:#{pwd}. By user: #{whoami} (#{hosts}). Whats new:\n#{deploydiff}'| mail -s 'Hanzo #{branch} deploy started' mmh@bellcom.dk")
+      set :deploydiff, `cd .rsync_cache && git log --no-merges --pretty=format:"* %s %b (%cn)" #{deployed_already}..#{to_be_deployed}`
     end
   end
 end
@@ -222,15 +213,15 @@ namespace :symfony do
   end
 
 # FROM symfony2/symfony.rb - Overridden here to only run assetic dump on static server. We dont loop environments because css and js is combined for all
-  namespace :assetic do
-    desc "Dumps all assets to the filesystem"
-    task :dump, :roles => :static,  :except => { :no_release => true } do
-      capifony_pretty_print "--> Dumping all assets to the filesystem"
-
-      run "#{try_sudo} sh -c 'cd #{latest_release} && #{php_bin} #{symfony_console} assetic:dump --env=#{symfony_env_prod} --no-debug'"
-      capifony_puts_ok
-    end
-  end
+# COMMENTED OUT 24/9 2013. /login uses .js and .css files from www.pompdelux.com - so this breaks /login (and possible other urls)
+#  namespace :assetic do
+#    desc "Dumps all assets to the filesystem"
+#    task :dump, :roles => :static,  :except => { :no_release => true } do
+#      capifony_pretty_print "--> Dumping all assets to the filesystem"
+#
+#      run "#{try_sudo} sh -c 'cd #{latest_release} && #{php_bin} #{symfony_console} assetic:dump --env=#{symfony_env_prod} --no-debug'"
+#      capifony_puts_ok
+#    end
+#  end
 end
-
 
