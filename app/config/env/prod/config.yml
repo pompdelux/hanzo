@@ -15,7 +15,7 @@ framework:
     templating:
         assets_base_urls:
             http: [ %cdn% ]
-            https: [ %cdn% ]
+            ssl: [ %cdn% ]
 
 assetic:
     filters:
