@@ -39,8 +39,8 @@ class DefaultController extends Controller
             'tid' => '7902',
         ],
         'sv_SE' => [
-            'cid' => '7900',
-            'tid' => 'RZULI',
+            'cid' => 'RZULI',
+            'tid' => '7900',
         ],
     ];
 
