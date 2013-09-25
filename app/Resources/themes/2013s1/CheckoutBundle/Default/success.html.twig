@@ -31,4 +31,7 @@
 <noscript>
   <img height="1" width="1" border="0" src="http://www.googleadservices.com/pagead/conversion/1056677768/?label=purchase&amp;guid=ON&amp;script=0"/>
 </noscript>
+
+{% render 'RetargetingBundle:Default:successBlock' with {'order_id': order_id }  %}
+
 {% endblock javascript %}
