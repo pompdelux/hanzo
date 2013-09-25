@@ -4,7 +4,7 @@ body {
 }
 a {
   text-decoration: none;
-  color: #c29954;
+  color: #998670;
   font-weight: 900;
 }
 a:hover {
@@ -109,7 +109,7 @@ input[type=email] {
   padding: 2px 5px 3px 20px;
 }
 .button:hover {
-  color: #c29954;
+  color: #998670;
 }
 
 .button.disabled {
@@ -196,7 +196,7 @@ nav.main ul li a {
   padding: 3px 20px;
 }
 nav.main ul li a:hover {
-  background-color: #c29954;
+  background-color: #998670;
 }
 
 nav.main li.active a {
@@ -235,7 +235,7 @@ nav.main ul li li li.inactive a {
 }
 nav.main ul li li li a:hover,
 nav.main ul li li a:hover {
-  color: #c29954;
+  color: #998670;
 }
 
 nav.sub {
@@ -266,7 +266,7 @@ nav.sub a {
   color: #231f20;
 }
 nav.sub a:hover {
-  color: #c29954;
+  color: #998670;
 }
 
 /* frontpage teasers */
@@ -293,7 +293,7 @@ nav.sub a:hover {
   color: #fff;
 }
 #teasers a:hover .button {
-  color: #c29954;
+  color: #998670;
 }
 
 .teaser-box-1,
@@ -392,7 +392,7 @@ nav.sub a:hover {
   margin-bottom: 10px;
 }
 #main .error h3 {
-  color: #c29954;
+  color: #998670;
 }
 #main .error p.last {
   font-weight: 900;
@@ -522,7 +522,7 @@ a.video-popper,
   color: #231f20;
 }
 #checkout-steps a:hover {
-  color: #c29954;
+  color: #998670;
 }
 #checkout-steps li {
   float: left;
@@ -565,7 +565,7 @@ a.video-popper,
 }
 #confirm_shipping_address {
   margin: 10px;
-  border: 1px solid #c29954;
+  border: 1px solid #998670;
 }
 
 .ts-address div{

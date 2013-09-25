@@ -62,3 +62,17 @@ propel:
                 dsn:                  mysql:host=%prod_se_database_host%;dbname=%prod_se_database_name%
                 options:              {}
                 attributes:           {}
+            pdldbat1:
+                driver:               %database_driver%
+                user:                 %prod_at_database_user%
+                password:             %prod_at_database_password%
+                dsn:                  mysql:host=%prod_at_database_host%;dbname=%prod_at_database_name%
+                options:              {}
+                attributes:           {}
+            pdldbch1:
+                driver:               %database_driver%
+                user:                 %prod_ch_database_user%
+                password:             %prod_ch_database_password%
+                dsn:                  mysql:host=%prod_ch_database_host%;dbname=%prod_ch_database_name%
+                options:              {}
+                attributes:           {}

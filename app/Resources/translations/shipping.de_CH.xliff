@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="shipping_10">
+        <source>page.heading</source>
+        <target>Versandart</target>
+      </trans-unit>
+      <trans-unit id="shipping_20">
+        <source>page.desc</source>
+        <target>Die richtige Versandart wählen.</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.name.601">
+        <source>shipping_method.name.601</source>
+        <target>DHL</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.desc.601 ">
+        <source>shipping_method.desc.601</source>
+        <target>Ihre Bestellung wird an Ihre Privatadresse geschickt. Wenn Sie möchten, dass Ihre Bestellung an eine andere Privatadresse (z. B. Nachbarn) geschickt werden soll, dann ändern Sie die Lieferanschrift durch Klicken auf "Lieferanschrift ändern".</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.label.601">
+        <source>shipping_method.label.601</source>
+        <target>DHL %price%</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.name.11">
+        <source>shipping_method.name.11</source>
+        <target>Firmenpaket</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.desc.11">
+        <source>shipping_method.desc.11</source>
+        <target>Wenn Sie die Möglichkeit haben, Ihre Bestellung an Ihrem Arbeitsplatz zu empfangen, können Sie Firmenpaket wählen. Bitte ändern Sie die Lieferanschrift durch Klicken auf "Lieferanschrift ändern" (die Lieferanschrift muss bei dieser Versandart eine Firmenadresse sein).</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.label.11">
+        <source>shipping_method.label.11</source>
+        <target>Post Danmark Erhverv %price%</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.name.12">
+        <source>shipping_method.name.12</source>
+        <target>Wahlfreie Auslieferung - Packstation</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.desc.12">
+        <source>shipping_method.desc.12</source>
+        <target><![CDATA[Sie können frei wählen, wo Sie Ihr Paket abholen möchten. Bei der Post oder bei einer Packstation in Ihrer Nähe...? Sie haben die freie Wahl und legen sich nicht auf Dauer auf einen Auslieferungsort fest. Auslieferungsorte finden Sie bei Ihrer Post o. ä.]]></target>
+      </trans-unit>
+      <trans-unit id="shipping_method.label.12">
+        <source>shipping_method.label.12</source>
+        <target>Packstation %price%</target>
+      </trans-unit>
+      <trans-unit id="shipping_fee.name">
+        <source>shipping_fee.name</source>
+        <target>Bearbeitungsgebühr</target>
+      </trans-unit>
+      <trans-unit id="shipping_fee.desc">
+        <source>shipping_fee.desc</source>
+        <target>Wir erheben eine Bearbeitungsgebühr in Höhe von %price% auf alle Bestellungen</target>
+      </trans-unit>
+      <trans-unit id="shipping_fee.label">
+        <source>shipping_fee.label</source>
+        <target>Bearbeitungsgebühr %price%</target>
+      </trans-unit>
+      <trans-unit id="shipping.fee">
+        <source>shipping.fee</source>
+        <target>Bearbeitungsgebühr</target>
+      </trans-unit>
+      <trans-unit id="page.desc.after_methods"><!-- Wird bei den möglichen Versandarten angezeigt -->
+        <source>page.desc.after_methods</source>
+        <target>Wir erheben eine Bearbeitungsgebühr in Höhe von 0 DKK auf alle Bestellungen</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

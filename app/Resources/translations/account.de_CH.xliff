@@ -1,0 +1,505 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="The presented password is invalid.">
+                <source>The presented password is invalid.</source>
+                <target>Das Passwort ist ungültig. </target>
+            </trans-unit>
+            <trans-unit id="The presented password cannot be empty.">
+                <source>The presented password cannot be empty.</source>
+                <target>Das Passwort darf nicht leer sein.</target>
+            </trans-unit>
+            <trans-unit id="User account is disabled." approved="no">
+                <source>User account is disabled.</source>
+                <target>Ihr Konto wurde deaktiviert.</target>
+            </trans-unit>
+            <trans-unit id="fetch.invoice">
+                <source>fetch.invoice</source>
+                <target>Rechnung als PDF herunterladen</target>
+            </trans-unit>
+            <trans-unit id="fetch.credit_note">
+                <source>fetch.credit_note</source>
+                <target>Gutschrift als PDF herunterladen</target>
+            </trans-unit>
+            <trans-unit id="previous.orders" approved="no">
+                <source>previous.orders</source>
+                <target>Frühere Bestellungen</target>
+            </trans-unit>
+            <trans-unit id="account.details">
+                <source>account.details</source>
+                <target>Kontoinformationen anzeigen oder ändern.</target>
+            </trans-unit>
+            <trans-unit id="my.account.order.view" approved="no">
+                <source>my.account.order.view</source>
+                <target>Mein Konto - Bestellnummer #%order_id%</target>
+            </trans-unit>
+            <trans-unit id="address.delivery">
+                <source>address.delivery</source>
+                <target>Lieferanschrift</target>
+            </trans-unit>
+            <trans-unit id="address.billing">
+                <source>address.billing</source>
+                <target>Rechnungsanschrift</target>
+            </trans-unit>
+            <trans-unit id="create.account.link">
+                <source>create.account.link</source>
+                <target>Neuer Kunde</target>
+            </trans-unit>
+            <trans-unit id="password.forgotten">
+                <source>password.forgotten</source>
+                <target>Ich habe mein Passwort vergessen</target>
+            </trans-unit>
+            <trans-unit id="password.forgotten.text">
+                <source>password.forgotten.text</source>
+                <target><![CDATA[
+                    <h2>Haben Sie Ihr Passwort vergessen?</h2>
+                    <p>Geben Sie Ihre E-Mail-Adresse unten ein und klicken Sie auf die Schaltfläche ”Weiter”. Im Laufe weniger Minuten erhalten Sie von POMPdeLUX eine E-Mail mit Ihrem Passwort.</p>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="password.forgotten.not_found">
+                <source>password.forgotten.not_found</source>
+                <target><![CDATA[
+                    <p>Wir konnten die eingegebene E-Mail-Adresse leider nicht finden. Versuchen Sie es bitte erneut und überprüfen Sie, ob Sie Ihre E-Mail-Adresse korrekt eingegeben haben.</p>
+                    <p>Wenn Sie Ihre E-Mail-Adresse korrekt eingegeben haben und diese Nachricht weiterhin erscheint, sind Sie nicht in unserem System registriert. Wenden Sie sich bitte an den Kundendienst, da es sein kann, dass Sie falsch registriert worden sind.</p>
+                    <a href="/de_DE/kundendienst/telefonzeiten">» Kundendienst</a>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="password.forgotten.resend">
+                <source>password.forgotten.resend</source>
+                <target><![CDATA[
+                    <p>Ihr Passwort wurde an die eingegebene E-Mail-Adresse verschickt.</p>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="proceed">
+                <source>proceed</source>
+                <target>Weiter</target>
+            </trans-unit>
+            <trans-unit id="back">
+                <source>back</source>
+                <target>Zurück</target>
+            </trans-unit>
+            <trans-unit id="retrive.password">
+                <source>retrive.password</source>
+                <target>» Erhalten Sie Ihr Passwort per E-Post</target>
+            </trans-unit>
+            <trans-unit id="new.customer">
+                <source>new.customer</source>
+                <target>Neuer Kunde</target>
+            </trans-unit>
+            <trans-unit id="existing.customer">
+                <source>existing.customer</source>
+                <target>Existierender Kunde</target>
+            </trans-unit>
+            <trans-unit id="title">
+                <source>title</source>
+                <target>Title</target>
+            </trans-unit>
+            <trans-unit id="attention.label">
+                <source>attention.label</source>
+                <target>Att:</target>
+            </trans-unit>
+            <trans-unit id="title.male">
+                <source>title.male</source>
+                <target>Herr</target>
+            </trans-unit>
+            <trans-unit id="title.female">
+                <source>title.female</source>
+                <target>Frau</target>
+            </trans-unit>
+            <trans-unit id="email">
+                <source>email</source>
+                <target>E-Mail-Adresse</target>
+            </trans-unit>
+            <trans-unit id="password">
+                <source>password</source>
+                <target>Passwort</target>
+            </trans-unit>
+            <trans-unit id="my.account">
+                <source>my.account</source>
+                <target>Meine Seite</target>
+            </trans-unit>
+            <trans-unit id="my.account.header" approved="no">
+                <source>my.account.header</source>
+                <target><![CDATA[<h1>Willkommen!</h1>]]></target>
+            </trans-unit>
+            <trans-unit id="my.account.logout">
+                <source>my.account.logout</source>
+                <target>Ausloggen</target>
+            </trans-unit>
+            <trans-unit id="my.account.login">
+                <source>my.account.login</source>
+                <target>Einloggen</target>
+            </trans-unit>
+            <trans-unit id="51">
+                <source>First name</source>
+                <target>Vorname</target>
+            </trans-unit>
+            <trans-unit id="52">
+                <source>Last name</source>
+                <target>Nachname</target>
+            </trans-unit>
+            <trans-unit id="53">
+                <source>Initials</source>
+                <target>Initialen</target>
+            </trans-unit>
+            <trans-unit id="54">
+                <source>Phone</source>
+                <target>Telefonnummer</target>
+            </trans-unit>
+            <trans-unit id="55">
+                <source>Address line 1</source>
+                <target>Straße (sowie Hausnummer und Etage/Türnummer)</target>
+            </trans-unit>
+            <trans-unit id="56">
+                <source>Address line 2</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="57">
+                <source>Postal code</source>
+                <target>Postleitzahl</target>
+            </trans-unit>
+            <trans-unit id="58">
+                <source>City</source>
+                <target>Ort</target>
+            </trans-unit>
+            <trans-unit id="59">
+                <source>Password repeated</source>
+                <target>Passwort bestätigen</target>
+            </trans-unit>
+            <trans-unit id="password.invalid.match">
+                <source>password.invalid.match</source>
+                <target>Die Passwortbestätigung muss dieselbe sein wie Ihr Passwort.</target>
+            </trans-unit>
+            <trans-unit id="61">
+                <source>Email repeated</source>
+                <target>E-Mail-Adresse bestätigen</target>
+            </trans-unit>
+            <trans-unit id="email.invalid.match">
+                <source>email.invalid.match</source>
+                <target>Bitte in beiden Feldern dieselbe E-Mail-Adresse eingeben.</target>
+            </trans-unit>
+            <trans-unit id="63">
+                <source>Country</source>
+                <target>Land</target>
+            </trans-unit>
+            <trans-unit id="countries_id">
+                <source>Countries id</source>
+                <target>Land</target>
+            </trans-unit>
+            <trans-unit id="choose.country">
+                <source>choose.country</source>
+                <target>Land wählen</target>
+            </trans-unit>
+            <trans-unit id="64">
+                <source>account.created</source>
+                <target>Ihr Konto wurde erfolgreich erstellt.</target>
+            </trans-unit>
+            <trans-unit id="account_newsletter_warning">
+                <source>account.newsletter.warning</source>
+                <target>Ihre E-Mail wurde nicht für den Newsletter angemeldet</target>
+            </trans-unit>
+            <trans-unit id="65">
+                <source>create.account</source>
+                <target>Weiter</target>
+            </trans-unit>
+            <trans-unit id="create.account.header" approved="no">
+                <source>create.account.header</source>
+                <target><![CDATA[<h1>Willkommen - Erstellen Sie ein Benutzerkonto</h1>]]></target>
+            </trans-unit>
+            <trans-unit id="edit.account">
+                <source>edit.account</source>
+                <target>Weiter</target>
+            </trans-unit>
+            <trans-unit id="update.account">
+                <source>update.account</source>
+                <target>Konto aktualisieren</target>
+            </trans-unit>
+            <trans-unit id="66">
+                <source>Email repeated</source>
+                <target>E-Mail-Adresse bestätigen</target>
+            </trans-unit>
+            <trans-unit id="67">
+                <source>create.notice</source>
+                <target><![CDATA[<strong>Bitte beachten:</strong> Wenn Sie bereits ein Konto bei uns haben, dann loggen Sie sich ein auf <a href="%url%">Meine Seite</a>]]></target>
+            </trans-unit>
+            <trans-unit id="68">
+                <source>nno.title</source>
+                <target>Holen Sie Ihre Adresseninformationen von den Gelben Seiten.</target>
+            </trans-unit>
+            <trans-unit id="69">
+                <source>nno.description</source>
+                <target>Geben Sie Ihre Telefonnummer ein und lassen Sie Ihre Adresse automatisch ausfüllen.</target>
+            </trans-unit>
+            <trans-unit id="70">
+                <source>nno.fetch</source>
+                <target>Holen</target>
+            </trans-unit>
+            <trans-unit id="71">
+                <source>create.accept</source>
+                <target>Ich bestelle hiermit das oben Angeführte und bestätige, dass ich Folgendes gelesen habe und akzeptiere </target>
+            </trans-unit>
+            <trans-unit id="72">
+                <source>create.newsletter</source>
+                <target>Newsletter bestellen</target>
+            </trans-unit>
+            <trans-unit id="73">
+                <source>create.terms</source>
+                <target>POMPdeLUX AGB's.</target>
+            </trans-unit>
+            <trans-unit id="74">
+                <source>create.nno.address_found</source>
+                <target>Die Adresse, die zu der eingegebenen Telefonnummer passt, wurde in das Formular unten übertragen.</target>
+            </trans-unit>
+            <trans-unit id="75">
+                <source>create.nno.no_address_found</source>
+                <target>Es wurde keine Adresse für die eingegebene Telefonnummer gefunden.</target>
+            </trans-unit>
+            <trans-unit id="76">
+                <source>The password fields must match.</source>
+                <target>Die Passwörter in den beiden Feldern müssen übereinstimmen.</target>
+            </trans-unit>
+            <trans-unit id="77">
+                <source>The email fields must match.</source>
+                <target>Die E-Mail-Adressen in den beiden Feldern müssen übereinstimmen.</target>
+            </trans-unit>
+            <trans-unit id="order.number">
+                <source>order.number</source>
+                <target>Bestellung Nr.</target>
+            </trans-unit>
+            <trans-unit id="order.date">
+                <source>order.date</source>
+                <target>Datum</target>
+            </trans-unit>
+            <trans-unit id="order.status">
+                <source>order.status</source>
+                <target>Status</target>
+            </trans-unit>
+            <trans-unit id="order.total">
+                <source>order.total</source>
+                <target>Insgesamt</target>
+            </trans-unit>
+            <trans-unit id="order.invoice">
+                <source>order.invoice</source>
+                <target>Rechnung</target>
+            </trans-unit>
+            <trans-unit id="order.invoice.title">
+                <source>order.invoice.title</source>
+                <target>Details anzeigen</target>
+            </trans-unit>
+            <trans-unit id="order.edit.title">
+                <source>order.edit.title</source>
+                <target>Bestellung bearbeiten</target>
+            </trans-unit>
+            <trans-unit id="order.delete.title">
+                <source>order.delete.title</source>
+                <target>Bestellung entfernen</target>
+            </trans-unit>
+            <trans-unit id="order.actions">
+                <source>order.actions</source>
+                <target>Handlungen</target>
+            </trans-unit>
+            <trans-unit id="cancel">
+                <source>cancel</source>
+                <target>Abbrechen</target>
+            </trans-unit>
+            <trans-unit id="company.name">
+                <source>company.name</source>
+                <target>Firmenname</target>
+            </trans-unit>
+            <trans-unit id="edit.address">
+                <source>edit.address</source>
+                <target>Adresse ändern</target>
+            </trans-unit>
+            <trans-unit id="add.address">
+                <source>add.address</source>
+                <target>Neue Adresse erstellen</target>
+            </trans-unit>
+            <trans-unit id="save">
+                <source>save</source>
+                <target>Speichern</target>
+            </trans-unit>
+            <trans-unit id="overnightbox.label">
+                <source>overnightbox.label</source>
+                <target>Opsamlingssted</target>
+            </trans-unit>
+            <trans-unit id="overnightbox.name">
+                <source>overnightbox.name</source>
+                <target>Abholort</target>
+            </trans-unit>
+            <trans-unit id="att.label">
+                <source>att.label</source>
+                <target>z. Hd.</target>
+            </trans-unit>
+            <trans-unit id="address.first_name.required">
+                <source>address.first_name.required</source>
+                <target>Bitte Vornamen ausfüllen</target>
+            </trans-unit>
+            <trans-unit id="address.last_name.required">
+                <source>address.last_name.required</source>
+                <target>Bitte Nachnamen ausfüllen</target>
+            </trans-unit>
+            <trans-unit id="address.first_name.min.length" approved="no">
+                <source>address.first_name.min.length</source>
+                <target>Der Vorname muss aus mind. 2 Zeichen bestehen</target>
+            </trans-unit>
+            <trans-unit id="address.last_name.min.length" approved="no">
+                <source>address.last_name.min.length</source>
+                <target>Der Nachname muss aus mind. 2 Zeichen bestehen</target>
+            </trans-unit>
+            <trans-unit id="address.address_line_1.required">
+                <source>address.address_line_1.required</source>
+                <target>Bitte Adresse ausfüllen</target>
+            </trans-unit>
+            <trans-unit id="address.postal_code.required">
+                <source>address.postal_code.required</source>
+                <target>Bitte Postleitzahl ausfüllen</target>
+            </trans-unit>
+            <trans-unit id="address.city.required">
+                <source>address.city.required</source>
+                <target>Bitte Ort ausfüllen</target>
+            </trans-unit>
+            <trans-unit id="address.countries_id.required">
+                <source>address.countries_id.required</source>
+                <target>Bitte ein Land wählen</target>
+            </trans-unit>
+            <trans-unit id="address.company_name.required">
+                <source>address.company_name.required</source>
+                <target>Bitte Firmennamen angeben</target>
+            </trans-unit>
+            <trans-unit id="Bad credentials">
+                <source>Bad credentials</source>
+                <target>E-Mail-Adresse und/oder Passwort wurde nicht gefunden.</target>
+            </trans-unit>
+            <trans-unit id="update.notice" approved="no">
+                <source>update.notice</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="update.password_notice" approved="no">
+                <source>update.password_notice</source>
+                <target>Nur ausfüllen, wenn Sie Ihr aktuelles Passwort ändern möchten.</target>
+            </trans-unit>
+            <trans-unit id="history.empty" approved="no">
+                <source>history.empty</source>
+                <target>Ihr Einkaufsverlauf ist leer.</target>
+            </trans-unit>
+            <trans-unit id="account.updated" approved="no">
+                <source>account.updated</source>
+                <target>Ihre Kontoinformationen wurden aktualisiert.</target>
+            </trans-unit>
+            <trans-unit id="create.account.error.title" approved="no">
+                <source>create.account.error.title</source>
+                <target>Es ist ein Fehler aufgetreten</target>
+            </trans-unit>
+            <trans-unit id="create.account.error" approved="no">
+                <source>create.account.error</source>
+                <target>Sie haben das Formular nicht korrekt ausgefüllt, Details sehen Sie unten:</target>
+            </trans-unit>
+            <trans-unit id="phone.required" approved="no">
+                <source>phone.required</source>
+                <target>Bitte Ihre Telefonnummer angeben</target>
+            </trans-unit>
+            <trans-unit id="phone.not.valid" approved="no">
+                <source>phone.not.valid</source>
+                <target>Die Telefonnummer darf nur Ziffern enthalten</target>
+            </trans-unit>
+            <trans-unit id="phone.min.length" approved="no">
+                <source>phone.min.length</source>
+                <target>Ihre Telefonnummer muss aus mind. 8 Zeichen bestehen</target>
+            </trans-unit>
+            <trans-unit id="email.required" approved="no">
+                <source>email.required</source>
+                <target>Bitte Ihre E-Mail-Adresse angeben</target>
+            </trans-unit>
+            <trans-unit id="password.required">
+                <source>password.required</source>
+                <target>Das Passwort muss aus mind. 5 Zeichen bestehen</target>
+            </trans-unit>
+            <trans-unit id="password.min.length" approved="no">
+                <source>password.min.length</source>
+                <target>Ihr Passwort muss aus mind. 5 Zeichen bestehen</target>
+            </trans-unit>
+            <trans-unit id="email.already.in.use">
+                <source>email.already.in.use</source>
+                <target>Die E-Mail-Adresse existiert bereits!</target>
+            </trans-unit>
+            <trans-unit id="login.restricted.other_locale">
+                <source>login.restricted.other_locale</source>
+                <target><![CDATA[Your profile has been set up in %site_name%. You should therefore use: <a href="%url%">%site_name%</a> webshop.<br>If you have any further questions, please contact our Customer Service.]]></target>
+            </trans-unit>
+            <trans-unit id="login.restricted.only.customers" approved="no">
+                <source>login.restricted.only.customers</source>
+                <target><![CDATA[Your profile is set up to be an consultant or employee. You should therefore use: <a href="%url%">this login form</a>.]]></target>
+            </trans-unit>
+            <trans-unit id="stop.editing.order">
+                <source>stop.editing.order</source>
+                <target>Bestellbearbeitung stoppen</target>
+            </trans-unit>
+            <trans-unit id="unable.to.lock.order" approved="no">
+                <source>unable.to.lock.order</source>
+                <target>Die Bestellung kann im Augenblick nicht bearbeitet werden. Bitte versuchen Sie es später erneut.</target>
+            </trans-unit>
+            <trans-unit id="my.account.%name%" approved="no">
+                <source>my.account.%name%</source>
+                <target>Willkommen %name%!</target>
+            </trans-unit>
+            <trans-unit id="my.account.description" approved="no">
+                <source>my.account.description</source>
+                <target><![CDATA[<p>Auf Meine Seite können Sie Informationen ändern und sich für den Newsletter anmelden oder ihn abbestellen. Sie haben auch die Möglichkeit, Ihre Bestellung zu bearbeiten.<br><br>Ihre Bestellung kann folgenden Status haben:<br><br><b>Warten auf Bearbeitung</b><br>Ihre Bestellung wurde noch nicht bearbeitet und Sie haben zum Bearbeiten Ihrer Bestellung mind. 24 Stunden Zeit.
+Sie können Ihre Bestellung ändern oder etwas hinzufügen bzw. entfernen. Klicken Sie bei der Bearbeitung auf den <img src="/fx/images/icons/icons/edit.png" alt="Edit">.
+Bitte beachten: Die Zahlung muss durchgeführt werden – frühere Zahlungsreservierungen werden automatisch gelöscht.
+Möchten Sie Ihre gesamte Bestellung löschen, dann klicken Sie bitte auf <img src="/fx/images/icons/icons/delete.png" alt="Delete">.<br><br><b>Bearbeitung stoppen</b><br>Sie haben evtl. Ihre Bearbeitung abgebrochen. Drücken Sie auf die Schaltfläche ”Bearbeitung stoppen”, danach können Sie Ihre Bestellung erneut bearbeiten.<br><br><b>Wird bearbeitet</b><br>Ihre Bestellung wird jetzt in unserem Lager bearbeitet und im Laufe von 1-2 Tagen an Sie verschickt. Es ist nicht möglich, Ihre Bestellung zu bearbeiten/zu stoppen.<br><br><b>In Rechnung gestellt</b><br>Ihre Bestellung hat unser Lager verlassen. Die Rechnung finden Sie als beigefügte PDF-Datei in der Spalte Rechnung im Laufe von 24 Stunden nach dem Versand.<br><br><b>
+Rücksendung</b><br>Für Rücksendungen von Waren finden Sie unseren <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel.pdf" target="_blank">Rücksendeschein hier</a>.<br><br></p>]]></target>
+            </trans-unit>
+            <trans-unit id="newsletter" approved="no">
+                <source>newsletter</source>
+                <target>Newsletter</target>
+            </trans-unit>
+            <trans-unit id="acc.1">
+                <source>Email address</source>
+                <target>E-Mail-Adresse</target>
+            </trans-unit>
+            <trans-unit id="acc.2">
+                <source>Email address repeated</source>
+                <target>E-Mail-Adresse bestätigen</target>
+            </trans-unit>
+            <trans-unit id="acc.3">
+                <source>Pass</source>
+                <target>Wahlfreies Passwort</target>
+            </trans-unit>
+            <trans-unit id="acc.4">
+                <source>Pass repeated</source>
+                <target>Passwort bestätigen</target>
+            </trans-unit>
+            <trans-unit id="my.account.my.events" approved="no">
+                <source>my.account.my.events</source>
+                <target>Meine Veranstaltungen</target>
+            </trans-unit>
+            <trans-unit id="account.history.see.all.orders" approved="no">
+                <source>account.history.see.all.orders</source>
+                <target>Alle Bestellungen anzeigen</target>
+            </trans-unit>
+            <trans-unit id="my.account.login.notice" approved="no">
+                <source>my.account.login.notice</source>
+                <target><![CDATA[<p>Willkommen - erstellen Sie ein Benutzerkonto!</p>]]></target>
+            </trans-unit>
+            <trans-unit id="my.account.login.text" approved="no">
+                <source>my.account.login.text</source>
+                <target><![CDATA[<h3>Meine Seite - Login</h3><p>Wenn Sie bei POMPdeLUX einkaufen, müssen Sie ein Benutzerkonto auf dieser Seite haben. Es ermöglicht Ihnen u. a., Ihre Bestellung zu prüfen und zu ändern, bevor sie in unserem Lager verpackt wird und verschickt wird. Sie können Farben und Größen der bestellten Waren ändern und Sie können Waren hinzufügen und ändern, solange bei Ihrer Bestellung "Warten auf Bearbeitung" steht, d. h. mindestens 24 Stunden nach der Warenbestellung.<br><br>Als Kunde bei POMPdeLUX  können Sie auf dieser Seite auch frühere Bestellungen sehen und alte Rechnungen finden.</p>]]></target>
+            </trans-unit>
+
+            <trans-unit id="my.account.login.title">
+                <source>my.account.login.title</source>
+                <target>Meine Seite - Login</target>
+            </trans-unit>
+            <trans-unit id="my.account.login.header" approved="no">
+                <source>my.account.login.header</source>
+                <target><![CDATA[<h1>Willkommen auf Meine Seite</h1>]]></target>
+            </trans-unit>
+            <trans-unit id="create.pre-notice" approved="no">
+                <source>create.pre-notice</source>
+                <target><![CDATA[Auf dieser Seite sollen Sie Ihre privaten Informationen ausfüllen (<u>nicht</u> evtl. Firmeninformationen).]]></target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

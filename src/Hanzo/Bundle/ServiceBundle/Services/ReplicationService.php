@@ -16,6 +16,8 @@ use Hanzo\Model\ProductsImagesProductReferences;
 use Hanzo\Model\ProductsImagesProductReferencesQuery;
 use Hanzo\Model\ProductsImagesCategoriesSort;
 use Hanzo\Model\ProductsImagesCategoriesSortQuery;
+use Hanzo\Model\ProductsToCategories;
+use Hanzo\Model\ProductsToCategoriesQuery;
 
 class ReplicationService
 {
@@ -148,13 +150,30 @@ class ReplicationService
     public function syncImageSorting()
     {
         $images = ProductsImagesCategoriesSortQuery::create()->find();
+        $categories = ProductsToCategoriesQuery::create()->find();
 
         foreach ($this->replicated_connections as $name) {
             $conn = $this->getConnection($name);
 
+            ProductsToCategoriesQuery::create()
+                ->filterByProductsId(0, \Criteria::GREATER_THAN)
+                ->delete($conn)
+            ;
+
+            foreach ($categories as $category) {
+                $s = new ProductsToCategories();
+                $s->setProductsId($category->getProductsId());
+                $s->setCategoriesId($category->getCategoriesId());
+
+                try {
+                    $s->save($conn);
+                } catch (\Exception $e) {}
+            }
+
             ProductsImagesCategoriesSortQuery::create()
                 ->filterByProductsId(0, \Criteria::GREATER_THAN)
-                ->delete($conn);
+                ->delete($conn)
+            ;
 
             foreach ($images as $image) {
                 $s = new ProductsImagesCategoriesSort();

@@ -50,11 +50,12 @@ ksort($images, SORT_REGULAR);
 $product_images = array();
 $product_ids = array();
 $product_categories_ids = array();
+$product_categories_all_ids = array();
 $failed = array();
 
 $pdo = $_databases['vip'];
 $products_stmt = $pdo->prepare('SELECT id FROM products WHERE sku = :master and master IS NULL', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-$categories_stmt = $pdo->prepare('SELECT categories_id FROM products_to_categories WHERE products_id = :products_id', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+$categories_stmt = $pdo->prepare('SELECT p2c.categories_id, c.context FROM products_to_categories AS p2c JOIN categories AS c ON (c.id = p2c.categories_id) WHERE p2c.products_id = :products_id', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 $product_image_stmt = $pdo->prepare('SELECT id FROM products WHERE color = :color and master = :master', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 
 _dbug("finding images product and category reference.");
@@ -97,7 +98,11 @@ foreach ($images as $image) {
         ));
 
         foreach ($categories_stmt->fetchAll(PDO::FETCH_OBJ) as $record) {
-            $product_categories_ids[$products_id][$record->categories_id] = $record->categories_id;
+            if (preg_match('/[_|-]/', $record->context)) {
+                $product_categories_ids[$products_id][$record->categories_id] = $record->categories_id;
+            }
+
+            $product_categories_all_ids[$products_id][$record->categories_id] = $record->categories_id;
         }
     }
 
@@ -315,7 +320,7 @@ while ($record = $images_stmt->fetchObject()) {
 // remove images from unused categories
 _dbug("delete unused image-to-category relations.");
 foreach ($_databases as $key => $conn) {
-    foreach ($product_categories_ids as $products_id => $categories) {
+    foreach ($product_categories_all_ids as $products_id => $categories) {
         $ids = implode(',', $categories);
         $conn->exec('DELETE FROM products_images_categories_sort WHERE products_id = '.$products_id.' AND categories_id NOT IN('.$ids.')');
     }

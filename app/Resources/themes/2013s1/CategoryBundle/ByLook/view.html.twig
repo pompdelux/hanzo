@@ -38,7 +38,7 @@
               <div class="look block block-num-{{ loop.index }} grid_2 {% if loop.index % 3 == 1 and loop.index is not divisibleby(3) %} alpha {% endif %}{% if loop.index is divisibleby(3) %} omega {% endif %}">
                 <a href="{{ product.url }}" title="{{ "more.bundle.info"|trans() }}">
                   {{ product_image_tag(product.image, '234x410', {
-                    'alt' : product.alt,
+                    'alt' : product.sku,
                     'height' : '410',
                     'width' : '234'
                   }) }}

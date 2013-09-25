@@ -109,15 +109,15 @@
         <target>
           <![CDATA[Vi är väldigt förtjusta i fåglar den här säsongen och den här blusen var vi helt enkelt tvungna att ta med. Blusen är av mjuk och skön jerseykvalitet och ger en avslappnad stil. Problemet blir att välja färg! Tillverkad enligt Öko-Tex-standard 100.	<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex.png">	<br><br>	Finns i: Rose (rosa), Wine (vinröd) och Curry (orange)	<br><br>	Storleken är barnets längd i cm.	<br><br>	Material: 95 % bomull och 5 % elastan]]>
         </target>
-      </trans-unit>
-      <trans-unit id="Bangkok Little Blouse">
-        <source>description.Bangkok_Little_Blouse</source>
+      </trans-unit>	  
+	  <trans-unit id="Bangkok Little BLOUSE">
+        <source>description.Bangkok_Little_BLOUSE</source>
         <target>
-          <![CDATA[Långärmad t-shirt med supertrendig sliten look. Kanske har mamma något liknande i sin garderob? Tillverkad enligt Öko-Tex-standard 100. Tvättas separat eller med liknande färger eftersom tyget kan färga av sig.	<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex.png">	<br><br>	Finns i: Grey (grå), Rose (rosa), Ice Blue (isblå) och Blue (blå)	<br><br>	Storleken är barnets längd i cm.	<br><br>	Material: 100 % bomull]]>
+          <![CDATA[Långärmad t-shirt med supertrendig sliten look. Kanske har mamma något liknande i sin garderob? Tillverkad enligt Öko-Tex-standard 100. Tvättas separat eller med liknande färger eftersom tyget kan färga av sig.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex.png">	<br><br>	Finns i: Grey (grå), Rose (rosa), Ice Blue (isblå) och Blue (blå)	<br><br>	Storleken är barnets längd i cm.	<br><br>	Material: 100 % bomull]]>
         </target>
       </trans-unit>
-      <trans-unit id="Bangkok Blouse">
-        <source>description.Bangkok_Blouse</source>
+      <trans-unit id="Bangkok BLOUSE">
+        <source>description.Bangkok_BLOUSE</source>
         <target>
           <![CDATA[Långärmad t-shirt med supertrendig sliten look. Kanske har mamma något liknande i sin garderob? Tillverkad enligt Öko-Tex-standard 100. Tvättas separat eller med liknande färger eftersom tyget kan färga av sig.	<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex.png">	<br><br>	Finns i: Grey (grå), Rose (rosa), Ice Blue (isblå) och Blue (blå)	<br><br>	Storleken är barnets längd i cm.	<br><br>	Material: 100 % bomull]]>
         </target>
@@ -1138,13 +1138,13 @@
           <![CDATA[Snygga chinos i kraftigt material med förstärkning på knäna för alla spralliga små pojkar. Modern sliten tvätt. Finns i tre matta färger som passar till det mesta. Justerbar midja.		<br><br>	Finns i: Curry (orange), Blue (blå) och Brown (brun)	<br><br>	Storleken är barnets längd i cm.	<br><br>	Material: 100 % bomull]]>
         </target>
       </trans-unit>
-      <trans-unit id="Pittsburghh CARDIGAN">
+      <trans-unit id="Pittsburgh CARDIGAN">
         <source>description.Pittsburghhh_CARDIGAN</source>
         <target>
           <![CDATA[Den absoluta favoritkoftan med träknappar och armbågslappar. Perfekt för kalla vinterdagar när du vill hålla stilen.  		<br><br>	Finns i: Off White (benvit) och Grey Melange (gråmelerad)	<br><br>	Storleken är barnets längd i cm.	<br><br>	Material: 80 % bomull, 20 % ull]]>
         </target>
       </trans-unit>
-      <trans-unit id="Pittsburghh Little CARDIGAN">
+      <trans-unit id="Pittsburgh Little CARDIGAN">
         <source>description.Pittsburghhh_Little_CARDIGAN</source>
         <target>
           <![CDATA[Den absoluta favoritkoftan med träknappar och armbågslappar. Perfekt för kalla vinterdagar när du vill hålla stilen.  		<br><br>	Finns i: Off White (benvit) och Grey Melange (gråmelerad)	<br><br>	Storleken är barnets längd i cm.	<br><br>	Material: 80 % bomull, 20 % ull]]>

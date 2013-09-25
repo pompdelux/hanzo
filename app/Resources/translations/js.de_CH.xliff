@@ -1,0 +1,379 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="update">
+                <source>update</source>
+                <target>Aktualisieren</target>
+            </trans-unit>
+            <trans-unit id="forward">
+                <source>forward</source>
+                <target>Weiter</target>
+            </trans-unit>
+            <trans-unit id="hide.all">
+                <source>hide.all</source>
+                <target>Alle ausblenden</target>
+            </trans-unit>
+            <trans-unit id="show.all">
+                <source>show.all</source>
+                <target>Alle anzeigen</target>
+            </trans-unit>
+            <trans-unit id="close">
+                <source>close</source>
+                <target>Schließen</target>
+            </trans-unit>
+            <trans-unit id="ok">
+                <source>ok</source>
+                <target>OK</target>
+            </trans-unit>
+            <trans-unit id="cancel">
+                <source>cancel</source>
+                <target>Abbrechen</target>
+            </trans-unit>
+            <trans-unit id="notice">
+                <source>notice</source>
+                <target>Bitte beachten!</target>
+            </trans-unit>
+            <trans-unit id="choose">
+                <source>choose</source>
+                <target>Wählen</target>
+            </trans-unit>
+            <trans-unit id="quantity">
+                <source>quantity</source>
+                <target>Menge</target>
+            </trans-unit>
+            <trans-unit id="please.wait">
+                <source>please.wait</source>
+                <target>Bitte warten</target>
+            </trans-unit>
+            <trans-unit id="action.completed">
+                <source>action.completed</source>
+                <target>Ihre Handlung wurde ausgeführt</target>
+            </trans-unit>
+            <trans-unit id="an.error.occurred">
+                <source>an.error.occurred</source>
+                <target>Es ist ein Fehler aufgetreten</target>
+            </trans-unit>
+            <trans-unit id="countdown.date">
+                <source>countdown.date</source>
+                <target>August 26, 2013 9:00:00</target>
+            </trans-unit>
+            <trans-unit id="countdown.format">
+                <source>countdown.format</source>
+                <target><![CDATA[{d<}{dn} {dl} {d>} {hn} {hl} {mn} {ml} {sn} {sl}]]></target>
+            </trans-unit>
+            <trans-unit id="late.delivery.notice">
+                <source>late.delivery.notice</source>
+                <target><![CDATA[<p>Ihre Bestellung enthält eine oder mehrere Waren, die wir zurzeit nicht auf Lager haben. Die Bestellung wird verpackt, wenn wir alle Waren auf Lager haben.</p><p>Ihre gesamte Bestellung wird von unserem Lager erwartungsgemäß spätestens verschickt am: <strong>%date%</strong>.]]></target>
+            </trans-unit>
+            <trans-unit id="delete.from.basket.warning">
+                <source>delete.from.basket.warning</source>
+                <target><![CDATA[Sind Sie sicher, dass Sie <strong>%product%</strong> aus Ihrem Korb entfernen möchten?]]></target>
+            </trans-unit>
+            <trans-unit id="late.delivery">
+                <source>late.delivery</source>
+                <target><![CDATA[<h2>Bitte beachten</h2><strong>"%product%"</strong> haben wir zurzeit nicht auf Lager.<br>Ihre gesamte Bestellung wird von unserem Lager erwartungsgemäß spätestens verschickt am <strong>%date%</strong>.]]></target>
+            </trans-unit>
+            <trans-unit id="not.filled.correctly">
+                <source>not.filled.correctly</source>
+                <target>Nicht korrekt ausgefüllt</target>
+            </trans-unit>
+            <trans-unit id="checkout.shipping_business">
+                <source>checkout.shipping_business</source>
+                <target>Sie haben "Post Danmark Erhverv" gewählt. Bitte ändern Sie die Lieferanschrift durch Klicken auf "Lieferanschrift ändern" (die Lieferanschrift muss bei dieser Versandart eine Firmenadresse sein).</target>
+            </trans-unit>
+            <trans-unit id="checkout.shipping_overnightbox">
+                <source>checkout.shipping_overnightbox</source>
+                <target>Sie haben Packstation als Versandart gewählt, jedoch keine Adresse für eine Packstation angegeben. Geben Sie eine an, indem Sie auf "Packstationadresse ändern" klicken.</target>
+            </trans-unit>
+            <trans-unit id="loading.std">
+                <source>loading.std</source>
+                <target>Wird geladen...</target>
+            </trans-unit>
+            <trans-unit id="loading.search">
+                <source>loading.search</source>
+                <target>Wird gesucht...</target>
+            </trans-unit>
+            <trans-unit id="loading.search.products">
+                <source>loading.search.products</source>
+                <target>Findet Produkte...</target>
+            </trans-unit>
+            <trans-unit id="edit.order.notice">
+                <source>edit.order.notice</source>
+                <target><![CDATA[Um Ihre Bestellung zu bearbeiten, führen Sie bitte folgende Schritte aus:<br><br>1) Auf "Bearbeiten" klicken, um die Bestellung zu bearbeiten. Ihre Waren werden danach wieder in den Warenkorb gelegt.<br><br>2) Möchten Sie eine Farbe oder Größe ändern, dann klicken Sie bitte auf den Bleistift im Warenkorb. Möchten Sie Waren hinzufügen, dann klicken Sie auf das Menü Girl, Boy, Little Girl oder Little Boy<br><br>3) Nach Abschluss Ihrer Änderungen klicken Sie bitte auf "Warenkorb anzeigen" und führen die Schritte 1 bis 5 aus. Wenn Sie Ihre Bestellung mit einer neuen Kreditkartenzahlung durchgeführt haben, wird die vorherige Zahlung automatisch gelöscht.<br><br><b>Bitte beachten:</b> Wenn Sie mit Visa Electron oder MasterCard bezahlen, müssen Sie Folgendes beachten:<ul><li>Es wird eine weitere Reservierung auf den vollen Betrag des Kaufs vorgenommen, wenn Sie Ihre Bestellung bearbeiten. </li><li>Die Reservierung Ihrer ursprünglichen Bestellung wird umgehend von POMPdeLUX storniert und wir haben somit nur den Kaufbetrag Ihrer bearbeiteten Bestellung reserviert. Bei Ihrem Geldinstitut kann es jedoch bis zu 6 Wochen dauern, bis die Reservierung aufgehoben wird. </li></ul>]]></target>
+            </trans-unit>
+            <trans-unit id="delete.order.notice">
+                <source>delete.order.notice</source>
+                <target><![CDATA[Sie sind dabei, Ihre Bestellung zu löschen. Sind Sie ganz sicher, dass Sie die gesamte Bestellung löschen möchten?<br><br>Wenn Sie Ihre Bestellung löschen, wird Ihre Kreditkartenzahlung automatisch gelöscht.<br><br>Zum Löschen der Bestellung auf "OK" klicken.]]></target>
+            </trans-unit>
+            <trans-unit id="consultant">
+                <source>consultant</source>
+                <target>Beraterin</target>
+            </trans-unit>
+            <trans-unit id="phone">
+                <source>phone</source>
+                <target>Telefon</target>
+            </trans-unit>
+            <trans-unit id="email">
+                <source>email</source>
+                <target>E-Mail</target>
+            </trans-unit>
+            <trans-unit id="mannequin.empty">
+                <source>mannequin.empty</source>
+                <target>Es wurden keine Produkte gewählt</target>
+            </trans-unit>
+            <trans-unit id="out.of.stock">
+                <source>out.of.stock</source>
+                <target>Ausverkauft</target>
+            </trans-unit>
+            <trans-unit id="wall.add.response">
+                <source>wall.add.response</source>
+                <target>Beitrag beantworten</target>
+            </trans-unit>
+            <trans-unit id="wall.share">
+                <source>wall.share</source>
+                <target>Teilen</target>
+            </trans-unit>
+            <trans-unit id="wall.remove.like.link">
+                <source>wall.remove.like.link</source>
+                <target>Like vom Beitrag entfernen</target>
+            </trans-unit>
+            <trans-unit id="wall.add.like.link">
+                <source>wall.add.like.link</source>
+                <target>Beitrag liken</target>
+            </trans-unit>
+            <trans-unit id="wall.remove.dislike.link">
+                <source>wall.remove.dislike.link</source>
+                <target>Dislike vom Beitrag entfernen</target>
+            </trans-unit>
+            <trans-unit id="wall.add.dislike.link">
+                <source>wall.add.dislike.link</source>
+                <target>Beitrag disliken</target>
+            </trans-unit>
+            <trans-unit id="wall.edit.entry">
+                <source>wall.edit.entry</source>
+                <target>Beitrag bearbeiten</target>
+            </trans-unit>
+            <trans-unit id="wall.update">
+                <source>wall.update</source>
+                <target>Aktualisieren</target>
+            </trans-unit>
+            <trans-unit id="wall.show.all">
+                <source>wall.show.all</source>
+                <target>Alle Antworten anzeigen</target>
+            </trans-unit>
+            <trans-unit id="wall.likes.plural.%likes%">
+                <source>wall.likes.plural.%likes%</source>
+                <target>%likes% finden diesen Beitrag gut.</target>
+            </trans-unit>
+            <trans-unit id="wall.likes.single.%likes%">
+                <source>wall.likes.single.%likes%</source>
+                <target>Eine/r findet diesen Beitrag gut.</target>
+            </trans-unit>
+            <trans-unit id="wall.dislikes.plural.%likes%">
+                <source>wall.dislikes.plural.%likes%</source>
+                <target>%likes% finden diesen Beitrag nicht gut.</target>
+            </trans-unit>
+            <trans-unit id="wall.dislikes.single.%likes%">
+                <source>wall.dislikes.single.%likes%</source>
+                <target>Eine/r findet diesen Beitrag nicht gut.</target>
+            </trans-unit>
+            <trans-unit id="wall.like.popup.header">
+                <source>wall.like.popup.header</source>
+                <target>Diese Personen finden den Beitrag gut oder nicht gut.</target>
+            </trans-unit>
+            <trans-unit id="wall.delete.entry.link">
+                <source>wall.delete.entry.link</source>
+                <target>Beitrag löschen</target>
+            </trans-unit>
+            <trans-unit id="wall.delete.entry.confirm">
+                <source>wall.delete.entry.confirm</source>
+                <target>Sind Sie sicher, dass Sie diesen Beitrag löschen möchten?</target>
+            </trans-unit>
+            <trans-unit id="BC_TEXT_NEWSLETTER_USER_NOT_EXISTS" approved="no">
+                <source>BC_TEXT_NEWSLETTER_USER_NOT_EXISTS</source>
+                <target>Die E-Mail-Adresse "%email%" ist nicht registriert</target>
+            </trans-unit>
+            <trans-unit id="month.Januar">
+                <source>month.Januar</source>
+                <target>Januar</target>
+            </trans-unit>
+            <trans-unit id="today">
+                <source>today</source>
+                <target>Heute</target>
+            </trans-unit>
+            <trans-unit id="month.February">
+                <source>month.February</source>
+                <target>Februar</target>
+            </trans-unit>
+            <trans-unit id="month.March">
+                <source>month.March</source>
+                <target>März</target>
+            </trans-unit>
+            <trans-unit id="month.April">
+                <source>month.April</source>
+                <target>April</target>
+            </trans-unit>
+            <trans-unit id="month.May">
+                <source>month.May</source>
+                <target>Mai</target>
+            </trans-unit>
+            <trans-unit id="month.June">
+                <source>month.June</source>
+                <target>Juni</target>
+            </trans-unit>
+            <trans-unit id="month.July">
+                <source>month.July</source>
+                <target>Juli</target>
+            </trans-unit>
+            <trans-unit id="month.August">
+                <source>month.August</source>
+                <target>August</target>
+            </trans-unit>
+            <trans-unit id="month.September">
+                <source>month.September</source>
+                <target>September</target>
+            </trans-unit>
+            <trans-unit id="month.October">
+                <source>month.October</source>
+                <target>Oktober</target>
+            </trans-unit>
+            <trans-unit id="month.November">
+                <source>month.November</source>
+                <target>November</target>
+            </trans-unit>
+            <trans-unit id="month.December">
+                <source>month.December</source>
+                <target>Dezember</target>
+            </trans-unit>
+            <trans-unit id="day.short.Sun">
+                <source>day.short.Sun</source>
+                <target>So</target>
+            </trans-unit>
+            <trans-unit id="day.short.Mon">
+                <source>day.short.Mon</source>
+                <target>Mo</target>
+            </trans-unit>
+            <trans-unit id="day.short.Tue">
+                <source>day.short.Tue</source>
+                <target>Di</target>
+            </trans-unit>
+            <trans-unit id="day.short.Wed">
+                <source>day.short.Wed</source>
+                <target>Mi</target>
+            </trans-unit>
+            <trans-unit id="day.short.Thu">
+                <source>day.short.Thu</source>
+                <target>Do</target>
+            </trans-unit>
+            <trans-unit id="day.short.Fri">
+                <source>day.short.Fri</source>
+                <target>Fr</target>
+            </trans-unit>
+            <trans-unit id="day.short.Sat">
+                <source>day.short.Sat</source>
+                <target>Sa</target>
+            </trans-unit>
+            <trans-unit id="event.confirm.delete.participant">
+                <source>event.confirm.delete.participant</source>
+                <target>Sind Sie sicher, dass Sie diesen Teilnehmer löschen möchten?</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.delete.draft">
+                <source>consultant.newsletter.delete.draft</source>
+                <target>Sind Sie sicher, dass Sie diesen Entwurf löschen möchten?</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.delete.user">
+                <source>consultant.newsletter.delete.user</source>
+                <target>Sind Sie sicher, dass Sie diesen Benutzer vom Verteiler entfernen möchten?</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.confirm.send">
+                <source>consultant.newsletter.confirm.send</source>
+                <target>Sind Sie sicher, dass Sie den Newsletter verschicken möchten?</target>
+            </trans-unit>
+            <trans-unit id="quickorder.choose.size">
+                <source>quickorder.choose.size</source>
+                <target>Größe</target>
+            </trans-unit>
+            <trans-unit id="quickorder.choose.color">
+                <source>quickorder.choose.color</source>
+                <target>Farbe</target>
+            </trans-unit>
+            <trans-unit id="event.user.email.not.found">
+                <source>event.user.email.not.found</source>
+                <target>Es existiert kein Kunde mit der eingegebenen E-Mail-Adresse.</target>
+            </trans-unit>
+            <trans-unit id="size">
+                <source>size</source>
+                <target>Größe</target>
+            </trans-unit>
+            <trans-unit id="color">
+                <source>color</source>
+                <target>Farbe</target>
+            </trans-unit>
+            <trans-unit id="proceed">
+                <source>proceed</source>
+                <target>Weiter</target>
+            </trans-unit>
+            <trans-unit id="checkout.choose.shipping.method" approved="no">
+                <source>checkout.choose.shipping.method</source>
+                <target>Wählen Sie bitte eine Versandart.</target>
+            </trans-unit>
+            <trans-unit id="checkout.choose.payment.method" approved="no">
+                <source>checkout.choose.payment.method</source>
+                <target>Wählen Sie bitte eine Zahlungsart.</target>
+            </trans-unit>
+            <trans-unit id="form.buy.choose.first" approved="no">
+                <source>form.buy.choose.first</source>
+                <target>Wählen Sie bitte zunächst eine Größe und Farbe.</target>
+            </trans-unit>
+            <trans-unit id="email.invalid" approved="no">
+                <source>email.invalid</source>
+                <target>Ungültige E-Mail</target>
+            </trans-unit>
+            <trans-unit id="email.repeat.invalid" approved="no">
+                <source>email.repeat.invalid</source>
+                <target>E-Mail stimmt nicht überein</target>
+            </trans-unit>
+            <trans-unit id="phone.invalid" approved="no">
+                <source>phone.invalid</source>
+                <target>Ungültige Telefonnummer. Sie darf nur Ziffern enthalten und muss aus mind. 8 Zeichen bestehen.</target>
+            </trans-unit>
+            <trans-unit id="password.invalid.match" approved="no">
+                <source>password.invalid.match</source>
+                <target>Die Passwortbestätigung muss dieselbe sein wie Ihr Passwort.</target>
+            </trans-unit>
+            <trans-unit id="password.min.length" approved="no">
+                <source>password.min.length</source>
+                <target>Das Passwort muss aus mind. 5 Zeichen bestehen</target>
+            </trans-unit>
+            <trans-unit id="field.required" approved="no">
+                <source>field.required</source>
+                <target>Alle Felder mit (*) müssen ausgefüllt werden.</target>
+            </trans-unit>
+            <trans-unit id="approve.conditions.required" approved="no">
+                <source>approve.conditions.required</source>
+                <target>Sie müssen zunächst die AGB's von POMPdeLUX akzeptieren</target>
+            </trans-unit>
+            <trans-unit id="checkout.payment.progress.alert.title" approved="no">
+                <source>checkout.payment.progress.alert.title</source>
+                <target>Zahlungsfenster wird geöffnet</target>
+            </trans-unit>
+            <trans-unit id="checkout.payment.progress.alert.message" approved="no">
+                <source>checkout.payment.progress.alert.message</source>
+                <target><![CDATA[Bitte warten, Zahlungsfenster wird geöffnet. Dies kann bis zu 30 Sekunden dauern. Falls mehr als 30 Sekunden vergehen, klicken Sie bitte auf die Schaltfläche Bezahlung abbrechen unten und versuchen es erneut.<br><br>Wir danken für Ihr Verständnis.<br><br><a href="%url%">» Bezahlung abbrechen</a>]]></target>
+            </trans-unit>
+            <trans-unit id="more.product.info" approved="no">
+                <source>more.product.info</source>
+                <target>Hier klicken für weitere Informationen über %name%.</target>
+            </trans-unit>
+            <trans-unit id="more.bundle.info" approved="no">
+                <source>more.bundle.info</source>
+                <target>Hier klicken für weitere Informationen.</target>
+            </trans-unit>
+            <trans-unit id="events.error.email.or.phone" approved="no">
+                <source>events.error.email.or.phone</source>
+                <target>E-Mail oder Telefon muss ausgefüllt werden.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

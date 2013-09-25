@@ -302,7 +302,7 @@ class AxService
                 }
                 break;
 
-            case 'paybybill': // Should be COD, is _not_ Gothia
+            case 'manualpayment':
                 $custPaymMode = 'Bank';
                 break;
 

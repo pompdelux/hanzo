@@ -1,0 +1,12 @@
+<h2>{{ 'payment.manualpayment.title'|trans({}, 'checkout') }}</h2>
+
+<form name="payment-manualpayment" id="manualpayment" action="{{  path('_manualpayment_callback') }}" method="post">
+  <ul class="payment-methods" id="payment-method-manualpayment">
+    <li>
+      <p>{{ 'payment.manualpayment.text'|trans({}, 'checkout')|raw }}</p>
+
+      <input type="radio" value="manualpayment" id="pbb" name="paytype">
+      <label for="pbb">{{ 'payment.manualpayment.label'|trans({}, 'checkout') }}</label>
+    </li>
+  </ul>
+</form>

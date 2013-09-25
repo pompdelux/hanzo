@@ -68,7 +68,7 @@ $product-title-line-height	: 18px;
 
 $form-error-color       : red;
 
-$content-link-color     : #c29954;
+$content-link-color     : #998670;
 
 $basket-color:       #000;
 $basket-font-size:   14px;
@@ -93,5 +93,6 @@ $basket-font-weight: normal;
 @import "pompdewall";
 @import "quickorder";
 @import "find-consultants";
+@import "rma";
 @import "ie";
 @import "base";

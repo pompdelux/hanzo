@@ -55,22 +55,19 @@ class GothiaController extends CoreController
             return $this->redirect($this->generateUrl('_checkout'));
         }
 
-        // hf@bellcom.dk, 18-sep-2012: maybe a fix for orders contaning valid dibs info and then is overriden with gothia billingmethod -->>
+        // maybe a fix for orders contaning valid dibs info and then is overriden with gothia billingmethod
         if ($order->getState() > Orders::STATE_PRE_PAYMENT) {
             $this->get('session')->setFlash('notice', 'order.state_pre_payment.locked');
             return $this->redirect($this->generateUrl('basket_view'));
         }
-        // <<-- hf@bellcom.dk, 18-sep-2012: maybe a fix for orders contaning valid dibs info and then is overriden with gothia billingmethod
-        //
+
         $gothiaAccount = $order
             ->getCustomers(Propel::getConnection(null, Propel::CONNECTION_WRITE))
             ->getGothiaAccounts(Propel::getConnection(null, Propel::CONNECTION_WRITE))
         ;
 
         // No gothia account has been created and associated with the customer, so lets do that
-        $step = 2;
         if (is_null($gothiaAccount)) {
-            $step = 1;
             $gothiaAccount = new GothiaAccounts();
         }
 
@@ -85,7 +82,6 @@ class GothiaController extends CoreController
 
         return $this->render('PaymentBundle:Gothia:payment.html.twig',array(
             'page_type' => 'gothia',
-            'step' => $step,
             'form' => $form->createView(),
         ));
     }
