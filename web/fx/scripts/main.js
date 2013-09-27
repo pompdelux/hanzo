@@ -78,6 +78,13 @@
       // menu handeling
       if (false === $('body').hasClass('is-mobile')) {
         var $menu = $('nav.main-menu');
+
+        // set parent li's class to active for active elements.
+        $('nav.first.main-menu .active')
+          .parents('li')
+          .toggleClass('active inactive')
+        ;
+
         var menu_width = 0;
         $('li li.heading', $menu).each(function(index, element) {
           var $element = $(element);

@@ -275,7 +275,7 @@
             } else {
               window.scrollTo(window.scrollMinX, window.scrollMinY);
               $('#mini-basket a').html(response.data);
-              dialoug.slideNotice(response.message, undefined, '.container > header');
+              dialoug.slideNotice(response.message, undefined, '#mini-basket');
             }
             _resetForm();
           });

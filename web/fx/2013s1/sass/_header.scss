@@ -6,6 +6,54 @@
 	margin-top: 6px;
 }
 
+nav.first.main-menu {
+    ul, ul li, ul li form, ul li form input {
+        font-size: $main-menu-size;
+    }
+
+    background-color: #c4c7ce;
+    padding: 3px 0;
+
+    input[type="text"] {
+        width: 180px;
+    }
+    input[type="text"],
+    input {
+        padding: 3px;
+        border: none;
+        margin-right: 10px;
+
+        &.text-button {
+            font-size: inherit;
+        }
+    }
+
+    >ul {
+        z-index: 220;
+        margin-left: 10px;
+        float: left;
+
+        &.right {
+            float: right;
+            li.last {
+                padding: 0;
+            }
+        }
+
+        li {
+            ul.on {
+                background-color: #fff;
+            }
+            a {
+                text-transform: none;
+            }
+        }
+
+        li.last.heading {display:none;}
+    }
+}
+
+
 // All menus
 nav > ul,
 ul.menu,
@@ -91,11 +139,14 @@ ul.horizontal,
 }
 
 // Specific Secondary menu
-#secondary-links{
+
+div header.row {
+    position:relative;
+}
+#secondary-links {
 	position: absolute;
 	top: 0px;
 	right: 3px;
-	z-index: 300;
 	li{
 		padding: 8px;
 		vertical-align: middle;

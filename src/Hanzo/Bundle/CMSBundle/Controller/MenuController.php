@@ -497,4 +497,123 @@ class MenuController extends CoreController
             $this->menu[$type] .= '</ul>';
         }
     }
+
+
+    /**
+     * Build and return full tree fetched by thread title.
+     *
+     * @param  string $title
+     * @param  integer $parent_id
+     * @return Response
+     */
+    public function byTitleAction($title, $parent_id = null)
+    {
+        $cache_id = [
+            'menu',
+            $title,
+            $this->get('request')->getRequestUri()
+        ];
+        $html = $this->getCache($cache_id);
+
+        if (empty($html)) {
+            $html = $this->byTitleBuilder($title);
+        }
+
+        $this->setCache($cache_id, $html);
+
+        return new Response($html);
+    }
+
+    /**
+     * Builder function used by the "byTitleAction" method.
+     *
+     * @todo replace generateFull with this method
+     *
+     * @param  [type] $title     [description]
+     * @param  [type] $parent_id [description]
+     *
+     * @return [type]            [description]
+     */
+    protected function byTitleBuilder($title, $parent_id = null)
+    {
+        static $current_uri;
+        static $device;
+        static $locale;
+        static $menu = '';
+
+        if (!$locale) {
+            $request     = $this->get('request');
+            $current_uri = $request->getPathInfo();
+            $device      = $request->attributes->get('_x_device');
+            $locale      = $request->getLocale();
+        }
+
+        $query = CmsQuery::create()
+            ->useCmsThreadQuery()
+                ->useCmsThreadI18nQuery()
+                    ->filterByTitle($title)
+                ->endUse()
+            ->endUse()
+            ->useCmsI18nQuery()
+                ->filterByIsActive(true)
+            ->endUse()
+            ->joinWithI18n($locale)
+            ->orderBySort()
+            ->filterByParentId($parent_id)
+            ->groupById()
+        ;
+
+        if (false !== strpos($device, 'mobile')) {
+            $query->useCmsI18nQuery()
+                    ->filterByOnMobile(true)
+                ->endUse()
+            ;
+        }
+
+        $result = $query->find();
+
+        if ($result->count()) {
+            $menu .= '<ul class="'.($menu ? 'inner' : 'outer '.Tools::stripText($title)).'">';
+            foreach ($result as $record) {
+
+                if ($record->getTitle()) {
+                    $class = '';
+                    $path  = $record->getPath();
+
+                    if ('frontpage' == $record->getType()) {
+                        $path = '';
+                    }
+
+                    if ($result->isFirst()){
+                        $class .= ' first';
+                    } elseif ($result->isLast()){
+                        $class .= ' last';
+                    }
+
+                    if ('heading' == $record->getType()) {
+                        $uri = '';
+                        $class .= ' heading';
+                    } elseif (preg_match('~^(f|ht)tps?://~', $path)) {
+                        $uri = $path;
+                    } else {
+                        $uri =  '/' . $locale . '/' . $path;
+                    }
+
+                    if ($current_uri == $uri) {
+                        $class .= ' active';
+                    } else {
+                        $class .= ' inactive';
+                    }
+
+                    $menu .= '<li class="' . $class . '"><a href="'. $uri . '" class="page-'.$record->getId().' '.$record->getType().'">' . $record->getTitle() . '</a>';
+                    $this->byTitleBuilder($title, $record->getId());
+                    $menu .= '</li>';
+                }
+            }
+            $menu .= '</ul>';
+        }
+
+        return $menu;
+    }
+
 }
