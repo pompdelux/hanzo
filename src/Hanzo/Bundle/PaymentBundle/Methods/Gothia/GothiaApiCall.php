@@ -52,8 +52,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
      **/
     public static function getInstance( Array $settings, GothiaApi $api)
     {
-        if ( self::$instance === null )
-        {
+        if (self::$instance === null) {
             self::$instance = new self;
         }
 
@@ -72,21 +71,15 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
     {
         $errorReporting = error_reporting(0);
 
-        if ( $this->api->getTest() )
-        {
+        if ($this->api->getTest()) {
             $client = AFSWS_Init( 'test' );
-        }
-        else
-        {
+        } else {
             $client = AFSWS_Init( 'live' );
         }
 
-        try
-        {
+        try {
             $response = $client->call( $function, $request );
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             Tools::debug( $e->getMessage(), __METHOD__, array( 'Function' => $function, 'Callstring' => $request));
             throw new GothiaApiCallException( $e->getMessage() );
         }
@@ -96,14 +89,12 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         // If there is a problem with the connection or something like that a GothiaApiCallException is thrown
         // Else a GothiaApiCallResponse is returned, which might still be an "error" but the call went through fine
 
-        if ( $response === false || $client->fault )
-        {
+        if (($response === false) || ($client->fault)) {
             $msg = 'Kunne ikke forbinde til Gothia Faktura service, prøv igen senere';
 
             $err = $client->getError();
 
-            if ( $err )
-            {
+            if ($err) {
                 $msg .= ' '.$err;
             }
 
@@ -117,8 +108,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
             throw new GothiaApiCallException( implode('<br>', $errors) );
         }
 
-        if ( $this->api->getTest() || Tools::isBellcomRequest() )
-        {
+        if ($this->api->getTest() || Tools::isBellcomRequest()) {
           Tools::debug( 'Gothia debug call', __METHOD__, array( 'Function' => $function, 'Callstring' => $request));
           Tools::debug( 'Gothia debug response', __METHOD__, array( 'Response' => $response ));
         }
@@ -135,9 +125,9 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
      * @return GothiaApiCallResponse
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function checkCustomer( Customers $customer, Orders $order )
+    public function checkCustomer(Customers $customer, Orders $order)
     {
-        $hanzo = Hanzo::getInstance();
+        $hanzo      = Hanzo::getInstance();
         $domain_key = str_replace('Sales', '', $hanzo->get('core.domain_key'));
 
         $gothiaAccount = $customer->getGothiaAccounts(Propel::getConnection(null, Propel::CONNECTION_WRITE));
@@ -150,7 +140,6 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         if (empty($customerId)) {
             Tools::debug( 'Missing customer id', __METHOD__ );
             $customerId = $customer->getId();
-            //throw new GothiaApiCallException( 'Missing customer id' );
         }
 
         $street = trim($order->getBillingAddressLine1().' '.$order->getBillingAddressLine2());
@@ -281,15 +270,13 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         $customerId     = $customer->getId();
         $currency_code  = $order->getCurrencyCode();
 
-        if ( $this->api->getTest() )
-        {
+        if ($this->api->getTest()) {
             $gothiaAccount = $customer->getGothiaAccounts(Propel::getConnection(null, Propel::CONNECTION_WRITE));
             $customerId = $this->getTestCustomerId($gothiaAccount->getSocialSecurityNum());
             #Tools::debug( 'Test Gothia', __METHOD__, array('Amount' => $amount, 'customerId' => $customerId, 'currency_code' => $currency_code));
         }
 
-        if ( empty($customerId) )
-        {
+        if (empty($customerId)) {
             Tools::debug( 'Missing customer id', __METHOD__ );
             $customerId = $customer->getId();
             //throw new GothiaApiCallException( 'Missing customer id' );
@@ -312,9 +299,9 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function cancel( Customers $customer, Orders $order )
+    public function cancel(Customers $customer, Orders $order)
     {
-        return $this->cancelReservation( $customer, $order );
+        return $this->cancelReservation($customer, $order);
     }
 
     /**
@@ -324,14 +311,12 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
      * @return GothiaApiCallResponse
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function cancelReservation( Customers $customer, Orders $order )
+    public function cancelReservation(Customers $customer, Orders $order)
     {
         $timer = new Timer('gothia', true);
+        $total = $order->getTotalPrice();
 
-        $total      = $order->getTotalPrice();
-
-        if ( empty($total) )
-        {
+        if (empty($total)) {
             Tools::debug( 'Empty total', __METHOD__ );
             throw new GothiaApiCallException( 'Empty total' );
         }
@@ -339,21 +324,17 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         $amount     = number_format( $total, 2, '.', '' );
         $customerId = $customer->getId();
 
-        if ( $this->api->getTest() )
-        {
+        if ($this->api->getTest()) {
             $gothiaAccount = $customer->getGothiaAccounts(Propel::getConnection(null, Propel::CONNECTION_WRITE));
-            $customerId = $this->getTestCustomerId($gothiaAccount->getSocialSecurityNum());
+            $customerId    = $this->getTestCustomerId($gothiaAccount->getSocialSecurityNum());
         }
 
-        if ( empty($customerId) )
-        {
+        if (empty($customerId)) {
             Tools::debug( 'Missing customer id', __METHOD__ );
             $customerId = $customer->getId();
-            //throw new GothiaApiCallException( 'Missing customer id' );
         }
 
-        if ( empty($amount) )
-        {
+        if (empty($amount)) {
             Tools::debug( 'Empty amount', __METHOD__ );
             throw new GothiaApiCallException( 'Empty amount' );
         }
@@ -394,24 +375,21 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
      **/
     public function checkCustomerAndPlaceReservation( Customers $customer, Orders $order, array $additional_info = NULL )
     {
-        $hanzo = Hanzo::getInstance();
-        $domain_key = str_replace('Sales', '', $hanzo->get('core.domain_key'));
-
+        $hanzo         = Hanzo::getInstance();
+        $domain_key    = str_replace('Sales', '', $hanzo->get('core.domain_key'));
         $gothiaAccount = $customer->getGothiaAccounts(Propel::getConnection(null, Propel::CONNECTION_WRITE));
         $customerId    = $customer->getId();
-        $amount         = number_format( $order->getTotalPrice(), 2, '.', '' );
-        $currency_code  = $order->getCurrencyCode();
+        $amount        = number_format( $order->getTotalPrice(), 2, '.', '' );
+        $currency_code = $order->getCurrencyCode();
 
         if ($this->api->getTest()) {
-            $customerId = $this->getTestCustomerId($gothiaAccount->getSocialSecurityNum());
+            $customerId    = $this->getTestCustomerId($gothiaAccount->getSocialSecurityNum());
             $gothiaAccount = $customer->getGothiaAccounts(Propel::getConnection(null, Propel::CONNECTION_WRITE));
         }
 
         if (empty($customerId)) {
             Tools::debug( 'Missing customer id', __METHOD__ );
-
             $customerId = $customer->getId();
-            // throw new GothiaApiCallException( 'Missing customer id' );
         }
 
         $street = trim($order->getBillingAddressLine1().' '.$order->getBillingAddressLine2());
@@ -430,8 +408,8 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         if (!$additional_info) {
           $additional_info = array(
             'bank_account_no' => NULL,
-            'bank_id' => NULL,
-            'payment_method' => 'Invoice',
+            'bank_id'         => NULL,
+            'payment_method'  => 'Invoice',
           );
         }
 
