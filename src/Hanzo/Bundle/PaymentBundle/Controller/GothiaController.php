@@ -73,11 +73,12 @@ class GothiaController extends CoreController
 
         // Build the form where the customer can enter his/hers information
         $form = $this->createFormBuilder( $gothiaAccount )
-            ->add( 'social_security_num', 'text', array(
-                'label' => 'social_security_num',
-                'required' => true,
-                'translation_domain' => 'gothia' ) )
-            ->getForm();
+            ->add('social_security_num', 'text', [
+                'label'              => 'social_security_num',
+                'required'           => true,
+                'translation_domain' => 'gothia'
+            ])->getForm()
+        ;
 
         return $this->render('PaymentBundle:Gothia:payment.html.twig',array(
             'page_type' => 'gothia',
@@ -100,13 +101,10 @@ class GothiaController extends CoreController
         $hanzo      = Hanzo::getInstance();
         $domainKey  = $hanzo->get('core.domain_key');
 
-        // Use form validation?
-
+        // Use form validation ??
         switch (str_replace('Sales', '', $domainKey)) {
             case 'FI':
-                /**
-                 * Finland uses social security numbers with dash DDMMYY-CCCC
-                 */
+                // Finland uses social security numbers with dash DDMMYY-CCCC
                 if(!strpos($SSN, '-')){ // FI has to have dash. If it isnt there, add it. Could be made better?
                     $SSN = substr($SSN, 0, 6).'-'.substr($SSN, 6);
                 }
@@ -125,12 +123,12 @@ class GothiaController extends CoreController
                     ));
                 }
                 break;
+
             case 'NO':
                 /**
                  * Norway uses social security numbers without dash but with 5 digits DDMMYY-CCCCC
                  */
                 $SSN = strtr($SSN, array('-' => '', ' ' => ''));
-
                 if (strlen($SSN) < 11) {
                     return $this->json_response(array(
                         'status'  => FALSE,
@@ -145,6 +143,7 @@ class GothiaController extends CoreController
                     ));
                 }
                 break;
+
             case 'DK':
             case 'NL':
             case 'DE':
@@ -171,11 +170,9 @@ class GothiaController extends CoreController
                     ));
                 }
                 break;
-            default:
-                /**
-                 * All others uses social security number without dash DDMMYYCCCC
-                 */
 
+            default:
+                // All others uses social security number without dash DDMMYYCCCC
                 $SSN = strtr($SSN, array('-' => '', ' ' => ''));
 
                 //Every other domain
@@ -238,6 +235,7 @@ class GothiaController extends CoreController
                 Tools::debug('Check Customer Failed', __METHOD__, array('Message' => $e->getMessage()));
             }
             $timer->logOne('checkCustomer call failed orderId #'.$order->getId());
+
             return $this->json_response(array(
                 'status' => FALSE,
                 'message' => $translator->trans('json.checkcustomer.failed', array('%msg%' => $e->getMessage()), 'gothia'),
@@ -248,8 +246,10 @@ class GothiaController extends CoreController
 
         if (!$response->isError()) {
             $gothiaAccount = $customer->getGothiaAccounts(Propel::getConnection(null, Propel::CONNECTION_WRITE));
-            $gothiaAccount->setDistributionBy( $response->data['DistributionBy'] )
-                ->setDistributionType( $response->data['DistributionType'] );
+            $gothiaAccount
+                ->setDistributionBy($response->data['DistributionBy'])
+                ->setDistributionType($response->data['DistributionType'])
+            ;
 
             $customer->setGothiaAccounts( $gothiaAccount );
             $customer->save();
@@ -258,20 +258,21 @@ class GothiaController extends CoreController
                 'status' => true,
                 'message' => '',
             ));
-        } else {
-            if ($response->data['PurchaseStop'] === 'true') {
-                return $this->json_response(array(
-                    'status' => FALSE,
-                    'message' => $translator->trans('json.checkcustomer.purchasestop', array(), 'gothia'),
-                ));
-            }
+        }
 
+        if ($response->data['PurchaseStop'] === 'true') {
             return $this->json_response(array(
                 'status' => FALSE,
-                'message' => $translator->trans('json.checkcustomer.error', array(), 'gothia'),
+                'message' => $translator->trans('json.checkcustomer.purchasestop', array(), 'gothia'),
             ));
         }
+
+        return $this->json_response(array(
+            'status' => FALSE,
+            'message' => $translator->trans('json.checkcustomer.error', array(), 'gothia'),
+        ));
     }
+
 
     /**
      * confirmAction
