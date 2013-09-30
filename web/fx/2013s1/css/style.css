@@ -2110,6 +2110,10 @@ form.location-locator div.error p {
   display: none;
 }
 
+#in-edit-warning a {
+  text-decoration: underline;
+}
+
 #body-pensio-payment-form ul,
 #body-pensio-payment-form form {
   margin: 20px 0;

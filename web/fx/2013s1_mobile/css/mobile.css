@@ -1836,6 +1836,10 @@ form.location-locator div.error p {
   display: none;
 }
 
+#in-edit-warning a {
+  text-decoration: underline;
+}
+
 /**
 | _faq
 */
