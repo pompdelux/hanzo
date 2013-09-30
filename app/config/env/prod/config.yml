@@ -15,7 +15,7 @@ framework:
     templating:
         assets_base_urls:
             http: [ "%assets_base_url%" ]
-            ssl: [ %%assets_base_url% ]
+            ssl: [ "%assets_base_url%" ]
 
 assetic:
     filters:
