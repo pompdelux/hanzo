@@ -220,7 +220,7 @@ class DefaultController extends CoreController
         $session->migrate();
 
         // hf@bellcom.dk: used to avoid user pressing back on success page to get back to process, which then sends the customer to failed
-        $session->set('last_successful_order_id',$order->getId());
+        $session->set('last_successful_order_id', $order->getId());
 
         // update/set basket cookie
         Tools::setCookie('basket', '(0) '.Tools::moneyFormat(0.00), 0, false);

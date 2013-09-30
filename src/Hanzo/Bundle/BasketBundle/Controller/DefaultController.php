@@ -29,106 +29,115 @@ use Hanzo\Model\CategoriesQuery;
 
 class DefaultController extends CoreController
 {
-    public function addAction()
+    public function addAction(Request $request)
     {
         $this->get('twig')->addGlobal('page_type', 'basket');
-        $translator = $this->get('translator');
+
+        $session = $request->getSession();
+
+        // this is set in the dibs controller, but never unset - so we better do it here.
+        if ($session->has('last_successful_order_id')) {
+            $session->remove('last_successful_order_id');
+        }
 
         // product_id,master,size,color,quantity
-        $request = $this->get('request');
-        $quantity = $request->request->get('quantity', 1);
-        $product = ProductsPeer::findFromRequest($request);
+        $translator = $this->get('translator');
+        $quantity   = $request->request->get('quantity', 1);
+        $product    = ProductsPeer::findFromRequest($request);
 
         // could not find matching product, throw 404 ?
         if (!$product instanceof Products) {
             if ($this->getFormat() == 'json') {
                 return $this->json_response(array(
-                    'status' => FALSE,
-                    'message' => ''
+                    'message' => '',
+                    'status'  => FALSE,
                 ));
             }
 
-            $this->redirect($request->headers->get('referer'));
+            return $this->redirect($request->headers->get('referer'));
         }
 
-        $stock = $this->get('stock')->check($product, $quantity);
+        $stock_service = $this->get('stock');
+        $stock         = $stock_service->check($product, $quantity);
 
-        if ($stock) {
-            $date = $this->get('stock')->decrease($product, $quantity);
-            $order = OrdersPeer::getCurrent();
-
-            if ($order->getState() >= Orders::STATE_PRE_PAYMENT) {
-                return $this->json_response(array(
-                    'status' => FALSE,
-                    'message' => $translator->trans('order.state_pre_payment.locked', array(), 'checkout')
-                ));
-            }
-
-            $order->setOrderLineQty($product, $quantity, false, $date);
-            $order->setUpdatedAt(time());
-
-            try {
-                $order->save();
-            } catch(PropelException $e) {
-                // if the session is expired, we issue the user a new session and send him on his way
-                $session = $request->getSession();
-                $test = "Integrity constraint violation: 1062 Duplicate entry '".$session->getId()."' for key";
-                if (false !== strpos($e->getMessage(), $test)) {
-                    $session->migrate();
-                    $session->save();
-
-                    Tools::setCookie('basket', '(0) '.Tools::moneyFormat(0.00), 0, false);
-                    return $this->json_response(array(
-                        'status' => FALSE,
-                        'message' => 'session.died',
-                        'data' => [
-                            'location' => $this->generateUrl('_homepage')
-                        ]
-                    ));
-                }
-            }
-
-            $price = ProductsDomainsPricesPeer::getProductsPrices(array($product->getId()));
-
-            $price = array_shift($price);
-            $original_price = $price['normal'];
-            $price = array_shift($price);
-
-            $latest = array(
-                'id' => $product->getId(),
-                'single_price' => Tools::moneyFormat($price['price']),
-                'price' => Tools::moneyFormat($price['price'] * $quantity),
-                'expected_at' => ''
-            );
-
-            $t = new \DateTime($date);
-            $t = $t->getTimestamp();
-            if (($t > 0) && ($t > time())) {
-                $latest['expected_at'] = $date;
-            }
-
-            Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
-
+        if (false === $stock) {
             if ($this->getFormat() == 'json') {
                 return $this->json_response(array(
-                    'status' => TRUE,
-                    'message' => $translator->trans('product.added.to.cart', array('%product%' => $product)),
-                    'data' => $this->miniBasketAction(TRUE),
-                    'latest' => $latest,
-                    'total' => $order->getTotalQuantity(true),
+                    'message' => $translator->trans('product.out.of.stock', array('%product%' => $product)),
+                    'status'  => FALSE,
                 ));
             }
+
+            return $this->forward('BasketBundle:Default:view');
         }
 
-        if ($this->getFormat() == 'json') {
+        $date  = $stock_service->decrease($product, $quantity);
+        $order = OrdersPeer::getCurrent();
+
+        if ($order->getState() >= Orders::STATE_PRE_PAYMENT) {
             return $this->json_response(array(
-                'status' => FALSE,
-                'message' => $translator->trans('product.out.of.stock', array('%product%' => $product)),
+                'message' => $translator->trans('order.state_pre_payment.locked', array(), 'checkout'),
+                'status'  => FALSE,
             ));
         }
 
+        // we need to figure out why some information seems to hang in the session where it shouldn't
+        // this is one of the things that could be wrong, so we test it and logs any fingings.
+        if ($session->has('last_successful_order_id')) {
+            if ($session->get('last_successful_order_id') == $order->getId()) {
+                // this should not be possible, but the test is here to see if there is some issues we need to address...
+                $message =
+                    "We should not be here !!!\n".
+                    'Session: '.print_r($session->all(), 1)."\n".
+                    'Order..: '.print_r($order->toArray(), 1).
+                    "\n- - - - - -\n"
+                ;
+                Tools::log($message);
+            }
+        }
 
-        return $this->forward('BasketBundle:Default:view');
+        $order->setOrderLineQty($product, $quantity, false, $date);
+        $order->setUpdatedAt(time());
+
+        try {
+            $order->save();
+        } catch(PropelException $e) {
+            return $this->resetOrderAndUser($request);
+        }
+
+        $price          = ProductsDomainsPricesPeer::getProductsPrices(array($product->getId()));
+        $price          = array_shift($price);
+        $original_price = $price['normal'];
+        $price          = array_shift($price);
+
+        $latest = array(
+            'expected_at'  => '',
+            'id'           => $product->getId(),
+            'price'        => Tools::moneyFormat($price['price'] * $quantity),
+            'single_price' => Tools::moneyFormat($price['price']),
+        );
+
+        $t = new \DateTime($date);
+        $t = $t->getTimestamp();
+        if (($t > 0) && ($t > time())) {
+            $latest['expected_at'] = $date;
+        }
+
+        Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
+
+        $template_data = [
+            'data'    => $this->miniBasketAction(TRUE),
+            'latest'  => $latest,
+            'message' => $translator->trans('product.added.to.cart', array('%product%' => $product)),
+            'status'  => TRUE,
+            'total'   => $order->getTotalQuantity(true),
+        ];
+
+        if ($this->getFormat() == 'json') {
+            return $this->json_response($template_data);
+        }
+
+        return $this->forward('BasketBundle:Default:view', $template_data);
     }
 
 
@@ -150,12 +159,12 @@ class DefaultController extends CoreController
             }
 
             return $this->json_response(array(
-                'status' => TRUE,
-                'message' => '',
-                'data' => array(
-                    'total' => $total,
+                'data'    => array(
+                    'total'   => $total,
                     'warning' => $warning,
                 ),
+                'message' => '',
+                'status'  => TRUE,
             ));
         }
 
@@ -195,25 +204,25 @@ class DefaultController extends CoreController
             $order->save();
 
             $data = array(
-                'total' => Tools::moneyFormat($order->getTotalPrice(true)),
-                'quantity' => $order->getTotalQuantity(true)
+                'quantity' => $order->getTotalQuantity(true),
+                'total'    => Tools::moneyFormat($order->getTotalPrice(true)),
             );
 
             Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
 
             if ($this->getFormat() == 'json') {
                 return $this->json_response(array(
-                    'status' => TRUE,
+                    'data'    => $data,
                     'message' => '',
-                    'data' => $data,
+                    'status'  => TRUE,
                 ));
             }
         }
 
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
-                'status' => FALSE,
                 'message' => $this->get('translator')->trans('no.such.product.in.cart'),
+                'status'  => FALSE,
             ));
         }
 
@@ -232,14 +241,14 @@ class DefaultController extends CoreController
         // 3. remove the old product
         // 4. add the new
 
-        $request = $this->get('request');
+        $request            = $this->get('request');
         $product_to_replace = $request->request->get('product_to_replace');
 
         $request_data = array(
             'quantity' => $request->request->get('quantity'),
-            'master' => $request->request->get('master'),
-            'size' => $request->request->get('size'),
-            'color' => $request->request->get('color'),
+            'master'   => $request->request->get('master'),
+            'size'     => $request->request->get('size'),
+            'color'    => $request->request->get('color'),
         );
 
         $response = $this->forward('WebServicesBundle:RestStock:check', $request_data);
@@ -266,14 +275,14 @@ class DefaultController extends CoreController
                 $response['data'] = array();
 
                 $product = ProductsPeer::findFromRequest($request);
-                $prices = ProductsDomainsPricesPeer::getProductsPrices(array($product->getId()));
-                $prices = array_shift($prices);
+                $prices  = ProductsDomainsPricesPeer::getProductsPrices(array($product->getId()));
+                $prices  = array_shift($prices);
 
                 foreach ($prices as $key => $price) {
                     $response['data'][$key.'_total'] = Tools::moneyFormat($price['price'] * $request->request->get('quantity'));
-                    $response['data'][$key] = Tools::moneyFormat($price['price']);
+                    $response['data'][$key]          = Tools::moneyFormat($price['price']);
                 }
-                $response['data']['basket'] = $this->miniBasketAction(TRUE);
+                $response['data']['basket']     = $this->miniBasketAction(TRUE);
                 $response['data']['product_id'] = $product->getId();
             }
         }
@@ -296,13 +305,13 @@ class DefaultController extends CoreController
             $order = OrdersPeer::getCurrent();
         }
 
-        $router = $this->get('router');
+        $router      = $this->get('router');
         $router_keys = include $this->container->parameters['kernel.cache_dir'] . '/category_map.php';
-        $locale = strtolower(Hanzo::getInstance()->get('core.locale'));
+        $locale      = strtolower(Hanzo::getInstance()->get('core.locale'));
 
         $mode = $this->get('kernel')->getStoreMode();
+        $cid  = array('category2group');
 
-        $cid = array('category2group');
         $category2group = $this->getCache($cid);
         if (empty($category2group)) {
             $result = CategoriesQuery::create()
@@ -359,9 +368,8 @@ class DefaultController extends CoreController
                 ;
 
                 // find matching router
-                $key = '_' . $locale . '_' . $products2category->getCategoriesId();
-                $group = $category2group[$products2category->getCategoriesId()];
-
+                $key    = '_' . $locale . '_' . $products2category->getCategoriesId();
+                $group  = $category2group[$products2category->getCategoriesId()];
                 $master = ProductsQuery::create()->findOneBySku($line['products_name']);
 
                 if ('consultant' == $mode) {
@@ -370,14 +378,14 @@ class DefaultController extends CoreController
                     if (isset($router_keys[$key])) {
                         $line['url'] = $router->generate($router_keys[$key], array(
                             'product_id' => $master->getId(),
-                            'title' => Tools::stripText($line['products_name']),
+                            'title'      => Tools::stripText($line['products_name']),
                         ));
                     }
                 }
             } else {
-                $line['url'] = '';
+                $group                = 0;
                 $line['basket_image'] = '';
-                $group = 0;
+                $line['url']          = '';
             }
 
             $products[$group][] = $line;
@@ -390,7 +398,6 @@ class DefaultController extends CoreController
             $template = 'BasketBundle:Default:block.html.twig';
         }
 
-        // hf@bellcom.dk, 21-aug-2012: link continue shopping to quickorder on consultant site -->>
         $continue_shopping = 'javascript:history.go(-1)';
 
         $hanzo = Hanzo::getInstance();
@@ -398,17 +405,36 @@ class DefaultController extends CoreController
         if (strpos($domain_key, 'Sales') !== false) {
             $continue_shopping = $router->generate('QuickOrderBundle_homepage');
         }
-        // <<-- hf@bellcom.dk, 21-aug-2012: link continue shopping to quickorder on consultant site
 
         Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
 
         return $this->render($template, array(
-            'embedded' => $embed,
-            'page_type' => 'basket',
-            'products' => $products,
-            'total' => $order->getTotalPrice(true),
-            'delivery_date' => $delivery_date,
             'continue_shopping' => $continue_shopping,
+            'delivery_date'     => $delivery_date,
+            'embedded'          => $embed,
+            'page_type'         => 'basket',
+            'products'          => $products,
+            'total'             => $order->getTotalPrice(true),
         ));
+    }
+
+
+    private function resetOrderAndUser(Request $request)
+    {
+        // if the session is expired, we issue the user a new session and send him on his way
+        $session = $request->getSession();
+        if (false !== strpos($e->getMessage(), "Integrity constraint violation: 1062 Duplicate entry '".$session->getId()."' for key")) {
+            $session->migrate();
+            $session->save();
+
+            Tools::setCookie('basket', '(0) '.Tools::moneyFormat(0.00), 0, false);
+            return $this->json_response(array(
+                'data'    => [
+                    'location' => $this->generateUrl('_homepage')
+                ],
+                'message' => 'session.died',
+                'status'  => FALSE,
+            ));
+        }
     }
 }
