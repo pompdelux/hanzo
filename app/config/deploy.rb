@@ -69,7 +69,7 @@ after "deploy:update_code", "deploy:pending:default"
 namespace :deploy do
   desc "Roll out tools.php for apc clearing"
   task :copy_apcclear, :roles => :symfonyweb do
-    run("wget -q --output-document=/var/www/tools.php http://tools.bellcom.dk/hanzo/tools.php.txt")
+    run("sudo wget -q --output-document=/var/www/tools.php http://tools.bellcom.dk/hanzo/tools.php.txt")
   end
   desc "Clear apc cache on the local server"
   task :apcclear, :roles => :symfonyweb do
