@@ -159,6 +159,7 @@ namespace :symfony do
     task :selfupdate do
       run("sudo /usr/local/bin/composer self-update")
     end
+  end
 end
 
 # own tasks. Run propel migrations
