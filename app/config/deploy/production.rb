@@ -16,8 +16,8 @@ set :branch, "master"
 # list of servers to deploy to
 role :app, 'pdlfront-dk3', 'pdlfront-dk2', 'pdlfront-dk1', 'pdlfront-no1', 'pdlfront-se1', 'pdlfront-nl1', 'pdlfront-fi1', 'pdlfront-dk4', 'pdlfront-dk5', 'pdladmin', 'pdlkons-dk1', 'pdlstatic1'
 
-# :apache should contain our apache servers. Used in reload_apache and apcclear
-role :apache, 'pdlfront-dk3', 'pdlfront-dk2', 'pdlfront-dk1', 'pdlfront-no1', 'pdlfront-se1', 'pdlfront-nl1', 'pdlfront-fi1', 'pdlfront-dk4', 'pdlfront-dk5', 'pdladmin', 'pdlkons-dk1'
+# :symfonyweb should contain our apache/nginx servers running symfony. Used in reload_apache and apcclear
+role :symfonyweb, 'pdlfront-dk3', 'pdlfront-dk2', 'pdlfront-dk1', 'pdlfront-no1', 'pdlfront-se1', 'pdlfront-nl1', 'pdlfront-fi1', 'pdlfront-dk4', 'pdlfront-dk5', 'pdladmin', 'pdlkons-dk1'
 
 # our redis server. clear cache here
 role :redis, adminserver, :primary => true
@@ -39,12 +39,12 @@ namespace :deploy do
   end
 # own tasks. copy vhost
   desc "Copy default vhost from stat"
-  task :copy_vhost, :roles => :apache do
+  task :copy_vhost, :roles => :symfonyweb do
     run("sudo wget -q --output-document=/etc/apache2/sites-available/pompdelux http://tools.bellcom.dk/hanzo/pompdelux-vhost.txt")
   end
 # own tasks. enable vhost
   desc "Enable vhost from stat"
-  task :enable_vhost, :roles => :apache do
+  task :enable_vhost, :roles => :symfonyweb do
     run("sudo a2ensite pompdelux")
   end
 end

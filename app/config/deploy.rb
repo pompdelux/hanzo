@@ -37,12 +37,10 @@ set :dump_assetic_assets,   true
 set :deploy_via,  :rsync_with_remote_cache
 # use other rsync_options. Default is: -az --delete
 #set :rsync_options, "-rltoDzO --delete"
-#set :rsync_options, "-rltzO --delete"
 set :rsync_options, "-rltzO --delete --exclude=.git"
 
 set :group_writable, true
 
-#set :deployed_user, "www-data"
 set :deployed_group, "www-data"
 
 # will run propel:model:build on each environment if set to propel
@@ -60,26 +58,34 @@ ssh_options[:forward_agent] = true
 
 # own rules for running tasks after deploy
 after 'deploy:restart', 'deploy:symlinks', 'symfony:cache:assets_update', 'symfony:cache:redis_clear', 'deploy:apcclear', 'symfony:cache:varnish_clear', 'deploy:cleanup', 'deploy:update_permissions', 'deploy:update_permissions_shared', 'deploy:send_email'
-## also clear redis when calling cache:clear
+## also clear redis and varnish when calling cache:clear
 after 'symfony:cache:clear', 'symfony:cache:redis_clear', 'symfony:cache:varnish_clear'
 # mail after rollback and warn about clearing cache. Doesnt seem to work with "after 'deploy:rollback", because it tries to clear the old current dir
 after 'deploy:rollback', 'deploy:send_email_rollback', 'deploy:rollback_warning'
-# save whats new diff just after updating the code
+# save whats new diff just after updating the code. This might break an initial deploy even if using deploy:cold
 after "deploy:update_code", "deploy:pending:default"
 
 ## own tasks. copy apc-clear.php, apcclear and reload apache tasks
 namespace :deploy do
-  desc "Roll out apc-clear.php"
-  task :copy_apcclear, :roles => :apache do
-    run("wget -q --output-document=/var/www/apc-clear.php http://tools.bellcom.dk/hanzo/apc-clear.php.txt")
+  desc "Roll out tools.php for apc clearing"
+  task :copy_apcclear, :roles => :symfonyweb do
+    run("wget -q --output-document=/var/www/tools.php http://tools.bellcom.dk/hanzo/tools.php.txt")
   end
   desc "Clear apc cache on the local server"
-  task :apcclear, :roles => :apache do
-    run("wget -q -O /dev/null http://localhost/apc-clear.php")
+  task :apcclear, :roles => :symfonyweb do
+    run("wget -q -O /dev/null http://localhost/tools.php?action=apc-clear")
   end
   desc "Reload apache"
-  task :reload_apache, :roles => :apache do
+  task :reload_apache, :roles => :symfonyweb do
     run("sudo /etc/init.d/apache2 reload")
+  end
+  desc "Reload php5fpm"
+  task :reload_php5fpm, :roles => :symfonyweb do
+    run("sudo /etc/init.d/php5-fpm reload")
+  end
+  desc "Reload nginx"
+  task :reload_nginx, :roles => :symfonyweb do
+    run("sudo /etc/init.d/nginx reload")
   end
 # fix permissions
   desc "Update permissions on shared app logs and web dirs to be group writeable"
@@ -128,9 +134,9 @@ namespace :deploy do
   end
 end
 
-# own task. Clear the redis cache
 namespace :symfony do
   namespace :cache do
+    # own task. Clear the redis cache
     desc "Clear/Flush redis cache"
     task :redis_clear, :roles => :redis do
       run("cd #{latest_release} && php app/console hanzo:redis:cache:clear --env=#{symfony_env_prod}")
@@ -141,15 +147,21 @@ namespace :symfony do
         run("cd #{latest_release} && php app/console hanzo:dataio:update assets_version --env=#{i}")
       end
     end
-    # Clear Varnish
+    # own task. Clear Varnish
     desc "Empty the varnish cache"
     task :varnish_clear, :roles => :redis do
       run("cd #{latest_release} && php app/console hanzo:varnish:purge --env=#{symfony_env_prod}")
     end
   end
+  namespace :composer do
+    # own task. Update the composer binary
+    desc "Run composer self-update"
+    task :selfupdate do
+      run("sudo /usr/local/bin/composer self-update")
+    end
 end
 
-# own task. Run propel migrations
+# own tasks. Run propel migrations
 namespace :propel do
   namespace :migration do
     desc "Run migrations"
