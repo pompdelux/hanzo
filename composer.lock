@@ -78,16 +78,16 @@
         },
         {
             "name": "doctrine/cache",
-            "version": "v1.1",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "2c9761ff1d13e188d5f7378066c1ce2882d7a336"
+                "reference": "d0e4447707a064a5814b18cb0dcc2f24185f6179"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/2c9761ff1d13e188d5f7378066c1ce2882d7a336",
-                "reference": "2c9761ff1d13e188d5f7378066c1ce2882d7a336",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/d0e4447707a064a5814b18cb0dcc2f24185f6179",
+                "reference": "d0e4447707a064a5814b18cb0dcc2f24185f6179",
                 "shasum": ""
             },
             "require": {
@@ -131,7 +131,7 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
-                    "name": "Johannes M. Schmitt",
+                    "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
                     "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
@@ -143,7 +143,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2013-08-07 16:04:25"
+            "time": "2013-09-26 19:23:25"
         },
         {
             "name": "doctrine/collections",
@@ -445,16 +445,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekino/EkinoNewRelicBundle.git",
-                "reference": "bb69e1cd05bb870225ec3577e14cb0a2018ee392"
+                "reference": "e272040be8bae9a2e0cdcdc703aa50f5e3294b82"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekino/EkinoNewRelicBundle/zipball/bb69e1cd05bb870225ec3577e14cb0a2018ee392",
-                "reference": "bb69e1cd05bb870225ec3577e14cb0a2018ee392",
+                "url": "https://api.github.com/repos/ekino/EkinoNewRelicBundle/zipball/e272040be8bae9a2e0cdcdc703aa50f5e3294b82",
+                "reference": "e272040be8bae9a2e0cdcdc703aa50f5e3294b82",
                 "shasum": ""
             },
-            "require": {
-                "symfony/symfony": "*"
+            "require-dev": {
+                "silex/silex": "~1.0",
+                "symfony/console": "*",
+                "symfony/framework-bundle": "*"
             },
             "type": "symfony-bundle",
             "extra": {
@@ -485,7 +487,7 @@
                 "monitoring",
                 "performance"
             ],
-            "time": "2013-09-18 13:22:46"
+            "time": "2013-09-23 07:19:26"
         },
         {
             "name": "guzzle/guzzle",
@@ -721,12 +723,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/JMSDiExtraBundle.git",
-                "reference": "782ecc42faff1a40e38ab587862f74564cee1dd7"
+                "reference": "01029f6a19c5a4131b80878311cd44a990ff923a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/JMSDiExtraBundle/zipball/782ecc42faff1a40e38ab587862f74564cee1dd7",
-                "reference": "782ecc42faff1a40e38ab587862f74564cee1dd7",
+                "url": "https://api.github.com/repos/schmittjoh/JMSDiExtraBundle/zipball/01029f6a19c5a4131b80878311cd44a990ff923a",
+                "reference": "01029f6a19c5a4131b80878311cd44a990ff923a",
                 "shasum": ""
             },
             "require": {
@@ -779,7 +781,7 @@
                 "annotations",
                 "dependency injection"
             ],
-            "time": "2013-09-17 09:48:21"
+            "time": "2013-10-02 11:10:43"
         },
         {
             "name": "jms/metadata",
@@ -1122,12 +1124,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/liip/LiipThemeBundle.git",
-                "reference": "9b16d861157defe8f4303a81cb6606b0d250ddef"
+                "reference": "fa7f7851e1b9b12b9a7c9f6bcbbc24a23aba05aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liip/LiipThemeBundle/zipball/9b16d861157defe8f4303a81cb6606b0d250ddef",
-                "reference": "9b16d861157defe8f4303a81cb6606b0d250ddef",
+                "url": "https://api.github.com/repos/liip/LiipThemeBundle/zipball/fa7f7851e1b9b12b9a7c9f6bcbbc24a23aba05aa",
+                "reference": "fa7f7851e1b9b12b9a7c9f6bcbbc24a23aba05aa",
                 "shasum": ""
             },
             "require": {
@@ -1167,7 +1169,7 @@
                 "themes",
                 "theming"
             ],
-            "time": "2013-09-10 15:03:37"
+            "time": "2013-09-30 12:47:45"
         },
         {
             "name": "misd/guzzle-bundle",
@@ -1493,17 +1495,17 @@
         },
         {
             "name": "propel/propel-bundle",
-            "version": "1.2.8",
+            "version": "1.2.10",
             "target-dir": "Propel/PropelBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/propelorm/PropelBundle.git",
-                "reference": "2c0342f927d1675a586710847aac551476752fc6"
+                "reference": "4f3cb7c16a8c8b98890035c48f950d56be899dea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/propelorm/PropelBundle/zipball/2c0342f927d1675a586710847aac551476752fc6",
-                "reference": "2c0342f927d1675a586710847aac551476752fc6",
+                "url": "https://api.github.com/repos/propelorm/PropelBundle/zipball/4f3cb7c16a8c8b98890035c48f950d56be899dea",
+                "reference": "4f3cb7c16a8c8b98890035c48f950d56be899dea",
                 "shasum": ""
             },
             "require": {
@@ -1537,7 +1539,7 @@
                 "persistence",
                 "propel"
             ],
-            "time": "2013-09-18 14:23:38"
+            "time": "2013-09-25 11:45:11"
         },
         {
             "name": "propel/propel1",
@@ -2053,16 +2055,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.3.4",
+            "version": "v2.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "4fb225f4e315c11aa6d8935b1c0ceaf48ba39f1f"
+                "reference": "aa5626cd2a359567c948ebdeeca68d948640302f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/4fb225f4e315c11aa6d8935b1c0ceaf48ba39f1f",
-                "reference": "4fb225f4e315c11aa6d8935b1c0ceaf48ba39f1f",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/aa5626cd2a359567c948ebdeeca68d948640302f",
+                "reference": "aa5626cd2a359567c948ebdeeca68d948640302f",
                 "shasum": ""
             },
             "require": {
@@ -2157,7 +2159,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2013-08-27 08:58:24"
+            "time": "2013-09-27 07:31:40"
         },
         {
             "name": "twig/extensions",
