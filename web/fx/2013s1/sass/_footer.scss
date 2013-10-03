@@ -51,7 +51,8 @@ footer{
 				text-align: center;
 			}
 			form{
-				font-family:$font-sans !important;
+				font-family:$font-sans;
+                font-size: $footer-size;
 				width: 234px;
 			}
 		}

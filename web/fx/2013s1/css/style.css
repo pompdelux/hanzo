@@ -750,7 +750,8 @@ footer .footer-menu.footer-menu-4 #dialoug-message {
   text-align: center;
 }
 footer .footer-menu.footer-menu-4 form {
-  font-family: Tahoma, Geneva, Verdana, sans-serif !important;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 12px;
   width: 234px;
 }
 footer .copy {
