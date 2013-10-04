@@ -87,6 +87,24 @@ namespace :deploy do
   task :reload_nginx, :roles => :symfonyweb do
     run("sudo /etc/init.d/nginx reload")
   end
+  desc "Switch to nginx"
+  task :use_nginx, :roles => :symfonyweb do
+    run "sudo /etc/init.d/apache2 stop"
+    run "sudo /etc/init.d/php5-fpm start"
+    run "sudo /etc/init.d/nginx start"
+    run "sudo /usr/sbin/update-rc.d -f apache remove"
+    run "sudo /usr/sbin/update-rc.d nginx defaults"
+    run "sudo /usr/sbin/update-rc.d php5-fpm defaults"
+  end
+  desc "Switch to apache"
+  task :use_apache, :roles => :symfonyweb do
+    run "sudo /etc/init.d/nginx stop"
+    run "sudo /etc/init.d/php5-fpm stop"
+    run "sudo /etc/init.d/apache2 start"
+    run "sudo /usr/sbin/update-rc.d -f nginx remove"
+    run "sudo /usr/sbin/update-rc.d -f php5-fpm remove"
+    run "sudo /usr/sbin/update-rc.d apache2 defaults"
+  end
 # fix permissions
   desc "Update permissions on shared app logs and web dirs to be group writeable"
   task :update_permissions do
@@ -157,7 +175,7 @@ namespace :symfony do
     # own task. Update the composer binary
     desc "Run composer self-update"
     task :selfupdate do
-      run("sudo /usr/local/bin/composer self-update")
+      run "sudo /usr/local/bin/composer self-update"
     end
   end
 end
@@ -224,17 +242,15 @@ namespace :symfony do
       capifony_puts_ok
     end
   end
-
 # FROM symfony2/symfony.rb - Overridden here to only run assetic dump on static server. We dont loop environments because css and js is combined for all
-# COMMENTED OUT 24/9 2013. /login uses .js and .css files from www.pompdelux.com - so this breaks /login (and possible other urls)
-#  namespace :assetic do
-#    desc "Dumps all assets to the filesystem"
-#    task :dump, :roles => :static,  :except => { :no_release => true } do
-#      capifony_pretty_print "--> Dumping all assets to the filesystem"
-#
-#      run "#{try_sudo} sh -c 'cd #{latest_release} && #{php_bin} #{symfony_console} assetic:dump --env=#{symfony_env_prod} --no-debug'"
-#      capifony_puts_ok
-#    end
-#  end
+  namespace :assetic do
+    desc "Dumps all assets to the filesystem"
+    task :dump, :roles => :static,  :except => { :no_release => true } do
+      capifony_pretty_print "--> Dumping all assets to the filesystem"
+
+      run "#{try_sudo} sh -c 'cd #{latest_release} && #{php_bin} #{symfony_console} assetic:dump --env=#{symfony_env_prod} --no-debug'"
+      capifony_puts_ok
+    end
+  end
 end
 
