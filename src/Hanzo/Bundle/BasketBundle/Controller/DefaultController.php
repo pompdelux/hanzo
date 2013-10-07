@@ -102,7 +102,7 @@ class DefaultController extends CoreController
         try {
             $order->save();
         } catch(PropelException $e) {
-            return $this->resetOrderAndUser($request);
+            return $this->resetOrderAndUser($e, $request);
         }
 
         $price          = ProductsDomainsPricesPeer::getProductsPrices(array($product->getId()));
@@ -419,7 +419,7 @@ class DefaultController extends CoreController
     }
 
 
-    private function resetOrderAndUser(Request $request)
+    private function resetOrderAndUser($e, Request $request)
     {
         // if the session is expired, we issue the user a new session and send him on his way
         $session = $request->getSession();

@@ -1840,6 +1840,11 @@ form.location-locator div.error p {
   text-decoration: underline;
 }
 
+div.invalid-order {
+  border: 2px solid #aa0000;
+  padding: 10px;
+}
+
 /**
 | _faq
 */

@@ -2115,6 +2115,11 @@ form.location-locator div.error p {
   text-decoration: underline;
 }
 
+div.invalid-order {
+  border: 2px solid #998670;
+  padding: 10px;
+}
+
 #body-pensio-payment-form ul,
 #body-pensio-payment-form form {
   margin: 20px 0;

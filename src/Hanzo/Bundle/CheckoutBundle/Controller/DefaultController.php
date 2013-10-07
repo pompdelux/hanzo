@@ -2,7 +2,6 @@
 
 namespace Hanzo\Bundle\CheckoutBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -18,6 +17,7 @@ use Hanzo\Model\AddressesQuery;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\ProductsDomainsPricesPeer;
 use Hanzo\Model\ShippingMethods;
+use Hanzo\Model\CouponsQuery;
 
 use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
 
@@ -72,13 +72,14 @@ class DefaultController extends CoreController
      **/
     public function summeryAction()
     {
+        $invalid_order_message = '';
+
         // we only want the masterdata here, no slaves thank you...
         Propel::setForceMasterConnection(true);
 
         $order = OrdersPeer::getCurrent(true);
         $hanzo = Hanzo::getInstance();
         $domain_key = $hanzo->get('core.domain_key');
-
 
         // first we finalize the order, aka. setting misc order attributes and updating lines ect.
 
@@ -157,8 +158,26 @@ class DefaultController extends CoreController
         // make sure to remove doubble discount
         if (isset($attributes->purchase) &&
             isset($attributes->purchase->type) &&
-            ($attributes->purchase->type !== 'private')) {
+            ($attributes->purchase->type !== 'private')
+        ) {
             $order->removeDiscountLine('discount.private');
+        }
+
+        // make sure to remove doubble discount
+        if (isset($attributes->coupon) &&
+            !empty($attributes->coupon->code)
+        ) {
+            $amount = CouponsQuery::create()
+                ->select('MinPurchaseAmount')
+                ->findOneByCode($attributes->coupon->code)
+            ;
+            $total = $order->getTotalPrice();
+
+            if ($total < $amount) {
+                $invalid_order_message = $this->get('translator')->trans('order.amount.to.low.for.coupon', [
+                    '%amount%' => Tools::moneyFormat($amount),
+                ], 'checkout');
+            }
         }
 
         /* ------------------------------------------------- */
@@ -172,8 +191,9 @@ class DefaultController extends CoreController
         }
 
         $html = $this->render('CheckoutBundle:Default:summery.html.twig', array(
-            'order'=> $order,
-            'attributes' => $attributes
+            'attributes'            => $attributes,
+            'invalid_order_message' => $invalid_order_message,
+            'order'                 => $order,
         ));
 
         // reset connection

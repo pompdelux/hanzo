@@ -422,7 +422,11 @@
         <source>order.amount.to.low</source>
         <target>Din værtinderabat overstiger dit samlede køb.
 Du skal tilføje flere varer.
-</target>
+        </target>
+      </trans-unit>
+      <trans-unit id="order.amount.to.low.for.coupon" approved="no">
+        <source>order.amount.to.low.for.coupon</source>
+        <target>Dit køb overstiger ikke minimumsgrænsen på %amount% for din rabatkode. Du skal tilføje flere varer.</target>
       </trans-unit>
       <trans-unit id="coupon" approved="no">
         <source>coupon</source>

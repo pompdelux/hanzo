@@ -257,6 +257,9 @@
         }
       });
 
+      if ($('.js-invalid-order').length) {
+        $('#checkout-buttons').hide();
+      }
     };
 
     pub.setStepStatus = function(step, status) {
