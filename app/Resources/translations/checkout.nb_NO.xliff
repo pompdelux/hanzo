@@ -410,8 +410,7 @@
       </trans-unit>
       <trans-unit id="order.amount.to.low" approved="no">
         <source>order.amount.to.low</source>
-        <target>Vertinnerabatten overstiger ditt samlede kjøp.
-Du må tilføye flere varer.
+        <target>Kjøpet svarer dessverre ikke til minstegrensen på NOK %amount% for din rabattkode. Legg til flere varer i handlekurven din for å bruke rabattkoden
 </target>
       </trans-unit>
       <trans-unit id="order.amount.to.low.for.coupon" approved="no">
