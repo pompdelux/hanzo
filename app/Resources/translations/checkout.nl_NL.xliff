@@ -402,9 +402,7 @@
       </trans-unit>
       <trans-unit id="order.amount.to.low" approved="no">
         <source>order.amount.to.low</source>
-        <target>Je gastvrouwkorting is groter dan het totale aankoopbedrag.
-Je moet meer artikelen toevoegen.
-</target>
+        <target>Je bestelling is van mindere waarde dan de totale gastvrouwkorting, die je hebt verdiend. Vul je bestelling aan als je je gastvrouwkorting wilt gebruiken.</target>
       </trans-unit>
       <trans-unit id="order.amount.to.low.for.coupon" approved="no">
         <source>order.amount.to.low.for.coupon</source>
