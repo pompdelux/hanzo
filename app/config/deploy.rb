@@ -10,7 +10,7 @@ set :update_vendors, false
 set :application, "Hanzo"
 set :app_path,    "app"
 
-set :repository,  "git@github.com:bellcom/hanzo.git"
+set :repository,  "git@github.com:pompdelux/hanzo.git"
 set :scm,         :git
 
 set :stage_dir, 'app/config/deploy'
