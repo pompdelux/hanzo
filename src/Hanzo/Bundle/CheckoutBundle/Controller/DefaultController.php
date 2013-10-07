@@ -10,6 +10,7 @@ use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\OrdersLines;
 use Hanzo\Model\OrdersLinesQuery;
 use Hanzo\Model\Addresses;
 use Hanzo\Model\AddressesPeer;
@@ -167,16 +168,31 @@ class DefaultController extends CoreController
         if (isset($attributes->coupon) &&
             !empty($attributes->coupon->code)
         ) {
-            $amount = CouponsQuery::create()
-                ->select('MinPurchaseAmount')
+            $coupon = CouponsQuery::create()
                 ->findOneByCode($attributes->coupon->code)
             ;
-            $total = $order->getTotalPrice();
 
-            if ($total < $amount) {
+            // make sure the coupon's minimum purchase limit is met.
+            if ($order->getTotalPrice() < $coupon->getMinPurchaseAmount()) {
                 $invalid_order_message = $this->get('translator')->trans('order.amount.to.low.for.coupon', [
-                    '%amount%' => Tools::moneyFormat($amount),
+                    '%amount%' => Tools::moneyFormat($coupon_amount),
                 ], 'checkout');
+            }
+
+            // we sometimes see orders where the discount is missing from the orders_lines table, we re-add it.
+            $discount = OrdersLinesQuery::create()
+                ->joinWithProducts()
+                ->filterByType('discount')
+                ->filterByProductsName('coupon.code')
+                ->findByOrdersId($order->getId())
+            ;
+
+            if (!$discount instanceof OrdersLines) {
+                $order->setDiscountLine(
+                    $this->get('translator')->trans('coupon', [], 'checkout'),
+                    -$coupon->getAmount(),
+                    'coupon.code'
+                );
             }
         }
 
