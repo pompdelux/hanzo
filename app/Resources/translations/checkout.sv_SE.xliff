@@ -412,9 +412,7 @@
       </trans-unit>
       <trans-unit id="order.amount.to.low" approved="no">
         <source>order.amount.to.low</source>
-        <target>Din värdinnerabatt är större än beställningsbeloppet.
-Du måste lägga till fler varor.
-</target>
+        <target>Ditt köp har ett mindre värde än den totala värdinnerabatt du har uppnått. Lägg till fler varor på din order för att använda din värdinnerabatt.</target>
       </trans-unit>
       <trans-unit id="order.amount.to.low.for.coupon" approved="no">
         <source>order.amount.to.low.for.coupon</source>
