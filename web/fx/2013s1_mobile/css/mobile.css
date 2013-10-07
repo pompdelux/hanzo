@@ -1752,7 +1752,7 @@ form.address .error {
 #address-block .confirm {
   margin-top: 20px;
   padding: 20px;
-  border: 2px solid #f00;
+  border: 2px solid #998670;
   clear: both;
 }
 #address-block .block {
@@ -1834,6 +1834,15 @@ form.location-locator div.error p {
 #body-pensio-wait #in-edit-warning,
 #body-checkout-process #in-edit-warning {
   display: none;
+}
+
+#in-edit-warning a {
+  text-decoration: underline;
+}
+
+div.invalid-order {
+  border: 2px solid #aa0000;
+  padding: 10px;
 }
 
 /**

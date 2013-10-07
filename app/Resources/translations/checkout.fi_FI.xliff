@@ -390,7 +390,11 @@
       </trans-unit>
       <trans-unit id="order.amount.to.low" approved="no">
         <source>order.amount.to.low</source>
-        <target>Order amount is too low</target>
+        <target>Ostosi on pienempi kuin emännän alennuksesi. Lisää ystävällisesti tuotteita ostoskoriisi saadaksesi emännänalennuksesi.</target>
+      </trans-unit>
+      <trans-unit id="order.amount.to.low.for.coupon" approved="no">
+        <source>order.amount.to.low.for.coupon</source>
+        <target>Ostosi on valitettavasti alle minimirajan EUR %amount% lunastaaksesi alennuskoodin. Lisää ystävällisesti tuotteita ostoskoriisi saadaksesi alennuksen.</target>
       </trans-unit>
       <trans-unit id="coupon" approved="no">
         <source>coupon</source>

@@ -54,18 +54,20 @@ class CheckoutListener
         $session   = $hanzo->getSession();
         $domainKey = $hanzo->get('core.domain_key');
 
-        $message = 'Order id: '.$order->getID().'<br>
-            Order id i session: '. $session->get('order_id') .'<br>
-            Kunde navn: '. $order->getFirstName() .' '. $order->getLastName() .'<br>
-            Kunde email: '. $order->getEmail() .'<br>
-            Host name: '.$host.'<br>
-            Domain key: '.$domainKey.'<br>
-            Order state: '. $order->getState() .'<br>
-            Billing method: '. $order->getBillingMethod() .'<br>
-            In edit: '. $order->getInEdit() .'<br>
-        ';
+        $message =
+            '  Order id..........: '.$order->getID()."\n".
+            '  Order id i session: '.$session->get('order_id')."\n".
+            '  Kunde navn........: '.$order->getFirstName() .' '. $order->getLastName()."\n".
+            '  Kunde email.......: '.$order->getEmail()."\n".
+            '  Host name.........: '.$host."\n".
+            '  Domain key........: '.$domainKey."\n".
+            '  Order state.......: '.$order->getState()."\n".
+            '  Billing method....: '.$order->getBillingMethod()."\n".
+            '  In edit...........: '.$order->getInEdit()."\n".
+            ' - - - - - - - - - - - - - - - - '
+        ;
 
-        Tools::log('Payment failed: '.str_replace('<br>',"", $message ));
+        Tools::log("Payment failed:\n".$message);
 
         $this->session->set('failed_order_mail_sent', true);
     }
