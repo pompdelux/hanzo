@@ -746,7 +746,7 @@ footer .footer-menu.footer-menu-4 input[type="text"] {
 }
 footer .footer-menu.footer-menu-4 #dialoug-message {
   width: 200px;
-  border: 2px solid red;
+  border: 2px solid #998670;
   text-align: center;
 }
 footer .footer-menu.footer-menu-4 form {
@@ -2004,7 +2004,7 @@ form.address label {
   margin-top: 0 0 12px;
 }
 form.address .error {
-  border: 2px solid red;
+  border: 2px solid #998670;
   margin: 10px 0;
   padding: 10px;
 }
@@ -2027,7 +2027,7 @@ form.address .error {
 #address-block .confirm {
   margin-top: 20px;
   padding: 20px;
-  border: 2px solid #f00;
+  border: 2px solid #998670;
   clear: both;
 }
 #address-block .block {
@@ -2102,7 +2102,7 @@ form.location-locator div.error {
   margin: 10px;
 }
 form.location-locator div.error p {
-  border: 1px solid red;
+  border: 1px solid #998670;
   padding: 10px;
 }
 
@@ -2352,7 +2352,7 @@ nav.main-menu > ul > li > ul.on {
   color: #444444;
 }
 .inject-notice-box.error .inner {
-  border-color: red;
+  border-color: #998670;
 }
 
 .slide-notice-box {
@@ -2383,7 +2383,7 @@ nav.main-menu > ul > li > ul.on {
   display: none;
 }
 #dialoug-message.error {
-  border-color: #f00;
+  border-color: #998670;
 }
 #dialoug-message p {
   background-color: #fff;
@@ -2442,7 +2442,7 @@ nav.main-menu > ul > li > ul.on {
 }
 .body-pages .newsletter-form-simple #dialoug-message {
   width: 200px;
-  border: 2px solid red;
+  border: 2px solid #998670;
   text-align: center;
 }
 .body-pages .newsletter-form-simple form {
@@ -3234,7 +3234,7 @@ form input[type="password"].inline {
   width: auto;
 }
 form input.error {
-  border-color: red;
+  border-color: #998670;
 }
 
 input.button,
@@ -3705,6 +3705,6 @@ ol.list {
 }
 
 ul.form-errors li {
-  color: red;
+  color: #998670;
   padding: 5px 0;
 }
