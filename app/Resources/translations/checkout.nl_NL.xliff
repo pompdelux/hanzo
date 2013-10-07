@@ -408,7 +408,7 @@ Je moet meer artikelen toevoegen.
       </trans-unit>
       <trans-unit id="order.amount.to.low.for.coupon" approved="no">
         <source>order.amount.to.low.for.coupon</source>
-        <target>Dit køb overstiger ikke minimumsgrænsen på %amount% for din rabatkode. Du skal tilføje flere varer.</target>
+        <target>Je waarde van je bestelling komt niet overeen met het minimumbedrag van EUR %amount% voor je kortingscode. Vul je bestelling aan als je de als je de kortingscode wilt gebruiken.</target>
       </trans-unit>
       <trans-unit id="coupon" approved="no">
         <source>coupon</source>
