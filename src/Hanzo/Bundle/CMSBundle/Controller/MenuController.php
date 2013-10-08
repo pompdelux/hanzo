@@ -36,6 +36,7 @@ class MenuController extends CoreController
             $type,
             $request->getRequestUri()
         ];
+
         $html = $this->getCache($cache_id);
 
         if (!$html) {
@@ -43,24 +44,39 @@ class MenuController extends CoreController
 
             $this->locale = $hanzo->get('core.locale');
             $this->base_url = $request->getBaseUrl();
-
             if ($thread) {
                 $this->cms_thread = $thread;
             }
 
+            $generate_trail = false;
             if (empty($this->path)) {
-                $this->path = str_replace($this->locale, '', $request->getPathInfo());
+                $this->path = preg_replace('#^/?[a-z]{2}_[A-Z]{2}/?#', '', $request->getPathInfo());
 
                 // NICETO this could be done better, but how ?
                 if (preg_match('~(?:/(?:overview|[0-9]+)/?([a-z0-9\-]+)?)~', $this->path, $matches)) {
                     $this->path = str_replace($matches[0], '', $this->path);
                 }
 
+                $generate_trail = true;
+            }
+
+            // never ovreride the main thread, it will break stuff...
+            if ($type != 'main') {
+                $this->cms_thread = CmsI18nQuery::create()
+                    ->join('Cms')
+                    ->select('Cms.CmsThreadId')
+                    ->filterByPath($this->path)
+                    ->findOne()
+                ;
+            }
+
+            if ($generate_trail) {
                 // home does not have a trail.
                 if ($this->path != '/') {
                     $this->generateTrail();
                 }
             }
+
             // now we have a trail to the current page, lets generate the requested menu.
 
             $html = '';
