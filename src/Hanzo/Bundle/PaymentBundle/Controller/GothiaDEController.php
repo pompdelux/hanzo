@@ -96,27 +96,29 @@ class GothiaDEController extends CoreController
 
         // If the is first time user, they must enter a ssn.
         if (is_null($gothiaAccount)) {
-            $form = $form->add( 'social_security_num', 'text', array(
-                'label' => 'social_security_num',
-                'required' => true,
-                'translation_domain' => 'gothia' ) );
+            $form = $form->add('social_security_num', 'text', array(
+                'label'              => 'social_security_num',
+                'required'           => true,
+                'translation_domain' => 'gothia'
+            ));
         }
 
         if ($paytype === 'gothia_lv') {
             $form = $form->add('bank_account_no', 'text', array(
-                    'label' => 'bank_account_no',
-                    'required' => true,
+                    'label'              => 'bank_account_no',
+                    'required'           => true,
                     'translation_domain' => 'gothia' ) )
                 ->add('bank_id', 'text', array(
-                    'label' => 'bank_id',
-                    'required' => true,
+                    'label'              => 'bank_id',
+                    'required'           => true,
                     'translation_domain' => 'gothia' ) );
         }
         $form = $form->getForm();
 
         return $this->render('PaymentBundle:GothiaDE:payment.html.twig',array(
-            'page_type' => 'gothia',
-            'form' => $form->createView(),
+            'page_type'       => 'gothia',
+            'form'            => $form->createView(),
+            'skip_my_account' => true,
         ));
     }
 

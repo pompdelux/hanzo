@@ -81,8 +81,9 @@ class GothiaController extends CoreController
         ;
 
         return $this->render('PaymentBundle:Gothia:payment.html.twig',array(
-            'page_type' => 'gothia',
-            'form' => $form->createView(),
+            'page_type'       => 'gothia',
+            'form'            => $form->createView(),
+            'skip_my_account' => true,
         ));
     }
 
