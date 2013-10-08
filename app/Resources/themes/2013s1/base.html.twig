@@ -74,7 +74,9 @@
     {% if simple_layout is not defined %}
         <nav id="secondary-links">
             <ul class="horizontal menu right first">
+        {% if skip_my_account is not defined %}
                 <li><a href="{{ path('_account', {'_locale' : app.request.locale}) }}">{{ "my.account"|trans({}, 'account') }}</a></li>
+        {% endif %}
                 <li id="select-domain">
                     <a class="open-menu" href="#">Change Country</a>
                     <div class="dropdown" style="display: none">

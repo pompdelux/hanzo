@@ -143,6 +143,9 @@ class DibsController extends CoreController
           error_log(__LINE__.':'.__FILE__.' Order id mismatch, in url: '.$order_id. ' in session: '. $this->get('session')->get('order_id') ); // hf@bellcom.dk debugging
         }
 
-        return $this->render('PaymentBundle:Default:process.html.twig', array( 'hide_mini_basket' => true ));
+        return $this->render('PaymentBundle:Default:process.html.twig', [
+            'hide_mini_basket' => true,
+            'skip_my_account'  => true,
+        ]);
     }
 }

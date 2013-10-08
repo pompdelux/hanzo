@@ -61,7 +61,9 @@ class DefaultController extends CoreController
      **/
     public function confirmAction()
     {
-        return $this->render('CheckoutBundle:Default:confirm.html.twig');
+        return $this->render('CheckoutBundle:Default:confirm.html.twig', [
+            'skip_my_account' => true,
+        ]);
     }
 
 
@@ -210,6 +212,7 @@ class DefaultController extends CoreController
             'attributes'            => $attributes,
             'invalid_order_message' => $invalid_order_message,
             'order'                 => $order,
+            'skip_my_account'       => true,
         ));
 
         // reset connection
@@ -323,8 +326,9 @@ class DefaultController extends CoreController
         $order->reload(true);
 
         return $this->render('CheckoutBundle:Default:flow.html.twig', array(
-            'page_type' => 'checkout',
-            'order'     => $order
+            'page_type'       => 'checkout',
+            'order'           => $order,
+            'skip_my_account' => true,
         ));
     }
 
