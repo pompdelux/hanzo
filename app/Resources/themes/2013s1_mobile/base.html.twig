@@ -32,14 +32,10 @@
 
   {% if simple_layout is not defined %}
     <nav class="menu main-menu">
-      {# ab@bellcom.dk Try to collapse the menu.
-      {% if page_type|default('page') == 'frontpage' %}
-      {% render 'CMSBundle:Menu:menu' with {'type': left_menu.type, 'thread': left_menu.thread, 'from': left_menu.from } %}
-      {% else %}
-      #}
       <div class="nested">
         <a href="" class="menu-trigger">Menu</a>
         {% render 'CMSBundle:Menu:menu' with {'type': left_menu.type, 'thread': left_menu.thread, 'from': left_menu.from } %}
+        {% render 'CMSBundle:Menu:byTitle' with {'title':'topmenu'} %}
       </div>
       {#
       {% endif %}
