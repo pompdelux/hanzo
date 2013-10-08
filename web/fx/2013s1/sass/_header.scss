@@ -45,11 +45,10 @@ nav.first.main-menu {
                 background-color: #fff;
             }
             a {
-                text-transform: none;
+                text-transform: uppercase;
+                font-family: $font-sans;
             }
         }
-
-        li.last.heading {display:none;}
     }
 }
 

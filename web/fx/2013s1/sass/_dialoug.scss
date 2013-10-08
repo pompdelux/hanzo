@@ -9,7 +9,7 @@
 	}
 	&.error{
 		.inner{
-			border-color: #998670;
+			border-color: $alert-border-color;
 		}
 	}
 }
@@ -46,7 +46,7 @@
   display: none;
   &.info!, &.warning! {}
   &.error {
-    border-color: #998670;
+    border-color: $alert-border-color;
   }
   p {
     background-color: #fff;

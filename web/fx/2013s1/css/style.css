@@ -378,10 +378,8 @@ nav.first.main-menu > ul li ul.on {
   background-color: #fff;
 }
 nav.first.main-menu > ul li a {
-  text-transform: none;
-}
-nav.first.main-menu > ul li.last.heading {
-  display: none;
+  text-transform: uppercase;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
 }
 
 nav > ul,
@@ -790,7 +788,7 @@ footer .footer-menu.footer-menu-4 input[type="text"] {
 }
 footer .footer-menu.footer-menu-4 #dialoug-message {
   width: 200px;
-  border: 2px solid #998670;
+  border: 2px solid #c18185;
   text-align: center;
 }
 footer .footer-menu.footer-menu-4 form {
@@ -2071,7 +2069,7 @@ form.address .error {
 #address-block .confirm {
   margin-top: 20px;
   padding: 20px;
-  border: 2px solid #998670;
+  border: 2px solid #c18185;
   clear: both;
 }
 #address-block .block {
@@ -2400,7 +2398,7 @@ nav.main-menu > ul > li > ul.on {
   color: #444444;
 }
 .inject-notice-box.error .inner {
-  border-color: #998670;
+  border-color: #c18185;
 }
 
 .slide-notice-box {
@@ -2431,7 +2429,7 @@ nav.main-menu > ul > li > ul.on {
   display: none;
 }
 #dialoug-message.error {
-  border-color: #998670;
+  border-color: #c18185;
 }
 #dialoug-message p {
   background-color: #fff;
@@ -2490,7 +2488,7 @@ nav.main-menu > ul > li > ul.on {
 }
 .body-pages .newsletter-form-simple #dialoug-message {
   width: 200px;
-  border: 2px solid #998670;
+  border: 2px solid #c18185;
   text-align: center;
 }
 .body-pages .newsletter-form-simple form {
