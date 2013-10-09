@@ -36,6 +36,7 @@ class MenuController extends CoreController
             $type,
             $request->getRequestUri()
         ];
+
         $html = $this->getCache($cache_id);
 
         if (!$html) {
@@ -43,24 +44,39 @@ class MenuController extends CoreController
 
             $this->locale = $hanzo->get('core.locale');
             $this->base_url = $request->getBaseUrl();
-
             if ($thread) {
                 $this->cms_thread = $thread;
             }
 
+            $generate_trail = false;
             if (empty($this->path)) {
-                $this->path = str_replace($this->locale, '', $request->getPathInfo());
+                $this->path = preg_replace('#^/?[a-z]{2}_[A-Z]{2}/?#', '', $request->getPathInfo());
 
                 // NICETO this could be done better, but how ?
                 if (preg_match('~(?:/(?:overview|[0-9]+)/?([a-z0-9\-]+)?)~', $this->path, $matches)) {
                     $this->path = str_replace($matches[0], '', $this->path);
                 }
 
+                $generate_trail = true;
+            }
+
+            // never ovreride the main thread, it will break stuff...
+            if ($type != 'main') {
+                $this->cms_thread = CmsI18nQuery::create()
+                    ->join('Cms')
+                    ->select('Cms.CmsThreadId')
+                    ->filterByPath($this->path)
+                    ->findOne()
+                ;
+            }
+
+            if ($generate_trail) {
                 // home does not have a trail.
                 if ($this->path != '/') {
                     $this->generateTrail();
                 }
             }
+
             // now we have a trail to the current page, lets generate the requested menu.
 
             $html = '';
@@ -497,4 +513,123 @@ class MenuController extends CoreController
             $this->menu[$type] .= '</ul>';
         }
     }
+
+
+    /**
+     * Build and return full tree fetched by thread title.
+     *
+     * @param  string $title
+     * @param  integer $parent_id
+     * @return Response
+     */
+    public function byTitleAction($title, $parent_id = null)
+    {
+        $cache_id = [
+            'menu',
+            $title,
+            $this->get('request')->getRequestUri()
+        ];
+        $html = $this->getCache($cache_id);
+
+        if (empty($html)) {
+            $html = $this->byTitleBuilder($title);
+        }
+
+        $this->setCache($cache_id, $html);
+
+        return new Response($html);
+    }
+
+    /**
+     * Builder function used by the "byTitleAction" method.
+     *
+     * @todo replace generateFull with this method
+     *
+     * @param  [type] $title     [description]
+     * @param  [type] $parent_id [description]
+     *
+     * @return [type]            [description]
+     */
+    protected function byTitleBuilder($title, $parent_id = null)
+    {
+        static $current_uri;
+        static $device;
+        static $locale;
+        static $menu = '';
+
+        if (!$locale) {
+            $request     = $this->get('request');
+            $current_uri = $request->getPathInfo();
+            $device      = $request->attributes->get('_x_device');
+            $locale      = $request->getLocale();
+        }
+
+        $query = CmsQuery::create()
+            ->useCmsThreadQuery()
+                ->useCmsThreadI18nQuery()
+                    ->filterByTitle($title)
+                ->endUse()
+            ->endUse()
+            ->useCmsI18nQuery()
+                ->filterByIsActive(true)
+            ->endUse()
+            ->joinWithI18n($locale)
+            ->orderBySort()
+            ->filterByParentId($parent_id)
+            ->groupById()
+        ;
+
+        if (false !== strpos($device, 'mobile')) {
+            $query->useCmsI18nQuery()
+                    ->filterByOnMobile(true)
+                ->endUse()
+            ;
+        }
+
+        $result = $query->find();
+
+        if ($result->count()) {
+            $menu .= '<ul class="'.($menu ? 'inner' : 'outer '.Tools::stripText($title)).'">';
+            foreach ($result as $record) {
+
+                if ($record->getTitle()) {
+                    $class = '';
+                    $path  = $record->getPath();
+
+                    if ('frontpage' == $record->getType()) {
+                        $path = '';
+                    }
+
+                    if ($result->isFirst()){
+                        $class .= ' first';
+                    } elseif ($result->isLast()){
+                        $class .= ' last';
+                    }
+
+                    if ('heading' == $record->getType()) {
+                        $uri = '';
+                        $class .= ' heading';
+                    } elseif (preg_match('~^(f|ht)tps?://~', $path)) {
+                        $uri = $path;
+                    } else {
+                        $uri =  '/' . $locale . '/' . $path;
+                    }
+
+                    if ($current_uri == $uri) {
+                        $class .= ' active';
+                    } else {
+                        $class .= ' inactive';
+                    }
+
+                    $menu .= '<li class="' . $class . '"><a href="'. $uri . '" class="page-'.$record->getId().' '.$record->getType().'">' . $record->getTitle() . '</a>';
+                    $this->byTitleBuilder($title, $record->getId());
+                    $menu .= '</li>';
+                }
+            }
+            $menu .= '</ul>';
+        }
+
+        return $menu;
+    }
+
 }

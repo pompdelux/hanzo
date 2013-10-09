@@ -48,24 +48,26 @@ class CheckoutListener
             return;
         }
 
-        $order = $event->getOrder();
-        $host  = gethostname();
-        $hanzo = Hanzo::getInstance();
-        $session = $hanzo->getSession();
+        $order     = $event->getOrder();
+        $host      = gethostname();
+        $hanzo     = Hanzo::getInstance();
+        $session   = $hanzo->getSession();
         $domainKey = $hanzo->get('core.domain_key');
 
-        $message = 'Order id: '.$order->getID().'<br>
-            Order id i session: '. $session->get('order_id') .'<br>
-            Kunde navn: '. $order->getFirstName() .' '. $order->getLastName() .'<br>
-            Kunde email: '. $order->getEmail() .'<br>
-            Host name: '.$host.'<br>
-            Domain key: '.$domainKey.'<br>
-            Order state: '. $order->getState() .'<br>
-            Billing method: '. $order->getBillingMethod() .'<br>
-            In edit: '. $order->getInEdit() .'<br>
-        ';
+        $message =
+            '  Order id..........: '.$order->getID()."\n".
+            '  Order id i session: '.$session->get('order_id')."\n".
+            '  Kunde navn........: '.$order->getFirstName() .' '. $order->getLastName()."\n".
+            '  Kunde email.......: '.$order->getEmail()."\n".
+            '  Host name.........: '.$host."\n".
+            '  Domain key........: '.$domainKey."\n".
+            '  Order state.......: '.$order->getState()."\n".
+            '  Billing method....: '.$order->getBillingMethod()."\n".
+            '  In edit...........: '.$order->getInEdit()."\n".
+            ' - - - - - - - - - - - - - - - - '
+        ;
 
-        Tools::log('Payment failed: '.str_replace('<br>',"", $message ));
+        Tools::log("Payment failed:\n".$message);
 
         $this->session->set('failed_order_mail_sent', true);
     }
@@ -93,7 +95,7 @@ class CheckoutListener
         // need copy for later
         $event->setInEdit($order->getInEdit());
 
-        $order->setState( Orders::STATE_PENDING );
+        $order->setState(Orders::STATE_PENDING);
         $order->setInEdit(false);
         $order->setSessionId($order->getId());
         $order->setUpdatedAt(time());
@@ -110,17 +112,17 @@ class CheckoutListener
      */
     public function onPaymentCollected(FilterOrderEvent $event)
     {
-        $order = $event->getOrder();
+        $order   = $event->getOrder();
         $in_edit = $event->getInEdit();
 
         // build and send order confirmation.
-        $attributes = $order->getAttributes();
-        $email = $order->getEmail();
-        $name  = trim($order->getFirstName() . ' ' . $order->getLastName());
+        $attributes     = $order->getAttributes();
+        $email          = $order->getEmail();
+        $name           = trim($order->getFirstName() . ' ' . $order->getLastName());
         $shipping_title = $this->translator->trans('shipping_method.name.' . $order->getDeliveryMethod(), [], 'shipping');
 
         $shipping_cost = 0.00;
-        $shipping_fee = 0.00;
+        $shipping_fee  = 0.00;
         foreach ($order->getOrderLineShipping() as $line)
         {
             switch ($line->getType())
@@ -274,24 +276,24 @@ class CheckoutListener
 
     public function onFinalize(FilterOrderEvent $event)
     {
-        $order = $event->getOrder();
+        $order    = $event->getOrder();
         $customer = $order->getCustomers();
-        $hanzo = Hanzo::getInstance();
+        $hanzo    = Hanzo::getInstance();
 
         // if for some reason a shipping method without data is set, cleanup.
         if ($order->getDeliveryMethod() && ('' == $order->getDeliveryFirstName())) {
-          OrdersLinesQuery::create()
-            ->filterByType('shipping')
-            ->_or()
-            ->filterByType('shipping.fee')
-            ->filterByOrdersId($order->getId())
-            ->delete()
-          ;
-          $order->setDeliveryMethod(null);
+            OrdersLinesQuery::create()
+                ->filterByType('shipping')
+                ->_or()
+                ->filterByType('shipping.fee')
+                ->filterByOrdersId($order->getId())
+                ->delete()
+            ;
+            $order->setDeliveryMethod(null);
 
-          // ??? maby this is not so safe after all..
-          $order->setBillingMethod(null);
-          $order->clearPaymentAttributes();
+            // ??? maby this is not so safe after all..
+            $order->setBillingMethod(null);
+            $order->clearPaymentAttributes();
         }
 
         // set once, newer touch agian

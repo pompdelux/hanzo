@@ -27,6 +27,13 @@ class GeoPostalController extends CoreController
             $country = Hanzo::getInstance()->get('core.country');
         }
 
+        // pseudo fix for 9335
+        // norway have a zip code 9335, but it's a postbox so geopostal does not include this
+        // the zip however is the same city as 9334
+        if (($zip == 9335) && strtolower($country) == 'no') {
+            $zip = 9334;
+        }
+
         if (preg_match('/^[0-9]+$/', $zip)) {
             return $this->getByZip($country, $zip);
         }

@@ -36,7 +36,7 @@
             </trans-unit>
             <trans-unit id="rma.form.activity.return">
                 <source>rma.form.activity.return</source>
-                <target>Retunering</target>
+                <target>Returnering</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.replacement">
                 <source>rma.form.activity.replacement</source>

@@ -210,9 +210,8 @@ var dialoug = (function($) {
     var slideWidth = $slide.outerWidth();
 
 
-    if(is_mobile == false){
-
-      // Desktops slides in from right.
+    // Desktops slides in from right.
+    if(is_mobile === false){
       $('html,body').animate({ scrollTop : 0 });
 
       $('div', $slide).css({
@@ -233,20 +232,16 @@ var dialoug = (function($) {
       }, function() {
         $slide.remove();
       });
+
+      return;
     }
-    else {
-
-      // Mobile devices slide down from top in fixed view.
-
-      $slide.hide();
-
-      $slide.slideDown(300, function(){
-        $slide.delay(duration)
-          .slideUp(400, function() {
-            $slide.remove();
-          });
+    // Mobile devices slide down from top in fixed view.
+    $slide.hide();
+    $slide.slideDown(300, function(){
+      $slide.delay(duration).slideUp(400, function() {
+        $slide.remove();
       });
-    }
+    });
   };
 
 
@@ -262,20 +257,18 @@ var dialoug = (function($) {
   pub.loading = function(selector, message, position) {
     if (loading_status) { return; }
 
-    // if ($('body').hasClass('is-mobile')) {
-    //   selector = $('body');
-    //   position = 'append';
-    // } else
-
     if (typeof(selector) === 'string') {
       selector = $(selector);
     }
 
-
     selector.each(function() {
       var $this = $(this);
       var msg = (undefined === message ? '' : message);
+
       var tpl = '<div class="dialoug-loading"><div>' + msg + '</div></div>';
+      if (selector === 'body') {
+        tpl = '<div class="dialoug-loading fullscreen"><div>' + msg + '</div></div>';
+      }
 
       if (undefined === position) {
         $this.after(tpl);

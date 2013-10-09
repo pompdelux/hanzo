@@ -420,9 +420,11 @@
       </trans-unit>
       <trans-unit id="order.amount.to.low" approved="no">
         <source>order.amount.to.low</source>
-        <target>Din værtinderabat overstiger dit samlede køb.
-Du skal tilføje flere varer.
-</target>
+        <target>Dit køb har en mindre værdi end den samlede værtinderabat, du har opnået. Tilføj flere varer til din kurv for at anvende din værtinderabat.</target>
+      </trans-unit>
+      <trans-unit id="order.amount.to.low.for.coupon" approved="no">
+        <source>order.amount.to.low.for.coupon</source>
+        <target>Dit køb svarer desværre ikke til minimumsgrænsen på DKK %amount% på din rabatkode. Tilføj flere varer til din kurv for at anvende din rabatkode.</target>
       </trans-unit>
       <trans-unit id="coupon" approved="no">
         <source>coupon</source>

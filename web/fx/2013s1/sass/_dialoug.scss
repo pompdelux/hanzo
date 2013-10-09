@@ -9,19 +9,19 @@
 	}
 	&.error{
 		.inner{
-			border-color: red;
+			border-color: $alert-border-color;
 		}
 	}
 }
 .slide-notice-box{
-	position: absolute;
-	top: 55px;
-	right: 0;
-	padding: 8px 8px 19px 8px;
-	text-align: center;
-  overflow: hidden;
-  background: #fff url('/fx/images/icons/icons/divider_left.png') no-repeat;
-  background-position: 0 25px;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    padding: 8px 8px 19px 8px;
+    text-align: center;
+    overflow: hidden;
+    background: #fff url('/fx/images/icons/icons/divider_left.png') no-repeat;
+    background-position: 0 30px;
 }
 
 #cboxContent {
@@ -46,7 +46,7 @@
   display: none;
   &.info!, &.warning! {}
   &.error {
-    border-color: #f00;
+    border-color: $alert-border-color;
   }
   p {
     background-color: #fff;

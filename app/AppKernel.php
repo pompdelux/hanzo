@@ -61,6 +61,7 @@ class AppKernel extends Kernel
             new Hanzo\Bundle\LocationLocatorBundle\LocationLocatorBundle(),
             new Hanzo\Bundle\MunerisBundle\MunerisBundle(),
             new Hanzo\Bundle\AxBundle\AxBundle(),
+            new Hanzo\Bundle\RetargetingBundle\RetargetingBundle(),
             new Hanzo\Bundle\RMABundle\RMABundle(),
         );
 

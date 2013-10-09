@@ -14,7 +14,8 @@ framework:
     trusted_hosts: [ '.*?\.?pompdelux.com' ]
     templating:
         assets_base_urls:
-            http: [ %cdn% ]
+            http: [ "%assets_base_url%" ]
+            ssl: [ "%assets_base_url%" ]
 
 assetic:
     filters:

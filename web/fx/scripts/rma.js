@@ -61,7 +61,7 @@ var rma = (function($) {
                 'rma_replacement' : {
                     'master' : $('#replacement-master-lineid-' + id).val(),
                     'size' : $('#replacement-size-lineid-' + id).val(),
-                    'color' : $('#replacement-color-lineid-' + id).val(),
+                    'color' : $('#replacement-color-lineid-' + id).val()
                 }
             });
         }
