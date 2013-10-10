@@ -8,7 +8,7 @@
     output='fx/cache/rma_pdf.css'
     combine=true
   %}
-  <link rel="stylesheet" href="{{ asset_url }}" />
+  <link rel="stylesheet" href="{{ cdn|trim('/') ~ asset_url }}" />
   {% endstylesheets %}
 </head>
 <body>
