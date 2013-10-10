@@ -125,7 +125,7 @@ var newsletter = (function($) {
             $('#newsletterModal a.close').on('click', function(event) {
                 event.preventDefault();
                 $('#newsletterModal').hide();
-                $.cookie('newsletter_prompt_off', 1);
+                $.cookie('newsletter_prompt_off', 1, {expires : 3650});
             });
         }
     }
