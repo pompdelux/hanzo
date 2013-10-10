@@ -18,6 +18,7 @@
       {{ 'rma.slip.company_details'|trans({}, 'rma')|raw }}
     </div>
     <div class="grid_4 omega">
+      <img src="{{ cdn|trim('/') ~ '/barcode.php?text=' ~ order.id }}" class="barcode pushright">
       <table>
         <tbody>
           <tr>
