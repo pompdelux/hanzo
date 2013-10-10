@@ -18,7 +18,7 @@
       {{ 'rma.slip.company_details'|trans({}, 'rma')|raw }}
     </div>
     <div class="grid_4 omega">
-      <img src="{{ app.request.getHttpHost() ~ '/barcode.php?text=' ~ order.id }}" class="barcode pushright">
+      <img src="{{ cdn ~ 'barcode.php?text=' ~ order.id }}" class="barcode pushright">
       <table>
         <tbody>
           <tr>
