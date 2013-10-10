@@ -18,17 +18,29 @@
         <source>shipping_method.desc.60</source>
         <target></target>
       </trans-unit>
-	  <trans-unit id="shipping_method.name.70">
+      <trans-unit id="shipping_method.name.70">
         <source>shipping_method.name.70</source>
-        <target>DHL</target>
+        <target>DHL/Selektvracht - Bezorgen</target>
       </trans-unit>
-	  <trans-unit id="shipping_method.desc.70">
+      <trans-unit id="shipping_method.desc.70">
         <source>shipping_method.desc.70</source>
-        <target><![CDATA[Je bestelling wordt verstuurd naar je privéadres. Heb je een ander afleveradres (bijv. van de buren), wijzig dan het afleveradres door te klikken op: Wijzig afleveradres.]]></target>
-		</trans-unit>
-		<trans-unit id="shipping_method.label.70">
+        <target><![CDATA[Je order wordt verzonden naar je privéadres. Wil je je bestelling liever op een ander adres laten bezorgen (bijvoorbeeld van de buren), dan kun je het afleveradres wijzigen onder 'wijzig afleveradres'.]]></target>
+        </trans-unit>
+        <trans-unit id="shipping_method.label.70">
         <source>shipping_method.label.70</source>
-        <target>DHL %price%</target>
+        <target>Verzendkosten %price%</target>
+      </trans-unit>
+	  <trans-unit id="shipping_method.name.71">
+        <source>shipping_method.name.71</source>
+        <target>DHL Servicepoint - Zelf afhalen</target>
+      </trans-unit>
+	  <trans-unit id="shipping_method.desc.71">
+        <source>shipping_method.desc.71</source>
+        <target><![CDATA[Je kunt er ook voor kiezen je bestelling zelf op te halen bij een DHL Servicepoint. Je vindt DHL Servicepoints bij jou in de buurt via <a href="http://www.selektvracht.nl/" class="js-external">www.selektvracht.nl</a> – DHL servicepoint.]]></target>
+		</trans-unit>
+		<trans-unit id="shipping_method.label.71">
+        <source>shipping_method.label.71</source>
+        <target>Verzendkosten %price%</target>
       </trans-unit>
       <trans-unit id="shipping_method.label.60">
         <source>shipping_method.label.60</source>
