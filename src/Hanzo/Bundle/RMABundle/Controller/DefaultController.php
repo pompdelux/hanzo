@@ -72,7 +72,6 @@ class DefaultController extends Controller
                 )
             );
 
-            // return new Response($html);
             // Return the generated PDF directly as a reponse.
             return new Response(
                 $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
