@@ -1,6 +1,7 @@
 <?php
 
 /*
+ *  https://github.com/davidscotttufts/php-barcode/
  *  Author:  David S. Tufts
  *  Company: Rocketwood.LLC
  *    www.rocketwood.com
