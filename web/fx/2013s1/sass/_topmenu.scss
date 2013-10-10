@@ -15,11 +15,12 @@ nav.main-menu {
   > ul > li {
     float: left;
     width: auto;
-    padding: 10px 20px 0 0;
+    padding: 15px 20px 0 0;
     position: relative;
     > {
       a {
         display: block;
+        font-size: $heading-size;
       }
       // Sub menu-items
       ul {
