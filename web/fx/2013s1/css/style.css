@@ -2456,6 +2456,80 @@ nav.main-menu > ul > li > ul.on {
   margin-left: 5px;
 }
 
+#newsletterModal {
+  display: none;
+  z-index: 500;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 100px auto;
+  padding: 20px;
+  width: 600px;
+  height: 400px;
+  border-radius: 10px;
+  background-image: url(/fx/images/newsletter_overlay/bg.png);
+}
+#newsletterModal .wrapper {
+  background-image: url(/fx/images/newsletter_overlay/letters.png);
+  background-repeat: no-repeat;
+  padding-left: 150px;
+  padding-top: 20px;
+}
+#newsletterModal .wrapper p {
+  width: 280px;
+}
+#newsletterModal .wrapper form {
+  overflow: hidden;
+}
+#newsletterModal .wrapper div {
+  width: 280px;
+  float: left;
+}
+#newsletterModal .wrapper div input[type="text"] {
+  margin-top: 15px;
+}
+#newsletterModal .wrapper div input[type="text"], #newsletterModal .wrapper div input[type="email"] {
+  width: 100%;
+}
+#newsletterModal .wrapper div p {
+  width: 100%;
+  padding-top: 5px;
+}
+#newsletterModal .wrapper div p a {
+  text-decoration: underline;
+}
+#newsletterModal .wrapper input.button {
+  float: left;
+  margin-left: 40px;
+  background-image: url(/fx/images/newsletter_overlay/button.png);
+  background-repeat: no-repeat;
+  height: 83px;
+  width: 84px;
+  background-color: inherit;
+  text-indent: -999px;
+  display: inline-block;
+}
+#newsletterModal .close {
+  background-image: url(/fx/images/newsletter_overlay/close.png);
+  background-repeat: no-repeat;
+  background-position: top center;
+  display: inline-block;
+  height: 64px;
+  width: 44px;
+  vertical-align: bottom;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+#newsletterModal .bottom {
+  background-image: url(/fx/images/newsletter_overlay/bottom.png);
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  height: 220px;
+}
+
 /**
 | _cms
 */
