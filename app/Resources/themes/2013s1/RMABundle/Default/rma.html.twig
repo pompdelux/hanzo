@@ -8,7 +8,7 @@
     output='fx/cache/rma_pdf.css'
     combine=true
   %}
-  <link rel="stylesheet" href="{{ cdn|trim('/') ~ asset_url }}" />
+  <link rel="stylesheet" href="{{ cdn ~ 'fx/cache/rma_pdf.css' }}" />
   {% endstylesheets %}
 </head>
 <body>
@@ -18,7 +18,7 @@
       {{ 'rma.slip.company_details'|trans({}, 'rma')|raw }}
     </div>
     <div class="grid_4 omega">
-      <img src="{{ cdn|trim('/') ~ '/barcode.php?text=' ~ order.id }}" class="barcode pushright">
+      <img src="{{ app.request.getHttpHost() ~ '/barcode.php?text=' ~ order.id }}" class="barcode pushright">
       <table>
         <tbody>
           <tr>
