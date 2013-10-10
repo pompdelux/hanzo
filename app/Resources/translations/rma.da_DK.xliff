@@ -52,11 +52,11 @@
             </trans-unit>
             <trans-unit id="rma.form.activity.replacement.causes">
                 <source>rma.form.activity.replacement.causes</source>
-                <target>Byttes til anden str.|Byttes til anden farve</target>
+                <target>Byttes til anden str.|Byttes til anden farve|Byttes til anden vare</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.warranty.causes">
                 <source>rma.form.activity.warranty.causes</source>
-                <target>Pakkefejl|Reklamation (venligst notér fejl)|Fortrudt køb (pengene retur)</target>
+                <target>Pakkefejl|Reklamation (venligst notér fejl)|Ny tilsendes</target>
             </trans-unit>
             <trans-unit id="rma.form.label.description">
                 <source>rma.form.label.description</source>
@@ -108,6 +108,10 @@
             <trans-unit id="rma.slip.order_id">
                 <source>rma.slip.order_id</source>
                 <target>E-ordrenummer</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.deliveryaddress">
+                <source>rma.slip.deliveryaddress</source>
+                <target>Leveringsaddresse</target>
             </trans-unit>
             <trans-unit id="rma.slip.title.order_id">
                 <source>rma.slip.title.order_id</source>

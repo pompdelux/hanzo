@@ -40,6 +40,10 @@
             <th>{{ 'rma.slip.order_id'|trans({}, 'rma') }}</th>
             <td>{{ order.id }}</td>
           </tr>
+          <tr>
+            <th>{{ 'rma.slip.deliveryaddress'|trans({}, 'rma') }}</th>
+            <td>{{ address_block|raw }}</td>
+          </tr>
         </tbody>
       </table>
     </div>

@@ -5,6 +5,7 @@ namespace Hanzo\Bundle\RMABundle\Controller;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\CustomersPeer;
+use Hanzo\Model\Addresses;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -55,6 +56,24 @@ class DefaultController extends Controller
         // Time to generate some pdf's!
         if (count($rma_products)) {
 
+            // Generate an address for the delivery address of this order. Used
+            // in the rma pdf.
+            $address = new Addresses();
+            $address->setTitle($order->getDeliveryTitle());
+            $address->setFirstName($order->getDeliveryFirstName());
+            $address->setLastName($order->getDeliveryLastName());
+            $address->setAddressLine1($order->getDeliveryAddressLine1());
+            $address->setAddressLine2($order->getDeliveryAddressLine2());
+            $address->setPostalCode($order->getDeliveryPostalCode());
+            $address->setCity($order->getDeliveryCity());
+            $address->setCountry($order->getDeliveryCountry());
+            $address->setStateProvince($order->getDeliveryStateProvince());
+            $address->setCompanyName($order->getDeliveryCompanyName());
+
+            $address_formatter = $this->get('hanzo.address_formatter');
+
+            $address_block = $address_formatter->format($address);
+
             // Only show the products which are choosed to RMA.
             foreach ($rma_products as &$rma_product) {
                 if (isset($products['product_' . $rma_product['id']])) {
@@ -69,6 +88,7 @@ class DefaultController extends Controller
                     'products'  => $rma_products,
                     'order' => $order,
                     'customer' => CustomersPeer::getCurrent(),
+                    'address_block' => $address_block,
                 )
             );
 
