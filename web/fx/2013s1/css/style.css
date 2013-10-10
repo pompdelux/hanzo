@@ -361,11 +361,11 @@ nav.first.main-menu input {
   padding: 3px;
   border: none;
   margin-right: 10px;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
 }
 nav.first.main-menu input[type="text"].text-button,
 nav.first.main-menu input.text-button {
   font-size: inherit;
-  font-family: Tahoma, Geneva, Verdana, sans-serif;
   margin-top: 0;
 }
 nav.first.main-menu > ul {

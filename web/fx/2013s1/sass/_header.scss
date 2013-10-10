@@ -26,10 +26,10 @@ nav.first.main-menu {
         padding: 3px;
         border: none;
         margin-right: 10px;
+        font-family: $font-sans;
 
         &.text-button {
             font-size: inherit;
-            font-family: $font-sans;
             margin-top: 0;
         }
     }
