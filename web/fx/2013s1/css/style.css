@@ -2458,6 +2458,15 @@ nav.main-menu > ul > li > ul.on {
 
 #newsletterModal {
   display: none;
+  background-image: url(/fx/images/ffffff.png);
+  position: absolute;
+  z-index: 499;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+#newsletterModal .inner {
   z-index: 500;
   position: absolute;
   top: 0;
