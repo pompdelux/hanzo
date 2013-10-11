@@ -345,7 +345,7 @@ class CouponsController extends CoreController
                     'max' => new \DateTime($request->query->get('end')),
                     'min' => new \DateTime($request->query->get('start')),
                 ])
-                ->find()
+                ->find($this->getDbConnection())
             ;
 
             $data['total_amount'] = 0;
