@@ -72,7 +72,7 @@ class DefaultController extends Controller
 
             $address_formatter = $this->get('hanzo.address_formatter');
 
-            $address_block = $address_formatter->format($address);
+            $address_block = mb_convert_encoding($address_formatter->format($address), 'HTML-ENTITIES', 'UTF-8');
 
             // Only show the products which are choosed to RMA.
             foreach ($rma_products as &$rma_product) {
