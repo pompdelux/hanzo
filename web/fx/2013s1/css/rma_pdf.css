@@ -45,3 +45,7 @@ p {
 .company_details ul li {
   margin-bottom: 10px;
 }
+
+.barcode {
+  height: 50px;
+}
