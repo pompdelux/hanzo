@@ -133,8 +133,6 @@
         input.button {
             float: left;
             margin-left: 40px;
-            background-image: url(/fx/images/newsletter_overlay/button.png);
-            background-repeat: no-repeat;
             height: 83px;
             width: 84px;
             background-color: inherit;
@@ -143,10 +141,7 @@
         }
     }
 
-    .close {
-        background-image: url(/fx/images/newsletter_overlay/close.png);
-        background-repeat: no-repeat;
-        background-position: top center;
+    .close-button {
         display: inline-block;
         height: 64px;
         width: 44px;
