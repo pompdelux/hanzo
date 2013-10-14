@@ -22,6 +22,18 @@
         <source>shipping_method.label.S</source>
         <target>MyPack - Servicepakke %price%</target>
       </trans-unit>
+      <trans-unit id="shipping_method.name.700">
+        <source>shipping_method.name.700</source>
+        <target>MyPack - Servicepakke</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.desc.700">
+        <source>shipping_method.desc.S</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="shipping_method.label.700">
+        <source>shipping_method.label.700</source>
+        <target>MyPack - Servicepakke %price%</target>
+      </trans-unit>
       <trans-unit id="shipping_fee.name">
         <source>shipping_fee.name</source>
         <target>Ekspedisjonsgebyr</target>
