@@ -122,7 +122,7 @@ var newsletter = (function($) {
         if (!$.cookie('newsletter_prompt_off') && (false === $('body').hasClass('is-mobile'))) {
             $('#newsletterModal').show();
 
-            $('#newsletterModal a.close').on('click', function(event) {
+            $('#newsletterModal a.close-button').on('click', function(event) {
                 event.preventDefault();
                 $('#newsletterModal').hide();
                 $.cookie('newsletter_prompt_off', 1, {expires : 3650});
