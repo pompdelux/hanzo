@@ -28,24 +28,24 @@
 
 <table id="statistics" class="list">
     <tr>
-        <th>Totale Antal / Beløb:</th>
+        <th>Totale Antal:</th>
         <td>{{ data.total }}</td>
-        <td>{{ data.total_amount|number_format(2, ',', '.') }}</td>
+        <td></td>
     </tr>
     <tr>
-        <th>Brugt / Beløb:</th>
+        <th>Brugt / Ordre Beløb:</th>
         <td>{{ data.used }}</td>
         <td>{{ data.used_amount|number_format(2, ',', '.') }}</td>
     </tr>
     <tr>
-        <th>Ubrugt / Beløb:</th>
+        <th>Ubrugt:</th>
         <td>{{ data.unused }}</td>
-        <td>{{ data.unused_amount|number_format(2, ',', '.') }}</td>
+        <td></td>
     </tr>
     <tr>
-        <th>Udløbene / Beløb:</th>
+        <th>Udløbene:</th>
         <td>{{ data.expired }}</td>
-        <td>{{ data.expired_amount|number_format(2, ',', '.') }}</td>
+        <td></td>
     </tr>
 </table>
 
@@ -56,6 +56,7 @@
 {% endblock %}
 
 {% block javascript %}
+{% if data.used is defined %}
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
   google.load("visualization", "1", {packages:["corechart"]});
@@ -78,4 +79,5 @@
     chart.draw(data, options);
   }
 </script>
+{% endif %}
 {% endblock %}
