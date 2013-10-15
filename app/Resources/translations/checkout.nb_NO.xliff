@@ -410,12 +410,11 @@
       </trans-unit>
       <trans-unit id="order.amount.to.low" approved="no">
         <source>order.amount.to.low</source>
-        <target>Kjøpet svarer dessverre ikke til minstegrensen på NOK %amount% for din rabattkode. Legg til flere varer i handlekurven din for å bruke rabattkoden
-</target>
+        <target>Kjøpet ditt har en lavere verdi enn den totale vertinnerabatt. Legg til flere varer i handlekurven din for å bruke vertinnerabatten</target>
       </trans-unit>
       <trans-unit id="order.amount.to.low.for.coupon" approved="no">
         <source>order.amount.to.low.for.coupon</source>
-        <target>Dit køb svarer desværre ikke til minimumsgrænsen på %amount% for din rabatkode. Tilføj flere varer til din kurv for at anvende din rabatkode.</target>
+        <target>Kjøpet svarer dessverre ikke til minstegrensen på NOK %amount% for din rabattkode. Legg til flere varer i handlekurven din for å bruke rabattkoden</target>
       </trans-unit>
       <trans-unit id="coupon" approved="no">
         <source>coupon</source>
