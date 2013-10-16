@@ -1,6 +1,7 @@
 /app/bootstrap*
 /app/cache/*
 /app/logs/*
+/bin/phing
 /tmp/*
 /vendor/*
 /app/config/parameters.ini

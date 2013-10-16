@@ -39,6 +39,9 @@
             'thread': left_menu.thread,
             'from': left_menu.from
         })) }}
+        {{ render(controller('CMSBundle:Menu:byTitle', {
+            'title':'topmenu'
+        })) }}
       </div>
     </nav><!-- /nav.main -->
   {% endif %}

@@ -1,5 +1,10 @@
 {{ render(controller('BasketBundle:Default:view', { 'embed': true })) }}
-{{ include('CheckoutBundle:Default:order_block.html.twig', {'order': order}) }}
+
+{% if invalid_order_message %}
+    <div class="invalid-order js-invalid-order">{{ invalid_order_message }}</div>
+{% endif %}
+
+{% include 'CheckoutBundle:Default:order_block.html.twig' with {'order': order} %}
 
 <div class="notice">
   {{ 'late.delivery.notice'|trans({}, 'checkout')|raw }}

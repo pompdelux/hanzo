@@ -24,8 +24,8 @@ class Cms extends BaseCms
     public function getSettings($key = NULL, $raw = true)
     {
         $translator = Hanzo::getInstance()->container->get('translator');
-        $test = $this->getId().'.settings';
-        $settings = trim($translator->trans($test, [], 'cms'));
+        $test       = $this->getId().'.settings';
+        $settings   = trim($translator->trans($test, [], 'cms'));
 
         if ($test == $settings) {
             $settings = parent::getSettings();

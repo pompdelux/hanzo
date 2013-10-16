@@ -26,13 +26,13 @@ _order_state_check:
     requirements: { _format: (xml|json), _method: POST }
 
 # GOTHIA }-------------------------
-PaymentBundle_gothia_process:
-    pattern:  /payment/gothia/process
-    defaults: { _controller: PaymentBundle:Gothia:process }
-
 PaymentBundle_gothia_payment:
     pattern:  /payment/gothia
     defaults: { _controller: PaymentBundle:Gothia:payment }
+
+PaymentBundle_gothia_process:
+    pattern:  /payment/gothia/process
+    defaults: { _controller: PaymentBundle:Gothia:process }
 
 PaymentBundle_gothia_payment_test:
     pattern:  /payment/gothia/test

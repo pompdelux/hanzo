@@ -1,8 +1,8 @@
 /**
 | _sprites
 */
-.da-sprite, body.da form.buy .submit-button, body.da .buy-set, body.da .new-price, body.da .out-of-stock {
-  background: url('/fx/2013s1/../images/icons/da-sd69e9a5d05.png') no-repeat;
+.da-sprite, body.da form.buy .submit-button, body.da .buy-set, body.da .new-price, body.da .out-of-stock, body.da .close-button, body.da .subscribe-button {
+  background: url('/fx/2013s1/../images/icons/da-s7398167b80.png') no-repeat;
 }
 
 .icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-return, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, .body-pages .newsletter-form-simple .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.return {
@@ -177,8 +177,8 @@
   background: url('/fx/2013s1/../images/icons/en-s9d987caa83.png') no-repeat;
 }
 
-.de-sprite, body.de form.buy .submit-button, body.de .buy-set, body.de .new-price, body.de .out-of-stock {
-  background: url('/fx/2013s1/../images/icons/de-s5694c04f28.png') no-repeat;
+.de-sprite, body.de form.buy .submit-button, body.de .buy-set, body.de .new-price, body.de .out-of-stock, body.de .close-button, body.de .subscribe-button {
+  background: url('/fx/2013s1/../images/icons/de-sc2f3f80569.png') no-repeat;
 }
 
 .sprite {
@@ -209,6 +209,16 @@ body.da .out-of-stock {
   height: 85px;
   width: 86px;
 }
+body.da .close-button {
+  background-position: 0 -746px;
+  height: 64px;
+  width: 44px;
+}
+body.da .subscribe-button {
+  background-position: 0 -663px;
+  height: 83px;
+  width: 84px;
+}
 
 body.de form.buy .submit-button {
   background-position: 0 -254px;
@@ -229,6 +239,16 @@ body.de .out-of-stock {
   background-position: 0 -85px;
   height: 85px;
   width: 86px;
+}
+body.de .close-button {
+  background-position: 0 -421px;
+  height: 64px;
+  width: 44px;
+}
+body.de .subscribe-button {
+  background-position: 0 -338px;
+  height: 83px;
+  width: 84px;
 }
 
 body.en form.buy .submit-button {
@@ -343,6 +363,54 @@ body.sv .out-of-stock {
   margin-top: 6px;
 }
 
+nav.first.main-menu {
+  background-color: #dcd8d2;
+  padding: 3px 0;
+}
+nav.first.main-menu ul, nav.first.main-menu ul li, nav.first.main-menu ul li form, nav.first.main-menu ul li form input {
+  font-size: 12px;
+}
+nav.first.main-menu form {
+  margin-bottom: 2px;
+}
+nav.first.main-menu input[type="text"] {
+  width: 180px;
+}
+nav.first.main-menu input[type="text"],
+nav.first.main-menu input {
+  padding: 3px;
+  border: none;
+  margin-right: 10px;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+}
+nav.first.main-menu input[type="text"].text-button,
+nav.first.main-menu input.text-button {
+  font-size: inherit;
+  margin-top: 0;
+}
+nav.first.main-menu > ul {
+  z-index: 220;
+  margin-left: 10px;
+  float: left;
+}
+nav.first.main-menu > ul.right {
+  float: right;
+}
+nav.first.main-menu > ul.right li.last {
+  padding: 0;
+}
+nav.first.main-menu > ul li {
+  padding-top: 7px;
+}
+nav.first.main-menu > ul li ul.on {
+  background-color: #fff;
+}
+nav.first.main-menu > ul li a {
+  text-transform: uppercase;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 12px;
+}
+
 nav > ul,
 ul.menu,
 .menu > ul {
@@ -363,6 +431,7 @@ ul.menu li a,
 .menu > ul li a {
   color: #444444;
   text-decoration: none;
+  text-transform: uppercase;
 }
 nav > ul li.active > a, nav > ul li.active-trail > a,
 nav > ul li a:hover,
@@ -455,11 +524,14 @@ ul.horizontal li,
   display: inline-block;
 }
 
+div header.row {
+  position: relative;
+}
+
 #secondary-links {
   position: absolute;
   top: 0px;
   right: 3px;
-  z-index: 300;
 }
 #secondary-links li {
   padding: 8px;
@@ -746,11 +818,12 @@ footer .footer-menu.footer-menu-4 input[type="text"] {
 }
 footer .footer-menu.footer-menu-4 #dialoug-message {
   width: 200px;
-  border: 2px solid red;
+  border: 2px solid #c18185;
   text-align: center;
 }
 footer .footer-menu.footer-menu-4 form {
-  font-family: Tahoma, Geneva, Verdana, sans-serif !important;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 12px;
   width: 234px;
 }
 footer .copy {
@@ -2003,7 +2076,7 @@ form.address label {
   margin-top: 0 0 12px;
 }
 form.address .error {
-  border: 2px solid red;
+  border: 2px solid #998670;
   margin: 10px 0;
   padding: 10px;
 }
@@ -2026,7 +2099,7 @@ form.address .error {
 #address-block .confirm {
   margin-top: 20px;
   padding: 20px;
-  border: 2px solid #f00;
+  border: 2px solid #c18185;
   clear: both;
 }
 #address-block .block {
@@ -2101,13 +2174,22 @@ form.location-locator div.error {
   margin: 10px;
 }
 form.location-locator div.error p {
-  border: 1px solid red;
+  border: 1px solid #998670;
   padding: 10px;
 }
 
 #body-pensio-wait #in-edit-warning,
 #body-checkout-process #in-edit-warning {
   display: none;
+}
+
+#in-edit-warning a {
+  text-decoration: underline;
+}
+
+div.invalid-order {
+  border: 2px solid #998670;
+  padding: 10px;
 }
 
 #body-pensio-payment-form ul,
@@ -2287,11 +2369,12 @@ nav.main-menu ul {
 nav.main-menu > ul > li {
   float: left;
   width: auto;
-  padding: 10px 20px 0 0;
+  padding: 15px 20px 0 0;
   position: relative;
 }
 nav.main-menu > ul > li > a {
   display: block;
+  font-size: 16px;
 }
 nav.main-menu > ul > li > ul {
   position: absolute;
@@ -2304,7 +2387,6 @@ nav.main-menu > ul > li > ul {
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-size: 12px;
   line-height: 14px;
-  text-transform: uppercase;
 }
 nav.main-menu > ul > li > ul > li {
   float: none;
@@ -2347,18 +2429,18 @@ nav.main-menu > ul > li > ul.on {
   color: #444444;
 }
 .inject-notice-box.error .inner {
-  border-color: red;
+  border-color: #c18185;
 }
 
 .slide-notice-box {
   position: absolute;
-  top: 55px;
+  top: 70px;
   right: 0;
   padding: 8px 8px 19px 8px;
   text-align: center;
   overflow: hidden;
   background: white url("/fx/images/icons/icons/divider_left.png") no-repeat;
-  background-position: 0 25px;
+  background-position: 0 30px;
 }
 
 #cboxContent {
@@ -2378,7 +2460,7 @@ nav.main-menu > ul > li > ul.on {
   display: none;
 }
 #dialoug-message.error {
-  border-color: #f00;
+  border-color: #c18185;
 }
 #dialoug-message p {
   background-color: #fff;
@@ -2392,6 +2474,91 @@ nav.main-menu > ul > li > ul.on {
   background: url(/fx/images/loader-bar.gif) no-repeat left center;
   padding-left: 20px;
   margin-left: 5px;
+}
+
+#newsletterModal {
+  display: none;
+  background-image: url(/fx/images/ffffff.png);
+  position: absolute;
+  z-index: 499;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+#newsletterModal .inner {
+  z-index: 500;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin: 200px auto 0 auto;
+  padding: 20px 20px 5px 20px;
+  width: 600px;
+  border-radius: 2px;
+  background-image: url(/fx/images/newsletter_overlay/bg.png);
+  overflow: hidden;
+  display: inline-block;
+}
+#newsletterModal h2 {
+  font-family: "Merriweather", serif;
+}
+#newsletterModal .wrapper {
+  background-image: url(/fx/images/newsletter_overlay/letters.png);
+  background-repeat: no-repeat;
+  padding-left: 150px;
+  padding-top: 20px;
+}
+#newsletterModal .wrapper p {
+  width: 280px;
+}
+#newsletterModal .wrapper form {
+  overflow: hidden;
+}
+#newsletterModal .wrapper div {
+  width: 295px;
+  float: left;
+}
+#newsletterModal .wrapper div input[type="text"] {
+  margin-top: 15px;
+}
+#newsletterModal .wrapper div input[type="text"], #newsletterModal .wrapper div input[type="email"] {
+  width: 100%;
+}
+#newsletterModal .wrapper div p {
+  width: 100%;
+  padding-top: 5px;
+}
+#newsletterModal .wrapper div p a {
+  font-size: 11px;
+}
+#newsletterModal .wrapper div p a:hover, #newsletterModal .wrapper div p a:focus {
+  text-decoration: underline;
+}
+#newsletterModal .wrapper input.button {
+  float: left;
+  margin-left: 40px;
+  height: 83px;
+  width: 84px;
+  background-color: inherit;
+  text-indent: -999px;
+  display: inline-block;
+}
+#newsletterModal .close-button {
+  display: inline-block;
+  height: 64px;
+  width: 44px;
+  vertical-align: bottom;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+#newsletterModal .bottom {
+  background-image: url(/fx/images/newsletter_overlay/bottom.png);
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  height: 220px;
+  clear: both;
 }
 
 /**
@@ -2437,7 +2604,7 @@ nav.main-menu > ul > li > ul.on {
 }
 .body-pages .newsletter-form-simple #dialoug-message {
   width: 200px;
-  border: 2px solid red;
+  border: 2px solid #c18185;
   text-align: center;
 }
 .body-pages .newsletter-form-simple form {
@@ -3229,7 +3396,7 @@ form input[type="password"].inline {
   width: auto;
 }
 form input.error {
-  border-color: red;
+  border-color: #998670;
 }
 
 input.button,
@@ -3700,6 +3867,6 @@ ol.list {
 }
 
 ul.form-errors li {
-  color: red;
+  color: #998670;
   padding: 5px 0;
 }

@@ -28,7 +28,7 @@
             </trans-unit>
             <trans-unit id="cancel" approved="no">
                 <source>cancel</source>
-                <target>Annullera</target>
+                <target>Avbryt</target>
             </trans-unit>
             <trans-unit id="notice">
                 <source>notice</source>
@@ -96,7 +96,7 @@
             </trans-unit>
             <trans-unit id="edit.order.notice">
                 <source>edit.order.notice</source>
-                <target><![CDATA[<font color="#A10000"><b>OBSERVERA:</b> För att redigera din order ska du göra följande:<br><br>1) Klicka på ”Pennan” för att redigera ordern. <br><br>2) Välj färg, storlek och antal. Om du önskar att lägga till varor, ska du klicka på menyn Girl, Boy, Little Girl eller Little Boy, överst på sidan. <br><br>3)	När du är färdig med dina ändringar ska du klicka på ”Visa korg” och klicka på ”Fortsätt”. När du har genomfört din order med en ny kortreservation, blir den gamla reservationen automatiskt raderad. <b>Observera:</b> om du använder kort som betalningssätt vid redigeringen, upprättas automatiskt en ny kortreservation av totalbeloppet på din order. Reservationen av totalbeloppet på din ursprungsorder blir automatiskt annullerad av POMPdeLUX. Det kan dock gå upp till 5 vardagar, innan reservationen släpps av din bank.  </font>]]></target>
+                <target><![CDATA[<font color="#A10000"><b>OBSERVERA:</b> För att redigera din order ska du göra följande:<br><br>1) Klicka på ”Pennan” för att redigera ordern. <br><br>2) Välj färg, storlek och antal. Om du önskar att lägga till varor, ska du klicka på menyn Tjej, Kille, Liten Tjej eller Liten Kille, överst på sidan. <br><br>3)	När du är färdig med dina ändringar ska du klicka på ”Visa korg” och klicka på ”Fortsätt”. När du har genomfört din order med en ny kortreservation, blir den gamla reservationen automatiskt raderad. <b>Observera:</b> om du använder kort som betalningssätt vid redigeringen, upprättas automatiskt en ny kortreservation av totalbeloppet på din order. Reservationen av totalbeloppet på din ursprungsorder blir automatiskt annullerad av POMPdeLUX. Det kan dock gå upp till 5 vardagar, innan reservationen släpps av din bank.  </font>]]></target>
             </trans-unit>
             <trans-unit id="delete.order.notice">
                 <source>delete.order.notice</source>

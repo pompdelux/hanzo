@@ -47,11 +47,12 @@ footer{
 			}
 			#dialoug-message{
 				width: 200px;
-				border: 2px solid red;
+				border: 2px solid $alert-border-color;
 				text-align: center;
 			}
 			form{
-				font-family:$font-sans !important;
+				font-family:$font-sans;
+                font-size: $footer-size;
 				width: 234px;
 			}
 		}

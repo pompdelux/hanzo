@@ -1307,6 +1307,12 @@ class ECommerceServices extends SoapService
 
             'eur.de'      => array('currency' => 'EUR', 'domain' => 'DE', 'vat' => 19),
             'eur.salesde' => array('currency' => 'EUR', 'domain' => 'SalesDE', 'vat' => 19),
+
+            'eur.at'      => array('currency' => 'EUR', 'domain' => 'DE', 'vat' => 20),
+            'eur.salesat' => array('currency' => 'EUR', 'domain' => 'SalesDE', 'vat' => 20),
+
+            'eur.ch'      => array('currency' => 'EUR', 'domain' => 'DE', 'vat' => 8),
+            'eur.salesch' => array('currency' => 'EUR', 'domain' => 'SalesDE', 'vat' => 8),
         );
 
         return isset($c_map[$k]) ? $c_map[$k] : false;

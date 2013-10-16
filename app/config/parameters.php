@@ -61,11 +61,14 @@ $stmt              = $localDbConnection->prepare( "SELECT * FROM settings WHERE 
 $stmt->execute();
 $results           = $stmt->fetchAll();
 
-// Default settings
+// setting up assetic version and baseurl, needed to support cdn
 $container->setParameter('assets_version', 1);
+$container->setParameter('assets_base_url', str_replace('http:', '', $container->getParameter('cdn')));
 
+// Default settings
 if ( !empty($results) ) {
     foreach ($results as $result) {
         $container->setParameter($result['c_key'], $result['c_value']);
     }
 }
+

@@ -156,6 +156,7 @@ class AddressController extends CoreController
             'required' => true,
             'translation_domain' => 'account',
             'read_only' => (count($attr) ? true : false),
+            'attr' => ['class' => 'js-auto-city-'.$type]
         ));
 
         if ('overnightbox' === $type) {

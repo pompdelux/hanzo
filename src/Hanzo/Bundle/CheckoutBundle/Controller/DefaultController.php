@@ -2,7 +2,6 @@
 
 namespace Hanzo\Bundle\CheckoutBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -11,6 +10,7 @@ use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\OrdersLines;
 use Hanzo\Model\OrdersLinesQuery;
 use Hanzo\Model\Addresses;
 use Hanzo\Model\AddressesPeer;
@@ -18,6 +18,7 @@ use Hanzo\Model\AddressesQuery;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\ProductsDomainsPricesPeer;
 use Hanzo\Model\ShippingMethods;
+use Hanzo\Model\CouponsQuery;
 
 use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
 
@@ -60,7 +61,9 @@ class DefaultController extends CoreController
      **/
     public function confirmAction()
     {
-        return $this->render('CheckoutBundle:Default:confirm.html.twig');
+        return $this->render('CheckoutBundle:Default:confirm.html.twig', [
+            'skip_my_account' => true,
+        ]);
     }
 
 
@@ -72,13 +75,14 @@ class DefaultController extends CoreController
      **/
     public function summeryAction()
     {
+        $invalid_order_message = '';
+
         // we only want the masterdata here, no slaves thank you...
         Propel::setForceMasterConnection(true);
 
         $order = OrdersPeer::getCurrent(true);
         $hanzo = Hanzo::getInstance();
         $domain_key = $hanzo->get('core.domain_key');
-
 
         // first we finalize the order, aka. setting misc order attributes and updating lines ect.
 
@@ -157,8 +161,41 @@ class DefaultController extends CoreController
         // make sure to remove doubble discount
         if (isset($attributes->purchase) &&
             isset($attributes->purchase->type) &&
-            ($attributes->purchase->type !== 'private')) {
+            ($attributes->purchase->type !== 'private')
+        ) {
             $order->removeDiscountLine('discount.private');
+        }
+
+        // make sure to remove doubble discount
+        if (isset($attributes->coupon) &&
+            !empty($attributes->coupon->code)
+        ) {
+            $coupon = CouponsQuery::create()
+                ->findOneByCode($attributes->coupon->code)
+            ;
+
+            // make sure the coupon's minimum purchase limit is met.
+            if ($order->getTotalPrice() < $coupon->getMinPurchaseAmount()) {
+                $invalid_order_message = $this->get('translator')->trans('order.amount.to.low.for.coupon', [
+                    '%amount%' => Tools::moneyFormat($coupon_amount),
+                ], 'checkout');
+            }
+
+            // we sometimes see orders where the discount is missing from the orders_lines table, we re-add it.
+            $discount = OrdersLinesQuery::create()
+                ->joinWithProducts()
+                ->filterByType('discount')
+                ->filterByProductsName('coupon.code')
+                ->findByOrdersId($order->getId())
+            ;
+
+            if (!$discount instanceof OrdersLines) {
+                $order->setDiscountLine(
+                    $this->get('translator')->trans('coupon', [], 'checkout'),
+                    -$coupon->getAmount(),
+                    'coupon.code'
+                );
+            }
         }
 
         /* ------------------------------------------------- */
@@ -172,8 +209,10 @@ class DefaultController extends CoreController
         }
 
         $html = $this->render('CheckoutBundle:Default:summery.html.twig', array(
-            'order'=> $order,
-            'attributes' => $attributes
+            'attributes'            => $attributes,
+            'invalid_order_message' => $invalid_order_message,
+            'order'                 => $order,
+            'skip_my_account'       => true,
         ));
 
         // reset connection
@@ -220,7 +259,7 @@ class DefaultController extends CoreController
         $session->migrate();
 
         // hf@bellcom.dk: used to avoid user pressing back on success page to get back to process, which then sends the customer to failed
-        $session->set('last_successful_order_id',$order->getId());
+        $session->set('last_successful_order_id', $order->getId());
 
         // update/set basket cookie
         Tools::setCookie('basket', '(0) '.Tools::moneyFormat(0.00), 0, false);
@@ -287,8 +326,9 @@ class DefaultController extends CoreController
         $order->reload(true);
 
         return $this->render('CheckoutBundle:Default:flow.html.twig', array(
-            'page_type' => 'checkout',
-            'order'     => $order
+            'page_type'       => 'checkout',
+            'order'           => $order,
+            'skip_my_account' => true,
         ));
     }
 

@@ -191,14 +191,17 @@ class AxService
 
             $domain_key = strtoupper($attributes->global->domain_key);
             switch(str_replace('SALES', '', $domain_key)) {
+                case 'DE':
+                    $bag_price = '4.95';
+                    break;
                 case 'DK':
                     $bag_price = '40.00';
                     break;
                 case 'FI':
-                    $bag_price = '5.30';
+                    $bag_price = '4.95';
                     break;
                 case 'NL':
-                    $bag_price = '5.30';
+                    $bag_price = '4.95';
                     break;
                 case 'NO':
                     $bag_price = '60.00';

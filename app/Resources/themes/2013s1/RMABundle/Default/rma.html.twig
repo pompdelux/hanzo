@@ -1,16 +1,18 @@
+{#
+  IMPORTANT!
+  All uris has to be absolute, including http(s).
+#}
 <html>
 <head>
   <title></title>
   {% stylesheets
     'fx/2013s1/css/960_8_3_3.css'
-
     'fx/2013s1/css/style.css'
     'fx/2013s1/css/rma_pdf.css'
-
     output='fx/cache/rma_pdf.css'
     combine=true
   %}
-  <link rel="stylesheet" href="{{ app.request.scheme ~'://' ~ app.request.httpHost ~ asset_url }}" />
+  <link rel="stylesheet" href="{{ cdn ~ 'fx/cache/rma_pdf.css' }}" />
   {% endstylesheets %}
 </head>
 <body>
@@ -20,47 +22,32 @@
       {{ 'rma.slip.company_details'|trans({}, 'rma')|raw }}
     </div>
     <div class="grid_4 omega">
+      <img src="{{ cdn ~ 'barcode.php?text=' ~ customer.id }}" class="barcode pushright">
       <table>
         <tbody>
           <tr>
-            <th>
-              {{ 'rma.slip.id'|trans({}, 'rma') }}
-            </th>
-            <td>
-              {{ customer.id }}
-            </td>
+            <th>{{ 'rma.slip.id'|trans({}, 'rma') }}</th>
+            <td>{{ customer.id }}</td>
           </tr>
           <tr>
-            <th>
-              {{ 'rma.slip.name'|trans({}, 'rma') }}
-            </th>
-            <td>
-              {{ customer.name }}
-            </td>
+            <th>{{ 'rma.slip.name'|trans({}, 'rma') }}</th>
+            <td>{{ customer.name }}</td>
           </tr>
           <tr>
-            <th>
-              {{ 'rma.slip.email'|trans({}, 'rma') }}
-            </th>
-            <td>
-              {{ customer.email }}
-            </td>
+            <th>{{ 'rma.slip.email'|trans({}, 'rma') }}</th>
+            <td>{{ customer.email }}</td>
           </tr>
           <tr>
-            <th>
-              {{ 'rma.slip.phone'|trans({}, 'rma') }}
-            </th>
-            <td>
-              {{ customer.phone }}
-            </td>
+            <th>{{ 'rma.slip.phone'|trans({}, 'rma') }}</th>
+            <td>{{ customer.phone }}</td>
           </tr>
           <tr>
-            <th>
-              {{ 'rma.slip.order_id'|trans({}, 'rma') }}
-            </th>
-            <td>
-              {{ order.id }}
-            </td>
+            <th>{{ 'rma.slip.order_id'|trans({}, 'rma') }}</th>
+            <td>{{ order.id }}</td>
+          </tr>
+          <tr>
+            <th>{{ 'rma.slip.deliveryaddress'|trans({}, 'rma') }}</th>
+            <td>{{ address_block|raw }}</td>
           </tr>
         </tbody>
       </table>

@@ -137,11 +137,12 @@ class PensioController extends CoreController
             $api->updateOrderStatus(Orders::STATE_ERROR_PAYMENT, $request, $order);
 
             return $this->render('PaymentBundle:Pensio:failed.html.twig', [
-                'message'    => $request->get('error_message'),
-                'order_id'   => $order->getId(),
-                'amount'     => $order->getTotalPrice(),
-                'payment_id' => $order->getPaymentGatewayId(),
-                'back_url'   => $this->generateUrl('_payment_cancel', [], true),
+                'message'         => $request->get('error_message'),
+                'order_id'        => $order->getId(),
+                'amount'          => $order->getTotalPrice(),
+                'payment_id'      => $order->getPaymentGatewayId(),
+                'back_url'        => $this->generateUrl('_payment_cancel', [], true),
+                'skip_my_account' => true,
             ]);
         }
 
