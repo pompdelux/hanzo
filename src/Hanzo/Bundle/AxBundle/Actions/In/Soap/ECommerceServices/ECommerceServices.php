@@ -1039,6 +1039,17 @@ class ECommerceServices extends SoapService
         // .....<ze code>......
         // ....................
 
+        $exists = OrdersAttributesQuery::create()
+            ->filterByOrdersId($data->eOrderNumber)
+            ->filterByNs('attachment')
+            ->filterByCValue($data->fileName)
+            ->count()
+        ;
+
+        if ($exists) {
+            return self::responseStatus('Error', 'SalesOrderAddDocumentResult', array('Document "'.$data->fileName.'" already exists for order #'.$data->eOrderNumber));
+        }
+
         $attachment_index = OrdersAttributesQuery::create()
             ->filterByOrdersId($data->eOrderNumber)
             ->filterByNs('attachment')
