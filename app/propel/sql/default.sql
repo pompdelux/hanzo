@@ -1091,6 +1091,26 @@ CREATE TABLE `shipping_methods`
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
+-- free_shipping
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `free_shipping`;
+
+CREATE TABLE `free_shipping`
+(
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `domain_key` VARCHAR(12) NOT NULL,
+    `break_at` DECIMAL(15,4) NOT NULL,
+    `valid_from` DATE,
+    `valid_to` DATE,
+    `created_at` DATETIME,
+    `updated_at` DATETIME,
+    PRIMARY KEY (`id`),
+    INDEX `domain_key_index` (`domain_key`),
+    INDEX `date_index` (`valid_from`, `valid_to`)
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
 -- categories_i18n
 -- ---------------------------------------------------------------------
 

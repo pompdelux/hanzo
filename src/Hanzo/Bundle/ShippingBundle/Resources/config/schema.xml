@@ -11,4 +11,20 @@
     <column name="fee_external_id" type="VARCHAR" size="32" required="false"/>
     <column name="is_active" type="BOOLEAN" required="true" defaultValue="TRUE" />
   </table>
+
+  <table name="free_shipping">
+    <column name="id" required="true" primaryKey="true" autoIncrement="true" type="INTEGER" />
+    <column name="domain_key" type="VARCHAR" size="12" required="true"/>
+    <column name="break_at" type="DECIMAL" size="15" scale="4" required="true"/>
+    <column name="valid_from" type="DATE" required="false" defaultValue="NULL"/>
+    <column name="valid_to" type="DATE" required="false" defaultValue="NULL"/>
+    <index name="domain_key_index">
+      <index-column name="domain_key"/>
+    </index>
+    <index name="date_index">
+      <index-column name="valid_from"/>
+      <index-column name="valid_to"/>
+    </index>
+    <behavior name="timestampable"/>
+  </table>
 </database>

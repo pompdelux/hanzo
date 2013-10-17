@@ -1,0 +1,24 @@
+{% extends '::adminbase.html.twig' %}
+
+{% block content %}
+
+    {% if app.session.hasFlash('notice') %}
+    <div class="message notice">
+        {{ app.session.flash('notice')|trans({}, 'admin') }}
+    </div>
+    {% endif %}
+
+    <p>Udfyld formen og tryk "Gem"</p>
+
+    <form action="{{ path('admin_shipping_breaks_edit', {id:break_id}) }}" method="post" {{ form_enctype(form) }} id="break-form" class="break-form">
+        <div id="">
+            {{ form_row(form._token) }}
+            {{ form_rest(form) }}
+        </div>
+        <p><br>Datoerne er <em>inklisive</em>, så hvis der angives "15-06-2013" er det "fra og med den 15/6 2013"</p>
+        <input class="button right" type="submit" value="Gem">
+        <a class="button left" href="{{ path('admin_coupons') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
+    </form>
+
+
+{% endblock %}

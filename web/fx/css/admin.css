@@ -438,6 +438,20 @@ table.list th a:hover{
   background: black;
   color:white;
 }
+
+table.list th a.fa {
+    background: inherit;
+    border: none;
+    color: black;
+    font-size: 1.1em;
+    margin: 0 12px 0 0;
+    padding: 0;
+}
+table.list th a.fa:hover {
+  background: inherit;
+  color: white;
+}
+
 table#order th.table-header {
   text-align: center;
 }

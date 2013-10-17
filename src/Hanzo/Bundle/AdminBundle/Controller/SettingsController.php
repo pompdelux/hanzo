@@ -84,6 +84,7 @@ class SettingsController extends CoreController
         $exclude_ns = array('consultant', 'shipping', 'payment');
         $global_settings = SettingsQuery::create()
             ->orderByNs()
+            ->orderByCKey()
             ->where('settings.ns NOT IN ?', $exclude_ns)
             ->find($this->getDbConnection())
         ;
@@ -96,12 +97,10 @@ class SettingsController extends CoreController
 
         $form = $this->createFormBuilder($global_settings_list);
         foreach ($global_settings as $setting) {
-            $form->add($setting->getCKey() . '__' . $setting->getNs(), 'text',
-                array(
-                    'label' => $setting->getTitle() . ' (' . $setting->getCKey() . ' - ' . $setting->getNs() . ')',
-                    'required' => false
-                    )
-                );
+            $form->add($setting->getCKey() . '__' . $setting->getNs(), 'text', array(
+                'label' => $setting->getTitle() . ' (' . $setting->getCKey() . ' - ' . $setting->getNs() . ')',
+                'required' => false
+            ));
         }
 
         // End of global settings Form
