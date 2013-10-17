@@ -1,0 +1,56 @@
+{% extends '::adminbase.html.twig' %}
+
+{% block content %}
+
+    <a href="{{ path('admin_shipping_breaks_add') }}" class="fa icon-plus"> Tilføj ny</a>
+
+    {% if app.session.hasFlash('notice') %}<br>
+    <div class="message notice">
+        {{ app.session.flash('notice')|trans({}, 'admin') }}
+    </div>
+    {% endif %}
+
+    {% if paginate %}
+        <div class="clearfix">
+            {% import "::macro.pager.html.twig" as p %}
+            {{ p.pager(paginate, 'breaks') }}
+        </div>
+    {% endif %}
+
+    <table class="list">
+        <thead>
+            <tr>
+                <th>Beløb</th>
+                <th>Domæne</th>
+                <th>Fra dato</th>
+                <th>Til dato</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for break in breaks %}
+            <tr>
+                <td>{{ break.breakat|number_format(2, ',', '') }}</td>
+                <td>{{ break.domainkey }}</td>
+                <td>{{ break.validfrom|default('-') }}</td>
+                <td>{{ break.validto|default('-') }}</td>
+                <th>
+                    <a href="{{ path('admin_shipping_breaks_edit', {id : break.id}) }}" class="fa icon-edit"> Ret</a>
+                {% if break.validfrom is not empty %}
+                    <a href="{{ path('admin_shipping_breaks_delete', {id : break.id}) }}" class="fa icon-remove"> Slet</a>
+                {% endif %}
+                </th>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% if paginate %}
+        <div class="clearfix">
+            {% import "::macro.pager.html.twig" as p %}
+            {{ p.pager(paginate, 'breaks') }}
+        </div>
+    {% endif %}
+
+
+{% endblock %}

@@ -618,6 +618,10 @@ class CmsController extends CoreController
                 'access' => ['ROLE_ADMIN'],
                 'title' => 'Katalog',
             ],
+            'admin_shipping_index' => [
+                'access' => ['ROLE_ADMIN'],
+                'title' => 'Fragt',
+            ],
             'admin_settings_washing_instructions' => [
                 'access' => ['ROLE_ADMIN'],
                 'title' => 'Vaskeanvisninger',
