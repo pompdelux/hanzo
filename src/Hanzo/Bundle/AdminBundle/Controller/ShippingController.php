@@ -34,7 +34,7 @@ class ShippingController extends CoreController
 
         $breaks = FreeShippingQuery::create()
             ->orderByValidFrom('DESC')
-            ->orderByDomainKey('DESC')
+            ->orderByDomainKey('ASC')
             ->paginate($pager, 50, $this->getDbConnection())
         ;
 

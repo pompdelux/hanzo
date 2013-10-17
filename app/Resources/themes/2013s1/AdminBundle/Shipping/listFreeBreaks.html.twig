@@ -30,7 +30,7 @@
         <tbody>
         {% for break in breaks %}
             <tr>
-                <td>{{ break.breakat }}</td>
+                <td>{{ break.breakat|number_format(2, ',', '') }}</td>
                 <td>{{ break.domainkey }}</td>
                 <td>{{ break.validfrom|default('-') }}</td>
                 <td>{{ break.validto|default('-') }}</td>
