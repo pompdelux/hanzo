@@ -94,7 +94,7 @@ class ShippingController extends CoreController
             ->add('break_at', 'integer', [
                 'required' => true,
             ])
-            ->add('valid_from', 'datetime', [
+            ->add('valid_from', 'date', [
                 'input' => 'string',
                 'widget' => 'single_text',
                 'format' => 'dd-MM-yyyy',
@@ -103,7 +103,7 @@ class ShippingController extends CoreController
                 'required' => false,
                 'attr' => ['class' => 'datepicker']
             ])
-            ->add('valid_to', 'datetime', [
+            ->add('valid_to', 'date', [
                 'input' => 'string',
                 'widget' => 'single_text',
                 'format' => 'dd-MM-yyyy',
