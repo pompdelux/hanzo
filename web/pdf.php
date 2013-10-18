@@ -20,7 +20,7 @@ if (substr($_SERVER['HTTP_HOST'], 0, 6) == 'static') {
 $path .= str_replace('_', '/', $folder). '/';
 
 // so far we only support pdf files...
-if (preg_match('/[a-z]{2}_[0-9]+_[0-9]+\.pdf/i', $file) && is_file($path.$file))
+if (preg_match('/[a-z]{2}_[0-9a-z]+_[0-9]+\.pdf/i', $file) && is_file($path.$file))
 {
     header("Expires: 0");
     header("Cache-control: private");
