@@ -61,7 +61,7 @@ $(".subscriber-search .q").on("keyup", function() {
     $("table.addresses tr").each(function(index) {
         var $row = $(this);
         var id = $row.find("td.address").text();
-        if (id.indexOf(value) !== 0) {
+        if (id.toLowerCase().indexOf(value.toLowerCase()) !== 0) {
             $row.hide();
         } else {
             $row.show();
