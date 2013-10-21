@@ -58,8 +58,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 /**
 | _sprites
 */
-.da-sprite, body.da form.buy .submit-button, body.da .buy-set, body.da .new-price, body.da .out-of-stock {
-  background: url('/fx/mobile/../images/icons/da-sd69e9a5d05.png') no-repeat;
+.da-sprite, body.da form.buy .submit-button, body.da .buy-set, body.da .new-price, body.da .out-of-stock, body.da .close-button, body.da .subscribe-button {
+  background: url('/fx/mobile/../images/icons/da-s7398167b80.png') no-repeat;
 }
 
 .icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-return, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, table#order-status td a.trigger, footer .newsletter-block .sprite, #secondary-links li.basket .sprite, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.arrow-right, .sprite.arrow-left {
@@ -234,8 +234,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background: url('/fx/mobile/../images/icons/en-s9d987caa83.png') no-repeat;
 }
 
-.de-sprite, body.de form.buy .submit-button, body.de .buy-set, body.de .new-price, body.de .out-of-stock {
-  background: url('/fx/mobile/../images/icons/de-s5694c04f28.png') no-repeat;
+.de-sprite, body.de form.buy .submit-button, body.de .buy-set, body.de .new-price, body.de .out-of-stock, body.de .close-button, body.de .subscribe-button {
+  background: url('/fx/mobile/../images/icons/de-sc2f3f80569.png') no-repeat;
 }
 
 .sprite {
@@ -266,6 +266,16 @@ body.da .out-of-stock {
   height: 85px;
   width: 86px;
 }
+body.da .close-button {
+  background-position: 0 -746px;
+  height: 64px;
+  width: 44px;
+}
+body.da .subscribe-button {
+  background-position: 0 -663px;
+  height: 83px;
+  width: 84px;
+}
 
 body.de form.buy .submit-button {
   background-position: 0 -254px;
@@ -286,6 +296,16 @@ body.de .out-of-stock {
   background-position: 0 -85px;
   height: 85px;
   width: 86px;
+}
+body.de .close-button {
+  background-position: 0 -421px;
+  height: 64px;
+  width: 44px;
+}
+body.de .subscribe-button {
+  background-position: 0 -338px;
+  height: 83px;
+  width: 84px;
 }
 
 body.en form.buy .submit-button {

@@ -48,6 +48,27 @@
     <article>
         {{ parse(page.content) }}
     </article>
+
+    {% if app.request.locale == 'da_DK' or app.request.locale == 'de_DE' %}
+    <div id="newsletterModal">
+        <div class="inner">
+            <div class="wrapper">
+                <h2>{{ 'block.subscribe.newsletter_heading'|trans({}, 'newsletter') }}</h2>
+                <p>{{ 'block.subscribe.teaser'|trans({}, 'newsletter') }}</p>
+                <a href="" class="close-button sprite"></a>
+                <form action="{{ path('_newsletter_subscribe') }}" method="post" class="js-newsletter-form">
+                    <div>
+                        <input type="text" name="name" value="" title="{{ 'block.subscribe.name_label'|trans({}, 'newsletter') }}" placeholder="{{ 'block.subscribe.name_label'|trans({}, 'newsletter') }}">
+                        <input type="email" class="newsletter-subscriber-email" name="email" value="" title="{{ 'block.subscribe.email_label'|trans({}, 'newsletter') }}" placeholder="{{ 'block.subscribe.email_label'|trans({}, 'newsletter') }}">
+                        <p>{{ 'terms.link'|trans({}, 'newsletter')|raw }}</p>
+                    </div>
+                    <input type="submit" class="button subscribe-button sprite" value="{{ 'block.subscribe.submit_button'|trans({}, 'newsletter') }}" data-action="subscribe">
+                </form>
+            </div>
+            <div class="bottom"></div>
+        </div>
+    </div>
+    {% endif %}
 {% endif %}
 
 {% endblock %}

@@ -761,3 +761,21 @@ admin_tools_dibs_tools:
     defaults:
         _controller: AdminBundle:Tools:dibsTools
         action: ''
+
+admin_shipping_index:
+    pattern: /admin/shipping/free-breaks/
+    defaults:
+        _controller: AdminBundle:Shipping:listFreeBreaks
+admin_shipping_breaks_add:
+    pattern: /admin/shipping/free-breaks/edit/
+    defaults:
+        _controller: AdminBundle:Shipping:editFreeBreaks
+admin_shipping_breaks_edit:
+    pattern: /admin/shipping/free-breaks/edit/{id}/
+    defaults:
+        _controller: AdminBundle:Shipping:editFreeBreaks
+        id: 0
+admin_shipping_breaks_delete:
+    pattern: /admin/shipping/free-breaks/delete/{id}/
+    defaults:
+        _controller: AdminBundle:Shipping:deleteFreeBreaks

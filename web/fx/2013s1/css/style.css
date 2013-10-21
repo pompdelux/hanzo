@@ -1,8 +1,8 @@
 /**
 | _sprites
 */
-.da-sprite, body.da form.buy .submit-button, body.da .buy-set, body.da .new-price, body.da .out-of-stock {
-  background: url('/fx/2013s1/../images/icons/da-sd69e9a5d05.png') no-repeat;
+.da-sprite, body.da form.buy .submit-button, body.da .buy-set, body.da .new-price, body.da .out-of-stock, body.da .close-button, body.da .subscribe-button {
+  background: url('/fx/2013s1/../images/icons/da-s7398167b80.png') no-repeat;
 }
 
 .icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-return, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, .body-pages .newsletter-form-simple .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.return {
@@ -177,8 +177,8 @@
   background: url('/fx/2013s1/../images/icons/en-s9d987caa83.png') no-repeat;
 }
 
-.de-sprite, body.de form.buy .submit-button, body.de .buy-set, body.de .new-price, body.de .out-of-stock {
-  background: url('/fx/2013s1/../images/icons/de-s5694c04f28.png') no-repeat;
+.de-sprite, body.de form.buy .submit-button, body.de .buy-set, body.de .new-price, body.de .out-of-stock, body.de .close-button, body.de .subscribe-button {
+  background: url('/fx/2013s1/../images/icons/de-sc2f3f80569.png') no-repeat;
 }
 
 .sprite {
@@ -209,6 +209,16 @@ body.da .out-of-stock {
   height: 85px;
   width: 86px;
 }
+body.da .close-button {
+  background-position: 0 -746px;
+  height: 64px;
+  width: 44px;
+}
+body.da .subscribe-button {
+  background-position: 0 -663px;
+  height: 83px;
+  width: 84px;
+}
 
 body.de form.buy .submit-button {
   background-position: 0 -254px;
@@ -229,6 +239,16 @@ body.de .out-of-stock {
   background-position: 0 -85px;
   height: 85px;
   width: 86px;
+}
+body.de .close-button {
+  background-position: 0 -421px;
+  height: 64px;
+  width: 44px;
+}
+body.de .subscribe-button {
+  background-position: 0 -338px;
+  height: 83px;
+  width: 84px;
 }
 
 body.en form.buy .submit-button {
@@ -2454,6 +2474,91 @@ nav.main-menu > ul > li > ul.on {
   background: url(/fx/images/loader-bar.gif) no-repeat left center;
   padding-left: 20px;
   margin-left: 5px;
+}
+
+#newsletterModal {
+  display: none;
+  background-image: url(/fx/images/ffffff.png);
+  position: absolute;
+  z-index: 499;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+#newsletterModal .inner {
+  z-index: 500;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin: 200px auto 0 auto;
+  padding: 20px 20px 5px 20px;
+  width: 600px;
+  border-radius: 2px;
+  background-image: url(/fx/images/newsletter_overlay/bg.png);
+  overflow: hidden;
+  display: inline-block;
+}
+#newsletterModal h2 {
+  font-family: "Merriweather", serif;
+}
+#newsletterModal .wrapper {
+  background-image: url(/fx/images/newsletter_overlay/letters.png);
+  background-repeat: no-repeat;
+  padding-left: 150px;
+  padding-top: 20px;
+}
+#newsletterModal .wrapper p {
+  width: 280px;
+}
+#newsletterModal .wrapper form {
+  overflow: hidden;
+}
+#newsletterModal .wrapper div {
+  width: 295px;
+  float: left;
+}
+#newsletterModal .wrapper div input[type="text"] {
+  margin-top: 15px;
+}
+#newsletterModal .wrapper div input[type="text"], #newsletterModal .wrapper div input[type="email"] {
+  width: 100%;
+}
+#newsletterModal .wrapper div p {
+  width: 100%;
+  padding-top: 5px;
+}
+#newsletterModal .wrapper div p a {
+  font-size: 11px;
+}
+#newsletterModal .wrapper div p a:hover, #newsletterModal .wrapper div p a:focus {
+  text-decoration: underline;
+}
+#newsletterModal .wrapper input.button {
+  float: left;
+  margin-left: 40px;
+  height: 83px;
+  width: 84px;
+  background-color: inherit;
+  text-indent: -999px;
+  display: inline-block;
+}
+#newsletterModal .close-button {
+  display: inline-block;
+  height: 64px;
+  width: 44px;
+  vertical-align: bottom;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+#newsletterModal .bottom {
+  background-image: url(/fx/images/newsletter_overlay/bottom.png);
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  height: 220px;
+  clear: both;
 }
 
 /**

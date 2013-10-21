@@ -340,40 +340,51 @@ class CouponsController extends CoreController
     {
         $data = [];
         if ($request->query->get('start') && $request->query->get('end')) {
-            $coupons = CouponsQuery::create()
-                ->filterByCreatedAt([
-                    'max' => new \DateTime($request->query->get('end')),
-                    'min' => new \DateTime($request->query->get('start')),
-                ])
-                ->find($this->getDbConnection())
-            ;
 
-            $data['total_amount'] = 0;
             $data['used'] = 0;
             $data['used_amount'] = 0;
             $data['unused'] = 0;
-            $data['unused_amount'] = 0;
             $data['expired'] = 0;
-            $data['expired_amount'] = 0;
-            foreach ($coupons as $coupon) {
-                $data['total_amount'] += $coupon->getAmount();
 
-                if ($coupon->getIsUsed()) {
-                    $data['used']++;
-                    $data['used_amount'] += $coupon->getAmount();
-                } else if ((date('YmdHi') <= $coupon->getActiveTo('YmdHi'))) {
-                    $data['unused']++;
-                    $data['unused_amount'] += $coupon->getAmount();
-                }
+            $coupons_total = CouponsQuery::create()
+                ->find($this->getDbConnection())
+            ;
 
+            foreach ($coupons_total as $coupon) {
                 if ((date('YmdHi') > $coupon->getActiveTo('YmdHi')) && (false === $coupon->getIsUsed())) {
                     $data['expired']++;
-                    $data['expired_amount'] += $coupon->getAmount();
                 }
             }
 
-            $data['total'] = $coupons->count();
-            unset($coupon, $coupons);
+            $coupons_used = CouponsQuery::create()
+                ->useOrdersToCouponsQuery()
+                    ->join('Orders', Criteria::LEFT_JOIN)
+                    ->useOrdersQuery()
+                        ->filterByCreatedAt([
+                            'max' => new \DateTime($request->query->get('end').' 23:59:59'),
+                            'min' => new \DateTime($request->query->get('start')),
+                        ])
+                    ->endUse()
+                ->endUse()
+                ->with('Orders')
+                ->filterByIsUsed(true)
+                ->find($this->getDbConnection())
+            ;
+
+            foreach ($coupons_used as $coupon) {
+                $data['used']++;
+                $data['used_amount'] += $coupon
+                    ->getOrdersToCouponss(null, $this->getDbConnection())
+                    ->getFirst()
+                    ->getOrders($this->getDbConnection())
+                    ->getTotalPrice()
+                ;
+            }
+
+            $data['total'] = $coupons_total->count();
+            $data['unused'] = $data['total'] - ($data['used'] + $data['expired']);
+
+            unset($coupon, $coupons_total, $coupons_used);
         }
 
         return [

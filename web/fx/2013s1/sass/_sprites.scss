@@ -44,6 +44,16 @@ body.da{
         height: da-sprite-height(out-of-stock);
         width: da-sprite-width(out-of-stock);
     }
+    .close-button{
+        @include da-sprite(close-button);
+        height: da-sprite-height(close-button);
+        width: da-sprite-width(close-button);
+    }
+    .subscribe-button{
+        @include da-sprite(subscribe-button);
+        height: da-sprite-height(subscribe-button);
+        width: da-sprite-width(subscribe-button);
+    }
 }
 
 body.de{
@@ -66,6 +76,16 @@ body.de{
         @include de-sprite(out-of-stock);
         height: de-sprite-height(out-of-stock);
         width: de-sprite-width(out-of-stock);
+    }
+    .close-button{
+        @include de-sprite(close-button);
+        height: de-sprite-height(close-button);
+        width: de-sprite-width(close-button);
+    }
+    .subscribe-button{
+        @include de-sprite(subscribe-button);
+        height: de-sprite-height(subscribe-button);
+        width: de-sprite-width(subscribe-button);
     }
 }
 
