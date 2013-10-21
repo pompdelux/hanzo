@@ -50,7 +50,7 @@ class DefaultController extends CoreController
             if ($this->getFormat() == 'json') {
                 return $this->json_response(array(
                     'message' => '',
-                    'status'  => FALSE,
+                    'status'  => false,
                 ));
             }
 
@@ -64,7 +64,7 @@ class DefaultController extends CoreController
             if ($this->getFormat() == 'json') {
                 return $this->json_response(array(
                     'message' => $translator->trans('product.out.of.stock', array('%product%' => $product)),
-                    'status'  => FALSE,
+                    'status'  => false,
                 ));
             }
 
@@ -77,12 +77,43 @@ class DefaultController extends CoreController
         if ($order->getState() >= Orders::STATE_PRE_PAYMENT) {
             return $this->json_response(array(
                 'message' => $translator->trans('order.state_pre_payment.locked', array(), 'checkout'),
-                'status'  => FALSE,
+                'status'  => false,
             ));
         }
 
+
+        // fraud detection
+        $total_order_quantity = OrdersLinesQuery::create()
+            ->select('total')
+            ->filterByOrdersId($order->getId())
+            ->filterByType('product')
+            ->withColumn('SUM(quantity)', 'total')
+            ->find()
+            ->getFirst()
+        ;
+
+        // force login if customer has 20 or more items in the basket.
+        if (($total_order_quantity >= 20) && !$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->json_response(array(
+                'force_login' => true,
+                'message'     => $translator->trans('order.force.login.description', array(), 'checkout'),
+                'status'      => false,
+            ));
+        }
+
+        $fraud_id = 'fraud_mail_send_'.$order->getId();
+        if (($total_order_quantity >= 1) && !$session->has($fraud_id)) {
+            $mail = $this->get('mail_manager');
+            $mail->setTo('hd@pompdelux.dk', 'Heinrich Dalby');
+            $mail->setSubject("Måske en snyder på spil.");
+            $mail->setBody("Hej,\n\nKig lige på ".$this->getRequest()->getLocale()." ordre: #".$order->getId()."\n\nDenne har ".$total_order_quantity." vare i kurven.\n\n-- \nmvh\nspambotten per\n");
+            $mail->send();
+            $session->set($fraud_id, true);
+        }
+
+
         // we need to figure out why some information seems to hang in the session where it shouldn't
-        // this is one of the things that could be wrong, so we test it and logs any fingings.
+        // this is one of the things that could be wrong, so we test it and logs any findings.
         if ($session->has('last_successful_order_id')) {
             if ($session->get('last_successful_order_id') == $order->getId()) {
                 // this should not be possible, but the test is here to see if there is some issues we need to address...
@@ -103,24 +134,6 @@ class DefaultController extends CoreController
             $order->save();
         } catch(PropelException $e) {
             return $this->resetOrderAndUser($e, $request);
-        }
-
-        // fraud detection
-        $total_order_quantity = OrdersLinesQuery::create()
-            ->select('total')
-            ->filterByOrdersId($order->getId())
-            ->filterByType('product')
-            ->withColumn('SUM(quantity)', 'total')
-            ->find()
-            ->getFirst()
-        ;
-
-        if ($total_order_quantity >= 100) {
-            $mail = $this->get('mail_manager');
-            $mail->setBody("Hej,\n\nKig lige på ".$this->getRequest()->getLocale()." ordre: #".$order->getId()."\n\nDenne har ".$total_order_quantity." vare i kurven.\n\n-- \nmvh\nspambotten per\n");
-            $mail->setSubject("Måske en snyder på spil.");
-            $mail->setTo('hd@pompdelux.dk', 'Heinrich Dalby');
-            $mail->send();
         }
 
         $price          = ProductsDomainsPricesPeer::getProductsPrices(array($product->getId()));
@@ -159,7 +172,7 @@ class DefaultController extends CoreController
     }
 
 
-    public function miniBasketAction($return = FALSE)
+    public function miniBasketAction($return = false)
     {
         $order = OrdersPeer::getCurrent();
         $total = '('.$order->getTotalQuantity(true).') ' . Tools::moneyFormat( $order->getTotalPrice(true) );
@@ -200,7 +213,7 @@ class DefaultController extends CoreController
         $order = OrdersPeer::getCurrent();
 
         $order_lines = $order->getOrdersLiness();
-        $product_found = FALSE;
+        $product_found = false;
 
         foreach ($order_lines as $k => $line) {
             if ($line->getProductsId() == $product_id) {
@@ -240,7 +253,7 @@ class DefaultController extends CoreController
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
                 'message' => $this->get('translator')->trans('no.such.product.in.cart'),
-                'status'  => FALSE,
+                'status'  => false,
             ));
         }
 
@@ -276,7 +289,7 @@ class DefaultController extends CoreController
             $product = $response['data']['products'][0];
 
             // if the product is backordered, require a confirmation to continue
-            if ($product['date'] && (FALSE === $request->request->get('confirmed', FALSE))) {
+            if ($product['date'] && (false === $request->request->get('confirmed', false))) {
                 return $this->json_response($response);
             }
 
@@ -451,7 +464,7 @@ class DefaultController extends CoreController
                     'location' => $this->generateUrl('_homepage')
                 ],
                 'message' => 'session.died',
-                'status'  => FALSE,
+                'status'  => false,
             ));
         }
     }

@@ -338,7 +338,7 @@ button {
   margin-bottom: 1em;
   clear: both;
   &.error {
-  	border: 2px solid #f10000;
+  	border: 2px solid $form-error-color;
   }
 }
 .no-text{line-height:0;}

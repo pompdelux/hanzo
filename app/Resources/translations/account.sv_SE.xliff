@@ -488,6 +488,14 @@ Du har möjlighet att ändra/lägga till/radera i din order. Du ska klicka på <
                 <source>create.pre-notice</source>
                 <target><![CDATA[På denna sida ska du skriva dina personliga upplysningar (<u>inte</u> företagsnamn).]]></target>
             </trans-unit>
+            <trans-unit id="order.force.login.description" approved="no">
+                <source>order.force.login.description</source>
+                <target><![CDATA[
+                    <h3>Kære kunde</h3>
+                    <p>Du har fyldt mere end 20 stykker tøj i din kurv. For at være sikker på at du ikke er en robot, bedes du oprette dig som kunde eller logge ind med eksisterende brugernavn/password.</p>
+                    <p>På forhånd tak.</p>
+                ]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
