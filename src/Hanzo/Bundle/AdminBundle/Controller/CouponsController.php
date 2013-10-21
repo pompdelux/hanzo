@@ -374,9 +374,9 @@ class CouponsController extends CoreController
             foreach ($coupons_used as $coupon) {
                 $data['used']++;
                 $data['used_amount'] += $coupon
-                    ->getOrdersToCouponss()
+                    ->getOrdersToCouponss(null, $this->getDbConnection())
                     ->getFirst()
-                    ->getOrders()
+                    ->getOrders($this->getDbConnection())
                     ->getTotalPrice()
                 ;
             }
