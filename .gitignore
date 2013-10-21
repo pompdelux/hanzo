@@ -2,6 +2,8 @@
 /app/cache/*
 /app/logs/*
 /bin/phing
+/bin/propel-gen
+/bin/propel-gen.bat
 /tmp/*
 /vendor/*
 /app/config/parameters.ini
