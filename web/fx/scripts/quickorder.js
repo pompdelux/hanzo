@@ -130,17 +130,36 @@ var quickorder = (function($) {
     // mouseup : desktop with mouse
     // keydown : desktop with keyboard
     // blur    : tablet/mobile
-    //$('.quickorder .size').on('keydown mouseup touchend' ,function(e){
-    $('.quickorder .size').on('keydown mouseup blur' ,function(e) {
-        $context = $(this).parent().parent();
-        if (e.type == 'keydown') {
-            var keyCode = e.keyCode || e.which;
-            if (keyCode === 9 || keyCode === 13) {
-                e.preventDefault();
+    $('.quickorder .size').on('keydown mouseup blur change' ,function(e) {
+
+        var selected_value = $(this).val(),
+            $context = $(this).parent().parent(),
+            is_ie = $('html').hasClass('ie9') || $('html').hasClass('oldie'),
+            is_rma = $context.hasClass('rma-productreplacement');
+
+        if((!is_ie || !is_rma) && e.type === 'change') {
+            // Event 'change' has to be dealt with in <=IE9. Change event
+            // resolves that when changeing with mouse, ie doesnt trigger any
+            // other. This block returns only when we need to ignore the change
+            // event. We are ignoring it when not IE and when not on RMA page.
+            // Ignore it if its on the quickorder page.
+            return;
+        }
+
+        // Compare the selected value to what it eventually already was. If the
+        // same, ignore the event.
+        // Fixes some IE9 issues where mouseup and blur was triggered to early.
+        if($(this).data('selected-value') != selected_value) {
+            if (e.type == 'keydown') {
+                var keyCode = e.keyCode || e.which;
+                if (keyCode === 9 || keyCode === 13) {
+                    e.preventDefault();
+                    getColor($context);
+                }
+            }else{
                 getColor($context);
             }
-        }else{
-            getColor($context);
+            $(this).data('selected-value', $(this).val());
         }
         e.stopPropagation();
     });
@@ -149,9 +168,20 @@ var quickorder = (function($) {
     // mouseup : desktop with mouse
     // keydown : desktop with keyboard
     // blur    : tablet/mobile
-    //$('#color').on('keydown mouseup touchend' ,function(e){
-    $('.quickorder .color').on('keydown mouseup blur' ,function(e){
-        $context = $(this).parent().parent();
+    $('.quickorder .color').on('keydown mouseup blur change' ,function(e){
+        var $context = $(this).parent().parent(),
+            is_ie = $('html').hasClass('ie9') || $('html').hasClass('oldie'),
+            is_rma = $context.hasClass('rma-productreplacement');
+
+        if((!is_ie || !is_rma) && e.type === 'change') {
+            // Event 'change' has to be dealt with in <=IE9. Change event
+            // resolves that when changeing with mouse, ie doesnt trigger any
+            // other. This block returns only when we need to ignore the change
+            // event. We are ignoring it when not IE and when not on RMA page.
+            // Ignore it if its on the quickorder page.
+            return;
+        }
+
         $quantity_select = $context.find('.quantity');
         if (e.type == 'keydown') {
             var keyCode = e.keyCode || e.which;
@@ -262,6 +292,7 @@ var quickorder = (function($) {
     _resetForm = function($context) {
         $('.master', $context).val('').focus();
         $('.size', $context)
+            .data('selected-value', '')
             .find('option')
             .remove();
 
