@@ -21,19 +21,36 @@
 
 {% block javascript %}
 <script>
-  var google_conversion_id = 1056677768;
+  var google_conversion_id       = 1056677768;
   var google_conversion_language = "en";
-  var google_conversion_format = "1";
-  var google_conversion_color = "666666";
-  var google_conversion_label = "purchase";
+  var google_conversion_format   = "1";
+  var google_conversion_color    = "666666";
+  var google_conversion_label    = "purchase";
 </script>
 <script src="//www.googleadservices.com/pagead/conversion.js"></script>
 <noscript>
-  <img height="1" width="1" border="0" src="http://www.googleadservices.com/pagead/conversion/1056677768/?label=purchase&amp;guid=ON&amp;script=0"/>
+  <img height="1" width="1" border="0" src="//www.googleadservices.com/pagead/conversion/1056677768/?label=purchase&amp;guid=ON&amp;script=0"/>
 </noscript>
+
 
 {{ render(controller('RetargetingBundle:Default:successBlock', {
     'order_id': order_id
-}))  }
+}))  }}
+
+{% if app.request.locale == 'de_DE' %}
+<script type="text/javascript">
+  var google_conversion_id       = 976104979;
+  var google_conversion_language = "en";
+  var google_conversion_format   = "3";
+  var google_conversion_color    = "ffffff";
+  var google_conversion_label    = "-A9aCK26vQkQk9y40QM";
+  var google_conversion_value    = 900;
+  var google_remarketing_only    = false;
+</script>
+<script src="//www.googleadservices.com/pagead/conversion.js"></script>
+<noscript>
+  <img height="1" width="1" border="0" src="//www.googleadservices.com/pagead/conversion/976104979/?value=900&amp;label=-A9aCK26vQkQk9y40QM&amp;guid=ON&amp;script=0"/>
+</noscript>
+{% endif %}
 
 {% endblock javascript %}

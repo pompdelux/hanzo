@@ -3,6 +3,7 @@
 namespace Hanzo\Bundle\ConsultantNewsletterBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Finder\Finder;
 
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Hanzo;
@@ -14,27 +15,39 @@ use Hanzo\Model\ConsultantNewsletterDrafts;
 
 use Hanzo\Bundle\ConsultantNewsletterBundle\ConsultantNewsletterApi;
 
-use Symfony\Component\Finder\Finder;
-
 class DefaultController extends CoreController
 {
     public function indexAction($draft_id)
     {
         $api = $this->get('consultantnewsletterapi');
-        $consultant = CustomersQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
+        $consultant = CustomersQuery::create()
+            ->findPK($this->get('security.context')
+                ->getToken()
+                ->getUser()
+                ->getPrimaryKey()
+            )
+        ;
 
         $drafts = ConsultantNewsletterDraftsQuery::create()
-            ->filterByConsultantsId($this->get('security.context')->getToken()->getUser()->getPrimaryKey())
+            ->filterByConsultantsId($this->get('security.context')
+                ->getToken()
+                ->getUser()
+                ->getPrimaryKey()
+            )
             ->find()
         ;
 
-        $draft = null;
+        $draft   = null;
         $subject = '';
         $message = '';
 
-        if ($draft_id){
+        if ($draft_id) {
             $draft = ConsultantNewsletterDraftsQuery::create()
-                ->filterByConsultantsId($this->get('security.context')->getToken()->getUser()->getPrimaryKey())
+                ->filterByConsultantsId($this->get('security.context')
+                    ->getToken()
+                    ->getUser()
+                    ->getPrimaryKey()
+                )
                 ->findOneById($draft_id)
             ;
             $subject = $draft->getSubject();
@@ -49,7 +62,7 @@ class DefaultController extends CoreController
         switch ($env) {
           case 'dev':
           case 'tes':
-            if ( substr( $serverName, 0, 1 ) == 'c' ) {
+            if (substr($serverName, 0, 1 ) == 'c') {
               $domain = str_replace( 'c.', '', $serverName );
             } else {
               $domain = $serverName;
@@ -57,17 +70,15 @@ class DefaultController extends CoreController
             break;
         }
 
-        return $this->render('ConsultantNewsletterBundle:Default:index.html.twig',
-        	array(
-        		'page_type'       => 'consultant-newsletter',
-        		'test_receiver'   => $consultant->getEmail(),
-                'drafts'          => $drafts,
-                'draft_id'        => $draft_id,
-                'subject'         => $subject,
-                'message'         => $message,
-                'document_domain' => $domain,
-        	)
-        );
+        return $this->render('ConsultantNewsletterBundle:Default:index.html.twig', array(
+            'page_type'       => 'consultant-newsletter',
+            'test_receiver'   => $consultant->getEmail(),
+            'drafts'          => $drafts,
+            'draft_id'        => $draft_id,
+            'subject'         => $subject,
+            'message'         => $message,
+            'document_domain' => $domain,
+        ));
     }
 
     public function saveDraftAction()
@@ -85,7 +96,11 @@ class DefaultController extends CoreController
             ;
         } else {
             $draft = new ConsultantNewsletterDrafts();
-            $draft->setConsultantsId($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
+            $draft->setConsultantsId($this->get('security.context')
+                ->getToken()
+                ->getUser()
+                ->getPrimaryKey()
+            );
         }
 
         $draft->setSubject($subject);
@@ -126,8 +141,13 @@ class DefaultController extends CoreController
     public function sendNewsletterAction()
     {
         $api = $this->get('consultantnewsletterapi');
-
-        $consultant = CustomersQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
+        $consultant = CustomersQuery::create()
+            ->findPK($this->get('security.context')
+                ->getToken()
+                ->getUser()
+                ->getPrimaryKey()
+            )
+        ;
 
     	if (!$api->doesAdminUserExist($consultant->getEmail())) {
     		$admin = new \stdClass();
@@ -140,20 +160,22 @@ class DefaultController extends CoreController
     		$api->addAdminUser( $admin , (object) $access);
     	}
 
-    	$admin_user = $api->getAdminUserByEmail( $consultant->getEmail() );
-        $lists = $api->getListsByOwner($admin_user->id);
-        if (empty($lists)) {
+        $admin_user = $api->getAdminUserByEmail($consultant->getEmail());
+        $lists      = $api->getListsByOwner($admin_user->id);
 
+        if (empty($lists)) {
             $list = new \stdClass();
             $list->name = 'Konsulent '.$consultant->getName();
             $list->description = 'Oprettet til '.$consultant->getName();
             $list->owner = $admin_user->id;
             $list->active = true;
+
             try {
                 $api->createList($list);
             } catch(Exception $e) {
                 error_log(__LINE__.':'.__FILE__.' '.$e->getMessage());
             }
+
             $lists = $api->getListsByOwner($admin_user->id);
         }
 
@@ -162,102 +184,105 @@ class DefaultController extends CoreController
             $listIds[] = $list->id;
         }
 
-    	$request  = $this->getRequest();
-        $test     = $request->request->get('actionSendTest');
+        $request       = $this->getRequest();
+        $test          = $request->request->get('actionSendTest');
         $test_reciever = $request->request->get('test_reciever');
-		$status   = $request->request->get('status');
-		$subject  = htmlentities($request->request->get('subject'),ENT_QUOTES,'UTF-8') ;
-		$message  = stripslashes( utf8_decode( $request->request->get('message') ) );
-        $from     = $consultant->getEmail();
-        $to       = $consultant->getEmail();
-		$replyto  = $consultant->getEmail();
-		$template = $request->request->get('template');
-		$lists    = $listIds;
-		$status   = ( isset( $status ) ? $status : ConsultantNewsletterApi::STATUS_DRAFT );
+        $status        = $request->request->get('status');
+        $subject       = htmlentities($request->request->get('subject'),ENT_QUOTES,'UTF-8') ;
+        $message       = stripslashes( utf8_decode( $request->request->get('message') ) );
+        $from          = $consultant->getEmail();
+        $to            = $consultant->getEmail();
+        $replyto       = $consultant->getEmail();
+        $template      = $request->request->get('template');
+        $lists         = $listIds;
+        $status        = ($status ?: ConsultantNewsletterApi::STATUS_DRAFT);
 
-    	if(!empty($test)){
-    		if(!empty($test_reciever)){
-    			$response = $api->sendTestMail(
-    				$from,
-    				$to,
-    				$replyto,
-    				$subject,
-    				$message,
-    				null,
-    				$lists,
-    				$template,
-    				$status,
-    				$test_reciever
-    			);
+        if (!empty($test)) {
+            if (!empty($test_reciever)) {
+                $response = $api->sendTestMail(
+                    $from,
+                    $to,
+                    $replyto,
+                    $subject,
+                    $message,
+                    null,
+                    $lists,
+                    $template,
+                    $status,
+                    $test_reciever
+                );
 
-    			if($response){
-			        if ($this->getFormat() == 'json') {
-			            return $this->json_response(array(
-			                'status' => TRUE,
-			                'message' => $this->get('translator')->trans('consultant.newsletter.test.mail.send.success', array(), 'consultant'),
-			            ));
-			        }
-    			}else{
-			        if ($this->getFormat() == 'json') {
-			            return $this->json_response(array(
-			                'status' => FALSE,
-			                'message' => $this->get('translator')->trans('consultant.newsletter.test.mail.send.failed', array(), 'consultant'),
-			            ));
-			        }
-    			}
-    		}else{
-    			// No test mail receiver
-		        if ($this->getFormat() == 'json') {
-		            return $this->json_response(array(
-		                'status' => FALSE,
-		                'message' => $this->get('translator')->trans('consultant.newsletter.test.mail.no.test.mail', array(), 'consultant'),
-		            ));
-		        }
-    		}
-    	}else{
+                if ($response) {
+                    if ($this->getFormat() == 'json') {
+                        return $this->json_response(array(
+                            'status' => TRUE,
+                            'message' => $this->get('translator')->trans('consultant.newsletter.test.mail.send.success', array(), 'consultant'),
+                        ));
+                    }
+                } else {
+                    if ($this->getFormat() == 'json') {
+                        return $this->json_response(array(
+                            'status' => FALSE,
+                            'message' => $this->get('translator')->trans('consultant.newsletter.test.mail.send.failed', array(), 'consultant'),
+                        ));
+                    }
+                }
+            } else {
+                // No test mail receiver
+                if ($this->getFormat() == 'json') {
+                    return $this->json_response(array(
+                        'status' => FALSE,
+                        'message' => $this->get('translator')->trans('consultant.newsletter.test.mail.no.test.mail', array(), 'consultant'),
+                    ));
+                }
+            }
+        } else {
+            $response = $api->scheduleNewsletter(
+                $from,
+                $to,
+                $replyto,
+                $subject,
+                $message,
+                null,
+                $lists,
+                $template,
+                $status,
+                null,
+                null,
+                $admin_user->id
+            );
 
-		    $response = $api->scheduleNewsletter(
-				$from,
-				$to,
-				$replyto,
-				$subject,
-				$message,
-				null,
-				$lists,
-				$template,
-				$status,
-				null,
-				null,
-				$admin_user->id
-			);
-
-			if($response){
-		        if ($this->getFormat() == 'json') {
-		            return $this->json_response(array(
-		                'status' => TRUE,
-		                'message' => $this->get('translator')->trans('consultant.newsletter.schedule.newsletter.send.success', array(), 'consultant'),
-		            ));
-		        }
-			}else{
-		        if ($this->getFormat() == 'json') {
-		            return $this->json_response(array(
-		                'status' => FALSE,
-		                'message' => $this->get('translator')->trans('consultant.newsletter.schedule.newsletter.send.failed', array(), 'consultant'),
-		                'data' => $response
-		            ));
-		        }
-			}
-    	}
+            if ($response) {
+                if ($this->getFormat() == 'json') {
+                    return $this->json_response(array(
+                        'status' => TRUE,
+                        'message' => $this->get('translator')->trans('consultant.newsletter.schedule.newsletter.send.success', array(), 'consultant'),
+                    ));
+                }
+            } else {
+                if ($this->getFormat() == 'json') {
+                    return $this->json_response(array(
+                        'status' => FALSE,
+                        'message' => $this->get('translator')->trans('consultant.newsletter.schedule.newsletter.send.failed', array(), 'consultant'),
+                        'data' => $response
+                    ));
+                }
+            }
+        }
     }
 
     public function editUsersAction()
     {
-    	$api = $this->get('consultantnewsletterapi');
+        $api = $this->get('consultantnewsletterapi');
+        $consultant = CustomersQuery::create()
+            ->findPK($this->get('security.context')
+                ->getToken()
+                ->getUser()
+                ->getPrimaryKey()
+            )
+        ;
 
-        $consultant = CustomersQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
-
-        if(!$api->doesAdminUserExist($consultant->getEmail())){
-
+        if (!$api->doesAdminUserExist($consultant->getEmail())) {
             $admin = new \stdClass();
             $admin->loginname = $consultant->getName();
             $admin->email = $consultant->getEmail();
@@ -267,54 +292,54 @@ class DefaultController extends CoreController
             $access = array();
             $api->addAdminUser( $admin , (object) $access);
         }
-        $admin_user = $api->getAdminUserByEmail( $consultant->getEmail() );
-        $lists = $api->getListsByOwner($admin_user->id);
-        if(empty($lists)){
 
+        $admin_user = $api->getAdminUserByEmail($consultant->getEmail());
+        $lists      = $api->getListsByOwner($admin_user->id);
+
+        if (empty($lists)) {
             $list = new \stdClass();
             $list->name = 'Konsulent '.$consultant->getName();
             $list->description = 'Oprettet til '.$consultant->getName();
             $list->owner = $admin_user->id;
             $list->active = true;
-            try{
+
+            try {
                 $api->createList($list);
-            }catch(Exception $e){
+            } catch (Exception $e) {
                 error_log(__LINE__.':'.__FILE__.' '.$e->getMessage());
             }
+
             $lists = $api->getListsByOwner($admin_user->id);
         }
 
         $subscribed_users = $api->getAllUsersSubscribedToList($lists[0]->id);
 
-    	return $this->render('ConsultantNewsletterBundle:Default:editUsers.html.twig',
-        	array(
-        		'page_type' => 'consultant-newsletter',
-        		'subscribed_users' => $subscribed_users
-        	)
-        );
+        return $this->render('ConsultantNewsletterBundle:Default:editUsers.html.twig', array(
+            'page_type'        => 'consultant-newsletter',
+            'subscribed_users' => $subscribed_users
+        ));
     }
 
     public function unsubscribeUserAction($userId)
     {
-    	$api = $this->get('consultantnewsletterapi');
-
+        $api = $this->get('consultantnewsletterapi');
         $consultant = CustomersQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
 
-        if(!$api->doesAdminUserExist($consultant->getEmail())){
-
-            $admin = new \stdClass();
+        if (!$api->doesAdminUserExist($consultant->getEmail())) {
+            $admin            = new \stdClass();
             $admin->loginname = $consultant->getName();
-            $admin->email = $consultant->getEmail();
-            $admin->password = $consultant->getPasswordClear();
-            $admin->id = $consultant->getId();
+            $admin->email     = $consultant->getEmail();
+            $admin->password  = $consultant->getPasswordClear();
+            $admin->id        = $consultant->getId();
 
             $access = array();
             $api->addAdminUser( $admin , (object) $access);
         }
-        $admin_user = $api->getAdminUserByEmail( $consultant->getEmail() );
-        $lists = $api->getListsByOwner($admin_user->id);
-        if(empty($lists)){
 
+        $admin_user = $api->getAdminUserByEmail( $consultant->getEmail() );
+        $lists      = $api->getListsByOwner($admin_user->id);
+
+        if (empty($lists)) {
             $list = new \stdClass();
             $list->name = 'Konsulent '.$consultant->getName();
             $list->description = 'Oprettet til '.$consultant->getName();
@@ -341,142 +366,148 @@ class DefaultController extends CoreController
 
     public function importUsersAction()
     {
-    	return $this->render('ConsultantNewsletterBundle:Default:importUsers.html.twig',
-        	array(
-        		'page_type' => 'consultant-newsletter'
-        	)
-        );
+        return $this->render('ConsultantNewsletterBundle:Default:importUsers.html.twig', array(
+            'page_type' => 'consultant-newsletter'
+        ));
     }
 
     public function doImportUsersAction()
     {
-    	$api = $this->get('consultantnewsletterapi');
+        $api = $this->get('consultantnewsletterapi');
+        $consultant = CustomersQuery::create()
+            ->findPK($this->get('security.context')
+                ->getToken()
+                ->getUser()
+                ->getPrimaryKey()
+            )
+        ;
 
-        $consultant = CustomersQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
-
-        if(!$api->doesAdminUserExist($consultant->getEmail())){
-
-            $admin = new \stdClass();
+        if (!$api->doesAdminUserExist($consultant->getEmail())) {
+            $admin            = new \stdClass();
             $admin->loginname = $consultant->getName();
-            $admin->email = $consultant->getEmail();
-            $admin->password = $consultant->getPasswordClear();
-            $admin->id = $consultant->getId();
+            $admin->email     = $consultant->getEmail();
+            $admin->password  = $consultant->getPasswordClear();
+            $admin->id        = $consultant->getId();
 
             $access = array();
             $api->addAdminUser( $admin , (object) $access);
         }
-        $admin_user = $api->getAdminUserByEmail( $consultant->getEmail() );
-        $lists = $api->getListsByOwner($admin_user->id);
-        if(empty($lists)){
 
-            $list = new \stdClass();
-            $list->name = 'Konsulent '.$consultant->getName();
+        $admin_user = $api->getAdminUserByEmail( $consultant->getEmail() );
+        $lists      = $api->getListsByOwner($admin_user->id);
+
+        if (empty($lists)) {
+            $list              = new \stdClass();
+            $list->name        = 'Konsulent '.$consultant->getName();
             $list->description = 'Oprettet til '.$consultant->getName();
-            $list->owner = $admin_user->id;
-            $list->active = true;
+            $list->owner       = $admin_user->id;
+            $list->active      = true;
+
             try{
                 $api->createList($list);
             }catch(Exception $e){
                 error_log(__LINE__.':'.__FILE__.' '.$e->getMessage());
             }
+
             $lists = $api->getListsByOwner($admin_user->id);
         }
+
         $listIds = array();
         foreach ($lists as $list) {
             $listIds[] = $list->id;
         }
 
-    	$request = $this->getRequest();
+        $emails = explode("\n", $this->getRequest()->get('users') );
 
-        $emails = explode("\n", $request->get('users') );
+        if (empty($emails)) {
+            if ($this->getFormat() == 'json') {
+                return $this->json_response(array(
+                    'status' => FALSE,
+                    'message' => $this->get('translator')->trans('consultant.newsletter.import.no.users', array(), 'consultant'),
+                ));
+            }
+        } else {
+            foreach ($emails as $email) {
+                if (empty($email)) {
+                    continue;
+                }
 
-        if(empty($emails)){
-	        if ($this->getFormat() == 'json') {
-	            return $this->json_response(array(
-	                'status' => FALSE,
-	                'message' => $this->get('translator')->trans('consultant.newsletter.import.no.users', array(), 'consultant'),
-	            ));
-	        }
-        }else{
-	        foreach ($emails as $email) {
-	        	if(empty($email))
-	        		continue;
-	        	$userData = array(
-	        		'email_address' => trim($email),
-	        		'attributes'	=> array()
-	        	);
+                $userData = array(
+                    'email_address' => trim($email),
+                    'attributes'    => array()
+                );
 
-				$api->subscribeUser($userData, $listIds, true );
-	        }
+                $api->subscribeUser($userData, $listIds, true );
+            }
 
-	        if ($this->getFormat() == 'json') {
-	            return $this->json_response(array(
-	                'status' => TRUE,
-	                'message' => $this->get('translator')->trans('consultant.newsletter.import.users.imported', array(), 'consultant'),
-	            ));
-	        }
+            if ($this->getFormat() == 'json') {
+                return $this->json_response(array(
+                    'status' => TRUE,
+                    'message' => $this->get('translator')->trans('consultant.newsletter.import.users.imported', array(), 'consultant'),
+                ));
+            }
         }
-
     }
 
     public function historyAction()
     {
-    	$api = $this->get('consultantnewsletterapi');
+        $api = $this->get('consultantnewsletterapi');
+        $consultant = CustomersQuery::create()
+            ->findPK($this->get('security.context')
+                ->getToken()
+                ->getUser()
+                ->getPrimaryKey()
+            )
+        ;
 
-        $consultant = CustomersQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
-
-        if(!$api->doesAdminUserExist($consultant->getEmail())){
-
-            $admin = new \stdClass();
+        if (!$api->doesAdminUserExist($consultant->getEmail())) {
+            $admin            = new \stdClass();
             $admin->loginname = $consultant->getName();
-            $admin->email = $consultant->getEmail();
-            $admin->password = $consultant->getPasswordClear();
-            $admin->id = $consultant->getId();
+            $admin->email     = $consultant->getEmail();
+            $admin->password  = $consultant->getPasswordClear();
+            $admin->id        = $consultant->getId();
 
             $access = array();
-            $api->addAdminUser( $admin , (object) $access);
+            $api->addAdminUser($admin , (object) $access);
         }
-        $admin_user = $api->getAdminUserByEmail( $consultant->getEmail() );
 
-    	$history = $api->getNewsletterHistory( $admin_user->id );
+        $admin_user = $api->getAdminUserByEmail($consultant->getEmail());
+        $history    = $api->getNewsletterHistory($admin_user->id);
 
-    	// Workaround. Crap content receivet from phplist :-(
-    	$histSize = count($history);
-    	for ($i=0; $i < $histSize; $i++) {
-			$history[$i]['message'] = htmlspecialchars_decode($history[$i]['message']);
-    	}
+        // Workaround. Crap content receivet from phplist :-(
+        $histSize = count($history);
+        for ($i=0; $i < $histSize; $i++) {
+            $history[$i]['message'] = htmlspecialchars_decode($history[$i]['message']);
+        }
 
         krsort($history);
 
-    	return $this->render('ConsultantNewsletterBundle:Default:history.html.twig',
-        	array(
-        		'page_type' => 'consultant-newsletter',
-        		'history' 	=> $history
-        	)
-        );
+        return $this->render('ConsultantNewsletterBundle:Default:history.html.twig', array(
+            'page_type' => 'consultant-newsletter',
+            'history'   => $history
+        ));
     }
 
     public function fileManagerAction()
     {
-    	$finder = new Finder();
-    	$finder->files()->in(__DIR__.'/../../../../../web/fx/images');
-    	$finder->files()->name('*.jpg');
-    	$finder->files()->name('*.png');
-    	$finder->files()->name('*.gif');
-    	$finder->sortByName();
-    	$images = array();
+        $finder = new Finder();
+        $finder->files()->in(__DIR__.'/../../../../../web/fx/images');
+        $finder->files()->name('*.jpg');
+        $finder->files()->name('*.png');
+        $finder->files()->name('*.gif');
+        $finder->sortByName();
+        $images = array();
 
-		foreach ($finder as $file) {
-		    $images[] = array(
-		    	'absolute' 	=> $this->container->get('router')->getContext()->getBaseUrl().'/fx/images/'.$file->getRelativePathname(),
-		    	'relative' 	=> '/fx/images/'.$file->getRelativePathname(),
-		    	'name'		=> $file->getFilename()
-		    );
-		}
-        return $this->render('ConsultantNewsletterBundle:Default:filemanager.html.twig',
-        	array(
-        		'images' => $images
-        	)
-        );
+        foreach ($finder as $file) {
+            $images[] = array(
+                'absolute'  => $this->container->get('router')->getContext()->getBaseUrl().'/fx/images/'.$file->getRelativePathname(),
+                'relative'  => '/fx/images/'.$file->getRelativePathname(),
+                'name'      => $file->getFilename()
+            );
+        }
+
+        return $this->render('ConsultantNewsletterBundle:Default:filemanager.html.twig', array(
+            'images' => $images
+        ));
     }
 }
