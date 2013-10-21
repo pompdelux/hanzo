@@ -415,7 +415,7 @@ nav > ul,
 ul.menu,
 .menu > ul {
   font-size: 14px;
-  font-family: "Merriweather", serif;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
   color: #444444;
   letter-spacing: 0;
   z-index: 200;
