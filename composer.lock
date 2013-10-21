@@ -1543,21 +1543,24 @@
         },
         {
             "name": "propel/propel1",
-            "version": "1.6.9",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/propelorm/Propel.git",
-                "reference": "1.6.9"
+                "reference": "09058f1443bc287e550b9342a4379aac2e0a0b8f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/propelorm/Propel/zipball/1.6.9",
-                "reference": "1.6.9",
+                "url": "https://api.github.com/repos/propelorm/Propel/zipball/09058f1443bc287e550b9342a4379aac2e0a0b8f",
+                "reference": "09058f1443bc287e550b9342a4379aac2e0a0b8f",
                 "shasum": ""
             },
             "require": {
-                "phing/phing": ">=2.4,<3.0",
+                "phing/phing": "~2.4",
                 "php": ">=5.2.4"
+            },
+            "require-dev": {
+                "pear-pear.php.net/pear_packagefilemanager2": "@stable"
             },
             "bin": [
                 "generator/bin/propel-gen",
@@ -1566,7 +1569,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.6-dev"
+                    "dev-master": "1.7-dev"
                 }
             },
             "autoload": {
@@ -1599,7 +1602,7 @@
                 "orm",
                 "persistence"
             ],
-            "time": "2013-03-31 17:20:51"
+            "time": "2013-10-21 12:52:56"
         },
         {
             "name": "psr/log",
@@ -2210,16 +2213,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.14.0",
+            "version": "v1.14.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig.git",
-                "reference": "224fc55635d544a2ec8edb3592be18db5a093f59"
+                "reference": "8873d7593ad7c120004f177c0fd01459b383c9cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/224fc55635d544a2ec8edb3592be18db5a093f59",
-                "reference": "224fc55635d544a2ec8edb3592be18db5a093f59",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/8873d7593ad7c120004f177c0fd01459b383c9cb",
+                "reference": "8873d7593ad7c120004f177c0fd01459b383c9cb",
                 "shasum": ""
             },
             "require": {
@@ -2255,7 +2258,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2013-10-03 06:41:20"
+            "time": "2013-10-15 19:17:38"
         },
         {
             "name": "willdurand/expose-translation-bundle",
@@ -2312,16 +2315,16 @@
         },
         {
             "name": "willdurand/geocoder",
-            "version": "2.2.0",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/geocoder-php/Geocoder.git",
-                "reference": "5c3a0d43bdf44d9846e92f2258652616ee0fc67b"
+                "reference": "f6cc10d1088dbfc6681725cc902dcbfd1207a519"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/geocoder-php/Geocoder/zipball/5c3a0d43bdf44d9846e92f2258652616ee0fc67b",
-                "reference": "5c3a0d43bdf44d9846e92f2258652616ee0fc67b",
+                "url": "https://api.github.com/repos/geocoder-php/Geocoder/zipball/f6cc10d1088dbfc6681725cc902dcbfd1207a519",
+                "reference": "f6cc10d1088dbfc6681725cc902dcbfd1207a519",
                 "shasum": ""
             },
             "require": {
@@ -2344,7 +2347,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.2-dev"
+                    "dev-master": "2.3-dev"
                 }
             },
             "autoload": {
@@ -2371,7 +2374,7 @@
                 "geocoding",
                 "geoip"
             ],
-            "time": "2013-09-16 08:29:30"
+            "time": "2013-10-17 09:51:48"
         }
     ],
     "packages-dev": [

@@ -39,7 +39,7 @@ abstract class BaseCms extends BaseObject implements Persistent
     protected static $peer;
 
     /**
-     * The flag var to prevent infinit loop in deep copy
+     * The flag var to prevent infinite loop in deep copy
      * @var       boolean
      */
     protected $startCopy = false;
@@ -191,6 +191,7 @@ abstract class BaseCms extends BaseObject implements Persistent
      */
     public function getId()
     {
+
         return $this->id;
     }
 
@@ -201,6 +202,7 @@ abstract class BaseCms extends BaseObject implements Persistent
      */
     public function getParentId()
     {
+
         return $this->parent_id;
     }
 
@@ -211,6 +213,7 @@ abstract class BaseCms extends BaseObject implements Persistent
      */
     public function getCmsThreadId()
     {
+
         return $this->cms_thread_id;
     }
 
@@ -221,6 +224,7 @@ abstract class BaseCms extends BaseObject implements Persistent
      */
     public function getSort()
     {
+
         return $this->sort;
     }
 
@@ -231,6 +235,7 @@ abstract class BaseCms extends BaseObject implements Persistent
      */
     public function getType()
     {
+
         return $this->type;
     }
 
@@ -241,6 +246,7 @@ abstract class BaseCms extends BaseObject implements Persistent
      */
     public function getUpdatedBy()
     {
+
         return $this->updated_by;
     }
 
@@ -248,7 +254,7 @@ abstract class BaseCms extends BaseObject implements Persistent
      * Get the [optionally formatted] temporal [created_at] column value.
      *
      * This accessor only only work with unix epoch dates.  Consider enabling the propel.useDateTimeClass
-     * option in order to avoid converstions to integers (which are limited in the dates they can express).
+     * option in order to avoid conversions to integers (which are limited in the dates they can express).
      *
      * @param string $format The date/time format string (either date()-style or strftime()-style).
      *				 If format is null, then the raw unix timestamp integer will be returned.
@@ -290,7 +296,7 @@ abstract class BaseCms extends BaseObject implements Persistent
      * Get the [optionally formatted] temporal [updated_at] column value.
      *
      * This accessor only only work with unix epoch dates.  Consider enabling the propel.useDateTimeClass
-     * option in order to avoid converstions to integers (which are limited in the dates they can express).
+     * option in order to avoid conversions to integers (which are limited in the dates they can express).
      *
      * @param string $format The date/time format string (either date()-style or strftime()-style).
      *				 If format is null, then the raw unix timestamp integer will be returned.
@@ -331,7 +337,7 @@ abstract class BaseCms extends BaseObject implements Persistent
     /**
      * Set the value of [id] column.
      *
-     * @param int $v new value
+     * @param  int $v new value
      * @return Cms The current object (for fluent API support)
      */
     public function setId($v)
@@ -352,7 +358,7 @@ abstract class BaseCms extends BaseObject implements Persistent
     /**
      * Set the value of [parent_id] column.
      *
-     * @param int $v new value
+     * @param  int $v new value
      * @return Cms The current object (for fluent API support)
      */
     public function setParentId($v)
@@ -377,7 +383,7 @@ abstract class BaseCms extends BaseObject implements Persistent
     /**
      * Set the value of [cms_thread_id] column.
      *
-     * @param int $v new value
+     * @param  int $v new value
      * @return Cms The current object (for fluent API support)
      */
     public function setCmsThreadId($v)
@@ -402,7 +408,7 @@ abstract class BaseCms extends BaseObject implements Persistent
     /**
      * Set the value of [sort] column.
      *
-     * @param int $v new value
+     * @param  int $v new value
      * @return Cms The current object (for fluent API support)
      */
     public function setSort($v)
@@ -423,7 +429,7 @@ abstract class BaseCms extends BaseObject implements Persistent
     /**
      * Set the value of [type] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Cms The current object (for fluent API support)
      */
     public function setType($v)
@@ -444,7 +450,7 @@ abstract class BaseCms extends BaseObject implements Persistent
     /**
      * Set the value of [updated_by] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Cms The current object (for fluent API support)
      */
     public function setUpdatedBy($v)
@@ -539,7 +545,7 @@ abstract class BaseCms extends BaseObject implements Persistent
      * more tables.
      *
      * @param array $row The row returned by PDOStatement->fetch(PDO::FETCH_NUM)
-     * @param int $startcol 0-based offset column which indicates which restultset column to start with.
+     * @param int $startcol 0-based offset column which indicates which resultset column to start with.
      * @param boolean $rehydrate Whether this object is being re-hydrated from the database.
      * @return int             next starting column
      * @throws PropelException - Any caught Exception will be rewrapped as a PropelException.
@@ -564,6 +570,7 @@ abstract class BaseCms extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 8; // 8 = CmsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -763,7 +770,7 @@ abstract class BaseCms extends BaseObject implements Persistent
             $this->alreadyInSave = true;
 
             // We call the save method on the following object(s) if they
-            // were passed to this object by their coresponding set
+            // were passed to this object by their corresponding set
             // method.  This object relates to these object(s) by a
             // foreign key reference.
 
@@ -794,10 +801,9 @@ abstract class BaseCms extends BaseObject implements Persistent
 
             if ($this->cmssRelatedByIdScheduledForDeletion !== null) {
                 if (!$this->cmssRelatedByIdScheduledForDeletion->isEmpty()) {
-                    foreach ($this->cmssRelatedByIdScheduledForDeletion as $cmsRelatedById) {
-                        // need to save related object because we set the relation to null
-                        $cmsRelatedById->save($con);
-                    }
+                    CmsQuery::create()
+                        ->filterByPrimaryKeys($this->cmssRelatedByIdScheduledForDeletion->getPrimaryKeys(false))
+                        ->delete($con);
                     $this->cmssRelatedByIdScheduledForDeletion = null;
                 }
             }
@@ -992,10 +998,10 @@ abstract class BaseCms extends BaseObject implements Persistent
      *
      * In addition to checking the current object, all related objects will
      * also be validated.  If all pass then <code>true</code> is returned; otherwise
-     * an aggreagated array of ValidationFailed objects will be returned.
+     * an aggregated array of ValidationFailed objects will be returned.
      *
      * @param array $columns Array of column names to validate.
-     * @return mixed <code>true</code> if all validations pass; array of <code>ValidationFailed</code> objets otherwise.
+     * @return mixed <code>true</code> if all validations pass; array of <code>ValidationFailed</code> objects otherwise.
      */
     protected function doValidate($columns = null)
     {
@@ -1007,7 +1013,7 @@ abstract class BaseCms extends BaseObject implements Persistent
 
 
             // We call the validate method on the following object(s) if they
-            // were passed to this object by their coresponding set
+            // were passed to this object by their corresponding set
             // method.  This object relates to these object(s) by a
             // foreign key reference.
 
@@ -1142,6 +1148,11 @@ abstract class BaseCms extends BaseObject implements Persistent
             $keys[6] => $this->getCreatedAt(),
             $keys[7] => $this->getUpdatedAt(),
         );
+        $virtualColumns = $this->virtualColumns;
+        foreach ($virtualColumns as $key => $virtualColumn) {
+            $result[$key] = $virtualColumn;
+        }
+
         if ($includeForeignObjects) {
             if (null !== $this->aCmsThread) {
                 $result['CmsThread'] = $this->aCmsThread->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
@@ -1407,7 +1418,7 @@ abstract class BaseCms extends BaseObject implements Persistent
     /**
      * Declares an association between this object and a CmsThread object.
      *
-     * @param             CmsThread $v
+     * @param                  CmsThread $v
      * @return Cms The current object (for fluent API support)
      * @throws PropelException
      */
@@ -1459,7 +1470,7 @@ abstract class BaseCms extends BaseObject implements Persistent
     /**
      * Declares an association between this object and a Cms object.
      *
-     * @param             Cms $v
+     * @param                  Cms $v
      * @return Cms The current object (for fluent API support)
      * @throws PropelException
      */
@@ -1604,7 +1615,7 @@ abstract class BaseCms extends BaseObject implements Persistent
                     if (false !== $this->collCmssRelatedByIdPartial && count($collCmssRelatedById)) {
                       $this->initCmssRelatedById(false);
 
-                      foreach($collCmssRelatedById as $obj) {
+                      foreach ($collCmssRelatedById as $obj) {
                         if (false == $this->collCmssRelatedById->contains($obj)) {
                           $this->collCmssRelatedById->append($obj);
                         }
@@ -1614,12 +1625,13 @@ abstract class BaseCms extends BaseObject implements Persistent
                     }
 
                     $collCmssRelatedById->getInternalIterator()->rewind();
+
                     return $collCmssRelatedById;
                 }
 
-                if($partial && $this->collCmssRelatedById) {
-                    foreach($this->collCmssRelatedById as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collCmssRelatedById) {
+                    foreach ($this->collCmssRelatedById as $obj) {
+                        if ($obj->isNew()) {
                             $collCmssRelatedById[] = $obj;
                         }
                     }
@@ -1647,7 +1659,8 @@ abstract class BaseCms extends BaseObject implements Persistent
     {
         $cmssRelatedByIdToDelete = $this->getCmssRelatedById(new Criteria(), $con)->diff($cmssRelatedById);
 
-        $this->cmssRelatedByIdScheduledForDeletion = unserialize(serialize($cmssRelatedByIdToDelete));
+
+        $this->cmssRelatedByIdScheduledForDeletion = $cmssRelatedByIdToDelete;
 
         foreach ($cmssRelatedByIdToDelete as $cmsRelatedByIdRemoved) {
             $cmsRelatedByIdRemoved->setCmsRelatedByParentId(null);
@@ -1681,7 +1694,7 @@ abstract class BaseCms extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getCmssRelatedById());
             }
             $query = CmsQuery::create(null, $criteria);
@@ -1710,8 +1723,13 @@ abstract class BaseCms extends BaseObject implements Persistent
             $this->initCmssRelatedById();
             $this->collCmssRelatedByIdPartial = true;
         }
+
         if (!in_array($l, $this->collCmssRelatedById->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddCmsRelatedById($l);
+
+            if ($this->cmssRelatedByIdScheduledForDeletion and $this->cmssRelatedByIdScheduledForDeletion->contains($l)) {
+                $this->cmssRelatedByIdScheduledForDeletion->remove($this->cmssRelatedByIdScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
@@ -1847,7 +1865,7 @@ abstract class BaseCms extends BaseObject implements Persistent
                     if (false !== $this->collCmsI18nsPartial && count($collCmsI18ns)) {
                       $this->initCmsI18ns(false);
 
-                      foreach($collCmsI18ns as $obj) {
+                      foreach ($collCmsI18ns as $obj) {
                         if (false == $this->collCmsI18ns->contains($obj)) {
                           $this->collCmsI18ns->append($obj);
                         }
@@ -1857,12 +1875,13 @@ abstract class BaseCms extends BaseObject implements Persistent
                     }
 
                     $collCmsI18ns->getInternalIterator()->rewind();
+
                     return $collCmsI18ns;
                 }
 
-                if($partial && $this->collCmsI18ns) {
-                    foreach($this->collCmsI18ns as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collCmsI18ns) {
+                    foreach ($this->collCmsI18ns as $obj) {
+                        if ($obj->isNew()) {
                             $collCmsI18ns[] = $obj;
                         }
                     }
@@ -1890,7 +1909,11 @@ abstract class BaseCms extends BaseObject implements Persistent
     {
         $cmsI18nsToDelete = $this->getCmsI18ns(new Criteria(), $con)->diff($cmsI18ns);
 
-        $this->cmsI18nsScheduledForDeletion = unserialize(serialize($cmsI18nsToDelete));
+
+        //since at least one column in the foreign key is at the same time a PK
+        //we can not just set a PK to NULL in the lines below. We have to store
+        //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
+        $this->cmsI18nsScheduledForDeletion = clone $cmsI18nsToDelete;
 
         foreach ($cmsI18nsToDelete as $cmsI18nRemoved) {
             $cmsI18nRemoved->setCms(null);
@@ -1924,7 +1947,7 @@ abstract class BaseCms extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getCmsI18ns());
             }
             $query = CmsI18nQuery::create(null, $criteria);
@@ -1957,8 +1980,13 @@ abstract class BaseCms extends BaseObject implements Persistent
             $this->initCmsI18ns();
             $this->collCmsI18nsPartial = true;
         }
+
         if (!in_array($l, $this->collCmsI18ns->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddCmsI18n($l);
+
+            if ($this->cmsI18nsScheduledForDeletion and $this->cmsI18nsScheduledForDeletion->contains($l)) {
+                $this->cmsI18nsScheduledForDeletion->remove($this->cmsI18nsScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
@@ -2020,7 +2048,7 @@ abstract class BaseCms extends BaseObject implements Persistent
      *
      * This method is a user-space workaround for PHP's inability to garbage collect
      * objects with circular references (even in PHP 5.3). This is currently necessary
-     * when using Propel in certain daemon or large-volumne/high-memory operations.
+     * when using Propel in certain daemon or large-volume/high-memory operations.
      *
      * @param boolean $deep Whether to also clear the references on all referrer objects.
      */
@@ -2198,7 +2226,7 @@ abstract class BaseCms extends BaseObject implements Persistent
         /**
          * Set the value of [title] column.
          *
-         * @param string $v new value
+         * @param  string $v new value
          * @return CmsI18n The current object (for fluent API support)
          */
         public function setTitle($v)
@@ -2222,7 +2250,7 @@ abstract class BaseCms extends BaseObject implements Persistent
         /**
          * Set the value of [path] column.
          *
-         * @param string $v new value
+         * @param  string $v new value
          * @return CmsI18n The current object (for fluent API support)
          */
         public function setPath($v)
@@ -2246,7 +2274,7 @@ abstract class BaseCms extends BaseObject implements Persistent
         /**
          * Set the value of [old_path] column.
          *
-         * @param string $v new value
+         * @param  string $v new value
          * @return CmsI18n The current object (for fluent API support)
          */
         public function setOldPath($v)
@@ -2270,7 +2298,7 @@ abstract class BaseCms extends BaseObject implements Persistent
         /**
          * Set the value of [content] column.
          *
-         * @param string $v new value
+         * @param  string $v new value
          * @return CmsI18n The current object (for fluent API support)
          */
         public function setContent($v)
@@ -2294,7 +2322,7 @@ abstract class BaseCms extends BaseObject implements Persistent
         /**
          * Set the value of [settings] column.
          *
-         * @param string $v new value
+         * @param  string $v new value
          * @return CmsI18n The current object (for fluent API support)
          */
         public function setSettings($v)
@@ -2318,7 +2346,7 @@ abstract class BaseCms extends BaseObject implements Persistent
         /**
          * Set the value of [is_restricted] column.
          *
-         * @param boolean $v new value
+         * @param  boolean $v new value
          * @return CmsI18n The current object (for fluent API support)
          */
         public function setIsRestricted($v)
@@ -2342,7 +2370,7 @@ abstract class BaseCms extends BaseObject implements Persistent
         /**
          * Set the value of [is_active] column.
          *
-         * @param boolean $v new value
+         * @param  boolean $v new value
          * @return CmsI18n The current object (for fluent API support)
          */
         public function setIsActive($v)
@@ -2366,7 +2394,7 @@ abstract class BaseCms extends BaseObject implements Persistent
         /**
          * Set the value of [on_mobile] column.
          *
-         * @param boolean $v new value
+         * @param  boolean $v new value
          * @return CmsI18n The current object (for fluent API support)
          */
         public function setOnMobile($v)

@@ -27,7 +27,7 @@ abstract class BaseOrdersAttributesPeer
     const OM_CLASS = 'Hanzo\\Model\\OrdersAttributes';
 
     /** the related TableMap class for this table */
-    const TM_CLASS = 'OrdersAttributesTableMap';
+    const TM_CLASS = 'Hanzo\\Model\\map\\OrdersAttributesTableMap';
 
     /** The total number of columns. */
     const NUM_COLUMNS = 4;
@@ -54,7 +54,7 @@ abstract class BaseOrdersAttributesPeer
     const DEFAULT_STRING_FORMAT = 'YAML';
 
     /**
-     * An identiy map to hold any loaded instances of OrdersAttributes objects.
+     * An identity map to hold any loaded instances of OrdersAttributes objects.
      * This must be public so that other peer classes can access this when hydrating from JOIN
      * queries.
      * @var        array OrdersAttributes[]
@@ -224,7 +224,7 @@ abstract class BaseOrdersAttributesPeer
      *
      * @param      Criteria $criteria object used to create the SELECT statement.
      * @param      PropelPDO $con
-     * @return                 OrdersAttributes
+     * @return OrdersAttributes
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
@@ -291,7 +291,7 @@ abstract class BaseOrdersAttributesPeer
      * to the cache in order to ensure that the same objects are always returned by doSelect*()
      * and retrieveByPK*() calls.
      *
-     * @param      OrdersAttributes $obj A OrdersAttributes object.
+     * @param OrdersAttributes $obj A OrdersAttributes object.
      * @param      string $key (optional) key to use for instance map (for performance boost if key was already calculated externally).
      */
     public static function addInstanceToPool($obj, $key = null)
@@ -341,7 +341,7 @@ abstract class BaseOrdersAttributesPeer
      * a multi-column primary key, a serialize()d version of the primary key will be returned.
      *
      * @param      string $key The key (@see getPrimaryKeyHash()) for this instance.
-     * @return   OrdersAttributes Found object or null if 1) no instance exists for specified key or 2) instance pooling has been disabled.
+     * @return OrdersAttributes Found object or null if 1) no instance exists for specified key or 2) instance pooling has been disabled.
      * @see        getPrimaryKeyHash()
      */
     public static function getInstanceFromPool($key)
@@ -362,10 +362,8 @@ abstract class BaseOrdersAttributesPeer
      */
     public static function clearInstancePool($and_clear_all_references = false)
     {
-      if ($and_clear_all_references)
-      {
-        foreach (OrdersAttributesPeer::$instances as $instance)
-        {
+      if ($and_clear_all_references) {
+        foreach (OrdersAttributesPeer::$instances as $instance) {
           $instance->clearAllReferences(true);
         }
       }
@@ -731,7 +729,7 @@ abstract class BaseOrdersAttributesPeer
     {
       $dbMap = Propel::getDatabaseMap(BaseOrdersAttributesPeer::DATABASE_NAME);
       if (!$dbMap->hasTable(BaseOrdersAttributesPeer::TABLE_NAME)) {
-        $dbMap->addTableObject(new OrdersAttributesTableMap());
+        $dbMap->addTableObject(new \Hanzo\Model\map\OrdersAttributesTableMap());
       }
     }
 
@@ -777,7 +775,7 @@ abstract class BaseOrdersAttributesPeer
             $con->beginTransaction();
             $pk = BasePeer::doInsert($criteria, $con);
             $con->commit();
-        } catch (PropelException $e) {
+        } catch (Exception $e) {
             $con->rollBack();
             throw $e;
         }
@@ -866,7 +864,7 @@ abstract class BaseOrdersAttributesPeer
             $con->commit();
 
             return $affectedRows;
-        } catch (PropelException $e) {
+        } catch (Exception $e) {
             $con->rollBack();
             throw $e;
         }
@@ -934,7 +932,7 @@ abstract class BaseOrdersAttributesPeer
             $con->commit();
 
             return $affectedRows;
-        } catch (PropelException $e) {
+        } catch (Exception $e) {
             $con->rollBack();
             throw $e;
         }
@@ -947,7 +945,7 @@ abstract class BaseOrdersAttributesPeer
      *
      * NOTICE: This does not apply to primary or foreign keys for now.
      *
-     * @param      OrdersAttributes $obj The object to validate.
+     * @param OrdersAttributes $obj The object to validate.
      * @param      mixed $cols Column name or array of column names.
      *
      * @return mixed TRUE if all columns are valid or the error message of the first invalid column.
@@ -983,7 +981,7 @@ abstract class BaseOrdersAttributesPeer
      * @param   string $ns
      * @param   string $c_key
      * @param      PropelPDO $con
-     * @return   OrdersAttributes
+     * @return OrdersAttributes
      */
     public static function retrieveByPK($orders_id, $ns, $c_key, PropelPDO $con = null) {
         $_instancePoolKey = serialize(array((string) $orders_id, (string) $ns, (string) $c_key));

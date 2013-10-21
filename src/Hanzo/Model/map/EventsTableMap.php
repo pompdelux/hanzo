@@ -72,7 +72,7 @@ class EventsTableMap extends TableMap
         $this->addRelation('CustomersRelatedByConsultantsId', 'Hanzo\\Model\\Customers', RelationMap::MANY_TO_ONE, array('consultants_id' => 'id', ), null, null);
         $this->addRelation('CustomersRelatedByCustomersId', 'Hanzo\\Model\\Customers', RelationMap::MANY_TO_ONE, array('customers_id' => 'id', ), null, null);
         $this->addRelation('EventsParticipants', 'Hanzo\\Model\\EventsParticipants', RelationMap::ONE_TO_MANY, array('id' => 'events_id', ), 'CASCADE', null, 'EventsParticipantss');
-        $this->addRelation('Orders', 'Hanzo\\Model\\Orders', RelationMap::ONE_TO_MANY, array('id' => 'events_id', ), 'RESTRICT', 'CASCADE', 'Orderss');
+        $this->addRelation('Orders', 'Hanzo\\Model\\Orders', RelationMap::ONE_TO_MANY, array('id' => 'events_id', ), null, 'CASCADE', 'Orderss');
     } // buildRelations()
 
     /**

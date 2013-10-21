@@ -37,7 +37,7 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
     protected static $peer;
 
     /**
-     * The flag var to prevent infinit loop in deep copy
+     * The flag var to prevent infinite loop in deep copy
      * @var       boolean
      */
     protected $startCopy = false;
@@ -141,6 +141,7 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
      */
     public function getId()
     {
+
         return $this->id;
     }
 
@@ -151,13 +152,14 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
      */
     public function getIsActive()
     {
+
         return $this->is_active;
     }
 
     /**
      * Set the value of [id] column.
      *
-     * @param int $v new value
+     * @param  int $v new value
      * @return CmsThread The current object (for fluent API support)
      */
     public function setId($v)
@@ -231,7 +233,7 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
      * more tables.
      *
      * @param array $row The row returned by PDOStatement->fetch(PDO::FETCH_NUM)
-     * @param int $startcol 0-based offset column which indicates which restultset column to start with.
+     * @param int $startcol 0-based offset column which indicates which resultset column to start with.
      * @param boolean $rehydrate Whether this object is being re-hydrated from the database.
      * @return int             next starting column
      * @throws PropelException - Any caught Exception will be rewrapped as a PropelException.
@@ -250,6 +252,7 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 2; // 2 = CmsThreadPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -603,10 +606,10 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
      *
      * In addition to checking the current object, all related objects will
      * also be validated.  If all pass then <code>true</code> is returned; otherwise
-     * an aggreagated array of ValidationFailed objects will be returned.
+     * an aggregated array of ValidationFailed objects will be returned.
      *
      * @param array $columns Array of column names to validate.
-     * @return mixed <code>true</code> if all validations pass; array of <code>ValidationFailed</code> objets otherwise.
+     * @return mixed <code>true</code> if all validations pass; array of <code>ValidationFailed</code> objects otherwise.
      */
     protected function doValidate($columns = null)
     {
@@ -711,6 +714,11 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
             $keys[0] => $this->getId(),
             $keys[1] => $this->getIsActive(),
         );
+        $virtualColumns = $this->virtualColumns;
+        foreach ($virtualColumns as $key => $virtualColumn) {
+            $result[$key] = $virtualColumn;
+        }
+
         if ($includeForeignObjects) {
             if (null !== $this->collCmss) {
                 $result['Cmss'] = $this->collCmss->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
@@ -1027,7 +1035,7 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
                     if (false !== $this->collCmssPartial && count($collCmss)) {
                       $this->initCmss(false);
 
-                      foreach($collCmss as $obj) {
+                      foreach ($collCmss as $obj) {
                         if (false == $this->collCmss->contains($obj)) {
                           $this->collCmss->append($obj);
                         }
@@ -1037,12 +1045,13 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
                     }
 
                     $collCmss->getInternalIterator()->rewind();
+
                     return $collCmss;
                 }
 
-                if($partial && $this->collCmss) {
-                    foreach($this->collCmss as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collCmss) {
+                    foreach ($this->collCmss as $obj) {
+                        if ($obj->isNew()) {
                             $collCmss[] = $obj;
                         }
                     }
@@ -1070,7 +1079,8 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
     {
         $cmssToDelete = $this->getCmss(new Criteria(), $con)->diff($cmss);
 
-        $this->cmssScheduledForDeletion = unserialize(serialize($cmssToDelete));
+
+        $this->cmssScheduledForDeletion = $cmssToDelete;
 
         foreach ($cmssToDelete as $cmsRemoved) {
             $cmsRemoved->setCmsThread(null);
@@ -1104,7 +1114,7 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getCmss());
             }
             $query = CmsQuery::create(null, $criteria);
@@ -1133,8 +1143,13 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
             $this->initCmss();
             $this->collCmssPartial = true;
         }
+
         if (!in_array($l, $this->collCmss->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddCms($l);
+
+            if ($this->cmssScheduledForDeletion and $this->cmssScheduledForDeletion->contains($l)) {
+                $this->cmssScheduledForDeletion->remove($this->cmssScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
@@ -1270,7 +1285,7 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
                     if (false !== $this->collCmsThreadI18nsPartial && count($collCmsThreadI18ns)) {
                       $this->initCmsThreadI18ns(false);
 
-                      foreach($collCmsThreadI18ns as $obj) {
+                      foreach ($collCmsThreadI18ns as $obj) {
                         if (false == $this->collCmsThreadI18ns->contains($obj)) {
                           $this->collCmsThreadI18ns->append($obj);
                         }
@@ -1280,12 +1295,13 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
                     }
 
                     $collCmsThreadI18ns->getInternalIterator()->rewind();
+
                     return $collCmsThreadI18ns;
                 }
 
-                if($partial && $this->collCmsThreadI18ns) {
-                    foreach($this->collCmsThreadI18ns as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collCmsThreadI18ns) {
+                    foreach ($this->collCmsThreadI18ns as $obj) {
+                        if ($obj->isNew()) {
                             $collCmsThreadI18ns[] = $obj;
                         }
                     }
@@ -1313,7 +1329,11 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
     {
         $cmsThreadI18nsToDelete = $this->getCmsThreadI18ns(new Criteria(), $con)->diff($cmsThreadI18ns);
 
-        $this->cmsThreadI18nsScheduledForDeletion = unserialize(serialize($cmsThreadI18nsToDelete));
+
+        //since at least one column in the foreign key is at the same time a PK
+        //we can not just set a PK to NULL in the lines below. We have to store
+        //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
+        $this->cmsThreadI18nsScheduledForDeletion = clone $cmsThreadI18nsToDelete;
 
         foreach ($cmsThreadI18nsToDelete as $cmsThreadI18nRemoved) {
             $cmsThreadI18nRemoved->setCmsThread(null);
@@ -1347,7 +1367,7 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getCmsThreadI18ns());
             }
             $query = CmsThreadI18nQuery::create(null, $criteria);
@@ -1380,8 +1400,13 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
             $this->initCmsThreadI18ns();
             $this->collCmsThreadI18nsPartial = true;
         }
+
         if (!in_array($l, $this->collCmsThreadI18ns->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddCmsThreadI18n($l);
+
+            if ($this->cmsThreadI18nsScheduledForDeletion and $this->cmsThreadI18nsScheduledForDeletion->contains($l)) {
+                $this->cmsThreadI18nsScheduledForDeletion->remove($this->cmsThreadI18nsScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
@@ -1437,7 +1462,7 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
      *
      * This method is a user-space workaround for PHP's inability to garbage collect
      * objects with circular references (even in PHP 5.3). This is currently necessary
-     * when using Propel in certain daemon or large-volumne/high-memory operations.
+     * when using Propel in certain daemon or large-volume/high-memory operations.
      *
      * @param boolean $deep Whether to also clear the references on all referrer objects.
      */
@@ -1607,7 +1632,7 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
         /**
          * Set the value of [title] column.
          *
-         * @param string $v new value
+         * @param  string $v new value
          * @return CmsThreadI18n The current object (for fluent API support)
          */
         public function setTitle($v)

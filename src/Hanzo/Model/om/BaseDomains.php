@@ -39,7 +39,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
     protected static $peer;
 
     /**
-     * The flag var to prevent infinit loop in deep copy
+     * The flag var to prevent infinite loop in deep copy
      * @var       boolean
      */
     protected $startCopy = false;
@@ -125,6 +125,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
      */
     public function getId()
     {
+
         return $this->id;
     }
 
@@ -135,6 +136,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
      */
     public function getDomainName()
     {
+
         return $this->domain_name;
     }
 
@@ -145,13 +147,14 @@ abstract class BaseDomains extends BaseObject implements Persistent
      */
     public function getDomainKey()
     {
+
         return $this->domain_key;
     }
 
     /**
      * Set the value of [id] column.
      *
-     * @param int $v new value
+     * @param  int $v new value
      * @return Domains The current object (for fluent API support)
      */
     public function setId($v)
@@ -172,7 +175,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
     /**
      * Set the value of [domain_name] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Domains The current object (for fluent API support)
      */
     public function setDomainName($v)
@@ -193,7 +196,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
     /**
      * Set the value of [domain_key] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Domains The current object (for fluent API support)
      */
     public function setDomainKey($v)
@@ -234,7 +237,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
      * more tables.
      *
      * @param array $row The row returned by PDOStatement->fetch(PDO::FETCH_NUM)
-     * @param int $startcol 0-based offset column which indicates which restultset column to start with.
+     * @param int $startcol 0-based offset column which indicates which resultset column to start with.
      * @param boolean $rehydrate Whether this object is being re-hydrated from the database.
      * @return int             next starting column
      * @throws PropelException - Any caught Exception will be rewrapped as a PropelException.
@@ -254,6 +257,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 3; // 3 = DomainsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -632,10 +636,10 @@ abstract class BaseDomains extends BaseObject implements Persistent
      *
      * In addition to checking the current object, all related objects will
      * also be validated.  If all pass then <code>true</code> is returned; otherwise
-     * an aggreagated array of ValidationFailed objects will be returned.
+     * an aggregated array of ValidationFailed objects will be returned.
      *
      * @param array $columns Array of column names to validate.
-     * @return mixed <code>true</code> if all validations pass; array of <code>ValidationFailed</code> objets otherwise.
+     * @return mixed <code>true</code> if all validations pass; array of <code>ValidationFailed</code> objects otherwise.
      */
     protected function doValidate($columns = null)
     {
@@ -752,6 +756,11 @@ abstract class BaseDomains extends BaseObject implements Persistent
             $keys[1] => $this->getDomainName(),
             $keys[2] => $this->getDomainKey(),
         );
+        $virtualColumns = $this->virtualColumns;
+        foreach ($virtualColumns as $key => $virtualColumn) {
+            $result[$key] = $virtualColumn;
+        }
+
         if ($includeForeignObjects) {
             if (null !== $this->collDomainsSettingss) {
                 $result['DomainsSettingss'] = $this->collDomainsSettingss->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
@@ -1086,7 +1095,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
                     if (false !== $this->collDomainsSettingssPartial && count($collDomainsSettingss)) {
                       $this->initDomainsSettingss(false);
 
-                      foreach($collDomainsSettingss as $obj) {
+                      foreach ($collDomainsSettingss as $obj) {
                         if (false == $this->collDomainsSettingss->contains($obj)) {
                           $this->collDomainsSettingss->append($obj);
                         }
@@ -1096,12 +1105,13 @@ abstract class BaseDomains extends BaseObject implements Persistent
                     }
 
                     $collDomainsSettingss->getInternalIterator()->rewind();
+
                     return $collDomainsSettingss;
                 }
 
-                if($partial && $this->collDomainsSettingss) {
-                    foreach($this->collDomainsSettingss as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collDomainsSettingss) {
+                    foreach ($this->collDomainsSettingss as $obj) {
+                        if ($obj->isNew()) {
                             $collDomainsSettingss[] = $obj;
                         }
                     }
@@ -1129,7 +1139,8 @@ abstract class BaseDomains extends BaseObject implements Persistent
     {
         $domainsSettingssToDelete = $this->getDomainsSettingss(new Criteria(), $con)->diff($domainsSettingss);
 
-        $this->domainsSettingssScheduledForDeletion = unserialize(serialize($domainsSettingssToDelete));
+
+        $this->domainsSettingssScheduledForDeletion = $domainsSettingssToDelete;
 
         foreach ($domainsSettingssToDelete as $domainsSettingsRemoved) {
             $domainsSettingsRemoved->setDomains(null);
@@ -1163,7 +1174,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getDomainsSettingss());
             }
             $query = DomainsSettingsQuery::create(null, $criteria);
@@ -1192,8 +1203,13 @@ abstract class BaseDomains extends BaseObject implements Persistent
             $this->initDomainsSettingss();
             $this->collDomainsSettingssPartial = true;
         }
+
         if (!in_array($l, $this->collDomainsSettingss->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddDomainsSettings($l);
+
+            if ($this->domainsSettingssScheduledForDeletion and $this->domainsSettingssScheduledForDeletion->contains($l)) {
+                $this->domainsSettingssScheduledForDeletion->remove($this->domainsSettingssScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
@@ -1304,7 +1320,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
                     if (false !== $this->collProductsDomainsPricessPartial && count($collProductsDomainsPricess)) {
                       $this->initProductsDomainsPricess(false);
 
-                      foreach($collProductsDomainsPricess as $obj) {
+                      foreach ($collProductsDomainsPricess as $obj) {
                         if (false == $this->collProductsDomainsPricess->contains($obj)) {
                           $this->collProductsDomainsPricess->append($obj);
                         }
@@ -1314,12 +1330,13 @@ abstract class BaseDomains extends BaseObject implements Persistent
                     }
 
                     $collProductsDomainsPricess->getInternalIterator()->rewind();
+
                     return $collProductsDomainsPricess;
                 }
 
-                if($partial && $this->collProductsDomainsPricess) {
-                    foreach($this->collProductsDomainsPricess as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collProductsDomainsPricess) {
+                    foreach ($this->collProductsDomainsPricess as $obj) {
+                        if ($obj->isNew()) {
                             $collProductsDomainsPricess[] = $obj;
                         }
                     }
@@ -1347,7 +1364,11 @@ abstract class BaseDomains extends BaseObject implements Persistent
     {
         $productsDomainsPricessToDelete = $this->getProductsDomainsPricess(new Criteria(), $con)->diff($productsDomainsPricess);
 
-        $this->productsDomainsPricessScheduledForDeletion = unserialize(serialize($productsDomainsPricessToDelete));
+
+        //since at least one column in the foreign key is at the same time a PK
+        //we can not just set a PK to NULL in the lines below. We have to store
+        //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
+        $this->productsDomainsPricessScheduledForDeletion = clone $productsDomainsPricessToDelete;
 
         foreach ($productsDomainsPricessToDelete as $productsDomainsPricesRemoved) {
             $productsDomainsPricesRemoved->setDomains(null);
@@ -1381,7 +1402,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getProductsDomainsPricess());
             }
             $query = ProductsDomainsPricesQuery::create(null, $criteria);
@@ -1410,8 +1431,13 @@ abstract class BaseDomains extends BaseObject implements Persistent
             $this->initProductsDomainsPricess();
             $this->collProductsDomainsPricessPartial = true;
         }
+
         if (!in_array($l, $this->collProductsDomainsPricess->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddProductsDomainsPrices($l);
+
+            if ($this->productsDomainsPricessScheduledForDeletion and $this->productsDomainsPricessScheduledForDeletion->contains($l)) {
+                $this->productsDomainsPricessScheduledForDeletion->remove($this->productsDomainsPricessScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
@@ -1547,7 +1573,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
                     if (false !== $this->collProductsQuantityDiscountsPartial && count($collProductsQuantityDiscounts)) {
                       $this->initProductsQuantityDiscounts(false);
 
-                      foreach($collProductsQuantityDiscounts as $obj) {
+                      foreach ($collProductsQuantityDiscounts as $obj) {
                         if (false == $this->collProductsQuantityDiscounts->contains($obj)) {
                           $this->collProductsQuantityDiscounts->append($obj);
                         }
@@ -1557,12 +1583,13 @@ abstract class BaseDomains extends BaseObject implements Persistent
                     }
 
                     $collProductsQuantityDiscounts->getInternalIterator()->rewind();
+
                     return $collProductsQuantityDiscounts;
                 }
 
-                if($partial && $this->collProductsQuantityDiscounts) {
-                    foreach($this->collProductsQuantityDiscounts as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collProductsQuantityDiscounts) {
+                    foreach ($this->collProductsQuantityDiscounts as $obj) {
+                        if ($obj->isNew()) {
                             $collProductsQuantityDiscounts[] = $obj;
                         }
                     }
@@ -1590,7 +1617,11 @@ abstract class BaseDomains extends BaseObject implements Persistent
     {
         $productsQuantityDiscountsToDelete = $this->getProductsQuantityDiscounts(new Criteria(), $con)->diff($productsQuantityDiscounts);
 
-        $this->productsQuantityDiscountsScheduledForDeletion = unserialize(serialize($productsQuantityDiscountsToDelete));
+
+        //since at least one column in the foreign key is at the same time a PK
+        //we can not just set a PK to NULL in the lines below. We have to store
+        //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
+        $this->productsQuantityDiscountsScheduledForDeletion = clone $productsQuantityDiscountsToDelete;
 
         foreach ($productsQuantityDiscountsToDelete as $productsQuantityDiscountRemoved) {
             $productsQuantityDiscountRemoved->setDomains(null);
@@ -1624,7 +1655,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getProductsQuantityDiscounts());
             }
             $query = ProductsQuantityDiscountQuery::create(null, $criteria);
@@ -1653,8 +1684,13 @@ abstract class BaseDomains extends BaseObject implements Persistent
             $this->initProductsQuantityDiscounts();
             $this->collProductsQuantityDiscountsPartial = true;
         }
+
         if (!in_array($l, $this->collProductsQuantityDiscounts->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddProductsQuantityDiscount($l);
+
+            if ($this->productsQuantityDiscountsScheduledForDeletion and $this->productsQuantityDiscountsScheduledForDeletion->contains($l)) {
+                $this->productsQuantityDiscountsScheduledForDeletion->remove($this->productsQuantityDiscountsScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
@@ -1735,7 +1771,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
      *
      * This method is a user-space workaround for PHP's inability to garbage collect
      * objects with circular references (even in PHP 5.3). This is currently necessary
-     * when using Propel in certain daemon or large-volumne/high-memory operations.
+     * when using Propel in certain daemon or large-volume/high-memory operations.
      *
      * @param boolean $deep Whether to also clear the references on all referrer objects.
      */

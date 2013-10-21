@@ -54,8 +54,14 @@ abstract class BaseRelatedProductsQuery extends ModelCriteria
      * @param     string $modelName The phpName of a model, e.g. 'Book'
      * @param     string $modelAlias The alias for the model in this query, e.g. 'b'
      */
-    public function __construct($dbName = 'default', $modelName = 'Hanzo\\Model\\RelatedProducts', $modelAlias = null)
+    public function __construct($dbName = null, $modelName = null, $modelAlias = null)
     {
+        if (null === $dbName) {
+            $dbName = 'default';
+        }
+        if (null === $modelName) {
+            $modelName = 'Hanzo\\Model\\RelatedProducts';
+        }
         parent::__construct($dbName, $modelName, $modelAlias);
     }
 
@@ -72,10 +78,8 @@ abstract class BaseRelatedProductsQuery extends ModelCriteria
         if ($criteria instanceof RelatedProductsQuery) {
             return $criteria;
         }
-        $query = new RelatedProductsQuery();
-        if (null !== $modelAlias) {
-            $query->setModelAlias($modelAlias);
-        }
+        $query = new RelatedProductsQuery(null, null, $modelAlias);
+
         if ($criteria instanceof Criteria) {
             $query->mergeWith($criteria);
         }
@@ -104,7 +108,7 @@ abstract class BaseRelatedProductsQuery extends ModelCriteria
             return null;
         }
         if ((null !== ($obj = RelatedProductsPeer::getInstanceFromPool(serialize(array((string) $key[0], (string) $key[1]))))) && !$this->formatter) {
-            // the object is alredy in the instance pool
+            // the object is already in the instance pool
             return $obj;
         }
         if ($con === null) {
