@@ -56,7 +56,7 @@
             </trans-unit>
             <trans-unit id="rma.form.activity.warranty.causes">
                 <source>rma.form.activity.warranty.causes</source>
-                <target>Pakkefejl|Reklamation (venligst notér fejl)|Ny tilsendes</target>
+                <target>Pakkefejl|Reklamation (venligst notér fejl)</target>
             </trans-unit>
             <trans-unit id="rma.form.label.description">
                 <source>rma.form.label.description</source>
