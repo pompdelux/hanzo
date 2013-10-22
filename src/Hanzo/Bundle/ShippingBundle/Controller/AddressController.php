@@ -35,10 +35,11 @@ class AddressController extends CoreController
             }
         }
 
-        $countries = CountriesPeer::getAvailableDomainCountries(true);
+        $countries          = CountriesPeer::getAvailableDomainCountries(true);
+        $delivery_method_id = $order->getDeliveryMethod();
 
         if ($type == 'CURRENT-SHIPPING-ADDRESS') {
-            if (($m = $order->getDeliveryMethod()) && $order->getDeliveryFirstName()) {
+            if ($delivery_method_id && $order->getDeliveryFirstName()) {
                 $address = new Addresses();
                 $address->setCustomersId($customer_id);
                 $address->setFirstName($order->getDeliveryFirstName());
@@ -50,7 +51,7 @@ class AddressController extends CoreController
                 $address->setCountriesId($order->getDeliveryCountriesId());
                 $address->setStateProvince($order->getDeliveryStateProvince());
 
-                switch ($m) {
+                switch ($delivery_method_id) {
                     case 11:
                         $type = 'company_shipping';
                         $address->setType('company_shipping');
@@ -74,9 +75,9 @@ class AddressController extends CoreController
 
                 if ('json' === $this->getFormat()) {
                     return $this->json_response(array(
-                        'status' => true,
+                        'status'  => true,
                         'message' => '',
-                        'data' => array('html' => $form),
+                        'data'    => array('html' => $form),
                     ));
                 }
 
@@ -104,107 +105,121 @@ class AddressController extends CoreController
             $address->setLastName($order->getLastName());
         }
 
-        $builder = $this->createFormBuilder($address, array(
+        $builder = $this->createFormBuilder($address, [
             'validation_groups' => 'shipping_bundle_'.$type
-        ));
+        ]);
 
         if (in_array($type, ['company_shipping', 'overnightbox'])) {
             $label = 'company.name';
             if ($type == 'overnightbox') {
                 $label = 'overnightbox.label';
             }
-            $builder->add('company_name', null, array(
-                'label' => $label,
-                'required' => true,
+            $builder->add('company_name', null, [
+                'label'              => $label,
+                'required'           => true,
                 'translation_domain' => 'account'
-            ));
+            ]);
         }
 
         if (in_array($short_domain_key, ['DE'])) {
             $builder->add('title', 'choice', [
                 'choices' => [
                     'female' => 'title.female',
-                    'male' => 'title.male',
+                    'male'   => 'title.male',
                 ],
-                'label' => 'title',
-                'required' => true,
-                'trim' => true,
+                'label'              => 'title',
+                'required'           => true,
+                'trim'               => true,
                 'translation_domain' => 'account',
             ]);
         }
 
-        $builder->add('first_name', null, array('required' => true, 'translation_domain' => 'account'));
-        $builder->add('last_name', null, array('required' => true, 'translation_domain' => 'account'));
+        $builder->add('first_name', null, [
+            'required'           => true,
+            'translation_domain' => 'account'
+        ]);
+        $builder->add('last_name', null, [
+            'required'           => true,
+            'translation_domain' => 'account'
+        ]);
 
         if ($type == 'payment') {
-            $builder->add('phone', null, array('required' => true, 'translation_domain' => 'account'));
+            $builder->add('phone', null, [
+                'required'           => true,
+                'translation_domain' => 'account'
+            ]);
         }
 
-        $builder->add('address_line_1', null, array('required' => true, 'translation_domain' => 'account', 'max_length' => 150));
+        $builder->add('address_line_1', null, [
+            'required'           => true,
+            'translation_domain' => 'account',
+            'max_length'         => 150
+        ]);
 
         $attr = [];
         if (in_array($short_domain_key, ['DK', 'NO', 'SE'])) {
             $attr = ['class' => 'auto-city'];
         }
 
-        $builder->add('postal_code', null, array(
-            'required' => true,
+        $builder->add('postal_code', null, [
+            'required'           => true,
             'translation_domain' => 'account',
-            'attr' => $attr,
-        ));
-        $builder->add('city', null, array(
-            'required' => true,
+            'attr'               => $attr,
+        ]);
+        $builder->add('city', null, [
+            'required'           => true,
             'translation_domain' => 'account',
-            'read_only' => (count($attr) ? true : false),
-            'attr' => ['class' => 'js-auto-city-'.$type]
-        ));
+            'read_only'          => (count($attr) ? true : false),
+            'attr'               => ['class' => 'js-auto-city-'.$type]
+        ]);
 
         if ('overnightbox' === $type) {
             list($country_id, $country_name) = each($countries);
             $address->setCountriesId($country_id);
             $address->setCountry($country_name);
 
-            $builder->add('countries_id', 'hidden', array('data' => $country_id));
-            $builder->add('external_address_id', 'hidden', array('data' => $address->getExternalAddressId()));
+            $builder->add('countries_id', 'hidden', ['data' => $country_id]);
+            $builder->add('external_address_id', 'hidden', ['data' => $address->getExternalAddressId()]);
         } else {
             if (count($countries) > 1) {
-                $builder->add('countries_id', 'choice', array(
-                    'empty_value' => 'choose.country',
-                    'choices' => $countries,
-                    'required' => true,
+                $builder->add('countries_id', 'choice', [
+                    'empty_value'        => 'choose.country',
+                    'choices'            => $countries,
+                    'required'           => true,
                     'translation_domain' => 'account'
-                ));
+                ]);
             } else {
                 list($country_id, $country_name) = each($countries);
 
                 $address->setCountriesId($country_id);
                 $address->setCountry($country_name);
 
-                $builder->add('countries_id', 'hidden', array('data' => $country_id));
-                $builder->add('country', null, array(
-                    'read_only' => true,
+                $builder->add('countries_id', 'hidden', ['data' => $country_id]);
+                $builder->add('country', null, [
+                    'read_only'          => true,
                     'translation_domain' => 'account'
-                ));
+                ]);
             }
         }
 
-        $builder->add('customers_id', 'hidden', array('data' => $customer_id));
+        $builder->add('customers_id', 'hidden', ['data' => $customer_id]);
         $form = $builder->getForm();
 
-        $response = $this->render('ShippingBundle:Address:form.html.twig', array(
-            'type' => $type,
-            'form' => $form->createView(),
-        ));
+        $response = $this->render('ShippingBundle:Address:form.html.twig', [
+            'type'           => $type,
+            'enable_locator' => in_array($delivery_method_id, [12, 71]),
+            'form'           => $form->createView(),
+        ]);
 
 
         if ('json' === $this->getFormat()) {
             $html = $response->getContent();
 
-            return $this->json_response(array(
-                'status' => true,
+            return $this->json_response([
+                'status'  => true,
                 'message' => '',
-                'data' => array('html' => $html),
-            ));
+                'data'    => array('html' => $html),
+            ]);
         }
 
         return $response;
