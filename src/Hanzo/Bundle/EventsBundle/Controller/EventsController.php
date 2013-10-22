@@ -721,13 +721,11 @@ class EventsController extends CoreController
                 )->add('has_accepted', 'choice',
                     array(
                         'choices' => array(
-                            // '1' => 'events.hasaccepted.yes',
-                            // '0' => 'events.hasaccepted.no'
                             '1' => $this->get('translator')->trans('events.hasaccepted.yes', array(), 'events'),
                             '0' => $this->get('translator')->trans('events.hasaccepted.no', array(), 'events')
                         ),
                         'multiple' => false,
-                        'expanded' => true,
+                        'expanded' => false,
                         'label' => 'events.participants.has_accepted.label',
                         'translation_domain' => 'events',
                         'required' => false
