@@ -15,11 +15,12 @@ nav.main-menu {
   > ul > li {
     float: left;
     width: auto;
-    padding: 10px 20px 0 0;
+    padding: 15px 20px 0 0;
     position: relative;
     > {
       a {
         display: block;
+        font-size: $heading-size;
       }
       // Sub menu-items
       ul {
@@ -30,7 +31,7 @@ nav.main-menu {
         margin-top: 10px;
         z-index: 1;
         background-color: #fff;
-        font-family: $side-menu-family;
+        font-family: $font-sans;
         font-size: $side-menu-size;
         line-height: $side-menu-line-height;
 

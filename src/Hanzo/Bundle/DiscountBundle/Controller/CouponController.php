@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\FormError;
 
 use Criteria;
+use PropelCollection;
 
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
@@ -78,6 +79,16 @@ class CouponController extends CoreController
                 $order->setAttribute('amount', 'coupon', $discount);
                 $order->setAttribute('code', 'coupon', $coupon->getCode());
                 $order->setAttribute('text', 'coupon', $text);
+
+                $c = new OrdersToCoupons();
+                $c->setCouponsId($coupon->getId());
+                $c->setOrdersId($order->getId());
+                $c->setAmount($discount);
+
+                $collection = new PropelCollection();
+                $collection->prepend($c);
+
+                $order->setOrdersToCouponss($collection);
                 $order->save();
 
                 if ($this->getFormat() == 'json') {

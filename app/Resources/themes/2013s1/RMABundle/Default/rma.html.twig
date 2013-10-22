@@ -1,3 +1,7 @@
+{#
+  IMPORTANT!
+  All uris has to be absolute, including http(s).
+#}
 <html>
 <head>
   <title></title>
@@ -8,7 +12,7 @@
     output='fx/cache/rma_pdf.css'
     combine=true
   %}
-  <link rel="stylesheet" href="{{ asset_url }}" />
+  <link rel="stylesheet" href="{{ cdn ~ 'fx/cache/rma_pdf.css' }}" />
   {% endstylesheets %}
 </head>
 <body>
@@ -18,6 +22,7 @@
       {{ 'rma.slip.company_details'|trans({}, 'rma')|raw }}
     </div>
     <div class="grid_4 omega">
+      <img src="{{ cdn ~ 'barcode.php?text=' ~ customer.id }}" class="barcode pushright">
       <table>
         <tbody>
           <tr>
@@ -39,6 +44,10 @@
           <tr>
             <th>{{ 'rma.slip.order_id'|trans({}, 'rma') }}</th>
             <td>{{ order.id }}</td>
+          </tr>
+          <tr>
+            <th>{{ 'rma.slip.deliveryaddress'|trans({}, 'rma') }}</th>
+            <td>{{ address_block|raw }}</td>
           </tr>
         </tbody>
       </table>

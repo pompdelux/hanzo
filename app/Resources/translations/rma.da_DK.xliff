@@ -52,11 +52,11 @@
             </trans-unit>
             <trans-unit id="rma.form.activity.replacement.causes">
                 <source>rma.form.activity.replacement.causes</source>
-                <target>Byttes til anden str.|Byttes til anden farve</target>
+                <target>Byttes til anden str.|Byttes til anden farve|Byttes til anden vare</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.warranty.causes">
                 <source>rma.form.activity.warranty.causes</source>
-                <target>Pakkefejl|Reklamation (venligst notér fejl)|Fortrudt køb (pengene retur)</target>
+                <target>Pakkefejl|Reklamation (venligst notér fejl)</target>
             </trans-unit>
             <trans-unit id="rma.form.label.description">
                 <source>rma.form.label.description</source>
@@ -109,13 +109,17 @@
                 <source>rma.slip.order_id</source>
                 <target>E-ordrenummer</target>
             </trans-unit>
+            <trans-unit id="rma.slip.deliveryaddress">
+                <source>rma.slip.deliveryaddress</source>
+                <target>Leveringsaddresse</target>
+            </trans-unit>
             <trans-unit id="rma.slip.title.order_id">
                 <source>rma.slip.title.order_id</source>
                 <target>POMPdeLUX returseddel Ordre ID %order_id%</target>
             </trans-unit>
             <trans-unit id="rma.slip.description">
                 <source>rma.slip.description</source>
-                <target><![CDATA[<p>Hvis du &oslash;nsker, at bytte eller returnere varer, skal du udfylde og medsende denne returseddel.<br>Da din returvare skal s&aelig;lges igen, vil det v&aelig;re en stor hj&aelig;lp, at du returnerer varen i original indpakning med h&aelig;ngem&aelig;rker etc.<br><br>Sammen med dine varer modtog du en returlabel – benyt denne, s&aring; modregner vi kun DKK 29,- fra v&aelig;rdien af dine returvarer.<br><br>Returnerer du en reklamation eller fejlleveret vare, er forsendelsen naturligvis fragtfri for dig. Hvis du &oslash;nsker at ombytte til en anden
+                <target><![CDATA[<p>Hvis du &oslash;nsker, at bytte eller returnere varer, skal du udfylde og medsende denne returseddel.<br>Da din returvare skal s&aelig;lges igen, vil det v&aelig;re en stor hj&aelig;lp, at du returnerer varen i original indpakning med h&aelig;ngem&aelig;rker etc.<br><br>Sammen med dine varer modtog du en returlabel &ndash; benyt denne, s&aring; modregner vi kun DKK 29,- fra v&aelig;rdien af dine returvarer.<br><br>Returnerer du en reklamation eller fejlleveret vare, er forsendelsen naturligvis fragtfri for dig. Hvis du &oslash;nsker at ombytte til en anden
 St&oslash;rrelse, farve, eller til en helt anden vare, er forsendelsen ligeledes fragtfri. Varens pris m&aring; dog ikke overstige prisen p&aring; varen
 du returnerer.<br><br>Er varen du &oslash;nsker at ombytte til udsolgt, refunderer vi bel&oslash;bet til dig.<br><br>Har du benyttet kortbetaling overf&oslash;res dit returbel&oslash;b til det betalingskort du anvendte ved bestilling.<br><br>Har du benyttet PayByBill, beder vi dig kontakte Gothia Finans A/S p&aring; tlf.: 7027 2795.<br><b>Bem&aelig;rk:</b> Selvom du afventer en kreditnota p&aring; dine returvarer, skal du betale din udest&aring;ende faktura indenfor 30 dage.<br><br>For yderligere information se venligst: <a href="/da_DK/" target="_blank">www.pompdelux.dk</a></p>]]></target>
             </trans-unit>

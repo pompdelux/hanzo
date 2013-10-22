@@ -14,6 +14,10 @@ nav.first.main-menu {
     background-color: #dcd8d2;
     padding: 3px 0;
 
+    form {
+        margin-bottom: 2px;
+    }
+
     input[type="text"] {
         width: 180px;
     }
@@ -22,9 +26,11 @@ nav.first.main-menu {
         padding: 3px;
         border: none;
         margin-right: 10px;
+        font-family: $font-sans;
 
         &.text-button {
             font-size: inherit;
+            margin-top: 0;
         }
     }
 
@@ -41,12 +47,14 @@ nav.first.main-menu {
         }
 
         li {
+            padding-top: 7px;
             ul.on {
                 background-color: #fff;
             }
             a {
                 text-transform: uppercase;
                 font-family: $font-sans;
+                font-size: $main-menu-size;
             }
         }
     }
@@ -58,16 +66,17 @@ nav > ul,
 ul.menu,
 .menu > ul{
 	font-size: $font-size;
-	font-family: $font-serif;
-	color:$font-color;
+	font-family: $font-sans;
+	color: $font-color;
 	letter-spacing: 0;
 	z-index: 200; // z-index and rpoition to fix rendering in IE7. This must be higher than the actually z-index of child
 	position: relative;
 	li {
 		position: relative;
-		a{
-			color:$font-color;
+		a {
+			color: $font-color;
 			text-decoration: none;
+            text-transform: uppercase;
 		}
 		&.active > a,
 		&.active-trail > a,

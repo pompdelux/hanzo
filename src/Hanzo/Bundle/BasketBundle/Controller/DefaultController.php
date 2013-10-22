@@ -105,6 +105,24 @@ class DefaultController extends CoreController
             return $this->resetOrderAndUser($e, $request);
         }
 
+        // fraud detection
+        $total_order_quantity = OrdersLinesQuery::create()
+            ->select('total')
+            ->filterByOrdersId($order->getId())
+            ->filterByType('product')
+            ->withColumn('SUM(quantity)', 'total')
+            ->find()
+            ->getFirst()
+        ;
+
+        if ($total_order_quantity >= 100) {
+            $mail = $this->get('mail_manager');
+            $mail->setBody("Hej,\n\nKig lige på ".$this->getRequest()->getLocale()." ordre: #".$order->getId()."\n\nDenne har ".$total_order_quantity." vare i kurven.\n\n-- \nmvh\nspambotten per\n");
+            $mail->setSubject("Måske en snyder på spil.");
+            $mail->setTo('hd@pompdelux.dk', 'Heinrich Dalby');
+            $mail->send();
+        }
+
         $price          = ProductsDomainsPricesPeer::getProductsPrices(array($product->getId()));
         $price          = array_shift($price);
         $original_price = $price['normal'];

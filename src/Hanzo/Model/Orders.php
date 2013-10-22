@@ -1280,6 +1280,11 @@ class Orders extends BaseOrders
             $this->setPaymentGatewayId(Tools::getPaymentGatewayId());
             $this->setAttribute('domain_name', 'global', $_SERVER['HTTP_HOST']);
             $this->setAttribute('domain_key', 'global', $hanzo->get('core.domain_key'));
+
+            if ($request = $hanzo->container->get('request')) {
+                $this->setAttribute('user_agent', 'global', $_SERVER['HTTP_USER_AGENT']);
+                $this->setAttribute('client_ip', 'global', $request->getClientIp());
+            }
         }
 
         // set billing address - if not already set.

@@ -36,14 +36,37 @@
         {% endif %}
 
         {% if subscribed_users %}
-            <ol id="subscribed-users" class="list">
-                {% for user in subscribed_users %}
-                    <li>{{ user.email }} <a href="{{ path('consultantnewsletter_unsubscribe_user', {'userId' : user.id }) }}" class="delete sprite" title="{{ 'consultant.newsletter.delete.user'|trans({}, 'consultant') }}"></a></li>
-                {% endfor %}
-            </ol>
+
+            <form action="" method="post" class="subscriber-search" autocomplete="off">
+                <input type="text" name="q" class="q" placeholder="Søg efter adresse"><input type="button" value="Søg" class="button">
+            </form>
+
+            <table class="addresses">
+            {% for user in subscribed_users %}
+                <tr>
+                    <td>{{ loop.index }}.</td>
+                    <td class="address">{{ user.email|trim }}</td>
+                    <td><a href="{{ path('consultantnewsletter_unsubscribe_user', {'userId' : user.id }) }}" class="delete sprite" title="{{ 'consultant.newsletter.delete.user'|trans({}, 'consultant') }}"></a></td>
+                 </tr>
+            {% endfor %}
+            </table>
         {% endif %}
     </div>
 {% endblock %}
 
 {% block javascript %}
+<script>
+$(".subscriber-search .q").on("keyup", function() {
+    var value = $(this).val();
+    $("table.addresses tr").each(function(index) {
+        var $row = $(this);
+        var id = $row.find("td.address").text();
+        if (id.toLowerCase().indexOf(value.toLowerCase()) !== 0) {
+            $row.hide();
+        } else {
+            $row.show();
+        }
+    });
+});
+</script>
 {% endblock %}

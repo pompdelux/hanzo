@@ -116,6 +116,20 @@ var newsletter = (function($) {
   };
 
   pub.allover = function() {
+
+    // handeling .dk frontpage newsletter modal.
+    if ($('#newsletterModal').length) {
+        if (!$.cookie('newsletter_prompt_off') && (false === $('body').hasClass('is-mobile'))) {
+            $('#newsletterModal').show();
+
+            $('#newsletterModal a.close-button').on('click', function(event) {
+                event.preventDefault();
+                $('#newsletterModal').hide();
+                $.cookie('newsletter_prompt_off', 1, {expires : 3650});
+            });
+        }
+    }
+
     $('.js-newsletter-form .button').on('click', function(event) {
       event.preventDefault();
       var $this = $(this);

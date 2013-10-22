@@ -15,6 +15,7 @@
                 {{ 'rma.form.label.return.order'|trans({}, 'rma') }}
                 <input type="checkbox" id="rma-return-all-order">
               </label>
+              <input id="rma-submit" type="button" class="button right" value="{{ 'rma.form.submit'|trans({}, 'rma') }}">
             </th>
           </tr>
         </thead>
@@ -96,6 +97,7 @@
                   <label class="off">
                     <select id="replacement-color-lineid-{{ product.id }}" class="color"></select>
                   </label>
+                  <input type="button" id="reset" name="reset" class="off reset" value="{{ 'quickorder.reset.placeholder'|trans({}, 'quickorder') }}">
                   <div class="autocomplete-container"></div>
                 </div>
 
