@@ -490,11 +490,10 @@ Voit muuttaa tilaustasi, lisätä siihen tuotteita tai poistaa tuotteita. Napsau
             <trans-unit id="order.force.login.description" approved="no">
                 <source>order.force.login.description</source>
                 <target><![CDATA[
-                    <h3>Dear customer,</h3>
-                    <p>We have noticed that you have over 20 items of clothing in your shopping basket – for which we are naturally delighted about.<br>
-We would like to make sure that this is not due to an error and therefore must ask you to register yourself as a customer or log in to ‘MY ACCOUNT’ with your username and password.
-After this you can easily continue shopping.<br></p>
-                    <p>Thank you for your help.</p>
+                    <h3>Hyvä asiakas</h3>
+                    <p>Näemme, että olet lisännyt yli 20 vaatetta ostoskoriisi – olemme luonnollisesti iloisia siitä.<br>
+Haluamme kuitenkin varmistaa, että tässä ei ole tapahtunut virhettä. Pyydämme sinua siten rekisteröitymään asiakkaaksi tai kirjautumaan sisään kohdassa ”Omat sivut” käyttäjätunnuksellasi ja salasanallasi. Tämän jälkeen voit helposti jatkaa ostosten tekemistä.<br></p>
+                    <p>Kiitos avustasi.</p>
                 ]]></target>
             </trans-unit>
         </body>
