@@ -1,7 +1,7 @@
 <div class="block">
     <h3>{{ (type~'.address')|replace('_', '.')|trans({}, 'checkout') }}</h3>
 
-{% if type == 'overnightbox' %}
+{% if enable_locator %}
     {{ render('LocationLocatorBundle:Default:lookup') }}
 {% endif %}
 

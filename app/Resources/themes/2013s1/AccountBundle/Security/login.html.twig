@@ -22,6 +22,12 @@
 </div>
 {% endfor %}
 
+{% if app.request.get('f') %}
+<div class="msg error">
+  {{ 'order.force.login.description'|trans({}, 'account')|raw }}
+</div>
+{% endif %}
+
 <div class="grid_4 alpha">
     {{ 'my.account.login.text'|trans({}, 'account')|raw }}
 </div>
