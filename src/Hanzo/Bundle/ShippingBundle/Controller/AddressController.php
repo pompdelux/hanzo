@@ -22,7 +22,7 @@ class AddressController extends CoreController
     public function formAction(Request $request, $type = 'payment', $customer_id = null)
     {
         $short_domain_key = substr(Hanzo::getInstance()->get('core.domain_key'), -2);
-        $order = OrdersPeer::getCurrent();
+        $order = OrdersPeer::getCurrent(false);
 
         if (null === $customer_id) {
             if ($order->getCustomersId()) {
