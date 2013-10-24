@@ -17,17 +17,32 @@ use Hanzo\Model\CategoriesI18n;
 use Hanzo\Model\Domains;
 use Hanzo\Model\Languages;
 use Hanzo\Model\ProductsDomainsPricesQuery;
+use Hanzo\Model\ProductsStockQuery;
 use Hanzo\Model\ProductsQuery;
 
+/**
+ * Tests the ECommerceServices SOAP service.
+ *
+ * Note: This does not test the actual SOAP layer, only the service class.
+ */
 class ECommerceServicesTest extends WebTestCase
 {
-    // public function setUp(){}
-
-    public function testSyncItem()
+    /**
+     * Ensure language, category and domain records are setup.
+     */
+    public function setUp()
     {
         $this->setupLanguages();
         $this->setupCategories();
+        $this->setupDomains();
+    }
 
+
+    /**
+     * Tests SyncItem Service.
+     */
+    public function testSyncItem()
+    {
         require str_replace('Tests/', '', __DIR__).'/products_id_map.php';
 
         $product   = array_keys($products_id_map);
@@ -99,10 +114,11 @@ class ECommerceServicesTest extends WebTestCase
     }
 
 
+    /**
+     * Tests SyncPriceList Service.
+     */
     public function testSyncPriceList()
     {
-        $this->setupDomains();
-
         $priceList = new stdClass();
         $priceList->ItemId     = '';
         $priceList->SalesPrice = [];
@@ -112,10 +128,16 @@ class ECommerceServicesTest extends WebTestCase
             ->find()
         ;
 
+        $test_product_data = [];
         foreach ($products as $product) {
             if (empty($priceList->ItemId)) {
                 $priceList->ItemId = $product->getMaster();
             }
+
+            $test_product_data[$product->getId()] = [
+                'prices' => [120, 100, 90],
+                'dates' => ['2014-01-01', '2014-02-01', date('Y-m-d', strtotime('-1 year'))],
+            ];
 
             $SalesPrice = new stdClass();
             $SalesPrice->AmountCur     = 120.00;
@@ -126,7 +148,7 @@ class ECommerceServicesTest extends WebTestCase
             $SalesPrice->PriceUnit     = 1.00;
             $SalesPrice->Quantity      = 1.00;
             $SalesPrice->UnitId        = 'Stk.';
-            $priceList->SalesPrice[]  = $SalesPrice;
+            $priceList->SalesPrice[]   = $SalesPrice;
 
             $SalesPrice = new stdClass();
             $SalesPrice->AmountCur     = 100.00;
@@ -137,7 +159,7 @@ class ECommerceServicesTest extends WebTestCase
             $SalesPrice->PriceUnit     = 1.00;
             $SalesPrice->Quantity      = 1.00;
             $SalesPrice->UnitId        = 'Stk.';
-            $priceList->SalesPrice[]  = $SalesPrice;
+            $priceList->SalesPrice[]   = $SalesPrice;
 
             $SalesPrice = new stdClass();
             $SalesPrice->AmountCur     = 100.00;
@@ -150,7 +172,7 @@ class ECommerceServicesTest extends WebTestCase
             $SalesPrice->UnitId        = 'Stk.';
             $SalesPrice->PriceDate     = '2014-01-01';
             $SalesPrice->PriceDateTo   = '2014-02-01';
-            $priceList->SalesPrice[]  = $SalesPrice;
+            $priceList->SalesPrice[]   = $SalesPrice;
 
             $SalesPrice = new stdClass();
             $SalesPrice->AmountCur     = 90.00;
@@ -163,7 +185,7 @@ class ECommerceServicesTest extends WebTestCase
             $SalesPrice->UnitId        = 'Stk.';
             $SalesPrice->PriceDate     = '2014-01-01';
             $SalesPrice->PriceDateTo   = '2014-02-01';
-            $priceList->SalesPrice[]  = $SalesPrice;
+            $priceList->SalesPrice[]   = $SalesPrice;
         }
 
         $data = new stdClass();
@@ -177,9 +199,97 @@ class ECommerceServicesTest extends WebTestCase
         $price_count = ProductsDomainsPricesQuery::create()->count();
         $this->assertEquals($price_count, 12);
 
+        $prices = ProductsDomainsPricesQuery::create()
+            ->useProductsQuery()
+                ->filterByMaster(null, \Criteria::ISNOTNULL)
+            ->endUse()
+            ->find()
+        ;
+        foreach ($prices as $price) {
+            $this->assertContains(($price->getPrice() + $price->getVat()), $test_product_data[$price->getProductsId()]['prices']);
+            $this->assertContains(($price->getFromDate('Y-m-d')), $test_product_data[$price->getProductsId()]['dates']);
+        }
     }
 
 
+    /**
+     * Tests SyncInventoryOnHand Service.
+     */
+    public function testSyncInventoryOnHand()
+    {
+        $inventoryOnHand = (object) [
+            'InventSum' => (object) [
+                'ItemId'      => '',
+                'LastInCycle' => false,
+                'InventDim'   => []
+            ],
+        ];
+
+        $products = ProductsQuery::create()
+            ->filterByMaster(null, \Criteria::ISNOTNULL)
+            ->find()
+        ;
+
+        $test_data = [];
+        $date = date('Y-m-d', strtotime('+2 months'));
+        foreach ($products as $product) {
+            if (empty($inventoryOnHand->InventSum->ItemId)) {
+                $inventoryOnHand->InventSum->ItemId = $product->getMaster();
+            }
+
+            $inventoryOnHand->InventSum->InventDim[] = (object) [
+                'InventColorId'             => $product->getColor(),
+                'InventSizeId'              => $product->getSize(),
+                'InventQtyAvailOrdered'     => '',
+                'InventQtyAvailOrderedDate' => '',
+                'InventQtyAvailPhysical'    => '100',
+            ];
+
+            $inventoryOnHand->InventSum->InventDim[] = (object) [
+                'InventColorId'             => $product->getColor(),
+                'InventSizeId'              => $product->getSize(),
+                'InventQtyAvailOrdered'     => '100',
+                'InventQtyAvailOrderedDate' => $date,
+                'InventQtyAvailPhysical'    => '',
+            ];
+
+            $test_data[$inventoryOnHand->InventSum->ItemId.' '.$product->getColor().' '.$product->getSize()] = [
+                '2000-01-01' => 100,
+                $date => 100
+            ];
+        }
+
+        $data = new stdClass();
+        $data->inventoryOnHand = $inventoryOnHand;
+
+        $handler = $this->getHandler();
+        $result  = $handler->SyncInventoryOnHand($data);
+
+        $this->assertEquals(ProductsStockQuery::create()->count(), count($inventoryOnHand->InventSum->InventDim));
+
+        $stocks = ProductsStockQuery::create()
+            ->useProductsQuery()
+                ->filterByMaster(null, \Criteria::ISNOTNULL)
+            ->endUse()
+            ->find()
+        ;
+
+        foreach ($stocks as $stock) {
+            $sku = $stock->getProducts()->getSku();
+            $date = $stock->getAvailableFrom();
+
+            $this->assertArrayHasKey($sku, $test_data);
+            $this->assertArrayHasKey($date, $test_data[$sku]);
+            $this->assertEquals($stock->getQuantity(), $test_data[$sku][$date]);
+        }
+    }
+
+
+    /**
+     * Helper method.
+     *
+     * This set's up domain records.
+     */
     protected function setupDomains()
     {
         $d = new Domains();
@@ -198,6 +308,12 @@ class ECommerceServicesTest extends WebTestCase
         $d->save();
     }
 
+
+    /**
+     * Helper method.
+     *
+     * This set's up language records.
+     */
     protected function setupLanguages()
     {
         $l = new Languages();
@@ -209,6 +325,12 @@ class ECommerceServicesTest extends WebTestCase
         $l->save();
     }
 
+
+    /**
+     * Helper method.
+     *
+     * This set's up category records.
+     */
     protected function setupCategories()
     {
         $c = new Categories();
@@ -236,6 +358,12 @@ class ECommerceServicesTest extends WebTestCase
         $ci->save();
     }
 
+
+    /**
+     * Helper method, setup ECommerceServices object for testing.
+     *
+     * @return ECommerceServices
+     */
     protected function getHandler()
     {
         static $soap;
