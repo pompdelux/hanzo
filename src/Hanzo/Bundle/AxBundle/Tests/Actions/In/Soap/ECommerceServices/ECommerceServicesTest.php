@@ -14,54 +14,19 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 
 use Hanzo\Model\Categories;
 use Hanzo\Model\CategoriesI18n;
+use Hanzo\Model\Domains;
 use Hanzo\Model\Languages;
+use Hanzo\Model\ProductsDomainsPricesQuery;
 use Hanzo\Model\ProductsQuery;
 
 class ECommerceServicesTest extends WebTestCase
 {
-    public function setUp()
-    {
-        $c = new Categories();
-        $c->setContext('G_Access');
-        $c->setIsActive(true);
-        $c->save();
-
-        $ci = new CategoriesI18n();
-        $ci->setId($c->getId());
-        $ci->setTitle('Girl Accessories');
-        $ci->setLocale('da_DK');
-        $ci->setContent('test 1.2.3');
-        $ci->save();
-
-        $c = new Categories();
-        $c->setContext('LG_Access');
-        $c->setIsActive(true);
-        $c->save();
-
-        $ci = new CategoriesI18n();
-        $ci->setId($c->getId());
-        $ci->setTitle('Little Girl Accessories');
-        $ci->setLocale('da_DK');
-        $ci->setContent('test 1.2.3');
-        $ci->save();
-
-        $l = new Languages();
-        $l->setName('Danish');
-        $l->setLocalName('Dansk');
-        $l->setLocale('da_DK');
-        $l->setIso2('da');
-        $l->setDirection('ltr');
-        $l->save();
-    }
+    // public function setUp(){}
 
     public function testSyncItem()
     {
-        $handler = new ECommerceServices(
-            new Request(),
-            $this->getApplication()->getKernel()->getContainer()->get('Logger'),
-            new EventDispatcher()
-
-        );
+        $this->setupLanguages();
+        $this->setupCategories();
 
         require str_replace('Tests/', '', __DIR__).'/products_id_map.php';
 
@@ -117,6 +82,8 @@ class ECommerceServicesTest extends WebTestCase
             ],
         ];
 
+        $handler = $this->getHandler();
+
         $data = new stdClass();
         $data->item = new stdClass();
         $data->item->InventTable = $InventTable;
@@ -134,68 +101,153 @@ class ECommerceServicesTest extends WebTestCase
 
     public function testSyncPriceList()
     {
-        $this->markTestIncomplete('This test has not been implemented yet.');
+        $this->setupDomains();
 
-        $handler = new ECommerceServices(
-            new Request(),
-            $this->getApplication()->getKernel()->getContainer()->get('Logger'),
-            new EventDispatcher()
+        $priceList = new stdClass();
+        $priceList->ItemId     = '';
+        $priceList->SalesPrice = [];
 
-        );
+        $products = ProductsQuery::create()
+            ->filterByMaster(null, \Criteria::ISNOTNULL)
+            ->find()
+        ;
 
-        $c = new stdClass();
-        $c->ItemId = 'Ada HAT';
-        $c->SalesPrice = array();
+        foreach ($products as $product) {
+            if (empty($priceList->ItemId)) {
+                $priceList->ItemId = $product->getMaster();
+            }
 
-        $p = new stdClass();
-        $p->AmountCur = 120.00;
-        $p->Currency = 'DKK';
-        $p->CustAccount = 'DKK';
-        $p->InventColorId = 'Dark Grey Melange';
-        $p->InventSizeId = 'one size';
-        $p->PriceUnit = 1.00;
-        $p->Quantity = 1.00;
-        $p->UnitId = 'Stk.';
-        $c->SalesPrice[] = $p;
+            $SalesPrice = new stdClass();
+            $SalesPrice->AmountCur     = 120.00;
+            $SalesPrice->Currency      = 'DKK';
+            $SalesPrice->CustAccount   = 'DKK';
+            $SalesPrice->InventColorId = $product->getColor();
+            $SalesPrice->InventSizeId  = $product->getSize();
+            $SalesPrice->PriceUnit     = 1.00;
+            $SalesPrice->Quantity      = 1.00;
+            $SalesPrice->UnitId        = 'Stk.';
+            $priceList->SalesPrice[]  = $SalesPrice;
 
-        $p = new stdClass();
-        $p->AmountCur = 120.00;
-        $p->Currency = 'DKK';
-        $p->CustAccount = 'DKK';
-        $p->InventColorId = 'Violet';
-        $p->InventSizeId = 'one size';
-        $p->PriceUnit = 1.00;
-        $p->Quantity = 1.00;
-        $p->UnitId = 'Stk.';
-        $c->SalesPrice[] = $p;
+            $SalesPrice = new stdClass();
+            $SalesPrice->AmountCur     = 100.00;
+            $SalesPrice->Currency      = 'DKK';
+            $SalesPrice->CustAccount   = 'SalesDK';
+            $SalesPrice->InventColorId = $product->getColor();
+            $SalesPrice->InventSizeId  = $product->getSize();
+            $SalesPrice->PriceUnit     = 1.00;
+            $SalesPrice->Quantity      = 1.00;
+            $SalesPrice->UnitId        = 'Stk.';
+            $priceList->SalesPrice[]  = $SalesPrice;
 
-        $p = new stdClass();
-        $p->AmountCur = 100.00;
-        $p->Currency = 'DKK';
-        $p->CustAccount = 'SalesDK';
-        $p->InventColorId = 'Dark Grey Melange';
-        $p->InventSizeId = 'one size';
-        $p->PriceUnit = 1.00;
-        $p->Quantity = 1.00;
-        $p->UnitId = 'Stk.';
-        $c->SalesPrice[] = $p;
+            $SalesPrice = new stdClass();
+            $SalesPrice->AmountCur     = 100.00;
+            $SalesPrice->Currency      = 'DKK';
+            $SalesPrice->CustAccount   = 'DKK';
+            $SalesPrice->InventColorId = $product->getColor();
+            $SalesPrice->InventSizeId  = $product->getSize();
+            $SalesPrice->PriceUnit     = 1.00;
+            $SalesPrice->Quantity      = 1.00;
+            $SalesPrice->UnitId        = 'Stk.';
+            $SalesPrice->PriceDate     = '2014-01-01';
+            $SalesPrice->PriceDateTo   = '2014-02-01';
+            $priceList->SalesPrice[]  = $SalesPrice;
 
-        $p = new stdClass();
-        $p->AmountCur = 100.00;
-        $p->Currency = 'DKK';
-        $p->CustAccount = 'SalesDK';
-        $p->InventColorId = 'Violet';
-        $p->InventSizeId = 'one size';
-        $p->PriceUnit = 1.00;
-        $p->Quantity = 1.00;
-        $p->UnitId = 'Stk.';
-        $c->SalesPrice[] = $p;
+            $SalesPrice = new stdClass();
+            $SalesPrice->AmountCur     = 90.00;
+            $SalesPrice->Currency      = 'DKK';
+            $SalesPrice->CustAccount   = 'SalesDK';
+            $SalesPrice->InventColorId = $product->getColor();
+            $SalesPrice->InventSizeId  = $product->getSize();
+            $SalesPrice->PriceUnit     = 1.00;
+            $SalesPrice->Quantity      = 1.00;
+            $SalesPrice->UnitId        = 'Stk.';
+            $SalesPrice->PriceDate     = '2014-01-01';
+            $SalesPrice->PriceDateTo   = '2014-02-01';
+            $priceList->SalesPrice[]  = $SalesPrice;
+        }
 
-        $l = new stdClass();
-        $l->priceList = $c;
+        $data = new stdClass();
+        $data->priceList = $priceList;
 
-        \Hanzo\Core\Tools::log($handler->SyncPriceList($l));
+        $handler = $this->getHandler();
+        $result  = $handler->SyncPriceList($data);
 
-        $this->assertEquals('12', '12');
+        $this->assertEquals($result->SyncPriceListResult->Status->enc_value, 'Ok');
+
+        $price_count = ProductsDomainsPricesQuery::create()->count();
+        $this->assertEquals($price_count, 12);
+
+    }
+
+
+    protected function setupDomains()
+    {
+        $d = new Domains();
+        $d->setDomainName('dk');
+        $d->setDomainKey('DK');
+        $d->save();
+
+        $d = new Domains();
+        $d->setDomainName('dk');
+        $d->setDomainKey('SalesDK');
+        $d->save();
+
+        $d = new Domains();
+        $d->setDomainName('com');
+        $d->setDomainKey('COM');
+        $d->save();
+    }
+
+    protected function setupLanguages()
+    {
+        $l = new Languages();
+        $l->setName('Danish');
+        $l->setLocalName('Dansk');
+        $l->setLocale('da_DK');
+        $l->setIso2('da');
+        $l->setDirection('ltr');
+        $l->save();
+    }
+
+    protected function setupCategories()
+    {
+        $c = new Categories();
+        $c->setContext('G_Access');
+        $c->setIsActive(true);
+        $c->save();
+
+        $ci = new CategoriesI18n();
+        $ci->setId($c->getId());
+        $ci->setTitle('Girl Accessories');
+        $ci->setLocale('da_DK');
+        $ci->setContent('test 1.2.3');
+        $ci->save();
+
+        $c = new Categories();
+        $c->setContext('LG_Access');
+        $c->setIsActive(true);
+        $c->save();
+
+        $ci = new CategoriesI18n();
+        $ci->setId($c->getId());
+        $ci->setTitle('Little Girl Accessories');
+        $ci->setLocale('da_DK');
+        $ci->setContent('test 1.2.3');
+        $ci->save();
+    }
+
+    protected function getHandler()
+    {
+        static $soap;
+
+        if (empty($soap)) {
+            $soap = new ECommerceServices(
+                new Request(),
+                $this->getApplication()->getKernel()->getContainer()->get('Logger'),
+                new EventDispatcher()
+            );
+        }
+
+        return $soap;
     }
 }
