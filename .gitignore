@@ -39,3 +39,4 @@
 /*.sublime-workspace
 .vagrant
 .idea/
+/app/**/_local*.yml
