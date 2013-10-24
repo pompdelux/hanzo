@@ -23,7 +23,7 @@ use Symfony\Component\Yaml\Yaml;
 class Hanzo
 {
     protected $domain;
-    protected $settings = array();
+    protected $settings    = array();
     protected $ns_settings = array();
 
     public $cache = null;
@@ -55,11 +55,10 @@ class Hanzo
 
     private function __construct($container)
     {
-        $this->container = $container;
-        $this->kernel = $container->get('kernel');
+        $this->container               = $container;
+        $this->kernel                  = $container->get('kernel');
         $this->settings['core']['env'] = $this->kernel->getEnvironment();
-
-        $this->cache = $this->container->get('redis.main');
+        $this->cache                   = $this->container->get('redis.main');
 
         if (('cli' !== PHP_SAPI) && empty($_SERVER['HTTP_SOAPACTION'])) {
 
@@ -134,11 +133,17 @@ class Hanzo
     {
         $check = false;
         $settings = [];
+
+        // unittest hack
+        if ('phpunit' === substr($_SERVER['_'], -7)) {
+            return;
+        }
+
         // if parent domain exists (consultant sites), load the parent settings first.
         if ($this->kernel->getSetting('parent_domain_key')) {
-            $check = true;
+            $check             = true;
             $parent_domain_key = $this->kernel->getSetting('parent_domain_key');
-            $domain_key = $this->kernel->getSetting('domain_key');
+            $domain_key        = $this->kernel->getSetting('domain_key');
 
             $settings = DomainsSettingsQuery::create()
                 ->leftJoinWithDomains()
@@ -165,8 +170,8 @@ class Hanzo
             ;
 
             $this->settings['core']['language_id'] = $language->getId();
-            $this->settings['core']['domain_id'] = $record->getDomains()->getId();
-            $this->settings['core']['domain_key'] = $record->getDomains()->getDomainKey();
+            $this->settings['core']['domain_id']   = $record->getDomains()->getId();
+            $this->settings['core']['domain_key']  = $record->getDomains()->getDomainKey();
         }
 
         if ($check) {
@@ -184,6 +189,11 @@ class Hanzo
      */
     protected function initSettings()
     {
+        // unittest hack
+        if ('phpunit' === substr($_SERVER['_'], -7)) {
+            return;
+        }
+
         $settings = SettingsQuery::create()->find();
 
         foreach ($settings as $record) {
