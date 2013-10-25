@@ -12,7 +12,7 @@
       </trans-unit>
       <trans-unit id="shipping_method.name.S">
         <source>shipping_method.name.S</source>
-        <target>MyPack - Servicepakke</target>
+        <target>Servicepakke</target>
       </trans-unit>
       <trans-unit id="shipping_method.desc.S">
         <source>shipping_method.desc.S</source>
@@ -20,19 +20,19 @@
       </trans-unit>
       <trans-unit id="shipping_method.label.S">
         <source>shipping_method.label.S</source>
-        <target>MyPack - Servicepakke %price%</target>
+        <target>Servicepakke %price%</target>
       </trans-unit>
       <trans-unit id="shipping_method.name.700">
         <source>shipping_method.name.700</source>
-        <target>MyPack - Servicepakke</target>
+        <target>Servicepakke</target>
       </trans-unit>
       <trans-unit id="shipping_method.desc.700">
-        <source>shipping_method.desc.S</source>
+        <source>shipping_method.desc.700</source>
         <target></target>
       </trans-unit>
       <trans-unit id="shipping_method.label.700">
         <source>shipping_method.label.700</source>
-        <target>MyPack - Servicepakke %price%</target>
+        <target>Servicepakke %price%</target>
       </trans-unit>
       <trans-unit id="shipping_fee.name">
         <source>shipping_fee.name</source>
