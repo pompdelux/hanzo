@@ -28,7 +28,7 @@
       </trans-unit>
       <trans-unit id="shipping_method.desc.700">
         <source>shipping_method.desc.700</source>
-        <target></target>
+        <target>Alle ordrer sendes som pakkepost.</target>
       </trans-unit>
       <trans-unit id="shipping_method.label.700">
         <source>shipping_method.label.700</source>
