@@ -4,7 +4,7 @@
         <body>
             <trans-unit id="payment.title">
                 <source>payment.title</source>
-                <target>Pensio</target>
+                <target>iDeal/Pensio</target>
             </trans-unit>
             <trans-unit id="ideal.desc">
                 <source>ideal.desc</source>

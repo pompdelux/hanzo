@@ -141,7 +141,7 @@
             </trans-unit>
             			<trans-unit id="55">
                 <source>Address line 1</source>
-                <target>Straatnaam (denk om huisnummer en verdieping/deur)</target>
+                <target>Adres en huisnummer</target>
             </trans-unit>
             <trans-unit id="56" approved="no">
                 <source>Address line 2</source>
