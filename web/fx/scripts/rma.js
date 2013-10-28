@@ -17,7 +17,7 @@ var rma = (function($) {
         }
     });
 
-    $('#rma-submit').on('click', function(event) {
+    $('.rma-submit').on('click', function(event) {
         generatePdf();
     });
 
@@ -46,7 +46,7 @@ var rma = (function($) {
   };
 
   function generatePdf () {
-    $submit_button = $('#rma-submit');
+    $submit_button = $('.rma-submit');
     $submit_button.attr('disabled', 'disabled');
     dialoug.loading($submit_button, Translator.get('js:please.wait') );
     var products = [];
