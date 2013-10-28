@@ -135,7 +135,6 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
         // marketing
         'tj@pompdelux.dk'        => ['ROLE_MARKETING', 'ROLE_EMPLOYEE'],
         // sales
-        'kk@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
         'ak@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
         'sj@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
         'nj@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
@@ -149,9 +148,9 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
         'ml@pompdelux.dk'        => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
         'mpe@pompdelux.dk'       => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
         'ln@pompdelux.dk'        => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
-        'ia@pompdelux.dk'        => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
         'hbo@pompdelux.dk'       => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
         'js@pompdelux.dk'        => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
+        'vs@pompdelux.dk'        => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
     ];
 
     /**

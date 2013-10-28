@@ -16,7 +16,9 @@
 .slide-notice-box{
     position: absolute;
     top: 70px;
+    height: 45px;
     right: 0;
+    z-index: 900;
     padding: 8px 8px 19px 8px;
     text-align: center;
     overflow: hidden;

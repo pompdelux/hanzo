@@ -3029,3 +3029,7 @@ table.horizontal th {
 #near-you-container {
   max-width: 100%;
 }
+
+#newsletterModal {
+  display: none;
+}

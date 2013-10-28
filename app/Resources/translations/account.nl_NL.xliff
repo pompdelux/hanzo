@@ -141,7 +141,7 @@
             </trans-unit>
             			<trans-unit id="55">
                 <source>Address line 1</source>
-                <target>Straatnaam (denk om huisnummer en verdieping/deur)</target>
+                <target>Adres en huisnummer</target>
             </trans-unit>
             <trans-unit id="56" approved="no">
                 <source>Address line 2</source>
@@ -492,6 +492,16 @@ Let op: de betaling moet uitgevoerd worden – eerdere betalingen worden automat
             <trans-unit id="create.pre-notice" approved="no">
                 <source>create.pre-notice</source>
                 <target><![CDATA[Op deze pagina moet je je persoonlijke gegevens invullen (en <u>niet</u> je bedrijfsgegevens).]]></target>
+            </trans-unit>
+            <trans-unit id="order.force.login.description" approved="no">
+                <source>order.force.login.description</source>
+                <target><![CDATA[
+                    <h3>Beste klant,</h3>
+                    <p>We kunnen zien dat je meer dan 20 kledingstukken in je mandje hebt gedaan – daar zijn we natuurlijk blij mee!<br>
+Om zeker te weten dat er geen sprake is van een fout, verzoeken we je om je als klant te registreren of in te loggen op “Mijn pagina” met je gebruikersnaam/wachtwoord.
+Hierna kun je gewoon doorgaan met winkelen.<br></p>
+                    <p>Bedankt voor je hulp.</p>
+                ]]></target>
             </trans-unit>
         </body>
     </file>

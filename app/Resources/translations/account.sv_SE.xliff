@@ -488,6 +488,16 @@ Du har möjlighet att ändra/lägga till/radera i din order. Du ska klicka på <
                 <source>create.pre-notice</source>
                 <target><![CDATA[På denna sida ska du skriva dina personliga upplysningar (<u>inte</u> företagsnamn).]]></target>
             </trans-unit>
+            <trans-unit id="order.force.login.description" approved="no">
+                <source>order.force.login.description</source>
+                <target><![CDATA[
+                    <h3>Kära kund</h3>
+                    <p>Vi kan se att du har lagt fler än 20 varor i din korg – det är vi självklart glada för.<br>  
+Vi vill dock vara helt säkra på att det inte har uppstått ett fel, så vi vill därför be dig om att upprätta dig som kund eller logga in på ”Min sida” med dina inloggningsuppgifter. 
+Därefter kan du enkelt shoppa vidare.<br></p>
+                    <p>Tack för hjälpen.</p>
+                ]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

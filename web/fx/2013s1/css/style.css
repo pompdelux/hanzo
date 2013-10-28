@@ -415,7 +415,7 @@ nav > ul,
 ul.menu,
 .menu > ul {
   font-size: 14px;
-  font-family: "Merriweather", serif;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
   color: #444444;
   letter-spacing: 0;
   z-index: 200;
@@ -2435,7 +2435,9 @@ nav.main-menu > ul > li > ul.on {
 .slide-notice-box {
   position: absolute;
   top: 70px;
+  height: 45px;
   right: 0;
+  z-index: 900;
   padding: 8px 8px 19px 8px;
   text-align: center;
   overflow: hidden;
@@ -3649,7 +3651,7 @@ button.right {
   clear: both;
 }
 .msg.error, .message.error {
-  border: 2px solid #f10000;
+  border: 2px solid #998670;
 }
 
 .no-text {

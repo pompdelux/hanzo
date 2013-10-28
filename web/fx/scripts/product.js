@@ -264,6 +264,10 @@
 
           lookup.done(function(response) {
             if (false === response.status) {
+              if (response.force_login) {
+                window.location.href = base_url+'login?f=true';
+              }
+
               if (undefined !== response.data.location) {
                 window.location.reload(true);
                 return false;

@@ -487,6 +487,15 @@ Voit muuttaa tilaustasi, lisätä siihen tuotteita tai poistaa tuotteita. Napsau
                 <source>create.pre-notice</source>
                 <target><![CDATA[Anna tällä sivulla henkilötietosi (<u>ei</u> yritystietoja).]]></target>
             </trans-unit>
+            <trans-unit id="order.force.login.description" approved="no">
+                <source>order.force.login.description</source>
+                <target><![CDATA[
+                    <h3>Hyvä asiakas</h3>
+                    <p>Näemme, että olet lisännyt yli 20 vaatetta ostoskoriisi – olemme luonnollisesti iloisia siitä.<br>
+Haluamme kuitenkin varmistaa, että tässä ei ole tapahtunut virhettä. Pyydämme sinua siten rekisteröitymään asiakkaaksi tai kirjautumaan sisään kohdassa ”Omat sivut” käyttäjätunnuksellasi ja salasanallasi. Tämän jälkeen voit helposti jatkaa ostosten tekemistä.<br></p>
+                    <p>Kiitos avustasi.</p>
+                ]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

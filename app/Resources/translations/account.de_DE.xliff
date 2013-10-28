@@ -500,6 +500,15 @@ Rücksendung</b><br>Für Rücksendungen von Waren finden Sie unseren <a href="ht
                 <source>create.pre-notice</source>
                 <target><![CDATA[Auf dieser Seite sollen Sie Ihre privaten Informationen ausfüllen (<u>nicht</u> evtl. Firmeninformationen).]]></target>
             </trans-unit>
+            <trans-unit id="order.force.login.description" approved="no">
+                <source>order.force.login.description</source>
+                <target><![CDATA[
+                    <h3>Liebe/r Kunde/in,</h3>
+                    <p>wir haben bemerkt, dass Sie mehr als 20 Kleidungsstücke in Ihren Warenkorb gelegt haben – das freut uns natürlich.<br>
+Um jedoch sicherzustellen, dass dabei keine Fehler aufgetreten sind, möchten wir Sie gern bitten, ein Kundenkonto zu erstellen oder sich unter ’Meine Seite’ mit Ihrem Benutzernamen/Passwort einzuloggen. Danach können Sie ohne Probleme weitershoppen.<br></p>
+                    <p>Vielen Dank für Ihre Hilfe.</p>
+                ]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

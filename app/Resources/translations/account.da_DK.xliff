@@ -499,6 +499,16 @@ Bemærk: Betalingen skal gennemføres – tidligere betalingsreservation bliver 
                 <source>create.pre-notice</source>
                 <target><![CDATA[På denne side skal du udfylde dine privatoplysninger (og <u>ikke</u> evt. firmaoplysninger).]]></target>
             </trans-unit>
+            <trans-unit id="order.force.login.description" approved="no">
+                <source>order.force.login.description</source>
+                <target><![CDATA[
+                    <h3>Kære kunde</h3>
+                    <p>Vi kan se, at du har fyldt mere end 20 stykker tøj i din kurv – det er vi naturligvis glade for.<br>
+Vi vil dog være helt sikre på, at der ikke er opstået en fejl, og vi skal derfor bede dig om at oprette dig som kunde eller logge ind på ’Min Side’ med dit brugernavn/password.
+Herefter kan du nemt shoppe videre.</p><br>
+                    <p>Tak for din hjælp.</p>
+                ]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
