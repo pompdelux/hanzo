@@ -78,7 +78,7 @@
       </trans-unit>
      <trans-unit id="shipping.address">
         <source>shipping.address</source>
-        <target>Afhaaladres</target>
+        <target>Afleveradres</target>
       </trans-unit>
       <trans-unit id="shipping.address.overnight">
         <source>shipping.address.overnight</source>
