@@ -4,7 +4,7 @@
         <body>
             <trans-unit id="description" approved="no">
                 <source>description</source>
-                <target><![CDATA[Angiv adresse, postnummer, by eller sted.]]></target>
+                <target><![CDATA[vul hier je postcode in.]]></target>
             </trans-unit>
             <trans-unit id="lookup.label" approved="no">
                 <source>lookup.label</source>
@@ -12,15 +12,15 @@
             </trans-unit>
             <trans-unit id="submit.label" approved="no">
                 <source>submit.label</source>
-                <target>Find</target>
+                <target>Vind</target>
             </trans-unit>
             <trans-unit id="lookup.placeholder" approved="no">
                 <source>lookup.placeholder</source>
-                <target>Adresse, postnummer</target>
+                <target>Postcode</target>
             </trans-unit>
             <trans-unit id="point.header" approved="no">
                 <source>point.header</source>
-                <target>Valgfri udleveringssted</target>
+                <target>Afhaaladres naar eigen keuze</target>
             </trans-unit>
             <trans-unit id="distance.header" approved="no">
                 <source>distance.header</source>
@@ -28,7 +28,7 @@
             </trans-unit>
             <trans-unit id="open.hours" approved="no">
                 <source>open.hours</source>
-                <target>Åbningstider</target>
+                <target>Openingstijden</target>
             </trans-unit>
             <trans-unit id="distance" approved="no">
                 <source>distance</source>
@@ -64,11 +64,11 @@
             </trans-unit>
             <trans-unit id="no.records.found" approved="no">
                 <source>no.records.found</source>
-                <target>Der blev ikke fundet nogen steder der matcher din søgning.</target>
+                <target>Er zijn geen criteria gevonden die overeenkomen met de zoekopdracht.</target>
             </trans-unit>
             <trans-unit id="service.down" approved="no">
                 <source>service.down</source>
-                <target><![CDATA[Post Danmarks postnummerservice svarer ikke i øjeblikket.<br>Prøv igen senere eller vælg privat- eller erhvervsfragt.]]></target>
+                <target><![CDATA[DHL's postcode service werkt op dit ogenblik niet.<br>Probeer het later nog eens.]]></target>
             </trans-unit>
         </body>
     </file>

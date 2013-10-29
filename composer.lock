@@ -78,16 +78,16 @@
         },
         {
             "name": "doctrine/cache",
-            "version": "v1.2.0",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "d0e4447707a064a5814b18cb0dcc2f24185f6179"
+                "reference": "e16d7adf45664a50fa86f515b6d5e7f670130449"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/d0e4447707a064a5814b18cb0dcc2f24185f6179",
-                "reference": "d0e4447707a064a5814b18cb0dcc2f24185f6179",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/e16d7adf45664a50fa86f515b6d5e7f670130449",
+                "reference": "e16d7adf45664a50fa86f515b6d5e7f670130449",
                 "shasum": ""
             },
             "require": {
@@ -95,6 +95,10 @@
             },
             "conflict": {
                 "doctrine/common": ">2.2,<2.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=3.7",
+                "satooshi/php-coveralls": "~0.6"
             },
             "type": "library",
             "extra": {
@@ -143,7 +147,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2013-09-26 19:23:25"
+            "time": "2013-10-25 19:04:14"
         },
         {
             "name": "doctrine/collections",
@@ -2262,17 +2266,17 @@
         },
         {
             "name": "willdurand/expose-translation-bundle",
-            "version": "1.0.0",
+            "version": "1.0.2",
             "target-dir": "Bazinga/ExposeTranslationBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/willdurand/BazingaExposeTranslationBundle.git",
-                "reference": "72f6567cdb6cf4b8cd20570d45ad8aaf3c311c79"
+                "reference": "5d466d5010bd3569b7f0c4e032f4ce2ff3ef95df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/willdurand/BazingaExposeTranslationBundle/zipball/72f6567cdb6cf4b8cd20570d45ad8aaf3c311c79",
-                "reference": "72f6567cdb6cf4b8cd20570d45ad8aaf3c311c79",
+                "url": "https://api.github.com/repos/willdurand/BazingaExposeTranslationBundle/zipball/5d466d5010bd3569b7f0c4e032f4ce2ff3ef95df",
+                "reference": "5d466d5010bd3569b7f0c4e032f4ce2ff3ef95df",
                 "shasum": ""
             },
             "require": {
@@ -2287,7 +2291,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.3.x-dev"
+                    "dev-master": "1.0.x-dev"
                 }
             },
             "autoload": {
@@ -2311,20 +2315,20 @@
                 "javascript",
                 "translation"
             ],
-            "time": "2013-09-18 08:13:56"
+            "time": "2013-10-25 08:20:40"
         },
         {
             "name": "willdurand/geocoder",
-            "version": "2.3.0",
+            "version": "2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/geocoder-php/Geocoder.git",
-                "reference": "f6cc10d1088dbfc6681725cc902dcbfd1207a519"
+                "reference": "69e39105266535e03631538df97464bc987452fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/geocoder-php/Geocoder/zipball/f6cc10d1088dbfc6681725cc902dcbfd1207a519",
-                "reference": "f6cc10d1088dbfc6681725cc902dcbfd1207a519",
+                "url": "https://api.github.com/repos/geocoder-php/Geocoder/zipball/69e39105266535e03631538df97464bc987452fc",
+                "reference": "69e39105266535e03631538df97464bc987452fc",
                 "shasum": ""
             },
             "require": {
@@ -2374,7 +2378,7 @@
                 "geocoding",
                 "geoip"
             ],
-            "time": "2013-10-17 09:51:48"
+            "time": "2013-10-22 13:10:06"
         }
     ],
     "packages-dev": [

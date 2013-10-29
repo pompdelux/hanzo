@@ -132,39 +132,3 @@ class ShippingApi
     }
 } // END class ShippingApi
 
-/**
- * Switch from external_id to id to facility multiple prices:
- * dk:
- * UPDATE `domains_settings` SET c_value = 'a:3:{i:0;i:1;i:1;i:2;i:2;i:3;}' WHERE ns = 'shippingapi' AND c_key = 'methods_enabled' AND domain_key = 'DK'
- *
- * salesdk:
- * UPDATE `domains_settings` SET c_value = 'a:3:{i:0;i:6;i:1;i:7;i:2;i:8;}' WHERE ns = 'shippingapi' AND c_key = 'methods_enabled' AND domain_key = 'SalesDK'
- *
- * com:
- * UPDATE `domains_settings` SET c_value = 'a:1:{i:0;i:4;}' WHERE ns = 'shippingapi' AND c_key = 'methods_enabled' AND domain_key = 'COM'
- *
- * se:
- * UPDATE `domains_settings` SET c_value = 'a:1:{i:0;i:1;}' WHERE ns = 'shippingapi' AND c_key = 'methods_enabled' AND domain_key = 'SE'
- *
- * salesse:
- * UPDATE `domains_settings` SET c_value = 'a:1:{i:0;i:2;}' WHERE ns = 'shippingapi' AND c_key = 'methods_enabled' AND domain_key = 'SalesSE'
- *
- * no:
- * UPDATE `domains_settings` SET c_value = 'a:1:{i:0;i:1;}' WHERE ns = 'shippingapi' AND c_key = 'methods_enabled' AND domain_key = 'NO'
- *
- * salesno:
- * UPDATE `domains_settings` SET c_value = 'a:1:{i:0;i:2;}' WHERE ns = 'shippingapi' AND c_key = 'methods_enabled' AND domain_key = 'SalesNO'
- *
- * nl:
- * UPDATE `domains_settings` SET c_value = 'a:1:{i:0;i:5;}' WHERE ns = 'shippingapi' AND c_key = 'methods_enabled' AND domain_key = 'NL'
- *
- * salesnl:
- * UPDATE `domains_settings` SET c_value = 'a:1:{i:0;i:6;}' WHERE ns = 'shippingapi' AND c_key = 'methods_enabled' AND domain_key = 'SalesNL'
- *
- * fi:
- * UPDATE `domains_settings` SET c_value = 'a:1:{i:0;i:1;}' WHERE ns = 'shippingapi' AND c_key = 'methods_enabled' AND domain_key = 'FI'
- *
- * salesfi:
- * UPDATE `domains_settings` SET c_value = 'a:1:{i:0;i:2;}' WHERE ns = 'shippingapi' AND c_key = 'methods_enabled' AND domain_key = 'SalesFI'
- *
- */

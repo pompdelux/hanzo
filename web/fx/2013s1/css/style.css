@@ -2420,6 +2420,10 @@ nav.main-menu > ul > li > ul.on {
   box-shadow: #444444 4px 4px 8px;
 }
 
+.consultant nav.main-menu > ul > li > a {
+  font-size: 14px;
+}
+
 .inject-notice-box {
   padding: 3px;
 }

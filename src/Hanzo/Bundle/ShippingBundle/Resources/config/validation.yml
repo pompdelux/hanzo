@@ -56,7 +56,7 @@ Hanzo\Model\Addresses:
                     - shipping_bundle_shipping
                     - shipping_bundle_payment
                 min:  2
-                max:  150
+                max:  35
                 minMessage: address_line_1.required
                 minMessage: address_line_1.required
         postal_code:

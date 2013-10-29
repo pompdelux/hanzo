@@ -72,3 +72,7 @@ nav.main-menu {
     }
   }
 }
+
+.consultant nav.main-menu > ul > li > a {
+    font-size: $font-size;
+}

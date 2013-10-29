@@ -18,11 +18,16 @@ Hanzo\Model\Addresses:
             - NotBlank:
                 message: address.address_line_1.required
                 groups: [shipping, company_shipping, payment, overnightbox, customer]
+<<<<<<< HEAD
             - Length:
                 min: 2
                 max: 150
                 minMessage: address.address_line_1.required
                 maxMessage: address.address_line_1.required
+=======
+            - MinLength: 2
+            - MaxLength: 35
+>>>>>>> master
         postal_code:
             - NotBlank:
                 message: address.postal_code.required

@@ -14,10 +14,12 @@ set :staticserver, "pdlstatic1"
 set :branch, "master"
 
 # list of servers to deploy to
-role :app, 'pdlfront-dk3', 'pdlfront-dk2', 'pdlfront-dk1', 'pdlfront-no1', 'pdlfront-se1', 'pdlfront-nl1', 'pdlfront-fi1', 'pdlfront-dk4', 'pdlfront-dk5', 'pdladmin', 'pdlkons-dk1', 'pdlstatic1'
+#role :app, 'pdlfront-dk3', 'pdlfront-dk2', 'pdlfront-dk1', 'pdlfront-no1', 'pdlfront-se1', 'pdlfront-nl1', 'pdlfront-fi1', 'pdlfront-dk4', 'pdlfront-dk5', 'pdladmin', 'pdlkons-dk1', 'pdlstatic1'
+role :app, 'pdlfront-dk3', 'pdlfront-dk2', 'pdlfront-no1', 'pdlfront-se1', 'pdlfront-nl1', 'pdlfront-fi1', 'pdlfront-dk4', 'pdlfront-dk5', 'pdladmin', 'pdlkons-dk1', 'pdlstatic1'
 
 # :symfonyweb should contain our apache/nginx servers running symfony. Used in reload_apache and apcclear
-role :symfonyweb, 'pdlfront-dk3', 'pdlfront-dk2', 'pdlfront-dk1', 'pdlfront-no1', 'pdlfront-se1', 'pdlfront-nl1', 'pdlfront-fi1', 'pdlfront-dk4', 'pdlfront-dk5', 'pdladmin', 'pdlkons-dk1'
+#role :symfonyweb, 'pdlfront-dk3', 'pdlfront-dk2', 'pdlfront-dk1', 'pdlfront-no1', 'pdlfront-se1', 'pdlfront-nl1', 'pdlfront-fi1', 'pdlfront-dk4', 'pdlfront-dk5', 'pdladmin', 'pdlkons-dk1'
+role :symfonyweb, 'pdlfront-dk3', 'pdlfront-dk2', 'pdlfront-no1', 'pdlfront-se1', 'pdlfront-nl1', 'pdlfront-fi1', 'pdlfront-dk4', 'pdlfront-dk5', 'pdladmin', 'pdlkons-dk1'
 
 # our redis server. clear cache here
 role :redis, adminserver, :primary => true
