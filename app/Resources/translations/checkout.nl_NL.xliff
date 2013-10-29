@@ -66,7 +66,7 @@
       </trans-unit>
       <trans-unit id="addresses">
         <source>addresses</source>
-        <target>Adressen</target>
+        <target>Adres</target>
       </trans-unit>
       <trans-unit id="no_addresses">
         <source>no_addresses</source>
@@ -78,19 +78,19 @@
       </trans-unit>
      <trans-unit id="shipping.address">
         <source>shipping.address</source>
-        <target>Verzendadres</target>
+        <target>Afleveradres</target>
       </trans-unit>
       <trans-unit id="shipping.address.overnight">
         <source>shipping.address.overnight</source>
-        <target>Verzendadres</target>
+        <target>Afleveradres</target>
       </trans-unit>
       <trans-unit id="shipping.address.overnight.edit">
         <source>shipping.address.overnight.edit</source>
-        <target>» Wijzig verzendadres postbus</target>
+        <target>» Wijzig afleveradres postbus</target>
       </trans-unit>
       <trans-unit id="shipping.address.no_overnight">
         <source>shipping.address.no_overnight</source>
-        <target>Geen verzendadres postbus ingevuld</target>
+        <target>Geen afleveradres postbus ingevuld</target>
       </trans-unit>
       <trans-unit id="payment.method">
         <source>payment.method</source>
@@ -98,7 +98,7 @@
       </trans-unit>
       <trans-unit id="payment.address">
         <source>payment.address</source>
-        <target>Huisadres</target>
+        <target>Privéadres</target>
       </trans-unit>
       <trans-unit id="payment.title">
         <source>payment.title</source>
