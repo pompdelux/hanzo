@@ -12,9 +12,14 @@ use Symfony\Bridge\Monolog\Logger;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
+use Hanzo\Model\Addresses;
+use Hanzo\Model\AddressesQuery;
 use Hanzo\Model\Categories;
 use Hanzo\Model\CategoriesI18n;
+use Hanzo\Model\Countries;
+use Hanzo\Model\CustomersQuery;
 use Hanzo\Model\Domains;
+use Hanzo\Model\Groups;
 use Hanzo\Model\Languages;
 use Hanzo\Model\ProductsDomainsPricesQuery;
 use Hanzo\Model\ProductsStockQuery;
@@ -32,9 +37,10 @@ class ECommerceServicesTest extends WebTestCase
      */
     public function setUp()
     {
+        $this->setupDomains();
+        $this->setupCountries();
         $this->setupLanguages();
         $this->setupCategories();
-        $this->setupDomains();
     }
 
 
@@ -104,6 +110,7 @@ class ECommerceServicesTest extends WebTestCase
         $data->item->InventTable = $InventTable;
 
         $result = $handler->SyncItem($data);
+        $this->assertObjectHasAttribute('SyncItemResult', $result);
         $this->assertEquals($result->SyncItemResult->Status->enc_value, 'Ok');
 
         $product = ProductsQuery::create()->findOneBySku($master);
@@ -194,6 +201,7 @@ class ECommerceServicesTest extends WebTestCase
         $handler = $this->getHandler();
         $result  = $handler->SyncPriceList($data);
 
+        $this->assertObjectHasAttribute('SyncPriceListResult', $result);
         $this->assertEquals($result->SyncPriceListResult->Status->enc_value, 'Ok');
 
         $price_count = ProductsDomainsPricesQuery::create()->count();
@@ -265,6 +273,7 @@ class ECommerceServicesTest extends WebTestCase
         $handler = $this->getHandler();
         $result  = $handler->SyncInventoryOnHand($data);
 
+        $this->assertObjectHasAttribute('SyncInventoryOnHandResult', $result);
         $this->assertEquals(ProductsStockQuery::create()->count(), count($inventoryOnHand->InventSum->InventDim));
 
         $stocks = ProductsStockQuery::create()
@@ -285,6 +294,72 @@ class ECommerceServicesTest extends WebTestCase
     }
 
 
+    public function testSyncCustomer()
+    {
+        $group = new Groups();
+        $group->setName('customer');
+        $group->setDiscount(0);
+        $group->save();
+
+        $group = new Groups();
+        $group->setName('consultant');
+        $group->setDiscount(20);
+        $group->save();
+
+        $group = new Groups();
+        $group->setName('employee');
+        $group->setDiscount(40);
+        $group->save();
+
+        $customer = (object) [
+            'CustTable' => (object) [
+                'AccountNum' => 109381,
+                'InitialsId' => '',
+                'CustName' => 'Mamarie M Karlsson',
+                'AddressStreet' => 'marknadsvøgen 7',
+                'AddressCity' => 'bjærketorp',
+                'AddressZipCode' => '51994',
+                'AddressCountryRegionId' => 'DK',
+                'CustCurrencyCode' => 'DKK',
+                'Email' => 'mariedelice@hotmail.com',
+                'Phone' => '004632060004',
+                'PhoneLocal' => '',
+                'PhoneMobile' => '',
+                'TeleFax' => '',
+                'SalesDiscountPercent' => '',
+            ]
+        ];
+
+        $data = new stdClass();
+        $data->customer = $customer;
+
+        $handler = $this->getHandler();
+        $result  = $handler->SyncCustomer($data);
+
+        $this->assertObjectHasAttribute('SyncCustomerResult', $result);
+        $this->assertEquals($result->SyncCustomerResult->Status->enc_value, 'Ok');
+
+        $customer = CustomersQuery::create()->findOne();
+        $this->assertEquals($customer->getFirstName(), 'Mamarie');
+        $this->assertEquals($customer->getLastName(), 'M Karlsson');
+        $this->assertEquals($customer->getEmail(), 'mariedelice@hotmail.com');
+        $this->assertEquals($customer->getPhone(), '004632060004');
+        $this->assertEquals($customer->getPassword(), sha1('004632060004'));
+
+        $address = AddressesQuery::create()
+            ->filterByType('payment')
+            ->findOneByCustomersId($customer->getId())
+        ;
+
+        $this->assertTrue($address instanceof Addresses);
+        $this->assertEquals($address->getFirstName(), 'Mamarie');
+        $this->assertEquals($address->getLastName(), 'M Karlsson');
+        $this->assertEquals($address->getAddressLine1(), 'marknadsvøgen 7');
+        $this->assertEquals($address->getPostalCode(), '51994');
+    }
+
+
+
     /**
      * Helper method.
      *
@@ -292,6 +367,12 @@ class ECommerceServicesTest extends WebTestCase
      */
     protected function setupDomains()
     {
+        static $done;
+
+        if (!empty($done)) {
+            return;
+        }
+
         $d = new Domains();
         $d->setDomainName('dk');
         $d->setDomainKey('DK');
@@ -306,6 +387,8 @@ class ECommerceServicesTest extends WebTestCase
         $d->setDomainName('com');
         $d->setDomainKey('COM');
         $d->save();
+
+        $done = true;
     }
 
 
@@ -316,6 +399,12 @@ class ECommerceServicesTest extends WebTestCase
      */
     protected function setupLanguages()
     {
+        static $done;
+
+        if (!empty($done)) {
+            return;
+        }
+
         $l = new Languages();
         $l->setName('Danish');
         $l->setLocalName('Dansk');
@@ -323,6 +412,34 @@ class ECommerceServicesTest extends WebTestCase
         $l->setIso2('da');
         $l->setDirection('ltr');
         $l->save();
+
+        $done = true;
+    }
+
+
+    protected function setupCountries()
+    {
+        static $done;
+
+        if (!empty($done)) {
+            return;
+        }
+
+        $c = new Countries();
+        $c->setName('Denmark');
+        $c->setLocalName('Danmark');
+        $c->setCode(208);
+        $c->setIso2('DK');
+        $c->setIso3('DNK');
+        $c->setContinent('EU');
+        $c->setCurrencyId(208);
+        $c->setCurrencyCode('DKK');
+        $c->setCurrencyName('Danish Kroner');
+        $c->setVat(25);
+        $c->setCallingCode(45);
+        $c->save();
+
+        $done = true;
     }
 
 
@@ -333,6 +450,12 @@ class ECommerceServicesTest extends WebTestCase
      */
     protected function setupCategories()
     {
+        static $done;
+
+        if (!empty($done)) {
+            return;
+        }
+
         $c = new Categories();
         $c->setContext('G_Access');
         $c->setIsActive(true);
@@ -356,6 +479,8 @@ class ECommerceServicesTest extends WebTestCase
         $ci->setLocale('da_DK');
         $ci->setContent('test 1.2.3');
         $ci->save();
+
+        $done = true;
     }
 
 
