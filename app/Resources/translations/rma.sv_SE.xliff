@@ -141,7 +141,7 @@ du returnerer.<br><br>Er varen du &oslash;nsker at ombytte til udsolgt, refunder
             </trans-unit>
             <trans-unit id="rma.history.title">
                 <source>rma.history.title</source>
-                <target>Opret RMA returseddel.</target>
+                <target>Opret RMA retturseddel.</target>
             </trans-unit>
         </body>
     </file>
