@@ -157,24 +157,24 @@
   background-position: 0 -518px;
 }
 
-.fi-sprite, body.fi form.buy .submit-button, body.fi .buy-set, body.fi .new-price, body.fi .out-of-stock {
-  background: url('/fx/2013s1/../images/icons/fi-s32736d1a36.png') no-repeat;
+.fi-sprite, body.fi form.buy .submit-button, body.fi .buy-set, body.fi .new-price, body.fi .out-of-stock, body.fi .subscribe-button {
+  background: url('/fx/2013s1/../images/icons/fi-sb66fdc1385.png') no-repeat;
 }
 
-.nl-sprite, body.nl form.buy .submit-button, body.nl .buy-set, body.nl .new-price, body.nl .out-of-stock {
-  background: url('/fx/2013s1/../images/icons/nl-s3d8b2e4fd8.png') no-repeat;
+.nl-sprite, body.nl form.buy .submit-button, body.nl .buy-set, body.nl .new-price, body.nl .out-of-stock, body.nl .subscribe-button {
+  background: url('/fx/2013s1/../images/icons/nl-saa49449e7f.png') no-repeat;
 }
 
-.no-sprite, body.nb form.buy .submit-button, body.nb .buy-set, body.nb .new-price, body.nb .out-of-stock {
-  background: url('/fx/2013s1/../images/icons/no-s82054f548a.png') no-repeat;
+.no-sprite, body.nb form.buy .submit-button, body.nb .buy-set, body.nb .new-price, body.nb .out-of-stock, body.nb .subscribe-button {
+  background: url('/fx/2013s1/../images/icons/no-s6e99c64b7a.png') no-repeat;
 }
 
-.se-sprite, body.sv form.buy .submit-button, body.sv .buy-set, body.sv .new-price, body.sv .out-of-stock {
-  background: url('/fx/2013s1/../images/icons/se-s0c9b635c7c.png') no-repeat;
+.se-sprite, body.sv form.buy .submit-button, body.sv .buy-set, body.sv .new-price, body.sv .out-of-stock, body.sv .subscribe-button {
+  background: url('/fx/2013s1/../images/icons/se-s9b797786a1.png') no-repeat;
 }
 
-.en-sprite, body.en form.buy .submit-button, body.en .buy-set, body.en .new-price, body.en .out-of-stock {
-  background: url('/fx/2013s1/../images/icons/en-s9d987caa83.png') no-repeat;
+.en-sprite, body.en form.buy .submit-button, body.en .buy-set, body.en .new-price, body.en .out-of-stock, body.en .subscribe-button {
+  background: url('/fx/2013s1/../images/icons/en-s37522d2f6e.png') no-repeat;
 }
 
 .de-sprite, body.de form.buy .submit-button, body.de .buy-set, body.de .new-price, body.de .out-of-stock, body.de .close-button, body.de .subscribe-button {
@@ -271,6 +271,11 @@ body.en .out-of-stock {
   height: 86px;
   width: 85px;
 }
+body.en .subscribe-button {
+  background-position: 0 -664px;
+  height: 83px;
+  width: 84px;
+}
 
 body.fi form.buy .submit-button {
   background-position: 0 -579px;
@@ -291,6 +296,11 @@ body.fi .out-of-stock {
   background-position: 0 -410px;
   height: 85px;
   width: 86px;
+}
+body.fi .subscribe-button {
+  background-position: 0 -663px;
+  height: 83px;
+  width: 84px;
 }
 
 body.nb form.buy .submit-button {
@@ -313,6 +323,11 @@ body.nb .out-of-stock {
   height: 85px;
   width: 86px;
 }
+body.nb .subscribe-button {
+  background-position: 0 -663px;
+  height: 83px;
+  width: 84px;
+}
 
 body.nl form.buy .submit-button {
   background-position: 0 -579px;
@@ -334,6 +349,11 @@ body.nl .out-of-stock {
   height: 85px;
   width: 86px;
 }
+body.nl .subscribe-button {
+  background-position: 0 -663px;
+  height: 83px;
+  width: 84px;
+}
 
 body.sv form.buy .submit-button {
   background-position: 0 -579px;
@@ -354,6 +374,11 @@ body.sv .out-of-stock {
   background-position: 0 -410px;
   height: 85px;
   width: 86px;
+}
+body.sv .subscribe-button {
+  background-position: 0 -663px;
+  height: 83px;
+  width: 84px;
 }
 
 /**
