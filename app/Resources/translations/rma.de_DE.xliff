@@ -13,7 +13,7 @@
             <trans-unit id="rma.form.description">
                 <source>rma.form.description</source>
                 <target><![CDATA[
-                    <p>Für jeden Artikel den Sie umtauschen möchten, wählen Sie bitte eine Aktivität und einen Grund. Notieren Sie bitte ebenfalls eventuelle Kommentare zu jedem einzelnen Artikel. Falls Sie Artikel von verschiedenen Bestellungen umtauschen möchten, erstellen Sie bitte einen Rücksendeschein per Bestellung. Ihre Umtauschwaren senden Sie natürlich in ein und demselben Paket, egal ob diese von mehreren Bestellungen stammen. Denken Sie dran, den Rücksendeschein/die Rücksendescheine in das Paket zu legen. Lesen Sie mehr zum Umtausch Ihrer Ware auf dem Rücksendeschein, welcher erstellt wird, wenn Sie auf „Rücksendeschein erstellen“ klicken. Um sich den Schein anzeigen zu lassen, benötigen Sie das kostenlose Programm Adobe Reader. Sollten Sie dieses Programm nicht haben, können Sie es hier downloaden.<br />
+                    <p>F&uuml;r jeden Artikel den Sie umtauschen m&ouml;chten, w&auml;hlen Sie bitte eine Aktivit&auml;t und einen Grund. Notieren Sie bitte ebenfalls eventuelle Kommentare zu jedem einzelnen Artikel. Falls Sie Artikel von verschiedenen Bestellungen umtauschen m&ouml;chten, erstellen Sie bitte einen R&uuml;cksendeschein per Bestellung. Ihre Umtauschwaren senden Sie nat&uuml;rlich in ein und demselben Paket, egal ob diese von mehreren Bestellungen stammen. Denken Sie dran, den R&uuml;cksendeschein/die R&uuml;cksendescheine in das Paket zu legen. Lesen Sie mehr zum Umtausch Ihrer Ware auf dem R&uuml;cksendeschein, welcher erstellt wird, wenn Sie auf „R&uuml;cksendeschein erstellen“ klicken. Um sich den Schein anzeigen zu lassen, ben&ouml;tigen Sie das kostenlose Programm Adobe Reader. Sollten Sie dieses Programm nicht haben, k&ouml;nnen Sie es hier downloaden.<br />
     <br />
     <a href="http://www.adobe.com/products/acrobat/readstep2.html" target="_blank"><img src="http://static.pompdelux.com/images/pages/PDF_logo.jpg" width="158" height="39" border="0" title="POMPdeLUX" /></a><br /></p>
                 ]]></target>
@@ -83,7 +83,7 @@
                 <target><![CDATA[
                     <ul>
                         <li>POMPdeLUX DE GmbH</li>
-                        <li>Dammtorstraβe 12, DE-20354 Hamburg</li>
+                        <li>Dammtorstra&amp;#946;e 12, DE-20354 Hamburg</li>
                         <li>USt-IdNr. DE290402183</li>
                         <li>mailde@pompdelux.com 040-35715072</li>
                     </ul>
@@ -119,10 +119,10 @@
             </trans-unit>
             <trans-unit id="rma.slip.description">
                 <source>rma.slip.description</source>
-                <target><![CDATA[<p>Wenn Sie Waren tauschen oder zurücksenden möchten, füllen Sie bitte den Rücksendeschein aus und schicken diesen mit.<br>Da Ihre Umtauschwaren weiterverkauft werden sollten, wäre es eine große Hilfe, wenn Sie die Artikel in der Originalverpackung samt Hängeschildern etc. zurückschicken könnten.<br><br>Zusammen mit Ihrer Ware haben Sie ein frankiertes Rücksendeetikett erhalten. Verwenden Sie bitte dies bei der Rücksendung. Senden Sie die Ware aufgrund einer Reklamation zurück oder weil Sie die falschen Artikel erhalten haben, ist der Versand selbstverständlich portokostenfrei für Sie. 
-<br><br>Wünschen Sie in eine andere Größe, Farbe oder einen anderen Artikel umzutauschen, ist der Versand ebenfalls portokostenfrei. Der Preis der Waren darf jedoch nicht den Preis der umzutauschenden Artikel überschreiten.<br><br>Sollte ein Artikel den Sie umtauschen möchten, ausverkauft sein, geben wir Ihnen Ihr Geld zurück. 
-Sollten Sie mit einer Geldkarte bezahlt haben, wird der zu erstattende Betrag auf die Karte zurückbezahlt, welche Sie beim Kauf der Waren angegeben haben. 
-<br><br>Haben Sie per “PayByBill“ oder Lastschrift bezahlt, kontaktieren Sie bitte GFG Finanz GmbH unter Tel.: 06131-9075259<br><b>Bitte beachten Sie:</b> Auch wenn Ihnen ein Betrag gutgeschrieben wird, bezahlen Sie bitte trotzdem Ihre ausstehende Rechnung innerhalb von 30 Tagen.<br><br>Für weitere Informationen gehen Sie auf <a href="/de_DE/" target="_blank">www.pompdelux.de</a></p>]]></target>
+                <target><![CDATA[<p>Wenn Sie Waren tauschen oder zur&uuml;cksenden m&ouml;chten, f&uuml;llen Sie bitte den R&uuml;cksendeschein aus und schicken diesen mit.<br>Da Ihre Umtauschwaren weiterverkauft werden sollten, w&auml;re es eine gro&szlig;e Hilfe, wenn Sie die Artikel in der Originalverpackung samt H&auml;ngeschildern etc. zur&uuml;ckschicken k&ouml;nnten.<br><br>Zusammen mit Ihrer Ware haben Sie ein frankiertes R&uuml;cksendeetikett erhalten. Verwenden Sie bitte dies bei der R&uuml;cksendung. Senden Sie die Ware aufgrund einer Reklamation zur&uuml;ck oder weil Sie die falschen Artikel erhalten haben, ist der Versand selbstverst&auml;ndlich portokostenfrei f&uuml;r Sie.
+<br><br>W&uuml;nschen Sie in eine andere Gr&ouml;&szlig;e, Farbe oder einen anderen Artikel umzutauschen, ist der Versand ebenfalls portokostenfrei. Der Preis der Waren darf jedoch nicht den Preis der umzutauschenden Artikel &uuml;berschreiten.<br><br>Sollte ein Artikel den Sie umtauschen m&ouml;chten, ausverkauft sein, geben wir Ihnen Ihr Geld zur&uuml;ck. 
+Sollten Sie mit einer Geldkarte bezahlt haben, wird der zu erstattende Betrag auf die Karte zur&uuml;ckbezahlt, welche Sie beim Kauf der Waren angegeben haben. 
+<br><br>Haben Sie per “PayByBill“ oder Lastschrift bezahlt, kontaktieren Sie bitte GFG Finanz GmbH unter Tel.: 06131-9075259<br><b>Bitte beachten Sie:</b> Auch wenn Ihnen ein Betrag gutgeschrieben wird, bezahlen Sie bitte trotzdem Ihre ausstehende Rechnung innerhalb von 30 Tagen.<br><br>F&uuml;r weitere Informationen gehen Sie auf: <a href="/de_DE/" target="_blank">www.pompdelux.de</a></p>]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.activitycode">
                 <source>rma.slip.thead.activitycode</source>
