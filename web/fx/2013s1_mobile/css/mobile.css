@@ -56,7 +56,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 /**
-| _sprites.
+| _sprites
 */
 .da-sprite, body.da form.buy .submit-button, body.da .buy-set, body.da .new-price, body.da .out-of-stock, body.da .close-button, body.da .subscribe-button {
   background: url('/fx/mobile/../images/icons/da-s7398167b80.png') no-repeat;
@@ -218,19 +218,19 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background: url('/fx/mobile/../images/icons/fi-sbb8e5206a8.png') no-repeat;
 }
 
-.nl-sprite, body.nl form.buy .submit-button, body.nl .buy-set, body.nl .new-price, body.nl .out-of-stock, body.nl .subscribe-button {
+.nl-sprite, body.nl form.buy .submit-button, body.nl .buy-set, body.nl .new-price, body.nl .out-of-stock, body.nl .close-button, body.nl .subscribe-button {
   background: url('/fx/mobile/../images/icons/nl-saca568c621.png') no-repeat;
 }
 
-.no-sprite, body.nb form.buy .submit-button, body.nb .buy-set, body.nb .new-price, body.nb .out-of-stock, body.nb .subscribe-button {
+.no-sprite, body.nb form.buy .submit-button, body.nb .buy-set, body.nb .new-price, body.nb .out-of-stock, body.nb .close-button, body.nb .subscribe-button {
   background: url('/fx/mobile/../images/icons/no-s813f1bfbcf.png') no-repeat;
 }
 
-.se-sprite, body.sv form.buy .submit-button, body.sv .buy-set, body.sv .new-price, body.sv .out-of-stock, body.sv .subscribe-button {
+.se-sprite, body.sv form.buy .submit-button, body.sv .buy-set, body.sv .new-price, body.sv .out-of-stock, body.sv .close-button, body.sv .subscribe-button {
   background: url('/fx/mobile/../images/icons/se-s1e56dd0f03.png') no-repeat;
 }
 
-.en-sprite, body.en form.buy .submit-button, body.en .buy-set, body.en .new-price, body.en .out-of-stock, body.en .subscribe-button {
+.en-sprite, body.en form.buy .submit-button, body.en .buy-set, body.en .new-price, body.en .out-of-stock, body.en .close-button, body.en .subscribe-button, body.fi .close-button {
   background: url('/fx/mobile/../images/icons/en-s9a0e34be26.png') no-repeat;
 }
 
@@ -328,6 +328,11 @@ body.en .out-of-stock {
   height: 86px;
   width: 85px;
 }
+body.en .close-button {
+  background-position: 0 -747px;
+  height: 64px;
+  width: 44px;
+}
 body.en .subscribe-button {
   background-position: 0 -664px;
   height: 83px;
@@ -353,6 +358,11 @@ body.fi .out-of-stock {
   background-position: 0 -410px;
   height: 85px;
   width: 86px;
+}
+body.fi .close-button {
+  background-position: 0 -747px;
+  height: 64px;
+  width: 44px;
 }
 body.fi .subscribe-button {
   background-position: 0 -663px;
@@ -380,6 +390,11 @@ body.nb .out-of-stock {
   height: 85px;
   width: 86px;
 }
+body.nb .close-button {
+  background-position: 0 -746px;
+  height: 64px;
+  width: 44px;
+}
 body.nb .subscribe-button {
   background-position: 0 -663px;
   height: 83px;
@@ -406,6 +421,11 @@ body.nl .out-of-stock {
   height: 85px;
   width: 86px;
 }
+body.nl .close-button {
+  background-position: 0 -746px;
+  height: 64px;
+  width: 44px;
+}
 body.nl .subscribe-button {
   background-position: 0 -663px;
   height: 83px;
@@ -431,6 +451,11 @@ body.sv .out-of-stock {
   background-position: 0 -410px;
   height: 85px;
   width: 86px;
+}
+body.sv .close-button {
+  background-position: 0 -746px;
+  height: 64px;
+  width: 44px;
 }
 body.sv .subscribe-button {
   background-position: 0 -663px;
