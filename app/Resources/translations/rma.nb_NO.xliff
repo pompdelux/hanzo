@@ -4,16 +4,16 @@
         <body>
             <trans-unit id="rma.not_allowed_wrong_state">
                 <source>rma.not_allowed_wrong_state</source>
-                <target>Der skete en fejl. Ordren er ikke færdiggjort og kan derfor ikke returneres.</target>
+                <target>Det er skjet en feil. Ordren er ikke avsluttet og kan derfor ikke returneres.</target>
             </trans-unit>
             <trans-unit id="rma.form.title.order_id">
                 <source>rma.form.title.order_id</source>
-                <target>Opret returseddel for ordre %order_id%.</target>
+                <target>Opprett returskjema for ordre %order_id%.</target>
             </trans-unit>
             <trans-unit id="rma.form.description">
                 <source>rma.form.description</source>
                 <target><![CDATA[
-                    <p>For hver vare du ønsker at returnere, bedes du venligst vælge en aktivitet og en årsag. Noter ligeledes eventuelle kommentarer til den enkelte vare.<br>Returnerer du varer fra flere forskellige ordrer, skal du oprette en retursedel pr. ordre. Dine returvarer sender du naturligvis blot i en og samme pakke, uanset om de kommer fra flere ordrer. Husk at vedlægge retursedlen / retursedlerne i din pakke. Læs mere om returneringen på retursedlen, som bliver oprettet, når du klikker på "Opret returseddel" knappen.<br><br>For at kunne se sedlen, skal du have det gratis program Adobe Reader. Hvis du ikke har Adobe Reader installeret, kan du downloade programmet her. <br />
+                    <p>For hver vare du &oslash;nsker &aring; returnere, skal du vennligst velge en aktivitet og en &aring;rsak. Noter ogs&aring; eventuelle kommentarer til den enkelte varen.<br>Returnerer du varer fra flere forskjellige ordrer, skal du opprette et returskjema pr. ordre. Dine returvarer sender du naturligvis bare i en og samme pakke, uansett om de kommer fra flere ordrer. Husk &aring; legge ved returskjemaet / returskjemaene i pakken. Les mer om returneringen p&aring; returskjemaet, som blir opprettet n&aring;r du klikker p&aring; knappen &quot;Opprett returskjema&quot;.<br><br>For &aring; kunne se lappen, skal du ha installert gratisprogrammet Adobe Reader. Hvis du ikke har installert Adobe Reader, kan du laste ned programmet her.<br />
     <br />
     <a href="http://www.adobe.com/products/acrobat/readstep2.html" target="_blank"><img src="http://static.pompdelux.com/images/pages/PDF_logo.jpg" width="158" height="39" border="0" title="POMPdeLUX" /></a><br /></p>
                 ]]></target>
@@ -24,15 +24,15 @@
             </trans-unit>
             <trans-unit id="rma.form.label.cause">
                 <source>rma.form.label.cause</source>
-                <target>Årsag</target>
+                <target>Årsak</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.default">
                 <source>rma.form.activity.default</source>
-                <target>-- Vælg aktiviet --</target>
+                <target>-- Velg aktivitet --</target>
             </trans-unit>
             <trans-unit id="rma.form.cause.default">
                 <source>rma.form.cause.default</source>
-                <target>-- Vælg årsag --</target>
+                <target>-- Velg årsak --</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.return">
                 <source>rma.form.activity.return</source>
@@ -40,31 +40,31 @@
             </trans-unit>
             <trans-unit id="rma.form.activity.replacement">
                 <source>rma.form.activity.replacement</source>
-                <target>Ombytning</target>
+                <target>Bytting</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.warranty">
                 <source>rma.form.activity.warranty</source>
-                <target>Reklamation</target>
+                <target>Reklamasjon</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.return.causes">
                 <source>rma.form.activity.return.causes</source>
-                <target>Pakkefejl|Reklamation (venligst notér fejl)|Fortrudt køb (pengene retur)</target>
+                <target>Pakkefeil|Reklamasjon (vennligst noter feil)|Angret kjøp (pengene i retur)</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.replacement.causes">
                 <source>rma.form.activity.replacement.causes</source>
-                <target>Byttes til anden str.|Byttes til anden farve|Byttes til anden vare</target>
+                <target>Byttes til annen str.|Byttes til annen farge|Byttes til annen vare</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.warranty.causes">
                 <source>rma.form.activity.warranty.causes</source>
-                <target>Pakkefejl|Reklamation (venligst notér fejl)</target>
+                <target>Pakkefeil|Reklamasjon (vennligst noter feil)</target>
             </trans-unit>
             <trans-unit id="rma.form.label.description">
                 <source>rma.form.label.description</source>
-                <target>Evt. kommentar</target>
+                <target>Ev. kommentar</target>
             </trans-unit>
             <trans-unit id="rma.form.submit">
                 <source>rma.form.submit</source>
-                <target>Opret returseddel...</target>
+                <target>Opprett returskjema...</target>
             </trans-unit>
             <trans-unit id="rma.form.label.return.order">
                 <source>rma.form.label.return.order</source>
@@ -72,20 +72,21 @@
             </trans-unit>
             <trans-unit id="rma.form.label.replacement">
                 <source>rma.form.label.replacement</source>
-                <target>Indtast produkt navn for den du vil bytte med</target>
+                <target>Inntast produktnavn for den varen du vil bytte med</target>
             </trans-unit>
             <trans-unit id="rma.form.placeholder.produkt">
                 <source>rma.form.placeholder.produkt</source>
-                <target>fx. Copenhagen</target>
+                <target>f.eks. Copenhagen</target>
             </trans-unit>
             <trans-unit id="rma.slip.company_details">
                 <source>rma.slip.company_details</source>
                 <target><![CDATA[
                     <ul>
-                        <li>POMPdeLUX ApS</li>
-                        <li>M&oslash;gelh&oslash;j 8, DK-8520 Lystrup</li>
-                        <li>CVR-nr 29622035</li>
-                        <li>mail@pompdelux.dk (+45) 8678 7871</li>
+                        <li>Administrasjon: POMPdeLUX NO AS</li>
+						<li>c/o Granly &Oslash;konomiservice AS</li>
+                        <li>Nordseterveien 14, NO-1176 Oslo</li>
+                        <li>Org.nr. 994798510</li>
+                        <li>mail@pompdelux.no +47 2274 2600</li>
                     </ul>
                 ]]></target>
             </trans-unit>
@@ -99,7 +100,7 @@
             </trans-unit>
             <trans-unit id="rma.slip.email">
                 <source>rma.slip.email</source>
-                <target>Email</target>
+                <target>E-post</target>
             </trans-unit>
             <trans-unit id="rma.slip.phone">
                 <source>rma.slip.phone</source>
@@ -111,17 +112,15 @@
             </trans-unit>
             <trans-unit id="rma.slip.deliveryaddress">
                 <source>rma.slip.deliveryaddress</source>
-                <target>Leveringsaddresse</target>
+                <target>Leveringsadresse</target>
             </trans-unit>
             <trans-unit id="rma.slip.title.order_id">
                 <source>rma.slip.title.order_id</source>
-                <target>POMPdeLUX returseddel Ordre ID %order_id%</target>
+                <target>POMPdeLUX returskjema Ordre ID %order_id%</target>
             </trans-unit>
             <trans-unit id="rma.slip.description">
                 <source>rma.slip.description</source>
-                <target><![CDATA[<p>Hvis du &oslash;nsker, at bytte eller returnere varer, skal du udfylde og medsende denne returseddel.<br>Da din returvare skal s&aelig;lges igen, vil det v&aelig;re en stor hj&aelig;lp, at du returnerer varen i original indpakning med h&aelig;ngem&aelig;rker etc.<br><br>Sammen med dine varer modtog du en returlabel &ndash; benyt denne, s&aring; modregner vi kun DKK 29,- fra v&aelig;rdien af dine returvarer.<br><br>Returnerer du en reklamation eller fejlleveret vare, er forsendelsen naturligvis fragtfri for dig. Hvis du &oslash;nsker at ombytte til en anden
-St&oslash;rrelse, farve, eller til en helt anden vare, er forsendelsen ligeledes fragtfri. Varens pris m&aring; dog ikke overstige prisen p&aring; varen
-du returnerer.<br><br>Er varen du &oslash;nsker at ombytte til udsolgt, refunderer vi bel&oslash;bet til dig.<br><br>Har du benyttet kortbetaling overf&oslash;res dit returbel&oslash;b til det betalingskort du anvendte ved bestilling.<br><br>Har du benyttet PayByBill, beder vi dig kontakte Gothia Finans A/S p&aring; tlf.: 7027 2795.<br><b>Bem&aelig;rk:</b> Selvom du afventer en kreditnota p&aring; dine returvarer, skal du betale din udest&aring;ende faktura indenfor 30 dage.<br><br>For yderligere information se venligst: <a href="/da_DK/" target="_blank">www.pompdelux.dk</a></p>]]></target>
+                <target><![CDATA[<p>Hvis du &oslash;nsker &aring; bytte eller returnere varer, skal du fylle ut og sende med dette returskjemaet.<br>Da din returvare skal selges igjen, vil det v&aelig;re en stor hjelp dersom du returnerer varen i original innpakning med hengemerker etc.<br><br>Sammen med varene dine mottok du et returmerke – bruk dette, s&aring; motregner vi kun NOK 69,- fra verdien av returvarene dine.<br><br>Returnerer du en reklamasjon eller feil levert vare, er forsendelsen naturligvis fraktfri for deg. Hvis du &oslash;nsker &aring; bytte til en annen st&oslash;rrelse, farge, eller til en helt annen vare, s&aring; er forsendelsen ogs&aring; fraktfri. Men varens pris m&aring; bare ikke overstige prisen p&aring; varen du returnerer. Er varen du &oslash;nsker &aring; bytte til utsolgt, refunderer vi bel&oslash;pet til deg.<br><br>Har du betalt med kort, s&aring; overf&oslash;res returbel&oslash;pet til det betalingskortet du brukte ved bestilling.<br><br>Har du benyttet PayByBill, ber vi deg om &aring; kontakte Gothia Finans AS p&aring; tlf.: 22 87 89 70.<br><b>Merk:</b> Selv om du venter p&aring; en kreditnota p&aring; returvarene dine, skal du betale den utest&aring;ende fakturaen innen 30 dager.<br><br>For ytterligere informasjon, se vennligst: <a href="/nb_NO/" target="_blank">www.pompdelux.no</a></p>]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.activitycode">
                 <source>rma.slip.thead.activitycode</source>
@@ -141,7 +140,7 @@ du returnerer.<br><br>Er varen du &oslash;nsker at ombytte til udsolgt, refunder
             </trans-unit>
             <trans-unit id="rma.history.title">
                 <source>rma.history.title</source>
-                <target>Opret RMA retturseddel.</target>
+                <target>Opprett RMA returlapp.</target>
             </trans-unit>
         </body>
     </file>
