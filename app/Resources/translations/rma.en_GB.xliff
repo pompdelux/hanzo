@@ -4,8 +4,7 @@
         <body>
             <trans-unit id="rma.not_allowed_wrong_state">
                 <source>rma.not_allowed_wrong_state</source>
-                <target>An error occurred. The order has not been processed and therefore cannot be returned.
-target>
+                <target>An error occurred. The order has not been processed and therefore cannot be returned.<target>
             </trans-unit>
             <trans-unit id="rma.form.title.order_id">
                 <source>rma.form.title.order_id</source>
