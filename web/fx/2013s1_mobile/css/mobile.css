@@ -56,7 +56,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 /**
-| _sprites
+| _sprites.
 */
 .da-sprite, body.da form.buy .submit-button, body.da .buy-set, body.da .new-price, body.da .out-of-stock, body.da .close-button, body.da .subscribe-button {
   background: url('/fx/mobile/../images/icons/da-s7398167b80.png') no-repeat;
@@ -215,23 +215,23 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .fi-sprite, body.fi form.buy .submit-button, body.fi .buy-set, body.fi .new-price, body.fi .out-of-stock, body.fi .subscribe-button {
-  background: url('/fx/mobile/../images/icons/fi-sb66fdc1385.png') no-repeat;
+  background: url('/fx/mobile/../images/icons/fi-sbb8e5206a8.png') no-repeat;
 }
 
 .nl-sprite, body.nl form.buy .submit-button, body.nl .buy-set, body.nl .new-price, body.nl .out-of-stock, body.nl .subscribe-button {
-  background: url('/fx/mobile/../images/icons/nl-saa49449e7f.png') no-repeat;
+  background: url('/fx/mobile/../images/icons/nl-saca568c621.png') no-repeat;
 }
 
 .no-sprite, body.nb form.buy .submit-button, body.nb .buy-set, body.nb .new-price, body.nb .out-of-stock, body.nb .subscribe-button {
-  background: url('/fx/mobile/../images/icons/no-s6e99c64b7a.png') no-repeat;
+  background: url('/fx/mobile/../images/icons/no-s813f1bfbcf.png') no-repeat;
 }
 
 .se-sprite, body.sv form.buy .submit-button, body.sv .buy-set, body.sv .new-price, body.sv .out-of-stock, body.sv .subscribe-button {
-  background: url('/fx/mobile/../images/icons/se-s9b797786a1.png') no-repeat;
+  background: url('/fx/mobile/../images/icons/se-s1e56dd0f03.png') no-repeat;
 }
 
 .en-sprite, body.en form.buy .submit-button, body.en .buy-set, body.en .new-price, body.en .out-of-stock, body.en .subscribe-button {
-  background: url('/fx/mobile/../images/icons/en-s37522d2f6e.png') no-repeat;
+  background: url('/fx/mobile/../images/icons/en-s9a0e34be26.png') no-repeat;
 }
 
 .de-sprite, body.de form.buy .submit-button, body.de .buy-set, body.de .new-price, body.de .out-of-stock, body.de .close-button, body.de .subscribe-button {
