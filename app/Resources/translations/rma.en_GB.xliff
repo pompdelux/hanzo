@@ -4,98 +4,98 @@
         <body>
             <trans-unit id="rma.not_allowed_wrong_state">
                 <source>rma.not_allowed_wrong_state</source>
-                <target>Der skete en fejl. Ordren er ikke færdiggjort og kan derfor ikke returneres.</target>
+                <target>An error occurred. The order has not been processed and therefore cannot be returned.</target>
             </trans-unit>
             <trans-unit id="rma.form.title.order_id">
                 <source>rma.form.title.order_id</source>
-                <target>Opret returseddel for ordre %order_id%.</target>
+                <target>Create a Returns Form for order %order_id%.</target>
             </trans-unit>
             <trans-unit id="rma.form.description">
                 <source>rma.form.description</source>
                 <target><![CDATA[
-                    <p>For hver vare du ønsker at returnere, bedes du venligst vælge en aktivitet og en årsag. Noter ligeledes eventuelle kommentarer til den enkelte vare.<br>Returnerer du varer fra flere forskellige ordrer, skal du oprette en retursedel pr. ordre. Dine returvarer sender du naturligvis blot i en og samme pakke, uanset om de kommer fra flere ordrer. Husk at vedlægge retursedlen / retursedlerne i din pakke. Læs mere om returneringen på retursedlen, som bliver oprettet, når du klikker på "Opret returseddel" knappen.<br><br>For at kunne se sedlen, skal du have det gratis program Adobe Reader. Hvis du ikke har Adobe Reader installeret, kan du downloade programmet her. <br />
+                    <p>For every item you wish to return, please select an action and a reason for return. You can also add a comment regarding an individual item.<br>If you are returning items from more than one order, you must create a Returns form for each order. However, you may of course send the items in one package regardless whether they come from different orders. Remember to enclose Return form/ forms with your package. You can find further instructions regarding returns on the Returns form that will be created as you press the ”Create Returns form” button.<br><br>In order to see the form you must have installed a free Adobe Reader programme. If you do not have Adobe Reader installed on your computer/ device, the program can be downloaded here.<br />
     <br />
     <a href="http://www.adobe.com/products/acrobat/readstep2.html" target="_blank"><img src="http://static.pompdelux.com/images/pages/PDF_logo.jpg" width="158" height="39" border="0" title="POMPdeLUX" /></a><br /></p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="rma.form.label.activitycode">
                 <source>rma.form.label.activitycode</source>
-                <target>Aktivitet</target>
+                <target>Activity</target>
             </trans-unit>
             <trans-unit id="rma.form.label.cause">
                 <source>rma.form.label.cause</source>
-                <target>Årsag</target>
+                <target>Reason</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.default">
                 <source>rma.form.activity.default</source>
-                <target>-- Vælg aktiviet --</target>
+                <target>-- Choose activity --</target>
             </trans-unit>
             <trans-unit id="rma.form.cause.default">
                 <source>rma.form.cause.default</source>
-                <target>-- Vælg årsag --</target>
+                <target>-- Choose reason --</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.return">
                 <source>rma.form.activity.return</source>
-                <target>Returnering</target>
+                <target>Returns</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.replacement">
                 <source>rma.form.activity.replacement</source>
-                <target>Ombytning</target>
+                <target>Exchange</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.warranty">
                 <source>rma.form.activity.warranty</source>
-                <target>Reklamation</target>
+                <target>Defect item</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.return.causes">
                 <source>rma.form.activity.return.causes</source>
-                <target>Pakkefejl|Reklamation (venligst notér fejl)|Fortrudt køb (pengene retur)</target>
+                <target>Packing error|Defect item (please note fault)|Regret purchase (money back)</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.replacement.causes">
                 <source>rma.form.activity.replacement.causes</source>
-                <target>Byttes til anden str.|Byttes til anden farve|Byttes til anden vare</target>
+                <target>Exchange to another size|Exhange to another colour|Exchange to another item</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.warranty.causes">
                 <source>rma.form.activity.warranty.causes</source>
-                <target>Pakkefejl|Reklamation (venligst notér fejl)</target>
+                <target>Packing error|Defect item (please note fault)</target>
             </trans-unit>
             <trans-unit id="rma.form.label.description">
                 <source>rma.form.label.description</source>
-                <target>Evt. kommentar</target>
+                <target>Comments</target>
             </trans-unit>
             <trans-unit id="rma.form.submit">
                 <source>rma.form.submit</source>
-                <target>Opret returseddel...</target>
+                <target>Create returns form...</target>
             </trans-unit>
             <trans-unit id="rma.form.label.return.order">
                 <source>rma.form.label.return.order</source>
-                <target>Returner hele ordren</target>
+                <target>Return the entire order</target>
             </trans-unit>
             <trans-unit id="rma.form.label.replacement">
                 <source>rma.form.label.replacement</source>
-                <target>Indtast produkt navn for den du vil bytte med</target>
+                <target>Enter the product name you wish to exchange for</target>
             </trans-unit>
             <trans-unit id="rma.form.placeholder.produkt">
                 <source>rma.form.placeholder.produkt</source>
-                <target>fx. Copenhagen</target>
+                <target>e.g. Copenhagen</target>
             </trans-unit>
             <trans-unit id="rma.slip.company_details">
                 <source>rma.slip.company_details</source>
                 <target><![CDATA[
                     <ul>
                         <li>POMPdeLUX ApS</li>
-                        <li>M&oslash;gelh&oslash;j 8, DK-8520 Lystrup</li>
+                        <li>Møgelhøj 8, DK-8520 Lystrup</li>
                         <li>CVR-nr 29622035</li>
-                        <li>mail@pompdelux.dk (+45) 8678 7871</li>
+                        <li>mail@pompdelux.com (+45) 8736 1000</li>
                     </ul>
                 ]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.id">
                 <source>rma.slip.id</source>
-                <target>Kundenummer</target>
+                <target>Customer number</target>
             </trans-unit>
             <trans-unit id="rma.slip.name">
                 <source>rma.slip.name</source>
-                <target>Navn</target>
+                <target>Name</target>
             </trans-unit>
             <trans-unit id="rma.slip.email">
                 <source>rma.slip.email</source>
@@ -103,29 +103,29 @@
             </trans-unit>
             <trans-unit id="rma.slip.phone">
                 <source>rma.slip.phone</source>
-                <target>Telefon</target>
+                <target>Phone number</target>
             </trans-unit>
             <trans-unit id="rma.slip.order_id">
                 <source>rma.slip.order_id</source>
-                <target>E-ordrenummer</target>
+                <target>E-order number</target>
             </trans-unit>
             <trans-unit id="rma.slip.deliveryaddress">
                 <source>rma.slip.deliveryaddress</source>
-                <target>Leveringsaddresse</target>
+                <target>Delivery address</target>
             </trans-unit>
             <trans-unit id="rma.slip.title.order_id">
                 <source>rma.slip.title.order_id</source>
-                <target>POMPdeLUX returseddel Ordre ID %order_id%</target>
+                <target>POMPdeLUX Returns form order ID %order_id%</target>
             </trans-unit>
             <trans-unit id="rma.slip.description">
                 <source>rma.slip.description</source>
-                <target><![CDATA[<p>Hvis du &oslash;nsker, at bytte eller returnere varer, skal du udfylde og medsende denne returseddel.<br>Da din returvare skal s&aelig;lges igen, vil det v&aelig;re en stor hj&aelig;lp, at du returnerer varen i original indpakning med h&aelig;ngem&aelig;rker etc.<br><br>Sammen med dine varer modtog du en returlabel &ndash; benyt denne, s&aring; modregner vi kun DKK 29,- fra v&aelig;rdien af dine returvarer.<br><br>Returnerer du en reklamation eller fejlleveret vare, er forsendelsen naturligvis fragtfri for dig. Hvis du &oslash;nsker at ombytte til en anden
-St&oslash;rrelse, farve, eller til en helt anden vare, er forsendelsen ligeledes fragtfri. Varens pris m&aring; dog ikke overstige prisen p&aring; varen
-du returnerer.<br><br>Er varen du &oslash;nsker at ombytte til udsolgt, refunderer vi bel&oslash;bet til dig.<br><br>Har du benyttet kortbetaling overf&oslash;res dit returbel&oslash;b til det betalingskort du anvendte ved bestilling.<br><br>Har du benyttet PayByBill, beder vi dig kontakte Gothia Finans A/S p&aring; tlf.: 7027 2795.<br><b>Bem&aelig;rk:</b> Selvom du afventer en kreditnota p&aring; dine returvarer, skal du betale din udest&aring;ende faktura indenfor 30 dage.<br><br>For yderligere information se venligst: <a href="/da_DK/" target="_blank">www.pompdelux.dk</a></p>]]></target>
+                <target><![CDATA[<p>If you wish to exchange or return items, you must fill in and enclose this Returns form with your package.
+As the returned items will go back on sale it would be a great help if you can return the items in their original packaging with hangtags attached etc.
+<br><br>If you are returning a defect item or an incorrectly send item, we refund you the shipping charge.<br><br>If you wish to exchange an item to a different size, colour or another item, the new shipment is free of charge. Please note that the price of the new item may not exceed that of the returned item.<br><br>If the item you wish to exchange for is sold out, we refund you the returned item.<br><br>Any refund will automatically be issued to the credit card used to make the original purchase. <br><b>For more information please visit: <a href="/en_GB/" target="_blank">www.pompdelux.com</a></p>]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.activitycode">
                 <source>rma.slip.thead.activitycode</source>
-                <target>Aktivitet</target>
+                <target>Activity</target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.cause">
                 <source>rma.slip.thead.cause</source>
@@ -133,15 +133,15 @@ du returnerer.<br><br>Er varen du &oslash;nsker at ombytte til udsolgt, refunder
             </trans-unit>
             <trans-unit id="rma.slip.thead.replacement">
                 <source>rma.slip.thead.replacement</source>
-                <target>Byttes til</target>
+                <target>Exchange for</target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.description">
                 <source>rma.slip.thead.description</source>
-                <target>Din kommentar</target>
+                <target>Your comments</target>
             </trans-unit>
             <trans-unit id="rma.history.title">
                 <source>rma.history.title</source>
-                <target>Opret RMA retturseddel.</target>
+                <target>Create RMA returns form.</target>
             </trans-unit>
         </body>
     </file>

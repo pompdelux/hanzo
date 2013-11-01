@@ -18,7 +18,9 @@ class DefaultController extends CoreController
 
     public function indexAction()
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN') && false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') ) {
+        if ((false === $this->get('security.context')->isGranted('ROLE_ADMIN')) &&
+            (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT'))
+        ) {
             return $this->redirect($this->generateUrl('login', ['_locale' => $this->get('request')->getLocale()]));
         }
 
@@ -34,7 +36,9 @@ class DefaultController extends CoreController
     public function getWallAction($pager)
     {
 
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN') && false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') ) {
+        if ((false === $this->get('security.context')->isGranted('ROLE_ADMIN')) &&
+            (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT'))
+        ) {
             throw new AccessDeniedException();
         }
 
@@ -78,10 +82,11 @@ class DefaultController extends CoreController
             foreach ($likes as $like) {
 
                 // Count the number of likes/dislikes
-                if($like->getStatus())
+                if ($like->getStatus()) {
                     $total_likes++;
-                else
+                } else {
                     $total_dislikes++;
+                }
 
                 $likes_arr[] = array(
                     'id' => $like->getId(),
@@ -153,7 +158,7 @@ class DefaultController extends CoreController
                 //'number_of_posts' => $wall_posts->getLastIndex(),
                 'data' => $posts
             ));
-        }else{
+        } else {
             return $this->json_response(array(
                 'status' => true,
                 'next_page' => ++$pager,
@@ -165,12 +170,15 @@ class DefaultController extends CoreController
 
     public function editEntryAction($id)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN') && false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') ) {
+        if ((false === $this->get('security.context')->isGranted('ROLE_ADMIN')) &&
+            (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT'))
+        ) {
             throw new AccessDeniedException();
         }
+
         $wall_entry = WallQuery::create()->findOneById($id);
 
-        if($wall_entry instanceof Wall) {
+        if ($wall_entry instanceof Wall) {
             $request = $this->get('request');
             if ('POST' === $request->getMethod()) {
 
@@ -186,7 +194,7 @@ class DefaultController extends CoreController
                     ));
                 }
             }
-        }else{
+        } else {
             if ($this->getFormat() == 'json') {
                 return $this->json_response(array(
                     'status' => false,
@@ -202,9 +210,12 @@ class DefaultController extends CoreController
     public function addEntryAction($id)
     {
 
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN') && false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') ) {
+        if ((false === $this->get('security.context')->isGranted('ROLE_ADMIN')) &&
+            (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT'))
+        ) {
             throw new AccessDeniedException();
         }
+
         $request = $this->get('request');
         if ('POST' === $request->getMethod()) {
             $creator = $this->get('security.context')->getToken()->getUser();
@@ -220,7 +231,7 @@ class DefaultController extends CoreController
             $wall_entry->setStatus(true);
             $wall_entry->save();
 
-            if($id){ // If its a comment to another post, inform all participants of the entry by mail.
+            if ($id) { // If its a comment to another post, inform all participants of the entry by mail.
                 $users = WallQuery::create()
                     ->useCustomersQuery()
                         ->groupByEmail()
@@ -244,11 +255,10 @@ class DefaultController extends CoreController
                         'comment' => $wall_entry->getMessate(),
                     ));
 
-                    try{
+                    try {
                         $mailer->setTo($customer->getEmail(), $customer->getFirstName());
                         $mailer->send();
-                    }
-                    catch (Exception $e) {
+                    } catch (Exception $e) {
                         Tools::log($e);
                     }
                 }
@@ -280,7 +290,7 @@ class DefaultController extends CoreController
                     'number_of_subposts' => 0,
                     'sub_posts' => null
                 );
-            }else{
+            } else {
                 $post[] = array(
                     'id' => $wall_post->getId(),
                     'message' => $this->wallEmo($wall_post->getMessate()),
@@ -310,17 +320,20 @@ class DefaultController extends CoreController
      */
     public function likeEntryAction($id, $status)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN') && false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') ) {
+        if ((false === $this->get('security.context')->isGranted('ROLE_ADMIN')) &&
+            (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT'))
+        ) {
             throw new AccessDeniedException();
         }
+
         $is_liked = WallLikesQuery::create()
             ->filterByWallId($id)
             ->findOneByCustomersId($this->get('security.context')->getToken()->getUser()->getPrimaryKey())
         ;
 
-        if($is_liked instanceof WallLikes){
+        if ($is_liked instanceof WallLikes) {
 
-            if($is_liked->getStatus() == $status){
+            if ($is_liked->getStatus() == $status) {
                 // If the status are the same, its a toggle. Then delete it.
 
                 $is_liked->delete();
@@ -332,7 +345,7 @@ class DefaultController extends CoreController
                     ));
                 }
 
-            }else{
+            } else {
                 // If they are not the same, its a change from like <> dislike.
                 $is_liked->setStatus($status);
                 $is_liked->save();
@@ -346,7 +359,7 @@ class DefaultController extends CoreController
             }
 
 
-        }else{
+        } else {
             $is_liked = new WallLikes();
             $is_liked->setWallId($id);
             $is_liked->setCustomersId($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
@@ -365,12 +378,17 @@ class DefaultController extends CoreController
 
     public function deleteEntryAction($id)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN') && false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') ) {
+        if ((false === $this->get('security.context')->isGranted('ROLE_ADMIN')) &&
+            (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT'))
+        ) {
             throw new AccessDeniedException();
         }
+
         $wall_entry = WallQuery::create();
 
-        if (FALSE == $this->get('security.context')->isGranted('ROLE_ADMIN') && FALSE == $this->get('security.context')->isGranted('ROLE_SALES')) {
+        if ((false == $this->get('security.context')->isGranted('ROLE_ADMIN')) &&
+            (false == $this->get('security.context')->isGranted('ROLE_SALES'))
+        ) {
             $wall_entry = $wall_entry->filterByCustomersId($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
         }
 
@@ -384,7 +402,7 @@ class DefaultController extends CoreController
                     'message' => $this->get('translator')->trans('wall.entry.delete.success', array(), 'wall')
                 ));
             }
-        }else{
+        } else {
             if ($this->getFormat() == 'json') {
                 return $this->json_response(array(
                     'status' => false,
@@ -409,6 +427,7 @@ class DefaultController extends CoreController
             ':@', '&gt;(', '&gt;-(', // emo-10
             ':p', ':-p', ':P', ':-P', // emo-12
         );
+
         $replace = array(
             '<em class="emo-7"> </em>', '<em class="emo-7"> </em>', '<em class="emo-7"> </em>',
             '<em class="emo-1"> </em>', '<em class="emo-1"> </em>', '<em class="emo-1"> </em>', '<em class="emo-1"> </em>', '<em class="emo-1"> </em>',

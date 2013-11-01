@@ -110,6 +110,16 @@ body.en{
         height: en-sprite-height(out-of-stock);
         width: en-sprite-width(out-of-stock);
     }
+    .close-button{
+        @include en-sprite(close-button);
+        height: en-sprite-height(close-button);
+        width: en-sprite-width(close-button);
+    }
+    .subscribe-button{
+        @include en-sprite(subscribe-button);
+        height: en-sprite-height(subscribe-button);
+        width: en-sprite-width(subscribe-button);
+    }
 }
 
 body.fi{
@@ -132,6 +142,16 @@ body.fi{
         @include fi-sprite(out-of-stock);
         height: fi-sprite-height(out-of-stock);
         width: fi-sprite-width(out-of-stock);
+    }
+    .close-button{
+        @include en-sprite(close-button);
+        height: en-sprite-height(close-button);
+        width: en-sprite-width(close-button);
+    }
+    .subscribe-button{
+        @include fi-sprite(subscribe-button);
+        height: fi-sprite-height(subscribe-button);
+        width: fi-sprite-width(subscribe-button);
     }
 }
 
@@ -156,6 +176,16 @@ body.nb{
         height: no-sprite-height(out-of-stock);
         width: no-sprite-width(out-of-stock);
     }
+    .close-button{
+        @include no-sprite(close-button);
+        height: no-sprite-height(close-button);
+        width: no-sprite-width(close-button);
+    }
+    .subscribe-button{
+        @include no-sprite(subscribe-button);
+        height: no-sprite-height(subscribe-button);
+        width: no-sprite-width(subscribe-button);
+    }
 }
 
 body.nl{
@@ -179,6 +209,16 @@ body.nl{
         height: nl-sprite-height(out-of-stock);
         width: nl-sprite-width(out-of-stock);
     }
+    .close-button{
+        @include nl-sprite(close-button);
+        height: nl-sprite-height(close-button);
+        width: nl-sprite-width(close-button);
+    }
+    .subscribe-button{
+        @include nl-sprite(subscribe-button);
+        height: nl-sprite-height(subscribe-button);
+        width: nl-sprite-width(subscribe-button);
+    }
 }
 
 body.sv{
@@ -201,5 +241,15 @@ body.sv{
         @include se-sprite(out-of-stock);
         height: se-sprite-height(out-of-stock);
         width: se-sprite-width(out-of-stock);
+    }
+    .close-button{
+        @include se-sprite(close-button);
+        height: se-sprite-height(close-button);
+        width: se-sprite-width(close-button);
+    }
+    .subscribe-button{
+        @include se-sprite(subscribe-button);
+        height: se-sprite-height(subscribe-button);
+        width: se-sprite-width(subscribe-button);
     }
 }

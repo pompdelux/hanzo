@@ -449,7 +449,7 @@
 Sie können Ihre Bestellung ändern oder etwas hinzufügen bzw. entfernen. Klicken Sie bei der Bearbeitung auf den <img src="/fx/images/icons/icons/edit.png" alt="Edit">.
 Bitte beachten: Die Zahlung muss durchgeführt werden – frühere Zahlungsreservierungen werden automatisch gelöscht.
 Möchten Sie Ihre gesamte Bestellung löschen, dann klicken Sie bitte auf <img src="/fx/images/icons/icons/delete.png" alt="Delete">.<br><br><b>Bearbeitung stoppen</b><br>Sie haben evtl. Ihre Bearbeitung abgebrochen. Drücken Sie auf die Schaltfläche ”Bearbeitung stoppen”, danach können Sie Ihre Bestellung erneut bearbeiten.<br><br><b>Wird bearbeitet</b><br>Ihre Bestellung wird jetzt in unserem Lager bearbeitet und im Laufe von 1-2 Tagen an Sie verschickt. Es ist nicht möglich, Ihre Bestellung zu bearbeiten/zu stoppen.<br><br><b>In Rechnung gestellt</b><br>Ihre Bestellung hat unser Lager verlassen. Die Rechnung finden Sie als beigefügte PDF-Datei in der Spalte Rechnung im Laufe von 24 Stunden nach dem Versand.<br><br><b>
-Rücksendung</b><br>Für Rücksendungen von Waren finden Sie unseren <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel.pdf" target="_blank">Rücksendeschein hier</a>.<br><br></p>]]></target>
+Rücksendung</b><br>Möchten Sie die Ware zurückschicken, dann klicken Sie bitte hier <img src="/fx/images/icons/icons/return.png" alt="Return"><br><br></p>]]></target>
             </trans-unit>
             <trans-unit id="newsletter" approved="no">
                 <source>newsletter</source>

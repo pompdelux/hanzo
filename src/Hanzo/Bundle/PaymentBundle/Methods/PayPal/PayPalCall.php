@@ -141,7 +141,7 @@ class PayPalCall implements PaymentMethodApiCallInterface
         $parameters = [
             'TRANSACTIONID' => $attributes->payment->CAPTURE_TRANSACTIONID,
             'PAYERID'       => $attributes->payment->PAYERID,
-            'INVOICEID'     => $order->getPaymentGatewayId(),
+            'INVOICEID'     => $attributes->payment->TRANSACTIONID,
             'REFUNDTYPE'    => 'Partial',
             'AMT'           => number_format($amount, 2, '.', ''),
             'CURRENCYCODE'  => $order->getCurrencyCode(),

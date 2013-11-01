@@ -128,7 +128,7 @@
             </trans-unit>
             <trans-unit id="consultant.newsletter.history.not.processed">
                 <source>consultant.newsletter.history.not.processed</source>
-                <target>(Inte skickas)</target>
+                <target>(Inte skickat)</target>
             </trans-unit>
         </body>
     </file>

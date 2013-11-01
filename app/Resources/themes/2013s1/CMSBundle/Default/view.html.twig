@@ -49,7 +49,6 @@
         {{ parse(page.content) }}
     </article>
 
-    {% if app.request.locale == 'da_DK' or app.request.locale == 'de_DE' %}
     <div id="newsletterModal">
         <div class="inner">
             <div class="wrapper">
@@ -68,7 +67,6 @@
             <div class="bottom"></div>
         </div>
     </div>
-    {% endif %}
 {% endif %}
 
 {% endblock %}
