@@ -193,6 +193,7 @@ class DefaultController extends CoreController
                 $this->get('twig')->addGlobal('show_new_price_badge', $hanzo->get('webshop.show_new_price_badge'));
                 $this->get('twig')->addGlobal('cms_id', $cms_page->getParentId());
                 $this->get('twig')->addGlobal('show_by_look', ($show === 'look'));
+                $this->get('twig')->addGlobal('browser_title', $cms_page->getTitle());
                 $html = $this->renderView('CategoryBundle:Default:view.html.twig', $data);
                 $this->setCache($cache_id, $html, 5);
             }
