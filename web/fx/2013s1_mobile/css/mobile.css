@@ -56,7 +56,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 /**
-| _sprites
+| _sprites.
 */
 .da-sprite, body.da form.buy .submit-button, body.da .buy-set, body.da .new-price, body.da .out-of-stock, body.da .close-button, body.da .subscribe-button {
   background: url('/fx/mobile/../images/icons/da-s7398167b80.png') no-repeat;
@@ -219,7 +219,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .nl-sprite, body.nl form.buy .submit-button, body.nl .buy-set, body.nl .new-price, body.nl .out-of-stock, body.nl .close-button, body.nl .subscribe-button {
-  background: url('/fx/mobile/../images/icons/nl-saca568c621.png') no-repeat;
+  background: url('/fx/mobile/../images/icons/nl-s8f38c5af71.png') no-repeat;
 }
 
 .no-sprite, body.nb form.buy .submit-button, body.nb .buy-set, body.nb .new-price, body.nb .out-of-stock, body.nb .close-button, body.nb .subscribe-button {
