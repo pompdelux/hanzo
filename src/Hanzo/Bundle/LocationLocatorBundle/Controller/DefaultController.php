@@ -35,7 +35,12 @@ class DefaultController extends CoreController
         }
 
         $api = $this->get('hanzo_location_locator');
-        $form = $api->getLookupForm($this->createFormBuilder(), $request);
+
+        try {
+            $form = $api->getLookupForm($this->createFormBuilder(), $request);
+        } catch (\Exception $e) {
+            return $this->response('');
+        }
 
         if ('POST' === $request->getMethod()) {
             $values = $request->request->get('form');
@@ -49,7 +54,7 @@ class DefaultController extends CoreController
                 } else {
                     $zip = '';
                     $city = '';
-                    if (preg_match('/^[0-9]+$/', $street)) {
+                    if (preg_match('/[0-9]+/', $street)) {
                         $zip = $street;
                         $street = '';
                     }

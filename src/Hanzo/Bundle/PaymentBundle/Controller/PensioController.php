@@ -41,7 +41,8 @@ class PensioController extends CoreController
      */
     public function formAction(Request $request)
     {
-        if ('77.66.40.133' !== $request->getClientIp()) {
+        if (!in_array($request->getClientIp(), ['77.66.40.133', '127.0.0.1'])) {
+            Tools::log('Access denied for '.$request->getClientIp().' to '.__METHOD__);
             throw new AccessDeniedException();
         }
 
@@ -69,7 +70,8 @@ class PensioController extends CoreController
      */
     public function waitAction(Request $request)
     {
-        if ('77.66.40.133' !== $request->getClientIp()) {
+        if (!in_array($request->getClientIp(), ['77.66.40.133', '127.0.0.1'])) {
+            Tools::log('Access denied for '.$request->getClientIp().' to '.__METHOD__);
             throw new AccessDeniedException();
         }
 
@@ -100,7 +102,8 @@ class PensioController extends CoreController
      */
     public function callbackAction(Request $request, $status = 'failed')
     {
-        if ('77.66.40.133' !== $request->getClientIp()) {
+        if (!in_array($request->getClientIp(), ['77.66.40.133', '127.0.0.1'])) {
+            Tools::log('Access denied for '.$request->getClientIp().' to '.__METHOD__);
             throw new AccessDeniedException();
         }
 
@@ -134,11 +137,12 @@ class PensioController extends CoreController
             $api->updateOrderStatus(Orders::STATE_ERROR_PAYMENT, $request, $order);
 
             return $this->render('PaymentBundle:Pensio:failed.html.twig', [
-                'message'    => $request->get('error_message'),
-                'order_id'   => $order->getId(),
-                'amount'     => $order->getTotalPrice(),
-                'payment_id' => $order->getPaymentGatewayId(),
-                'back_url'   => $this->generateUrl('_checkout', [], true),
+                'message'         => $request->get('error_message'),
+                'order_id'        => $order->getId(),
+                'amount'          => $order->getTotalPrice(),
+                'payment_id'      => $order->getPaymentGatewayId(),
+                'back_url'        => $this->generateUrl('_payment_cancel', [], true),
+                'skip_my_account' => true,
             ]);
         }
 
@@ -156,5 +160,28 @@ class PensioController extends CoreController
     public function cancelAction(Request $request)
     {
         return new Response('Ok', 200, array('Content-Type' => 'text/plain'));
+    }
+
+
+    /**
+     * Get transaction information on a order id
+     *
+     * @param  Request $request
+     * @param  Integer $order_id
+     * @return Response
+     */
+    public function lookupAction(Request $request, $order_id)
+    {
+        $order = OrdersQuery::create()
+            ->findOneById(
+                $order_id, // 19653
+                Propel::getConnection(null, Propel::CONNECTION_WRITE)
+            )
+        ;
+
+        $api = $this->get('payment.pensioapi');
+        $result = $api->call()->getPayment($order, true);
+
+        return new Response('<pre>'.print_r($result,1).'</pre>', 200, array('Content-Type' => 'text/plain'));
     }
 }

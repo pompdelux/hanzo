@@ -32,7 +32,7 @@ if ('dev' != $env[0]) {
             $db_prefix = $env[0].'_de_';
             break;
       // case 'nl':
-      //   $db_prefix = $env[0].'_se_';
+      //   $db_prefix = $env[0].'_nl_';
       //   break;
     }
 }
@@ -46,6 +46,8 @@ $locale_map = [
     'nl'  => 'nl_NL',
     'no'  => 'nb_NO',
     'se'  => 'sv_SE',
+    'at'  => 'de_AT',
+    'ch'  => 'de_CH',
 ];
 $container->setParameter('locale', $locale_map[$lang]);
 
@@ -59,11 +61,14 @@ $stmt              = $localDbConnection->prepare( "SELECT * FROM settings WHERE 
 $stmt->execute();
 $results           = $stmt->fetchAll();
 
-// Default settings
+// setting up assetic version and baseurl, needed to support cdn
 $container->setParameter('assets_version', 1);
+$container->setParameter('assets_base_url', str_replace('http:', '', $container->getParameter('cdn')));
 
+// Default settings
 if ( !empty($results) ) {
     foreach ($results as $result) {
         $container->setParameter($result['c_key'], $result['c_value']);
     }
 }
+

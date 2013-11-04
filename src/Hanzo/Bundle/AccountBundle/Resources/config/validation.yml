@@ -15,7 +15,7 @@ Hanzo\Model\Addresses:
                 message: address.address_line_1.required
                 groups: [shipping, company_shipping, payment, overnightbox, customer]
             - MinLength: 2
-            - MaxLength: 150
+            - MaxLength: 35
         postal_code:
             - NotBlank:
                 message: address.postal_code.required

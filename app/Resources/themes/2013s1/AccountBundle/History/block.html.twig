@@ -24,6 +24,10 @@
                         <a href="{{ path('_account_delete_order', { 'order_id': order.id }) }}" title="{{ 'order.delete.title'|trans({}, 'account') }}" class="sprite delete"></a>
                         <a href="{{ path('_account_edit_order', { 'order_id': order.id }) }}" title="{{ 'order.edit.title'|trans({}, 'account') }}" class="sprite edit"></a>
                     {% endif %}
+                    {# Add a setting key in domain_settings to enable RMA. #}
+                    {% if order.status == 50 and parameter('rma_enabled') %}
+                        <a href="{{ path('rma_form', { 'order_id': order.id }) }}" title="{{ 'rma.history.title'|trans({}, 'rma') }}" class="sprite return"></a>
+                    {% endif %}
                         <a href="{{ path('_account_show_order', { 'order_id': order.id }) }}" title="{{ 'order.invoice.title'|trans({}, 'account') }}" class="sprite show"></a>
                 {% endif %}
                 </td>

@@ -11,12 +11,12 @@
       });
 
       // ios class added to body
-      switch (navigator.platform) {
-      case 'iPad':
-      case 'iPhone':
-      case 'iPod':
-        $('html').addClass('ios');
-        break;
+      switch (navigator.platfom) {
+          case 'iPad':
+          case 'iPhone':
+          case 'iPod':
+            $('html').addClass('ios');
+            break;
       }
 
       // use inline labels if the "real" labels are hidden
@@ -59,20 +59,32 @@
           $.each(response.data, function (i, element) {
             if (undefined !== element.mtime) {
               var date = element.mtime;
-              // var date = new Date(element.mtime);
-              // date = date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear()+' '+date.getHours()+':'+date.getMinutes();
               var $elm = $('a.media_file.index-'+element.index);
               var $em = $elm.next('em');
               var label = $elm.data('datelabel');
               $em.text(label.replace('%date%', date)).css('display', 'block');
+              $elm.attr('href', $elm.attr('href')+'?'+element.ts);
             }
           });
         });
       }
 
+      // externals opened in new window
+      $('a.js-external').on('click', function(event) {
+        event.preventDefault();
+        window.open(this.href);
+      });
+
       // menu handeling
       if (false === $('body').hasClass('is-mobile')) {
         var $menu = $('nav.main-menu');
+
+        // set parent li's class to active for active elements.
+        $('nav.first.main-menu .active')
+          .parents('li')
+          .toggleClass('active inactive')
+        ;
+
         var menu_width = 0;
         $('li li.heading', $menu).each(function(index, element) {
           var $element = $(element);
@@ -83,7 +95,7 @@
 
           $element.addClass('floaded');
         });
-        $('li li.heading').closest('ul').each(function(index, element) {
+        $('li li.heading', $menu).closest('ul').each(function(index, element) {
           var $element = $(element);
           var count = $('> li', $element).length;
           $element.css('width', (menu_width * count) + 5);

@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="rma.not_allowed_wrong_state">
+                <source>rma.not_allowed_wrong_state</source>
+                <target>Tapahtui virhe. Tilauksesi ei ole suoritettu loppuun ja tämän takia palauttaminen ei onnistu.</target>
+            </trans-unit>
+            <trans-unit id="rma.form.title.order_id">
+                <source>rma.form.title.order_id</source>
+                <target>Laadi palautuslomake tilaukselle %order_id%.</target>
+            </trans-unit>
+            <trans-unit id="rma.form.description">
+                <source>rma.form.description</source>
+                <target><![CDATA[
+                    <p>Pyyd&auml;mme sinua valitsemaan toiminnon ja syyn jokaiselle palautettavalle tuotteelle.<br>Kirjoita my&ouml;s kunkin tuotteen osalta mahdolliset kommentit. Jos palautat tuotteita useasta eri tilauksesta, t&auml;yt&auml; yksi palautuslomake tilausta kohti. L&auml;het&auml; palautettavat tuotteet kuitenkin samassa paketissa, vaikka ne olisivat eri tilauksista. Muista liitt&auml;&auml; palautuslomake/-lomakkeet mukaan pakettiisi. Lue lis&auml;&auml; palautuksesta palautuslomakkeesta, joka luodaan, kun napsautat Laadi palautuslomake -painiketta.<br><br>Lomakkeen avaamiseksi tarvitset ilmaisen Adobe Reader -ohjelman, jonka voit tarvittaessa ladata t&auml;st&auml;.<br />
+    <br />
+    <a href="http://www.adobe.com/products/acrobat/readstep2.html" target="_blank"><img src="http://static.pompdelux.com/images/pages/PDF_logo.jpg" width="158" height="39" border="0" title="POMPdeLUX" /></a><br /></p>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="rma.form.label.activitycode">
+                <source>rma.form.label.activitycode</source>
+                <target>Toiminto</target>
+            </trans-unit>
+            <trans-unit id="rma.form.label.cause">
+                <source>rma.form.label.cause</source>
+                <target>Syy</target>
+            </trans-unit>
+            <trans-unit id="rma.form.activity.default">
+                <source>rma.form.activity.default</source>
+                <target>-- Valitse toiminto --</target>
+            </trans-unit>
+            <trans-unit id="rma.form.cause.default">
+                <source>rma.form.cause.default</source>
+                <target>-- Valitse syy --</target>
+            </trans-unit>
+            <trans-unit id="rma.form.activity.return">
+                <source>rma.form.activity.return</source>
+                <target>Palautus</target>
+            </trans-unit>
+            <trans-unit id="rma.form.activity.replacement">
+                <source>rma.form.activity.replacement</source>
+                <target>Vaihto</target>
+            </trans-unit>
+            <trans-unit id="rma.form.activity.warranty">
+                <source>rma.form.activity.warranty</source>
+                <target>Reklamaatio</target>
+            </trans-unit>
+            <trans-unit id="rma.form.activity.return.causes">
+                <source>rma.form.activity.return.causes</source>
+                <target>Pakkausvirhe|Reklamaatio (ilmoita virhe)|Kaupan peruminen (rahojen palautus)</target>
+            </trans-unit>
+            <trans-unit id="rma.form.activity.replacement.causes">
+                <source>rma.form.activity.replacement.causes</source>
+                <target>Vaihdetaan toiseen kokoon|Vaihdetaan toiseen väriin|Vaihdetaan toiseen tuotteeseen</target>
+            </trans-unit>
+            <trans-unit id="rma.form.activity.warranty.causes">
+                <source>rma.form.activity.warranty.causes</source>
+                <target>Pakkausvirhe|Reklamaatio (ilmoita virhe)</target>
+            </trans-unit>
+            <trans-unit id="rma.form.label.description">
+                <source>rma.form.label.description</source>
+                <target>Mahd. kommentit</target>
+            </trans-unit>
+            <trans-unit id="rma.form.submit">
+                <source>rma.form.submit</source>
+                <target>Laadi palautuslomake...</target>
+            </trans-unit>
+            <trans-unit id="rma.form.label.return.order">
+                <source>rma.form.label.return.order</source>
+                <target>Palauta koko tilaus</target>
+            </trans-unit>
+            <trans-unit id="rma.form.label.replacement">
+                <source>rma.form.label.replacement</source>
+                <target>Anna sen tuotteen nimi, johon haluat vaihtaa</target>
+            </trans-unit>
+            <trans-unit id="rma.form.placeholder.produkt">
+                <source>rma.form.placeholder.produkt</source>
+                <target>esim. Copenhagen</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.company_details">
+                <source>rma.slip.company_details</source>
+                <target><![CDATA[
+                    <ul>
+                        <li>POMPdeLUX FI OY c/o POMPdeLUX ApS</li>
+                        <li>M&oslash;gelh&oslash;j 8, DK-8520 Lystrup</li>
+                        <li>CRN 2482288-5</li>
+                        <li>mailfi@pompdelux.com 09 34870870</li>
+                    </ul>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.id">
+                <source>rma.slip.id</source>
+                <target>Asiakasnumero</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.name">
+                <source>rma.slip.name</source>
+                <target>Nimi</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.email">
+                <source>rma.slip.email</source>
+                <target>Sähköposti</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.phone">
+                <source>rma.slip.phone</source>
+                <target>Puhelin</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.order_id">
+                <source>rma.slip.order_id</source>
+                <target>E-tilausnumero</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.deliveryaddress">
+                <source>rma.slip.deliveryaddress</source>
+                <target>Toimitusosoite</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.title.order_id">
+                <source>rma.slip.title.order_id</source>
+                <target>POMPdeLUX-palautuslomake tilaustunnus ID %order_id%</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.description">
+                <source>rma.slip.description</source>
+                <target><![CDATA[<p>Jos haluat vaihtaa tai palauttaa tuotteita, sinun tulee t&auml;ytt&auml;&auml; ja l&auml;hett&auml;&auml; tuotteiden mukana t&auml;m&auml; palautuslomake.<br>Palauttamasi tuotteet laitetaan uudelleen myyntiin, joten palautathan tuotteet niiden alkuper&auml;isiss&auml; pakkauksissaan tuote- ja hintalappuineen jne.<br><br>Saat tuotteiden mukana palautustarran – k&auml;yt&auml; t&auml;t&auml;, niin palautus on maksuton. Jos haluat tehd&auml; reklamaation tai palauttaa v&auml;&auml;rin toimitetun tuotteen, voit luonnollisesti l&auml;hett&auml;&auml; tuotteet aina maksutta. <br><br>Palautus on maksuton my&ouml;s silloin, jos haluat vaihtaa tuotteen toiseen kokoon, v&auml;riin tai kokonaan toiseen tuotteeseen. Tuotteen hinta ei kuitenkaan voi ylitt&auml;&auml; palautettavan tuotteen hintaa. Jos tuote, johon haluat vaihtaa, on loppuunmyyty, hyvit&auml;mme summan sinulle.<br><br>Jos olet maksanut kortilla, palautussumma siirret&auml;&auml;n maksukortille, jota olet k&auml;ytt&auml;nyt tilauksen yhteydess&auml;.<br><br>Jos olet k&auml;ytt&auml;nyt PayByBill-maksutapaa, pyyd&auml;mme ottamaan yhteytt&auml; Gothia Oy:hyn, puh. 0207 229 462.<br><b>Huomaa:</b> Vaikka odotat hyvityst&auml; palauttamistasi tuotteista, sinun tulee maksaa laskusi 30 p&auml;iv&auml;n kuluessa.<br><br>Katso lis&auml;tietoja osoitteesta: <a href="/fi_FI/" target="_blank">www.pompdelux.fi</a></p>]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.thead.activitycode">
+                <source>rma.slip.thead.activitycode</source>
+                <target>Toiminto</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.thead.cause">
+                <source>rma.slip.thead.cause</source>
+                <target><![CDATA[&Aring;rsag]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.thead.replacement">
+                <source>rma.slip.thead.replacement</source>
+                <target>Vaihdetaan tuotteeseen</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.thead.description">
+                <source>rma.slip.thead.description</source>
+                <target>Kommenttisi</target>
+            </trans-unit>
+            <trans-unit id="rma.history.title">
+                <source>rma.history.title</source>
+                <target>Luo RMA palautuslomake.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

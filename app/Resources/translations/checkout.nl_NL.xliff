@@ -66,7 +66,7 @@
       </trans-unit>
       <trans-unit id="addresses">
         <source>addresses</source>
-        <target>Adressen</target>
+        <target>Adres</target>
       </trans-unit>
       <trans-unit id="no_addresses">
         <source>no_addresses</source>
@@ -78,19 +78,19 @@
       </trans-unit>
      <trans-unit id="shipping.address">
         <source>shipping.address</source>
-        <target>Verzendadres</target>
+        <target>Afleveradres</target>
       </trans-unit>
       <trans-unit id="shipping.address.overnight">
         <source>shipping.address.overnight</source>
-        <target>Verzendadres</target>
+        <target>Afleveradres</target>
       </trans-unit>
       <trans-unit id="shipping.address.overnight.edit">
         <source>shipping.address.overnight.edit</source>
-        <target>» Wijzig verzendadres postbus</target>
+        <target>» Wijzig afleveradres postbus</target>
       </trans-unit>
       <trans-unit id="shipping.address.no_overnight">
         <source>shipping.address.no_overnight</source>
-        <target>Geen verzendadres postbus ingevuld</target>
+        <target>Geen afleveradres postbus ingevuld</target>
       </trans-unit>
       <trans-unit id="payment.method">
         <source>payment.method</source>
@@ -98,7 +98,7 @@
       </trans-unit>
       <trans-unit id="payment.address">
         <source>payment.address</source>
-        <target>Huisadres</target>
+        <target>Privéadres</target>
       </trans-unit>
       <trans-unit id="payment.title">
         <source>payment.title</source>
@@ -120,16 +120,16 @@
         <source>confirm.total</source>
         <target>Totale bedrag</target>
       </trans-unit>
-           <trans-unit id="payment.paybybill.title">
-        <source>payment.paybybill.title</source>
+           <trans-unit id="payment.manualpayment.title">
+        <source>payment.manualpayment.title</source>
         <target>Geld overmaken per bank</target>
       </trans-unit>
-      <trans-unit id="payment.paybybill.text">
-        <source>payment.paybybill.text</source>
+      <trans-unit id="payment.manualpayment.text">
+        <source>payment.manualpayment.text</source>
         <target><![CDATA[Kies betaalwijze<br><br><b>Let op: </b> Bankoverschrijving alleen gebruiken als er geen internetverbinding is.]]></target>
       </trans-unit>
-     <trans-unit id="payment.paybybill.label">
-        <source>payment.paybybill.label</source>
+     <trans-unit id="payment.manualpayment.label">
+        <source>payment.manualpayment.label</source>
         <target>Geld overmaken per bank</target>
       </trans-unit>
      <trans-unit id="payment.gateway_id">
@@ -281,7 +281,7 @@
       </trans-unit>
        <trans-unit id="payment.gothia.title">
         <source>payment.gothia.title</source>
-        <target>Gothia factuur</target>
+        <target>Factuurbetaling</target>
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
@@ -297,7 +297,7 @@
       </trans-unit>
            <trans-unit id="payment.dibs.title">
         <source>payment.dibs.title</source>
-        <target>Dibs</target>
+        <target>Credit card</target>
       </trans-unit>
      <trans-unit id="payment.dibs.paytype.dk">
         <source>payment.dibs.paytype.dk</source>
@@ -402,9 +402,11 @@
       </trans-unit>
       <trans-unit id="order.amount.to.low" approved="no">
         <source>order.amount.to.low</source>
-        <target>Je gastvrouwkorting is groter dan het totale aankoopbedrag.
-Je moet meer artikelen toevoegen.
-</target>
+        <target>Je bestelling is van mindere waarde dan de totale gastvrouwkorting, die je hebt verdiend. Vul je bestelling aan als je je gastvrouwkorting wilt gebruiken.</target>
+      </trans-unit>
+      <trans-unit id="order.amount.to.low.for.coupon" approved="no">
+        <source>order.amount.to.low.for.coupon</source>
+        <target>Je waarde van je bestelling komt niet overeen met het minimumbedrag van EUR %amount% voor je kortingscode. Vul je bestelling aan als je de als je de kortingscode wilt gebruiken.</target>
       </trans-unit>
       <trans-unit id="coupon" approved="no">
         <source>coupon</source>
@@ -416,7 +418,7 @@ Je moet meer artikelen toevoegen.
       </trans-unit>
       <trans-unit id="coupon.description" approved="no">
         <source>coupon.description</source>
-        <target>Hvis du har en rabatkode .......</target>
+        <target>Je mag maar één kortingscode per bestelling gebruiken.</target>
       </trans-unit>
       <trans-unit id="coupon.apply.discount" approved="no">
         <source>coupon.apply.discount</source>
@@ -424,7 +426,7 @@ Je moet meer artikelen toevoegen.
       </trans-unit>
       <trans-unit id="coupon.label" approved="no">
         <source>coupon.label</source>
-        <target>Toets je kortingscode</target>
+        <target>Toets je kortingscode. Je mag maar één kortingscode per bestelling gebruiken.</target>
       </trans-unit>
       <trans-unit id="coupon.invalid.code" approved="no">
         <source>coupon.invalid.code</source>

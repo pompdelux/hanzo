@@ -1,0 +1,19 @@
+cms:
+    frontpage: 538
+
+framework:
+    default_locale: de_CH
+    session:
+        cookie_path: '/de_CH'
+
+propel:
+    dbal:
+        default_connection:           default
+        connections:
+            default:
+                driver:               %database_driver%
+                user:                 %test_ch_database_user%
+                password:             %test_ch_database_password%
+                dsn:                  mysql:host=%test_ch_database_host%;dbname=%test_ch_database_name%
+                options:              {}
+                attributes:           {}

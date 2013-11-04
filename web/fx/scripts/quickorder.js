@@ -4,7 +4,7 @@ var quickorder = (function($) {
   pub.init = function() {
     _resetForm();
 
-    $('#master').typeahead({
+    $('.quickorder .master').typeahead({
         source: function (typeahead, query) {
             if (query.length < 2) { return; }
             $.ajax({
@@ -20,7 +20,10 @@ var quickorder = (function($) {
             });
         },
         onselect: function( object ) {
-            $("#master").val(object);
+            $(this).val(object);
+
+            $context = this.$element.parent().parent();
+            $size_select = $context.find('.size');
 
             $.ajax({
                 url: base_url + "rest/v1/stock-check",
@@ -35,11 +38,11 @@ var quickorder = (function($) {
                         }
                     } else {
 
-                        $('#size').find('option').remove();
+                        $size_select.find('option').remove();
 
                         if(typeof response.data.products !== "undefined" && response.data.products.length > 0){
 
-                            $('#size')
+                            $size_select
                                 .append($("<option></option>")
                                 .attr("value",'')
                                 .text(Translator.get('js:quickorder.choose.size')));
@@ -47,12 +50,13 @@ var quickorder = (function($) {
                             var last = '';
                             $.each(response.data.products, function(key, value) {
                                 if (value.size != last) {
-                                    $('#size').append($("<option></option>").attr("value",value.size).text(value.size));
+                                    $size_select.append($("<option></option>").attr("value",value.size).text(value.size));
                                     last = value.size;
                                 }
                             });
-                            $('#size-label').show().find('#size').focus();
-                            $('#reset').show();
+                            $size_select.parent().show();
+                            $size_select.focus();
+                            $context.find('.reset').show();
                         } else {
                             if (response.message) {
                                 dialoug.alert(Translator.get('js:notice'), response.message);
@@ -67,16 +71,16 @@ var quickorder = (function($) {
         }
     });
 
-    function getColor() {
-        if($('#size').val() !== ''){
+    function getColor($context) {
+        if($context.find('.size').val() !== ''){
 
             $.ajax({
                 url: base_url + "rest/v1/stock-check",
                 dataType: 'json',
                 type: 'GET',
                 data: {
-                    master : $('#master').val(),
-                    size : $('#size').val()
+                    master : $context.find('.master').val(),
+                    size : $context.find('.size').val()
                 },
                 async: false,
                 success: function(response, textStatus, jqXHR) {
@@ -86,25 +90,28 @@ var quickorder = (function($) {
                         }
                     } else {
 
-                        $('#color')
-                            .find('option')
-                            .remove()
-                        ;
+                        $select = $('.color', $context);
+                        $select.find('option').remove();
+
                         if(typeof response.data.products !== "undefined" && response.data.products.length > 0){
 
-                            $('#color')
-                                .append($("<option></option>")
+                            $select.append($("<option></option>")
                                 .attr("value",'')
                                 .text(Translator.get('js:quickorder.choose.color')));
 
                             var last = '';
                             $.each(response.data.products, function(key, value) {
                                 if (last != value.color) {
-                                    $('#color').append($("<option></option>").attr("value",value.color).text(value.color));
+                                    $select
+                                        .append($("<option></option>")
+                                        .attr("value",value.color)
+                                        .text(value.color));
                                     last = value.color;
                                 }
                             });
-                            $('#color-label').show().find('#color').focus();
+
+                            $select.parent().show();
+                            $select.focus().select();
                         }else{
                             if (response.message) {
                                 dialoug.alert(Translator.get('js:notice'), response.message);
@@ -123,16 +130,36 @@ var quickorder = (function($) {
     // mouseup : desktop with mouse
     // keydown : desktop with keyboard
     // blur    : tablet/mobile
-    //$('#size').on('keydown mouseup touchend' ,function(e){
-    $('#size').on('keydown mouseup blur' ,function(e) {
-        if (e.type == 'keydown') {
-            var keyCode = e.keyCode || e.which;
-            if (keyCode === 9 || keyCode === 13) {
-                e.preventDefault();
-                getColor();
+    $('.quickorder .size').on('keydown mouseup blur change' ,function(e) {
+
+        var selected_value = $(this).val(),
+            $context = $(this).parent().parent(),
+            is_ie = $('html').hasClass('ie9') || $('html').hasClass('oldie'),
+            is_rma = $context.hasClass('rma-productreplacement');
+
+        if((!is_ie || !is_rma) && e.type === 'change') {
+            // Event 'change' has to be dealt with in <=IE9. Change event
+            // resolves that when changeing with mouse, ie doesnt trigger any
+            // other. This block returns only when we need to ignore the change
+            // event. We are ignoring it when not IE and when not on RMA page.
+            // Ignore it if its on the quickorder page.
+            return;
+        }
+
+        // Compare the selected value to what it eventually already was. If the
+        // same, ignore the event.
+        // Fixes some IE9 issues where mouseup and blur was triggered to early.
+        if($(this).data('selected-value') != selected_value) {
+            if (e.type == 'keydown') {
+                var keyCode = e.keyCode || e.which;
+                if (keyCode === 9 || keyCode === 13) {
+                    e.preventDefault();
+                    getColor($context);
+                }
+            }else{
+                getColor($context);
             }
-        }else{
-            getColor();
+            $(this).data('selected-value', $(this).val());
         }
         e.stopPropagation();
     });
@@ -141,34 +168,49 @@ var quickorder = (function($) {
     // mouseup : desktop with mouse
     // keydown : desktop with keyboard
     // blur    : tablet/mobile
-    //$('#color').on('keydown mouseup touchend' ,function(e){
-    $('#color').on('keydown mouseup blur' ,function(e){
+    $('.quickorder .color').on('keydown mouseup blur change' ,function(e){
+        var $context = $(this).parent().parent(),
+            is_ie = $('html').hasClass('ie9') || $('html').hasClass('oldie'),
+            is_rma = $context.hasClass('rma-productreplacement');
+
+        if((!is_ie || !is_rma) && e.type === 'change') {
+            // Event 'change' has to be dealt with in <=IE9. Change event
+            // resolves that when changeing with mouse, ie doesnt trigger any
+            // other. This block returns only when we need to ignore the change
+            // event. We are ignoring it when not IE and when not on RMA page.
+            // Ignore it if its on the quickorder page.
+            return;
+        }
+
+        $quantity_select = $context.find('.quantity');
         if (e.type == 'keydown') {
             var keyCode = e.keyCode || e.which;
             if (keyCode === 9 || keyCode === 13) {
                 e.preventDefault();
 
                 if($(this).val() !== ''){
-                    $('#quantity-label').show().find('#quantity').focus().select();
-                    $('#submit').show();
+                    $quantity_select.parent().show();
+                    $quantity_select.focus().select();
+                    $('input[type=submit]', $context).show();
                 }
             }
         }else{
             if($(this).val() !== ''){
-                $('#quantity-label').show().find('#quantity').focus().select();
-                $('#submit').show();
+                $quantity_select.parent().show();
+                $quantity_select.focus().select();
+                $('input[type=submit]', $context).show();
             }
         }
         e.stopPropagation();
     });
 
-    $('#quickorder form').on('submit', function(event) {
+    $('form.quickorder').on('submit', function(event) {
         event.preventDefault();
 
-        var master = $('#master').val(),
-            size = $('#size').val(),
-            color = $('#color').val(),
-            quantity = $('#quantity').val()
+        var master = $(this).find('.master').val(),
+            size = $(this).find('.size').val(),
+            color = $(this).find('.color').val(),
+            quantity = $(this).find('.quantity').val()
         ;
 
         if((master !== '') && (size !== '') && (color !== '') && (quantity !== '')) {
@@ -217,8 +259,8 @@ var quickorder = (function($) {
                               '<td class="right price">'+response.latest.single_price+'</td> '+
                               '<td class="center quantity">'+quantity+'</td> '+
                               '<td class="actions"> '+
-                                '<a href="'+base_url+'remove-from-basket/'+response.latest.id+'" class="delete"><img src="'+cdn_url+'fx/images/delete_icon.png" alt="'+Translator.get('js:delete')+'"></a> '+
-                                '<a href="'+response.latest.id+'" class="edit"><img src="'+cdn_url+'fx/images/edit_icon.png" alt="'+Translator.get('js:edit')+'"></a> '+
+                                '<a href="'+base_url+'remove-from-basket/'+response.latest.id+'" class="sprite delete"></a> '+
+                                '<a href="'+response.latest.id+'" class="sprite edit"></a> '+
                               '</td> '+
                               '<td class="right total">'+response.latest.price+'</td> '+
                             '</tr>');
@@ -239,39 +281,38 @@ var quickorder = (function($) {
 
     });
 
-    $('#reset').click(function(e){
+    $('.reset').click(function(e){
         e.preventDefault();
-        _resetForm();
+        $context = $(this).parent();
+        _resetForm($context);
     });
 
   };
 
-    pub.getColor = function() {};
-
-    _resetForm = function() {
-        $('#master').val('').focus();
-        $('#size')
+    _resetForm = function($context) {
+        $('.master', $context).val('').focus();
+        $('.size', $context)
+            .data('selected-value', '')
             .find('option')
             .remove();
-        $('#size-label').hide();
 
-        $('#color')
+        $('.color', $context)
             .find('option')
             .remove()
         ;
-        $('#color-label').hide();
 
-        $('#submit').hide();
-        $('#reset').hide();
-        $('#quantity').val('1');
-        $('#quantity-label').hide();
+        $('.submit', $context).hide();
+        $('.reset', $context).hide();
+        $('.quantity', $context).val('1');
+
+        $('label.off', $context).hide();
     };
 
   return pub;
 })(jQuery);
 
 $(document).ready(function(){
-    if ($("#quickorder").length) {
+    if ($(".quickorder").length) {
       quickorder.init();
     }
 });

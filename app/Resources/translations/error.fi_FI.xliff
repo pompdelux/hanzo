@@ -16,22 +16,22 @@
             </trans-unit>
             <trans-unit id="500.title">
                 <source>500.title</source>
-                <target>Hupsis!</target>
+                <target>Huom!</target>
             </trans-unit>
             <trans-unit id="500.description">
                 <source>500.description</source>
                 <target><![CDATA[
-                    <p>Kohdallesi osui teknisiä ongelmia - olemme pahoillamme.</p> <p>Mikäli ongelma jatkuu tai ilmaantuu uudelleen, ota yhteyttä asiakaspalveluumme: 09 34870870 tai <a href="mailto:mail@pompdelux.dk">mail@pompdelux.dk</a></p>]]>
+                    <p>Näyttää siltä, että sivulla tapahtui virhe. Yritä päivittää sivu.</p> <p>Jos virhe jatkuu edelleen, voit ottaa yhteyttä asiakaspalveluun puhelimitse 09 34870870 tai sähköpostitse osoitteeseen <a href="mailto:mailfi@pompdelux.com">mailfi@pompdelux.com</a>. Pahoittelemme virhettä!</p>]]>
                 </target>
             </trans-unit>
             <trans-unit id="403.title">
                 <source>403.title</source>
-                <target>Hupsis!</target>
+                <target>Huom!</target>
             </trans-unit>
             <trans-unit id="403.description">
                 <source>403.description</source>
                 <target><![CDATA[
-                    <p>Kohdallesi osui teknisiä ongelmia - olemme pahoillamme.</p> <p>Mikäli ongelma jatkuu tai ilmaantuu uudelleen, ota yhteyttä asiakaspalveluumme: 09 34870870 tai <a href="mailto:mail@pompdelux.dk">mail@pompdelux.dk</a></p>]]>
+                    <p>Näyttää siltä, että sivulla tapahtui virhe. Yritä päivittää sivu.</p> <p>Jos virhe jatkuu edelleen, voit ottaa yhteyttä asiakaspalveluun puhelimitse 09 34870870 tai sähköpostitse osoitteeseen <a href="mailto:mailfi@pompdelux.com">mailfi@pompdelux.com</a>. Pahoittelemme virhettä!</p>]]>
                 </target>
             </trans-unit>
         </body>

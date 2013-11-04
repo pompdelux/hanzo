@@ -79,7 +79,8 @@
       <th>{{ 'admin.customer.phone'|trans({}, 'admin') }}</th>
       <th>{{ 'admin.customer.discount'|trans({}, 'admin') }}</th>
       <th>{{ 'admin.customer.is_active'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.customer.created_at'|trans({}, 'admin') }}</th>
+      <th>Oprettet</th>
+      <th>Sidst rettet</th>
       <th></th>
     </tr>
   </thead>
@@ -98,7 +99,8 @@
           {{ 'admin.customer.deactivated'|trans({}, 'admin') }}
         {% endif %}
       </td>
-      <td>{{ customer.updatedat|date("d/m/Y") }}</td>
+      <td>{{ customer.createdat|date("d/m/Y H:i") }}</td>
+      <td>{{ customer.updatedat|date("d/m/Y H:i") }}</td>
       <th>
         <a class="edit" href="{{ path('admin_customer', {'id' : customer.id}) }}">
           {{ 'admin.customer.edit'|trans({}, 'admin') }}

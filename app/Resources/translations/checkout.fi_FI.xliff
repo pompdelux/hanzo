@@ -111,16 +111,16 @@
         <source>confirm.total</source>
         <target>Kokonaissumma</target>
       </trans-unit>
-      <trans-unit id="payment.paybybill.title">
-        <source>payment.paybybill.title</source>
+      <trans-unit id="payment.manualpayment.title">
+        <source>payment.manualpayment.title</source>
         <target>Maksu tilille</target>
       </trans-unit>
-      <trans-unit id="payment.paybybill.text">
-        <source>payment.paybybill.text</source>
+      <trans-unit id="payment.manualpayment.text">
+        <source>payment.manualpayment.text</source>
         <target>Maksa tilaus tilille: "yy-yy xx-xx-xx-xx-xx" 8 päivän kuluessa tavaroiden vastaanottamisesta.</target>
       </trans-unit>
-      <trans-unit id="payment.paybybill.label">
-        <source>payment.paybybill.label</source>
+      <trans-unit id="payment.manualpayment.label">
+        <source>payment.manualpayment.label</source>
         <target>Maksu tilille</target>
       </trans-unit>
       <trans-unit id="payment.gateway_id">
@@ -273,7 +273,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia.title">
         <source>payment.gothia.title</source>
-        <target>Gothia-lasku</target>
+        <target>Laskulla maksu</target>
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
@@ -285,7 +285,7 @@
       </trans-unit>
       <trans-unit id="payment.dibs.title">
         <source>payment.dibs.title</source>
-        <target>Dibs</target>
+        <target>Maksukortti</target>
       </trans-unit>
       <trans-unit id="payment.dibs.paytype.dk">
         <source>payment.dibs.paytype.dk</source>
@@ -390,7 +390,11 @@
       </trans-unit>
       <trans-unit id="order.amount.to.low" approved="no">
         <source>order.amount.to.low</source>
-        <target>Order amount is too low</target>
+        <target>Ostosi on pienempi kuin emännän alennuksesi. Lisää ystävällisesti tuotteita ostoskoriisi saadaksesi emännänalennuksesi.</target>
+      </trans-unit>
+      <trans-unit id="order.amount.to.low.for.coupon" approved="no">
+        <source>order.amount.to.low.for.coupon</source>
+        <target>Ostosi on valitettavasti alle minimirajan EUR %amount% lunastaaksesi alennuskoodin. Lisää ystävällisesti tuotteita ostoskoriisi saadaksesi alennuksen.</target>
       </trans-unit>
       <trans-unit id="coupon" approved="no">
         <source>coupon</source>
@@ -402,7 +406,7 @@
       </trans-unit>
       <trans-unit id="coupon.description" approved="no">
         <source>coupon.description</source>
-        <target>Jos sinulla on alennuskoodi .......</target>
+        <target>Yhdessä tilauksessa voi käyttää vain yhden alennuskoodin.</target>
       </trans-unit>
       <trans-unit id="coupon.apply.discount" approved="no">
         <source>coupon.apply.discount</source>
@@ -410,7 +414,7 @@
       </trans-unit>
       <trans-unit id="coupon.label" approved="no">
         <source>coupon.label</source>
-        <target>Kirjoita alennuskoodi</target>
+        <target>Kirjoita alennuskoodi.</target>
       </trans-unit>
       <trans-unit id="coupon.invalid.code" approved="no">
         <source>coupon.invalid.code</source>

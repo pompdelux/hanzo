@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="email.exists">
+                <source>email.exists</source>
+                <target>Die E-Mail-Adresse existiert bereits!</target>
+            </trans-unit>
+            <trans-unit id="phone.required" approved="no">
+                <source>phone.required</source>
+                <target>Bitte Telefonnummer ausfüllen</target>
+            </trans-unit>
+            <trans-unit id="phone.min.length" approved="no">
+                <source>phone.min.length</source>
+                <target>Eine Telefonnummer besteht aus {{ limit }} Ziffern|Eine Telefonnummer besteht aus {{ limit }} Ziffern</target>
+            </trans-unit>
+            <trans-unit id="phone.not.valid" approved="no">
+                <source>phone.not.valid</source>
+                <target>Die Telefonnummer darf nur aus Ziffern bestehen</target>
+            </trans-unit>
+            <trans-unit id="email.required" approved="no">
+                <source>email.required</source>
+                <target>Bitte eine E-Mail-Adresse angeben</target>
+            </trans-unit>
+            <trans-unit id="email.invalid.match" approved="no">
+                <source>email.invalid.match</source>
+                <target>Die beiden E-Mail-Adressen stimmen nicht überein</target>
+            </trans-unit>
+            <trans-unit id="email.not.valid">
+                <source>email.not.valid</source>
+                <target>Bitte in beiden Feldern dieselbe E-Mail-Adresse eingeben.</target>
+            </trans-unit>
+            <trans-unit id="address.first_name.required" approved="no">
+                <source>address.first_name.required</source>
+                <target>Bitte einen Vornamen eingeben</target>
+            </trans-unit>
+            <trans-unit id="address.last_name.required" approved="no">
+                <source>address.last_name.required</source>
+                <target>Bitte einen Nachnamen eingeben</target>
+            </trans-unit>
+            <trans-unit id="host.required" approved="no">
+                <source>host.required</source>
+                <target>Bitte eine Gastgeberin angeben</target>
+            </trans-unit>
+            <trans-unit id="address_line_1.required" approved="no">
+                <source>address_line_1.required</source>
+                <target>Bitte Adresse ausfüllen|Bitte Adresse ausfüllen</target>
+            </trans-unit>
+            <trans-unit id="postal_code.required" approved="no">
+                <source>postal_code.required</source>
+                <target>Bitte Postleitzahl ausfüllen</target>
+            </trans-unit>
+            <trans-unit id="postal_code.length" approved="no">
+                <source>postal_code.length</source>
+                <target>Dit postnummer består af {{ limit }} tal|Dit postnummer består af {{ limit }} tal</target>
+            </trans-unit>
+            <trans-unit id="city.required" approved="no">
+                <source>city.required</source>
+                <target>Bitte Stadt ausfüllen|Bitte Stadt ausfüllen</target>
+            </trans-unit>
+            <trans-unit id="address.first_name.min.length" approved="no">
+                <source>address.first_name.min.length</source>
+                <target>Der Vorname muss aus mind. {{ limit }} Zeichen bestehen|Der Vorname muss aus mind. {{ limit }} Zeichen bestehen</target>
+            </trans-unit>
+            <trans-unit id="address.last_name.min.length" approved="no">
+                <source>address.last_name.min.length</source>
+                <target>Der Nachname muss aus mind. {{ limit }} Zeichen bestehen|Der Nachname muss aus mind. {{ limit }} Zeichen bestehen</target>
+            </trans-unit>
+            <trans-unit id="password.required">
+                <source>password.required</source>
+                <target>Das Passwort muss aus mind. 5 Zeichen bestehen</target>
+            </trans-unit>
+            <trans-unit id="password.min.length" approved="no">
+                <source>password.min.length</source>
+                <target>Ihr Passwort muss aus mind. {{ limit }} Zeichen bestehen|Ihr Passwort muss aus mind. {{ limit }} Zeichen bestehen</target>
+            </trans-unit>
+            <trans-unit id="password.invalid.match">
+                <source>password.invalid.match</source>
+                <target>Die Passwortbestätigung muss dieselbe sein wie Ihr Passwort.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

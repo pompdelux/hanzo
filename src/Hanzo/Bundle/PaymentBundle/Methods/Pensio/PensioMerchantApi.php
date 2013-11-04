@@ -152,14 +152,23 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
     /**
      * get a payment object
      *
-     * @param  Orders $order
+     * @param  Orders  $order                  Orders object
+     * @param  Boolean $use_payment_gateway_id if set to true, we use the payment_gateway_id for lookups, not the transaction id
      * @return mixed
      */
-    public function getPayment(Orders $order)
+    public function getPayment(Orders $order, $use_payment_gateway_id = false)
     {
         $this->checkConnection();
 
         $attributes = $order->getAttributes();
+
+        if ($use_payment_gateway_id) {
+            return $this->callAPIMethod(
+                'payments', [
+                    'shop_orderid' => $order->getPaymentGatewayId()
+                ]
+            );
+        }
 
         if (!isset($attributes->payment->transaction_id)) {
             throw new PaymentApiCallException('Pensio api cancel action: order contains no transaction id, order id was: '.$order->getId() );

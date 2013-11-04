@@ -6,8 +6,8 @@
         <meta property="og:type" content="website">
         <meta property="og:title" content="{{ page.title|title }}">
         <meta property="og:image" content="{{ fx_image_url('images/POMPdeLUX_logo_SS12.png', '200x200') }}">
-        <meta property="og:description" content="{{ page.content|trim|striptags|slice(0,150) }}">
-        <meta name="description" content="{{ page.content|trim|striptags|slice(0,150) }}">
+        <meta property="og:description" content="{{ page.content|trim|strip_tags|slice(0,150) }}">
+        <meta name="description" content="{{ page.content|trim|strip_tags|slice(0,150) }}">
     {% else %}
         {{ meta_tags() }}
     {% endif %}
@@ -48,6 +48,25 @@
     <article>
         {{ parse(page.content) }}
     </article>
+
+    <div id="newsletterModal">
+        <div class="inner">
+            <div class="wrapper">
+                <h2>{{ 'block.subscribe.newsletter_heading'|trans({}, 'newsletter') }}</h2>
+                <p>{{ 'block.subscribe.teaser'|trans({}, 'newsletter') }}</p>
+                <a href="" class="close-button sprite"></a>
+                <form action="{{ path('_newsletter_subscribe') }}" method="post" class="js-newsletter-form">
+                    <div>
+                        <input type="text" name="name" value="" title="{{ 'block.subscribe.name_label'|trans({}, 'newsletter') }}" placeholder="{{ 'block.subscribe.name_label'|trans({}, 'newsletter') }}">
+                        <input type="email" class="newsletter-subscriber-email" name="email" value="" title="{{ 'block.subscribe.email_label'|trans({}, 'newsletter') }}" placeholder="{{ 'block.subscribe.email_label'|trans({}, 'newsletter') }}">
+                        <p>{{ 'terms.link'|trans({}, 'newsletter')|raw }}</p>
+                    </div>
+                    <input type="submit" class="button subscribe-button sprite" value="{{ 'block.subscribe.submit_button'|trans({}, 'newsletter') }}" data-action="subscribe">
+                </form>
+            </div>
+            <div class="bottom"></div>
+        </div>
+    </div>
 {% endif %}
 
 {% endblock %}

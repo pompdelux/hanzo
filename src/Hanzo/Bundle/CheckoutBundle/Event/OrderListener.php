@@ -52,16 +52,19 @@ class OrderListener
             $this->session->getId(),
             Propel::getConnection(OrdersPeer::DATABASE_NAME, Propel::CONNECTION_WRITE)
         );
+
         if ($o instanceof Orders) {
             $this->session->migrate();
         }
+
+        unset($o);
 
         // first we create the edit version.
         $order->createNewVersion();
 
         // then we set edit stuff on the order.
         $order->setSessionId($this->session->getId());
-        $order->setState( Orders::STATE_BUILDING ); // Old order state is probably payment ok
+        $order->setState(Orders::STATE_BUILDING);
         $order->clearFees();
         $order->clearPaymentAttributes();
         $order->setInEdit(true);

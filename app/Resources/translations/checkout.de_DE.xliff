@@ -134,16 +134,16 @@
         <source>confirm.total</source>
         <target>Gesamtbetrag</target>
       </trans-unit>
-      <trans-unit id="payment.paybybill.title">
-        <source>payment.paybybill.title</source>
+      <trans-unit id="payment.manualpayment.title">
+        <source>payment.manualpayment.title</source>
         <target>Banküberweisung</target>
       </trans-unit>
-      <trans-unit id="payment.paybybill.text">
-        <source>payment.paybybill.text</source>
+      <trans-unit id="payment.manualpayment.text">
+        <source>payment.manualpayment.text</source>
         <target><![CDATA[<b>Bitte beachten:</b> Banküberweisung darf <b><u>nur</u></b> bei fehlender Internetverbindung verwendet werden.]]></target>
       </trans-unit>
-      <trans-unit id="payment.paybybill.label">
-        <source>payment.paybybill.label</source>
+      <trans-unit id="payment.manualpayment.label">
+        <source>payment.manualpayment.label</source>
         <target>Banküberweisung</target>
       </trans-unit>
       <trans-unit id="payment.gateway_id">
@@ -299,7 +299,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia.title">
         <source>payment.gothia.title</source>
-        <target>Gothia-Rechnung</target>
+        <target>Rechnung</target>
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
@@ -319,7 +319,7 @@
       </trans-unit>
       <trans-unit id="payment.dibs.title">
         <source>payment.dibs.title</source>
-        <target>Dibs</target>
+        <target>Kreditkartenzahlung</target>
       </trans-unit>
       <trans-unit id="payment.dibs.paytype.dk">
         <source>payment.dibs.paytype.dk</source>
@@ -428,6 +428,10 @@
 Sie müssen Waren hinzufügen.
 </target>
       </trans-unit>
+      <trans-unit id="order.amount.to.low.for.coupon" approved="no">
+        <source>order.amount.to.low.for.coupon</source>
+        <target>Dit køb overstiger ikke minimumsgrænsen på %amount% for din rabatkode. Du skal tilføje flere varer.</target>
+      </trans-unit>
       <trans-unit id="coupon" approved="no">
         <source>coupon</source>
         <target>Rabattcode</target>
@@ -438,7 +442,7 @@ Sie müssen Waren hinzufügen.
       </trans-unit>
       <trans-unit id="coupon.description" approved="no">
         <source>coupon.description</source>
-        <target>Haben Sie einen Rabattcode .......</target>
+        <target>Pro Bestellung kann nur ein Rabattcode verwendet werden.</target>
       </trans-unit>
       <trans-unit id="coupon.apply.discount" approved="no">
         <source>coupon.apply.discount</source>
@@ -446,7 +450,7 @@ Sie müssen Waren hinzufügen.
       </trans-unit>
       <trans-unit id="coupon.label" approved="no">
         <source>coupon.label</source>
-        <target>Rabattgutschein eintragen</target>
+        <target>Rabattgutschein eintragen.</target>
       </trans-unit>
       <trans-unit id="coupon.invalid.code" approved="no">
         <source>coupon.invalid.code</source>

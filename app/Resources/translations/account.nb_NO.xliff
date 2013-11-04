@@ -184,7 +184,7 @@
             </trans-unit>
             <trans-unit id="65">
                 <source>create.account</source>
-                <target>Opprett konto</target>
+                <target>Neste</target>
             </trans-unit>
             <trans-unit id="create.account.header" approved="no">
                 <source>create.account.header</source>
@@ -192,7 +192,7 @@
             </trans-unit>
             <trans-unit id="edit.account">
                 <source>edit.account</source>
-                <target>Rett konto</target>
+                <target>Neste</target>
             </trans-unit>
             <trans-unit id="update.account">
                 <source>update.account</source>
@@ -433,7 +433,7 @@
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
                 <target><![CDATA[<p>På Min side kan du rette i opplysningene dine og melde deg av og på til nyhetsbrevet. Du har også mulighet for å redigere i din ordre.<br><br>Din ordre kan ha følgende status:<br><br><b>Venter</b><br>Din ordre er ikke ekspedert enda, og du har som minimum 24 timer til å redigere i ordren.
-Du har mulighet for å endre/tilføye/slette i ordren. Du skal klikke på blyanten ved redigering. Merk: Betalingen skal gjennomføres – tidligere betalingsreservasjon blir automatisk slettet. Ønsker du å slette hele ordren, skal du klikke på X.<br><br><b>Stop editering</b><br>Du har eventuelt kommet til å avbryte redigeringen. Trykk på knappen ”Stop editering”, så kan du redigere ordren på nytt.<br><br><b>Under behandling</b><br>Din ordre er nå i gang med å bli behandlet på lageret vårt og blir sendt til deg i løpet av 1-2 dager. Det er ikke mulig å redigere/bremse ordren.<br><br><b>Fakturert</b><br>Din ordre er sendt fra vårt lager. Fakturaen er vedlagt som PDF-fil under kolonnen Faktura i løpet av 24 timer etter at ordren er sendt.<br><br>Ønsker du å returnere en vare, finner du en <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_NO.pdf" target="_blank">returseddel her</a>.</p>]]></target>
+Du har mulighet for å endre/tilføye/slette i ordren. Du skal klikke på <img src="/fx/images/icons/icons/edit.png" alt="Edit"> ved redigering. Merk: Betalingen skal gjennomføres – tidligere betalingsreservasjon blir automatisk slettet. Ønsker du å slette hele ordren, skal du klikke på <img src="/fx/images/icons/icons/delete.png" alt="Delete">.<br><br><b>Stop editering</b><br>Du har eventuelt kommet til å avbryte redigeringen. Trykk på knappen ”Stop editering”, så kan du redigere ordren på nytt.<br><br><b>Under behandling</b><br>Din ordre er nå i gang med å bli behandlet på lageret vårt og blir sendt til deg i løpet av 1-2 dager. Det er ikke mulig å redigere/bremse ordren.<br><br><b>Fakturert</b><br>Din ordre er sendt fra vårt lager. Fakturaen er vedlagt som PDF-fil under kolonnen Faktura i løpet av 24 timer etter at ordren er sendt.<br><br><b>Returnering</b><br>Ønsker du å returnere en vare, skal du trykke på <img src="/fx/images/icons/icons/return.png" alt="Return"><br><br></p>]]></target>
             </trans-unit>
             <trans-unit id="newsletter" approved="no">
                 <source>newsletter</source>
@@ -490,6 +490,16 @@ Du har mulighet for å endre/tilføye/slette i ordren. Du skal klikke på blyant
             <trans-unit id="create.pre-notice" approved="no">
                 <source>create.pre-notice</source>
                 <target><![CDATA[On this page you must enter your personal info (and <u>not</u> company info).]]></target>
+            </trans-unit>
+            <trans-unit id="order.force.login.description" approved="no">
+                <source>order.force.login.description</source>
+                <target><![CDATA[
+                    <h3>Kjære kunde</h3>
+                    <p>Vi kan se at du har lagt mer enn 20 klesplagg i kurven – det setter vi naturligvis pris på.<br>
+Men, vi vil samtidig være helt sikre på at det ikke er skjedd en feil, og vi skal derfor be deg om å opprette deg som kunde eller logge deg inn på ’Min Side’ med brukernavn/passord.
+Deretter kan du bare shoppe videre.</p><br>
+                    <p>Takk for hjelpen!</p>
+                ]]></target>
             </trans-unit>
         </body>
     </file>

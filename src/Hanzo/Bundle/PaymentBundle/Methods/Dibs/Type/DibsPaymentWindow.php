@@ -328,18 +328,20 @@ class DibsPaymentWindow extends BasePaymentApi implements PaymentMethodApiInterf
             'language'        => $lang,
             "merchant"        => $this->getMerchant(),
             "currency"        => $currency,
-            "cancelReturnUrl" => $this->router->generate('PaymentBundle_dibs_cancel', array(), true),
+            "cancelReturnUrl" => $this->router->generate('PaymentBundle_dibs_cancel',   array(), true),
             "callbackUrl"     => $this->router->generate('PaymentBundle_dibs_callback', array(), true),
-            "acceptReturnUrl" => $this->router->generate('PaymentBundle_dibs_process', array( 'order_id' => $orderId ), true),
+            "acceptReturnUrl" => $this->router->generate('PaymentBundle_dibs_process',  array('order_id' => $orderId), true),
         ];
 
         // Only send these fields, to many fields result in hitting a post limit or something
-        $settings['shippingFirstName']   = $order->getBillingFirstName();
-        $settings['shippingLastName']    = $order->getBillingLastName();
-        $settings['shippingAddress']     = $order->getBillingAddressLine1();
-        $settings['shippingAddress2']    = $order->getBillingAddressLine2();
-        $settings['shippingPostalPlace'] = $order->getBillingCity();
-        $settings['shippingPostalCode']  = $order->getBillingPostalCode();
+        $settings['billingFirstName']   = $order->getBillingFirstName();
+        $settings['billingLastName']    = $order->getBillingLastName();
+        $settings['billingAddress']     = $order->getBillingAddressLine1();
+        $settings['billingAddress2']    = $order->getBillingAddressLine2();
+        $settings['billingPostalPlace'] = $order->getBillingCity();
+        $settings['billingPostalCode']  = $order->getBillingPostalCode();
+        $settings['billingEmail']       = $order->getEmail();
+        $settings['billingMobile']      = $order->getPhone();
 
         $settings['s_telephone'] = $order->getPhone();
         $settings['s_email']     = $order->getEmail();

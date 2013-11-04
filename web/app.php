@@ -3,13 +3,12 @@
 // start parse time timer
 $ts = microtime(1);
 
-// let's send 404 headers for none existing images, javascripts and styles
+// let's send 404 headers for non existing images, javascripts and styles
 $ignore = array('jpg', 'png', 'gif', 'js', 'css');
-$ext = explode('.', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
-$ext = array_pop($ext);
-// dont use a 404 on old newsletter URL's, but pass it to the symfony 404 handler that will redirect. Get rid of this hack when noone reads old newsletters anymore
-$isnewsletter = preg_match('/\/images\/nyhedsbrev\//', $_SERVER['REQUEST_URI']);
-if (in_array($ext, $ignore) && !$isnewsletter) {
+$ext    = explode('.', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+$ext    = array_pop($ext);
+
+if (in_array($ext, $ignore)) {
     header('HTTP/1.0 404 Not Found');
     exit;
 }
@@ -43,31 +42,37 @@ switch (array_pop($tdl)) {
     case 'fi':
         $lang = '/fi_FI/';
         break;
+    case 'at':
+        $lang = '/de_AT/';
+        break;
+    case 'ch':
+        $lang = '/de_CH/';
+        break;
     case 'com':
-        if (!preg_match('/(de_DE|da_DK|nb_NO|sv_SE|nl_NL|fi_FI|en_GB)/', $_SERVER['REQUEST_URI']) && ($_SERVER['REQUEST_URI'] != '/')) {
-          $lang = '/en_GB/';
+        if (!preg_match('/(de_DE|da_DK|nb_NO|sv_SE|nl_NL|fi_FI|de_AT|de_CH|en_GB)/', $_SERVER['REQUEST_URI']) && ($_SERVER['REQUEST_URI'] != '/')) {
+            $lang = '/en_GB/';
         }
         break;
 }
 
 if ($lang) {
-  $goto = 'http://www.pompdelux.com'.str_replace('//', '/', $lang.str_replace($_SERVER['SCRIPT_NAME'], '', $_SERVER['REQUEST_URI']));
-  header('Location: '.$goto , true, 301);
-  exit;
+    //error_log('app.php redirecting to: '.$lang);
+    $goto = 'http://www.pompdelux.com'.str_replace('//', '/', $lang.str_replace($_SERVER['SCRIPT_NAME'], '', $_SERVER['REQUEST_URI']));
+    header('Location: '.$goto , true, 301);
+    exit;
 }
 
 $env = Tools::mapDomainToEnvironment();
 
 if (in_array(@$_SERVER['REMOTE_ADDR'], array('::1', '127.0.0.1'))) {
-  $dev = true;
-  $env = 'dev_'.$env;
+    $dev = true;
+    $env = 'dev_'.$env;
 } else {
-  $dev = false;
-  $env = 'prod_'.$env;
+    $dev = false;
+    $env = 'prod_'.$env;
 
-
-  $loader = new ApcClassLoader('sf2', $loader);
-  $loader->register(true);
+    $loader = new ApcClassLoader('sf2', $loader);
+    $loader->register(true);
 }
 
 require_once __DIR__.'/../app/AppKernel.php';
@@ -75,11 +80,6 @@ require_once __DIR__.'/../app/AppKernel.php';
 $kernel = new AppKernel($env, $dev);
 $kernel->loadClassCache();
 
-// we use varnish for caching, no neet to double cache
-// if(false === $dev) {
-//   require_once __DIR__.'/../app/AppCache.php';
-//   $kernel = new AppCache($kernel);
-// }
 $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 $response->headers->set('X-hanzo-t', (microtime(1) - $ts));

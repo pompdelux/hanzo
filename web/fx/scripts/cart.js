@@ -6,7 +6,7 @@
 
     pub.init = function() {
       var $basket = $('.basket');
-      if ($('.item', $basket).length === 0) {
+      if ($basket.length === 0) {
         return;
       }
 

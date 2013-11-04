@@ -379,7 +379,7 @@ class DefaultController extends CoreController
         $pages = CmsI18nQuery::create()
             ->useCmsQuery()
                 ->filterByType('page')
-                ->filterByCmsThreadId(20)
+                ->filterByCmsThreadId([20, 23])
             ->endUse()
             ->filterByIsActive(true)
             ->filterByLocale($locale)

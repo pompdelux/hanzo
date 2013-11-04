@@ -120,10 +120,10 @@ class CategoriesPeer extends BaseCategoriesPeer
 
     public static function getStylesByCategoryId($category_id, $pager)
     {
-        $hanzo = Hanzo::getInstance();
+        $hanzo     = Hanzo::getInstance();
         $container = $hanzo->container;
-        $route = $container->get('request')->get('_route');
-        $router = $container->get('router');
+        $route     = $container->get('request')->get('_route');
+        $router    = $container->get('router');
         $domain_id = $hanzo->get('core.domain_id');
 
         $result = ProductsImagesProductReferencesQuery::create()

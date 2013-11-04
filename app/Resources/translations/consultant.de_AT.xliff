@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="consultant.newsletter.link">
+                <source>consultant.newsletter.link</source>
+                <target>Newsletter verschicken</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.import.users.link">
+                <source>consultant.newsletter.import.users.link</source>
+                <target>Benutzer importieren</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.edit.users.link">
+                <source>consultant.newsletter.edit.users.link</source>
+                <target>Benutzer bearbeiten</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.history.link">
+                <source>consultant.newsletter.history.link</source>
+                <target>Verlauf</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.header.text">
+                <source>consultant.newsletter.header.text</source>
+                <target>Newsletter verschicken</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.description.text">
+                <source>consultant.newsletter.description.text</source>
+                <target>Bitte geben Sie sowohl einen Betreff und eine Nachricht ein.</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.test.mail.send.success">
+                <source>consultant.newsletter.test.mail.send.success</source>
+                <target>Die Testmail wurde verschickt.</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.test.mail.send.failed">
+                <source>consultant.newsletter.test.mail.send.failed</source>
+                <target>Beim Versand der Testmail ist leider ein Fehler aufgetreten. Bitte versuchen Sie es erneut.</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.test.mail.no.test.mail">
+                <source>consultant.newsletter.test.mail.no.test.mail</source>
+                <target>Sie haben keinen Empfänger eingegeben.</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.schedule.newsletter.send.success">
+                <source>consultant.newsletter.schedule.newsletter.send.success</source>
+                <target>Der Newsletter wurde an Ihren Newsletterverteiler verschickt.</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.schedule.newsletter.send.failed">
+                <source>consultant.newsletter.schedule.newsletter.send.failed</source>
+                <target>Beim Versand des Newsletters ist leider ein Fehler aufgetreten.</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.from.field.%name%.%email%">
+                <source>consultant.newsletter.from.field.%name%.%email%</source>
+                <target>POMPdeLUX %name% (%email%)</target>
+            </trans-unit>
+            <trans-unit id="newsletter.subject.label">
+                <source>newsletter.subject.label</source>
+                <target>Betreff</target>
+            </trans-unit>
+            <trans-unit id="newsletter.message.label">
+                <source>newsletter.message.label</source>
+                <target>Nachricht</target>
+            </trans-unit>
+            <trans-unit id="newsletter.save.draft">
+                <source>newsletter.save.draft</source>
+                <target>Als Entwurf speichern</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.draft.saved">
+                <source>consultant.newsletter.draft.saved</source>
+                <target>Der Entwurf wurde gespeichert</target>
+            </trans-unit>
+            <trans-unit id="newsletter.current.drafts">
+                <source>newsletter.current.drafts</source>
+                <target>Gespeicherte Entwürfe</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.delete.draft">
+                <source>consultant.newsletter.delete.draft</source>
+                <target>Entwurf löschen</target>
+            </trans-unit>
+            <trans-unit id="newsletter.submit.send.newsletter">
+                <source>newsletter.submit.send.newsletter</source>
+                <target>Newsletter verschicken</target>
+            </trans-unit>
+            <trans-unit id="newsletter.submit.send.test.email">
+                <source>newsletter.submit.send.test.email</source>
+                <target>Test verschicken</target>
+            </trans-unit>
+            <trans-unit id="newsletter.send.test.to.label">
+                <source>newsletter.send.test.to.label</source>
+                <target>an</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.import.header.text">
+                <source>consultant.newsletter.import.header.text</source>
+                <target>Benutzer auf Ihren Verteiler importieren</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.import.description.text">
+                <source>consultant.newsletter.import.description.text</source>
+                <target>Eine E-Mail-Adresse pro Zeile eingeben.</target>
+            </trans-unit>
+            <trans-unit id="newsletter.import.submit">
+                <source>newsletter.import.submit</source>
+                <target>Importieren</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.import.no.users">
+                <source>consultant.newsletter.import.no.users</source>
+                <target>Sie haben keine E-Mail-Adressen im Feld eingegeben!</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.import.users.imported">
+                <source>consultant.newsletter.import.users.imported</source>
+                <target>Die E-Mail-Adressen wurde zum Verteiler hinzugefügt</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.edit.users.header.text">
+                <source>consultant.newsletter.edit.users.header.text</source>
+                <target>Benutzer auf Ihrem Verteiler bearbeiten</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.delete.user">
+                <source>consultant.newsletter.delete.user</source>
+                <target>Benutzer löschen</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.unsubscribe.user.success">
+                <source>consultant.newsletter.unsubscribe.user.success</source>
+                <target>Der Benutzer wurde vom Verteiler gelöscht!</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.history.header.text">
+                <source>consultant.newsletter.history.header.text</source>
+                <target>Verlauf</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.history.processed.to">
+                <source>consultant.newsletter.history.processed.to</source>
+                <target>(Verschickt am %date% an %count% Benutzer)</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.history.not.processed">
+                <source>consultant.newsletter.history.not.processed</source>
+                <target>(Nicht verschickt)</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

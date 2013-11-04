@@ -1,17 +1,20 @@
-  <div id="newsletter-lists-container" class="simple">
-    <form action="#" method="post" class="newsletter-subscription-form">
-      <input type="hidden" name="listid[]" value="{{ listid }}" class="newsletter-list-id">
-      <div class="clearfix">
-        <label>{{ 'block.subscribe.name_label'|trans({}, 'newsletter') }}:</label>
-        <input type="text" name="name" value="" title="{{ 'block.subscribe.name_label'|trans({}, 'newsletter') }}">
-      </div>
-      <div class="clearfix">
-        <label>{{ 'block.subscribe.email_label'|trans({}, 'newsletter') }}:</label>
-        <input type="email" class="newsletter-subscriber-email" name="email" value="" title="{{ 'block.subscribe.email_label'|trans({}, 'newsletter') }}">
-      </div>
-      <div class="clearfix">
-        <input type="submit" data-action="unsubscribe" class="button" value="{{ 'block.unsubscribe.submit_button'|trans({}, 'newsletter') }}">
-        <input type="submit" data-action="subscribe" class="button" value="{{ 'block.subscribe.submit_button'|trans({}, 'newsletter') }}">
-      </div>
-    </form>
-  </div>
+<div class="newsletter-form-simple grid_3">
+    <div class="sprite"></div>
+    <div class="container">
+        <h2>{{ 'block.subscribe.newsletter_heading'|trans({}, 'newsletter') }}</h2>
+        <form action="{{ path('_newsletter_subscribe') }}" method="post" class="js-newsletter-form">
+            <input type="hidden" name="action" value="">
+            <div>
+                <input type="text" name="name" value="" title="{{ 'block.subscribe.name_label'|trans({}, 'newsletter') }}" placeholder="{{ 'block.subscribe.name_label'|trans({}, 'newsletter') }}">
+                <input type="email" class="newsletter-subscriber-email" name="email" value="" title="{{ 'block.subscribe.email_label'|trans({}, 'newsletter') }}" placeholder="{{ 'block.subscribe.email_label'|trans({}, 'newsletter') }}">
+            </div>
+            <div class="clearfix right">
+                {{ 'terms.link'|trans({}, 'newsletter')|raw }}
+            </div>
+            <div class="clearfix right">
+                <input type="submit" data-action="unsubscribe" class="button text-button" value="{{ 'block.unsubscribe.submit_button'|trans({}, 'newsletter') }}">
+                <input type="submit" data-action="subscribe" class="button text-button" value="{{ 'block.subscribe.submit_button'|trans({}, 'newsletter') }}">
+            </div>
+        </form>
+    </div>
+</div>

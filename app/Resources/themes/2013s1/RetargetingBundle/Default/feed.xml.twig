@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<items>
+{% for item in items %}
+    <item>
+        <url>{{ item.url }}</url>
+        <name>{{ item.name }}</name>
+        <price>{{ item.price }}</price>
+        <productImg>{{ item.image }}</productImg>
+    </item>
+{% endfor %}
+</items>

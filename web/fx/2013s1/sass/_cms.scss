@@ -14,6 +14,43 @@
     #main .social-buttons {
         float: right;
     }
+
+    .newsletter-form-simple{
+        display: block;
+        float: none;
+        margin: 10px 0;
+        .container {
+            text-align: left;
+            display: inline-block;
+            input[type=submit] {
+                float: right;
+                font-size: 12px;
+                font-family: $font-serif;
+                letter-spacing: 0;
+            }
+        }
+        .sprite{
+            @include icons-sprite(newsletter);
+            height: icons-sprite-height(newsletter);
+            width: icons-sprite-width(newsletter);
+            float: left;
+        }
+        input[type="email"],
+        input[type="text"]{
+            width: 250px;
+            display: block;
+            padding: 4px 5px;
+        }
+        #dialoug-message{
+            width: 200px;
+            border: 2px solid $alert-border-color;
+            text-align: center;
+        }
+        form{
+            font-family:$font-sans !important;
+            width: 264px;
+        }
+    }
 }
 article div ul {
     margin-left: 20px;

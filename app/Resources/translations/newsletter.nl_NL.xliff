@@ -6,6 +6,10 @@
         <source>block.subscribe.newsletter_heading</source>
         <target>Meld je aan voor de nieuwsbrief</target>
       </trans-unit>
+      <trans-unit id="block.subscribe.teaser">
+        <source>block.subscribe.teaser</source>
+        <target>Ontvang veel leuke nieuwtjes, tips over wedstrijden en inspiratie direct in je mailbox!</target>
+      </trans-unit>
       <trans-unit id="newsletter_2">
         <source>block.subscribe.name_label</source>
         <target>Naam</target>
@@ -34,9 +38,19 @@
         <source>subscribed.text</source>
         <target>Je bent nu aangemeld voor onze nieuwsbrief.</target>
       </trans-unit>
+      <trans-unit id="unsubscribed.text" approved="no">
+        <source>unsubscribed.text</source>
+        <target> Je hebt je zojuist afgemeld voor de POMPdeLUX nieuwsbrief.</target>
+      </trans-unit>
       <trans-unit id="invalid.email.address" approved="no">
         <source>invalid.email.address</source>
         <target>De ingevoerde e-mail is ongeldig</target>
+      </trans-unit>
+      <trans-unit id="terms.link">
+        <source>terms.link</source>
+        <target><![CDATA[
+          <a href="/nl_NL/voorpagina/klantenservice/voorwaarden" target="_blank">Bij het aanmelden accepteer ik de algemene voorwaarden van POMPdeLUX.</a>
+        ]]></target>
       </trans-unit>
     </body>
   </file>

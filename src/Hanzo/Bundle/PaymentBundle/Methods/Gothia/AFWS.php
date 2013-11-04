@@ -4,11 +4,12 @@
 require_once(dirname(__FILE__).'/nusoap/nusoap.php');
 
 // Funktion för att initiera WSDL klienten
-function AFSWS_Init( $mode = 'live' )
+function AFSWS_Init($mode = 'live')
 {
 	// Ange sökvägen till webservicen
 	$wsdl = 'http://clienttesthorizon.gothiagroup.com/AFSServices/AFSService.svc?wsdl';
-    if ( $mode != 'test') {
+
+    if ($mode != 'test') {
 	    $wsdl = 'https://horizonws.gothiagroup.com/AFSServices/AFSService.svc?wsdl';
     }
 
@@ -27,8 +28,7 @@ function AFSWS_Init( $mode = 'live' )
 
 	// Kolla om fel uppstod, i så fall skriv ut dessa
 	$err = $client->getError();
-	if ($err)
-	{
+	if ($err) {
 		echo '<h2>Constructor error</h2><pre>'.$err.'</pre>';
 	}
 
@@ -41,16 +41,19 @@ function AFSWS_Tag($tagName, $value, $namespace = '')
 	if (is_null($value)) return '';
 	return empty($value) ? AFSWS_ClosedTag($tagName, $namespace) : AFSWS_StartTag($tagName, $namespace).$value.AFSWS_EndTag($tagName, $namespace);
 }
+
 function AFSWS_StartTag($tagName, $namespace = '')
 {
 	if (!empty($namespace)) $tagName = $namespace.':'.$tagName;
 	return '<'.$tagName.'>';
 }
+
 function AFSWS_EndTag($tagName, $namespace = '')
 {
 	if (!empty($namespace)) $tagName = $namespace.':'.$tagName;
 	return '</'.$tagName.'>';
 }
+
 function AFSWS_ClosedTag($tagName, $namespace = '')
 {
 	if (!empty($namespace)) $tagName = $namespace.':'.$tagName;
@@ -74,17 +77,12 @@ function AFSWS_GetErrors($response)
 {
 	$errorMessages = array();
 
-	if (!is_null($response) && is_array($response) && array_key_exists('Errors', $response) && !is_null($response['Errors']))
-	{
-		if (array_key_exists('ID', $response['Errors']['ResponseMessageBase']))
-		{
+	if (!is_null($response) && is_array($response) && array_key_exists('Errors', $response) && !is_null($response['Errors'])) {
+		if (array_key_exists('ID', $response['Errors']['ResponseMessageBase'])) {
 			$error = $response['Errors']['ResponseMessageBase'];
 			$errorMessages[] = array('ID' => $error['ID'], 'Message' => $error['Message']);
-		}
-		else
-		{
-			foreach ($response['Errors']['ResponseMessageBase'] as $error)
-			{
+		} else {
+			foreach ($response['Errors']['ResponseMessageBase'] as $error) {
 				$errorMessages[] = array('ID' => $error['ID'], 'Message' => $error['Message']);
 			}
 		}
@@ -127,8 +125,8 @@ function AFSWS_CheckCustomer($user, $customer)
 // Funktion för att skapa ett kundobjekt
 function AFSWS_Customer($address = null, $countryCode = null, $currencyCode = null, $customerNo = null, $customerCategory = null, $directPhone = null,
 	$distributionBy = null, $distributionType = null, $email = null, $fax = null, $firstName = null, $lastName = null, $mobilePhone = null, $orgNoSSN = null,
-	$phone = null, $postalCode = null, $postalPlace = null, $statCodeAlphaNum = null, $statCodeNum = null)
-{
+	$phone = null, $postalCode = null, $postalPlace = null, $statCodeAlphaNum = null, $statCodeNum = null
+) {
 	$ns = 'akt1';
 
 	$customerData = AFSWS_Tag('Address', $address, $ns);
@@ -158,8 +156,8 @@ function AFSWS_Customer($address = null, $countryCode = null, $currencyCode = nu
 function AFSWS_Order($allowPartlyShipment = null, $comments = null, $currencyCode = null, $customerNo = null, $deliveryAddress = null,
 	$deliveryCountryCode = null, $deliveryPostalCode = null, $deliveryPostalPlace = null, $discountProfileNo = null, $estimatedShipDate = null,
 	$exchangeRate = null, $invoiceLayoutNo = null, $invoiceProfileNo = null, $orderDate = null, $orderLines = null, $orderNo = null, $ourRef = null,
-	$statCodeAlphaNum = null, $statCodeNum = null, $yourRef = null)
-{
+	$statCodeAlphaNum = null, $statCodeNum = null, $yourRef = null
+) {
 	$ns = 'akt1';
 
 	$orderData = AFSWS_Tag('AllowPartlyShipment', $allowPartlyShipment, $ns);
@@ -281,7 +279,7 @@ function AFSWS_Reservation($accountOfferType, $amount, $currencyCode, $customerN
  * @return string
  * @author Henrik Farre <hf@bellcom.dk>
  **/
-function AFSWS_CancelReservation( $user, $cancelReservation )
+function AFSWS_CancelReservation($user, $cancelReservation)
 {
   return '<CancelReservation xmlns="http://tempuri.org/">'.$user.$cancelReservation.'</CancelReservation>';
 }
@@ -294,7 +292,7 @@ function AFSWS_CancelReservation( $user, $cancelReservation )
  * @return string
  * @author Henrik Farre <hf@bellcom.dk>
  **/
-function AFSWS_CancelReservationObj( $customerNo, $orderNo = null, $amount = '' )
+function AFSWS_CancelReservationObj($customerNo, $orderNo = null, $amount = '')
 {
 	$ns = 'akt1';
 
@@ -329,7 +327,7 @@ function AFSWS_AdditionalReservationInfo($bankAccount = NULL, $bankId = NULL, $P
  * @return string
  * @author Henrik Farre <hf@bellcom.dk>
  **/
-function AFSWS_CheckCustomerAndPlaceReservation( $user, $customer, $reservation, $additionalReservationInfo = '' )
+function AFSWS_CheckCustomerAndPlaceReservation($user, $customer, $reservation, $additionalReservationInfo = '')
 {
-  return '<CheckCustomerAndPlaceReservation xmlns="http://tempuri.org/">'.$user.$customer.$reservation.$additionalReservationInfo.'</CheckCustomerAndPlaceReservation>';
+    return '<CheckCustomerAndPlaceReservation xmlns="http://tempuri.org/">'.$user.$customer.$reservation.$additionalReservationInfo.'</CheckCustomerAndPlaceReservation>';
 }

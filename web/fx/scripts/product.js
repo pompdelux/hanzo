@@ -124,7 +124,33 @@
 
     // tabs (description and washing instructions)
     pub.initTabs = function() {
-      $("ul.tabs").tabs("div.panes > div");
+      $(".productdescription ul.tabs").tabs("div.panes > div");
+
+      var $tabs = $('.body-product .deliverydescription');
+      $tabs.each(function(index, element) {
+        var $tab = $(element);
+
+        $('.tabs a', $tab).on('click', function(event) {
+            event.preventDefault();
+            var $a = $(this);
+
+            var return_early = false;
+            if ($a.hasClass('current')) {
+                return_early = true;
+            }
+
+            $('.tabs a', $tab).removeClass('current');
+            $('.panes div', $tab).addClass('off');
+
+            if (return_early) {
+                return;
+            }
+
+            $a.addClass('current');
+            $('.pane-'+$a.data('pane'), $tab).removeClass('off');
+        });
+      });
+
     };
 
     // make a slideshow out of all product images.
@@ -238,6 +264,10 @@
 
           lookup.done(function(response) {
             if (false === response.status) {
+              if (response.force_login) {
+                window.location.href = base_url+'login?f=true';
+              }
+
               if (undefined !== response.data.location) {
                 window.location.reload(true);
                 return false;
@@ -249,7 +279,7 @@
             } else {
               window.scrollTo(window.scrollMinX, window.scrollMinY);
               $('#mini-basket a').html(response.data);
-              dialoug.slideNotice(response.message, undefined, '.container > header');
+              dialoug.slideNotice(response.message, undefined, '#mini-basket');
             }
             _resetForm();
           });

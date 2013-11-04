@@ -19,8 +19,6 @@ html {
     }
 }
 
-
-
 a, a:link {
     color: $link-color;
     text-decoration: none;
@@ -165,6 +163,18 @@ div.sub-menu {
         h2+p {
             margin-bottom: 20px;
         }
+        article {
+            overflow: hidden;
+            .grid_2 {
+                width: 49%;
+                float: left;
+                clear: left;
+                &:nth-child(even) {
+                    float: right;
+                    clear: none;
+                }
+            }
+        }
     }
 }
 
@@ -293,4 +303,8 @@ table{
 #consultants-map-canvas-2,
 #near-you-container {
     max-width: 100%;
+}
+
+#newsletterModal {
+    display: none;
 }

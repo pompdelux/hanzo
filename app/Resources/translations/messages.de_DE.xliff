@@ -144,9 +144,8 @@
                     <strong>Kundendienst</strong><br>
                     Telefon: 040-35715072<br>
                     E-Mail: <a href="mailto:mailde@pompdelux.com">mailde@pompdelux.com</a><br>
-                    Montags bis Donnerstags 9 - 18 Uhr<br>
+                    Montags bis Donnerstags 9 - 16 Uhr<br>
                     Freitags 9 - 14 Uhr<br>
-                    <!--Pause 12 - 12.45 Uhr<br>-->
                     Samstags, Sonntags und Feiertags geschlossen.
                 ]]></target>
             </trans-unit>
@@ -235,7 +234,7 @@
                 <source>delivery.info</source>
                 <target><![CDATA[
                     <p>Alle Waren werden als Pakete mit DHL verschickt. Daher haben Sie die Möglichkeit, Ihr Paket ab dem Versand bis zum Empfang mit Hilfe von Track & Trace zu verfolgen.<br>
-  Sie können zwischen drei Versand wählen:<br><br> Paket:Das Paket wird an Ihre Adresse geliefert und kostet EUR 4,95 (EUR 3,95, wenn Sie die Waren bei einer Homeshopping- oder Tag der offenen Tür-Veranstaltung gekauft haben). Wenn Sie zum Zeitpunkt der Lieferung nicht zu Hause sind, können Sie das Paket anschließend bei der Post abholen.<br><br> Wenn Sie das Paket empfangen haben, sollten Sie die Waren überprüfen. Wenn das Paket und/oder der Inhalt beschädigt sind, wenden Sie sich bitte umgehend an unseren Kundendienst oder an DHL. </p>
+Paket:Das Paket wird an Ihre Adresse geliefert und kostet EUR 4,95 (EUR 3,95, wenn Sie die Waren bei einer Homeshopping- oder Tag der offenen Tür-Veranstaltung gekauft haben). Wenn Sie zum Zeitpunkt der Lieferung nicht zu Hause sind, können Sie das Paket anschließend bei der Post abholen.<br><br> Wenn Sie das Paket empfangen haben, sollten Sie die Waren überprüfen. Wenn das Paket und/oder der Inhalt beschädigt sind, wenden Sie sich bitte umgehend an unseren Kundendienst oder an DHL. </p>
 ]]>
 </target>
 </trans-unit>
@@ -336,6 +335,10 @@
             <trans-unit id="goto.top.link" approved="no">
                 <source>goto.top.link</source>
                 <target>Nach oben</target>
+            </trans-unit>
+            <trans-unit id="product.prices.description" approved="no">
+                <source>product.prices.description</source>
+                <target>inkl. gesetzl. MwSt, zzgl. Versandkosten</target>
             </trans-unit>
         </body>
     </file>

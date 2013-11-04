@@ -1,0 +1,59 @@
+/**
+| rma_pdf
+*/
+table {
+	th {
+		font-weight: bold;
+	}
+}
+
+table.rma_products {
+	thead {
+		font-weight: bold;
+		font-size: 21px;
+	}
+	tbody {
+		tr {
+			border-bottom: 1px solid gray;
+			padding: 20px 0;
+		}
+		.title {
+			font-weight: bold;
+		}
+	}
+}
+
+h1 {
+	font-size: 40px;
+	font-weight: 100;
+	text-transform: uppercase;
+	padding: 40px 0 20px;
+	font-family: Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h2 {
+	font-size: 25px;
+}
+
+p {
+	padding: 0 0 20px;
+	font-size: 20px;
+	line-height: 20px;
+}
+
+.company_details {
+	#logo {
+		float: left;
+	}
+	ul {
+		display: inline-block;
+		margin: 10px;
+		li {
+			margin-bottom:10px;
+		}
+	}
+}
+
+.barcode {
+	height: 50px;
+}

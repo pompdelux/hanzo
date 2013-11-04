@@ -2,8 +2,6 @@
 
 namespace Hanzo\Bundle\CMSBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
 use Hanzo\Core\Hanzo;
@@ -12,9 +10,6 @@ use Hanzo\Core\CoreController;
 
 use Hanzo\Model\Cms;
 use Hanzo\Model\CmsPeer;
-
-use Hanzo\Model\CustomersPeer;
-use Hanzo\Model\ProductsStockPeer;
 
 class DefaultController extends CoreController
 {

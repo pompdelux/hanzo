@@ -130,16 +130,16 @@
         <source>confirm.total</source>
         <target>Totalt belopp</target>
       </trans-unit>
-      <trans-unit id="payment.paybybill.title">
-        <source>payment.paybybill.title</source>
+      <trans-unit id="payment.manualpayment.title">
+        <source>payment.manualpayment.title</source>
         <target>Banköverföring</target>
       </trans-unit>
-      <trans-unit id="payment.paybybill.text">
-        <source>payment.paybybill.text</source>
+      <trans-unit id="payment.manualpayment.text">
+        <source>payment.manualpayment.text</source>
         <target><![CDATA[Välj hur du vill betala denna order.<br><br><b>Observera</b> att banköverföring <b><u>endast</u></b> får användas om det inte finns en internetförbindelse på arrangemanget.]]></target>
       </trans-unit>
-      <trans-unit id="payment.paybybill.label">
-        <source>payment.paybybill.label</source>
+      <trans-unit id="payment.manualpayment.label">
+        <source>payment.manualpayment.label</source>
         <target>Banköverföring</target>
       </trans-unit>
       <trans-unit id="payment.gateway_id">
@@ -299,7 +299,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia.title">
         <source>payment.gothia.title</source>
-        <target>Gothia faktura</target>
+        <target>Fakturabetalning</target>
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
@@ -307,7 +307,7 @@
       </trans-unit>
       <trans-unit id="payment.dibs.title">
         <source>payment.dibs.title</source>
-        <target>Dibs</target>
+        <target>Kreditkort</target>
       </trans-unit>
       <trans-unit id="payment.dibs.paytype.dk">
         <source>payment.dibs.paytype.dk</source>
@@ -412,9 +412,11 @@
       </trans-unit>
       <trans-unit id="order.amount.to.low" approved="no">
         <source>order.amount.to.low</source>
-        <target>Din värdinnerabatt är större än beställningsbeloppet.
-Du måste lägga till fler varor.
-</target>
+        <target>Ditt köp har ett mindre värde än den totala värdinnerabatt du har uppnått. Lägg till fler varor på din order för att använda din värdinnerabatt.</target>
+      </trans-unit>
+      <trans-unit id="order.amount.to.low.for.coupon" approved="no">
+        <source>order.amount.to.low.for.coupon</source>
+        <target>Ditt köp motsvarar tyvärr inte minimum gränsen på SEK %amount% på din rabattkod. Lägg till fler varor på din order för att använda rabattkoden.</target>
       </trans-unit>
       <trans-unit id="coupon" approved="no">
         <source>coupon</source>
@@ -426,7 +428,7 @@ Du måste lägga till fler varor.
       </trans-unit>
       <trans-unit id="coupon.description" approved="no">
         <source>coupon.description</source>
-        <target>Om du har en rabattkod .......</target>
+        <target>Man kan endast använda en rabattkod per order.</target>
       </trans-unit>
       <trans-unit id="coupon.apply.discount" approved="no">
         <source>coupon.apply.discount</source>
@@ -434,7 +436,7 @@ Du måste lägga till fler varor.
       </trans-unit>
       <trans-unit id="coupon.label" approved="no">
         <source>coupon.label</source>
-        <target>Skriv din rabattkod</target>
+        <target>Skriv din rabattkod.</target>
       </trans-unit>
       <trans-unit id="coupon.invalid.code" approved="no">
         <source>coupon.invalid.code</source>

@@ -7,26 +7,26 @@ var gothia = (function($) {
       $("#gothia-confirm-container form").on('submit', function(event) {
         event.preventDefault();
         dialoug.loading( '#action-submit-gothia-confirm', Translator.get('js:please.wait') );
+
         var data = $(this).serialize();
-        var url = $(this).attr('action');
+        var url  = $(this).attr('action');
+
         $.ajax({
-          url: url,
-          type: 'post',
+          url:      url,
+          type:     'post',
           dataType: 'json',
-          data: data,
-          success: function(data) {
+          data:     data,
+          success:  function(data) {
             dialoug.stopLoading();
             if ( data.status === true ) {
               $("#gothia-payment-step-3 form").submit();
-            }
-            else
-            {
+            } else {
               dialoug.error( Translator.get('js:an.error.occurred'), data.message );
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {
             dialoug.stopLoading();
-              dialoug.error( Translator.get('js:an.error.occurred'), errorThrown );
+            dialoug.error( Translator.get('js:an.error.occurred'), errorThrown );
           }
         });
       });
@@ -38,42 +38,49 @@ var gothia = (function($) {
     $("#gothia-account-container form").on('submit', function(event) {
       event.preventDefault();
 
-      var data = $(this).serialize();
-      var url = $(this).attr('action');
+      $form = $(this);
+      $('.buttons', $form).hide();
+      var data = $form.serialize();
+      var url  = $form.attr('action');
 
       dialoug.loading( '#form_social_security_num', Translator.get('js:please.wait') );
-      $("#gothia-account-container form input").attr('disabled', 'disabled');
+      //$("#gothia-account-container form input").attr('disabled', 'disabled');
 
       $.ajax({
-        url: url,
-        type: 'post',
+        url:      url,
+        type:     'post',
         dataType: 'json',
-        data: data,
-        success: function(data) {
+        data:     data,
+        success:  function(data) {
           dialoug.stopLoading();
 
           if ( data.status === true ) {
             $("#gothia-payment-step-1").slideUp();
             $("#gothia-payment-step-2").slideDown();
             confirmInit();
-            //$("#gothia-payment-step-2 form").submit(); TODO: Dette burde gøre så vi slap for et step!
-          }
-          else
-          {
-            $("#gothia-account-container form input").removeAttr('disabled');
+            $("#gothia-payment-step-2 form").submit(); // TODO: Dette burde gøre så vi slap for et step!
+          } else {
+            //$("#gothia-account-container form input").removeAttr('disabled');
+            $('.buttons', $form).show();
             dialoug.error( Translator.get('js:an.error.occurred'), data.message );
           }
         },
         error: function(jqXHR, textStatus, errorThrown) {
-          $("#gothia-account-container form input").removeAttr('disabled');
+          //$("#gothia-account-container form input").removeAttr('disabled');
+          $('.buttons', $form).show();
           dialoug.stopLoading();
           dialoug.error( Translator.get('js:an.error.occurred'), errorThrown );
         }
       });
     });
+
+    // If the SSN is already known, do the submit to trigger checkCustomer
+    if ($('#form_social_security_num').val() && ($('#form_bank_account_no').length === 0)) {
+      $("#gothia-account-container form").submit();
+    }
   };
 
-  pub.init = function( step ) {
+  pub.init = function(step) {
     switch(step) {
       case 1:
         checkCustomerInit();

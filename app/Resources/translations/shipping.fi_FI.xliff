@@ -16,7 +16,7 @@
       </trans-unit>
       <trans-unit id="shipping_method.desc.500">
         <source>shipping_method.desc.500</source>
-        <target>Tilauksesi lähetetään sinua lähimpänä olevaan, My Pack noutopisteeseen.</target>
+        <target>Tilauksesi lähetetään sinua lähimpänä olevaan, Posti noutopisteeseen.</target>
       </trans-unit>
       <trans-unit id="shipping_method.label.500">
         <source>shipping_method.label.500</source>

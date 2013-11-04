@@ -29,14 +29,14 @@ class ConsultantNewsletterApi
     {
         $this->domainKey = Hanzo::getInstance()->get('core.domain_key');
 
-        try
-        {
-            if ( empty($wsdl) )
+        try {
+            if (empty($wsdl)) {
                 $wsdl = 'http://phplist.bellcom.dk/integration/phplist.konsulent.pompdelux.dk/wsdl';
+            }
 
-            $this->soapClient = new \Soapclient( $wsdl );
+            $this->soapClient = new \Soapclient( $wsdl, ['trace' => true] );
 
-        }catch (Exception $e){
+        } catch (Exception $e) {
             throw new Exception( "Could not create soap client: ". $e->getMessage() );
         }
     }
@@ -55,38 +55,40 @@ class ConsultantNewsletterApi
     {
         $user = $this->getUserByEmail( $customerData['email_address'] );
 
-        $old_list           = array();
-        $dublicate_lists    = array();
-        $new_lists          = array();
+        $old_list        = array();
+        $dublicate_lists = array();
+        $new_lists       = array();
 
-        if( $user === TRUE ){
+        if ($user === TRUE) {
             $old_list = $this->soapClient->getSubscribedListsForUserWithEmail( $customerData['email_address'] );
 
             foreach ($listIds as $listId) {
-                if(!empty($old_list) && in_array($listId, $old_list))
+                if (!empty($old_list) && in_array($listId, $old_list)) {
                     $dublicate_lists[] = $listId;
-                else
+                } else {
                     $new_lists[] = $listId;
+                }
             }
-        }else{
+        } else {
             $new_lists = $listIds; // If the user is new just subscribe to all lists
         }
 
-        if(!empty($dublicate_lists) && empty($new_lists))
+        if (!empty($dublicate_lists) && empty($new_lists)) {
             return false;
+        }
 
         //subscribe the new user to the correct lists
         $firstName = (isset($customerData['firstname']) ? $customerData['firstname'] : '');
         $lastName = (isset($customerData['lastname']) ? $customerData['lastname'] : '');
-        foreach ( $new_lists as $listId ){
-            try{
+        foreach ($new_lists as $listId) {
+            try {
                 $result = $this->soapClient->subscribeUser( $firstName, $lastName, $customerData['email_address'] ,array( $listId ), $customerData['attributes'] );
-            }catch ( \SoapFault $e ){
+            } catch (\SoapFault $e){
                 return $e->getMessage();
             }
         }
-        return $result;
 
+        return $result;
     }
 
     public function unSubscribeUser($userId, $listId)
@@ -97,9 +99,9 @@ class ConsultantNewsletterApi
 
     public function getActiveLists()
     {
-        try{
+        try {
             return $this->soapClient->getActiveLists();
-        }catch(Exception $e){
+        } catch(Exception $e) {
             return false;
         }
     }
@@ -120,7 +122,7 @@ class ConsultantNewsletterApi
         $this->soapClient->assignUserToList( $userId, $listId );
     }
 
-    public function scheduleNewsletter( $from, $to, $replyto, $subject, $message, $footer = null, array $lists, $template, $status = self::STATUS_DRAFT, $embargo = null, $userselection = null, $owner = null )
+    public function scheduleNewsletter($from, $to, $replyto, $subject, $message, $footer = null, array $lists, $template, $status = self::STATUS_DRAFT, $embargo = null, $userselection = null, $owner = null)
     {
         $request = (object) array(
             'fromfield'     => $from,
@@ -137,14 +139,14 @@ class ConsultantNewsletterApi
             'owner'         => $owner,
         );
 
-        try{
+        try {
             return $this->soapClient->scheduleNewsletter( $request );
-        }catch (Exception $e){
+        } catch (Exception $e) {
             error_log(__LINE__.':'.__FILE__.' '.$e->getMessage());
         }
     }
 
-    public function sendTestMail( $from, $to, $replyto, $subject, $message, $footer = null, array $lists, $template, $status = self::STATUS_DRAFT, $testReciverEmail )
+    public function sendTestMail($from, $to, $replyto, $subject, $message, $footer = null, array $lists, $template, $status = self::STATUS_DRAFT, $testReciverEmail)
     {
         $request = (object) array(
             'fromfield'     => $from,
@@ -158,23 +160,24 @@ class ConsultantNewsletterApi
             'status'        => $status,
         );
 
-        try{
+        try {
             return $this->soapClient->sendTestMail( $request, $testReciverEmail );
-        }catch (Exception $e){
+        } catch (Exception $e) {
             error_log(__LINE__.':'.__FILE__.' '.$e->getMessage());
             return false;
         }
-
     }
 
     public function getTemplates()
     {
-        try{
+        try {
             return $this->soapClient->getTemplates();
-        }catch (Exception $e){
+        } catch (Exception $e) {
             error_log(__LINE__.':'.__FILE__.' '.$e->getMessage());
         }
     }
+
+
     /**
     * Checks if an admin users exists
     *
@@ -182,9 +185,15 @@ class ConsultantNewsletterApi
     * @return bool
     * @author Henrik Farre <hf@bellcom.dk>
     **/
-    public function doesAdminUserExist( $email )
+    public function doesAdminUserExist($email)
     {
-        return $this->soapClient->doesAdminUserExist( $email );
+        $x = $this->soapClient->doesAdminUserExist($email);
+
+error_log($this->soapClient->__getLastRequestHeaders());
+error_log($this->soapClient->__getLastRequest());
+
+
+        return $x;
     }
 
     /**
@@ -195,9 +204,9 @@ class ConsultantNewsletterApi
     * @return bool
     * @author Henrik Farre <hf@bellcom.dk>
     **/
-    public function addAdminUser( \stdClass $user, \stdClass $access )
-    {   
-        return $this->soapClient->addAdminUser( $user, $access );  
+    public function addAdminUser(\stdClass $user, \stdClass $access)
+    {
+        return $this->soapClient->addAdminUser($user, $access);
     }
 
     /**
@@ -207,7 +216,7 @@ class ConsultantNewsletterApi
     * @return stdClass
     * @author Henrik Farre <hf@bellcom.dk>
     **/
-    public function getAdminUserByEmail( $email )
+    public function getAdminUserByEmail($email)
     {
         return (object) $this->soapClient->getAdminUserByEmail($email);
     }
@@ -220,7 +229,7 @@ class ConsultantNewsletterApi
     * @return void
     * @author Henrik Farre <hf@bellcom.dk>
     **/
-    public function createList( \stdClass $list )
+    public function createList(\stdClass $list)
     {
         $this->soapClient->createList($list);
     }
@@ -232,9 +241,9 @@ class ConsultantNewsletterApi
     * @return array
     * @author Henrik Farre <hf@bellcom.dk>
     **/
-    public function getListsByOwner( $ownerID )
+    public function getListsByOwner($ownerID)
     {
-        return $this->soapClient->getListsByOwner( $ownerID );
+        return $this->soapClient->getListsByOwner($ownerID);
     }
 
     /**
@@ -245,9 +254,9 @@ class ConsultantNewsletterApi
     * @return array
     * @author Henrik Farre <hf@bellcom.dk>
     **/
-    public function getAllUsersSubscribedToList( $listID, $confirmed = true )
+    public function getAllUsersSubscribedToList($listID, $confirmed = true)
     {
-        return $this->soapClient->getAllUsersSubscribedToList( $listID, $confirmed );
+        return $this->soapClient->getAllUsersSubscribedToList($listID, $confirmed);
     }
 
     /**
@@ -255,9 +264,9 @@ class ConsultantNewsletterApi
     * @return array
     * @author Henrik Farre <hf@bellcom.dk>
     **/
-    public function getNewsletterHistory( $userID )
+    public function getNewsletterHistory($userID)
     {
-        return $this->soapClient->getNewsletterHistory( $userID );
+        return $this->soapClient->getNewsletterHistory($userID);
     }
 
     /**
@@ -265,15 +274,14 @@ class ConsultantNewsletterApi
      * @return void
      * @author Henrik Farre <hf@bellcom.dk> / Anders Bryrup
      **/
-    public function sendNotificationEmail( $mailer, $tpl, $email, $name = '' )
+    public function sendNotificationEmail($mailer, $tpl, $email, $name = '')
     {
-        
         $mailer->setMessage($tpl, array(
             'name'  => $name,
             'email' => $email,
         ));
 
-        $mailer->setTo( $email, $name );
+        $mailer->setTo($email, $name);
         $mailer->send();
     }
 

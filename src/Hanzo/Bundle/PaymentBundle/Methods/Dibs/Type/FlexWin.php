@@ -51,6 +51,8 @@ class FlexWin extends BasePaymentApi implements PaymentMethodApiInterface
         'nb_NO' => 'no', //Norwegian
         'sv_SE' => 'sv', // Swedish
         'de_DE' => 'de', //German
+        'de_AT' => 'de', //German
+        'de_CH' => 'de', //German
     );
 
     /**

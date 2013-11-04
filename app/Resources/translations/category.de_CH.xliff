@@ -1,0 +1,362 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="headers.category-14" approved="no">
+                <source>headers.category-14</source>
+                <target><![CDATA[<h1>Kleider</h1>
+                <p></p>]]></target>
+            </trans-unit>
+             <trans-unit id="headers.category-20" approved="no">
+                <source>headers.category-20</source>
+                <target><![CDATA[<h1>T-shirts-Tops</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-19" approved="no">
+                <source>headers.category-19</source>
+                <target><![CDATA[<h1>Tuniken-Blusen</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-13" approved="no">
+                <source>headers.category-13</source>
+                <target><![CDATA[<h1>Strick-Strickjacken</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-80" approved="no">
+                <source>headers.category-80</source>
+                <target><![CDATA[<h1>Westen</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-81" approved="no">
+                <source>headers.category-81</source>
+                <target><![CDATA[<h1>Jumpsuits</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-17" approved="no">
+                <source>headers.category-17</source>
+                <target><![CDATA[<h1>Hosen</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-79" approved="no">
+                <source>headers.category-79</source>
+                <target><![CDATA[<h1>Jeans</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-18" approved="no">
+                <source>headers.category-18</source>
+                <target><![CDATA[<h1>Shorts-Röcke</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-16" approved="no">
+                <source>headers.category-16</source>
+                <target><![CDATA[<h1>Oberbekleidung-Fleece</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-15" approved="no">
+                <source>headers.category-15</source>
+                <target><![CDATA[<h1>Leggings</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-82" approved="no">
+                <source>headers.category-82</source>
+                <target><![CDATA[<h1>Strümpfe-Strumpfhosen</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-21" approved="no">
+                <source>headers.category-21</source>
+                <target><![CDATA[<h1>Unterwäsche-Nachtwäsche</h1>
+                <p></p>]]></target></trans-unit>
+			<trans-unit id="headers.category-12" approved="no">
+                <source>headers.category-12</source>
+                <target><![CDATA[<h1>Accessories</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-10" approved="no">
+                <source>headers.category-10</source>
+                <target><![CDATA[<h1>T-Shirts</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-8" approved="no">
+                <source>headers.category-8</source>
+                <target><![CDATA[<h1>Hemden-Poloshirts</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-9" approved="no">
+                <source>headers.category-9</source>
+                <target><![CDATA[<h1>Strickjacken-Pullover</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-83" approved="no">
+                <source>headers.category-83</source>
+                <target><![CDATA[<h1>Sweatshirts</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-7" approved="no">
+                <source>headers.category-7</source>
+                <target><![CDATA[<h1>Hosen</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-84" approved="no">
+                <source>headers.category-84</source>
+                <target><![CDATA[<h1>Jeans</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-6" approved="no">
+                <source>headers.category-6</source>
+                <target><![CDATA[<h1>Oberbekleidung-Fleece</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-11" approved="no">
+                <source>headers.category-11</source>
+                <target><![CDATA[<h1>Unterwäsche-Nachtwäsche</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-5" approved="no">
+                <source>headers.category-5</source>
+                <target><![CDATA[<h1>Accessories</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-31" approved="no">
+                <source>headers.category-31</source>
+                <target><![CDATA[<h1>Kleider
+</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-36" approved="no">
+                <source>headers.category-36</source>
+                <target><![CDATA[<h1>T-shirts</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-37" approved="no">
+                <source>headers.category-37</source>
+                <target><![CDATA[<h1>Tuniken-Blusen</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-30" approved="no">
+                <source>headers.category-30</source>
+                <target><![CDATA[<h1>Strick-Strickjacken</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-85" approved="no">
+                <source>headers.category-85</source>
+                <target><![CDATA[<h1>Jumpsuits</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-34" approved="no">
+                <source>headers.category-34</source>
+                <target><![CDATA[<h1>Hosen</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-35" approved="no">
+                <source>headers.category-35</source>
+                <target><![CDATA[<h1>Shorts-Röcke</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-33" approved="no">
+                <source>headers.category-33</source>
+                <target><![CDATA[<h1>Oberbekleidung-Fleece</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-32" approved="no">
+                <source>headers.category-32</source>
+                <target><![CDATA[<h1>Leggings</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-87" approved="no">
+                <source>headers.category-87</source>
+                <target><![CDATA[<h1>Strümpfe-Strumpfhosen</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-38" approved="no">
+                <source>headers.category-38</source>
+                <target><![CDATA[<h1>Unterwäsche-Nachtwäsche</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-29" approved="no">
+                <source>headers.category-29</source>
+                <target><![CDATA[<h1>Accessories</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-27" approved="no">
+                <source>headers.category-27</source>
+                <target><![CDATA[<h1>T-Shirts</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-26" approved="no">
+                <source>headers.category-26</source>
+                <target><![CDATA[<h1>Hemden-Poloshirts</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-23" approved="no">
+                <source>headers.category-23</source>
+                <target><![CDATA[<h1>Strickjacken-Pullover</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-88" approved="no">
+                <source>headers.category-88</source>
+                <target><![CDATA[<h1>Sweatshirts</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-89" approved="no">
+                <source>headers.category-89</source>
+                <target><![CDATA[<h1>Jumpsuits</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-25" approved="no">
+                <source>headers.category-25</source>
+                <target><![CDATA[<h1>Hosen</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-90" approved="no">
+                <source>headers.category-90</source>
+                <target><![CDATA[<h1>Jeans</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-24" approved="no">
+                <source>headers.category-24</source>
+                <target><![CDATA[<h1>Oberbekleidung-Fleece</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-28" approved="no">
+                <source>headers.category-28</source>
+                <target><![CDATA[<h1>Unterwäsche-Nachtwäsche</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-22" approved="no">
+                <source>headers.category-22</source>
+                <target><![CDATA[<h1>Accessories</h1>
+                <p></p>]]></target>
+            </trans-unit>			
+			<trans-unit id="headers.bycolour-673" approved="no">
+                <source>headers.bycolour-673</source>
+                <target><![CDATA[<h1>Rose</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.bycolour-674" approved="no">
+                <source>headers.bycolour-674</source>
+                <target><![CDATA[<h1>Ice Blue</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.bycolour-675" approved="no">
+                <source>headers.bycolour-675</source>
+                <target><![CDATA[<h1>Curry</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.bycolour-676" approved="no">
+                <source>headers.bycolour-676</source>
+                <target><![CDATA[<h1>Curry/Grey</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.bycolour-677" approved="no">
+                <source>headers.bycolour-677</source>
+                <target><![CDATA[<h1>Sand</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.bycolour-678" approved="no">
+                <source>headers.bycolour-678</source>
+                <target><![CDATA[<h1>Blue</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.bycolour-679" approved="no">
+                <source>headers.bycolour-679</source>
+                <target><![CDATA[<h1>Cerise</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.bycolour-680" approved="no">
+                <source>headers.bycolour-680</source>
+                <target><![CDATA[<h1>Grey</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.bycolour-681" approved="no">
+                <source>headers.bycolour-681</source>
+                <target><![CDATA[<h1>Denim</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.bycolour-692" approved="no">
+                <source>headers.bycolour-692</source>
+                <target><![CDATA[<h1>Navy/Camel</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.bycolour-693" approved="no">
+                <source>headers.bycolour-693</source>
+                <target><![CDATA[<h1>Navy, Red & Turquoise</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.bycolour-694" approved="no">
+                <source>headers.bycolour-694</source>
+                <target><![CDATA[<h1>Blue, Red & Green</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.bycolour-695" approved="no">
+                <source>headers.bycolour-695</source>
+                <target><![CDATA[<h1>Grey</h1>
+                <p></p>]]></target>
+            </trans-unit>			
+			<trans-unit id="headers.bycolour-683" approved="no">
+                <source>headers.bycolour-683</source>
+                <target><![CDATA[<h1>Rose</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.bycolour-684" approved="no">
+                <source>headers.bycolour-684</source>
+                <target><![CDATA[<h1>Ice Blue</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.bycolour-685" approved="no">
+                <source>headers.bycolour-685</source>
+                <target><![CDATA[<h1>Curry</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.bycolour-686" approved="no">
+                <source>headers.bycolour-686</source>
+                <target><![CDATA[<h1>Curry/Grey</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.bycolour-687" approved="no">
+                <source>headers.bycolour-687</source>
+                <target><![CDATA[<h1>Sand</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.bycolour-688" approved="no">
+                <source>headers.bycolour-688</source>
+                <target><![CDATA[<h1>Blue</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.bycolour-689" approved="no">
+                <source>headers.bycolour-689</source>
+                <target><![CDATA[<h1>Cerise</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.bycolour-690" approved="no">
+                <source>headers.bycolour-690</source>
+                <target><![CDATA[<h1>Grey</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.bycolour-691" approved="no">
+                <source>headers.bycolour-691</source>
+                <target><![CDATA[<h1>Denim</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.bycolour-696" approved="no">
+                <source>headers.bycolour-696</source>
+                <target><![CDATA[<h1>Navy/Camel</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.bycolour-697" approved="no">
+                <source>headers.bycolour-697</source>
+                <target><![CDATA[<h1>Navy, Red & Turquoise</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.bycolour-698" approved="no">
+                <source>headers.bycolour-698</source>
+                <target><![CDATA[<h1>Blue, Red & Green</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.bycolour-699" approved="no">
+                <source>headers.bycolour-699</source>
+                <target><![CDATA[<h1>Grey</h1>
+                <p></p>]]></target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

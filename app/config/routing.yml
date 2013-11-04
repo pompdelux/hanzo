@@ -1,3 +1,10 @@
+RetargetingBundle:
+    resource: "@RetargetingBundle/Controller/"
+    type:     annotation
+rma:
+    resource: "@RMABundle/Resources/config/routing.yml"
+    prefix:   /{_locale}/
+
 muneris:
     resource: "@MunerisBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/

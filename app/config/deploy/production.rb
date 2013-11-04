@@ -6,7 +6,7 @@ set :deploy_to,   "/var/www/pompdelux"
 
 # default environment, used by default functions
 set :symfony_env_prod, "prod_dk"
-set :symfony_env_prods, ["prod_de", "prod_fi", "prod_se", "prod_no", "prod_com", "prod_nl", "prod_dk", "prod_de_consultant", "prod_fi_consultant", "prod_se_consultant", "prod_no_consultant", "prod_nl_consultant", "prod_dk_consultant"]
+set :symfony_env_prods, ["prod_ch", "prod_at", "prod_de", "prod_fi", "prod_se", "prod_no", "prod_com", "prod_nl", "prod_dk", "prod_ch_consultant", "prod_at_consultant", "prod_de_consultant", "prod_fi_consultant", "prod_se_consultant", "prod_no_consultant", "prod_nl_consultant", "prod_dk_consultant"]
 
 set :adminserver, "pdladmin"
 set :staticserver, "pdlstatic1"
@@ -14,10 +14,12 @@ set :staticserver, "pdlstatic1"
 set :branch, "master"
 
 # list of servers to deploy to
-role :app, 'pdlfront-dk3', 'pdlfront-dk2', 'pdlfront-dk1', 'pdlfront-no1', 'pdlfront-se1', 'pdlfront-nl1', 'pdlfront-fi1', 'pdlfront-dk4', 'pdlfront-dk5', 'pdladmin', 'pdlkons-dk1', 'pdlstatic1'
+#role :app, 'pdlfront-dk3', 'pdlfront-dk2', 'pdlfront-dk1', 'pdlfront-no1', 'pdlfront-se1', 'pdlfront-nl1', 'pdlfront-fi1', 'pdlfront-dk4', 'pdlfront-dk5', 'pdladmin', 'pdlkons-dk1', 'pdlstatic1'
+role :app, 'pdlfront-dk3', 'pdlfront-dk2', 'pdlfront-no1', 'pdlfront-se1', 'pdlfront-nl1', 'pdlfront-fi1', 'pdlfront-dk4', 'pdlfront-dk5', 'pdladmin', 'pdlkons-dk1', 'pdlstatic1'
 
-# :apache should contain our apache servers. Used in reload_apache and apcclear
-role :apache, 'pdlfront-dk3', 'pdlfront-dk2', 'pdlfront-dk1', 'pdlfront-no1', 'pdlfront-se1', 'pdlfront-nl1', 'pdlfront-fi1', 'pdlfront-dk4', 'pdlfront-dk5', 'pdladmin', 'pdlkons-dk1'
+# :symfonyweb should contain our apache/nginx servers running symfony. Used in reload_apache and apcclear
+#role :symfonyweb, 'pdlfront-dk3', 'pdlfront-dk2', 'pdlfront-dk1', 'pdlfront-no1', 'pdlfront-se1', 'pdlfront-nl1', 'pdlfront-fi1', 'pdlfront-dk4', 'pdlfront-dk5', 'pdladmin', 'pdlkons-dk1'
+role :symfonyweb, 'pdlfront-dk3', 'pdlfront-dk2', 'pdlfront-no1', 'pdlfront-se1', 'pdlfront-nl1', 'pdlfront-fi1', 'pdlfront-dk4', 'pdlfront-dk5', 'pdladmin', 'pdlkons-dk1'
 
 # our redis server. clear cache here
 role :redis, adminserver, :primary => true
@@ -39,7 +41,12 @@ namespace :deploy do
   end
 # own tasks. copy vhost
   desc "Copy default vhost from stat"
-  task :copy_vhost, :roles => :apache do
+  task :copy_vhost, :roles => :symfonyweb do
     run("sudo wget -q --output-document=/etc/apache2/sites-available/pompdelux http://tools.bellcom.dk/hanzo/pompdelux-vhost.txt")
+  end
+# own tasks. enable vhost
+  desc "Enable vhost from stat"
+  task :enable_vhost, :roles => :symfonyweb do
+    run("sudo a2ensite pompdelux")
   end
 end

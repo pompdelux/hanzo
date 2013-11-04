@@ -441,7 +441,7 @@
             </trans-unit>
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
-                <target><![CDATA[<p>On My account you can change your account details and subscribe or unsubscribe to our newsletter. Furthermore you can also edit your order.<br><br>Your order can have following status:<br><br><b>Pending</b><br>Your order has been registered, and you have as a minimum 24 hours to edit your order. You can change/add/delete items on your order. Just click on the pen, if you wish to edit your order. Please note: You must proceed through to the payment, when you edit your order. If you pay by credit card - please be aware that any previous authorizations, placed on your credit card account, can take up to 30 days to expire. If you wish to cancel your order, click on X.<br><br><b>Stop editing</b><br>If you are interrupted during editing, just click on “Stop editing” and you can then start again.<br><br><b>Being processed</b><br>We are now packing your order and it will be shipped within 1-2 days. You cannot edit/cancel your order anymore.<br><br><b>Shipped</b><br>Your order has been shipped from our warehouse. You can see the invoice as a PDF file, under the column Invoice, within 24 hours after your order has been shipped.<br><br>If you wish to return an item, you can find the <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_Eng.pdf" target="_blank">returns form here</a>.<br><br></p>]]></target>
+                <target><![CDATA[<p>On My account you can change your account details and subscribe or unsubscribe to our newsletter. Furthermore you can also edit your order.<br><br>Your order can have following status:<br><br><b>Pending</b><br>Your order has been registered, and you have as a minimum 24 hours to edit your order. You can change/add/delete items on your order. Just click on the <img src="/fx/images/icons/icons/edit.png" alt="Edit"> if you wish to edit your order. Please note: You must proceed through to the payment, when you edit your order. If you pay by credit card - please be aware that any previous authorizations, placed on your credit card account, can take up to 30 days to expire. If you wish to cancel your order, click on <img src="/fx/images/icons/icons/delete.png" alt="Delete">.<br><br><b>Stop editing</b><br>If you are interrupted during editing, just click on “Stop editing” and you can then start again.<br><br><b>Being processed</b><br>We are now packing your order and it will be shipped within 1-2 days. You cannot edit/cancel your order anymore.<br><br><b>Shipped</b><br>Your order has been shipped from our warehouse. You can see the invoice as a PDF file, under the column Invoice, within 24 hours after your order has been shipped.<br><br><b>Returns</b><br>If you want to return an item, you click on <img src="/fx/images/icons/icons/return.png" alt="Return"><br><br></p>]]></target>
             </trans-unit>
             <trans-unit id="newsletter" approved="no">
                 <source>newsletter</source>
@@ -490,6 +490,16 @@
             <trans-unit id="create.pre-notice" approved="no">
                 <source>create.pre-notice</source>
                 <target><![CDATA[On this page you must enter your personal info (and <u>not</u> company info).]]></target>
+            </trans-unit>
+            <trans-unit id="order.force.login.description" approved="no">
+                <source>order.force.login.description</source>
+                <target><![CDATA[
+                    <h3>Dear customer,</h3>
+                    <p>We have noticed that you have over 20 items of clothing in your shopping basket – for which we are naturally delighted about.<br>
+We would like to make sure that this is not due to an error and therefore must ask you to register yourself as a customer or log in to ‘MY ACCOUNT’ with your username and password.
+After this you can easily continue shopping.<br></p>
+                    <p>Thank you for your help.</p>
+                ]]></target>
             </trans-unit>
         </body>
     </file>

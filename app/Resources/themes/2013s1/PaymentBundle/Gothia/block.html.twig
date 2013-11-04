@@ -1,11 +1,11 @@
 <h2>{{ 'payment.gothia.title'|trans({}, 'checkout') }}</h2>
 <form name="payment-gothia" id="gothia" action="{{ path('PaymentBundle_gothia_payment') }}" method="post">
-<ul class="payment-methods" id="payment-method-gothia">
- <li>
-      <input type="radio" value="gothia" id="gothia" name="paytype">
-      <label for="gothia">
-        <img alt="gothia" src="{{ cdn }}fx/images/icons/gothia_paybybill.jpg"> {{ 'payment.gothia.desc'|trans({}, 'checkout')|raw }}
-      </label>
-    </li>
-</ul>
+    <ul class="payment-methods" id="payment-method-gothia">
+        <li>
+            <input type="radio" value="gothia" id="gothia" name="paytype">
+            <label for="gothia">
+                <img alt="gothia" src="{{ cdn }}fx/images/icons/gothia_paybybill.jpg"> {{ 'payment.gothia.desc'|trans({}, 'checkout')|raw }}
+            </label>
+        </li>
+    </ul>
 </form>

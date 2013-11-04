@@ -134,7 +134,7 @@
             </trans-unit>
             <trans-unit id="customer.service.contact.info">
                 <source>customer.service.contact.info</source>
-                <target><![CDATA[Asiakaspalvelu<br>Puhelin: 09 34870870<br>Sähköposti: <a hrfef="mailto:mailfi@pompdelux.com">mailfi@pompdelux.com</a><br>Maanantaista torstaihin klo 9–17<br>Perjantaisin 9–15<br>Suljettu lauantaisin, sunnuntaisin ja pyhäpäivinä]]></target>
+                <target><![CDATA[Asiakaspalvelu<br>Puhelin: 09 34870870<br>Sähköposti: <a hrfef="mailto:mailfi@pompdelux.com">mailfi@pompdelux.com</a><br>Maanantaista torstaihin klo 10 - 17<br>Perjantaisin 10 - 15<br>Suljettu lauantaisin, sunnuntaisin ja pyhäpäivinä]]></target>
             </trans-unit>
             <trans-unit id="footer.address">
                 <source>footer.address</source>
@@ -213,11 +213,11 @@
             <trans-unit id="delivery.info" approved="no">
                 <source>delivery.info</source>
                 <target><![CDATA[
-                    <p>Kaikki tuotteet lähetetään postipakettina <a href="http://www.mypack.fi" target="_blank">MyPack-</a> palvelun kautta. Tämän ansiosta voit seurata lähetyksen kulkua lähetyshetkestä toimitushetkeen asti.<br />
+                    <p>Kaikki tuotteet lähetetään postipakettina <a href="http://posti.fi/" target="_blank">Posti-</a> palvelun kautta. Tämän ansiosta voit seurata lähetyksen kulkua lähetyshetkestä toimitushetkeen asti.<br />
       <br />
-      Paketit toimitetaan MyPack-noutopisteeseen. Rahtikulu on EUR 8,50 (EUR 7,50, mikäli ostat tuotteet edustajan kautta esim. kotimyyntitilaisuudesta tai Avoimet ovet -tilaisuudesta).
+      Paketit toimitetaan Posti-noutopisteeseen. Rahtikulu on EUR 8,50 (EUR 7,50, mikäli ostat tuotteet edustajan kautta esim. kotimyyntitilaisuudesta tai Avoimet ovet -tilaisuudesta).
       <br />
-      Saapunut lähetys tulee tarkastaa heti. Jos pakkaus ja/tai tuotteet ovat vioittuneet, ota yhteyttä heti POMPdeLUXin asiakaspalveluun tai <a href="http://www.mypack.fi" target="_blank">MyPack-</a>noutopisteeseen.</p>
+      Saapunut lähetys tulee tarkastaa heti. Jos pakkaus ja/tai tuotteet ovat vioittuneet, ota yhteyttä heti POMPdeLUXin asiakaspalveluun tai <a href="http://posti.fi/" target="_blank">Posti-</a>noutopisteeseen.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="return.title" approved="no">
@@ -317,6 +317,10 @@
             <trans-unit id="order.deleted" approved="no">
                 <source>order.deleted</source>
                 <target>E-tilausnro %id% on peruttu.</target>
+            </trans-unit>
+            <trans-unit id="product.prices.description" approved="no">
+                <source>product.prices.description</source>
+                <target></target>
             </trans-unit>
         </body>
     </file>

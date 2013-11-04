@@ -4,7 +4,7 @@
         <body>
             <trans-unit id="payment.title">
                 <source>payment.title</source>
-                <target>Pensio</target>
+                <target>iDeal/Pensio</target>
             </trans-unit>
             <trans-unit id="ideal.desc">
                 <source>ideal.desc</source>
@@ -21,7 +21,7 @@
             <trans-unit id="failed.go.back.description">
                 <source>failed.go.back.description</source>
                 <target><![CDATA[
-                    Ga <a href="%back_url%">back</a> naar de check-out pagina en kies een andere betaalmethode.
+                    Ga <a href="%back_url%">terug</a> naar de check-out pagina en kies een andere betaalmethode.
                 ]]></target>
             </trans-unit>
             <trans-unit id="form.order_id">

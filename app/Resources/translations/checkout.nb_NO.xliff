@@ -131,16 +131,16 @@
         <source>confirm.total</source>
         <target>Samlet beløp</target>
       </trans-unit>
-      <trans-unit id="payment.paybybill.title">
-        <source>payment.paybybill.title</source>
+      <trans-unit id="payment.manualpayment.title">
+        <source>payment.manualpayment.title</source>
         <target>Bankoverføring</target>
       </trans-unit>
-      <trans-unit id="payment.paybybill.text">
-        <source>payment.paybybill.text</source>
+      <trans-unit id="payment.manualpayment.text">
+        <source>payment.manualpayment.text</source>
         <target><![CDATA[Velg betalingsmåte<br><br><b>Bemerk:</b> Bankoverføring må brukes dersom internettforbindelse mangler.]]></target>
       </trans-unit>
-      <trans-unit id="payment.paybybill.label">
-        <source>payment.paybybill.label</source>
+      <trans-unit id="payment.manualpayment.label">
+        <source>payment.manualpayment.label</source>
         <target>Bankoverføring</target>
       </trans-unit>
       <trans-unit id="payment.gateway_id">
@@ -289,7 +289,7 @@
       </trans-unit>
        <trans-unit id="payment.gothia.title">
         <source>payment.gothia.title</source>
-        <target>Gothia faktura</target>
+        <target>Fakturabetaling</target>
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
@@ -305,7 +305,7 @@
       </trans-unit>
       <trans-unit id="payment.dibs.title">
         <source>payment.dibs.title</source>
-        <target>Dibs</target>
+        <target>Kreditkort</target>
       </trans-unit>
       <trans-unit id="payment.dibs.paytype.dk">
         <source>payment.dibs.paytype.dk</source>
@@ -410,9 +410,11 @@
       </trans-unit>
       <trans-unit id="order.amount.to.low" approved="no">
         <source>order.amount.to.low</source>
-        <target>Vertinnerabatten overstiger ditt samlede kjøp.
-Du må tilføye flere varer.
-</target>
+        <target>Kjøpet ditt har en lavere verdi enn den totale vertinnerabatt. Legg til flere varer i handlekurven din for å bruke vertinnerabatten</target>
+      </trans-unit>
+      <trans-unit id="order.amount.to.low.for.coupon" approved="no">
+        <source>order.amount.to.low.for.coupon</source>
+        <target>Kjøpet svarer dessverre ikke til minstegrensen på NOK %amount% for din rabattkode. Legg til flere varer i handlekurven din for å bruke rabattkoden</target>
       </trans-unit>
       <trans-unit id="coupon" approved="no">
         <source>coupon</source>
@@ -424,7 +426,7 @@ Du må tilføye flere varer.
       </trans-unit>
       <trans-unit id="coupon.description" approved="no">
         <source>coupon.description</source>
-        <target>Dersom du har en rabattkode .......</target>
+        <target>Det kan bare brukes én rabattkode per ordre.</target>
       </trans-unit>
       <trans-unit id="coupon.apply.discount" approved="no">
         <source>coupon.apply.discount</source>
@@ -432,7 +434,7 @@ Du må tilføye flere varer.
       </trans-unit>
       <trans-unit id="coupon.label" approved="no">
         <source>coupon.label</source>
-        <target>Tast inn din rabattkode</target>
+        <target>Tast inn din rabattkode.</target>
       </trans-unit>
       <trans-unit id="coupon.invalid.code" approved="no">
         <source>coupon.invalid.code</source>

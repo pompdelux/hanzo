@@ -173,7 +173,7 @@ class PayPalApi extends BasePaymentApi implements PaymentMethodApiInterface
         $response = $this->call()->SetExpressCheckout($params);
 
         if ($response->isError()) {
-            Tools::log($response->debug());
+            Tools::log(print_r($response->debug(),1)."\n\nparams send:\n".print_r($params,1));
             throw new Exception("No PayPal token !!");
         }
 

@@ -338,7 +338,7 @@ button {
   margin-bottom: 1em;
   clear: both;
   &.error {
-  	border: 2px solid #f10000;
+  	border: 2px solid $form-error-color;
   }
 }
 .no-text{line-height:0;}
@@ -355,6 +355,7 @@ button {
 	&.delete,
 	&.edit,
 	&.show,
+	&.return,
 	&.pdf{
 		display: inline-block;
 	}
@@ -377,6 +378,11 @@ button {
 		@include icons-sprite(pdf);
 		height: icons-sprite-height(pdf);
 		width: icons-sprite-width(pdf);
+	}
+	&.return{
+		@include icons-sprite(return);
+		height: icons-sprite-height(return);
+		width: icons-sprite-width(return);
 	}
 }
 
@@ -498,4 +504,17 @@ ol{
 ul.form-errors li {
 	color: $form-error-color;
 	padding: 5px 0;
+}
+
+#body-consultant-newsletter table {
+    width: auto;
+}
+#body-consultant-newsletter table td {
+    padding: 2px 10px 2px 2px;
+    vertical-align: middle;
+}
+
+#body-consultant-newsletter .subscriber-search .button {
+    line-height: 15px;
+    vertical-align: bottom;
 }

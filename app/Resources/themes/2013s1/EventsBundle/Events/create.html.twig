@@ -23,9 +23,11 @@
         <p>{{ 'events.create_event.description.text'|trans({}, 'events') }}</p>
         <div class="grid_3">
             <div id="find-customer">
+            {% if 'da_DK' == app.request.locale %}
                 <form id="find-customer-by-phone-form">
                     <input type="text" id="find-customer-by-phone" placeholder="{{ 'events.find_customer_by_phone.placeholder'|trans({}, 'events') }}"><input type="submit" id="find-customer-by-phone-button" value="{{ 'events.find_customer_by_phone.button'|trans({}, 'events') }}">
                 </form>
+            {% endif %}
                 <form id="find-customer-by-email-form">
                     <input type="text" id="find-customer-by-email" placeholder="{{ 'events.find_customer_by_email.placeholder'|trans({}, 'events') }}"><input type="submit" id="find-customer-by-email-button" value="{{ 'events.find_customer_by_email.button'|trans({}, 'events') }}">
                 </form>

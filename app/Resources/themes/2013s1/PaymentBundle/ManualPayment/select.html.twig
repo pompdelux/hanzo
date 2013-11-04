@@ -1,0 +1,9 @@
+<h3>{{ 'payment.manualpayment.title'|trans({}, 'checkout') }}</h3>
+<ul class="payment-methods" id="payment-method-manualpayment" data-provider="manualpayment">
+  <li>
+    <p>{{ 'payment.manualpayment.text'|trans({}, 'checkout')|raw }}</p>
+
+    <input type="radio" value="manualpayment:manualpayment" id="pbb" name="paytype"{% if selected_payment_type == 'manualpayment:manualpayment' %} checked{% endif %}>
+    <label for="pbb">{{ 'payment.manualpayment.label'|trans({}, 'checkout') }}</label>
+  </li>
+</ul>

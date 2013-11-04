@@ -16,24 +16,24 @@
             </trans-unit>
             <trans-unit id="500.title">
                 <source>500.title</source>
-                <target>Sorry</target>
+                <target>Oops!</target>
             </trans-unit>
             <trans-unit id="500.description">
                 <source>500.description</source>
                 <target><![CDATA[
-                    <p>An internal error occurred in the system. We apologize for the inconvenience.</p>
-                    <p>If the problem continues please contact customer service at +45 8678 7871 or email us at <a href="mailto:mail@pompdelux.com">mail@pompdelux.com</a></p>
+                    <p>An error has occurred. Please try to refresh the page.</p>
+                    <p>If you continue to experience problems, please contact Customer Service on telephone no. +45 8736 1000 or send an e-mail at <a href="mailto:mail@pompdelux.com">mail@pompdelux.com</a>. We apologize for any inconvenience!</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="403.title">
                 <source>403.title</source>
-                <target>Sorry</target>
+                <target>Oops!</target>
             </trans-unit>
             <trans-unit id="403.description">
                 <source>403.description</source>
                 <target><![CDATA[
-                    <p>An internal error occurred in the system. We apologize for the inconvenience.</p>
-                    <p>If the problem continues please contact customer service at +45 8678 7871 or email us at <a href="mailto:mail@pompdelux.com">mail@pompdelux.com</a></p>
+                    <p>An error has occurred. Please try to refresh the page.</p>
+                    <p>If you continue to experience problems, please contact Customer Service on telephone no. +45 8736 1000 or send an e-mail at <a href="mailto:mail@pompdelux.com">mail@pompdelux.com</a>. We apologize for any inconvenience!</p>
                 ]]></target>
             </trans-unit>
         </body>

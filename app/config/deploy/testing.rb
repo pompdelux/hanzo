@@ -16,8 +16,8 @@ set :branch, "testing"
 # list of server to deploy to
 role :app, 'pomp-test', 'pomptest-db'
 
-# :apache should contain our apache servers. Used in reload_apache and apcclear
-role :apache, "pomp-test"
+# :symfonyweb should contain our apache/nginx servers. Used in reload_apache and apcclear
+role :symfonyweb, "pomp-test"
 
 # our redis server. clear cache here
 role :redis, adminserver, :primary => true

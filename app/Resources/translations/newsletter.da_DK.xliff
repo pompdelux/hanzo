@@ -6,6 +6,10 @@
         <source>block.subscribe.newsletter_heading</source>
         <target>Tilmeld nyhedsbrev</target>
       </trans-unit>
+      <trans-unit id="block.subscribe.teaser">
+        <source>block.subscribe.teaser</source>
+        <target>Få masser af spændende nyheder, tip om konkurrencer og inspiration direkte i din mailbox!</target>
+      </trans-unit>
       <trans-unit id="newsletter_2">
         <source>block.subscribe.name_label</source>
         <target>Navn</target>
@@ -34,9 +38,19 @@
         <source>subscribed.text</source>
         <target>Du er nu tilmeldt vores nyhedsbrev.</target>
       </trans-unit>
+      <trans-unit id="unsubscribed.text">
+        <source>unsubscribed.text</source>
+        <target>Du er nu afmeldt POMPdeLUX nyhedsbrev.</target>
+      </trans-unit>
       <trans-unit id="invalid.email.address">
         <source>invalid.email.address</source>
         <target>Den indtastede e-mailaddresse er ikke en gyldig adresse.</target>
+      </trans-unit>
+      <trans-unit id="terms.link">
+        <source>terms.link</source>
+        <target><![CDATA[
+            <a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">Ved tilmelding accepterer jeg POMPdeLUX’s generelle vilkår.</a>
+        ]]></target>
       </trans-unit>
     </body>
   </file>

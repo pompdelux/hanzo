@@ -1,14 +1,14 @@
 <?php
-
 require __DIR__.'/../vendor/autoload.php';
 use Symfony\Component\Process\Process;
 
-$job = __DIR__.'/../cron/productImageImport.php --debug';
-$log = __DIR__.'/../app/logs/php.log';
+if (!empty($_GET['go'])) {
+    $job = __DIR__.'/../cron/productImageImport.php --debug';
+    $log = __DIR__.'/../app/logs/php.log';
 
-$process = new Process('nohup php '.$job.' >> '.$log.' 2>&1 & echo $!');
-$process->run();
-
+    $process = new Process('nohup php '.$job.' >> '.$log.' 2>&1 & echo $!');
+    $process->run();
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,6 +18,11 @@ $process->run();
 </head>
 <body>
 <h1>Billede importen kører ...</h1>
+
+<?php if (empty($_GET['go'])): ?>
+<p>... eller, det gør det når du lige trykker <a href="?go=1" rel="nofollow">her!</a></p>
+<?php else: ?>
+
 <p>Sæt dig bare tilbage</p>
 <p>- nyd en kop kaffe</p>
 <p>- hyg dig med et "dameblad" - hør lidt musik</p>
@@ -33,5 +38,7 @@ $songs = [
 echo $songs[array_rand($songs)];
 ?>
 <p>Du vil modtage en mail så snart importen er færdig.</p>
+
+<?php endif; ?>
 </body>
 </html>

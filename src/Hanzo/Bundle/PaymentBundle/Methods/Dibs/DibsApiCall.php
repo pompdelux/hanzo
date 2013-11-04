@@ -321,18 +321,15 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      **/
     public function callback( Orders $order )
     {
-        $attributes       = $order->getAttributes();
+        $attributes = $order->getAttributes();
 
-        if ( !isset($attributes->payment->transact) )
-        {
+        if (!isset($attributes->payment->transact)) {
             throw new DibsApiCallException( 'DIBS api callback action: order contains no transaction id, order id was: '.$order->getId() );
         }
 
-        $transaction      = $attributes->payment->transact;
-
         $params = array(
-            'merchant'  => $this->settings[ 'merchant' ],
-            'transact' => $transaction,
+            'merchant' => $this->settings[ 'merchant' ],
+            'transact' => $attributes->payment->transact,
         );
 
         return $this->call( 'cgi-adm/callback.cgi', $params, self::USE_AUTH_HEADERS );

@@ -9,19 +9,21 @@
 	}
 	&.error{
 		.inner{
-			border-color: red;
+			border-color: $alert-border-color;
 		}
 	}
 }
 .slide-notice-box{
-	position: absolute;
-	top: 55px;
-	right: 0;
-	padding: 8px 8px 19px 8px;
-	text-align: center;
-  overflow: hidden;
-  background: #fff url('/fx/images/icons/icons/divider_left.png') no-repeat;
-  background-position: 0 25px;
+    position: absolute;
+    top: 70px;
+    height: 45px;
+    right: 0;
+    z-index: 900;
+    padding: 8px 8px 19px 8px;
+    text-align: center;
+    overflow: hidden;
+    background: #fff url('/fx/images/icons/icons/divider_left.png') no-repeat;
+    background-position: 0 30px;
 }
 
 #cboxContent {
@@ -46,7 +48,7 @@
   display: none;
   &.info!, &.warning! {}
   &.error {
-    border-color: #f00;
+    border-color: $alert-border-color;
   }
   p {
     background-color: #fff;
@@ -61,4 +63,102 @@
   background: url(/fx/images/loader-bar.gif) no-repeat left center;
   padding-left: 20px;
   margin-left: 5px;
+}
+
+
+#newsletterModal {
+    display: none;
+    background-image: url(/fx/images/ffffff.png);
+    position: absolute;
+    z-index: 499;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    .inner {
+        z-index: 500;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        margin: 200px auto 0 auto;
+        padding: 20px 20px 5px 20px;
+        width: 600px;
+        // height: auto;
+        border-radius: 2px;
+        background-image: url(/fx/images/newsletter_overlay/bg.png);
+        overflow: hidden;
+        display: inline-block;
+    }
+
+    h2 {
+        font-family: $font-serif;
+    }
+
+    .wrapper {
+        background-image: url(/fx/images/newsletter_overlay/letters.png);
+        background-repeat: no-repeat;
+        padding-left: 150px;
+        padding-top: 20px;
+
+        p {
+            width: 280px;
+        }
+
+        form {
+            overflow: hidden;
+        }
+
+        div {
+            width: 295px;
+            float: left;
+
+            input[type="text"] {
+                margin-top: 15px;
+            }
+            input[type="text"], input[type="email"] {
+                width: 100%;
+            }
+
+            p {
+                width: 100%;
+                padding-top: 5px;
+                a {
+                    font-size: $small-size;
+                }
+                a:hover, a:focus {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        input.button {
+            float: left;
+            margin-left: 40px;
+            height: 83px;
+            width: 84px;
+            background-color: inherit;
+            text-indent: -999px;
+            display: inline-block;
+        }
+    }
+
+    .close-button {
+        display: inline-block;
+        height: 64px;
+        width: 44px;
+        vertical-align: bottom;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
+    .bottom {
+        background-image: url(/fx/images/newsletter_overlay/bottom.png);
+        background-repeat: no-repeat;
+        background-position: bottom center;
+        height: 220px;
+        clear: both;
+    }
 }

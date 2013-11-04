@@ -12,29 +12,34 @@
   <div class="help">{{ 'page.help_text'|trans({},'gothia')|raw }}</div>
   <br>
   <div id="gothia-account-container">
-    <form action="{{ path('PaymentBundle_gothia_payment_checkcustomer') }}" method="post" {{ form_enctype(form) }}>
+    <form action="{{ path('PaymentBundle_gothia_payment_checkcustomer') }}" method="post" {{ form_enctype(form) }} autocomplete="off">
       <div class="row">
         {{ form_widget(form) }}
       </div>
-      <div class="row">
+      <div class="row buttons">
         <input class="button button-right" type="submit" value="{{ 'form.submit_step1'|trans({},'gothia') }}" name="action-submit-gothia-checkcustomer" id="action-submit-gothia-checkcustomer"/>
         <a href="{{ path('PaymentBundle_gothia_payment_cancel') }}" class="button button-left">{{ 'form.cancel'|trans({},'gothia') }}</a>
       </div>
     </form>
   </div>
 </div>
+
 <div id="gothia-payment-step-2" style="display: none">
   <h2>{{ 'page.heading_step2'|trans({},'gothia') }}</h2>
   <div id="gothia-confirm-container">
-    <form action="{{ path('PaymentBundle_gothia_payment_confirm') }}" method="post" {{ form_enctype(form) }}>
+    <form action="{{ path('PaymentBundle_gothia_payment_confirm') }}" method="post" {{ form_enctype(form) }} autocomplete="off">
+
+    <div class="buttons">
       <input class="button button-right" type="submit" value="{{ 'form.submit_step2'|trans({},'gothia') }}" name="action-submit-gothia-confirm" id="action-submit-gothia-confirm"/>
       <a href="{{ path('PaymentBundle_gothia_payment_cancel') }}" class="button button-left">{{ 'form.cancel'|trans({},'gothia') }}</a>
+    </div>
     </form>
   </div>
 </div>
+
 <div id="gothia-payment-step-3" style="display: none">
   <div id="gothia-success-container">
-    <form action="{{ path('PaymentBundle_gothia_process') }}" method="post" {{ form_enctype(form) }}>
+    <form action="{{ path('PaymentBundle_gothia_process') }}" method="post" {{ form_enctype(form) }} autocomplete="off">
       <input type="hidden" value="gothia" name="paytype" />
     </form>
   </div>
@@ -42,5 +47,5 @@
 {% endblock %}
 
 {% block javascript %}
-<script>$(function () {gothia.init( {{step}} );});</script>
+<script>$(function () {gothia.init( 1 );});</script>
 {% endblock javascript %}

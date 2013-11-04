@@ -25,22 +25,25 @@
 
       // TODO: move to central place and re-use.
       // zip with auto city
-      $(document).on('focusout', 'input.auto-city', function(event) {
+      $(document).on('focusout blur', 'input.auto-city', function(event) {
         var $this = $(this);
+        var $form = $this.closest('form');
+
         // TODO: use css class
         $this.css('border', '1px solid #231F20');
         dialoug.loading($this);
 
         var value = $(this).prop('value');
+
         if ('' === value) {
           return;
         }
 
         $.getJSON(base_url+'service/get-city-from-zip/'+value, function(response) {
-          var $city = $this.closest('div#form').find('input#form_city').first();
+          var $city = $('.js-auto-city-'+$form.data('addresstype'), $form);
 
           if (response.status) {
-            $city.val(response.data.city);
+            $city.prop('value', response.data.city);
           } else {
             // TODO: use css class
             $this.css('border', '2px solid #a10000');
@@ -254,6 +257,9 @@
         }
       });
 
+      if ($('.js-invalid-order').length) {
+        $('#checkout-buttons').hide();
+      }
     };
 
     pub.setStepStatus = function(step, status) {

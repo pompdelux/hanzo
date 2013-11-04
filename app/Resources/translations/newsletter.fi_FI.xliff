@@ -6,6 +6,10 @@
         <source>block.subscribe.newsletter_heading</source>
         <target>Tilaa uutiskirje</target>
       </trans-unit>
+      <trans-unit id="block.subscribe.teaser">
+        <source>block.subscribe.teaser</source>
+        <target>Paljon kiinnostavia uutisia, vinkkejä kilpailuista ja ideoita suoraan sähköpostiisi!</target>
+      </trans-unit>
       <trans-unit id="newsletter_2">
         <source>block.subscribe.name_label</source>
         <target>Nimi</target>
@@ -34,9 +38,19 @@
         <source>subscribed.text</source>
         <target>Olet nyt tilannut uutiskirjeemme.</target>
       </trans-unit>
+      <trans-unit id="unsubscribed.text" approved="no">
+        <source>unsubscribed.text</source>
+        <target>Sinut on nyt poistettu POMPdeLUX uutiskirjeen listalta.</target>
+      </trans-unit>
       <trans-unit id="invalid.email.address" approved="no">
         <source>invalid.email.address</source>
         <target>Annettu sähköpostiosoite ei kelpaa.</target>
+      </trans-unit>
+      <trans-unit id="terms.link">
+        <source>terms.link</source>
+        <target><![CDATA[
+          <a href="/fi_FI/koti/asiakaspalvelu/ehdot" target="_blank">Hyväksyn ilmoittautumisen yhteydessä POMPdeLUXin yleiset ehdot.</a>
+        ]]></target>
       </trans-unit>
     </body>
   </file>

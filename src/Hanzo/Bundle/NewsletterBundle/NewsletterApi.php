@@ -91,6 +91,35 @@ class NewsletterApi
         return $this->jsonp_decode( $result );
     }
 
+
+    public function unsubscribe($email, $list_id)
+    {
+        if ($list_id == 'ALL') {
+            $lists = $this->getAllLists($email);
+            if (isset($lists->content->lists)) {
+                $list_id = array_keys($lists->content->lists);
+            }
+        }
+
+        if (!is_array($list_id)) {
+            $list_id = [$list_id];
+        }
+
+        $ids = '';
+        foreach ($list_id as $id) {
+            $ids .= '&lists[]='.$id;
+        }
+
+        $ch = curl_init( $this->phplistUrl.'/integration/json.php?method=subscriptions:unsubscribe&email='.urlencode( $email ).$ids.'&_='.time() );
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_REFERER, $this->httpReferer);
+        $result = curl_exec($ch);
+        curl_close($ch);
+
+        return $this->jsonp_decode( $result );
+    }
+
+
     /**
      * jsonp_decode from http://felix-kling.de/blog/2011/01/11/php-and-jsonp/
      *

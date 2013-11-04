@@ -1039,6 +1039,17 @@ class ECommerceServices extends SoapService
         // .....<ze code>......
         // ....................
 
+        $exists = OrdersAttributesQuery::create()
+            ->filterByOrdersId($data->eOrderNumber)
+            ->filterByNs('attachment')
+            ->filterByCValue($data->fileName)
+            ->count()
+        ;
+
+        if ($exists) {
+            return self::responseStatus('Error', 'SalesOrderAddDocumentResult', array('Document "'.$data->fileName.'" already exists for order #'.$data->eOrderNumber));
+        }
+
         $attachment_index = OrdersAttributesQuery::create()
             ->filterByOrdersId($data->eOrderNumber)
             ->filterByNs('attachment')
@@ -1099,7 +1110,7 @@ class ECommerceServices extends SoapService
         $error = [];
 
         $provider = strtolower($order->getBillingMethod());
-        if (in_array($provider, ['paybybill', 'gothia'])) {
+        if (in_array($provider, ['paybybill', 'gothia', 'manualpayment'])) {
             return true;
         }
 
@@ -1307,6 +1318,12 @@ class ECommerceServices extends SoapService
 
             'eur.de'      => array('currency' => 'EUR', 'domain' => 'DE', 'vat' => 19),
             'eur.salesde' => array('currency' => 'EUR', 'domain' => 'SalesDE', 'vat' => 19),
+
+            'eur.at'      => array('currency' => 'EUR', 'domain' => 'DE', 'vat' => 20),
+            'eur.salesat' => array('currency' => 'EUR', 'domain' => 'SalesDE', 'vat' => 20),
+
+            'eur.ch'      => array('currency' => 'EUR', 'domain' => 'DE', 'vat' => 8),
+            'eur.salesch' => array('currency' => 'EUR', 'domain' => 'SalesDE', 'vat' => 8),
         );
 
         return isset($c_map[$k]) ? $c_map[$k] : false;

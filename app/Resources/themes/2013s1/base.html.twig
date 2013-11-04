@@ -2,24 +2,24 @@
 <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="{{ html_lang }}" xmlns:og="http://ogp.me/ns#"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="{{ html_lang }}" xmlns:og="http://ogp.me/ns#"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="{{ html_lang }}" xmlns:og="http://ogp.me/ns#"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="{{ html_lang }}" xmlns:og="http://ogp.me/ns#"> <!--<![endif]-->
+<!--[if IE 9]>    <html class="no-js ie9" lang="{{ html_lang }}" xmlns:og="http://ogp.me/ns#"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js" lang="{{ html_lang }}" xmlns:og="http://ogp.me/ns#"> <!--<![endif]-->
 <head>
 
 {% if browser_title is defined and page_type|default('page') != 'frontpage' %}
-  <title>{{ browser_title }} - {{ 'browser.title'|trans }}</title>
+<title>{{ browser_title }} - {{ 'browser.title'|trans }}</title>
 {% else %}
-  <title>{{ 'browser.title'|trans }}</title>
+<title>{{ 'browser.title'|trans }}</title>
 {% endif %}
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="all">
 
 <meta property="og:url" content="{{ app.request.uri }}">
 
 {% block meta %}
-  {{ meta_tags() }}
+{{ meta_tags() }}
 {% endblock %}
 
 <link rel="dns-prefetch" href="{{ cdn|replace({'http:':''}) }}">
@@ -31,19 +31,19 @@
 <link rel="shortcut icon" href="/fx/images/favicon.ico" title="POMPdeLUX" type="image/ico">
 
 {% stylesheets
-  'fx/2013s1/css/960_8_3_3.css'
-  'fx/2013s1/css/jquery.fullimagebox.css'
+    'fx/2013s1/css/960_8_3_3.css'
+    'fx/2013s1/css/jquery.fullimagebox.css'
 
-  'fx/css/colorbox/theme4/colorbox.css'
-  'fx/css/jquery-ui.css'
-  'fx/scripts/video-js/video-js.css'
-  'fx/scripts/fullcalendar/fullcalendar.css'
+    'fx/css/colorbox/theme4/colorbox.css'
+    'fx/css/jquery-ui.css'
+    'fx/scripts/video-js/video-js.css'
+    'fx/scripts/fullcalendar/fullcalendar.css'
 
-  'fx/2013s1/css/screen.css'
-  'fx/2013s1/css/style.css'
+    'fx/2013s1/css/screen.css'
+    'fx/2013s1/css/style.css'
 
-  output='fx/cache/2013s1.css'
-  combine=true
+    output='fx/cache/2013s1.css'
+    combine=true
 %}
 <link rel="stylesheet" href="{{ asset_url }}" />
 {% endstylesheets %}
@@ -53,97 +53,111 @@
 <body id="body-{{ page_type|default('page') }}" class="{{ body_classes|default('') }} {{ html_lang }}">
 
 <div id="container" class="container container_8">
-  <header class="grid_8 row">
-    <a href="{{ path('_homepage', {'_locale' : app.request.locale}) }}" title="{{ "home"|trans }}">
-      {{ fx_image_tag('images/POMPdeLUX_logo_SS12.png', '0x100', {'id':'logo', 'alt':'POMPdeLUX'}) }}
-    </a>
+    <nav class="first grid_8 row main-menu">
+        {% render 'CMSBundle:Menu:byTitle' with {'title':'topmenu'} %}
 
-  {% if simple_layout is not defined %}
-    <nav class="menu main-menu">
-      {% render 'CMSBundle:Menu:menu' with {'type': left_menu.type, 'thread': left_menu.thread, 'from': left_menu.from } %}
-    </nav><!-- /nav.main -->
-  {% endif %}
-    <hr class="right">
-  </header>
+        <ul class="right horizontal">
+            <li class="last">
+                <form action="{{ path('_search', {'_locale' : app.request.locale}) }}" class="search-form">
+                    <input type="submit" class="text-button button" value="{{ "button.label"|trans({}, 'search') }}">
+                    <input type="text" name="q">
+                </form>
+            </li>
+        </ul>
+    </nav>
 
-  <div id="main" role="main" class="main clearfix grid_8">
-    {% block content %}{% endblock %}
-  </div><!-- /div#main -->
+    <header class="grid_8 row">
+        <a href="{{ path('_homepage', {'_locale' : app.request.locale}) }}" title="{{ "home"|trans }}">
+            {{ fx_image_tag('images/POMPdeLUX_logo_SS12.png', '0x100', {'id':'logo', 'alt':'POMPdeLUX'}) }}
+        </a>
 
-{% if simple_layout is not defined %}
-  <nav id="secondary-links">
-    <ul class="horizontal menu right first">
-      <li><a href="{{ path('_account', {'_locale' : app.request.locale}) }}">{{ "my.account"|trans({}, 'account') }}</a></li>
-      <li id="select-domain">
-        <a class="open-menu" href="#">Change Country</a>
-        <div class="dropdown" style="display: none">
-          <a href="{{ baseurl }}/da_DK/">Denmark</a><br><br>
-          <a href="{{ baseurl }}/fi_FI/">Finland</a><br><br>
-          <a href="{{ baseurl }}/de_DE/">Germany</a><br><br>
-          <a href="{{ baseurl }}/en_GB/">International</a><br><br>
-          <a href="{{ baseurl }}/nl_NL/">Netherlands</a><br><br>
-          <a href="{{ baseurl }}/nb_NO/">Norway</a><br><br>
-          <a href="{{ baseurl }}/sv_SE/">Sweden</a><br>
+    {% if simple_layout is not defined %}
+        <nav id="secondary-links">
+            <ul class="horizontal menu right first">
+        {% if skip_my_account is not defined %}
+                <li><a href="{{ path('_account', {'_locale' : app.request.locale}) }}">{{ "my.account"|trans({}, 'account') }}</a></li>
+        {% endif %}
+                <li id="select-domain">
+                    <a class="open-menu" href="#">Change Country</a>
+                    <div class="dropdown" style="display: none">
+                        <!-- <a href="{{ baseurl }}/de_AT/">Austria</a><br> -->
+                        <a href="{{ baseurl }}/da_DK/">Denmark</a><br><br>
+                        <a href="{{ baseurl }}/fi_FI/">Finland</a><br><br>
+                        <a href="{{ baseurl }}/de_DE/">Germany</a><br><br>
+                        <a href="{{ baseurl }}/en_GB/">International</a><br><br>
+                        <a href="{{ baseurl }}/nl_NL/">Netherlands</a><br><br>
+                        <a href="{{ baseurl }}/nb_NO/">Norway</a><br><br>
+                        <a href="{{ baseurl }}/sv_SE/">Sweden</a><br>
+                        <!-- <a href="{{ baseurl }}/de_CH/">Switzerland</a><br> -->
+                    </div>
+                </li>
+            </ul>
+            <ul class="horizontal menu right second">
+                <li id="mini-basket" class="basket">
+                    <span class="sprite"></span>
+                    <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" title="{{ "show.basket"|trans }}"> {% render 'BasketBundle:Default:miniBasket' %} </a>
+                </li>
+                <li class="last"><a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}">{{ "show.basket"|trans }}</a></li>
+            </ul>
+        </nav>
+
+        <nav class="menu main-menu">
+            {% render 'CMSBundle:Menu:menu' with {'type': left_menu.type, 'thread': left_menu.thread, 'from': left_menu.from } %}
+        </nav><!-- /nav.main -->
+
+    {% endif %}
+
+        <hr class="right">
+    </header>
+
+    <div id="main" role="main" class="main clearfix grid_8">
+        {% block content %}{% endblock %}
+    </div><!-- /div#main -->
+
+    <footer class="container container_8">
+    {% if simple_layout is not defined %}
+        <div class="grid_8 row">
+            <hr class="right">
         </div>
-      </li>
-      <li class="last">
-        <form action="{{ path('_search', {'_locale' : app.request.locale}) }}" class="search-form">
-          <input type="submit" class="text-button button" value="{{ "button.label"|trans({}, 'search') }}">
-          <input type="text" name="q">
-        </form>
-      </li>
-    </ul>
-    <ul class="horizontal menu right second">
-      <li id="mini-basket" class="basket">
-        <span class="sprite"></span>
-        <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" title="{{ "show.basket"|trans }}"> {% render 'BasketBundle:Default:miniBasket' %} </a>
-      </li>
-      <li class="last"><a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}">{{ "show.basket"|trans }}</a></li>
-    </ul>
-  </nav>
-{% endif %}
 
-  <footer class="container container_8">
-  {% if simple_layout is not defined %}
-    <div class="grid_8 row">
-      <hr class="right">
-    </div>
+        <div class="grid_1-5 footer-menu footer-menu-1">
+            {{ "footer.menu_1"|trans|raw }}
+        </div>
 
-    <div class="grid_1-5 footer-menu footer-menu-1">
-      {{ "footer.menu_1"|trans|raw }}
-    </div>
+        <div class="grid_1-5 footer-menu footer-menu-2">
+            {{ "footer.menu_2"|trans|raw }}
+        </div>
 
-    <div class="grid_1-5 footer-menu footer-menu-2">
-      {{ "footer.menu_2"|trans|raw }}
-    </div>
+        <div class="grid_1-5 footer-menu footer-menu-3">
+            {{ "footer.menu_3"|trans|raw }}
+        </div>
 
-    <div class="grid_1-5 footer-menu footer-menu-3">
-      {{ "footer.menu_3"|trans|raw }}
-    </div>
-
-    <div class="grid_2-5 footer-menu footer-menu-4">
-      <div class="sprite"></div>
-      <div class="container">
-        <h2>{{ 'block.subscribe.newsletter_heading'|trans({}, 'newsletter') }}</h2>
-        <form action="{{ path('_newsletter_subscribe') }}" method="post">
-          <div>
-            <input type="text" name="name" value="" title="{{ 'block.subscribe.name_label'|trans({}, 'newsletter') }}" placeholder="{{ 'block.subscribe.name_label'|trans({}, 'newsletter') }}">
-            <input type="email" class="newsletter-subscriber-email" name="email" value="" title="{{ 'block.subscribe.email_label'|trans({}, 'newsletter') }}" placeholder="{{ 'block.subscribe.email_label'|trans({}, 'newsletter') }}">
-          </div>
-          <div class="clearfix">
-            <input type="submit" class="button text-button" value="{{ 'block.subscribe.submit_button'|trans({}, 'newsletter') }}">
-          </div>
-        </form>
-      </div>
-    </div>
-  {% endif %}
-    <div class="grid_8">
-      <hr class="left row">
-    </div>
-    <div class="copy grid_8">
-      {{ 'footer.address'|trans({'%cdn%':cdn, '%url%':app.request.uri|url_encode })|raw }}
-    </div>
-  </footer>
+        <div class="grid_2-5 footer-menu footer-menu-4">
+            <div class="sprite"></div>
+            <div class="container">
+                <h2>{{ 'block.subscribe.newsletter_heading'|trans({}, 'newsletter') }}</h2>
+                <form action="{{ path('_newsletter_subscribe') }}" method="post">
+                    <div>
+                        <input type="text" name="name" value="" title="{{ 'block.subscribe.name_label'|trans({}, 'newsletter') }}" placeholder="{{ 'block.subscribe.name_label'|trans({}, 'newsletter') }}">
+                        <input type="email" class="newsletter-subscriber-email" name="email" value="" title="{{ 'block.subscribe.email_label'|trans({}, 'newsletter') }}" placeholder="{{ 'block.subscribe.email_label'|trans({}, 'newsletter') }}">
+                    </div>
+                    <div class="clearfix right">
+                        {{ 'terms.link'|trans({}, 'newsletter')|raw }}
+                    </div>
+                    <div class="clearfix">
+                        <input type="submit" class="button text-button" value="{{ 'block.subscribe.submit_button'|trans({}, 'newsletter') }}">
+                    </div>
+                </form>
+            </div>
+        </div>
+    {% endif %}
+        <div class="grid_8">
+            <hr class="left row">
+        </div>
+        <div class="copy grid_8">
+            {{ 'footer.address'|trans({'%cdn%':cdn, '%url%':app.request.uri|url_encode })|raw }}
+        </div>
+    </footer>
 </div>
 
 {{ include('::desktop-footer.html.twig') }}
@@ -154,21 +168,32 @@
 
 <script>if (jaiks) {jaiks.exec();}</script>
 {#
- # TODO: find a better solution.
- # we need this hack to get single shipping types to play nice...
+# TODO: find a better solution.
+# we need this hack to get single shipping types to play nice...
 #}
 {% if page_type is defined and page_type == 'checkout' %}
 <script>
-  if (1 == $('#shipping-block input').length) {
+if (1 == $('#shipping-block input').length) {
     $('#shipping-block input').first().click();
     {# ie7 has some issues with click, apparently #}
     {# ie8 apparently also #}
     if ($('html').hasClass('ie7') || $('html').hasClass('ie8')) {
-      $('#shipping-block input').first().click();
+        $('#shipping-block input').first().click();
     }
-  }
+}
 </script>
 {% endif %}
 
+<script type="text/javascript">
+var google_conversion_id = 976104979;
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
+<noscript>
+    <div style="display:inline;">
+        <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/976104979/?value=0&amp;guid=ON&amp;script=0"/>
+    </div>
+</noscript>
 </body>
 </html>

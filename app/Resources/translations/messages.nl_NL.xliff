@@ -145,7 +145,7 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
                     <strong>Klantenservice</strong><br>
                     Telefoon: 085-3001100 (Nederlands en Engels)<br>
                     E-mail: <a href="mailto:mail@pompdelux.nl">mail@pompdelux.nl</a><br>
-                    Maandag t/m donderdag 9 - 18<br>
+                    Maandag t/m donderdag 9 - 16<br>
                     Vrijdag 9 - 14<br>
                     Zaterdag en zon-en Deense feestdagen gesloten.
                 ]]></target>
@@ -332,6 +332,10 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
             <trans-unit id="order.deleted" approved="no">
                 <source>order.deleted</source>
                 <target>E.order no. %id% is geannuleerd.</target>
+            </trans-unit>
+            <trans-unit id="product.prices.description" approved="no">
+                <source>product.prices.description</source>
+                <target></target>
             </trans-unit>
         </body>
     </file>

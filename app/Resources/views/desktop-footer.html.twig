@@ -69,6 +69,7 @@
   'fx/scripts/search.js'
   'fx/scripts/mannequin.js'
   'fx/scripts/faq.js'
+  'fx/scripts/rma.js'
 
   'fx/scripts/jquery.placeholder-enhanced.min.js'
   'fx/scripts/oldie.js'
@@ -81,3 +82,5 @@
 <script src="//code.jquery.com/jquery-migrate-1.2.1.js"></script>
 {{ include('::footer-'~app.request.locale~'.html.twig', ignore_missing = true, with_context = true) }}
 {{ google_analytics_tag() }}
+
+{% render 'RetargetingBundle:Default:jsBlock' %}

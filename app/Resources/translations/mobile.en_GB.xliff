@@ -4,7 +4,7 @@
         <body>
             <trans-unit id="footer.goto.website.link">
                 <source>footer.goto.website.link</source>
-                <target>Gå til almindeligt website</target>
+                <target>Visit POMPdeLUX.com full site.</target>
             </trans-unit>
         </body>
     </file>

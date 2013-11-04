@@ -15,13 +15,13 @@ use Hanzo\Model\OrdersPeer;
 class DefaultController extends CoreController
 {
     protected $services = [
-        'payment.dibsapi'      => 'Dibs',
-        'payment.gothiaapi'    => 'Gothia',
-        'payment.gothiadeapi'    => 'GothiaDE',
-        'payment.paybybillapi' => 'PayByBill',
-        'payment.giftcardapi'  => 'GiftCard', // pseudo payment module ...
-        'payment.pensioapi'    => 'Pensio',
-        'payment.paypalapi'    => 'PayPal',
+        'payment.dibsapi'          => 'Dibs',
+        'payment.gothiaapi'        => 'Gothia',
+        'payment.gothiadeapi'      => 'GothiaDE',
+        'payment.manualpaymentapi' => 'ManualPayment',
+        'payment.giftcardapi'      => 'GiftCard',
+        'payment.pensioapi'        => 'Pensio',
+        'payment.paypalapi'        => 'PayPal',
     ];
 
     /**

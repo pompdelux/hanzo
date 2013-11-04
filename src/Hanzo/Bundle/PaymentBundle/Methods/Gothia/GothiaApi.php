@@ -36,8 +36,7 @@ class GothiaApi extends BasePaymentApi implements PaymentMethodApiInterface
 
         $this->settings['active'] = (isset($this->settings['method_enabled']) && $this->settings['method_enabled'] ? true : false);
 
-        if ( $this->settings['active'] === true)
-        {
+        if ($this->settings['active'] === true) {
             $this->checkSettings($settings);
         }
     }
@@ -55,20 +54,16 @@ class GothiaApi extends BasePaymentApi implements PaymentMethodApiInterface
             'username',
             'password',
             'clientId',
-            );
+        );
 
         $missing = array();
-
-        foreach ($requiredFields as $field)
-        {
-            if ( !isset($settings[$field]) )
-            {
+        foreach ($requiredFields as $field) {
+            if (!isset($settings[$field])) {
                 $missing[] = $field;
             }
         }
 
-        if ( !empty($missing) )
-        {
+        if (!empty($missing)) {
             throw new Exception( 'GothiaApi: missing settings: '. implode(',',$missing) );
         }
     }
@@ -83,7 +78,7 @@ class GothiaApi extends BasePaymentApi implements PaymentMethodApiInterface
      **/
     public function isActive()
     {
-        return ( isset($this->settings['active']) ) ? $this->settings['active'] : false;
+        return (isset($this->settings['active'])) ? $this->settings['active'] : false;
     }
 
     /**
@@ -93,7 +88,7 @@ class GothiaApi extends BasePaymentApi implements PaymentMethodApiInterface
      **/
     public function getTest()
     {
-        return ( isset( $this->settings['test'] ) && strtoupper( $this->settings['test'] ) == 'YES' ) ? true : false;
+        return (isset($this->settings['test']) && strtoupper($this->settings['test']) == 'YES') ? true : false;
     }
 
     /**
@@ -103,7 +98,7 @@ class GothiaApi extends BasePaymentApi implements PaymentMethodApiInterface
      **/
     public function getFeeExternalId()
     {
-        return ( isset($this->settings['fee.id']) ) ? $this->settings['fee.id'] : null;
+        return (isset($this->settings['fee.id'])) ? $this->settings['fee.id'] : null;
     }
 
     /**

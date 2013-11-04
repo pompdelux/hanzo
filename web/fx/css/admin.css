@@ -114,6 +114,8 @@ span.flag.en_EN, span.flag.COM {background-position:  -48px -22px}
 span.flag.nl_NL, span.flag.NL, span.flag.pdldbnl1 {background-position: -96px -44px}
 span.flag.no_NB, span.flag.NO, span.flag.pdldbno1 {background-position: 0 -55px}
 span.flag.sv_SE, span.flag.SE, span.flag.pdldbse1 {background-position: -96px -55px}
+span.flag.de_AT, span.flag.AT, span.flag.pdldbat1 {background-position: -48px 0}
+span.flag.de_CH, span.flag.CH, span.flag.pdldbch1 {background-position: -16px -11px}
 
 /*span.flag.AD {background-position: -16px 0}
 span.flag.AL {background-position: -32px 0}
@@ -436,6 +438,20 @@ table.list th a:hover{
   background: black;
   color:white;
 }
+
+table.list th a.fa {
+    background: inherit;
+    border: none;
+    color: black;
+    font-size: 1.1em;
+    margin: 0 12px 0 0;
+    padding: 0;
+}
+table.list th a.fa:hover {
+  background: inherit;
+  color: white;
+}
+
 table#order th.table-header {
   text-align: center;
 }

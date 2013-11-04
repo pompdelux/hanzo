@@ -77,10 +77,12 @@
                     <th>{{ 'events.email'|trans({}, 'events') }}</th>
                     <td>{{ event.email }}</td>
                 </tr>
+            {% if is_granted('ROLE_CONSULTANT') %}
                 <tr>
                     <th>{{ 'events.description'|trans({}, 'events') }}</th>
                     <td>{{ event.description }}</td>
                 </tr>
+            {% endif %}
 
             </tbody>
         </table>

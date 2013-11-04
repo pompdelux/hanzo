@@ -98,6 +98,9 @@ var maps = (function($) {
 
     if ((undefined !== fit) && (fit === true)) {
       map.fitBounds(bounds);
+      if (1 === data.length) {
+        map.setZoom(map.getZoom() - 7);
+      }
     }
   };
 

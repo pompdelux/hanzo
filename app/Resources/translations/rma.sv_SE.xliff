@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="rma.not_allowed_wrong_state">
+                <source>rma.not_allowed_wrong_state</source>
+                <target>Det uppstod ett fel. Ordern är inte färdig och kan därför inte returneras. </target>
+            </trans-unit>
+            <trans-unit id="rma.form.title.order_id">
+                <source>rma.form.title.order_id</source>
+                <target>Upprätta retursedel för order %order_id%.</target>
+            </trans-unit>
+            <trans-unit id="rma.form.description">
+                <source>rma.form.description</source>
+                <target><![CDATA[
+                    <p>F&ouml;r varje vara du &ouml;nskar att returnera, ber vi dig att v&auml;lja en aktivitet samt orsak.&lt;br&gt;Skriv &auml;ven eventuella kommentarer p&aring; varje vara. Om du returnerar varor fr&aring;n olika ordrar, ska du uppr&auml;tta en retursedel per order. Dina returvaror skickar du naturligtvis i samma paket, oavsett om de kommer fr&aring;n flera ordrar. Kom ih&aring;g att bifoga retursedeln/retursedlarna i ditt paket. L&auml;s mer om returnering p&aring; retursedeln som blir uppr&auml;ttad n&auml;r du klickar p&aring; ”Uppr&auml;tta retursedel” knappen.&lt;br&gt;&lt;br&gt;F&ouml;r att kunna se retursedeln, ska du ha gratis programmet Adobe Reader. Om du inte har Adobe Reader installerat, kan du ladda ner programmet h&auml;r.<br />
+    <br />
+    <a href="http://www.adobe.com/products/acrobat/readstep2.html" target="_blank"><img src="http://static.pompdelux.com/images/pages/PDF_logo.jpg" width="158" height="39" border="0" title="POMPdeLUX" /></a><br /></p>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="rma.form.label.activitycode">
+                <source>rma.form.label.activitycode</source>
+                <target>Aktivitet</target>
+            </trans-unit>
+            <trans-unit id="rma.form.label.cause">
+                <source>rma.form.label.cause</source>
+                <target>Orsak</target>
+            </trans-unit>
+            <trans-unit id="rma.form.activity.default">
+                <source>rma.form.activity.default</source>
+                <target>-- Välj aktivitet --</target>
+            </trans-unit>
+            <trans-unit id="rma.form.cause.default">
+                <source>rma.form.cause.default</source>
+                <target>-- Välj orsak --</target>
+            </trans-unit>
+            <trans-unit id="rma.form.activity.return">
+                <source>rma.form.activity.return</source>
+                <target>Returnering</target>
+            </trans-unit>
+            <trans-unit id="rma.form.activity.replacement">
+                <source>rma.form.activity.replacement</source>
+                <target>Byte</target>
+            </trans-unit>
+            <trans-unit id="rma.form.activity.warranty">
+                <source>rma.form.activity.warranty</source>
+                <target>Reklamation</target>
+            </trans-unit>
+            <trans-unit id="rma.form.activity.return.causes">
+                <source>rma.form.activity.return.causes</source>
+                <target>Packningsfel|Reklamation (vänligen skriv felet på varan)|Ångrat köp (pengarna tillbaka)</target>
+            </trans-unit>
+            <trans-unit id="rma.form.activity.replacement.causes">
+                <source>rma.form.activity.replacement.causes</source>
+                <target>Byte till annan storlek|Byte till annan färg|Byte till annan vara</target>
+            </trans-unit>
+            <trans-unit id="rma.form.activity.warranty.causes">
+                <source>rma.form.activity.warranty.causes</source>
+                <target>Packningsfel|Reklamation (vänligen skriv felet på varan)</target>
+            </trans-unit>
+            <trans-unit id="rma.form.label.description">
+                <source>rma.form.label.description</source>
+                <target>Evt. kommentar</target>
+            </trans-unit>
+            <trans-unit id="rma.form.submit">
+                <source>rma.form.submit</source>
+                <target>Upprätta retursedel...</target>
+            </trans-unit>
+            <trans-unit id="rma.form.label.return.order">
+                <source>rma.form.label.return.order</source>
+                <target>Returnera hela ordern</target>
+            </trans-unit>
+            <trans-unit id="rma.form.label.replacement">
+                <source>rma.form.label.replacement</source>
+                <target>Skriv produktnamnet på den vara du vill byta till</target>
+            </trans-unit>
+            <trans-unit id="rma.form.placeholder.produkt">
+                <source>rma.form.placeholder.produkt</source>
+                <target>t.ex. Copenhagen</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.company_details">
+                <source>rma.slip.company_details</source>
+                <target><![CDATA[
+                    <ul>
+                        <li>POMPdeLUX Sverige AB</li>
+						<li>c/o POMPdeLUX ApS</li>
+                        <li>M&oslash;gelh&oslash;j 8, DK-8520 Lystrup</li>
+                        <li>Org. nr. 556782-8602</li>
+                        <li>mail@pompdelux.se +46 8-6117103</li>
+                    </ul>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.id">
+                <source>rma.slip.id</source>
+                <target>Kundnummer</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.name">
+                <source>rma.slip.name</source>
+                <target>Namn</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.email">
+                <source>rma.slip.email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.phone">
+                <source>rma.slip.phone</source>
+                <target>Telefon</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.order_id">
+                <source>rma.slip.order_id</source>
+                <target>E-ordernummer</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.deliveryaddress">
+                <source>rma.slip.deliveryaddress</source>
+                <target>Leveransadress</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.title.order_id">
+                <source>rma.slip.title.order_id</source>
+                <target>POMPdeLUX retursedel Order ID %order_id%</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.description">
+                <source>rma.slip.description</source>
+                <target><![CDATA[<p>Om du &ouml;nskar att byta eller returnera varor, ska du fylla i bifoga retursedeln.<br>Eftersom din returvara ska s&auml;ljas igen, &auml;r det en stor hj&auml;lp f&ouml;r oss att du returnerar varan i original f&ouml;rpackning med labels p&aring; etc.<br><br>Tillsammans med dina varor, f&aring;r du en returlabel – anv&auml;nd denna, s&aring; drar vi endast av SEK 49,- fr&aring;n v&auml;rdet p&aring; dina returvaror.<br><br>Om du returnerar en reklamation eller en vara som blivit felskickad, &auml;r f&ouml;rs&auml;ndelsen naturligtvis fraktfri f&ouml;r dig. Om du &ouml;nskar att byta till en annan storlek, f&auml;rg eller till en helt annan vara, &auml;r f&ouml;rs&auml;ndelsen &auml;ven h&auml;r fraktfri. Varans pris f&aring;r dock inte &ouml;verstiga priset p&aring; varan du returnerar. Om varan du &ouml;nskar &auml;r uts&aring;ld, &aring;terbetalar vi beloppet till dig.<br><br>Om du har betalat med kort, &ouml;verf&ouml;rs ditt returbelopp till det betalkort du anv&auml;nde vid best&auml;llning. Om du har betalat mot faktura (PayByBill), ber vi dig att kontakta Gothia Finans p&aring; 0340-664444.<br><b>Observera:</b> &Auml;ven om du v&auml;ntar p&aring; en kreditnota p&aring; dina returvaror, ska du betala innest&aring;ende faktura inom 30 dagar.<br>F&ouml;r ytterligare information se: <a href="/sv_SE/" target="_blank">www.pompdelux.se</a></p>]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.thead.activitycode">
+                <source>rma.slip.thead.activitycode</source>
+                <target>Aktivitet</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.thead.cause">
+                <source>rma.slip.thead.cause</source>
+                <target><![CDATA[&Aring;rsag]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.thead.replacement">
+                <source>rma.slip.thead.replacement</source>
+                <target>Byte till</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.thead.description">
+                <source>rma.slip.thead.description</source>
+                <target>Din kommentar</target>
+            </trans-unit>
+            <trans-unit id="rma.history.title">
+                <source>rma.history.title</source>
+                <target>Upprätta RMA retursedel.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

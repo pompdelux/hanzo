@@ -129,7 +129,8 @@ class DefaultController extends CoreController
 
         return $this->json_response(array(
             'status' => false,
-            'message' => $this->get('translator')->trans('quickorder.no.products.found', array(), 'quickorder')
+            'message' => $this->get('translator')->trans('quickorder.no.products.found', array(), 'quickorder'),
+            'data' => []
         ));
     }
 }

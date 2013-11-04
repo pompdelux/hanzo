@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="pompdewall.header.text">
+                <source>pompdewall.header.text</source>
+                <target>POMPdeWALL</target>
+            </trans-unit>
+            <trans-unit id="wall.edit.entry.success">
+                <source>wall.edit.entry.success</source>
+                <target>Beitrag wurde aktualisiert!</target>
+            </trans-unit>
+            <trans-unit id="wall.edit.entry.failed">
+                <source>wall.edit.entry.failed</source>
+                <target>Es ist ein Fehler aufgetreten. Der Beitrag konnte nicht aktualisiert werden!</target>
+            </trans-unit>
+            <trans-unit id="wall.add.comment.success">
+                <source>wall.add.comment.success</source>
+                <target>Der Kommentar wurde gespeichert!</target>
+            </trans-unit>
+            <trans-unit id="wall.add.comment.failed">
+                <source>wall.add.comment.failed</source>
+                <target>Es ist ein Fehler aufgetreten. Der Kommentar wurde nicht gespeichert!</target>
+            </trans-unit>
+            <trans-unit id="wall.add.entry.success">
+                <source>wall.add.entry.success</source>
+                <target>Der Beitrag wurde gespeichert!</target>
+            </trans-unit>
+            <trans-unit id="wall.add.entry.failed">
+                <source>wall.add.entry.failed</source>
+                <target>Es ist ein Fehler aufgetreten. Der Beitrag wurde nicht gespeichert!</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

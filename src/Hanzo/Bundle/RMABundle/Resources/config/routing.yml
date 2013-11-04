@@ -1,0 +1,6 @@
+rma_form:
+    pattern:  /account/order/{order_id}/rma
+    defaults:
+        _controller: RMABundle:Default:form
+    requirements:
+        order_id: \d+

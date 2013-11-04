@@ -7,7 +7,7 @@
   <meta property="og:image" content="{{ product_image_url(product.main_image.name, '0x200') }}">
   <meta property="og:description" content="{{ product.description|og_description }}">
   <meta name="description" content="{{ product.description|og_description }}">
-  <link rel="canonical" href="{{ url(_route, {'product_id' : product.id, 'title' : product.sku|strip_text }) }}"/>
+  <link rel="canonical" href="{{ url(_route, {'product_id' : product.id, 'title' : product.sku|strip_tags }) }}"/>
 {% endblock %}
 
 {% block content %}
@@ -47,7 +47,7 @@
           {{ product_image_tag(
               product.main_image.name,
               '234x410',
-              {'alt': product.title ~ ', ' ~ product.main_image.color, 'itemprop' : 'image'}
+              {'alt': product.title ~ ', ' ~ product.main_image.color ~ ' - POMPdeLUX', 'itemprop' : 'image'}
             )
           }}
         </a>
@@ -79,7 +79,7 @@
           {{ product_image_tag(
               image.name,
               '114x200',
-              {'alt': product.title ~ ', ' ~ image.color}
+              {'alt': product.title ~ ', ' ~ image.color ~ ' - POMPdeLUX'}
             )
           }}
         </a>
@@ -121,6 +121,7 @@
     {% else %}
       <span class="normal" itemprop="price">{{ product.prices.normal.price|money }}</span>
     {% endif %}
+      <div class="description">{{ "product.prices.description"|trans }}</div>
     </div>
 
     <div class="buybox clearfix">
@@ -178,9 +179,9 @@
     </div>
     <div class="productdescription tab-box">
       <ul class="tabs bordered">
-        <li><a href="#">{{ "product.details"|trans }}</a></li>
+        <li><a href="">{{ "product.details"|trans }}</a></li>
       {% if product.washing %}
-        <li><a href="#">{{ "care.instructions"|trans }}</a></li>
+        <li><a href="">{{ "care.instructions"|trans }}</a></li>
       {% endif %}
       </ul>
 
@@ -196,15 +197,15 @@
 
     <div class="deliverydescription tab-box">
       <ul class="tabs bordered">
-        <li><a href="#">{{ "delivery.title"|trans }}</a></li>
-        <li><a href="#">{{ "return.title"|trans }}</a></li>
+        <li><a href="" data-pane="1">{{ "delivery.title"|trans }}</a></li>
+        <li><a href="" data-pane="2">{{ "return.title"|trans }}</a></li>
       </ul>
 
       <div class="panes">
-        <div>
+        <div class="off pane-1">
           {{ 'delivery.info'|trans({'%delivery.date%': parameter('expected_delivery_date') })|raw }}
         </div>
-        <div class="off">{{ 'return.info'|trans|raw }}</div>
+        <div class="off pane-2">{{ 'return.info'|trans|raw }}</div>
       </div>
     </div>
   </div>

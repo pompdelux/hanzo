@@ -64,14 +64,14 @@ Hanzo\Model\Addresses:
                     - shipping_bundle_shipping
                     - shipping_bundle_payment
                 message: address_line_1.required
-                limit:  150
+                limit:  35
         postal_code:
             - NotBlank:
                 message: postal_code.required
-            - Length:
-                min: 5
-                max: 5
-                exactMessage: postal_code.length
+            - Regex:
+                pattern: "/^[0-9]{3} ?[0-9]{2}$/"
+                match:   true
+                message: postal_code.length
                 groups:
                     - shipping_bundle_company_shipping
                     - shipping_bundle_overnightbox

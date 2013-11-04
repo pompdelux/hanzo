@@ -2,7 +2,8 @@
 <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="{{ html_lang }}" xmlns:og="http://ogp.me/ns#"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="{{ html_lang }}" xmlns:og="http://ogp.me/ns#"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="{{ html_lang }}" xmlns:og="http://ogp.me/ns#"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="{{ html_lang }}" xmlns:og="http://ogp.me/ns#"> <!--<![endif]-->
+<!--[if IE 9]>    <html class="no-js ie9" lang="{{ html_lang }}" xmlns:og="http://ogp.me/ns#"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js" lang="{{ html_lang }}" xmlns:og="http://ogp.me/ns#"> <!--<![endif]-->
 <head>
 <title>{{ 'browser.title'|trans }} {{ browser_title|default('') }}</title>
 <meta charset="utf-8">
@@ -63,7 +64,9 @@
   <nav id="secondary-links">
     {% if is_granted('ROLE_USER') %}
       <ul class="horizontal menu right first">
+      {% if skip_my_account is not defined %}
         <li class="last"><a href="{{ path('_account', {'_locale' : app.request.locale}) }}">{{ "my.account"|trans({}, 'account') }}</a></li>
+      {% endif %}
       </ul>
       <ul class="horizontal menu right second">
         <li id="mini-basket" class="basket">
@@ -148,6 +151,7 @@
   'fx/scripts/gothia.js'
   'fx/scripts/maps.js'
   'fx/scripts/search.js'
+  'fx/scripts/rma.js'
 
   'fx/scripts/jquery.placeholder-enhanced.min.js'
   'fx/scripts/oldie.js'

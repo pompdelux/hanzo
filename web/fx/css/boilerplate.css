@@ -42,7 +42,7 @@ body, button, input, select, textarea { font-family: Tahoma, Verdana; color: #22
  */
 
 ::-moz-selection { background: #fe57a1; color: #fff; text-shadow: none; }
-::selection { background: #c29954; color: #fff; text-shadow: none; }
+::selection { background: #998670; color: #fff; text-shadow: none; }
 
 
 /* =============================================================================

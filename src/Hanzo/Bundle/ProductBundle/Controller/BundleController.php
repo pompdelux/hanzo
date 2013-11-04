@@ -8,16 +8,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
-use Hanzo\Core\Stock;
 use Hanzo\Core\CoreController;
 
 use Hanzo\Model\ProductsDomainsPricesPeer;
 use Hanzo\Model\Products;
 use Hanzo\Model\ProductsI18nQuery;
-use Hanzo\Model\ProductsStockPeer;
 use Hanzo\Model\ProductsQuery;
-use Hanzo\Model\ProductsStock;
-use Hanzo\Model\ProductsStockQuery;
 use Hanzo\Model\ProductsImagesProductReferencesQuery;
 use Hanzo\Model\ProductsWashingInstructions;
 use Hanzo\Model\ProductsWashingInstructionsQuery;
@@ -192,6 +188,12 @@ class BundleController extends CoreController
             $products_ids = [];
             foreach ($set as $product) {
                 $pieces = explode('-', $product, 2);
+
+                if (empty($pieces[1])) {
+                    Tools::log("Invalid set url: {$_SERVER['REQUEST_URI']}");
+                    continue;
+                }
+
                 $where[] = array(
                     'ProductsId' => $pieces[0],
                     'Color' => str_replace(['9', '-'], ['/', ' '], $pieces[1]),
@@ -269,6 +271,9 @@ class BundleController extends CoreController
         }
 
         foreach ($products as $id => $product) {
+            if (empty($product['master'])) {
+                continue;
+            }
 
             $stock = $this->forward('WebServicesBundle:RestStock:check', array(
                 'version' => 'v1',

@@ -1,0 +1,345 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="size.guide.link">
+                <source>size.guide.link</source>
+                <target><![CDATA[<a href="/de_DE/home/kundendienst/sizeguide" target="_blank" title="Size guide">» Size guide</a>]]></target>
+            </trans-unit>
+            <trans-unit id="out.of.stock">
+                <source>out.of.stock</source>
+                <target>Ausverkauft</target>
+            </trans-unit>
+            <trans-unit id="home">
+                <source>home</source>
+                <target>Home</target>
+            </trans-unit>
+            <trans-unit id="show.basket">
+                <source>show.basket</source>
+                <target>Warenkorb anzeigen</target>
+            </trans-unit>
+            <trans-unit id="choose">
+                <source>choose</source>
+                <target>Wählen</target>
+            </trans-unit>
+            <trans-unit id="quantity">
+                <source>quantity</source>
+                <target>Menge</target>
+            </trans-unit>
+            <trans-unit id="loading">
+                <source>loading</source>
+                <target>Wird geladen</target>
+            </trans-unit>
+            <trans-unit id="more.product.info">
+                <source>more.product.info</source>
+                <target>Hier klicken für weitere Informationen über %name%.</target>
+            </trans-unit>
+            <trans-unit id="all.products.out.of.stock">
+                <source>all.products.out.of.stock</source>
+                <target>Alle Waren in dieser Kategorie sind ausverkauft.</target>
+            </trans-unit>
+            <trans-unit id="pager.previous.page">
+                <source>pager.previous.page</source>
+                <target>Vorherige Seite anzeigen</target>
+            </trans-unit>
+            <trans-unit id="previous">
+                <source>previous</source>
+                <target>Vorherige</target>
+            </trans-unit>
+            <trans-unit id="pager.page">
+                <source>pager.page</source>
+                <target>Seite %page% anzeigen</target>
+            </trans-unit>
+            <trans-unit id="pager.next.page">
+                <source>pager.next.page</source>
+                <target>Nächste Seite anzeigen</target>
+            </trans-unit>
+            <trans-unit id="next">
+                <source>next</source>
+                <target>Nächste</target>
+            </trans-unit>
+            <trans-unit id="product.details">
+                <source>product.details</source>
+                <target>Warenbeschreibung</target>
+            </trans-unit>
+            <trans-unit id="care.instructions">
+                <source>care.instructions</source>
+                <target>Waschanleitung</target>
+            </trans-unit>
+            <trans-unit id="add.to.basket">
+                <source>add.to.basket</source>
+                <target>In den Warenkorb legen</target>
+            </trans-unit>
+            <trans-unit id="product.added.to.cart">
+                <source>product.added.to.cart</source>
+                <target>"%product%" ist jetzt in Ihrem Warenkorb</target>
+            </trans-unit>
+            <trans-unit id="product.out.of.stock">
+                <source>product.out.of.stock</source>
+                <target>"%product%" ist leider ausverkauft</target>
+            </trans-unit>
+            <trans-unit id="products">
+                <source>products</source>
+                <target>Produkt(e)</target>
+            </trans-unit>
+            <trans-unit id="latest.shipment.date">
+                <source>latest.shipment.date</source>
+                <target>Wird spätestens verschickt am</target>
+            </trans-unit>
+            <trans-unit id="price">
+                <source>price</source>
+                <target>Preis</target>
+            </trans-unit>
+            <trans-unit id="total">
+                <source>total</source>
+                <target>Gesamtbetrag</target>
+            </trans-unit>
+            <trans-unit id="edit">
+                <source>edit</source>
+                <target>Bearbeiten</target>
+            </trans-unit>
+            <trans-unit id="delete">
+                <source>delete</source>
+                <target>Entfernen</target>
+            </trans-unit>
+            <trans-unit id="size">
+                <source>size</source>
+                <target>Größe</target>
+            </trans-unit>
+            <trans-unit id="color">
+                <source>color</source>
+                <target>Farbe</target>
+            </trans-unit>
+            <trans-unit id="company.address">
+                <source>company.address</source>
+                <target>Firma</target>
+            </trans-unit>
+            <trans-unit id="date">
+                <source>date</source>
+                <target>Datum</target>
+            </trans-unit>
+            <trans-unit id="event.id">
+                <source>event.id</source>
+                <target>Veranstaltung Nr.</target>
+            </trans-unit>
+            <trans-unit id="store.address">
+                <source>store.address</source>
+                <target>POMPdeLUX DE GmbH • Dammtorstraβe 12 • DE-20354 Hamburg • USt-IdNr. DE290402183 • mailde@pompdelux.com • 040-35715072</target>
+            </trans-unit>
+            <trans-unit id="order.edit.global.notice">
+                <source>order.edit.global.notice</source>
+                <target><![CDATA[
+                  <h2>Bitte beachten:</h2>
+                  <p>
+                    Sie bearbeiten gerade die E-Bestellnummer <a href="%history_url%" title="se ordren">%order_id%</a>.<br>
+                    Möchten Sie die Bearbeitung Ihrer Bestellung beenden - <a href="%stop_url%" title="stop editering af ordren">hier klicken.</a>
+                  </p>
+                  <p>Möchten Sie eine Farbe oder Größe ändern, dann klicken Sie bitte auf den Bleistift im Warenkorb. Möchten Sie Waren hinzufügen, dann klicken Sie bitte auf das Menü Webshop.</p>
+                  <p class="last">Nach Abschluss Ihrer Änderungen klicken Sie bitte auf "Warenkorb anzeigen" und führen die Schritte 1 bis 6 aus. Wenn Sie Ihre Bestellung mit einer neuen Kreditkartenzahlung durchgeführt haben, wird die vorherige Zahlung automatisch gelöscht.</p>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="customer.service.contact.info">
+                <source>customer.service.contact.info</source>
+                <target><![CDATA[
+                    <strong>Kundendienst</strong><br>
+                    Telefon: 040-35715072<br>
+                    E-Mail: <a href="mailto:mailde@pompdelux.com">mailde@pompdelux.com</a><br>
+                    Montags bis Donnerstags 9 - 16 Uhr<br>
+                    Freitags 9 - 14 Uhr<br>
+                    Samstags, Sonntags und Feiertags geschlossen.
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="footer.address">
+                <source>footer.address</source>
+                <target><![CDATA[
+                    <ul>
+                        <li>POMPdeLUX DE GmbH</li>
+                        <li>Dammtorstraβe 12</li>
+                        <li>DE-20354 Hamburg</li>
+                        <li>USt-IdNr. DE290402183</li>
+                        <li><a href="mailto:mailde@pompdelux.com">mailde@pompdelux.com</a></li>
+                        <li>040-35715072</li>
+                        <li><img src="%cdn%fx/images/creditcards_de.png" alt="credit cards" title="credit cards"></li>
+                        <li><a href="http://www.facebook.com/sharer.php?u=%url%" class="facebook-button social-button" title="Del denne side på Facebook">Auf Facebook teilen</a></li>
+                    </ul>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="order.deleted">
+                <source>order.deleted</source>
+                <target>E-Bestellnummer %id% wurde gelöscht</target>
+            </trans-unit>
+            <trans-unit id="buy.set">
+                <source>buy.set</source>
+                <target>Das ganze Set kaufen</target>
+            </trans-unit>
+            <trans-unit id="button.back">
+                <source>button.back</source>
+                <target>Zurück</target>
+            </trans-unit>
+            <trans-unit id="button.find">
+                <source>button.find</source>
+                <target>Finden</target>
+            </trans-unit>
+            <trans-unit id="browser.title">
+                <source>browser.title</source>
+                <target>POMPdeLUX - wir lieben Kinderbekleidung</target>
+            </trans-unit>
+            <trans-unit id="create.account.vilkaar.link">
+                <source>create.account.vilkaar.link</source>
+                <target><![CDATA[
+                    <a href="/de_DE/home/kundendienst/abgs" target="_blank">POMPdeLUX AGB's.</a>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="category.selector.look" approved="no">
+                <source>category.selector.look</source>
+                <target>Looks</target>
+            </trans-unit>
+            <trans-unit id="category.selector.overview" approved="no">
+                <source>category.selector.overview</source>
+                <target>Übersicht</target>
+            </trans-unit>
+            <trans-unit id="options.title" approved="no">
+                <source>options.title</source>
+                <target>Farbe und Größe</target>
+            </trans-unit>
+            <trans-unit id="choose.size.note" approved="no">
+                <source>choose.size.note</source>
+                <target>(Die Größe ist die Größe des Kindes in cm.)</target>
+            </trans-unit>
+            <trans-unit id="click.to.zoom" approved="no">
+                <source>click.to.zoom</source>
+                <target>Zum Zoomen klicken</target>
+            </trans-unit>
+            <trans-unit id="click.to.video" approved="no">
+                <source>click.to.video</source>
+                <target>Video</target>
+            </trans-unit>
+            <trans-unit id="product.pictures.title" approved="no">
+                <source>product.pictures.title</source>
+                <target>Fotos</target>
+            </trans-unit>
+            <trans-unit id="buy.the.set.title" approved="no">
+                <source>buy.the.set.title</source>
+                <target>Das Set kaufen</target>
+            </trans-unit>
+            <trans-unit id="latest.seen.products.title" approved="no">
+                <source>latest.seen.products.title</source>
+                <target>Ich habe mir auch angesehen</target>
+            </trans-unit>
+            <trans-unit id="delivery.title" approved="no">
+                <source>delivery.title</source>
+                <target>Lieferung</target>
+            </trans-unit>
+            <trans-unit id="delivery.info" approved="no">
+                <source>delivery.info</source>
+                <target><![CDATA[
+                    <p>Alle Waren werden als Pakete mit DHL verschickt. Daher haben Sie die Möglichkeit, Ihr Paket ab dem Versand bis zum Empfang mit Hilfe von Track & Trace zu verfolgen.<br>
+  Sie können zwischen drei Versand wählen:<br><br> Paket:Das Paket wird an Ihre Adresse geliefert und kostet EUR 4,95 (EUR 3,95, wenn Sie die Waren bei einer Homeshopping- oder Tag der offenen Tür-Veranstaltung gekauft haben). Wenn Sie zum Zeitpunkt der Lieferung nicht zu Hause sind, können Sie das Paket anschließend bei der Post abholen.<br><br> Wenn Sie das Paket empfangen haben, sollten Sie die Waren überprüfen. Wenn das Paket und/oder der Inhalt beschädigt sind, wenden Sie sich bitte umgehend an unseren Kundendienst oder an DHL. </p>
+]]>
+</target>
+</trans-unit>
+
+            <trans-unit id="return.title" approved="no">
+                <source>return.title</source>
+                <target>Rücksendung</target>
+            </trans-unit>
+            <trans-unit id="return.info" approved="no">
+                <source>return.info</source>
+                <target><![CDATA[
+                    <p>Sie haben ein 21-tägiges Rückgaberecht auf alle Waren ab dem Tag des Empfangs der Ware (jedoch nur 14-tägig auf reduzierte Waren). Wenn Sie eine Ware in eine andere Größe oder Farbe umtauschen möchten, kann dies anhand des Rücksendescheins  geschehen. Ausverkaufte Waren sind jedoch vorbehalten.<br><br>
+					Die Waren müssen ungebraucht sein und in Originalverpackung, mit Textiletiketten usw. zurückgeschickt werden. Die Rücksendung von Strümpfen, Leggings und Strumpfhosen kann nur in ungeöffneter Originalverpackung erfolgen. Die Postverpackung, in der Sie Ihre Waren erhalten, ist so ausgelegt, dass sie zweimal verwendet werden kann. Auf der Verpackung können Sie sehen, wo man schneiden muss, um sie erneut verwenden zu können. Wir erstatten daher kein Geld für Rückverpackungen zurück. Dasselbe gilt für Portokosten, wenn Sie uns nur Teile Ihrer Bestellung zurückschicken. Wir nehmen keine Rücksendungen entgegen, die per Nachname verschickt werden. </p>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="footer.menu_1" approved="no">
+                <source>footer.menu_1</source>
+                <target><![CDATA[
+                <h2>Homeshopping</h2>
+                <ul class="menu">
+                    <li><a href="/de_DE/home/uber-home-shopping" target="_blank">Über Homeshopping</a></li>
+					<li><a href="/de_DE/home/home-shopping/beraterin-finden" target="_blank">Beraterin finden</a></li>
+					<li><a href="/de_DE/home/home-shopping/beraterin-auf-karte-finden" target="_blank">Beraterin auf Karte finden</a></li>
+					<li><a href="/de_DE/home/home-shopping/tag-der-offenen-tur" target="_blank">Tag der offenen Tür</a></li>
+                </ul>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="footer.menu_2" approved="no">
+                <source>footer.menu_2</source>
+                <target><![CDATA[
+                <h2>Mehr POMPdeLUX</h2>
+                <ul class="menu">
+				    <li><a href="/de_DE/home/katalog" target="_blank">Online-Katalog</a></li>
+					<li><a href="/de_DE/home/katalog/backstage-video" target="_blank">Backstage video</a></li>
+                    <li><a href="/de_DE/home/neuigkeiten" target="_blank">Neuigkeiten</a></li>
+                    <li><a href="/de_DE/home/uber-pompdelux/konzept" target="_blank">Konzept</a></li>
+                    <li><a href="/de_DE/home/uber-pompdelux/soziale-verantwortung" target="_blank">Soziale Verantwortung</a></li>
+					<li><a href="/de_DE/home/uber-pompdelux/jobs" target="_blank">Jobs</a></li>
+					<li><a href="/de_DE/home/mehr-pompdelux/gots-organic" target="_blank">GOTS (Organic)</a></li>
+					<li><a href="/de_DE/home/mehr-pompdelux/oeko-tex" target="_blank">Oeko-Tex</a></li>
+					<li><a href="/de_DE/home/mehr-pompdelux/danksagungen" target="_blank">Danksagungen</a></li>
+					<li><a href="/de_DE/home/uber-pompdelux/kontakt" target="_blank">Kontakt</a></li>
+				    <li><a href="/de_DE/home/katalog">Online Katalog</a></li>
+					<li><a href="/de_DE/home/katalog/image-video">Image Video</a></li>
+                </ul>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="footer.menu_3" approved="no">
+                <source>footer.menu_3</source>
+                <target><![CDATA[
+                <h2>Kundendienst</h2>
+                <ul class="menu">
+                    <li><a href="/de_DE/kundendienst/telefonzeiten" target="_blank">Telefonzeiten</a></li>
+                    <li><a href="/de_DE/kundendienst/telefonzeiten/faq" target="_blank">FAQ</a></li>
+                    <li><a href="/de_DE/home/kundendienst/rucksendung" target="_blank">Rücksendung</a></li>
+                    <li><a href="/de_DE/home/kundendienst/umtausch" target="_blank">Umtausch</a></li>
+                    <li><a href="/de_DE/home/kundendienst/rucksendeschein" target="_blank">Rücksendeschein</a></li>
+                    <li><a href="/de_DE/home/kundendienst/waschtipps" target="_blank">Waschtipps</a></li>
+					<li><a href="/de_DE/home/kundendienst/sizeguide" target="_blank">Größentabelle</a></li>
+					<li><a href="/de_DE/home/kundendienst/abgs" target="_blank">AGB's</a></li>
+					<li><a href="/de_DE/home/kundendienst/impressum" target="_blank">Impressum</a></li>
+					<li><a href="/de_DE/home/kundendienst/uber-den-webshop" target="_blank">Über den Webshop</a></li>
+                </ul>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="share.to.%method%" approved="no">
+                <source>share.to.%method%</source>
+                <target>Teilen auf %method%</target>
+            </trans-unit>
+            <trans-unit id="back.to.category" approved="no">
+                <source>back.to.category</source>
+                <target>Zurück zur Übersicht</target>
+            </trans-unit>
+            <trans-unit id="on.stock" approved="no">
+                <source>on.stock</source>
+                <target>Auf Lager</target>
+            </trans-unit>
+            <trans-unit id="on.stock.yes" approved="no">
+                <source>on.stock.yes</source>
+                <target>Ja</target>
+            </trans-unit>
+            <trans-unit id="on.stock.no" approved="no">
+                <source>on.stock.no</source>
+                <target>Nein</target>
+            </trans-unit>
+            <trans-unit id="pager.pages.%total%" approved="no">
+                <source>pager.pages.%total%</source>
+                <target>von %total%</target>
+            </trans-unit>
+            <trans-unit id="pager.see_all.%total%" approved="no">
+                <source>pager.see_all.%total%</source>
+                <target>alle (%total%) anzeigen</target>
+            </trans-unit>
+            <trans-unit id="more.bundle.info" approved="no">
+                <source>more.bundle.info</source>
+                <target>Hier klicken für weitere Informationen.</target>
+            </trans-unit>
+            <trans-unit id="goto.top.link" approved="no">
+                <source>goto.top.link</source>
+                <target>Nach oben</target>
+            </trans-unit>
+            <trans-unit id="product.prices.description" approved="no">
+                <source>product.prices.description</source>
+                <target>inkl. gesetzl. MwSt, zzgl. Versandkosten</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

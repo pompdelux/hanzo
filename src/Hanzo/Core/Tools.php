@@ -69,8 +69,11 @@ class Tools
      */
     public static function stripTags($text)
     {
-        $v = preg_replace('/<+\s*\/*\s*([A-Z][A-Z0-9]*)\b[^>]*\/*\s*>+/i', ' ', $text);
+        $v = preg_replace('/<+\s*\/*\s*([A-Z][A-Z0-9]*)\b[^>]*\/*\s*>+/i', ' ', strip_tags($text));
+        // Remove twig tags.
+        $v = preg_replace('/(\{(\{|%)|\{\#).*(#\}|(\}|%)\})/', ' ', $v);
         $v = preg_replace('/[ ]+/', ' ', trim($v));
+
         return $v;
     }
 
@@ -106,6 +109,14 @@ class Tools
                     case 'SalesSE':
                         $to = 'order@pompdelux.se';
                         break;
+                    case 'AT':
+                    case 'SalesAT':
+                        $to = 'order@pompdelux.at';
+                        break;
+                    case 'CH':
+                    case 'SalesCH':
+                        $to = 'order@pompdelux.ch';
+                        break;
                     default:
                         $to = 'order@pompdelux.dk';
                         break;
@@ -133,6 +144,14 @@ class Tools
                     case 'SE':
                     case 'SalesSE':
                         $to = 'returse@pompdelux.dk';
+                        break;
+                    case 'AT':
+                    case 'SalesAT':
+                        $to = 'returat@pompdelux.dk';
+                        break;
+                    case 'CH':
+                    case 'SalesCH':
+                        $to = 'returch@pompdelux.dk';
                         break;
                     default:
                         $to = 'retur@pompdelux.dk';
@@ -320,6 +339,8 @@ class Tools
             'nb_no' => 'no',
             'nl_nl' => 'nl',
             'sv_se' => 'se',
+            'de_at' => 'at',
+            'de_ch' => 'ch',
         );
 
         $path = explode('/', trim(str_replace($_SERVER['SCRIPT_NAME'], '', strtolower($_SERVER['REQUEST_URI'])), '/'));
@@ -357,8 +378,8 @@ class Tools
                 die("User-agent: *\nDisallow: /\n");
             }
 
-            die("User-agent: *\nDisallow:\n");
-            //die("User-agent: *\nDisallow: /de_DE/\n");
+            #die("User-agent: *\nDisallow:\n");
+            die("User-agent: *\nDisallow: /de_CH/\nDisallow: /de_AT/\n");
         }
     }
 

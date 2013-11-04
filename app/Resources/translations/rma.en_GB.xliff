@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="rma.not_allowed_wrong_state">
+                <source>rma.not_allowed_wrong_state</source>
+                <target>An error occurred. The order has not been processed and therefore cannot be returned.</target>
+            </trans-unit>
+            <trans-unit id="rma.form.title.order_id">
+                <source>rma.form.title.order_id</source>
+                <target>Create a Returns Form for order %order_id%.</target>
+            </trans-unit>
+            <trans-unit id="rma.form.description">
+                <source>rma.form.description</source>
+                <target><![CDATA[
+                    <p>For every item you wish to return, please select an action and a reason for return. You can also add a comment regarding an individual item.<br>If you are returning items from more than one order, you must create a Returns form for each order. However, you may of course send the items in one package regardless whether they come from different orders. Remember to enclose Return form/ forms with your package. You can find further instructions regarding returns on the Returns form that will be created as you press the ”Create Returns form” button.<br><br>In order to see the form you must have installed a free Adobe Reader programme. If you do not have Adobe Reader installed on your computer/ device, the program can be downloaded here.<br />
+    <br />
+    <a href="http://www.adobe.com/products/acrobat/readstep2.html" target="_blank"><img src="http://static.pompdelux.com/images/pages/PDF_logo.jpg" width="158" height="39" border="0" title="POMPdeLUX" /></a><br /></p>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="rma.form.label.activitycode">
+                <source>rma.form.label.activitycode</source>
+                <target>Activity</target>
+            </trans-unit>
+            <trans-unit id="rma.form.label.cause">
+                <source>rma.form.label.cause</source>
+                <target>Reason</target>
+            </trans-unit>
+            <trans-unit id="rma.form.activity.default">
+                <source>rma.form.activity.default</source>
+                <target>-- Choose activity --</target>
+            </trans-unit>
+            <trans-unit id="rma.form.cause.default">
+                <source>rma.form.cause.default</source>
+                <target>-- Choose reason --</target>
+            </trans-unit>
+            <trans-unit id="rma.form.activity.return">
+                <source>rma.form.activity.return</source>
+                <target>Returns</target>
+            </trans-unit>
+            <trans-unit id="rma.form.activity.replacement">
+                <source>rma.form.activity.replacement</source>
+                <target>Exchange</target>
+            </trans-unit>
+            <trans-unit id="rma.form.activity.warranty">
+                <source>rma.form.activity.warranty</source>
+                <target>Defect item</target>
+            </trans-unit>
+            <trans-unit id="rma.form.activity.return.causes">
+                <source>rma.form.activity.return.causes</source>
+                <target>Packing error|Defect item (please note fault)|Regret purchase (money back)</target>
+            </trans-unit>
+            <trans-unit id="rma.form.activity.replacement.causes">
+                <source>rma.form.activity.replacement.causes</source>
+                <target>Exchange to another size|Exhange to another colour|Exchange to another item</target>
+            </trans-unit>
+            <trans-unit id="rma.form.activity.warranty.causes">
+                <source>rma.form.activity.warranty.causes</source>
+                <target>Packing error|Defect item (please note fault)</target>
+            </trans-unit>
+            <trans-unit id="rma.form.label.description">
+                <source>rma.form.label.description</source>
+                <target>Comments</target>
+            </trans-unit>
+            <trans-unit id="rma.form.submit">
+                <source>rma.form.submit</source>
+                <target>Create returns form...</target>
+            </trans-unit>
+            <trans-unit id="rma.form.label.return.order">
+                <source>rma.form.label.return.order</source>
+                <target>Return the entire order</target>
+            </trans-unit>
+            <trans-unit id="rma.form.label.replacement">
+                <source>rma.form.label.replacement</source>
+                <target>Enter the product name you wish to exchange for</target>
+            </trans-unit>
+            <trans-unit id="rma.form.placeholder.produkt">
+                <source>rma.form.placeholder.produkt</source>
+                <target>e.g. Copenhagen</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.company_details">
+                <source>rma.slip.company_details</source>
+                <target><![CDATA[
+                    <ul>
+                        <li>POMPdeLUX ApS</li>
+                        <li>Møgelhøj 8, DK-8520 Lystrup</li>
+                        <li>CVR-nr 29622035</li>
+                        <li>mail@pompdelux.com (+45) 8736 1000</li>
+                    </ul>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.id">
+                <source>rma.slip.id</source>
+                <target>Customer number</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.name">
+                <source>rma.slip.name</source>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.email">
+                <source>rma.slip.email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.phone">
+                <source>rma.slip.phone</source>
+                <target>Phone number</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.order_id">
+                <source>rma.slip.order_id</source>
+                <target>E-order number</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.deliveryaddress">
+                <source>rma.slip.deliveryaddress</source>
+                <target>Delivery address</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.title.order_id">
+                <source>rma.slip.title.order_id</source>
+                <target>POMPdeLUX Returns form order ID %order_id%</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.description">
+                <source>rma.slip.description</source>
+                <target><![CDATA[<p>If you wish to exchange or return items, you must fill in and enclose this Returns form with your package.
+As the returned items will go back on sale it would be a great help if you can return the items in their original packaging with hangtags attached etc.
+<br><br>If you are returning a defect item or an incorrectly send item, we refund you the shipping charge.<br><br>If you wish to exchange an item to a different size, colour or another item, the new shipment is free of charge. Please note that the price of the new item may not exceed that of the returned item.<br><br>If the item you wish to exchange for is sold out, we refund you the returned item.<br><br>Any refund will automatically be issued to the credit card used to make the original purchase. <br><b>For more information please visit: <a href="/en_GB/" target="_blank">www.pompdelux.com</a></p>]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.thead.activitycode">
+                <source>rma.slip.thead.activitycode</source>
+                <target>Activity</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.thead.cause">
+                <source>rma.slip.thead.cause</source>
+                <target><![CDATA[&Aring;rsag]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.thead.replacement">
+                <source>rma.slip.thead.replacement</source>
+                <target>Exchange for</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.thead.description">
+                <source>rma.slip.thead.description</source>
+                <target>Your comments</target>
+            </trans-unit>
+            <trans-unit id="rma.history.title">
+                <source>rma.history.title</source>
+                <target>Create RMA returns form.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

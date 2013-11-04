@@ -142,8 +142,8 @@
                 <source>customer.service.contact.info</source>
                 <target><![CDATA[
                     <strong>Kundeservice</strong><br>
-                    Mandag til torsdag kl. 9 - 18<br>
-                    Fredag 9 - 14<br>
+                    Mandag til torsdag kl. 9 - 16<br>
+                    Fredag kl. 9 - 14<br>
                     <!--Stengt 12 - 12.45<br>-->
                     Lørdag og søndag stengt.<br>
                     Tlf. nr.: +47 2274 2600 <br>
@@ -161,9 +161,9 @@
                         <li>Org.nr. 994798510</li>
                         <li>mail@pompdelux.no</li>
                         <li>+47 2274 2600</li>
-						<li>Retur av varer: POMPdeLUX C/O Tollpost Globe</li>
-                        <li>Postens Godssenter</li>
-                        <li>NO-0068 Oslo</li>
+						<li>Retur av varer: POMPdeLUX C/O</li>
+                        <li>Postens godssenter</li>
+                        <li>NO-0060 Oslo</li>
                         <li><img src="%cdn%fx/images/creditcards_se.png" alt="credit cards" title="credit cards"></li>
                         <li><a href="http://www.facebook.com/sharer.php?u=%url%" class="facebook-button social-button" title="Share this page on facebook">Share</a></li>
                     </ul>
@@ -238,8 +238,8 @@
             <trans-unit id="delivery.info" approved="no">
                 <source>delivery.info</source>
                 <target><![CDATA[
-                    <p>Alle varer sendes som pakkepost med <a href="http://www.postdanmark.dk" target="_blank">Post Danmark</a> / <a href="http://www.tollpost.no/" target="_blank">Tollpost Globe</a>. Du har derfor mulighet for å følge pakken via <a href="http://www.postdanmark.dk" target="_blank">track &amp; trace</a> fra den sendes til den blir levert. Pakkene sendes som privatpakke og skal avhentes på utleveringssted. Frakten er NOK 49,00 hvis du kjøper varene til et Home shopping arrangement og NOK 69,00 når du kjøper varene i vår Webshop. <br /><br />
-      Når du har mottatt pakken, bør du kontrollere varene. Hvis pakken og/eller innholdet er skadet, ber vi deg straks ta kontakt med vår Kundeservice eller <a href="http://www.tollpost.no/" target="_blank">Tollpost Globe</a>.</p>
+                    <p>Alle varer sendes som pakkepost med <a href="http://tracking.bring.dk/index.html" target="_blank">Bring</a> / <a href="http://www.posten.no/" target="_blank">www.posten.no</a>. Du har derfor mulighet for å følge pakken via <a href="http://tracking.bring.dk/index.html" target="_blank">sporingsnummer </a> fra den sendes til den blir levert. Pakkene sendes som privatpakke og skal avhentes på utleveringssted. Frakten er NOK 49,00 hvis du kjøper varene til et Home shopping arrangement og NOK 69,00 når du kjøper varene i vår Webshop. <br /><br />
+      Når du har mottatt pakken, bør du kontrollere varene. Hvis pakken og/eller innholdet er skadet, ber vi deg straks ta kontakt med vår Kundeservice eller <a href="http://www.posten.no/" target="_blank">www.posten.no</a>. </p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="return.title" approved="no">
@@ -334,6 +334,10 @@
             <trans-unit id="goto.top.link" approved="no">
                 <source>goto.top.link</source>
                 <target>Gå til toppen</target>
+            </trans-unit>
+            <trans-unit id="product.prices.description" approved="no">
+                <source>product.prices.description</source>
+                <target></target>
             </trans-unit>
         </body>
     </file>

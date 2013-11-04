@@ -92,8 +92,8 @@ class ProductsController extends CoreController
                 ->findOne($this->getDbConnection())
             ;
         }
-        $categories_list = array();
-        $products_list = array();
+        $categories_list = [];
+        $products_list = [];
         if ($categories) {
             foreach ($categories as $category) {
                 $categories_list[] = array(
@@ -176,7 +176,7 @@ class ProductsController extends CoreController
             ->find($this->getDbConnection())
         ;
 
-        $product_images_list = array();
+        $product_images_list = [];
 
         foreach ($product_images as $record) {
             $product_image_in_categories = ProductsImagesCategoriesSortQuery::create()
@@ -186,7 +186,7 @@ class ProductsController extends CoreController
             ;
 
 
-            $image_categories_list = array();
+            $image_categories_list = [];
             foreach ($product_image_in_categories as $ref) {
 
                 $image_categories_list[] = array(
@@ -203,7 +203,7 @@ class ProductsController extends CoreController
                 ->find($this->getDbConnection())
             ;
 
-            $products_refs_list = array();
+            $products_refs_list = [];
             if($products_refs){
                 foreach ($products_refs as $ref) {
 
@@ -378,7 +378,7 @@ class ProductsController extends CoreController
             if ($this->getFormat() == 'json') {
                 return $this->json_response(array(
                     'status' => TRUE,
-                    'message' => $this->get('translator')->trans('delete.products.discount.success', array(), 'admin')
+                    'message' => $this->get('translator')->trans('delete.products.discount.success', [], 'admin')
                 ));
             }
 
@@ -390,7 +390,7 @@ class ProductsController extends CoreController
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
                 'status' => FALSE,
-                'message' => $this->get('translator')->trans('delete.products.discount.failed', array(), 'admin')
+                'message' => $this->get('translator')->trans('delete.products.discount.failed', [], 'admin')
             ));
         }
 
@@ -447,7 +447,7 @@ class ProductsController extends CoreController
             if ($this->getFormat() == 'json') {
                 return $this->json_response(array(
                     'status' => TRUE,
-                    'message' => $this->get('translator')->trans('delete.products.style.success', array(), 'admin')
+                    'message' => $this->get('translator')->trans('delete.products.style.success', [], 'admin')
                 ));
             }
             $this->get('session')->setFlash('notice', 'delete.products.style.success');
@@ -458,7 +458,7 @@ class ProductsController extends CoreController
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
                 'status' => FALSE,
-                'message' => $this->get('translator')->trans('delete.products.style.failed', array(), 'admin')
+                'message' => $this->get('translator')->trans('delete.products.style.failed', [], 'admin')
             ));
         }
 
@@ -489,7 +489,7 @@ class ProductsController extends CoreController
             if ($this->getFormat() == 'json') {
                 return $this->json_response(array(
                     'status' => FALSE,
-                    'message' => $this->get('translator')->trans('save.changes.failed', array(), 'admin')
+                    'message' => $this->get('translator')->trans('save.changes.failed', [], 'admin')
                 ));
             }
         }
@@ -497,7 +497,7 @@ class ProductsController extends CoreController
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
                 'status' => TRUE,
-                'message' => $this->get('translator')->trans('save.changes.success', array(), 'admin')
+                'message' => $this->get('translator')->trans('save.changes.success', [], 'admin')
             ));
         }
     }
@@ -525,7 +525,7 @@ class ProductsController extends CoreController
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
                 'status' => TRUE,
-                'message' => $this->get('translator')->trans('delete.changes.success', array(), 'admin'),
+                'message' => $this->get('translator')->trans('delete.changes.success', [], 'admin'),
             ));
         }
     }
@@ -550,7 +550,7 @@ class ProductsController extends CoreController
             if ($this->getFormat() == 'json') {
                 return $this->json_response(array(
                     'status' => FALSE,
-                    'message' => $this->get('translator')->trans('save.changes.failed', array(), 'admin')
+                    'message' => $this->get('translator')->trans('save.changes.failed', [], 'admin')
                 ));
             }
         }
@@ -558,7 +558,7 @@ class ProductsController extends CoreController
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
                 'status' => TRUE,
-                'message' => $this->get('translator')->trans('save.changes.success', array(), 'admin')
+                'message' => $this->get('translator')->trans('save.changes.success', [], 'admin')
             ));
         }
     }
@@ -581,7 +581,7 @@ class ProductsController extends CoreController
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
                 'status' => TRUE,
-                'message' => $this->get('translator')->trans('delete.changes.success', array(), 'admin'),
+                'message' => $this->get('translator')->trans('delete.changes.success', [], 'admin'),
             ));
         }
     }
@@ -604,7 +604,7 @@ class ProductsController extends CoreController
             if ($this->getFormat() == 'json') {
                 return $this->json_response(array(
                     'status' => FALSE,
-                    'message' => $this->get('translator')->trans('save.changes.failed', array(), 'admin')
+                    'message' => $this->get('translator')->trans('save.changes.failed', [], 'admin')
                 ));
             }
         }
@@ -612,7 +612,7 @@ class ProductsController extends CoreController
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
                 'status' => TRUE,
-                'message' => $this->get('translator')->trans('save.changes.success', array(), 'admin')
+                'message' => $this->get('translator')->trans('save.changes.success', [], 'admin')
             ));
         }
     }
@@ -634,7 +634,7 @@ class ProductsController extends CoreController
         }
         return $this->json_response(array(
             'status' => TRUE,
-            'message' => $this->get('translator')->trans('save.changes.failed', array(), 'admin'),
+            'message' => $this->get('translator')->trans('save.changes.failed', [], 'admin'),
             'data' => $all_colors
         ));
     }
@@ -654,7 +654,7 @@ class ProductsController extends CoreController
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
                 'status' => TRUE,
-                'message' => $this->get('translator')->trans('delete.imageReference.success', array(), 'admin'),
+                'message' => $this->get('translator')->trans('delete.imageReference.success', [], 'admin'),
             ));
         }
     }
@@ -674,6 +674,19 @@ class ProductsController extends CoreController
         $reference->setProductsImagesId($image_id);
         $reference->setCategoriesId($category_id);
 
+        $c = ProductsToCategoriesQuery::create()
+            ->filterByProductsId($image->getProductsId())
+            ->filterByCategoriesId($category_id)
+            ->findOne($this->getDbConnection())
+        ;
+
+        if (!$c instanceof ProductsToCategories) {
+            $c = new ProductsToCategories();
+            $c->setProductsId($image->getProductsId());
+            $c->setCategoriesId($category_id);
+            $c->save($this->getDbConnection());
+        }
+
         try {
             $reference->save($this->getDbConnection());
 
@@ -681,7 +694,7 @@ class ProductsController extends CoreController
             if ($this->getFormat() == 'json') {
                 return $this->json_response(array(
                     'status' => FALSE,
-                    'message' => $this->get('translator')->trans('save.changes.failed', array(), 'admin')
+                    'message' => $this->get('translator')->trans('save.changes.failed', [], 'admin')
                 ));
             }
         }
@@ -689,7 +702,7 @@ class ProductsController extends CoreController
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
                 'status' => TRUE,
-                'message' => $this->get('translator')->trans('save.changes.success', array(), 'admin')
+                'message' => $this->get('translator')->trans('save.changes.success', [], 'admin')
             ));
         }
     }
@@ -705,14 +718,29 @@ class ProductsController extends CoreController
             ->findOne($this->getDbConnection())
         ;
 
-        if($ref){
+        if ($ref) {
+            $product_id = $ref->getProductsId();
             $ref->delete($this->getDbConnection());
+
+            $image_count = ProductsImagesCategoriesSortQuery::create()
+                ->filterByProductsId($product_id)
+                ->filterByCategoriesId($category_id)
+                ->count($this->getDbConnection())
+            ;
+
+            if (0 === $image_count) {
+                ProductsToCategoriesQuery::create()
+                    ->filterByProductsId($product_id)
+                    ->filterByCategoriesId($category_id)
+                    ->delete($this->getDbConnection())
+                ;
+            }
         }
 
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
                 'status' => TRUE,
-                'message' => $this->get('translator')->trans('delete.success', array(), 'admin'),
+                'message' => $this->get('translator')->trans('delete.success', [], 'admin'),
             ));
         }
     }
@@ -732,7 +760,7 @@ class ProductsController extends CoreController
             ->find($this->getDbConnection())
         ;
 
-        $categories = array();
+        $categories = [];
         foreach ($categories_result as $category) {
             $tmp = explode('_', $category->getContext());
             $categories[$category->getContext()]['group'] = $tmp[0];
@@ -754,7 +782,7 @@ class ProductsController extends CoreController
             ->find($this->getDbConnection())
         ;
 
-        $records = array();
+        $records = [];
         foreach ($products as $record) {
             $product = $record->getProducts();
 
@@ -806,7 +834,7 @@ class ProductsController extends CoreController
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
                 'status' => TRUE,
-                'message' => $this->get('translator')->trans('save.changes.success', array(), 'admin')
+                'message' => $this->get('translator')->trans('save.changes.success', [], 'admin')
             ));
         }
     }
@@ -831,7 +859,7 @@ class ProductsController extends CoreController
             ->find($this->getDbConnection())
         ;
 
-        $stock_data = array();
+        $stock_data = [];
         $stock_data[0] = array('SKU','STOCK');
 
         foreach ($stocks as $stock) {

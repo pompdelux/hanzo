@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="404.title">
+                <source>404.title</source>
+                <target>Das Gesuchte existiert nicht.</target>
+            </trans-unit>
+            <trans-unit id="404.description">
+                <source>404.description</source>
+                <target><![CDATA[
+                    Sie haben Inhalt gesucht, den es auf dieser Seite nicht gibt.<br><br>
+                    Bitte untersuchen Sie, ob eine der Kategorien das enthält, wonach Sie suchen, oder verwenden Sie das Suchformular unten.
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="404.webshop_closed.description" approved="no">
+                <source>404.webshop_closed.description</source>
+                <target><![CDATA[
+                    Sie haben Inhalt gesucht, den es auf dieser Seite nicht gibt.<br><br>
+                    Bitte untersuchen Sie, ob eine der Kategorien das enthält, wonach Sie suchen, oder verwenden Sie das Suchformular unten.
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="500.title">
+                <source>500.title</source>
+                <target>Hoppla!</target>
+            </trans-unit>
+            <trans-unit id="500.description">
+                <source>500.description</source>
+                <target><![CDATA[
+                    <p>Sie sind in die Abteilung für technische Probleme geraten. Das tut uns Leid.</p>
+                    <p>Wenn das Problem nicht behoben wird oder erneut entsteht, können Sie sich an den Kundendienst wenden unter Tel.: 040-35715072 oder schreiben Sie uns unter <a href="mailto:mailde@pompdelux.com">mailde@pompdelux.com</a></p>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="403.title">
+                <source>403.title</source>
+                <target>Hoppla!</target>
+            </trans-unit>
+            <trans-unit id="403.description">
+                <source>403.description</source>
+                <target><![CDATA[
+                    <p>Ihnen fehlt die Berechtigung, diese Seite zu sehen.</p>
+                    <p>Wenn das Problem nicht behoben wird oder erneut entsteht, können Sie sich an den Kundendienst wenden unter Tel.: (+45) 8678 7877 oder schreiben Sie uns unter <a href="mailto:mailde@pompdelux.com">mailde@pompdelux.com</a></p>
+                ]]></target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

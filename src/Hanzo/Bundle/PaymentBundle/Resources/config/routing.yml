@@ -26,13 +26,13 @@ _order_state_check:
     requirements: { _format: (xml|json), _method: POST }
 
 # GOTHIA }-------------------------
-PaymentBundle_gothia_process:
-    pattern:  /payment/gothia/process
-    defaults: { _controller: PaymentBundle:Gothia:process }
-
 PaymentBundle_gothia_payment:
     pattern:  /payment/gothia
     defaults: { _controller: PaymentBundle:Gothia:payment }
+
+PaymentBundle_gothia_process:
+    pattern:  /payment/gothia/process
+    defaults: { _controller: PaymentBundle:Gothia:process }
 
 PaymentBundle_gothia_payment_test:
     pattern:  /payment/gothia/test
@@ -75,9 +75,9 @@ PaymentBundle_gothiade_payment_cancel:
     defaults: { _controller: PaymentBundle:Default:cancel }
 
 # COD }-------------------------
-_paybybill_callback:
-    pattern:  /payment/paybybill/callback
-    defaults: { _controller: PaymentBundle:PayByBill:callback }
+_manualpayment_callback:
+    pattern:  /payment/manualpayment/callback
+    defaults: { _controller: PaymentBundle:ManualPayment:callback }
 
 # GiftCard }----------------------
 _gift_card_callback:
@@ -107,6 +107,13 @@ _pensio_process:
         _controller: PaymentBundle:Pensio:process
     requirements:
         _method: POST
+_pensio_order_lookup:
+    pattern:  /pensio/lookup/order/{order_id}
+    defaults:
+        _controller: PaymentBundle:Pensio:lookup
+    requirements:
+        _method: GET
+
 
 # PayPal }----------------------
 _paypal_callback:

@@ -80,7 +80,7 @@
             </trans-unit>
             <trans-unit id="events.find_customer_by_phone.button">
                 <source>events.find_customer_by_phone.button</source>
-                <target>Søg op telefonnummer</target>
+                <target>Søg på telefonnummer</target>
             </trans-unit>
             <trans-unit id="events.find_customer_by_email.placeholder">
                 <source>events.find_customer_by_email.placeholder</source>

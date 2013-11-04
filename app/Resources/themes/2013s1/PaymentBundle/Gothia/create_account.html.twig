@@ -3,10 +3,8 @@
 {% block content %}
 <h1>{{ title }}</h1>
 <div id="gothia-account-container">
-
-  <form action="{{ path('PaymentBundle_gothia_payment_checkcustomer') }}" method="post" {{ form_enctype(form) }}>
+    <form action="{{ path('PaymentBundle_gothia_payment_checkcustomer') }}" method="post" {{ form_enctype(form) }} autocomplete="off">
     {{ form_widget(form) }}
-
     <input type="submit" value="Opret" name="action-submit-gothia-account" id="action-submit-gothia-account"/>
 </form>
 

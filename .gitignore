@@ -1,6 +1,7 @@
 /app/bootstrap*
 /app/cache/*
 /app/logs/*
+/bin/phing
 /tmp/*
 /vendor/*
 /app/config/parameters.ini
@@ -9,6 +10,16 @@
 /src/Hanzo/Bundle/BasketBundle/Resources/config/category_map.php
 /.rsync_cache/
 /web/images/frontpage/*.jpg
+/web/images/frontpage/*.gif
+/web/images/consultants*/
+/web/images/debitor*/
+/web/images/games/
+/web/images/xhjkpiydjns/
+/web/images/pdf/
+/web/images/nyhedsbrev/
+/web/images/products/thumb/*.jpg
+/web/images/products/thumb/*.png
+/web/uploads/
 .sass-cache
 /.tags*
 /*.sublime-project
