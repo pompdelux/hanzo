@@ -59,7 +59,7 @@ var yatzy = (function(window, $, undefined) {
       yatzy.compile(id);
     }
 
-    return templates[id](data);
+    return jQuery.trim(templates[id](data));
   };
 
   return pub;

@@ -14,7 +14,14 @@
 {% javascripts
   'fx/scripts/jquery.min.js'
   'fx/scripts/json2.js'
-  'fx/scripts/jquery.tools.min.js'
+
+  'fx/scripts/jquerytools/src/tabs/tabs.js'
+  'fx/scripts/jquerytools/src/tabs/tabs.slideshow.js'
+  'fx/scripts/jquerytools/src/overlay/overlay.js'
+  'fx/scripts/jquerytools/src/scrollable/scrollable.js'
+  'fx/scripts/jquerytools/src/scrollable/scrollable.autoscroll.js'
+  'fx/scripts/jquerytools/src/scrollable/scrollable.navigator.js'
+
   'fx/scripts/tinymce/jscripts/tiny_mce/jquery.tinymce.js'
   'fx/scripts/colorbox/jquery.colorbox-min.js'
   'fx/scripts/zoom/jquery.zoom.js'
@@ -72,7 +79,7 @@
 %}
 <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
-
+<script src="//code.jquery.com/jquery-migrate-1.2.1.js"></script>
 {{ include('::footer-'~app.request.locale~'.html.twig', ignore_missing = true, with_context = true) }}
 {{ google_analytics_tag() }}
 

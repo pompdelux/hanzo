@@ -167,7 +167,7 @@
 
         var address_confirm = $('#address-block div.confirm');
 
-        if ($('input::checked', address_confirm).length === 0) {
+        if ($('input:checked', address_confirm).length === 0) {
           var is_mobile = $('body').hasClass('is-mobile');
 
           address_confirm.toggleClass('hidden');
