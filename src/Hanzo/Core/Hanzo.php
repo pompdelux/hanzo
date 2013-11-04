@@ -135,7 +135,7 @@ class Hanzo
         $settings = [];
 
         // unittest hack
-        if ('phpunit' === substr($_SERVER['_'], -7)) {
+        if (isset($_SERVER['_']) && 'phpunit' === substr($_SERVER['_'], -7)) {
             return;
         }
 
@@ -190,7 +190,7 @@ class Hanzo
     protected function initSettings()
     {
         // unittest hack
-        if ('phpunit' === substr($_SERVER['_'], -7)) {
+        if (isset($_SERVER['_']) && 'phpunit' === substr($_SERVER['_'], -7)) {
             return;
         }
 
