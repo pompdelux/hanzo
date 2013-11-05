@@ -323,6 +323,10 @@
                 <source>address.address_line_1.required</source>
                 <target>Du måste skriva din adress.</target>
             </trans-unit>
+            <trans-unit id="name.max.length">
+                <source>name.max.length</source>
+                <target>Ditt fullständiga namn får bestå av max. {{ limit }} tegn|Ditt fullständiga namn får bestå av max. {{ limit }} tegn</target>
+            </trans-unit>
             <trans-unit id="address.postal_code.required">
                 <source>address.postal_code.required</source>
                 <target>Du måste skriva ditt postnummer.</target>
@@ -492,8 +496,8 @@ Du har möjlighet att ändra/lägga till/radera i din order. Du ska klicka på <
                 <source>order.force.login.description</source>
                 <target><![CDATA[
                     <h3>Kära kund</h3>
-                    <p>Vi kan se att du har lagt fler än 20 varor i din korg – det är vi självklart glada för.<br>  
-Vi vill dock vara helt säkra på att det inte har uppstått ett fel, så vi vill därför be dig om att upprätta dig som kund eller logga in på ”Min sida” med dina inloggningsuppgifter. 
+                    <p>Vi kan se att du har lagt fler än 20 varor i din korg – det är vi självklart glada för.<br>
+Vi vill dock vara helt säkra på att det inte har uppstått ett fel, så vi vill därför be dig om att upprätta dig som kund eller logga in på ”Min sida” med dina inloggningsuppgifter.
 Därefter kan du enkelt shoppa vidare.<br></p>
                     <p>Tack för hjälpen.</p>
                 ]]></target>

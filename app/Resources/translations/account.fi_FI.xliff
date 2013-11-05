@@ -334,6 +334,10 @@
                 <source>address.address_line_1.required</source>
                 <target>Osoite on annettava</target>
             </trans-unit>
+            <trans-unit id="name.max.length">
+                <source>name.max.length</source>
+                <target>Koko nimesi voi enintään sisältää {{ limit }} kirjainta|Koko nimesi voi enintään sisältää {{ limit }} kirjainta</target>
+            </trans-unit>
             <trans-unit id="address.postal_code.required">
                 <source>address.postal_code.required</source>
                 <target>Postinumero on annettavamuista edessä olevat nollat</target>

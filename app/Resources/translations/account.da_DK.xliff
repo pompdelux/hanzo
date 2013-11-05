@@ -351,6 +351,10 @@
                 <source>address.address_line_1.required</source>
                 <target>Du skal udfylde din adresse</target>
             </trans-unit>
+            <trans-unit id="name.max.length">
+                <source>name.max.length</source>
+                <target>Dit fulde navn må maksimalt bestå af {{ limit }} tegn|Dit fulde navn må maksimalt bestå af {{ limit }} tegn</target>
+            </trans-unit>
             <trans-unit id="address.postal_code.required">
                 <source>address.postal_code.required</source>
                 <target>Postnummer skal udfyldes</target>
