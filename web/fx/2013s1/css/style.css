@@ -2126,7 +2126,7 @@ form.address label {
   margin-top: 0 0 12px;
 }
 form.address .error {
-  border: 2px solid #998670;
+  border: 2px solid #c18185;
   margin: 10px 0;
   padding: 10px;
 }
@@ -2224,7 +2224,7 @@ form.location-locator div.error {
   margin: 10px;
 }
 form.location-locator div.error p {
-  border: 1px solid #998670;
+  border: 1px solid #c18185;
   padding: 10px;
 }
 
@@ -2238,7 +2238,7 @@ form.location-locator div.error p {
 }
 
 div.invalid-order {
-  border: 2px solid #998670;
+  border: 2px solid #c18185;
   padding: 10px;
 }
 
@@ -3452,7 +3452,7 @@ form input[type="password"].inline {
   width: auto;
 }
 form input.error {
-  border-color: #998670;
+  border-color: #c18185;
 }
 
 input.button,
@@ -3705,7 +3705,7 @@ button.right {
   clear: both;
 }
 .msg.error, .message.error {
-  border: 2px solid #998670;
+  border: 2px solid #c18185;
 }
 
 .no-text {
@@ -3923,7 +3923,7 @@ ol.list {
 }
 
 ul.form-errors li {
-  color: #998670;
+  color: #c18185;
   padding: 5px 0;
 }
 
