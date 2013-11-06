@@ -225,7 +225,7 @@
                 <source>headers.category-22</source>
                 <target><![CDATA[<h1>Accessories</h1>
                 <p></p>]]></target>
-            </trans-unit>			
+            </trans-unit>
 			<trans-unit id="headers.bycolour-673" approved="no">
                 <source>headers.bycolour-673</source>
                 <target><![CDATA[<h1>Rose</h1>
@@ -280,7 +280,7 @@
                 <source>headers.bycolour-695</source>
                 <target><![CDATA[<h1>Green & Brown</h1>
                 <p></p>]]></target>
-            </trans-unit>	
+            </trans-unit>
 			<trans-unit id="headers.bycolour-779" approved="no">
                 <source>headers.bycolour-779</source>
                 <target><![CDATA[<h1>Grey</h1>
@@ -290,7 +290,7 @@
                 <source>headers.bycolour-780</source>
                 <target><![CDATA[<h1>Denim</h1>
                 <p></p>]]></target>
-            </trans-unit>		
+            </trans-unit>
 			<trans-unit id="headers.bycolour-683" approved="no">
                 <source>headers.bycolour-683</source>
                 <target><![CDATA[<h1>Rose</h1>
