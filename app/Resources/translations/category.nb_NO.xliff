@@ -71,6 +71,16 @@
                 <target><![CDATA[<h1>Tilbehør</h1>
                 <p>For å fullende ditt barns garderobe kan kolleksjonen kombineres med våre mange skjønne accessories. POMPdeLUX har alt fra hårpynt, seler og belter til vanter, luer og skjerf. Vårt populære tilbehør matcher resten av kolleksjonen, og kan derfor kombineres med tøffe kjoler, lekre cardigans og kule bukser. Våre belter, seler, vanter, luer, skjerf og hårpynt kan brukes av jenter i alle aldre, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
             </trans-unit>
+			<trans-unit id="headers.category-45" approved="no">
+                <source>headers.category-45</source>
+                <target><![CDATA[<h1>Oeko-Tex</h1>
+                <p>Hos POMPdeLUX elsker vi kvalitetstøy, og ditt barn skal naturligvis ha det beste. Derfor er vårt undertøy, nattøy, våre strømper, strømpebukser, leggings og flere av våre gensere, topper, t-skjorter og bukser Oekotex-sertifisert. Oekotex-merkingen er din garanti for at våre produkter er godkjent ut fra den internasjonale Oekotex standarden. Vi garanterer derfor lekre materialer av høy kvalitet til barn i alle aldre.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-46" approved="no">
+                <source>headers.category-46</source>
+                <target><![CDATA[<h1>Organic</h1>
+                <p>Hos POMPdeLUX elsker vi kvalitetstøy, og ditt barn skal naturligvis ha det beste. Derfor er våre underbukser, hipsters, truser, undertrøyer, nattkjoler og pyjamaser GOTS sertifisert. Det betyr at vi jobber med organiske tekstiler, hvor minst 95 % av materialene er økologiske, og at produksjonen foregår miljømessig og sosialt ansvarlig. Vi garanterer derfor lekre materialer av høy kvalitet til barn i alle aldre.</p>]]></target>
+            </trans-unit>
 			<trans-unit id="headers.category-10" approved="no">
                 <source>headers.category-10</source>
                 <target><![CDATA[<h1>T-skjorter</h1>
@@ -115,6 +125,16 @@
                 <source>headers.category-5</source>
                 <target><![CDATA[<h1>Tilbehør</h1>
                 <p>For å fullende ditt barns garderobe kan kolleksjonen kombineres med våre mange skjønne accessories. POMPdeLUX har alt fra seler og belter til vanter, luer og skjerf. Våre populære accessories matcher resten av kolleksjonen, og kan derfor kombineres med tøffe sweats, lekre cardigans og kule jeans. Våre belter, seler, vanter, luer og skjerf kan brukes av gutter i alle aldre, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-43" approved="no">
+                <source>headers.category-43</source>
+                <target><![CDATA[<h1>Oeko-Tex</h1>
+                <p>Hos POMPdeLUX elsker vi kvalitetstøy, og ditt barn skal naturligvis ha det beste. Derfor er vårt undertøy, nattøy, våre strømper, strømpebukser, leggings og flere av våre gensere, topper, t-skjorter og bukser Oekotex-sertifisert. Oekotex-merkingen er din garanti for at våre produkter er godkjent ut fra den internasjonale Oekotex standarden. Vi garanterer derfor lekre materialer av høy kvalitet til barn i alle aldre.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-43" approved="no">
+                <source>headers.category-43</source>
+                <target><![CDATA[<h1>Organic</h1>
+                <p>Hos POMPdeLUX elsker vi kvalitetstøy, og ditt barn skal naturligvis ha det beste. Derfor er våre underbukser, hipsters, truser, undertrøyer, nattkjoler og pyjamaser GOTS sertifisert. Det betyr at vi jobber med organiske tekstiler, hvor minst 95 % av materialene er økologiske, og at produksjonen foregår miljømessig og sosialt ansvarlig. Vi garanterer derfor lekre materialer av høy kvalitet til barn i alle aldre.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-31" approved="no">
                 <source>headers.category-31</source>
@@ -176,6 +196,16 @@
                 <target><![CDATA[<h1>Tilbehør</h1>
                 <p>For å fullende ditt barns garderobe kan kolleksjonen kombineres med våre mange skjønne accessories. POMPdeLUX har alt fra hårpynt, seler og belter til vanter, luer og skjerf. Våre populære accessories matcher resten av kolleksjonen, og kan derfor kombineres med tøffe kjoler, lekre cardigans og kule bukser. Våre belter, seler, vanter, luer, skjerf og hårpynt kan brukes av jenter i alle aldre, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
             </trans-unit>
+			<trans-unit id="headers.category-49" approved="no">
+                <source>headers.category-49</source>
+                <target><![CDATA[<h1>Oeko-Tex</h1>
+                <p>Hos POMPdeLUX elsker vi kvalitetstøy, og ditt barn skal naturligvis ha det beste. Derfor er vårt undertøy, nattøy, våre strømper, strømpebukser, leggings og flere av våre gensere, topper, t-skjorter og bukser Oekotex-sertifisert. Oekotex-merkingen er din garanti for at våre produkter er godkjent ut fra den internasjonale Oekotex standarden. Vi garanterer derfor lekre materialer av høy kvalitet til barn i alle aldre.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-50" approved="no">
+                <source>headers.category-50</source>
+                <target><![CDATA[<h1>Organic</h1>
+                <p>Hos POMPdeLUX elsker vi kvalitetstøy, og ditt barn skal naturligvis ha det beste. Derfor er våre underbukser, hipsters, truser, undertrøyer, nattkjoler og pyjamaser GOTS sertifisert. Det betyr at vi jobber med organiske tekstiler, hvor minst 95 % av materialene er økologiske, og at produksjonen foregår miljømessig og sosialt ansvarlig. Vi garanterer derfor lekre materialer av høy kvalitet til barn i alle aldre.</p>]]></target>
+            </trans-unit>
 			<trans-unit id="headers.category-27" approved="no">
                 <source>headers.category-27</source>
                 <target><![CDATA[<h1>T-skjorter</h1>
@@ -225,6 +255,16 @@
                 <source>headers.category-22</source>
                 <target><![CDATA[<h1>Tilbehør</h1>
                 <p>For å fullende ditt barns garderobe kan kolleksjonen kombineres med våre mange skjønne accessories. POMPdeLUX har alt fra seler og belter til vanter, luer og skjerf. Våre populære accessories matcher resten av kolleksjonen, og kan derfor kombineres med tøffe sweats, lekre cardigans og kule jeans. Våre belter, seler, vanter, luer og skjerf kan brukes av gutter i alle aldre, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-47" approved="no">
+                <source>headers.category-47</source>
+                <target><![CDATA[<h1>Oeko-Tex</h1>
+                <p>Hos POMPdeLUX elsker vi kvalitetstøy, og ditt barn skal naturligvis ha det beste. Derfor er vårt undertøy, nattøy, våre strømper, strømpebukser, leggings og flere av våre gensere, topper, t-skjorter og bukser Oekotex-sertifisert. Oekotex-merkingen er din garanti for at våre produkter er godkjent ut fra den internasjonale Oekotex standarden. Vi garanterer derfor lekre materialer av høy kvalitet til barn i alle aldre.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-48" approved="no">
+                <source>headers.category-48</source>
+                <target><![CDATA[<h1>Organic</h1>
+                <p>Hos POMPdeLUX elsker vi kvalitetstøy, og ditt barn skal naturligvis ha det beste. Derfor er våre underbukser, hipsters, truser, undertrøyer, nattkjoler og pyjamaser GOTS sertifisert. Det betyr at vi jobber med organiske tekstiler, hvor minst 95 % av materialene er økologiske, og at produksjonen foregår miljømessig og sosialt ansvarlig. Vi garanterer derfor lekre materialer av høy kvalitet til barn i alle aldre.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.bycolour-615" approved="no">
                 <source>headers.bycolour-615</source>

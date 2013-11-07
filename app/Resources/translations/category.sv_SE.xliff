@@ -67,6 +67,16 @@
                 <target><![CDATA[<h1>Accessories</h1>
                 <p>För att fullända ditt barns garderob kan kollektionen kombineras med våra många läckra accessoarer. POMPdeLUX har allt från hårattiraljer, hängslen och skärp till vantar, mössor och halsdukar. Våra populära tillbehör matchar resten av kollektionen och kan därför kombineras med snygga klänningar, fina koftor och coola byxor. Våra skärp, hängslen, vantar, mössor, halsdukar och hårattiraljer kan bäras av tjejer i alla åldrar och här finns massor av inspiration att hämta till barnens garderob.</p>]]></target>
             </trans-unit>
+			<trans-unit id="headers.category-45" approved="no">
+                <source>headers.category-45</source>
+                <target><![CDATA[<h1>Oeko-Tex</h1>
+                <p>På POMPdeLUX älskar vi kvalitetskläder och ditt barn ska naturligtvis ha det bästa. Därför är våra strumpor, underkläder, nattkläder, strumpbyxor, leggings och flera av våra blusar, toppar, t-shirts och byxor Oeko-Tex-certifierade. Oeko-Tex-märkningen är din garanti för att våra produkter är godkända enligt den internationella Oeko-Tex-standarden. Vi garanterar därför sköna material av hög kvalitet för barn i alla åldrar.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-46" approved="no">
+                <source>headers.category-46</source>
+                <target><![CDATA[<h1>Organic</h1>
+                <p>På POMPdeLUX älskar vi kvalitetskläder och ditt barn ska naturligtvis ha det bästa. Därför är våra underkläder, hipsters, trosor, undertröjor, nattlinnen och pyjamasar GOTS-certifierade. Det innebär att vi arbetar med ekologiska textilier, i vilka minst 95 % av materialet är ekologiskt, och att produktionen sker på ett miljömässigt och socialt ansvarsfullt sätt. Vi garanterar därför sköna material av hög kvalitet för barn i alla åldrar.</p>]]></target>
+            </trans-unit>
 			<trans-unit id="headers.category-10" approved="no">
                 <source>headers.category-10</source>
                 <target><![CDATA[<h1>T-Shirts</h1>
@@ -106,6 +116,16 @@
                 <source>headers.category-5</source>
                 <target><![CDATA[<h1>Accessories</h1>
                 <p>För att fullända ditt barns garderob kan kollektionen kombineras med våra många läckra accessoarer. POMPdeLUX har allt från hängslen och skärp till vantar, mössor och halsdukar. Våra populära accessoarer matchar resten av kollektionen och kan därför kombineras med sköna sweatshirts, snygga koftor och tuffa jeans. Våra skärp, hängslen, vantar, mössor och halsdukar kan bäras av killar i alla åldrar och här finns massor av inspiration att hämta till barnens garderob.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-43" approved="no">
+                <source>headers.category-43</source>
+                <target><![CDATA[<h1>Oeko-Tex</h1>
+                <p>På POMPdeLUX älskar vi kvalitetskläder och ditt barn ska naturligtvis ha det bästa. Därför är våra strumpor, underkläder, nattkläder, strumpbyxor, leggings och flera av våra blusar, toppar, t-shirts och byxor Oeko-Tex-certifierade. Oeko-Tex-märkningen är din garanti för att våra produkter är godkända enligt den internationella Oeko-Tex-standarden. Vi garanterar därför sköna material av hög kvalitet för barn i alla åldrar.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-44" approved="no">
+                <source>headers.category-44</source>
+                <target><![CDATA[<h1>Organic</h1>
+                <p>På POMPdeLUX älskar vi kvalitetskläder och ditt barn ska naturligtvis ha det bästa. Därför är våra underkläder, hipsters, trosor, undertröjor, nattlinnen och pyjamasar GOTS-certifierade. Det innebär att vi arbetar med ekologiska textilier, i vilka minst 95 % av materialet är ekologiskt, och att produktionen sker på ett miljömässigt och socialt ansvarsfullt sätt. Vi garanterar därför sköna material av hög kvalitet för barn i alla åldrar.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-31" approved="no">
                 <source>headers.category-31</source>
@@ -157,6 +177,16 @@
                 <target><![CDATA[<h1>Accessories</h1>
                 <p>För att fullända ditt barns garderob kan kollektionen kombineras med våra många läckra accessoarer. POMPdeLUX har allt från hårattiraljer, hängslen och skärp till vantar, mössor och halsdukar. Våra populära tillbehör matchar resten av kollektionen och kan därför kombineras med snygga klänningar, fina koftor och coola byxor. Våra skärp, hängslen, vantar, mössor, halsdukar och hårattiraljer kan bäras av tjejer i alla åldrar och här finns massor av inspiration att hämta till barnens garderob.</p>]]></target>
             </trans-unit>
+			<trans-unit id="headers.category-49" approved="no">
+                <source>headers.category-49</source>
+                <target><![CDATA[<h1>Oeko-Tex</h1>
+                <p>På POMPdeLUX älskar vi kvalitetskläder och ditt barn ska naturligtvis ha det bästa. Därför är våra strumpor, underkläder, nattkläder, strumpbyxor, leggings och flera av våra blusar, toppar, t-shirts och byxor Oeko-Tex-certifierade. Oeko-Tex-märkningen är din garanti för att våra produkter är godkända enligt den internationella Oeko-Tex-standarden. Vi garanterar därför sköna material av hög kvalitet för barn i alla åldrar.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-50" approved="no">
+                <source>headers.category-50</source>
+                <target><![CDATA[<h1>Organic</h1>
+                <p>På POMPdeLUX älskar vi kvalitetskläder och ditt barn ska naturligtvis ha det bästa. Därför är våra underkläder, hipsters, trosor, undertröjor, nattlinnen och pyjamasar GOTS-certifierade. Det innebär att vi arbetar med ekologiska textilier, i vilka minst 95 % av materialet är ekologiskt, och att produktionen sker på ett miljömässigt och socialt ansvarsfullt sätt. Vi garanterar därför sköna material av hög kvalitet för barn i alla åldrar.</p>]]></target>
+            </trans-unit>
 			<trans-unit id="headers.category-27" approved="no">
                 <source>headers.category-27</source>
                 <target><![CDATA[<h1>T-Shirts</h1>
@@ -206,6 +236,16 @@
                 <source>headers.category-22</source>
                 <target><![CDATA[<h1>Accessories</h1>
                 <p>För att fullända ditt barns garderob kan kollektionen kombineras med våra många läckra accessoarer. POMPdeLUX har allt från hängslen och skärp till vantar, mössor och halsdukar. Våra populära accessoarer matchar resten av kollektionen och kan därför kombineras med sköna sweatshirts, snygga koftor och tuffa jeans. Våra skärp, hängslen, vantar, mössor och halsdukar kan bäras av killar i alla åldrar och här finns massor av inspiration att hämta till barnens garderob.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-47" approved="no">
+                <source>headers.category-47</source>
+                <target><![CDATA[<h1>Oeko-Tex</h1>
+                <p>På POMPdeLUX älskar vi kvalitetskläder och ditt barn ska naturligtvis ha det bästa. Därför är våra strumpor, underkläder, nattkläder, strumpbyxor, leggings och flera av våra blusar, toppar, t-shirts och byxor Oeko-Tex-certifierade. Oeko-Tex-märkningen är din garanti för att våra produkter är godkända enligt den internationella Oeko-Tex-standarden. Vi garanterar därför sköna material av hög kvalitet för barn i alla åldrar.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-48" approved="no">
+                <source>headers.category-48</source>
+                <target><![CDATA[<h1>Organic</h1>
+                <p>På POMPdeLUX älskar vi kvalitetskläder och ditt barn ska naturligtvis ha det bästa. Därför är våra underkläder, hipsters, trosor, undertröjor, nattlinnen och pyjamasar GOTS-certifierade. Det innebär att vi arbetar med ekologiska textilier, i vilka minst 95 % av materialet är ekologiskt, och att produktionen sker på ett miljömässigt och socialt ansvarsfullt sätt. Vi garanterar därför sköna material av hög kvalitet för barn i alla åldrar.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.bycolour-622" approved="no">
                 <source>headers.bycolour-622</source>
