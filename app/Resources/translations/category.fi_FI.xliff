@@ -73,6 +73,16 @@
                 <target><![CDATA[<h1>Asusteet</h1>
                 <p>Voit viimeistellä lapsesi vaatevaraston yhdistämällä vaatteisiin monia kauniita asusteitamme. POMPdeLUXilta löytyy kaikkea hiuskoristeista, henkseleistä ja vöistä käsineisiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat yhteen muun malliston kanssa ja niitä voidaan siten yhdistellä hienoihin mekkoihin, ihaniin neuletakkeihin ja siisteihin housuihin. Vöitämme, henkseleitämme, käsineitämme, lakkejamme, kaulahuivejamme ja hiuskoristeitamme voidaan käyttää kaikenikäisillä tytöillä. Tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
             </trans-unit>
+			<trans-unit id="headers.category-45" approved="no">
+                <source>headers.category-45</source>
+                <target><![CDATA[<h1>Oeko-Tex</h1>
+                <p>Rakastamme POMPdeLUXilla laadukkaita vaatteita, ja lapsesi tulee luonnollisesti saada parasta. Siksi sukkamme, alusvaatteemme, yöasumme, sukkahousumme, leggingsimme ja monet puseroistamme, topeistamme, T-paidoistamme ja housuistamme ovat Öko-Tex-sertifioituja. Öko-Tex-merkki on takuusi siitä, että tuotteemme on hyväksytty kansainvälisen Öko-Tex-standardin mukaisesti. Takaamme siten, että saat ihania ja laadukkaita materiaaleja kaikenikäisille lapsille.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-46" approved="no">
+                <source>headers.category-46</source>
+                <target><![CDATA[<h1>Organic</h1>
+                <p>Rakastamme POMPdeLUXilla laadukkaita vaatteita, ja lapsesi tulee luonnollisesti saada parasta. Alushousumme, hipsterimme, pikkuhousumme, aluspaitamme, yöpaitamme ja pyjamamme ovat GOTS-sertifioituja. Se tarkoittaa, että käytämme orgaanisia tekstiilejä, joista vähintään 95 % on luomumateriaaleja. Myös tuotanto on ympäristöystävällistä ja sosiaalisesti vastuullista. Takaamme siten, että saat ihania ja laadukkaita materiaaleja kaikenikäisille lapsille.</p>]]></target>
+            </trans-unit>
 			<trans-unit id="headers.category-10" approved="no">
                 <source>headers.category-10</source>
                 <target><![CDATA[<h1>T-paidat</h1>
@@ -117,6 +127,16 @@
                 <source>headers.category-5</source>
                 <target><![CDATA[<h1>Asusteet</h1>
                 <p>Voit viimeistellä lapsesi vaatevaraston yhdistämällä vaatteisiin monia kauniita asusteitamme. POMPdeLUXilta löytyy kaikkea henkseleistä ja vöistä käsineisiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat yhteen muun malliston kanssa ja niitä voidaan siten yhdistellä hienoihin puseroihin, ihaniin neuletakkeihin ja siisteihin farkkuihin. Vöitämme, henkseleitämme, käsineitämme, lakkejamme ja kaulahuivejamme voidaan käyttää kaikenikäisillä pojilla. Tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-43" approved="no">
+                <source>headers.category-43</source>
+                <target><![CDATA[<h1>Oeko-Tex</h1>
+                <p>Rakastamme POMPdeLUXilla laadukkaita vaatteita, ja lapsesi tulee luonnollisesti saada parasta. Siksi sukkamme, alusvaatteemme, yöasumme, sukkahousumme, leggingsimme ja monet puseroistamme, topeistamme, T-paidoistamme ja housuistamme ovat Öko-Tex-sertifioituja. Öko-Tex-merkki on takuusi siitä, että tuotteemme on hyväksytty kansainvälisen Öko-Tex-standardin mukaisesti. Takaamme siten, että saat ihania ja laadukkaita materiaaleja kaikenikäisille lapsille.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-44" approved="no">
+                <source>headers.category-44</source>
+                <target><![CDATA[<h1>Organic</h1>
+                <p>Rakastamme POMPdeLUXilla laadukkaita vaatteita, ja lapsesi tulee luonnollisesti saada parasta. Alushousumme, hipsterimme, pikkuhousumme, aluspaitamme, yöpaitamme ja pyjamamme ovat GOTS-sertifioituja. Se tarkoittaa, että käytämme orgaanisia tekstiilejä, joista vähintään 95 % on luomumateriaaleja. Myös tuotanto on ympäristöystävällistä ja sosiaalisesti vastuullista. Takaamme siten, että saat ihania ja laadukkaita materiaaleja kaikenikäisille lapsille.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-31" approved="no">
                 <source>headers.category-31</source>
@@ -178,6 +198,16 @@
                 <target><![CDATA[<h1>Asusteet</h1>
                 <p>Voit viimeistellä lapsesi vaatevaraston yhdistämällä vaatteisiin monia kauniita asusteitamme. POMPdeLUXilta löytyy kaikkea hiuskoristeista, henkseleistä ja vöistä käsineisiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat yhteen muun malliston kanssa ja niitä voidaan siten yhdistellä hienoihin mekkoihin, ihaniin neuletakkeihin ja siisteihin housuihin. Vöitämme, henkseleitämme, käsineitämme, lakkejamme, kaulahuivejamme ja hiuskoristeitamme voidaan käyttää kaikenikäisillä tytöillä. Tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
             </trans-unit>
+			<trans-unit id="headers.category-49" approved="no">
+                <source>headers.category-49</source>
+                <target><![CDATA[<h1>Oeko-Tex</h1>
+                <p>Rakastamme POMPdeLUXilla laadukkaita vaatteita, ja lapsesi tulee luonnollisesti saada parasta. Siksi sukkamme, alusvaatteemme, yöasumme, sukkahousumme, leggingsimme ja monet puseroistamme, topeistamme, T-paidoistamme ja housuistamme ovat Öko-Tex-sertifioituja. Öko-Tex-merkki on takuusi siitä, että tuotteemme on hyväksytty kansainvälisen Öko-Tex-standardin mukaisesti. Takaamme siten, että saat ihania ja laadukkaita materiaaleja kaikenikäisille lapsille.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-50" approved="no">
+                <source>headers.category-50</source>
+                <target><![CDATA[<h1>Organic</h1>
+                <p>Rakastamme POMPdeLUXilla laadukkaita vaatteita, ja lapsesi tulee luonnollisesti saada parasta. Alushousumme, hipsterimme, pikkuhousumme, aluspaitamme, yöpaitamme ja pyjamamme ovat GOTS-sertifioituja. Se tarkoittaa, että käytämme orgaanisia tekstiilejä, joista vähintään 95 % on luomumateriaaleja. Myös tuotanto on ympäristöystävällistä ja sosiaalisesti vastuullista. Takaamme siten, että saat ihania ja laadukkaita materiaaleja kaikenikäisille lapsille.</p>]]></target>
+            </trans-unit>
 			<trans-unit id="headers.category-27" approved="no">
                 <source>headers.category-27</source>
                 <target><![CDATA[<h1>T-paidat</h1>
@@ -227,6 +257,16 @@
                 <source>headers.category-22</source>
                 <target><![CDATA[<h1>Asusteet</h1>
                 <p>Voit viimeistellä lapsesi vaatevaraston yhdistämällä vaatteisiin monia kauniita asusteitamme. POMPdeLUXilta löytyy kaikkea henkseleistä ja vöistä käsineisiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat yhteen muun malliston kanssa ja niitä voidaan siten yhdistellä hienoihin puseroihin, ihaniin neuletakkeihin ja siisteihin farkkuihin. Vöitämme, henkseleitämme, käsineitämme, lakkejamme ja kaulahuivejamme voidaan käyttää kaikenikäisillä pojilla. Tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-47" approved="no">
+                <source>headers.category-47</source>
+                <target><![CDATA[<h1>Oeko-Tex</h1>
+                <p>Rakastamme POMPdeLUXilla laadukkaita vaatteita, ja lapsesi tulee luonnollisesti saada parasta. Siksi sukkamme, alusvaatteemme, yöasumme, sukkahousumme, leggingsimme ja monet puseroistamme, topeistamme, T-paidoistamme ja housuistamme ovat Öko-Tex-sertifioituja. Öko-Tex-merkki on takuusi siitä, että tuotteemme on hyväksytty kansainvälisen Öko-Tex-standardin mukaisesti. Takaamme siten, että saat ihania ja laadukkaita materiaaleja kaikenikäisille lapsille.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-48" approved="no">
+                <source>headers.category-48</source>
+                <target><![CDATA[<h1>Organic</h1>
+                <p>Rakastamme POMPdeLUXilla laadukkaita vaatteita, ja lapsesi tulee luonnollisesti saada parasta. Alushousumme, hipsterimme, pikkuhousumme, aluspaitamme, yöpaitamme ja pyjamamme ovat GOTS-sertifioituja. Se tarkoittaa, että käytämme orgaanisia tekstiilejä, joista vähintään 95 % on luomumateriaaleja. Myös tuotanto on ympäristöystävällistä ja sosiaalisesti vastuullista. Takaamme siten, että saat ihania ja laadukkaita materiaaleja kaikenikäisille lapsille.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.bycolour-624" approved="no">
                 <source>headers.bycolour-624</source>
