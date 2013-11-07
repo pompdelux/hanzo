@@ -221,6 +221,11 @@
                 <target><![CDATA[<h1>Underwear-Nightwear</h1>
                 <p>At POMPdeLUX we make underwear and nightwear that is nice to wear. This is why we use soft materials that are of high quality and which your child will love wearing. Underwear and nightwear must not only be practical but also have a great design. In the collection you will find bodies, undershirts, boxers, undershirts, sleepers and pyjamas. Our underwear and nightwear start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
             </trans-unit>
+			<trans-unit id="headers.category-22" approved="no">
+                <source>headers.category-22</source>
+                <target><![CDATA[<h1>Accessories</h1>
+                <p>To complete your child’s wardrobe the collection can be combined with our many cool accessories. POMPdeLUX has everything from suspenders and belts to mittens, hats and scarves. Our popular accessories match the rest of the collection and can therefore be combined with smart sweatshirts, lovely cardigans and cool trousers. Our belts, suspenders, mittens, hats and scarves can be used by boys of all ages and there is lots of inspiration to be discovered for children’s wardrobe. </p>]]></target>
+            </trans-unit>	
 			<trans-unit id="headers.bycolour-673" approved="no">
                 <source>headers.bycolour-673</source>
                 <target><![CDATA[<h1>Rose</h1>

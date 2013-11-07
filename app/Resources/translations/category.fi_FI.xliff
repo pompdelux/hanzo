@@ -65,7 +65,9 @@
 			<trans-unit id="headers.category-21" approved="no">
                 <source>headers.category-21</source>
                 <target><![CDATA[<h1>Alusvaatteet-Yöasut</h1>
-                <p>POMPdeLUX valmistaa alusvaatteita ja yöasuja, jotka tuntuvat mukavalta. Käytämme pehmeitä ja laadukkaita materiaaleja, joita lapsesi pukee mielellään päälle. Alusvaatteiden ja yöasujen ei pidä kuitenkaan olla ainoastaan käytännöllisiä, vaan niiden tulee myös näyttää kauniilta. Mallistosta löytyy alushousuja, hipstereitä, pikkuhousuja, aluspaitoja, yöpaitoja ja pyjamia. Meiltä löytyy alusvaatteita ja yöasuja koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target></trans-unit>
+                <p>POMPdeLUX valmistaa alusvaatteita ja yöasuja, jotka tuntuvat mukavalta. Käytämme pehmeitä ja laadukkaita materiaaleja, joita lapsesi pukee mielellään päälle. Alusvaatteiden ja yöasujen ei pidä kuitenkaan olla ainoastaan käytännöllisiä, vaan niiden tulee myös näyttää kauniilta. Mallistosta löytyy alushousuja, hipstereitä, pikkuhousuja, aluspaitoja, yöpaitoja ja pyjamia. Meiltä löytyy alusvaatteita ja yöasuja koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.
+				</p>]]></target>
+				</trans-unit>
 			<trans-unit id="headers.category-12" approved="no">
                 <source>headers.category-12</source>
                 <target><![CDATA[<h1>Asusteet</h1>
