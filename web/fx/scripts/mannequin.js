@@ -28,8 +28,8 @@
 
         // triggers
         $('#mannequin-layers .pane .item a').bind('click.mannequin', methods.layer_click);
-        $('#mannequin-basket td.actions a').live('click.mannequin', methods.basket_item_click);
-        $('#mannequin-basket td.name a').live('click.mannequin', function(event) {
+        $('#mannequin-basket td.actions a').on('click.mannequin', methods.basket_item_click);
+        $('#mannequin-basket td.name a').on('click.mannequin', function(event) {
           event.preventDefault();
           this.blur();
           window.open(this.href);
@@ -41,7 +41,7 @@
           $('#mannequin-mini-basket h4 i').remove();
         }
 
-        $('#mannequin-mini-basket h4 i').live('click', function(event) {
+        $('#mannequin-mini-basket h4 i').on('click', function(event) {
           event.preventDefault();
           var $i = $(this);
           var $elm = $(this).closest('div');
@@ -85,7 +85,7 @@
 
         });
 
-        $('#mannequin-mini-basket .wrapper a').live('click', function(event) {
+        $('#mannequin-mini-basket .wrapper a').on('click', function(event) {
           event.preventDefault();
 
           var $this = $(this);

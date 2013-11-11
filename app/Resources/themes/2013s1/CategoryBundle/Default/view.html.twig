@@ -1,5 +1,13 @@
 {% extends layout %}
 
+{% block meta %}
+  {% if ('headers.'~page_type)|trans({}, 'category') != 'headers.'~page_type %}
+    {{ meta_tags('og:description,description') }}
+    <meta property="og:description" content="{{ ('headers.'~page_type)|trans({}, 'category')|raw|strip_tags }}">
+    <meta name="description" content="{{ ('headers.'~page_type)|trans({}, 'category')|raw|strip_tags }}">
+  {% endif %}
+{% endblock %}
+
 {% block content %}
 
 {% if ('headers.'~page_type)|trans({}, 'category') != 'headers.'~page_type %}

@@ -373,12 +373,20 @@ class CouponsController extends CoreController
 
             foreach ($coupons_used as $coupon) {
                 $data['used']++;
-                $data['used_amount'] += $coupon
+
+                $lines = $coupon
                     ->getOrdersToCouponss(null, $this->getDbConnection())
                     ->getFirst()
                     ->getOrders($this->getDbConnection())
-                    ->getTotalPrice()
+                    ->getOrdersLiness(null, $this->getDbConnection())
                 ;
+
+                $tmp_total = 0;
+                foreach ($lines as $line) {
+                    $tmp_total += $line->getPrice() * $line->getQuantity();
+                }
+
+                $data['used_amount'] += $tmp_total;
             }
 
             $data['total'] = $coupons_total->count();

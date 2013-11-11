@@ -41,7 +41,7 @@ var dialoug = (function($) {
     ;
 
     // fix scroll issue in ie.
-    if ($.browser.msie) {
+    if ($('html').hasClass('ie')) {
       defaults.html += '<br><br>';
     }
 

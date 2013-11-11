@@ -449,12 +449,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekino/EkinoNewRelicBundle.git",
-                "reference": "e272040be8bae9a2e0cdcdc703aa50f5e3294b82"
+                "reference": "30ae338f0373ee9bdb844d6f05ed4ae3611eaddd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekino/EkinoNewRelicBundle/zipball/e272040be8bae9a2e0cdcdc703aa50f5e3294b82",
-                "reference": "e272040be8bae9a2e0cdcdc703aa50f5e3294b82",
+                "url": "https://api.github.com/repos/ekino/EkinoNewRelicBundle/zipball/30ae338f0373ee9bdb844d6f05ed4ae3611eaddd",
+                "reference": "30ae338f0373ee9bdb844d6f05ed4ae3611eaddd",
                 "shasum": ""
             },
             "require-dev": {
@@ -491,7 +491,7 @@
                 "monitoring",
                 "performance"
             ],
-            "time": "2013-09-23 07:19:26"
+            "time": "2013-11-08 16:33:28"
         },
         {
             "name": "guzzle/guzzle",
@@ -789,16 +789,16 @@
         },
         {
             "name": "jms/metadata",
-            "version": "1.4.2",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/metadata.git",
-                "reference": "246d7096801ce29b5aea30a1abf0277ccfb9f055"
+                "reference": "88ffa28bc987e4c26229fc84a2e541b6ed4e1459"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/metadata/zipball/246d7096801ce29b5aea30a1abf0277ccfb9f055",
-                "reference": "246d7096801ce29b5aea30a1abf0277ccfb9f055",
+                "url": "https://api.github.com/repos/schmittjoh/metadata/zipball/88ffa28bc987e4c26229fc84a2e541b6ed4e1459",
+                "reference": "88ffa28bc987e4c26229fc84a2e541b6ed4e1459",
                 "shasum": ""
             },
             "require": {
@@ -810,7 +810,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.4.x-dev"
+                    "dev-master": "1.5.x-dev"
                 }
             },
             "autoload": {
@@ -837,7 +837,7 @@
                 "xml",
                 "yaml"
             ],
-            "time": "2013-09-13 09:05:44"
+            "time": "2013-11-05 23:02:36"
         },
         {
             "name": "jms/parser-lib",
@@ -881,12 +881,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/JMSSecurityExtraBundle.git",
-                "reference": "aefac81c3814bf77e6b2d8027dc2f0039e185dea"
+                "reference": "b342e02983e9cd522d9dce1c0dfeef27c8a25850"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/JMSSecurityExtraBundle/zipball/aefac81c3814bf77e6b2d8027dc2f0039e185dea",
-                "reference": "aefac81c3814bf77e6b2d8027dc2f0039e185dea",
+                "url": "https://api.github.com/repos/schmittjoh/JMSSecurityExtraBundle/zipball/b342e02983e9cd522d9dce1c0dfeef27c8a25850",
+                "reference": "b342e02983e9cd522d9dce1c0dfeef27c8a25850",
                 "shasum": ""
             },
             "require": {
@@ -943,7 +943,7 @@
                 "secure",
                 "security"
             ],
-            "time": "2013-08-06 07:00:17"
+            "time": "2013-11-06 16:12:19"
         },
         {
             "name": "knplabs/knp-snappy",
@@ -2319,16 +2319,16 @@
         },
         {
             "name": "willdurand/geocoder",
-            "version": "2.3.1",
+            "version": "2.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/geocoder-php/Geocoder.git",
-                "reference": "69e39105266535e03631538df97464bc987452fc"
+                "reference": "df565b16e2dc058a89a6e6d75d5305490b9c8462"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/geocoder-php/Geocoder/zipball/69e39105266535e03631538df97464bc987452fc",
-                "reference": "69e39105266535e03631538df97464bc987452fc",
+                "url": "https://api.github.com/repos/geocoder-php/Geocoder/zipball/df565b16e2dc058a89a6e6d75d5305490b9c8462",
+                "reference": "df565b16e2dc058a89a6e6d75d5305490b9c8462",
                 "shasum": ""
             },
             "require": {
@@ -2378,7 +2378,7 @@
                 "geocoding",
                 "geoip"
             ],
-            "time": "2013-10-22 13:10:06"
+            "time": "2013-11-06 08:09:04"
         }
     ],
     "packages-dev": [

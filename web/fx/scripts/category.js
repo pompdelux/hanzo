@@ -160,10 +160,19 @@
         }
       }, '.flip-this');
     };
+
+    pub.initHeader = function() {
+      var $header = $('.main header');
+      $header.find('p').hide();
+      $header.on('click', function (event) {
+          $header.find('p').slideToggle();
+      });
+    };
     return pub;
   })(jQuery);
 
   category.initPager();
   category.initFlip();
+  category.initHeader();
 
 })(document, jQuery);

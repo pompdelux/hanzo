@@ -14,7 +14,14 @@
 {% javascripts
   'fx/scripts/jquery.min.js'
   'fx/scripts/json2.js'
-  'fx/scripts/jquery.tools.min.js'
+
+  'fx/scripts/jquerytools/src/tabs/tabs.js'
+  'fx/scripts/jquerytools/src/tabs/tabs.slideshow.js'
+  'fx/scripts/jquerytools/src/overlay/overlay.js'
+  'fx/scripts/jquerytools/src/scrollable/scrollable.js'
+  'fx/scripts/jquerytools/src/scrollable/scrollable.autoscroll.js'
+  'fx/scripts/jquerytools/src/scrollable/scrollable.navigator.js'
+
   'fx/scripts/jquery.cycle2.min.js'
   'fx/scripts/colorbox/jquery.colorbox-min.js'
   'fx/scripts/jaiks/jaiks.min.js'
@@ -66,6 +73,7 @@
 <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
 
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 {{ render(controller('NewsletterBundle:Default:js')) }}
 
 <script>if (jaiks) {jaiks.exec();}</script>

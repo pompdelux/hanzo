@@ -1,5 +1,6 @@
 RetargetingBundle:
     resource: "@RetargetingBundle/Controller/"
+    prefix:   /{_locale}/
     type:     annotation
 rma:
     resource: "@RMABundle/Resources/config/routing.yml"

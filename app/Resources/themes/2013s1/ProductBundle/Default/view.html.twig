@@ -47,7 +47,7 @@
           {{ product_image_tag(
               product.main_image.name,
               '234x410',
-              {'alt': product.title ~ ', ' ~ product.main_image.color, 'itemprop' : 'image'}
+              {'alt': product.title ~ ', ' ~ product.main_image.color ~ ' - POMPdeLUX', 'itemprop' : 'image'}
             )
           }}
         </a>
@@ -79,7 +79,7 @@
           {{ product_image_tag(
               image.name,
               '114x200',
-              {'alt': product.title ~ ', ' ~ image.color}
+              {'alt': product.title ~ ', ' ~ image.color ~ ' - POMPdeLUX'}
             )
           }}
         </a>
