@@ -355,19 +355,19 @@
       </trans-unit>
       <trans-unit id="product.group.g">
         <source>product.group.g</source>
-        <target>Girl</target>
+        <target>Tjej</target>
       </trans-unit>
       <trans-unit id="product.group.lg">
         <source>product.group.lg</source>
-        <target>Little Girl</target>
+        <target>Liten Tjej</target>
       </trans-unit>
       <trans-unit id="product.group.b">
         <source>product.group.b</source>
-        <target>Boy</target>
+        <target>Kille</target>
       </trans-unit>
       <trans-unit id="product.group.lb">
         <source>product.group.lb</source>
-        <target>Little Boy</target>
+        <target>Liten Kille</target>
       </trans-unit>
       <trans-unit id="gift_card" approved="no">
          <source>gift_card</source>
