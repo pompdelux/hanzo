@@ -11,9 +11,9 @@
 
 <div>
   {{ 'checkout.success.text'|trans({
-    '%id%' : order_id,
-    '%date%' : expected_at,
-    '%account%': url('_account')
+    '%id%'      : order.id,
+    '%date%'    : order.expected_at,
+    '%account%' : url('_account')
   }, 'checkout')|raw }}
 </div>
 
@@ -48,6 +48,6 @@
 </noscript>
 {% endif %}
 
-{% render 'RetargetingBundle:Default:successBlock' with {'order_id': order_id }  %}
+{% render 'RetargetingBundle:Default:successBlock' with {'order_id': order.id }  %}
 
 {% endblock javascript %}
