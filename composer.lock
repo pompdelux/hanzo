@@ -1499,17 +1499,17 @@
         },
         {
             "name": "propel/propel-bundle",
-            "version": "1.2.10",
+            "version": "1.2.11",
             "target-dir": "Propel/PropelBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/propelorm/PropelBundle.git",
-                "reference": "4f3cb7c16a8c8b98890035c48f950d56be899dea"
+                "reference": "9d74cee363069ae10a2edb0b6fd0d3157618ce70"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/propelorm/PropelBundle/zipball/4f3cb7c16a8c8b98890035c48f950d56be899dea",
-                "reference": "4f3cb7c16a8c8b98890035c48f950d56be899dea",
+                "url": "https://api.github.com/repos/propelorm/PropelBundle/zipball/9d74cee363069ae10a2edb0b6fd0d3157618ce70",
+                "reference": "9d74cee363069ae10a2edb0b6fd0d3157618ce70",
                 "shasum": ""
             },
             "require": {
@@ -1543,7 +1543,7 @@
                 "persistence",
                 "propel"
             ],
-            "time": "2013-09-25 11:45:11"
+            "time": "2013-11-11 13:18:28"
         },
         {
             "name": "propel/propel1",
