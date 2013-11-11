@@ -134,7 +134,7 @@
                         Du er i gang med å redigere E-ordrenummer <a href="%history_url%" title="se ordren">%order_id%</a>.<br>
                         Ønsker du å avbryte redigeringen av ordre - <a href="%stop_url%" title="stop editering af ordren">klikk her.</a>
                     </p>
-                    <p>Ønsker du å endre en farge eller en størrelse, skal du klikke på blyanten. Ønsker du å tilføye varer, skal du klikke på Girl, Boy, Little Girl eller Little Boy øverst på siden.</p>
+                    <p>Ønsker du å endre en farge eller en størrelse, skal du klikke på blyanten. Ønsker du å tilføye varer, skal du klikke på Jente, Gutt, Liten Jente eller Liten Gutt øverst på siden.</p>
                     <p class="last">Når du er ferdig med endringene, skal du klikke på "Vis kurv" og trykke på ”Fortsett”. Når du har gjennomført ordren med ny kredittkortbetaling, vil den gamle betalingen automatisk bli slettet.<br><br><b>Merk:</b> Hvis du bruker Visa Electron eller MasterCard ved redigeringen, foretas det automatisk enda en reservasjon av totalbeløpet på ordren. Reservasjonen av totalbeløpet på din opprinnelige ordre blir førøvrig straks annullert av POMPdeLUX. Det kan derimot gå opptil 6 uker før reservasjonen oppheves av pengeinstituttet ditt.</p>
                 ]]></target>
             </trans-unit>
