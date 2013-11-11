@@ -93,11 +93,21 @@ class DefaultController extends Controller
             }
         }
 
+
+        $exclude = [
+            'Hayward kneesocks',
+            'Arlington socks',
+            'Oregon socks',
+            'POMP bag',
+            'POMP big bag',
+        ];
+
         $items = [];
         $product_ids = [];
         foreach ($routes as $route => $category_id) {
             $products = ProductsQuery::create()
                 ->filterByMaster(null, \Criteria::ISNULL)
+                ->filterBySku($exclude, \Criteria::NOT_IN)
                 ->joinWithProductsImages()
                 ->useProductsToCategoriesQuery()
                     ->filterByCategoriesId($category_id)
