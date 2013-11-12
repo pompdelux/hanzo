@@ -23,7 +23,7 @@ class CmsPeer extends BaseCmsPeer
     public static function getByPK($id, $locale)
     {
         $result = CmsQuery::create()
-            ->joinWithI18n()
+            ->joinWithI18n($locale)
             ->useCmsI18nQuery()
                 ->filterByLocale($locale)
             ->endUse()
