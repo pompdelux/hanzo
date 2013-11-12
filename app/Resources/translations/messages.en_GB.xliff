@@ -269,8 +269,8 @@
                 </ul>
                 ]]></target>
             </trans-unit>
-            <trans-unit id="footer.menu_3" approved="no">
-                <source>footer.menu_3</source>
+            <trans-unit id="footer.menu_2" approved="no">
+                <source>footer.menu_2</source>
                 <target><![CDATA[
                 <h2>Customer service</h2>
                 <ul class="menu">
@@ -286,13 +286,14 @@
                 </ul>
                 ]]></target>
             </trans-unit>
-			<trans-unit id="footer.menu_2" approved="no">
-                <source>footer.menu_2</source>
+			<trans-unit id="footer.menu_3" approved="no">
+                <source>footer.menu_3</source>
                 <target><![CDATA[
                 <h2>Catalogue</h2>
                 <ul class="menu">
                     <li><a href="/en_GB/home/catalogue">Online catalogue</a></li>
-                    <li><a href="/en_GB/home/catalogue/backstage-video">Backstage video</a></li>             
+                    <li><a href="/en_GB/home/catalogue/backstage-video">Backstage video</a></li>
+					<li><a href="/en_GB/home/catalogue/credits">Credits</a></li>               
                 </ul>
                 ]]></target>
             </trans-unit>
