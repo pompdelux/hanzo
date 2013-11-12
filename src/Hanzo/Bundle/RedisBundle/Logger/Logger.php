@@ -40,7 +40,7 @@ class Logger
             if ($error) {
                 $this->logger->err('Command "' . $command . '" failed (' . $error . ')');
             } else {
-                $this->logger->info('Executing command "' . $command . '"');
+                $this->logger->debug('Executing command "' . $command . '"');
             }
         }
     }
