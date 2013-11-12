@@ -260,7 +260,8 @@
                     <li><a href="/en_GB/home/about-pompdelux/about-pompdelux">About POMPdeLUX</a></li>
                     <li><a href="/en_GB/home/news">News</a></li>
                     <li><a href="/en_GB/home/about-pompdelux/the-concept">The concept</a></li>
-                    <li><a href="/en_GB/home/about-pompdelux/social-responsibility">Social responsibility</a></li>
+                    <li><a href="/en_GB/home/about-pompdelux/corporate-social-responsibility">Corporate Social Responsibility</a></li>
+					<li><a href="/en_GB/more-pompdelux/job">Job</a></li>
                     <li><a href="/en_GB/home/webshop/info/gots-organic">GOTS (Organic)</a></li>
                     <li><a href="/en_GB/home/webshop/info/oeko-tex">Oeko-Tex</a></li>
 					<li><a href="/en_GB/home/webshop/info/credits">Credits</a></li>
@@ -288,13 +289,11 @@
 			<trans-unit id="footer.menu_2" approved="no">
                 <source>footer.menu_2</source>
                 <target><![CDATA[
-                <!--<h2>HOME SHOPPING</h2>
+                <h2>Catalogue</h2>
                 <ul class="menu">
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar">POMPdeLUX vilkår.</a></li>
-                </ul>-->
+                    <li><a href="/en_GB/home/catalogue">Online catalogue</a></li>
+                    <li><a href="/en_GB/home/catalogue/backstage-video">Backstage video</a></li>             
+                </ul>
                 ]]></target>
             </trans-unit>
             <trans-unit id="share.to.%method%" approved="no">
