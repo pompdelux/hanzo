@@ -257,13 +257,13 @@
                 <ul class="menu">
 				    <li><a href="/en_GB/home/catalogue">Online catalogue</a></li>
 					<li><a href="/en_GB/home/catalogue/backstage-video">Backstage video</a></li>
-                    <li><a href="/en_GB/home/about-pompdelux/about-pompdelux">About POMPdeLUX</a></li>
+                    <li><a href="/en_GB/home/about-pompdelux">About POMPdeLUX</a></li>
                     <li><a href="/en_GB/home/news">News</a></li>
                     <li><a href="/en_GB/home/about-pompdelux/the-concept">The concept</a></li>
                     <li><a href="/en_GB/home/about-pompdelux/corporate-social-responsibility">Corporate Social Responsibility</a></li>
 					<li><a href="/en_GB/more-pompdelux/job">Job</a></li>
-                    <li><a href="/en_GB/home/webshop/info/gots-organic">GOTS (Organic)</a></li>
-                    <li><a href="/en_GB/home/webshop/info/oeko-tex">Oeko-Tex</a></li>
+                    <li><a href="/en_GB/home/more-pompdelux/gots-organic">GOTS (Organic)</a></li>
+                    <li><a href="/en_GB/home/more-pompdelux/oeko-tex">Oeko-Tex</a></li>
 					<li><a href="/en_GB/home/catalogue/credits">Credits</a></li>
 					<li><a href="/en_GB/home/about-pompdelux/contact">Contact</a></li>
                 </ul>
@@ -279,8 +279,8 @@
                     <li><a href="/en_GB/home/customer-service/returns">Returns</a></li>
                     <li><a href="/en_GB/home/customer-service/exchange">Exchange</a></li>
                     <li><a href="/en_GB/home/customer-service/returns-form">Returns form</a></li>
-                    <li><a href="/en_GB/home/webshop/info/care-instructions">Care instructions</a></li>
-                    <li><a href="/en_GB/home/webshop/info/sizeguide">Sizeguide</a></li>
+                    <li><a href="/en_GB/home/customer-service/care-instructions">Care instructions</a></li>
+                    <li><a href="/en_GB/home/customer-service/sizeguide">Sizeguide</a></li>
 					<li><a href="/en_GB/home/customer-service/terms-and-conditions">Terms and conditions</a></li>
 					<li><a href="/en_GB/home/customer-service/about-the-webshop">About the online shop</a></li>
                 </ul>
