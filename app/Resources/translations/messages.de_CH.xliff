@@ -234,7 +234,7 @@
                 <source>delivery.info</source>
                 <target><![CDATA[
                     <p>Alle Waren werden als Pakete mit DHL verschickt. Daher haben Sie die Möglichkeit, Ihr Paket ab dem Versand bis zum Empfang mit Hilfe von Track & Trace zu verfolgen.<br>
-  Sie können zwischen drei Versand wählen:<br><br> Paket:Das Paket wird an Ihre Adresse geliefert und kostet EUR 4,95 (EUR 3,95, wenn Sie die Waren bei einer Homeshopping- oder Tag der offenen Tür-Veranstaltung gekauft haben). Wenn Sie zum Zeitpunkt der Lieferung nicht zu Hause sind, können Sie das Paket anschließend bei der Post abholen.<br><br> Wenn Sie das Paket empfangen haben, sollten Sie die Waren überprüfen. Wenn das Paket und/oder der Inhalt beschädigt sind, wenden Sie sich bitte umgehend an unseren Kundendienst oder an DHL. </p>
+Paket:Das Paket wird an Ihre Adresse geliefert und kostet EUR 4,95 (EUR 3,95, wenn Sie die Waren bei einer Homeshopping- oder Tag der offenen Tür-Veranstaltung gekauft haben). Wenn Sie zum Zeitpunkt der Lieferung nicht zu Hause sind, können Sie das Paket anschließend bei der Post abholen.<br><br> Wenn Sie das Paket empfangen haben, sollten Sie die Waren überprüfen. Wenn das Paket und/oder der Inhalt beschädigt sind, wenden Sie sich bitte umgehend an unseren Kundendienst oder an DHL. </p>
 ]]>
 </target>
 </trans-unit>
@@ -267,16 +267,16 @@
                 <target><![CDATA[
                 <h2>Mehr POMPdeLUX</h2>
                 <ul class="menu">
-				    <li><a href="/de_DE/home/katalog" target="_blank">Online-Katalog</a></li>
-					<li><a href="/de_DE/home/katalog/backstage-video" target="_blank">Backstage video</a></li>
-                    <li><a href="/de_DE/home/neuigkeiten" target="_blank">Neuigkeiten</a></li>
-                    <li><a href="/de_DE/home/uber-pompdelux/konzept" target="_blank">Konzept</a></li>
-                    <li><a href="/de_DE/home/uber-pompdelux/soziale-verantwortung" target="_blank">Soziale Verantwortung</a></li>
-					<li><a href="/de_DE/home/uber-pompdelux/jobs" target="_blank">Jobs</a></li>
-					<li><a href="/de_DE/home/mehr-pompdelux/gots-organic" target="_blank">GOTS (Organic)</a></li>
-					<li><a href="/de_DE/home/mehr-pompdelux/oeko-tex" target="_blank">Oeko-Tex</a></li>
-					<li><a href="/de_DE/home/mehr-pompdelux/danksagungen" target="_blank">Danksagungen</a></li>
-					<li><a href="/de_DE/home/uber-pompdelux/kontakt" target="_blank">Kontakt</a></li>
+				    <li><a href="/de_DE/home/katalog">Online-Katalog</a></li>
+					<li><a href="/de_DE/home/katalog/backstage-video">Backstage video</a></li>
+                    <li><a href="/de_DE/home/neuigkeiten">Neuigkeiten</a></li>
+                    <li><a href="/de_DE/home/uber-pompdelux/konzept">Konzept</a></li>
+                    <li><a href="/de_DE/home/uber-pompdelux/corporate-social-responsibility">Corporate Social Responsibility</a></li>
+					<li><a href="/de_DE/home/uber-pompdelux/jobs">Jobs</a></li>
+					<li><a href="/de_DE/home/mehr-pompdelux/gots-organic">GOTS (Organic)</a></li>
+					<li><a href="/de_DE/home/mehr-pompdelux/oeko-tex">Oeko-Tex</a></li>
+					<li><a href="/de_DE/home/mehr-pompdelux/danksagungen">Danksagungen</a></li>
+					<li><a href="/de_DE/home/uber-pompdelux/kontakt">Kontakt</a></li>
 				    <li><a href="/de_DE/home/katalog">Online Katalog</a></li>
 					<li><a href="/de_DE/home/katalog/image-video">Image Video</a></li>
                 </ul>
@@ -287,16 +287,16 @@
                 <target><![CDATA[
                 <h2>Kundendienst</h2>
                 <ul class="menu">
-                    <li><a href="/de_DE/kundendienst/telefonzeiten" target="_blank">Telefonzeiten</a></li>
-                    <li><a href="/de_DE/kundendienst/telefonzeiten/faq" target="_blank">FAQ</a></li>
-                    <li><a href="/de_DE/home/kundendienst/rucksendung" target="_blank">Rücksendung</a></li>
-                    <li><a href="/de_DE/home/kundendienst/umtausch" target="_blank">Umtausch</a></li>
-                    <li><a href="/de_DE/home/kundendienst/rucksendeschein" target="_blank">Rücksendeschein</a></li>
-                    <li><a href="/de_DE/home/kundendienst/waschtipps" target="_blank">Waschtipps</a></li>
-					<li><a href="/de_DE/home/kundendienst/sizeguide" target="_blank">Größentabelle</a></li>
-					<li><a href="/de_DE/home/kundendienst/abgs" target="_blank">AGB's</a></li>
-					<li><a href="/de_DE/home/kundendienst/impressum" target="_blank">Impressum</a></li>
-					<li><a href="/de_DE/home/kundendienst/uber-den-webshop" target="_blank">Über den Webshop</a></li>
+                    <li><a href="/de_DE/kundendienst/telefonzeiten">Telefonzeiten</a></li>
+                    <li><a href="/de_DE/kundendienst/telefonzeiten/faq">FAQ</a></li>
+                    <li><a href="/de_DE/home/kundendienst/rucksendung">Rücksendung</a></li>
+                    <li><a href="/de_DE/home/kundendienst/umtausch">Umtausch</a></li>
+                    <li><a href="/de_DE/home/kundendienst/rucksendeschein">Rücksendeschein</a></li>
+                    <li><a href="/de_DE/home/kundendienst/waschtipps">Waschtipps</a></li>
+					<li><a href="/de_DE/home/kundendienst/sizeguide">Größentabelle</a></li>
+					<li><a href="/de_DE/home/kundendienst/abgs">AGB's</a></li>
+					<li><a href="/de_DE/home/kundendienst/impressum">Impressum</a></li>
+					<li><a href="/de_DE/home/kundendienst/uber-den-webshop">Über den Webshop</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>
