@@ -845,16 +845,18 @@ class Orders extends BaseOrders
     public function clearBillingAddress()
     {
         $fields = array(
-            'BillingAddressLine1'  => null,
-            'BillingAddressLine2'  => null,
-            'BillingCity'          => null,
-            'BillingPostalCode'    => null,
-            'BillingCountry'       => null,
-            'BillingCountriesId'   => null,
-            'BillingStateProvince' => null,
-            'BillingCompanyName'   => null,
-            'BillingFirstName'     => null,
-            'BillingLastName'      => null,
+            'BillingTitle'             => null,
+            'BillingAddressLine1'      => null,
+            'BillingAddressLine2'      => null,
+            'BillingCity'              => null,
+            'BillingPostalCode'        => null,
+            'BillingCountry'           => null,
+            'BillingCountriesId'       => null,
+            'BillingStateProvince'     => null,
+            'BillingCompanyName'       => null,
+            'BillingFirstName'         => null,
+            'BillingLastName'          => null,
+            'BillingExternalAddressId' => null,
         );
 
         $this->fromArray($fields);
@@ -868,16 +870,18 @@ class Orders extends BaseOrders
     public function clearDeliveryAddress()
     {
         $fields = array(
-            'DeliveryAddressLine1'  => null,
-            'DeliveryAddressLine2'  => null,
-            'DeliveryCity'          => null,
-            'DeliveryPostalCode'    => null,
-            'DeliveryCountry'       => null,
-            'DeliveryCountriesId'   => null,
-            'DeliveryStateProvince' => null,
-            'DeliveryCompanyName'   => null,
-            'DeliveryFirstName'     => null,
-            'DeliveryLastName'      => null,
+            'DeliveryTitle'             => null,
+            'DeliveryAddressLine1'      => null,
+            'DeliveryAddressLine2'      => null,
+            'DeliveryCity'              => null,
+            'DeliveryPostalCode'        => null,
+            'DeliveryCountry'           => null,
+            'DeliveryCountriesId'       => null,
+            'DeliveryStateProvince'     => null,
+            'DeliveryCompanyName'       => null,
+            'DeliveryFirstName'         => null,
+            'DeliveryLastName'          => null,
+            'DeliveryExternalAddressId' => null,
         );
 
         $this->fromArray($fields);

@@ -5,6 +5,7 @@ namespace Hanzo\Bundle\EventsBundle\Controller;
 use Criteria;
 
 use Symfony\Component\Form\FormError;
+use Symfony\Component\HttpFoundation\Request;
 
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Hanzo;
@@ -29,42 +30,26 @@ use Hanzo\Bundle\AccountBundle\NNO\nnoSubscriberResult;
 
 class DefaultController extends CoreController
 {
-
-    public function indexAction($name)
-    {
-        return $this->render('EventsBundle:Default:index.html.twig', array('name' => $name));
-    }
-
     /**
      * createCustomerAction
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function createCustomerAction()
+    public function createCustomerAction(Request $request)
     {
-        $request = $this->getRequest();
         $consultant = CustomersPeer::getCurrent();
-        $order = OrdersPeer::getCurrent();
+        $order      = OrdersPeer::getCurrent();
 
         // if the customer has been adding stuff to the basket, use that information here.
-        $customer_id = $request->get('id');
+        $customer_id = $request->request->get('id');
 
-        // Always perfer the post id
-        // if no customer id has been posted
-        if ( !$customer_id ) {
-          if ($consultant->getId() != $order->getCustomersId()) {
-              $customer_id = $order->getCustomersId();
-          }
-        }
-
-        $hanzo = Hanzo::getInstance();
+        $hanzo     = Hanzo::getInstance();
         $domainKey = $hanzo->get('core.domain_key');
-        $errors = '';
+        $errors    = '';
 
         $countries = CountriesPeer::getAvailableDomainCountries();
 
         // If order is for the hostess, find her and use the Customer
-        $attributes = $order->getOrdersAttributess()->toArray();
         $is_hostess = $order->isHostessOrder();
 
         if ($is_hostess === true) {
@@ -91,8 +76,8 @@ class DefaultController extends CoreController
                 ;
 
                 if ($customer instanceof Customers) {
-                    $pwd = $customer->getPassword();
-                    $address = $customer->getAddresses()->getFirst();
+                    $pwd               = $customer->getPassword();
+                    $address           = $customer->getAddresses()->getFirst();
                     $validation_groups = 'customer_edit';
                 }
             }
@@ -114,7 +99,12 @@ class DefaultController extends CoreController
 
         $email = $customer->getEmail();
 
-        $form = $this->createForm(new CustomersType(true, new AddressesType($countries)), $customer, array('validation_groups' => $validation_groups));
+        $form = $this->createForm(
+            new CustomersType(true, new AddressesType($countries)),
+            $customer,
+            array('validation_groups' => $validation_groups)
+        );
+
         if ('POST' === $request->getMethod()) {
             $form->bind($request);
             $data = $form->getData();
@@ -175,6 +165,9 @@ class DefaultController extends CoreController
                 $order->setEmail($customer->getEmail());
                 $order->setPhone($customer->getPhone());
 
+                $order->setBillingTitle($address->getTitle());
+                $order->setBillingFirstName($address->getFirstName());
+                $order->setBillingLastName($address->getLastName());
                 $order->setBillingAddressLine1($address->getAddressLine1());
                 $order->setBillingAddressLine2($address->getAddressLine2());
                 $order->setBillingPostalCode($address->getPostalCode());
@@ -189,11 +182,11 @@ class DefaultController extends CoreController
         }
 
         return $this->render('EventsBundle:Default:create_customer.html.twig', array(
-            'page_type' => 'events-create-customer',
+            'page_type'  => 'events-create-customer',
             'is_hostess' => $is_hostess,
-            'form' => $form->createView(),
-            'errors' => $errors,
-            'domain_key' => $domainKey
+            'form'       => $form->createView(),
+            'errors'     => $errors,
+            'domain_key' => $domainKey,
         ));
     }
 
@@ -205,8 +198,8 @@ class DefaultController extends CoreController
     public function fetchCustomerAction()
     {
         $request = $this->getRequest();
-        $value = $request->request->get('value');
-        $type = strpos($value, '@') ? 'email' : 'phone';
+        $value   = $request->request->get('value');
+        $type    = strpos($value, '@') ? 'email' : 'phone';
 
         // hf@bellcom.dk: get phplist ids so the customer can be subscribed
         $api      = $this->get('newsletterapi');
@@ -298,9 +291,9 @@ class DefaultController extends CoreController
         }
 
         return $this->json_response(array(
-            'status' => $error,
-            'message'   => '',
-            'data'  => $data,
+            'status'  => $error,
+            'message' => '',
+            'data'    => $data,
         ));
     }
 }

@@ -897,13 +897,17 @@ class EventsController extends CoreController
         ));
     }
 
-    public function setOrderTypeAction()
+    public function setOrderTypeAction(Request $request)
     {
         $order = OrdersPeer::getCurrent();
         if ($order instanceof Orders) {
+            // make sure the order "head" is reset before proceeding.
             $order->setEventsId(null);
-
-            $request = $this->getRequest();
+            $order->setCustomersId(null);
+            $order->setFirstName(null);
+            $order->setLastName(null);
+            $order->clearBillingAddress();
+            $order->clearDeliveryAddress();
 
             Propel::setForceMasterConnection(TRUE);
 
@@ -917,7 +921,7 @@ class EventsController extends CoreController
 
             list($id, $code) = explode(':', $request->get('type'));
 
-            $id = trim($id);
+            $id   = trim($id);
             $code = trim($code);
             $goto = 'events_create_customer';
 
