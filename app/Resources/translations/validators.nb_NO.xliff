@@ -40,7 +40,7 @@
             </trans-unit>
             <trans-unit id="name.max.length">
                 <source>name.max.length</source>
-                <target>Your full name may contain max. {{ limit }} characters|Your full name may contain max. {{ limit }} characters</target>
+                <target>Ditt fulle navn må maksimalt bestå av {{ limit }} tegn|Ditt fulle navn må maksimalt bestå av {{ limit }} tegn</target>
             </trans-unit>
             <trans-unit id="host.required" approved="no">
                 <source>host.required</source>
@@ -52,7 +52,7 @@
             </trans-unit>
             <trans-unit id="address_line_1.max.length">
                 <source>address_line_1.max.length</source>
-                <target>Address line may contain max. {{ limit }} characters|Address line may contain max. {{ limit }} characters</target>
+                <target>Adressefeltet må maksimalt bestå av {{ limit }} tegn|Adressefeltet må maksimalt bestå av {{ limit }} tegn</target>
             </trans-unit>
             <trans-unit id="postal_code.required" approved="no">
                 <source>postal_code.required</source>
