@@ -222,8 +222,6 @@ _gaq.push(['_trackPageview']);
 </script>
 DOC;
 
-Tools::log($output);
-
         return $output;
      }
 
