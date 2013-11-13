@@ -71,10 +71,15 @@ img {
     height: auto;
 }
 
-hgroup h1 {
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    font-weight: normal;
+hgroup {
+    h1 {
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        font-weight: normal;
+    }
+    p {
+        display: none;
+    }
 }
 
 b, strong {

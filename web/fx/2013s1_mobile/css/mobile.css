@@ -535,6 +535,9 @@ hgroup h1 {
   text-transform: uppercase;
   font-weight: normal;
 }
+hgroup p {
+  display: none;
+}
 
 b, strong {
   font-weight: bold;
