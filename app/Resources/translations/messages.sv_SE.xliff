@@ -134,7 +134,7 @@
                         Du kommer nu att redigera E-ordernummer <a href="%history_url%" title="se ordren">%order_id%</a>.<br>
                         Om du önskar att avbryta redigeringen av din order - <a href="%stop_url%" title="stop editering af ordren"> – klicka här.</a>
                     </p>
-                    <p>Om du önskar att ändra en färg eller storlek, ska du klicka på pennan. Om du önskar att lägga till varor, ska du klicka på Girl, Boy, Little Girl eller Little Boy, överst på sidan.</p>
+                    <p>Om du önskar att ändra en färg eller storlek, ska du klicka på pennan. Om du önskar att lägga till varor, ska du klicka på Tjej, Kille, Liten Tjej eller Liten Kille, överst på sidan.</p>
                     <p class="last">När du är färdig med dina ändringar, ska du klicka på ”Visa korg” och trycka på ”Fortsätt”. När du har genomfört din order med en ny kortbetalning, blir den gamla betalningen automatiskt raderad. <b>Observera:</b> Om du använder kort som betalningssätt vid redigeringen, upprättas automatiskt en ny kortreservation av totalbeloppet på din order. Reservationen av totalbeloppet på din ursprungsorder blir automatiskt annullerad av POMPdeLUX. Det kan dock gå upp till 5 vardagar, innan reservationen släpps av din bank.</p>
                 ]]></target>
             </trans-unit>
@@ -272,11 +272,11 @@
                     <li><a href="/sv_SE/forside/om-pompdelux">Om POMPdeLUX</a></li>
                     <li><a href="/sv_SE/forside/nyheter">Nyheter</a></li>
 					<li><a href="/sv_SE/forside/om-pompdelux/konceptet">Konceptet</a></li>
-					<li><a href="/sv_SE/forside/om-pompdelux/socialt-ansvar">Socialt ansvar</a></li>
-					<li><a href="/sv_SE/forside/om-pompdelux/jobb">Jobb</a></li>
-					<li><a href="/sv_SE/forside/webshop/info/gots-organic">GOTS (Organic)</a></li>
-					<li><a href="/sv_SE/forside/webshop/info/oeko-tex">Oeko-Tex</a></li>
-					<li><a href="/sv_SE/forside/webshop/info/credits">Credits</a></li>
+					<li><a href="/sv_SE/forside/om-pompdelux/corporate-social-responsibility">Corporate Social Responsibility</a></li>
+					<li><a href="/sv_SE/forside/bli-saljare/fritids-saljare">Bli säljare</a></li>
+					<li><a href="/sv_SE/forside/mer-pompdelux/gots-organic">GOTS (Organic)</a></li>
+					<li><a href="/sv_SE/forside/mer-pompdelux/oeko-tex">Oeko-Tex</a></li>
+					<li><a href="/sv_SE/forside/katalog/credits">Credits</a></li>
 					<li><a href="/sv_SE/forside/om-pompdelux/kontakt">Kontakt</a></li>
                 </ul>
                 ]]></target>
@@ -291,8 +291,8 @@
                     <li><a href="/sv_SE/forside/kundservice/returnering">Returnering</a></li>
                     <li><a href="/sv_SE/forside/kundservice/byte">Byte</a></li>
                     <li><a href="/sv_SE/forside/kundservice/retursedel">Retursedel</a></li>
-                    <li><a href="/sv_SE/forside/webshop/info/sizeguide">Sizeguide</a></li>
-					<li><a href="/sv_SE/forside/webshop/info/tvattrad">Tvättråd</a></li>
+                    <li><a href="/sv_SE/forside/kundservice/sizeguide">Sizeguide</a></li>
+					<li><a href="/sv_SE/forside/kundservice/tvattrad">Tvättråd</a></li>
 					<li><a href="/sv_SE/forside/kundservice/villkor">Villkor</a></li>
 					<li><a href="/sv_SE/forside/kundservice/om-webshopen">Om webshopen</a></li>
                 </ul>

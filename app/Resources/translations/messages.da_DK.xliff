@@ -134,7 +134,7 @@
                     Du er ved at redigere E-ordrenummer <a href="%history_url%" title="se ordren">%order_id%</a>.<br>
                     Ønsker du at afbryde redigeringen af din ordre - <a href="%stop_url%" title="stop editering af ordren">klik her.</a>
                   </p>
-                  <p>Ønsker du at ændre en farve eller en størrelse, skal du klikke på blyanten. Ønsker du at tilføje varer, skal du klikke på Girl, Boy, Little Girl eller Little Boy øverst på siden.</p>
+                  <p>Ønsker du at ændre en farve eller en størrelse, skal du klikke på blyanten. Ønsker du at tilføje varer, skal du klikke på Pige, Dreng, Lille Pige eller Lille Dreng øverst på siden.</p>
                   <p class="last">Når du er færdig med dine ændringer, skal du klikke på "Vis kurv" og trykke på ”Fortsæt”. Når du har gennemført din ordre med ny kreditkortbetaling, vil den gamle betaling automatisk blive slettet.<br><br> <b>Bemærk:</b> Hvis du anvender Visa Electron eller MasterCard ved redigeringen, foretages der automatisk endnu en reservation af totalbeløbet på din ordre. Reservationen af totalbeløbet på din oprindelige ordre bliver dog straks annulleret af POMPdeLUX. Der kan derimod  gå op til 6 uger, før reservationen ophæves af dit pengeinstitut. </p>
                 ]]></target>
             </trans-unit>
@@ -281,13 +281,13 @@
 					<li><a href="/da_DK/forside/katalog/backstage-video">Backstage video</a></li>
                     <li><a href="/da_DK/forside/nyheder">Nyheder</a></li>
                     <li><a href="/da_DK/forside/om-pompdelux/koncept">Koncept</a></li>
-                    <li><a href="/da_DK/forside/om-pompdelux/social-ansvarlighed">Social ansvarlighed</a></li>
+                    <li><a href="/da_DK/forside/om-pompdelux/corporate-social-responsibility">Corporate Social Responsibility</a></li>
                     <li><a href="/da_DK/forside/om-pompdelux/danmarks-indsamlingen">Danmarks Indsamlingen</a></li>
 					<li><a href="/da_DK/forside/om-pompdelux/sos-boernebyerne">SOS Børnebyerne</a></li>
-					<li><a href="/da_DK/forside/om-pompdelux/job">Job</a></li>
-					<li><a href="/da_DK/forside/webshop/info/gots-organic">GOTS (Organic)</a></li>
-					<li><a href="/da_DK/forside/webshop/info/oeko-tex">Oeko-Tex</a></li>
-					<li><a href="/da_DK/forside/webshop/info/credits">Credits</a></li>
+					<li><a href="/da_DK/forside/bliv-konsulent/fritidskonsulent">Bliv konsulent</a></li>
+					<li><a href="/da_DK/forside/mere-pompdelux/gots-organic">GOTS (Organic)</a></li>
+					<li><a href="/da_DK/forside/mere-pompdelux/oeko-tex">Oeko-Tex</a></li>
+					<li><a href="/da_DK/forside/katalog/credits">Credits</a></li>
 					<li><a href="/da_DK/forside/om-pompdelux/kontakt">Kontakt</a></li>
                 </ul>
                 ]]></target>
@@ -302,8 +302,8 @@
                     <li><a href="/da_DK/forside/kundeservice/returnering">Returnering</a></li>
                     <li><a href="/da_DK/forside/kundeservice/ombytning">Ombytning</a></li>
                     <li><a href="/da_DK/forside/kundeservice/returseddel">Returseddel</a></li>
-                    <li><a href="/da_DK/forside/webshop/info/vaske-raad">Vaskeråd</a></li>
-					<li><a href="/da_DK/forside/webshop/info/sizeguide">Sizeguide</a></li>
+                    <li><a href="/da_DK/forside/kundeservice/vaske-raad">Vaskeråd</a></li>
+					<li><a href="/da_DK/forside/kundeservice/sizeguide">Sizeguide</a></li>
 					<li><a href="/da_DK/forside/kundeservice/vilkaar">Vilkår</a></li>
 					<li><a href="/da_DK/forside/kundeservice/om-webshoppen">Om webshoppen</a></li>
                 </ul>

@@ -246,6 +246,38 @@ class DefaultController extends CoreController
             return $this->redirect($this->generateUrl('basket_view'));
         }
 
+        $shipping_total = 0;
+        foreach ($order->getOrderLineShipping() as $line) {
+            $shipping_total += $line->getPrice();
+        }
+
+        $data = [
+            'city'        => $order->getBillingCity(),
+            'country'     => $order->getBillingCountry(),
+            'expected_at' => $order->getExpectedDeliveryDate( 'd-m-Y' ),
+            'id'          => $order->getId(),
+            'shipping'    => number_format($shipping_total, 2, '.', ''),
+            'state'       => $order->getBillingStateProvince(),
+            'store_name'  => 'POMPdeLUX',
+            'tax'         => 0,
+            'total'       => number_format($order->getTotalPrice(), 2, '.', ''),
+        ];
+
+        foreach ($order->getOrdersLiness() as $line) {
+            if ('product' != $line->getType()) {
+                continue;
+            }
+
+            $data['lines'][] = [
+                'name'      => $line->getProductsName(),
+                'price'     => number_format($line->getPrice(), 2, '.', ''),
+                'quantity'  => $line->getQuantity(),
+                'sku'       => $line->getProductsSku(),
+                'variation' => trim(str_replace($line->getProductsName(), '', $line->getProductsSku())),
+            ];
+        }
+
+
         // the order is now complete, so we remove it from the session
         $session = $hanzo->getSession();
         $session->remove('order_id');
@@ -265,8 +297,7 @@ class DefaultController extends CoreController
         Tools::setCookie('basket', '(0) '.Tools::moneyFormat(0.00), 0, false);
 
         return $this->render('CheckoutBundle:Default:success.html.twig', array(
-            'order_id' => $order->getId(),
-            'expected_at' => $order->getExpectedDeliveryDate( 'd-m-Y' ),
+            'order' => $data,
         ));
     }
 

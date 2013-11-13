@@ -251,8 +251,7 @@ class Tools
 
         // handle logging when running in fast cgi mode (nginx)
         if ('fpm-fcgi' == php_sapi_name()) {
-            error_log('['.date('r').'] '.$file.' +'.$line.' :: '.$data."\n", 3, $root.'/app/logs/php.log');
-            return;
+            return error_log('['.date('r').'] '.$file.' +'.$line.' :: '.$data."\n", 3, $root.'/app/logs/php.log');
         }
 
         error_log($file.' +'.$line.' :: '.$data);
@@ -300,7 +299,7 @@ class Tools
             }
         }
 
-        error_log($out);
+        self::log($out);
     }
 
     /**
