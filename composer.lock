@@ -449,12 +449,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekino/EkinoNewRelicBundle.git",
-                "reference": "30ae338f0373ee9bdb844d6f05ed4ae3611eaddd"
+                "reference": "71c24fd147b7ebfc713c3950e9b24a763a2e54a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekino/EkinoNewRelicBundle/zipball/30ae338f0373ee9bdb844d6f05ed4ae3611eaddd",
-                "reference": "30ae338f0373ee9bdb844d6f05ed4ae3611eaddd",
+                "url": "https://api.github.com/repos/ekino/EkinoNewRelicBundle/zipball/71c24fd147b7ebfc713c3950e9b24a763a2e54a7",
+                "reference": "71c24fd147b7ebfc713c3950e9b24a763a2e54a7",
                 "shasum": ""
             },
             "require-dev": {
@@ -491,7 +491,7 @@
                 "monitoring",
                 "performance"
             ],
-            "time": "2013-11-08 16:33:28"
+            "time": "2013-11-13 10:00:48"
         },
         {
             "name": "guzzle/guzzle",
