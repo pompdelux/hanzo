@@ -172,6 +172,11 @@ class MiscExtension extends Twig_Extension
 
         $ecommerce = '';
 
+        $context['page_type'] = empty($context['page_type'])
+            ? ''
+            : $context['page_type']
+        ;
+
         /**
          * if we are on the checkout success page,
          * we will inject analytics/commerce tracking
