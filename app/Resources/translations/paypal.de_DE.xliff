@@ -12,33 +12,32 @@
       </trans-unit>
       <trans-unit id="failed.heading" approved="no">
         <source>failed.heading</source>
-        <target>Payment failed</target>
+        <target>Bezahlung fehlgeschlagen</target>
       </trans-unit>
       <trans-unit id="failed.description" approved="no">
         <source>failed.description</source>
-        <target>Payment via PayPal Failed for some reason: %message%</target>
+        <target>Die Bezahlung mit PayPal ist fehlgeschlagen. %message%</target>
       </trans-unit>
       <trans-unit id="failed.go.back.description" approved="no">
         <source>failed.go.back.description</source>
         <target><![CDATA[
-          Go <a href="%back_url%">back</a> the checkout page and choose another payment method.
-        ]]></target>
+          Gehen <a href="%back_url%">Sie zurück</a> zum Check Out und wählen eine andere Bezahlungsmethode.]]></target>
       </trans-unit>
       <trans-unit id="form.order_id" approved="no">
         <source>form.order_id</source>
-        <target>Order ID: %order_id%</target>
+        <target>Bestellungs-ID:: %order_id%</target>
       </trans-unit>
       <trans-unit id="form.payment_id" approved="no">
         <source>form.payment_id</source>
-        <target>Payment ID: %payment_id%</target>
+        <target>Bezahlungs-ID: %payment_id%</target>
       </trans-unit>
       <trans-unit id="form.amount" approved="no">
         <source>form.amount</source>
-        <target>Amount: %amount%</target>
+        <target>Betrag: %amount%</target>
       </trans-unit>
       <trans-unit id="form.heading" approved="no">
         <source>form.heading</source>
-        <target>Payment</target>
+        <target>Bezahlung</target>
       </trans-unit>
       <trans-unit id="form.description" approved="no">
         <source>form.description</source>
@@ -51,12 +50,12 @@
       <trans-unit id="wait.description" approved="no">
         <source>wait.description</source>
         <target><![CDATA[
-          We are about to redirect you back to %server%, if for some reason this does not happen click <a href="%url%">here</a>.
+          Sie werden nun zurück zum %server% weitergeleitet, sollte dies aus irgendeinem Grund nicht passieren, <a href="%url%">klicken Sie hier</a>.
         ]]></target>
       </trans-unit>
       <trans-unit id="cancel.payment">
         <source>cancel.payment</source>
-        <target>Afbryd betalingen</target>
+        <target>Bezahlung abbrechen</target>
       </trans-unit>
     </body>
   </file>
