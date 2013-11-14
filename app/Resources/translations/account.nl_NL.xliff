@@ -329,7 +329,7 @@
             </trans-unit>
             <trans-unit id="name.max.length">
                 <source>name.max.length</source>
-                <target>Je volledige naam mag bestaan uit maximaal {{ limit }} tekens|Je volledige naam mag bestaan uit maximaal {{ limit }} tekens</target>
+                <target>Je volledige naam mag bestaan uit maximaal 30 tekens</target>
             </trans-unit>
             <trans-unit id="address.postal_code.required">
                 <source>address.postal_code.required</source>

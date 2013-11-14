@@ -325,7 +325,7 @@
             </trans-unit>
             <trans-unit id="name.max.length">
                 <source>name.max.length</source>
-                <target>Ditt fullständiga namn får bestå av max. {{ limit }} tegn|Ditt fullständiga namn får bestå av max. {{ limit }} tegn</target>
+                <target>Ditt fullständiga namn får bestå av max. 30 tegn</target>
             </trans-unit>
             <trans-unit id="address.postal_code.required">
                 <source>address.postal_code.required</source>
