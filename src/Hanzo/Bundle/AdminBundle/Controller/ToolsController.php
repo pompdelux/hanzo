@@ -67,6 +67,27 @@ class ToolsController extends CoreController
     }
 
     /**
+     * Build product search index
+     *
+     * @Template("AdminBundle:Tools:productSearchIndexer.html.twig")
+     */
+    public function buildProductSearchIndexAction(Request $request)
+    {
+        if ($request->query->get('run')) {
+            $builder = $this->get('hanzo_search.product.index_builder');
+            $builder->setConnection($this->getDbConnection());
+            $builder->build();
+
+            $request->getSession()->setFlash('notice', 'Søgeindekset er nu opdateret.');
+            return $this->redirect($this->generateUrl($request->get('_route')));
+        }
+
+        return [
+            'database' => $this->getRequest()->getSession()->get('database'),
+        ];
+    }
+
+    /**
      * [dibsToolsAction description]
      *
      * @Template("AdminBundle:Tools:dibsTools.html.twig")
