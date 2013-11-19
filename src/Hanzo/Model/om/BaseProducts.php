@@ -42,6 +42,8 @@ use Hanzo\Model\ProductsWashingInstructions;
 use Hanzo\Model\ProductsWashingInstructionsQuery;
 use Hanzo\Model\RelatedProducts;
 use Hanzo\Model\RelatedProductsQuery;
+use Hanzo\Model\SearchProductsTags;
+use Hanzo\Model\SearchProductsTagsQuery;
 
 abstract class BaseProducts extends BaseObject implements Persistent
 {
@@ -229,6 +231,18 @@ abstract class BaseProducts extends BaseObject implements Persistent
     protected $collRelatedProductssRelatedBySkuPartial;
 
     /**
+     * @var        PropelObjectCollection|SearchProductsTags[] Collection to store aggregation of SearchProductsTags objects.
+     */
+    protected $collSearchProductsTagssRelatedByMasterProductsId;
+    protected $collSearchProductsTagssRelatedByMasterProductsIdPartial;
+
+    /**
+     * @var        PropelObjectCollection|SearchProductsTags[] Collection to store aggregation of SearchProductsTags objects.
+     */
+    protected $collSearchProductsTagssRelatedByProductsId;
+    protected $collSearchProductsTagssRelatedByProductsIdPartial;
+
+    /**
      * @var        PropelObjectCollection|ProductsI18n[] Collection to store aggregation of ProductsI18n objects.
      */
     protected $collProductsI18ns;
@@ -339,6 +353,18 @@ abstract class BaseProducts extends BaseObject implements Persistent
      * @var		PropelObjectCollection
      */
     protected $relatedProductssRelatedBySkuScheduledForDeletion = null;
+
+    /**
+     * An array of objects scheduled for deletion.
+     * @var		PropelObjectCollection
+     */
+    protected $searchProductsTagssRelatedByMasterProductsIdScheduledForDeletion = null;
+
+    /**
+     * An array of objects scheduled for deletion.
+     * @var		PropelObjectCollection
+     */
+    protected $searchProductsTagssRelatedByProductsIdScheduledForDeletion = null;
 
     /**
      * An array of objects scheduled for deletion.
@@ -1044,6 +1070,10 @@ abstract class BaseProducts extends BaseObject implements Persistent
 
             $this->collRelatedProductssRelatedBySku = null;
 
+            $this->collSearchProductsTagssRelatedByMasterProductsId = null;
+
+            $this->collSearchProductsTagssRelatedByProductsId = null;
+
             $this->collProductsI18ns = null;
 
         } // if (deep)
@@ -1406,6 +1436,40 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 }
             }
 
+            if ($this->searchProductsTagssRelatedByMasterProductsIdScheduledForDeletion !== null) {
+                if (!$this->searchProductsTagssRelatedByMasterProductsIdScheduledForDeletion->isEmpty()) {
+                    SearchProductsTagsQuery::create()
+                        ->filterByPrimaryKeys($this->searchProductsTagssRelatedByMasterProductsIdScheduledForDeletion->getPrimaryKeys(false))
+                        ->delete($con);
+                    $this->searchProductsTagssRelatedByMasterProductsIdScheduledForDeletion = null;
+                }
+            }
+
+            if ($this->collSearchProductsTagssRelatedByMasterProductsId !== null) {
+                foreach ($this->collSearchProductsTagssRelatedByMasterProductsId as $referrerFK) {
+                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
+                        $affectedRows += $referrerFK->save($con);
+                    }
+                }
+            }
+
+            if ($this->searchProductsTagssRelatedByProductsIdScheduledForDeletion !== null) {
+                if (!$this->searchProductsTagssRelatedByProductsIdScheduledForDeletion->isEmpty()) {
+                    SearchProductsTagsQuery::create()
+                        ->filterByPrimaryKeys($this->searchProductsTagssRelatedByProductsIdScheduledForDeletion->getPrimaryKeys(false))
+                        ->delete($con);
+                    $this->searchProductsTagssRelatedByProductsIdScheduledForDeletion = null;
+                }
+            }
+
+            if ($this->collSearchProductsTagssRelatedByProductsId !== null) {
+                foreach ($this->collSearchProductsTagssRelatedByProductsId as $referrerFK) {
+                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
+                        $affectedRows += $referrerFK->save($con);
+                    }
+                }
+            }
+
             if ($this->productsI18nsScheduledForDeletion !== null) {
                 if (!$this->productsI18nsScheduledForDeletion->isEmpty()) {
                     ProductsI18nQuery::create()
@@ -1750,6 +1814,22 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     }
                 }
 
+                if ($this->collSearchProductsTagssRelatedByMasterProductsId !== null) {
+                    foreach ($this->collSearchProductsTagssRelatedByMasterProductsId as $referrerFK) {
+                        if (!$referrerFK->validate($columns)) {
+                            $failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+                        }
+                    }
+                }
+
+                if ($this->collSearchProductsTagssRelatedByProductsId !== null) {
+                    foreach ($this->collSearchProductsTagssRelatedByProductsId as $referrerFK) {
+                        if (!$referrerFK->validate($columns)) {
+                            $failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+                        }
+                    }
+                }
+
                 if ($this->collProductsI18ns !== null) {
                     foreach ($this->collProductsI18ns as $referrerFK) {
                         if (!$referrerFK->validate($columns)) {
@@ -1917,6 +1997,12 @@ abstract class BaseProducts extends BaseObject implements Persistent
             }
             if (null !== $this->collRelatedProductssRelatedBySku) {
                 $result['RelatedProductssRelatedBySku'] = $this->collRelatedProductssRelatedBySku->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+            }
+            if (null !== $this->collSearchProductsTagssRelatedByMasterProductsId) {
+                $result['SearchProductsTagssRelatedByMasterProductsId'] = $this->collSearchProductsTagssRelatedByMasterProductsId->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+            }
+            if (null !== $this->collSearchProductsTagssRelatedByProductsId) {
+                $result['SearchProductsTagssRelatedByProductsId'] = $this->collSearchProductsTagssRelatedByProductsId->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
             }
             if (null !== $this->collProductsI18ns) {
                 $result['ProductsI18ns'] = $this->collProductsI18ns->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
@@ -2210,6 +2296,18 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 }
             }
 
+            foreach ($this->getSearchProductsTagssRelatedByMasterProductsId() as $relObj) {
+                if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
+                    $copyObj->addSearchProductsTagsRelatedByMasterProductsId($relObj->copy($deepCopy));
+                }
+            }
+
+            foreach ($this->getSearchProductsTagssRelatedByProductsId() as $relObj) {
+                if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
+                    $copyObj->addSearchProductsTagsRelatedByProductsId($relObj->copy($deepCopy));
+                }
+            }
+
             foreach ($this->getProductsI18ns() as $relObj) {
                 if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
                     $copyObj->addProductsI18n($relObj->copy($deepCopy));
@@ -2420,6 +2518,12 @@ abstract class BaseProducts extends BaseObject implements Persistent
         }
         if ('RelatedProductsRelatedBySku' == $relationName) {
             $this->initRelatedProductssRelatedBySku();
+        }
+        if ('SearchProductsTagsRelatedByMasterProductsId' == $relationName) {
+            $this->initSearchProductsTagssRelatedByMasterProductsId();
+        }
+        if ('SearchProductsTagsRelatedByProductsId' == $relationName) {
+            $this->initSearchProductsTagssRelatedByProductsId();
         }
         if ('ProductsI18n' == $relationName) {
             $this->initProductsI18ns();
@@ -5243,6 +5347,442 @@ abstract class BaseProducts extends BaseObject implements Persistent
     }
 
     /**
+     * Clears out the collSearchProductsTagssRelatedByMasterProductsId collection
+     *
+     * This does not modify the database; however, it will remove any associated objects, causing
+     * them to be refetched by subsequent calls to accessor method.
+     *
+     * @return Products The current object (for fluent API support)
+     * @see        addSearchProductsTagssRelatedByMasterProductsId()
+     */
+    public function clearSearchProductsTagssRelatedByMasterProductsId()
+    {
+        $this->collSearchProductsTagssRelatedByMasterProductsId = null; // important to set this to null since that means it is uninitialized
+        $this->collSearchProductsTagssRelatedByMasterProductsIdPartial = null;
+
+        return $this;
+    }
+
+    /**
+     * reset is the collSearchProductsTagssRelatedByMasterProductsId collection loaded partially
+     *
+     * @return void
+     */
+    public function resetPartialSearchProductsTagssRelatedByMasterProductsId($v = true)
+    {
+        $this->collSearchProductsTagssRelatedByMasterProductsIdPartial = $v;
+    }
+
+    /**
+     * Initializes the collSearchProductsTagssRelatedByMasterProductsId collection.
+     *
+     * By default this just sets the collSearchProductsTagssRelatedByMasterProductsId collection to an empty array (like clearcollSearchProductsTagssRelatedByMasterProductsId());
+     * however, you may wish to override this method in your stub class to provide setting appropriate
+     * to your application -- for example, setting the initial array to the values stored in database.
+     *
+     * @param boolean $overrideExisting If set to true, the method call initializes
+     *                                        the collection even if it is not empty
+     *
+     * @return void
+     */
+    public function initSearchProductsTagssRelatedByMasterProductsId($overrideExisting = true)
+    {
+        if (null !== $this->collSearchProductsTagssRelatedByMasterProductsId && !$overrideExisting) {
+            return;
+        }
+        $this->collSearchProductsTagssRelatedByMasterProductsId = new PropelObjectCollection();
+        $this->collSearchProductsTagssRelatedByMasterProductsId->setModel('SearchProductsTags');
+    }
+
+    /**
+     * Gets an array of SearchProductsTags objects which contain a foreign key that references this object.
+     *
+     * If the $criteria is not null, it is used to always fetch the results from the database.
+     * Otherwise the results are fetched from the database the first time, then cached.
+     * Next time the same method is called without $criteria, the cached collection is returned.
+     * If this Products is new, it will return
+     * an empty collection or the current collection; the criteria is ignored on a new object.
+     *
+     * @param Criteria $criteria optional Criteria object to narrow the query
+     * @param PropelPDO $con optional connection object
+     * @return PropelObjectCollection|SearchProductsTags[] List of SearchProductsTags objects
+     * @throws PropelException
+     */
+    public function getSearchProductsTagssRelatedByMasterProductsId($criteria = null, PropelPDO $con = null)
+    {
+        $partial = $this->collSearchProductsTagssRelatedByMasterProductsIdPartial && !$this->isNew();
+        if (null === $this->collSearchProductsTagssRelatedByMasterProductsId || null !== $criteria  || $partial) {
+            if ($this->isNew() && null === $this->collSearchProductsTagssRelatedByMasterProductsId) {
+                // return empty collection
+                $this->initSearchProductsTagssRelatedByMasterProductsId();
+            } else {
+                $collSearchProductsTagssRelatedByMasterProductsId = SearchProductsTagsQuery::create(null, $criteria)
+                    ->filterByProductsRelatedByMasterProductsId($this)
+                    ->find($con);
+                if (null !== $criteria) {
+                    if (false !== $this->collSearchProductsTagssRelatedByMasterProductsIdPartial && count($collSearchProductsTagssRelatedByMasterProductsId)) {
+                      $this->initSearchProductsTagssRelatedByMasterProductsId(false);
+
+                      foreach($collSearchProductsTagssRelatedByMasterProductsId as $obj) {
+                        if (false == $this->collSearchProductsTagssRelatedByMasterProductsId->contains($obj)) {
+                          $this->collSearchProductsTagssRelatedByMasterProductsId->append($obj);
+                        }
+                      }
+
+                      $this->collSearchProductsTagssRelatedByMasterProductsIdPartial = true;
+                    }
+
+                    $collSearchProductsTagssRelatedByMasterProductsId->getInternalIterator()->rewind();
+                    return $collSearchProductsTagssRelatedByMasterProductsId;
+                }
+
+                if($partial && $this->collSearchProductsTagssRelatedByMasterProductsId) {
+                    foreach($this->collSearchProductsTagssRelatedByMasterProductsId as $obj) {
+                        if($obj->isNew()) {
+                            $collSearchProductsTagssRelatedByMasterProductsId[] = $obj;
+                        }
+                    }
+                }
+
+                $this->collSearchProductsTagssRelatedByMasterProductsId = $collSearchProductsTagssRelatedByMasterProductsId;
+                $this->collSearchProductsTagssRelatedByMasterProductsIdPartial = false;
+            }
+        }
+
+        return $this->collSearchProductsTagssRelatedByMasterProductsId;
+    }
+
+    /**
+     * Sets a collection of SearchProductsTagsRelatedByMasterProductsId objects related by a one-to-many relationship
+     * to the current object.
+     * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
+     * and new objects from the given Propel collection.
+     *
+     * @param PropelCollection $searchProductsTagssRelatedByMasterProductsId A Propel collection.
+     * @param PropelPDO $con Optional connection object
+     * @return Products The current object (for fluent API support)
+     */
+    public function setSearchProductsTagssRelatedByMasterProductsId(PropelCollection $searchProductsTagssRelatedByMasterProductsId, PropelPDO $con = null)
+    {
+        $searchProductsTagssRelatedByMasterProductsIdToDelete = $this->getSearchProductsTagssRelatedByMasterProductsId(new Criteria(), $con)->diff($searchProductsTagssRelatedByMasterProductsId);
+
+        $this->searchProductsTagssRelatedByMasterProductsIdScheduledForDeletion = unserialize(serialize($searchProductsTagssRelatedByMasterProductsIdToDelete));
+
+        foreach ($searchProductsTagssRelatedByMasterProductsIdToDelete as $searchProductsTagsRelatedByMasterProductsIdRemoved) {
+            $searchProductsTagsRelatedByMasterProductsIdRemoved->setProductsRelatedByMasterProductsId(null);
+        }
+
+        $this->collSearchProductsTagssRelatedByMasterProductsId = null;
+        foreach ($searchProductsTagssRelatedByMasterProductsId as $searchProductsTagsRelatedByMasterProductsId) {
+            $this->addSearchProductsTagsRelatedByMasterProductsId($searchProductsTagsRelatedByMasterProductsId);
+        }
+
+        $this->collSearchProductsTagssRelatedByMasterProductsId = $searchProductsTagssRelatedByMasterProductsId;
+        $this->collSearchProductsTagssRelatedByMasterProductsIdPartial = false;
+
+        return $this;
+    }
+
+    /**
+     * Returns the number of related SearchProductsTags objects.
+     *
+     * @param Criteria $criteria
+     * @param boolean $distinct
+     * @param PropelPDO $con
+     * @return int             Count of related SearchProductsTags objects.
+     * @throws PropelException
+     */
+    public function countSearchProductsTagssRelatedByMasterProductsId(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+    {
+        $partial = $this->collSearchProductsTagssRelatedByMasterProductsIdPartial && !$this->isNew();
+        if (null === $this->collSearchProductsTagssRelatedByMasterProductsId || null !== $criteria || $partial) {
+            if ($this->isNew() && null === $this->collSearchProductsTagssRelatedByMasterProductsId) {
+                return 0;
+            }
+
+            if($partial && !$criteria) {
+                return count($this->getSearchProductsTagssRelatedByMasterProductsId());
+            }
+            $query = SearchProductsTagsQuery::create(null, $criteria);
+            if ($distinct) {
+                $query->distinct();
+            }
+
+            return $query
+                ->filterByProductsRelatedByMasterProductsId($this)
+                ->count($con);
+        }
+
+        return count($this->collSearchProductsTagssRelatedByMasterProductsId);
+    }
+
+    /**
+     * Method called to associate a SearchProductsTags object to this object
+     * through the SearchProductsTags foreign key attribute.
+     *
+     * @param    SearchProductsTags $l SearchProductsTags
+     * @return Products The current object (for fluent API support)
+     */
+    public function addSearchProductsTagsRelatedByMasterProductsId(SearchProductsTags $l)
+    {
+        if ($this->collSearchProductsTagssRelatedByMasterProductsId === null) {
+            $this->initSearchProductsTagssRelatedByMasterProductsId();
+            $this->collSearchProductsTagssRelatedByMasterProductsIdPartial = true;
+        }
+        if (!in_array($l, $this->collSearchProductsTagssRelatedByMasterProductsId->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
+            $this->doAddSearchProductsTagsRelatedByMasterProductsId($l);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param	SearchProductsTagsRelatedByMasterProductsId $searchProductsTagsRelatedByMasterProductsId The searchProductsTagsRelatedByMasterProductsId object to add.
+     */
+    protected function doAddSearchProductsTagsRelatedByMasterProductsId($searchProductsTagsRelatedByMasterProductsId)
+    {
+        $this->collSearchProductsTagssRelatedByMasterProductsId[]= $searchProductsTagsRelatedByMasterProductsId;
+        $searchProductsTagsRelatedByMasterProductsId->setProductsRelatedByMasterProductsId($this);
+    }
+
+    /**
+     * @param	SearchProductsTagsRelatedByMasterProductsId $searchProductsTagsRelatedByMasterProductsId The searchProductsTagsRelatedByMasterProductsId object to remove.
+     * @return Products The current object (for fluent API support)
+     */
+    public function removeSearchProductsTagsRelatedByMasterProductsId($searchProductsTagsRelatedByMasterProductsId)
+    {
+        if ($this->getSearchProductsTagssRelatedByMasterProductsId()->contains($searchProductsTagsRelatedByMasterProductsId)) {
+            $this->collSearchProductsTagssRelatedByMasterProductsId->remove($this->collSearchProductsTagssRelatedByMasterProductsId->search($searchProductsTagsRelatedByMasterProductsId));
+            if (null === $this->searchProductsTagssRelatedByMasterProductsIdScheduledForDeletion) {
+                $this->searchProductsTagssRelatedByMasterProductsIdScheduledForDeletion = clone $this->collSearchProductsTagssRelatedByMasterProductsId;
+                $this->searchProductsTagssRelatedByMasterProductsIdScheduledForDeletion->clear();
+            }
+            $this->searchProductsTagssRelatedByMasterProductsIdScheduledForDeletion[]= clone $searchProductsTagsRelatedByMasterProductsId;
+            $searchProductsTagsRelatedByMasterProductsId->setProductsRelatedByMasterProductsId(null);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Clears out the collSearchProductsTagssRelatedByProductsId collection
+     *
+     * This does not modify the database; however, it will remove any associated objects, causing
+     * them to be refetched by subsequent calls to accessor method.
+     *
+     * @return Products The current object (for fluent API support)
+     * @see        addSearchProductsTagssRelatedByProductsId()
+     */
+    public function clearSearchProductsTagssRelatedByProductsId()
+    {
+        $this->collSearchProductsTagssRelatedByProductsId = null; // important to set this to null since that means it is uninitialized
+        $this->collSearchProductsTagssRelatedByProductsIdPartial = null;
+
+        return $this;
+    }
+
+    /**
+     * reset is the collSearchProductsTagssRelatedByProductsId collection loaded partially
+     *
+     * @return void
+     */
+    public function resetPartialSearchProductsTagssRelatedByProductsId($v = true)
+    {
+        $this->collSearchProductsTagssRelatedByProductsIdPartial = $v;
+    }
+
+    /**
+     * Initializes the collSearchProductsTagssRelatedByProductsId collection.
+     *
+     * By default this just sets the collSearchProductsTagssRelatedByProductsId collection to an empty array (like clearcollSearchProductsTagssRelatedByProductsId());
+     * however, you may wish to override this method in your stub class to provide setting appropriate
+     * to your application -- for example, setting the initial array to the values stored in database.
+     *
+     * @param boolean $overrideExisting If set to true, the method call initializes
+     *                                        the collection even if it is not empty
+     *
+     * @return void
+     */
+    public function initSearchProductsTagssRelatedByProductsId($overrideExisting = true)
+    {
+        if (null !== $this->collSearchProductsTagssRelatedByProductsId && !$overrideExisting) {
+            return;
+        }
+        $this->collSearchProductsTagssRelatedByProductsId = new PropelObjectCollection();
+        $this->collSearchProductsTagssRelatedByProductsId->setModel('SearchProductsTags');
+    }
+
+    /**
+     * Gets an array of SearchProductsTags objects which contain a foreign key that references this object.
+     *
+     * If the $criteria is not null, it is used to always fetch the results from the database.
+     * Otherwise the results are fetched from the database the first time, then cached.
+     * Next time the same method is called without $criteria, the cached collection is returned.
+     * If this Products is new, it will return
+     * an empty collection or the current collection; the criteria is ignored on a new object.
+     *
+     * @param Criteria $criteria optional Criteria object to narrow the query
+     * @param PropelPDO $con optional connection object
+     * @return PropelObjectCollection|SearchProductsTags[] List of SearchProductsTags objects
+     * @throws PropelException
+     */
+    public function getSearchProductsTagssRelatedByProductsId($criteria = null, PropelPDO $con = null)
+    {
+        $partial = $this->collSearchProductsTagssRelatedByProductsIdPartial && !$this->isNew();
+        if (null === $this->collSearchProductsTagssRelatedByProductsId || null !== $criteria  || $partial) {
+            if ($this->isNew() && null === $this->collSearchProductsTagssRelatedByProductsId) {
+                // return empty collection
+                $this->initSearchProductsTagssRelatedByProductsId();
+            } else {
+                $collSearchProductsTagssRelatedByProductsId = SearchProductsTagsQuery::create(null, $criteria)
+                    ->filterByProductsRelatedByProductsId($this)
+                    ->find($con);
+                if (null !== $criteria) {
+                    if (false !== $this->collSearchProductsTagssRelatedByProductsIdPartial && count($collSearchProductsTagssRelatedByProductsId)) {
+                      $this->initSearchProductsTagssRelatedByProductsId(false);
+
+                      foreach($collSearchProductsTagssRelatedByProductsId as $obj) {
+                        if (false == $this->collSearchProductsTagssRelatedByProductsId->contains($obj)) {
+                          $this->collSearchProductsTagssRelatedByProductsId->append($obj);
+                        }
+                      }
+
+                      $this->collSearchProductsTagssRelatedByProductsIdPartial = true;
+                    }
+
+                    $collSearchProductsTagssRelatedByProductsId->getInternalIterator()->rewind();
+                    return $collSearchProductsTagssRelatedByProductsId;
+                }
+
+                if($partial && $this->collSearchProductsTagssRelatedByProductsId) {
+                    foreach($this->collSearchProductsTagssRelatedByProductsId as $obj) {
+                        if($obj->isNew()) {
+                            $collSearchProductsTagssRelatedByProductsId[] = $obj;
+                        }
+                    }
+                }
+
+                $this->collSearchProductsTagssRelatedByProductsId = $collSearchProductsTagssRelatedByProductsId;
+                $this->collSearchProductsTagssRelatedByProductsIdPartial = false;
+            }
+        }
+
+        return $this->collSearchProductsTagssRelatedByProductsId;
+    }
+
+    /**
+     * Sets a collection of SearchProductsTagsRelatedByProductsId objects related by a one-to-many relationship
+     * to the current object.
+     * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
+     * and new objects from the given Propel collection.
+     *
+     * @param PropelCollection $searchProductsTagssRelatedByProductsId A Propel collection.
+     * @param PropelPDO $con Optional connection object
+     * @return Products The current object (for fluent API support)
+     */
+    public function setSearchProductsTagssRelatedByProductsId(PropelCollection $searchProductsTagssRelatedByProductsId, PropelPDO $con = null)
+    {
+        $searchProductsTagssRelatedByProductsIdToDelete = $this->getSearchProductsTagssRelatedByProductsId(new Criteria(), $con)->diff($searchProductsTagssRelatedByProductsId);
+
+        $this->searchProductsTagssRelatedByProductsIdScheduledForDeletion = unserialize(serialize($searchProductsTagssRelatedByProductsIdToDelete));
+
+        foreach ($searchProductsTagssRelatedByProductsIdToDelete as $searchProductsTagsRelatedByProductsIdRemoved) {
+            $searchProductsTagsRelatedByProductsIdRemoved->setProductsRelatedByProductsId(null);
+        }
+
+        $this->collSearchProductsTagssRelatedByProductsId = null;
+        foreach ($searchProductsTagssRelatedByProductsId as $searchProductsTagsRelatedByProductsId) {
+            $this->addSearchProductsTagsRelatedByProductsId($searchProductsTagsRelatedByProductsId);
+        }
+
+        $this->collSearchProductsTagssRelatedByProductsId = $searchProductsTagssRelatedByProductsId;
+        $this->collSearchProductsTagssRelatedByProductsIdPartial = false;
+
+        return $this;
+    }
+
+    /**
+     * Returns the number of related SearchProductsTags objects.
+     *
+     * @param Criteria $criteria
+     * @param boolean $distinct
+     * @param PropelPDO $con
+     * @return int             Count of related SearchProductsTags objects.
+     * @throws PropelException
+     */
+    public function countSearchProductsTagssRelatedByProductsId(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+    {
+        $partial = $this->collSearchProductsTagssRelatedByProductsIdPartial && !$this->isNew();
+        if (null === $this->collSearchProductsTagssRelatedByProductsId || null !== $criteria || $partial) {
+            if ($this->isNew() && null === $this->collSearchProductsTagssRelatedByProductsId) {
+                return 0;
+            }
+
+            if($partial && !$criteria) {
+                return count($this->getSearchProductsTagssRelatedByProductsId());
+            }
+            $query = SearchProductsTagsQuery::create(null, $criteria);
+            if ($distinct) {
+                $query->distinct();
+            }
+
+            return $query
+                ->filterByProductsRelatedByProductsId($this)
+                ->count($con);
+        }
+
+        return count($this->collSearchProductsTagssRelatedByProductsId);
+    }
+
+    /**
+     * Method called to associate a SearchProductsTags object to this object
+     * through the SearchProductsTags foreign key attribute.
+     *
+     * @param    SearchProductsTags $l SearchProductsTags
+     * @return Products The current object (for fluent API support)
+     */
+    public function addSearchProductsTagsRelatedByProductsId(SearchProductsTags $l)
+    {
+        if ($this->collSearchProductsTagssRelatedByProductsId === null) {
+            $this->initSearchProductsTagssRelatedByProductsId();
+            $this->collSearchProductsTagssRelatedByProductsIdPartial = true;
+        }
+        if (!in_array($l, $this->collSearchProductsTagssRelatedByProductsId->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
+            $this->doAddSearchProductsTagsRelatedByProductsId($l);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param	SearchProductsTagsRelatedByProductsId $searchProductsTagsRelatedByProductsId The searchProductsTagsRelatedByProductsId object to add.
+     */
+    protected function doAddSearchProductsTagsRelatedByProductsId($searchProductsTagsRelatedByProductsId)
+    {
+        $this->collSearchProductsTagssRelatedByProductsId[]= $searchProductsTagsRelatedByProductsId;
+        $searchProductsTagsRelatedByProductsId->setProductsRelatedByProductsId($this);
+    }
+
+    /**
+     * @param	SearchProductsTagsRelatedByProductsId $searchProductsTagsRelatedByProductsId The searchProductsTagsRelatedByProductsId object to remove.
+     * @return Products The current object (for fluent API support)
+     */
+    public function removeSearchProductsTagsRelatedByProductsId($searchProductsTagsRelatedByProductsId)
+    {
+        if ($this->getSearchProductsTagssRelatedByProductsId()->contains($searchProductsTagsRelatedByProductsId)) {
+            $this->collSearchProductsTagssRelatedByProductsId->remove($this->collSearchProductsTagssRelatedByProductsId->search($searchProductsTagsRelatedByProductsId));
+            if (null === $this->searchProductsTagssRelatedByProductsIdScheduledForDeletion) {
+                $this->searchProductsTagssRelatedByProductsIdScheduledForDeletion = clone $this->collSearchProductsTagssRelatedByProductsId;
+                $this->searchProductsTagssRelatedByProductsIdScheduledForDeletion->clear();
+            }
+            $this->searchProductsTagssRelatedByProductsIdScheduledForDeletion[]= clone $searchProductsTagsRelatedByProductsId;
+            $searchProductsTagsRelatedByProductsId->setProductsRelatedByProductsId(null);
+        }
+
+        return $this;
+    }
+
+    /**
      * Clears out the collProductsI18ns collection
      *
      * This does not modify the database; however, it will remove any associated objects, causing
@@ -5565,6 +6105,16 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     $o->clearAllReferences($deep);
                 }
             }
+            if ($this->collSearchProductsTagssRelatedByMasterProductsId) {
+                foreach ($this->collSearchProductsTagssRelatedByMasterProductsId as $o) {
+                    $o->clearAllReferences($deep);
+                }
+            }
+            if ($this->collSearchProductsTagssRelatedByProductsId) {
+                foreach ($this->collSearchProductsTagssRelatedByProductsId as $o) {
+                    $o->clearAllReferences($deep);
+                }
+            }
             if ($this->collProductsI18ns) {
                 foreach ($this->collProductsI18ns as $o) {
                     $o->clearAllReferences($deep);
@@ -5632,6 +6182,14 @@ abstract class BaseProducts extends BaseObject implements Persistent
             $this->collRelatedProductssRelatedBySku->clearIterator();
         }
         $this->collRelatedProductssRelatedBySku = null;
+        if ($this->collSearchProductsTagssRelatedByMasterProductsId instanceof PropelCollection) {
+            $this->collSearchProductsTagssRelatedByMasterProductsId->clearIterator();
+        }
+        $this->collSearchProductsTagssRelatedByMasterProductsId = null;
+        if ($this->collSearchProductsTagssRelatedByProductsId instanceof PropelCollection) {
+            $this->collSearchProductsTagssRelatedByProductsId->clearIterator();
+        }
+        $this->collSearchProductsTagssRelatedByProductsId = null;
         if ($this->collProductsI18ns instanceof PropelCollection) {
             $this->collProductsI18ns->clearIterator();
         }

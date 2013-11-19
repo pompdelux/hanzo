@@ -1054,6 +1054,33 @@ CREATE TABLE `gothia_accounts`
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
+-- search_products_tags
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `search_products_tags`;
+
+CREATE TABLE `search_products_tags`
+(
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `master_products_id` INTEGER NOT NULL,
+    `products_id` INTEGER NOT NULL,
+    `token` VARCHAR(128) NOT NULL,
+    `locale` VARCHAR(12) NOT NULL,
+    PRIMARY KEY (`id`),
+    INDEX `index_token_locale` (`token`, `locale`),
+    INDEX `FI_spt_products_images_1` (`master_products_id`),
+    INDEX `FI_spt_products_images_2` (`products_id`),
+    CONSTRAINT `fk_spt_products_images_1`
+        FOREIGN KEY (`master_products_id`)
+        REFERENCES `products` (`id`)
+        ON DELETE CASCADE,
+    CONSTRAINT `fk_spt_products_images_2`
+        FOREIGN KEY (`products_id`)
+        REFERENCES `products` (`id`)
+        ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
 -- messages
 -- ---------------------------------------------------------------------
 

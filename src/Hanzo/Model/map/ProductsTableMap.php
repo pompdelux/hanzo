@@ -77,6 +77,8 @@ class ProductsTableMap extends TableMap
         $this->addRelation('OrdersLines', 'Hanzo\\Model\\OrdersLines', RelationMap::ONE_TO_MANY, array('id' => 'products_id', ), 'SET NULL', null, 'OrdersLiness');
         $this->addRelation('RelatedProductsRelatedByMaster', 'Hanzo\\Model\\RelatedProducts', RelationMap::ONE_TO_MANY, array('sku' => 'master', ), 'CASCADE', null, 'RelatedProductssRelatedByMaster');
         $this->addRelation('RelatedProductsRelatedBySku', 'Hanzo\\Model\\RelatedProducts', RelationMap::ONE_TO_MANY, array('sku' => 'sku', ), 'CASCADE', null, 'RelatedProductssRelatedBySku');
+        $this->addRelation('SearchProductsTagsRelatedByMasterProductsId', 'Hanzo\\Model\\SearchProductsTags', RelationMap::ONE_TO_MANY, array('id' => 'master_products_id', ), 'CASCADE', null, 'SearchProductsTagssRelatedByMasterProductsId');
+        $this->addRelation('SearchProductsTagsRelatedByProductsId', 'Hanzo\\Model\\SearchProductsTags', RelationMap::ONE_TO_MANY, array('id' => 'products_id', ), 'CASCADE', null, 'SearchProductsTagssRelatedByProductsId');
         $this->addRelation('ProductsI18n', 'Hanzo\\Model\\ProductsI18n', RelationMap::ONE_TO_MANY, array('id' => 'id', ), 'CASCADE', null, 'ProductsI18ns');
     } // buildRelations()
 
