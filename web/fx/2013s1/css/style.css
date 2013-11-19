@@ -2059,6 +2059,11 @@ html.touch .product-list .buy-set {
   text-decoration: underline;
 }
 
+.js-faceted-container label {
+  margin-top: 0;
+  margin-left: 5px;
+}
+
 /**
 | _account
 */

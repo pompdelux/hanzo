@@ -4,6 +4,7 @@ namespace Hanzo\Bundle\CategoryBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 use Hanzo\Core\CoreController;
@@ -31,17 +32,46 @@ class DefaultController extends CoreController
      * @param $category_id
      * @param $pager
      */
-    public function viewAction($cms_id, $category_id, $show, $pager = 1)
+    public function viewAction(Request $request, $cms_id, $category_id, $show, $pager = 1)
     {
-        $hanzo = Hanzo::getInstance();
-        $container = $hanzo->container;
-        $locale = $hanzo->get('core.locale');
+        $hanzo      = Hanzo::getInstance();
+        $container  = $hanzo->container;
+        $locale     = $hanzo->get('core.locale');
         $translator = $this->get('translator');
 
-        $cache_id = explode('_', $this->get('request')->get('_route'));
+        $cache_id = explode('_', $request->get('_route'));
         $cache_id = array($cache_id[0], $cache_id[2], $cache_id[1], $show, $pager);
 
-        if($this->getFormat() !== 'json') $cache_id[] = 'html'; // Extra cache id if its not a json call
+        $use_filter = false;
+        $color_map = null;
+
+        // Extra cache id if its not a json call
+        if ($this->getFormat() !== 'json') {
+            $cache_id[] = 'html';
+        }
+
+        // TODO: should not be set here !!
+        $color_mapping = [
+            'rose'          => ['rose','khaki'],
+            'ice blue'      => ['ice blue','khaki'],
+            'curry'         => ['curry','curry/grey','sand'],
+            'blue - cerise' => ['blue','cerise','cerise/grey','khaki'],
+            'wine'          => ['wine','khaki'],
+            'grey'          => ['grey','grey star','grey melange','off white','dark grey','light grey','black'],
+            'denim'         => ['blue denim'],
+        ];
+
+        if ($request->query->has('filter')) {
+            $color_map = [];
+            foreach ($request->query->get('color', []) as $color) {
+                if (isset($color_mapping[$color])) {
+                    $color_map = array_merge($color_map, $color_mapping[$color]);
+                }
+            }
+
+            $cache_id = array_merge($cache_id, $color_map);
+            $use_filter = true;
+        }
 
         $html = $this->getCache($cache_id); // If there a cached version, html has both the json and html version
         $data = null;
@@ -49,19 +79,20 @@ class DefaultController extends CoreController
         /*
          *  If html wasnt cached retrieve a fresh set of data
          */
-        if(!$html){
+        if (!$html){
             $cms_page = CmsPeer::getByPK($cms_id, $locale);
             $settings = $cms_page->getSettings(null, false);
 
-            $color_map = null;
-            if(!empty($settings->colors)){
-                $color_map = explode(',', $settings->colors);
+            if (empty($color_map)) {
+                if(!empty($settings->colors)){
+                    $color_map = explode(',', $settings->colors);
+                }
             }
 
-            $route = $container->get('request')->get('_route');
-            $router = $container->get('router');
-            $domain_id = $hanzo->get('core.domain_id');
-            $show_by_look = (bool)($show === 'look');
+            $route        = $request->get('_route');
+            $router       = $container->get('router');
+            $domain_id    = $hanzo->get('core.domain_id');
+            $show_by_look = (bool) ($show === 'look');
 
             $result = ProductsImagesCategoriesSortQuery::create()
                 ->useProductsQuery()
@@ -73,7 +104,7 @@ class DefaultController extends CoreController
                 ->endUse()
                 ->joinWithProducts()
                 ->useProductsImagesQuery()
-                    ->filterByType($show_by_look?'set':'overview')
+                    ->filterByType($show_by_look ? 'set' : 'overview')
                     ->groupByImage()
                 ->endUse()
                 ->joinWithProductsImages()
@@ -82,7 +113,14 @@ class DefaultController extends CoreController
 
             // If there are any colors in the settings to order from, add the order column here.
             // Else order by normal Sort in db
+
             if ($color_map) {
+                if ($use_filter) {
+                    $result = $result->useProductsImagesQuery()
+                        ->filterByColor($color_map)
+                    ->endUse();
+                }
+
                 $result = $result->useProductsImagesQuery()
                     ->addAscendingOrderByColumn(sprintf(
                         "FIELD(%s, %s)",
@@ -110,26 +148,26 @@ class DefaultController extends CoreController
 
                 // Only use 01.
                 if (preg_match('/_01.jpg/', $image)) {
-                    $product = $record->getProducts();
+                    $product       = $record->getProducts();
                     $product_ids[] = $product->getId();
 
                     $image_overview = str_replace('_set_', '_overview_', $image);
-                    $image_set = str_replace('_overview_', '_set_', $image);
+                    $image_set      = str_replace('_overview_', '_set_', $image);
 
                     $alt = trim(Tools::stripTags($translator->trans('headers.category-'.$category_id, [], 'category'))).': '.$product->getSku();
 
                     $records[] = array(
-                        'sku' => $product->getSku(),
+                        'sku'          => $product->getSku(),
                         'out_of_stock' => $product->getIsOutOfStock(),
-                        'id' => $product->getId(),
-                        'title' => $product->getSku(),
-                        'image' => ($show_by_look) ? $image_set : $image_overview,
-                        'image_flip' => ($show_by_look) ? $image_overview : $image_set,
-                        'alt' => $alt,
-                        'url' => $router->generate($product_route, array(
+                        'id'           => $product->getId(),
+                        'title'        => $product->getSku(),
+                        'image'        => ($show_by_look) ? $image_set : $image_overview,
+                        'image_flip'   => ($show_by_look) ? $image_overview : $image_set,
+                        'alt'          => $alt,
+                        'url'          => $router->generate($product_route, array(
                             'product_id' => $product->getId(),
-                            'title' => Tools::stripText($product->getSku()),
-                            'focus' => $record->getProductsImages()->getId()
+                            'title'      => Tools::stripText($product->getSku()),
+                            'focus'      => $record->getProductsImages()->getId()
                         )),
                     );
                 }
