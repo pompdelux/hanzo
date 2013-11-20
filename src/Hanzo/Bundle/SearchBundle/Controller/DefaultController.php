@@ -298,6 +298,12 @@ class DefaultController extends CoreController
      */
     protected function productSearch($q, $locale, $domain_id)
     {
+
+// TableQuery::create()->where("match(column) against('+text' in boolean mode)")->find();
+
+
+
+
         $products = ProductsQuery::create()
             ->useProductsDomainsPricesQuery()
                 ->filterByDomainsId($domain_id)
