@@ -4,7 +4,7 @@
         <body>
             <trans-unit id="size.guide.link">
                 <source>size.guide.link</source>
-                <target><![CDATA[<a href="da_DK/forside/kundeservice/sizeguide" target="_blank" title="Size guide">» Size guide</a>]]></target>
+                <target><![CDATA[<a href="/da_DK/forside/kundeservice/sizeguide" target="_blank" title="Size guide">» Size guide</a>]]></target>
             </trans-unit>
             <trans-unit id="out.of.stock">
                 <source>out.of.stock</source>
