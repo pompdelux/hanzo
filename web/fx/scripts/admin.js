@@ -42,12 +42,12 @@
         }
       });
 
-      /* Admin Sortable list to show and update Cms pages' order*/
+      /* Admin Sortable list to show and update Cms pages' order */
       $('#sortable-list').nestedSortable({
         listType: 'ul',
         handle: 'div',
         helper: 'clone',
-        items: 'li:not(.ui-state-disabled)',
+        items: 'li',
         cancel: '',
         opacity: 0.5,
         placeholder: 'helper',
