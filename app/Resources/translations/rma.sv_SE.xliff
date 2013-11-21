@@ -128,7 +128,7 @@
             </trans-unit>
             <trans-unit id="rma.slip.thead.cause">
                 <source>rma.slip.thead.cause</source>
-                <target><![CDATA[&Aring;rsag]]></target>
+                <target><![CDATA[Orsak]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.replacement">
                 <source>rma.slip.thead.replacement</source>
