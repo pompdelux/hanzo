@@ -144,9 +144,9 @@ class GothiaApiCallResponse
     private function checkResponseForErrors( $rawResponse )
     {
         $prettyErrors = array(
-            5000  => 'Kunne ikke forbinde til Gothia Faktura service, prøv igen senere',
-            10004 => 'Tyvärr blev du inte godkänd i vår kontroll vid köp mot faktura.<br>Var vänlig kontrollera att du har angivit ditt namn, personnummer och folkbokföringsadress enligt folkbokföringens register korrekt, alternativt välj ett annat betalningssätt.',
-            10006 => 'Tyvärr blev du inte godkänd i vår kontroll vid köp mot faktura.<br>Var vänlig kontrollera att du har angivit ditt namn, personnummer och folkbokföringsadress enligt folkbokföringens register korrekt, alternativt välj ett annat betalningssätt.',
+            5000  => 'We are unable to connect to Gothia Invoice service, please try again later.',
+            10004 => 'We couldn\'t find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.', // Customer not found
+            10006 => 'We couldn\'t find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.', // Customer not found in external DB
         );
 
         if (is_array($rawResponse)) {
@@ -166,11 +166,9 @@ class GothiaApiCallResponse
                 }
 
                 if (isset($data['TemporaryExternalProblem']) && ($data['TemporaryExternalProblem'] !== 'false')) {
-                    $this->errors[] = 'Kunne ikke forbinde til Gothia Faktura service, prøv igen senere';
+                    $this->errors[] = 'We are unable to connect to Gothia Invoice service, please try again later.';
                 }
             }
-        } else {
-            $this->errors[] = 'Kunne ikke forbinde til Gothia Faktura service, prøv igen senere';
         }
 
         if (!empty($this->errors)) {
