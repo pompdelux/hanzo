@@ -91,31 +91,31 @@
             </trans-unit>
             <trans-unit id="rma.slip.id">
                 <source>rma.slip.id</source>
-                <target>Kundenummer</target>
+                <target><![CDATA[Kundenummer]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.name">
                 <source>rma.slip.name</source>
-                <target>Navn</target>
+                <target><![CDATA[Navn]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.email">
                 <source>rma.slip.email</source>
-                <target>Email</target>
+                <target><![CDATA[Email]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.phone">
                 <source>rma.slip.phone</source>
-                <target>Telefon</target>
+                <target><![CDATA[Telefon]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.order_id">
                 <source>rma.slip.order_id</source>
-                <target>E-ordrenummer</target>
+                <target><![CDATA[E-ordrenummer]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.deliveryaddress">
                 <source>rma.slip.deliveryaddress</source>
-                <target>Leveringsaddresse</target>
+                <target><![CDATA[Leveringsaddresse]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.title.order_id">
                 <source>rma.slip.title.order_id</source>
-                <target>POMPdeLUX returseddel Ordre ID %order_id%</target>
+                <target><![CDATA[POMPdeLUX returseddel Ordre ID %order_id%]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.description">
                 <source>rma.slip.description</source>
@@ -125,7 +125,7 @@ du returnerer.<br><br>Er varen du &oslash;nsker at ombytte til udsolgt, refunder
             </trans-unit>
             <trans-unit id="rma.slip.thead.activitycode">
                 <source>rma.slip.thead.activitycode</source>
-                <target>Aktivitet</target>
+                <target><![CDATA[Aktivitet]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.cause">
                 <source>rma.slip.thead.cause</source>
@@ -133,15 +133,27 @@ du returnerer.<br><br>Er varen du &oslash;nsker at ombytte til udsolgt, refunder
             </trans-unit>
             <trans-unit id="rma.slip.thead.replacement">
                 <source>rma.slip.thead.replacement</source>
-                <target>Byttes til</target>
+                <target><![CDATA[Byttes til]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.description">
                 <source>rma.slip.thead.description</source>
-                <target>Din kommentar</target>
+                <target><![CDATA[Din kommentar]]></target>
             </trans-unit>
             <trans-unit id="rma.history.title">
                 <source>rma.history.title</source>
                 <target>Opret RMA returseddel.</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.thead.products">
+                <source>rma.slip.thead.products</source>
+                <target><![CDATA[Produkter]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.size">
+                <source>rma.slip.size</source>
+                <target><![CDATA[St&oslash;rrelse]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.color">
+                <source>rma.slip.color</source>
+                <target><![CDATA[Farve]]></target>
             </trans-unit>
         </body>
     </file>

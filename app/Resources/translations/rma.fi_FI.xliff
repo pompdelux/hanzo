@@ -91,31 +91,31 @@
             </trans-unit>
             <trans-unit id="rma.slip.id">
                 <source>rma.slip.id</source>
-                <target>Asiakasnumero</target>
+                <target><![CDATA[Asiakasnumero]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.name">
                 <source>rma.slip.name</source>
-                <target>Nimi</target>
+                <target><![CDATA[Nimi]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.email">
                 <source>rma.slip.email</source>
-                <target>Sähköposti</target>
+                <target><![CDATA[S&auml;hk&ouml;posti]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.phone">
                 <source>rma.slip.phone</source>
-                <target>Puhelin</target>
+                <target><![CDATA[Puhelin]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.order_id">
                 <source>rma.slip.order_id</source>
-                <target>E-tilausnumero</target>
+                <target><![CDATA[E-tilausnumero]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.deliveryaddress">
                 <source>rma.slip.deliveryaddress</source>
-                <target>Toimitusosoite</target>
+                <target><![CDATA[Toimitusosoite]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.title.order_id">
                 <source>rma.slip.title.order_id</source>
-                <target>POMPdeLUX-palautuslomake tilaustunnus ID %order_id%</target>
+                <target><![CDATA[POMPdeLUX-palautuslomake tilaustunnus ID %order_id%]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.description">
                 <source>rma.slip.description</source>
@@ -125,23 +125,35 @@ reklamaation tai palauttaa v&auml;&auml;rin toimitetun tuotteen, voit luonnollis
             </trans-unit>
             <trans-unit id="rma.slip.thead.activitycode">
                 <source>rma.slip.thead.activitycode</source>
-                <target>Toiminto</target>
+                <target><![CDATA[Toiminto]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.cause">
                 <source>rma.slip.thead.cause</source>
-                <target><![CDATA[&Aring;rsag]]></target>
+                <target><![CDATA[Aiheuttaa]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.replacement">
                 <source>rma.slip.thead.replacement</source>
-                <target>Vaihdetaan tuotteeseen</target>
+                <target><![CDATA[Vaihdetaan tuotteeseen]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.description">
                 <source>rma.slip.thead.description</source>
-                <target>Kommenttisi</target>
+                <target><![CDATA[Kommenttisi]]></target>
             </trans-unit>
             <trans-unit id="rma.history.title">
                 <source>rma.history.title</source>
                 <target>Luo RMA palautuslomake.</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.thead.products">
+                <source>rma.slip.thead.products</source>
+                <target><![CDATA[Tuotteet]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.size">
+                <source>rma.slip.size</source>
+                <target><![CDATA[Koko]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.color">
+                <source>rma.slip.color</source>
+                <target><![CDATA[V&auml;ri]]></target>
             </trans-unit>
         </body>
     </file>
