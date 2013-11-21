@@ -26,27 +26,27 @@
       <table>
         <tbody>
           <tr>
-            <th>{{ 'rma.slip.id'|trans({}, 'rma') }}</th>
+            <th>{{ 'rma.slip.id'|trans({}, 'rma')|raw }}</th>
             <td>{{ customer.id }}</td>
           </tr>
           <tr>
-            <th>{{ 'rma.slip.name'|trans({}, 'rma') }}</th>
+            <th>{{ 'rma.slip.name'|trans({}, 'rma')|raw }}</th>
             <td>{{ customer.name }}</td>
           </tr>
           <tr>
-            <th>{{ 'rma.slip.email'|trans({}, 'rma') }}</th>
+            <th>{{ 'rma.slip.email'|trans({}, 'rma')|raw }}</th>
             <td>{{ customer.email }}</td>
           </tr>
           <tr>
-            <th>{{ 'rma.slip.phone'|trans({}, 'rma') }}</th>
+            <th>{{ 'rma.slip.phone'|trans({}, 'rma')|raw }}</th>
             <td>{{ customer.phone }}</td>
           </tr>
           <tr>
-            <th>{{ 'rma.slip.order_id'|trans({}, 'rma') }}</th>
+            <th>{{ 'rma.slip.order_id'|trans({}, 'rma')|raw }}</th>
             <td>{{ order.id }}</td>
           </tr>
           <tr>
-            <th>{{ 'rma.slip.deliveryaddress'|trans({}, 'rma') }}</th>
+            <th>{{ 'rma.slip.deliveryaddress'|trans({}, 'rma')|raw }}</th>
             <td>{{ address_block|raw }}</td>
           </tr>
         </tbody>
@@ -65,11 +65,11 @@
               {% if false %}
                 {{ product_image_tag(product.basket_image, '57x100', { 'alt' : product.products_name }) }}
               {% endif %}
-              <th class="left">{{ "products"|trans }}</th>
-              <th class="left">{{ "rma.slip.thead.activitycode"|trans({}, 'rma') }}</th>
+              <th class="left">{{ "rma.slip.thead.products"|trans({}, 'rma')|raw }}</th>
+              <th class="left">{{ "rma.slip.thead.activitycode"|trans({}, 'rma')|raw }}</th>
               <th class="left">{{ "rma.slip.thead.cause"|trans({}, 'rma')|raw }}</th>
-              <th class="left">{{ "rma.slip.thead.replacement"|trans({}, 'rma') }}</th>
-              <th class="left">{{ "rma.slip.thead.description"|trans({}, 'rma') }}</th>
+              <th class="left">{{ "rma.slip.thead.replacement"|trans({}, 'rma')|raw }}</th>
+              <th class="left">{{ "rma.slip.thead.description"|trans({}, 'rma')|raw }}</th>
             </tr>
           </thead>
           <tbody>
@@ -82,11 +82,11 @@
                 <div class="info">
                   <span class="title">{{ product.products_name }}</span>
                   <div class="size">
-                    <label>{{ "size"|trans }}:</label>
+                    <label>{{ "rma.slip.size"|trans({}, 'rma')|raw }}:</label>
                     <span>{{ product.products_size }}</span>
                   </div>
                   <div class="color">
-                    <label>{{ "color"|trans }}:</label>
+                    <label>{{ "rma.slip.color"|trans({}, 'rma')|raw }}:</label>
                     <span>{{ product.products_color }}</span>
                   </div>
                 </div>
@@ -98,11 +98,11 @@
                 <div class="info">
                   <span class="title">{{ product.rma_replacement.master }}</span>
                   <div class="size">
-                    <label>{{ "size"|trans }}:</label>
+                    <label>{{ "rma.slip.size"|trans({}, 'rma')|raw }}:</label>
                     <span>{{ product.rma_replacement.size }}</span>
                   </div>
                   <div class="color">
-                    <label>{{ "color"|trans }}:</label>
+                    <label>{{ "rma.slip.color"|trans({}, 'rma')|raw }}:</label>
                     <span>{{ product.rma_replacement.color }}</span>
                   </div>
                 </div>
