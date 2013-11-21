@@ -255,6 +255,8 @@ class DefaultController extends CoreController
      */
     public function advancedAction($id = null)
     {
+$this->container->get('hanzo_search.product_and_category_indexer')->build();
+
         $hanzo     = Hanzo::getInstance();
         $locale    = $hanzo->get('core.locale');
         $page      = CmsPeer::getByPK($id, $locale);
