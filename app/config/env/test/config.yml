@@ -15,7 +15,6 @@ framework:
     trusted_hosts: [ '.*?\.?testpompdelux.com|localhost' ]
     templating:
         assets_base_urls:
-        assets_base_urls:
             http: [ "%assets_base_url%" ]
             ssl: [ "%assets_base_url%" ]
 
