@@ -353,20 +353,6 @@ class GothiaController extends CoreController
             ));
         }
 
-        if ( $response->isError() ) {
-            $error = $response->data;
-            if (empty($error) && !empty($response->errors)) {
-                $error = implode("\n", $response->errors);
-            }
-            Tools::debug( 'Confirm action error', __METHOD__, array( 'Transaction id' => $response->transactionId, 'Data' => $error));
-
-            $api->updateOrderFailed( $request, $order );
-            return $this->json_response(array(
-                'status' => FALSE,
-                'message' => $translator->trans('json.placereservation.error', array(), 'gothia'),
-            ));
-        }
-
         // NICETO: priority: low, refacture gothia to look more like DibsController
 
         try {

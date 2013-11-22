@@ -100,15 +100,19 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
             $t = $hanzo->container->get('translator');
 
             // Collect all errors to add into the Exception.
-            $errorMessages = array($t->trans('We are unable to connect to Gothia Invoice service, please try again later.'));
-            array_push($errorMessages, $t->trans($client->getError()));
-            foreach ($gothiaApiCallResponse->errors as $error) {
-              array_push($errorMessages, $t->trans($error));
+            $errorMessages = array($t->trans('We were unable to approve your payment with Gothia Invoice service.'));
+
+            if (!empty($client->getError())) {
+              array_push($errorMessages, $t->trans($client->getError()));
             }
-
-            throw new GothiaApiCallException(implode('<br>', $errorMessages));
+            foreach ($gothiaApiCallResponse->errors as $error) {
+              if (!empty($error) && !in_array($t->trans($error), $errorMessages)) {
+                array_push($errorMessages, $t->trans($error));
+              }
+            }
+            array_push($errorMessages, $t->trans('Please contact POMPdeLUX customer service if you keep recieving this error.'));
+            throw new GothiaApiCallException(implode('<br><br>', $errorMessages));
         }
-
 
         return $gothiaApiCallResponse;
     }

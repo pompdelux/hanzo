@@ -147,6 +147,7 @@ class GothiaApiCallResponse
             5000  => 'We are unable to connect to Gothia Invoice service, please try again later.',
             10004 => 'We couldn\'t find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.', // Customer not found
             10006 => 'We couldn\'t find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.', // Customer not found in external DB
+            10036 => 'The reservation was not approved at Gothia Invoice Service. You may have exceeded the limit of reservations at Gothia.', // Reservation is not approved
         );
 
         if (is_array($rawResponse)) {
