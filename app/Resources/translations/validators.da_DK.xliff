@@ -38,13 +38,21 @@
                 <source>address.last_name.required</source>
                 <target>Du skal udfylde efternavn</target>
             </trans-unit>
+            <trans-unit id="name.max.length">
+                <source>name.max.length</source>
+                <target>Dit fulde navn må maksimalt bestå af {{ limit }} tegn|Dit fulde navn må maksimalt bestå af {{ limit }} tegn</target>
+            </trans-unit>
             <trans-unit id="host.required" approved="no">
                 <source>host.required</source>
                 <target>Du skal angive værtinde</target>
             </trans-unit>
-            <trans-unit id="address_line_1.required" approved="no">
+            <trans-unit id="address_line_1.required">
                 <source>address_line_1.required</source>
                 <target>Du skal udfylde adressen|Du skal udfylde adressen</target>
+            </trans-unit>
+            <trans-unit id="address_line_1.max.length">
+                <source>address_line_1.max.length</source>
+                <target>Adressefeltet må maksimalt bestå af {{ limit }} tegn|Adressefeltet må maksimalt bestå af {{ limit }} tegn</target>
             </trans-unit>
             <trans-unit id="postal_code.required" approved="no">
                 <source>postal_code.required</source>

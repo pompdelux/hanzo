@@ -351,6 +351,10 @@
                 <source>address.address_line_1.required</source>
                 <target>Bitte Adresse ausfüllen</target>
             </trans-unit>
+            <trans-unit id="name.max.length">
+                <source>name.max.length</source>
+                <target>Der volle Name kann max. 30 Zeichen enthalten</target>
+            </trans-unit>
             <trans-unit id="address.postal_code.required">
                 <source>address.postal_code.required</source>
                 <target>Bitte Postleitzahl ausfüllen</target>

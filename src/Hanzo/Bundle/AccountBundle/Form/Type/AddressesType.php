@@ -23,64 +23,60 @@ class AddressesType extends AbstractType
         $builder->add('type', 'hidden', array('translation_domain' => 'account'));
 
         $builder->add('address_line_1', null, array(
-            'required' => TRUE,
+            'required'           => TRUE,
             'translation_domain' => 'account',
-            'error_bubbling' => true,
-            'max_length' => 35
+            'error_bubbling'     => true,
+            'max_length'         => 35
         ));
 
         $attr = [];
-        if (in_array($short_domain_key, ['DK', 'NO', 'SE'])) {
+        if (in_array($short_domain_key, ['DK', 'NO', 'SE', 'FI'])) {
             $attr = ['class' => 'auto-city'];
         }
 
         $builder->add('postal_code', null, array(
-            'required' => TRUE,
+            'required'           => TRUE,
             'translation_domain' => 'account',
-            'error_bubbling' => true,
-            'attr' => $attr,
+            'error_bubbling'     => true,
+            'attr'               => $attr,
         ));
         $builder->add('city', null, array(
-            'required' => TRUE,
+            'required'           => TRUE,
             'translation_domain' => 'account',
-            'error_bubbling' => true,
+            'error_bubbling'     => true,
         ));
 
-        if ( count( $this->countries ) > 1 )
-        {
-          $choices = array();
-          foreach ($this->countries as $country)
-          {
-            $choices[$country->getId()] = $country->getLocalName();
-          }
+        if ( count( $this->countries ) > 1 ) {
+            $choices = array();
+            foreach ($this->countries as $country) {
+               $choices[$country->getId()] = $country->getLocalName();
+            }
 
-          $builder->add('countries_id', 'choice', array(
-            'choices'            => $choices,
-            'translation_domain' => 'account',
-            'error_bubbling' => true,
-          ));
-          $builder->add('country', 'hidden', array('translation_domain' => 'account'));
-        }
-        else
-        {
-          $builder->add('country', null, array(
-            'translation_domain' => 'account',
-            'read_only' => TRUE,
-            'error_bubbling' => true,
-          ));
-          $builder->add('countries_id', 'hidden', array('translation_domain' => 'account'));
+            $builder->add('countries_id', 'choice', array(
+                'choices'            => $choices,
+                'translation_domain' => 'account',
+                'error_bubbling'     => true,
+            ));
+            $builder->add('country', 'hidden', array('translation_domain' => 'account'));
+        } else {
+            $builder->add('country', null, array(
+                'translation_domain' => 'account',
+                'read_only'          => TRUE,
+                'error_bubbling'     => true,
+            ));
+            $builder->add('countries_id', 'hidden', array('translation_domain' => 'account'));
         }
     }
 
     public function getDefaultOptions(array $options)
     {
-      return array(
-        'data_class' => 'Hanzo\Model\Addresses',
-      );
+        return array(
+            'data_class' => 'Hanzo\Model\Addresses',
+        );
     }
 
     public function getName()
     {
-      return 'addresses';
+        return 'addresses';
     }
 }

@@ -335,6 +335,10 @@
                 <source>address.address_line_1.required</source>
                 <target>You must provide your address.</target>
             </trans-unit>
+            <trans-unit id="name.max.length">
+                <source>name.max.length</source>
+                <target>Your full name may contain max. 30 characters</target>
+            </trans-unit>
             <trans-unit id="address.postal_code.required">
                 <source>address.postal_code.required</source>
                 <target>Postal code must be provided.</target>

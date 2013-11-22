@@ -8,6 +8,7 @@ use Hanzo\Model\om\BaseCustomers;
 use Hanzo\Model\CustomersQuery;
 
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Symfony\Component\Validator\ExecutionContext;
 
 /**
  * Skeleton subclass for representing a row from the 'customers' table.
@@ -232,4 +233,16 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
         return true;
     }
 
+    /**
+     * Validate length of users full name
+     *
+     * @param  ExecutionContext $context
+     */
+    public function isFullNameWithinLimits(ExecutionContext $context)
+    {
+        $length = mb_strlen($this->getFirstName().' '.$this->getLastName());
+        if (30 < $length) {
+            $context->addViolationAtSubPath('first_name', 'name.max.length', ['{{ limit }}' => 30], $length, $length);
+        }
+    }
 } // Customers
