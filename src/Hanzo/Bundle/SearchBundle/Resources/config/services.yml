@@ -1,7 +1,7 @@
 parameters:
-#    hanzo_search.example.class: Hanzo\Bundle\SearchBundle\Example
+    hanzo_search.product_and_category_indexer.class: Hanzo\Bundle\SearchBundle\ProductAndCategoryIndexBuilder
 
 services:
-#    hanzo_search.example:
-#        class: %hanzo_search.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    hanzo_search.product_and_category_indexer:
+        class: %hanzo_search.product_and_category_indexer.class%
+        arguments: [@propel.configuration, @router, %kernel.root_dir%, %kernel.cache_dir%]
