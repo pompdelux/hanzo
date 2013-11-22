@@ -153,7 +153,7 @@ class AddressController extends CoreController
         $builder->add('address_line_1', null, [
             'required'           => true,
             'translation_domain' => 'account',
-            'max_length'         => 150
+            'max_length'         => 35
         ]);
 
         $attr = [];
