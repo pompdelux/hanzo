@@ -34,6 +34,13 @@ class GothiaApiCallResponse
      **/
     public $transactionId = null;
 
+    public $prettyErrors = array(
+        5000  => 'We are unable to connect to Gothia Invoice service, please try again later.',
+        10004 => 'We couldn\'t find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.', // Customer not found
+        10006 => 'We couldn\'t find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.', // Customer not found in external DB
+        10036 => 'The reservation was not approved at Gothia Invoice Service. You may have exceeded the limit of reservations at Gothia.', // Reservation is not approved
+    );
+
     /**
      * __construct
      * @return void
@@ -143,12 +150,6 @@ class GothiaApiCallResponse
      **/
     private function checkResponseForErrors( $rawResponse )
     {
-        $prettyErrors = array(
-            5000  => 'We are unable to connect to Gothia Invoice service, please try again later.',
-            10004 => 'We couldn\'t find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.', // Customer not found
-            10006 => 'We couldn\'t find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.', // Customer not found in external DB
-            10036 => 'The reservation was not approved at Gothia Invoice Service. You may have exceeded the limit of reservations at Gothia.', // Reservation is not approved
-        );
 
         if (is_array($rawResponse)) {
             foreach ($rawResponse as $key => $data) {
@@ -157,10 +158,10 @@ class GothiaApiCallResponse
                         if (!empty($errorData)) {
                             if (!isset($errorData['ID']) && isset($errorData[0]['ID'])) {
                                 foreach ($errorData as $subError) {
-                                    $this->errors[] = (isset( $prettyErrors[$subError['ID']] )) ? $prettyErrors[$subError['ID']] : $subError['Message'];
+                                    $this->errors[] = (isset( $this->prettyErrors[$subError['ID']] )) ? $this->prettyErrors[$subError['ID']] : $subError['Message'];
                                 }
                             } else {
-                                $this->errors[] = (isset( $prettyErrors[$errorData['ID']] )) ? $prettyErrors[$errorData['ID']] : $errorData['Message'];
+                                $this->errors[] = (isset( $this->prettyErrors[$errorData['ID']] )) ? $this->prettyErrors[$errorData['ID']] : $errorData['Message'];
                             }
                         }
                     }
