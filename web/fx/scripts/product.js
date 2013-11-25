@@ -222,7 +222,7 @@
             $.each(response.data.products, function(index, product) {
               $('select.color', $form).append('<option value="'+product.color+'">'+product.color+'</option>');
             });
-            $('select.color', $form).closest('label').removeClass('off');
+            $('select.color', $form).removeAttr('disabled').closest('label').removeClass('off');
           }
 
           if (name == 'color') {
@@ -356,7 +356,7 @@
 
       $this.find('label').each(function() {
         if (this.htmlFor !== 'size') {
-          $(this).addClass('off');
+          $(this).attr('disabled', 'disabled');
         }
       });
 

@@ -148,9 +148,9 @@
             <div><span class="small">{{ 'choose.size.note'|trans }}</span></div>
           </label>
 
-          <label for="color" class="off">
+          <label for="color">
             <span>{{ "color"|trans }}:</span>
-            <select class="color" name="color">
+            <select class="color" name="color" disabled="disabled">
               <option value="">{{ "choose"|trans }}</option>
             {% for color in product.colors %}
               <option value="{{ color }}">{{ color }}</option>
