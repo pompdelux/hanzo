@@ -219,8 +219,14 @@
 
           // populate color select with options
           if (name === 'size') {
+            _resetColor();
             $.each(response.data.products, function(index, product) {
-              $('select.color', $form).append('<option value="'+product.color+'">'+product.color+'</option>');
+              $('select.color option', $form).each(function(index) {
+                if (this.value === product.color){
+                  $(this).removeAttr('disabled');
+                }
+              });
+              // $('select.color', $form).append('<option value="'+product.color+'">'+product.color+'</option>');
             });
             $('select.color', $form).closest('label').removeClass('off');
           }
@@ -348,9 +354,14 @@
         });
       }
 
+      // $this.find('select.color option').each(function(index) {
+      //   if (this.value !== ''){
+      //     $(this).remove();
+      //   }
+      // });
       $this.find('select.color option').each(function(index) {
         if (this.value !== ''){
-          $(this).remove();
+          $(this).attr('disabled', 'disabled');
         }
       });
 
@@ -369,6 +380,16 @@
         $('select.size option:first', $this).prop('selected', true);
         $('select.color option:first', $this).prop('selected', true);
       }
+    };
+
+    var _resetColor = function() {
+      var $this = $('form.buy');
+      $('select.color option:first', $this).prop('selected', true);
+      $('select.color option', $this).each(function(index) {
+        if (this.value !== ''){
+          $(this).attr('disabled', 'disabled');
+        }
+      });
     };
 
     return pub;
