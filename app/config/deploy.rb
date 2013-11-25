@@ -57,7 +57,7 @@ set :use_sudo, false
 ssh_options[:forward_agent] = true
 
 # own rules for running tasks after deploy
-after 'deploy:restart', 'deploy:symlinks', 'symfony:cache:assets_update', 'symfony:cache:redis_clear', 'deploy:opcode-clear', 'symfony:cache:varnish_clear', 'deploy:cleanup', 'deploy:update_permissions', 'deploy:update_permissions_shared', 'deploy:send_email'
+after 'deploy:restart', 'deploy:symlinks', 'symfony:cache:assets_update', 'symfony:cache:redis_clear', 'deploy:opcode_clear', 'symfony:cache:varnish_clear', 'deploy:cleanup', 'deploy:update_permissions', 'deploy:update_permissions_shared', 'deploy:send_email'
 ## also clear redis and varnish when calling cache:clear
 after 'symfony:cache:clear', 'symfony:cache:redis_clear', 'symfony:cache:varnish_clear'
 # mail after rollback and warn about clearing cache. Doesnt seem to work with "after 'deploy:rollback", because it tries to clear the old current dir
@@ -76,7 +76,7 @@ namespace :deploy do
     run("wget -q -O /dev/null http://localhost/tools.php?action=apc-clear")
   end
   desc "Clear OPcache or apc on the local server"
-  task :apcclear, :roles => :symfonyweb do
+  task :opcode_clear, :roles => :symfonyweb do
     run("wget -q -O /dev/null http://localhost/tools.php?action=opcode-clear")
   end
   desc "Reload apache"
