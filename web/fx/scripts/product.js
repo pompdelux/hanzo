@@ -219,8 +219,15 @@
 
           // populate color select with options
           if (name === 'size') {
+            _resetColor();
             $.each(response.data.products, function(index, product) {
-              $('select.color', $form).append('<option value="'+product.color+'">'+product.color+'</option>');
+              $('select.color option', $form).each(function(index) {
+                if (this.value === product.color){
+                  $(this).removeAttr('disabled');
+                  $(this).text($(this).data('text'));
+                }
+              });
+              // $('select.color', $form).append('<option value="'+product.color+'">'+product.color+'</option>');
             });
             $('select.color', $form).removeAttr('disabled').closest('label').removeClass('off');
           }
@@ -350,13 +357,15 @@
 
       $this.find('select.color option').each(function(index) {
         if (this.value !== ''){
-          $(this).remove();
+          $(this).attr('disabled', 'disabled');
         }
       });
 
       $this.find('label').each(function() {
         if (this.htmlFor !== 'size') {
           $(this).attr('disabled', 'disabled');
+        if (this.htmlFor === 'quantity') {
+          $(this).addClass('off');
         }
       });
 
@@ -369,6 +378,21 @@
         $('select.size option:first', $this).prop('selected', true);
         $('select.color option:first', $this).prop('selected', true);
       }
+    };
+
+    var _resetColor = function() {
+      var $this = $('form.buy');
+      $('select.color', $this).attr('disabled', 'disabled');
+      $('select.color option:first', $this).prop('selected', true);
+      $('select.color option', $this).each(function(index) {
+        if (this.value !== ''){
+          $(this).attr('disabled', 'disabled');
+          if (!$(this).data('text')) {
+            $(this).data('text', $(this).text());
+          }
+          $(this).text($(this).data('text') + ' (' + Translator.get('js:out.of.stock') + ')');
+        }
+      });
     };
 
     return pub;
