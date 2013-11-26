@@ -378,6 +378,7 @@
       if (section === undefined) {
         $('select.size option:first', $this).prop('selected', true);
         $('select.color option:first', $this).prop('selected', true);
+        _resetColor();
       }
     };
 
