@@ -224,6 +224,7 @@
               $('select.color option', $form).each(function(index) {
                 if (this.value === product.color){
                   $(this).removeAttr('disabled');
+                  $(this).text($(this).data('text'));
                 }
               });
               // $('select.color', $form).append('<option value="'+product.color+'">'+product.color+'</option>');
@@ -354,11 +355,6 @@
         });
       }
 
-      // $this.find('select.color option').each(function(index) {
-      //   if (this.value !== ''){
-      //     $(this).remove();
-      //   }
-      // });
       $this.find('select.color option').each(function(index) {
         if (this.value !== ''){
           $(this).attr('disabled', 'disabled');
@@ -366,7 +362,7 @@
       });
 
       $this.find('label').each(function() {
-        if (this.htmlFor !== 'size') {
+        if (this.htmlFor === 'quantity') {
           $(this).addClass('off');
         }
       });
@@ -384,10 +380,15 @@
 
     var _resetColor = function() {
       var $this = $('form.buy');
+      $('select.color', $this).attr('disabled', 'disabled');
       $('select.color option:first', $this).prop('selected', true);
       $('select.color option', $this).each(function(index) {
         if (this.value !== ''){
           $(this).attr('disabled', 'disabled');
+          if (!$(this).data('text')) {
+            $(this).data('text', $(this).text());
+          }
+          $(this).text($(this).data('text') + ' (' + Translator.get('js:out.of.stock') + ')');
         }
       });
     };
