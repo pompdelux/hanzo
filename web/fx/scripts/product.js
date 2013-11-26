@@ -362,8 +362,9 @@
       });
 
       $this.find('label').each(function() {
-        if (this.htmlFor !== 'size') {
+        if (this.htmlFor === 'color') {
           $(this).attr('disabled', 'disabled');
+        }
         if (this.htmlFor === 'quantity') {
           $(this).addClass('off');
         }
