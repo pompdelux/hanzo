@@ -255,7 +255,7 @@
                 <target><![CDATA[
                 <h2>Home shopping</h2>
                 <ul class="menu">
-                    <li><a href="/sv_SE/forside/home-shopping/bli-vardinna">Bli vardinna</a></li>
+                    <li><a href="/sv_SE/forside/home-shopping">Bli vardinna</a></li>
                     <li><a href="/sv_SE/forside/home-shopping/hitta-saljare">Hitta säljare</a></li>
                     <li><a href="/sv_SE/forside/home-shopping/hitta-saljare-via-kartan">Hitta säljare via kartan</a></li>
                     <li><a href="/sv_SE/forside/home-shopping/appet-hus">Öppet hus</a></li>
