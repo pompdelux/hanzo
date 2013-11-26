@@ -2,7 +2,11 @@
 
 namespace Hanzo\Bundle\SearchBundle;
 
+use Hanzo\Core\Tools;
 use Hanzo\Model\LanguagesQuery;
+use Hanzo\Model\ProductsQuery;
+use Hanzo\Model\SearchFulltext;
+use Hanzo\Model\SearchFulltextQuery;
 use Symfony\Component\Translation\Loader\XliffFileLoader;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 
@@ -16,7 +20,11 @@ class ProductAndCategoryIndexBuilder
 
     /**
      * TODO: Move to BaseIndexBuilder
-     * @return array
+     *
+     * @params PropelConfiguration $propel_configuration Propel configuration object
+     * @params Router              $router               The router object
+     * @params string              $kernel_root_dir      Kernel root dir
+     * @params string              $kernel_cache_dir     Kernel cache dir
      */
     public function __construct(\PropelConfiguration $propel_configuration, Router $router, $kernel_root_dir, $kernel_cache_dir)
     {
@@ -30,20 +38,20 @@ class ProductAndCategoryIndexBuilder
     public function build()
     {
         $category_map = [];
-
         foreach ($this->router->getRouteCollection()->all() as $key => $route) {
-            if (preg_match('/^category_[0-9]+/')) {
-                list ($junk, $id, $locale) = explode('_', $key, 3);
-
-
+            if (preg_match('/^(category|look)_[0-9]+/', $key)) {
+                $info = $route->getDefaults();
+                $category_map[$info['category_id']] = $key;
             }
         }
-
 
         foreach ($this->getConnections() as $name => $x) {
             $connection = $this->getConnection($name);
 
+            SearchFulltextQuery::create()->deleteAll($connection);
+
             foreach ($this->getLocales($connection) as $locale) {
+                // category indexing
                 $file = $this->translation_dir.'category.'.$locale.'.xliff';
                 if (!is_file($file)) {
                     continue;
@@ -52,19 +60,54 @@ class ProductAndCategoryIndexBuilder
                 $parser = new XliffFileLoader();
                 $catalogue = $parser->load($file, $locale, 'category');
 
-                foreach($catalogue->all()['category'] as $key => $text) {
-                    if ('headers.category-' !== substr($key, 0, 17)) {
+                foreach($catalogue->all('category') as $key => $text) {
+                    if (!preg_match('/headers.category-([0-9]+)/i', $key, $matches)) {
                         continue;
                     }
 
-
+                    $index = new SearchFulltext();
+                    $index->setLocale($locale);
+                    $index->setTarget($this->router->generate($category_map[$matches[1]], ['_locale' => $locale]));
+                    $index->setType('category');
+                    $index->setContent(trim(Tools::stripTags($text)));
+                    $index->save($connection);
                 }
 
+                // product indexing
+                $file = $this->translation_dir.'products.'.$locale.'.xliff';
+                if (!is_file($file)) {
+                    continue;
+                }
+
+                $parser = new XliffFileLoader();
+                $catalogue = $parser->load($file, $locale, 'products');
+
+                foreach ($catalogue->all('products') as $key => $text) {
+                    $key = explode('.', $key);
+                    $key = str_replace('_', ' ', $key[1]);
+
+                    $record = ProductsQuery::create()
+                        ->select(['Id', 'ProductsToCategories.categories_id'])
+                        ->joinWithProductsToCategories()
+                        ->findOneBySku($key, $connection)
+                    ;
+
+                    if ($record) {
+                        $route = str_replace(['category', 'look'], 'product', $category_map[$record['ProductsToCategories.categories_id']]);
+                        $index = new SearchFulltext();
+                        $index->setLocale($locale);
+                        $index->setTarget($this->router->generate($route, [
+                            'product_id' => $record['Id'],
+                            'title'      => Tools::stripText($key),
+                            '_locale'    => $locale,
+                        ]));
+                        $index->setType('product');
+                        $index->setContent(trim(Tools::stripTags($text)));
+                        $index->save($connection);
+                    }
+                }
             }
         }
-
-
-
     }
 
     /**
@@ -128,7 +171,9 @@ class ProductAndCategoryIndexBuilder
     /**
      * TODO: Move to BaseIndexBuilder
      *
-     * @return array Array of active languages
+     * @params PropelConnection $connection Connection to use in the lookup.
+     *
+     * @return Array Array of active languages
      */
     protected function getLocales($connection)
     {
