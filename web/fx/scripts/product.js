@@ -219,17 +219,10 @@
 
           // populate color select with options
           if (name === 'size') {
-            _resetColor();
             $.each(response.data.products, function(index, product) {
-              $('select.color option', $form).each(function(index) {
-                if (this.value === product.color){
-                  $(this).removeAttr('disabled');
-                  $(this).text($(this).data('text'));
-                }
-              });
-              // $('select.color', $form).append('<option value="'+product.color+'">'+product.color+'</option>');
+              $('select.color', $form).append('<option value="'+product.color+'">'+product.color+'</option>');
             });
-            $('select.color', $form).removeAttr('disabled').closest('label').removeClass('off');
+            $('select.color', $form).closest('label').removeClass('off');
           }
 
           if (name == 'color') {
@@ -357,15 +350,12 @@
 
       $this.find('select.color option').each(function(index) {
         if (this.value !== ''){
-          $(this).attr('disabled', 'disabled');
+          $(this).remove();
         }
       });
 
       $this.find('label').each(function() {
-        if (this.htmlFor === 'color') {
-          $(this).attr('disabled', 'disabled');
-        }
-        if (this.htmlFor === 'quantity') {
+        if (this.htmlFor !== 'size') {
           $(this).addClass('off');
         }
       });
@@ -378,23 +368,7 @@
       if (section === undefined) {
         $('select.size option:first', $this).prop('selected', true);
         $('select.color option:first', $this).prop('selected', true);
-        _resetColor();
       }
-    };
-
-    var _resetColor = function() {
-      var $this = $('form.buy');
-      $('select.color', $this).attr('disabled', 'disabled');
-      $('select.color option:first', $this).prop('selected', true);
-      $('select.color option', $this).each(function(index) {
-        if (this.value !== ''){
-          $(this).attr('disabled', 'disabled');
-          if (!$(this).data('text')) {
-            $(this).data('text', $(this).text());
-          }
-          $(this).text($(this).data('text') + ' (' + Translator.get('js:out.of.stock') + ')');
-        }
-      });
     };
 
     return pub;
