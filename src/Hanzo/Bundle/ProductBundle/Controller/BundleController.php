@@ -142,6 +142,9 @@ class BundleController extends CoreController
 
         foreach ($products as $id => $product) {
 
+            $sizes = $colors = [];
+            $colors[$product['color']] = $product['color'];
+
             $stock = $this->forward('WebServicesBundle:RestStock:check', array(
                 'version' => 'v1',
                 'master' => $product['master'],
@@ -149,15 +152,18 @@ class BundleController extends CoreController
             ));
             $stock = json_decode($stock->getContent());
 
-            $options = array();
             if (isset($stock->data->products) && count($stock->data->products)) {
                 foreach ($stock->data->products as $p) {
-                    $options[$p->size] = $p->size;
+                    $sizes[$p->size] = [
+                        'value' => $p->size,
+                        'in_stock' => true,
+                    ];
                 }
                 $products[$id]['out_of_stock'] = false;
             }
 
-            $products[$id]['options'] = $options;
+            $products[$id]['sizes'] = $sizes;
+            $products[$id]['colors'] = $colors;
         }
 
         $this->setSharedMaxAge(86400);
@@ -275,6 +281,9 @@ class BundleController extends CoreController
                 continue;
             }
 
+            $sizes = $colors = [];
+            $colors[$product['color']] = $product['color'];
+
             $stock = $this->forward('WebServicesBundle:RestStock:check', array(
                 'version' => 'v1',
                 'master' => $product['master'],
@@ -282,15 +291,18 @@ class BundleController extends CoreController
             ));
             $stock = json_decode($stock->getContent());
 
-            $options = array();
             if (isset($stock->data->products) && count($stock->data->products)) {
                 foreach ($stock->data->products as $p) {
-                    $options[$p->size] = $p->size;
+                    $sizes[$p->getSize()] = [
+                        'value' => $p->getSize(),
+                        'in_stock' => false,
+                    ];
                 }
                 $products[$id]['out_of_stock'] = false;
             }
 
-            $products[$id]['options'] = $options;
+            $products[$id]['sizes'] = $sizes;
+            $products[$id]['colors'] = $colors;
         }
 
         $this->setSharedMaxAge(86400);
