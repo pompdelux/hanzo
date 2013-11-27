@@ -8,33 +8,33 @@
       </trans-unit>
       <trans-unit id="paypal.desc" approved="no">
         <source>paypal.desc</source>
-        <target>PayPal (Gebyr DKK 21,00)</target>
+        <target>PayPal (Gebyr NOK 0,00)</target>
       </trans-unit>
       <trans-unit id="failed.heading" approved="no">
         <source>failed.heading</source>
-        <target>Betalingen fejlede</target>
+        <target>Feil under betalingsprosessen</target>
       </trans-unit>
       <trans-unit id="failed.description" approved="no">
         <source>failed.description</source>
-        <target>Betaling via PayPail fejlede: %message%</target>
+        <target>Feil under betaling via PayPal: %message%</target>
       </trans-unit>
       <trans-unit id="failed.go.back.description" approved="no">
         <source>failed.go.back.description</source>
         <target><![CDATA[
-          Gå <a href="%back_url%">tilbage</a> til tjek ud siden og vælg en anden betalingsmetode
+          Gå <a href="%back_url%">tilbake</a> til oversikten og velg en annen betalingsmetode.
         ]]></target>
       </trans-unit>
       <trans-unit id="form.order_id" approved="no">
         <source>form.order_id</source>
-        <target>Ordre ID: %order_id%</target>
+        <target>Ordre-ID: %order_id%</target>
       </trans-unit>
       <trans-unit id="form.payment_id" approved="no">
         <source>form.payment_id</source>
-        <target>Betalings ID: %payment_id%</target>
+        <target>Betalings-ID: %payment_id%</target>
       </trans-unit>
       <trans-unit id="form.amount" approved="no">
         <source>form.amount</source>
-        <target>Beløb: %amount%</target>
+        <target>Beløp: %amount%</target>
       </trans-unit>
       <trans-unit id="form.heading" approved="no">
         <source>form.heading</source>
@@ -51,12 +51,12 @@
       <trans-unit id="wait.description" approved="no">
         <source>wait.description</source>
         <target><![CDATA[
-          Du bliver nu omdirigeret tilbage til %server%, hvis dette af en eller anden grund ikke sker, <a href="%url%">klik her</a>.
+          Du blir nå omdirigert tilbake til %server%. Hvis dette av en eller annen grunn ikke skjer, <a href="%url%">så klikk her</a>.
         ]]></target>
       </trans-unit>
       <trans-unit id="cancel.payment">
         <source>cancel.payment</source>
-        <target>Afbryd betalingen</target>
+        <target>Avbryt betalingen</target>
       </trans-unit>
     </body>
   </file>

@@ -259,7 +259,7 @@
                 <target><![CDATA[
                 <h2>Home shopping</h2>
                 <ul class="menu">
-                    <li><a href="/sv_SE/forside/home-shopping">Om Home Shopping</a></li>
+                    <li><a href="/sv_SE/forside/home-shopping">Bli vardinna</a></li>
                     <li><a href="/sv_SE/forside/home-shopping/hitta-saljare">Hitta säljare</a></li>
                     <li><a href="/sv_SE/forside/home-shopping/hitta-saljare-via-kartan">Hitta säljare via kartan</a></li>
                     <li><a href="/sv_SE/forside/home-shopping/appet-hus">Öppet hus</a></li>
@@ -277,7 +277,7 @@
                     <li><a href="/sv_SE/forside/nyheter">Nyheter</a></li>
 					<li><a href="/sv_SE/forside/om-pompdelux/konceptet">Konceptet</a></li>
 					<li><a href="/sv_SE/forside/om-pompdelux/corporate-social-responsibility">Corporate Social Responsibility</a></li>
-					<li><a href="/sv_SE/forside/bli-saljare/fritids-saljare">Bli säljare</a></li>
+					<li><a href="/sv_SE/forside/bli-saljare/fritidssaljare">Bli säljare</a></li>
 					<li><a href="/sv_SE/forside/mer-pompdelux/gots-organic">GOTS (Organic)</a></li>
 					<li><a href="/sv_SE/forside/mer-pompdelux/oeko-tex">Oeko-Tex</a></li>
 					<li><a href="/sv_SE/forside/katalog/credits">Credits</a></li>
