@@ -32,11 +32,11 @@ class ProductAndCategoryIndexBuilder
         $category_map = [];
 
         foreach ($this->router->getRouteCollection()->all() as $key => $route) {
-            if (preg_match('/^category_[0-9]+/')) {
-                list ($junk, $id, $locale) = explode('_', $key, 3);
+            // if (preg_match('/^category_[0-9]+/')) {
+            //     list ($junk, $id, $locale) = explode('_', $key, 3);
 
 
-            }
+            // }
         }
 
 
