@@ -59,6 +59,20 @@ class BundleController extends CoreController
             }
 
             $product_ids[] = $product->getId();
+
+            // Get all sizes and Colors for this product. Use in dropdown.
+            $sizes = $colors = [];
+            $variants = ProductsQuery::create()->findByMaster($product->getSku());
+            foreach ($variants as $v) {
+                $colors[$v->getColor()] = $v->getColor();
+                $sizes[$v->getSize()] = [
+                    'value' => $v->getSize(),
+                    'in_stock' => false,
+                ];
+            }
+            ksort($sizes);
+            natcasesort($colors);
+
             $products2category = ProductsToCategoriesQuery::create()
                 ->useProductsQuery()
                 ->filterBySku($product->getSku())
@@ -80,6 +94,9 @@ class BundleController extends CoreController
                     'title' => Tools::stripText($product->getSku()),
                 )),
                 'out_of_stock' => true,
+                'sizes' => $sizes,
+                'colors' => $colors,
+
             );
 
             $result = ProductsQuery::create()
@@ -106,6 +123,19 @@ class BundleController extends CoreController
 
             foreach ($result as $product) {
 
+                // Get all sizes and Colors for this product. Use in dropdown.
+                $sizes = $colors = [];
+                $variants = ProductsQuery::create()->findByMaster($product->getSku());
+                foreach ($variants as $v) {
+                    $colors[$v->getColor()] = $v->getColor();
+                    $sizes[$v->getSize()] = [
+                        'value' => $v->getSize(),
+                        'in_stock' => false,
+                    ];
+                }
+                ksort($sizes);
+                natcasesort($colors);
+
                 $products2category = ProductsToCategoriesQuery::create()
                     ->useProductsQuery()
                     ->filterBySku($product->getSku())
@@ -127,8 +157,9 @@ class BundleController extends CoreController
                         'title' => Tools::stripText($product->getSku()),
                     )),
                     'out_of_stock' => true,
+                    'sizes' => $sizes,
+                    'colors' => $colors,
                 );
-
 
                 $product_ids[] = $product->getId();
             }
@@ -142,9 +173,6 @@ class BundleController extends CoreController
 
         foreach ($products as $id => $product) {
 
-            $sizes = $colors = [];
-            $colors[$product['color']] = $product['color'];
-
             $stock = $this->forward('WebServicesBundle:RestStock:check', array(
                 'version' => 'v1',
                 'master' => $product['master'],
@@ -154,16 +182,10 @@ class BundleController extends CoreController
 
             if (isset($stock->data->products) && count($stock->data->products)) {
                 foreach ($stock->data->products as $p) {
-                    $sizes[$p->size] = [
-                        'value' => $p->size,
-                        'in_stock' => true,
-                    ];
+                    $products[$id]['sizes'][$p->size]['in_stock'] = true;
                 }
                 $products[$id]['out_of_stock'] = false;
             }
-
-            $products[$id]['sizes'] = $sizes;
-            $products[$id]['colors'] = $colors;
         }
 
         $this->setSharedMaxAge(86400);
@@ -242,6 +264,20 @@ class BundleController extends CoreController
 
             $products = [];
             foreach ($result as $product) {
+
+                // Get all sizes and Colors for this product. Use in dropdown.
+                $sizes = $colors = [];
+                $variants = ProductsQuery::create()->findByMaster($product->getSku());
+                foreach ($variants as $v) {
+                    $colors[$v->getColor()] = $v->getColor();
+                    $sizes[$v->getSize()] = [
+                        'value' => $v->getSize(),
+                        'in_stock' => false,
+                    ];
+                }
+                ksort($sizes);
+                natcasesort($colors);
+
                 $products2category = ProductsToCategoriesQuery::create()
                     ->useProductsQuery()
                     ->filterBySku($product->getSku())
@@ -263,6 +299,8 @@ class BundleController extends CoreController
                         'title' => Tools::stripText($product->getSku()),
                     )),
                     'out_of_stock' => true,
+                    'sizes' => $sizes,
+                    'colors' => $colors,
                 );
 
 
@@ -293,16 +331,10 @@ class BundleController extends CoreController
 
             if (isset($stock->data->products) && count($stock->data->products)) {
                 foreach ($stock->data->products as $p) {
-                    $sizes[$p->getSize()] = [
-                        'value' => $p->getSize(),
-                        'in_stock' => false,
-                    ];
+                    $products[$id]['sizes'][$p->size]['in_stock'] = true;
                 }
                 $products[$id]['out_of_stock'] = false;
             }
-
-            $products[$id]['sizes'] = $sizes;
-            $products[$id]['colors'] = $colors;
         }
 
         $this->setSharedMaxAge(86400);
