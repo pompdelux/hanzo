@@ -221,12 +221,13 @@
           if (name === 'size') {
             _resetColor();
             $.each(response.data.products, function(index, product) {
-              var $option = $('select.color option[value="' + product.color + '"]');
-              if ($option.length) {
-                $option.removeAttr('disabled').text($option.data('text'));
-              } else {
-                $('select.color', $form).append('<option value="'+product.color+'" data-value="'+product.color+'">'+product.color+'</option>');
-              }
+              $('select.color option', $form).each(function(index) {
+                if (this.value === product.color){
+                  $(this).removeAttr('disabled');
+                  $(this).text($(this).data('text'));
+                }
+              });
+              // $('select.color', $form).append('<option value="'+product.color+'">'+product.color+'</option>');
             });
             $('select.color', $form).removeAttr('disabled').closest('label').removeClass('off');
           }

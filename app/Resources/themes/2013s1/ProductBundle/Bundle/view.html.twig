@@ -38,8 +38,8 @@
               <span>{{ 'size'|trans }}</span>
               <select name="size" class="size">
                 <option value="">{{ 'choose'|trans }}</option>
-              {% for size in product.sizes %}
-                <option value="{{ size.value }}" {{ not size.in_stock ? 'disabled="disabled"' : '' }} >{{ size.value }}</option>
+              {% for option in product.options %}
+                <option value="{{ option }}">{{ option }}</option>
               {% endfor %}
               </select>
             </label>
@@ -47,9 +47,6 @@
               <span>{{ "color"|trans }}:</span>
               <select name="color" class="color" disabled="disabled">
                 <option value="">{{ 'choose'|trans }}</option>
-                {% for color in product.colors %}
-                  <option value="{{ color }}">{{ color }}</option>
-                {% endfor %}
               </select>
             </label>
             <label for="quantity" class="off">

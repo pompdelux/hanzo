@@ -99,6 +99,7 @@ class DefaultController extends CoreController
         $product_ids = array();
         $variants = ProductsQuery::create()->findByMaster($product->getSku());
 
+        $sizes = [];
         // All colors are used for colorbuttons
         foreach ($variants as $v) {
             $all_colors[$v->getColor()] = $v->getColor();
@@ -106,15 +107,14 @@ class DefaultController extends CoreController
                 'value' => $v->getSize(),
                 'in_stock' => false,
             ];
-            $product_ids[] = $v->getId();
         }
-        ksort($sizes);
 
         $colors = $all_colors;
-        natcasesort($colors);
-
-        // Find the sizes on stock.
+        // find the sizes and colors on stock
         if (!$product->getIsOutOfStock()) {
+            foreach ($variants as $v) {
+                $product_ids[] = $v->getId();
+            }
 
             $stock = $this->get('stock');
             $stock->prime($product_ids);
@@ -123,6 +123,9 @@ class DefaultController extends CoreController
                     $sizes[$v->getSize()]['in_stock'] = true;
                 }
             }
+
+            natcasesort($colors);
+            ksort($sizes);
         }
 
         $references = ProductsImagesProductReferencesQuery::create()
