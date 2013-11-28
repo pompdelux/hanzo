@@ -27,9 +27,11 @@ class DefaultController extends CoreController
     /**
      * handle category listings
      *
-     * @param $cms_id
-     * @param $category_id
-     * @param $pager
+     * @param integer $cms_id
+     * @param integer $category_id
+     * @param integer $show
+     * @param integer $pager
+     * @return Response
      */
     public function viewAction($cms_id, $category_id, $show, $pager = 1)
     {
