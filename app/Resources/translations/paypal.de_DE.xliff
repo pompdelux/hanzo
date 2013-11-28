@@ -8,7 +8,7 @@
       </trans-unit>
       <trans-unit id="paypal.desc" approved="no">
         <source>paypal.desc</source>
-        <target>PayPal (Gebühr 0,00 Euro)</target>
+        <target>PayPal (Gebühr 3,00 Euro)</target>
       </trans-unit>
       <trans-unit id="failed.heading" approved="no">
         <source>failed.heading</source>
