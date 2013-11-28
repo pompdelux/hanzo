@@ -256,8 +256,6 @@ class DefaultController extends CoreController
      */
     public function advancedAction(Request $request, $id = null)
     {
-#$this->container->get('hanzo_search.product_and_category_indexer')->build();
-
         $hanzo     = Hanzo::getInstance();
         $locale    = $hanzo->get('core.locale');
         $domain_id = $hanzo->get('core.domain_id');
