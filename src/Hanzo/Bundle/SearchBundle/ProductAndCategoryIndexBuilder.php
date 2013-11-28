@@ -3,10 +3,10 @@
 namespace Hanzo\Bundle\SearchBundle;
 
 use Hanzo\Core\Tools;
+use Hanzo\Model\CmsI18nQuery;
 use Hanzo\Model\LanguagesQuery;
+use Hanzo\Model\ProductsI18nQuery;
 use Hanzo\Model\ProductsQuery;
-use Hanzo\Model\SearchFulltext;
-use Hanzo\Model\SearchFulltextQuery;
 use Symfony\Component\Translation\Loader\XliffFileLoader;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 
@@ -21,10 +21,10 @@ class ProductAndCategoryIndexBuilder
     /**
      * TODO: Move to BaseIndexBuilder
      *
-     * @params PropelConfiguration $propel_configuration Propel configuration object
-     * @params Router              $router               The router object
-     * @params string              $kernel_root_dir      Kernel root dir
-     * @params string              $kernel_cache_dir     Kernel cache dir
+     * @param \PropelConfiguration $propel_configuration Propel configuration object
+     * @param Router               $router               The router object
+     * @param string               $kernel_root_dir      Kernel root dir
+     * @param string               $kernel_cache_dir     Kernel cache dir
      */
     public function __construct(\PropelConfiguration $propel_configuration, Router $router, $kernel_root_dir, $kernel_cache_dir)
     {
@@ -41,14 +41,12 @@ class ProductAndCategoryIndexBuilder
         foreach ($this->router->getRouteCollection()->all() as $key => $route) {
             if (preg_match('/^(category|look)_[0-9]+/', $key)) {
                 $info = $route->getDefaults();
-                $category_map[$info['category_id']] = $key;
+                $category_map[$info['category_id']] = $info['cms_id'];
             }
         }
 
         foreach ($this->getConnections() as $name => $x) {
             $connection = $this->getConnection($name);
-
-            SearchFulltextQuery::create()->deleteAll($connection);
 
             foreach ($this->getLocales($connection) as $locale) {
                 // category indexing
@@ -65,12 +63,13 @@ class ProductAndCategoryIndexBuilder
                         continue;
                     }
 
-                    $index = new SearchFulltext();
-                    $index->setLocale($locale);
-                    $index->setTarget($this->router->generate($category_map[$matches[1]], ['_locale' => $locale]));
-                    $index->setType('category');
-                    $index->setContent(trim(Tools::stripTags($text)));
-                    $index->save($connection);
+                    $cms = CmsI18nQuery::create()
+                        ->filterByLocale($locale)
+                        ->findOneById($category_map[$matches[1]], $connection)
+                    ;
+
+                    $cms->setContent(trim(Tools::stripTags($text)));
+                    $cms->save($connection);
                 }
 
                 // product indexing
@@ -93,17 +92,13 @@ class ProductAndCategoryIndexBuilder
                     ;
 
                     if ($record) {
-                        $route = str_replace(['category', 'look'], 'product', $category_map[$record['ProductsToCategories.categories_id']]);
-                        $index = new SearchFulltext();
-                        $index->setLocale($locale);
-                        $index->setTarget($this->router->generate($route, [
-                            'product_id' => $record['Id'],
-                            'title'      => Tools::stripText($key),
-                            '_locale'    => $locale,
-                        ]));
-                        $index->setType('product');
-                        $index->setContent(trim(Tools::stripTags($text)));
-                        $index->save($connection);
+                        $cms = ProductsI18nQuery::create()
+                            ->filterByLocale($locale)
+                            ->findOneById($record['Id'], $connection)
+                        ;
+
+                        $cms->setContent(trim(Tools::stripTags($text)));
+                        $cms->save($connection);
                     }
                 }
             }
@@ -171,8 +166,7 @@ class ProductAndCategoryIndexBuilder
     /**
      * TODO: Move to BaseIndexBuilder
      *
-     * @params PropelConnection $connection Connection to use in the lookup.
-     *
+     * @param PropelConnection $connection Connection to use in the lookup.
      * @return Array Array of active languages
      */
     protected function getLocales($connection)
