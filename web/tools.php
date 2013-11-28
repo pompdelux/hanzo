@@ -15,11 +15,11 @@ switch ($request->query->get('action')) {
         $now = new DateTime();
         echo $now->format("M j, Y H:i:s O")."\n";
         break;
-
-
+    
+    
     case 'apc-clear':
         $remote_ip = empty($_SERVER['REMOTE_ADDR']) ? '' : $_SERVER['REMOTE_ADDR'];
-
+    
         if (in_array($remote_ip, array('127.0.0.1', '::1'))) {
             apc_clear_cache();
             apc_clear_cache('user');
@@ -27,5 +27,22 @@ switch ($request->query->get('action')) {
             echo "APC Cache cleared by " . $_SERVER['REQUEST_URI'] . "\n";
         } else {
             echo "NOT clearing APC Cache. Run from a browser on the local server\n";
+        }
+    
+    case 'opcode-clear':
+        $remote_ip = empty($_SERVER['REMOTE_ADDR']) ? '' : $_SERVER['REMOTE_ADDR'];
+    
+        if (in_array($remote_ip, array('127.0.0.1', '::1'))) {
+            if (version_compare(phpversion(), '5.5', '>')) {
+                opcache_reset();
+                echo "OPcache cleared by " . $_SERVER['REQUEST_URI'] . "\n";
+            } else {
+                apc_clear_cache();
+                apc_clear_cache('user');
+                apc_clear_cache('opcode');
+                echo "APC Cache cleared by " . $_SERVER['REQUEST_URI'] . "\n";
+            }
+        } else {
+            echo "NOT clearing APC or OPcache. Run from a browser on the local server\n";
         }
 }

@@ -4,71 +4,1872 @@
     <body>
       <trans-unit id="admin_home_text">
         <source>admin.home.text</source>
-        <target>Admin</target>
+        <target>Administration</target>
       </trans-unit>
       <trans-unit id="admin_language_selector">
         <source>languages.selector</source>
-        <target>Choose language to translate</target>
+        <target>Vælg sprog til oversættelse</target>
+      </trans-unit>
+      <trans-unit id="admin_domain_selector">
+        <source>domain.selector</source>
+        <target>Vælg domæne</target>
+      </trans-unit>
+      <trans-unit id="country.selector">
+        <source>country.selector</source>
+        <target>Vælg land</target>
+      </trans-unit>
+      <trans-unit id="admin_add_new_cmspage">
+        <source>add.new.cmspage</source>
+        <target>Opret nyt CMS node</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirects.link">
+        <source>admin.cms.redirects.link</source>
+        <target>Redirects</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirect.add.link">
+        <source>admin.cms.redirect.add.link</source>
+        <target>Opret Redirect</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirect.all.link">
+        <source>admin.cms.redirect.all.link</source>
+        <target>Alle Redirects</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirects.header.text.%domain_key%">
+        <source>admin.cms.redirects.header.text.%domain_key%</source>
+        <target>Redirects for domæne: "%domain_key%"</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirects.header.text">
+        <source>admin.cms.redirects.header.text</source>
+        <target>Alle Redirects</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirects.edit.header.text">
+        <source>admin.cms.redirects.edit.header.text</source>
+        <target>Rediger Redirect</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirects.description.text">
+        <source>admin.cms.redirects.description.text</source>
+        <target>Herunder kan du se alle aktive redirects. En redirect sørger for at kilde-stien vidersender besøgende til mål-stien.</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirects.edit.description.text">
+        <source>admin.cms.redirects.edit.description.text</source>
+        <target>Herunder kan du redigere eller oprette en Redirect. Udfyld alle felter og tryk på gem.</target>
+      </trans-unit>
+      <trans-unit id="update.redirect">
+        <source>update.redirect</source>
+        <target>Gem Redirect</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirects.inserted">
+        <source>admin.cms.redirects.inserted</source>
+        <target>Redirect er blevet gemt!</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirects.domain_key">
+        <source>admin.cms.redirects.domain_key</source>
+        <target>Domæne</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirects.source">
+        <source>admin.cms.redirects.source</source>
+        <target>Kilde Sti</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirects.target">
+        <source>admin.cms.redirects.target</source>
+        <target>Mål Sti</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirects.edit">
+        <source>admin.cms.redirects.edit</source>
+        <target>Rediger redirect</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirects.delete">
+        <source>admin.cms.redirects.delete</source>
+        <target>Slet redirect</target>
+      </trans-unit>
+      <trans-unit id="admin.inactive_nodes.header.text">
+        <source>admin.inactive_nodes.header.text</source>
+        <target>Inaktive CMS noder</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.inactive_nodes.id">
+        <source>admin.cms.inactive_nodes.id</source>
+        <target>Node ID</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.inactive_nodes.title">
+        <source>admin.cms.inactive_nodes.title</source>
+        <target>Node Titel</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.inactive_nodes.type">
+        <source>admin.cms.inactive_nodes.type</source>
+        <target>Node Type</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.inactive_nodes.edit">
+        <source>admin.cms.inactive_nodes.edit</source>
+        <target>Rediger node</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.inactive_nodes.delete">
+        <source>admin.cms.inactive_nodes.delete</source>
+        <target>Slet node</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirects.no.redirects.text">
+        <source>admin.cms.redirects.no.redirects.text</source>
+        <target>Der findes ingen Redirects i øjeblikket. Du kan tilføj en ny på linket øverst.</target>
+      </trans-unit>
+      <trans-unit id="admin_add_new_cmspage_success">
+        <source>add.new.cmspage.success</source>
+        <target>CMS siden blev oprettet! Du kan nu tilføje indhold og indstillinger.</target>
       </trans-unit>
       <trans-unit id="admin_page_edit_text">
         <source>page.edit</source>
-        <target>Edit</target>
+        <target>Rediger</target>
       </trans-unit>
-      <trans-unit id="admin_page_delete_text">
-        <source>page.delete</source>
-        <target>Delete</target>
+      <trans-unit id="admin_delete_text">
+        <source>delete</source>
+        <target>Slet</target>
       </trans-unit>
       <trans-unit id="admin_save_cms_page_tree">
         <source>save.cms.page_tree</source>
-        <target>Save tree</target>
+        <target>Gem rækkefølge</target>
       </trans-unit>
       <trans-unit id="admin_save_changes_success">
         <source>save.changes.success</source>
-        <target>The changes was saved</target>
+        <target>Dine ændringer blev gemt</target>
       </trans-unit>
       <trans-unit id="admin_cms_node_delete_success">
         <source>delete.node.success</source>
-        <target>The CMS node was deleted</target>
+        <target>CMS noden blev slettet</target>
       </trans-unit>
-      <trans-unit id="admin_cms_edit_isActive_text">
-        <source>cms.edit.is_active</source>
-        <target>Show public</target>
-      </trans-unit>
-      <trans-unit id="admin.cancel">
-        <source>cancel</source>
-        <target>Cancel</target>
-      </trans-unit>
-      <trans-unit id="admin.update.cms.header.text">
-        <source>update.cms.header.text</source>
-        <target>Edit CMS page.</target>
-      </trans-unit>
-      <trans-unit id="admin.add.cms.header.text">
-        <source>add.cms.header.text</source>
-        <target>Create new CMS page.</target>
-      </trans-unit>
-      <trans-unit id="admin.cms.update">
-        <source>update.cms</source>
-        <target>Save</target>
-      </trans-unit>
-      <trans-unit id="admin.cms.add">
-        <source>add.cms</source>
-        <target>Create</target>
-      </trans-unit>
-      <trans-unit id="admin.cms.update.success">
-        <source>cms.updated</source>
-        <target>The page was succefull updated!</target>
+      <trans-unit id="admin_cms_edit_is_active_text">
+        <source>cms.edit.label.is_active</source>
+        <target>Online</target>
       </trans-unit>
       <trans-unit id="cms.edit.label.is_restricted">
         <source>cms.edit.label.is_restricted</source>
-        <target>Approved IP required in offline mode</target>
+        <target>Kræver godkendt IP i offline mode</target>
       </trans-unit>
       <trans-unit id="cms.edit.label.on_mobile">
         <source>cms.edit.label.on_mobile</source>
         <target>Vises på mobilsitet</target>
       </trans-unit>
+      <trans-unit id="admin_cms_edit_title_text">
+        <source>cms.edit.label.title</source>
+        <target>Titel</target>
+      </trans-unit>
+      <trans-unit id="admin_cms_edit_path_text">
+        <source>cms.edit.label.path</source>
+        <target>Sti (Url)</target>
+      </trans-unit>
+      <trans-unit id="admin_cms_edit_content_text">
+        <source>cms.edit.label.content</source>
+        <target>Indhold</target>
+      </trans-unit>
+      <trans-unit id="admin_cms_edit_settings_text">
+        <source>cms.edit.label.settings</source>
+        <target>Indstillinger</target>
+      </trans-unit>
+      <trans-unit id="admin_cms_edit_cms_thread_text">
+        <source>cms.edit.label.cms_thread</source>
+        <target>Thread</target>
+      </trans-unit>
+      <trans-unit id="admin_cancel">
+        <source>cancel</source>
+        <target>Afbryd</target>
+      </trans-unit>
+      <trans-unit id="admin_update_cms_header_text">
+        <source>update.cms.header.text</source>
+        <target>Rediger CMS side.</target>
+      </trans-unit>
+      <trans-unit id="admin_add_cms_header_text">
+        <source>add.cms.header.text</source>
+        <target>Opret ny CMS side.</target>
+      </trans-unit>
+      <trans-unit id="admin_cms_update">
+        <source>update.cms</source>
+        <target>Gem</target>
+      </trans-unit>
+      <trans-unit id="admin_cms_add">
+        <source>add.cms</source>
+        <target>Opret</target>
+      </trans-unit>
+      <trans-unit id="admin_cms_add_success">
+        <source>cms.added</source>
+        <target>Siden blev succesfuldt oprettet!</target>
+      </trans-unit>
+      <trans-unit id="admin_cms_update_success">
+        <source>cms.updated</source>
+        <target>Siden blev succesfuldt opdateret!</target>
+      </trans-unit>
+      <trans-unit id="cms.update.failed.dublicate.path">
+        <source>cms.update.failed.dublicate.path</source>
+        <target>Siden kunne ikke gemmes. Der findes allerede en aktiv side med det valgte URL!</target>
+      </trans-unit>
+      <trans-unit id="admin_cms_page_type_page">
+        <source>cms.edit.type.page</source>
+        <target>Alm. Cms side</target>
+      </trans-unit>
+      <trans-unit id="admin_cms_page_type_frontpage">
+        <source>cms.edit.type.frontpage</source>
+        <target>Forside</target>
+      </trans-unit>
+      <trans-unit id="admin_cms_page_type_url">
+        <source>cms.edit.type.url</source>
+        <target>Url</target>
+      </trans-unit>
+      <trans-unit id="admin_cms_page_type_category">
+        <source>cms.edit.type.category</source>
+        <target>Kategori</target>
+      </trans-unit>
+      <trans-unit id="admin_cms_page_type_category_search">
+        <source>cms.edit.type.category_search</source>
+        <target>Kategori Søgning</target>
+      </trans-unit>
+      <trans-unit id="admin_cms_page_type_newsletter">
+        <source>cms.edit.type.newsletter</source>
+        <target>Nyhedsbrev</target>
+      </trans-unit>
+      <trans-unit id="admin_cms_page_type_advanced_search">
+        <source>cms.edit.type.advanced_search</source>
+        <target>Advanceret Søgning</target>
+      </trans-unit>
+      <trans-unit id="admin_cms_page_type_mannequin">
+        <source>cms.edit.type.mannequin</source>
+        <target>Mannequin</target>
+      </trans-unit>
+      <trans-unit id="cms.edit.type.heading">
+        <source>cms.edit.type.heading</source>
+        <target>Overskrift (%link))</target>
+      </trans-unit>
+      <trans-unit id="admin_products_sort_header_text_category">
+        <source>admin.products.sort.header.text.%category-name%</source>
+        <target>Rediger rækkefølgen for produkter i kategorien %category-name%</target>
+      </trans-unit>
+      <trans-unit id="admin_products_sort_header_text">
+        <source>admin.products.sort.header.text</source>
+        <target>Rediger rækkefølgen for produkter i kategori</target>
+      </trans-unit>
+      <trans-unit id="admin_products_sort_description_text">
+        <source>admin.products.sort.description.text</source>
+        <target>Vælg en kategori, som du vil redigere rækkefølgen for produkter. Du kan trække og slippe produkter i listen.</target>
+      </trans-unit>
+      <trans-unit id="admin_products_sort_categories_selector">
+        <source>categories.selector</source>
+        <target>Vælg kategori</target>
+      </trans-unit>
+      <trans-unit id="admin.product.has_video.header">
+        <source>admin.product.has_video.header</source>
+        <target>Video på produktet</target>
+      </trans-unit>
+      <trans-unit id="product.label.has_video">
+        <source>product.label.has_video</source>
+        <target>Skal produktet have en video?</target>
+      </trans-unit>
+      <trans-unit id="product.has_video.submit">
+        <source>product.has_video.submit</source>
+        <target>Gem Video</target>
+      </trans-unit>
+      <trans-unit id="admin.category.edit.header.text">
+        <source>admin.category.edit.header.text</source>
+        <target>Rediger Kategori</target>
+      </trans-unit>
+      <trans-unit id="admin.add.category">
+        <source>admin.add.category</source>
+        <target>Opret ny kategori</target>
+      </trans-unit>
+      <trans-unit id="admin.categories.list.edit-link.text">
+        <source>admin.categories.list.edit-link.text</source>
+        <target>Ret kategori</target>
+      </trans-unit>
+      <trans-unit id="admin.categories.list.delete-link.text">
+        <source>admin.categories.list.delete-link.text</source>
+        <target>Slet kategori</target>
+      </trans-unit>
+      <trans-unit id="admin.category.edit.description.text">
+        <source>admin.category.edit.description.text</source>
+        <target>Her kan du redigere tekster og andet på en kategori.</target>
+      </trans-unit>
+      <trans-unit id="admin.category.translations.header.text">
+        <source>admin.category.translations.header.text</source>
+        <target>Rediger Kategoriens oversættelser</target>
+      </trans-unit>
+      <trans-unit id="admin.category.translations.description.text">
+        <source>admin.category.translations.description.text</source>
+        <target>Her kan du redigere oversættelser der er tilknyttes denne kategori.</target>
+      </trans-unit>
+      <trans-unit id="admin.category.add.translations.header.text">
+        <source>admin.category.add.translations.header.text</source>
+        <target>Tilføj en ny oversættelse</target>
+      </trans-unit>
+      <trans-unit id="edit.category.translation">
+        <source>edit.category.translation</source>
+        <target>Rediger oversættelse</target>
+      </trans-unit>
+      <trans-unit id="delete.category.translation">
+        <source>delete.category.translation</source>
+        <target>Slet oversættelse</target>
+      </trans-unit>
+      <trans-unit id="update.category">
+        <source>update.category</source>
+        <target>Gem Kategori</target>
+      </trans-unit>
+      <trans-unit id="category.updated">
+        <source>category.updated</source>
+        <target>Kategorien er gemt!</target>
+      </trans-unit>
+      <trans-unit id="add.category.translation">
+        <source>add.category.translation</source>
+        <target>Gem oversættelse</target>
+      </trans-unit>
+      <trans-unit id="admin.category.parent_id.label">
+        <source>admin.category.parent_id.label</source>
+        <target>Forældre ID</target>
+      </trans-unit>
+      <trans-unit id="admin.category.context.label">
+        <source>admin.category.context.label</source>
+        <target>Konteksten</target>
+      </trans-unit>
+      <trans-unit id="admin.category.is_active.label">
+        <source>admin.category.is_active.label</source>
+        <target>Skal kategorien aktiveres?</target>
+      </trans-unit>
+      <trans-unit id="admin.category.locale.label">
+        <source>admin.category.locale.label</source>
+        <target>Sprog</target>
+      </trans-unit>
+      <trans-unit id="admin.category.title.label">
+        <source>admin.category.title.label</source>
+        <target>Titel</target>
+      </trans-unit>
+      <trans-unit id="admin.category.content.label">
+        <source>admin.category.content.label</source>
+        <target>Indhold</target>
+      </trans-unit>
+      <trans-unit id="admin.categories.list.header.text">
+        <source>admin.categories.list.header.text</source>
+        <target>Kategorier</target>
+      </trans-unit>
+      <trans-unit id="admin.categories.list.description.text">
+        <source>admin.categories.list.description.text</source>
+        <target>Vælg en af de 4 overkategorier. Du vil derefter få vist alle underkategorier.</target>
+      </trans-unit>
+      <trans-unit id="admin.categories.list.sort-link.text">
+        <source>admin.categories.list.sort-link.text</source>
+        <target>Sorter produkters rækkefølge</target>
+      </trans-unit>
+      <trans-unit id="admin.categories.list.header.text.%category-name%">
+        <source>admin.categories.list.header.text.%category-name%</source>
+        <target>Kategorier i overkategori "%category-name%"</target>
+      </trans-unit>
+      <trans-unit id="admin.products.list.header.text.%category-name%">
+        <source>admin.products.list.header.text.%category-name%</source>
+        <target>Produkter i kategorien "%category-name%"</target>
+      </trans-unit>
+      <trans-unit id="admin.products.list.header.text.%search-query%">
+        <source>admin.products.list.header.text.%search-query%</source>
+        <target>Produkter for søgning efter: "%search-query%"</target>
+      </trans-unit>
+      <trans-unit id="admin.subcategories.list.description.text">
+        <source>admin.subcategories.list.description.text</source>
+        <target>Vælg en kategori for at kunne se dens produkter.</target>
+      </trans-unit>
+      <trans-unit id="admin.products.list.description.text">
+        <source>admin.products.list.description.text</source>
+        <target>Vælg en af nedenstående produkter for at se den detaljeret.</target>
+      </trans-unit>
+      <trans-unit id="admin.product.styles.header.text.%product-name%">
+        <source>admin.product.styles.header.text.%product-name%</source>
+        <target>Styles for produktet: "%product-name%"</target>
+      </trans-unit>
+      <trans-unit id="admin.products.no.styles.text">
+        <source>admin.products.no.styles.text</source>
+        <target>Der findes ingen Styles for dette produkt.</target>
+      </trans-unit>
+      <trans-unit id="admin.products.styles.delete">
+        <source>admin.products.styles.delete</source>
+        <target>Slet alle Styles</target>
+      </trans-unit>
+      <trans-unit id="admin.products.style.delete">
+        <source>admin.products.style.delete</source>
+        <target>Slet</target>
+      </trans-unit>
+      <trans-unit id="delete.products.styles.success">
+        <source>delete.products.styles.success</source>
+        <target>Alle styles blev slettet!</target>
+      </trans-unit>
+      <trans-unit id="delete.products.style.success">
+        <source>delete.products.style.success</source>
+        <target>Stylen blev slettet!</target>
+      </trans-unit>
+      <trans-unit id="delete.products.styles.failed">
+        <source>delete.products.styles.failed</source>
+        <target>Der skete en fejl. Styles kunne ikke slettes.</target>
+      </trans-unit>
+      <trans-unit id="delete.products.style.failed">
+        <source>delete.products.style.failed</source>
+        <target>Der skete en fejl. Stylen kunne ikke slettes.</target>
+      </trans-unit>
+      <trans-unit id="admin.products.styles.sku">
+        <source>admin.products.styles.sku</source>
+        <target>SKU</target>
+      </trans-unit>
+      <trans-unit id="admin.products.styles.size">
+        <source>admin.products.styles.size</source>
+        <target>Str.</target>
+      </trans-unit>
+      <trans-unit id="admin.products.styles.color">
+        <source>admin.products.styles.color</source>
+        <target>Farve</target>
+      </trans-unit>
+      <trans-unit id="admin.product.categories.header.text.%product-name%">
+        <source>admin.product.categories.header.text.%product-name%</source>
+        <target>Kategorier for produktet: "%product-name%"</target>
+      </trans-unit>
+      <trans-unit id="admin.product.categories.description.text">
+        <source>admin.product.categories.description.text</source>
+        <target>Herunder kan du se alle de forskellige kategorier der er tilknyttet dette produkt. I boksen kan du vælge nye kategorier, ellers slette dem som allerede er tilknyttet.</target>
+      </trans-unit>
+      <trans-unit id="admin.product.related_products.header.text.%product-name%">
+        <source>admin.product.related_products.header.text.%product-name%</source>
+        <target>Relaterede produkter for produktet: "%product-name%"</target>
+      </trans-unit>
+      <trans-unit id="admin.product.related_products.description.text">
+        <source>admin.product.related_products.description.text</source>
+        <target>Herunder kan du se alle relaterede produkter som er gemt. Vælg et nyt produkt i boksen for at indsætte den som et relateret produkt.</target>
+      </trans-unit>
+      <trans-unit id="admin.products.category.selector.description">
+        <source>admin.products.category.selector.description</source>
+        <target>Vælg og tilføj en ny kategori...</target>
+      </trans-unit>
+      <trans-unit id="admin.products.related_products.selector.description">
+        <source>admin.products.related_products.selector.description</source>
+        <target>Vælg og tilføj et nyt produkt...</target>
+      </trans-unit>
+      <trans-unit id="admin.product.images.header.text.%product-name%">
+        <source>admin.product.images.header.text.%product-name%</source>
+        <target>Billeder for produktet: "%product-name%"</target>
+      </trans-unit>
+      <trans-unit id="admin.product.images.description.text">
+        <source>admin.product.images.description.text</source>
+        <target>Herunder kan du se alle de forskellige billeder der er tilknyttet dette produkt. Du kan derudover vælge hvilke styleguides der er skal være tilknyttet hvert billede.</target>
+      </trans-unit>
+      <trans-unit id="admin.products.product.selector.description">
+        <source>admin.products.product.selector.description</source>
+        <target>Vælg og tilføj et nyt produkt...</target>
+      </trans-unit>
+      <trans-unit id="admin.products.color.selector.description">
+        <source>admin.products.color.selector.description</source>
+        <target>Vælg farve...</target>
+      </trans-unit>
+      <trans-unit id="admin.products.discounts">
+        <source>admin.products.discounts</source>
+        <target>Mængderabatter</target>
+      </trans-unit>
+      <trans-unit id="admin.products.discount.header.text.%product-sku%">
+        <source>admin.products.discount.header.text.%product-sku%</source>
+        <target>Mængderabatter for produkter: "%product-sku%"</target>
+      </trans-unit>
+      <trans-unit id="admin.products.discount.description.text">
+        <source>admin.products.discount.description.text</source>
+        <target>Her kan du redigere eller tilføje mængderabatter i henhold til en produktgruppe. Mængderabatter gælder for alle styles af et produkt, dvs. er der oprettet en mængderabat, vil den træde i kræft lige så snart at det antal af styles i en produktgruppe købes. Mængderabatter gælder per domæne.</target>
+      </trans-unit>
+      <trans-unit id="admin.products.no.discounts.text">
+        <source>admin.products.no.discounts.text</source>
+        <target>Der er ingen mængderabatter oprettet endnu. Udfyld formularen for at oprette den første mængderabat.</target>
+      </trans-unit>
+      <trans-unit id="admin.products.discount.domains_id">
+        <source>admin.products.discount.domains_id</source>
+        <target>Domæne</target>
+      </trans-unit>
+      <trans-unit id="admin.products.discount.span">
+        <source>admin.products.discount.span</source>
+        <target>Minimum antal købt</target>
+      </trans-unit>
+      <trans-unit id="admin.products.discount.discount">
+        <source>admin.products.discount.discount</source>
+        <target>Rabat ved =>x antal købt</target>
+      </trans-unit>
+      <trans-unit id="admin.products.discount.saved">
+        <source>admin.products.discount.saved</source>
+        <target>Rabatten blev gemt!</target>
+      </trans-unit>
+      <trans-unit id="admin.products.update.discount">
+        <source>admin.products.update.discount</source>
+        <target>Gem rabat</target>
+      </trans-unit>
+      <trans-unit id="admin.products.discount.delete">
+        <source>admin.products.discount.delete</source>
+        <target>Slet Rabat</target>
+      </trans-unit>
+      <trans-unit id="delete.products.discount.success">
+        <source>delete.products.discount.success</source>
+        <target>Rabatten blev slettet!</target>
+      </trans-unit>
+      <trans-unit id="delete.products.discount.failed">
+        <source>delete.products.discount.failed</source>
+        <target>Der skete en fejl. Rabatten kunne ikke blive slettes!</target>
+      </trans-unit>
+      <trans-unit id="admin.payment_delivery.link">
+        <source>admin.payment_delivery.link</source>
+        <target>Fragt og betalingsindstillinger</target>
+      </trans-unit>
+      <trans-unit id="admin.settings.paymentdelivery.header.text.%domain_key%">
+        <source>admin.settings.paymentdelivery.header.text.%domain_key%</source>
+        <target>Fragt og betalingsindstillinger for domæne: %domain_key%</target>
+      </trans-unit>
+      <trans-unit id="admin.settings.paymentdelivery.description.text">
+        <source>admin.settings.paymentdelivery.description.text</source>
+        <target>Herunder kan alle indstillinger angående Fragt og Betaling ændres. Alle indstillinger er domæne specifik. Øverst til højre an du ændre hvilken domæne du vil redigere.</target>
+      </trans-unit>
+      <trans-unit id="admin.settings.paymentdelivery.add.header.text.%domain_key%">
+        <source>admin.settings.paymentdelivery.add.header.text.%domain_key%</source>
+        <target>Tilføj en ny indstilling til fragt og betaling på domæne: %domain_key%</target>
+      </trans-unit>
+      <trans-unit id="settings.global.settings">
+        <source>settings.global.settings</source>
+        <target>Globale indstillinger</target>
+      </trans-unit>
+      <trans-unit id="admin.save.changes">
+        <source>save.changes</source>
+        <target>Gem ændringer</target>
+      </trans-unit>
+      <trans-unit id="admin.settings.header.text">
+        <source>admin.settings.header.text</source>
+        <target>Globale indstillinger</target>
+      </trans-unit>
+      <trans-unit id="admin.settings.description.text">
+        <source>admin.settings.description.text</source>
+        <target>Her vises alle globale indstillinger der er   gemt. Rediger indholdet i hver key, eller slet indholdet for at slette indstillingen.</target>
+      </trans-unit>
+      <trans-unit id="admin.settings.add.header.text">
+        <source>admin.settings.add.header.text</source>
+        <target>Opret en ny global indstilling.</target>
+      </trans-unit>
+      <trans-unit id="admin.settings.add.description.text">
+        <source>admin.settings.add.description.text</source>
+        <target>Du kan tilføje en ny indstilling som skal være global, ved at udfylde nedenstående felter.</target>
+      </trans-unit>
+      <trans-unit id="admin.settings.header.text.%domain_key%">
+        <source>admin.settings.header.text.%domain_key%</source>
+        <target>Domæne indstillinger for domæne: %domain_key%</target>
+      </trans-unit>
+      <trans-unit id="admin.domain.settings.description.text">
+        <source>admin.domain.settings.description.text</source>
+        <target>Her vises alle indstillinger gemt for det valgte domæne. Rediger indholdet i hver key, eller slet indholdet for at slette indstillingen.</target>
+      </trans-unit>
+      <trans-unit id="admin.settings.add.header.text.%domain_key%">
+        <source>admin.settings.add.header.text.%domain_key%</source>
+        <target>Opret ny indstilling til domæne: %domain_key%</target>
+      </trans-unit>
+      <trans-unit id="admin.domain.settings.add.description.text">
+        <source>admin.domain.settings.add.description.text</source>
+        <target>Du kan tilføje nye indstillinger til det valgte domæne, ved at udfylde nedenstående felter.</target>
+      </trans-unit>
+      <trans-unit id="admin.languages.link">
+        <source>admin.languages.link</source>
+        <target>Rediger Tilgængelige Sprog</target>
+      </trans-unit>
+      <trans-unit id="admin.languages.header.text">
+        <source>admin.languages.header.text</source>
+        <target>Sprog</target>
+      </trans-unit>
+      <trans-unit id="admin.languages.description.text">
+        <source>admin.languages.description.text</source>
+        <target>Opret rediger eller fjern tilgængelige sprog.</target>
+      </trans-unit>
+      <trans-unit id="admin.languages.no.languages.text">
+        <source>admin.languages.no.languages.text</source>
+        <target>Der findes ingen sprog.</target>
+      </trans-unit>
+      <trans-unit id="admin.languages.name">
+        <source>admin.languages.name</source>
+        <target>Navn</target>
+      </trans-unit>
+      <trans-unit id="admin.languages.local_name">
+        <source>admin.languages.local_name</source>
+        <target>Lokalt navn</target>
+      </trans-unit>
+      <trans-unit id="admin.languages.locale">
+        <source>admin.languages.locale</source>
+        <target>Locale</target>
+      </trans-unit>
+      <trans-unit id="admin.languages.iso2">
+        <source>admin.languages.iso2</source>
+        <target>ISO2 navn</target>
+      </trans-unit>
+      <trans-unit id="admin.languages.direction">
+        <source>admin.languages.direction</source>
+        <target>Retning</target>
+      </trans-unit>
+      <trans-unit id="admin.languages.edit">
+        <source>admin.languages.edit</source>
+        <target>Rediger Sprog</target>
+      </trans-unit>
+      <trans-unit id="admin.languages.update.language">
+        <source>admin.languages.update.language</source>
+        <target>Gem Sprog</target>
+      </trans-unit>
+      <trans-unit id="admin.languages.inserted">
+        <source>admin.languages.inserted</source>
+        <target>Sproget blev gemt!</target>
+      </trans-unit>
+      <trans-unit id="admin.languages.delete">
+        <source>admin.languages.delete</source>
+        <target>Slet Sprog</target>
+      </trans-unit>
+      <trans-unit id="delete.languages.success">
+        <source>delete.languages.success</source>
+        <target>Sproget blev slettet</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.link">
+        <source>admin.messages.link</source>
+        <target>Email skabeloner</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.header.text">
+        <source>admin.messages.header.text</source>
+        <target>Oversigt over alle skabeloner</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.description.text">
+        <source>admin.messages.description.text</source>
+        <target>Herunder kan du se alle de oversættelser til skabeloner som er gemt i databasen. Du kan tilføje en oversættelse af en der allerede finde ved at trykke "Rediger/oversæt".</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.edit.header.text">
+        <source>admin.messages.edit.header.text</source>
+        <target>Redigering af oversættelse</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.edit.description.text">
+        <source>admin.messages.edit.description.text</source>
+        <target>Her kan ud redigere en oversættelse. Udfyld Emne og Indhold og tryk på Gem når du er færdig.</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.ns.edit.header.text">
+        <source>admin.messages.ns.edit.header.text</source>
+        <target>Redigering af skabelon</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.ns.edit.description.text">
+        <source>admin.messages.ns.edit.description.text</source>
+        <target>Her kan ud redigere en skabelon. Tryk på Gem når du er færdig. Du vil så få mulighed for at indtaste indholdet til en oversættelse.</target>
+      </trans-unit>
+      <trans-unit id="messages.language.selector">
+        <source>messages.language.selector</source>
+        <target>Vælg sprog</target>
+      </trans-unit>
+      <trans-unit id="update.messages">
+        <source>update.messages</source>
+        <target>Gem oversættelse</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.no.messages.text">
+        <source>admin.messages.no.messages.text</source>
+        <target>Der findes ingen oversættelse</target>
+      </trans-unit>
+      <trans-unit id="messages.ns.selector">
+        <source>messages.ns.selector</source>
+        <target>Ny oversættelse</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.list.link">
+        <source>admin.messages.list.link</source>
+        <target>Se alle oversættelser</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.add_new.link">
+        <source>admin.messages.add_new.link</source>
+        <target>Tilføj ny skabelon</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.edit">
+        <source>admin.messages.edit</source>
+        <target>Rediger/Oversæt</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.delete">
+        <source>admin.messages.delete</source>
+        <target>Slet oversættelse</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.ns">
+        <source>admin.messages.ns</source>
+        <target>Namespace</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.key">
+        <source>admin.messages.key</source>
+        <target>Skabelon Navn</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.locale">
+        <source>admin.messages.locale</source>
+        <target>Sprog</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.subject">
+        <source>admin.messages.subject</source>
+        <target>Emne</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.body">
+        <source>admin.messages.body</source>
+        <target>Indhold</target>
+      </trans-unit>
+      <trans-unit id="admin.message.inserted">
+        <source>admin.message.inserted</source>
+        <target>Oversættelse blev gemt!</target>
+      </trans-unit>
+      <trans-unit id="admin.message.ns.inserted">
+        <source>admin.message.ns.inserted</source>
+        <target>Skabelon blev gemt!</target>
+      </trans-unit>
+      <trans-unit id="delete.messages.success">
+        <source>delete.messages.success</source>
+        <target>Oversættelse blev slette!</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.translate">
+        <source>admin.messages.translate</source>
+        <target>Oversæt:</target>
+      </trans-unit>
+      <trans-unit id="settings.updated">
+        <source>settings.updated</source>
+        <target>Indstillinger opdateret!</target>
+      </trans-unit>
+      <trans-unit id="settings.update.failed">
+        <source>settings.update.failed</source>
+        <target>Der skete en fejl under opdatering af indstillingerne! Prøv igen.</target>
+      </trans-unit>
+      <trans-unit id="save.settings">
+        <source>save.settings</source>
+        <target>Gem indstillinger</target>
+      </trans-unit>
+      <trans-unit id="save.customer.address">
+        <source>save.customer.address</source>
+        <target>Gem addresse</target>
+      </trans-unit>
+      <trans-unit id="address.updated">
+        <source>address.updated</source>
+        <target>Addressen er blevet gemt!</target>
+      </trans-unit>
+      <trans-unit id="add.setting">
+        <source>add.setting</source>
+        <target>Opret indstilling</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.list.link">
+        <source>admin.customers.list.link</source>
+        <target>Alle Kunder</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.list.link">
+        <source>admin.consultants.list.link</source>
+        <target>Alle Konsulenter</target>
+      </trans-unit>
+      <trans-unit id="admin.employees.list.link">
+        <source>admin.employees.list.link</source>
+        <target>Alle Medarbejdere</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.events.list.link">
+        <source>admin.consultants.events.list.link</source>
+        <target>Events</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.header.text">
+        <source>admin.customers.header.text</source>
+        <target>Kunder</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.header.text">
+        <source>admin.consultants.header.text</source>
+        <target>Konsulenter</target>
+      </trans-unit>
+      <trans-unit id="admin.employees.header.text">
+        <source>admin.employees.header.text</source>
+        <target>Medarbejdere</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.addresses.header.text">
+        <source>admin.customer.addresses.header.text</source>
+        <target>Adresser for kunden</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.address.header.text">
+        <source>admin.customer.address.header.text</source>
+        <target>Rediger addresse</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.setting.header.text">
+        <source>admin.consultants.setting.header.text</source>
+        <target>Rediger konsulenters Max beløb for køb</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.description.text">
+        <source>admin.customers.description.text</source>
+        <target>I tabellen herunder vises alle kunder i databasen. Du kan rediger en kunde i linket ud for. Søg eventuelt efter en kunde i feltet til højre(fornavn, efternavn, email, telefon).</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.description.text">
+        <source>admin.consultants.description.text</source>
+        <target>I tabellen herunder vises alle konsulenter i databasen. Du kan rediger en konsulent i linket ud for. Søg eventuelt efter en konsulent i feltet til højre(fornavn, efternavn, email, telefon).</target>
+      </trans-unit>
+      <trans-unit id="admin.employees.description.text">
+        <source>admin.employees.description.text</source>
+        <target>I tabellen herunder vises alle medarbejdere i databasen. Du kan rediger en medarbejder i linket ud for. Søg eventuelt efter en medarbejder i feltet til højre(fornavn, efternavn, email, telefon).</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.addresses.description.text">
+        <source>admin.customer.addresses.description.text</source>
+        <target>Her kan alle kundens gemte addresser ses. Du kan redigere dem med linket til højre.</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.address.description.text">
+        <source>admin.customer.address.description.text</source>
+        <target>Rediger de informationer på kundens addresse og gem når du er færdig.</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.setting.description.text">
+        <source>admin.consultants.setting.description.text</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="admin.customers.no.customers.text">
+        <source>admin.customers.no.customers.text</source>
+        <target>Der findes desværre ingen kunder i databasen.</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.no.consultants.text">
+        <source>admin.consultants.no.consultants.text</source>
+        <target>Der findes desværre ingen konsulenter i databasen.</target>
+      </trans-unit>
+      <trans-unit id="admin.employees.no.employees.text">
+        <source>admin.employees.no.employees.text</source>
+        <target>Der findes desværre ingen medarbejdere i databasen.</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.no.addresses.text">
+        <source>admin.customers.no.addresses.text</source>
+        <target>Der findes desværre ingen addresser i databasen.</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.export.link">
+        <source>admin.consultant.export.link</source>
+        <target>Eksporter CSV</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.export.start.label">
+        <source>admin.consultant.export.start.label</source>
+        <target>Fra dato:</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.export.end.label">
+        <source>admin.consultant.export.end.label</source>
+        <target>Til dato:</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.edit">
+        <source>admin.customer.edit</source>
+        <target>Rediger kunde</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.delete">
+        <source>admin.customer.delete</source>
+        <target>Slet kunde</target>
+      </trans-unit>
+      <trans-unit id="delete.customer.success">
+        <source>delete.customer.success</source>
+        <target>Kunden blev slettet!</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.orders">
+        <source>admin.customer.orders</source>
+        <target>Se ordrer</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.edit">
+        <source>admin.consultant.edit</source>
+        <target>Rediger konsulent</target>
+      </trans-unit>
+      <trans-unit id="admin.employees.edit">
+        <source>admin.employees.edit</source>
+        <target>Rediger medarbejder</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.address.edit">
+        <source>admin.customers.address.edit</source>
+        <target>Rediger addresse</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.first_name">
+        <source>admin.customer.first_name</source>
+        <target>Fornavn</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.last_name">
+        <source>admin.customer.last_name</source>
+        <target>Efternavn</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.email">
+        <source>admin.customer.email</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.phone">
+        <source>admin.customer.phone</source>
+        <target>Tlf.</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.discount">
+        <source>admin.customer.discount</source>
+        <target>Rabat</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.is_active">
+        <source>admin.customer.is_active</source>
+        <target>Aktiv</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.created_at">
+        <source>admin.customer.created_at</source>
+        <target>Oprettet</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.updated_at">
+        <source>admin.customer.updated_at</source>
+        <target>Opdateret</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.activated">
+        <source>admin.customer.activated</source>
+        <target>Aktiveret</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.deactivated">
+        <source>admin.customer.deactivated</source>
+        <target>Deaktiveret</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.addresses.type">
+        <source>admin.customers.addresses.type</source>
+        <target>Type</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.addresses.first_name">
+        <source>admin.customers.addresses.first_name</source>
+        <target>Fornavn</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.addresses.last_name">
+        <source>admin.customers.addresses.last_name</source>
+        <target>Efternavn</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.addresses.address_line_1">
+        <source>admin.customers.addresses.address_line_1</source>
+        <target>Adresse 1</target>
+      </trans-unit>
+      <trans-unit id="address.address_line_1.required">
+        <source>address.address_line_1.required</source>
+        <target>Du skal udfylde din adresse</target>
+      </trans-unit>
+      <trans-unit id="address.address_line_1.max.length">
+        <source>address.address_line_1.max.length</source>
+        <target>Adressefeltet må maksimalt indeholde %count% tegn!</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.addresses.address_line_2">
+        <source>admin.customers.addresses.address_line_2</source>
+        <target>Addresse 2</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.addresses.postal_code">
+        <source>admin.customers.addresses.postal_code</source>
+        <target>Post Nr.</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.addresses.city">
+        <source>admin.customers.addresses.city</source>
+        <target>By</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.addresses.country">
+        <source>admin.customers.addresses.country</source>
+        <target>Land</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.addresses.state_province">
+        <source>admin.customers.addresses.state_province</source>
+        <target>Region</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.addresses.company_name">
+        <source>admin.customers.addresses.company_name</source>
+        <target>Firma navn</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.addresses.latitude">
+        <source>admin.customers.addresses.latitude</source>
+        <target>Latitude</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.addresses.longitude">
+        <source>admin.customers.addresses.longitude</source>
+        <target>Longitude</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.yes">
+        <source>admin.consultant.yes</source>
+        <target>Ja</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.no">
+        <source>admin.consultant.no</source>
+        <target>Nej</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.initials">
+        <source>admin.consultant.initials</source>
+        <target>Initialer</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.info">
+        <source>admin.consultant.info</source>
+        <target>Info</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.event_notes">
+        <source>admin.consultant.event_notes</source>
+        <target>Event Noter</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.max_notified">
+        <source>admin.consultant.max_notified</source>
+        <target>Max notifikationer</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.events.header.text">
+        <source>admin.consultants.events.header.text</source>
+        <target>Se alle Events</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.events.description.text">
+        <source>admin.consultants.events.description.text</source>
+        <target>I denne tabel kan du se alle Events konsulenterne afholder. Du kan desuden exportere en csv fil fra en bestemt tidsinterval.</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.events.code">
+        <source>admin.consultants.events.code</source>
+        <target>Kode</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.events.key">
+        <source>admin.consultants.events.key</source>
+        <target>Nøgle</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.events.event_date">
+        <source>admin.consultants.events.event_date</source>
+        <target>Dato</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.events.host">
+        <source>admin.consultants.events.host</source>
+        <target>Vært</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.events.address_line_1">
+        <source>admin.consultants.events.address_line_1</source>
+        <target>Addresse</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.events.address_line_2">
+        <source>admin.consultants.events.address_line_2</source>
+        <target>Addresse 2</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.events.postal_code">
+        <source>admin.consultants.events.postal_code</source>
+        <target>Post Nr.</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.events.city">
+        <source>admin.consultants.events.city</source>
+        <target>By</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.events.phone">
+        <source>admin.consultants.events.phone</source>
+        <target>Tlf.</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.events.email">
+        <source>admin.consultants.events.email</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.events.description">
+        <source>admin.consultants.events.description</source>
+        <target>Beskrivelse</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.events.type">
+        <source>admin.consultants.events.type</source>
+        <target>Type</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.events.is_open">
+        <source>admin.consultants.events.is_open</source>
+        <target>Åben?</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.events.notify_hostess">
+        <source>admin.consultants.events.notify_hostess</source>
+        <target>Underret vært?</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.date.label">
+        <source>admin.consultant.date.label</source>
+        <target>Dato</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.max_amount.label">
+        <source>admin.consultant.max_amount.label</source>
+        <target>Maksbeløb fra dato</target>
+      </trans-unit>
+      <trans-unit id="update.consultant.setting">
+        <source>update.consultant.setting</source>
+        <target>Opdater Maksbeløb</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.header.text">
+        <source>admin.consultant.header.text</source>
+        <target>Rediger konsulent</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.header.text">
+        <source>admin.customer.header.text</source>
+        <target>Rediger kunde</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.description.text">
+        <source>admin.consultant.description.text</source>
+        <target>Herunder kan du redigere alle informationer gemt for denne konsulent. Tryk på gem for at gemme dine ændringer</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.description.text">
+        <source>admin.customer.description.text</source>
+        <target>Herunder kan du redigere alle informationer gemt for denne kunde. Tryk på gem for at gemme dine ændringer</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.first_name.label">
+        <source>admin.customer.first_name.label</source>
+        <target>Fornavn</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.last_name.label">
+        <source>admin.customer.last_name.label</source>
+        <target>Efternavn</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.group.label">
+        <source>admin.customer.group.label</source>
+        <target>Bruger Gruppe</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.email.label">
+        <source>admin.customer.email.label</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.phone.label">
+        <source>admin.customer.phone.label</source>
+        <target>Telefon nummer</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.discount.label">
+        <source>admin.customer.discount.label</source>
+        <target>Rabat</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.password_clear.label">
+        <source>admin.customer.password_clear.label</source>
+        <target>Kodeord (ukrypteret)</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.is_active.label">
+        <source>admin.customer.is_active.label</source>
+        <target>Aktiveret</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.initials.label">
+        <source>admin.consultant.initials.label</source>
+        <target>Initialer</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.info.label">
+        <source>admin.consultant.info.label</source>
+        <target>Informationer</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.hide_info.label">
+        <source>admin.consultant.hide_info.label</source>
+        <target>Skjul konsulenten på Åbent Hus listen</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.openhouse.consultant_is_hidden">
+        <source>admin.consultants.openhouse.consultant_is_hidden</source>
+        <target>Denne konsulent er skjult fra Åben Hus listen</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.event_notes.label">
+        <source>admin.consultant.event_notes.label</source>
+        <target>Event informationer</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.max_notified.label">
+        <source>admin.consultant.max_notified.label</source>
+        <target>Max notifikationer</target>
+      </trans-unit>
+      <trans-unit id="update.consultant">
+        <source>update.consultant</source>
+        <target>Gem konsulent</target>
+      </trans-unit>
+      <trans-unit id="update.customer">
+        <source>update.customer</source>
+        <target>Gem kunde</target>
+      </trans-unit>
+      <trans-unit id="consultant.updated">
+        <source>consultant.updated</source>
+        <target>Konsulenten er successfuldt blevet opdateret.</target>
+      </trans-unit>
+      <trans-unit id="customer.updated">
+        <source>customer.updated</source>
+        <target>Kunden er successfuldt blevet opdateret.</target>
+      </trans-unit>
+
+      <trans-unit id="admin.customers.orders.header.text">
+        <source>admin.customers.orders.header.text</source>
+        <target>Alle ordre afgivet af denne kunde</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.orders.description.text">
+        <source>admin.customers.orders.description.text</source>
+        <target>Denne tabel viser alle afgivet ordre. Du kan se hver ordre ved at klikke "Se Ordre"</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.orders.no.orders.text">
+        <source>admin.customers.orders.no.orders.text</source>
+        <target>Den valgte kunde har ingen ordre afgivet.</target>
+      </trans-unit>
+      <trans-unit id="admin.orders.list.link">
+        <source>admin.orders.list.link</source>
+        <target>Alle Ordrer</target>
+      </trans-unit>
       <trans-unit id="admin.orders.dead_list.link">
         <source>admin.orders.dead_list.link</source>
-        <target>Dead orders</target>
+        <target>Døde Ordrer</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.orders.view">
+        <source>admin.customer.orders.view</source>
+        <target>Se Ordre</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.orders.delete">
+        <source>admin.customer.orders.delete</source>
+        <target>Slet</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.orders.date">
+        <source>admin.customer.orders.date</source>
+        <target>Dato</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.orders.created_date">
+        <source>admin.customer.orders.created_date</source>
+        <target>Dato oprettet</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.orders.finished_date">
+        <source>admin.customer.orders.finished_date</source>
+        <target>Dato færdiggjort</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.orders.orders_id">
+        <source>admin.customer.orders.orders_id</source>
+        <target>Ordre ID</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.orders.totallines">
+        <source>admin.customer.orders.totallines</source>
+        <target>Antal Produkter</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.orders.pieces">
+        <source>admin.customer.orders.pieces</source>
+        <target>Stk.</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.orders.totalprice">
+        <source>admin.customer.orders.totalprice</source>
+        <target>Total pris</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.orders.state">
+        <source>admin.customer.orders.state</source>
+        <target>Sync Status</target>
+      </trans-unit>
+
+      <trans-unit id="admin.orders.changestate.link">
+        <source>admin.orders.changestate.link</source>
+        <target>Ændre ordrestatus</target>
+      </trans-unit>
+      <trans-unit id="admin.orders.changestate.header.text">
+        <source>admin.orders.changestate.header.text</source>
+        <target>Ændre status på specifikke ordrenumre</target>
+      </trans-unit>
+      <trans-unit id="admin.orders.changestate.updated_orders.text">
+        <source>admin.orders.changestate.updated_orders.text</source>
+        <target>Ændrede ordrenumre:</target>
+      </trans-unit>
+      <trans-unit id="admin.orders.changestate.description.text">
+        <source>admin.orders.changestate.description.text</source>
+        <target>Vælg det interval af ordrenumre som skal ændres status på. Du kan vælge at kun gøre det på de ordre som allerede er på en specifik status.</target>
+      </trans-unit>
+      <trans-unit id="admin.orders.changestate.submit">
+        <source>admin.orders.changestate.submit</source>
+        <target>Udfør ændring af status</target>
+      </trans-unit>
+      <trans-unit id="admin.orders.state_from.label">
+        <source>admin.orders.state_from.label</source>
+        <target>Alle fra status (valgfri)</target>
+      </trans-unit>
+      <trans-unit id="admin.orders.state_to.label">
+        <source>admin.orders.state_to.label</source>
+        <target>Alle til status</target>
+      </trans-unit>
+      <trans-unit id="admin.orders.id_from.label">
+        <source>admin.orders.id_from.label</source>
+        <target>Alle fra ID nummer</target>
+      </trans-unit>
+      <trans-unit id="admin.orders.id_to.label">
+        <source>admin.orders.id_to.label</source>
+        <target>Alle til og med ID nummer</target>
+      </trans-unit>
+      <trans-unit id="admin.orders.id_exclude.label">
+        <source>admin.orders.id_exclude.label</source>
+        <target>Exkluder disse ordrenumre: ex 1234,5678,9876</target>
+      </trans-unit>
+
+      <trans-unit id="admin.order.id">
+        <source>admin.order.id</source>
+        <target>Ordre ID</target>
+      </trans-unit>
+      <trans-unit id="admin.order.session_id">
+        <source>admin.order.session_id</source>
+        <target>Session ID</target>
+      </trans-unit>
+      <trans-unit id="admin.order.payment_gateway_id">
+        <source>admin.order.payment_gateway_id</source>
+        <target>Payment Gateway ID</target>
+      </trans-unit>
+      <trans-unit id="admin.order.state">
+        <source>admin.order.state</source>
+        <target>Status</target>
+      </trans-unit>
+      <trans-unit id="update.state">
+        <source>update.state</source>
+        <target>Opdater Status</target>
+      </trans-unit>
+      <trans-unit id="admin.orders.state_log.inserted">
+        <source>admin.orders.state_log.inserted</source>
+        <target>Status opdateret!</target>
+      </trans-unit>
+      <trans-unit id="admin.orders.state_log.changed">
+        <source>admin.orders.state_log.changed</source>
+        <target>Status opdateret!</target>
+      </trans-unit>
+      <trans-unit id="admin.order.in_edit">
+        <source>admin.order.in_edit</source>
+        <target>Under redigering</target>
+      </trans-unit>
+      <trans-unit id="admin.order.in_edit.active">
+        <source>admin.order.in_edit.active</source>
+        <target>JA</target>
+      </trans-unit>
+      <trans-unit id="admin.order.in_edit.deactive">
+        <source>admin.order.in_edit.deactive</source>
+        <target>NEJ</target>
+      </trans-unit>
+      <trans-unit id="admin.order.customers_id">
+        <source>admin.order.customers_id</source>
+        <target>Kunde ID</target>
+      </trans-unit>
+      <trans-unit id="admin.order.first_name">
+        <source>admin.order.first_name</source>
+        <target>Fornavn</target>
+      </trans-unit>
+      <trans-unit id="admin.order.last_name">
+        <source>admin.order.last_name</source>
+        <target>Efternavn</target>
+      </trans-unit>
+      <trans-unit id="admin.order.email">
+        <source>admin.order.email</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="admin.order.phone">
+        <source>admin.order.phone</source>
+        <target>Tlf.</target>
+      </trans-unit>
+      <trans-unit id="admin.order.languages_id">
+        <source>admin.order.languages_id</source>
+        <target>Sprog ID</target>
+      </trans-unit>
+      <trans-unit id="admin.order.currency_id">
+        <source>admin.order.currency_id</source>
+        <target>Valuta ID</target>
+      </trans-unit>
+      <trans-unit id="admin.order.billing_tablehead">
+        <source>admin.order.billing_tablehead</source>
+        <target>Betalingsoplysninger</target>
+      </trans-unit>
+      <trans-unit id="admin.order.billing_first_name">
+        <source>admin.order.billing_first_name</source>
+        <target>Fornavn</target>
+      </trans-unit>
+      <trans-unit id="admin.order.billing_last_name">
+        <source>admin.order.billing_last_name</source>
+        <target>Efternavn</target>
+      </trans-unit>
+      <trans-unit id="admin.order.billing_address_line_1">
+        <source>admin.order.billing_address_line_1</source>
+        <target>Addresselinje 1</target>
+      </trans-unit>
+      <trans-unit id="admin.order.billing_address_line_2">
+        <source>admin.order.billing_address_line_2</source>
+        <target>Addresselinje 2</target>
+      </trans-unit>
+      <trans-unit id="admin.order.billing_postal_code">
+        <source>admin.order.billing_postal_code</source>
+        <target>Post Nr.</target>
+      </trans-unit>
+      <trans-unit id="admin.order.billing_city">
+        <source>admin.order.billing_city</source>
+        <target>By</target>
+      </trans-unit>
+      <trans-unit id="admin.order.billing_country">
+        <source>admin.order.billing_country</source>
+        <target>Land</target>
+      </trans-unit>
+      <trans-unit id="admin.order.billing_countries_id">
+        <source>admin.order.billing_countries_id</source>
+        <target>Land ID</target>
+      </trans-unit>
+      <trans-unit id="admin.order.billing_state_province">
+        <source>admin.order.billing_state_province</source>
+        <target>Region</target>
+      </trans-unit>
+      <trans-unit id="admin.order.billing_company_name">
+        <source>admin.order.billing_company_name</source>
+        <target>Firmanavn</target>
+      </trans-unit>
+      <trans-unit id="admin.order.billing_method">
+        <source>admin.order.billing_method</source>
+        <target>Betalingsmetode</target>
+      </trans-unit>
+
+      <trans-unit id="admin.order.delivery_tablehead">
+        <source>admin.order.delivery_tablehead</source>
+        <target>Leveringsoplysninger</target>
+      </trans-unit>
+      <trans-unit id="admin.order.delivery_first_name">
+        <source>admin.order.delivery_first_name</source>
+        <target>Fornavn</target>
+      </trans-unit>
+      <trans-unit id="admin.order.delivery_last_name">
+        <source>admin.order.delivery_last_name</source>
+        <target>Efternavn</target>
+      </trans-unit>
+      <trans-unit id="admin.order.delivery_address_line_1">
+        <source>admin.order.delivery_address_line_1</source>
+        <target>Addresselinje 1</target>
+      </trans-unit>
+      <trans-unit id="admin.order.delivery_address_line_2">
+        <source>admin.order.delivery_address_line_2</source>
+        <target>Addresselinje 2</target>
+      </trans-unit>
+      <trans-unit id="admin.order.delivery_postal_code">
+        <source>admin.order.delivery_postal_code</source>
+        <target>Post Nr.</target>
+      </trans-unit>
+      <trans-unit id="admin.order.delivery_city">
+        <source>admin.order.delivery_city</source>
+        <target>By</target>
+      </trans-unit>
+      <trans-unit id="admin.order.delivery_country">
+        <source>admin.order.delivery_country</source>
+        <target>Land</target>
+      </trans-unit>
+      <trans-unit id="admin.order.delivery_countries_id">
+        <source>admin.order.delivery_countries_id</source>
+        <target>Land ID</target>
+      </trans-unit>
+      <trans-unit id="admin.order.delivery_state_province">
+        <source>admin.order.delivery_state_province</source>
+        <target>Region</target>
+      </trans-unit>
+      <trans-unit id="admin.order.delivery_company_name">
+        <source>admin.order.delivery_company_name</source>
+        <target>Firmanavn</target>
+      </trans-unit>
+      <trans-unit id="admin.order.delivery_method">
+        <source>admin.order.delivery_method</source>
+        <target>Betalingsmetode</target>
+      </trans-unit>
+      <trans-unit id="admin.order.finished_at">
+        <source>admin.order.finished_at</source>
+        <target>Færdiggjort d.</target>
+      </trans-unit>
+      <trans-unit id="admin.order.created_at">
+        <source>admin.order.created_at</source>
+        <target>Oprettet d.</target>
+      </trans-unit>
+      <trans-unit id="admin.order.updated_at">
+        <source>admin.order.updated_at</source>
+        <target>Opdateret d.</target>
+      </trans-unit>
+
+      <trans-unit id="admin.order.lines.type">
+        <source>admin.order.lines.type</source>
+        <target>Type</target>
+      </trans-unit>
+      <trans-unit id="admin.order.lines.tax">
+        <source>admin.order.lines.tax</source>
+        <target>Moms</target>
+      </trans-unit>
+      <trans-unit id="admin.order.lines.products_id">
+        <source>admin.order.lines.products_id</source>
+        <target>Produkt ID</target>
+      </trans-unit>
+      <trans-unit id="admin.order.lines.products_sku">
+        <source>admin.order.lines.products_sku</source>
+        <target>Produkt SKU</target>
+      </trans-unit>
+      <trans-unit id="admin.order.lines.products_name">
+        <source>admin.order.lines.products_name</source>
+        <target>Produkt Navn</target>
+      </trans-unit>
+      <trans-unit id="admin.order.lines.products_color">
+        <source>admin.order.lines.products_color</source>
+        <target>Farve</target>
+      </trans-unit>
+      <trans-unit id="admin.order.lines.products_size">
+        <source>admin.order.lines.products_size</source>
+        <target>Str.</target>
+      </trans-unit>
+      <trans-unit id="admin.order.lines.expected_at">
+        <source>admin.order.lines.expected_at</source>
+        <target>Forventet lev.</target>
+      </trans-unit>
+      <trans-unit id="admin.order.lines.price">
+        <source>admin.order.lines.price</source>
+        <target>Pris</target>
+      </trans-unit>
+      <trans-unit id="admin.order.lines.quantity">
+        <source>admin.order.lines.quantity</source>
+        <target>Antal</target>
+      </trans-unit>
+
+      <trans-unit id="admin.orders.lines.ns">
+        <source>admin.orders.lines.ns</source>
+        <target>NS</target>
+      </trans-unit>
+      <trans-unit id="admin.orders.lines.c_key">
+        <source>admin.orders.lines.c_key</source>
+        <target>C Key</target>
+      </trans-unit>
+      <trans-unit id="admin.orders.lines.c_value">
+        <source>admin.orders.lines.c_value</source>
+        <target>Indhold</target>
+      </trans-unit>
+
+      <trans-unit id="admin.orders.sync_states.created_date">
+        <source>admin.orders.sync_states.created_date</source>
+        <target>Dato</target>
+      </trans-unit>
+      <trans-unit id="admin.orders.sync_states.state">
+        <source>admin.orders.sync_states.state</source>
+        <target>Status</target>
+      </trans-unit>
+      <trans-unit id="admin.orders.sync_states.content">
+        <source>admin.orders.sync_states.content</source>
+        <target>Indhold</target>
+      </trans-unit>
+      <trans-unit id="admin.orders.sync_states.comment">
+        <source>admin.orders.sync_states.comment</source>
+        <target>Kommentar</target>
+      </trans-unit>
+
+      <trans-unit id="admin.order.header.text">
+        <source>admin.order.header.text</source>
+        <target>Ordre detaljer</target>
+      </trans-unit>
+      <trans-unit id="admin.order.order.description.text">
+        <source>admin.order.order.description.text</source>
+        <target>Denne tabel viser alle data som er gemt i databasen, for den valgte ordre.</target>
+      </trans-unit>
+      <trans-unit id="admin.orders.no.order_lines.text">
+        <source>admin.orders.no.order_lines.text</source>
+        <target>Der er ikke tilknyttet nogle produkter til denne ordre.</target>
+      </trans-unit>
+      <trans-unit id="admin.orders.no.order_attributes.text">
+        <source>admin.orders.no.order_attributes.text</source>
+        <target>Der findes ingen attributer for denne ordre.</target>
+      </trans-unit>
+      <trans-unit id="admin.orders.no.sync_states.text">
+        <source>admin.orders.no.sync_states.text</source>
+        <target>Der findes ingen synkroniserings log for denne ordre.</target>
+      </trans-unit>
+      <trans-unit id="admin.order.lines.header.text">
+        <source>admin.order.lines.header.text</source>
+        <target>Ordre linjer</target>
+      </trans-unit>
+      <trans-unit id="admin.order.lines.description.text">
+        <source>admin.order.lines.description.text</source>
+        <target>I denne tabel vises alle linjer(produkter) som indgår i ordren.</target>
+      </trans-unit>
+      <trans-unit id="admin.order.attributes.header.text">
+        <source>admin.order.attributes.header.text</source>
+        <target>Ordre keys</target>
+      </trans-unit>
+      <trans-unit id="admin.order.attributes.description.text">
+        <source>admin.order.attributes.description.text</source>
+        <target>Denne tabel viser alle gemte attributer for den ordren.</target>
+      </trans-unit>
+      <trans-unit id="admin.order.sync_states.header.text">
+        <source>admin.order.sync_states.header.text</source>
+        <target>Synkroniserings Log</target>
+      </trans-unit>
+
+      <trans-unit id="admin.washing.header.text">
+        <source>admin.washing.header.text</source>
+        <target>Vaskeanvisninger</target>
+      </trans-unit>
+      <trans-unit id="admin.washing.edit.header.text">
+        <source>admin.washing.edit.header.text</source>
+        <target>Rediger vaskeanvisning</target>
+      </trans-unit>
+      <trans-unit id="admin.washing.edit.description.text">
+        <source>admin.washing.edit.description.text</source>
+        <target>Herunder kan du redigere alle data for den valgte vaskeanvisning.</target>
+      </trans-unit>
+      <trans-unit id="admin.washing.description.text">
+        <source>admin.washing.description.text</source>
+        <target>Herunder vises alle vaskeanvisninger der er gemt i databasen. Du kan filtrer med "Kode" eller "Sprog" for at få vist dem du har brug for.</target>
+      </trans-unit>
+      <trans-unit id="admin.washing.no.washing.text">
+        <source>admin.washing.no.washing.text</source>
+        <target>Der findes ingen oversættelser for det valgte.</target>
+      </trans-unit>
+      <trans-unit id="update.washing">
+        <source>update.washing</source>
+        <target>Gem vaskeanvisning</target>
+      </trans-unit>
+      <trans-unit id="admin.washing.inserted">
+        <source>admin.washing.inserted</source>
+        <target>Vaskeanvisning er blevet gemt!</target>
+      </trans-unit>
+      <trans-unit id="admin.washingcode.selector">
+        <source>admin.washingcode.selector</source>
+        <target>Vælg Kode</target>
+      </trans-unit>
+      <trans-unit id="admin.washingcode.list.link">
+        <source>admin.washingcode.list.link</source>
+        <target>Alle vaskeanvisninger</target>
+      </trans-unit>
+      <trans-unit id="admin.washingcode.add_new.link">
+        <source>admin.washingcode.add_new.link</source>
+        <target>Opret ny Vaskeanvisning</target>
+      </trans-unit>
+      <trans-unit id="washing.language.selector">
+        <source>washing.language.selector</source>
+        <target>Vælg Sprog</target>
+      </trans-unit>
+      <trans-unit id="admin.washing.code">
+        <source>admin.washing.code</source>
+        <target>Kode</target>
+      </trans-unit>
+      <trans-unit id="admin.washing.locale">
+        <source>admin.washing.locale</source>
+        <target>Sprog</target>
+      </trans-unit>
+      <trans-unit id="admin.washing.description">
+        <source>admin.washing.description</source>
+        <target>Beskrivelse</target>
+      </trans-unit>
+      <trans-unit id="admin.washing.edit">
+        <source>admin.washing.edit</source>
+        <target>Rediger</target>
+      </trans-unit>
+      <trans-unit id="admin.washing.delete">
+        <source>admin.washing.delete</source>
+        <target>Slet</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.add.link">
+        <source>admin.zip_to_city.add.link</source>
+        <target>Tilføj nyt Post Nr.</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.list.link">
+        <source>admin.zip_to_city.list.link</source>
+        <target>Se alle Post Nr.</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.header.text">
+        <source>admin.zip_to_city.header.text</source>
+        <target>Post Numre</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.edit.header.text">
+        <source>admin.zip_to_city.edit.header.text</source>
+        <target>Rediger Post Nr.</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.description.text">
+        <source>admin.zip_to_city.description.text</source>
+        <target>Her kan du se alle post numre som er gemt. Rediger eller slet et Post Nr. med link ud for hvert nummer. Du kan søge med formularen øverst, eller vælge hvilket land du vil se Post numre fra.</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.edit.description.text">
+        <source>admin.zip_to_city.edit.description.text</source>
+        <target>Rediger et Post nummer ved at udfylde felterne og derefter tryk på Gem</target>
+      </trans-unit>
+      <trans-unit id="update.zip_to_city">
+        <source>update.zip_to_city</source>
+        <target>Gem Post Nr.</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.zip">
+        <source>admin.zip_to_city.zip</source>
+        <target>Post Nr.</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.countries_iso2">
+        <source>admin.zip_to_city.countries_iso2</source>
+        <target>Land</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.city">
+        <source>admin.zip_to_city.city</source>
+        <target>By</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.county_id">
+        <source>admin.zip_to_city.county_id</source>
+        <target>Region id</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.county_name">
+        <source>admin.zip_to_city.county_name</source>
+        <target>Region</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.comment">
+        <source>admin.zip_to_city.comment</source>
+        <target>Kommentar</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.edit">
+        <source>admin.zip_to_city.edit</source>
+        <target>Rediger</target>
+      </trans-unit>
+      <trans-unit id="zip_to_city.updated">
+        <source>zip_to_city.updated</source>
+        <target>Post Nummer opdateret!</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.delete">
+        <source>admin.zip_to_city.delete</source>
+        <target>Slet</target>
+      </trans-unit>
+      <trans-unit id="delete.zip_to_city.success">
+        <source>delete.zip_to_city.success</source>
+        <target>Post nummer blev slettet!</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.no.zip_to_city.text">
+        <source>admin.zip_to_city.no.zip_to_city.text</source>
+        <target>Der findes ingen post numre for søgningen.</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.zip.label">
+        <source>admin.zip_to_city.zip.label</source>
+        <target>Post Nr.</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.countries_iso2.label">
+        <source>admin.zip_to_city.countries_iso2.label</source>
+        <target>Land ISO2</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.city.label">
+        <source>admin.zip_to_city.city.label</source>
+        <target>By</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.county_id.label">
+        <source>admin.zip_to_city.county_id.label</source>
+        <target>Region Id</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.county_name.label">
+        <source>admin.zip_to_city.county_name.label</source>
+        <target>Region</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.comment.label">
+        <source>admin.zip_to_city.comment.label</source>
+        <target>Kommentar</target>
+      </trans-unit>
+      <trans-unit id="admin.statistics.header.text.%from%.%to%">
+        <source>admin.statistics.header.text.%from%.%to%</source>
+        <target>Statistik fra d. %from% til d. %to%</target>
+      </trans-unit>
+      <trans-unit id="admin.statistics.description.text">
+        <source>admin.statistics.description.text</source>
+        <target>Her kan du se statistikker på antal af ordre og proukter samt den samlede pris grupperet på dage. Du kan vælge at se statistik for en given periode eller vælge statistik for denne uge eller måned. Vælg desuden hvilket domæne der skal vises statistik fra.</target>
+      </trans-unit>
+      <trans-unit id="admin.statistics.periode.select.header">
+        <source>admin.statistics.periode.select.header</source>
+        <target>Vælg periode...</target>
+      </trans-unit>
+      <trans-unit id="admin.statistics.periode.this-week">
+        <source>admin.statistics.periode.this-week</source>
+        <target>Statistik for nuværende uge</target>
+      </trans-unit>
+      <trans-unit id="admin.statistics.periode.this-month">
+        <source>admin.statistics.periode.this-month</source>
+        <target>Statistik for nuværende måned</target>
+      </trans-unit>
+      <trans-unit id="admin.statistics.start.label">
+        <source>admin.statistics.start.label</source>
+        <target>Fra dato:</target>
+      </trans-unit>
+      <trans-unit id="admin.statistics.end.label">
+        <source>admin.statistics.end.label</source>
+        <target>Til dato:</target>
+      </trans-unit>
+      <trans-unit id="admin.back.button">
+        <source>admin.back.button</source>
+        <target>Tilbage</target>
+      </trans-unit>
+      <trans-unit id="admin.statistics.periode.submit">
+        <source>admin.statistics.periode.submit</source>
+        <target>Se statistik</target>
+      </trans-unit>
+      <trans-unit id="admin.statistics.finishedat">
+        <source>admin.statistics.finishedat</source>
+        <target>Dato</target>
+      </trans-unit>
+      <trans-unit id="admin.statistics.totalproducts">
+        <source>admin.statistics.totalproducts</source>
+        <target>Antal produkter</target>
+      </trans-unit>
+      <trans-unit id="admin.statistics.totalorders">
+        <source>admin.statistics.totalorders</source>
+        <target>Antal ordrer</target>
+      </trans-unit>
+      <trans-unit id="admin.statistics.totalamount">
+        <source>admin.statistics.totalamount</source>
+        <target>Beløb</target>
+      </trans-unit>
+      <trans-unit id="admin.statistics.no.statistics.text">
+        <source>admin.statistics.no.statistics.text</source>
+        <target>Der findes ingen statistik for denne periode.</target>
+      </trans-unit>
+      <trans-unit id="admin.statistics.no.domain.choosen">
+        <source>admin.statistics.no.domain.choosen</source>
+        <target>Du skal først vælge hvilken domæne du vil se statistik fra.</target>
+      </trans-unit>
+      <trans-unit id="admin.gift_cards.list.link">
+        <source>admin.gift_cards.list.link</source>
+        <target>Alle Gavekort</target>
+      </trans-unit>
+      <trans-unit id="admin.gift_cards.edit.link">
+        <source>admin.gift_cards.edit.link</source>
+        <target>Rediger</target>
+      </trans-unit>
+      <trans-unit id="admin.gift_cards.delete.link">
+        <source>admin.gift_cards.delete.link</source>
+        <target>Slet</target>
+      </trans-unit>
+      <trans-unit id="admin.gift_cards.add_new.link">
+        <source>admin.gift_cards.add_new.link</source>
+        <target>Opret Gavekort</target>
+      </trans-unit>
+      <trans-unit id="update.gift_cards">
+        <source>update.gift_cards</source>
+        <target>Gem Gavekort</target>
+      </trans-unit>
+      <trans-unit id="admin.gift_card.inserted">
+        <source>admin.gift_card.inserted</source>
+        <target>Gavekortet blev gemt!</target>
+      </trans-unit>
+      <trans-unit id="add.gift_card.customer.success">
+        <source>add.gift_card.customer.success</source>
+        <target>Brugeren blev tilføjet til gavekortet!</target>
+      </trans-unit>
+      <trans-unit id="add.gift_card.customer.failed">
+        <source>add.gift_card.customer.failed</source>
+        <target>Brugeren kunne ikke tilføjes til gavekortet!</target>
+      </trans-unit>
+      <trans-unit id="delete.gift_card.success">
+        <source>delete.gift_card.success</source>
+        <target>Gavekortet blev slettet!</target>
+      </trans-unit>
+      <trans-unit id="delete.gift_card.failed">
+        <source>delete.gift_card.failed</source>
+        <target>Der skete en fejl. Gavekortet kunne ikke slettes!</target>
+      </trans-unit>
+      <trans-unit id="delete.gift_card.customer.success">
+        <source>delete.gift_card.customer.success</source>
+        <target>Brugeren blev fjernet!</target>
+      </trans-unit>
+      <trans-unit id="delete.gift_card.customer.failed">
+        <source>delete.gift_card.customer.failed</source>
+        <target>Der skete en fejl. Brugeren kunne ikke fjernes!</target>
+      </trans-unit>
+      <trans-unit id="admin.gift_cards.gift_card-customer-selector.description">
+        <source>admin.gift_cards.gift_card-customer-selector.description</source>
+        <target>Vælg en bruger der skal kunne bruge gavekortet...</target>
+      </trans-unit>
+      <trans-unit id="admin.gift_cards.no.gift_cards.text">
+        <source>admin.gift_cards.no.gift_cards.text</source>
+        <target>Der kunnet ikke findes nogle gavekort.</target>
+      </trans-unit>
+      <trans-unit id="admin.gift_cards.header.text">
+        <source>admin.gift_cards.header.text</source>
+        <target>Gavekort</target>
+      </trans-unit>
+      <trans-unit id="admin.gift_cards.edit.header.text">
+        <source>admin.gift_cards.edit.header.text</source>
+        <target>Rediger Gavekort</target>
+      </trans-unit>
+      <trans-unit id="admin.gift_cards.customers.header.text">
+        <source>admin.gift_cards.customers.header.text</source>
+        <target>Brugere der kan bruge dette gavekort:</target>
+      </trans-unit>
+      <trans-unit id="admin.gift_cards.description.text">
+        <source>admin.gift_cards.description.text</source>
+        <target>Herunder kan du se alle gemte Gavekort. Du kan søge efter en specifik gavekort ved at søge på gavekortets kode.</target>
+      </trans-unit>
+      <trans-unit id="admin.gift_cards.edit.description.text">
+        <source>admin.gift_cards.edit.description.text</source>
+        <target>Herunder kan du redigere eller opretten et nyt gavekort.</target>
+      </trans-unit>
+      <trans-unit id="admin.gift_cards.customers.description.text">
+        <source>admin.gift_cards.customers.description.text</source>
+        <target>Rediger de brugere som skal have adgang til at bruge dette gavekort. Tilføj nye brugere ved at vælge et navn i feltet nedenunder. Slet et navn fra listen ved at trykke på x'et ud for.</target>
+      </trans-unit>
+      <trans-unit id="admin.gift_cards.customers.need.to.save">
+        <source>admin.gift_cards.customers.need.to.save</source>
+        <target>For at kunne tilføje brugere, bliver du nødt til at gemme Gavekortet. Tryk på "Gem Gavekort".</target>
+      </trans-unit>
+      <trans-unit id="admin.gift_cards.id">
+        <source>admin.gift_cards.id</source>
+        <target>ID</target>
+      </trans-unit>
+      <trans-unit id="admin.gift_cards.code">
+        <source>admin.gift_cards.code</source>
+        <target>Kode</target>
+      </trans-unit>
+      <trans-unit id="admin.gift_cards.amount">
+        <source>admin.gift_cards.amount</source>
+        <target>Beløb</target>
+      </trans-unit>
+      <trans-unit id="admin.gift_cards.vat">
+        <source>admin.gift_cards.vat</source>
+        <target>Moms</target>
+      </trans-unit>
+      <trans-unit id="admin.gift_cards.currency">
+        <source>admin.gift_cards.currency</source>
+        <target>Valuta</target>
+      </trans-unit>
+      <trans-unit id="admin.gift_cards.uses_pr_gift_card">
+        <source>admin.gift_cards.uses_pr_gift_card</source>
+        <target>Antal per gavekort</target>
+      </trans-unit>
+      <trans-unit id="admin.gift_cards.uses_pr_customer">
+        <source>admin.gift_cards.uses_pr_customer</source>
+        <target>Antal per bruger</target>
+      </trans-unit>
+      <trans-unit id="admin.gift_cards.active_from">
+        <source>admin.gift_cards.active_from</source>
+        <target>Aktiv fra d.</target>
+      </trans-unit>
+      <trans-unit id="admin.gift_cards.active_to">
+        <source>admin.gift_cards.active_to</source>
+        <target>Aktiv til d.</target>
       </trans-unit>
       <trans-unit id="admin.coupons.list.link">
         <source>admin.coupons.list.link</source>
@@ -161,6 +1962,118 @@
       <trans-unit id="admin.coupon.is_used">
         <source>admin.coupon.is_used</source>
         <target>Brugt</target>
+      </trans-unit>
+      <trans-unit id="admin.helpdesk.header.text">
+        <source>admin.helpdesk.header.text</source>
+        <target>Helpdesk Data</target>
+      </trans-unit>
+      <trans-unit id="admin.helpdesk.description.text">
+        <source>admin.helpdesk.description.text</source>
+        <target>Her kan du se alle gemte bruger data. Tryk på "Se" for at åbne vinduet med data op.</target>
+      </trans-unit>
+      <trans-unit id="admin.helpdesk.key">
+        <source>admin.helpdesk.key</source>
+        <target>Id</target>
+      </trans-unit>
+      <trans-unit id="admin.helpdesk.created_at">
+        <source>admin.helpdesk.created_at</source>
+        <target>Oprettet d.</target>
+      </trans-unit>
+      <trans-unit id="admin.helpdesk.view">
+        <source>admin.helpdesk.view</source>
+        <target>Se</target>
+      </trans-unit>
+      <trans-unit id="admin.helpdesk.delete">
+        <source>admin.helpdesk.delete</source>
+        <target>Slet</target>
+      </trans-unit>
+      <trans-unit id="admin.helpdesk.delete.all">
+        <source>admin.helpdesk.delete.all</source>
+        <target>Slet alle som er ældre end 2 dage.</target>
+      </trans-unit>
+      <trans-unit id="delete.helpdesk.success">
+        <source>delete.helpdesk.success</source>
+        <target>Data blev slettet!</target>
+      </trans-unit>
+      <trans-unit id="delete.helpdesk.failed">
+        <source>delete.helpdesk.failed</source>
+        <target>Der skete en fejl under sletning af data. Prøv at genindlæs siden og prøv igen.</target>
+      </trans-unit>
+      <trans-unit id="admin.helpdesk.no.helpdesk.text">
+        <source>admin.helpdesk.no.helpdesk.text</source>
+        <target>Der er ingen gemte Helpdesk data.</target>
+      </trans-unit>
+      <trans-unit id="admin.stock.export">
+        <source>admin.stock.export</source>
+        <target>Udtræk lager antal. (CSV)</target>
+      </trans-unit>
+      <trans-unit id="search.label">
+        <source>search.label</source>
+        <target>Søg...</target>
+      </trans-unit>
+      <trans-unit id="search.debitor.label">
+        <source>search.debitor.label</source>
+        <target>Søg Debitor...</target>
+      </trans-unit>
+      <trans-unit id="search">
+        <source>search</source>
+        <target>Søg</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.openhouse.header.text">
+        <source>admin.consultants.openhouse.header.text</source>
+        <target>Konsulenter - Åbent Hus</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.openhouse.list.link">
+        <source>admin.consultants.openhouse.list.link</source>
+        <target>Åbent Hus Liste</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.consultants.frontpage.link">
+        <source>admin.customers.consultants.frontpage.link</source>
+        <target>Konsulent Forside Tekst</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.frontpage.header.text">
+        <source>admin.consultants.frontpage.header.text</source>
+        <target>Tekst til Konsulent Forsiden</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.frontpage.save">
+        <source>admin.consultants.frontpage.save</source>
+        <target>Gem Tekst</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.frontpage.content.label">
+        <source>admin.consultants.frontpage.content.label</source>
+        <target>Indhold:</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.fronpage.content.updated">
+        <source>admin.consultants.fronpage.content.updated</source>
+        <target>Konsulent forsiden er nu opdateret.</target>
+      </trans-unit>
+      <trans-unit id="admin.products.image-to-categories.selector.description">
+        <source>admin.products.image-to-categories.selector.description</source>
+        <target>Vælg kategori for at tildele billede til den</target>
+      </trans-unit>
+      <trans-unit id="cms.edit.label.parent_id">
+        <source>cms.edit.label.parent_id</source>
+        <target>Forældre ID</target>
+      </trans-unit>
+      <trans-unit id="cms.edit.type.bycolour">
+        <source>cms.edit.type.bycolour</source>
+        <target>By Colour Kategori</target>
+      </trans-unit>
+      <trans-unit id="cms.edit.type.look">
+        <source>cms.edit.type.look</source>
+        <target>By Look Kategori</target>
+      </trans-unit>
+      <trans-unit id="amount">
+        <source>amount</source>
+        <target>Beløb</target>
+      </trans-unit>
+      <trans-unit id="order.id">
+        <source>order.id</source>
+        <target>Ordre</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source></source>
+        <target></target>
       </trans-unit>
     </body>
   </file>

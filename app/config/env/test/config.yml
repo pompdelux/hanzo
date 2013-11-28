@@ -15,7 +15,8 @@ framework:
     trusted_hosts: [ '.*?\.?testpompdelux.com|localhost' ]
     templating:
         assets_base_urls:
-            http:                     [ %cdn% ]
+            http: [ "%assets_base_url%" ]
+            ssl: [ "%assets_base_url%" ]
 
 varnish:
     host: %varnish_host%

@@ -92,55 +92,67 @@
             </trans-unit>
             <trans-unit id="rma.slip.id">
                 <source>rma.slip.id</source>
-                <target>Kundnummer</target>
+                <target><![CDATA[Kundnummer]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.name">
                 <source>rma.slip.name</source>
-                <target>Namn</target>
+                <target><![CDATA[Namn]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.email">
                 <source>rma.slip.email</source>
-                <target>Email</target>
+                <target><![CDATA[Email]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.phone">
                 <source>rma.slip.phone</source>
-                <target>Telefon</target>
+                <target><![CDATA[Telefon]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.order_id">
                 <source>rma.slip.order_id</source>
-                <target>E-ordernummer</target>
+                <target><![CDATA[E-ordernummer]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.deliveryaddress">
                 <source>rma.slip.deliveryaddress</source>
-                <target>Leveransadress</target>
+                <target><![CDATA[Leveransadress]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.title.order_id">
                 <source>rma.slip.title.order_id</source>
-                <target>POMPdeLUX retursedel Order ID %order_id%</target>
+                <target><![CDATA[POMPdeLUX retursedel Order ID %order_id%]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.description">
                 <source>rma.slip.description</source>
-                <target><![CDATA[<p>Om du &ouml;nskar att byta eller returnera varor, ska du fylla i bifoga retursedeln.<br>Eftersom din returvara ska s&auml;ljas igen, &auml;r det en stor hj&auml;lp f&ouml;r oss att du returnerar varan i original f&ouml;rpackning med labels p&aring; etc.<br><br>Du har mottagit en returlabel per mail, som du kan anv&auml;nda vid returnering – anv&auml;nd denna s&aring; drar vi endast av SEK 49,- av v&auml;rdet p&aring; dina returvaror.<br><br>Om du returnerar en reklamation eller en vara som blivit felskickad, &auml;r f&ouml;rs&auml;ndelsen naturligtvis fraktfri f&ouml;r dig. Om du &ouml;nskar att byta till en annan storlek, f&auml;rg eller till en helt annan vara, &auml;r f&ouml;rs&auml;ndelsen &auml;ven h&auml;r fraktfri. Varans pris f&aring;r dock inte &ouml;verstiga priset p&aring; varan du returnerar. Om varan du &ouml;nskar &auml;r uts&aring;ld, &aring;terbetalar vi beloppet till dig.<br><br>Om du har betalat med kort, &ouml;verf&ouml;rs ditt returbelopp till det betalkort du anv&auml;nde vid best&auml;llning. Om du har betalat mot faktura (PayByBill), ber vi dig att kontakta Gothia Finans p&aring; 0340-664444.<br><b>Observera:</b> &Auml;ven om du v&auml;ntar p&aring; en kreditnota p&aring; dina returvaror, ska du betala innest&aring;ende faktura inom 30 dagar.<br>F&ouml;r ytterligare information se: <a href="/sv_SE/" target="_blank">www.pompdelux.se</a></p>]]></target>
+                <target><![CDATA[<p>Om du &ouml;nskar att byta eller returnera varor, ska du fylla i bifoga retursedeln.<br>Eftersom din returvara ska s&auml;ljas igen, &auml;r det en stor hj&auml;lp f&ouml;r oss att du returnerar varan i original f&ouml;rpackning med labels p&aring; etc.<br><br>Du har mottagit en returlabel per mail, som du kan anv&auml;nda vid returnering - anv&auml;nd denna s&aring; drar vi endast av SEK 49,- av v&auml;rdet p&aring; dina returvaror.<br><br>Om du returnerar en reklamation eller en vara som blivit felskickad, &auml;r f&ouml;rs&auml;ndelsen naturligtvis fraktfri f&ouml;r dig. Om du &ouml;nskar att byta till en annan storlek, f&auml;rg eller till en helt annan vara, &auml;r f&ouml;rs&auml;ndelsen &auml;ven h&auml;r fraktfri. Varans pris f&aring;r dock inte &ouml;verstiga priset p&aring; varan du returnerar. Om varan du &ouml;nskar &auml;r uts&aring;ld, &aring;terbetalar vi beloppet till dig.<br><br>Om du har betalat med kort, &ouml;verf&ouml;rs ditt returbelopp till det betalkort du anv&auml;nde vid best&auml;llning. Om du har betalat mot faktura (PayByBill), ber vi dig att kontakta Gothia Finans p&aring; 0340-664444.<br><b>Observera:</b> &Auml;ven om du v&auml;ntar p&aring; en kreditnota p&aring; dina returvaror, ska du betala innest&aring;ende faktura inom 30 dagar.<br>F&ouml;r ytterligare information se: <a href="/sv_SE/" target="_blank">www.pompdelux.se</a></p>]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.activitycode">
                 <source>rma.slip.thead.activitycode</source>
-                <target>Aktivitet</target>
+                <target><![CDATA[Aktivitet]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.cause">
                 <source>rma.slip.thead.cause</source>
-                <target><![CDATA[&Aring;rsag]]></target>
+                <target><![CDATA[Orsak]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.replacement">
                 <source>rma.slip.thead.replacement</source>
-                <target>Byte till</target>
+                <target><![CDATA[Byte till]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.description">
                 <source>rma.slip.thead.description</source>
-                <target>Din kommentar</target>
+                <target><![CDATA[Din kommentar]]></target>
             </trans-unit>
             <trans-unit id="rma.history.title">
                 <source>rma.history.title</source>
                 <target>Upprätta RMA retursedel.</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.thead.products">
+                <source>rma.slip.thead.products</source>
+                <target><![CDATA[Produkter]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.size">
+                <source>rma.slip.size</source>
+                <target><![CDATA[Storlek]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.color">
+                <source>rma.slip.color</source>
+                <target><![CDATA[F&auml;rg]]></target>
             </trans-unit>
         </body>
     </file>
