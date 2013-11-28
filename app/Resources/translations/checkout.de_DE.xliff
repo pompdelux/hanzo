@@ -307,7 +307,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia_lv.desc" approved="no">
         <source>payment.gothia_lv.desc</source>
-        <target><![CDATA[Gothia-LV-Rechnung. Die Rechnung wird per E-Mail verschickt, wenn alle Waren unser Lager verlassen haben. Sie finden die Rechnung im Laufe von 24 Stunden als PDF auf "Meine Seite".]]></target>
+        <target><![CDATA[Gothia-Lastschrift-Rechnung. Die Rechnung wird per E-Mail verschickt, wenn alle Waren unser Lager verlassen haben. Sie finden die Rechnung im Laufe von 24 Stunden als PDF auf "Meine Seite".]]></target>
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>
