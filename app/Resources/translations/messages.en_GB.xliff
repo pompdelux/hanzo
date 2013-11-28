@@ -4,11 +4,7 @@
         <body>
             <trans-unit id="size.guide.link">
                 <source>size.guide.link</source>
-                <target>images/pages/Size_Guide_COM.jpg</target>
-            </trans-unit>
-            <trans-unit id="size.guide.link.text">
-                <source>size.guide.link.text</source>
-                <target>» Size guide</target>
+                <target><![CDATA[<a href="/en_GB/home/customer-service/sizeguide" target="_blank" title="Size guide">» Size guide</a>]]></target>
             </trans-unit>
             <trans-unit id="home">
                 <source>home</source>
@@ -297,7 +293,7 @@
                 <ul class="menu">
                     <li><a href="/en_GB/home/catalogue">Online catalogue</a></li>
                     <li><a href="/en_GB/home/catalogue/backstage-video">Backstage video</a></li>
-					<li><a href="/en_GB/home/catalogue/credits">Credits</a></li>
+					<li><a href="/en_GB/home/catalogue/credits">Credits</a></li>               
                 </ul>
                 ]]></target>
             </trans-unit>

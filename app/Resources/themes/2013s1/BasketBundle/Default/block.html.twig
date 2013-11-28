@@ -92,7 +92,9 @@
         {% render 'EventsBundle:Events:selectEvent' %}
       {% else %}
         <div class="buttons">
+{#
           <a class="button button-left" href="{{ continue_shopping }}">{{ "continue.shopping"|trans({}, 'checkout') }}</a>
+#}
           <a class="button button-right proceed" href="{{ url('_checkout') }}">{{ "proceed"|trans({}, 'checkout') }}</a>
         </div>
       {% endif %}
@@ -100,8 +102,10 @@
 
   {% else %}
     <p>{{ "cart.is.empty"|trans({}, 'checkout') }}</p>
+{#
     <div class="buttons">
       <a class="button button-left" href="{{ continue_shopping }}">{{ "continue.shopping"|trans({}, 'checkout') }}</a>
     </div>
+#}
   {% endif %}
 </div>

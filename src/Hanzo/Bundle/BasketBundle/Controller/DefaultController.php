@@ -429,18 +429,18 @@ class DefaultController extends CoreController
             $template = 'BasketBundle:Default:block.html.twig';
         }
 
-        $continueShopping = $this->generateUrl('_homepage', ['_locale' => Hanzo::getInstance()->get('core.locale')]);
+        $continue_shopping = 'javascript:history.go(-1)';
 
         $hanzo = Hanzo::getInstance();
-        $domainKey = $hanzo->get('core.domain_key');
-        if (strpos($domainKey, 'Sales') !== false) {
-            $continueShopping = $router->generate('QuickOrderBundle_homepage');
+        $domain_key = $hanzo->get('core.domain_key');
+        if (strpos($domain_key, 'Sales') !== false) {
+            $continue_shopping = $router->generate('QuickOrderBundle_homepage');
         }
 
         Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
 
         return $this->render($template, array(
-            'continue_shopping' => $continueShopping,
+            'continue_shopping' => $continue_shopping,
             'delivery_date'     => $delivery_date,
             'embedded'          => $embed,
             'page_type'         => 'basket',
