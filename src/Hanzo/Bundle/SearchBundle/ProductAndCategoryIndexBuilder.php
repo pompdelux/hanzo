@@ -3,8 +3,11 @@
 namespace Hanzo\Bundle\SearchBundle;
 
 use Hanzo\Core\Tools;
+use Hanzo\Model\CmsI18n;
 use Hanzo\Model\CmsI18nQuery;
 use Hanzo\Model\LanguagesQuery;
+use Hanzo\Model\Products;
+use Hanzo\Model\ProductsI18n;
 use Hanzo\Model\ProductsI18nQuery;
 use Hanzo\Model\ProductsQuery;
 use Symfony\Component\Translation\Loader\XliffFileLoader;
@@ -68,6 +71,10 @@ class ProductAndCategoryIndexBuilder
                         ->findOneById($category_map[$matches[1]], $connection)
                     ;
 
+                    if (!$cms instanceof CmsI18n) {
+                        continue;
+                    }
+
                     $cms->setContent(trim(Tools::stripTags($text)));
                     $cms->save($connection);
                 }
@@ -92,13 +99,17 @@ class ProductAndCategoryIndexBuilder
                     ;
 
                     if ($record) {
-                        $cms = ProductsI18nQuery::create()
+                        $product = ProductsI18nQuery::create()
                             ->filterByLocale($locale)
                             ->findOneById($record['Id'], $connection)
                         ;
 
-                        $cms->setContent(trim(Tools::stripTags($text)));
-                        $cms->save($connection);
+                        if (!$product instanceof ProductsI18n) {
+                            continue;
+                        }
+
+                        $product->setContent(trim(Tools::stripTags($text)));
+                        $product->save($connection);
                     }
                 }
             }
