@@ -52,8 +52,8 @@ class MenuController extends CoreController
             if (empty($this->path)) {
                 $this->path = preg_replace('#^/?[a-z]{2}_[A-Z]{2}/?#', '', $request->getPathInfo());
 
-                // NICETO this could be done better, but how ?
-                if (preg_match('~(?:/(?:overview|[0-9]+)/?([a-z0-9\-]+)?)~', $this->path, $matches)) {
+                // NICETO: this could be done better, but how ?
+                if (preg_match('~(?:/(?:overview|look|[0-9]+)/?([a-z0-9\-]+)?)~', $this->path, $matches)) {
                     $this->path = str_replace($matches[0], '', $this->path);
                 }
 
