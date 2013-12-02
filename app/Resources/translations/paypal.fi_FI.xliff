@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="payment.title" approved="no">
+        <source>payment.title</source>
+        <target>PayPal</target>
+      </trans-unit>
+      <trans-unit id="paypal.desc" approved="no">
+        <source>paypal.desc</source>
+        <target>PayPal (Maksu EUR 3,00)</target>
+      </trans-unit>
+      <trans-unit id="failed.heading" approved="no">
+        <source>failed.heading</source>
+        <target>Maksu ei onnistunut</target>
+      </trans-unit>
+      <trans-unit id="failed.description" approved="no">
+        <source>failed.description</source>
+        <target>PayPal-maksu ei onnistunut: %message%</target>
+      </trans-unit>
+      <trans-unit id="failed.go.back.description" approved="no">
+        <source>failed.go.back.description</source>
+        <target><![CDATA[
+          Palaa <a href="%back_url%">takaisin</a> maksusivulle ja valitse toinen maksutapa.
+        ]]></target>
+      </trans-unit>
+      <trans-unit id="form.order_id" approved="no">
+        <source>form.order_id</source>
+        <target>Tilausnumero: %order_id%</target>
+      </trans-unit>
+      <trans-unit id="form.payment_id" approved="no">
+        <source>form.payment_id</source>
+        <target>Maksutunnus: %payment_id%</target>
+      </trans-unit>
+      <trans-unit id="form.amount" approved="no">
+        <source>form.amount</source>
+        <target>Summa: %amount%</target>
+      </trans-unit>
+      <trans-unit id="form.heading" approved="no">
+        <source>form.heading</source>
+        <target>Maksu</target>
+      </trans-unit>
+      <trans-unit id="form.description" approved="no">
+        <source>form.description</source>
+        <target>Some payment description</target>
+      </trans-unit>
+      <trans-unit id="wait.heading" approved="no">
+        <source>wait.heading</source>
+        <target>Please hold on</target>
+      </trans-unit>
+      <trans-unit id="wait.description" approved="no">
+        <source>wait.description</source>
+        <target><![CDATA[
+          Sinut ohjataan nyt takaisin sivustolle %server%. Jos näin ei jostain syystä tapahdu, <a href="%url%">napsauta tätä</a>.
+        ]]></target>
+      </trans-unit>
+      <trans-unit id="cancel.payment">
+        <source>cancel.payment</source>
+        <target>Keskeytä maksu</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

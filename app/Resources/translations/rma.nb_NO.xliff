@@ -92,55 +92,67 @@
             </trans-unit>
             <trans-unit id="rma.slip.id">
                 <source>rma.slip.id</source>
-                <target>Kundenummer</target>
+                <target><![CDATA[Kundenummer]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.name">
                 <source>rma.slip.name</source>
-                <target>Navn</target>
+                <target><![CDATA[Navn]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.email">
                 <source>rma.slip.email</source>
-                <target>E-post</target>
+                <target><![CDATA[E-post]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.phone">
                 <source>rma.slip.phone</source>
-                <target>Telefon</target>
+                <target><![CDATA[Telefon]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.order_id">
                 <source>rma.slip.order_id</source>
-                <target>E-ordrenummer</target>
+                <target><![CDATA[E-ordrenummer]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.deliveryaddress">
                 <source>rma.slip.deliveryaddress</source>
-                <target>Leveringsadresse</target>
+                <target><![CDATA[Leveringsadresse]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.title.order_id">
                 <source>rma.slip.title.order_id</source>
-                <target>POMPdeLUX returskjema Ordre ID %order_id%</target>
+                <target><![CDATA[POMPdeLUX returskjema Ordre ID %order_id%]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.description">
                 <source>rma.slip.description</source>
-                <target><![CDATA[<p>Hvis du &oslash;nsker &aring; bytte eller returnere varer, skal du fylle ut og sende med dette returskjemaet.<br>Da din returvare skal selges igjen, vil det v&aelig;re en stor hjelp dersom du returnerer varen i original innpakning med hengemerker etc.<br><br>Du har f&aring;tt en e-post med et returmerke som du kan bruke ved returnering – bruk dette, s&aring; motregner vi kun NOK 69,- fra verdien av dine returvarer.<br><br>Returnerer du en reklamasjon eller feil levert vare, er forsendelsen naturligvis fraktfri for deg. Hvis du &oslash;nsker &aring; bytte til en annen st&oslash;rrelse, farge, eller til en helt annen vare, s&aring; er forsendelsen ogs&aring; fraktfri. Men varens pris m&aring; bare ikke overstige prisen p&aring; varen du returnerer. Er varen du &oslash;nsker &aring; bytte til utsolgt, refunderer vi bel&oslash;pet til deg.<br><br>Har du betalt med kort, s&aring; overf&oslash;res returbel&oslash;pet til det betalingskortet du brukte ved bestilling.<br><br>Har du benyttet PayByBill, ber vi deg om &aring; kontakte Gothia Finans AS p&aring; tlf.: 22 87 89 70.<br><b>Merk:</b> Selv om du venter p&aring; en kreditnota p&aring; returvarene dine, skal du betale den utest&aring;ende fakturaen innen 30 dager.<br><br>For ytterligere informasjon, se vennligst: <a href="/nb_NO/" target="_blank">www.pompdelux.no</a></p>]]></target>
+                <target><![CDATA[<p>Hvis du &oslash;nsker &aring; bytte eller returnere varer, skal du fylle ut og sende med dette returskjemaet.<br>Da din returvare skal selges igjen, vil det v&aelig;re en stor hjelp dersom du returnerer varen i original innpakning med hengemerker etc.<br><br>Du har f&aring;tt en e-post med et returmerke som du kan bruke ved returnering - bruk dette, s&aring; motregner vi kun NOK 69,- fra verdien av dine returvarer.<br><br>Returnerer du en reklamasjon eller feil levert vare, er forsendelsen naturligvis fraktfri for deg. Hvis du &oslash;nsker &aring; bytte til en annen st&oslash;rrelse, farge, eller til en helt annen vare, s&aring; er forsendelsen ogs&aring; fraktfri. Men varens pris m&aring; bare ikke overstige prisen p&aring; varen du returnerer. Er varen du &oslash;nsker &aring; bytte til utsolgt, refunderer vi bel&oslash;pet til deg.<br><br>Har du betalt med kort, s&aring; overf&oslash;res returbel&oslash;pet til det betalingskortet du brukte ved bestilling.<br><br>Har du benyttet PayByBill, ber vi deg om &aring; kontakte Gothia Finans AS p&aring; tlf.: 22 87 89 70.<br><b>Merk:</b> Selv om du venter p&aring; en kreditnota p&aring; returvarene dine, skal du betale den utest&aring;ende fakturaen innen 30 dager.<br><br>For ytterligere informasjon, se vennligst: <a href="/nb_NO/" target="_blank">www.pompdelux.no</a></p>]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.activitycode">
                 <source>rma.slip.thead.activitycode</source>
-                <target>Aktivitet</target>
+                <target><![CDATA[Aktivitet]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.cause">
                 <source>rma.slip.thead.cause</source>
-                <target><![CDATA[&Aring;rsag]]></target>
+                <target><![CDATA[&Aring;rsak]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.replacement">
                 <source>rma.slip.thead.replacement</source>
-                <target>Byttes til</target>
+                <target><![CDATA[Byttes til]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.description">
                 <source>rma.slip.thead.description</source>
-                <target>Din kommentar</target>
+                <target><![CDATA[Din kommentar]]></target>
             </trans-unit>
             <trans-unit id="rma.history.title">
                 <source>rma.history.title</source>
                 <target>Opprett RMA returlapp.</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.thead.products">
+                <source>rma.slip.thead.products</source>
+                <target><![CDATA[Produkter]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.size">
+                <source>rma.slip.size</source>
+                <target><![CDATA[St&oslash;rrelse]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.color">
+                <source>rma.slip.color</source>
+                <target><![CDATA[Farge]]></target>
             </trans-unit>
         </body>
     </file>

@@ -425,23 +425,32 @@ class CmsController extends CoreController
         $sort = array();
         $cms_thread = null;
         foreach ($nodes as $node) {
-            if("root" == $node['item_id'])
+            if ("null" == $node['item_id']) {
                 continue; // Root item from nestedSortable is not a page
+            }
 
-            if("root" == $node['parent_id']) { // Its a cms_thread
+            if ("null" == $node['parent_id']) { // Its a cms_thread
                 $cms_thread = substr($node['item_id'],1);
                 continue;
             }
-            if (empty($sort[$cms_thread])) // Init the sort number to 1 if its not already is set
+
+            if (empty($sort[$cms_thread])) {
+                // Init the sort number to 1 if its not already is set
                 $sort[$cms_thread] = 1;
-            else // If sort number are set, increment it
+            } else {
+                // If sort number are set, increment it
                 $sort[$cms_thread]++;
+            }
 
             $cmsNode = CmsQuery::create()->findOneById($node['item_id'], $this->getDbConnection());
-            if (substr($node['parent_id'],0,1) == 't') // Its a top level cms page. It has no parent_id. This parent_id is the id of which cms_thread
+
+            if (substr($node['parent_id'],0,1) == 't') {
+                // Its a top level cms page. It has no parent_id. This parent_id is the id of which cms_thread
                 $cmsNode->setParentId(null);
-            else
-                $cmsNode->setParentId($node['parent_id']); // Its a normal page with a parent
+            } else {
+                // Its a normal page with a parent
+                $cmsNode->setParentId($node['parent_id']);
+            }
 
             $cmsNode->setSort($sort[$cms_thread]);
             $cmsNode->setCmsThreadId($cms_thread);

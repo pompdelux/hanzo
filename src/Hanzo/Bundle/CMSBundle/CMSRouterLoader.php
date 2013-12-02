@@ -117,7 +117,7 @@ class CMSRouterLoader implements LoaderInterface
                         'cms_id' => $id,
                         'category_id' => $settings->category_id,
                         'pager' => 1,
-                        'show' => 'look',
+                        'show' => 'overview',
                         'ip_restricted' => true,
                     ), array(
                         '_format' => 'html|json',
@@ -189,7 +189,7 @@ class CMSRouterLoader implements LoaderInterface
                     $route = new Route("/{$path}/{show}", array(
                         '_controller' => 'CategoryBundle:ByColour:view',
                         'id' => $id,
-                        'show' => 'look',
+                        'show' => 'overview',
                         'ip_restricted' => true,
                     ));
                     $routes->add('bycolour_'.$id . '_' . $locale_lower, $route);

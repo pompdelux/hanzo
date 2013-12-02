@@ -15,7 +15,7 @@ class CustomersType extends AbstractType
     public function __construct($is_new = true, AddressesType $addressType)
     {
         $this->addressType = $addressType;
-        $this->is_new = (boolean) $is_new;
+        $this->is_new      = (boolean) $is_new;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -24,13 +24,13 @@ class CustomersType extends AbstractType
 
         if (in_array($short_domain_key, ['DE'])) {
             $builder->add('title', 'choice', [
-                'choices' => [
+                'choices'  => [
                     'female' => 'title.female',
-                    'male' => 'title.male',
+                    'male'   => 'title.male',
                 ],
-                'label' => 'title',
+                'label'    => 'title',
                 'required' => true,
-                'trim' => true
+                'trim'     => true
             ]);
         }
 
@@ -44,30 +44,30 @@ class CustomersType extends AbstractType
 
         $builder->add('phone', null, [
             'required' => true,
-            'attr' => ['autocomplete' => 'off'],
+            'attr'     => ['autocomplete' => 'off'],
         ]);
 
         $builder->add('email', 'repeated', [
-            'type' => 'email',
+            'type'            => 'email',
             'invalid_message' => 'email.invalid.match',
-            'first_name' => 'email_address',
-            'second_name' => 'email_address_repeated',
-            'options' => ['attr' => ['autocomplete' => 'off']],
+            'first_name'      => 'email_address',
+            'second_name'     => 'email_address_repeated',
+            'options'         => ['attr' => ['autocomplete' => 'off']],
         ]);
 
         $builder->add('password', 'repeated', [
-            'type' => 'password',
+            'type'            => 'password',
             'invalid_message' => 'password.invalid.match',
-            'first_name' => 'pass',
-            'second_name' => 'pass_repeated',
-            'required' => $this->is_new,
-            'options' => ['attr' => ['autocomplete' => 'off']],
+            'first_name'      => 'pass',
+            'second_name'     => 'pass_repeated',
+            'required'        => $this->is_new,
+            'options'         => ['attr' => ['autocomplete' => 'off']],
         ]);
 
         if ($this->is_new) {
             $attr = [
                 'autocomplete' => 'off',
-                'checked' => 'checked'
+                'checked'      => 'checked'
             ];
 
             // ugly hack to disable default choice for NL
@@ -77,17 +77,17 @@ class CustomersType extends AbstractType
             }
 
             $builder->add('newsletter', 'checkbox', [
-                'label' => 'create.newsletter',
-                'required' => false,
-                'mapped' => false,
-                'attr' => $attr,
+                'label'         => 'create.newsletter',
+                'required'      => false,
+                'property_path' => false,
+                'attr'          => $attr,
             ]);
 
             $builder->add('accept', 'checkbox', [
-                'label' => 'create.accept',
-                'required' => true,
-                'mapped' => false,
-                'attr' => ['autocomplete' => 'off'],
+                'label'         => 'create.accept',
+                'required'      => true,
+                'property_path' => false,
+                'attr'          => ['autocomplete' => 'off'],
             ]);
         }
     }

@@ -27,9 +27,12 @@ class DefaultController extends CoreController
     /**
      * handle category listings
      *
-     * @param $cms_id
-     * @param $category_id
-     * @param $pager
+     * @param integer $cms_id
+     * @param integer $category_id
+     * @param boolean $show
+     * @param integer $pager
+     *
+     * @return Response
      */
     public function viewAction($cms_id, $category_id, $show, $pager = 1)
     {
@@ -94,11 +97,14 @@ class DefaultController extends CoreController
                 $result = $result->orderBySort();
             }
 
-            if ($pager === 'all') {
-                $result = $result->paginate(null, null);
-            } else {
-                $result = $result->paginate($pager, 12);
-            }
+// un@bellcom.dk 2013.11.28, removed to show all products on the category pages.
+//            if ($pager === 'all') {
+//                $result = $result->paginate(null, null);
+//            } else {
+//                $result = $result->paginate($pager, 12);
+//            }
+
+            $result = $result->paginate(null, null);
 
             $product_route = str_replace('category_', 'product_', $route);
 

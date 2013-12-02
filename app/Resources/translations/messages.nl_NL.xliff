@@ -4,7 +4,7 @@
         <body>
             <trans-unit id="size.guide.link">
                 <source>size.guide.link</source>
-                <target><![CDATA[<a href="/nl_NL/voorpagina/webshop/info/sizeguide" target="_blank" title="Size guide">» Size guide</a>]]></target>
+                <target><![CDATA[<a href="/nl_NL/voorpagina/klantenservice/sizeguide" target="_blank" title="Size guide">» Size guide</a>]]></target>
             </trans-unit>
             <trans-unit id="out.of.stock">
                 <source>out.of.stock</source>
@@ -286,8 +286,8 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
                     <li><a href="/nl_NL/voorpagina/klantenservice/retourneren">Retourneren</a></li>
                     <li><a href="/nl_NL/voorpagina/klantenservice/ruilen">Ruilen</a></li>
                     <li><a href="/nl_NL/voorpagina/klantenservice/retourformulier">Retourformulier</a></li>
-                    <li><a href="/nl_NL/voorpagina/webshop/info/sizeguide">Sizeguide</a></li>
-					<li><a href="/nl_NL/voorpagina/webshop/info/het-wassen">Het wassen</a></li>
+                    <li><a href="/nl_NL/voorpagina/klantenservice/sizeguide">Sizeguide</a></li>
+					<li><a href="/nl_NL/voorpagina/klantenservice/het-wassen">Het wassen</a></li>
 					<li><a href="/nl_NL/voorpagina/klantenservice/voorwaarden">Voorwaarden</a></li>
 					<li><a href="/nl_NL/voorpagina/klantenservice/over-de-webshop">Over de webshop</a></li>
                 </ul>

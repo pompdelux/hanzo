@@ -19,6 +19,7 @@
   })) }}
 </div>
 
+{#
 <div class="grid_8 alpha omega row">
   {% if paginate %}
     <div class="grid_8 omega right">
@@ -27,6 +28,7 @@
     </div>
   {% endif %}
 </div>
+#}
 <div class="grid_8 alpha omega">
   <div class="grid_2 alpha sub-menu menu">
     {{ render(controller('CMSBundle:Menu:menu', {
@@ -67,10 +69,12 @@
       {% if products|length > 0 %}
         <a href="#" class="to-top">{{ 'goto.top.link'|trans }}</a>
       {% endif %}
+{#
       {% if paginate %}
           {% import "::macro.pager.html.twig" as p %}
           {{ p.pager(paginate, 'product-list') }}
       {% endif %}
+#}
     </div>
   </div>
 </div>

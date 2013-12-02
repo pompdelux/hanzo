@@ -38,6 +38,10 @@
                 <source>address.last_name.required</source>
                 <target>Bitte einen Nachnamen eingeben</target>
             </trans-unit>
+            <trans-unit id="name.max.length">
+                <source>name.max.length</source>
+                <target>Der volle Name kann max. {{ limit }} Zeichen enthalten|Der volle Name kann max. {{ limit }} Zeichen enthalten</target>
+            </trans-unit>
             <trans-unit id="host.required" approved="no">
                 <source>host.required</source>
                 <target>Bitte eine Gastgeberin angeben</target>
@@ -45,6 +49,10 @@
             <trans-unit id="address_line_1.required" approved="no">
                 <source>address_line_1.required</source>
                 <target>Bitte Adresse ausfüllen|Bitte Adresse ausfüllen</target>
+            </trans-unit>
+            <trans-unit id="address_line_1.max.length">
+                <source>address_line_1.max.length</source>
+                <target>Das Adressfeld kann max. {{ limit }} Zeichen enthalten|Das Adressfeld kann max. {{ limit }} Zeichen enthalten</target>
             </trans-unit>
             <trans-unit id="postal_code.required" approved="no">
                 <source>postal_code.required</source>

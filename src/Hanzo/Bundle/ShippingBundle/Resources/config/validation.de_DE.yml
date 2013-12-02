@@ -60,7 +60,8 @@ Hanzo\Model\Addresses:
                 min:  2
                 max:  35
                 minMessage: address_line_1.required
-                maxMessage: address_line_1.required
+                maxMessage: address_line_1.max.length
+                message:    address_line_1.required
         postal_code:
             - NotBlank:
                 message: postal_code.required
@@ -104,3 +105,11 @@ Hanzo\Model\Addresses:
                 message: address.company_name.required
                 groups:
                     - shipping_bundle_company_shipping
+    constraints:
+        - Callback:
+            methods: [isFullNameWithinLimits]
+            groups:
+                - shipping_bundle_company_shipping
+                - shipping_bundle_overnightbox
+                - shipping_bundle_shipping
+                - shipping_bundle_payment

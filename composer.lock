@@ -449,12 +449,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekino/EkinoNewRelicBundle.git",
-                "reference": "71c24fd147b7ebfc713c3950e9b24a763a2e54a7"
+                "reference": "201093a97d853f0536384615412c319b326d597d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekino/EkinoNewRelicBundle/zipball/71c24fd147b7ebfc713c3950e9b24a763a2e54a7",
-                "reference": "71c24fd147b7ebfc713c3950e9b24a763a2e54a7",
+                "url": "https://api.github.com/repos/ekino/EkinoNewRelicBundle/zipball/201093a97d853f0536384615412c319b326d597d",
+                "reference": "201093a97d853f0536384615412c319b326d597d",
                 "shasum": ""
             },
             "require-dev": {
@@ -491,7 +491,7 @@
                 "monitoring",
                 "performance"
             ],
-            "time": "2013-11-13 10:00:48"
+            "time": "2013-11-25 16:18:43"
         },
         {
             "name": "guzzle/guzzle",
@@ -881,12 +881,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/JMSSecurityExtraBundle.git",
-                "reference": "b342e02983e9cd522d9dce1c0dfeef27c8a25850"
+                "reference": "60dfc92443a6b3e093c961e5d85920384670834c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/JMSSecurityExtraBundle/zipball/b342e02983e9cd522d9dce1c0dfeef27c8a25850",
-                "reference": "b342e02983e9cd522d9dce1c0dfeef27c8a25850",
+                "url": "https://api.github.com/repos/schmittjoh/JMSSecurityExtraBundle/zipball/60dfc92443a6b3e093c961e5d85920384670834c",
+                "reference": "60dfc92443a6b3e093c961e5d85920384670834c",
                 "shasum": ""
             },
             "require": {
@@ -943,7 +943,7 @@
                 "secure",
                 "security"
             ],
-            "time": "2013-11-06 16:12:19"
+            "time": "2013-11-27 11:37:02"
         },
         {
             "name": "knplabs/knp-snappy",
@@ -1247,16 +1247,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.6.0",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "f72392d0e6eb855118f5a84e89ac2d257c704abd"
+                "reference": "6225b22de9dcf36546be3a0b2fa8e3d986153f57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/f72392d0e6eb855118f5a84e89ac2d257c704abd",
-                "reference": "f72392d0e6eb855118f5a84e89ac2d257c704abd",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/6225b22de9dcf36546be3a0b2fa8e3d986153f57",
+                "reference": "6225b22de9dcf36546be3a0b2fa8e3d986153f57",
                 "shasum": ""
             },
             "require": {
@@ -1264,21 +1264,26 @@
                 "psr/log": "~1.0"
             },
             "require-dev": {
+                "aws/aws-sdk-php": "~2.4.8",
                 "doctrine/couchdb": "dev-master",
                 "mlehner/gelf-php": "1.0.*",
-                "raven/raven": "0.5.*"
+                "phpunit/phpunit": "~3.7.0",
+                "raven/raven": "0.5.*",
+                "ruflin/elastica": "0.90.*"
             },
             "suggest": {
+                "aws/aws-sdk-php": "Allow sending log messages to AWS services like DynamoDB",
                 "doctrine/couchdb": "Allow sending log messages to a CouchDB server",
                 "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
                 "ext-mongo": "Allow sending log messages to a MongoDB server",
                 "mlehner/gelf-php": "Allow sending log messages to a GrayLog2 server",
-                "raven/raven": "Allow sending log messages to a Sentry server"
+                "raven/raven": "Allow sending log messages to a Sentry server",
+                "ruflin/elastica": "Allow sending log messages to an Elastic Search server"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.6.x-dev"
+                    "dev-master": "1.7.x-dev"
                 }
             },
             "autoload": {
@@ -1305,7 +1310,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2013-07-28 22:38:30"
+            "time": "2013-11-14 19:48:31"
         },
         {
             "name": "mrbase/smesg",
@@ -2062,16 +2067,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.3.6",
+            "version": "v2.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "d0597156c4c03ceca039f6b7770a47397ba295f0"
+                "reference": "2829b471871c2564228fe9f0832a0f928a8ffaa1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/d0597156c4c03ceca039f6b7770a47397ba295f0",
-                "reference": "d0597156c4c03ceca039f6b7770a47397ba295f0",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/2829b471871c2564228fe9f0832a0f928a8ffaa1",
+                "reference": "2829b471871c2564228fe9f0832a0f928a8ffaa1",
                 "shasum": ""
             },
             "require": {
@@ -2166,7 +2171,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2013-10-10 13:24:22"
+            "time": "2013-11-14 07:58:51"
         },
         {
             "name": "twig/extensions",
@@ -2266,17 +2271,17 @@
         },
         {
             "name": "willdurand/expose-translation-bundle",
-            "version": "1.0.2",
+            "version": "1.1.0",
             "target-dir": "Bazinga/ExposeTranslationBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/willdurand/BazingaExposeTranslationBundle.git",
-                "reference": "5d466d5010bd3569b7f0c4e032f4ce2ff3ef95df"
+                "reference": "52a58fb340e1ff1ef8324cecd79ac4e9b30a3330"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/willdurand/BazingaExposeTranslationBundle/zipball/5d466d5010bd3569b7f0c4e032f4ce2ff3ef95df",
-                "reference": "5d466d5010bd3569b7f0c4e032f4ce2ff3ef95df",
+                "url": "https://api.github.com/repos/willdurand/BazingaExposeTranslationBundle/zipball/52a58fb340e1ff1ef8324cecd79ac4e9b30a3330",
+                "reference": "52a58fb340e1ff1ef8324cecd79ac4e9b30a3330",
                 "shasum": ""
             },
             "require": {
@@ -2315,7 +2320,7 @@
                 "javascript",
                 "translation"
             ],
-            "time": "2013-10-25 08:20:40"
+            "time": "2013-11-26 10:35:53"
         },
         {
             "name": "willdurand/geocoder",

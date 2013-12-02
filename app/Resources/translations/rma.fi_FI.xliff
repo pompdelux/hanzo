@@ -91,57 +91,69 @@
             </trans-unit>
             <trans-unit id="rma.slip.id">
                 <source>rma.slip.id</source>
-                <target>Asiakasnumero</target>
+                <target><![CDATA[Asiakasnumero]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.name">
                 <source>rma.slip.name</source>
-                <target>Nimi</target>
+                <target><![CDATA[Nimi]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.email">
                 <source>rma.slip.email</source>
-                <target>Sähköposti</target>
+                <target><![CDATA[S&auml;hk&ouml;posti]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.phone">
                 <source>rma.slip.phone</source>
-                <target>Puhelin</target>
+                <target><![CDATA[Puhelin]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.order_id">
                 <source>rma.slip.order_id</source>
-                <target>E-tilausnumero</target>
+                <target><![CDATA[E-tilausnumero]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.deliveryaddress">
                 <source>rma.slip.deliveryaddress</source>
-                <target>Toimitusosoite</target>
+                <target><![CDATA[Toimitusosoite]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.title.order_id">
                 <source>rma.slip.title.order_id</source>
-                <target>POMPdeLUX-palautuslomake tilaustunnus ID %order_id%</target>
+                <target><![CDATA[POMPdeLUX-palautuslomake tilaustunnus ID %order_id%]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.description">
                 <source>rma.slip.description</source>
                 <target><![CDATA[<p>Jos haluat vaihtaa tai palauttaa tuotteita, sinun tulee t&auml;ytt&auml;&auml; ja l&auml;hett&auml;&auml; tuotteiden mukana t&auml;m&auml; palautuslomake.<br>Palauttamasi tuotteet laitetaan uudelleen myyntiin, joten palautathan tuotteet niiden alkuper&auml;isiss&auml; pakkauksissaan tuote- ja hintalappuineen jne.
-<br><br>Olemme my&ouml;s s&auml;hk&ouml;postilla l&auml;hett&auml;neet palautustarran &acirc;€“ k&auml;yt&auml; t&auml;t&auml;, niin palautus on maksuton. Jos haluat tehd&auml;
-reklamaation tai palauttaa v&auml;&auml;rin toimitetun tuotteen, voit luonnollisesti l&auml;hett&auml;&auml; tuotteet aina maksutta.<br><br>Palautus on maksuton my&ouml;s silloin, jos haluat vaihtaa tuotteen toiseen kokoon, v&auml;riin tai kokonaan toiseen tuotteeseen. Tuotteen hinta ei kuitenkaan voi ylitt&auml;&auml; palautettavan tuotteen hintaa. Jos tuote, johon haluat vaihtaa, on loppuunmyyty, hyvit&auml;mme summan sinulle.<br><br>Jos olet maksanut kortilla, palautussumma siirret&auml;&auml;n maksukortille, jota olet k&auml;ytt&auml;nyt tilauksen yhteydess&auml;.<br><br>Jos olet k&auml;ytt&auml;nyt PayByBill-maksutapaa, pyyd&auml;mme ottamaan yhteytt&auml; Gothia Oy:hyn, puh. 0207 229 462.<br><b>Huomaa:</b> Vaikka odotat hyvityst&auml; palauttamistasi tuotteista, sinun tulee maksaa laskusi 30 p&auml;iv&auml;n kuluessa.<br><br>Katso lis&auml;tietoja osoitteesta: <a href="/fi_FI/" target="_blank">www.pompdelux.fi</a></p>]]></target>
+<br><br>Olemme my&ouml;s s&auml;hk&ouml;postilla l&auml;hett&auml;neet palautustarran k&auml;yt&auml; t&auml;t&auml;, niin palautus on maksuton. Jos haluat tehd&auml;
+reklamaation tai palauttaa v&auml;&auml;rin toimitetun tuotteen, voit luonnollisesti l&auml;hett&auml;&auml; tuotteet aina maksutta.<br><br>Palautus on maksuton my&ouml;s silloin, jos haluat vaihtaa tuotteen toiseen kokoon, v&auml;riin tai kokonaan toiseen tuotteeseen. Tuotteen hinta ei kuitenkaan voi ylitt&auml;&auml; palautettavan tuotteen hintaa. Jos tuote, johon haluat vaihtaa, on loppuunmyyty, hyvit&auml;mme summan sinulle.<br><br>Jos olet maksanut kortilla, palautussumma siirret&auml;&auml;n maksukortille, jota olet k&auml;ytt&auml;nyt tilauksen yhteydess&auml;. Jos olet k&auml;ytt&auml;nyt PayByBill-maksutapaa, pyyd&auml;mme ottamaan yhteytt&auml; Gothia Oy:hyn, puh. 0207 229 462.<br><b>Huomaa:</b> Vaikka odotat hyvityst&auml; palauttamistasi tuotteista, sinun tulee maksaa laskusi 30 p&auml;iv&auml;n kuluessa.<br><br>Katso lis&auml;tietoja osoitteesta: <a href="/fi_FI/" target="_blank">www.pompdelux.fi</a></p>]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.activitycode">
                 <source>rma.slip.thead.activitycode</source>
-                <target>Toiminto</target>
+                <target><![CDATA[Toiminto]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.cause">
                 <source>rma.slip.thead.cause</source>
-                <target><![CDATA[&Aring;rsag]]></target>
+                <target><![CDATA[Aiheuttaa]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.replacement">
                 <source>rma.slip.thead.replacement</source>
-                <target>Vaihdetaan tuotteeseen</target>
+                <target><![CDATA[Vaihdetaan tuotteeseen]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.description">
                 <source>rma.slip.thead.description</source>
-                <target>Kommenttisi</target>
+                <target><![CDATA[Kommenttisi]]></target>
             </trans-unit>
             <trans-unit id="rma.history.title">
                 <source>rma.history.title</source>
                 <target>Luo RMA palautuslomake.</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.thead.products">
+                <source>rma.slip.thead.products</source>
+                <target><![CDATA[Tuotteet]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.size">
+                <source>rma.slip.size</source>
+                <target><![CDATA[Koko]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.color">
+                <source>rma.slip.color</source>
+                <target><![CDATA[V&auml;ri]]></target>
             </trans-unit>
         </body>
     </file>

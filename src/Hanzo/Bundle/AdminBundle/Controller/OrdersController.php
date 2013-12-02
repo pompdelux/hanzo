@@ -418,7 +418,7 @@ class OrdersController extends CoreController
         }
     }
 
-    public function changeStateAction()
+    public function changeStateAction(Request $request)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));

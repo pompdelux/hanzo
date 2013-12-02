@@ -31,12 +31,14 @@
   <div class="grid_4 push_2 alpha">
     <a href="{{ url(app.request.attributes.get('_route'), {'show': 'overview'}) }}" class="show-by-overview">{{ 'category.selector.overview'|trans }}</a> / <a href="{{ url(app.request.attributes.get('_route'), {'show': 'look'}) }}" class="show-by-look">{{ 'category.selector.look'|trans }}</a>
   </div>
+  {#
   {% if paginate %}
     <div class="grid_4 omega right">
       {% import "::macro.pager.html.twig" as p %}
       {{ p.pager(paginate, 'product-list') }}
     </div>
   {% endif %}
+  #}
 </div>
 <div class="grid_8 alpha omega row">
   <div class="grid_2 alpha sub-menu menu">
@@ -95,12 +97,14 @@
         {% if products|length > 0 %}
           <a href="#" class="to-top">{{ 'goto.top.link'|trans }}</a>
         {% endif %}
-        {% if paginate %}
-          {% import "::macro.pager.html.twig" as p %}
-          {{ p.pager(paginate, 'product-list') }}
-        {% endif %}
+{#
+          {% if paginate %}
+              {% import "::macro.pager.html.twig" as p %}
+              {{ p.pager(paginate, 'product-list') }}
+          {% endif %}
+#}
       </div>
-  </div>
+      </div>
 </div>
 
 {#  yatzy js template used by the pager, do not delete ! #}
