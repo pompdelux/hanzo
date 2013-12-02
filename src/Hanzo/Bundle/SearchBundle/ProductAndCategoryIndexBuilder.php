@@ -38,83 +38,21 @@ class ProductAndCategoryIndexBuilder
     }
 
 
+    /**
+     * The builder routine, calls sub methods to update various parts.
+     */
     public function build()
     {
-        $category_map = [];
-        foreach ($this->router->getRouteCollection()->all() as $key => $route) {
-            if (preg_match('/^(category|look)_[0-9]+/', $key)) {
-                $info = $route->getDefaults();
-                $category_map[$info['category_id']] = $info['cms_id'];
-            }
-        }
-
         foreach ($this->getConnections() as $name => $x) {
             $connection = $this->getConnection($name);
 
             foreach ($this->getLocales($connection) as $locale) {
-                // category indexing
-                $file = $this->translation_dir.'category.'.$locale.'.xliff';
-                if (!is_file($file)) {
-                    continue;
-                }
-
-                $parser = new XliffFileLoader();
-                $catalogue = $parser->load($file, $locale, 'category');
-
-                foreach($catalogue->all('category') as $key => $text) {
-                    if (!preg_match('/headers.category-([0-9]+)/i', $key, $matches)) {
-                        continue;
-                    }
-
-                    $cms = CmsI18nQuery::create()
-                        ->filterByLocale($locale)
-                        ->findOneById($category_map[$matches[1]], $connection)
-                    ;
-
-                    if (!$cms instanceof CmsI18n) {
-                        continue;
-                    }
-
-                    $cms->setContent(trim(Tools::stripTags($text)));
-                    $cms->save($connection);
-                }
-
-                // product indexing
-                $file = $this->translation_dir.'products.'.$locale.'.xliff';
-                if (!is_file($file)) {
-                    continue;
-                }
-
-                $parser = new XliffFileLoader();
-                $catalogue = $parser->load($file, $locale, 'products');
-
-                foreach ($catalogue->all('products') as $key => $text) {
-                    $key = explode('.', $key);
-                    $key = str_replace('_', ' ', $key[1]);
-
-                    $record = ProductsQuery::create()
-                        ->select(['Id', 'ProductsToCategories.categories_id'])
-                        ->joinWithProductsToCategories()
-                        ->findOneBySku($key, $connection)
-                    ;
-
-                    if ($record) {
-                        $product = ProductsI18nQuery::create()
-                            ->filterByLocale($locale)
-                            ->findOneById($record['Id'], $connection)
-                        ;
-
-                        if (!$product instanceof ProductsI18n) {
-                            continue;
-                        }
-
-                        $product->setContent(trim(Tools::stripTags($text)));
-                        $product->save($connection);
-                    }
-                }
+                $this->updateCategoryIndex($locale, $connection);
+                $this->updateproductIndex($locale, $connection);
             }
         }
     }
+
 
     /**
      * TODO: Move to BaseIndexBuilder
@@ -129,6 +67,7 @@ class ProductAndCategoryIndexBuilder
 
         return $this->connections;
     }
+
 
     /**
      * TODO: Move to BaseIndexBuilder
@@ -152,6 +91,7 @@ class ProductAndCategoryIndexBuilder
         ;
     }
 
+
     /**
      * TODO: Move to BaseIndexBuilder
      */
@@ -174,6 +114,7 @@ class ProductAndCategoryIndexBuilder
         }
     }
 
+
     /**
      * TODO: Move to BaseIndexBuilder
      *
@@ -186,5 +127,121 @@ class ProductAndCategoryIndexBuilder
             ->select('locale')
             ->find($connection)
         ;
+    }
+
+
+    /**
+     * Get translations from Catalogue
+     *
+     * @param $type
+     * @param $locale
+     * @return \Symfony\Component\Translation\MessageCatalogue
+     */
+    private function getTranslationCatalogue($type, $locale)
+    {
+        $file = $this->translation_dir.$type.'.'.$locale.'.xliff';
+        if (!is_file($file)) {
+            return;
+        }
+
+        $parser = new XliffFileLoader();
+        return $parser->load($file, $locale, $type);
+    }
+
+
+    /**
+     * Get Category to CMS map from the routing service.
+     *
+     * @return array
+     */
+    private function getCategoryCmsMapping()
+    {
+        $category_map = [];
+        foreach ($this->router->getRouteCollection()->all() as $key => $route) {
+            if (preg_match('/^(category|look)_[0-9]+/', $key)) {
+                $info = $route->getDefaults();
+                $category_map[$info['category_id']] = $info['cms_id'];
+            }
+        }
+
+        return $category_map;
+    }
+
+
+    /**
+     * Update category cms nodes with content from translation files.
+     *
+     * @param string    $locale
+     * @param PropelPDO $connection
+     */
+    private function updateCategoryIndex($locale, $connection)
+    {
+        static $category_map;
+
+        if (!$catalogue = $this->getTranslationCatalogue('category', $locale)) {
+            return;
+        }
+
+        if (empty($category_map)) {
+            $category_map = $this->getCategoryCmsMapping();
+        }
+
+        foreach($catalogue->all('category') as $key => $text) {
+            if (!preg_match('/headers.category-([0-9]+)/i', $key, $matches)) {
+                continue;
+            }
+
+            $cms = CmsI18nQuery::create()
+                ->filterByLocale($locale)
+                ->findOneById($category_map[$matches[1]], $connection)
+            ;
+
+            if (!$cms instanceof CmsI18n) {
+                continue;
+            }
+
+            $cms->setContent(trim(Tools::stripTags($text)));
+            $cms->save($connection);
+        }
+    }
+
+
+    /**
+     * Update product descriptions with content from translation files.
+     *
+     * @param string    $locale
+     * @param PropelPDO $connection
+     */
+    private function updateproductIndex($locale, $connection)
+    {
+        // product indexing
+        if (!$catalogue = $this->getTranslationCatalogue('products', $locale)) {
+            return;
+        }
+
+        foreach ($catalogue->all('products') as $key => $text) {
+            $key = explode('.', $key);
+            $key = str_replace('_', ' ', $key[1]);
+
+            $record = ProductsQuery::create()
+                ->select(['Id', 'ProductsToCategories.categories_id'])
+                ->joinWithProductsToCategories()
+                ->findOneBySku($key, $connection)
+            ;
+
+            if ($record) {
+                $product = ProductsI18nQuery::create()
+                    ->filterByLocale($locale)
+                    ->findOneById($record['Id'], $connection)
+                ;
+
+                if (!$product instanceof ProductsI18n) {
+                    continue;
+                }
+
+                $product->setContent(trim(Tools::stripTags($text)));
+                $product->save($connection);
+            }
+        }
     }
 }
