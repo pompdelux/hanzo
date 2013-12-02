@@ -163,8 +163,7 @@ namespace :deploy do
   desc "Send email after deploy"
   task :send_email do
     capifony_pretty_print "--> Sending deploy status mail"
-    #run_locally "echo 'New deploy of hanzo branch: #{branch}\nNew current release: #{current_release}\nRun from: #{hostname}:#{pwd}\nBy user: #{whoami}\nOn hosts (empty if all): #{hosts}\nWhats new:\n#{deploydiff}' | mail -s 'Hanzo #{branch} deployed' -c ab@bellcom.dk -c hd@pompdelux.dk -c lv@pompdelux.dk -c un@bellcom.dk mmh@bellcom.dk"
-    run_locally "echo 'New deploy of hanzo branch: #{branch}\nNew current release: #{current_release}\nRun from: #{hostname}:#{pwd}\nBy user: #{whoami}\nOn hosts (empty if all): #{hosts}\nWhats new:\n#{deploydiff}' | mail -s 'Hanzo #{branch} deployed' mmh@bellcom.dk"
+    run_locally "echo 'New deploy of hanzo branch: #{branch}\nNew current release: #{current_release}\nRun from: #{hostname}:#{pwd}\nBy user: #{whoami}\nOn hosts (empty if all): #{hosts}\nWhats new:\n#{deploydiff}' | mail -s 'Hanzo #{branch} deployed' -c ab@bellcom.dk -c hd@pompdelux.dk -c lv@pompdelux.dk -c un@bellcom.dk mmh@bellcom.dk"
     capifony_puts_ok
   end
   desc "Send email after rollback"
