@@ -346,7 +346,6 @@ class Orders extends BaseOrders
     {
         // first update existing product lines, if any
         $lines = $this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
-        #$lines = $this->getOrdersLiness();
 
         if ($this->getState() !== self::STATE_BUILDING) {
             $this->setState(self::STATE_BUILDING);
@@ -379,7 +378,7 @@ class Orders extends BaseOrders
         $line = new OrdersLines;
         $line->setOrdersId($this->getId());
         $line->setProductsId($product->getId());
-        $line->setProductsName($product->getMaster());
+        $line->setProductsName($product->getTitle());
         $line->setProductsSku($product->getSku());
         $line->setProductsColor($product->getColor());
         $line->setProductsSize($product->getSize());
