@@ -7,22 +7,22 @@
 <head>
 <meta charset="utf-8" />
 <title>Video</title>
-<link rel="stylesheet" href="{{ cdn }}fx/scripts/video-js/video-js.css" type="text/css" media="screen" title="Video JS">
-<script src="{{ cdn }}fx/scripts/video-js/video.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" href="{{ video_cdn }}fx/scripts/video-js/video-js.css" type="text/css" media="screen" title="Video JS">
+<script src="{{ video_cdn }}fx/scripts/video-js/video.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 <div id="video-player-container-{{ video_counter }}">
 {% endif %}
 
   <div class="video-js-box">
-    <video id="pdl_video_{{ video_counter }}" class="video-js" width="{{ width }}" height="{{ height }}" controls="controls" preload="auto" poster="{{ cdn }}fx/images/{{ banner }}.jpg">
-        <source src="{{ cdn }}video/{{ video }}.ogv" type='video/ogg; codecs="theora, vorbis"' />
-        <source src="{{ cdn }}video/{{ video }}.mp4" type='video/mp4;' />
-      <object id="flash_fallback_{{ video_counter }}" class="vjs-flash-fallback" width="{{ width }}" height="{{ height }}" type="application/x-shockwave-flash" data="{{ cdn }}fx/scripts/flowplayer/flowplayer.commercial-3.2.12.swf">
-        <param name="movie" value="{{ cdn }}fx/scripts/flowplayer/flowplayer.commercial-3.2.12.swf" />
+    <video id="pdl_video_{{ video_counter }}" class="video-js" width="{{ width }}" height="{{ height }}" controls="controls" preload="auto" poster="{{ video_cdn }}fx/images/{{ banner }}.jpg">
+        <source src="{{ video_cdn }}video/{{ video }}.ogv" type='video/ogg; codecs="theora, vorbis"' />
+        <source src="{{ video_cdn }}video/{{ video }}.mp4" type='video/mp4;' />
+      <object id="flash_fallback_{{ video_counter }}" class="vjs-flash-fallback" width="{{ width }}" height="{{ height }}" type="application/x-shockwave-flash" data="{{ video_cdn }}fx/scripts/flowplayer/flowplayer.commercial-3.2.12.swf">
+        <param name="movie" value="{{ video_cdn }}fx/scripts/flowplayer/flowplayer.commercial-3.2.12.swf" />
         <param name="allowfullscreen" value="true" />
-        <param name="flashvars" value='config={"playlist":["{{ cdn }}fx/images/{{ banner }}.jpg", {"url": "{{ cdn }}video/{{ video }}.mp4","autoPlay":false,"autoBuffering":true}], "key": [ "#$e3685013373ca00a882", "#$0ef37c373a3f0158eb7" ]}' />
-        <img src="{{ cdn }}fx/images/{{ banner }}.jpg" width="{{ width }}" height="{{ height }}" alt="Poster Image" title="No video playback capabilities." />
+        <param name="flashvars" value='config={"playlist":["{{ video_cdn }}fx/images/{{ banner }}.jpg", {"url": "{{ video_cdn }}video/{{ video }}.mp4","autoPlay":false,"autoBuffering":true}], "key": [ "#$e3685013373ca00a882", "#$0ef37c373a3f0158eb7" ]}' />
+        <img src="{{ video_cdn }}fx/images/{{ banner }}.jpg" width="{{ width }}" height="{{ height }}" alt="Poster Image" title="No video playback capabilities." />
       </object>
     </video>
   </div>
@@ -41,3 +41,4 @@ VideoJS.DOMReady(function(){
 </body>
 </html>
 {% endif %}
+

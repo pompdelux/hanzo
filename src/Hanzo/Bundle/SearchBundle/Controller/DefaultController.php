@@ -298,7 +298,6 @@ class DefaultController extends CoreController
      */
     protected function productSearch($q, $locale, $domain_id)
     {
-
         $sql = "
             SELECT
                 p.id,
@@ -401,9 +400,6 @@ class DefaultController extends CoreController
      */
     protected function pageSearch($q, $locale)
     {
-        $result = [];
-        $router = $this->get('router');
-
         // search pages
         $pages = CmsI18nQuery::create()
             ->useCmsQuery()
@@ -420,8 +416,8 @@ class DefaultController extends CoreController
             ->find()
         ;
 
+        $result = [];
         foreach ($pages as $page) {
-            //Tools::log($page->toArray());
             $result[] = array(
                 'title' => $page->getTitle(),
                 'summery' => mb_substr(Tools::stripTags($page->getContent()), 0, 200),
