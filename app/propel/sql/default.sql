@@ -1054,24 +1054,6 @@ CREATE TABLE `gothia_accounts`
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
--- search_fulltext
--- ---------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `search_fulltext`;
-
-CREATE TABLE `search_fulltext`
-(
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `type` VARCHAR(12) DEFAULT 'cms' NOT NULL,
-    `target` VARCHAR(255) NOT NULL,
-    `locale` VARCHAR(12) NOT NULL,
-    `content` TEXT,
-    PRIMARY KEY (`id`),
-    FULLTEXT INDEX `sf_fulltext_index` (`content`),
-    INDEX `sf_locale_index` (`locale`)
-) ENGINE=MyISAM;
-
--- ---------------------------------------------------------------------
 -- messages
 -- ---------------------------------------------------------------------
 
