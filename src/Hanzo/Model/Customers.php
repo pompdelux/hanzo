@@ -29,6 +29,7 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
     /**
      * shortcut for access checks on the customer.
      *
+     * @param $role
      * @return boolean
      */
     public function isGranted($role)
@@ -132,6 +133,7 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
         'ulrik@bellcom.dk'       => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
         // stats
         'mh@pompdelux.dk'        => ['ROLE_STATS', 'ROLE_EMPLOYEE'],
+        'jj@pompdelux.dk'        => ['ROLE_STATS', 'ROLE_EMPLOYEE'],
         'pd@pompdelux.dk'        => ['ROLE_STATS', 'ROLE_EMPLOYEE'],
         // marketing
         'tj@pompdelux.dk'        => ['ROLE_MARKETING', 'ROLE_EMPLOYEE'],
