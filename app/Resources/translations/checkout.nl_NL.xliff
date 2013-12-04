@@ -281,7 +281,7 @@
       </trans-unit>
        <trans-unit id="payment.gothia.title">
         <source>payment.gothia.title</source>
-        <target>Factuurbetaling</target>
+        <target>Factuurbetaling (Gothia)</target>
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
@@ -289,11 +289,11 @@
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>
-        <target>Gothia faktura avgift</target>
+        <target>Gothia betaalkosten EUR 5,00</target>
       </trans-unit>
       <trans-unit id="confirm.payment.fee">
         <source>confirm.payment.fee</source>
-        <target>Fakturaavgift</target>
+        <target>Betaalkosten</target>
       </trans-unit>
            <trans-unit id="payment.dibs.title">
         <source>payment.dibs.title</source>
