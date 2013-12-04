@@ -19,6 +19,14 @@ use Hanzo\Model\ShippingMethods;
 
 class AddressController extends CoreController
 {
+    /**
+     * Builds the address form based on address type.
+     *
+     * @param Request $request
+     * @param string  $type
+     * @param integer $customer_id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function formAction(Request $request, $type = 'payment', $customer_id = null)
     {
         $short_domain_key = substr(Hanzo::getInstance()->get('core.domain_key'), -2);
@@ -50,6 +58,7 @@ class AddressController extends CoreController
                 $address->setCountry($order->getDeliveryCountry());
                 $address->setCountriesId($order->getDeliveryCountriesId());
                 $address->setStateProvince($order->getDeliveryStateProvince());
+                $address->setExternalAddressId($order->getDeliveryExternalAddressId());
 
                 switch ($delivery_method_id) {
                     case 11:
@@ -63,6 +72,7 @@ class AddressController extends CoreController
                         $address->setCountry('Denmark');
                         $address->setCountriesId(58);
                         $address->setStateProvince(null);
+                        $address->setCompanyName($order->getDeliveryCompanyName());
                         break;
                     default:
                         $type = 'shipping';
@@ -207,7 +217,7 @@ class AddressController extends CoreController
 
         $response = $this->render('ShippingBundle:Address:form.html.twig', [
             'type'           => $type,
-            'enable_locator' => in_array($delivery_method_id, [12, 71]),
+            'enable_locator' => ($type != 'payment' && in_array($delivery_method_id, [12, 71])),
             'form'           => $form->createView(),
         ]);
 
@@ -226,10 +236,16 @@ class AddressController extends CoreController
     }
 
 
+    /**
+     * Processes the address of a given type
+     *
+     * @param Request $request
+     * @param string  $type    Address type
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function processAction(Request $request, $type)
     {
         $status = false;
-        $short_domain_key = strtolower(substr(Hanzo::getInstance()->get('core.domain_key'), -2));
 
         if ('POST' === $request->getMethod()) {
             // TODO: not hardcoded
