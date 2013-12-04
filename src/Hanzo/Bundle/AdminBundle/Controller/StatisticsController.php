@@ -189,7 +189,7 @@ class StatisticsController extends CoreController
                 AND
                   state > 20
             GROUP BY
-                DAY(created_at)
+                DAY(created_at),
                 HOUR(created_at)
             ORDER BY
                 y DESC
