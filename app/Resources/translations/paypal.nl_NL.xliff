@@ -8,7 +8,7 @@
       </trans-unit>
       <trans-unit id="paypal.desc" approved="no">
         <source>paypal.desc</source>
-        <target><![CDATA[ PayPal <br>Gratis Paypal-rekening openen, <a href="%https://www.paypal.com/nl/webapps/mpp/home%" target="_blank">klik dan hier</a>.<br> Gratis Paypal-rekening openen met iDEAL, <a href="%https://www.money2.nl/" target="_blank">klik dan hier</a>.]]></target>
+        <target>PayPal</target>
       </trans-unit>
       <trans-unit id="failed.heading" approved="no">
         <source>failed.heading</source>
