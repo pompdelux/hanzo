@@ -288,8 +288,8 @@
                 </ul>
                 ]]></target>
             </trans-unit>
-            <trans-unit id="footer.menu_2" approved="no">
-                <source>footer.menu_2</source>
+            <trans-unit id="footer.menu_3" approved="no">
+                <source>footer.menu_3</source>
                 <target><![CDATA[
                 <h2>MER POMPDELUX</h2>
                 <ul class="menu">
@@ -300,7 +300,7 @@
                 </ul>
                 ]]></target>
             </trans-unit>
-                        <trans-unit id="share.to.%method%" approved="no">
+            <trans-unit id="share.to.%method%" approved="no">
                 <source>share.to.%method%</source>
                 <target>Del på%method%</target>
             </trans-unit>
