@@ -73,7 +73,7 @@
             </trans-unit>
             <trans-unit id="proceed">
                 <source>proceed</source>
-                <target>Weiter</target>
+                <target>Zur Bezahlung</target>
             </trans-unit>
             <trans-unit id="back">
                 <source>back</source>

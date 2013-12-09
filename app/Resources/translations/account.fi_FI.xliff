@@ -64,7 +64,7 @@
             </trans-unit>
             <trans-unit id="proceed">
                 <source>proceed</source>
-                <target>Jatka</target>
+                <target>Siirry maksamaan</target>
             </trans-unit>
             <trans-unit id="back">
                 <source>back</source>
