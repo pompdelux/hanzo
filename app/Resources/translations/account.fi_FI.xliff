@@ -467,9 +467,15 @@ Voit muuttaa tilaustasi, lisätä siihen tuotteita tai poistaa tuotteita. Napsau
                 <source>my.account.login.notice</source>
                 <target><![CDATA[<p>Rekisteröidy asiakkaaksi täällä</p>]]></target>
             </trans-unit>
-            <trans-unit id="my.account.login.text" approved="no">
+           <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>
-                <target><![CDATA[<p>Kun teet ostoksia POMPdeLUXilla, sinun tulee olla kirjautuneena asiakkaaksi sivustolle. Silloin voit tarkistaa ja korjata tilauksiasi siihen asti, kun ne pakataan ja lähetetään varastostamme. Voit muuttaa tilattujen tuotteiden värejä ja kokoja sekä lisätä ja poistaa tuotteita niin kauan, kun tilauksesi tila on "Odottaa" eli vähintään 24 tuntia tuotteiden tilaamisen jälkeen.<br><br>POMPdeLUXin asiakkaana näet tällä sivulla myös aikaisemmat tilauksesi ja laskusi.</p><h2>Oletko uusi asiakas?</h2>]]></target>
+                <target><![CDATA[<h3>OMAT SIVUT</h3><p>Jotta voit nauttia lukuisista POMPdeLUXin tarjoamista eduista, sinun tulee rekisteröityä asiakkaaksi ennen kuin voit jatkaa ostoksiasi.<br><br>Rekisteröityneenä asiakkaana voit muun muassa:<br> 
+			<ul>
+            <li>Tarkistaa ja korjata tilaustasi, kunnes se pakataan ja lähetetään varastoltamme.</li>
+            <li>Muuttaa tilaamiesi tuotteiden värejä ja kokoja.</li>
+            <li>Lisätä tai poistaa tuotteita niin kauan kuin niiden tilana on "Odottaa" eli vähintään 24 tuntia tilauksen tekemisen jälkeen.</li>
+			<li>Tarkastella aiempia tilauksia ja vanhoja laskuja.</li>
+          </ul></p>]]></target>
             </trans-unit>
             <trans-unit id="my.account.login.header" approved="no">
                 <source>my.account.login.header</source>

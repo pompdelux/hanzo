@@ -473,9 +473,15 @@ Let op: de betaling moet uitgevoerd worden – eerdere betalingen worden automat
                 <source>my.account.login.notice</source>
                 <target><![CDATA[<p>Registreer je hier als klant</p>]]></target>
             </trans-unit>
-            <trans-unit id="my.account.login.text">
+            <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>
-                <target><![CDATA[<p>Om op de website van POMPdeLUX te kunnen bestellen, moet je geregistreerd zijn als klant. Als geregistreerde klant kun je je order controleren en wijzigen totdat deze verstuurd wordt. Je kunt de maat en kleur van de artikelen, die je besteld hebt, wijzigen en artikelen toevoegen of verwijderen zo lang je order op "Afwachten" staat, dwz. minimaal 24 uur nadat je besteld hebt.<br><br>Als klant bij POMPdeLUX  kun je op deze pagina ook je eerdere orders en facturen bekijken.</p><h2>Nieuwe klant?</h2>]]></target>
+                <target><![CDATA[<h3>MIJN PAGINA</h3><p>Om je een aantal voordelen bij POMPdeLUX te geven, moet je je eerst registreren als klant. Daarna kun je weer doorgaan met winkelen.<br><br>Dit geeft je onder meer de mogelijkheid om:<br> 
+			<ul>
+            <li>Je bestelling te controleren en te wijzigen totdat die gepakt en verzonden is.</li>
+            <li>De kleur en maat van de artikelen die je hebt besteld te wijzigen.</li>
+            <li>Artikelen toe te voegen of te verwijderen zolang je bestelling op “Afwachten” staat. Dat wil zeggen minstens 24 uur nadat je de artikelen besteld hebt.</li>
+			<li>Je eerdere bestellingen te bekijken en je oude facturen te vinden.</li>
+          </ul></p>]]></target>
             </trans-unit>
             <trans-unit id="my.account.login.header" approved="no">
                 <source>my.account.login.header</source>
