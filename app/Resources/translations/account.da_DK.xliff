@@ -221,7 +221,7 @@
             </trans-unit>
             <trans-unit id="67">
                 <source>create.notice</source>
-                <target><![CDATA[<strong>Er du allerede kunde?</strong> Hvis du allerede har en konto hos os, skal du logge ind på <a href="%url%">Min side</a>]]></target>
+                <target><![CDATA[<strong>Er du allerede kunde?</strong><br> Hvis du allerede har en konto hos os, skal du logge ind på <a href="%url%">Min side</a>]]></target>
             </trans-unit>
             <trans-unit id="68">
                 <source>nno.title</source>
