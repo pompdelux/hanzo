@@ -484,7 +484,7 @@ Bemærk: Betalingen skal gennemføres – tidligere betalingsreservation bliver 
             </trans-unit>
             <trans-unit id="my.account.login.notice" approved="no">
                 <source>my.account.login.notice</source>
-                <target><![CDATA[<p>Velkommen til - opret dig som kunde!</p>]]></target>
+                <target><![CDATA[<p>Opret dig som kunde her</p>]]></target>
             </trans-unit>
             <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>

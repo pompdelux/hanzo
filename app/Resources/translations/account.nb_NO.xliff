@@ -469,7 +469,7 @@ Du har mulighet for å endre/tilføye/slette i ordren. Du skal klikke på <img s
             </trans-unit>
             <trans-unit id="my.account.login.notice" approved="no">
                 <source>my.account.login.notice</source>
-                <target><![CDATA[<p>Velkommen - opret dig som kunde!</p>]]></target>
+                <target><![CDATA[<p>Opprett deg som kunde her</p>]]></target>
             </trans-unit>
             <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>

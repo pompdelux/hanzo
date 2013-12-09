@@ -477,7 +477,7 @@
             </trans-unit>
             <trans-unit id="my.account.login.notice" approved="no">
                 <source>my.account.login.notice</source>
-                <target><![CDATA[<p>I wish to open an account!</p>]]></target>
+                <target><![CDATA[<p>Create your account here</p>]]></target>	
             </trans-unit>
             <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>

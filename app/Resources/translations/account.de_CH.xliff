@@ -485,7 +485,7 @@ Rücksendung</b><br>Möchten Sie die Ware zurückschicken, dann klicken Sie bitt
             </trans-unit>
             <trans-unit id="my.account.login.notice" approved="no">
                 <source>my.account.login.notice</source>
-                <target><![CDATA[<p>Willkommen - erstellen Sie ein Benutzerkonto!</p>]]></target>
+                <target><![CDATA[<p>Melden Sie sich hier als Kunde an</p>]]></target>
             </trans-unit>
             <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>

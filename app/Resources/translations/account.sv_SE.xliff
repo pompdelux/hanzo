@@ -466,7 +466,7 @@ Du har möjlighet att ändra/lägga till/radera i din order. Du ska klicka på <
             </trans-unit>
             <trans-unit id="my.account.login.notice" approved="no">
                 <source>my.account.login.notice</source>
-                <target><![CDATA[<p>Välkommen – upprätta dig som kund!</p>]]></target>
+                <target><![CDATA[<p>Upprätta dig som kund här</p>]]></target>
             </trans-unit>
             <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>

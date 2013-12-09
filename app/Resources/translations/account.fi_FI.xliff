@@ -465,7 +465,7 @@ Voit muuttaa tilaustasi, lisätä siihen tuotteita tai poistaa tuotteita. Napsau
             </trans-unit>
             <trans-unit id="my.account.login.notice" approved="no">
                 <source>my.account.login.notice</source>
-                <target><![CDATA[<p>Tervetuloa – liity asiakkaaksi!</p>]]></target>
+                <target><![CDATA[<p>Rekisteröidy asiakkaaksi täällä</p>]]></target>
             </trans-unit>
             <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>

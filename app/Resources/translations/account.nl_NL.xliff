@@ -471,7 +471,7 @@ Let op: de betaling moet uitgevoerd worden – eerdere betalingen worden automat
             </trans-unit>
             <trans-unit id="my.account.login.notice" approved="no">
                 <source>my.account.login.notice</source>
-                <target><![CDATA[<p>Welkom – registreer je als klant!</p>]]></target>
+                <target><![CDATA[<p>Registreer je hier als klant</p>]]></target>
             </trans-unit>
             <trans-unit id="my.account.login.text">
                 <source>my.account.login.text</source>
