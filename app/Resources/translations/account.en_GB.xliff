@@ -478,11 +478,17 @@
             <trans-unit id="my.account.login.notice" approved="no">
                 <source>my.account.login.notice</source>
                 <target><![CDATA[<p>Create your account here</p>]]></target>	
-            </trans-unit>
+            </trans-unit>			
             <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>
-                <target><![CDATA[<p>If you wish to shop at POMPdeLUX you have to open an account here on this page.<br /><br />You will always be able to check and change your order until it is being packed and shipped from our warehouse. You can change colour and size on the items you have ordered, and you can add or cancel items, as long as it says "Pending" next to your order. It is possible to change your order minimum 24 hours after you have placed the order. <br /><br />As a customer at POMPdeLUX you can see your previous orders and find old invoices on my account</p><!--<h2>New customer?</h2>]]>--></target>
-            </trans-unit>
+                <target><![CDATA[<h3>MY ACCOUNT</h3><p>To give you several advantages at POMPdeLUX you must create an account to continue shopping.<br><br>This will provide you with the opportunity to:<br> 
+			<ul>
+            <li>Check and change your order until it is packet and shipped from our warehouse.</li>
+            <li>Change colours and sizes on the selected items which you have ordered.</li>
+            <li>Add and cancel items from your order as long as your order has the status “pending”. This service is available 24 hours after your order has been placed.</li>
+			<li>See your previous orders and find old invoices.</li>
+          </ul></p>]]></target>
+            </trans-unit>			
             <trans-unit id="my.account.login.header" approved="no">
                 <source>my.account.login.header</source>
                 <target><![CDATA[<h1>Welcome to my account</h1>]]></target>

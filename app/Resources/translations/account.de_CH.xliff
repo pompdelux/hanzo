@@ -486,12 +486,16 @@ Rücksendung</b><br>Möchten Sie die Ware zurückschicken, dann klicken Sie bitt
             <trans-unit id="my.account.login.notice" approved="no">
                 <source>my.account.login.notice</source>
                 <target><![CDATA[<p>Melden Sie sich hier als Kunde an</p>]]></target>
-            </trans-unit>
-            <trans-unit id="my.account.login.text" approved="no">
+            </trans-unit><trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>
-                <target><![CDATA[<h3>Meine Seite - Login</h3><p>Wenn Sie bei POMPdeLUX einkaufen, müssen Sie ein Benutzerkonto auf dieser Seite haben. Es ermöglicht Ihnen u. a., Ihre Bestellung zu prüfen und zu ändern, bevor sie in unserem Lager verpackt wird und verschickt wird. Sie können Farben und Größen der bestellten Waren ändern und Sie können Waren hinzufügen und ändern, solange bei Ihrer Bestellung "Warten auf Bearbeitung" steht, d. h. mindestens 24 Stunden nach der Warenbestellung.<br><br>Als Kunde bei POMPdeLUX  können Sie auf dieser Seite auch frühere Bestellungen sehen und alte Rechnungen finden.</p>]]></target>
+                <target><![CDATA[<h3>MEINE SEITE</h3><p>Um alle Vorteile bei POMPdeLUX genießen zu können, müssen Sie sich als Kunde anmelden bevor Sie weitershoppen.<br><br>Dies gibt Ihnen unter anderem die Möglichkeit:<br>
+			<ul>
+            <li>Ihre Bestellung zu prüfen und zu ändern bis diese gepackt und von unserem Lager gesandt wird.</li>
+            <li>Farben und Größen der bestellen Waren zu ändern </li>
+            <li>Waren hinzuzufügen oder zu löschen solange Ihre Bestellung den Status „Warten auf Bearbeitung“ hat, d.h. bis mind. 24 Std. nachdem Sie bestellt haben.</li>
+			<li>Ihre früheren Bestellungen einzusehen und ältere Rechnungen abzurufen</li>
+          </ul></p>]]></target>
             </trans-unit>
-
             <trans-unit id="my.account.login.title">
                 <source>my.account.login.title</source>
                 <target>Meine Seite - Login</target>

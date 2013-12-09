@@ -488,7 +488,7 @@ Bemærk: Betalingen skal gennemføres – tidligere betalingsreservation bliver 
             </trans-unit>
             <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>
-                <target><![CDATA[<h3>Min side</h3><p>For at give dig en række fordele hos POMPdeLUX, skal du oprette dig som kunde inden du kan shoppe videre.<br><br>Det giver dig blandt andet mulighed for at:<br> 
+                <target><![CDATA[<h3>MIN SIDE</h3><p>For at give dig en række fordele hos POMPdeLUX, skal du oprette dig som kunde inden du kan shoppe videre.<br><br>Det giver dig blandt andet mulighed for at:<br> 
 			<ul>
             <li>Tjekke og rette din ordre, indtil den bliver pakket og sendt fra vores lager.</li>
             <li>Ændre farver og størrelser på de varer, du har bestilt.</li>
