@@ -252,7 +252,7 @@
       </trans-unit>
       <trans-unit id="late.delivery.notice">
         <source>late.delivery.notice</source>
-        <target><![CDATA[<strong>Bemærk:</strong> Hvis din ordre indeholder varer med afsendelsesdatoer, så afsender vi først din ordre, når alle varer er på vores lager.]]></target>
+        <target><![CDATA[<strong>Bemærk:</strong> Din ordre bliver først afsendt, når alle varer er på lager.]]></target>
       </trans-unit>
       <trans-unit id="button.back">
         <source>button.back</source>

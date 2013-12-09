@@ -238,7 +238,7 @@
       </trans-unit>
       <trans-unit id="late.delivery.notice">
         <source>late.delivery.notice</source>
-        <target><![CDATA[<strong>Let op:</strong> Als je order artikelen bevat die niet op voorraad zijn, versturen we je order pas als we alle artikelen op voorraad hebben.]]></target>
+        <target><![CDATA[<strong>Let op:</strong> Je bestelling wordt pas verstuurd als we alle artikelen op voorraad hebben.]]></target>
       </trans-unit>
       <trans-unit id="button.back">
         <source>button.back</source>

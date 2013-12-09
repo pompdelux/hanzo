@@ -256,7 +256,7 @@
       </trans-unit>
       <trans-unit id="late.delivery.notice">
         <source>late.delivery.notice</source>
-        <target><![CDATA[<strong>Observera:</strong> Om din order innehåller varor med olika sändningsdatum, skickas din order först när samtliga varor finns på lager.]]></target>
+        <target><![CDATA[<strong>Observera:</strong> Din order skickas först när alla varor finns på lager.]]></target>
       </trans-unit>
       <trans-unit id="button.back">
         <source>button.back</source>
