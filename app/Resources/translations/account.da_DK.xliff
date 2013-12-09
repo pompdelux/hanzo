@@ -201,7 +201,7 @@
             </trans-unit>
             <trans-unit id="65">
                 <source>create.account</source>
-                <target>Videre</target>
+                <target></target>
             </trans-unit>
             <trans-unit id="create.account.header" approved="no">
                 <source>create.account.header</source>
@@ -221,7 +221,7 @@
             </trans-unit>
             <trans-unit id="67">
                 <source>create.notice</source>
-                <target><![CDATA[<strong>Bemærk:</strong> Hvis du allerede har en konto hos os, skal du logge ind på <a href="%url%">Min side</a>]]></target>
+                <target><![CDATA[<strong>Er du allerede kunde?</strong> Hvis du allerede har en konto hos os, skal du logge ind på <a href="%url%">Min side</a>]]></target>
             </trans-unit>
             <trans-unit id="68">
                 <source>nno.title</source>

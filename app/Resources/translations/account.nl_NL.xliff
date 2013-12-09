@@ -185,7 +185,7 @@
             </trans-unit>
             <trans-unit id="65">
                 <source>create.account</source>
-                <target>Verder</target>
+                <target></target>
             </trans-unit>
             <trans-unit id="create.account.header" approved="no">
                 <source>create.account.header</source>
@@ -205,7 +205,7 @@
             </trans-unit>
             <trans-unit id="67">
                 <source>create.notice</source>
-                <target><![CDATA[<strong>Let op:</strong> Heb je al een account bij ons, dan moet je inloggen op <a href="%url%">Mijn pagina</a><br><br>]]></target>
+                <target><![CDATA[<strong>Ben je al klant?</strong> Heb je al een account bij ons, dan moet je inloggen op <a href="%url%">Mijn pagina</a>.]]></target>
             </trans-unit>
             <trans-unit id="68" approved="no">
                 <source>nno.title</source>

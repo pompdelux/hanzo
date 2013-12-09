@@ -185,7 +185,7 @@
             </trans-unit>
             <trans-unit id="65">
                 <source>create.account</source>
-                <target>Fortsätt</target>
+                <target></target>
             </trans-unit>
             <trans-unit id="edit.account">
                 <source>edit.account</source>
@@ -201,7 +201,7 @@
             </trans-unit>
             <trans-unit id="67">
                 <source>create.notice</source>
-                <target><![CDATA[<strong>Observera:</strong> Om du redan har ett konto hos oss, ska du logga in på <a href="%url%">Min sida</a><br><br>]]></target>
+                <target><![CDATA[<strong>Är du redan kund?</strong> Om du redan är kund hos oss, ska du logga in på <a href="%url%">Min sida</a>.]]></target>
             </trans-unit>
             <trans-unit id="68" approved="no">
                 <source>nno.title</source>

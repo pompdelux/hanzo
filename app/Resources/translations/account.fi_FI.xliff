@@ -192,7 +192,7 @@
             </trans-unit>
             <trans-unit id="65">
                 <source>create.account</source>
-                <target>Jatka</target>
+                <target></target>
             </trans-unit>
             <trans-unit id="create.account.header" approved="no">
                 <source>create.account.header</source>
@@ -212,7 +212,7 @@
             </trans-unit>
             <trans-unit id="67">
                 <source>create.notice</source>
-                <target><![CDATA[<strong>Huomaa:</strong> Jos sinulla on jo tili POMPdeLUXilla, riittää, kun kirjaudut sisään <a href="%url%">Omalle sivullesi </a><br><br>Lisää sivulle omat tietosi (<u>ei</u> mahdollisia yritystietoja).]]></target>
+                <target><![CDATA[<strong>Oletko jo asiakas? </strong> Jos sinulla on jo tili meillä, kirjaudu sisään <a href="%url%">Omalle sivullesi</a>.]]></target>
             </trans-unit>
             <trans-unit id="68">
                 <source>nno.title</source>

@@ -201,7 +201,7 @@
             </trans-unit>
             <trans-unit id="65">
                 <source>create.account</source>
-                <target>Weiter</target>
+                <target></target>
             </trans-unit>
             <trans-unit id="create.account.header" approved="no">
                 <source>create.account.header</source>
@@ -221,9 +221,9 @@
             </trans-unit>
             <trans-unit id="67">
                 <source>create.notice</source>
-                <target><![CDATA[<strong>Bitte beachten:</strong> Wenn Sie bereits ein Konto bei uns haben, dann loggen Sie sich ein auf <a href="%url%">Meine Seite</a>]]></target>
+                <target><![CDATA[<strong>Sind Sie bereits Kunde?</strong> Falls Sie schon ein Konto bei uns haben, loggen Sie sich bitte unter <a href="%url%">Meine Seite</a> ein.]]></target>
             </trans-unit>
-            <trans-unit id="68">
+			<trans-unit id="68">
                 <source>nno.title</source>
                 <target>Holen Sie Ihre Adresseninformationen von den Gelben Seiten.</target>
             </trans-unit>
