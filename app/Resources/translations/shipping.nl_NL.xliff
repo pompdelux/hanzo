@@ -64,7 +64,7 @@
       </trans-unit>
       <trans-unit id="page.desc.after_methods"><!-- Vises efter de mulige fragt typer -->
         <source>page.desc.after_methods</source>
-        <target>Administratiekosten EUR 0.00</target>
+        <target></target>
       </trans-unit>
     </body>
   </file>
