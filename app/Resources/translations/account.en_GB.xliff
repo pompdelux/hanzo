@@ -65,7 +65,7 @@
             </trans-unit>
             <trans-unit id="back">
                 <source>back</source>
-                <target>Back</target>
+                <target>Continue shopping</target>
             </trans-unit>
             <trans-unit id="retrive.password">
                 <source>retrive.password</source>
@@ -409,7 +409,7 @@
             </trans-unit>
             <trans-unit id="address.delivery">
                 <source>address.delivery</source>
-                <target>Delivery address</target>
+                <target>Alternative delivery address</target>
             </trans-unit>
             <trans-unit id="address.billing">
                 <source>address.billing</source>
