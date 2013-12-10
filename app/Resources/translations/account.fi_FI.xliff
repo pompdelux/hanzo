@@ -36,7 +36,7 @@
             </trans-unit>
             <trans-unit id="address.delivery">
                 <source>address.delivery</source>
-                <target>Toimitusosoite</target>
+                <target>Vaihtoehtoinen toimitusosoite </target>
             </trans-unit>
             <trans-unit id="address.billing">
                 <source>address.billing</source>
@@ -68,7 +68,7 @@
             </trans-unit>
             <trans-unit id="back">
                 <source>back</source>
-                <target>Takaisin</target>
+                <target>Jatka ostoksia</target>
             </trans-unit>
             <trans-unit id="retrive.password">
                 <source>retrive.password</source>

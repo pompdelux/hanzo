@@ -36,7 +36,7 @@
       </trans-unit>
 	  <trans-unit id="shipping_method.desc.71">
         <source>shipping_method.desc.71</source>
-        <target><![CDATA[Je kunt er ook voor kiezen je bestelling zelf op te halen bij een DHL Servicepoint. Je vindt DHL Servicepoints bij jou in de buurt via <a href="http://www.selektvracht.nl/" class="js-external">www.selektvracht.nl</a> – DHL servicepoint.]]></target>
+        <target><![CDATA[Vind het servicepoint door je postcode in het veld Alternatief verzendadres in te vullen. Hierna wordt er een lijst getoond met servicepoints bij jou in de buurt. <a href="http://www.selektvracht.nl/" class="js-external">www.selektvracht.nl</a> – DHL servicepoint.]]></target>
 		</trans-unit>
 		<trans-unit id="shipping_method.label.71">
         <source>shipping_method.label.71</source>
@@ -64,7 +64,7 @@
       </trans-unit>
       <trans-unit id="page.desc.after_methods"><!-- Vises efter de mulige fragt typer -->
         <source>page.desc.after_methods</source>
-        <target>Administratiekosten EUR 0.00</target>
+        <target></target>
       </trans-unit>
     </body>
   </file>

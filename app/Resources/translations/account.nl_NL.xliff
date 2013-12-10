@@ -69,7 +69,7 @@
             </trans-unit>
             <trans-unit id="back">
                 <source>back</source>
-                <target>Terug</target>
+                <target>Ga door met winkelen</target>
             </trans-unit>
             <trans-unit id="retrive.password">
                 <source>retrive.password</source>
@@ -401,7 +401,7 @@
             </trans-unit>
             <trans-unit id="address.delivery">
                 <source>address.delivery</source>
-                <target>Afleveradres</target>
+                <target>Alternatief verzendadres </target>
             </trans-unit>
             <trans-unit id="address.billing">
                 <source>address.billing</source>

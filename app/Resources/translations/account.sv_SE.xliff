@@ -69,7 +69,7 @@
             </trans-unit>
             <trans-unit id="back">
                 <source>back</source>
-                <target>Tillbaka</target>
+                <target>Shoppa vidare</target>
             </trans-unit>
             <trans-unit id="retrive.password">
                 <source>retrive.password</source>
@@ -401,7 +401,7 @@
             </trans-unit>
             <trans-unit id="address.billing">
                 <source>address.billing</source>
-                <target>Privatadress</target>
+                <target>Fakturaadress </target>
             </trans-unit>
             <trans-unit id="password.min.length" approved="no">
                 <source>password.min.length</source>
