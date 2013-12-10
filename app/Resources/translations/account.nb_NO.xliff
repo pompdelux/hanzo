@@ -68,7 +68,7 @@
             </trans-unit>
             <trans-unit id="back">
                 <source>back</source>
-                <target>Tilbake</target>
+                <target>Shop videre</target>
             </trans-unit>
             <trans-unit id="retrive.password">
                 <source>retrive.password</source>
@@ -400,11 +400,11 @@
             </trans-unit>
             <trans-unit id="address.delivery">
                 <source>address.delivery</source>
-                <target>Leveringsadresse</target>
+                <target>Alternativ leveringsadresse</target>
             </trans-unit>
             <trans-unit id="address.billing">
                 <source>address.billing</source>
-                <target>Privatadresse</target>
+                <target>Betalingsadresse</target>
             </trans-unit>
             <trans-unit id="password.min.length" approved="no">
                 <source>password.min.length</source>
