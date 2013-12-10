@@ -4,7 +4,7 @@
         <body>
             <trans-unit id="description" approved="no">
                 <source>description</source>
-                <target><![CDATA[5)	Skriv postnummer på den by, hvor du gerne vil finde dit udleveringssted. Derefter vælger du dit foretrukne udleveringssted, og adressen udfyldes automatisk.]]></target>
+                <target><![CDATA[Skriv postnummer på den by, hvor du gerne vil finde dit udleveringssted.<br> Derefter vælger du dit foretrukne udleveringssted, <br>og adressen udfyldes automatisk.]]></target>
             </trans-unit>
             <trans-unit id="lookup.label" approved="no">
                 <source>lookup.label</source>
