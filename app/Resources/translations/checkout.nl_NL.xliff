@@ -54,7 +54,7 @@
       </trans-unit>
       <trans-unit id="confirm.title">
         <source>confirm.title</source>
-        <target>Besteloverzicht</target>
+        <target>Let op!</target>
       </trans-unit>
       <trans-unit id="confirm.addresses.label" approved="no">
         <source>confirm.addresses.label</source>
