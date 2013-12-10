@@ -5,7 +5,6 @@ namespace Hanzo\Bundle\AxBundle\Actions\In\Soap\ECommerceServices;
 use Hanzo\Bundle\AxBundle\Actions\In\Soap\SoapService;
 
 use Hanzo\Core\Tools;
-use Hanzo\Core\Hanzo;
 use Hanzo\Core\Timer;
 
 use Hanzo\Model\ProductsDomainsPrices;
@@ -20,7 +19,6 @@ use Hanzo\Model\ProductsToCategoriesQuery;
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersQuery;
 use Hanzo\Model\Consultants;
-use Hanzo\Model\ConsultantsQuery;
 use Hanzo\Model\Addresses;
 use Hanzo\Model\AddressesQuery;
 use Hanzo\Model\Countries;
@@ -32,14 +30,12 @@ use Hanzo\Model\LanguagesQuery;
 
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersQuery;
-use Hanzo\Model\OrdersLines;
 use Hanzo\Model\OrdersLinesPeer;
 use Hanzo\Model\OrdersLinesQuery;
 use Hanzo\Model\OrdersAttributes;
 use Hanzo\Model\OrdersAttributesQuery;
 
 use Hanzo\Bundle\NewsletterBundle\NewsletterApi;
-use Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCall;
 use Hanzo\Bundle\PaymentBundle\PaymentApiCallException;
 
 use Hanzo\Bundle\AdminBundle\Event\FilterCategoryEvent;
@@ -672,6 +668,7 @@ class ECommerceServices extends SoapService
      *     <SalesDiscountPercent></SalesDiscountPercent>
      *   </CustTable>
      * </customer>
+     * @return object
      */
     public function SyncCustomer($data)
     {
@@ -825,6 +822,7 @@ class ECommerceServices extends SoapService
      */
     public function DeleteSalesOrder($data)
     {
+        $errors = [];
         if (empty($data->eOrderNumber)) {
             $this->logger->addCritical(__METHOD__.' '.__LINE__.': no eOrderNumber given.');
             return self::responseStatus('Error', 'DeleteSalesOrderResult', array('no eOrderNumber given.'));
@@ -1104,7 +1102,7 @@ class ECommerceServices extends SoapService
      *
      * @see ECommerceServices::SalesOrderCaptureOrRefund
      * @param stdClass $data  soap data object
-     * @param Order    $order order object
+     * @param Orders   $order order object
      * @return mixed   true on success array of errors on error
      */
     protected function SalesOrderCapture($data, Orders $order)
@@ -1198,9 +1196,9 @@ class ECommerceServices extends SoapService
      * SalesOrderRefund - split out from SalesOrderCaptureOrRefund
      *
      * @see ECommerceServices::SalesOrderCaptureOrRefund
-     * @param [type] $data  [description]
-     * @param Order  $order [description]
-     * @return mixed   true on success array of errors on error
+     * @param array  $data  refund data
+     * @param Orders $order order object
+     * @return mixed        true on success array of errors on error
      */
     protected function SalesOrderRefund($data, Orders $order)
     {
