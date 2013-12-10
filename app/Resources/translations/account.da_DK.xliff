@@ -77,7 +77,7 @@
             </trans-unit>
             <trans-unit id="back">
                 <source>back</source>
-                <target>Tilbage</target>
+                <target>Shop videre</target>
             </trans-unit>
             <trans-unit id="retrive.password">
                 <source>retrive.password</source>
