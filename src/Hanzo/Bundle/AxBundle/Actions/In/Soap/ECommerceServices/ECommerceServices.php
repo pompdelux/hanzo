@@ -196,7 +196,6 @@ class ECommerceServices extends SoapService
                     } else {
                         foreach ($product->getProductsI18ns() as $translation) {
                             $translation->setTitle($item->ItemName);
-                            $translation->setContent($item->ItemName);
                         }
 
                         ProductsToCategoriesQuery::create()
