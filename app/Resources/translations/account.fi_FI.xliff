@@ -36,7 +36,7 @@
             </trans-unit>
             <trans-unit id="address.delivery">
                 <source>address.delivery</source>
-                <target>Toimitusosoite</target>
+                <target>Vaihtoehtoinen toimitusosoite </target>
             </trans-unit>
             <trans-unit id="address.billing">
                 <source>address.billing</source>
@@ -64,11 +64,11 @@
             </trans-unit>
             <trans-unit id="proceed">
                 <source>proceed</source>
-                <target>Jatka</target>
+                <target>Siirry maksamaan</target>
             </trans-unit>
             <trans-unit id="back">
                 <source>back</source>
-                <target>Takaisin</target>
+                <target>Jatka ostoksia</target>
             </trans-unit>
             <trans-unit id="retrive.password">
                 <source>retrive.password</source>
@@ -192,7 +192,7 @@
             </trans-unit>
             <trans-unit id="65">
                 <source>create.account</source>
-                <target>Jatka</target>
+                <target></target>
             </trans-unit>
             <trans-unit id="create.account.header" approved="no">
                 <source>create.account.header</source>
@@ -212,7 +212,7 @@
             </trans-unit>
             <trans-unit id="67">
                 <source>create.notice</source>
-                <target><![CDATA[<strong>Huomaa:</strong> Jos sinulla on jo tili POMPdeLUXilla, riittää, kun kirjaudut sisään <a href="%url%">Omalle sivullesi </a><br><br>Lisää sivulle omat tietosi (<u>ei</u> mahdollisia yritystietoja).]]></target>
+                <target><![CDATA[<strong>Oletko jo asiakas? </strong> Jos sinulla on jo tili meillä, kirjaudu sisään <a href="%url%">Omalle sivullesi</a>.]]></target>
             </trans-unit>
             <trans-unit id="68">
                 <source>nno.title</source>
@@ -333,6 +333,10 @@
             <trans-unit id="address.address_line_1.required">
                 <source>address.address_line_1.required</source>
                 <target>Osoite on annettava</target>
+            </trans-unit>
+            <trans-unit id="name.max.length">
+                <source>name.max.length</source>
+                <target>Koko nimesi voi enintään sisältää 30 kirjainta</target>
             </trans-unit>
             <trans-unit id="address.postal_code.required">
                 <source>address.postal_code.required</source>
@@ -461,11 +465,17 @@ Voit muuttaa tilaustasi, lisätä siihen tuotteita tai poistaa tuotteita. Napsau
             </trans-unit>
             <trans-unit id="my.account.login.notice" approved="no">
                 <source>my.account.login.notice</source>
-                <target><![CDATA[<p>Tervetuloa – liity asiakkaaksi!</p>]]></target>
+                <target><![CDATA[<p>Rekisteröidy asiakkaaksi täällä</p>]]></target>
             </trans-unit>
-            <trans-unit id="my.account.login.text" approved="no">
+           <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>
-                <target><![CDATA[<p>Kun teet ostoksia POMPdeLUXilla, sinun tulee olla kirjautuneena asiakkaaksi sivustolle. Silloin voit tarkistaa ja korjata tilauksiasi siihen asti, kun ne pakataan ja lähetetään varastostamme. Voit muuttaa tilattujen tuotteiden värejä ja kokoja sekä lisätä ja poistaa tuotteita niin kauan, kun tilauksesi tila on "Odottaa" eli vähintään 24 tuntia tuotteiden tilaamisen jälkeen.<br><br>POMPdeLUXin asiakkaana näet tällä sivulla myös aikaisemmat tilauksesi ja laskusi.</p><h2>Oletko uusi asiakas?</h2>]]></target>
+                <target><![CDATA[<h3>OMAT SIVUT</h3><p>Jotta voit nauttia lukuisista POMPdeLUXin tarjoamista eduista, sinun tulee rekisteröityä asiakkaaksi ennen kuin voit jatkaa ostoksiasi.<br><br>Rekisteröityneenä asiakkaana voit muun muassa:<br> 
+			<ul>
+            <li>Tarkistaa ja korjata tilaustasi, kunnes se pakataan ja lähetetään varastoltamme.</li>
+            <li>Muuttaa tilaamiesi tuotteiden värejä ja kokoja.</li>
+            <li>Lisätä tai poistaa tuotteita niin kauan kuin niiden tilana on "Odottaa" eli vähintään 24 tuntia tilauksen tekemisen jälkeen.</li>
+			<li>Tarkastella aiempia tilauksia ja vanhoja laskuja.</li>
+          </ul></p>]]></target>
             </trans-unit>
             <trans-unit id="my.account.login.header" approved="no">
                 <source>my.account.login.header</source>

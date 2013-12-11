@@ -65,11 +65,11 @@
             </trans-unit>
             <trans-unit id="proceed">
                 <source>proceed</source>
-                <target>Fortsätt</target>
+                <target>Till betalning</target>
             </trans-unit>
             <trans-unit id="back">
                 <source>back</source>
-                <target>Tillbaka</target>
+                <target>Shoppa vidare</target>
             </trans-unit>
             <trans-unit id="retrive.password">
                 <source>retrive.password</source>
@@ -185,7 +185,7 @@
             </trans-unit>
             <trans-unit id="65">
                 <source>create.account</source>
-                <target>Fortsätt</target>
+                <target></target>
             </trans-unit>
             <trans-unit id="edit.account">
                 <source>edit.account</source>
@@ -201,7 +201,7 @@
             </trans-unit>
             <trans-unit id="67">
                 <source>create.notice</source>
-                <target><![CDATA[<strong>Observera:</strong> Om du redan har ett konto hos oss, ska du logga in på <a href="%url%">Min sida</a><br><br>]]></target>
+                <target><![CDATA[<strong>Är du redan kund?</strong> Om du redan är kund hos oss, ska du logga in på <a href="%url%">Min sida</a>.]]></target>
             </trans-unit>
             <trans-unit id="68" approved="no">
                 <source>nno.title</source>
@@ -323,6 +323,10 @@
                 <source>address.address_line_1.required</source>
                 <target>Du måste skriva din adress.</target>
             </trans-unit>
+            <trans-unit id="name.max.length">
+                <source>name.max.length</source>
+                <target>Ditt fullständiga namn får bestå av max. 30 tegn</target>
+            </trans-unit>
             <trans-unit id="address.postal_code.required">
                 <source>address.postal_code.required</source>
                 <target>Du måste skriva ditt postnummer.</target>
@@ -397,7 +401,7 @@
             </trans-unit>
             <trans-unit id="address.billing">
                 <source>address.billing</source>
-                <target>Privatadress</target>
+                <target>Fakturaadress </target>
             </trans-unit>
             <trans-unit id="password.min.length" approved="no">
                 <source>password.min.length</source>
@@ -462,11 +466,17 @@ Du har möjlighet att ändra/lägga till/radera i din order. Du ska klicka på <
             </trans-unit>
             <trans-unit id="my.account.login.notice" approved="no">
                 <source>my.account.login.notice</source>
-                <target><![CDATA[<p>Välkommen – upprätta dig som kund!</p>]]></target>
+                <target><![CDATA[<p>Upprätta dig som kund här</p>]]></target>
             </trans-unit>
             <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>
-                <target><![CDATA[<p>När du handlar hos POMPdeLUX ska du vara upprättad som kund här på sidan. <br /><br />Det ger dig bland annat möjlighet att kontrollera och ändra din order fram till att den blir packad och skickad från vårt lager. Du kan ändra färger och storlekar på de varor du har beställt och du kan lägga till eller radera varor, så länge det står "Väntar" bredvid din order, det vill säga i minst 24 timmar efter att du har beställt varorna.<br /><br />Som kund hos POMPdeLUX kan du se dina tidigare beställningar samt hitta gamla fakturor på Min sida.</p><h2>Är du ny kund?</h2>]]></target>
+                <target><![CDATA[<h3>MIN SIDA</h3><p>För att få tillgång till fördelarna hos POMPdeLUX, ska du upprätta dig som kund, innan du kan shoppa vidare.<br><br>Det ger dig bland annat möjlighet att:<br> 
+			<ul>
+            <li>Kontrollera och ändra i din order, fram tills den blir packad och skickad från vårt lager.</li>
+            <li>Ändra färger och storlekar på de varor du har beställt. </li>
+            <li>Lägga till eller ta bort varor, så länge det står ”Väntar” bredvid din order, som det gör i minst 24 timmar efter att du har beställt varorna.</li>
+			<li>Se dina tidigare beställningar och hitta gamla fakturor.</li>
+          </ul></p>]]></target>
             </trans-unit>
             <trans-unit id="my.account.login.header" approved="no">
                 <source>my.account.login.header</source>
@@ -492,8 +502,8 @@ Du har möjlighet att ändra/lägga till/radera i din order. Du ska klicka på <
                 <source>order.force.login.description</source>
                 <target><![CDATA[
                     <h3>Kära kund</h3>
-                    <p>Vi kan se att du har lagt fler än 20 varor i din korg – det är vi självklart glada för.<br>  
-Vi vill dock vara helt säkra på att det inte har uppstått ett fel, så vi vill därför be dig om att upprätta dig som kund eller logga in på ”Min sida” med dina inloggningsuppgifter. 
+                    <p>Vi kan se att du har lagt fler än 20 varor i din korg – det är vi självklart glada för.<br>
+Vi vill dock vara helt säkra på att det inte har uppstått ett fel, så vi vill därför be dig om att upprätta dig som kund eller logga in på ”Min sida” med dina inloggningsuppgifter.
 Därefter kan du enkelt shoppa vidare.<br></p>
                     <p>Tack för hjälpen.</p>
                 ]]></target>

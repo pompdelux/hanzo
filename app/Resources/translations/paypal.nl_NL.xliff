@@ -6,35 +6,35 @@
         <source>payment.title</source>
         <target>PayPal</target>
       </trans-unit>
-      <trans-unit id="paypal.desc" approved="no">
-        <source>paypal.desc</source>
-        <target>PayPal (Gebyr DKK 21,00)</target>
+	  <trans-unit id="paypal.desc" approved="no">
+      <source>paypal.desc</source>
+        <target><![CDATA[Gratis Paypal-rekening openen, <a href="https://www.paypal.com/nl/webapps/mpp/home" target="_blank">klik dan hier</a>. Gratis Paypal-rekening openen met <b>iDEAL</b>, <a href="https://www.money2.nl/" target="_blank">klik dan hier</a>.]]></target>
       </trans-unit>
       <trans-unit id="failed.heading" approved="no">
         <source>failed.heading</source>
-        <target>Betalingen fejlede</target>
+        <target>De betaling is mislukt</target>
       </trans-unit>
       <trans-unit id="failed.description" approved="no">
         <source>failed.description</source>
-        <target>Betaling via PayPail fejlede: %message%</target>
+        <target>De betaling via PayPal is mislukt:: %message%</target>
       </trans-unit>
       <trans-unit id="failed.go.back.description" approved="no">
         <source>failed.go.back.description</source>
         <target><![CDATA[
-          Gå <a href="%back_url%">tilbage</a> til tjek ud siden og vælg en anden betalingsmetode
+          Ga <a href="%back_url%">terug</a> naar de betaalpagina en kies een andere betaalmethode.
         ]]></target>
       </trans-unit>
       <trans-unit id="form.order_id" approved="no">
         <source>form.order_id</source>
-        <target>Ordre ID: %order_id%</target>
+        <target>Orderkenmerk: %order_id%</target>
       </trans-unit>
       <trans-unit id="form.payment_id" approved="no">
         <source>form.payment_id</source>
-        <target>Betalings ID: %payment_id%</target>
+        <target>Betaalkenmerk: %payment_id%</target>
       </trans-unit>
       <trans-unit id="form.amount" approved="no">
         <source>form.amount</source>
-        <target>Beløb: %amount%</target>
+        <target>Bedrag: %amount%</target>
       </trans-unit>
       <trans-unit id="form.heading" approved="no">
         <source>form.heading</source>
@@ -51,12 +51,12 @@
       <trans-unit id="wait.description" approved="no">
         <source>wait.description</source>
         <target><![CDATA[
-          Du bliver nu omdirigeret tilbage til %server%, hvis dette af en eller anden grund ikke sker, <a href="%url%">klik her</a>.
+          Je wordt nu teruggeleid naar %server%, mocht dit niet gebeuren, <a href="%url%">klik dan hier</a>.
         ]]></target>
       </trans-unit>
       <trans-unit id="cancel.payment">
         <source>cancel.payment</source>
-        <target>Afbryd betalingen</target>
+        <target>Onderbreek de betaling</target>
       </trans-unit>
     </body>
   </file>

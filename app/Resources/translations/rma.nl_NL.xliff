@@ -4,107 +4,106 @@
         <body>
             <trans-unit id="rma.not_allowed_wrong_state">
                 <source>rma.not_allowed_wrong_state</source>
-                <target>Det uppstod ett fel. Ordern är inte färdig och kan därför inte returneras. </target>
+                <target>Er is een fout opgetreden. De order is niet volledig en kan daarom niet geretourneerd worden.</target>
             </trans-unit>
             <trans-unit id="rma.form.title.order_id">
                 <source>rma.form.title.order_id</source>
-                <target>Upprätta retursedel för order %order_id%.</target>
+                <target>Maak een retourformulier voor ordernummer %order_id%.</target>
             </trans-unit>
             <trans-unit id="rma.form.description">
                 <source>rma.form.description</source>
                 <target><![CDATA[
-                    <p>F&ouml;r varje vara du &ouml;nskar att returnera, ber vi dig att v&auml;lja en aktivitet samt orsak.&lt;br&gt;Skriv &auml;ven eventuella kommentarer p&aring; varje vara. Om du returnerar varor fr&aring;n olika ordrar, ska du uppr&auml;tta en retursedel per order. Dina returvaror skickar du naturligtvis i samma paket, oavsett om de kommer fr&aring;n flera ordrar. Kom ih&aring;g att bifoga retursedeln/retursedlarna i ditt paket. L&auml;s mer om returnering p&aring; retursedeln som blir uppr&auml;ttad n&auml;r du klickar p&aring; ”Uppr&auml;tta retursedel” knappen.&lt;br&gt;&lt;br&gt;F&ouml;r att kunna se retursedeln, ska du ha gratis programmet Adobe Reader. Om du inte har Adobe Reader installerat, kan du ladda ner programmet h&auml;r.<br />
+                    <p>Voor elk artikel dat je wilt retourneren moet je een activiteit en oorzaak vermelden. Noteer bij elk artikel eventuele opmerkingen. Retourneer je artikelen van verschillende orders, dan moet je voor elke order een afzonderlijk retourformulier invullen. Je retourartikelen stuur je natuurlijk in één pakketje, ongeacht of het hierbij om verschillende orders gaat. Denk eraan om het (de) retourformulier(en) bij je pakketje te doen. Lees meer over retourneren op het retourformulier dat je maakt door op de knop “Retourformulier maken” te klikken.<br><br>Om het formulier te kunnen zien, moet je het gratis programma Adobe Reader hebben. Heb je dat niet op je computer geïnstalleerd, dan kun je het programma hier downloaden.<br />
     <br />
     <a href="http://www.adobe.com/products/acrobat/readstep2.html" target="_blank"><img src="http://static.pompdelux.com/images/pages/PDF_logo.jpg" width="158" height="39" border="0" title="POMPdeLUX" /></a><br /></p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="rma.form.label.activitycode">
                 <source>rma.form.label.activitycode</source>
-                <target>Aktivitet</target>
+                <target>Activiteit</target>
             </trans-unit>
             <trans-unit id="rma.form.label.cause">
                 <source>rma.form.label.cause</source>
-                <target>Orsak</target>
+                <target>Oorzaak</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.default">
                 <source>rma.form.activity.default</source>
-                <target>-- Välj aktivitet --</target>
+                <target>-- Kies activiteit --</target>
             </trans-unit>
             <trans-unit id="rma.form.cause.default">
                 <source>rma.form.cause.default</source>
-                <target>-- Välj orsak --</target>
+                <target>-- Kies oorzaak --</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.return">
                 <source>rma.form.activity.return</source>
-                <target>Returnering</target>
+                <target>Retourneren</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.replacement">
                 <source>rma.form.activity.replacement</source>
-                <target>Byte</target>
+                <target>Ruilen</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.warranty">
                 <source>rma.form.activity.warranty</source>
-                <target>Reklamation</target>
+                <target>Reclamatie</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.return.causes">
                 <source>rma.form.activity.return.causes</source>
-                <target>Packningsfel|Reklamation (vänligen skriv felet på varan)|Ångrat köp (pengarna tillbaka)</target>
+                <target>Pakfout|Reclamatie (gelieve de fout te noteren)|Aankoop ongedaan maken (geld terug)</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.replacement.causes">
                 <source>rma.form.activity.replacement.causes</source>
-                <target>Byte till annan storlek|Byte till annan färg|Byte till annan vara</target>
+                <target>Ruilen voor een andere maat|Ruilen voor een andere kleur|Ruilen voor een ander artikel</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.warranty.causes">
                 <source>rma.form.activity.warranty.causes</source>
-                <target>Packningsfel|Reklamation (vänligen skriv felet på varan)</target>
+                <target>Pakfout|Reclamatie (gelieve de fout te noteren)</target>
             </trans-unit>
             <trans-unit id="rma.form.label.description">
                 <source>rma.form.label.description</source>
-                <target>Evt. kommentar</target>
+                <target>Eventuele opmerkingen</target>
             </trans-unit>
             <trans-unit id="rma.form.submit">
                 <source>rma.form.submit</source>
-                <target>Upprätta retursedel...</target>
+                <target>Retourformulier maken...</target>
             </trans-unit>
             <trans-unit id="rma.form.label.return.order">
                 <source>rma.form.label.return.order</source>
-                <target>Returnera hela ordern</target>
+                <target>Retourneer de hele order</target>
             </trans-unit>
             <trans-unit id="rma.form.label.replacement">
                 <source>rma.form.label.replacement</source>
-                <target>Skriv produktnamnet på den vara du vill byta till</target>
+                <target>Vul de naam van het product in dat je wilt hebben</target>
             </trans-unit>
             <trans-unit id="rma.form.placeholder.produkt">
                 <source>rma.form.placeholder.produkt</source>
-                <target>t.ex. Copenhagen</target>
+                <target>Bijv. Copenhagen</target>
             </trans-unit>
             <trans-unit id="rma.slip.company_details">
                 <source>rma.slip.company_details</source>
                 <target><![CDATA[
                     <ul>
-                        <li>POMPdeLUX Sverige AB</li>
-						<li>c/o POMPdeLUX ApS</li>
+                        <li>POMPdeLUX ApS</li>
                         <li>M&oslash;gelh&oslash;j 8, DK-8520 Lystrup</li>
-                        <li>Org. nr. 556782-8602</li>
-                        <li>mail@pompdelux.se +46 8-6117103</li>
+                        <li>BTW 851856147B01</li>
+                        <li>mail@pompdelux.nl 085-3001100 (Nederlands en Engels)</li>
                     </ul>
                 ]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.id">
                 <source>rma.slip.id</source>
-                <target><![CDATA[Kundnummer]]></target>
+                <target><![CDATA[Klantennummer]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.name">
                 <source>rma.slip.name</source>
-                <target><![CDATA[Namn]]></target>
+                <target><![CDATA[Naam]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.email">
                 <source>rma.slip.email</source>
-                <target><![CDATA[Email]]></target>
+                <target><![CDATA[E-mail]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.phone">
                 <source>rma.slip.phone</source>
-                <target><![CDATA[Telefon]]></target>
+                <target><![CDATA[Telefoon]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.order_id">
                 <source>rma.slip.order_id</source>
@@ -112,47 +111,47 @@
             </trans-unit>
             <trans-unit id="rma.slip.deliveryaddress">
                 <source>rma.slip.deliveryaddress</source>
-                <target><![CDATA[Leveransadress]]></target>
+                <target><![CDATA[Leveringsadres]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.title.order_id">
                 <source>rma.slip.title.order_id</source>
-                <target><![CDATA[POMPdeLUX retursedel Order ID %order_id%]]></target>
+                <target><![CDATA[POMPdeLUX retourformulier Ordernummer %order_id%]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.description">
                 <source>rma.slip.description</source>
-                <target><![CDATA[<p>Om du &ouml;nskar att byta eller returnera varor, ska du fylla i bifoga retursedeln.<br>Eftersom din returvara ska s&auml;ljas igen, &auml;r det en stor hj&auml;lp f&ouml;r oss att du returnerar varan i original f&ouml;rpackning med labels p&aring; etc.<br><br>Du har mottagit en returlabel per mail, som du kan anv&auml;nda vid returnering - anv&auml;nd denna s&aring; drar vi endast av SEK 49,- av v&auml;rdet p&aring; dina returvaror.<br><br>Om du returnerar en reklamation eller en vara som blivit felskickad, &auml;r f&ouml;rs&auml;ndelsen naturligtvis fraktfri f&ouml;r dig. Om du &ouml;nskar att byta till en annan storlek, f&auml;rg eller till en helt annan vara, &auml;r f&ouml;rs&auml;ndelsen &auml;ven h&auml;r fraktfri. Varans pris f&aring;r dock inte &ouml;verstiga priset p&aring; varan du returnerar. Om varan du &ouml;nskar &auml;r uts&aring;ld, &aring;terbetalar vi beloppet till dig.<br><br>Om du har betalat med kort, &ouml;verf&ouml;rs ditt returbelopp till det betalkort du anv&auml;nde vid best&auml;llning. Om du har betalat mot faktura (PayByBill), ber vi dig att kontakta Gothia Finans p&aring; 0340-664444.<br><b>Observera:</b> &Auml;ven om du v&auml;ntar p&aring; en kreditnota p&aring; dina returvaror, ska du betala innest&aring;ende faktura inom 30 dagar.<br>F&ouml;r ytterligare information se: <a href="/sv_SE/" target="_blank">www.pompdelux.se</a></p>]]></target>
+                <target><![CDATA[<p>Wil je een artikel ruilen of retourneren, vul dan dit retourformulier in en stuur het mee. <br>Omdat je retourartikel weer verkocht moet worden, moet je het in de oorspronkelijke verpakking met het prijskaartje enz. eraan terugsturen.<br><br>Retourneer je een beschadigd of verkeerd geleverd artikel, dan betaal je geen verzendkosten. <br><br>Wil je ruilen voor een andere maat, kleur of artikel, dan is dat ook gratis.<br><br>Het nieuwe artikel mag niet duurder zijn dan het artikel dat je hebt teruggestuurd. Als het artikel dat je wilt hebben is uitverkocht, betalen we je je geld terug. Heb je betaald met een creditcard, dan wordt het bedrag teruggestort op de creditcard die je voor de bestelling hebt gebruikt.<br><br>Heb je PayByBill gebruikt, dan verzoeken we je contact op te nemen met Gothia BV - Klantenservice via tel: 078 - 751 80 22 of e-mail: <a href="afsinfo.nl@gothiagroup.com" target="_blank">afsinfo.nl@gothiagroup.com</a> <br><b>Let op:</b> hoewel je voor je retourzending een creditnota zult ontvangen, moet je je factuur nog steeds binnen de 30 dagen betalen. Voor meer informatie zie: <a href="/nl_NL/" target="_blank">www.pompdelux.nl</a></p>]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.activitycode">
                 <source>rma.slip.thead.activitycode</source>
-                <target><![CDATA[Aktivitet]]></target>
+                <target><![CDATA[Activiteit]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.cause">
                 <source>rma.slip.thead.cause</source>
-                <target><![CDATA[Orsak]]></target>
+                <target><![CDATA[Oorzaak]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.replacement">
                 <source>rma.slip.thead.replacement</source>
-                <target><![CDATA[Byte till]]></target>
+                <target><![CDATA[Ruilen voor]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.description">
                 <source>rma.slip.thead.description</source>
-                <target><![CDATA[Din kommentar]]></target>
+                <target><![CDATA[Jouw opmerking(en)]]></target>
             </trans-unit>
             <trans-unit id="rma.history.title">
                 <source>rma.history.title</source>
-                <target>Upprätta RMA retursedel.</target>
+                <target>Maak een RMA-retourformulier aan</target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.products">
                 <source>rma.slip.thead.products</source>
-                <target><![CDATA[Produkter]]></target>
+                <target><![CDATA[Producten]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.size">
                 <source>rma.slip.size</source>
-                <target><![CDATA[Storlek]]></target>
+                <target><![CDATA[Maat]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.color">
                 <source>rma.slip.color</source>
-                <target><![CDATA[F&auml;rg]]></target>
+                <target><![CDATA[Kleur]]></target>
             </trans-unit>
         </body>
     </file>

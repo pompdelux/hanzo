@@ -44,9 +44,10 @@
 </ul>
 
 
-<h2>Søgning</h2>
+<h2>Søgeindexering</h2>
 <ul>
-  <li><a href="{{ path('admin_tools_faceted_search_indexer') }}">Opdatér faceted søgnings indekset.</a></li>
+    <li><a href="{{ path('admin_tools_faceted_search_indexer') }}" class="js-loading-spinner">Opdatér faceted søgnings indekset.</a></li>
+    <li><a href="{{ path('admin_tools_search_index_update') }}" class="js-loading-spinner">Opdatér produkt- og kategorisøgning</a></li>
 </ul>
 
 {% endblock %}

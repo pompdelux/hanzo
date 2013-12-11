@@ -92,6 +92,8 @@ class ToolsController extends CoreController
      *
      * @Template("AdminBundle:Tools:dibsTools.html.twig")
      * @param  Request $request
+     * @param  string  $action
+     * @return array
      */
     public function dibsToolsAction(Request $request, $action = '')
     {
@@ -175,6 +177,15 @@ class ToolsController extends CoreController
 
         return $return;
     }
+
+    public function updateSearchIndexAction()
+    {
+        $this->container->get('hanzo_search.product_and_category_indexer')->build();
+
+        $this->getRequest()->getSession()->setFlash('notice', 'Søgeindexer opdateret for produkter og kategorier.');
+        return $this->redirect($this->generateUrl('admin_tools'));
+    }
+
 
     protected function fixTransactionId($return, $ids)
     {

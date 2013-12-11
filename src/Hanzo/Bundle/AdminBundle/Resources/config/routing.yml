@@ -733,9 +733,14 @@ admin_tools_sync_categories:
         _controller: AdminBundle:Tools:syncCategories
 
 admin_tools_faceted_search_indexer:
-    pattern: /admin/tools/update/faceted/search
+    pattern: /admin/tools/search-index/faceted/update
     defaults:
         _controller: AdminBundle:Tools:buildProductSearchIndex
+
+admin_tools_search_index_update:
+    pattern: /admin/tools/search-index/update
+    defaults:
+        _controller: AdminBundle:Tools:updateSearchIndex
 
 # Image Categories Sort
 admin_product_image_category_add:

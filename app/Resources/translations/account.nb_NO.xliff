@@ -64,11 +64,11 @@
             </trans-unit>
             <trans-unit id="proceed">
                 <source>proceed</source>
-                <target>Fortsett</target>
+                <target>Til betaling</target>
             </trans-unit>
             <trans-unit id="back">
                 <source>back</source>
-                <target>Tilbake</target>
+                <target>Shop videre</target>
             </trans-unit>
             <trans-unit id="retrive.password">
                 <source>retrive.password</source>
@@ -184,7 +184,7 @@
             </trans-unit>
             <trans-unit id="65">
                 <source>create.account</source>
-                <target>Neste</target>
+                <target></target>
             </trans-unit>
             <trans-unit id="create.account.header" approved="no">
                 <source>create.account.header</source>
@@ -204,7 +204,7 @@
             </trans-unit>
             <trans-unit id="67">
                 <source>create.notice</source>
-                <target><![CDATA[<strong>Merk:</strong> Hvis du allerede har en konto hos oss, skal du logge inn på <a href="%url%">Min side</a>]]></target>
+                <target><![CDATA[<strong>Er du allerede kunde?</strong> Hvis du allerede har en konto hos oss skal du logge deg inn på <a href="%url%">Min side</a>.]]></target>
             </trans-unit>
             <trans-unit id="68" approved="no">
                 <source>nno.title</source>
@@ -326,6 +326,10 @@
                 <source>address.address_line_1.required</source>
                 <target>Skriv inn adresse.</target>
             </trans-unit>
+            <trans-unit id="name.max.length">
+                <source>name.max.length</source>
+                <target>Your full name may contain max. 30 characters</target>
+            </trans-unit>
             <trans-unit id="address.postal_code.required">
                 <source>address.postal_code.required</source>
                 <target>Skriv inn postnummer.</target>
@@ -396,11 +400,11 @@
             </trans-unit>
             <trans-unit id="address.delivery">
                 <source>address.delivery</source>
-                <target>Leveringsadresse</target>
+                <target>Alternativ leveringsadresse</target>
             </trans-unit>
             <trans-unit id="address.billing">
                 <source>address.billing</source>
-                <target>Privatadresse</target>
+                <target>Betalingsadresse</target>
             </trans-unit>
             <trans-unit id="password.min.length" approved="no">
                 <source>password.min.length</source>
@@ -465,11 +469,17 @@ Du har mulighet for å endre/tilføye/slette i ordren. Du skal klikke på <img s
             </trans-unit>
             <trans-unit id="my.account.login.notice" approved="no">
                 <source>my.account.login.notice</source>
-                <target><![CDATA[<p>Velkommen - opret dig som kunde!</p>]]></target>
+                <target><![CDATA[<p>Opprett deg som kunde her</p>]]></target>
             </trans-unit>
             <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>
-                <target><![CDATA[<p>Når du handler hos POMPdeLUX skal du være opprettet som kunde her på siden.<br><br>Det gir deg blant annet mulighet for å sjekke og rette din ordre inntil den blir pakket og sendt fra lageret vårt. Du kan endre farger og størrelser på de varene du har bestilt, og du kan tilføye eller slette varer så lenge det står "Avventer" ved din ordre, det vil si i minimum 24 timer etter at du har bestilt varene.<br><br>Som kunde hos POMPdeLUX kan du på Min side se dine tidligere bestillinger og finne gamle fakturaer.</p><h2>Er du ny kunde?</h2>]]></target>
+                <target><![CDATA[<h3>MIN SIDE</h3><p>For at vi kan gi deg de mange fordelene hos POMPdeLUX, skal du opprette deg som kunde før du kan shoppe videre.<br><br>Det gir deg blant annet mulighet for å:<br> 
+			<ul>
+            <li>Sjekke og rette din ordre inntil den blir pakket og sendt fra lageret vårt.</li>
+            <li>Endre farger og størrelser på de varene du har bestilt.</li>
+            <li>Tilføye eller slette varer så lenge det står "Avventer" ved din ordre, det vil si i minimum 24 timer etter du har bestilt varene.</li>
+			<li>Se dine tidligere bestillinger og finn gamle fakturaer.</li>
+          </ul></p>]]></target>
             </trans-unit>
             <trans-unit id="my.account.login.header" approved="no">
                 <source>my.account.login.header</source>

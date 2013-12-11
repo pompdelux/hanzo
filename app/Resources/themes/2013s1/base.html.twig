@@ -76,7 +76,6 @@
             <ul class="horizontal menu right first">
         {% if skip_my_account is not defined %}
                 <li><a href="{{ path('_account', {'_locale' : app.request.locale}) }}">{{ "my.account"|trans({}, 'account') }}</a></li>
-        {% endif %}
                 <li id="select-domain">
                     <a class="open-menu" href="#">Change Country</a>
                     <div class="dropdown" style="display: none">
@@ -98,6 +97,7 @@
                     <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" title="{{ "show.basket"|trans }}"> {% render 'BasketBundle:Default:miniBasket' %} </a>
                 </li>
                 <li class="last"><a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}">{{ "show.basket"|trans }}</a></li>
+        {% endif %}
             </ul>
         </nav>
 

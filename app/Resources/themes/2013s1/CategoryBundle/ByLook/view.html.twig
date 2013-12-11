@@ -16,6 +16,7 @@
   {% render 'CMSBundle:Menu:menu' with {'type': 'breadcrumb', 'thread': 20} %}
 </div>
 
+{#
 <div class="grid_8 alpha omega row">
   {% if paginate %}
     <div class="grid_8 omega right">
@@ -24,6 +25,7 @@
     </div>
   {% endif %}
 </div>
+#}
 <div class="grid_8 alpha omega">
   <div class="grid_2 alpha sub-menu menu">
     {% render 'CMSBundle:Menu:menu' with {'type': 'sub', 'offset': cms_id, 'thread' : 20, 'include_self' : true } %}
@@ -59,10 +61,12 @@
       {% if products|length > 0 %}
         <a href="#" class="to-top">{{ 'goto.top.link'|trans }}</a>
       {% endif %}
+{#
       {% if paginate %}
           {% import "::macro.pager.html.twig" as p %}
           {{ p.pager(paginate, 'product-list') }}
       {% endif %}
+#}
     </div>
   </div>
 </div>

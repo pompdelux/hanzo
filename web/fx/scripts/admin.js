@@ -9,6 +9,10 @@
         $(this).parent().find('div').slideToggle();
       });
 
+      $('.js-loading-spinner').on('click', function(event) {
+          dialoug.loading($(this));
+      });
+
       $('.datepicker').datepicker({
         dateFormat : "dd-mm-yy"
       });

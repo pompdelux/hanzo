@@ -88,15 +88,15 @@
       </trans-unit>
       <trans-unit id="shipping.address">
         <source>shipping.address</source>
-        <target>Lieferanschrift</target>
+        <target>Alternative Lieferadresse </target>
       </trans-unit>
       <trans-unit id="company.shipping.address">
         <source>company.shipping.address</source>
-        <target>Lieferanschrift</target>
+        <target>Alternative Lieferadresse </target>
       </trans-unit>
       <trans-unit id="overnightbox.address">
         <source>overnightbox.address</source>
-        <target>Lieferanschrift</target>
+        <target>Alternative Lieferadresse </target>
       </trans-unit>
       <trans-unit id="shipping.address.overnight.edit">
         <source>shipping.address.overnight.edit</source>
@@ -112,7 +112,7 @@
       </trans-unit>
       <trans-unit id="payment.address">
         <source>payment.address</source>
-        <target>Privatadresse</target>
+        <target>Rechnungsanschrift</target>
       </trans-unit>
       <trans-unit id="payment.title">
         <source>payment.title</source>
@@ -124,7 +124,7 @@
       </trans-unit>
       <trans-unit id="confirm.vat">
         <source>confirm.vat</source>
-        <target>MwSt.-Betrag</target>
+        <target>Davon enthaltende MwSt. </target>
       </trans-unit>
       <trans-unit id="confirm.sub_total">
         <source>confirm.sub_total</source>
@@ -252,11 +252,11 @@
       </trans-unit>
       <trans-unit id="late.delivery.notice">
         <source>late.delivery.notice</source>
-        <target><![CDATA[<strong>Bitte beachten:</strong> Wenn Ihre Bestellung Waren mit Versanddaten enthält, dann verschicken wir Ihre Bestellung erst, wenn alle Waren auf Lager sind.]]></target>
+        <target><![CDATA[<strong>Bitte beachten:</strong> Ihre Bestellung wird erst dann abgeschickt, wenn alle Waren im Lager sind.]]></target>
       </trans-unit>
       <trans-unit id="button.back">
         <source>button.back</source>
-        <target>Zurück</target>
+        <target>Weiter shoppen</target>
       </trans-unit>
       <trans-unit id="button.edit">
         <source>button.edit</source>
@@ -307,7 +307,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia_lv.desc" approved="no">
         <source>payment.gothia_lv.desc</source>
-        <target><![CDATA[Gothia-LV-Rechnung. Die Rechnung wird per E-Mail verschickt, wenn alle Waren unser Lager verlassen haben. Sie finden die Rechnung im Laufe von 24 Stunden als PDF auf "Meine Seite".]]></target>
+        <target><![CDATA[Gothia-Lastschrift-Rechnung. Die Rechnung wird per E-Mail verschickt, wenn alle Waren unser Lager verlassen haben. Sie finden die Rechnung im Laufe von 24 Stunden als PDF auf "Meine Seite".]]></target>
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>
@@ -407,7 +407,7 @@
       </trans-unit>
       <trans-unit id="address.copy" approved="no">
          <source>address.copy</source>
-         <target>Die Lieferanschrift ist die gleiche wie die Privatadresse</target>
+         <target>Die Lieferanschrift ist die gleiche wie die rechnungsanschrift</target>
       </trans-unit>
       <trans-unit id="dibs.down.message">
          <source>dibs.down.message</source>

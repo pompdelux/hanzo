@@ -250,14 +250,14 @@ class DefaultController extends CoreController
     /**
      * combined product and cms search
      *
+     * @param Request   $request
      * @param  int      $id  cms page to display at the top of the page
      * @return Response
      */
-    public function advancedAction($id = null)
+    public function advancedAction(Request $request, $id = null)
     {
         $hanzo     = Hanzo::getInstance();
         $locale    = $hanzo->get('core.locale');
-        $page      = CmsPeer::getByPK($id, $locale);
         $domain_id = $hanzo->get('core.domain_id');
 
         $result = array(
@@ -266,7 +266,7 @@ class DefaultController extends CoreController
         );
 
         if (isset($_GET['q'])) {
-            $q = $this->getRequest()->get('q', null);
+            $q = $request->get('q', null);
             $q = '%'.$q.'%';
 
             // if webshop is closed, disable product search
@@ -280,7 +280,7 @@ class DefaultController extends CoreController
         $this->setSharedMaxAge(300);
         return $this->render('SearchBundle:Default:advanced.html.twig', array(
             'page_type' => 'category-search',
-            'route'     => $this->getRequest()->get('_route'),
+            'route'     => $request->get('_route'),
             'result'    => $result,
         ));
     }
@@ -298,56 +298,84 @@ class DefaultController extends CoreController
      */
     protected function productSearch($q, $locale, $domain_id)
     {
-        $products = ProductsQuery::create()
-            ->useProductsDomainsPricesQuery()
-                ->filterByDomainsId($domain_id)
-            ->endUse()
-            ->useProductsImagesQuery()
-                ->groupByImage()
-            ->endUse()
-            ->joinWithProductsImages()
-            ->joinWithProductsToCategories()
-            ->filterBySku($q)
-            ->_or()
-            ->filterBySize($q)
-            ->_or()
-            ->filterByColor($q)
-            ->orderBySku()
-            ->find()
-        ;
+        $sql = "
+            SELECT
+                p.id,
+                p18.title,
+                p.is_out_of_stock,
+                p2c.categories_id,
+                pi.id AS image_id,
+                pi.image
+            FROM
+                products AS p
+            JOIN
+                products_i18n p18
+                ON
+                    (p.id = p18.id AND p18.locale = '{$locale}')
+            JOIN
+                products_domains_prices AS pdp
+                ON
+                    (p.id = pdp.products_id AND pdp.domains_id = {$domain_id})
+            JOIN
+                products_images AS pi
+                ON
+                    (p.id = pi.products_id AND pi.type = 'set')
+            JOIN
+                products_to_categories AS p2c
+                ON
+                    (p.id = p2c.products_id)
+            WHERE (
+                    p.size LIKE '{$q}'
+                    OR
+                        p.color LIKE '{$q}'
+                    OR
+                        p18.title LIKE '{$q}'
+                    OR
+                        p18.content LIKE '{$q}'
+                )
+            GROUP BY
+                pi.image
+            ORDER BY
+                p.sku
+        ";
+
+        $conn = \Propel::getConnection();
+        $query = $conn->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
+        $query->execute();
 
         $router_keys = include $this->container->parameters['kernel.cache_dir'] . '/category_map.php';
         $router = $this->get('router');
 
         $result = [];
-        $product_ids = array();
-        foreach ($products as $product) {
-            if (!$product->getSku()) {
+        $product_ids = [];
+        while ($record = $query->fetch(\PDO::FETCH_ASSOC)) {
+            if (isset($product_ids[$record['id']])) {
                 continue;
             }
 
-            $product_ids[$product->getId()] = $product->getId();
+            $product_ids[$record['id']] = $record['id'];
 
             $product_route = '';
-            $key = '_' . strtolower($locale) . '_' . $product->getproductsToCategoriess()->getFirst()->getCategoriesId();
+            $key = '_' . strtolower($locale) . '_' . $record['categories_id'];
+
             if (isset($router_keys[$key])) {
                 $product_route = $router_keys[$key];
             }
 
-            $image = $product->getProductsImagess()->getFirst();
             $result[] = array(
-                'sku' => $product->getSku(),
-                'id' => $product->getId(),
-                'out_of_stock' => $product->getIsOutOfStock(),
-                'title' => $product->getSku(),
-                'image' => $image->getImage(),
+                'sku' => $record['title'],
+                'id' => $record['id'],
+                'out_of_stock' => $record['is_out_of_stock'],
+                'title' => $record['title'],
+                'image' => $record['image'],
                 'url' => $router->generate($product_route, array(
-                    'product_id' => $product->getId(),
-                    'title' => Tools::stripText($product->getSku()),
-                    'focus' => $image->getId()
-                )),
+                        'product_id' => $record['id'],
+                        'title' => Tools::stripText($record['title']),
+                        'focus' => $record['image_id']
+                    )),
             );
         }
+
 
         if (count($product_ids)) {
             $prices = ProductsDomainsPricesPeer::getProductsPrices($product_ids);
@@ -372,15 +400,13 @@ class DefaultController extends CoreController
      */
     protected function pageSearch($q, $locale)
     {
-        $result = [];
-        $router = $this->get('router');
-
         // search pages
         $pages = CmsI18nQuery::create()
             ->useCmsQuery()
-                ->filterByType('page')
+                ->filterByType(['page', 'category'])
                 ->filterByCmsThreadId([20, 23])
             ->endUse()
+            ->joinWithCms()
             ->filterByIsActive(true)
             ->filterByLocale($locale)
             ->filterByTitle($q)
@@ -390,11 +416,12 @@ class DefaultController extends CoreController
             ->find()
         ;
 
+        $result = [];
         foreach ($pages as $page) {
             $result[] = array(
                 'title' => $page->getTitle(),
                 'summery' => mb_substr(Tools::stripTags($page->getContent()), 0, 200),
-                'url' => $router->generate('page_'.$page->getId())
+                'url' => '/'.$locale.'/'.$page->getPath(),
             );
         }
 

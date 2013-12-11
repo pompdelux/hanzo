@@ -2067,6 +2067,18 @@ html.touch .product-list .buy-set {
 /**
 | _account
 */
+#body-login .main ul {
+  list-style: square;
+  padding-left: 20px;
+}
+#body-login .main ul li {
+  color: #444444;
+  font-size: 12px;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: normal;
+  line-height: 15px;
+}
+
 form.create label:after {
   content: ":";
 }

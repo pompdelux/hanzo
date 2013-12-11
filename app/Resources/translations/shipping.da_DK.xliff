@@ -16,7 +16,7 @@
       </trans-unit>
       <trans-unit id="shipping_method.desc.10">
         <source>shipping_method.desc.10</source>
-        <target>Din ordre bliver sendt til din privatadresse. Ønsker du at sende din ordre til en anden privatadresse (f.eks. naboens) skal du ændre leveringsadressen ved at klikke på "Ret leveringsadresse".</target>
+        <target>Din ordre bliver sendt til din privatadresse. Ønsker du at sende din ordre til en anden privatadresse (f.eks. naboens) skal du udfylde felterne ved Alternativ leveringsadresse.</target>
       </trans-unit>
       <trans-unit id="shipping_method.label.10">
         <source>shipping_method.label.10</source>
@@ -40,7 +40,7 @@
       </trans-unit>
       <trans-unit id="shipping_method.desc.12">
         <source>shipping_method.desc.12</source>
-        <target><![CDATA[Du kan frit vælge hvor i Danmark du vil hente din pakke. Skal det være det Posthus, PostButik eller den Døgnpost, der er tættest på dit hjem, dit arbejde, din fritidsinteresse eller...? Det er helt op til dig, og du behøver ikke bruge det samme udleveringssted hver gang. Udleveringssteder finder du hos dit Posthus, Brugs eller lign..]]></target>
+        <target><![CDATA[Du kan frit vælge hvor i Danmark du vil hente din pakke. Skal det være det Posthus, PostButik eller den Døgnpost, der er tættest på dit hjem, dit arbejde, din fritidsinteresse eller...? Det er helt op til dig, og du behøver ikke bruge det samme udleveringssted hver gang.]]></target>
       </trans-unit>
       <trans-unit id="shipping_method.label.12">
         <source>shipping_method.label.12</source>

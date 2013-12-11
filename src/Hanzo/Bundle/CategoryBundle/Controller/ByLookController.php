@@ -25,9 +25,11 @@ class ByLookController extends CoreController
     /**
      * handle by look listings
      *
-     * @param $cms_id
-     * @param $category_id
-     * @param $pager
+     * @param Request $request
+     * @param integer $cms_id
+     * @param integer $category_id
+     * @param integer $pager
+     * @return Response
      */
     public function viewAction(Request $request, $cms_id, $category_id, $pager = 1)
     {
@@ -82,7 +84,7 @@ class ByLookController extends CoreController
 
     protected function setAlt($products, $category_id)
     {
-        $translator = $this->get('translator');
+        $translator = $this->container->get('translator');
 
         foreach ($products as $k => $product) {
             $data['products'][$k]['alt'] = trim(Tools::stripTags($translator->trans('headers.bylook-'.$category_id, [], 'category'))).': '.$product['sku'];
