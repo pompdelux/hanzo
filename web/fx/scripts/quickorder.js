@@ -17,7 +17,8 @@ var quickorder = (function($) {
                     });
 
                     if ((typeof params.name === "undefined") ||
-                        (params.name.length < 2)
+                        (params.name.length < 2) ||
+                        (params.name.indexOf(' ') !== -1)
                     ) {
                         return false;
                     }
