@@ -5,39 +5,13 @@ namespace Hanzo\Bundle\SearchBundle;
 use Hanzo\Core\Tools;
 use Hanzo\Model\CmsI18n;
 use Hanzo\Model\CmsI18nQuery;
-use Hanzo\Model\LanguagesQuery;
-use Hanzo\Model\Products;
 use Hanzo\Model\ProductsI18n;
 use Hanzo\Model\ProductsI18nQuery;
 use Hanzo\Model\ProductsQuery;
 use Symfony\Component\Translation\Loader\XliffFileLoader;
-use Symfony\Bundle\FrameworkBundle\Routing\Router;
 
-class ProductAndCategoryIndexBuilder
+class ProductAndCategoryIndexBuilder extends IndexBuilder
 {
-    private $propel_configuration;
-    private $connections;
-
-    private $translation_dir;
-    private $cache_dir;
-
-    /**
-     * TODO: Move to BaseIndexBuilder
-     *
-     * @param \PropelConfiguration $propel_configuration Propel configuration object
-     * @param Router               $router               The router object
-     * @param string               $kernel_root_dir      Kernel root dir
-     * @param string               $kernel_cache_dir     Kernel cache dir
-     */
-    public function __construct(\PropelConfiguration $propel_configuration, Router $router, $kernel_root_dir, $kernel_cache_dir)
-    {
-        $this->propel_configuration = $propel_configuration;
-        $this->router               = $router;
-        $this->translation_dir      = $kernel_root_dir.'/Resources/translations/';
-        $this->cache_dir            = $kernel_cache_dir.'/';
-    }
-
-
     /**
      * The builder routine, calls sub methods to update various parts.
      */
@@ -48,85 +22,9 @@ class ProductAndCategoryIndexBuilder
 
             foreach ($this->getLocales($connection) as $locale) {
                 $this->updateCategoryIndex($locale, $connection);
-                $this->updateproductIndex($locale, $connection);
+                $this->updateProductIndex($locale, $connection);
             }
         }
-    }
-
-
-    /**
-     * TODO: Move to BaseIndexBuilder
-     *
-     * @return array
-     */
-    protected function getConnections()
-    {
-        if (!$this->connections) {
-            $this->findConnections();
-        }
-
-        return $this->connections;
-    }
-
-
-    /**
-     * TODO: Move to BaseIndexBuilder
-     *
-     * @param  string $name Name of connection to retrive
-     * @return PropelPDO    Propel connection object
-     */
-    protected function getConnection($name = 'default')
-    {
-        if (!$this->connections) {
-            $this->findConnections();
-        }
-
-        if (empty($this->connections[$name])) {
-            $this->connections[$name] = \Propel::getConnection($name);
-        }
-
-        return isset($this->connections[$name])
-            ? $this->connections[$name]
-            : null
-        ;
-    }
-
-
-    /**
-     * TODO: Move to BaseIndexBuilder
-     */
-    private function findConnections()
-    {
-        foreach ($this->propel_configuration->getFlattenedParameters() as $key => $value) {
-            list($namespace, $name, $rest) = explode('.', $key, 3);
-
-            // only add one connection, and only if the user is set
-            if (($rest      == 'connection.user') &&
-                ($namespace == 'datasources')
-            ) {
-                $value = trim($value);
-
-                if (!empty($value) && empty($this->connections[$name])) {
-                    $this->connections[$name] = null;
-                    continue;
-                }
-            }
-        }
-    }
-
-
-    /**
-     * TODO: Move to BaseIndexBuilder
-     *
-     * @param PropelConnection $connection Connection to use in the lookup.
-     * @return Array Array of active languages
-     */
-    protected function getLocales($connection)
-    {
-        return LanguagesQuery::create()
-            ->select('locale')
-            ->find($connection)
-        ;
     }
 
 
@@ -212,7 +110,7 @@ class ProductAndCategoryIndexBuilder
      * @param string    $locale
      * @param PropelPDO $connection
      */
-    private function updateproductIndex($locale, $connection)
+    private function updateProductIndex($locale, $connection)
     {
         // product indexing
         if (!$catalogue = $this->getTranslationCatalogue('products', $locale)) {

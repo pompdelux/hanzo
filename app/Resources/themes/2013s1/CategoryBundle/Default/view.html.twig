@@ -29,6 +29,10 @@
         <a href="{{ url(app.request.attributes.get('_route'), {'show': 'overview'}) }}" class="show-by-overview">{{ 'category.selector.overview'|trans }}</a> /
         <a href="{{ url(app.request.attributes.get('_route'), {'show': 'look'}) }}" class="show-by-look">{{ 'category.selector.look'|trans }}</a>
     </div>
+
+    <div class="pager ajax js-pager-container off" data-target="product-list">
+        <li><a href="{{ app.request.uri }}" title="">...</a></li>
+    </div>
 {#
   {% if paginate %}
     <div class="grid_4 omega right">
@@ -119,7 +123,7 @@
         {% endfor %}
             </div>
         </div>
-        <div class="grid_4 push_2 omega right js-pager-container">
+        <div class="grid_4 push_2 omega right">
         {% if products|length > 0 %}
             <a href="#" class="to-top">{{ 'goto.top.link'|trans }}</a>
         {% endif %}

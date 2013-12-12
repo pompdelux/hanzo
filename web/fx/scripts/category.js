@@ -197,24 +197,20 @@
         $("input[type='checkbox']", $faceted).on('change', function(event) {
             event.preventDefault();
 
-            var $current_a;
-            var $pager_container = $('.js-pager-container');
-            var filter           = '?filter=on&'+$faceted.serialize();
-
-            $("div.pager li", $pager_container).each(function(index, li) {
-                var $li = $(li);
-                var $a  = $('a', $li);
-
+            $(".js-pager-container li a").each(function(index, a) {
+                var $a  = $(a);
                 if ($a.length) {
-                    if ($li.hasClass('current')) {
-                        $current_a = $a;
-                    }
                     var href = $a.attr('href').split('?')[0];
                 }
-                $a.attr('href', href+filter);
-            });
 
-            $current_a.click();
+                var filter = $faceted.serialize();
+                if (filter) {
+                    href += '?filter=on&'+filter;
+                }
+
+                $a.attr('href', href);
+                $a.click();
+            });
         });
     };
 

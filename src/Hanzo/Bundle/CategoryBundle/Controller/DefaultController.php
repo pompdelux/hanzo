@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\CategoryBundle\Controller;
 
+use Hanzo\Model\SearchProductsTagsQuery;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,6 +21,9 @@ use Hanzo\Model\Products;
 use Hanzo\Model\ProductsImagesPeer;
 use Hanzo\Model\ProductsDomainsPricesPeer;
 
+use Hanzo\Model\SearchProductsTagsPeer;
+
+
 use Hanzo\Model\CmsPeer;
 
 class DefaultController extends CoreController
@@ -28,11 +32,11 @@ class DefaultController extends CoreController
     /**
      * handle category listings
      *
+     * @param Request $request
      * @param integer $cms_id
      * @param integer $category_id
      * @param boolean $show
      * @param integer $pager
-     *
      * @return Response
      */
     public function viewAction(Request $request, $cms_id, $category_id, $show, $pager = 1)
@@ -46,7 +50,6 @@ class DefaultController extends CoreController
         $cache_id = array($cache_id[0], $cache_id[2], $cache_id[1], $show, $pager);
 
         $use_filter = false;
-        $color_map = null;
 
         // Extra cache id if its not a json call
         if ($this->getFormat() !== 'json') {
@@ -64,21 +67,29 @@ class DefaultController extends CoreController
             'denim'         => ['blue denim'],
         ];
 
+        $size_filter = [];
+        $color_filter = [];
         if ($request->query->has('filter')) {
-            $color_map = [];
             foreach ($request->query->get('color', []) as $color) {
                 if (isset($color_mapping[$color])) {
-                    $color_map = array_merge($color_map, $color_mapping[$color]);
+                    $color_filter = array_merge($color_filter, $color_mapping[$color]);
                 }
             }
 
-            $cache_id = array_merge($cache_id, $color_map);
+            $cache_id = array_merge($cache_id, $color_filter);
+
+            foreach ($request->query->get('size', []) as $size) {
+                $size_filter[] = $size;
+            }
+
+            $cache_id = array_merge($cache_id, $size_filter);
+
             $use_filter = true;
         }
 
         $html = $this->getCache($cache_id); // If there a cached version, html has both the json and html version
         $data = null;
-
+$html= null;
         /*
          *  If html wasnt cached retrieve a fresh set of data
          */
@@ -86,9 +97,9 @@ class DefaultController extends CoreController
             $cms_page = CmsPeer::getByPK($cms_id, $locale);
             $settings = $cms_page->getSettings(null, false);
 
-            if (empty($color_map)) {
+            if (empty($color_filter)) {
                 if(!empty($settings->colors)){
-                    $color_map = explode(',', $settings->colors);
+                    $color_filter = explode(',', $settings->colors);
                 }
             }
 
@@ -117,18 +128,79 @@ class DefaultController extends CoreController
             // If there are any colors in the settings to order from, add the order column here.
             // Else order by normal Sort in db
 
-            if ($color_map) {
-                if ($use_filter) {
-                    $result = $result->useProductsImagesQuery()
-                        ->filterByColor($color_map)
-                    ->endUse();
+            if ($use_filter) {
+                $sql = '';
+
+                $con = \Propel::getConnection();
+                if ($color_filter && $size_filter) {
+                    $color_filter_values = implode(', ', array_map(array($con, 'quote'), $color_filter));
+                    $size_filter_values = implode(', ', array_map(array($con, 'quote'), $size_filter));
+
+                    $sql = "
+                        SELECT
+                            C1.master_products_id AS master_products_id
+                        FROM
+                            search_products_tags AS C1
+                        JOIN
+                            search_products_tags AS C2
+                            ON (C1.products_id = C2.products_id)
+                        WHERE
+                            C1.token IN ({$color_filter_values})
+                            AND
+                                C2.token IN ({$size_filter_values})
+                        GROUP BY
+                            C1.master_products_id
+                    ";
+                } elseif ($color_filter) {
+                    $color_filter_values = implode(', ', array_map(array($con, 'quote'), $color_filter));
+
+                    $sql = "
+                        SELECT
+                            C1.master_products_id AS master_products_id
+                        FROM
+                            search_products_tags AS C1
+                        WHERE
+                            C1.token IN ({$color_filter_values})
+                        GROUP BY
+                            C1.master_products_id
+                    ";
+                } elseif ($size_filter) {
+                    $size_filter_values = implode(', ', array_map(array($con, 'quote'), $size_filter));
+
+                    $sql = "
+                        SELECT
+                            C1.master_products_id AS master_products_id
+                        FROM
+                            search_products_tags AS C1
+                        WHERE
+                            C1.token IN ({$size_filter_values})
+                        GROUP BY
+                            C1.master_products_id
+                    ";
                 }
 
+                if ($sql) {
+                    $statement = $con->prepare($sql);
+                    $statement->execute();
+                    $statement->setFetchMode(\PDO::FETCH_ASSOC);
+
+                    $ids =  [];
+                    while ($record = $statement->fetch()) {
+                        $ids[] = $record['master_products_id'];
+                    }
+
+                    if (!empty($ids)) {
+                        $result = $result->useProductsQuery()->filterById($ids)->endUse();
+                    }
+                }
+            }
+
+            if ($color_filter) {
                 $result = $result->useProductsImagesQuery()
                     ->addAscendingOrderByColumn(sprintf(
                         "FIELD(%s, %s)",
                         ProductsImagesPeer::COLOR,
-                        '\''.implode('\',\'', $color_map).'\''
+                        '\''.implode('\',\'', $color_filter).'\''
                     ))
                 ->endUse();
             } else {
@@ -142,12 +214,12 @@ class DefaultController extends CoreController
 //                $result = $result->paginate($pager, 12);
 //            }
 
-            $result = $result->paginate(null, null);
 
             $product_route = str_replace('category_', 'product_', $route);
+            $records       = array();
+            $product_ids   = array();
 
-            $records = array();
-            $product_ids = array();
+            $result = $result->find();
             foreach ($result as $record) {
 
                 $image = $record->getProductsImages()->getImage();
@@ -195,25 +267,27 @@ class DefaultController extends CoreController
                 'paginate' => NULL,
             );
 
-            if ($result->haveToPaginate()) {
 
-                $pages = array();
-                foreach ($result->getLinks(20) as $page) {
-                    $pages[$page] = $router->generate($route, array('pager' => $page, 'show' => $show), TRUE);
-                }
-
-                $data['paginate'] = array(
-                    'next' => ($result->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $result->getNextPage(), 'show' => $show), TRUE)),
-                    'prew' => ($result->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $result->getPreviousPage(), 'show' => $show), TRUE)),
-
-                    'pages' => $pages,
-                    'index' => $pager,
-                    'see_all' => array(
-                        'total' => $result->getNbResults(),
-                        'url' => $router->generate($route, array('pager' => 'all', 'show' => $show), TRUE)
-                    )
-                );
-            }
+// un@bellcom.dk 2013.11.28, removed to show all products on the category pages.
+//            if ($result->haveToPaginate()) {
+//
+//                $pages = array();
+//                foreach ($result->getLinks(20) as $page) {
+//                    $pages[$page] = $router->generate($route, array('pager' => $page, 'show' => $show), TRUE);
+//                }
+//
+//                $data['paginate'] = array(
+//                    'next' => ($result->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $result->getNextPage(), 'show' => $show), TRUE)),
+//                    'prew' => ($result->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $result->getPreviousPage(), 'show' => $show), TRUE)),
+//
+//                    'pages' => $pages,
+//                    'index' => $pager,
+//                    'see_all' => array(
+//                        'total' => $result->getNbResults(),
+//                        'url' => $router->generate($route, array('pager' => 'all', 'show' => $show), TRUE)
+//                    )
+//                );
+//            }
 
             if ($this->getFormat() == 'json') {
 
@@ -232,12 +306,14 @@ class DefaultController extends CoreController
                     $classes .= ' category-boy';
                 }
 
-                $this->get('twig')->addGlobal('page_type', 'category-'.$category_id);
-                $this->get('twig')->addGlobal('body_classes', 'body-category category-'.$category_id.' body-'.$show.' '.$classes);
-                $this->get('twig')->addGlobal('show_new_price_badge', $hanzo->get('webshop.show_new_price_badge'));
-                $this->get('twig')->addGlobal('cms_id', $cms_page->getParentId());
-                $this->get('twig')->addGlobal('show_by_look', ($show === 'look'));
-                $this->get('twig')->addGlobal('browser_title', $cms_page->getTitle());
+                $twig = $this->get('twig');
+                $twig->addGlobal('page_type', 'category-'.$category_id);
+                $twig->addGlobal('body_classes', 'body-category category-'.$category_id.' body-'.$show.' '.$classes);
+                $twig->addGlobal('show_new_price_badge', $hanzo->get('webshop.show_new_price_badge'));
+                $twig->addGlobal('cms_id', $cms_page->getParentId());
+                $twig->addGlobal('show_by_look', ($show === 'look'));
+                $twig->addGlobal('browser_title', $cms_page->getTitle());
+
                 $html = $this->renderView('CategoryBundle:Default:view.html.twig', $data);
                 $this->setCache($cache_id, $html, 5);
             }
