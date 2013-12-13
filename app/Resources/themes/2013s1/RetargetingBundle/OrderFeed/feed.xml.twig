@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<Orders>
+    <Since>{{ since }}</Since>
+    <To>{{ to }}</To>
+{% for country, orders in data %}
+    <{{ country }}>
+    {% for order in orders %}
+        <Order>
+            <Id>{{ order.Id }}</Id>
+            <CustomersId>{{ order.CustomersId }}</CustomersId>
+            <FirstName>{{ order.FirstName }}</FirstName>
+            <LastName>{{ order.LastName }}</LastName>
+            <Email>{{ order.Email }}</Email>
+            <Phone>{{ order.Phone }}</Phone>
+            <CurrencyCode>{{ order.CurrencyCode }}</CurrencyCode>
+            <BillingTitle>{{ order.BillingTitle }}</BillingTitle>
+            <BillingFirstName>{{ order.BillingFirstName }}</BillingFirstName>
+            <BillingLastName>{{ order.BillingLastName }}</BillingLastName>
+            <BillingAddressLine1>{{ order.BillingAddressLine1 }}</BillingAddressLine1>
+            <BillingAddressLine2>{{ order.BillingAddressLine2 }}</BillingAddressLine2>
+            <BillingPostalCode>{{ order.BillingPostalCode }}</BillingPostalCode>
+            <BillingCity>{{ order.BillingCity }}</BillingCity>
+            <BillingCountry>{{ order.BillingCountry }}</BillingCountry>
+            <BillingStateProvince>{{ order.BillingStateProvince }}</BillingStateProvince>
+            <BillingCompanyName>{{ order.BillingCompanyName }}</BillingCompanyName>
+            <DeliveryTitle>{{ order.DeliveryTitle }}</DeliveryTitle>
+            <DeliveryFirstName>{{ order.DeliveryFirstName }}</DeliveryFirstName>
+            <DeliveryLastName>{{ order.DeliveryLastName }}</DeliveryLastName>
+            <DeliveryAddressLine1>{{ order.DeliveryAddressLine1 }}</DeliveryAddressLine1>
+            <DeliveryAddressLine2>{{ order.DeliveryAddressLine2 }}</DeliveryAddressLine2>
+            <DeliveryPostalCode>{{ order.DeliveryPostalCode }}</DeliveryPostalCode>
+            <DeliveryCity>{{ order.DeliveryCity }}</DeliveryCity>
+            <DeliveryCountry>{{ order.DeliveryCountry }}</DeliveryCountry>
+            <DeliveryStateProvince>{{ order.DeliveryStateProvince }}</DeliveryStateProvince>
+            <DeliveryCompanyName>{{ order.DeliveryCompanyName }}</DeliveryCompanyName>
+            <CreatedAt>{{ order.CreatedAt }}</CreatedAt>
+            <OrderLines>
+        {% for line in order.OrdersLiness %}
+                <Line>
+                    <Type>{{ line.Type }}</Type>
+                    <ProductsSku>{{ line.ProductsSku }}</ProductsSku>
+                    <ProductsName>{{ line.ProductsName }}</ProductsName>
+                    <ProductsColor>{{ line.ProductsColor }}</ProductsColor>
+                    <ProductsSize>{{ line.ProductsSize }}</ProductsSize>
+                    <OriginalPrice>{{ line.OriginalPrice }}</OriginalPrice>
+                    <Price>{{ line.Price }}</Price>
+                    <Vat>{{ line.Vat }}</Vat>
+                    <Quantity>{{ line.Quantity }}</Quantity>
+                    <Unit>{{ line.Unit }}</Unit>
+                </Line>
+        {% endfor %}
+            </OrderLines>
+        </Order>
+    {% endfor %}
+    </{{ country }}>
+{% endfor %}
+</Orders>
