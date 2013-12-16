@@ -1,12 +1,11 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Orders>
     <Since>{{ since }}</Since>
     <To>{{ to }}</To>
 {% for country, orders in data %}
     <{{ country }}>
     {% for order in orders %}
-        <Order>
-            <Id>{{ order.Id }}</Id>
+        <Order id="{{ order.Id }}">
             <CustomersId>{{ order.CustomersId }}</CustomersId>
             <FirstName>{{ order.FirstName }}</FirstName>
             <LastName>{{ order.LastName }}</LastName>
