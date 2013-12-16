@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class OrderFeedController extends Controller
@@ -53,7 +54,21 @@ class OrderFeedController extends Controller
             return new Response("'since' not in a valid format.", 500);
         }
 
-        $orders = [];
+        $that = $this;
+$response = new StreamedResponse();
+$response->setCallback(function() use ($from_date, $to_date, $that) {
+    $that->streamFeed($from_date, $to_date);
+});
+return $response->send();
+
+    }
+
+    private function streamFeed($from_date, $to_date)
+    {
+        echo '<?xml version="1.0" encoding="UTF-8"?>
+<Orders>
+    <Since>'.$from_date->format('Y-m-d H:i:s').'</Since>
+    <To>'.$to_date.'</To>';
         foreach ($this->getConnections() as $name => $x) {
             $connection = $this->getConnection($name);
 
@@ -63,17 +78,79 @@ class OrderFeedController extends Controller
                 ->joinWithOrdersLines()
                 ->find($connection)
             ;
-    
+
+echo '
+<Segment name="'.$name.'">';
+            flush();
+
+            $first = true;
             foreach ($result as $order) {
-                $orders[$this->connection_map[$name]][] = $order;
+
+                if ($first) {
+echo '
+        <Order id="'.$order->getId().'">
+            <CustomersId>'.$order->getCustomersId().'</CustomersId>
+            <FirstName>'.$order->getFirstName().'</FirstName>
+            <LastName>'.$order->getLastName().'</LastName>
+            <Email>'.$order->getEmail().'</Email>
+            <Phone>'.$order->getPhone().'</Phone>
+            <CurrencyCode>'.$order->getCurrencyCode().'</CurrencyCode>
+            <BillingTitle>'.$order->getBillingTitle().'</BillingTitle>
+            <BillingFirstName>'.$order->getBillingFirstName().'</BillingFirstName>
+            <BillingLastName>'.$order->getBillingLastName().'</BillingLastName>
+            <BillingAddressLine1>'.$order->getBillingAddressLine1().'</BillingAddressLine1>
+            <BillingAddressLine2>'.$order->getBillingAddressLine2().'</BillingAddressLine2>
+            <BillingPostalCode>'.$order->getBillingPostalCode().'</BillingPostalCode>
+            <BillingCity>'.$order->getBillingCity().'</BillingCity>
+            <BillingCountry>'.$order->getBillingCountry().'</BillingCountry>
+            <BillingStateProvince>'.$order->getBillingStateProvince().'</BillingStateProvince>
+            <BillingCompanyName>'.$order->getBillingCompanyName().'</BillingCompanyName>
+            <DeliveryTitle>'.$order->getDeliveryTitle().'</DeliveryTitle>
+            <DeliveryFirstName>'.$order->getDeliveryFirstName().'</DeliveryFirstName>
+            <DeliveryLastName>'.$order->getDeliveryLastName().'</DeliveryLastName>
+            <DeliveryAddressLine1>'.$order->getDeliveryAddressLine1().'</DeliveryAddressLine1>
+            <DeliveryAddressLine2>'.$order->getDeliveryAddressLine2().'</DeliveryAddressLine2>
+            <DeliveryPostalCode>'.$order->getDeliveryPostalCode().'</DeliveryPostalCode>
+            <DeliveryCity>'.$order->getDeliveryCity().'</DeliveryCity>
+            <DeliveryCountry>'.$order->getDeliveryCountry().'</DeliveryCountry>
+            <DeliveryStateProvince>'.$order->getDeliveryStateProvince().'</DeliveryStateProvince>
+            <DeliveryCompanyName>'.$order->getDeliveryCompanyName().'</DeliveryCompanyName>
+            <CreatedAt>'.$order->getCreatedAt().'</CreatedAt>
+            <OrderLines>
+';
+                }
+                flush();
+
+                foreach ($order->getOrdersLiness() as $line) {
+                    echo '
+                        <Line>
+                            <Type>'.$line->getType().'</Type>
+                            <ProductsSku>'.$line->getProductsSku().'</ProductsSku>
+                            <ProductsName>'.$line->getProductsName().'</ProductsName>
+                            <ProductsColor>'.$line->getProductsColor().'</ProductsColor>
+                            <ProductsSize>'.$line->getProductsSize().'</ProductsSize>
+                            <OriginalPrice>'.$line->getOriginalPrice().'</OriginalPrice>
+                            <Price>'.$line->getPrice().'</Price>
+                            <Vat>'.$line->getVat().'</Vat>
+                            <Quantity>'.$line->getQuantity().'</Quantity>
+                            <Unit>'.$line->getUnit().'</Unit>
+                        </Line>
+                    ';
+                    flush();
+                }
+
+                if ($first) {
+                    echo '</OrderLines></Order>';
+                }
+
+                $first = false;
             }
+
+            echo '</Segment>';
         }
 
-        return $this->render('RetargetingBundle:OrderFeed:feed.xml.twig', [
-            'since' => $from_date->format('Y-m-d H:i:s'),
-            'to'    => $to_date,
-            'data'  => $orders,
-        ]);
+        echo '</Orders>';
+        flush();
     }
 
 
