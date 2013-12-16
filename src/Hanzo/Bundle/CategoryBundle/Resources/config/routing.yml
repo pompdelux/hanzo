@@ -8,3 +8,9 @@ named_list:
         _controller: CategoryBundle:Default:listProducts
         type: context
         filter: G_
+
+list_category_products:
+    pattern: /category/listProducts/{cms_id}/{show}/{pager}
+    defaults:
+        _controller: CategoryBundle:Default:listCategoryProducts
+        pager: 1

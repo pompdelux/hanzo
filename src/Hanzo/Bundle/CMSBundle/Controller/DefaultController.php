@@ -58,8 +58,9 @@ class DefaultController extends CoreController
             'page_type' => $type,
             'body_classes' => 'body-'.$type,
             'page' => $page,
-            'parent_id' => $page->getParentId(),
-            'browser_title' => $page->getTitle()
+            'embedded_content' => $this->getEmbeddedContent($page),
+            'parent_id' => ($page->getParentId()) ? $page->getParentId() : $id,
+            'browser_title' => $page->getTitle(),
         ));
     }
 
@@ -73,5 +74,26 @@ class DefaultController extends CoreController
             $page = CmsPeer::getByPK(1);
         }
         return $this->render('CMSBundle:Default:view.html.twig', array('page_type' => $type, 'page' => $page), $response);
+    }
+
+    protected function getEmbeddedContent(Cms $page)
+    {
+        $hanzo = Hanzo::getInstance();
+        $locale = $hanzo->get('core.locale');
+
+        $html = '';
+        // Get any embedded cms/categories.
+        $settings = $page->getSettings(null, false);
+
+        if (isset($settings->embedded_page_id) && is_numeric($settings->embedded_page_id)) {
+            $embedPage = CmsPeer::getByPK($settings->embedded_page_id, $locale);
+
+            $category = $this->forward('CategoryBundle:Default:listCategoryProducts', array('cms_id' => $settings->embedded_page_id, 'show' => 'look'));
+
+            $html = $embedPage->getContent() .
+                    $category->getContent();
+        }
+
+        return $html;
     }
 }

@@ -28,11 +28,13 @@
         <div class="grid_6 omega">
             <article>
                 {{ parse(page.content) }}
+                {{ embedded_content|raw }}
             </article>
         </div>
     {% else %}{# pages without subpages #}
         <article>
             {{ parse(page.content) }}
+            {{ embedded_content|raw }}
         </article>
     {% endif %}
     </div>
