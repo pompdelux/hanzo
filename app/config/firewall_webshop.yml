@@ -39,7 +39,7 @@ security:
         - { path: ^/.*/checkout, roles: ROLE_USER }
 
         - { path: ^/.*/admin, roles: ROLE_EMPLOYEE }
-        - { path: ^/.*/retarteging/order-feed/, roles: ROLE_KG_API_USER }
+        - { path: ^/.*/retarteging/order-feed/, roles: ROLE_KG_API_USER, requires_channel: https }
 
     providers:
         main:

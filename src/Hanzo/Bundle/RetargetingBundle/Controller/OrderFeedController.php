@@ -9,7 +9,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class OrderFeedController extends Controller
 {
@@ -30,11 +32,20 @@ class OrderFeedController extends Controller
      * Fetches all orders since: $since.
      *
      * @Route("/retarteging/order-feed/{since}", defaults={"_format"="xml", "since"="20130101"})
-     * @param string $since
+     *
+     * @param  Request $request
+     * @param  string $since
+     * @throws AccessDeniedException
      * @return Response
      */
-    public function orderFeedAction($since)
+    public function orderFeedAction(Request $request, $since)
     {
+// disabled for now - we rely on "basic auth" - maybe this will change in the future ?
+//        if (!in_array($request->getClientIp(), ['185.14.184.152', '95.166.153.185'])) {
+//            Tools::log('Access denied for '.$request->getClientIp().' to '.__METHOD__);
+//            throw new AccessDeniedException('You do not have access to this area.');
+//        }
+
         try {
             $date = new \DateTime($since);
         } catch (\Exception $e) {
