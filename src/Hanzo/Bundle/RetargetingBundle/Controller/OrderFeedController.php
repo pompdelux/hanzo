@@ -54,13 +54,14 @@ class OrderFeedController extends Controller
             return new Response("'since' not in a valid format.", 500);
         }
 
+        ob_flush();
+        set_time_limit(0);
         $that = $this;
 
-        $callback = function() use ($from_date, $to_date, $that) {
+        $response = new StreamedResponse(null, 200, ['Content-type' => 'application/xml']);
+        $response->setCallback(function() use ($from_date, $to_date, $that) {
             $that->streamFeed($from_date, $to_date);
-        };
-
-        $response = new StreamedResponse($callback, 200, ['Content-type' => 'application/xml']);
+        });
 
         return $response->send();
     }
@@ -97,6 +98,7 @@ class OrderFeedController extends Controller
 
                 if ($first) {
                     echo '</OrderLines></Order>';
+                    flush();
                 }
 
                 $first = false;
