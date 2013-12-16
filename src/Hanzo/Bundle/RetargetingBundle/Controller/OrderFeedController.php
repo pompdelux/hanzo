@@ -31,7 +31,7 @@ class OrderFeedController extends Controller
     /**
      * Fetches all orders since: $since.
      *
-     * @Route("/retarteging/order-feed/{since}", defaults={"_format"="xml", "since"="20130101"})
+     * @Route("/retarteging/order-feed/{since}", defaults={"_format"="xml", "since"="-1 month"})
      *
      * @param  Request $request
      * @param  string $since
@@ -47,7 +47,8 @@ class OrderFeedController extends Controller
 //        }
 
         try {
-            $date = new \DateTime($since);
+            $from_date = new \DateTime($since);
+            $to_date   = date('Y-m-d H:i:s');
         } catch (\Exception $e) {
             return new Response("'since' not in a valid format.", 500);
         }
@@ -58,19 +59,19 @@ class OrderFeedController extends Controller
 
             $result = OrdersQuery::create()
                 ->filterByState(30, \Criteria::GREATER_THAN)
-                ->filterByCreatedAt($date, \Criteria::GREATER_THAN)
+                ->filterByCreatedAt($from_date, \Criteria::GREATER_THAN)
                 ->joinWithOrdersLines()
                 ->find($connection)
             ;
-
+    
             foreach ($result as $order) {
                 $orders[$this->connection_map[$name]][] = $order;
             }
         }
 
         return $this->render('RetargetingBundle:OrderFeed:feed.xml.twig', [
-            'since' => $date->format('Y-m-d H:i:s'),
-            'to'    => date('Y-m-d H:i:s'),
+            'since' => $from_date->format('Y-m-d H:i:s'),
+            'to'    => $to_date,
             'data'  => $orders,
         ]);
     }
