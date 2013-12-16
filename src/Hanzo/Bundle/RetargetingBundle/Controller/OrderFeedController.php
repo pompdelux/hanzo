@@ -55,10 +55,12 @@ class OrderFeedController extends Controller
         }
 
         $that = $this;
-        $response = new StreamedResponse();
-        $response->setCallback(function() use ($from_date, $to_date, $that) {
+
+        $callback = function() use ($from_date, $to_date, $that) {
             $that->streamFeed($from_date, $to_date);
-        });
+        };
+
+        $response = new StreamedResponse($callback, 200, ['Content-type' => 'application/xml']);
 
         return $response->send();
     }
