@@ -22,6 +22,11 @@
 {{ meta_tags() }}
 {% endblock %}
 
+{% if app.request.locale == 'da_DK' %}
+<meta name="google-site-verification" content="V6U4jsJtOJKEOK7J3Hkw9mTz344Yb7FYsNpjbCm3dQg">
+{% endif %}
+
+
 <link rel="dns-prefetch" href="{{ cdn|replace({'http:':''}) }}">
 <link rel="dns-prefetch" href="//cdn.jquerytools.org">
 <link rel="dns-prefetch" href="//html5shim.googlecode.com">
