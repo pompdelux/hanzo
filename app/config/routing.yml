@@ -1,3 +1,8 @@
+stock:
+    resource: "@StockBundle/Controller/"
+    prefix:   /{_locale}/
+    type:     annotation
+
 RetargetingBundle:
     resource: "@RetargetingBundle/Controller/"
     prefix:   /{_locale}/

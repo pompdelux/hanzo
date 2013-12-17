@@ -23,10 +23,6 @@ services:
         class: Drak\NativeSession\NativeRedisSessionHandler
         arguments: [ 'tcp://%redis_session_host%:%redis_session_port%?prefix=hanzo.session:&database=%redis_session_database%' ]
 
-    stock:
-        class: Hanzo\Core\Stock
-        arguments: [ '@event_dispatcher', '%locale%' ]
-
     hanzo.misc.twig.extension:
         class: Hanzo\Twig\Extension\MiscExtension
         arguments: ['@twig_string', '@liip_theme.active_theme']

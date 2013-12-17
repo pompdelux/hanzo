@@ -1,9 +1,8 @@
 <?php
 
-namespace Hanzo\Core;
+namespace Hanzo\Bundle\StockBundle;
 
 use Propel;
-use Criteria;
 use Hanzo\Model\ProductsQuery;
 use Hanzo\Model\ProductsStockQuery;
 use Hanzo\Model\ProductsStockPeer;
@@ -40,12 +39,11 @@ class Stock
 
         $ids = array();
         foreach($products as $product) {
-          if (is_object($product)) {
-              $id = $product->getId();
-          }
-          else {
-              $id = (int) $product;
-          }
+            if (is_object($product)) {
+                $id = $product->getId();
+            } else {
+                $id = (int) $product;
+            }
 
           if (isset($this->stock[$id])){
               continue;
@@ -109,8 +107,7 @@ class Stock
     {
         if (is_object($product)) {
             $id = $product->getId();
-        }
-        else {
+        } else {
             $id = (int) $product;
         }
 
@@ -138,15 +135,15 @@ class Stock
     /**
      * get total stock for a product
      *
-     * @param mixed $product a product object or product id
+     * @param  mixed   $product a product object or product id
+     * @param  boolean $as_object
      * @return int
      */
     public function get($product, $as_object = false)
     {
         if (is_object($product)) {
             $id = $product->getId();
-        }
-        else {
+        } else {
             $id = (int) $product;
         }
 

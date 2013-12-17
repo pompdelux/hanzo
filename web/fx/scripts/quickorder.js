@@ -26,7 +26,7 @@ var quickorder = (function($) {
             $size_select = $context.find('.size');
 
             $.ajax({
-                url: base_url + "rest/v1/stock-check",
+                url: base_url + "stock-check",
                 dataType: 'json',
                 type: 'GET',
                 data: {master : object},
@@ -75,7 +75,7 @@ var quickorder = (function($) {
         if($context.find('.size').val() !== ''){
 
             $.ajax({
-                url: base_url + "rest/v1/stock-check",
+                url: base_url + "stock-check",
                 dataType: 'json',
                 type: 'GET',
                 data: {
