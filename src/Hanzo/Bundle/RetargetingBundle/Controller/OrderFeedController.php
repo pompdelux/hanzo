@@ -32,14 +32,15 @@ class OrderFeedController extends Controller
     /**
      * Fetches all orders since: $since.
      *
-     * @Route("/retarteging/order-feed/{since}", defaults={"_format"="xml", "since"="-1 month"})
+     * @Route("/retarteging/order-feed/{from}/{to}", defaults={"_format"="xml", "from"="-1 month", "to"="now"})
      *
-     * @param  Request $request
-     * @param  string $since
+     * @param  Request $request The current Request object
+     * @param  string  $from    DateTime compatible string
+     * @param  string  $to      DateTime compatible string
      * @throws AccessDeniedException
      * @return Response
      */
-    public function orderFeedAction(Request $request, $since)
+    public function orderFeedAction(Request $request, $from, $to)
     {
         $ts = microtime(1);
 // disabled for now - we rely on "basic auth" - maybe this will change in the future ?
@@ -49,8 +50,8 @@ class OrderFeedController extends Controller
 //        }
 
         try {
-            $from_date = new \DateTime($since);
-            $to_date   = date('Y-m-d H:i:s');
+            $from_date = new \DateTime($from);
+            $to_date   = new \DateTime($to);
         } catch (\Exception $e) {
             return new Response("'since' not in a valid format.", 500);
         }
@@ -75,7 +76,9 @@ class OrderFeedController extends Controller
 
     private function streamFeed($from_date, $to_date)
     {
-        echo '<?xml version="1.0" encoding="UTF-8"?><orders><since>'.$from_date->format('Y-m-d H:i:s').'</since><to>'.$to_date.'</to>';
+        $from_date = $from_date->format('Y-m-d H:i:s');
+        $to_date   = $to_date->format('Y-m-d H:i:s');
+        echo '<?xml version="1.0" encoding="UTF-8"?>'."\n".'<orders><since>'.$from_date.'</since><to>'.$to_date.'</to>';
         flush();
 
         foreach ($this->getConnections() as $name => $x) {
@@ -94,21 +97,24 @@ class OrderFeedController extends Controller
                 WHERE
                     o.state > 30
                     AND
-                      o.created_at > :created_at
+                        o.created_at >= :from_date
+                    AND
+                        o.created_at <= :to_date
             ";
 
             $stmt = $connection->prepare($sql);
-            $stmt->bindValue(':created_at', $from_date->format('Y-m-d H:i:s'), \PDO::PARAM_STR);
+            $stmt->bindValue(':from_date', $from_date, \PDO::PARAM_STR);
+            $stmt->bindValue(':to_date', $to_date, \PDO::PARAM_STR);
             $stmt->execute();
-
-            echo '<segment name="'.$this->connection_map[$name].'">';
-            flush();
 
             $current_id = 0;
             while ($order = $stmt->fetch(\PDO::FETCH_ASSOC)) {
                 if ($order['id'] != $current_id) {
                     if ($current_id != 0) {
                         echo '</order_lines></order>';
+                        flush();
+                    } else {
+                        echo '<segment name="'.$this->connection_map[$name].'">';
                         flush();
                     }
                     $current_id = $order['id'];
@@ -121,8 +127,10 @@ class OrderFeedController extends Controller
                 flush();
             }
 
-            echo '</order_lines></order></segment>';
-            flush();
+            if (0 != $current_id) {
+                echo '</order_lines></order></segment>';
+                flush();
+            }
         }
 
         echo '</orders>';
