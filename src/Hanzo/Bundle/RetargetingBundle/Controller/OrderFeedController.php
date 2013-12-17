@@ -41,6 +41,7 @@ class OrderFeedController extends Controller
      */
     public function orderFeedAction(Request $request, $since)
     {
+        $ts = microtime(1);
 // disabled for now - we rely on "basic auth" - maybe this will change in the future ?
 //        if (!in_array($request->getClientIp(), ['185.14.184.152', '95.166.153.185'])) {
 //            Tools::log('Access denied for '.$request->getClientIp().' to '.__METHOD__);
@@ -58,57 +59,73 @@ class OrderFeedController extends Controller
         set_time_limit(0);
         $that = $this;
 
-        $response = new StreamedResponse(null, 200, ['Content-type' => 'application/xml']);
+        $response = new StreamedResponse();
         $response->setCallback(function() use ($from_date, $to_date, $that) {
             $that->streamFeed($from_date, $to_date);
         });
 
+        $response->headers->add([
+            'Content-type' => 'application/xml',
+            'X-hanzo-m'    => Tools::humanReadableSize(memory_get_peak_usage()),
+            'X-hanzo-t'    => (microtime(1) - $ts)
+
+        ]);
         return $response->send();
     }
 
     private function streamFeed($from_date, $to_date)
     {
-        echo '<?xml version="1.0" encoding="UTF-8"?><Orders><Since>'.$from_date->format('Y-m-d H:i:s').'</Since><To>'.$to_date.'</To>';
+        echo '<?xml version="1.0" encoding="UTF-8"?><orders><since>'.$from_date->format('Y-m-d H:i:s').'</since><to>'.$to_date.'</to>';
         flush();
 
         foreach ($this->getConnections() as $name => $x) {
             $connection = $this->getConnection($name);
 
-            $result = OrdersQuery::create()
-                ->filterByState(30, \Criteria::GREATER_THAN)
-                ->filterByCreatedAt($from_date, \Criteria::GREATER_THAN)
-                ->joinWithOrdersLines()
-                ->find($connection)
-            ;
+            $sql = "
+                SELECT
+                    o.id, o.customers_id, o.first_name, o.last_name, o.email, o.phone, o.currency_code, o.billing_title, o.billing_first_name, o.billing_last_name, o.billing_address_line_1, o.billing_address_line_2, o.billing_postal_code, o.billing_city, o.billing_country, o.billing_state_province, o.billing_company_name, o.delivery_title, o.delivery_first_name, o.delivery_last_name, o.delivery_address_line_1, o.delivery_address_line_2, o.delivery_postal_code, o.delivery_city, o.delivery_country, o.delivery_state_province, o.delivery_company_name, o.created_at,
+                    orders_id, ol.type, ol.products_id, ol.products_sku, ol.products_name, ol.products_color, ol.products_size, ol.expected_at, ol.original_price, ol.price, ol.vat, ol.quantity, ol.unit
+                FROM
+                    orders AS o
+                JOIN
+                    orders_lines AS ol
+                    ON
+                      (ol.orders_id = o.id)
+                WHERE
+                    o.state > 30
+                    AND
+                      o.created_at > :created_at
+            ";
 
-            echo '<Segment name="'.$this->connection_map[$name].'">';
+            $stmt = $connection->prepare($sql);
+            $stmt->bindValue(':created_at', $from_date->format('Y-m-d H:i:s'), \PDO::PARAM_STR);
+            $stmt->execute();
+
+            echo '<segment name="'.$this->connection_map[$name].'">';
             flush();
 
-            $first = true;
-            foreach ($result as $order) {
-                if ($first) {
-                    echo '<Order id="'.$order->getId().'"><CustomersId>'.$order->getCustomersId().'</CustomersId><FirstName>'.$order->getFirstName().'</FirstName><LastName>'.$order->getLastName().'</LastName><Email>'.$order->getEmail().'</Email><Phone>'.$order->getPhone().'</Phone><CurrencyCode>'.$order->getCurrencyCode().'</CurrencyCode><BillingTitle>'.$order->getBillingTitle().'</BillingTitle><BillingFirstName>'.$order->getBillingFirstName().'</BillingFirstName><BillingLastName>'.$order->getBillingLastName().'</BillingLastName><BillingAddressLine1>'.$order->getBillingAddressLine1().'</BillingAddressLine1><BillingAddressLine2>'.$order->getBillingAddressLine2().'</BillingAddressLine2><BillingPostalCode>'.$order->getBillingPostalCode().'</BillingPostalCode><BillingCity>'.$order->getBillingCity().'</BillingCity><BillingCountry>'.$order->getBillingCountry().'</BillingCountry><BillingStateProvince>'.$order->getBillingStateProvince().'</BillingStateProvince><BillingCompanyName>'.$order->getBillingCompanyName().'</BillingCompanyName><DeliveryTitle>'.$order->getDeliveryTitle().'</DeliveryTitle><DeliveryFirstName>'.$order->getDeliveryFirstName().'</DeliveryFirstName><DeliveryLastName>'.$order->getDeliveryLastName().'</DeliveryLastName><DeliveryAddressLine1>'.$order->getDeliveryAddressLine1().'</DeliveryAddressLine1><DeliveryAddressLine2>'.$order->getDeliveryAddressLine2().'</DeliveryAddressLine2><DeliveryPostalCode>'.$order->getDeliveryPostalCode().'</DeliveryPostalCode><DeliveryCity>'.$order->getDeliveryCity().'</DeliveryCity><DeliveryCountry>'.$order->getDeliveryCountry().'</DeliveryCountry><DeliveryStateProvince>'.$order->getDeliveryStateProvince().'</DeliveryStateProvince><DeliveryCompanyName>'.$order->getDeliveryCompanyName().'</DeliveryCompanyName><CreatedAt>'.$order->getCreatedAt().'</CreatedAt><OrderLines>';
+            $current_id = 0;
+            while ($order = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+                if ($order['id'] != $current_id) {
+                    if ($current_id != 0) {
+                        echo '</order_lines></order>';
+                        flush();
+                    }
+                    $current_id = $order['id'];
+
+                    echo '<order id="'.$order['id'].'"><customers_id>'.$order['customers_id'].'</customers_id><first_name>'.$order['first_name'].'</first_name><last_name>'.$order['last_name'].'</last_name><email>'.$order['email'].'</email><phone>'.$order['phone'].'</phone><currency_code>'.$order['currency_code'].'</currency_code><billing_title>'.$order['billing_title'].'</billing_title><billing_first_name>'.$order['billing_first_name'].'</billing_first_name><billing_last_name>'.$order['billing_last_name'].'</billing_last_name><billing_address_line_1>'.$order['billing_address_line_1'].'</billing_address_line_1><billing_address_line_2>'.$order['billing_address_line_2'].'</billing_address_line_2><billing_postal_code>'.$order['billing_postal_code'].'</billing_postal_code><billing_city>'.$order['billing_city'].'</billing_city><billing_country>'.$order['billing_country'].'</billing_country><billing_state_province>'.$order['billing_state_province'].'</billing_state_province><billing_company_name>'.$order['billing_company_name'].'</billing_company_name><delivery_title>'.$order['delivery_title'].'</delivery_title><delivery_first_name>'.$order['delivery_first_name'].'</delivery_first_name><delivery_last_name>'.$order['delivery_last_name'].'</delivery_last_name><delivery_address_line_1>'.$order['delivery_address_line_1'].'</delivery_address_line_1><delivery_address_line_2>'.$order['delivery_address_line_2'].'</delivery_address_line_2><delivery_postal_code>'.$order['delivery_postal_code'].'</delivery_postal_code><delivery_city>'.$order['delivery_city'].'</delivery_city><delivery_country>'.$order['delivery_country'].'</delivery_country><delivery_state_province>'.$order['delivery_state_province'].'</delivery_state_province><delivery_company_name>'.$order['delivery_company_name'].'</delivery_company_name><created_at>'.$order['created_at'].'</created_at><order_lines>';
                     flush();
                 }
 
-                foreach ($order->getOrdersLiness() as $line) {
-                    echo '<Line><Type>'.$line->getType().'</Type><ProductsSku>'.$line->getProductsSku().'</ProductsSku><ProductsName>'.$line->getProductsName().'</ProductsName><ProductsColor>'.$line->getProductsColor().'</ProductsColor><ProductsSize>'.$line->getProductsSize().'</ProductsSize><OriginalPrice>'.$line->getOriginalPrice().'</OriginalPrice><Price>'.$line->getPrice().'</Price><Vat>'.$line->getVat().'</Vat><Quantity>'.$line->getQuantity().'</Quantity><Unit>'.$line->getUnit().'</Unit></Line>';
-                    flush();
-                }
-
-                if ($first) {
-                    echo '</OrderLines></Order>';
-                    flush();
-                }
-
-                $first = false;
+                echo '<line><type>'.$order['type'].'</type><products_sku>'.$order['products_sku'].'</products_sku><products_name>'.$order['products_name'].'</products_name><products_color>'.$order['products_color'].'</products_color><products_size>'.$order['products_size'].'</products_size><original_price>'.$order['original_price'].'</original_price><price>'.$order['price'].'</price><vat>'.$order['vat'].'</vat><quantity>'.$order['quantity'].'</quantity><unit>'.$order['unit'].'</unit></line>';
+                flush();
             }
 
-            echo '</Segment>';
+            echo '</order_lines></order></segment>';
             flush();
         }
 
-        echo '</Orders>';
+        echo '</orders>';
         flush();
     }
 
