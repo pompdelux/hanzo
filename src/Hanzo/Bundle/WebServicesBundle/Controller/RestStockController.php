@@ -6,14 +6,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Monolog;
 
-use Hanzo\Core\Tools;
 use Hanzo\Core\Hanzo;
-
-use Hanzo\Model\ProductsQuery,
-    Hanzo\Model\Products,
-    Hanzo\Model\ProductsDomainsPricesQuery
-;
 use Hanzo\Core\CoreController;
+
+use Hanzo\Model\ProductsQuery;
+use Hanzo\Model\Products;
 
 /**
  * @see
@@ -30,13 +27,13 @@ class RestStockController extends CoreController
      * check stock for a product or collection of products
      * note: only products in stock is returned.
      *
-     * @param int $product_id
-     * @param str $version
+     * @param  Request $request
+     * @param  int     $product_id
+     * @param  string  $version
      * @return Response json encoded responce
      */
     public function checkAction(Request $request, $product_id = null, $version = 'v1')
     {
-        $quantity = $request->get('quantity', 0);
         $translator = $this->get('translator');
 
         $filters = array();
@@ -106,11 +103,11 @@ class RestStockController extends CoreController
                 ->orderBy('color')
                 ->groupById()
             ;
-
             $result = $query->findByArray($filters);
 
             $data = array();
             $message = $translator->trans('No product(s) in stock.');
+
             if ($result->count()) {
                 $stock = $this->get('stock');
                 $stock->prime($result);
