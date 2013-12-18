@@ -229,7 +229,7 @@
             </trans-unit>
             <trans-unit id="69">
                 <source>nno.description</source>
-                <target><![CDATA[<strong>Er du ny kunde?</strong><br>Indtast dit telefonnummer og få autoudfyldt din adresse.]]></target>
+                <target><![CDATA[<b>Er du ny kunde?</b><br>Indtast dit telefonnummer og få autoudfyldt din adresse.]]></target>
             </trans-unit>
             <trans-unit id="70">
                 <source>nno.fetch</source>
