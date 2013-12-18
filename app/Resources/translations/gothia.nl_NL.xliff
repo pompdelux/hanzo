@@ -80,6 +80,22 @@ Neem graag contact op met Gothia B.V. Klantenservice: 078 – 751 80 22<br>Bij a
         <source>social_security_num</source>
         <target>Geboortedatum (DDMMJJJJ):</target>
       </trans-unit>
+      <trans-unit id="gothia.response.5000">
+        <source>We are unable to connect to Gothia Invoice service, please try again later.</source>
+        <target>Er is op dit moment geen verbinding mogelijk met Gothia Factuur Service. Probeer het later nog eens.</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.10004">
+        <source>We couldn't find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.</source>
+        <target>We kunnen je gegevens niet finden in de Gothia Factuur Service. Zijn alle gegevens correct?</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.10005">
+        <source>We couldn't find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.</source>
+        <target>We kunnen je gegevens niet finden in de Gothia Factuur Service. Zijn alle gegevens correct?</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.10036">
+        <source>The reservation was not approved at Gothia Invoice Service. You may have exceeded the limit of reservations at Gothia.</source>
+        <target>De aankoop is niet goedgekeurd bij Gothia Factuur Service. Het kan zijn dat je maximum is bereikt.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
