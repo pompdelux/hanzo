@@ -80,6 +80,14 @@ Kontakt venligst Gothia Kundeservice: 7027 2795<br>Ved andre godkendelsesfejl �
         <source>social_security_num</source>
         <target>Fødselsdato (DDMMYYYY):</target>
       </trans-unit>
+      <trans-unit id="gothia.response.error.before">
+        <source>We were unable to approve your payment with Gothia Invoice service.</source>
+        <target>Vi havde ikke mulighed for at godkende ordren ved Gothia Invoice service.</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.error.after">
+        <source>Please contact POMPdeLUX customer service if you keep receiving this error.</source>
+        <target>Kontakt venligst POMPdeLUX kundeservice, hvis fejlen gentager sig.</target>
+      </trans-unit>
       <trans-unit id="gothia.response.5000">
         <source>We are unable to connect to Gothia Invoice service, please try again later.</source>
         <target>Der kan ikke forbindes til Gothia Faktura Service på nuværende tidspunkt. Prøv venligst igen senere.</target>
