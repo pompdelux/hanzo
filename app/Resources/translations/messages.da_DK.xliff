@@ -174,7 +174,7 @@
             </trans-unit>
             <trans-unit id="button.back">
                 <source>button.back</source>
-                <target>Tilbage</target>
+                <target>Shop videre</target>
             </trans-unit>
             <trans-unit id="button.find">
                 <source>button.find</source>
@@ -287,7 +287,7 @@
 				<li><a href="/da_DK/forside/home-shopping/aabent-hus">Åbent hus</a></li>
 				<li><a href="/da_DK/forside/katalog">Katalog</a></li>
 				<li><a href="/da_DK/forside/bliv-konsulent/fritidskonsulent">Bliv konsulent</a></li>
-				</ul><br><br>		
+				</ul><br>		
 				<h2>BE SOCIAL</h2>
 				 <ul class="menu">
 				<li><a href="http://instagram.com/pompdelux_official">Instagram</a></li>

@@ -54,7 +54,7 @@
       </trans-unit>
       <trans-unit id="confirm.title">
         <source>confirm.title</source>
-        <target>Bevestig</target>
+        <target>Let op!</target>
       </trans-unit>
       <trans-unit id="confirm.addresses.label" approved="no">
         <source>confirm.addresses.label</source>
@@ -78,11 +78,11 @@
       </trans-unit>
      <trans-unit id="shipping.address">
         <source>shipping.address</source>
-        <target>Afleveradres</target>
+        <target>Alternatief verzendadres </target>
       </trans-unit>
       <trans-unit id="shipping.address.overnight">
         <source>shipping.address.overnight</source>
-        <target>Afleveradres</target>
+        <target>Alternatief verzendadres </target>
       </trans-unit>
       <trans-unit id="shipping.address.overnight.edit">
         <source>shipping.address.overnight.edit</source>
@@ -98,7 +98,7 @@
       </trans-unit>
       <trans-unit id="payment.address">
         <source>payment.address</source>
-        <target>Privéadres</target>
+        <target>Betaaladres</target>
       </trans-unit>
       <trans-unit id="payment.title">
         <source>payment.title</source>
@@ -110,7 +110,7 @@
       </trans-unit>
       <trans-unit id="confirm.vat">
         <source>confirm.vat</source>
-        <target>Bedrag BTW</target>
+        <target>Hiervan BTW</target>
       </trans-unit>
       <trans-unit id="confirm.sub_total">
         <source>confirm.sub_total</source>
@@ -238,11 +238,11 @@
       </trans-unit>
       <trans-unit id="late.delivery.notice">
         <source>late.delivery.notice</source>
-        <target><![CDATA[<strong>Let op:</strong> Als je order artikelen bevat die niet op voorraad zijn, versturen we je order pas als we alle artikelen op voorraad hebben.]]></target>
+        <target><![CDATA[<strong>Let op:</strong> Je bestelling wordt pas verstuurd als we alle artikelen op voorraad hebben.]]></target>
       </trans-unit>
       <trans-unit id="button.back">
         <source>button.back</source>
-        <target>Terug</target>
+        <target>Ga door met winkelen</target>
       </trans-unit>
       <trans-unit id="button.edit">
         <source>button.edit</source>
@@ -285,7 +285,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target><![CDATA[Gothia factuur]]></target>
+        <target><![CDATA[Gothia betaalkosten EUR 5,00]]></target>
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>

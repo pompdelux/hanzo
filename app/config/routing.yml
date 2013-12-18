@@ -1,3 +1,8 @@
+google:
+    resource: "@GoogleBundle/Controller/"
+    type:     annotation
+    prefix:   /{_locale}/
+
 RetargetingBundle:
     resource: "@RetargetingBundle/Controller/"
     prefix:   /{_locale}/

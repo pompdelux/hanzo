@@ -49,6 +49,8 @@ class DefaultController extends Controller
 
     /**
      * @Template()
+     * @param integer $order_id
+     * @return array
      */
     public function successBlockAction($order_id)
     {
@@ -78,8 +80,10 @@ class DefaultController extends Controller
     /**
      * @Cache(smaxage="3600")
      * @Route("/retarteging/feed", defaults={"_format"="xml"})
+     * @param Request $request
+     * @return Response
      */
-    public function feedAction(Request $request)
+    public function productFeedAction(Request $request)
     {
         $router = $this->get('router');
         $routes = [];
@@ -112,12 +116,16 @@ class DefaultController extends Controller
                 ->useProductsToCategoriesQuery()
                     ->filterByCategoriesId($category_id)
                 ->endUse()
+                ->joinWithProductsI18n()
+                ->useProductsI18nQuery()
+                    ->filterByLocale($request->getLocale())
+                ->endUse()
                 ->find()
             ;
 
             foreach ($products as $product) {
                 $product_id = $product->getId();
-                $product_sku = $product->getSku();
+                $product_sku = $product->getTitle();
                 $product_sku_stripped = Tools::stripText($product_sku);
 
                 $product_ids[] = $product_id;

@@ -61,11 +61,11 @@
             </trans-unit>
             <trans-unit id="proceed">
                 <source>proceed</source>
-                <target>Continue</target>
+                <target>Go to payment</target>
             </trans-unit>
             <trans-unit id="back">
                 <source>back</source>
-                <target>Back</target>
+                <target>Continue shopping</target>
             </trans-unit>
             <trans-unit id="retrive.password">
                 <source>retrive.password</source>
@@ -189,7 +189,7 @@
             </trans-unit>
             <trans-unit id="65">
                 <source>create.account</source>
-                <target>Create account</target>
+                <target></target>
             </trans-unit>
             <trans-unit id="create.account.header" approved="no">
                 <source>create.account.header</source>
@@ -209,7 +209,7 @@
             </trans-unit>
             <trans-unit id="67">
                 <source>create.notice</source>
-                <target><![CDATA[<strong>Please note:</strong> If you are an existing customer you log in on <a href="%url%">My account</a><br><br>]]></target>
+                <target><![CDATA[<strong>Are you already a customer?</strong> If you have already created an account please log in to <a href="%url%">My account</a><br><br>]]></target>
             </trans-unit>
             <trans-unit id="68" approved="no">
                 <source>nno.title</source>
@@ -409,7 +409,7 @@
             </trans-unit>
             <trans-unit id="address.delivery">
                 <source>address.delivery</source>
-                <target>Delivery address</target>
+                <target>Alternative delivery address</target>
             </trans-unit>
             <trans-unit id="address.billing">
                 <source>address.billing</source>
@@ -445,7 +445,7 @@
             </trans-unit>
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
-                <target><![CDATA[<p>On My account you can change your account details and subscribe or unsubscribe to our newsletter. Furthermore you can also edit your order.<br><br>Your order can have following status:<br><br><b>Pending</b><br>Your order has been registered, and you have as a minimum 24 hours to edit your order. You can change/add/delete items on your order. Just click on the <img src="/fx/images/icons/icons/edit.png" alt="Edit"> if you wish to edit your order. Please note: You must proceed through to the payment, when you edit your order. If you pay by credit card - please be aware that any previous authorizations, placed on your credit card account, can take up to 30 days to expire. If you wish to cancel your order, click on <img src="/fx/images/icons/icons/delete.png" alt="Delete">.<br><br><b>Stop editing</b><br>If you are interrupted during editing, just click on “Stop editing” and you can then start again.<br><br><b>Being processed</b><br>We are now packing your order and it will be shipped within 1-2 days. You cannot edit/cancel your order anymore.<br><br><b>Shipped</b><br>Your order has been shipped from our warehouse. You can see the invoice as a PDF file, under the column Invoice, within 24 hours after your order has been shipped.<br><br><b>Returns</b><br>If you want to return an item, you click on <img src="/fx/images/icons/icons/return.png" alt="Return"><br><br></p>]]></target>
+                <target><![CDATA[<p>On My account you can change your account details and subscribe or unsubscribe to our newsletter. Furthermore you can also edit your order.<br><br>Your order can have following status:<br><br><b>Pending</b><br>Your order has been registered, and you have as a minimum 24 hours to edit your order. You can change/add/delete items on your order. Just click on the <img src="/fx/images/icons/icons/edit.png" alt="Edit"> if you wish to edit your order. Please note: You must proceed through to the payment, when you edit your order. If you pay by credit card - please be aware that any previous authorizations, placed on your credit card account, can take up to 30 days to expire. If you wish to cancel your order, click on <img src="/fx/images/icons/icons/delete.png" alt="Delete">.<br><br><b>Stop editing</b><br>If you are interrupted during editing, just click on “Stop editing” and you can then start again.<br><br><b>Being processed</b><br>We are now packing your order and it will be shipped within 1-2 days. You cannot edit/cancel your order anymore.<br><br><b>Shipped</b><br>Your order has been shipped from our warehouse. You can see the invoice as a PDF file, under the column Invoice, within 24 hours after your order has been shipped.<br><br><b>Returns</b><br>If you want to return an item, you click on <img src="/fx/images/icons/icons/return.png" alt="Return"><br><br>If you cannot find the item you wish to return, click on the link and print out a blank Returns Form: <a href="{{ cdn }}images/pdf/POMPdeLUX_Returseddel_ENG.pdf" target="_blank">&raquo; Returns form (PDF)</a><br><br></p>]]></target>
             </trans-unit>
             <trans-unit id="newsletter" approved="no">
                 <source>newsletter</source>
@@ -477,12 +477,18 @@
             </trans-unit>
             <trans-unit id="my.account.login.notice" approved="no">
                 <source>my.account.login.notice</source>
-                <target><![CDATA[<p>I wish to open an account!</p>]]></target>
-            </trans-unit>
+                <target><![CDATA[<p>Create your account here</p>]]></target>	
+            </trans-unit>			
             <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>
-                <target><![CDATA[<p>If you wish to shop at POMPdeLUX you have to open an account here on this page.<br /><br />You will always be able to check and change your order until it is being packed and shipped from our warehouse. You can change colour and size on the items you have ordered, and you can add or cancel items, as long as it says "Pending" next to your order. It is possible to change your order minimum 24 hours after you have placed the order. <br /><br />As a customer at POMPdeLUX you can see your previous orders and find old invoices on my account</p><!--<h2>New customer?</h2>]]>--></target>
-            </trans-unit>
+                <target><![CDATA[<h3>MY ACCOUNT</h3><p>To give you several advantages at POMPdeLUX you must create an account to continue shopping.<br><br>This will provide you with the opportunity to:<br> 
+			<ul>
+            <li>Check and change your order until it is packet and shipped from our warehouse.</li>
+            <li>Change colours and sizes on the selected items which you have ordered.</li>
+            <li>Add and cancel items from your order as long as your order has the status “pending”. This service is available 24 hours after your order has been placed.</li>
+			<li>See your previous orders and find old invoices.</li>
+          </ul></p>]]></target>
+            </trans-unit>			
             <trans-unit id="my.account.login.header" approved="no">
                 <source>my.account.login.header</source>
                 <target><![CDATA[<h1>Welcome to my account</h1>]]></target>
