@@ -17,7 +17,7 @@ xmlns:g="http://base.google.com/ns/1.0">
       {% if item.sale_price is defined %}
         <g:sale_price>{{ item.sale_price }}</g:sale_price>
       {% endif %}
-      <g:availability>{{ item.availability }}</g:availability>
+      <g:availability>{{ item.availability|trans({}, 'google') }}</g:availability>
       <g:condition>{{ "google.feed.condition.new"|trans({}, 'google') }}</g:condition>
       <g:image_link>{{ item.image }}</g:image_link>
       {% for image in item.additional_images %}
