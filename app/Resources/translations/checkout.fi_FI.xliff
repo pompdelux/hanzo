@@ -41,7 +41,7 @@
       </trans-unit>
       <trans-unit id="confirm.title">
         <source>confirm.title</source>
-        <target>Hyväksytty</target>
+        <target>Hyväksy</target>
       </trans-unit>
       <trans-unit id="confirm.addresses.label" approved="no">
         <source>confirm.addresses.label</source>
@@ -69,11 +69,11 @@
       </trans-unit>
       <trans-unit id="shipping.address">
         <source>shipping.address</source>
-        <target>Toimitusosoite</target>
+        <target>Vaihtoehtoinen toimitusosoite </target>
       </trans-unit>
       <trans-unit id="shipping.address.overnight">
         <source>shipping.address.overnight</source>
-        <target>Toimitusosoite</target>
+        <target>Vaihtoehtoinen toimitusosoite </target>
       </trans-unit>
       <trans-unit id="shipping.address.overnight.edit">
         <source>shipping.address.overnight.edit</source>
@@ -89,7 +89,7 @@
       </trans-unit>
       <trans-unit id="payment.address">
         <source>payment.address</source>
-        <target>Yksityisosoite</target>
+        <target>Maksuosoite </target>
       </trans-unit>
       <trans-unit id="payment.title">
         <source>payment.title</source>
@@ -101,7 +101,7 @@
       </trans-unit>
       <trans-unit id="confirm.vat">
         <source>confirm.vat</source>
-        <target>ALV-summa</target>
+        <target>Alv-osuus</target>
       </trans-unit>
       <trans-unit id="confirm.sub_total">
         <source>confirm.sub_total</source>
@@ -230,12 +230,11 @@
       <trans-unit id="late.delivery.notice">
         <source>late.delivery.notice</source>
         <target><![CDATA[
-          <strong>Huomaa:</strong> Mikäli tilaus sisältää jälkitoimituksessa olevia tuotteita, lähetämme tilauksen vasta, kun kaikki tuotteet ovat saapuneet varastoomme.
-        ]]></target>
+          <strong>Huomaa:</strong> Tilauksesi lähetetään vasta, kun kaikkia tuotteita on varastossa.]]></target>
       </trans-unit>
       <trans-unit id="button.back">
         <source>button.back</source>
-        <target>Takaisin</target>
+        <target>Jatka ostoksia</target>
       </trans-unit>
       <trans-unit id="button.edit">
         <source>button.edit</source>
@@ -373,7 +372,7 @@
       </trans-unit>
       <trans-unit id="address.copy" approved="no">
          <source>address.copy</source>
-         <target>Toimitusosoite on sama kuin yksityisosoite</target>
+         <target>Toimitusosoite on sama kuin maksuosoite</target>
       </trans-unit>
       <trans-unit id="dibs.down.message">
          <source>dibs.down.message</source>

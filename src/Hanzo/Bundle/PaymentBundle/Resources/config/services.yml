@@ -39,9 +39,10 @@ services:
         class:           %payment.manualpaymentapi.class%
         factory_service: service_factory
         factory_method:  get
+        scope:           request
         arguments:
             service:     manualpaymentapi
-            parameters:  ~
+            parameters:  [%kernel.environment%]
             class:       %payment.manualpaymentapi.class%
 
     payment.giftcardapi:

@@ -88,12 +88,12 @@
       </trans-unit>
       <trans-unit id="shipping.address">
         <source>shipping.address</source>
-        <target>Leveringsadresse</target>
+        <target>Alternativ leveringsadresse</target>
       </trans-unit>
 
       <trans-unit id="shipping.address.overnight">
         <source>shipping.address.overnight</source>
-        <target>Leveringsadresse</target>
+        <target>Alternativ leveringsadresse</target>
       </trans-unit>
       <trans-unit id="shipping.address.overnight.edit">
         <source>shipping.address.overnight.edit</source>
@@ -109,7 +109,7 @@
       </trans-unit>
       <trans-unit id="payment.address">
         <source>payment.address</source>
-        <target>Privatadresse</target>
+        <target>Betalingsadresse</target>
       </trans-unit>
       <trans-unit id="payment.title">
         <source>payment.title</source>
@@ -249,11 +249,11 @@
       </trans-unit>
       <trans-unit id="late.delivery.notice">
         <source>late.delivery.notice</source>
-        <target><![CDATA[<strong>Merk:</strong> Hvis ordren din inneholder varer med avsendelsesdatoer, så sender vi først ordren når vi har alle varene på lager.]]></target>
+        <target><![CDATA[<strong>Merk:</strong> Din ordre blir først sendt når alle varene er på lager.]]></target>
       </trans-unit>
       <trans-unit id="button.back">
         <source>button.back</source>
-        <target>Tilbake</target>
+        <target>Shop videre</target>
       </trans-unit>
       <trans-unit id="button.edit">
         <source>button.edit</source>

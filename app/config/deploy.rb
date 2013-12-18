@@ -56,99 +56,141 @@ set :use_sudo, false
 
 ssh_options[:forward_agent] = true
 
+# set an initial deploydiff so rollback works
+set :deploydiff, "Nothing - Rollback maybe?"
+
 # own rules for running tasks after deploy
-after 'deploy:restart', 'deploy:symlinks', 'symfony:cache:assets_update', 'symfony:cache:redis_clear', 'deploy:apcclear', 'symfony:cache:varnish_clear', 'deploy:cleanup', 'deploy:update_permissions', 'deploy:update_permissions_shared', 'deploy:send_email'
+after 'deploy:restart', 'deploy:symlinks', 'symfony:cache:assets_update', 'symfony:cache:redis_clear', 'deploy:opcode_clear', 'symfony:cache:varnish_clear', 'deploy:cleanup', 'deploy:update_permissions', 'deploy:update_permissions_shared', 'deploy:update_permissions_releases'
+# send_email moved here. dont want a deploy email on rollback
+after 'deploy', 'deploy:send_email'
 ## also clear redis and varnish when calling cache:clear
 after 'symfony:cache:clear', 'symfony:cache:redis_clear', 'symfony:cache:varnish_clear'
-# mail after rollback and warn about clearing cache. Doesnt seem to work with "after 'deploy:rollback", because it tries to clear the old current dir
+# mail after rollback and warn about clearing cache. Doesn't seem to work with "after 'deploy:rollback", because it tries to clear the old current dir
 after 'deploy:rollback', 'deploy:send_email_rollback', 'deploy:rollback_warning'
 # save whats new diff just after updating the code. This might break an initial deploy even if using deploy:cold
-after "deploy:update_code", "deploy:pending:default"
+after 'deploy:update_code', 'deploy:pending_updates'
+# have an update all permissions
+after 'deploy:update_permissions_all', 'deploy:update_permissions', 'deploy:update_permissions_shared', 'deploy:update_permissions_releases'
 
 ## own tasks. copy apc-clear.php, apcclear and reload apache tasks
 namespace :deploy do
   desc "Roll out tools.php for apc clearing"
   task :copy_apcclear, :roles => :symfonyweb do
+    capifony_pretty_print "--> Copying the old tools.php to the server"
     run("sudo wget -q --output-document=/var/www/tools.php http://tools.bellcom.dk/hanzo/tools.php.txt")
+    capifony_puts_ok
   end
   desc "Clear apc cache on the local server"
   task :apcclear, :roles => :symfonyweb do
     run("wget -q -O /dev/null http://localhost/tools.php?action=apc-clear")
   end
+  desc "Clear OPcache or apc on the local server"
+  task :opcode_clear, :roles => :symfonyweb do
+    capifony_pretty_print "--> Clearing opcode cache, APC or OPcache"
+    run("wget -q -O /dev/null http://localhost/tools.php?action=opcode-clear")
+    capifony_puts_ok
+  end
   desc "Reload apache"
   task :reload_apache, :roles => :symfonyweb do
+    capifony_pretty_print "--> Reloading apache"
     run("sudo /etc/init.d/apache2 reload")
+    capifony_puts_ok
   end
   desc "Reload php5fpm"
   task :reload_php5fpm, :roles => :symfonyweb do
+    capifony_pretty_print "--> Reloading php5-fpm"
     run("sudo /etc/init.d/php5-fpm reload")
+    capifony_puts_ok
   end
   desc "Reload nginx"
   task :reload_nginx, :roles => :symfonyweb do
+    capifony_pretty_print "--> Reloading nginx"
     run("sudo /etc/init.d/nginx reload")
+    capifony_puts_ok
   end
   desc "Switch to nginx"
   task :use_nginx, :roles => :symfonyweb do
+    capifony_pretty_print "--> Stopping Apache, starting nginx/php5-fpm"
     run "sudo /etc/init.d/apache2 stop"
     run "sudo /etc/init.d/php5-fpm start"
     run "sudo /etc/init.d/nginx start"
     run "sudo /usr/sbin/update-rc.d -f apache remove"
     run "sudo /usr/sbin/update-rc.d nginx defaults"
     run "sudo /usr/sbin/update-rc.d php5-fpm defaults"
+    capifony_puts_ok
   end
   desc "Switch to apache"
   task :use_apache, :roles => :symfonyweb do
+    capifony_pretty_print "--> Stopping nginx/php5-fpm, starting Apache"
     run "sudo /etc/init.d/nginx stop"
     run "sudo /etc/init.d/php5-fpm stop"
     run "sudo /etc/init.d/apache2 start"
     run "sudo /usr/sbin/update-rc.d -f nginx remove"
     run "sudo /usr/sbin/update-rc.d -f php5-fpm remove"
     run "sudo /usr/sbin/update-rc.d apache2 defaults"
+    capifony_puts_ok
+  end
+# fix permissions all
+  desc "Update permissions on everything"
+  task :update_permissions_all do
+    capifony_pretty_print "--> Setting correct permissions..."
+    capifony_puts_ok
   end
 # fix permissions
-  desc "Update permissions on shared app logs and web dirs to be group writeable"
+  desc "Update permissions on the current replease dir to be group writeable"
   task :update_permissions do
+    capifony_pretty_print "--> Setting correct permissions for /current"
     run "sudo chmod -R g+rwX #{current_release} && sudo chgrp -R www-data #{current_release}"
+    capifony_puts_ok
   end
 # fix permissions. shouldnt run on static because of pdfs and ftp?
   desc "Update permissions on shared app logs and web dirs to be group writeable"
   task :update_permissions_shared do
+    capifony_pretty_print "--> Setting correct permissions for /shared"
     run "sudo chmod -R g+rwX #{shared_path}/app && sudo chgrp -R www-data #{shared_path}/app"
     run "sudo chmod -R g+rwX #{shared_path}/cron && sudo chgrp -R www-data #{shared_path}/cron"
     run "sudo chmod -R g+rwX #{shared_path}/cached-copy && sudo chgrp -R www-data #{shared_path}/cached-copy"
     run "sudo chmod -R g+rwX #{shared_path}/vendor && sudo chgrp -R www-data #{shared_path}/vendor"
+    capifony_puts_ok
+  end
+# fix permissions on old releases dir.
+  desc "Update permissions on old releases dirs to be group writeable"
+  task :update_permissions_releases do
+    capifony_pretty_print "--> Setting correct permissions for /releases"
+    run "sudo chmod -R g+rwX #{deploy_to}/releases && sudo chgrp -R www-data #{deploy_to}/releases"
+    capifony_puts_ok
   end
   desc "Send email after deploy"
   task :send_email do
-    run_locally "echo 'New deploy of hanzo branch: #{branch}.\nNew current release: #{current_release}.\nRun from: #{hostname}:#{pwd}.\nBy user: #{whoami}\nOn hosts (empty if all): #{hosts}\nWhats new:\n#{deploydiff}' | mail -s 'Hanzo #{branch} deployed' -c hd@pompdelux.dk -c lv@pompdelux.dk -c un@bellcom.dk mmh@bellcom.dk"
+    capifony_pretty_print "--> Sending deploy status mail"
+    run_locally "echo 'New deploy of hanzo branch: #{branch}\nNew current release: #{current_release}\nRun from: #{hostname}:#{pwd}\nBy user: #{whoami}\nOn hosts (empty if all): #{hosts}\nWhats new:\n#{deploydiff}' | mail -s 'Hanzo #{branch} deployed' -c ab@bellcom.dk -c hd@pompdelux.dk -c lv@pompdelux.dk -c un@bellcom.dk mmh@bellcom.dk"
+    capifony_puts_ok
   end
   desc "Send email after rollback"
   task :send_email_rollback do
-    run_locally "echo 'Rollback of hanzo branch: #{branch}. New current release: #{current_release}. Run from: #{hostname}:#{pwd}. By user: #{whoami} (#{hosts})' | mail -s 'Hanzo #{branch} rolled back' -c hd@pompdelux.dk -c lv@pompdelux.dk -c un@bellcom.dk mmh@bellcom.dk"
+    capifony_pretty_print "--> Sending rollback status mail"
+    run_locally "echo 'Rollback of hanzo branch: #{branch}\nRun from: #{hostname}:#{pwd}\nBy user: #{whoami}\nOn hosts (empty if all): (#{hosts})' | mail -s 'Hanzo #{branch} rolled back' -c ab@bellcom.dk -c hd@pompdelux.dk -c lv@pompdelux.dk -c un@bellcom.dk mmh@bellcom.dk"
+    capifony_puts_ok
   end
   desc "Rollback warning"
   task :rollback_warning do
-    puts "ROLLBACK! The cache might need to be cleared? Run:";puts "cap #{branch} symfony:cache:clear"
+    puts "ROLLBACK! The autoloader and cache might need to be cleared? Run:";puts "cap #{branch} symfony:composer:dump_autoload";puts "cap #{branch} symfony:cache:clear"
   end
 # create symlinks
   desc "Create logs and public_html symlinks"
   task :symlinks do
+    capifony_pretty_print "--> Creating symlinks for public_html and logs"
     run("cd #{deploy_to}/current;if [ ! -L logs ];then ln -s app/logs logs;fi;if [ ! -L public_html ];then ln -s web public_html;fi")
-  end
-  desc "Send deploy to New Relic"
-  task :newrelic_notify do
-    run_locally("curl -s -H 'x-api-key:75916fb33fa70e01ddca4bd9a761c56989504595a94d03a' -d 'deployment[application_id]=697785' -d 'deployment[host]=#{hostname}' -d 'deployment[user]=#{whoami}' https://rpm.newrelic.com/deployments.xml")
+    capifony_puts_ok
   end
 # save whats new in a variable used later in send_email
-  namespace :pending do
-    desc <<-DESC
-      Show the commits since the last deploy
-    DESC
-    task :default, :except => { :no_release => true } do
-      deployed_already = current_revision
-      to_be_deployed = `cd .rsync_cache && git rev-parse --short "HEAD" && cd ..`.strip
-      set :deploydiff, `cd .rsync_cache && git log --no-merges --pretty=format:"* %s %b (%cn)" #{deployed_already}..#{to_be_deployed}`
-    end
+  desc "Show the commits since the last deploy"
+  task :pending_updates, :except => { :no_release => true } do
+    capifony_pretty_print "--> Getting changelog from git"
+    deployed_already = current_revision
+    to_be_deployed = `cd .rsync_cache && git rev-parse --short "HEAD" && cd ..`.strip
+    set :deploydiff, `cd .rsync_cache && git log --no-merges --pretty=format:"* %s %b (%cn)" #{deployed_already}..#{to_be_deployed}`
+    capifony_puts_ok
   end
 end
 
@@ -157,25 +199,33 @@ namespace :symfony do
     # own task. Clear the redis cache
     desc "Clear/Flush redis cache"
     task :redis_clear, :roles => :redis do
+      capifony_pretty_print "--> Clearing redis cache"
       run("cd #{latest_release} && php app/console hanzo:redis:cache:clear --env=#{symfony_env_prod}")
+      capifony_puts_ok
     end
     desc "Update assets version"
     task :assets_update, :roles => :static do
+      capifony_pretty_print "--> Updating assets"
       symfony_env_prods.each do |i|
         run("cd #{latest_release} && php app/console hanzo:dataio:update assets_version --env=#{i}")
       end
+      capifony_puts_ok
     end
     # own task. Clear Varnish
     desc "Empty the varnish cache"
     task :varnish_clear, :roles => :redis do
+      capifony_pretty_print "--> Clearing varnish cache"
       run("cd #{latest_release} && php app/console hanzo:varnish:purge --env=#{symfony_env_prod}")
+      capifony_puts_ok
     end
   end
   namespace :composer do
     # own task. Update the composer binary
     desc "Run composer self-update"
     task :selfupdate do
+      capifony_pretty_print "--> Self-updating composer"
       run "sudo /usr/local/bin/composer self-update"
+      capifony_puts_ok
     end
   end
 end
@@ -185,9 +235,11 @@ namespace :propel do
   namespace :migration do
     desc "Run migrations"
     task :migrate, :roles => :db do
+      capifony_pretty_print "--> Running propel migrations"
       symfony_env_prods.each do |i| 
         run("cd #{latest_release} && php app/console propel:migration:migrate --env=#{i}")
       end
+      capifony_puts_ok
     end
     desc "Migrations status"
     task :status, :roles => :db do
@@ -212,6 +264,7 @@ namespace :symfony do
           capifony_pretty_print "--> Warming up cache"
         end
         symfony_env_prods.each do |i|
+          #run "#{try_sudo} sh -c 'cd #{latest_release} && #{php_bin} #{symfony_console} cache:#{action.to_s} --env=#{i} #{console_options}'"
           run "#{try_sudo} sh -c 'cd #{latest_release} && #{php_bin} #{symfony_console} cache:#{action.to_s} --env=#{i}'"
         end
         # don't try to chmod. We have umask in app.php
@@ -242,12 +295,13 @@ namespace :symfony do
       capifony_puts_ok
     end
   end
-# FROM symfony2/symfony.rb - Overridden here to only run assetic dump on static server. We dont loop environments because css and js is combined for all
+# FROM /var/lib/gems/1.8/gems/capifony-2.4.1/lib/symfony2/symfony.rb - Overridden here to only run assetic dump on static server. We dont loop environments because css and js is combined for all
   namespace :assetic do
     desc "Dumps all assets to the filesystem"
     task :dump, :roles => :static,  :except => { :no_release => true } do
       capifony_pretty_print "--> Dumping all assets to the filesystem"
 
+      #run "#{try_sudo} sh -c 'cd #{latest_release} && #{php_bin} #{symfony_console} assetic:dump --env=#{symfony_env_prod} #{console_options} #{latest_release}/#{web_path}'"
       run "#{try_sudo} sh -c 'cd #{latest_release} && #{php_bin} #{symfony_console} assetic:dump --env=#{symfony_env_prod} --no-debug'"
       capifony_puts_ok
     end

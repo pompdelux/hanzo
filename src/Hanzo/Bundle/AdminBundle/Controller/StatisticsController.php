@@ -185,9 +185,14 @@ class StatisticsController extends CoreController
             FROM
                 orders
             WHERE
-                DATE_FORMAT(created_at, '%Y%m%d%H') > '".date('YmdH', strtotime('-24 hours'))."'
-                AND state > 20
-            GROUP BY y
+                created_at >= (now() - INTERVAL 1 DAY)
+                AND
+                  state > 20
+            GROUP BY
+                DAY(created_at),
+                HOUR(created_at)
+            ORDER BY
+                y DESC
         ";
 
         $data = [];

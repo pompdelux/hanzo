@@ -83,7 +83,7 @@
                 <target><![CDATA[
                     <ul>
                         <li>POMPdeLUX DE GmbH</li>
-                        <li>Dammtorstra&amp;#946;e 12, DE-20354 Hamburg</li>
+                        <li>Dammtorstra&szlig;e 12, DE-20354 Hamburg</li>
                         <li>USt-IdNr. DE290402183</li>
                         <li>mailde@pompdelux.com 040-35715072</li>
                     </ul>
@@ -128,7 +128,7 @@
             </trans-unit>
             <trans-unit id="rma.slip.thead.cause">
                 <source>rma.slip.thead.cause</source>
-                <target><![CDATA[&Aring;rsag]]></target>
+                <target><![CDATA[Grund]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.replacement">
                 <source>rma.slip.thead.replacement</source>
