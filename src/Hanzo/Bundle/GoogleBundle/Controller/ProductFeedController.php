@@ -111,7 +111,7 @@ class ProductFeedController extends Controller
             }
         }
         $response = new Response($this->renderView('GoogleBundle:ProductFeed:feed.xml.twig', ['items' => $items]));
-        $response->headers->set('Content-Type', 'application/rss+xml');
+        $response->headers->set('Content-Type', 'application/xml');
 
         return $response;
     }
