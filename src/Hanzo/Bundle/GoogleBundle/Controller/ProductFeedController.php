@@ -102,10 +102,10 @@ class ProductFeedController extends Controller
         foreach (ProductsDomainsPricesPeer::getProductsPrices($product_ids) as $id => $prices) {
             foreach ($items as $i => $item) {
                 if ($item['product_id'] == $id) {
-                    $items[$i]['price'] = number_format($prices['normal']['price'], 2, '.', '');
+                    $items[$i]['price'] = $prices['normal']['formattet'];
 
                     if (isset($prices['sales']['price'])) {
-                        $items[$i]['sale_price'] = number_format($prices['sales']['price'], 2, '.', '');
+                        $items[$i]['sale_price'] = $prices['sales']['formattet'];
                     }
                 }
             }
