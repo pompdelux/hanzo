@@ -1,7 +1,15 @@
 /**
 | _account
 */
-#body-login .main{}
+#body-login .main {
+  ul {
+    list-style: square;
+    padding-left: 20px;
+    li {
+      @include paragraph-style;
+    }
+  }
+}
 form.create {
 	label{
 		&:after {

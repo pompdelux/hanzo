@@ -254,54 +254,53 @@ Paket:Das Paket wird an Ihre Adresse geliefert und kostet EUR 4,95 (EUR 3,95, we
 					Die Waren müssen ungebraucht sein und in Originalverpackung, mit Textiletiketten usw. zurückgeschickt werden. Die Rücksendung von Strümpfen, Leggings und Strumpfhosen kann nur in ungeöffneter Originalverpackung erfolgen. Die Postverpackung, in der Sie Ihre Waren erhalten, ist so ausgelegt, dass sie zweimal verwendet werden kann. Auf der Verpackung können Sie sehen, wo man schneiden muss, um sie erneut verwenden zu können. Wir erstatten daher kein Geld für Rückverpackungen zurück. Dasselbe gilt für Portokosten, wenn Sie uns nur Teile Ihrer Bestellung zurückschicken. Wir nehmen keine Rücksendungen entgegen, die per Nachname verschickt werden. </p>
                 ]]></target>
             </trans-unit>
-            <trans-unit id="footer.menu_1" approved="no">
+			<trans-unit id="footer.menu_1" approved="no">
                 <source>footer.menu_1</source>
                 <target><![CDATA[
-                <h2>Homeshopping</h2>
-                <ul class="menu">
-                    <li><a href="/de_DE/home/uber-home-shopping" target="_blank">Über Homeshopping</a></li>
-					<li><a href="/de_DE/home/home-shopping/beraterin-finden" target="_blank">Beraterin finden</a></li>
-					<li><a href="/de_DE/home/home-shopping/beraterin-auf-karte-finden" target="_blank">Beraterin auf Karte finden</a></li>
-					<li><a href="/de_DE/home/home-shopping/tag-der-offenen-tur" target="_blank">Tag der offenen Tür</a></li>
-                </ul>
-                ]]></target>
-            </trans-unit>
-            <trans-unit id="footer.menu_2" approved="no">
-                <source>footer.menu_2</source>
-                <target><![CDATA[
-                <h2>Mehr POMPdeLUX</h2>
-                <ul class="menu">
-				    <li><a href="/de_DE/home/katalog">Online-Katalog</a></li>
-					<li><a href="/de_DE/home/katalog/backstage-video">Backstage video</a></li>
-                    <li><a href="/de_DE/home/neuigkeiten">Neuigkeiten</a></li>
-                    <li><a href="/de_DE/home/uber-pompdelux/konzept">Konzept</a></li>
-                    <li><a href="/de_DE/home/uber-pompdelux/corporate-social-responsibility">Corporate Social Responsibility</a></li>
-					<li><a href="/de_DE/home/beraterin-werden/ein-schoner-nebenjob">Beraterin werden</a></li>
-					<li><a href="/de_DE/home/mehr-pompdelux/gots-organic">GOTS (Organic)</a></li>
-					<li><a href="/de_DE/home/mehr-pompdelux/oeko-tex">Oeko-Tex</a></li>
-					<li><a href="/de_DE/home/katalog/danksagungen">Danksagungen</a></li>
-					<li><a href="/de_DE/home/uber-pompdelux/kontakt">Kontakt</a></li>
-				    <li><a href="/de_DE/home/katalog">Online Katalog</a></li>
-					<li><a href="/de_DE/home/katalog/image-video">Image Video</a></li>
-                </ul>
-                ]]></target>
-            </trans-unit>
-            <trans-unit id="footer.menu_3" approved="no">
-                <source>footer.menu_3</source>
-                <target><![CDATA[
-                <h2>Kundendienst</h2>
+                <h2>KUNDENDIENST</h2>
                 <ul class="menu">
                     <li><a href="/de_DE/kundendienst/telefonzeiten">Telefonzeiten</a></li>
-                    <li><a href="/de_DE/home/kundendienst/faq">FAQ</a></li>
+                    <li><a href="/de_DE/home/kundendienst/faq">FAQ</a></li>					
                     <li><a href="/de_DE/home/kundendienst/rucksendung">Rücksendung</a></li>
                     <li><a href="/de_DE/home/kundendienst/umtausch">Umtausch</a></li>
-                    <li><a href="/de_DE/home/kundendienst/rucksendeschein">Rücksendeschein</a></li>
+					<li><a href="/de_DE/home/kundendienst/rucksendeschein">Rücksendeschein</a></li>
                     <li><a href="/de_DE/home/kundendienst/waschtipps">Waschtipps</a></li>
 					<li><a href="/de_DE/home/kundendienst/sizeguide">Sizeguide</a></li>
 					<li><a href="/de_DE/home/kundendienst/abgs">AGB's</a></li>
 					<li><a href="/de_DE/home/kundendienst/impressum">Impressum</a></li>
 					<li><a href="/de_DE/home/kundendienst/uber-den-webshop">Über den Webshop</a></li>
                 </ul>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="footer.menu_2" approved="no">
+                <source>footer.menu_2</source>
+                <target><![CDATA[
+                <h2>HOME SHOPPING</h2>
+                <ul class="menu">
+				<li><a href="/de_DE/home/beraterin-werden/ein-schoner-nebenjob">Beraterin werden</a></li>
+				<li><a href="/de_DE/home/home-shopping/beraterin-finden" target="_blank">Beraterin finden</a></li>
+				<li><a href="/de_DE/home/home-shopping/tag-der-offenen-tur" target="_blank">Tag der offenen Tür</a></li>
+				<li><a href="/de_DE/home/katalog">Katalog</a></li>
+				<li><a href="/de_DE/home/beraterin-werden/ein-schoner-nebenjob">Beraterin werden</a></li>
+				</ul><br>		
+				<h2>BE SOCIAL</h2>
+				 <ul class="menu">
+				<li><a href="http://instagram.com/pompdelux_official">Instagram</a></li>
+				<li><a href="https://www.facebook.com/POMPdeLUXDK">Facebook</a></li>
+				<li><a href="/de_DE/home/katalog/backstage-video">Backstage video</a></li>
+                </ul>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="footer.menu_3" approved="no">
+                <source>footer.menu_3</source>
+                <target><![CDATA[
+                <h2>MEHR POMPDELUX</h2>
+                <ul class="menu">
+				<li><a href="/de_DE/home/uber-pompdelux" target="_blank">Über POMPdeLUX</a></li> 
+				<li><a href="/de_DE/home/uber-pompdelux/corporate-social-responsibility/csr-bericht">CSR-bericht</a></li>
+				<li><a href="/de_DE/home/gewinnspiele" target="_blank">Gewinnspiele</a></li>
+				<li><a href="/de_DE/home/uber-pompdelux/kontakt">Kontakt</a></li>
+				</ul>
                 ]]></target>
             </trans-unit>
             <trans-unit id="share.to.%method%" approved="no">

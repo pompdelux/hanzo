@@ -1,0 +1,158 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="rma.not_allowed_wrong_state">
+                <source>rma.not_allowed_wrong_state</source>
+                <target>Er is een fout opgetreden. De order is niet volledig en kan daarom niet geretourneerd worden.</target>
+            </trans-unit>
+            <trans-unit id="rma.form.title.order_id">
+                <source>rma.form.title.order_id</source>
+                <target>Maak een retourformulier voor ordernummer %order_id%.</target>
+            </trans-unit>
+            <trans-unit id="rma.form.description">
+                <source>rma.form.description</source>
+                <target><![CDATA[
+                    <p>Voor elk artikel dat je wilt retourneren moet je een activiteit en oorzaak vermelden. Noteer bij elk artikel eventuele opmerkingen. Retourneer je artikelen van verschillende orders, dan moet je voor elke order een afzonderlijk retourformulier invullen. Je retourartikelen stuur je natuurlijk in één pakketje, ongeacht of het hierbij om verschillende orders gaat. Denk eraan om het (de) retourformulier(en) bij je pakketje te doen. Lees meer over retourneren op het retourformulier dat je maakt door op de knop “Retourformulier maken” te klikken.<br><br>Om het formulier te kunnen zien, moet je het gratis programma Adobe Reader hebben. Heb je dat niet op je computer geïnstalleerd, dan kun je het programma hier downloaden.<br />
+    <br />
+    <a href="http://www.adobe.com/products/acrobat/readstep2.html" target="_blank"><img src="http://static.pompdelux.com/images/pages/PDF_logo.jpg" width="158" height="39" border="0" title="POMPdeLUX" /></a><br /></p>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="rma.form.label.activitycode">
+                <source>rma.form.label.activitycode</source>
+                <target>Activiteit</target>
+            </trans-unit>
+            <trans-unit id="rma.form.label.cause">
+                <source>rma.form.label.cause</source>
+                <target>Oorzaak</target>
+            </trans-unit>
+            <trans-unit id="rma.form.activity.default">
+                <source>rma.form.activity.default</source>
+                <target>-- Kies activiteit --</target>
+            </trans-unit>
+            <trans-unit id="rma.form.cause.default">
+                <source>rma.form.cause.default</source>
+                <target>-- Kies oorzaak --</target>
+            </trans-unit>
+            <trans-unit id="rma.form.activity.return">
+                <source>rma.form.activity.return</source>
+                <target>Retourneren</target>
+            </trans-unit>
+            <trans-unit id="rma.form.activity.replacement">
+                <source>rma.form.activity.replacement</source>
+                <target>Ruilen</target>
+            </trans-unit>
+            <trans-unit id="rma.form.activity.warranty">
+                <source>rma.form.activity.warranty</source>
+                <target>Reclamatie</target>
+            </trans-unit>
+            <trans-unit id="rma.form.activity.return.causes">
+                <source>rma.form.activity.return.causes</source>
+                <target>Pakfout|Reclamatie (gelieve de fout te noteren)|Aankoop ongedaan maken (geld terug)</target>
+            </trans-unit>
+            <trans-unit id="rma.form.activity.replacement.causes">
+                <source>rma.form.activity.replacement.causes</source>
+                <target>Ruilen voor een andere maat|Ruilen voor een andere kleur|Ruilen voor een ander artikel</target>
+            </trans-unit>
+            <trans-unit id="rma.form.activity.warranty.causes">
+                <source>rma.form.activity.warranty.causes</source>
+                <target>Pakfout|Reclamatie (gelieve de fout te noteren)</target>
+            </trans-unit>
+            <trans-unit id="rma.form.label.description">
+                <source>rma.form.label.description</source>
+                <target>Eventuele opmerkingen</target>
+            </trans-unit>
+            <trans-unit id="rma.form.submit">
+                <source>rma.form.submit</source>
+                <target>Retourformulier maken...</target>
+            </trans-unit>
+            <trans-unit id="rma.form.label.return.order">
+                <source>rma.form.label.return.order</source>
+                <target>Retourneer de hele order</target>
+            </trans-unit>
+            <trans-unit id="rma.form.label.replacement">
+                <source>rma.form.label.replacement</source>
+                <target>Vul de naam van het product in dat je wilt hebben</target>
+            </trans-unit>
+            <trans-unit id="rma.form.placeholder.produkt">
+                <source>rma.form.placeholder.produkt</source>
+                <target>Bijv. Copenhagen</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.company_details">
+                <source>rma.slip.company_details</source>
+                <target><![CDATA[
+                    <ul>
+                        <li>POMPdeLUX ApS</li>
+                        <li>M&oslash;gelh&oslash;j 8, DK-8520 Lystrup</li>
+                        <li>BTW 851856147B01</li>
+                        <li>mail@pompdelux.nl 085-3001100 (Nederlands en Engels)</li>
+                    </ul>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.id">
+                <source>rma.slip.id</source>
+                <target><![CDATA[Klantennummer]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.name">
+                <source>rma.slip.name</source>
+                <target><![CDATA[Naam]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.email">
+                <source>rma.slip.email</source>
+                <target><![CDATA[E-mail]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.phone">
+                <source>rma.slip.phone</source>
+                <target><![CDATA[Telefoon]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.order_id">
+                <source>rma.slip.order_id</source>
+                <target><![CDATA[E-ordernummer]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.deliveryaddress">
+                <source>rma.slip.deliveryaddress</source>
+                <target><![CDATA[Leveringsadres]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.title.order_id">
+                <source>rma.slip.title.order_id</source>
+                <target><![CDATA[POMPdeLUX retourformulier Ordernummer %order_id%]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.description">
+                <source>rma.slip.description</source>
+                <target><![CDATA[<p>Wil je een artikel ruilen of retourneren, vul dan dit retourformulier in en stuur het mee. <br>Omdat je retourartikel weer verkocht moet worden, moet je het in de oorspronkelijke verpakking met het prijskaartje enz. eraan terugsturen.<br><br>Retourneer je een beschadigd of verkeerd geleverd artikel, dan betaal je geen verzendkosten. <br><br>Wil je ruilen voor een andere maat, kleur of artikel, dan is dat ook gratis.<br><br>Het nieuwe artikel mag niet duurder zijn dan het artikel dat je hebt teruggestuurd. Als het artikel dat je wilt hebben is uitverkocht, betalen we je je geld terug. Heb je betaald met een creditcard, dan wordt het bedrag teruggestort op de creditcard die je voor de bestelling hebt gebruikt.<br><br>Heb je PayByBill gebruikt, dan verzoeken we je contact op te nemen met Gothia BV - Klantenservice via tel: 078 - 751 80 22 of e-mail: <a href="afsinfo.nl@gothiagroup.com" target="_blank">afsinfo.nl@gothiagroup.com</a> <br><b>Let op:</b> hoewel je voor je retourzending een creditnota zult ontvangen, moet je je factuur nog steeds binnen de 30 dagen betalen. Voor meer informatie zie: <a href="/nl_NL/" target="_blank">www.pompdelux.nl</a></p>]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.thead.activitycode">
+                <source>rma.slip.thead.activitycode</source>
+                <target><![CDATA[Activiteit]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.thead.cause">
+                <source>rma.slip.thead.cause</source>
+                <target><![CDATA[Oorzaak]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.thead.replacement">
+                <source>rma.slip.thead.replacement</source>
+                <target><![CDATA[Ruilen voor]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.thead.description">
+                <source>rma.slip.thead.description</source>
+                <target><![CDATA[Jouw opmerking(en)]]></target>
+            </trans-unit>
+            <trans-unit id="rma.history.title">
+                <source>rma.history.title</source>
+                <target>Maak een RMA-retourformulier aan</target>
+            </trans-unit>
+            <trans-unit id="rma.slip.thead.products">
+                <source>rma.slip.thead.products</source>
+                <target><![CDATA[Producten]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.size">
+                <source>rma.slip.size</source>
+                <target><![CDATA[Maat]]></target>
+            </trans-unit>
+            <trans-unit id="rma.slip.color">
+                <source>rma.slip.color</source>
+                <target><![CDATA[Kleur]]></target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

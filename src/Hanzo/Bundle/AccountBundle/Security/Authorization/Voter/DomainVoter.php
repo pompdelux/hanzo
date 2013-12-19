@@ -2,9 +2,11 @@
 
 namespace Hanzo\Bundle\AccountBundle\Security\Authorization\Voter;
 
+use Hanzo\Core\Tools;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\User\User as CoreUser;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -53,7 +55,12 @@ class DomainVoter implements VoterInterface
           return VoterInterface::ACCESS_ABSTAIN;
         }
 
-        $customer = CustomersQuery::create()->findOneByEmail($user->getUserName());
+        // This is here to allow us to have in-memory users for api access.
+        if ($user instanceof CoreUser) {
+            return VoterInterface::ACCESS_ABSTAIN;
+        }
+
+        $customer  = CustomersQuery::create()->findOneByEmail($user->getUserName());
         $addresses = $customer->getAddressess();
 
         $paymentAddress = null;

@@ -254,51 +254,51 @@
                     <p>Varorna ska vara oanvända och returneras i original förpackning med labels osv. Strumpor, leggings och strumpbyxor kan endast returneras i obruten förpackning. Postpåsen som dina varor levereras i är gjord så att den kan användas två gånger. Du kan se på påsen hur du gör för att använda den igen. Vi återbetalar därför inte pengar för returemballage och heller inte för porto om du endast returnerar delar av din order. Vi tar inte emot returvaror som skickats mot postförskott.</p>
                 ]]></target>
             </trans-unit>
-            <trans-unit id="footer.menu_1" approved="no">
+			<trans-unit id="footer.menu_1" approved="no">
                 <source>footer.menu_1</source>
                 <target><![CDATA[
-                <h2>Home shopping</h2>
+                <h2>KUNDSERVICE</h2>
                 <ul class="menu">
-                    <li><a href="/sv_SE/forside/home-shopping">Bli vardinna</a></li>
-                    <li><a href="/sv_SE/forside/home-shopping/hitta-saljare">Hitta säljare</a></li>
-                    <li><a href="/sv_SE/forside/home-shopping/hitta-saljare-via-kartan">Hitta säljare via kartan</a></li>
-                    <li><a href="/sv_SE/forside/home-shopping/appet-hus">Öppet hus</a></li>
+                    <li><a href="/sv_SE/kundservice/telefontider">Telefontider</a></li>
+                    <li><a href="/sv_SE/forside/kundservice/fragor-och-svar">Frågor och Svar</a></li>
+                    <li><a href="/sv_SE/forside/kundservice/returnering">Returnering</a></li>
+                    <li><a href="/sv_SE/forside/kundservice/byte">Byte</a></li>
+                    <li><a href="/sv_SE/forside/kundservice/retursedel">Retursedel</a></li>                   
+					<li><a href="/sv_SE/forside/kundservice/tvattrad">Tvättråd</a></li>
+					<li><a href="/sv_SE/forside/kundservice/sizeguide">Sizeguide</a></li>
+					<li><a href="/sv_SE/forside/kundservice/villkor">Villkor</a></li>
+					<li><a href="/sv_SE/forside/kundservice/om-webshopen">Om webshopen</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>
             <trans-unit id="footer.menu_2" approved="no">
                 <source>footer.menu_2</source>
                 <target><![CDATA[
-                <h2>Mer POMPdeLUX</h2>
+                <h2>HOME SHOPPING</h2>
                 <ul class="menu">
-                    <li><a href="/sv_SE/forside/katalog">Online katalog</a></li>
-                    <li><a href="/sv_SE/forside/katalog/backstage-video">Backstage video</a></li>
-                    <li><a href="/sv_SE/forside/om-pompdelux">Om POMPdeLUX</a></li>
-                    <li><a href="/sv_SE/forside/nyheter">Nyheter</a></li>
-					<li><a href="/sv_SE/forside/om-pompdelux/konceptet">Konceptet</a></li>
-					<li><a href="/sv_SE/forside/om-pompdelux/corporate-social-responsibility">Corporate Social Responsibility</a></li>
+                    <li><a href="/sv_SE/forside/home-shopping">Bli vardinna</a></li>
+                    <li><a href="/sv_SE/forside/home-shopping/hitta-saljare">Hitta säljare</a></li>
+					<li><a href="/sv_SE/forside/home-shopping/appet-hus">Öppet hus</a></li>
+					<li><a href="/sv_SE/forside/katalog">Katalog</a></li>
 					<li><a href="/sv_SE/forside/bli-saljare/fritidssaljare">Bli säljare</a></li>
-					<li><a href="/sv_SE/forside/mer-pompdelux/gots-organic">GOTS (Organic)</a></li>
-					<li><a href="/sv_SE/forside/mer-pompdelux/oeko-tex">Oeko-Tex</a></li>
-					<li><a href="/sv_SE/forside/katalog/credits">Credits</a></li>
-					<li><a href="/sv_SE/forside/om-pompdelux/kontakt">Kontakt</a></li>
+                    </ul><br>		
+				<h2>BE SOCIAL</h2>
+				 <ul class="menu">
+				 <li><a href="http://instagram.com/pompdelux_official">Instagram</a></li>
+				<li><a href="https://www.facebook.com/POMPdeLUXDK">Facebook</a></li>
+				 <li><a href="/sv_SE/forside/katalog/backstage-video">Backstage video</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>
             <trans-unit id="footer.menu_3" approved="no">
                 <source>footer.menu_3</source>
                 <target><![CDATA[
-                <h2>Kundservice</h2>
+                <h2>MER POMPDELUX</h2>
                 <ul class="menu">
-                    <li><a href="/sv_SE/kundservice/telefontider">Telefontider</a></li>
-                    <li><a href="/sv_SE/forside/kundservice/fragor-och-svar">Frågor och Svar</a></li>
-                    <li><a href="/sv_SE/forside/kundservice/returnering">Returnering</a></li>
-                    <li><a href="/sv_SE/forside/kundservice/byte">Byte</a></li>
-                    <li><a href="/sv_SE/forside/kundservice/retursedel">Retursedel</a></li>
-                    <li><a href="/sv_SE/forside/kundservice/sizeguide">Sizeguide</a></li>
-					<li><a href="/sv_SE/forside/kundservice/tvattrad">Tvättråd</a></li>
-					<li><a href="/sv_SE/forside/kundservice/villkor">Villkor</a></li>
-					<li><a href="/sv_SE/forside/kundservice/om-webshopen">Om webshopen</a></li>
+                  <li><a href="/sv_SE/forside/om-pompdelux">Om POMPdeLUX</a></li>  
+                   <li><a href="/sv_SE/forside/om-pompdelux/corporate-social-responsibility/csr-rapport">CSR-rapport</a></li> 
+                    <li><a href="/sv_SE/forside/tavlingar">Tävlingar</a></li>
+					<li><a href="/sv_SE/forside/om-pompdelux/kontakt">Kontakt</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>

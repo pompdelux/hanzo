@@ -161,6 +161,8 @@ var cdn_url = '{{ cdn }}';
 <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
 
+{% block javascript %}{% endblock javascript %}
+
 <script>
 $(document).ready(function(){ adminDeadOrders.init() });
 var checkOrderUrl = '{{ path('admin_orders_check_order') }}';

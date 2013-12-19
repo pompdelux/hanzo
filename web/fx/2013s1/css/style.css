@@ -503,7 +503,7 @@ ul.menu .dropdown,
   -moz-box-shadow: #c9c9c9 -1px 1px 2px;
   box-shadow: #c9c9c9 -1px 1px 2px;
   border: #F0F0F0 1px solid;
-  padding: 9px;
+  padding: 0 9px;
   max-height: 400px;
   overflow-y: auto;
   overflow-x: hidden;
@@ -615,6 +615,10 @@ div header.row {
 }
 #secondary-links li .dropdown {
   z-index: 201;
+}
+#secondary-links li .dropdown a {
+  display: block;
+  margin: 15px 5px;
 }
 #secondary-links .second {
   z-index: 1;
@@ -2062,6 +2066,18 @@ html.touch .product-list .buy-set {
 /**
 | _account
 */
+#body-login .main ul {
+  list-style: square;
+  padding-left: 20px;
+}
+#body-login .main ul li {
+  color: #444444;
+  font-size: 12px;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: normal;
+  line-height: 15px;
+}
+
 form.create label:after {
   content: ":";
 }

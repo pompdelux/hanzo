@@ -64,7 +64,7 @@
       </trans-unit>
       <trans-unit id="confirm.title">
         <source>confirm.title</source>
-        <target>Confirmation</target>
+        <target>Confirm</target>
       </trans-unit>
       <trans-unit id="confirm.addresses.label" approved="no">
         <source>confirm.addresses.label</source>
@@ -88,7 +88,7 @@
       </trans-unit>
       <trans-unit id="shipping.address">
         <source>shipping.address</source>
-        <target>Delivery address</target>
+        <target>Alternative delivery address</target>
       </trans-unit>
       <trans-unit id="payment.method">
         <source>payment.method</source>
@@ -96,7 +96,7 @@
       </trans-unit>
       <trans-unit id="payment.address">
         <source>payment.address</source>
-        <target>Private address</target>
+        <target>Payment address</target>
       </trans-unit>
       <trans-unit id="payment.title">
         <source>payment.title</source>
@@ -236,11 +236,11 @@
       </trans-unit>
       <trans-unit id="late.delivery.notice">
         <source>late.delivery.notice</source>
-        <target><![CDATA[<strong>Note:</strong> If your order contains items with shipping dates, we ship your order when all items are in stock.]]></target>
+        <target><![CDATA[<strong>Note:</strong> Your order will be sent when all items are in stock.]]></target>
       </trans-unit>
       <trans-unit id="button.back">
         <source>button.back</source>
-        <target>Back</target>
+        <target>Continue shopping</target>
       </trans-unit>
       <trans-unit id="button.edit">
         <source>button.edit</source>
