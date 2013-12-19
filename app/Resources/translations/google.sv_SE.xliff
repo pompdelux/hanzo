@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="google.feed.condition.new">
+                <source>google.feed.condition.new</source>
+                <target>ny</target>
+            </trans-unit>
+            <trans-unit id="google.feed.brand">
+                <source>google.feed.brand</source>
+                <target>POMPdeLUX</target>
+            </trans-unit>
+            <trans-unit id="google.feed.availability.in_stock">
+                <source>google.feed.availability.in_stock</source>
+                <target>i lager</target>
+            </trans-unit>
+            <trans-unit id="google.feed.availability.sold_out">
+                <source>google.feed.availability.sold_out</source>
+                <target>ej i lager</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
