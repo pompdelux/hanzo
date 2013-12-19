@@ -217,60 +217,48 @@ class GothiaController extends CoreController
         $gothiaAccount
             ->setDistributionBy('NotSet')
             ->setDistributionType('NotSet')
-            ->setSocialSecurityNum($SSN)
-        ;
+            ->setSocialSecurityNum($SSN);
 
-        $customer->setGothiaAccounts( $gothiaAccount );
+        $customer->setGothiaAccounts($gothiaAccount);
 
         $timer = new Timer('gothia', true);
 
-        try {
+        try{
             // Validate information @ gothia
             $response = $this
                 ->get('payment.gothiaapi')
                 ->call()
-                ->checkCustomer($customer, $order)
-            ;
+                ->checkCustomer($customer, $order);
+
         } catch(GothiaApiCallException $e) {
+
+            // All errors are thrown in an exception. No Exception, reservation
+            // is approved.
+
             if (Tools::isBellcomRequest()) {
                 Tools::debug('Check Customer Failed', __METHOD__, array('Message' => $e->getMessage()));
             }
             $timer->logOne('checkCustomer call failed orderId #'.$order->getId());
 
             return $this->json_response(array(
-                'status' => FALSE,
+                'status' => false,
                 'message' => $translator->trans('json.checkcustomer.failed', array('%msg%' => $e->getMessage()), 'gothia'),
             ));
         }
 
         $timer->logOne('checkCustomer call, orderId #'.$order->getId());
 
-        if (!$response->isError()) {
-            $gothiaAccount = $customer->getGothiaAccounts(Propel::getConnection(null, Propel::CONNECTION_WRITE));
-            $gothiaAccount
-                ->setDistributionBy($response->data['DistributionBy'])
-                ->setDistributionType($response->data['DistributionType'])
-            ;
+        $gothiaAccount = $customer->getGothiaAccounts(Propel::getConnection(null, Propel::CONNECTION_WRITE));
+        $gothiaAccount
+            ->setDistributionBy($response->data['DistributionBy'])
+            ->setDistributionType($response->data['DistributionType']);
 
-            $customer->setGothiaAccounts( $gothiaAccount );
-            $customer->save();
-
-            return $this->json_response(array(
-                'status' => true,
-                'message' => '',
-            ));
-        }
-
-        if ($response->data['PurchaseStop'] === 'true') {
-            return $this->json_response(array(
-                'status' => FALSE,
-                'message' => $translator->trans('json.checkcustomer.purchasestop', array(), 'gothia'),
-            ));
-        }
+        $customer->setGothiaAccounts($gothiaAccount);
+        $customer->save();
 
         return $this->json_response(array(
-            'status' => FALSE,
-            'message' => $translator->trans('json.checkcustomer.error', array(), 'gothia'),
+            'status' => true,
+            'message' => '',
         ));
     }
 
@@ -350,20 +338,6 @@ class GothiaController extends CoreController
             return $this->json_response(array(
                 'status' => FALSE,
                 'message' => $translator->trans('json.placereservation.failed', array('%msg%' => $e->getMessage()), 'gothia'),
-            ));
-        }
-
-        if ( $response->isError() ) {
-            $error = $response->data;
-            if (empty($error) && !empty($response->errors)) {
-                $error = implode("\n", $response->errors);
-            }
-            Tools::debug( 'Confirm action error', __METHOD__, array( 'Transaction id' => $response->transactionId, 'Data' => $error));
-
-            $api->updateOrderFailed( $request, $order );
-            return $this->json_response(array(
-                'status' => FALSE,
-                'message' => $translator->trans('json.placereservation.error', array(), 'gothia'),
             ));
         }
 

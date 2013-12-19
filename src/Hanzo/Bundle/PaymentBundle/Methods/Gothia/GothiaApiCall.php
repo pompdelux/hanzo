@@ -69,6 +69,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
      **/
     protected function call( $function, $request )
     {
+        $hanzo = Hanzo::getInstance();
         $errorReporting = error_reporting(0);
 
         if ($this->api->getTest()) {
@@ -86,34 +87,32 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
 
         error_reporting($errorReporting);
 
-        // If there is a problem with the connection or something like that a GothiaApiCallException is thrown
-        // Else a GothiaApiCallResponse is returned, which might still be an "error" but the call went through fine
-
-        if (($response === false) || ($client->fault)) {
-            $msg = 'Kunne ikke forbinde til Gothia Faktura service, prøv igen senere';
-
-            $err = $client->getError();
-
-            if ($err) {
-                $msg .= ' '.$err;
-            }
-
-            $errors[] = $msg;
-
-            $debugErrors = $errors;
-            $debugErrors['Function'] = $function;
-            $debugErrors['Callstring'] = $request;
-            #Tools::debug( 'Call failed', __METHOD__, $debugErrors );
-
-            throw new GothiaApiCallException( implode('<br>', $errors) );
-        }
-
         if ($this->api->getTest() || Tools::isBellcomRequest()) {
           Tools::debug( 'Gothia debug call', __METHOD__, array( 'Function' => $function, 'Callstring' => $request));
           Tools::debug( 'Gothia debug response', __METHOD__, array( 'Response' => $response ));
         }
 
-        $gothiaApiCallResponse = new GothiaApiCallResponse( $response, $function );
+        // Examine and parse the respone recieved and determine if its an error.
+        // All errors from Gothia are handled here, and returned as an GothiaApiCallException.
+        $gothiaApiCallResponse = new GothiaApiCallResponse($response, $function);
+
+        if (($response === false) || ($client->fault) || $gothiaApiCallResponse->isError()) {
+            $t = $hanzo->container->get('translator');
+
+            // Collect all errors to add into the Exception.
+            $errorMessages = array($t->trans('We were unable to approve your payment with Gothia Invoice service.', array(), 'gothia'));
+
+            if (!empty($client->getError())) {
+              array_push($errorMessages, $t->trans($client->getError(), array(), 'gothia'));
+            }
+            foreach ($gothiaApiCallResponse->errors as $error) {
+              if (!empty($error) && !in_array($t->trans($error, array(), 'gothia'), $errorMessages)) {
+                array_push($errorMessages, $t->trans($error, array(), 'gothia'));
+              }
+            }
+            array_push($errorMessages, $t->trans('Please contact POMPdeLUX customer service if you keep receiving this error.', array(), 'gothia'));
+            throw new GothiaApiCallException(implode('<br><br>', $errorMessages));
+        }
 
         return $gothiaApiCallResponse;
     }
