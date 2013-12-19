@@ -328,38 +328,36 @@ class GothiaDEController extends CoreController
         // A customer can max reserve 7.000 SEK currently, so if they edit an order to 3.500+ SEK
         // it will fail because we have not removed the old reservation first, this should fix it
 
-        if ( $order->getInEdit() )
-        {
+        if ($order->getInEdit()) {
             $currentVersion = $order->getVersionId();
 
             // If the version number is less than 2 there is no previous version
-            if ( !( $currentVersion < 2 ) )
-            {
+            if (!($currentVersion < 2 )) {
                 $oldOrderVersion = ( $currentVersion - 1);
                 $oldOrder = $order->getOrderAtVersion($oldOrderVersion);
 
-                $paytype = strtolower( $oldOrder->getBillingMethod() );
+                $paytype = strtolower($oldOrder->getBillingMethod());
                 // The new order amount is different from the old order amount
                 // We will remove the old reservation, and create a new one
                 // but only if the old paytype was gothia
                 if ((in_array($paytype, array('gothia', 'gothiade'))) && ($order->getTotalPrice() != $oldOrder->getTotalPrice())) {
                     try {
-                        $response = $api->call()->cancelReservation( $customer, $oldOrder );
-                    } catch(GothiaApiCallException $e) {
+                        $response = $api->call()->cancelReservation($customer, $oldOrder);
+                    } catch (GothiaApiCallException $e) {
                         $timer->logOne('cancelReservation call failed, orderId #'.$oldOrder->getId());
                         Tools::debug('Cancel reservation failed', __METHOD__, array('Message' => $e->getMessage()));
+
                         return $this->json_response(array(
-                            'status' => FALSE,
+                            'status' => false,
                             'message' => $translator->trans('json.cancelreservation.failed', array('%msg%' => $e->getMessage()), 'gothia'),
                         ));
                     }
 
                     $timer->logOne('cancelReservation, orderId #'.$oldOrder->getId());
 
-                    if ( $response->isError() )
-                    {
+                    if ( $response->isError() ) {
                         return $this->json_response(array(
-                            'status' => FALSE,
+                            'status' => false,
                             'message' => $translator->trans('json.cancelreservation.error', array(), 'gothia'),
                         ));
                     }
@@ -367,73 +365,51 @@ class GothiaDEController extends CoreController
             }
         }
 
-        try
-        {
-            if($order->getPaymentPaytype() === 'gothia_lv') {
-                $response = $api->call()->checkCustomerAndPlaceReservation( $customer, $order, array('bank_account_no' => $bank_account_no, 'bank_id' => $bank_id, 'payment_method' => 'DirectDebet') );
+        try {
+            $parameters = null;
+            if ($order->getPaymentPaytype() === 'gothia_lv') {
+                $parameters = array(
+                    'bank_account_no' => $bank_account_no,
+                    'bank_id' => $bank_id,
+                    'payment_method' => 'DirectDebet'
+                );
             }
-            else {
-                $response = $api->call()->checkCustomerAndPlaceReservation( $customer, $order );
-            }
+            $response = $api->call()->checkCustomerAndPlaceReservation($customer, $order, $parameters);
             $timer->logOne('checkCustomerAndPlaceReservation orderId #'.$order->getId());
-        }
-        catch( GothiaApiCallException $e )
-        {
+        } catch ( GothiaApiCallException $e ) {
             if (Tools::isBellcomRequest()) {
                 Tools::debug('Check Customer and Place Reservation Exception', __METHOD__, array('Message' => $e->getMessage()));
             }
-            $api->updateOrderFailed( $request, $order );
+            $api->updateOrderFailed($request, $order);
+            Tools::debug('CheckCustomerAndPlaceReservation failed', __METHOD__, array('Data' => $response));
+
             return $this->json_response(array(
-                'status' => FALSE,
+                'status' => false,
                 'message' => $translator->trans('json.placereservation.failed', array('%msg%' => $e->getMessage()), 'gothia'),
-            ));
-        }
-
-        if ( $response->isError() )
-        {
-            if ( $response->data['PurchaseStop'] === 'true')
-            {
-                #Tools::debug( 'PurchaseStop', __METHOD__, array( 'Transaction id' => $response->transactionId ));
-
-                return $this->json_response(array(
-                    'status' => FALSE,
-                    'message' => $translator->trans('json.checkcustomer.purchasestop', array(), 'gothia'),
-                ));
-            }
-
-            Tools::debug( 'Confirm action error', __METHOD__, array( 'Transaction id' => $response->transactionId, 'Data' => $response->data ));
-
-            $api->updateOrderFailed( $request, $order );
-            return $this->json_response(array(
-                'status' => FALSE,
-                'message' => $translator->trans('json.placereservation.error', array(), 'gothia'),
             ));
         }
 
         // NICETO: priority: low, refacture gothia to look more like DibsController
 
-        try
-        {
-            $api->updateOrderSuccess( $request, $order );
+        try {
+            $api->updateOrderSuccess($request, $order);
             $gothiaAccount->save();
             $this->get('event_dispatcher')->dispatch('order.payment.collected', new FilterOrderEvent($order));
 
             return $this->json_response(array(
-                'status' => TRUE,
+                'status' => true,
                 'message' => '',
             ));
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             if (Tools::isBellcomRequest()) {
                 Tools::debug('Place Reservation Exception', __METHOD__, array('Message' => $e->getMessage()));
             }
-            #Tools::debug( $e->getMessage(), __METHOD__);
-            $api->updateOrderFailed( $request, $order );
+            $api->updateOrderFailed($request, $order);
 
             Tools::debug('Place reservation failed', __METHOD__, array('Message' => $e->getMessage()));
+
             return $this->json_response(array(
-                'status' => FALSE,
+                'status' => false,
                 'message' => $translator->trans('json.placereservation.error', array(), 'gothia'),
             ));
         }
