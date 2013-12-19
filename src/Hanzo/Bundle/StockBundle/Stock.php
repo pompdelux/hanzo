@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\StockBundle;
 
+use Hanzo\Core\Tools;
 use Propel;
 use Hanzo\Model\ProductsQuery;
 use Hanzo\Model\ProductsStockQuery;
@@ -12,32 +13,47 @@ use Hanzo\Bundle\AdminBundle\Event\FilterCategoryEvent;
 
 class Stock
 {
-    protected $stock = array();
-    protected $is_master = 0;
+    /**
+     * @var array
+     */
+    protected $stock = [];
 
+    /**
+     * @var EventDispatcher
+     */
     protected $event_dispatcher;
-    protected $locale;
 
-    public function __construct(EventDispatcher $event_dispatcher, $locale)
+    /**
+     * @var Warehouse
+     */
+    protected $warehouse;
+
+    /**
+     * @param $locale
+     * @param EventDispatcher $event_dispatcher
+     * @param Warehouse       $warehouse
+     */
+    public function __construct($locale, EventDispatcher $event_dispatcher, Warehouse $warehouse)
     {
         $this->event_dispatcher = $event_dispatcher;
-        $this->locale = $locale;
+        $warehouse->setLocation($locale);
+        $this->warehouse = $warehouse;
     }
 
 
     /**
      * fetch the stock put of db and save it in a static var
      *
-     * @param array $products an array of product object
-     * @return array();
+     * @param  array $products an array of product object
+     * @return array
      */
     protected function load($products)
     {
         if (!is_array($products) && (!$products instanceof \PropelObjectCollection)) {
-            $products = array($products);
+            $products = [$products];
         }
 
-        $ids = array();
+        $ids = [];
         foreach($products as $product) {
             if (is_object($product)) {
                 $id = $product->getId();
@@ -45,47 +61,25 @@ class Stock
                 $id = (int) $product;
             }
 
-          if (isset($this->stock[$id])){
-              continue;
-          }
+            if (isset($this->stock[$id])){
+                continue;
+            }
 
-          // catch out of stock
-          $this->stock[$id] = array();
-          $this->stock[$id]['total'] = 0;
-
-          $ids[] = $id;
+            $ids[] = $id;
         }
 
         if (empty($ids)) {
             return;
         }
 
-        $this->setMasterConnection();
-        $result = ProductsStockQuery::create()
-            ->orderByAvailableFrom()
-            ->filterByProductsId($ids)
-            ->find()
-        ;
-        $this->releaseMasterConnection();
-
-        $now = date('Ymd');
-
-        foreach ($result as $record) {
-            $id = $record->getProductsId();
-            $date = $record->getAvailableFrom('Ymd');
-
-            $this->stock[$id]['total'] += $record->getQuantity();
-            $this->stock[$id][$date] = array(
-                'id' => $record->getId(),
-                'date' => $record->getAvailableFrom(),
-                'quantity' => $record->getQuantity(),
-            );
+        foreach ($this->warehouse->getStatus($ids) as $id => $status) {
+            $this->stock[$id] = $status;
         }
     }
 
 
     /**
-     * load a collection of products stock to be testet in a loop or the like.
+     * load a collection of products stock to be tested in a loop or the like.
      *
      * @param array $products an array of product objects
      * @return void
@@ -97,11 +91,11 @@ class Stock
 
 
     /**
-     * check wether or not a product is in stock or not.
+     * check whether or not a product is in stock or not.
      *
-     * @param mixed $product a product object or product id
-     * @param int $quantity, the quantity to check agianst
-     * @return mixed true if the product is available now, a DateTime object if it is available in the future, false if not in stock
+     * @param  mixed $product   A product object or product id
+     * @param  int   $quantity  The quantity to check against
+     * @return mixed            True if the product is available now, a DateTime object if it is available in the future, false if not in stock
      */
     public function check($product, $quantity = 1)
     {
@@ -125,7 +119,7 @@ class Stock
 
             $sum += $stock['quantity'];
             if ($stock['quantity'] >= $quantity) {
-                return $date > $now ? new \DateTime($date) : TRUE;
+                return $date > $now ? new \DateTime($date) : true;
             }
         }
 
@@ -137,7 +131,7 @@ class Stock
      *
      * @param  mixed   $product a product object or product id
      * @param  boolean $as_object
-     * @return int
+     * @return mixed
      */
     public function get($product, $as_object = false)
     {
@@ -172,7 +166,7 @@ class Stock
     {
         // nothing to do here..
         if ($quantity < 1) {
-            return TRUE;
+            return true;
         }
 
         $stock = $this->get($product, true);
@@ -182,12 +176,11 @@ class Stock
         // return FALSE if we do not have enough ín stock
         // NICETO: throw exception ?
         if ($total < $quantity) {
-            return FALSE;
+            return false;
         }
 
         // force master connection, and do the rest as a transaction.
-        $this->setMasterConnection();
-        $con = Propel::getConnection(ProductsStockPeer::DATABASE_NAME);
+        $con = self::getConnection();
         $con->beginTransaction();
 
         try {
@@ -197,11 +190,11 @@ class Stock
 
                 $item = ProductsStockQuery::create()->findPk($current['id'], $con);
                 if ($current['quantity'] <= $left) {
-                    $item->delete();
+                    $item->delete($con);
                 }
                 else {
                     $item->setQuantity($item->getQuantity() - $left);
-                    $item->save();
+                    $item->save($con);
                 }
 
                 $left = $left - $current['quantity'];
@@ -213,21 +206,19 @@ class Stock
 
                 // if all variants is out of stock, set it on the master product.
                 $total_stock = ProductsStockQuery::create()
-                  ->withColumn('SUM('.ProductsStockPeer::QUANTITY.')', 'total_stock')
-                  ->select(array('total_stock'))
-                  ->useProductsQuery()
-                    ->filterByMaster($product->getMaster())
-                  ->endUse()
-                  ->findOne($con)
+                    ->withColumn('SUM('.ProductsStockPeer::QUANTITY.')', 'total_stock')
+                    ->select(array('total_stock'))
+                    ->useProductsQuery()
+                        ->filterByMaster($product->getMaster())
+                    ->endUse()
+                    ->findOne($con)
                 ;
 
                 if (0 == $total_stock) {
-                    $master = ProductsQuery::create()
-                      ->findOneBySku($product->getMaster(), $con)
-                    ;
+                    $master = ProductsQuery::create()->findOneBySku($product->getMaster(), $con);
 
                     $master->setIsOutOfStock(true);
-                    $master->save();
+                    $master->save($con);
 
                     $this->event_dispatcher->dispatch('product.stock.zero', new FilterCategoryEvent($master, $this->locale));
                 }
@@ -235,41 +226,26 @@ class Stock
 
             unset($this->stock[$product->getId()]);
             $con->commit();
-        }
-        catch(Exception $e) {
-            $con->rollback();
-            return FALSE;
-        }
 
-        $this->releaseMasterConnection();
+        } catch(Exception $e) {
+            $con->rollback();
+            Tools::log($e->getMessage());
+        }
 
         return $current['date'];
     }
 
-
     /**
-     * wrapper function for handeling nested calls to set/get Propel::setForceMasterConnection()
-     * we only release master connextions if the call is in the "parent" call
+     * @return \PropelPDO
      */
-    protected function setMasterConnection()
+    protected static function getConnection()
     {
-        if ($this->is_master) {
-            $this->is_master++;
-            return;
+        static $con;
+
+        if (empty($con)) {
+            $con = Propel::getConnection(ProductsStockPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
         }
 
-        Propel::setForceMasterConnection(TRUE);
-        $this->is_master = 1;
-    }
-
-    protected function releaseMasterConnection()
-    {
-        if ($this->is_master > 1) {
-            $this->is_master--;
-            return;
-        }
-
-        Propel::setForceMasterConnection(FALSE);
-        $this->is_master = 0;
+        return $con;
     }
 }

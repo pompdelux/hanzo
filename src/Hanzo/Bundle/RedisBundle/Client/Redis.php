@@ -2,7 +2,6 @@
 
 namespace Hanzo\Bundle\RedisBundle\Client;
 
-use InvalidArgumentException;
 use Hanzo\Bundle\RedisBundle\Logger\Logger;
 
 Class Redis
@@ -20,7 +19,7 @@ Class Redis
     protected $logger = null;
 
     /**
-     * Wether or not we are connected to the redis server
+     * Whether or not we are connected to the redis server
      * @var boolean
      */
     protected $connected = false;
@@ -64,6 +63,20 @@ Class Redis
         $this->parameters = $parameters;
     }
 
+
+    public function getPrefix()
+    {
+        return $this->parameters['prefix'];
+    }
+
+    public function setPrefix($s)
+    {
+        $this->parameters['prefix'] = $s;
+
+        if ($this->connected) {
+            $this->redis->setOption(\Redis::OPT_PREFIX, $this->parameters['prefix']);
+        }
+    }
 
     /**
      * setup logging
@@ -132,7 +145,7 @@ Class Redis
             return $result;
         }
 
-        throw new InvalidArgumentException('No such redis command: '.$name);
+        throw new \InvalidArgumentException('No such redis command: '.$name);
     }
 
 
@@ -172,7 +185,6 @@ Class Redis
 
         if ($this->connected) {
             if ($this->redis->select($this->parameters['database'])) {
-
                 // setup default options
                 $this->redis->setOption(\Redis::OPT_PREFIX, $this->parameters['prefix']);
                 $this->redis->setOption(\Redis::OPT_SERIALIZER, \Redis::SERIALIZER_PHP);

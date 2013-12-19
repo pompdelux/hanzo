@@ -136,20 +136,44 @@ cms:
 # native redis caching
 redis:
     class:
-        # the main cache is for tmp caching
+        # the "main" cache is for tmp caching
         main:
             host: %redis_cache1_host%
             port: %redis_cache1_port%
             prefix: hanzo
             database: %redis_cache1_database%
-        # permanent should be used for fast access to stuff that does not change
+        # "permanent" should be used for fast access to stuff that does not change
         # this db should never be flushed !
         permanent:
-            host: %redis_cache1_host%
-            port: %redis_cache1_port%
-            prefix: hanzo
+            host:     %redis_cache1_host%
+            port:     %redis_cache1_port%
+            prefix:   hanzo
             skip_env: true
             database: 2
+        # "stock" is like "permanent" a cache that should never be flushed.
+        # if it is flushed a full stock sync from AX must be performed.
+        stock:
+            host:     %redis_cache1_host%
+            port:     %redis_cache1_port%
+            prefix:   hanzo
+            skip_env: true
+            database: 5
+
+stock:
+    warehouses:
+        main:
+            - de_AT
+            - de_DE
+            - da_DK
+            - fi_FI
+            - nl_NL
+            - sv_SE
+        switzerland:
+            - de_CH
+        norway:
+            - nb_NO
+
+
 
 # @see https://github.com/ekino/EkinoNewRelicBundle
 ekino_new_relic:
