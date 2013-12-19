@@ -4,7 +4,11 @@
         <body>
             <trans-unit id="size.guide.link">
                 <source>size.guide.link</source>
-                <target><![CDATA[<a href="/nl_NL/voorpagina/klantenservice/sizeguide" target="_blank" title="Size guide">» Size guide</a>]]></target>
+                <target>images/pages/Size_Guide_NL.jpg</target>
+            </trans-unit>
+            <trans-unit id="size.guide.link.text">
+                <source>size.guide.link.text</source>
+                <target>» Size guide</target>
             </trans-unit>
             <trans-unit id="out.of.stock">
                 <source>out.of.stock</source>
