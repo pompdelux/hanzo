@@ -62,7 +62,7 @@
                 <target><![CDATA[
                     <p>Wir konnten die eingegebene E-Mail-Adresse leider nicht finden. Versuchen Sie es bitte erneut und überprüfen Sie, ob Sie Ihre E-Mail-Adresse korrekt eingegeben haben.</p>
                     <p>Wenn Sie Ihre E-Mail-Adresse korrekt eingegeben haben und diese Nachricht weiterhin erscheint, sind Sie nicht in unserem System registriert. Wenden Sie sich bitte an den Kundendienst, da es sein kann, dass Sie falsch registriert worden sind.</p>
-                    <a href="/de_DE/kundendienst/telefonzeiten">» Kundendienst</a>
+                    <a href="/de_CH/kundendienst/telefonzeiten">» Kundendienst</a>
                 ]]></target>
             </trans-unit>
             <trans-unit id="password.forgotten.resend">
