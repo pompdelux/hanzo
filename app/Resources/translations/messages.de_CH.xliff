@@ -18,10 +18,6 @@
                 <source>home</source>
                 <target>Home</target>
             </trans-unit>
-            <trans-unit id="home">
-                <source>home</source>
-                <target>Home</target>
-            </trans-unit>
             <trans-unit id="show.basket">
                 <source>show.basket</source>
                 <target>Warenkorb anzeigen</target>
@@ -132,7 +128,7 @@
             </trans-unit>
             <trans-unit id="store.address">
                 <source>store.address</source>
-                <target>POMPdeLUX ApS • Møgelhøj 8 • DK-8520 Lystrup • USt-IdNr. CVR-nr 29622035 • mailch@pompdelux.com • (+45) 8678 7874</target>
+                <target>POMPdeLUX DE GmbH • Dammtorstraβe 12 • DE-20354 Hamburg • USt-IdNr. DE290402183 • mailde@pompdelux.com • 040-35715072</target>
             </trans-unit>
             <trans-unit id="order.edit.global.notice">
                 <source>order.edit.global.notice</source>
@@ -150,8 +146,8 @@
                 <source>customer.service.contact.info</source>
                 <target><![CDATA[
                     <strong>Kundendienst</strong><br>
-                    Telefon: (+45) 8678 7874<br>
-                    E-Mail: <a href="mailto:mailch@pompdelux.com">mailch@pompdelux.com</a><br>
+                    Telefon: 040-35715072<br>
+                    E-Mail: <a href="mailto:mailde@pompdelux.com">mailde@pompdelux.com</a><br>
                     Montags bis Donnerstags 9 - 16 Uhr<br>
                     Freitags 9 - 14 Uhr<br>
                     Samstags, Sonntags und Feiertags geschlossen.
@@ -161,12 +157,12 @@
                 <source>footer.address</source>
                 <target><![CDATA[
                     <ul>
-                        <li>POMPdeLUX ApS</li>
-                        <li>Møgelhøj 8</li>
-                        <li>DK-8520 Lystrup</li>
-                        <li>CVR-nr 29622035</li>
-                        <li><a href="mailto:mailch@pompdelux.com">mailch@pompdelux.com</a></li>
-                        <li>(+45) 8678 7874</li>
+                        <li>POMPdeLUX DE GmbH</li>
+                        <li>Dammtorstraβe 12</li>
+                        <li>DE-20354 Hamburg</li>
+                        <li>USt-IdNr. DE290402183</li>
+                        <li><a href="mailto:mailde@pompdelux.com">mailde@pompdelux.com</a></li>
+                        <li>040-35715072</li>
                         <li><img src="%cdn%fx/images/creditcards_de.png" alt="credit cards" title="credit cards"></li>
                         <li><a href="http://www.facebook.com/sharer.php?u=%url%" class="facebook-button social-button" title="Del denne side på Facebook">Auf Facebook teilen</a></li>
                     </ul>
