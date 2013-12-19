@@ -86,12 +86,10 @@ class DefaultController extends CoreController
         $settings = $page->getSettings(null, false);
 
         if (isset($settings->embedded_page_id) && is_numeric($settings->embedded_page_id)) {
-            $embedPage = CmsPeer::getByPK($settings->embedded_page_id, $locale);
 
             $category = $this->forward('CategoryBundle:Default:listCategoryProducts', array('cms_id' => $settings->embedded_page_id, 'show' => 'look'));
 
-            $html = $embedPage->getContent() .
-                    $category->getContent();
+            $html = $category->getContent();
         }
 
         return $html;
