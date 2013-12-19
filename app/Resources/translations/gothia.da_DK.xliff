@@ -82,7 +82,7 @@ Kontakt venligst Gothia Kundeservice: 7027 2795<br>Ved andre godkendelsesfejl â€
       </trans-unit>
       <trans-unit id="gothia.response.error.before">
         <source>We were unable to approve your payment with Gothia Invoice service.</source>
-        <target>Vi havde ikke mulighed for at godkende ordren ved Gothia Invoice service.</target>
+        <target>Vi havde ikke mulighed for, at godkende ordren ved Gothia Invoice service.</target>
       </trans-unit>
       <trans-unit id="gothia.response.error.after">
         <source>Please contact POMPdeLUX customer service if you keep receiving this error.</source>

@@ -81,6 +81,14 @@ Om du har varit kund hos Gothia tidigare, finns ditt personnummer sparat via dit
         <source>social_security_num</source>
         <target>Personnummer:</target>
       </trans-unit>
+      <trans-unit id="gothia.response.error.before">
+        <source>We were unable to approve your payment with Gothia Invoice service.</source>
+        <target>Vi kunde tyvärr inte godkänna din order hos Gothia Invoice service.</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.error.after">
+        <source>Please contact POMPdeLUX customer service if you keep receiving this error.</source>
+        <target>Vänligen kontakta POMPdeLUX kundservice om felet kvarstår.</target>
+      </trans-unit>
       <trans-unit id="gothia.response.5000">
         <source>We are unable to connect to Gothia Invoice service, please try again later.</source>
         <target>Det finns ingen förbindelse till Gothia Faktura Service just nu. Försök igen senare.</target>

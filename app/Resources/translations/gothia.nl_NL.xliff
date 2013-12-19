@@ -80,6 +80,14 @@ Neem graag contact op met Gothia B.V. Klantenservice: 078 – 751 80 22<br>Bij a
         <source>social_security_num</source>
         <target>Geboortedatum (DDMMJJJJ):</target>
       </trans-unit>
+      <trans-unit id="gothia.response.error.before">
+        <source>We were unable to approve your payment with Gothia Invoice service.</source>
+        <target>We hebben helaas geen mogelijkheid, om goedkeuring te krijgen van Gothia Factuur Service.</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.error.after">
+        <source>Please contact POMPdeLUX customer service if you keep receiving this error.</source>
+        <target>Neem contact op met de POMPdeLUX klantenservice, als deze fout zich herhaald.</target>
+      </trans-unit>
       <trans-unit id="gothia.response.5000">
         <source>We are unable to connect to Gothia Invoice service, please try again later.</source>
         <target>Er is op dit moment geen verbinding mogelijk met Gothia Factuur Service. Probeer het later nog eens.</target>

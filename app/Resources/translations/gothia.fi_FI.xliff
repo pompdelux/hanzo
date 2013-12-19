@@ -79,6 +79,14 @@ Pyydämme teitä ottamaan ystävällisesti yhteyttä Gothian asiakaspalveluun pu
         <source>social_security_num</source>
         <target>Henkilötunnus:</target>
       </trans-unit>
+      <trans-unit id="gothia.response.error.before">
+        <source>We were unable to approve your payment with Gothia Invoice service.</source>
+        <target>Valitettavasti emme voi hyväksyä tilaustasi Gothia laskuvaihtoehdolla.</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.error.after">
+        <source>Please contact POMPdeLUX customer service if you keep receiving this error.</source>
+        <target>Pyydämme teitä ottamaan yhteyttä asiakaspalveluumme jos virhe toistuu.</target>
+      </trans-unit>
       <trans-unit id="gothia.response.5000">
         <source>We are unable to connect to Gothia Invoice service, please try again later.</source>
         <target>Tällä hetkellä emme saa yhteyttä Gothian laskupalveluun. Yritä ystävällisesti myöhemmin uudelleen.</target>
