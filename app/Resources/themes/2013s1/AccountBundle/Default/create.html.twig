@@ -14,7 +14,7 @@
   <p>{{ 'create.notice'|trans({'%url%' : url('_account') }, 'account')|raw }}</p>
 
   {% if domain_key == 'DK' %}
-    <p>{{ 'nno.description'|trans({}, 'account') }}</p>
+    <p>{{ 'nno.description'|trans({}, 'account')|raw }}</p>
 
     <form action="{{ url('muneris_nno_lookup') }}" class="nno">
       <input type="tel" name="phone" id="nno-phone">
