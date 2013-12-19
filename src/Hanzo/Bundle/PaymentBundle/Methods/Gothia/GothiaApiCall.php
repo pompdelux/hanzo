@@ -110,7 +110,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
                 array_push($errorMessages, $t->trans($error, array(), 'gothia'));
               }
             }
-            array_push($errorMessages, $t->trans('Please contact POMPdeLUX customer service if you keep receiving this error.'));
+            array_push($errorMessages, $t->trans('Please contact POMPdeLUX customer service if you keep receiving this error.', array(), 'gothia'));
             throw new GothiaApiCallException(implode('<br><br>', $errorMessages));
         }
 
