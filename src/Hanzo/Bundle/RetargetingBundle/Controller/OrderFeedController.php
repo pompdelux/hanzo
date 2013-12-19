@@ -135,12 +135,20 @@ class OrderFeedController extends Controller
 
                 echo '<line><type>'.$order['type'].'</type><products_sku><![CDATA['.$order['products_sku'].']]></products_sku><products_name><![CDATA['.$order['products_name'].']]></products_name><products_color><![CDATA['.$order['products_color'].']]></products_color><products_size>'.$order['products_size'].'</products_size><original_price>'.$order['original_price'].'</original_price><price>'.$order['price'].'</price><vat>'.$order['vat'].'</vat><quantity>'.$order['quantity'].'</quantity><unit>'.$order['unit'].'</unit></line>';
                 flush();
+
+                // unset memory
+                unset($order);
             }
 
             if (0 != $current_id) {
                 echo '</order_lines></order></segment>';
                 flush();
             }
+
+            // try to free some memory
+            gc_collect_cycles();
+            $stmt->closeCursor();
+            unset($order);
         }
 
         echo '</orders>';
