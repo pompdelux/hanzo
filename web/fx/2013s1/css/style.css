@@ -847,6 +847,7 @@ footer .footer-menu li {
 footer .footer-menu .footer-teaser {
   margin-top: 20px;
   text-align: center;
+  font-size: 12px;
 }
 footer .footer-menu .footer-teaser b {
   text-transform: uppercase;
