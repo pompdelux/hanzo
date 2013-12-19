@@ -329,9 +329,6 @@ class GothiaController extends CoreController
             $response = $api->call()->placeReservation( $customer, $order );
             $timer->logOne('placeReservation orderId #'.$order->getId());
         } catch(GothiaApiCallException $e) {
-            if (Tools::isBellcomRequest()) {
-                Tools::debug('Place Reservation Exception', __METHOD__, array('Message' => $e->getMessage()));
-            }
 
             $api->updateOrderFailed( $request, $order );
 
@@ -340,8 +337,6 @@ class GothiaController extends CoreController
                 'message' => $translator->trans('json.placereservation.failed', array('%msg%' => $e->getMessage()), 'gothia'),
             ));
         }
-
-        // NICETO: priority: low, refacture gothia to look more like DibsController
 
         try {
             $api->updateOrderSuccess( $request, $order );
@@ -353,7 +348,7 @@ class GothiaController extends CoreController
             ));
         } catch (Exception $e) {
             if (Tools::isBellcomRequest()) {
-                Tools::debug('Place Reservation Exception', __METHOD__, array('Message' => $e->getMessage()));
+                Tools::debug('Place Reservation Exception', __METHOD__ .':'. __LINE__, array('Message' => $e->getMessage()));
             }
 
             $api->updateOrderFailed( $request, $order );

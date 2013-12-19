@@ -377,11 +377,8 @@ class GothiaDEController extends CoreController
             $response = $api->call()->checkCustomerAndPlaceReservation($customer, $order, $parameters);
             $timer->logOne('checkCustomerAndPlaceReservation orderId #'.$order->getId());
         } catch ( GothiaApiCallException $e ) {
-            if (Tools::isBellcomRequest()) {
-                Tools::debug('Check Customer and Place Reservation Exception', __METHOD__, array('Message' => $e->getMessage()));
-            }
+
             $api->updateOrderFailed($request, $order);
-            Tools::debug('CheckCustomerAndPlaceReservation failed', __METHOD__, array('Data' => $response));
 
             return $this->json_response(array(
                 'status' => false,
