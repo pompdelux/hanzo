@@ -108,6 +108,41 @@ class GothiaApiCallResponse
                 }
 
                 break;
+            case 'CheckCustomerAndPlaceReservation':
+                if (isset($rawResponse['CheckCustomerAndPlaceReservationResult']['TransactionID'])) {
+                    $this->transactionId = $rawResponse['CheckCustomerAndPlaceReservationResult']['TransactionID'];
+                }
+
+                if (!isset($rawResponse['CheckCustomerAndPlaceReservationResult']['Success'])) {
+                    $this->setIsError();
+                } else {
+                    if ($rawResponse['CheckCustomerAndPlaceReservationResult']['Success'] !== 'true') {
+                        $this->setIsError();
+                    }
+                }
+
+                if (!isset($rawResponse['CheckCustomerAndPlaceReservationResult']['Customer'])) {
+                    $this->setIsError();
+                }
+
+                if (!isset($rawResponse['CheckCustomerAndPlaceReservationResult']['ReservationApproved']) || ($rawResponse['CheckCustomerAndPlaceReservationResult']['ReservationApproved'] !== 'true')) {
+                    $this->setIsError();
+                }
+
+                if (!$this->isError()) {
+                    foreach ($rawResponse['CheckCustomerAndPlaceReservationResult']['Customer'] as $key => $value) {
+                        $this->data[$key] = $value;
+                    }
+                    foreach ($rawResponse['CheckCustomerAndPlaceReservationResult']['Reservation'] as $key => $value) {
+                        $this->data[$key] = $value;
+                    }
+                }
+
+                if (isset($this->data['PurchaseStop']) && ($this->data['PurchaseStop'] === 'true')) {
+                    $this->isError = true;
+                }
+
+                break;
 
             case 'CancelReservation':
                 if (isset($rawResponse['CancelReservationResult']['TransactionID'])) {

@@ -102,8 +102,9 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
             // Collect all errors to add into the Exception.
             $errorMessages = array($t->trans('We were unable to approve your payment with Gothia Invoice service.', array(), 'gothia'));
 
-            if (!empty($client->getError())) {
-              array_push($errorMessages, $t->trans($client->getError(), array(), 'gothia'));
+            $clientError = $client->getError();
+            if (!empty($clientError)) {
+              array_push($errorMessages, $t->trans($clientError, array(), 'gothia'));
             }
             foreach ($gothiaApiCallResponse->errors as $error) {
               if (!empty($error) && !in_array($t->trans($error, array(), 'gothia'), $errorMessages)) {
@@ -112,7 +113,11 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
             }
             array_push($errorMessages, $t->trans('Please contact POMPdeLUX customer service if you keep receiving this error.', array(), 'gothia'));
 
-            Tools::debug('Gothia Response Error', __METHOD__, array( 'Transaction id' => $gothiaApiCallResponse->transactionId, 'Data' => $gothiaApiCallResponse->data));
+            Tools::debug('Gothia Response Error', __METHOD__, array(
+              'Transaction id' => $gothiaApiCallResponse->transactionId,
+              'Data' => $gothiaApiCallResponse->data,
+              'Errors' => $gothiaApiCallResponse->errors
+            ));
 
             throw new GothiaApiCallException(implode('<br><br>', $errorMessages));
         }
