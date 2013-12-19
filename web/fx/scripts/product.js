@@ -221,15 +221,14 @@
           if (name === 'size') {
             _resetColor();
             $.each(response.data.products, function(index, product) {
-              $('select.color option', $form).each(function(index) {
-                if (this.value === product.color){
-                  $(this).removeAttr('disabled');
-                  $(this).text($(this).data('text'));
-                }
-              });
-              // $('select.color', $form).append('<option value="'+product.color+'">'+product.color+'</option>');
+              var $option = $('select.color option[value="' + product.color + '"]', $form);
+              if ($option.length) {
+                $option.prop("disabled", false).text($option.data('text'));
+              } else {
+                $('select.color', $form).append('<option value="'+product.color+'" data-value="'+product.color+'">'+product.color+'</option>');
+              }
             });
-            $('select.color', $form).removeAttr('disabled').closest('label').removeClass('off');
+            $('select.color', $form).prop("disabled", false);
           }
 
           if (name == 'color') {
@@ -351,27 +350,24 @@
 
       if ( (section !== undefined) && (section !== 'size') ) {
         $this.find('select.size option').each(function(index) {
-          $(this).removeProp('selected');
+          $(this).prop('disabled', false);
         });
       }
 
       $this.find('select.color option').each(function(index) {
         if (this.value !== ''){
-          $(this).attr('disabled', 'disabled');
+          $(this).prop('disabled', true);
         }
       });
 
       $this.find('label').each(function() {
-        if (this.htmlFor === 'color') {
-          $(this).attr('disabled', 'disabled');
-        }
         if (this.htmlFor === 'quantity') {
           $(this).addClass('off');
         }
       });
 
       $this.find('select.quantity option').each(function(index) {
-        $(this).removeProp('selected');
+        $(this).prop('disabled', false);
       });
       $('select.quantity option:first', $this).prop('selected', true);
 
@@ -384,11 +380,11 @@
 
     var _resetColor = function() {
       var $this = $('form.buy');
-      $('select.color', $this).attr('disabled', 'disabled');
+      $('select.color', $this).prop('disabled', true);
       $('select.color option:first', $this).prop('selected', true);
       $('select.color option', $this).each(function(index) {
         if (this.value !== ''){
-          $(this).attr('disabled', 'disabled');
+          $(this).prop('disabled', true);
           if (!$(this).data('text')) {
             $(this).data('text', $(this).text());
           }
