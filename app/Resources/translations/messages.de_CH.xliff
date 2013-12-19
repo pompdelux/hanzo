@@ -168,6 +168,16 @@
                     </ul>
                 ]]></target>
             </trans-unit>
+            <trans-unit id="footer.text" approved="no">
+                <source>footer.text</source>
+                <target><![CDATA[
+                    <ul>
+                        <li><b>Fragt</b> fra 39,- + Fri Fragt fra min. 1200,-</li>
+                        <li><b>Leveringstid</b> %expected_delivery_date%</li>
+                        <li><b>Ombytning</b> Gratis</li>
+                    </ul>
+                ]]></target>
+            </trans-unit>
             <trans-unit id="order.deleted">
                 <source>order.deleted</source>
                 <target>E-Bestellnummer %id% wurde gelöscht</target>
@@ -260,7 +270,7 @@ Paket:Das Paket wird an Ihre Adresse geliefert und kostet EUR 4,95 (EUR 3,95, we
                 <h2>KUNDENDIENST</h2>
                 <ul class="menu">
                     <li><a href="/de_DE/kundendienst/telefonzeiten">Telefonzeiten</a></li>
-                    <li><a href="/de_DE/home/kundendienst/faq">FAQ</a></li>					
+                    <li><a href="/de_DE/home/kundendienst/faq">FAQ</a></li>
                     <li><a href="/de_DE/home/kundendienst/rucksendung">Rücksendung</a></li>
                     <li><a href="/de_DE/home/kundendienst/umtausch">Umtausch</a></li>
 					<li><a href="/de_DE/home/kundendienst/rucksendeschein">Rücksendeschein</a></li>
@@ -282,7 +292,7 @@ Paket:Das Paket wird an Ihre Adresse geliefert und kostet EUR 4,95 (EUR 3,95, we
 				<li><a href="/de_DE/home/home-shopping/tag-der-offenen-tur" target="_blank">Tag der offenen Tür</a></li>
 				<li><a href="/de_DE/home/katalog">Katalog</a></li>
 				<li><a href="/de_DE/home/beraterin-werden/ein-schoner-nebenjob">Beraterin werden</a></li>
-				</ul><br>		
+				</ul><br>
 				<h2>BE SOCIAL</h2>
 				 <ul class="menu">
 				<li><a href="http://instagram.com/pompdelux_official">Instagram</a></li>
@@ -296,7 +306,7 @@ Paket:Das Paket wird an Ihre Adresse geliefert und kostet EUR 4,95 (EUR 3,95, we
                 <target><![CDATA[
                 <h2>MEHR POMPDELUX</h2>
                 <ul class="menu">
-				<li><a href="/de_DE/home/uber-pompdelux" target="_blank">Über POMPdeLUX</a></li> 
+				<li><a href="/de_DE/home/uber-pompdelux" target="_blank">Über POMPdeLUX</a></li>
 				<li><a href="/de_DE/home/uber-pompdelux/corporate-social-responsibility/csr-bericht">CSR-bericht</a></li>
 				<li><a href="/de_DE/home/gewinnspiele" target="_blank">Gewinnspiele</a></li>
 				<li><a href="/de_DE/home/uber-pompdelux/kontakt">Kontakt</a></li>

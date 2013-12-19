@@ -154,6 +154,16 @@
                     </ul>]]>
                 </target>
             </trans-unit>
+            <trans-unit id="footer.text" approved="no">
+                <source>footer.text</source>
+                <target><![CDATA[
+                    <ul>
+                        <li><b>Fragt</b> fra 39,- + Fri Fragt fra min. 1200,-</li>
+                        <li><b>Leveringstid</b> %expected_delivery_date%</li>
+                        <li><b>Ombytning</b> Gratis</li>
+                    </ul>
+                ]]></target>
+            </trans-unit>
             <trans-unit id="buy.set">
                 <source>buy.set</source>
                 <target>Osta koko setti</target>

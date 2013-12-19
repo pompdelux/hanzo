@@ -168,6 +168,16 @@
                     </ul>
                 ]]></target>
             </trans-unit>
+            <trans-unit id="footer.text" approved="no">
+                <source>footer.text</source>
+                <target><![CDATA[
+                    <ul>
+                        <li><b>Fragt</b> fra 39,- + Fri Fragt fra min. 1200,-</li>
+                        <li><b>Leveringstid</b> %expected_delivery_date%</li>
+                        <li><b>Ombytning</b> Gratis</li>
+                    </ul>
+                ]]></target>
+            </trans-unit>
             <trans-unit id="order.deleted">
                 <source>order.deleted</source>
                 <target>E-ordrenummer %id% er slettet</target>
@@ -277,7 +287,7 @@
                 <li><a href="/da_DK/forside/kundeservice/vaske-raad">Vaskeråd</a></li>
 				<li><a href="/da_DK/forside/kundeservice/sizeguide">Sizeguide</a></li>
 				<li><a href="/da_DK/forside/kundeservice/vilkaar">Vilkår</a></li>
-				<li><a href="/da_DK/forside/kundeservice/om-webshoppen">Om webshoppen</a></li>   
+				<li><a href="/da_DK/forside/kundeservice/om-webshoppen">Om webshoppen</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>
@@ -291,7 +301,7 @@
 				<li><a href="/da_DK/forside/home-shopping/aabent-hus">Åbent hus</a></li>
 				<li><a href="/da_DK/forside/katalog">Katalog</a></li>
 				<li><a href="/da_DK/forside/bliv-konsulent/fritidskonsulent">Bliv konsulent</a></li>
-				</ul><br>		
+				</ul><br>
 				<h2>BE SOCIAL</h2>
 				 <ul class="menu">
 				<li><a href="http://instagram.com/pompdelux_official">Instagram</a></li>
@@ -304,12 +314,12 @@
                 <source>footer.menu_3</source>
                 <target><![CDATA[
                 <h2>MERE POMPDELUX</h2>
-                <ul class="menu">                
-                <li><a href="/da_DK/forside/om-pompdelux">Om POMPdeLUX</a></li> 
-				<li><a href="/da_DK/forside/om-pompdelux/corporate-social-responsibility/csr-rapport">CSR</a></li>	
+                <ul class="menu">
+                <li><a href="/da_DK/forside/om-pompdelux">Om POMPdeLUX</a></li>
+				<li><a href="/da_DK/forside/om-pompdelux/corporate-social-responsibility/csr-rapport">CSR</a></li>
 				<li><a href="/da_DK/forside/konkurrence">Konkurrencer</a></li>
 				<li><a href="/da_DK/forside/om-pompdelux/job/fritidskonsulent">Job</a></li>
-				<li><a href="/da_DK/forside/om-pompdelux/kontakt">Kontakt</a></li>	
+				<li><a href="/da_DK/forside/om-pompdelux/kontakt">Kontakt</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>
