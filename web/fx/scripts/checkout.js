@@ -114,6 +114,7 @@
 
       $(document).on('click', 'a#checkout-execute', function(event) {
         event.preventDefault();
+        var $checkout_button = $(this);
         /**
          * 1: validering af alle steps
          * 2: saml og POST alle forms og få deres svar retur
@@ -139,9 +140,13 @@
           fields : []
         };
 
+        var $address_confirm_box= $('<div></div>').addClass('address-confirm-box');
+
         $('#address-block form').each(function (index, form) {
           var $form = $(form);
           var id = index;
+
+          var $address_ul = $('<ul></ul>');
           $('input, select', $form).each(function (index, element) {
             var $element = $(element);
             // TODO: use css class
@@ -154,7 +159,13 @@
               address_errors.has_errors = true;
               address_errors.fields.push(field);
             }
+            // Add the element to the confirm address box
+            if ($element.attr('type') !== 'hidden') {
+              $address_ul.append('<li>' + element.value + '</li>');
+            }
           });
+          $address_confirm_box.append($(this).parent().find('h3'));
+          $address_confirm_box.append($address_ul);
         });
 
         if (address_errors.has_errors) {
@@ -162,41 +173,16 @@
           return false;
         }
 
-        var address_confirm = $('#address-block div.confirm');
-
-        if ($('input:checked', address_confirm).length === 0) {
-          var is_mobile = $('body').hasClass('is-mobile');
-
-          address_confirm.toggleClass('hidden');
-
-          return false;
-        }
-
-        $(this).hide();
-        dialoug.loading($('a#checkout-execute', '', 'after'));
-        $('form.address .error').remove();
-
-        $('#main form').each(function(index, form) {
-          var $form = $(form);
-
-          if ($form.data('callback')) {
-            var url = $form.attr('action');
-            url = url.replace(/(app_(test|dev)\.php\/)?[a-z]{2}_[a-z]{2}\//i, '');
-            var callback = $form.data('callback');
-            jaiks.add(url, eval('checkout.'+callback), $form.formParams());
+        // Confirm that the entered addresses are correct.
+        dialoug.confirm(Translator.get('js:notice'), $address_confirm_box[0].outerHTML, function(choice) {
+          if (choice !== 'ok') {
+            $('html,body').animate({ scrollTop : $('#address-block').offset().top - 20 });
+          } else {
+            executeCheckout();
           }
         });
 
-        jaiks.add('/checkout/payment/process', checkout.processPaymentButton);
-        jaiks.exec();
-
         return false;
-      });
-
-      $('#addresses-confirmed').on('change', function(event) {
-        if (this.checked) {
-          $(this).closest('div').css('border-color', '#C8C4C3');
-        }
       });
 
       $(document).on('payment.method.updated', function(event) {
@@ -427,6 +413,28 @@
         jaiks.exec();
       });
     };
+
+    executeCheckout = function() {
+
+        $('a#checkout-execute').hide();
+        dialoug.loading($('a#checkout-execute', '', 'after'));
+        $('form.address .error').remove();
+
+        $('#main form').each(function(index, form) {
+          var $form = $(form);
+
+          if ($form.data('callback')) {
+            var url = $form.attr('action');
+            url = url.replace(/(app_(test|dev)\.php\/)?[a-z]{2}_[a-z]{2}\//i, '');
+            var callback = $form.data('callback');
+            jaiks.add(url, eval('checkout.'+callback), $form.formParams());
+          }
+        });
+
+        jaiks.add('/checkout/payment/process', checkout.processPaymentButton);
+        jaiks.exec();
+
+      };
 
     return pub;
   })(jQuery);

@@ -2258,6 +2258,10 @@ div.invalid-order {
   padding: 10px;
 }
 
+.dialoug .address-confirm-box ul {
+  float: left;
+}
+
 #body-pensio-payment-form ul,
 #body-pensio-payment-form form {
   margin: 20px 0;
