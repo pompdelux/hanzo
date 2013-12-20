@@ -221,7 +221,7 @@
             </trans-unit>
             <trans-unit id="67">
                 <source>create.notice</source>
-                <target><![CDATA[<strong>Sind Sie bereits Kunde?</strong> Falls Sie schon ein Konto bei uns haben, loggen Sie sich bitte unter <a href="%url%">Meine Seite</a> ein.<br><br>]]></target>
+                <target><![CDATA[<strong>Sind Sie bereits Kunde?</strong><br> Falls Sie schon ein Konto bei uns haben, loggen Sie sich bitte unter <a href="%url%">Meine Seite</a> ein.<br><br>]]></target>
             </trans-unit>
             <trans-unit id="68">
                 <source>nno.title</source>
@@ -506,7 +506,7 @@ Rücksendung</b><br>Möchten Sie die Ware zurückschicken, dann klicken Sie bitt
             </trans-unit>
             <trans-unit id="create.pre-notice" approved="no">
                 <source>create.pre-notice</source>
-                <target><![CDATA[Auf dieser Seite sollen Sie Ihre privaten Informationen ausfüllen (<u>nicht</u> evtl. Firmeninformationen).]]></target>
+                <target><![CDATA[<b>Sind Sie ein neuer Kunde?</b><br>Auf dieser Seite sollen Sie Ihre privaten Informationen ausfüllen (<u>nicht</u> evtl. Firmeninformationen).]]></target>
             </trans-unit>
             <trans-unit id="order.force.login.description" approved="no">
                 <source>order.force.login.description</source>
