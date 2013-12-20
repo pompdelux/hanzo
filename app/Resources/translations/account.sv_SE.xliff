@@ -201,7 +201,7 @@
             </trans-unit>
             <trans-unit id="67">
                 <source>create.notice</source>
-                <target><![CDATA[<strong>Är du redan kund?</strong> Om du redan är kund hos oss, ska du logga in på <a href="%url%">Min sida</a>.<br><br>]]></target>
+                <target><![CDATA[<strong>Är du redan kund?</strong><br><br>Om du redan är kund hos oss, ska du logga in på <a href="%url%">Min sida</a>.<br><br>]]></target>
             </trans-unit>
             <trans-unit id="68" approved="no">
                 <source>nno.title</source>
@@ -496,7 +496,7 @@ Du har möjlighet att ändra/lägga till/radera i din order. Du ska klicka på <
             </trans-unit>
             <trans-unit id="create.pre-notice" approved="no">
                 <source>create.pre-notice</source>
-                <target><![CDATA[På denna sida ska du skriva dina personliga upplysningar (<u>inte</u> företagsnamn).]]></target>
+                <target><![CDATA[<b>Är du ny kund?</b><br>På denna sida ska du skriva dina personliga upplysningar (<u>inte</u> företagsnamn).]]></target>
             </trans-unit>
             <trans-unit id="order.force.login.description" approved="no">
                 <source>order.force.login.description</source>

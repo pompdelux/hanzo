@@ -205,7 +205,7 @@
             </trans-unit>
             <trans-unit id="67">
                 <source>create.notice</source>
-                <target><![CDATA[<strong>Ben je al klant?</strong> Heb je al een account bij ons, dan moet je inloggen op <a href="%url%">Mijn pagina</a>.<br><br>]]></target>
+                <target><![CDATA[<strong>Ben je al klant?</strong><br> Heb je al een account bij ons, dan moet je inloggen op <a href="%url%">Mijn pagina</a>.<br><br>]]></target>
             </trans-unit>
             <trans-unit id="68" approved="no">
                 <source>nno.title</source>
@@ -501,7 +501,7 @@ Let op: de betaling moet uitgevoerd worden – eerdere betalingen worden automat
             </trans-unit>
             <trans-unit id="create.pre-notice" approved="no">
                 <source>create.pre-notice</source>
-                <target><![CDATA[Op deze pagina moet je je persoonlijke gegevens invullen (en <u>niet</u> je bedrijfsgegevens).]]></target>
+                <target><![CDATA[<b>Ben je een nieuwe klant?</b><br>Op deze pagina moet je je persoonlijke gegevens invullen (en <u>niet</u> je bedrijfsgegevens).]]></target>
             </trans-unit>
             <trans-unit id="order.force.login.description" approved="no">
                 <source>order.force.login.description</source>

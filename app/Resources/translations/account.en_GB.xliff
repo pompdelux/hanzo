@@ -209,7 +209,7 @@
             </trans-unit>
             <trans-unit id="67">
                 <source>create.notice</source>
-                <target><![CDATA[<strong>Are you already a customer?</strong> If you have already created an account please log in to <a href="%url%">My account</a><br><br>]]></target>
+                <target><![CDATA[<strong>Are you already a customer?</strong><br> If you have already created an account please log in to <a href="%url%">My account</a><br><br>]]></target>
             </trans-unit>
             <trans-unit id="68" approved="no">
                 <source>nno.title</source>
@@ -499,7 +499,7 @@
             </trans-unit>
             <trans-unit id="create.pre-notice" approved="no">
                 <source>create.pre-notice</source>
-                <target><![CDATA[On this page you must enter your personal info (and <u>not</u> company info).]]></target>
+                <target><![CDATA[<b>Are you a new customer?</b><br>On this page you must enter your personal info (and <u>not</u> company info).]]></target>
             </trans-unit>
             <trans-unit id="order.force.login.description" approved="no">
                 <source>order.force.login.description</source>

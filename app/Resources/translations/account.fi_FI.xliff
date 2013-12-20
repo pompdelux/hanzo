@@ -212,7 +212,7 @@
             </trans-unit>
             <trans-unit id="67">
                 <source>create.notice</source>
-                <target><![CDATA[<strong>Oletko jo asiakas? </strong> Jos sinulla on jo tili meillä, kirjaudu sisään <a href="%url%">Omalle sivullesi</a>.<br><br>]]></target>
+                <target><![CDATA[<strong>Oletko jo asiakas?</strong><br> Jos sinulla on jo tili meillä, kirjaudu sisään <a href="%url%">Omalle sivullesi</a>.<br><br>]]></target>
             </trans-unit>
             <trans-unit id="68">
                 <source>nno.title</source>
@@ -495,7 +495,7 @@ Voit muuttaa tilaustasi, lisätä siihen tuotteita tai poistaa tuotteita. Napsau
             </trans-unit>
             <trans-unit id="create.pre-notice" approved="no">
                 <source>create.pre-notice</source>
-                <target><![CDATA[Anna tällä sivulla henkilötietosi (<u>ei</u> yritystietoja).]]></target>
+                <target><![CDATA[<b>Oletko uusi asiakas?</b><br>Anna tällä sivulla henkilötietosi (<u>ei</u> yritystietoja).]]></target>
             </trans-unit>
             <trans-unit id="order.force.login.description" approved="no">
                 <source>order.force.login.description</source>
