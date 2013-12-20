@@ -205,7 +205,7 @@
             </trans-unit>
             <trans-unit id="67">
                 <source>create.notice</source>
-                <target><![CDATA[<strong>Ben je al klant?</strong> Heb je al een account bij ons, dan moet je inloggen op <a href="%url%">Mijn pagina</a>.]]></target>
+                <target><![CDATA[<strong>Ben je al klant?</strong> Heb je al een account bij ons, dan moet je inloggen op <a href="%url%">Mijn pagina</a>.<br><br>]]></target>
             </trans-unit>
             <trans-unit id="68" approved="no">
                 <source>nno.title</source>
@@ -213,7 +213,7 @@
             </trans-unit>
             <trans-unit id="69" approved="no">
                 <source>nno.description</source>
-                <target>Typ je telefoonnummer en je adres wordt automatisch ingevuld.</target>
+                <target><![CDATA[<b>Ben je een nieuwe klant?</b><br>Typ je telefoonnummer en je adres wordt automatisch ingevuld.]]></target>
             </trans-unit>
             <trans-unit id="70">
                 <source>nno.fetch</source>

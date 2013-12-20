@@ -212,7 +212,7 @@
             </trans-unit>
             <trans-unit id="67">
                 <source>create.notice</source>
-                <target><![CDATA[<strong>Oletko jo asiakas? </strong> Jos sinulla on jo tili meillä, kirjaudu sisään <a href="%url%">Omalle sivullesi</a>.]]></target>
+                <target><![CDATA[<strong>Oletko jo asiakas? </strong> Jos sinulla on jo tili meillä, kirjaudu sisään <a href="%url%">Omalle sivullesi</a>.<br><br>]]></target>
             </trans-unit>
             <trans-unit id="68">
                 <source>nno.title</source>
@@ -220,7 +220,7 @@
             </trans-unit>
             <trans-unit id="69">
                 <source>nno.description</source>
-                <target>Kirjoita puhelinnumerosi, osoitetietosi täydennetään automaattisesti.</target>
+                <target><![CDATA[<b>Oletko uusi asiakas?</b><br>Kirjoita puhelinnumerosi, osoitetietosi täydennetään automaattisesti.]]></target>
             </trans-unit>
             <trans-unit id="70">
                 <source>nno.fetch</source>

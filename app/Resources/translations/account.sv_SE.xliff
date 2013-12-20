@@ -201,7 +201,7 @@
             </trans-unit>
             <trans-unit id="67">
                 <source>create.notice</source>
-                <target><![CDATA[<strong>Är du redan kund?</strong> Om du redan är kund hos oss, ska du logga in på <a href="%url%">Min sida</a>.]]></target>
+                <target><![CDATA[<strong>Är du redan kund?</strong> Om du redan är kund hos oss, ska du logga in på <a href="%url%">Min sida</a>.<br><br>]]></target>
             </trans-unit>
             <trans-unit id="68" approved="no">
                 <source>nno.title</source>
@@ -209,7 +209,7 @@
             </trans-unit>
             <trans-unit id="69" approved="no">
                 <source>nno.description</source>
-                <target>Skriv ditt telefonnummer och få ifylld din adress automatiskt.</target>
+                <target><![CDATA[<b>Är du ny kund?</b><br>Skriv ditt telefonnummer och få ifylld din adress automatiskt.]]></target>
             </trans-unit>
             <trans-unit id="70">
                 <source>nno.fetch</source>
