@@ -128,7 +128,7 @@
             </trans-unit>
             <trans-unit id="store.address">
                 <source>store.address</source>
-                <target>POMPdeLUX DE GmbH • Dammtorstraβe 12 • DE-20354 Hamburg • USt-IdNr. DE290402183 • mailde@pompdelux.com • 040-35715072</target>
+                <target>POMPdeLUX ApS · Møgelhøj 8 · DK-8520 Lystrup · CVR-nr 29622035 · mailch@pompdelux.com · (+45) 8678 7874</target>
             </trans-unit>
             <trans-unit id="order.edit.global.notice">
                 <source>order.edit.global.notice</source>
@@ -146,8 +146,8 @@
                 <source>customer.service.contact.info</source>
                 <target><![CDATA[
                     <strong>Kundendienst</strong><br>
-                    Telefon: 040-35715072<br>
-                    E-Mail: <a href="mailto:mailde@pompdelux.com">mailde@pompdelux.com</a><br>
+                    Telefon: (+45) 8678 7874<br>
+                    E-Mail: <a href="mailto:mailch@pompdelux.com">mailch@pompdelux.com</a><br>
                     Montags bis Donnerstags 9 - 16 Uhr<br>
                     Freitags 9 - 14 Uhr<br>
                     Samstags, Sonntags und Feiertags geschlossen.
@@ -157,12 +157,12 @@
                 <source>footer.address</source>
                 <target><![CDATA[
                     <ul>
-                        <li>POMPdeLUX DE GmbH</li>
-                        <li>Dammtorstraβe 12</li>
-                        <li>DE-20354 Hamburg</li>
-                        <li>USt-IdNr. DE290402183</li>
-                        <li><a href="mailto:mailde@pompdelux.com">mailde@pompdelux.com</a></li>
-                        <li>040-35715072</li>
+                        <li>POMPdeLUX ApS</li>
+                        <li>Møgelhøj 8</li>
+                        <li>DK-8520 Lystrup</li>
+                        <li>CVR-nr 29622035</li>
+                        <li><a href="mailto:mailch@pompdelux.com">mailch@pompdelux.com</a></li>
+                        <li>(+45) 8678 7874</li>
                         <li><img src="%cdn%fx/images/creditcards_de.png" alt="credit cards" title="credit cards"></li>
                         <li><a href="http://www.facebook.com/sharer.php?u=%url%" class="facebook-button social-button" title="Del denne side på Facebook">Auf Facebook teilen</a></li>
                     </ul>
@@ -191,7 +191,7 @@
             <trans-unit id="create.account.vilkaar.link">
                 <source>create.account.vilkaar.link</source>
                 <target><![CDATA[
-                    <a href="/de_DE/home/kundendienst/abgs" target="_blank">POMPdeLUX AGB's.</a>
+                    <a href="/de_CH/home/kundendienst/abgs" target="_blank">POMPdeLUX AGB's.</a>
                 ]]></target>
             </trans-unit>
             <trans-unit id="category.selector.look" approved="no">
@@ -259,16 +259,16 @@ Paket:Das Paket wird an Ihre Adresse geliefert und kostet EUR 4,95 (EUR 3,95, we
                 <target><![CDATA[
                 <h2>KUNDENDIENST</h2>
                 <ul class="menu">
-                    <li><a href="/de_DE/kundendienst/telefonzeiten">Telefonzeiten</a></li>
-                    <li><a href="/de_DE/home/kundendienst/faq">FAQ</a></li>					
-                    <li><a href="/de_DE/home/kundendienst/rucksendung">Rücksendung</a></li>
-                    <li><a href="/de_DE/home/kundendienst/umtausch">Umtausch</a></li>
-					<li><a href="/de_DE/home/kundendienst/rucksendeschein">Rücksendeschein</a></li>
-                    <li><a href="/de_DE/home/kundendienst/waschtipps">Waschtipps</a></li>
-					<li><a href="/de_DE/home/kundendienst/sizeguide">Sizeguide</a></li>
-					<li><a href="/de_DE/home/kundendienst/abgs">AGB's</a></li>
-					<li><a href="/de_DE/home/kundendienst/impressum">Impressum</a></li>
-					<li><a href="/de_DE/home/kundendienst/uber-den-webshop">Über den Webshop</a></li>
+                    <li><a href="/de_CH/kundendienst/telefonzeiten">Telefonzeiten</a></li>
+                    <li><a href="/de_CH/home/kundendienst/faq">FAQ</a></li>					
+                    <li><a href="/de_CH/home/kundendienst/rucksendung">Rücksendung</a></li>
+                    <li><a href="/de_CH/home/kundendienst/umtausch">Umtausch</a></li>
+					<li><a href="/de_CH/home/kundendienst/rucksendeschein">Rücksendeschein</a></li>
+                    <li><a href="/de_CH/home/kundendienst/waschtipps">Waschtipps</a></li>
+					<li><a href="/de_CH/home/kundendienst/sizeguide">Sizeguide</a></li>
+					<li><a href="/de_CH/home/kundendienst/abgs">AGB's</a></li>
+					<li><a href="/de_CH/home/kundendienst/impressum">Impressum</a></li>
+					<li><a href="/de_CH/home/kundendienst/uber-den-webshop">Über den Webshop</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>
@@ -277,17 +277,17 @@ Paket:Das Paket wird an Ihre Adresse geliefert und kostet EUR 4,95 (EUR 3,95, we
                 <target><![CDATA[
                 <h2>HOME SHOPPING</h2>
                 <ul class="menu">
-				<li><a href="/de_DE/home/beraterin-werden/ein-schoner-nebenjob">Beraterin werden</a></li>
-				<li><a href="/de_DE/home/home-shopping/beraterin-finden" target="_blank">Beraterin finden</a></li>
-				<li><a href="/de_DE/home/home-shopping/tag-der-offenen-tur" target="_blank">Tag der offenen Tür</a></li>
-				<li><a href="/de_DE/home/katalog">Katalog</a></li>
-				<li><a href="/de_DE/home/beraterin-werden/ein-schoner-nebenjob">Beraterin werden</a></li>
+				<li><a href="/de_CH/home/beraterin-werden/ein-schoner-nebenjob">Beraterin werden</a></li>
+				<li><a href="/de_CH/home/home-shopping/beraterin-finden">Beraterin finden</a></li>
+				<li><a href="/de_CH/home/home-shopping/tag-der-offenen-tur">Tag der offenen Tür</a></li>
+				<li><a href="/de_CH/home/katalog">Katalog</a></li>
+				<li><a href="/de_CH/home/beraterin-werden/ein-schoner-nebenjob">Beraterin werden</a></li>
 				</ul><br>		
 				<h2>BE SOCIAL</h2>
 				 <ul class="menu">
 				<li><a href="http://instagram.com/pompdelux_official">Instagram</a></li>
 				<li><a href="https://www.facebook.com/POMPdeLUXDK">Facebook</a></li>
-				<li><a href="/de_DE/home/katalog/backstage-video">Backstage video</a></li>
+				<li><a href="/de_CH/home/katalog/backstage-video">Backstage video</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>
@@ -296,10 +296,10 @@ Paket:Das Paket wird an Ihre Adresse geliefert und kostet EUR 4,95 (EUR 3,95, we
                 <target><![CDATA[
                 <h2>MEHR POMPDELUX</h2>
                 <ul class="menu">
-				<li><a href="/de_DE/home/uber-pompdelux" target="_blank">Über POMPdeLUX</a></li> 
-				<li><a href="/de_DE/home/uber-pompdelux/corporate-social-responsibility/csr-bericht">CSR-bericht</a></li>
-				<li><a href="/de_DE/home/gewinnspiele" target="_blank">Gewinnspiele</a></li>
-				<li><a href="/de_DE/home/uber-pompdelux/kontakt">Kontakt</a></li>
+				<li><a href="/de_CH/home/uber-pompdelux">Über POMPdeLUX</a></li> 
+				<li><a href="/de_CH/home/uber-pompdelux/corporate-social-responsibility/csr-bericht">CSR-bericht</a></li>
+				<li><a href="/de_CH/home/gewinnspiele">Gewinnspiele</a></li>
+				<li><a href="/de_CH/home/uber-pompdelux/kontakt">Kontakt</a></li>
 				</ul>
                 ]]></target>
             </trans-unit>
