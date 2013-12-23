@@ -39,14 +39,6 @@
           Maksussa/tilauksen käsittelyssä tapahtui virhe. Ota yhteyttä asiakaspalveluun<br><br> <p>E-tilausnumero: <b>%order_id%</b></p>
         ]]></target>
       </trans-unit>
-      <trans-unit id="confirm.title">
-        <source>confirm.title</source>
-        <target>Hyväksy</target>
-      </trans-unit>
-      <trans-unit id="confirm.addresses.label" approved="no">
-        <source>confirm.addresses.label</source>
-        <target>Kyllä, yllä olevat osoitteet ovat oikein.</target>
-      </trans-unit>
       <trans-unit id="confirm.order_id">
         <source>confirm.order_id</source>
         <target>E-tilausnumero</target>

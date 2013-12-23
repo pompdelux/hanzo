@@ -22,11 +22,6 @@
   <label class="off">
     <input type="checkbox" id="address-copy">{{ 'address.copy'|trans({}, 'checkout') }}
   </label>
-  <div class="confirm msg hidden">
-    <h3>{{ 'confirm.title'|trans({}, 'checkout') }}</h3>
-    <input type="checkbox" name="addresses_confirmed" id="addresses-confirmed" value="1">
-    <label for="addresses-confirmed">{{ 'confirm.addresses.label'|trans({}, 'checkout') }}</label>
-  </div>
 </div>
 
 {% render 'PaymentBundle:Default:block' %}

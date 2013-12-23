@@ -52,14 +52,6 @@
         <source>checkout.failed.text</source>
         <target>Er ging iets fout bij de betaling / orderbehandeling. Gelieve contact op te nemen met de klantenservice</target>
       </trans-unit>
-      <trans-unit id="confirm.title">
-        <source>confirm.title</source>
-        <target>Let op!</target>
-      </trans-unit>
-      <trans-unit id="confirm.addresses.label" approved="no">
-        <source>confirm.addresses.label</source>
-        <target>Ja, postcode en huisnummer zijn correct.</target>
-      </trans-unit>
       <trans-unit id="confirm.order_id">
         <source>confirm.order_id</source>
         <target>E-ordernummer</target>
