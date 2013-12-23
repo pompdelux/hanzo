@@ -2425,6 +2425,9 @@ a.facebook-button:hover, a.facebook-button:active, a.facebook-button:focus,
 /**
 | _topmenu
 */
+nav.main-menu {
+  background: #484a4d;
+}
 nav.main-menu ul {
   z-index: 210;
   position: relative;
@@ -2432,10 +2435,13 @@ nav.main-menu ul {
   padding: 0;
   margin: 0;
 }
+nav.main-menu ul.outer {
+  display: table;
+  margin: 0 auto;
+}
 nav.main-menu > ul > li {
   float: left;
   width: auto;
-  padding: 15px 20px 0 0;
   position: relative;
 }
 nav.main-menu > ul > li > ul.on, nav.main-menu > ul > li:hover > ul {
@@ -2447,8 +2453,11 @@ nav.main-menu > ul > li > ul.on, nav.main-menu > ul > li:hover > ul {
   box-shadow: #444444 4px 4px 8px;
 }
 nav.main-menu > ul > li > a {
+  padding: 10px 30px 10px 0;
   display: block;
-  font-size: 16px;
+  font-size: 14px;
+  color: white;
+  font-weight: bold;
 }
 nav.main-menu > ul > li > ul {
   position: absolute;

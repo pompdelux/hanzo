@@ -106,13 +106,11 @@
             </ul>
         </nav>
 
-        <nav class="menu main-menu">
+        <nav class="menu main-menu clearfix">
             {% render 'CMSBundle:Menu:menu' with {'type': left_menu.type, 'thread': left_menu.thread, 'from': left_menu.from } %}
         </nav><!-- /nav.main -->
 
     {% endif %}
-
-        <hr class="right">
     </header>
 
     <div id="main" role="main" class="main clearfix grid_8">

@@ -4,18 +4,22 @@
 @import "compass/css3/box-shadow";
 
 nav.main-menu {
+  background: #484a4d;
   ul {
     z-index: 210; // z-index and rpoition to fix rendering in IE7. This must be higher than the actually z-index of child
     position: relative;
     list-style: none;
     padding: 0;
     margin: 0;
+    &.outer {
+      display: table;
+      margin: 0 auto;
+    }
   }
   // Main menu-items
   > ul > li {
     float: left;
     width: auto;
-    padding: 15px 20px 0 0;
     position: relative;
     // Hover effect on submenus. .on class are used on touch devices.
     > ul.on,
@@ -27,9 +31,11 @@ nav.main-menu {
     }
     > {
       a {
+        padding: 10px 30px 10px 0;
         display: block;
-        font-size: $heading-size;
-
+        font-size: 14px;
+        color: white;
+        font-weight: bold;
       }
       // Sub menu-items
       ul {
