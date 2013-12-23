@@ -103,18 +103,26 @@
 
 
         $('> ul > li > a', $menu).click(function(event) {
-          event.stopPropagation();
-
           var $this = $(this).parent();
           var $element = $('> ul', $this);
 
-          $('> ul > li > ul.on', $menu).not($element).removeClass('on');
-          $element.toggleClass('on');
+          if ($('html').hasClass('touch') && !$element.hasClass('on') && $('ul', $this).length) {
+            event.stopPropagation();
 
-          if ($('ul', $this).length) {
+            $('> ul > li > ul.on', $menu).not($element).removeClass('on');
+            $element.toggleClass('on');
+
             event.preventDefault();
           }
         });
+        // $('> ul > li > a', $menu).hover(function(event) {
+
+
+
+        //   if ($('ul', $this).length) {
+        //     event.preventDefault();
+        //   }
+        // });
 
         $('html').click(function(event) {
           $('.on', $menu).removeClass('on');
