@@ -158,7 +158,20 @@ div.invalid-order {
 }
 
 .dialoug .address-confirm-box {
-	ul {
+	padding: 20px;
+	div {
+		display: inline-block;
+		width: 250px;
 		float: left;
+	}
+	li {
+		font-weight: normal;
+		padding: 5px 0;
+		vertical-align: top;
+	}
+	b {
+		width: 100px;
+		word-wrap: break-word;
+		display: inline-block;
 	}
 }

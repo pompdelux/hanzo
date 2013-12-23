@@ -125,6 +125,7 @@
         if (!checkout.getStepStatus('shipping')) {
           var $block = $('#shipping-block');
           $('.msg', $block).text(Translator.get('js:checkout.choose.shipping.method')).toggleClass('hidden error');
+          $('html,body').animate({ scrollTop : $('#shipping-block').offset().top - 20 });
           return false;
         }
 
@@ -132,6 +133,7 @@
         if (!checkout.getStepStatus('payment')) {
           var $block = $('#payment-block');
           $('.msg', $block).text(Translator.get('js:checkout.choose.payment.method')).toggleClass('hidden error');
+          $('html,body').animate({ scrollTop : $('#payment-block').offset().top - 20 });
           return false;
         }
 
@@ -140,7 +142,7 @@
           fields : []
         };
 
-        var $address_confirm_box= $('<div></div>').addClass('address-confirm-box');
+        var $address_confirm_box= $('<div></div>').addClass('address-confirm-box clearfix');
 
         $('#address-block form').each(function (index, form) {
           var $form = $(form);
@@ -160,27 +162,32 @@
               address_errors.fields.push(field);
             }
             // Add the element to the confirm address box
-            if ($element.attr('type') !== 'hidden') {
-              $address_ul.append('<li>' + element.value + '</li>');
+            if ($element.attr('type') !== 'hidden' && element.id !== 'form_phone') {
+              $address_ul.append('<li><b>' + $('label[for=' + element.id + ']').first().text() + '</b> ' + element.value + '</li>');
             }
           });
-          $address_confirm_box.append($(this).parent().find('h3'));
-          $address_confirm_box.append($address_ul);
+          $address_confirm_box.append($('<div>').append($(this).parent().find('h3').clone())
+                                                .append($address_ul));
         });
 
         if (address_errors.has_errors) {
           dialoug.notice(Translator.get('js:not.filled.correctly'), 'error', 4000, '#address-block');
+          $('html,body').animate({ scrollTop : $('#address-block').offset().top - 20 });
           return false;
         }
 
         // Confirm that the entered addresses are correct.
-        dialoug.confirm(Translator.get('js:notice'), $address_confirm_box[0].outerHTML, function(choice) {
+        dialoug.confirm(Translator.get('js:checkout.confirm.address.block'), $address_confirm_box[0].outerHTML, function(choice) {
           if (choice !== 'ok') {
-            $('html,body').animate({ scrollTop : $('#address-block').offset().top - 20 });
+            var elementHeight = $('#address-block').height(),
+                elementOffsetTop = $('#address-block').offset().top,
+                viewportHeight = jQuery(window).height();
+            // Scroll to address block centered in window.
+            $('html,body').animate({ scrollTop : elementOffsetTop + (elementHeight/2) - (viewportHeight/2) });
           } else {
             executeCheckout();
           }
-        });
+        }, {'maxWidth' : false});
 
         return false;
       });
