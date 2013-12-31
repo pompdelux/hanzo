@@ -101,6 +101,9 @@ class AddressController extends CoreController
             ;
         }
 
+        // to enable address locator or not.
+        $enable_locator = ($type != 'payment' && in_array($delivery_method_id, [12, 71]));
+
         if (!$address) {
             $address = new Addresses();
             $address->setType($type);
@@ -212,12 +215,19 @@ class AddressController extends CoreController
             }
         }
 
+        // if the locator is enables, set all elements to read-only to prevent customers from editing the found address.
+        if ($enable_locator) {
+            foreach ($builder->all() as $element) {
+                $element->setDisabled(true);
+            }
+        }
+
         $builder->add('customers_id', 'hidden', ['data' => $customer_id]);
         $form = $builder->getForm();
 
         $response = $this->render('ShippingBundle:Address:form.html.twig', [
             'type'           => $type,
-            'enable_locator' => ($type != 'payment' && in_array($delivery_method_id, [12, 71])),
+            'enable_locator' => $enable_locator,
             'form'           => $form->createView(),
         ]);
 
