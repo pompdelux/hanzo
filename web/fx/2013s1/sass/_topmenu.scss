@@ -36,6 +36,9 @@ nav.main-menu {
         font-size: 14px;
         color: white;
         font-weight: bold;
+        span {
+          font-weight: normal;
+        }
       }
       // Sub menu-items
       ul {

@@ -7,7 +7,7 @@
 <head>
 
 {% if browser_title is defined and page_type|default('page') != 'frontpage' %}
-<title>{{ browser_title }} - {{ 'browser.title'|trans }}</title>
+<title>{{ browser_title|strip_tags }} - {{ 'browser.title'|trans }}</title>
 {% else %}
 <title>{{ 'browser.title'|trans }}</title>
 {% endif %}

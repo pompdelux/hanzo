@@ -2459,6 +2459,9 @@ nav.main-menu > ul > li > a {
   color: white;
   font-weight: bold;
 }
+nav.main-menu > ul > li > a span {
+  font-weight: normal;
+}
 nav.main-menu > ul > li > ul {
   position: absolute;
   left: -9999px;
