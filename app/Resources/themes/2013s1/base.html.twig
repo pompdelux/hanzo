@@ -105,6 +105,60 @@
         {% endif %}
             </ul>
         </nav>
+        {% if skip_my_account is not defined %}
+            <div id="mega-basket" class="off">
+                <div class="basket">
+                    <span class="sprite"></span>
+                </div>
+
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>hej</td>
+                            <td>hej</td>
+                            <td class="image left">
+                            {% if product.basket_image %}
+                            {{ product_image_tag(product.basket_image, '57x100', { 'alt' : product.products_name }) }}
+                            {% endif %}
+                            <div class="info" data-product_id="{{ product.products_id }}" data-master="{{ product.master }}" data-confirmed="">
+                            {% if product.url %}
+                            <a href="{{ product.url }}" class="title">{{ product.products_name }}</a>
+                            {% else %}
+                            {{ product.products_name }}
+                            {% endif %}
+                            <div class="size">
+                            <label>{{ "size"|trans }}:</label>
+                            <span>{{ product.products_size }}</span>
+                            </div>
+                            <div class="color">
+                            <label>{{ "color"|trans }}:</label>
+                            <span>{{ product.products_color }}</span>
+                            </div>
+                            </div>
+                            </td>
+
+                            <td class="right price">{{ product.price|money }}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>{{ "total"|trans }}:</td>
+                            <td class="right total grand-total">{{ total|money }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ "total"|trans }}:</td>
+                            <td class="right total grand-total">{{ total|money }}</td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <div class="delivery-text">
+                    {{ 'footer.text'|trans({'%expected_delivery_date%': parameter('HD.expected_delivery_date')})|raw }}
+                </div>
+                <a class="checkout-button buy-set sprite"></a>
+                <a href="#" class="close sprite delete"></a>
+            </div>
+        {% endif %}
 
         <nav class="menu main-menu">
             {% render 'CMSBundle:Menu:menu' with {'type': left_menu.type, 'thread': left_menu.thread, 'from': left_menu.from } %}

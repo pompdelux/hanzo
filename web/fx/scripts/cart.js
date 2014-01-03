@@ -268,9 +268,16 @@
         });
       });
     };
+    pub.miniBasketInit = function() {
+      $('#mini-basket a, #mega-basket .close').click(function(e) {
+        e.preventDefault();
+        $('#mega-basket').toggleClass('off');
+      });
+    };
 
     return pub;
   })($);
 
   cart.init();
+  cart.miniBasketInit();
 })(jQuery);

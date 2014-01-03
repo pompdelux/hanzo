@@ -5,7 +5,8 @@
   background: url('/fx/2013s1/../images/icons/da-s7398167b80.png') no-repeat;
 }
 
-.icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-return, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, .body-pages .newsletter-form-simple .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.return {
+.icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-return, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, #mini-basket.basket .sprite,
+#mega-basket .basket .sprite, .body-pages .newsletter-form-simple .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.return {
   background: url('/fx/2013s1/../images/icons/icons-s282dcdbd9c.png') no-repeat;
 }
 
@@ -580,8 +581,13 @@ div header.row {
 
 #secondary-links {
   position: absolute;
-  top: 0px;
-  right: 3px;
+  top: -6px;
+  right: 0px;
+  background: #a2a2a2;
+  padding: 5px 10px 0;
+  -webkit-border-radius: 0px 0px 20px 20px;
+  -moz-border-radius: 0px 0px 20px 20px;
+  border-radius: 0px 0px 20px 20px;
 }
 #secondary-links li {
   padding: 8px;
@@ -589,22 +595,6 @@ div header.row {
 }
 #secondary-links li.last {
   padding-right: 0;
-}
-#secondary-links li.basket .sprite {
-  display: inline-block;
-  vertical-align: middle;
-  background-position: 0 0;
-  height: 50px;
-  width: 50px;
-}
-#secondary-links li.basket a {
-  color: black;
-  font-size: 14px;
-  font-weight: normal;
-  font-family: Tahoma, Geneva, Verdana, sans-serif;
-  display: inline-block;
-  vertical-align: middle;
-  margin-left: 5px;
 }
 #secondary-links li a, #secondary-links li input {
   font-size: 0.8em;
@@ -620,11 +610,20 @@ div header.row {
   display: block;
   margin: 15px 5px;
 }
-#secondary-links .second {
+#secondary-links ul.first {
+  border-bottom: 1px dashed white;
+}
+#secondary-links ul.first > li > a {
+  color: white;
+}
+#secondary-links ul.first li:first-child {
+  float: left;
+}
+#secondary-links ul.second {
   z-index: 1;
 }
-#secondary-links .second a {
-  color: black;
+#secondary-links ul.second a {
+  color: white;
   font-size: 14px;
   font-weight: normal;
   font-family: Tahoma, Geneva, Verdana, sans-serif;
@@ -2378,6 +2377,60 @@ div.invalid-order {
   display: block;
   margin-bottom: 5px;
   margin-top: 5px;
+}
+
+#mini-basket.basket .sprite,
+#mega-basket .basket .sprite {
+  display: inline-block;
+  vertical-align: middle;
+  background-position: 0 0;
+  height: 50px;
+  width: 50px;
+}
+
+#mini-basket.basket a {
+  color: white;
+  font-size: 14px;
+  font-weight: normal;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
+#mega-basket {
+  position: absolute;
+  top: -6px;
+  right: 0;
+  background: white;
+  background: rgba(255, 255, 255, 0.98);
+  width: 350px;
+  min-height: 238px;
+  z-index: 220;
+  -webkit-border-radius: 0px 0px 20px 20px;
+  -moz-border-radius: 0px 0px 20px 20px;
+  border-radius: 0px 0px 20px 20px;
+  border: 1px solid #DFDFDF;
+  border-top: none;
+  padding: 20px;
+}
+#mega-basket .delivery-text li {
+  margin-bottom: 7px;
+}
+#mega-basket .checkout-button {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+}
+#mega-basket .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+#mega-basket table tbody {
+  display: block;
+  max-height: 100px;
+  overflow-y: scroll;
 }
 
 /**

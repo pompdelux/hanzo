@@ -71,3 +71,64 @@
 		}
 	}
 }
+#mini-basket.basket,
+#mega-basket .basket {
+	.sprite{
+		display: inline-block;
+		vertical-align: middle;
+		@include icons-sprite(basket);
+		height: icons-sprite-height(basket);
+		width: icons-sprite-width(basket);
+	}
+}
+#mini-basket.basket a {
+	color: $basket-color;
+	font-size: $basket-font-size;
+	font-weight: $basket-font-weight;
+	font-family: $font-sans;
+	display:inline-block;
+	vertical-align: middle;
+	margin-left: 5px;
+}
+
+// Mega basket
+#mega-basket {
+	position: absolute;
+	top: -6px;
+	right: 0;
+	background: white;
+	background: rgba(255, 255, 255, 0.98);
+	width: 350px;
+	min-height: 238px;
+	z-index: 220;
+	-webkit-border-radius: 0px 0px 20px 20px;
+	-moz-border-radius: 0px 0px 20px 20px;
+	border-radius: 0px 0px 20px 20px;
+	border: 1px solid #DFDFDF;
+	border-top: none;
+	padding: 20px;
+
+	.delivery-text li {
+		margin-bottom: 7px;
+	}
+
+	.checkout-button {
+		position: absolute;
+		bottom: 10px;
+		right: 15px;
+	}
+
+	.close {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+	}
+
+	table {
+		tbody{
+			display: block;
+			max-height: 100px;
+			overflow-y: scroll;
+		}
+	}
+}
