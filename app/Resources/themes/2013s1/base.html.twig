@@ -56,7 +56,7 @@
 <script type="text/javascript" src="{{ cdn }}fx/scripts/modernizr.js"></script>
 </head>
 <body id="body-{{ page_type|default('page') }}" class="{{ body_classes|default('') }} {{ html_lang }}">
-
+<div class="top-bar"></div>
 <div id="container" class="container container_8">
     <nav class="first grid_8 row main-menu">
         {% render 'CMSBundle:Menu:byTitle' with {'title':'topmenu'} %}
@@ -65,12 +65,11 @@
             <li class="last">
                 <form action="{{ path('_search', {'_locale' : app.request.locale}) }}" class="search-form">
                     <input type="submit" class="text-button button" value="{{ "button.label"|trans({}, 'search') }}">
-                    <input type="text" name="q">
+                    <input type="text" name="q" placeholder="{{ "button.label"|trans({}, 'search')|upper }}">
                 </form>
             </li>
         </ul>
     </nav>
-
     <header class="grid_8 row">
         <a href="{{ path('_homepage', {'_locale' : app.request.locale}) }}" title="{{ "home"|trans }}">
             {{ fx_image_tag('images/POMPdeLUX_logo_SS12.png', '0x100', {'id':'logo', 'alt':'POMPdeLUX'}) }}

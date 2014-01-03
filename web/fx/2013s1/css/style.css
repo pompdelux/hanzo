@@ -5,8 +5,8 @@
   background: url('/fx/2013s1/../images/icons/da-s7398167b80.png') no-repeat;
 }
 
-.icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-return, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, .body-pages .newsletter-form-simple .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.return {
-  background: url('/fx/2013s1/../images/icons/icons-s282dcdbd9c.png') no-repeat;
+.icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-return, .icons-search, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, form.search-form:before, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, .body-pages .newsletter-form-simple .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.return {
+  background: url('/fx/2013s1/../images/icons/icons-s1138e24c04.png') no-repeat;
 }
 
 .icons-Kundeservice_Green {
@@ -135,6 +135,10 @@
 
 .icons-return {
   background-position: 0 -916px;
+}
+
+.icons-search {
+  background-position: 0 -1078px;
 }
 
 .icons-shopping-bag {
@@ -413,30 +417,21 @@ body.sv .subscribe-button {
   margin-top: 6px;
 }
 
+.top-bar {
+  background-color: #dcd8d2;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 34px;
+}
+
 nav.first.main-menu {
   background-color: #dcd8d2;
+  margin-bottom: 6px;
   padding: 3px 0;
 }
 nav.first.main-menu ul, nav.first.main-menu ul li, nav.first.main-menu ul li form, nav.first.main-menu ul li form input {
   font-size: 12px;
-}
-nav.first.main-menu form {
-  margin-bottom: 2px;
-}
-nav.first.main-menu input[type="text"] {
-  width: 180px;
-}
-nav.first.main-menu input[type="text"],
-nav.first.main-menu input {
-  padding: 3px;
-  border: none;
-  margin-right: 10px;
-  font-family: Tahoma, Geneva, Verdana, sans-serif;
-}
-nav.first.main-menu input[type="text"].text-button,
-nav.first.main-menu input.text-button {
-  font-size: inherit;
-  margin-top: 0;
 }
 nav.first.main-menu > ul {
   z-index: 220;
@@ -462,6 +457,51 @@ nav.first.main-menu > ul li a {
   padding: 0 10px 9px;
   color: #444;
   font-weight: normal;
+}
+
+form.search-form {
+  position: relative;
+}
+form.search-form:before {
+  background-position: 0 -1078px;
+  height: 14px;
+  width: 14px;
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  margin-top: -7px;
+}
+form.search-form input[type="text"] {
+  border: none;
+  padding: 5px;
+  padding-left: 22px;
+  width: 180px;
+  background-color: inherit;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+}
+form.search-form input[type="text"]:focus {
+  background-color: white;
+}
+form.search-form input[type="text"]::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #444;
+}
+form.search-form input[type="text"]:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #444;
+}
+form.search-form input[type="text"]::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #444;
+}
+form.search-form input[type="text"]:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #444;
+}
+form.search-form input[type="submit"] {
+  display: none;
 }
 
 nav > ul,
