@@ -26,10 +26,11 @@ nav.first.main-menu {
     >ul {
         z-index: 220;
         margin-left: 10px;
-        float: left;
 
         &.right {
-            float: right;
+            position: absolute;
+            right: 0;
+            top: 2px;
             li.last {
                 padding: 0;
             }
@@ -63,13 +64,13 @@ form.search-form {
 
         position: absolute;
         top: 50%;
-        left: 4px;
+        left: 9px;
         margin-top: -7px;
     }
     input[type="text"] {
         border: none;
         padding: 5px;
-        padding-left: 22px;
+        padding-left: 27px;
         width: 180px;
         background-color: inherit;
         &:focus {
