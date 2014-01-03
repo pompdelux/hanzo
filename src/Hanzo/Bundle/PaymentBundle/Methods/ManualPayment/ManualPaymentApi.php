@@ -2,15 +2,14 @@
 
 namespace Hanzo\Bundle\PaymentBundle\Methods\ManualPayment;
 
-use Exception;
-
+use Hanzo\Core\Tools;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\Customers;
 
 use Hanzo\Bundle\PaymentBundle\BasePaymentApi;
 use Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface;
-use Hanzo\Bundle\PaymentBundle\Methods\ManualPayment\ManualPaymentCallResponse;
+
 
 use Symfony\Component\HttpFoundation\Request;
 
@@ -24,14 +23,21 @@ class ManualPaymentApi extends BasePaymentApi implements PaymentMethodApiInterfa
     protected $settings = array();
 
     /**
+     * @var string
+     */
+    protected $environment;
+
+    /**
      * __construct
      *
-     * @return void
+     * @param $params
+     * @param $settings
      * @author Ulrik Nielsen <un@bellcom.dk>
      **/
     public function __construct( $params, $settings )
     {
-        $this->settings = $settings;
+        $this->environment        = $params[0];
+        $this->settings           = $settings;
         $this->settings['active'] = (isset($this->settings['method_enabled']) && $this->settings['method_enabled'] ? true : false);
     }
 
@@ -48,9 +54,11 @@ class ManualPaymentApi extends BasePaymentApi implements PaymentMethodApiInterfa
     /**
      * cancel
      *
+     * @param $customer
+     * @param $order
      * @return ManualPaymentCallResponse
      **/
-    public function cancel( Customers $customer, Orders $order )
+    public function cancel(Customers $customer, Orders $order)
     {
         return new ManualPaymentCallResponse();
     }
@@ -64,10 +72,9 @@ class ManualPaymentApi extends BasePaymentApi implements PaymentMethodApiInterfa
     public function isActive()
     {
         $order = OrdersPeer::getCurrent();
-        if ($order->getInEdit() && ($_SERVER['REMOTE_ADDR'] !== '127.0.0.1')) {
+        if ($order->getInEdit() && (!preg_match('/^dev_/', $this->environment))) {
             return false;
         }
-
         return ( isset($this->settings['active']) ) ? $this->settings['active'] : false;
     }
 

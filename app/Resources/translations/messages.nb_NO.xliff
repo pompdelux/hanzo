@@ -4,7 +4,11 @@
         <body>
             <trans-unit id="size.guide.link">
                 <source>size.guide.link</source>
-                <target><![CDATA[<a href="/nb_NO/forside/kundeservice/sizeguide" target="_blank" title="Size guide">» Size guide</a>]]></target>
+                <target>images/pages/Size_Guide_NO.jpg</target>
+            </trans-unit>
+            <trans-unit id="size.guide.link.text">
+                <source>size.guide.link.text</source>
+                <target>» Size guide</target>
             </trans-unit>
             <trans-unit id="out.of.stock">
                 <source>out.of.stock</source>
@@ -252,40 +256,10 @@
                     <p>Varene skal være ubrukte og returneres i original emballasje med hengemerker osv. Strømper, leggings og strømpebukser kan kun returneres i ubrutt emballasje. Postposen som du mottar varene i er fremstilt slik at den kan brukes to ganger. På posen kan du se hvor du skal klippe slik at du kan bruke den igjen. Vi refunderer derfor ikke penger for returemballasje, og vi refunderer heller ikke penger for porto hvis du kun sender deler av ordren i retur. Vi mottar ikke returvarer som sendes per etterkrav.</p>
                 ]]></target>
             </trans-unit>
-            <trans-unit id="footer.menu_1" approved="no">
+			<trans-unit id="footer.menu_1" approved="no">
                 <source>footer.menu_1</source>
                 <target><![CDATA[
-                <h2>Home shopping</h2>
-                <ul class="menu">
-                    <li><a href="/nb_NO/forside/home-shopping">Bli vertinne</a></li>
-                    <li><a href="/nb_NO/forside/home-shopping/finn-konsulent">Finn konsulent</a></li>
-                    <li><a href="/nb_NO/forside/home-shopping/finn-konsulent-pa-kartet">Finn konsulent på kartet</a></li>
-                    <li><a href="/nb_NO/forside/home-shopping/apent-hus">Åpent hus</a></li>
-                </ul>
-                ]]></target>
-            </trans-unit>
-            <trans-unit id="footer.menu_2" approved="no">
-                <source>footer.menu_2</source>
-                <target><![CDATA[
-                <h2>Mer POMPdeLUX</h2>
-                <ul class="menu">
-				    <li><a href="/nb_NO/forside/katalog">Online katalog</a></li>
-					<li><a href="/nb_NO/forside/katalog/backstage-video">Backstage video</a></li>
-                    <li><a href="/nb_NO/forside/nyheter">Nyheter</a></li>
-                    <li><a href="/nb_NO/forside/om-pompdelux/konseptet">Konseptet</a></li>
-                    <li><a href="/nb_NO/forside/om-pompdelux/corporate-social-responsibility">Corporate Social Responsibility</a></li>
-                    <li><a href="/nb_NO/forside/bli-konsulent/fritidskonsulent">Bli konsulent</a></li>
-					<li><a href="/nb_NO/forside/mer-pompdelux/oeko-tex">Oeko-Tex</a></li>
-					<li><a href="/nb_NO/forside/mer-pompdelux/gots-organic">GOTS (Organic)</a></li>
-					<li><a href="/nb_NO/forside/katalog/credits">Credits</a></li>
-					<li><a href="/nb_NO/forside/webshop/info/credits">Kontakt</a></li>
-                </ul>
-                ]]></target>
-            </trans-unit>
-            <trans-unit id="footer.menu_3" approved="no">
-                <source>footer.menu_3</source>
-                <target><![CDATA[
-                <h2>Kundeservice</h2>
+                <h2>KUNDESERVICE</h2>
                 <ul class="menu">
                     <li><a href="/nb_NO/kundservice/telefontider">Telefontider</a></li>
                     <li><a href="/nb_NO/forside/kundeservice/fakta">Fakta</a></li>
@@ -296,6 +270,37 @@
 					<li><a href="/nb_NO/forside/kundeservice/sizeguide">Sizeguide</a></li>
 					<li><a href="/nb_NO/forside/kundeservice/vilkar">Vilkår</a></li>
 					<li><a href="/nb_NO/forside/kundeservice/om-webshoppen">Om webshoppen</a></li>
+                </ul>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="footer.menu_2" approved="no">
+                <source>footer.menu_2</source>
+                <target><![CDATA[
+                <h2>HOME SHOPPING</h2>
+                <ul class="menu">
+                    <li><a href="/nb_NO/forside/home-shopping">Bli vertinne</a></li>
+                    <li><a href="/nb_NO/forside/home-shopping/finn-konsulent">Finn konsulent</a></li>
+                    <li><a href="/nb_NO/forside/home-shopping/apent-hus">Åpent hus</a></li>
+				    <li><a href="/nb_NO/forside/katalog">Katalog</a></li>
+                    <li><a href="/nb_NO/forside/bli-konsulent/fritidskonsulent">Bli konsulent</a></li>
+                </ul><br>		
+				<h2>BE SOCIAL</h2>
+				 <ul class="menu">
+				 <li><a href="http://instagram.com/pompdelux_official">Instagram</a></li>
+				<li><a href="https://www.facebook.com/POMPdeLUXDK">Facebook</a></li>
+				<li><a href="/nb_NO/forside/katalog/backstage-video">Backstage video</a></li>				 
+                </ul>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="footer.menu_3" approved="no">
+                <source>footer.menu_3</source>
+                <target><![CDATA[
+                <h2>MER POMPDELUX</h2>
+                <ul class="menu">
+                    <li><a href="/nb_NO/forside/om-pompdelux">Om POMPdeLUX</a></li>
+                    <li><a href="/nb_NO/forside/om-pompdelux/corporate-social-responsibility/csr-rapport">CSR-rapport</a></li>
+					<li><a href="/nb_NO/forside/konkurranse">Konkurranse</a></li>
+					<li><a href="/nb_NO/forside/webshop/info/credits">Kontakt</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>

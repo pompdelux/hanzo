@@ -3,7 +3,6 @@
 namespace Hanzo\Bundle\AxBundle\Actions\Out;
 
 use Propel;
-use SoapClient;
 use SoapFault;
 use stdClass;
 use Exception;
@@ -12,7 +11,6 @@ use Symfony\Bridge\Monolog\Logger;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 
-use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 
 use Hanzo\Model\Customers;
@@ -80,8 +78,10 @@ class AxService
     /**
      * Build and send order to AX
      *
-     * @param  Orders   $order
-     * @param  boolean  $return   Returns the object we intend to send to AX.
+     * @param  Orders    $order
+     * @param  boolean   $return  Returns the object we intend to send to AX.
+     * @param  PropelPDO $con     Optional Propel db connection
+     * @param  boolean   $in_edit Set to true if the order is in edit state.
      * @return boolean
      */
     public function sendOrder(Orders $order, $return = false, $con = null, $in_edit = false)
@@ -182,6 +182,7 @@ class AxService
         }
 
         if ($hostess_discount) {
+            $bag_price = 0.00;
             $line = new stdClass();
             $line->ItemId     = 'HOSTESSDISCOUNT';
             $line->SalesPrice = number_format($hostess_discount, 2, '.', '');
@@ -427,7 +428,8 @@ class AxService
      * Build and send debtor info to AX
      *
      * @param  Customers $debitor
-     * @param  boolean   $return    Returns the object we intend to send to AX.
+     * @param  boolean   $return  Returns the object we intend to send to AX.
+     * @param  PropelPDO $con     Optional db connection
      * @return boolean
      */
     public function sendDebtor(Customers $debitor, $return = false, $con = null)
@@ -498,6 +500,7 @@ class AxService
      *
      * @param  Order    $order order object
      * @param  Resource $con   database connection or null to use current
+     * @throws \Exception
      * @return boolean
      */
     public function deleteOrder($order, $con = null)
@@ -548,8 +551,8 @@ class AxService
     /**
      * lock orders in ax
      *
-     * @param int $orderId
-     * @param bool $status true locks an order false unlocks
+     * @param Orders $order
+     * @param bool   $status true locks an order false unlocks
      * @return bool
      */
     public function lockUnlockSalesOrder($order, $status = true)
@@ -654,8 +657,8 @@ class AxService
         curl_setopt_array($c, array(
             CURLOPT_URL            => $this->wsdl,
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_CONNECTTIMEOUT => 5, // connection
-            CURLOPT_TIMEOUT        => 6, // execution timeout
+            CURLOPT_CONNECTTIMEOUT => 8,  // connection
+            CURLOPT_TIMEOUT        => 10, // execution timeout
         ));
 
         $file = curl_exec($c);
@@ -670,7 +673,7 @@ class AxService
             return false;
         }
 
-        $this->client = new SoapClient($this->wsdl, array(
+        $this->client = new \SoapClient($this->wsdl, array(
             'trace'              => true,
             'exceptions'         => true,
             'connection_timeout' => 600,
@@ -687,7 +690,7 @@ class AxService
      * @param  int    $order_id id of the order
      * @param  object $data     data to log, should be the complete request object
      * @param  string $state    'failed' or 'ok'
-     * @param  string $comment  optional commnet
+     * @param  string $comment  optional comment
      * @param  mixed  $con      db connection or null
      * @return mixed
      */

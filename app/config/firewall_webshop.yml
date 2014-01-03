@@ -2,6 +2,13 @@
 # the security section MUST be defined in one place, and cannot be overwritten
 security:
     firewalls:
+        kernel_global:
+            pattern: ^/da_DK/retarteging/order-feed/
+            anonymous: ~
+            http_basic:
+                realm: "Secured Area"
+                provider: in_memory
+
         secured_area:
             pattern: .*
             anonymous: ~
@@ -15,6 +22,7 @@ security:
                 success_handler: hanzo.logout_success_handler
                 handlers:
                     - nelmio_security.flexible_ssl_listener
+            provider: main
 
     access_control:
         - { path: ^/fx/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
@@ -31,18 +39,28 @@ security:
         - { path: ^/.*/checkout, roles: ROLE_USER }
 
         - { path: ^/.*/admin, roles: ROLE_EMPLOYEE }
+        - { path: ^/.*/retarteging/order-feed/, roles: ROLE_KG_API_USER, requires_channel: https }
 
     providers:
         main:
             propel:
                 class: Hanzo\Model\Customers
                 property: email
+        in_memory:
+            memory:
+                users:
+                    # Kernel Global api access user.
+                    # Here to allow access to: ^/da_DK/retarteging/order-feed/*
+                    kg_api:
+                        password: "KG1s0=s1_aw0z"
+                        roles:    ROLE_KG_API_USER
 
     encoders:
         Hanzo\Model\Customers:
             algorithm: sha1
             iterations: 1
             encode_as_base64: false
+        Symfony\Component\Security\Core\User\User: plaintext
 
     access_decision_manager:
             strategy: unanimous

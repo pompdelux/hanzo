@@ -4,7 +4,11 @@
         <body>
             <trans-unit id="size.guide.link">
                 <source>size.guide.link</source>
-                <target><![CDATA[<a href="/fi_FI/koti/asiakaspalvelu/sizeguide" target="_blank" title="Size guide">» Size guide</a>]]></target>
+                <target>images/pages/Size_Guide_FI.jpg</target>
+            </trans-unit>
+            <trans-unit id="size.guide.link.text">
+                <source>size.guide.link.text</source>
+                <target>» Size guide</target>
             </trans-unit>
             <trans-unit id="out.of.stock">
                 <source>out.of.stock</source>
@@ -134,7 +138,7 @@
             </trans-unit>
             <trans-unit id="customer.service.contact.info">
                 <source>customer.service.contact.info</source>
-                <target><![CDATA[Asiakaspalvelu<br>Puhelin: 09 34870870<br>Sähköposti: <a hrfef="mailto:mailfi@pompdelux.com">mailfi@pompdelux.com</a><br>Maanantaista torstaihin klo 10 - 17<br>Perjantaisin 10 - 15<br>Suljettu lauantaisin, sunnuntaisin ja pyhäpäivinä]]></target>
+                <target><![CDATA[Asiakaspalvelu<br>Puhelin: 09 34870870<br>Sähköposti: <a href="mailto:mailfi@pompdelux.com">mailfi@pompdelux.com</a><br>Maanantaista torstaihin klo 10 - 17<br>Perjantaisin 10 - 15<br>Suljettu lauantaisin, sunnuntaisin ja pyhäpäivinä]]></target>
             </trans-unit>
             <trans-unit id="footer.address">
                 <source>footer.address</source>

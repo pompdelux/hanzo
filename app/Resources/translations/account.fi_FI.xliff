@@ -36,7 +36,7 @@
             </trans-unit>
             <trans-unit id="address.delivery">
                 <source>address.delivery</source>
-                <target>Toimitusosoite</target>
+                <target>Vaihtoehtoinen toimitusosoite </target>
             </trans-unit>
             <trans-unit id="address.billing">
                 <source>address.billing</source>
@@ -64,11 +64,11 @@
             </trans-unit>
             <trans-unit id="proceed">
                 <source>proceed</source>
-                <target>Jatka</target>
+                <target>Siirry maksamaan</target>
             </trans-unit>
             <trans-unit id="back">
                 <source>back</source>
-                <target>Takaisin</target>
+                <target>Jatka ostoksia</target>
             </trans-unit>
             <trans-unit id="retrive.password">
                 <source>retrive.password</source>
@@ -192,7 +192,7 @@
             </trans-unit>
             <trans-unit id="65">
                 <source>create.account</source>
-                <target>Jatka</target>
+                <target></target>
             </trans-unit>
             <trans-unit id="create.account.header" approved="no">
                 <source>create.account.header</source>
@@ -212,7 +212,7 @@
             </trans-unit>
             <trans-unit id="67">
                 <source>create.notice</source>
-                <target><![CDATA[<strong>Huomaa:</strong> Jos sinulla on jo tili POMPdeLUXilla, riittää, kun kirjaudut sisään <a href="%url%">Omalle sivullesi </a><br><br>Lisää sivulle omat tietosi (<u>ei</u> mahdollisia yritystietoja).]]></target>
+                <target><![CDATA[<strong>Oletko jo asiakas?</strong><br> Jos sinulla on jo tili meillä, kirjaudu sisään <a href="%url%">Omalle sivullesi</a>.<br><br>]]></target>
             </trans-unit>
             <trans-unit id="68">
                 <source>nno.title</source>
@@ -220,7 +220,7 @@
             </trans-unit>
             <trans-unit id="69">
                 <source>nno.description</source>
-                <target>Kirjoita puhelinnumerosi, osoitetietosi täydennetään automaattisesti.</target>
+                <target><![CDATA[<b>Oletko uusi asiakas?</b><br>Kirjoita puhelinnumerosi, osoitetietosi täydennetään automaattisesti.]]></target>
             </trans-unit>
             <trans-unit id="70">
                 <source>nno.fetch</source>
@@ -433,7 +433,7 @@
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
                  <target><![CDATA[<p>Omilla sivuilla voit muuttaa tietojasi sekä tilata uutiskirjeen tai perua sen tilauksen. Voit myös muokata tilaustasi.<br><br>Tilauksellasi voi olla seuraavat tilat:<br><br><b>Odottaa</b><br>Tilaustasi ei ole vielä toimitettu, ja sinulla on vähintään 24 tuntia aikaa muokata tilaustasi.
-Voit muuttaa tilaustasi, lisätä siihen tuotteita tai poistaa tuotteita. Napsauta <img src="/fx/images/icons/icons/edit.png" alt="Edit"> kuvaa, jos haluat muokata tilausta. Huomaa: Sinun tulee suorittaa maksu – aiempi maksuvaraus poistuu automaattisesti. Jos haluat poistaa koko tilauksen, napsauta <img src="/fx/images/icons/icons/delete.png" alt="Delete">-kohtaa.<br><br><b>Keskeytä muokkaus</b><br>Voit halutessasi keskeyttää muokkauksen. Napsauta ”Keskeytä muokkaus” -painiketta ja voit aloittaa tilauksen muokkaamisen alusta.<br><br><b>Käsittelyssä</b><br>Tilaus on nyt käsittelyssä ja lähetetään sinulle 1–2 päivän kuluessa. Tilausta ei voi enää muokata/viivästyttää.<br><br><b>Laskutettu</b><br>Tilauksesi on lähetetty varastostamme. Lasku näkyy PDF-tiedostona Lasku-sarakkeessa 24 tunnin kuluessa tilauksen lähettämisestä.<br><br><b>Palautukset</b><br>Haluatko palauttaa tuotteen, napsauta tästä <img src="/fx/images/icons/icons/return.png" alt="Return"><br><br></p>]]></target>
+Voit muuttaa tilaustasi, lisätä siihen tuotteita tai poistaa tuotteita. Napsauta <img src="/fx/images/icons/icons/edit.png" alt="Edit"> kuvaa, jos haluat muokata tilausta. Huomaa: Sinun tulee suorittaa maksu – aiempi maksuvaraus poistuu automaattisesti. Jos haluat poistaa koko tilauksen, napsauta <img src="/fx/images/icons/icons/delete.png" alt="Delete">-kohtaa.<br><br><b>Keskeytä muokkaus</b><br>Voit halutessasi keskeyttää muokkauksen. Napsauta ”Keskeytä muokkaus” -painiketta ja voit aloittaa tilauksen muokkaamisen alusta.<br><br><b>Käsittelyssä</b><br>Tilaus on nyt käsittelyssä ja lähetetään sinulle 1–2 päivän kuluessa. Tilausta ei voi enää muokata/viivästyttää.<br><br><b>Laskutettu</b><br>Tilauksesi on lähetetty varastostamme. Lasku näkyy PDF-tiedostona Lasku-sarakkeessa 24 tunnin kuluessa tilauksen lähettämisestä.<br><br><b>Palautukset</b><br>Haluatko palauttaa tuotteen, napsauta tästä <img src="/fx/images/icons/icons/return.png" alt="Return"><br><br>Jos toivomaasi palautettavaa tuotetta ei löydy listalta, niin voit linkkiä painamalla avata ja tulostaa sekä täyttää palautuslomakkeen käsin: <a href="{{ cdn }}images/pdf/POMPdeLUX_Returseddel_FIN.pdf" target="_blank">&raquo; Palautuslomake (PDF)</a><br><br></p>]]></target>
             </trans-unit>
             <trans-unit id="newsletter" approved="no">
                 <source>newsletter</source>
@@ -465,11 +465,17 @@ Voit muuttaa tilaustasi, lisätä siihen tuotteita tai poistaa tuotteita. Napsau
             </trans-unit>
             <trans-unit id="my.account.login.notice" approved="no">
                 <source>my.account.login.notice</source>
-                <target><![CDATA[<p>Tervetuloa – liity asiakkaaksi!</p>]]></target>
+                <target><![CDATA[<p>Rekisteröidy asiakkaaksi täällä</p>]]></target>
             </trans-unit>
-            <trans-unit id="my.account.login.text" approved="no">
+           <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>
-                <target><![CDATA[<p>Kun teet ostoksia POMPdeLUXilla, sinun tulee olla kirjautuneena asiakkaaksi sivustolle. Silloin voit tarkistaa ja korjata tilauksiasi siihen asti, kun ne pakataan ja lähetetään varastostamme. Voit muuttaa tilattujen tuotteiden värejä ja kokoja sekä lisätä ja poistaa tuotteita niin kauan, kun tilauksesi tila on "Odottaa" eli vähintään 24 tuntia tuotteiden tilaamisen jälkeen.<br><br>POMPdeLUXin asiakkaana näet tällä sivulla myös aikaisemmat tilauksesi ja laskusi.</p><h2>Oletko uusi asiakas?</h2>]]></target>
+                <target><![CDATA[<h3>OMAT SIVUT</h3><p>Jotta voit nauttia lukuisista POMPdeLUXin tarjoamista eduista, sinun tulee rekisteröityä asiakkaaksi ennen kuin voit jatkaa ostoksiasi.<br><br>Rekisteröityneenä asiakkaana voit muun muassa:<br> 
+			<ul>
+            <li>Tarkistaa ja korjata tilaustasi, kunnes se pakataan ja lähetetään varastoltamme.</li>
+            <li>Muuttaa tilaamiesi tuotteiden värejä ja kokoja.</li>
+            <li>Lisätä tai poistaa tuotteita niin kauan kuin niiden tilana on "Odottaa" eli vähintään 24 tuntia tilauksen tekemisen jälkeen.</li>
+			<li>Tarkastella aiempia tilauksia ja vanhoja laskuja.</li>
+          </ul></p>]]></target>
             </trans-unit>
             <trans-unit id="my.account.login.header" approved="no">
                 <source>my.account.login.header</source>
@@ -489,7 +495,7 @@ Voit muuttaa tilaustasi, lisätä siihen tuotteita tai poistaa tuotteita. Napsau
             </trans-unit>
             <trans-unit id="create.pre-notice" approved="no">
                 <source>create.pre-notice</source>
-                <target><![CDATA[Anna tällä sivulla henkilötietosi (<u>ei</u> yritystietoja).]]></target>
+                <target><![CDATA[<b>Oletko uusi asiakas?</b><br>Anna tällä sivulla henkilötietosi (<u>ei</u> yritystietoja).]]></target>
             </trans-unit>
             <trans-unit id="order.force.login.description" approved="no">
                 <source>order.force.login.description</source>

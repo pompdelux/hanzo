@@ -535,7 +535,6 @@ class ECommerceServices extends SoapService
             }
 
             $item->InventQtyAvailOrderedDate = $item->InventQtyAvailOrderedDate ? $item->InventQtyAvailOrderedDate : 0;
-            $incomming = str_replace('-', '', $item->InventQtyAvailOrderedDate);
 
             $stock_data = array(
                 'onhand'  => (int) $item->InventQtyAvailPhysical,

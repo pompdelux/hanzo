@@ -20,7 +20,8 @@ class HanzoBoot
     /**
      * __construct
      *
-     * @param Router $router
+     * @param Router    $router
+     * @param AppKernel $kernel
      */
     public function __construct(Router $router, AppKernel $kernel)
     {
@@ -39,6 +40,16 @@ class HanzoBoot
         $this->sslHandeling($event);
         $this->deviceCheck($event);
         $this->webshopAccessRestrictionCheck($event);
+
+        $container = $this->kernel->getContainer();
+
+        if ($container->hasParameter('video_cdn')) {
+            $video_cdn = $container->getParameter('video_cdn');
+        } else {
+            $video_cdn = $container->getParameter('cdn');
+        }
+
+        $container->get('twig')->addGlobal('video_cdn', str_replace(['http:', 'https:'], '', $video_cdn));
     }
 
 

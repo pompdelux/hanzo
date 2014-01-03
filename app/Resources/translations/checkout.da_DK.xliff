@@ -88,15 +88,15 @@
       </trans-unit>
       <trans-unit id="shipping.address">
         <source>shipping.address</source>
-        <target>Leveringsadresse</target>
+        <target>Alternativ leveringsadresse</target>
       </trans-unit>
       <trans-unit id="company.shipping.address">
         <source>company.shipping.address</source>
-        <target>Leveringsadresse</target>
+        <target>Alternativ leveringsadresse</target>
       </trans-unit>
       <trans-unit id="overnightbox.address">
         <source>overnightbox.address</source>
-        <target>Leveringsadresse</target>
+        <target>Alternativ leveringsadresse</target>
       </trans-unit>
       <trans-unit id="shipping.address.overnight.edit">
         <source>shipping.address.overnight.edit</source>
@@ -112,7 +112,7 @@
       </trans-unit>
       <trans-unit id="payment.address">
         <source>payment.address</source>
-        <target>Privatadresse</target>
+        <target>Betalingsadresse</target>
       </trans-unit>
       <trans-unit id="payment.title">
         <source>payment.title</source>
@@ -124,7 +124,7 @@
       </trans-unit>
       <trans-unit id="confirm.vat">
         <source>confirm.vat</source>
-        <target>Momsbeløb</target>
+        <target>Heraf momsbeløb</target>
       </trans-unit>
       <trans-unit id="confirm.sub_total">
         <source>confirm.sub_total</source>
@@ -252,11 +252,11 @@
       </trans-unit>
       <trans-unit id="late.delivery.notice">
         <source>late.delivery.notice</source>
-        <target><![CDATA[<strong>Bemærk:</strong> Hvis din ordre indeholder varer med afsendelsesdatoer, så afsender vi først din ordre, når alle varer er på vores lager.]]></target>
+        <target><![CDATA[<strong>Bemærk:</strong> Din ordre bliver først afsendt, når alle varer er på lager.]]></target>
       </trans-unit>
       <trans-unit id="button.back">
         <source>button.back</source>
-        <target>Tilbage</target>
+        <target>Shop videre</target>
       </trans-unit>
       <trans-unit id="button.edit">
         <source>button.edit</source>

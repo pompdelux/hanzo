@@ -141,16 +141,16 @@
               <select class="size" name="size">
                 <option value="">{{ "choose"|trans }}</option>
               {% for size in product.sizes %}
-                <option value="{{ size }}">{{ size }}</option>
+                <option value="{{ size.value }}" {{ not size.in_stock ? 'disabled="disabled"' : '' }} >{{ size.value }} {{ not size.in_stock ? "("~ "out.of.stock"|trans ~ ")" : '' }}</option>
               {% endfor %}
-              </select>{{ 'size.guide.link'|trans|raw }}
+              </select><a href="{{ image_path(cdn ~ 'size.guide.link'|trans ) }}" class="colorbox">{{ 'size.guide.link.text'|trans }}</a>
             </div>
             <div><span class="small">{{ 'choose.size.note'|trans }}</span></div>
           </label>
 
-          <label for="color" class="off">
+          <label for="color">
             <span>{{ "color"|trans }}:</span>
-            <select class="color" name="color">
+            <select class="color" name="color" disabled="disabled">
               <option value="">{{ "choose"|trans }}</option>
             {% for color in product.colors %}
               <option value="{{ color }}">{{ color }}</option>

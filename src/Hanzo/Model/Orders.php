@@ -336,10 +336,10 @@ class Orders extends BaseOrders
     /**
      * set quantity on a product line in the current order
      *
-     * @param Product $product
-     * @param int     $quantity can be positive to increase the quantity of the order or negative to decrease
-     * @param bool    $exact    if set to true, the quantity send is the quantity used, otherwise the quantity is calculated using the existing as offset.
-     * @param string  $date     availability date
+     * @param Products $product
+     * @param int      $quantity can be positive to increase the quantity of the order or negative to decrease
+     * @param bool     $exact    if set to true, the quantity send is the quantity used, otherwise the quantity is calculated using the existing as offset.
+     * @param string   $date     availability date
      * @return OrdersLines
      */
     public function setOrderLineQty($product, $quantity, $exact = FALSE, $date = '1970-01-01')

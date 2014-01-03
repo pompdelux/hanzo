@@ -36,7 +36,7 @@
             </trans-unit>
             <trans-unit id="address.delivery">
                 <source>address.delivery</source>
-                <target>Lieferanschrift</target>
+                <target>Alternative Lieferadresse </target>
             </trans-unit>
             <trans-unit id="address.billing">
                 <source>address.billing</source>
@@ -73,11 +73,11 @@
             </trans-unit>
             <trans-unit id="proceed">
                 <source>proceed</source>
-                <target>Weiter</target>
+                <target>Zur Bezahlung</target>
             </trans-unit>
             <trans-unit id="back">
                 <source>back</source>
-                <target>Zurück</target>
+                <target>Weiter shoppen</target>
             </trans-unit>
             <trans-unit id="retrive.password">
                 <source>retrive.password</source>
@@ -201,7 +201,7 @@
             </trans-unit>
             <trans-unit id="65">
                 <source>create.account</source>
-                <target>Weiter</target>
+                <target></target>
             </trans-unit>
             <trans-unit id="create.account.header" approved="no">
                 <source>create.account.header</source>
@@ -221,7 +221,7 @@
             </trans-unit>
             <trans-unit id="67">
                 <source>create.notice</source>
-                <target><![CDATA[<strong>Bitte beachten:</strong> Wenn Sie bereits ein Konto bei uns haben, dann loggen Sie sich ein auf <a href="%url%">Meine Seite</a>]]></target>
+                <target><![CDATA[<strong>Sind Sie bereits Kunde?</strong><br> Falls Sie schon ein Konto bei uns haben, loggen Sie sich bitte unter <a href="%url%">Meine Seite</a> ein.<br><br>]]></target>
             </trans-unit>
             <trans-unit id="68">
                 <source>nno.title</source>
@@ -229,7 +229,7 @@
             </trans-unit>
             <trans-unit id="69">
                 <source>nno.description</source>
-                <target>Geben Sie Ihre Telefonnummer ein und lassen Sie Ihre Adresse automatisch ausfüllen.</target>
+                <target><![CDATA[<b>Sind Sie ein neuer Kunde?</b><br>Geben Sie Ihre Telefonnummer ein und lassen Sie Ihre Adresse automatisch ausfüllen.]]></target>
             </trans-unit>
             <trans-unit id="70">
                 <source>nno.fetch</source>
@@ -453,7 +453,7 @@
 Sie können Ihre Bestellung ändern oder etwas hinzufügen bzw. entfernen. Klicken Sie bei der Bearbeitung auf den <img src="/fx/images/icons/icons/edit.png" alt="Edit">.
 Bitte beachten: Die Zahlung muss durchgeführt werden – frühere Zahlungsreservierungen werden automatisch gelöscht.
 Möchten Sie Ihre gesamte Bestellung löschen, dann klicken Sie bitte auf <img src="/fx/images/icons/icons/delete.png" alt="Delete">.<br><br><b>Bearbeitung stoppen</b><br>Sie haben evtl. Ihre Bearbeitung abgebrochen. Drücken Sie auf die Schaltfläche ”Bearbeitung stoppen”, danach können Sie Ihre Bestellung erneut bearbeiten.<br><br><b>Wird bearbeitet</b><br>Ihre Bestellung wird jetzt in unserem Lager bearbeitet und im Laufe von 1-2 Tagen an Sie verschickt. Es ist nicht möglich, Ihre Bestellung zu bearbeiten/zu stoppen.<br><br><b>In Rechnung gestellt</b><br>Ihre Bestellung hat unser Lager verlassen. Die Rechnung finden Sie als beigefügte PDF-Datei in der Spalte Rechnung im Laufe von 24 Stunden nach dem Versand.<br><br><b>
-Rücksendung</b><br>Möchten Sie die Ware zurückschicken, dann klicken Sie bitte hier <img src="/fx/images/icons/icons/return.png" alt="Return"><br><br></p>]]></target>
+Rücksendung</b><br>Möchten Sie die Ware zurückschicken, dann klicken Sie bitte hier <img src="/fx/images/icons/icons/return.png" alt="Return"><br><br>Wenn Sie die Artikel, welche Sie umtauschen möchten nicht finden können, dann können Sie auf diesen Link klicken und den Rücksendeschein manuell ausdrucken: <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_DE.pdf" target="_blank">Rücksendeschein (PDF)</a><br><br></p>]]></target>
             </trans-unit>
             <trans-unit id="newsletter" approved="no">
                 <source>newsletter</source>
@@ -485,13 +485,17 @@ Rücksendung</b><br>Möchten Sie die Ware zurückschicken, dann klicken Sie bitt
             </trans-unit>
             <trans-unit id="my.account.login.notice" approved="no">
                 <source>my.account.login.notice</source>
-                <target><![CDATA[<p>Willkommen - erstellen Sie ein Benutzerkonto!</p>]]></target>
-            </trans-unit>
-            <trans-unit id="my.account.login.text" approved="no">
+                <target><![CDATA[<p>Melden Sie sich hier als Kunde an</p>]]></target>
+            </trans-unit><trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>
-                <target><![CDATA[<h3>Meine Seite - Login</h3><p>Wenn Sie bei POMPdeLUX einkaufen, müssen Sie ein Benutzerkonto auf dieser Seite haben. Es ermöglicht Ihnen u. a., Ihre Bestellung zu prüfen und zu ändern, bevor sie in unserem Lager verpackt wird und verschickt wird. Sie können Farben und Größen der bestellten Waren ändern und Sie können Waren hinzufügen und ändern, solange bei Ihrer Bestellung "Warten auf Bearbeitung" steht, d. h. mindestens 24 Stunden nach der Warenbestellung.<br><br>Als Kunde bei POMPdeLUX  können Sie auf dieser Seite auch frühere Bestellungen sehen und alte Rechnungen finden.</p>]]></target>
+                <target><![CDATA[<h3>MEINE SEITE</h3><p>Um alle Vorteile bei POMPdeLUX genießen zu können, müssen Sie sich als Kunde anmelden bevor Sie weitershoppen.<br><br>Dies gibt Ihnen unter anderem die Möglichkeit:<br>
+			<ul>
+            <li>Ihre Bestellung zu prüfen und zu ändern bis diese gepackt und von unserem Lager gesandt wird.</li>
+            <li>Farben und Größen der bestellen Waren zu ändern </li>
+            <li>Waren hinzuzufügen oder zu löschen solange Ihre Bestellung den Status „Warten auf Bearbeitung“ hat, d.h. bis mind. 24 Std. nachdem Sie bestellt haben.</li>
+			<li>Ihre früheren Bestellungen einzusehen und ältere Rechnungen abzurufen</li>
+          </ul></p>]]></target>
             </trans-unit>
-
             <trans-unit id="my.account.login.title">
                 <source>my.account.login.title</source>
                 <target>Meine Seite - Login</target>
@@ -502,7 +506,7 @@ Rücksendung</b><br>Möchten Sie die Ware zurückschicken, dann klicken Sie bitt
             </trans-unit>
             <trans-unit id="create.pre-notice" approved="no">
                 <source>create.pre-notice</source>
-                <target><![CDATA[Auf dieser Seite sollen Sie Ihre privaten Informationen ausfüllen (<u>nicht</u> evtl. Firmeninformationen).]]></target>
+                <target><![CDATA[<b>Sind Sie ein neuer Kunde?</b><br>Auf dieser Seite sollen Sie Ihre privaten Informationen ausfüllen (<u>nicht</u> evtl. Firmeninformationen).]]></target>
             </trans-unit>
             <trans-unit id="order.force.login.description" approved="no">
                 <source>order.force.login.description</source>

@@ -102,7 +102,7 @@ class DefaultController extends CoreController
         }
 
         $fraud_id = 'fraud_mail_send_'.$order->getId();
-        if (($total_order_quantity >= 50) && !$session->has($fraud_id)) {
+        if (($total_order_quantity >= 100) && !$session->has($fraud_id)) {
             $mail = $this->get('mail_manager');
             $mail->setTo('hd@pompdelux.dk', 'Heinrich Dalby');
             $mail->setSubject("Måske en snyder på spil.");
@@ -429,18 +429,18 @@ class DefaultController extends CoreController
             $template = 'BasketBundle:Default:block.html.twig';
         }
 
-        $continue_shopping = 'javascript:history.go(-1)';
+        $continueShopping = $this->generateUrl('_homepage', ['_locale' => Hanzo::getInstance()->get('core.locale')]);
 
         $hanzo = Hanzo::getInstance();
-        $domain_key = $hanzo->get('core.domain_key');
-        if (strpos($domain_key, 'Sales') !== false) {
-            $continue_shopping = $router->generate('QuickOrderBundle_homepage');
+        $domainKey = $hanzo->get('core.domain_key');
+        if (strpos($domainKey, 'Sales') !== false) {
+            $continueShopping = $router->generate('QuickOrderBundle_homepage');
         }
 
         Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
 
         return $this->render($template, array(
-            'continue_shopping' => $continue_shopping,
+            'continue_shopping' => $continueShopping,
             'delivery_date'     => $delivery_date,
             'embedded'          => $embed,
             'page_type'         => 'basket',
