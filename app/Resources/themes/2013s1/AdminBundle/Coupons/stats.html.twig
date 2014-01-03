@@ -8,13 +8,13 @@
 </nav>
 <h1>Stats</h1>
 
-{% if app.session.hasFlash('notice') %}
-<div class="message notice">
-  {{ app.session.flash('notice')|trans({}, 'admin') }}
-</div>
-{% endif %}
+{% for message in app.session.flashbag.get('notice') %}
+    <div class="message notice">
+        {{ message|trans({}, 'admin') }}
+    </div>
+{% endfor %}
 
-<form action="{{ path('admin_coupons_stats') }}" method="get" id="statistics-periode" class="inline">
+    <form action="{{ path('admin_coupons_stats') }}" method="get" id="statistics-periode" class="inline">
     <label for="start">Fra dato:</label>
     <input type="text" name="start" id="start" class="datepicker" value="{{ 'now'|date('d-m-Y') }}">
     <label for="end">Til dato:</label>

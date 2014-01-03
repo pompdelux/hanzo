@@ -2,7 +2,7 @@
     <h3>{{ (type~'.address')|replace('_', '.')|trans({}, 'checkout') }}</h3>
 
 {% if enable_locator %}
-    {{ render('LocationLocatorBundle:Default:lookup') }}
+    {{ render(controller('LocationLocatorBundle:Default:lookup')) }}
 {% endif %}
 
     <form action="{{ path('_shipping_address_save', {type: type}) }}" method="post" {{ form_enctype(form) }} class="address {{ type }}" data-addresstype="{{ type }}" data-callback="validateAddress">

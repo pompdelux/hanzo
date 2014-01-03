@@ -2,11 +2,11 @@
 
 {% block content %}
 
-    {% if app.session.hasFlash('notice') %}
+{% for message in app.session.flashbag.get('notice') %}
     <div class="message notice">
-        {{ app.session.flash('notice')|trans({}, 'admin') }}
+        {{ message|trans({}, 'admin') }}
     </div>
-    {% endif %}
+{% endfor %}
 
     <p>Udfyld formen og tryk "Gem"</p>
 

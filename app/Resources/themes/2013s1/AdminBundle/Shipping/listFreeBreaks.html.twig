@@ -4,11 +4,11 @@
 
     <a href="{{ path('admin_shipping_breaks_add') }}" class="fa icon-plus"> Tilføj ny</a>
 
-    {% if app.session.hasFlash('notice') %}<br>
-    <div class="message notice">
-        {{ app.session.flash('notice')|trans({}, 'admin') }}
-    </div>
-    {% endif %}
+    {% for message in app.session.flashbag.get('notice') %}
+        <div class="message notice">
+            {{ message|trans({}, 'admin') }}
+        </div>
+    {% endfor %}
 
     {% if paginate %}
         <div class="clearfix">

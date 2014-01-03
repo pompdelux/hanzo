@@ -61,7 +61,6 @@ Hanzo\Model\Addresses:
                 max:  35
                 minMessage: address_line_1.required
                 maxMessage: address_line_1.max.length
-                message:    address_line_1.required
         postal_code:
             - NotBlank:
                 message: postal_code.required
