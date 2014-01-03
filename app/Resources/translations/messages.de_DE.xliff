@@ -172,9 +172,9 @@
                 <source>footer.text</source>
                 <target><![CDATA[
                     <ul>
-                        <li><b>Fragt</b> fra 39,- + Fri Fragt fra min. 1200,-</li>
-                        <li><b>Leveringstid</b> %expected_delivery_date%</li>
-                        <li><b>Ombytning</b> Gratis</li>
+                        <li><b>Versand</b> ab 4,95 EUR + Kostenlose Lieferung ab Mindestbestellwert von 150,- EUR</li>
+                        <li><b>Lieferzeit</b> %expected_delivery_date%</li>
+                        <li><b>Umtausch</b> Gratis</li>
                     </ul>
                 ]]></target>
             </trans-unit>
