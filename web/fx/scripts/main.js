@@ -106,23 +106,17 @@
           var $this = $(this).parent();
           var $element = $('> ul', $this);
 
-          if ($('html').hasClass('touch') && !$element.hasClass('on') && $('ul', $this).length) {
-            event.stopPropagation();
+          if ($('html').hasClass('touch') && $element.hasClass('on') === false && $element.length) {
+            if ((!navigator.userAgent.match(/iPhone/i)) && (!navigator.userAgent.match(/iPod/i)) && (!navigator.userAgent.match(/iPad/i))) {
+              event.stopPropagation();
 
-            $('> ul > li > ul.on', $menu).not($element).removeClass('on');
-            $element.toggleClass('on');
+              $('> ul > li > ul.on', $menu).removeClass('on');
+              $element.toggleClass('on');
 
-            event.preventDefault();
+              event.preventDefault();
+            }
           }
         });
-        // $('> ul > li > a', $menu).hover(function(event) {
-
-
-
-        //   if ($('ul', $this).length) {
-        //     event.preventDefault();
-        //   }
-        // });
 
         $('html').click(function(event) {
           $('.on', $menu).removeClass('on');
