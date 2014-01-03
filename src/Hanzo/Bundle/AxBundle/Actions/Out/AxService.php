@@ -657,8 +657,8 @@ class AxService
         curl_setopt_array($c, array(
             CURLOPT_URL            => $this->wsdl,
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_CONNECTTIMEOUT => 5, // connection
-            CURLOPT_TIMEOUT        => 6, // execution timeout
+            CURLOPT_CONNECTTIMEOUT => 8,  // connection
+            CURLOPT_TIMEOUT        => 10, // execution timeout
         ));
 
         $file = curl_exec($c);
