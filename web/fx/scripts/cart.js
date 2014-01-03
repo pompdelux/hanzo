@@ -269,9 +269,16 @@
       });
     };
     pub.miniBasketInit = function() {
-      $('#mini-basket a, #mega-basket .close').click(function(e) {
+      $('#mini-basket a, a.open-megabasket, #mega-basket .close').click(function(e) {
         e.preventDefault();
-        $('#mega-basket').toggleClass('off');
+        var $basket = $('#mega-basket');
+        if ($basket.hasClass('off')) {
+          $basket.fadeIn();
+        }
+        else {
+          $basket.fadeOut();
+        }
+        $basket.toggleClass('off');
       });
     };
 

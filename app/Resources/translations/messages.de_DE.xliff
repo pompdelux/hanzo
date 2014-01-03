@@ -22,6 +22,10 @@
                 <source>show.basket</source>
                 <target>Warenkorb anzeigen</target>
             </trans-unit>
+            <trans-unit id="your.basket" approved="no">
+                <source>your.basket</source>
+                <target>Your Basket</target>
+            </trans-unit>
             <trans-unit id="choose">
                 <source>choose</source>
                 <target>Wählen</target>
@@ -260,7 +264,7 @@ Paket:Das Paket wird an Ihre Adresse geliefert und kostet EUR 4,95 (EUR 3,95, we
                 <h2>KUNDENDIENST</h2>
                 <ul class="menu">
                     <li><a href="/de_DE/kundendienst/telefonzeiten">Telefonzeiten</a></li>
-                    <li><a href="/de_DE/home/kundendienst/faq">FAQ</a></li>					
+                    <li><a href="/de_DE/home/kundendienst/faq">FAQ</a></li>
                     <li><a href="/de_DE/home/kundendienst/rucksendung">Rücksendung</a></li>
                     <li><a href="/de_DE/home/kundendienst/umtausch">Umtausch</a></li>
 					<li><a href="/de_DE/home/kundendienst/rucksendeschein">Rücksendeschein</a></li>
@@ -282,7 +286,7 @@ Paket:Das Paket wird an Ihre Adresse geliefert und kostet EUR 4,95 (EUR 3,95, we
 				<li><a href="/de_DE/home/home-shopping/tag-der-offenen-tur">Tag der offenen Tür</a></li>
 				<li><a href="/de_DE/home/katalog">Katalog</a></li>
 				<li><a href="/de_DE/home/beraterin-werden/ein-schoner-nebenjob">Beraterin werden</a></li>
-				</ul><br>		
+				</ul><br>
 				<h2>BE SOCIAL</h2>
 				 <ul class="menu">
 				<li><a href="http://instagram.com/pompdelux_official">Instagram</a></li>
@@ -296,7 +300,7 @@ Paket:Das Paket wird an Ihre Adresse geliefert und kostet EUR 4,95 (EUR 3,95, we
                 <target><![CDATA[
                 <h2>MEHR POMPDELUX</h2>
                 <ul class="menu">
-				<li><a href="/de_DE/home/uber-pompdelux">Über POMPdeLUX</a></li> 
+				<li><a href="/de_DE/home/uber-pompdelux">Über POMPdeLUX</a></li>
 				<li><a href="/de_DE/home/uber-pompdelux/corporate-social-responsibility/csr-bericht">CSR-bericht</a></li>
 				<li><a href="/de_DE/home/gewinnspiele">Gewinnspiele</a></li>
 				<li><a href="/de_DE/home/uber-pompdelux/kontakt">Kontakt</a></li>

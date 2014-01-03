@@ -163,6 +163,9 @@ div header.row {
     li{
         padding: 8px;
         vertical-align: middle;
+        &.basket{
+            padding-left: 0px;
+        }
         &.last{
             padding-right: 0;
         }

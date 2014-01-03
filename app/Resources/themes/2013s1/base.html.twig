@@ -101,7 +101,7 @@
                     <span class="sprite"></span>
                     <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" title="{{ "show.basket"|trans }}"> {% render 'BasketBundle:Default:miniBasket' %} </a>
                 </li>
-                <li class="last"><a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}">{{ "show.basket"|trans }}</a></li>
+                <li class="last"><a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" class="open-megabasket">{{ "show.basket"|trans }}</a></li>
         {% endif %}
             </ul>
         </nav>
@@ -109,6 +109,7 @@
             <div id="mega-basket" class="off">
                 <div class="basket">
                     <span class="sprite"></span>
+                    {{ 'your.basket'|trans }}
                 </div>
 
                 {# {{ render_esi(controller('BasketBundle:Default:view', { 'embed': true })) }} #}
@@ -116,7 +117,7 @@
                 <div class="delivery-text">
                     {{ 'footer.text'|trans({'%expected_delivery_date%': parameter('HD.expected_delivery_date')})|raw }}
                 </div>
-                <a class="checkout-button buy-set sprite"></a>
+                <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" class="checkout-button buy-set sprite"></a>
                 <a href="#" class="close sprite delete"></a>
             </div>
         {% endif %}

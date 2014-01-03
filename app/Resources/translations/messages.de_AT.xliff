@@ -22,6 +22,10 @@
                 <source>show.basket</source>
                 <target>Warenkorb anzeigen</target>
             </trans-unit>
+            <trans-unit id="your.basket" approved="no">
+                <source>your.basket</source>
+                <target>Your Basket</target>
+            </trans-unit>
             <trans-unit id="choose">
                 <source>choose</source>
                 <target>Wählen</target>
@@ -260,7 +264,7 @@ Paket:Das Paket wird an Ihre Adresse geliefert und kostet EUR 4,95 (EUR 3,95, we
                 <h2>KUNDENDIENST</h2>
                 <ul class="menu">
                     <li><a href="/de_AT/kundendienst/telefonzeiten">Telefonzeiten</a></li>
-                    <li><a href="/de_AT/home/kundendienst/faq">FAQ</a></li>					
+                    <li><a href="/de_AT/home/kundendienst/faq">FAQ</a></li>
                     <li><a href="/de_AT/home/kundendienst/rucksendung">Rücksendung</a></li>
                     <li><a href="/de_AT/home/kundendienst/umtausch">Umtausch</a></li>
 					<li><a href="/de_AT/home/kundendienst/rucksendeschein">Rücksendeschein</a></li>
@@ -288,7 +292,7 @@ Paket:Das Paket wird an Ihre Adresse geliefert und kostet EUR 4,95 (EUR 3,95, we
                 <target><![CDATA[
                 <h2>MEHR POMPDELUX</h2>
                 <ul class="menu">
-				<li><a href="/de_AT/home/uber-pompdelux">Über POMPdeLUX</a></li> 
+				<li><a href="/de_AT/home/uber-pompdelux">Über POMPdeLUX</a></li>
 				<li><a href="/de_AT/home/uber-pompdelux/corporate-social-responsibility/csr-bericht">CSR-bericht</a></li>
 				<li><a href="/de_AT/home/gewinnspiele">Gewinnspiele</a></li>
 				<li><a href="/de_AT/home/uber-pompdelux/kontakt">Kontakt</a></li>

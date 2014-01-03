@@ -22,6 +22,10 @@
                 <source>show.basket</source>
                 <target>Toon winkelmandje</target>
             </trans-unit>
+            <trans-unit id="your.basket" approved="no">
+                <source>your.basket</source>
+                <target>Your Basket</target>
+            </trans-unit>
             <trans-unit id="choose">
                 <source>choose</source>
                 <target>Kies</target>
@@ -276,7 +280,7 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
                     <li><a href="/nl_NL/voorpagina/open-huis">Open huis</a></li>
 					<li><a href="/nl_NL/voorpagina/catalogus">Catalogus</a></li>
 					<li><a href="/nl_NL/voorpagina/word-consulent/een-leuke-vrijetijdsbaan">Word consulent</a></li>
-                </ul><br>		
+                </ul><br>
 				<h2>BE SOCIAL</h2>
 				 <ul class="menu">
 				<li><a href="http://instagram.com/pompdelux_official">Instagram</a></li>

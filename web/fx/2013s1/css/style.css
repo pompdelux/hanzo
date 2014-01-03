@@ -593,6 +593,9 @@ div header.row {
   padding: 8px;
   vertical-align: middle;
 }
+#secondary-links li.basket {
+  padding-left: 0px;
+}
 #secondary-links li.last {
   padding-right: 0;
 }

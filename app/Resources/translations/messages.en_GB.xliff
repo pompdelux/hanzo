@@ -18,6 +18,10 @@
                 <source>show.basket</source>
                 <target>Show basket</target>
             </trans-unit>
+            <trans-unit id="your.basket" approved="no">
+                <source>your.basket</source>
+                <target>Your Basket</target>
+            </trans-unit>
             <trans-unit id="choose">
                 <source>choose</source>
                 <target>Choose</target>

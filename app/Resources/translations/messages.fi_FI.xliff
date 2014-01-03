@@ -22,6 +22,10 @@
                 <source>show.basket</source>
                 <target>Näytä ostoskori</target>
             </trans-unit>
+            <trans-unit id="your.basket" approved="no">
+                <source>your.basket</source>
+                <target>Your Basket</target>
+            </trans-unit>
             <trans-unit id="choose">
                 <source>choose</source>
                 <target>Valitse</target>
