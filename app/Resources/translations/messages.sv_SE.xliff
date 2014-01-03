@@ -178,9 +178,9 @@
                 <source>footer.text</source>
                 <target><![CDATA[
                     <ul>
-                        <li><b>Fragt</b> fra 39,- + Fri Fragt fra min. 1200,-</li>
-                        <li><b>Leveringstid</b> %expected_delivery_date%</li>
-                        <li><b>Ombytning</b> Gratis</li>
+                        <li><b>Frakt</b> från 49,- + Gratis frakt från min. 1400,-</li>
+                        <li><b>Leveransstid</b> %expected_delivery_date%</li>
+                        <li><b>Byte</b> Gratis</li>
                     </ul>
                 ]]></target>
             </trans-unit>

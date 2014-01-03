@@ -177,9 +177,9 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
                 <source>footer.text</source>
                 <target><![CDATA[
                     <ul>
-                        <li><b>Fragt</b> fra 39,- + Fri Fragt fra min. 1200,-</li>
-                        <li><b>Leveringstid</b> %expected_delivery_date%</li>
-                        <li><b>Ombytning</b> Gratis</li>
+                        <li><b>Verzendkosten</b> vanaf EUR 5,= + gratis verzenden vanaf EUR 200,-</li>
+                        <li><b>Levertijd</b> %expected_delivery_date%</li>
+                        <li><b>Ruilen</b> Gratis</li>
                     </ul>
                 ]]></target>
             </trans-unit>
