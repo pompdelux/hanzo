@@ -108,8 +108,17 @@
 	border-top: none;
 	padding: 20px;
 
-	.delivery-text li {
-		margin-bottom: 7px;
+	.basket {
+		// Sprite and "Your Basket" text
+		text-transform: uppercase;
+	}
+
+	.delivery-text {
+		position: absolute;
+		bottom: 14px;
+		li {
+			margin-bottom: 7px;
+		}
 	}
 
 	.checkout-button {

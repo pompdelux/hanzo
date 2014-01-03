@@ -5,7 +5,7 @@
   background: url('/fx/2013s1/../images/icons/da-s7398167b80.png') no-repeat;
 }
 
-.icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-return, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, #mini-basket.basket .sprite,
+.icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-return, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, footer .footer-menu .newsletter .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, #mini-basket.basket .sprite,
 #mega-basket .basket .sprite, .body-pages .newsletter-form-simple .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.return {
   background: url('/fx/2013s1/../images/icons/icons-s282dcdbd9c.png') no-repeat;
 }
@@ -834,50 +834,95 @@ footer {
   padding-top: 10px !important;
   color: #444444;
   font-size: 12px;
-  font-family: "Merriweather", serif;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 400;
   line-height: 14px;
 }
 footer h2 {
-  font-size: 14px;
-  font-family: "Merriweather", serif;
+  font-size: 12px;
   letter-spacing: 0;
+  font-weight: bold;
 }
 footer .footer-menu li {
-  padding: 0 0 5px;
+  padding: 0 0 7px;
 }
-footer .footer-menu.footer-menu-4 {
-  text-align: right;
+footer .footer-menu .footer-teaser {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 12px;
 }
-footer .footer-menu.footer-menu-4 .container {
-  text-align: left;
+footer .footer-menu .footer-teaser b {
+  text-transform: uppercase;
+}
+footer .footer-menu .newsletter {
+  background-color: #B5AB8C;
+  position: relative;
+}
+footer .footer-menu .newsletter h2 {
+  font-family: "Merriweather", serif;
+  font-size: 19px;
+  font-weight: normal;
+}
+footer .footer-menu .newsletter .container {
+  margin: 15px 0 0 15px;
   display: inline-block;
+  width: 100%;
 }
-footer .footer-menu.footer-menu-4 .container input[type=submit] {
+footer .footer-menu .newsletter .container, footer .footer-menu .newsletter .container a, footer .footer-menu .newsletter .container input[type=submit].button {
+  color: white !important;
+}
+footer .footer-menu .newsletter .container input[type=submit] {
   float: right;
   font-size: 12px;
-  font-family: "Merriweather", serif;
   letter-spacing: 0;
+  color: inherit;
+  margin-right: -122px;
+  font-size: 16px;
 }
-footer .footer-menu.footer-menu-4 .sprite {
+footer .footer-menu .newsletter .sprite {
   background-position: 0 -218px;
   height: 86px;
   width: 86px;
-  float: left;
-  margin-left: 40px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
-footer .footer-menu.footer-menu-4 input[type="email"],
-footer .footer-menu.footer-menu-4 input[type="text"] {
+footer .footer-menu .newsletter input[type="email"],
+footer .footer-menu .newsletter input[type="text"] {
   width: 222px;
   display: block;
   padding: 4px 5px;
+  border: 0;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 12px;
+  margin: 0 0 5px;
 }
-footer .footer-menu.footer-menu-4 #dialoug-message {
+footer .footer-menu .newsletter input[type="email"]::-webkit-input-placeholder,
+footer .footer-menu .newsletter input[type="text"]::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #444;
+}
+footer .footer-menu .newsletter input[type="email"]:-moz-placeholder,
+footer .footer-menu .newsletter input[type="text"]:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #444;
+}
+footer .footer-menu .newsletter input[type="email"]::-moz-placeholder,
+footer .footer-menu .newsletter input[type="text"]::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #444;
+}
+footer .footer-menu .newsletter input[type="email"]:-ms-input-placeholder,
+footer .footer-menu .newsletter input[type="text"]:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #444;
+}
+footer .footer-menu .newsletter #dialoug-message {
   width: 200px;
   border: 2px solid #c18185;
   text-align: center;
 }
-footer .footer-menu.footer-menu-4 form {
+footer .footer-menu .newsletter form {
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-size: 12px;
   width: 234px;
@@ -2416,6 +2461,13 @@ div.invalid-order {
   border: 1px solid #DFDFDF;
   border-top: none;
   padding: 20px;
+}
+#mega-basket .basket {
+  text-transform: uppercase;
+}
+#mega-basket .delivery-text {
+  position: absolute;
+  bottom: 14px;
 }
 #mega-basket .delivery-text li {
   margin-bottom: 7px;
