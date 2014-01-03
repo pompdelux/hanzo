@@ -46,7 +46,7 @@ set :deployed_group, "www-data"
 # will run propel:model:build on each environment if set to propel
 set :model_manager, "propelXX"
 
-set :keep_releases,  5
+set :keep_releases,  3
 
 set :shared_files,      ["app/config/parameters.ini", "app/config/hanzo.yml", "cron/config.php"]
 
