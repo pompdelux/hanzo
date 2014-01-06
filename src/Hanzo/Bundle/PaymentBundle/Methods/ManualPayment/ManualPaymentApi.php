@@ -71,10 +71,16 @@ class ManualPaymentApi extends BasePaymentApi implements PaymentMethodApiInterfa
      **/
     public function isActive()
     {
+        // always allow test and dev env to use ManualPayment
+        if (preg_match('/^dev_|test_/', $this->environment)) {
+            return true;
+        }
+
         $order = OrdersPeer::getCurrent();
-        if ($order->getInEdit() && (!preg_match('/^dev_/', $this->environment))) {
+        if ($order->getInEdit()) {
             return false;
         }
+
         return ( isset($this->settings['active']) ) ? $this->settings['active'] : false;
     }
 
@@ -93,6 +99,8 @@ class ManualPaymentApi extends BasePaymentApi implements PaymentMethodApiInterfa
      *
      * TODO: priority: low, should use shared methods between all payment methods
      *
+     * @param Request $request
+     * @param Orders  $order
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
@@ -108,6 +116,8 @@ class ManualPaymentApi extends BasePaymentApi implements PaymentMethodApiInterfa
      *
      * TODO: priority: low, should use shared methods between all payment methods
      *
+     * @param Request $request
+     * @param Orders  $order
      * @return void
      * @author Ulrik Nielsen <un@bellcom.dk>
      **/
