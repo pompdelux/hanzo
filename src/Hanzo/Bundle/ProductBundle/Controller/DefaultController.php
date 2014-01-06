@@ -92,9 +92,6 @@ class DefaultController extends CoreController
         }
         ksort($sorted_images);
 
-        $current_color = $main_image['color'];
-        $current_type  = $main_image['type'];
-
         $all_colors = $colors = $sizes = array();
         $product_ids = array();
         $variants = ProductsQuery::create()->findByMaster($product->getSku());
@@ -146,7 +143,7 @@ class DefaultController extends CoreController
 
         $images_references = array();
         foreach ($references as $ref) {
-            $sku = $ref->getProducts()->getSku();
+            $sku = $ref->getProducts()->getTitle();
             $images_references[$ref->getProductsImagesId()]['references'][$ref->getProductsId()] = array(
                 'title' => $sku,
                 'color' => $ref->getVirtualColumn('products_imagesCOLOR'),
@@ -197,7 +194,7 @@ class DefaultController extends CoreController
         $data = array(
             'id' => $product->getId(),
             'sku' => $product->getSku(),
-            'title' => $product->getSku(),
+            'title' => $product->getTitle(),
             'description' => $description,
             'washing' => $washing,
             'main_image' => $main_image,
@@ -227,7 +224,7 @@ class DefaultController extends CoreController
             'page_type' => 'product',
             'product' => $data,
             'references' => $images_references,
-            'browser_title' => $product->getSku(),
+            'browser_title' => $product->getTitle(),
             '_route' => $route
         ));
         return $response;

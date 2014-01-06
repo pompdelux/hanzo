@@ -26,7 +26,7 @@
           {% if product.basket_image %}
             {{ product_image_tag(product.basket_image, '57x100', { 'alt' : product.products_name }) }}
           {% endif %}
-            <div class="info" data-product_id="{{ product.products_id }}" data-confirmed="">
+            <div class="info" data-product_id="{{ product.products_id }}" data-master="{{ product.master }}" data-confirmed="">
             {% if product.url %}
               <a href="{{ product.url }}" class="title">{{ product.products_name }}</a>
             {% else %}

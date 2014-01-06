@@ -3033,7 +3033,7 @@ div.quickorder input.quantity {
   text-align: center;
 }
 
-.typeahead.dropdown-menu {
+.tt-dropdown-menu {
   position: absolute;
   top: 20px;
   left: 0;
@@ -3050,25 +3050,24 @@ div.quickorder input.quantity {
   *border-right-width: 2px;
   *border-bottom-width: 2px;
 }
-.typeahead.dropdown-menu a {
+.tt-dropdown-menu .tt-dataset-sku {
   display: block;
-  padding: 3px 15px;
   clear: both;
   font-weight: normal;
   line-height: 18px;
   white-space: nowrap;
   color: #333;
 }
-.typeahead.dropdown-menu li > a:hover {
-  text-decoration: none;
-  background-color: #D9D9D9;
+
+.tt-hint {
+  color: #999999;
 }
-.typeahead.dropdown-menu .active > a {
-  text-decoration: none;
-  background-color: #D9D9D9;
+
+.tt-suggestion {
+  padding: 3px 15px;
 }
-.typeahead.dropdown-menu .active > a:hover {
-  text-decoration: none;
+
+.tt-suggestion.tt-is-under-cursor {
   background-color: #D9D9D9;
 }
 
