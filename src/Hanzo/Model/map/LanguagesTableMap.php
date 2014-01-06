@@ -45,7 +45,7 @@ class LanguagesTableMap extends TableMap
         $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
         $this->addColumn('name', 'Name', 'VARCHAR', true, 32, null);
         $this->addColumn('local_name', 'LocalName', 'VARCHAR', true, 45, null);
-        $this->addColumn('locale', 'Locale', 'VARCHAR', true, 12, null);
+        $this->addColumn('locale', 'Locale', 'VARCHAR', true, 5, null);
         $this->addColumn('iso2', 'Iso2', 'VARCHAR', true, 2, null);
         $this->addColumn('direction', 'Direction', 'VARCHAR', true, 3, 'ltr');
         // validators

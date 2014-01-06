@@ -404,12 +404,12 @@ CREATE TABLE `languages`
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(32) NOT NULL,
     `local_name` VARCHAR(45) NOT NULL,
-    `locale` VARCHAR(12) NOT NULL,
+    `locale` VARCHAR(5) NOT NULL,
     `iso2` VARCHAR(2) NOT NULL,
     `direction` VARCHAR(3) DEFAULT 'ltr' NOT NULL,
     PRIMARY KEY (`id`),
-    INDEX `index2` (`iso2`),
-    INDEX `languages_index_3` (`locale`)
+    INDEX `languages_index_3` (`locale`),
+    INDEX `index2` (`iso2`)
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
@@ -431,6 +431,27 @@ CREATE TABLE `mannequin_images`
     CONSTRAINT `fk_mannequin_images_1`
         FOREIGN KEY (`master`)
         REFERENCES `products` (`sku`)
+        ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
+-- products_washing_instructions
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `products_washing_instructions`;
+
+CREATE TABLE `products_washing_instructions`
+(
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `code` INTEGER NOT NULL,
+    `locale` VARCHAR(5) NOT NULL,
+    `description` TEXT NOT NULL,
+    PRIMARY KEY (`id`),
+    INDEX `key_code` (`code`),
+    INDEX `FI_products_washing_instructions_1` (`locale`),
+    CONSTRAINT `fk_products_washing_instructions_1`
+        FOREIGN KEY (`locale`)
+        REFERENCES `languages` (`locale`)
         ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
@@ -635,26 +656,6 @@ CREATE TABLE `products_to_categories`
     CONSTRAINT `products_to_categories_ibfk_2`
         FOREIGN KEY (`categories_id`)
         REFERENCES `categories` (`id`)
-        ON DELETE CASCADE
-) ENGINE=InnoDB;
-
--- ---------------------------------------------------------------------
--- products_washing_instructions
--- ---------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `products_washing_instructions`;
-
-CREATE TABLE `products_washing_instructions`
-(
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `code` INTEGER NOT NULL,
-    `locale` VARCHAR(5) NOT NULL,
-    `description` TEXT NOT NULL,
-    PRIMARY KEY (`id`),
-    INDEX `FI_products_washing_instructions_1` (`locale`),
-    CONSTRAINT `fk_products_washing_instructions_1`
-        FOREIGN KEY (`locale`)
-        REFERENCES `languages` (`locale`)
         ON DELETE CASCADE
 ) ENGINE=InnoDB;
 

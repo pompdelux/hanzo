@@ -2,10 +2,9 @@
 
 namespace Hanzo\Bundle\BasketBundle\Controller;
 
+use Hanzo\Model\ProductsI18nQuery;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Propel;
 use PropelException;
 
 use Hanzo\Core\Hanzo;
@@ -16,15 +15,12 @@ use Hanzo\Model\Products;
 use Hanzo\Model\ProductsPeer;
 use Hanzo\Model\ProductsQuery;
 use Hanzo\Model\ProductsDomainsPricesPeer;
-use Hanzo\Model\ProductsDomainsPricesQuery;
 use Hanzo\Model\ProductsToCategoriesQuery;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\OrdersLinesPeer;
 use Hanzo\Model\OrdersLinesQuery;
-use Hanzo\Model\Categories;
-use Hanzo\Model\CategoriesPeer;
 use Hanzo\Model\CategoriesQuery;
 
 class DefaultController extends CoreController
@@ -57,13 +53,25 @@ class DefaultController extends CoreController
             return $this->redirect($request->headers->get('referer'));
         }
 
+        $product_name = ProductsI18nQuery::create()
+            ->select('Title')
+            ->useProductsQuery()
+                ->filterBySku($product->getMaster())
+            ->endUse()
+            ->filterByLocale($request->getLocale())
+            ->findOne()
+        ;
+
+        $product->setLocale($request->getLocale());
+        $product->setTitle($product_name);
+
         $stock_service = $this->get('stock');
         $stock         = $stock_service->check($product, $quantity);
 
         if (false === $stock) {
             if ($this->getFormat() == 'json') {
                 return $this->json_response(array(
-                    'message' => $translator->trans('product.out.of.stock', array('%product%' => $product)),
+                    'message' => $translator->trans('product.out.of.stock', ['%product%' => $product_name]),
                     'status'  => false,
                 ));
             }
@@ -102,7 +110,7 @@ class DefaultController extends CoreController
         }
 
         $fraud_id = 'fraud_mail_send_'.$order->getId();
-        if (($total_order_quantity >= 50) && !$session->has($fraud_id)) {
+        if (($total_order_quantity >= 100) && !$session->has($fraud_id)) {
             $mail = $this->get('mail_manager');
             $mail->setTo('hd@pompdelux.dk', 'Heinrich Dalby');
             $mail->setSubject("Måske en snyder på spil.");
@@ -136,10 +144,9 @@ class DefaultController extends CoreController
             return $this->resetOrderAndUser($e, $request);
         }
 
-        $price          = ProductsDomainsPricesPeer::getProductsPrices(array($product->getId()));
-        $price          = array_shift($price);
-        $original_price = $price['normal'];
-        $price          = array_shift($price);
+        $price = ProductsDomainsPricesPeer::getProductsPrices(array($product->getId()));
+        $price = array_shift($price);
+        $price = array_shift($price);
 
         $latest = array(
             'expected_at'  => '',
@@ -159,7 +166,7 @@ class DefaultController extends CoreController
         $template_data = [
             'data'    => $this->miniBasketAction(TRUE),
             'latest'  => $latest,
-            'message' => $translator->trans('product.added.to.cart', array('%product%' => $product)),
+            'message' => $translator->trans('product.added.to.cart', array('%product%' => $product->getTitle().' '.$product->getSize().' '.$product->getColor())),
             'status'  => TRUE,
             'total'   => $order->getTotalQuantity(true),
         ];
@@ -383,14 +390,18 @@ class DefaultController extends CoreController
             }
 
             // find first products2category match
-            $products2category = ProductsToCategoriesQuery::create()
+            $category_id = ProductsToCategoriesQuery::create()
+                ->select('CategoriesId')
                 ->useProductsQuery()
-                ->filterBySku($line['products_name'])
+                    ->useProductsi18nQuery()
+                        ->filterByTitle($line['products_name'])
+                        ->filterByLocale($this->getRequest()->getLocale())
+                    ->endUse()
                 ->endUse()
                 ->findOne()
             ;
 
-            if ($products2category) {
+            if ($category_id) {
                 $line['basket_image'] =
                     preg_replace('/[^a-z0-9]/i', '-', $line['products_name']) .
                     '_' .
@@ -399,9 +410,17 @@ class DefaultController extends CoreController
                 ;
 
                 // find matching router
-                $key    = '_' . $locale . '_' . $products2category->getCategoriesId();
-                $group  = $category2group[$products2category->getCategoriesId()];
-                $master = ProductsQuery::create()->findOneBySku($line['products_name']);
+                $key    = '_' . $locale . '_' . $category_id;
+                $group  = $category2group[$category_id];
+                $master = ProductsQuery::create()
+                    ->useProductsi18nQuery()
+                        ->filterByTitle($line['products_name'])
+                        ->filterByLocale($this->getRequest()->getLocale())
+                    ->endUse()
+                    ->findOne()
+                ;
+
+                $line['master'] = $master->getSku();
 
                 if ('consultant' == $mode) {
                     $line['url'] = $router->generate('product_info', array('product_id' => $master->getId()));

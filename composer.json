@@ -20,7 +20,7 @@
 
         "propel/propel-bundle": "1.1.*",
         "willdurand/geocoder": "*",
-        "willdurand/expose-translation-bundle": "*",
+        "willdurand/expose-translation-bundle": "1.1.*",
         "mrbase/smesg": "*",
         "ekino/newrelic-bundle": "1.*",
         "liip/theme-bundle": "dev-master",

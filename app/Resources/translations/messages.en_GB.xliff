@@ -147,7 +147,6 @@
                     E-mail: <a href="mailto:mail@pompdelux.com">mail@pompdelux.com</a><br>
                     Monday - Thursday: 9 am - 4 pm<br>
                     Friday: 9 am - 2 pm<br>
-                    <!--Lunch break 12 pm - 12.45 pm<br>-->
                     Saturday, Sunday and holidays closed.
                 ]]></target>
             </trans-unit>
@@ -257,47 +256,42 @@
             <trans-unit id="footer.menu_1" approved="no">
                 <source>footer.menu_1</source>
                 <target><![CDATA[
-                <h2>More POMPdeLUX</h2>
+                <h2>Customer service</h2>
                 <ul class="menu">
-				    <li><a href="/en_GB/home/catalogue">Online catalogue</a></li>
-					<li><a href="/en_GB/home/catalogue/backstage-video">Backstage video</a></li>
-                    <li><a href="/en_GB/home/about-pompdelux">About POMPdeLUX</a></li>
-                    <li><a href="/en_GB/home/news">News</a></li>
-                    <li><a href="/en_GB/home/about-pompdelux/the-concept">The concept</a></li>
-                    <li><a href="/en_GB/home/about-pompdelux/corporate-social-responsibility">Corporate Social Responsibility</a></li>
-					<li><a href="/en_GB/more-pompdelux/job">Job</a></li>
-                    <li><a href="/en_GB/home/more-pompdelux/gots-organic">GOTS (Organic)</a></li>
-                    <li><a href="/en_GB/home/more-pompdelux/oeko-tex">Oeko-Tex</a></li>
-					<li><a href="/en_GB/home/catalogue/credits">Credits</a></li>
-					<li><a href="/en_GB/home/about-pompdelux/contact">Contact</a></li>
-                </ul>
+				<li><a href="/en_GB/customer-service/telephone-times">Telephone times</a></li>
+                <li><a href="/en_GB/home/customer-service/faq">FAQ</a></li>
+                <li><a href="/en_GB/home/customer-service/returns">Returns</a></li>
+                <li><a href="/en_GB/home/customer-service/exchange">Exchange</a></li>
+                <li><a href="/en_GB/home/customer-service/returns-form">Returns form</a></li>
+				<li><a href="/en_GB/home/customer-service/care-instructions">Care instructions</a></li>
+                <li><a href="/en_GB/home/customer-service/sizeguide">Sizeguide</a></li>
+				<li><a href="/en_GB/home/customer-service/terms-and-conditions">Terms and conditions</a></li>
+				<li><a href="/en_GB/home/customer-service/about-the-webshop">About the online shop</a></li>
+				</ul>
                 ]]></target>
             </trans-unit>
             <trans-unit id="footer.menu_2" approved="no">
                 <source>footer.menu_2</source>
                 <target><![CDATA[
-                <h2>Customer service</h2>
+                <h2>BE SOCIAL</h2>
                 <ul class="menu">
-    			    <li><a href="/en_GB/customer-service/telephone-times">Telephone times</a></li>
-                    <li><a href="/en_GB/home/customer-service/faq">FAQ</a></li>
-                    <li><a href="/en_GB/home/customer-service/returns">Returns</a></li>
-                    <li><a href="/en_GB/home/customer-service/exchange">Exchange</a></li>
-                    <li><a href="/en_GB/home/customer-service/returns-form">Returns form</a></li>
-                    <li><a href="/en_GB/home/customer-service/care-instructions">Care instructions</a></li>
-                    <li><a href="/en_GB/home/customer-service/sizeguide">Sizeguide</a></li>
-					<li><a href="/en_GB/home/customer-service/terms-and-conditions">Terms and conditions</a></li>
-					<li><a href="/en_GB/home/customer-service/about-the-webshop">About the online shop</a></li>
-                </ul>
+    			<li><a href="http://instagram.com/pompdelux_official">Instagram</a></li>
+				<li><a href="https://www.facebook.com/POMPdeLUXDK">Facebook</a></li>
+				<li><a href="/en_GB/home/catalogue/backstage-video">Backstage video</a></li>
+				<li><a href="/en_GB/home/catalogue">Catalogue</a></li>
+				</ul>
                 ]]></target>
             </trans-unit>
 			<trans-unit id="footer.menu_3" approved="no">
                 <source>footer.menu_3</source>
                 <target><![CDATA[
-                <h2>Catalogue</h2>
+                <h2>More POMPdeLUX</h2>
                 <ul class="menu">
-                    <li><a href="/en_GB/home/catalogue">Online catalogue</a></li>
-                    <li><a href="/en_GB/home/catalogue/backstage-video">Backstage video</a></li>
-					<li><a href="/en_GB/home/catalogue/credits">Credits</a></li>
+				<li><a href="/en_GB/home/about-pompdelux">About POMPdeLUX</a></li>
+                <li><a href="/en_GB/home/about-pompdelux/corporate-social-responsibility/csr-report">CSR</a></li>
+				<li><a href="/en_GB/home/competition">Competition</a></li>
+				<li><a href="/en_GB/home/job/ein-schoner-nebenjob">Job</a></li>
+				<li><a href="/en_GB/home/about-pompdelux/contact">Contact</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>
