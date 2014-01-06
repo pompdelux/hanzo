@@ -5,7 +5,6 @@ namespace Hanzo\Bundle\AxBundle\Actions\In\Soap\ECommerceServices;
 use Hanzo\Bundle\AxBundle\Actions\In\Soap\SoapService;
 
 use Hanzo\Core\Tools;
-use Hanzo\Core\Hanzo;
 use Hanzo\Core\Timer;
 
 use Hanzo\Model\ProductsDomainsPrices;
@@ -20,7 +19,6 @@ use Hanzo\Model\ProductsToCategoriesQuery;
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersQuery;
 use Hanzo\Model\Consultants;
-use Hanzo\Model\ConsultantsQuery;
 use Hanzo\Model\Addresses;
 use Hanzo\Model\AddressesQuery;
 use Hanzo\Model\Countries;
@@ -32,14 +30,12 @@ use Hanzo\Model\LanguagesQuery;
 
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersQuery;
-use Hanzo\Model\OrdersLines;
 use Hanzo\Model\OrdersLinesPeer;
 use Hanzo\Model\OrdersLinesQuery;
 use Hanzo\Model\OrdersAttributes;
 use Hanzo\Model\OrdersAttributesQuery;
 
 use Hanzo\Bundle\NewsletterBundle\NewsletterApi;
-use Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCall;
 use Hanzo\Bundle\PaymentBundle\PaymentApiCallException;
 
 use Hanzo\Bundle\AdminBundle\Event\FilterCategoryEvent;
@@ -90,7 +86,7 @@ class ECommerceServices extends SoapService
      */
     public function SyncItem($data)
     {
-        require __DIR__.'/products_id_map.php';
+#        require __DIR__.'/products_id_map.php';
 
         $errors = array();
         $item = $data->item->InventTable;
@@ -145,7 +141,7 @@ class ECommerceServices extends SoapService
                  * create master product
                  */
                 if ($index == 0) {
-                    $sku = trim($item->ItemName);
+                    $sku = trim($item->ItemId);
                     $product = ProductsQuery::create()->findOneBySku($sku);
 
                     // products 2 category
@@ -173,7 +169,7 @@ class ECommerceServices extends SoapService
 
                     if (!$product instanceof Products) {
                         $product = new Products();
-                        $product->setId($products_id_map[strtolower($sku)]);
+#                        $product->setId($products_id_map[strtolower($sku)]);
                         $product->setSku($sku);
 
                         if (isset($entry->IsVoucher) && $entry->IsVoucher) {
@@ -198,6 +194,10 @@ class ECommerceServices extends SoapService
                         }
 
                     } else {
+                        foreach ($product->getProductsI18ns() as $translation) {
+                            $translation->setTitle($item->ItemName);
+                        }
+
                         ProductsToCategoriesQuery::create()
                             ->findByProductsId($product->getId(), Propel::getConnection(null, Propel::CONNECTION_WRITE))
                             ->delete()
@@ -225,14 +225,14 @@ class ECommerceServices extends SoapService
                 }
 
                 // create product variations
-                $sku = trim($item->ItemName . ' ' . $entry->InventColorId . ' ' . $entry->InventSizeId);
+                $sku = trim($item->ItemId . ' ' . $entry->InventColorId . ' ' . $entry->InventSizeId);
                 $product = ProductsQuery::create()->findOneBySku($sku);
 
                 if (!$product instanceof Products) {
                     $product = new Products();
-                    $product->setId($products_id_map[strtolower($sku)]);
+#                    $product->setId($products_id_map[strtolower($sku)]);
                     $product->setSku($sku);
-                    $product->setMaster($item->ItemName);
+                    $product->setMaster($item->ItemId);
                     $product->setColor($entry->InventColorId);
                     $product->setSize($entry->InventSizeId);
                 }
@@ -255,8 +255,7 @@ class ECommerceServices extends SoapService
                 $index++;
             }
 
-        }
-        catch(Exception $e) {
+        } catch(Exception $e) {
             $errors = array(
                 //'InventId: ' . $item->ItemId,
                 $e->getMessage(),
@@ -327,8 +326,6 @@ class ECommerceServices extends SoapService
             $domains[$domain->getDomainKey()] = $domain->getId();
         }
 
-
-        $error = array();
         $products = array(
             "{$prices->ItemId}" => array(
                 'product' => ProductsQuery::create()->findOneBySku($prices->ItemId),
@@ -473,7 +470,6 @@ class ECommerceServices extends SoapService
      */
     public function SyncInventoryOnHand($data)
     {
-        $now = date('Ymd');
         $errors = array();
         $stock = $data->inventoryOnHand->InventSum;
 
@@ -493,8 +489,7 @@ class ECommerceServices extends SoapService
         // ....................
 
         // if there is only one item it is not send as an array
-        if (!is_array($stock->InventDim))
-        {
+        if (!is_array($stock->InventDim)) {
             $stock->InventDim = array($stock->InventDim);
         }
 
@@ -535,7 +530,10 @@ class ECommerceServices extends SoapService
                 }
             }
 
-            $item->InventQtyAvailOrderedDate = $item->InventQtyAvailOrderedDate ? $item->InventQtyAvailOrderedDate : 0;
+            $item->InventQtyAvailOrderedDate = $item->InventQtyAvailOrderedDate
+                ? $item->InventQtyAvailOrderedDate
+                : 0
+            ;
 
             $stock_data = array(
                 'onhand'  => (int) $item->InventQtyAvailPhysical,
@@ -551,11 +549,10 @@ class ECommerceServices extends SoapService
                         continue;
                     }
 
-                   $stock_data[$k] = $value -  $products[$key]['qty_in_use'];
+                   $stock_data[$k] = $value - $products[$key]['qty_in_use'];
                    $products[$key]['qty_in_use'] = 0;
                 }
             }
-
 
             // no need to add empty entries
             if (array_sum($stock_data) == 0) {
@@ -569,7 +566,7 @@ class ECommerceServices extends SoapService
             if (isset($stock_data['ordered'])) {
                 if (empty($products[$key]['inventory'][$item->InventQtyAvailOrderedDate])) {
                     $products[$key]['inventory'][$item->InventQtyAvailOrderedDate] = array(
-                        'date' => $item->InventQtyAvailOrderedDate,
+                        'date'  => $item->InventQtyAvailOrderedDate,
                         'stock' => 0,
                     );
                 }
@@ -580,7 +577,7 @@ class ECommerceServices extends SoapService
             if (isset($stock_data['onhand'])) {
                 if (empty($products[$key]['inventory']['onhand'])) {
                     $products[$key]['inventory']['onhand'] = array(
-                        'date' => '2000-01-01',
+                        'date'  => '2000-01-01',
                         'stock' => 0,
                     );
                 }
@@ -597,6 +594,12 @@ class ECommerceServices extends SoapService
             if (isset($item['inventory'])) {
                 // inventory to products
                 foreach ($item['inventory'] as $k => $s) {
+                    if ((0 === $s['stock']) &&
+                        (0 === $s['date'])
+                    ) {
+                        continue;
+                    }
+
                     $data = new ProductsStock();
                     $data->setQuantity($s['stock']);
                     $data->setAvailableFrom($s['date']);
@@ -669,6 +672,7 @@ class ECommerceServices extends SoapService
      *     <SalesDiscountPercent></SalesDiscountPercent>
      *   </CustTable>
      * </customer>
+     * @return object
      */
     public function SyncCustomer($data)
     {
@@ -822,6 +826,7 @@ class ECommerceServices extends SoapService
      */
     public function DeleteSalesOrder($data)
     {
+        $errors = [];
         if (empty($data->eOrderNumber)) {
             $this->logger->addCritical(__METHOD__.' '.__LINE__.': no eOrderNumber given.');
             return self::responseStatus('Error', 'DeleteSalesOrderResult', array('no eOrderNumber given.'));
@@ -1101,7 +1106,7 @@ class ECommerceServices extends SoapService
      *
      * @see ECommerceServices::SalesOrderCaptureOrRefund
      * @param stdClass $data  soap data object
-     * @param Order    $order order object
+     * @param Orders   $order order object
      * @return mixed   true on success array of errors on error
      */
     protected function SalesOrderCapture($data, Orders $order)
@@ -1195,9 +1200,9 @@ class ECommerceServices extends SoapService
      * SalesOrderRefund - split out from SalesOrderCaptureOrRefund
      *
      * @see ECommerceServices::SalesOrderCaptureOrRefund
-     * @param [type] $data  [description]
-     * @param Order  $order [description]
-     * @return mixed   true on success array of errors on error
+     * @param array  $data  refund data
+     * @param Orders $order order object
+     * @return mixed        true on success array of errors on error
      */
     protected function SalesOrderRefund($data, Orders $order)
     {

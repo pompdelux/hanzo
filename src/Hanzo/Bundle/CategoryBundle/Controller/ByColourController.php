@@ -136,14 +136,14 @@ class ByColourController extends CoreController
                     'sku' => $product->getSku(),
                     'id' => $product->getId(),
                     'out_of_stock' => $product->getIsOutOfStock(),
-                    'title' => $product->getSku(),
+                    'title' => $product->getTitle(),
                     'color' => $variant->getColor(),
                     'image' => ($show_by_look) ? $image_set : $image_overview,
                     'image_flip' => ($show_by_look) ? $image_overview : $image_set,
                     'alt' => $alt,
                     'url' => $router->generate($product_route, array(
                         'product_id' => $product->getId(),
-                        'title' => Tools::stripText($product->getSku()),
+                        'title' => Tools::stripText($product->getTitle()),
                         'focus' => $variant->getId()
                     )),
                     'index' => $index,
