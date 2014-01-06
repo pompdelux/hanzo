@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "1b44d443ee8bb3077cc72846ec2754be",
+    "hash": "4123afee98a140432f7d9cb51a1a9dcb",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -2081,16 +2081,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.3.8",
+            "version": "v2.3.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "b0b421908d569e5024372ded65857707c409e0f7"
+                "reference": "ee1e0f2ef882ccd6a53ff91e5ffc39a22b6a6b74"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/b0b421908d569e5024372ded65857707c409e0f7",
-                "reference": "b0b421908d569e5024372ded65857707c409e0f7",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/ee1e0f2ef882ccd6a53ff91e5ffc39a22b6a6b74",
+                "reference": "ee1e0f2ef882ccd6a53ff91e5ffc39a22b6a6b74",
                 "shasum": ""
             },
             "require": {
@@ -2185,7 +2185,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2013-12-16 14:36:05"
+            "time": "2014-01-05 01:24:54"
         },
         {
             "name": "twig/extensions",
@@ -2285,27 +2285,27 @@
         },
         {
             "name": "willdurand/expose-translation-bundle",
-            "version": "1.2.0",
+            "version": "1.1.1",
             "target-dir": "Bazinga/ExposeTranslationBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/willdurand/BazingaJsTranslationBundle.git",
-                "reference": "61fa1a3ada45fa42e22b960f128877127c3c6875"
+                "reference": "a026f52db130f310d542154e9473105fa35c6e86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/willdurand/BazingaJsTranslationBundle/zipball/61fa1a3ada45fa42e22b960f128877127c3c6875",
-                "reference": "61fa1a3ada45fa42e22b960f128877127c3c6875",
+                "url": "https://api.github.com/repos/willdurand/BazingaJsTranslationBundle/zipball/a026f52db130f310d542154e9473105fa35c6e86",
+                "reference": "a026f52db130f310d542154e9473105fa35c6e86",
                 "shasum": ""
             },
             "require": {
-                "symfony/console": "~2.1",
-                "symfony/finder": "~2.1",
-                "symfony/framework-bundle": "~2.1"
+                "symfony/console": "~2.0",
+                "symfony/finder": "~2.0",
+                "symfony/framework-bundle": "~2.0"
             },
             "require-dev": {
-                "symfony/browser-kit": "~2.1",
-                "symfony/yaml": "~2.1"
+                "symfony/browser-kit": "~2.0",
+                "symfony/yaml": "~2.0"
             },
             "type": "symfony-bundle",
             "extra": {
@@ -2332,23 +2332,22 @@
             "description": "A pretty nice way to expose your translation messages to your JavaScript.",
             "keywords": [
                 "javascript",
-                "symfony",
                 "translation"
             ],
-            "time": "2013-12-27 02:17:05"
+            "time": "2013-12-12 15:04:38"
         },
         {
             "name": "willdurand/geocoder",
-            "version": "2.4.1",
+            "version": "2.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/geocoder-php/Geocoder.git",
-                "reference": "c73ee7bc1999e15366ba949ffba388a64aad68df"
+                "reference": "258e2f5c84a9cea03096f6f11ecdc0293fbc7b93"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/geocoder-php/Geocoder/zipball/c73ee7bc1999e15366ba949ffba388a64aad68df",
-                "reference": "c73ee7bc1999e15366ba949ffba388a64aad68df",
+                "url": "https://api.github.com/repos/geocoder-php/Geocoder/zipball/258e2f5c84a9cea03096f6f11ecdc0293fbc7b93",
+                "reference": "258e2f5c84a9cea03096f6f11ecdc0293fbc7b93",
                 "shasum": ""
             },
             "require": {
@@ -2398,7 +2397,7 @@
                 "geocoding",
                 "geoip"
             ],
-            "time": "2013-12-16 14:09:23"
+            "time": "2014-01-05 01:57:42"
         }
     ],
     "packages-dev": [
