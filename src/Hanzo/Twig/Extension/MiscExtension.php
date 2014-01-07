@@ -428,6 +428,10 @@ DOC;
                         $attr['alt'] = $slide['alt'];
                     }
 
+                    if (empty($slide['href'])) {
+                        $slide['href'] = '';
+                    }
+                    
                     $html .= '<a href="'.$slide['href'].'"'.$params.'>'.Tools::imageTag($slide['src'], $attr)."</a>\n";
                 }
 
