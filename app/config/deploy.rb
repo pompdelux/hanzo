@@ -46,7 +46,7 @@ set :deployed_group, "www-data"
 # will run propel:model:build on each environment if set to propel
 set :model_manager, "propelXX"
 
-set :keep_releases,  5
+set :keep_releases,  3
 
 set :shared_files,      ["app/config/parameters.ini", "app/config/hanzo.yml", "cron/config.php"]
 
@@ -189,7 +189,7 @@ namespace :deploy do
     capifony_pretty_print "--> Getting changelog from git"
     deployed_already = current_revision
     to_be_deployed = `cd .rsync_cache && git rev-parse --short "HEAD" && cd ..`.strip
-    set :deploydiff, `cd .rsync_cache && git log --no-merges --pretty=format:"* %s %b (%cn)" #{deployed_already}..#{to_be_deployed}`
+    set :deploydiff, `cd .rsync_cache && git log --no-merges --pretty=format:"* %s %b (%cn)" #{deployed_already}..#{to_be_deployed}`.sub("'", "")
     capifony_puts_ok
   end
 end

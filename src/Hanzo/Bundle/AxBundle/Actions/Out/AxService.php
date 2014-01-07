@@ -153,8 +153,10 @@ class AxService
         foreach ($products as $product) {
             $discount_in_percent = 0;
 
+            $item_id = trim(str_replace($product->getproductsColor().' '.$product->getProductsSize(), '', $product->getProductsSku()));
+
             $line = new stdClass();
-            $line->ItemId        = $product->getProductsName();
+            $line->ItemId        = $item_id;
             $line->lineText      = $product->getProductsName();
             $line->SalesPrice    = number_format($product->getOriginalPrice(), 2, '.', '');
             $line->SalesQty      = $product->getQuantity();
@@ -551,8 +553,8 @@ class AxService
     /**
      * lock orders in ax
      *
-     * @param Orders $order
-     * @param bool   $status true locks an order false unlocks
+     * @param  Orders $order
+     * @param  bool   $status true locks an order false unlocks
      * @return bool
      */
     public function lockUnlockSalesOrder($order, $status = true)
@@ -657,8 +659,8 @@ class AxService
         curl_setopt_array($c, array(
             CURLOPT_URL            => $this->wsdl,
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_CONNECTTIMEOUT => 5, // connection
-            CURLOPT_TIMEOUT        => 6, // execution timeout
+            CURLOPT_CONNECTTIMEOUT => 8,  // connection
+            CURLOPT_TIMEOUT        => 10, // execution timeout
         ));
 
         $file = curl_exec($c);
