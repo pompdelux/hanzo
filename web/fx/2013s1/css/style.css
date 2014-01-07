@@ -2453,21 +2453,20 @@ div.invalid-order {
   background: white;
   background: rgba(255, 255, 255, 0.98);
   width: 350px;
-  min-height: 238px;
   z-index: 220;
   -webkit-border-radius: 0px 0px 20px 20px;
   -moz-border-radius: 0px 0px 20px 20px;
   border-radius: 0px 0px 20px 20px;
   border: 1px solid #DFDFDF;
   border-top: none;
-  padding: 20px;
+  padding: 10px 20px;
 }
 #mega-basket .basket {
   text-transform: uppercase;
 }
 #mega-basket .delivery-text {
-  position: absolute;
-  bottom: 14px;
+  margin-top: 10px;
+  width: 270px;
 }
 #mega-basket .delivery-text li {
   margin-bottom: 7px;
