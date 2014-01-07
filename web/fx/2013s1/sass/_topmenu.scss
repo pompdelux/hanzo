@@ -5,6 +5,7 @@
 
 nav.main-menu {
   background: #484a4d;
+  padding: 0 10px;
   ul {
     z-index: 210; // z-index and rpoition to fix rendering in IE7. This must be higher than the actually z-index of child
     position: relative;

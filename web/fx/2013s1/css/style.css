@@ -2471,6 +2471,7 @@ a.facebook-button:hover, a.facebook-button:active, a.facebook-button:focus,
 */
 nav.main-menu {
   background: #484a4d;
+  padding: 0 10px;
 }
 nav.main-menu ul {
   z-index: 210;
