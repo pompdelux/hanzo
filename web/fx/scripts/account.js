@@ -232,7 +232,7 @@ var account = (function($) {
 if ($("#body-create-account").length) {
   account.init();
 }
-if ($("#body-events-create-customer").length) {
+if ($("#body-events-create-customer, #body-edit-account").length) {
   account.zipToCityInit();
 }
 
