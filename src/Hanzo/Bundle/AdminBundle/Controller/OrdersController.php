@@ -352,7 +352,7 @@ class OrdersController extends CoreController
 
         $status = [];
         if ('POST' == $request->getMethod()) {
-            $form->bind($request);
+            $form->handleRequest($request);
             $values = $form->getData();
 
             list($min, $max) = explode('-', $values['range']);

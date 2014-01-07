@@ -259,7 +259,7 @@ class ConsultantsController extends CoreController
         ;
 
         if ('POST' === $request->getMethod()) {
-            $form->bind($request);
+            $form->handleRequest($request);
 
             if ($form->isValid()) {
                 $data = $form->getData();
@@ -573,7 +573,7 @@ class ConsultantsController extends CoreController
         ;
 
         if ('POST' === $request->getMethod()) {
-            $form->bind($request);
+            $form->handleRequest($request);
 
             if ($form->isValid()) {
 

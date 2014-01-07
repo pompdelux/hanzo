@@ -166,7 +166,7 @@ class PostalCodeController extends CoreController
 
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
-            $form->bind($request);
+            $form->handleRequest($request);
 
             if ($form->isValid()) {
 
@@ -213,7 +213,7 @@ class PostalCodeController extends CoreController
         ;
 
         if ('POST' === $request->getMethod()) {
-            $form->bind($request);
+            $form->handleRequest($request);
             $form_data = $form->getData();
 
             if (empty($form_data['domain'])) {
