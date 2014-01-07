@@ -170,7 +170,7 @@ class AddressController extends CoreController
         ]);
 
         $attr = [];
-        if (in_array($short_domain_key, ['DK', 'NO', 'SE'])) {
+        if (in_array($short_domain_key, ['AT', 'CH', 'DE', 'DK', 'FI', 'NL', 'NO', 'SE'])) {
             $attr = ['class' => 'auto-city'];
         }
 

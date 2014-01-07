@@ -30,7 +30,7 @@ class AddressesType extends AbstractType
         ));
 
         $attr = [];
-        if (in_array($short_domain_key, ['DK', 'NO', 'SE', 'FI'])) {
+        if (in_array($short_domain_key, ['AT', 'CH', 'DE', 'DK', 'FI', 'NL', 'NO', 'SE'])) {
             $attr = ['class' => 'auto-city'];
         }
 
