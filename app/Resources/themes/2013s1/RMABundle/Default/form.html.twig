@@ -23,7 +23,7 @@
         {% for product in order_lines %}
           <tr class="item">
             <td class="image left">
-            {% if product.basket_image %}
+            {% if product.basket_image is defined %}
               {{ product_image_tag(product.basket_image, '57x100', { 'alt' : product.products_name }) }}
             {% endif %}
               <div class="info" data-product_id="{{ product.id }}" data-confirmed="">
