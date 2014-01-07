@@ -239,7 +239,7 @@
                 <target><![CDATA[
                 <h2>Asiakaspalvelu</h2>
                 <ul class="menu">
-				<li><a href="/fi_FI/koti/asiakaspalvelu/puhelinajat">Puhelinajat</a></li>
+				<li><a href="/fi_FI/asiakaspalvelu/puhelinajat">Puhelinajat</a></li>
 				<li><a href="/fi_FI/koti/asiakaspalvelu/faq">FAQ</a></li>
 				<li><a href="/fi_FI/koti/asiakaspalvelu/palautukset">Palautukset</a></li>
 				<li><a href="/fi_FI/koti/asiakaspalvelu/vaihtaminen">Vaihtaminen</a></li>
