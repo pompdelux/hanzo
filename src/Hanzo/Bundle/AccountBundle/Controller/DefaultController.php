@@ -15,13 +15,11 @@ use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\CustomersQuery;
 use Hanzo\Model\Addresses;
 use Hanzo\Model\AddressesQuery;
-use Hanzo\Model\Countries;
 use Hanzo\Model\CountriesPeer;
 use Hanzo\Model\CountriesQuery;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\OrdersQuery;
 
-use Hanzo\Bundle\AccountBundle\Security\User\ProxyUser;
 use Hanzo\Bundle\AccountBundle\Form\Type\CustomersType;
 use Hanzo\Bundle\AccountBundle\Form\Type\AddressesType;
 
@@ -187,6 +185,7 @@ class DefaultController extends CoreController
     /**
      * handle password retrival
      *
+     * @param Request $request
      * @return Responce object
      */
     public function passwordForgottenAction(Request $request)
@@ -226,6 +225,7 @@ class DefaultController extends CoreController
     /**
      * Handles the user edit form.
      *
+     * @param Request $request
      * @return Response object
      */
     public function editAction(Request $request)
@@ -247,7 +247,7 @@ class DefaultController extends CoreController
         );
 
         if ('POST' === $request->getMethod()) {
-            $form->bind($request);
+            $form->handleRequest($request);
 
             if ($form->isValid()) {
                 if (!$customer->getPassword()) {
@@ -492,6 +492,8 @@ class DefaultController extends CoreController
 
     /**
      * errorAction
+     *
+     * @param string $error
      * @return Response
      * @author Henrik Farre <hf@bellcom.dk>
      **/
