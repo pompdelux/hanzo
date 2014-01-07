@@ -180,6 +180,14 @@ class NewsletterApi
             case 'DE':
                 $listid = 53;
                 break;
+            case 'SalesAT':
+            case 'AT':
+                $listid = 54;
+                break;
+            case 'SalesCH':
+            case 'CH':
+                $listid = 55;
+                break;
         }
 
         return $listid;
