@@ -366,6 +366,10 @@
                 <source>form.buy.choose.first</source>
                 <target>Je moet eerst een maat en kleur kiezen.</target>
             </trans-unit>
+            <trans-unit id="rma.return.all.text">
+                <source>rma.return.all.text</source>
+                <target>Aankoop ongedaan maken (geld terug)</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
