@@ -38,7 +38,6 @@ class HistoryController extends CoreController
         }
 
         $order_lines = $order->getOrdersLiness();
-        $order_attributes = $order->getOrdersAttributess();
 
         $addresses = array();
         foreach ($order->toArray() as $key => $value) {

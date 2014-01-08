@@ -193,8 +193,8 @@ class ConsultantNewsletterApi
     /**
     * Creates an admin user in phplist
     *
-    * @param stdClass $user
-    * @param stdClass $access
+    * @param \stdClass $user
+    * @param \stdClass $access
     * @return bool
     * @author Henrik Farre <hf@bellcom.dk>
     **/
@@ -219,7 +219,7 @@ class ConsultantNewsletterApi
     /**
     * Creates a list
     *
-    * @param stdClass $list
+    * @param \stdClass $list
     * @return void
     * @author Henrik Farre <hf@bellcom.dk>
     **/

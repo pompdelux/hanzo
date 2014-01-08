@@ -1184,17 +1184,17 @@
         },
         {
             "name": "misd/guzzle-bundle",
-            "version": "v1.1.2",
+            "version": "v1.1.3",
             "target-dir": "Misd/GuzzleBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/misd-service-development/guzzle-bundle.git",
-                "reference": "9c6880f7d4d49d1d751a20ba8fd88dbaaf99a4fc"
+                "reference": "9451d521306616d40d398d6f914058de1787d040"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/misd-service-development/guzzle-bundle/zipball/9c6880f7d4d49d1d751a20ba8fd88dbaaf99a4fc",
-                "reference": "9c6880f7d4d49d1d751a20ba8fd88dbaaf99a4fc",
+                "url": "https://api.github.com/repos/misd-service-development/guzzle-bundle/zipball/9451d521306616d40d398d6f914058de1787d040",
+                "reference": "9451d521306616d40d398d6f914058de1787d040",
                 "shasum": ""
             },
             "require": {
@@ -1254,7 +1254,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2013-12-24 09:34:18"
+            "time": "2014-01-06 15:10:45"
         },
         {
             "name": "monolog/monolog",
@@ -1364,17 +1364,17 @@
         },
         {
             "name": "nelmio/security-bundle",
-            "version": "1.2.0",
+            "version": "1.3.0",
             "target-dir": "Nelmio/SecurityBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nelmio/NelmioSecurityBundle.git",
-                "reference": "c83f7ab3b9bc5367f39918fcc9542ba01d2eccea"
+                "reference": "b59c322129164ca7386170e1908822ec0cf2cadf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nelmio/NelmioSecurityBundle/zipball/c83f7ab3b9bc5367f39918fcc9542ba01d2eccea",
-                "reference": "c83f7ab3b9bc5367f39918fcc9542ba01d2eccea",
+                "url": "https://api.github.com/repos/nelmio/NelmioSecurityBundle/zipball/b59c322129164ca7386170e1908822ec0cf2cadf",
+                "reference": "b59c322129164ca7386170e1908822ec0cf2cadf",
                 "shasum": ""
             },
             "require": {
@@ -1410,7 +1410,7 @@
             "keywords": [
                 "security"
             ],
-            "time": "2013-07-29 15:33:47"
+            "time": "2014-01-07 23:14:34"
         },
         {
             "name": "phing/phing",
@@ -1515,17 +1515,17 @@
         },
         {
             "name": "propel/propel-bundle",
-            "version": "1.2.13",
+            "version": "1.2.14",
             "target-dir": "Propel/PropelBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/propelorm/PropelBundle.git",
-                "reference": "ef95bcd63cabe29d48e96fd9c07ecee814eade50"
+                "reference": "2e544273769c71b200e7dfa31212791eec6a9aab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/propelorm/PropelBundle/zipball/ef95bcd63cabe29d48e96fd9c07ecee814eade50",
-                "reference": "ef95bcd63cabe29d48e96fd9c07ecee814eade50",
+                "url": "https://api.github.com/repos/propelorm/PropelBundle/zipball/2e544273769c71b200e7dfa31212791eec6a9aab",
+                "reference": "2e544273769c71b200e7dfa31212791eec6a9aab",
                 "shasum": ""
             },
             "require": {
@@ -1562,7 +1562,7 @@
                 "persistence",
                 "propel"
             ],
-            "time": "2013-12-07 10:16:08"
+            "time": "2014-01-07 06:28:58"
         },
         {
             "name": "propel/propel1",
@@ -2285,23 +2285,26 @@
         },
         {
             "name": "willdurand/expose-translation-bundle",
-            "version": "1.1.1",
+            "version": "1.1.2",
             "target-dir": "Bazinga/ExposeTranslationBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/willdurand/BazingaJsTranslationBundle.git",
-                "reference": "a026f52db130f310d542154e9473105fa35c6e86"
+                "reference": "0d8c15897566e20a5e4189e6ec5e5238ee1cb96a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/willdurand/BazingaJsTranslationBundle/zipball/a026f52db130f310d542154e9473105fa35c6e86",
-                "reference": "a026f52db130f310d542154e9473105fa35c6e86",
+                "url": "https://api.github.com/repos/willdurand/BazingaJsTranslationBundle/zipball/0d8c15897566e20a5e4189e6ec5e5238ee1cb96a",
+                "reference": "0d8c15897566e20a5e4189e6ec5e5238ee1cb96a",
                 "shasum": ""
             },
             "require": {
                 "symfony/console": "~2.0",
                 "symfony/finder": "~2.0",
                 "symfony/framework-bundle": "~2.0"
+            },
+            "replace": {
+                "willdurand/expose-translation-bundle": "1.1.*"
             },
             "require-dev": {
                 "symfony/browser-kit": "~2.0",
@@ -2334,7 +2337,7 @@
                 "javascript",
                 "translation"
             ],
-            "time": "2013-12-12 15:04:38"
+            "time": "2014-01-07 08:05:26"
         },
         {
             "name": "willdurand/geocoder",

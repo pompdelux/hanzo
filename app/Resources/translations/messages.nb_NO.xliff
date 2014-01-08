@@ -286,8 +286,8 @@
                 </ul><br>		
 				<h2>BE SOCIAL</h2>
 				 <ul class="menu">
-				 <li><a href="http://instagram.com/pompdelux_official">Instagram</a></li>
-				<li><a href="https://www.facebook.com/POMPdeLUXDK">Facebook</a></li>
+				 <li><a href="http://instagram.com/pompdelux_official" target="_blank"> Instagram</a></li>
+				<li><a href="https://www.facebook.com/POMPdeLUXDK" target="_blank">Facebook</a></li>
 				<li><a href="/nb_NO/forside/katalog/backstage-video">Backstage video</a></li>				 
                 </ul>
                 ]]></target>
@@ -298,9 +298,9 @@
                 <h2>MER POMPDELUX</h2>
                 <ul class="menu">
                     <li><a href="/nb_NO/forside/om-pompdelux">Om POMPdeLUX</a></li>
-                    <li><a href="/nb_NO/forside/om-pompdelux/corporate-social-responsibility/csr-rapport">CSR-rapport</a></li>
+                    <li><a href="/nb_NO/forside/om-pompdelux/corporate-social-responsibility/csr-rapport">CSR</a></li>
 					<li><a href="/nb_NO/forside/konkurranse">Konkurranse</a></li>
-					<li><a href="/nb_NO/forside/webshop/info/credits">Kontakt</a></li>
+					<li><a href="/nb_NO/forside/om-pompdelux/kontakt">Kontakt</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>

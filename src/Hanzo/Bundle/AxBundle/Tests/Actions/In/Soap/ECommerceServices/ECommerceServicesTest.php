@@ -2,13 +2,12 @@
 
 namespace Hanzo\Bundle\AxBundle\Tests\Actions\In\Soap\ECommerceServices;
 
-use stdClass;
-
 use Hanzo\Core\Tools;
+
+use Symfony\Bridge\Monolog\Logger;
 use Hanzo\Core\Tests\WebTestCase;
 use Hanzo\Bundle\AxBundle\Actions\In\Soap\ECommerceServices\ECommerceServices;
 
-use Symfony\Bridge\Monolog\Logger;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
@@ -49,75 +48,48 @@ class ECommerceServicesTest extends WebTestCase
      */
     public function testSyncItem()
     {
-        require str_replace('Tests/', '', __DIR__).'/products_id_map.php';
-
-        $product   = array_keys($products_id_map);
-        $master    = array_shift($product);
-        $variant_1 = array_shift($product);
-        $variant_2 = array_shift($product);
-
-        if (strpos($variant_1, 'one size')) {
-            $variant_1_size = 'one size';
-            $variant_1_color = trim(str_replace('one size', '', str_replace($master, '', $variant_1)));
-        } else {
-            preg_match('/([0-9][0-9 -]+)/', $variant_1, $matches);
-            $variant_1_size = $matches[1];
-            $variant_1_color = trim(str_replace($matches[1], '', str_replace($master, '', $variant_1)));
-        }
-
-        if (strpos($variant_2, 'one size')) {
-            $variant_2_size = 'one size';
-            $variant_2_color = trim(str_replace('one size', '', str_replace($master, '', $variant_2)));
-        } else {
-            preg_match('/([0-9][0-9 -]+)/', $variant_2, $matches);
-            $variant_2_size = $matches[1];
-            $variant_2_color = trim(str_replace($matches[1], '', str_replace($master, '', $variant_2)));
-        }
-
-        $InventTable = new stdClass();
-        $InventTable->ItemGroupId     = "G_Access,LG_Access";
-        $InventTable->ItemGroupName   = "Girl Accessories";
-        $InventTable->ItemId          = $master;
-        $InventTable->WebEnabled      = true;
-        $InventTable->ItemName        = $master;
-        $InventTable->ItemType        = "Item";
-        $InventTable->NetWeight       = 0.00;
-        $InventTable->BlockedDate     = "1990-01-01";
-        $InventTable->WashInstruction = null;
-        $InventTable->IsVoucher       = false;
-        $InventTable->WebDomain       = ['COM', 'DK', 'SalesDK'];
-
-        $InventTable->Sales = (object) [
-            "Price"  => 0.00,
-            "UnitId" => "Stk.",
-        ];
-
-        $InventTable->InventDim = [
-            (object) [
-                "InventColorId" => $variant_1_color,
-                "InventSizeId"  => $variant_1_size,
-            ],
-            (object) [
-                "InventColorId" => $variant_2_color,
-                "InventSizeId"  => $variant_2_size,
-            ],
-        ];
-
+        $data    = $this->getFakeItem();
         $handler = $this->getHandler();
+        $result  = $handler->SyncItem($data);
 
-        $data = new stdClass();
-        $data->item = new stdClass();
-        $data->item->InventTable = $InventTable;
-
-        $result = $handler->SyncItem($data);
         $this->assertObjectHasAttribute('SyncItemResult', $result);
         $this->assertEquals($result->SyncItemResult->Status->enc_value, 'Ok');
 
-        $product = ProductsQuery::create()->findOneBySku($master);
+        $sku             = $data->item->InventTable->ItemId;
+        $variant_1_color = $data->item->InventTable->InventDim[0]->InventColorId;
+        $variant_1_size  = $data->item->InventTable->InventDim[0]->InventSizeId;
+
+        $product = ProductsQuery::create()->findOneBySku($sku);
         $this->assertEquals($product->getUnit(), '1 Stk.');
 
-        $product = ProductsQuery::create()->findOneBySku($master.' '.$variant_1_color.' '.$variant_1_size);
-        $this->assertEquals($product->getMaster(), $master);
+        $product = ProductsQuery::create()->findOneBySku($sku.' '.$variant_1_color.' '.$variant_1_size);
+        $this->assertEquals($product->getMaster(), $sku);
+    }
+
+
+    /**
+     * Test SyncItem service - change name of a product.
+     */
+    public function testUpdateItemTitle()
+    {
+        $data    = $this->getFakeItem();
+        $handler = $this->getHandler();
+
+        $data->item->InventTable->ItemName = 'some thing else';
+
+        $result  = $handler->SyncItem($data);
+        $this->assertEquals($result->SyncItemResult->Status->enc_value, 'Ok');
+
+        $sku = $data->item->InventTable->ItemId;
+        $product = ProductsQuery::create()
+            ->useProductsI18nQuery()
+            ->filterByLocale('da_DK')
+            ->endUse()
+            ->joinWithProductsI18n()
+            ->findOneBySku($sku)
+        ;
+
+        $this->assertEquals($product->getTitle(), $data->item->InventTable->ItemName);
     }
 
 
@@ -126,7 +98,7 @@ class ECommerceServicesTest extends WebTestCase
      */
     public function testSyncPriceList()
     {
-        $priceList = new stdClass();
+        $priceList = new \stdClass();
         $priceList->ItemId     = '';
         $priceList->SalesPrice = [];
 
@@ -146,7 +118,7 @@ class ECommerceServicesTest extends WebTestCase
                 'dates' => ['2014-01-01', '2014-02-01', date('Y-m-d', strtotime('-1 year'))],
             ];
 
-            $SalesPrice = new stdClass();
+            $SalesPrice = new \stdClass();
             $SalesPrice->AmountCur     = 120.00;
             $SalesPrice->Currency      = 'DKK';
             $SalesPrice->CustAccount   = 'DKK';
@@ -157,7 +129,7 @@ class ECommerceServicesTest extends WebTestCase
             $SalesPrice->UnitId        = 'Stk.';
             $priceList->SalesPrice[]   = $SalesPrice;
 
-            $SalesPrice = new stdClass();
+            $SalesPrice = new \stdClass();
             $SalesPrice->AmountCur     = 100.00;
             $SalesPrice->Currency      = 'DKK';
             $SalesPrice->CustAccount   = 'SalesDK';
@@ -168,7 +140,7 @@ class ECommerceServicesTest extends WebTestCase
             $SalesPrice->UnitId        = 'Stk.';
             $priceList->SalesPrice[]   = $SalesPrice;
 
-            $SalesPrice = new stdClass();
+            $SalesPrice = new \stdClass();
             $SalesPrice->AmountCur     = 100.00;
             $SalesPrice->Currency      = 'DKK';
             $SalesPrice->CustAccount   = 'DKK';
@@ -181,7 +153,7 @@ class ECommerceServicesTest extends WebTestCase
             $SalesPrice->PriceDateTo   = '2014-02-01';
             $priceList->SalesPrice[]   = $SalesPrice;
 
-            $SalesPrice = new stdClass();
+            $SalesPrice = new \stdClass();
             $SalesPrice->AmountCur     = 90.00;
             $SalesPrice->Currency      = 'DKK';
             $SalesPrice->CustAccount   = 'SalesDK';
@@ -195,7 +167,7 @@ class ECommerceServicesTest extends WebTestCase
             $priceList->SalesPrice[]   = $SalesPrice;
         }
 
-        $data = new stdClass();
+        $data = new \stdClass();
         $data->priceList = $priceList;
 
         $handler = $this->getHandler();
@@ -213,6 +185,7 @@ class ECommerceServicesTest extends WebTestCase
             ->endUse()
             ->find()
         ;
+
         foreach ($prices as $price) {
             $this->assertContains(($price->getPrice() + $price->getVat()), $test_product_data[$price->getProductsId()]['prices']);
             $this->assertContains(($price->getFromDate('Y-m-d')), $test_product_data[$price->getProductsId()]['dates']);
@@ -267,7 +240,7 @@ class ECommerceServicesTest extends WebTestCase
             ];
         }
 
-        $data = new stdClass();
+        $data = new \stdClass();
         $data->inventoryOnHand = $inventoryOnHand;
 
         $handler = $this->getHandler();
@@ -330,7 +303,7 @@ class ECommerceServicesTest extends WebTestCase
             ]
         ];
 
-        $data = new stdClass();
+        $data = new \stdClass();
         $data->customer = $customer;
 
         $handler = $this->getHandler();
@@ -502,5 +475,70 @@ class ECommerceServicesTest extends WebTestCase
         }
 
         return $soap;
+    }
+
+    protected function getFakeItem()
+    {
+        require str_replace('Tests/', '', __DIR__).'/products_id_map.php';
+
+        $product   = array_keys($products_id_map);
+        $master    = array_shift($product);
+        $variant_1 = array_shift($product);
+        $variant_2 = array_shift($product);
+        $sku       = str_replace(' ', '', $master).'SS14';
+
+        if (strpos($variant_1, 'one size')) {
+            $variant_1_size = 'one size';
+            $variant_1_color = trim(str_replace('one size', '', str_replace($master, '', $variant_1)));
+        } else {
+            preg_match('/([0-9][0-9 -]+)/', $variant_1, $matches);
+            $variant_1_size = $matches[1];
+            $variant_1_color = trim(str_replace($matches[1], '', str_replace($master, '', $variant_1)));
+        }
+
+        if (strpos($variant_2, 'one size')) {
+            $variant_2_size = 'one size';
+            $variant_2_color = trim(str_replace('one size', '', str_replace($master, '', $variant_2)));
+        } else {
+            preg_match('/([0-9][0-9 -]+)/', $variant_2, $matches);
+            $variant_2_size = $matches[1];
+            $variant_2_color = trim(str_replace($matches[1], '', str_replace($master, '', $variant_2)));
+        }
+
+        $InventTable = new \stdClass();
+        $InventTable->ItemGroupId     = "G_Access,LG_Access";
+        $InventTable->ItemGroupName   = "Girl Accessories";
+        $InventTable->ItemId          = $sku;
+        $InventTable->WebEnabled      = true;
+        $InventTable->ItemName        = $master;
+        $InventTable->ItemType        = "Item";
+        $InventTable->NetWeight       = 0.00;
+        $InventTable->BlockedDate     = "1990-01-01";
+        $InventTable->WashInstruction = null;
+        $InventTable->IsVoucher       = false;
+        $InventTable->WebDomain       = ['COM', 'DK', 'SalesDK'];
+
+        $InventTable->Sales = (object) [
+            "Price"  => 0.00,
+            "UnitId" => "Stk.",
+        ];
+
+        $InventTable->InventDim = [
+            (object) [
+                "InventColorId" => $variant_1_color,
+                "InventSizeId"  => $variant_1_size,
+            ],
+            (object) [
+                "InventColorId" => $variant_2_color,
+                "InventSizeId"  => $variant_2_size,
+            ],
+        ];
+
+
+        $data = new \stdClass();
+        $data->item = new \stdClass();
+        $data->item->InventTable = $InventTable;
+
+        return $data;
     }
 }

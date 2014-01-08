@@ -184,7 +184,7 @@
             </trans-unit>
             <trans-unit id="65">
                 <source>create.account</source>
-                <target></target>
+                <target>Neste</target>
             </trans-unit>
             <trans-unit id="create.account.header" approved="no">
                 <source>create.account.header</source>

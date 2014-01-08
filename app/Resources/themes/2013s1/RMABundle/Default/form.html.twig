@@ -121,7 +121,8 @@
 {% endblock %}
 
 {% block javascript %}
-<script src="{{ asset('/fx/scripts/bootstrap-typeahead.js') }}"></script>
+<!-- script src="{{ asset('/fx/scripts/bootstrap-typeahead.js') }}"></script -->
+<script src="{{ asset('/fx/scripts/typeahead.min.js') }}"></script>
 <script>
   var rma_order_id = {{ order.id }};
 </script>

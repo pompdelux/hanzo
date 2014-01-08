@@ -66,7 +66,7 @@
 
         var id = this.href;
         var data = {
-          master : $('a:first', $info).text(),
+          master : $info.data('master'),
           size   : $('div.size span', $info).text(),
           color  : $('div.color span', $info).text()
         };

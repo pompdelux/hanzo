@@ -3,12 +3,12 @@
 namespace Hanzo\Model;
 
 use Hanzo\Core\Hanzo;
-use Hanzo\Core\Tools;
 use Hanzo\Model\om\BaseProductsPeer;
+use Symfony\Component\HttpFoundation\Request;
 
 class ProductsPeer extends BaseProductsPeer
 {
-    public static function findFromRequest($request)
+    public static function findFromRequest(Request $request)
     {
         static $product_cache = array();
 

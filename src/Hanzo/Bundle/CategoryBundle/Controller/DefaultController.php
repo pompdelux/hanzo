@@ -50,7 +50,7 @@ class DefaultController extends CoreController
         $data = null;
 
         /*
-         *  If html wasnt cached retrieve a fresh set of data
+         *  If html wasn't cached retrieve a fresh set of data
          */
         if(!$html){
             $cms_page = CmsPeer::getByPK($cms_id, $locale);
@@ -128,13 +128,13 @@ class DefaultController extends CoreController
                         'sku' => $product->getSku(),
                         'out_of_stock' => $product->getIsOutOfStock(),
                         'id' => $product->getId(),
-                        'title' => $product->getSku(),
+                        'title' => $product->getTitle(),
                         'image' => ($show_by_look) ? $image_set : $image_overview,
                         'image_flip' => ($show_by_look) ? $image_overview : $image_set,
                         'alt' => $alt,
                         'url' => $router->generate($product_route, array(
                             'product_id' => $product->getId(),
-                            'title' => Tools::stripText($product->getSku()),
+                            'title' => Tools::stripText($product->getTitle()),
                             'focus' => $record->getProductsImages()->getId()
                         )),
                     );
@@ -248,7 +248,7 @@ class DefaultController extends CoreController
             $records[] = array(
                 'sku' => $product->getSku(),
                 'id' => $product->getId(),
-                'title' => $product->getSku(),
+                'title' => $product->getTitle(),
             );
         }
 

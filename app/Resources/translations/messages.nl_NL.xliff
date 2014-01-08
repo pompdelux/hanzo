@@ -259,7 +259,7 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
                     <li><a href="/nl_NL/voorpagina/klantenservice/retourneren">Retourneren</a></li>
                     <li><a href="/nl_NL/voorpagina/klantenservice/ruilen">Ruilen</a></li>
                     <li><a href="/nl_NL/voorpagina/klantenservice/retourformulier">Retourformulier</a></li>
-					<li><a href="/nl_NL/voorpagina/klantenservice/het-wassen">Het wassen</a></li>
+					<li><a href="/nl_NL/voorpagina/het-wassen">Het wassen</a></li>
                     <li><a href="/nl_NL/voorpagina/klantenservice/sizeguide">Sizeguide</a></li>
 					<li><a href="/nl_NL/voorpagina/klantenservice/voorwaarden">Voorwaarden</a></li>
 					<li><a href="/nl_NL/voorpagina/klantenservice/over-de-webshop">Over de webshop</a></li>
@@ -279,8 +279,8 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
                 </ul><br>		
 				<h2>BE SOCIAL</h2>
 				 <ul class="menu">
-				<li><a href="http://instagram.com/pompdelux_official">Instagram</a></li>
-				<li><a href="https://www.facebook.com/POMPdeLUXDK">Facebook</a></li>
+				<li><a href="http://instagram.com/pompdelux_official" target="_blank"> Instagram</a></li>
+				<li><a href="https://www.facebook.com/POMPdeLUXDK" target="_blank">Facebook</a></li>
 				<li><a href="/nl_NL/voorpagina/catalogus/backstage-video">Backstage video</a></li>
                 </ul>
                 ]]></target>
@@ -291,7 +291,7 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
                 <h2>MEER POMPDELUX</h2>
                 <ul class="menu">
                     <li><a href="/nl_NL/voorpagina/over-pompdelux">Over POMPdeLUX</a></li>
-                    <li><a href="/nl_NL/voorpagina/over-pompdelux/corporate-social-responsibility/csr-verslag">CSR-verslag</a></li>
+                    <li><a href="/nl_NL/voorpagina/over-pompdelux/corporate-social-responsibility/csr-verslag">CSR</a></li>
                     <li><a href="/nl_NL/voorpagina/wedstrijd">Wedstrijd</a></li>
 					<li><a href="/nl_NL/voorpagina/over-pompdelux/contact">Contact</a></li>
                 </ul>

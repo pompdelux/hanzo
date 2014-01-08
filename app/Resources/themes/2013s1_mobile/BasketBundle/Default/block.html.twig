@@ -10,7 +10,7 @@
         {% if product.basket_image %}
           <a href="{{ product.url }}" class="image">{{ product_image_tag(product.basket_image, '57x100', { 'alt' : product.products_name }) }}</a>
         {% endif %}
-          <div class="info">
+          <div class="info" data-product_id="{{ product.products_id }}" data-master="{{ product.master }}" data-confirmed="">
             <a href="{{ product.url }}" class="title">{{ product.products_name }}</a><br>
             <div class="size">{{ "size"|trans }}: <span>{{ product.products_size }}</span></div>
             <div class="color">{{ "color"|trans }}: <span>{{ product.products_color }}</span></div>
