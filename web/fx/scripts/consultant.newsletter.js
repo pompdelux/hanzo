@@ -120,7 +120,7 @@ var consultantNewsletter = (function($) {
       });
     });
 
-    $('#subscribed-users a.delete').click(function(e){
+    $('#body-consultant-newsletter table.addresses a.delete').click(function(e){
       e.preventDefault();
       var $a = $(this);
 
@@ -134,7 +134,7 @@ var consultantNewsletter = (function($) {
             success : function(response, textStatus, jqXHR) {
               if (response.status) {
                 // add effects to the removal of a basket row
-                $a.closest('li').fadeOut(function() {
+                $a.closest('tr').fadeOut(function() {
                   $(this).remove();
                 });
               }
