@@ -2,7 +2,7 @@
 
 namespace Hanzo\Bundle\WallBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 use Hanzo\Core\Hanzo,
     Hanzo\Core\Tools,
@@ -205,9 +205,12 @@ class DefaultController extends CoreController
     }
 
     /**
-     * @param $id the id of the parent entry(comment). Default null(new entry)
+     * @param Request $request
+     * @param int     $id the id of the parent entry(comment). Default null(new entry)
+     * @throws AccessDeniedException
+     * @return Response
      */
-    public function addEntryAction($id)
+    public function addEntryAction(Request $request, $id)
     {
 
         if ((false === $this->get('security.context')->isGranted('ROLE_ADMIN')) &&
@@ -216,7 +219,6 @@ class DefaultController extends CoreController
             throw new AccessDeniedException();
         }
 
-        $request = $this->get('request');
         if ('POST' === $request->getMethod()) {
             $creator = $this->get('security.context')->getToken()->getUser();
 
