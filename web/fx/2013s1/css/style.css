@@ -6,19 +6,19 @@
 }
 
 .icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-return, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, .body-pages .newsletter-form-simple .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.return {
-  background: url('/fx/2013s1/../images/icons/icons-s282dcdbd9c.png') no-repeat;
+  background: url('/fx/2013s1/../images/icons/icons-s686f00f4fa.png') no-repeat;
 }
 
 .icons-Kundeservice_Green {
-  background-position: 0 -614px;
+  background-position: 0 -642px;
 }
 
 .icons-Kundeservice_Red {
-  background-position: 0 -486px;
+  background-position: 0 -546px;
 }
 
 .icons-Kundeservice_Yellow {
-  background-position: 0 -550px;
+  background-position: 0 -578px;
 }
 
 .icons-Oeko_Tex {
@@ -26,15 +26,15 @@
 }
 
 .icons-arrow_down {
-  background-position: 0 -1013px;
+  background-position: 0 -1009px;
 }
 
 .icons-arrow_left {
-  background-position: 0 -1006px;
+  background-position: 0 -1002px;
 }
 
 .icons-arrow_right {
-  background-position: 0 -1017px;
+  background-position: 0 -1013px;
 }
 
 .icons-basket {
@@ -42,23 +42,23 @@
 }
 
 .icons-button-left-black {
-  background-position: 0 -1059px;
+  background-position: 0 -1055px;
 }
 
 .icons-button-left {
-  background-position: 0 -987px;
+  background-position: 0 -983px;
 }
 
 .icons-button-right-black {
-  background-position: 0 -1040px;
+  background-position: 0 -1036px;
 }
 
 .icons-button-right {
-  background-position: 0 -968px;
+  background-position: 0 -964px;
 }
 
 .icons-delete {
-  background-position: 0 -890px;
+  background-position: 0 -886px;
 }
 
 .icons-delete_black {
@@ -66,7 +66,7 @@
 }
 
 .icons-delete_icon {
-  background-position: 0 -768px;
+  background-position: 0 -764px;
 }
 
 .icons-delete_white {
@@ -82,23 +82,23 @@
 }
 
 .icons-divider_right {
-  background-position: 0 -434px;
+  background-position: 0 -464px;
 }
 
 .icons-edit {
-  background-position: 0 -942px;
+  background-position: 0 -938px;
 }
 
 .icons-edit_icon {
-  background-position: 0 -800px;
+  background-position: 0 -796px;
 }
 
 .icons-facebook {
-  background-position: 0 -832px;
+  background-position: 0 -828px;
 }
 
 .icons-faq_icon {
-  background-position: 0 -646px;
+  background-position: 0 -674px;
 }
 
 .icons-gots {
@@ -106,11 +106,11 @@
 }
 
 .icons-gplus {
-  background-position: 0 -402px;
+  background-position: 0 -432px;
 }
 
 .icons-instagram {
-  background-position: 0 -582px;
+  background-position: 0 -610px;
 }
 
 .icons-kurv {
@@ -118,7 +118,7 @@
 }
 
 .icons-magnifier {
-  background-position: 0 -1024px;
+  background-position: 0 -1020px;
 }
 
 .icons-newsletter {
@@ -126,15 +126,15 @@
 }
 
 .icons-pdf {
-  background-position: 0 -710px;
+  background-position: 0 -738px;
 }
 
 .icons-pinterest {
-  background-position: 0 -454px;
+  background-position: 0 -514px;
 }
 
 .icons-return {
-  background-position: 0 -916px;
+  background-position: 0 -912px;
 }
 
 .icons-shopping-bag {
@@ -142,19 +142,19 @@
 }
 
 .icons-show {
-  background-position: 0 -864px;
+  background-position: 0 -860px;
 }
 
 .icons-twitter {
-  background-position: 0 -678px;
+  background-position: 0 -706px;
 }
 
 .icons-video {
-  background-position: 0 -736px;
+  background-position: 0 -402px;
 }
 
 .icons-zoom {
-  background-position: 0 -518px;
+  background-position: 0 -484px;
 }
 
 .fi-sprite, body.fi form.buy .submit-button, body.fi .buy-set, body.fi .new-price, body.fi .out-of-stock, body.fi .subscribe-button {
@@ -959,13 +959,12 @@ div.panes > div {
 
 .zoom {
   display: inline-block;
-  text-align: center;
-  margin-right: 5px;
+  margin-top: 20px;
 }
 .zoom .sprite {
-  background-position: 0 -518px;
-  height: 32px;
-  width: 32px;
+  background-position: 0 -484px;
+  height: 30px;
+  width: 235px;
 }
 
 .body-product .breadcrumb {
@@ -974,12 +973,12 @@ div.panes > div {
 
 a.video-popper, #video-player-container a.video {
   display: inline-block;
-  text-align: center;
+  margin-top: 20px;
 }
 a.video-popper .sprite, #video-player-container a.video .sprite {
-  background-position: 0 -736px;
-  height: 32px;
-  width: 32px;
+  background-position: 0 -402px;
+  height: 30px;
+  width: 235px;
 }
 
 .body-product .main h1.title,
@@ -989,6 +988,7 @@ a.video-popper .sprite, #video-player-container a.video .sprite {
   font-weight: normal;
   line-height: 18px;
   color: #444444;
+  clear: both;
 }
 .body-product .main .prices {
   padding: 0 0 12px;
@@ -1074,6 +1074,11 @@ form.buy h4.bordered {
 .productimage-small .last,
 .style-guide .last {
   margin-right: 0;
+}
+
+.latest-seen-poducts img {
+  width: 99px;
+  height: auto;
 }
 
 .style-guide, .style-guide .element {
@@ -3395,7 +3400,7 @@ hr.left {
   background-position: 0 -304px;
 }
 hr.right {
-  background-position: 0 -434px;
+  background-position: 0 -464px;
 }
 
 strong, b {
@@ -3570,14 +3575,14 @@ a.button.button-full-width,
 
 .arrow-right {
   margin-left: 6px;
-  background-position: 0 -1017px;
+  background-position: 0 -1013px;
   height: 7px;
   width: 4px;
 }
 
 .arrow-left {
   margin-right: 6px;
-  background-position: 0 -1006px;
+  background-position: 0 -1002px;
   height: 7px;
   width: 4px;
 }
@@ -3745,27 +3750,27 @@ button.right {
   display: inline-block;
 }
 .sprite.delete {
-  background-position: 0 -890px;
+  background-position: 0 -886px;
   height: 26px;
   width: 26px;
 }
 .sprite.edit {
-  background-position: 0 -942px;
+  background-position: 0 -938px;
   height: 26px;
   width: 26px;
 }
 .sprite.show {
-  background-position: 0 -864px;
+  background-position: 0 -860px;
   height: 26px;
   width: 26px;
 }
 .sprite.pdf {
-  background-position: 0 -710px;
+  background-position: 0 -738px;
   height: 26px;
   width: 26px;
 }
 .sprite.return {
-  background-position: 0 -916px;
+  background-position: 0 -912px;
   height: 26px;
   width: 26px;
 }
