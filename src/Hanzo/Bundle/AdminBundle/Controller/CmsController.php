@@ -165,7 +165,7 @@ class CmsController extends CoreController
 
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
-            $form->bind($request);
+            $form->handleRequest($request);
 
             if ($form->isValid()) {
                 $settings = array();
@@ -353,7 +353,7 @@ class CmsController extends CoreController
 
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
-            $form->bind($request);
+            $form->handleRequest($request);
             $node->setUpdatedBy($this->get('security.context')->getToken()->getUser()->getUsername());
 
             $data = $form->getData();
@@ -545,7 +545,7 @@ class CmsController extends CoreController
 
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
-            $form->bind($request);
+            $form->handleRequest($request);
 
             if ($form->isValid()) {
 

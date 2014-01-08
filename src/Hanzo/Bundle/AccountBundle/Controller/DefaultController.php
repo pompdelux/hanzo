@@ -92,7 +92,7 @@ class DefaultController extends CoreController
         );
 
         if ( 'POST' === $request->getMethod() ) {
-            $form->bind($request);
+            $form->handleRequest($request);
             $data = $form->getData();
             // extra phone and zipcode constrints for .fi
             // TODO: figure out how to make this part of the validation process.
@@ -380,7 +380,7 @@ class DefaultController extends CoreController
 
         $form = $builder->getForm();
         if ($request->getMethod() == 'POST') {
-            $form->bind($request);
+            $form->handleRequest($request);
             if ($form->isValid()) {
 
                 $address->save();

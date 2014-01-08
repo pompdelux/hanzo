@@ -210,7 +210,7 @@ class EventsController extends CoreController
                 $old_event = $event->copy(); // Keep a copy of the old data before we bind the request
             }
 
-            $form->bind($request);
+            $form->handleRequest($request);
 
             if ($form->isValid()) {
                 $consultant = CustomersPeer::getCurrent();
@@ -585,7 +585,7 @@ class EventsController extends CoreController
 
             $request = $this->getRequest();
             if ('POST' === $request->getMethod()) {
-                $form->bind($request);
+                $form->handleRequest($request);
 
                 if ($events_participant->getEmail()) {
                     $res = EventsParticipantsQuery::create()
@@ -797,7 +797,7 @@ class EventsController extends CoreController
 
             $request = $this->getRequest();
             if ('POST' === $request->getMethod()) {
-                $form->bind($request);
+                $form->handleRequest($request);
 
                 if ($form->isValid()) {
                     $events_participant->setKey(sha1(time()));
@@ -1008,7 +1008,7 @@ class EventsController extends CoreController
         if ('POST' === $request->getMethod()) {
 
             $form = &$myEvents[$request->request->get('form')['event_id']]['form']; // Get the correct form instance for the given event. The eventid is sent with a hidden field
-            $form->bind($request);
+            $form->handleRequest($request);
 
             $data = $form->getData();
 
