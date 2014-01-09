@@ -24,12 +24,14 @@ class AccountExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $container->setParameter('account.consignor.trackntrace_url', strtr(
-            $config['consignor']['trackntrace_url'], [
-                ':installation_id:' => $config['consignor']['installation_id'],
-                ':actor_id:'        => $config['consignor']['actor_id']
-            ]
-        ));
+        if ($config['consignor']['installation_id'] && $config['consignor']['actor_id']) {
+            $container->setParameter('account.consignor.trackntrace_url', strtr(
+                $config['consignor']['trackntrace_url'], [
+                    ':installation_id:' => $config['consignor']['installation_id'],
+                    ':actor_id:'        => $config['consignor']['actor_id']
+                ]
+            ));
+        }
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');

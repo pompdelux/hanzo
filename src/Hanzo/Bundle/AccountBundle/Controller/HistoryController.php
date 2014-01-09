@@ -134,6 +134,9 @@ class HistoryController extends CoreController
             }
         }
 
+        // track 'n trace integration - the url is only available if both actor_id and installation_id is set for the country.
+        $trackntrace_url = $this->container->getParameter('account.consignor.trackntrace_url');
+
         $orders = array();
         foreach ($result as $record) {
             $folder = $this->mapLanguageToPdfDir($record->getLanguagesId()).'_'.$record->getCreatedAt('Y');
@@ -148,8 +151,8 @@ class HistoryController extends CoreController
             }
 
             $track_n_trace = '';
-            if (count($attachments)) {
-                $track_n_trace = strtr($this->container->getParameter('account.consignor.trackntrace_url'), [':order_id:' => $record->getId()]);
+            if ($trackntrace_url && count($attachments)) {
+                $track_n_trace = strtr($trackntrace_url, [':order_id:' => $record->getId()]);
             }
 
             $orders[] = array(
