@@ -359,6 +359,10 @@
                 <source>rma.return.all.text</source>
                 <target>Ångrat köp (pengarna tillbaka)</target>
             </trans-unit>
+            <trans-unit id="rma.product.not.filled.correctly">
+                <source>rma.product.not.filled.correctly</source>
+                <target>Vid byte av en vara, ska du skriva både storlek och färg.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

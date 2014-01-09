@@ -374,6 +374,10 @@
                 <source>rma.return.all.text</source>
                 <target>Kaupan peruminen (rahojen palautus)</target>
             </trans-unit>
+            <trans-unit id="rma.product.not.filled.correctly">
+                <source>rma.product.not.filled.correctly</source>
+                <target>Tuotteen vaihdossa täytyy ilmoittaa sekä koko että väri.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

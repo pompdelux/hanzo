@@ -274,6 +274,10 @@
                 <source>rma.return.all.text</source>
                 <target>Regret purchase (money back)</target>
             </trans-unit>
+            <trans-unit id="rma.product.not.filled.correctly">
+                <source>rma.product.not.filled.correctly</source>
+                <target>If you wish to exchange an item, please make sure you specify both the new size and colour.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

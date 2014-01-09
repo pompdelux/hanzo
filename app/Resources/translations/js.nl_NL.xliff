@@ -370,6 +370,10 @@
                 <source>rma.return.all.text</source>
                 <target>Aankoop ongedaan maken (geld terug)</target>
             </trans-unit>
+            <trans-unit id="rma.product.not.filled.correctly">
+                <source>rma.product.not.filled.correctly</source>
+                <target>Bij het omruilen van het artikel moeten maat en kleur worden ingevuld.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
