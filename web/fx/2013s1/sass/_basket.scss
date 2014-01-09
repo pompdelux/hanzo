@@ -76,10 +76,17 @@
 	.sprite{
 		display: inline-block;
 		vertical-align: middle;
-		@include icons-sprite(basket);
-		height: icons-sprite-height(basket);
-		width: icons-sprite-width(basket);
 	}
+}
+#mega-basket .basket .sprite{
+	@include icons-sprite(basket);
+	height: icons-sprite-height(basket);
+	width: icons-sprite-width(basket);
+}
+#mini-basket.basket .sprite {
+	@include icons-sprite(basket-grey);
+	height: icons-sprite-height(basket-grey);
+	width: icons-sprite-width(basket-grey);
 }
 #mini-basket.basket a {
 	color: $basket-color;
