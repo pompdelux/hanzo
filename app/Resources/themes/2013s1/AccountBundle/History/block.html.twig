@@ -30,6 +30,9 @@
                     {% endif %}
                         <a href="{{ path('_account_show_order', { 'order_id': order.id }) }}" title="{{ 'order.invoice.title'|trans({}, 'account') }}" class="sprite show"></a>
                 {% endif %}
+                    {% if order.track_n_trace %}
+                        <a href="{{ order.track_n_trace }}" title="Track n' trace" class="sprite trackntrace"></a>
+                    {% endif %}
                 </td>
                 <td class="center pdf">
                 {% for pdf in order.attachments %}
