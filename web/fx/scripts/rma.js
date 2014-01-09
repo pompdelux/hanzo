@@ -39,13 +39,27 @@ var rma = (function($) {
                 .slideDown('fast')
                 .css('display', 'inline-block')
                 .find('select')
-                    .val('Fortrudt køb (pengene retur)');
+                    .val(Translator.get('js:rma.return.all.text'));
         }
     });
 
   };
 
   function generatePdf () {
+
+    var has_errors = false;
+    $('.rma-activitycode').each(function(index, el) {
+        var id = $(this).data('id');
+        if ($('#replacement-master-lineid-' + id).val() &&
+            (!$('#replacement-size-lineid-' + id).val() || !$('#replacement-color-lineid-' + id).val())) {
+            dialoug.notice(Translator.get('js:rma.product.not.filled.correctly'), 'error', 4000, $('#replacement-master-lineid-' + id).closest('.quickorder'));
+            has_errors = true;
+        }
+    });
+
+    if(has_errors) {
+        return;
+    }
     $submit_button = $('.rma-submit');
     $submit_button.attr('disabled', 'disabled');
     dialoug.loading($submit_button, Translator.get('js:please.wait') );
@@ -78,7 +92,7 @@ var rma = (function($) {
     }
     dialoug.stopLoading();
     $submit_button.removeAttr('disabled');
-}
+  }
 
   return pub;
 })(jQuery);
