@@ -89,8 +89,7 @@ var consultantNewsletter = (function($) {
               dialoug.alert(Translator.get('js:notice'), response.message);
             }
           } else {
-            window.scrollTo(window.scrollMinX, window.scrollMinY);
-            dialoug.slideNotice(response.message);
+            window.location.href = base_url + 'consultantnewsletter/' + response.id;
           }
         }
       });

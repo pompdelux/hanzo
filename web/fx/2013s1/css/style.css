@@ -5,8 +5,8 @@
   background: url('/fx/2013s1/../images/icons/da-s7398167b80.png') no-repeat;
 }
 
-.icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-return, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, .body-pages .newsletter-form-simple .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.return {
-  background: url('/fx/2013s1/../images/icons/icons-s686f00f4fa.png') no-repeat;
+.icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-return, .icons-returnlabel, .icons-shopping-bag, .icons-show, .icons-sizeguide, .icons-trackntrace, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, .body-pages .newsletter-form-simple .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.return {
+  background: url('/fx/2013s1/../images/icons/icons-s4cc7dadc80.png') no-repeat;
 }
 
 .icons-Kundeservice_Green {
@@ -26,15 +26,15 @@
 }
 
 .icons-arrow_down {
-  background-position: 0 -1009px;
+  background-position: 0 -1086px;
 }
 
 .icons-arrow_left {
-  background-position: 0 -1002px;
+  background-position: 0 -1079px;
 }
 
 .icons-arrow_right {
-  background-position: 0 -1013px;
+  background-position: 0 -1090px;
 }
 
 .icons-basket {
@@ -42,19 +42,19 @@
 }
 
 .icons-button-left-black {
-  background-position: 0 -1055px;
+  background-position: 0 -1132px;
 }
 
 .icons-button-left {
-  background-position: 0 -983px;
+  background-position: 0 -1009px;
 }
 
 .icons-button-right-black {
-  background-position: 0 -1036px;
+  background-position: 0 -1113px;
 }
 
 .icons-button-right {
-  background-position: 0 -964px;
+  background-position: 0 -990px;
 }
 
 .icons-delete {
@@ -118,7 +118,7 @@
 }
 
 .icons-magnifier {
-  background-position: 0 -1020px;
+  background-position: 0 -1097px;
 }
 
 .icons-newsletter {
@@ -137,12 +137,24 @@
   background-position: 0 -912px;
 }
 
+.icons-returnlabel {
+  background-position: 0 -964px;
+}
+
 .icons-shopping-bag {
   background-position: 0 -344px;
 }
 
 .icons-show {
   background-position: 0 -860px;
+}
+
+.icons-sizeguide {
+  background-position: 0 -1053px;
+}
+
+.icons-trackntrace {
+  background-position: 0 -1028px;
 }
 
 .icons-twitter {
@@ -3575,14 +3587,14 @@ a.button.button-full-width,
 
 .arrow-right {
   margin-left: 6px;
-  background-position: 0 -1013px;
+  background-position: 0 -1090px;
   height: 7px;
   width: 4px;
 }
 
 .arrow-left {
   margin-right: 6px;
-  background-position: 0 -1002px;
+  background-position: 0 -1079px;
   height: 7px;
   width: 4px;
 }
