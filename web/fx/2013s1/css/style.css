@@ -6,7 +6,7 @@
 }
 
 .icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-checkout, .icons-close, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-return, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, footer .footer-menu .newsletter .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, #mini-basket.basket .sprite,
-#mega-basket .basket .sprite, .body-pages .newsletter-form-simple .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.return {
+#mega-basket .basket .sprite, #mega-basket .checkout-button, #mega-basket .close, .body-pages .newsletter-form-simple .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.return {
   background: url('/fx/2013s1/../images/icons/icons-s9adaa5ccb3.png') no-repeat;
 }
 
@@ -2483,11 +2483,17 @@ div.invalid-order {
   position: absolute;
   bottom: 10px;
   right: 15px;
+  background-position: 0 -344px;
+  height: 90px;
+  width: 90px;
 }
 #mega-basket .close {
   position: absolute;
   top: 10px;
   right: 10px;
+  background-position: 0 -1114px;
+  height: 20px;
+  width: 21px;
 }
 #mega-basket table tbody {
   display: block;

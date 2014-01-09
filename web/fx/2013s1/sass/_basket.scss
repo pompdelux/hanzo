@@ -124,12 +124,19 @@
 		position: absolute;
 		bottom: 10px;
 		right: 15px;
+
+		@include icons-sprite(checkout);
+		height: icons-sprite-height(checkout);
+		width: icons-sprite-width(checkout);
 	}
 
 	.close {
 		position: absolute;
 		top: 10px;
 		right: 10px;
+		@include icons-sprite(close);
+		height: icons-sprite-height(close);
+		width: icons-sprite-width(close);
 	}
 
 	table {

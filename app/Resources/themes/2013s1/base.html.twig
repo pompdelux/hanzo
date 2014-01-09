@@ -117,8 +117,8 @@
                 <div class="delivery-text">
                     {{ 'footer.text'|trans({'%expected_delivery_date%': parameter('HD.expected_delivery_date')})|raw }}
                 </div>
-                <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" class="checkout-button buy-set sprite"></a>
-                <a href="#" class="close sprite delete"></a>
+                <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" class="checkout-button sprite"></a>
+                <a href="#" class="close sprite"></a>
             </div>
         {% endif %}
 
