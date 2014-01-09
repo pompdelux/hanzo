@@ -95,6 +95,7 @@ a.video-popper, #video-player-container a.video {
 
 form.buy{
 	margin-bottom: 16px;
+  position: relative;
 	label{
 		display: block;
 		padding: 0 6px 0 0;
@@ -105,18 +106,17 @@ form.buy{
 		select{
 			width:237px;
 		}
-		a {
-			margin-left: 18px;
-		}
 		&.off {
 			display: none;
 		}
 	}
 	.submit-button{
 		cursor: pointer;
-		margin-top: 18px;
 		@include image-replacement;
 		display: block;
+    position: absolute;
+    top: 50px;
+    right: 0;
 	}
 	h4.bordered {
 		font-family: $font-sans;
@@ -159,6 +159,13 @@ form.buy{
 }
 .style-guide, .style-guide .element {
 	display: none;
+}
+
+.sizeguide {
+  display: block;
+  @include icons-sprite(sizeguide);
+  line-height: icons-sprite-height(sizeguide);
+  padding-left: icons-sprite-width(sizeguide) + 7px;
 }
 
 @import "colorbuttons/*.png";

@@ -141,7 +141,7 @@
               {% for size in product.sizes %}
                 <option value="{{ size.value }}" {{ not size.in_stock ? 'disabled="disabled"' : '' }} >{{ size.value }} {{ not size.in_stock ? "("~ "out.of.stock"|trans ~ ")" : '' }}</option>
               {% endfor %}
-              </select><a href="{{ image_path(cdn ~ 'size.guide.link'|trans ) }}" class="colorbox">{{ 'size.guide.link.text'|trans }}</a>
+              </select>
             </div>
             <div><span class="small">{{ 'choose.size.note'|trans }}</span></div>
           </label>
@@ -166,9 +166,9 @@
           </label>
         </div>
 
-        <div class="align-center">
-          <input type="submit" value="{{ "add.to.basket"|trans }}" class="button submit-button centerfy">
-        </div>
+        <a href="{{ image_path(cdn ~ 'size.guide.link'|trans ) }}" class="colorbox sizeguide">{{ 'size.guide.link.text'|trans }}</a>
+
+        <input type="submit" value="{{ "add.to.basket"|trans }}" class="button submit-button">
         <input type="hidden" id="master" name="master" value="{{ product.sku }}">
       </form>
 
