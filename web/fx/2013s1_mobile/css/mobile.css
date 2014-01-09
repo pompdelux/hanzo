@@ -62,8 +62,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background: url('/fx/mobile/../images/icons/da-s7398167b80.png') no-repeat;
 }
 
-.icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-return, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, table#order-status td a.trigger, footer .newsletter-block .sprite, #secondary-links li.basket .sprite, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.arrow-right, .sprite.arrow-left {
-  background: url('/fx/mobile/../images/icons/icons-s282dcdbd9c.png') no-repeat;
+.icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-return, .icons-returnlabel, .icons-shopping-bag, .icons-show, .icons-sizeguide, .icons-trackntrace, .icons-twitter, .icons-video, .icons-zoom, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, table#order-status td a.trigger, footer .newsletter-block .sprite, #secondary-links li.basket .sprite, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.arrow-right, .sprite.arrow-left {
+  background: url('/fx/mobile/../images/icons/icons-s954eae8611.png') no-repeat;
 }
 
 .icons-Kundeservice_Green {
@@ -83,15 +83,15 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .icons-arrow_down {
-  background-position: 0 -1013px;
+  background-position: 0 -1090px;
 }
 
 .icons-arrow_left {
-  background-position: 0 -1006px;
+  background-position: 0 -1083px;
 }
 
 .icons-arrow_right {
-  background-position: 0 -1017px;
+  background-position: 0 -1094px;
 }
 
 .icons-basket {
@@ -99,19 +99,19 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .icons-button-left-black {
-  background-position: 0 -1059px;
+  background-position: 0 -1136px;
 }
 
 .icons-button-left {
-  background-position: 0 -987px;
+  background-position: 0 -1013px;
 }
 
 .icons-button-right-black {
-  background-position: 0 -1040px;
+  background-position: 0 -1117px;
 }
 
 .icons-button-right {
-  background-position: 0 -968px;
+  background-position: 0 -994px;
 }
 
 .icons-delete {
@@ -175,7 +175,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .icons-magnifier {
-  background-position: 0 -1024px;
+  background-position: 0 -1101px;
 }
 
 .icons-newsletter {
@@ -194,12 +194,24 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background-position: 0 -916px;
 }
 
+.icons-returnlabel {
+  background-position: 0 -968px;
+}
+
 .icons-shopping-bag {
   background-position: 0 -344px;
 }
 
 .icons-show {
   background-position: 0 -864px;
+}
+
+.icons-sizeguide {
+  background-position: 0 -1057px;
+}
+
+.icons-trackntrace {
+  background-position: 0 -1032px;
 }
 
 .icons-twitter {
@@ -2061,7 +2073,7 @@ table#order-status tr.off {
   display: none;
 }
 table#order-status td a.trigger {
-  background-position: 0 -1024px;
+  background-position: 0 -1101px;
   width: 16px;
   height: 16px;
 }
@@ -3061,13 +3073,13 @@ table.horizontal th {
 }
 .sprite.arrow-right {
   margin-left: 6px;
-  background-position: 0 -1017px;
+  background-position: 0 -1094px;
   height: 7px;
   width: 4px;
 }
 .sprite.arrow-left {
   margin-right: 6px;
-  background-position: 0 -1006px;
+  background-position: 0 -1083px;
   height: 7px;
   width: 4px;
 }
