@@ -112,6 +112,7 @@ class DefaultController extends CoreController
                 return $this->json_response(array(
                     'status' => TRUE,
                     'message' => $this->get('translator')->trans('consultant.newsletter.draft.saved', array(), 'consultant'),
+                    'id' => $draft->getId(),
                 ));
             }
         }
