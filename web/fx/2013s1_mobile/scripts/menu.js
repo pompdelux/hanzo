@@ -8,24 +8,29 @@
     $('.outer', $menu).slideToggle();
   });
 
-  // set initial "open" classes
+  // set initial "open" classes on all parent ULs
   $('li.active', $menu)
-    .parent('ul')
-    .not('.outer')
-    .css('display', 'block')
-  ;
+    .parents('ul.inner')
+    .css('display', 'block');
 
-  $('a.heading', $menu).on('click', function (event) {
-    event.preventDefault();
+  $('ul a', $menu).on('click', function (event) {
 
     var $this = $(this);
     var $li = $this.parent();
     var $ul = $this.next('ul');
 
-    $li.toggleClass('active inactive');
+    if ($ul.length && $ul.hasClass('open') === false || !$this.attr('href').length || $this.hasClass('heading')) {
+      if ((!navigator.userAgent.match(/iPhone/i)) && (!navigator.userAgent.match(/iPod/i)) && (!navigator.userAgent.match(/iPad/i))) {
+        event.preventDefault();
 
-    $ul.slideToggle();
-    $ul.toggleClass('open');
-    $this.addClass('active');
+        $li.toggleClass('active inactive');
+
+        $ul.slideToggle();
+        $ul.toggleClass('open');
+        $this.addClass('active');
+
+      }
+    }
+
   });
 })(jQuery, document);
