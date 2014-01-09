@@ -269,16 +269,21 @@
       });
     };
     pub.miniBasketInit = function() {
+      var $basket = $('#mega-basket');
+      $basket.css('top', '-' + ($basket.height() + 30 ) + 'px');
       $('#mini-basket a, a.open-megabasket, #mega-basket .close').click(function(e) {
         e.preventDefault();
-        var $basket = $('#mega-basket');
-        if ($basket.hasClass('off')) {
-          $basket.fadeIn();
+        if ($basket.hasClass('open')) {
+          $basket.animate({
+            top: '-' + ($basket.height() + 30 ) + 'px',
+          }, 500 );
         }
         else {
-          $basket.fadeOut();
+          $basket.animate({
+            top: "-6px",
+          }, 500 );
         }
-        $basket.toggleClass('off');
+        $basket.toggleClass('open');
       });
     };
 

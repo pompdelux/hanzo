@@ -428,6 +428,8 @@ body.sv .subscribe-button {
 nav.first.main-menu {
   background-color: #dcd8d2;
   padding: 3px 0;
+  z-index: 300;
+  position: relative;
 }
 nav.first.main-menu ul, nav.first.main-menu ul li, nav.first.main-menu ul li form, nav.first.main-menu ul li form input {
   font-size: 12px;
@@ -2468,7 +2470,7 @@ div.invalid-order {
 
 #mega-basket {
   position: absolute;
-  top: -6px;
+  top: -500px;
   right: 0;
   background: white;
   background: rgba(255, 255, 255, 0.98);
@@ -2480,6 +2482,9 @@ div.invalid-order {
   border: 1px solid #DFDFDF;
   border-top: none;
   padding: 10px 20px;
+}
+#mega-basket.open {
+  top: -6px;
 }
 #mega-basket .basket {
   text-transform: uppercase;
