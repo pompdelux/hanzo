@@ -285,7 +285,15 @@
             } else {
               window.scrollTo(window.scrollMinX, window.scrollMinY);
               $('#mini-basket a').html(response.data);
-              dialoug.slideNotice(response.message, undefined, '#mini-basket');
+
+              $('#mega-basket').animate({
+                top: "-6px",
+              }, 500);
+              setTimeout(function () {
+                $('#mega-basket').animate({
+                  top: '-' + ($(this).height() + 30 ) + 'px',
+                }, 500 );
+              }, 10000);
             }
             _resetForm();
           });
