@@ -5,21 +5,21 @@
   background: url('/fx/2013s1/../images/icons/da-s7398167b80.png') no-repeat;
 }
 
-.icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-return, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, footer .footer-menu .newsletter .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, #mini-basket.basket .sprite,
+.icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-checkout, .icons-close, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-return, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, footer .footer-menu .newsletter .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, #mini-basket.basket .sprite,
 #mega-basket .basket .sprite, .body-pages .newsletter-form-simple .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.return {
-  background: url('/fx/2013s1/../images/icons/icons-s282dcdbd9c.png') no-repeat;
+  background: url('/fx/2013s1/../images/icons/icons-s9adaa5ccb3.png') no-repeat;
 }
 
 .icons-Kundeservice_Green {
-  background-position: 0 -614px;
+  background-position: 0 -704px;
 }
 
 .icons-Kundeservice_Red {
-  background-position: 0 -486px;
+  background-position: 0 -576px;
 }
 
 .icons-Kundeservice_Yellow {
-  background-position: 0 -550px;
+  background-position: 0 -640px;
 }
 
 .icons-Oeko_Tex {
@@ -27,15 +27,15 @@
 }
 
 .icons-arrow_down {
-  background-position: 0 -1013px;
+  background-position: 0 -1103px;
 }
 
 .icons-arrow_left {
-  background-position: 0 -1006px;
+  background-position: 0 -1096px;
 }
 
 .icons-arrow_right {
-  background-position: 0 -1017px;
+  background-position: 0 -1107px;
 }
 
 .icons-basket {
@@ -43,23 +43,31 @@
 }
 
 .icons-button-left-black {
-  background-position: 0 -1059px;
+  background-position: 0 -1169px;
 }
 
 .icons-button-left {
-  background-position: 0 -987px;
+  background-position: 0 -1077px;
 }
 
 .icons-button-right-black {
-  background-position: 0 -1040px;
+  background-position: 0 -1150px;
 }
 
 .icons-button-right {
-  background-position: 0 -968px;
+  background-position: 0 -1058px;
+}
+
+.icons-checkout {
+  background-position: 0 -344px;
+}
+
+.icons-close {
+  background-position: 0 -1114px;
 }
 
 .icons-delete {
-  background-position: 0 -890px;
+  background-position: 0 -980px;
 }
 
 .icons-delete_black {
@@ -67,7 +75,7 @@
 }
 
 .icons-delete_icon {
-  background-position: 0 -768px;
+  background-position: 0 -858px;
 }
 
 .icons-delete_white {
@@ -75,7 +83,7 @@
 }
 
 .icons-divider {
-  background-position: 0 -387px;
+  background-position: 0 -477px;
 }
 
 .icons-divider_left {
@@ -83,23 +91,23 @@
 }
 
 .icons-divider_right {
-  background-position: 0 -434px;
+  background-position: 0 -524px;
 }
 
 .icons-edit {
-  background-position: 0 -942px;
+  background-position: 0 -1032px;
 }
 
 .icons-edit_icon {
-  background-position: 0 -800px;
+  background-position: 0 -890px;
 }
 
 .icons-facebook {
-  background-position: 0 -832px;
+  background-position: 0 -922px;
 }
 
 .icons-faq_icon {
-  background-position: 0 -646px;
+  background-position: 0 -736px;
 }
 
 .icons-gots {
@@ -107,11 +115,11 @@
 }
 
 .icons-gplus {
-  background-position: 0 -402px;
+  background-position: 0 -492px;
 }
 
 .icons-instagram {
-  background-position: 0 -582px;
+  background-position: 0 -672px;
 }
 
 .icons-kurv {
@@ -119,7 +127,7 @@
 }
 
 .icons-magnifier {
-  background-position: 0 -1024px;
+  background-position: 0 -1134px;
 }
 
 .icons-newsletter {
@@ -127,35 +135,35 @@
 }
 
 .icons-pdf {
-  background-position: 0 -710px;
+  background-position: 0 -800px;
 }
 
 .icons-pinterest {
-  background-position: 0 -454px;
+  background-position: 0 -544px;
 }
 
 .icons-return {
-  background-position: 0 -916px;
+  background-position: 0 -1006px;
 }
 
 .icons-shopping-bag {
-  background-position: 0 -344px;
+  background-position: 0 -434px;
 }
 
 .icons-show {
-  background-position: 0 -864px;
+  background-position: 0 -954px;
 }
 
 .icons-twitter {
-  background-position: 0 -678px;
+  background-position: 0 -768px;
 }
 
 .icons-video {
-  background-position: 0 -736px;
+  background-position: 0 -826px;
 }
 
 .icons-zoom {
-  background-position: 0 -518px;
+  background-position: 0 -608px;
 }
 
 .fi-sprite, body.fi form.buy .submit-button, body.fi .buy-set, body.fi .new-price, body.fi .out-of-stock, body.fi .subscribe-button {
@@ -1010,7 +1018,7 @@ div.panes > div {
   margin-right: 5px;
 }
 .zoom .sprite {
-  background-position: 0 -518px;
+  background-position: 0 -608px;
   height: 32px;
   width: 32px;
 }
@@ -1024,7 +1032,7 @@ a.video-popper, #video-player-container a.video {
   text-align: center;
 }
 a.video-popper .sprite, #video-player-container a.video .sprite {
-  background-position: 0 -736px;
+  background-position: 0 -826px;
   height: 32px;
   width: 32px;
 }
@@ -3496,14 +3504,14 @@ hr {
   clear: both;
   margin: 0;
   width: 100%;
-  background-position: 0 -387px;
+  background-position: 0 -477px;
   height: 20px;
 }
 hr.left {
   background-position: 0 -304px;
 }
 hr.right {
-  background-position: 0 -434px;
+  background-position: 0 -524px;
 }
 
 strong, b {
@@ -3678,14 +3686,14 @@ a.button.button-full-width,
 
 .arrow-right {
   margin-left: 6px;
-  background-position: 0 -1017px;
+  background-position: 0 -1107px;
   height: 7px;
   width: 4px;
 }
 
 .arrow-left {
   margin-right: 6px;
-  background-position: 0 -1006px;
+  background-position: 0 -1096px;
   height: 7px;
   width: 4px;
 }
@@ -3853,27 +3861,27 @@ button.right {
   display: inline-block;
 }
 .sprite.delete {
-  background-position: 0 -890px;
+  background-position: 0 -980px;
   height: 26px;
   width: 26px;
 }
 .sprite.edit {
-  background-position: 0 -942px;
+  background-position: 0 -1032px;
   height: 26px;
   width: 26px;
 }
 .sprite.show {
-  background-position: 0 -864px;
+  background-position: 0 -954px;
   height: 26px;
   width: 26px;
 }
 .sprite.pdf {
-  background-position: 0 -710px;
+  background-position: 0 -800px;
   height: 26px;
   width: 26px;
 }
 .sprite.return {
-  background-position: 0 -916px;
+  background-position: 0 -1006px;
   height: 26px;
   width: 26px;
 }
