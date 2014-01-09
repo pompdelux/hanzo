@@ -3,3 +3,6 @@ framework:
     session:
         cookie_path: '/da_DK'
 
+account:
+    consignor:
+        actor_id: 63
