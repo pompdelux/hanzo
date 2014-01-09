@@ -8,7 +8,7 @@
             </trans-unit>
             <trans-unit id="size.guide.link.text">
                 <source>size.guide.link.text</source>
-                <target>» Size guide</target>
+                <target>Size guide</target>
             </trans-unit>
             <trans-unit id="out.of.stock">
                 <source>out.of.stock</source>
@@ -261,7 +261,7 @@
 				<li><a href="/fi_FI/koti/home-shopping/avoimet-ovet">Avoimet ovet</a></li>
 				<li><a href="/fi_FI/koti/kuvasto">Kuvasto</a></li>
 				<li><a href="/fi_FI/koti/tule-edustajaksi/vapaa-ajan-edustaja">Tule edustajaksi</a></li>
-				</ul><br>		
+				</ul><br>
 				<h2>BE SOCIAL</h2>
 				 <ul class="menu">
 				<li><a href="http://instagram.com/pompdelux_official" target="_blank"> Instagram</a></li>
