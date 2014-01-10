@@ -168,6 +168,16 @@ class CmsController extends CoreController
             $form->bindRequest($request);
 
             if ($form->isValid()) {
+
+                // Validate threadid on choosen parent.
+                if ($node->getParentId()) {
+                    $parent = CmsQuery::create()
+                        ->findPK($node->getParentId());
+                    if ($parent) {
+                        $node->setCmsThreadId($parent->getCmsThreadId());
+                    }
+                }
+
                 $settings = array();
                 switch ($node->getType()) {
                     case 'category':
@@ -223,7 +233,9 @@ class CmsController extends CoreController
                     $trans->setCms($node);
                     $trans->setIsActive(false);
                     $trans->setLocale($locale);
-                    $trans->setSettings(json_encode($settings));
+                    if (!empty($settings)) {
+                        $trans->setSettings(json_encode($settings));
+                    }
                     $trans->save($this->getDbConnection());
                 } catch (\Exception $e) {}
 
