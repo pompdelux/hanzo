@@ -370,6 +370,10 @@
                 <source>form.buy.choose.first</source>
                 <target>Valitse ensin koko ja väri.</target>
             </trans-unit>
+            <trans-unit id="checkout.confirm.address.block" approved="no">
+                <source>checkout.confirm.address.block</source>
+                <target>Vahvista, että osoitetietosi ovat oikein.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

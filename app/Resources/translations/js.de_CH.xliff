@@ -374,6 +374,10 @@
                 <source>events.error.email.or.phone</source>
                 <target>E-Mail oder Telefon muss ausgefüllt werden.</target>
             </trans-unit>
+            <trans-unit id="checkout.confirm.address.block" approved="no">
+                <source>checkout.confirm.address.block</source>
+                <target>Bitte bestätigen Sie, dass Ihre Adressangaben korrekt sind.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

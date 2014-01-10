@@ -367,6 +367,10 @@
                 <source>form.buy.choose.first</source>
                 <target>Du skal først velge en farge.</target>
             </trans-unit>
+            <trans-unit id="checkout.confirm.address.block" approved="no">
+                <source>checkout.confirm.address.block</source>
+                <target>Bekreft, at dine adresseopplysninger er riktige.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

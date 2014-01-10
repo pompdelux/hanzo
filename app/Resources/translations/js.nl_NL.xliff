@@ -366,6 +366,10 @@
                 <source>form.buy.choose.first</source>
                 <target>Je moet eerst een maat en kleur kiezen.</target>
             </trans-unit>
+            <trans-unit id="checkout.confirm.address.block" approved="no">
+                <source>checkout.confirm.address.block</source>
+                <target>Bevestig dat de adresgegevens correct zijn.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -355,6 +355,10 @@
                 <source>form.buy.choose.first</source>
                 <target>Du måste välja storlek och färg först.</target>
             </trans-unit>
+            <trans-unit id="checkout.confirm.address.block" approved="no">
+                <source>checkout.confirm.address.block</source>
+                <target>Bekräfta att dina adressuppgifter är korrekta.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
