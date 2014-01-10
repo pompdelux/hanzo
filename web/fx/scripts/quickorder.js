@@ -7,14 +7,15 @@ var quickorder = (function($) {
     $('.quickorder .master').typeahead({
         source: function (typeahead, query) {
             if (query.length < 2) { return; }
+
             $.ajax({
                 url: base_url + "quickorder/get-sku",
                 dataType: 'json',
                 type: 'GET',
-                data: {name : query},
+                data: { name : query },
                 async: false,
                 cache: false,
-                success: function(response, textStatus, jqXHR) {
+                success: function(response) {
                     return typeahead.process(response.data);
                 }
             });
@@ -22,22 +23,21 @@ var quickorder = (function($) {
         onselect: function( object ) {
             $(this).val(object);
 
-            $context = this.$element.parent().parent();
-            $size_select = $context.find('.size');
+            var $context = this.$element.parent().parent();
+            var $size_select = $context.find('.size');
 
             $.ajax({
                 url: base_url + "stock-check",
                 dataType: 'json',
                 type: 'GET',
-                data: {master : object},
+                data: { master : object },
                 async: false,
-                success: function(response, textStatus, jqXHR) {
+                success: function(response) {
                     if (false === response.status) {
                         if (response.message) {
                             dialoug.alert(Translator.get('js:notice', response.message));
                         }
                     } else {
-
                         $size_select.find('option').remove();
 
                         if(typeof response.data.products !== "undefined" && response.data.products.length > 0){
@@ -45,7 +45,8 @@ var quickorder = (function($) {
                             $size_select
                                 .append($("<option></option>")
                                 .attr("value",'')
-                                .text(Translator.get('js:quickorder.choose.size')));
+                                .text(Translator.get('js:quickorder.choose.size')))
+                            ;
 
                             var last = '';
                             $.each(response.data.products, function(key, value) {
@@ -64,7 +65,7 @@ var quickorder = (function($) {
                         }
                     }
                 },
-                error: function(jqXHR, textStatus, errorThrown) {
+                error: function() {
                     dialoug.error(Translator.get('js:notice'), Translator.get('js:an.error.occurred'));
                 }
             });
@@ -83,14 +84,14 @@ var quickorder = (function($) {
                     size : $context.find('.size').val()
                 },
                 async: false,
-                success: function(response, textStatus, jqXHR) {
+                success: function(response) {
                     if (false === response.status) {
                         if (response.message) {
                           dialoug.alert(Translator.get('js:notice', response.message));
                         }
                     } else {
 
-                        $select = $('.color', $context);
+                        var $select = $('.color', $context);
                         $select.find('option').remove();
 
                         if(typeof response.data.products !== "undefined" && response.data.products.length > 0){
@@ -114,12 +115,12 @@ var quickorder = (function($) {
                             $select.focus().select();
                         }else{
                             if (response.message) {
-                                dialoug.alert(Translator.get('js:notice'), response.message);
+                                dialoug.alert(Translator.get('js:notice'),  response.message);
                             }
                         }
                     }
                 },
-                error: function(jqXHR, textStatus, errorThrown) {
+                error: function() {
                     dialoug.error(Translator.get('js:notice'), Translator.get('js:an.error.occurred'));
                 }
             });
@@ -221,7 +222,7 @@ var quickorder = (function($) {
                 type: 'POST',
                 data: $form.serialize(),
                 async: false,
-                success: function(response, textStatus, jqXHR) {
+                success: function(response) {
                     if (false === response.status) {
                         if (response.message) {
                             dialoug.alert(Translator.get('js:notice'), response.message);
@@ -273,7 +274,7 @@ var quickorder = (function($) {
                     }
                     _resetForm();
                 },
-                error: function(jqXHR, textStatus, errorThrown) {
+                error: function() {
                     dialoug.error(Translator.get('js:notice!'), Translator.get('js:an.error.occurred'));
                 }
             });
@@ -283,7 +284,7 @@ var quickorder = (function($) {
 
     $('.reset').click(function(e){
         e.preventDefault();
-        $context = $(this).parent();
+        var $context = $(this).parent();
         _resetForm($context);
     });
 
