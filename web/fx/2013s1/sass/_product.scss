@@ -26,11 +26,22 @@ ul.tabs {
 		display: inline-block;
 		margin-right: 15px;
 		a {
-			background: url(/fx/images/arrow_single_right_white.png) no-repeat center left;
-			padding-left: 20px;
-			font-family: $font-serif;
+      font-family: $font-serif;
+      i {
+        display: inline;
+        float: left;
+        margin-right: 20px;
+        margin-top: 2px;
+        @include icons-sprite(arrow_right);
+        height: icons-sprite-height(arrow_right);
+        width: icons-sprite-width(arrow_right);
+      }
 			&.current {
-				background: url(/fx/images/arrow_single_down_white.png) no-repeat center left;
+        i {
+          @include icons-sprite(arrow_down);
+          height: icons-sprite-height(arrow_down);
+          width: icons-sprite-width(arrow_down);
+        }
 			}
 			&:hover{
 				border-bottom: none;
