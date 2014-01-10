@@ -149,11 +149,16 @@
 		width: icons-sprite-width(close);
 	}
 
-	table {
+	table.basket-table {
 		tbody{
 			display: block;
-			max-height: 100px;
+			max-height: 400px;
 			overflow-y: scroll;
+		}
+
+		img {
+			height: 60px;
+			width: auto;
 		}
 	}
 }

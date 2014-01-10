@@ -109,9 +109,20 @@
             <div id="mega-basket">
                 <div class="basket">
                     <span class="sprite"></span>
-                    {{ 'your.basket'|trans }}
+                    <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}">{{ 'your.basket'|trans }}</a>
                 </div>
-
+                <table class="basket-table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                hej
+                            </td>
+                            <td>
+                                hej
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
                 {# {{ render_esi(controller('BasketBundle:Default:view', { 'embed': true })) }} #}
                 {# {% render url('basket_view', { 'embed': true }) with {}, {'standalone': true} %} #}
                 <div class="delivery-text">

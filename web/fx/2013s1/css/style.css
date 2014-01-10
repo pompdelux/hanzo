@@ -2512,10 +2512,14 @@ div.invalid-order {
   height: 20px;
   width: 21px;
 }
-#mega-basket table tbody {
+#mega-basket table.basket-table tbody {
   display: block;
-  max-height: 100px;
+  max-height: 400px;
   overflow-y: scroll;
+}
+#mega-basket table.basket-table img {
+  height: 60px;
+  width: auto;
 }
 
 /**
