@@ -11,7 +11,12 @@
   // set initial "open" classes on all parent ULs
   $('li.active', $menu)
     .parents('ul.inner')
-    .css('display', 'block');
+    .css('display', 'block')
+    .addClass('open');
+
+  $('ul.topmenu ul ul', $menu)
+    .css('display', 'block')
+    .addClass('open');
 
   $('ul a', $menu).on('click', function (event) {
 
