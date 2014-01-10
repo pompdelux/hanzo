@@ -95,7 +95,7 @@ Class Redis
      * @param  string $name      Redis method
      * @param  array  $arguments Arguments to parse on the real method
      * @return boolean
-     * @throws InvalidArgumentException    If the command called does not exist
+     * @throws \InvalidArgumentException    If the command called does not exist
      * @throws RedisCommunicationException If the call to redis fails
      */
     public function __call($name, array $arguments = [])
