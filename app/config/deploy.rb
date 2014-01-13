@@ -71,6 +71,8 @@ after 'deploy:rollback', 'deploy:send_email_rollback', 'deploy:rollback_warning'
 after 'deploy:update_code', 'deploy:pending_updates'
 # have an update all permissions
 after 'deploy:update_permissions_all', 'deploy:update_permissions', 'deploy:update_permissions_shared', 'deploy:update_permissions_releases'
+# create logs dir after setup to allow nginx to start
+after 'deploy:setup', 'deploy:create_log_dir'
 
 ## own tasks. copy apc-clear.php, apcclear and reload apache tasks
 namespace :deploy do
@@ -160,6 +162,13 @@ namespace :deploy do
     run "sudo chmod -R g+rwX #{deploy_to}/releases && sudo chgrp -R www-data #{deploy_to}/releases"
     capifony_puts_ok
   end
+# create log dir for nginx to startup
+  desc "Create shared log dir"
+  task :create_log_dir do
+    capifony_pretty_print "--> Creating shared/app/logs"
+    run "mkdir -p #{shared_path}/app/logs"
+    capifony_puts_ok
+  end
   desc "Send email after deploy"
   task :send_email do
     capifony_pretty_print "--> Sending deploy status mail"
@@ -187,7 +196,7 @@ namespace :deploy do
   desc "Show the commits since the last deploy"
   task :pending_updates, :except => { :no_release => true } do
     capifony_pretty_print "--> Getting changelog from git"
-    deployed_already = current_revision
+    deployed_already = previous_revision
     to_be_deployed = `cd .rsync_cache && git rev-parse --short "HEAD" && cd ..`.strip
     set :deploydiff, `cd .rsync_cache && git log --no-merges --pretty=format:"* %s %b (%cn)" #{deployed_already}..#{to_be_deployed}`.sub("'", "")
     capifony_puts_ok
