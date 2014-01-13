@@ -13,6 +13,7 @@ class Logger
     protected $command_count = 0;
     protected $commands = array();
 
+
     /**
      * Constructor.
      *
@@ -22,6 +23,7 @@ class Logger
     {
         $this->logger = $logger;
     }
+
 
     /**
      * Logs a command
@@ -45,6 +47,7 @@ class Logger
         }
     }
 
+
     /**
      * Returns the number of logged commands.
      *
@@ -55,6 +58,7 @@ class Logger
         return $this->command_count;
     }
 
+
     /**
      * Returns an array of the logged commands.
      *
@@ -63,5 +67,20 @@ class Logger
     public function getCommands()
     {
         return $this->commands;
+    }
+
+
+    /**
+     * Forward logger calls to the Logger class
+     *
+     * @param  string $method
+     * @param  array  $parameters
+     * @return mixed
+     */
+    public function __call($method, array $parameters = [])
+    {
+        if (method_exists($this->logger, $method)) {
+            return call_user_func_array([$this->logger, $method], $parameters);
+        }
     }
 }
