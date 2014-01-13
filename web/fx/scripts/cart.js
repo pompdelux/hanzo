@@ -270,6 +270,7 @@
     };
     pub.miniBasketInit = function() {
       var $basket = $('#mega-basket');
+
       $basket.css('top', '-' + ($basket.height() + 30 ) + 'px');
       $('#mini-basket a, a.open-megabasket, #mega-basket .close').click(function(e) {
         e.preventDefault();
@@ -285,7 +286,23 @@
         }
         $basket.toggleClass('open');
       });
+
+      updateBasketScrollbar();
     };
+
+    function updateBasketScrollbar () {
+      var $basket = $('#mega-basket');
+      var $basket_table = $('.basket-table-body', $basket);
+      var $basket_total = $('.basket-table-footer .total', $basket);
+
+      if ($basket_table.height() > 179) {
+        var scrollbar_width = '10px';
+        if ('webkitRequestAnimationFrame' in window) {
+          scrollbar_width = '5px';
+        }
+        $basket_total.css('padding-right', scrollbar_width);
+      }
+    }
 
     return pub;
   })($);

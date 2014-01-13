@@ -112,20 +112,9 @@
                     <span class="sprite"></span>
                     <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}">{{ 'your.basket'|trans }}</a>
                 </div>
-                <table class="basket-table">
-                    <tbody>
-                        <tr>
-                            <td>
-                                hej
-                            </td>
-                            <td>
-                                hej
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                {# {{ render_esi(controller('BasketBundle:Default:view', { 'embed': true })) }} #}
-                {# {% render url('basket_view', { 'embed': true }) with {}, {'standalone': true} %} #}
+
+                {{ render_esi(controller('BasketBundle:Default:view', { 'template': 'BasketBundle:Default:megaBasket.html.twig' })) }}
+
                 <div class="delivery-text">
                     {{ 'footer.text'|trans({'%expected_delivery_date%': parameter('HD.expected_delivery_date')})|raw }}
                 </div>

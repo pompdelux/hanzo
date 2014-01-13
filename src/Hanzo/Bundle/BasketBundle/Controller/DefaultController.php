@@ -146,9 +146,6 @@ class DefaultController extends CoreController
             'id'           => $product->getId(),
             'price'        => Tools::moneyFormat($price['price'] * $quantity),
             'single_price' => Tools::moneyFormat($price['price']),
-            // 'title'        => $product->getName(),
-            // 'image'        =>
-            // // add image and title
         );
 
         $t = new \DateTime($date);
@@ -331,7 +328,7 @@ class DefaultController extends CoreController
     }
 
 
-    public function viewAction($embed = false, $orders_id = null)
+    public function viewAction($embed = false, $orders_id = null, $template = 'BasketBundle:Default:view.html.twig')
     {
         if ($orders_id) {
             $order = OrdersQuery::create()->findOneById($orders_id);
@@ -427,7 +424,6 @@ class DefaultController extends CoreController
 
         ksort($products);
 
-        $template = 'BasketBundle:Default:view.html.twig';
         if ($embed) {
             $template = 'BasketBundle:Default:block.html.twig';
         }
@@ -442,7 +438,7 @@ class DefaultController extends CoreController
 
         Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
 
-        return $this->render($template, array(
+        $response = $this->render($template, array(
             'continue_shopping' => $continueShopping,
             'delivery_date'     => $delivery_date,
             'embedded'          => $embed,
@@ -450,6 +446,9 @@ class DefaultController extends CoreController
             'products'          => $products,
             'total'             => $order->getTotalPrice(true),
         ));
+        $response->setSharedMaxAge(60);
+
+        return $response;
     }
 
 
