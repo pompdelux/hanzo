@@ -288,15 +288,16 @@
       });
 
       updateBasketScrollbar();
+      $('body').on('basket_product_added', updateBasketScrollbar);
     };
 
     function updateBasketScrollbar () {
-      var $basket = $('#mega-basket');
-      var $basket_table = $('.basket-table-body', $basket);
-      var $basket_total = $('.basket-table-footer .total', $basket);
+      var $basket = $('#mega-basket'),
+          $basket_table = $('.basket-table-body', $basket),
+          $basket_total = $('.basket-table-footer .total', $basket),
+          scrollbar_width = '20px';
 
-      if ($basket_table.height() > 179) {
-        var scrollbar_width = '10px';
+      if ($basket_table[0].scrollHeight > 190) { // More than 3 products.
         if ('webkitRequestAnimationFrame' in window) {
           scrollbar_width = '5px';
         }

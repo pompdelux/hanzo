@@ -2535,7 +2535,7 @@ div.invalid-order {
 }
 #mega-basket div.basket-table .basket-table-body {
   max-height: 180px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 #mega-basket div.basket-table .basket-table-body .item {
   line-height: 60px;

@@ -175,7 +175,7 @@
 
 		.basket-table-body {
 			max-height: 180px;
-			overflow-y: scroll;
+			overflow-y: auto;
 
 			.item {
 				line-height: 60px;

@@ -295,6 +295,7 @@
                 // Add the new product to the basket table.
                 $mega_basket_table.append('<div class="item new"><img src="' + $('.productimage-large img').attr('src') + '" />' + $('h1.title').text() + '<span class="right total">' + response.latest.price + '</span></div>');
                 $mega_basket_table.scrollTop($mega_basket_table[0].scrollHeight);
+                $('body').trigger('basket_product_added');
 
                 // Update total price.
                 var find = /\([0-9+]\) /;
