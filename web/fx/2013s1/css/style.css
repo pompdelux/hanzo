@@ -2534,7 +2534,7 @@ div.invalid-order {
   background-color: #555;
 }
 #mega-basket div.basket-table .basket-table-body {
-  max-height: 180px;
+  max-height: 210px;
   overflow-y: auto;
 }
 #mega-basket div.basket-table .basket-table-body .item {
