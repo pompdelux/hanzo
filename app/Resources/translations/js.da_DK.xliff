@@ -402,6 +402,14 @@
                 <source>bookmarkbubble.ioslegacy</source>
                 <target><![CDATA[<b>Install this app</b>:<br /> Tap <b style="font-size:15px">+</b> and then <b>"Add to Home Screen"</b>]]></target>
             </trans-unit>
+            <trans-unit id="rma.return.all.text">
+                <source>rma.return.all.text</source>
+                <target>Fortrudt køb (pengene retur)</target>
+            </trans-unit>
+            <trans-unit id="rma.product.not.filled.correctly">
+                <source>rma.product.not.filled.correctly</source>
+                <target>Ved ombytning af din vare skal du indtaste både størrelse og farve.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

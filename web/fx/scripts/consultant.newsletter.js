@@ -89,8 +89,7 @@ var consultantNewsletter = (function($) {
               dialoug.alert(Translator.get('js:notice'), response.message);
             }
           } else {
-            window.scrollTo(window.scrollMinX, window.scrollMinY);
-            dialoug.slideNotice(response.message);
+            window.location.href = base_url + 'consultantnewsletter/' + response.id;
           }
         }
       });
@@ -120,7 +119,7 @@ var consultantNewsletter = (function($) {
       });
     });
 
-    $('#subscribed-users a.delete').click(function(e){
+    $('#body-consultant-newsletter table.addresses a.delete').click(function(e){
       e.preventDefault();
       var $a = $(this);
 
@@ -134,7 +133,7 @@ var consultantNewsletter = (function($) {
             success : function(response, textStatus, jqXHR) {
               if (response.status) {
                 // add effects to the removal of a basket row
-                $a.closest('li').fadeOut(function() {
+                $a.closest('tr').fadeOut(function() {
                   $(this).remove();
                 });
               }
