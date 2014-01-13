@@ -1,4 +1,4 @@
 <div id="gift-card-block" class="checkout-block voucher-block hidden">
   <a href="">{{ 'toggle.gift_card.form'|trans({}, 'checkout') }}</a>
-  {% render 'DiscountBundle:GiftCard:applyGiftCard' %}
+  {{ render(controller('DiscountBundle:GiftCard:applyGiftCard')) }}
 </div>

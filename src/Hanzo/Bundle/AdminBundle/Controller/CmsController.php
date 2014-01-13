@@ -165,7 +165,7 @@ class CmsController extends CoreController
 
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
-            $form->bindRequest($request);
+            $form->handleRequest($request);
 
             if ($form->isValid()) {
                 $settings = array();
@@ -227,7 +227,7 @@ class CmsController extends CoreController
                     $trans->save($this->getDbConnection());
                 } catch (\Exception $e) {}
 
-                $this->get('session')->setFlash('notice', 'cms.added');
+                $this->get('session')->getFlashBag()->add('notice', 'cms.added');
                 return $this->redirect($this->generateUrl('admin_cms_edit',
                     array(
                         'id' => $node->getId(),
@@ -353,7 +353,7 @@ class CmsController extends CoreController
 
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
-            $form->bind($request);
+            $form->handleRequest($request);
             $node->setUpdatedBy($this->get('security.context')->getToken()->getUser()->getUsername());
 
             $data = $form->getData();
@@ -392,12 +392,12 @@ class CmsController extends CoreController
                         $cache->clearRedisCache();
                     }
 
-                    $this->get('session')->setFlash('notice', 'cms.updated');
+                    $this->get('session')->getFlashBag()->add('notice', 'cms.updated');
                     $this->get('event_dispatcher')->dispatch('cms.node.updated', new FilterCMSEvent($node, $locale, $this->getDbConnection()));
                 }
                 else // Dublicate url-path
                 {
-                    $this->get('session')->setFlash('notice', 'cms.update.failed.dublicate.path');
+                    $this->get('session')->getFlashBag()->add('notice', 'cms.update.failed.dublicate.path');
                 }
             }
         }
@@ -545,13 +545,13 @@ class CmsController extends CoreController
 
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
-            $form->bindRequest($request);
+            $form->handleRequest($request);
 
             if ($form->isValid()) {
 
                 $redirect->save($this->getDbConnection());
 
-                $this->get('session')->setFlash('notice', 'admin.cms.redirects.inserted');
+                $this->get('session')->getFlashBag()->add('notice', 'admin.cms.redirects.inserted');
                 return $this->redirect($this->generateUrl('admin_cms_redirects'));
             }
         }

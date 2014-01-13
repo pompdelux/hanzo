@@ -7,18 +7,18 @@
     </hgroup>
 </header>
 
-{% if app.session.hasFlash('notice') %}
+{% for message in app.session.flashbag.get('notice') %}
   <div class="message error">
-    {{ app.session.flash('notice') }}
+    {{ message }}
   </div>
-{% endif %}
+{% endfor %}
 
-{% render 'ShippingBundle:Default:block' %}
+{{ render(controller('ShippingBundle:Default:block')) }}
 
 <h2>{{ 'addresses'|trans({}, 'checkout') }}</h2>
 <div class="checkout-block" id="address-block">
-  {% render 'ShippingBundle:Address:form' with {type: 'payment'} %}
-  {% render 'ShippingBundle:Address:form' with {type: 'CURRENT-SHIPPING-ADDRESS'} %}
+  {{ render(controller('ShippingBundle:Address:form', {type: 'payment'})) }}
+  {{ render(controller('ShippingBundle:Address:form', {type: 'CURRENT-SHIPPING-ADDRESS'})) }}
   <label class="off">
     <input type="checkbox" id="address-copy">{{ 'address.copy'|trans({}, 'checkout') }}
   </label>
@@ -29,13 +29,13 @@
   </div>
 </div>
 
-{% render 'PaymentBundle:Default:block' %}
-{# render 'DiscountBundle:GiftCard:block' #}
-{% render 'DiscountBundle:Coupon:block' %}
+{{ render(controller('PaymentBundle:Default:block')) }}
+{# render(controller('DiscountBundle:GiftCard:block')) #}
+{{ render(controller('DiscountBundle:Coupon:block')) }}
 
 <h2>{{ 'confirm.title'|trans({}, 'checkout') }}</h2>
 <div id="checkout-block-summery" class="checkout-block" style="display: block; ">
-  {% render 'CheckoutBundle:Default:summery' %}
+  {{ render(controller('CheckoutBundle:Default:summery')) }}
 </div>
 
 <div id="checkout-buttons">

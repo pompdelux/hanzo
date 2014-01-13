@@ -19,14 +19,14 @@ Hanzo\Model\Addresses:
                     - shipping_bundle_shipping
                     - shipping_bundle_payment
                 message: address.first_name.required
-            - MinLength:
+            - Length:
                 groups:
                     - shipping_bundle_company_shipping
                     - shipping_bundle_overnightbox
                     - shipping_bundle_shipping
                     - shipping_bundle_payment
-                limit:  2
-                message: address.first_name.min.length
+                min:  2
+                minMessage: address.first_name.min.length
         last_name:
             - NotBlank:
                 groups:
@@ -34,13 +34,13 @@ Hanzo\Model\Addresses:
                     - shipping_bundle_shipping
                     - shipping_bundle_payment
                 message: address.last_name.required
-            - MinLength:
+            - Length:
                 groups:
                     - shipping_bundle_company_shipping
                     - shipping_bundle_shipping
                     - shipping_bundle_payment
-                limit:  2
-                message: address.last_name.min.length
+                min:  2
+                minMessage: address.last_name.min.length
         address_line_1:
             - NotBlank:
                 groups:
@@ -49,22 +49,16 @@ Hanzo\Model\Addresses:
                     - shipping_bundle_shipping
                     - shipping_bundle_payment
                 message: address_line_1.required
-            - MinLength:
+            - Length:
                 groups:
                     - shipping_bundle_company_shipping
                     - shipping_bundle_overnightbox
                     - shipping_bundle_shipping
                     - shipping_bundle_payment
-                limit:  2
-                message: address_line_1.required
-            - MaxLength:
-                groups:
-                    - shipping_bundle_company_shipping
-                    - shipping_bundle_overnightbox
-                    - shipping_bundle_shipping
-                    - shipping_bundle_payment
-                message: address_line_1.max.length
-                limit:  35
+                min:  2
+                max:  35
+                minMessage: address_line_1.required
+                minMessage: address_line_1.max.length
         postal_code:
             - NotBlank:
                 message: postal_code.required
@@ -86,14 +80,14 @@ Hanzo\Model\Addresses:
                     - shipping_bundle_overnightbox
                     - shipping_bundle_shipping
                     - shipping_bundle_payment
-            - MinLength:
+            - Length:
                 groups:
                     - shipping_bundle_company_shipping
                     - shipping_bundle_overnightbox
                     - shipping_bundle_shipping
                     - shipping_bundle_payment
-                limit:  2
-                message: city.required
+                min:  2
+                minMessage: city.required
         countries_id:
             - NotBlank:
                 message: address.countries_id.required

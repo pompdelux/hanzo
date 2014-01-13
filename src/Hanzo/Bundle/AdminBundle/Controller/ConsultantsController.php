@@ -259,7 +259,7 @@ class ConsultantsController extends CoreController
         ;
 
         if ('POST' === $request->getMethod()) {
-            $form->bindRequest($request);
+            $form->handleRequest($request);
 
             if ($form->isValid()) {
                 $data = $form->getData();
@@ -288,7 +288,7 @@ class ConsultantsController extends CoreController
                     ->save($this->getDbConnection())
                 ;
 
-                $this->get('session')->setFlash('notice', 'consultant.updated');
+                $this->get('session')->getFlashBag()->add('notice', 'consultant.updated');
             }
         }
 
@@ -573,7 +573,7 @@ class ConsultantsController extends CoreController
         ;
 
         if ('POST' === $request->getMethod()) {
-            $form->bindRequest($request);
+            $form->handleRequest($request);
 
             if ($form->isValid()) {
 
@@ -585,7 +585,7 @@ class ConsultantsController extends CoreController
                 $cache = $this->get('cache_manager');
                 $cache->clearRedisCache();
 
-                $this->get('session')->setFlash('notice', 'admin.consultants.fronpage.content.updated');
+                $this->get('session')->getFlashBag()->add('notice', 'admin.consultants.fronpage.content.updated');
             }
         }
 

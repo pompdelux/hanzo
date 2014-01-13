@@ -13,7 +13,7 @@
 {% block content %}
 
 <div class="grid_8 alpha omega">
-  {% render 'CMSBundle:Menu:menu' with {'type': 'breadcrumb', 'thread': 20} %}
+  {{ render(controller('CMSBundle:Menu:menu', {'type': 'breadcrumb', 'thread': 20})) }}
 </div>
 <div class="grid_8 alpha omega container_16" itemscope itemtype="http://data-vocabulary.org/Product">
   <meta itemprop="brand" content="POMPdeLUX" />
@@ -24,11 +24,11 @@
     </div>
 
     <div class="grid_4 alpha">
-      {% include 'CMSBundle:Social:share.html.twig' with {
-        'url': app.request.uri,
-        'image': product_image_url(product.main_image.name, '0x1670'),
-        'description': product.title }
-      %}
+        {{ include('CMSBundle:Social:share.html.twig', {
+            'url': app.request.uri,
+            'image': product_image_url(product.main_image.name, '0x1670'),
+            'description': product.title
+        }) }}
     </div>
     <div class="grid_4 omega align-right">
     {% if product.has_video %}

@@ -5,7 +5,7 @@
 <title>{{ 'browser.title'|trans }} {{ browser_title|default('') }}</title>
 
 {# all header stuff is now in this file #}
-{% include '::mobile-header.html.twig' %}
+{{ include('::mobile-header.html.twig') }}
 
 </head>
 <body id="body-{{ page_type|default('page') }}" class="{{ body_classes|default('') }} {{ html_lang }} is-mobile">
@@ -23,7 +23,7 @@
         <ul class="horizontal menu second">
           <li id="mini-basket" class="basket">
             <span class="sprite"></span>
-            <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" title="{{ "show.basket"|trans }}"> {% render 'BasketBundle:Default:miniBasket' %} </a>
+            <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" title="{{ "show.basket"|trans }}"> {{ render(controller('BasketBundle:Default:miniBasket')) }} </a>
           </li>
         </ul>
       </nav>
@@ -34,12 +34,15 @@
     <nav class="menu main-menu">
       <div class="nested">
         <a href="" class="menu-trigger">Menu</a>
-        {% render 'CMSBundle:Menu:menu' with {'type': left_menu.type, 'thread': left_menu.thread, 'from': left_menu.from } %}
-        {% render 'CMSBundle:Menu:byTitle' with {'title':'topmenu'} %}
+        {{ render(controller('CMSBundle:Menu:menu', {
+            'type': left_menu.type,
+            'thread': left_menu.thread,
+            'from': left_menu.from
+        })) }}
+        {{ render(controller('CMSBundle:Menu:byTitle', {
+            'title':'topmenu'
+        })) }}
       </div>
-      {#
-      {% endif %}
-      #}
     </nav><!-- /nav.main -->
   {% endif %}
 
@@ -75,7 +78,7 @@
 </div>
 
 {# all footer (js) stuff is now in this file #}
-{% include '::mobile-footer.html.twig' %}
+{{ include('::mobile-footer.html.twig') }}
 
 {% block javascript %}
 {% endblock %}

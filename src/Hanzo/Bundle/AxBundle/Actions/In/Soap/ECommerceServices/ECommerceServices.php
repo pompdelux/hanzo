@@ -493,8 +493,7 @@ class ECommerceServices extends SoapService
         // ....................
 
         // if there is only one item it is not send as an array
-        if (!is_array($stock->InventDim))
-        {
+        if (!is_array($stock->InventDim)) {
             $stock->InventDim = array($stock->InventDim);
         }
 
@@ -563,10 +562,10 @@ class ECommerceServices extends SoapService
             }
 
             if (empty($products[$key]['inventory'])) {
-                $products[$key]['inventory'] = array();
+                $products[$key]['inventory'] = [];
             }
 
-            if (isset($stock_data['ordered'])) {
+            if (!empty($stock_data['ordered'])) {
                 if (empty($products[$key]['inventory'][$item->InventQtyAvailOrderedDate])) {
                     $products[$key]['inventory'][$item->InventQtyAvailOrderedDate] = array(
                         'date' => $item->InventQtyAvailOrderedDate,

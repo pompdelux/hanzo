@@ -31,10 +31,14 @@ class MenuController extends CoreController
         $request = $this->get('request');
         $this->device = $request->attributes->get('_x_device');
 
+        // note, due to the fact that we cannot in sf 2.3.x get the master request, we hack a little.
+        $stripped_uri = explode($request->getLocale().'/', $_SERVER['DOCUMENT_URI']);
+        $stripped_uri = array_pop($stripped_uri);
+
         $cache_id = [
             'menu',
             $type,
-            $request->getRequestUri()
+            $stripped_uri
         ];
 
         $html = $this->getCache($cache_id);
@@ -50,7 +54,7 @@ class MenuController extends CoreController
 
             $generate_trail = false;
             if (empty($this->path)) {
-                $this->path = preg_replace('#^/?[a-z]{2}_[A-Z]{2}/?#', '', $request->getPathInfo());
+                $this->path = $stripped_uri;
 
                 // NICETO: this could be done better, but how ?
                 if (preg_match('~(?:/(?:overview|look|[0-9]+)/?([a-z0-9\-]+)?)~', $this->path, $matches)) {

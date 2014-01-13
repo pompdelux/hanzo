@@ -61,8 +61,14 @@ abstract class BaseDomainsSettingsQuery extends ModelCriteria
      * @param     string $modelName The phpName of a model, e.g. 'Book'
      * @param     string $modelAlias The alias for the model in this query, e.g. 'b'
      */
-    public function __construct($dbName = 'default', $modelName = 'Hanzo\\Model\\DomainsSettings', $modelAlias = null)
+    public function __construct($dbName = null, $modelName = null, $modelAlias = null)
     {
+        if (null === $dbName) {
+            $dbName = 'default';
+        }
+        if (null === $modelName) {
+            $modelName = 'Hanzo\\Model\\DomainsSettings';
+        }
         parent::__construct($dbName, $modelName, $modelAlias);
     }
 
@@ -79,10 +85,8 @@ abstract class BaseDomainsSettingsQuery extends ModelCriteria
         if ($criteria instanceof DomainsSettingsQuery) {
             return $criteria;
         }
-        $query = new DomainsSettingsQuery();
-        if (null !== $modelAlias) {
-            $query->setModelAlias($modelAlias);
-        }
+        $query = new DomainsSettingsQuery(null, null, $modelAlias);
+
         if ($criteria instanceof Criteria) {
             $query->mergeWith($criteria);
         }
@@ -110,7 +114,7 @@ abstract class BaseDomainsSettingsQuery extends ModelCriteria
             return null;
         }
         if ((null !== ($obj = DomainsSettingsPeer::getInstanceFromPool((string) $key))) && !$this->formatter) {
-            // the object is alredy in the instance pool
+            // the object is already in the instance pool
             return $obj;
         }
         if ($con === null) {

@@ -5,27 +5,27 @@ monolog:
             action_level: error
             handler:      nested
         nested:
-            type:  stream
-            path:  %kernel.logs_dir%/%kernel.environment%.log
-            level: debug
+            type:         stream
+            path:         %kernel.logs_dir%/%kernel.environment%.log
+            level:        debug
 
 framework:
     trusted_proxies: [ %proxy_ip% ]
-    trusted_hosts: [ '.*?\.?pompdelux.com' ]
+    trusted_hosts:   [ '.*?\.?pompdelux.com' ]
     templating:
         assets_base_urls:
             http: [ "%assets_base_url%" ]
-            ssl: [ "%assets_base_url%" ]
+            ssl:  [ "%assets_base_url%" ]
 
 assetic:
     filters:
         uglifyjs:
-            bin: %uglifyjs_bin%
+            bin:          %uglifyjs_bin%
             no_copyright: false
-            apply_to: "\.js$"
+            apply_to:     "\.js$"
 varnish:
-    host: %varnish_host%
-    port: %varnish_port%
+    host:   %varnish_host%
+    port:   %varnish_port%
     secret: %varnish_secret%
 
 ax:

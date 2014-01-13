@@ -651,6 +651,7 @@ CREATE TABLE `products_washing_instructions`
     `locale` VARCHAR(5) NOT NULL,
     `description` TEXT NOT NULL,
     PRIMARY KEY (`id`),
+    INDEX `I_referenced_products_FK_2_1` (`code`),
     INDEX `FI_products_washing_instructions_1` (`locale`),
     CONSTRAINT `fk_products_washing_instructions_1`
         FOREIGN KEY (`locale`)
@@ -789,7 +790,6 @@ CREATE TABLE `orders`
         FOREIGN KEY (`events_id`)
         REFERENCES `events` (`id`)
         ON UPDATE CASCADE
-        ON DELETE RESTRICT
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------

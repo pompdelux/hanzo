@@ -72,8 +72,9 @@
 
 <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
-<script src="//code.jquery.com/jquery-migrate-1.2.1.js"></script>
-{% render 'NewsletterBundle:Default:js' %}
+
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+{{ render(controller('NewsletterBundle:Default:js')) }}
 
 <script>if (jaiks) {jaiks.exec();}</script>
 {#

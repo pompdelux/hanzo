@@ -191,7 +191,7 @@ return; // WIP: work in progress...
 
                     $goto .= '/'.$params['_locale'].'/';
 
-                    $hanzo->container->get('session')->setFlash('notice', 'access.denied');
+                    $hanzo->container->get('session')->getFlashBag()->add('notice', 'access.denied');
                     header('Location: '.$goto); exit;
                 }
             }

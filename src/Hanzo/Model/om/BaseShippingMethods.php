@@ -31,7 +31,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
     protected static $peer;
 
     /**
-     * The flag var to prevent infinit loop in deep copy
+     * The flag var to prevent infinite loop in deep copy
      * @var       boolean
      */
     protected $startCopy = false;
@@ -143,6 +143,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
      */
     public function getId()
     {
+
         return $this->id;
     }
 
@@ -153,6 +154,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
      */
     public function getCarrier()
     {
+
         return $this->carrier;
     }
 
@@ -163,6 +165,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
      */
     public function getMethod()
     {
+
         return $this->method;
     }
 
@@ -173,6 +176,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
      */
     public function getExternalId()
     {
+
         return $this->external_id;
     }
 
@@ -183,6 +187,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
      */
     public function getCalcEngine()
     {
+
         return $this->calc_engine;
     }
 
@@ -193,6 +198,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
      */
     public function getPrice()
     {
+
         return $this->price;
     }
 
@@ -203,6 +209,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
      */
     public function getFee()
     {
+
         return $this->fee;
     }
 
@@ -213,6 +220,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
      */
     public function getFeeExternalId()
     {
+
         return $this->fee_external_id;
     }
 
@@ -223,13 +231,14 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
      */
     public function getIsActive()
     {
+
         return $this->is_active;
     }
 
     /**
      * Set the value of [id] column.
      *
-     * @param int $v new value
+     * @param  int $v new value
      * @return ShippingMethods The current object (for fluent API support)
      */
     public function setId($v)
@@ -250,7 +259,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
     /**
      * Set the value of [carrier] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return ShippingMethods The current object (for fluent API support)
      */
     public function setCarrier($v)
@@ -271,7 +280,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
     /**
      * Set the value of [method] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return ShippingMethods The current object (for fluent API support)
      */
     public function setMethod($v)
@@ -292,7 +301,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
     /**
      * Set the value of [external_id] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return ShippingMethods The current object (for fluent API support)
      */
     public function setExternalId($v)
@@ -313,7 +322,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
     /**
      * Set the value of [calc_engine] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return ShippingMethods The current object (for fluent API support)
      */
     public function setCalcEngine($v)
@@ -334,7 +343,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
     /**
      * Set the value of [price] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return ShippingMethods The current object (for fluent API support)
      */
     public function setPrice($v)
@@ -355,7 +364,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
     /**
      * Set the value of [fee] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return ShippingMethods The current object (for fluent API support)
      */
     public function setFee($v)
@@ -376,7 +385,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
     /**
      * Set the value of [fee_external_id] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return ShippingMethods The current object (for fluent API support)
      */
     public function setFeeExternalId($v)
@@ -458,7 +467,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
      * more tables.
      *
      * @param array $row The row returned by PDOStatement->fetch(PDO::FETCH_NUM)
-     * @param int $startcol 0-based offset column which indicates which restultset column to start with.
+     * @param int $startcol 0-based offset column which indicates which resultset column to start with.
      * @param boolean $rehydrate Whether this object is being re-hydrated from the database.
      * @return int             next starting column
      * @throws PropelException - Any caught Exception will be rewrapped as a PropelException.
@@ -484,6 +493,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 9; // 9 = ShippingMethodsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -841,10 +851,10 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
      *
      * In addition to checking the current object, all related objects will
      * also be validated.  If all pass then <code>true</code> is returned; otherwise
-     * an aggreagated array of ValidationFailed objects will be returned.
+     * an aggregated array of ValidationFailed objects will be returned.
      *
      * @param array $columns Array of column names to validate.
-     * @return mixed <code>true</code> if all validations pass; array of <code>ValidationFailed</code> objets otherwise.
+     * @return mixed <code>true</code> if all validations pass; array of <code>ValidationFailed</code> objects otherwise.
      */
     protected function doValidate($columns = null)
     {
@@ -960,6 +970,11 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
             $keys[7] => $this->getFeeExternalId(),
             $keys[8] => $this->getIsActive(),
         );
+        $virtualColumns = $this->virtualColumns;
+        foreach ($virtualColumns as $key => $virtualColumn) {
+            $result[$key] = $virtualColumn;
+        }
+
 
         return $result;
     }
@@ -1219,7 +1234,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
      *
      * This method is a user-space workaround for PHP's inability to garbage collect
      * objects with circular references (even in PHP 5.3). This is currently necessary
-     * when using Propel in certain daemon or large-volumne/high-memory operations.
+     * when using Propel in certain daemon or large-volume/high-memory operations.
      *
      * @param boolean $deep Whether to also clear the references on all referrer objects.
      */

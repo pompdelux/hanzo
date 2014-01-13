@@ -5,6 +5,7 @@ namespace Hanzo\Bundle\MunerisBundle\Services;
 use Hanzo\Core\Tools;
 use Guzzle\Service\Client as GuzzleClient;
 use Hanzo\Bundle\RedisBundle\Client\Redis as RedisClient;
+use Hanzo\Model\MannequinImages;
 use Symfony\Bridge\Monolog\Logger;
 
 class MaxMind
@@ -29,7 +30,7 @@ class MaxMind
             $ip = $this->container->get('request')->getClientIp();
         }
 
-        if (preg_match('/^(127.0.0.|192.168.1.|0.0.)/', $ip)) {
+        if (preg_match('/^(127.0.0.|192.168.|0.0.)/', $ip)) {
             $ip = '90.185.206.100';
         }
 

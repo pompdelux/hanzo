@@ -1,19 +1,19 @@
 {% extends layout %}
 
 {% block content %}
-
-
 <div class="grid_8 alpha omega row">
-  {% render 'CMSBundle:Menu:menu' with {'type': 'breadcrumb', 'thread': left_menu.thread} %}
+    {{ render(controller('CMSBundle:Menu:menu', {
+        'type': 'breadcrumb',
+        'thread': left_menu.thread
+    })) }}
 </div>
-
 <div class="grid_8 alpha omega">
     <div class="grid_2 alpha sub-menu menu">
-        {% render 'CMSBundle:Menu:menu' with {'type': 'sub', 'include_self' : true } %}
+        {{ render(controller('CMSBundle:Menu:menu', {'type': 'sub', 'include_self' : true })) }}
     </div>
     <div class="grid_6 omega">
         <h1>{{ page.title }}</h1>
-        {% render 'NewsletterBundle:Default:block' %}
+        {{ render(controller('NewsletterBundle:Default:block')) }}
     </div>
 </div>
 {% endblock %}

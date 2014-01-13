@@ -93,14 +93,14 @@ class DomainVoter implements VoterInterface
             $useLocale = $countryIdToLocaleMap[$countryId][0]; // Use the first locale
 
             $msg = $translator->trans('login.restricted.only.customers',array( '%url%' => 'http://c.pompdelux.com/'.$useLocale.'/login', '%site_name%' => $country ),'account');
-            $this->container->get('session')->setFlash('error', $msg);
+            $this->container->get('session')->getFlashBag()->add('error', $msg);
             return VoterInterface::ACCESS_DENIED;
         }
 
         // If the country is not set in the mapping it must run en_GB, so deny access if it doesn't
         if ( !isset($countryIdToLocaleMap[$countryId]) && $locale != 'en_GB' ) {
             $msg = $translator->trans('login.restricted.other_locale',array( '%url%' => $request->getBaseUrl().'/en_GB/login', '%site_name%' => 'International' ),'account');
-            $this->container->get('session')->setFlash('error', $msg);
+            $this->container->get('session')->getFlashBag()->add('error', $msg);
             return VoterInterface::ACCESS_DENIED;
         }
 
@@ -109,7 +109,7 @@ class DomainVoter implements VoterInterface
             $useLocale = $countryIdToLocaleMap[$countryId][0]; // Use the first locale
 
             $msg = $translator->trans('login.restricted.other_locale',array( '%url%' => $request->getBaseUrl().'/'.$useLocale.'/login', '%site_name%' => $country ),'account');
-            $this->container->get('session')->setFlash('error', $msg);
+            $this->container->get('session')->getFlashBag()->add('error', $msg);
             return VoterInterface::ACCESS_DENIED;
         }
 

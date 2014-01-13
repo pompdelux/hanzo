@@ -110,8 +110,14 @@ abstract class BaseOrdersLinesQuery extends ModelCriteria
      * @param     string $modelName The phpName of a model, e.g. 'Book'
      * @param     string $modelAlias The alias for the model in this query, e.g. 'b'
      */
-    public function __construct($dbName = 'default', $modelName = 'Hanzo\\Model\\OrdersLines', $modelAlias = null)
+    public function __construct($dbName = null, $modelName = null, $modelAlias = null)
     {
+        if (null === $dbName) {
+            $dbName = 'default';
+        }
+        if (null === $modelName) {
+            $modelName = 'Hanzo\\Model\\OrdersLines';
+        }
         parent::__construct($dbName, $modelName, $modelAlias);
     }
 
@@ -128,10 +134,8 @@ abstract class BaseOrdersLinesQuery extends ModelCriteria
         if ($criteria instanceof OrdersLinesQuery) {
             return $criteria;
         }
-        $query = new OrdersLinesQuery();
-        if (null !== $modelAlias) {
-            $query->setModelAlias($modelAlias);
-        }
+        $query = new OrdersLinesQuery(null, null, $modelAlias);
+
         if ($criteria instanceof Criteria) {
             $query->mergeWith($criteria);
         }
@@ -159,7 +163,7 @@ abstract class BaseOrdersLinesQuery extends ModelCriteria
             return null;
         }
         if ((null !== ($obj = OrdersLinesPeer::getInstanceFromPool((string) $key))) && !$this->formatter) {
-            // the object is alredy in the instance pool
+            // the object is already in the instance pool
             return $obj;
         }
         if ($con === null) {
@@ -572,7 +576,7 @@ abstract class BaseOrdersLinesQuery extends ModelCriteria
      * <code>
      * $query->filterByExpectedAt('2011-03-14'); // WHERE expected_at = '2011-03-14'
      * $query->filterByExpectedAt('now'); // WHERE expected_at = '2011-03-14'
-     * $query->filterByExpectedAt(array('max' => 'yesterday')); // WHERE expected_at > '2011-03-13'
+     * $query->filterByExpectedAt(array('max' => 'yesterday')); // WHERE expected_at < '2011-03-13'
      * </code>
      *
      * @param     mixed $expectedAt The value to use as filter.

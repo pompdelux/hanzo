@@ -92,7 +92,7 @@ class HelpdeskController extends CoreController
 	            ));
 	        }
 
-	        $this->get('session')->setFlash('notice', 'delete.helpdesk.success');
+	        $this->get('session')->getFlashBag()->add('notice', 'delete.helpdesk.success');
 
         	return $this->redirect($this->generateUrl('admin_helpdesk'));
 

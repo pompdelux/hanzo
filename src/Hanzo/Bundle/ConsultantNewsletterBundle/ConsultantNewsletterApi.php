@@ -187,13 +187,7 @@ class ConsultantNewsletterApi
     **/
     public function doesAdminUserExist($email)
     {
-        $x = $this->soapClient->doesAdminUserExist($email);
-
-error_log($this->soapClient->__getLastRequestHeaders());
-error_log($this->soapClient->__getLastRequest());
-
-
-        return $x;
+        return $this->soapClient->doesAdminUserExist($email);
     }
 
     /**

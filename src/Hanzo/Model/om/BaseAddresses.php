@@ -37,7 +37,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
     protected static $peer;
 
     /**
-     * The flag var to prevent infinit loop in deep copy
+     * The flag var to prevent infinite loop in deep copy
      * @var       boolean
      */
     protected $startCopy = false;
@@ -209,6 +209,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
      */
     public function getCustomersId()
     {
+
         return $this->customers_id;
     }
 
@@ -219,6 +220,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
      */
     public function getType()
     {
+
         return $this->type;
     }
 
@@ -229,6 +231,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
      */
     public function getTitle()
     {
+
         return $this->title;
     }
 
@@ -239,6 +242,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
      */
     public function getFirstName()
     {
+
         return $this->first_name;
     }
 
@@ -249,6 +253,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
      */
     public function getLastName()
     {
+
         return $this->last_name;
     }
 
@@ -259,6 +264,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
      */
     public function getAddressLine1()
     {
+
         return $this->address_line_1;
     }
 
@@ -269,6 +275,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
      */
     public function getAddressLine2()
     {
+
         return $this->address_line_2;
     }
 
@@ -279,6 +286,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
      */
     public function getPostalCode()
     {
+
         return $this->postal_code;
     }
 
@@ -289,6 +297,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
      */
     public function getCity()
     {
+
         return $this->city;
     }
 
@@ -299,6 +308,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
      */
     public function getCountry()
     {
+
         return $this->country;
     }
 
@@ -309,6 +319,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
      */
     public function getCountriesId()
     {
+
         return $this->countries_id;
     }
 
@@ -319,6 +330,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
      */
     public function getStateProvince()
     {
+
         return $this->state_province;
     }
 
@@ -329,6 +341,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
      */
     public function getCompanyName()
     {
+
         return $this->company_name;
     }
 
@@ -339,6 +352,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
      */
     public function getExternalAddressId()
     {
+
         return $this->external_address_id;
     }
 
@@ -349,6 +363,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
      */
     public function getLatitude()
     {
+
         return $this->latitude;
     }
 
@@ -359,6 +374,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
      */
     public function getLongitude()
     {
+
         return $this->longitude;
     }
 
@@ -366,7 +382,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
      * Get the [optionally formatted] temporal [created_at] column value.
      *
      * This accessor only only work with unix epoch dates.  Consider enabling the propel.useDateTimeClass
-     * option in order to avoid converstions to integers (which are limited in the dates they can express).
+     * option in order to avoid conversions to integers (which are limited in the dates they can express).
      *
      * @param string $format The date/time format string (either date()-style or strftime()-style).
      *				 If format is null, then the raw unix timestamp integer will be returned.
@@ -408,7 +424,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
      * Get the [optionally formatted] temporal [updated_at] column value.
      *
      * This accessor only only work with unix epoch dates.  Consider enabling the propel.useDateTimeClass
-     * option in order to avoid converstions to integers (which are limited in the dates they can express).
+     * option in order to avoid conversions to integers (which are limited in the dates they can express).
      *
      * @param string $format The date/time format string (either date()-style or strftime()-style).
      *				 If format is null, then the raw unix timestamp integer will be returned.
@@ -449,7 +465,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
     /**
      * Set the value of [customers_id] column.
      *
-     * @param int $v new value
+     * @param  int $v new value
      * @return Addresses The current object (for fluent API support)
      */
     public function setCustomersId($v)
@@ -474,7 +490,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
     /**
      * Set the value of [type] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Addresses The current object (for fluent API support)
      */
     public function setType($v)
@@ -495,7 +511,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
     /**
      * Set the value of [title] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Addresses The current object (for fluent API support)
      */
     public function setTitle($v)
@@ -516,7 +532,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
     /**
      * Set the value of [first_name] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Addresses The current object (for fluent API support)
      */
     public function setFirstName($v)
@@ -537,7 +553,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
     /**
      * Set the value of [last_name] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Addresses The current object (for fluent API support)
      */
     public function setLastName($v)
@@ -558,7 +574,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
     /**
      * Set the value of [address_line_1] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Addresses The current object (for fluent API support)
      */
     public function setAddressLine1($v)
@@ -579,7 +595,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
     /**
      * Set the value of [address_line_2] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Addresses The current object (for fluent API support)
      */
     public function setAddressLine2($v)
@@ -600,7 +616,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
     /**
      * Set the value of [postal_code] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Addresses The current object (for fluent API support)
      */
     public function setPostalCode($v)
@@ -621,7 +637,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
     /**
      * Set the value of [city] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Addresses The current object (for fluent API support)
      */
     public function setCity($v)
@@ -642,7 +658,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
     /**
      * Set the value of [country] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Addresses The current object (for fluent API support)
      */
     public function setCountry($v)
@@ -663,7 +679,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
     /**
      * Set the value of [countries_id] column.
      *
-     * @param int $v new value
+     * @param  int $v new value
      * @return Addresses The current object (for fluent API support)
      */
     public function setCountriesId($v)
@@ -688,7 +704,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
     /**
      * Set the value of [state_province] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Addresses The current object (for fluent API support)
      */
     public function setStateProvince($v)
@@ -709,7 +725,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
     /**
      * Set the value of [company_name] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Addresses The current object (for fluent API support)
      */
     public function setCompanyName($v)
@@ -730,7 +746,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
     /**
      * Set the value of [external_address_id] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Addresses The current object (for fluent API support)
      */
     public function setExternalAddressId($v)
@@ -751,7 +767,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
     /**
      * Set the value of [latitude] column.
      *
-     * @param double $v new value
+     * @param  double $v new value
      * @return Addresses The current object (for fluent API support)
      */
     public function setLatitude($v)
@@ -772,7 +788,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
     /**
      * Set the value of [longitude] column.
      *
-     * @param double $v new value
+     * @param  double $v new value
      * @return Addresses The current object (for fluent API support)
      */
     public function setLongitude($v)
@@ -863,7 +879,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
      * more tables.
      *
      * @param array $row The row returned by PDOStatement->fetch(PDO::FETCH_NUM)
-     * @param int $startcol 0-based offset column which indicates which restultset column to start with.
+     * @param int $startcol 0-based offset column which indicates which resultset column to start with.
      * @param boolean $rehydrate Whether this object is being re-hydrated from the database.
      * @return int             next starting column
      * @throws PropelException - Any caught Exception will be rewrapped as a PropelException.
@@ -898,6 +914,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 18; // 18 = AddressesPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -1093,7 +1110,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
             $this->alreadyInSave = true;
 
             // We call the save method on the following object(s) if they
-            // were passed to this object by their coresponding set
+            // were passed to this object by their corresponding set
             // method.  This object relates to these object(s) by a
             // foreign key reference.
 
@@ -1336,10 +1353,10 @@ abstract class BaseAddresses extends BaseObject implements Persistent
      *
      * In addition to checking the current object, all related objects will
      * also be validated.  If all pass then <code>true</code> is returned; otherwise
-     * an aggreagated array of ValidationFailed objects will be returned.
+     * an aggregated array of ValidationFailed objects will be returned.
      *
      * @param array $columns Array of column names to validate.
-     * @return mixed <code>true</code> if all validations pass; array of <code>ValidationFailed</code> objets otherwise.
+     * @return mixed <code>true</code> if all validations pass; array of <code>ValidationFailed</code> objects otherwise.
      */
     protected function doValidate($columns = null)
     {
@@ -1351,7 +1368,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
 
 
             // We call the validate method on the following object(s) if they
-            // were passed to this object by their coresponding set
+            // were passed to this object by their corresponding set
             // method.  This object relates to these object(s) by a
             // foreign key reference.
 
@@ -1510,6 +1527,11 @@ abstract class BaseAddresses extends BaseObject implements Persistent
             $keys[16] => $this->getCreatedAt(),
             $keys[17] => $this->getUpdatedAt(),
         );
+        $virtualColumns = $this->virtualColumns;
+        foreach ($virtualColumns as $key => $virtualColumn) {
+            $result[$key] = $virtualColumn;
+        }
+
         if ($includeForeignObjects) {
             if (null !== $this->aCustomers) {
                 $result['Customers'] = $this->aCustomers->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
@@ -1824,7 +1846,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
     /**
      * Declares an association between this object and a Customers object.
      *
-     * @param             Customers $v
+     * @param                  Customers $v
      * @return Addresses The current object (for fluent API support)
      * @throws PropelException
      */
@@ -1876,7 +1898,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
     /**
      * Declares an association between this object and a Countries object.
      *
-     * @param             Countries $v
+     * @param                  Countries $v
      * @return Addresses The current object (for fluent API support)
      * @throws PropelException
      */
@@ -1963,7 +1985,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
      *
      * This method is a user-space workaround for PHP's inability to garbage collect
      * objects with circular references (even in PHP 5.3). This is currently necessary
-     * when using Propel in certain daemon or large-volumne/high-memory operations.
+     * when using Propel in certain daemon or large-volume/high-memory operations.
      *
      * @param boolean $deep Whether to also clear the references on all referrer objects.
      */

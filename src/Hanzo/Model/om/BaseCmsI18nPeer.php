@@ -27,7 +27,7 @@ abstract class BaseCmsI18nPeer
     const OM_CLASS = 'Hanzo\\Model\\CmsI18n';
 
     /** the related TableMap class for this table */
-    const TM_CLASS = 'CmsI18nTableMap';
+    const TM_CLASS = 'Hanzo\\Model\\map\\CmsI18nTableMap';
 
     /** The total number of columns. */
     const NUM_COLUMNS = 10;
@@ -72,7 +72,7 @@ abstract class BaseCmsI18nPeer
     const DEFAULT_STRING_FORMAT = 'YAML';
 
     /**
-     * An identiy map to hold any loaded instances of CmsI18n objects.
+     * An identity map to hold any loaded instances of CmsI18n objects.
      * This must be public so that other peer classes can access this when hydrating from JOIN
      * queries.
      * @var        array CmsI18n[]
@@ -254,7 +254,7 @@ abstract class BaseCmsI18nPeer
      *
      * @param      Criteria $criteria object used to create the SELECT statement.
      * @param      PropelPDO $con
-     * @return                 CmsI18n
+     * @return CmsI18n
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
@@ -321,7 +321,7 @@ abstract class BaseCmsI18nPeer
      * to the cache in order to ensure that the same objects are always returned by doSelect*()
      * and retrieveByPK*() calls.
      *
-     * @param      CmsI18n $obj A CmsI18n object.
+     * @param CmsI18n $obj A CmsI18n object.
      * @param      string $key (optional) key to use for instance map (for performance boost if key was already calculated externally).
      */
     public static function addInstanceToPool($obj, $key = null)
@@ -371,7 +371,7 @@ abstract class BaseCmsI18nPeer
      * a multi-column primary key, a serialize()d version of the primary key will be returned.
      *
      * @param      string $key The key (@see getPrimaryKeyHash()) for this instance.
-     * @return   CmsI18n Found object or null if 1) no instance exists for specified key or 2) instance pooling has been disabled.
+     * @return CmsI18n Found object or null if 1) no instance exists for specified key or 2) instance pooling has been disabled.
      * @see        getPrimaryKeyHash()
      */
     public static function getInstanceFromPool($key)
@@ -392,10 +392,8 @@ abstract class BaseCmsI18nPeer
      */
     public static function clearInstancePool($and_clear_all_references = false)
     {
-      if ($and_clear_all_references)
-      {
-        foreach (CmsI18nPeer::$instances as $instance)
-        {
+      if ($and_clear_all_references) {
+        foreach (CmsI18nPeer::$instances as $instance) {
           $instance->clearAllReferences(true);
         }
       }
@@ -761,7 +759,7 @@ abstract class BaseCmsI18nPeer
     {
       $dbMap = Propel::getDatabaseMap(BaseCmsI18nPeer::DATABASE_NAME);
       if (!$dbMap->hasTable(BaseCmsI18nPeer::TABLE_NAME)) {
-        $dbMap->addTableObject(new CmsI18nTableMap());
+        $dbMap->addTableObject(new \Hanzo\Model\map\CmsI18nTableMap());
       }
     }
 
@@ -807,7 +805,7 @@ abstract class BaseCmsI18nPeer
             $con->beginTransaction();
             $pk = BasePeer::doInsert($criteria, $con);
             $con->commit();
-        } catch (PropelException $e) {
+        } catch (Exception $e) {
             $con->rollBack();
             throw $e;
         }
@@ -888,7 +886,7 @@ abstract class BaseCmsI18nPeer
             $con->commit();
 
             return $affectedRows;
-        } catch (PropelException $e) {
+        } catch (Exception $e) {
             $con->rollBack();
             throw $e;
         }
@@ -955,7 +953,7 @@ abstract class BaseCmsI18nPeer
             $con->commit();
 
             return $affectedRows;
-        } catch (PropelException $e) {
+        } catch (Exception $e) {
             $con->rollBack();
             throw $e;
         }
@@ -968,7 +966,7 @@ abstract class BaseCmsI18nPeer
      *
      * NOTICE: This does not apply to primary or foreign keys for now.
      *
-     * @param      CmsI18n $obj The object to validate.
+     * @param CmsI18n $obj The object to validate.
      * @param      mixed $cols Column name or array of column names.
      *
      * @return mixed TRUE if all columns are valid or the error message of the first invalid column.
@@ -1003,7 +1001,7 @@ abstract class BaseCmsI18nPeer
      * @param   int $id
      * @param   string $locale
      * @param      PropelPDO $con
-     * @return   CmsI18n
+     * @return CmsI18n
      */
     public static function retrieveByPK($id, $locale, PropelPDO $con = null) {
         $_instancePoolKey = serialize(array((string) $id, (string) $locale));

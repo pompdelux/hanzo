@@ -167,11 +167,11 @@ class CouponsController extends CoreController
         ;
 
         if ('POST' === $request->getMethod()) {
-            $form->bindRequest($request);
+            $form->handleRequest($request);
 
             if ($form->isValid()) {
                 $coupon->save($this->getDbConnection());
-                $this->get('session')->setFlash('notice', 'admin.coupon.inserted');
+                $this->get('session')->getFlashBag()->add('notice', 'admin.coupon.inserted');
             }
         }
 
@@ -274,7 +274,7 @@ class CouponsController extends CoreController
         ;
 
         if ('POST' === $request->getMethod()) {
-            $form->bindRequest($request);
+            $form->handleRequest($request);
             if ($form->isValid()) {
 
                 $out      = [];
@@ -302,7 +302,7 @@ class CouponsController extends CoreController
 
                 if (count($out)) {
                     $this->writeCouponFile($out);
-                    $this->get('session')->setFlash('notice', 'Der er nu oprettet '.$quantity.' nye rabatkoder, filen kan downloades herunder.');
+                    $this->get('session')->getFlashBag()->add('notice', 'Der er nu oprettet '.$quantity.' nye rabatkoder, filen kan downloades herunder.');
                 }
             }
 

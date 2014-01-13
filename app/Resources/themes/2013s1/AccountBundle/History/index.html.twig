@@ -1,12 +1,13 @@
 {% extends layout %}
 
 {% block content %}
-
 <h1>{{ 'My account - history'|trans({}, 'account') }}</h1>
 
-{% render 'AccountBundle:History:block' with { 'limit': 0, 'link': false, 'route' : app.request.attributes.get('_route') } %}
+{{ render(controller('AccountBundle:History:block', {
+    'limit': 0,
+    'link': false,
+    'route' : app.request.attributes.get('_route')
+})) }}
 
 <br><a href="{{ path('_account') }}" class="button left">{{ 'Back'|trans({}, 'account') }}</a>
-
-
 {% endblock %}

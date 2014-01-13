@@ -6,15 +6,17 @@
     {% for address in addresses %}
       <div class="grid_2 address">
         <h4>{{ ('address.' ~ address.type)|trans({}, 'account') }}</h3>
-        {% include 'AccountBundle:Default:address_block.html.twig' with {'address': address, 'type': address.type} %}
+        {{ include('AccountBundle:Default:address_block.html.twig', {
+            'address': address,
+            'type': address.type
+        }) }}
       </div>
     {% endfor %}
 </div>
 <div class="grid_8 alpha omega">
   <div class="products clearfix"><br>
-    {% render 'BasketBundle:Default:view' with { 'embed': true, 'orders_id': order.id } %}
-
-    {% include 'CheckoutBundle:Default:order_block.html.twig' with {'order': order} %}
+    {{ render(controller('BasketBundle:Default:view', { 'embed': true, 'orders_id': order.id })) }}
+    {{ include('CheckoutBundle:Default:order_block.html.twig', {'order': order}) }}
   </div>
 </div>
 

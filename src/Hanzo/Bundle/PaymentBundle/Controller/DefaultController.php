@@ -193,7 +193,7 @@ class DefaultController extends CoreController
         $order->setState( Orders::STATE_BUILDING );
         $order->save();
 
-        $this->get('session')->setFlash('notice', $translator->trans( 'payment.canceled', array(), 'checkout' ));
+        $this->get('session')->getFlashBag()->add('notice', $translator->trans( 'payment.canceled', array(), 'checkout' ));
 
         return $this->redirect($this->generateUrl('_checkout'));
     }

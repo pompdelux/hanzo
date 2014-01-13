@@ -26,7 +26,7 @@ abstract class BaseSequencesPeer
     const OM_CLASS = 'Hanzo\\Model\\Sequences';
 
     /** the related TableMap class for this table */
-    const TM_CLASS = 'SequencesTableMap';
+    const TM_CLASS = 'Hanzo\\Model\\map\\SequencesTableMap';
 
     /** The total number of columns. */
     const NUM_COLUMNS = 2;
@@ -47,7 +47,7 @@ abstract class BaseSequencesPeer
     const DEFAULT_STRING_FORMAT = 'YAML';
 
     /**
-     * An identiy map to hold any loaded instances of Sequences objects.
+     * An identity map to hold any loaded instances of Sequences objects.
      * This must be public so that other peer classes can access this when hydrating from JOIN
      * queries.
      * @var        array Sequences[]
@@ -213,7 +213,7 @@ abstract class BaseSequencesPeer
      *
      * @param      Criteria $criteria object used to create the SELECT statement.
      * @param      PropelPDO $con
-     * @return                 Sequences
+     * @return Sequences
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
@@ -280,7 +280,7 @@ abstract class BaseSequencesPeer
      * to the cache in order to ensure that the same objects are always returned by doSelect*()
      * and retrieveByPK*() calls.
      *
-     * @param      Sequences $obj A Sequences object.
+     * @param Sequences $obj A Sequences object.
      * @param      string $key (optional) key to use for instance map (for performance boost if key was already calculated externally).
      */
     public static function addInstanceToPool($obj, $key = null)
@@ -330,7 +330,7 @@ abstract class BaseSequencesPeer
      * a multi-column primary key, a serialize()d version of the primary key will be returned.
      *
      * @param      string $key The key (@see getPrimaryKeyHash()) for this instance.
-     * @return   Sequences Found object or null if 1) no instance exists for specified key or 2) instance pooling has been disabled.
+     * @return Sequences Found object or null if 1) no instance exists for specified key or 2) instance pooling has been disabled.
      * @see        getPrimaryKeyHash()
      */
     public static function getInstanceFromPool($key)
@@ -351,10 +351,8 @@ abstract class BaseSequencesPeer
      */
     public static function clearInstancePool($and_clear_all_references = false)
     {
-      if ($and_clear_all_references)
-      {
-        foreach (SequencesPeer::$instances as $instance)
-        {
+      if ($and_clear_all_references) {
+        foreach (SequencesPeer::$instances as $instance) {
           $instance->clearAllReferences(true);
         }
       }
@@ -482,7 +480,7 @@ abstract class BaseSequencesPeer
     {
       $dbMap = Propel::getDatabaseMap(BaseSequencesPeer::DATABASE_NAME);
       if (!$dbMap->hasTable(BaseSequencesPeer::TABLE_NAME)) {
-        $dbMap->addTableObject(new SequencesTableMap());
+        $dbMap->addTableObject(new \Hanzo\Model\map\SequencesTableMap());
       }
     }
 
@@ -528,7 +526,7 @@ abstract class BaseSequencesPeer
             $con->beginTransaction();
             $pk = BasePeer::doInsert($criteria, $con);
             $con->commit();
-        } catch (PropelException $e) {
+        } catch (Exception $e) {
             $con->rollBack();
             throw $e;
         }
@@ -601,7 +599,7 @@ abstract class BaseSequencesPeer
             $con->commit();
 
             return $affectedRows;
-        } catch (PropelException $e) {
+        } catch (Exception $e) {
             $con->rollBack();
             throw $e;
         }
@@ -660,7 +658,7 @@ abstract class BaseSequencesPeer
             $con->commit();
 
             return $affectedRows;
-        } catch (PropelException $e) {
+        } catch (Exception $e) {
             $con->rollBack();
             throw $e;
         }
@@ -673,7 +671,7 @@ abstract class BaseSequencesPeer
      *
      * NOTICE: This does not apply to primary or foreign keys for now.
      *
-     * @param      Sequences $obj The object to validate.
+     * @param Sequences $obj The object to validate.
      * @param      mixed $cols Column name or array of column names.
      *
      * @return mixed TRUE if all columns are valid or the error message of the first invalid column.
@@ -706,7 +704,7 @@ abstract class BaseSequencesPeer
     /**
      * Retrieve a single object by pkey.
      *
-     * @param      string $pk the primary key.
+     * @param string $pk the primary key.
      * @param      PropelPDO $con the connection to use
      * @return Sequences
      */

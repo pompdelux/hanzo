@@ -62,8 +62,14 @@ abstract class BaseWallLikesQuery extends ModelCriteria
      * @param     string $modelName The phpName of a model, e.g. 'Book'
      * @param     string $modelAlias The alias for the model in this query, e.g. 'b'
      */
-    public function __construct($dbName = 'default', $modelName = 'Hanzo\\Model\\WallLikes', $modelAlias = null)
+    public function __construct($dbName = null, $modelName = null, $modelAlias = null)
     {
+        if (null === $dbName) {
+            $dbName = 'default';
+        }
+        if (null === $modelName) {
+            $modelName = 'Hanzo\\Model\\WallLikes';
+        }
         parent::__construct($dbName, $modelName, $modelAlias);
     }
 
@@ -80,10 +86,8 @@ abstract class BaseWallLikesQuery extends ModelCriteria
         if ($criteria instanceof WallLikesQuery) {
             return $criteria;
         }
-        $query = new WallLikesQuery();
-        if (null !== $modelAlias) {
-            $query->setModelAlias($modelAlias);
-        }
+        $query = new WallLikesQuery(null, null, $modelAlias);
+
         if ($criteria instanceof Criteria) {
             $query->mergeWith($criteria);
         }
@@ -111,7 +115,7 @@ abstract class BaseWallLikesQuery extends ModelCriteria
             return null;
         }
         if ((null !== ($obj = WallLikesPeer::getInstanceFromPool((string) $key))) && !$this->formatter) {
-            // the object is alredy in the instance pool
+            // the object is already in the instance pool
             return $obj;
         }
         if ($con === null) {

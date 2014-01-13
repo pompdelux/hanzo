@@ -103,8 +103,14 @@ abstract class BaseCountriesQuery extends ModelCriteria
      * @param     string $modelName The phpName of a model, e.g. 'Book'
      * @param     string $modelAlias The alias for the model in this query, e.g. 'b'
      */
-    public function __construct($dbName = 'default', $modelName = 'Hanzo\\Model\\Countries', $modelAlias = null)
+    public function __construct($dbName = null, $modelName = null, $modelAlias = null)
     {
+        if (null === $dbName) {
+            $dbName = 'default';
+        }
+        if (null === $modelName) {
+            $modelName = 'Hanzo\\Model\\Countries';
+        }
         parent::__construct($dbName, $modelName, $modelAlias);
     }
 
@@ -121,10 +127,8 @@ abstract class BaseCountriesQuery extends ModelCriteria
         if ($criteria instanceof CountriesQuery) {
             return $criteria;
         }
-        $query = new CountriesQuery();
-        if (null !== $modelAlias) {
-            $query->setModelAlias($modelAlias);
-        }
+        $query = new CountriesQuery(null, null, $modelAlias);
+
         if ($criteria instanceof Criteria) {
             $query->mergeWith($criteria);
         }
@@ -152,7 +156,7 @@ abstract class BaseCountriesQuery extends ModelCriteria
             return null;
         }
         if ((null !== ($obj = CountriesPeer::getInstanceFromPool((string) $key))) && !$this->formatter) {
-            // the object is alredy in the instance pool
+            // the object is already in the instance pool
             return $obj;
         }
         if ($con === null) {
