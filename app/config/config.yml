@@ -141,6 +141,7 @@ redis:
             port:     %redis_cache1_port%
             prefix:   hanzo
             database: %redis_cache1_database%
+            auth:     %redis_cache1_password%
         # permanent should be used for fast access to stuff that does not change
         # this db should never be flushed !
         permanent:
@@ -149,6 +150,7 @@ redis:
             prefix:   hanzo
             skip_env: true
             database: 2
+            auth:     %redis_cache1_password%
 
 # @see https://github.com/ekino/EkinoNewRelicBundle
 ekino_new_relic:
