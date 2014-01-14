@@ -57,7 +57,7 @@ class GothiaController extends CoreController
 
         // maybe a fix for orders contaning valid dibs info and then is overriden with gothia billingmethod
         if ($order->getState() > Orders::STATE_PRE_PAYMENT) {
-            $this->get('session')->setFlash('notice', 'order.state_pre_payment.locked');
+            $this->get('session')->getFlashBag()->add('notice', 'order.state_pre_payment.locked');
             return $this->redirect($this->generateUrl('basket_view'));
         }
 

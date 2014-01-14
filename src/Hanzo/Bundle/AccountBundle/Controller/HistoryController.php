@@ -77,7 +77,7 @@ class HistoryController extends CoreController
 
         $status = $event->getStatus();
         if (false === $status->code) {
-            $this->get('session')->setFlash('notice', $this->get('translator')->trans($status->message, ['%order_id%' => $order_id], 'account'));
+            $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans($status->message, ['%order_id%' => $order_id], 'account'));
             return $this->redirect($this->generateUrl('_account'));
         }
 
@@ -181,7 +181,7 @@ class HistoryController extends CoreController
         ;
 
         if (!$order instanceof Orders) {
-            $this->get('session')->setFlash('notice', 'unable.to.delete.order.in.current.state');
+            $this->get('session')->getFlashBag()->add('notice', 'unable.to.delete.order.in.current.state');
         } else {
             $msg = $this->get('translator')->trans('order.deleted', array( '%id%' => $order_id ));
 
@@ -238,7 +238,7 @@ class HistoryController extends CoreController
                 $msg = $e->getMessage();
             }
 
-            $this->get('session')->setFlash('notice', $msg);
+            $this->get('session')->getFlashBag()->add('notice', $msg);
         }
 
         return $this->redirect($this->generateUrl('_account'));

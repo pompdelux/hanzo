@@ -1,4 +1,4 @@
 <div id="coupon-block" class="checkout-block voucher-block">
   <a href="">{{ 'coupon.toggle.form'|trans({},'checkout') }}</a>
-  {% render 'DiscountBundle:Coupon:apply' %}
+  {{ render(controller('DiscountBundle:Coupon:apply')) }}
 </div>

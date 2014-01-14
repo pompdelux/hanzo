@@ -39,7 +39,7 @@ abstract class BaseCategories extends BaseObject implements Persistent
     protected static $peer;
 
     /**
-     * The flag var to prevent infinit loop in deep copy
+     * The flag var to prevent infinite loop in deep copy
      * @var       boolean
      */
     protected $startCopy = false;
@@ -186,6 +186,7 @@ abstract class BaseCategories extends BaseObject implements Persistent
      */
     public function getId()
     {
+
         return $this->id;
     }
 
@@ -196,6 +197,7 @@ abstract class BaseCategories extends BaseObject implements Persistent
      */
     public function getParentId()
     {
+
         return $this->parent_id;
     }
 
@@ -206,6 +208,7 @@ abstract class BaseCategories extends BaseObject implements Persistent
      */
     public function getContext()
     {
+
         return $this->context;
     }
 
@@ -216,13 +219,14 @@ abstract class BaseCategories extends BaseObject implements Persistent
      */
     public function getIsActive()
     {
+
         return $this->is_active;
     }
 
     /**
      * Set the value of [id] column.
      *
-     * @param int $v new value
+     * @param  int $v new value
      * @return Categories The current object (for fluent API support)
      */
     public function setId($v)
@@ -243,7 +247,7 @@ abstract class BaseCategories extends BaseObject implements Persistent
     /**
      * Set the value of [parent_id] column.
      *
-     * @param int $v new value
+     * @param  int $v new value
      * @return Categories The current object (for fluent API support)
      */
     public function setParentId($v)
@@ -268,7 +272,7 @@ abstract class BaseCategories extends BaseObject implements Persistent
     /**
      * Set the value of [context] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Categories The current object (for fluent API support)
      */
     public function setContext($v)
@@ -346,7 +350,7 @@ abstract class BaseCategories extends BaseObject implements Persistent
      * more tables.
      *
      * @param array $row The row returned by PDOStatement->fetch(PDO::FETCH_NUM)
-     * @param int $startcol 0-based offset column which indicates which restultset column to start with.
+     * @param int $startcol 0-based offset column which indicates which resultset column to start with.
      * @param boolean $rehydrate Whether this object is being re-hydrated from the database.
      * @return int             next starting column
      * @throws PropelException - Any caught Exception will be rewrapped as a PropelException.
@@ -367,6 +371,7 @@ abstract class BaseCategories extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 4; // 4 = CategoriesPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -555,7 +560,7 @@ abstract class BaseCategories extends BaseObject implements Persistent
             $this->alreadyInSave = true;
 
             // We call the save method on the following object(s) if they
-            // were passed to this object by their coresponding set
+            // were passed to this object by their corresponding set
             // method.  This object relates to these object(s) by a
             // foreign key reference.
 
@@ -786,10 +791,10 @@ abstract class BaseCategories extends BaseObject implements Persistent
      *
      * In addition to checking the current object, all related objects will
      * also be validated.  If all pass then <code>true</code> is returned; otherwise
-     * an aggreagated array of ValidationFailed objects will be returned.
+     * an aggregated array of ValidationFailed objects will be returned.
      *
      * @param array $columns Array of column names to validate.
-     * @return mixed <code>true</code> if all validations pass; array of <code>ValidationFailed</code> objets otherwise.
+     * @return mixed <code>true</code> if all validations pass; array of <code>ValidationFailed</code> objects otherwise.
      */
     protected function doValidate($columns = null)
     {
@@ -801,7 +806,7 @@ abstract class BaseCategories extends BaseObject implements Persistent
 
 
             // We call the validate method on the following object(s) if they
-            // were passed to this object by their coresponding set
+            // were passed to this object by their corresponding set
             // method.  This object relates to these object(s) by a
             // foreign key reference.
 
@@ -930,6 +935,11 @@ abstract class BaseCategories extends BaseObject implements Persistent
             $keys[2] => $this->getContext(),
             $keys[3] => $this->getIsActive(),
         );
+        $virtualColumns = $this->virtualColumns;
+        foreach ($virtualColumns as $key => $virtualColumn) {
+            $result[$key] = $virtualColumn;
+        }
+
         if ($includeForeignObjects) {
             if (null !== $this->aCategoriesRelatedByParentId) {
                 $result['CategoriesRelatedByParentId'] = $this->aCategoriesRelatedByParentId->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
@@ -1186,7 +1196,7 @@ abstract class BaseCategories extends BaseObject implements Persistent
     /**
      * Declares an association between this object and a Categories object.
      *
-     * @param             Categories $v
+     * @param                  Categories $v
      * @return Categories The current object (for fluent API support)
      * @throws PropelException
      */
@@ -1337,7 +1347,7 @@ abstract class BaseCategories extends BaseObject implements Persistent
                     if (false !== $this->collCategoriessRelatedByIdPartial && count($collCategoriessRelatedById)) {
                       $this->initCategoriessRelatedById(false);
 
-                      foreach($collCategoriessRelatedById as $obj) {
+                      foreach ($collCategoriessRelatedById as $obj) {
                         if (false == $this->collCategoriessRelatedById->contains($obj)) {
                           $this->collCategoriessRelatedById->append($obj);
                         }
@@ -1347,12 +1357,13 @@ abstract class BaseCategories extends BaseObject implements Persistent
                     }
 
                     $collCategoriessRelatedById->getInternalIterator()->rewind();
+
                     return $collCategoriessRelatedById;
                 }
 
-                if($partial && $this->collCategoriessRelatedById) {
-                    foreach($this->collCategoriessRelatedById as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collCategoriessRelatedById) {
+                    foreach ($this->collCategoriessRelatedById as $obj) {
+                        if ($obj->isNew()) {
                             $collCategoriessRelatedById[] = $obj;
                         }
                     }
@@ -1380,7 +1391,8 @@ abstract class BaseCategories extends BaseObject implements Persistent
     {
         $categoriessRelatedByIdToDelete = $this->getCategoriessRelatedById(new Criteria(), $con)->diff($categoriessRelatedById);
 
-        $this->categoriessRelatedByIdScheduledForDeletion = unserialize(serialize($categoriessRelatedByIdToDelete));
+
+        $this->categoriessRelatedByIdScheduledForDeletion = $categoriessRelatedByIdToDelete;
 
         foreach ($categoriessRelatedByIdToDelete as $categoriesRelatedByIdRemoved) {
             $categoriesRelatedByIdRemoved->setCategoriesRelatedByParentId(null);
@@ -1414,7 +1426,7 @@ abstract class BaseCategories extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getCategoriessRelatedById());
             }
             $query = CategoriesQuery::create(null, $criteria);
@@ -1443,8 +1455,13 @@ abstract class BaseCategories extends BaseObject implements Persistent
             $this->initCategoriessRelatedById();
             $this->collCategoriessRelatedByIdPartial = true;
         }
+
         if (!in_array($l, $this->collCategoriessRelatedById->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddCategoriesRelatedById($l);
+
+            if ($this->categoriessRelatedByIdScheduledForDeletion and $this->categoriessRelatedByIdScheduledForDeletion->contains($l)) {
+                $this->categoriessRelatedByIdScheduledForDeletion->remove($this->categoriessRelatedByIdScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
@@ -1555,7 +1572,7 @@ abstract class BaseCategories extends BaseObject implements Persistent
                     if (false !== $this->collProductsImagesCategoriesSortsPartial && count($collProductsImagesCategoriesSorts)) {
                       $this->initProductsImagesCategoriesSorts(false);
 
-                      foreach($collProductsImagesCategoriesSorts as $obj) {
+                      foreach ($collProductsImagesCategoriesSorts as $obj) {
                         if (false == $this->collProductsImagesCategoriesSorts->contains($obj)) {
                           $this->collProductsImagesCategoriesSorts->append($obj);
                         }
@@ -1565,12 +1582,13 @@ abstract class BaseCategories extends BaseObject implements Persistent
                     }
 
                     $collProductsImagesCategoriesSorts->getInternalIterator()->rewind();
+
                     return $collProductsImagesCategoriesSorts;
                 }
 
-                if($partial && $this->collProductsImagesCategoriesSorts) {
-                    foreach($this->collProductsImagesCategoriesSorts as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collProductsImagesCategoriesSorts) {
+                    foreach ($this->collProductsImagesCategoriesSorts as $obj) {
+                        if ($obj->isNew()) {
                             $collProductsImagesCategoriesSorts[] = $obj;
                         }
                     }
@@ -1598,7 +1616,11 @@ abstract class BaseCategories extends BaseObject implements Persistent
     {
         $productsImagesCategoriesSortsToDelete = $this->getProductsImagesCategoriesSorts(new Criteria(), $con)->diff($productsImagesCategoriesSorts);
 
-        $this->productsImagesCategoriesSortsScheduledForDeletion = unserialize(serialize($productsImagesCategoriesSortsToDelete));
+
+        //since at least one column in the foreign key is at the same time a PK
+        //we can not just set a PK to NULL in the lines below. We have to store
+        //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
+        $this->productsImagesCategoriesSortsScheduledForDeletion = clone $productsImagesCategoriesSortsToDelete;
 
         foreach ($productsImagesCategoriesSortsToDelete as $productsImagesCategoriesSortRemoved) {
             $productsImagesCategoriesSortRemoved->setCategories(null);
@@ -1632,7 +1654,7 @@ abstract class BaseCategories extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getProductsImagesCategoriesSorts());
             }
             $query = ProductsImagesCategoriesSortQuery::create(null, $criteria);
@@ -1661,8 +1683,13 @@ abstract class BaseCategories extends BaseObject implements Persistent
             $this->initProductsImagesCategoriesSorts();
             $this->collProductsImagesCategoriesSortsPartial = true;
         }
+
         if (!in_array($l, $this->collProductsImagesCategoriesSorts->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddProductsImagesCategoriesSort($l);
+
+            if ($this->productsImagesCategoriesSortsScheduledForDeletion and $this->productsImagesCategoriesSortsScheduledForDeletion->contains($l)) {
+                $this->productsImagesCategoriesSortsScheduledForDeletion->remove($this->productsImagesCategoriesSortsScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
@@ -1823,7 +1850,7 @@ abstract class BaseCategories extends BaseObject implements Persistent
                     if (false !== $this->collProductsToCategoriessPartial && count($collProductsToCategoriess)) {
                       $this->initProductsToCategoriess(false);
 
-                      foreach($collProductsToCategoriess as $obj) {
+                      foreach ($collProductsToCategoriess as $obj) {
                         if (false == $this->collProductsToCategoriess->contains($obj)) {
                           $this->collProductsToCategoriess->append($obj);
                         }
@@ -1833,12 +1860,13 @@ abstract class BaseCategories extends BaseObject implements Persistent
                     }
 
                     $collProductsToCategoriess->getInternalIterator()->rewind();
+
                     return $collProductsToCategoriess;
                 }
 
-                if($partial && $this->collProductsToCategoriess) {
-                    foreach($this->collProductsToCategoriess as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collProductsToCategoriess) {
+                    foreach ($this->collProductsToCategoriess as $obj) {
+                        if ($obj->isNew()) {
                             $collProductsToCategoriess[] = $obj;
                         }
                     }
@@ -1866,7 +1894,11 @@ abstract class BaseCategories extends BaseObject implements Persistent
     {
         $productsToCategoriessToDelete = $this->getProductsToCategoriess(new Criteria(), $con)->diff($productsToCategoriess);
 
-        $this->productsToCategoriessScheduledForDeletion = unserialize(serialize($productsToCategoriessToDelete));
+
+        //since at least one column in the foreign key is at the same time a PK
+        //we can not just set a PK to NULL in the lines below. We have to store
+        //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
+        $this->productsToCategoriessScheduledForDeletion = clone $productsToCategoriessToDelete;
 
         foreach ($productsToCategoriessToDelete as $productsToCategoriesRemoved) {
             $productsToCategoriesRemoved->setCategories(null);
@@ -1900,7 +1932,7 @@ abstract class BaseCategories extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getProductsToCategoriess());
             }
             $query = ProductsToCategoriesQuery::create(null, $criteria);
@@ -1929,8 +1961,13 @@ abstract class BaseCategories extends BaseObject implements Persistent
             $this->initProductsToCategoriess();
             $this->collProductsToCategoriessPartial = true;
         }
+
         if (!in_array($l, $this->collProductsToCategoriess->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddProductsToCategories($l);
+
+            if ($this->productsToCategoriessScheduledForDeletion and $this->productsToCategoriessScheduledForDeletion->contains($l)) {
+                $this->productsToCategoriessScheduledForDeletion->remove($this->productsToCategoriessScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
@@ -2066,7 +2103,7 @@ abstract class BaseCategories extends BaseObject implements Persistent
                     if (false !== $this->collCategoriesI18nsPartial && count($collCategoriesI18ns)) {
                       $this->initCategoriesI18ns(false);
 
-                      foreach($collCategoriesI18ns as $obj) {
+                      foreach ($collCategoriesI18ns as $obj) {
                         if (false == $this->collCategoriesI18ns->contains($obj)) {
                           $this->collCategoriesI18ns->append($obj);
                         }
@@ -2076,12 +2113,13 @@ abstract class BaseCategories extends BaseObject implements Persistent
                     }
 
                     $collCategoriesI18ns->getInternalIterator()->rewind();
+
                     return $collCategoriesI18ns;
                 }
 
-                if($partial && $this->collCategoriesI18ns) {
-                    foreach($this->collCategoriesI18ns as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collCategoriesI18ns) {
+                    foreach ($this->collCategoriesI18ns as $obj) {
+                        if ($obj->isNew()) {
                             $collCategoriesI18ns[] = $obj;
                         }
                     }
@@ -2109,7 +2147,11 @@ abstract class BaseCategories extends BaseObject implements Persistent
     {
         $categoriesI18nsToDelete = $this->getCategoriesI18ns(new Criteria(), $con)->diff($categoriesI18ns);
 
-        $this->categoriesI18nsScheduledForDeletion = unserialize(serialize($categoriesI18nsToDelete));
+
+        //since at least one column in the foreign key is at the same time a PK
+        //we can not just set a PK to NULL in the lines below. We have to store
+        //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
+        $this->categoriesI18nsScheduledForDeletion = clone $categoriesI18nsToDelete;
 
         foreach ($categoriesI18nsToDelete as $categoriesI18nRemoved) {
             $categoriesI18nRemoved->setCategories(null);
@@ -2143,7 +2185,7 @@ abstract class BaseCategories extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getCategoriesI18ns());
             }
             $query = CategoriesI18nQuery::create(null, $criteria);
@@ -2176,8 +2218,13 @@ abstract class BaseCategories extends BaseObject implements Persistent
             $this->initCategoriesI18ns();
             $this->collCategoriesI18nsPartial = true;
         }
+
         if (!in_array($l, $this->collCategoriesI18ns->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddCategoriesI18n($l);
+
+            if ($this->categoriesI18nsScheduledForDeletion and $this->categoriesI18nsScheduledForDeletion->contains($l)) {
+                $this->categoriesI18nsScheduledForDeletion->remove($this->categoriesI18nsScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
@@ -2235,7 +2282,7 @@ abstract class BaseCategories extends BaseObject implements Persistent
      *
      * This method is a user-space workaround for PHP's inability to garbage collect
      * objects with circular references (even in PHP 5.3). This is currently necessary
-     * when using Propel in certain daemon or large-volumne/high-memory operations.
+     * when using Propel in certain daemon or large-volume/high-memory operations.
      *
      * @param boolean $deep Whether to also clear the references on all referrer objects.
      */
@@ -2427,7 +2474,7 @@ abstract class BaseCategories extends BaseObject implements Persistent
         /**
          * Set the value of [title] column.
          *
-         * @param string $v new value
+         * @param  string $v new value
          * @return CategoriesI18n The current object (for fluent API support)
          */
         public function setTitle($v)
@@ -2451,7 +2498,7 @@ abstract class BaseCategories extends BaseObject implements Persistent
         /**
          * Set the value of [content] column.
          *
-         * @param string $v new value
+         * @param  string $v new value
          * @return CategoriesI18n The current object (for fluent API support)
          */
         public function setContent($v)

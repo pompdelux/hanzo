@@ -21,7 +21,7 @@ class DibsPaymentWindow extends BasePaymentApi implements PaymentMethodApiInterf
      *
      * @var array
      */
-    protected $currency_map = array(
+    protected $currency_map = [
         'DKK' => 208,
         'EUR' => 978,
         'USD' => 840,
@@ -35,46 +35,47 @@ class DibsPaymentWindow extends BasePaymentApi implements PaymentMethodApiInterf
         'NOK' => 578,
         'CHF' => 756,
         'TRY' => 949,
-    );
+    ];
 
     /**
      * Maps locales to dibs languages
      *
      * @var array
      */
-    protected $language_map = array(
+    protected $language_map = [
         'da_DK' => 'da_DK', // Danish
         'en_GB' => 'en_GB', // English
         'fi_FI' => 'en_GB', // Finnish
         'nl_NL' => 'en_GB', // Dutch
         'nb_NO' => 'nb_NO', // Norwegian
         'sv_SE' => 'sv_SE', // Swedish
-    );
+    ];
 
     /**
-     * undocumented class variable
-     *
      * @var array
      */
-    protected $settings = array();
+    protected $settings = [];
 
     /**
-     * undocumented class variable
-     *
      * @var Router
      */
     protected $router;
 
     /**
      * __construct
-     * @return void
+     *
+     * @param array $parameters
+     * @param array $settings
      */
     public function __construct($parameters, array $settings)
     {
         $this->router = $parameters[0];
 
         $this->settings = $settings;
-        $this->settings['active'] = (isset($this->settings['method_enabled']) && $this->settings['method_enabled'] ? true : false);
+        $this->settings['active'] = (isset($this->settings['method_enabled']) && $this->settings['method_enabled']
+            ? true
+            : false
+        );
 
         if ($this->settings['active'] === true) {
             $this->checkSettings($settings);
@@ -87,7 +88,9 @@ class DibsPaymentWindow extends BasePaymentApi implements PaymentMethodApiInterf
 
     /**
      * checkSettings
-     * @return void
+     *
+     * @param array $settings
+     * @throws Exception
      */
     public function checkSettings(array $settings)
     {
@@ -103,6 +106,10 @@ class DibsPaymentWindow extends BasePaymentApi implements PaymentMethodApiInterf
         }
     }
 
+
+    /**
+     * @return array
+     */
     public function getSettings()
     {
         return $this->settings;
@@ -110,7 +117,8 @@ class DibsPaymentWindow extends BasePaymentApi implements PaymentMethodApiInterf
 
     /**
      * mergeSettings
-     * @return void
+     *
+     * @param array $settings
      */
     public function mergeSettings(array $settings)
     {
@@ -118,8 +126,9 @@ class DibsPaymentWindow extends BasePaymentApi implements PaymentMethodApiInterf
     }
 
     /**
-     * getEnabledPaytypes
-     * @return void
+     * Get enabled Paytypes
+     *
+     * @return array
      */
     public function getPayTypes()
     {
@@ -134,21 +143,29 @@ class DibsPaymentWindow extends BasePaymentApi implements PaymentMethodApiInterf
      */
     public function isActive()
     {
-        return isset($this->settings['active']) ? $this->settings['active'] : false;
+        return isset($this->settings['active'])
+            ? $this->settings['active'] :
+            false
+        ;
     }
 
     /**
      * getFeeExternalId
-     * @return void
+     *
+     * @return mixed
      */
     public function getFeeExternalId()
     {
-        return isset($this->settings['fee.id']) ? $this->settings['fee.id'] : null;
+        return isset($this->settings['fee.id'])
+            ? $this->settings['fee.id']
+            : null
+        ;
     }
 
     /**
      * getMerchant
-     * @return void
+     *
+     * @return string
      */
     public function getMerchant()
     {
@@ -157,18 +174,22 @@ class DibsPaymentWindow extends BasePaymentApi implements PaymentMethodApiInterf
 
     /**
      * getTest
-     * @return void
+     * @return boolean
      */
     public function getTest()
     {
-        return (isset($this->settings['test']) && (strtoupper($this->settings['test']) == 'YES')) ? true : false;
+        return (isset($this->settings['test']) && (strtoupper($this->settings['test']) == 'YES'))
+            ? true
+            : false
+        ;
     }
 
     /**
      * verifyCallback
+     *
      * @param Request $request
      * @param Orders $order The current order object
-     * @return void
+     * @throws Exception
      */
     public function verifyCallback(Request $request, Orders $order)
     {
@@ -189,7 +210,9 @@ class DibsPaymentWindow extends BasePaymentApi implements PaymentMethodApiInterf
      *
      * TODO: priority: low, should use shared methods between all payment methods
      *
-     * @return void
+     * @param  Request $request
+     * @param  Orders  $order
+     * @return int
      */
     public function updateOrderSuccess(Request $request, Orders $order)
     {
@@ -201,7 +224,9 @@ class DibsPaymentWindow extends BasePaymentApi implements PaymentMethodApiInterf
      *
      * TODO: priority: low, should use shared methods between all payment methods
      *
-     * @return void
+     * @param  Request $request
+     * @param  Orders  $order
+     * @return int
      */
     public function updateOrderFailed(Request $request, Orders $order)
     {
@@ -241,6 +266,7 @@ class DibsPaymentWindow extends BasePaymentApi implements PaymentMethodApiInterf
             'verificationIdPresent' => 'verification_id_present',
             'validationErrors'      => 'validation_errors'
         ];
+
         foreach ($fields as $field => $name) {
             $value = $request->request->get($field);
 
@@ -257,7 +283,8 @@ class DibsPaymentWindow extends BasePaymentApi implements PaymentMethodApiInterf
 
     /**
      * call
-     * @return void
+     *
+     * @return DibsApiCall
      */
     public function call()
     {
@@ -320,7 +347,10 @@ class DibsPaymentWindow extends BasePaymentApi implements PaymentMethodApiInterf
         $currency = $this->currencyCodeToNum($order->getCurrencyCode());
 
         $locale = Hanzo::getInstance()->get('core.locale');
-        $lang   = (isset($this->language_map[$locale]) ? $this->language_map[$locale] : 'en');
+        $lang   = isset($this->language_map[$locale])
+            ? $this->language_map[$locale]
+            : 'en'
+        ;
 
         $settings = [
             'orderId'         => $orderId,
@@ -328,9 +358,9 @@ class DibsPaymentWindow extends BasePaymentApi implements PaymentMethodApiInterf
             'language'        => $lang,
             "merchant"        => $this->getMerchant(),
             "currency"        => $currency,
-            "cancelReturnUrl" => $this->router->generate('PaymentBundle_dibs_cancel',   array(), true),
-            "callbackUrl"     => $this->router->generate('PaymentBundle_dibs_callback', array(), true),
-            "acceptReturnUrl" => $this->router->generate('PaymentBundle_dibs_process',  array('order_id' => $orderId), true),
+            "cancelReturnUrl" => $this->router->generate('PaymentBundle_dibs_cancel',   [], true),
+            "callbackUrl"     => $this->router->generate('PaymentBundle_dibs_callback', [], true),
+            "acceptReturnUrl" => $this->router->generate('PaymentBundle_dibs_process',  ['order_id' => $orderId], true),
         ];
 
         // Only send these fields, to many fields result in hitting a post limit or something
@@ -361,18 +391,22 @@ class DibsPaymentWindow extends BasePaymentApi implements PaymentMethodApiInterf
 
     /**
      * formatAmount
-     * @return void
+     *
+     * @param  float $amount
+     * @return float
      */
     public static function formatAmount($amount)
     {
-        $amount = ( number_format( $amount, 2, '.', '') ) * 100 ;
-        return $amount;
+        return (number_format($amount, 2, '.', '')) * 100;
     }
 
     /**
      * currencyCodeToNum
      * Should at some point maybe use the currency_id set in the counties model
+     *
+     * @param  string $code
      * @return int
+     * @throws Exception
      */
     public function currencyCodeToNum($code)
     {
@@ -387,7 +421,8 @@ class DibsPaymentWindow extends BasePaymentApi implements PaymentMethodApiInterf
     /**
      * Return process button to the checkout builder.
      *
-     * @param  Orders $order Ordes object
+     * @param  Orders  $order Ordes object
+     * @param  Request $request
      * @return string
      */
     public function getProcessButton(Orders $order, Request $request)

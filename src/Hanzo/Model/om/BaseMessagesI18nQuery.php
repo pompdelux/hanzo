@@ -58,8 +58,14 @@ abstract class BaseMessagesI18nQuery extends ModelCriteria
      * @param     string $modelName The phpName of a model, e.g. 'Book'
      * @param     string $modelAlias The alias for the model in this query, e.g. 'b'
      */
-    public function __construct($dbName = 'default', $modelName = 'Hanzo\\Model\\MessagesI18n', $modelAlias = null)
+    public function __construct($dbName = null, $modelName = null, $modelAlias = null)
     {
+        if (null === $dbName) {
+            $dbName = 'default';
+        }
+        if (null === $modelName) {
+            $modelName = 'Hanzo\\Model\\MessagesI18n';
+        }
         parent::__construct($dbName, $modelName, $modelAlias);
     }
 
@@ -76,10 +82,8 @@ abstract class BaseMessagesI18nQuery extends ModelCriteria
         if ($criteria instanceof MessagesI18nQuery) {
             return $criteria;
         }
-        $query = new MessagesI18nQuery();
-        if (null !== $modelAlias) {
-            $query->setModelAlias($modelAlias);
-        }
+        $query = new MessagesI18nQuery(null, null, $modelAlias);
+
         if ($criteria instanceof Criteria) {
             $query->mergeWith($criteria);
         }
@@ -108,7 +112,7 @@ abstract class BaseMessagesI18nQuery extends ModelCriteria
             return null;
         }
         if ((null !== ($obj = MessagesI18nPeer::getInstanceFromPool(serialize(array((string) $key[0], (string) $key[1]))))) && !$this->formatter) {
-            // the object is alredy in the instance pool
+            // the object is already in the instance pool
             return $obj;
         }
         if ($con === null) {

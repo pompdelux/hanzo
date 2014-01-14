@@ -31,11 +31,11 @@
 
 <p>{{ 'admin.products.sort.description.text'|trans({}, 'admin') }}</p>
 
-{% if app.session.hasFlash('notice') %}
+{% for message in app.session.flashbag.get('notice') %}
 <div class="message notice">
-  {{ app.session.flash('notice')|trans({}, 'admin') }}
+  {{ message|trans({}, 'admin') }}
 </div>
-{% endif %}
+{% endfor %}
 
   {% if products %}
   	 <ul id="product-list-sort">

@@ -560,10 +560,10 @@ class ECommerceServices extends SoapService
             }
 
             if (empty($products[$key]['inventory'])) {
-                $products[$key]['inventory'] = array();
+                $products[$key]['inventory'] = [];
             }
 
-            if (isset($stock_data['ordered'])) {
+            if (!empty($stock_data['ordered'])) {
                 if (empty($products[$key]['inventory'][$item->InventQtyAvailOrderedDate])) {
                     $products[$key]['inventory'][$item->InventQtyAvailOrderedDate] = array(
                         'date'  => $item->InventQtyAvailOrderedDate,

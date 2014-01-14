@@ -1,34 +1,34 @@
 framework:
     translator: null
-    secret: '%secret%'
+    form:       true
+    secret:     '%secret%'
     router:
         resource: '%kernel.root_dir%/config/routing.yml'
-    form: true
     csrf_protection: true
     validation:
-        enabled: true
+        enabled:            true
         enable_annotations: true
     templating:
-        engines: [twig]
+        engines:        [twig]
         assets_version: '%assets_version%'
     session:
-        storage_id: session.storage.native
-        handler_id: session.handler.redis
+        storage_id:     session.storage.native
+        handler_id:     session.handler.redis
         gc_maxlifetime: 10800
 
 services:
     # native redis session handeling
     # https://github.com/drak/NativeSession
     session.handler.redis:
-        class: Drak\NativeSession\NativeRedisSessionHandler
+        class:     Drak\NativeSession\NativeRedisSessionHandler
         arguments: [ 'tcp://%redis_session_host%:%redis_session_port%?prefix=hanzo.session:&database=%redis_session_database%' ]
 
     stock:
-        class: Hanzo\Core\Stock
+        class:     Hanzo\Core\Stock
         arguments: [ '@event_dispatcher', '%locale%' ]
 
     hanzo.misc.twig.extension:
-        class: Hanzo\Twig\Extension\MiscExtension
+        class:     Hanzo\Twig\Extension\MiscExtension
         arguments: ['@twig_string', '@liip_theme.active_theme']
         tags:
             -   { name: twig.extension }
@@ -37,104 +37,99 @@ services:
         tags:
             -   { name: twig.extension }
     hanzo.maps.twig.extension:
-        class: Hanzo\Twig\Extension\MapsExtension
+        class:     Hanzo\Twig\Extension\MapsExtension
         arguments: ['@twig_string', '@muneris.maxmind']
         tags:
             -   { name: twig.extension }
 
     hanzo.routing_loader:
-        class: Hanzo\Bundle\CMSBundle\CMSRouterLoader
+        class:     Hanzo\Bundle\CMSBundle\CMSRouterLoader
         arguments: ['%locale%', '%kernel.cache_dir%']
         tags:
             -   { name: routing.loader }
 
     hanzo.boot_listener:
-        class: Hanzo\Core\HanzoBoot
+        class:     Hanzo\Core\HanzoBoot
         arguments: ['@router', '@kernel']
         tags:
             -   { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: -10 }
     hanzo.exception_listener:
-        class: Hanzo\Core\ExceptionHandler
+        class:     Hanzo\Core\ExceptionHandler
         arguments: [@service_container]
         tags:
             -   { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
     hanzo.login_listener:
-        class: Hanzo\Bundle\AccountBundle\Event\LoginListener
+        class:     Hanzo\Bundle\AccountBundle\Event\LoginListener
         arguments: [@security.context]
         tags:
             -   { name: kernel.event_listener, event: security.interactive_login }
 
 twig:
-    debug: '%kernel.debug%'
+    debug:            '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     form:
         resources:
             - 'TwigBundle:Form:fields.html.twig'
 
 assetic:
-    debug: '%kernel.debug%'
+    debug:          '%kernel.debug%'
     use_controller: false
-    java: /usr/bin/java
-    sass: %sass_bin%
-    node: %node_bin%
+    java:           /usr/bin/java
+    sass:           %sass_bin%
+    node:           %node_bin%
     filters:
         cssrewrite: ~
         compass:
-            bin: %compass_bin%
+            bin:      %compass_bin%
             apply_to: "\.scss$"
-        #uglifyjs:
-        #    bin: %uglifyjs_bin%
-        #    no_copyright: false
-        #    apply_to: "\.js$"
 
 swiftmailer:
     transport: '%mailer_transport%'
-    host: '%mailer_host%'
-    username: '%mailer_user%'
-    password: '%mailer_password%'
+    host:      '%mailer_host%'
+    username:  '%mailer_user%'
+    password:  '%mailer_password%'
 
 propel:
     dbal:
-        driver: '%database_driver%'
-        options: {  }
+        driver:     '%database_driver%'
+        options:    {  }
         attributes: {  }
-    path: '%kernel.root_dir%/../vendor/propel'
-    phing_path: '%kernel.root_dir%/../vendor/phing'
-    logging: '%kernel.debug%'
+    path:             '%kernel.root_dir%/../vendor/propel'
+    phing_path:       '%kernel.root_dir%/../vendor/phing'
+    logging:          '%kernel.debug%'
     build_properties:
-        propel.project: '%database_name%'
-        propel.addValidators: all
-        propel.namespace.autoPackage: true
-        propel.useDateTimeClass: false
-        propel.defaultTimeStampFormat: "Y-m-d H:i:s"
-        propel.defaultTimeFormat: "H:i:s"
-        propel.defaultDateFormat: "Y-m-d"
+        propel.project:                   '%database_name%'
+        propel.addValidators:             all
+        propel.namespace.autoPackage:     true
+        propel.useDateTimeClass:          false
+        propel.defaultTimeStampFormat:    "Y-m-d H:i:s"
+        propel.defaultTimeFormat:         "H:i:s"
+        propel.defaultDateFormat:         "Y-m-d"
         propel.behavior.geocodable.class: "%kernel.root_dir%.propel.propel-behaviors.GeocodableBehavior.src.GeocodableBehavior"
-
 
 jms_security_extra:
     secure_all_services: false
-    expressions: true
+    expressions:         true
 
 # settings for the cms bundle.
 cms:
     frontpage: 556
     twig:
         left_menu:
-            type: main
-            from: 20
+            type:   main
+            from:   20
         sub_menu:
-            type: sub
-            from: 400
+            type:   sub
+            from:   400
             offset: 482
         footer1_menu:
-            type: footer1
+            type:   footer1
             thread: 30
         footer2_menu:
-            type: footer2
+            type:   footer2
             thread: 31
         footer3_menu:
-            type: footer3
+            type:   footer3
             thread: 32
 
 # native redis caching
@@ -142,29 +137,31 @@ redis:
     class:
         # the main cache is for tmp caching
         main:
-            host: %redis_cache1_host%
-            port: %redis_cache1_port%
-            prefix: hanzo
+            host:     %redis_cache1_host%
+            port:     %redis_cache1_port%
+            prefix:   hanzo
             database: %redis_cache1_database%
+            auth:     %redis_cache1_password%
         # permanent should be used for fast access to stuff that does not change
         # this db should never be flushed !
         permanent:
-            host: %redis_cache1_host%
-            port: %redis_cache1_port%
-            prefix: hanzo
+            host:     %redis_cache1_host%
+            port:     %redis_cache1_port%
+            prefix:   hanzo
             skip_env: true
             database: 2
+            auth:     %redis_cache1_password%
 
 # @see https://github.com/ekino/EkinoNewRelicBundle
 ekino_new_relic:
     application_name: Pompdelux
-    api_key: 3909fb3d64adf610708e4fc0aa59fc956a94d03a
+    api_key:          3909fb3d64adf610708e4fc0aa59fc956a94d03a
 
 # @see https://github.com/liip/LiipThemeBundle
 liip_theme:
     load_controllers: false
-    themes: ['2013s1', '2013s1_mobile']
-    active_theme: '2013s1'
+    themes:           ['2013s1', '2013s1_mobile']
+    active_theme:     '2013s1'
     path_patterns:
         app_resource:
             - %%app_path%%/themes/%%current_theme%%/%%template%%
@@ -179,7 +176,7 @@ liip_theme:
 
 nelmio_security:
     flexible_ssl:
-        cookie_name: auth
+        cookie_name:      auth
         unsecured_logout: false
 muneris:
     host: http://muneris.bellcom.dk/

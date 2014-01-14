@@ -26,7 +26,7 @@ class ToolsController extends CoreController
     {
         $this->get('replication_manager')->syncCategories();
 
-        $this->getRequest()->getSession()->setFlash('notice', 'Kategori synkronisering færdig..');
+        $this->getRequest()->getSession()->getFlashBag()->add('notice', 'Kategori synkronisering færdig..');
         return $this->redirect($this->generateUrl('admin_tools'));
     }
 
@@ -34,7 +34,7 @@ class ToolsController extends CoreController
     {
         $this->get('replication_manager')->syncProductsImages();
 
-        $this->getRequest()->getSession()->setFlash('notice', 'Billede synkronisering færdig..');
+        $this->getRequest()->getSession()->getFlashBag()->add('notice', 'Billede synkronisering færdig..');
         return $this->redirect($this->generateUrl('admin_tools'));
     }
 
@@ -42,7 +42,7 @@ class ToolsController extends CoreController
     {
         $this->get('replication_manager')->syncStyleGuide();
 
-        $this->getRequest()->getSession()->setFlash('notice', 'Styleguide synkronisering færdig..');
+        $this->getRequest()->getSession()->getFlashBag()->add('notice', 'Styleguide synkronisering færdig..');
         return $this->redirect($this->generateUrl('admin_tools'));
     }
 
@@ -50,7 +50,7 @@ class ToolsController extends CoreController
     {
         $this->get('replication_manager')->syncImageSorting();
 
-        $this->getRequest()->getSession()->setFlash('notice', 'Billedesorterings synkronisering færdig..');
+        $this->getRequest()->getSession()->getFlashBag()->add('notice', 'Billedesorterings synkronisering færdig..');
         return $this->redirect($this->generateUrl('admin_tools'));
     }
 
@@ -62,7 +62,7 @@ class ToolsController extends CoreController
             Tools::log($e->getMessage());
         }
 
-        $this->getRequest()->getSession()->setFlash('notice', 'Varnish cache tømt.');
+        $this->getRequest()->getSession()->getFlashBag()->add('notice', 'Varnish cache tømt.');
         return $this->redirect($this->generateUrl('admin_tools'));
     }
 

@@ -89,7 +89,7 @@
       </div>
 
       {% if app.user and app.user.user.groupsid in [2,3] %}
-        {% render 'EventsBundle:Events:selectEvent' %}
+        {{ render(controller('EventsBundle:Events:selectEvent')) }}
       {% else %}
         <div class="buttons">
           <a class="button button-left" href="{{ continue_shopping }}">{{ "continue.shopping"|trans({}, 'checkout') }}</a>

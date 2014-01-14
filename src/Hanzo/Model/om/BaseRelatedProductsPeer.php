@@ -27,7 +27,7 @@ abstract class BaseRelatedProductsPeer
     const OM_CLASS = 'Hanzo\\Model\\RelatedProducts';
 
     /** the related TableMap class for this table */
-    const TM_CLASS = 'RelatedProductsTableMap';
+    const TM_CLASS = 'Hanzo\\Model\\map\\RelatedProductsTableMap';
 
     /** The total number of columns. */
     const NUM_COLUMNS = 2;
@@ -48,7 +48,7 @@ abstract class BaseRelatedProductsPeer
     const DEFAULT_STRING_FORMAT = 'YAML';
 
     /**
-     * An identiy map to hold any loaded instances of RelatedProducts objects.
+     * An identity map to hold any loaded instances of RelatedProducts objects.
      * This must be public so that other peer classes can access this when hydrating from JOIN
      * queries.
      * @var        array RelatedProducts[]
@@ -214,7 +214,7 @@ abstract class BaseRelatedProductsPeer
      *
      * @param      Criteria $criteria object used to create the SELECT statement.
      * @param      PropelPDO $con
-     * @return                 RelatedProducts
+     * @return RelatedProducts
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
@@ -281,7 +281,7 @@ abstract class BaseRelatedProductsPeer
      * to the cache in order to ensure that the same objects are always returned by doSelect*()
      * and retrieveByPK*() calls.
      *
-     * @param      RelatedProducts $obj A RelatedProducts object.
+     * @param RelatedProducts $obj A RelatedProducts object.
      * @param      string $key (optional) key to use for instance map (for performance boost if key was already calculated externally).
      */
     public static function addInstanceToPool($obj, $key = null)
@@ -331,7 +331,7 @@ abstract class BaseRelatedProductsPeer
      * a multi-column primary key, a serialize()d version of the primary key will be returned.
      *
      * @param      string $key The key (@see getPrimaryKeyHash()) for this instance.
-     * @return   RelatedProducts Found object or null if 1) no instance exists for specified key or 2) instance pooling has been disabled.
+     * @return RelatedProducts Found object or null if 1) no instance exists for specified key or 2) instance pooling has been disabled.
      * @see        getPrimaryKeyHash()
      */
     public static function getInstanceFromPool($key)
@@ -352,10 +352,8 @@ abstract class BaseRelatedProductsPeer
      */
     public static function clearInstancePool($and_clear_all_references = false)
     {
-      if ($and_clear_all_references)
-      {
-        foreach (RelatedProductsPeer::$instances as $instance)
-        {
+      if ($and_clear_all_references) {
+        foreach (RelatedProductsPeer::$instances as $instance) {
           $instance->clearAllReferences(true);
         }
       }
@@ -1062,7 +1060,7 @@ abstract class BaseRelatedProductsPeer
     {
       $dbMap = Propel::getDatabaseMap(BaseRelatedProductsPeer::DATABASE_NAME);
       if (!$dbMap->hasTable(BaseRelatedProductsPeer::TABLE_NAME)) {
-        $dbMap->addTableObject(new RelatedProductsTableMap());
+        $dbMap->addTableObject(new \Hanzo\Model\map\RelatedProductsTableMap());
       }
     }
 
@@ -1108,7 +1106,7 @@ abstract class BaseRelatedProductsPeer
             $con->beginTransaction();
             $pk = BasePeer::doInsert($criteria, $con);
             $con->commit();
-        } catch (PropelException $e) {
+        } catch (Exception $e) {
             $con->rollBack();
             throw $e;
         }
@@ -1189,7 +1187,7 @@ abstract class BaseRelatedProductsPeer
             $con->commit();
 
             return $affectedRows;
-        } catch (PropelException $e) {
+        } catch (Exception $e) {
             $con->rollBack();
             throw $e;
         }
@@ -1256,7 +1254,7 @@ abstract class BaseRelatedProductsPeer
             $con->commit();
 
             return $affectedRows;
-        } catch (PropelException $e) {
+        } catch (Exception $e) {
             $con->rollBack();
             throw $e;
         }
@@ -1269,7 +1267,7 @@ abstract class BaseRelatedProductsPeer
      *
      * NOTICE: This does not apply to primary or foreign keys for now.
      *
-     * @param      RelatedProducts $obj The object to validate.
+     * @param RelatedProducts $obj The object to validate.
      * @param      mixed $cols Column name or array of column names.
      *
      * @return mixed TRUE if all columns are valid or the error message of the first invalid column.
@@ -1304,7 +1302,7 @@ abstract class BaseRelatedProductsPeer
      * @param   string $master
      * @param   string $sku
      * @param      PropelPDO $con
-     * @return   RelatedProducts
+     * @return RelatedProducts
      */
     public static function retrieveByPK($master, $sku, PropelPDO $con = null) {
         $_instancePoolKey = serialize(array((string) $master, (string) $sku));

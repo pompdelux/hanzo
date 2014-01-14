@@ -35,7 +35,7 @@ abstract class BaseOrdersVersions extends BaseObject implements Persistent
     protected static $peer;
 
     /**
-     * The flag var to prevent infinit loop in deep copy
+     * The flag var to prevent infinite loop in deep copy
      * @var       boolean
      */
     protected $startCopy = false;
@@ -96,6 +96,7 @@ abstract class BaseOrdersVersions extends BaseObject implements Persistent
      */
     public function getOrdersId()
     {
+
         return $this->orders_id;
     }
 
@@ -106,6 +107,7 @@ abstract class BaseOrdersVersions extends BaseObject implements Persistent
      */
     public function getVersionId()
     {
+
         return $this->version_id;
     }
 
@@ -113,7 +115,7 @@ abstract class BaseOrdersVersions extends BaseObject implements Persistent
      * Get the [optionally formatted] temporal [created_at] column value.
      *
      * This accessor only only work with unix epoch dates.  Consider enabling the propel.useDateTimeClass
-     * option in order to avoid converstions to integers (which are limited in the dates they can express).
+     * option in order to avoid conversions to integers (which are limited in the dates they can express).
      *
      * @param string $format The date/time format string (either date()-style or strftime()-style).
      *				 If format is null, then the raw unix timestamp integer will be returned.
@@ -158,13 +160,14 @@ abstract class BaseOrdersVersions extends BaseObject implements Persistent
      */
     public function getContent()
     {
+
         return $this->content;
     }
 
     /**
      * Set the value of [orders_id] column.
      *
-     * @param int $v new value
+     * @param  int $v new value
      * @return OrdersVersions The current object (for fluent API support)
      */
     public function setOrdersId($v)
@@ -189,7 +192,7 @@ abstract class BaseOrdersVersions extends BaseObject implements Persistent
     /**
      * Set the value of [version_id] column.
      *
-     * @param int $v new value
+     * @param  int $v new value
      * @return OrdersVersions The current object (for fluent API support)
      */
     public function setVersionId($v)
@@ -233,7 +236,7 @@ abstract class BaseOrdersVersions extends BaseObject implements Persistent
     /**
      * Set the value of [content] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return OrdersVersions The current object (for fluent API support)
      */
     public function setContent($v)
@@ -274,7 +277,7 @@ abstract class BaseOrdersVersions extends BaseObject implements Persistent
      * more tables.
      *
      * @param array $row The row returned by PDOStatement->fetch(PDO::FETCH_NUM)
-     * @param int $startcol 0-based offset column which indicates which restultset column to start with.
+     * @param int $startcol 0-based offset column which indicates which resultset column to start with.
      * @param boolean $rehydrate Whether this object is being re-hydrated from the database.
      * @return int             next starting column
      * @throws PropelException - Any caught Exception will be rewrapped as a PropelException.
@@ -295,6 +298,7 @@ abstract class BaseOrdersVersions extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 4; // 4 = OrdersVersionsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -475,7 +479,7 @@ abstract class BaseOrdersVersions extends BaseObject implements Persistent
             $this->alreadyInSave = true;
 
             // We call the save method on the following object(s) if they
-            // were passed to this object by their coresponding set
+            // were passed to this object by their corresponding set
             // method.  This object relates to these object(s) by a
             // foreign key reference.
 
@@ -627,10 +631,10 @@ abstract class BaseOrdersVersions extends BaseObject implements Persistent
      *
      * In addition to checking the current object, all related objects will
      * also be validated.  If all pass then <code>true</code> is returned; otherwise
-     * an aggreagated array of ValidationFailed objects will be returned.
+     * an aggregated array of ValidationFailed objects will be returned.
      *
      * @param array $columns Array of column names to validate.
-     * @return mixed <code>true</code> if all validations pass; array of <code>ValidationFailed</code> objets otherwise.
+     * @return mixed <code>true</code> if all validations pass; array of <code>ValidationFailed</code> objects otherwise.
      */
     protected function doValidate($columns = null)
     {
@@ -642,7 +646,7 @@ abstract class BaseOrdersVersions extends BaseObject implements Persistent
 
 
             // We call the validate method on the following object(s) if they
-            // were passed to this object by their coresponding set
+            // were passed to this object by their corresponding set
             // method.  This object relates to these object(s) by a
             // foreign key reference.
 
@@ -739,6 +743,11 @@ abstract class BaseOrdersVersions extends BaseObject implements Persistent
             $keys[2] => $this->getCreatedAt(),
             $keys[3] => $this->getContent(),
         );
+        $virtualColumns = $this->virtualColumns;
+        foreach ($virtualColumns as $key => $virtualColumn) {
+            $result[$key] = $virtualColumn;
+        }
+
         if ($includeForeignObjects) {
             if (null !== $this->aOrders) {
                 $result['Orders'] = $this->aOrders->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
@@ -966,7 +975,7 @@ abstract class BaseOrdersVersions extends BaseObject implements Persistent
     /**
      * Declares an association between this object and a Orders object.
      *
-     * @param             Orders $v
+     * @param                  Orders $v
      * @return OrdersVersions The current object (for fluent API support)
      * @throws PropelException
      */
@@ -1038,7 +1047,7 @@ abstract class BaseOrdersVersions extends BaseObject implements Persistent
      *
      * This method is a user-space workaround for PHP's inability to garbage collect
      * objects with circular references (even in PHP 5.3). This is currently necessary
-     * when using Propel in certain daemon or large-volumne/high-memory operations.
+     * when using Propel in certain daemon or large-volume/high-memory operations.
      *
      * @param boolean $deep Whether to also clear the references on all referrer objects.
      */

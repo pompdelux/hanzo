@@ -2,8 +2,9 @@
 
 namespace Hanzo\Bundle\AxBundle\Tests\Actions\In\Soap\ECommerceServices;
 
-use stdClass;
+use Hanzo\Core\Tools;
 
+use Symfony\Bridge\Monolog\Logger;
 use Hanzo\Core\Tests\WebTestCase;
 use Hanzo\Bundle\AxBundle\Actions\In\Soap\ECommerceServices\ECommerceServices;
 
@@ -82,7 +83,7 @@ class ECommerceServicesTest extends WebTestCase
         $sku = $data->item->InventTable->ItemId;
         $product = ProductsQuery::create()
             ->useProductsI18nQuery()
-                ->filterByLocale('da_DK')
+            ->filterByLocale('da_DK')
             ->endUse()
             ->joinWithProductsI18n()
             ->findOneBySku($sku)
@@ -97,7 +98,7 @@ class ECommerceServicesTest extends WebTestCase
      */
     public function testSyncPriceList()
     {
-        $priceList = new stdClass();
+        $priceList = new \stdClass();
         $priceList->ItemId     = '';
         $priceList->SalesPrice = [];
 
@@ -117,7 +118,7 @@ class ECommerceServicesTest extends WebTestCase
                 'dates' => ['2014-01-01', '2014-02-01', date('Y-m-d', strtotime('-1 year'))],
             ];
 
-            $SalesPrice = new stdClass();
+            $SalesPrice = new \stdClass();
             $SalesPrice->AmountCur     = 120.00;
             $SalesPrice->Currency      = 'DKK';
             $SalesPrice->CustAccount   = 'DKK';
@@ -128,7 +129,7 @@ class ECommerceServicesTest extends WebTestCase
             $SalesPrice->UnitId        = 'Stk.';
             $priceList->SalesPrice[]   = $SalesPrice;
 
-            $SalesPrice = new stdClass();
+            $SalesPrice = new \stdClass();
             $SalesPrice->AmountCur     = 100.00;
             $SalesPrice->Currency      = 'DKK';
             $SalesPrice->CustAccount   = 'SalesDK';
@@ -139,7 +140,7 @@ class ECommerceServicesTest extends WebTestCase
             $SalesPrice->UnitId        = 'Stk.';
             $priceList->SalesPrice[]   = $SalesPrice;
 
-            $SalesPrice = new stdClass();
+            $SalesPrice = new \stdClass();
             $SalesPrice->AmountCur     = 100.00;
             $SalesPrice->Currency      = 'DKK';
             $SalesPrice->CustAccount   = 'DKK';
@@ -152,7 +153,7 @@ class ECommerceServicesTest extends WebTestCase
             $SalesPrice->PriceDateTo   = '2014-02-01';
             $priceList->SalesPrice[]   = $SalesPrice;
 
-            $SalesPrice = new stdClass();
+            $SalesPrice = new \stdClass();
             $SalesPrice->AmountCur     = 90.00;
             $SalesPrice->Currency      = 'DKK';
             $SalesPrice->CustAccount   = 'SalesDK';
@@ -166,7 +167,7 @@ class ECommerceServicesTest extends WebTestCase
             $priceList->SalesPrice[]   = $SalesPrice;
         }
 
-        $data = new stdClass();
+        $data = new \stdClass();
         $data->priceList = $priceList;
 
         $handler = $this->getHandler();
@@ -180,10 +181,11 @@ class ECommerceServicesTest extends WebTestCase
 
         $prices = ProductsDomainsPricesQuery::create()
             ->useProductsQuery()
-            ->filterByMaster(null, \Criteria::ISNOTNULL)
+                ->filterByMaster(null, \Criteria::ISNOTNULL)
             ->endUse()
             ->find()
         ;
+
         foreach ($prices as $price) {
             $this->assertContains(($price->getPrice() + $price->getVat()), $test_product_data[$price->getProductsId()]['prices']);
             $this->assertContains(($price->getFromDate('Y-m-d')), $test_product_data[$price->getProductsId()]['dates']);
@@ -198,10 +200,10 @@ class ECommerceServicesTest extends WebTestCase
     {
         $inventoryOnHand = (object) [
             'InventSum' => (object) [
-                    'ItemId'      => '',
-                    'LastInCycle' => false,
-                    'InventDim'   => []
-                ],
+                'ItemId'      => '',
+                'LastInCycle' => false,
+                'InventDim'   => []
+            ],
         ];
 
         $products = ProductsQuery::create()
@@ -238,7 +240,7 @@ class ECommerceServicesTest extends WebTestCase
             ];
         }
 
-        $data = new stdClass();
+        $data = new \stdClass();
         $data->inventoryOnHand = $inventoryOnHand;
 
         $handler = $this->getHandler();
@@ -249,7 +251,7 @@ class ECommerceServicesTest extends WebTestCase
 
         $stocks = ProductsStockQuery::create()
             ->useProductsQuery()
-            ->filterByMaster(null, \Criteria::ISNOTNULL)
+                ->filterByMaster(null, \Criteria::ISNOTNULL)
             ->endUse()
             ->find()
         ;
@@ -284,24 +286,24 @@ class ECommerceServicesTest extends WebTestCase
 
         $customer = (object) [
             'CustTable' => (object) [
-                    'AccountNum' => 109381,
-                    'InitialsId' => '',
-                    'CustName' => 'Mamarie M Karlsson',
-                    'AddressStreet' => 'marknadsvøgen 7',
-                    'AddressCity' => 'bjærketorp',
-                    'AddressZipCode' => '51994',
-                    'AddressCountryRegionId' => 'DK',
-                    'CustCurrencyCode' => 'DKK',
-                    'Email' => 'mariedelice@hotmail.com',
-                    'Phone' => '004632060004',
-                    'PhoneLocal' => '',
-                    'PhoneMobile' => '',
-                    'TeleFax' => '',
-                    'SalesDiscountPercent' => '',
-                ]
+                'AccountNum' => 109381,
+                'InitialsId' => '',
+                'CustName' => 'Mamarie M Karlsson',
+                'AddressStreet' => 'marknadsvøgen 7',
+                'AddressCity' => 'bjærketorp',
+                'AddressZipCode' => '51994',
+                'AddressCountryRegionId' => 'DK',
+                'CustCurrencyCode' => 'DKK',
+                'Email' => 'mariedelice@hotmail.com',
+                'Phone' => '004632060004',
+                'PhoneLocal' => '',
+                'PhoneMobile' => '',
+                'TeleFax' => '',
+                'SalesDiscountPercent' => '',
+            ]
         ];
 
-        $data = new stdClass();
+        $data = new \stdClass();
         $data->customer = $customer;
 
         $handler = $this->getHandler();
@@ -503,7 +505,7 @@ class ECommerceServicesTest extends WebTestCase
             $variant_2_color = trim(str_replace($matches[1], '', str_replace($master, '', $variant_2)));
         }
 
-        $InventTable = new stdClass();
+        $InventTable = new \stdClass();
         $InventTable->ItemGroupId     = "G_Access,LG_Access";
         $InventTable->ItemGroupName   = "Girl Accessories";
         $InventTable->ItemId          = $sku;
@@ -533,8 +535,8 @@ class ECommerceServicesTest extends WebTestCase
         ];
 
 
-        $data = new stdClass();
-        $data->item = new stdClass();
+        $data = new \stdClass();
+        $data->item = new \stdClass();
         $data->item->InventTable = $InventTable;
 
         return $data;

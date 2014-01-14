@@ -75,8 +75,14 @@ abstract class BaseProductsDomainsPricesQuery extends ModelCriteria
      * @param     string $modelName The phpName of a model, e.g. 'Book'
      * @param     string $modelAlias The alias for the model in this query, e.g. 'b'
      */
-    public function __construct($dbName = 'default', $modelName = 'Hanzo\\Model\\ProductsDomainsPrices', $modelAlias = null)
+    public function __construct($dbName = null, $modelName = null, $modelAlias = null)
     {
+        if (null === $dbName) {
+            $dbName = 'default';
+        }
+        if (null === $modelName) {
+            $modelName = 'Hanzo\\Model\\ProductsDomainsPrices';
+        }
         parent::__construct($dbName, $modelName, $modelAlias);
     }
 
@@ -93,10 +99,8 @@ abstract class BaseProductsDomainsPricesQuery extends ModelCriteria
         if ($criteria instanceof ProductsDomainsPricesQuery) {
             return $criteria;
         }
-        $query = new ProductsDomainsPricesQuery();
-        if (null !== $modelAlias) {
-            $query->setModelAlias($modelAlias);
-        }
+        $query = new ProductsDomainsPricesQuery(null, null, $modelAlias);
+
         if ($criteria instanceof Criteria) {
             $query->mergeWith($criteria);
         }
@@ -125,7 +129,7 @@ abstract class BaseProductsDomainsPricesQuery extends ModelCriteria
             return null;
         }
         if ((null !== ($obj = ProductsDomainsPricesPeer::getInstanceFromPool(serialize(array((string) $key[0], (string) $key[1], (string) $key[2]))))) && !$this->formatter) {
-            // the object is alredy in the instance pool
+            // the object is already in the instance pool
             return $obj;
         }
         if ($con === null) {
@@ -479,7 +483,7 @@ abstract class BaseProductsDomainsPricesQuery extends ModelCriteria
      * <code>
      * $query->filterByFromDate('2011-03-14'); // WHERE from_date = '2011-03-14'
      * $query->filterByFromDate('now'); // WHERE from_date = '2011-03-14'
-     * $query->filterByFromDate(array('max' => 'yesterday')); // WHERE from_date > '2011-03-13'
+     * $query->filterByFromDate(array('max' => 'yesterday')); // WHERE from_date < '2011-03-13'
      * </code>
      *
      * @param     mixed $fromDate The value to use as filter.
@@ -522,7 +526,7 @@ abstract class BaseProductsDomainsPricesQuery extends ModelCriteria
      * <code>
      * $query->filterByToDate('2011-03-14'); // WHERE to_date = '2011-03-14'
      * $query->filterByToDate('now'); // WHERE to_date = '2011-03-14'
-     * $query->filterByToDate(array('max' => 'yesterday')); // WHERE to_date > '2011-03-13'
+     * $query->filterByToDate(array('max' => 'yesterday')); // WHERE to_date < '2011-03-13'
      * </code>
      *
      * @param     mixed $toDate The value to use as filter.

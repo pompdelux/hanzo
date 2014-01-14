@@ -40,7 +40,7 @@ class DefaultController extends CoreController
         $this->get('event_dispatcher')->dispatch('order.summery.finalize', new FilterOrderEvent($order));
 
         if ($order->isHostessOrder() && ($order->getTotalPrice() < 0)) {
-            $this->get('session')->setFlash('notice', $this->get('translator')->trans('order.amount.to.low', [], 'checkout'));
+            $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('order.amount.to.low', [], 'checkout'));
             return $this->redirect($this->generateUrl('basket_view'));
         }
 
@@ -349,7 +349,7 @@ class DefaultController extends CoreController
 
 
         if ($order->isHostessOrder() && ($order->getTotalPrice() < 0)) {
-            $this->get('session')->setFlash('notice', $this->get('translator')->trans('order.amount.to.low', [], 'checkout'));
+            $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('order.amount.to.low', [], 'checkout'));
             return $this->redirect($this->generateUrl('basket_view'));
         }
 

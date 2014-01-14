@@ -23,7 +23,7 @@ class ToolsTest extends \PHPUnit_Framework_TestCase
     {
         $src = '<div><p class="xxx">test</p>test</div>';
 
-        $this->assertEquals('test test', Tools::stripTags($src));
+        $this->assertEquals('testtest', Tools::stripTags($src));
     }
 
 

@@ -17,13 +17,13 @@
 
 {% if page_type|default('page') != 'frontpage' %}
     <div class="grid_8 alpha omega row breadcrumb">
-      {% render 'CMSBundle:Menu:menu' with {'type': 'breadcrumb', 'thread': left_menu.thread} %}
+      {{ render(controller('CMSBundle:Menu:menu', {'type': 'breadcrumb', 'thread': left_menu.thread})) }}
     </div>
 
     <div class="grid_8 alpha omega">
     {% if parent_id is not null %}{# pages with subpages #}
         <div class="grid_2 alpha sub-menu menu">
-            {% render 'CMSBundle:Menu:menu' with {'type': 'sub', 'include_self' : true } %}
+            {{ render(controller('CMSBundle:Menu:menu', {'type': 'sub', 'include_self' : true })) }}
         </div>
         <div class="grid_6 omega">
             <article>
@@ -38,11 +38,11 @@
     </div>
 
     <div class="grid_8 alpha omega">
-      {% include 'CMSBundle:Social:share.html.twig' with {
-        'url': app.request.uri,
-        'image': '',
-        'description': page.title }
-      %}
+        {{ include('CMSBundle:Social:share.html.twig', {
+            'url': app.request.uri,
+            'image': '',
+            'description': page.title
+        }) }}
     </div>
 {% else %}{# Frontpages #}
     <article>

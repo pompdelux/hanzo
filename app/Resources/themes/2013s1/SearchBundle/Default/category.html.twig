@@ -3,7 +3,10 @@
 
   <div class="grid_8 alpha omega">
     <div class="grid_2 alpha sub-menu menu">
-      {% render 'CMSBundle:Menu:menu' with {'type': 'cat', 'offset': cms_id } %}
+      {{ render(controller('CMSBundle:Menu:menu', {
+          'type': 'cat',
+          'offset': cms_id
+      })) }}
     </div>
     <div class="grid_6 omega">
       <h1>{{ title }}</h1>
@@ -59,14 +62,10 @@
             {% if loop.index is divisibleby(3) or loop.last %}
               </div> <!-- //.grid_6. -->
             {% endif %}
-
           {% endfor %}{# product #}
         {% endfor %}{# category #}
-
         </div>
       {% endif %}
     </div>
-
   </div>
-
 {% endblock %}

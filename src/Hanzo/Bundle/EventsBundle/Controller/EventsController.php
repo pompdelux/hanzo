@@ -132,7 +132,7 @@ class EventsController extends CoreController
 
             // no editing old events
             if ($event->getEventDate('U') < time()) {
-                $this->get('session')->setFlash('notice', 'event.too.old.to.edit');
+                $this->get('session')->getFlashBag()->add('notice', 'event.too.old.to.edit');
                 return $this->redirect($this->generateUrl('events_index'));
             }
         } else {
@@ -210,7 +210,7 @@ class EventsController extends CoreController
                 $old_event = $event->copy(); // Keep a copy of the old data before we bind the request
             }
 
-            $form->bind($request);
+            $form->handleRequest($request);
 
             if ($form->isValid()) {
                 $consultant = CustomersPeer::getCurrent();
@@ -392,7 +392,7 @@ class EventsController extends CoreController
                     }
                 }
 
-                $this->get('session')->setFlash('notice', 'events.created');
+                $this->get('session')->getFlashBag()->add('notice', 'events.created');
                 return $this->redirect($this->generateUrl('events_index'));
             }
         }
@@ -455,7 +455,7 @@ class EventsController extends CoreController
             $event->save();
         }
 
-        $this->getRequest()->getSession()->setFlash('notice', $this->get('translator')->trans('event.closed', array(), 'events'));
+        $this->getRequest()->getSession()->getFlashBag()->add('notice', $this->get('translator')->trans('event.closed', array(), 'events'));
         return $this->redirect($this->generateUrl('events_index'));
     }
 
@@ -471,7 +471,7 @@ class EventsController extends CoreController
 
             // no deleting old events
             if ($event->getEventDate('U') < time()) {
-                $this->get('session')->setFlash('notice', 'event.too.old.to.delete');
+                $this->get('session')->getFlashBag()->add('notice', 'event.too.old.to.delete');
                 return $this->redirect($this->generateUrl('events_index'));
             }
 
@@ -530,7 +530,7 @@ class EventsController extends CoreController
             ));
         }
 
-        $this->get('session')->setFlash('notice', 'events.delete.success');
+        $this->get('session')->getFlashBag()->add('notice', 'events.delete.success');
 
         return $this->redirect($this->generateUrl('events_index'));
     }
@@ -585,7 +585,7 @@ class EventsController extends CoreController
 
             $request = $this->getRequest();
             if ('POST' === $request->getMethod()) {
-                $form->bindRequest($request);
+                $form->handleRequest($request);
 
                 if ($events_participant->getEmail()) {
                     $res = EventsParticipantsQuery::create()
@@ -633,7 +633,7 @@ class EventsController extends CoreController
                         $this->get('sms_manager')->sendEventInvite($events_participant);
                     }
 
-                    $this->get('session')->setFlash('notice', 'events.participant.invited');
+                    $this->get('session')->getFlashBag()->add('notice', 'events.participant.invited');
                 }
             }
 
@@ -721,13 +721,11 @@ class EventsController extends CoreController
                 )->add('has_accepted', 'choice',
                     array(
                         'choices' => array(
-                            // '1' => 'events.hasaccepted.yes',
-                            // '0' => 'events.hasaccepted.no'
                             '1' => $this->get('translator')->trans('events.hasaccepted.yes', array(), 'events'),
                             '0' => $this->get('translator')->trans('events.hasaccepted.no', array(), 'events')
                         ),
                         'multiple' => false,
-                        'expanded' => true,
+                        'expanded' => false,
                         'label' => 'events.participants.has_accepted.label',
                         'translation_domain' => 'events',
                         'required' => false
@@ -737,13 +735,13 @@ class EventsController extends CoreController
 
             $request = $this->getRequest();
             if ('POST' === $request->getMethod()) {
-                $form_rsvp->bindRequest($request);
+                $form_rsvp->bind($request);
 
                 if ($form_rsvp->isValid()) {
                     $events_participant->setRespondedAt(time());
                     $events_participant->save();
 
-                    $this->get('session')->setFlash('notice', 'events.participant.rsvp.success');
+                    $this->get('session')->getFlashBag()->add('notice', 'events.participant.rsvp.success');
                 }
             }
             $form_rsvp = $form_rsvp->createView();
@@ -799,7 +797,7 @@ class EventsController extends CoreController
 
             $request = $this->getRequest();
             if ('POST' === $request->getMethod()) {
-                $form->bindRequest($request);
+                $form->handleRequest($request);
 
                 if ($form->isValid()) {
                     $events_participant->setKey(sha1(time()));
@@ -838,13 +836,13 @@ class EventsController extends CoreController
                     $friend->setTellAFriend(false);
                     $friend->save();
 
-                    $this->get('session')->setFlash('notice', 'events.participant.invited');
+                    $this->get('session')->getFlashBag()->add('notice', 'events.participant.invited');
                     return $this->redirect($this->generateUrl('events_rsvp', array('key' => $key)));
                 }
             }
         }
 
-        $this->get('session')->setFlash('notice', 'events.participant.invite.failed');
+        $this->get('session')->getFlashBag()->add('notice', 'events.participant.invite.failed');
         return $this->redirect($this->generateUrl('events_rsvp', array('key' => $key)));
     }
 
@@ -1010,7 +1008,7 @@ class EventsController extends CoreController
         if ('POST' === $request->getMethod()) {
 
             $form = &$myEvents[$request->request->get('form')['event_id']]['form']; // Get the correct form instance for the given event. The eventid is sent with a hidden field
-            $form->bindRequest($request);
+            $form->handleRequest($request);
 
             $data = $form->getData();
 
@@ -1074,7 +1072,7 @@ class EventsController extends CoreController
                     $this->get('sms_manager')->sendEventInvite($events_participant);
                 }
 
-                $this->get('session')->setFlash('notice', 'events.participant.invited');
+                $this->get('session')->getFlashBag()->add('notice', 'events.participant.invited');
             }
         }
 

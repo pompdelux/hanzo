@@ -35,7 +35,7 @@ abstract class BaseLanguages extends BaseObject implements Persistent
     protected static $peer;
 
     /**
-     * The flag var to prevent infinit loop in deep copy
+     * The flag var to prevent infinite loop in deep copy
      * @var       boolean
      */
     protected $startCopy = false;
@@ -137,6 +137,7 @@ abstract class BaseLanguages extends BaseObject implements Persistent
      */
     public function getId()
     {
+
         return $this->id;
     }
 
@@ -147,6 +148,7 @@ abstract class BaseLanguages extends BaseObject implements Persistent
      */
     public function getName()
     {
+
         return $this->name;
     }
 
@@ -157,6 +159,7 @@ abstract class BaseLanguages extends BaseObject implements Persistent
      */
     public function getLocalName()
     {
+
         return $this->local_name;
     }
 
@@ -167,6 +170,7 @@ abstract class BaseLanguages extends BaseObject implements Persistent
      */
     public function getLocale()
     {
+
         return $this->locale;
     }
 
@@ -177,6 +181,7 @@ abstract class BaseLanguages extends BaseObject implements Persistent
      */
     public function getIso2()
     {
+
         return $this->iso2;
     }
 
@@ -187,13 +192,14 @@ abstract class BaseLanguages extends BaseObject implements Persistent
      */
     public function getDirection()
     {
+
         return $this->direction;
     }
 
     /**
      * Set the value of [id] column.
      *
-     * @param int $v new value
+     * @param  int $v new value
      * @return Languages The current object (for fluent API support)
      */
     public function setId($v)
@@ -214,7 +220,7 @@ abstract class BaseLanguages extends BaseObject implements Persistent
     /**
      * Set the value of [name] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Languages The current object (for fluent API support)
      */
     public function setName($v)
@@ -235,7 +241,7 @@ abstract class BaseLanguages extends BaseObject implements Persistent
     /**
      * Set the value of [local_name] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Languages The current object (for fluent API support)
      */
     public function setLocalName($v)
@@ -256,7 +262,7 @@ abstract class BaseLanguages extends BaseObject implements Persistent
     /**
      * Set the value of [locale] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Languages The current object (for fluent API support)
      */
     public function setLocale($v)
@@ -277,7 +283,7 @@ abstract class BaseLanguages extends BaseObject implements Persistent
     /**
      * Set the value of [iso2] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Languages The current object (for fluent API support)
      */
     public function setIso2($v)
@@ -298,7 +304,7 @@ abstract class BaseLanguages extends BaseObject implements Persistent
     /**
      * Set the value of [direction] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Languages The current object (for fluent API support)
      */
     public function setDirection($v)
@@ -343,7 +349,7 @@ abstract class BaseLanguages extends BaseObject implements Persistent
      * more tables.
      *
      * @param array $row The row returned by PDOStatement->fetch(PDO::FETCH_NUM)
-     * @param int $startcol 0-based offset column which indicates which restultset column to start with.
+     * @param int $startcol 0-based offset column which indicates which resultset column to start with.
      * @param boolean $rehydrate Whether this object is being re-hydrated from the database.
      * @return int             next starting column
      * @throws PropelException - Any caught Exception will be rewrapped as a PropelException.
@@ -366,6 +372,7 @@ abstract class BaseLanguages extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 6; // 6 = LanguagesPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -724,10 +731,10 @@ abstract class BaseLanguages extends BaseObject implements Persistent
      *
      * In addition to checking the current object, all related objects will
      * also be validated.  If all pass then <code>true</code> is returned; otherwise
-     * an aggreagated array of ValidationFailed objects will be returned.
+     * an aggregated array of ValidationFailed objects will be returned.
      *
      * @param array $columns Array of column names to validate.
-     * @return mixed <code>true</code> if all validations pass; array of <code>ValidationFailed</code> objets otherwise.
+     * @return mixed <code>true</code> if all validations pass; array of <code>ValidationFailed</code> objects otherwise.
      */
     protected function doValidate($columns = null)
     {
@@ -840,6 +847,11 @@ abstract class BaseLanguages extends BaseObject implements Persistent
             $keys[4] => $this->getIso2(),
             $keys[5] => $this->getDirection(),
         );
+        $virtualColumns = $this->virtualColumns;
+        foreach ($virtualColumns as $key => $virtualColumn) {
+            $result[$key] = $virtualColumn;
+        }
+
         if ($includeForeignObjects) {
             if (null !== $this->collProductsWashingInstructionss) {
                 $result['ProductsWashingInstructionss'] = $this->collProductsWashingInstructionss->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
@@ -1168,7 +1180,7 @@ abstract class BaseLanguages extends BaseObject implements Persistent
                     if (false !== $this->collProductsWashingInstructionssPartial && count($collProductsWashingInstructionss)) {
                       $this->initProductsWashingInstructionss(false);
 
-                      foreach($collProductsWashingInstructionss as $obj) {
+                      foreach ($collProductsWashingInstructionss as $obj) {
                         if (false == $this->collProductsWashingInstructionss->contains($obj)) {
                           $this->collProductsWashingInstructionss->append($obj);
                         }
@@ -1178,12 +1190,13 @@ abstract class BaseLanguages extends BaseObject implements Persistent
                     }
 
                     $collProductsWashingInstructionss->getInternalIterator()->rewind();
+
                     return $collProductsWashingInstructionss;
                 }
 
-                if($partial && $this->collProductsWashingInstructionss) {
-                    foreach($this->collProductsWashingInstructionss as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collProductsWashingInstructionss) {
+                    foreach ($this->collProductsWashingInstructionss as $obj) {
+                        if ($obj->isNew()) {
                             $collProductsWashingInstructionss[] = $obj;
                         }
                     }
@@ -1211,7 +1224,8 @@ abstract class BaseLanguages extends BaseObject implements Persistent
     {
         $productsWashingInstructionssToDelete = $this->getProductsWashingInstructionss(new Criteria(), $con)->diff($productsWashingInstructionss);
 
-        $this->productsWashingInstructionssScheduledForDeletion = unserialize(serialize($productsWashingInstructionssToDelete));
+
+        $this->productsWashingInstructionssScheduledForDeletion = $productsWashingInstructionssToDelete;
 
         foreach ($productsWashingInstructionssToDelete as $productsWashingInstructionsRemoved) {
             $productsWashingInstructionsRemoved->setLanguages(null);
@@ -1245,7 +1259,7 @@ abstract class BaseLanguages extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getProductsWashingInstructionss());
             }
             $query = ProductsWashingInstructionsQuery::create(null, $criteria);
@@ -1274,8 +1288,13 @@ abstract class BaseLanguages extends BaseObject implements Persistent
             $this->initProductsWashingInstructionss();
             $this->collProductsWashingInstructionssPartial = true;
         }
+
         if (!in_array($l, $this->collProductsWashingInstructionss->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddProductsWashingInstructions($l);
+
+            if ($this->productsWashingInstructionssScheduledForDeletion and $this->productsWashingInstructionssScheduledForDeletion->contains($l)) {
+                $this->productsWashingInstructionssScheduledForDeletion->remove($this->productsWashingInstructionssScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
@@ -1335,7 +1354,7 @@ abstract class BaseLanguages extends BaseObject implements Persistent
      *
      * This method is a user-space workaround for PHP's inability to garbage collect
      * objects with circular references (even in PHP 5.3). This is currently necessary
-     * when using Propel in certain daemon or large-volumne/high-memory operations.
+     * when using Propel in certain daemon or large-volume/high-memory operations.
      *
      * @param boolean $deep Whether to also clear the references on all referrer objects.
      */

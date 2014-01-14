@@ -106,7 +106,7 @@ class DefaultController extends CoreController
         );
 
         if ('POST' === $request->getMethod()) {
-            $form->bind($request);
+            $form->handleRequest($request);
             $data = $form->getData();
 
             // verify that the email is not already in use.

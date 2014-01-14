@@ -28,7 +28,7 @@ abstract class BaseProductsImagesProductReferencesPeer
     const OM_CLASS = 'Hanzo\\Model\\ProductsImagesProductReferences';
 
     /** the related TableMap class for this table */
-    const TM_CLASS = 'ProductsImagesProductReferencesTableMap';
+    const TM_CLASS = 'Hanzo\\Model\\map\\ProductsImagesProductReferencesTableMap';
 
     /** The total number of columns. */
     const NUM_COLUMNS = 3;
@@ -52,7 +52,7 @@ abstract class BaseProductsImagesProductReferencesPeer
     const DEFAULT_STRING_FORMAT = 'YAML';
 
     /**
-     * An identiy map to hold any loaded instances of ProductsImagesProductReferences objects.
+     * An identity map to hold any loaded instances of ProductsImagesProductReferences objects.
      * This must be public so that other peer classes can access this when hydrating from JOIN
      * queries.
      * @var        array ProductsImagesProductReferences[]
@@ -220,7 +220,7 @@ abstract class BaseProductsImagesProductReferencesPeer
      *
      * @param      Criteria $criteria object used to create the SELECT statement.
      * @param      PropelPDO $con
-     * @return                 ProductsImagesProductReferences
+     * @return ProductsImagesProductReferences
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
@@ -287,7 +287,7 @@ abstract class BaseProductsImagesProductReferencesPeer
      * to the cache in order to ensure that the same objects are always returned by doSelect*()
      * and retrieveByPK*() calls.
      *
-     * @param      ProductsImagesProductReferences $obj A ProductsImagesProductReferences object.
+     * @param ProductsImagesProductReferences $obj A ProductsImagesProductReferences object.
      * @param      string $key (optional) key to use for instance map (for performance boost if key was already calculated externally).
      */
     public static function addInstanceToPool($obj, $key = null)
@@ -337,7 +337,7 @@ abstract class BaseProductsImagesProductReferencesPeer
      * a multi-column primary key, a serialize()d version of the primary key will be returned.
      *
      * @param      string $key The key (@see getPrimaryKeyHash()) for this instance.
-     * @return   ProductsImagesProductReferences Found object or null if 1) no instance exists for specified key or 2) instance pooling has been disabled.
+     * @return ProductsImagesProductReferences Found object or null if 1) no instance exists for specified key or 2) instance pooling has been disabled.
      * @see        getPrimaryKeyHash()
      */
     public static function getInstanceFromPool($key)
@@ -358,10 +358,8 @@ abstract class BaseProductsImagesProductReferencesPeer
      */
     public static function clearInstancePool($and_clear_all_references = false)
     {
-      if ($and_clear_all_references)
-      {
-        foreach (ProductsImagesProductReferencesPeer::$instances as $instance)
-        {
+      if ($and_clear_all_references) {
+        foreach (ProductsImagesProductReferencesPeer::$instances as $instance) {
           $instance->clearAllReferences(true);
         }
       }
@@ -1120,7 +1118,7 @@ abstract class BaseProductsImagesProductReferencesPeer
     {
       $dbMap = Propel::getDatabaseMap(BaseProductsImagesProductReferencesPeer::DATABASE_NAME);
       if (!$dbMap->hasTable(BaseProductsImagesProductReferencesPeer::TABLE_NAME)) {
-        $dbMap->addTableObject(new ProductsImagesProductReferencesTableMap());
+        $dbMap->addTableObject(new \Hanzo\Model\map\ProductsImagesProductReferencesTableMap());
       }
     }
 
@@ -1166,7 +1164,7 @@ abstract class BaseProductsImagesProductReferencesPeer
             $con->beginTransaction();
             $pk = BasePeer::doInsert($criteria, $con);
             $con->commit();
-        } catch (PropelException $e) {
+        } catch (Exception $e) {
             $con->rollBack();
             throw $e;
         }
@@ -1247,7 +1245,7 @@ abstract class BaseProductsImagesProductReferencesPeer
             $con->commit();
 
             return $affectedRows;
-        } catch (PropelException $e) {
+        } catch (Exception $e) {
             $con->rollBack();
             throw $e;
         }
@@ -1314,7 +1312,7 @@ abstract class BaseProductsImagesProductReferencesPeer
             $con->commit();
 
             return $affectedRows;
-        } catch (PropelException $e) {
+        } catch (Exception $e) {
             $con->rollBack();
             throw $e;
         }
@@ -1327,7 +1325,7 @@ abstract class BaseProductsImagesProductReferencesPeer
      *
      * NOTICE: This does not apply to primary or foreign keys for now.
      *
-     * @param      ProductsImagesProductReferences $obj The object to validate.
+     * @param ProductsImagesProductReferences $obj The object to validate.
      * @param      mixed $cols Column name or array of column names.
      *
      * @return mixed TRUE if all columns are valid or the error message of the first invalid column.
@@ -1362,7 +1360,7 @@ abstract class BaseProductsImagesProductReferencesPeer
      * @param   int $products_images_id
      * @param   int $products_id
      * @param      PropelPDO $con
-     * @return   ProductsImagesProductReferences
+     * @return ProductsImagesProductReferences
      */
     public static function retrieveByPK($products_images_id, $products_id, PropelPDO $con = null) {
         $_instancePoolKey = serialize(array((string) $products_images_id, (string) $products_id));

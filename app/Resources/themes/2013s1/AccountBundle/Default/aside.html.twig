@@ -9,5 +9,5 @@
 
 <aside id="account-block-newsletter-all">
 	<h3>{{ 'newsletter'|trans({}, 'account') }}</h3>
-	{% render 'NewsletterBundle:Default:allLists' %}
+	{{ render(controller('NewsletterBundle:Default:allLists')) }}
 </aside>

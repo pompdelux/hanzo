@@ -244,7 +244,7 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
     {
         $length = mb_strlen($this->getFirstName().' '.$this->getLastName());
         if (30 < $length) {
-            $context->addViolationAtSubPath('first_name', 'name.max.length', ['{{ limit }}' => 30], $length, $length);
+            $context->addViolationAt('first_name', 'name.max.length', ['{{ limit }}' => 30], $length, $length);
         }
     }
 } // Customers

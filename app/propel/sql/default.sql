@@ -790,7 +790,6 @@ CREATE TABLE `orders`
         FOREIGN KEY (`events_id`)
         REFERENCES `events` (`id`)
         ON UPDATE CASCADE
-        ON DELETE RESTRICT
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
