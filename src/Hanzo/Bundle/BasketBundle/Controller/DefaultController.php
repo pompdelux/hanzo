@@ -438,7 +438,7 @@ class DefaultController extends CoreController
 
         Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
 
-        $response = $this->render($template, array(
+        return $this->render($template, array(
             'continue_shopping' => $continueShopping,
             'delivery_date'     => $delivery_date,
             'embedded'          => $embed,
@@ -446,9 +446,6 @@ class DefaultController extends CoreController
             'products'          => $products,
             'total'             => $order->getTotalPrice(true),
         ));
-        $response->setSharedMaxAge(60);
-
-        return $response;
     }
 
 
