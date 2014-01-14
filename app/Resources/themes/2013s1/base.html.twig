@@ -99,8 +99,8 @@
             </ul>
             <ul class="horizontal menu right second">
                 <li id="mini-basket" class="basket">
-                    <span class="sprite"></span>
-                    <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" title="{{ "show.basket"|trans }}"> {{ render(controller('BasketBundle:Default:miniBasket')) }} </a>
+                    <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" title="{{ "show.basket"|trans }}"><span class="sprite"></span></a>
+                    <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" title="{{ "show.basket"|trans }}" class="total"> {{ render(controller('BasketBundle:Default:miniBasket')) }} </a>
                 </li>
                 <li class="last"><a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" class="open-megabasket">{{ "show.basket"|trans }}</a></li>
         {% endif %}
@@ -109,7 +109,7 @@
         {% if skip_my_account is not defined %}
             <div id="mega-basket">
                 <div class="basket">
-                    <span class="sprite"></span>
+                    <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}"><span class="sprite"></span></a>
                     <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}">{{ 'your.basket'|trans }}</a>
                 </div>
 

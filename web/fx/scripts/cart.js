@@ -33,7 +33,7 @@
                   // update elements
                   var content = '(' + response.data.quantity + ') ' + response.data.total;
                   $.cookie('basket', content);
-                  $('#mini-basket a').html(content);
+                  $('#mini-basket a.total').html(content);
                   $('tfoot td.total').text(response.data.total);
 
                   // remove the proceed button if there are no products in the cart
@@ -251,7 +251,7 @@
 
                   // totals
                   $.cookie('basket', response.data.basket);
-                  $('#mini-basket a').text(response.data.basket);
+                  $('#mini-basket a.total').text(response.data.basket);
                   var find = /\([0-9+]\) /;
                   var total = response.data.basket.replace(find, '');
                   $info.data('product_id', response.data.product_id);

@@ -284,7 +284,7 @@
               }
             } else {
               window.scrollTo(window.scrollMinX, window.scrollMinY);
-              $('#mini-basket a').html(response.data);
+              $('#mini-basket a.total').html(response.data);
 
               var $mega_basket = $('#mega-basket'),
                   $mega_basket_table = $('.basket-table-body .content', $mega_basket);
