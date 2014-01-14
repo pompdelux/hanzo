@@ -32,7 +32,7 @@ class MenuController extends CoreController
         $this->device = $request->attributes->get('_x_device');
 
         // note, due to the fact that we cannot in sf 2.3.x get the master request, we hack a little.
-        $stripped_uri = explode($request->getLocale().'/', $_SERVER['DOCUMENT_URI']);
+        $stripped_uri = explode($request->getLocale().'/', $_SERVER['REQUEST_URI']);
         $stripped_uri = array_pop($stripped_uri);
 
         $cache_id = [
