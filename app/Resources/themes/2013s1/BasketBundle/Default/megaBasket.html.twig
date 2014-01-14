@@ -1,24 +1,26 @@
 <div class="basket">
     <div class="basket-table">
-      <div class="basket-table-body">
-    {% if not products %}
-      <p class="cart-is-empty">{{ "cart.is.empty"|trans({}, 'checkout') }}</p>
-    {% endif %}
-    {% for group, items in products %}
-      {% for product in items %}
-        <div class="item">
-        {% if product.basket_image %}
-          {{ product_image_tag(product.basket_image, '57x100', { 'alt' : product.products_name }) }}
+      <div class="basket-table-body nano">
+        <div class="content">
+        {% if not products %}
+          <p class="cart-is-empty">{{ "cart.is.empty"|trans({}, 'checkout') }}</p>
         {% endif %}
-          {% if product.url %}
-            <a href="{{ product.url }}" class="title">{{ product.products_name }}</a>
-          {% else %}
-            {{ product.products_name }}
-          {% endif %}
-          <span class="right total">{{ (product.price * product.quantity)|money }}</span>
+        {% for group, items in products %}
+          {% for product in items %}
+            <div class="item">
+            {% if product.basket_image %}
+              {{ product_image_tag(product.basket_image, '57x100', { 'alt' : product.products_name }) }}
+            {% endif %}
+              {% if product.url %}
+                <a href="{{ product.url }}" class="title">{{ product.products_name }}</a>
+              {% else %}
+                {{ product.products_name }}
+              {% endif %}
+              <span class="right total">{{ (product.price * product.quantity)|money }}</span>
+            </div>
+          {% endfor %}
+        {% endfor %}
         </div>
-      {% endfor %}
-    {% endfor %}
       </div>
       <div class="basket-table-footer">
         {{ "total"|trans }}:

@@ -287,7 +287,7 @@
               $('#mini-basket a').html(response.data);
 
               var $mega_basket = $('#mega-basket'),
-                  $mega_basket_table = $('.basket-table-body', $mega_basket);
+                  $mega_basket_table = $('.basket-table-body .content', $mega_basket);
 
               // Add the new product to the basket table.
               $mega_basket_table.append('<div class="item new"><img src="' + $('.productimage-large img').attr('src') + '" />' + $('h1.title').text() + '<span class="right total">' + response.latest.price + '</span></div>');

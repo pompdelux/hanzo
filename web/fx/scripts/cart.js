@@ -272,6 +272,8 @@
       var $mega_basket = $('#mega-basket'),
           $mega_basket_table = $('.basket-table-body', $mega_basket);
 
+      $(".nano").nanoScroller();
+
       $mega_basket.css('top', '-' + ($mega_basket.height() + 30 ) + 'px');
       $('#mini-basket a, a.open-megabasket, #mega-basket .close').click(function(e) {
         e.preventDefault();
@@ -288,14 +290,14 @@
         $mega_basket.toggleClass('open');
       });
 
-      updateBasketScrollbar();
       $('body').on('basket_product_added', function(e){
         $('.cart-is-empty', $mega_basket).remove();
+        $(".nano").nanoScroller();
         // Open the mega-basket.
         $mega_basket.animate({
           top: "-6px",
         }, 500, 'swing', function() {
-          $mega_basket_table.scrollTop($mega_basket_table[0].scrollHeight);
+          $(".nano").nanoScroller({ scroll: 'bottom' });
         });
         setTimeout(function () {
           // Only close the basket if the mouse isnt hovering it.
@@ -307,28 +309,8 @@
           // Remove .new class on items.
           $('.item.new', $mega_basket_table).removeClass('new');
         }, 10000);
-        updateBasketScrollbar();
       });
     };
-
-    /**
-     * Updates the styles to match better with the browsers scrollbar.
-     * Aligns the total with the products price.
-     */
-    function updateBasketScrollbar () {
-      var $basket = $('#mega-basket'),
-          $basket_table = $('.basket-table-body', $basket),
-          $basket_total = $('.basket-table-footer .total', $basket),
-          scrollbar_width = '20px';
-
-      if ($basket_table[0].scrollHeight > 190) { // More than 3 products.
-        if ('webkitRequestAnimationFrame' in window) {
-          // Webkit browser has a smaller custom scrollbar.
-          scrollbar_width = '5px';
-        }
-        $basket_total.css('padding-right', scrollbar_width);
-      }
-    }
 
     return pub;
   })($);
