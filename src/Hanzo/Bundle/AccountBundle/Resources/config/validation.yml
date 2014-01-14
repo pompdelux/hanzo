@@ -82,7 +82,7 @@ Hanzo\Model\Customers:
                 groups: [customer, customer_edit]
             - Length:
                 min: 8
-                max: 8
+                max: 12
                 exactMessage: phone.min.length
                 groups: [customer, customer_edit]
             - Regex:
