@@ -288,31 +288,15 @@
 
               var $mega_basket = $('#mega-basket'),
                   $mega_basket_table = $('.basket-table-body', $mega_basket);
-              // Open the mega-basket. Afterwards add the new product
-              $mega_basket.animate({
-                top: "-6px",
-              }, 500, 'swing', function() {
-                // Add the new product to the basket table.
-                $mega_basket_table.append('<div class="item new"><img src="' + $('.productimage-large img').attr('src') + '" />' + $('h1.title').text() + '<span class="right total">' + response.latest.price + '</span></div>');
-                $mega_basket_table.scrollTop($mega_basket_table[0].scrollHeight);
-                $('body').trigger('basket_product_added');
 
-                // Update total price.
-                var find = /\([0-9+]\) /;
-                var total = response.data.replace(find, '');
-                $('.grand-total', $mega_basket).text(total);
+              // Add the new product to the basket table.
+              $mega_basket_table.append('<div class="item new"><img src="' + $('.productimage-large img').attr('src') + '" />' + $('h1.title').text() + '<span class="right total">' + response.latest.price + '</span></div>');
+              // Update total price.
+              var find = /\([0-9+]\) /;
+              var total = response.data.replace(find, '');
+              $('.grand-total', $mega_basket).text(total);
 
-              });
-              setTimeout(function () {
-                // Only close the basket if the mouse isnt hovering it.
-                if (!$('#mega-basket:hover').length) {
-                  $mega_basket.animate({
-                    top: '-' + ($(this).height() + 30 ) + 'px',
-                  }, 500 );
-                }
-                // Remove .new class on items.
-                $('.item.new', $mega_basket_table).removeClass('new');
-              }, 10000);
+              $('body').trigger('basket_product_added');
             }
             _resetForm();
           });

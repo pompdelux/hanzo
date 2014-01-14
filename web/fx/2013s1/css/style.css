@@ -2550,6 +2550,9 @@ div.invalid-order {
 #mega-basket div.basket-table .basket-table-body .item.new {
   background-color: #EEE;
 }
+#mega-basket div.basket-table .basket-table-body .cart-is-empty {
+  padding: 20px 0;
+}
 #mega-basket div.basket-table .basket-table-body,
 #mega-basket div.basket-table .basket-table-footer {
   border-top: 2px dotted #D3D3D3;

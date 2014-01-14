@@ -1,6 +1,9 @@
 <div class="basket">
     <div class="basket-table">
       <div class="basket-table-body">
+    {% if not products %}
+      <p class="cart-is-empty">{{ "cart.is.empty"|trans({}, 'checkout') }}</p>
+    {% endif %}
     {% for group, items in products %}
       {% for product in items %}
         <div class="item">
@@ -23,7 +26,4 @@
       </div>
     </div>
 
-  {% if not products %}
-    <p>{{ "cart.is.empty"|trans({}, 'checkout') }}</p>
-  {% endif %}
 </div>

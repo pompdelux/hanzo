@@ -269,28 +269,52 @@
       });
     };
     pub.miniBasketInit = function() {
-      var $basket = $('#mega-basket');
+      var $mega_basket = $('#mega-basket'),
+          $mega_basket_table = $('.basket-table-body', $mega_basket);
 
-      $basket.css('top', '-' + ($basket.height() + 30 ) + 'px');
+      $mega_basket.css('top', '-' + ($mega_basket.height() + 30 ) + 'px');
       $('#mini-basket a, a.open-megabasket, #mega-basket .close').click(function(e) {
         e.preventDefault();
-        if ($basket.hasClass('open')) {
-          $basket.animate({
-            top: '-' + ($basket.height() + 30 ) + 'px',
+        if ($mega_basket.hasClass('open')) {
+          $mega_basket.animate({
+            top: '-' + ($mega_basket.height() + 30 ) + 'px',
           }, 500 );
         }
         else {
-          $basket.animate({
+          $mega_basket.animate({
             top: "-6px",
           }, 500 );
         }
-        $basket.toggleClass('open');
+        $mega_basket.toggleClass('open');
       });
 
       updateBasketScrollbar();
-      $('body').on('basket_product_added', updateBasketScrollbar);
+      $('body').on('basket_product_added', function(e){
+        $('.cart-is-empty', $mega_basket).remove();
+        // Open the mega-basket.
+        $mega_basket.animate({
+          top: "-6px",
+        }, 500, 'swing', function() {
+          $mega_basket_table.scrollTop($mega_basket_table[0].scrollHeight);
+        });
+        setTimeout(function () {
+          // Only close the basket if the mouse isnt hovering it.
+          if (!$('#mega-basket:hover').length) {
+            $mega_basket.animate({
+              top: '-' + ($(this).height() + 30 ) + 'px',
+            }, 500 );
+          }
+          // Remove .new class on items.
+          $('.item.new', $mega_basket_table).removeClass('new');
+        }, 10000);
+        updateBasketScrollbar();
+      });
     };
 
+    /**
+     * Updates the styles to match better with the browsers scrollbar.
+     * Aligns the total with the products price.
+     */
     function updateBasketScrollbar () {
       var $basket = $('#mega-basket'),
           $basket_table = $('.basket-table-body', $basket),
@@ -299,6 +323,7 @@
 
       if ($basket_table[0].scrollHeight > 190) { // More than 3 products.
         if ('webkitRequestAnimationFrame' in window) {
+          // Webkit browser has a smaller custom scrollbar.
           scrollbar_width = '5px';
         }
         $basket_total.css('padding-right', scrollbar_width);
