@@ -122,7 +122,9 @@ class DefaultController extends CoreController
             }
 
             natcasesort($colors);
-            ksort($sizes);
+            uksort($sizes, function ($a, $b) {
+                return (int) $a - (int) $b;
+            });
         }
 
         $references = ProductsImagesProductReferencesQuery::create()
