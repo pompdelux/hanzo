@@ -1173,7 +1173,7 @@ class ECommerceServices extends SoapService
             }
             $this->timer->lap('time in '.$provider.' gateway');
 
-            if ( empty($result['status']) || (!in_array($result['status'], [true, 'ACCEPTED'])) ) {
+            if (empty($result['status']) || (!in_array($result['status'], [true, 'ACCEPTED'], true))) {
                 $error = array(
                     'cound not capture order #' . $data->eOrderNumber,
                     'error: '.(empty($result['status_description']) ? 'unknown error' : $result['status_description'])
