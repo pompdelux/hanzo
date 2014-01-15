@@ -437,9 +437,24 @@
             </trans-unit>
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
-                 <target><![CDATA[<p>Op Mijn Pagina kun je je gegevens wijzigen en je aan- of afmelden voor de nieuwsbrief. Je kunt ook je bestelling bewerken.<br><br>Je bestelling heeft de volgende status:<br><br><b>Afwachten</b><br>Je bestelling is nog niet behandeld en je hebt minstens 24 uur om die te bewerken.
-Je hebt de mogelijkheid om je bestelling te wijzigen/er meer aan toe te voegen/eruit te verwijderen. Klik op het <img src="/fx/images/icons/icons/edit.png" alt="Edit"> om je bestelling te bewerken.
-Let op: de betaling moet uitgevoerd worden – eerdere betalingen worden automatisch gewist.Wil je je hele bestelling wissen, klik dan op <img src="/fx/images/icons/icons/delete.png" alt="Delete">.<br><br><b>Stoppen met bewerken</b><br>Misschien heb je per ongeluk het bewerken afgebroken. Druk op de knop ”Stoppen met bewerken” en daarna kun je je bestelling opnieuw bewerken.<br><br><b>In behandeling</b><br>Je bestelling wordt nu in ons magazijn behandeld en zal binnen 1-2 dagen verzonden worden. Het is niet meer mogelijk om je bestelling te bewerken/annuleren.<br><br><b>Gefactureerd</b><br>Je bestelling is nu verstuurd. Je factuur vind je 24 uur na verzending bijgesloten als PDF-bestand in de kolom factuur.<br><br><b>Retourneren</b><br>Wil je een artikel retours turen, klik dan op <img src="/fx/images/icons/icons/return.png" alt="Return"><br><br>Kun je niet de artikelen vinden die je terug wilt sturen, klik dan op deze link om het retourformulier zelf uit te printen: <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_NL.pdf" target="_blank">&raquo; Retourformulier (PDF)</a><br><br></p>]]></target>
+                 <target><![CDATA[
+                    <p>
+                        Op Mijn Pagina kun je je gegevens wijzigen en je aan- of afmelden voor de nieuwsbrief. Je kunt ook je bestelling bewerken.<br><br>
+                        Je bestelling heeft de volgende status:<br><br>
+                        <b>Afwachten</b><br>
+                        Je bestelling is nog niet behandeld en je hebt minstens 24 uur om die te bewerken. Je hebt de mogelijkheid om je bestelling te wijzigen/er meer aan toe te voegen/eruit te verwijderen. Klik op het <img src="/fx/images/icons/icons/edit.png" alt="Edit"> om je bestelling te bewerken. Let op: de betaling moet uitgevoerd worden – eerdere betalingen worden automatisch gewist.Wil je je hele bestelling wissen, klik dan op <img src="/fx/images/icons/icons/delete.png" alt="Delete">.<br><br>
+                        <b>Stoppen met bewerken</b><br>
+                        Misschien heb je per ongeluk het bewerken afgebroken. Druk op de knop ”Stoppen met bewerken” en daarna kun je je bestelling opnieuw bewerken.<br><br>
+                        <b>In behandeling</b><br>
+                        Je bestelling wordt nu in ons magazijn behandeld en zal binnen 1-2 dagen verzonden worden. Het is niet meer mogelijk om je bestelling te bewerken/annuleren.<br><br>
+                        <b>Gefactureerd</b><br>
+                        Je bestelling is nu verstuurd. Je factuur vind je 24 uur na verzending bijgesloten als PDF-bestand in de kolom factuur.<br><br>
+                        <b>Retourneren</b><br>
+                        Wil je een artikel retours turen, klik dan op <img src="/fx/images/icons/icons/return.png" alt="Return"><br><br>
+                        Kun je niet de artikelen vinden die je terug wilt sturen, klik dan op deze link om het retourformulier zelf uit te printen: <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_NL.pdf" target="_blank">&raquo; Retourformulier (PDF)</a><br><br>
+                        Klik op <img src="/fx/images/icons/icons/trackntrace.png" alt="Track 'n trace"> naast je order om je pakketje te volgen. Track en Trace opent in een nieuwe pagina.<br><br>
+                    </p>
+                ]]></target>
             </trans-unit>
             <trans-unit id="newsletter" approved="no">
                 <source>newsletter</source>
@@ -475,7 +490,7 @@ Let op: de betaling moet uitgevoerd worden – eerdere betalingen worden automat
             </trans-unit>
             <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>
-                <target><![CDATA[<h3>MIJN PAGINA</h3><p>Om je een aantal voordelen bij POMPdeLUX te geven, moet je je eerst registreren als klant. Daarna kun je weer doorgaan met winkelen.<br><br>Dit geeft je onder meer de mogelijkheid om:<br> 
+                <target><![CDATA[<h3>MIJN PAGINA</h3><p>Om je een aantal voordelen bij POMPdeLUX te geven, moet je je eerst registreren als klant. Daarna kun je weer doorgaan met winkelen.<br><br>Dit geeft je onder meer de mogelijkheid om:<br>
 			<ul>
             <li>Je bestelling te controleren en te wijzigen totdat die gepakt en verzonden is.</li>
             <li>De kleur en maat van de artikelen die je hebt besteld te wijzigen.</li>

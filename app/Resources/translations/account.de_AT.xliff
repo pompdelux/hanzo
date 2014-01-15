@@ -449,11 +449,23 @@
             </trans-unit>
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
-                <target><![CDATA[<p>Auf Meine Seite können Sie Informationen ändern und sich für den Newsletter anmelden oder ihn abbestellen. Sie haben auch die Möglichkeit, Ihre Bestellung zu bearbeiten.<br><br>Ihre Bestellung kann folgenden Status haben:<br><br><b>Warten auf Bearbeitung</b><br>Ihre Bestellung wurde noch nicht bearbeitet und Sie haben zum Bearbeiten Ihrer Bestellung mind. 24 Stunden Zeit.
-Sie können Ihre Bestellung ändern oder etwas hinzufügen bzw. entfernen. Klicken Sie bei der Bearbeitung auf den <img src="/fx/images/icons/icons/edit.png" alt="Edit">.
-Bitte beachten: Die Zahlung muss durchgeführt werden – frühere Zahlungsreservierungen werden automatisch gelöscht.
-Möchten Sie Ihre gesamte Bestellung löschen, dann klicken Sie bitte auf <img src="/fx/images/icons/icons/delete.png" alt="Delete">.<br><br><b>Bearbeitung stoppen</b><br>Sie haben evtl. Ihre Bearbeitung abgebrochen. Drücken Sie auf die Schaltfläche ”Bearbeitung stoppen”, danach können Sie Ihre Bestellung erneut bearbeiten.<br><br><b>Wird bearbeitet</b><br>Ihre Bestellung wird jetzt in unserem Lager bearbeitet und im Laufe von 1-2 Tagen an Sie verschickt. Es ist nicht möglich, Ihre Bestellung zu bearbeiten/zu stoppen.<br><br><b>In Rechnung gestellt</b><br>Ihre Bestellung hat unser Lager verlassen. Die Rechnung finden Sie als beigefügte PDF-Datei in der Spalte Rechnung im Laufe von 24 Stunden nach dem Versand.<br><br><b>
-Rücksendung</b><br>Möchten Sie die Ware zurückschicken, dann klicken Sie bitte hier <img src="/fx/images/icons/icons/return.png" alt="Return"><br><br></p>]]></target>
+                <target><![CDATA[
+                    <p>
+                        Auf Meine Seite können Sie Informationen ändern und sich für den Newsletter anmelden oder ihn abbestellen. Sie haben auch die Möglichkeit, Ihre Bestellung zu bearbeiten.<br><br>
+                        Ihre Bestellung kann folgenden Status haben:<br><br>
+                        <b>Warten auf Bearbeitung</b><br>
+                        Ihre Bestellung wurde noch nicht bearbeitet und Sie haben zum Bearbeiten Ihrer Bestellung mind. 24 Stunden Zeit. Sie können Ihre Bestellung ändern oder etwas hinzufügen bzw. entfernen. Klicken Sie bei der Bearbeitung auf den <img src="/fx/images/icons/icons/edit.png" alt="Edit">. Bitte beachten: Die Zahlung muss durchgeführt werden – frühere Zahlungsreservierungen werden automatisch gelöscht. Möchten Sie Ihre gesamte Bestellung löschen, dann klicken Sie bitte auf <img src="/fx/images/icons/icons/delete.png" alt="Delete">.<br><br>
+                        <b>Bearbeitung stoppen</b><br>
+                        Sie haben evtl. Ihre Bearbeitung abgebrochen. Drücken Sie auf die Schaltfläche ”Bearbeitung stoppen”, danach können Sie Ihre Bestellung erneut bearbeiten.<br><br>
+                        <b>Wird bearbeitet</b><br>
+                        Ihre Bestellung wird jetzt in unserem Lager bearbeitet und im Laufe von 1-2 Tagen an Sie verschickt. Es ist nicht möglich, Ihre Bestellung zu bearbeiten/zu stoppen.<br><br>
+                        <b>In Rechnung gestellt</b><br>
+                        Ihre Bestellung hat unser Lager verlassen. Die Rechnung finden Sie als beigefügte PDF-Datei in der Spalte Rechnung im Laufe von 24 Stunden nach dem Versand.<br><br>
+                        <b>Rücksendung</b><br>
+                        Möchten Sie die Ware zurückschicken, dann klicken Sie bitte hier <img src="/fx/images/icons/icons/return.png" alt="Return"><br><br>
+                        Klicken Sie auf <img src="/fx/images/icons/icons/trackntrace.png" alt="Track 'n trace"> neben Ihrer Bestellung, um Ihr Paket nachzuverfolgen. Die Track & Trace Webseite öffnet sich in einem neuen Fenster.<br><br>
+                    </p>
+                ]]></target>
             </trans-unit>
             <trans-unit id="newsletter" approved="no">
                 <source>newsletter</source>
@@ -486,7 +498,7 @@ Rücksendung</b><br>Möchten Sie die Ware zurückschicken, dann klicken Sie bitt
             <trans-unit id="my.account.login.notice" approved="no">
                 <source>my.account.login.notice</source>
                 <target><![CDATA[<p>Melden Sie sich hier als Kunde an</p>]]></target>
-            </trans-unit>			
+            </trans-unit>
             <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>
                 <target><![CDATA[<h3>MEINE SEITE</h3><p>Um alle Vorteile bei POMPdeLUX genießen zu können, müssen Sie sich als Kunde anmelden bevor Sie weitershoppen.<br><br>Dies gibt Ihnen unter anderem die Möglichkeit:<br>
@@ -496,7 +508,7 @@ Rücksendung</b><br>Möchten Sie die Ware zurückschicken, dann klicken Sie bitt
             <li>Waren hinzuzufügen oder zu löschen solange Ihre Bestellung den Status „Warten auf Bearbeitung“ hat, d.h. bis mind. 24 Std. nachdem Sie bestellt haben.</li>
 			<li>Ihre früheren Bestellungen einzusehen und ältere Rechnungen abzurufen</li>
           </ul></p>]]></target>
-            </trans-unit>		
+            </trans-unit>
             <trans-unit id="my.account.login.title">
                 <source>my.account.login.title</source>
                 <target>Meine Seite - Login</target>
