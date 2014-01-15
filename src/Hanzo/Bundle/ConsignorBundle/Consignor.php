@@ -1,31 +1,68 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: un
- * Date: 14/01/14
- * Time: 09.52
- */
 
 namespace Hanzo\Bundle\ConsignorBundle;
 
+use Guzzle\Service\Client;
+use Symfony\Bridge\Monolog\Logger;
 
 class Consignor
 {
-    private $consignor;
+    /**
+     * @var \Guzzle\Service\Client
+     */
+    private $guzzle;
+
+    /**
+     * @var \Symfony\Bridge\Monolog\Logger
+     */
     private $logger;
+
+    /**
+     * @var array
+     */
     private $options;
 
-    public function __construct($guzzle_client, $logger)
-    {
-        print_r(get_class($guzzle_client));
-        print_r(get_class($logger));
 
-        $this->consignor = $guzzle_client;
-        $this->logger    = $logger;
+    /**
+     * @param Client $guzzle_client
+     * @param Logger $logger
+     */
+    public function __construct(Client $guzzle_client, Logger $logger)
+    {
+        $this->guzzle = $guzzle_client;
+        $this->logger = $logger;
     }
 
+
+    /**
+     * @param array $options
+     */
     public function setOptions(array $options)
     {
         $this->options = $options;
+    }
+
+
+    /**
+     * @param $key
+     * @return mixed
+     * @throws \InvalidArgumentException
+     */
+    public function getOption($key)
+    {
+        if (isset($this->options[$key])) {
+            return $this->options[$key];
+        }
+
+        throw new \InvalidArgumentException("The key: '{$key}' is not a valid option key.");
+    }
+
+
+    /**
+     * @return Client
+     */
+    public function getGuzzleClient()
+    {
+        return $this->guzzle;
     }
 }

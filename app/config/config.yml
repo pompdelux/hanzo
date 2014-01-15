@@ -201,5 +201,6 @@ consignor:
               actor: 6197
               product_concept_id: 94
               service_id: 9024
+              key: PompDeluxDK
     ship_advisor:    ~
 
