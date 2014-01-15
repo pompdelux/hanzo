@@ -29,8 +29,9 @@ class ConsignorExtension extends Extension
         $loader->load('services.xml');
 
         if (isset($config['shipment_server']['options']) && count($config['shipment_server']['options'])) {
+
             $def = $container->getDefinition('consignor.service');
-            $def->addmethodcall('setOptions', $config['shipment_server']['options']);
+            $def->addmethodcall('setOptions', [$config['shipment_server']['options']]);
         }
     }
 }

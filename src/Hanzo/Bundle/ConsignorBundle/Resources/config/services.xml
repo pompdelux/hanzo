@@ -6,6 +6,7 @@
 
     <parameters>
         <parameter key="consignor.class">Hanzo\Bundle\ConsignorBundle\Consignor</parameter>
+        <parameter key="consignor.submit_shipment.class">Hanzo\Bundle\ConsignorBundle\Services\ShipmentServer\SubmitShipment</parameter>
     </parameters>
 
     <services>
@@ -17,6 +18,10 @@
         <service id="consignor.service" class="%consignor.class%">
             <argument type="service" id="consignor.guzzle.client" />
             <argument type="service" id="logger" />
+        </service>
+
+        <service id="consignor.service.submit_shipment" class="%consignor.submit_shipment.class%">
+            <argument type="service" id="consignor.service" />
         </service>
     </services>
 </container>
