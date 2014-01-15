@@ -27,6 +27,9 @@ nav.first.main-menu {
         z-index: 220;
         margin-left: 10px;
 
+        &.topmenu {
+          padding-right: 234px;
+        }
         &.right {
             position: absolute;
             right: 0;
@@ -71,7 +74,7 @@ form.search-form {
         border: none;
         padding: 5px;
         padding-left: 27px;
-        width: 180px;
+        width: 234px;
         background-color: inherit;
         &:focus {
             background-color: white;
