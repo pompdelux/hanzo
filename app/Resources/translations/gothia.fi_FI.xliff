@@ -85,7 +85,7 @@ Pyydämme teitä ottamaan ystävällisesti yhteyttä Gothian asiakaspalveluun pu
       </trans-unit>
       <trans-unit id="gothia.response.error.after">
         <source>Please contact POMPdeLUX customer service if you keep receiving this error.</source>
-        <target>Pyydämme teitä ottamaan yhteyttä asiakaspalveluumme jos virhe toistuu.</target>
+        <target>Pyydämme teitä ottamaan  yhteyttä Gothian asiakaspalveluun puh. 0207 229 462,  Jos virhe toistuu.</target>
       </trans-unit>
       <trans-unit id="gothia.response.5000">
         <source>We are unable to connect to Gothia Invoice service, please try again later.</source>

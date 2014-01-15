@@ -67,14 +67,18 @@ class DefaultController extends CoreController
             $show_by_look = (bool)($show === 'look');
 
             $result = ProductsImagesCategoriesSortQuery::create()
+                ->joinWithProducts()
                 ->useProductsQuery()
+                    ->joinProductsI18n()
                     ->where('products.MASTER IS NULL')
                     // ->filterByIsOutOfStock(FALSE)
                     ->useProductsDomainsPricesQuery()
                         ->filterByDomainsId($domain_id)
                     ->endUse()
+                    ->useProductsI18nQuery()
+                        ->filterByLocale($locale)
+                    ->endUse()
                 ->endUse()
-                ->joinWithProducts()
                 ->useProductsImagesQuery()
                     ->filterByType($show_by_look?'set':'overview')
                     ->groupByImage()
@@ -104,7 +108,8 @@ class DefaultController extends CoreController
 //                $result = $result->paginate($pager, 12);
 //            }
 
-            $result = $result->paginate(null, null);
+//            $result = $result->paginate(null, null);
+            $result = $result->find();
 
             $product_route = str_replace('category_', 'product_', $route);
 
@@ -117,6 +122,8 @@ class DefaultController extends CoreController
                 // Only use 01.
                 if (preg_match('/_01.jpg/', $image)) {
                     $product = $record->getProducts();
+                    $product->setLocale($locale);
+
                     $product_ids[] = $product->getId();
 
                     $image_overview = str_replace('_set_', '_overview_', $image);
@@ -157,7 +164,7 @@ class DefaultController extends CoreController
                 'paginate' => NULL,
             );
 
-            if ($result->haveToPaginate()) {
+            if (method_exists($result, 'haveToPaginate') && $result->haveToPaginate()) {
 
                 $pages = array();
                 foreach ($result->getLinks(20) as $page) {
@@ -243,8 +250,11 @@ class DefaultController extends CoreController
             ->find()
         ;
 
+        $locale = $this->getRequest()->getLocale();
         $records = array();
         foreach ($products as $product) {
+            $product->setLocale($locale);
+
             $records[] = array(
                 'sku' => $product->getSku(),
                 'id' => $product->getId(),

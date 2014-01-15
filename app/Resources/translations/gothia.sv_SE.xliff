@@ -87,7 +87,7 @@ Om du har varit kund hos Gothia tidigare, finns ditt personnummer sparat via dit
       </trans-unit>
       <trans-unit id="gothia.response.error.after">
         <source>Please contact POMPdeLUX customer service if you keep receiving this error.</source>
-        <target>Vänligen kontakta POMPdeLUX kundservice om felet kvarstår.</target>
+        <target>Vänligen kontakta Gothia kundservice på: 0340-664444 om felet kvarstår.</target>
       </trans-unit>
       <trans-unit id="gothia.response.5000">
         <source>We are unable to connect to Gothia Invoice service, please try again later.</source>
