@@ -27,6 +27,8 @@ var quickorder = (function($) {
         });
 
         $('.quickorder .master').on('typeahead:selected', function(event, item) {
+            var $context = $(this).closest('.quickorder');
+
             var XHR = $.ajax({
                 url      : base_url + "rest/v1/stock-check",
                 dataType : 'json',
@@ -41,7 +43,7 @@ var quickorder = (function($) {
                         dialoug.alert(Translator.get('js:notice', response.message));
                     }
                 } else {
-                    var $size_select = $('select.size');
+                    var $size_select = $('select.size', $context);
                     $size_select.find('option').remove();
 
                     if((typeof response.data.products !== "undefined") &&
@@ -253,7 +255,7 @@ var quickorder = (function($) {
 
         $('.reset').click(function(e){
             e.preventDefault();
-            var $context = $(this).closest('form');
+            var $context = $(this).closest('.quickorder');
             _resetForm($context);
         });
 
@@ -318,7 +320,7 @@ var quickorder = (function($) {
                 dialoug.error(Translator.get('js:notice'), Translator.get('js:an.error.occurred'));
             });
         }
-    }
+    };
 
     var _resetForm = function($context) {
         $('.master', $context).typeahead('setQuery', '').focus();
