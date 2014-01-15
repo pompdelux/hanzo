@@ -102,7 +102,7 @@ Wenden Sie sich bitte an den Kundendienst von Gothia: +45 7027 2795<br>Bei ander
       </trans-unit>
       <trans-unit id="gothia.response.error.after">
         <source>Please contact POMPdeLUX customer service if you keep receiving this error.</source>
-        <target>Wenden Sie sich bitte an POMPdeLUX Kundenservice wenn dieser Fehler nochmals auftritt.</target>
+        <target>Wenden Sie sich bitte an den Kundendienst von Gothia: +45 7027 2795 wenn dieser Fehler nochmals auftritt.</target>
       </trans-unit>
       <trans-unit id="gothia.response.5000">
         <source>We are unable to connect to Gothia Invoice service, please try again later.</source>

@@ -86,7 +86,7 @@ Kontakt venligst Gothia Kundeservice: 7027 2795<br>Ved andre godkendelsesfejl â€
       </trans-unit>
       <trans-unit id="gothia.response.error.after">
         <source>Please contact POMPdeLUX customer service if you keep receiving this error.</source>
-        <target>Kontakt venligst POMPdeLUX kundeservice, hvis fejlen gentager sig.</target>
+        <target>Kontakt venligst Gothia Kundeservice: 7027 2795, hvis fejlen gentager sig.</target>
       </trans-unit>
       <trans-unit id="gothia.response.5000">
         <source>We are unable to connect to Gothia Invoice service, please try again later.</source>
