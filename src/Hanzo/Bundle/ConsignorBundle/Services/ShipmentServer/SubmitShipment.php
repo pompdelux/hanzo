@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: un
- * Date: 14/01/14
- * Time: 11.02
- */
 
 namespace Hanzo\Bundle\ConsignorBundle\Services\ShipmentServer;
 
@@ -85,12 +79,28 @@ class SubmitShipment
             throw new MissingMandatoryParametersException("Mandatory paraneter 'order_id' not set.");
         }
 
+        $address = $this->consignor->getOption('to_address');
+
+        if ($address && isset($address['name'])) {
+            $this->setToAddress(new ConsignorAddress(
+                1,
+                $address['name'],
+                $address['address_line_1'],
+                $address['address_line_2'],
+                $address['postal_code'],
+                $address['city'],
+                $address['country_iso2'],
+                $address['email'],
+                $address['phone']
+            ));
+        }
+
         $data = [
             'command' => 'SubmitShipment',
             'actor'   => $this->consignor->getOption('actor'),
             'key'     => $this->consignor->getOption('key'),
-            'options' => (object) ['Labels' => 'PDF'],
-            'data'    => json_encode((object) [
+            'options' => json_encode(['Labels' => 'PDF']),
+            'data'    => json_encode([
                 'Kind'          => 2,
                 'OrderNo'       => $this->order_id,
                 'ActorCSID'     => $this->consignor->getOption('actor'),
@@ -100,17 +110,19 @@ class SubmitShipment
                     $this->to_address->toArray(),
                     $this->from_address->toArray(),
                 ],
-                'Lines' => [(object) [
+                'Lines' => [[
                     'LineWeight' => 5000,
                     'PkgWeight'  => 5000,
                     'Pkgs'       => [
-                        (object) ['ItemNo' => 1]
+                        ['ItemNo' => 1]
                     ]
                 ]]
             ])
         ];
 
         $request = $this->consignor->getGuzzleClient()->post(null, null, $data);
+
+        // consignor's ssl cert is not ... hmm verified, so we skip verification
         $request->getCurlOptions()->set(CURLOPT_SSL_VERIFYHOST, false);
         $request->getCurlOptions()->set(CURLOPT_SSL_VERIFYPEER, false);
 
