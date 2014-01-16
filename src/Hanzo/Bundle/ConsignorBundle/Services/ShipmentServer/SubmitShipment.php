@@ -7,6 +7,9 @@ use Symfony\Component\Routing\Exception\MissingMandatoryParametersException;
 
 class SubmitShipment
 {
+    /**
+     * @var \Hanzo\Bundle\ConsignorBundle\Consignor
+     */
     private $consignor;
 
     /**
@@ -24,6 +27,15 @@ class SubmitShipment
      */
     private $order_id;
 
+    /**
+     * @var boolean
+     */
+    private $enabled = false;
+
+    /**
+     * @var string
+     */
+    private $route = 'consignor_return_label';
 
     /**
      * Setup service
@@ -33,6 +45,39 @@ class SubmitShipment
     public function __construct(Consignor $consignor)
     {
         $this->consignor = $consignor;
+
+        if (('' != $this->consignor->getOption('key')) &&
+            ('' != $this->consignor->getOption('actor'))
+        ) {
+            $this->enabled = true;
+        }
+    }
+
+
+    /**
+     * get status of the service.
+     *
+     * @return bool
+     */
+    public function isEnabled()
+    {
+        return $this->enabled;
+    }
+
+
+    /**
+     * Get route to service call.
+     * Will return an empty string if the service is disabled.
+     *
+     * @return string
+     */
+    public function getRoute()
+    {
+        if ($this->isEnabled()) {
+            return $this->route;
+        }
+
+        return '';
     }
 
 
