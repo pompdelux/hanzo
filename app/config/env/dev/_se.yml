@@ -14,8 +14,8 @@ consignor:
     shipment_server:
         options:
               actor: 6199
-              product_concept_id: 94
-              service_id: 9024
+              product_concept_id: 882
+              service_id: 9065
               key: PompDeluxSE
               to_address:
                   name: "POMPdeLUX Sverige AB c/o POMPdeLUX"

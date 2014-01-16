@@ -84,7 +84,7 @@ account:
 consignor:
     shipment_server:
         options:
-              actor: 6197
+              actor: 146
               product_concept_id: 94
               service_id: 9024
               key: PompDeluxDK
