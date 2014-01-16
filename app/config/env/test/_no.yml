@@ -27,7 +27,7 @@ consignor:
         options:
               actor: 6198
               product_concept_id: 94
-              service_id: ''
+              service_id: ~
               key: PompDeluxNO
               to_address:
                   name: "POMPdeLUX c/o Tollpost"

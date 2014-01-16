@@ -27,7 +27,7 @@ consignor:
         options:
               actor: 6202
               product_concept_id: 94
-              service_id: ''
+              service_id: ~
               key: PompDeluxDE
               to_address:
                   name: "POMPdeLUX De GmbH"
