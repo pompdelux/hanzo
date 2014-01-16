@@ -90,7 +90,7 @@ class DefaultController extends CoreController
         foreach ($images as $key => $data) {
             $sorted_images[$data['type'].$key] = $data;
         }
-        ksort($sorted_images);
+        krsort($sorted_images);
 
         $all_colors = $colors = $sizes = array();
         $product_ids = array();
