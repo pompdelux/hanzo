@@ -20,6 +20,9 @@
                 {% if order.in_edit %}
                         <a href="{{ path('_account_stop_edit_order', { 'order_id': order.id }) }}" title="" class="stop-edit">Stop editering</a>
                 {% else %}
+                    {% if order.track_n_trace %}
+                        <a href="{{ order.track_n_trace }}" title="Track n' trace" class="sprite trackntrace js-external"></a>
+                    {% endif %}
                     {% if order.can_modify %}
                         <a href="{{ path('_account_delete_order', { 'order_id': order.id }) }}" title="{{ 'order.delete.title'|trans({}, 'account') }}" class="sprite delete"></a>
                         <a href="{{ path('_account_edit_order', { 'order_id': order.id }) }}" title="{{ 'order.edit.title'|trans({}, 'account') }}" class="sprite edit"></a>
@@ -30,9 +33,6 @@
                     {% endif %}
                         <a href="{{ path('_account_show_order', { 'order_id': order.id }) }}" title="{{ 'order.invoice.title'|trans({}, 'account') }}" class="sprite show"></a>
                 {% endif %}
-                    {% if order.track_n_trace %}
-                        <a href="{{ order.track_n_trace }}" title="Track n' trace" class="sprite trackntrace js-external"></a>
-                    {% endif %}
                 </td>
                 <td class="center pdf">
                 {% for pdf in order.attachments %}

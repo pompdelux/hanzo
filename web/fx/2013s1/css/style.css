@@ -2117,6 +2117,7 @@ form.create .button {
   background-position: 0 -1032px;
   height: 25px;
   width: 27px;
+  margin-right: 10px;
 }
 
 .checkout-block {
