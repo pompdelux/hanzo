@@ -6,3 +6,20 @@ framework:
 account:
     consignor:
         actor_id: 63
+
+consignor:
+    shipment_server:
+        options:
+              actor: 6197
+              product_concept_id: 94
+              service_id: 9024
+              key: PompDeluxDK
+              to_address:
+                  name: "POMPdeLUX ApS"
+                  address_line_1: "Møgelhøj 8"
+                  postal_code: "8520"
+                  city: "Lystrup"
+                  country_iso2: DK
+                  email: mail@pompdelux.dk
+                  phone: "+45 8678 7871"
+
