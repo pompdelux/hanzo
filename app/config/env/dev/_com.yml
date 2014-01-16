@@ -2,3 +2,7 @@ framework:
     default_locale: en_GB
     session:
         cookie_path: '/en_GB'
+
+account:
+    consignor:
+        actor_id: 63

@@ -2,3 +2,7 @@ framework:
     default_locale: nb_NO
     session:
         path: '/nb_NO'
+
+account:
+    consignor:
+        actor_id: 66

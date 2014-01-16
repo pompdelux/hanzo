@@ -26,6 +26,7 @@ class HistoryController extends CoreController
         ));
     }
 
+
     public function viewAction(Request $request, $order_id)
     {
         $order = OrdersQuery::create()
@@ -133,6 +134,9 @@ class HistoryController extends CoreController
             }
         }
 
+        // track 'n trace integration - the url is only available if both actor_id and installation_id is set for the country.
+        $trackntrace_url = $this->container->getParameter('account.consignor.trackntrace_url');
+
         $orders = array();
         foreach ($result as $record) {
             $folder = $this->mapLanguageToPdfDir($record->getLanguagesId()).'_'.$record->getCreatedAt('Y');
@@ -146,22 +150,28 @@ class HistoryController extends CoreController
                 ));
             }
 
+            $track_n_trace = '';
+            if ($trackntrace_url && count($attachments)) {
+                $track_n_trace = strtr($trackntrace_url, [':order_id:' => $record->getId()]);
+            }
+
             $orders[] = array(
-                'id' => $record->getId(),
-                'in_edit' => $record->getInEdit(),
-                'can_modify' => (($record->getState() <= Orders::STATE_PENDING) ? true : false),
-                'status' => str_replace('-', 'neg.', $record->getState()),
-                'created_at' => $record->getCreatedAt(),
-                'total' => $record->getTotalPrice(),
-                'attachments' => $attachments,
+                'id'            => $record->getId(),
+                'in_edit'       => $record->getInEdit(),
+                'can_modify'    => (($record->getState() <= Orders::STATE_PENDING) ? true : false),
+                'status'        => str_replace('-', 'neg.', $record->getState()),
+                'created_at'    => $record->getCreatedAt(),
+                'total'         => $record->getTotalPrice(),
+                'attachments'   => $attachments,
+                'track_n_trace' => $track_n_trace,
             );
         }
 
         return $this->render('AccountBundle:History:block.html.twig', array(
             'page_type' => 'account-history',
-            'orders' => (count($orders) ? $orders : NULL),
-            'link' => $link,
-            'paginate' => $paginate
+            'orders'    => (count($orders) ? $orders : null),
+            'link'      => $link,
+            'paginate'  => $paginate
         ));
     }
 
