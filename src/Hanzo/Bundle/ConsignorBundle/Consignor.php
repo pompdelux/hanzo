@@ -46,7 +46,6 @@ class Consignor
     /**
      * @param $key
      * @return mixed
-     * @throws \InvalidArgumentException
      */
     public function getOption($key)
     {
@@ -54,7 +53,7 @@ class Consignor
             return $this->options[$key];
         }
 
-        throw new \InvalidArgumentException("The key: '{$key}' is not a valid option key.");
+        return null;
     }
 
 
