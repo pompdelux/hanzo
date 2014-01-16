@@ -13,12 +13,21 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 class DefaultController extends Controller
 {
     /**
+     * Triggers call to edi-soft consignor to get return label as pdf.
+     *
+     * Note: Do not change the name in the Route definition without changing it in the service as well!
+     *
      * @Route("/account/consignor/return-label/{id}", name="consignor_return_label")
      * @ParamConverter("post", class="Hanzo\Model\Orders")
      */
-    public function indexAction(Orders $order)
+    public function consignorReturnLabelAction(Orders $order)
     {
         $shipment = $this->container->get('consignor.service.submit_shipment');
+
+        if (false ===$shipment->isEnabled()) {
+            return $this->redirect($this->generateUrl('_account'));
+        }
+
         $shipment->setOrderId($order->getId());
 
         // from address should always be the billing address of the order.
