@@ -37,7 +37,7 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('key')->cannotBeEmpty()->defaultValue('')->end()
                                 ->integerNode('actor')->cannotBeEmpty()->defaultValue(0)->end()
                                 ->integerNode('product_concept_id')->defaultNull()->end()
-                                ->integerNode('service_id')->defaultNull()->end()
+                                ->scalarNode('service_id')->defaultValue('')->end()
                                 ->arrayNode('to_address')
                                     ->children()
                                         ->scalarNode('name')->defaultValue('')->end()
