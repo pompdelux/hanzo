@@ -59,6 +59,15 @@ class Consignor
 
 
     /**
+     * @return array
+     */
+    public function getOptions()
+    {
+        return $this->options;
+    }
+
+
+    /**
      * @return Client
      */
     public function getGuzzleClient()
