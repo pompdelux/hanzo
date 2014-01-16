@@ -38,9 +38,9 @@ account:
 consignor:
     shipment_server:
         options:
-              actor: 6201
-              product_concept_id: 94
-              service_id: 9024
+              actor: 144
+              product_concept_id: 957
+              service_id: 114007
               key: PompDeluxFI
               to_address:
                   name: "POMPdeLUX ApS"

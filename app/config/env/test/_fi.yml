@@ -24,11 +24,10 @@ account:
 
 consignor:
     shipment_server:
-        endpoint: "https://qa-tic03.facility.dir.dk/json/ShipmentServerModule.dll"
         options:
               actor: 6201
-              product_concept_id: 94
-              service_id: 9024
+              product_concept_id: 882
+              service_id: 9065
               key: PompDeluxFI
               to_address:
                   name: "POMPdeLUX ApS"

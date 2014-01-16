@@ -19,17 +19,4 @@ propel:
                 attributes:           {}
 
 consignor:
-    shipment_server:
-        options:
-              actor: 6202
-              product_concept_id: 94
-              service_id: 9024
-              key: PompDeluxDE
-              to_address:
-                  name: "POMPdeLUX De GmbH"
-                  address_line_1: "Dammtorstraße 12"
-                  postal_code: "20354"
-                  city: "Hamburg Ust-IdNr."
-                  country_iso2: DE
-                  email: mailde@pompdelux.com
-                  phone: "040-3571 5072"
+    shipment_server: ~
