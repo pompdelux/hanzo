@@ -4,6 +4,7 @@ namespace Hanzo\Bundle\ConsignorBundle\Controller;
 
 use Hanzo\Bundle\ConsignorBundle\Services\ShipmentServer\ConsignorAddress;
 use Hanzo\Model\Orders;
+use Hanzo\Model\CountriesQuery;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -17,20 +18,9 @@ class DefaultController extends Controller
      */
     public function indexAction(Orders $order)
     {
-        $to = new ConsignorAddress(1, 'ulrik nielsen', 'thurasvej 12', '', 6000, 'kolding', 'DK');
-
         $shipment = $this->container->get('consignor.service.submit_shipment');
         $shipment->setOrderId($order->getId());
-        $shipment->setToAddress(new ConsignorAddress(
-            1,
-            'POMPdeLUX A/S',
-            'Møglhøj vej 1',
-            '',
-            1234,
-            'Århus',
-            'DK',
-            'RETUR'
-        ));
+
         // from address should always be the billing address of the order.
         $shipment->setFromAddress(new ConsignorAddress(
             2,
@@ -39,7 +29,9 @@ class DefaultController extends Controller
             $order->getBillingAddressLine2(),
             $order->getBillingPostalCode(),
             $order->getBillingCity(),
-            $order->getBillingCountry() // needs to be converted to ISO-2
+            self::countryIdToIso2($order->getBillingCountriesId()),
+            $order->getEmail(),
+            $order->getPhone()
         ));
 
         try {
@@ -54,7 +46,7 @@ class DefaultController extends Controller
         $response = new Response($label, 200, [
             'Content-Description'       => 'File Transfer',
             'Content-type'              => 'application/octet-stream',
-            'Content-Disposition'       => 'attachment; filename=lable.pdf',
+            'Content-Disposition'       => 'attachment; filename=shipping-label.pdf',
             'Content-Transfer-Encoding' => 'binary',
             'Expires'                   => 0,
             'Cache-Control'             => 'must-revalidate, post-check=0, pre-check=0',
@@ -63,5 +55,18 @@ class DefaultController extends Controller
         $response->setContent($label);
 
         return $response;
+    }
+
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    protected static function countryIdToIso2($id)
+    {
+        return CountriesQuery::create()
+            ->select('Iso2')
+            ->findOneById($id)
+        ;
     }
 }
