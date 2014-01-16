@@ -21,3 +21,19 @@ propel:
 account:
     consignor:
         actor_id: 66
+
+consignor:
+    shipment_server:
+        options:
+              actor: 6198
+              product_concept_id: 94
+              service_id: 9024
+              key: PompDeluxNO
+              to_address:
+                  name: "POMPdeLUX c/o Tollpost"
+                  address_line_1: "Globe Postens Godssenter"
+                  postal_code: "0668"
+                  city: "Oslo"
+                  country_iso2: NO
+                  email: mail@pompdelux.no
+                  phone: "+47 22742600"

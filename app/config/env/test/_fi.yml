@@ -21,3 +21,20 @@ propel:
 account:
     consignor:
         actor_id: 68
+
+consignor:
+    shipment_server:
+        endpoint: "https://qa-tic03.facility.dir.dk/json/ShipmentServerModule.dll"
+        options:
+              actor: 6201
+              product_concept_id: 94
+              service_id: 9024
+              key: PompDeluxFI
+              to_address:
+                  name: "POMPdeLUX ApS"
+                  address_line_1: "Møgelhøj 8"
+                  postal_code: "8520"
+                  city: "Lystrup"
+                  country_iso2: DK
+                  email: mailfi@pompdelux.com
+                  phone: "09-34870870"
