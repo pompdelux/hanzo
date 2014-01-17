@@ -33,7 +33,7 @@ abstract class BaseCustomersPeer
     const OM_CLASS = 'Hanzo\\Model\\Customers';
 
     /** the related TableMap class for this table */
-    const TM_CLASS = 'CustomersTableMap';
+    const TM_CLASS = 'Hanzo\\Model\\map\\CustomersTableMap';
 
     /** The total number of columns. */
     const NUM_COLUMNS = 13;
@@ -87,7 +87,7 @@ abstract class BaseCustomersPeer
     const DEFAULT_STRING_FORMAT = 'YAML';
 
     /**
-     * An identiy map to hold any loaded instances of Customers objects.
+     * An identity map to hold any loaded instances of Customers objects.
      * This must be public so that other peer classes can access this when hydrating from JOIN
      * queries.
      * @var        array Customers[]
@@ -275,7 +275,7 @@ abstract class BaseCustomersPeer
      *
      * @param      Criteria $criteria object used to create the SELECT statement.
      * @param      PropelPDO $con
-     * @return                 Customers
+     * @return Customers
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
@@ -342,7 +342,7 @@ abstract class BaseCustomersPeer
      * to the cache in order to ensure that the same objects are always returned by doSelect*()
      * and retrieveByPK*() calls.
      *
-     * @param      Customers $obj A Customers object.
+     * @param Customers $obj A Customers object.
      * @param      string $key (optional) key to use for instance map (for performance boost if key was already calculated externally).
      */
     public static function addInstanceToPool($obj, $key = null)
@@ -392,7 +392,7 @@ abstract class BaseCustomersPeer
      * a multi-column primary key, a serialize()d version of the primary key will be returned.
      *
      * @param      string $key The key (@see getPrimaryKeyHash()) for this instance.
-     * @return   Customers Found object or null if 1) no instance exists for specified key or 2) instance pooling has been disabled.
+     * @return Customers Found object or null if 1) no instance exists for specified key or 2) instance pooling has been disabled.
      * @see        getPrimaryKeyHash()
      */
     public static function getInstanceFromPool($key)
@@ -413,10 +413,8 @@ abstract class BaseCustomersPeer
      */
     public static function clearInstancePool($and_clear_all_references = false)
     {
-      if ($and_clear_all_references)
-      {
-        foreach (CustomersPeer::$instances as $instance)
-        {
+      if ($and_clear_all_references) {
+        foreach (CustomersPeer::$instances as $instance) {
           $instance->clearAllReferences(true);
         }
       }
@@ -800,7 +798,7 @@ abstract class BaseCustomersPeer
     {
       $dbMap = Propel::getDatabaseMap(BaseCustomersPeer::DATABASE_NAME);
       if (!$dbMap->hasTable(BaseCustomersPeer::TABLE_NAME)) {
-        $dbMap->addTableObject(new CustomersTableMap());
+        $dbMap->addTableObject(new \Hanzo\Model\map\CustomersTableMap());
       }
     }
 
@@ -846,7 +844,7 @@ abstract class BaseCustomersPeer
             $con->beginTransaction();
             $pk = BasePeer::doInsert($criteria, $con);
             $con->commit();
-        } catch (PropelException $e) {
+        } catch (Exception $e) {
             $con->rollBack();
             throw $e;
         }
@@ -919,7 +917,7 @@ abstract class BaseCustomersPeer
             $con->commit();
 
             return $affectedRows;
-        } catch (PropelException $e) {
+        } catch (Exception $e) {
             $con->rollBack();
             throw $e;
         }
@@ -978,7 +976,7 @@ abstract class BaseCustomersPeer
             $con->commit();
 
             return $affectedRows;
-        } catch (PropelException $e) {
+        } catch (Exception $e) {
             $con->rollBack();
             throw $e;
         }
@@ -991,7 +989,7 @@ abstract class BaseCustomersPeer
      *
      * NOTICE: This does not apply to primary or foreign keys for now.
      *
-     * @param      Customers $obj The object to validate.
+     * @param Customers $obj The object to validate.
      * @param      mixed $cols Column name or array of column names.
      *
      * @return mixed TRUE if all columns are valid or the error message of the first invalid column.
@@ -1024,7 +1022,7 @@ abstract class BaseCustomersPeer
     /**
      * Retrieve a single object by pkey.
      *
-     * @param      int $pk the primary key.
+     * @param int $pk the primary key.
      * @param      PropelPDO $con the connection to use
      * @return Customers
      */

@@ -1,26 +1,26 @@
 monolog:
     handlers:
         main:
-            type:                     fingers_crossed
-            action_level:             error
-            handler:                  nested
+            type:         fingers_crossed
+            action_level: error
+            handler:      nested
         nested:
-            type:                     stream
-            path:                     %kernel.logs_dir%/%kernel.environment%.log
-            level:                    debug
+            type:         stream
+            path:         %kernel.logs_dir%/%kernel.environment%.log
+            level:        debug
 
 framework:
-    test: ~
-    trusted_proxies: [ %proxy_ip%, 127.0.0.1 ]
-    trusted_hosts: [ '.*?\.?testpompdelux.com|localhost' ]
+    test:            ~
+    trusted_proxies: [ %proxy_ip%, 127.0.0.1, 192.168.2.251 ]
+    trusted_hosts:   [ '.*?\.?testpompdelux.com|localhost|192.168.2.251' ]
     templating:
         assets_base_urls:
             http: [ "%assets_base_url%" ]
-            ssl: [ "%assets_base_url%" ]
+            ssl:  [ "%assets_base_url%" ]
 
 varnish:
-    host: %varnish_host%
-    port: %varnish_port%
+    host:   %varnish_host%
+    port:   %varnish_port%
     secret: %varnish_secret%
 
 ax:

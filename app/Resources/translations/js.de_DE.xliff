@@ -374,6 +374,14 @@
                 <source>events.error.email.or.phone</source>
                 <target>E-Mail oder Telefon muss ausgefüllt werden.</target>
             </trans-unit>
+            <trans-unit id="rma.return.all.text">
+                <source>rma.return.all.text</source>
+                <target>Kaufrückzug (Geld zurück)</target>
+            </trans-unit>
+            <trans-unit id="rma.product.not.filled.correctly">
+                <source>rma.product.not.filled.correctly</source>
+                <target>Beim Umtausch Ihrer Ware geben Sie bitte Größe und Farbe ein.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

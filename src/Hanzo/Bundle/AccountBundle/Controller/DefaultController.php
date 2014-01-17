@@ -15,13 +15,11 @@ use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\CustomersQuery;
 use Hanzo\Model\Addresses;
 use Hanzo\Model\AddressesQuery;
-use Hanzo\Model\Countries;
 use Hanzo\Model\CountriesPeer;
 use Hanzo\Model\CountriesQuery;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\OrdersQuery;
 
-use Hanzo\Bundle\AccountBundle\Security\User\ProxyUser;
 use Hanzo\Bundle\AccountBundle\Form\Type\CustomersType;
 use Hanzo\Bundle\AccountBundle\Form\Type\AddressesType;
 
@@ -94,7 +92,7 @@ class DefaultController extends CoreController
         );
 
         if ( 'POST' === $request->getMethod() ) {
-            $form->bind($request);
+            $form->handleRequest($request);
             $data = $form->getData();
             // extra phone and zipcode constrints for .fi
             // TODO: figure out how to make this part of the validation process.
@@ -130,7 +128,7 @@ class DefaultController extends CoreController
                     $api = $this->get('newsletterapi');
                     $response = $api->subscribe($customer->getEmail(), $api->getListIdAvaliableForDomain());
                     if ( is_object($response) && $response->is_error ) {
-                        $this->get('session')->setFlash('warning', 'account.newsletter.warning');
+                        $this->get('session')->getFlashBag()->add('warning', 'account.newsletter.warning');
                     }
                 }
 
@@ -138,7 +136,7 @@ class DefaultController extends CoreController
                 $token = new UsernamePasswordToken($customer, null, 'secured_area', $customer->getRoles());
 
                 $this->container->get('security.context')->setToken($token);
-                $this->get('session')->setFlash('notice', $translator->trans('account.created', [], 'account'));
+                $this->get('session')->getFlashBag()->add('notice', $translator->trans('account.created', [], 'account'));
 
                 $name = $customer->getFirstName() . ' ' . $customer->getLastName();
 
@@ -187,6 +185,7 @@ class DefaultController extends CoreController
     /**
      * handle password retrival
      *
+     * @param Request $request
      * @return Responce object
      */
     public function passwordForgottenAction(Request $request)
@@ -226,6 +225,7 @@ class DefaultController extends CoreController
     /**
      * Handles the user edit form.
      *
+     * @param Request $request
      * @return Response object
      */
     public function editAction(Request $request)
@@ -247,7 +247,7 @@ class DefaultController extends CoreController
         );
 
         if ('POST' === $request->getMethod()) {
-            $form->bindRequest($request);
+            $form->handleRequest($request);
 
             if ($form->isValid()) {
                 if (!$customer->getPassword()) {
@@ -260,7 +260,7 @@ class DefaultController extends CoreController
                 }
                 $customer->save();
 
-                $this->get('session')->setFlash('notice', 'account.updated');
+                $this->get('session')->getFlashBag()->add('notice', 'account.updated');
                 return $this->redirect($this->generateUrl('_account'));
             } else {
                 $errors = new FormErrors($form, $this->get('translator'), 'account');
@@ -380,7 +380,7 @@ class DefaultController extends CoreController
 
         $form = $builder->getForm();
         if ($request->getMethod() == 'POST') {
-            $form->bindRequest($request);
+            $form->handleRequest($request);
             if ($form->isValid()) {
 
                 $address->save();
@@ -486,12 +486,14 @@ class DefaultController extends CoreController
                 'status'  => $status,
                 'message' => $message,
                 'data'    => $data,
-                ));
+            ));
         }
     }
 
     /**
      * errorAction
+     *
+     * @param string $error
      * @return Response
      * @author Henrik Farre <hf@bellcom.dk>
      **/

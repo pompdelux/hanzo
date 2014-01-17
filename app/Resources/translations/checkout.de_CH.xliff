@@ -29,8 +29,8 @@
 
           <h2>Kontakt</h2>
           <p>Bei Fragen wenden Sie sich bitte an uns.</p>
-          <p>Telefon 040-35715072</p>
-          <p>E-Mail: <a href="mailto:mailde@pompdelux.com">mailde@pompdelux.com</a></p>
+          <p>Telefon (+45) 8678 7874</p>
+          <p>E-Mail: <a href="mailto:mailch@pompdelux.com">mailch@pompdelux.com</a></p>
 
           <h2>Meine Seite</h2>
           <p>
@@ -41,13 +41,13 @@
           <h2>FAQ</h2>
           <p>
             Hier finden Sie oft gestellte Fragen über und Antworten von POMPdeLUX.<br>
-            <a href="/de_DE/kundendienst/telefonzeiten/faq">&raquo; FAQ</a>
+            <a href="/de_CH/kundendienst/telefonzeiten/faq">&raquo; FAQ</a>
           </p>
 
           <h2>Neuigkeiten</h2>
           <p>
             Im Menü Neuigkeiten finden Sie immer die aktuellsten Neuigkeiten.<br>
-            <a href="/de_DE/home/neuigkeiten">&raquo; Neuigkeiten</a>
+            <a href="/de_CH/home/neuigkeiten">&raquo; Neuigkeiten</a>
           </p>
         ]]></target>
       </trans-unit>
@@ -420,7 +420,7 @@
       </trans-unit>
       <trans-unit id="basket.header" approved="no">
         <source>basket.header</source>
-        <target><![CDATA[<h1>Ihr Warenkorb</h1><p>Benötigen Sie Hilfe? <a href="/de_DE/kundendienst/telefonzeiten/faq">FAQ</a></p>]]></target>
+        <target><![CDATA[<h1>Ihr Warenkorb</h1><p>Benötigen Sie Hilfe? <a href="/de_CH/kundendienst/telefonzeiten/faq">FAQ</a></p>]]></target>
       </trans-unit>
       <trans-unit id="order.amount.to.low" approved="no">
         <source>order.amount.to.low</source>

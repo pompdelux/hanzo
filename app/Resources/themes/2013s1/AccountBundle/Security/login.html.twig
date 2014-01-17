@@ -16,11 +16,11 @@
     <div class="msg error">{{ error.message|trans({}, 'account') }}</div>
 {% endif %}
 
-{% if app.session.hasFlash('error') %}
+{% for message in app.session.flashbag.get('error') %}
 <div class="msg error">
-  {{ app.session.flash('error')|raw }}
+  {{ message|raw }}
 </div>
-{% endif %}
+{% endfor %}
 
 {% if app.request.get('f') %}
 <div class="msg error">

@@ -62,8 +62,14 @@ abstract class BaseOrdersSyncLogQuery extends ModelCriteria
      * @param     string $modelName The phpName of a model, e.g. 'Book'
      * @param     string $modelAlias The alias for the model in this query, e.g. 'b'
      */
-    public function __construct($dbName = 'default', $modelName = 'Hanzo\\Model\\OrdersSyncLog', $modelAlias = null)
+    public function __construct($dbName = null, $modelName = null, $modelAlias = null)
     {
+        if (null === $dbName) {
+            $dbName = 'default';
+        }
+        if (null === $modelName) {
+            $modelName = 'Hanzo\\Model\\OrdersSyncLog';
+        }
         parent::__construct($dbName, $modelName, $modelAlias);
     }
 
@@ -80,10 +86,8 @@ abstract class BaseOrdersSyncLogQuery extends ModelCriteria
         if ($criteria instanceof OrdersSyncLogQuery) {
             return $criteria;
         }
-        $query = new OrdersSyncLogQuery();
-        if (null !== $modelAlias) {
-            $query->setModelAlias($modelAlias);
-        }
+        $query = new OrdersSyncLogQuery(null, null, $modelAlias);
+
         if ($criteria instanceof Criteria) {
             $query->mergeWith($criteria);
         }
@@ -112,7 +116,7 @@ abstract class BaseOrdersSyncLogQuery extends ModelCriteria
             return null;
         }
         if ((null !== ($obj = OrdersSyncLogPeer::getInstanceFromPool(serialize(array((string) $key[0], (string) $key[1]))))) && !$this->formatter) {
-            // the object is alredy in the instance pool
+            // the object is already in the instance pool
             return $obj;
         }
         if ($con === null) {
@@ -292,7 +296,7 @@ abstract class BaseOrdersSyncLogQuery extends ModelCriteria
      * <code>
      * $query->filterByCreatedAt('2011-03-14'); // WHERE created_at = '2011-03-14'
      * $query->filterByCreatedAt('now'); // WHERE created_at = '2011-03-14'
-     * $query->filterByCreatedAt(array('max' => 'yesterday')); // WHERE created_at > '2011-03-13'
+     * $query->filterByCreatedAt(array('max' => 'yesterday')); // WHERE created_at < '2011-03-13'
      * </code>
      *
      * @param     mixed $createdAt The value to use as filter.

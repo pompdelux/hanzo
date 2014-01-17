@@ -26,7 +26,7 @@ abstract class BaseGiftCardsPeer
     const OM_CLASS = 'Hanzo\\Model\\GiftCards';
 
     /** the related TableMap class for this table */
-    const TM_CLASS = 'GiftCardsTableMap';
+    const TM_CLASS = 'Hanzo\\Model\\map\\GiftCardsTableMap';
 
     /** The total number of columns. */
     const NUM_COLUMNS = 9;
@@ -68,7 +68,7 @@ abstract class BaseGiftCardsPeer
     const DEFAULT_STRING_FORMAT = 'YAML';
 
     /**
-     * An identiy map to hold any loaded instances of GiftCards objects.
+     * An identity map to hold any loaded instances of GiftCards objects.
      * This must be public so that other peer classes can access this when hydrating from JOIN
      * queries.
      * @var        array GiftCards[]
@@ -248,7 +248,7 @@ abstract class BaseGiftCardsPeer
      *
      * @param      Criteria $criteria object used to create the SELECT statement.
      * @param      PropelPDO $con
-     * @return                 GiftCards
+     * @return GiftCards
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
@@ -315,7 +315,7 @@ abstract class BaseGiftCardsPeer
      * to the cache in order to ensure that the same objects are always returned by doSelect*()
      * and retrieveByPK*() calls.
      *
-     * @param      GiftCards $obj A GiftCards object.
+     * @param GiftCards $obj A GiftCards object.
      * @param      string $key (optional) key to use for instance map (for performance boost if key was already calculated externally).
      */
     public static function addInstanceToPool($obj, $key = null)
@@ -365,7 +365,7 @@ abstract class BaseGiftCardsPeer
      * a multi-column primary key, a serialize()d version of the primary key will be returned.
      *
      * @param      string $key The key (@see getPrimaryKeyHash()) for this instance.
-     * @return   GiftCards Found object or null if 1) no instance exists for specified key or 2) instance pooling has been disabled.
+     * @return GiftCards Found object or null if 1) no instance exists for specified key or 2) instance pooling has been disabled.
      * @see        getPrimaryKeyHash()
      */
     public static function getInstanceFromPool($key)
@@ -386,10 +386,8 @@ abstract class BaseGiftCardsPeer
      */
     public static function clearInstancePool($and_clear_all_references = false)
     {
-      if ($and_clear_all_references)
-      {
-        foreach (GiftCardsPeer::$instances as $instance)
-        {
+      if ($and_clear_all_references) {
+        foreach (GiftCardsPeer::$instances as $instance) {
           $instance->clearAllReferences(true);
         }
       }
@@ -517,7 +515,7 @@ abstract class BaseGiftCardsPeer
     {
       $dbMap = Propel::getDatabaseMap(BaseGiftCardsPeer::DATABASE_NAME);
       if (!$dbMap->hasTable(BaseGiftCardsPeer::TABLE_NAME)) {
-        $dbMap->addTableObject(new GiftCardsTableMap());
+        $dbMap->addTableObject(new \Hanzo\Model\map\GiftCardsTableMap());
       }
     }
 
@@ -567,7 +565,7 @@ abstract class BaseGiftCardsPeer
             $con->beginTransaction();
             $pk = BasePeer::doInsert($criteria, $con);
             $con->commit();
-        } catch (PropelException $e) {
+        } catch (Exception $e) {
             $con->rollBack();
             throw $e;
         }
@@ -640,7 +638,7 @@ abstract class BaseGiftCardsPeer
             $con->commit();
 
             return $affectedRows;
-        } catch (PropelException $e) {
+        } catch (Exception $e) {
             $con->rollBack();
             throw $e;
         }
@@ -699,7 +697,7 @@ abstract class BaseGiftCardsPeer
             $con->commit();
 
             return $affectedRows;
-        } catch (PropelException $e) {
+        } catch (Exception $e) {
             $con->rollBack();
             throw $e;
         }
@@ -712,7 +710,7 @@ abstract class BaseGiftCardsPeer
      *
      * NOTICE: This does not apply to primary or foreign keys for now.
      *
-     * @param      GiftCards $obj The object to validate.
+     * @param GiftCards $obj The object to validate.
      * @param      mixed $cols Column name or array of column names.
      *
      * @return mixed TRUE if all columns are valid or the error message of the first invalid column.
@@ -745,7 +743,7 @@ abstract class BaseGiftCardsPeer
     /**
      * Retrieve a single object by pkey.
      *
-     * @param      int $pk the primary key.
+     * @param int $pk the primary key.
      * @param      PropelPDO $con the connection to use
      * @return GiftCards
      */

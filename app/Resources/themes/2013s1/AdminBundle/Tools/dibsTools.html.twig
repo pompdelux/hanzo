@@ -3,12 +3,11 @@
 
 <h1>Dibs tingester</h1>
 
-
-{% if app.session.hasFlash('notice') %}
+{% for message in app.session.flashbag.get('notice') %}
   <div class="message">
-    {{ app.session.flash('notice') }}
+    {{ message }}
   </div><br>
-{% endif %}
+{% endfor %}
 
 
 <h2>Fiks ordre med manglende transaktions id'er:</h2>

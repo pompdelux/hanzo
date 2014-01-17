@@ -33,7 +33,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
     protected static $peer;
 
     /**
-     * The flag var to prevent infinit loop in deep copy
+     * The flag var to prevent infinite loop in deep copy
      * @var       boolean
      */
     protected $startCopy = false;
@@ -113,6 +113,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
      */
     public function getOrdersId()
     {
+
         return $this->orders_id;
     }
 
@@ -123,6 +124,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
      */
     public function getCustomersId()
     {
+
         return $this->customers_id;
     }
 
@@ -133,6 +135,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
      */
     public function getName()
     {
+
         return $this->name;
     }
 
@@ -143,6 +146,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
      */
     public function getEmail()
     {
+
         return $this->email;
     }
 
@@ -153,6 +157,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
      */
     public function getTrigger()
     {
+
         return $this->trigger;
     }
 
@@ -163,6 +168,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
      */
     public function getContent()
     {
+
         return $this->content;
     }
 
@@ -173,6 +179,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
      */
     public function getDeletedBy()
     {
+
         return $this->deleted_by;
     }
 
@@ -180,7 +187,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
      * Get the [optionally formatted] temporal [deleted_at] column value.
      *
      * This accessor only only work with unix epoch dates.  Consider enabling the propel.useDateTimeClass
-     * option in order to avoid converstions to integers (which are limited in the dates they can express).
+     * option in order to avoid conversions to integers (which are limited in the dates they can express).
      *
      * @param string $format The date/time format string (either date()-style or strftime()-style).
      *				 If format is null, then the raw unix timestamp integer will be returned.
@@ -221,7 +228,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
     /**
      * Set the value of [orders_id] column.
      *
-     * @param int $v new value
+     * @param  int $v new value
      * @return OrdersDeletedLog The current object (for fluent API support)
      */
     public function setOrdersId($v)
@@ -242,7 +249,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
     /**
      * Set the value of [customers_id] column.
      *
-     * @param int $v new value
+     * @param  int $v new value
      * @return OrdersDeletedLog The current object (for fluent API support)
      */
     public function setCustomersId($v)
@@ -263,7 +270,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
     /**
      * Set the value of [name] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return OrdersDeletedLog The current object (for fluent API support)
      */
     public function setName($v)
@@ -284,7 +291,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
     /**
      * Set the value of [email] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return OrdersDeletedLog The current object (for fluent API support)
      */
     public function setEmail($v)
@@ -305,7 +312,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
     /**
      * Set the value of [trigger] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return OrdersDeletedLog The current object (for fluent API support)
      */
     public function setTrigger($v)
@@ -326,7 +333,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
     /**
      * Set the value of [content] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return OrdersDeletedLog The current object (for fluent API support)
      */
     public function setContent($v)
@@ -347,7 +354,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
     /**
      * Set the value of [deleted_by] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return OrdersDeletedLog The current object (for fluent API support)
      */
     public function setDeletedBy($v)
@@ -411,7 +418,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
      * more tables.
      *
      * @param array $row The row returned by PDOStatement->fetch(PDO::FETCH_NUM)
-     * @param int $startcol 0-based offset column which indicates which restultset column to start with.
+     * @param int $startcol 0-based offset column which indicates which resultset column to start with.
      * @param boolean $rehydrate Whether this object is being re-hydrated from the database.
      * @return int             next starting column
      * @throws PropelException - Any caught Exception will be rewrapped as a PropelException.
@@ -436,6 +443,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 8; // 8 = OrdersDeletedLogPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -776,10 +784,10 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
      *
      * In addition to checking the current object, all related objects will
      * also be validated.  If all pass then <code>true</code> is returned; otherwise
-     * an aggreagated array of ValidationFailed objects will be returned.
+     * an aggregated array of ValidationFailed objects will be returned.
      *
      * @param array $columns Array of column names to validate.
-     * @return mixed <code>true</code> if all validations pass; array of <code>ValidationFailed</code> objets otherwise.
+     * @return mixed <code>true</code> if all validations pass; array of <code>ValidationFailed</code> objects otherwise.
      */
     protected function doValidate($columns = null)
     {
@@ -891,6 +899,11 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
             $keys[6] => $this->getDeletedBy(),
             $keys[7] => $this->getDeletedAt(),
         );
+        $virtualColumns = $this->virtualColumns;
+        foreach ($virtualColumns as $key => $virtualColumn) {
+            $result[$key] = $virtualColumn;
+        }
+
 
         return $result;
     }
@@ -1142,7 +1155,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
      *
      * This method is a user-space workaround for PHP's inability to garbage collect
      * objects with circular references (even in PHP 5.3). This is currently necessary
-     * when using Propel in certain daemon or large-volumne/high-memory operations.
+     * when using Propel in certain daemon or large-volume/high-memory operations.
      *
      * @param boolean $deep Whether to also clear the references on all referrer objects.
      */

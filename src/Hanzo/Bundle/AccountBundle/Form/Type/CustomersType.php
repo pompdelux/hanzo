@@ -77,32 +77,26 @@ class CustomersType extends AbstractType
             }
 
             $builder->add('newsletter', 'checkbox', [
-                'label'         => 'create.newsletter',
-                'required'      => false,
-                'property_path' => false,
-                'attr'          => $attr,
+                'label'    => 'create.newsletter',
+                'required' => false,
+                'mapped'   => false,
+                'attr'     => $attr,
             ]);
 
             $builder->add('accept', 'checkbox', [
-                'label'         => 'create.accept',
-                'required'      => true,
-                'property_path' => false,
-                'attr'          => ['autocomplete' => 'off'],
+                'label'    => 'create.accept',
+                'required' => true,
+                'mapped'   => false,
+                'attr'     => ['autocomplete' => 'off'],
             ]);
         }
-    }
-
-    public function getDefaultOptions(array $options)
-    {
-        return array(
-            'data_class' => 'Hanzo\Model\Customers',
-        );
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'translation_domain' => 'account'
+            'translation_domain' => 'account',
+            'data_class' => 'Hanzo\Model\Customers',
         ));
     }
 

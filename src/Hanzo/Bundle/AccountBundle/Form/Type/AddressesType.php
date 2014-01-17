@@ -5,6 +5,7 @@ namespace Hanzo\Bundle\AccountBundle\Form\Type;
 use Hanzo\Core\Hanzo;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class AddressesType extends AbstractType
 {
@@ -30,7 +31,7 @@ class AddressesType extends AbstractType
         ));
 
         $attr = [];
-        if (in_array($short_domain_key, ['DK', 'NO', 'SE', 'FI'])) {
+        if (in_array($short_domain_key, ['AT', 'CH', 'DE', 'DK', 'FI', 'NL', 'NO', 'SE'])) {
             $attr = ['class' => 'auto-city'];
         }
 
@@ -68,11 +69,12 @@ class AddressesType extends AbstractType
         }
     }
 
-    public function getDefaultOptions(array $options)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        return array(
+        $resolver->setDefaults(array(
+            'translation_domain' => 'account',
             'data_class' => 'Hanzo\Model\Addresses',
-        );
+        ));
     }
 
     public function getName()

@@ -17,3 +17,7 @@ propel:
 
 cms:
     frontpage: 538
+
+account:
+    consignor:
+        actor_id: 69

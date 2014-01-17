@@ -71,8 +71,11 @@ if (in_array(@$_SERVER['REMOTE_ADDR'], array('::1', '127.0.0.1'))) {
     $dev = false;
     $env = 'prod_'.$env;
 
-    $loader = new ApcClassLoader('sf2', $loader);
-    $loader->register(true);
+    // apc does not work on php 5.5
+    if (version_compare(PHP_VERSION, '5.5.0') < 0) {
+        $loader = new ApcClassLoader('sf2', $loader);
+        $loader->register(true);
+    }
 }
 
 require_once __DIR__.'/../app/AppKernel.php';

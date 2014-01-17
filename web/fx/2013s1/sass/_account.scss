@@ -37,3 +37,11 @@ form.create {
 #body-edit-account form.create .button {
     display: inline-block;
 }
+
+.sprite.trackntrace {
+  @include icons-sprite(trackntrace);
+  height: icons-sprite-height(trackntrace);
+  width: icons-sprite-width(trackntrace);
+
+  margin-right: 10px;
+}

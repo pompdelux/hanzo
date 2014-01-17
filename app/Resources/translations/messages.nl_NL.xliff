@@ -4,7 +4,11 @@
         <body>
             <trans-unit id="size.guide.link">
                 <source>size.guide.link</source>
-                <target><![CDATA[<a href="/nl_NL/voorpagina/klantenservice/sizeguide" target="_blank" title="Size guide">» Size guide</a>]]></target>
+                <target>images/pages/Size_Guide_NL.jpg</target>
+            </trans-unit>
+            <trans-unit id="size.guide.link.text">
+                <source>size.guide.link.text</source>
+                <target>» Size guide</target>
             </trans-unit>
             <trans-unit id="out.of.stock">
                 <source>out.of.stock</source>
@@ -147,7 +151,7 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
                     E-mail: <a href="mailto:mail@pompdelux.nl">mail@pompdelux.nl</a><br>
                     Maandag t/m donderdag 9 - 16<br>
                     Vrijdag 9 - 14<br>
-                    Zaterdag en zon-en Deense feestdagen gesloten.
+                    Zaterdag en zondag en op Deense feestdagen gesloten.
                 ]]></target>
             </trans-unit>
             <trans-unit id="footer.address">
@@ -255,7 +259,7 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
                     <li><a href="/nl_NL/voorpagina/klantenservice/retourneren">Retourneren</a></li>
                     <li><a href="/nl_NL/voorpagina/klantenservice/ruilen">Ruilen</a></li>
                     <li><a href="/nl_NL/voorpagina/klantenservice/retourformulier">Retourformulier</a></li>
-					<li><a href="/nl_NL/voorpagina/klantenservice/het-wassen">Het wassen</a></li>
+					<li><a href="/nl_NL/voorpagina/het-wassen">Het wassen</a></li>
                     <li><a href="/nl_NL/voorpagina/klantenservice/sizeguide">Sizeguide</a></li>
 					<li><a href="/nl_NL/voorpagina/klantenservice/voorwaarden">Voorwaarden</a></li>
 					<li><a href="/nl_NL/voorpagina/klantenservice/over-de-webshop">Over de webshop</a></li>
@@ -268,15 +272,15 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
                 <h2>HOME SHOPPING</h2>
                 <ul class="menu">
 				<li><a href="/nl_NL/voorpagina/home-shopping">Word gastvrouw</a></li>
-                    <li><a href="/nl_NL/voorpagina/vind-een-consulente">Vind een consulent</a></li>
+                    <li><a href="/nl_NL/voorpagina/vind-een-consulent">Vind een consulent</a></li>
                     <li><a href="/nl_NL/voorpagina/open-huis">Open huis</a></li>
 					<li><a href="/nl_NL/voorpagina/catalogus">Catalogus</a></li>
 					<li><a href="/nl_NL/voorpagina/word-consulent/een-leuke-vrijetijdsbaan">Word consulent</a></li>
                 </ul><br>		
 				<h2>BE SOCIAL</h2>
 				 <ul class="menu">
-				<li><a href="http://instagram.com/pompdelux_official">Instagram</a></li>
-				<li><a href="https://www.facebook.com/POMPdeLUXDK">Facebook</a></li>
+				<li><a href="http://instagram.com/pompdelux_official" target="_blank"> Instagram</a></li>
+				<li><a href="https://www.facebook.com/POMPdeLUXDK" target="_blank">Facebook</a></li>
 				<li><a href="/nl_NL/voorpagina/catalogus/backstage-video">Backstage video</a></li>
                 </ul>
                 ]]></target>
@@ -287,7 +291,7 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
                 <h2>MEER POMPDELUX</h2>
                 <ul class="menu">
                     <li><a href="/nl_NL/voorpagina/over-pompdelux">Over POMPdeLUX</a></li>
-                    <li><a href="/nl_NL/voorpagina/over-pompdelux/corporate-social-responsibility/csr-verslag">CSR-verslag</a></li>
+                    <li><a href="/nl_NL/voorpagina/over-pompdelux/corporate-social-responsibility/csr-verslag">CSR</a></li>
                     <li><a href="/nl_NL/voorpagina/wedstrijd">Wedstrijd</a></li>
 					<li><a href="/nl_NL/voorpagina/over-pompdelux/contact">Contact</a></li>
                 </ul>

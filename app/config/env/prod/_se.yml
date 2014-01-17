@@ -30,3 +30,7 @@ propel:
                 #         user:         %database_slave_3_user%
                 #         password:     %database_slave_3_password%
                 #         dsn:          %database_slave_3_dsn%
+
+account:
+    consignor:
+        actor_id: 64

@@ -140,7 +140,7 @@ class DibsController extends CoreController
         $order = OrdersPeer::retriveByPaymentGatewayId( $order_id );
 
         if (!empty($order) && ($order->getId() !== $this->get('session')->get('order_id'))) {
-          error_log(__LINE__.':'.__FILE__.' Order id mismatch, in url: '.$order_id. ' in session: '. $this->get('session')->get('order_id') ); // hf@bellcom.dk debugging
+            error_log(__LINE__.':'.__FILE__.' Order id mismatch, in url: '.$order_id. ' in session: '. $this->getRequest()->getSession()->get('order_id') ); // hf@bellcom.dk debugging
         }
 
         return $this->render('PaymentBundle:Default:process.html.twig', [

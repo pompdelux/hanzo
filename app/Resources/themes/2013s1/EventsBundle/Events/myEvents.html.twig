@@ -7,11 +7,11 @@
         </hgroup>
     </header>
 
-    {% if app.session.hasFlash('notice') %}
+    {% for message in app.session.flashbag.get('notice') %}
         <div class="message notice ">
-            {{ app.session.flash('notice')|trans({}, 'events') }}
+            {{ message|trans({}, 'events') }}
         </div>
-    {% endif %}
+    {% endfor %}
 
     <div class="grid_8 alpha omega">
         <div class="grid_6 alpha">
@@ -133,7 +133,7 @@
         </div>
 
         <div class="grid_2 omega">
-            {% include 'AccountBundle:Default:aside.html.twig' %}
+            {{ include('AccountBundle:Default:aside.html.twig') }}
         </div>
     </div>
 {% endblock %}

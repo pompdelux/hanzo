@@ -29,11 +29,11 @@
     <div class="grid_6 omega">
         <h1>{{ 'consultant.newsletter.header.text'|trans({}, 'consultant') }}</h1>
 
-        {% if app.session.hasFlash('notice') %}
+        {% for message in app.session.flashbag.get('notice') %}
         <div class="message notice">
-            {{ app.session.flash('notice')|trans({}, 'events') }}
+            {{ message|trans({}, 'events') }}
         </div>
-        {% endif %}
+        {% endfor %}
 
 
         <p>{{ 'consultant.newsletter.description.text'|trans({}, 'consultant') }}</p>

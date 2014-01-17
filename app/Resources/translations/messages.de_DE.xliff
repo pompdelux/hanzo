@@ -4,7 +4,11 @@
         <body>
             <trans-unit id="size.guide.link">
                 <source>size.guide.link</source>
-                <target><![CDATA[<a href="/de_DE/home/kundendienst/sizeguide" target="_blank" title="Size guide">» Size guide</a>]]></target>
+                <target>images/pages/Size_Guide_DE.jpg</target>
+            </trans-unit>
+            <trans-unit id="size.guide.link.text">
+                <source>size.guide.link.text</source>
+                <target>» Size guide</target>
             </trans-unit>
             <trans-unit id="out.of.stock">
                 <source>out.of.stock</source>
@@ -273,16 +277,16 @@ Paket:Das Paket wird an Ihre Adresse geliefert und kostet EUR 4,95 (EUR 3,95, we
                 <target><![CDATA[
                 <h2>HOME SHOPPING</h2>
                 <ul class="menu">
-				<li><a href="/de_DE/home/beraterin-werden/ein-schoner-nebenjob">Beraterin werden</a></li>
-				<li><a href="/de_DE/home/home-shopping/beraterin-finden" target="_blank">Beraterin finden</a></li>
-				<li><a href="/de_DE/home/home-shopping/tag-der-offenen-tur" target="_blank">Tag der offenen Tür</a></li>
+				<li><a href="/de_DE/home/uber-home-shopping">Werden Sie Gastgeberin</a></li>
+				<li><a href="/de_DE/home/home-shopping/beraterin-finden">Beraterin finden</a></li>
+				<li><a href="/de_DE/home/home-shopping/tag-der-offenen-tur">Tag der offenen Tür</a></li>
 				<li><a href="/de_DE/home/katalog">Katalog</a></li>
 				<li><a href="/de_DE/home/beraterin-werden/ein-schoner-nebenjob">Beraterin werden</a></li>
 				</ul><br>		
 				<h2>BE SOCIAL</h2>
 				 <ul class="menu">
-				<li><a href="http://instagram.com/pompdelux_official">Instagram</a></li>
-				<li><a href="https://www.facebook.com/POMPdeLUXDK">Facebook</a></li>
+				<li><a href="http://instagram.com/pompdelux_official" target="_blank"> Instagram</a></li>
+				<li><a href="https://www.facebook.com/POMPdeLUXDK" target="_blank">Facebook</a></li>
 				<li><a href="/de_DE/home/katalog/backstage-video">Backstage video</a></li>
                 </ul>
                 ]]></target>
@@ -292,9 +296,9 @@ Paket:Das Paket wird an Ihre Adresse geliefert und kostet EUR 4,95 (EUR 3,95, we
                 <target><![CDATA[
                 <h2>MEHR POMPDELUX</h2>
                 <ul class="menu">
-				<li><a href="/de_DE/home/uber-pompdelux" target="_blank">Über POMPdeLUX</a></li> 
+				<li><a href="/de_DE/home/uber-pompdelux">Über POMPdeLUX</a></li> 
 				<li><a href="/de_DE/home/uber-pompdelux/corporate-social-responsibility/csr-bericht">CSR-bericht</a></li>
-				<li><a href="/de_DE/home/gewinnspiele" target="_blank">Gewinnspiele</a></li>
+				<li><a href="/de_DE/home/gewinnspiele">Gewinnspiele</a></li>
 				<li><a href="/de_DE/home/uber-pompdelux/kontakt">Kontakt</a></li>
 				</ul>
                 ]]></target>

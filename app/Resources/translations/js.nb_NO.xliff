@@ -367,6 +367,14 @@
                 <source>form.buy.choose.first</source>
                 <target>Du skal først velge en farge.</target>
             </trans-unit>
+            <trans-unit id="rma.return.all.text">
+                <source>rma.return.all.text</source>
+                <target>Angret kjøp (pengene i retur)</target>
+            </trans-unit>
+            <trans-unit id="rma.product.not.filled.correctly">
+                <source>rma.product.not.filled.correctly</source>
+                <target>Når du skal bytte din vare, skal du taste inn både størrelse og farge.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

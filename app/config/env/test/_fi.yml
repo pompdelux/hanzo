@@ -17,3 +17,7 @@ propel:
                 dsn:                  mysql:host=%test_fi_database_host%;dbname=%test_fi_database_name%
                 options:              {}
                 attributes:           {}
+
+account:
+    consignor:
+        actor_id: 68

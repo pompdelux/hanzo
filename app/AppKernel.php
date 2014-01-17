@@ -9,10 +9,7 @@ use Hanzo\Core\Tools;
 
 class AppKernel extends Kernel
 {
-    protected $terminate_events = array();
     protected $settings = array();
-
-    public $locale;
 
     public function registerBundles()
     {
@@ -64,6 +61,7 @@ class AppKernel extends Kernel
             new Hanzo\Bundle\RetargetingBundle\RetargetingBundle(),
             new Hanzo\Bundle\RMABundle\RMABundle(),
             new Hanzo\Bundle\StockBundle\StockBundle(),
+            new Hanzo\Bundle\GoogleBundle\GoogleBundle(),
         );
 
         if (preg_match('/^(test|dev)_/', $this->getEnvironment())) {
@@ -161,6 +159,13 @@ class AppKernel extends Kernel
         $loader->load($base_dir.'config.yml');
         $loader->load($config_dir.'config.yml');
         $loader->load($config_dir.'_'.$lang.'.yml');
+
+        if (is_file($config_dir.'local_config.yml')) {
+            $loader->load($config_dir.'local_config.yml');
+        }
+        if (is_file($config_dir.'_local_'.$lang.'.yml')) {
+            $loader->load($config_dir.'_local_'.$lang.'.yml');
+        }
 
         if ('consultant' == $mode) {
             $file = $config_dir.'_consultant.yml';

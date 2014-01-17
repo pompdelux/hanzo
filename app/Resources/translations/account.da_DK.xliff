@@ -201,7 +201,7 @@
             </trans-unit>
             <trans-unit id="65">
                 <source>create.account</source>
-                <target></target>
+                <target>Videre</target>
             </trans-unit>
             <trans-unit id="create.account.header" approved="no">
                 <source>create.account.header</source>
@@ -221,7 +221,7 @@
             </trans-unit>
             <trans-unit id="67">
                 <source>create.notice</source>
-                <target><![CDATA[<strong>Er du allerede kunde?</strong><br> Hvis du allerede har en konto hos os, skal du logge ind på <a href="%url%">Min side</a>]]></target>
+                <target><![CDATA[<strong>Er du allerede kunde?</strong><br> Hvis du allerede har en konto hos os, skal du logge ind på <a href="%url%">Min side</a>.<br><br>]]></target>
             </trans-unit>
             <trans-unit id="68">
                 <source>nno.title</source>
@@ -229,7 +229,7 @@
             </trans-unit>
             <trans-unit id="69">
                 <source>nno.description</source>
-                <target>Indtast dit telefonnummer og få autoudfyldt din adresse.</target>
+                <target><![CDATA[<b>Er du ny kunde?</b><br>Indtast dit telefonnummer og få autoudfyldt din adresse.]]></target>
             </trans-unit>
             <trans-unit id="70">
                 <source>nno.fetch</source>
@@ -449,10 +449,24 @@
             </trans-unit>
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
-                <target><![CDATA[<p>På Min side kan du rette dine informationer og til- og afmelde nyhedsbrev. Du har ligeledes mulighed for at redigere i din ordre.<br><br>Din ordre kan have følgende status:<br><br><b>Afventer</b><br>Din ordre er endnu ikke ekspederet, og du har som minimum 24 timer til at redigere i din ordre.
-Du har mulighed for at ændre/tilføje/slette på din ordre. Du skal klikke på <img src="/fx/images/icons/icons/edit.png" alt="Edit">ved redigering.
-Bemærk: Betalingen skal gennemføres – tidligere betalingsreservation bliver automatisk slettet.
-Ønsker du at slette hele din ordre, klikker du på <img src="/fx/images/icons/icons/delete.png" alt="Delete"><br><br><b>Stop editering</b><br>Du er eventuelt kommet til at afbryde din redigering. Tryk på knappen ”Stop editering”, og du kan efterfølgende redigere din ordre på ny.<br><br><b>Under behandling</b><br>Din ordre er nu i gang med at blive behandlet på vores lager og bliver afsendt til dig inden for 1-2 dage. Det er ikke muligt at redigere/bremse din ordre.<br><br><b>Faktureret</b><br>Din ordre er afsendt fra vores lager. Fakturaen finder du vedhæftet som PDF fil, under kolonnen faktura <img src="/fx/images/icons/icons/pdf.png" alt="PDF">i løbet af 24 timer efter afsendelsen.<br><br><b>Returnering</b><br>Ønsker du at returnere en vare, klikker du på <img src="/fx/images/icons/icons/return.png" alt="Return"><br><br>Kan du ikke finde varen du ønsker at returnere, kan du klikke på linket her og udskrive returseddel manuelt. <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel.pdf" target="_blank">Returseddel (PDF)</a><br><br></p>]]></target>
+                <target><![CDATA[
+                    <p>
+                        På Min side kan du rette dine informationer og til- og afmelde nyhedsbrev. Du har ligeledes mulighed for at redigere i din ordre.</p><br><br>
+                        Din ordre kan have følgende status:<br><br>
+                        <b>Afventer</b><br>
+                        Din ordre er endnu ikke ekspederet, og du har som minimum 24 timer til at redigere i din ordre. Du har mulighed for at ændre/tilføje/slette på din ordre. Du skal klikke på <img src="/fx/images/icons/icons/edit.png" alt="Edit">ved redigering. Bemærk: Betalingen skal gennemføres – tidligere betalingsreservation bliver automatisk slettet. Ønsker du at slette hele din ordre, klikker du på <img src="/fx/images/icons/icons/delete.png" alt="Delete"><br><br>
+                        <b>Stop editering</b><br>
+                        Du er eventuelt kommet til at afbryde din redigering. Tryk på knappen ”Stop editering”, og du kan efterfølgende redigere din ordre på ny.<br><br>
+                        <b>Under behandling</b><br>
+                        Din ordre er nu i gang med at blive behandlet på vores lager og bliver afsendt til dig inden for 1-2 dage. Det er ikke muligt at redigere/bremse din ordre.<br><br>
+                        <b>Faktureret</b><br>
+                        Din ordre er afsendt fra vores lager. Fakturaen finder du vedhæftet som PDF fil, under kolonnen faktura <img src="/fx/images/icons/icons/pdf.png" alt="PDF">i løbet af 24 timer efter afsendelsen.<br><br>
+                        <b>Returnering</b><br>
+                        Ønsker du at returnere en vare, klikker du på <img src="/fx/images/icons/icons/return.png" alt="Return"><br><br>
+                        Kan du ikke finde varen du ønsker at returnere, kan du klikke på linket her og udskrive returseddel manuelt. <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel.pdf" target="_blank">Returseddel (PDF)</a><br><br>
+                        Klik på <img src="/fx/images/icons/icons/trackntrace.png" alt="Track 'n trace"> udfor din ordre for at følge din pakke. Track and Trace siden åbner i et nyt vindue.<br><br>
+                    </p>
+                ]]></target>
             </trans-unit>
             <trans-unit id="newsletter" approved="no">
                 <source>newsletter</source>

@@ -38,7 +38,8 @@ class PensioApi extends BasePaymentApi
     /**
      * __construct
      *
-     * @return void
+     * @param array $parameters
+     * @param array $settings
      * @author Ulrik Nielsen <un@bellcom.dk>
      */
     public function __construct($parameters, $settings)
@@ -140,8 +141,11 @@ class PensioApi extends BasePaymentApi
     /**
      * validate the callback before processing the order.
      *
-     * @param Request $request
-     * @param Orders  $order
+     * @param  Request $request
+     * @param  Orders  $order
+     * @throws InvalidOrderStateException
+     * @throws PaymentFailedException
+     * @throws Exception
      */
     public function verifyCallback(Request $request, Orders $order)
     {
@@ -165,12 +169,16 @@ class PensioApi extends BasePaymentApi
     /**
      * Build and return the form used in the checkout flow.
      *
-     * @param  Orders $order The order object
+     * @param  Orders  $order The order object
+     * @param  Request $request
      * @return string The form used to proceed to the Pensio payment window
      */
     public function getProcessButton(Orders $order, Request $request)
     {
-        $language = LanguagesQuery::create()->select('iso2')->findOneById($order->getLanguagesId());
+        $language = LanguagesQuery::create()
+            ->select('iso2')
+            ->findOneById($order->getLanguagesId()
+        );
 
         $cookie = [];
         foreach ($_COOKIE as $key => $value) {

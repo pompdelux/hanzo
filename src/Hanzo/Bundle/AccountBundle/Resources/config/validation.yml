@@ -4,31 +4,39 @@ Hanzo\Model\Addresses:
             - NotBlank:
                 message: address.first_name.required
                 groups: [shipping, company_shipping, payment, overnightbox]
-            - MinLength: 2
+            - Length:
+                min: 2
+                minMessage: address.first_name.required
         last_name:
             - NotBlank:
                 message: address.last_name.required
                 groups: [shipping, company_shipping, payment, overnightbox]
-            - MinLength: 2
+            - Length:
+                min: 2
+                minMessage: address.last_name.required
         address_line_1:
             - NotBlank:
                 message: address.address_line_1.required
                 groups: [shipping, company_shipping, payment, overnightbox, customer]
-            - MinLength: 2
-            - MaxLength:
-                limit: 35
-                groups: [shipping, company_shipping, payment, overnightbox, customer]
-                message: address_line_1.max.length
+            - Length:
+                min: 2
+                max: 35
+                minMessage: address.address_line_1.required
+                maxMessage: address.address_line_1.required
         postal_code:
             - NotBlank:
                 message: address.postal_code.required
                 groups: [shipping, company_shipping, payment, overnightbox, customer]
-            - MinLength: 2
+            - Length:
+                min: 2
+                minMessage: address.postal_code.required
         city:
             - NotBlank:
                 message: address.city.required
                 groups: [shipping, company_shipping, payment, overnightbox, customer]
-            - MinLength: 2
+            - Length:
+                min: 2
+                minMessage: address.city.required
         countries_id:
             - NotBlank:
                 message: address.countries_id.required
@@ -56,25 +64,26 @@ Hanzo\Model\Customers:
             - NotBlank:
                 message: address.first_name.required
                 groups: [customer, customer_edit]
-            - MinLength:
-                limit: 2
-                message: address.first_name.min.length
+            - Length:
+                min: 2
+                minMessage: address.first_name.min.length
                 groups: [customer, customer_edit]
         last_name:
             - NotBlank:
                 message: address.last_name.required
                 groups: [customer, customer_edit]
-            - MinLength:
-                limit: 2
-                message: address.last_name.min.length
+            - Length:
+                min: 2
+                minMessage: address.last_name.min.length
                 groups: [customer, customer_edit]
         phone:
             - NotBlank:
                 message: phone.required
                 groups: [customer, customer_edit]
-            - MinLength:
-                limit: 8
-                message: phone.min.length
+            - Length:
+                min: 8
+                max: 12
+                exactMessage: phone.min.length
                 groups: [customer, customer_edit]
             - Regex:
                 pattern: "/^\d+$/"
@@ -92,9 +101,9 @@ Hanzo\Model\Customers:
             - NotBlank:
                 message: password.required
                 groups: [customer]
-            - MinLength:
-                limit: 5
-                message: password.min.length
+            - Length:
+                min: 5
+                minMessage: password.min.length
                 groups: [customer]
     # NICETO: figure out why this does not trigger an error
     getters:

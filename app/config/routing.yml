@@ -3,6 +3,11 @@ stock:
     prefix:   /{_locale}/
     type:     annotation
 
+google:
+    resource: "@GoogleBundle/Controller/"
+    prefix:   /{_locale}/
+    type:     annotation
+
 RetargetingBundle:
     resource: "@RetargetingBundle/Controller/"
     prefix:   /{_locale}/

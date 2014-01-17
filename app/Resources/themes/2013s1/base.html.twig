@@ -5,7 +5,6 @@
 <!--[if IE 9]>    <html class="no-js ie9" lang="{{ html_lang }}" xmlns:og="http://ogp.me/ns#"> <![endif]-->
 <!--[if gt IE 9]><!--> <html class="no-js" lang="{{ html_lang }}" xmlns:og="http://ogp.me/ns#"> <!--<![endif]-->
 <head>
-
 {% if browser_title is defined and page_type|default('page') != 'frontpage' %}
 <title>{{ browser_title }} - {{ 'browser.title'|trans }}</title>
 {% else %}
@@ -59,7 +58,9 @@
 
 <div id="container" class="container container_8">
     <nav class="first grid_8 row main-menu">
-        {% render 'CMSBundle:Menu:byTitle' with {'title':'topmenu'} %}
+        {{ render(controller('CMSBundle:Menu:byTitle', {
+            'title':'topmenu'
+        })) }}
 
         <ul class="right horizontal">
             <li class="last">
@@ -84,22 +85,22 @@
                 <li id="select-domain">
                     <a class="open-menu" href="#">Change Country</a>
                     <div class="dropdown" style="display: none">
-                        <!-- <a href="{{ baseurl }}/de_AT/">Austria</a><br> -->
-                        <a href="{{ baseurl }}/da_DK/">Denmark</a><br><br>
-                        <a href="{{ baseurl }}/fi_FI/">Finland</a><br><br>
-                        <a href="{{ baseurl }}/de_DE/">Germany</a><br><br>
-                        <a href="{{ baseurl }}/en_GB/">International</a><br><br>
-                        <a href="{{ baseurl }}/nl_NL/">Netherlands</a><br><br>
-                        <a href="{{ baseurl }}/nb_NO/">Norway</a><br><br>
-                        <a href="{{ baseurl }}/sv_SE/">Sweden</a><br>
-                        <!-- <a href="{{ baseurl }}/de_CH/">Switzerland</a><br> -->
+                        <a href="{{ baseurl }}/de_AT/">Austria</a>
+                        <a href="{{ baseurl }}/da_DK/">Denmark</a>
+                        <a href="{{ baseurl }}/fi_FI/">Finland</a>
+                        <a href="{{ baseurl }}/de_DE/">Germany</a>
+                        <a href="{{ baseurl }}/en_GB/">International</a>
+                        <a href="{{ baseurl }}/nl_NL/">Netherlands</a>
+                        <a href="{{ baseurl }}/nb_NO/">Norway</a>
+                        <a href="{{ baseurl }}/sv_SE/">Sweden</a>
+                        <a href="{{ baseurl }}/de_CH/">Switzerland</a>
                     </div>
                 </li>
             </ul>
             <ul class="horizontal menu right second">
                 <li id="mini-basket" class="basket">
                     <span class="sprite"></span>
-                    <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" title="{{ "show.basket"|trans }}"> {% render 'BasketBundle:Default:miniBasket' %} </a>
+                    <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" title="{{ "show.basket"|trans }}"> {{ render(controller('BasketBundle:Default:miniBasket')) }} </a>
                 </li>
                 <li class="last"><a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}">{{ "show.basket"|trans }}</a></li>
         {% endif %}
@@ -107,7 +108,11 @@
         </nav>
 
         <nav class="menu main-menu">
-            {% render 'CMSBundle:Menu:menu' with {'type': left_menu.type, 'thread': left_menu.thread, 'from': left_menu.from } %}
+            {{ render(controller('CMSBundle:Menu:menu', {
+                'type':   left_menu.type,
+                'thread': left_menu.thread,
+                'from':   left_menu.from
+            })) }}
         </nav><!-- /nav.main -->
 
     {% endif %}
@@ -124,19 +129,15 @@
         <div class="grid_8 row">
             <hr class="right">
         </div>
-
         <div class="grid_1-5 footer-menu footer-menu-1">
             {{ "footer.menu_1"|trans|raw }}
         </div>
-
         <div class="grid_1-5 footer-menu footer-menu-2">
             {{ "footer.menu_2"|trans|raw }}
         </div>
-
         <div class="grid_1-5 footer-menu footer-menu-3">
             {{ "footer.menu_3"|trans|raw }}
         </div>
-
         <div class="grid_2-5 footer-menu footer-menu-4">
             <div class="sprite"></div>
             <div class="container">
@@ -166,10 +167,8 @@
 </div>
 
 {{ include('::desktop-footer.html.twig') }}
-
 {% block javascript %}{% endblock %}
-
-{% render 'NewsletterBundle:Default:js' %}
+{{ render(controller('NewsletterBundle:Default:js')) }}
 
 <script>if (jaiks) {jaiks.exec();}</script>
 {#
@@ -180,8 +179,7 @@
 <script>
 if (1 == $('#shipping-block input').length) {
     $('#shipping-block input').first().click();
-    {# ie7 has some issues with click, apparently #}
-    {# ie8 apparently also #}
+    {# ie7+8 has some issues with click, apparently #}
     if ($('html').hasClass('ie7') || $('html').hasClass('ie8')) {
         $('#shipping-block input').first().click();
     }

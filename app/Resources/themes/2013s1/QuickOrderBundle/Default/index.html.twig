@@ -4,11 +4,11 @@
 
 <h1>{{ 'quickorder.header.text'|trans({}, 'quickorder') }}</h1>
 
-{% if app.session.hasFlash('notice') %}
+{% for message in app.session.flashbag.get('notice') %}
 <div class="message notice">
-  {{ app.session.flash('notice')|trans({}, 'quickorder') }}
+  {{ message|trans({}, 'quickorder') }}
 </div>
-{% endif %}
+{% endfor %}
 
 
 <p>{{ 'quickorder.description.text'|trans({}, 'quickorder') }}</p>
@@ -106,5 +106,6 @@
 {% endblock %}
 
 {% block javascript %}
-<script src="{{ asset('/fx/scripts/bootstrap-typeahead.js') }}"></script>
+<!-- script src="{{ asset('/fx/scripts/bootstrap-typeahead.js') }}"></script -->
+<script src="{{ asset('/fx/scripts/typeahead.min.js') }}"></script>
 {% endblock %}

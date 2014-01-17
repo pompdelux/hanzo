@@ -53,7 +53,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     protected static $peer;
 
     /**
-     * The flag var to prevent infinit loop in deep copy
+     * The flag var to prevent infinite loop in deep copy
      * @var       boolean
      */
     protected $startCopy = false;
@@ -463,6 +463,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getId()
     {
+
         return $this->id;
     }
 
@@ -473,6 +474,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getVersionId()
     {
+
         return $this->version_id;
     }
 
@@ -483,6 +485,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getSessionId()
     {
+
         return $this->session_id;
     }
 
@@ -493,6 +496,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getPaymentGatewayId()
     {
+
         return $this->payment_gateway_id;
     }
 
@@ -503,6 +507,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getState()
     {
+
         return $this->state;
     }
 
@@ -513,6 +518,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getInEdit()
     {
+
         return $this->in_edit;
     }
 
@@ -523,6 +529,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getCustomersId()
     {
+
         return $this->customers_id;
     }
 
@@ -533,6 +540,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getFirstName()
     {
+
         return $this->first_name;
     }
 
@@ -543,6 +551,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getLastName()
     {
+
         return $this->last_name;
     }
 
@@ -553,6 +562,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getEmail()
     {
+
         return $this->email;
     }
 
@@ -563,6 +573,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getPhone()
     {
+
         return $this->phone;
     }
 
@@ -573,6 +584,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getLanguagesId()
     {
+
         return $this->languages_id;
     }
 
@@ -583,6 +595,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getCurrencyCode()
     {
+
         return $this->currency_code;
     }
 
@@ -593,6 +606,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getBillingTitle()
     {
+
         return $this->billing_title;
     }
 
@@ -603,6 +617,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getBillingFirstName()
     {
+
         return $this->billing_first_name;
     }
 
@@ -613,6 +628,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getBillingLastName()
     {
+
         return $this->billing_last_name;
     }
 
@@ -623,6 +639,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getBillingAddressLine1()
     {
+
         return $this->billing_address_line_1;
     }
 
@@ -633,6 +650,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getBillingAddressLine2()
     {
+
         return $this->billing_address_line_2;
     }
 
@@ -643,6 +661,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getBillingPostalCode()
     {
+
         return $this->billing_postal_code;
     }
 
@@ -653,6 +672,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getBillingCity()
     {
+
         return $this->billing_city;
     }
 
@@ -663,6 +683,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getBillingCountry()
     {
+
         return $this->billing_country;
     }
 
@@ -673,6 +694,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getBillingCountriesId()
     {
+
         return $this->billing_countries_id;
     }
 
@@ -683,6 +705,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getBillingStateProvince()
     {
+
         return $this->billing_state_province;
     }
 
@@ -693,6 +716,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getBillingCompanyName()
     {
+
         return $this->billing_company_name;
     }
 
@@ -703,6 +727,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getBillingMethod()
     {
+
         return $this->billing_method;
     }
 
@@ -713,6 +738,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getBillingExternalAddressId()
     {
+
         return $this->billing_external_address_id;
     }
 
@@ -723,6 +749,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getDeliveryTitle()
     {
+
         return $this->delivery_title;
     }
 
@@ -733,6 +760,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getDeliveryFirstName()
     {
+
         return $this->delivery_first_name;
     }
 
@@ -743,6 +771,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getDeliveryLastName()
     {
+
         return $this->delivery_last_name;
     }
 
@@ -753,6 +782,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getDeliveryAddressLine1()
     {
+
         return $this->delivery_address_line_1;
     }
 
@@ -763,6 +793,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getDeliveryAddressLine2()
     {
+
         return $this->delivery_address_line_2;
     }
 
@@ -773,6 +804,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getDeliveryPostalCode()
     {
+
         return $this->delivery_postal_code;
     }
 
@@ -783,6 +815,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getDeliveryCity()
     {
+
         return $this->delivery_city;
     }
 
@@ -793,6 +826,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getDeliveryCountry()
     {
+
         return $this->delivery_country;
     }
 
@@ -803,6 +837,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getDeliveryCountriesId()
     {
+
         return $this->delivery_countries_id;
     }
 
@@ -813,6 +848,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getDeliveryStateProvince()
     {
+
         return $this->delivery_state_province;
     }
 
@@ -823,6 +859,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getDeliveryCompanyName()
     {
+
         return $this->delivery_company_name;
     }
 
@@ -833,6 +870,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getDeliveryMethod()
     {
+
         return $this->delivery_method;
     }
 
@@ -843,6 +881,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getDeliveryExternalAddressId()
     {
+
         return $this->delivery_external_address_id;
     }
 
@@ -853,6 +892,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function getEventsId()
     {
+
         return $this->events_id;
     }
 
@@ -860,7 +900,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      * Get the [optionally formatted] temporal [finished_at] column value.
      *
      * This accessor only only work with unix epoch dates.  Consider enabling the propel.useDateTimeClass
-     * option in order to avoid converstions to integers (which are limited in the dates they can express).
+     * option in order to avoid conversions to integers (which are limited in the dates they can express).
      *
      * @param string $format The date/time format string (either date()-style or strftime()-style).
      *				 If format is null, then the raw unix timestamp integer will be returned.
@@ -902,7 +942,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      * Get the [optionally formatted] temporal [created_at] column value.
      *
      * This accessor only only work with unix epoch dates.  Consider enabling the propel.useDateTimeClass
-     * option in order to avoid converstions to integers (which are limited in the dates they can express).
+     * option in order to avoid conversions to integers (which are limited in the dates they can express).
      *
      * @param string $format The date/time format string (either date()-style or strftime()-style).
      *				 If format is null, then the raw unix timestamp integer will be returned.
@@ -944,7 +984,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      * Get the [optionally formatted] temporal [updated_at] column value.
      *
      * This accessor only only work with unix epoch dates.  Consider enabling the propel.useDateTimeClass
-     * option in order to avoid converstions to integers (which are limited in the dates they can express).
+     * option in order to avoid conversions to integers (which are limited in the dates they can express).
      *
      * @param string $format The date/time format string (either date()-style or strftime()-style).
      *				 If format is null, then the raw unix timestamp integer will be returned.
@@ -985,7 +1025,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [id] column.
      *
-     * @param int $v new value
+     * @param  int $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setId($v)
@@ -1006,7 +1046,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [version_id] column.
      *
-     * @param int $v new value
+     * @param  int $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setVersionId($v)
@@ -1027,7 +1067,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [session_id] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setSessionId($v)
@@ -1048,7 +1088,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [payment_gateway_id] column.
      *
-     * @param int $v new value
+     * @param  int $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setPaymentGatewayId($v)
@@ -1069,7 +1109,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [state] column.
      *
-     * @param int $v new value
+     * @param  int $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setState($v)
@@ -1119,7 +1159,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [customers_id] column.
      *
-     * @param int $v new value
+     * @param  int $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setCustomersId($v)
@@ -1144,7 +1184,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [first_name] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setFirstName($v)
@@ -1165,7 +1205,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [last_name] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setLastName($v)
@@ -1186,7 +1226,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [email] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setEmail($v)
@@ -1207,7 +1247,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [phone] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setPhone($v)
@@ -1228,7 +1268,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [languages_id] column.
      *
-     * @param int $v new value
+     * @param  int $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setLanguagesId($v)
@@ -1249,7 +1289,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [currency_code] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setCurrencyCode($v)
@@ -1270,7 +1310,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [billing_title] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setBillingTitle($v)
@@ -1291,7 +1331,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [billing_first_name] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setBillingFirstName($v)
@@ -1312,7 +1352,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [billing_last_name] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setBillingLastName($v)
@@ -1333,7 +1373,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [billing_address_line_1] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setBillingAddressLine1($v)
@@ -1354,7 +1394,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [billing_address_line_2] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setBillingAddressLine2($v)
@@ -1375,7 +1415,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [billing_postal_code] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setBillingPostalCode($v)
@@ -1396,7 +1436,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [billing_city] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setBillingCity($v)
@@ -1417,7 +1457,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [billing_country] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setBillingCountry($v)
@@ -1438,7 +1478,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [billing_countries_id] column.
      *
-     * @param int $v new value
+     * @param  int $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setBillingCountriesId($v)
@@ -1463,7 +1503,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [billing_state_province] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setBillingStateProvince($v)
@@ -1484,7 +1524,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [billing_company_name] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setBillingCompanyName($v)
@@ -1505,7 +1545,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [billing_method] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setBillingMethod($v)
@@ -1526,7 +1566,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [billing_external_address_id] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setBillingExternalAddressId($v)
@@ -1547,7 +1587,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [delivery_title] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setDeliveryTitle($v)
@@ -1568,7 +1608,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [delivery_first_name] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setDeliveryFirstName($v)
@@ -1589,7 +1629,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [delivery_last_name] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setDeliveryLastName($v)
@@ -1610,7 +1650,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [delivery_address_line_1] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setDeliveryAddressLine1($v)
@@ -1631,7 +1671,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [delivery_address_line_2] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setDeliveryAddressLine2($v)
@@ -1652,7 +1692,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [delivery_postal_code] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setDeliveryPostalCode($v)
@@ -1673,7 +1713,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [delivery_city] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setDeliveryCity($v)
@@ -1694,7 +1734,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [delivery_country] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setDeliveryCountry($v)
@@ -1715,7 +1755,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [delivery_countries_id] column.
      *
-     * @param int $v new value
+     * @param  int $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setDeliveryCountriesId($v)
@@ -1740,7 +1780,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [delivery_state_province] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setDeliveryStateProvince($v)
@@ -1761,7 +1801,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [delivery_company_name] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setDeliveryCompanyName($v)
@@ -1782,7 +1822,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [delivery_method] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setDeliveryMethod($v)
@@ -1803,7 +1843,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [delivery_external_address_id] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setDeliveryExternalAddressId($v)
@@ -1824,7 +1864,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Set the value of [events_id] column.
      *
-     * @param int $v new value
+     * @param  int $v new value
      * @return Orders The current object (for fluent API support)
      */
     public function setEventsId($v)
@@ -1954,7 +1994,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      * more tables.
      *
      * @param array $row The row returned by PDOStatement->fetch(PDO::FETCH_NUM)
-     * @param int $startcol 0-based offset column which indicates which restultset column to start with.
+     * @param int $startcol 0-based offset column which indicates which resultset column to start with.
      * @param boolean $rehydrate Whether this object is being re-hydrated from the database.
      * @return int             next starting column
      * @throws PropelException - Any caught Exception will be rewrapped as a PropelException.
@@ -2014,6 +2054,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 43; // 43 = OrdersPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -2229,7 +2270,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
             $this->alreadyInSave = true;
 
             // We call the save method on the following object(s) if they
-            // were passed to this object by their coresponding set
+            // were passed to this object by their corresponding set
             // method.  This object relates to these object(s) by a
             // foreign key reference.
 
@@ -2748,10 +2789,10 @@ abstract class BaseOrders extends BaseObject implements Persistent
      *
      * In addition to checking the current object, all related objects will
      * also be validated.  If all pass then <code>true</code> is returned; otherwise
-     * an aggreagated array of ValidationFailed objects will be returned.
+     * an aggregated array of ValidationFailed objects will be returned.
      *
      * @param array $columns Array of column names to validate.
-     * @return mixed <code>true</code> if all validations pass; array of <code>ValidationFailed</code> objets otherwise.
+     * @return mixed <code>true</code> if all validations pass; array of <code>ValidationFailed</code> objects otherwise.
      */
     protected function doValidate($columns = null)
     {
@@ -2763,7 +2804,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
 
 
             // We call the validate method on the following object(s) if they
-            // were passed to this object by their coresponding set
+            // were passed to this object by their corresponding set
             // method.  This object relates to these object(s) by a
             // foreign key reference.
 
@@ -3082,6 +3123,11 @@ abstract class BaseOrders extends BaseObject implements Persistent
             $keys[41] => $this->getCreatedAt(),
             $keys[42] => $this->getUpdatedAt(),
         );
+        $virtualColumns = $this->virtualColumns;
+        foreach ($virtualColumns as $key => $virtualColumn) {
+            $result[$key] = $virtualColumn;
+        }
+
         if ($includeForeignObjects) {
             if (null !== $this->aCustomers) {
                 $result['Customers'] = $this->aCustomers->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
@@ -3599,7 +3645,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Declares an association between this object and a Customers object.
      *
-     * @param             Customers $v
+     * @param                  Customers $v
      * @return Orders The current object (for fluent API support)
      * @throws PropelException
      */
@@ -3651,7 +3697,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Declares an association between this object and a Countries object.
      *
-     * @param             Countries $v
+     * @param                  Countries $v
      * @return Orders The current object (for fluent API support)
      * @throws PropelException
      */
@@ -3703,7 +3749,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Declares an association between this object and a Countries object.
      *
-     * @param             Countries $v
+     * @param                  Countries $v
      * @return Orders The current object (for fluent API support)
      * @throws PropelException
      */
@@ -3755,7 +3801,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     /**
      * Declares an association between this object and a Events object.
      *
-     * @param             Events $v
+     * @param                  Events $v
      * @return Orders The current object (for fluent API support)
      * @throws PropelException
      */
@@ -3912,7 +3958,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
                     if (false !== $this->collOrdersToCouponssPartial && count($collOrdersToCouponss)) {
                       $this->initOrdersToCouponss(false);
 
-                      foreach($collOrdersToCouponss as $obj) {
+                      foreach ($collOrdersToCouponss as $obj) {
                         if (false == $this->collOrdersToCouponss->contains($obj)) {
                           $this->collOrdersToCouponss->append($obj);
                         }
@@ -3922,12 +3968,13 @@ abstract class BaseOrders extends BaseObject implements Persistent
                     }
 
                     $collOrdersToCouponss->getInternalIterator()->rewind();
+
                     return $collOrdersToCouponss;
                 }
 
-                if($partial && $this->collOrdersToCouponss) {
-                    foreach($this->collOrdersToCouponss as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collOrdersToCouponss) {
+                    foreach ($this->collOrdersToCouponss as $obj) {
+                        if ($obj->isNew()) {
                             $collOrdersToCouponss[] = $obj;
                         }
                     }
@@ -3955,7 +4002,11 @@ abstract class BaseOrders extends BaseObject implements Persistent
     {
         $ordersToCouponssToDelete = $this->getOrdersToCouponss(new Criteria(), $con)->diff($ordersToCouponss);
 
-        $this->ordersToCouponssScheduledForDeletion = unserialize(serialize($ordersToCouponssToDelete));
+
+        //since at least one column in the foreign key is at the same time a PK
+        //we can not just set a PK to NULL in the lines below. We have to store
+        //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
+        $this->ordersToCouponssScheduledForDeletion = clone $ordersToCouponssToDelete;
 
         foreach ($ordersToCouponssToDelete as $ordersToCouponsRemoved) {
             $ordersToCouponsRemoved->setOrders(null);
@@ -3989,7 +4040,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getOrdersToCouponss());
             }
             $query = OrdersToCouponsQuery::create(null, $criteria);
@@ -4018,8 +4069,13 @@ abstract class BaseOrders extends BaseObject implements Persistent
             $this->initOrdersToCouponss();
             $this->collOrdersToCouponssPartial = true;
         }
+
         if (!in_array($l, $this->collOrdersToCouponss->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddOrdersToCoupons($l);
+
+            if ($this->ordersToCouponssScheduledForDeletion and $this->ordersToCouponssScheduledForDeletion->contains($l)) {
+                $this->ordersToCouponssScheduledForDeletion->remove($this->ordersToCouponssScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
@@ -4155,7 +4211,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
                     if (false !== $this->collOrdersAttributessPartial && count($collOrdersAttributess)) {
                       $this->initOrdersAttributess(false);
 
-                      foreach($collOrdersAttributess as $obj) {
+                      foreach ($collOrdersAttributess as $obj) {
                         if (false == $this->collOrdersAttributess->contains($obj)) {
                           $this->collOrdersAttributess->append($obj);
                         }
@@ -4165,12 +4221,13 @@ abstract class BaseOrders extends BaseObject implements Persistent
                     }
 
                     $collOrdersAttributess->getInternalIterator()->rewind();
+
                     return $collOrdersAttributess;
                 }
 
-                if($partial && $this->collOrdersAttributess) {
-                    foreach($this->collOrdersAttributess as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collOrdersAttributess) {
+                    foreach ($this->collOrdersAttributess as $obj) {
+                        if ($obj->isNew()) {
                             $collOrdersAttributess[] = $obj;
                         }
                     }
@@ -4198,7 +4255,11 @@ abstract class BaseOrders extends BaseObject implements Persistent
     {
         $ordersAttributessToDelete = $this->getOrdersAttributess(new Criteria(), $con)->diff($ordersAttributess);
 
-        $this->ordersAttributessScheduledForDeletion = unserialize(serialize($ordersAttributessToDelete));
+
+        //since at least one column in the foreign key is at the same time a PK
+        //we can not just set a PK to NULL in the lines below. We have to store
+        //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
+        $this->ordersAttributessScheduledForDeletion = clone $ordersAttributessToDelete;
 
         foreach ($ordersAttributessToDelete as $ordersAttributesRemoved) {
             $ordersAttributesRemoved->setOrders(null);
@@ -4232,7 +4293,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getOrdersAttributess());
             }
             $query = OrdersAttributesQuery::create(null, $criteria);
@@ -4261,8 +4322,13 @@ abstract class BaseOrders extends BaseObject implements Persistent
             $this->initOrdersAttributess();
             $this->collOrdersAttributessPartial = true;
         }
+
         if (!in_array($l, $this->collOrdersAttributess->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddOrdersAttributes($l);
+
+            if ($this->ordersAttributessScheduledForDeletion and $this->ordersAttributessScheduledForDeletion->contains($l)) {
+                $this->ordersAttributessScheduledForDeletion->remove($this->ordersAttributessScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
@@ -4373,7 +4439,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
                     if (false !== $this->collOrdersLinessPartial && count($collOrdersLiness)) {
                       $this->initOrdersLiness(false);
 
-                      foreach($collOrdersLiness as $obj) {
+                      foreach ($collOrdersLiness as $obj) {
                         if (false == $this->collOrdersLiness->contains($obj)) {
                           $this->collOrdersLiness->append($obj);
                         }
@@ -4383,12 +4449,13 @@ abstract class BaseOrders extends BaseObject implements Persistent
                     }
 
                     $collOrdersLiness->getInternalIterator()->rewind();
+
                     return $collOrdersLiness;
                 }
 
-                if($partial && $this->collOrdersLiness) {
-                    foreach($this->collOrdersLiness as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collOrdersLiness) {
+                    foreach ($this->collOrdersLiness as $obj) {
+                        if ($obj->isNew()) {
                             $collOrdersLiness[] = $obj;
                         }
                     }
@@ -4416,7 +4483,8 @@ abstract class BaseOrders extends BaseObject implements Persistent
     {
         $ordersLinessToDelete = $this->getOrdersLiness(new Criteria(), $con)->diff($ordersLiness);
 
-        $this->ordersLinessScheduledForDeletion = unserialize(serialize($ordersLinessToDelete));
+
+        $this->ordersLinessScheduledForDeletion = $ordersLinessToDelete;
 
         foreach ($ordersLinessToDelete as $ordersLinesRemoved) {
             $ordersLinesRemoved->setOrders(null);
@@ -4450,7 +4518,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getOrdersLiness());
             }
             $query = OrdersLinesQuery::create(null, $criteria);
@@ -4479,8 +4547,13 @@ abstract class BaseOrders extends BaseObject implements Persistent
             $this->initOrdersLiness();
             $this->collOrdersLinessPartial = true;
         }
+
         if (!in_array($l, $this->collOrdersLiness->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddOrdersLines($l);
+
+            if ($this->ordersLinessScheduledForDeletion and $this->ordersLinessScheduledForDeletion->contains($l)) {
+                $this->ordersLinessScheduledForDeletion->remove($this->ordersLinessScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
@@ -4616,7 +4689,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
                     if (false !== $this->collOrdersStateLogsPartial && count($collOrdersStateLogs)) {
                       $this->initOrdersStateLogs(false);
 
-                      foreach($collOrdersStateLogs as $obj) {
+                      foreach ($collOrdersStateLogs as $obj) {
                         if (false == $this->collOrdersStateLogs->contains($obj)) {
                           $this->collOrdersStateLogs->append($obj);
                         }
@@ -4626,12 +4699,13 @@ abstract class BaseOrders extends BaseObject implements Persistent
                     }
 
                     $collOrdersStateLogs->getInternalIterator()->rewind();
+
                     return $collOrdersStateLogs;
                 }
 
-                if($partial && $this->collOrdersStateLogs) {
-                    foreach($this->collOrdersStateLogs as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collOrdersStateLogs) {
+                    foreach ($this->collOrdersStateLogs as $obj) {
+                        if ($obj->isNew()) {
                             $collOrdersStateLogs[] = $obj;
                         }
                     }
@@ -4659,7 +4733,11 @@ abstract class BaseOrders extends BaseObject implements Persistent
     {
         $ordersStateLogsToDelete = $this->getOrdersStateLogs(new Criteria(), $con)->diff($ordersStateLogs);
 
-        $this->ordersStateLogsScheduledForDeletion = unserialize(serialize($ordersStateLogsToDelete));
+
+        //since at least one column in the foreign key is at the same time a PK
+        //we can not just set a PK to NULL in the lines below. We have to store
+        //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
+        $this->ordersStateLogsScheduledForDeletion = clone $ordersStateLogsToDelete;
 
         foreach ($ordersStateLogsToDelete as $ordersStateLogRemoved) {
             $ordersStateLogRemoved->setOrders(null);
@@ -4693,7 +4771,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getOrdersStateLogs());
             }
             $query = OrdersStateLogQuery::create(null, $criteria);
@@ -4722,8 +4800,13 @@ abstract class BaseOrders extends BaseObject implements Persistent
             $this->initOrdersStateLogs();
             $this->collOrdersStateLogsPartial = true;
         }
+
         if (!in_array($l, $this->collOrdersStateLogs->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddOrdersStateLog($l);
+
+            if ($this->ordersStateLogsScheduledForDeletion and $this->ordersStateLogsScheduledForDeletion->contains($l)) {
+                $this->ordersStateLogsScheduledForDeletion->remove($this->ordersStateLogsScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
@@ -4834,7 +4917,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
                     if (false !== $this->collOrdersSyncLogsPartial && count($collOrdersSyncLogs)) {
                       $this->initOrdersSyncLogs(false);
 
-                      foreach($collOrdersSyncLogs as $obj) {
+                      foreach ($collOrdersSyncLogs as $obj) {
                         if (false == $this->collOrdersSyncLogs->contains($obj)) {
                           $this->collOrdersSyncLogs->append($obj);
                         }
@@ -4844,12 +4927,13 @@ abstract class BaseOrders extends BaseObject implements Persistent
                     }
 
                     $collOrdersSyncLogs->getInternalIterator()->rewind();
+
                     return $collOrdersSyncLogs;
                 }
 
-                if($partial && $this->collOrdersSyncLogs) {
-                    foreach($this->collOrdersSyncLogs as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collOrdersSyncLogs) {
+                    foreach ($this->collOrdersSyncLogs as $obj) {
+                        if ($obj->isNew()) {
                             $collOrdersSyncLogs[] = $obj;
                         }
                     }
@@ -4877,7 +4961,11 @@ abstract class BaseOrders extends BaseObject implements Persistent
     {
         $ordersSyncLogsToDelete = $this->getOrdersSyncLogs(new Criteria(), $con)->diff($ordersSyncLogs);
 
-        $this->ordersSyncLogsScheduledForDeletion = unserialize(serialize($ordersSyncLogsToDelete));
+
+        //since at least one column in the foreign key is at the same time a PK
+        //we can not just set a PK to NULL in the lines below. We have to store
+        //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
+        $this->ordersSyncLogsScheduledForDeletion = clone $ordersSyncLogsToDelete;
 
         foreach ($ordersSyncLogsToDelete as $ordersSyncLogRemoved) {
             $ordersSyncLogRemoved->setOrders(null);
@@ -4911,7 +4999,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getOrdersSyncLogs());
             }
             $query = OrdersSyncLogQuery::create(null, $criteria);
@@ -4940,8 +5028,13 @@ abstract class BaseOrders extends BaseObject implements Persistent
             $this->initOrdersSyncLogs();
             $this->collOrdersSyncLogsPartial = true;
         }
+
         if (!in_array($l, $this->collOrdersSyncLogs->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddOrdersSyncLog($l);
+
+            if ($this->ordersSyncLogsScheduledForDeletion and $this->ordersSyncLogsScheduledForDeletion->contains($l)) {
+                $this->ordersSyncLogsScheduledForDeletion->remove($this->ordersSyncLogsScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
@@ -5052,7 +5145,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
                     if (false !== $this->collOrdersVersionssPartial && count($collOrdersVersionss)) {
                       $this->initOrdersVersionss(false);
 
-                      foreach($collOrdersVersionss as $obj) {
+                      foreach ($collOrdersVersionss as $obj) {
                         if (false == $this->collOrdersVersionss->contains($obj)) {
                           $this->collOrdersVersionss->append($obj);
                         }
@@ -5062,12 +5155,13 @@ abstract class BaseOrders extends BaseObject implements Persistent
                     }
 
                     $collOrdersVersionss->getInternalIterator()->rewind();
+
                     return $collOrdersVersionss;
                 }
 
-                if($partial && $this->collOrdersVersionss) {
-                    foreach($this->collOrdersVersionss as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collOrdersVersionss) {
+                    foreach ($this->collOrdersVersionss as $obj) {
+                        if ($obj->isNew()) {
                             $collOrdersVersionss[] = $obj;
                         }
                     }
@@ -5095,7 +5189,11 @@ abstract class BaseOrders extends BaseObject implements Persistent
     {
         $ordersVersionssToDelete = $this->getOrdersVersionss(new Criteria(), $con)->diff($ordersVersionss);
 
-        $this->ordersVersionssScheduledForDeletion = unserialize(serialize($ordersVersionssToDelete));
+
+        //since at least one column in the foreign key is at the same time a PK
+        //we can not just set a PK to NULL in the lines below. We have to store
+        //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
+        $this->ordersVersionssScheduledForDeletion = clone $ordersVersionssToDelete;
 
         foreach ($ordersVersionssToDelete as $ordersVersionsRemoved) {
             $ordersVersionsRemoved->setOrders(null);
@@ -5129,7 +5227,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getOrdersVersionss());
             }
             $query = OrdersVersionsQuery::create(null, $criteria);
@@ -5158,8 +5256,13 @@ abstract class BaseOrders extends BaseObject implements Persistent
             $this->initOrdersVersionss();
             $this->collOrdersVersionssPartial = true;
         }
+
         if (!in_array($l, $this->collOrdersVersionss->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddOrdersVersions($l);
+
+            if ($this->ordersVersionssScheduledForDeletion and $this->ordersVersionssScheduledForDeletion->contains($l)) {
+                $this->ordersVersionssScheduledForDeletion->remove($this->ordersVersionssScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
@@ -5256,7 +5359,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      *
      * This method is a user-space workaround for PHP's inability to garbage collect
      * objects with circular references (even in PHP 5.3). This is currently necessary
-     * when using Propel in certain daemon or large-volumne/high-memory operations.
+     * when using Propel in certain daemon or large-volume/high-memory operations.
      *
      * @param boolean $deep Whether to also clear the references on all referrer objects.
      */
