@@ -31,6 +31,43 @@ class MigrateStockToRedisCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+
+        $propel_connection = \Propel::getConnection(null, \Propel::CONNECTION_WRITE);
+        $propel_statement = $propel_connection->prepare("
+            SELECT
+                SUM(orders_lines.quantity) AS qty
+            FROM
+                orders_lines
+            INNER JOIN
+                orders
+                ON (
+                    orders_lines.orders_id=orders.id
+                )
+            WHERE
+                orders_lines.products_id = :products_id
+                AND
+                    orders.state<40
+                AND
+                    orders_lines.type='product'
+--                AND
+--                    orders.updated_at>'2014-01-20 11:22:59'
+--                AND
+--                    orders.created_at>'2013-07-20 13:22:59'
+            GROUP BY
+                orders_lines.products_id
+            ORDER BY
+                orders_lines.products_id
+            LIMIT 1
+        ");
+
+        $propel_statement->bindValue('products_id', 2);
+        $propel_statement->execute();
+var_dump($propel_statement->fetchColumn());
+
+        $propel_statement->bindValue('products_id', 4);
+        $propel_statement->execute();
+var_dump($propel_statement->fetchColumn());
+
         $stock = $this->getContainer()->get('stock');
         $response = $stock->decrease(ProductsQuery::create()->findOneById(2), 385);
 var_dump($response);
