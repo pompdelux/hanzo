@@ -43,6 +43,10 @@ class Hanzo
         return self::$hanzo;
     }
 
+    /**
+     * @return \Hanzo\Core\Hanzo
+     * @throws \Exception
+     */
     public static function getInstance()
     {
         if (self::$hanzo) {
