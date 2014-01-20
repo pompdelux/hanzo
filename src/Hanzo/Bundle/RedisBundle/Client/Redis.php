@@ -4,7 +4,26 @@ namespace Hanzo\Bundle\RedisBundle\Client;
 
 use Hanzo\Bundle\RedisBundle\Logger\Logger;
 
-Class Redis
+/**
+ * Class Redis
+ *
+ * @method boolean select(\int $db_index) Change the selected database for the current connection
+ * @method boolean close() Disconnects from the Redis instance, except when pconnect is used.
+ * @method boolean setOption(\mixed $name, mixed $value) Set client option.
+ * @method boolean getOption(\mixed $name) Get client option.
+ * @method string  ping() Check the current connection status.
+ * @method string  echo(\string $message) Sends a string to Redis, which replies with the same string.
+ * @method mixed hSet(\string $key, \mixed $hash_key, \mixed $value) Adds a value to the hash stored at key. If this value is already in the hash, FALSE is returned.
+ * @method boolean hSetNx(\string $key, \string $hash_key, \mixed $value) Adds a value to the hash stored at key only if this field isn't already in the hash.
+ * @method string hGet(\string $key, \string $hash_key) Gets a value from the hash stored at key. If the hash table doesn't exist, or the key doesn't exist, FALSE is returned.
+ * @method integer hLen(\string $key) Returns the length of a hash, in number of items.
+ * @method boolean hDel(\string $key, \string $hash_key) Removes a value from the hash stored at key. If the hash table doesn't exist, or the key doesn't exist, FALSE is returned.
+ * @method array hKeys(\string $key) Returns the keys in a hash, as an array of strings.
+ * @method array hVals(\string $key) Returns the values in a hash, as an array of strings.
+ * @method array hGetAll(\string $key) Returns the whole hash, as an array of strings indexed by strings.
+ * @method boolean hExists(\string $key, \string $hash_key) Verify if the specified member exists in a key.
+ */
+class Redis
 {
     /**
      * Redis instance
