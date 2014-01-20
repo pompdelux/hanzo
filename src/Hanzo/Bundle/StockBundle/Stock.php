@@ -2,10 +2,7 @@
 
 namespace Hanzo\Bundle\StockBundle;
 
-use Hanzo\Core\Tools;
-use Propel;
 use Hanzo\Model\ProductsQuery;
-use Hanzo\Model\ProductsStockQuery;
 use Hanzo\Model\ProductsStockPeer;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -55,7 +52,7 @@ class Stock
 
         $ids = [];
         foreach($products as $product) {
-            if (is_object($product)) {
+            if (is_object($product) && method_exists($product, 'getId')) {
                 $id = $product->getId();
             } else {
                 $id = (int) $product;
@@ -72,7 +69,7 @@ class Stock
             return;
         }
 
-        foreach ($this->warehouse->getStatus($ids) as $id => $status) {
+        foreach ($this->warehouse->getInventory($ids) as $id => $status) {
             $this->stock[$id] = $status;
         }
     }
@@ -123,7 +120,7 @@ class Stock
             }
         }
 
-        return FALSE;
+        return false;
     }
 
     /**
@@ -154,11 +151,45 @@ class Stock
 
 
     /**
+     * Set the stock level on a product in the current warehouse.
+     *
+     * @param integer $product_id
+     * @param string  $date
+     * @param int     $quantity
+     */
+    public function setLevel($product_id, $date, $quantity = 0)
+    {
+        $this->warehouse->setInventoryRecord($product_id, $date, $quantity);
+    }
+
+
+    /**
+     * Set the stock level on a product in the current warehouse.
+     * This uses an array of inventory records to update in one atomic push.
+     *
+     * Note: This method cleans out any records not in the supplied data set.
+     *
+     * @param integer $product_id
+     * @param array   $data
+     *
+     * $data format
+     * [
+     *    'xxxx' => [
+     *        'date'     => '2001-01-01',
+     *        'quantity' => 123,
+     *    ],
+     * ]
+     */
+    public function setLevels($product_id, $data)
+    {
+        $this->warehouse->setInventoryRecords($product_id, $data);
+    }
+
+
+    /**
      * decrease the stock level for a product
      *
-     * @NICETO throw execption on error ?
-     *
-     * @param Products $product a product object
+     * @param \Hanzo\Model\Products $product a product object
      * @param int $quantity the quantity by wich to decrease
      * @return mixed, the expected delivery date on success, false otherwise.
      */
@@ -173,67 +204,74 @@ class Stock
         ksort($stock);
         $total = array_shift($stock);
 
-        // return FALSE if we do not have enough ín stock
-        // NICETO: throw exception ?
+        // return FALSE if we do not have enough in stock
         if ($total < $quantity) {
             return false;
         }
 
-        // force master connection, and do the rest as a transaction.
-        $con = self::getConnection();
-        $con->beginTransaction();
+        $left = $quantity;
+        $product_id = $product->getId();
+        while ($left > 0) {
+            $current = array_shift($stock);
 
-        try {
-            $left = $quantity;
-            while ($left > 0) {
-                $current = array_shift($stock);
-
-                $item = ProductsStockQuery::create()->findPk($current['id'], $con);
-                if ($current['quantity'] <= $left) {
-                    $item->delete($con);
-                }
-                else {
-                    $item->setQuantity($item->getQuantity() - $left);
-                    $item->save($con);
-                }
-
-                $left = $left - $current['quantity'];
+            if ($current['quantity'] <= $left) {
+                $this->warehouse->deleteInventoryRecord($product_id, $current['date']);
+            } else {
+                $this->warehouse->setInventoryRecord($product_id, $current['date'], $current['quantity'] - $left);
             }
 
-            if ($total == $quantity){
-                $product->setIsOutOfStock(true);
-                $product->save($con);
-
-                // if all variants is out of stock, set it on the master product.
-                $total_stock = ProductsStockQuery::create()
-                    ->withColumn('SUM('.ProductsStockPeer::QUANTITY.')', 'total_stock')
-                    ->select(array('total_stock'))
-                    ->useProductsQuery()
-                        ->filterByMaster($product->getMaster())
-                    ->endUse()
-                    ->findOne($con)
-                ;
-
-                if (0 == $total_stock) {
-                    $master = ProductsQuery::create()->findOneBySku($product->getMaster(), $con);
-
-                    $master->setIsOutOfStock(true);
-                    $master->save($con);
-
-                    $this->event_dispatcher->dispatch('product.stock.zero', new FilterCategoryEvent($master, $this->locale));
-                }
-            }
-
-            unset($this->stock[$product->getId()]);
-            $con->commit();
-
-        } catch(Exception $e) {
-            $con->rollback();
-            Tools::log($e->getMessage());
+            $left = $left - $current['quantity'];
         }
+
+        // NICETO: move all db stuff to event listeners
+        if ($total == $quantity){
+            $con = self::getConnection();
+
+            $product->setIsOutOfStock(true);
+            $product->save($con);
+            $this->warehouse->removeProductFromInventory($product_id);
+
+            // find out if the whole style is out of stock
+            // if so, tag it so and fire an event (for caching n' stuff)
+            if (false === $this->checkStyleStock($product)) {
+                $master = ProductsQuery::create()->findOneBySku($product->getMaster(), $con);
+                $master->setIsOutOfStock(true);
+                $master->save($con);
+
+                $this->event_dispatcher->dispatch('product.stock.zero', new FilterCategoryEvent($master, $this->locale));
+            }
+        }
+
+        unset($this->stock[$product->getId()]);
 
         return $current['date'];
     }
+
+
+    /**
+     * Figure out whether or not a whole style is out of stock.
+     *
+     * @param $product
+     * @return bool
+     */
+    protected function checkStyleStock($product)
+    {
+        $ids = ProductsQuery::create()
+            ->select('Id')
+            ->filterByMaster($product->getMaster())
+            ->find()
+            ->getData()
+        ;
+
+        $this->load($ids);
+        $total_stock = 0;
+        foreach ($ids as $id) {
+            $total_stock += $this->get($id);
+        }
+
+        return (boolean) $total_stock;
+    }
+
 
     /**
      * @return \PropelPDO
@@ -243,7 +281,7 @@ class Stock
         static $con;
 
         if (empty($con)) {
-            $con = Propel::getConnection(ProductsStockPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+            $con = \Propel::getConnection(ProductsStockPeer::DATABASE_NAME, \Propel::CONNECTION_WRITE);
         }
 
         return $con;
