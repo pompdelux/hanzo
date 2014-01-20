@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\AxBundle\Tests\Actions\In\Soap\ECommerceServices;
 
+use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 
 use Symfony\Bridge\Monolog\Logger;
@@ -198,6 +199,10 @@ class ECommerceServicesTest extends WebTestCase
      */
     public function testSyncInventoryOnHand()
     {
+        $this->markTestIncomplete(
+            'We need to figure out how to test services depending on hanzo.'
+        );
+
         $inventoryOnHand = (object) [
             'InventSum' => (object) [
                 'ItemId'      => '',
