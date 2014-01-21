@@ -100,8 +100,8 @@ class OrderFeedController extends Controller
         $sql = "
             SELECT
                 o.id AS order_id, o.customers_id, o.first_name, o.last_name, o.email, o.phone, o.currency_code, o.billing_title, o.billing_first_name, o.billing_last_name, o.billing_address_line_1, o.billing_address_line_2, o.billing_postal_code, o.billing_city, o.billing_country, o.billing_state_province, o.billing_company_name, o.delivery_title, o.delivery_first_name, o.delivery_last_name, o.delivery_address_line_1, o.delivery_address_line_2, o.delivery_postal_code, o.delivery_city, o.delivery_country, o.delivery_state_province, o.delivery_company_name, o.created_at,
-                orders_id, ol.type, ol.products_id, ol.products_sku, ol.products_name, ol.products_color, ol.products_size, ol.expected_at, ol.original_price, ol.price, ol.vat, ol.quantity, ol.unit,
-                e.code AS event_code
+                e.code AS event_code,
+                orders_id, ol.type, ol.products_id, ol.products_sku, ol.products_name, ol.products_color, ol.products_size, ol.expected_at, ol.original_price, ol.price, ol.vat, ol.quantity, ol.unit
             FROM
                 orders AS o
             JOIN
