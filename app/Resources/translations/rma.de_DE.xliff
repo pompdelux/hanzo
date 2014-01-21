@@ -64,7 +64,7 @@
             </trans-unit>
             <trans-unit id="rma.form.submit">
                 <source>rma.form.submit</source>
-                <target>Rücksendeschein erstellen...</target>
+                <target>Erstellen Rücksendeschein & Rücksendeetikett...</target>
             </trans-unit>
             <trans-unit id="rma.form.label.return.order">
                 <source>rma.form.label.return.order</source>
