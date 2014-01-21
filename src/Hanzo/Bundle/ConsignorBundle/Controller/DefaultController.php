@@ -47,15 +47,14 @@ class DefaultController extends Controller
             $label = $shipment->fetchReturnLabel();
         } catch (\Exception $e) {
             $this->container->get('logger')->error('Could not generate return label for order id: '.$order->getId());
-
             return $this->redirect($this->generateUrl('_account'));
         }
 
         // we got the label from consignor, let's send it to the user.
         $response = new Response($label, 200, [
             'Content-Description'       => 'File Transfer',
-            'Content-type'              => 'application/octet-stream',
-            'Content-Disposition'       => 'attachment; filename=shipping-label.pdf',
+            'Content-type'              => 'application/pdf',
+            'Content-Disposition'       => 'attachment; filename=label-'.$order->getId().'-'.date('YmdHi').'.pdf',
             'Content-Transfer-Encoding' => 'binary',
             'Expires'                   => 0,
             'Cache-Control'             => 'must-revalidate, post-check=0, pre-check=0',
