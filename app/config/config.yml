@@ -194,3 +194,8 @@ knp_snappy:
 account:
     consignor:
         installation_id: 90290000026
+
+consignor:
+    shipment_server: ~
+    ship_advisor:    ~
+

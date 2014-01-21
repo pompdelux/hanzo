@@ -17,3 +17,6 @@ propel:
                 dsn:                  mysql:host=%test_at_database_host%;dbname=%test_at_database_name%
                 options:              {}
                 attributes:           {}
+
+consignor:
+    shipment_server: ~

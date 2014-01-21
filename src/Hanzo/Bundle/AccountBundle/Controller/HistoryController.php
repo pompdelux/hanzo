@@ -137,6 +137,11 @@ class HistoryController extends CoreController
         // track 'n trace integration - the url is only available if both actor_id and installation_id is set for the country.
         $trackntrace_url = $this->container->getParameter('account.consignor.trackntrace_url');
 
+        $return_lable_route = '';
+        if ($submit_shipment = $this->container->get('consignor.service.submit_shipment')) {
+            $return_lable_route = $submit_shipment->getRoute();
+        }
+
         $orders = array();
         foreach ($result as $record) {
             $folder = $this->mapLanguageToPdfDir($record->getLanguagesId()).'_'.$record->getCreatedAt('Y');
@@ -145,25 +150,34 @@ class HistoryController extends CoreController
             foreach ($record->getAttachments() as $key => $attachment) {
                 $attachments[] = $hanzo->get('core.cdn') . 'pdf.php?' . http_build_query(array(
                     'folder' => $folder,
-                    'file' => $attachment,
-                    'key' => $this->get('session')->getId()
+                    'file'   => $attachment,
+                    'key'    => $this->get('session')->getId()
                 ));
             }
 
             $track_n_trace = '';
-            if ($trackntrace_url && count($attachments)) {
-                $track_n_trace = strtr($trackntrace_url, [':order_id:' => $record->getId()]);
+            $return_lable_url = '';
+
+            if (Orders::STATE_SHIPPED === $record->getState()) {
+                if ($trackntrace_url) {
+                    $track_n_trace = strtr($trackntrace_url, [':order_id:' => $record->getId()]);
+                }
+
+                if ($return_lable_route) {
+                    $return_lable_url = $router->generate($return_lable_route, ['id' => $record->getId()]);
+                }
             }
 
             $orders[] = array(
-                'id'            => $record->getId(),
-                'in_edit'       => $record->getInEdit(),
-                'can_modify'    => (($record->getState() <= Orders::STATE_PENDING) ? true : false),
-                'status'        => str_replace('-', 'neg.', $record->getState()),
-                'created_at'    => $record->getCreatedAt(),
-                'total'         => $record->getTotalPrice(),
-                'attachments'   => $attachments,
-                'track_n_trace' => $track_n_trace,
+                'id'               => $record->getId(),
+                'in_edit'          => $record->getInEdit(),
+                'can_modify'       => (($record->getState() <= Orders::STATE_PENDING) ? true : false),
+                'status'           => str_replace('-', 'neg.', $record->getState()),
+                'created_at'       => $record->getCreatedAt(),
+                'total'            => $record->getTotalPrice(),
+                'attachments'      => $attachments,
+                'track_n_trace'    => $track_n_trace,
+                'return_lable_url' => $return_lable_url,
             );
         }
 

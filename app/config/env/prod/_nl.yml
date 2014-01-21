@@ -31,3 +31,6 @@ propel:
 account:
     consignor:
         actor_id: 67
+
+consignor:
+    shipment_server: ~

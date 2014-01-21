@@ -30,3 +30,7 @@ varnish:
 
 ax:
     wsdl: "http://193.89.255.250:8000/DynamicsAxServices.asmx?wsdl"
+
+consignor:
+    shipment_server:
+        endpoint: "https://edi-ship01.facility.dir.dk/ship/ShipmentServerModule.dll"
