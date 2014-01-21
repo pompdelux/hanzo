@@ -288,7 +288,7 @@ class OrderFeedController extends Controller
                 echo '<?xml version="1.0" encoding="UTF-8"?>'."\n".'<orders><since>'.$from_date.'</since><to>'.$to_date.'</to>';
                 break;
             case 'csv':
-                echo "country;order_id;customers_id;first_name;last_name;email;phone;currency_code;billing_title;billing_first_name;billing_last_name;billing_address_line_1;billing_address_line_2;billing_postal_code;billing_city;billing_country;billing_state_province;billing_company_name;delivery_title;delivery_first_name;delivery_last_name;delivery_address_line_1;delivery_address_line_2;delivery_postal_code;delivery_city;delivery_country;delivery_state_province;delivery_company_name;created_at,event_code,orders_id;type;products_id;products_sku;products_name;products_color;products_size;expected_at;original_price;price;vat;quantity;unit".PHP_EOL;
+                echo "country;order_id;customers_id;first_name;last_name;email;phone;currency_code;billing_title;billing_first_name;billing_last_name;billing_address_line_1;billing_address_line_2;billing_postal_code;billing_city;billing_country;billing_state_province;billing_company_name;delivery_title;delivery_first_name;delivery_last_name;delivery_address_line_1;delivery_address_line_2;delivery_postal_code;delivery_city;delivery_country;delivery_state_province;delivery_company_name;created_at;event_code;orders_id;type;products_id;products_sku;products_name;products_color;products_size;expected_at;original_price;price;vat;quantity;unit".PHP_EOL;
                 break;
         }
         flush();
