@@ -40,7 +40,7 @@ consignor:
         options:
               actor: 143
               product_concept_id: 882
-              service_id: ~
+              service_id: ""
               key: PompDeluxSE
               to_address:
                   name: "POMPdeLUX Sverige AB c/o POMPdeLUX"
