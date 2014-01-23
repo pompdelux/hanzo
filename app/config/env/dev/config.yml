@@ -57,3 +57,8 @@ cms:
 
 ax:
     log_requests: true
+
+consignor:
+    shipment_server:
+        endpoint: "https://qa-tic03.facility.dir.dk/json/ShipmentServerModule.dll"
+

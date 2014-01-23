@@ -34,3 +34,19 @@ propel:
 account:
     consignor:
         actor_id: 64
+
+consignor:
+    shipment_server:
+        options:
+              actor: 143
+              product_concept_id: 882
+              service_id: ""
+              key: PompDeluxSE
+              to_address:
+                  name: "POMPdeLUX Sverige AB c/o POMPdeLUX"
+                  address_line_1: "Møgelhøj 8"
+                  postal_code: "8520"
+                  city: "Lystrup"
+                  country_iso2: DK
+                  email: mail@pompdelux.se
+                  phone: "+46 8-6117103"

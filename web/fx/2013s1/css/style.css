@@ -5,7 +5,7 @@
   background: url('/fx/2013s1/../images/icons/da-s7398167b80.png') no-repeat;
 }
 
-.icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-return, .icons-returnlabel, .icons-shopping-bag, .icons-show, .icons-sizeguide, .icons-trackntrace, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, .sprite.trackntrace, .body-pages .newsletter-form-simple .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.return {
+.icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-return, .icons-returnlabel, .icons-shopping-bag, .icons-show, .icons-sizeguide, .icons-trackntrace, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, .sprite.trackntrace, .sprite.returnlabel, .body-pages .newsletter-form-simple .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.return {
   background: url('/fx/2013s1/../images/icons/icons-s954eae8611.png') no-repeat;
 }
 
@@ -2116,6 +2116,12 @@ form.create .button {
 .sprite.trackntrace {
   background-position: 0 -1032px;
   height: 25px;
+  width: 27px;
+}
+
+.sprite.returnlabel {
+  background-position: 0 -968px;
+  height: 26px;
   width: 27px;
   margin-right: 10px;
 }
