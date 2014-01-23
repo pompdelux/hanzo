@@ -141,6 +141,12 @@ class SubmitShipment
             ));
         }
 
+        if ($service_id = $this->consignor->getOption('service_id')) {
+            $service_id = [$service_id];
+        } else {
+            $service_id = [];
+        }
+
         $data = [
             'command' => 'SubmitShipment',
             'actor'   => $this->consignor->getOption('actor'),
@@ -151,7 +157,7 @@ class SubmitShipment
                 'OrderNo'       => $this->order_id,
                 'ActorCSID'     => $this->consignor->getOption('actor'),
                 'ProdConceptID' => $this->consignor->getOption('product_concept_id'),
-                'Services'      => [$this->consignor->getOption('service_id')],
+                'Services'      => $service_id,
                 'Addresses'     => [
                     $this->to_address->toArray(),
                     $this->from_address->toArray(),
