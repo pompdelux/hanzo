@@ -135,6 +135,7 @@ class AppKernel extends Kernel
             }
         }
 
+        $twig->addGlobal('domain_key', $domain_key);
         $twig->addGlobal('store_mode', $store_mode);
         $twig->addExtension(new Twig_Extension_Optimizer());
 

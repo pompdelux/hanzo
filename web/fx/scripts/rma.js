@@ -88,7 +88,9 @@ var rma = (function ($) {
 
         if (products.length > 0) {
             // pop return lable window
-            window.open(base_url + 'account/consignor/return-label/' + rma_order_id);
+            if (-1 == jQuery.inArray($('html').data('domainkey'), ['nl', 'salesnl', 'com'])) {
+                window.open(base_url + 'account/consignor/return-label/' + rma_order_id);
+            }
 
             // Add a hidden form to send.
             var $form = $('<form></form>')
@@ -99,6 +101,7 @@ var rma = (function ($) {
                 .submit()
             ;
         }
+
         dialoug.stopLoading();
         $submit_button.removeAttr('disabled');
     }
@@ -107,5 +110,6 @@ var rma = (function ($) {
 })(jQuery);
 
 if ($('#body-rma').length) {
+
     rma.init();
 }
