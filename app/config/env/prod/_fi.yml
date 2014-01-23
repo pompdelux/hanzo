@@ -40,7 +40,7 @@ consignor:
         options:
               actor: 144
               product_concept_id: 957
-              service_id: 114007
+              service_id: ""
               key: PompDeluxFI
               to_address:
                   name: "POMPdeLUX"
