@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\ConsignorBundle\Services\ShipmentServer;
 
+use Hanzo\Core\Tools;
 use Hanzo\Bundle\ConsignorBundle\Consignor;
 use Symfony\Component\Routing\Exception\MissingMandatoryParametersException;
 
@@ -180,6 +181,8 @@ class SubmitShipment
         $json = $response->json();
 
         if (isset($json['ErrorMessages'])) {
+            Tools::log($data);
+            Tools::log($json);
             throw new \Exception(implode('\n', $json['ErrorMessages']));
         }
 
