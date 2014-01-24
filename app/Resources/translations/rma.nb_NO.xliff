@@ -64,7 +64,7 @@
             </trans-unit>
             <trans-unit id="rma.form.submit">
                 <source>rma.form.submit</source>
-                <target><![CDATA[Opprett returskjema & returmerke...]]></target>
+                <target><![CDATA[Opprett returskjema & returlapp...]]></target>
             </trans-unit>
             <trans-unit id="rma.form.label.return.order">
                 <source>rma.form.label.return.order</source>
