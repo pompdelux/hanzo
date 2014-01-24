@@ -30,10 +30,10 @@ consignor:
               service_id: ""
               key: PompDeluxDE
               to_address:
-                  name: "POMPdeLUX De GmbH"
-                  address_line_1: "Dammtorstraße 12"
-                  postal_code: "20354"
-                  city: "Hamburg Ust-IdNr."
+                  name: "POMPdeLUX"
+                  address_line_1: "Krokamp 128"
+                  postal_code: "24539"
+                  city: "Neumünster"
                   country_iso2: DE
                   email: mailde@pompdelux.com
                   phone: "040-3571 5072"
