@@ -8,7 +8,7 @@
             </trans-unit>
             <trans-unit id="ideal.desc">
                 <source>ideal.desc</source>
-                <target>iDeal (betaalkosten EUR 3,00)</target>
+                <target>iDeal</target>
             </trans-unit>
             <trans-unit id="failed.heading">
                 <source>failed.heading</source>
