@@ -212,7 +212,7 @@ var quickorder = (function($) {
                             '<tr class="item"> ' +
                             '<td class="image"><img src="'+img+'" alt="'+title+'"> '+
                             '<div class="info" data-product_id="'+response.latest.id+'" data-confirmed=""> '+
-                            '<a href="'+base_url+'product/view/'+response.latest.id+'" class="title">'+title+'</a> '+
+                            '<a href="'+base_url+'product/view/'+response.latest.master_id+'" class="title">'+title+'</a> '+
                             '<div class="size"> '+
                             '<label>'+Translator.get('js:size')+':</label> '+
                             '<span>'+size+'</span> '+

@@ -151,6 +151,7 @@ class DefaultController extends CoreController
         $latest = array(
             'expected_at'  => '',
             'id'           => $product->getId(),
+            'master_id'    => $product->getProductsRelatedByMaster()->getId(),
             'price'        => Tools::moneyFormat($price['price'] * $quantity),
             'single_price' => Tools::moneyFormat($price['price']),
         );

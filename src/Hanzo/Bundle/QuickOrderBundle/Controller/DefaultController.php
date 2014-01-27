@@ -60,17 +60,29 @@ class DefaultController extends CoreController
                 $line['expected_at'] = NULL;
             }
 
+            // we need the id and sku from the master record to generate image and url to product.
+            $sql = "
+                SELECT p.id, p.sku FROM products AS p
+                WHERE p.sku = (
+                    SELECT pp.master FROM products AS pp
+                    WHERE pp.id = ".$line['products_id']."
+                )
+            ";
+            $master = \Propel::getConnection()
+                ->query($sql)
+                ->fetch(\PDO::FETCH_OBJ)
+            ;
+
             $line['basket_image'] =
-                preg_replace('/[^a-z0-9]/i', '-', $line['products_name']) .
+                preg_replace('/[^a-z0-9]/i', '-', $master->sku) .
                 '_' .
                 preg_replace('/[^a-z0-9]/i', '-', str_replace('/', '9', $line['products_color'])) .
                 '_overview_01.jpg'
             ;
 
             $line['url'] = '#';
-            $master = ProductsQuery::create()->findOneBySku($line['products_name']);
             if ($master) {
-                $line['url'] = $router->generate('product_info', array('product_id' => $master->getId()));
+                $line['url'] = $router->generate('product_info', array('product_id' => $master->id));
             }
 
             $products[] = $line;

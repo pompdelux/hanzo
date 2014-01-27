@@ -29,7 +29,6 @@ class DefaultController extends CoreController
         $router = $this->get('router');
         $route = $this->get('request')->get('_route');
         $focus = $this->get('request')->get('focus', FALSE);
-        $cache_id = array('product', $product_id, $focus);
 
         $products = ProductsI18nQuery::create()
             ->joinWithProducts()
