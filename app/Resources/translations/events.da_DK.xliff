@@ -8,7 +8,7 @@
             </trans-unit>
             <trans-unit id="events.account.title">
                 <source>events.account.title</source>
-                <target>Home shopping arrangementer</target>
+                <target>Home Shopping arrangementer</target>
             </trans-unit>
             <trans-unit id="events.calendar.description.text">
                 <source>events.calendar.description.text</source>
@@ -212,11 +212,11 @@
             </trans-unit>
             <trans-unit id="events.type.choice.ar">
                 <source>events.type.choice.ar</source>
-                <target>Home shopping arrangement</target>
+                <target>Home Shopping arrangement</target>
             </trans-unit>
             <trans-unit id="events.type.choice.hus">
                 <source>events.type.choice.hus</source>
-                <target>Åbent hus</target>
+                <target>Åbent Hus</target>
             </trans-unit>
             <trans-unit id="events.is_open.label">
                 <source>events.is_open.label</source>
@@ -236,7 +236,7 @@
             </trans-unit>
             <trans-unit id="events.rsvp.top.header.text">
                 <source>events.rsvp.top.header.text</source>
-                <target>Du er blevet inviteret til et home shopping arrangement.</target>
+                <target>Du er blevet inviteret til et Home Shopping arrangement.</target>
             </trans-unit>
             <trans-unit id="events.not_found.header.text">
                 <source>events.not_found.header.text</source>
@@ -264,7 +264,7 @@
             </trans-unit>
             <trans-unit id="events.invite.description.text">
                 <source>events.invite.description.text</source>
-                <target>Inviter gæster til dit home shopping arrangementet. Hvis du udfylder mobilnummer, sender vi en SMS til din gæst. Hvis du udfylder e-mailadresse sender vi en e-mail til din gæst. Du er velkommen til at udfylde både mobilnummer og e-mailadresse.</target>
+                <target>Inviter gæster til dit Home Shopping arrangementet. Hvis du udfylder mobilnummer, sender vi en SMS til din gæst. Hvis du udfylder e-mailadresse sender vi en e-mail til din gæst. Du er velkommen til at udfylde både mobilnummer og e-mailadresse.</target>
             </trans-unit>
             <trans-unit id="events.invite.participant.button">
                 <source>events.invite.participant.button</source>
@@ -284,7 +284,7 @@
             </trans-unit>
             <trans-unit id="events.rsvp.description.text">
                 <source>events.rsvp.description.text</source>
-                <target>Send dit svar om du deltager i home shopping arrangementet. Opdater dine informationer.</target>
+                <target>Send dit svar om du deltager i Home Shopping arrangementet. Opdater dine informationer.</target>
             </trans-unit>
             <trans-unit id="events.tell_a_friend.header.text">
                 <source>events.tell_a_friend.header.text</source>
@@ -352,15 +352,15 @@
             </trans-unit>
             <trans-unit id="event.sms.confirmation.reply">
                 <source>event.sms.confirmation.reply</source>
-                <target>Hej %name%. Tak for din tilmelding til POMPdeLUX Home shopping arrangement den %event_date% kl. %event_time% på adressen %address%, %zip% %city%. Jeg glæder mig til at se dig! %hostess%</target>
+                <target>Hej %name%. Tak for din tilmelding til POMPdeLUX Home Shopping arrangement den %event_date% kl. %event_time% på adressen %address%, %zip% %city%. Jeg glæder mig til at se dig! %hostess%</target>
             </trans-unit>
             <trans-unit id="event.sms.invite">
                 <source>event.sms.invite</source>
-                <target>Hej %name%. %hostess% vil gerne invitere dig til POMPdeLUX Home shopping arrangement den %event_date% kl. %event_time% på adressen %address%, %zip% %city%. Hvis du vil med og se det lækre børnetøj, så svar på denne sms med teksten "pdl %event_id%". Jeg håber, vi ses!</target>
+                <target>Hej %name%. %hostess% vil gerne invitere dig til POMPdeLUX Home Shopping arrangement den %event_date% kl. %event_time% på adressen %address%, %zip% %city%. Hvis du vil med og se det lækre børnetøj, så svar på denne sms med teksten "pdl %event_id%". Jeg håber, vi ses!</target>
             </trans-unit>
             <trans-unit id="event.sms.reminder">
                 <source>event.sms.reminder</source>
-                <target>Hej %name% Husk POMPdeLUX home shopping arrangementet den %event_date% kl. %event_time% På adressen: %address%, %zip% %city% Mvh POMPdeLUX</target>
+                <target>Hej %name% Husk POMPdeLUX Home Shopping arrangementet den %event_date% kl. %event_time% På adressen: %address%, %zip% %city% Mvh POMPdeLUX</target>
             </trans-unit>
             <trans-unit id="events.name">
                 <source>events.name</source>
