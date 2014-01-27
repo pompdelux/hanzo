@@ -462,9 +462,9 @@
                         <b>Faktureret</b><br>
                         Din ordre er afsendt fra vores lager. Fakturaen finder du vedhæftet som PDF fil, under kolonnen faktura <img src="/fx/images/icons/icons/pdf.png" alt="PDF">i løbet af 24 timer efter afsendelsen.<br><br>
                         <b>Returnering</b><br>
-                        Ønsker du at returnere en vare, klikker du på <img src="/fx/images/icons/icons/return.png" alt="Return"><br><br>
+                        Ønsker du at returnere en vare, klikker du på <img src="/fx/images/icons/icons/return.png" alt="Return"> <strong>Bemærk:</strong> Returlabel og returseddel ligger i hver sin PDF og skal printes hver for sig.<br><br>
                         Kan du ikke finde varen du ønsker at returnere, kan du klikke på linket her og udskrive returseddel manuelt. <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel.pdf" target="_blank">Returseddel (PDF)</a><br><br>
-                        Klik på <img src="/fx/images/icons/icons/trackntrace.png" alt="Track 'n trace"> udfor din ordre for at følge din pakke. Track and Trace siden åbner i et nyt vindue.<br><br>
+						Klik på <img src="/fx/images/icons/icons/trackntrace.png" alt="Track 'n trace"> udfor din ordre for at følge din pakke. Track and Trace siden åbner i et nyt vindue.<br><br>
                     </p>
                 ]]></target>
             </trans-unit>
