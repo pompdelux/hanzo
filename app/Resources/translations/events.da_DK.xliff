@@ -432,7 +432,7 @@
             </trans-unit>
             <trans-unit id="events.myevents.header" approved="no">
                 <source>events.myevents.header</source>
-                <target><![CDATA[<h1>Mine Events</h1><p>Her vises alle de events hvor <b>du</b> er værtinde</p>]]></target>
+                <target><![CDATA[<h1>Mine arrangementer</h1><p>Her vises alle de arrangementer hvor <b>du</b> er værtinde</p>]]></target>
             </trans-unit>
             <trans-unit id="events.event.header.text.%date%" approved="no">
                 <source>events.event.header.text.%date%</source>
