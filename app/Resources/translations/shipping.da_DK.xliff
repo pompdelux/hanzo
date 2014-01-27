@@ -64,7 +64,7 @@
       </trans-unit>
       <trans-unit id="page.desc.after_methods"><!-- Vises efter de mulige fragt typer -->
         <source>page.desc.after_methods</source>
-        <target>Alle ordre pålægges et ekspeditionsgebyr på 0 DKK</target>
+        <target>Alle ordre pålægges et ekspeditionsgebyr på DKK 0,00.</target>
       </trans-unit>
     </body>
   </file>
