@@ -951,8 +951,6 @@ class ECommerceServices extends SoapService
      */
     public function SalesOrderLockUnlock ($data)
     {
-        $errors = array();
-
         if (empty($data->eOrderNumber)) {
             $this->logger->addCritical(__METHOD__.' '.__LINE__.': no eOrderNumber given.');
             return self::responseStatus('Error', 'SalesOrderLockUnlockResult', array('no eOrderNumber given.'));
@@ -968,6 +966,11 @@ class ECommerceServices extends SoapService
         if (!$order instanceof Orders) {
             $this->logger->addCritical(__METHOD__.' '.__LINE__.': order #' . $data->eOrderNumber . ' does not exist.');
             return self::responseStatus('Error', 'SalesOrderLockUnlockResult', array('order #' . $data->eOrderNumber . ' does not exist.'));
+        }
+
+        if ($order->getInEdit()) {
+            $this->logger->addCritical(__METHOD__.' '.__LINE__.': order #' . $data->eOrderNumber . ' cannot be locked, the order is "in edit".');
+            return self::responseStatus('Error', 'SalesOrderLockUnlockResult', array('order #' . $data->eOrderNumber . ' cannot be locked, the order is "in edit".'));
         }
 
         // ....................
