@@ -40,7 +40,7 @@ consignor:
         options:
               actor: 142
               product_concept_id: 560
-              service_id: ~
+              service_id: ""
               key: PompDeluxNO
               to_address:
                   name: "POMPdeLUX c/o Tollpost"

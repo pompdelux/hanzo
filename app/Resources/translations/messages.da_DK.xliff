@@ -138,7 +138,7 @@
                     Du er ved at redigere E-ordrenummer <a href="%history_url%" title="se ordren">%order_id%</a>.<br>
                     Ønsker du at afbryde redigeringen af din ordre - <a href="%stop_url%" title="stop editering af ordren">klik her.</a>
                   </p>
-                  <p>Ønsker du at ændre en farve eller en størrelse, skal du klikke på blyanten. Ønsker du at tilføje varer, skal du klikke på Pige, Dreng, Lille Pige eller Lille Dreng øverst på siden.</p>
+                  <p>Ønsker du at ændre en farve eller en størrelse, skal du klikke på blyanten. Ønsker du at tilføje varer, skal du klikke på PIGE, DRENG, LILLE PIGE eller LILLE DRENG øverst på siden.</p>
                   <p class="last">Når du er færdig med dine ændringer, skal du klikke på "Vis kurv" og trykke på ”Fortsæt”. Når du har gennemført din ordre med ny kreditkortbetaling, vil den gamle betaling automatisk blive slettet.<br><br> <b>Bemærk:</b> Hvis du anvender Visa Electron eller MasterCard ved redigeringen, foretages der automatisk endnu en reservation af totalbeløbet på din ordre. Reservationen af totalbeløbet på din oprindelige ordre bliver dog straks annulleret af POMPdeLUX. Der kan derimod  gå op til 6 uger, før reservationen ophæves af dit pengeinstitut. </p>
                 ]]></target>
             </trans-unit>
@@ -240,8 +240,8 @@
                     <p>Alle varer sendes som pakkepost med <a href="http://www.postdanmark.dk" target="_blank">Post Danmark</a>. Du har derfor mulighed for at f&oslash;lge din pakke via <a href="http://www.postdanmark.dk/contentfull.dk?content=/cms/da-dk/app/tracktrace/track_og_trace.htm&amp;menufile=" target="_blank">track &amp; trace</a> fra den afsendes, til den bliver leveret. <br />
     Du kan v&aelig;lge mellem tre forsendelsesmuligheder:
     <br /><br />
-      Erhvervspakke: Hvis du gerne vil have leveret pakken på din arbejdsplads, vælger du erhvervspakke. Det koster DKK 39,00 (dog kun DKK 29,00 hvis du køber varerne til et Home shopping eller Åbent hus arrangement). Husk at udfylde firmanavn, kontaktperson og firmaadresse i leveringsadressen.
-      <br /><br />Privatpakke: Hvis du gerne vil have leveret pakken på din privatadresse, koster det DKK 59,00 (DKK 49,00 hvis du køber varerne til et Home shopping eller Åbent hus arrangement).<br /><br />Valgfri udlevering - Døgnpost: Du kan frit vælge hvor i Danmark du vil hente din pakke. Skal det være Posthus, Postbutik eller den Døgnpost der er tættest på dit hjem, dit arbejde eller din fritidsinteresse. Det er helt op til dig og du behøver ikke bruge det samme udleveringssted hver gang. For at du kan få sendt pakker til Døgnposten, skal du oplyse dit navn og det ID, du valgte ved tilmeldingen til Døgnposten. Det koster DKK 39,00 at få leveret pakker til Døgnposten (dog kun DKK 29,00 hvis du køber varerne til et Home shopping eller Åbent hus arrangement) Oplys Døgnpostens nummer og adresse som leveringsadresse og din egen adresse som betalingsadresse.<br /><br />
+      Erhvervspakke: Hvis du gerne vil have leveret pakken på din arbejdsplads, vælger du erhvervspakke. Det koster DKK 39,00 (dog kun DKK 29,00 hvis du køber varerne til et Home Shopping eller Åbent Hus arrangement). Husk at udfylde firmanavn, kontaktperson og firmaadresse i leveringsadressen.
+      <br /><br />Privatpakke: Hvis du gerne vil have leveret pakken på din privatadresse, koster det DKK 59,00 (DKK 49,00 hvis du køber varerne til et Home Shopping eller Åbent Hus arrangement).<br /><br />Valgfri udlevering – Forsendelse til Pakkeboks: Du kan frit vælge hvor i Danmark du vil hente din pakke. Skal det være Posthus, Postbutik eller den Pakkeboks der er tættest på dit hjem, dit arbejde eller din fritidsinteresse. Det er helt op til dig og du behøver ikke bruge det samme udleveringssted hver gang. Det koster DKK 39,00 at få leveret pakker til en Pakkeboks (dog kun DKK 29,00 hvis du køber varerne til et Home Shopping eller Åbent Hus arrangement).<br /><br />
     N&aring;r du har modtaget pakken, b&oslash;r du kontrollere varerne. Hvis pakken og/eller indholdet er beskadiget, bedes du straks tage kontakt til vores <a href="/da_DK/forside/kundeservice">Kundeservice</a> eller til <a href="http://www.postdanmark.dk" target="_blank">Post Danmark</a>.</p>
                 ]]></target>
             </trans-unit>
@@ -255,7 +255,7 @@
                     <p><b>Sådan gør du.</b><br>
     Hos POMPdeLUX er det nemt at returnere en vare. Postposen som du modtager dine varer i, er lavet, så du let kan anvende den til tilbagesendelse af varen du ønsker at returnere – følg blot vejledningen på posen. Med denne mulighed, sparer vi dig for at skulle investere i dyr returemballage – til gavn for både dig og miljøet. <br>
  Da din returvare skal sælges igen, vil det være en stor hjælp at du returnerer varen i original indpakning med hængemærker etc.<br>
- Varerne returneres sammen med en udfyldt returseddel. På retursedlen kan du se, hvilke oplysninger vi skal bruge fra dig, og hvor du skal sende varerne til. Posen afleveres som pakkepost på posthuset eller i en Døgnpost pakkeautomat. <br><br>
+ Varerne returneres sammen med en udfyldt returseddel. På retursedlen kan du se, hvilke oplysninger vi skal bruge fra dig, og hvor du skal sende varerne til. Posen afleveres som pakkepost på posthuset eller i en Pakkeboks.<br><br>
  <b>Bemærk:</b> Per mail har du modtaget en returlabel, som du kan anvende ved returnering. Denne label har en værdi af DKK 29,00 som vi modregner i værdien på de returnerede varer – uanset returpakkens størrelse.<br>
     <br>
     <b>Reklamation og fejlleverede varer.</b><br>
@@ -277,7 +277,7 @@
                 <li><a href="/da_DK/forside/kundeservice/vaske-raad">Vaskeråd</a></li>
 				<li><a href="/da_DK/forside/kundeservice/sizeguide">Sizeguide</a></li>
 				<li><a href="/da_DK/forside/kundeservice/vilkaar">Vilkår</a></li>
-				<li><a href="/da_DK/forside/kundeservice/om-webshoppen">Om webshoppen</a></li> 
+				<li><a href="/da_DK/forside/kundeservice/om-webshoppen">Om Webshoppen</a></li> 
 				<li><a href="/da_DK/forside/kundeservice/fragt-og-levering">Fragt og levering</a></li>  
                 </ul>
                 ]]></target>
@@ -288,10 +288,10 @@
                 <h2>HOME SHOPPING</h2>
                 <ul class="menu">
 				<li><a href="/da_DK/forside/home-shopping">Bliv værtinde</a></li>
-				<li><a href="/da_DK/forside/home-shopping/find-konsulent">Find konsulent</a></li>
-				<li><a href="/da_DK/forside/home-shopping/aabent-hus">Åbent hus</a></li>
+				<li><a href="/da_DK/forside/home-shopping/find-konsulent">Find Shopping Advisor</a></li>
+				<li><a href="/da_DK/forside/home-shopping/aabent-hus">Åbent Hus</a></li>
 				<li><a href="/da_DK/forside/katalog">Katalog</a></li>
-				<li><a href="/da_DK/forside/bliv-konsulent/fritidskonsulent">Bliv konsulent</a></li>
+				<li><a href="/da_DK/forside/bliv-konsulent/fritidskonsulent">Bliv Shopping Advisor</a></li>
 				</ul><br>		
 				<h2>BE SOCIAL</h2>
 				 <ul class="menu">

@@ -740,7 +740,7 @@
       </trans-unit>
       <trans-unit id="admin.consultants.list.link">
         <source>admin.consultants.list.link</source>
-        <target>Alle Konsulenter</target>
+        <target>Alle Shopping Advisorer</target>
       </trans-unit>
       <trans-unit id="admin.employees.list.link">
         <source>admin.employees.list.link</source>
@@ -756,7 +756,7 @@
       </trans-unit>
       <trans-unit id="admin.consultants.header.text">
         <source>admin.consultants.header.text</source>
-        <target>Konsulenter</target>
+        <target>Shopping Advisorer</target>
       </trans-unit>
       <trans-unit id="admin.employees.header.text">
         <source>admin.employees.header.text</source>
@@ -772,7 +772,7 @@
       </trans-unit>
       <trans-unit id="admin.consultants.setting.header.text">
         <source>admin.consultants.setting.header.text</source>
-        <target>Rediger konsulenters Max beløb for køb</target>
+        <target>Rediger Shopping Advisorers Max beløb for køb</target>
       </trans-unit>
       <trans-unit id="admin.customers.description.text">
         <source>admin.customers.description.text</source>
@@ -780,7 +780,7 @@
       </trans-unit>
       <trans-unit id="admin.consultants.description.text">
         <source>admin.consultants.description.text</source>
-        <target>I tabellen herunder vises alle konsulenter i databasen. Du kan rediger en konsulent i linket ud for. Søg eventuelt efter en konsulent i feltet til højre(fornavn, efternavn, email, telefon).</target>
+        <target>I tabellen herunder vises alle Shopping Advisorer i databasen. Du kan rediger en Shopping Advisor i linket ud for. Søg eventuelt efter en Shopping Advisor i feltet til højre(fornavn, efternavn, email, telefon).</target>
       </trans-unit>
       <trans-unit id="admin.employees.description.text">
         <source>admin.employees.description.text</source>
@@ -804,7 +804,7 @@
       </trans-unit>
       <trans-unit id="admin.consultants.no.consultants.text">
         <source>admin.consultants.no.consultants.text</source>
-        <target>Der findes desværre ingen konsulenter i databasen.</target>
+        <target>Der findes desværre ingen Shopping Advisorer i databasen.</target>
       </trans-unit>
       <trans-unit id="admin.employees.no.employees.text">
         <source>admin.employees.no.employees.text</source>
@@ -844,7 +844,7 @@
       </trans-unit>
       <trans-unit id="admin.consultant.edit">
         <source>admin.consultant.edit</source>
-        <target>Rediger konsulent</target>
+        <target>Rediger Shopping Advisor</target>
       </trans-unit>
       <trans-unit id="admin.employees.edit">
         <source>admin.employees.edit</source>
@@ -972,7 +972,7 @@
       </trans-unit>
       <trans-unit id="admin.consultants.events.description.text">
         <source>admin.consultants.events.description.text</source>
-        <target>I denne tabel kan du se alle Events konsulenterne afholder. Du kan desuden exportere en csv fil fra en bestemt tidsinterval.</target>
+        <target>I denne tabel kan du se alle Events Shopping Advisorerne afholder. Du kan desuden exportere en csv fil fra en bestemt tidsinterval.</target>
       </trans-unit>
       <trans-unit id="admin.consultants.events.code">
         <source>admin.consultants.events.code</source>
@@ -1044,7 +1044,7 @@
       </trans-unit>
       <trans-unit id="admin.consultant.header.text">
         <source>admin.consultant.header.text</source>
-        <target>Rediger konsulent</target>
+        <target>Rediger Shopping Advisor</target>
       </trans-unit>
       <trans-unit id="admin.customer.header.text">
         <source>admin.customer.header.text</source>
@@ -1052,7 +1052,7 @@
       </trans-unit>
       <trans-unit id="admin.consultant.description.text">
         <source>admin.consultant.description.text</source>
-        <target>Herunder kan du redigere alle informationer gemt for denne konsulent. Tryk på gem for at gemme dine ændringer</target>
+        <target>Herunder kan du redigere alle informationer gemt for denne Shopping Advisor. Tryk på gem for at gemme dine ændringer</target>
       </trans-unit>
       <trans-unit id="admin.customer.description.text">
         <source>admin.customer.description.text</source>
@@ -1100,11 +1100,11 @@
       </trans-unit>
       <trans-unit id="admin.consultant.hide_info.label">
         <source>admin.consultant.hide_info.label</source>
-        <target>Skjul konsulenten på Åbent Hus listen</target>
+        <target>Skjul Shopping Advisoren på Åbent Hus listen</target>
       </trans-unit>
       <trans-unit id="admin.consultants.openhouse.consultant_is_hidden">
         <source>admin.consultants.openhouse.consultant_is_hidden</source>
-        <target>Denne konsulent er skjult fra Åben Hus listen</target>
+        <target>Denne Shopping Advisor er skjult fra Åben Hus listen</target>
       </trans-unit>
       <trans-unit id="admin.consultant.event_notes.label">
         <source>admin.consultant.event_notes.label</source>
@@ -1116,7 +1116,7 @@
       </trans-unit>
       <trans-unit id="update.consultant">
         <source>update.consultant</source>
-        <target>Gem konsulent</target>
+        <target>Gem Shopping Advisor</target>
       </trans-unit>
       <trans-unit id="update.customer">
         <source>update.customer</source>
@@ -1124,7 +1124,7 @@
       </trans-unit>
       <trans-unit id="consultant.updated">
         <source>consultant.updated</source>
-        <target>Konsulenten er successfuldt blevet opdateret.</target>
+        <target>Shopping Advisoren er successfuldt blevet opdateret.</target>
       </trans-unit>
       <trans-unit id="customer.updated">
         <source>customer.updated</source>
@@ -2013,7 +2013,7 @@
       </trans-unit>
       <trans-unit id="admin.consultants.openhouse.header.text">
         <source>admin.consultants.openhouse.header.text</source>
-        <target>Konsulenter - Åbent Hus</target>
+        <target>Shopping Advisorer - Åbent Hus</target>
       </trans-unit>
       <trans-unit id="admin.consultants.openhouse.list.link">
         <source>admin.consultants.openhouse.list.link</source>
@@ -2021,11 +2021,11 @@
       </trans-unit>
       <trans-unit id="admin.customers.consultants.frontpage.link">
         <source>admin.customers.consultants.frontpage.link</source>
-        <target>Konsulent Forside Tekst</target>
+        <target>Shopping Advisor Forside Tekst</target>
       </trans-unit>
       <trans-unit id="admin.consultants.frontpage.header.text">
         <source>admin.consultants.frontpage.header.text</source>
-        <target>Tekst til Konsulent Forsiden</target>
+        <target>Tekst til Shopping Advisor Forsiden</target>
       </trans-unit>
       <trans-unit id="admin.consultants.frontpage.save">
         <source>admin.consultants.frontpage.save</source>
@@ -2037,7 +2037,7 @@
       </trans-unit>
       <trans-unit id="admin.consultants.fronpage.content.updated">
         <source>admin.consultants.fronpage.content.updated</source>
-        <target>Konsulent forsiden er nu opdateret.</target>
+        <target>Shopping Advisor forsiden er nu opdateret.</target>
       </trans-unit>
       <trans-unit id="admin.products.image-to-categories.selector.description">
         <source>admin.products.image-to-categories.selector.description</source>
