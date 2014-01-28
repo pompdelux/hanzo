@@ -8,11 +8,11 @@
             </trans-unit>
             <trans-unit id="events.account.title">
                 <source>events.account.title</source>
-                <target>Home shopping arrangemang</target>
+                <target>Home Shopping arrangemang</target>
             </trans-unit>
             <trans-unit id="events.calendar.description.text">
                 <source>events.calendar.description.text</source>
-                <target>Här kan du se alla dina upprättade arrangemang. Grön betyder att Home shopping arrangemanget ännu inte blivit avhållt, blå betyder att det är ett Öppet hus arrangemang som inte blivit avhållt och röd betyder att arrangemanget är avslutat. Klicka på ett arrangemang för att få en detaljerad beskrivning.</target>
+                <target>Här kan du se alla dina upprättade arrangemang. Grön betyder att Home Shopping arrangemanget ännu inte blivit avhållt, blå betyder att det är ett Öppet Hus arrangemang som inte blivit avhållt och röd betyder att arrangemanget är avslutat. Klicka på ett arrangemang för att få en detaljerad beskrivning.</target>
             </trans-unit>
             <trans-unit id="events.calendar.archived.header.text">
                 <source>events.calendar.archived.header.text</source>
@@ -105,7 +105,7 @@
 
             <trans-unit id="events.host.required.error">
                 <source>events.host.required.error</source>
-                <target>Kom ihåg att fylla i värdinna/öppet hus.</target>
+                <target>Kom ihåg att fylla i värdinna/Öppet Hus.</target>
             </trans-unit>
             <trans-unit id="events.address_line_1">
                 <source>events.address_line_1</source>
@@ -213,11 +213,11 @@
             </trans-unit>
             <trans-unit id="events.type.choice.ar">
                 <source>events.type.choice.ar</source>
-                <target>Home shopping arrangemang</target>
+                <target>Home Shopping arrangemang</target>
             </trans-unit>
             <trans-unit id="events.type.choice.hus">
                 <source>events.type.choice.hus</source>
-                <target>Öppet hus</target>
+                <target>Öppet Hus</target>
             </trans-unit>
             <trans-unit id="events.is_open.label">
                 <source>events.is_open.label</source>
@@ -237,7 +237,7 @@
             </trans-unit>
             <trans-unit id="events.rsvp.top.header.text">
                 <source>events.rsvp.top.header.text</source>
-                <target>Du har blivit bjuden till ett home shopping arrangemang.</target>
+                <target>Du har blivit bjuden till ett Home Shopping arrangemang.</target>
             </trans-unit>
             <trans-unit id="events.not_found.header.text">
                 <source>events.not_found.header.text</source>
@@ -265,7 +265,7 @@
             </trans-unit>
             <trans-unit id="events.invite.description.text">
                 <source>events.invite.description.text</source>
-                <target>Bjud in gäster till ditt home shopping arrangemang genom att fylla i namn och e-mailadress nedan och därefter skickar vi ett mail till din gäst. Det är tyvärr inte möjligt att bjuda in dina gäster via SMS.  </target>
+                <target>Bjud in gäster till ditt Home Shopping arrangemang genom att fylla i namn och e-mailadress nedan och därefter skickar vi ett mail till din gäst. Det är tyvärr inte möjligt att bjuda in dina gäster via SMS.  </target>
             </trans-unit>
             <trans-unit id="events.invite.participant.button">
                 <source>events.invite.participant.button</source>
@@ -285,7 +285,7 @@
             </trans-unit>
             <trans-unit id="events.rsvp.description.text">
                 <source>events.rsvp.description.text</source>
-                <target>Skicka ditt svar om du ska delta i home shopping arrangemanget. Uppdatera din information.</target>
+                <target>Skicka ditt svar om du ska delta i Home Shopping arrangemanget. Uppdatera din information.</target>
             </trans-unit>
             <trans-unit id="events.tell_a_friend.header.text">
                 <source>events.tell_a_friend.header.text</source>
@@ -417,15 +417,15 @@
             </trans-unit>
             <trans-unit id="event.sms.confirmation.reply" approved="no">
                 <source>event.sms.confirmation.reply</source>
-                <target>Hej %name%. Tack för din anmälan till POMPdeLUX Home shopping arrangemang den %event_date% kl. %event_time% på adressen %address%, %zip% %city%. Jag ser frame mot att träffa dig! %hostess%</target>
+                <target>Hej %name%. Tack för din anmälan till POMPdeLUX Home Shopping arrangemang den %event_date% kl. %event_time% på adressen %address%, %zip% %city%. Jag ser frame mot att träffa dig! %hostess%</target>
             </trans-unit>
             <trans-unit id="event.sms.invite" approved="no">
                 <source>event.sms.invite</source>
-                <target>Hej %name%. %hostess% vill gärna bjuda in dig till ett POMPdeLUX Home shopping arrangemang den %event_date% kl. %event_time% på adressen %address%, %zip% %city%. Om du vill komma och se de fina barnkläderna, ska du svara på detta sms med texten "pdl %event_id%". Jag hoppas vi ses!</target>
+                <target>Hej %name%. %hostess% vill gärna bjuda in dig till ett POMPdeLUX Home Shopping arrangemang den %event_date% kl. %event_time% på adressen %address%, %zip% %city%. Om du vill komma och se de fina barnkläderna, ska du svara på detta sms med texten "pdl %event_id%". Jag hoppas vi ses!</target>
             </trans-unit>
             <trans-unit id="event.sms.reminder" approved="no">
                 <source>event.sms.reminder</source>
-                <target>Hej %name% Glöm inte POMPdeLUX home shopping arrangemanget den %event_date% kl. %event_time% På adressen: %address%, %zip% %city% Mvh POMPdeLUX</target>
+                <target>Hej %name% Glöm inte POMPdeLUX Home Shopping arrangemanget den %event_date% kl. %event_time% På adressen: %address%, %zip% %city% Mvh POMPdeLUX</target>
             </trans-unit>
             <trans-unit id="events.myevents.header" approved="no">
                 <source>events.myevents.header</source>

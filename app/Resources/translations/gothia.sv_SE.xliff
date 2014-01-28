@@ -62,7 +62,7 @@ Vänligen kontakta Gothia kundservice på: 0340-664444<br>I övriga fall där et
       <trans-unit id="page_txt40">
         <source>page.help_text</source>
         <target><![CDATA[Följande information kommer att användas för att verifiera dig hos Gothia PayByBill.<br>
-Om inte din adress stämmer, ska du ändra den under "Min sida".<br>
+Om inte din adress stämmer, ska du ändra den under "Min Sida".<br>
 Om du har varit kund hos Gothia tidigare, finns ditt personnummer sparat via ditt kundkonto.]]></target>
       </trans-unit>
       <trans-unit id="form_txt10">

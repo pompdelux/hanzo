@@ -24,7 +24,7 @@
             </trans-unit>
             <trans-unit id="my.account">
                 <source>my.account</source>
-                <target>Min sida</target>
+                <target>Min Sida</target>
             </trans-unit>
             <trans-unit id="previous.orders">
                 <source>previous.orders</source>
@@ -113,7 +113,7 @@
             </trans-unit>
             <trans-unit id="my.account.login.title">
                 <source>my.account.login.title</source>
-                <target>Min sida - Login</target>
+                <target>Min Sida - Login</target>
             </trans-unit>
             <trans-unit id="my.account.login">
                 <source>my.account.login</source>
@@ -201,7 +201,7 @@
             </trans-unit>
             <trans-unit id="67">
                 <source>create.notice</source>
-                <target><![CDATA[<strong>Är du redan kund?</strong><br>Om du redan är kund hos oss, ska du logga in på <a href="%url%">Min sida</a>.<br><br>]]></target>
+                <target><![CDATA[<strong>Är du redan kund?</strong><br>Om du redan är kund hos oss, ska du logga in på <a href="%url%">Min Sida</a>.<br><br>]]></target>
             </trans-unit>
             <trans-unit id="68" approved="no">
                 <source>nno.title</source>
@@ -413,11 +413,11 @@
             </trans-unit>
             <trans-unit id="login.restricted.other_locale">
                 <source>login.restricted.other_locale</source>
-                <target><![CDATA[Din profil har registrerats på %site_name%. Du bör därför använda: <a href="%url%">%site_name%</a> webshop.<br>Om du har ytterligare frågor är du välkommen att kontakta vår kundservice.]]></target>
+                <target><![CDATA[Din profil har registrerats på %site_name%. Du bör därför använda: <a href="%url%">%site_name%</a> Webshop.<br>Om du har ytterligare frågor är du välkommen att kontakta vår kundservice.]]></target>
             </trans-unit>
             <trans-unit id="login.restricted.only.customers" approved="no">
                 <source>login.restricted.only.customers</source>
-                <target><![CDATA[Din profil är registrerad som en säljare eller anställd. Du bör därför använda: <a href="%url%">Denna inloggning</a>.]]></target>
+                <target><![CDATA[Din profil är registrerad som en Shopping Advisor eller anställd. Du bör därför använda: <a href="%url%">Denna inloggning</a>.]]></target>
             </trans-unit>
             <trans-unit id="stop.editing.order">
                 <source>stop.editing.order</source>
@@ -435,7 +435,7 @@
                 <source>my.account.description</source>
                 <target><![CDATA[
                     <p>
-                        På Min sida kan du ändra dina uppgifter samt registrera dig till vårt nyhetsbrev. Du har även möjlighet för att redigera i din order. Din order kan ha följande status:<br><br>
+                        På Min Sida kan du ändra dina uppgifter samt registrera dig till vårt nyhetsbrev. Du har även möjlighet för att redigera i din order. Din order kan ha följande status:<br><br>
                         <b>Väntar</b><br>
                         Din order är ännu inte behandlad och du har minst 24 timmar på dig att redigera i din order. Du har möjlighet att ändra/lägga till/radera i din order. Du ska klicka på <img src="/fx/images/icons/icons/edit.png" alt="Edit"> för redigering. Observera: Betalningen ska genomföras på nytt – tidigare reservation blir automatiskt raderad. Om du önskar att radera hela din order, klickar du på <img src="/fx/images/icons/icons/delete.png" alt="Delete">.<br><br>
                         <b>Stop editering</b><br>
@@ -445,7 +445,7 @@
                         <b>Fakturerad</b><br>
                         Din order är skickad från vårt lager. Inom 24 timmar kan du se din faktura som en PDF fil under kolumnen faktura <img src="/fx/images/icons/icons/pdf.png" alt="PDF"><br><br>
                         <b>Returnering</b><br>
-                        Om du önskar att returnera en vara ska du klicka på <img src="/fx/images/icons/icons/return.png" alt="Return"><br><br>
+                        Om du önskar att returnera en vara ska du klicka på <img src="/fx/images/icons/icons/return.png" alt="Return"> <strong>Observera:</strong> Returetikett och retursedel ligger i två PDF-filer och ska skrivas ut var för sig.<br><br>
                         Om du inte hittar varan som du önskar att returnera på retursedeln, kan du klicka på länken här och manuellt skriva ut en retursedel:<a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_SE.pdf" target="_blank">Retursedel (PDF)</a><br><br>
                         Klicka på <img src="/fx/images/icons/icons/trackntrace.png" alt="Track 'n trace"> vid din order för att följa ditt paket. Track and Trace sidan öppnas i ett nytt fönster.<br><br>
                     </p>
@@ -495,7 +495,7 @@
             </trans-unit>
             <trans-unit id="my.account.login.header" approved="no">
                 <source>my.account.login.header</source>
-                <target><![CDATA[<h1>Välkommen till Min sida</h1>]]></target>
+                <target><![CDATA[<h1>Välkommen till Min Sida</h1>]]></target>
             </trans-unit>
             <trans-unit id="my.account.header" approved="no">
                 <source>my.account.header</source>
@@ -518,7 +518,7 @@
                 <target><![CDATA[
                     <h3>Kära kund</h3>
                     <p>Vi kan se att du har lagt fler än 20 varor i din korg – det är vi självklart glada för.<br>
-Vi vill dock vara helt säkra på att det inte har uppstått ett fel, så vi vill därför be dig om att upprätta dig som kund eller logga in på ”Min sida” med dina inloggningsuppgifter.
+Vi vill dock vara helt säkra på att det inte har uppstått ett fel, så vi vill därför be dig om att upprätta dig som kund eller logga in på ”Min Sida” med dina inloggningsuppgifter.
 Därefter kan du enkelt shoppa vidare.<br></p>
                     <p>Tack för hjälpen.</p>
                 ]]></target>
