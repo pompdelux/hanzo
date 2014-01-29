@@ -24,7 +24,7 @@
             </trans-unit>
             <trans-unit id="my.account">
                 <source>my.account</source>
-                <target>Min side</target>
+                <target>Min Side</target>
             </trans-unit>
             <trans-unit id="previous.orders">
                 <source>previous.orders</source>
@@ -112,7 +112,7 @@
             </trans-unit>
             <trans-unit id="my.account.login.title">
                 <source>my.account.login.title</source>
-                <target>Min side - Login</target>
+                <target>Min Side - Login</target>
             </trans-unit>
             <trans-unit id="my.account.login">
                 <source>my.account.login</source>
@@ -204,7 +204,7 @@
             </trans-unit>
             <trans-unit id="67">
                 <source>create.notice</source>
-                <target><![CDATA[<strong>Er du allerede kunde?</strong><br>Hvis du allerede har en konto hos oss skal du logge deg inn på <a href="%url%">Min side</a>.<br><br>]]></target>
+                <target><![CDATA[<strong>Er du allerede kunde?</strong><br>Hvis du allerede har en konto hos oss skal du logge deg inn på <a href="%url%">Min Side</a>.<br><br>]]></target>
             </trans-unit>
             <trans-unit id="68" approved="no">
                 <source>nno.title</source>
@@ -416,7 +416,7 @@
             </trans-unit>
             <trans-unit id="login.restricted.other_locale">
                 <source>login.restricted.other_locale</source>
-                <target><![CDATA[Your profile has been set up in %site_name%. You should therefore use: <a href="%url%">%site_name%</a> webshop.<br>If you have any further questions, please contact our Customer Service.]]></target>
+                <target><![CDATA[Your profile has been set up in %site_name%. You should therefore use: <a href="%url%">%site_name%</a> Webshop.<br>If you have any further questions, please contact our Customer Service.]]></target>
             </trans-unit>
             <trans-unit id="login.restricted.only.customers" approved="no">
                 <source>login.restricted.only.customers</source>
@@ -438,7 +438,7 @@
                 <source>my.account.description</source>
                 <target><![CDATA[
                     <p>
-                        På Min side kan du rette i opplysningene dine og melde deg av og på til nyhetsbrevet. Du har også mulighet for å redigere i din ordre.<br><br>
+                        På Min Side kan du rette i opplysningene dine og melde deg av og på til nyhetsbrevet. Du har også mulighet for å redigere i din ordre.<br><br>
                         Din ordre kan ha følgende status:<br><br>
                         <b>Venter</b><br>
                         Din ordre er ikke ekspedert enda, og du har som minimum 24 timer til å redigere i ordren. Du har mulighet for å endre/tilføye/slette i ordren. Du skal klikke på <img src="/fx/images/icons/icons/edit.png" alt="Edit"> ved redigering. Merk: Betalingen skal gjennomføres – tidligere betalingsreservasjon blir automatisk slettet. Ønsker du å slette hele ordren, skal du klikke på <img src="/fx/images/icons/icons/delete.png" alt="Delete">.<br><br>
@@ -449,7 +449,7 @@
                         <b>Fakturert</b><br>
                         Din ordre er sendt fra vårt lager. Fakturaen er vedlagt som PDF-fil under kolonnen Faktura i løpet av 24 timer etter at ordren er sendt.<br><br>
                         <b>Returnering</b><br>
-                        Ønsker du å returnere en vare, skal du trykke på <img src="/fx/images/icons/icons/return.png" alt="Return"><br><br>
+                        Ønsker du å returnere en vare, skal du trykke på <img src="/fx/images/icons/icons/return.png" alt="Return"><strong>Merk:</strong> Returlappen og returskjema ligger som egen PDF og kan skrives ut hver for seg.<br><br>
                         Kan du ikke finne varen du ønsker å returnere, kan du trykke på linken her og skrive ut returskjema manuelt: <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_NO.pdf" target="_blank">Returskjema(PDF)</a><br><br>
 						Trykk på <img src="/fx/images/icons/icons/returlabel.png" alt="Returlabel"> ute for din ordre for å følge med din pakke. Returlappen åpner i et nytt vindu.<br><br>
                         Trykk på <img src="/fx/images/icons/icons/trackntrace.png" alt="Track 'n trace"> ut for din ordre for å følge din pakke. Sporingssiden åpner i et nytt vindu.<br><br>
@@ -500,7 +500,7 @@
             </trans-unit>
             <trans-unit id="my.account.login.header" approved="no">
                 <source>my.account.login.header</source>
-                <target><![CDATA[<h1>Velkommen til min side</h1>]]></target>
+                <target><![CDATA[<h1>Velkommen til Min Side</h1>]]></target>
             </trans-unit>
             <trans-unit id="my.account.header" approved="no">
                 <source>my.account.header</source>
