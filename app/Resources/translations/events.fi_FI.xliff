@@ -192,7 +192,7 @@
             </trans-unit>
             <trans-unit id="events.type.choice.hus">
                 <source>events.type.choice.hus</source>
-                <target>Avoimet ovet</target>
+                <target>Avoimet Ovet</target>
             </trans-unit>
             <trans-unit id="events.is_open.label">
                 <source>events.is_open.label</source>
@@ -376,15 +376,15 @@
             </trans-unit>
             <trans-unit id="event.sms.confirmation.reply" approved="no">
                 <source>event.sms.confirmation.reply</source>
-                <target>Hei%name%. Kiitoksia ilmoittautumisestasi POMPdeLUX Home shopping tapahtumaan %event_date% klo. %event_time% osoitteessa %address%, %zip% %city%. Iloisiin tapaamisiin! %hostess%</target>
+                <target>Hei%name%. Kiitoksia ilmoittautumisestasi POMPdeLUX Home Shopping tapahtumaan %event_date% klo. %event_time% osoitteessa %address%, %zip% %city%. Iloisiin tapaamisiin! %hostess%</target>
             </trans-unit>
             <trans-unit id="event.sms.invite" approved="no">
                 <source>event.sms.invite</source>
-                <target>Hei%name%. %hostess% haluan kutsua sinut POMPdeLUX Home shopping tapahtumaan %event_date% klo. %event_time% osoitteessa %address%, %zip% %city%. Jos haluat tulla mukaan tutustumaan näihin ihaniin lastenvaatteisiin, niin vastaa tähän tekstiviestillä tekstillä "pdl %event_id%". Toivottavasti näemme!</target>
+                <target>Hei%name%. %hostess% haluan kutsua sinut POMPdeLUX Home Shopping tapahtumaan %event_date% klo. %event_time% osoitteessa %address%, %zip% %city%. Jos haluat tulla mukaan tutustumaan näihin ihaniin lastenvaatteisiin, niin vastaa tähän tekstiviestillä tekstillä "pdl %event_id%". Toivottavasti näemme!</target>
             </trans-unit>
             <trans-unit id="event.sms.reminder" approved="no">
                 <source>event.sms.reminder</source>
-                <target>Hei %name% Muista POMPdeLUX home shopping tapahtuma %event_date% klo. %event_time% Osoitteessa: %address%, %zip% %city% Ystävällisin terveisin POMPdeLUX</target>
+                <target>Hei %name% Muista POMPdeLUX Home Shopping tapahtuma %event_date% klo. %event_time% Osoitteessa: %address%, %zip% %city% Ystävällisin terveisin POMPdeLUX</target>
             </trans-unit>
             <trans-unit id="events.myevents.header" approved="no">
                 <source>events.myevents.header</source>

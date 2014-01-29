@@ -108,11 +108,11 @@
             </trans-unit>
             <trans-unit id="my.account.login.title">
                 <source>my.account.login.title</source>
-                <target>Omat sivut - Kirjaudu sisään</target>
+                <target>Omat Sivut - Kirjaudu sisään</target>
             </trans-unit>
             <trans-unit id="my.account">
                 <source>my.account</source>
-                <target>Omat sivut</target>
+                <target>Omat Sivut</target>
             </trans-unit>
             <trans-unit id="my.account.logout">
                 <source>my.account.logout</source>
@@ -412,11 +412,11 @@
             </trans-unit>
             <trans-unit id="login.restricted.other_locale">
                 <source>login.restricted.other_locale</source>
-                <target><![CDATA[Profiilisi on luotu sivustossa %site_name%. Sinun tulee siten käyttää verkkokauppaa: <a href="%url%">%site_name%</a>.<br>Jos sinulla on kysyttävää, ota yhteyttä asiakaspalveluumme.]]></target>
+                <target><![CDATA[Profiilisi on luotu sivustossa %site_name%. Sinun tulee siten käyttää Verkkokauppaa: <a href="%url%">%site_name%</a>.<br>Jos sinulla on kysyttävää, ota yhteyttä asiakaspalveluumme.]]></target>
             </trans-unit>
             <trans-unit id="login.restricted.only.customers" approved="no">
                 <source>login.restricted.only.customers</source>
-<target><![CDATA[Profiiliksesi on luotu myyntiedustaja tai työntekijä. Käytä siksi: <a href="%url%">tätä sisäänkirjautumislomaketta</a>.]]></target>
+<target><![CDATA[Profiiliksesi on luotu Shopping Advisor tai työntekijä. Käytä siksi: <a href="%url%">tätä sisäänkirjautumislomaketta</a>.]]></target>
             </trans-unit>
             <trans-unit id="stop.editing.order">
                 <source>stop.editing.order</source>
@@ -518,7 +518,7 @@
                 <target><![CDATA[
                     <h3>Hyvä asiakas</h3>
                     <p>Näemme, että olet lisännyt yli 20 vaatetta ostoskoriisi – olemme luonnollisesti iloisia siitä.<br>
-Haluamme kuitenkin varmistaa, että tässä ei ole tapahtunut virhettä. Pyydämme sinua siten rekisteröitymään asiakkaaksi tai kirjautumaan sisään kohdassa ”Omat sivut” käyttäjätunnuksellasi ja salasanallasi. Tämän jälkeen voit helposti jatkaa ostosten tekemistä.<br></p>
+Haluamme kuitenkin varmistaa, että tässä ei ole tapahtunut virhettä. Pyydämme sinua siten rekisteröitymään asiakkaaksi tai kirjautumaan sisään kohdassa ”Omat Sivut” käyttäjätunnuksellasi ja salasanallasi. Tämän jälkeen voit helposti jatkaa ostosten tekemistä.<br></p>
                     <p>Kiitos avustasi.</p>
                 ]]></target>
             </trans-unit>
