@@ -1329,8 +1329,8 @@ class ECommerceServices extends SoapService
             'eur.at'      => array('currency' => 'EUR', 'domain' => 'AT',      'vat' => 20),
             'eur.salesat' => array('currency' => 'EUR', 'domain' => 'SalesAT', 'vat' => 20),
 
-            'eur.ch'      => array('currency' => 'CHF', 'domain' => 'CH',      'vat' => 8),
-            'eur.salesch' => array('currency' => 'CHF', 'domain' => 'SalesCH', 'vat' => 8),
+            'chf.ch'      => array('currency' => 'CHF', 'domain' => 'CH',      'vat' => 8),
+            'chf.salesch' => array('currency' => 'CHF', 'domain' => 'SalesCH', 'vat' => 8),
         );
 
         return isset($c_map[$k]) ? $c_map[$k] : false;
