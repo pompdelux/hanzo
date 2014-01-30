@@ -157,17 +157,17 @@ redis:
             database: 5
             auth:     %redis_cache1_password%
 
+# this controles wich warehouse the different countries handles stock maintainance.
 stock:
     warehouses:
         main:
-            - de_AT
-            - de_DE
             - da_DK
+            - de_AT
+            - de_CH
+            - de_DE
             - fi_FI
             - nl_NL
             - sv_SE
-        switzerland:
-            - de_CH
         norway:
             - nb_NO
 
