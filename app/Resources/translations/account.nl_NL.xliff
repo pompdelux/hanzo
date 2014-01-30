@@ -24,7 +24,7 @@
             </trans-unit>
             <trans-unit id="my.account">
                 <source>my.account</source>
-                <target>Mijn pagina</target>
+                <target>Mijn Pagina</target>
             </trans-unit>
             <trans-unit id="previous.orders">
                 <source>previous.orders</source>
@@ -113,7 +113,7 @@
             </trans-unit>
             <trans-unit id="my.account.login.title">
                 <source>my.account.login.title</source>
-                <target>Mijn pagina - Login</target>
+                <target>Mijn Pagina - Login</target>
             </trans-unit>
             <trans-unit id="my.account.login">
                 <source>my.account.login</source>
@@ -205,7 +205,7 @@
             </trans-unit>
             <trans-unit id="67">
                 <source>create.notice</source>
-                <target><![CDATA[<strong>Ben je al klant?</strong><br> Heb je al een account bij ons, dan moet je inloggen op <a href="%url%">Mijn pagina</a>.<br><br>]]></target>
+                <target><![CDATA[<strong>Ben je al klant?</strong><br> Heb je al een account bij ons, dan moet je inloggen op <a href="%url%">Mijn Pagina</a>.<br><br>]]></target>
             </trans-unit>
             <trans-unit id="68" approved="no">
                 <source>nno.title</source>
@@ -417,11 +417,11 @@
             </trans-unit>
             <trans-unit id="login.restricted.other_locale">
                 <source>login.restricted.other_locale</source>
-                <target><![CDATA[Je profiel is aangemaakt op %site_name%. Je moet daarom de webshop: <a href="%url%">%site_name%</a> gebruiken.<br>Heb je nog vragen, neem dan contact op met onze Klantenservice.]]></target>
+                <target><![CDATA[Je profiel is aangemaakt op %site_name%. Je moet daarom de Webshop: <a href="%url%">%site_name%</a> gebruiken.<br>Heb je nog vragen, neem dan contact op met onze Klantenservice.]]></target>
             </trans-unit>
             <trans-unit id="login.restricted.only.customers" approved="no">
                 <source>login.restricted.only.customers</source>
-                <target><![CDATA[Je profiel is als consulent of werknemer aangemaakt. Gebruik daarom: <a href="%url%">deze login</a>.]]></target>
+                <target><![CDATA[Je profiel is als Shopping Advisor of werknemer aangemaakt. Gebruik daarom: <a href="%url%">deze login</a>.]]></target>
             </trans-unit>
             <trans-unit id="stop.editing.order">
                 <source>stop.editing.order</source>
@@ -500,7 +500,7 @@
             </trans-unit>
             <trans-unit id="my.account.login.header" approved="no">
                 <source>my.account.login.header</source>
-                <target><![CDATA[<h1>Welkom op mijn pagina</h1>]]></target>
+                <target><![CDATA[<h1>Welkom op Mijn Pagina</h1>]]></target>
             </trans-unit>
             <trans-unit id="my.account.header" approved="no">
                 <source>my.account.header</source>
@@ -523,7 +523,7 @@
                 <target><![CDATA[
                     <h3>Beste klant,</h3>
                     <p>We kunnen zien dat je meer dan 20 kledingstukken in je mandje hebt gedaan – daar zijn we natuurlijk blij mee!<br>
-Om zeker te weten dat er geen sprake is van een fout, verzoeken we je om je als klant te registreren of in te loggen op “Mijn pagina” met je gebruikersnaam/wachtwoord.
+Om zeker te weten dat er geen sprake is van een fout, verzoeken we je om je als klant te registreren of in te loggen op “Mijn Pagina” met je gebruikersnaam/wachtwoord.
 Hierna kun je gewoon doorgaan met winkelen.<br></p>
                     <p>Bedankt voor je hulp.</p>
                 ]]></target>
