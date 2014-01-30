@@ -748,7 +748,7 @@
       </trans-unit>
       <trans-unit id="admin.consultants.events.list.link">
         <source>admin.consultants.events.list.link</source>
-        <target>Events</target>
+        <target>Arrangementer</target>
       </trans-unit>
       <trans-unit id="admin.customers.header.text">
         <source>admin.customers.header.text</source>
@@ -844,7 +844,7 @@
       </trans-unit>
       <trans-unit id="admin.consultant.edit">
         <source>admin.consultant.edit</source>
-        <target>Rediger Shopping Advisor</target>
+        <target>Rediger</target>
       </trans-unit>
       <trans-unit id="admin.employees.edit">
         <source>admin.employees.edit</source>
