@@ -136,45 +136,53 @@ class StockController extends CoreController
                 ->filterByDomainsId(Hanzo::getInstance()->get('core.domain_id'))
             ->endUse()
             // Be sure to order by size as a number(192) not text(192-198)
-            ->withColumn('CONVERT(SUBSTRING_INDEX(products.SIZE,\'-\',1),UNSIGNED INTEGER)','size_num')
+            ->withColumn('CONVERT(SUBSTRING_INDEX(products.SIZE,\'-\',1),UNSIGNED INTEGER)', 'size_num')
             ->orderBy('size_num')
             ->orderBy('color')
             ->groupById()
         ;
+
         $result = $query->findByArray($filters);
+        if (!$result->count()) {
+            return $this->json_response([
+                'data'    => [],
+                'message' => $translator->trans('No product(s) in stock.'),
+                'status'  => true,
+            ]);
+        }
 
-        $data    = [];
-        $message = $translator->trans('No product(s) in stock.');
+        $stock = $this->get('stock');
+        $stock->prime($result);
 
-        if ($result->count()) {
-            $stock = $this->get('stock');
-            $stock->prime($result);
+        $data = [];
+        foreach ($result as $record) {
+            $date = $stock->check($record);
 
-            foreach ($result as $record) {
-                if ($dato = $stock->check($record)) {
-                    $date = ($dato instanceof \DateTime ? $dato->format('d.m.Y') : '');
-
-                    $data[] = [
-                        'color'      => $record->getColor(),
-                        'date'       => $date,
-                        'master'     => $record->getMaster(),
-                        'product_id' => $record->getId(),
-                        'size'       => $record->getSize(),
-                    ];
-
-                    $message = '';
-                    if ($date) {
-                        $message = $translator->trans('late.delivery', [
-                            '%date%'    => $date,
-                            '%product%' => $record->getMaster(),
-                        ], 'js');
-                    }
-                }
+            if (false === $date) {
+                continue;
             }
 
-            if (count($data)) {
-                $data = ['products' => $data];
+            $date = ($date instanceof \DateTime ? $date->format('d.m.Y') : '');
+
+            $data[] = [
+                'color'      => $record->getColor(),
+                'date'       => $date,
+                'master'     => $record->getMaster(),
+                'product_id' => $record->getId(),
+                'size'       => $record->getSize(),
+            ];
+
+            $message = '';
+            if ($date) {
+                $message = $translator->trans('late.delivery', [
+                    '%date%'    => $date,
+                    '%product%' => $record->getMaster(),
+                ], 'js');
             }
+        }
+
+        if (count($data)) {
+            $data = ['products' => $data];
         }
 
         return $this->json_response([

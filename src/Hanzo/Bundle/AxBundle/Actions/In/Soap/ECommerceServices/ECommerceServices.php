@@ -936,8 +936,8 @@ class ECommerceServices extends SoapService
 
         $this->SalesOrderLockUnlock((object) array(
             'eOrderNumber' => $data->eOrderNumber,
-            'orderStatus' => 4,
-            'sendMail' => 0,
+            'orderStatus'  => 4,
+            'sendMail'     => 0,
         ));
 
         $this->timer->logAll('Time spend on order: #'.$order->getId());
@@ -1144,7 +1144,6 @@ class ECommerceServices extends SoapService
             ('idealpayment' == strtolower($attributes->payment->nature))
         ) {
             $this->timer->reset();
-            $status = true;
             $total  = $order->getTotalPrice();
             $amount = str_replace(',', '.', $data->amount);
 
