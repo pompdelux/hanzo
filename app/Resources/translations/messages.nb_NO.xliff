@@ -2,6 +2,10 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
+            <trans-unit id="size.label.postfix">
+                <source>size.label.postfix</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="size.guide.link">
                 <source>size.guide.link</source>
                 <target>images/pages/Size_Guide_NO.jpg</target>
@@ -284,12 +288,12 @@
                     <li><a href="/nb_NO/forside/home-shopping/apent-hus">Åpent Hus</a></li>
 				    <li><a href="/nb_NO/forside/katalog">Katalog</a></li>
                     <li><a href="/nb_NO/forside/bli-konsulent/fritidskonsulent">Bli Shopping Advisor</a></li>
-                </ul><br>		
+                </ul><br>
 				<h2>BE SOCIAL</h2>
 				 <ul class="menu">
 				 <li><a href="http://instagram.com/pompdelux_official" target="_blank"> Instagram</a></li>
 				<li><a href="https://www.facebook.com/POMPdeLUXDK" target="_blank">Facebook</a></li>
-				<li><a href="/nb_NO/forside/katalog/backstage-video">Backstage video</a></li>				 
+				<li><a href="/nb_NO/forside/katalog/backstage-video">Backstage video</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>

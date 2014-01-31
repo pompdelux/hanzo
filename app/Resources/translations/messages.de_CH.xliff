@@ -2,6 +2,10 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
+            <trans-unit id="size.label.postfix">
+                <source>size.label.postfix</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="size.guide.link">
                 <source>size.guide.link</source>
                 <target>images/pages/Size_Guide_DE.jpg</target>
@@ -260,7 +264,7 @@ Paket:Das Paket wird an Ihre Adresse geliefert und kostet EUR 4,95 (EUR 3,95, we
                 <h2>KUNDENDIENST</h2>
                 <ul class="menu">
                     <li><a href="/de_CH/kundendienst/telefonzeiten">Telefonzeiten</a></li>
-                    <li><a href="/de_CH/home/kundendienst/faq">FAQ</a></li>					
+                    <li><a href="/de_CH/home/kundendienst/faq">FAQ</a></li>
                     <li><a href="/de_CH/home/kundendienst/rucksendung">Rücksendung</a></li>
                     <li><a href="/de_CH/home/kundendienst/umtausch">Umtausch</a></li>
 					<li><a href="/de_CH/home/kundendienst/rucksendeschein">Rücksendeschein</a></li>
@@ -282,7 +286,7 @@ Paket:Das Paket wird an Ihre Adresse geliefert und kostet EUR 4,95 (EUR 3,95, we
 				<li><a href="/de_CH/home/home-shopping/tag-der-offenen-tur">Tag der offenen Tür</a></li>
 				<li><a href="/de_CH/home/katalog">Katalog</a></li>
 				<li><a href="/de_CH/home/beraterin-werden/ein-schoner-nebenjob">Beraterin werden</a></li>
-				</ul><br>		
+				</ul><br>
 				<h2>BE SOCIAL</h2>
 				 <ul class="menu">
 				<li><a href="http://instagram.com/pompdelux_official" target="_blank"> Instagram</a></li>
@@ -296,7 +300,7 @@ Paket:Das Paket wird an Ihre Adresse geliefert und kostet EUR 4,95 (EUR 3,95, we
                 <target><![CDATA[
                 <h2>MEHR POMPDELUX</h2>
                 <ul class="menu">
-				<li><a href="/de_CH/home/uber-pompdelux">Über POMPdeLUX</a></li> 
+				<li><a href="/de_CH/home/uber-pompdelux">Über POMPdeLUX</a></li>
 				<li><a href="/de_CH/home/uber-pompdelux/corporate-social-responsibility/csr-bericht">CSR-bericht</a></li>
 				<li><a href="/de_CH/home/gewinnspiele">Gewinnspiele</a></li>
 				<li><a href="/de_CH/home/uber-pompdelux/kontakt">Kontakt</a></li>

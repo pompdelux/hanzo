@@ -2,6 +2,10 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
+            <trans-unit id="size.label.postfix">
+                <source>size.label.postfix</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="size.guide.link">
                 <source>size.guide.link</source>
                 <target>images/pages/Size_Guide_NL.jpg</target>
@@ -277,7 +281,7 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
                     <li><a href="/nl_NL/voorpagina/open-huis">Open Huis</a></li>
 					<li><a href="/nl_NL/voorpagina/catalogus">Catalogus</a></li>
 					<li><a href="/nl_NL/voorpagina/word-consulent/een-leuke-vrijetijdsbaan">Word 	</a></li>
-                </ul><br>		
+                </ul><br>
 				<h2>BE SOCIAL</h2>
 				 <ul class="menu">
 				<li><a href="http://instagram.com/pompdelux_official" target="_blank"> Instagram</a></li>
