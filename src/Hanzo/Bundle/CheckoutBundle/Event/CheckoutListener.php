@@ -39,8 +39,8 @@ class CheckoutListener
 
     /**
      * onPaymentFailed
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
+     *
+     * @param FilterOrderEvent $event
      **/
     public function onPaymentFailed(FilterOrderEvent $event)
     {
@@ -171,8 +171,16 @@ class CheckoutListener
 
         $event_id = isset($attributes->global->HomePartyId) ? $attributes->global->HomePartyId : '';
 
+        $size_label_postfix = $this->translator->trans('size.label.postfix');
+
+        if ($size_label_postfix) {
+            foreach ($order->getOrdersLiness() as $line) {
+                $line->setProductsSize($line->getProductsSize().$size_label_postfix);
+            }
+        }
+
         $params = array(
-            'order' => $order,
+            'order'            => $order,
             'payment_address'  => $this->formatter->format($order->getOrderAddress('payment'), 'txt'),
             'company_address'  => $company_address,
             'delivery_address' => $this->formatter->format($order->getOrderAddress('shipping'), 'txt'),
@@ -188,24 +196,20 @@ class CheckoutListener
             'event_id'         => $event_id,
         );
 
-        // hf@bellcom.dk, 04-sep-2012: only show if > 0 -->>
         $payment_fee = $order->getPaymentFee();
-        if ( $payment_fee > 0 ) {
-          $params['payment_fee'] = $payment_fee;
+        if ($payment_fee > 0) {
+            $params['payment_fee'] = $payment_fee;
         }
-        // <<-- hf@bellcom.dk, 04-sep-2012: only show if > 0
 
-        // hf@bellcom.dk, 04-sep-2012: order confirmation checks if card_type is defined, if not, it will use payment_method, e.g. Gothia -->>
-        if ( !empty($card_type) ) {
-          $params['card_type'] = $card_type;
+        if (!empty($card_type)) {
+            $params['card_type'] = $card_type;
         }
-        // <<-- hf@bellcom.dk, 04-sep-2012: order confirmation checks if card_type is defined, if not, it will use payment_method, e.g. Gothia
 
         if (isset($attributes->payment->transact)) {
             $params['transaction_id'] = $attributes->payment->transact;
         }
 
-        if ( !is_null($order->getPaymentGatewayId()) ) {
+        if (!is_null($order->getPaymentGatewayId())) {
             $params['payment_gateway_id'] = $order->getPaymentGatewayId();
         }
 
@@ -227,11 +231,9 @@ class CheckoutListener
                 $params['gothia_fee'] = $line->getPrice();
                 $params['gothia_fee_title'] = $this->translator->trans('payment.fee.gothia.title', [], 'checkout');
 
-                // hf@bellcom.dk, 27-aug-2012: currently payment.fee is gothia fee, so to avoid 2 lines on the confirmation mail, payment_fee is unset here -->>
                 if (isset($params['payment_fee'])) {
-                  unset( $params['payment_fee'] );
+                    unset($params['payment_fee']);
                 }
-                // <<-- hf@bellcom.dk, 27-aug-2012: currently payment.fee is gothia fee, so to avoid 2 lines on the confirmation mail, payment_fee is unset here
             }
         }
 
@@ -277,7 +279,6 @@ class CheckoutListener
     public function onFinalize(FilterOrderEvent $event)
     {
         $order    = $event->getOrder();
-        $customer = $order->getCustomers();
         $hanzo    = Hanzo::getInstance();
 
         // if for some reason a shipping method without data is set, cleanup.
