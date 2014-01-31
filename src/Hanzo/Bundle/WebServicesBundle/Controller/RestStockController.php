@@ -61,6 +61,8 @@ class RestStockController extends CoreController
             ), 400);
         }
 
+        $size_label_postfix = $translator->trans('size.label.postfix');
+
         if ($product_id) {
             /**
              * the easy one, we have the eccakt product id, fetch it and return the status
@@ -83,6 +85,7 @@ class RestStockController extends CoreController
                     'product_id' => $product->getId(),
                     'master'     => $product->getMaster(),
                     'size'       => $product->getSize(),
+                    'size_label' => $product->getSize().$size_label_postfix,
                     'color'      => $product->getColor(),
                     'date'       => '',
             ));
@@ -123,6 +126,7 @@ class RestStockController extends CoreController
                             'product_id' => $record->getId(),
                             'master'     => $record->getMaster(),
                             'size'       => $record->getSize(),
+                            'size_label' => $record->getSize().$size_label_postfix,
                             'color'      => $record->getColor(),
                             'date'       => $date
                         );
