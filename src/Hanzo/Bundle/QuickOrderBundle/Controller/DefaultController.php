@@ -27,12 +27,19 @@ class DefaultController extends CoreController
         $products = array();
         $delivery_date = 0;
 
+        $size_label_postfix = $this->container->get('translator')->trans('size.label.postfix');
+
         // product lines- if any
         foreach ($order->getOrdersLiness() as $line) {
             $line = $line->toArray(\BasePeer::TYPE_FIELDNAME);
 
             if ($line['type'] != 'product') {
                 continue;
+            }
+
+            // prefix size if set
+            if ($size_label_postfix) {
+                $line['products_size'] .= $size_label_postfix;
             }
 
             // find first products2category match
@@ -82,7 +89,8 @@ class DefaultController extends CoreController
 
             $line['url'] = '#';
             if ($master) {
-                $line['url'] = $router->generate('product_info', array('product_id' => $master->id));
+                $line['url']    = $router->generate('product_info', array('product_id' => $master->id));
+                $line['master'] = $master->sku;
             }
 
             $products[] = $line;
