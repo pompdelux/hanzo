@@ -5547,7 +5547,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     if (false !== $this->collSearchProductsTagssRelatedByMasterProductsIdPartial && count($collSearchProductsTagssRelatedByMasterProductsId)) {
                       $this->initSearchProductsTagssRelatedByMasterProductsId(false);
 
-                      foreach($collSearchProductsTagssRelatedByMasterProductsId as $obj) {
+                      foreach ($collSearchProductsTagssRelatedByMasterProductsId as $obj) {
                         if (false == $this->collSearchProductsTagssRelatedByMasterProductsId->contains($obj)) {
                           $this->collSearchProductsTagssRelatedByMasterProductsId->append($obj);
                         }
@@ -5557,12 +5557,13 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     }
 
                     $collSearchProductsTagssRelatedByMasterProductsId->getInternalIterator()->rewind();
+
                     return $collSearchProductsTagssRelatedByMasterProductsId;
                 }
 
-                if($partial && $this->collSearchProductsTagssRelatedByMasterProductsId) {
-                    foreach($this->collSearchProductsTagssRelatedByMasterProductsId as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collSearchProductsTagssRelatedByMasterProductsId) {
+                    foreach ($this->collSearchProductsTagssRelatedByMasterProductsId as $obj) {
+                        if ($obj->isNew()) {
                             $collSearchProductsTagssRelatedByMasterProductsId[] = $obj;
                         }
                     }
@@ -5590,7 +5591,8 @@ abstract class BaseProducts extends BaseObject implements Persistent
     {
         $searchProductsTagssRelatedByMasterProductsIdToDelete = $this->getSearchProductsTagssRelatedByMasterProductsId(new Criteria(), $con)->diff($searchProductsTagssRelatedByMasterProductsId);
 
-        $this->searchProductsTagssRelatedByMasterProductsIdScheduledForDeletion = unserialize(serialize($searchProductsTagssRelatedByMasterProductsIdToDelete));
+
+        $this->searchProductsTagssRelatedByMasterProductsIdScheduledForDeletion = $searchProductsTagssRelatedByMasterProductsIdToDelete;
 
         foreach ($searchProductsTagssRelatedByMasterProductsIdToDelete as $searchProductsTagsRelatedByMasterProductsIdRemoved) {
             $searchProductsTagsRelatedByMasterProductsIdRemoved->setProductsRelatedByMasterProductsId(null);
@@ -5624,7 +5626,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getSearchProductsTagssRelatedByMasterProductsId());
             }
             $query = SearchProductsTagsQuery::create(null, $criteria);
@@ -5653,8 +5655,13 @@ abstract class BaseProducts extends BaseObject implements Persistent
             $this->initSearchProductsTagssRelatedByMasterProductsId();
             $this->collSearchProductsTagssRelatedByMasterProductsIdPartial = true;
         }
+
         if (!in_array($l, $this->collSearchProductsTagssRelatedByMasterProductsId->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddSearchProductsTagsRelatedByMasterProductsId($l);
+
+            if ($this->searchProductsTagssRelatedByMasterProductsIdScheduledForDeletion and $this->searchProductsTagssRelatedByMasterProductsIdScheduledForDeletion->contains($l)) {
+                $this->searchProductsTagssRelatedByMasterProductsIdScheduledForDeletion->remove($this->searchProductsTagssRelatedByMasterProductsIdScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
@@ -5765,7 +5772,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     if (false !== $this->collSearchProductsTagssRelatedByProductsIdPartial && count($collSearchProductsTagssRelatedByProductsId)) {
                       $this->initSearchProductsTagssRelatedByProductsId(false);
 
-                      foreach($collSearchProductsTagssRelatedByProductsId as $obj) {
+                      foreach ($collSearchProductsTagssRelatedByProductsId as $obj) {
                         if (false == $this->collSearchProductsTagssRelatedByProductsId->contains($obj)) {
                           $this->collSearchProductsTagssRelatedByProductsId->append($obj);
                         }
@@ -5775,12 +5782,13 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     }
 
                     $collSearchProductsTagssRelatedByProductsId->getInternalIterator()->rewind();
+
                     return $collSearchProductsTagssRelatedByProductsId;
                 }
 
-                if($partial && $this->collSearchProductsTagssRelatedByProductsId) {
-                    foreach($this->collSearchProductsTagssRelatedByProductsId as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collSearchProductsTagssRelatedByProductsId) {
+                    foreach ($this->collSearchProductsTagssRelatedByProductsId as $obj) {
+                        if ($obj->isNew()) {
                             $collSearchProductsTagssRelatedByProductsId[] = $obj;
                         }
                     }
@@ -5808,7 +5816,8 @@ abstract class BaseProducts extends BaseObject implements Persistent
     {
         $searchProductsTagssRelatedByProductsIdToDelete = $this->getSearchProductsTagssRelatedByProductsId(new Criteria(), $con)->diff($searchProductsTagssRelatedByProductsId);
 
-        $this->searchProductsTagssRelatedByProductsIdScheduledForDeletion = unserialize(serialize($searchProductsTagssRelatedByProductsIdToDelete));
+
+        $this->searchProductsTagssRelatedByProductsIdScheduledForDeletion = $searchProductsTagssRelatedByProductsIdToDelete;
 
         foreach ($searchProductsTagssRelatedByProductsIdToDelete as $searchProductsTagsRelatedByProductsIdRemoved) {
             $searchProductsTagsRelatedByProductsIdRemoved->setProductsRelatedByProductsId(null);
@@ -5842,7 +5851,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getSearchProductsTagssRelatedByProductsId());
             }
             $query = SearchProductsTagsQuery::create(null, $criteria);
@@ -5871,8 +5880,13 @@ abstract class BaseProducts extends BaseObject implements Persistent
             $this->initSearchProductsTagssRelatedByProductsId();
             $this->collSearchProductsTagssRelatedByProductsIdPartial = true;
         }
+
         if (!in_array($l, $this->collSearchProductsTagssRelatedByProductsId->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddSearchProductsTagsRelatedByProductsId($l);
+
+            if ($this->searchProductsTagssRelatedByProductsIdScheduledForDeletion and $this->searchProductsTagssRelatedByProductsIdScheduledForDeletion->contains($l)) {
+                $this->searchProductsTagssRelatedByProductsIdScheduledForDeletion->remove($this->searchProductsTagssRelatedByProductsIdScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
