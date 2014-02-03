@@ -13,11 +13,11 @@
 
 <h1>{{ 'admin.orders.changestate.header.text'|trans({}, 'admin') }}</h1>
 
-{% if app.session.hasFlash('notice') %}
+{% for message in app.session.flashbag.get('notice') %}
 <div class="message notice">
-  {{ app.session.flash('notice')|trans({}, 'admin') }}
+  {{ message|trans({}, 'admin') }}
 </div>
-{% endif %}
+{% endfor %}
 
 <p>{{ 'admin.orders.changestate.description.text'|trans({}, 'admin') }}</p>
 

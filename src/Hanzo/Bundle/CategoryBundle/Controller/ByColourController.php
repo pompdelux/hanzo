@@ -96,6 +96,7 @@ class ByColourController extends CoreController
                     '\''.implode('\',\'', $color_map).'\''
                 ))
                 ->useProductsQuery()
+                    ->joinWithProductsI18n()
                     ->filterByMaster(null, Criteria::ISNULL)
                     ->useProductsToCategoriesQuery()
                         ->addAscendingOrderByColumn(sprintf(
@@ -104,6 +105,9 @@ class ByColourController extends CoreController
                             implode(',', $includes)
                         ))
                         ->filterByCategoriesId($includes)
+                    ->endUse()
+                    ->useProductsI18nQuery()
+                        ->filterByLocale($locale)
                     ->endUse()
                     ->filterById($ids)
                 ->endUse()
@@ -121,6 +125,7 @@ class ByColourController extends CoreController
                 }
 
                 $product = $variant->getProducts();
+                $product->setLocale($locale);
 
                 // Always use 01.
                 $image = preg_replace('/_(\d{2})/', '_01', $variant->getImage());
@@ -136,14 +141,14 @@ class ByColourController extends CoreController
                     'sku' => $product->getSku(),
                     'id' => $product->getId(),
                     'out_of_stock' => $product->getIsOutOfStock(),
-                    'title' => $product->getSku(),
+                    'title' => $product->getTitle(),
                     'color' => $variant->getColor(),
                     'image' => ($show_by_look) ? $image_set : $image_overview,
                     'image_flip' => ($show_by_look) ? $image_overview : $image_set,
                     'alt' => $alt,
                     'url' => $router->generate($product_route, array(
                         'product_id' => $product->getId(),
-                        'title' => Tools::stripText($product->getSku()),
+                        'title' => Tools::stripText($product->getTitle()),
                         'focus' => $variant->getId()
                     )),
                     'index' => $index,

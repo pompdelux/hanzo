@@ -34,6 +34,13 @@ class GothiaApiCallResponse
      **/
     public $transactionId = null;
 
+    public $prettyErrors = array(
+        5000  => 'We are unable to connect to Gothia Invoice service, please try again later.', // System error occured, contact service supplier or try again later
+        10004 => 'We couldn\'t find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.', // Customer not found
+        10006 => 'We couldn\'t find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.', // Customer not found in external DB
+        10036 => 'The reservation was not approved at Gothia Invoice Service. You may have exceeded the limit of reservations at Gothia.', // Reservation is not approved
+    );
+
     /**
      * __construct
      * @return void
@@ -101,6 +108,41 @@ class GothiaApiCallResponse
                 }
 
                 break;
+            case 'CheckCustomerAndPlaceReservation':
+                if (isset($rawResponse['CheckCustomerAndPlaceReservationResult']['TransactionID'])) {
+                    $this->transactionId = $rawResponse['CheckCustomerAndPlaceReservationResult']['TransactionID'];
+                }
+
+                if (!isset($rawResponse['CheckCustomerAndPlaceReservationResult']['Success'])) {
+                    $this->setIsError();
+                } else {
+                    if ($rawResponse['CheckCustomerAndPlaceReservationResult']['Success'] !== 'true') {
+                        $this->setIsError();
+                    }
+                }
+
+                if (!isset($rawResponse['CheckCustomerAndPlaceReservationResult']['Customer'])) {
+                    $this->setIsError();
+                }
+
+                if (!isset($rawResponse['CheckCustomerAndPlaceReservationResult']['ReservationApproved']) || ($rawResponse['CheckCustomerAndPlaceReservationResult']['ReservationApproved'] !== 'true')) {
+                    $this->setIsError();
+                }
+
+                if (!$this->isError()) {
+                    foreach ($rawResponse['CheckCustomerAndPlaceReservationResult']['Customer'] as $key => $value) {
+                        $this->data[$key] = $value;
+                    }
+                    foreach ($rawResponse['CheckCustomerAndPlaceReservationResult']['Reservation'] as $key => $value) {
+                        $this->data[$key] = $value;
+                    }
+                }
+
+                if (isset($this->data['PurchaseStop']) && ($this->data['PurchaseStop'] === 'true')) {
+                    $this->isError = true;
+                }
+
+                break;
 
             case 'CancelReservation':
                 if (isset($rawResponse['CancelReservationResult']['TransactionID'])) {
@@ -143,11 +185,6 @@ class GothiaApiCallResponse
      **/
     private function checkResponseForErrors( $rawResponse )
     {
-        $prettyErrors = array(
-            5000  => 'Kunne ikke forbinde til Gothia Faktura service, prøv igen senere',
-            10004 => 'Tyvärr blev du inte godkänd i vår kontroll vid köp mot faktura.<br>Var vänlig kontrollera att du har angivit ditt namn, personnummer och folkbokföringsadress enligt folkbokföringens register korrekt, alternativt välj ett annat betalningssätt.',
-            10006 => 'Tyvärr blev du inte godkänd i vår kontroll vid köp mot faktura.<br>Var vänlig kontrollera att du har angivit ditt namn, personnummer och folkbokföringsadress enligt folkbokföringens register korrekt, alternativt välj ett annat betalningssätt.',
-        );
 
         if (is_array($rawResponse)) {
             foreach ($rawResponse as $key => $data) {
@@ -156,21 +193,19 @@ class GothiaApiCallResponse
                         if (!empty($errorData)) {
                             if (!isset($errorData['ID']) && isset($errorData[0]['ID'])) {
                                 foreach ($errorData as $subError) {
-                                    $this->errors[] = (isset( $prettyErrors[$subError['ID']] )) ? $prettyErrors[$subError['ID']] : $subError['Message'];
+                                    $this->errors[] = (isset( $this->prettyErrors[$subError['ID']] )) ? $this->prettyErrors[$subError['ID']] : $subError['Message'];
                                 }
                             } else {
-                                $this->errors[] = (isset( $prettyErrors[$errorData['ID']] )) ? $prettyErrors[$errorData['ID']] : $errorData['Message'];
+                                $this->errors[] = (isset( $this->prettyErrors[$errorData['ID']] )) ? $this->prettyErrors[$errorData['ID']] : $errorData['Message'];
                             }
                         }
                     }
                 }
 
                 if (isset($data['TemporaryExternalProblem']) && ($data['TemporaryExternalProblem'] !== 'false')) {
-                    $this->errors[] = 'Kunne ikke forbinde til Gothia Faktura service, prøv igen senere';
+                    $this->errors[] = 'We are unable to connect to Gothia Invoice service, please try again later.';
                 }
             }
-        } else {
-            $this->errors[] = 'Kunne ikke forbinde til Gothia Faktura service, prøv igen senere';
         }
 
         if (!empty($this->errors)) {

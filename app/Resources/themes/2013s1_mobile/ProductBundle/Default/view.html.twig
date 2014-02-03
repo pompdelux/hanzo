@@ -82,16 +82,16 @@
               <select class="size" name="size">
                 <option value="">{{ "choose"|trans }}</option>
               {% for size in product.sizes %}
-                <option value="{{ size }}">{{ size }}</option>
+                <option value="{{ size.value }}" {{ not size.in_stock ? 'disabled="disabled"' : '' }} >{{ size.value }} {{ not size.in_stock ? "("~ "out.of.stock"|trans ~ ")" : '' }}</option>
               {% endfor %}
               </select>
             </div>
             <div><span class="small">{{ 'choose.size.note'|trans }}</span><a href="#" class="show-size-guide">» Size guide <br><img src="{{ cdn }}/images/sizeguide/{{ product.title|replace({" ":""}) }}.jpg" alt="" class="off"></a></div>
           </label>
 
-          <label for="color" class="off">
+          <label for="color">
             <span>{{ "color"|trans }}:</span>
-            <select class="color" name="color">
+            <select class="color" name="color" disabled="disabled">
               <option value="">{{ "choose"|trans }}</option>
             {% for color in product.colors %}
               <option value="{{ color }}">{{ color }}</option>
@@ -161,11 +161,11 @@
     </div>
 
     <div class="grid_8 alpha omega">
-      {% include 'CMSBundle:Social:share.html.twig' with {
-        'url': app.request.uri,
-        'image': product_image_url(product.main_image.name, '0x1670'),
-        'description': product.title }
-      %}
+        {{ include('CMSBundle:Social:share.html.twig', {
+            'url': app.request.uri,
+            'image': product_image_url(product.main_image.name, '0x1670'),
+            'description': product.title
+        }) }}
     </div>
   </div>
 

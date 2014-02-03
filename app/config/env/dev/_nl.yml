@@ -2,3 +2,10 @@ framework:
     default_locale: nl_NL
     session:
         cookie_path: '/nl_NL'
+
+account:
+    consignor:
+        actor_id: 67
+
+consignor:
+    shipment_server: ~

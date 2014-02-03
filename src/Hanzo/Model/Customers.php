@@ -139,6 +139,7 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
         'tj@pompdelux.dk'        => ['ROLE_MARKETING', 'ROLE_EMPLOYEE'],
         // sales
         'ak@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
+        'kg@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
         'mc@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
         'mlade@pompdelux.dk'     => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
         'mle@pompdelux.dk'       => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
@@ -244,7 +245,7 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
     {
         $length = mb_strlen($this->getFirstName().' '.$this->getLastName());
         if (30 < $length) {
-            $context->addViolationAtSubPath('first_name', 'name.max.length', ['{{ limit }}' => 30], $length, $length);
+            $context->addViolationAt('first_name', 'name.max.length', ['{{ limit }}' => 30], $length, $length);
         }
     }
 } // Customers

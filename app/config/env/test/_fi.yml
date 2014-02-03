@@ -17,3 +17,23 @@ propel:
                 dsn:                  mysql:host=%test_fi_database_host%;dbname=%test_fi_database_name%
                 options:              {}
                 attributes:           {}
+
+account:
+    consignor:
+        actor_id: 68
+
+consignor:
+    shipment_server:
+        options:
+              actor: 6201
+              product_concept_id: 882
+              service_id: 9065
+              key: PompDeluxFI
+              to_address:
+                  name: "POMPdeLUX ApS"
+                  address_line_1: "Møgelhøj 8"
+                  postal_code: "8520"
+                  city: "Lystrup"
+                  country_iso2: DK
+                  email: mailfi@pompdelux.com
+                  phone: "09-34870870"

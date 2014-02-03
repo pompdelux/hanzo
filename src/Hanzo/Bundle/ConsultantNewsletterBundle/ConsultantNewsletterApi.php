@@ -187,20 +187,14 @@ class ConsultantNewsletterApi
     **/
     public function doesAdminUserExist($email)
     {
-        $x = $this->soapClient->doesAdminUserExist($email);
-
-error_log($this->soapClient->__getLastRequestHeaders());
-error_log($this->soapClient->__getLastRequest());
-
-
-        return $x;
+        return $this->soapClient->doesAdminUserExist($email);
     }
 
     /**
     * Creates an admin user in phplist
     *
-    * @param stdClass $user
-    * @param stdClass $access
+    * @param \stdClass $user
+    * @param \stdClass $access
     * @return bool
     * @author Henrik Farre <hf@bellcom.dk>
     **/
@@ -225,7 +219,7 @@ error_log($this->soapClient->__getLastRequest());
     /**
     * Creates a list
     *
-    * @param stdClass $list
+    * @param \stdClass $list
     * @return void
     * @author Henrik Farre <hf@bellcom.dk>
     **/

@@ -48,6 +48,6 @@
 </noscript>
 {% endif %}
 
-{% render 'RetargetingBundle:Default:successBlock' with {'order_id': order.id }  %}
+{{ render(controller('RetargetingBundle:Default:successBlock', { 'order_id': order.id })) }}
 
 {% endblock javascript %}

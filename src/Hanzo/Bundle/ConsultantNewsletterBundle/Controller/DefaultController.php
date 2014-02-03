@@ -112,6 +112,7 @@ class DefaultController extends CoreController
                 return $this->json_response(array(
                     'status' => TRUE,
                     'message' => $this->get('translator')->trans('consultant.newsletter.draft.saved', array(), 'consultant'),
+                    'id' => $draft->getId(),
                 ));
             }
         }
@@ -149,16 +150,16 @@ class DefaultController extends CoreController
             )
         ;
 
-        if (!$api->doesAdminUserExist($consultant->getEmail())) {
-            $admin = new \stdClass();
-            $admin->loginname = $consultant->getName();
-            $admin->email = $consultant->getEmail();
-            $admin->password = $consultant->getPasswordClear();
-            $admin->id = $consultant->getId();
+    	if (!$api->doesAdminUserExist($consultant->getEmail())) {
+    		$admin = new \stdClass();
+    		$admin->loginname = $consultant->getName();
+    		$admin->email = $consultant->getEmail();
+    		$admin->password = $consultant->getPasswordClear();
+    		$admin->id = $consultant->getId();
 
-            $access = array();
-            $api->addAdminUser( $admin , (object) $access);
-        }
+    		$access = array();
+    		$api->addAdminUser( $admin , (object) $access);
+    	}
 
         $admin_user = $api->getAdminUserByEmail($consultant->getEmail());
         $lists      = $api->getListsByOwner($admin_user->id);
@@ -290,11 +291,18 @@ class DefaultController extends CoreController
             $admin->id = $consultant->getId();
 
             $access = array();
-            $api->addAdminUser( $admin , (object) $access);
+            $api->addAdminUser($admin , (object) $access);
         }
 
         $admin_user = $api->getAdminUserByEmail($consultant->getEmail());
-        $lists      = $api->getListsByOwner($admin_user->id);
+
+        // empty admin user works, but we need to set the id.
+        // not sure this should be the case tho...
+        if (empty($admin_user->id)) {
+            $admin_user->id = null;
+        }
+
+        $lists = $api->getListsByOwner($admin_user->id);
 
         if (empty($lists)) {
             $list = new \stdClass();
@@ -472,7 +480,14 @@ class DefaultController extends CoreController
         }
 
         $admin_user = $api->getAdminUserByEmail($consultant->getEmail());
-        $history    = $api->getNewsletterHistory($admin_user->id);
+
+        // empty admin user works, but we need to set the id.
+        // not sure this should be the case tho...
+        if (empty($admin_user->id)) {
+            $admin_user->id = null;
+        }
+
+        $history = $api->getNewsletterHistory($admin_user->id);
 
         // Workaround. Crap content receivet from phplist :-(
         $histSize = count($history);

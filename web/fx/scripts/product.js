@@ -219,10 +219,16 @@
 
           // populate color select with options
           if (name === 'size') {
+            _resetColor();
             $.each(response.data.products, function(index, product) {
-              $('select.color', $form).append('<option value="'+product.color+'">'+product.color+'</option>');
+              var $option = $('select.color option[value="' + product.color + '"]', $form);
+              if ($option.length) {
+                $option.prop("disabled", false).text($option.data('text'));
+              } else {
+                $('select.color', $form).append('<option value="'+product.color+'" data-value="'+product.color+'">'+product.color+'</option>');
+              }
             });
-            $('select.color', $form).closest('label').removeClass('off');
+            $('select.color', $form).prop("disabled", false);
           }
 
           if (name == 'color') {
@@ -344,31 +350,47 @@
 
       if ( (section !== undefined) && (section !== 'size') ) {
         $this.find('select.size option').each(function(index) {
-          $(this).removeProp('selected');
+          $(this).prop('disabled', false);
         });
       }
 
       $this.find('select.color option').each(function(index) {
         if (this.value !== ''){
-          $(this).remove();
+          $(this).prop('disabled', true);
         }
       });
 
       $this.find('label').each(function() {
-        if (this.htmlFor !== 'size') {
+        if (this.htmlFor === 'quantity') {
           $(this).addClass('off');
         }
       });
 
       $this.find('select.quantity option').each(function(index) {
-        $(this).removeProp('selected');
+        $(this).prop('disabled', false);
       });
       $('select.quantity option:first', $this).prop('selected', true);
 
       if (section === undefined) {
         $('select.size option:first', $this).prop('selected', true);
         $('select.color option:first', $this).prop('selected', true);
+        _resetColor();
       }
+    };
+
+    var _resetColor = function() {
+      var $this = $('form.buy');
+      $('select.color', $this).prop('disabled', true);
+      $('select.color option:first', $this).prop('selected', true);
+      $('select.color option', $this).each(function(index) {
+        if (this.value !== ''){
+          $(this).prop('disabled', true);
+          if (!$(this).data('text')) {
+            $(this).data('text', $(this).text());
+          }
+          $(this).text($(this).data('text') + ' (' + Translator.get('js:out.of.stock') + ')');
+        }
+      });
     };
 
     return pub;

@@ -68,6 +68,7 @@ class FormErrors
 
     protected function getAllErrors($children = null, $template = true)
     {
+        //return [];
         $this->getAllFormErrors($children, $template = true);
         return $this->allErrors;
     }
@@ -75,18 +76,15 @@ class FormErrors
     protected function getAllFormErrors($children, $template = true)
     {
         foreach ($children as $child) {
-            if ($child->hasErrors()) {
-                $vars = $child->createView()->getVars();
-                $errors = $child->getErrors();
-
+            if ($errors = $child->getErrors()) {
                 foreach ($errors as $error) {
-                    $this->allErrors[$vars["name"]][] = $this->convertFormErrorObjToString($error);
+                    $this->allErrors[$child->getName()][] = $this->convertFormErrorObjToString($error);
                 }
             }
 
-            if ($child->hasChildren()) {
-                $this->getAllErrors($child);
-            }
+//            if ($child->hasChildren()) {
+//                $this->getAllErrors($child);
+//            }
         }
     }
 

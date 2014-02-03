@@ -3,7 +3,7 @@
 <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="{{ html_lang }}" xmlns:og="http://ogp.me/ns#"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="{{ html_lang }}" xmlns:og="http://ogp.me/ns#"> <![endif]-->
 <!--[if IE 9]>    <html class="no-js ie9" lang="{{ html_lang }}" xmlns:og="http://ogp.me/ns#"> <![endif]-->
-<!--[if gt IE 9]><!--> <html class="no-js" lang="{{ html_lang }}" xmlns:og="http://ogp.me/ns#"> <!--<![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js" lang="{{ html_lang }}" data-domainkey="{{ domain_key|lower }}" xmlns:og="http://ogp.me/ns#"> <!--<![endif]-->
 <head>
 <title>{{ 'browser.title'|trans }} {{ browser_title|default('') }}</title>
 <meta charset="utf-8">
@@ -49,7 +49,11 @@
   {% if simple_layout is not defined %}
     <nav class="menu main-menu horizontal">
       {% if is_granted('ROLE_USER') %}
-        {% render 'CMSBundle:Menu:menu' with {'type': left_menu.type, 'thread': 10, 'from': left_menu.from } %}
+        {{ render(controller('CMSBundle:Menu:menu', {
+            'type': left_menu.type,
+            'thread': 10,
+            'from': left_menu.from
+        })) }}
       {% endif %}
     </nav><!-- /nav.main -->
   {% endif %}
@@ -71,7 +75,7 @@
       <ul class="horizontal menu right second">
         <li id="mini-basket" class="basket">
           <span class="sprite"></span>
-          <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" title="{{ "show.basket"|trans }}"> {% render 'BasketBundle:Default:miniBasket' %} </a>
+          <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" title="{{ "show.basket"|trans }}"> {{ render(controller('BasketBundle:Default:miniBasket')) }} </a>
         </li>
         <li class="last"><a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}">{{ "show.basket"|trans }}</a></li>
       </ul>
@@ -171,7 +175,7 @@
 {% block javascript %}
 {% endblock %}
 
-{% render 'NewsletterBundle:Default:js' %}
+{{ render(controller('NewsletterBundle:Default:js')) }}
 
 <script>if (jaiks) {jaiks.exec();}</script>
 {#

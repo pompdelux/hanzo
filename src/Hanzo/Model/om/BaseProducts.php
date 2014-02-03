@@ -61,7 +61,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
     protected static $peer;
 
     /**
-     * The flag var to prevent infinit loop in deep copy
+     * The flag var to prevent infinite loop in deep copy
      * @var       boolean
      */
     protected $startCopy = false;
@@ -403,6 +403,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
      */
     public function getId()
     {
+
         return $this->id;
     }
 
@@ -413,6 +414,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
      */
     public function getSku()
     {
+
         return $this->sku;
     }
 
@@ -423,6 +425,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
      */
     public function getMaster()
     {
+
         return $this->master;
     }
 
@@ -433,6 +436,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
      */
     public function getSize()
     {
+
         return $this->size;
     }
 
@@ -443,6 +447,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
      */
     public function getColor()
     {
+
         return $this->color;
     }
 
@@ -453,6 +458,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
      */
     public function getUnit()
     {
+
         return $this->unit;
     }
 
@@ -463,6 +469,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
      */
     public function getWashing()
     {
+
         return $this->washing;
     }
 
@@ -473,6 +480,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
      */
     public function getHasVideo()
     {
+
         return $this->has_video;
     }
 
@@ -483,6 +491,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
      */
     public function getIsOutOfStock()
     {
+
         return $this->is_out_of_stock;
     }
 
@@ -493,6 +502,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
      */
     public function getIsActive()
     {
+
         return $this->is_active;
     }
 
@@ -503,6 +513,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
      */
     public function getIsVoucher()
     {
+
         return $this->is_voucher;
     }
 
@@ -510,7 +521,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
      * Get the [optionally formatted] temporal [created_at] column value.
      *
      * This accessor only only work with unix epoch dates.  Consider enabling the propel.useDateTimeClass
-     * option in order to avoid converstions to integers (which are limited in the dates they can express).
+     * option in order to avoid conversions to integers (which are limited in the dates they can express).
      *
      * @param string $format The date/time format string (either date()-style or strftime()-style).
      *				 If format is null, then the raw unix timestamp integer will be returned.
@@ -552,7 +563,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
      * Get the [optionally formatted] temporal [updated_at] column value.
      *
      * This accessor only only work with unix epoch dates.  Consider enabling the propel.useDateTimeClass
-     * option in order to avoid converstions to integers (which are limited in the dates they can express).
+     * option in order to avoid conversions to integers (which are limited in the dates they can express).
      *
      * @param string $format The date/time format string (either date()-style or strftime()-style).
      *				 If format is null, then the raw unix timestamp integer will be returned.
@@ -593,7 +604,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
     /**
      * Set the value of [id] column.
      *
-     * @param int $v new value
+     * @param  int $v new value
      * @return Products The current object (for fluent API support)
      */
     public function setId($v)
@@ -614,7 +625,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
     /**
      * Set the value of [sku] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Products The current object (for fluent API support)
      */
     public function setSku($v)
@@ -635,7 +646,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
     /**
      * Set the value of [master] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Products The current object (for fluent API support)
      */
     public function setMaster($v)
@@ -660,7 +671,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
     /**
      * Set the value of [size] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Products The current object (for fluent API support)
      */
     public function setSize($v)
@@ -681,7 +692,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
     /**
      * Set the value of [color] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Products The current object (for fluent API support)
      */
     public function setColor($v)
@@ -702,7 +713,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
     /**
      * Set the value of [unit] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return Products The current object (for fluent API support)
      */
     public function setUnit($v)
@@ -723,7 +734,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
     /**
      * Set the value of [washing] column.
      *
-     * @param int $v new value
+     * @param  int $v new value
      * @return Products The current object (for fluent API support)
      */
     public function setWashing($v)
@@ -946,7 +957,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
      * more tables.
      *
      * @param array $row The row returned by PDOStatement->fetch(PDO::FETCH_NUM)
-     * @param int $startcol 0-based offset column which indicates which restultset column to start with.
+     * @param int $startcol 0-based offset column which indicates which resultset column to start with.
      * @param boolean $rehydrate Whether this object is being re-hydrated from the database.
      * @return int             next starting column
      * @throws PropelException - Any caught Exception will be rewrapped as a PropelException.
@@ -976,6 +987,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 13; // 13 = ProductsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -1201,7 +1213,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
             $this->alreadyInSave = true;
 
             // We call the save method on the following object(s) if they
-            // were passed to this object by their coresponding set
+            // were passed to this object by their corresponding set
             // method.  This object relates to these object(s) by a
             // foreign key reference.
 
@@ -1249,10 +1261,9 @@ abstract class BaseProducts extends BaseObject implements Persistent
 
             if ($this->productssRelatedBySkuScheduledForDeletion !== null) {
                 if (!$this->productssRelatedBySkuScheduledForDeletion->isEmpty()) {
-                    foreach ($this->productssRelatedBySkuScheduledForDeletion as $productsRelatedBySku) {
-                        // need to save related object because we set the relation to null
-                        $productsRelatedBySku->save($con);
-                    }
+                    ProductsQuery::create()
+                        ->filterByPrimaryKeys($this->productssRelatedBySkuScheduledForDeletion->getPrimaryKeys(false))
+                        ->delete($con);
                     $this->productssRelatedBySkuScheduledForDeletion = null;
                 }
             }
@@ -1681,10 +1692,10 @@ abstract class BaseProducts extends BaseObject implements Persistent
      *
      * In addition to checking the current object, all related objects will
      * also be validated.  If all pass then <code>true</code> is returned; otherwise
-     * an aggreagated array of ValidationFailed objects will be returned.
+     * an aggregated array of ValidationFailed objects will be returned.
      *
      * @param array $columns Array of column names to validate.
-     * @return mixed <code>true</code> if all validations pass; array of <code>ValidationFailed</code> objets otherwise.
+     * @return mixed <code>true</code> if all validations pass; array of <code>ValidationFailed</code> objects otherwise.
      */
     protected function doValidate($columns = null)
     {
@@ -1696,7 +1707,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
 
 
             // We call the validate method on the following object(s) if they
-            // were passed to this object by their coresponding set
+            // were passed to this object by their corresponding set
             // method.  This object relates to these object(s) by a
             // foreign key reference.
 
@@ -1955,6 +1966,11 @@ abstract class BaseProducts extends BaseObject implements Persistent
             $keys[11] => $this->getCreatedAt(),
             $keys[12] => $this->getUpdatedAt(),
         );
+        $virtualColumns = $this->virtualColumns;
+        foreach ($virtualColumns as $key => $virtualColumn) {
+            $result[$key] = $virtualColumn;
+        }
+
         if ($includeForeignObjects) {
             if (null !== $this->aProductsRelatedByMaster) {
                 $result['ProductsRelatedByMaster'] = $this->aProductsRelatedByMaster->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
@@ -2367,7 +2383,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
     /**
      * Declares an association between this object and a Products object.
      *
-     * @param             Products $v
+     * @param                  Products $v
      * @return Products The current object (for fluent API support)
      * @throws PropelException
      */
@@ -2421,7 +2437,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
     /**
      * Declares an association between this object and a ProductsWashingInstructions object.
      *
-     * @param             ProductsWashingInstructions $v
+     * @param                  ProductsWashingInstructions $v
      * @return Products The current object (for fluent API support)
      * @throws PropelException
      */
@@ -2607,7 +2623,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     if (false !== $this->collMannequinImagessPartial && count($collMannequinImagess)) {
                       $this->initMannequinImagess(false);
 
-                      foreach($collMannequinImagess as $obj) {
+                      foreach ($collMannequinImagess as $obj) {
                         if (false == $this->collMannequinImagess->contains($obj)) {
                           $this->collMannequinImagess->append($obj);
                         }
@@ -2617,12 +2633,13 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     }
 
                     $collMannequinImagess->getInternalIterator()->rewind();
+
                     return $collMannequinImagess;
                 }
 
-                if($partial && $this->collMannequinImagess) {
-                    foreach($this->collMannequinImagess as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collMannequinImagess) {
+                    foreach ($this->collMannequinImagess as $obj) {
+                        if ($obj->isNew()) {
                             $collMannequinImagess[] = $obj;
                         }
                     }
@@ -2650,7 +2667,11 @@ abstract class BaseProducts extends BaseObject implements Persistent
     {
         $mannequinImagessToDelete = $this->getMannequinImagess(new Criteria(), $con)->diff($mannequinImagess);
 
-        $this->mannequinImagessScheduledForDeletion = unserialize(serialize($mannequinImagessToDelete));
+
+        //since at least one column in the foreign key is at the same time a PK
+        //we can not just set a PK to NULL in the lines below. We have to store
+        //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
+        $this->mannequinImagessScheduledForDeletion = clone $mannequinImagessToDelete;
 
         foreach ($mannequinImagessToDelete as $mannequinImagesRemoved) {
             $mannequinImagesRemoved->setProducts(null);
@@ -2684,7 +2705,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getMannequinImagess());
             }
             $query = MannequinImagesQuery::create(null, $criteria);
@@ -2713,8 +2734,13 @@ abstract class BaseProducts extends BaseObject implements Persistent
             $this->initMannequinImagess();
             $this->collMannequinImagessPartial = true;
         }
+
         if (!in_array($l, $this->collMannequinImagess->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddMannequinImages($l);
+
+            if ($this->mannequinImagessScheduledForDeletion and $this->mannequinImagessScheduledForDeletion->contains($l)) {
+                $this->mannequinImagessScheduledForDeletion->remove($this->mannequinImagessScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
@@ -2825,7 +2851,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     if (false !== $this->collProductssRelatedBySkuPartial && count($collProductssRelatedBySku)) {
                       $this->initProductssRelatedBySku(false);
 
-                      foreach($collProductssRelatedBySku as $obj) {
+                      foreach ($collProductssRelatedBySku as $obj) {
                         if (false == $this->collProductssRelatedBySku->contains($obj)) {
                           $this->collProductssRelatedBySku->append($obj);
                         }
@@ -2835,12 +2861,13 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     }
 
                     $collProductssRelatedBySku->getInternalIterator()->rewind();
+
                     return $collProductssRelatedBySku;
                 }
 
-                if($partial && $this->collProductssRelatedBySku) {
-                    foreach($this->collProductssRelatedBySku as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collProductssRelatedBySku) {
+                    foreach ($this->collProductssRelatedBySku as $obj) {
+                        if ($obj->isNew()) {
                             $collProductssRelatedBySku[] = $obj;
                         }
                     }
@@ -2868,7 +2895,8 @@ abstract class BaseProducts extends BaseObject implements Persistent
     {
         $productssRelatedBySkuToDelete = $this->getProductssRelatedBySku(new Criteria(), $con)->diff($productssRelatedBySku);
 
-        $this->productssRelatedBySkuScheduledForDeletion = unserialize(serialize($productssRelatedBySkuToDelete));
+
+        $this->productssRelatedBySkuScheduledForDeletion = $productssRelatedBySkuToDelete;
 
         foreach ($productssRelatedBySkuToDelete as $productsRelatedBySkuRemoved) {
             $productsRelatedBySkuRemoved->setProductsRelatedByMaster(null);
@@ -2902,7 +2930,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getProductssRelatedBySku());
             }
             $query = ProductsQuery::create(null, $criteria);
@@ -2931,8 +2959,13 @@ abstract class BaseProducts extends BaseObject implements Persistent
             $this->initProductssRelatedBySku();
             $this->collProductssRelatedBySkuPartial = true;
         }
+
         if (!in_array($l, $this->collProductssRelatedBySku->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddProductsRelatedBySku($l);
+
+            if ($this->productssRelatedBySkuScheduledForDeletion and $this->productssRelatedBySkuScheduledForDeletion->contains($l)) {
+                $this->productssRelatedBySkuScheduledForDeletion->remove($this->productssRelatedBySkuScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
@@ -3068,7 +3101,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     if (false !== $this->collProductsDomainsPricessPartial && count($collProductsDomainsPricess)) {
                       $this->initProductsDomainsPricess(false);
 
-                      foreach($collProductsDomainsPricess as $obj) {
+                      foreach ($collProductsDomainsPricess as $obj) {
                         if (false == $this->collProductsDomainsPricess->contains($obj)) {
                           $this->collProductsDomainsPricess->append($obj);
                         }
@@ -3078,12 +3111,13 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     }
 
                     $collProductsDomainsPricess->getInternalIterator()->rewind();
+
                     return $collProductsDomainsPricess;
                 }
 
-                if($partial && $this->collProductsDomainsPricess) {
-                    foreach($this->collProductsDomainsPricess as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collProductsDomainsPricess) {
+                    foreach ($this->collProductsDomainsPricess as $obj) {
+                        if ($obj->isNew()) {
                             $collProductsDomainsPricess[] = $obj;
                         }
                     }
@@ -3111,7 +3145,11 @@ abstract class BaseProducts extends BaseObject implements Persistent
     {
         $productsDomainsPricessToDelete = $this->getProductsDomainsPricess(new Criteria(), $con)->diff($productsDomainsPricess);
 
-        $this->productsDomainsPricessScheduledForDeletion = unserialize(serialize($productsDomainsPricessToDelete));
+
+        //since at least one column in the foreign key is at the same time a PK
+        //we can not just set a PK to NULL in the lines below. We have to store
+        //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
+        $this->productsDomainsPricessScheduledForDeletion = clone $productsDomainsPricessToDelete;
 
         foreach ($productsDomainsPricessToDelete as $productsDomainsPricesRemoved) {
             $productsDomainsPricesRemoved->setProducts(null);
@@ -3145,7 +3183,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getProductsDomainsPricess());
             }
             $query = ProductsDomainsPricesQuery::create(null, $criteria);
@@ -3174,8 +3212,13 @@ abstract class BaseProducts extends BaseObject implements Persistent
             $this->initProductsDomainsPricess();
             $this->collProductsDomainsPricessPartial = true;
         }
+
         if (!in_array($l, $this->collProductsDomainsPricess->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddProductsDomainsPrices($l);
+
+            if ($this->productsDomainsPricessScheduledForDeletion and $this->productsDomainsPricessScheduledForDeletion->contains($l)) {
+                $this->productsDomainsPricessScheduledForDeletion->remove($this->productsDomainsPricessScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
@@ -3311,7 +3354,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     if (false !== $this->collProductsImagessPartial && count($collProductsImagess)) {
                       $this->initProductsImagess(false);
 
-                      foreach($collProductsImagess as $obj) {
+                      foreach ($collProductsImagess as $obj) {
                         if (false == $this->collProductsImagess->contains($obj)) {
                           $this->collProductsImagess->append($obj);
                         }
@@ -3321,12 +3364,13 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     }
 
                     $collProductsImagess->getInternalIterator()->rewind();
+
                     return $collProductsImagess;
                 }
 
-                if($partial && $this->collProductsImagess) {
-                    foreach($this->collProductsImagess as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collProductsImagess) {
+                    foreach ($this->collProductsImagess as $obj) {
+                        if ($obj->isNew()) {
                             $collProductsImagess[] = $obj;
                         }
                     }
@@ -3354,7 +3398,8 @@ abstract class BaseProducts extends BaseObject implements Persistent
     {
         $productsImagessToDelete = $this->getProductsImagess(new Criteria(), $con)->diff($productsImagess);
 
-        $this->productsImagessScheduledForDeletion = unserialize(serialize($productsImagessToDelete));
+
+        $this->productsImagessScheduledForDeletion = $productsImagessToDelete;
 
         foreach ($productsImagessToDelete as $productsImagesRemoved) {
             $productsImagesRemoved->setProducts(null);
@@ -3388,7 +3433,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getProductsImagess());
             }
             $query = ProductsImagesQuery::create(null, $criteria);
@@ -3417,8 +3462,13 @@ abstract class BaseProducts extends BaseObject implements Persistent
             $this->initProductsImagess();
             $this->collProductsImagessPartial = true;
         }
+
         if (!in_array($l, $this->collProductsImagess->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddProductsImages($l);
+
+            if ($this->productsImagessScheduledForDeletion and $this->productsImagessScheduledForDeletion->contains($l)) {
+                $this->productsImagessScheduledForDeletion->remove($this->productsImagessScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
@@ -3529,7 +3579,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     if (false !== $this->collProductsImagesCategoriesSortsPartial && count($collProductsImagesCategoriesSorts)) {
                       $this->initProductsImagesCategoriesSorts(false);
 
-                      foreach($collProductsImagesCategoriesSorts as $obj) {
+                      foreach ($collProductsImagesCategoriesSorts as $obj) {
                         if (false == $this->collProductsImagesCategoriesSorts->contains($obj)) {
                           $this->collProductsImagesCategoriesSorts->append($obj);
                         }
@@ -3539,12 +3589,13 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     }
 
                     $collProductsImagesCategoriesSorts->getInternalIterator()->rewind();
+
                     return $collProductsImagesCategoriesSorts;
                 }
 
-                if($partial && $this->collProductsImagesCategoriesSorts) {
-                    foreach($this->collProductsImagesCategoriesSorts as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collProductsImagesCategoriesSorts) {
+                    foreach ($this->collProductsImagesCategoriesSorts as $obj) {
+                        if ($obj->isNew()) {
                             $collProductsImagesCategoriesSorts[] = $obj;
                         }
                     }
@@ -3572,7 +3623,11 @@ abstract class BaseProducts extends BaseObject implements Persistent
     {
         $productsImagesCategoriesSortsToDelete = $this->getProductsImagesCategoriesSorts(new Criteria(), $con)->diff($productsImagesCategoriesSorts);
 
-        $this->productsImagesCategoriesSortsScheduledForDeletion = unserialize(serialize($productsImagesCategoriesSortsToDelete));
+
+        //since at least one column in the foreign key is at the same time a PK
+        //we can not just set a PK to NULL in the lines below. We have to store
+        //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
+        $this->productsImagesCategoriesSortsScheduledForDeletion = clone $productsImagesCategoriesSortsToDelete;
 
         foreach ($productsImagesCategoriesSortsToDelete as $productsImagesCategoriesSortRemoved) {
             $productsImagesCategoriesSortRemoved->setProducts(null);
@@ -3606,7 +3661,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getProductsImagesCategoriesSorts());
             }
             $query = ProductsImagesCategoriesSortQuery::create(null, $criteria);
@@ -3635,8 +3690,13 @@ abstract class BaseProducts extends BaseObject implements Persistent
             $this->initProductsImagesCategoriesSorts();
             $this->collProductsImagesCategoriesSortsPartial = true;
         }
+
         if (!in_array($l, $this->collProductsImagesCategoriesSorts->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddProductsImagesCategoriesSort($l);
+
+            if ($this->productsImagesCategoriesSortsScheduledForDeletion and $this->productsImagesCategoriesSortsScheduledForDeletion->contains($l)) {
+                $this->productsImagesCategoriesSortsScheduledForDeletion->remove($this->productsImagesCategoriesSortsScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
@@ -3797,7 +3857,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     if (false !== $this->collProductsImagesProductReferencessPartial && count($collProductsImagesProductReferencess)) {
                       $this->initProductsImagesProductReferencess(false);
 
-                      foreach($collProductsImagesProductReferencess as $obj) {
+                      foreach ($collProductsImagesProductReferencess as $obj) {
                         if (false == $this->collProductsImagesProductReferencess->contains($obj)) {
                           $this->collProductsImagesProductReferencess->append($obj);
                         }
@@ -3807,12 +3867,13 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     }
 
                     $collProductsImagesProductReferencess->getInternalIterator()->rewind();
+
                     return $collProductsImagesProductReferencess;
                 }
 
-                if($partial && $this->collProductsImagesProductReferencess) {
-                    foreach($this->collProductsImagesProductReferencess as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collProductsImagesProductReferencess) {
+                    foreach ($this->collProductsImagesProductReferencess as $obj) {
+                        if ($obj->isNew()) {
                             $collProductsImagesProductReferencess[] = $obj;
                         }
                     }
@@ -3840,7 +3901,11 @@ abstract class BaseProducts extends BaseObject implements Persistent
     {
         $productsImagesProductReferencessToDelete = $this->getProductsImagesProductReferencess(new Criteria(), $con)->diff($productsImagesProductReferencess);
 
-        $this->productsImagesProductReferencessScheduledForDeletion = unserialize(serialize($productsImagesProductReferencessToDelete));
+
+        //since at least one column in the foreign key is at the same time a PK
+        //we can not just set a PK to NULL in the lines below. We have to store
+        //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
+        $this->productsImagesProductReferencessScheduledForDeletion = clone $productsImagesProductReferencessToDelete;
 
         foreach ($productsImagesProductReferencessToDelete as $productsImagesProductReferencesRemoved) {
             $productsImagesProductReferencesRemoved->setProducts(null);
@@ -3874,7 +3939,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getProductsImagesProductReferencess());
             }
             $query = ProductsImagesProductReferencesQuery::create(null, $criteria);
@@ -3903,8 +3968,13 @@ abstract class BaseProducts extends BaseObject implements Persistent
             $this->initProductsImagesProductReferencess();
             $this->collProductsImagesProductReferencessPartial = true;
         }
+
         if (!in_array($l, $this->collProductsImagesProductReferencess->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddProductsImagesProductReferences($l);
+
+            if ($this->productsImagesProductReferencessScheduledForDeletion and $this->productsImagesProductReferencessScheduledForDeletion->contains($l)) {
+                $this->productsImagesProductReferencessScheduledForDeletion->remove($this->productsImagesProductReferencessScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
@@ -4040,7 +4110,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     if (false !== $this->collProductsQuantityDiscountsPartial && count($collProductsQuantityDiscounts)) {
                       $this->initProductsQuantityDiscounts(false);
 
-                      foreach($collProductsQuantityDiscounts as $obj) {
+                      foreach ($collProductsQuantityDiscounts as $obj) {
                         if (false == $this->collProductsQuantityDiscounts->contains($obj)) {
                           $this->collProductsQuantityDiscounts->append($obj);
                         }
@@ -4050,12 +4120,13 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     }
 
                     $collProductsQuantityDiscounts->getInternalIterator()->rewind();
+
                     return $collProductsQuantityDiscounts;
                 }
 
-                if($partial && $this->collProductsQuantityDiscounts) {
-                    foreach($this->collProductsQuantityDiscounts as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collProductsQuantityDiscounts) {
+                    foreach ($this->collProductsQuantityDiscounts as $obj) {
+                        if ($obj->isNew()) {
                             $collProductsQuantityDiscounts[] = $obj;
                         }
                     }
@@ -4083,7 +4154,11 @@ abstract class BaseProducts extends BaseObject implements Persistent
     {
         $productsQuantityDiscountsToDelete = $this->getProductsQuantityDiscounts(new Criteria(), $con)->diff($productsQuantityDiscounts);
 
-        $this->productsQuantityDiscountsScheduledForDeletion = unserialize(serialize($productsQuantityDiscountsToDelete));
+
+        //since at least one column in the foreign key is at the same time a PK
+        //we can not just set a PK to NULL in the lines below. We have to store
+        //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
+        $this->productsQuantityDiscountsScheduledForDeletion = clone $productsQuantityDiscountsToDelete;
 
         foreach ($productsQuantityDiscountsToDelete as $productsQuantityDiscountRemoved) {
             $productsQuantityDiscountRemoved->setProducts(null);
@@ -4117,7 +4192,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getProductsQuantityDiscounts());
             }
             $query = ProductsQuantityDiscountQuery::create(null, $criteria);
@@ -4146,8 +4221,13 @@ abstract class BaseProducts extends BaseObject implements Persistent
             $this->initProductsQuantityDiscounts();
             $this->collProductsQuantityDiscountsPartial = true;
         }
+
         if (!in_array($l, $this->collProductsQuantityDiscounts->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddProductsQuantityDiscount($l);
+
+            if ($this->productsQuantityDiscountsScheduledForDeletion and $this->productsQuantityDiscountsScheduledForDeletion->contains($l)) {
+                $this->productsQuantityDiscountsScheduledForDeletion->remove($this->productsQuantityDiscountsScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
@@ -4283,7 +4363,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     if (false !== $this->collProductsStocksPartial && count($collProductsStocks)) {
                       $this->initProductsStocks(false);
 
-                      foreach($collProductsStocks as $obj) {
+                      foreach ($collProductsStocks as $obj) {
                         if (false == $this->collProductsStocks->contains($obj)) {
                           $this->collProductsStocks->append($obj);
                         }
@@ -4293,12 +4373,13 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     }
 
                     $collProductsStocks->getInternalIterator()->rewind();
+
                     return $collProductsStocks;
                 }
 
-                if($partial && $this->collProductsStocks) {
-                    foreach($this->collProductsStocks as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collProductsStocks) {
+                    foreach ($this->collProductsStocks as $obj) {
+                        if ($obj->isNew()) {
                             $collProductsStocks[] = $obj;
                         }
                     }
@@ -4326,7 +4407,8 @@ abstract class BaseProducts extends BaseObject implements Persistent
     {
         $productsStocksToDelete = $this->getProductsStocks(new Criteria(), $con)->diff($productsStocks);
 
-        $this->productsStocksScheduledForDeletion = unserialize(serialize($productsStocksToDelete));
+
+        $this->productsStocksScheduledForDeletion = $productsStocksToDelete;
 
         foreach ($productsStocksToDelete as $productsStockRemoved) {
             $productsStockRemoved->setProducts(null);
@@ -4360,7 +4442,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getProductsStocks());
             }
             $query = ProductsStockQuery::create(null, $criteria);
@@ -4389,8 +4471,13 @@ abstract class BaseProducts extends BaseObject implements Persistent
             $this->initProductsStocks();
             $this->collProductsStocksPartial = true;
         }
+
         if (!in_array($l, $this->collProductsStocks->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddProductsStock($l);
+
+            if ($this->productsStocksScheduledForDeletion and $this->productsStocksScheduledForDeletion->contains($l)) {
+                $this->productsStocksScheduledForDeletion->remove($this->productsStocksScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
@@ -4501,7 +4588,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     if (false !== $this->collProductsToCategoriessPartial && count($collProductsToCategoriess)) {
                       $this->initProductsToCategoriess(false);
 
-                      foreach($collProductsToCategoriess as $obj) {
+                      foreach ($collProductsToCategoriess as $obj) {
                         if (false == $this->collProductsToCategoriess->contains($obj)) {
                           $this->collProductsToCategoriess->append($obj);
                         }
@@ -4511,12 +4598,13 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     }
 
                     $collProductsToCategoriess->getInternalIterator()->rewind();
+
                     return $collProductsToCategoriess;
                 }
 
-                if($partial && $this->collProductsToCategoriess) {
-                    foreach($this->collProductsToCategoriess as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collProductsToCategoriess) {
+                    foreach ($this->collProductsToCategoriess as $obj) {
+                        if ($obj->isNew()) {
                             $collProductsToCategoriess[] = $obj;
                         }
                     }
@@ -4544,7 +4632,11 @@ abstract class BaseProducts extends BaseObject implements Persistent
     {
         $productsToCategoriessToDelete = $this->getProductsToCategoriess(new Criteria(), $con)->diff($productsToCategoriess);
 
-        $this->productsToCategoriessScheduledForDeletion = unserialize(serialize($productsToCategoriessToDelete));
+
+        //since at least one column in the foreign key is at the same time a PK
+        //we can not just set a PK to NULL in the lines below. We have to store
+        //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
+        $this->productsToCategoriessScheduledForDeletion = clone $productsToCategoriessToDelete;
 
         foreach ($productsToCategoriessToDelete as $productsToCategoriesRemoved) {
             $productsToCategoriesRemoved->setProducts(null);
@@ -4578,7 +4670,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getProductsToCategoriess());
             }
             $query = ProductsToCategoriesQuery::create(null, $criteria);
@@ -4607,8 +4699,13 @@ abstract class BaseProducts extends BaseObject implements Persistent
             $this->initProductsToCategoriess();
             $this->collProductsToCategoriessPartial = true;
         }
+
         if (!in_array($l, $this->collProductsToCategoriess->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddProductsToCategories($l);
+
+            if ($this->productsToCategoriessScheduledForDeletion and $this->productsToCategoriessScheduledForDeletion->contains($l)) {
+                $this->productsToCategoriessScheduledForDeletion->remove($this->productsToCategoriessScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
@@ -4744,7 +4841,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     if (false !== $this->collOrdersLinessPartial && count($collOrdersLiness)) {
                       $this->initOrdersLiness(false);
 
-                      foreach($collOrdersLiness as $obj) {
+                      foreach ($collOrdersLiness as $obj) {
                         if (false == $this->collOrdersLiness->contains($obj)) {
                           $this->collOrdersLiness->append($obj);
                         }
@@ -4754,12 +4851,13 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     }
 
                     $collOrdersLiness->getInternalIterator()->rewind();
+
                     return $collOrdersLiness;
                 }
 
-                if($partial && $this->collOrdersLiness) {
-                    foreach($this->collOrdersLiness as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collOrdersLiness) {
+                    foreach ($this->collOrdersLiness as $obj) {
+                        if ($obj->isNew()) {
                             $collOrdersLiness[] = $obj;
                         }
                     }
@@ -4787,7 +4885,8 @@ abstract class BaseProducts extends BaseObject implements Persistent
     {
         $ordersLinessToDelete = $this->getOrdersLiness(new Criteria(), $con)->diff($ordersLiness);
 
-        $this->ordersLinessScheduledForDeletion = unserialize(serialize($ordersLinessToDelete));
+
+        $this->ordersLinessScheduledForDeletion = $ordersLinessToDelete;
 
         foreach ($ordersLinessToDelete as $ordersLinesRemoved) {
             $ordersLinesRemoved->setProducts(null);
@@ -4821,7 +4920,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getOrdersLiness());
             }
             $query = OrdersLinesQuery::create(null, $criteria);
@@ -4850,8 +4949,13 @@ abstract class BaseProducts extends BaseObject implements Persistent
             $this->initOrdersLiness();
             $this->collOrdersLinessPartial = true;
         }
+
         if (!in_array($l, $this->collOrdersLiness->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddOrdersLines($l);
+
+            if ($this->ordersLinessScheduledForDeletion and $this->ordersLinessScheduledForDeletion->contains($l)) {
+                $this->ordersLinessScheduledForDeletion->remove($this->ordersLinessScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
@@ -4987,7 +5091,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     if (false !== $this->collRelatedProductssRelatedByMasterPartial && count($collRelatedProductssRelatedByMaster)) {
                       $this->initRelatedProductssRelatedByMaster(false);
 
-                      foreach($collRelatedProductssRelatedByMaster as $obj) {
+                      foreach ($collRelatedProductssRelatedByMaster as $obj) {
                         if (false == $this->collRelatedProductssRelatedByMaster->contains($obj)) {
                           $this->collRelatedProductssRelatedByMaster->append($obj);
                         }
@@ -4997,12 +5101,13 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     }
 
                     $collRelatedProductssRelatedByMaster->getInternalIterator()->rewind();
+
                     return $collRelatedProductssRelatedByMaster;
                 }
 
-                if($partial && $this->collRelatedProductssRelatedByMaster) {
-                    foreach($this->collRelatedProductssRelatedByMaster as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collRelatedProductssRelatedByMaster) {
+                    foreach ($this->collRelatedProductssRelatedByMaster as $obj) {
+                        if ($obj->isNew()) {
                             $collRelatedProductssRelatedByMaster[] = $obj;
                         }
                     }
@@ -5030,7 +5135,11 @@ abstract class BaseProducts extends BaseObject implements Persistent
     {
         $relatedProductssRelatedByMasterToDelete = $this->getRelatedProductssRelatedByMaster(new Criteria(), $con)->diff($relatedProductssRelatedByMaster);
 
-        $this->relatedProductssRelatedByMasterScheduledForDeletion = unserialize(serialize($relatedProductssRelatedByMasterToDelete));
+
+        //since at least one column in the foreign key is at the same time a PK
+        //we can not just set a PK to NULL in the lines below. We have to store
+        //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
+        $this->relatedProductssRelatedByMasterScheduledForDeletion = clone $relatedProductssRelatedByMasterToDelete;
 
         foreach ($relatedProductssRelatedByMasterToDelete as $relatedProductsRelatedByMasterRemoved) {
             $relatedProductsRelatedByMasterRemoved->setProductsRelatedByMaster(null);
@@ -5064,7 +5173,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getRelatedProductssRelatedByMaster());
             }
             $query = RelatedProductsQuery::create(null, $criteria);
@@ -5093,8 +5202,13 @@ abstract class BaseProducts extends BaseObject implements Persistent
             $this->initRelatedProductssRelatedByMaster();
             $this->collRelatedProductssRelatedByMasterPartial = true;
         }
+
         if (!in_array($l, $this->collRelatedProductssRelatedByMaster->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddRelatedProductsRelatedByMaster($l);
+
+            if ($this->relatedProductssRelatedByMasterScheduledForDeletion and $this->relatedProductssRelatedByMasterScheduledForDeletion->contains($l)) {
+                $this->relatedProductssRelatedByMasterScheduledForDeletion->remove($this->relatedProductssRelatedByMasterScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
@@ -5205,7 +5319,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     if (false !== $this->collRelatedProductssRelatedBySkuPartial && count($collRelatedProductssRelatedBySku)) {
                       $this->initRelatedProductssRelatedBySku(false);
 
-                      foreach($collRelatedProductssRelatedBySku as $obj) {
+                      foreach ($collRelatedProductssRelatedBySku as $obj) {
                         if (false == $this->collRelatedProductssRelatedBySku->contains($obj)) {
                           $this->collRelatedProductssRelatedBySku->append($obj);
                         }
@@ -5215,12 +5329,13 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     }
 
                     $collRelatedProductssRelatedBySku->getInternalIterator()->rewind();
+
                     return $collRelatedProductssRelatedBySku;
                 }
 
-                if($partial && $this->collRelatedProductssRelatedBySku) {
-                    foreach($this->collRelatedProductssRelatedBySku as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collRelatedProductssRelatedBySku) {
+                    foreach ($this->collRelatedProductssRelatedBySku as $obj) {
+                        if ($obj->isNew()) {
                             $collRelatedProductssRelatedBySku[] = $obj;
                         }
                     }
@@ -5248,7 +5363,11 @@ abstract class BaseProducts extends BaseObject implements Persistent
     {
         $relatedProductssRelatedBySkuToDelete = $this->getRelatedProductssRelatedBySku(new Criteria(), $con)->diff($relatedProductssRelatedBySku);
 
-        $this->relatedProductssRelatedBySkuScheduledForDeletion = unserialize(serialize($relatedProductssRelatedBySkuToDelete));
+
+        //since at least one column in the foreign key is at the same time a PK
+        //we can not just set a PK to NULL in the lines below. We have to store
+        //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
+        $this->relatedProductssRelatedBySkuScheduledForDeletion = clone $relatedProductssRelatedBySkuToDelete;
 
         foreach ($relatedProductssRelatedBySkuToDelete as $relatedProductsRelatedBySkuRemoved) {
             $relatedProductsRelatedBySkuRemoved->setProductsRelatedBySku(null);
@@ -5282,7 +5401,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getRelatedProductssRelatedBySku());
             }
             $query = RelatedProductsQuery::create(null, $criteria);
@@ -5311,8 +5430,13 @@ abstract class BaseProducts extends BaseObject implements Persistent
             $this->initRelatedProductssRelatedBySku();
             $this->collRelatedProductssRelatedBySkuPartial = true;
         }
+
         if (!in_array($l, $this->collRelatedProductssRelatedBySku->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddRelatedProductsRelatedBySku($l);
+
+            if ($this->relatedProductssRelatedBySkuScheduledForDeletion and $this->relatedProductssRelatedBySkuScheduledForDeletion->contains($l)) {
+                $this->relatedProductssRelatedBySkuScheduledForDeletion->remove($this->relatedProductssRelatedBySkuScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
@@ -5859,7 +5983,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     if (false !== $this->collProductsI18nsPartial && count($collProductsI18ns)) {
                       $this->initProductsI18ns(false);
 
-                      foreach($collProductsI18ns as $obj) {
+                      foreach ($collProductsI18ns as $obj) {
                         if (false == $this->collProductsI18ns->contains($obj)) {
                           $this->collProductsI18ns->append($obj);
                         }
@@ -5869,12 +5993,13 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     }
 
                     $collProductsI18ns->getInternalIterator()->rewind();
+
                     return $collProductsI18ns;
                 }
 
-                if($partial && $this->collProductsI18ns) {
-                    foreach($this->collProductsI18ns as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collProductsI18ns) {
+                    foreach ($this->collProductsI18ns as $obj) {
+                        if ($obj->isNew()) {
                             $collProductsI18ns[] = $obj;
                         }
                     }
@@ -5902,7 +6027,11 @@ abstract class BaseProducts extends BaseObject implements Persistent
     {
         $productsI18nsToDelete = $this->getProductsI18ns(new Criteria(), $con)->diff($productsI18ns);
 
-        $this->productsI18nsScheduledForDeletion = unserialize(serialize($productsI18nsToDelete));
+
+        //since at least one column in the foreign key is at the same time a PK
+        //we can not just set a PK to NULL in the lines below. We have to store
+        //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
+        $this->productsI18nsScheduledForDeletion = clone $productsI18nsToDelete;
 
         foreach ($productsI18nsToDelete as $productsI18nRemoved) {
             $productsI18nRemoved->setProducts(null);
@@ -5936,7 +6065,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getProductsI18ns());
             }
             $query = ProductsI18nQuery::create(null, $criteria);
@@ -5969,8 +6098,13 @@ abstract class BaseProducts extends BaseObject implements Persistent
             $this->initProductsI18ns();
             $this->collProductsI18nsPartial = true;
         }
+
         if (!in_array($l, $this->collProductsI18ns->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddProductsI18n($l);
+
+            if ($this->productsI18nsScheduledForDeletion and $this->productsI18nsScheduledForDeletion->contains($l)) {
+                $this->productsI18nsScheduledForDeletion->remove($this->productsI18nsScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
@@ -6037,7 +6171,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
      *
      * This method is a user-space workaround for PHP's inability to garbage collect
      * objects with circular references (even in PHP 5.3). This is currently necessary
-     * when using Propel in certain daemon or large-volumne/high-memory operations.
+     * when using Propel in certain daemon or large-volume/high-memory operations.
      *
      * @param boolean $deep Whether to also clear the references on all referrer objects.
      */
@@ -6332,7 +6466,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
         /**
          * Set the value of [title] column.
          *
-         * @param string $v new value
+         * @param  string $v new value
          * @return ProductsI18n The current object (for fluent API support)
          */
         public function setTitle($v)
@@ -6356,7 +6490,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
         /**
          * Set the value of [content] column.
          *
-         * @param string $v new value
+         * @param  string $v new value
          * @return ProductsI18n The current object (for fluent API support)
          */
         public function setContent($v)

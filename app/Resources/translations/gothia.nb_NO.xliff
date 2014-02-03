@@ -62,7 +62,7 @@ Kontakt vennligst Gothia Kundeservice: 2287 8970<br>Ved andre godkjenningsfeil, 
       <trans-unit id="page_txt40">
         <source>page.help_text</source>
         <target><![CDATA[Følgende informasjon skal brukes for å verifisere deg hos Gothia PayByBill.<br>
-Hvis adressen din ikke er riktig, må du endre den under "Min side".<br>
+Hvis adressen din ikke er riktig, må du endre den under "Min Side".<br>
 Hvis du har vært kunde hos Gothia før, er ditt personnummer lagret på din kundekonto.]]></target>
       </trans-unit>
       <trans-unit id="form_txt10">
@@ -80,6 +80,30 @@ Hvis du har vært kunde hos Gothia før, er ditt personnummer lagret på din kun
       <trans-unit id="social_security_num">
         <source>social_security_num</source>
         <target>Personnummer:</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.error.before">
+        <source>We were unable to approve your payment with Gothia Invoice service.</source>
+        <target>Det har ikke vært mulig å godkjenne ordren ved Gothia Invoice service.</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.error.after">
+        <source>Please contact POMPdeLUX customer service if you keep receiving this error.</source>
+        <target>Kontakt vennligst Gothia Kundeservice: 2287 8970, hvis feilen gjentar seg.</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.5000">
+        <source>We are unable to connect to Gothia Invoice service, please try again later.</source>
+        <target>Det kan ikke opprettes forbindelse til Gothia Faktura Servise akkurat nå. Prøv vennligst senere.</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.10004">
+        <source>We couldn't find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.</source>
+        <target>Vi kunne ikke finne deg i Gothia Faktura Service, er du sikker på at alle dine informasjoner er riktige?</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.10005">
+        <source>We couldn't find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.</source>
+        <target>Vi kunne ikke finne deg i Gothia Faktura Service, er du sikker på at alle dine informasjoner er riktige?</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.10036">
+        <source>The reservation was not approved at Gothia Invoice Service. You may have exceeded the limit of reservations at Gothia.</source>
+        <target>Kjøpet ble ikke godkjent av Gothia Faktura Service. Det kan skyldes at du har oppnådd ditt kreditmaksimum.</target>
       </trans-unit>
     </body>
   </file>

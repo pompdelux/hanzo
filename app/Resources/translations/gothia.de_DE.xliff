@@ -96,6 +96,30 @@ Wenden Sie sich bitte an den Kundendienst von Gothia: +45 7027 2795<br>Bei ander
         <source>json.bank_id.to_long</source>
         <target>The entered Bank ID must be 8 digits long.</target>
       </trans-unit>
+      <trans-unit id="gothia.response.5000">
+        <source>We are unable to connect to Gothia Invoice service, please try again later.</source>
+        <target>Derzeit kann keine Verbindung zu GFG Finanz GmbH hergestellt werden. Bitte versuchen Sie es später erneut.</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.error.before">
+        <source>We were unable to approve your payment with Gothia Invoice service.</source>
+        <target>Die Bestellung konnte nicht bei Gothia Invoice registriert werden.</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.error.after">
+        <source>Please contact POMPdeLUX customer service if you keep receiving this error.</source>
+        <target>Wenden Sie sich bitte an den Kundendienst von Gothia: +45 7027 2795 wenn dieser Fehler nochmals auftritt.</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.10004">
+        <source>We couldn't find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.</source>
+        <target>Wir konnten Sie nicht als Kunde von GFG Finanz GmbH finden. Sind Sie sicher, dass alle Ihre Angaben richtig sind?</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.10005">
+        <source>We couldn't find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.</source>
+        <target>Wir konnten Sie nicht als Kunde von GFG Finanz GmbH finden. Sind Sie sicher, dass alle Ihre Angaben richtig sind?</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.10036">
+        <source>The reservation was not approved at Gothia Invoice Service. You may have exceeded the limit of reservations at Gothia.</source>
+        <target>Der Kauf wurde nicht von der GFG Finanz GmbH genehmigt. Der Grund hierfür kann sein, dass Sie Ihr Limit erreicht haben.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

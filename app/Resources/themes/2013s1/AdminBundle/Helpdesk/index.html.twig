@@ -4,11 +4,11 @@
 
 <h1>{{ 'admin.helpdesk.header.text'|trans({}, 'admin') }}</h1>
 
-{% if app.session.hasFlash('notice') %}
+{% for message in app.session.flashbag.get('notice') %}
 <div class="message notice">
-  {{ app.session.flash('notice')|trans({}, 'admin') }}
+  {{ message|trans({}, 'admin') }}
 </div>
-{% endif %}
+{% endfor %}
 
 {% if helpdesk_data|length > 0 %}
 

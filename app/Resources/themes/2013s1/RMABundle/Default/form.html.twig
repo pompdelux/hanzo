@@ -23,7 +23,7 @@
         {% for product in order_lines %}
           <tr class="item">
             <td class="image left">
-            {% if product.basket_image %}
+            {% if product.basket_image is defined %}
               {{ product_image_tag(product.basket_image, '57x100', { 'alt' : product.products_name }) }}
             {% endif %}
               <div class="info" data-product_id="{{ product.id }}" data-confirmed="">
@@ -121,7 +121,8 @@
 {% endblock %}
 
 {% block javascript %}
-<script src="{{ asset('/fx/scripts/bootstrap-typeahead.js') }}"></script>
+<!-- script src="{{ asset('/fx/scripts/bootstrap-typeahead.js') }}"></script -->
+<script src="{{ asset('/fx/scripts/typeahead.min.js') }}"></script>
 <script>
   var rma_order_id = {{ order.id }};
 </script>

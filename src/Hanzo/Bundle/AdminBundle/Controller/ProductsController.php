@@ -52,7 +52,7 @@ class ProductsController extends CoreController
 
             $parent_category = null;
 
-        }elseif (!$category_id){
+        } elseif (!$category_id) {
 
             $categories = CategoriesQuery::create()
                 ->where('categories.PARENT_ID IS NULL')
@@ -62,7 +62,7 @@ class ProductsController extends CoreController
             ;
             $parent_category = null;
 
-        } elseif (!$subcategory_id){
+        } elseif (!$subcategory_id) {
 
             $categories = CategoriesQuery::create()
                 ->filterByParentId($category_id)
@@ -75,6 +75,13 @@ class ProductsController extends CoreController
                 ->joinWithI18n('en_GB')
                 ->filterById($category_id)
                 ->findOne($this->getDbConnection())
+            ;
+
+            $products = ProductsQuery::create()
+                ->useProductsToCategoriesQuery()
+                ->filterByCategoriesId($category_id)
+                ->endUse()
+                ->find($this->getDbConnection())
             ;
 
         } else { // Both $category_id and $subcategory_id are set. Show some products!
@@ -97,38 +104,38 @@ class ProductsController extends CoreController
         if ($categories) {
             foreach ($categories as $category) {
                 $categories_list[] = array(
-                    'id' => $category->getId(),
-                    'context' => $category->getContext(),
+                    'id'        => $category->getId(),
+                    'context'   => $category->getContext(),
                     'is_active' => $category->getIsActive(),
-                    'title' => $category->getTitle(),
+                    'title'     => $category->getTitle(),
                 );
             }
+        }
 
-        }else if ($products) {
-
+        if ($products) {
             foreach ($products as $product) {
                 $products_list[] = array(
-                    'id' => $product->getId(),
-                    'sku' => $product->getSku(),
-                    'master' => $product->getMaster(),
-                    'size' => $product->getSize(),
-                    'color' => $product->getColor(),
-                    'unit' => $product->getUnit(),
+                    'id'              => $product->getId(),
+                    'sku'             => $product->getSku(),
+                    'master'          => $product->getMaster(),
+                    'size'            => $product->getSize(),
+                    'color'           => $product->getColor(),
+                    'unit'            => $product->getUnit(),
                     'is_out_of_stock' => $product->getIsOutOfStock(),
-                    'is_active' => $product->getIsActive()
+                    'is_active'       => $product->getIsActive()
                 );
             }
 
         }
 
         return $this->render('AdminBundle:Products:list.html.twig', array(
-            'categories'        => $categories_list,
+            'categories'      => $categories_list,
             'products'        => $products_list,
-            'parent_category'   => $parent_category,
-            'category_id' => $category_id,
-            'subcategory_id' => $subcategory_id,
-            'search_query' => $q_clean,
-            'database' => $this->getRequest()->getSession()->get('database')
+            'parent_category' => $parent_category,
+            'category_id'     => $category_id,
+            'subcategory_id'  => $subcategory_id,
+            'search_query'    => $q_clean,
+            'database'        => $this->getRequest()->getSession()->get('database')
         ));
     }
 
@@ -190,9 +197,9 @@ class ProductsController extends CoreController
             foreach ($product_image_in_categories as $ref) {
 
                 $image_categories_list[] = array(
-                    'id' => $record->getId(),
+                    'id'          => $record->getId(),
                     'category_id' => $ref->getCategoriesId(),
-                    'title' => $ref->getCategories()->getContext()
+                    'title'       => $ref->getCategories()->getContext()
                 );
             }
 
@@ -210,18 +217,18 @@ class ProductsController extends CoreController
                     $product_ref = $ref->getProducts();
 
                     $products_refs_list[] = array(
-                        'id' => $product_ref->getId(),
-                        'sku' => $product_ref->getSku(),
+                        'id'    => $product_ref->getId(),
+                        'sku'   => $product_ref->getSku(),
                         'color' => $ref->getColor()
                     );
                 }
             }
 
             $product_images_list[$record->getId()] = array(
-                'id' => $record->getProductsId(),
-                'image' => $record->getImage(),
-                'image_id' => $record->getId(),
-                'product_ref_ids' => $products_refs_list,
+                'id'               => $record->getProductsId(),
+                'image'            => $record->getImage(),
+                'image_id'         => $record->getId(),
+                'product_ref_ids'  => $products_refs_list,
                 'image_categories' => $image_categories_list
             );
         }
@@ -229,16 +236,16 @@ class ProductsController extends CoreController
 
         $form_hasVideo = $this->createFormBuilder($current_product)
             ->add('has_video', 'checkbox', array(
-                    'label' => 'product.label.has_video',
+                    'label'              => 'product.label.has_video',
                     'translation_domain' => 'admin',
-                    'required' => false
+                    'required'           => false
                 )
             )->getForm()
         ;
 
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
-            $form_hasVideo->bindRequest($request);
+            $form_hasVideo->bind($request);
 
             if ($form_hasVideo->isValid()) {
                 $current_product->save($this->getDbConnection());
@@ -304,13 +311,13 @@ class ProductsController extends CoreController
                     'translation_domain' => 'admin'
                 )
             )->add('span', 'integer', array(
-                    'label' => 'admin.products.discount.span',
-                    'required' => TRUE,
+                    'label'              => 'admin.products.discount.span',
+                    'required'           => true,
                     'translation_domain' => 'admin'
                 )
             )->add('discount', 'number', array(
-                    'label' => 'admin.products.discount.discount',
-                    'required' => TRUE,
+                    'label'              => 'admin.products.discount.discount',
+                    'required'           => true,
                     'translation_domain' => 'admin'
                 )
             )->getForm()
@@ -318,7 +325,7 @@ class ProductsController extends CoreController
 
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
-            $form->bindRequest($request);
+            $form->handleRequest($request);
 
             if ($form->isValid()) {
 
@@ -340,7 +347,7 @@ class ProductsController extends CoreController
 
                 }
 
-                $this->get('session')->setFlash('notice', 'admin.products.discount.saved');
+                $this->get('session')->getFlashBag()->add('notice', 'admin.products.discount.saved');
             }
         }
 
@@ -382,7 +389,7 @@ class ProductsController extends CoreController
                 ));
             }
 
-            $this->get('session')->setFlash('notice', 'delete.products.discount.success');
+            $this->get('session')->getFlashBag()->add('notice', 'delete.products.discount.success');
 
             return $this->redirect($this->generateUrl('admin_products_discount', array('product_id' => $master->getId())));
         }
@@ -394,7 +401,7 @@ class ProductsController extends CoreController
             ));
         }
 
-        $this->get('session')->setFlash('notice', 'delete.products.discount.failed');
+        $this->get('session')->getFlashBag()->add('notice', 'delete.products.discount.failed');
 
         return $this->redirect($this->generateUrl('admin_products_discount', array('product_id' => $master->getId())));
 
@@ -419,12 +426,12 @@ class ProductsController extends CoreController
         if($styles instanceof \PropelObjectCollection){
             $styles->delete($this->getDbConnection());
 
-            $this->get('session')->setFlash('notice', 'delete.products.styles.success');
+            $this->get('session')->getFlashBag()->add('notice', 'delete.products.styles.success');
 
             return $this->redirect($this->generateUrl('admin_product', array('id' => $id)));
         }
 
-        $this->get('session')->setFlash('notice', 'delete.products.styles.failed');
+        $this->get('session')->getFlashBag()->add('notice', 'delete.products.styles.failed');
 
         return $this->redirect($this->generateUrl('admin_product', array('id' => $id)));
 
@@ -450,7 +457,7 @@ class ProductsController extends CoreController
                     'message' => $this->get('translator')->trans('delete.products.style.success', [], 'admin')
                 ));
             }
-            $this->get('session')->setFlash('notice', 'delete.products.style.success');
+            $this->get('session')->getFlashBag()->add('notice', 'delete.products.style.success');
 
             return $this->redirect($this->generateUrl('admin_product', array('id' => $id)));
         }
@@ -462,7 +469,7 @@ class ProductsController extends CoreController
             ));
         }
 
-        $this->get('session')->setFlash('notice', 'delete.products.style.failed');
+        $this->get('session')->getFlashBag()->add('notice', 'delete.products.style.failed');
 
         return $this->redirect($this->generateUrl('admin_product', array('id' => $id)));
 

@@ -33,7 +33,7 @@ abstract class BaseHelpdeskDataLog extends BaseObject implements Persistent
     protected static $peer;
 
     /**
-     * The flag var to prevent infinit loop in deep copy
+     * The flag var to prevent infinite loop in deep copy
      * @var       boolean
      */
     protected $startCopy = false;
@@ -83,6 +83,7 @@ abstract class BaseHelpdeskDataLog extends BaseObject implements Persistent
      */
     public function getKey()
     {
+
         return $this->key;
     }
 
@@ -93,6 +94,7 @@ abstract class BaseHelpdeskDataLog extends BaseObject implements Persistent
      */
     public function getData()
     {
+
         return $this->data;
     }
 
@@ -100,7 +102,7 @@ abstract class BaseHelpdeskDataLog extends BaseObject implements Persistent
      * Get the [optionally formatted] temporal [created_at] column value.
      *
      * This accessor only only work with unix epoch dates.  Consider enabling the propel.useDateTimeClass
-     * option in order to avoid converstions to integers (which are limited in the dates they can express).
+     * option in order to avoid conversions to integers (which are limited in the dates they can express).
      *
      * @param string $format The date/time format string (either date()-style or strftime()-style).
      *				 If format is null, then the raw unix timestamp integer will be returned.
@@ -141,7 +143,7 @@ abstract class BaseHelpdeskDataLog extends BaseObject implements Persistent
     /**
      * Set the value of [key] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return HelpdeskDataLog The current object (for fluent API support)
      */
     public function setKey($v)
@@ -162,7 +164,7 @@ abstract class BaseHelpdeskDataLog extends BaseObject implements Persistent
     /**
      * Set the value of [data] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return HelpdeskDataLog The current object (for fluent API support)
      */
     public function setData($v)
@@ -226,7 +228,7 @@ abstract class BaseHelpdeskDataLog extends BaseObject implements Persistent
      * more tables.
      *
      * @param array $row The row returned by PDOStatement->fetch(PDO::FETCH_NUM)
-     * @param int $startcol 0-based offset column which indicates which restultset column to start with.
+     * @param int $startcol 0-based offset column which indicates which resultset column to start with.
      * @param boolean $rehydrate Whether this object is being re-hydrated from the database.
      * @return int             next starting column
      * @throws PropelException - Any caught Exception will be rewrapped as a PropelException.
@@ -246,6 +248,7 @@ abstract class BaseHelpdeskDataLog extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 3; // 3 = HelpdeskDataLogPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -556,10 +559,10 @@ abstract class BaseHelpdeskDataLog extends BaseObject implements Persistent
      *
      * In addition to checking the current object, all related objects will
      * also be validated.  If all pass then <code>true</code> is returned; otherwise
-     * an aggreagated array of ValidationFailed objects will be returned.
+     * an aggregated array of ValidationFailed objects will be returned.
      *
      * @param array $columns Array of column names to validate.
-     * @return mixed <code>true</code> if all validations pass; array of <code>ValidationFailed</code> objets otherwise.
+     * @return mixed <code>true</code> if all validations pass; array of <code>ValidationFailed</code> objects otherwise.
      */
     protected function doValidate($columns = null)
     {
@@ -651,6 +654,11 @@ abstract class BaseHelpdeskDataLog extends BaseObject implements Persistent
             $keys[1] => $this->getData(),
             $keys[2] => $this->getCreatedAt(),
         );
+        $virtualColumns = $this->virtualColumns;
+        foreach ($virtualColumns as $key => $virtualColumn) {
+            $result[$key] = $virtualColumn;
+        }
+
 
         return $result;
     }
@@ -867,7 +875,7 @@ abstract class BaseHelpdeskDataLog extends BaseObject implements Persistent
      *
      * This method is a user-space workaround for PHP's inability to garbage collect
      * objects with circular references (even in PHP 5.3). This is currently necessary
-     * when using Propel in certain daemon or large-volumne/high-memory operations.
+     * when using Propel in certain daemon or large-volume/high-memory operations.
      *
      * @param boolean $deep Whether to also clear the references on all referrer objects.
      */

@@ -1,31 +1,38 @@
-(function($, document, undefined) {
-  var $menu = $('nav.main-menu');
+(function ($, document, undefined) {
+    var $menu = $('nav.main-menu');
 
-  // show menu on subpages.
-  $('a.menu-trigger', $menu).on('click', function(event) {
-    event.preventDefault();
-    $(this).toggleClass('active');
-    $('.outer', $menu).slideToggle();
-  });
+    // show menu on subpages.
+    $('a.menu-trigger', $menu).on('click', function (event) {
+        event.preventDefault();
+        $(this).toggleClass('active');
+        $('.outer', $menu).slideToggle();
+    });
 
-  // set initial "open" classes
-  $('li.active', $menu)
-    .parent('ul')
-    .not('.outer')
-    .css('display', 'block')
-  ;
+    // set initial "open" classes on all parent ULs
+    $('li.active', $menu)
+        .parents('ul.inner')
+        .css('display', 'block')
+        .addClass('open')
+    ;
 
-  $('a.heading', $menu).on('click', function (event) {
-    event.preventDefault();
+    $('ul.topmenu ul ul', $menu)
+        .css('display', 'block')
+        .addClass('open')
+    ;
 
-    var $this = $(this);
-    var $li = $this.parent();
-    var $ul = $this.next('ul');
+    $('ul a', $menu).on('click', function (event) {
+        var $this = $(this);
+        var $li = $this.parent();
+        var $ul = $this.next('ul');
 
-    $li.toggleClass('active inactive');
+        if ($ul.length && $ul.hasClass('open') === false || !$this.attr('href').length || $this.hasClass('heading')) {
+            event.preventDefault();
 
-    $ul.slideToggle();
-    $ul.toggleClass('open');
-    $this.addClass('active');
-  });
+            $li.toggleClass('active inactive');
+            $ul.slideToggle();
+            $ul.toggleClass('open');
+            $this.addClass('active');
+        }
+
+    });
 })(jQuery, document);

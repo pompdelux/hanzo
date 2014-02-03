@@ -4,7 +4,6 @@
 <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="{{ html_lang }}"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="{{ html_lang }}"> <!--<![endif]-->
 <head>
-
 <title>{{ browser_title|default('Forside') }} - Admin - POMPdeLUX</title>
 <meta charset="utf-8">
 
@@ -23,23 +22,22 @@
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
 
 <link rel="shortcut icon" href="{{ image_path('/fx/images/favicon.ico') }}" title="POMPdeLUX" />
-
 <link href='//fonts.googleapis.com/css?family=Merriweather:400,700,900' rel='stylesheet' type='text/css'>
 <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 
 {% stylesheets
-  'fx/css/boilerplate.css'
-  'fx/css/colorbox/theme4/colorbox.css'
-  'fx/css/jquery-ui.css'
-  'fx/scripts/video-js/video-js.css'
+    'fx/css/boilerplate.css'
+    'fx/css/colorbox/theme4/colorbox.css'
+    'fx/css/jquery-ui.css'
+    'fx/scripts/video-js/video-js.css'
 
-  'fx/css/main.css'
-  'fx/css/admin.css'
-  'fx/css/dialoug.css'
-  'fx/css/maps.css'
+    'fx/css/main.css'
+    'fx/css/admin.css'
+    'fx/css/dialoug.css'
+    'fx/css/maps.css'
 
-  output='fx/cache/admin-all.css'
-  combine=true
+    output='fx/cache/admin-all.css'
+    combine=true
 %}
 <link rel="stylesheet" href="{{ asset_url }}" media="all">
 {% endstylesheets %}
@@ -49,7 +47,6 @@
 var base_url = '{{ url('admin') }}';
 var cdn_url = '{{ cdn }}';
 </script>
-
 </head>
 <body id="body-{{ page_type|default('admin') }}" class="{{ body_classes|default('cms global') }}">
 
@@ -59,7 +56,7 @@ var cdn_url = '{{ cdn }}';
   </a>
 
   {# see: AdminBundle->CmsController->adminMenuAction #}
-  {% render 'AdminBundle:Cms:adminMenu' %}
+  {{ render(controller('AdminBundle:Cms:adminMenu')) }}
 
   <div id="main" role="main">
     {% block content %}
@@ -131,32 +128,32 @@ var cdn_url = '{{ cdn }}';
 <script type="text/javascript" src="{{ url('bazinga_exposetranslation_js', { 'domain_name': 'js', '_locale' : app.request.locale }) }}"></script>
 
 {% javascripts
-  'fx/scripts/jquery.tools.min.js'
-  'fx/scripts/jquery.ui.nestedSortable.js'
-  'fx/scripts/colorbox/jquery.colorbox-min.js'
-  'fx/scripts/zoom/jquery.zoom.js'
+    'fx/scripts/jquery.tools.min.js'
+    'fx/scripts/jquery.ui.nestedSortable.js'
+    'fx/scripts/colorbox/jquery.colorbox-min.js'
+    'fx/scripts/zoom/jquery.zoom.js'
 
-  'fx/scripts/flowplayer/flowplayer-3.2.11.min.js'
-  'fx/scripts/countdown/jquery.countdown.js'
-  'fx/scripts/countdown/jquery.countdown-dk.js'
-  'fx/scripts/video-js/video.js'
-  'fx/scripts/history.js/scripts/bundled/html4+html5/jquery.history.js'
+    'fx/scripts/flowplayer/flowplayer-3.2.11.min.js'
+    'fx/scripts/countdown/jquery.countdown.js'
+    'fx/scripts/countdown/jquery.countdown-dk.js'
+    'fx/scripts/video-js/video.js'
+    'fx/scripts/history.js/scripts/bundled/html4+html5/jquery.history.js'
 
-  'fx/scripts/yatzy.js'
-  'fx/scripts/dialoug.js'
-  'fx/scripts/colorbox.js'
-  'fx/scripts/flowplayer.js'
-  'fx/scripts/video.js'
+    'fx/scripts/yatzy.js'
+    'fx/scripts/dialoug.js'
+    'fx/scripts/colorbox.js'
+    'fx/scripts/flowplayer.js'
+    'fx/scripts/video.js'
 
-  'fx/scripts/admin.js'
+    'fx/scripts/admin.js'
 
-  'fx/scripts/admin.gothia.js'
-  'fx/scripts/maps.js'
+    'fx/scripts/admin.gothia.js'
+    'fx/scripts/maps.js'
 
-  'fx/scripts/admin.dead_orders.js'
+    'fx/scripts/admin.dead_orders.js'
 
-  output='fx/cache/admin-all.js'
-  combine=true
+    output='fx/cache/admin-all.js'
+    combine=true
 %}
 <script src="{{ asset_url }}"></script>
 {% endjavascripts %}

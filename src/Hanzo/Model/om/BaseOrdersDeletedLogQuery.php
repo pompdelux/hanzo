@@ -66,8 +66,14 @@ abstract class BaseOrdersDeletedLogQuery extends ModelCriteria
      * @param     string $modelName The phpName of a model, e.g. 'Book'
      * @param     string $modelAlias The alias for the model in this query, e.g. 'b'
      */
-    public function __construct($dbName = 'default', $modelName = 'Hanzo\\Model\\OrdersDeletedLog', $modelAlias = null)
+    public function __construct($dbName = null, $modelName = null, $modelAlias = null)
     {
+        if (null === $dbName) {
+            $dbName = 'default';
+        }
+        if (null === $modelName) {
+            $modelName = 'Hanzo\\Model\\OrdersDeletedLog';
+        }
         parent::__construct($dbName, $modelName, $modelAlias);
     }
 
@@ -84,10 +90,8 @@ abstract class BaseOrdersDeletedLogQuery extends ModelCriteria
         if ($criteria instanceof OrdersDeletedLogQuery) {
             return $criteria;
         }
-        $query = new OrdersDeletedLogQuery();
-        if (null !== $modelAlias) {
-            $query->setModelAlias($modelAlias);
-        }
+        $query = new OrdersDeletedLogQuery(null, null, $modelAlias);
+
         if ($criteria instanceof Criteria) {
             $query->mergeWith($criteria);
         }
@@ -115,7 +119,7 @@ abstract class BaseOrdersDeletedLogQuery extends ModelCriteria
             return null;
         }
         if ((null !== ($obj = OrdersDeletedLogPeer::getInstanceFromPool((string) $key))) && !$this->formatter) {
-            // the object is alredy in the instance pool
+            // the object is already in the instance pool
             return $obj;
         }
         if ($con === null) {
@@ -482,7 +486,7 @@ abstract class BaseOrdersDeletedLogQuery extends ModelCriteria
      * <code>
      * $query->filterByDeletedAt('2011-03-14'); // WHERE deleted_at = '2011-03-14'
      * $query->filterByDeletedAt('now'); // WHERE deleted_at = '2011-03-14'
-     * $query->filterByDeletedAt(array('max' => 'yesterday')); // WHERE deleted_at > '2011-03-13'
+     * $query->filterByDeletedAt(array('max' => 'yesterday')); // WHERE deleted_at < '2011-03-13'
      * </code>
      *
      * @param     mixed $deletedAt The value to use as filter.

@@ -27,3 +27,10 @@ propel:
                     #     user:         %prod_dk_database_slave_3_user%
                     #     password:     %prod_dk_database_slave_3_password%
                     #     dsn:          %prod_dk_database_slave_3_dsn%
+
+account:
+    consignor:
+        actor_id: 63
+
+consignor:
+    shipment_server: ~

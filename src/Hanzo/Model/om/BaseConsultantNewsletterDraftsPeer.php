@@ -27,7 +27,7 @@ abstract class BaseConsultantNewsletterDraftsPeer
     const OM_CLASS = 'Hanzo\\Model\\ConsultantNewsletterDrafts';
 
     /** the related TableMap class for this table */
-    const TM_CLASS = 'ConsultantNewsletterDraftsTableMap';
+    const TM_CLASS = 'Hanzo\\Model\\map\\ConsultantNewsletterDraftsTableMap';
 
     /** The total number of columns. */
     const NUM_COLUMNS = 4;
@@ -54,7 +54,7 @@ abstract class BaseConsultantNewsletterDraftsPeer
     const DEFAULT_STRING_FORMAT = 'YAML';
 
     /**
-     * An identiy map to hold any loaded instances of ConsultantNewsletterDrafts objects.
+     * An identity map to hold any loaded instances of ConsultantNewsletterDrafts objects.
      * This must be public so that other peer classes can access this when hydrating from JOIN
      * queries.
      * @var        array ConsultantNewsletterDrafts[]
@@ -224,7 +224,7 @@ abstract class BaseConsultantNewsletterDraftsPeer
      *
      * @param      Criteria $criteria object used to create the SELECT statement.
      * @param      PropelPDO $con
-     * @return                 ConsultantNewsletterDrafts
+     * @return ConsultantNewsletterDrafts
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
@@ -291,7 +291,7 @@ abstract class BaseConsultantNewsletterDraftsPeer
      * to the cache in order to ensure that the same objects are always returned by doSelect*()
      * and retrieveByPK*() calls.
      *
-     * @param      ConsultantNewsletterDrafts $obj A ConsultantNewsletterDrafts object.
+     * @param ConsultantNewsletterDrafts $obj A ConsultantNewsletterDrafts object.
      * @param      string $key (optional) key to use for instance map (for performance boost if key was already calculated externally).
      */
     public static function addInstanceToPool($obj, $key = null)
@@ -341,7 +341,7 @@ abstract class BaseConsultantNewsletterDraftsPeer
      * a multi-column primary key, a serialize()d version of the primary key will be returned.
      *
      * @param      string $key The key (@see getPrimaryKeyHash()) for this instance.
-     * @return   ConsultantNewsletterDrafts Found object or null if 1) no instance exists for specified key or 2) instance pooling has been disabled.
+     * @return ConsultantNewsletterDrafts Found object or null if 1) no instance exists for specified key or 2) instance pooling has been disabled.
      * @see        getPrimaryKeyHash()
      */
     public static function getInstanceFromPool($key)
@@ -362,10 +362,8 @@ abstract class BaseConsultantNewsletterDraftsPeer
      */
     public static function clearInstancePool($and_clear_all_references = false)
     {
-      if ($and_clear_all_references)
-      {
-        foreach (ConsultantNewsletterDraftsPeer::$instances as $instance)
-        {
+      if ($and_clear_all_references) {
+        foreach (ConsultantNewsletterDraftsPeer::$instances as $instance) {
           $instance->clearAllReferences(true);
         }
       }
@@ -731,7 +729,7 @@ abstract class BaseConsultantNewsletterDraftsPeer
     {
       $dbMap = Propel::getDatabaseMap(BaseConsultantNewsletterDraftsPeer::DATABASE_NAME);
       if (!$dbMap->hasTable(BaseConsultantNewsletterDraftsPeer::TABLE_NAME)) {
-        $dbMap->addTableObject(new ConsultantNewsletterDraftsTableMap());
+        $dbMap->addTableObject(new \Hanzo\Model\map\ConsultantNewsletterDraftsTableMap());
       }
     }
 
@@ -781,7 +779,7 @@ abstract class BaseConsultantNewsletterDraftsPeer
             $con->beginTransaction();
             $pk = BasePeer::doInsert($criteria, $con);
             $con->commit();
-        } catch (PropelException $e) {
+        } catch (Exception $e) {
             $con->rollBack();
             throw $e;
         }
@@ -854,7 +852,7 @@ abstract class BaseConsultantNewsletterDraftsPeer
             $con->commit();
 
             return $affectedRows;
-        } catch (PropelException $e) {
+        } catch (Exception $e) {
             $con->rollBack();
             throw $e;
         }
@@ -913,7 +911,7 @@ abstract class BaseConsultantNewsletterDraftsPeer
             $con->commit();
 
             return $affectedRows;
-        } catch (PropelException $e) {
+        } catch (Exception $e) {
             $con->rollBack();
             throw $e;
         }
@@ -926,7 +924,7 @@ abstract class BaseConsultantNewsletterDraftsPeer
      *
      * NOTICE: This does not apply to primary or foreign keys for now.
      *
-     * @param      ConsultantNewsletterDrafts $obj The object to validate.
+     * @param ConsultantNewsletterDrafts $obj The object to validate.
      * @param      mixed $cols Column name or array of column names.
      *
      * @return mixed TRUE if all columns are valid or the error message of the first invalid column.
@@ -959,7 +957,7 @@ abstract class BaseConsultantNewsletterDraftsPeer
     /**
      * Retrieve a single object by pkey.
      *
-     * @param      int $pk the primary key.
+     * @param int $pk the primary key.
      * @param      PropelPDO $con the connection to use
      * @return ConsultantNewsletterDrafts
      */

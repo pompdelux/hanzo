@@ -26,7 +26,7 @@
           {% if product.basket_image %}
             {{ product_image_tag(product.basket_image, '57x100', { 'alt' : product.products_name }) }}
           {% endif %}
-            <div class="info" data-product_id="{{ product.products_id }}" data-confirmed="">
+            <div class="info" data-product_id="{{ product.products_id }}" data-master="{{ product.master }}" data-confirmed="">
             {% if product.url %}
               <a href="{{ product.url }}" class="title">{{ product.products_name }}</a>
             {% else %}
@@ -89,12 +89,10 @@
       </div>
 
       {% if app.user and app.user.user.groupsid in [2,3] %}
-        {% render 'EventsBundle:Events:selectEvent' %}
+        {{ render(controller('EventsBundle:Events:selectEvent')) }}
       {% else %}
         <div class="buttons">
-{#
           <a class="button button-left" href="{{ continue_shopping }}">{{ "continue.shopping"|trans({}, 'checkout') }}</a>
-#}
           <a class="button button-right proceed" href="{{ url('_checkout') }}">{{ "proceed"|trans({}, 'checkout') }}</a>
         </div>
       {% endif %}
@@ -102,10 +100,8 @@
 
   {% else %}
     <p>{{ "cart.is.empty"|trans({}, 'checkout') }}</p>
-{#
     <div class="buttons">
       <a class="button button-left" href="{{ continue_shopping }}">{{ "continue.shopping"|trans({}, 'checkout') }}</a>
     </div>
-#}
   {% endif %}
 </div>

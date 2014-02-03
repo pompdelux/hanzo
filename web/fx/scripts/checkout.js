@@ -39,11 +39,11 @@
           return;
         }
 
-        $.getJSON(base_url+'service/get-city-from-zip/'+value, function(response) {
+        $.getJSON(base_url+'muneris/gpc/'+value, function(response) {
           var $city = $('.js-auto-city-'+$form.data('addresstype'), $form);
 
           if (response.status) {
-            $city.prop('value', response.data.city);
+            $city.prop('value', response.data.postcode.city);
           } else {
             // TODO: use css class
             $this.css('border', '2px solid #a10000');

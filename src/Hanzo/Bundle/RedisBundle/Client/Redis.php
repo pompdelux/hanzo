@@ -171,8 +171,11 @@ Class Redis
         );
 
         if ($this->connected) {
-            if ($this->redis->select($this->parameters['database'])) {
+            if ($this->parameters['auth']) {
+                $this->redis->auth($this->parameters['auth']);
+            }
 
+            if ($this->redis->select($this->parameters['database'])) {
                 // setup default options
                 $this->redis->setOption(\Redis::OPT_PREFIX, $this->parameters['prefix']);
                 $this->redis->setOption(\Redis::OPT_SERIALIZER, \Redis::SERIALIZER_PHP);

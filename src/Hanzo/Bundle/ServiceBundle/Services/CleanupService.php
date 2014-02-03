@@ -34,6 +34,7 @@ class CleanupService
      * delete orders deemed dead
      *
      * @param boolean $dry_run testing flag.
+     * @return int
      */
     public function deleteStaleOrders($dry_run = false)
     {
@@ -77,6 +78,7 @@ class CleanupService
      *
      * @param  Container $container service container
      * @param  boolean   $dry_run   testing flag.
+     * @return int
      */
     public function cancelStaleOrderEdit($container, $dry_run = false)
     {

@@ -80,8 +80,14 @@
 %}
 <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
+
+{% if app.environment matches '/^dev_|test_/' %}
 <script src="//code.jquery.com/jquery-migrate-1.2.1.js"></script>
+{% else %}
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+{% endif %}
+
 {{ include('::footer-'~app.request.locale~'.html.twig', ignore_missing = true, with_context = true) }}
 {{ google_analytics_tag() }}
 
-{% render 'RetargetingBundle:Default:jsBlock' %}
+{{ render(controller('RetargetingBundle:Default:jsBlock')) }}

@@ -57,8 +57,14 @@ abstract class BaseProductsStockQuery extends ModelCriteria
      * @param     string $modelName The phpName of a model, e.g. 'Book'
      * @param     string $modelAlias The alias for the model in this query, e.g. 'b'
      */
-    public function __construct($dbName = 'default', $modelName = 'Hanzo\\Model\\ProductsStock', $modelAlias = null)
+    public function __construct($dbName = null, $modelName = null, $modelAlias = null)
     {
+        if (null === $dbName) {
+            $dbName = 'default';
+        }
+        if (null === $modelName) {
+            $modelName = 'Hanzo\\Model\\ProductsStock';
+        }
         parent::__construct($dbName, $modelName, $modelAlias);
     }
 
@@ -75,10 +81,8 @@ abstract class BaseProductsStockQuery extends ModelCriteria
         if ($criteria instanceof ProductsStockQuery) {
             return $criteria;
         }
-        $query = new ProductsStockQuery();
-        if (null !== $modelAlias) {
-            $query->setModelAlias($modelAlias);
-        }
+        $query = new ProductsStockQuery(null, null, $modelAlias);
+
         if ($criteria instanceof Criteria) {
             $query->mergeWith($criteria);
         }
@@ -106,7 +110,7 @@ abstract class BaseProductsStockQuery extends ModelCriteria
             return null;
         }
         if ((null !== ($obj = ProductsStockPeer::getInstanceFromPool((string) $key))) && !$this->formatter) {
-            // the object is alredy in the instance pool
+            // the object is already in the instance pool
             return $obj;
         }
         if ($con === null) {
@@ -372,7 +376,7 @@ abstract class BaseProductsStockQuery extends ModelCriteria
      * <code>
      * $query->filterByAvailableFrom('2011-03-14'); // WHERE available_from = '2011-03-14'
      * $query->filterByAvailableFrom('now'); // WHERE available_from = '2011-03-14'
-     * $query->filterByAvailableFrom(array('max' => 'yesterday')); // WHERE available_from > '2011-03-13'
+     * $query->filterByAvailableFrom(array('max' => 'yesterday')); // WHERE available_from < '2011-03-13'
      * </code>
      *
      * @param     mixed $availableFrom The value to use as filter.

@@ -3,25 +3,33 @@ Hanzo\Model\Events:
         host:
             - NotBlank:
                 message: host.required
-            - MinLength: 2
+            - Length:
+                min: 2
+                minMessage: host.required
         address_line_1:
             - NotBlank:
                 message: address_line_1.required
-            - MinLength: 2
+            - Length:
+                min: 2
+                minMessage: address_line_1.required
         postal_code:
             - NotBlank:
                 message: postal_code.required
-            - MinLength: 2
+            - Length:
+                min: 2
+                minMessage: postal_code.required
         city:
             - NotBlank:
                 message: city.required
-            - MinLength: 2
+            - Length:
+                min: 2
+                minMessage: city.required
         phone:
             - NotBlank:
                 message: phone.required
-            - MinLength:
-                limit: 8
-                message: phone.min.length
+            - Length:
+                min: 8
+                minMessage: phone.min.length
             - Regex:
                 pattern: "/^\d+$/"
                 match:   true

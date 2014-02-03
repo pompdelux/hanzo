@@ -8,7 +8,7 @@
             </trans-unit>
             <trans-unit id="events.account.title">
                 <source>events.account.title</source>
-                <target>Home shopping arrangement</target>
+                <target>Home Shopping arrangement</target>
             </trans-unit>
             <trans-unit id="events.calendar.description.text">
                 <source>events.calendar.description.text</source>
@@ -188,11 +188,11 @@
             </trans-unit>
             <trans-unit id="events.type.choice.ar">
                 <source>events.type.choice.ar</source>
-                <target>Home shopping arrangement</target>
+                <target>Home Shopping arrangement</target>
             </trans-unit>
             <trans-unit id="events.type.choice.hus">
                 <source>events.type.choice.hus</source>
-                <target>Open huis</target>
+                <target>Open Huis</target>
             </trans-unit>
             <trans-unit id="events.is_open.label">
                 <source>events.is_open.label</source>
@@ -212,7 +212,7 @@
             </trans-unit>
             <trans-unit id="events.rsvp.top.header.text">
                 <source>events.rsvp.top.header.text</source>
-                <target>Je bent uitgenodigd voor een home shopping arrangement.</target>
+                <target>Je bent uitgenodigd voor een Home Shopping arrangement.</target>
             </trans-unit>
             <trans-unit id="events.not_found.header.text">
                 <source>events.not_found.header.text</source>
@@ -240,7 +240,7 @@
             </trans-unit>
             <trans-unit id="events.invite.description.text">
                 <source>events.invite.description.text</source>
-                <target>Nodig uit voor een home shopping arrangement.</target>
+                <target>Nodig uit voor een Home Shopping arrangement.</target>
             </trans-unit>
             <trans-unit id="events.invite.participant.button">
                 <source>events.invite.participant.button</source>
@@ -260,7 +260,7 @@
             </trans-unit>
             <trans-unit id="events.rsvp.description.text">
                 <source>events.rsvp.description.text</source>
-                <target>Stuur je antwoord of je meedoet aan dit home shopping arrangement. Geef je informatie aan.</target>
+                <target>Stuur je antwoord of je meedoet aan dit Home Shopping arrangement. Geef je informatie aan.</target>
             </trans-unit>
             <trans-unit id="events.tell_a_friend.header.text">
                 <source>events.tell_a_friend.header.text</source>
@@ -328,15 +328,15 @@
             </trans-unit>
             <trans-unit id="event.sms.confirmation.reply" approved="no">
                 <source>event.sms.confirmation.reply</source>
-                <target>Beste %name%. Leuk dat je deelneemt aan het POMPdeLUX Home shopping arrangement op %event_date% om %event_time% op het volgende adres  %address%, %zip% %city%. Tot ziens! %hostess%</target>
+                <target>Beste %name%. Leuk dat je deelneemt aan het POMPdeLUX Home Shopping arrangement op %event_date% om %event_time% op het volgende adres  %address%, %zip% %city%. Tot ziens! %hostess%</target>
             </trans-unit>
             <trans-unit id="event.sms.invite" approved="no">
                 <source>event.sms.invite</source>
-                <target>Beste %name%. %hostess% nodigt je hierbij uit voor het POMPdeLUX Home shopping arrangement op %event_date% om %event_time%. Het adres is %address%, %zip% %city%. Heb je zin om de nieuwe kinderkledingcollectie te zien, antwoord dan per sms met de tekst "pdl %event_id%".  Hopelijk tot ziens!</target>
+                <target>Beste %name%. %hostess% nodigt je hierbij uit voor het POMPdeLUX Home Shopping arrangement op %event_date% om %event_time%. Het adres is %address%, %zip% %city%. Heb je zin om de nieuwe kinderkledingcollectie te zien, antwoord dan per sms met de tekst "pdl %event_id%".  Hopelijk tot ziens!</target>
             </trans-unit>
             <trans-unit id="event.sms.reminder" approved="no">
                 <source>event.sms.reminder</source>
-                <target>Beste %name% Herinnering: POMPdeLUX home shopping arrangement op %event_date% om %event_time%. Adres: %address%, %zip% %city% Hartelijke groet, POMPdeLUX</target>
+                <target>Beste %name% Herinnering: POMPdeLUX Home Shopping arrangement op %event_date% om %event_time%. Adres: %address%, %zip% %city% Hartelijke groet, POMPdeLUX</target>
             </trans-unit>
             <trans-unit id="event.too.old.to.edit">
                 <source>event.too.old.to.edit</source>

@@ -2,18 +2,15 @@
 
 namespace Hanzo\Bundle\QuickOrderBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Hanzo\Core\Tools;
 use Hanzo\Core\Hanzo;
 
-use Hanzo\Model\ProductsQuery,
-    Hanzo\Model\ProductsDomainsPricesQuery,
-    Hanzo\Model\ProductsToCategoriesQuery,
-    Hanzo\Model\OrdersPeer
-;
-use \PropelCollection;
+use Hanzo\Model\ProductsQuery;
+use Hanzo\Model\ProductsToCategoriesQuery;
+use Hanzo\Model\OrdersPeer;
+
 use Hanzo\Core\CoreController;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends CoreController
 {
@@ -25,7 +22,6 @@ class DefaultController extends CoreController
         $order = OrdersPeer::getCurrent();
 
         $router = $this->get('router');
-        $router_keys = include $this->container->parameters['kernel.cache_dir'] . '/category_map.php';
         $locale = strtolower(Hanzo::getInstance()->get('core.locale'));
 
         $products = array();
@@ -48,7 +44,7 @@ class DefaultController extends CoreController
             ;
 
             if (!$products2category) {
-                Tools::log($locale.' -> '.$line['products_name']);
+                Tools::log($locale.' -> '.$line['products_name'].' has no category relation');
             }
 
             $line['expected_at'] = new \DateTime($line['expected_at']);
@@ -64,17 +60,29 @@ class DefaultController extends CoreController
                 $line['expected_at'] = NULL;
             }
 
+            // we need the id and sku from the master record to generate image and url to product.
+            $sql = "
+                SELECT p.id, p.sku FROM products AS p
+                WHERE p.sku = (
+                    SELECT pp.master FROM products AS pp
+                    WHERE pp.id = ".$line['products_id']."
+                )
+            ";
+            $master = \Propel::getConnection()
+                ->query($sql)
+                ->fetch(\PDO::FETCH_OBJ)
+            ;
+
             $line['basket_image'] =
-                preg_replace('/[^a-z0-9]/i', '-', $line['products_name']) .
+                preg_replace('/[^a-z0-9]/i', '-', $master->sku) .
                 '_' .
                 preg_replace('/[^a-z0-9]/i', '-', str_replace('/', '9', $line['products_color'])) .
                 '_overview_01.jpg'
             ;
 
             $line['url'] = '#';
-            $master = ProductsQuery::create()->findOneBySku($line['products_name']);
             if ($master) {
-                $line['url'] = $router->generate('product_info', array('product_id' => $master->getId()));
+                $line['url'] = $router->generate('product_info', array('product_id' => $master->id));
             }
 
             $products[] = $line;
@@ -93,19 +101,27 @@ class DefaultController extends CoreController
         );
     }
 
-    public function getSkuAction()
+
+    /**
+     * Fetch sku based on product title.
+     *
+     * @param  Request $request
+     * @return Response
+     */
+    public function getSkuAction(Request $request)
     {
-        $request = $this->get('request');
         $max_rows = $request->query->get('max_rows', 12);
-        $name = $request->query->get('name');
-        $callback = $request->query->get('callback');
+        $name     = $request->query->get('name');
 
     	$products = ProductsQuery::create()
             ->where('products.MASTER IS NULL')
-            ->filterBySku($name.'%')
             ->filterByIsOutOfStock(FALSE)
             ->useProductsDomainsPricesQuery()
                 ->filterByDomainsId(Hanzo::getInstance()->get('core.domain_id'))
+            ->endUse()
+            ->useProductsI18nQuery()
+                ->filterByTitle($name.'%')
+                ->filterByLocale($request->getLocale())
             ->endUse()
             ->groupBySku()
             ->orderBySku()
@@ -114,23 +130,23 @@ class DefaultController extends CoreController
         ;
 
         $result = array();
+
         if ($products->count()) {
             foreach ($products as $product) {
-                $result[] = $product->getSku();
+                $product->setLocale($request->getLocale());
+
+                $result[] = [
+                    'name'   => $product->getSku(),
+                    'tokens' => [$product->getTitle()],
+                    'value'  => $product->getTitle(),
+                ];
             }
+
             if(count($result)){
-                return $this->json_response(array(
-                    'status' => true,
-                    'message' => $this->get('translator')->trans('quickorder.products.found', array(), 'quickorder'),
-                    'data' => $result
-                ));
+                return $this->json_response($result);
             }
         }
 
-        return $this->json_response(array(
-            'status' => false,
-            'message' => $this->get('translator')->trans('quickorder.no.products.found', array(), 'quickorder'),
-            'data' => []
-        ));
+        return $this->json_response([$this->get('translator')->trans('quickorder.no.products.found', [], 'quickorder')]);
     }
 }

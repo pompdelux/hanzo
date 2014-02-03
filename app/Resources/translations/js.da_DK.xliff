@@ -100,7 +100,7 @@
             </trans-unit>
             <trans-unit id="edit.order.notice">
                 <source>edit.order.notice</source>
-                <target><![CDATA[For at redigere din ordre skal du gøre følgende:<br><br>1) Klik på "Blyanten" for at redigere ordren.<br><br>2) Vælg farve, størrelse og antal. Ønsker du at tilføje varer, skal du klikke på menuen Pige, Dreng, Lille Pige eller Lille Dreng øverst på siden.<br><br>3) Når du er færdig med dine ændringer, skal du klikke på "Vis kurv" og trykke på ”Fortsæt”. Når du har gennemført din ordre med ny kreditkortbetaling, vil den gamle betaling automatisk blive slettet. <br><br><b>Bemærk:</b> Hvis du anvender Visa Electron eller MasterCard ved redigeringen, foretages der automatisk endnu en reservation af totalbeløbet på din ordre. Reservationen af totalbeløbet på din oprindelige ordre bliver dog straks annulleret af POMPdeLUX. Der kan derimod  gå op til 6 uger, før reservationen ophæves af dit pengeinstitut.  </li></ul>]]></target>
+                <target><![CDATA[For at redigere din ordre skal du gøre følgende:<br><br>1) Klik på "Blyanten" for at redigere ordren.<br><br>2) Vælg farve, størrelse og antal. Ønsker du at tilføje varer, skal du klikke på menuen PIGE, DRENG, LILLE PIGE eller LILLE DRENG øverst på siden.<br><br>3) Når du er færdig med dine ændringer, skal du klikke på "Vis kurv" og trykke på ”Fortsæt”. Når du har gennemført din ordre med ny kreditkortbetaling, vil den gamle betaling automatisk blive slettet. <br><br><b>Bemærk:</b> Hvis du anvender Visa Electron eller MasterCard ved redigeringen, foretages der automatisk endnu en reservation af totalbeløbet på din ordre. Reservationen af totalbeløbet på din oprindelige ordre bliver dog straks annulleret af POMPdeLUX. Der kan derimod  gå op til 6 uger, før reservationen ophæves af dit pengeinstitut.  </li></ul>]]></target>
             </trans-unit>
             <trans-unit id="delete.order.notice">
                 <source>delete.order.notice</source>
@@ -108,7 +108,7 @@
             </trans-unit>
             <trans-unit id="consultant">
                 <source>consultant</source>
-                <target>Konsulent</target>
+                <target>Shopping Advisor</target>
             </trans-unit>
             <trans-unit id="phone">
                 <source>phone</source>
@@ -401,6 +401,14 @@
             <trans-unit id="bookmarkbubble.ioslegacy" approved="no">
                 <source>bookmarkbubble.ioslegacy</source>
                 <target><![CDATA[<b>Install this app</b>:<br /> Tap <b style="font-size:15px">+</b> and then <b>"Add to Home Screen"</b>]]></target>
+            </trans-unit>
+            <trans-unit id="rma.return.all.text">
+                <source>rma.return.all.text</source>
+                <target>Fortrudt køb (pengene retur)</target>
+            </trans-unit>
+            <trans-unit id="rma.product.not.filled.correctly">
+                <source>rma.product.not.filled.correctly</source>
+                <target>Ved ombytning af din vare skal du indtaste både størrelse og farve.</target>
             </trans-unit>
         </body>
     </file>

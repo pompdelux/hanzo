@@ -210,7 +210,7 @@ class OrdersController extends CoreController
         ;
 
         if ('POST' === $request->getMethod()) {
-            $form_state->bindRequest($request);
+            $form_state->bind($request);
 
             if ($form_state->isValid()) {
 
@@ -219,7 +219,7 @@ class OrdersController extends CoreController
                 $order->setState($form_data['state']);
                 $order->save($this->getDbConnection());
 
-                $this->get('session')->setFlash('notice', 'admin.orders.state_log.inserted');
+                $this->get('session')->getFlashBag()->add('notice', 'admin.orders.state_log.inserted');
             }
         }
 
@@ -352,7 +352,7 @@ class OrdersController extends CoreController
 
         $status = [];
         if ('POST' == $request->getMethod()) {
-            $form->bind($request);
+            $form->handleRequest($request);
             $values = $form->getData();
 
             list($min, $max) = explode('-', $values['range']);
@@ -461,7 +461,7 @@ class OrdersController extends CoreController
 
         $updated_orders = array();
         if ('POST' === $request->getMethod()) {
-            $form_state->bindRequest($request);
+            $form_state->bind($request);
 
             if ($form_state->isValid()) {
 
@@ -485,7 +485,7 @@ class OrdersController extends CoreController
                     $updated_orders[] = $order->getId();
                 }
 
-                $this->get('session')->setFlash('notice', 'admin.orders.state_log.changed');
+                $this->get('session')->getFlashBag()->add('notice', 'admin.orders.state_log.changed');
             }
         }
         return $this->render('AdminBundle:Orders:change_state.html.twig', array(

@@ -61,7 +61,7 @@ Pyydämme teitä ottamaan ystävällisesti yhteyttä Gothian asiakaspalveluun pu
       </trans-unit>
       <trans-unit id="page_txt40">
         <source>page.help_text</source>
-        <target><![CDATA[Tulemme tarvitsemaan seuraavia tietoja vahvistaaksemme sinut Gothia PayBill asiakkaaksi.<br>Jos osoitetietosi ovat väärin pyydämme sinua korjaamaan sen kirjautumalla omille sivuille "Omat sivut"<br>Jos olet aiemmin rekisteröitynyt Gothia asiakkaaksi, löydämme asiakastilisi henkilötunnuksesi kautta.]]></target>
+        <target><![CDATA[Tulemme tarvitsemaan seuraavia tietoja vahvistaaksemme sinut Gothia PayBill asiakkaaksi.<br>Jos osoitetietosi ovat väärin pyydämme sinua korjaamaan sen kirjautumalla omille sivuille "Omat Sivut"<br>Jos olet aiemmin rekisteröitynyt Gothia asiakkaaksi, löydämme asiakastilisi henkilötunnuksesi kautta.]]></target>
       </trans-unit>
       <trans-unit id="form_txt10">
         <source>form.submit_step1</source>
@@ -78,6 +78,30 @@ Pyydämme teitä ottamaan ystävällisesti yhteyttä Gothian asiakaspalveluun pu
       <trans-unit id="social_security_num">
         <source>social_security_num</source>
         <target>Henkilötunnus:</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.error.before">
+        <source>We were unable to approve your payment with Gothia Invoice service.</source>
+        <target>Valitettavasti emme voi hyväksyä tilaustasi Gothia laskuvaihtoehdolla.</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.error.after">
+        <source>Please contact POMPdeLUX customer service if you keep receiving this error.</source>
+        <target>Pyydämme teitä ottamaan  yhteyttä Gothian asiakaspalveluun puh. 0207 229 462,  Jos virhe toistuu.</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.5000">
+        <source>We are unable to connect to Gothia Invoice service, please try again later.</source>
+        <target>Tällä hetkellä emme saa yhteyttä Gothian laskupalveluun. Yritä ystävällisesti myöhemmin uudelleen.</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.10004">
+        <source>We couldn't find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.</source>
+        <target>Emme valitettavasti löydä asiakastietojasi Gothian laskupalvelusta, ovatko tietosi kirjoitettu oikein?</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.10005">
+        <source>We couldn't find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.</source>
+        <target>Emme valitettavasti löydä asiakastietojasi Gothian laskupalvelusta, ovatko tietosi kirjoitettu oikein?</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.10036">
+        <source>The reservation was not approved at Gothia Invoice Service. You may have exceeded the limit of reservations at Gothia.</source>
+        <target>Gothian laskupalvelu ei valitettavasti hyväksy ostoasi. Syynä voi olla luottorajan ylittyminen.</target>
       </trans-unit>
     </body>
   </file>

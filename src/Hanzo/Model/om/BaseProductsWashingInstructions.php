@@ -37,7 +37,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
     protected static $peer;
 
     /**
-     * The flag var to prevent infinit loop in deep copy
+     * The flag var to prevent infinite loop in deep copy
      * @var       boolean
      */
     protected $startCopy = false;
@@ -110,6 +110,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
      */
     public function getId()
     {
+
         return $this->id;
     }
 
@@ -120,6 +121,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
      */
     public function getCode()
     {
+
         return $this->code;
     }
 
@@ -130,6 +132,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
      */
     public function getLocale()
     {
+
         return $this->locale;
     }
 
@@ -140,13 +143,14 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
      */
     public function getDescription()
     {
+
         return $this->description;
     }
 
     /**
      * Set the value of [id] column.
      *
-     * @param int $v new value
+     * @param  int $v new value
      * @return ProductsWashingInstructions The current object (for fluent API support)
      */
     public function setId($v)
@@ -167,7 +171,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
     /**
      * Set the value of [code] column.
      *
-     * @param int $v new value
+     * @param  int $v new value
      * @return ProductsWashingInstructions The current object (for fluent API support)
      */
     public function setCode($v)
@@ -188,7 +192,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
     /**
      * Set the value of [locale] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return ProductsWashingInstructions The current object (for fluent API support)
      */
     public function setLocale($v)
@@ -213,7 +217,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
     /**
      * Set the value of [description] column.
      *
-     * @param string $v new value
+     * @param  string $v new value
      * @return ProductsWashingInstructions The current object (for fluent API support)
      */
     public function setDescription($v)
@@ -254,7 +258,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
      * more tables.
      *
      * @param array $row The row returned by PDOStatement->fetch(PDO::FETCH_NUM)
-     * @param int $startcol 0-based offset column which indicates which restultset column to start with.
+     * @param int $startcol 0-based offset column which indicates which resultset column to start with.
      * @param boolean $rehydrate Whether this object is being re-hydrated from the database.
      * @return int             next starting column
      * @throws PropelException - Any caught Exception will be rewrapped as a PropelException.
@@ -275,6 +279,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 4; // 4 = ProductsWashingInstructionsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -457,7 +462,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
             $this->alreadyInSave = true;
 
             // We call the save method on the following object(s) if they
-            // were passed to this object by their coresponding set
+            // were passed to this object by their corresponding set
             // method.  This object relates to these object(s) by a
             // foreign key reference.
 
@@ -638,10 +643,10 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
      *
      * In addition to checking the current object, all related objects will
      * also be validated.  If all pass then <code>true</code> is returned; otherwise
-     * an aggreagated array of ValidationFailed objects will be returned.
+     * an aggregated array of ValidationFailed objects will be returned.
      *
      * @param array $columns Array of column names to validate.
-     * @return mixed <code>true</code> if all validations pass; array of <code>ValidationFailed</code> objets otherwise.
+     * @return mixed <code>true</code> if all validations pass; array of <code>ValidationFailed</code> objects otherwise.
      */
     protected function doValidate($columns = null)
     {
@@ -653,7 +658,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
 
 
             // We call the validate method on the following object(s) if they
-            // were passed to this object by their coresponding set
+            // were passed to this object by their corresponding set
             // method.  This object relates to these object(s) by a
             // foreign key reference.
 
@@ -758,6 +763,11 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
             $keys[2] => $this->getLocale(),
             $keys[3] => $this->getDescription(),
         );
+        $virtualColumns = $this->virtualColumns;
+        foreach ($virtualColumns as $key => $virtualColumn) {
+            $result[$key] = $virtualColumn;
+        }
+
         if ($includeForeignObjects) {
             if (null !== $this->aLanguages) {
                 $result['Languages'] = $this->aLanguages->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
@@ -987,7 +997,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
     /**
      * Declares an association between this object and a Languages object.
      *
-     * @param             Languages $v
+     * @param                  Languages $v
      * @return ProductsWashingInstructions The current object (for fluent API support)
      * @throws PropelException
      */
@@ -1131,7 +1141,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
                     if (false !== $this->collProductssPartial && count($collProductss)) {
                       $this->initProductss(false);
 
-                      foreach($collProductss as $obj) {
+                      foreach ($collProductss as $obj) {
                         if (false == $this->collProductss->contains($obj)) {
                           $this->collProductss->append($obj);
                         }
@@ -1141,12 +1151,13 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
                     }
 
                     $collProductss->getInternalIterator()->rewind();
+
                     return $collProductss;
                 }
 
-                if($partial && $this->collProductss) {
-                    foreach($this->collProductss as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collProductss) {
+                    foreach ($this->collProductss as $obj) {
+                        if ($obj->isNew()) {
                             $collProductss[] = $obj;
                         }
                     }
@@ -1174,7 +1185,8 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
     {
         $productssToDelete = $this->getProductss(new Criteria(), $con)->diff($productss);
 
-        $this->productssScheduledForDeletion = unserialize(serialize($productssToDelete));
+
+        $this->productssScheduledForDeletion = $productssToDelete;
 
         foreach ($productssToDelete as $productsRemoved) {
             $productsRemoved->setProductsWashingInstructions(null);
@@ -1208,7 +1220,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getProductss());
             }
             $query = ProductsQuery::create(null, $criteria);
@@ -1237,8 +1249,13 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
             $this->initProductss();
             $this->collProductssPartial = true;
         }
+
         if (!in_array($l, $this->collProductss->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
             $this->doAddProducts($l);
+
+            if ($this->productssScheduledForDeletion and $this->productssScheduledForDeletion->contains($l)) {
+                $this->productssScheduledForDeletion->remove($this->productssScheduledForDeletion->search($l));
+            }
         }
 
         return $this;
@@ -1320,7 +1337,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
      *
      * This method is a user-space workaround for PHP's inability to garbage collect
      * objects with circular references (even in PHP 5.3). This is currently necessary
-     * when using Propel in certain daemon or large-volumne/high-memory operations.
+     * when using Propel in certain daemon or large-volume/high-memory operations.
      *
      * @param boolean $deep Whether to also clear the references on all referrer objects.
      */

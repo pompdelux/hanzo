@@ -10,13 +10,13 @@
 
   <h3 class="upper">{{ "basket"|trans({}, 'checkout') }}</h3>
 
-  {% if app.session.hasFlash('notice') %}
+  {% for message in app.session.flashbag.get('notice') %}
   <div class="message notice">
-    {{ app.session.flash('notice')|trans({}, 'checkout') }}
+    {{ message|trans({}, 'checkout') }}
   </div>
-  {% endif %}
+  {% endfor %}
 
-  {% include 'BasketBundle:Default:block.html.twig' %}
+  {{ include('BasketBundle:Default:block.html.twig') }}
 
 {% endblock %}
 

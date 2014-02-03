@@ -21,7 +21,10 @@
 {% endif %}
 
 <div class="grid_8 alpha omega row">
-    {% render 'CMSBundle:Menu:menu' with {'type': 'breadcrumb', 'thread': 20} %}
+  {{ render(controller('CMSBundle:Menu:menu', {
+    'type': 'breadcrumb',
+    'thread': 20
+  })) }}
 </div>
 
 <div class="grid_8 alpha omega row">
@@ -44,44 +47,50 @@
 </div>
 
 <div class="grid_8 alpha omega row">
+  <div class="grid_2 alpha sub-menu menu">
+      <form action="{{ url(app.request.attributes.get('_route')) }}" class="js-faceted-form">
+          <div class="grid_2 alpha sub-menu menu">
+              {{ render(controller('CMSBundle:Menu:menu', {
+                  'type': 'sub',
+                  'offset': cms_id,
+                  'thread' : 20,
+                  'include_self' : true
+              })) }}
 
-    <form action="{{ url(app.request.attributes.get('_route')) }}" class="js-faceted-form">
-        <div class="grid_2 alpha sub-menu menu">
-            {% render 'CMSBundle:Menu:menu' with {'type': 'sub', 'offset': cms_id, 'thread' : 20, 'include_self' : true } %}
+              <ul class="js-faceted-container">
+                  <li class="heading item">
+                      <a class="heading">Colours</a>
+                      <ul class="sub">
+                          <li class="inactive item first"><input type="checkbox" name="color[]" value="rose" id="color_rose"/><label for="color_rose"> Rose</label></li>
+                          <li class="inactive item"><input type="checkbox" name="color[]" value="ice blue" id="color_ice_blue"/><label for="color_ice_blue"> Ice Blue</label></li>
+                          <li class="inactive item"><input type="checkbox" name="color[]" value="curry" id="color_curry"/><label for="color_curry"> Curry</label></li>
+                          <li class="inactive item"><input type="checkbox" name="color[]" value="blue - cerise" id="color_blue_cerise"/><label for="color_blue_cerise"> Blue & Cerise</label></li>
+                          <li class="inactive item"><input type="checkbox" name="color[]" value="wine" id="color_wine"/><label for="color_wine"> Wine</label></li>
+                          <li class="inactive item"><input type="checkbox" name="color[]" value="grey" id="color_grey"/><label for="color_grey"> Grey</label></li>
+                          <li class="inactive item last"><input type="checkbox" name="color[]" value="denim" id="color_denim"/><label for="color_denim"> Denim</label></li>
+                      </ul>
+                  </li>
+                  <li class="heading item">
+                      <a class="heading">Sizes</a>
+                      <ul class="sub">
+                          <li class="inactive item first"><input type="checkbox" name="size[]" value="98-104" id="size_98_104"><label for="size_98_104">98-104</label></input></li>
+                          <li class="inactive item"><input type="checkbox" name="size[]" value="104" id="size_104"><label for="size_104">104</label></input></li>
+                          <li class="inactive item"><input type="checkbox" name="size[]" value="110-116" id="size_110_116"><label for="size_110_116">110-116</label></input></li>
+                          <li class="inactive item"><input type="checkbox" name="size[]" value="122-128" id="size_122_128"><label for="size_122_128">122-128</label></input></li>
+                          <li class="inactive item"><input type="checkbox" name="size[]" value="134-140" id="size_134_140"><label for="size_134_140">134-140</label></input></li>
+                          <li class="inactive item last"><input type="checkbox" name="size[]" value="146-152" id="size_146_152"><label for="size_146_152">146-152</label></input></li>
+                      </ul>
+                  </li>
+              </ul>
 
-            <ul class="js-faceted-container">
-                <li class="heading item">
-                    <a class="heading">Colours</a>
-                    <ul class="sub">
-                        <li class="inactive item first"><input type="checkbox" name="color[]" value="rose" id="color_rose"/><label for="color_rose"> Rose</label></li>
-                        <li class="inactive item"><input type="checkbox" name="color[]" value="ice blue" id="color_ice_blue"/><label for="color_ice_blue"> Ice Blue</label></li>
-                        <li class="inactive item"><input type="checkbox" name="color[]" value="curry" id="color_curry"/><label for="color_curry"> Curry</label></li>
-                        <li class="inactive item"><input type="checkbox" name="color[]" value="blue - cerise" id="color_blue_cerise"/><label for="color_blue_cerise"> Blue & Cerise</label></li>
-                        <li class="inactive item"><input type="checkbox" name="color[]" value="wine" id="color_wine"/><label for="color_wine"> Wine</label></li>
-                        <li class="inactive item"><input type="checkbox" name="color[]" value="grey" id="color_grey"/><label for="color_grey"> Grey</label></li>
-                        <li class="inactive item last"><input type="checkbox" name="color[]" value="denim" id="color_denim"/><label for="color_denim"> Denim</label></li>
-                    </ul>
-                </li>
-                <li class="heading item">
-                    <a class="heading">Sizes</a>
-                    <ul class="sub">
-                        <li class="inactive item first"><input type="checkbox" name="size[]" value="98-104" id="size_98_104"><label for="size_98_104">98-104</label></input></li>
-                        <li class="inactive item"><input type="checkbox" name="size[]" value="104" id="size_104"><label for="size_104">104</label></input></li>
-                        <li class="inactive item"><input type="checkbox" name="size[]" value="110-116" id="size_110_116"><label for="size_110_116">110-116</label></input></li>
-                        <li class="inactive item"><input type="checkbox" name="size[]" value="122-128" id="size_122_128"><label for="size_122_128">122-128</label></input></li>
-                        <li class="inactive item"><input type="checkbox" name="size[]" value="134-140" id="size_134_140"><label for="size_134_140">134-140</label></input></li>
-                        <li class="inactive item last"><input type="checkbox" name="size[]" value="146-152" id="size_146_152"><label for="size_146_152">146-152</label></input></li>
-                    </ul>
-                </li>
-            </ul>
+              <a class="" href="{{ url(app.request.attributes.get('_route')) }}">» Nulstil filtre</a>
+          </div>
+      </form>
+  </div>
 
-            <a class="" href="{{ url(app.request.attributes.get('_route')) }}">» Nulstil filtre</a>
-        </div>
-    </form>
-
-    <div class="grid_6 omega">
-        <div class="product-list clearfix grid_6 alpha omega row">
-            <div class="old-item">
+  <div class="grid_6 omega">
+    <div class="product-list clearfix grid_6 alpha omega row">
+      <div class="old-item">
         {% for product in products %}
             {% if loop.index % 3 == 1 %}
                 <div class="grid_6 alpha omega row">

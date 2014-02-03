@@ -91,7 +91,7 @@ class DefaultController extends CoreController
         $data = null;
 $html= null;
         /*
-         *  If html wasnt cached retrieve a fresh set of data
+         *  If html wasn't cached retrieve a fresh set of data
          */
         if (!$html){
             $cms_page = CmsPeer::getByPK($cms_id, $locale);
@@ -109,14 +109,18 @@ $html= null;
             $show_by_look = (bool) ($show === 'look');
 
             $result = ProductsImagesCategoriesSortQuery::create()
+                ->joinWithProducts()
                 ->useProductsQuery()
+                    ->joinProductsI18n()
                     ->where('products.MASTER IS NULL')
                     // ->filterByIsOutOfStock(FALSE)
                     ->useProductsDomainsPricesQuery()
                         ->filterByDomainsId($domain_id)
                     ->endUse()
+                    ->useProductsI18nQuery()
+                        ->filterByLocale($locale)
+                    ->endUse()
                 ->endUse()
-                ->joinWithProducts()
                 ->useProductsImagesQuery()
                     ->filterByType($show_by_look ? 'set' : 'overview')
                     ->groupByImage()
@@ -214,6 +218,8 @@ $html= null;
 //                $result = $result->paginate($pager, 12);
 //            }
 
+//            $result = $result->paginate(null, null);
+            $result = $result->find();
 
             $product_route = str_replace('category_', 'product_', $route);
             $records       = array();
@@ -226,7 +232,9 @@ $html= null;
 
                 // Only use 01.
                 if (preg_match('/_01.jpg/', $image)) {
-                    $product       = $record->getProducts();
+                    $product = $record->getProducts();
+                    $product->setLocale($locale);
+
                     $product_ids[] = $product->getId();
 
                     $image_overview = str_replace('_set_', '_overview_', $image);
@@ -267,27 +275,30 @@ $html= null;
                 'paginate' => NULL,
             );
 
+            if (method_exists($result, 'haveToPaginate') && $result->haveToPaginate()) {
 
-// un@bellcom.dk 2013.11.28, removed to show all products on the category pages.
-//            if ($result->haveToPaginate()) {
-//
-//                $pages = array();
-//                foreach ($result->getLinks(20) as $page) {
-//                    $pages[$page] = $router->generate($route, array('pager' => $page, 'show' => $show), TRUE);
-//                }
-//
-//                $data['paginate'] = array(
-//                    'next' => ($result->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $result->getNextPage(), 'show' => $show), TRUE)),
-//                    'prew' => ($result->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $result->getPreviousPage(), 'show' => $show), TRUE)),
-//
-//                    'pages' => $pages,
-//                    'index' => $pager,
-//                    'see_all' => array(
-//                        'total' => $result->getNbResults(),
-//                        'url' => $router->generate($route, array('pager' => 'all', 'show' => $show), TRUE)
-//                    )
-//                );
-//            }
+                $pages = array();
+                foreach ($result->getLinks(20) as $page) {
+                    $pages[$page] = $router->generate($route, array('pager' => $page, 'show' => $show), TRUE);
+                }
+
+                $pages = array();
+                foreach ($result->getLinks(20) as $page) {
+                    $pages[$page] = $router->generate($route, array('pager' => $page, 'show' => $show), TRUE);
+                }
+
+                $data['paginate'] = array(
+                    'next' => ($result->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $result->getNextPage(), 'show' => $show), TRUE)),
+                    'prew' => ($result->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $result->getPreviousPage(), 'show' => $show), TRUE)),
+
+                    'pages' => $pages,
+                    'index' => $pager,
+                    'see_all' => array(
+                        'total' => $result->getNbResults(),
+                        'url' => $router->generate($route, array('pager' => 'all', 'show' => $show), TRUE)
+                    )
+                );
+            }
 
             if ($this->getFormat() == 'json') {
 
@@ -357,12 +368,15 @@ $html= null;
             ->find()
         ;
 
+        $locale = $this->getRequest()->getLocale();
         $records = array();
         foreach ($products as $product) {
+            $product->setLocale($locale);
+
             $records[] = array(
                 'sku' => $product->getSku(),
                 'id' => $product->getId(),
-                'title' => $product->getSku(),
+                'title' => $product->getTitle(),
             );
         }
 

@@ -26,7 +26,7 @@ abstract class BaseGroupsPeer
     const OM_CLASS = 'Hanzo\\Model\\Groups';
 
     /** the related TableMap class for this table */
-    const TM_CLASS = 'GroupsTableMap';
+    const TM_CLASS = 'Hanzo\\Model\\map\\GroupsTableMap';
 
     /** The total number of columns. */
     const NUM_COLUMNS = 3;
@@ -50,7 +50,7 @@ abstract class BaseGroupsPeer
     const DEFAULT_STRING_FORMAT = 'YAML';
 
     /**
-     * An identiy map to hold any loaded instances of Groups objects.
+     * An identity map to hold any loaded instances of Groups objects.
      * This must be public so that other peer classes can access this when hydrating from JOIN
      * queries.
      * @var        array Groups[]
@@ -218,7 +218,7 @@ abstract class BaseGroupsPeer
      *
      * @param      Criteria $criteria object used to create the SELECT statement.
      * @param      PropelPDO $con
-     * @return                 Groups
+     * @return Groups
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
@@ -285,7 +285,7 @@ abstract class BaseGroupsPeer
      * to the cache in order to ensure that the same objects are always returned by doSelect*()
      * and retrieveByPK*() calls.
      *
-     * @param      Groups $obj A Groups object.
+     * @param Groups $obj A Groups object.
      * @param      string $key (optional) key to use for instance map (for performance boost if key was already calculated externally).
      */
     public static function addInstanceToPool($obj, $key = null)
@@ -335,7 +335,7 @@ abstract class BaseGroupsPeer
      * a multi-column primary key, a serialize()d version of the primary key will be returned.
      *
      * @param      string $key The key (@see getPrimaryKeyHash()) for this instance.
-     * @return   Groups Found object or null if 1) no instance exists for specified key or 2) instance pooling has been disabled.
+     * @return Groups Found object or null if 1) no instance exists for specified key or 2) instance pooling has been disabled.
      * @see        getPrimaryKeyHash()
      */
     public static function getInstanceFromPool($key)
@@ -356,10 +356,8 @@ abstract class BaseGroupsPeer
      */
     public static function clearInstancePool($and_clear_all_references = false)
     {
-      if ($and_clear_all_references)
-      {
-        foreach (GroupsPeer::$instances as $instance)
-        {
+      if ($and_clear_all_references) {
+        foreach (GroupsPeer::$instances as $instance) {
           $instance->clearAllReferences(true);
         }
       }
@@ -487,7 +485,7 @@ abstract class BaseGroupsPeer
     {
       $dbMap = Propel::getDatabaseMap(BaseGroupsPeer::DATABASE_NAME);
       if (!$dbMap->hasTable(BaseGroupsPeer::TABLE_NAME)) {
-        $dbMap->addTableObject(new GroupsTableMap());
+        $dbMap->addTableObject(new \Hanzo\Model\map\GroupsTableMap());
       }
     }
 
@@ -537,7 +535,7 @@ abstract class BaseGroupsPeer
             $con->beginTransaction();
             $pk = BasePeer::doInsert($criteria, $con);
             $con->commit();
-        } catch (PropelException $e) {
+        } catch (Exception $e) {
             $con->rollBack();
             throw $e;
         }
@@ -610,7 +608,7 @@ abstract class BaseGroupsPeer
             $con->commit();
 
             return $affectedRows;
-        } catch (PropelException $e) {
+        } catch (Exception $e) {
             $con->rollBack();
             throw $e;
         }
@@ -669,7 +667,7 @@ abstract class BaseGroupsPeer
             $con->commit();
 
             return $affectedRows;
-        } catch (PropelException $e) {
+        } catch (Exception $e) {
             $con->rollBack();
             throw $e;
         }
@@ -682,7 +680,7 @@ abstract class BaseGroupsPeer
      *
      * NOTICE: This does not apply to primary or foreign keys for now.
      *
-     * @param      Groups $obj The object to validate.
+     * @param Groups $obj The object to validate.
      * @param      mixed $cols Column name or array of column names.
      *
      * @return mixed TRUE if all columns are valid or the error message of the first invalid column.
@@ -715,7 +713,7 @@ abstract class BaseGroupsPeer
     /**
      * Retrieve a single object by pkey.
      *
-     * @param      int $pk the primary key.
+     * @param int $pk the primary key.
      * @param      PropelPDO $con the connection to use
      * @return Groups
      */

@@ -65,8 +65,14 @@ abstract class BaseConsultantsQuery extends ModelCriteria
      * @param     string $modelName The phpName of a model, e.g. 'Book'
      * @param     string $modelAlias The alias for the model in this query, e.g. 'b'
      */
-    public function __construct($dbName = 'default', $modelName = 'Hanzo\\Model\\Consultants', $modelAlias = null)
+    public function __construct($dbName = null, $modelName = null, $modelAlias = null)
     {
+        if (null === $dbName) {
+            $dbName = 'default';
+        }
+        if (null === $modelName) {
+            $modelName = 'Hanzo\\Model\\Consultants';
+        }
         parent::__construct($dbName, $modelName, $modelAlias);
     }
 
@@ -83,10 +89,8 @@ abstract class BaseConsultantsQuery extends ModelCriteria
         if ($criteria instanceof ConsultantsQuery) {
             return $criteria;
         }
-        $query = new ConsultantsQuery();
-        if (null !== $modelAlias) {
-            $query->setModelAlias($modelAlias);
-        }
+        $query = new ConsultantsQuery(null, null, $modelAlias);
+
         if ($criteria instanceof Criteria) {
             $query->mergeWith($criteria);
         }
@@ -114,7 +118,7 @@ abstract class BaseConsultantsQuery extends ModelCriteria
             return null;
         }
         if ((null !== ($obj = ConsultantsPeer::getInstanceFromPool((string) $key))) && !$this->formatter) {
-            // the object is alredy in the instance pool
+            // the object is already in the instance pool
             return $obj;
         }
         if ($con === null) {

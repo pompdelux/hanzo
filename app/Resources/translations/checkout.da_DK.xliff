@@ -32,10 +32,10 @@
           <p>Telefon (+45) 8678 7871</p>
           <p>Email: <a href="mailto:mail@pompdelux.dk">mail@pompdelux.dk</a></p>
 
-          <h2>Min side</h2>
+          <h2>Min Side</h2>
           <p>
             Se din ordre og meget mere<br>
-            <a href="%account%">&raquo; Min side</a>
+            <a href="%account%">&raquo; Min Side</a>
           </p>
 
           <h2>FAQ</h2>
@@ -303,7 +303,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target><![CDATA[Gothia faktura (Gebyr DKK 39,00). Fakturaen sendes pr. email når vi sender dine varer fra vores lager. Fakturaen vil være tilgængelig på Min side som en pdf indenfor 24 timer.]]></target>
+        <target><![CDATA[Gothia faktura (Gebyr DKK 39,00). Fakturaen sendes pr. email når vi sender dine varer fra vores lager. Fakturaen vil være tilgængelig på Min Side som en pdf indenfor 24 timer.]]></target>
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>
@@ -335,7 +335,7 @@
       </trans-unit>
       <trans-unit id="payment.dibs.processing.title">
         <source>payment.dibs.processing.title</source>
-        <target>Din ordre behandles af webshoppen</target>
+        <target>Din ordre behandles af Webshoppen</target>
       </trans-unit>
       <trans-unit id="order.state_pre_payment.locked">
         <source>order.state_pre_payment.locked</source>
@@ -363,19 +363,19 @@
       </trans-unit>
       <trans-unit id="product.group.g">
         <source>product.group.g</source>
-        <target>Pige</target>
+        <target>PIGE</target>
       </trans-unit>
       <trans-unit id="product.group.lg">
         <source>product.group.lg</source>
-        <target>Lille Pige</target>
+        <target>LILLE PIGE</target>
       </trans-unit>
       <trans-unit id="product.group.b">
         <source>product.group.b</source>
-        <target>Dreng</target>
+        <target>DRENG</target>
       </trans-unit>
       <trans-unit id="product.group.lb">
         <source>product.group.lb</source>
-        <target>Lille Dreng</target>
+        <target>LILLE DRENG</target>
       </trans-unit>
       <trans-unit id="gift_card">
          <source>gift_card</source>

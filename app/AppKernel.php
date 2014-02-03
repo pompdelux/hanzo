@@ -9,10 +9,7 @@ use Hanzo\Core\Tools;
 
 class AppKernel extends Kernel
 {
-    protected $terminate_events = array();
     protected $settings = array();
-
-    public $locale;
 
     public function registerBundles()
     {
@@ -63,6 +60,8 @@ class AppKernel extends Kernel
             new Hanzo\Bundle\AxBundle\AxBundle(),
             new Hanzo\Bundle\RetargetingBundle\RetargetingBundle(),
             new Hanzo\Bundle\RMABundle\RMABundle(),
+            new Hanzo\Bundle\GoogleBundle\GoogleBundle(),
+            new Hanzo\Bundle\ConsignorBundle\ConsignorBundle(),
         );
 
         if (preg_match('/^(test|dev)_/', $this->getEnvironment())) {
@@ -136,6 +135,7 @@ class AppKernel extends Kernel
             }
         }
 
+        $twig->addGlobal('domain_key', $domain_key);
         $twig->addGlobal('store_mode', $store_mode);
         $twig->addExtension(new Twig_Extension_Optimizer());
 
@@ -160,6 +160,13 @@ class AppKernel extends Kernel
         $loader->load($base_dir.'config.yml');
         $loader->load($config_dir.'config.yml');
         $loader->load($config_dir.'_'.$lang.'.yml');
+
+        if (is_file($config_dir.'local_config.yml')) {
+            $loader->load($config_dir.'local_config.yml');
+        }
+        if (is_file($config_dir.'_local_'.$lang.'.yml')) {
+            $loader->load($config_dir.'_local_'.$lang.'.yml');
+        }
 
         if ('consultant' == $mode) {
             $file = $config_dir.'_consultant.yml';

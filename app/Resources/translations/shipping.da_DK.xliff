@@ -36,15 +36,15 @@
       </trans-unit>
       <trans-unit id="shipping_method.name.12">
         <source>shipping_method.name.12</source>
-        <target>Valgfri udlevering - døgnpost</target>
+        <target>Valgfri udlevering – Forsendelse til Pakkeboks</target>
       </trans-unit>
       <trans-unit id="shipping_method.desc.12">
         <source>shipping_method.desc.12</source>
-        <target><![CDATA[Du kan frit vælge hvor i Danmark du vil hente din pakke. Skal det være det Posthus, PostButik eller den Døgnpost, der er tættest på dit hjem, dit arbejde, din fritidsinteresse eller...? Det er helt op til dig, og du behøver ikke bruge det samme udleveringssted hver gang.]]></target>
+        <target><![CDATA[Du kan frit vælge hvor i Danmark du vil hente din pakke. Skal det være det Posthus, PostButik eller den Pakkeboks, der er tættest på dit hjem, dit arbejde, din fritidsinteresse eller...? Det er helt op til dig, og du behøver ikke bruge det samme udleveringssted hver gang.]]></target>
       </trans-unit>
       <trans-unit id="shipping_method.label.12">
         <source>shipping_method.label.12</source>
-        <target>Døgnpost %price%</target>
+        <target>Pakkeboks %price%</target>
       </trans-unit>
       <trans-unit id="shipping_fee.name">
         <source>shipping_fee.name</source>
@@ -64,7 +64,7 @@
       </trans-unit>
       <trans-unit id="page.desc.after_methods"><!-- Vises efter de mulige fragt typer -->
         <source>page.desc.after_methods</source>
-        <target>Alle ordre pålægges et ekspeditionsgebyr på 0 DKK</target>
+        <target>Alle ordre pålægges et ekspeditionsgebyr på DKK 0,00.</target>
       </trans-unit>
     </body>
   </file>

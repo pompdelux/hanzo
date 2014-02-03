@@ -157,13 +157,13 @@ class GiftCardsController extends CoreController
         ;
 
         if ('POST' === $request->getMethod()) {
-            $form->bindRequest($request);
+            $form->handleRequest($request);
 
             if ($form->isValid()) {
 
                 $gift_card->save($this->getDbConnection());
 
-                $this->get('session')->setFlash('notice', 'admin.gift_card.inserted');
+                $this->get('session')->getFlashBag()->add('notice', 'admin.gift_card.inserted');
             }
         }
 

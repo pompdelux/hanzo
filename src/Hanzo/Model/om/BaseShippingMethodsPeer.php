@@ -26,7 +26,7 @@ abstract class BaseShippingMethodsPeer
     const OM_CLASS = 'Hanzo\\Model\\ShippingMethods';
 
     /** the related TableMap class for this table */
-    const TM_CLASS = 'ShippingMethodsTableMap';
+    const TM_CLASS = 'Hanzo\\Model\\map\\ShippingMethodsTableMap';
 
     /** The total number of columns. */
     const NUM_COLUMNS = 9;
@@ -68,7 +68,7 @@ abstract class BaseShippingMethodsPeer
     const DEFAULT_STRING_FORMAT = 'YAML';
 
     /**
-     * An identiy map to hold any loaded instances of ShippingMethods objects.
+     * An identity map to hold any loaded instances of ShippingMethods objects.
      * This must be public so that other peer classes can access this when hydrating from JOIN
      * queries.
      * @var        array ShippingMethods[]
@@ -248,7 +248,7 @@ abstract class BaseShippingMethodsPeer
      *
      * @param      Criteria $criteria object used to create the SELECT statement.
      * @param      PropelPDO $con
-     * @return                 ShippingMethods
+     * @return ShippingMethods
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
@@ -315,7 +315,7 @@ abstract class BaseShippingMethodsPeer
      * to the cache in order to ensure that the same objects are always returned by doSelect*()
      * and retrieveByPK*() calls.
      *
-     * @param      ShippingMethods $obj A ShippingMethods object.
+     * @param ShippingMethods $obj A ShippingMethods object.
      * @param      string $key (optional) key to use for instance map (for performance boost if key was already calculated externally).
      */
     public static function addInstanceToPool($obj, $key = null)
@@ -365,7 +365,7 @@ abstract class BaseShippingMethodsPeer
      * a multi-column primary key, a serialize()d version of the primary key will be returned.
      *
      * @param      string $key The key (@see getPrimaryKeyHash()) for this instance.
-     * @return   ShippingMethods Found object or null if 1) no instance exists for specified key or 2) instance pooling has been disabled.
+     * @return ShippingMethods Found object or null if 1) no instance exists for specified key or 2) instance pooling has been disabled.
      * @see        getPrimaryKeyHash()
      */
     public static function getInstanceFromPool($key)
@@ -386,10 +386,8 @@ abstract class BaseShippingMethodsPeer
      */
     public static function clearInstancePool($and_clear_all_references = false)
     {
-      if ($and_clear_all_references)
-      {
-        foreach (ShippingMethodsPeer::$instances as $instance)
-        {
+      if ($and_clear_all_references) {
+        foreach (ShippingMethodsPeer::$instances as $instance) {
           $instance->clearAllReferences(true);
         }
       }
@@ -517,7 +515,7 @@ abstract class BaseShippingMethodsPeer
     {
       $dbMap = Propel::getDatabaseMap(BaseShippingMethodsPeer::DATABASE_NAME);
       if (!$dbMap->hasTable(BaseShippingMethodsPeer::TABLE_NAME)) {
-        $dbMap->addTableObject(new ShippingMethodsTableMap());
+        $dbMap->addTableObject(new \Hanzo\Model\map\ShippingMethodsTableMap());
       }
     }
 
@@ -567,7 +565,7 @@ abstract class BaseShippingMethodsPeer
             $con->beginTransaction();
             $pk = BasePeer::doInsert($criteria, $con);
             $con->commit();
-        } catch (PropelException $e) {
+        } catch (Exception $e) {
             $con->rollBack();
             throw $e;
         }
@@ -640,7 +638,7 @@ abstract class BaseShippingMethodsPeer
             $con->commit();
 
             return $affectedRows;
-        } catch (PropelException $e) {
+        } catch (Exception $e) {
             $con->rollBack();
             throw $e;
         }
@@ -699,7 +697,7 @@ abstract class BaseShippingMethodsPeer
             $con->commit();
 
             return $affectedRows;
-        } catch (PropelException $e) {
+        } catch (Exception $e) {
             $con->rollBack();
             throw $e;
         }
@@ -712,7 +710,7 @@ abstract class BaseShippingMethodsPeer
      *
      * NOTICE: This does not apply to primary or foreign keys for now.
      *
-     * @param      ShippingMethods $obj The object to validate.
+     * @param ShippingMethods $obj The object to validate.
      * @param      mixed $cols Column name or array of column names.
      *
      * @return mixed TRUE if all columns are valid or the error message of the first invalid column.
@@ -745,7 +743,7 @@ abstract class BaseShippingMethodsPeer
     /**
      * Retrieve a single object by pkey.
      *
-     * @param      int $pk the primary key.
+     * @param int $pk the primary key.
      * @param      PropelPDO $con the connection to use
      * @return ShippingMethods
      */
