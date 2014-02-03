@@ -16,7 +16,7 @@
             </trans-unit>
             <trans-unit id="fetch.invoice">
                 <source>fetch.invoice</source>
-                <target>Hent faktura som pdf</target>
+                <target>Se faktura som pdf</target>
             </trans-unit>
             <trans-unit id="fetch.credit_note">
                 <source>fetch.credit_note</source>
