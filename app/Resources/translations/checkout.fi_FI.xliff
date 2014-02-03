@@ -332,19 +332,19 @@
       </trans-unit>
       <trans-unit id="product.group.g">
         <source>product.group.g</source>
-        <target>Tyttö</target>
+        <target>TYTTÖ</target>
       </trans-unit>
       <trans-unit id="product.group.lg">
         <source>product.group.lg</source>
-        <target>Pieni Tyttö</target>
+        <target>PIENI TYTTÖ</target>
       </trans-unit>
       <trans-unit id="product.group.b">
         <source>product.group.b</source>
-        <target>Poika</target>
+        <target>POIKA</target>
       </trans-unit>
       <trans-unit id="product.group.lb">
         <source>product.group.lb</source>
-        <target>Pieni Poika</target>
+        <target>PIENI POIKA</target>
       </trans-unit>
       <trans-unit id="gift_card">
          <source>gift_card</source>

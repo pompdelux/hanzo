@@ -96,7 +96,7 @@
             </trans-unit>
             <trans-unit id="edit.order.notice">
                 <source>edit.order.notice</source>
-                <target><![CDATA[<p>For å redigere ordren din skal du gjøre følgende:</p><p>1) Klikk på "Blyanten" for å redigere ordren.</p><p>2) Velg farge, størrelse og antall. Ønsker du å tilføye varer, skal du klikke på menyen Jente, Gutt, Liten Jente eller Liten Gutt øverst på siden.</p><p>3) Når du er ferdig med endringene, skal du klikke på "Vis kurv" og trykke på ”Fortsett”. Når du har gjennomført ordren med ny kredittkortbetaling, vil den gamle betalingen automatisk bli slettet.</p><p><b style="color:#A10000"><b>Merk:</b> Hvis du bruker Visa Electron eller MasterCard ved redigeringen, foretas det automatisk enda en reservasjon av totalbeløpet på ordren. Reservasjonen av totalbeløpet på din opprinnelige ordre blir før øvrig straks annullert av POMPdeLUX. Det kan derimot gå opptil 6 uker før reservasjonen oppheves av pengeinstituttet ditt.</b></p>]]></target>
+                <target><![CDATA[<p>For å redigere ordren din skal du gjøre følgende:</p><p>1) Klikk på "Blyanten" for å redigere ordren.</p><p>2) Velg farge, størrelse og antall. Ønsker du å tilføye varer, skal du klikke på menyen JENTE, GUTT, LITEN JENTE eller LITEN GUTT øverst på siden.</p><p>3) Når du er ferdig med endringene, skal du klikke på "Vis kurv" og trykke på ”Fortsett”. Når du har gjennomført ordren med ny kredittkortbetaling, vil den gamle betalingen automatisk bli slettet.</p><p><b style="color:#A10000"><b>Merk:</b> Hvis du bruker Visa Electron eller MasterCard ved redigeringen, foretas det automatisk enda en reservasjon av totalbeløpet på ordren. Reservasjonen av totalbeløpet på din opprinnelige ordre blir før øvrig straks annullert av POMPdeLUX. Det kan derimot gå opptil 6 uker før reservasjonen oppheves av pengeinstituttet ditt.</b></p>]]></target>
             </trans-unit>
             <trans-unit id="delete.order.notice">
                 <source>delete.order.notice</source>
@@ -104,7 +104,7 @@
             </trans-unit>
             <trans-unit id="consultant">
                 <source>consultant</source>
-                <target>Konsulent</target>
+                <target>Shopping Advisor</target>
             </trans-unit>
             <trans-unit id="phone">
                 <source>phone</source>
@@ -165,19 +165,19 @@
             </trans-unit>
             <trans-unit id="wall.likes.plural.%likes%">
                 <source>wall.likes.plural.%likes%</source>
-                <target>%likes% konsulenter syntes godt om dette.</target>
+                <target>%likes% Shopping Advisor syntes godt om dette.</target>
             </trans-unit>
             <trans-unit id="wall.likes.single.%likes%">
                 <source>wall.likes.single.%likes%</source>
-                <target>Én konsulent syntes godt om dette.</target>
+                <target>Én Shopping Advisor syntes godt om dette.</target>
             </trans-unit>
             <trans-unit id="wall.dislikes.plural.%likes%">
                 <source>wall.dislikes.plural.%likes%</source>
-                <target>%likes% konsulenter syntes ikke om dette.</target>
+                <target>%likes% Shopping Advisorer syntes ikke om dette.</target>
             </trans-unit>
             <trans-unit id="wall.dislikes.single.%likes%">
                 <source>wall.dislikes.single.%likes%</source>
-                <target>Én konsulent syntes ikke om dette.</target>
+                <target>Én Shopping Advisor syntes ikke om dette.</target>
             </trans-unit>
             <trans-unit id="wall.like.popup.header">
                 <source>wall.like.popup.header</source>

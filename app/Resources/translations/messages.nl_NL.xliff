@@ -138,7 +138,7 @@
                         Je bent nu E-ordernummer <a href="%history_ulr%" title="se ordren">%order_id%</a> aan het bewerken.<br>
                         Wil je het wijzigen van je order onderbreken - <a href="%stop_url%" title="stop wijziging van order">klik dan hier.</a>
                     </p>
-                    <p>Wil je een kleur of maat wijzigen, klik dan op het potloodje. Wil je artikelen toevoegen, klik dan op Girl, Boy, Little Girl of Little Boy boven aan de pagina.</p>
+                    <p>Wil je een kleur of maat wijzigen, klik dan op het potloodje. Wil je artikelen toevoegen, klik dan op GIRL, BOY, LITTLE GIRL of LITTLE BOY boven aan de pagina.</p>
                     <p class="last">Als je klaar bent met je wijzigingen, klik dan op "Toon winkelmandje" en daarna op ”Ga door”. Als je je bestelling opnieuw met een creditcard hebt betaald, dan wordt je oude betaling automatisch gewist.<br><br> <b>Let op:</b> gebruik je tijdens het bewerken Visa Electron of MasterCard, dan wordt het totale bedrag voor je bestelling automatisch nogmaals gereserveerd. De reservering van het bedrag van je eerste bestelling wordt meteen door POMPdeLUX geannuleerd. Er kan echter 6 weken overheen gaan voordat deze reservering door je bank opgeheven wordt.<br><br><b>Let op</b> – als je iDEAL als betaalwijze hebt gebruikt!
 Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wordt het bedrag van de originele iDEAL betaling binnen 5 werkdagen teruggestort.</p>
                 ]]></target>
@@ -236,7 +236,7 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
                 <target><![CDATA[
                     <p> Alle artikelen worden verstuurd met de pakketpost van <a href="http://www.dhl.nl/nl.html" target="_blank">DHL</a>. Je kunt daardoor je pakket volgen met het <a href="http://www.postdanmark.dk/contentfull.dk?content=/cms/da-dk/app/tracktrace/track_og_trace.htm&amp;menufile=" target="_blank">track &amp; trace</a> nummer vanaf het moment dat het verzonden wordt tot het moment dat het geleverd wordt. <br />
           <br />
-          DHL pakket: wil je het pakket bij je thuis laten leveren, dan kost dat 8 EUR. Ben je niet thuis als de postbode komt, dan kun je het pakket afhalen op het postkantoor. Heb je je pakket ontvangen, controleer dan je artikelen. Is het pakket en/of de inhoud ervan beschadigd, dan moet je meteen contact opnemen met onze Klantenservice.</p>
+          DHL pakket: wil je het pakket bij je thuis laten leveren, dan kost dat EUR 8. Ben je niet thuis als de postbode komt, dan kun je het pakket afhalen op het postkantoor. Heb je je pakket ontvangen, controleer dan je artikelen. Is het pakket en/of de inhoud ervan beschadigd, dan moet je meteen contact opnemen met onze Klantenservice.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="return.title" approved="no">
@@ -262,7 +262,7 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
 					<li><a href="/nl_NL/voorpagina/het-wassen">Het wassen</a></li>
                     <li><a href="/nl_NL/voorpagina/klantenservice/sizeguide">Sizeguide</a></li>
 					<li><a href="/nl_NL/voorpagina/klantenservice/voorwaarden">Voorwaarden</a></li>
-					<li><a href="/nl_NL/voorpagina/klantenservice/over-de-webshop">Over de webshop</a></li>
+					<li><a href="/nl_NL/voorpagina/klantenservice/over-de-webshop">Over de Webshop</a></li>
 					<li><a href="/nl_NL/klantenservice/telefoontijden/verzending-en-levering">Verzending en levering</a></li>
                 </ul>
                 ]]></target>
@@ -273,10 +273,10 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
                 <h2>HOME SHOPPING</h2>
                 <ul class="menu">
 				<li><a href="/nl_NL/voorpagina/home-shopping">Word gastvrouw</a></li>
-                    <li><a href="/nl_NL/voorpagina/vind-een-consulent">Vind een consulent</a></li>
-                    <li><a href="/nl_NL/voorpagina/open-huis">Open huis</a></li>
+                    <li><a href="/nl_NL/voorpagina/vind-een-consulent">Vind een Shopping Advisor</a></li>
+                    <li><a href="/nl_NL/voorpagina/open-huis">Open Huis</a></li>
 					<li><a href="/nl_NL/voorpagina/catalogus">Catalogus</a></li>
-					<li><a href="/nl_NL/voorpagina/word-consulent/een-leuke-vrijetijdsbaan">Word consulent</a></li>
+					<li><a href="/nl_NL/voorpagina/word-consulent/een-leuke-vrijetijdsbaan">Word 	</a></li>
                 </ul><br>		
 				<h2>BE SOCIAL</h2>
 				 <ul class="menu">
