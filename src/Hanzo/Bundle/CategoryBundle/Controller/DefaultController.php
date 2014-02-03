@@ -2,6 +2,8 @@
 
 namespace Hanzo\Bundle\CategoryBundle\Controller;
 
+use Hanzo\Model\CmsI18nQuery;
+use Hanzo\Model\CmsQuery;
 use Hanzo\Model\SearchProductsTagsQuery;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Symfony\Component\DependencyInjection\ContainerAware;
@@ -49,28 +51,40 @@ class DefaultController extends CoreController
         $cache_id = explode('_', $request->get('_route'));
         $cache_id = array($cache_id[0], $cache_id[2], $cache_id[1], $show, $pager);
 
-        $use_filter = false;
-
         // Extra cache id if its not a json call
         if ($this->getFormat() !== 'json') {
             $cache_id[] = 'html';
         }
 
         // TODO: should not be set here !!
-        $color_mapping = [
-            'rose'          => ['rose','khaki'],
-            'ice blue'      => ['ice blue','khaki'],
-            'curry'         => ['curry','curry/grey','sand'],
-            'blue - cerise' => ['blue','cerise','cerise/grey','khaki'],
-            'wine'          => ['wine','khaki'],
-            'grey'          => ['grey','grey star','grey melange','off white','dark grey','light grey','black'],
-            'denim'         => ['blue denim'],
+        $cms_page = CmsPeer::getByPK($cms_id, $locale);
+        $parent_settings = CmsI18nQuery::create()
+            ->Select('Settings')
+            ->filterByLocale($locale)
+            ->filterById($cms_page->getParentId())
+            ->findOne()
+        ;
+
+        $color_mapping = [];
+        $size_mapping  = [];
+        if ($parent_settings) {
+            $parent_settings = json_decode($parent_settings);
+            $color_mapping = (array) $parent_settings->colormap;
+            $size_mapping  = (array) $parent_settings->sizes;
+        }
+
+        $use_filter   = false;
+        $size_filter  = [];
+        $color_filter = [];
+
+        // we need this "hack" to prevent url pollution..
+        $escapes = [
+            ' - ' => ' & ',
         ];
 
-        $size_filter = [];
-        $color_filter = [];
         if ($request->query->has('filter')) {
             foreach ($request->query->get('color', []) as $color) {
+                $color = strtr($color, $escapes);
                 if (isset($color_mapping[$color])) {
                     $color_filter = array_merge($color_filter, $color_mapping[$color]);
                 }
@@ -82,8 +96,7 @@ class DefaultController extends CoreController
                 $size_filter[] = $size;
             }
 
-            $cache_id = array_merge($cache_id, $size_filter);
-
+            $cache_id   = array_merge($cache_id, $size_filter);
             $use_filter = true;
         }
 
@@ -94,9 +107,7 @@ $html= null;
          *  If html wasn't cached retrieve a fresh set of data
          */
         if (!$html){
-            $cms_page = CmsPeer::getByPK($cms_id, $locale);
             $settings = $cms_page->getSettings(null, false);
-
             if (empty($color_filter)) {
                 if(!empty($settings->colors)){
                     $color_filter = explode(',', $settings->colors);
@@ -324,6 +335,8 @@ $html= null;
                 $twig->addGlobal('show_by_look', ($show === 'look'));
                 $twig->addGlobal('browser_title', $cms_page->getTitle());
 
+                $data['color_mapping'] = array_keys($color_mapping);
+                $data['size_mapping']  = $size_mapping;
                 $html = $this->renderView('CategoryBundle:Default:view.html.twig', $data);
                 $this->setCache($cache_id, $html, 5);
             }
