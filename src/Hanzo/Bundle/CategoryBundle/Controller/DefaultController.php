@@ -225,7 +225,6 @@ $html= null;
             $records       = array();
             $product_ids   = array();
 
-            $result = $result->find();
             foreach ($result as $record) {
 
                 $image = $record->getProductsImages()->getImage();
