@@ -204,6 +204,7 @@
                 }
 
                 var filter = $faceted.serialize();
+
                 if (filter) {
                     href += '?filter=on&'+filter;
                 }
