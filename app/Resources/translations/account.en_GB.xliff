@@ -528,6 +528,14 @@ After this you can easily continue shopping.<br></p>
                     <p>Thank you for your help.</p>
                 ]]></target>
             </trans-unit>
+            <trans-unit id="account.trackntrace.link">
+                <source>account.trackntrace.link</source>
+                <target>Track n' trace</target>
+            </trans-unit>
+            <trans-unit id="account.returnlabel.link">
+                <source>account.returnlabel.link</source>
+                <target>Print retur label</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

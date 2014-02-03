@@ -529,6 +529,14 @@ Um jedoch sicherzustellen, dass dabei keine Fehler aufgetreten sind, möchten wi
                     <p>Vielen Dank für Ihre Hilfe.</p>
                 ]]></target>
             </trans-unit>
+            <trans-unit id="account.trackntrace.link">
+                <source>account.trackntrace.link</source>
+                <target>Track n' trace</target>
+            </trans-unit>
+            <trans-unit id="account.returnlabel.link">
+                <source>account.returnlabel.link</source>
+                <target>Print retur label</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
