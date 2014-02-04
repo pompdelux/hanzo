@@ -536,7 +536,7 @@ Um jedoch sicherzustellen, dass dabei keine Fehler aufgetreten sind, möchten wi
             </trans-unit>
             <trans-unit id="account.returnlabel.link">
                 <source>account.returnlabel.link</source>
-                <target>Print retur label</target>
+                <target>Rücksendeetikett drucken</target>
             </trans-unit>
         </body>
     </file>

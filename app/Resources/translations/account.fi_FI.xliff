@@ -447,7 +447,7 @@
                         <b>Palautukset</b><br>
                         Haluatko palauttaa tuotteen, napsauta tästä <img src="/fx/images/icons/icons/return.png" alt="Return"> <strong>Huomio:</strong> Palautusetiketti sekä palautuslomake ovat omassa PDF tiedostossaan ja ovat tulostettava erikseen.<br><br>
                         Jos toivomaasi palautettavaa tuotetta ei löydy listalta, niin voit linkkiä painamalla avata ja tulostaa sekä täyttää palautuslomakkeen käsin: <a href="{{ cdn }}images/pdf/POMPdeLUX_Returseddel_FIN.pdf" target="_blank">&raquo; Palautuslomake (PDF)</a><br><br>
-						Napsauta <img src="/fx/images/icons/icons/returnlabel.png" alt="Returnlabel"> seurataksesi lähetyksesi kulkua. Palautusetiketti avautuu uudessa ikkunassa.<br><br>
+						Napsauta <img src="/fx/images/icons/icons/returnlabel.png" alt="Returnlabel"> tilauksessasi saadaksesi palautus etiketin. Palautusetiketti avautuu uudessa ikkunassa.<br><br>
                         Napsauta <img src="/fx/images/icons/icons/trackntrace.png" alt="Track 'n trace"> seurataksesi lähetyksesi kulkua. Seuranta numeron sivu avautuu uudessa ikkunassa.<br><br>
                     </p>
                 ]]></target>
@@ -529,7 +529,7 @@ Haluamme kuitenkin varmistaa, että tässä ei ole tapahtunut virhettä. Pyydäm
             </trans-unit>
             <trans-unit id="account.returnlabel.link">
                 <source>account.returnlabel.link</source>
-                <target>Print retur label</target>
+                <target>Tulosta palautusetiketti</target>
             </trans-unit>
         </body>
     </file>

@@ -523,7 +523,14 @@ Vi vill dock vara helt säkra på att det inte har uppstått ett fel, så vi vil
 Därefter kan du enkelt shoppa vidare.<br></p>
                     <p>Tack för hjälpen.</p>
                 ]]></target>
+            </trans-unit> <trans-unit id="account.trackntrace.link">
+                <source>account.trackntrace.link</source>
+                <target>Track n' trace</target>
             </trans-unit>
-        </body>
+            <trans-unit id="account.returnlabel.link">
+                <source>account.returnlabel.link</source>
+                <target>Skriv ut returetikett</target>
+            </trans-unit>
+            </body>
     </file>
 </xliff>

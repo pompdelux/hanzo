@@ -534,7 +534,7 @@ Hierna kun je gewoon doorgaan met winkelen.<br></p>
             </trans-unit>
             <trans-unit id="account.returnlabel.link">
                 <source>account.returnlabel.link</source>
-                <target>Print retur label</target>
+                <target>Print retourlabel</target>
             </trans-unit>
             </body>
     </file>
