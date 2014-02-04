@@ -200,7 +200,7 @@
             </trans-unit>
             <trans-unit id="events.notify_hostess.label">
                 <source>events.notify_hostess.label</source>
-                <target>Moet de gastvrouw bericht krijgen?</target>
+                <target>Stuur e-mail naar gastvrouw?</target>
             </trans-unit>
             <trans-unit id="events.customer.found">
                 <source>events.customer.found</source>
