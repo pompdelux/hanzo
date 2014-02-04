@@ -101,10 +101,37 @@
                     <span class="sprite"></span>
                     <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" title="{{ "show.basket"|trans }}"> {{ render(controller('BasketBundle:Default:miniBasket')) }} </a>
                 </li>
-                <li class="last"><a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}">{{ "show.basket"|trans }}</a></li>
+                <li class="last"><a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" class="open-megabasket">{{ "show.basket"|trans }}</a></li>
         {% endif %}
             </ul>
         </nav>
+        {% if skip_my_account is not defined %}
+            <div id="mega-basket">
+                <div class="basket">
+                    <span class="sprite"></span>
+                    <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}">{{ 'your.basket'|trans }}</a>
+                </div>
+                <table class="basket-table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                hej
+                            </td>
+                            <td>
+                                hej
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                {# {{ render_esi(controller('BasketBundle:Default:view', { 'embed': true })) }} #}
+                {# {% render url('basket_view', { 'embed': true }) with {}, {'standalone': true} %} #}
+                <div class="delivery-text">
+                    {{ 'footer.text'|trans({'%expected_delivery_date%': parameter('HD.expected_delivery_date')})|raw }}
+                </div>
+                <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" class="checkout-button sprite"></a>
+                <a href="#" class="close sprite"></a>
+            </div>
+        {% endif %}
 
         <nav class="menu main-menu clearfix">
             {{ render(controller('CMSBundle:Menu:menu', {
@@ -136,21 +163,26 @@
             {{ "footer.menu_3"|trans|raw }}
         </div>
         <div class="grid_2-5 footer-menu footer-menu-4">
-            <div class="sprite"></div>
-            <div class="container">
-                <h2>{{ 'block.subscribe.newsletter_heading'|trans({}, 'newsletter') }}</h2>
-                <form action="{{ path('_newsletter_subscribe') }}" method="post">
-                    <div>
-                        <input type="text" name="name" value="" title="{{ 'block.subscribe.name_label'|trans({}, 'newsletter') }}" placeholder="{{ 'block.subscribe.name_label'|trans({}, 'newsletter') }}">
-                        <input type="email" class="newsletter-subscriber-email" name="email" value="" title="{{ 'block.subscribe.email_label'|trans({}, 'newsletter') }}" placeholder="{{ 'block.subscribe.email_label'|trans({}, 'newsletter') }}">
-                    </div>
-                    <div class="clearfix right">
-                        {{ 'terms.link'|trans({}, 'newsletter')|raw }}
-                    </div>
-                    <div class="clearfix">
-                        <input type="submit" class="button text-button" value="{{ 'block.subscribe.submit_button'|trans({}, 'newsletter') }}">
-                    </div>
-                </form>
+            <div class="newsletter">
+                <div class="sprite"></div>
+                <div class="container">
+                    <h2>{{ 'block.subscribe.newsletter_heading'|trans({}, 'newsletter') }}</h2>
+                    <form action="{{ path('_newsletter_subscribe') }}" method="post">
+                        <div>
+                            <input type="text" name="name" value="" title="{{ 'block.subscribe.name_label'|trans({}, 'newsletter') }}" placeholder="{{ 'block.subscribe.name_label'|trans({}, 'newsletter') }}">
+                            <input type="email" class="newsletter-subscriber-email" name="email" value="" title="{{ 'block.subscribe.email_label'|trans({}, 'newsletter') }}" placeholder="{{ 'block.subscribe.email_label'|trans({}, 'newsletter') }}">
+                        </div>
+                        <div class="clearfix">
+                            {{ 'terms.link'|trans({}, 'newsletter')|raw }}
+                        </div>
+                        <div class="clearfix">
+                            <input type="submit" class="button text-button" value="{{ 'block.subscribe.submit_button'|trans({}, 'newsletter') }}">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-teaser">
+                {{ 'footer.text'|trans({'%expected_delivery_date%': parameter('HD.expected_delivery_date')})|raw }}
             </div>
         </div>
     {% endif %}

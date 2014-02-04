@@ -22,6 +22,10 @@
                 <source>show.basket</source>
                 <target>Toon winkelmandje</target>
             </trans-unit>
+            <trans-unit id="your.basket" approved="no">
+                <source>your.basket</source>
+                <target>Your Basket</target>
+            </trans-unit>
             <trans-unit id="choose">
                 <source>choose</source>
                 <target>Kies</target>
@@ -166,6 +170,16 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
                         <li>085-3001100 (Nederlands en Engels)</li>
                         <li><img src="%cdn%fx/images/creditcards_nl.png" alt="credit cards" title="credit cards"></li>
                         <li><a href="http://www.facebook.com/sharer.php?u=%url%" class="facebook-button social-button" title="Share this page on facebook">Share</a></li>
+                    </ul>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="footer.text" approved="no">
+                <source>footer.text</source>
+                <target><![CDATA[
+                    <ul>
+                        <li><b>Verzendkosten</b> vanaf EUR 5,= + gratis verzenden vanaf EUR 200,-</li>
+                        <li><b>Levertijd</b> %expected_delivery_date%</li>
+                        <li><b>Ruilen</b> Gratis</li>
                     </ul>
                 ]]></target>
             </trans-unit>

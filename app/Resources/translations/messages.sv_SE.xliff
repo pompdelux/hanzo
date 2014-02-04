@@ -22,6 +22,10 @@
                 <source>show.basket</source>
                 <target>Visa korg</target>
             </trans-unit>
+            <trans-unit id="your.basket" approved="no">
+                <source>your.basket</source>
+                <target>Your Basket</target>
+            </trans-unit>
             <trans-unit id="choose">
                 <source>choose</source>
                 <target>Välj</target>
@@ -167,6 +171,16 @@
                         <li>+46 8-6117103</li>
                         <li><img src="%cdn%fx/images/creditcards_se.png" alt="credit cards" title="credit cards"></li>
                         <li><a href="http://www.facebook.com/sharer.php?u=%url%" class="facebook-button social-button" title="Share this page on facebook">Share</a></li>
+                    </ul>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="footer.text" approved="no">
+                <source>footer.text</source>
+                <target><![CDATA[
+                    <ul>
+                        <li><b>Frakt</b> från 49,- + Gratis frakt från min. 1400,-</li>
+                        <li><b>Leveransstid</b> %expected_delivery_date%</li>
+                        <li><b>Byte</b> Gratis</li>
                     </ul>
                 ]]></target>
             </trans-unit>

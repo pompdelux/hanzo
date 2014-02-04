@@ -5,6 +5,7 @@
   background: url('/fx/2013s1/../images/icons/da-s7398167b80.png') no-repeat;
 }
 
+<<<<<<< HEAD
 .icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-arrow_up, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-return, .icons-returnlabel, .icons-search, .icons-shopping-bag, .icons-show, .icons-sizeguide, .icons-trackntrace, .icons-twitter, .icons-video, .icons-zoom, form.search-form:before, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, ul.tabs li a i, ul.tabs li a.current i, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, .sizeguide, .sprite.trackntrace, .sprite.returnlabel, .body-pages .newsletter-form-simple .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.return {
   background: url('/fx/2013s1/../images/icons/icons-s47d74bb1a4.png') no-repeat;
 }
@@ -19,13 +20,30 @@
 
 .icons-Kundeservice_Yellow {
   background-position: 0 -578px;
+=======
+.icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket-grey, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-checkout, .icons-close, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-return, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, footer .footer-menu .newsletter .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, #mega-basket .basket .sprite, #mini-basket.basket .sprite, #mega-basket .checkout-button, #mega-basket .close, .body-pages .newsletter-form-simple .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.return {
+  background: url('/fx/2013s1/../images/icons/icons-s818cfdaa1f.png') no-repeat;
+}
+
+.icons-Kundeservice_Green {
+  background-position: 0 -654px;
+}
+
+.icons-Kundeservice_Red {
+  background-position: 0 -526px;
+}
+
+.icons-Kundeservice_Yellow {
+  background-position: 0 -590px;
+>>>>>>> feature/278-new-basket-design
 }
 
 .icons-Oeko_Tex {
-  background-position: 0 -100px;
+  background-position: 0 -50px;
 }
 
 .icons-arrow_down {
+<<<<<<< HEAD
   background-position: 0 -1147px;
 }
 
@@ -39,13 +57,29 @@
 
 .icons-arrow_up {
   background-position: 0 -1166px;
+=======
+  background-position: 0 -1153px;
+}
+
+.icons-arrow_left {
+  background-position: 0 -1146px;
+}
+
+.icons-arrow_right {
+  background-position: 0 -1157px;
+}
+
+.icons-basket-grey {
+  background-position: 0 -1032px;
+>>>>>>> feature/278-new-basket-design
 }
 
 .icons-basket {
-  background-position: 0 0;
+  background-position: 0 -840px;
 }
 
 .icons-button-left-black {
+<<<<<<< HEAD
   background-position: 0 -1114px;
 }
 
@@ -63,29 +97,61 @@
 
 .icons-delete {
   background-position: 0 -886px;
+=======
+  background-position: 0 -1219px;
+}
+
+.icons-button-left {
+  background-position: 0 -1127px;
+}
+
+.icons-button-right-black {
+  background-position: 0 -1200px;
+}
+
+.icons-button-right {
+  background-position: 0 -1108px;
+}
+
+.icons-checkout {
+  background-position: 0 -294px;
+}
+
+.icons-close {
+  background-position: 0 -1164px;
+}
+
+.icons-delete {
+  background-position: 0 -980px;
+>>>>>>> feature/278-new-basket-design
 }
 
 .icons-delete_black {
-  background-position: 0 -324px;
+  background-position: 0 -274px;
 }
 
 .icons-delete_icon {
+<<<<<<< HEAD
   background-position: 0 -764px;
+=======
+  background-position: 0 -808px;
+>>>>>>> feature/278-new-basket-design
 }
 
 .icons-delete_white {
-  background-position: 0 -334px;
+  background-position: 0 -284px;
 }
 
 .icons-divider {
-  background-position: 0 -387px;
+  background-position: 0 -427px;
 }
 
 .icons-divider_left {
-  background-position: 0 -304px;
+  background-position: 0 -254px;
 }
 
 .icons-divider_right {
+<<<<<<< HEAD
   background-position: 0 -464px;
 }
 
@@ -103,33 +169,65 @@
 
 .icons-faq_icon {
   background-position: 0 -674px;
+=======
+  background-position: 0 -474px;
+}
+
+.icons-edit {
+  background-position: 0 -1082px;
+}
+
+.icons-edit_icon {
+  background-position: 0 -890px;
+}
+
+.icons-facebook {
+  background-position: 0 -922px;
+}
+
+.icons-faq_icon {
+  background-position: 0 -686px;
+>>>>>>> feature/278-new-basket-design
 }
 
 .icons-gots {
-  background-position: 0 -158px;
+  background-position: 0 -108px;
 }
 
 .icons-gplus {
+<<<<<<< HEAD
   background-position: 0 -432px;
 }
 
 .icons-instagram {
   background-position: 0 -610px;
+=======
+  background-position: 0 -442px;
+}
+
+.icons-instagram {
+  background-position: 0 -622px;
+>>>>>>> feature/278-new-basket-design
 }
 
 .icons-kurv {
-  background-position: 0 -50px;
+  background-position: 0 0;
 }
 
 .icons-magnifier {
+<<<<<<< HEAD
   background-position: 0 -1079px;
+=======
+  background-position: 0 -1184px;
+>>>>>>> feature/278-new-basket-design
 }
 
 .icons-newsletter {
-  background-position: 0 -218px;
+  background-position: 0 -168px;
 }
 
 .icons-pdf {
+<<<<<<< HEAD
   background-position: 0 -738px;
 }
 
@@ -147,13 +245,25 @@
 
 .icons-search {
   background-position: 0 -1133px;
+=======
+  background-position: 0 -750px;
+}
+
+.icons-pinterest {
+  background-position: 0 -494px;
+}
+
+.icons-return {
+  background-position: 0 -1006px;
+>>>>>>> feature/278-new-basket-design
 }
 
 .icons-shopping-bag {
-  background-position: 0 -344px;
+  background-position: 0 -384px;
 }
 
 .icons-show {
+<<<<<<< HEAD
   background-position: 0 -860px;
 }
 
@@ -175,6 +285,21 @@
 
 .icons-zoom {
   background-position: 0 -484px;
+=======
+  background-position: 0 -954px;
+}
+
+.icons-twitter {
+  background-position: 0 -718px;
+}
+
+.icons-video {
+  background-position: 0 -776px;
+}
+
+.icons-zoom {
+  background-position: 0 -558px;
+>>>>>>> feature/278-new-basket-design
 }
 
 .fi-sprite, body.fi form.buy .submit-button, body.fi .buy-set, body.fi .new-price, body.fi .out-of-stock, body.fi .subscribe-button {
@@ -445,6 +570,8 @@ nav.first.main-menu {
   background-color: #dcd8d2;
   margin-bottom: 6px;
   padding: 3px 0;
+  z-index: 300;
+  position: relative;
 }
 nav.first.main-menu ul, nav.first.main-menu ul li, nav.first.main-menu ul li form, nav.first.main-menu ul li form input {
   font-size: 12px;
@@ -645,31 +772,23 @@ div header.row {
 
 #secondary-links {
   position: absolute;
-  top: 0px;
-  right: 3px;
+  top: -6px;
+  right: 0px;
+  background: #a2a2a2;
+  padding: 5px 10px 0;
+  -webkit-border-radius: 0px 0px 20px 20px;
+  -moz-border-radius: 0px 0px 20px 20px;
+  border-radius: 0px 0px 20px 20px;
 }
 #secondary-links li {
   padding: 8px;
   vertical-align: middle;
 }
+#secondary-links li.basket {
+  padding-left: 0px;
+}
 #secondary-links li.last {
   padding-right: 0;
-}
-#secondary-links li.basket .sprite {
-  display: inline-block;
-  vertical-align: middle;
-  background-position: 0 0;
-  height: 50px;
-  width: 50px;
-}
-#secondary-links li.basket a {
-  color: black;
-  font-size: 14px;
-  font-weight: normal;
-  font-family: Tahoma, Geneva, Verdana, sans-serif;
-  display: inline-block;
-  vertical-align: middle;
-  margin-left: 5px;
 }
 #secondary-links li a, #secondary-links li input {
   font-size: 0.8em;
@@ -685,11 +804,20 @@ div header.row {
   display: block;
   margin: 15px 5px;
 }
-#secondary-links .second {
+#secondary-links ul.first {
+  border-bottom: 1px dashed white;
+}
+#secondary-links ul.first > li > a {
+  color: white;
+}
+#secondary-links ul.first li:first-child {
+  float: left;
+}
+#secondary-links ul.second {
   z-index: 1;
 }
-#secondary-links .second a {
-  color: black;
+#secondary-links ul.second a {
+  color: white;
   font-size: 14px;
   font-weight: normal;
   font-family: Tahoma, Geneva, Verdana, sans-serif;
@@ -897,50 +1025,95 @@ footer {
   padding-top: 10px !important;
   color: #444444;
   font-size: 12px;
-  font-family: "Merriweather", serif;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 400;
   line-height: 14px;
 }
 footer h2 {
-  font-size: 14px;
-  font-family: "Merriweather", serif;
+  font-size: 12px;
   letter-spacing: 0;
+  font-weight: bold;
 }
 footer .footer-menu li {
-  padding: 0 0 5px;
+  padding: 0 0 7px;
 }
-footer .footer-menu.footer-menu-4 {
-  text-align: right;
+footer .footer-menu .footer-teaser {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 12px;
 }
-footer .footer-menu.footer-menu-4 .container {
-  text-align: left;
+footer .footer-menu .footer-teaser b {
+  text-transform: uppercase;
+}
+footer .footer-menu .newsletter {
+  background-color: #B5AB8C;
+  position: relative;
+}
+footer .footer-menu .newsletter h2 {
+  font-family: "Merriweather", serif;
+  font-size: 19px;
+  font-weight: normal;
+}
+footer .footer-menu .newsletter .container {
+  margin: 15px 0 0 15px;
   display: inline-block;
+  width: 100%;
 }
-footer .footer-menu.footer-menu-4 .container input[type=submit] {
+footer .footer-menu .newsletter .container, footer .footer-menu .newsletter .container a, footer .footer-menu .newsletter .container input[type=submit].button {
+  color: white !important;
+}
+footer .footer-menu .newsletter .container input[type=submit] {
   float: right;
   font-size: 12px;
-  font-family: "Merriweather", serif;
   letter-spacing: 0;
+  color: inherit;
+  margin-right: -122px;
+  font-size: 16px;
 }
-footer .footer-menu.footer-menu-4 .sprite {
-  background-position: 0 -218px;
+footer .footer-menu .newsletter .sprite {
+  background-position: 0 -168px;
   height: 86px;
   width: 86px;
-  float: left;
-  margin-left: 40px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
-footer .footer-menu.footer-menu-4 input[type="email"],
-footer .footer-menu.footer-menu-4 input[type="text"] {
+footer .footer-menu .newsletter input[type="email"],
+footer .footer-menu .newsletter input[type="text"] {
   width: 222px;
   display: block;
   padding: 4px 5px;
+  border: 0;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 12px;
+  margin: 0 0 5px;
 }
-footer .footer-menu.footer-menu-4 #dialoug-message {
+footer .footer-menu .newsletter input[type="email"]::-webkit-input-placeholder,
+footer .footer-menu .newsletter input[type="text"]::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #444;
+}
+footer .footer-menu .newsletter input[type="email"]:-moz-placeholder,
+footer .footer-menu .newsletter input[type="text"]:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #444;
+}
+footer .footer-menu .newsletter input[type="email"]::-moz-placeholder,
+footer .footer-menu .newsletter input[type="text"]::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #444;
+}
+footer .footer-menu .newsletter input[type="email"]:-ms-input-placeholder,
+footer .footer-menu .newsletter input[type="text"]:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #444;
+}
+footer .footer-menu .newsletter #dialoug-message {
   width: 200px;
   border: 2px solid #c18185;
   text-align: center;
 }
-footer .footer-menu.footer-menu-4 form {
+footer .footer-menu .newsletter form {
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-size: 12px;
   width: 234px;
@@ -1036,9 +1209,15 @@ div.panes > div {
   margin-top: 20px;
 }
 .zoom .sprite {
+<<<<<<< HEAD
   background-position: 0 -484px;
   height: 30px;
   width: 235px;
+=======
+  background-position: 0 -558px;
+  height: 32px;
+  width: 32px;
+>>>>>>> feature/278-new-basket-design
 }
 
 .body-product .breadcrumb {
@@ -1050,9 +1229,15 @@ a.video-popper, #video-player-container a.video {
   margin-top: 20px;
 }
 a.video-popper .sprite, #video-player-container a.video .sprite {
+<<<<<<< HEAD
   background-position: 0 -402px;
   height: 29px;
   width: 234px;
+=======
+  background-position: 0 -776px;
+  height: 32px;
+  width: 32px;
+>>>>>>> feature/278-new-basket-design
 }
 
 .body-product .main h1.title,
@@ -2479,6 +2664,102 @@ div.invalid-order {
   margin-top: 5px;
 }
 
+#mini-basket.basket .sprite,
+#mega-basket .basket .sprite {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#mega-basket .basket .sprite {
+  background-position: 0 -840px;
+  height: 50px;
+  width: 50px;
+}
+
+#mini-basket.basket .sprite {
+  background-position: 0 -1032px;
+  height: 50px;
+  width: 50px;
+}
+
+#mini-basket.basket a {
+  color: white;
+  font-size: 14px;
+  font-weight: normal;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
+#mega-basket {
+  position: absolute;
+  top: -500px;
+  right: 0;
+  background: white;
+  background: rgba(255, 255, 255, 0.98);
+  width: 350px;
+  z-index: 220;
+  -webkit-border-radius: 0px 0px 20px 20px;
+  -moz-border-radius: 0px 0px 20px 20px;
+  border-radius: 0px 0px 20px 20px;
+  border: 1px solid #DFDFDF;
+  border-top: none;
+  padding: 10px 20px;
+}
+#mega-basket.open {
+  top: -6px;
+}
+#mega-basket .basket {
+  text-transform: uppercase;
+}
+#mega-basket .delivery-text {
+  margin-top: 10px;
+  width: 270px;
+}
+#mega-basket .delivery-text li {
+  margin-bottom: 7px;
+}
+#mega-basket .checkout-button {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  background-position: 0 -294px;
+  height: 90px;
+  width: 90px;
+}
+#mega-basket .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-position: 0 -1164px;
+  height: 20px;
+  width: 21px;
+}
+#mega-basket table.basket-table ::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #F5F5F5;
+}
+#mega-basket table.basket-table ::-webkit-scrollbar {
+  width: 3px;
+  background-color: #F5F5F5;
+}
+#mega-basket table.basket-table ::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #555;
+}
+#mega-basket table.basket-table tbody {
+  display: block;
+  max-height: 400px;
+  overflow-y: scroll;
+}
+#mega-basket table.basket-table img {
+  height: 60px;
+  width: auto;
+}
+
 /**
 | _social
 */
@@ -2774,7 +3055,7 @@ nav.main-menu > ul > li > ul li.heading > a, nav.main-menu > ul > li > ul li.sel
   letter-spacing: 0;
 }
 .body-pages .newsletter-form-simple .sprite {
-  background-position: 0 -218px;
+  background-position: 0 -168px;
   height: 86px;
   width: 86px;
   float: left;
@@ -3499,14 +3780,18 @@ hr {
   clear: both;
   margin: 0;
   width: 100%;
-  background-position: 0 -387px;
+  background-position: 0 -427px;
   height: 20px;
 }
 hr.left {
-  background-position: 0 -304px;
+  background-position: 0 -254px;
 }
 hr.right {
+<<<<<<< HEAD
   background-position: 0 -464px;
+=======
+  background-position: 0 -474px;
+>>>>>>> feature/278-new-basket-design
 }
 
 strong, b {
@@ -3681,16 +3966,28 @@ a.button.button-full-width,
 
 .arrow-right {
   margin-left: 6px;
+<<<<<<< HEAD
   background-position: 0 -1175px;
   height: 10px;
   width: 9px;
+=======
+  background-position: 0 -1157px;
+  height: 7px;
+  width: 4px;
+>>>>>>> feature/278-new-basket-design
 }
 
 .arrow-left {
   margin-right: 6px;
+<<<<<<< HEAD
   background-position: 0 -1156px;
   height: 10px;
   width: 9px;
+=======
+  background-position: 0 -1146px;
+  height: 7px;
+  width: 4px;
+>>>>>>> feature/278-new-basket-design
 }
 
 .arrow-right,
@@ -3856,27 +4153,47 @@ button.right {
   display: inline-block;
 }
 .sprite.delete {
+<<<<<<< HEAD
   background-position: 0 -886px;
+=======
+  background-position: 0 -980px;
+>>>>>>> feature/278-new-basket-design
   height: 26px;
   width: 26px;
 }
 .sprite.edit {
+<<<<<<< HEAD
   background-position: 0 -938px;
+=======
+  background-position: 0 -1082px;
+>>>>>>> feature/278-new-basket-design
   height: 26px;
   width: 26px;
 }
 .sprite.show {
+<<<<<<< HEAD
   background-position: 0 -860px;
+=======
+  background-position: 0 -954px;
+>>>>>>> feature/278-new-basket-design
   height: 26px;
   width: 26px;
 }
 .sprite.pdf {
+<<<<<<< HEAD
   background-position: 0 -738px;
+=======
+  background-position: 0 -750px;
+>>>>>>> feature/278-new-basket-design
   height: 26px;
   width: 26px;
 }
 .sprite.return {
+<<<<<<< HEAD
   background-position: 0 -912px;
+=======
+  background-position: 0 -1006px;
+>>>>>>> feature/278-new-basket-design
   height: 26px;
   width: 26px;
 }

@@ -22,6 +22,8 @@ nav.first.main-menu {
     background-color: #dcd8d2;
     margin-bottom: 6px;
     padding: 3px 0;
+    z-index: 300;
+    position: relative;
 
     >ul {
         z-index: 220;
@@ -194,36 +196,25 @@ div header.row {
 }
 #secondary-links {
 	position: absolute;
-	top: 0px;
-	right: 3px;
-	li{
-		padding: 8px;
-		vertical-align: middle;
-		&.last{
-			padding-right: 0;
+	top: -6px; // top menu bottom margin.
+	right: 0px;
+    background: #a2a2a2;
+    padding: 5px 10px 0;
+    -webkit-border-radius: 0px 0px 20px 20px;
+    -moz-border-radius: 0px 0px 20px 20px;
+    border-radius: 0px 0px 20px 20px;
+    li{
+        padding: 8px;
+        vertical-align: middle;
+        &.basket{
+            padding-left: 0px;
         }
-        // Mini-basket in secondary links!
-        &.basket {
-            .sprite{
-                display: inline-block;
-                vertical-align: middle;
-                @include icons-sprite(basket);
-                height: icons-sprite-height(basket);
-                width: icons-sprite-width(basket);
-            }
-            a {
-                color: $basket-color;
-                font-size: $basket-font-size;
-                font-weight: $basket-font-weight;
-                font-family: $font-sans;
-				display:inline-block;
-				vertical-align: middle;
-                margin-left: 5px;
-			}
-		}
-		a,input{
-			font-size: 0.8em;
-			text-transform: uppercase;
+        &.last{
+            padding-right: 0;
+        }
+        a,input{
+            font-size: 0.8em;
+            text-transform: uppercase;
 		}
 		input{
 			padding: 4px 5px;
@@ -236,7 +227,16 @@ div header.row {
             }
 		}
 	}
-	.second{
+    ul.first {
+        border-bottom: 1px dashed white;
+        > li > a {
+            color: white;
+        }
+        li:first-child {
+            float: left;
+        }
+    }
+	ul.second{
 		z-index: 1;
         a {
             color: $basket-color;

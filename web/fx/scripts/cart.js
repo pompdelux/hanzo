@@ -268,9 +268,28 @@
         });
       });
     };
+    pub.miniBasketInit = function() {
+      var $basket = $('#mega-basket');
+      $basket.css('top', '-' + ($basket.height() + 30 ) + 'px');
+      $('#mini-basket a, a.open-megabasket, #mega-basket .close').click(function(e) {
+        e.preventDefault();
+        if ($basket.hasClass('open')) {
+          $basket.animate({
+            top: '-' + ($basket.height() + 30 ) + 'px',
+          }, 500 );
+        }
+        else {
+          $basket.animate({
+            top: "-6px",
+          }, 500 );
+        }
+        $basket.toggleClass('open');
+      });
+    };
 
     return pub;
   })($);
 
   cart.init();
+  cart.miniBasketInit();
 })(jQuery);

@@ -22,6 +22,10 @@
                 <source>show.basket</source>
                 <target>Näytä ostoskori</target>
             </trans-unit>
+            <trans-unit id="your.basket" approved="no">
+                <source>your.basket</source>
+                <target>Your Basket</target>
+            </trans-unit>
             <trans-unit id="choose">
                 <source>choose</source>
                 <target>Valitse</target>
@@ -153,6 +157,16 @@
                         <li><a href="http://www.facebook.com/sharer.php?u=%url%" class="facebook-button social-button" title="Share this page on facebook">Share</a></li>
                     </ul>]]>
                 </target>
+            </trans-unit>
+            <trans-unit id="footer.text" approved="no">
+                <source>footer.text</source>
+                <target><![CDATA[
+                    <ul>
+                        <li><b>Postikulut</b> alkaen 7,50 EUR + postikuluitta tilatessa vähintään 200EUR</li>
+                        <li><b>Tilauksen käsittelyaika</b> %expected_delivery_date%</li>
+                        <li><b>Vaihto</b> Gratis</li>
+                    </ul>
+                ]]></target>
             </trans-unit>
             <trans-unit id="buy.set">
                 <source>buy.set</source>

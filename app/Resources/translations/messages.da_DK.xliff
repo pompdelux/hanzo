@@ -22,6 +22,10 @@
                 <source>show.basket</source>
                 <target>Vis kurv</target>
             </trans-unit>
+            <trans-unit id="your.basket" approved="no">
+                <source>your.basket</source>
+                <target>Din kurv</target>
+            </trans-unit>
             <trans-unit id="choose">
                 <source>choose</source>
                 <target>Vælg</target>
@@ -165,6 +169,16 @@
                         <li>(+45) 8678 7871</li>
                         <li><img src="%cdn%fx/images/creditcards_dk.png" alt="credit cards" title="credit cards"></li>
                         <li><a href="http://www.facebook.com/sharer.php?u=%url%" class="facebook-button social-button" title="Del denne side på Facebook">Del på Facebook</a></li>
+                    </ul>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="footer.text" approved="no">
+                <source>footer.text</source>
+                <target><![CDATA[
+                    <ul>
+                        <li><b>Fragt</b> fra 39,- + Fri Fragt fra min. 1200,-</li>
+                        <li><b>Leveringstid</b> %expected_delivery_date%</li>
+                        <li><b>Ombytning</b> Gratis</li>
                     </ul>
                 ]]></target>
             </trans-unit>

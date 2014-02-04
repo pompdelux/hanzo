@@ -367,11 +367,7 @@ var Translator = (function () {
          * @api public
          */
         add: function(key, message) {
-            var _locale = Translator.locale || Translator.fallback;
-            if (!_messages[_locale]) {
-                _messages[_locale] = {};
-            }
-            _messages[_locale][key] = message;
+            _messages[key] = message;
             return this;
         },
 
@@ -384,8 +380,7 @@ var Translator = (function () {
        * @return {String} The corresponding message if the key exists otherwise the key will be returned.
        */
         get: function(key, placeholders, number) {
-            var _locale = Translator.locale || Translator.fallback;
-            var _message = _messages[_locale][key],
+            var _message = _messages[key],
                 _number = parseInt(number, 10),
                 _placeholders = placeholders || {};
 
@@ -414,8 +409,7 @@ var Translator = (function () {
          * @api public
          */
         has: function(key) {
-            var _locale = Translator.locale || Translator.fallback;
-            return (_messages[_locale] && _messages[_locale][key]) ? true : false;
+            return (_messages[key] ? true : false);
         },
 
         /**

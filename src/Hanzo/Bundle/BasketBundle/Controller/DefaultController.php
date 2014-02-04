@@ -154,6 +154,9 @@ class DefaultController extends CoreController
             'master_id'    => $product->getProductsRelatedByMaster()->getId(),
             'price'        => Tools::moneyFormat($price['price'] * $quantity),
             'single_price' => Tools::moneyFormat($price['price']),
+            // 'title'        => $product->getName(),
+            // 'image'        =>
+            // // add image and title
         );
 
         $t = new \DateTime($date);

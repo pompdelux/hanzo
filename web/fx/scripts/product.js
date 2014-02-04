@@ -285,7 +285,26 @@
             } else {
               window.scrollTo(window.scrollMinX, window.scrollMinY);
               $('#mini-basket a').html(response.data);
-              dialoug.slideNotice(response.message, undefined, '#mini-basket');
+
+              $mega_basket = $('#mega-basket');
+              // Open the mega-basket. Afterwards add the new product
+              $mega_basket.animate({
+                top: "-6px",
+              }, 500, 'swing', function() {
+                // Add the new product to the basket table.
+                $('table tbody', $mega_basket).append('<tr><td><img src="' + $('.productimage-large img').attr('src') + '" /></td><td>' + $('h1.title').text() + '</td><td>' + response.latest.price + '</td></tr>');
+                // var total = $('.total', $mega_basket).text()
+                // $('.total', $mega_basket)
+
+              });
+              setTimeout(function () {
+                // Only close the basket if the mouse isnt hovering it.
+                if (!$('#mega-basket:hover').length) {
+                  $mega_basket.animate({
+                    top: '-' + ($(this).height() + 30 ) + 'px',
+                  }, 500 );
+                }
+              }, 10000);
             }
             _resetForm();
           });

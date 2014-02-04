@@ -18,6 +18,10 @@
                 <source>show.basket</source>
                 <target>Show basket</target>
             </trans-unit>
+            <trans-unit id="your.basket" approved="no">
+                <source>your.basket</source>
+                <target>Your Basket</target>
+            </trans-unit>
             <trans-unit id="choose">
                 <source>choose</source>
                 <target>Choose</target>
@@ -162,6 +166,16 @@
                         <li>+45 8736 1000</li>
                         <li><img src="%cdn%fx/images/creditcards_com.png" alt="credit cards" title="credit cards"></li>
                         <li><a href="http://www.facebook.com/sharer.php?u=%url%" class="facebook-button social-button" title="Share this page on facebook">Share</a></li>
+                    </ul>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="footer.text" approved="no">
+                <source>footer.text</source>
+                <target><![CDATA[
+                    <ul>
+                        <li><b>Delivery</b> from 15,-</li>
+                        <li><b>Delivery time</b> %expected_delivery_date%</li>
+                        <li><b>Exchange</b> Gratis</li>
                     </ul>
                 ]]></target>
             </trans-unit>
