@@ -295,6 +295,17 @@
           $mega_basket.animate({
             top: "-6px",
           }, 500 );
+
+          // Set a timeout, so the basket automatically closes.
+          setTimeout(function () {
+            // Only close the basket if the mouse isnt hovering it.
+            if (!$('#mega-basket:hover').length) {
+              $mega_basket.animate({
+                top: '-' + ($(this).height() + 30 ) + 'px',
+              }, 500 );
+              $mega_basket.toggleClass('open');
+            }
+          }, 4000);
         }
         $mega_basket.toggleClass('open');
       });
@@ -308,12 +319,14 @@
         }, 500, 'swing', function() {
           $(".nano").nanoScroller({ scroll: 'bottom' });
         });
+        $mega_basket.toggleClass('open');
         setTimeout(function () {
           // Only close the basket if the mouse isnt hovering it.
           if (!$('#mega-basket:hover').length) {
             $mega_basket.animate({
               top: '-' + ($(this).height() + 30 ) + 'px',
             }, 500 );
+            $mega_basket.toggleClass('open');
           }
           // Remove .new class on items.
           $('.item.new', $mega_basket_table).removeClass('new');
