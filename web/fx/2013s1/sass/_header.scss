@@ -78,6 +78,8 @@ form.search-form {
         background-color: inherit;
         &:focus {
             background-color: white;
+            outline: none;
+            outline-width: 0;
         }
         font-family: $font-sans;
 
