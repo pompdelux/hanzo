@@ -171,12 +171,8 @@ class CheckoutListener
 
         $event_id = isset($attributes->global->HomePartyId) ? $attributes->global->HomePartyId : '';
 
-        $size_label_postfix = $this->translator->trans('size.label.postfix');
-
-        if ($size_label_postfix) {
-            foreach ($order->getOrdersLiness() as $line) {
-                $line->setProductsSize($line->getProductsSize().$size_label_postfix);
-            }
+        foreach ($order->getOrdersLiness() as $line) {
+            $line->setProductsSize($line->getPostfixedSize($this->translator));
         }
 
         $params = array(

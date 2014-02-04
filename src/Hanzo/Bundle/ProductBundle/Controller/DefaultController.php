@@ -96,13 +96,12 @@ class DefaultController extends CoreController
         $variants = ProductsQuery::create()->findByMaster($product->getSku());
 
         $sizes = [];
-        $size_label_postfix = $translator->trans('size.label.postfix');
 
         // All colors are used for colorbuttons
         foreach ($variants as $v) {
             $all_colors[$v->getColor()] = $v->getColor();
             $sizes[$v->getSize()] = [
-                'label' => $v->getSize().$size_label_postfix,
+                'label' => $v->getPostfixedSize($translator),
                 'value' => $v->getSize(),
                 'in_stock' => false,
             ];

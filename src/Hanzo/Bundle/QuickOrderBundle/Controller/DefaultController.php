@@ -20,6 +20,7 @@ class DefaultController extends CoreController
         // All logic is a copy of BasketBundle.Default.viewAction
 
         $order = OrdersPeer::getCurrent();
+        $translator = $this->container->get('translator');
 
         $router = $this->get('router');
         $locale = strtolower(Hanzo::getInstance()->get('core.locale'));
@@ -27,19 +28,13 @@ class DefaultController extends CoreController
         $products = array();
         $delivery_date = 0;
 
-        $size_label_postfix = $this->container->get('translator')->trans('size.label.postfix');
-
         // product lines- if any
         foreach ($order->getOrdersLiness() as $line) {
+            $line->setProductsSize($line->getPostfixedSize($translator));
             $line = $line->toArray(\BasePeer::TYPE_FIELDNAME);
 
             if ($line['type'] != 'product') {
                 continue;
-            }
-
-            // prefix size if set
-            if ($size_label_postfix) {
-                $line['products_size'] .= $size_label_postfix;
             }
 
             // find first products2category match

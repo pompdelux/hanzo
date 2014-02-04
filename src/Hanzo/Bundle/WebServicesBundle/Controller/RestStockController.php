@@ -30,8 +30,9 @@ class RestStockController extends CoreController
      * check stock for a product or collection of products
      * note: only products in stock is returned.
      *
-     * @param int $product_id
-     * @param str $version
+     * @param Request $request
+     * @param int     $product_id
+     * @param string  $version
      * @return Response json encoded responce
      */
     public function checkAction(Request $request, $product_id = null, $version = 'v1')
@@ -61,8 +62,6 @@ class RestStockController extends CoreController
             ), 400);
         }
 
-        $size_label_postfix = $translator->trans('size.label.postfix');
-
         if ($product_id) {
             /**
              * the easy one, we have the eccakt product id, fetch it and return the status
@@ -85,7 +84,7 @@ class RestStockController extends CoreController
                     'product_id' => $product->getId(),
                     'master'     => $product->getMaster(),
                     'size'       => $product->getSize(),
-                    'size_label' => $product->getSize().$size_label_postfix,
+                    'size_label' => $product->getPostfixedSize($translator),
                     'color'      => $product->getColor(),
                     'date'       => '',
             ));
@@ -126,7 +125,7 @@ class RestStockController extends CoreController
                             'product_id' => $record->getId(),
                             'master'     => $record->getMaster(),
                             'size'       => $record->getSize(),
-                            'size_label' => $record->getSize().$size_label_postfix,
+                            'size_label' => $record->getPostfixedSize($translator),
                             'color'      => $record->getColor(),
                             'date'       => $date
                         );
