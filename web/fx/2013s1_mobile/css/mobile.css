@@ -62,20 +62,20 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background: url('/fx/mobile/../images/icons/da-s7398167b80.png') no-repeat;
 }
 
-.icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-arrow_up, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-return, .icons-returnlabel, .icons-shopping-bag, .icons-show, .icons-sizeguide, .icons-trackntrace, .icons-twitter, .icons-video, .icons-zoom, ul.tabs li a i, ul.tabs li a.current i, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, table#order-status td a.trigger, footer .newsletter-block .sprite, #secondary-links li.basket .sprite, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.arrow-right, .sprite.arrow-left {
-  background: url('/fx/mobile/../images/icons/icons-sd351e025b3.png') no-repeat;
+.icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-arrow_up, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-return, .icons-returnlabel, .icons-shopping-bag, .icons-show, .icons-sizeguide, .icons-trackntrace, .icons-twitter, .icons-video, .icons-zoom, ul.tabs li a i, ul.tabs li a.current i, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, .sizeguide, table#order-status td a.trigger, footer .newsletter-block .sprite, #secondary-links li.basket .sprite, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.arrow-right, .sprite.arrow-left {
+  background: url('/fx/mobile/../images/icons/icons-sc6950fa578.png') no-repeat;
 }
 
 .icons-Kundeservice_Green {
-  background-position: 0 -614px;
+  background-position: 0 -642px;
 }
 
 .icons-Kundeservice_Red {
-  background-position: 0 -486px;
+  background-position: 0 -546px;
 }
 
 .icons-Kundeservice_Yellow {
-  background-position: 0 -550px;
+  background-position: 0 -578px;
 }
 
 .icons-Oeko_Tex {
@@ -83,19 +83,19 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .icons-arrow_down {
-  background-position: 0 -1137px;
+  background-position: 0 -1133px;
 }
 
 .icons-arrow_left {
-  background-position: 0 -1146px;
+  background-position: 0 -1142px;
 }
 
 .icons-arrow_right {
-  background-position: 0 -1165px;
+  background-position: 0 -1161px;
 }
 
 .icons-arrow_up {
-  background-position: 0 -1156px;
+  background-position: 0 -1152px;
 }
 
 .icons-basket {
@@ -103,23 +103,23 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .icons-button-left-black {
-  background-position: 0 -1118px;
+  background-position: 0 -1114px;
 }
 
 .icons-button-left {
-  background-position: 0 -1013px;
+  background-position: 0 -1009px;
 }
 
 .icons-button-right-black {
-  background-position: 0 -1099px;
+  background-position: 0 -1095px;
 }
 
 .icons-button-right {
-  background-position: 0 -994px;
+  background-position: 0 -990px;
 }
 
 .icons-delete {
-  background-position: 0 -890px;
+  background-position: 0 -886px;
 }
 
 .icons-delete_black {
@@ -127,7 +127,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .icons-delete_icon {
-  background-position: 0 -768px;
+  background-position: 0 -764px;
 }
 
 .icons-delete_white {
@@ -143,23 +143,23 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .icons-divider_right {
-  background-position: 0 -434px;
+  background-position: 0 -464px;
 }
 
 .icons-edit {
-  background-position: 0 -942px;
+  background-position: 0 -938px;
 }
 
 .icons-edit_icon {
-  background-position: 0 -800px;
+  background-position: 0 -796px;
 }
 
 .icons-facebook {
-  background-position: 0 -832px;
+  background-position: 0 -828px;
 }
 
 .icons-faq_icon {
-  background-position: 0 -646px;
+  background-position: 0 -674px;
 }
 
 .icons-gots {
@@ -167,11 +167,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .icons-gplus {
-  background-position: 0 -402px;
+  background-position: 0 -432px;
 }
 
 .icons-instagram {
-  background-position: 0 -582px;
+  background-position: 0 -610px;
 }
 
 .icons-kurv {
@@ -179,7 +179,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .icons-magnifier {
-  background-position: 0 -1083px;
+  background-position: 0 -1079px;
 }
 
 .icons-newsletter {
@@ -187,19 +187,19 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .icons-pdf {
-  background-position: 0 -710px;
+  background-position: 0 -738px;
 }
 
 .icons-pinterest {
-  background-position: 0 -454px;
+  background-position: 0 -514px;
 }
 
 .icons-return {
-  background-position: 0 -916px;
+  background-position: 0 -912px;
 }
 
 .icons-returnlabel {
-  background-position: 0 -968px;
+  background-position: 0 -964px;
 }
 
 .icons-shopping-bag {
@@ -207,27 +207,27 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .icons-show {
-  background-position: 0 -864px;
+  background-position: 0 -860px;
 }
 
 .icons-sizeguide {
-  background-position: 0 -1057px;
+  background-position: 0 -1053px;
 }
 
 .icons-trackntrace {
-  background-position: 0 -1032px;
+  background-position: 0 -1028px;
 }
 
 .icons-twitter {
-  background-position: 0 -678px;
+  background-position: 0 -706px;
 }
 
 .icons-video {
-  background-position: 0 -736px;
+  background-position: 0 -402px;
 }
 
 .icons-zoom {
-  background-position: 0 -518px;
+  background-position: 0 -484px;
 }
 
 .fi-sprite, body.fi form.buy .submit-button, body.fi .buy-set, body.fi .new-price, body.fi .out-of-stock, body.fi .subscribe-button {
@@ -734,12 +734,12 @@ ul.tabs li a i {
   float: left;
   margin-right: 20px;
   margin-top: 2px;
-  background-position: 0 -1165px;
+  background-position: 0 -1161px;
   height: 10px;
   width: 9px;
 }
 ul.tabs li a.current i {
-  background-position: 0 -1137px;
+  background-position: 0 -1133px;
   height: 9px;
   width: 10px;
 }
@@ -758,13 +758,12 @@ div.panes > div {
 
 .zoom {
   display: inline-block;
-  text-align: center;
-  margin-right: 5px;
+  margin-top: 20px;
 }
 .zoom .sprite {
-  background-position: 0 -518px;
-  height: 32px;
-  width: 32px;
+  background-position: 0 -484px;
+  height: 30px;
+  width: 235px;
 }
 
 .body-product .breadcrumb {
@@ -773,12 +772,12 @@ div.panes > div {
 
 a.video-popper, #video-player-container a.video {
   display: inline-block;
-  text-align: center;
+  margin-top: 20px;
 }
 a.video-popper .sprite, #video-player-container a.video .sprite {
-  background-position: 0 -736px;
-  height: 32px;
-  width: 32px;
+  background-position: 0 -402px;
+  height: 30px;
+  width: 235px;
 }
 
 .body-product .main h1.title,
@@ -788,6 +787,7 @@ a.video-popper .sprite, #video-player-container a.video .sprite {
   font-weight: normal;
   line-height: 18px;
   color: #444444;
+  clear: both;
 }
 .body-product .main .prices {
   padding: 0 0 12px;
@@ -804,6 +804,7 @@ a.video-popper .sprite, #video-player-container a.video .sprite {
 
 form.buy {
   margin-bottom: 16px;
+  position: relative;
 }
 form.buy label {
   display: block;
@@ -816,20 +817,19 @@ form.buy label span {
 form.buy label select {
   width: 237px;
 }
-form.buy label a {
-  margin-left: 18px;
-}
 form.buy label.off {
   display: none;
 }
 form.buy .submit-button {
   cursor: pointer;
-  margin-top: 18px;
   padding: 0;
   border: none;
   text-indent: -999px;
   display: inline-block;
   display: block;
+  position: absolute;
+  top: 50px;
+  right: 0;
 }
 form.buy h4.bordered {
   font-family: Tahoma, Geneva, Verdana, sans-serif;
@@ -875,8 +875,20 @@ form.buy h4.bordered {
   margin-right: 0;
 }
 
+.latest-seen-poducts img {
+  width: 99px;
+  height: auto;
+}
+
 .style-guide, .style-guide .element {
   display: none;
+}
+
+.sizeguide {
+  display: block;
+  background-position: 0 -1053px;
+  line-height: 26px;
+  padding-left: 33px;
 }
 
 .colorbuttons-sprite, .colorbuttons-black, .colorbuttons-black9rose, .colorbuttons-blue-denim, .colorbuttons-blue, .colorbuttons-blue9grey-melange, .colorbuttons-brown, .colorbuttons-camel, .colorbuttons-camel9navy, .colorbuttons-cerise, .colorbuttons-cerise9grey, .colorbuttons-curry, .colorbuttons-curry9grey, .colorbuttons-dark-grey-melange, .colorbuttons-dark-grey, .colorbuttons-gold, .colorbuttons-green-navy, .colorbuttons-green, .colorbuttons-green9grey, .colorbuttons-grey-melange, .colorbuttons-grey-melange9white, .colorbuttons-grey-star, .colorbuttons-grey, .colorbuttons-grey9off-white, .colorbuttons-honey, .colorbuttons-ice-blue, .colorbuttons-khaki, .colorbuttons-light-blue, .colorbuttons-light-grey-melange, .colorbuttons-light-grey, .colorbuttons-navy-melange, .colorbuttons-navy, .colorbuttons-navy9camel, .colorbuttons-navy9curry, .colorbuttons-navy9honey, .colorbuttons-navy9off-white, .colorbuttons-navy9white, .colorbuttons-navy9wine, .colorbuttons-off-white, .colorbuttons-off-white9blue, .colorbuttons-peach, .colorbuttons-peach9grey-melange, .colorbuttons-red, .colorbuttons-rose, .colorbuttons-sand, .colorbuttons-turquoise, .colorbuttons-white, .colorbuttons-white9off-white, .colorbuttons-wine, .colorbuttons-wine9grey, .colorbuttons-yellow, a.product-color .colorbuttons-black9rose, a.product-color.current .colorbuttons-black9rose, a.product-color:hover .colorbuttons-black9rose, a.product-color .colorbuttons-black, a.product-color.current .colorbuttons-black, a.product-color:hover .colorbuttons-black, a.product-color .colorbuttons-blue-denim, a.product-color.current .colorbuttons-blue-denim, a.product-color:hover .colorbuttons-blue-denim, a.product-color .colorbuttons-blue9grey-melange, a.product-color.current .colorbuttons-blue9grey-melange, a.product-color:hover .colorbuttons-blue9grey-melange, a.product-color .colorbuttons-blue, a.product-color.current .colorbuttons-blue, a.product-color:hover .colorbuttons-blue, a.product-color .colorbuttons-brown, a.product-color.current .colorbuttons-brown, a.product-color:hover .colorbuttons-brown, a.product-color .colorbuttons-camel, a.product-color.current .colorbuttons-camel, a.product-color:hover .colorbuttons-camel, a.product-color .colorbuttons-cerise, a.product-color.current .colorbuttons-cerise, a.product-color:hover .colorbuttons-cerise, a.product-color .colorbuttons-cerise9grey, a.product-color.current .colorbuttons-cerise9grey, a.product-color:hover .colorbuttons-cerise9grey, a.product-color .colorbuttons-curry, a.product-color.current .colorbuttons-curry, a.product-color:hover .colorbuttons-curry, a.product-color .colorbuttons-curry9grey, a.product-color.current .colorbuttons-curry9grey, a.product-color:hover .colorbuttons-curry9grey, a.product-color .colorbuttons-dark-grey, a.product-color.current .colorbuttons-dark-grey, a.product-color:hover .colorbuttons-dark-grey, a.product-color .colorbuttons-dark-grey-melange, a.product-color.current .colorbuttons-dark-grey-melange, a.product-color:hover .colorbuttons-dark-grey-melange, a.product-color .colorbuttons-gold, a.product-color.current .colorbuttons-gold, a.product-color:hover .colorbuttons-gold, a.product-color .colorbuttons-green9grey, a.product-color.current .colorbuttons-green9grey, a.product-color:hover .colorbuttons-green9grey, a.product-color .colorbuttons-green, a.product-color.current .colorbuttons-green, a.product-color:hover .colorbuttons-green, a.product-color .colorbuttons-green-navy, a.product-color.current .colorbuttons-green-navy, a.product-color:hover .colorbuttons-green-navy, a.product-color .colorbuttons-grey9off-white, a.product-color.current .colorbuttons-grey9off-white, a.product-color:hover .colorbuttons-grey9off-white, a.product-color .colorbuttons-grey-melange, a.product-color.current .colorbuttons-grey-melange, a.product-color:hover .colorbuttons-grey-melange, a.product-color .colorbuttons-grey-melange9white, a.product-color.current .colorbuttons-grey-melange9white, a.product-color:hover .colorbuttons-grey-melange9white, a.product-color .colorbuttons-grey-star, a.product-color.current .colorbuttons-grey-star, a.product-color:hover .colorbuttons-grey-star, a.product-color .colorbuttons-grey, a.product-color.current .colorbuttons-grey, a.product-color:hover .colorbuttons-grey, a.product-color .colorbuttons-honey, a.product-color.current .colorbuttons-honey, a.product-color:hover .colorbuttons-honey, a.product-color .colorbuttons-ice-blue, a.product-color.current .colorbuttons-ice-blue, a.product-color:hover .colorbuttons-ice-blue, a.product-color .colorbuttons-khaki, a.product-color.current .colorbuttons-khaki, a.product-color:hover .colorbuttons-khaki, a.product-color .colorbuttons-light-blue, a.product-color.current .colorbuttons-light-blue, a.product-color:hover .colorbuttons-light-blue, a.product-color .colorbuttons-light-grey, a.product-color.current .colorbuttons-light-grey, a.product-color:hover .colorbuttons-light-grey, a.product-color .colorbuttons-light-grey-melange, a.product-color.current .colorbuttons-light-grey-melange, a.product-color:hover .colorbuttons-light-grey-melange, a.product-color .colorbuttons-navy9camel, a.product-color.current .colorbuttons-navy9camel, a.product-color:hover .colorbuttons-navy9camel, a.product-color .colorbuttons-navy9curry, a.product-color.current .colorbuttons-navy9curry, a.product-color:hover .colorbuttons-navy9curry, a.product-color .colorbuttons-navy9honey, a.product-color.current .colorbuttons-navy9honey, a.product-color:hover .colorbuttons-navy9honey, a.product-color .colorbuttons-navy9off-white, a.product-color.current .colorbuttons-navy9off-white, a.product-color:hover .colorbuttons-navy9off-white, a.product-color .colorbuttons-navy9white, a.product-color.current .colorbuttons-navy9white, a.product-color:hover .colorbuttons-navy9white, a.product-color .colorbuttons-navy9wine, a.product-color.current .colorbuttons-navy9wine, a.product-color:hover .colorbuttons-navy9wine, a.product-color .colorbuttons-navy-melange, a.product-color.current .colorbuttons-navy-melange, a.product-color:hover .colorbuttons-navy-melange, a.product-color .colorbuttons-navy, a.product-color.current .colorbuttons-navy, a.product-color:hover .colorbuttons-navy, a.product-color .colorbuttons-off-white9blue, a.product-color.current .colorbuttons-off-white9blue, a.product-color:hover .colorbuttons-off-white9blue, a.product-color .colorbuttons-off-white, a.product-color.current .colorbuttons-off-white, a.product-color:hover .colorbuttons-off-white, a.product-color .colorbuttons-peach9grey-melange, a.product-color.current .colorbuttons-peach9grey-melange, a.product-color:hover .colorbuttons-peach9grey-melange, a.product-color .colorbuttons-peach, a.product-color.current .colorbuttons-peach, a.product-color:hover .colorbuttons-peach, a.product-color .colorbuttons-red, a.product-color.current .colorbuttons-red, a.product-color:hover .colorbuttons-red, a.product-color .colorbuttons-rose, a.product-color.current .colorbuttons-rose, a.product-color:hover .colorbuttons-rose, a.product-color .colorbuttons-sand, a.product-color.current .colorbuttons-sand, a.product-color:hover .colorbuttons-sand, a.product-color .colorbuttons-turquoise, a.product-color.current .colorbuttons-turquoise, a.product-color:hover .colorbuttons-turquoise, a.product-color .colorbuttons-white9off-white, a.product-color.current .colorbuttons-white9off-white, a.product-color:hover .colorbuttons-white9off-white, a.product-color .colorbuttons-white, a.product-color.current .colorbuttons-white, a.product-color:hover .colorbuttons-white, a.product-color .colorbuttons-wine, a.product-color.current .colorbuttons-wine, a.product-color:hover .colorbuttons-wine, a.product-color .colorbuttons-wine9grey, a.product-color.current .colorbuttons-wine9grey, a.product-color:hover .colorbuttons-wine9grey, a.product-color .colorbuttons-yellow, a.product-color.current .colorbuttons-yellow, a.product-color:hover .colorbuttons-yellow {
@@ -2086,7 +2098,7 @@ table#order-status tr.off {
   display: none;
 }
 table#order-status td a.trigger {
-  background-position: 0 -1083px;
+  background-position: 0 -1079px;
   width: 16px;
   height: 16px;
 }
@@ -3065,34 +3077,34 @@ table.horizontal th {
   display: inline-block;
 }
 .sprite.delete {
-  background-position: 0 -890px;
+  background-position: 0 -886px;
   height: 26px;
   width: 26px;
 }
 .sprite.edit {
-  background-position: 0 -942px;
+  background-position: 0 -938px;
   height: 26px;
   width: 26px;
 }
 .sprite.show {
-  background-position: 0 -864px;
+  background-position: 0 -860px;
   height: 26px;
   width: 26px;
 }
 .sprite.pdf {
-  background-position: 0 -710px;
+  background-position: 0 -738px;
   height: 26px;
   width: 26px;
 }
 .sprite.arrow-right {
   margin-left: 6px;
-  background-position: 0 -1165px;
+  background-position: 0 -1161px;
   height: 10px;
   width: 9px;
 }
 .sprite.arrow-left {
   margin-right: 6px;
-  background-position: 0 -1146px;
+  background-position: 0 -1142px;
   height: 10px;
   width: 9px;
 }

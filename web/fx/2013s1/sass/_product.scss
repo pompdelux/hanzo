@@ -74,8 +74,8 @@ a.video-popper, #video-player-container a.video {
   margin-top: 20px;
 	.sprite{
 		@include icons-sprite(video);
-		height: icons-sprite-height(video);
-		width: icons-sprite-width(video);
+		height: icons-sprite-height(video) - 1px;
+		width: icons-sprite-width(video) - 1px;
 	}
 }
 
