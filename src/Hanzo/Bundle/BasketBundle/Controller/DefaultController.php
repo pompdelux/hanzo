@@ -151,6 +151,7 @@ class DefaultController extends CoreController
         $latest = array(
             'expected_at'  => '',
             'id'           => $product->getId(),
+            'master_id'    => $product->getProductsRelatedByMaster()->getId(),
             'price'        => Tools::moneyFormat($price['price'] * $quantity),
             'single_price' => Tools::moneyFormat($price['price']),
         );
@@ -402,8 +403,21 @@ class DefaultController extends CoreController
             ;
 
             if ($category_id) {
+                // we need the id and sku from the master record to generate image and url to product.
+                $sql = "
+                    SELECT p.id, p.sku FROM products AS p
+                    WHERE p.sku = (
+                        SELECT pp.master FROM products AS pp
+                        WHERE pp.id = ".$line['products_id']."
+                    )
+                ";
+                $master = \Propel::getConnection()
+                    ->query($sql)
+                    ->fetch(\PDO::FETCH_OBJ)
+                ;
+
                 $line['basket_image'] =
-                    preg_replace('/[^a-z0-9]/i', '-', $line['products_name']) .
+                    preg_replace('/[^a-z0-9]/i', '-', $master->sku) .
                     '_' .
                     preg_replace('/[^a-z0-9]/i', '-', str_replace('/', '9', $line['products_color'])) .
                     '_overview_01.jpg'
@@ -412,22 +426,15 @@ class DefaultController extends CoreController
                 // find matching router
                 $key    = '_' . $locale . '_' . $category_id;
                 $group  = $category2group[$category_id];
-                $master = ProductsQuery::create()
-                    ->useProductsi18nQuery()
-                        ->filterByTitle($line['products_name'])
-                        ->filterByLocale($this->getRequest()->getLocale())
-                    ->endUse()
-                    ->findOne()
-                ;
 
-                $line['master'] = $master->getSku();
+                $line['master'] = $master->sku;
 
                 if ('consultant' == $mode) {
-                    $line['url'] = $router->generate('product_info', array('product_id' => $master->getId()));
+                    $line['url'] = $router->generate('product_info', array('product_id' => $master->id));
                 } else {
                     if (isset($router_keys[$key])) {
                         $line['url'] = $router->generate($router_keys[$key], array(
-                            'product_id' => $master->getId(),
+                            'product_id' => $master->id,
                             'title'      => Tools::stripText($line['products_name']),
                         ));
                     }

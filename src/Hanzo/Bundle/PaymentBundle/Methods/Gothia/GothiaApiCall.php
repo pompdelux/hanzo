@@ -106,9 +106,11 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
             if (!empty($clientError)) {
               array_push($errorMessages, $t->trans($clientError, array(), 'gothia'));
             }
-            foreach ($gothiaApiCallResponse->errors as $error) {
-              if (!empty($error) && !in_array($t->trans($error, array(), 'gothia'), $errorMessages)) {
-                array_push($errorMessages, $t->trans($error, array(), 'gothia'));
+            if (is_array($gothiaApiCallResponse->errors)) {
+              foreach ($gothiaApiCallResponse->errors as $error) {
+                if (!empty($error) && !in_array($t->trans($error, array(), 'gothia'), $errorMessages)) {
+                  array_push($errorMessages, $t->trans($error, array(), 'gothia'));
+                }
               }
             }
             array_push($errorMessages, $t->trans('Please contact POMPdeLUX customer service if you keep receiving this error.', array(), 'gothia'));

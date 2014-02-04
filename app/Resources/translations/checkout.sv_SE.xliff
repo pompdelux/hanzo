@@ -32,10 +32,10 @@
           <p>Telefon 08 – 6117103</p>
           <p>E-mail: <a href="mailto:mail@pompdelux.se">mail@pompdelux.se</a></p>
 
-          <h2>Min sida</h2>
+          <h2>Min Sida</h2>
           <p>
             Se din order och mycket mer <br>
-            <a href="%account%">&raquo; Min sida</a>
+            <a href="%account%">&raquo; Min Sida</a>
           </p>
 
           <h2>FAKTA</h2>
@@ -303,7 +303,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target><![CDATA[Gothia faktura (Väljer du att betala med PayByBill så tillkommer en avgift på SEK 29,00). I samband med att vi skickar dina varor från vårt lager, skickar vi din faktura per mail. Fakturan blir även tillgänglig på Min sida som pdf fil inom 24 timmar.]]></target>
+        <target><![CDATA[Gothia faktura (Väljer du att betala med PayByBill så tillkommer en avgift på SEK 29,00). I samband med att vi skickar dina varor från vårt lager, skickar vi din faktura per mail. Fakturan blir även tillgänglig på Min Sida som pdf fil inom 24 timmar.]]></target>
       </trans-unit>
       <trans-unit id="payment.dibs.title">
         <source>payment.dibs.title</source>
@@ -327,7 +327,7 @@
       </trans-unit>
       <trans-unit id="payment.dibs.processing.title">
         <source>payment.dibs.processing.title</source>
-        <target>Din order behandlas av webshopen</target>
+        <target>Din order behandlas av Webshopen</target>
       </trans-unit>
       <trans-unit id="order.state_pre_payment.locked">
         <source>order.state_pre_payment.locked</source>
@@ -355,19 +355,19 @@
       </trans-unit>
       <trans-unit id="product.group.g">
         <source>product.group.g</source>
-        <target>Tjej</target>
+        <target>TJEJ</target>
       </trans-unit>
       <trans-unit id="product.group.lg">
         <source>product.group.lg</source>
-        <target>Liten Tjej</target>
+        <target>LITEN TJEJ</target>
       </trans-unit>
       <trans-unit id="product.group.b">
         <source>product.group.b</source>
-        <target>Kille</target>
+        <target>KILLE</target>
       </trans-unit>
       <trans-unit id="product.group.lb">
         <source>product.group.lb</source>
-        <target>Liten Kille</target>
+        <target>LITEN KILLE</target>
       </trans-unit>
       <trans-unit id="gift_card" approved="no">
          <source>gift_card</source>

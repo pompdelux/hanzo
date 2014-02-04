@@ -138,7 +138,7 @@
                         Du er i gang med å redigere E-ordrenummer <a href="%history_url%" title="se ordren">%order_id%</a>.<br>
                         Ønsker du å avbryte redigeringen av ordre - <a href="%stop_url%" title="stop editering af ordren">klikk her.</a>
                     </p>
-                    <p>Ønsker du å endre en farge eller en størrelse, skal du klikke på blyanten. Ønsker du å tilføye varer, skal du klikke på Jente, Gutt, Liten Jente eller Liten Gutt øverst på siden.</p>
+                    <p>Ønsker du å endre en farge eller en størrelse, skal du klikke på blyanten. Ønsker du å tilføye varer, skal du klikke på JENTE, GUTT, LITEN JENTE eller LITEN GUTT øverst på siden.</p>
                     <p class="last">Når du er ferdig med endringene, skal du klikke på "Vis kurv" og trykke på ”Fortsett”. Når du har gjennomført ordren med ny kredittkortbetaling, vil den gamle betalingen automatisk bli slettet.<br><br><b>Merk:</b> Hvis du bruker Visa Electron eller MasterCard ved redigeringen, foretas det automatisk enda en reservasjon av totalbeløpet på ordren. Reservasjonen av totalbeløpet på din opprinnelige ordre blir førøvrig straks annullert av POMPdeLUX. Det kan derimot gå opptil 6 uker før reservasjonen oppheves av pengeinstituttet ditt.</p>
                 ]]></target>
             </trans-unit>
@@ -242,7 +242,7 @@
             <trans-unit id="delivery.info" approved="no">
                 <source>delivery.info</source>
                 <target><![CDATA[
-                    <p>Alle varer sendes som pakkepost med <a href="http://tracking.bring.dk/index.html" target="_blank">Bring</a> / <a href="http://www.posten.no/" target="_blank">www.posten.no</a>. Du har derfor mulighet for å følge pakken via <a href="http://tracking.bring.dk/index.html" target="_blank">sporingsnummer </a> fra den sendes til den blir levert. Pakkene sendes som privatpakke og skal avhentes på utleveringssted. Frakten er NOK 49,00 hvis du kjøper varene til et Home shopping arrangement og NOK 69,00 når du kjøper varene i vår Webshop. <br /><br />
+                    <p>Alle varer sendes som pakkepost med <a href="http://tracking.bring.dk/index.html" target="_blank">Bring</a> / <a href="http://www.posten.no/" target="_blank">www.posten.no</a>. Du har derfor mulighet for å følge pakken via <a href="http://tracking.bring.dk/index.html" target="_blank">sporingsnummer </a> fra den sendes til den blir levert. Pakkene sendes som privatpakke og skal avhentes på utleveringssted. Frakten er NOK 49,00 hvis du kjøper varene til et Home Shopping arrangement og NOK 69,00 når du kjøper varene i vår Webshop. <br /><br />
       Når du har mottatt pakken, bør du kontrollere varene. Hvis pakken og/eller innholdet er skadet, ber vi deg straks ta kontakt med vår Kundeservice eller <a href="http://www.posten.no/" target="_blank">www.posten.no</a>. </p>
                 ]]></target>
             </trans-unit>
@@ -269,7 +269,8 @@
                     <li><a href="/nb_NO/forside/kundeservice/vaskerad">Vaskeråd</a></li>
 					<li><a href="/nb_NO/forside/kundeservice/sizeguide">Sizeguide</a></li>
 					<li><a href="/nb_NO/forside/kundeservice/vilkar">Vilkår</a></li>
-					<li><a href="/nb_NO/forside/kundeservice/om-webshoppen">Om webshoppen</a></li>
+					<li><a href="/nb_NO/forside/kundeservice/om-webshoppen">Om Webshoppen</a></li>
+					<li><a href="/nb_NO/kundservice/telefontider/levering-og-frakt">Levering og frakt</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>
@@ -279,10 +280,10 @@
                 <h2>HOME SHOPPING</h2>
                 <ul class="menu">
                     <li><a href="/nb_NO/forside/home-shopping">Bli vertinne</a></li>
-                    <li><a href="/nb_NO/forside/home-shopping/finn-konsulent">Finn konsulent</a></li>
-                    <li><a href="/nb_NO/forside/home-shopping/apent-hus">Åpent hus</a></li>
+                    <li><a href="/nb_NO/forside/home-shopping/finn-konsulent">Finn Shopping Advisor</a></li>
+                    <li><a href="/nb_NO/forside/home-shopping/apent-hus">Åpent Hus</a></li>
 				    <li><a href="/nb_NO/forside/katalog">Katalog</a></li>
-                    <li><a href="/nb_NO/forside/bli-konsulent/fritidskonsulent">Bli konsulent</a></li>
+                    <li><a href="/nb_NO/forside/bli-konsulent/fritidskonsulent">Bli Shopping Advisor</a></li>
                 </ul><br>		
 				<h2>BE SOCIAL</h2>
 				 <ul class="menu">

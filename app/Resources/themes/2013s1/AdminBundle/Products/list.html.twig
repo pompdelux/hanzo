@@ -32,10 +32,6 @@
     </ul>
   </nav>
 
-  <h1>{{ 'admin.categories.list.header.text.%category-name%'|trans({'%category-name%' : parent_category.title}, 'admin') }}</h1>
-
-  <p>{{ 'admin.subcategories.list.description.text'|trans({}, 'admin') }}</p>
-
 {% elseif products|length > 0 %}
 
   <nav class="sub">
@@ -90,7 +86,6 @@
   </nav>
 
   <h1>{{ 'admin.categories.list.header.text'|trans({}, 'admin') }}</h1>
-
   <p>{{ 'admin.categories.list.description.text'|trans({}, 'admin') }}</p>
 {% endif %}
 
@@ -103,6 +98,8 @@
 
   {% if categories|length > 0 %}
     {% if parent_category %}
+    <h1>{{ 'admin.categories.list.header.text.%category-name%'|trans({'%category-name%' : parent_category.title}, 'admin') }}</h1>
+    <p>{{ 'admin.subcategories.list.description.text'|trans({}, 'admin') }}</p>
      <ul id="category-list">
   	  {% for category in categories %}
 
@@ -148,7 +145,10 @@
       {% endfor %}
      </ul>
     {% endif %}
-  {% elseif products|length > 0 %}
+  {% endif %}
+
+  {% if products|length > 0 %}
+   <h1>Produkter</h1>
    <ul id="product-list">
     {% for product in products %}
 
@@ -161,8 +161,5 @@
 
     {% endfor %}
    </ul>
-  {% else %}
-
   {% endif %}
-
 {% endblock %}

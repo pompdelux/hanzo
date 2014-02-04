@@ -100,13 +100,20 @@ class OrderFeedController extends Controller
         $sql = "
             SELECT
                 o.id AS order_id, o.customers_id, o.first_name, o.last_name, o.email, o.phone, o.currency_code, o.billing_title, o.billing_first_name, o.billing_last_name, o.billing_address_line_1, o.billing_address_line_2, o.billing_postal_code, o.billing_city, o.billing_country, o.billing_state_province, o.billing_company_name, o.delivery_title, o.delivery_first_name, o.delivery_last_name, o.delivery_address_line_1, o.delivery_address_line_2, o.delivery_postal_code, o.delivery_city, o.delivery_country, o.delivery_state_province, o.delivery_company_name, o.created_at,
+                e.code AS event_code,
                 orders_id, ol.type, ol.products_id, ol.products_sku, ol.products_name, ol.products_color, ol.products_size, ol.expected_at, ol.original_price, ol.price, ol.vat, ol.quantity, ol.unit
             FROM
                 orders AS o
             JOIN
                 orders_lines AS ol
-                ON
-                  (ol.orders_id = o.id)
+                ON (
+                    ol.orders_id = o.id
+                )
+            LEFT JOIN
+                events AS e
+                ON (
+                    e.id = o.events_id
+                )
             WHERE
                 o.state > 30
                 AND
@@ -224,7 +231,7 @@ class OrderFeedController extends Controller
                 $order['billing_company_name']  = mb_convert_encoding($order['billing_company_name'], 'UTF-8', 'UTF-8');
                 $order['delivery_company_name'] = mb_convert_encoding($order['delivery_company_name'], 'UTF-8', 'UTF-8');
 
-                echo '<order id="'.$order['order_id'].'"><customers_id>'.$order['customers_id'].'</customers_id><first_name><![CDATA['.$order['first_name'].']]></first_name><last_name><![CDATA['.$order['last_name'].']]></last_name><email>'.$order['email'].'</email><phone>'.$order['phone'].'</phone><currency_code>'.$order['currency_code'].'</currency_code><billing_title>'.$order['billing_title'].'</billing_title><billing_first_name><![CDATA['.$order['billing_first_name'].']]></billing_first_name><billing_last_name><![CDATA['.$order['billing_last_name'].']]></billing_last_name><billing_address_line_1><![CDATA['.$order['billing_address_line_1'].']]></billing_address_line_1><billing_address_line_2><![CDATA['.$order['billing_address_line_2'].']]></billing_address_line_2><billing_postal_code><![CDATA['.$order['billing_postal_code'].']]></billing_postal_code><billing_city><![CDATA['.$order['billing_city'].']]></billing_city><billing_country><![CDATA['.$order['billing_country'].']]></billing_country><billing_state_province><![CDATA['.$order['billing_state_province'].']]></billing_state_province><billing_company_name><![CDATA['.$order['billing_company_name'].']]></billing_company_name><delivery_title>'.$order['delivery_title'].'</delivery_title><delivery_first_name><![CDATA['.$order['delivery_first_name'].']]></delivery_first_name><delivery_last_name><![CDATA['.$order['delivery_last_name'].']]></delivery_last_name><delivery_address_line_1><![CDATA['.$order['delivery_address_line_1'].']]></delivery_address_line_1><delivery_address_line_2><![CDATA['.$order['delivery_address_line_2'].']]></delivery_address_line_2><delivery_postal_code><![CDATA['.$order['delivery_postal_code'].']]></delivery_postal_code><delivery_city><![CDATA['.$order['delivery_city'].']]></delivery_city><delivery_country><![CDATA['.$order['delivery_country'].']]></delivery_country><delivery_state_province><![CDATA['.$order['delivery_state_province'].']]></delivery_state_province><delivery_company_name><![CDATA['.$order['delivery_company_name'].']]></delivery_company_name><created_at>'.$order['created_at'].'</created_at><order_lines>';
+                echo '<order id="'.$order['order_id'].'"><customers_id>'.$order['customers_id'].'</customers_id><first_name><![CDATA['.$order['first_name'].']]></first_name><last_name><![CDATA['.$order['last_name'].']]></last_name><email>'.$order['email'].'</email><phone>'.$order['phone'].'</phone><currency_code>'.$order['currency_code'].'</currency_code><billing_title>'.$order['billing_title'].'</billing_title><billing_first_name><![CDATA['.$order['billing_first_name'].']]></billing_first_name><billing_last_name><![CDATA['.$order['billing_last_name'].']]></billing_last_name><billing_address_line_1><![CDATA['.$order['billing_address_line_1'].']]></billing_address_line_1><billing_address_line_2><![CDATA['.$order['billing_address_line_2'].']]></billing_address_line_2><billing_postal_code><![CDATA['.$order['billing_postal_code'].']]></billing_postal_code><billing_city><![CDATA['.$order['billing_city'].']]></billing_city><billing_country><![CDATA['.$order['billing_country'].']]></billing_country><billing_state_province><![CDATA['.$order['billing_state_province'].']]></billing_state_province><billing_company_name><![CDATA['.$order['billing_company_name'].']]></billing_company_name><delivery_title>'.$order['delivery_title'].'</delivery_title><delivery_first_name><![CDATA['.$order['delivery_first_name'].']]></delivery_first_name><delivery_last_name><![CDATA['.$order['delivery_last_name'].']]></delivery_last_name><delivery_address_line_1><![CDATA['.$order['delivery_address_line_1'].']]></delivery_address_line_1><delivery_address_line_2><![CDATA['.$order['delivery_address_line_2'].']]></delivery_address_line_2><delivery_postal_code><![CDATA['.$order['delivery_postal_code'].']]></delivery_postal_code><delivery_city><![CDATA['.$order['delivery_city'].']]></delivery_city><delivery_country><![CDATA['.$order['delivery_country'].']]></delivery_country><delivery_state_province><![CDATA['.$order['delivery_state_province'].']]></delivery_state_province><delivery_company_name><![CDATA['.$order['delivery_company_name'].']]></delivery_company_name><created_at>'.$order['created_at'].'</created_at></event_code>'.$order['event_code'].'</event_code><order_lines>';
                 flush();
             }
 
@@ -281,7 +288,7 @@ class OrderFeedController extends Controller
                 echo '<?xml version="1.0" encoding="UTF-8"?>'."\n".'<orders><since>'.$from_date.'</since><to>'.$to_date.'</to>';
                 break;
             case 'csv':
-                echo "country;order_id;customers_id;first_name;last_name;email;phone;currency_code;billing_title;billing_first_name;billing_last_name;billing_address_line_1;billing_address_line_2;billing_postal_code;billing_city;billing_country;billing_state_province;billing_company_name;delivery_title;delivery_first_name;delivery_last_name;delivery_address_line_1;delivery_address_line_2;delivery_postal_code;delivery_city;delivery_country;delivery_state_province;delivery_company_name;created_at,orders_id;type;products_id;products_sku;products_name;products_color;products_size;expected_at;original_price;price;vat;quantity;unit".PHP_EOL;
+                echo "country;order_id;customers_id;first_name;last_name;email;phone;currency_code;billing_title;billing_first_name;billing_last_name;billing_address_line_1;billing_address_line_2;billing_postal_code;billing_city;billing_country;billing_state_province;billing_company_name;delivery_title;delivery_first_name;delivery_last_name;delivery_address_line_1;delivery_address_line_2;delivery_postal_code;delivery_city;delivery_country;delivery_state_province;delivery_company_name;created_at;event_code;orders_id;type;products_id;products_sku;products_name;products_color;products_size;expected_at;original_price;price;vat;quantity;unit".PHP_EOL;
                 break;
         }
         flush();

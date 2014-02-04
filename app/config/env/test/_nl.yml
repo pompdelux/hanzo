@@ -14,3 +14,10 @@ propel:
                 dsn:                  mysql:host=%test_nl_database_host%;dbname=%test_nl_database_name%
                 options:              {}
                 attributes:           {}
+
+account:
+    consignor:
+        actor_id: 67
+
+consignor:
+    shipment_server: ~

@@ -29,7 +29,6 @@ class DefaultController extends CoreController
         $router = $this->get('router');
         $route = $this->get('request')->get('_route');
         $focus = $this->get('request')->get('focus', FALSE);
-        $cache_id = array('product', $product_id, $focus);
 
         $products = ProductsI18nQuery::create()
             ->joinWithProducts()
@@ -90,7 +89,7 @@ class DefaultController extends CoreController
         foreach ($images as $key => $data) {
             $sorted_images[$data['type'].$key] = $data;
         }
-        ksort($sorted_images);
+        krsort($sorted_images);
 
         $all_colors = $colors = $sizes = array();
         $product_ids = array();
@@ -122,7 +121,9 @@ class DefaultController extends CoreController
             }
 
             natcasesort($colors);
-            ksort($sizes);
+            uksort($sizes, function ($a, $b) {
+                return (int) $a - (int) $b;
+            });
         }
 
         $references = ProductsImagesProductReferencesQuery::create()

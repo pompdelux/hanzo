@@ -20,7 +20,9 @@ class Tools
     /**
      * Sanitize a string, trying to translate some caracters before stripping unwanted ones
      *
-     * @param string $v
+     * @param string  $v
+     * @param string  $with
+     * @param boolean $lower
      * @return string
      */
     public static function stripText($v, $with = '-', $lower = true)
@@ -103,22 +105,22 @@ class Tools
                         break;
                     case 'NO':
                     case 'SalesNO':
-                        $to = 'order@pompdelux.no';
+                        $to = 'orderno@pompdelux.com';
                         break;
                     case 'SE':
                     case 'SalesSE':
-                        $to = 'order@pompdelux.se';
+                        $to = 'orderse@pompdelux.com';
                         break;
                     case 'AT':
                     case 'SalesAT':
-                        $to = 'order@pompdelux.at';
+                        $to = 'orderat@pompdelux.com';
                         break;
                     case 'CH':
                     case 'SalesCH':
-                        $to = 'order@pompdelux.ch';
+                        $to = 'orderch@pompdelux.com';
                         break;
                     default:
-                        $to = 'order@pompdelux.dk';
+                        $to = 'orderdk@pompdelux.com';
                         break;
                 }
 
@@ -127,34 +129,34 @@ class Tools
                 switch ($attributes->global->domain_key) {
                     case 'DE':
                     case 'SalesDE':
-                        $to = 'returde@pompdelux.dk';
+                        $to = 'returde@pompdelux.com';
                         break;
                     case 'FI':
                     case 'SalesFI':
-                        $to = 'returfi@pompdelux.dk';
+                        $to = 'returfi@pompdelux.com';
                         break;
                     case 'NL':
                     case 'SalesNL':
-                        $to = 'returnl@pompdelux.dk';
+                        $to = 'returnl@pompdelux.com';
                         break;
                     case 'NO':
                     case 'SalesNO':
-                        $to = 'returno@pompdelux.dk';
+                        $to = 'returno@pompdelux.com';
                         break;
                     case 'SE':
                     case 'SalesSE':
-                        $to = 'returse@pompdelux.dk';
+                        $to = 'returse@pompdelux.com';
                         break;
                     case 'AT':
                     case 'SalesAT':
-                        $to = 'returat@pompdelux.dk';
+                        $to = 'returat@pompdelux.com';
                         break;
                     case 'CH':
                     case 'SalesCH':
-                        $to = 'returch@pompdelux.dk';
+                        $to = 'returch@pompdelux.com';
                         break;
                     default:
-                        $to = 'retur@pompdelux.dk';
+                        $to = 'returdk@pompdelux.com';
                         break;
                 }
                 break;
@@ -170,6 +172,7 @@ class Tools
      *
      * @param  string $name the name of the sequence
      * @return int
+     * @throws \InvalidArgumentException
      */
     public static function getNextSequenceId($name)
     {
@@ -213,7 +216,7 @@ class Tools
      * Wrapping the getPaymentGatewayId method to auto-generate gateway id's
      *
      * @param int $gateway_id if specified, this is used over the auto generated one
-     * @return $gateway_id;
+     * @return int;
      */
     public static function getPaymentGatewayId($gateway_id = null)
     {
@@ -231,6 +234,7 @@ class Tools
      * @param mixed   $data  the data to log
      * @param integer $back  how many levels back we dump trace for
      * @param boolean $trace set to true and the log will get a backtrace dump attached
+     * @return mixed
      */
     public static function log($data, $back = 0, $trace = false)
     {
@@ -307,7 +311,7 @@ class Tools
      *
      * @see http://dk.php.net/manual/en/function.money-format.php
      *
-     * @param float $numner
+     * @param float  $numner
      * @param string $format see php.net for format documentation
      * @return string
      */
@@ -428,6 +432,7 @@ class Tools
     /**
      * build and return "in order edit warning"
      *
+     * @param bool $compact
      * @return string
      */
     public static function getInEditWarning($compact = false)
@@ -463,6 +468,7 @@ class Tools
      * @param string  $value     value of the cookie
      * @param integer $ttl       cookie ttl, defaults to session cookie (0)
      * @param boolean $http_only set to false if cookie is http only (ie. no javascript access)
+     * @return boolean
      */
     public static function setCookie($name, $value, $ttl = 0, $http_only = true)
     {
@@ -577,7 +583,7 @@ class Tools
      *
      * @param string $src image source
      * @param string $preset the image preset to use - format heightXwidth
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return string
      */
     public static function imagePath($src, $preset = '')
@@ -611,6 +617,12 @@ class Tools
         return $url['scheme'].'://'.$url['host'].$url['path'].'?'.$url['query'];
     }
 
+
+    /**
+     * @param string $src
+     * @param array  $params
+     * @return string
+     */
     protected static function generateImageTag($src, array $params = array())
     {
         // title and alt should never be the same...
@@ -633,6 +645,10 @@ class Tools
         return '<img src="' . $src . '"' . $extra . '>';
     }
 
+
+    /**
+     * @return Hanzo
+     */
     protected static function getHanzoInstance()
     {
         static $hanzo;

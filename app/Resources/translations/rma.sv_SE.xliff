@@ -64,7 +64,7 @@
             </trans-unit>
             <trans-unit id="rma.form.submit">
                 <source>rma.form.submit</source>
-                <target>Upprätta retursedel...</target>
+                <target><![CDATA[Upprätta retursedel & returetikett...]]></target>
             </trans-unit>
             <trans-unit id="rma.form.label.return.order">
                 <source>rma.form.label.return.order</source>
@@ -120,7 +120,7 @@
             </trans-unit>
             <trans-unit id="rma.slip.description">
                 <source>rma.slip.description</source>
-                <target><![CDATA[<p>Om du &ouml;nskar att byta eller returnera varor, ska du fylla i bifoga retursedeln.<br>Eftersom din returvara ska s&auml;ljas igen, &auml;r det en stor hj&auml;lp f&ouml;r oss att du returnerar varan i original f&ouml;rpackning med labels p&aring; etc.<br><br>Du har mottagit en returlabel per mail, som du kan anv&auml;nda vid returnering - anv&auml;nd denna s&aring; drar vi endast av SEK 49,- av v&auml;rdet p&aring; dina returvaror.<br><br>Om du returnerar en reklamation eller en vara som blivit felskickad, &auml;r f&ouml;rs&auml;ndelsen naturligtvis fraktfri f&ouml;r dig. Om du &ouml;nskar att byta till en annan storlek, f&auml;rg eller till en helt annan vara, &auml;r f&ouml;rs&auml;ndelsen &auml;ven h&auml;r fraktfri. Varans pris f&aring;r dock inte &ouml;verstiga priset p&aring; varan du returnerar. Om varan du &ouml;nskar &auml;r uts&aring;ld, &aring;terbetalar vi beloppet till dig.<br><br>Om du har betalat med kort, &ouml;verf&ouml;rs ditt returbelopp till det betalkort du anv&auml;nde vid best&auml;llning. Om du har betalat mot faktura (PayByBill), ber vi dig att kontakta Gothia Finans p&aring; 0340-664444.<br><b>Observera:</b> &Auml;ven om du v&auml;ntar p&aring; en kreditnota p&aring; dina returvaror, ska du betala innest&aring;ende faktura inom 30 dagar.<br>F&ouml;r ytterligare information se: <a href="/sv_SE/" target="_blank">www.pompdelux.se</a></p>]]></target>
+                <target><![CDATA[<p>Om du &ouml;nskar att byta eller returnera varor, ska du fylla i bifoga retursedeln.<br>Eftersom din returvara ska s&auml;ljas igen, &auml;r det en stor hj&auml;lp f&ouml;r oss att du returnerar varan i original f&ouml;rpackning med labels p&aring; etc.<br><br>Skriv ut och anv&auml;nd returetiketten vid returnering s&aring; drar vi endast SEK 49,- fr&aring;n v&auml;rdet p&aring; dina returvaror.<br><br>Om du returnerar en reklamation eller en vara som blivit felskickad, &auml;r f&ouml;rs&auml;ndelsen naturligtvis fraktfri f&ouml;r dig. Om du &ouml;nskar att byta till en annan storlek, f&auml;rg eller till en helt annan vara, &auml;r f&ouml;rs&auml;ndelsen &auml;ven h&auml;r fraktfri. Varans pris f&aring;r dock inte &ouml;verstiga priset p&aring; varan du returnerar. Om varan du &ouml;nskar &auml;r uts&aring;ld, &aring;terbetalar vi beloppet till dig.<br><br>Om du har betalat med kort, &ouml;verf&ouml;rs ditt returbelopp till det betalkort du anv&auml;nde vid best&auml;llning. Om du har betalat mot faktura (PayByBill), ber vi dig att kontakta Gothia Finans p&aring; 0340-664444.<br><b>Observera:</b> &Auml;ven om du v&auml;ntar p&aring; en kreditnota p&aring; dina returvaror, ska du betala innest&aring;ende faktura inom 30 dagar.<br>F&ouml;r ytterligare information se: <a href="/sv_SE/" target="_blank">www.pompdelux.se</a></p>]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.activitycode">
                 <source>rma.slip.thead.activitycode</source>

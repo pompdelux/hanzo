@@ -17,3 +17,23 @@ propel:
                 dsn:                  mysql:host=%prod_de_database_host%;dbname=%prod_de_database_name%
                 options:              {}
                 attributes:           {}
+
+account:
+    consignor:
+        actor_id: 69
+
+consignor:
+    shipment_server:
+        options:
+              actor: 147
+              product_concept_id: 1765
+              service_id: ""
+              key: PompDeluxDE
+              to_address:
+                  name: "POMPdeLUX"
+                  address_line_1: "Krokamp 128"
+                  postal_code: "24539"
+                  city: "Neumünster"
+                  country_iso2: DE
+                  email: mailde@pompdelux.com
+                  phone: "040-3571 5072"

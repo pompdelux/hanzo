@@ -951,8 +951,6 @@ class ECommerceServices extends SoapService
      */
     public function SalesOrderLockUnlock ($data)
     {
-        $errors = array();
-
         if (empty($data->eOrderNumber)) {
             $this->logger->addCritical(__METHOD__.' '.__LINE__.': no eOrderNumber given.');
             return self::responseStatus('Error', 'SalesOrderLockUnlockResult', array('no eOrderNumber given.'));
@@ -968,6 +966,11 @@ class ECommerceServices extends SoapService
         if (!$order instanceof Orders) {
             $this->logger->addCritical(__METHOD__.' '.__LINE__.': order #' . $data->eOrderNumber . ' does not exist.');
             return self::responseStatus('Error', 'SalesOrderLockUnlockResult', array('order #' . $data->eOrderNumber . ' does not exist.'));
+        }
+
+        if ($order->getInEdit()) {
+            $this->logger->addCritical(__METHOD__.' '.__LINE__.': order #' . $data->eOrderNumber . ' cannot be locked, the order is "in edit".');
+            return self::responseStatus('Error', 'SalesOrderLockUnlockResult', array('order #' . $data->eOrderNumber . ' cannot be locked, the order is "in edit".'));
         }
 
         // ....................
@@ -1173,7 +1176,7 @@ class ECommerceServices extends SoapService
             }
             $this->timer->lap('time in '.$provider.' gateway');
 
-            if ( empty($result['status']) || (!in_array($result['status'], [true, 'ACCEPTED'])) ) {
+            if (empty($result['status']) || (!in_array($result['status'], [true, 'ACCEPTED'], true))) {
                 $error = array(
                     'cound not capture order #' . $data->eOrderNumber,
                     'error: '.(empty($result['status_description']) ? 'unknown error' : $result['status_description'])
@@ -1304,30 +1307,30 @@ class ECommerceServices extends SoapService
         $k = strtolower($entry->Currency.'.'.$entry->CustAccount);
 
         $c_map = array(
-            'dkk.dkk'     => array('currency' => 'DKK', 'domain' => 'DK', 'vat' => 25),
-            'eur.eur'     => array('currency' => 'EUR', 'domain' => 'COM', 'vat' => 25),
+            'dkk.dkk'     => array('currency' => 'DKK', 'domain' => 'DK',      'vat' => 25),
+            'eur.eur'     => array('currency' => 'EUR', 'domain' => 'COM',     'vat' => 25),
             'dkk.salesdk' => array('currency' => 'DKK', 'domain' => 'SalesDK', 'vat' => 25),
 
-            'nok.nok'     => array('currency' => 'NOK', 'domain' => 'NO', 'vat' => 25),
+            'nok.nok'     => array('currency' => 'NOK', 'domain' => 'NO',      'vat' => 25),
             'nok.salesno' => array('currency' => 'NOK', 'domain' => 'SalesNO', 'vat' => 25),
 
-            'sek.sek'     => array('currency' => 'NOK', 'domain' => 'SE', 'vat' => 25),
+            'sek.sek'     => array('currency' => 'NOK', 'domain' => 'SE',      'vat' => 25),
             'sek.salesse' => array('currency' => 'NOK', 'domain' => 'SalesSE', 'vat' => 25),
 
-            'eur.fin'     => array('currency' => 'NOK', 'domain' => 'FI', 'vat' => 24),
+            'eur.fin'     => array('currency' => 'NOK', 'domain' => 'FI',      'vat' => 24),
             'eur.salesfi' => array('currency' => 'NOK', 'domain' => 'SalesFI', 'vat' => 24),
 
-            'eur.nld'     => array('currency' => 'NOK', 'domain' => 'NL', 'vat' => 21),
+            'eur.nld'     => array('currency' => 'NOK', 'domain' => 'NL',      'vat' => 21),
             'eur.salesnl' => array('currency' => 'NOK', 'domain' => 'SalesNL', 'vat' => 21),
 
-            'eur.de'      => array('currency' => 'EUR', 'domain' => 'DE', 'vat' => 19),
+            'eur.de'      => array('currency' => 'EUR', 'domain' => 'DE',      'vat' => 19),
             'eur.salesde' => array('currency' => 'EUR', 'domain' => 'SalesDE', 'vat' => 19),
 
-            'eur.at'      => array('currency' => 'EUR', 'domain' => 'DE', 'vat' => 20),
-            'eur.salesat' => array('currency' => 'EUR', 'domain' => 'SalesDE', 'vat' => 20),
+            'eur.at'      => array('currency' => 'EUR', 'domain' => 'AT',      'vat' => 20),
+            'eur.salesat' => array('currency' => 'EUR', 'domain' => 'SalesAT', 'vat' => 20),
 
-            'eur.ch'      => array('currency' => 'EUR', 'domain' => 'DE', 'vat' => 8),
-            'eur.salesch' => array('currency' => 'EUR', 'domain' => 'SalesDE', 'vat' => 8),
+            'chf.ch'      => array('currency' => 'CHF', 'domain' => 'CH',      'vat' => 8),
+            'chf.salesch' => array('currency' => 'CHF', 'domain' => 'SalesCH', 'vat' => 8),
         );
 
         return isset($c_map[$k]) ? $c_map[$k] : false;

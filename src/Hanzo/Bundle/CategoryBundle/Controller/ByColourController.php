@@ -96,6 +96,7 @@ class ByColourController extends CoreController
                     '\''.implode('\',\'', $color_map).'\''
                 ))
                 ->useProductsQuery()
+                    ->joinWithProductsI18n()
                     ->filterByMaster(null, Criteria::ISNULL)
                     ->useProductsToCategoriesQuery()
                         ->addAscendingOrderByColumn(sprintf(
@@ -104,6 +105,9 @@ class ByColourController extends CoreController
                             implode(',', $includes)
                         ))
                         ->filterByCategoriesId($includes)
+                    ->endUse()
+                    ->useProductsI18nQuery()
+                        ->filterByLocale($locale)
                     ->endUse()
                     ->filterById($ids)
                 ->endUse()
@@ -121,6 +125,7 @@ class ByColourController extends CoreController
                 }
 
                 $product = $variant->getProducts();
+                $product->setLocale($locale);
 
                 // Always use 01.
                 $image = preg_replace('/_(\d{2})/', '_01', $variant->getImage());

@@ -190,3 +190,12 @@ knp_snappy:
         binary:     %wkhtmltopdf_bin%
     image:
         enabled:    false
+
+account:
+    consignor:
+        installation_id: 90290000026
+
+consignor:
+    shipment_server: ~
+    ship_advisor:    ~
+

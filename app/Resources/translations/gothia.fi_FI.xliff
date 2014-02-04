@@ -61,7 +61,7 @@ Pyydämme teitä ottamaan ystävällisesti yhteyttä Gothian asiakaspalveluun pu
       </trans-unit>
       <trans-unit id="page_txt40">
         <source>page.help_text</source>
-        <target><![CDATA[Tulemme tarvitsemaan seuraavia tietoja vahvistaaksemme sinut Gothia PayBill asiakkaaksi.<br>Jos osoitetietosi ovat väärin pyydämme sinua korjaamaan sen kirjautumalla omille sivuille "Omat sivut"<br>Jos olet aiemmin rekisteröitynyt Gothia asiakkaaksi, löydämme asiakastilisi henkilötunnuksesi kautta.]]></target>
+        <target><![CDATA[Tulemme tarvitsemaan seuraavia tietoja vahvistaaksemme sinut Gothia PayBill asiakkaaksi.<br>Jos osoitetietosi ovat väärin pyydämme sinua korjaamaan sen kirjautumalla omille sivuille "Omat Sivut"<br>Jos olet aiemmin rekisteröitynyt Gothia asiakkaaksi, löydämme asiakastilisi henkilötunnuksesi kautta.]]></target>
       </trans-unit>
       <trans-unit id="form_txt10">
         <source>form.submit_step1</source>
@@ -85,7 +85,7 @@ Pyydämme teitä ottamaan ystävällisesti yhteyttä Gothian asiakaspalveluun pu
       </trans-unit>
       <trans-unit id="gothia.response.error.after">
         <source>Please contact POMPdeLUX customer service if you keep receiving this error.</source>
-        <target>Pyydämme teitä ottamaan yhteyttä asiakaspalveluumme jos virhe toistuu.</target>
+        <target>Pyydämme teitä ottamaan  yhteyttä Gothian asiakaspalveluun puh. 0207 229 462,  Jos virhe toistuu.</target>
       </trans-unit>
       <trans-unit id="gothia.response.5000">
         <source>We are unable to connect to Gothia Invoice service, please try again later.</source>

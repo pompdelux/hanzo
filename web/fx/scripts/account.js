@@ -178,9 +178,9 @@ var account = (function($) {
             dialoug.stopLoading();
             return;
           }
-          $.getJSON( base_url+'service/get-city-from-zip/'+$('#customers_addresses_0_postal_code').val(), function(data) {
-            if (data.status && data.data.city) {
-              $('#customers_addresses_0_city').val(data.data.city);
+          $.getJSON( base_url+'muneris/gpc/'+$('#customers_addresses_0_postal_code').val(), function(data) {
+            if (data.status && data.data.postcode.city) {
+              $('#customers_addresses_0_city').val(data.data.postcode.city);
               $('#customers_addresses_0_postal_code').css('border-color', '#444345');
               try {
                 $('#customers_phone').focus();

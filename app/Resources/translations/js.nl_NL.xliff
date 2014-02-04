@@ -96,7 +96,7 @@
             </trans-unit>
             <trans-unit id="edit.order.notice">
                 <source>edit.order.notice</source>
-                <target><![CDATA[Om je bestelling te bewerken moet je het volgende doen:<br><br>1) Klik op het "Potloodje" om je bestelling te bewerken.<br><br>2) Kies de kleur, de maat en het aantal. Wil je artikelen toevoegen, dan moet je op het menu Girl, Boy, Little Girl of Little Boy boven aan de pagina klikken.<br><br>3) Ben je klaar met je wijzigingen, klik dan op "Toon winkelmandje" en daarna op ”Ga door”. Als je je bestelling opnieuw met een creditcard hebt betaald, dan wordt je oude betaling automatisch gewist.<br><br><b>Let op:</b> gebruik je tijdens het bewerken Visa Electron of MasterCard, dan wordt het totale bedrag voor je bestelling automatisch nogmaals gereserveerd. De reservering van het bedrag van je eerste bestelling wordt meteen door POMPdeLUX geannuleerd. Er kan echter 6 weken overheen gaan voordat deze reservering door je bank opgeheven wordt. </li></ul>]]></target>
+                <target><![CDATA[Om je bestelling te bewerken moet je het volgende doen:<br><br>1) Klik op het "Potloodje" om je bestelling te bewerken.<br><br>2) Kies de kleur, de maat en het aantal. Wil je artikelen toevoegen, dan moet je op het menu GIRL, BOY, LITTLE GIRL of LITTLE BOY boven aan de pagina klikken.<br><br>3) Ben je klaar met je wijzigingen, klik dan op "Toon winkelmandje" en daarna op ”Ga door”. Als je je bestelling opnieuw met een creditcard hebt betaald, dan wordt je oude betaling automatisch gewist.<br><br><b>Let op:</b> gebruik je tijdens het bewerken Visa Electron of MasterCard, dan wordt het totale bedrag voor je bestelling automatisch nogmaals gereserveerd. De reservering van het bedrag van je eerste bestelling wordt meteen door POMPdeLUX geannuleerd. Er kan echter 6 weken overheen gaan voordat deze reservering door je bank opgeheven wordt. </li></ul>]]></target>
             </trans-unit>
             <trans-unit id="delete.order.notice">
                 <source>delete.order.notice</source>
@@ -104,7 +104,7 @@
             </trans-unit>
             <trans-unit id="consultant">
                 <source>consultant</source>
-                <target>Consulent</target>
+                <target>Shopping Advisor</target>
             </trans-unit>
             <trans-unit id="phone">
                 <source>phone</source>

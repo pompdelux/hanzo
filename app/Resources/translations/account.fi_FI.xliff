@@ -108,11 +108,11 @@
             </trans-unit>
             <trans-unit id="my.account.login.title">
                 <source>my.account.login.title</source>
-                <target>Omat sivut - Kirjaudu sisään</target>
+                <target>Omat Sivut - Kirjaudu sisään</target>
             </trans-unit>
             <trans-unit id="my.account">
                 <source>my.account</source>
-                <target>Omat sivut</target>
+                <target>Omat Sivut</target>
             </trans-unit>
             <trans-unit id="my.account.logout">
                 <source>my.account.logout</source>
@@ -412,11 +412,11 @@
             </trans-unit>
             <trans-unit id="login.restricted.other_locale">
                 <source>login.restricted.other_locale</source>
-                <target><![CDATA[Profiilisi on luotu sivustossa %site_name%. Sinun tulee siten käyttää verkkokauppaa: <a href="%url%">%site_name%</a>.<br>Jos sinulla on kysyttävää, ota yhteyttä asiakaspalveluumme.]]></target>
+                <target><![CDATA[Profiilisi on luotu sivustossa %site_name%. Sinun tulee siten käyttää Verkkokauppaa: <a href="%url%">%site_name%</a>.<br>Jos sinulla on kysyttävää, ota yhteyttä asiakaspalveluumme.]]></target>
             </trans-unit>
             <trans-unit id="login.restricted.only.customers" approved="no">
                 <source>login.restricted.only.customers</source>
-<target><![CDATA[Profiiliksesi on luotu myyntiedustaja tai työntekijä. Käytä siksi: <a href="%url%">tätä sisäänkirjautumislomaketta</a>.]]></target>
+<target><![CDATA[Profiiliksesi on luotu Shopping Advisor tai työntekijä. Käytä siksi: <a href="%url%">tätä sisäänkirjautumislomaketta</a>.]]></target>
             </trans-unit>
             <trans-unit id="stop.editing.order">
                 <source>stop.editing.order</source>
@@ -432,8 +432,25 @@
             </trans-unit>
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
-                 <target><![CDATA[<p>Omilla sivuilla voit muuttaa tietojasi sekä tilata uutiskirjeen tai perua sen tilauksen. Voit myös muokata tilaustasi.<br><br>Tilauksellasi voi olla seuraavat tilat:<br><br><b>Odottaa</b><br>Tilaustasi ei ole vielä toimitettu, ja sinulla on vähintään 24 tuntia aikaa muokata tilaustasi.
-Voit muuttaa tilaustasi, lisätä siihen tuotteita tai poistaa tuotteita. Napsauta <img src="/fx/images/icons/icons/edit.png" alt="Edit"> kuvaa, jos haluat muokata tilausta. Huomaa: Sinun tulee suorittaa maksu – aiempi maksuvaraus poistuu automaattisesti. Jos haluat poistaa koko tilauksen, napsauta <img src="/fx/images/icons/icons/delete.png" alt="Delete">-kohtaa.<br><br><b>Keskeytä muokkaus</b><br>Voit halutessasi keskeyttää muokkauksen. Napsauta ”Keskeytä muokkaus” -painiketta ja voit aloittaa tilauksen muokkaamisen alusta.<br><br><b>Käsittelyssä</b><br>Tilaus on nyt käsittelyssä ja lähetetään sinulle 1–2 päivän kuluessa. Tilausta ei voi enää muokata/viivästyttää.<br><br><b>Laskutettu</b><br>Tilauksesi on lähetetty varastostamme. Lasku näkyy PDF-tiedostona Lasku-sarakkeessa 24 tunnin kuluessa tilauksen lähettämisestä.<br><br><b>Palautukset</b><br>Haluatko palauttaa tuotteen, napsauta tästä <img src="/fx/images/icons/icons/return.png" alt="Return"><br><br>Jos toivomaasi palautettavaa tuotetta ei löydy listalta, niin voit linkkiä painamalla avata ja tulostaa sekä täyttää palautuslomakkeen käsin: <a href="{{ cdn }}images/pdf/POMPdeLUX_Returseddel_FIN.pdf" target="_blank">&raquo; Palautuslomake (PDF)</a><br><br></p>]]></target>
+                <target><![CDATA[
+                    <p>
+                        Omilla sivuilla voit muuttaa tietojasi sekä tilata uutiskirjeen tai perua sen tilauksen. Voit myös muokata tilaustasi.<br><br>
+                        Tilauksellasi voi olla seuraavat tilat:<br><br>
+                        <b>Odottaa</b><br>
+                        Tilaustasi ei ole vielä toimitettu, ja sinulla on vähintään 24 tuntia aikaa muokata tilaustasi. Voit muuttaa tilaustasi, lisätä siihen tuotteita tai poistaa tuotteita. Napsauta <img src="/fx/images/icons/icons/edit.png" alt="Edit"> kuvaa, jos haluat muokata tilausta. Huomaa: Sinun tulee suorittaa maksu – aiempi maksuvaraus poistuu automaattisesti. Jos haluat poistaa koko tilauksen, napsauta <img src="/fx/images/icons/icons/delete.png" alt="Delete">-kohtaa.<br><br>
+                        <b>Keskeytä muokkaus</b><br>
+                        Voit halutessasi keskeyttää muokkauksen. Napsauta ”Keskeytä muokkaus” -painiketta ja voit aloittaa tilauksen muokkaamisen alusta.<br><br
+                        ><b>Käsittelyssä</b><br>
+                        Tilaus on nyt käsittelyssä ja lähetetään sinulle 1–2 päivän kuluessa. Tilausta ei voi enää muokata/viivästyttää.<br><br>
+                        <b>Laskutettu</b><br>
+                        Tilauksesi on lähetetty varastostamme. Lasku näkyy PDF-tiedostona Lasku-sarakkeessa 24 tunnin kuluessa tilauksen lähettämisestä.<br><br>
+                        <b>Palautukset</b><br>
+                        Haluatko palauttaa tuotteen, napsauta tästä <img src="/fx/images/icons/icons/return.png" alt="Return"> <strong>Huomio:</strong> Palautusetiketti sekä palautuslomake ovat omassa PDF tiedostossaan ja ovat tulostettava erikseen.<br><br>
+                        Jos toivomaasi palautettavaa tuotetta ei löydy listalta, niin voit linkkiä painamalla avata ja tulostaa sekä täyttää palautuslomakkeen käsin: <a href="{{ cdn }}images/pdf/POMPdeLUX_Returseddel_FIN.pdf" target="_blank">&raquo; Palautuslomake (PDF)</a><br><br>
+						Napsauta <img src="/fx/images/icons/icons/returnlabel.png" alt="Returnlabel"> seurataksesi lähetyksesi kulkua. Palautusetiketti avautuu uudessa ikkunassa.<br><br>
+                        Napsauta <img src="/fx/images/icons/icons/trackntrace.png" alt="Track 'n trace"> seurataksesi lähetyksesi kulkua. Seuranta numeron sivu avautuu uudessa ikkunassa.<br><br>
+                    </p>
+                ]]></target>
             </trans-unit>
             <trans-unit id="newsletter" approved="no">
                 <source>newsletter</source>
@@ -469,7 +486,7 @@ Voit muuttaa tilaustasi, lisätä siihen tuotteita tai poistaa tuotteita. Napsau
             </trans-unit>
            <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>
-                <target><![CDATA[<h3>OMAT SIVUT</h3><p>Jotta voit nauttia lukuisista POMPdeLUXin tarjoamista eduista, sinun tulee rekisteröityä asiakkaaksi ennen kuin voit jatkaa ostoksiasi.<br><br>Rekisteröityneenä asiakkaana voit muun muassa:<br> 
+                <target><![CDATA[<h3>OMAT SIVUT</h3><p>Jotta voit nauttia lukuisista POMPdeLUXin tarjoamista eduista, sinun tulee rekisteröityä asiakkaaksi ennen kuin voit jatkaa ostoksiasi.<br><br>Rekisteröityneenä asiakkaana voit muun muassa:<br>
 			<ul>
             <li>Tarkistaa ja korjata tilaustasi, kunnes se pakataan ja lähetetään varastoltamme.</li>
             <li>Muuttaa tilaamiesi tuotteiden värejä ja kokoja.</li>
@@ -502,9 +519,17 @@ Voit muuttaa tilaustasi, lisätä siihen tuotteita tai poistaa tuotteita. Napsau
                 <target><![CDATA[
                     <h3>Hyvä asiakas</h3>
                     <p>Näemme, että olet lisännyt yli 20 vaatetta ostoskoriisi – olemme luonnollisesti iloisia siitä.<br>
-Haluamme kuitenkin varmistaa, että tässä ei ole tapahtunut virhettä. Pyydämme sinua siten rekisteröitymään asiakkaaksi tai kirjautumaan sisään kohdassa ”Omat sivut” käyttäjätunnuksellasi ja salasanallasi. Tämän jälkeen voit helposti jatkaa ostosten tekemistä.<br></p>
+Haluamme kuitenkin varmistaa, että tässä ei ole tapahtunut virhettä. Pyydämme sinua siten rekisteröitymään asiakkaaksi tai kirjautumaan sisään kohdassa ”Omat Sivut” käyttäjätunnuksellasi ja salasanallasi. Tämän jälkeen voit helposti jatkaa ostosten tekemistä.<br></p>
                     <p>Kiitos avustasi.</p>
                 ]]></target>
+            </trans-unit>
+            <trans-unit id="account.trackntrace.link">
+                <source>account.trackntrace.link</source>
+                <target>Track n' trace</target>
+            </trans-unit>
+            <trans-unit id="account.returnlabel.link">
+                <source>account.returnlabel.link</source>
+                <target>Print retur label</target>
             </trans-unit>
         </body>
     </file>

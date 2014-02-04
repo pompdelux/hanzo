@@ -17,3 +17,6 @@ propel:
 
 cms:
     frontpage: 538
+
+consignor:
+    shipment_server: ~

@@ -53,8 +53,7 @@ class DeadOrderService
      * @param bool $dryrun Avoid changing orders
      * @param bool $debug Output debugging info
      * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function autoCleanup( $dryrun, $debug )
     {
         $this->dryrun = $dryrun;
@@ -70,11 +69,11 @@ class DeadOrderService
 
     /**
      * getOrdersToBeDeleted
+     *
      * @param int $limit
      * @param bool $instanceDelete
      * @return array
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function getOrdersToBeDeleted( $limit = 0, $instanceDelete = false )
     {
         $toBeDeleted = array();
@@ -120,9 +119,10 @@ class DeadOrderService
 
     /**
      * checkOrderForErrors
+     *
+     * @param Orders $order
      * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function checkOrderForErrors( $order )
     {
         $status = array(
@@ -313,9 +313,10 @@ class DeadOrderService
 
     /**
      * deleteOrders
+     *
+     * @param array $toBeDeleted array of order objects to delete.
      * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     protected function deleteOrders( Array $toBeDeleted )
     {
         foreach ($toBeDeleted as $order)
@@ -335,9 +336,10 @@ class DeadOrderService
 
     /**
      * debug
+     *
+     * @param string $msg
      * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function debug( $msg )
     {
         $this->debug ? error_log('[DEBUG]: '.$msg) : '';
@@ -345,9 +347,10 @@ class DeadOrderService
 
     /**
      * getStatus
+     *
+     * @param Orders $order
      * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     protected function getStatus( Orders $order )
     {
         return $this->dibsApi->call()->payinfo($order);
@@ -355,9 +358,10 @@ class DeadOrderService
 
     /**
      * getTransactionId
+     *
+     * @param Orders $order
      * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     protected function getTransactionId( Orders $order )
     {
         $atts = $order->getAttributes(Propel::getConnection(null, Propel::CONNECTION_WRITE));
@@ -391,8 +395,7 @@ class DeadOrderService
      * NICETO: priority: low, support limit
      * @param int $limit
      * @return array
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function getOrders( $limit = 0 )
     {
         $orders = OrdersQuery::create()

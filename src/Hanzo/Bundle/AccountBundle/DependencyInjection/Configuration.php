@@ -20,9 +20,24 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('account');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode
+            ->children()
+                ->arrayNode('consignor')
+                    ->isRequired()
+                    ->children()
+                        ->scalarNode('trackntrace_url')
+                            ->defaultValue('http://myconsignor.no/WebShopPackageTracker.aspx?installationID=:installation_id:&ActorID=:actor_id:&orderNUmber=:order_id:')
+                        ->end()
+                        ->scalarNode('installation_id')
+                            ->defaultValue('')
+                        ->end()
+                        ->scalarNode('actor_id')
+                            ->defaultValue('')
+                        ->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
 
         return $treeBuilder;
     }

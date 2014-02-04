@@ -62,7 +62,7 @@ Kontakt vennligst Gothia Kundeservice: 2287 8970<br>Ved andre godkjenningsfeil, 
       <trans-unit id="page_txt40">
         <source>page.help_text</source>
         <target><![CDATA[Følgende informasjon skal brukes for å verifisere deg hos Gothia PayByBill.<br>
-Hvis adressen din ikke er riktig, må du endre den under "Min side".<br>
+Hvis adressen din ikke er riktig, må du endre den under "Min Side".<br>
 Hvis du har vært kunde hos Gothia før, er ditt personnummer lagret på din kundekonto.]]></target>
       </trans-unit>
       <trans-unit id="form_txt10">
@@ -87,7 +87,7 @@ Hvis du har vært kunde hos Gothia før, er ditt personnummer lagret på din kun
       </trans-unit>
       <trans-unit id="gothia.response.error.after">
         <source>Please contact POMPdeLUX customer service if you keep receiving this error.</source>
-        <target>Kontakt vennligst POMPdeLUX kundeservice, hvis feilen gjentar seg.</target>
+        <target>Kontakt vennligst Gothia Kundeservice: 2287 8970, hvis feilen gjentar seg.</target>
       </trans-unit>
       <trans-unit id="gothia.response.5000">
         <source>We are unable to connect to Gothia Invoice service, please try again later.</source>

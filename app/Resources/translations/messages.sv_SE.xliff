@@ -138,7 +138,7 @@
                         Du kommer nu att redigera E-ordernummer <a href="%history_url%" title="se ordren">%order_id%</a>.<br>
                         Om du önskar att avbryta redigeringen av din order - <a href="%stop_url%" title="stop editering af ordren"> – klicka här.</a>
                     </p>
-                    <p>Om du önskar att ändra en färg eller storlek, ska du klicka på pennan. Om du önskar att lägga till varor, ska du klicka på Tjej, Kille, Liten Tjej eller Liten Kille, överst på sidan.</p>
+                    <p>Om du önskar att ändra en färg eller storlek, ska du klicka på pennan. Om du önskar att lägga till varor, ska du klicka på TJEJ, KILLE, LITEN TJEJ eller LITEN KILLE, överst på sidan.</p>
                     <p class="last">När du är färdig med dina ändringar, ska du klicka på ”Visa korg” och trycka på ”Fortsätt”. När du har genomfört din order med en ny kortbetalning, blir den gamla betalningen automatiskt raderad. <b>Observera:</b> Om du använder kort som betalningssätt vid redigeringen, upprättas automatiskt en ny kortreservation av totalbeloppet på din order. Reservationen av totalbeloppet på din ursprungsorder blir automatiskt annullerad av POMPdeLUX. Det kan dock gå upp till 5 vardagar, innan reservationen släpps av din bank.</p>
                 ]]></target>
             </trans-unit>
@@ -239,7 +239,7 @@
             <trans-unit id="delivery.info" approved="no">
                 <source>delivery.info</source>
                 <target><![CDATA[
-                    <p> Alla varor skickas som paketpost med Post Danmark och <a href="http://www.posten.se" target="_blank">www.posten.se</a>. Du har d&auml;rf&ouml;r m&ouml;jlighet att f&ouml;lja ditt paket via ett kollinummer fr&aring;n det att det skickas fr&aring;n oss till att det blir levererat hos ditt postombud. Om du best&auml;ller dina varor via ett <a href="/sv_SE/forside/home-shopping">Home shopping</a> arrangemang kostar frakten SEK 49,00. Om du best&auml;ller varor i v&aring;r Webshop kostar frakten SEK 69,00. <br />
+                    <p> Alla varor skickas som paketpost med Post Danmark och <a href="http://www.posten.se" target="_blank">www.posten.se</a>. Du har d&auml;rf&ouml;r m&ouml;jlighet att f&ouml;lja ditt paket via ett kollinummer fr&aring;n det att det skickas fr&aring;n oss till att det blir levererat hos ditt postombud. Om du best&auml;ller dina varor via ett <a href="/sv_SE/forside/home-shopping">Home Shopping</a> arrangemang kostar frakten SEK 49,00. Om du best&auml;ller varor i v&aring;r Webshop kostar frakten SEK 69,00. <br />
       <br />
       N&auml;r du har mottagit ditt paket, b&ouml;r du kontrollera varorna. Om paketet och/eller inneh&aring;llet &auml;r skadat, ska du snarast kontakta v&aring;r Kundservice eller <a href="http://www.posten.se" target="_blank">www.posten.se</a>.</p>
                 ]]></target>
@@ -267,7 +267,8 @@
 					<li><a href="/sv_SE/forside/kundservice/tvattrad">Tvättråd</a></li>
 					<li><a href="/sv_SE/forside/kundservice/sizeguide">Sizeguide</a></li>
 					<li><a href="/sv_SE/forside/kundservice/villkor">Villkor</a></li>
-					<li><a href="/sv_SE/forside/kundservice/om-webshopen">Om webshopen</a></li>
+					<li><a href="/sv_SE/forside/kundservice/om-webshopen">Om Webshopen</a></li>
+					<li><a href="/sv_SE/kundservice/telefontider/leverans-och-frakt">Leverans och frakt</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>
@@ -277,10 +278,10 @@
                 <h2>HOME SHOPPING</h2>
                 <ul class="menu">
                     <li><a href="/sv_SE/forside/home-shopping">Bli vardinna</a></li>
-                    <li><a href="/sv_SE/forside/home-shopping/hitta-saljare">Hitta säljare</a></li>
-					<li><a href="/sv_SE/forside/home-shopping/appet-hus">Öppet hus</a></li>
+                    <li><a href="/sv_SE/forside/home-shopping/hitta-saljare">Hitta Shopping Advisor</a></li>
+					<li><a href="/sv_SE/forside/home-shopping/appet-hus">Öppet Hus</a></li>
 					<li><a href="/sv_SE/forside/katalog">Katalog</a></li>
-					<li><a href="/sv_SE/forside/bli-saljare/fritidssaljare">Bli säljare</a></li>
+					<li><a href="/sv_SE/forside/bli-saljare/fritidssaljare">Bli Shopping Advisor</a></li>
                     </ul><br>		
 				<h2>BE SOCIAL</h2>
 				 <ul class="menu">

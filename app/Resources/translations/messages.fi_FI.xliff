@@ -133,7 +133,7 @@
             <trans-unit id="order.edit.global.notice">
                 <source>order.edit.global.notice</source>
                 <target><![CDATA[
-                  <h2>Huomaa:</h2> <p> Olet muokkaamassa E-tilausnumeroa<a href="%history_url%" title="se ordren">%order_id%</a>.<br> Jos haluat keskeyttää tilauksen muokkaamisen - <a href="%stop_url%" title="stop editering af ordren">napsauta tätä.</a> </p> <p>Jos haluat muuttaa väriä tai kokoa, napsauta lyijykynän kuvaa. Jos haluat lisätä tuotteita, napsauta Tyttö, Poika, Pieni Tyttö tai Pieni Poika valikkoa sivun yläreunassa. </p> <p class="last">Kun saat muutokset tehtyä, napsauta "Näytä ostoskori" ja valitse ”Jatka”. Kun olet maksanut tilauksen uudelleen luottokortilla, vanha maksu poistetaan automaattisesti. <br><br><b>Huomaa:</b>Jos käytät muokkauksen yhteydessä Visa Electronia tai MasterCardia, kortillasi säilyy vielä automaattisesti tilauksesi kokonaissummaa vastaava varaus. POMPdeLUX peruuttaa kuitenkin heti alkuperäisen tilauksesi kokonaissummaa vastaavan varauksen. Saattaa silti kulua jopa 6 viikkoa ennen kuin oma pankkisi poistaa varauksen. </p>]]>
+                  <h2>Huomaa:</h2> <p> Olet muokkaamassa E-tilausnumeroa<a href="%history_url%" title="se ordren">%order_id%</a>.<br> Jos haluat keskeyttää tilauksen muokkaamisen - <a href="%stop_url%" title="stop editering af ordren">napsauta tätä.</a> </p> <p>Jos haluat muuttaa väriä tai kokoa, napsauta lyijykynän kuvaa. Jos haluat lisätä tuotteita, napsauta TYTTÖ, POIKA, PIENI TYTTÖ tai PIENI POIKA valikkoa sivun yläreunassa. </p> <p class="last">Kun saat muutokset tehtyä, napsauta "Näytä ostoskori" ja valitse ”Jatka”. Kun olet maksanut tilauksen uudelleen luottokortilla, vanha maksu poistetaan automaattisesti. <br><br><b>Huomaa:</b>Jos käytät muokkauksen yhteydessä Visa Electronia tai MasterCardia, kortillasi säilyy vielä automaattisesti tilauksesi kokonaissummaa vastaava varaus. POMPdeLUX peruuttaa kuitenkin heti alkuperäisen tilauksesi kokonaissummaa vastaavan varauksen. Saattaa silti kulua jopa 6 viikkoa ennen kuin oma pankkisi poistaa varauksen. </p>]]>
                 </target>
             </trans-unit>
             <trans-unit id="customer.service.contact.info">
@@ -219,7 +219,7 @@
                 <target><![CDATA[
                     <p>Kaikki tuotteet lähetetään postipakettina <a href="http://posti.fi/" target="_blank">Posti-</a> palvelun kautta. Tämän ansiosta voit seurata lähetyksen kulkua lähetyshetkestä toimitushetkeen asti.<br />
       <br />
-      Paketit toimitetaan Posti-noutopisteeseen. Rahtikulu on EUR 8,50 (EUR 7,50, mikäli ostat tuotteet edustajan kautta esim. kotimyyntitilaisuudesta tai Avoimet ovet -tilaisuudesta).
+      Paketit toimitetaan Posti-noutopisteeseen. Rahtikulu on EUR 8,50 (EUR 7,50, mikäli ostat tuotteet edustajan kautta esim. kotimyyntitilaisuudesta tai Avoimet Ovet -tilaisuudesta).
       <br />
       Saapunut lähetys tulee tarkastaa heti. Jos pakkaus ja/tai tuotteet ovat vioittuneet, ota yhteyttä heti POMPdeLUXin asiakaspalveluun tai <a href="http://posti.fi/" target="_blank">Posti-</a>noutopisteeseen.</p>
                 ]]></target>
@@ -248,17 +248,18 @@
 				<li><a href="/fi_FI/koti/asiakaspalvelu/sizeguide">Sizeguide</a></li>
 				<li><a href="/fi_FI/koti/asiakaspalvelu/ehdot">Ehdot</a></li>
 				<li><a href="/fi_FI/koti/asiakaspalvelu/tietoa-verkkokaupasta">Tietoa verkkokaupasta</a></li>
+				<li><a href="/fi_FI/asiakaspalvelu/puhelinajat/rahti-ja-toimitus"> Rahti ja toimitus</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>
             <trans-unit id="footer.menu_2" approved="no">
                 <source>footer.menu_2</source>
                 <target><![CDATA[
-                <h2>Home shopping</h2>
+                <h2>Home Shopping</h2>
                 <ul class="menu">
 				<li><a href="/fi_FI/koti/home-shopping">Ryhdy emännäksi</a></li>
-				<li><a href="/fi_FI/koti/home-shopping/etsi-myyntiedustaja">Etsi myyntiedustaja</a></li>
-				<li><a href="/fi_FI/koti/home-shopping/avoimet-ovet">Avoimet ovet</a></li>
+				<li><a href="/fi_FI/koti/home-shopping/etsi-myyntiedustaja">Etsi Shopping Advisor</a></li>
+				<li><a href="/fi_FI/koti/home-shopping/avoimet-ovet">Avoimet Ovet</a></li>
 				<li><a href="/fi_FI/koti/kuvasto">Kuvasto</a></li>
 				<li><a href="/fi_FI/koti/tule-edustajaksi/vapaa-ajan-edustaja">Tule edustajaksi</a></li>
 				</ul><br>		

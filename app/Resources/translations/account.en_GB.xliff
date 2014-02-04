@@ -445,7 +445,24 @@
             </trans-unit>
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
-                <target><![CDATA[<p>On My account you can change your account details and subscribe or unsubscribe to our newsletter. Furthermore you can also edit your order.<br><br>Your order can have following status:<br><br><b>Pending</b><br>Your order has been registered, and you have as a minimum 24 hours to edit your order. You can change/add/delete items on your order. Just click on the <img src="/fx/images/icons/icons/edit.png" alt="Edit"> if you wish to edit your order. Please note: You must proceed through to the payment, when you edit your order. If you pay by credit card - please be aware that any previous authorizations, placed on your credit card account, can take up to 30 days to expire. If you wish to cancel your order, click on <img src="/fx/images/icons/icons/delete.png" alt="Delete">.<br><br><b>Stop editing</b><br>If you are interrupted during editing, just click on “Stop editing” and you can then start again.<br><br><b>Being processed</b><br>We are now packing your order and it will be shipped within 1-2 days. You cannot edit/cancel your order anymore.<br><br><b>Shipped</b><br>Your order has been shipped from our warehouse. You can see the invoice as a PDF file, under the column Invoice, within 24 hours after your order has been shipped.<br><br><b>Returns</b><br>If you want to return an item, you click on <img src="/fx/images/icons/icons/return.png" alt="Return"><br><br>If you cannot find the item you wish to return, click on the link and print out a blank Returns Form: <a href="{{ cdn }}images/pdf/POMPdeLUX_Returseddel_ENG.pdf" target="_blank">&raquo; Returns form (PDF)</a><br><br></p>]]></target>
+                <target><![CDATA[
+                    <p>
+                        On My account you can change your account details and subscribe or unsubscribe to our newsletter. Furthermore you can also edit your order.<br><br>
+                        Your order can have following status:<br><br>
+                        <b>Pending</b><br>
+                        Your order has been registered, and you have as a minimum 24 hours to edit your order. You can change/add/delete items on your order. Just click on the <img src="/fx/images/icons/icons/edit.png" alt="Edit"> if you wish to edit your order. Please note: You must proceed through to the payment, when you edit your order. If you pay by credit card - please be aware that any previous authorizations, placed on your credit card account, can take up to 30 days to expire. If you wish to cancel your order, click on <img src="/fx/images/icons/icons/delete.png" alt="Delete">.<br><br>
+                        <b>Stop editing</b><br>
+                        If you are interrupted during editing, just click on “Stop editing” and you can then start again.<br><br>
+                        <b>Being processed</b>
+                        <br>We are now packing your order and it will be shipped within 1-2 days. You cannot edit/cancel your order anymore.<br><br>
+                        <b>Shipped</b><br>
+                        Your order has been shipped from our warehouse. You can see the invoice as a PDF file, under the column Invoice, within 24 hours after your order has been shipped.<br><br>
+                        <b>Returns</b><br>
+                        If you want to return an item, you click on <img src="/fx/images/icons/icons/return.png" alt="Return"><br><br>
+                        If you cannot find the item you wish to return, click on the link and print out a blank Returns Form: <a href="{{ cdn }}images/pdf/POMPdeLUX_Returseddel_ENG.pdf" target="_blank">&raquo; Returns form (PDF)</a><br><br>
+                        Click on the <img src="/fx/images/icons/icons/trackntrace.png" alt="Track 'n trace"> next to your order to follow your parcel. The Track and Trace page will open in a new window.<br><br>
+                    </p>
+                ]]></target>
             </trans-unit>
             <trans-unit id="newsletter" approved="no">
                 <source>newsletter</source>
@@ -477,18 +494,18 @@
             </trans-unit>
             <trans-unit id="my.account.login.notice" approved="no">
                 <source>my.account.login.notice</source>
-                <target><![CDATA[<p>Create your account here</p>]]></target>	
-            </trans-unit>			
+                <target><![CDATA[<p>Create your account here</p>]]></target>
+            </trans-unit>
             <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>
-                <target><![CDATA[<h3>MY ACCOUNT</h3><p>To give you several advantages at POMPdeLUX you must create an account to continue shopping.<br><br>This will provide you with the opportunity to:<br> 
+                <target><![CDATA[<h3>MY ACCOUNT</h3><p>To give you several advantages at POMPdeLUX you must create an account to continue shopping.<br><br>This will provide you with the opportunity to:<br>
 			<ul>
             <li>Check and change your order until it is packet and shipped from our warehouse.</li>
             <li>Change colours and sizes on the selected items which you have ordered.</li>
             <li>Add and cancel items from your order as long as your order has the status “pending”. This service is available 24 hours after your order has been placed.</li>
 			<li>See your previous orders and find old invoices.</li>
           </ul></p>]]></target>
-            </trans-unit>			
+            </trans-unit>
             <trans-unit id="my.account.login.header" approved="no">
                 <source>my.account.login.header</source>
                 <target><![CDATA[<h1>Welcome to my account</h1>]]></target>
@@ -510,6 +527,14 @@ We would like to make sure that this is not due to an error and therefore must a
 After this you can easily continue shopping.<br></p>
                     <p>Thank you for your help.</p>
                 ]]></target>
+            </trans-unit>
+            <trans-unit id="account.trackntrace.link">
+                <source>account.trackntrace.link</source>
+                <target>Track n' trace</target>
+            </trans-unit>
+            <trans-unit id="account.returnlabel.link">
+                <source>account.returnlabel.link</source>
+                <target>Print retur label</target>
             </trans-unit>
         </body>
     </file>

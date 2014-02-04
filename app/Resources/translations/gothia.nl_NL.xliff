@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="file.ext">
     <body>
@@ -86,7 +86,7 @@ Neem graag contact op met Gothia B.V. Klantenservice: 078 – 751 80 22<br>Bij a
       </trans-unit>
       <trans-unit id="gothia.response.error.after">
         <source>Please contact POMPdeLUX customer service if you keep receiving this error.</source>
-        <target>Neem contact op met de POMPdeLUX klantenservice, als deze fout zich herhaald.</target>
+        <target>Neem graag contact op met Gothia B.V. Klantenservice: 078 – 751 80 22, als deze fout zich herhaald.</target>
       </trans-unit>
       <trans-unit id="gothia.response.5000">
         <source>We are unable to connect to Gothia Invoice service, please try again later.</source>

@@ -5,7 +5,7 @@ namespace Hanzo\Model;
 use Hanzo\Model\om\BaseAddresses;
 
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
-use Symfony\Component\Validator\ExecutionContext;
+use Symfony\Component\Validator\ExecutionContextInterface;
 
 /**
  * Skeleton subclass for representing a row from the 'addresses' table.
@@ -76,13 +76,13 @@ class Addresses extends BaseAddresses
     /**
      * Validate length of users full name
      *
-     * @param  ExecutionContext $context
+     * @param  ExecutionContextInterface $context
      */
-    public function isFullNameWithinLimits(ExecutionContext $context)
+    public function isFullNameWithinLimits(ExecutionContextInterface $context)
     {
         $length = mb_strlen($this->getFirstName().' '.$this->getLastName());
         if (30 < $length) {
-            $context->addViolationAtSubPath('first_name', 'name.max.length', ['{{ limit }}' => 30], null, $length);
+            $context->addViolationAt('first_name', 'name.max.length', ['{{ limit }}' => 30], null, $length);
         }
     }
 
