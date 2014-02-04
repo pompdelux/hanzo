@@ -107,10 +107,6 @@
         </nav>
         {% if skip_my_account is not defined %}
             <div id="mega-basket">
-                <div class="basket">
-                    <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}"><span class="sprite"></span></a>
-                    <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}">{{ 'your.basket'|trans }}</a>
-                </div>
 
                 {{ render_esi(controller('BasketBundle:Default:view', { 'template': 'BasketBundle:Default:megaBasket.html.twig' })) }}
 

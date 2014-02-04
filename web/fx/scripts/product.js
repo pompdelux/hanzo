@@ -292,9 +292,10 @@
               // Add the new product to the basket table.
               $mega_basket_table.append('<div class="item new"><img src="' + $('.productimage-large img').attr('src') + '" />' + $('h1.title').text() + '<span class="right total">' + response.latest.price + '</span></div>');
               // Update total price.
-              var find = /\([0-9+]\) /;
-              var total = response.data.replace(find, '');
+              var item_count_regex = /\([0-9+]\) /;
+              var total = response.data.replace(item_count_regex, '');
               $('.grand-total', $mega_basket).text(total);
+              $('.item-count', $mega_basket).text(response.data.match(item_count_regex));
 
               $('body').trigger('basket_product_added');
             }

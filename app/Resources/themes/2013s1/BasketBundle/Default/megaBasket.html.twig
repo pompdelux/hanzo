@@ -1,3 +1,9 @@
+
+<div class="basket">
+    <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}"><span class="sprite"></span></a>
+    <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}">{{ 'your.basket'|trans }} <span class="item-count">({{ products ? products|length : '0' }})</span></a>
+</div>
+
 <div class="basket">
     <div class="basket-table">
       <div class="basket-table-body nano">
@@ -27,5 +33,4 @@
         <span class="right total grand-total">{{ total|money }}</span>
       </div>
     </div>
-
 </div>
