@@ -697,8 +697,8 @@ div header.row {
 #secondary-links ul.first > li > a {
   color: white;
 }
-#secondary-links ul.first li:first-child {
-  float: left;
+#secondary-links ul.first li#select-domain {
+  float: right;
 }
 #secondary-links ul.second {
   z-index: 1;
@@ -3540,7 +3540,6 @@ html.oldie nav.main-menu > ul > li > ul.on {
   border: #F0F0F0 1px solid;
 }
 html.oldie #secondary-links .menu.horizontal {
-  float: right;
   clear: both;
 }
 html.oldie #secondary-links .menu.horizontal li {
@@ -3548,7 +3547,6 @@ html.oldie #secondary-links .menu.horizontal li {
   float: left;
 }
 html.oldie #secondary-links .menu.horizontal li > a {
-  line-height: 40px;
   display: block;
 }
 html.oldie #secondary-links .menu.horizontal li .dropdown a {
@@ -3750,6 +3748,7 @@ article {
   line-height: 15px;
 }
 
+div.hr,
 hr {
   border: none;
   clear: both;

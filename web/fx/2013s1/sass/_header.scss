@@ -232,8 +232,8 @@ div header.row {
         > li > a {
             color: white;
         }
-        li:first-child {
-            float: left;
+        li#select-domain {
+            float: right;
         }
     }
 	ul.second{

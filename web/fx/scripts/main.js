@@ -213,6 +213,14 @@
       });
     };
 
+    pub.initSearchForm = function() {
+      var mini_basket_width = $('#secondary-links').outerWidth(),
+          search_form_padding = $('form.search-form input[type="text"]').innerWidth() - $('form.search-form input[type="text"]').width();
+
+      $('form.search-form input[type="text"]').css('width', mini_basket_width - search_form_padding);
+
+    };
+
     var getDocHeight = function(){
       var D = document;
       return Math.max(Math.max(
@@ -234,5 +242,6 @@
   gui.initCountdown();
   gui.initBasket();
   gui.initToTop();
+  gui.initSearchForm();
 
 })(document, jQuery);
