@@ -6,7 +6,7 @@
 <!--[if gt IE 9]><!--> <html class="no-js" lang="{{ html_lang }}" data-domainkey="{{ domain_key|lower }}" xmlns:og="http://ogp.me/ns#"> <!--<![endif]-->
 <head>
 {% if browser_title is defined and page_type|default('page') != 'frontpage' %}
-<title>{{ browser_title }} - {{ 'browser.title'|trans }}</title>
+<title>{{ browser_title|strip_tags }} - {{ 'browser.title'|trans }}</title>
 {% else %}
 <title>{{ 'browser.title'|trans }}</title>
 {% endif %}
@@ -55,7 +55,7 @@
 <script type="text/javascript" src="{{ cdn }}fx/scripts/modernizr.js"></script>
 </head>
 <body id="body-{{ page_type|default('page') }}" class="{{ body_classes|default('') }} {{ html_lang }}">
-
+<div class="top-bar"></div>
 <div id="container" class="container container_8">
     <nav class="first grid_8 row main-menu">
         {{ render(controller('CMSBundle:Menu:byTitle', {
@@ -66,12 +66,11 @@
             <li class="last">
                 <form action="{{ path('_search', {'_locale' : app.request.locale}) }}" class="search-form">
                     <input type="submit" class="text-button button" value="{{ "button.label"|trans({}, 'search') }}">
-                    <input type="text" name="q">
+                    <input type="text" name="q" placeholder="{{ "button.label"|trans({}, 'search')|upper }}">
                 </form>
             </li>
         </ul>
     </nav>
-
     <header class="grid_8 row">
         <a href="{{ path('_homepage', {'_locale' : app.request.locale}) }}" title="{{ "home"|trans }}">
             {{ fx_image_tag('images/POMPdeLUX_logo_SS12.png', '0x100', {'id':'logo', 'alt':'POMPdeLUX'}) }}
@@ -107,7 +106,7 @@
             </ul>
         </nav>
 
-        <nav class="menu main-menu">
+        <nav class="menu main-menu clearfix">
             {{ render(controller('CMSBundle:Menu:menu', {
                 'type':   left_menu.type,
                 'thread': left_menu.thread,
@@ -116,8 +115,6 @@
         </nav><!-- /nav.main -->
 
     {% endif %}
-
-        <hr class="right">
     </header>
 
     <div id="main" role="main" class="main clearfix grid_8">
