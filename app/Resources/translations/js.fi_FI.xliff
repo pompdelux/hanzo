@@ -378,6 +378,10 @@
                 <source>rma.product.not.filled.correctly</source>
                 <target>Tuotteen vaihdossa täytyy ilmoittaa sekä koko että väri.</target>
             </trans-unit>
+            <trans-unit id="checkout.confirm.address.block" approved="no">
+                <source>checkout.confirm.address.block</source>
+                <target>Vahvista, että osoitetietosi ovat oikein.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

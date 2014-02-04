@@ -156,3 +156,22 @@ div.invalid-order {
     border: 2px solid $form-error-color;
     padding: 10px;
 }
+
+.dialoug .address-confirm-box {
+	padding: 20px;
+	div {
+		display: inline-block;
+		width: 250px;
+		float: left;
+	}
+	li {
+		font-weight: normal;
+		padding: 5px 0;
+		vertical-align: top;
+	}
+	b {
+		width: 100px;
+		word-wrap: break-word;
+		display: inline-block;
+	}
+}

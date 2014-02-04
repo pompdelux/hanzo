@@ -62,14 +62,6 @@
             <p>E-ordernummer: <b>%order_id%</b></p>
             ]]></target>
       </trans-unit>
-      <trans-unit id="confirm.title">
-        <source>confirm.title</source>
-        <target>OK</target>
-      </trans-unit>
-      <trans-unit id="confirm.addresses.label" approved="no">
-        <source>confirm.addresses.label</source>
-        <target>Ja, adresserna är rätt.</target>
-      </trans-unit>
       <trans-unit id="confirm.order_id">
         <source>confirm.order_id</source>
         <target>E-ordernummer</target>

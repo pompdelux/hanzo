@@ -2417,6 +2417,25 @@ div.invalid-order {
   padding: 10px;
 }
 
+.dialoug .address-confirm-box {
+  padding: 20px;
+}
+.dialoug .address-confirm-box div {
+  display: inline-block;
+  width: 250px;
+  float: left;
+}
+.dialoug .address-confirm-box li {
+  font-weight: normal;
+  padding: 5px 0;
+  vertical-align: top;
+}
+.dialoug .address-confirm-box b {
+  width: 100px;
+  word-wrap: break-word;
+  display: inline-block;
+}
+
 #body-pensio-payment-form ul,
 #body-pensio-payment-form form {
   margin: 20px 0;
@@ -2857,6 +2876,10 @@ nav.main-menu > ul > li > ul li.heading > a, nav.main-menu > ul > li > ul li.sel
   overflow: hidden;
   background: white url("/fx/images/icons/icons/divider_left.png") no-repeat;
   background-position: 0 30px;
+}
+
+#colorbox {
+  outline: 0;
 }
 
 #cboxContent {

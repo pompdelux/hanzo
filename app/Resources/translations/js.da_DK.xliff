@@ -384,7 +384,7 @@
             </trans-unit>
             <trans-unit id="bookmarkbubble.android4" approved="no">
                 <source>bookmarkbubble.android4</source>
-                <target><![CDATA[<b>Install this app:</b><br /> 1) Tap <img src="%image_url%" style="height: 1.5em;display: inline-block;padding:0;margin:0;" />,<br /> 2) Select "<b>Save to bookmarks</b>",<br /> 3) Select "<b>Add to</b>" and then "<b>Home</b>"]]></target>
+                <target><![CDATA[<b>Install this app:</b><br /> 1) Tap <img src="%image_url%" style="height: 1.5em;play: inline-block;padding:0;margin:0;" />,<br /> 2) Select "<b>Save to bookmarks</b>",<br /> Select "<b>Add to</b>" and then "<b>Home</b>"]]></target>
             </trans-unit>
             <trans-unit id="bookmarkbubble.blackberry" approved="no">
                 <source>bookmarkbubble.blackberry</source>
@@ -409,6 +409,10 @@
             <trans-unit id="rma.product.not.filled.correctly">
                 <source>rma.product.not.filled.correctly</source>
                 <target>Ved ombytning af din vare skal du indtaste både størrelse og farve.</target>
+            </trans-unit>
+            <trans-unit id="checkout.confirm.address.block" approved="no">
+                <source>checkout.confirm.address.block</source>
+                <target>Bekræft at dine adresseoplysninger er korrekte.</target>
             </trans-unit>
         </body>
     </file>
