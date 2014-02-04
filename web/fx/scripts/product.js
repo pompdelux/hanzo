@@ -284,27 +284,19 @@
               }
             } else {
               window.scrollTo(window.scrollMinX, window.scrollMinY);
-              $('#mini-basket a').html(response.data);
+              $('#mini-basket a.total').html(response.data);
 
-              $mega_basket = $('#mega-basket');
-              // Open the mega-basket. Afterwards add the new product
-              $mega_basket.animate({
-                top: "-6px",
-              }, 500, 'swing', function() {
-                // Add the new product to the basket table.
-                $('table tbody', $mega_basket).append('<tr><td><img src="' + $('.productimage-large img').attr('src') + '" /></td><td>' + $('h1.title').text() + '</td><td>' + response.latest.price + '</td></tr>');
-                // var total = $('.total', $mega_basket).text()
-                // $('.total', $mega_basket)
+              var $mega_basket = $('#mega-basket'),
+                  $mega_basket_table = $('.basket-table-body .content', $mega_basket);
 
-              });
-              setTimeout(function () {
-                // Only close the basket if the mouse isnt hovering it.
-                if (!$('#mega-basket:hover').length) {
-                  $mega_basket.animate({
-                    top: '-' + ($(this).height() + 30 ) + 'px',
-                  }, 500 );
-                }
-              }, 10000);
+              // Add the new product to the basket table.
+              $mega_basket_table.append('<div class="item new"><img src="' + $('.productimage-large img').attr('src') + '" />' + $('h1.title').text() + '<span class="right total">' + response.latest.price + '</span></div>');
+              // Update total price.
+              var find = /\([0-9+]\) /;
+              var total = response.data.replace(find, '');
+              $('.grand-total', $mega_basket).text(total);
+
+              $('body').trigger('basket_product_added');
             }
             _resetForm();
           });

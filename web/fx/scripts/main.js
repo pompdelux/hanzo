@@ -184,7 +184,7 @@
     };
 
     pub.initBasket = function() {
-      var $basket = $('#mini-basket a');
+      var $basket = $('#mini-basket a.total');
       if ($basket.length) {
 
         $.cookie.defaults = {

@@ -5,37 +5,20 @@
   background: url('/fx/2013s1/../images/icons/da-s7398167b80.png') no-repeat;
 }
 
-<<<<<<< HEAD
-.icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-arrow_up, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-return, .icons-returnlabel, .icons-search, .icons-shopping-bag, .icons-show, .icons-sizeguide, .icons-trackntrace, .icons-twitter, .icons-video, .icons-zoom, form.search-form:before, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, ul.tabs li a i, ul.tabs li a.current i, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, .sizeguide, .sprite.trackntrace, .sprite.returnlabel, .body-pages .newsletter-form-simple .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.return {
-  background: url('/fx/2013s1/../images/icons/icons-s47d74bb1a4.png') no-repeat;
+.icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-arrow_up, .icons-basket-grey, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-checkout, .icons-close, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-return, .icons-returnlabel, .icons-search, .icons-shopping-bag, .icons-show, .icons-sizeguide, .icons-trackntrace, .icons-twitter, .icons-video, .icons-zoom, form.search-form:before, footer .footer-menu .newsletter .sprite, ul.tabs li a i, ul.tabs li a.current i, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, .sizeguide, .sprite.trackntrace, .sprite.returnlabel, #mega-basket .basket .sprite, #mini-basket.basket .sprite, #mega-basket .checkout-button, #mega-basket .close, .body-pages .newsletter-form-simple .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.return {
+  background: url('/fx/2013s1/../images/icons/icons-sc6dc877ed2.png') no-repeat;
 }
 
 .icons-Kundeservice_Green {
-  background-position: 0 -642px;
+  background-position: 0 -682px;
 }
 
 .icons-Kundeservice_Red {
-  background-position: 0 -546px;
+  background-position: 0 -586px;
 }
 
 .icons-Kundeservice_Yellow {
-  background-position: 0 -578px;
-=======
-.icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket-grey, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-checkout, .icons-close, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-return, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, footer .footer-menu .newsletter .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, #mega-basket .basket .sprite, #mini-basket.basket .sprite, #mega-basket .checkout-button, #mega-basket .close, .body-pages .newsletter-form-simple .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.return {
-  background: url('/fx/2013s1/../images/icons/icons-s818cfdaa1f.png') no-repeat;
-}
-
-.icons-Kundeservice_Green {
-  background-position: 0 -654px;
-}
-
-.icons-Kundeservice_Red {
-  background-position: 0 -526px;
-}
-
-.icons-Kundeservice_Yellow {
-  background-position: 0 -590px;
->>>>>>> feature/278-new-basket-design
+  background-position: 0 -618px;
 }
 
 .icons-Oeko_Tex {
@@ -43,74 +26,43 @@
 }
 
 .icons-arrow_down {
-<<<<<<< HEAD
-  background-position: 0 -1147px;
+  background-position: 0 -1307px;
 }
 
 .icons-arrow_left {
-  background-position: 0 -1156px;
+  background-position: 0 -1316px;
 }
 
 .icons-arrow_right {
-  background-position: 0 -1175px;
+  background-position: 0 -1335px;
 }
 
 .icons-arrow_up {
-  background-position: 0 -1166px;
-=======
-  background-position: 0 -1153px;
-}
-
-.icons-arrow_left {
-  background-position: 0 -1146px;
-}
-
-.icons-arrow_right {
-  background-position: 0 -1157px;
+  background-position: 0 -1326px;
 }
 
 .icons-basket-grey {
-  background-position: 0 -1032px;
->>>>>>> feature/278-new-basket-design
+  background-position: 0 -1028px;
 }
 
 .icons-basket {
-  background-position: 0 -840px;
+  background-position: 0 -836px;
 }
 
 .icons-button-left-black {
-<<<<<<< HEAD
-  background-position: 0 -1114px;
+  background-position: 0 -1274px;
 }
 
 .icons-button-left {
-  background-position: 0 -1009px;
+  background-position: 0 -1149px;
 }
 
 .icons-button-right-black {
-  background-position: 0 -1095px;
+  background-position: 0 -1255px;
 }
 
 .icons-button-right {
-  background-position: 0 -990px;
-}
-
-.icons-delete {
-  background-position: 0 -886px;
-=======
-  background-position: 0 -1219px;
-}
-
-.icons-button-left {
-  background-position: 0 -1127px;
-}
-
-.icons-button-right-black {
-  background-position: 0 -1200px;
-}
-
-.icons-button-right {
-  background-position: 0 -1108px;
+  background-position: 0 -1130px;
 }
 
 .icons-checkout {
@@ -118,12 +70,11 @@
 }
 
 .icons-close {
-  background-position: 0 -1164px;
+  background-position: 0 -1219px;
 }
 
 .icons-delete {
-  background-position: 0 -980px;
->>>>>>> feature/278-new-basket-design
+  background-position: 0 -976px;
 }
 
 .icons-delete_black {
@@ -131,11 +82,7 @@
 }
 
 .icons-delete_icon {
-<<<<<<< HEAD
-  background-position: 0 -764px;
-=======
-  background-position: 0 -808px;
->>>>>>> feature/278-new-basket-design
+  background-position: 0 -804px;
 }
 
 .icons-delete_white {
@@ -151,43 +98,23 @@
 }
 
 .icons-divider_right {
-<<<<<<< HEAD
-  background-position: 0 -464px;
+  background-position: 0 -504px;
 }
 
 .icons-edit {
-  background-position: 0 -938px;
+  background-position: 0 -1078px;
 }
 
 .icons-edit_icon {
-  background-position: 0 -796px;
+  background-position: 0 -886px;
 }
 
 .icons-facebook {
-  background-position: 0 -828px;
+  background-position: 0 -918px;
 }
 
 .icons-faq_icon {
-  background-position: 0 -674px;
-=======
-  background-position: 0 -474px;
-}
-
-.icons-edit {
-  background-position: 0 -1082px;
-}
-
-.icons-edit_icon {
-  background-position: 0 -890px;
-}
-
-.icons-facebook {
-  background-position: 0 -922px;
-}
-
-.icons-faq_icon {
-  background-position: 0 -686px;
->>>>>>> feature/278-new-basket-design
+  background-position: 0 -714px;
 }
 
 .icons-gots {
@@ -195,19 +122,11 @@
 }
 
 .icons-gplus {
-<<<<<<< HEAD
-  background-position: 0 -432px;
+  background-position: 0 -472px;
 }
 
 .icons-instagram {
-  background-position: 0 -610px;
-=======
-  background-position: 0 -442px;
-}
-
-.icons-instagram {
-  background-position: 0 -622px;
->>>>>>> feature/278-new-basket-design
+  background-position: 0 -650px;
 }
 
 .icons-kurv {
@@ -215,11 +134,7 @@
 }
 
 .icons-magnifier {
-<<<<<<< HEAD
-  background-position: 0 -1079px;
-=======
-  background-position: 0 -1184px;
->>>>>>> feature/278-new-basket-design
+  background-position: 0 -1239px;
 }
 
 .icons-newsletter {
@@ -227,35 +142,23 @@
 }
 
 .icons-pdf {
-<<<<<<< HEAD
-  background-position: 0 -738px;
+  background-position: 0 -778px;
 }
 
 .icons-pinterest {
-  background-position: 0 -514px;
+  background-position: 0 -554px;
 }
 
 .icons-return {
-  background-position: 0 -912px;
+  background-position: 0 -1002px;
 }
 
 .icons-returnlabel {
-  background-position: 0 -964px;
+  background-position: 0 -1104px;
 }
 
 .icons-search {
-  background-position: 0 -1133px;
-=======
-  background-position: 0 -750px;
-}
-
-.icons-pinterest {
-  background-position: 0 -494px;
-}
-
-.icons-return {
-  background-position: 0 -1006px;
->>>>>>> feature/278-new-basket-design
+  background-position: 0 -1293px;
 }
 
 .icons-shopping-bag {
@@ -263,43 +166,27 @@
 }
 
 .icons-show {
-<<<<<<< HEAD
-  background-position: 0 -860px;
+  background-position: 0 -950px;
 }
 
 .icons-sizeguide {
-  background-position: 0 -1053px;
+  background-position: 0 -1193px;
 }
 
 .icons-trackntrace {
-  background-position: 0 -1028px;
+  background-position: 0 -1168px;
 }
 
 .icons-twitter {
-  background-position: 0 -706px;
+  background-position: 0 -746px;
 }
 
 .icons-video {
-  background-position: 0 -402px;
+  background-position: 0 -442px;
 }
 
 .icons-zoom {
-  background-position: 0 -484px;
-=======
-  background-position: 0 -954px;
-}
-
-.icons-twitter {
-  background-position: 0 -718px;
-}
-
-.icons-video {
-  background-position: 0 -776px;
-}
-
-.icons-zoom {
-  background-position: 0 -558px;
->>>>>>> feature/278-new-basket-design
+  background-position: 0 -524px;
 }
 
 .fi-sprite, body.fi form.buy .submit-button, body.fi .buy-set, body.fi .new-price, body.fi .out-of-stock, body.fi .subscribe-button {
@@ -610,7 +497,7 @@ form.search-form {
   position: relative;
 }
 form.search-form:before {
-  background-position: 0 -1133px;
+  background-position: 0 -1293px;
   height: 14px;
   width: 14px;
   content: " ";
@@ -1182,12 +1069,12 @@ ul.tabs li a i {
   float: left;
   margin-right: 20px;
   margin-top: 2px;
-  background-position: 0 -1175px;
+  background-position: 0 -1335px;
   height: 10px;
   width: 9px;
 }
 ul.tabs li a.current i {
-  background-position: 0 -1147px;
+  background-position: 0 -1307px;
   height: 9px;
   width: 10px;
 }
@@ -1209,15 +1096,9 @@ div.panes > div {
   margin-top: 20px;
 }
 .zoom .sprite {
-<<<<<<< HEAD
-  background-position: 0 -484px;
+  background-position: 0 -524px;
   height: 30px;
   width: 235px;
-=======
-  background-position: 0 -558px;
-  height: 32px;
-  width: 32px;
->>>>>>> feature/278-new-basket-design
 }
 
 .body-product .breadcrumb {
@@ -1229,15 +1110,9 @@ a.video-popper, #video-player-container a.video {
   margin-top: 20px;
 }
 a.video-popper .sprite, #video-player-container a.video .sprite {
-<<<<<<< HEAD
-  background-position: 0 -402px;
+  background-position: 0 -442px;
   height: 29px;
   width: 234px;
-=======
-  background-position: 0 -776px;
-  height: 32px;
-  width: 32px;
->>>>>>> feature/278-new-basket-design
 }
 
 .body-product .main h1.title,
@@ -1346,7 +1221,7 @@ form.buy h4.bordered {
 
 .sizeguide {
   display: block;
-  background-position: 0 -1053px;
+  background-position: 0 -1193px;
   line-height: 26px;
   padding-left: 33px;
 }
@@ -2373,13 +2248,13 @@ form.create .button {
 }
 
 .sprite.trackntrace {
-  background-position: 0 -1028px;
+  background-position: 0 -1168px;
   height: 25px;
   width: 27px;
 }
 
 .sprite.returnlabel {
-  background-position: 0 -964px;
+  background-position: 0 -1104px;
   height: 26px;
   width: 27px;
   margin-right: 10px;
@@ -2671,13 +2546,13 @@ div.invalid-order {
 }
 
 #mega-basket .basket .sprite {
-  background-position: 0 -840px;
+  background-position: 0 -836px;
   height: 50px;
   width: 50px;
 }
 
 #mini-basket.basket .sprite {
-  background-position: 0 -1032px;
+  background-position: 0 -1028px;
   height: 50px;
   width: 50px;
 }
@@ -2716,6 +2591,7 @@ div.invalid-order {
 #mega-basket .delivery-text {
   margin-top: 10px;
   width: 270px;
+  min-height: 90px;
 }
 #mega-basket .delivery-text li {
   margin-bottom: 7px;
@@ -2730,34 +2606,110 @@ div.invalid-order {
 }
 #mega-basket .close {
   position: absolute;
-  top: 10px;
+  top: 25px;
   right: 10px;
-  background-position: 0 -1164px;
+  background-position: 0 -1219px;
   height: 20px;
   width: 21px;
 }
-#mega-basket table.basket-table ::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-  background-color: #F5F5F5;
+#mega-basket div.basket-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  padding: 10px 2px 25px;
+  /** initial setup **/
 }
-#mega-basket table.basket-table ::-webkit-scrollbar {
-  width: 3px;
-  background-color: #F5F5F5;
+#mega-basket div.basket-table .basket-table-body {
+  max-height: 210px;
+  overflow-y: auto;
 }
-#mega-basket table.basket-table ::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #555;
+#mega-basket div.basket-table .basket-table-body .item {
+  line-height: 60px;
+  vertical-align: middle;
 }
-#mega-basket table.basket-table tbody {
-  display: block;
-  max-height: 400px;
-  overflow-y: scroll;
-}
-#mega-basket table.basket-table img {
+#mega-basket div.basket-table .basket-table-body .item img {
   height: 60px;
   width: auto;
+  float: left;
+  margin-right: 7px;
+}
+#mega-basket div.basket-table .basket-table-body .item.new {
+  background-color: #EEE;
+}
+#mega-basket div.basket-table .basket-table-body .cart-is-empty {
+  padding: 20px 0;
+}
+#mega-basket div.basket-table .basket-table-body,
+#mega-basket div.basket-table .basket-table-footer {
+  border-top: 2px dotted #D3D3D3;
+}
+#mega-basket div.basket-table .basket-table-body .right,
+#mega-basket div.basket-table .basket-table-footer .right {
+  float: right;
+  padding-right: 7px;
+}
+#mega-basket div.basket-table .basket-table-footer {
+  border-bottom: 2px dotted #D3D3D3;
+  padding: 5px 0;
+}
+#mega-basket div.basket-table .nano {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+#mega-basket div.basket-table .nano .content {
+  position: absolute;
+  overflow: scroll;
+  overflow-x: hidden;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+#mega-basket div.basket-table .nano .content:focus {
+  outline: thin dotted;
+}
+#mega-basket div.basket-table .nano .content::-webkit-scrollbar {
+  visibility: hidden;
+}
+#mega-basket div.basket-table .has-scrollbar .content::-webkit-scrollbar {
+  visibility: visible;
+}
+#mega-basket div.basket-table .nano > .pane {
+  background: rgba(0, 0, 0, 0.25);
+  position: absolute;
+  width: 10px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  visibility: hidden\9;
+  /* Target only IE7 and IE8 with this hack */
+  opacity: .01;
+  -webkit-transition: .2s;
+  -moz-transition: .2s;
+  -o-transition: .2s;
+  transition: .2s;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+#mega-basket div.basket-table .nano > .pane > .slider {
+  background: #444;
+  background: rgba(0, 0, 0, 0.5);
+  position: relative;
+  margin: 0 1px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+#mega-basket div.basket-table .nano:hover > .pane, #mega-basket div.basket-table .pane.active, #mega-basket div.basket-table .pane.flashed {
+  visibility: visible\9;
+  /* Target only IE7 and IE8 with this hack */
+  opacity: 0.99;
+}
+#mega-basket div.basket-table .nano .pane {
+  width: 5px;
 }
 
 /**
@@ -3787,11 +3739,7 @@ hr.left {
   background-position: 0 -254px;
 }
 hr.right {
-<<<<<<< HEAD
-  background-position: 0 -464px;
-=======
-  background-position: 0 -474px;
->>>>>>> feature/278-new-basket-design
+  background-position: 0 -504px;
 }
 
 strong, b {
@@ -3966,28 +3914,16 @@ a.button.button-full-width,
 
 .arrow-right {
   margin-left: 6px;
-<<<<<<< HEAD
-  background-position: 0 -1175px;
+  background-position: 0 -1335px;
   height: 10px;
   width: 9px;
-=======
-  background-position: 0 -1157px;
-  height: 7px;
-  width: 4px;
->>>>>>> feature/278-new-basket-design
 }
 
 .arrow-left {
   margin-right: 6px;
-<<<<<<< HEAD
-  background-position: 0 -1156px;
+  background-position: 0 -1316px;
   height: 10px;
   width: 9px;
-=======
-  background-position: 0 -1146px;
-  height: 7px;
-  width: 4px;
->>>>>>> feature/278-new-basket-design
 }
 
 .arrow-right,
@@ -4153,47 +4089,27 @@ button.right {
   display: inline-block;
 }
 .sprite.delete {
-<<<<<<< HEAD
-  background-position: 0 -886px;
-=======
-  background-position: 0 -980px;
->>>>>>> feature/278-new-basket-design
+  background-position: 0 -976px;
   height: 26px;
   width: 26px;
 }
 .sprite.edit {
-<<<<<<< HEAD
-  background-position: 0 -938px;
-=======
-  background-position: 0 -1082px;
->>>>>>> feature/278-new-basket-design
+  background-position: 0 -1078px;
   height: 26px;
   width: 26px;
 }
 .sprite.show {
-<<<<<<< HEAD
-  background-position: 0 -860px;
-=======
-  background-position: 0 -954px;
->>>>>>> feature/278-new-basket-design
+  background-position: 0 -950px;
   height: 26px;
   width: 26px;
 }
 .sprite.pdf {
-<<<<<<< HEAD
-  background-position: 0 -738px;
-=======
-  background-position: 0 -750px;
->>>>>>> feature/278-new-basket-design
+  background-position: 0 -778px;
   height: 26px;
   width: 26px;
 }
 .sprite.return {
-<<<<<<< HEAD
-  background-position: 0 -912px;
-=======
-  background-position: 0 -1006px;
->>>>>>> feature/278-new-basket-design
+  background-position: 0 -1002px;
   height: 26px;
   width: 26px;
 }

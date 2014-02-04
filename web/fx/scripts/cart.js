@@ -33,7 +33,7 @@
                   // update elements
                   var content = '(' + response.data.quantity + ') ' + response.data.total;
                   $.cookie('basket', content);
-                  $('#mini-basket a').html(content);
+                  $('#mini-basket a.total').html(content);
                   $('tfoot td.total').text(response.data.total);
 
                   // remove the proceed button if there are no products in the cart
@@ -251,7 +251,7 @@
 
                   // totals
                   $.cookie('basket', response.data.basket);
-                  $('#mini-basket a').text(response.data.basket);
+                  $('#mini-basket a.total').text(response.data.basket);
                   var find = /\([0-9+]\) /;
                   var total = response.data.basket.replace(find, '');
                   $info.data('product_id', response.data.product_id);
@@ -269,21 +269,46 @@
       });
     };
     pub.miniBasketInit = function() {
-      var $basket = $('#mega-basket');
-      $basket.css('top', '-' + ($basket.height() + 30 ) + 'px');
+      var $mega_basket = $('#mega-basket'),
+          $mega_basket_table = $('.basket-table-body', $mega_basket);
+
+      $(".nano").nanoScroller();
+
+      $mega_basket.css('top', '-' + ($mega_basket.height() + 30 ) + 'px');
       $('#mini-basket a, a.open-megabasket, #mega-basket .close').click(function(e) {
         e.preventDefault();
-        if ($basket.hasClass('open')) {
-          $basket.animate({
-            top: '-' + ($basket.height() + 30 ) + 'px',
+        if ($mega_basket.hasClass('open')) {
+          $mega_basket.animate({
+            top: '-' + ($mega_basket.height() + 30 ) + 'px',
           }, 500 );
         }
         else {
-          $basket.animate({
+          $mega_basket.animate({
             top: "-6px",
           }, 500 );
         }
-        $basket.toggleClass('open');
+        $mega_basket.toggleClass('open');
+      });
+
+      $('body').on('basket_product_added', function(e){
+        $('.cart-is-empty', $mega_basket).remove();
+        $(".nano").nanoScroller();
+        // Open the mega-basket.
+        $mega_basket.animate({
+          top: "-6px",
+        }, 500, 'swing', function() {
+          $(".nano").nanoScroller({ scroll: 'bottom' });
+        });
+        setTimeout(function () {
+          // Only close the basket if the mouse isnt hovering it.
+          if (!$('#mega-basket:hover').length) {
+            $mega_basket.animate({
+              top: '-' + ($(this).height() + 30 ) + 'px',
+            }, 500 );
+          }
+          // Remove .new class on items.
+          $('.item.new', $mega_basket_table).removeClass('new');
+        }, 10000);
       });
     };
 

@@ -15,6 +15,10 @@ framework:
         storage_id:     session.storage.native
         handler_id:     session.handler.redis
         gc_maxlifetime: 10800
+    esi:
+        enabled: true
+    fragments:
+        path: /_fragment
 
 services:
     # native redis session handeling

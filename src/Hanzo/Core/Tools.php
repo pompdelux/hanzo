@@ -348,8 +348,16 @@ class Tools
 
         $path = explode('/', trim(str_replace($_SERVER['SCRIPT_NAME'], '', strtolower($_SERVER['REQUEST_URI'])), '/'));
 
+        if (substr($path[0], 0, 9) === '_fragment') {
+            // Extract the locale from the _fragment query. Hack to make ESI work on locale.
+            $esi_attributes = [];
+            $query = urldecode($_SERVER['QUERY_STRING']);
+            parse_str($query, $esi_attributes);
+
+            $path[0] = strtolower($esi_attributes['_locale']);
+        }
         // redirect to splash screen
-        if (empty($path[0]) || !isset($env_map[$path[0]])) {
+        elseif (empty($path[0]) || !isset($env_map[$path[0]])) {
             $path[0] = 'da_dk';
         }
         $tld = $path[0];

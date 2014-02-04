@@ -154,9 +154,6 @@ class DefaultController extends CoreController
             'master_id'    => $product->getProductsRelatedByMaster()->getId(),
             'price'        => Tools::moneyFormat($price['price'] * $quantity),
             'single_price' => Tools::moneyFormat($price['price']),
-            // 'title'        => $product->getName(),
-            // 'image'        =>
-            // // add image and title
         );
 
         $t = new \DateTime($date);
@@ -339,7 +336,7 @@ class DefaultController extends CoreController
     }
 
 
-    public function viewAction($embed = false, $orders_id = null)
+    public function viewAction($embed = false, $orders_id = null, $template = 'BasketBundle:Default:view.html.twig')
     {
         if ($orders_id) {
             $order = OrdersQuery::create()->findOneById($orders_id);
@@ -453,7 +450,6 @@ class DefaultController extends CoreController
 
         ksort($products);
 
-        $template = 'BasketBundle:Default:view.html.twig';
         if ($embed) {
             $template = 'BasketBundle:Default:block.html.twig';
         }
