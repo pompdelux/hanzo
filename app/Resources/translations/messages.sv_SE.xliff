@@ -8,7 +8,7 @@
             </trans-unit>
             <trans-unit id="size.guide.link.text">
                 <source>size.guide.link.text</source>
-                <target>» Size guide</target>
+                <target>Size guide</target>
             </trans-unit>
             <trans-unit id="out.of.stock">
                 <source>out.of.stock</source>
@@ -263,7 +263,7 @@
                     <li><a href="/sv_SE/forside/kundservice/fragor-och-svar">Frågor och Svar</a></li>
                     <li><a href="/sv_SE/forside/kundservice/returnering">Returnering</a></li>
                     <li><a href="/sv_SE/forside/kundservice/byte">Byte</a></li>
-                    <li><a href="/sv_SE/forside/kundservice/retursedel">Retursedel</a></li>                   
+                    <li><a href="/sv_SE/forside/kundservice/retursedel">Retursedel</a></li>
 					<li><a href="/sv_SE/forside/kundservice/tvattrad">Tvättråd</a></li>
 					<li><a href="/sv_SE/forside/kundservice/sizeguide">Sizeguide</a></li>
 					<li><a href="/sv_SE/forside/kundservice/villkor">Villkor</a></li>
@@ -282,7 +282,7 @@
 					<li><a href="/sv_SE/forside/home-shopping/appet-hus">Öppet Hus</a></li>
 					<li><a href="/sv_SE/forside/katalog">Katalog</a></li>
 					<li><a href="/sv_SE/forside/bli-saljare/fritidssaljare">Bli Shopping Advisor</a></li>
-                    </ul><br>		
+                    </ul><br>
 				<h2>BE SOCIAL</h2>
 				 <ul class="menu">
 				 <li><a href="http://instagram.com/pompdelux_official" target="_blank"> Instagram</a></li>
@@ -296,8 +296,8 @@
                 <target><![CDATA[
                 <h2>MER POMPDELUX</h2>
                 <ul class="menu">
-                  <li><a href="/sv_SE/forside/om-pompdelux">Om POMPdeLUX</a></li>  
-                   <li><a href="/sv_SE/forside/om-pompdelux/corporate-social-responsibility/csr-rapport">CSR-rapport</a></li> 
+                  <li><a href="/sv_SE/forside/om-pompdelux">Om POMPdeLUX</a></li>
+                   <li><a href="/sv_SE/forside/om-pompdelux/corporate-social-responsibility/csr-rapport">CSR-rapport</a></li>
                     <li><a href="/sv_SE/forside/tavlingar">Tävlingar</a></li>
 					<li><a href="/sv_SE/forside/om-pompdelux/kontakt">Kontakt</a></li>
                 </ul>

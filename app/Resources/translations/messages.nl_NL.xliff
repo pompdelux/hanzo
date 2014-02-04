@@ -8,7 +8,7 @@
             </trans-unit>
             <trans-unit id="size.guide.link.text">
                 <source>size.guide.link.text</source>
-                <target>» Size guide</target>
+                <target>Size guide</target>
             </trans-unit>
             <trans-unit id="out.of.stock">
                 <source>out.of.stock</source>
@@ -277,7 +277,7 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
                     <li><a href="/nl_NL/voorpagina/open-huis">Open Huis</a></li>
 					<li><a href="/nl_NL/voorpagina/catalogus">Catalogus</a></li>
 					<li><a href="/nl_NL/voorpagina/word-consulent/een-leuke-vrijetijdsbaan">Word 	</a></li>
-                </ul><br>		
+                </ul><br>
 				<h2>BE SOCIAL</h2>
 				 <ul class="menu">
 				<li><a href="http://instagram.com/pompdelux_official" target="_blank"> Instagram</a></li>

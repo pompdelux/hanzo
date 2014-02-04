@@ -59,9 +59,7 @@ div.panes > div {
 }
 .zoom{
 	display: inline-block;
-	text-align: center;
-	margin-right: 5px;
-
+  margin-top: 20px;
 	.sprite{
 		@include icons-sprite(zoom);
 		height: icons-sprite-height(zoom);
@@ -73,8 +71,7 @@ div.panes > div {
 }
 a.video-popper, #video-player-container a.video {
 	display: inline-block;
-	text-align: center;
-
+  margin-top: 20px;
 	.sprite{
 		@include icons-sprite(video);
 		height: icons-sprite-height(video);
@@ -90,6 +87,7 @@ a.video-popper, #video-player-container a.video {
 		font-weight: $product-title-weight;
 		line-height: $product-title-line-height;
 		color: $product-title-color;
+    clear: both;
 	}
 	.prices{
 		padding: 0 0 12px;
@@ -108,6 +106,7 @@ a.video-popper, #video-player-container a.video {
 
 form.buy{
 	margin-bottom: 16px;
+  position: relative;
 	label{
 		display: block;
 		padding: 0 6px 0 0;
@@ -118,18 +117,17 @@ form.buy{
 		select{
 			width:237px;
 		}
-		a {
-			margin-left: 18px;
-		}
 		&.off {
 			display: none;
 		}
 	}
 	.submit-button{
 		cursor: pointer;
-		margin-top: 18px;
 		@include image-replacement;
 		display: block;
+    position: absolute;
+    top: 50px;
+    right: 0;
 	}
 	h4.bordered {
 		font-family: $font-sans;
@@ -140,32 +138,45 @@ form.buy{
 .latest-seen-poducts,
 .productimage-small,
 .style-guide{
-	a{
-		vertical-align: top;
-		display: inline-block;
-		margin-right: 2px;
-		img{
-			padding: 1px;
-		}
-		&:hover{
-			border-bottom: none;
-			margin-bottom: 0;
-			img{
-				padding: 0px;
-				border: 1px solid #888;
-			}
-		}
-		&.buy-set{
-			@include image-replacement;
-			margin-top: 50px;
-		}
-	}
-	.last{
-		margin-right: 0;
-	}
+  a{
+    vertical-align: top;
+    display: inline-block;
+    margin-right: 2px;
+    img{
+      padding: 1px;
+    }
+    &:hover{
+      border-bottom: none;
+      margin-bottom: 0;
+      img{
+        padding: 0px;
+        border: 1px solid #888;
+      }
+    }
+    &.buy-set{
+      @include image-replacement;
+      margin-top: 50px;
+    }
+  }
+  .last{
+    margin-right: 0;
+  }
+}
+.latest-seen-poducts {
+  img {
+    width: 99px;
+    height: auto;
+  }
 }
 .style-guide, .style-guide .element {
 	display: none;
+}
+
+.sizeguide {
+  display: block;
+  @include icons-sprite(sizeguide);
+  line-height: icons-sprite-height(sizeguide);
+  padding-left: icons-sprite-width(sizeguide) + 7px;
 }
 
 @import "colorbuttons/*.png";

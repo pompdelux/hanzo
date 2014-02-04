@@ -8,7 +8,7 @@
             </trans-unit>
             <trans-unit id="size.guide.link.text">
                 <source>size.guide.link.text</source>
-                <target>» Size guide</target>
+                <target>Size guide</target>
             </trans-unit>
             <trans-unit id="home">
                 <source>home</source>
