@@ -2800,9 +2800,9 @@ nav.main-menu > ul > li > ul.on, nav.main-menu > ul > li:hover > ul {
   left: 0;
   top: auto;
   z-index: 150;
-  -webkit-box-shadow: #444444 4px 4px 8px;
-  -moz-box-shadow: #444444 4px 4px 8px;
-  box-shadow: #444444 4px 4px 8px;
+  -webkit-box-shadow: #cecece 2px 2px 8px;
+  -moz-box-shadow: #cecece 2px 2px 8px;
+  box-shadow: #cecece 2px 2px 8px;
 }
 nav.main-menu > ul > li > a {
   padding: 10px 30px 10px 0;
