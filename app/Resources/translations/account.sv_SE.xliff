@@ -16,7 +16,7 @@
             </trans-unit>
             <trans-unit id="fetch.invoice">
                 <source>fetch.invoice</source>
-                <target>Hent faktura som pdf</target>
+                <target>Se faktura som pdf</target>
             </trans-unit>
             <trans-unit id="fetch.credit_note">
                 <source>fetch.credit_note</source>
@@ -523,6 +523,14 @@ Vi vill dock vara helt säkra på att det inte har uppstått ett fel, så vi vil
 Därefter kan du enkelt shoppa vidare.<br></p>
                     <p>Tack för hjälpen.</p>
                 ]]></target>
+            </trans-unit>
+            <trans-unit id="account.trackntrace.link">
+                <source>account.trackntrace.link</source>
+                <target>Track n' trace</target>
+            </trans-unit>
+            <trans-unit id="account.returnlabel.link">
+                <source>account.returnlabel.link</source>
+                <target>Print retur label</target>
             </trans-unit>
         </body>
     </file>

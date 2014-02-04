@@ -134,16 +134,16 @@
         <source>confirm.total</source>
         <target>Gesamtbetrag</target>
       </trans-unit>
-      <trans-unit id="payment.paybybill.title">
-        <source>payment.paybybill.title</source>
+      <trans-unit id="payment.manualpayment.title">
+        <source>payment.manualpayment.title</source>
         <target>Banküberweisung</target>
       </trans-unit>
-      <trans-unit id="payment.paybybill.text">
-        <source>payment.paybybill.text</source>
+      <trans-unit id="payment.manualpayment.text">
+        <source>payment.manualpayment.text</source>
         <target><![CDATA[<b>Bitte beachten:</b> Banküberweisung darf <b><u>nur</u></b> bei fehlender Internetverbindung verwendet werden.]]></target>
       </trans-unit>
-      <trans-unit id="payment.paybybill.label">
-        <source>payment.paybybill.label</source>
+      <trans-unit id="payment.manualpayment.label">
+        <source>payment.manualpayment.label</source>
         <target>Banküberweisung</target>
       </trans-unit>
       <trans-unit id="payment.gateway_id">
@@ -367,19 +367,19 @@
       </trans-unit>
       <trans-unit id="product.group.g">
         <source>product.group.g</source>
-        <target>Girl</target>
+        <target>GIRL</target>
       </trans-unit>
       <trans-unit id="product.group.lg">
         <source>product.group.lg</source>
-        <target>Little Girl</target>
+        <target>LITTLE GIRL</target>
       </trans-unit>
       <trans-unit id="product.group.b">
         <source>product.group.b</source>
-        <target>Boy</target>
+        <target>BOY</target>
       </trans-unit>
       <trans-unit id="product.group.lb">
         <source>product.group.lb</source>
-        <target>Little Boy</target>
+        <target>LITTLE BOY</target>
       </trans-unit>
       <trans-unit id="gift_card">
          <source>gift_card</source>

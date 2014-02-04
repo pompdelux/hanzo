@@ -523,6 +523,14 @@ Haluamme kuitenkin varmistaa, että tässä ei ole tapahtunut virhettä. Pyydäm
                     <p>Kiitos avustasi.</p>
                 ]]></target>
             </trans-unit>
+            <trans-unit id="account.trackntrace.link">
+                <source>account.trackntrace.link</source>
+                <target>Track n' trace</target>
+            </trans-unit>
+            <trans-unit id="account.returnlabel.link">
+                <source>account.returnlabel.link</source>
+                <target>Print retur label</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
