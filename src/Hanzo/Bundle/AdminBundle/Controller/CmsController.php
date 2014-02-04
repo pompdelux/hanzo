@@ -684,11 +684,9 @@ class CmsController extends CoreController
         }
 
         return $this->response('
-            <nav class="main">
-              <ul>
+              <ul class="nav nav-sidebar">
               '.$links.'
               </ul>
-            </nav>
         ');
     }
 
