@@ -317,7 +317,7 @@
           }
           // Remove .new class on items.
           $('.item.new', $mega_basket_table).removeClass('new');
-        }, 10000);
+        }, 4000);
       });
     };
 
