@@ -224,7 +224,7 @@
             </trans-unit>
             <trans-unit id="events.notify_hostess.label">
                 <source>events.notify_hostess.label</source>
-                <target>Notificer værtinde?</target>
+                <target>Send e-mail til værtinde?</target>
             </trans-unit>
             <trans-unit id="events.customer.found">
                 <source>events.customer.found</source>
