@@ -12,9 +12,11 @@
 
       $basket.on('click', 'a.delete', function(event) {
         event.preventDefault();
-        var $a = $(this);
-        var $item = $a.closest('.item');
-        var name = $('.info a', $item).text();
+        var $a = $(this),
+            $item = $a.closest('.item'),
+            name = $('.info a', $item).text(),
+            id = $('.info', $item).data('product_id'),
+            $mega_basket = $('#mega-basket');
 
         // warn the user before removing the product.
         dialoug.confirm(Translator.get('js:notice'), Translator.get('js:delete.from.basket.warning', { 'product' : name }), function(choice) {
@@ -35,6 +37,13 @@
                   $.cookie('basket', content);
                   $('#mini-basket a.total').html(content);
                   $('tfoot td.total').text(response.data.total);
+
+                  $('.grand-total', $mega_basket).text(response.data.total);
+                  $('.item-count', $mega_basket).text('(' + response.data.quantity + ')');
+                  $('.item[data-product-id=' + id + ']', $mega_basket).remove();
+                  if (!$('.item', $mega_basket).length) {
+                    $('.cart-is-empty', $mega_basket).show();
+                  }
 
                   // remove the proceed button if there are no products in the cart
                   if (0 === response.data.quantity) {
@@ -291,7 +300,7 @@
       });
 
       $('body').on('basket_product_added', function(e){
-        $('.cart-is-empty', $mega_basket).remove();
+        $('.cart-is-empty', $mega_basket).hide();
         $(".nano").nanoScroller();
         // Open the mega-basket.
         $mega_basket.animate({
