@@ -1,0 +1,130 @@
+span.flag{
+    margin-right:5px;
+    display:inline-block;
+    width: 16px;
+    height: 11px;
+    background:url(/fx/images/flags.png?1) no-repeat;
+}
+
+span.flag.da_DK, span.flag.DK, span.flag.pdldbda, span.flag.default {background-position: -64px -11px}
+span.flag.de_DE, span.flag.DE, span.flag.pdldbde1 {background-position: -48px -11px}
+span.flag.fi_FI, span.flag.FI, span.flag.pdldbfi1 {background-position: 0 -22px}
+span.flag.en_GB, span.flag.UK {background-position: -48px -22px}
+span.flag.en_EN, span.flag.COM {background-position:  -48px -22px}
+span.flag.nl_NL, span.flag.NL, span.flag.pdldbnl1 {background-position: -96px -44px}
+span.flag.no_NB, span.flag.NO, span.flag.pdldbno1 {background-position: 0 -55px}
+span.flag.sv_SE, span.flag.SE, span.flag.pdldbse1 {background-position: -96px -55px}
+span.flag.de_AT, span.flag.AT, span.flag.pdldbat1 {background-position: -48px 0}
+span.flag.de_CH, span.flag.CH, span.flag.pdldbch1 {background-position: -16px -11px}
+
+/*span.flag.AD {background-position: -16px 0}
+span.flag.AL {background-position: -32px 0}
+span.flag.AT {background-position: -48px 0}
+span.flag.BA {background-position: -64px 0}
+span.flag.BE {background-position: -80px 0}
+span.flag.BG {background-position: -96px 0}
+span.flag.BY {background-position: 0 -11px}
+span.flag.CH {background-position: -16px -11px}
+span.flag.CZ {background-position: -32px -11px}
+span.flag.EE {background-position: -80px -11px}
+span.flag.ES {background-position: -96px -11px}
+span.flag.FO {background-position: -16px -22px}
+span.flag.FR {background-position: -32px -22px}
+span.flag.GI {background-position: -64px -22px}
+span.flag.GR {background-position: -80px -22px}
+span.flag.HR {background-position: -96px -22px}
+span.flag.HU {background-position: 0 -33px}
+span.flag.IE {background-position: -16px -33px}
+span.flag.IS {background-position: -32px -33px}
+span.flag.IT {background-position: -48px -33px}
+span.flag.LI {background-position: -64px -33px}
+span.flag.LT {background-position: -80px -33px}
+span.flag.LU {background-position: -96px -33px}
+span.flag.LV {background-position: 0 -44px}
+span.flag.MC {background-position: -16px -44px}
+span.flag.MD {background-position: -32px -44px}
+span.flag.ME {background-position: -48px -44px}
+span.flag.MK {background-position: -64px -44px}
+span.flag.MT {background-position: -80px -44px}
+span.flag.PL {background-position: -16px -55px}
+span.flag.PT {background-position: -32px -55px}
+span.flag.RO {background-position: -48px -55px}
+span.flag.RS {background-position: -64px -55px}
+span.flag.RU {background-position: -80px -55px}
+span.flag.SI {background-position: 0 -66px}
+span.flag.SK {background-position: -16px -66px}
+span.flag.SM {background-position: -32px -66px}
+span.flag.UA {background-position: -48px -66px}
+*/
+
+
+body {
+    padding-top: 50px;
+}
+
+.sub-header {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.sidebar {
+    display: none;
+}
+@media (min-width: 768px) {
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 1000;
+        display: block;
+        padding: 70px 20px 20px;
+        background-color: #f5f5f5;
+        border-right: 1px solid #eee;
+    }
+}
+
+/* Sidebar navigation */
+.nav-sidebar {
+    margin-left: -20px;
+    margin-right: -21px; /* 20px padding + 1px border */
+    margin-bottom: 20px;
+}
+.nav-sidebar>li>a {
+    padding: 5px 15px;
+}
+.nav-sidebar > li > a {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.nav-sidebar > .active > a {
+    color: #fff;
+    background-color: #428bca;
+}
+
+.main {
+    padding: 20px;
+}
+@media (min-width: 768px) {
+    .main {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
+.main .page-header {
+    margin-top: 0;
+}
+.glyphicon-remove-circle {
+    color: #d9534f;
+}
+th .glyphicon,
+td .glyphicon {
+    margin-left: 5px;
+}
+
+.dialoug .buttons {
+    margin-top: 20px;
+}
+.table ul {
+    list-style: none;
+}
