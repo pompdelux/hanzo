@@ -63,6 +63,20 @@
         })) }}
 
         <ul class="right horizontal">
+            <li id="select-domain">
+                <a class="open-menu" href="#">Change Country</a>
+                <div class="dropdown" style="display: none">
+                    <a href="{{ baseurl }}/de_AT/">Austria</a>
+                    <a href="{{ baseurl }}/da_DK/">Denmark</a>
+                    <a href="{{ baseurl }}/fi_FI/">Finland</a>
+                    <a href="{{ baseurl }}/de_DE/">Germany</a>
+                    <a href="{{ baseurl }}/en_GB/">International</a>
+                    <a href="{{ baseurl }}/nl_NL/">Netherlands</a>
+                    <a href="{{ baseurl }}/nb_NO/">Norway</a>
+                    <a href="{{ baseurl }}/sv_SE/">Sweden</a>
+                    <a href="{{ baseurl }}/de_CH/">Switzerland</a>
+                </div>
+            </li>
             <li class="last">
                 <form action="{{ path('_search', {'_locale' : app.request.locale}) }}" class="search-form">
                     <input type="submit" class="text-button button" value="{{ "button.label"|trans({}, 'search') }}">
@@ -78,23 +92,9 @@
 
     {% if simple_layout is not defined %}
         <nav id="secondary-links">
-            <ul class="horizontal menu first clearfix">
+            <ul class="horizontal menu first right clearfix">
         {% if skip_my_account is not defined %}
                 <li><a href="{{ path('_account', {'_locale' : app.request.locale}) }}">{{ "my.account"|trans({}, 'account') }}</a></li>
-                <li id="select-domain">
-                    <a class="open-menu" href="#">Change Country</a>
-                    <div class="dropdown" style="display: none">
-                        <a href="{{ baseurl }}/de_AT/">Austria</a>
-                        <a href="{{ baseurl }}/da_DK/">Denmark</a>
-                        <a href="{{ baseurl }}/fi_FI/">Finland</a>
-                        <a href="{{ baseurl }}/de_DE/">Germany</a>
-                        <a href="{{ baseurl }}/en_GB/">International</a>
-                        <a href="{{ baseurl }}/nl_NL/">Netherlands</a>
-                        <a href="{{ baseurl }}/nb_NO/">Norway</a>
-                        <a href="{{ baseurl }}/sv_SE/">Sweden</a>
-                        <a href="{{ baseurl }}/de_CH/">Switzerland</a>
-                    </div>
-                </li>
             </ul>
             <ul class="horizontal menu right second">
                 <li id="mini-basket" class="basket">

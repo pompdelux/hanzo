@@ -492,6 +492,13 @@ nav.first.main-menu > ul li a {
   color: #444;
   font-weight: normal;
 }
+nav.first.main-menu .dropdown {
+  z-index: 201;
+}
+nav.first.main-menu .dropdown a {
+  display: block;
+  margin: 15px 5px;
+}
 
 form.search-form {
   position: relative;
@@ -684,21 +691,11 @@ div header.row {
 #secondary-links li input {
   padding: 4px 5px;
 }
-#secondary-links li .dropdown {
-  z-index: 201;
-}
-#secondary-links li .dropdown a {
-  display: block;
-  margin: 15px 5px;
-}
 #secondary-links ul.first {
   border-bottom: 1px dashed white;
 }
 #secondary-links ul.first > li > a {
   color: white;
-}
-#secondary-links ul.first li#select-domain {
-  float: right;
 }
 #secondary-links ul.second {
   z-index: 1;

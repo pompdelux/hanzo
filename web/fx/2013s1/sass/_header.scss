@@ -56,6 +56,13 @@ nav.first.main-menu {
             }
         }
     }
+    .dropdown{
+      z-index: 201; // This dropdown needs to be on top of the main menu
+            a {
+              display: block;
+              margin: 15px 5px;
+            }
+    }
 }
 form.search-form {
     position: relative;
@@ -219,21 +226,11 @@ div header.row {
 		input{
 			padding: 4px 5px;
 		}
-		.dropdown{
-			z-index: 201; // This dropdown needs to be on top of the main menu
-            a {
-              display: block;
-              margin: 15px 5px;
-            }
-		}
 	}
     ul.first {
         border-bottom: 1px dashed white;
         > li > a {
             color: white;
-        }
-        li#select-domain {
-            float: right;
         }
     }
 	ul.second{
