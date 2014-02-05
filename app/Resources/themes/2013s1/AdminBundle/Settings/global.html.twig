@@ -8,7 +8,7 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         {% if domain_key %}
-                            <span class="flag {{ domain_key }}"></span> |
+                            <span class="flag {{ domain_key|replace({'Sales':''}) }}"></span> |
                         {% endif %}
                         {{ 'domain.selector'|trans({}, 'admin') }}
                         <b class="caret"></b>
@@ -30,7 +30,7 @@
     <h1>{{ 'admin.settings.header.text'|trans({}, 'admin') }}</h1>
 
 {% for message in app.session.flashbag.get('notice') %}
-    <div class="message notice">
+    <div class="alert alert-info">
       {{ message|trans({}, 'admin') }}
     </div>
 {% endfor %}
@@ -39,15 +39,11 @@
         <p>{{ 'admin.settings.description.text'|trans({}, 'admin') }}</p>
 
         <form id="settings-list" action="{{ path('admin_settings') }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
-            <div class="form-group">
-                <input class="button btn btn-success" type="submit" value="{{ 'save.settings'|trans({}, 'admin') }}">
-                <a class="button btn btn-default" href="{{ path('admin_settings') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
-            </div>
             <div>
         {% for child in form.children %}
             {% if child.vars.name != '_token' %}
                 <div class="form-group">
-                    {{ form_label(child, '', {'label_attr': {'class': 'col-sm-3 control-label' }}) }}
+                    {{ form_label(child, '', {'label_attr': {'class': 'col-sm-4 control-label' }}) }}
                     <div class="col-sm-6">
                         {{ form_errors(child) }}
                         {{ form_widget(child, {'attr': {'class': 'form-control' }}) }}
@@ -65,16 +61,16 @@
     </div>
     <div>
         <h1>{{ 'admin.settings.add.header.text'|trans({}, 'admin') }}</h1>
-
         <p>{{ 'admin.settings.add.description.text'|trans({}, 'admin') }}</p>
 
-        <form id="add-setting" action="{{ path('admin_setting_add') }}"
-              method="post" {{ form_enctype(add_global_setting_form) }}>
-            <div>
-                {{ form_rest(add_global_setting_form) }}
-                {{ form_row(add_global_setting_form._token) }}
+        {% form_theme add_global_setting_form 'AdminBundle:Form:fields.html.twig' %}
+        <form id="add-setting" action="{{ path('admin_setting_add') }}" method="post" {{ form_enctype(add_global_setting_form) }} class="form-horizontal">
+            {{ form_rest(add_global_setting_form) }}
+            <div class="form-group">
+                <input class="button btn btn-success" type="submit" value="{{ 'add.setting'|trans({}, 'admin') }}">
+                <a class="button btn btn-default" href="{{ path('admin_settings') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
             </div>
-            <input class="button" type="submit" value="{{ 'add.setting'|trans({}, 'admin') }}">
+            {{ form_row(add_global_setting_form._token) }}
         </form>
     </div>
 

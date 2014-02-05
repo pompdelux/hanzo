@@ -1,69 +1,54 @@
 {% extends '::adminbase.html.twig' %}
 
 {% block content %}
-<nav class="sub">
-  <ul>
-    <li id="select-language">
-      <a class="open-menu" href="#">
-        {% if locale %}
-          <span class="flag {{ locale }}"></span> |
-        {% endif %}
-        {{ 'messages.language.selector'|trans({}, 'admin') }}
-      </a>
-      <div style="display:none;">
-        <ul>
-        {% for language in languages_availible %}
-          <li>
-            <a href="{{ path('admin_settings_messages_locale', {'locale' : language.locale}) }}">
-              <span class="flag {{ language.locale }}"></span>{{ language.name }}
-            </a>
-          </li>
-        {% endfor %}
-        </ul>
-      </div>
-    </li>
-    <li id="select-ns-add" class="dropdown-menu">
-      <a class="open-menu" href="#">
-        {{ 'messages.ns.selector'|trans({}, 'admin') }}
-      </a>
-      <div style="display:none;">
-        <ul>
-        {% for namespace in message_ns_availible %}
-          <li>
-            <a href="{{ path('admin_settings_messages_edit', {'id' : namespace.id}) }}">
-              ({{ namespace.ns }} | {{ namespace.key }})
-            </a>
-          </li>
-        {% endfor %}
-        </ul>
-      </div>
-    </li>
-    <li>
-      <a href="{{ path('admin_settings_messages') }}">
-        {{ 'admin.messages.list.link'|trans({}, 'admin') }}
-      </a>
-    </li>
-    <li>
-      <a href="{{ path('admin_settings_messages_edit_ns') }}">
-        {{ 'admin.messages.add_new.link'|trans({}, 'admin') }}
-      </a>
-    </li>
-  </ul>
-</nav>
 
-<h1>{{ 'admin.messages.header.text'|trans({}, 'admin') }}</h1>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        {% if locale %}<span class="flag {{ locale }}"></span> |{% endif %}
+                        {{ 'messages.language.selector'|trans({}, 'admin') }}
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        {% for language in languages_availible %}
+                            <li><a href="{{ path('admin_settings_messages_locale', {'locale' : language.locale}) }}"><span class="flag {{ language.locale }}"></span>{{ language.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        {{ 'messages.ns.selector'|trans({}, 'admin') }}
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                    {% for namespace in message_ns_availible %}
+                        <li><a href="{{ path('admin_settings_messages_edit', {'id' : namespace.id}) }}">({{ namespace.ns }} | {{ namespace.key }})</a></li>
+                    {% endfor %}
+                    </ul>
+                </li>
+
+                <li><a href="{{ path('admin_settings_messages') }}">{{ 'admin.messages.list.link'|trans({}, 'admin') }}</a></li>
+                <li><a href="{{ path('admin_settings_messages_edit_ns') }}">{{ 'admin.messages.add_new.link'|trans({}, 'admin') }}</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <h1>{{ 'admin.messages.header.text'|trans({}, 'admin') }}</h1>
 
 {% for message in app.session.flashbag.get('notice') %}
-<div class="message notice">
-  {{ message|trans({}, 'admin') }}
-</div>
+    <div class="message notice">
+      {{ message|trans({}, 'admin') }}
+    </div>
 {% endfor %}
 
 {% if messages|length > 0 %}
 
 <p>{{ 'admin.messages.description.text'|trans({}, 'admin') }}</p>
 
-<table id="messages" class="list">
+<table id="messages" class="table table-striped">
   <thead>
     <tr>
       <th>{{ 'admin.messages.ns'|trans({}, 'admin') }}</th>
@@ -83,22 +68,13 @@
       <th>
         <ul>
           <li>
-            <a href="{{ path('admin_settings_messages_edit', {'id' : message.id, 'locale' : message.locale}) }}">
-              {{ 'admin.messages.edit'|trans({}, 'admin') }}
-            </a>
+              <a href="{{ path('admin_settings_messages_edit', {'id' : message.id, 'locale' : message.locale}) }}" class="glyphicon glyphicon-edit" title="{{ 'admin.messages.edit'|trans({}, 'admin') }}"></a>
+              <a href="{{ path('admin_settings_messages_delete', {'id' : message.id, 'locale' : message.locale }) }}" class="glyphicon glyphicon-remove-circle" title="{{ 'admin.messages.delete'|trans({}, 'admin') }}"></a>
           </li>
           <li>
-            <a href="{{ path('admin_settings_messages_delete', {'id' : message.id, 'locale' : message.locale }) }}" class="delete">
-              {{ 'admin.messages.delete'|trans({}, 'admin') }}
-            </a>
-          </li>
-          <li>
-            {{ 'admin.messages.translate'|trans({}, 'admin') }}
-              {% for language in languages_availible %}
-              <a href="{{ path('admin_settings_messages_edit', {'id' : message.id, 'locale' : language.locale}) }}">
-                <span class="flag {{ language.locale }}"></span>
-              </a>
-              {% endfor %}
+          {% for language in languages_availible %}
+              <a href="{{ path('admin_settings_messages_edit', {'id' : message.id, 'locale' : language.locale}) }}" title="{{ 'admin.messages.translate'|trans({}, 'admin') }} {{ language.locale }}"><span class="flag {{ language.locale }}"></span></a>
+          {% endfor %}
           </li>
         </ul>
       </th>
