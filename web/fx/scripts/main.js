@@ -218,7 +218,7 @@
           search_form_padding = $('form.search-form input[type="text"]').innerWidth() - $('form.search-form input[type="text"]').width();
 
       $('form.search-form input[type="text"]').css('width', mini_basket_width - search_form_padding);
-      $('nav.first.main-menu>ul.topmenu').css('padding-right', mini_basket_width);
+      $('nav.first.main-menu>ul.topmenu').css('padding-right', $('nav.main-menu.first ul.right').outerWidth());
 
     };
 
