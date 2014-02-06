@@ -67,6 +67,10 @@
                 <source>proceed</source>
                 <target>Naar de betaalpagina</target>
             </trans-unit>
+            <trans-unit id="password.forgotten.button">
+                <source>password.forgotten.button</source>
+                <target>Voortzetten</target>
+            </trans-unit>
             <trans-unit id="back">
                 <source>back</source>
                 <target>Ga door met winkelen</target>

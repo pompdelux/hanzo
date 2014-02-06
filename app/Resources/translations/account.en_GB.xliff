@@ -63,6 +63,10 @@
                 <source>proceed</source>
                 <target>Go to payment</target>
             </trans-unit>
+            <trans-unit id="password.forgotten.button">
+                <source>password.forgotten.button</source>
+                <target>Continue</target>
+            </trans-unit>
             <trans-unit id="back">
                 <source>back</source>
                 <target>Continue shopping</target>

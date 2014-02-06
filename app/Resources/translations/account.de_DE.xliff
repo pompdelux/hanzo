@@ -75,6 +75,10 @@
                 <source>proceed</source>
                 <target>Zur Bezahlung</target>
             </trans-unit>
+            <trans-unit id="password.forgotten.button">
+                <source>password.forgotten.button</source>
+                <target>Fortsetzen</target>
+            </trans-unit>
             <trans-unit id="back">
                 <source>back</source>
                 <target>Weiter shoppen</target>
