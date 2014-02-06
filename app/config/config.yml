@@ -178,10 +178,6 @@ liip_theme:
             - %%dir%%/themes/%%current_theme%%/%%bundle_name%%/%%template%%
             - %%dir%%/themes/2013s1/%%bundle_name%%/%%template%%
 
-nelmio_security:
-    flexible_ssl:
-        cookie_name:      auth
-        unsecured_logout: false
 muneris:
     host: http://muneris.bellcom.dk/
 ax:

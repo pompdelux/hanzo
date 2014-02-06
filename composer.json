@@ -27,7 +27,6 @@
         "ekino/newrelic-bundle": "master-dev",
         "liip/theme-bundle": "dev-master",
         "drak/native-session": "master-dev",
-        "nelmio/security-bundle": "~1.0",
         "misd/guzzle-bundle": "~1.0",
 
         "knplabs/knp-snappy-bundle": "1.1"
