@@ -128,3 +128,15 @@ td .glyphicon {
 .table ul {
     list-style: none;
 }
+
+.cms #sortable-list {
+    margin-left: 0;
+    padding-left: 0;
+}
+.cms #sortable-list ul {
+    margin-left: 10px;
+    padding-left: 0;
+}
+.cms #sortable-list li {
+    list-style: none;
+}
