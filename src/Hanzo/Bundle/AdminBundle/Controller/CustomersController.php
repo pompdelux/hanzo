@@ -2,7 +2,7 @@
 
 namespace Hanzo\Bundle\AdminBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use Hanzo\Core\Hanzo;
@@ -20,7 +20,7 @@ use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
 class CustomersController extends CoreController
 {
 
-    public function indexAction($domain_key, $pager)
+    public function indexAction(Request $request, $domain_key, $pager)
     {
         if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_CUSTOMERS_SERVICE")'))) {
             return $this->redirect($this->generateUrl('admin'));
@@ -28,21 +28,24 @@ class CustomersController extends CoreController
 
         $hanzo = Hanzo::getInstance();
         $container = $hanzo->container;
-        $route = $container->get('request')->get('_route');
+        $route = $request->get('_route');
         $router = $container->get('router');
 
         $customers = CustomersQuery::create();
 
-        if (isset($_GET['debitor'])) {
-            $debitor = $this->getRequest()->get('debitor', null);
+        if ($request->query->has('debitor')) {
+            $debitor = $request->query->get('debitor');
 
             $customers = $customers
                 ->filterById($debitor)
             ;
         }
-        if (isset($_GET['q'])) {
-            $q_clean = $this->getRequest()->get('q', null);
+
+        $q_clean = null;
+        if ($request->query->has('q')) {
+            $q_clean = $request->query->get('q');
             $q = '%'.$q_clean.'%';
+
             /**
              * @todo Lav søgning så man kan søge på hele navn. Sammenkobling på for og efternavn.
              */
@@ -59,7 +62,7 @@ class CustomersController extends CoreController
             ;
         }
 
-        if($domain_key){
+        if ($domain_key) {
             $customers = $customers
                 ->useOrdersQuery()
                     ->useOrdersAttributesQuery()
@@ -83,23 +86,24 @@ class CustomersController extends CoreController
         if ($customers->haveToPaginate()) {
 
             $pages = array();
-            foreach ($customers->getLinks(20) as $page) {
-                if (isset($_GET['q']))
-                    $pages[$page] = $router->generate($route, array('pager' => $page, 'q' => $_GET['q']), TRUE);
-                else
+            foreach ($customers->getLinks(10) as $page) {
+                if ($q_clean) {
+                    $pages[$page] = $router->generate($route, array('pager' => $page, 'q' => $q_clean), TRUE);
+                } else {
                     $pages[$page] = $router->generate($route, array('pager' => $page), TRUE);
-
+                }
             }
 
-            if (isset($_GET['q'])) // If search query, add it to the route
+            // If search query, add it to the route
+            if ($q_clean) {
                 $paginate = array(
-                    'next' => ($customers->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $customers->getNextPage(), 'q' => $_GET['q']), TRUE)),
-                    'prew' => ($customers->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $customers->getPreviousPage(), 'q' => $_GET['q']), TRUE)),
+                    'next' => ($customers->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $customers->getNextPage(), 'q' => $q_clean), TRUE)),
+                    'prew' => ($customers->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $customers->getPreviousPage(), 'q' => $q_clean), TRUE)),
 
                     'pages' => $pages,
                     'index' => $pager
                 );
-            else
+            } else {
                 $paginate = array(
                     'next' => ($customers->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $customers->getNextPage()), TRUE)),
                     'prew' => ($customers->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $customers->getPreviousPage()), TRUE)),
@@ -107,18 +111,15 @@ class CustomersController extends CoreController
                     'pages' => $pages,
                     'index' => $pager
                 );
+            }
         }
 
-        $domains_availible = DomainsQuery::Create()
-            ->find($this->getDbConnection())
-        ;
-
         return $this->render('AdminBundle:Customers:list.html.twig', array(
-            'customers'     => $customers,
-            'paginate'      => $paginate,
-            'domain_key' => $domain_key,
-            'domains_availible' => $domains_availible,
-            'database' => $this->getRequest()->getSession()->get('database')
+            'customers'         => $customers,
+            'paginate'          => $paginate,
+            'domain_key'        => $domain_key,
+            'domains_availible' => DomainsQuery::Create()->find($this->getDbConnection()),
+            'database'          => $this->getRequest()->getSession()->get('database')
         ));
 
     }
