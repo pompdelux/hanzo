@@ -91,6 +91,9 @@
   float: right;
 }
 
+.product-table td div.info label {
+}
+
 .cart_delete_action,
 .cart_edit_action {
   float: right;

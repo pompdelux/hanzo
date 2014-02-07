@@ -52,7 +52,9 @@
             </trans-unit>
             <trans-unit id="password.forgotten.text">
                 <source>password.forgotten.text</source>
-                <target><![CDATA[<h2>Unohditko salasanasi?</h2>Kirjoita sähköpostiosoitteesi alle ja napsauta painiketta ”Jatka”. Muutaman minuutin kuluttua saat POMPdeLUXilta sähköpostiviestin, joka sisältää salasanasi.]]></target>
+                <target><![CDATA[
+				<p>Kirjoita sähköpostiosoitteesi alle ja napsauta painiketta ”Jatka”. Muutaman minuutin kuluttua saat POMPdeLUXilta sähköpostiviestin, joka sisältää salasanasi.</p>
+				]]></target>
             </trans-unit>
             <trans-unit id="password.forgotten.not_found">
                 <source>password.forgotten.not_found</source>

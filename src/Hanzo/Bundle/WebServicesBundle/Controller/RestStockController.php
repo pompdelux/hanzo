@@ -30,8 +30,9 @@ class RestStockController extends CoreController
      * check stock for a product or collection of products
      * note: only products in stock is returned.
      *
-     * @param int $product_id
-     * @param str $version
+     * @param Request $request
+     * @param int     $product_id
+     * @param string  $version
      * @return Response json encoded responce
      */
     public function checkAction(Request $request, $product_id = null, $version = 'v1')
@@ -83,6 +84,7 @@ class RestStockController extends CoreController
                     'product_id' => $product->getId(),
                     'master'     => $product->getMaster(),
                     'size'       => $product->getSize(),
+                    'size_label' => $product->getPostfixedSize($translator),
                     'color'      => $product->getColor(),
                     'date'       => '',
             ));
@@ -123,6 +125,7 @@ class RestStockController extends CoreController
                             'product_id' => $record->getId(),
                             'master'     => $record->getMaster(),
                             'size'       => $record->getSize(),
+                            'size_label' => $record->getPostfixedSize($translator),
                             'color'      => $record->getColor(),
                             'date'       => $date
                         );

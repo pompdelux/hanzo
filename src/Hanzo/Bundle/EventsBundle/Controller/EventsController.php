@@ -666,7 +666,6 @@ class EventsController extends CoreController
         $form_tell_a_friend = null;
 
         if($events_participant instanceof EventsParticipants && $event instanceof Events){
-
             if(true === $events_participant->getTellAFriend()){
                 $form_tell_a_friend = $this->createFormBuilder(new EventsParticipants())
                     ->add('first_name', 'text',
@@ -694,6 +693,11 @@ class EventsController extends CoreController
                     )->getForm()
                 ;
                 $form_tell_a_friend = $form_tell_a_friend->createView();
+            }
+
+            $accept = 1;
+            if ($events_participant->getRespondedAt()) {
+                $accept = $events_participant->getHasAccepted();
             }
 
             $form_rsvp = $this->createFormBuilder($events_participant)
@@ -725,6 +729,7 @@ class EventsController extends CoreController
                             '1' => $this->get('translator')->trans('events.hasaccepted.yes', array(), 'events'),
                             '0' => $this->get('translator')->trans('events.hasaccepted.no', array(), 'events')
                         ),
+                        'data' => $accept,
                         'multiple' => false,
                         'expanded' => false,
                         'label' => 'events.participants.has_accepted.label',
