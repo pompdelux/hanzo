@@ -64,7 +64,7 @@ after 'deploy:restart', 'deploy:symlinks', 'symfony:cache:assets_update', 'symfo
 # send_email moved here. dont want a deploy email on rollback
 after 'deploy', 'deploy:send_email'
 ## also clear redis and varnish when calling cache:clear
-after 'symfony:cache:clear', 'symfony:cache:redis_clear', 'symfony:cache:varnish_clear', 'deploy:update_permissions'
+after 'symfony:cache:clear', 'symfony:cache:redis_clear', 'symfony:cache:varnish_clear', 'deploy:update_permissions', 'deploy:update_permissions_releases'
 # mail after rollback and warn about clearing cache. Doesn't seem to work with "after 'deploy:rollback", because it tries to clear the old current dir
 after 'deploy:rollback', 'deploy:send_email_rollback', 'deploy:rollback_warning'
 # save whats new diff just after updating the code. This might break an initial deploy even if using deploy:cold
