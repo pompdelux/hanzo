@@ -41,7 +41,6 @@
             <trans-unit id="password.forgotten.text">
                 <source>password.forgotten.text</source>
                 <target><![CDATA[
-                    <h2>Have you forgotten your password?</h2>
                     <p>Type your email address below and click on "Continue". Within few minutes you will receive an email from POMPdeLUX with your password.</p>
                 ]]></target>
             </trans-unit>
