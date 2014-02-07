@@ -172,6 +172,14 @@ class DefaultController extends CoreController
             'total'   => $order->getTotalQuantity(true),
         ];
 
+        // Delete cached version in redis, used in the mega basket.
+        $cache_id = [
+            '_fragment',
+            'BasketBundle:Default:megaBasket.html.twig',
+            $this->getRequest()->getSession()->getId(),
+        ];
+        $this->get('redis.main')->del($cache_id);
+
         if ($this->getFormat() == 'json') {
             return $this->json_response($template_data);
         }
@@ -248,6 +256,14 @@ class DefaultController extends CoreController
             );
 
             Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
+
+            // Delete cached version in redis, used in the mega basket.
+            $cache_id = [
+                '_fragment',
+                'BasketBundle:Default:megaBasket.html.twig',
+                $this->getRequest()->getSession()->getId(),
+            ];
+            $this->get('redis.main')->del($cache_id);
 
             if ($this->getFormat() == 'json') {
                 return $this->json_response(array(
@@ -338,11 +354,14 @@ class DefaultController extends CoreController
 
     public function viewAction($embed = false, $orders_id = null, $template = 'BasketBundle:Default:view.html.twig')
     {
-        $cache_id = explode('_', $this->get('request')->get('_route'));
-        $cache_id[] = $this->getRequest()->getSession()->getId();
 
         // If this request is for the mega basket, check if we already has cached it.
         if (rawurldecode($this->getRequest()->getPathInfo()) === $this->container->getParameter('fragment.path')) {
+            $cache_id = [
+                '_fragment',
+                $template,
+                $this->getRequest()->getSession()->getId(),
+            ];
             $html = $this->getCache($cache_id);
             if ($html) {
                 return new Response($html);
