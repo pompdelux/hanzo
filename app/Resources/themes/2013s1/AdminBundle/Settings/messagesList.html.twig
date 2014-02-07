@@ -39,49 +39,49 @@
     <h1>{{ 'admin.messages.header.text'|trans({}, 'admin') }}</h1>
 
 {% for message in app.session.flashbag.get('notice') %}
-    <div class="message notice">
+    <div class="alert alert-info">
       {{ message|trans({}, 'admin') }}
     </div>
 {% endfor %}
 
 {% if messages|length > 0 %}
 
-<p>{{ 'admin.messages.description.text'|trans({}, 'admin') }}</p>
+    <p>{{ 'admin.messages.description.text'|trans({}, 'admin') }}</p>
 
-<table id="messages" class="table table-striped">
-  <thead>
-    <tr>
-      <th>{{ 'admin.messages.ns'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.messages.key'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.messages.locale'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.messages.subject'|trans({}, 'admin') }}</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for message in messages %}
-    <tr>
-      <td>{{ message.messages.ns }}</td>
-      <td>{{ message.messages.key }}</td>
-      <td>{{ message.locale }}</td>
-      <td>{{ message.subject }}</td>
-      <th>
-        <ul>
-          <li>
-              <a href="{{ path('admin_settings_messages_edit', {'id' : message.id, 'locale' : message.locale}) }}" class="glyphicon glyphicon-edit" title="{{ 'admin.messages.edit'|trans({}, 'admin') }}"></a>
-              <a href="{{ path('admin_settings_messages_delete', {'id' : message.id, 'locale' : message.locale }) }}" class="glyphicon glyphicon-remove-circle" title="{{ 'admin.messages.delete'|trans({}, 'admin') }}"></a>
-          </li>
-          <li>
-          {% for language in languages_availible %}
-              <a href="{{ path('admin_settings_messages_edit', {'id' : message.id, 'locale' : language.locale}) }}" title="{{ 'admin.messages.translate'|trans({}, 'admin') }} {{ language.locale }}"><span class="flag {{ language.locale }}"></span></a>
-          {% endfor %}
-          </li>
-        </ul>
-      </th>
-    </tr>
-  {% endfor %}
-  </tbody>
-</table>
+    <table id="messages" class="table table-striped">
+        <thead>
+        <tr>
+            <th>{{ 'admin.messages.ns'|trans({}, 'admin') }}</th>
+            <th>{{ 'admin.messages.key'|trans({}, 'admin') }}</th>
+            <th>{{ 'admin.messages.locale'|trans({}, 'admin') }}</th>
+            <th>{{ 'admin.messages.subject'|trans({}, 'admin') }}</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for message in messages %}
+            <tr>
+                <td>{{ message.messages.ns }}</td>
+                <td>{{ message.messages.key }}</td>
+                <td>{{ message.locale }}</td>
+                <td>{{ message.subject }}</td>
+                <th>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_settings_messages_edit', {'id' : message.id, 'locale' : message.locale}) }}" class="glyphicon glyphicon-edit" title="{{ 'admin.messages.edit'|trans({}, 'admin') }}"></a>
+                            <a href="{{ path('admin_settings_messages_delete', {'id' : message.id, 'locale' : message.locale }) }}" class="glyphicon glyphicon-remove-circle" title="{{ 'admin.messages.delete'|trans({}, 'admin') }}"></a>
+                        </li>
+                        <li>
+                        {% for language in languages_availible %}
+                            <a href="{{ path('admin_settings_messages_edit', {'id' : message.id, 'locale' : language.locale}) }}" title="{{ 'admin.messages.translate'|trans({}, 'admin') }} {{ language.locale }}"><span class="flag {{ language.locale }}"></span></a>
+                        {% endfor %}
+                        </li>
+                    </ul>
+                </th>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
 {% else %}
 

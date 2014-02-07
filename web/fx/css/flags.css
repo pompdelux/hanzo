@@ -129,14 +129,66 @@ td .glyphicon {
     list-style: none;
 }
 
-.cms #sortable-list {
-    margin-left: 0;
-    padding-left: 0;
+#sortable-list,
+#sortable-list ul{
+    list-style-type: none;
+    margin:0;
+    padding:5px;
+    width:500px;
 }
-.cms #sortable-list ul {
-    margin-left: 10px;
-    padding-left: 0;
+#sortable-list ul{
+    width:auto;
+    padding:0;
 }
-.cms #sortable-list li {
-    list-style: none;
+#sortable-list .sortable-item{
+    margin: 0.25em 0 0 0;
+    padding: 5px 0px 5px 15px;
+    list-style: none !important;
+}
+#sortable-list .sortable-item:not(.ui-state-disabled){
+    cursor:move;
+}
+#sortable-list .sortable-item li{
+    border-left:1px dashed #D9D9D9;
+}
+#sortable-list .sortable-item div.record{
+    border:1px solid #ddd;
+    height:25px;
+}
+#sortable-list .sortable-item.top > div.record .record-id {
+    cursor: pointer;
+}
+#sortable-list .sortable-item.top > div.record .record-id:before{
+    content: '▼';
+    padding-right: 5px;
+    color: black;
+}
+#sortable-list li.helper{
+    border: 2px dashed black;
+    margin: 5px 0px 5px 10px;
+    height:20px;
+}
+#sortable-list li > div{
+    font-size: 14px;
+}
+#sortable-list ul li div{
+    font-size: 12px;
+}
+#sortable-list .sortable-item div span{
+    border-right: 1px solid grey;
+    line-height: 23px;
+    padding: 0 10px;
+}
+#sortable-list .sortable-item .actions{
+    display: inline;
+    float: right;
+    height:100%;
+}
+
+#sortable-list .sortable-item .actions a {
+    margin: 5px 5px 0 5px;
+}
+
+.cms-meta {
+    margin: 20px 10px;
 }

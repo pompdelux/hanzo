@@ -23,7 +23,9 @@
         </div>
     </nav>
 
-{{ tree|raw }}
+    <div class="row cms-tree">
+        {{ tree|raw }}
+    </div>
 
     <div class="clearfix">
         <a class="button btn btn-success save-nestedsortable" href="#">{{ 'save.changes'|trans({}, 'admin') }}</a>
