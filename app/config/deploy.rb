@@ -198,7 +198,7 @@ namespace :deploy do
     capifony_pretty_print "--> Getting changelog from git"
     deployed_already = previous_revision
     to_be_deployed = `cd .rsync_cache && git rev-parse --short "HEAD" && cd ..`.strip
-    set :deploydiff, `cd .rsync_cache && git log --no-merges --pretty=format:"* %s %b (%cn)" #{deployed_already}..#{to_be_deployed}`.sub("'", "")
+    set :deploydiff, `cd .rsync_cache && git log --no-merges --pretty=format:"* %s %b (%cn)" #{deployed_already}..#{to_be_deployed}`.gsub("'", "\"")
     capifony_puts_ok
   end
 end
