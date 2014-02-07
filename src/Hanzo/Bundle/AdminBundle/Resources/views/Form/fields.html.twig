@@ -3,7 +3,7 @@
 {% block form_row %}
 {% spaceless %}
     <div class="form-group">
-        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('col-sm-1') ~ ' control-label')|trim}) %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('col-sm-2') ~ ' control-label')|trim}) %}
         {{ form_label(form, '', {'label_attr': label_attr}) }}
 
         <div class="col-sm-6">

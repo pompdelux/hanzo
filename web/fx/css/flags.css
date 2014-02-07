@@ -192,3 +192,29 @@ td .glyphicon {
 .cms-meta {
     margin: 20px 10px;
 }
+
+.pager.ajax {
+    margin: 0;
+}
+
+th.controles {
+    white-space: nowrap
+}
+
+#consultants-openhouses .element {
+    border: 1px black solid;
+    min-height: 226px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+#consultants-openhouses .hide_info {
+    opacity: 0.5;
+}
+#consultants-openhouses .hide_info div:first {
+    font-size: 11px;
+    padding-bottom: 5px;
+}
+#consultants-openhouses .element .note {
+    border-top: 1px solid grey;
+    padding-top: 5px;
+}

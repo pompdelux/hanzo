@@ -19,7 +19,12 @@ use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
 
 class CustomersController extends CoreController
 {
-
+    /**
+     * @param  Request $request
+     * @param  string  $domain_key
+     * @param  int     $pager
+     * @return Response
+     */
     public function indexAction(Request $request, $domain_key, $pager)
     {
         if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_CUSTOMERS_SERVICE")'))) {
@@ -124,6 +129,10 @@ class CustomersController extends CoreController
 
     }
 
+    /**
+     * @param  int $id
+     * @return Response
+     */
     public function viewAction($id)
     {
         if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_CUSTOMERS_SERVICE")'))) {
@@ -216,11 +225,6 @@ class CustomersController extends CoreController
             $form->handleRequest($request);
 
             if ($form->isValid()) {
-
-                /**
-                 * @todo Synkronisering til AX
-                 */
-
                 $customer->setPassword(sha1($customer->getPasswordClear()));
                 $customer->save($this->getDbConnection());
 

@@ -1,53 +1,50 @@
 {% extends '::adminbase.html.twig' %}
 
 {% block content %}
-<nav class="sub">
-  <ul>
-    <li>
-      <a href="{{ path('admin_consultants') }}">
-        {{ 'admin.consultants.list.link'|trans({}, 'admin') }}
-      </a>
-    </li>
-  </ul>
-</nav>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ path('admin_consultants') }}">{{ 'admin.consultants.list.link'|trans({}, 'admin') }}</a></li>
+            </ul>
+        </div>
+    </nav>
 
-<h1>{{ 'admin.consultants.openhouse.header.text'|trans({}, 'admin') }}</h1>
+    <h1>{{ 'admin.consultants.openhouse.header.text'|trans({}, 'admin') }}</h1>
 
 {% for message in app.session.flashbag.get('notice') %}
-<div class="message notice">
-  {{ message|trans({}, 'admin') }}
-</div>
+    <div class="alert alert-info">
+        {{ message|trans({}, 'admin') }}
+    </div>
 {% endfor %}
 
 
 {% if consultants|length > 0 %}
 
-  <div id="consultants-openhouses" class="clearfix">
+    <div id="consultants-openhouses" class="clearfix">
     {% for consultant in consultants %}
-      {% if consultant.hide_info %}
-      <div class="element hide_info">
-        <div>{{ 'admin.consultants.openhouse.consultant_is_hidden'|trans({}, 'admin') }}</div>
-      {% else %}
-      <div class="element">
-      {% endif %}
-        <h4>
-          <a href="{{ path('admin_consultant', {'id' : consultant.id}) }}">
-            {{ consultant.name }}
-          </a>
-        </h4>
-        <div>{{ consultant.zip }} {{ consultant.city }} </div>
-        <div>{{ 'admin.customer.email'|trans({}, 'admin') }}: <a href="mailto:{{ consultant.email }}">{{ consultant.email }}</a></div>
-        <div>{{ 'admin.customer.phone'|trans({}, 'admin') }}: {{ consultant.phone }}</div>
-        <div class="note">
-          {{ consultant.info|raw }}
+    {% if consultant.hide_info %}
+        <div class="element col-md-3 hide_info">
+            <div>{{ 'admin.consultants.openhouse.consultant_is_hidden'|trans({}, 'admin') }}</div>
+    {% else %}
+        <div class="element col-md-3">
+    {% endif %}
+            <h4><a href="{{ path('admin_consultant', {'id' : consultant.id}) }}">{{ consultant.name }}</a></h4>
+
+            <div>{{ consultant.zip }} {{ consultant.city }} </div>
+            <div>{{ 'admin.customer.email'|trans({}, 'admin') }}:
+                <a href="mailto:{{ consultant.email }}">{{ consultant.email }}</a>
+            </div>
+            <div>{{ 'admin.customer.phone'|trans({}, 'admin') }}: {{ consultant.phone }}</div>
+            <div class="note">
+                {{ consultant.info|raw }}
+            </div>
         </div>
-      </div>
     {% endfor %}
-  </div>
+    </div>
 
-{% else %}
+    {% else %}
 
-<p>{{ 'admin.customers.no.consultants.text'|trans({}, 'admin') }}</p>
+    <p>{{ 'admin.customers.no.consultants.text'|trans({}, 'admin') }}</p>
 
 {% endif %}
 {% endblock %}

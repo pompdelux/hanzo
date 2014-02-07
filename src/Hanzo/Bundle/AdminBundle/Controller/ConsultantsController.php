@@ -305,7 +305,7 @@ class ConsultantsController extends CoreController
         $router = $this->get('router');
 
         $events = EventsQuery::create()
-            ->orderByEventDate()
+            ->orderByEventDate(\Criteria::DESC)
             ->paginate($pager, 50, $this->getDbConnection())
         ;
 
@@ -565,9 +565,10 @@ class ConsultantsController extends CoreController
         $form = $this->createFormBuilder(array('content' => $setting->getCValue()))
             ->add('content', 'textarea',
                 array(
-                    'label' => 'admin.consultants.frontpage.content.label',
+                    'label'              => 'admin.consultants.frontpage.content.label',
                     'translation_domain' => 'admin',
-                    'required' => false
+                    'required'           => false,
+                    'attr'               => ['rows' => 20]
                 )
             )->getForm()
         ;
