@@ -40,12 +40,12 @@
             </trans-unit>
             <trans-unit id="password.forgotten">
                 <source>password.forgotten</source>
-                <target>Jeg har glemt min adgangskode</target>
+                <target>Jeg har glemt min passord</target>
             </trans-unit>
             <trans-unit id="password.forgotten.text">
                 <source>password.forgotten.text</source>
                 <target><![CDATA[
-                    <p>Skriv inn din e-postadresse nedenfor og klikk på knappen "Fortsett". I løpet av få minutter vil du motta en e-post fra POMPdeLUX med adgangskode.</p>
+                    <p>Skriv inn din e-postadresse nedenfor og klikk på knappen "Fortsett". I løpet av få minutter vil du motta en e-post fra POMPdeLUX med passord.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="password.forgotten.not_found">
@@ -58,7 +58,7 @@
             <trans-unit id="password.forgotten.resend">
                 <source>password.forgotten.resend</source>
                 <target><![CDATA[
-                    <p>Din adgangskode er sendt til den inntastede e-postadressen.</p>
+                    <p>Din passord er sendt til den inntastede e-postadressen.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="proceed">
@@ -75,7 +75,7 @@
             </trans-unit>
             <trans-unit id="retrive.password">
                 <source>retrive.password</source>
-                <target>» Få adgangskoden tilsendt pr. e-post</target>
+                <target>» Få passord tilsendt pr. e-post</target>
             </trans-unit>
             <trans-unit id="47">
                 <source>New customer</source>
@@ -111,7 +111,7 @@
             </trans-unit>
             <trans-unit id="password">
                 <source>password</source>
-                <target>Adgangskode</target>
+                <target>Passord</target>
             </trans-unit>
             <trans-unit id="my.account.login.title">
                 <source>my.account.login.title</source>
@@ -159,7 +159,7 @@
             </trans-unit>
             <trans-unit id="59">
                 <source>Password repeated</source>
-                <target>Adgangskode bekreftes</target>
+                <target>Passord bekreftes</target>
             </trans-unit>
             <trans-unit id="password.invalid.match" approved="no">
                 <source>password.invalid.match</source>
@@ -395,7 +395,7 @@
             </trans-unit>
             <trans-unit id="password.required">
                 <source>password.required</source>
-                <target>Adgangskode skal være på minst 5 tegn</target>
+                <target>Passord skal være på minst 5 tegn</target>
             </trans-unit>
             <trans-unit id="my.account.order.view" approved="no">
                 <source>my.account.order.view</source>
@@ -481,11 +481,11 @@
             </trans-unit>
             <trans-unit id="acc.3" approved="no">
                 <source>Pass</source>
-                <target>Valgfri adgangskode</target>
+                <target>Valgfri passord</target>
             </trans-unit>
             <trans-unit id="acc.4" approved="no">
                 <source>Pass repeated</source>
-                <target>Gjenta adgangskode</target>
+                <target>Gjenta passord</target>
             </trans-unit>
             <trans-unit id="my.account.login.notice" approved="no">
                 <source>my.account.login.notice</source>

@@ -76,7 +76,7 @@
             </trans-unit>
             <trans-unit id="password.required">
                 <source>password.required</source>
-                <target>Adgangskode skal være på minst 5 tegn</target>
+                <target>Passord skal være på minst 5 tegn</target>
             </trans-unit>
             <trans-unit id="password.min.length" approved="no">
                 <source>password.min.length</source>
