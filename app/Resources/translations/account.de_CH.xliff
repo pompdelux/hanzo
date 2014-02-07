@@ -53,7 +53,6 @@
             <trans-unit id="password.forgotten.text">
                 <source>password.forgotten.text</source>
                 <target><![CDATA[
-                    <h2>Haben Sie Ihr Passwort vergessen?</h2>
                     <p>Geben Sie Ihre E-Mail-Adresse unten ein und klicken Sie auf die Schaltfläche ”Weiter”. Im Laufe weniger Minuten erhalten Sie von POMPdeLUX eine E-Mail mit Ihrem Passwort.</p>
                 ]]></target>
             </trans-unit>
