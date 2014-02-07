@@ -136,7 +136,7 @@ class MiscExtension extends Twig_Extension
     /**
     * Returns any meta data associated with this domain.
     *
-    * @param array exclude specific tag names.
+    * @param string exclude specific tag names.
     * @return string
     */
     public function metaTags($exclude = '')

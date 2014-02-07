@@ -48,7 +48,7 @@
           <tr class="item">
             <td class="image left">
               {{ product_image_tag(product.basket_image, '57x100', { 'alt' : product.products_name }) }}
-              <div class="info" data-product_id="{{ product.products_id }}" data-confirmed="">
+              <div class="info" data-product_id="{{ product.products_id }}" data-confirmed="" data-master="{{ product.master }}">
                 <a href="{{ product.url }}" class="title">{{ product.products_name }}</a>
                 <div class="size">
                   <label>{{ "size"|trans }}:</label>
