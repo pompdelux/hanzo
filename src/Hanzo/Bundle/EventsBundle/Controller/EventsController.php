@@ -237,6 +237,7 @@ class EventsController extends CoreController
                     $host = new Customers();
                     $host->setPasswordClear($event->getPhone());
                     $host->setPassword(sha1($event->getPhone()));
+                    $host->setPhone($event->getPhone());
                     $host->setEmail($event->getEmail());
                     $host->setFirstName($first);
                     $host->setLastName($last);

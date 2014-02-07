@@ -67,6 +67,10 @@
                 <source>proceed</source>
                 <target>Naar de betaalpagina</target>
             </trans-unit>
+            <trans-unit id="password.forgotten.button">
+                <source>password.forgotten.button</source>
+                <target>Voortzetten</target>
+            </trans-unit>
             <trans-unit id="back">
                 <source>back</source>
                 <target>Ga door met winkelen</target>
@@ -534,7 +538,7 @@ Hierna kun je gewoon doorgaan met winkelen.<br></p>
             </trans-unit>
             <trans-unit id="account.returnlabel.link">
                 <source>account.returnlabel.link</source>
-                <target>Print retur label</target>
+                <target>Print retourlabel</target>
             </trans-unit>
             </body>
     </file>
