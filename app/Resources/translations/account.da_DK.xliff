@@ -75,6 +75,10 @@
                 <source>proceed</source>
                 <target>Til betaling</target>
             </trans-unit>
+            <trans-unit id="password.forgotten.button">
+                <source>password.forgotten.button</source>
+                <target>Fortsæt</target>
+            </trans-unit>
             <trans-unit id="back">
                 <source>back</source>
                 <target>Shop videre</target>
@@ -464,8 +468,8 @@
                         <b>Returnering</b><br>
                         Ønsker du at returnere en vare, klikker du på <img src="/fx/images/icons/icons/return.png" alt="Return"> <strong>Bemærk:</strong> Returlabel og returseddel ligger i hver sin PDF og skal printes hver for sig.<br><br>
                         Kan du ikke finde varen du ønsker at returnere, kan du klikke på linket her og udskrive returseddel manuelt. <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel.pdf" target="_blank">Returseddel (PDF)</a><br><br>
-						Klik på <img src="/fx/images/icons/icons/returnlabel.png" alt="Returnlabel"> udfor din ordre for at følge din pakke. Returlabel åbner i et nyt vindue.<br><br>
-						Klik på <img src="/fx/images/icons/icons/trackntrace.png" alt="Track 'n trace"> udfor din ordre for at følge din pakke. Track and Trace siden åbner i et nyt vindue.<br><br>
+						Klik på <img src="/fx/images/icons/icons/returnlabel.png" alt="Returnlabel"> ud for din ordre for, at få en returlabel. Returlabel åbner i et nyt vindue.<br><br>
+						Klik på <img src="/fx/images/icons/icons/trackntrace.png" alt="Track 'n trace"> ud for din ordre for at følge din pakke. Track and Trace siden åbner i et nyt vindue.<br><br>
                     </p>
                 ]]></target>
             </trans-unit>

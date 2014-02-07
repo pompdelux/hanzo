@@ -1,5 +1,5 @@
 #
-# Hanzo / Pompdelux deploy - common stuff used by both production and testing
+# Hanzo / Pompdelux deploy - common stuff used by both production, testing and dev
 #
 
 # needed to get verbose output. -v doesnt work. Use below to see commands run if deploy fails
@@ -15,7 +15,7 @@ set :scm,         :git
 
 set :stage_dir, 'app/config/deploy'
 require 'capistrano/ext/multistage'
-set :stages,        %w(testing production)
+set :stages,        %w(dev testing production)
 set :default_stage, "testing"
 
 # use composer for symfony 2.1

@@ -63,6 +63,10 @@
                 <source>proceed</source>
                 <target>Go to payment</target>
             </trans-unit>
+            <trans-unit id="password.forgotten.button">
+                <source>password.forgotten.button</source>
+                <target>Continue</target>
+            </trans-unit>
             <trans-unit id="back">
                 <source>back</source>
                 <target>Continue shopping</target>
@@ -534,7 +538,7 @@ After this you can easily continue shopping.<br></p>
             </trans-unit>
             <trans-unit id="account.returnlabel.link">
                 <source>account.returnlabel.link</source>
-                <target>Print retur label</target>
+                <target>Print return label</target>
             </trans-unit>
         </body>
     </file>
