@@ -64,7 +64,7 @@ after 'deploy:restart', 'deploy:symlinks', 'symfony:cache:assets_update', 'symfo
 # send_email moved here. dont want a deploy email on rollback
 after 'deploy', 'deploy:send_email'
 ## also clear redis and varnish when calling cache:clear
-after 'symfony:cache:clear', 'symfony:cache:redis_clear', 'symfony:cache:varnish_clear'
+after 'symfony:cache:clear', 'symfony:cache:redis_clear', 'symfony:cache:varnish_clear', 'deploy:update_permissions', 'deploy:update_permissions_releases'
 # mail after rollback and warn about clearing cache. Doesn't seem to work with "after 'deploy:rollback", because it tries to clear the old current dir
 after 'deploy:rollback', 'deploy:send_email_rollback', 'deploy:rollback_warning'
 # save whats new diff just after updating the code. This might break an initial deploy even if using deploy:cold
@@ -198,7 +198,7 @@ namespace :deploy do
     capifony_pretty_print "--> Getting changelog from git"
     deployed_already = previous_revision
     to_be_deployed = `cd .rsync_cache && git rev-parse --short "HEAD" && cd ..`.strip
-    set :deploydiff, `cd .rsync_cache && git log --no-merges --pretty=format:"* %s %b (%cn)" #{deployed_already}..#{to_be_deployed}`.sub("'", "")
+    set :deploydiff, `cd .rsync_cache && git log --no-merges --pretty=format:"* %s %b (%cn)" #{deployed_already}..#{to_be_deployed}`.gsub("'", "\"")
     capifony_puts_ok
   end
 end
