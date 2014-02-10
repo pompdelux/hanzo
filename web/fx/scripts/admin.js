@@ -358,7 +358,7 @@
               }
             }
             else {
-              $('#item-' + image + ' .image-categories').append('<li><span class="actions"><a href="' + base_url + 'products/delete-image-from-category/' + image + '/' + category + '" class="delete" title="Slet">Slet</a></span><span class="sku">' + selectedOption.text() + '</span></li>');
+              $('#item-' + image + ' .image-categories').append('<li><span class="actions"><a href="' + base_url + 'products/delete-image-from-category/' + image + '/' + category + '" class="delete glyphicon glyphicon-remove-circle" title="Slet"></a> </span><span class="sku">' + selectedOption.text() + '</span></li>');
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {
@@ -400,7 +400,6 @@
       $('#product-categories a.delete').on('click',function(e){
         e.preventDefault();
         var $a = $(this);
-console.log($a);
         dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> Kategorien fra produktet ?',function(choice) {
           if (choice == 'ok') {
             $.ajax({
@@ -438,7 +437,7 @@ console.log($a);
               }
             }
             else {
-              $('#product-related-products').append('<li><span class="actions"><a href="' + base_url + 'products/delete-related/' + master + '/' + sku + '" class="delete" title="Slet">Slet</a></span><span class="title"> ' + selectedOption.text() + '</span></li>');
+              $('#product-related-products').append('<li><span class="actions"><a href="' + base_url + 'products/delete-related/' + master + '/' + sku + '" class="delete glyphicon glyphicon-remove-circle" title="Slet"></a></span><span class="title"> ' + selectedOption.text() + '</span></li>');
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {
