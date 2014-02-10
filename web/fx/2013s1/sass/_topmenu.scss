@@ -7,8 +7,8 @@ nav.main-menu {
   background: #484a4d;
   padding: 0 10px;
   ul {
-    z-index: 210; // z-index and rpoition to fix rendering in IE7. This must be higher than the actually z-index of child
-    position: relative;
+    z-index: 310; // z-index and rpoition to fix rendering in IE7. This must be higher than the actually z-index of child
+    position: initial;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -21,14 +21,14 @@ nav.main-menu {
   > ul > li {
     float: left;
     width: auto;
-    position: relative;
+    position: initial;
     // Hover effect on submenus. .on class are used on touch devices.
     > ul.on,
     &:hover > ul {
       left: 0;
       top: auto;
-      z-index: 150;
-      @include box-shadow(#CECECE 2px 2px 8px);
+      z-index: 300;
+      @include box-shadow(#CECECE 0 2px 8px);
     }
     > {
       a {
@@ -36,17 +36,13 @@ nav.main-menu {
         display: block;
         font-size: 14px;
         color: white;
-        font-weight: bold;
-        span {
-          font-weight: normal;
-        }
       }
       // Sub menu-items
       ul {
         position: absolute;
         left: -9999px;
         border-top: 0;
-        width: 250px;
+        width: 100%;
         z-index: 1;
         background-color: #fff;
         font-family: $font-sans;
@@ -54,8 +50,8 @@ nav.main-menu {
         line-height: $side-menu-line-height;
 
         > li {
-          float: none;
           padding: 10px 8px;
+          width: 180px;
           // Sub Sub menu-items
           > ul {
             padding-left: 10px;
@@ -66,10 +62,8 @@ nav.main-menu {
           }
         }
         li {
-          &.floaded{
-            float: left;
-            margin-right: 10px;
-          }
+          float: left;
+          margin-right: 10px;
           &.heading > a,
           &.self-included > a{
             font-weight: bold;
