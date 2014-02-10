@@ -63,6 +63,12 @@
         })) }}
 
         <ul class="right horizontal">
+            <li>
+                <form action="{{ path('_search', {'_locale' : app.request.locale}) }}" class="search-form">
+                    <input type="submit" class="text-button button" value="{{ "button.label"|trans({}, 'search') }}">
+                    <input type="text" name="q" placeholder="{{ "button.label"|trans({}, 'search')|upper }}">
+                </form>
+            </li>
             <li id="select-domain">
                 <a class="open-menu" href="#">Change Country</a>
                 <div class="dropdown" style="display: none">
@@ -76,12 +82,6 @@
                     <a href="{{ baseurl }}/sv_SE/">Sweden</a>
                     <a href="{{ baseurl }}/de_CH/">Switzerland</a>
                 </div>
-            </li>
-            <li class="last">
-                <form action="{{ path('_search', {'_locale' : app.request.locale}) }}" class="search-form">
-                    <input type="submit" class="text-button button" value="{{ "button.label"|trans({}, 'search') }}">
-                    <input type="text" name="q" placeholder="{{ "button.label"|trans({}, 'search')|upper }}">
-                </form>
             </li>
         </ul>
     </nav>

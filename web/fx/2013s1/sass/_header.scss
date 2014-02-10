@@ -2,12 +2,14 @@
 | _header
 */
 
+$topbar-color: #dcd8d2;
+
 #logo {
 	margin-top: 6px;
 }
 
 .top-bar {
-    background-color: #dcd8d2;
+    background-color: $topbar-color;
     position: absolute;
     top: 0;
     width: 100%;
@@ -19,7 +21,7 @@ nav.first.main-menu {
         font-size: $main-menu-size;
     }
 
-    background-color: #dcd8d2;
+    background-color: $topbar-color;
     margin-bottom: 6px;
     padding: 3px 0;
     z-index: 300;
@@ -57,11 +59,22 @@ nav.first.main-menu {
         }
     }
     .dropdown{
-      z-index: 201; // This dropdown needs to be on top of the main menu
-            a {
-              display: block;
-              margin: 15px 5px;
-            }
+        z-index: 201; // This dropdown needs to be on top of the main menu
+        a {
+            display: block;
+            margin: 15px 5px;
+        }
+    }
+    >ul.right>li {
+        padding-top: 0;
+        &#select-domain {
+            position: absolute;
+            right: 0;
+            z-index: 150;
+            padding-top: 7px;
+            background-color: $topbar-color;
+        }
+
     }
 }
 form.search-form {
@@ -84,11 +97,12 @@ form.search-form {
         padding: 5px;
         padding-left: 27px;
         width: 234px;
-        background-color: inherit;
+        background-color: transparent;
         &:focus {
             background-color: white;
             outline: none;
             outline-width: 0;
+            z-index: 200;
         }
         font-family: $font-sans;
 

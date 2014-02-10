@@ -220,6 +220,12 @@
       $('form.search-form input[type="text"]').css('width', mini_basket_width - search_form_padding);
       $('nav.first.main-menu>ul.topmenu').css('padding-right', $('nav.main-menu.first ul.right').outerWidth());
 
+      $('form.search-form input[type="text"]').focus(function() {
+        $('#select-domain').toggle();
+      }).blur(function() {
+        $('#select-domain').toggle();
+      });
+
     };
 
     var getDocHeight = function(){
