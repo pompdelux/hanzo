@@ -94,7 +94,7 @@
         <nav id="secondary-links">
             <ul class="horizontal menu first right clearfix">
         {% if skip_my_account is not defined %}
-                <li><a href="{{ path('_account', {'_locale' : app.request.locale}) }}">{{ "my.account"|trans({}, 'account') }}</a></li>
+                <li class="last"><a href="{{ path('_account', {'_locale' : app.request.locale}) }}">{{ "my.account"|trans({}, 'account') }}</a></li>
             </ul>
             <ul class="horizontal menu right second">
                 <li id="mini-basket" class="basket">

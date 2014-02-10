@@ -695,12 +695,8 @@ div header.row {
 #secondary-links li.last {
   padding-right: 0;
 }
-#secondary-links li a, #secondary-links li input {
-  font-size: 0.8em;
+#secondary-links li a {
   text-transform: uppercase;
-}
-#secondary-links li input {
-  padding: 4px 5px;
 }
 #secondary-links ul.first {
   border-bottom: 1px dashed white;
