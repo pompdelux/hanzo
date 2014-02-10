@@ -181,7 +181,7 @@
                 <source>footer.text</source>
                 <target><![CDATA[
                     <ul>
-                        <li><b>Frakt</b> fra 49,- + Fri frakt fra min 1400,-</li>
+                        <li><b>Frakt</b> fra 49,-</li>
                         <li><b>Leveringstid</b> %expected_delivery_date%</li>
                         <li><b>Bytting</b> Gratis</li>
                     </ul>
