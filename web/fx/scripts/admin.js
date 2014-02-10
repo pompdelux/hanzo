@@ -3,12 +3,6 @@
     var pub = {};
 
     pub.initUI = function() {
-
-      $("a.open-menu").click(function(e) {
-        e.preventDefault();
-        $(this).parent().find('div').slideToggle();
-      });
-
       $('.js-loading-spinner').on('click', function(event) {
           dialoug.loading($(this));
       });
@@ -393,7 +387,7 @@
               }
             }
             else {
-              $('#product-categories').append('<li><span class="actions"><a href="' + base_url + 'products/delete-category/' + category + '/' + product + '" class="delete" title="Slet">Slet</a></span><span class="id">(#' + category + ')</span><span class="title"> ' + selectedOption.text() + '</span></li>');
+              $('#product-categories').append('<li><span class="actions"><a href="' + base_url + 'products/delete-category/' + category + '/' + product + '" class="delete glyphicon glyphicon-remove-circle" title="Slet"></a> </span><span class="id">(#' + category + ')</span><span class="title"> ' + selectedOption.text() + '</span></li>');
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {
@@ -406,6 +400,7 @@
       $('#product-categories a.delete').on('click',function(e){
         e.preventDefault();
         var $a = $(this);
+console.log($a);
         dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> Kategorien fra produktet ?',function(choice) {
           if (choice == 'ok') {
             $.ajax({
