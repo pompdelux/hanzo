@@ -48,6 +48,7 @@ nav.main-menu {
         font-family: $font-sans;
         font-size: $side-menu-size;
         line-height: $side-menu-line-height;
+        text-align: center;
 
         > li {
           padding: 10px 8px;
@@ -62,8 +63,15 @@ nav.main-menu {
           }
         }
         li {
-          float: left;
-          margin-right: 10px;
+          text-align: left;
+          &.floaded {
+            margin-right: 10px;
+            display: inline-block;
+            vertical-align: top;
+            &.last {
+              margin-right: 0;
+            }
+          }
           &.heading > a,
           &.self-included > a{
             font-weight: bold;
@@ -76,6 +84,21 @@ nav.main-menu {
         }
       }
     }
+  }
+}
+html.ie7 {
+// html.ie8,
+  nav.main-menu li.floaded {
+    display: inline;
+    float: left;
+  }
+}
+
+
+nav.first.main-menu > ul > li {
+  position: relative;
+  ul {
+    width: 250px;
   }
 }
 

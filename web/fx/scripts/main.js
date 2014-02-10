@@ -85,22 +85,9 @@
           .toggleClass('active inactive')
         ;
 
-        // var menu_width = 0;
-        // $('li li.heading', $menu).each(function(index, element) {
-        //   // var $element = $(element);
-        //   // var tmp_width = $element.width() - 40;
-        //   // if (menu_width < tmp_width) {
-        //   //   menu_width = tmp_width;
-        //   // }
-
-        //   $element.addClass('floaded');
-        // });
-        // $('li li.heading', $menu).closest('ul').each(function(index, element) {
-        //   var $element = $(element);
-        //   var count = $('> li', $element).length;
-        //   // $element.css('width', (menu_width * count) + 5);
-        // });
-
+        $('li li.heading', $menu).each(function(index, element) {
+          $(element).addClass('floaded');
+        });
 
         $('> ul > li > a', $menu).click(function(event) {
           var $this = $(this).parent();
