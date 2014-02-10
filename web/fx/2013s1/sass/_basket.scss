@@ -23,6 +23,11 @@
 			display: inline-block;
 			vertical-align: top;
 			line-height: 22px;
+
+            label {
+                width: 50px;
+                margin-top: 1px;
+            }
 		}
 		.title{
 			font-family: $font-serif;

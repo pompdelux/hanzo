@@ -2,6 +2,10 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
+            <trans-unit id="size.label.postfix">
+                <source>size.label.postfix</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="size.guide.link">
                 <source>size.guide.link</source>
                 <target>images/pages/Size_Guide_SE.jpg</target>
@@ -239,9 +243,9 @@
             <trans-unit id="delivery.info" approved="no">
                 <source>delivery.info</source>
                 <target><![CDATA[
-                    <p> Alla varor skickas som paketpost med Post Danmark och <a href="http://www.posten.se" target="_blank">www.posten.se</a>. Du har d&auml;rf&ouml;r m&ouml;jlighet att f&ouml;lja ditt paket via ett kollinummer fr&aring;n det att det skickas fr&aring;n oss till att det blir levererat hos ditt postombud. Om du best&auml;ller dina varor via ett <a href="/sv_SE/forside/home-shopping">Home Shopping</a> arrangemang kostar frakten SEK 49,00. Om du best&auml;ller varor i v&aring;r Webshop kostar frakten SEK 69,00. <br />
+                    <p>Alla varor skickas som paketpost med Post Danmark och <a href="http://www.posten.se" target="_blank">www.posten.se</a>. Du har därför möjlighet att följa ditt paket via ett kollinummer, från det att det skickas från oss till att det blir levererat hos ditt postombud. Om du beställer dina varor via ett <a href="/sv_SE/forside/home-shopping">Home Shopping</a> arrangemang kostar frakten SEK 49,00. Om du beställer varor i vår Webshop kostar frakten SEK 69,00. <br />När du har mottagit ditt paket, bör du kontrollera varorna. Om paketet och/eller innehållet är skadat, ska du snarast kontakta vår Kundservice eller <a href="http://www.posten.se" target="_blank">www.posten.se</a>. 
       <br />
-      N&auml;r du har mottagit ditt paket, b&ouml;r du kontrollera varorna. Om paketet och/eller inneh&aring;llet &auml;r skadat, ska du snarast kontakta v&aring;r Kundservice eller <a href="http://www.posten.se" target="_blank">www.posten.se</a>.</p>
+      När du har mottagit ditt paket, bör du kontrollera varorna. Om paketet och/eller innehållet är skadat, ska du snarast kontakta vår Kundservice eller <a href="http://www.posten.se" target="_blank">www.posten.se</a>.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="return.title" approved="no">
@@ -251,7 +255,7 @@
             <trans-unit id="return.info" approved="no">
                 <source>return.info</source>
                 <target><![CDATA[
-                    <p>Varorna ska vara oanvända och returneras i original förpackning med labels osv. Strumpor, leggings och strumpbyxor kan endast returneras i obruten förpackning. Postpåsen som dina varor levereras i är gjord så att den kan användas två gånger. Du kan se på påsen hur du gör för att använda den igen. Vi återbetalar därför inte pengar för returemballage och heller inte för porto om du endast returnerar delar av din order. Vi tar inte emot returvaror som skickats mot postförskott.</p>
+                    <p>Varorna ska vara oanvända och returneras i original förpackning med etiketter osv. Strumpor, leggings och strumpbyxor kan endast returneras i obruten förpackning. Postpåsen som dina varor levereras i är gjord så att den kan användas två gånger. Du kan se på påsen hur du gör för att använda den igen. Vi återbetalar därför inte pengar för returemballage och heller inte för porto om du endast returnerar delar av din order. Vi tar inte emot returvaror som skickats mot postförskott.</p>
                 ]]></target>
             </trans-unit>
 			<trans-unit id="footer.menu_1" approved="no">
@@ -263,7 +267,7 @@
                     <li><a href="/sv_SE/forside/kundservice/fragor-och-svar">Frågor och Svar</a></li>
                     <li><a href="/sv_SE/forside/kundservice/returnering">Returnering</a></li>
                     <li><a href="/sv_SE/forside/kundservice/byte">Byte</a></li>
-                    <li><a href="/sv_SE/forside/kundservice/retursedel">Retursedel</a></li>                   
+                    <li><a href="/sv_SE/forside/kundservice/retursedel">Retursedel</a></li>
 					<li><a href="/sv_SE/forside/kundservice/tvattrad">Tvättråd</a></li>
 					<li><a href="/sv_SE/forside/kundservice/sizeguide">Sizeguide</a></li>
 					<li><a href="/sv_SE/forside/kundservice/villkor">Villkor</a></li>
@@ -277,12 +281,12 @@
                 <target><![CDATA[
                 <h2>HOME SHOPPING</h2>
                 <ul class="menu">
-                    <li><a href="/sv_SE/forside/home-shopping">Bli vardinna</a></li>
+                    <li><a href="/sv_SE/forside/home-shopping">Bli värdinna</a></li>
                     <li><a href="/sv_SE/forside/home-shopping/hitta-saljare">Hitta Shopping Advisor</a></li>
 					<li><a href="/sv_SE/forside/home-shopping/appet-hus">Öppet Hus</a></li>
 					<li><a href="/sv_SE/forside/katalog">Katalog</a></li>
 					<li><a href="/sv_SE/forside/bli-saljare/fritidssaljare">Bli Shopping Advisor</a></li>
-                    </ul><br>		
+                    </ul><br>
 				<h2>BE SOCIAL</h2>
 				 <ul class="menu">
 				 <li><a href="http://instagram.com/pompdelux_official" target="_blank"> Instagram</a></li>
@@ -296,8 +300,8 @@
                 <target><![CDATA[
                 <h2>MER POMPDELUX</h2>
                 <ul class="menu">
-                  <li><a href="/sv_SE/forside/om-pompdelux">Om POMPdeLUX</a></li>  
-                   <li><a href="/sv_SE/forside/om-pompdelux/corporate-social-responsibility/csr-rapport">CSR-rapport</a></li> 
+                  <li><a href="/sv_SE/forside/om-pompdelux">Om POMPdeLUX</a></li>
+                   <li><a href="/sv_SE/forside/om-pompdelux/corporate-social-responsibility/csr-rapport">CSR-rapport</a></li>
                     <li><a href="/sv_SE/forside/tavlingar">Tävlingar</a></li>
 					<li><a href="/sv_SE/forside/om-pompdelux/kontakt">Kontakt</a></li>
                 </ul>

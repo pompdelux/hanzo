@@ -41,7 +41,6 @@
             <trans-unit id="password.forgotten.text">
                 <source>password.forgotten.text</source>
                 <target><![CDATA[
-                    <h2>Have you forgotten your password?</h2>
                     <p>Type your email address below and click on "Continue". Within few minutes you will receive an email from POMPdeLUX with your password.</p>
                 ]]></target>
             </trans-unit>
@@ -62,6 +61,10 @@
             <trans-unit id="proceed">
                 <source>proceed</source>
                 <target>Go to payment</target>
+            </trans-unit>
+            <trans-unit id="password.forgotten.button">
+                <source>password.forgotten.button</source>
+                <target>Continue</target>
             </trans-unit>
             <trans-unit id="back">
                 <source>back</source>
@@ -527,6 +530,14 @@ We would like to make sure that this is not due to an error and therefore must a
 After this you can easily continue shopping.<br></p>
                     <p>Thank you for your help.</p>
                 ]]></target>
+            </trans-unit>
+            <trans-unit id="account.trackntrace.link">
+                <source>account.trackntrace.link</source>
+                <target>Track n' trace</target>
+            </trans-unit>
+            <trans-unit id="account.returnlabel.link">
+                <source>account.returnlabel.link</source>
+                <target>Print return label</target>
             </trans-unit>
         </body>
     </file>

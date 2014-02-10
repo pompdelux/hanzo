@@ -2361,6 +2361,13 @@ div.invalid-order {
   vertical-align: top;
   line-height: 22px;
 }
+.basket table.product-table .info label,
+.basket table.edit-element .info label,
+#cart-edit-element table.product-table .info label,
+#cart-edit-element table.edit-element .info label {
+  width: 50px;
+  margin-top: 1px;
+}
 .basket table.product-table .title,
 .basket table.edit-element .title,
 #cart-edit-element table.product-table .title,
