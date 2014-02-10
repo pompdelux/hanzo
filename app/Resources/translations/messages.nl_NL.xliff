@@ -2,6 +2,10 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
+            <trans-unit id="size.label.postfix">
+                <source>size.label.postfix</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="size.guide.link">
                 <source>size.guide.link</source>
                 <target>images/pages/Size_Guide_NL.jpg</target>
@@ -236,7 +240,7 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
                 <target><![CDATA[
                     <p> Alle artikelen worden verstuurd met de pakketpost van <a href="http://www.dhl.nl/nl.html" target="_blank">DHL</a>. Je kunt daardoor je pakket volgen met het <a href="http://www.postdanmark.dk/contentfull.dk?content=/cms/da-dk/app/tracktrace/track_og_trace.htm&amp;menufile=" target="_blank">track &amp; trace</a> nummer vanaf het moment dat het verzonden wordt tot het moment dat het geleverd wordt. <br />
           <br />
-          DHL pakket: wil je het pakket bij je thuis laten leveren, dan kost dat EUR 8. Ben je niet thuis als de postbode komt, dan kun je het pakket afhalen op het postkantoor. Heb je je pakket ontvangen, controleer dan je artikelen. Is het pakket en/of de inhoud ervan beschadigd, dan moet je meteen contact opnemen met onze Klantenservice.</p>
+          DHL pakket: wil je het pakket bij je thuis laten leveren, dan kost dat EUR 8. Ben je niet thuis als de postbode komt, dan kun je het pakket afhalen op het postkantoor. Heb je je pakket ontvangen, controleer dan je artikelen. Is het pakket en/of de inhoud ervan beschadigd, dan moet je meteen contact opnemen met onze Klantenservice. Wil je het pakket zelf afhalen bij een DHL servicepoint, dan kost dit EUR 6,50.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="return.title" approved="no">
@@ -277,7 +281,7 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
                     <li><a href="/nl_NL/voorpagina/open-huis">Open Huis</a></li>
 					<li><a href="/nl_NL/voorpagina/catalogus">Catalogus</a></li>
 					<li><a href="/nl_NL/voorpagina/word-consulent/een-leuke-vrijetijdsbaan">Word 	</a></li>
-                </ul><br>		
+                </ul><br>
 				<h2>BE SOCIAL</h2>
 				 <ul class="menu">
 				<li><a href="http://instagram.com/pompdelux_official" target="_blank"> Instagram</a></li>

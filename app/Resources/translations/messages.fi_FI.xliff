@@ -2,6 +2,10 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
+            <trans-unit id="size.label.postfix">
+                <source>size.label.postfix</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="size.guide.link">
                 <source>size.guide.link</source>
                 <target>images/pages/Size_Guide_FI.jpg</target>
@@ -219,7 +223,7 @@
                 <target><![CDATA[
                     <p>Kaikki tuotteet lähetetään postipakettina <a href="http://posti.fi/" target="_blank">Posti-</a> palvelun kautta. Tämän ansiosta voit seurata lähetyksen kulkua lähetyshetkestä toimitushetkeen asti.<br />
       <br />
-      Paketit toimitetaan Posti-noutopisteeseen. Rahtikulu on EUR 8,50 (EUR 7,50, mikäli ostat tuotteet edustajan kautta esim. kotimyyntitilaisuudesta tai Avoimet Ovet -tilaisuudesta).
+      Paketit toimitetaan Posti-noutopisteeseen. Rahtikulu on EUR 8,50 (EUR 6,50, mikäli ostat tuotteet edustajan kautta esim. kotimyyntitilaisuudesta tai Avoimet Ovet -tilaisuudesta).
       <br />
       Saapunut lähetys tulee tarkastaa heti. Jos pakkaus ja/tai tuotteet ovat vioittuneet, ota yhteyttä heti POMPdeLUXin asiakaspalveluun tai <a href="http://posti.fi/" target="_blank">Posti-</a>noutopisteeseen.</p>
                 ]]></target>
@@ -262,7 +266,7 @@
 				<li><a href="/fi_FI/koti/home-shopping/avoimet-ovet">Avoimet Ovet</a></li>
 				<li><a href="/fi_FI/koti/kuvasto">Kuvasto</a></li>
 				<li><a href="/fi_FI/koti/tule-edustajaksi/vapaa-ajan-edustaja">Tule edustajaksi</a></li>
-				</ul><br>		
+				</ul><br>
 				<h2>BE SOCIAL</h2>
 				 <ul class="menu">
 				<li><a href="http://instagram.com/pompdelux_official" target="_blank"> Instagram</a></li>

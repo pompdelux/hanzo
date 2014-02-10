@@ -45,7 +45,6 @@
             <trans-unit id="password.forgotten.text">
                 <source>password.forgotten.text</source>
                 <target><![CDATA[
-                    <h2>Ben je je wachtwoord vergeten?</h2>
                     <p>Typ hieronder je e-mailadres en klik op de knop "Ga door". Binnen een paar minuten ontvang je een e-mail van POMPdeLUX met je wachtwoord.</p>
                 ]]></target>
             </trans-unit>
@@ -66,6 +65,10 @@
             <trans-unit id="proceed">
                 <source>proceed</source>
                 <target>Naar de betaalpagina</target>
+            </trans-unit>
+            <trans-unit id="password.forgotten.button">
+                <source>password.forgotten.button</source>
+                <target>Voortzetten</target>
             </trans-unit>
             <trans-unit id="back">
                 <source>back</source>
@@ -450,7 +453,7 @@
                         <b>Gefactureerd</b><br>
                         Je bestelling is nu verstuurd. Je factuur vind je 24 uur na verzending bijgesloten als PDF-bestand in de kolom factuur.<br><br>
                         <b>Retourneren</b><br>
-                        Wil je een artikel retours turen, klik dan op <img src="/fx/images/icons/icons/return.png" alt="Return"><br><br>
+                        Wil je een artikel retoursturen, klik dan op <img src="/fx/images/icons/icons/return.png" alt="Return"><br><br>
                         Kun je niet de artikelen vinden die je terug wilt sturen, klik dan op deze link om het retourformulier zelf uit te printen: <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_NL.pdf" target="_blank">&raquo; Retourformulier (PDF)</a><br><br>
                         Klik op <img src="/fx/images/icons/icons/trackntrace.png" alt="Track 'n trace"> naast je order om je pakketje te volgen. Track en Trace opent in een nieuwe pagina.<br><br>
                     </p>
@@ -528,6 +531,14 @@ Hierna kun je gewoon doorgaan met winkelen.<br></p>
                     <p>Bedankt voor je hulp.</p>
                 ]]></target>
             </trans-unit>
-        </body>
+            <trans-unit id="account.trackntrace.link">
+                <source>account.trackntrace.link</source>
+                <target>Track n' trace</target>
+            </trans-unit>
+            <trans-unit id="account.returnlabel.link">
+                <source>account.returnlabel.link</source>
+                <target>Print retourlabel</target>
+            </trans-unit>
+            </body>
     </file>
 </xliff>

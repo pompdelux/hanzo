@@ -16,7 +16,7 @@
             </trans-unit>
             <trans-unit id="fetch.invoice">
                 <source>fetch.invoice</source>
-                <target>Hent faktura som pdf</target>
+                <target>Se faktura som pdf</target>
             </trans-unit>
             <trans-unit id="fetch.credit_note">
                 <source>fetch.credit_note</source>
@@ -46,7 +46,6 @@
             <trans-unit id="password.forgotten.text">
                 <source>password.forgotten.text</source>
                 <target><![CDATA[
-                    <h2>Har du glömt ditt lösenord?</h2>
                     <p>Skriv in din e-mailadress nedan och klicka på knappen ”Fortsätt”. Inom några minuter kommer du att få ett mail från POMPdeLUX med ditt lösenord.</p>
                 ]]></target>
             </trans-unit>
@@ -66,6 +65,10 @@
             <trans-unit id="proceed">
                 <source>proceed</source>
                 <target>Till betalning</target>
+            </trans-unit>
+            <trans-unit id="password.forgotten.button">
+                <source>password.forgotten.button</source>
+                <target>Vidare</target>
             </trans-unit>
             <trans-unit id="back">
                 <source>back</source>
@@ -447,7 +450,7 @@
                         <b>Returnering</b><br>
                         Om du önskar att returnera en vara ska du klicka på <img src="/fx/images/icons/icons/return.png" alt="Return"> <strong>Observera:</strong> Returetikett och retursedel ligger i två PDF-filer och ska skrivas ut var för sig.<br><br>
                         Om du inte hittar varan som du önskar att returnera på retursedeln, kan du klicka på länken här och manuellt skriva ut en retursedel:<a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_SE.pdf" target="_blank">Retursedel (PDF)</a><br><br>
-						Klicka på <img src="/fx/images/icons/icons/returnlabel.png" alt="Returnlabel"> bredvid din order för att följa ditt paket. Returetiketten öppnas i ett nytt fönster. <br><br>
+						Klicka på <img src="/fx/images/icons/icons/returnlabel.png" alt="Returnlabel"> vid din order för att få en returetikett. Returetiketten öppnas i ett nytt fönster.<br><br>
                         Klicka på <img src="/fx/images/icons/icons/trackntrace.png" alt="Track 'n trace"> vid din order för att följa ditt paket. Track and Trace sidan öppnas i ett nytt fönster.<br><br>
                     </p>
                 ]]></target>
@@ -523,7 +526,14 @@ Vi vill dock vara helt säkra på att det inte har uppstått ett fel, så vi vil
 Därefter kan du enkelt shoppa vidare.<br></p>
                     <p>Tack för hjälpen.</p>
                 ]]></target>
+            </trans-unit> <trans-unit id="account.trackntrace.link">
+                <source>account.trackntrace.link</source>
+                <target>Track n' trace</target>
             </trans-unit>
-        </body>
+            <trans-unit id="account.returnlabel.link">
+                <source>account.returnlabel.link</source>
+                <target>Skriv ut returetikett</target>
+            </trans-unit>
+            </body>
     </file>
 </xliff>

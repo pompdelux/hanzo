@@ -106,6 +106,7 @@ class StockController extends CoreController
                 'master'     => $product->getMaster(),
                 'product_id' => $product->getId(),
                 'size'       => $product->getSize(),
+                'size_label' => $product->getPostfixedSize($translator),
             ]];
 
         if ($result) {
@@ -170,6 +171,7 @@ class StockController extends CoreController
                 'master'     => $record->getMaster(),
                 'product_id' => $record->getId(),
                 'size'       => $record->getSize(),
+                'size_label' => $record->getPostfixedSize($translator),
             ];
 
             $message = '';

@@ -224,7 +224,7 @@
             </trans-unit>
             <trans-unit id="events.notify_hostess.label">
                 <source>events.notify_hostess.label</source>
-                <target>Send elektronisk invitasjon til vertinnen?</target>
+                <target>Send bekreftelse til vertinne?</target>
             </trans-unit>
             <trans-unit id="events.customer.found">
                 <source>events.customer.found</source>
@@ -352,15 +352,15 @@
             </trans-unit>
             <trans-unit id="event.sms.confirmation.reply">
                 <source>event.sms.confirmation.reply</source>
-                <target>Hei %name%. Takk for din påmelding til POMPdeLUX Home Shopping-arrangement den %event_date% kl. %event_time% på adressen %address%, %zip% %city%. Jeg gleder meg til å se deg! %hostess%</target>
+                <target>Hei %name%. Takk for din påmelding til POMPdeLUX Home Shopping arrangement den %event_date% kl. %event_time% på adressen %address%, %zip% %city%. Jeg gleder meg til å se deg! %hostess%</target>
             </trans-unit>
             <trans-unit id="event.sms.invite">
                 <source>event.sms.invite</source>
-                <target>Hei %name%. %hostess% vil gjerne invitere deg til POMPdeLUX Home Shopping-arrangement den %event_date% kl. %event_time% på adressen %address%, %zip% %city%. Hvis du vil med og se de lekre barneklærne, så svar på denne SMS-en med teksten "pdl %event_id%". Jeg håper vi ses!</target>
+                <target>Hei %name%. %hostess% vil gjerne invitere deg til POMPdeLUX Home Shopping arrangement den %event_date% kl. %event_time% på adressen %address%, %zip% %city%. Hvis du vil med og se de lekre barneklærne, så svar på denne SMS-en med teksten "pdl %event_id%". Jeg håper vi ses!</target>
             </trans-unit>
             <trans-unit id="event.sms.reminder">
                 <source>event.sms.reminder</source>
-                <target>Hei %name% Husk POMPdeLUX Home Shopping-arrangementet den %event_date% kl. %event_time% På adressen: %address%, %zip% %city% Vennlig hilsen POMPdeLUX.</target>
+                <target>Hei %name% Husk POMPdeLUX Home Shopping arrangementet den %event_date% kl. %event_time% På adressen: %address%, %zip% %city% Vennlig hilsen POMPdeLUX.</target>
             </trans-unit>
             <trans-unit id="events.name">
                 <source>events.name</source>

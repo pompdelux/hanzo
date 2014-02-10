@@ -30,7 +30,7 @@ class CheckJobsCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->stockSyncCheck($output);
+        #$this->stockSyncCheck($output);
         $this->cronCheck($output);
 
         // NICETO: not hardcoded ...

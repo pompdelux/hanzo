@@ -209,7 +209,7 @@
       </trans-unit>
       <trans-unit id="my.account.info">
         <source>my.account.info</source>
-        <target>Se ordrene dine, rett i dine personlige opplysninger, rett adgangskode og mye mer.</target>
+        <target>Se ordrene dine, rett i dine personlige opplysninger, rett passord og mye mer.</target>
       </trans-unit>
       <trans-unit id="my.account.username">
         <source>my.account.username</source>
