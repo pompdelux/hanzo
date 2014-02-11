@@ -1,110 +1,109 @@
 {% extends '::adminbase.html.twig' %}
 
 {% block content %}
-<nav class="sub">
-  <ul>
-    <li>
-      <form action="{{ path('admin_coupons') }}" method="get">
-        <input type="text" id="searh" name="q" placeholder="{{ 'search.label'|trans({}, 'admin') }}">
-        <input class="button search" type="submit" value="{{ 'search'|trans({}, 'admin') }}">
-      </form>
-    </li>
-    {{ include('AdminBundle:Coupons:menu.html.twig') }}
-  </ul>
-</nav>
 
-<h1>{{ 'admin.coupons.header.text'|trans({}, 'admin') }}</h1>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                {{ include('AdminBundle:Coupons:menu.html.twig') }}
+            </ul>
+            <form action="{{ path('admin_coupons') }}" method="get" class="navbar-form navbar-right">
+                <div class="form-group">
+                    <input type="text" id="searh" name="q" placeholder="{{ 'search.label'|trans({}, 'admin') }}" class="form-control">
+                    <input class="button search btn btn-default" type="submit" value="{{ 'search'|trans({}, 'admin') }}">
+                </div>
+            </form>
+        </div>
+    </nav>
+
+    <h1>{{ 'admin.coupons.header.text'|trans({}, 'admin') }}</h1>
 
 {% for message in app.session.flashbag.get('notice') %}
-<div class="message notice">
-  {{ message|trans({}, 'admin') }}
-</div>
+    <div class="alert alert-info">
+        {{ message|trans({}, 'admin') }}
+    </div>
 {% endfor %}
 
-
-<p>{{ 'admin.coupons.description.text'|trans({}, 'admin') }}</p>
-
+    <p>{{ 'admin.coupons.description.text'|trans({}, 'admin') }}</p>
 
 {% if coupons|length > 0 %}
 
-  {% if paginate %}
-    <div class="clearfix">
-      {% import "::macro.pager.html.twig" as p %}
-      {{ p.pager(paginate, 'coupons') }}
-    </div>
-  {% endif %}
-<table id="coupons" class="list">
-  <thead>
-    <tr>
-      <th>{{ 'admin.coupons.id'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.coupons.code'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.coupons.amount'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.coupons.min.purchase.amount'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.coupons.currency'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.coupons.active_from'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.coupons.active_to'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.coupon.is_active'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.coupon.is_used'|trans({}, 'admin') }}</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for coupon in coupons %}
-    <tr>
-      <td>{{ coupon.id }}</td>
-      <td>{{ coupon.code }}</td>
-      <td>{{ coupon.amount|number_format(2, ',', '.') }}</td>
-      <td>{{ coupon.minpurchaseamount|number_format(2, ',', '.') }}</td>
-      <td>{{ coupon.currencycode }}</td>
-      <td>
-      {% if coupon.activefrom %}
-        {{ coupon.activefrom|date("d-m-Y") }}
-      {% else %}
-        -
-      {% endif %}
-      </td>
-      <td>
-      {% if coupon.activeto %}
-        {{ coupon.activeto|date("d-m-Y") }}
-      {% else %}
-        -
-      {% endif %}
-      </td>
-      <td>
-        {% if coupon.isactive %}
-          {{ 'admin.consultant.yes'|trans({}, 'admin') }}
-        {% else %}
-          {{ 'admin.consultant.no'|trans({}, 'admin') }}
-        {% endif %}
-      </td>
-      <td>
-        {% if coupon.isused %}
-          {{ 'admin.consultant.yes'|trans({}, 'admin') }}
-        {% else %}
-          {{ 'admin.consultant.no'|trans({}, 'admin') }}
-        {% endif %}
-      </td>
-      <th>
-        <a href="{{ path('admin_coupons_edit', {'id' : coupon.id }) }}">
-          {{ 'admin.coupons.edit.link'|trans({}, 'admin') }}
-        </a>
-        <a href="{{ path('admin_coupons_delete', {'id' : coupon.id }) }}" class="delete">
-          {{ 'admin.coupons.delete.link'|trans({}, 'admin') }}
-        </a>
-      </th>
-    </tr>
-  {% endfor %}
-  </tbody>
-</table>
-  {% if paginate %}
-    <div class="clearfix">
-      {% import "::macro.pager.html.twig" as p %}
-      {{ p.pager(paginate, 'coupons') }}
-    </div>
-  {% endif %}
+    {% if paginate %}
+        <div class="clearfix">
+            {% import "::macro.pager.html.twig" as p %}
+            {{ p.pager(paginate, 'coupons', true) }}
+        </div>
+    {% endif %}
+
+    <table id="coupons" class="table table-striped">
+        <thead>
+        <tr>
+            <th>{{ 'admin.coupons.id'|trans({}, 'admin') }}</th>
+            <th>{{ 'admin.coupons.code'|trans({}, 'admin') }}</th>
+            <th>{{ 'admin.coupons.amount'|trans({}, 'admin') }}</th>
+            <th>{{ 'admin.coupons.min.purchase.amount'|trans({}, 'admin') }}</th>
+            <th>{{ 'admin.coupons.currency'|trans({}, 'admin') }}</th>
+            <th>{{ 'admin.coupons.active_from'|trans({}, 'admin') }}</th>
+            <th>{{ 'admin.coupons.active_to'|trans({}, 'admin') }}</th>
+            <th>{{ 'admin.coupon.is_active'|trans({}, 'admin') }}</th>
+            <th>{{ 'admin.coupon.is_used'|trans({}, 'admin') }}</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for coupon in coupons %}
+            <tr>
+                <td>{{ coupon.id }}</td>
+                <td>{{ coupon.code }}</td>
+                <td>{{ coupon.amount|number_format(2, ',', '.') }}</td>
+                <td>{{ coupon.minpurchaseamount|number_format(2, ',', '.') }}</td>
+                <td>{{ coupon.currencycode }}</td>
+                <td>
+                {% if coupon.activefrom %}
+                    {{ coupon.activefrom|date("d-m-Y") }}
+                {% else %}
+                    -
+                {% endif %}
+                </td>
+                <td>
+                {% if coupon.activeto %}
+                    {{ coupon.activeto|date("d-m-Y") }}
+                {% else %}
+                    -
+                {% endif %}
+                </td>
+                <td>
+                {% if coupon.isactive %}
+                    {{ 'admin.consultant.yes'|trans({}, 'admin') }}
+                {% else %}
+                    {{ 'admin.consultant.no'|trans({}, 'admin') }}
+                {% endif %}
+                </td>
+                <td>
+                {% if coupon.isused %}
+                    {{ 'admin.consultant.yes'|trans({}, 'admin') }}
+                {% else %}
+                    {{ 'admin.consultant.no'|trans({}, 'admin') }}
+                {% endif %}
+                </td>
+                <th>
+                    <a href="{{ path('admin_coupons_edit', {'id' : coupon.id }) }}" class="glyphicon glyphicon-edit" title="{{ 'admin.coupons.edit.link'|trans({}, 'admin') }}"></a>
+                    <a href="{{ path('admin_coupons_delete', {'id' : coupon.id }) }}" class="delete glyphicon glyphicon-remove-circle" title="{{ 'admin.coupons.delete.link'|trans({}, 'admin') }}"></a>
+                </th>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% if paginate %}
+        <div class="clearfix">
+            {% import "::macro.pager.html.twig" as p %}
+            {{ p.pager(paginate, 'coupons', true) }}
+        </div>
+    {% endif %}
 {% else %}
 
-<p>{{ 'admin.coupons.no.coupons.text'|trans({}, 'admin') }}</p>
+    <p>{{ 'admin.coupons.no.coupons.text'|trans({}, 'admin') }}</p>
 
 {% endif %}
 {% endblock %}

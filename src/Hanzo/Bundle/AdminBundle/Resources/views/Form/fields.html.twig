@@ -8,7 +8,8 @@
 
         <div class="col-sm-6">
             {{ form_errors(form) }}
-            {{ form_widget(form, {'attr': {'class': 'form-control' }}) }}
+            {% set attr = attr|merge({'class': attr.class|default('') ~ ' form-control'}) %}
+            {{ form_widget(form, {'attr': attr}) }}
         </div>
     </div>
 {% endspaceless %}

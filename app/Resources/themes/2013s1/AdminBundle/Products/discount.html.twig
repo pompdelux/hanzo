@@ -1,35 +1,37 @@
 {% extends '::adminbase.html.twig' %}
 
 {% block content %}
-<nav class="sub">
-  <ul>
-    <li>
-      <a href="{{ path('admin_product', {'id' : current_product.id}) }}">
-        {{ 'admin.back.button'|trans({}, 'admin') }}
-      </a>
-    </li>
-  </ul>
-</nav>
 
-<h1>{{ 'admin.products.discount.header.text.%product-sku%'|trans({'%product-sku%' : current_product.sku}, 'admin') }}</h1>
 
-<p>{{ 'admin.products.discount.description.text'|trans({}, 'admin') }}</p>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ path('admin_product', {'id' : current_product.id}) }}">{{ 'admin.back.button'|trans({}, 'admin') }}</a></li>
+            </ul>
+        </div>
+    </nav>
 
-{% for message in app.session.flashbag.get('notice') %}
-<div class="message notice">
-  {{ message|trans({}, 'admin') }}
-</div>
-{% endfor %}
+    <h1>{{ 'admin.products.discount.header.text.%product-sku%'|trans({'%product-sku%' : current_product.sku}, 'admin') }}</h1>
+    <p>{{ 'admin.products.discount.description.text'|trans({}, 'admin') }}</p>
 
-<form action="{{ path('admin_products_discount', {'product_id' : current_product.id }) }}" method="post" {{ form_enctype(form) }} id="discount-edit-form" class="inline">
-  <div id="discount-edit">
-    {{ form_rest(form) }}
-    {{ form_row(form._token) }}
-  </div>
-  <input class="button right" type="submit" value="{{ 'admin.products.update.discount'|trans({}, 'admin') }}">
-</form>
+    {% for message in app.session.flashbag.get('notice') %}
+        <div class="alert alert-info">
+            {{ message|trans({}, 'admin') }}
+        </div>
+    {% endfor %}
 
-{% if quantity_discounts|length > 0 %}
+    {% form_theme form 'AdminBundle:Form:fields.html.twig' %}
+    <form action="{{ path('admin_products_discount', {'product_id' : current_product.id }) }}" method="post" {{ form_enctype(form) }} id="discount-edit-form" class="inline form-horizontal">
+        <div id="discount-edit">
+            {{ form_rest(form) }}
+            {{ form_row(form._token) }}
+        </div>
+        <div class="form-group">
+            <input class="button right btn btn-success" type="submit" value="{{ 'admin.products.update.discount'|trans({}, 'admin') }}">
+        </div>
+    </form>
+
+    {% if quantity_discounts|length > 0 %}
 
 <table id="quantity_discounts" class="list">
   <thead>

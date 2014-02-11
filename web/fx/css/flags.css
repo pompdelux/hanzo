@@ -225,3 +225,6 @@ th.controles {
 select+ul {
     margin-top: 10px;
 }
+.ui-state-disabled, .ui-widget-content .ui-state-disabled {
+    opacity: 1;
+}

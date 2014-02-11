@@ -2,22 +2,23 @@
 
 {% block content %}
 
-{% for message in app.session.flashbag.get('notice') %}
-    <div class="message notice">
-        {{ message|trans({}, 'admin') }}
-    </div>
-{% endfor %}
+    {% for message in app.session.flashbag.get('notice') %}
+        <div class="alert alert-info">
+            {{ message|trans({}, 'admin') }}
+        </div>
+    {% endfor %}
 
     <p>Udfyld formen og tryk "Gem"</p>
 
-    <form action="{{ path('admin_shipping_breaks_edit', {id:break_id}) }}" method="post" {{ form_enctype(form) }} id="break-form" class="break-form">
-        <div id="">
-            {{ form_row(form._token) }}
-            {{ form_rest(form) }}
-        </div>
+    {% form_theme form 'AdminBundle:Form:fields.html.twig' %}
+    <form action="{{ path('admin_shipping_breaks_edit', {id:break_id}) }}" method="post" {{ form_enctype(form) }} id="break-form" class="form-horizontal">
+        {{ form_row(form._token) }}
+        {{ form_rest(form) }}
         <p><br>Datoerne er <em>inklisive</em>, så hvis der angives "15-06-2013" er det "fra og med den 15/6 2013"</p>
-        <input class="button right" type="submit" value="Gem">
-        <a class="button left" href="{{ path('admin_coupons') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
+        <div class="form-group">
+            <input class="button right btn btn-success" type="submit" value="Gem">
+            <a class="button left btn btn-default" href="{{ path('admin_shipping_index') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
+        </div>
     </form>
 
 
