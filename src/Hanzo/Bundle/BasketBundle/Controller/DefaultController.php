@@ -364,7 +364,7 @@ class DefaultController extends CoreController
             ];
             $html = $this->getCache($cache_id);
             if ($html) {
-                return new Response($html);
+                return $html;
             }
         }
 
