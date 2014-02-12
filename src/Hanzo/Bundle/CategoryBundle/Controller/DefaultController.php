@@ -49,7 +49,7 @@ class DefaultController extends CoreController
         $data = null;
 
         /*
-         *  If html wasnt cached retrieve a fresh set of data
+         *  If html wasn't cached retrieve a fresh set of data
          */
         if (!$html) {
 
@@ -123,11 +123,13 @@ class DefaultController extends CoreController
             ->find();
 
         $records = array();
+        $locale = $this->getRequest()->getLocale();
         foreach ($products as $product) {
+            $product->setLocale($locale);
             $records[] = array(
                 'sku' => $product->getSku(),
                 'id' => $product->getId(),
-                'title' => $product->getSku(),
+                'title' => $product->getTitle(),
             );
         }
 
@@ -230,14 +232,18 @@ class DefaultController extends CoreController
         $showByLook = (bool) ($show === 'look');
 
         $result = ProductsImagesCategoriesSortQuery::create()
+            ->joinWithProducts()
             ->useProductsQuery()
+                ->joinProductsI18n()
                 ->where('products.MASTER IS NULL')
                 // ->filterByIsOutOfStock(FALSE)
                 ->useProductsDomainsPricesQuery()
                     ->filterByDomainsId($domainId)
                 ->endUse()
+                ->useProductsI18nQuery()
+                    ->filterByLocale($locale)
+                ->endUse()
             ->endUse()
-            ->joinWithProducts()
             ->useProductsImagesQuery()
                 ->filterByType($showByLook?'set':'overview')
                 ->groupByImage()
@@ -266,8 +272,8 @@ class DefaultController extends CoreController
 //                $result = $result->paginate($pager, 12);
 //            }
 
-        $result = $result->paginate(null, null);
-
+        // $result = $result->paginate(null, null);
+        $result = $result->find();
         $productRoute = str_replace('category_', 'product_', $route);
 
         $records = array();
@@ -280,6 +286,7 @@ class DefaultController extends CoreController
             if (preg_match('/_01.jpg/', $image)) {
                 $product = $record->getProducts();
                 $productIds[] = $product->getId();
+                $product->setLocale($locale);
 
                 $imageOverview = str_replace('_set_', '_overview_', $image);
                 $imageSet = str_replace('_overview_', '_set_', $image);
@@ -290,13 +297,13 @@ class DefaultController extends CoreController
                     'sku' => $product->getSku(),
                     'out_of_stock' => $product->getIsOutOfStock(),
                     'id' => $product->getId(),
-                    'title' => $product->getSku(),
+                    'title' => $product->getTitle(),
                     'image' => ($showByLook) ? $imageSet : $imageOverview,
                     'image_flip' => ($showByLook) ? $imageOverview : $imageSet,
                     'alt' => $alt,
                     'url' => $router->generate($productRoute, array(
                         'product_id' => $product->getId(),
-                        'title' => Tools::stripText($product->getSku()),
+                        'title' => Tools::stripText($product->getTitle()),
                         'focus' => $record->getProductsImages()->getId()
                     )),
                 );
@@ -319,7 +326,7 @@ class DefaultController extends CoreController
             'paginate' => null,
         ];
 
-        if ($result->haveToPaginate()) {
+        if (method_exists($result, 'haveToPaginate') && $result->haveToPaginate()) {
 
             $pages = array();
             foreach ($result->getLinks(20) as $page) {
