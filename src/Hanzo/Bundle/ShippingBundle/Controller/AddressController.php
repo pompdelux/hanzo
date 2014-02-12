@@ -186,7 +186,7 @@ class AddressController extends CoreController
             'attr'               => ['class' => 'js-auto-city-'.$type]
         ]);
 
-        if ('overnightbox' === $type) {
+        if ('overnightbox' === $type || $enable_locator) {
             list($country_id, $country_name) = each($countries);
             $address->setCountriesId($country_id);
             $address->setCountry($country_name);
