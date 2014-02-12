@@ -243,13 +243,15 @@ class ConsultantsController extends CoreController
                 array(
                     'label' => 'admin.consultant.event_notes.label',
                     'translation_domain' => 'admin',
-                    'required' => false
+                    'required' => false,
+                    'attr' => ['rows' => 15],
                 )
             )->add('event_notes', 'textarea',
                 array(
                     'label' => 'admin.consultant.info.label',
                     'translation_domain' => 'admin',
-                    'required' => false
+                    'required' => false,
+                    'attr' => ['rows' => 15],
                 )
             )->add('hide_info', 'checkbox',
                 array(
