@@ -16,7 +16,7 @@
 
             <form action="{{ path('admin_consultants') }}" method="get" class="navbar-form navbar-right">
                 <div class="form-group">
-                    <input type="text" id="search" name="debitor" placeholder="{{ 'search.label'|trans({}, 'admin') }}" class="form-control">
+                    <input type="text" id="search" name="q" placeholder="{{ 'search.label'|trans({}, 'admin') }}" class="form-control">
                     <input class="button search btn btn-default" type="submit" value="{{ 'search'|trans({}, 'admin') }}">
                 </div>
             </form>
