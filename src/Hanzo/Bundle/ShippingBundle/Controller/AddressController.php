@@ -261,7 +261,7 @@ class AddressController extends CoreController
             // TODO: not hardcoded
             $type_map = [
                 'company_shipping' => 'shipping',
-                'overnightbox' => 'shipping',
+                'overnightbox'     => 'shipping',
             ];
 
             if (isset($type_map[$type])) {
@@ -277,6 +277,7 @@ class AddressController extends CoreController
                         $method = 'company_shipping';
                         break;
                     case 12:
+                    case 71:
                         $method = 'overnightbox';
                         $validation_fields[] = 'company_name';
                         break;
