@@ -13,8 +13,6 @@ security:
                 target: /%locale%
                 invalidate_session: true
                 success_handler: hanzo.logout_success_handler
-                handlers:
-                    - nelmio_security.flexible_ssl_listener
 
         login_firewall:
             pattern:    login
