@@ -1,12 +1,17 @@
+stock:
+    resource: "@StockBundle/Controller/"
+    prefix:   /{_locale}/
+    type:     annotation
+
 consignor:
     resource: "@ConsignorBundle/Controller/"
-    type:     annotation
     prefix:   /{_locale}/
+    type:     annotation
 
 google:
     resource: "@GoogleBundle/Controller/"
-    type:     annotation
     prefix:   /{_locale}/
+    type:     annotation
 
 RetargetingBundle:
     resource: "@RetargetingBundle/Controller/"

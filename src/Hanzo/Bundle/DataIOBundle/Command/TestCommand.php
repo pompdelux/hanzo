@@ -46,23 +46,75 @@ class TestCommand extends ContainerAwareCommand
      *
      * @param  InputInterface  $input
      * @param  OutputInterface $output
+     * @return void
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 
-        $soap = new \SoapClient('http://pdl.un/da_DK/soap/v1/ECommerceServices/?wsdl');
-        $soap->__setLocation('http://pdl.un/da_DK/soap/v1/ECommerceServices/');
-        //print_r($soap->__getFunctions());
-        //
+$stock = $this->getContainer()->get('stock');
+$stock->check(123);
 
-        $data = new \stdClass();
-        $data->eOrderNumber = 1013569;
-        $data->amount = -10.00;
-        $data->initials = 'un';
-        $result = $soap->SalesOrderCaptureOrRefund($data);
+return;
 
+        $redis = $this->getContainer()->get('redis.stock');
+//        $redis->hMset('products_id.123', ['2013-12-01' => 1,  'id' => '123']);
+//        $redis->hMset('products_id.123', ['2000-11-01' => 12, 'id' => '123']);
+//        $redis->hMset('products_id.123', ['2013-12-12' => 3,  'id' => '123']);
 
-        print_r($result);
+        $stock = [];
+        $redis->multi();
+        foreach ([123, 124] as $id) {
+            $redis->hGetAll('products_id.'.$id);
+        }
+
+        foreach ($redis->exec() as $product) {
+            $count = 1;
+            $id = $product['id'];
+            unset ($product['id']);
+            $stock[$id] = [];
+            foreach ($product as $date => $quantity) {
+                $stock[$id][str_replace('-', '', $date)] = [
+                    'id'       => $count++,
+                    'date'     => $date,
+                    'quantity' => $quantity,
+                ];
+            }
+        }
+print_r($stock);
+return;
+        foreach ($redis->exec() as $record) {
+            $stock[$id] = [
+                'total' => 0,
+            ];
+            $count = 1;
+            foreach ($redis->hGetAll('products_id.'.$id) as $date => $quantity) {
+                $date = str_replace('-', '', $date);
+                $stock[$id][$date] = [
+                    'id'       => $count,
+                    'date'     => $date,
+                    'quantity' => $quantity,
+                ];
+                $stock[$id]['total'] += $quantity;
+
+                $count++;
+            }
+        }
+
+        print_r($stock);
+
+//        $soap = new \SoapClient('http://pdl.un/da_DK/soap/v1/ECommerceServices/?wsdl');
+//        $soap->__setLocation('http://pdl.un/da_DK/soap/v1/ECommerceServices/');
+//        //print_r($soap->__getFunctions());
+//        //
+//
+//        $data = new \stdClass();
+//        $data->eOrderNumber = 1013569;
+//        $data->amount = -10.00;
+//        $data->initials = 'un';
+//        $result = $soap->SalesOrderCaptureOrRefund($data);
+//
+//
+//        print_r($result);
 
         // $accounts = GothiaAccountsQuery::create()
         //     ->find();

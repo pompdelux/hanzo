@@ -493,6 +493,33 @@ class ECommerceServices extends SoapService
             $stock->InventDim = array($stock->InventDim);
         }
 
+        $propel_connection = \Propel::getConnection(null, \Propel::CONNECTION_WRITE);
+        $propel_statement = $propel_connection->prepare("
+            SELECT
+                SUM(orders_lines.quantity) AS qty
+            FROM
+                orders_lines
+            INNER JOIN
+                orders
+                ON (
+                    orders_lines.orders_id = orders.id
+                )
+            WHERE
+                orders_lines.products_id = :products_id
+                AND
+                    orders.state < 40
+                AND
+                    orders.updated_at > '".date('Y-m-d H:i:s', strtotime('2 hours ago'))."'
+                AND
+                    orders.created_at > '".date('Y-m-d H:i:s', strtotime('6 month ago'))."'
+            GROUP BY
+                orders_lines.products_id
+            LIMIT 1
+        ");
+
+        /** @var \Hanzo\Bundle\StockBundle\Stock $stock_service */
+        $stock_service = $this->hanzo->container->get('stock');
+
         $products = array();
         foreach($stock->InventDim as $item) {
             $key = $stock->ItemId . ' ' . $item->InventColorId . ' ' . $item->InventSizeId;
@@ -513,20 +540,11 @@ class ECommerceServices extends SoapService
                 $products[$key]['product'] = $product;
                 $products[$key]['qty_in_use'] = 0;
 
-                // get any open orders product quantity
-                $qty = OrdersLinesQuery::create()
-                    ->withColumn('SUM('.OrdersLinesPeer::QUANTITY.')', 'qty')
-                    ->filterByProductsId($product->getId())
-                    ->groupByProductsId()
-                    ->useOrdersQuery()
-                        ->filterByState(0, Criteria::LESS_THAN)
-                        ->filterByUpdatedAt(date('Y-m-d H:i:s', strtotime('2 hours ago')), Criteria::GREATER_THAN)
-                    ->endUse()
-                    ->findOne()
-                ;
+                $propel_statement->bindValue(':products_id', $product->getId(), \PDO::PARAM_INT);
+                $propel_statement->execute();
 
-                if ($qty && $qty->getVirtualColumn('qty')) {
-                    $products[$key]['qty_in_use'] = $qty->getVirtualColumn('qty');
+                if ($qty = $propel_statement->fetchColumn()) {
+                    $products[$key]['qty_in_use'] = $qty;
                 }
             }
 
@@ -566,8 +584,8 @@ class ECommerceServices extends SoapService
             if (!empty($stock_data['ordered'])) {
                 if (empty($products[$key]['inventory'][$item->InventQtyAvailOrderedDate])) {
                     $products[$key]['inventory'][$item->InventQtyAvailOrderedDate] = array(
-                        'date'  => $item->InventQtyAvailOrderedDate,
-                        'stock' => 0,
+                        'date'     => $item->InventQtyAvailOrderedDate,
+                        'quantity' => 0,
                     );
                 }
 
@@ -577,39 +595,27 @@ class ECommerceServices extends SoapService
             if (isset($stock_data['onhand'])) {
                 if (empty($products[$key]['inventory']['onhand'])) {
                     $products[$key]['inventory']['onhand'] = array(
-                        'date'  => '2000-01-01',
-                        'stock' => 0,
+                        'date'     => '2000-01-01',
+                        'quantity' => 0,
                     );
                 }
 
-                $products[$key]['inventory']['onhand']['stock'] += $stock_data['onhand'];
+                $products[$key]['inventory']['onhand']['quantity'] += $stock_data['onhand'];
             }
         }
 
         $allout = true;
         foreach ($products as $item) {
             $product = $item['product'];
-            $collection = new PropelCollection();
 
             if (isset($item['inventory'])) {
                 // inventory to products
-                foreach ($item['inventory'] as $k => $s) {
-                    if ((0 === $s['stock']) &&
-                        (0 === $s['date'])
-                    ) {
-                        continue;
-                    }
 
-                    $data = new ProductsStock();
-                    $data->setQuantity($s['stock']);
-                    $data->setAvailableFrom($s['date']);
-                    $collection->prepend($data);
-                }
-                $product->setProductsStocks($collection);
+                $stock_service->setLevels($product->getId(), $item['inventory']);
+
                 $product->setIsOutOfStock(false);
                 $allout = false;
             } else {
-                $product->setProductsStocks($collection);
                 $product->setIsOutOfStock(true);
             }
 
@@ -930,8 +936,8 @@ class ECommerceServices extends SoapService
 
         $this->SalesOrderLockUnlock((object) array(
             'eOrderNumber' => $data->eOrderNumber,
-            'orderStatus' => 4,
-            'sendMail' => 0,
+            'orderStatus'  => 4,
+            'sendMail'     => 0,
         ));
 
         $this->timer->logAll('Time spend on order: #'.$order->getId());
@@ -1004,6 +1010,7 @@ class ECommerceServices extends SoapService
 
         // the order is considered finished when shipped
         if (4 == $data->orderStatus) {
+            $order->setState(Orders::STATE_SHIPPED);
             $order->setFinishedAt(time());
         }
 
@@ -1137,7 +1144,6 @@ class ECommerceServices extends SoapService
             ('idealpayment' == strtolower($attributes->payment->nature))
         ) {
             $this->timer->reset();
-            $status = true;
             $total  = $order->getTotalPrice();
             $amount = str_replace(',', '.', $data->amount);
 
