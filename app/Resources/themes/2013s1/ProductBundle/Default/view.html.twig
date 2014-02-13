@@ -139,7 +139,7 @@
               <select class="size" name="size">
                 <option value="">{{ "choose"|trans }}</option>
               {% for size in product.sizes %}
-                <option value="{{ size.value }}" {{ not size.in_stock ? 'disabled="disabled"' : '' }} >{{ size.value }} {{ not size.in_stock ? "("~ "out.of.stock"|trans ~ ")" : '' }}</option>
+                <option value="{{ size.value }}" {{ not size.in_stock ? 'disabled="disabled"' : '' }} >{{ size.label }} {{ not size.in_stock ? "("~ "out.of.stock"|trans ~ ")" : '' }}</option>
               {% endfor %}
               </select>
             </div>

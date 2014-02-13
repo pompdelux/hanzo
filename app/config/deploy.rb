@@ -1,5 +1,5 @@
 #
-# Hanzo / Pompdelux deploy - common stuff used by both production and testing
+# Hanzo / Pompdelux deploy - common stuff used by both production, testing and dev
 #
 
 # needed to get verbose output. -v doesnt work. Use below to see commands run if deploy fails
@@ -15,7 +15,7 @@ set :scm,         :git
 
 set :stage_dir, 'app/config/deploy'
 require 'capistrano/ext/multistage'
-set :stages,        %w(testing production)
+set :stages,        %w(dev testing production)
 set :default_stage, "testing"
 
 # use composer for symfony 2.1
@@ -64,7 +64,7 @@ after 'deploy:restart', 'deploy:symlinks', 'symfony:cache:assets_update', 'symfo
 # send_email moved here. dont want a deploy email on rollback
 after 'deploy', 'deploy:send_email'
 ## also clear redis and varnish when calling cache:clear
-after 'symfony:cache:clear', 'symfony:cache:redis_clear', 'symfony:cache:varnish_clear'
+after 'symfony:cache:clear', 'symfony:cache:redis_clear', 'symfony:cache:varnish_clear', 'deploy:update_permissions', 'deploy:update_permissions_releases'
 # mail after rollback and warn about clearing cache. Doesn't seem to work with "after 'deploy:rollback", because it tries to clear the old current dir
 after 'deploy:rollback', 'deploy:send_email_rollback', 'deploy:rollback_warning'
 # save whats new diff just after updating the code. This might break an initial deploy even if using deploy:cold
@@ -198,7 +198,7 @@ namespace :deploy do
     capifony_pretty_print "--> Getting changelog from git"
     deployed_already = previous_revision
     to_be_deployed = `cd .rsync_cache && git rev-parse --short "HEAD" && cd ..`.strip
-    set :deploydiff, `cd .rsync_cache && git log --no-merges --pretty=format:"* %s %b (%cn)" #{deployed_already}..#{to_be_deployed}`.sub("'", "")
+    set :deploydiff, `cd .rsync_cache && git log --no-merges --pretty=format:"* %s %b (%cn)" #{deployed_already}..#{to_be_deployed}`.gsub("'", "\"")
     capifony_puts_ok
   end
 end

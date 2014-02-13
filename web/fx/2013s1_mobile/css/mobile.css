@@ -62,8 +62,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background: url('/fx/mobile/../images/icons/da-s7398167b80.png') no-repeat;
 }
 
-.icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-arrow_up, .icons-basket-grey, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-checkout, .icons-close, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-return, .icons-returnlabel, .icons-search, .icons-shopping-bag, .icons-show, .icons-sizeguide, .icons-trackntrace, .icons-twitter, .icons-video, .icons-zoom, ul.tabs li a i, ul.tabs li a.current i, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, .sizeguide, table#order-status td a.trigger, footer .newsletter-block .sprite, #secondary-links li.basket .sprite, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.arrow-right, .sprite.arrow-left {
-  background: url('/fx/mobile/../images/icons/icons-sc6dc877ed2.png') no-repeat;
+.icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-arrow_up, .icons-basket-grey, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-checkout, .icons-close, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-print, .icons-return, .icons-returnlabel, .icons-search, .icons-shopping-bag, .icons-show, .icons-sizeguide, .icons-trackntrace, .icons-twitter, .icons-video, .icons-zoom, ul.tabs li a i, ul.tabs li a.current i, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, .sizeguide, table#order-status td a.trigger, footer .newsletter-block .sprite, #secondary-links li.basket .sprite, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.arrow-right, .sprite.arrow-left {
+  background: url('/fx/mobile/../images/icons/icons-s647cb46155.png') no-repeat;
 }
 
 .icons-Kundeservice_Green {
@@ -206,6 +206,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background-position: 0 -554px;
 }
 
+.icons-print {
+  background-position: 0 -1345px;
+}
+
 .icons-return {
   background-position: 0 -1002px;
 }
@@ -276,6 +280,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 .sprite-block {
   display: block;
+}
+
+.icons-print {
+  height: 16px;
+  width: 16px;
 }
 
 body.da form.buy .submit-button {

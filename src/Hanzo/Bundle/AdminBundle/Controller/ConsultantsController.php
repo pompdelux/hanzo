@@ -31,6 +31,7 @@ class ConsultantsController extends CoreController
         $consultants = null;
 
         // Search parameter
+        $q_clean = false;
         if ($request->query->has('q')) {
             $q_clean = $request->query->get('q', null);
             $q = '%'.$q_clean.'%';
@@ -76,7 +77,7 @@ class ConsultantsController extends CoreController
             $pages = array();
             foreach ($consultants->getLinks(20) as $page) {
                 if ($request->query->has('q')) {
-                    $pages[$page] = $router->generate($route, array('pager' => $page, 'q' => $request->query->get('q')), TRUE);
+                    $pages[$page] = $router->generate($route, array('pager' => $page, 'q' => $q_clean), TRUE);
                 } else {
                     $pages[$page] = $router->generate($route, array('pager' => $page), TRUE);
                 }
@@ -84,10 +85,10 @@ class ConsultantsController extends CoreController
             }
 
              // If search query, add it to the route
-            if ($request->query->has('q')) {
+            if ($q_clean) {
                 $paginate = array(
-                    'next' => ($consultants->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $consultants->getNextPage(), 'q' => $request->query->get('q')), TRUE)),
-                    'prew' => ($consultants->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $consultants->getPreviousPage(), 'q' => $request->query->get('q')), TRUE)),
+                    'next' => ($consultants->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $consultants->getNextPage(), 'q' => $q_clean), TRUE)),
+                    'prew' => ($consultants->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $consultants->getPreviousPage(), 'q' => $q_clean), TRUE)),
 
                     'pages' => $pages,
                     'index' => $pager
@@ -107,6 +108,7 @@ class ConsultantsController extends CoreController
             ->filterByNs('consultant')
             ->findOne($this->getDbConnection())
         ;
+
         $consultant_settings_data = array();
         if($consultant_settings instanceof Settings){
             foreach ($consultant_settings as $consultant_setting) {
@@ -241,13 +243,15 @@ class ConsultantsController extends CoreController
                 array(
                     'label' => 'admin.consultant.event_notes.label',
                     'translation_domain' => 'admin',
-                    'required' => false
+                    'required' => false,
+                    'attr' => ['rows' => 15],
                 )
             )->add('event_notes', 'textarea',
                 array(
                     'label' => 'admin.consultant.info.label',
                     'translation_domain' => 'admin',
-                    'required' => false
+                    'required' => false,
+                    'attr' => ['rows' => 15],
                 )
             )->add('hide_info', 'checkbox',
                 array(
@@ -305,7 +309,7 @@ class ConsultantsController extends CoreController
         $router = $this->get('router');
 
         $events = EventsQuery::create()
-            ->orderByEventDate()
+            ->orderByEventDate(\Criteria::DESC)
             ->paginate($pager, 50, $this->getDbConnection())
         ;
 
@@ -314,15 +318,15 @@ class ConsultantsController extends CoreController
 
             $pages = array();
             foreach ($events->getLinks(20) as $page) {
-                if ($request->query->has('q'))
+                if ($request->query->has('q')) {
                     $pages[$page] = $router->generate($route, array('pager' => $page, 'q' => $request->query->get('q')), TRUE);
-                else
+                } else {
                     $pages[$page] = $router->generate($route, array('pager' => $page), TRUE);
-
+                }
             }
 
             $paginate = array(
-                'next' => ($events->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $events->getNextPage()), TRUE)),
+                'next' => ($events->getNextPage()     == $pager ? '' : $router->generate($route, array('pager' => $events->getNextPage()), TRUE)),
                 'prew' => ($events->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $events->getPreviousPage()), TRUE)),
 
                 'pages' => $pages,
@@ -423,12 +427,13 @@ class ConsultantsController extends CoreController
         }
 
         foreach ($events as $event) {
-            if(!isset($data[$event->getConsultantsId()])){ // If the consultant is not on the list eg. is inactive
+            if (!isset($data[$event->getConsultantsId()])) {
                 continue;
             }
-            if($data[$event->getConsultantsId()][date('d-m-Y', strtotime($event->getEventDate()))] === '-'){        // If no events yet
+
+            if ($data[$event->getConsultantsId()][date('d-m-Y', strtotime($event->getEventDate()))] === '-') {
                 $data[$event->getConsultantsId()][date('d-m-Y', strtotime($event->getEventDate()))] = $event->getType();
-            }else{
+            } else {
                 $data[$event->getConsultantsId()][date('d-m-Y', strtotime($event->getEventDate()))] .= "+".$event->getType();
             }
         }
@@ -565,9 +570,10 @@ class ConsultantsController extends CoreController
         $form = $this->createFormBuilder(array('content' => $setting->getCValue()))
             ->add('content', 'textarea',
                 array(
-                    'label' => 'admin.consultants.frontpage.content.label',
+                    'label'              => 'admin.consultants.frontpage.content.label',
                     'translation_domain' => 'admin',
-                    'required' => false
+                    'required'           => false,
+                    'attr'               => ['rows' => 20]
                 )
             )->getForm()
         ;

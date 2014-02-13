@@ -1,18 +1,21 @@
+{% macro pager(pager, target, no_total) %}
 
-{% macro pager(pager, target) %}
-
-<div class="pager ajax" data-target="{{ target }}">
-  <ul>
-    <li class="prew {% if pager.prew is empty %}off{% endif %}"><a href="{{ pager.prew }}" title="{{ "pager.previous.page"|trans }}"><i class="sprite arrow-left"></i>{{ "previous"|trans }}</a></li>
-  {% for page, url in pager.pages %}
-    <li{% if page == pager.index %} class="current"{% endif %}><a href="{{ url }}" title="{{ "pager.page"|trans({'%page%' : page}) }}">{{ page }}</a></li>
-  {% endfor %}
-    <li>{{ "pager.pages.%total%"|trans({'%total%' : pager.pages|length}) }}</li>
-    {% if pager.see_all is defined %}
-    <li><a href="{{ pager.see_all.url }}" title="{{ "pager.see_all.%total%"|trans({'%total%' : pager.see_all.total}) }}">{{ "pager.see_all.%total%"|trans({'%total%' : pager.see_all.total}) }}</a></li>
-    {% endif %}
-    <li class="next {% if pager.next is empty %}off{% endif %}"><a href="{{ pager.next }}" title="{{ "pager.next.page"|trans }}">{{ "next"|trans }}<i class="sprite arrow-right"></i></a></li>
-  </ul>
-</div>
+    <div class="pager ajax pull-right" data-target="{{ target }}">
+        <ul class="pagination">
+            <li class="prew {% if pager.prew is empty %}off{% endif %}">
+                <a href="{{ pager.prew }}" title="{{ "pager.previous.page"|trans }}"><i class="sprite arrow-left"></i>{{ "previous"|trans }}</a>
+            </li>
+        {% for page, url in pager.pages %}
+            <li{% if page == pager.index %} class="current"{% endif %}><a href="{{ url }}" title="{{ "pager.page"|trans({'%page%' : page}) }}">{{ page }}</a></li>
+        {% endfor %}
+        {% if no_total == '' %}
+            <li>{{ "pager.pages.%total%"|trans({'%total%' : pager.pages|length}) }}</li>
+        {% endif %}
+        {% if pager.see_all is defined %}
+            <li><a href="{{ pager.see_all.url }}" title="{{ "pager.see_all.%total%"|trans({'%total%' : pager.see_all.total}) }}">{{ "pager.see_all.%total%"|trans({'%total%' : pager.see_all.total}) }}</a></li>
+        {% endif %}
+            <li class="next {% if pager.next is empty %}off{% endif %}"><a href="{{ pager.next }}" title="{{ "pager.next.page"|trans }}">{{ "next"|trans }}<i class="sprite arrow-right"></i></a></li>
+        </ul>
+    </div>
 
 {% endmacro %}

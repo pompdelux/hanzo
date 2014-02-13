@@ -319,8 +319,33 @@ class DefaultController extends CoreController
 
             $lists = $api->getListsByOwner($admin_user->id);
         }
-
         $subscribed_users = $api->getAllUsersSubscribedToList($lists[0]->id);
+
+        $emails = [];
+        foreach ($subscribed_users as &$subscriber) {
+            $emails[] = $subscriber['email'];
+            $subscriber['firstname'] = '';
+            $subscriber['lastname'] = '';
+            $subscriber['phone'] = '';
+            $subscriber['city'] = '';
+        }
+        $users = CustomersQuery::create('Customer')
+            ->where('Customer.Email IN ?', $emails)
+            ->joinWithAddresses()
+            ->find();
+        foreach ($users as $user) {
+            foreach ($subscribed_users as &$subscriber) {
+                if ($subscriber['email'] == $user->getEmail()) {
+                    $subscriber['firstname'] = $user->getFirstName();
+                    $subscriber['lastname'] = $user->getLastName();
+                    $subscriber['phone'] = $user->getPhone();
+                    $subscriber['city'] = $user->getAddresses()[0]->getCity();
+
+                    // Break from the inner foreach.
+                    break;
+                }
+            }
+        }
 
         return $this->render('ConsultantNewsletterBundle:Default:editUsers.html.twig', array(
             'page_type'        => 'consultant-newsletter',

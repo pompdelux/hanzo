@@ -5,8 +5,8 @@
   background: url('/fx/2013s1/../images/icons/da-s7398167b80.png') no-repeat;
 }
 
-.icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-arrow_up, .icons-basket-grey, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-checkout, .icons-close, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-return, .icons-returnlabel, .icons-search, .icons-shopping-bag, .icons-show, .icons-sizeguide, .icons-trackntrace, .icons-twitter, .icons-video, .icons-zoom, form.search-form:before, footer .footer-menu .newsletter .sprite, ul.tabs li a i, ul.tabs li a.current i, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, .sizeguide, .sprite.trackntrace, .sprite.returnlabel, #mega-basket .basket .sprite, #mini-basket.basket .sprite, #mega-basket .checkout-button, #mega-basket .close, .body-pages .newsletter-form-simple .sprite, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.return {
-  background: url('/fx/2013s1/../images/icons/icons-sc6dc877ed2.png') no-repeat;
+.icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-arrow_up, .icons-basket-grey, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-checkout, .icons-close, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-print, .icons-return, .icons-returnlabel, .icons-search, .icons-shopping-bag, .icons-show, .icons-sizeguide, .icons-trackntrace, .icons-twitter, .icons-video, .icons-zoom, form.search-form:before, footer .footer-menu .newsletter .sprite, ul.tabs li a i, ul.tabs li a.current i, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, .sizeguide, .sprite.trackntrace, .sprite.returnlabel, #mega-basket .basket .sprite, #mini-basket.basket .sprite, #mega-basket .checkout-button, #mega-basket .close, .body-pages .newsletter-form-simple .sprite, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.return {
+  background: url('/fx/2013s1/../images/icons/icons-s647cb46155.png') no-repeat;
 }
 
 .icons-Kundeservice_Green {
@@ -149,6 +149,10 @@
   background-position: 0 -554px;
 }
 
+.icons-print {
+  background-position: 0 -1345px;
+}
+
 .icons-return {
   background-position: 0 -1002px;
 }
@@ -219,6 +223,11 @@
 
 .sprite-block {
   display: block;
+}
+
+.icons-print {
+  height: 16px;
+  width: 16px;
 }
 
 body.da form.buy .submit-button {
@@ -2513,6 +2522,13 @@ div.invalid-order {
   vertical-align: top;
   line-height: 22px;
 }
+.basket table.product-table .info label,
+.basket table.edit-element .info label,
+#cart-edit-element table.product-table .info label,
+#cart-edit-element table.edit-element .info label {
+  width: 50px;
+  margin-top: 1px;
+}
 .basket table.product-table .title,
 .basket table.edit-element .title,
 #cart-edit-element table.product-table .title,
@@ -4325,6 +4341,9 @@ ul.form-errors li {
 #body-consultant-newsletter table td {
   padding: 2px 10px 2px 2px;
   vertical-align: middle;
+}
+#body-consultant-newsletter table td.address {
+  word-break: break-all;
 }
 
 #body-consultant-newsletter .subscriber-search .button {

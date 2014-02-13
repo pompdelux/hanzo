@@ -5,9 +5,9 @@
 <h1>{{ 'admin.helpdesk.header.text'|trans({}, 'admin') }}</h1>
 
 {% for message in app.session.flashbag.get('notice') %}
-<div class="message notice">
-  {{ message|trans({}, 'admin') }}
-</div>
+    <div class="alert alert-info">
+        {{ message|trans({}, 'admin') }}
+    </div>
 {% endfor %}
 
 {% if helpdesk_data|length > 0 %}
@@ -16,7 +16,7 @@
 
 <p><a href="{{ path('admin_helpdesk_delete', {'key' : 'ALL'}) }}">{{ 'admin.helpdesk.delete.all'|trans({}, 'admin') }}</a></p>
 
-<table id="helpdesk" class="list">
+<table id="helpdesk" class="table table-striped">
   <thead>
     <tr>
       <th>{{ 'admin.helpdesk.key'|trans({}, 'admin') }}</th>
@@ -33,12 +33,8 @@
         <script>
           var x{{ helpdesk.key }} = '{{ helpdesk.data|raw }}';
         </script>
-        <a href="#" onclick="helpdesk_open(x{{ helpdesk.key }});return false;">
-          {{ 'admin.helpdesk.view'|trans({}, 'admin') }}
-        </a>
-        <a href="{{ path('admin_helpdesk_delete', {'key' : helpdesk.key }) }}" class="delete">
-          {{ 'admin.helpdesk.delete'|trans({}, 'admin') }}
-        </a>
+            <a href="#" onclick="helpdesk_open(x{{ helpdesk.key }});return false;" title="{{ 'admin.helpdesk.view'|trans({}, 'admin') }}" class="glyphicon glyphicon-list-alt"></a>
+          <a href="{{ path('admin_helpdesk_delete', {'key' : helpdesk.key }) }}" class="delete glyphicon glyphicon-remove-circle" title="{{ 'admin.helpdesk.delete'|trans({}, 'admin') }}"></a>
       </th>
     </tr>
   {% endfor %}

@@ -194,17 +194,15 @@ class AxService
 
             $domain_key = strtoupper($attributes->global->domain_key);
             switch(str_replace('SALES', '', $domain_key)) {
+                case 'AT':
+                case 'CH':
                 case 'DE':
+                case 'FI':
+                case 'NL':
                     $bag_price = '4.95';
                     break;
                 case 'DK':
                     $bag_price = '40.00';
-                    break;
-                case 'FI':
-                    $bag_price = '4.95';
-                    break;
-                case 'NL':
-                    $bag_price = '4.95';
                     break;
                 case 'NO':
                     $bag_price = '60.00';
@@ -468,11 +466,13 @@ class AxService
         // Use: $syncSalesOrder->endpointDomain = $attributes->global->domain_key; ??
         $sc->endpointDomain = 'DK';
         switch ($ct->AddressCountryRegionId) {
+            case 'AT':
+            case 'CH':
             case 'DE':
-            case 'SE':
-            case 'NO':
             case 'FI':
             case 'NL':
+            case 'NO':
+            case 'SE':
                 $sc->endpointDomain = $ct->AddressCountryRegionId;
                 break;
         }

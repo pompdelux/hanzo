@@ -33,15 +33,15 @@ class DomainVoter implements VoterInterface
     public function vote(TokenInterface $token, $object, array $attributes)
     {
         $countryIdToLocaleMap = array(
-            80  => array( 'de_DE' ), // Germany
-            58  => array( 'da_DK' ), // Denmark
+            80  => array( 'de_DE' ),          // Germany
+            58  => array( 'da_DK' ),          // Denmark
             72  => array( 'fi_FI', 'sv_FI' ), // Finland
-            80  => array( 'de_DE' ), // Germany
-            151 => array( 'nl_NL' ), // Netherlands
-            161 => array( 'nb_NO' ), // Norway
-            207 => array( 'sv_SE' ), // Sweden
-            // 14  => array( 'de_AT' ), // Austria
-            // 208 => array( 'de_CH' ), // Switzerland
+            80  => array( 'de_DE' ),          // Germany
+            151 => array( 'nl_NL' ),          // Netherlands
+            161 => array( 'nb_NO' ),          // Norway
+            207 => array( 'sv_SE' ),          // Sweden
+            14  => array( 'de_AT' ),          // Austria
+            208 => array( 'de_CH' ),          // Switzerland
         );
 
         if (!($object instanceof Request)) {

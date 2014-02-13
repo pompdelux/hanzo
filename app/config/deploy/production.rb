@@ -29,7 +29,7 @@ role :static, staticserver, :primary => true
 role :db, adminserver, :primary => true  # where to run migrations
 
 # only notify New Relic on production deploys
-after 'deploy:send_email', 'deploy:newrelic_notify'
+after 'deploy:send_email', 'deploy:newrelic_notify', 'deploy:post_dashing'
 
 # own tasks. copy config
 namespace :deploy do
@@ -54,7 +54,14 @@ namespace :deploy do
   task :newrelic_notify do
     capifony_pretty_print "--> Sending deploy info to New Relic"
     #run_locally("curl -s -H 'x-api-key:9c7777826c9d0aed79810e82e0d07dacde3a7e94a94d03a' -d 'deployment[app_name]=Pompdelux-dk3' -d 'deployment[changelog]=#{deploydiff}' -d 'deployment[user]=#{whoami}' -d 'deployment[revision]=#{to_be_deployed}' https://rpm.newrelic.com/deployments.xml")
-    run_locally("curl -s -H 'x-api-key:9c7777826c9d0aed79810e82e0d07dacde3a7e94a94d03a' -d 'deployment[app_name]=Pompdelux-dk3' -d 'deployment[user]=#{whoami}' https://rpm.newrelic.com/deployments.xml")
+    run_locally("curl -s -H 'x-api-key:9c7777826c9d0aed79810e82e0d07dacde3a7e94a94d03a' -d 'deployment[app_name]=Pompdelux' -d 'deployment[user]=#{whoami}' https://rpm.newrelic.com/deployments.xml")
+    capifony_puts_ok
+  end
+  desc "Post deploy to pdlwatch dashing"
+  task :post_dashing do
+    capifony_pretty_print "--> Posting to dashing (pdlwatch.bellcom.dk:3030)"
+    set :now, `date "+%d/%m %H:%M:%S"`.strip
+    run_locally "curl -s -d '{\"auth_token\": \"YOUR_AUTH_TOKEN\", \"text\": \"#{now}<br />af #{whoami}\" }' http://pdlwatch.bellcom.dk:3030/widgets/lastdeploy"
     capifony_puts_ok
   end
 end

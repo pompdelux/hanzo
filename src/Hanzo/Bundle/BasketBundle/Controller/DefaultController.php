@@ -377,6 +377,7 @@ class DefaultController extends CoreController
         $router      = $this->get('router');
         $router_keys = include $this->container->parameters['kernel.cache_dir'] . '/category_map.php';
         $locale      = strtolower(Hanzo::getInstance()->get('core.locale'));
+        $translator  = $this->container->get('translator');
 
         $mode = $this->get('kernel')->getStoreMode();
         $cid  = array('category2group');
@@ -402,11 +403,15 @@ class DefaultController extends CoreController
         $c = new \Criteria();
         $c->addAscendingOrderByColumn(OrdersLinesPeer::PRODUCTS_NAME);
         foreach ($order->getOrdersLiness($c) as $line) {
+            $line->setProductsSize($line->getPostfixedSize($translator));
             $line = $line->toArray(\BasePeer::TYPE_FIELDNAME);
 
             if ($line['type'] != 'product') {
                 continue;
             }
+
+            $line['url'] = '';
+            $line['basket_image'] = '';
 
             $t = strtotime($line['expected_at']);
             if (($t > 0) && ($t > time())) {
@@ -466,9 +471,7 @@ class DefaultController extends CoreController
                     }
                 }
             } else {
-                $group                = 0;
-                $line['basket_image'] = '';
-                $line['url']          = '';
+                $group = 0;
             }
 
             $products[$group][] = $line;

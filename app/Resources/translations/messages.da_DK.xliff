@@ -2,6 +2,10 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
+            <trans-unit id="size.label.postfix">
+                <source>size.label.postfix</source>
+                <target> cm</target>
+            </trans-unit>
             <trans-unit id="size.guide.link">
                 <source>size.guide.link</source>
                 <target>images/pages/Size_Guide_DK.jpg</target>
@@ -270,12 +274,11 @@
     Hos POMPdeLUX er det nemt at returnere en vare. Postposen som du modtager dine varer i, er lavet, så du let kan anvende den til tilbagesendelse af varen du ønsker at returnere – følg blot vejledningen på posen. Med denne mulighed, sparer vi dig for at skulle investere i dyr returemballage – til gavn for både dig og miljøet. <br>
  Da din returvare skal sælges igen, vil det være en stor hjælp at du returnerer varen i original indpakning med hængemærker etc.<br>
  Varerne returneres sammen med en udfyldt returseddel. På retursedlen kan du se, hvilke oplysninger vi skal bruge fra dig, og hvor du skal sende varerne til. Posen afleveres som pakkepost på posthuset eller i en Pakkeboks.<br><br>
- <b>Bemærk:</b> Per mail har du modtaget en returlabel, som du kan anvende ved returnering. Denne label har en værdi af DKK 29,00 som vi modregner i værdien på de returnerede varer – uanset returpakkens størrelse.<br>
     <br>
     <b>Reklamation og fejlleverede varer.</b><br>
     Hvis du har modtaget en vare med fejl, eller hvis vi har sendt dig en forkert vare, returnerer du blot varen som beskrevet ovenfor. Hvis vi vurderer din reklamation er berettiget, sender vi dig en ny vare fragtfrit. Hvis varen er udsolgt, tilbagefører vi varens købspris dig.<br>
 	<br>
-<b>Bemærk:</b>Per mail har du modtaget en returlabel, som du kan anvende ved returnering – benyt denne og så modregner vi kun DKK 29,- fra værdien af dine returvarer.<br></p>
+<b>Bemærk:</b>På Min side finder du en returlabel, benyt denne og så modregner vi kun DKK 29,- fra værdien af dine returvarer.<br></p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="footer.menu_1" approved="no">
@@ -324,6 +327,7 @@
 				<li><a href="/da_DK/forside/om-pompdelux/corporate-social-responsibility/csr-rapport">CSR</a></li>
 				<li><a href="/da_DK/forside/konkurrence">Konkurrencer</a></li>
 				<li><a href="/da_DK/forside/om-pompdelux/job/fritidskonsulent">Job</a></li>
+				<li><a href="/da_DK/forside/om-pompdelux/presse">Presse</a></li>
 				<li><a href="/da_DK/forside/om-pompdelux/kontakt">Kontakt</a></li>
                 </ul>
                 ]]></target>

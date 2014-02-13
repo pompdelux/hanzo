@@ -135,7 +135,7 @@
               $.each(response.data.products, function(index, product) {
                 if (-1 == $.inArray(product.size, used)) {
                   used.push(product.size);
-                  $size.append('<option value="'+product.size+'">'+product.size+'</option>');
+                  $size.append('<option value="'+product.size+'">'+product.size_label+'</option>');
                 }
               });
               $('div.size span', $edit).replaceWith($size);

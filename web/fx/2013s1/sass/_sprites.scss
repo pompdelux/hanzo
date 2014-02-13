@@ -22,6 +22,10 @@
 
 .sprite{display:inline-block;}
 .sprite-block{display:block;}
+.icons-print {
+    height: icons-sprite-height(print);
+    width: icons-sprite-width(print);
+}
 
 body.da{
     form.buy .submit-button{

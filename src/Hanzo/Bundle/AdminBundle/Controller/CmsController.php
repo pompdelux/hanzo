@@ -328,39 +328,44 @@ class CmsController extends CoreController
         $form = $this->createFormBuilder($node)
             ->add('locale', 'hidden')
             ->add('is_active', 'checkbox', array(
-                'label'     => 'cms.edit.label.is_active',
+                'label'              => 'cms.edit.label.is_active',
                 'translation_domain' => 'admin',
-                'required'  => false
+                'required'           => false,
+                'label_attr'         => ['class' => 'col-sm-3']
             ))
             ->add('is_restricted', 'checkbox', array(
-                'label'     => 'cms.edit.label.is_restricted',
+                'label'              => 'cms.edit.label.is_restricted',
                 'translation_domain' => 'admin',
-                'required'  => false
+                'required'           => false,
+                'label_attr'         => ['class' => 'col-sm-3']
             ))
             ->add('on_mobile', 'checkbox', array(
-                'label'     => 'cms.edit.label.on_mobile',
+                'label'              => 'cms.edit.label.on_mobile',
                 'translation_domain' => 'admin',
-                'required'  => false
+                'required'           => false,
+                'label_attr'         => ['class' => 'col-sm-3']
             ))
             ->add('title', null, array(
-                'label'     => 'cms.edit.label.title',
-                'required' => TRUE,
+                'label'              => 'cms.edit.label.title',
+                'required'           => true,
                 'translation_domain' => 'admin'
             ))
             ->add('path', null, array(
-                'label'     => 'cms.edit.label.path',
-                'required' => TRUE,
+                'label'              => 'cms.edit.label.path',
+                'required'           => true,
                 'translation_domain' => 'admin'
             ))
             ->add('content', 'textarea', array(
-                'label'     => 'cms.edit.label.content',
-                'required' => FALSE,
-                'translation_domain' => 'admin'
+                'label'              => 'cms.edit.label.content',
+                'required'           => false,
+                'translation_domain' => 'admin',
+                'attr'               => ['rows' => 10]
             ))
             ->add('settings', 'textarea', array(
-                'label'     => 'cms.edit.label.settings',
-                'required' => FALSE,
-                'translation_domain' => 'admin'
+                'label'              => 'cms.edit.label.settings',
+                'required'           => false,
+                'translation_domain' => 'admin',
+                'attr'               => ['rows' => 10]
             ))->getForm();
 
         $request = $this->getRequest();
@@ -655,10 +660,10 @@ class CmsController extends CoreController
                 'access' => ['ROLE_ADMIN'],
                 'title' => 'Rabatkoder',
             ],
-            'admin_postalcode' => [
-                'access' => ['ROLE_ADMIN'],
-                'title' => 'Postnumre',
-            ],
+//            'admin_postalcode' => [
+//                'access' => ['ROLE_ADMIN'],
+//                'title' => 'Postnumre',
+//            ],
             'admin_helpdesk' => [
                 'access' => ['ROLE_ADMIN'],
                 'title' => 'Helpdesk',
@@ -684,21 +689,22 @@ class CmsController extends CoreController
         }
 
         return $this->response('
-            <nav class="main">
-              <ul>
+              <ul class="nav nav-sidebar">
               '.$links.'
               </ul>
-            </nav>
         ');
     }
 
 
     /**
      * Creates the html for a System Tree of the CMS. Works recursivly.
-     * @todo no-recursive: This could be done better, with an left join.
-     * How? Too many Propel Calls.
-     * @todo revove html from controller and make an array instead.
-     * @param $int parent_id The parents ID
+     *
+     * @todo no-recursive: This could be done better, with an left join. How? Too many Propel Calls.
+     * @todo remove html from controller and make an array instead.
+     *
+     * @param int $cms_thread
+     * @param int $parent_id The parents ID
+     * @param string $locale
      * @return html ordered list
      */
     protected function getCmsTree($cms_thread, $parent_id, $locale)
@@ -718,7 +724,7 @@ class CmsController extends CoreController
                 $menu .= '<ul id="sortable-list">';
                 foreach($result as $record) {
 
-                    $menu .= '<li id="item-t' . $record->getId(). '" class="sortable-item ui-state-disabled">';
+                    $menu .= '<li id="item-t' . $record->getId(). '" class="sortable-item ui-state-disabled top">';
                     $menu .= '<div class="sort-handle record">';
                     $menu .= '<span class="record-id">'.$record->getId().'</span>';
                     $menu .= '<span class="record-title">' . $record->getTitle() . '</span>';
@@ -761,8 +767,8 @@ class CmsController extends CoreController
                     $menu .= '<span class="record-title">' . $record->getTitle() . '</span>';
                     $menu .= '<span class="record-type">' . $record->getType() . '</span>';
                     $menu .= '<div class="actions">';
-                    $menu .= '<a href="'. $this->get('router')->generate('admin_cms_edit', array('id' => $record->getId(), 'locale' => $record->getLocale())) .'" title="' . $t->trans('page.edit', array(), 'admin') . '" class="edit">' . $t->trans('page.edit', array(), 'admin') . '</a>';
-                    $menu .= '<a href="'. $this->get('router')->generate('admin_cms_delete', array('id' => $record->getId(), 'locale' => $record->getLocale())) .'" title="' . $t->trans('page.delete', array(), 'admin') . '" class="delete">' . $t->trans('page.delete', array(), 'admin') . '</a>';
+                    $menu .= '<a href="'. $this->get('router')->generate('admin_cms_edit', array('id' => $record->getId(), 'locale' => $record->getLocale())) .'" title="' . $t->trans('page.edit', array(), 'admin') . '" class="edit glyphicon glyphicon-edit" title="' . $t->trans('page.edit', [], 'admin') . '"></a>';
+                    $menu .= '<a href="'. $this->get('router')->generate('admin_cms_delete', array('id' => $record->getId(), 'locale' => $record->getLocale())) .'" title="' . $t->trans('page.delete', array(), 'admin') . '" class="delete glyphicon glyphicon-remove-circle" title="' . $t->trans('page.delete', [], 'admin') . '"></a>';
                     $menu .= '</div>';
                     $menu .= '</div>';
 
@@ -783,7 +789,9 @@ class CmsController extends CoreController
     /**
      * Creates an single dimension array og cms pages. Used as the options in a select.
      * @param  int    $from_thread the thread
+     * @param  string $locale
      * @param  int    $parent      The parent, initial null
+     * @param  int    $indention
      * @return array               the array
      */
     protected function getSelectCms($from_thread, $locale, $parent = null, $indention = 0)
