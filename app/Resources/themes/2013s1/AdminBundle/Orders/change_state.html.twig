@@ -1,41 +1,41 @@
 {% extends '::adminbase.html.twig' %}
 
 {% block content %}
-<nav class="sub">
-  <ul>
-    <li>
-      <a href="{{ path('admin_orders') }}">
-        {{ 'admin.back.button'|trans({}, 'admin') }}
-      </a>
-    </li>
-  </ul>
-</nav>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ path('admin_orders') }}">{{ 'admin.back.button'|trans({}, 'admin') }}</a></li>
+            </ul>
+        </div>
+    </nav>
 
-<h1>{{ 'admin.orders.changestate.header.text'|trans({}, 'admin') }}</h1>
+    <h1>{{ 'admin.orders.changestate.header.text'|trans({}, 'admin') }}</h1>
 
 {% for message in app.session.flashbag.get('notice') %}
-<div class="message notice">
-  {{ message|trans({}, 'admin') }}
-</div>
+    <div class="alert alert-info">
+        {{ message|trans({}, 'admin') }}
+    </div>
 {% endfor %}
 
-<p>{{ 'admin.orders.changestate.description.text'|trans({}, 'admin') }}</p>
+    <p>{{ 'admin.orders.changestate.description.text'|trans({}, 'admin') }}</p>
 
-<form action="{{ path('admin_orders_change_state') }}" method="post" {{ form_enctype(form) }} id="change-state-form">
-  <div id="change-state">
-    {{ form_rest(form) }}
-    {{ form_row(form._token) }}
-  </div>
-  <input class="button right" type="submit" value="{{ 'admin.orders.changestate.submit'|trans({}, 'admin') }}">
-</form>
+    {% form_theme form 'AdminBundle:Form:fields.html.twig' %}
+    <form action="{{ path('admin_orders_change_state') }}" method="post" {{ form_enctype(form) }} id="change-state-form" class="form-horizontal" role="form">
+        {{ form_rest(form) }}
 
-{% if updated_orders %}
-<h1>{{ 'admin.orders.changestate.updated_orders.text'|trans({}, 'admin') }}</h1>
-<ul>
-  {% for ids in updated_orders %}
-  <li><a href="{{ path('admin_customer_order', {'order_id' : ids}) }}">{{ ids }}</a></li>
-  {% endfor %}
-</ul>
-{% endif %}
+        <div class="form-group">
+        <input class="button btn btn-success" type="submit" value="{{ 'admin.orders.changestate.submit'|trans({}, 'admin') }}">
+        </div>
+        {{ form_row(form._token) }}
+    </form>
+
+    {% if updated_orders %}
+        <h1>{{ 'admin.orders.changestate.updated_orders.text'|trans({}, 'admin') }}</h1>
+        <ul>
+            {% for ids in updated_orders %}
+                <li><a href="{{ path('admin_customer_order', {'order_id' : ids}) }}">{{ ids }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 
 {% endblock %}

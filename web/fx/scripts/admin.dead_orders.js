@@ -33,15 +33,18 @@ var adminDeadOrders = (function($) {
         // preview and re-send orders
         $('a.preview-order, a.resend-order').on('click', function(event) {
             event.preventDefault();
-            $a = $(this);
+
+            var $a = $(this);
             $a.parent().find('.loader').show();
-            var $row = $(this).closest('tr');
-            var oid = $(this).closest('p').find('input').val();
+            var $row = $a.closest('tr');
+            var oid = $a.closest('form').find('input').val();
+
             if (undefined === oid) {
               oid = '';
             } else {
               oid = '/'+oid;
             }
+
             $.getJSON(this.href+oid, function(result) {
               if (result.status) {
                 if (result.message) {

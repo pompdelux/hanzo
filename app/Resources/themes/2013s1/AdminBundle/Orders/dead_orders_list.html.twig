@@ -1,13 +1,24 @@
 {% extends '::adminbase.html.twig' %}
 
 {% block content %}
-<h1>I see dead orders!</h1>
+
+
+    <h1>I see dead orders!</h1>
+
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ path('admin_orders') }}">{{ 'admin.orders.list.link'|trans({}, 'admin') }}</a></li>
+            </ul>
+        </div>
+    </nav>
+
 {% for order in orders %}
 
   {% if loop.first %}
 
     <form action="#" method="post" id="dead-orders-form">
-      <table class="bottom list" id="dead-orders">
+      <table class="table table-striped" id="dead-orders">
         <thead>
           <tr>
             <th>Ordre nr.</th>
@@ -26,9 +37,9 @@
           <td>{{ order.state }} - {{ order.statemessage }}</td>
           <td class="error-msg"><img src="/fx/images/ajax-loader.gif"></td>
           <td>
-            <a href="#" class="delete-order button" data-order-id="{{ order.id }}" data-confirm-message="Er du sikker på du ønsker at slette ordrenummer: {{ order.id }}">Slet</a>
-            <a href="{{ path('admin_orders_preview', {order_id : order.id}) }}" class="preview-order button">Gennemse</a>
-            <a href="{{ path('admin_orders_resync_sync', {order_id : order.id}) }}" class="resend-order button">Gensend</a>
+            <a href="#" class="delete-order button glyphicon glyphicon-remove-circle" data-order-id="{{ order.id }}" data-confirm-message="Er du sikker på du ønsker at slette ordrenummer: {{ order.id }}" title="Slet"></a>
+            <a href="{{ path('admin_orders_preview', {order_id : order.id}) }}" class="preview-order button glyphicon glyphicon-list-alt" title="Gennemse"></a>
+            <a href="{{ path('admin_orders_resync_sync', {order_id : order.id}) }}" class="resend-order button glyphicon glyphicon-refresh" title="Gensend"></a>
             <img src="/fx/images/ajax-loader.gif" class="loader" style="display:none;">
           </td>
         </tr>

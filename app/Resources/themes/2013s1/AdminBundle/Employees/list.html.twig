@@ -1,100 +1,90 @@
 {% extends '::adminbase.html.twig' %}
 
 {% block content %}
-<nav class="sub">
-  <ul>
-    <li>
-      <form action="{{ path('admin_employees') }}" method="get">
-        <input type="text" id="searh" name="q" placeholder="{{ 'search.label'|trans({}, 'admin') }}">
-        <input class="button search" type="submit" value="{{ 'search'|trans({}, 'admin') }}">
-      </form>
-    </li>
-    {% if is_granted('ROLE_ADMIN') %}
-    <li>
-      <a href="{{ path('admin_customers') }}">
-        {{ 'admin.customers.list.link'|trans({}, 'admin') }}
-      </a>
-    </li>
-    {% endif %}
-    <li>
-      <a href="{{ path('admin_consultants') }}">
-        {{ 'admin.consultants.list.link'|trans({}, 'admin') }}
-      </a>
-    </li>
-    <li>
-      <a href="{{ path('admin_employees') }}">
-        {{ 'admin.employees.list.link'|trans({}, 'admin') }}
-      </a>
-    </li>
-  </ul>
-</nav>
 
-<h1>{{ 'admin.employees.header.text'|trans({}, 'admin') }}</h1>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li><a href="{{ path('admin_customers') }}">{{ 'admin.customers.list.link'|trans({}, 'admin') }}</a>
+                    </li>
+                {% endif %}
+                <li><a href="{{ path('admin_consultants') }}">{{ 'admin.consultants.list.link'|trans({}, 'admin') }}</a>
+                </li>
+                <li><a href="{{ path('admin_employees') }}">{{ 'admin.employees.list.link'|trans({}, 'admin') }}</a>
+                </li>
+            </ul>
+
+            <form action="{{ path('admin_employees') }}" method="get" class="navbar-form navbar-right">
+                <div class="form-group">
+                    <input type="text" id="searh" name="q" placeholder="{{ 'search.label'|trans({}, 'admin') }}" class="form-control">
+                    <input class="button search btn btn-default" type="submit" value="{{ 'search'|trans({}, 'admin') }}">
+                </div>
+            </form>
+        </div>
+    </nav>
+
+    <h1>{{ 'admin.employees.header.text'|trans({}, 'admin') }}</h1>
 
 {% for message in app.session.flashbag.get('notice') %}
-<div class="message notice">
-  {{ message|trans({}, 'admin') }}
-</div>
+    <div class="alert alert-info">
+        {{ message|trans({}, 'admin') }}
+    </div>
 {% endfor %}
 
-<p>{{ 'admin.employees.description.text'|trans({}, 'admin') }}</p>
+    <p>{{ 'admin.employees.description.text'|trans({}, 'admin') }}</p>
 
 
 {% if employees|length > 0 %}
 
-  {% if paginate %}
+{% if paginate %}
     <div class="clearfix">
-      {% import "::macro.pager.html.twig" as p %}
-      {{ p.pager(paginate, 'customers') }}
+        {% import "::macro.pager.html.twig" as p %}
+        {{ p.pager(paginate, 'customers', true) }}
     </div>
-  {% endif %}
-<table id="consultants" class="list">
-  <thead>
-    <tr>
-      <th class="first-name">{{ 'admin.customer.first_name'|trans({}, 'admin') }}</th>
-      <th class="last-name">{{ 'admin.customer.last_name'|trans({}, 'admin') }}</th>
-      <th class="email">{{ 'admin.customer.email'|trans({}, 'admin') }}</th>
-      <th class="phone">{{ 'admin.customer.phone'|trans({}, 'admin') }}</th>
-      <th class="is-active">{{ 'admin.customer.is_active'|trans({}, 'admin') }}</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for employee in employees %}
-    <tr>
-      <td>{{ employee.firstname }}</td>
-      <td>{{ employee.lastname }}</td>
-      <td><a href="mailto:{{ employee.email }}">{{ employee.email }}</a></td>
-      <td>{{ employee.phone }}</td>
-      <td>
-        {% if employee.isactive == 1 %}
-          {{ 'admin.customer.activated'|trans({}, 'admin') }}
-        {% else %}
-          {{ 'admin.customer.deactivated'|trans({}, 'admin') }}
-        {% endif %}
-      </td>
-      <th>
-        <span class="edit">
-          <a href="{{ path('admin_customer', {'id' : employee.id}) }}">
-            {{ 'admin.employees.edit'|trans({}, 'admin') }}
-          </a>
-        </span>
-      </th>
-    </tr>
-  {% endfor %}
-  </tbody>
-</table>
-  {% if paginate %}
+{% endif %}
+
+    <table id="consultants" class="table table-striped">
+        <thead>
+        <tr>
+            <th class=" first-name">{{ 'admin.customer.first_name'|trans({}, 'admin') }}</th>
+            <th class="last-name">{{ 'admin.customer.last_name'|trans({}, 'admin') }}</th>
+            <th class="email">{{ 'admin.customer.email'|trans({}, 'admin') }}</th>
+            <th class="phone">{{ 'admin.customer.phone'|trans({}, 'admin') }}</th>
+            <th class="is-active">{{ 'admin.customer.is_active'|trans({}, 'admin') }}</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for employee in employees %}
+            <tr>
+                <td>{{ employee.firstname }}</td>
+                <td>{{ employee.lastname }}</td>
+                <td><a href="mailto:{{ employee.email }}">{{ employee.email }}</a></td>
+                <td>{{ employee.phone }}</td>
+                <td>
+                    {% if employee.isactive == 1 %}
+                        {{ 'admin.customer.activated'|trans({}, 'admin') }}
+                    {% else %}
+                        {{ 'admin.customer.deactivated'|trans({}, 'admin') }}
+                    {% endif %}
+                </td>
+                <th><a href="{{ path('admin_customer', {'id' : employee.id}) }}" class="edit glyphicon glyphicon-edit" title="{{ 'admin.employees.edit'|trans({}, 'admin') }}"></a></th>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% if paginate %}
     <div class="clearfix">
-      {% import "::macro.pager.html.twig" as p %}
-      {{ p.pager(paginate, 'customers') }}
+        {% import "::macro.pager.html.twig" as p %}
+        {{ p.pager(paginate, 'customers', true) }}
     </div>
-  {% endif %}
+{% endif %}
 
 {% else %}
 
-<p>{{ 'admin.employees.no.employees.text'|trans({}, 'admin') }}</p>
+    <p>{{ 'admin.employees.no.employees.text'|trans({}, 'admin') }}</p>
 
 {% endif %}
-
 {% endblock %}

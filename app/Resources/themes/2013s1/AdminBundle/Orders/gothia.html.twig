@@ -2,27 +2,35 @@
 
 {% block content %}
 
-<h1>Gothia admin</h1>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ path('admin_orders') }}">{{ 'admin.orders.list.link'|trans({}, 'admin') }}</a></li>
+            </ul>
+        </div>
+    </nav>
 
-<form id="gothia-admin-order-lookup" action="#">
-  <p>
-    <label for="gothia-order-id">Ordre id:</label>
-    <input type="text" id="order-id" name="order-id"/>
-    <input type="submit" value="Hent" name="get"/>
-  </p>
-</form>
+    <h1>Gothia admin</h1>
 
-<form id="gothia-admin-order-perform" action="#" style="display:none">
-  <p class="customer"></p>
-  <p class="order"></p>
-  <p>
-    <strong>Bemærk:</strong> Ændre kun status ved Gothia
-  </p>
-  <p>
-    <input type="submit" value="Opret reservation" name="place-reservation" id="place-reservation">
-    <input type="submit" value="Annuller reservation" name="cancel-reservation" id="cancel-reservation">
-  </p>
-</form>
+    <form id="gothia-admin-order-lookup" action="#" class="form-inline" role="form">
+        <div class="form-group">
+            <label for="gothia-order-id">Ordre id:</label>
+            <input type="text" id="order-id" name="order-id" class="form-control">
+            <input type="submit" value="Hent" name="get" class="btn btn-success">
+        </div>
+    </form>
+
+    <form id="gothia-admin-order-perform" action="#" style="display:none" class="form-inline" role="form">
+        <p class="customer"></p>
+        <p class="order"></p>
+        <p>
+            <strong>Bemærk:</strong> Ændre kun status ved Gothia
+        </p>
+        <div class="form-group">
+            <input type="submit" value="Opret reservation" name="place-reservation" id="place-reservation" class="btn btn-success">
+            <input type="submit" value="Annuller reservation" name="cancel-reservation" id="cancel-reservation" class="btn btn-danger">
+        </div>
+    </form>
 
 {% endblock %}
 

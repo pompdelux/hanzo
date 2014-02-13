@@ -1,133 +1,122 @@
 {% extends '::adminbase.html.twig' %}
 
 {% block content %}
-<nav class="sub">
-  <ul>
-    <li>
-      {% if domain_key != '' %}
-      <form action="{{ path('admin_customers_domain', {'domain_key' : domain_key }) }}" method="get">
-      {% else %}
-      <form action="{{ path('admin_customers') }}" method="get">
-      {% endif %}
-        <input type="text" id="searh" name="q" placeholder="{{ 'search.label'|trans({}, 'admin') }}">
-        <input class="button search" type="submit" value="{{ 'search'|trans({}, 'admin') }}">
-      </form>
-    </li>
-    <li>
-      <form action="{{ path('admin_customers') }}" method="get">
-        <input type="text" id="search" name="debitor" placeholder="{{ 'search.debitor.label'|trans({}, 'admin') }}">
-        <input class="button search" type="submit" value="{{ 'search'|trans({}, 'admin') }}">
-      </form>
-    </li>
-    <li id="select-language">
-      <a class="open-menu" href="#">
-        {% if domain_key %}
-          <span class="flag {{ domain_key }}"></span><span class="domain-key">.{{ domain_key }}</span> |
-        {% endif %}
-        {{ 'domain.selector'|trans({}, 'admin') }}
-      </a>
-      <div style="display:none;">
-        <ul>
-        {% for domain in domains_availible %}
-          <li>
-            <a href="{{ path('admin_customers_domain', {'domain_key' : domain.domainkey}) }}">
-              <span class="flag {{ domain.domainkey }}"></span>{{ domain.domainkey }}
-            </a>
-          </li>
-        {% endfor %}
-        </ul>
-      </div>
-    </li>
-    <li>
-      <a href="{{ path('admin_customers') }}">
-        {{ 'admin.customers.list.link'|trans({}, 'admin') }}
-      </a>
-    </li>
-    <li>
-      <a href="{{ path('admin_consultants') }}">
-        {{ 'admin.consultants.list.link'|trans({}, 'admin') }}
-      </a>
-    </li>
-  </ul>
-</nav>
 
-<h1>{{ 'admin.customers.header.text'|trans({}, 'admin') }}</h1>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        {% if domain_key %}
+                            <span class="flag {{ domain_key|replace({'Sales': ''}) }}"></span><span class="domain-key">.{{ domain_key }}</span> |
+                        {% endif %}
+                        {{ 'domain.selector'|trans({}, 'admin') }}
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                    {% for domain in domains_availible %}
+                        <li><a href="{{ path('admin_customers_domain', {'domain_key' : domain.domainkey}) }}"><span class="flag {{ domain.domainkey|replace({'Sales': ''}) }}"></span>{{ domain.domainkey }}</a></li>
+                    {% endfor %}
+                    </ul>
+                </li>
+
+                <li><a href="{{ path('admin_customers') }}">{{ 'admin.customers.list.link'|trans({}, 'admin') }}</a></li>
+                <li><a href="{{ path('admin_consultants') }}">{{ 'admin.consultants.list.link'|trans({}, 'admin') }}</a></li>
+            </ul>
+
+            {% if domain_key != '' %}
+                {% set _action = path('admin_customers_domain', {'domain_key' : domain_key }) %}
+            {% else %}
+                {% set _action = path('admin_customers') %}
+            {% endif %}
+            <form action="{{ _action }}" method="get" class="navbar-form navbar-right">
+                <div class="form-group">
+                    <input type="text" id="searh" name="q" placeholder="{{ 'search.label'|trans({}, 'admin') }}" class="form-control">
+                    <input class="button search btn btn-default" type="submit" value="{{ 'search'|trans({}, 'admin') }}">
+                </div>
+            </form>
+
+            <form action="{{ path('admin_customers') }}" method="get" class="navbar-form navbar-right">
+                <div class="form-group">
+                    <input type="text" id="search" name="debitor" placeholder="{{ 'search.debitor.label'|trans({}, 'admin') }}" class="form-control">
+                    <input class="button search btn btn-default" type="submit" value="{{ 'search'|trans({}, 'admin') }}">
+                </div>
+            </form>
+
+        </div>
+    </nav>
+
+    <h1>{{ 'admin.customers.header.text'|trans({}, 'admin') }}</h1>
 
 {% for message in app.session.flashbag.get('notice') %}
-<div class="message notice">
-  {{ message|trans({}, 'admin') }}
-</div>
+    <div class="alert alert-info">
+        {{ message|trans({}, 'admin') }}
+    </div>
 {% endfor %}
 
-<p>{{ 'admin.customers.description.text'|trans({}, 'admin') }}</p>
-
+    <p>{{ 'admin.customers.description.text'|trans({}, 'admin') }}</p>
 
 {% if customers|length > 0 %}
 
-  {% if paginate %}
-    <div class="clearfix">
-      {% import "::macro.pager.html.twig" as p %}
-      {{ p.pager(paginate, 'customers') }}
-    </div>
-  {% endif %}
-<table id="customers" class="list">
-  <thead>
-    <tr>
-      <th>{{ 'admin.customer.first_name'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.customer.last_name'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.customer.email'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.customer.phone'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.customer.discount'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.customer.is_active'|trans({}, 'admin') }}</th>
-      <th>Oprettet</th>
-      <th>Sidst rettet</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for customer in customers %}
-    <tr>
-      <td>{{ customer.firstname }}</td>
-      <td>{{ customer.lastname }}</td>
-      <td><a href="mailto:{{ customer.email }}">{{ customer.email }}</a></td>
-      <td>{{ customer.phone }}</td>
-      <td>{{ customer.discount }}</td>
-      <td>
-        {% if customer.isactive == 1 %}
-          {{ 'admin.customer.activated'|trans({}, 'admin') }}
-        {% else %}
-          {{ 'admin.customer.deactivated'|trans({}, 'admin') }}
-        {% endif %}
-      </td>
-      <td>{{ customer.createdat|date("d/m/Y H:i") }}</td>
-      <td>{{ customer.updatedat|date("d/m/Y H:i") }}</td>
-      <th>
-        <a class="edit" href="{{ path('admin_customer', {'id' : customer.id}) }}">
-          {{ 'admin.customer.edit'|trans({}, 'admin') }}
-        </a>
-      {% if is_granted('ROLE_ADMIN') %}
-        <a class="delete" href="{{ path('admin_customer_delete', {'id' : customer.id}) }}">
-          {{ 'admin.customer.delete'|trans({}, 'admin') }}
-        </a>
-        <a href="{{ path('admin_customer_orders', {'customer_id' : customer.id}) }}">
-          {{ 'admin.customer.orders'|trans({}, 'admin') }}
-        </a>
-      {% endif %}
-      </th>
-    </tr>
-  {% endfor %}
-  </tbody>
-</table>
-  {% if paginate %}
-    <div class="clearfix">
-      {% import "::macro.pager.html.twig" as p %}
-      {{ p.pager(paginate, 'customers') }}
-    </div>
-  {% endif %}
+    {% if paginate %}
+        <div class="clearfix">
+            {% import "::macro.pager.html.twig" as p %}
+            {{ p.pager(paginate, 'customers', true) }}
+        </div>
+    {% endif %}
+
+    <table id="customers" class="table table-striped">
+        <thead>
+        <tr>
+            <th>{{ 'admin.customer.first_name'|trans({}, 'admin') }}</th>
+            <th>{{ 'admin.customer.last_name'|trans({}, 'admin') }}</th>
+            <th>{{ 'admin.customer.email'|trans({}, 'admin') }}</th>
+            <th>{{ 'admin.customer.phone'|trans({}, 'admin') }}</th>
+            <th>{{ 'admin.customer.discount'|trans({}, 'admin') }}</th>
+            <th>{{ 'admin.customer.is_active'|trans({}, 'admin') }}</th>
+            <th>Oprettet</th>
+            <th>Sidst rettet</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for customer in customers %}
+            <tr>
+                <td>{{ customer.firstname }}</td>
+                <td>{{ customer.lastname }}</td>
+                <td><a href="mailto:{{ customer.email }}">{{ customer.email }}</a></td>
+                <td>{{ customer.phone }}</td>
+                <td>{{ customer.discount }}</td>
+                <td>
+                {% if customer.isactive == 1 %}
+                    {{ 'admin.customer.activated'|trans({}, 'admin') }}
+                {% else %}
+                    {{ 'admin.customer.deactivated'|trans({}, 'admin') }}
+                {% endif %}
+                </td>
+                <td>{{ customer.createdat|date("d/m/Y H:i") }}</td>
+                <td>{{ customer.updatedat|date("d/m/Y H:i") }}</td>
+                <th class="controles">
+                    <a href="{{ path('admin_customer', {'id' : customer.id}) }}" class="edit glyphicon glyphicon-edit" title="{{ 'admin.customer.edit'|trans({}, 'admin') }}"></a>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('admin_customer_delete', {'id' : customer.id}) }}" class="delete glyphicon glyphicon-remove-circle" title="{{ 'admin.customer.delete'|trans({}, 'admin') }}"></a>
+                    <a href="{{ path('admin_customer_orders', {'customer_id' : customer.id}) }}" class="glyphicon glyphicon-list-alt" title="{{ 'admin.customer.orders'|trans({}, 'admin') }}"></a>
+                {% endif %}
+                </th>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if paginate %}
+        <div class="clearfix">
+            {% import "::macro.pager.html.twig" as p %}
+            {{ p.pager(paginate, 'customers', true) }}
+        </div>
+    {% endif %}
 
 {% else %}
 
-<p>{{ 'admin.customers.no.customers.text'|trans({}, 'admin') }}</p>
+    <p>{{ 'admin.customers.no.customers.text'|trans({}, 'admin') }}</p>
 
 {% endif %}
 {% endblock %}

@@ -40,13 +40,12 @@
             </trans-unit>
             <trans-unit id="password.forgotten">
                 <source>password.forgotten</source>
-                <target>Jeg har glemt min adgangskode</target>
+                <target>Jeg har glemt min passord</target>
             </trans-unit>
             <trans-unit id="password.forgotten.text">
                 <source>password.forgotten.text</source>
                 <target><![CDATA[
-                    <h2>Har du glemt din adgangskode?</h2>
-                    <p>Skriv inn din e-postadresse nedenfor og klikk på knappen "Fortsett". I løpet av få minutter vil du motta en e-post fra POMPdeLUX med adgangskode.</p>
+                    <p>Skriv inn din e-postadresse nedenfor og klikk på knappen "Fortsett". I løpet av få minutter vil du motta en e-post fra POMPdeLUX med passord.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="password.forgotten.not_found">
@@ -59,12 +58,16 @@
             <trans-unit id="password.forgotten.resend">
                 <source>password.forgotten.resend</source>
                 <target><![CDATA[
-                    <p>Din adgangskode er sendt til den inntastede e-postadressen.</p>
+                    <p>Din passord er sendt til den inntastede e-postadressen.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="proceed">
                 <source>proceed</source>
                 <target>Til betaling</target>
+            </trans-unit>
+            <trans-unit id="password.forgotten.button">
+                <source>password.forgotten.button</source>
+                <target>Fortsett</target>
             </trans-unit>
             <trans-unit id="back">
                 <source>back</source>
@@ -72,7 +75,7 @@
             </trans-unit>
             <trans-unit id="retrive.password">
                 <source>retrive.password</source>
-                <target>» Få adgangskoden tilsendt pr. e-post</target>
+                <target>» Få passord tilsendt pr. e-post</target>
             </trans-unit>
             <trans-unit id="47">
                 <source>New customer</source>
@@ -108,7 +111,7 @@
             </trans-unit>
             <trans-unit id="password">
                 <source>password</source>
-                <target>Adgangskode</target>
+                <target>Passord</target>
             </trans-unit>
             <trans-unit id="my.account.login.title">
                 <source>my.account.login.title</source>
@@ -156,7 +159,7 @@
             </trans-unit>
             <trans-unit id="59">
                 <source>Password repeated</source>
-                <target>Adgangskode bekreftes</target>
+                <target>Passord bekreftes</target>
             </trans-unit>
             <trans-unit id="password.invalid.match" approved="no">
                 <source>password.invalid.match</source>
@@ -392,7 +395,7 @@
             </trans-unit>
             <trans-unit id="password.required">
                 <source>password.required</source>
-                <target>Adgangskode skal være på minst 5 tegn</target>
+                <target>Passord skal være på minst 5 tegn</target>
             </trans-unit>
             <trans-unit id="my.account.order.view" approved="no">
                 <source>my.account.order.view</source>
@@ -451,7 +454,7 @@
                         <b>Returnering</b><br>
                         Ønsker du å returnere en vare, skal du trykke på <img src="/fx/images/icons/icons/return.png" alt="Return"><strong>Merk:</strong> Returlappen og returskjema ligger som egen PDF og kan skrives ut hver for seg.<br><br>
                         Kan du ikke finne varen du ønsker å returnere, kan du trykke på linken her og skrive ut returskjema manuelt: <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_NO.pdf" target="_blank">Returskjema(PDF)</a><br><br>
-						Trykk på <img src="/fx/images/icons/icons/returnlabel.png" alt="Returnlabel"> ute for din ordre for å følge med din pakke. Returlappen åpner i et nytt vindu.<br><br>
+						Trykk på <img src="/fx/images/icons/icons/returnlabel.png" alt="Returnlabel"> ute for din ordre for å få en returlapp. Returlappen åpner i et nytt vindu.<br><br>
                         Trykk på <img src="/fx/images/icons/icons/trackntrace.png" alt="Track 'n trace"> ut for din ordre for å følge din pakke. Sporingssiden åpner i et nytt vindu.<br><br>
                     </p>
                 ]]></target>
@@ -478,11 +481,11 @@
             </trans-unit>
             <trans-unit id="acc.3" approved="no">
                 <source>Pass</source>
-                <target>Valgfri adgangskode</target>
+                <target>Valgfri passord</target>
             </trans-unit>
             <trans-unit id="acc.4" approved="no">
                 <source>Pass repeated</source>
-                <target>Gjenta adgangskode</target>
+                <target>Gjenta passord</target>
             </trans-unit>
             <trans-unit id="my.account.login.notice" approved="no">
                 <source>my.account.login.notice</source>
@@ -534,7 +537,7 @@ Deretter kan du bare shoppe videre.</p><br>
             </trans-unit>
             <trans-unit id="account.returnlabel.link">
                 <source>account.returnlabel.link</source>
-                <target>Print retur label</target>
+                <target>Print returlapp</target>
             </trans-unit>
         </body>
     </file>

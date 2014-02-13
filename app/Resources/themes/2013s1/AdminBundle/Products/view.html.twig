@@ -2,201 +2,188 @@
 
 {% block content %}
 
-<nav class="sub">
-  <ul>
-    <li>
-      <a href="{{ path('admin_products') }}" title="{{ 'admin.back.button'|trans({}, 'admin') }}">
-        {{ 'admin.back.button'|trans({}, 'admin') }}
-      </a>
-    </li>
-    {% if is_granted('ROLE_ADMIN') %}
-    <li>
-      <a href="{{ path('admin_product_delete_styles', {'id' : current_product.id}) }}" title="{{ 'admin.products.styles.delete'|trans({}, 'admin') }}">
-        {{ 'admin.products.styles.delete'|trans({}, 'admin') }}
-      </a>
-    </li>
-    <li>
-      <a href="{{ path('admin_products_discount', {'product_id' : current_product.id}) }}" title="{{ 'admin.products.discounts'|trans({}, 'admin') }}">
-        {{ 'admin.products.discounts'|trans({}, 'admin') }}
-      </a>
-    </li>
-    {% endif %}
-  </ul>
-</nav>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ path('admin_products') }}" title="{{ 'admin.back.button'|trans({}, 'admin') }}">{{ 'admin.back.button'|trans({}, 'admin') }}</a></li>
+            {% if is_granted('ROLE_ADMIN') %}
+                <li><a href="{{ path('admin_product_delete_styles', {'id' : current_product.id}) }}" title="{{ 'admin.products.styles.delete'|trans({}, 'admin') }}">{{ 'admin.products.styles.delete'|trans({}, 'admin') }}</a></li>
+                <li><a href="{{ path('admin_products_discount', {'product_id' : current_product.id}) }}" title="{{ 'admin.products.discounts'|trans({}, 'admin') }}">{{ 'admin.products.discounts'|trans({}, 'admin') }}</a></li>
+            {% endif %}
+            </ul>
+        </div>
+    </nav>
 
 {% for message in app.session.flashbag.get('notice') %}
-<div class="message notice">
-  {{ message|trans({}, 'admin') }}
-</div>
+    <div class="alert alert-info">
+        {{ message|trans({}, 'admin') }}
+    </div>
 {% endfor %}
 
 {% if is_granted('ROLE_ADMIN') %}
 
-  <h1>{{ 'admin.product.styles.header.text.%product-name%'|trans({'%product-name%' : current_product.sku}, 'admin') }}</h1>
+    <h1>{{ 'admin.product.styles.header.text.%product-name%'|trans({'%product-name%' : current_product.sku}, 'admin') }}</h1>
 
-  {% if styles|length > 0 %}
+    {% if styles|length > 0 %}
 
-  <table id="styles" class="list">
-    <thead>
-      <tr>
-        <th>{{ 'admin.products.styles.sku'|trans({}, 'admin') }}</th>
-        <th>{{ 'admin.products.styles.size'|trans({}, 'admin') }}</th>
-        <th>{{ 'admin.products.styles.color'|trans({}, 'admin') }}</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-    {% for style in styles %}
-      <tr>
-        <td>{{ style.sku }}</td>
-        <td>{{ style.size }}</td>
-        <td>{{ style.color }}</td>
-        <th>
-          <a href="{{ path('admin_product_delete_style', {'id' : style.id }) }}" class="delete">
-            {{ 'admin.products.style.delete'|trans({}, 'admin') }}
-          </a>
-        </th>
-      </tr>
-    {% endfor %}
-    </tbody>
-  </table>
-  {% else %}
-    <p>{{ 'admin.products.no.styles.text'|trans({}, 'admin') }}</p>
-  {% endif %}
-
-  <h1>Priser:</h1>
-  <table id="styles" class="list">
-    <thead>
-      <tr>
-        <th>Domain</th>
-        <th>Price</th>
-        <th>From date</th>
-        <th>To date</th>
-      </tr>
-    </thead>
-    <tbody>
-  {% for price in prices %}
-      <tr>
-        <td>{{ price.domain }}</td>
-        <td>{{ price.price }}</td>
-        <td>{{ price.from_date }}</td>
-        <td>{{ price.to_date }}</td>
-      </tr>
-    {% endfor %}
-    </tbody>
-  </table>
-
-  <h1>{{ 'admin.product.categories.header.text.%product-name%'|trans({'%product-name%' : current_product.sku}, 'admin') }}</h1>
-  <p>{{ 'admin.product.categories.description.text'|trans({}, 'admin') }}</p>
-
-  <select id="product-category-selector" name="product-category-selector">
-    <option value="0">{{ 'admin.products.category.selector.description'|trans({}, 'admin') }}</option>
-    {% for category in categories %}
-    <option value="{{ category.id }}-{{ current_product.id }}">({{ category.context }}) | {{ category.title }}</option>
-    {% endfor %}
-  </select>
-  <ul id="product-categories">
-    {% if product_categories|length > 0 %}
-      {% for product_category in product_categories %}
-      <li>
-        <span class="actions">
-          <a href="{{ path('admin_product_cat_delete', {'category_id': product_category.id, 'product_id' : current_product.id}) }}" class="delete" title="{{ 'delete'|trans({}, 'admin') }}">
-            {{ 'delete'|trans({}, 'admin') }}
-          </a>
-        </span>
-        <span class="id">(#{{ product_category.id }})</span>
-        <span class="id">({{ product_category.context }}) |</span>
-        <span class="title">{{ product_category.title }}</span>
-      </li>
-      {% endfor %}
+        <table id="styles" class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ 'admin.products.styles.sku'|trans({}, 'admin') }}</th>
+                <th>{{ 'admin.products.styles.size'|trans({}, 'admin') }}</th>
+                <th>{{ 'admin.products.styles.color'|trans({}, 'admin') }}</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for style in styles %}
+                <tr>
+                    <td>{{ style.sku }}</td>
+                    <td>{{ style.size }}</td>
+                    <td>{{ style.color }}</td>
+                    <th>
+                        <a href="{{ path('admin_product_delete_style', {'id' : style.id }) }}" class="delete glyphicon glyphicon-remove-circle" title="{{ 'admin.products.style.delete'|trans({}, 'admin') }}"></a>
+                    </th>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>{{ 'admin.products.no.styles.text'|trans({}, 'admin') }}</p>
     {% endif %}
-  </ul>
-{% endif %}
+
+    <h1>Priser:</h1>
+    <table id="styles" class="list table table-striped">
+        <thead>
+        <tr>
+            <th>Domain</th>
+            <th>Price</th>
+            <th>From date</th>
+            <th>To date</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for price in prices %}
+            <tr>
+                <td>{{ price.domain }}</td>
+                <td>{{ price.price }}</td>
+                <td>{{ price.from_date }}</td>
+                <td>{{ price.to_date }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h1>{{ 'admin.product.categories.header.text.%product-name%'|trans({'%product-name%' : current_product.sku}, 'admin') }}</h1>
+    <p>{{ 'admin.product.categories.description.text'|trans({}, 'admin') }}</p>
+
+    <div class="form-inline">
+        <select id="product-category-selector" name="product-category-selector" class="form-control">
+            <option value="0">{{ 'admin.products.category.selector.description'|trans({}, 'admin') }}</option>
+        {% for category in categories %}
+            <option value="{{ category.id }}-{{ current_product.id }}">
+                ({{ category.context }})
+                | {{ category.title }}
+            </option>
+        {% endfor %}
+        </select>
+
+        <ul id="product-categories">
+    {% if product_categories|length > 0 %}
+        {% for product_category in product_categories %}
+            <li>
+                <span class="actions">
+                  <a href="{{ path('admin_product_cat_delete', {'category_id': product_category.id, 'product_id' : current_product.id}) }}" class="delete glyphicon glyphicon-remove-circle" title="{{ 'delete'|trans({}, 'admin') }}"></a>
+                </span>
+                <span class="id">(#{{ product_category.id }})</span>
+                <span class="id">({{ product_category.context }}) |</span>
+                <span class="title">{{ product_category.title }}</span>
+            </li>
+        {% endfor %}
+    {% endif %}
+        </ul>
+    {% endif %}
+    </div>
 
 
 {% if product_images|length > 0 %}
 
-  <h1>{{ 'admin.product.images.header.text.%product-name%'|trans({'%product-name%' : current_product.sku}, 'admin') }}</h1>
-  <p>{{ 'admin.product.images.description.text'|trans({}, 'admin') }}</p>
+    <h1>{{ 'admin.product.images.header.text.%product-name%'|trans({'%product-name%' : current_product.sku}, 'admin') }}</h1>
+    <p>{{ 'admin.product.images.description.text'|trans({}, 'admin') }}</p>
 
-  <ul id="product-images-list">
-  {% for product_image in product_images %}
-
-    <li id="item-{{ product_image.image_id }}">
-      <div class="image">
-        <span class="id">(#{{ product_image.image_id }})</span>
-        {{ product_image_tag(product_image.image, '60x115', { 'alt' : '' }) }}
-      </div>
-      <div class="references">
-        <select class="product-selector" name="product-selector">
-          <option value="0">{{ 'admin.products.product.selector.description'|trans({}, 'admin') }}</option>
-          {% for product in products %}
-          <option value="{{ product_image.image_id }}-{{ product.id }}">{{ product.sku }}</option>
-          {% endfor %}
-        </select>
-        <select class="product-color-selector" name="product-color-selector" disabled="disabled">
-          <option value="0" class="initial">{{ 'admin.products.color.selector.description'|trans({}, 'admin') }}</option>
-        </select>
-        <ul class="product-references">
-          {% if product_image.product_ref_ids|length > 0 %}
-            {% for product_ref in product_image.product_ref_ids %}
-            <li>
-              <span class="actions">
-                <a href="{{ path('admin_product_ref_delete', {'image_id': product_image.image_id, 'product_id' : product_ref.id}) }}" class="delete" title="{{ 'delete'|trans({}, 'admin') }}">
-                  {{ 'delete'|trans({}, 'admin') }}
-                </a>
-              </span>
-              <span class="id">(#{{ product_ref.id }})</span> <span class="sku">{{ product_ref.sku }}</span> - <span class="color">{{ product_ref.color }}</span>
-            </li>
-            {% endfor %}
-          {% endif %}
-        </ul>
-      </div>
-      <div class="references">
-        <select class="image-category-selector" name="category-selector">
-          <option value="0">{{ 'admin.products.image-to-categories.selector.description'|trans({}, 'admin') }}</option>
-          {% for category in categories %}
-          <option value="{{ product_image.image_id }}-{{ category.id }}">{{ category.id }} - {{ category.context }}</option>
-          {% endfor %}
-        </select>
-        <ul class="image-categories">
-          {% if product_image.image_categories|length > 0 %}
-            {% for category in product_image.image_categories %}
-            <li>
-              <span class="actions">
-                <a href="{{ path('admin_product_image_category_delete', {'image_id': category.id, 'category_id' : category.category_id}) }}" class="delete" title="{{ 'delete'|trans({}, 'admin') }}">
-                  {{ 'delete'|trans({}, 'admin') }}
-                </a>
-              </span>
-              <span class="category-id">{{ category.category_id }}</span>
-              <span class="category-title">{{ category.title }}</span>
-            </li>
-            {% endfor %}
-          {% endif %}
-        </ul>
-      </div>
-    </li>
-
-  {% endfor %}
-  </ul>
+    <table class="table" id="product-images-list">
+    {% for product_image in product_images %}
+        <tr>
+            <td>
+                {{ product_image_tag(product_image.image, '60x115', { 'alt' : '' }) }}<br>
+                <span class="id">(#{{ product_image.image_id }})</span>
+            </td>
+            <td class="form-inline">
+                <select class="product-selector form-control" name="product-selector">
+                    <option value="0">{{ 'admin.products.product.selector.description'|trans({}, 'admin') }}</option>
+                    {% for product in products %}
+                        <option value="{{ product_image.image_id }}-{{ product.id }}">{{ product.sku }}</option>
+                    {% endfor %}
+                </select>
+                <select class="product-color-selector form-control" name="product-color-selector" disabled="disabled">
+                    <option value="0" class="initial">{{ 'admin.products.color.selector.description'|trans({}, 'admin') }}</option>
+                </select>
+                <ul class="product-references">
+            {% if product_image.product_ref_ids|length > 0 %}
+                {% for product_ref in product_image.product_ref_ids %}
+                    <li>
+                        <span class="actions">
+                            <a href="{{ path('admin_product_ref_delete', {'image_id': product_image.image_id, 'product_id' : product_ref.id}) }}" class="delete glyphicon glyphicon-remove-circle" title="{{ 'delete'|trans({}, 'admin') }}"></a>
+                        </span>
+                        <span class="id">(#{{ product_ref.id }})</span> <span class="sku">{{ product_ref.sku }}</span> - <span class="color">{{ product_ref.color }}</span>
+                    </li>
+                {% endfor %}
+            {% endif %}
+                </ul>
+            </td>
+            <td class="form-inline">
+                <select class="image-category-selector form-control" name="category-selector">
+                    <option value="0">{{ 'admin.products.image-to-categories.selector.description'|trans({}, 'admin') }}</option>
+                    {% for category in categories %}
+                        <option value="{{ product_image.image_id }}-{{ category.id }}">{{ category.id }} - {{ category.context }}</option>
+                    {% endfor %}
+                </select>
+                <ul class="image-categories">
+            {% if product_image.image_categories|length > 0 %}
+                {% for category in product_image.image_categories %}
+                    <li>
+                        <span class="actions">
+                            <a href="{{ path('admin_product_image_category_delete', {'image_id': category.id, 'category_id' : category.category_id}) }}" class="delete glyphicon glyphicon-remove-circle" title="{{ 'delete'|trans({}, 'admin') }}"></a>
+                        </span>
+                        <span class="category-id">{{ category.category_id }}</span>
+                        <span class="category-title">{{ category.title }}</span>
+                    </li>
+                {% endfor %}
+            {% endif %}
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
 
 {% endif %}
 
 {% if is_granted('ROLE_ADMIN') %}
 
   <h1>{{ 'admin.product.has_video.header'|trans({}, 'admin') }}</h1>
-  <form action="{{ path('admin_product', {'id' : current_product.id}) }}" method="post" {{ form_enctype(has_video_form) }} id="product-edit-form">
+  <form action="{{ path('admin_product', {'id' : current_product.id}) }}" method="post" {{ form_enctype(has_video_form) }} id="product-edit-form" class="inline-form">
     <div id="product-edit">
       {{ form_rest(has_video_form) }}
       {{ form_row(has_video_form._token) }}
     </div>
-    <input class="button right" type="submit" value="{{ 'product.has_video.submit'|trans({}, 'admin') }}">
+    <input class="button right btn btn-success" type="submit" value="{{ 'product.has_video.submit'|trans({}, 'admin') }}">
   </form>
 
   <h1>{{ 'admin.product.related_products.header.text.%product-name%'|trans({'%product-name%' : current_product.sku}, 'admin') }}</h1>
   <p>{{ 'admin.product.related_products.description.text'|trans({}, 'admin') }}</p>
 
-  <select id="product-related-products-selector" name="product-related-products-selector">
+  <div class="form-inline">
+  <select id="product-related-products-selector" name="product-related-products-selector" class="form-control">
     <option value="0">{{ 'admin.products.related_products.selector.description'|trans({}, 'admin') }}</option>
     {% for product in products %}
     <option value="{{ product.sku }}-{{ current_product.sku }}">{{ product.sku }}</option>
@@ -216,6 +203,7 @@
       {% endfor %}
     {% endif %}
   </ul>
+  </div>
 {% endif %}
 
 {% endblock %}

@@ -74,11 +74,20 @@ class SettingsController extends CoreController
         }
 
         $form_add_global_setting = $this->createFormBuilder(new Settings())
-            ->add('c_key', 'text')
-            ->add('ns', 'text')
-            ->add('title', 'text')
-            ->add('c_value', 'text')
-            ->getForm();
+            ->add('c_key', 'text', [
+                'label_attr' => ['class' => 'col-sm-2']
+            ])
+            ->add('ns', 'text', [
+                'label_attr' => ['class' => 'col-sm-2']
+            ])
+            ->add('title', 'text', [
+                'label_attr' => ['class' => 'col-sm-2']
+            ])
+            ->add('c_value', 'text', [
+                'label_attr' => ['class' => 'col-sm-2']
+            ])
+            ->getForm()
+        ;
 
         // Generate the Form for the global settings excluding some namespaces used other places
         $exclude_ns = array('consultant', 'shipping', 'payment');
@@ -99,7 +108,8 @@ class SettingsController extends CoreController
         foreach ($global_settings as $setting) {
             $form->add($setting->getCKey() . '__' . $setting->getNs(), 'text', array(
                 'label' => $setting->getTitle() . ' (' . $setting->getCKey() . ' - ' . $setting->getNs() . ')',
-                'required' => false
+                'required' => false,
+                'label_attr' => ['class' => 'col-sm-2']
             ));
         }
 
@@ -120,7 +130,9 @@ class SettingsController extends CoreController
     /**
      * Shows the settings for the chosed domain.
      *
-     * @param domain_key The domain key
+     * @param Request $request
+     * @param string  $domain_key The domain key
+     * @return Response
      */
     public function domainAction(Request $request, $domain_key)
     {
@@ -164,10 +176,18 @@ class SettingsController extends CoreController
         $domains_settings->setDomainKey($domain_key);
 
         $form_add_domain_setting = $this->createFormBuilder($domains_settings)
-            ->add('domain_key', 'text')
-            ->add('c_key', 'text')
-            ->add('ns', 'text')
-            ->add('c_value', 'text')
+            ->add('domain_key', 'text', [
+                'label_attr' => ['class' => 'col-sm-2']
+            ])
+            ->add('c_key', 'text', [
+                'label_attr' => ['class' => 'col-sm-2']
+            ])
+            ->add('ns', 'text', [
+                'label_attr' => ['class' => 'col-sm-2']
+            ])
+            ->add('c_value', 'text', [
+                'label_attr' => ['class' => 'col-sm-2']
+            ])
             ->getForm();
 
         // Generate the Form for the domain settings
@@ -190,7 +210,8 @@ class SettingsController extends CoreController
             $form->add('key_'. $setting->getId(), 'text',
                 array(
                     'required' => false,
-                    'label' => $setting->getCKey() . ' - ' . $setting->getNs()
+                    'label' => $setting->getCKey() . ' - ' . $setting->getNs(),
+                    'label_attr' => ['class' => 'col-sm-2']
                 )
             );
         }
@@ -261,13 +282,19 @@ class SettingsController extends CoreController
         $domains_settings->setDomainKey($domain_key);
 
         $form_add_domain_setting = $this->createFormBuilder($domains_settings)
-            ->add('domain_key', 'text')
-            ->add('c_key', 'text')
+            ->add('domain_key', 'text', [
+                'label_attr' => ['class' => 'col-sm-2']
+            ])
+            ->add('c_key', 'text', [
+                'label_attr' => ['class' => 'col-sm-2']
+            ])
             ->add('ns', 'choice', array(
-                    'choices' => array('payment' => 'Betaling', 'shipping' => 'Fragt')
-                )
-            )
-            ->add('c_value', 'text')
+                    'choices' => array('payment' => 'Betaling', 'shipping' => 'Fragt'),
+                    'label_attr' => ['class' => 'col-sm-2']
+            ))
+            ->add('c_value', 'text', [
+                'label_attr' => ['class' => 'col-sm-2']
+            ])
             ->getForm();
 
         // Generate the Form for the domain settings
@@ -290,7 +317,8 @@ class SettingsController extends CoreController
             $form->add('key_'. $setting->getId(), 'text',
                 array(
                     'required' => true,
-                    'label' => $setting->getCKey() . ' - ' . $setting->getNs()
+                    'label' => $setting->getCKey() . ' - ' . $setting->getNs(),
+                    'label_attr' => ['class' => 'col-sm-3']
                 )
             );
         }
@@ -443,7 +471,8 @@ class SettingsController extends CoreController
                 array(
                     'label' => 'admin.washing.description',
                     'translation_domain' => 'admin',
-                    'required' => true
+                    'required' => true,
+                    'attr' => ['rows' => 10]
                 )
             )->getForm()
         ;
@@ -567,7 +596,7 @@ class SettingsController extends CoreController
                     'choices' => $languages,
                     'label' => 'admin.messages.locale',
                     'translation_domain' => 'admin',
-                    'required' => true
+                    'required' => true,
                 )
             )->add('subject', 'text',
                 array(
@@ -610,26 +639,29 @@ class SettingsController extends CoreController
 
         $message = null;
 
-        if($id)
+        if ($id) {
             $message = MessagesQuery::create()
                 ->findOneById($id, $this->getDbConnection())
             ;
-        else{
+        } else {
             $message = new Messages();
         }
+
         $form = $this->createFormBuilder($message)
             ->add('ns', 'choice',
                 array(
                     'choices' => array('email' => 'E-mail skabelon', 'sms' => 'SMS Skabelon'),
                     'label' => 'admin.messages.ns',
                     'translation_domain' => 'admin',
-                    'required' => true
+                    'required' => true,
+                    'label_attr' => ['class' => 'col-sm-2']
                 )
             )->add('key', 'text',
                 array(
                     'label' => 'admin.messages.key',
                     'translation_domain' => 'admin',
-                    'required' => true
+                    'required' => true,
+                    'label_attr' => ['class' => 'col-sm-2']
                 )
             )->getForm()
         ;
@@ -698,32 +730,37 @@ class SettingsController extends CoreController
                 array(
                     'label' => 'admin.languages.name',
                     'translation_domain' => 'admin',
-                    'required' => true
+                    'required' => true,
+                    'label_attr' => ['class' => 'col-sm-2']
                 )
             )->add('local_name', 'text',
                 array(
                     'label' => 'admin.languages.local_name',
                     'translation_domain' => 'admin',
-                    'required' => true
+                    'required' => true,
+                    'label_attr' => ['class' => 'col-sm-2']
                 )
             )->add('locale', 'text',
                 array(
                     'label' => 'admin.languages.locale',
                     'translation_domain' => 'admin',
-                    'required' => true
+                    'required' => true,
+                    'label_attr' => ['class' => 'col-sm-2']
                 )
             )->add('iso2', 'text',
                 array(
                     'label' => 'admin.languages.iso2',
                     'translation_domain' => 'admin',
-                    'required' => true
+                    'required' => true,
+                    'label_attr' => ['class' => 'col-sm-2']
                 )
             )->add('direction', 'choice',
                 array(
                     'choices' => array('ltr' => 'Left to Right', 'rtl' => 'Right to Left'),
                     'label' => 'admin.languages.direction',
                     'translation_domain' => 'admin',
-                    'required' => true
+                    'required' => true,
+                    'label_attr' => ['class' => 'col-sm-2']
                 )
             )->getForm()
         ;

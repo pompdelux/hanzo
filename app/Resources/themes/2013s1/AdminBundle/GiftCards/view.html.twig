@@ -1,61 +1,57 @@
 {% extends '::adminbase.html.twig' %}
 
 {% block content %}
-<nav class="sub">
-  <ul>
-    <li>
-      <a href="{{ path('admin_gift_cards') }}">
-        {{ 'admin.back.button'|trans({}, 'admin') }}
-      </a>
-    </li>
-    <li>
-      <a href="{{ path('admin_gift_cards_edit') }}">
-        {{ 'admin.gift_cards.add_new.link'|trans({}, 'admin') }}
-      </a>
-    </li>
-  </ul>
-</nav>
-<h1>{{ 'admin.gift_cards.edit.header.text'|trans({}, 'admin') }}</h1>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ path('admin_gift_cards') }}">{{ 'admin.back.button'|trans({}, 'admin') }}</a></li>
+                <li><a href="{{ path('admin_gift_cards_edit') }}">{{ 'admin.gift_cards.add_new.link'|trans({}, 'admin') }}</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <h1>{{ 'admin.gift_cards.edit.header.text'|trans({}, 'admin') }}</h1>
 
 {% for message in app.session.flashbag.get('notice') %}
-<div class="message notice">
-  {{ message|trans({}, 'admin') }}
-</div>
+    <div class="alert alert-info">
+        {{ message|trans({}, 'admin') }}
+    </div>
 {% endfor %}
 
-<p>{{ 'admin.gift_cards.edit.description.text'|trans({}, 'admin') }}</p>
+    <p>{{ 'admin.gift_cards.edit.description.text'|trans({}, 'admin') }}</p>
 
-<form action="{{ path('admin_gift_cards_edit', {'id' : gift_card.id}) }}" method="post" {{ form_enctype(form) }} id="gift-cards-edit-form" class="edit-form">
-  <div id="gift_cards-edit">
-    {{ form_row(form._token) }}
-    {{ form_rest(form) }}
-  </div>
-  <br>
-  <input class="button right" type="submit" value="{{ 'update.gift_cards'|trans({}, 'admin') }}">
-  <a class="button left" href="{{ path('admin_gift_cards') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
-</form>
+    {% form_theme form 'AdminBundle:Form:fields.html.twig' %}
+    <form action="{{ path('admin_gift_cards_edit', {'id' : gift_card.id}) }}" method="post" {{ form_enctype(form) }} id="gift-cards-edit-form" class="form-horizontal">
+        {{ form_row(form._token) }}
+        {{ form_rest(form) }}
+        <div class="form-group">
+            <input class="button right btn btn-success" type="submit" value="{{ 'update.gift_cards'|trans({}, 'admin') }}">
+            <a class="button left btn btn-default" href="{{ path('admin_gift_cards') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
+        </div>
+    </form>
 
-{% if gift_cards_history|length > 0 %}
+    {% if gift_cards_history|length > 0 %}
 
-<table id="gift_cards_history" class="list">
-  <thead>
-    <tr>
-      <th>{{ 'amount'|trans({}, 'admin') }}</th>
-      <th>{{ 'order.id'|trans({}, 'admin') }}</th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for entry in gift_cards_history %}
-    <tr>
-      <td>{{ entry.amount }}</td>
-      <td>
-        <a href="{{ path('admin_customer_order', {'order_id' : entry.ordersid}) }}">
-          {{ entry.ordersid }}
-        </a>
-      </td>
-    </tr>
-  {% endfor %}
-  </tbody>
-</table>
-{% endif %}
+        <table id="gift_cards_history" class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ 'amount'|trans({}, 'admin') }}</th>
+                <th>{{ 'order.id'|trans({}, 'admin') }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for entry in gift_cards_history %}
+                <tr>
+                    <td>{{ entry.amount }}</td>
+                    <td>
+                        <a href="{{ path('admin_customer_order', {'order_id' : entry.ordersid}) }}">
+                            {{ entry.ordersid }}
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
 {% endblock %}

@@ -1,45 +1,45 @@
 {% extends '::adminbase.html.twig' %}
 
 {% block content %}
-<nav class="sub">
-  <ul>
-    <li>
-      <form action="{{ path('admin_consultants') }}" method="get">
-        <input type="text" id="searh" name="q" placeholder="{{ 'search.label'|trans({}, 'admin') }}">
-        <input class="button search" type="submit" value="{{ 'search'|trans({}, 'admin') }}">
-      </form>
-    </li>
-    {% if is_granted('ROLE_ADMIN') %}
-    <li>
-      <a href="{{ path('admin_customers') }}">
-        {{ 'admin.customers.list.link'|trans({}, 'admin') }}
-      </a>
-    </li>
-    {% endif %}
-    <li>
-      <a href="{{ path('admin_consultants') }}">
-        {{ 'admin.consultants.list.link'|trans({}, 'admin') }}
-      </a>
-    </li>
-  </ul>
-</nav>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li><a href="{{ path('admin_customers') }}">{{ 'admin.customers.list.link'|trans({}, 'admin') }}</a></li>
+                {% endif %}
+                <li><a href="{{ path('admin_consultants') }}">{{ 'admin.consultants.list.link'|trans({}, 'admin') }}</a></li>
+             </ul>
 
-<h1>{{ 'admin.consultant.header.text'|trans({}, 'admin') }}</h1>
+            <form action="{{ path('admin_consultants') }}" method="get" class="navbar-form navbar-right">
+                <div class="form-group">
+                    <input type="text" id="search" name="debitor" placeholder="{{ 'search.label'|trans({}, 'admin') }}" class="form-control">
+                    <input class="button search btn btn-default" type="submit" value="{{ 'search'|trans({}, 'admin') }}">
+                </div>
+            </form>
+
+        </div>
+    </nav>
+
+    <h1>{{ 'admin.consultant.header.text'|trans({}, 'admin') }}</h1>
 
 {% for message in app.session.flashbag.get('notice') %}
-<div class="message notice">
-  {{ message|trans({}, 'admin') }}
-</div>
+    <div class="alert alert-info">
+        {{ message|trans({}, 'admin') }}
+    </div>
 {% endfor %}
 
-<p>{{ 'admin.consultant.description.text'|trans({}, 'admin') }}</p>
-<form action="{{ path('admin_consultant', {'id' : consultant.id}) }}" method="post" {{ form_enctype(form) }} id="consultant-edit-form">
-  <div id="consultant-edit">
-    {{ form_row(form._token) }}
-    {{ form_rest(form) }}
-  </div>
-  <input class="button right" type="submit" value="{{ 'update.consultant'|trans({}, 'admin') }}">
-  <a class="button left" href="{{ path('admin_consultants') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
-</form>
+    <p>{{ 'admin.consultant.description.text'|trans({}, 'admin') }}</p>
+
+    {% form_theme form 'AdminBundle:Form:fields.html.twig' %}
+    <form action="{{ path('admin_consultant', {'id' : consultant.id}) }}" method="post" {{ form_enctype(form) }} id="consultant-edit-form" class="form-horizontal">
+        {{ form_rest(form) }}
+
+        <div class="form-group">
+            <input class="button btn btn-success" type="submit" value="{{ 'update.consultant'|trans({}, 'admin') }}">
+            <a class="button btn btn-default" href="{{ path('admin_consultants') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
+        </div>
+
+        {{ form_row(form._token) }}
+    </form>
 
 {% endblock %}
