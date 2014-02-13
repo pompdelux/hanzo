@@ -12,7 +12,7 @@
             </trans-unit>
             <trans-unit id="size.guide.link.text">
                 <source>size.guide.link.text</source>
-                <target>» Size guide</target>
+                <target>Size guide</target>
             </trans-unit>
             <trans-unit id="out.of.stock">
                 <source>out.of.stock</source>
@@ -25,6 +25,10 @@
             <trans-unit id="show.basket">
                 <source>show.basket</source>
                 <target>Vis kurv</target>
+            </trans-unit>
+            <trans-unit id="your.basket" approved="no">
+                <source>your.basket</source>
+                <target>Din kurv</target>
             </trans-unit>
             <trans-unit id="choose">
                 <source>choose</source>
@@ -172,6 +176,16 @@
                     </ul>
                 ]]></target>
             </trans-unit>
+            <trans-unit id="footer.text" approved="no">
+                <source>footer.text</source>
+                <target><![CDATA[
+                    <ul>
+                        <li><b>Fragt</b> fra 39,-</li>
+                        <li><b>Leveringstid</b> %expected_delivery_date%</li>
+                        <li><b>Ombytning</b> Gratis</li>
+                    </ul>
+                ]]></target>
+            </trans-unit>
             <trans-unit id="order.deleted">
                 <source>order.deleted</source>
                 <target>E-ordrenummer %id% er slettet</target>
@@ -313,6 +327,7 @@
 				<li><a href="/da_DK/forside/om-pompdelux/corporate-social-responsibility/csr-rapport">CSR</a></li>
 				<li><a href="/da_DK/forside/konkurrence">Konkurrencer</a></li>
 				<li><a href="/da_DK/forside/om-pompdelux/job/fritidskonsulent">Job</a></li>
+				<li><a href="/da_DK/forside/om-pompdelux/presse">Presse</a></li>
 				<li><a href="/da_DK/forside/om-pompdelux/kontakt">Kontakt</a></li>
                 </ul>
                 ]]></target>

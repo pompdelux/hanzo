@@ -62,14 +62,6 @@
             <p>E-order number: <b>%order_id%</b></p>
         ]]></target>
       </trans-unit>
-      <trans-unit id="confirm.title">
-        <source>confirm.title</source>
-        <target>Confirm</target>
-      </trans-unit>
-      <trans-unit id="confirm.addresses.label" approved="no">
-        <source>confirm.addresses.label</source>
-        <target>Yes, the addresses above are correct.</target>
-      </trans-unit>
       <trans-unit id="confirm.order_id">
         <source>confirm.order_id</source>
         <target>Order number</target>

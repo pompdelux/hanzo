@@ -6,7 +6,7 @@
 <!--[if gt IE 9]><!--> <html class="no-js" lang="{{ html_lang }}" data-domainkey="{{ domain_key|lower }}" xmlns:og="http://ogp.me/ns#"> <!--<![endif]-->
 <head>
 {% if browser_title is defined and page_type|default('page') != 'frontpage' %}
-<title>{{ browser_title }} - {{ 'browser.title'|trans }}</title>
+<title>{{ browser_title|strip_tags }} - {{ 'browser.title'|trans }}</title>
 {% else %}
 <title>{{ 'browser.title'|trans }}</title>
 {% endif %}
@@ -55,7 +55,7 @@
 <script type="text/javascript" src="{{ cdn }}fx/scripts/modernizr.js"></script>
 </head>
 <body id="body-{{ page_type|default('page') }}" class="{{ body_classes|default('') }} {{ html_lang }}">
-
+<div class="top-bar"></div>
 <div id="container" class="container container_8">
     <nav class="first grid_8 row main-menu">
         {{ render(controller('CMSBundle:Menu:byTitle', {
@@ -63,15 +63,28 @@
         })) }}
 
         <ul class="right horizontal">
-            <li class="last">
+            <li>
                 <form action="{{ path('_search', {'_locale' : app.request.locale}) }}" class="search-form">
                     <input type="submit" class="text-button button" value="{{ "button.label"|trans({}, 'search') }}">
-                    <input type="text" name="q">
+                    <input type="text" name="q" placeholder="{{ "button.label"|trans({}, 'search')|upper }}">
                 </form>
+            </li>
+            <li id="select-domain">
+                <a class="open-menu" href="#">Change Country</a>
+                <div class="dropdown" style="display: none">
+                    <a href="{{ baseurl }}/de_AT/">Austria</a>
+                    <a href="{{ baseurl }}/da_DK/">Denmark</a>
+                    <a href="{{ baseurl }}/fi_FI/">Finland</a>
+                    <a href="{{ baseurl }}/de_DE/">Germany</a>
+                    <a href="{{ baseurl }}/en_GB/">International</a>
+                    <a href="{{ baseurl }}/nl_NL/">Netherlands</a>
+                    <a href="{{ baseurl }}/nb_NO/">Norway</a>
+                    <a href="{{ baseurl }}/sv_SE/">Sweden</a>
+                    <a href="{{ baseurl }}/de_CH/">Switzerland</a>
+                </div>
             </li>
         </ul>
     </nav>
-
     <header class="grid_8 row">
         <a href="{{ path('_homepage', {'_locale' : app.request.locale}) }}" title="{{ "home"|trans }}">
             {{ fx_image_tag('images/POMPdeLUX_logo_SS12.png', '0x100', {'id':'logo', 'alt':'POMPdeLUX'}) }}
@@ -79,35 +92,33 @@
 
     {% if simple_layout is not defined %}
         <nav id="secondary-links">
-            <ul class="horizontal menu right first">
+            <ul class="horizontal menu first right clearfix">
         {% if skip_my_account is not defined %}
-                <li><a href="{{ path('_account', {'_locale' : app.request.locale}) }}">{{ "my.account"|trans({}, 'account') }}</a></li>
-                <li id="select-domain">
-                    <a class="open-menu" href="#">Change Country</a>
-                    <div class="dropdown" style="display: none">
-                        <a href="{{ baseurl }}/de_AT/">Austria</a>
-                        <a href="{{ baseurl }}/da_DK/">Denmark</a>
-                        <a href="{{ baseurl }}/fi_FI/">Finland</a>
-                        <a href="{{ baseurl }}/de_DE/">Germany</a>
-                        <a href="{{ baseurl }}/en_GB/">International</a>
-                        <a href="{{ baseurl }}/nl_NL/">Netherlands</a>
-                        <a href="{{ baseurl }}/nb_NO/">Norway</a>
-                        <a href="{{ baseurl }}/sv_SE/">Sweden</a>
-                        <a href="{{ baseurl }}/de_CH/">Switzerland</a>
-                    </div>
-                </li>
+                <li class="last"><a href="{{ path('_account', {'_locale' : app.request.locale}) }}">{{ "my.account"|trans({}, 'account') }}</a></li>
             </ul>
             <ul class="horizontal menu right second">
                 <li id="mini-basket" class="basket">
-                    <span class="sprite"></span>
-                    <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" title="{{ "show.basket"|trans }}"> {{ render(controller('BasketBundle:Default:miniBasket')) }} </a>
+                    <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" title="{{ "show.basket"|trans }}"><span class="sprite"></span></a>
+                    <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" title="{{ "show.basket"|trans }}" class="total"> {{ render(controller('BasketBundle:Default:miniBasket')) }} </a>
                 </li>
-                <li class="last"><a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}">{{ "show.basket"|trans }}</a></li>
+                <li class="last"><a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" class="open-megabasket">{{ "show.basket"|trans }}</a></li>
         {% endif %}
             </ul>
         </nav>
+        {% if skip_my_account is not defined %}
+            <div id="mega-basket">
 
-        <nav class="menu main-menu">
+                {{ render_esi(controller('BasketBundle:Default:view', { 'template': 'BasketBundle:Default:megaBasket.html.twig' })) }}
+
+                <div class="delivery-text">
+                    {{ 'footer.text'|trans({'%expected_delivery_date%': parameter('HD.expected_delivery_date')})|raw }}
+                </div>
+                <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" class="checkout-button sprite"></a>
+                <a href="#" class="close sprite"></a>
+            </div>
+        {% endif %}
+
+        <nav class="menu main-menu clearfix">
             {{ render(controller('CMSBundle:Menu:menu', {
                 'type':   left_menu.type,
                 'thread': left_menu.thread,
@@ -116,8 +127,6 @@
         </nav><!-- /nav.main -->
 
     {% endif %}
-
-        <hr class="right">
     </header>
 
     <div id="main" role="main" class="main clearfix grid_8">
@@ -127,7 +136,7 @@
     <footer class="container container_8">
     {% if simple_layout is not defined %}
         <div class="grid_8 row">
-            <hr class="right">
+            <div class="hr"></div>
         </div>
         <div class="grid_1-5 footer-menu footer-menu-1">
             {{ "footer.menu_1"|trans|raw }}
@@ -139,26 +148,31 @@
             {{ "footer.menu_3"|trans|raw }}
         </div>
         <div class="grid_2-5 footer-menu footer-menu-4">
-            <div class="sprite"></div>
-            <div class="container">
-                <h2>{{ 'block.subscribe.newsletter_heading'|trans({}, 'newsletter') }}</h2>
-                <form action="{{ path('_newsletter_subscribe') }}" method="post">
-                    <div>
-                        <input type="text" name="name" value="" title="{{ 'block.subscribe.name_label'|trans({}, 'newsletter') }}" placeholder="{{ 'block.subscribe.name_label'|trans({}, 'newsletter') }}">
-                        <input type="email" class="newsletter-subscriber-email" name="email" value="" title="{{ 'block.subscribe.email_label'|trans({}, 'newsletter') }}" placeholder="{{ 'block.subscribe.email_label'|trans({}, 'newsletter') }}">
-                    </div>
-                    <div class="clearfix right">
-                        {{ 'terms.link'|trans({}, 'newsletter')|raw }}
-                    </div>
-                    <div class="clearfix">
-                        <input type="submit" class="button text-button" value="{{ 'block.subscribe.submit_button'|trans({}, 'newsletter') }}">
-                    </div>
-                </form>
+            <div class="newsletter">
+                <div class="sprite"></div>
+                <div class="container">
+                    <h2>{{ 'block.subscribe.newsletter_heading'|trans({}, 'newsletter') }}</h2>
+                    <form action="{{ path('_newsletter_subscribe') }}" method="post">
+                        <div>
+                            <input type="text" name="name" value="" title="{{ 'block.subscribe.name_label'|trans({}, 'newsletter') }}" placeholder="{{ 'block.subscribe.name_label'|trans({}, 'newsletter') }}">
+                            <input type="email" class="newsletter-subscriber-email" name="email" value="" title="{{ 'block.subscribe.email_label'|trans({}, 'newsletter') }}" placeholder="{{ 'block.subscribe.email_label'|trans({}, 'newsletter') }}">
+                        </div>
+                        <div class="clearfix">
+                            {{ 'terms.link'|trans({}, 'newsletter')|raw }}
+                        </div>
+                        <div class="clearfix">
+                            <input type="submit" class="button text-button" value="{{ 'block.subscribe.submit_button'|trans({}, 'newsletter') }}">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-teaser">
+                {{ 'footer.text'|trans({'%expected_delivery_date%': parameter('HD.expected_delivery_date')})|raw }}
             </div>
         </div>
     {% endif %}
         <div class="grid_8">
-            <hr class="left row">
+            <div class="hr"></div>
         </div>
         <div class="copy grid_8">
             {{ 'footer.address'|trans({'%cdn%':cdn, '%url%':app.request.uri|url_encode })|raw }}

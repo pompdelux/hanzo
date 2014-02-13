@@ -12,7 +12,7 @@
             </trans-unit>
             <trans-unit id="size.guide.link.text">
                 <source>size.guide.link.text</source>
-                <target>» Size guide</target>
+                <target>Size guide</target>
             </trans-unit>
             <trans-unit id="out.of.stock">
                 <source>out.of.stock</source>
@@ -25,6 +25,10 @@
             <trans-unit id="show.basket">
                 <source>show.basket</source>
                 <target>Visa korg</target>
+            </trans-unit>
+            <trans-unit id="your.basket" approved="no">
+                <source>your.basket</source>
+                <target>Your Basket</target>
             </trans-unit>
             <trans-unit id="choose">
                 <source>choose</source>
@@ -174,6 +178,16 @@
                     </ul>
                 ]]></target>
             </trans-unit>
+            <trans-unit id="footer.text" approved="no">
+                <source>footer.text</source>
+                <target><![CDATA[
+                    <ul>
+                        <li><b>Frakt</b> från 49,-</li>
+                        <li><b>Leveransstid</b> %expected_delivery_date%</li>
+                        <li><b>Byte</b> Gratis</li>
+                    </ul>
+                ]]></target>
+            </trans-unit>
             <trans-unit id="order.deleted">
                 <source>order.deleted</source>
                 <target>Ordernummer %id% har blivit raderad</target>
@@ -303,6 +317,7 @@
                   <li><a href="/sv_SE/forside/om-pompdelux">Om POMPdeLUX</a></li>
                    <li><a href="/sv_SE/forside/om-pompdelux/corporate-social-responsibility/csr-rapport">CSR-rapport</a></li>
                     <li><a href="/sv_SE/forside/tavlingar">Tävlingar</a></li>
+					<li><a href="/sv_SE/forside/om-pompdelux/press">Press</a></li>
 					<li><a href="/sv_SE/forside/om-pompdelux/kontakt">Kontakt</a></li>
                 </ul>
                 ]]></target>

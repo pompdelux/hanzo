@@ -1,88 +1,71 @@
 {% extends '::adminbase.html.twig' %}
 
 {% block content %}
-<nav class="sub">
-  <ul>
-    <li id="select-language">
-      <a class="open-menu" href="#">
-        {% if domain_key %}
-          <span class="flag {{ domain_key }}"></span><span class="domain-key">.{{ domain_key }}</span> |
-        {% endif %}
-        {{ 'domain.selector'|trans({}, 'admin') }}
-      </a>
-      <div style="display:none;">
-        <ul>
-        {% for domain in domains_availible %}
-          <li>
-            <a href="{{ path('admin_cms_redirects', {'domain_key' : domain.domainkey}) }}">
-              <span class="flag {{ domain.domainkey }}"></span>{{ domain.domainkey }}
-            </a>
-          </li>
-        {% endfor %}
-        </ul>
-      </div>
-    </li>
-    <li>
-      <a href="{{ path('admin_cms_redirects') }}">
-        {{ 'admin.cms.redirect.all.link'|trans({}, 'admin') }}
-      </a>
-    </li>
-    <li>
-      <a href="{{ path('admin_cms_redirect_edit') }}">
-        {{ 'admin.cms.redirect.add.link'|trans({}, 'admin') }}
-      </a>
-    </li>
-    <li>
-      <a href="{{ path('admin_cms') }}">
-        {{ 'admin.back.button'|trans({}, 'admin') }}
-      </a>
-    </li>
-  </ul>
-</nav>
+
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        {% if domain_key %}
+                            <span class="flag {{ domain_key|replace({'Sales': ''}) }}"></span><span class="domain-key">.{{ domain_key }}</span> |
+                        {% endif %}
+                        {{ 'domain.selector'|trans({}, 'admin') }}
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        {% for domain in domains_availible %}
+                            <li><a href="{{ path('admin_cms_redirects', {'domain_key' : domain.domainkey}) }}"><span class="flag {{ domain.domainkey|replace({'Sales': ''}) }}"></span>{{ domain.domainkey }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+
+                <li><a href="{{ path('admin_cms_redirects') }}">{{ 'admin.cms.redirect.all.link'|trans({}, 'admin') }}</a></li>
+                <li><a href="{{ path('admin_cms_redirect_edit') }}">{{ 'admin.cms.redirect.add.link'|trans({}, 'admin') }}</a></li>
+                <li><a href="{{ path('admin_cms') }}">{{ 'admin.back.button'|trans({}, 'admin') }}</a></li>
+            </ul>
+        </div>
+    </nav>
 
 {% if domain_key %}
-<h1>{{ 'admin.cms.redirects.header.text.%domain_key%'|trans({'%domain_key%' : domain_key}, 'admin') }}</h1>
+    <h1>{{ 'admin.cms.redirects.header.text.%domain_key%'|trans({'%domain_key%' : domain_key}, 'admin') }}</h1>
 {% else %}
-  <h1>{{ 'admin.cms.redirects.header.text'|trans({}, 'admin') }}</h1>
+    <h1>{{ 'admin.cms.redirects.header.text'|trans({}, 'admin') }}</h1>
 {% endif %}
 
 {% for message in app.session.flashbag.get('notice') %}
-<div class="message notice">
-  {{ message|trans({}, 'admin') }}
-</div>
+    <div class="alert alert-info">
+        {{ message|trans({}, 'admin') }}
+    </div>
 {% endfor %}
 
 {% if redirects|length > 0 %}
 
-<p>{{ 'admin.cms.redirects.description.text'|trans({}, 'admin') }}</p>
+    <p>{{ 'admin.cms.redirects.description.text'|trans({}, 'admin') }}</p>
 
-<table id="redirects" class="list">
-  <thead>
-    <tr>
-      <th>{{ 'admin.cms.redirects.domain_key'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.cms.redirects.source'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.cms.redirects.target'|trans({}, 'admin') }}</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for redirect in redirects %}
-    <tr>
-      <td>{{ redirect.domainkey }}</td>
-      <td>{{ redirect.source }}</td>
-      <td>{{ redirect.target }}</td>
-      <th>
-        <a href="{{ path('admin_cms_redirect_edit', {'id' : redirect.id }) }}">
-          {{ 'admin.cms.redirects.edit'|trans({}, 'admin') }}
-        </a>
-        <a href="{{ path('admin_cms_redirect_delete', {'id' : redirect.id }) }}" class="delete">
-          {{ 'admin.cms.redirects.delete'|trans({}, 'admin') }}
-        </a>
-      </th>
-    </tr>
-  {% endfor %}
-  </tbody>
-</table>
+    <table id="redirects" class="table table-striped">
+        <thead>
+        <tr>
+            <th>{{ 'admin.cms.redirects.domain_key'|trans({}, 'admin') }}</th>
+            <th>{{ 'admin.cms.redirects.source'|trans({}, 'admin') }}</th>
+            <th>{{ 'admin.cms.redirects.target'|trans({}, 'admin') }}</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for redirect in redirects %}
+            <tr>
+                <td>{{ redirect.domainkey }}</td>
+                <td>{{ redirect.source }}</td>
+                <td>{{ redirect.target }}</td>
+                <th>
+                    <a href="{{ path('admin_cms_redirect_edit', {'id' : redirect.id }) }}" class="glyphicon glyphicon-edit" title="{{ 'admin.cms.redirects.edit'|trans({}, 'admin') }}"></a>
+                    <a href="{{ path('admin_cms_redirect_delete', {'id' : redirect.id }) }}" class="delete glyphicon glyphicon-remove-circle" title="{{ 'admin.cms.redirects.delete'|trans({}, 'admin') }}"></a>
+                </th>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
 {% else %}
 

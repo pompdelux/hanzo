@@ -12,7 +12,7 @@
             </trans-unit>
             <trans-unit id="size.guide.link.text">
                 <source>size.guide.link.text</source>
-                <target>» Size guide</target>
+                <target>Size guide</target>
             </trans-unit>
             <trans-unit id="out.of.stock">
                 <source>out.of.stock</source>
@@ -25,6 +25,10 @@
             <trans-unit id="show.basket">
                 <source>show.basket</source>
                 <target>Toon winkelmandje</target>
+            </trans-unit>
+            <trans-unit id="your.basket" approved="no">
+                <source>your.basket</source>
+                <target>Your Basket</target>
             </trans-unit>
             <trans-unit id="choose">
                 <source>choose</source>
@@ -173,6 +177,16 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
                     </ul>
                 ]]></target>
             </trans-unit>
+            <trans-unit id="footer.text" approved="no">
+                <source>footer.text</source>
+                <target><![CDATA[
+                    <ul>
+                        <li><b>Verzendkosten</b> vanaf EUR 5,=</li>
+                        <li><b>Levertijd</b> %expected_delivery_date%</li>
+                        <li><b>Ruilen</b> Gratis</li>
+                    </ul>
+                ]]></target>
+            </trans-unit>
             <trans-unit id="buy.set">
                 <source>buy.set</source>
                 <target>Koop de hele set</target>
@@ -298,6 +312,7 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
                     <li><a href="/nl_NL/voorpagina/over-pompdelux">Over POMPdeLUX</a></li>
                     <li><a href="/nl_NL/voorpagina/over-pompdelux/corporate-social-responsibility/csr-verslag">CSR</a></li>
                     <li><a href="/nl_NL/voorpagina/wedstrijd">Wedstrijd</a></li>
+					<li><a href="/nl_NL/voorpagina/over-pompdelux/pers">Pers</a></li>
 					<li><a href="/nl_NL/voorpagina/over-pompdelux/contact">Contact</a></li>
                 </ul>
                 ]]></target>

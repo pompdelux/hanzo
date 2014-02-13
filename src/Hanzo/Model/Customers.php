@@ -4,6 +4,7 @@ namespace Hanzo\Model;
 
 use PropelPDO;
 
+use Hanzo\Core\Hanzo;
 use Hanzo\Model\om\BaseCustomers;
 use Hanzo\Model\CustomersQuery;
 
@@ -244,9 +245,17 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
      */
     public function isFullNameWithinLimits(ExecutionContext $context)
     {
+        $domain = Hanzo::getInstance()->get('core.domain_key');
+        $maxLength = 30;
+        if ($domain == 'DE') {
+            // In germany the max length are including the Frau/Herr prefix
+            // plus a space. Subtract 5 chars.
+            $maxLength = 25;
+        }
+
         $length = mb_strlen($this->getFirstName().' '.$this->getLastName());
-        if (30 < $length) {
-            $context->addViolationAt('first_name', 'name.max.length', ['{{ limit }}' => 30], $length, $length);
+        if ($maxLength < $length) {
+            $context->addViolationAt('first_name', 'name.max.length', ['{{ limit }}' => $maxLength], $length, $length);
         }
     }
 } // Customers

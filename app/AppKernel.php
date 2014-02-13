@@ -29,7 +29,6 @@ class AppKernel extends Kernel
             new Bazinga\ExposeTranslationBundle\BazingaExposeTranslationBundle(),
             new Ekino\Bundle\NewRelicBundle\EkinoNewRelicBundle(),
             new Liip\ThemeBundle\LiipThemeBundle(),
-            new Nelmio\SecurityBundle\NelmioSecurityBundle(),
             new Misd\GuzzleBundle\MisdGuzzleBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
 

@@ -12,9 +12,11 @@
 
       $basket.on('click', 'a.delete', function(event) {
         event.preventDefault();
-        var $a = $(this);
-        var $item = $a.closest('.item');
-        var name = $('.info a', $item).text();
+        var $a = $(this),
+            $item = $a.closest('.item'),
+            name = $('.info a', $item).text(),
+            id = $('.info', $item).data('product_id'),
+            $mega_basket = $('#mega-basket');
 
         // warn the user before removing the product.
         dialoug.confirm(Translator.get('js:notice'), Translator.get('js:delete.from.basket.warning', { 'product' : name }), function(choice) {
@@ -33,8 +35,15 @@
                   // update elements
                   var content = '(' + response.data.quantity + ') ' + response.data.total;
                   $.cookie('basket', content);
-                  $('#mini-basket a').html(content);
+                  $('#mini-basket a.total').html(content);
                   $('tfoot td.total').text(response.data.total);
+
+                  $('.grand-total', $mega_basket).text(response.data.total);
+                  $('.item-count', $mega_basket).text('(' + response.data.quantity + ')');
+                  $('.item[data-product-id=' + id + ']', $mega_basket).remove();
+                  if (!$('.item', $mega_basket).length) {
+                    $('.cart-is-empty', $mega_basket).show();
+                  }
 
                   // remove the proceed button if there are no products in the cart
                   if (0 === response.data.quantity) {
@@ -251,7 +260,7 @@
 
                   // totals
                   $.cookie('basket', response.data.basket);
-                  $('#mini-basket a').text(response.data.basket);
+                  $('#mini-basket a.total').text(response.data.basket);
                   var find = /\([0-9+]\) /;
                   var total = response.data.basket.replace(find, '');
                   $info.data('product_id', response.data.product_id);
@@ -268,9 +277,66 @@
         });
       });
     };
+    pub.miniBasketInit = function() {
+      var $mega_basket = $('#mega-basket'),
+          $mega_basket_table = $('.basket-table-body', $mega_basket);
+
+      $(".nano").nanoScroller();
+
+      $mega_basket.css('top', '-' + ($mega_basket.height() + 30 ) + 'px');
+      $('#mini-basket a, a.open-megabasket, #mega-basket .close').click(function(e) {
+        e.preventDefault();
+        if ($mega_basket.hasClass('open')) {
+          $mega_basket.animate({
+            top: '-' + ($mega_basket.height() + 30 ) + 'px',
+          }, 500 );
+        }
+        else {
+          $mega_basket.animate({
+            top: "-6px",
+          }, 500 );
+
+          // Set a timeout, so the basket automatically closes.
+          setTimeout(function () {
+            // Only close the basket if the mouse isnt hovering it.
+            if (!$('#mega-basket:hover').length) {
+              $mega_basket.animate({
+                top: '-' + ($(this).height() + 30 ) + 'px',
+              }, 500 );
+              $mega_basket.toggleClass('open');
+            }
+          }, 4000);
+        }
+        $mega_basket.toggleClass('open');
+      });
+
+      $('body').on('basket_product_added', function(e){
+        $('.cart-is-empty', $mega_basket).hide();
+        $(".nano").nanoScroller();
+        // Open the mega-basket.
+        $mega_basket.animate({
+          top: "-6px",
+        }, 500, 'swing', function() {
+          $(".nano").nanoScroller({ scroll: 'bottom' });
+        });
+        $mega_basket.toggleClass('open');
+        setTimeout(function () {
+          // Only close the basket if the mouse isnt hovering it.
+          if (!$('#mega-basket:hover').length) {
+            $mega_basket.animate({
+              top: '-' + ($(this).height() + 30 ) + 'px',
+            }, 500 );
+            $mega_basket.toggleClass('open');
+          }
+          // Remove .new class on items.
+          $('.item.new', $mega_basket_table).removeClass('new');
+        }, 4000);
+      });
+    };
 
     return pub;
   })($);
 
   cart.init();
+  cart.miniBasketInit();
 })(jQuery);

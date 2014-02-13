@@ -15,6 +15,10 @@ framework:
         storage_id:     session.storage.native
         handler_id:     session.handler.redis
         gc_maxlifetime: 10800
+    esi:
+        enabled: true
+    fragments:
+        path: /_fragment
 
 services:
     # native redis session handeling
@@ -193,10 +197,6 @@ liip_theme:
             - %%dir%%/themes/%%current_theme%%/%%bundle_name%%/%%template%%
             - %%dir%%/themes/2013s1/%%bundle_name%%/%%template%%
 
-nelmio_security:
-    flexible_ssl:
-        cookie_name:      auth
-        unsecured_logout: false
 muneris:
     host: http://muneris.bellcom.dk/
 ax:

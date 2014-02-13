@@ -363,6 +363,10 @@
                 <source>rma.product.not.filled.correctly</source>
                 <target>Vid byte av en vara, ska du skriva både storlek och färg.</target>
             </trans-unit>
+            <trans-unit id="checkout.confirm.address.block" approved="no">
+                <source>checkout.confirm.address.block</source>
+                <target>Bekräfta att dina adressuppgifter är korrekta.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

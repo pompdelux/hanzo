@@ -161,7 +161,7 @@ class ToolsController extends CoreController
     {
         $this->container->get('hanzo_search.product_and_category_indexer')->build();
 
-        $this->getRequest()->getSession()->setFlash('notice', 'Søgeindexer opdateret for produkter og kategorier.');
+        $this->getRequest()->getSession()->getFlashBag()->add('notice', 'Søgeindexer opdateret for produkter og kategorier.');
         return $this->redirect($this->generateUrl('admin_tools'));
     }
 

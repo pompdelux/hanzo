@@ -4,31 +4,45 @@
 @import "compass/css3/box-shadow";
 
 nav.main-menu {
+  background: #484a4d;
+  padding: 0 10px;
   ul {
-    z-index: 210; // z-index and rpoition to fix rendering in IE7. This must be higher than the actually z-index of child
-    position: relative;
+    z-index: 310; // z-index and rpoition to fix rendering in IE7. This must be higher than the actually z-index of child
+    position: initial;
     list-style: none;
     padding: 0;
     margin: 0;
+    &.outer {
+      display: table;
+      margin: 0 auto;
+    }
   }
   // Main menu-items
   > ul > li {
     float: left;
     width: auto;
-    padding: 15px 20px 0 0;
-    position: relative;
+    position: initial;
+    // Hover effect on submenus. .on class are used on touch devices.
+    > ul.on,
+    &:hover > ul {
+      left: 0;
+      top: auto;
+      z-index: 300;
+      @include box-shadow(#CECECE 0 2px 8px);
+    }
     > {
       a {
+        padding: 10px 30px 10px 0;
         display: block;
-        font-size: $heading-size;
+        font-size: 14px;
+        color: white;
       }
       // Sub menu-items
       ul {
         position: absolute;
         left: -9999px;
         border-top: 0;
-        width: 250px;
-        margin-top: 10px;
+        width: 100%;
         z-index: 1;
         background-color: #fff;
         font-family: $font-sans;
@@ -36,11 +50,10 @@ nav.main-menu {
         line-height: $side-menu-line-height;
 
         > li {
-          float: none;
           padding: 10px 8px;
+          width: 180px;
           // Sub Sub menu-items
           > ul {
-            padding-left: 10px;
             > li {
               float: none;
               padding-top: 12px;
@@ -48,9 +61,14 @@ nav.main-menu {
           }
         }
         li {
-          &.floaded{
-            float: left;
+          text-align: left;
+          &.floaded {
             margin-right: 10px;
+            display: inline-block;
+            vertical-align: top;
+            &.last {
+              margin-right: 0;
+            }
           }
           &.heading > a,
           &.self-included > a{
@@ -62,14 +80,23 @@ nav.main-menu {
             cursor: default;
           }
         }
-        &.on {
-          left: 0;
-          top: auto;
-          z-index: 150;
-          @include box-shadow($paragraph-color 4px 4px 8px);
-        }
       }
     }
+  }
+}
+html.ie7 {
+// html.ie8,
+  nav.main-menu li.floaded {
+    display: inline;
+    float: left;
+  }
+}
+
+
+nav.first.main-menu > ul > li {
+  position: relative;
+  ul {
+    width: 250px;
   }
 }
 

@@ -1,67 +1,63 @@
 {% extends '::adminbase.html.twig' %}
 
 {% block content %}
-<nav class="sub">
-  <ul>
-    <li>
-      <a href="{{ path('admin_settings') }}">
-        {{ 'admin.back.button'|trans({}, 'admin') }}
-      </a>
-    </li>
-  </ul>
-</nav>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ path('admin_settings') }}">{{ 'admin.back.button'|trans({}, 'admin') }}</a></li>
+            </ul>
+        </div>
+    </nav>
 
-<h1>{{ 'admin.languages.header.text'|trans({}, 'admin') }}</h1>
 
-<p>{{ 'admin.languages.description.text'|trans({}, 'admin') }}</p>
+    <h1>{{ 'admin.languages.header.text'|trans({}, 'admin') }}</h1>
+    <p>{{ 'admin.languages.description.text'|trans({}, 'admin') }}</p>
 
 {% for message in app.session.flashbag.get('notice') %}
-<div class="message notice">
-  {{ message|trans({}, 'admin') }}
-</div>
+    <div class="alert alert-info">
+        {{ message|trans({}, 'admin') }}
+    </div>
 {% endfor %}
 
-<form action="{{ path('admin_settings_languages', {'id' : language_id}) }}" method="post" {{ form_enctype(form) }} id="languages-edit-form" class="inline">
-  <div id="languages-edit">
-    {{ form_rest(form) }}
-    {{ form_row(form._token) }}
-  </div>
-  <input class="button right" type="submit" value="{{ 'admin.languages.update.language'|trans({}, 'admin') }}">
-</form>
+    {% form_theme form 'AdminBundle:Form:fields.html.twig' %}
+    <form action="{{ path('admin_settings_languages', {'id' : language_id}) }}" method="post" {{ form_enctype(form) }} id="languages-edit-form" class="form-horizontal">
+        {{ form_rest(form) }}
+        <div class="form-group">
+            <input class="button btn btn-success" type="submit" value="{{ 'admin.languages.update.language'|trans({}, 'admin') }}">
+            <a class="button btn btn-default" href="{{ path('admin_settings') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
+        </div>
+        {{ form_row(form._token) }}
+    </form>
 
 {% if languages|length > 0 %}
 
-<table id="languages" class="list">
-  <thead>
-    <tr>
-      <th>{{ 'admin.languages.name'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.languages.local_name'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.languages.locale'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.languages.iso2'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.languages.direction'|trans({}, 'admin') }}</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for language in languages %}
-    <tr>
-      <td>{{ language.name }}</td>
-      <td>{{ language.localname }}</td>
-      <td>{{ language.locale }}</td>
-      <td>{{ language.iso2 }}</td>
-      <td>{{ language.direction }}</td>
-      <th>
-        <a href="{{ path('admin_settings_languages_delete', {'id' : language.id }) }}" class="delete">
-          {{ 'admin.languages.delete'|trans({}, 'admin') }}
-        </a>
-        <a href="{{ path('admin_settings_languages', {'id' : language.id }) }}" class="edit">
-          {{ 'admin.languages.edit'|trans({}, 'admin') }}
-        </a>
-      </th>
-    </tr>
-  {% endfor %}
-  </tbody>
-</table>
+    <table id="languages" class="table table-striped">
+        <thead>
+            <tr>
+                <th>{{ 'admin.languages.name'|trans({}, 'admin') }}</th>
+                <th>{{ 'admin.languages.local_name'|trans({}, 'admin') }}</th>
+                <th>{{ 'admin.languages.locale'|trans({}, 'admin') }}</th>
+                <th>{{ 'admin.languages.iso2'|trans({}, 'admin') }}</th>
+                <th>{{ 'admin.languages.direction'|trans({}, 'admin') }}</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for language in languages %}
+            <tr>
+                <td>{{ language.name }}</td>
+                <td>{{ language.localname }}</td>
+                <td>{{ language.locale }}</td>
+                <td>{{ language.iso2 }}</td>
+                <td>{{ language.direction }}</td>
+                <th>
+                    <a href="{{ path('admin_settings_languages', {'id' : language.id }) }}" class="glyphicon glyphicon-edit" title="{{ 'admin.languages.edit'|trans({}, 'admin') }}"></a>
+                    <a href="{{ path('admin_settings_languages_delete', {'id' : language.id }) }}" class="glyphicon glyphicon-remove-circle" title="{{ 'admin.languages.delete'|trans({}, 'admin') }}"></a>
+                </th>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% else %}
 
 <p>{{ 'admin.languages.no.languages.text'|trans({}, 'admin') }}</p>

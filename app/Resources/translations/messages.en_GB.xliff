@@ -12,7 +12,7 @@
             </trans-unit>
             <trans-unit id="size.guide.link.text">
                 <source>size.guide.link.text</source>
-                <target>» Size guide</target>
+                <target>Size guide</target>
             </trans-unit>
             <trans-unit id="home">
                 <source>home</source>
@@ -21,6 +21,10 @@
             <trans-unit id="show.basket">
                 <source>show.basket</source>
                 <target>Show basket</target>
+            </trans-unit>
+            <trans-unit id="your.basket" approved="no">
+                <source>your.basket</source>
+                <target>Your Basket</target>
             </trans-unit>
             <trans-unit id="choose">
                 <source>choose</source>
@@ -169,6 +173,16 @@
                     </ul>
                 ]]></target>
             </trans-unit>
+            <trans-unit id="footer.text" approved="no">
+                <source>footer.text</source>
+                <target><![CDATA[
+                    <ul>
+                        <li><b>Delivery</b> from 15,-</li>
+                        <li><b>Delivery time</b> %expected_delivery_date%</li>
+                        <li><b>Exchange</b> Gratis</li>
+                    </ul>
+                ]]></target>
+            </trans-unit>
             <trans-unit id="order.deleted">
                 <source>order.deleted</source>
                 <target>E.order no. %id% has been cancelled.</target>
@@ -296,6 +310,7 @@
                 <li><a href="/en_GB/home/about-pompdelux/corporate-social-responsibility/csr-report">CSR</a></li>
 				<li><a href="/en_GB/home/competition">Competition</a></li>
 				<li><a href="/en_GB/home/job/ein-schoner-nebenjob">Job</a></li>
+				<li><a href="/en_GB/home/about-pompdelux/press">Press</a></li>
 				<li><a href="/en_GB/home/about-pompdelux/contact">Contact</a></li>
                 </ul>
                 ]]></target>

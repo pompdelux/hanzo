@@ -2,10 +2,8 @@
 
 {% block content %}
 
-    <a href="{{ path('admin_shipping_breaks_add') }}" class="fa icon-plus"> Tilføj ny</a>
-
     {% for message in app.session.flashbag.get('notice') %}
-        <div class="message notice">
+        <div class="alert alert-info">
             {{ message|trans({}, 'admin') }}
         </div>
     {% endfor %}
@@ -17,7 +15,7 @@
         </div>
     {% endif %}
 
-    <table class="list">
+    <table class="list table table-striped">
         <thead>
             <tr>
                 <th>Beløb</th>
@@ -52,5 +50,8 @@
         </div>
     {% endif %}
 
+    <p>
+        <a href="{{ path('admin_shipping_breaks_add') }}"><i class="glyphicon glyphicon-plus"></i> Tilføj ny</a>
+    </p>
 
 {% endblock %}

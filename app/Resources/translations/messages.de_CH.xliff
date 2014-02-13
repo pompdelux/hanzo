@@ -12,7 +12,7 @@
             </trans-unit>
             <trans-unit id="size.guide.link.text">
                 <source>size.guide.link.text</source>
-                <target>» Size guide</target>
+                <target>Size guide</target>
             </trans-unit>
             <trans-unit id="out.of.stock">
                 <source>out.of.stock</source>
@@ -25,6 +25,10 @@
             <trans-unit id="show.basket">
                 <source>show.basket</source>
                 <target>Warenkorb anzeigen</target>
+            </trans-unit>
+            <trans-unit id="your.basket" approved="no">
+                <source>your.basket</source>
+                <target>Your Basket</target>
             </trans-unit>
             <trans-unit id="choose">
                 <source>choose</source>
@@ -172,6 +176,16 @@
                     </ul>
                 ]]></target>
             </trans-unit>
+            <trans-unit id="footer.text" approved="no">
+                <source>footer.text</source>
+                <target><![CDATA[
+                    <ul>
+                        <li><b>Versand</b> ab 4,95 EUR</li>
+                        <li><b>Lieferzeit</b> %expected_delivery_date%</li>
+                        <li><b>Umtausch</b> Gratis</li>
+                    </ul>
+                ]]></target>
+            </trans-unit>
             <trans-unit id="order.deleted">
                 <source>order.deleted</source>
                 <target>E-Bestellnummer %id% wurde gelöscht</target>
@@ -302,6 +316,7 @@ Paket: Das Paket wird an Ihre Adresse geliefert und kostet CHF 8,95 (CHF 7,95, w
                         <li><a href="/de_CH/home/uber-pompdelux">Über POMPdeLUX</a></li>
                         <li><a href="/de_CH/home/uber-pompdelux/corporate-social-responsibility/csr-bericht">CSR-bericht</a></li>
                         <li><a href="/de_CH/home/gewinnspiele">Gewinnspiele</a></li>
+						<li><a href="/de_CH/home/uber-pompdelux/presse">Presse</a></li>
                         <li><a href="/de_CH/home/uber-pompdelux/kontakt">Kontakt</a></li>
                     </ul>
                 ]]></target>

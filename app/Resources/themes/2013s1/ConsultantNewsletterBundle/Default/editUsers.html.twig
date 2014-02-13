@@ -42,13 +42,30 @@
             </form>
 
             <table class="addresses">
-            {% for user in subscribed_users %}
-                <tr>
-                    <td>{{ loop.index }}.</td>
-                    <td class="address">{{ user.email|trim }}</td>
-                    <td><a href="{{ path('consultantnewsletter_unsubscribe_user', {'userId' : user.id }) }}" class="delete sprite" title="{{ 'consultant.newsletter.delete.user'|trans({}, 'consultant') }}"></a></td>
-                 </tr>
-            {% endfor %}
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td>{{ 'email'|trans({}, 'account') }}</td>
+                        <td>{{ 'First name'|trans({}, 'account') }}</td>
+                        <td>{{ 'Last name'|trans({}, 'account') }}</td>
+                        <td>{{ 'Phone'|trans({}, 'account') }}</td>
+                        <td>{{ 'City'|trans({}, 'account') }}</td>
+                        <td class="center"><a href="#" onclick="javascript:print();" class="icons-print sprite" title="Print"></a></td>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for user in subscribed_users %}
+                    <tr>
+                        <td>{{ loop.index }}.</td>
+                        <td class="address">{{ user.email|trim }}</td>
+                        <td>{{ user.firstname|trim }}</td>
+                        <td>{{ user.lastname|trim }}</td>
+                        <td>{{ user.phone|trim }}</td>
+                        <td>{{ user.city|trim }}</td>
+                        <td><a href="{{ path('consultantnewsletter_unsubscribe_user', {'userId' : user.id }) }}" class="delete sprite" title="{{ 'consultant.newsletter.delete.user'|trans({}, 'consultant') }}"></a></td>
+                     </tr>
+                {% endfor %}
+                </tbody>
             </table>
         {% endif %}
     </div>
@@ -58,7 +75,7 @@
 <script>
 $(".subscriber-search .q").on("keyup", function() {
     var value = $(this).val();
-    $("table.addresses tr").each(function(index) {
+    $("table.addresses tbody tr").each(function(index) {
         var $row = $(this);
         var id = $row.find("td.address").text();
         if (id.toLowerCase().indexOf(value.toLowerCase()) !== 0) {

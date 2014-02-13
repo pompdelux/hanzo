@@ -73,19 +73,14 @@ article{
 	@include paragraph-style;
 }
 
+div.hr,
 hr {
 	border: none;
 	clear: both;
 	margin: 0;
 	width: 100%;
-	@include icons-sprite(divider);
-	height: icons-sprite-height(divider) + 5px;
-	&.left {
-		@include icons-sprite(divider_left);
-	}
-	&.right {
-		@include icons-sprite(divider_right);
-	}
+	background-color: #484a4d;
+	height: 5px;
 }
 
 strong, b {font-weight: bold;}
@@ -512,6 +507,9 @@ ul.form-errors li {
 #body-consultant-newsletter table td {
     padding: 2px 10px 2px 2px;
     vertical-align: middle;
+    &.address {
+        word-break: break-all;
+    }
 }
 
 #body-consultant-newsletter .subscriber-search .button {
