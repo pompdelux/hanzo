@@ -201,7 +201,7 @@ var quickorder = (function($) {
                     } else {
                         window.scrollTo(window.scrollMinX, window.scrollMinY);
                         $.cookie('basket', response.data);
-                        $('#mini-basket a').html(response.data);
+                        $('#mini-basket a.total').html(response.data);
                         dialoug.slideNotice(response.message);
 
                         var c = color.toString();

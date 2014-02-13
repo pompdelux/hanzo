@@ -20,8 +20,6 @@ security:
                 target: _homepage
                 invalidate_session: true
                 success_handler: hanzo.logout_success_handler
-                handlers:
-                    - nelmio_security.flexible_ssl_listener
             provider: main
 
     access_control:
@@ -35,8 +33,8 @@ security:
         - { path: ^/.*/account/check/, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
         - { path: ^/.*/account/nno, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
 
-        - { path: ^/.*/account, roles: ROLE_USER }
-        - { path: ^/.*/checkout, roles: ROLE_USER }
+        - { path: ^/.*/account, roles: ROLE_USER, requires_channel: https }
+        - { path: ^/.*/checkout, roles: ROLE_USER, requires_channel: https }
 
         - { path: ^/.*/admin, roles: ROLE_EMPLOYEE }
         - { path: ^/.*/retarteging/order-feed/, roles: ROLE_KG_API_USER, requires_channel: https }

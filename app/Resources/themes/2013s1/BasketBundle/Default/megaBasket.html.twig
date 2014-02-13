@@ -1,0 +1,34 @@
+
+<div class="basket">
+    <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}"><span class="sprite"></span></a>
+    <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}">{{ 'your.basket'|trans }} <span class="item-count">({{ products ? products|length : '0' }})</span></a>
+</div>
+
+<div class="basket">
+    <div class="basket-table">
+      <div class="basket-table-body nano">
+        <div class="content">
+        <p class="cart-is-empty {{ products ? 'off' : '' }}" >{{ "cart.is.empty"|trans({}, 'checkout') }}</p>
+        {% for group, items in products %}
+          {% for product in items %}
+            <div class="item" data-product-id="{{ product.products_id }}">
+            {% if product.basket_image %}
+              {{ product_image_tag(product.basket_image, '57x100', { 'alt' : product.products_name }) }}
+            {% endif %}
+              {% if product.url %}
+                <a href="{{ product.url }}" class="title">{{ product.products_name }}</a>
+              {% else %}
+                {{ product.products_name }}
+              {% endif %}
+              <span class="right total">{{ (product.price * product.quantity)|money }}</span>
+            </div>
+          {% endfor %}
+        {% endfor %}
+        </div>
+      </div>
+      <div class="basket-table-footer">
+        {{ "total"|trans }}:
+        <span class="right total grand-total">{{ total|money }}</span>
+      </div>
+    </div>
+</div>

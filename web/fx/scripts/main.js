@@ -85,34 +85,23 @@
           .toggleClass('active inactive')
         ;
 
-        var menu_width = 0;
         $('li li.heading', $menu).each(function(index, element) {
-          var $element = $(element);
-          var tmp_width = $element.width() - 40;
-          if (menu_width < tmp_width) {
-            menu_width = tmp_width;
-          }
-
-          $element.addClass('floaded');
+          $(element).addClass('floaded');
         });
-        $('li li.heading', $menu).closest('ul').each(function(index, element) {
-          var $element = $(element);
-          var count = $('> li', $element).length;
-          $element.css('width', (menu_width * count) + 5);
-        });
-
 
         $('> ul > li > a', $menu).click(function(event) {
-          event.stopPropagation();
-
           var $this = $(this).parent();
           var $element = $('> ul', $this);
 
-          $('> ul > li > ul.on', $menu).not($element).removeClass('on');
-          $element.toggleClass('on');
+          if ($('html').hasClass('touch') && $element.hasClass('on') === false && $element.length) {
+            if ((!navigator.userAgent.match(/iPhone/i)) && (!navigator.userAgent.match(/iPod/i)) && (!navigator.userAgent.match(/iPad/i))) {
+              event.stopPropagation();
 
-          if ($('ul', $this).length) {
-            event.preventDefault();
+              $('> ul > li > ul.on', $menu).removeClass('on');
+              $element.toggleClass('on');
+
+              event.preventDefault();
+            }
           }
         });
 
@@ -182,7 +171,7 @@
     };
 
     pub.initBasket = function() {
-      var $basket = $('#mini-basket a');
+      var $basket = $('#mini-basket a.total');
       if ($basket.length) {
 
         $.cookie.defaults = {
@@ -211,6 +200,21 @@
       });
     };
 
+    pub.initSearchForm = function() {
+      var mini_basket_width = $('#secondary-links').outerWidth(),
+          search_form_padding = $('form.search-form input[type="text"]').innerWidth() - $('form.search-form input[type="text"]').width();
+
+      $('form.search-form input[type="text"]').css('width', mini_basket_width - search_form_padding);
+      $('nav.first.main-menu>ul.topmenu').css('padding-right', $('nav.main-menu.first ul.right').outerWidth());
+
+      $('form.search-form input[type="text"]').focus(function() {
+        $('#select-domain').toggle();
+      }).blur(function() {
+        $('#select-domain').toggle();
+      });
+
+    };
+
     var getDocHeight = function(){
       var D = document;
       return Math.max(Math.max(
@@ -232,5 +236,6 @@
   gui.initCountdown();
   gui.initBasket();
   gui.initToTop();
+  gui.initSearchForm();
 
 })(document, jQuery);
