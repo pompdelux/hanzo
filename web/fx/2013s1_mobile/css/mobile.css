@@ -262,6 +262,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
 }
 
+.icons-print {
+  height: 16px;
+  width: 16px;
+}
+
 body.da form.buy .submit-button {
   background-position: 0 -579px;
   height: 84px;
