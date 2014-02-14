@@ -56,9 +56,18 @@
                           {% endfor %}
                       </ul>
                   </li>
+
+                  <li>
+                      <ul>
+                          <li>
+                              <input type="checkbox" name="show_all" value="1" id="form_show_all">
+                              <label for="form_show_all">Vis også udsolgte vare</label>
+                          </li>
+                          <li><a class="" href="{{ url(app.request.attributes.get('_route')) }}">» Nulstil filtre</a></li>
+                      </ul>
+                  </li>
               </ul>
 
-              <a class="" href="{{ url(app.request.attributes.get('_route')) }}">» Nulstil filtre</a>
           </div>
       </form>
   </div>
