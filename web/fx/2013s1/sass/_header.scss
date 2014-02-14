@@ -24,11 +24,14 @@ nav.first.main-menu {
     background-color: $topbar-color;
     margin-bottom: 6px;
     padding: 3px 0;
-    z-index: 300;
+    z-index: 320;
     position: relative;
 
+    ul {
+        z-index: 330;
+    }
     >ul {
-        z-index: 220;
+        z-index: 330;
         margin-left: 10px;
 
         &.topmenu {
@@ -59,7 +62,7 @@ nav.first.main-menu {
         }
     }
     .dropdown{
-        z-index: 201; // This dropdown needs to be on top of the main menu
+        z-index: 301; // This dropdown needs to be on top of the main menu
         a {
             display: block;
             margin: 15px 5px;
