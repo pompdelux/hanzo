@@ -1332,8 +1332,8 @@ class ECommerceServices extends SoapService
             'eur.de'      => array('currency' => 'EUR', 'domain' => 'DE',      'vat' => 19),
             'eur.salesde' => array('currency' => 'EUR', 'domain' => 'SalesDE', 'vat' => 19),
 
-            'eur.at'      => array('currency' => 'EUR', 'domain' => 'AT',      'vat' => 20),
-            'eur.salesat' => array('currency' => 'EUR', 'domain' => 'SalesAT', 'vat' => 20),
+            'aut.at'      => array('currency' => 'EUR', 'domain' => 'AT',      'vat' => 20),
+            'aut.salesat' => array('currency' => 'EUR', 'domain' => 'SalesAT', 'vat' => 20),
 
             'chf.chf'     => array('currency' => 'CHF', 'domain' => 'CH',      'vat' => 8),
             'chf.salesch' => array('currency' => 'CHF', 'domain' => 'SalesCH', 'vat' => 8),
