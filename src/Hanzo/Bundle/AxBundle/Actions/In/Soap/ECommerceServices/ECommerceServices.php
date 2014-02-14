@@ -169,7 +169,9 @@ class ECommerceServices extends SoapService
 
                     if (!$product instanceof Products) {
                         $product = new Products();
-#                        $product->setId($products_id_map[strtolower($sku)]);
+                        if (isset($products_id_map) && isset($products_id_map[strtolower($sku)])) {
+                            $product->setId($products_id_map[strtolower($sku)]);
+                        }
                         $product->setSku($sku);
 
                         if (isset($entry->IsVoucher) && $entry->IsVoucher) {
@@ -230,7 +232,9 @@ class ECommerceServices extends SoapService
 
                 if (!$product instanceof Products) {
                     $product = new Products();
-#                    $product->setId($products_id_map[strtolower($sku)]);
+                    if (isset($products_id_map) && isset($products_id_map[strtolower($sku)])) {
+                        $product->setId($products_id_map[strtolower($sku)]);
+                    }
                     $product->setSku($sku);
                     $product->setMaster($item->ItemId);
                     $product->setColor($entry->InventColorId);
