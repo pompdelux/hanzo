@@ -136,7 +136,7 @@
             </trans-unit>
             <trans-unit id="store.address">
                 <source>store.address</source>
-                <target>POMPdeLUX ApS · Møgelhøj 8 · DK-8520 Lystrup · CVR-nr 29622035 · mailch@pompdelux.com · (+45) 8678 7874</target>
+                <target>POMPdeLUX ApS · Møgelhøj 8 · DK-8520 Lystrup · CHE-206.261.379 · mailch@pompdelux.com · 044 201 33 33</target>
             </trans-unit>
             <trans-unit id="order.edit.global.notice">
                 <source>order.edit.global.notice</source>
@@ -154,7 +154,7 @@
                 <source>customer.service.contact.info</source>
                 <target><![CDATA[
                     <strong>Kundendienst</strong><br>
-                    Telefon: (+45) 8678 7874<br>
+                    Telefon: 044 201 33 33<br>
                     E-Mail: <a href="mailto:mailch@pompdelux.com">mailch@pompdelux.com</a><br>
                     Montags bis Donnerstags 9 - 16 Uhr<br>
                     Freitags 9 - 14 Uhr<br>
@@ -168,9 +168,9 @@
                         <li>POMPdeLUX ApS</li>
                         <li>Møgelhøj 8</li>
                         <li>DK-8520 Lystrup</li>
-                        <li>CVR-nr 29622035</li>
+                        <li>CHE-206.261.379</li>
                         <li><a href="mailto:mailch@pompdelux.com">mailch@pompdelux.com</a></li>
-                        <li>(+45) 8678 7874</li>
+                        <li>Tel.044 201 33 33</li>
                         <li><img src="%cdn%fx/images/creditcards_de.png" alt="credit cards" title="credit cards"></li>
                         <li><a href="http://www.facebook.com/sharer.php?u=%url%" class="facebook-button social-button" title="Del denne side på Facebook">Auf Facebook teilen</a></li>
                     </ul>
@@ -298,7 +298,7 @@ Paket: Das Paket wird an Ihre Adresse geliefert und kostet CHF 8,95 (CHF 7,95, w
                         <li><a href="/de_CH/home/home-shopping/beraterin-finden">Shopping Advisor finden</a></li>
                         <li><a href="/de_CH/home/home-shopping/tag-der-offenen-tur">Tag der offenen Tür</a></li>
                         <li><a href="/de_CH/home/katalog">Katalog</a></li>
-                        <li><a href="/de_CH/home/beraterin-werden/ein-schoner-nebenjob">Beraterin werden</a></li>
+                        <li><a href="/de_CH/home/beraterin-werden/ein-schoner-nebenjob">Shopping Advisor werden</a></li>
                     </ul><br>
                     <h2>BE SOCIAL</h2>
                     <ul class="menu">
