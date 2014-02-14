@@ -61,9 +61,9 @@
                       <ul>
                           <li>
                               <input type="checkbox" name="show_all" value="1" id="form_show_all">
-                              <label for="form_show_all">Vis også udsolgte vare</label>
+                              <label for="form_show_all">{{ 'faceted.show.out.of.stock'|trans({}, 'category') }}</label>
                           </li>
-                          <li><a class="" href="{{ url(app.request.attributes.get('_route')) }}">» Nulstil filtre</a></li>
+                          <li><a class="" href="{{ url(app.request.attributes.get('_route')) }}">{{ 'faceted.reset.filter'|trans({}, 'category') }}</a></li>
                       </ul>
                   </li>
               </ul>
