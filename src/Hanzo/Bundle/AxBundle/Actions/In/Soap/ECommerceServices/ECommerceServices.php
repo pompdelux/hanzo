@@ -86,7 +86,7 @@ class ECommerceServices extends SoapService
      */
     public function SyncItem($data)
     {
-#        require __DIR__.'/products_id_map.php';
+        require __DIR__.'/products_id_map.php';
 
         $errors = array();
         $item = $data->item->InventTable;
