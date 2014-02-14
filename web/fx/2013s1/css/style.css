@@ -462,6 +462,10 @@ body.sv .subscribe-button {
   height: 34px;
 }
 
+body.full-image-wrapper-open .top-bar {
+  display: none;
+}
+
 nav.first.main-menu {
   background-color: #dcd8d2;
   margin-bottom: 6px;

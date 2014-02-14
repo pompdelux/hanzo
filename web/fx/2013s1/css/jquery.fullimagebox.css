@@ -2,9 +2,10 @@
     position : fixed;
     z-index : 500;
     top : 0;
-    left : 0;
-    width : 100%;
+    width : 956px;
     background: white;
+    left: 50%;
+    margin-left: -477px;
 }
 .full-image-box .full-image{
 	width:100%;
@@ -46,8 +47,8 @@
 .full-image-box .close {
 	display: inline-block;
 	position: absolute;
-	height: 32px;
-	width: 32px;
+	height: 34px;
+	width: 34px;
 	right: 0;
 	top: 0;
 	background: url(/fx/images/icons/icons/delete_white.png) no-repeat center #000;

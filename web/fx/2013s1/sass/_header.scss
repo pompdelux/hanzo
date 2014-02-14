@@ -15,6 +15,9 @@ $topbar-color: #dcd8d2;
     width: 100%;
     height: 34px;
 }
+body.full-image-wrapper-open .top-bar {
+    display: none;
+}
 
 nav.first.main-menu {
     ul, ul li, ul li form, ul li form input {
