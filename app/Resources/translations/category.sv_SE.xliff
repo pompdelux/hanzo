@@ -301,7 +301,7 @@
                 <source>headers.bycolour-644</source>
                 <target><![CDATA[<h1>Green & Brown</h1>
                 <p></p>]]></target>
-            </trans-unit>	
+            </trans-unit>
 			<trans-unit id="headers.bycolour-676" approved="no">
                 <source>headers.bycolour-676</source>
                 <target><![CDATA[<h1>Grey</h1>
@@ -311,7 +311,7 @@
                 <source>headers.bycolour-678</source>
                 <target><![CDATA[<h1>Denim</h1>
                 <p></p>]]></target>
-            </trans-unit>		
+            </trans-unit>
 			<trans-unit id="headers.bycolour-632" approved="no">
                 <source>headers.bycolour-632</source>
                 <target><![CDATA[<h1>Rose</h1>
@@ -376,6 +376,14 @@
                 <source>headers.bycolour-679</source>
                 <target><![CDATA[<h1>Denim</h1>
                 <p></p>]]></target>
+            </trans-unit>
+            <trans-unit id="faceted.show.out.of.stock" approved="no">
+                <source>faceted.show.out.of.stock</source>
+                <target>Vis også udsolgte vare</target>
+            </trans-unit>
+            <trans-unit id="faceted.reset.filter" approved="no">
+                <source>faceted.reset.filter</source>
+                <target>» Nulstil filtre</target>
             </trans-unit>
         </body>
     </file>

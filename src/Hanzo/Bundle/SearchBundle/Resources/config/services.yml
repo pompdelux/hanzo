@@ -1,7 +1,12 @@
 parameters:
+    hanzo_search.product.index_builder.class: Hanzo\Bundle\SearchBundle\ProductIndexBuilder
     hanzo_search.product_and_category_indexer.class: Hanzo\Bundle\SearchBundle\ProductAndCategoryIndexBuilder
 
 services:
+    hanzo_search.product.index_builder:
+        class: %hanzo_search.product.index_builder.class%
+        arguments: [@propel.configuration, @router, %kernel.root_dir%, %kernel.cache_dir%]
+
     hanzo_search.product_and_category_indexer:
         class: %hanzo_search.product_and_category_indexer.class%
         arguments: [@propel.configuration, @router, %kernel.root_dir%, %kernel.cache_dir%]
