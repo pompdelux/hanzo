@@ -275,10 +275,13 @@ class OrdersController extends CoreController
 
         $orders = OrdersSyncLogQuery::create()
             ->filterByState('failed')
-            ->find($this->getDbConnection());
+            ->find($this->getDbConnection())
+        ;
+
         foreach ($orders as &$order) {
             $order->data = unserialize($order->getContent());
         }
+
         return $this->render('AdminBundle:Orders:failed_orders_list.html.twig', array(
             'orders'  => $orders,
             'database' => $request->getSession()->get('database')
@@ -497,6 +500,8 @@ class OrdersController extends CoreController
 
     /**
      * viewFailedAction
+     *
+     * @param Request $request
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/

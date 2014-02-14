@@ -1,29 +1,32 @@
 {% extends '::adminbase.html.twig' %}
 
 {% block content %}
-<nav class="sub">
-  <ul>
-    {{ include('AdminBundle:Coupons:menu.html.twig') }}
-  </ul>
-</nav>
-<h1>{{ 'admin.coupons.edit.header.text'|trans({}, 'admin') }}</h1>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                {{ include('AdminBundle:Coupons:menu.html.twig') }}
+            </ul>
+        </div>
+    </nav>
+
+    <h1>{{ 'admin.coupons.edit.header.text'|trans({}, 'admin') }}</h1>
 
 {% for message in app.session.flashbag.get('notice') %}
-<div class="message notice">
-  {{ message|trans({}, 'admin') }}
-</div>
+    <div class="alert alert-info">
+        {{ message|trans({}, 'admin') }}
+    </div>
 {% endfor %}
 
-<p>{{ 'admin.coupons.edit.description.text'|trans({}, 'admin') }}</p>
+    <p>{{ 'admin.coupons.edit.description.text'|trans({}, 'admin') }}</p>
 
-<form action="{{ path('admin_coupons_edit', {'id' : coupon.id}) }}" method="post" {{ form_enctype(form) }} id="coupons-edit-form" class="edit-form">
-  <div id="coupons-edit">
-    {{ form_row(form._token) }}
-    {{ form_rest(form) }}
-  </div>
-  <br>
-  <input class="button right" type="submit" value="{{ 'update.coupons'|trans({}, 'admin') }}">
-  <a class="button left" href="{{ path('admin_coupons') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
-</form>
+    {% form_theme form 'AdminBundle:Form:fields.html.twig' %}
+    <form action="{{ path('admin_coupons_edit', {'id' : coupon.id}) }}" method="post" {{ form_enctype(form) }} id="coupons-edit-form" class="form-horizontal">
+        {{ form_row(form._token) }}
+        {{ form_rest(form) }}
+        <div class="form-group">
+            <input class="button right btn btn-success" type="submit" value="{{ 'update.coupons'|trans({}, 'admin') }}">
+            <a class="button left btn btn-default" href="{{ path('admin_coupons') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
+        </div>
+    </form>
 
 {% endblock %}

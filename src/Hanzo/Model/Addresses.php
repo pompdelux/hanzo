@@ -2,6 +2,7 @@
 
 namespace Hanzo\Model;
 
+use Hanzo\Core\Hanzo;
 use Hanzo\Model\om\BaseAddresses;
 
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
@@ -80,9 +81,17 @@ class Addresses extends BaseAddresses
      */
     public function isFullNameWithinLimits(ExecutionContextInterface $context)
     {
+        $domain = Hanzo::getInstance()->get('core.domain_key');
+        $maxLength = 30;
+        if ($domain == 'DE') {
+            // In germany the max length are including the Frau/Herr prefix
+            // plus a space. Subtract 5 chars.
+            $maxLength = 25;
+        }
+
         $length = mb_strlen($this->getFirstName().' '.$this->getLastName());
-        if (30 < $length) {
-            $context->addViolationAt('first_name', 'name.max.length', ['{{ limit }}' => 30], null, $length);
+        if ($maxLength < $length) {
+            $context->addViolationAt('first_name', 'name.max.length', ['{{ limit }}' => $maxLength], null, $length);
         }
     }
 

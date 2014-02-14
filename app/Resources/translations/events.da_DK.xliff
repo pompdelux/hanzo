@@ -224,7 +224,7 @@
             </trans-unit>
             <trans-unit id="events.notify_hostess.label">
                 <source>events.notify_hostess.label</source>
-                <target>Notificer værtinde?</target>
+                <target>Send bekræftelse til værtinde?</target>
             </trans-unit>
             <trans-unit id="events.customer.found">
                 <source>events.customer.found</source>
@@ -276,7 +276,7 @@
             </trans-unit>
             <trans-unit id="events.participants.no.participants">
                 <source>events.participants.no.participants</source>
-                <target>Der er ingen deltagere på dette event</target>
+                <target>Der er ingen deltagere på dette arrangement</target>
             </trans-unit>
             <trans-unit id="events.rsvp.header.text">
                 <source>events.rsvp.header.text</source>

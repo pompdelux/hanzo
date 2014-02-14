@@ -21,11 +21,18 @@
 <link rel="dns-prefetch" href="//html5shim.googlecode.com">
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
 
-<link rel="shortcut icon" href="{{ image_path('/fx/images/favicon.ico') }}" title="POMPdeLUX" />
-<link href='//fonts.googleapis.com/css?family=Merriweather:400,700,900' rel='stylesheet' type='text/css'>
-<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+<link rel="shortcut icon" href="{{ image_path('/fx/images/favicon.ico') }}" title="POMPdeLUX">
 
-{% stylesheets
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="/fx/css/colorbox/theme4/colorbox.css">
+<link rel="stylesheet" href="/fx/css/dialoug.css">
+<link rel="stylesheet" href="/fx/css/jquery-ui.css">
+<link rel="stylesheet" href="/fx/css/flags.css">
+
+<link href='//fonts.googleapis.com/css?family=Merriweather:400,700,900' rel='stylesheet' type='text/css'>
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+{# stylesheets
     'fx/css/boilerplate.css'
     'fx/css/colorbox/theme4/colorbox.css'
     'fx/css/jquery-ui.css'
@@ -40,7 +47,7 @@
     combine=true
 %}
 <link rel="stylesheet" href="{{ asset_url }}" media="all">
-{% endstylesheets %}
+{% endstylesheets #}
 
 <script type="text/javascript" src="{{ cdn|replace({'http:':''}) }}fx/scripts/modernizr.js"></script>
 <script type="text/javascript">
@@ -50,79 +57,84 @@ var cdn_url = '{{ cdn }}';
 </head>
 <body id="body-{{ page_type|default('admin') }}" class="{{ body_classes|default('cms global') }}">
 
-<div id="container">
-  <a href="{{ path('admin') }}" title="{{ "admin.home"|trans }}">
-    {{ fx_image_tag('images/POMPdeLUX_logo_SS12.png', '', {'id':'logo', 'alt':'POMPdeLUX'}) }}
-  </a>
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-top-menu-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/admin/">
+                    {{ fx_image_tag('images/POMPdeLUX_logo_SS12.png', '', {'id':'logo', 'alt':'POMPdeLUX', 'style': 'height:30px;'}) }}
+                    POMPdeLUX admin
+                </a>
+            </div>
 
-  {# see: AdminBundle->CmsController->adminMenuAction #}
-  {{ render(controller('AdminBundle:Cms:adminMenu')) }}
+            <div class="navbar-collapse collapse" id="bs-top-menu-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="flag {{ database|default('pdldbda') }}"></span>{{ database|default('default') }} - Vælg domæne database <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ path('admin_database') }}" class=""><span class="flag DK"></span><span class="flag COM"></span> .DK/.COM (pdlda)</a></li>
+                            <li><a href="{{ path('admin_database', {name : 'pdldbat1'}) }}" class=""><span class="flag AT"></span> .AT (pdldbat1)</a></li>
+                            <li><a href="{{ path('admin_database', {name : 'pdldbch1'}) }}" class=""><span class="flag CH"></span> .CH (pdldbch1)</a></li>
+                            <li><a href="{{ path('admin_database', {name : 'pdldbde1'}) }}" class=""><span class="flag DE"></span> .DE (pdldbde1)</a></li>
+                            <li><a href="{{ path('admin_database', {name : 'pdldbfi1'}) }}" class=""><span class="flag FI"></span> .FI (pdldbfi1)</a></li>
+                            <li><a href="{{ path('admin_database', {name : 'pdldbnl1'}) }}" class=""><span class="flag NL"></span> .NL (pdldbnl1)</a></li>
+                            <li><a href="{{ path('admin_database', {name : 'pdldbno1'}) }}" class=""><span class="flag NO"></span> .NO (pdldbno1)</a></li>
+                            <li><a href="{{ path('admin_database', {name : 'pdldbse1'}) }}" class=""><span class="flag SE"></span> .SE (pdldbse1)</a></li>
+                        </ul>
+                    </li>
 
-  <div id="main" role="main">
-    {% block content %}
-    {% endblock %}
-  </div><!-- /div#main -->
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ryd Cache <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ path('admin_cache_jscss') }}" class="cache-clear">Ryd js + css</a></li>
+                            <li><a href="{{ path('admin_cache_redis') }}" class="cache-clear">Ryd Redis</a></li>
+                            <li><a href="{{ path('admin_cache_file') }}" class="cache-clear">Ryd filer</a></li>
+                            <li><a href="{{ path('admin_cache_router') }}" class="cache-clear">Genopbyg router</a></li>
+                        </ul>
+                    </li>
 
-  <aside id="secondary-links" role="secondary-links">
-    <ul>
-      <li>
-        <a href="{{ path('logout') }}">Log Ud</a>
-      </li>
-      <li id="select-database">
-        <a class="open-menu" href="#"><span class="flag {{ database|default('pdldbda') }}"></span>{{ database|default('default') }} - Vælg domæne database &darr;</a>
-        <div style="display: none">
-          <a href="{{ path('admin_database') }}" class=""><span class="flag DK"></span><span class="flag COM"></span> .DK/.COM (pdlda)</a><br><br>
-          <a href="{{ path('admin_database', {name : 'pdldbat1'}) }}" class=""><span class="flag AT"></span> .AT (pdldbat1)</a><br><br>
-          <a href="{{ path('admin_database', {name : 'pdldbch1'}) }}" class=""><span class="flag CH"></span> .CH (pdldbch1)</a><br><br>
-          <a href="{{ path('admin_database', {name : 'pdldbde1'}) }}" class=""><span class="flag DE"></span> .DE (pdldbde1)</a><br><br>
-          <a href="{{ path('admin_database', {name : 'pdldbfi1'}) }}" class=""><span class="flag FI"></span> .FI (pdldbfi1)</a><br><br>
-          <a href="{{ path('admin_database', {name : 'pdldbnl1'}) }}" class=""><span class="flag NL"></span> .NL (pdldbnl1)</a><br><br>
-          <a href="{{ path('admin_database', {name : 'pdldbno1'}) }}" class=""><span class="flag NO"></span> .NO (pdldbno1)</a><br><br>
-          <a href="{{ path('admin_database', {name : 'pdldbse1'}) }}" class=""><span class="flag SE"></span> .SE (pdldbse1)</a><br><br>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gå til POMPdeLUX site <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="http://www.pompdelux.com/de_AT/">Austria</a></li>
+                            <li><a href="http://www.pompdelux.com/da_DK/">Denmark</a></li>
+                            <li><a href="http://www.pompdelux.com/de_DE/">Germany</a></li>
+                            <li><a href="http://www.pompdelux.com/fi_FI/">Finland</a></li>
+                            <li><a href="http://www.pompdelux.com/en_GB/">International</a></li>
+                            <li><a href="http://www.pompdelux.com/nl_NL/">Netherlands</a></li>
+                            <li><a href="http://www.pompdelux.com/nb_NO/">Norway</a></li>
+                            <li><a href="http://www.pompdelux.com/sv_SE/">Sweden</a></li>
+                            <li><a href="http://www.pompdelux.com/de_CH/">Switzerland</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="{{ path('logout') }}">Log Ud</a></li>
+                </ul>
+            </div>
         </div>
-      </li>
-      <li id="select-cache">
-        <a class="open-menu" href="#">Ryd Cache &darr;</a>
-        <div style="display: none">
-          <a href="{{ path('admin_cache_jscss') }}" class="cache-clear">Ryd js + css</a><br><br>
-          <a href="{{ path('admin_cache_redis') }}" class="cache-clear">Ryd Redis</a><br><br>
-          <a href="{{ path('admin_cache_file') }}" class="cache-clear">Ryd filer</a><br><br>
-          <a href="{{ path('admin_cache_router') }}" class="cache-clear">Genopbyg router</a><br><br>
-        </div>
-      </li>
-      <li id="select-domain">
-        <a class="open-menu" href="#">Gå til POMPdeLUX site &darr;</a>
-        <div style="display: none">
-          <a href="http://www.pompdelux.com/de_AT/">Austria</a><br>
-          <a href="http://www.pompdelux.com/da_DK/">Denmark</a><br><br>
-          <a href="http://www.pompdelux.com/de_DE/">Germany</a><br>
-          <a href="http://www.pompdelux.com/fi_FI/">Finland</a><br><br>
-          <a href="http://www.pompdelux.com/en_GB/">International</a><br><br>
-          <a href="http://www.pompdelux.com/nl_NL/">Netherlands</a><br><br>
-          <a href="http://www.pompdelux.com/nb_NO/">Norway</a><br><br>
-          <a href="http://www.pompdelux.com/sv_SE/">Sweden</a><br>
-          <a href="http://www.pompdelux.com/de_CH/">Switzerland</a><br>
-        </div>
-      </li>
-    </ul>
-  </aside>
+    </div>
 
-</div>
-
-<footer>
-  <ul>
-    <li>{{ fx_image_tag('images/creditcards_dk.png', '', {'alt':'credit cards'}) }}</li>
-    <li>POMPdeLUX ApS</li>
-    <li>Møgelhøj 8</li>
-    <li>DK-8520 Lystrup</li>
-    <li>CVR-nr 29622035</li>
-    <li><a href="mailto:mail@pompdelux.dk">mail@pompdelux.dk</a></li>
-    <li>+45 8678 7871</li>
-  </ul>
-</footer>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                {# see: AdminBundle->CmsController->adminMenuAction #}
+                {{ render(controller('AdminBundle:Cms:adminMenu')) }}
+            </div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                {% block content %}
+                {% endblock %}
+            </div><!-- /div#main -->
+        </div>
+    </div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 
 <script type="text/javascript" src="{{ asset('bundles/bazingaexposetranslation/js/translator.min.js') }}"></script>
 <script type="text/javascript" src="{{ url('bazinga_exposetranslation_js', { 'domain_name': 'js', '_locale' : app.request.locale }) }}"></script>

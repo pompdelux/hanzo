@@ -3,12 +3,6 @@
     var pub = {};
 
     pub.initUI = function() {
-
-      $("a.open-menu").click(function(e) {
-        e.preventDefault();
-        $(this).parent().find('div').slideToggle();
-      });
-
       $('.js-loading-spinner').on('click', function(event) {
           dialoug.loading($(this));
       });
@@ -293,6 +287,7 @@
         var selectedOption = $product_select.find('option:selected');
         var reference = selectedOption.val().split('-');
         var image = reference[0];
+
         var product = reference[1];
         var color = $color_select.find('option:selected').val();
         $.ajax({
@@ -306,9 +301,16 @@
               if (response.message) {
                 dialoug.alert(Translator.get('js:notice', response.message));
               }
-            }
-            else {
-              $('#item-' + image + ' .product-references').append('<li><span class="id">(#' + product + ')</span><span class="sku">' + selectedOption.text() + '</span> - <span class="color">' + color + '</span></li>');
+            } else {
+              $color_select.next('ul').append(
+                  '<li>' +
+                      '<span class="actions">' +
+                        '<a href="'+base_url+'products/delete-reference/'+image+'/'+product+'" class="delete glyphicon glyphicon-remove-circle" title="Delete"></a> ' +
+                      '</span>' +
+                      '<span class="id">(#' + product + ')</span>'+
+                      '<span class="sku">' + selectedOption.text() + '</span> - <span class="color">' + color + '</span>'+
+                  '</li>'
+              );
               $color_select.attr('disabled', 'disabled')
                 .find('option')
                 .not('.initial')
@@ -322,7 +324,6 @@
           }
         });
       });
-
 
       $('#product-images-list a.delete').on('click',function(e){
         e.preventDefault();
@@ -347,7 +348,8 @@
 
       //ProductsImagesCategoriesSort on Products page
       $('.image-category-selector').change(function(){
-        var selectedOption = $(this).find('option:selected');
+        var $selector = $(this);
+        var selectedOption = $selector.find('option:selected');
         var reference = selectedOption.val().split('-');
         var image = reference[0];
         var category = reference[1];
@@ -364,7 +366,7 @@
               }
             }
             else {
-              $('#item-' + image + ' .image-categories').append('<li><span class="actions"><a href="' + base_url + 'products/delete-image-from-category/' + image + '/' + category + '" class="delete" title="Slet">Slet</a></span><span class="sku">' + selectedOption.text() + '</span></li>');
+                $selector.next('ul').append('<li><span class="actions"><a href="' + base_url + 'products/delete-image-from-category/' + image + '/' + category + '" class="delete glyphicon glyphicon-remove-circle" title="Slet"></a> </span><span class="sku">' + selectedOption.text() + '</span></li>');
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {
@@ -393,7 +395,7 @@
               }
             }
             else {
-              $('#product-categories').append('<li><span class="actions"><a href="' + base_url + 'products/delete-category/' + category + '/' + product + '" class="delete" title="Slet">Slet</a></span><span class="id">(#' + category + ')</span><span class="title"> ' + selectedOption.text() + '</span></li>');
+              $('#product-categories').append('<li><span class="actions"><a href="' + base_url + 'products/delete-category/' + category + '/' + product + '" class="delete glyphicon glyphicon-remove-circle" title="Slet"></a> </span><span class="id">(#' + category + ')</span><span class="title"> ' + selectedOption.text() + '</span></li>');
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {
@@ -443,7 +445,7 @@
               }
             }
             else {
-              $('#product-related-products').append('<li><span class="actions"><a href="' + base_url + 'products/delete-related/' + master + '/' + sku + '" class="delete" title="Slet">Slet</a></span><span class="title"> ' + selectedOption.text() + '</span></li>');
+              $('#product-related-products').append('<li><span class="actions"><a href="' + base_url + 'products/delete-related/' + master + '/' + sku + '" class="delete glyphicon glyphicon-remove-circle" title="Slet"></a></span><span class="title"> ' + selectedOption.text() + '</span></li>');
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {

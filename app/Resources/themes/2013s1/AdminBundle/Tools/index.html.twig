@@ -4,9 +4,9 @@
 <h1>Knapper</h1>
 
 {% for message in app.session.flashbag.get('notice') %}
-  <div class="message">
-    {{ message }}
-  </div><br>
+    <div class="alert alert-info">
+        {{ message }}
+    </div>
 {% endfor %}
 
 

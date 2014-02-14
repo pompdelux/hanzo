@@ -2,13 +2,17 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
+            <trans-unit id="size.label.postfix">
+                <source>size.label.postfix</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="size.guide.link">
                 <source>size.guide.link</source>
                 <target>images/pages/Size_Guide_NO.jpg</target>
             </trans-unit>
             <trans-unit id="size.guide.link.text">
                 <source>size.guide.link.text</source>
-                <target>» Size guide</target>
+                <target>Size guide</target>
             </trans-unit>
             <trans-unit id="out.of.stock">
                 <source>out.of.stock</source>
@@ -21,6 +25,10 @@
             <trans-unit id="show.basket">
                 <source>show.basket</source>
                 <target>Vis kurv</target>
+            </trans-unit>
+            <trans-unit id="your.basket" approved="no">
+                <source>your.basket</source>
+                <target>Your Basket</target>
             </trans-unit>
             <trans-unit id="choose">
                 <source>choose</source>
@@ -173,6 +181,16 @@
                     </ul>
                 ]]></target>
             </trans-unit>
+            <trans-unit id="footer.text" approved="no">
+                <source>footer.text</source>
+                <target><![CDATA[
+                    <ul>
+                        <li><b>Frakt</b> fra 49,-</li>
+                        <li><b>Leveringstid</b> %expected_delivery_date%</li>
+                        <li><b>Bytting</b> Gratis</li>
+                    </ul>
+                ]]></target>
+            </trans-unit>
             <trans-unit id="order.deleted">
                 <source>order.deleted</source>
                 <target>E-ordrenummer %id% er slettet</target>
@@ -242,13 +260,13 @@
             <trans-unit id="delivery.info" approved="no">
                 <source>delivery.info</source>
                 <target><![CDATA[
-                    <p>Alle varer sendes som pakkepost med <a href="http://tracking.bring.dk/index.html" target="_blank">Bring</a> / <a href="http://www.posten.no/" target="_blank">www.posten.no</a>. Du har derfor mulighet for å følge pakken via <a href="http://tracking.bring.dk/index.html" target="_blank">sporingsnummer </a> fra den sendes til den blir levert. Pakkene sendes som privatpakke og skal avhentes på utleveringssted. Frakten er NOK 49,00 hvis du kjøper varene til et Home Shopping arrangement og NOK 69,00 når du kjøper varene i vår Webshop. <br /><br />
-      Når du har mottatt pakken, bør du kontrollere varene. Hvis pakken og/eller innholdet er skadet, ber vi deg straks ta kontakt med vår Kundeservice eller <a href="http://www.posten.no/" target="_blank">www.posten.no</a>. </p>
+                    <p>Alle varer sendes som pakkepost med <a href="http://tracking.bring.dk/index.html" target="_blank">Bring</a> / <a href="http://www.posten.no/" target="_blank">Posten</a>. Du har derfor mulighet for å følge pakken via <a href="http://tracking.bring.dk/index.html" target="_blank">sporingsnummer </a> fra den sendes til den ankommer utleveringsstedet. Pakkene sendes som privatpakke og skal avhentes på utleveringssted. Frakten er NOK 49,00 hvis du kjøper varene til et Home Shopping arrangement og NOK 69,00 når du kjøper varene i vår Webshop.<br /><br />
+      Når du har mottatt pakken, bør du kontrollere varene. Hvis pakken og/eller innholdet er skadet, ber vi deg straks ta kontakt med vår Kundeservice eller <a href="http://www.posten.no/" target="_blank">Posten</a>. </p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="return.title" approved="no">
                 <source>return.title</source>
-                <target>Tilbake</target>
+                <target>Returnering</target>
             </trans-unit>
             <trans-unit id="return.info" approved="no">
                 <source>return.info</source>
@@ -284,12 +302,12 @@
                     <li><a href="/nb_NO/forside/home-shopping/apent-hus">Åpent Hus</a></li>
 				    <li><a href="/nb_NO/forside/katalog">Katalog</a></li>
                     <li><a href="/nb_NO/forside/bli-konsulent/fritidskonsulent">Bli Shopping Advisor</a></li>
-                </ul><br>		
+                </ul><br>
 				<h2>BE SOCIAL</h2>
 				 <ul class="menu">
 				 <li><a href="http://instagram.com/pompdelux_official" target="_blank"> Instagram</a></li>
 				<li><a href="https://www.facebook.com/POMPdeLUXDK" target="_blank">Facebook</a></li>
-				<li><a href="/nb_NO/forside/katalog/backstage-video">Backstage video</a></li>				 
+				<li><a href="/nb_NO/forside/katalog/backstage-video">Backstage video</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>
@@ -301,6 +319,7 @@
                     <li><a href="/nb_NO/forside/om-pompdelux">Om POMPdeLUX</a></li>
                     <li><a href="/nb_NO/forside/om-pompdelux/corporate-social-responsibility/csr-rapport">CSR</a></li>
 					<li><a href="/nb_NO/forside/konkurranse">Konkurranse</a></li>
+					<li><a href="/nb_NO/forside/om-pompdelux/presse">Presse</a></li>
 					<li><a href="/nb_NO/forside/om-pompdelux/kontakt">Kontakt</a></li>
                 </ul>
                 ]]></target>

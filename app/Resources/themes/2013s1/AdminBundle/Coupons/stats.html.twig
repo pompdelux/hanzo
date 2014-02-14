@@ -1,32 +1,37 @@
 {% extends '::adminbase.html.twig' %}
 
 {% block content %}
-<nav class="sub">
-  <ul>
-    {{ include('AdminBundle:Coupons:menu.html.twig') }}
-  </ul>
-</nav>
-<h1>Stats</h1>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                {{ include('AdminBundle:Coupons:menu.html.twig') }}
+            </ul>
+        </div>
+    </nav>
+
+    <h1>Stats</h1>
 
 {% for message in app.session.flashbag.get('notice') %}
-    <div class="message notice">
+    <div class="alert alert-info">
         {{ message|trans({}, 'admin') }}
     </div>
 {% endfor %}
 
-    <form action="{{ path('admin_coupons_stats') }}" method="get" id="statistics-periode" class="inline">
-    <label for="start">Fra dato:</label>
-    <input type="text" name="start" id="start" class="datepicker" value="{{ 'now'|date('d-m-Y') }}">
-    <label for="end">Til dato:</label>
-    <input type="text" name="end" id="end" class="datepicker" value="{{ 'now'|date('d-m-Y') }}">
-    <input class="button right" type="submit" value="{{ 'admin.statistics.periode.submit'|trans({}, 'admin') }}">
-</form>
+
+    <form action="{{ path('admin_coupons_stats') }}" method="get" id="statistics-periode" class="form-inline">
+        <label for="start" class="control-label">Fra dato:</label>
+        <input type="text" name="start" id="start" class="datepicker form-control" value="{{ 'now'|date('d-m-Y') }}">
+
+        <label for="end" class="control-label">Til dato:</label>
+        <input type="text" name="end" id="end" class="datepicker form-control" value="{{ 'now'|date('d-m-Y') }}">
+        <input class="button right btn btn-success" type="submit" value="{{ 'admin.statistics.periode.submit'|trans({}, 'admin') }}">
+    </form>
 
 <hr>
 
 {% if data.used is defined %}
 
-<table id="statistics" class="list">
+<table id="statistics" class="table">
     <tr>
         <th>Totale Antal:</th>
         <td>{{ data.total }}</td>

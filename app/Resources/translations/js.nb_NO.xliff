@@ -375,6 +375,10 @@
                 <source>rma.product.not.filled.correctly</source>
                 <target>Når du skal bytte din vare, skal du taste inn både størrelse og farge.</target>
             </trans-unit>
+            <trans-unit id="checkout.confirm.address.block" approved="no">
+                <source>checkout.confirm.address.block</source>
+                <target>Bekreft, at dine adresseopplysninger er riktige.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

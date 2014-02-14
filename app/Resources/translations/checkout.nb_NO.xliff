@@ -62,14 +62,6 @@
             <p>E-ordrenummer: <b>%order_id%</b></p>
             ]]></target>
       </trans-unit>
-      <trans-unit id="confirm.title">
-        <source>confirm.title</source>
-        <target>Godkjenn</target>
-      </trans-unit>
-      <trans-unit id="confirm.addresses.label" approved="no">
-        <source>confirm.addresses.label</source>
-        <target>Ja, adressene over er korrekte.</target>
-      </trans-unit>
       <trans-unit id="confirm.order_id">
         <source>confirm.order_id</source>
         <target>E-ordrenummer</target>
@@ -209,7 +201,7 @@
       </trans-unit>
       <trans-unit id="my.account.info">
         <source>my.account.info</source>
-        <target>Se ordrene dine, rett i dine personlige opplysninger, rett adgangskode og mye mer.</target>
+        <target>Se ordrene dine, rett i dine personlige opplysninger, rett passord og mye mer.</target>
       </trans-unit>
       <trans-unit id="my.account.username">
         <source>my.account.username</source>

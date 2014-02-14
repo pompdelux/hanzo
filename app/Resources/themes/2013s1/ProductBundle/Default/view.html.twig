@@ -11,34 +11,16 @@
 {% endblock %}
 
 {% block content %}
-
+{#
 <div class="grid_8 alpha omega">
   {{ render(controller('CMSBundle:Menu:menu', {'type': 'breadcrumb', 'thread': 20})) }}
-</div>
+</div> #}
 <div class="grid_8 alpha omega container_16" itemscope itemtype="http://data-vocabulary.org/Product">
   <meta itemprop="brand" content="POMPdeLUX" />
   <meta itemprop="identifier" content="sku:{{ product.title }}" />
   <div class="grid_8 alpha">
     <div class="grid_8 alpha omega history-link">
         <a href="javascript:history.go(-1)" title="{{ 'back.to.category'|trans }}" class="back-button"><i class="sprite icons-arrow_left"></i>  {{ 'back.to.category'|trans }}</a>
-    </div>
-
-    <div class="grid_4 alpha">
-        {{ include('CMSBundle:Social:share.html.twig', {
-            'url': app.request.uri,
-            'image': product_image_url(product.main_image.name, '0x1670'),
-            'description': product.title
-        }) }}
-    </div>
-    <div class="grid_4 omega align-right">
-    {% if product.has_video %}
-        <a href="{{ url('ws_product_video') }}" title="{{ 'click.to.video'|trans }}" data-width="594" data-height="594" data-src="{{ product.title|replace(' ', '_') }}" data-banner="video_bg" class="video video-popper right">
-          <div class="sprite sprite-block centerfy"></div>
-        </a>
-    {% endif %}
-      <a href="{{ product_image_url(product.main_image.name, '0x0') }}" title="{{ 'click.to.zoom'|trans }}" data-id="image-id-{{ product.main_image.id }}" data-src="{{ product_image_url(product.main_image.name, '114x200') }}" class="picture-zoom zoom">
-        <div class="sprite sprite-block centerfy"></div>
-      </a>
     </div>
 
     <div class="productimages">
@@ -69,6 +51,18 @@
           {% endif %}
         </div>
       </div>
+
+
+    <div class="grid_8 alpha omega">
+    {% if product.has_video %}
+        <a href="{{ url('ws_product_video') }}" title="{{ 'click.to.video'|trans }}" data-width="594" data-height="594" data-src="{{ product.title|replace(' ', '_') }}" data-banner="video_bg" class="video video-popper">
+          <div class="sprite"></div>
+        </a>
+    {% endif %}
+      <a href="{{ product_image_url(product.main_image.name, '0x0') }}" title="{{ 'click.to.zoom'|trans }}" data-id="image-id-{{ product.main_image.id }}" data-src="{{ product_image_url(product.main_image.name, '114x200') }}" class="picture-zoom zoom">
+        <div class="sprite"></div>
+      </a>
+    </div>
 
     {% if product.images is not empty %}
       <div class="productimage-small grid_8 alpha omega bordered-top">
@@ -106,12 +100,16 @@
       {% endfor %}
     </div>
 
-    <div class="grid_8 alpha omega latest-seen-poducts bordered-top">
-      <h4>{{ 'latest.seen.products.title'|trans }}</h4>
-    </div>
   </div>
 
   <div class="grid_7 push_1 omega">
+    <div class="grid_4 push_3 align-right omega">
+      {% include 'CMSBundle:Social:share.html.twig' with {
+        'url': app.request.uri,
+        'image': product_image_url(product.main_image.name, '0x1670'),
+        'description': product.title }
+      %}
+    </div>
     <h1 class="title" itemprop="name">{{ product.title }}</h1>
 
     <div class="prices" itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">
@@ -141,9 +139,9 @@
               <select class="size" name="size">
                 <option value="">{{ "choose"|trans }}</option>
               {% for size in product.sizes %}
-                <option value="{{ size.value }}" {{ not size.in_stock ? 'disabled="disabled"' : '' }} >{{ size.value }} {{ not size.in_stock ? "("~ "out.of.stock"|trans ~ ")" : '' }}</option>
+                <option value="{{ size.value }}" {{ not size.in_stock ? 'disabled="disabled"' : '' }} >{{ size.label }} {{ not size.in_stock ? "("~ "out.of.stock"|trans ~ ")" : '' }}</option>
               {% endfor %}
-              </select><a href="{{ image_path(cdn ~ 'size.guide.link'|trans ) }}" class="colorbox">{{ 'size.guide.link.text'|trans }}</a>
+              </select>
             </div>
             <div><span class="small">{{ 'choose.size.note'|trans }}</span></div>
           </label>
@@ -168,9 +166,9 @@
           </label>
         </div>
 
-        <div class="align-center">
-          <input type="submit" value="{{ "add.to.basket"|trans }}" class="button submit-button centerfy">
-        </div>
+        <a href="{{ image_path(cdn ~ 'size.guide.link'|trans ) }}" class="colorbox sizeguide">{{ 'size.guide.link.text'|trans }}</a>
+
+        <input type="submit" value="{{ "add.to.basket"|trans }}" class="button submit-button">
         <input type="hidden" id="master" name="master" value="{{ product.sku }}">
       </form>
 
@@ -179,9 +177,9 @@
     </div>
     <div class="productdescription tab-box">
       <ul class="tabs bordered">
-        <li><a href="">{{ "product.details"|trans }}</a></li>
+        <li><a href=""><i></i>{{ "product.details"|trans }}</a></li>
       {% if product.washing %}
-        <li><a href="">{{ "care.instructions"|trans }}</a></li>
+        <li><a href=""><i></i>{{ "care.instructions"|trans }}</a></li>
       {% endif %}
       </ul>
 
@@ -197,8 +195,8 @@
 
     <div class="deliverydescription tab-box">
       <ul class="tabs bordered">
-        <li><a href="" data-pane="1">{{ "delivery.title"|trans }}</a></li>
-        <li><a href="" data-pane="2">{{ "return.title"|trans }}</a></li>
+        <li><a href="" data-pane="1"><i></i>{{ "delivery.title"|trans }}</a></li>
+        <li><a href="" data-pane="2"><i></i>{{ "return.title"|trans }}</a></li>
       </ul>
 
       <div class="panes">
@@ -207,6 +205,10 @@
         </div>
         <div class="off pane-2">{{ 'return.info'|trans|raw }}</div>
       </div>
+    </div>
+
+    <div class="grid_7 alpha omega latest-seen-poducts">
+      <h4>{{ 'latest.seen.products.title'|trans }}</h4>
     </div>
   </div>
 

@@ -120,6 +120,10 @@ Wenden Sie sich bitte an den Kundendienst von Gothia: +45 7027 2795<br>Bei ander
         <source>The reservation was not approved at Gothia Invoice Service. You may have exceeded the limit of reservations at Gothia.</source>
         <target>Der Kauf wurde nicht von der GFG Finanz GmbH genehmigt. Der Grund hierfür kann sein, dass Sie Ihr Limit erreicht haben.</target>
       </trans-unit>
+      <trans-unit id="gothia.response.10041">
+        <source>Your account information is incorrect. Please check that you have entered the correct bank code and account number.</source>
+        <target>Ihre Kontodaten sind nicht korrekt. Bitte kontrollieren Sie, ob Sie die richtige BLZ- und Kontonummer eingegeben haben.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

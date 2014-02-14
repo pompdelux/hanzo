@@ -1,113 +1,108 @@
 {% extends '::adminbase.html.twig' %}
 
 {% block content %}
-<nav class="sub">
-  <ul>
-    <li>
-      <a href="{{ path('admin_customers') }}">
-        {{ 'admin.customers.list.link'|trans({}, 'admin') }}
-      </a>
-    </li>
-    <li>
-      <a href="{{ path('admin_consultants') }}">
-        {{ 'admin.consultants.list.link'|trans({}, 'admin') }}
-      </a>
-    </li>
-  </ul>
-</nav>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ path('admin_customers') }}">{{ 'admin.customers.list.link'|trans({}, 'admin') }}</a></li>
+                <li><a href="{{ path('admin_consultants') }}">{{ 'admin.consultants.list.link'|trans({}, 'admin') }}</a></li>
+            </ul>
+        </div>
+    </nav>
 
-<h1>{{ 'admin.consultants.events.header.text'|trans({}, 'admin') }}</h1>
+    <h1>{{ 'admin.consultants.events.header.text'|trans({}, 'admin') }}</h1>
 
 {% for message in app.session.flashbag.get('notice') %}
-<div class="message notice">
-  {{ message|trans({}, 'admin') }}
-</div>
+    <div class="alert alert-info">
+        {{ message|trans({}, 'admin') }}
+    </div>
 {% endfor %}
 
-<p>{{ 'admin.consultants.events.description.text'|trans({}, 'admin') }}</p>
+    <p>{{ 'admin.consultants.events.description.text'|trans({}, 'admin') }}</p>
 
-<form action="{{ path('admin_consultants_export') }}" method="get" id="consultant-export" class="inline">
-  <div>
-    <label for="start">{{ 'admin.consultant.export.start.label'|trans({}, 'admin') }}</label>
-    <input type="text" id="start" name="start" value="{{ start }}" class="datepicker">
-    <label for="end">{{ 'admin.consultant.export.end.label'|trans({}, 'admin') }}</label>
-    <input type="text" id="end" name="end" value="{{ end }}" class="datepicker">
-    <input class="button right" type="submit" value="{{ 'admin.consultant.export.link'|trans({}, 'admin') }}">
-  </div>
-</form>
+    <form action="{{ path('admin_consultants_export') }}" method="get" id="consultant-export" class="form-inline">
+        <div class="form-group">
+            <label for="start">{{ 'admin.consultant.export.start.label'|trans({}, 'admin') }}</label>
+            <input type="text" id="start" name="start" value="{{ start }}" class="datepicker">
+        </div>
+        <div class="form-group">
+            <label for="end">{{ 'admin.consultant.export.end.label'|trans({}, 'admin') }}</label>
+            <input type="text" id="end" name="end" value="{{ end }}" class="datepicker">
+        </div>
+        <input class="button btn btn-success" type="submit" value="{{ 'admin.consultant.export.link'|trans({}, 'admin') }}">
+    </form>
 
-{% if events|length > 0 %}
+    {% if events|length > 0 %}
 
-  {% if paginate %}
-  <div>
-    {% import "::macro.pager.html.twig" as p %}
-    {{ p.pager(paginate, 'events') }}
-  </div>
-  {% endif %}
-<table id="events" class="list">
-  <thead>
-    <tr>
-      <th class="code">{{ 'admin.consultants.events.code'|trans({}, 'admin') }}</th>
-      <th class="key">{{ 'admin.consultants.events.key'|trans({}, 'admin') }}</th>
-      <th class="event_date">{{ 'admin.consultants.events.event_date'|trans({}, 'admin') }}</th>
-      <th class="host">{{ 'admin.consultants.events.host'|trans({}, 'admin') }}</th>
-      <th class="address_line_1">{{ 'admin.consultants.events.address_line_1'|trans({}, 'admin') }}</th>
-      <th class="address_line_2">{{ 'admin.consultants.events.address_line_2'|trans({}, 'admin') }}</th>
-      <th class="postal_code">{{ 'admin.consultants.events.postal_code'|trans({}, 'admin') }}</th>
-      <th class="city">{{ 'admin.consultants.events.city'|trans({}, 'admin') }}</th>
-      <th class="phone">{{ 'admin.consultants.events.phone'|trans({}, 'admin') }}</th>
-      <th class="email">{{ 'admin.consultants.events.email'|trans({}, 'admin') }}</th>
-      <th class="description">{{ 'admin.consultants.events.description'|trans({}, 'admin') }}</th>
-      <th class="type">{{ 'admin.consultants.events.type'|trans({}, 'admin') }}</th>
-      <th class="is_open">{{ 'admin.consultants.events.is_open'|trans({}, 'admin') }}</th>
-      <th class="notify_hostess">{{ 'admin.consultants.events.notify_hostess'|trans({}, 'admin') }}</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for event in events %}
-    <tr>
-      <td>{{ event.code }}</td>
-      <td>{{ event.key }}</td>
-      <td>{{ event.eventdate }}</td>
-      <td>{{ event.host }}</td>
-      <td>{{ event.addressline1 }}</td>
-      <td>{{ event.addressline2 }}</td>
-      <td>{{ event.postalcode }}</td>
-      <td>{{ event.city }}</td>
-      <td>{{ event.phone }}</td>
-      <td>{{ event.email }}</td>
-      <td>{{ event.description }}</td>
-      <td>{{ event.type }}</td>
-      <td>
-        {% if event.isopen == 1 %}
-          {{ 'admin.consultant.yes'|trans({}, 'admin') }}
-        {% else %}
-          {{ 'admin.consultant.no'|trans({}, 'admin') }}
+        {% if paginate %}
+            <div>
+                {% import "::macro.pager.html.twig" as p %}
+                {{ p.pager(paginate, 'events', true) }}
+            </div>
         {% endif %}
-      </td>
-      <td>
-        {% if event.notifyhostess == 1 %}
-          {{ 'admin.consultant.yes'|trans({}, 'admin') }}
-        {% else %}
-          {{ 'admin.consultant.no'|trans({}, 'admin') }}
-        {% endif %}
-      </td>
-      <th>
-        <a class="delete" href="{{ path('admin_consultants_event_delete', {'id' : event.id}) }}">
-          {{ 'delete'|trans({}, 'admin') }}
-        </a>
-      </th>
-    </tr>
-  {% endfor %}
-  </tbody>
-</table>
-  {% if paginate %}
-    {% import "::macro.pager.html.twig" as p %}
-    {{ p.pager(paginate, 'events') }}
-  {% endif %}
 
-{% else %}
+        <table id="events" class="table table-striped">
+            <thead>
+            <tr>
+                <th class="code">{{ 'admin.consultants.events.code'|trans({}, 'admin') }}</th>
+                <th class="key">{{ 'admin.consultants.events.key'|trans({}, 'admin') }}</th>
+                <th class="event_date">{{ 'admin.consultants.events.event_date'|trans({}, 'admin') }}</th>
+                <th class="host">{{ 'admin.consultants.events.host'|trans({}, 'admin') }}</th>
+                <th class="address_line_1">{{ 'admin.consultants.events.address_line_1'|trans({}, 'admin') }}</th>
+                {#<th class="address_line_2">{{ 'admin.consultants.events.address_line_2'|trans({}, 'admin') }}</th>#}
+                <th class="postal_code">{{ 'admin.consultants.events.postal_code'|trans({}, 'admin') }}</th>
+                <th class="city">{{ 'admin.consultants.events.city'|trans({}, 'admin') }}</th>
+                <th class="phone">{{ 'admin.consultants.events.phone'|trans({}, 'admin') }}</th>
+                <th class="email">{{ 'admin.consultants.events.email'|trans({}, 'admin') }}</th>
+                <th class="description">{{ 'admin.consultants.events.description'|trans({}, 'admin') }}</th>
+                <th class="type">{{ 'admin.consultants.events.type'|trans({}, 'admin') }}</th>
+                <th class="is_open">{{ 'admin.consultants.events.is_open'|trans({}, 'admin') }}</th>
+                <th class="notify_hostess">{{ 'admin.consultants.events.notify_hostess'|trans({}, 'admin') }}</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for event in events %}
+                <tr>
+                    <td>{{ event.code }}</td>
+                    <td><span title="{{ event.key }}" class="fa fa-key"></span></td>
+                    <td>{{ event.eventdate|date('d/m/Y H:i') }}</td>
+                    <td>{{ event.host }}</td>
+                    <td>{{ event.addressline1 }}</td>
+                    {#<td>{{ event.addressline2 }}</td>#}
+                    <td>{{ event.postalcode }}</td>
+                    <td>{{ event.city }}</td>
+                    <td>{{ event.phone }}</td>
+                    <td><a href="mailto:{{ event.email }}">{{ event.email }}</a></td>
+                    <td>{{ event.description }}</td>
+                    <td>{{ event.type }}</td>
+                    <td>
+                        {% if event.isopen == 1 %}
+                            {{ 'admin.consultant.yes'|trans({}, 'admin') }}
+                        {% else %}
+                            {{ 'admin.consultant.no'|trans({}, 'admin') }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if event.notifyhostess == 1 %}
+                            {{ 'admin.consultant.yes'|trans({}, 'admin') }}
+                        {% else %}
+                            {{ 'admin.consultant.no'|trans({}, 'admin') }}
+                        {% endif %}
+                    </td>
+                    <th>
+                        <a class="delete glyphicon glyphicon-remove-circle" href="{{ path('admin_consultants_event_delete', {'id' : event.id}) }}" title="{{ 'delete'|trans({}, 'admin') }}"></a>
+                    </th>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% if paginate %}
+            {% import "::macro.pager.html.twig" as p %}
+            {{ p.pager(paginate, 'events', true) }}
+        {% endif %}
+
+    {% else %}
 
 <p>{{ 'admin.consultants.events.no.events.text'|trans({}, 'admin') }}</p>
 

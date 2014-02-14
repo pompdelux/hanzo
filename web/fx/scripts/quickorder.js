@@ -60,7 +60,7 @@ var quickorder = (function($) {
                                 $size_select.append($("<option></option>").
                                     attr("value",value.size).
                                     attr('data-master', value.master).
-                                    text(value.size)
+                                    text(value.size_label)
                                 );
                                 last = value.size;
                             }
@@ -170,6 +170,7 @@ var quickorder = (function($) {
                 title    = $('.master', $form).val(),
                 master   = $('.size option:selected', $form).attr('data-master'),
                 size     = $('.size option:selected', $form).val(),
+                size_label     = $('.size option:selected', $form).text(),
                 color    = $('.color option:selected', $form).val(),
                 quantity = $('.quantity', $form).val()
             ;
@@ -200,7 +201,7 @@ var quickorder = (function($) {
                     } else {
                         window.scrollTo(window.scrollMinX, window.scrollMinY);
                         $.cookie('basket', response.data);
-                        $('#mini-basket a').html(response.data);
+                        $('#mini-basket a.total').html(response.data);
                         dialoug.slideNotice(response.message);
 
                         var c = color.toString();
@@ -210,29 +211,29 @@ var quickorder = (function($) {
 
                         $('table tbody').prepend(' ' +
                             '<tr class="item"> ' +
-                            '<td class="image"><img src="'+img+'" alt="'+title+'"> '+
-                            '<div class="info" data-product_id="'+response.latest.id+'" data-confirmed=""> '+
-                            '<a href="'+base_url+'product/view/'+response.latest.master_id+'" class="title">'+title+'</a> '+
-                            '<div class="size"> '+
-                            '<label>'+Translator.get('js:size')+':</label> '+
-                            '<span>'+size+'</span> '+
-                            '</div> '+
-                            '<div class="color"> '+
-                            '<label>'+Translator.get('js:color')+':</label> '+
-                            '<span>'+color+'</span> '+
-                            '</div> '+
-                            '</div> '+
-                            '</td> '+
-                            '<td class="right date"> '+
-                            ''+response.latest.expected_at+' '+
-                            '</td> '+
-                            '<td class="right price">'+response.latest.single_price+'</td> '+
-                            '<td class="center quantity">'+quantity+'</td> '+
-                            '<td class="actions"> '+
-                            '<a href="'+base_url+'remove-from-basket/'+response.latest.id+'" class="sprite delete"></a> '+
-                            '<a href="'+response.latest.id+'" class="sprite edit"></a> '+
-                            '</td> '+
-                            '<td class="right total">'+response.latest.price+'</td> '+
+                                '<td class="image"><img src="'+img+'" alt="'+title+'"> '+
+                                    '<div class="info" data-product_id="'+response.latest.id+'" data-confirmed="" data-master="'+master+'"> '+
+                                        '<a href="'+base_url+'product/view/'+response.latest.master_id+'" class="title">'+title+'</a> '+
+                                        '<div class="size"> '+
+                                            '<label>'+Translator.get('js:size')+':</label> '+
+                                            '<span>'+size_label+'</span> '+
+                                        '</div> '+
+                                        '<div class="color"> '+
+                                            '<label>'+Translator.get('js:color')+':</label> '+
+                                            '<span>'+color+'</span> '+
+                                        '</div> '+
+                                    '</div> '+
+                                '</td> '+
+                                '<td class="right date"> '+
+                                    ''+response.latest.expected_at+' '+
+                                '</td> '+
+                                '<td class="right price">'+response.latest.single_price+'</td> '+
+                                '<td class="center quantity">'+quantity+'</td> '+
+                                '<td class="actions"> '+
+                                    '<a href="'+base_url+'remove-from-basket/'+response.latest.id+'" class="sprite delete"></a> '+
+                                    '<a href="'+response.latest.id+'" class="sprite edit"></a> '+
+                                '</td> '+
+                                '<td class="right total">'+response.latest.price+'</td> '+
                             '</tr>'
                         );
 

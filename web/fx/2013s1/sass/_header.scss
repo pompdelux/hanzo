@@ -2,8 +2,18 @@
 | _header
 */
 
+$topbar-color: #dcd8d2;
+
 #logo {
 	margin-top: 6px;
+}
+
+.top-bar {
+    background-color: $topbar-color;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 34px;
 }
 
 nav.first.main-menu {
@@ -11,36 +21,23 @@ nav.first.main-menu {
         font-size: $main-menu-size;
     }
 
-    background-color: #dcd8d2;
+    background-color: $topbar-color;
+    margin-bottom: 6px;
     padding: 3px 0;
-
-    form {
-        margin-bottom: 2px;
-    }
-
-    input[type="text"] {
-        width: 180px;
-    }
-    input[type="text"],
-    input {
-        padding: 3px;
-        border: none;
-        margin-right: 10px;
-        font-family: $font-sans;
-
-        &.text-button {
-            font-size: inherit;
-            margin-top: 0;
-        }
-    }
+    z-index: 300;
+    position: relative;
 
     >ul {
         z-index: 220;
         margin-left: 10px;
-        float: left;
 
+        &.topmenu {
+          padding-right: 234px;
+        }
         &.right {
-            float: right;
+            position: absolute;
+            right: 0;
+            top: 2px;
             li.last {
                 padding: 0;
             }
@@ -55,8 +52,75 @@ nav.first.main-menu {
                 text-transform: uppercase;
                 font-family: $font-sans;
                 font-size: $main-menu-size;
+                padding: 0 10px 9px;
+                color: #444;
+                font-weight: normal;
             }
         }
+    }
+    .dropdown{
+        z-index: 201; // This dropdown needs to be on top of the main menu
+        a {
+            display: block;
+            margin: 15px 5px;
+        }
+    }
+    >ul.right>li {
+        padding-top: 0;
+        &#select-domain {
+            position: absolute;
+            right: 0;
+            z-index: 150;
+            padding-top: 7px;
+            background-color: $topbar-color;
+        }
+
+    }
+}
+form.search-form {
+    position: relative;
+    &:before {
+        @include icons-sprite(search);
+
+        height: icons-sprite-height(search);
+        width: icons-sprite-width(search);
+        content: " ";
+        display: block;
+
+        position: absolute;
+        top: 50%;
+        left: 9px;
+        margin-top: -7px;
+    }
+    input[type="text"] {
+        border: none;
+        padding: 5px;
+        padding-left: 27px;
+        width: 234px;
+        background-color: transparent;
+        &:focus {
+            background-color: white;
+            outline: none;
+            outline-width: 0;
+            z-index: 200;
+        }
+        font-family: $font-sans;
+
+        &::-webkit-input-placeholder { /* WebKit browsers */
+          color: #444;
+        }
+        &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+          color: #444;
+        }
+        &::-moz-placeholder { /* Mozilla Firefox 19+ */
+          color: #444;
+        }
+        &:-ms-input-placeholder { /* Internet Explorer 10+ */
+          color: #444;
+        }
+    }
+    input[type="submit"] {
+        display: none;
     }
 }
 
@@ -65,17 +129,17 @@ nav.first.main-menu {
 nav > ul,
 ul.menu,
 .menu > ul{
-	font-size: $font-size;
-	font-family: $font-sans;
-	color: $font-color;
-	letter-spacing: 0;
-	z-index: 200; // z-index and position to fix rendering in IE7. This must be higher than the actually z-index of child
-	position: relative;
-	li {
-		position: relative;
-		a {
-			color: $font-color;
-			text-decoration: none;
+    font-size: $font-size;
+    font-family: $font-sans;
+    color: $font-color;
+    letter-spacing: 0;
+    z-index: 200; // z-index and position to fix rendering in IE7. This must be higher than the actually z-index of child
+    position: relative;
+    li {
+        position: relative;
+        a {
+            color: $font-color;
+            text-decoration: none;
             text-transform: uppercase;
 		}
 		&.active > a,
@@ -153,49 +217,33 @@ div header.row {
 }
 #secondary-links {
 	position: absolute;
-	top: 0px;
-	right: 3px;
-	li{
-		padding: 8px;
-		vertical-align: middle;
-		&.last{
-			padding-right: 0;
+	top: -6px; // top menu bottom margin.
+	right: 0px;
+    background: #a2a2a2;
+    padding: 5px 10px 0;
+    -webkit-border-radius: 0px 0px 20px 20px;
+    -moz-border-radius: 0px 0px 20px 20px;
+    border-radius: 0px 0px 20px 20px;
+    li{
+        padding: 8px;
+        vertical-align: middle;
+        &.basket{
+            padding-left: 0px;
         }
-        // Mini-basket in secondary links!
-        &.basket {
-            .sprite{
-                display: inline-block;
-                vertical-align: middle;
-                @include icons-sprite(basket);
-                height: icons-sprite-height(basket);
-                width: icons-sprite-width(basket);
-            }
-            a {
-                color: $basket-color;
-                font-size: $basket-font-size;
-                font-weight: $basket-font-weight;
-                font-family: $font-sans;
-				display:inline-block;
-				vertical-align: middle;
-                margin-left: 5px;
-			}
-		}
-		a,input{
-			font-size: 0.8em;
-			text-transform: uppercase;
-		}
-		input{
-			padding: 4px 5px;
-		}
-		.dropdown{
-			z-index: 201; // This dropdown needs to be on top of the main menu
-            a {
-              display: block;
-              margin: 15px 5px;
-            }
+        &.last{
+            padding-right: 0;
+        }
+        a{
+            text-transform: uppercase;
 		}
 	}
-	.second{
+    ul.first {
+        border-bottom: 1px dashed white;
+        > li > a {
+            color: white;
+        }
+    }
+	ul.second{
 		z-index: 1;
         a {
             color: $basket-color;

@@ -1,78 +1,63 @@
 {% extends '::adminbase.html.twig' %}
 
 {% block content %}
-<nav class="sub">
-  <ul>
-    <li>
-        <a href="{{ path('admin_cms_redirects') }}">
-            {{ 'admin.cms.redirects.link'|trans({}, 'admin') }}
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('admin_cms_add') }}">
-        	{{ 'add.new.cmspage'|trans({}, 'admin') }}
-        </a>
-    </li>
-    <li>
-    	<a href="#" class="save-nestedsortable">
-    		{{ 'save.changes'|trans({}, 'admin') }}
-    	</a>
-    </li>
-    <li id="select-language">
-        <a class="open-menu" href="#">
-          <span class="flag {{ current_language }}"></span>{{ 'languages.selector'|trans({}, 'admin') }}
-        </a>
-        <div style="display:none;">
-          <ul>
-        {% for language in languages %}
-          <li>
-            <a href="{{ path('admin_cms', {'locale' : language.locale}) }}">
-              <span class="flag {{ language.locale }}"></span>{{ language.name }}
-            </a>
-          </li>
-        {% endfor %}
-          </ul>
+
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span class="flag {{ current_language }}"></span>{{ 'languages.selector'|trans({}, 'admin') }}
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        {% for language in languages %}
+                            <li><a href="{{ path('admin_cms', {'locale' : language.locale}) }}"><span class="flag {{ language.locale }}"></span>{{ language.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+
+                <li><a href="{{ path('admin_cms_redirects') }}">{{ 'admin.cms.redirects.link'|trans({}, 'admin') }}</a></li>
+                <li><a href="{{ path('admin_cms_add') }}">{{ 'add.new.cmspage'|trans({}, 'admin') }}</a></li>
+            </ul>
         </div>
-    </li>
-  </ul>
-</nav>
+    </nav>
 
-{{ tree|raw }}
+    <div class="row cms-tree">
+        {{ tree|raw }}
+    </div>
 
-<div class="clearfix">
-  <a class="button right save-nestedsortable" href="#">{{ 'save.changes'|trans({}, 'admin') }}</a>
-</div>
+    <div class="clearfix">
+        <a class="button btn btn-success save-nestedsortable" href="#">{{ 'save.changes'|trans({}, 'admin') }}</a>
+    </div>
+
 {% if inactive_nodes|length > 0 %}
 
-<h1>{{ 'admin.inactive_nodes.header.text'|trans({}, 'admin') }}</h1>
+    <h1>{{ 'admin.inactive_nodes.header.text'|trans({}, 'admin') }}</h1>
 
-<table id="inactive_nodes" class="list">
-  <thead>
-    <tr>
-      <th>{{ 'admin.cms.inactive_nodes.id'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.cms.inactive_nodes.title'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.cms.inactive_nodes.type'|trans({}, 'admin') }}</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for node in inactive_nodes %}
-    <tr>
-      <td>{{ node.id }}</td>
-      <td>{{ node.title }}</td>
-      <td>{{ node.type }}</td>
-      <th>
-        <a href="{{ path('admin_cms_edit', {'id' : node.id }) }}">
-          {{ 'admin.cms.inactive_nodes.edit'|trans({}, 'admin') }}
-        </a>
-        <a href="{{ path('admin_cms_delete', {'id' : node.id , 'locale' : node.locale}) }}" class="delete">
-          {{ 'admin.cms.inactive_nodes.delete'|trans({}, 'admin') }}
-        </a>
-      </th>
-    </tr>
-  {% endfor %}
-  </tbody>
-</table>
+    <table id="inactive_nodes" class="table table-striped">
+        <thead>
+        <tr>
+            <th>{{ 'admin.cms.inactive_nodes.id'|trans({}, 'admin') }}</th>
+            <th>{{ 'admin.cms.inactive_nodes.title'|trans({}, 'admin') }}</th>
+            <th>{{ 'admin.cms.inactive_nodes.type'|trans({}, 'admin') }}</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for node in inactive_nodes %}
+            <tr>
+                <td>{{ node.id }}</td>
+                <td>{{ node.title }}</td>
+                <td>{{ node.type }}</td>
+                <th>
+                    <a href="{{ path('admin_cms_edit', {'id' : node.id }) }}" class="glyphicon glyphicon-edit" title="{{ 'admin.cms.inactive_nodes.edit'|trans({}, 'admin') }}"></a>
+                    <a href="{{ path('admin_cms_delete', {'id' : node.id , 'locale' : node.locale}) }}" class="glyphicon glyphicon-remove-circle" title="{{ 'admin.cms.inactive_nodes.delete'|trans({}, 'admin') }}"></a>
+                </th>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
 {% endif %}
 {% endblock %}

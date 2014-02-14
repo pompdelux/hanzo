@@ -75,10 +75,10 @@ class ToolsController extends CoreController
     {
         if ($request->query->get('run')) {
             $builder = $this->get('hanzo_search.product.index_builder');
-            $builder->setConnection($this->getDbConnection());
+            // $builder->setConnection($this->getDbConnection());
             $builder->build();
 
-            $request->getSession()->setFlash('notice', 'Søgeindekset er nu opdateret.');
+            $request->getSession()->getFlashBag()->add('notice', 'Søgeindekset er nu opdateret.');
             return $this->redirect($this->generateUrl($request->get('_route')));
         }
 
@@ -182,7 +182,7 @@ class ToolsController extends CoreController
     {
         $this->container->get('hanzo_search.product_and_category_indexer')->build();
 
-        $this->getRequest()->getSession()->setFlash('notice', 'Søgeindexer opdateret for produkter og kategorier.');
+        $this->getRequest()->getSession()->getFlashBag()->add('notice', 'Søgeindexer opdateret for produkter og kategorier.');
         return $this->redirect($this->generateUrl('admin_tools'));
     }
 

@@ -374,6 +374,10 @@
                 <source>rma.product.not.filled.correctly</source>
                 <target>Bij het omruilen van het artikel moeten maat en kleur worden ingevuld.</target>
             </trans-unit>
+            <trans-unit id="checkout.confirm.address.block" approved="no">
+                <source>checkout.confirm.address.block</source>
+                <target>Bevestig dat de adresgegevens correct zijn.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

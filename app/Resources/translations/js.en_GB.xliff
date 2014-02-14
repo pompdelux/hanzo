@@ -278,6 +278,10 @@
                 <source>rma.product.not.filled.correctly</source>
                 <target>If you wish to exchange an item, please make sure you specify both the new size and colour.</target>
             </trans-unit>
+            <trans-unit id="checkout.confirm.address.block" approved="no">
+                <source>checkout.confirm.address.block</source>
+                <target>Confirm that your address details are correct.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

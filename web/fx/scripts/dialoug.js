@@ -7,7 +7,7 @@ var dialoug = (function($) {
 
   var templates = {
     'alert' : '<div class="dialoug alert %type%"><h2>%title%</h2><p class="message">%message%</p></div>',
-    'confirm' : '<div class="dialoug confirm"><h2>%title%</h2><div class="message">%message%</div><div class="buttons"><a class="button right dialoug-confirm" data-case="ok" href="">%ok%</a><a class="button left dialoug-confirm" data-case="cancel" href="">%cancel%</a></div></div>',
+    'confirm' : '<div class="dialoug confirm"><h2>%title%</h2><div class="message">%message%</div><div class="buttons"><a class="button right dialoug-confirm btn btn-success btn-sm" data-case="ok" href="">%ok%</a> <a class="button left dialoug-confirm btn btn-danger btn-sm" data-case="cancel" href="">%cancel%</a></div></div>',
     'notice' : '<div id="dialoug-message" class="dialoug-message %type%"><p>%message%</p></div>'
   };
 

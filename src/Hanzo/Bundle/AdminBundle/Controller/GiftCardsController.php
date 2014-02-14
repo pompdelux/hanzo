@@ -93,13 +93,12 @@ class GiftCardsController extends CoreController
 
         $request = $this->getRequest();
         $gift_card = null;
-        $gift_cards_history = null;
+
         if ($id) {
             $gift_card = GiftCardsQuery::create()
                 ->filterById($id)
                 ->findOne($this->getDbConnection())
             ;
-            $gift_cards_history = OrdersToGiftCardsQuery::create()->filterByGiftCardsId($id)->find();
         } else {
             $gift_card = new GiftCards();
 
@@ -140,7 +139,8 @@ class GiftCardsController extends CoreController
                 'label' => 'admin.gift_cards.active_from',
                 'translation_domain' => 'admin',
                 'required' => false,
-                'attr' => array('class' => 'datepicker')
+                'attr' => array('class' => 'datepicker'),
+                'data' => $gift_card->getActiveFrom('Y-m-d'),
             ))->add('active_to', 'date', array(
                 'input' => 'string',
                 'widget' => 'single_text',
@@ -148,7 +148,8 @@ class GiftCardsController extends CoreController
                 'label' => 'admin.gift_cards.active_to',
                 'translation_domain' => 'admin',
                 'required' => false,
-                'attr' => array('class' => 'datepicker')
+                'attr' => array('class' => 'datepicker'),
+                'data' => $gift_card->getActiveTo('Y-m-d'),
             ))->add('is_active', 'checkbox', array(
                 'label' => 'admin.customer.is_active',
                 'translation_domain' => 'admin',
@@ -170,7 +171,7 @@ class GiftCardsController extends CoreController
         return $this->render('AdminBundle:GiftCards:view.html.twig', array(
             'form' => $form->createView(),
             'gift_card' => $gift_card,
-            'gift_cards_history' => $gift_cards_history,
+            'gift_cards_history' => null,
             'database' => $this->getRequest()->getSession()->get('database')
         ));
     }

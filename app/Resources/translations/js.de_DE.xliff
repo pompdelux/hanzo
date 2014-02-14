@@ -100,7 +100,7 @@
             </trans-unit>
             <trans-unit id="edit.order.notice">
                 <source>edit.order.notice</source>
-                <target><![CDATA[Um Ihre Bestellung zu bearbeiten, führen Sie bitte folgende Schritte aus:<br><br>1) Auf "Bearbeiten" klicken, um die Bestellung zu bearbeiten. Ihre Waren werden danach wieder in den Warenkorb gelegt.<br><br>2) Möchten Sie eine Farbe oder Größe ändern, dann klicken Sie bitte auf den Bleistift im Warenkorb. Möchten Sie Waren hinzufügen, dann klicken Sie auf das Menü Girl, Boy, Little Girl oder Little Boy<br><br>3) Nach Abschluss Ihrer Änderungen klicken Sie bitte auf "Warenkorb anzeigen" und führen die Schritte 1 bis 5 aus. Wenn Sie Ihre Bestellung mit einer neuen Kreditkartenzahlung durchgeführt haben, wird die vorherige Zahlung automatisch gelöscht.<br><br><b>Bitte beachten:</b> Wenn Sie mit Visa Electron oder MasterCard bezahlen, müssen Sie Folgendes beachten:<ul><li>Es wird eine weitere Reservierung auf den vollen Betrag des Kaufs vorgenommen, wenn Sie Ihre Bestellung bearbeiten. </li><li>Die Reservierung Ihrer ursprünglichen Bestellung wird umgehend von POMPdeLUX storniert und wir haben somit nur den Kaufbetrag Ihrer bearbeiteten Bestellung reserviert. Bei Ihrem Geldinstitut kann es jedoch bis zu 6 Wochen dauern, bis die Reservierung aufgehoben wird. </li></ul>]]></target>
+                <target><![CDATA[Um Ihre Bestellung zu bearbeiten, führen Sie bitte folgende Schritte aus:<br><br>1) Auf "Bearbeiten" klicken, um die Bestellung zu bearbeiten. Ihre Waren werden danach wieder in den Warenkorb gelegt.<br><br>2) Möchten Sie eine Farbe oder Größe ändern, dann klicken Sie bitte auf den Bleistift im Warenkorb. Möchten Sie Waren hinzufügen, dann klicken Sie auf das Menü GIRL, BOY, LITTLE GIRL oder LITTLE BOY<br><br>3) Nach Abschluss Ihrer Änderungen klicken Sie bitte auf "Warenkorb anzeigen" und führen die Schritte 1 bis 5 aus. Wenn Sie Ihre Bestellung mit einer neuen Kreditkartenzahlung durchgeführt haben, wird die vorherige Zahlung automatisch gelöscht.<br><br><b>Bitte beachten:</b> Wenn Sie mit Visa Electron oder MasterCard bezahlen, müssen Sie Folgendes beachten:<ul><li>Es wird eine weitere Reservierung auf den vollen Betrag des Kaufs vorgenommen, wenn Sie Ihre Bestellung bearbeiten. </li><li>Die Reservierung Ihrer ursprünglichen Bestellung wird umgehend von POMPdeLUX storniert und wir haben somit nur den Kaufbetrag Ihrer bearbeiteten Bestellung reserviert. Bei Ihrem Geldinstitut kann es jedoch bis zu 6 Wochen dauern, bis die Reservierung aufgehoben wird. </li></ul>]]></target>
             </trans-unit>
             <trans-unit id="delete.order.notice">
                 <source>delete.order.notice</source>
@@ -108,7 +108,7 @@
             </trans-unit>
             <trans-unit id="consultant">
                 <source>consultant</source>
-                <target>Beraterin</target>
+                <target>Shopping Advisor</target>
             </trans-unit>
             <trans-unit id="phone">
                 <source>phone</source>
@@ -381,6 +381,10 @@
             <trans-unit id="rma.product.not.filled.correctly">
                 <source>rma.product.not.filled.correctly</source>
                 <target>Beim Umtausch Ihrer Ware geben Sie bitte Größe und Farbe ein.</target>
+            </trans-unit>
+            <trans-unit id="checkout.confirm.address.block" approved="no">
+                <source>checkout.confirm.address.block</source>
+                <target>Bitte bestätigen Sie, dass Ihre Adressangaben korrekt sind.</target>
             </trans-unit>
         </body>
     </file>

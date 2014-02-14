@@ -8,7 +8,7 @@
             </trans-unit>
             <trans-unit id="events.account.title">
                 <source>events.account.title</source>
-                <target>Homeshopping-Veranstaltungen</target>
+                <target>Home Shopping-Veranstaltungen</target>
             </trans-unit>
             <trans-unit id="events.calendar.description.text">
                 <source>events.calendar.description.text</source>
@@ -212,7 +212,7 @@
             </trans-unit>
             <trans-unit id="events.type.choice.ar">
                 <source>events.type.choice.ar</source>
-                <target>Homeshopping-Veranstaltung</target>
+                <target>Home Shopping-Veranstaltung</target>
             </trans-unit>
             <trans-unit id="events.type.choice.hus">
                 <source>events.type.choice.hus</source>
@@ -224,7 +224,7 @@
             </trans-unit>
             <trans-unit id="events.notify_hostess.label">
                 <source>events.notify_hostess.label</source>
-                <target>Gastgeberin benachrichtigen?</target>
+                <target>Bestätigung an Gastgeberin?</target>
             </trans-unit>
             <trans-unit id="events.customer.found">
                 <source>events.customer.found</source>
@@ -236,7 +236,7 @@
             </trans-unit>
             <trans-unit id="events.rsvp.top.header.text">
                 <source>events.rsvp.top.header.text</source>
-                <target>Sie wurden zu einer Homeshopping-Veranstaltung eingeladen.</target>
+                <target>Sie wurden zu einer Home Shopping-Veranstaltung eingeladen.</target>
             </trans-unit>
             <trans-unit id="events.not_found.header.text">
                 <source>events.not_found.header.text</source>
@@ -264,7 +264,7 @@
             </trans-unit>
             <trans-unit id="events.invite.description.text">
                 <source>events.invite.description.text</source>
-                <target>Gäste zu Ihrer Homeshopping-Veranstaltung einladen. Wenn Sie Handynummer ausfüllen, schicken wir Ihrem Gast eine SMS. Wenn Sie E-Mail-Adresse ausfüllen, schicken wir Ihrem Gast eine E-Mail. Sie können sowohl Handynummer als auch E-Mail-Adresse ausfüllen.</target>
+                <target>Gäste zu Ihrer Home Shopping-Veranstaltung einladen. Wenn Sie Handynummer ausfüllen, schicken wir Ihrem Gast eine SMS. Wenn Sie E-Mail-Adresse ausfüllen, schicken wir Ihrem Gast eine E-Mail. Sie können sowohl Handynummer als auch E-Mail-Adresse ausfüllen.</target>
             </trans-unit>
             <trans-unit id="events.invite.participant.button">
                 <source>events.invite.participant.button</source>
@@ -284,7 +284,7 @@
             </trans-unit>
             <trans-unit id="events.rsvp.description.text">
                 <source>events.rsvp.description.text</source>
-                <target>Schicken Sie Ihre Antwort, ob Sie an der Homeshopping-Veranstaltung teilnehmen. Aktualisieren Sie Ihre Informationen.</target>
+                <target>Schicken Sie Ihre Antwort, ob Sie an der Home Shopping-Veranstaltung teilnehmen. Aktualisieren Sie Ihre Informationen.</target>
             </trans-unit>
             <trans-unit id="events.tell_a_friend.header.text">
                 <source>events.tell_a_friend.header.text</source>
@@ -352,15 +352,15 @@
             </trans-unit>
             <trans-unit id="event.sms.confirmation.reply">
                 <source>event.sms.confirmation.reply</source>
-                <target>Hallo %name%, vielen Dank für Ihre Anmeldung zur POMPdeLUX Homeshopping-Veranstaltung am %event_date% um %event_time% Uhr an der Adresse %address%, %zip% %city%. Ich freue mich, Sie begrüßen zu dürfen! %hostess%</target>
+                <target>Hallo %name%, vielen Dank für Ihre Anmeldung zur POMPdeLUX Home Shopping-Veranstaltung am %event_date% um %event_time% Uhr an der Adresse %address%, %zip% %city%. Ich freue mich, Sie begrüßen zu dürfen! %hostess%</target>
             </trans-unit>
             <trans-unit id="event.sms.invite">
                 <source>event.sms.invite</source>
-                <target>Hallo %name%, %hostess% möchte Sie zur POMPdeLUX Homeshopping-Veranstaltung am %event_date% um %event_time% Uhr an der Adresse %address%, %zip% %city% einladen. Möchten Sie dabei sein und schicke Kinderbekleidung erleben, dann antworten Sie auf dieses SMS mit dem Text "pdl %event_id%". Ich hoffe, Sie begrüßen zu dürfen!</target>
+                <target>Hallo %name%, %hostess% möchte Sie zur POMPdeLUX Home Shopping-Veranstaltung am %event_date% um %event_time% Uhr an der Adresse %address%, %zip% %city% einladen. Möchten Sie dabei sein und schicke Kinderbekleidung erleben, dann antworten Sie auf dieses SMS mit dem Text "pdl %event_id%". Ich hoffe, Sie begrüßen zu dürfen!</target>
             </trans-unit>
             <trans-unit id="event.sms.reminder">
                 <source>event.sms.reminder</source>
-                <target>Hallo %name%, vergessen Sie bitte die POMPdeLUX Homeshopping-Veranstaltung am %event_date% um %event_time% Uhr an folgender Adresse nicht: %address%, %zip% %city% Mit freundlichen Grüßen POMPdeLUX</target>
+                <target>Hallo %name%, vergessen Sie bitte die POMPdeLUX Home Shopping-Veranstaltung am %event_date% um %event_time% Uhr an folgender Adresse nicht: %address%, %zip% %city% Mit freundlichen Grüßen POMPdeLUX</target>
             </trans-unit>
             <trans-unit id="events.name">
                 <source>events.name</source>

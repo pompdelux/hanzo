@@ -36,20 +36,19 @@ class DefaultController extends CoreController
      *
      * @param Request $request
      * @param integer $cms_id
-     * @param integer $category_id
      * @param boolean $show
      * @param integer $pager
      * @return Response
      */
-    public function viewAction(Request $request, $cms_id, $category_id, $show, $pager = 1)
+    public function viewAction(Request $request, $cms_id, $show, $pager = 1)
     {
         $hanzo = Hanzo::getInstance();
         $container = $hanzo->container;
         $locale = $hanzo->get('core.locale');
         $translator = $this->get('translator');
 
-        $cache_id = explode('_', $this->get('request')->get('_route'));
-        $cache_id = array($cache_id[0], $cache_id[2], $cache_id[1], $show, $pager);
+        $cacheId = explode('_', $this->get('request')->get('_route'));
+        $cacheId = array($cacheId[0], $cacheId[2], $cacheId[1], $show, $pager);
 
         if ($this->getFormat() !== 'json') $cache_id[] = 'html'; // Extra cache id if its not a json call
 
@@ -112,11 +111,11 @@ class DefaultController extends CoreController
                 $html = $data;
             } else {
 
-                $cmsPage = CmsPeer::getByPK($cms_id, $locale);
-                $settings = $cmsPage->getSettings(null, false);
+                $cms_page = CmsPeer::getByPK($cms_id, $locale);
+                $settings = $cms_page->getSettings(null, false);
 
                 // Define classes to the body, dependently on the context of the category.
-                $classes = 'category-'.preg_replace('/[^a-z]/', '-', strtolower($cmsPage->getTitle()));
+                $classes = 'category-'.preg_replace('/[^a-z]/', '-', strtolower($cms_page->getTitle()));
                 if (preg_match('/(pige|girl|tjej|tytto|jente)/', $container->get('request')->getPathInfo())) {
                     $classes .= ' category-girl';
                 } elseif (preg_match('/(dreng|boy|kille|poika|gutt)/', $container->get('request')->getPathInfo())) {
@@ -124,7 +123,6 @@ class DefaultController extends CoreController
                 }
 
                 $this->get('twig')->addGlobal('route', $container->get('request')->get('_route'));
-
 
                 $twig = $this->get('twig');
                 $twig->addGlobal('route', $container->get('request')->get('_route'));
@@ -136,7 +134,7 @@ class DefaultController extends CoreController
                 $twig->addGlobal('browser_title', $cms_page->getTitle());
 
                 $html = $this->renderView('CategoryBundle:Default:view.html.twig', $data);
-                $this->setCache($cache_id, $html, 5);
+                $this->setCache($cacheId, $html, 5);
             }
         } // End of retrival of fresh data
 
@@ -154,7 +152,7 @@ class DefaultController extends CoreController
 
     public function listProductsAction($view = 'simple', $filter = 'G_')
     {
-        $filter_map = array(
+        $filterMap = array(
             'G_' => 'Girl',
             'LG_' => 'Little Girl',
             'B_' => 'Boy',
@@ -162,12 +160,12 @@ class DefaultController extends CoreController
         );
 
         $hanzo = Hanzo::getInstance();
-        $domain_id = $hanzo->get('core.domain_id');
+        $domainId = $hanzo->get('core.domain_id');
 
         $products = ProductsQuery::create()
             ->where('products.MASTER IS NULL')
             ->useProductsDomainsPricesQuery()
-                ->filterByDomainsId($domain_id)
+                ->filterByDomainsId($domainId)
             ->endUse()
             ->useProductsToCategoriesQuery()
                 ->useCategoriesQuery()
@@ -177,11 +175,11 @@ class DefaultController extends CoreController
             ->joinWithProductsToCategories()
             ->orderBySku()
             ->groupBySku()
-            ->find()
-        ;
+            ->find();
 
         $locale = $this->getRequest()->getLocale();
         $records = array();
+        $locale = $this->getRequest()->getLocale();
         foreach ($products as $product) {
             $product->setLocale($locale);
 
@@ -196,10 +194,11 @@ class DefaultController extends CoreController
         $records = array_chunk($records, $max);
 
         $this->setSharedMaxAge(86400);
+
         return $this->render('CategoryBundle:Default:contextList.html.twig', array(
             'page_type' => 'context-list',
             'products' => $records,
-            'page_title' => $filter_map[$filter]
+            'page_title' => $filterMap[$filter]
         ));
     }
 
@@ -216,6 +215,7 @@ class DefaultController extends CoreController
         if ($this->getFormat() !== 'json') $cache_id[] = 'html'; // Extra cache id if its not a json call
 
         $html = $this->getCache($cache_id); // If there a cached version, html has both the json and html version
+
         $data = null;
         /*
          *  If html wasnt cached retrieve a fresh set of data
@@ -224,7 +224,9 @@ class DefaultController extends CoreController
             $data = $this->getCategoryProducts($cms_id, $show, $pager);
 
             if ($this->getFormat() == 'json') {
+
                 $this->setCache($cache_id, $data, 5);
+
                 $html = $data;
             } else {
                 $route = $container->get('request')->get('_route');
@@ -238,7 +240,9 @@ class DefaultController extends CoreController
                 $this->get('twig')->addGlobal('show_new_price_badge', $hanzo->get('webshop.show_new_price_badge'));
 
                 $html = $this->renderView('CategoryBundle:Default:listCategoryProducts.html.twig', $data);
+
                 $this->setCache($cache_id, $html, 5);
+
             }
         }
 
@@ -267,10 +271,11 @@ class DefaultController extends CoreController
         $container = $hanzo->container;
         $locale = $hanzo->get('core.locale');
         $translator = $this->get('translator');
-        $cmsPage = CmsPeer::getByPK($cms_id, $locale);
+        $cms_page = CmsPeer::getByPK($cms_id, $locale);
+
         $request = $container->get('request');
 
-        if (!$cmsPage) {
+        if (!$cms_page) {
             return [];
         }
 
@@ -316,7 +321,7 @@ class DefaultController extends CoreController
             $use_filter = true;
         }
 
-        $settings = $cmsPage->getSettings(null, false);
+        $settings = $cms_page->getSettings(null, false);
 
         if (empty($color_filter)) {
             if(!empty($settings->colors)){
@@ -325,14 +330,17 @@ class DefaultController extends CoreController
         }
 
         $route = $request->get('_route');
+
         if (!$route) {
             // Maybe this is an subrequest. Genereate the route from cmsPage
             $route = strtolower('category_' . $cms_id . '_' . $locale);
         }
 
         $router = $container->get('router');
+
         $domain_id = $hanzo->get('core.domain_id');
         $show_by_look = (bool) ($show === 'look');
+
 
         $result = ProductsImagesCategoriesSortQuery::create()
             ->joinWithProducts()
@@ -425,11 +433,14 @@ class DefaultController extends CoreController
         }
 
         if ($color_filter) {
+
             $result = $result->useProductsImagesQuery()
                 ->addAscendingOrderByColumn(sprintf(
                     "FIELD(%s, %s)",
                     ProductsImagesPeer::COLOR,
+
                     '\''.implode('\',\'', $color_filter).'\''
+
                 ))
             ->endUse();
         } else {
@@ -445,10 +456,12 @@ class DefaultController extends CoreController
 
         // $result = $result->paginate(null, null);
         $result = $result->find();
+
         $product_route = str_replace('category_', 'product_', $route);
 
         $records = array();
         $product_ids = array();
+
         foreach ($result as $record) {
 
             $image = $record->getProductsImages()->getImage();
@@ -456,15 +469,18 @@ class DefaultController extends CoreController
             // Only use 01.
             if (preg_match('/_01.jpg/', $image)) {
                 $product = $record->getProducts();
+
                 $product_ids[] = $product->getId();
                 $product->setLocale($locale);
 
                 $image_overview = str_replace('_set_', '_overview_', $image);
                 $image_set = str_replace('_overview_', '_set_', $image);
 
+
                 $alt = trim(Tools::stripTags($translator->trans('headers.category-'.$settings->category_id, [], 'category'))).': '.$product->getSku();
 
                 $records[] = array(
+
                     'sku'          => $product->getSku(),
                     'out_of_stock' => $product->getIsOutOfStock(),
                     'id'           => $product->getId(),
@@ -476,13 +492,16 @@ class DefaultController extends CoreController
                         'product_id' => $product->getId(),
                         'title'      => Tools::stripText($product->getTitle()),
                         'focus'      => $record->getProductsImages()->getId()
+
                     )),
                 );
             }
         }
 
         // get product prices
+
         $prices = ProductsDomainsPricesPeer::getProductsPrices($product_ids);
+
 
         // attach the prices to the products
         foreach ($records as $i => $data) {
@@ -516,7 +535,6 @@ class DefaultController extends CoreController
                 )
             );
         }
-
 
         $data['color_mapping'] = array_keys($color_mapping);
         $data['size_mapping']  = $size_mapping;

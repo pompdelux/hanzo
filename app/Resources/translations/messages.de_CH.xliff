@@ -2,13 +2,17 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
+            <trans-unit id="size.label.postfix">
+                <source>size.label.postfix</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="size.guide.link">
                 <source>size.guide.link</source>
                 <target>images/pages/Size_Guide_DE.jpg</target>
             </trans-unit>
             <trans-unit id="size.guide.link.text">
                 <source>size.guide.link.text</source>
-                <target>» Size guide</target>
+                <target>Size guide</target>
             </trans-unit>
             <trans-unit id="out.of.stock">
                 <source>out.of.stock</source>
@@ -21,6 +25,10 @@
             <trans-unit id="show.basket">
                 <source>show.basket</source>
                 <target>Warenkorb anzeigen</target>
+            </trans-unit>
+            <trans-unit id="your.basket" approved="no">
+                <source>your.basket</source>
+                <target>Your Basket</target>
             </trans-unit>
             <trans-unit id="choose">
                 <source>choose</source>
@@ -168,6 +176,16 @@
                     </ul>
                 ]]></target>
             </trans-unit>
+            <trans-unit id="footer.text" approved="no">
+                <source>footer.text</source>
+                <target><![CDATA[
+                    <ul>
+                        <li><b>Versand</b> ab 4,95 EUR</li>
+                        <li><b>Lieferzeit</b> %expected_delivery_date%</li>
+                        <li><b>Umtausch</b> Gratis</li>
+                    </ul>
+                ]]></target>
+            </trans-unit>
             <trans-unit id="order.deleted">
                 <source>order.deleted</source>
                 <target>E-Bestellnummer %id% wurde gelöscht</target>
@@ -237,12 +255,12 @@
             <trans-unit id="delivery.info" approved="no">
                 <source>delivery.info</source>
                 <target><![CDATA[
-                    <p>Alle Waren werden als Pakete mit DHL verschickt. Daher haben Sie die Möglichkeit, Ihr Paket ab dem Versand bis zum Empfang mit Hilfe von Track & Trace zu verfolgen.<br>
-Paket:Das Paket wird an Ihre Adresse geliefert und kostet EUR 4,95 (EUR 3,95, wenn Sie die Waren bei einer Homeshopping- oder Tag der offenen Tür-Veranstaltung gekauft haben). Wenn Sie zum Zeitpunkt der Lieferung nicht zu Hause sind, können Sie das Paket anschließend bei der Post abholen.<br><br> Wenn Sie das Paket empfangen haben, sollten Sie die Waren überprüfen. Wenn das Paket und/oder der Inhalt beschädigt sind, wenden Sie sich bitte umgehend an unseren Kundendienst oder an DHL. </p>
-]]>
-</target>
-</trans-unit>
+                    <p>Alle Waren werden als Pakete mit der Schweizer Post verschickt. Sie haben die Möglichkeit, Ihr Paket ab Ankunft in die Schweiz bis zum Empfang mit Hilfe von Track & Trace zu verfolgen. Das Paket kann nach ca. 4 Tage nachdem der Status der Bestellung auf„Meine Seite“ mit „fakturiert“ vermerkt wurde, nachverfolgt werden. Die Lieferzeit für Bestellungen beträgt zwischen 6-10 Tage.<br>
+Paket: Das Paket wird an Ihre Adresse geliefert und kostet CHF 8,95 (CHF 7,95, wenn Sie die Waren bei einer Homeshopping- oder Tag der offenen Tür-Veranstaltung gekauft haben). Wenn Sie zum Zeitpunkt der Lieferung nicht zu Hause sind, können Sie das Paket anschließend bei der Post abholen.<br><br>Wenn Sie das Paket empfangen haben, sollten Sie die Waren überprüfen. Wenn das Paket und/oder der Inhalt beschädigt sind, wenden Sie sich bitte umgehend an unseren Kundendienst oder an Die Post.
 
+                    </p>
+                ]]></target>
+            </trans-unit>
             <trans-unit id="return.title" approved="no">
                 <source>return.title</source>
                 <target>Rücksendung</target>
@@ -250,57 +268,57 @@ Paket:Das Paket wird an Ihre Adresse geliefert und kostet EUR 4,95 (EUR 3,95, we
             <trans-unit id="return.info" approved="no">
                 <source>return.info</source>
                 <target><![CDATA[
-                    <p>Sie haben ein 21-tägiges Rückgaberecht auf alle Waren ab dem Tag des Empfangs der Ware (jedoch nur 14-tägig auf reduzierte Waren). Wenn Sie eine Ware in eine andere Größe oder Farbe umtauschen möchten, kann dies anhand des Rücksendescheins  geschehen. Ausverkaufte Waren sind jedoch vorbehalten.<br><br>
-					Die Waren müssen ungebraucht sein und in Originalverpackung, mit Textiletiketten usw. zurückgeschickt werden. Die Rücksendung von Strümpfen, Leggings und Strumpfhosen kann nur in ungeöffneter Originalverpackung erfolgen. Die Postverpackung, in der Sie Ihre Waren erhalten, ist so ausgelegt, dass sie zweimal verwendet werden kann. Auf der Verpackung können Sie sehen, wo man schneiden muss, um sie erneut verwenden zu können. Wir erstatten daher kein Geld für Rückverpackungen zurück. Dasselbe gilt für Portokosten, wenn Sie uns nur Teile Ihrer Bestellung zurückschicken. Wir nehmen keine Rücksendungen entgegen, die per Nachname verschickt werden. </p>
+                    <p>Sie haben bei POMPdeLUX ein 21-tägiges Rückgaberecht auf alle Waren ab dem Tag des Empfangs der Ware (jedoch nur 14-tägig auf reduzierte Waren). Die von Ihnen benötigten Angaben sowie die Rücksendeadresse finden Sie auf dem Rücksendeschein, welcher über „Mein Seite“ elektronisch verfügbar ist.<br><br>Die Waren müssen ungebraucht sein und in Originalverpackung, mit Textiletiketten usw. zurückgeschickt werden. Die Rücksendung von Strümpfen, Leggings und Strumpfhosen kann nur in ungeöffneter Originalverpackung erfolgen. Die Postverpackung, in der Sie Ihre Waren erhalten, ist so ausgelegt, dass sie zweimal verwendet werden kann. Auf der Verpackung können Sie sehen, wo man schneiden muss, um sie erneut verwenden zu können. Wir erstatten daher kein Geld für Rückverpackungen.<br><br><b>Umtausch:</b> Wenn Sie eine Ware in eine andere Größe oder Farbe umtauschen möchten, kann dies anhand des Rücksendescheins geschehen, welcher online unter „Meine Seite“ erstellt werden kann. Ausverkaufte Waren sind jedoch vorbehalten. Der Versand für Umtausche ist kostenfrei.<br><br><b>Kaufrückzug:</b> Für Rücksendungen hat der Rücksendeschein einen Wert von CHF 8,95, der von dem Betrag der retournierten Waren entgegengerechnet wird. <br><br><b>Reklamation  & Falschlieferung:</b> Falls Sie eine fehlerhafte Ware oder eine Falschlieferung erhalten haben, bitte folgen Sie di oben beschriebenen Anweisungen. Akzeptieren wir die Reklamationen bekommen Sie eine neue Ware zugeschickt (kostenfreier Versand). Sollte die Ware ausverkauft sein, zurücküberweisen wir den Kaufpreis zurück.<br><br><b>Hinweis:</b> Wir nehmen keine Rücksendungen entgegen, die per Nachname verschickt werden.</p>
                 ]]></target>
             </trans-unit>
 			<trans-unit id="footer.menu_1" approved="no">
                 <source>footer.menu_1</source>
                 <target><![CDATA[
-                <h2>KUNDENDIENST</h2>
-                <ul class="menu">
-                    <li><a href="/de_CH/kundendienst/telefonzeiten">Telefonzeiten</a></li>
-                    <li><a href="/de_CH/home/kundendienst/faq">FAQ</a></li>					
-                    <li><a href="/de_CH/home/kundendienst/rucksendung">Rücksendung</a></li>
-                    <li><a href="/de_CH/home/kundendienst/umtausch">Umtausch</a></li>
-					<li><a href="/de_CH/home/kundendienst/rucksendeschein">Rücksendeschein</a></li>
-                    <li><a href="/de_CH/home/kundendienst/waschtipps">Waschtipps</a></li>
-					<li><a href="/de_CH/home/kundendienst/sizeguide">Sizeguide</a></li>
-					<li><a href="/de_CH/home/kundendienst/abgs">AGB's</a></li>
-					<li><a href="/de_CH/home/kundendienst/impressum">Impressum</a></li>
-					<li><a href="/de_CH/home/kundendienst/uber-den-webshop">Über den Webshop</a></li>
-                </ul>
+                    <h2>KUNDENDIENST</h2>
+                    <ul class="menu">
+                        <li><a href="/de_CH/kundendienst/telefonzeiten">Telefonzeiten</a></li>
+                        <li><a href="/de_CH/home/kundendienst/faq">FAQ</a></li>
+                        <li><a href="/de_CH/home/kundendienst/rucksendung">Rücksendung</a></li>
+                        <li><a href="/de_CH/home/kundendienst/umtausch">Umtausch</a></li>
+                        <li><a href="/de_CH/home/kundendienst/rucksendeschein">Rücksendeschein</a></li>
+                        <li><a href="/de_CH/home/kundendienst/waschtipps">Waschtipps</a></li>
+                        <li><a href="/de_CH/home/kundendienst/sizeguide">Sizeguide</a></li>
+                        <li><a href="/de_CH/home/kundendienst/abgs">AGB's</a></li>
+                        <li><a href="/de_CH/home/kundendienst/impressum">Impressum</a></li>
+                        <li><a href="/de_CH/home/kundendienst/uber-den-webshop">Über den Webshop</a></li>
+                    </ul>
                 ]]></target>
             </trans-unit>
             <trans-unit id="footer.menu_2" approved="no">
                 <source>footer.menu_2</source>
                 <target><![CDATA[
-                <h2>HOME SHOPPING</h2>
-                <ul class="menu">
-				<li><a href="/de_CH/home/uber-home-shopping">Werden Sie Gastgeberin</a></li>
-				<li><a href="/de_CH/home/home-shopping/beraterin-finden">Beraterin finden</a></li>
-				<li><a href="/de_CH/home/home-shopping/tag-der-offenen-tur">Tag der offenen Tür</a></li>
-				<li><a href="/de_CH/home/katalog">Katalog</a></li>
-				<li><a href="/de_CH/home/beraterin-werden/ein-schoner-nebenjob">Beraterin werden</a></li>
-				</ul><br>		
-				<h2>BE SOCIAL</h2>
-				 <ul class="menu">
-				<li><a href="http://instagram.com/pompdelux_official" target="_blank"> Instagram</a></li>
-				<li><a href="https://www.facebook.com/POMPdeLUXDK" target="_blank">Facebook</a></li>
-				<li><a href="/de_CH/home/katalog/backstage-video">Backstage video</a></li>
-                </ul>
+                    <h2>HOME SHOPPING</h2>
+                    <ul class="menu">
+                        <li><a href="/de_CH/home/uber-home-shopping">Werden Sie Gastgeberin</a></li>
+                        <li><a href="/de_CH/home/home-shopping/beraterin-finden">Shopping Advisor finden</a></li>
+                        <li><a href="/de_CH/home/home-shopping/tag-der-offenen-tur">Tag der offenen Tür</a></li>
+                        <li><a href="/de_CH/home/katalog">Katalog</a></li>
+                        <li><a href="/de_CH/home/beraterin-werden/ein-schoner-nebenjob">Beraterin werden</a></li>
+                    </ul><br>
+                    <h2>BE SOCIAL</h2>
+                    <ul class="menu">
+                        <li><a href="http://instagram.com/pompdelux_official" target="_blank"> Instagram</a></li>
+                        <li><a href="https://www.facebook.com/POMPdeLUXDK" target="_blank">Facebook</a></li>
+                        <li><a href="/de_CH/home/katalog/backstage-video">Backstage video</a></li>
+                    </ul>
                 ]]></target>
             </trans-unit>
             <trans-unit id="footer.menu_3" approved="no">
                 <source>footer.menu_3</source>
                 <target><![CDATA[
-                <h2>MEHR POMPDELUX</h2>
-                <ul class="menu">
-				<li><a href="/de_CH/home/uber-pompdelux">Über POMPdeLUX</a></li> 
-				<li><a href="/de_CH/home/uber-pompdelux/corporate-social-responsibility/csr-bericht">CSR-bericht</a></li>
-				<li><a href="/de_CH/home/gewinnspiele">Gewinnspiele</a></li>
-				<li><a href="/de_CH/home/uber-pompdelux/kontakt">Kontakt</a></li>
-				</ul>
+                    <h2>MEHR POMPDELUX</h2>
+                    <ul class="menu">
+                        <li><a href="/de_CH/home/uber-pompdelux">Über POMPdeLUX</a></li>
+                        <li><a href="/de_CH/home/uber-pompdelux/corporate-social-responsibility/csr-bericht">CSR-bericht</a></li>
+                        <li><a href="/de_CH/home/gewinnspiele">Gewinnspiele</a></li>
+						<li><a href="/de_CH/home/uber-pompdelux/presse">Presse</a></li>
+                        <li><a href="/de_CH/home/uber-pompdelux/kontakt">Kontakt</a></li>
+                    </ul>
                 ]]></target>
             </trans-unit>
             <trans-unit id="share.to.%method%" approved="no">

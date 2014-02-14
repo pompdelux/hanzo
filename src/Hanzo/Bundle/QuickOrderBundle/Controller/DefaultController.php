@@ -20,6 +20,7 @@ class DefaultController extends CoreController
         // All logic is a copy of BasketBundle.Default.viewAction
 
         $order = OrdersPeer::getCurrent();
+        $translator = $this->container->get('translator');
 
         $router = $this->get('router');
         $locale = strtolower(Hanzo::getInstance()->get('core.locale'));
@@ -29,6 +30,7 @@ class DefaultController extends CoreController
 
         // product lines- if any
         foreach ($order->getOrdersLiness() as $line) {
+            $line->setProductsSize($line->getPostfixedSize($translator));
             $line = $line->toArray(\BasePeer::TYPE_FIELDNAME);
 
             if ($line['type'] != 'product') {
@@ -82,7 +84,8 @@ class DefaultController extends CoreController
 
             $line['url'] = '#';
             if ($master) {
-                $line['url'] = $router->generate('product_info', array('product_id' => $master->id));
+                $line['url']    = $router->generate('product_info', array('product_id' => $master->id));
+                $line['master'] = $master->sku;
             }
 
             $products[] = $line;

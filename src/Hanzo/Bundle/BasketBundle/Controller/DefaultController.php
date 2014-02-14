@@ -172,6 +172,14 @@ class DefaultController extends CoreController
             'total'   => $order->getTotalQuantity(true),
         ];
 
+        // Delete cached version in redis, used in the mega basket.
+        $cache_id = [
+            '_fragment',
+            'BasketBundle:Default:megaBasket.html.twig',
+            $this->getRequest()->getSession()->getId(),
+        ];
+        $this->get('redis.main')->del($cache_id);
+
         if ($this->getFormat() == 'json') {
             return $this->json_response($template_data);
         }
@@ -248,6 +256,14 @@ class DefaultController extends CoreController
             );
 
             Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
+
+            // Delete cached version in redis, used in the mega basket.
+            $cache_id = [
+                '_fragment',
+                'BasketBundle:Default:megaBasket.html.twig',
+                $this->getRequest()->getSession()->getId(),
+            ];
+            $this->get('redis.main')->del($cache_id);
 
             if ($this->getFormat() == 'json') {
                 return $this->json_response(array(
@@ -336,8 +352,22 @@ class DefaultController extends CoreController
     }
 
 
-    public function viewAction($embed = false, $orders_id = null)
+    public function viewAction($embed = false, $orders_id = null, $template = 'BasketBundle:Default:view.html.twig')
     {
+
+        // If this request is for the mega basket, check if we already has cached it.
+        if (rawurldecode($this->getRequest()->getPathInfo()) === $this->container->getParameter('fragment.path')) {
+            $cache_id = [
+                '_fragment',
+                $template,
+                $this->getRequest()->getSession()->getId(),
+            ];
+            $html = $this->getCache($cache_id);
+            if ($html) {
+                return $html;
+            }
+        }
+
         if ($orders_id) {
             $order = OrdersQuery::create()->findOneById($orders_id);
         } else {
@@ -347,6 +377,7 @@ class DefaultController extends CoreController
         $router      = $this->get('router');
         $router_keys = include $this->container->parameters['kernel.cache_dir'] . '/category_map.php';
         $locale      = strtolower(Hanzo::getInstance()->get('core.locale'));
+        $translator  = $this->container->get('translator');
 
         $mode = $this->get('kernel')->getStoreMode();
         $cid  = array('category2group');
@@ -356,8 +387,7 @@ class DefaultController extends CoreController
             $result = CategoriesQuery::create()
                 ->filterByContext(null, \Criteria::ISNOTNULL)
                 ->orderByContext()
-                ->find()
-            ;
+                ->find();
             foreach ($result as $category) {
                 list($group, ) = explode('_', $category->getContext());
                 $category2group[$category->getId()] = 'product.group.'.strtolower($group);
@@ -373,11 +403,15 @@ class DefaultController extends CoreController
         $c = new \Criteria();
         $c->addAscendingOrderByColumn(OrdersLinesPeer::PRODUCTS_NAME);
         foreach ($order->getOrdersLiness($c) as $line) {
+            $line->setProductsSize($line->getPostfixedSize($translator));
             $line = $line->toArray(\BasePeer::TYPE_FIELDNAME);
 
             if ($line['type'] != 'product') {
                 continue;
             }
+
+            $line['url'] = '';
+            $line['basket_image'] = '';
 
             $t = strtotime($line['expected_at']);
             if (($t > 0) && ($t > time())) {
@@ -385,8 +419,7 @@ class DefaultController extends CoreController
                 if ($delivery_date < $line['expected_at']) {
                     $delivery_date = $line['expected_at'];
                 }
-            }
-            else {
+            } else {
                 $line['expected_at'] = NULL;
             }
 
@@ -399,8 +432,7 @@ class DefaultController extends CoreController
                         ->filterByLocale($this->getRequest()->getLocale())
                     ->endUse()
                 ->endUse()
-                ->findOne()
-            ;
+                ->findOne();
 
             if ($category_id) {
                 // we need the id and sku from the master record to generate image and url to product.
@@ -413,8 +445,7 @@ class DefaultController extends CoreController
                 ";
                 $master = \Propel::getConnection()
                     ->query($sql)
-                    ->fetch(\PDO::FETCH_OBJ)
-                ;
+                    ->fetch(\PDO::FETCH_OBJ);
 
                 $line['basket_image'] =
                     preg_replace('/[^a-z0-9]/i', '-', $master->sku) .
@@ -440,9 +471,7 @@ class DefaultController extends CoreController
                     }
                 }
             } else {
-                $group                = 0;
-                $line['basket_image'] = '';
-                $line['url']          = '';
+                $group = 0;
             }
 
             $products[$group][] = $line;
@@ -450,7 +479,6 @@ class DefaultController extends CoreController
 
         ksort($products);
 
-        $template = 'BasketBundle:Default:view.html.twig';
         if ($embed) {
             $template = 'BasketBundle:Default:block.html.twig';
         }
@@ -465,7 +493,7 @@ class DefaultController extends CoreController
 
         Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
 
-        return $this->render($template, array(
+        $html = $this->render($template, array(
             'continue_shopping' => $continueShopping,
             'delivery_date'     => $delivery_date,
             'embedded'          => $embed,
@@ -473,6 +501,11 @@ class DefaultController extends CoreController
             'products'          => $products,
             'total'             => $order->getTotalPrice(true),
         ));
+        // If this request is for the mega basket, be sure to cache it.
+        if (rawurldecode($this->getRequest()->getPathInfo()) === $this->container->getParameter('fragment.path')) {
+            $this->setCache($cache_id, $html, 5);
+        }
+        return $html;
     }
 
 
