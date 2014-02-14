@@ -635,7 +635,7 @@ ul.sub-menu,
 }
 ul.sub-menu li,
 .sub-menu > ul li {
-  padding: 6px 0 6px 0;
+  padding: 0 0 6px 0;
   line-height: 18px;
 }
 ul.sub-menu li.item a,
@@ -2372,6 +2372,11 @@ html.touch .product-list .buy-set {
 .body-look a.show-by-look,
 .body-overview a.show-by-overview {
   text-decoration: underline;
+}
+
+.js-faceted-container label {
+  margin-top: 0;
+  margin-left: 5px;
 }
 
 /**

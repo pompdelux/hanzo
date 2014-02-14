@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database name="default" namespace="Hanzo\Model" defaultIdMethod="native">
+
+    <table name="search_products_tags">
+        <column name="id" required="true" primaryKey="true" autoIncrement="true" type="INTEGER" />
+        <column name="master_products_id" type="INTEGER" required="true"/>
+        <column name="products_id" type="INTEGER" required="true"/>
+        <column name="token" type="VARCHAR" size="128" required="true"/>
+        <column name="locale" type="VARCHAR" size="12" required="true"/>
+        <index name="index_token_locale">
+            <index-column name="token"/>
+            <index-column name="locale"/>
+        </index>
+        <foreign-key foreignTable="products" name="fk_spt_products_images_1" onDelete="CASCADE">
+            <reference local="master_products_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="products" name="fk_spt_products_images_2" onDelete="CASCADE">
+            <reference local="products_id" foreign="id"/>
+        </foreign-key>
+    </table>
+
+</database>

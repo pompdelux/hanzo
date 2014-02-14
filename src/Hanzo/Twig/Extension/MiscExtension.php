@@ -74,6 +74,7 @@ class MiscExtension extends Twig_Extension
             'money'  => new Twig_Filter_Method($this, 'moneyFormat'),
             'og_description' => new Twig_Filter_Method($this, 'ogDescription'),
             'strip_tags' => new Twig_Filter_Method($this, 'stripTags'),
+            'tag_safe' => new Twig_Filter_Method($this, 'tagSafe'),
         );
     }
 
@@ -516,5 +517,14 @@ DOC;
     public function stripTags($value)
     {
       return Tools::stripTags($value);
+    }
+
+    public function tagSafe($value, $params = null)
+    {
+        if (!empty($params) && is_array($params)) {
+            return strtr($value, $params);
+        }
+
+        return preg_replace('/[^a-z0-9_-]/i', '', $value);
     }
 }
