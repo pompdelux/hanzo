@@ -137,9 +137,7 @@ ul.menu,
     color: $font-color;
     letter-spacing: 0;
     z-index: 200; // z-index and position to fix rendering in IE7. This must be higher than the actually z-index of child
-    position: relative;
     li {
-        position: relative;
         a {
             color: $font-color;
             text-decoration: none;
