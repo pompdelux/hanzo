@@ -42,18 +42,20 @@ class DefaultController extends CoreController
      */
     public function viewAction(Request $request, $cms_id, $show, $pager = 1)
     {
-        $hanzo = Hanzo::getInstance();
+        $hanzo     = Hanzo::getInstance();
         $container = $hanzo->container;
-        $locale = $hanzo->get('core.locale');
-        $translator = $this->get('translator');
+        $locale    = $hanzo->get('core.locale');
 
-        $cacheId = explode('_', $this->get('request')->get('_route'));
-        $cacheId = array($cacheId[0], $cacheId[2], $cacheId[1], $show, $pager);
+        $cache_id = explode('_', $this->get('request')->get('_route'));
+        $cache_id = array($cache_id[0], $cache_id[2], $cache_id[1], $show, $pager);
 
-        if ($this->getFormat() !== 'json') $cache_id[] = 'html'; // Extra cache id if its not a json call
+        if ($this->getFormat() !== 'json') {
+            $cache_id[] = 'html';
+        }
 
         // TODO: should not be set here !!
         $cms_page = CmsPeer::getByPK($cms_id, $locale);
+
         $parent_settings = CmsI18nQuery::create()
             ->Select('Settings')
             ->filterByLocale($locale)
@@ -62,14 +64,11 @@ class DefaultController extends CoreController
         ;
 
         $color_mapping = [];
-        $size_mapping  = [];
         if ($parent_settings) {
             $parent_settings = json_decode($parent_settings);
             $color_mapping = (array) $parent_settings->colormap;
-            $size_mapping  = (array) $parent_settings->sizes;
         }
 
-        $use_filter   = false;
         $size_filter  = [];
         $color_filter = [];
 
@@ -92,25 +91,22 @@ class DefaultController extends CoreController
                 $size_filter[] = $size;
             }
 
-            $cache_id   = array_merge($cache_id, $size_filter);
-            $use_filter = true;
+            $cache_id = array_merge($cache_id, $size_filter);
         }
 
         $html = $this->getCache($cache_id); // If there a cached version, html has both the json and html version
-        $data = null;
 
-        /*
+        /**
          *  If html wasn't cached retrieve a fresh set of data
          */
+        $data = null;
         if (!$html) {
-
             $data = $this->getCategoryProducts($cms_id, $show, $pager);
 
             if ($this->getFormat() == 'json') {
                 $this->setCache($cache_id, $data, 5);
                 $html = $data;
             } else {
-
                 $cms_page = CmsPeer::getByPK($cms_id, $locale);
                 $settings = $cms_page->getSettings(null, false);
 
@@ -126,27 +122,25 @@ class DefaultController extends CoreController
 
                 $twig = $this->get('twig');
                 $twig->addGlobal('route', $container->get('request')->get('_route'));
-                $twig->addGlobal('page_type', 'category-'.$category_id);
-                $twig->addGlobal('body_classes', 'body-category category-'.$category_id.' body-'.$show.' '.$classes);
+                $twig->addGlobal('page_type', 'category-'.$settings->category_id);
+                $twig->addGlobal('body_classes', 'body-category category-'.$settings->category_id.' body-'.$show.' '.$classes);
                 $twig->addGlobal('show_new_price_badge', $hanzo->get('webshop.show_new_price_badge'));
                 $twig->addGlobal('cms_id', $cms_page->getParentId());
                 $twig->addGlobal('show_by_look', ($show === 'look'));
                 $twig->addGlobal('browser_title', $cms_page->getTitle());
 
                 $html = $this->renderView('CategoryBundle:Default:view.html.twig', $data);
-                $this->setCache($cacheId, $html, 5);
+                $this->setCache($cache_id, $html, 5);
             }
         } // End of retrival of fresh data
 
         // json requests
         if ($this->getFormat() == 'json') {
-
             return $this->json_response($html);
-        } else {
-            $this->setSharedMaxAge(1800);
-
-            return $this->response($html);
         }
+
+        $this->setSharedMaxAge(1800);
+        return $this->response($html);
 
     }
 
@@ -177,7 +171,6 @@ class DefaultController extends CoreController
             ->groupBySku()
             ->find();
 
-        $locale = $this->getRequest()->getLocale();
         $records = array();
         $locale = $this->getRequest()->getLocale();
         foreach ($products as $product) {
@@ -204,29 +197,27 @@ class DefaultController extends CoreController
 
     public function listCategoryProductsAction($cms_id, $show, $pager = 1)
     {
-
-        $hanzo = Hanzo::getInstance();
+        $hanzo     = Hanzo::getInstance();
         $container = $hanzo->container;
-        $locale = $hanzo->get('core.locale');
-        $translator = $this->get('translator');
+        $locale    = $hanzo->get('core.locale');
 
         $cache_id = array(__FUNCTION__, $cms_id, $show, $pager);
 
-        if ($this->getFormat() !== 'json') $cache_id[] = 'html'; // Extra cache id if its not a json call
+        if ($this->getFormat() !== 'json') {
+            $cache_id[] = 'html';
+        }
 
         $html = $this->getCache($cache_id); // If there a cached version, html has both the json and html version
 
-        $data = null;
-        /*
+        /**
          *  If html wasnt cached retrieve a fresh set of data
          */
+        $data = null;
         if (!$html) {
             $data = $this->getCategoryProducts($cms_id, $show, $pager);
 
             if ($this->getFormat() == 'json') {
-
                 $this->setCache($cache_id, $data, 5);
-
                 $html = $data;
             } else {
                 $route = $container->get('request')->get('_route');
@@ -240,20 +231,17 @@ class DefaultController extends CoreController
                 $this->get('twig')->addGlobal('show_new_price_badge', $hanzo->get('webshop.show_new_price_badge'));
 
                 $html = $this->renderView('CategoryBundle:Default:listCategoryProducts.html.twig', $data);
-
                 $this->setCache($cache_id, $html, 5);
-
             }
         }
 
         // json requests
         if ($this->getFormat() == 'json') {
             return $this->json_response($html);
-        } else {
-            $this->setSharedMaxAge(1800);
-
-            return $this->response($html);
         }
+
+        $this->setSharedMaxAge(1800);
+        return $this->response($html);
     }
 
     /**
@@ -267,13 +255,12 @@ class DefaultController extends CoreController
      */
     public function getCategoryProducts($cms_id, $show, $pager = 1)
     {
-        $hanzo = Hanzo::getInstance();
-        $container = $hanzo->container;
-        $locale = $hanzo->get('core.locale');
+        $hanzo      = Hanzo::getInstance();
+        $container  = $hanzo->container;
+        $locale     = $hanzo->get('core.locale');
         $translator = $this->get('translator');
-        $cms_page = CmsPeer::getByPK($cms_id, $locale);
-
-        $request = $container->get('request');
+        $cms_page   = CmsPeer::getByPK($cms_id, $locale);
+        $request    = $container->get('request');
 
         if (!$cms_page) {
             return [];
@@ -311,13 +298,10 @@ class DefaultController extends CoreController
                 }
             }
 
-            $cache_id = array_merge($cache_id, $color_filter);
-
             foreach ($request->query->get('size', []) as $size) {
                 $size_filter[] = $size;
             }
 
-            $cache_id   = array_merge($cache_id, $size_filter);
             $use_filter = true;
         }
 
@@ -332,7 +316,7 @@ class DefaultController extends CoreController
         $route = $request->get('_route');
 
         if (!$route) {
-            // Maybe this is an subrequest. Genereate the route from cmsPage
+            // Maybe this is an sub-request. Genereate the route from cmsPage
             $route = strtolower('category_' . $cms_id . '_' . $locale);
         }
 
@@ -432,8 +416,21 @@ class DefaultController extends CoreController
             }
         }
 
-        if ($color_filter) {
+        if ($request->query->get('show_all')) {
+            $result = $result->useProductsQuery()
+                ->filterByIsOutOfStock(false)
+                ->_or()
+                ->filterByIsOutOfStock(true)
+                ->endUse()
+            ;
+        } elseif ($use_filter) {
+            $result = $result->useProductsQuery()
+                ->filterByIsOutOfStock(false)
+                ->endUse()
+            ;
+        }
 
+        if ($color_filter) {
             $result = $result->useProductsImagesQuery()
                 ->addAscendingOrderByColumn(sprintf(
                     "FIELD(%s, %s)",
@@ -447,20 +444,12 @@ class DefaultController extends CoreController
             $result = $result->orderBySort();
         }
 
-// un@bellcom.dk 2013.11.28, removed to show all products on the category pages.
-//            if ($pager === 'all') {
-//                $result = $result->paginate(null, null);
-//            } else {
-//                $result = $result->paginate($pager, 12);
-//            }
-
-        // $result = $result->paginate(null, null);
         $result = $result->find();
 
         $product_route = str_replace('category_', 'product_', $route);
 
-        $records = array();
-        $product_ids = array();
+        $records = [];
+        $product_ids = [];
 
         foreach ($result as $record) {
 
@@ -499,9 +488,7 @@ class DefaultController extends CoreController
         }
 
         // get product prices
-
         $prices = ProductsDomainsPricesPeer::getProductsPrices($product_ids);
-
 
         // attach the prices to the products
         foreach ($records as $i => $data) {
@@ -516,31 +503,10 @@ class DefaultController extends CoreController
             'paginate' => null,
         ];
 
-        if (method_exists($result, 'haveToPaginate') && $result->haveToPaginate()) {
-
-            $pages = array();
-            foreach ($result->getLinks(20) as $page) {
-                $pages[$page] = $router->generate($route, array('pager' => $page, 'show' => $show), true);
-            }
-
-            $data['paginate'] = array(
-                'next' => ($result->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $result->getNextPage(), 'show' => $show), true)),
-                'prew' => ($result->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $result->getPreviousPage(), 'show' => $show), true)),
-
-                'pages' => $pages,
-                'index' => $pager,
-                'see_all' => array(
-                    'total' => $result->getNbResults(),
-                    'url' => $router->generate($route, array('pager' => 'all', 'show' => $show), true)
-                )
-            );
-        }
-
         $data['color_mapping'] = array_keys($color_mapping);
         $data['size_mapping']  = $size_mapping;
 
         if ($this->getFormat() == 'json') {
-
             // for json we need the real image paths
             foreach ($data['products'] as $k => $product) {
                 $data['products'][$k]['image'] = Tools::productImageUrl($product['image'], '234x410');
