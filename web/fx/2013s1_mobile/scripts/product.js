@@ -173,7 +173,7 @@
         var $form = $(this).closest('form');
 
         var lookup = $.ajax({
-          url: base_url + 'rest/v1/stock-check',
+          url: base_url + 'stock-check',
           dataType: 'json',
           data: $form.serialize(),
           cache: false

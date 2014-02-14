@@ -124,7 +124,7 @@
         });
 
         $.ajax({
-          url : base_url + 'rest/v1/stock-check',
+          url : base_url + 'stock-check',
           data : { master : data.master },
           dataType : 'json',
           async : false,
@@ -162,7 +162,7 @@
           };
 
           $.ajax({
-            url : base_url + 'rest/v1/stock-check',
+            url : base_url + 'stock-check',
             data : request_data,
             dataType : 'json',
             async : false,

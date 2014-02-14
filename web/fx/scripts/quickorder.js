@@ -30,7 +30,7 @@ var quickorder = (function($) {
             var $context = $(this).closest('.quickorder');
 
             var XHR = $.ajax({
-                url      : base_url + "rest/v1/stock-check",
+                url      : base_url + "stock-check",
                 dataType : 'json',
                 type     : 'GET',
                 data     : { master : item.name },
@@ -267,7 +267,7 @@ var quickorder = (function($) {
 
         if ($size.val() !== '') {
             var XHR =  $.ajax({
-                url      : base_url + "rest/v1/stock-check",
+                url      : base_url + "stock-check",
                 async    : false,
                 dataType : 'json',
                 type     : 'GET',

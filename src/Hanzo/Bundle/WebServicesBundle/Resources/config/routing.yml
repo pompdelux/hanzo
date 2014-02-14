@@ -6,18 +6,6 @@ ws_cookie:
     pattern:  /m.test
     defaults: { _controller: WebServicesBundle:Default:cookie }
 
-# /rest/v1/stock-check/{10}?master=foo&color=bar&size=baz
-ws_stock:
-    pattern:    /rest/{version}/stock-check/{id}
-    defaults:
-        _controller: WebServicesBundle:RestStock:check
-        version: v1
-        id: 0
-    requirements:
-        _method:  GET
-        id: \d+
-        version: "v[0-9]+"
-
 ws_product_video:
     pattern:  /rest/{version}/video
     defaults:

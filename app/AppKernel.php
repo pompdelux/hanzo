@@ -59,6 +59,7 @@ class AppKernel extends Kernel
             new Hanzo\Bundle\AxBundle\AxBundle(),
             new Hanzo\Bundle\RetargetingBundle\RetargetingBundle(),
             new Hanzo\Bundle\RMABundle\RMABundle(),
+            new Hanzo\Bundle\StockBundle\StockBundle(),
             new Hanzo\Bundle\GoogleBundle\GoogleBundle(),
             new Hanzo\Bundle\ConsignorBundle\ConsignorBundle(),
         );
