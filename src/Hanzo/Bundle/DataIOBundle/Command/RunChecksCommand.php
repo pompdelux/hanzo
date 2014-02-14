@@ -3,6 +3,7 @@
 namespace Hanzo\Bundle\DataIOBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Translation\Exception\InvalidResourceException;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -57,7 +58,7 @@ class RunChecksCommand extends ContainerAwareCommand
             try {
                 $parser = new XliffFileLoader();
                 $parser->load($path, $locale, $domain);
-            } catch (\RuntimeException $e) {
+            } catch (InvalidResourceException $e) {
                 $this->errors[] = $name . ":\n" .$e->getMessage()."\n";
             }
         }

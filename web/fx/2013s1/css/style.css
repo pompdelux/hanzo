@@ -466,14 +466,17 @@ nav.first.main-menu {
   background-color: #dcd8d2;
   margin-bottom: 6px;
   padding: 3px 0;
-  z-index: 300;
+  z-index: 320;
   position: relative;
 }
 nav.first.main-menu ul, nav.first.main-menu ul li, nav.first.main-menu ul li form, nav.first.main-menu ul li form input {
   font-size: 12px;
 }
+nav.first.main-menu ul {
+  z-index: 330;
+}
 nav.first.main-menu > ul {
-  z-index: 220;
+  z-index: 330;
   margin-left: 10px;
 }
 nav.first.main-menu > ul.topmenu {
@@ -502,7 +505,7 @@ nav.first.main-menu > ul li a {
   font-weight: normal;
 }
 nav.first.main-menu .dropdown {
-  z-index: 201;
+  z-index: 301;
 }
 nav.first.main-menu .dropdown a {
   display: block;
@@ -575,12 +578,6 @@ ul.menu,
   color: #444444;
   letter-spacing: 0;
   z-index: 200;
-  position: relative;
-}
-nav > ul li,
-ul.menu li,
-.menu > ul li {
-  position: relative;
 }
 nav > ul li a,
 ul.menu li a,
@@ -2995,7 +2992,6 @@ nav.main-menu > ul > li > ul {
   left: -9999px;
   border-top: 0;
   width: 100%;
-  z-index: 1;
   background-color: #fff;
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-size: 12px;
