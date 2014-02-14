@@ -288,16 +288,19 @@
 
               var $mega_basket = $('#mega-basket'),
                   $mega_basket_table = $('.basket-table-body .content', $mega_basket);
+              if ($mega_basket.length) {
+                // Add the new product to the basket table.
+                $mega_basket_table.append('<div class="item new"><img src="' + $('.productimage-large img').attr('src') + '" />' + $('h1.title').text() + '<span class="right total">' + response.latest.price + '</span></div>');
+                // Update total price.
+                var item_count_regex = /\([0-9+]\) /;
+                var total = response.data.replace(item_count_regex, '');
+                $('.grand-total', $mega_basket).text(total);
+                $('.item-count', $mega_basket).text(response.data.match(item_count_regex));
 
-              // Add the new product to the basket table.
-              $mega_basket_table.append('<div class="item new"><img src="' + $('.productimage-large img').attr('src') + '" />' + $('h1.title').text() + '<span class="right total">' + response.latest.price + '</span></div>');
-              // Update total price.
-              var item_count_regex = /\([0-9+]\) /;
-              var total = response.data.replace(item_count_regex, '');
-              $('.grand-total', $mega_basket).text(total);
-              $('.item-count', $mega_basket).text(response.data.match(item_count_regex));
-
-              $('body').trigger('basket_product_added');
+                $('body').trigger('basket_product_added');
+              } else {
+                dialoug.slideNotice(response.message, undefined, '#mini-basket');
+              }
             }
             _resetForm();
           });
