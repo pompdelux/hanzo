@@ -3,6 +3,10 @@
     <a href="{{ url(route, {'show': 'overview'}) }}" class="show-by-overview">{{ 'category.selector.overview'|trans }}</a> / <a href="{{ url(route, {'show': 'look'}) }}" class="show-by-look">{{ 'category.selector.look'|trans }}</a>
   </div>
 
+    <div class="pager ajax js-pager-container off" data-target="product-list">
+        <li><a href="{{ app.request.uri }}" title="">...</a></li>
+    </div>
+
     <div class="product-list clearfix grid_6 alpha omega row">
       <div class="old-item">
         {% for product in products %}
@@ -51,12 +55,6 @@
       {% if products|length > 0 %}
         <a href="#" class="to-top">{{ 'goto.top.link'|trans }}</a>
       {% endif %}
-{#
-        {% if paginate %}
-            {% import "::macro.pager.html.twig" as p %}
-            {{ p.pager(paginate, 'product-list') }}
-        {% endif %}
-#}
     </div>
 </div>
 

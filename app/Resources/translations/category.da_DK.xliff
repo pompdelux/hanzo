@@ -255,7 +255,7 @@
                 <source>headers.category-22</source>
                 <target><![CDATA[<h1>Accessories</h1>
                 <p>For at fuldende dit barns garderobe kan kollektionen kombineres med vores mange skønne accessories. POMPdeLUX har alt lige fra seler og bælter til vanter, huer og halstørklæder. Vores populære accessories matcher resten af kollektionen, og kan derfor kombineres med smarte sweats, lækre cardigans og seje jeans. Vores bælter, seler, vanter, huer og halstørklæder kan bruges af drenge i alle aldre, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
-            </trans-unit>	
+            </trans-unit>
 			<trans-unit id="headers.category-47" approved="no">
                 <source>headers.category-47</source>
                 <target><![CDATA[<h1>Oeko-Tex</h1>
@@ -265,7 +265,7 @@
                 <source>headers.category-48</source>
                 <target><![CDATA[<h1>Organic</h1>
                 <p>Hos POMPdeLUX elsker vi kvalitetstøj, og dit barn skal naturligvis have det bedste. Derfor er vores underbukser, hipsters, trusser, undertrøjer, natkjoler og pyjamas GOTS certificeret. Det betyder at vi arbejder med organiske tekstiler, hvoraf mindst 95 % af materialerne er økologiske, samt at produktionen foregår miljømæssigt og socialt ansvarligt. Vi garanterer derfor lækre materialer af høj kvalitet til børn i alle aldre.</p>]]></target>
-            </trans-unit>		
+            </trans-unit>
 			<trans-unit id="headers.bycolour-673" approved="no">
                 <source>headers.bycolour-673</source>
                 <target><![CDATA[<h1>Rose</h1>
@@ -320,7 +320,7 @@
                 <source>headers.bycolour-695</source>
                 <target><![CDATA[<h1>Green & Brown</h1>
                 <p></p>]]></target>
-            </trans-unit>	
+            </trans-unit>
 			<trans-unit id="headers.bycolour-779" approved="no">
                 <source>headers.bycolour-779</source>
                 <target><![CDATA[<h1>Grey</h1>
@@ -330,7 +330,7 @@
                 <source>headers.bycolour-780</source>
                 <target><![CDATA[<h1>Denim</h1>
                 <p></p>]]></target>
-            </trans-unit>		
+            </trans-unit>
 			<trans-unit id="headers.bycolour-683" approved="no">
                 <source>headers.bycolour-683</source>
                 <target><![CDATA[<h1>Rose</h1>
@@ -395,6 +395,14 @@
                 <source>headers.bycolour-782</source>
                 <target><![CDATA[<h1>Denim</h1>
                 <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="faceted.show.out.of.stock" approved="no">
+                <source>faceted.show.out.of.stock</source>
+                <target>Vis også udsolgte vare</target>
+            </trans-unit>
+			<trans-unit id="faceted.reset.filter" approved="no">
+                <source>faceted.reset.filter</source>
+                <target>» Nulstil filtre</target>
             </trans-unit>
         </body>
     </file>

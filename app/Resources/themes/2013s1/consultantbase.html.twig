@@ -67,20 +67,32 @@
 {% if simple_layout is not defined %}
   <nav id="secondary-links">
     {% if is_granted('ROLE_USER') %}
-      <ul class="horizontal menu right first">
+      <ul class="horizontal menu right first clearfix">
       {% if skip_my_account is not defined %}
         <li class="last"><a href="{{ path('_account', {'_locale' : app.request.locale}) }}">{{ "my.account"|trans({}, 'account') }}</a></li>
       {% endif %}
       </ul>
       <ul class="horizontal menu right second">
         <li id="mini-basket" class="basket">
-          <span class="sprite"></span>
-          <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" title="{{ "show.basket"|trans }}"> {{ render(controller('BasketBundle:Default:miniBasket')) }} </a>
+            <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" title="{{ "show.basket"|trans }}"><span class="sprite"></span></a>
+            <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" title="{{ "show.basket"|trans }}" class="total"> {{ render(controller('BasketBundle:Default:miniBasket')) }} </a>
         </li>
-        <li class="last"><a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}">{{ "show.basket"|trans }}</a></li>
+        <li class="last"><a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" class="open-megabasket">{{ "show.basket"|trans }}</a></li>
       </ul>
     {% endif %}
   </nav>
+  {% if skip_my_account is not defined %}
+      <div id="mega-basket">
+
+          {{ render_esi(controller('BasketBundle:Default:view', { 'template': 'BasketBundle:Default:megaBasket.html.twig' })) }}
+
+          <div class="delivery-text">
+              {{ 'footer.text'|trans({'%expected_delivery_date%': parameter('HD.expected_delivery_date')})|raw }}
+          </div>
+          <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" class="checkout-button sprite"></a>
+          <a href="#" class="close sprite"></a>
+      </div>
+  {% endif %}
 {% endif %}
   <footer class="container container_8">
     <div class="grid_8">

@@ -159,3 +159,11 @@
 a.product-color{
 	white-space: normal;
 }
+
+a.video-popper, #video-player-container a.video {
+	.sprite{
+		@include icons-sprite(video);
+		height: icons-sprite-height(video) - 1px;
+		width: icons-sprite-width(video) - 1px;
+	}
+}

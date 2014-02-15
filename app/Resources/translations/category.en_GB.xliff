@@ -255,7 +255,7 @@
                 <source>headers.category-22</source>
                 <target><![CDATA[<h1>Accessories</h1>
                 <p>To complete your child’s wardrobe the collection can be combined with our many cool accessories. POMPdeLUX has everything from suspenders and belts to mittens, hats and scarves. Our popular accessories match the rest of the collection and can therefore be combined with smart sweatshirts, lovely cardigans and cool trousers. Our belts, suspenders, mittens, hats and scarves can be used by boys of all ages and there is lots of inspiration to be discovered for children’s wardrobe. </p>]]></target>
-            </trans-unit>	
+            </trans-unit>
 			<trans-unit id="headers.category-47" approved="no">
                 <source>headers.category-47</source>
                 <target><![CDATA[<h1>Oeko-Tex</h1>
@@ -320,7 +320,7 @@
                 <source>headers.bycolour-695</source>
                 <target><![CDATA[<h1>Green & Brown</h1>
                 <p></p>]]></target>
-            </trans-unit>	
+            </trans-unit>
 			<trans-unit id="headers.bycolour-779" approved="no">
                 <source>headers.bycolour-779</source>
                 <target><![CDATA[<h1>Grey</h1>
@@ -330,7 +330,7 @@
                 <source>headers.bycolour-780</source>
                 <target><![CDATA[<h1>Denim</h1>
                 <p></p>]]></target>
-            </trans-unit>		
+            </trans-unit>
 			<trans-unit id="headers.bycolour-683" approved="no">
                 <source>headers.bycolour-683</source>
                 <target><![CDATA[<h1>Rose</h1>
@@ -395,6 +395,14 @@
                 <source>headers.bycolour-782</source>
                 <target><![CDATA[<h1>Denim</h1>
                 <p></p>]]></target>
+            </trans-unit>
+            <trans-unit id="faceted.show.out.of.stock" approved="no">
+                <source>faceted.show.out.of.stock</source>
+                <target>Vis også udsolgte vare</target>
+            </trans-unit>
+            <trans-unit id="faceted.reset.filter" approved="no">
+                <source>faceted.reset.filter</source>
+                <target>» Nulstil filtre</target>
             </trans-unit>
         </body>
     </file>

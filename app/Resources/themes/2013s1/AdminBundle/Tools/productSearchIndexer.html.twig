@@ -1,0 +1,24 @@
+{% extends '::adminbase.html.twig' %}
+{% block content %}
+
+<h1>Produkt søgnings Indeksering</h1>
+
+{% for message in app.session.flashbag.get('notice') %}
+    <div class="message">
+        {{ message }}
+    </div><br>
+{% endfor %}
+
+<p>
+    <a href="{{ path('admin_tools_faceted_search_indexer', {'run': 1}) }}" class="js-trigger-indexer">Opdatér faceted søgnings index.</a>
+</p>
+
+{% endblock %}
+
+{% block javascript %}
+<script>
+$('a.js-trigger-indexer').on('click', function(event) {
+    dialoug.loading($(this));
+});
+</script>
+{% endblock %}

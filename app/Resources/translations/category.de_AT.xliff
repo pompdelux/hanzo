@@ -265,7 +265,7 @@
                 <source>headers.category-48</source>
                 <target><![CDATA[<h1>Organic</h1>
                 <p>Bei POMPdeLUX lieben wir Qualitätsbekleidung und für Ihr Kind ist selbstverständlich nur das Beste gut genug. Daher sind unsere Unterhosen, Hipsters, Slips, Unterhemden, Nachtkleider und Pyjamas GOTS-zertifiziert. Das heißt, dass wir mit organischen Textilien arbeiten, wovon mindestens 95 % der Materialien ökologisch sind, und dass die Produktion umweltfreundlich und sozial verantwortlich erfolgt. Wir garantieren daher schicke Materialien aus hoher Qualität für Kinder jeden Alters.</p>]]></target>
-            </trans-unit>			
+            </trans-unit>
 			<trans-unit id="headers.bycolour-673" approved="no">
                 <source>headers.bycolour-673</source>
                 <target><![CDATA[<h1>Rose</h1>
@@ -330,7 +330,7 @@
                 <source>headers.bycolour-695</source>
                 <target><![CDATA[<h1>Grey</h1>
                 <p></p>]]></target>
-            </trans-unit>			
+            </trans-unit>
 			<trans-unit id="headers.bycolour-683" approved="no">
                 <source>headers.bycolour-683</source>
                 <target><![CDATA[<h1>Rose</h1>
@@ -395,6 +395,14 @@
                 <source>headers.bycolour-699</source>
                 <target><![CDATA[<h1>Grey</h1>
                 <p></p>]]></target>
+            </trans-unit>
+            <trans-unit id="faceted.show.out.of.stock" approved="no">
+                <source>faceted.show.out.of.stock</source>
+                <target>Vis også udsolgte vare</target>
+            </trans-unit>
+            <trans-unit id="faceted.reset.filter" approved="no">
+                <source>faceted.reset.filter</source>
+                <target>» Nulstil filtre</target>
             </trans-unit>
         </body>
     </file>

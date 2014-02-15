@@ -199,15 +199,28 @@ var quickorder = (function($) {
                             dialoug.alert(Translator.get('js:notice'), response.message);
                         }
                     } else {
-                        window.scrollTo(window.scrollMinX, window.scrollMinY);
-                        $.cookie('basket', response.data);
-                        $('#mini-basket a.total').html(response.data);
-                        dialoug.slideNotice(response.message);
-
                         var c = color.toString();
                         c = c.replace('/', '9');
                         var img = master.toString().replace(/[^a-zA-Z0-9_]/g, "-") + '_' + c.replace(/[^a-zA-Z0-9_]/g, "-");
                         img = cdn_url + 'images/products/thumb/57x100,' + img + '_overview_01.jpg';
+
+                        window.scrollTo(window.scrollMinX, window.scrollMinY);
+                        $.cookie('basket', response.data);
+                        $('#mini-basket a.total').html(response.data);
+
+                        var $mega_basket = $('#mega-basket'),
+                            $mega_basket_table = $('.basket-table-body .content', $mega_basket);
+
+                        // Add the new product to the basket table.
+                        $mega_basket_table.append('<div class="item new"><img src="' + img + '" />' + title + '<span class="right total">' + response.latest.price + '</span></div>');
+                        // Update total price.
+                        var item_count_regex = /\([0-9+]\) /;
+                        var total = response.data.replace(item_count_regex, '');
+                        $('.grand-total', $mega_basket).text(total);
+                        $('.item-count', $mega_basket).text(response.data.match(item_count_regex));
+
+                        $('body').trigger('basket_product_added');
+
 
                         $('table tbody').prepend(' ' +
                             '<tr class="item"> ' +
