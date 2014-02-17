@@ -267,10 +267,9 @@ class DefaultController extends CoreController
         }
 
         $parent_settings = CmsI18nQuery::create()
-            ->Select('Settings')
             ->filterByLocale($locale)
             ->filterById($cms_page->getParentId())
-            ->findOne()
+            ->findOne()->getSettings(false)
         ;
 
         $color_mapping = [];
@@ -432,6 +431,7 @@ class DefaultController extends CoreController
 
         if ($color_filter) {
             if ($use_filter) {
+                // when using filters we need descending order not ascending.
                 $result = $result->useProductsImagesQuery()
                     ->addDescendingOrderByColumn(sprintf(
                         "FIELD(%s, %s)",
