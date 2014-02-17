@@ -609,7 +609,7 @@ class CmsController extends CoreController
     {
         $pages = [
             'admin' => [
-                'access' => ['ROLE_ADMIN', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE', 'ROLE_SALES', 'ROLE_STATS'],
+                'access' => ['ROLE_ADMIN', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_DESIGN', 'ROLE_EMPLOYEE', 'ROLE_SALES', 'ROLE_STATS'],
                 'title' => 'Forside',
             ],
             'admin_statistics' => [
@@ -641,7 +641,7 @@ class CmsController extends CoreController
                 'title' => 'Ordrer',
             ],
             'admin_products' => [
-                'access' => ['ROLE_ADMIN', 'ROLE_SALES'],
+                'access' => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_DESIGN'],
                 'title' => 'Katalog',
             ],
             'admin_shipping_index' => [

@@ -18,6 +18,7 @@ $_sizes = [
     'quickbuy'      => '57x100',
     'basket'        => '114x200',
     'product_large' => '234x410',
+    'admin_1'       => '60x115',
 ];
 
 function _dbug($msg, $auto_newline = true) {

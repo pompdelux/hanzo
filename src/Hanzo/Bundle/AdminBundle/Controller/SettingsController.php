@@ -608,7 +608,8 @@ class SettingsController extends CoreController
                 array(
                     'label' => 'admin.messages.body',
                     'translation_domain' => 'admin',
-                    'required' => false
+                    'required' => false,
+                    'attr' => ['rows' => 20]
                 )
             )->getForm()
         ;

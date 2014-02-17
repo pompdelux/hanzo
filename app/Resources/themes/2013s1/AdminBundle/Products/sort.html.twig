@@ -32,9 +32,9 @@
 <p>{{ 'admin.products.sort.description.text'|trans({}, 'admin') }}</p>
 
 {% for message in app.session.flashbag.get('notice') %}
-<div class="message notice">
-  {{ message|trans({}, 'admin') }}
-</div>
+    <div class="alert alert-info">
+        {{ message|trans({}, 'admin') }}
+    </div>
 {% endfor %}
 
   {% if products %}
