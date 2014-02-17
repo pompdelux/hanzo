@@ -1233,7 +1233,7 @@ class ECommerceServices extends SoapService
             if (method_exists($call, 'refund'))  {
                 $this->timer->reset();
                 $response = $call->refund($order, ($data->amount * -1));
-                $result = $response->debug();
+                $result   = $response->debug();
                 $this->timer->lap('time in '.$provider.' gateway');
             } else {
                 // if no refund method is implemented, we just have to accept that the refund succeded
@@ -1251,8 +1251,8 @@ class ECommerceServices extends SoapService
                 $name = $order->getFirstName() . ' ' . $order->getLastName();
                 $parameters = array(
                     'order_id' => $order->getId(),
-                    'name' => $name,
-                    'amount' => $data->amount,
+                    'name'     => $name,
+                    'amount'   => $data->amount,
                 );
 
                 $this->timer->reset();
@@ -1285,7 +1285,7 @@ class ECommerceServices extends SoapService
             );
         }
 
-        if($doSendError) {
+        if ($doSendError) {
             Tools::log($errors);
 
             $to = Tools::getBccEmailAddress('retur', $order);

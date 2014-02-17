@@ -158,6 +158,7 @@ class ProductsController extends CoreController
 
         $current_product = ProductsQuery::create()
             ->filterById($id)
+            ->orderBySku()
             ->findOne($this->getDbConnection())
         ;
 
@@ -169,6 +170,7 @@ class ProductsController extends CoreController
 
         $all_products = ProductsQuery::create()
             ->filterByMaster(NULL)
+            ->orderBySku()
             ->find($this->getDbConnection())
         ;
 
@@ -180,6 +182,7 @@ class ProductsController extends CoreController
 
         $related_products = RelatedProductsQuery::create()
             ->filterByMaster($current_product->getSku())
+            ->orderBySku()
             ->find($this->getDbConnection())
         ;
 
