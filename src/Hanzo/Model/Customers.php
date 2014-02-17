@@ -2,7 +2,6 @@
 
 namespace Hanzo\Model;
 
-use Hanzo\Core\Tools;
 use PropelPDO;
 
 use Hanzo\Core\Hanzo;
@@ -176,7 +175,7 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
         if (isset($this->extended[$email])) {
             $roles = array_merge($roles, $this->extended[$email]);
         }
-Tools::log($roles);
+
         return $roles;
     }
 
