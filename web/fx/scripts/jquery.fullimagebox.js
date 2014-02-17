@@ -123,7 +123,8 @@
 
             $('.close, img.full-image', $wrapper).on('click', function(e){
                 e.preventDefault();
-                $wrapper.fadeOut(400);
+                $wrapper.hide();
+                $('body').toggleClass('full-image-wrapper-open');
             });
 
             $image.show();
@@ -137,7 +138,9 @@
         },
         open : function( ){
             _next( _getIndex( this ) );
-            $wrapper.fadeIn(100);
+            $wrapper.fadeIn(100, function() {
+                $('body').toggleClass('full-image-wrapper-open');
+            });
         }
     };
     function _next ( listIndex ) {

@@ -73,9 +73,9 @@ a.video-popper, #video-player-container a.video {
 	display: inline-block;
   margin-top: 20px;
 	.sprite{
-		@include icons-sprite(video);
-		height: icons-sprite-height(video) - 1px;
-		width: icons-sprite-width(video) - 1px;
+		@include icons-sprite(catwalk);
+		height: icons-sprite-height(catwalk) - 1px;
+		width: icons-sprite-width(catwalk) - 1px;
 	}
 }
 
