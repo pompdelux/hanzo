@@ -423,7 +423,7 @@ class DefaultController extends CoreController
                 ->filterByIsOutOfStock(true)
                 ->endUse()
             ;
-        } elseif ($use_filter) {
+        } else {
             $result = $result->useProductsQuery()
                 ->filterByIsOutOfStock(false)
                 ->endUse()
@@ -431,15 +431,27 @@ class DefaultController extends CoreController
         }
 
         if ($color_filter) {
-            $result = $result->useProductsImagesQuery()
-                ->addAscendingOrderByColumn(sprintf(
-                    "FIELD(%s, %s)",
-                    ProductsImagesPeer::COLOR,
+            if ($use_filter) {
+                $result = $result->useProductsImagesQuery()
+                    ->addDescendingOrderByColumn(sprintf(
+                        "FIELD(%s, %s)",
+                        ProductsImagesPeer::COLOR,
 
-                    '\''.implode('\',\'', $color_filter).'\''
+                        '\''.implode('\',\'', $color_filter).'\''
 
-                ))
-            ->endUse();
+                    ))
+                    ->endUse();
+            } else {
+                $result = $result->useProductsImagesQuery()
+                    ->addAscendingOrderByColumn(sprintf(
+                        "FIELD(%s, %s)",
+                        ProductsImagesPeer::COLOR,
+
+                        '\''.implode('\',\'', $color_filter).'\''
+
+                    ))
+                ->endUse();
+            }
         } else {
             $result = $result->orderBySort();
         }
