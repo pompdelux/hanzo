@@ -17,15 +17,15 @@
     };
 
     pub.initColors = function() {
-      var currentColor = $('.productimage-large a').data('color');
+      var currentColor = $('.productimage-large a.image').data('color');
       $('.product-color .color-'+currentColor).addClass('current');
       $('.productimage-small a').hide();
       $('.productimage-small a.color-'+currentColor).show();
 
       $('a.product-color').click(function(e){
         e.preventDefault();
-        var currentNumber = $('.productimage-large a').data('number');
-        var currentType = $('.productimage-large a').data('type');
+        var currentNumber = $('.productimage-large a.image').data('number');
+        var currentType = $('.productimage-large a.image').data('type');
         if(!$(this).hasClass('current')){
           currentColor = $(this).data('color');
           $('.product-color.current').removeClass('current');
@@ -59,7 +59,7 @@
         alt    : $small_img.attr('alt')
       };
 
-      var $large = $('.productimage-large a');
+      var $large = $('.productimage-large a.image');
       var $large_img = $large.find('img').first();
       var large = {
         small  : $large.data('src'),
@@ -155,22 +155,32 @@
 
     // make a slideshow out of all product images.
     pub.initSlideshow = function() {
-      var images = [];
-      $('.productimage-small a').each(function() {
-        images.push(this.href);
-      });
 
-      var contailer = '';
-      for (var i=0; i<images.length; i++) {
-        contailer += '<a href="'+images[i]+'" rel="slideshow"></a>';
-      }
-      $('#colorbox-slideshow').append(contailer);
-      $('#colorbox-slideshow a').colorbox({
-        rel:'slideshow',
-        previous: '««',
-        next: '»»',
-        close: 'x',
-        current: '{current} / {total}'
+      var list = []; // List of all images.
+      $('a[rel=full-image]').each(function(i){
+          list.push($(this));
+      });
+      $('.productimage-large a.prev, .productimage-large a.next').click(function(e){
+        e.preventDefault();
+        var next = 0;
+        for (var i = list.length - 1; i >= 0; i--) {
+          if($(list[i]).attr('href') === $('.productimage-large a.image').attr('href')) {
+            next = i;
+            console.log(next);
+            break;
+          }
+        }
+        if ($(this).hasClass('next')) {
+          next++;
+        }
+        else {
+          next--;
+        }
+        console.log(next);
+        if (list.length < next || next < 0) {
+          next = 0;
+        }
+        product.swapImages(list[next]);
       });
     };
 

@@ -102,6 +102,27 @@ a.video-popper, #video-player-container a.video {
 		font-weight: $font-weight-thin;
 		font-family: $font-sans;
 	}
+  .productimage-large {
+    position: relative;
+    .next,
+    .prev {
+      position: absolute;
+      top: 50%;
+      display: block;
+    }
+    .prev {
+      left: 0;
+      @include icons-sprite(button-left);
+      height: icons-sprite-height(button-left);
+      width: icons-sprite-width(button-left);
+    }
+    .next {
+      right: 0;
+      @include icons-sprite(button-right);
+      height: icons-sprite-height(button-right);
+      width: icons-sprite-width(button-right);
+    }
+  }
 }
 
 form.buy{
