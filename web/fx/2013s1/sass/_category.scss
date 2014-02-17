@@ -85,6 +85,15 @@ html.touch .product-list .buy-set{display: inline-block;}
 	text-decoration: underline;
 }
 
+.body-category .sub-menu > ul li ul {
+	padding-left: 0;
+	li.active a,
+	li a:hover {
+		font-weight: bold;
+		text-decoration: none;
+	}
+}
+
 .js-faceted-container label {
     margin-top: 0;
     margin-left: 5px;
