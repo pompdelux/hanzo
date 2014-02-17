@@ -2,14 +2,75 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
+
+            <!--
+                her et eksempel på en overskrift for eks. "Pige (104-152 cm)" (på test)
+                erstat "yyy" med cms id'et i id og <source>
+
+                husk at teste: http://jsonlint.com/
+            -->
+            <trans-unit id="yyy.settings">
+                <source>yyy.settings</source>
+                <target><![CDATA[
+                    {
+                        "colormap": {
+                            "rose": [
+                                "rose",
+                                "khaki"
+                            ],
+                            "ice blue": [
+                                "ice blue"
+                            ],
+                            "curry": [
+                                "curry",
+                                "curry/grey",
+                                "sand"
+                            ],
+                            "blue & cerise": [
+                                "blue",
+                                "cerise",
+                                "cerise/grey"
+                            ],
+                            "wine": [
+                                "wine"
+                            ],
+                            "grey": [
+                                "grey",
+                                "grey star",
+                                "grey melange",
+                                "off white",
+                                "dark grey",
+                                "light grey",
+                                "black"
+                            ],
+                            "denim": [
+                                "blue denim"
+                            ]
+                        },
+                        "sizes": [
+                            "98-104",
+                            "104",
+                            "110-116",
+                            "122-128",
+                            "134-140",
+                            "146-152"
+                        ]
+                    }
+                ]]></target>
+            </trans-unit>
+
+            <!--
+                her et eksempel på en Kategorivisning "Pige (104-152 cm) -> Kjoler" (på test)
+                erstat "xxx" med cms id'et i id og <source>
+
+                husk at teste: http://jsonlint.com/
+            -->
             <trans-unit id="xxx.settings">
                 <source>xxx.settings</source>
                 <target><![CDATA[
                     {
-                        "category_ids" : "14,20,19,13,17,18,16,15,21,56,12",
-                        "colorsheme" : "",
-                        "colors" : "Khaki,Sand,Brown,Camel,Gold",
-                        "ignore" : ""
+                        "category_id": "14",
+                        "colors": "Rose,Ice Blue,Curry,Curry/Grey,Sand,Blue,Cerise,Cerise/Grey,Khaki,Wine,Grey,Grey Star,Grey Melange,Off White,Dark Grey,Light Grey,Black,Blue Denim"
                     }
                 ]]></target>
             </trans-unit>
