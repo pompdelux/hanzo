@@ -52,10 +52,9 @@
         </div>
       </div>
 
-
     <div class="grid_8 alpha omega">
     {% if product.has_video %}
-        <a href="{{ url('ws_product_video') }}" title="{{ 'click.to.video'|trans }}" data-width="594" data-height="594" data-src="{{ product.title|replace(' ', '_') }}" data-banner="video_bg" class="video video-popper">
+        <a href="{{ url('ws_product_video') }}" title="{{ 'click.to.video'|trans }}" data-width="594" data-height="594" data-src="{{ product.sku }}" data-banner="video_bg" class="video video-popper">
           <div class="sprite"></div>
         </a>
     {% endif %}
