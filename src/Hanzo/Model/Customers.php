@@ -2,6 +2,7 @@
 
 namespace Hanzo\Model;
 
+use Hanzo\Core\Tools;
 use PropelPDO;
 
 use Hanzo\Core\Hanzo;
@@ -138,6 +139,8 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
         'pd@pompdelux.dk'        => ['ROLE_STATS', 'ROLE_EMPLOYEE'],
         // marketing
         'tj@pompdelux.dk'        => ['ROLE_MARKETING', 'ROLE_EMPLOYEE'],
+        // design
+        'design@pompdelux.dk'    => ['ROLE_DESIGN', 'ROLE_EMPLOYEE'],
         // sales
         'ak@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
         'hp@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
@@ -173,7 +176,7 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
         if (isset($this->extended[$email])) {
             $roles = array_merge($roles, $this->extended[$email]);
         }
-
+Tools::log($roles);
         return $roles;
     }
 
