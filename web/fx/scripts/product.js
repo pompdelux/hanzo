@@ -6,13 +6,13 @@
 
     pub.initZoom = function() {
       var currentColor = $('.productimage-large a').data('color');
-      if($('.productimage-large a').length !== 0){
-        $('.productimage-large a').fullImageBox({'selector':'a[rel=full-image].color-'+currentColor});
+      if($('.productimage-large a[rel=full-image]').length !== 0){
+        $('.productimage-large a[rel=full-image]').fullImageBox({'selector':'a[rel=full-image].color-'+currentColor});
       }
 
-      $('.productimage-large a, a.picture-zoom').on('click', function(e){
+      $('.productimage-large a[rel=full-image], a.picture-zoom').on('click', function(e){
         e.preventDefault();
-        $('.productimage-large a').first().fullImageBox('open');
+        $('.productimage-large a[rel=full-image]').first().fullImageBox('open');
       });
     };
 
