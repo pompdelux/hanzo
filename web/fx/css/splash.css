@@ -13,7 +13,8 @@ h1 {
   font-size: 18px;
   padding-bottom: 7px;
   padding-left: 20px;
-  border-bottom: 2px solid #7b7577;
+  position: absolute;
+  top: 0;
 }
 
 #selector {
@@ -22,17 +23,21 @@ h1 {
   left: 180px;
   background: #fff url(/fx/images/splash_bg.jpg) no-repeat center center;
   width: 700px;
-  height: 585px;
+  height: 605px;
+  padding-top: 30px;
 }
 
 #selector ul {
-  position: relative;
-  left: 30px;
-  top: 30px;
+  position: absolute;
+  left: 490px;
+  top: 221px;
   list-style: none;
+  height: 100px;
 }
 #selector ul li {
   line-height: 2em;
+  float: left;
+  width: 50%;
 }
 
 li a {
@@ -49,6 +54,8 @@ li a:hover {
   }
   h1 {
     padding: 0;
+    border-bottom: 2px solid #7b7577;
+    position: inherit;
   }
   #selector {
     background: none;
@@ -60,9 +67,14 @@ li a:hover {
     text-align: center;
   }
   #selector ul {
+    position: inherit;
     left: 0;
     padding: 0;
     top: 0;
+  }
+  #selector ul li {
+    float: none;
+    width: 100%;
   }
   #selector ul li a {
     padding: 5px;
