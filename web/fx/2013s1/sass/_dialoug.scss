@@ -43,6 +43,9 @@
     display: none;
   }
 }
+#colorbox.js-keep-close-button #cboxClose {
+  display: block;
+}
 
 #dialoug-message {
   border: 2px solid #D3C2A2;
