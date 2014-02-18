@@ -9,12 +9,12 @@ h1, h2, h3, h4 {
   color: #231f20;
 }
 h1 {
-  text-transform: uppercase;
-  font-size: 18px;
+  font-size: 13px;
   padding-bottom: 7px;
   padding-left: 20px;
   position: absolute;
-  top: 0;
+  left: 492px;
+  top: 230px;
 }
 
 #selector {
@@ -24,20 +24,22 @@ h1 {
   background: #fff url(/fx/images/splash_bg.jpg) no-repeat center center;
   width: 700px;
   height: 605px;
-  padding-top: 30px;
 }
 
 #selector ul {
   position: absolute;
-  left: 490px;
-  top: 221px;
+  left: 504px;
+  top: 251px;
   list-style: none;
   height: 100px;
+  margin: 0;
+  padding: 0;
 }
 #selector ul li {
   line-height: 2em;
   float: left;
   width: 50%;
+  text-align: center;
 }
 
 li a {
@@ -53,9 +55,13 @@ li a:hover {
     background: #fff url(/fx/images/POMPdeLUX_logo_SS12.png) no-repeat center 24px;
   }
   h1 {
+    font-size: 18px;
+    text-transform: uppercase;
     padding: 0;
     border-bottom: 2px solid #7b7577;
     position: inherit;
+    left: 0;
+    top: 0;
   }
   #selector {
     background: none;
