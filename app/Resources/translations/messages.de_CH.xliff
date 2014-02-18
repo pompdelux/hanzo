@@ -136,7 +136,7 @@
             </trans-unit>
             <trans-unit id="store.address">
                 <source>store.address</source>
-                <target>POMPdeLUX ApS · Møgelhøj 8 · DK-8520 Lystrup · CHE-206.261.379 · mailch@pompdelux.com · 044 201 33 33</target>
+                <target>POMPdeLUX (Schweiz) GmbH · Sternenstrasse 18 · CH-8002 Zürich · CHE-206.261.379 · mailch@pompdelux.com · 044 201 33 33</target>
             </trans-unit>
             <trans-unit id="order.edit.global.notice">
                 <source>order.edit.global.notice</source>
@@ -165,9 +165,9 @@
                 <source>footer.address</source>
                 <target><![CDATA[
                     <ul>
-                        <li>POMPdeLUX ApS</li>
-                        <li>Møgelhøj 8</li>
-                        <li>DK-8520 Lystrup</li>
+                        <li>POMPdeLUX (Schweiz) GmbH</li>
+                        <li>Sternenstrasse 18</li>
+                        <li>CH-8002 Zürich</li>
                         <li>CHE-206.261.379</li>
                         <li><a href="mailto:mailch@pompdelux.com">mailch@pompdelux.com</a></li>
                         <li>Tel.044 201 33 33</li>
@@ -180,7 +180,7 @@
                 <source>footer.text</source>
                 <target><![CDATA[
                     <ul>
-                        <li><b>Versand</b> ab 4,95 EUR</li>
+                        <li><b>Versand</b> ab CHF 7,95 EUR</li>
                         <li><b>Lieferzeit</b> %expected_delivery_date%</li>
                         <li><b>Umtausch</b> Gratis</li>
                     </ul>
