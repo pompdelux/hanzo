@@ -1,0 +1,837 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+		<trans-unit id="590.settings">
+                <source>590.settings</source>
+                <target><![CDATA[
+                    {
+                        "colormap": {
+                            "Rose": [
+                                "Rose",
+                                "Camel"
+                            ],
+                            "Blue": [
+                                "Blue",
+								"Light Blue",
+								"Ice Blue",
+								"Camel"
+                            ],
+                            "Green": [
+                                "Green",
+                                "Camel"								
+                            ],
+                            "Peach": [
+                                "Peach",
+                                "camel"
+                            ],
+                            "Olive": [
+                                "Olive",
+								"camel"
+                            ],
+                            "Yellow": [
+                                "Yellow",
+                                "camel"
+                            ],
+                            "Grey": [
+                                "Grey",
+								"Grey Melange",
+								"Off White",
+								"White",
+								"Light Grey Melange",
+								"Black"
+							 ],
+							"Denim": [
+                                "Blue Denim",
+                                "camel"
+                            ]
+                        },
+                        "sizes": [
+                            "110",
+							"116",
+                            "122",
+							"128",
+                            "134",
+							"140",
+                            "146",
+							"152"
+                        ]
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="689.settings">
+                <source>689.settings</source>
+                <target><![CDATA[
+                    {
+                        "colormap": {
+                            "Rose": [
+                                "Rose",
+                                "Camel"
+                            ],
+                            "Blue": [
+                                "Blue",
+								"Light Blue",
+								"Ice Blue",
+								"Camel"
+                            ],
+                            "Green": [
+                                "Green",
+                                "Camel"								
+                            ],
+                            "Peach": [
+                                "Peach",
+                                "camel"
+                            ],
+                            "Olive": [
+                                "Olive",
+								"camel"
+                            ],
+                            "Yellow": [
+                                "Yellow",
+                                "camel"
+                            ],
+                            "Grey": [
+                                "Grey",
+								"Grey Melange",
+								"Off White",
+								"White",
+								"Light Grey Melange",
+								"Black"
+                            ],
+							"Denim": [
+                                "Blue Denim",
+                                "camel"
+                            ]
+                        },
+                        "sizes": [
+                            "80",
+							"86",
+                            "92",
+							"98",
+                            "104"
+                        ]
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="689.settings">
+                <source>689.settings</source>
+                <target><![CDATA[
+                    {
+                        "colormap": {
+                            "Navy & Mustard": [
+                                "Navy",
+                                "Navy Melange",
+								"Mustard",
+								"Camel",
+								"Sand",
+								"White/Navy",
+								"Blue/Navy",
+								"Navy/White"
+                            ],
+                            "Navy & Wine": [
+                                "Wine",
+								"Navy",
+								"White/Navy",
+								"Blue/Navy",
+								"Navy/White",
+								"Sand"
+                            ],
+                            "Turquoise": [
+                                "Turquoise"						
+                            ],
+                            "Blue": [
+                                "Blue",
+                                "Blue/Navy",
+								"Blue/White"
+                            ],
+                            "Green & Red": [
+                                "Green",
+								"Red"
+                            ],
+                            "Olive": [
+                                "Olive",
+                                "Olive Melange",
+								"Light Blue/Olive"
+                            ],
+                            "Grey": [
+                                "Grey",
+								"Grey Melange",
+								"White",
+								"Light Grey Melange",
+								"Black"
+                            ],
+							"Denim": [
+                                "Blue Denim"
+                            ]
+                        },
+                        "sizes": [
+                            "110",
+							"116",
+                            "122",
+							"128",
+                            "134",
+							"140",
+                            "146",
+							"152"
+                        ]
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="595.settings">
+                <source>595.settings</source>
+                <target><![CDATA[
+                    {
+                        "colormap": {
+                            "Navy & Mustard": [
+                                "Navy",
+                                "Navy Melange",
+								"Mustard",
+								"Camel",
+								"Sand",
+								"White/Navy",
+								"Blue/Navy",
+								"Navy/White"
+                            ],
+                            "Navy & Wine": [
+                                "Wine",
+								"Navy",
+								"White/Navy",
+								"Blue/Navy",
+								"Navy/White",
+								"Sand"
+                            ],
+                            "Turquoise": [
+                                "Turquoise"						
+                            ],
+                            "Blue": [
+                                "Blue",
+                                "Blue/Navy",
+								"Blue/White"
+                            ],
+                            "Green & Red": [
+                                "Green",
+								"Red"
+                            ],
+                            "Olive": [
+                                "Olive",
+                                "Olive Melange",
+								"Light Blue/Olive"
+                            ],
+                            "Grey": [
+                                "Grey",
+								"Grey Melange",
+								"White",
+								"Light Grey Melange",
+								"Black"
+                            ],
+							"Denim": [
+                                "Blue Denim"
+                            ]
+                        },
+                        "sizes": [
+                            "80",
+							"86",
+                            "92",
+							"98",
+                            "104"
+                        ]
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="754.settings">
+                <source>754.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "112",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="691.settings">
+                <source>691.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "16",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="758.settings">
+                <source>758.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "127",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="577.settings">
+                <source>577.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "14",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="578.settings">
+                <source>578.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "113",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="766.settings">
+                <source>766.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "114",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="579.settings">
+                <source>579.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "19",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="580.settings">
+                <source>580.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "13",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="582.settings">
+                <source>582.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "81",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="583.settings">
+                <source>583.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "17",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="586.settings">
+                <source>586.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "79",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="689.settings">
+                <source>689.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "18",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="690.settings">
+                <source>690.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "15",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="585.settings">
+                <source>585.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "21",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="587.settings">
+                <source>587.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "12",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="762.settings">
+                <source>762.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "115",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="588.settings">
+                <source>588.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "45",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="589.settings">
+                <source>589.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "46",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="756.settings">
+                <source>756.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "121",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="610.settings">
+                <source>610.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "33",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="760.settings">
+                <source>760.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "129",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="604.settings">
+                <source>604.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "31",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="605.settings">
+                <source>605.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "35",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="606.settings">
+                <source>606.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "37",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="607.settings">
+                <source>607.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "30",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="692.settings">
+                <source>692.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "85",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="608.settings">
+                <source>608.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "34",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="609.settings">
+                <source>609.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "86",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="694.settings">
+                <source>694.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "87",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="612.settings">
+                <source>612.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "38",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="613.settings">
+                <source>613.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "29",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="764.settings">
+                <source>764.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "122",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="614.settings">
+                <source>614.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "49",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="615.settings">
+                <source>615.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "50",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="755.settings">
+                <source>755.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "116",
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="597.settings">
+                <source>597.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "6",
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="759.settings">
+                <source>759.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "128",
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="767.settings">
+                <source>767.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "117",
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="769.settings">
+                <source>769.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "118",
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="593.settings">
+                <source>593.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "8",
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="594.settings">
+                <source>594.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "9",
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="695.settings">
+                <source>695.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "83",
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="771.settings">
+                <source>771.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "120",
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="595.settings">
+                <source>595.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "7",
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="596.settings">
+                <source>596.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "84",
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="598.settings">
+                <source>598.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "11",
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="599.settings">
+                <source>599.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "5",
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="763.settings">
+                <source>763.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "119",
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="600.settings">
+                <source>600.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "43",
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="601.settings">
+                <source>601.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "44",
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="757.settings">
+                <source>757.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "123",
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="623.settings">
+                <source>623.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "24",
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="773.settings">
+                <source>773.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "130",
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="768.settings">
+                <source>768.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "27",
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="770.settings">
+                <source>770.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "124",
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="619.settings">
+                <source>619.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "26",
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="620.settings">
+                <source>620.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "23",
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="700.settings">
+                <source>700.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "88",
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="772.settings">
+                <source>772.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "125",
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="621.settings">
+                <source>621.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "25",
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="701.settings">
+                <source>701.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "90",
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="624.settings">
+                <source>624.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "28",
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="625.settings">
+                <source>625.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "22",
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="765.settings">
+                <source>765.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "126",
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="626.settings">
+                <source>626.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "47",
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="627.settings">
+                <source>627.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "48",
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                    }
+                ]]></target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
