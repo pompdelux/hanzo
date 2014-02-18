@@ -9,51 +9,238 @@
 
                 husk at teste: http://jsonlint.com/
             -->
-            <trans-unit id="yyy.settings">
-                <source>yyy.settings</source>
+            <trans-unit id="660.settings">
+                <source>660.settings</source>
                 <target><![CDATA[
                     {
                         "colormap": {
-                            "rose": [
-                                "rose",
-                                "khaki"
+                            "Rose": [
+                                "Rose",
+                                "Camel"
                             ],
-                            "ice blue": [
-                                "ice blue"
+                            "Blue": [
+                                "Blue",
+								"Light Blue",
+								"Ice Blue",
+								"Camel"
                             ],
-                            "curry": [
-                                "curry",
-                                "curry/grey",
-                                "sand"
+                            "Green": [
+                                "Green",
+                                "Camel"								
                             ],
-                            "blue & cerise": [
-                                "blue",
-                                "cerise",
-                                "cerise/grey"
+                            "Peach": [
+                                "Peach",
+                                "camel"
                             ],
-                            "wine": [
-                                "wine"
+                            "Olive": [
+                                "Olive",
+								"camel"
                             ],
-                            "grey": [
-                                "grey",
-                                "grey star",
-                                "grey melange",
-                                "off white",
-                                "dark grey",
-                                "light grey",
-                                "black"
+                            "Yellow": [
+                                "Yellow",
+                                "camel"
                             ],
-                            "denim": [
-                                "blue denim"
+                            "Grey": [
+                                "Grey",
+								"Grey Melange",
+								"Off White",
+								"White",
+								"Light Grey Melange",
+								"Black"
+                            ],
+							"Denim": [
+                                "Blue Denim",
+                                "camel"
                             ]
                         },
                         "sizes": [
-                            "98-104",
-                            "104",
-                            "110-116",
-                            "122-128",
-                            "134-140",
-                            "146-152"
+                            "110",
+							"116",
+                            "122",
+							"128",
+                            "134",
+							"140",
+                            "146",
+							"152"
+                        ]
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="662.settings">
+                <source>662.settings</source>
+                <target><![CDATA[
+                    {
+                        "colormap": {
+                            "Rose": [
+                                "Rose",
+                                "Camel"
+                            ],
+                            "Blue": [
+                                "Blue",
+								"Light Blue",
+								"Ice Blue",
+								"Camel"
+                            ],
+                            "Green": [
+                                "Green",
+                                "Camel"								
+                            ],
+                            "Peach": [
+                                "Peach",
+                                "camel"
+                            ],
+                            "Olive": [
+                                "Olive",
+								"camel"
+                            ],
+                            "Yellow": [
+                                "Yellow",
+                                "camel"
+                            ],
+                            "Grey": [
+                                "Grey",
+								"Grey Melange",
+								"Off White",
+								"White",
+								"Light Grey Melange",
+								"Black"
+                            ],
+							"Denim": [
+                                "Blue Denim",
+                                "camel"
+                            ]
+                        },
+                        "sizes": [
+                            "80",
+							"86",
+                            "92",
+							"98",
+                            "104"
+                        ]
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="661.settings">
+                <source>661.settings</source>
+                <target><![CDATA[
+                    {
+                        "colormap": {
+                            "Navy & Mustard": [
+                                "Navy",
+                                "Navy Melange",
+								"Mustard",
+								"Camel",
+								"Sand",
+								"White/Navy",
+								"Blue/Navy",
+								"Navy/White"
+                            ],
+                            "Navy & Wine": [
+                                "Wine",
+								"Navy",
+								"White/Navy",
+								"Blue/Navy",
+								"Navy/White",
+								"Sand"
+                            ],
+                            "Turquoise": [
+                                "Turquoise"						
+                            ],
+                            "Blue": [
+                                "Blue",
+                                "Blue/Navy",
+								"Blue/White"
+                            ],
+                            "Green & Red": [
+                                "Green",
+								"Red"
+                            ],
+                            "Olive": [
+                                "Olive",
+                                "Olive Melange",
+								"Light Blue/Olive"
+                            ],
+                            "Grey": [
+                                "Grey",
+								"Grey Melange",
+								"White",
+								"Light Grey Melange",
+								"Black"
+                            ],
+							"Denim": [
+                                "Blue Denim"
+                            ]
+                        },
+                        "sizes": [
+                            "110",
+							"116",
+                            "122",
+							"128",
+                            "134",
+							"140",
+                            "146",
+							"152"
+                        ]
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="661.settings">
+                <source>661.settings</source>
+                <target><![CDATA[
+                    {
+                        "colormap": {
+                            "Navy & Mustard": [
+                                "Navy",
+                                "Navy Melange",
+								"Mustard",
+								"Camel",
+								"Sand",
+								"White/Navy",
+								"Blue/Navy",
+								"Navy/White"
+                            ],
+                            "Navy & Wine": [
+                                "Wine",
+								"Navy",
+								"White/Navy",
+								"Blue/Navy",
+								"Navy/White",
+								"Sand"
+                            ],
+                            "Turquoise": [
+                                "Turquoise"						
+                            ],
+                            "Blue": [
+                                "Blue",
+                                "Blue/Navy",
+								"Blue/White"
+                            ],
+                            "Green & Red": [
+                                "Green",
+								"Red"
+                            ],
+                            "Olive": [
+                                "Olive",
+                                "Olive Melange",
+								"Light Blue/Olive"
+                            ],
+                            "Grey": [
+                                "Grey",
+								"Grey Melange",
+								"White",
+								"Light Grey Melange",
+								"Black"
+                            ],
+							"Denim": [
+                                "Blue Denim"
+                            ]
+                        },
+                        "sizes": [
+                            "80",
+							"86",
+                            "92",
+							"98",
+                            "104"
                         ]
                     }
                 ]]></target>
@@ -65,12 +252,30 @@
 
                 husk at teste: http://jsonlint.com/
             -->
-            <trans-unit id="xxx.settings">
-                <source>xxx.settings</source>
+            <trans-unit id="867.settings">
+                <source>867.settings</source>
                 <target><![CDATA[
                     {
-                        "category_id": "14",
-                        "colors": "Rose,Ice Blue,Curry,Curry/Grey,Sand,Blue,Cerise,Cerise/Grey,Khaki,Wine,Grey,Grey Star,Grey Melange,Off White,Dark Grey,Light Grey,Black,Blue Denim"
+                        "category_id": "112",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="617.settings">
+                <source>617.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "16",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="868.settings">
+                <source>868.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "127",
+                        "colors": "Rose,Green,Olive,Yellow,Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,camel,Ice Blue"
                     }
                 ]]></target>
             </trans-unit>
