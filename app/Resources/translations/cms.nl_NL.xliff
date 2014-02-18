@@ -59,8 +59,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="689.settings">
-                <source>689.settings</source>
+			<trans-unit id="616.settings">
+                <source>616.settings</source>
                 <target><![CDATA[
                     {
                         "colormap": {
@@ -113,8 +113,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="689.settings">
-                <source>689.settings</source>
+			<trans-unit id="602.settings">
+                <source>602.settings</source>
                 <target><![CDATA[
                     {
                         "colormap": {
@@ -177,8 +177,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="595.settings">
-                <source>595.settings</source>
+			<trans-unit id="757.settings">
+                <source>757.settings</source>
                 <target><![CDATA[
                     {
                         "colormap": {
