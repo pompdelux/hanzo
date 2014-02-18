@@ -12,7 +12,7 @@
       </trans-unit>
       <trans-unit id="shipping_method.name.800">
         <source>shipping_method.name.800</source>
-        <target>DHL</target>
+        <target>Die Post</target>
       </trans-unit>
       <trans-unit id="shipping_method.desc.800">
         <source>shipping_method.desc.800</source>
@@ -20,7 +20,7 @@
       </trans-unit>
       <trans-unit id="shipping_method.label.800">
         <source>shipping_method.label.800</source>
-        <target>DHL %price%</target>
+        <target>Die Post %price%</target>
       </trans-unit>
       <trans-unit id="shipping_method.name.11">
         <source>shipping_method.name.11</source>
@@ -64,7 +64,7 @@
       </trans-unit>
       <trans-unit id="page.desc.after_methods"><!-- Wird bei den möglichen Versandarten angezeigt -->
         <source>page.desc.after_methods</source>
-        <target>Wir erheben eine Bearbeitungsgebühr in Höhe von 0 DKK auf alle Bestellungen</target>
+        <target>Wir erheben eine Bearbeitungsgebühr in Höhe von 0 CHF auf alle Bestellungen</target>
       </trans-unit>
     </body>
   </file>
