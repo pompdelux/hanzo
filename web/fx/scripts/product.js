@@ -174,6 +174,9 @@
           next++;
         }
         else {
+          if (next === 0) {
+            next = list.length;
+          }
           next--;
         }
         console.log(next);
