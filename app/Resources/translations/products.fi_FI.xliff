@@ -2,7 +2,7 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="file.ext">
     <body>
-            <trans-unit id="AberdeenJEANSSS14">
+      <trans-unit id="AberdeenJEANSSS14">
         <source>description.AberdeenJEANSSS14</source>
         <target>
           <![CDATA[Pehmeimmät baggy-farkut leikkisälle tytölle! Aberdeen-farkut ovat saatavana Blue Denimin värisenä ja niissä on pieniä hienoja yksityiskohtia sekä etu- että takataskuissa. Mukavampia farkkuja ei voisi olla!<br><br>Saatavana: Blue Denim<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 65 % puuvillaa, 35 % polyesteria]]>
@@ -41,19 +41,19 @@
       <trans-unit id="AdiSOCKSSS14">
         <source>description.AdiSOCKSSS14</source>
         <target>
-          <![CDATA[Adi SOCKS -sukat ovat superpehmeät, ja niitä on tietenkin saatavana koko mallistoon sopivissa väreissä. Kahden kappaleen pakkaus, jossa on yhdet pilkulliset ja yhdet yksiväriset sukat. Varpaat voivat nauttia olostaan hyvällä omallatunnolla, koska Adi-sukat on valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Rose, Grey, Peach ja Yellow<br><br>Kokomerkintä tarkoittaa lapsen kengänkokoa.<br><br>Materiaali: 77 % puuvillaa, 19 % polyamidia, 4 % elastaania]]>
+          <![CDATA[Adi SOCKS -sukat ovat superpehmeät, ja niitä on tietenkin saatavana koko mallistoon sopivissa väreissä. Kahden kappaleen pakkaus, jossa on yhdet pilkulliset ja yhdet yksiväriset sukat.Varpaat voivat nauttia olostaan hyvällä omallatunnolla, koska Adi-sukat on valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Rose, Grey, Peach ja Yellow<br><br>Kokomerkintä tarkoittaa lapsen kengänkokoa.<br><br>Materiaali: 77 % puuvillaa, 19 % polyamidia, 4 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="AdiTIGHTSLEGGINGSSS14">
         <source>description.AdiTIGHTSLEGGINGSSS14</source>
         <target>
-          <![CDATA[Kauniit sukkahousut ja leggingsit, joissa on hieno pilkullinen kuvio. Yhdessä suosikkimekon kanssa saat asukokonaisuuden, joka sopii hyvin päivän pieniin seikkailuihin. Valmistettu Öko-Tex-standardin 100 mukaisesti. Kahden pakkaus sisältää yhdet sukkahousut ja yhdet leggingsit.<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Rose, Grey, Peach ja Yellow<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 77 % puuvillaa, 19 % polyamidia, 4 % elastaania]]>
+          <![CDATA[Kauniit sukkahousut ja leggingsit, joissa on hieno pilkullinen kuvio. Yhdessä suosikkimekon kanssa saat asukokonaisuuden, joka sopii hyvin päivän pieniin seikkailuihin. Valmistettu Öko-Tex-standardin 100 mukaisesti. Kahden pakkaus sisältää yhdet sukkahousut ja yhdet leggingsit.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Rose, Grey, Peach ja Yellow<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 77 % puuvillaa, 19 % polyamidia, 4 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="AlbaHATSS14">
         <source>description.AlbaHATSS14</source>
         <target>
-          <![CDATA[Kaunis pieni neulemyssy viileisiin iltoihin – Alba on suloinen ja koristaa hienosti pikkuprinsessan päätä.<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Rose, Blue ja Grey<br><br>Kokomerkintä tarkoittaa lapsen päänympärystä senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Kaunis pieni neulemyssy viileisiin iltoihin – Alba on suloinen ja koristaa hienosti pikkuprinsessan päätä.<br><br>Saatavana: Rose, Blue ja Grey<br><br>Kokomerkintä tarkoittaa lapsen päänympärystä senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="AthensHIPSTERSS14">
@@ -107,31 +107,31 @@
       <trans-unit id="AucklandJACKETSS14">
         <source>description.AucklandJACKETSS14</source>
         <target>
-          <![CDATA[NIIN hieno farkkutakki, jossa on ihanan pehmeitä niittejä. Tee tyttömäisestä vähän räväkämpi tai yhdistä takki farkkuihin – Auckland JACKET sopii yhteen kaiken kanssa!<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Blue Denim<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 75 % puuvillaa, 20 % polyesteria, 3 % viskoosia, 2 % elastaania]]>
+          <![CDATA[NIIN hieno farkkutakki, jossa on ihanan pehmeitä niittejä. Tee tyttömäisestä vähän räväkämpi tai yhdistä takki farkkuihin – Auckland JACKET sopii yhteen kaiken kanssa!<br><br>Saatavana: Blue Denim<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 75 % puuvillaa, 20 % polyesteria, 3 % viskoosia, 2 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="AucklandNARROWFITJEANSSS14">
         <source>description.AucklandNARROWFITJEANSSS14</source>
         <target>
-          <![CDATA[Auckland NARROW FIT JEANS -farkuissa on takataskuissa kauniit kultasydämet, ihanan pehmeitä niittejä edessä ja takana sekä tietenkin hakaskiinnitys ja säädettävä vyötärö. Rock chick…kauniilla tavalla!<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Blue Denim<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 75 % puuvillaa, 20 % polyesteria, 3 % viskoosia, 2 % elastaania]]>
+          <![CDATA[Auckland NARROW FIT JEANS -farkuissa on takataskuissa kauniit kultasydämet, ihanan pehmeitä niittejä edessä ja takana sekä tietenkin hakaskiinnitys ja säädettävä vyötärö. Rock chick…kauniilla tavalla!<br><br>Saatavana: Blue Denim<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 75 % puuvillaa, 20 % polyesteria, 3 % viskoosia, 2 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="BadalonaDRESSSS14">
         <source>description.BadalonaDRESSSS14</source>
         <target>
-          <![CDATA[Beautiful Badalona! Hieno virkattu yläosa sopii täydellisesti yhteen kauniisti laskeutuvan rypytetyn helman kanssa. Pieni nappi niskassa. Badalona on tosi sievä ja mukavaa 100 % puuvillaa.<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Off White, Rose, Peach ja Grey<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Beautiful Badalona! Hieno virkattu yläosa sopii täydellisesti yhteen kauniisti laskeutuvan rypytetyn helman kanssa. Pieni nappi niskassa. Badalona on tosi sievä ja mukavaa 100 % puuvillaa.<br><br>Saatavana: Off White, Rose, Peach ja Grey<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="BadalonaLittleDRESSSS14">
         <source>description.BadalonaLittleDRESSSS14</source>
         <target>
-          <![CDATA[Beautiful Badalona! Hieno virkattu yläosa sopii täydellisesti yhteen kauniisti laskeutuvan rypytetyn helman kanssa. Pieni nappi niskassa. Badalona on tosi sievä ja mukavaa 100 % puuvillaa.<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Off White, Rose, Peach ja Grey<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Beautiful Badalona! Hieno virkattu yläosa sopii täydellisesti yhteen kauniisti laskeutuvan rypytetyn helman kanssa. Pieni nappi niskassa. Badalona on tosi sievä ja mukavaa 100 % puuvillaa.<br><br>Saatavana: Off White, Rose, Peach ja Grey<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="BadalonaLittleTUNICSS14">
         <source>description.BadalonaLittleTUNICSS14</source>
         <target>
-          <![CDATA[Beautiful Badalona! Hieno virkattu yläosa sopii täydellisesti yhteen kauniisti laskeutuvan rypytetyn helman kanssa. Pieni nappi niskassa. Badalona on tosi sievä ja mukavaa 100 % puuvillaa!<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Off White, Rose, Peach ja Grey<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Beautiful Badalona! Hieno virkattu yläosa sopii täydellisesti yhteen kauniisti laskeutuvan rypytetyn helman kanssa. Pieni nappi niskassa. Badalona on tosi sievä ja mukavaa 100 % puuvillaa!<br><br>Saatavana: Off White, Rose, Peach ja Grey<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="BadalonaTUNICSS14">
@@ -143,49 +143,49 @@
       <trans-unit id="BaliHIPSTERSS14">
         <source>description.BaliHIPSTERSS14</source>
         <target>
-          <![CDATA[Kahden kappaleen pakkaus pehmeimpiä hipstereitä. Vyötäröllä on leveä raidallinen kuminauha ja saatavana on kaksi eri väriyhdistelmää. Valmistettu Öko-Tex-standardin 100 ja GOTS-standardin mukaisesti. Ihoa vasten hyvällä omallatunnolla.<br><br>Saatavana: Rose ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
+          <![CDATA[Kahden kappaleen pakkaus pehmeimpiä hipstereitä. Vyötäröllä on leveä raidallinen kuminauha ja saatavana on kaksi eri väriyhdistelmää. Valmistettu Öko-Tex-standardin 100 ja GOTS-standardin mukaisesti. Ihoa vasten hyvällä omallatunnolla.<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Rose ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="BaliLittleLSBODYSS14">
         <source>description.BaliLittleLSBODYSS14</source>
         <target>
-          <![CDATA[Kahden kappaleen pakkaus pehmeimpiä pitkähihaisia bodyja. Toisella olkapäällä olevat nepparit helpottavat pukemista ja riisumista. Pakkauksesta on saatavana kaksi eri värivaihtoehtoa. Valmistettu Öko-Tex-standardin 100 ja GOTS-standardin mukaisesti. Ihoa vasten hyvällä omallatunnolla.<br><br>Saatavana: Rose ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
+          <![CDATA[Kahden kappaleen pakkaus pehmeimpiä pitkähihaisia bodyja. Toisella olkapäällä olevat nepparit helpottavat pukemista ja riisumista. Pakkauksesta on saatavana kaksi eri värivaihtoehtoa. Valmistettu Öko-Tex-standardin 100 ja GOTS-standardin mukaisesti. Ihoa vasten hyvällä omallatunnolla.<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Rose ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="BaliLittleSLEEPERSS14">
         <source>description.BaliLittleSLEEPERSS14</source>
         <target>
-          <![CDATA[Bali Little SLEEPER -yöpuvussa pienimmät prinsessat ovat valmiina höyhensaarille. Ihanan pehmeää jerseymateriaalia, jossa on hieno allover-painatus ja kauniit röyhelöt rinnassa. Yöpuvussa on nepparit edessä keskellä ja haaroissa. Valmistettu Öko-Tex-standardin 100 ja GOTS-standardin mukaisesti. Saatavana kaksi eri väriä.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Rose ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
+          <![CDATA[Bali Little SLEEPER -yöpuvussa pienimmät prinsessat ovat valmiina höyhensaarille. Ihanan pehmeää jerseymateriaalia, jossa on hieno allover-painatus ja kauniit röyhelöt rinnassa. Yöpuvussa on nepparit edessä keskellä ja haaroissa. Valmistettu Öko-Tex-standardin 100 ja GOTS-standardin mukaisesti. Saatavana kaksi eri väriä.<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Rose ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="BaliLittleSSBODYSS14">
         <source>description.BaliLittleSSBODYSS14</source>
         <target>
-          <![CDATA[Kahden kappaleen pakkaus pehmeimpiä lyhythihaisia bodyja. Toisella olkapäällä olevat nepparit helpottavat pukemista ja riisumista. Pakkauksesta on saatavana kaksi eri värivaihtoehtoa. Valmistettu Öko-Tex-standardin 100 ja GOTS-standardin mukaisesti. Ihoa vasten hyvällä omallatunnolla.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Rose ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
+          <![CDATA[Kahden kappaleen pakkaus pehmeimpiä lyhythihaisia bodyja. Toisella olkapäällä olevat nepparit helpottavat pukemista ja riisumista. Pakkauksesta on saatavana kaksi eri värivaihtoehtoa. Valmistettu Öko-Tex-standardin 100 ja GOTS-standardin mukaisesti. Ihoa vasten hyvällä omallatunnolla.<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Rose ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="BaliNIGHTDRESSSS14">
         <source>description.BaliNIGHTDRESSSS14</source>
         <target>
-          <![CDATA[Matkalla höyhensaarille on Bali NIGHTDRESS täydellinen vaate! Se on niin ihanan pehmeä ja mukava, että kaikki prinsessat nukkuvat varmasti hyvin... Yöpaita on tietenkin valmistettu Öko-Tex-standardin 100 ja GOTS-standardin mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Rose ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
+          <![CDATA[Matkalla höyhensaarille on Bali NIGHTDRESS täydellinen vaate! Se on niin ihanan pehmeä ja mukava, että kaikki prinsessat nukkuvat varmasti hyvin... Yöpaita on tietenkin valmistettu Öko-Tex-standardin 100 ja GOTS-standardin mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Rose ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="BaliPANTIESSS14">
         <source>description.BaliPANTIESSS14</source>
         <target>
-          <![CDATA[Kahden kappaleen pakkaus pehmeimpiä pikkuhousuja. Saatavana kaksi eri värivaihtoehtoa. Housuissa on kauniit kanttaukset ja rusetit. Ne on tietenkin valmistettu Öko-Tex-standardin 100 ja GOTS-standardin mukaisesti. Ihoa vasten hyvällä omallatunnolla.<br><br>Saatavana: Rose ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
+          <![CDATA[Kahden kappaleen pakkaus pehmeimpiä pikkuhousuja. Saatavana kaksi eri värivaihtoehtoa. Housuissa on kauniit kanttaukset ja rusetit. Ne on tietenkin valmistettu Öko-Tex-standardin 100 ja GOTS-standardin mukaisesti. Ihoa vasten hyvällä omallatunnolla.<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Rose ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="BaliPYSS14">
         <source>description.BaliPYSS14</source>
         <target>
-          <![CDATA[Matkalla höyhensaarille on Bali PY täydellinen vaate! Niin ihanan pehmeä ja mukava, että kaikki prinsessat nukkuvat varmasti hyvin... Se on tietenkin valmistettu Öko-Tex-standardin 100 ja GOTS-standardin mukaisesti.<br><br>Saatavana: Rose ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
+          <![CDATA[Matkalla höyhensaarille on Bali PY täydellinen vaate! Niin ihanan pehmeä ja mukava, että kaikki prinsessat nukkuvat varmasti hyvin... Se on tietenkin valmistettu Öko-Tex-standardin 100 ja GOTS-standardin mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Rose ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="BaliTOPSS14">
         <source>description.BaliTOPSS14</source>
         <target>
-          <![CDATA[Bali TOP -toppi on pehmeää jerseymateriaalia. Siinä on hienot olkaimet ja yhteensopiva rusetti edessä keskellä. Saatavana kahden kappaleen pakkauksessa, jossa on yksi yksivärinen ja yksi allover-painettu toppi. Valmistettu Öko-Tex-standardin 100 ja GOTS-standardin mukaisesti. Ihoa vasten hyvällä omallatunnolla.<br><br>Saatavana: Rose ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
+          <![CDATA[Bali TOP -toppi on pehmeää jerseymateriaalia. Siinä on hienot olkaimet ja yhteensopiva rusetti edessä keskellä. Saatavana kahden kappaleen pakkauksessa, jossa on yksi yksivärinen ja yksi allover-painettu toppi. Valmistettu Öko-Tex-standardin 100 ja GOTS-standardin mukaisesti. Ihoa vasten hyvällä omallatunnolla.<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Rose ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="BamakoLittleTUNICSS14">
@@ -287,19 +287,19 @@
       <trans-unit id="BristolLittleSHORTSSS14">
         <source>description.BristolLittleSHORTSSS14</source>
         <target>
-          <![CDATA[Kaunista, mukavaa ja klassista POMPdeLUX-tyyliä. Bristol Little SHORTS -shortsit ovat ilmapallomallia ja ihanan ohuet sekä superkesäiset. Laita alle vaikka leggingsit – tosi tyylikästä! Säädettävä vyötärö kuten aina. <br><br>Saatavana: White, Rose ja Grey<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Kaunista, mukavaa ja klassista POMPdeLUX-tyyliä. Bristol Little SHORTS -shortsit ovat ilmapallomallia ja ihanan ohuet sekä superkesäiset. Laita alle vaikka leggingsit – tosi tyylikästä! Säädettävä vyötärö kuten aina.<br><br>Saatavana: White, Rose ja Grey<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="BristolPANTSSS14">
         <source>description.BristolPANTSSS14</source>
         <target>
-          <![CDATA[Kaunista, mukavaa ja klassista POMPdeLUX-tyyliä. Bristol PANTS -housut ovat klassista ilmapallomalliamme ja sopivat täydellisesti yhteen kaikkien suosikkipaitojesi ja -kenkiesi kanssa. Säädettävä vyötärö kuten aina! <br><br>Saatavana: White, Rose ja Grey<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Kaunista, mukavaa ja klassista POMPdeLUX-tyyliä. Bristol PANTS -housut ovat klassista ilmapallomalliamme ja sopivat täydellisesti yhteen kaikkien suosikkipaitojesi ja -kenkiesi kanssa. Säädettävä vyötärö kuten aina!<br><br>Saatavana: White, Rose ja Grey<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="BristolSHORTSSS14">
         <source>description.BristolSHORTSSS14</source>
         <target>
-          <![CDATA[Kaunista, mukavaa ja klassista POMPdeLUX-tyyliä. Bristol SHORTS -shortsit ovat ilmapallomallia ja ihanan ohuet sekä superkesäiset. Laita alle vaikka leggingsit – tosi tyylikästä! Säädettävä vyötärö kuten aina. <br><br>Saatavana: White, Rose ja Grey<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Kaunista, mukavaa ja klassista POMPdeLUX-tyyliä. Bristol SHORTS -shortsit ovat ilmapallomallia ja ihanan ohuet sekä superkesäiset. Laita alle vaikka leggingsit – tosi tyylikästä! Säädettävä vyötärö kuten aina.<br><br>Saatavana: White, Rose ja Grey<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="BrookhavenLittlePANTSSS14">
@@ -341,43 +341,43 @@
       <trans-unit id="BucharestDRESSSS14">
         <source>description.BucharestDRESSSS14</source>
         <target>
-          <![CDATA[Kaunis, yksinkertainen ja superkevyt kesämekko hienoimmilla pienillä vesiputoushihoilla. Palmikoitu vyö koristaa upeasti vyötäröä ja tämä mekko vain on NIIN ihana päällä.<br><br>Saatavana: Rose, Peach ja Grey Melange<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % viskoosia, 5 % elastaania]]>
+          <![CDATA[Kaunis, yksinkertainen ja superkevyt kesämekko hienoimmilla pienillä vesiputoushihoilla. Palmikoitu vyö koristaa upeasti vyötäröä ja tämä mekko vain on NIIN ihana päällä.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Rose, Peach ja Grey Melange<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % viskoosia, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="BucharestLittleDRESSSS14">
         <source>description.BucharestLittleDRESSSS14</source>
         <target>
-          <![CDATA[Kaunis, yksinkertainen ja superkevyt kesämekko hienoimmilla pienillä vesiputoushihoilla. Leikkaus aivan rinnan alla ja upea rypytys – tämä vain tuntuu NIIN ihanalta päällä.<br><br>Saatavana: Rose, Peach ja Grey Melange<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % viskoosia, 5 % elastaania]]>
+          <![CDATA[Kaunis, yksinkertainen ja superkevyt kesämekko hienoimmilla pienillä vesiputoushihoilla. Leikkaus aivan rinnan alla ja upea rypytys – tämä vain tuntuu NIIN ihanalta päällä.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Rose, Peach ja Grey Melange<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % viskoosia, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="BucharestLittleTUNICSS14">
         <source>description.BucharestLittleTUNICSS14</source>
         <target>
-          <![CDATA[Upea ja yksinkertainen tunika, jossa on hienoimmat pienet vesiputoushihat. Hieman A-linjainen malli ja kankaan paino saavat helman laskeutumaan upeasti. Leggingsit, jeggingsit, farkut tai shortsit – sopii yhteen KAIKKIEN kanssa.<br><br>Saatavana: Rose, Peach ja Grey Melange<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % viskoosia, 5 % elastaania]]>
+          <![CDATA[Upea ja yksinkertainen tunika, jossa on hienoimmat pienet vesiputoushihat. Hieman A-linjainen malli ja kankaan paino saavat helman laskeutumaan upeasti. Leggingsit, jeggingsit, farkut tai shortsit – sopii yhteen KAIKKIEN kanssa.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Rose, Peach ja Grey Melange<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % viskoosia, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="BucharestTUNICSS14">
         <source>description.BucharestTUNICSS14</source>
         <target>
-          <![CDATA[Upea ja yksinkertainen tunika, jossa on hienoimmat pienet vesiputoushihat. Hieman A-linjainen malli ja kankaan paino saavat helman laskeutumaan upeasti. Leggingsit, jeggingsit, farkut tai shortsit – sopii yhteen KAIKKIEN kanssa.<br><br>Saatavana: Rose, Peach ja Grey Melange<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % viskoosia, 5 % elastaania]]>
+          <![CDATA[Upea ja yksinkertainen tunika, jossa on hienoimmat pienet vesiputoushihat. Hieman A-linjainen malli ja kankaan paino saavat helman laskeutumaan upeasti. Leggingsit, jeggingsit, farkut tai shortsit – sopii yhteen KAIKKIEN kanssa.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Rose, Peach ja Grey Melange<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % viskoosia, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="CapelLEGGINGSSS14">
         <source>description.CapelLEGGINGSSS14</source>
         <target>
-          <![CDATA[Superihanat neulesukkahousut ja leggingsit, joissa on kauniin kultaista tai hopeista lurex-lankaa. Capel viimeistelee asun ja on tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti. Kahden kappaleen pakkaus sisältää yhdet sukkahousut ja yhdet leggingsit.<br><br>Saatavana: Rose, Peach, Grey ja Grey Melange<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 62 % puuvillaa, 20 % polyamidia, 17 % lurexia, 1 % elastaania]]>
+          <![CDATA[Superihanat neulesukkahousut ja leggingsit, joissa on kauniin kultaista tai hopeista lurex-lankaa. Capel viimeistelee asun ja on tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti. Kahden kappaleen pakkaus sisältää yhdet sukkahousut ja yhdet leggingsit.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Rose, Peach, Grey ja Grey Melange<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 62 % puuvillaa, 20 % polyamidia, 17 % lurexia, 1 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="CapelLittleLEGGINGSSS14">
         <source>description.CapelLittleLEGGINGSSS14</source>
         <target>
-          <![CDATA[Superihanat neulesukkahousut ja leggingsit, joissa on kauniin kultaista tai hopeista lurex-lankaa. Capel viimeistelee asun ja on tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti. Kahden kappaleen pakkaus sisältää yhdet sukkahousut ja yhdet leggingsit.<br><br>Saatavana: Rose, Peach, Grey ja Grey Melange<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 62 % puuvillaa, 20 % polyamidia, 17 % lurexia, 1 % elastaania]]>
+          <![CDATA[Superihanat neulesukkahousut ja leggingsit, joissa on kauniin kultaista tai hopeista lurex-lankaa. Capel viimeistelee asun ja on tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti. Kahden kappaleen pakkaus sisältää yhdet sukkahousut ja yhdet leggingsit.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Rose, Peach, Grey ja Grey Melange<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 62 % puuvillaa, 20 % polyamidia, 17 % lurexia, 1 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="CapelSOCKSSS14">
         <source>description.CapelSOCKSSS14</source>
         <target>
-          <![CDATA[Superihanat sukat, joissa on kauniin kultaista tai hopeista lurex-lankaa. Capel viimeistelee asun ja on tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti. Kahden pakkaus sisältää yhdet sukkahousut ja yhdet leggingsit.<br><br>Saatavana: Rose, Peach, Grey ja Grey Melange<br><br>Kokomerkintä tarkoittaa lapsen kengänkokoa.<br><br>Materiaali: 62 % puuvillaa, 20 % polyamidia, 17 % lurexia, 1 % elastaania]]>
+          <![CDATA[Superihanat sukat, joissa on kauniin kultaista tai hopeista lurex-lankaa. Capel viimeistelee asun ja on tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti. Kahden pakkaus sisältää yhdet sukkahousut ja yhdet leggingsit.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Rose, Peach, Grey ja Grey Melange<br><br>Kokomerkintä tarkoittaa lapsen kengänkokoa.<br><br>Materiaali: 62 % puuvillaa, 20 % polyamidia, 17 % lurexia, 1 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="CataniaLittleTOPSS14">
@@ -407,13 +407,13 @@
       <trans-unit id="CowraLittleTIGHTSLEGGINGSSS14">
         <source>description.CowraLittleTIGHTSLEGGINGSSS14</source>
         <target>
-          <![CDATA[Kauniit neulesukkahousut ja leggingsit, joissa on hieno neulekuvio. Yhdessä suosikkimekon kanssa saat asukokonaisuuden, joka sopii hyvin päivän pieniin seikkailuihin. Valmistettu Öko-Tex-standardin 100 mukaisesti. Kahden kappaleen pakkaus.<br><br>Saatavana: Off White, Rose, Olive ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 70 % puuvillaa, 28 % polyamidia, 2 % elastaania]]>
+          <![CDATA[Kauniit neulesukkahousut ja leggingsit, joissa on hieno neulekuvio. Yhdessä suosikkimekon kanssa saat asukokonaisuuden, joka sopii hyvin päivän pieniin seikkailuihin. Valmistettu Öko-Tex-standardin 100 mukaisesti. Kahden kappaleen pakkaus.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Off White, Rose, Olive ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 70 % puuvillaa, 28 % polyamidia, 2 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="CowraTIGHTSLEGGINGSSS14">
         <source>description.CowraTIGHTSLEGGINGSSS14</source>
         <target>
-          <![CDATA[Kauniit neulesukkahousut ja leggingsit, joissa on hieno neulekuvio. Yhdessä suosikkimekon kanssa saat asukokonaisuuden, joka sopii hyvin päivän pieniin seikkailuihin. Valmistettu Öko-Tex-standardin 100 mukaisesti. Kahden kappaleen pakkaus.<br><br>Saatavana: Off White, Rose, Olive ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 70 % puuvillaa, 28 % polyamidia, 2 % elastaania]]>
+          <![CDATA[Kauniit neulesukkahousut ja leggingsit, joissa on hieno neulekuvio. Yhdessä suosikkimekon kanssa saat asukokonaisuuden, joka sopii hyvin päivän pieniin seikkailuihin. Valmistettu Öko-Tex-standardin 100 mukaisesti. Kahden kappaleen pakkaus.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Off White, Rose, Olive ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 70 % puuvillaa, 28 % polyamidia, 2 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="DakarBLOUSESS14">
@@ -449,7 +449,7 @@
       <trans-unit id="DarlingtonSCARFSS14">
         <source>description.DarlingtonSCARFSS14</source>
         <target>
-          <![CDATA[Darlington on ihanan ilmava ja superkesäinen. Se antaa viimeisen silauksen sekä päivällä että illalla. Yhdistele huivi haluamiisi vaatteisiin – kaunis orvokkipainatus sopii melkein mihin tahansa. Pssst... Myös äiti voi käyttää tätä! <br><br>Saatavana: Peach, Rose ja Blue<br><br>Yksi koko<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Darlington on ihanan ilmava ja superkesäinen. Se antaa viimeisen silauksen sekä päivällä että illalla.Yhdistele huivi haluamiisi vaatteisiin – kaunis orvokkipainatus sopii melkein mihin tahansa.Pssst... Myös äiti voi käyttää tätä! <br><br>Saatavana: Peach, Rose ja Blue<br><br>Yksi koko<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="DarlingtonTUNICSS14">
@@ -485,19 +485,19 @@
       <trans-unit id="DerbyBLOUSESS14">
         <source>description.DerbyBLOUSESS14</source>
         <target>
-          <![CDATA[Oih miten kaunis! Pusero on kaunista ja pehmeää viskoosia, joka myös joustaa. Siinä on kauniit pitsihihat. Derby BLOUSE kuuluu ehdottomasti kauden suosikkeihin! <br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Grey Melange ja Black<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % viskoosia, 5 % elastaania]]>
+          <![CDATA[Oih miten kaunis! Pusero on kaunista ja pehmeää viskoosia, joka myös joustaa. Siinä on kauniit pitsihihat. Derby BLOUSE kuuluu ehdottomasti kauden suosikkeihin! <br><br>Saatavana: Grey Melange ja Black<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % viskoosia, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="DerbyJUMPSUITSS14">
         <source>description.DerbyJUMPSUITSS14</source>
         <target>
-          <![CDATA[Upea, ihana, mukava ja KAUNIS jumpsuit, jossa on hieman lyhyemmät lahkeet. Vyötärön kuminauha pitää sen juuri oikealla paikallaan. Koristenauha, vetoketju sekä hieno pitsi olkapäillä ja selässä ovat kauniita yksityiskohtia. Derby JUMPSUIT on urheilullinen...tyttömäisellä tavalla!<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Grey Melange ja Black<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % viskoosia, 5 % elastaania]]>
+          <![CDATA[Upea, ihana, mukava ja KAUNIS jumpsuit, jossa on hieman lyhyemmät lahkeet. Vyötärön kuminauha pitää sen juuri oikealla paikallaan. Koristenauha, vetoketju sekä hieno pitsi olkapäillä ja selässä ovat kauniita yksityiskohtia. Derby JUMPSUIT on urheilullinen...tyttömäisellä tavalla!<br><br>Saatavana: Grey Melange ja Black<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % viskoosia, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="DerbyPANTSSS14">
         <source>description.DerbyPANTSSS14</source>
         <target>
-          <![CDATA[Rentoa tyyliä upealla tavalla! Superpehmeät ja mukavat olohousut, joissa on tosi tyttömäinen kimaltava sivunauha molemmissa lahkeissa. Vyötärön kiristysnauha tekee niistä säädettävät. Ne ovat tosi kauniit ja olemme hulluina niihin!<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Grey Melange ja Black<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % viskoosia, 5 % elastaania]]>
+          <![CDATA[Rentoa tyyliä upealla tavalla! Superpehmeät ja mukavat olohousut, joissa on tosi tyttömäinen kimaltava sivunauha molemmissa lahkeissa. Vyötärön kiristysnauha tekee niistä säädettävät. Ne ovat tosi kauniit ja olemme hulluina niihin!<br><br>Saatavana: Grey Melange ja Black<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % viskoosia, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="DresdenLittleSKIRTSS14">
@@ -509,13 +509,13 @@
       <trans-unit id="DresdenLittleSTRAPDRESSSS14">
         <source>description.DresdenLittleSTRAPDRESSSS14</source>
         <target>
-          <![CDATA[Tuplasti kerroksia – tuplasti valmiina kesään! Kaunein 2-kerroksinen kesämekko on Dresden. Ihanaa 100 % puuvillaa sekä kaunis ja mukava rypytys yläselässä. Tuleekohan Dresdenistä pian yksi kesän suosikeista?<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Blue, Green, Grey ja Rose<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Tuplasti kerroksia – tuplasti valmiina kesään! Kaunein 2-kerroksinen kesämekko on Dresden. Ihanaa 100 % puuvillaa sekä kaunis ja mukava rypytys yläselässä. Tuleekohan Dresdenistä pian yksi kesän suosikeista?<br><br>Saatavana: Blue, Green, Grey ja Rose<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="DresdenLittleTUNICSS14">
         <source>description.DresdenLittleTUNICSS14</source>
         <target>
-          <![CDATA[Tuttu A-linjainen kaksikerroksinen tunikamme allover-painettua 100 % puuvillaa. Tunikassa on kaunis kontrastivärinen kanttinauha, jossa on pieni rusetti pääntiessä ja nappi takana. Se laskeutuu todella kauniisti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Blue, Green, Grey ja Rose<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Tuttu A-linjainen kaksikerroksinen tunikamme allover-painettua 100 % puuvillaa. Tunikassa on kaunis kontrastivärinen kanttinauha, jossa on pieni rusetti pääntiessä ja nappi takana. Se laskeutuu todella kauniisti.<br><br>Saatavana: Blue, Green, Grey ja Rose<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="DresdenSKIRTSS14">
@@ -533,13 +533,13 @@
       <trans-unit id="DresdenTUNICSS14">
         <source>description.DresdenTUNICSS14</source>
         <target>
-          <![CDATA[Tuttu A-linjainen kaksikerroksinen tunikamme allover-painettua 100 % puuvillaa. Tunikassa on kaunis kontrastivärinen kanttinauha, jossa on pieni rusetti pääntiessä ja nappi takana. Se laskeutuu todella kauniisti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Blue, Green, Grey ja Rose<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Tuttu A-linjainen kaksikerroksinen tunikamme allover-painettua 100 % puuvillaa. Tunikassa on kaunis kontrastivärinen kanttinauha, jossa on pieni rusetti pääntiessä ja nappi takana. Se laskeutuu todella kauniisti.<br><br>Saatavana: Blue, Green, Grey ja Rose<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="EberswaldeBIKINISS14">
         <source>description.EberswaldeBIKINISS14</source>
         <target>
-          <![CDATA[Rakastamme aurinkoa ja kesää ja Ebersvalde BIKINI -bikineissä pieni merenneitosi on valmiina aurinkoon, rantaleikkeihin ja uima-altaalle. Hieno pilkullinen kuvio, röyhelö koko yläosan reunuksessa ja upeat rusetit sekä ylä- että alaosassa.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Rose ja Yellow<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 90 % polyamidia, 10 % elastaania]]>
+          <![CDATA[Rakastamme aurinkoa ja kesää ja Ebersvalde BIKINI -bikineissä pieni merenneitosi on valmiina aurinkoon, rantaleikkeihin ja uima-altaalle. Hieno pilkullinen kuvio, röyhelö koko yläosan reunuksessa ja upeat rusetit sekä ylä- että alaosassa.<br><br>Saatavana: Rose ja Yellow<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 90 % polyamidia, 10 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="EberswaldeLittleSWIMSUITSS14">
@@ -677,7 +677,7 @@
       <trans-unit id="HannoverLEGGINGSSS14">
         <source>description.HannoverLEGGINGSSS14</source>
         <target>
-          <![CDATA[Nämä ihanan pehmeät leggingsit perusmallistostamme ovat aivan täydelliset kaikkeen tanssiin, juoksuun ja muuhun liikkumiseen. Niissä on pehmeä ja joustava vyötärö sekä rypytys ja koristenapit lahkeissa. Yhdistä yhteensopivaan pitkähihaiseen Hannover LS Tshirt -T-paitaan, vedä päälle suosikkimekko ja tyttösi on valmis. Valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br>Saatavana: Rose, Grey, Peach ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 46 % puuvillaa, 46 % modaalia, 8 % elastaania]]>
+          <![CDATA[Nämä ihanan pehmeät leggingsit perusmallistostamme ovat aivan täydelliset kaikkeen tanssiin, juoksuun ja muuhun liikkumiseen. Niissä on pehmeä ja joustava vyötärö sekä rypytys ja koristenapit lahkeissa. Yhdistä yhteensopivaan pitkähihaiseen Hannover LS Tshirt -T-paitaan, vedä päälle suosikkimekko ja tyttösi on valmis. Valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Rose, Grey, Peach ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 46 % puuvillaa, 46 % modaalia, 8 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="HannoverLittleLEGGINGSSS14">
@@ -689,19 +689,19 @@
       <trans-unit id="HannoverLittleLSTSHIRTSS14">
         <source>description.HannoverLittleLSTSHIRTSS14</source>
         <target>
-          <![CDATA[Perussarjamme pehmeä ja mukava T-paita, jossa on joustava pääntie ja joka sopii täydellisesti yhteen kaikkien vaatteiden kanssa. Yhdistä yhteensopiviin Hannover Little LEGGINGS -leggingseihin, vedä päälle suosikkimekko ja tyttösi on valmis. Valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Rose, Grey, Peach ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 46 % puuvillaa, 46 % modaalia, 8 % elastaania]]>
+          <![CDATA[Perussarjamme pehmeä ja mukava T-paita, jossa on joustava pääntie ja joka sopii täydellisesti yhteen kaikkien vaatteiden kanssa.Yhdistä yhteensopiviin Hannover Little LEGGINGS -leggingseihin, vedä päälle suosikkimekko ja tyttösi on valmis. Valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Rose, Grey, Peach ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 46 % puuvillaa, 46 % modaalia, 8 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="HannoverLSTSHIRTSS14">
         <source>description.HannoverLSTSHIRTSS14</source>
         <target>
-          <![CDATA[Perussarjamme pehmeä ja mukava T-paita, jossa on joustava pääntie ja joka sopii täydellisesti yhteen kaikkien vaatteiden kanssa. Yhdistä yhteensopiviin Hannover LEGGINGS -leggingseihin, vedä päälle suosikkimekko ja tyttösi on valmis. Valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Rose, Grey, Peach ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 46 % puuvillaa, 46 % modaalia, 8 % elastaania]]>
+          <![CDATA[Perussarjamme pehmeä ja mukava T-paita, jossa on joustava pääntie ja joka sopii täydellisesti yhteen kaikkien vaatteiden kanssa.Yhdistä yhteensopiviin Hannover LEGGINGS -leggingseihin, vedä päälle suosikkimekko ja tyttösi on valmis. Valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Rose, Grey, Peach ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 46 % puuvillaa, 46 % modaalia, 8 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="HannoverTOPSS14">
         <source>description.HannoverTOPSS14</source>
         <target>
-          <![CDATA[Perussarjamme pehmeä ja mukava toppi, joka sopii täydellisesti yhteen kaikkien vaatteiden kanssa. Käytä sitä sellaisenaan kauniina ja lämpimänä kesäpäivänä tai neuletakin alla viileämmällä säällä. Kaunis kiiltävä kuminauha koristaa sekä pääntietä että hihansuita.Hannover on tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br>Saatavana: Rose, Grey, Peach ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 46 % puuvillaa, 46 % modaalia, 8 % elastaania]]>
+          <![CDATA[Perussarjamme pehmeä ja mukava toppi, joka sopii täydellisesti yhteen kaikkien vaatteiden kanssa. Käytä sitä sellaisenaan kauniina ja lämpimänä kesäpäivänä tai neuletakin alla viileämmällä säällä. Kaunis kiiltävä kuminauha koristaa sekä pääntietä että hihansuita.Hannover on tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Rose, Grey, Peach ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 46 % puuvillaa, 46 % modaalia, 8 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="HarwichBLOUSESS14">
@@ -785,7 +785,7 @@
       <trans-unit id="JimaLittleJUMPSUITSS14">
         <source>description.JimaLittleJUMPSUITSS14</source>
         <target>
-          <![CDATA[Valmiina seikkailuihin kauniissa, mukavassa ja ilmassa Jima-jumpsuitissa. Yläosan rypytys tekee Jima Little JUMPSUIT -haalarista tosi houkuttelevan…..ei muuta kuin ilmapalloseikkailulle…<br><br>Saatavana: Rose, Blue ja Yellow<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Valmiina seikkailuihin kauniissa, mukavassa ja ilmassa Jima-jumpsuitissa. Yläosan rypytys tekee Jima Little JUMPSUIT -haalarista tosi houkuttelevan...ei muuta kuin ilmapalloseikkailulle…<br><br>Saatavana: Rose, Blue ja Yellow<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="JimaLittleTUNICSS14">
@@ -809,13 +809,13 @@
       <trans-unit id="KielLittleLSTSHIRTSS14">
         <source>description.KielLittleLSTSHIRTSS14</source>
         <target>
-          <![CDATA[Pehmeä ja uskomattoman mukava perus-T-paita, joka sopii täydellisesti yhteen minkä tahansa kanssa! Kiel on saatavana kahdessa eri värissä ja se on tietenkin valmistettu Öko-Tex-standardin 100 ja GOTS-standardin mukaisesti.<br><br>Saatavana: White, Rose, Grey ja Yellow<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
+          <![CDATA[Pehmeä ja uskomattoman mukava perus-T-paita, joka sopii täydellisesti yhteen minkä tahansa kanssa! Kiel on saatavana kahdessa eri värissä ja se on tietenkin valmistettu Öko-Tex-standardin 100 ja GOTS-standardin mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: White, Rose, Grey ja Yellow<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="KielLSTSHIRTSS14">
         <source>description.KielLSTSHIRTSS14</source>
         <target>
-          <![CDATA[Pehmeä ja uskomattoman mukava perus-T-paita, joka sopii täydellisesti yhteen minkä tahansa kanssa! Kiel on saatavana kahdessa eri värissä ja se on tietenkin valmistettu Öko-Tex-standardin 100 ja GOTS-standardin mukaisesti.<br><br>Saatavana: White, Rose, Grey ja Yellow<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
+          <![CDATA[Pehmeä ja uskomattoman mukava perus-T-paita, joka sopii täydellisesti yhteen minkä tahansa kanssa! Kiel on saatavana kahdessa eri värissä ja se on tietenkin valmistettu Öko-Tex-standardin 100 ja GOTS-standardin mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: White, Rose, Grey ja Yellow<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="LewistonCARDIGANSS14">
@@ -869,43 +869,43 @@
       <trans-unit id="LusakaLEGGINGSSS14">
         <source>description.LusakaLEGGINGSSS14</source>
         <target>
-          <![CDATA[Lusaka on perussarja, jossa on hienoja kapeita kultaraitoja. Käytä Lusaka LEGGINGS -leggingsejä mekkojen tai tunikoiden alla ja tuo arkeen ripaus juhlaa. Materiaali on ihanan pehmeää ja tuntuu mukavalta päällä.<br><br>Saatavana: Rose, Light Blue ja Peach<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>"Materiaali: 86 % viskoosia,8 % lurexia, 6 % elastaania "]]>
+          <![CDATA[Lusaka on perussarja, jossa on hienoja kapeita kultaraitoja. Käytä Lusaka LEGGINGS -leggingsejä mekkojen tai tunikoiden alla ja tuo arkeen ripaus juhlaa. Materiaali on ihanan pehmeää ja tuntuu mukavalta päällä.<br><br>Saatavana: Rose, Light Blue ja Peach<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>"Materiaali: 86 % viskoosia,8 % lurexia, 6 % elastaania"]]>
         </target>
       </trans-unit>
       <trans-unit id="LusakaLittleLEGGINGSSS14">
         <source>description.LusakaLittleLEGGINGSSS14</source>
         <target>
-          <![CDATA[Lusaka on perussarja, jossa on hienoja kapeita kultaraitoja. Käytä Lusaka Little LEGGINGS -leggingsejä mekkojen tai tunikojen alla ja tuo arkeen ripaus juhlaa. Materiaali on ihanan pehmeää ja tuntuu mukavalta päällä.<br><br>Saatavana: Rose, Light Blue ja Peach<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>"Materiaali: 86 % viskoosia,8 % lurexia, 6 % elastaania "]]>
+          <![CDATA[Lusaka on perussarja, jossa on hienoja kapeita kultaraitoja. Käytä Lusaka Little LEGGINGS -leggingsejä mekkojen tai tunikojen alla ja tuo arkeen ripaus juhlaa. Materiaali on ihanan pehmeää ja tuntuu mukavalta päällä.<br><br>Saatavana: Rose, Light Blue ja Peach<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>"Materiaali: 86 % viskoosia,8 % lurexia, 6 % elastaania"]]>
         </target>
       </trans-unit>
       <trans-unit id="LusakaLittleLSTSHIRTSS14">
         <source>description.LusakaLittleLSTSHIRTSS14</source>
         <target>
-          <![CDATA[Lusaka on perussarja, jossa on hienoja kapeita kultaraitoja. Käytä T-paitaa sellaisenaan tai erilaisten mekkojen, tunikojen tai neuleiden alla ja tuo arkeen ripaus juhlaa. Materiaali on ihanan pehmeää ja tuntuu mukavalta päällä.<br><br>Saatavana: Rose, Light Blue ja Peach<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>"Materiaali: 86 % viskoosia,8 % lurexia, 6 % elastaania "]]>
+          <![CDATA[Lusaka on perussarja, jossa on hienoja kapeita kultaraitoja. Käytä T-paitaa sellaisenaan tai erilaisten mekkojen, tunikojen tai neuleiden alla ja tuo arkeen ripaus juhlaa. Materiaali on ihanan pehmeää ja tuntuu mukavalta päällä.<br><br>Saatavana: Rose, Light Blue ja Peach<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>"Materiaali: 86 % viskoosia,8 % lurexia, 6 % elastaania"]]>
         </target>
       </trans-unit>
       <trans-unit id="LusakaLittleSSTSHIRTSS14">
         <source>description.LusakaLittleSSTSHIRTSS14</source>
         <target>
-          <![CDATA[Lusaka on perussarja, jossa on hienoja kapeita kultaraitoja. Käytä T-paitaa sellaisenaan tai erilaisten mekkojen, tunikojen tai neuleiden alla ja tuo arkeen ripaus juhlaa. Materiaali on ihanan pehmeää ja tuntuu mukavalta päällä.<br><br>Saatavana: Rose, Light Blue ja Peach<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>"Materiaali: 86 % viskoosia,8 % lurexia, 6 % elastaania "]]>
+          <![CDATA[Lusaka on perussarja, jossa on hienoja kapeita kultaraitoja. Käytä T-paitaa sellaisenaan tai erilaisten mekkojen, tunikojen tai neuleiden alla ja tuo arkeen ripaus juhlaa. Materiaali on ihanan pehmeää ja tuntuu mukavalta päällä.<br><br>Saatavana: Rose, Light Blue ja Peach<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>"Materiaali: 86 % viskoosia,8 % lurexia, 6 % elastaania"]]>
         </target>
       </trans-unit>
       <trans-unit id="LusakaLSTSHIRTSS14">
         <source>description.LusakaLSTSHIRTSS14</source>
         <target>
-          <![CDATA[Lusaka on perussarja, jossa on hienoja kapeita kultaraitoja. Käytä T-paitaa sellaisenaan tai erilaisten mekkojen, tunikojen tai neuleiden alla ja tuo arkeen ripaus juhlaa. Materiaali on ihanan pehmeää ja tuntuu mukavalta päällä.<br><br>Saatavana: Rose, Light Blue ja Peach<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>"Materiaali: 86 % viskoosia,8 % lurexia, 6 % elastaania "]]>
+          <![CDATA[Lusaka on perussarja, jossa on hienoja kapeita kultaraitoja. Käytä T-paitaa sellaisenaan tai erilaisten mekkojen, tunikojen tai neuleiden alla ja tuo arkeen ripaus juhlaa. Materiaali on ihanan pehmeää ja tuntuu mukavalta päällä.<br><br>Saatavana: Rose, Light Blue ja Peach<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>"Materiaali: 86 % viskoosia,8 % lurexia, 6 % elastaania"]]>
         </target>
       </trans-unit>
       <trans-unit id="LusakaSSTSHIRTSS14">
         <source>description.LusakaSSTSHIRTSS14</source>
         <target>
-          <![CDATA[Lusaka on perussarja, jossa on hienoja kapeita kultaraitoja. Käytä T-paitaa sellaisenaan tai erilaisten mekkojen, tunikojen tai neuleiden alla ja tuo arkeen ripaus juhlaa. Materiaali on ihanan pehmeää ja tuntuu mukavalta päällä.<br><br>Saatavana: Rose, Light Blue ja Peach<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>"Materiaali: 86 % viskoosia,8 % lurexia, 6 % elastaania "]]>
+          <![CDATA[Lusaka on perussarja, jossa on hienoja kapeita kultaraitoja. Käytä T-paitaa sellaisenaan tai erilaisten mekkojen, tunikojen tai neuleiden alla ja tuo arkeen ripaus juhlaa. Materiaali on ihanan pehmeää ja tuntuu mukavalta päällä.<br><br>Saatavana: Rose, Light Blue ja Peach<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>"Materiaali: 86 % viskoosia,8 % lurexia, 6 % elastaania"]]>
         </target>
       </trans-unit>
       <trans-unit id="LusakaTOPSS14">
         <source>description.LusakaTOPSS14</source>
         <target>
-          <![CDATA[Lusaka on perussarja, jossa on hienoja kapeita kultaraitoja. Käytä toppia sellaisenaan kunnon kesäpäivänä tai erilaisten mekkojen, tunikojen tai neuleiden alla ja tuo arkeen ripaus juhlaa. Materiaali on ihanan pehmeää ja tuntuu mukavalta päällä.<br><br>Saatavana: Rose, Light Blue ja Peach<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>"Materiaali: 86 % viskoosi,8 % lurex, 6 % elastaani "]]>
+          <![CDATA[Lusaka on perussarja, jossa on hienoja kapeita kultaraitoja. Käytä toppia sellaisenaan kunnon kesäpäivänä tai erilaisten mekkojen, tunikojen tai neuleiden alla ja tuo arkeen ripaus juhlaa. Materiaali on ihanan pehmeää ja tuntuu mukavalta päällä.<br><br>Saatavana: Rose, Light Blue ja Peach<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>"Materiaali: 86 % viskoosi,8 % lurex, 6 % elastaani"]]>
         </target>
       </trans-unit>
       <trans-unit id="MackeyZIPJACKETSS14">
@@ -917,25 +917,25 @@
       <trans-unit id="MadrasBAGGYJEANSSS14">
         <source>description.MadrasBAGGYJEANSSS14</source>
         <target>
-          <![CDATA[Total street style – mukavalla tavalla! Madras BAGGY JEANS -farkut ovat supertrendikkäät ja niin ihanat päällä. Pehmeä ja säädettävä resorivyötärö on helppo asettaa juuri oikealle kohdalle lantiolla.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Blue Denim<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Total street style – mukavalla tavalla! Madras BAGGY JEANS -farkut ovat supertrendikkäät ja niin ihanat päällä. Pehmeä ja säädettävä resorivyötärö on helppo asettaa juuri oikealle kohdalle lantiolla.<br><br>Saatavana: Blue Denim<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="MadrasLittleBAGGYJEANSSS14">
         <source>description.MadrasLittleBAGGYJEANSSS14</source>
         <target>
-          <![CDATA[Total street style – mukavalla tavalla! Madras Little BAGGY JEANS -farkut ovat supertrendikkäät ja niin ihanat päällä. Pehmeä ja säädettävä resorivyötärö on helppo asettaa juuri oikealle kohdalle lantiolla.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Blue Denim<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Total street style – mukavalla tavalla! Madras Little BAGGY JEANS -farkut ovat supertrendikkäät ja niin ihanat päällä. Pehmeä ja säädettävä resorivyötärö on helppo asettaa juuri oikealle kohdalle lantiolla.<br><br>Saatavana: Blue Denim<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="MandalayLittleJEANSSS14">
         <source>description.MandalayLittleJEANSSS14</source>
         <target>
-          <![CDATA[Upeat, kauniit, pehmeät Mandalay-farkut. Kauniit Blue Denimin väriset farkut, joissa on supermukava resori vyötäröllä ja lahkeensuissa sekä kiristysnauha. Taskut edessä ja takana. Hienot ompeleet ja upea nahkayksityiskohta viimeistelevät tämän tosi coolin tyylin.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Blue Denim<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>"Materiaali: 65 % puuvillaa,35 % polyesteria"]]>
+          <![CDATA[Upeat, kauniit, pehmeät Mandalay-farkut. Kauniit Blue Denimin väriset farkut, joissa on supermukava resori vyötäröllä ja lahkeensuissa sekä kiristysnauha. Taskut edessä ja takana. Hienot ompeleet ja upea nahkayksityiskohta viimeistelevät tämän tosi coolin tyylin.<br><br>Saatavana: Blue Denim<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>"Materiaali: 65 % puuvillaa,35 % polyesteria"]]>
         </target>
       </trans-unit>
       <trans-unit id="MandalayLittleLONGSHORTSSS14">
         <source>description.MandalayLittleLONGSHORTSSS14</source>
         <target>
-          <![CDATA[Upeat, kauniit, pehmeät Mandalay-shortsit. Kauniit Blue Denimin väriset pitkät shortsit, joissa on supermukava resori vyötäröllä, kiristysnauha sekä taskut edessä ja takana. Hienot ompeleet ja upea nahkayksityiskohta viimeistelevät tämän tosi coolin tyylin.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Blue Denim<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>"Materiaali: 65 % puuvillaa,35 % polyesteria"]]>
+          <![CDATA[Upeat, kauniit, pehmeät Mandalay-shortsit. Kauniit Blue Denimin väriset pitkät shortsit, joissa on supermukava resori vyötäröllä, kiristysnauha sekä taskut edessä ja takana. Hienot ompeleet ja upea nahkayksityiskohta viimeistelevät tämän tosi coolin tyylin.<br><br>Saatavana: Blue Denim<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>"Materiaali: 65 % puuvillaa,35 % polyesteria"]]>
         </target>
       </trans-unit>
       <trans-unit id="MandalayLONGSHORTSSS14">
@@ -947,13 +947,13 @@
       <trans-unit id="MendozaREGULARJEANSSS14">
         <source>description.MendozaREGULARJEANSSS14</source>
         <target>
-          <![CDATA[Mendoza REGULAR JEANS -farkuissa on hyvännäköinen pesu sekä upeita kulutus- ja nahkayksityiskohtia. Ne on superhelpot pukea päälle ja riisua ja sopivat varmasti säädettävän vyötärönsä ansiosta.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Blue Denim<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Mendoza REGULAR JEANS -farkuissa on hyvännäköinen pesu sekä upeita kulutus- ja nahkayksityiskohtia. Ne on superhelpot pukea päälle ja riisua ja sopivat varmasti säädettävän vyötärönsä ansiosta.<br><br>Saatavana: Blue Denim<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="MilfordNARROWFITJEANSSS14">
         <source>description.MilfordNARROWFITJEANSSS14</source>
         <target>
-          <![CDATA[Farkuissa on upea tumma pesu, jossa on kulutuksia ja rypytyksiä juuri oikeissa kohdissa. Milford NARROW FIT JEANS -farkuissa on säädettävä vyötärö, vetoketju ja hakaskiinnitys. <br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Blue Denim<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 99 % puuvillaa, 1 % elastaania]]>
+          <![CDATA[Farkuissa on upea tumma pesu, jossa on kulutuksia ja rypytyksiä juuri oikeissa kohdissa. Milford NARROW FIT JEANS -farkuissa on säädettävä vyötärö, vetoketju ja hakaskiinnitys. <br><br>Saatavana: Blue Denim<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 99 % puuvillaa, 1 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="MinskBAGGYLONGSHORTSSS14">
@@ -965,7 +965,7 @@
       <trans-unit id="NairobiSSTSHIRTSS14">
         <source>description.NairobiSSTSHIRTSS14</source>
         <target>
-          <![CDATA[Kentällä riittää taatusti vauhtia, kun Nairobi tulee mukaan. Ihanan coolia ja rentoa jalkapallotyyliä – tästä tulee taatusti pian yksi poikasi suosikeista, jota hän ei malttaisi millään antaa pesuun...<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Turquoise ja Wine<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % polyesteria]]>
+          <![CDATA[Kentällä riittää taatusti vauhtia, kun Nairobi tulee mukaan. Ihanan coolia ja rentoa jalkapallotyyliä – tästä tulee taatusti pian yksi poikasi suosikeista, jota hän ei malttaisi millään antaa pesuun...<br><br>Saatavana: Turquoise ja Wine<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % polyesteria]]>
         </target>
       </trans-unit>
       <trans-unit id="NampulaLittleLSGRANDDADSS14">
@@ -977,43 +977,43 @@
       <trans-unit id="NampulaLittlePANTSSS14">
         <source>description.NampulaLittlePANTSSS14</source>
         <target>
-          <![CDATA[100 % mukava! Nampula on ihanan pehmeää ja joustavaa materiaalia ja sopii täydellisesti leikkeihin ja liikkumiseen. tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br>Saatavana: White/Navy, Blue/Navy, Blue/White ja Navy/White<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % puuvillaa, 5 % elastaania]]>
+          <![CDATA[100 % mukava! Nampula on ihanan pehmeää ja joustavaa materiaalia ja sopii täydellisesti leikkeihin ja liikkumiseen. tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: White/Navy, Blue/Navy, Blue/White ja Navy/White<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % puuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="NampulaLittleSSGRANDDADSS14">
         <source>description.NampulaLittleSSGRANDDADSS14</source>
         <target>
-          <![CDATA[100 % mukava! Nampula on ihanan pehmeää ja joustavaa materiaalia ja sopii täydellisesti leikkeihin ja liikkumiseen. tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br>Saatavana: White/Navy, Blue/Navy, Blue/White ja Navy/White<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % puuvillaa, 5 % elastaania]]>
+          <![CDATA[100 % mukava! Nampula on ihanan pehmeää ja joustavaa materiaalia ja sopii täydellisesti leikkeihin ja liikkumiseen. tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: White/Navy, Blue/Navy, Blue/White ja Navy/White<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % puuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="NampulaLSGRANDDADSS14">
         <source>description.NampulaLSGRANDDADSS14</source>
         <target>
-          <![CDATA[100 % mukava! Nampula on ihanan pehmeää ja joustavaa materiaalia ja sopii täydellisesti leikkeihin ja liikkumiseen. tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br>Saatavana: White/Navy, Blue/Navy, Blue/White ja Navy/White<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % puuvillaa, 5 % elastaania]]>
+          <![CDATA[100 % mukava! Nampula on ihanan pehmeää ja joustavaa materiaalia ja sopii täydellisesti leikkeihin ja liikkumiseen. tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: White/Navy, Blue/Navy, Blue/White ja Navy/White<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % puuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="NampulaSSGRANDDADSS14">
         <source>description.NampulaSSGRANDDADSS14</source>
         <target>
-          <![CDATA[100 % mukava! Nampula on ihanan pehmeää ja joustavaa materiaalia ja sopii täydellisesti leikkeihin ja liikkumiseen. Se on tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br>Saatavana: White/Navy, Blue/Navy, Blue/White ja Navy/White<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % puuvillaa, 5 % elastaania]]>
+          <![CDATA[100 % mukava! Nampula on ihanan pehmeää ja joustavaa materiaalia ja sopii täydellisesti leikkeihin ja liikkumiseen. Se on tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: White/Navy, Blue/Navy, Blue/White ja Navy/White<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % puuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="NewportPANTSSS14">
         <source>description.NewportPANTSSS14</source>
         <target>
-          <![CDATA[Newport PANTS pienelle yleismiehelle. Ihanan rennot housut, joissa on kätevät sivutaskut molemmissa lahkeissa ja kiristysnauhallinen säädettävä vyötärö. Hakaskiinnitys pukemista ja riisumista varten, mutta hienot koristenapit esiteltäviksi.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Olive ja Sand<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Newport PANTS pienelle yleismiehelle. Ihanan rennot housut, joissa on kätevät sivutaskut molemmissa lahkeissa ja kiristysnauhallinen säädettävä vyötärö. Hakaskiinnitys pukemista ja riisumista varten, mutta hienot koristenapit esiteltäviksi.<br><br>Saatavana: Olive ja Sand<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="NorwichLittlePANTSSS14">
         <source>description.NorwichLittlePANTSSS14</source>
         <target>
-          <![CDATA[Mukavuuden ei tarvitse merkitä tylsyyttä. Norwich Little PANTS -housuissa on ihanan pehmeää resoria sekä vyötäröllä että lahkeissa ja kiristysnauha. Yhdistä upeisiin varsikenkiin ja pieni poikasi näyttää TOSI tyylikkäältä!<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Blue, Olive ja Turquoise<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 97 % puuvillaa, 3 % elastaania]]>
+          <![CDATA[Mukavuuden ei tarvitse merkitä tylsyyttä. Norwich Little PANTS -housuissa on ihanan pehmeää resoria sekä vyötäröllä että lahkeissa ja kiristysnauha. Yhdistä upeisiin varsikenkiin ja pieni poikasi näyttää TOSI tyylikkäältä!<br><br>Saatavana: Blue, Olive ja Turquoise<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 97 % puuvillaa, 3 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="NorwichPANTSSS14">
         <source>description.NorwichPANTSSS14</source>
         <target>
-          <![CDATA[Mukavuuden ei tarvitse merkitä tylsyyttä. Norwich PANTS -housuissa on ihanan pehmeää resoria sekä vyötäröllä että lahkeissa ja kiristysnauha. Yhdistä upeisiin varsikenkiin ja poikasi näyttää TOSI tyylikkäältä!<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Blue, Olive ja Turquoise<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 97 % puuvillaa, 3 % elastaania]]>
+          <![CDATA[Mukavuuden ei tarvitse merkitä tylsyyttä. Norwich PANTS -housuissa on ihanan pehmeää resoria sekä vyötäröllä että lahkeissa ja kiristysnauha. Yhdistä upeisiin varsikenkiin ja poikasi näyttää TOSI tyylikkäältä!<br><br>Saatavana: Blue, Olive ja Turquoise<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 97 % puuvillaa, 3 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="NottinghamSLIMFITJEANSSS14">
@@ -1025,61 +1025,61 @@
       <trans-unit id="OdessaJACKETSS14">
         <source>description.OdessaJACKETSS14</source>
         <target>
-          <![CDATA[Päästä pieni baseball-pelaajasi valloilleen tässä tosi coolissa Odessa JACKET -takissa – se on aivan varmaa, että hän on koko koulun tyylikkäin. Vetoketju, nepparit, pehmeät hihat joustinneuletta ja paljon taskuja tärkeille tavaroille.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Blue, Olive ja Green<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: Päällinen: 100 % polyamidia. Vuori: 100 % polyesteria. Toppaus: 100 % polyesteria.]]>
+          <![CDATA[Päästä pieni baseball-pelaajasi valloilleen tässä tosi coolissa Odessa JACKET -takissa – se on aivan varmaa, että hän on koko koulun tyylikkäin. Vetoketju, nepparit, pehmeät hihat joustinneuletta ja paljon taskuja tärkeille tavaroille.<br><br>Saatavana: Blue, Olive ja Green<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: Päällinen: 100 % polyamidia. Vuori: 100 % polyesteria. Toppaus: 100 % polyesteria.]]>
         </target>
       </trans-unit>
       <trans-unit id="OdessaLittleJACKETSS14">
         <source>description.OdessaLittleJACKETSS14</source>
         <target>
-          <![CDATA[Päästä pieni baseball-pelaajasi valloilleen tässä tosi coolissa Odessa Little JACKET -takissa – se on aivan varmaa, että hän on koko leikkipuiston tyylikkäin. Vetoketju, nepparit, pehmeät hihat joustinneuletta ja paljon taskuja tärkeille tavaroille.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Blue, Olive ja Green<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: Päällinen: 100 % polyamidia. Vuori: 100 % polyesteria. Toppaus: 100 % polyesteria.]]>
+          <![CDATA[Päästä pieni baseball-pelaajasi valloilleen tässä tosi coolissa Odessa Little JACKET -takissa – se on aivan varmaa, että hän on koko leikkipuiston tyylikkäin. Vetoketju, nepparit, pehmeät hihat joustinneuletta ja paljon taskuja tärkeille tavaroille.<br><br>Saatavana: Blue, Olive ja Green<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: Päällinen: 100 % polyamidia. Vuori: 100 % polyesteria. Toppaus: 100 % polyesteria.]]>
         </target>
       </trans-unit>
       <trans-unit id="OrlandoBOXERSS14">
         <source>description.OrlandoBOXERSS14</source>
         <target>
-          <![CDATA[Kahden kappaleen pakkaus ihanan pehmeitä ja joustavia boksereita kahdella eri painatuksella. Orlando BOXER -bokserit on tietenkin valmistettu Öko-Tex-standardin 100 ja GOTS-standardin mukaisesti. Ihoa vasten hyvällä omallatunnolla!<br><br>Saatavana: Light Blue/Olive ja White/Navy<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
+          <![CDATA[Kahden kappaleen pakkaus ihanan pehmeitä ja joustavia boksereita kahdella eri painatuksella. Orlando BOXER -bokserit on tietenkin valmistettu Öko-Tex-standardin 100 ja GOTS-standardin mukaisesti. Ihoa vasten hyvällä omallatunnolla!<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Light Blue/Olive ja White/Navy<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="OrlandoLittleLSBODYSS14">
         <source>description.OrlandoLittleLSBODYSS14</source>
         <target>
-          <![CDATA[Kahden kappaleen pakkaus pitkähihaisia bodyja mitä pehmeintä materiaalia. Toisella olkapäällä olevat nepparit helpottavat pukemista ja riisumista. Pakkauksesta on saatavana kaksi eri värivaihtoehtoa. Valmistettu Öko-Tex-standardin 100 ja GOTS-standardin mukaisesti. Ihoa vasten hyvällä omallatunnolla.<br><br>Saatavana: Light Blue/Olive ja White/Navy<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
+          <![CDATA[Kahden kappaleen pakkaus pitkähihaisia bodyja mitä pehmeintä materiaalia. Toisella olkapäällä olevat nepparit helpottavat pukemista ja riisumista. Pakkauksesta on saatavana kaksi eri värivaihtoehtoa. Valmistettu Öko-Tex-standardin 100 ja GOTS-standardin mukaisesti. Ihoa vasten hyvällä omallatunnolla.<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Light Blue/Olive ja White/Navy<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="OrlandoLittleSLEEPERSS14">
         <source>description.OrlandoLittleSLEEPERSS14</source>
         <target>
-          <![CDATA[Matkalla höyhensaarille on Orlando Little SLEEPER täydellinen vaate! Se on niin ihanan pehmeä ja mukava, että kaikki pikkuprinssit nukkuvat varmasti hyvin... Puku on tietenkin valmistettu sekä Öko-Tex-standardin 100 että GOTS-standardin mukaisesti.<br><br>Saatavana: Light Blue/Olive ja White/Navy<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
+          <![CDATA[Matkalla höyhensaarille on Orlando Little SLEEPER täydellinen vaate! Se on niin ihanan pehmeä ja mukava, että kaikki pikkuprinssit nukkuvat varmasti hyvin... Puku on tietenkin valmistettu sekä Öko-Tex-standardin 100 että GOTS-standardin mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Light Blue/Olive ja White/Navy<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="OrlandoLittleSSBODYSS14">
         <source>description.OrlandoLittleSSBODYSS14</source>
         <target>
-          <![CDATA[Kahden kappaleen pakkaus pehmeimpiä lyhythihaisia bodyja. Toisella olkapäällä olevat nepparit helpottavat pukemista ja riisumista. Pakkauksesta on saatavana kaksi eri värivaihtoehtoa. Valmistettu Öko-Tex-standardin 100 ja GOTS-standardin mukaisesti. Ihoa vasten hyvällä omallatunnolla.<br><br>Saatavana: Light Blue/Olive ja White/Navy<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
+          <![CDATA[Kahden kappaleen pakkaus pehmeimpiä lyhythihaisia bodyja. Toisella olkapäällä olevat nepparit helpottavat pukemista ja riisumista. Pakkauksesta on saatavana kaksi eri värivaihtoehtoa. Valmistettu Öko-Tex-standardin 100 ja GOTS-standardin mukaisesti. Ihoa vasten hyvällä omallatunnolla.<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Light Blue/Olive ja White/Navy<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="OrlandoPYSS14">
         <source>description.OrlandoPYSS14</source>
         <target>
-          <![CDATA[Matkalla höyhensaarille on Orlando PY täydellinen vaate! Niin ihanan pehmeä ja mukava, että kaikki prinssit nukkuvat varmasti hyvin... Se on tietenkin valmistettu Öko-Tex-standardin 100 ja GOTS-standardin mukaisesti.<br><br>Saatavana: Light Blue/Olive ja White/Navy<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
+          <![CDATA[Matkalla höyhensaarille on Orlando PY täydellinen vaate! Niin ihanan pehmeä ja mukava, että kaikki prinssit nukkuvat varmasti hyvin... Se on tietenkin valmistettu Öko-Tex-standardin 100 ja GOTS-standardin mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Light Blue/Olive ja White/Navy<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="OrlandoTANKTOPSS14">
         <source>description.OrlandoTANKTOPSS14</source>
         <target>
-          <![CDATA[Kahden kappaleen pakkaus ihanan pehmeitä ja joustavia aluspaitoja. Toisessa on etupainatus ja toisessa allover-painatus sekä kontrastiväriset kanttaukset pääntiessä ja hihansuissa. Valmistettu Öko-Tex-standardin 100 ja GOTS-standardin (luomupuuvilla) mukaisesti. <br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Light Blue/Olive ja White/Navy<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
+          <![CDATA[Kahden kappaleen pakkaus ihanan pehmeitä ja joustavia aluspaitoja. Toisessa on etupainatus ja toisessa allover-painatus sekä kontrastiväriset kanttaukset pääntiessä ja hihansuissa. Valmistettu Öko-Tex-standardin 100 ja GOTS-standardin (luomupuuvilla) mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Light Blue/Olive ja White/Navy<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="PaisleyLittleLONGSHORTSSS14">
         <source>description.PaisleyLittleLONGSHORTSSS14</source>
         <target>
-          <![CDATA[Näissä shortseissa pikkumiehesi kerää taatusti ihailevia katseita. Yhdistä Paisley Little LONG SHORTS -shortseihin upea paitapusero tai jopa rusetti ja hänestä tulee varsinainen hurmuri. Ihanan kestävää materiaalia, käänteet lahkeissa, hakaskiinnitys ja tietysti säädettävä vyötärö.<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Turquoise, Yellow, Wine ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>"Materiaali: 97 % puuvillaa3 % elastaania "]]>
+          <![CDATA[Näissä shortseissa pikkumiehesi kerää taatusti ihailevia katseita. Yhdistä Paisley Little LONG SHORTS -shortseihin upea paitapusero tai jopa rusetti ja hänestä tulee varsinainen hurmuri. Ihanan kestävää materiaalia, käänteet lahkeissa, hakaskiinnitys ja tietysti säädettävä vyötärö.<br><br>Saatavana: Turquoise, Yellow, Wine ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>"Materiaali: 97 % puuvillaa3 % elastaania"]]>
         </target>
       </trans-unit>
       <trans-unit id="PaisleyLONGSHORTSSS14">
         <source>description.PaisleyLONGSHORTSSS14</source>
         <target>
-          <![CDATA[Näissä shortseissa pikkumiehesi kerää taatusti ihailevia katseita. Yhdistä Paisley LONG SHORTS -shortseihin upea paitapusero tai jopa rusetti ja hänestä tulee varsinainen hurmuri. Ihanan kestävää materiaalia, käänteet lahkeissa ja tietysti säädettävä vyötärö.<br><br>Saatavana: Turquoise, Yellow, Wine ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>"Materiaali: 97 % puuvillaa3 % elastaania "]]>
+          <![CDATA[Näissä shortseissa pikkumiehesi kerää taatusti ihailevia katseita. Yhdistä Paisley LONG SHORTS -shortseihin upea paitapusero tai jopa rusetti ja hänestä tulee varsinainen hurmuri. Ihanan kestävää materiaalia, käänteet lahkeissa ja tietysti säädettävä vyötärö.<br><br>Saatavana: Turquoise, Yellow, Wine ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>"Materiaali: 97 % puuvillaa3 % elastaania"]]>
         </target>
       </trans-unit>
       <trans-unit id="PalermoLittleSHORTSSS14">
@@ -1097,7 +1097,7 @@
       <trans-unit id="PanamaBAGGYLONGSHORTSSS14">
         <source>description.PanamaBAGGYLONGSHORTSSS14</source>
         <target>
-          <![CDATA[Rentoa tyyliä coolilla tavalla! Supersiistit Panama BAGGY LONG SHORTS -shortsit tekevät baggy-tyylillään pikkumiehestä vielä vähän coolimman. Niissä on upeat ompeleet, kätevät sivutaskut, pieniä niittejä ja hienoja nahkayksityiskohtia. Neppari ja säädettävä vyötärö.<br><br>Saatavana: Olive ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 55 % puuvillaa, 45 % pellavaa]]>
+          <![CDATA[Rentoa tyyliä coolilla tavalla!Supersiistit Panama BAGGY LONG SHORTS -shortsit tekevät baggy-tyylillään pikkumiehestä vielä vähän coolimman. Niissä on upeat ompeleet, kätevät sivutaskut, pieniä niittejä ja hienoja nahkayksityiskohtia. Neppari ja säädettävä vyötärö.<br><br>Saatavana: Olive ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 55 % puuvillaa, 45 % pellavaa]]>
         </target>
       </trans-unit>
       <trans-unit id="PerthLittleLONGSHORTSSS14">
@@ -1121,7 +1121,7 @@
       <trans-unit id="PlevenCHINOSSS14">
         <source>description.PlevenCHINOSSS14</source>
         <target>
-          <![CDATA[Me vain rakastamme CHINOJA! Pleven CHINOS -housuissa on supertyylikäs mutta kuitenkin rento tyyli. Ne kuuluvat ehdottomasti jokaisen pojan vaatevarastoon. Housuissa on trendikäs säädettävä tuplavyötärö. Tyttöjen päät kääntyvät taatusti!<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Blue, Mustard ja Navy<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 97 % puuvillaa, 3 % elastaania]]>
+          <![CDATA[Me vain rakastamme CHINOJA! Pleven CHINOS -housuissa on supertyylikäs mutta kuitenkin rento tyyli. Ne kuuluvat ehdottomasti jokaisen pojan vaatevarastoon. Housuissa on trendikäs säädettävä tuplavyötärö. Tyttöjen päät kääntyvät taatusti!<br><br>Saatavana: Blue, Mustard ja Navy<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 97 % puuvillaa, 3 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="PlevenLittleCHINOSSS14">
@@ -1151,43 +1151,43 @@
       <trans-unit id="PusanLittleSWEATSS14">
         <source>description.PusanLittleSWEATSS14</source>
         <target>
-          <![CDATA[Wau, Pusan Little SWEAT on tosi cool!  Supermukavaa ja kätevää resoria sekä hihansuissa että helmassa kontrastiväreissä. Pääntiessä napit ja hieno huppu, joka on samanvärinen kuin resori. Pusan SWEAT on tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br>Saatavana: Navy, Yellow ja Turquoise<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Wau, Pusan Little SWEAT on tosi cool! Supermukavaa ja kätevää resoria sekä hihansuissa että helmassa kontrastiväreissä. Pääntiessä napit ja hieno huppu, joka on samanvärinen kuin resori. Pusan SWEAT on tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Navy, Yellow ja Turquoise<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="PusanSWEATSS14">
         <source>description.PusanSWEATSS14</source>
         <target>
-          <![CDATA[Wau, Pusan SWEAT on tosi cool!  Supermukavaa ja kätevää resoria sekä hihansuissa että helmassa kontrastiväreissä. Pääntiessä napit ja hieno huppu, joka on samanvärinen kuin resori. Pusan SWEAT on tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br>Saatavana: Navy, Yellow ja Turquoise<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Wau, Pusan SWEAT on tosi cool! Supermukavaa ja kätevää resoria sekä hihansuissa että helmassa kontrastiväreissä. Pääntiessä napit ja hieno huppu, joka on samanvärinen kuin resori. Pusan SWEAT on tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Navy, Yellow ja Turquoise<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="QuitoLONGSHORTSSS14">
         <source>description.QuitoLONGSHORTSSS14</source>
         <target>
-          <![CDATA[Upeat street style -henkiset Quito-shortsit ovat täydelliset sekä leikkeihin että liikkumiseen. Yhdistä shortseihin siisti paita coolin kontrastin luomiseksi tai säilytä rento tyyli ja käytä shortseja T-paidan kanssa. Quito-shortsit ovat hyvännäköiset, hieman rajut ja tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br>Saatavana: Navy, Wine ja Olive<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Upeat street style -henkiset Quito-shortsit ovat täydelliset sekä leikkeihin että liikkumiseen. Yhdistä shortseihin siisti paita coolin kontrastin luomiseksi tai säilytä rento tyyli ja käytä shortseja T-paidan kanssa. Quito-shortsit ovat hyvännäköiset, hieman rajut ja tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Navy, Wine ja Olive<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="RafaelaLittlePANTSSS14">
         <source>description.RafaelaLittlePANTSSS14</source>
         <target>
-          <![CDATA[Mukavat leikeissä, hyvännäköiset päällä! Kun tarvitaan tilaa liikkumiseen, Rafaela-housut ovat juuri täydelliset. 100 % puuvillaa – 100 % mukavaa!<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Navy Melange, Olive Melange ja Light Grey Melange<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Mukavat leikeissä, hyvännäköiset päällä! Kun tarvitaan tilaa liikkumiseen, Rafaela-housut ovat juuri täydelliset. 100 % puuvillaa – 100 % mukavaa!<br><br>Saatavana: Navy Melange, Olive Melange ja Light Grey Melange<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="RafaelaLittleSHORTSSS14">
         <source>description.RafaelaLittleSHORTSSS14</source>
         <target>
-          <![CDATA[Mukavat leikeissä, hyvännäköiset päällä! Kun tarvitaan tilaa liikkumiseen, Rafaela-shortsit ovat juuri täydelliset. 100 % puuvillaa – 100 % mukavuutta!<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Navy Melange, Olive Melange ja Light Grey Melange<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Mukavat leikeissä, hyvännäköiset päällä! Kun tarvitaan tilaa liikkumiseen, Rafaela-shortsit ovat juuri täydelliset. 100 % puuvillaa – 100 % mukavuutta!<br><br>Saatavana: Navy Melange, Olive Melange ja Light Grey Melange<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="RafaelaPANTSSS14">
         <source>description.RafaelaPANTSSS14</source>
         <target>
-          <![CDATA[Mukavat leikeissä, hyvännäköiset päällä! Kun tarvitaan tilaa liikkumiseen, Rafaela-housut ovat juuri täydelliset. 100 % puuvillaa – 100 % mukavuutta!<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Navy Melange, Olive Melange ja Light Grey Melange<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Mukavat leikeissä, hyvännäköiset päällä! Kun tarvitaan tilaa liikkumiseen, Rafaela-housut ovat juuri täydelliset. 100 % puuvillaa – 100 % mukavuutta!<br><br>Saatavana: Navy Melange, Olive Melange ja Light Grey Melange<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="RafaelaSHORTSSS14">
         <source>description.RafaelaSHORTSSS14</source>
         <target>
-          <![CDATA[Mukavat leikeissä, hyvännäköiset päällä! Kun tarvitaan tilaa liikkumiseen, Rafaela-shortsit ovat juuri täydelliset. 100 % puuvillaa – 100 % mukavuutta!<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Navy Melange, Olive Melange ja Light Grey Melange<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Mukavat leikeissä, hyvännäköiset päällä! Kun tarvitaan tilaa liikkumiseen, Rafaela-shortsit ovat juuri täydelliset. 100 % puuvillaa – 100 % mukavuutta!<br><br>Saatavana: Navy Melange, Olive Melange ja Light Grey Melange<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="RangoonLittleSHORTSSS14">
@@ -1241,25 +1241,25 @@
       <trans-unit id="RosarioLittlePOLOSS14">
         <source>description.RosarioLittlePOLOSS14</source>
         <target>
-          <![CDATA[Pikeepaita antaa tyylikkään säväyksen poikien asuun – ja Rosariossa on tyyliä! Rosario Little POLO -paidasta on saatavana kolme tyylikästä väriyhdistelmää, ja se sopii täydellisesti shortsien, chinojen tai farkkujen kanssa. Rosario on tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br>Saatavana: Wine, Navy ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Pikeepaita antaa tyylikkään säväyksen poikien asuun – ja Rosariossa on tyyliä! Rosario Little POLO -paidasta on saatavana kolme tyylikästä väriyhdistelmää, ja se sopii täydellisesti shortsien, chinojen tai farkkujen kanssa. Rosario on tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Wine, Navy ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="RosarioPOLOSS14">
         <source>description.RosarioPOLOSS14</source>
         <target>
-          <![CDATA[Pikeepaita antaa tyylikkään säväyksen poikien asuun – ja Rosariossa on tyyliä! Rosario POLO -paidasta on saatavana kolme tyylikästä väriyhdistelmää, ja se sopii täydellisesti shortsien, chinojen tai farkkujen kanssa. Rosario on tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br>Saatavana: Wine, Navy ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Pikeepaita antaa tyylikkään säväyksen poikien asuun – ja Rosariossa on tyyliä! Rosario POLO -paidasta on saatavana kolme tyylikästä väriyhdistelmää, ja se sopii täydellisesti shortsien, chinojen tai farkkujen kanssa. Rosario on tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Wine, Navy ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="RouenLittleSSTSHIRTSS14">
         <source>description.RouenLittleSSTSHIRTSS14</source>
         <target>
-          <![CDATA[Tosi hyvännäköinen ja joustava puuvillapaita, joissa on upeita raitoja ja kätevä kontrastivärinen rintatasku. Supercool farkkujen tai pitkien shortsien kanssa – valmiina kesään!  Rouen on tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br>Saatavana: Navy ja White<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % puuvillaa, 5 % elastaania]]>
+          <![CDATA[Tosi hyvännäköinen ja joustava puuvillapaita, joissa on upeita raitoja ja kätevä kontrastivärinen rintatasku. Supercool farkkujen tai pitkien shortsien kanssa – valmiina kesään! Rouen on tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Navy ja White<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % puuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="RouenSSTSHIRTSS14">
         <source>description.RouenSSTSHIRTSS14</source>
         <target>
-          <![CDATA[Tosi hyvännäköinen ja joustava puuvillapaita, joissa on upeita raitoja ja kätevä kontrastivärinen rintatasku. Supercool farkkujen tai pitkien shortsien kanssa – valmiina kesään!  Rouen on tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br>Saatavana: Navy ja White<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % puuvilla, 5 % elastaani]]>
+          <![CDATA[Tosi hyvännäköinen ja joustava puuvillapaita, joissa on upeita raitoja ja kätevä kontrastivärinen rintatasku. Supercool farkkujen tai pitkien shortsien kanssa – valmiina kesään! Rouen on tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Navy ja White<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % puuvilla, 5 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="SafiLittlePANTSSS14">
@@ -1283,7 +1283,7 @@
       <trans-unit id="SalernoLittlePOLOSS14">
         <source>description.SalernoLittlePOLOSS14</source>
         <target>
-          <![CDATA[Cooler than cool – nosta kaulus pystyyn ja näytä tyylikkäältä. Salerno Little POLO -pikeepaidasta on saatavana neljä upeaa väriyhdistelmää, ja se herättää taatusti huomiota monilla merkeillään ja näyttävillä ompeleillaan. Pikeepaita on 100 % puuvillaa ja valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br>Saatavana: Red, Navy, Green ja Yellow<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Cooler than cool – nosta kaulus pystyyn ja näytä tyylikkäältä. Salerno Little POLO -pikeepaidasta on saatavana neljä upeaa väriyhdistelmää, ja se herättää taatusti huomiota monilla merkeillään ja näyttävillä ompeleillaan. Pikeepaita on 100 % puuvillaa ja valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Red, Navy, Green ja Yellow<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="SalernoPOLOSS14">
@@ -1295,7 +1295,7 @@
       <trans-unit id="SapporoLittleSHIRTSS14">
         <source>description.SapporoLittleSHIRTSS14</source>
         <target>
-          <![CDATA[Oih! Olemme hulluina Sapporoon! Siisti merimiespaita on kevyt ja kaunis ja sopii varmasti kaikille pienille pojille.Yksityiskohtiin on kiinnitetty paljon huomiota ja napitus, pystykaulus sekä kontrastiompeleet viimeistelevät hienosti tämän paidan.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: White, Blue ja Grey<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>"Materiaali: 55 % pellavaa,45 % puuvillaa"]]>
+          <![CDATA[Oih! Olemme hulluina Sapporoon! Siisti merimiespaita on kevyt ja kaunis ja sopii varmasti kaikille pienille pojille.Yksityiskohtiin on kiinnitetty paljon huomiota ja napitus, pystykaulus sekä kontrastiompeleet viimeistelevät hienosti tämän paidan.<br><br>Saatavana: White, Blue ja Grey<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>"Materiaali: 55 % pellavaa,45 % puuvillaa"]]>
         </target>
       </trans-unit>
       <trans-unit id="SapporoSHIRTSS14">
@@ -1337,19 +1337,19 @@
       <trans-unit id="ShellJACKETSS14">
         <source>description.ShellJACKETSS14</source>
         <target>
-          <![CDATA[Adventure-mallistoomme kuuluu muun muassa tämä aivan upea ja käytännöllinen Shell JACKET. Takki on tietenkin sekä sateen- että tuulenpitävä ja siinä on paljon ihania ja käytännöllisiä yksityiskohtia. Vetoketju ja napit varmistavat tiiviyden ja takissa on paljon taskuja. Hihansuissa on tuulilukot ja peukalonreiät. Irrotettava huppu, pieniä heijastinyksityiskohtia ja kiristys sekä helmassa että vyötäröllä. Jos tarvitaan lisää lämpöä, saman sarjan Fleece-takki sopii hyvin alle. Shell JACKET -takista on saatavana kolme käytännöllistä väriä. Sen vesipilariarvo on 10 000 mm ja hengittävyys 5 000 mvp.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Grey, Rose ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: Päällinen: 100% polyamidia, Vuori: 100 % polyesteria]]>
+          <![CDATA[Adventure-mallistoomme kuuluu muun muassa tämä aivan upea ja käytännöllinen Shell JACKET. Takki on tietenkin sekä sateen- että tuulenpitävä ja siinä on paljon ihania ja käytännöllisiä yksityiskohtia. Vetoketju ja napit varmistavat tiiviyden ja takissa on paljon taskuja. Hihansuissa on tuulilukot ja peukalonreiät. Irrotettava huppu, pieniä heijastinyksityiskohtia ja kiristys sekä helmassa että vyötäröllä. Jos tarvitaan lisää lämpöä, saman sarjan Fleece-takki sopii hyvin alle. Shell JACKET -takista on saatavana kolme käytännöllistä väriä. Sen vesipilariarvo on 10 000 mm ja hengittävyys 5 000 mvp.<br><br>Saatavana: Grey, Rose ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: Päällinen: 100% polyamidia, Vuori: 100 % polyesteria]]>
         </target>
       </trans-unit>
       <trans-unit id="ShellLittleBIBPANTSSS14">
         <source>description.ShellLittleBIBPANTSSS14</source>
         <target>
-          <![CDATA[Pienimmille uudesta Adventure-mallistostamme löytyy Shell Little BIB PANTS -housut. Ne ovat luonnollisesti sekä sateen- että tuulenpitävät ja niissä on myös paljon upeita ja käytännöllisiä yksityiskohtia. Lisävahvikkeet polvissa, vetoketjut lahkeensuissa, käytännöllinen etutasku sekä kuminauha- ja velcro-kiinnitys, mikä takaa ihanteellisen istuvuuden. Pienet heijastinyksityiskohdat varmistavat turvallisuuden liikenteessä ja sivunapit hyvän sopivuuden. Voit yhdistää Shell Little BIB PANTS -housut ja Shell JACKET -takin, niin saat täydellisen asun! Saatavana kolme käytännöllistä väriä. Housujen vesipilariarvo on 10 000 mm ja hengittävyys 5 000 mvp.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Grey, Rose ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: Päällinen: 100% polyamidia, Vuori: 100 % polyesteria]]>
+          <![CDATA[Pienimmille uudesta Adventure-mallistostamme löytyy Shell Little BIB PANTS -housut. Ne ovat luonnollisesti sekä sateen- että tuulenpitävät ja niissä on myös paljon upeita ja käytännöllisiä yksityiskohtia. Lisävahvikkeet polvissa, vetoketjut lahkeensuissa, käytännöllinen etutasku sekä kuminauha- ja velcro-kiinnitys, mikä takaa ihanteellisen istuvuuden. Pienet heijastinyksityiskohdat varmistavat turvallisuuden liikenteessä ja sivunapit hyvän sopivuuden. Voit yhdistää Shell Little BIB PANTS -housut ja Shell JACKET -takin, niin saat täydellisen asun! Saatavana kolme käytännöllistä väriä. Housujen vesipilariarvo on 10 000 mm ja hengittävyys 5 000 mvp.<br><br>Saatavana: Grey, Rose ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: Päällinen: 100% polyamidia, Vuori: 100 % polyesteria]]>
         </target>
       </trans-unit>
       <trans-unit id="ShellPANTSSS14">
         <source>description.ShellPANTSSS14</source>
         <target>
-          <![CDATA[Uudessa Adventure-mallistossamme on myös Shell PANTS -housut. Ne ovat luonnollisesti sekä sateen- että tuulenpitävät ja niissä on myös paljon upeita ja käytännöllisiä yksityiskohtia. Lisävahvikkeet polvissa, vetoketjut lahkeensuissa sekä kuminauha- ja velcro-kiinnitys, mikä takaa ihanteellisen istuvuuden. Pienet heijastinyksityiskohdat varmistavat turvallisuuden liikenteessä ja vyötärön leveä kuminauha sekä sisäpuolen kiristysmahdollisuus takaavat hyvän istuvuuden. Voit yhdistää Shell PANTS -housut ja Shell JACKET -takin, niin saat täydellisen asun! Saatavana kolme käytännöllistä väriä. Housujen vesipilariarvo on 10 000 mm ja hengittävyys 5 000 mvp.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Grey, Rose ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: Päällinen: 100% polyamidia, Vuori: 100 % polyesteria]]>
+          <![CDATA[Uudessa Adventure-mallistossamme on myös Shell PANTS -housut. Ne ovat luonnollisesti sekä sateen- että tuulenpitävät ja niissä on myös paljon upeita ja käytännöllisiä yksityiskohtia. Lisävahvikkeet polvissa, vetoketjut lahkeensuissa sekä kuminauha- ja velcro-kiinnitys, mikä takaa ihanteellisen istuvuuden. Pienet heijastinyksityiskohdat varmistavat turvallisuuden liikenteessä ja vyötärön leveä kuminauha sekä sisäpuolen kiristysmahdollisuus takaavat hyvän istuvuuden. Voit yhdistää Shell PANTS -housut ja Shell JACKET -takin, niin saat täydellisen asun! Saatavana kolme käytännöllistä väriä. Housujen vesipilariarvo on 10 000 mm ja hengittävyys 5 000 mvp.<br><br>Saatavana: Grey, Rose ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: Päällinen: 100% polyamidia, Vuori: 100 % polyesteria]]>
         </target>
       </trans-unit>
       <trans-unit id="SoftshellJACKETSS14">
@@ -1367,7 +1367,7 @@
       <trans-unit id="SouthamptonFOOTIESSS14">
         <source>description.SouthamptonFOOTIESSS14</source>
         <target>
-          <![CDATA[Southhampon FOOTIES -sukat ovat superpehmeät, ja niitä on tietenkin saatavana koko mallistoon sopivissa väreissä. Varpaat voivat nauttia hyvällä omallatunnolla, sillä Southampton on valmistettu Öko-Tex-standardin 100 mukaisesti. Ainoaksi ongelmaksi jää värin valitseminen!<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Black ja Navy<br><br>Kokomerkintä tarkoittaa lapsen kengänkokoa.<br><br>Materiaali: 78 % puuvillaa, 20 % polyamidia, 2 % elastaania]]>
+          <![CDATA[Southhampon FOOTIES -sukat ovat superpehmeät, ja niitä on tietenkin saatavana koko mallistoon sopivissa väreissä.Varpaat voivat nauttia hyvällä omallatunnolla, sillä Southampton on valmistettu Öko-Tex-standardin 100 mukaisesti. Ainoaksi ongelmaksi jää värin valitseminen!<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Black ja Navy<br><br>Kokomerkintä tarkoittaa lapsen kengänkokoa.<br><br>Materiaali: 78 % puuvillaa, 20 % polyamidia, 2 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="StolbergLittleJUMPSUITSS14">
@@ -1391,7 +1391,7 @@
       <trans-unit id="SunderlandSOCKSSS14">
         <source>description.SunderlandSOCKSSS14</source>
         <target>
-          <![CDATA[Sunderland SOCKS -sukat ovat superpehmeät, ja niitä on tietenkin saatavana koko mallistoon sopivissa väreissä. Varpaat voivat nauttia hyvällä omallatunnolla, sillä Sunderland-sukat on valmistettu Öko-Tex-standardin 100 mukaisesti. Ainoaksi ongelmaksi jää värin valitseminen!<br><br>Saatavana: Navy, Olive, Blue ja Wine<br><br>Kokomerkintä tarkoittaa lapsen kengänkokoa.<br><br>Materiaali: 78 % puuvillaa, 20 % polyamidia, 2 % elastaania]]>
+          <![CDATA[Sunderland SOCKS -sukat ovat superpehmeät, ja niitä on tietenkin saatavana koko mallistoon sopivissa väreissä.Varpaat voivat nauttia hyvällä omallatunnolla, sillä Sunderland-sukat on valmistettu Öko-Tex-standardin 100 mukaisesti. Ainoaksi ongelmaksi jää värin valitseminen!<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Navy, Olive, Blue ja Wine<br><br>Kokomerkintä tarkoittaa lapsen kengänkokoa.<br><br>Materiaali: 78 % puuvillaa, 20 % polyamidia, 2 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="SusaLittleSWIMTRUNKSSS14">
@@ -1415,25 +1415,25 @@
       <trans-unit id="TampereLittlePULLOVERSS14">
         <source>description.TampereLittlePULLOVERSS14</source>
         <target>
-          <![CDATA[Tyylikästä – me olemme hulluina tähän! Tampere Little PULLOVER on ihanan raidallinen! Kontrastiväriä pääntiessä ja hieno nappikiinnitys olkapäällä – supermukava ja 100 % puuvillaa.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Grey Melange, Turquoise ja Navy<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Tyylikästä – me olemme hulluina tähän! Tampere Little PULLOVER on ihanan raidallinen! Kontrastiväriä pääntiessä ja hieno nappikiinnitys olkapäällä – supermukava ja 100 % puuvillaa.<br><br>Saatavana: Grey Melange, Turquoise ja Navy<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="TamperePULLOVERSS14">
         <source>description.TamperePULLOVERSS14</source>
         <target>
-          <![CDATA[Tyylikästä – me olemme hulluina tähän! Tampere PULLOVER on ihanan raidallinen! Kontrastiväriä pääntiessä ja hieno nappikiinnitys olkapäällä – supermukava ja 100 % puuvillaa.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Grey Melange, Turquoise ja Navy<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Tyylikästä – me olemme hulluina tähän! Tampere PULLOVER on ihanan raidallinen! Kontrastiväriä pääntiessä ja hieno nappikiinnitys olkapäällä – supermukava ja 100 % puuvillaa.<br><br>Saatavana: Grey Melange, Turquoise ja Navy<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="TangerLittleSSTSHIRTSS14">
         <source>description.TangerLittleSSTSHIRTSS14</source>
         <target>
-          <![CDATA[Mato koukkuun ja kalastamaan! Ihana T-paita supermukavaa 100 % puuvillaa. Painatus ja merkit viimeistelevät hienosti Tanger-paidan, joka on tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br>Saatavana: Blue, Green ja Red<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Mato koukkuun ja kalastamaan! Ihana T-paita supermukavaa 100 % puuvillaa. Painatus ja merkit viimeistelevät hienosti Tanger-paidan, joka on tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Blue, Green ja Red<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="TangerSSTSHIRTSS14">
         <source>description.TangerSSTSHIRTSS14</source>
         <target>
-          <![CDATA[Mato koukkuun ja kalastamaan! Ihana T-paita supermukavaa 100 % puuvillaa. Ompeleet, painatus ja merkit viimeistelevät hienosti Tanger-paidan, joka on tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br>Saatavana: Blue, Green ja Red<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Mato koukkuun ja kalastamaan! Ihana T-paita supermukavaa 100 % puuvillaa. Ompeleet, painatus ja merkit viimeistelevät hienosti Tanger-paidan, joka on tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Blue, Green ja Red<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="TaylorvilleLittleSHIRTSS14">
@@ -1451,7 +1451,7 @@
       <trans-unit id="TerniNARROWFITPANTSSS14">
         <source>description.TerniNARROWFITPANTSSS14</source>
         <target>
-          <![CDATA[Terni NARROW FIT PANTS nuorelle miehelle. Pieniä hienoja nahkayksityiskohtia ja siisti rypytys. Yhdistä tyylikkääseen paitapuseroon ja upeisiin varsikenkiin, niin täydellinen herrasmies rokahtavalla tyylillä on valmiina. Saatavana on kolme hienoa väriä. Housuissa on hakaskiinnitys ja luonnollisesti tuttu säädettävä vyötärö.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Blue, Wine ja Yellow<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 98 % puuvillaa, 2 % elastaania]]>
+          <![CDATA[Terni NARROW FIT PANTS nuorelle miehelle. Pieniä hienoja nahkayksityiskohtia ja siisti rypytys. Yhdistä tyylikkääseen paitapuseroon ja upeisiin varsikenkiin, niin täydellinen herrasmies rokahtavalla tyylillä on valmiina. Saatavana on kolme hienoa väriä. Housuissa on hakaskiinnitys ja luonnollisesti tuttu säädettävä vyötärö.<br><br>Saatavana: Blue, Wine ja Yellow<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 98 % puuvillaa, 2 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="TororoLittleLSGRANDDADSS14">
@@ -1469,13 +1469,13 @@
       <trans-unit id="TororoLSGRANDDADSS14">
         <source>description.TororoLSGRANDDADSS14</source>
         <target>
-          <![CDATA[GRANDDAD-paita sopii joka tilanteeseen joko sellaisenaan tai hyvännäköisen neuletakin kanssa. Tororo on supermukava ja tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br>Saatavana: Grey Melange, Navy, White ja Turquoise<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % puuvillaa, 5 % elastaania]]>
+          <![CDATA[GRANDDAD-paita sopii joka tilanteeseen joko sellaisenaan tai hyvännäköisen neuletakin kanssa. Tororo on supermukava ja tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Grey Melange, Navy, White ja Turquoise<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % puuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="TororoSSGRANDDADSS14">
         <source>description.TororoSSGRANDDADSS14</source>
         <target>
-          <![CDATA[GRANDDAD-paita sopii joka tilanteeseen joko sellaisenaan tai hyvännäköisen neuletakin kanssa. Tororo on supermukava ja tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br>Saatavana: Grey Melange, Navy, White ja Turquoise<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % puuvillaa, 5 % elastaania]]>
+          <![CDATA[GRANDDAD-paita sopii joka tilanteeseen joko sellaisenaan tai hyvännäköisen neuletakin kanssa. Tororo on supermukava ja tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Grey Melange, Navy, White ja Turquoise<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % puuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="TokyoBOXERSS14">
@@ -1487,7 +1487,7 @@
       <trans-unit id="TokyoLittleBODYSS14">
         <source>description.TokyoLittleBODYSS14</source>
         <target>
-          <![CDATA[Pitkähihainen perusbody yksivärisenä ja raidallisena. Kahden kappaleen pakkaus. Valmistettu Öko-Tex-standardin 100 ja GOTS-standardin (luomupuuvilla) mukaisesti. <br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Grey ja Navy<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
+          <![CDATA[Pitkähihainen perusbody yksivärisenä ja raidallisena. Kahden kappaleen pakkaus. Valmistettu Öko-Tex-standardin 100 ja GOTS-standardin (luomupuuvilla) mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Grey ja Navy<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="TokyoLittlePYSS14">
@@ -1511,67 +1511,67 @@
       <trans-unit id="TokyoTANKTOPSS14">
         <source>description.TokyoTANKTOPSS14</source>
         <target>
-          <![CDATA[Ihanan pehmeät aluspaidat yksivärisenä ja raidallisena. Kahden kappaleen pakkaus. Valmistettu Öko-Tex-standardin 100 ja GOTS-standardin (luomupuuvilla) mukaisesti. <br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Grey ja Navy<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
+          <![CDATA[Ihanan pehmeät aluspaidat yksivärisenä ja raidallisena. Kahden kappaleen pakkaus. Valmistettu Öko-Tex-standardin 100 ja GOTS-standardin (luomupuuvilla) mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Grey ja Navy<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="TownsvilleLittleSSTSHIRTSS14">
         <source>description.TownsvilleLittleSSTSHIRTSS14</source>
         <target>
-          <![CDATA[Hiiohoi! Kaikki miehet kannelle! Shortseissa ja Townsville-paidassa pieni merimiehesi on valmiina aurinkoon ja kesään. Ihanan joustavaa puuvillaa, hienot ompeleet, painatus ja rintatasku. Ja tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br>Saatavana: Blue, Turquoise, Wine ja Olive<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % puuvillaa, 5 % elastaania]]>
+          <![CDATA[Hiiohoi! Kaikki miehet kannelle! Shortseissa ja Townsville-paidassa pieni merimiehesi on valmiina aurinkoon ja kesään. Ihanan joustavaa puuvillaa, hienot ompeleet, painatus ja rintatasku. Ja tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Blue, Turquoise, Wine ja Olive<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % puuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="TownsvilleSSTSHIRTSS14">
         <source>description.TownsvilleSSTSHIRTSS14</source>
         <target>
-          <![CDATA[Hiiohoi! Kaikki miehet kannelle! Shortseissa ja Townsville-paidassa pieni merimiehesi on valmiina aurinkoon ja kesään. Ihanan joustavaa puuvillaa, hienot ompeleet, painatus ja rintatasku. Ja tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Blue, Turquoise, Wine ja Olive<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % puuvillaa, 5 % elastaania]]>
+          <![CDATA[Hiiohoi! Kaikki miehet kannelle! Shortseissa ja Townsville-paidassa pieni merimiehesi on valmiina aurinkoon ja kesään. Ihanan joustavaa puuvillaa, hienot ompeleet, painatus ja rintatasku. Ja tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Blue, Turquoise, Wine ja Olive<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % puuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="TrentonLittleSSTSHIRTSS14">
         <source>description.TrentonLittleSSTSHIRTSS14</source>
         <target>
-          <![CDATA[Ihana T-paita, jossa on hienot kontrastitaskut, painatus ja supermukava resori pääntiessä. Trenton Little SS TSHIRT näyttää hyvältä ja on tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Olive Melange, Navy Melange ja Grey Melange<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 80 % puuvillaa, 20 % polyesteria]]>
+          <![CDATA[Ihana T-paita, jossa on hienot kontrastitaskut, painatus ja supermukava resori pääntiessä. Trenton Little SS TSHIRT näyttää hyvältä ja on tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Olive Melange, Navy Melange ja Grey Melange<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 80 % puuvillaa, 20 % polyesteria]]>
         </target>
       </trans-unit>
       <trans-unit id="TrentonSSTSHIRTSS14">
         <source>description.TrentonSSTSHIRTSS14</source>
         <target>
-          <![CDATA[Ihana T-paita, jossa on hienot kontrastitaskut, painatus ja supermukava resori pääntiessä. Trenton SS TSHIRT näyttää hyvältä ja on tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Olive Melange, Navy Melange ja Grey Melange<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 80 % puuvillaa, 20 % polyesteria]]>
+          <![CDATA[Ihana T-paita, jossa on hienot kontrastitaskut, painatus ja supermukava resori pääntiessä. Trenton SS TSHIRT näyttää hyvältä ja on tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Olive Melange, Navy Melange ja Grey Melange<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 80 % puuvillaa, 20 % polyesteria]]>
         </target>
       </trans-unit>
       <trans-unit id="TulsaREGULARJEANSSS14">
         <source>description.TulsaREGULARJEANSSS14</source>
         <target>
-          <![CDATA[Siistit viistaskufarkut, joissa on säädettävä vyötärö, vetoketju ja hakaskiinnitys. Vintage-tyylinen pesu ja rypytyksiä. Näihin suosikkifarkkuihin on helppo yhdistellä muita vaatteita!<br><br>Saatavana: Blue Denim<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 98 % puuvillaa, 2 % elastaania]]>
+          <![CDATA[Siistit viistaskufarkut, joissa on säädettävä vyötärö, vetoketju ja hakaskiinnitys. Vintage-tyylinen pesu ja rypytyksiä. Näihin suosikkifarkkuihin on helppo yhdistellä muita vaatteita!<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Blue Denim<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 98 % puuvillaa, 2 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="TunisLittleSSGRANDDADSS14">
         <source>description.TunisLittleSSGRANDDADSS14</source>
         <target>
-          <![CDATA[Tunis-paidassa on hieno allover-autopainatus ja samanväriset kanttaukset. Chinot, farkut, verkkaritakki tai shortsit – TUNIS-paitaa on saatavana kolmessa ihanassa värissä ja se sopii yhteen kaikkien kanssa. Valmistettu Öko-Tex-standardin mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Mustard, Blue ja Olive<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % puuvillaa, 5 % elastaania]]>
+          <![CDATA[Tunis-paidassa on hieno allover-autopainatus ja samanväriset kanttaukset. Chinot, farkut, verkkaritakki tai shortsit – TUNIS-paitaa on saatavana kolmessa ihanassa värissä ja se sopii yhteen kaikkien kanssa. Valmistettu Öko-Tex-standardin mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Mustard, Blue ja Olive<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % puuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="TunisSSGRANDDADSS14">
         <source>description.TunisSSGRANDDADSS14</source>
         <target>
-          <![CDATA[Tunis-paidassa on hieno allover-autopainatus ja samanväriset kanttaukset. Chinot, farkut, verkkaritakki tai shortsit – TUNIS-paitaa on saatavana kolmessa ihanassa värissä ja se sopii yhteen kaikkien kanssa. Valmistettu Öko-Tex-standardin mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Mustard, Blue ja Olive<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % puuvillaa, 5 % elastaania]]>
+          <![CDATA[Tunis-paidassa on hieno allover-autopainatus ja samanväriset kanttaukset. Chinot, farkut, verkkaritakki tai shortsit – TUNIS-paitaa on saatavana kolmessa ihanassa värissä ja se sopii yhteen kaikkien kanssa. Valmistettu Öko-Tex-standardin mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Mustard, Blue ja Olive<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % puuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="UfaHATSS14">
         <source>description.UfaHATSS14</source>
         <target>
-          <![CDATA[Poikien hattu on tosi cool ja superhyvä paahteisena kesäpäivänä. Tervetuloa aurinko ja kesä! Ufa HAT -hatussa poikasi on valmiina ottamaan ne vastaan! <br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Navy<br><br>Kokomerkintä tarkoittaa lapsen päänympärystä senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Poikien hattu on tosi cool ja superhyvä paahteisena kesäpäivänä. Tervetuloa aurinko ja kesä! Ufa HAT -hatussa poikasi on valmiina ottamaan ne vastaan!<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Navy<br><br>Kokomerkintä tarkoittaa lapsen päänympärystä senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="UlverstoneTANKTOPSS14">
         <source>description.UlverstoneTANKTOPSS14</source>
         <target>
-          <![CDATA[Tosi cool Ulverstone TANKTOP, jossa on siisti painatus sekä edessä että takana. Käytä sitä alustapaitana tai sellaisenaan hienojen shortsien kanssa. Paita on ihanan joustavaa materiaalia, joka on tietenkin valmistettu Öko-Tex-standardin mukaisesti.<br><br>Saatavana: Navy ja Olive<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % puuvillaa, 5 % elastaania]]>
+          <![CDATA[Tosi cool Ulverstone TANKTOP, jossa on siisti painatus sekä edessä että takana. Käytä sitä alustapaitana tai sellaisenaan hienojen shortsien kanssa. Paita on ihanan joustavaa materiaalia, joka on tietenkin valmistettu Öko-Tex-standardin mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Navy ja Olive<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % puuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="UppsalaLittleSSTSHIRTSS14">
         <source>description.UppsalaLittleSSTSHIRTSS14</source>
         <target>
-          <![CDATA[Ihanan joustava puuvillainen T-paita, jossa on tyylikkäät vauhtiraidat ja painatus edessä. Ei muuta kuin Uppsala Little SS TSHIRT -paita päälle ja täyttä vauhtia eteenpäin! Valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br>Saatavana: Navy, Turquoise ja Olive<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % puuvillaa, 5 % elastaania]]>
+          <![CDATA[Ihanan joustava puuvillainen T-paita, jossa on tyylikkäät vauhtiraidat ja painatus edessä. Ei muuta kuin Uppsala Little SS TSHIRT -paita päälle ja täyttä vauhtia eteenpäin! Valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Navy, Turquoise ja Olive<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % puuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="UppsalaSSTSHIRTSS14">
@@ -1583,49 +1583,49 @@
       <trans-unit id="VigoLittleLSTSHIRTSS14">
         <source>description.VigoLittleLSTSHIRTSS14</source>
         <target>
-          <![CDATA[Pehmeä ja uskomattoman mukava perus-T-paita, joka sopii täydellisesti yhteen minkä tahansa kanssa! Vigo on saatavana kahdessa eri värissä ja se on tietenkin valmistettu Öko-Tex-standardin 100 ja GOTS-standardin mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: White ja Navy<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
+          <![CDATA[Pehmeä ja uskomattoman mukava perus-T-paita, joka sopii täydellisesti yhteen minkä tahansa kanssa! Vigo on saatavana kahdessa eri värissä ja se on tietenkin valmistettu Öko-Tex-standardin 100 ja GOTS-standardin mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: White ja Navy<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="VigoLSTSHIRTSS14">
         <source>description.VigoLSTSHIRTSS14</source>
         <target>
-          <![CDATA[Pehmeä ja uskomattoman mukava perus-T-paita, joka sopii täydellisesti yhteen minkä tahansa kanssa! Vigo on saatavana kahdessa eri värissä ja se on tietenkin valmistettu Öko-Tex-standardin 100 ja GOTS-standardin mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: White ja Navy<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
+          <![CDATA[Pehmeä ja uskomattoman mukava perus-T-paita, joka sopii täydellisesti yhteen minkä tahansa kanssa! Vigo on saatavana kahdessa eri värissä ja se on tietenkin valmistettu Öko-Tex-standardin 100 ja GOTS-standardin mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/gots.png">&nbsp;&nbsp;<img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: White ja Navy<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % luomupuuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="WatfordFLEECESS14">
         <source>description.WatfordFLEECESS14</source>
         <target>
-          <![CDATA[Niin kaunis ja pehmeä, että siihen vain tekee mieli kääriytyä. Watfordissa on huppu, epäsymmetrinen vetoketju, kyynärpaikat sekä peukalonreiät. Watford FLEECE on yksinkertaisesti kaunis!<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Olive, Blue ja Grey<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % polyesteria]]>
+          <![CDATA[Niin kaunis ja pehmeä, että siihen vain tekee mieli kääriytyä. Watfordissa on huppu, epäsymmetrinen vetoketju, kyynärpaikat sekä peukalonreiät. Watford FLEECE on yksinkertaisesti kaunis!<br><br>Saatavana: Olive, Blue ja Grey<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % polyesteria]]>
         </target>
       </trans-unit>
       <trans-unit id="WatfordLittleFLEECESS14">
         <source>description.WatfordLittleFLEECESS14</source>
         <target>
-          <![CDATA[Niin kaunis ja pehmeä, että siihen vain tekee mieli kääriytyä. Watfordissa on huppu, epäsymmetrinen vetoketju, kyynärpaikat sekä peukalonreiät. Watford Little FLEECE on yksinkertaisesti kaunis!<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Olive, Blue ja Grey<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % polyesteria]]>
+          <![CDATA[Niin kaunis ja pehmeä, että siihen vain tekee mieli kääriytyä. Watfordissa on huppu, epäsymmetrinen vetoketju, kyynärpaikat sekä peukalonreiät. Watford Little FLEECE on yksinkertaisesti kaunis!<br><br>Saatavana: Olive, Blue ja Grey<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % polyesteria]]>
         </target>
       </trans-unit>
       <trans-unit id="WilmingtonLittleSSTSHIRTSS14">
         <source>description.WilmingtonLittleSSTSHIRTSS14</source>
         <target>
-          <![CDATA[Ihania T-paitoja ei voi koskaan olla liikaa – ja sellainen on myös Wilmington! Ihanan pehmeää ja joustavaa puuvillaa, hieno painatus, upea nahkayksityiskohta ja tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br>Saatavana: Navy, Turquoise ja Wine<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Ihania T-paitoja ei voi koskaan olla liikaa – ja sellainen on myös Wilmington! Ihanan pehmeää ja joustavaa puuvillaa, hieno painatus, upea nahkayksityiskohta ja tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Navy, Turquoise ja Wine<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="WilmingtonSSTSHIRTSS14">
         <source>description.WilmingtonSSTSHIRTSS14</source>
         <target>
-          <![CDATA[Ihania T-paitoja ei voi koskaan olla liikaa – ja sellainen on myös Wilmington! Ihanan pehmeää ja joustavaa puuvillaa, hienot merkit, painatus ja nahkayksityiskohta sekä tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br>Saatavana: Navy, Turquoise ja Wine<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Ihania T-paitoja ei voi koskaan olla liikaa – ja sellainen on myös Wilmington! Ihanan pehmeää ja joustavaa puuvillaa, hienot merkit, painatus ja nahkayksityiskohta sekä tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Navy, Turquoise ja Wine<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="YokosukaSSTSHIRTSS14">
         <source>description.YokosukaSSTSHIRTSS14</source>
         <target>
-          <![CDATA[Go team POMP! Yokosuka SS TSHIRT on aivan varma voittaja. Paidassa on ommeltu numero 7 ja siitä on saatavana neljä megaihanaa väriä. Paita on tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br>Saatavana: Mustard, Turquoise, Navy ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % puuvillaa, 5 % elastaania]]>
+          <![CDATA[Go team POMP! Yokosuka SS TSHIRT on aivan varma voittaja. Paidassa on ommeltu numero 7 ja siitä on saatavana neljä megaihanaa väriä. Paita on tietenkin valmistettu Öko-Tex-standardin 100 mukaisesti.<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Mustard, Turquoise, Navy ja Blue<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 95 % puuvillaa, 5 % elastaania]]>
         </target>
       </trans-unit>
       <trans-unit id="YoungstownCARDIGANSS14">
         <source>description.YoungstownCARDIGANSS14</source>
         <target>
-          <![CDATA[Superihana college-tyylinen neuletakki, jossa on upeat merkit. Ei muuta kuin hiukset ojennukseen ja päälle Youngstown CARDIGAN – hänestä tulee NIIN komea!<br><br><img src="http://static.pompdelux.dk/images/pages/Oeko_Tex_DK.png"><br><br>Saatavana: Grey Melange ja Navy<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
+          <![CDATA[Superihana college-tyylinen neuletakki, jossa on upeat merkit. Ei muuta kuin hiukset ojennukseen ja päälle Youngstown CARDIGAN – hänestä tulee NIIN komea!<br><br>Saatavana: Grey Melange ja Navy<br><br>Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.<br><br>Materiaali: 100 % puuvillaa]]>
         </target>
       </trans-unit>
       <trans-unit id="YoungstownLittleCARDIGANSS14">
