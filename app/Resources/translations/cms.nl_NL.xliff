@@ -177,8 +177,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="757.settings">
-                <source>757.settings</source>
+			<trans-unit id="628.settings">
+                <source>628.settings</source>
                 <target><![CDATA[
                     {
                         "colormap": {
