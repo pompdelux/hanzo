@@ -2,14 +2,8 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
-            <!--
-                her et eksempel på en overskrift for eks. "Pige (104-152 cm)" (på test)
-                erstat "yyy" med cms id'et i id og <source>
-
-                husk at teste: http://jsonlint.com/
-            -->
-            <trans-unit id="660.settings">
-                <source>660.settings</source>
+            <trans-unit id="603.settings">
+                <source>603.settings</source>
                 <target><![CDATA[
                     {
                         "colormap": {
@@ -65,8 +59,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="662.settings">
-                <source>662.settings</source>
+			<trans-unit id="605.settings">
+                <source>605.settings</source>
                 <target><![CDATA[
                     {
                         "colormap": {
@@ -119,8 +113,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="661.settings">
-                <source>661.settings</source>
+			<trans-unit id="604.settings">
+                <source>604.settings</source>
                 <target><![CDATA[
                     {
                         "colormap": {
@@ -183,8 +177,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="663.settings">
-                <source>663.settings</source>
+			<trans-unit id="606.settings">
+                <source>606.settings</source>
                 <target><![CDATA[
                     {
                         "colormap": {
@@ -244,14 +238,8 @@
                     }
                 ]]></target>
             </trans-unit>
-            <!--
-                her et eksempel på en Kategorivisning "Pige (104-152 cm) -> Kjoler" (på test)
-                erstat "xxx" med cms id'et i id og <source>
-
-                husk at teste: http://jsonlint.com/
-            -->
-            <trans-unit id="867.settings">
-                <source>867.settings</source>
+            <trans-unit id="723.settings">
+                <source>723.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "112",
@@ -259,8 +247,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="617.settings">
-                <source>617.settings</source>
+			<trans-unit id="560.settings">
+                <source>560.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "16",
@@ -268,8 +256,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="868.settings">
-                <source>868.settings</source>
+			<trans-unit id="727.settings">
+                <source>727.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "127",
@@ -277,8 +265,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="611.settings">
-                <source>611.settings</source>
+			<trans-unit id="554.settings">
+                <source>554.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "14",
@@ -286,8 +274,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="612.settings">
-                <source>612.settings</source>
+			<trans-unit id="555.settings">
+                <source>555.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "113",
@@ -295,8 +283,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="869.settings">
-                <source>869.settings</source>
+			<trans-unit id="750.settings">
+                <source>750.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "114",
@@ -304,8 +292,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="613.settings">
-                <source>613.settings</source>
+			<trans-unit id="556.settings">
+                <source>556.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "19",
@@ -313,8 +301,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="614.settings">
-                <source>614.settings</source>
+			<trans-unit id="557.settings">
+                <source>557.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "13",
@@ -322,8 +310,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="768.settings">
-                <source>768.settings</source>
+			<trans-unit id="670.settings">
+                <source>670.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "81",
@@ -331,8 +319,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="615.settings">
-                <source>615.settings</source>
+			<trans-unit id="558.settings">
+                <source>558.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "17",
@@ -340,8 +328,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="769.settings">
-                <source>769.settings</source>
+			<trans-unit id="671.settings">
+                <source>671.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "79",
@@ -349,8 +337,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="616.settings">
-                <source>616.settings</source>
+			<trans-unit id="559.settings">
+                <source>559.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "18",
@@ -358,8 +346,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="770.settings">
-                <source>770.settings</source>
+			<trans-unit id="672.settings">
+                <source>672.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "15",
@@ -367,8 +355,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="619.settings">
-                <source>619.settings</source>
+			<trans-unit id="562.settings">
+                <source>562.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "21",
@@ -376,8 +364,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="621.settings">
-                <source>621.settings</source>
+			<trans-unit id="746.settings">
+                <source>746.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "12",
@@ -385,8 +373,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="620.settings">
-                <source>620.settings</source>
+			<trans-unit id="737.settings">
+                <source>737.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "115",
@@ -394,8 +382,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="622.settings">
-                <source>622.settings</source>
+			<trans-unit id="565.settings">
+                <source>565.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "45",
@@ -403,8 +391,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="623.settings">
-                <source>623.settings</source>
+			<trans-unit id="741.settings">
+                <source>741.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "46",
@@ -412,8 +400,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="875.settings">
-                <source>875.settings</source>
+			<trans-unit id="725.settings">
+                <source>725.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "121",
@@ -421,8 +409,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="642.settings">
-                <source>642.settings</source>
+			<trans-unit id="585.settings">
+                <source>585.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "33",
@@ -430,8 +418,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="876.settings">
-                <source>876.settings</source>
+			<trans-unit id="730.settings">
+                <source>730.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "129",
@@ -439,8 +427,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="636.settings">
-                <source>636.settings</source>
+			<trans-unit id="579.settings">
+                <source>579.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "31",
@@ -448,8 +436,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="637.settings">
-                <source>637.settings</source>
+			<trans-unit id="580.settings">
+                <source>580.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "35",
@@ -457,8 +445,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="638.settings">
-                <source>638.settings</source>
+			<trans-unit id="581.settings">
+                <source>581.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "37",
@@ -466,8 +454,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="639.settings">
-                <source>639.settings</source>
+			<trans-unit id="582.settings">
+                <source>582.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "30",
@@ -475,8 +463,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="645.settings">
-                <source>645.settings</source>
+			<trans-unit id="583.settings">
+                <source>583.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "85",
@@ -484,8 +472,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="640.settings">
-                <source>640.settings</source>
+			<trans-unit id="588.settings">
+                <source>588.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "34",
@@ -493,8 +481,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="641.settings">
-                <source>641.settings</source>
+			<trans-unit id="584.settings">
+                <source>584.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "86",
@@ -502,8 +490,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="643.settings">
-                <source>643.settings</source>
+			<trans-unit id="682.settings">
+                <source>682.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "87",
@@ -511,8 +499,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="644.settings">
-                <source>644.settings</source>
+			<trans-unit id="587.settings">
+                <source>587.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "38",
@@ -520,8 +508,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="646.settings">
-                <source>646.settings</source>
+			<trans-unit id="748.settings">
+                <source>748.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "29",
@@ -529,8 +517,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="877.settings">
-                <source>877.settings</source>
+			<trans-unit id="739.settings">
+                <source>739.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "122",
@@ -538,8 +526,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="647.settings">
-                <source>647.settings</source>
+			<trans-unit id="590.settings">
+                <source>590.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "49",
@@ -547,8 +535,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="648.settings">
-                <source>648.settings</source>
+			<trans-unit id="743.settings">
+                <source>743.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "50",
@@ -556,8 +544,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="870.settings">
-                <source>870.settings</source>
+			<trans-unit id="724.settings">
+                <source>724.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "116",
@@ -565,8 +553,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="630.settings">
-                <source>630.settings</source>
+			<trans-unit id="573.settings">
+                <source>573.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "6",
@@ -574,8 +562,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="871.settings">
-                <source>871.settings</source>
+			<trans-unit id="728.settings">
+                <source>728.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "128",
@@ -583,8 +571,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="625.settings">
-                <source>625.settings</source>
+			<trans-unit id="731.settings">
+                <source>731.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "117",
@@ -592,8 +580,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="872.settings">
-                <source>872.settings</source>
+			<trans-unit id="745.settings">
+                <source>745.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "118",
@@ -601,8 +589,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="626.settings">
-                <source>626.settings</source>
+			<trans-unit id="569.settings">
+                <source>569.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "8",
@@ -610,8 +598,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="627.settings">
-                <source>627.settings</source>
+			<trans-unit id="733.settings">
+                <source>733.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "9",
@@ -619,8 +607,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="771.settings">
-                <source>771.settings</source>
+			<trans-unit id="679.settings">
+                <source>679.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "83",
@@ -628,8 +616,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="873.settings">
-                <source>873.settings</source>
+			<trans-unit id="735.settings">
+                <source>735.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "120",
@@ -637,8 +625,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="628.settings">
-                <source>628.settings</source>
+			<trans-unit id="571.settings">
+                <source>571.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "7",
@@ -646,8 +634,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="772.settings">
-                <source>772.settings</source>
+			<trans-unit id="572.settings">
+                <source>572.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "84",
@@ -655,8 +643,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="631.settings">
-                <source>631.settings</source>
+			<trans-unit id="574.settings">
+                <source>574.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "11",
@@ -664,8 +652,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="632.settings">
-                <source>632.settings</source>
+			<trans-unit id="747.settings">
+                <source>747.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "5",
@@ -673,8 +661,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="874.settings">
-                <source>874.settings</source>
+			<trans-unit id="738.settings">
+                <source>738.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "119",
@@ -682,8 +670,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="633.settings">
-                <source>633.settings</source>
+			<trans-unit id="576.settings">
+                <source>576.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "43",
@@ -691,8 +679,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="634.settings">
-                <source>634.settings</source>
+			<trans-unit id="742.settings">
+                <source>742.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "44",
@@ -700,8 +688,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="878.settings">
-                <source>878.settings</source>
+			<trans-unit id="726.settings">
+                <source>726.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "123",
@@ -709,8 +697,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="655.settings">
-                <source>655.settings</source>
+			<trans-unit id="598.settings">
+                <source>598.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "24",
@@ -718,8 +706,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="879.settings">
-                <source>879.settings</source>
+			<trans-unit id="729.settings">
+                <source>729.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "130",
@@ -727,8 +715,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="880.settings">
-                <source>880.settings</source>
+			<trans-unit id="732.settings">
+                <source>732.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "27",
@@ -736,8 +724,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="881.settings">
-                <source>881.settings</source>
+			<trans-unit id="751.settings">
+                <source>751.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "124",
@@ -745,8 +733,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="651.settings">
-                <source>651.settings</source>
+			<trans-unit id="594.settings">
+                <source>594.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "26",
@@ -754,8 +742,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="652.settings">
-                <source>652.settings</source>
+			<trans-unit id="734.settings">
+                <source>734.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "23",
@@ -763,8 +751,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="654.settings">
-                <source>654.settings</source>
+			<trans-unit id="680.settings">
+                <source>680.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "88",
@@ -772,8 +760,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="882.settings">
-                <source>882.settings</source>
+			<trans-unit id="736.settings">
+                <source>736.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "125",
@@ -781,8 +769,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="653.settings">
-                <source>653.settings</source>
+			<trans-unit id="596.settings">
+                <source>596.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "25",
@@ -790,8 +778,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="776.settings">
-                <source>776.settings</source>
+			<trans-unit id="597.settings">
+                <source>597.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "90",
@@ -799,8 +787,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="656.settings">
-                <source>656.settings</source>
+			<trans-unit id="599.settings">
+                <source>599.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "28",
@@ -808,8 +796,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="657.settings">
-                <source>657.settings</source>
+			<trans-unit id="749.settings">
+                <source>749.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "22",
@@ -817,8 +805,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="883.settings">
-                <source>883.settings</source>
+			<trans-unit id="740.settings">
+                <source>740.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "126",
@@ -826,8 +814,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="658.settings">
-                <source>658.settings</source>
+			<trans-unit id="601.settings">
+                <source>601.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "47",
@@ -835,8 +823,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="659.settings">
-                <source>659.settings</source>
+			<trans-unit id="744.settings">
+                <source>744.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "48",
