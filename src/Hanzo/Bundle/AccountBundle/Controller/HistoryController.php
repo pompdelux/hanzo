@@ -128,7 +128,10 @@ class HistoryController extends CoreController
         }
 
         // track 'n trace integration - the url is only available if both actor_id and installation_id is set for the country.
-        $trackntrace_url = $this->container->getParameter('account.consignor.trackntrace_url');
+        $trackntrace_url = '';
+        if ($this->container->hasParameter('account.consignor.trackntrace_url')) {
+            $trackntrace_url = $this->container->getParameter('account.consignor.trackntrace_url');
+        }
 
         $return_lable_route = '';
         if ($submit_shipment = $this->container->get('consignor.service.submit_shipment')) {

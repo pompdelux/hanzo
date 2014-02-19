@@ -10,15 +10,16 @@
 
 {% block content %}
 
-{% if ('headers.'~page_type)|trans({}, 'category') != 'headers.'~page_type %}
 <header class="grid_8 alpha omega">
     <hgroup>
-        {{ ('headers.'~page_type)|trans({}, 'category')|raw }}
+        <!-- {{ 'headers.'~page_type }} -->
+        {% if ('headers.'~page_type)|trans({}, 'category') != 'headers.'~page_type %}
+          {{ ('headers.'~page_type)|trans({}, 'category')|raw }}
+        {% else %}
+          <h1>{{ browser_title }}</h1>
+        {% endif %}
     </hgroup>
 </header>
-{% else %}
-<!-- {{ 'headers.'~page_type }} -->
-{% endif %}
 
 <div class="grid_8 alpha omega row">
   {{ render(controller('CMSBundle:Menu:menu', {
