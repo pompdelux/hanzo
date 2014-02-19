@@ -1360,6 +1360,9 @@ class ECommerceServices extends SoapService
 
 
     /**
+     * Updates the stock status across databases.
+     * This really should be moved to an event listener, as it is duplicated in Stock.
+     *
      * @param boolean  $is_out
      * @param Products $product
      */
