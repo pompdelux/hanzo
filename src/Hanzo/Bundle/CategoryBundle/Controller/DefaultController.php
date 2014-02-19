@@ -439,6 +439,7 @@ class DefaultController extends CoreController
                         '\''.implode('\',\'', $color_filter).'\''
 
                     ))
+                    ->filterByColor($color_filter)
                     ->endUse();
             } else {
                 $result = $result->useProductsImagesQuery()
