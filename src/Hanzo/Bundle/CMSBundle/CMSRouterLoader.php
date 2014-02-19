@@ -128,7 +128,7 @@ class CMSRouterLoader implements LoaderInterface
                 case 'look':
                     //test ... we should never enter this if tho...
                     if (!$settings instanceof \stdClass || !isset($settings->category_id)) {
-                        Tools::log($page->toArray());
+                        Tools::log('Missing category id on CMS #' . $page->getId());
                         continue;
                     }
 
