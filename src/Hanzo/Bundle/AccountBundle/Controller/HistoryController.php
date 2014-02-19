@@ -88,7 +88,7 @@ class HistoryController extends CoreController
     }
 
 
-    public function blockAction($limit = 6, $link = TRUE, $route = FALSE)
+    public function blockAction($limit = 6, $link = TRUE, $route = FALSE, $pager = 1)
     {
         $hanzo = Hanzo::getInstance();
         $customer = CustomersPeer::getCurrent();
@@ -98,13 +98,6 @@ class HistoryController extends CoreController
         }
 
         $router = $this->get('router');
-        $pager = $this->get('request')->get('pager', 1);
-
-
-        $offset = 6;
-        if (($limit > 6) || ($limit == 0)) {
-            $offset = 20;
-        }
 
         $result = OrdersQuery::create()
             ->filterByState(Orders::STATE_PENDING, Criteria::GREATER_EQUAL)
@@ -113,7 +106,7 @@ class HistoryController extends CoreController
             ->orderByCreatedAt(Criteria::DESC)
             ->limit($limit)
             ->filterByCustomersId($customer->getId())
-            ->paginate($pager, $offset)
+            ->paginate($pager, $limit)
         ;
 
         $paginate = FALSE;

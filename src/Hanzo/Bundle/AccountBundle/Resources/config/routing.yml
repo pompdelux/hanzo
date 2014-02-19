@@ -27,9 +27,10 @@ _account_lost_password:
         _controller: AccountBundle:Default:passwordForgotten
 
 _account_history:
-    pattern: /account/history
+    pattern: /account/history/{pager}
     defaults:
         _controller: AccountBundle:History:index
+        pager: 1
 
 _account_show_order:
     pattern: /account/order/{order_id}/show
