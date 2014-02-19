@@ -590,6 +590,7 @@ class ECommerceServices extends SoapService
                     $products[$key]['inventory'][$item->InventQtyAvailOrderedDate] = array(
                         'date'     => $item->InventQtyAvailOrderedDate,
                         'quantity' => 0,
+                        'stock' => 0,
                     );
                 }
 
