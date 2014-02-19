@@ -291,7 +291,7 @@ class Stock
     {
         $connections = [
             'da_DK' => ['default', 'pdldbde1', 'pdldbfi1', 'pdldbnl1', 'pdldbse1', 'pdldbat1', 'pdldbch1'],
-            'nb_NO' => ['pdldbno1'],
+            'nb_NO' => ['default'],
         ];
 
         if (isset($connections[$this->locale])) {
