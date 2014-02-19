@@ -139,12 +139,12 @@ class BanListener
 
         try {
             foreach ($items as $index => $item) {
-                $path = '^/'.$item['Locale'].'/'.$item['Path'].'.*';
+                $path = '^/.*/'.$item['Path'].'.*';
                 $this->varnish->banUrl($path);
             }
 
             if ($context) {
-                $this->varnish->banUrl('^/'.($locale ?: '.*').'/products/list/context/'.$context.'.*');
+                $this->varnish->banUrl('^/.*/products/list/context/'.$context.'.*');
             }
 
         } catch (\Exception $e) {
