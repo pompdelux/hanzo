@@ -275,7 +275,6 @@ class DefaultController extends CoreController
         $color_mapping = [];
         $size_mapping  = [];
         if ($parent_settings) {
-            $parent_settings = json_decode($parent_settings);
             $color_mapping = (array) $parent_settings->colormap;
             $size_mapping  = (array) $parent_settings->sizes;
         }
