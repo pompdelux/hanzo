@@ -87,20 +87,22 @@
       $large_img.attr('src', small.medium);
       $large_img.attr('alt', small.alt);
 
-      $small.data('src', large.medium);
-      $small.attr('href', large.large);
-      $small.data('id', large.id);
-      $small.data('color', large.color);
-      $small.data('number', large.number);
-      $small.data('type', large.type);
-      $small.removeClass('color-'+small.color);
-      $small.addClass('color-'+large.color);
-      $small.removeClass('number-'+small.number);
-      $small.addClass('number-'+large.number);
-      $small.removeClass('type-'+small.type);
-      $small.addClass('type-'+large.type);
-      $small_img.attr('src', large.small);
-      $small_img.attr('alt', large.alt);
+      // $small.data('src', large.medium);
+      // $small.attr('href', large.large);
+      // $small.data('id', large.id);
+      // $small.data('color', large.color);
+      // $small.data('number', large.number);
+      // $small.data('type', large.type);
+      // $small.removeClass('color-'+small.color);
+      // $small.addClass('color-'+large.color);
+      // $small.removeClass('number-'+small.number);
+      // $small.addClass('number-'+large.number);
+      // $small.removeClass('type-'+small.type);
+      // $small.addClass('type-'+large.type);
+      // $small_img.attr('src', large.small);
+      // $small_img.attr('alt', large.alt);
+      $('.productimage-small a').show();
+      // $small.hide();
 
       $('.style-guide .element').hide();
       $('.style-guide .' + small.id).show();
@@ -157,7 +159,7 @@
     pub.initSlideshow = function() {
 
       var list = []; // List of all images.
-      $('a[rel=full-image]').each(function(i){
+      $('.productimage-small a').each(function(i){
           list.push($(this));
       });
       $('.productimage-large a.prev, .productimage-large a.next').click(function(e){
@@ -171,18 +173,25 @@
           }
         }
         if ($(this).hasClass('next')) {
+          // Next button pressed.
           next++;
         }
         else {
+          // Prev button pressed.
           if (next === 0) {
+            // At beginning, start from last element.
             next = list.length;
           }
           next--;
         }
         console.log(next);
-        if (list.length < next || next < 0) {
+        console.log('length: ' + list.length);
+        // At the end of the list. Start from first element.
+        if (list.length == next || next < 0) {
           next = 0;
         }
+        console.log(next);
+        console.log(list[0]);
         product.swapImages(list[next]);
       });
     };
