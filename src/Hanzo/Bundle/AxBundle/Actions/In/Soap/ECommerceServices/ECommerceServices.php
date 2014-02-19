@@ -590,11 +590,10 @@ class ECommerceServices extends SoapService
                     $products[$key]['inventory'][$item->InventQtyAvailOrderedDate] = array(
                         'date'     => $item->InventQtyAvailOrderedDate,
                         'quantity' => 0,
-                        'stock' => 0,
                     );
                 }
 
-                $products[$key]['inventory'][$item->InventQtyAvailOrderedDate]['stock'] += $stock_data['ordered'];
+                $products[$key]['inventory'][$item->InventQtyAvailOrderedDate]['quantity'] += $stock_data['ordered'];
             }
 
             if (isset($stock_data['onhand'])) {
@@ -618,22 +617,14 @@ class ECommerceServices extends SoapService
 
                 $stock_service->setLevels($product->getId(), $item['inventory']);
 
-                $product->setIsOutOfStock(false);
+                $this->setStockStatus(false, $product);
                 $allout = false;
             } else {
-                $product->setIsOutOfStock(true);
+                $this->setStockStatus(true, $product);
             }
-
-            $product->save();
         }
 
-        if ($allout) {
-            $master->setIsOutOfStock(true);
-        } else {
-            $master->setIsOutOfStock(false);
-        }
-
-        $master->save();
+        $this->setStockStatus($allout, $master);
 
         // purge varnish
         $this->event_dispatcher->dispatch('product.stock.zero', new FilterCategoryEvent($master, null, Propel::getConnection(null, Propel::CONNECTION_WRITE)));
@@ -1351,4 +1342,34 @@ class ECommerceServices extends SoapService
     {
         $this->timer = new Timer('ax');
     }
+
+
+    /**
+     * @param boolean  $is_out
+     * @param Products $product
+     */
+    protected function setStockStatus($is_out, Products $product)
+    {
+        static $locale;
+        if (empty($locale)) {
+            $locale = $this->request->getLocale();
+        }
+
+        $connections = [
+            'da_DK' => ['default', 'pdldbde1', 'pdldbfi1', 'pdldbnl1', 'pdldbse1', 'pdldbat1', 'pdldbch1'],
+            'nb_NO' => ['pdldbno1'],
+        ];
+
+        if (in_array($locale, $connections)) {
+            $product->setIsOutOfStock($is_out);
+
+            foreach ($connections[$locale] as $connection_name) {
+                $connection = Propel::getConnection($connection_name, Propel::CONNECTION_WRITE);
+
+                $product->setUpdatedAt($product->getUpdatedAt(null)+1);
+                $product->save($connection);
+            }
+        }
+    }
+
 }
