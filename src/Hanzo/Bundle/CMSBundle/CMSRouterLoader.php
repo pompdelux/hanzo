@@ -219,6 +219,9 @@ class CMSRouterLoader implements LoaderInterface
                     break;
 
                 case 'search':
+                    if (!$settings instanceof \stdClass || !isset($settings->type)) {
+                        continue;
+                    }
                     $method = $settings->type;
                     $restricted = (($settings->type == 'category') ? 'true' : 'false');
 
