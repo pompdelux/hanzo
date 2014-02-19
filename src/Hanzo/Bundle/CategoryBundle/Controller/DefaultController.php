@@ -57,15 +57,13 @@ class DefaultController extends CoreController
         $cms_page = CmsPeer::getByPK($cms_id, $locale);
 
         $parent_settings = CmsI18nQuery::create()
-            ->Select('Settings')
             ->filterByLocale($locale)
             ->filterById($cms_page->getParentId())
-            ->findOne()
+            ->findOne()->getSettings(false)
         ;
 
         $color_mapping = [];
         if ($parent_settings) {
-            $parent_settings = json_decode($parent_settings);
             $color_mapping = (array) $parent_settings->colormap;
         }
 
