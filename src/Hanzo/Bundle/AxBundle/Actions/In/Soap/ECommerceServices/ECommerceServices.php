@@ -482,6 +482,11 @@ class ECommerceServices extends SoapService
             return self::responseStatus('Error', 'SyncInventoryOnHandResult', array('no ItemId given'));
         }
 
+        if (empty($stock->InventDim)) {
+            $this->logger->addCritical(__METHOD__.' '.__LINE__.': No InventDim found on ItemId: ' . $stock->ItemId);
+            return self::responseStatus('Error', 'SyncInventoryOnHandResult', array('No InventDim found on ItemId: ' . $stock->ItemId));
+        }
+
         $master = ProductsQuery::create()->findOneBySku($stock->ItemId);
         if (!$master instanceof Products) {
             $this->logger->addCritical(__METHOD__.' '.__LINE__.': Unknown product, ItemId: ' . $stock->ItemId);
