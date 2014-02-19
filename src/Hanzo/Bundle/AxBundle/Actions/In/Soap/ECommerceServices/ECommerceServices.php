@@ -1360,16 +1360,27 @@ class ECommerceServices extends SoapService
             'nb_NO' => ['pdldbno1'],
         ];
 
-        if (in_array($locale, $connections)) {
+        if (isset($connections[$locale])) {
             $product->setIsOutOfStock($is_out);
 
+            // note: in this loop we use raw PDO queries, Propel somehow caches
+            //       the query - even tho the connection has changed....
             foreach ($connections[$locale] as $connection_name) {
                 $connection = Propel::getConnection($connection_name, Propel::CONNECTION_WRITE);
 
-                $product->setUpdatedAt($product->getUpdatedAt(null)+1);
-                $product->save($connection);
+                $sql = "
+                    UPDATE
+                        products
+                    SET
+                        is_out_of_stock = ".(int) $is_out."
+                        AND
+                            updated_at = NOW()
+                    WHERE
+                        id = ".$product->getId()
+                ;
+                $stmt = $connection->prepare($sql);
+                $stmt->execute();
             }
         }
     }
-
 }
