@@ -69,17 +69,17 @@ class ShippingController extends CoreController
      * @param  integet $id
      * @return array
      */
-    public function editFreeBreaksAction(Request $request, $id = 0)
+    public function editFreeBreaksAction(Request $request, $id = NULL)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
-
         if ($id) {
             $break = FreeShippingQuery::create()->findOneById($id, $this->getDbConnection());
         } else {
             $break = new FreeShipping();
         }
+// \Hanzo\Core\Tools::log($break);
 
         $domains = ['' => '- vælg -'];
         foreach (DomainsQuery::Create()->find($this->getDbConnection()) as $domain) {
@@ -93,6 +93,7 @@ class ShippingController extends CoreController
             ])
             ->add('break_at', 'integer', [
                 'required' => true,
+                'grouping' => true,
             ])
             ->add('valid_from', 'date', [
                 'input' => 'string',
@@ -119,14 +120,14 @@ class ShippingController extends CoreController
             $form->handleRequest($request);
             if ($form->isValid()) {
                 $break->save($this->getDbConnection());
-                $this->get('session')->setFlash('notice', 'Gemt!');
+                $this->get('session')->getFlashBag()->add('notice', 'Gemt!');
             }
 
             return $this->redirect($this->generateUrl('admin_shipping_index'));
         }
 
         return [
-            'break_id' => ($break->getId() ?: 0),
+            'break_id' => $id,
             'database' => $this->getRequest()->getSession()->get('database'),
             'form'     => $form->createView(),
         ];
@@ -139,7 +140,7 @@ class ShippingController extends CoreController
         }
 
         FreeShippingQuery::create()->filterById($id)->delete($this->getDbConnection());
-        $this->get('session')->setFlash('notice', 'Så er den slettet.');
+        $this->get('session')->getFlashBag()->add('notice', 'Så er den slettet!');
 
         return $this->redirect($this->generateUrl('admin_shipping_index'));
     }

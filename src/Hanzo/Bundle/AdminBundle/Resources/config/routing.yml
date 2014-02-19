@@ -781,10 +781,10 @@ admin_shipping_breaks_add:
     defaults:
         _controller: AdminBundle:Shipping:editFreeBreaks
 admin_shipping_breaks_edit:
-    pattern: /admin/shipping/free-breaks/edit/{id}/
+    pattern: /admin/shipping/free-breaks/edit/{id}
     defaults:
         _controller: AdminBundle:Shipping:editFreeBreaks
-        id: 0
+        id: NULL
 admin_shipping_breaks_delete:
     pattern: /admin/shipping/free-breaks/delete/{id}/
     defaults:
