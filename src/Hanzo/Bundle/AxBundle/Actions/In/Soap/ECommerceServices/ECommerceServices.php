@@ -502,6 +502,10 @@ class ECommerceServices extends SoapService
             $stock->InventDim = array($stock->InventDim);
         }
 
+        // ----------------------------------------------------------------
+        // 1. calculate reservations to be subtracted from the stock update
+        // ----------------------------------------------------------------
+
         $propel_connection = \Propel::getConnection(null, \Propel::CONNECTION_WRITE);
         $propel_statement = $propel_connection->prepare("
             SELECT
@@ -590,6 +594,7 @@ class ECommerceServices extends SoapService
                 $products[$key]['inventory'] = [];
             }
 
+            // handle any delayed stock
             if (!empty($stock_data['ordered'])) {
                 if (empty($products[$key]['inventory'][$item->InventQtyAvailOrderedDate])) {
                     $products[$key]['inventory'][$item->InventQtyAvailOrderedDate] = array(
@@ -601,6 +606,7 @@ class ECommerceServices extends SoapService
                 $products[$key]['inventory'][$item->InventQtyAvailOrderedDate]['quantity'] += $stock_data['ordered'];
             }
 
+            // handle stock on-hand
             if (isset($stock_data['onhand'])) {
                 if (empty($products[$key]['inventory']['onhand'])) {
                     $products[$key]['inventory']['onhand'] = array(
@@ -612,6 +618,10 @@ class ECommerceServices extends SoapService
                 $products[$key]['inventory']['onhand']['quantity'] += $stock_data['onhand'];
             }
         }
+
+        // ----------------------------------------------------------------
+        // 2. update the stock levels for the entire style
+        // ----------------------------------------------------------------
 
         $allout = true;
         foreach ($products as $item) {
