@@ -172,6 +172,7 @@ stock:
             - fi_FI
             - nl_NL
             - sv_SE
+            - en_GB
         norway:
             - nb_NO
 

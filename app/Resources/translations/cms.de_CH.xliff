@@ -562,8 +562,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="732.settings">
-                <source>732.settings</source>
+			<trans-unit id="744.settings">
+                <source>744.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "128",
@@ -580,8 +580,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="569.settings">
-                <source>569.settings</source>
+			<trans-unit id="742.settings">
+                <source>742.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "118",
@@ -589,8 +589,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="626.settings">
-                <source>626.settings</source>
+			<trans-unit id="569.settings">
+                <source>569.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "8",

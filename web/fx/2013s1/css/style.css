@@ -2220,7 +2220,7 @@ div.invalid-order {
 }
 #cart-edit-element .delivery-notice {
   position: absolute;
-  top: 10px;
+  top: 38px;
   left: 345px;
   width: 240px;
 }
@@ -2555,6 +2555,7 @@ nav.first.main-menu > ul > li ul {
   right: 0;
   z-index: 900;
   padding: 8px 8px 19px 8px;
+  margin-right: 10px;
   text-align: center;
   overflow: hidden;
   background: white url("/fx/images/icons/icons/divider_left.png") no-repeat;

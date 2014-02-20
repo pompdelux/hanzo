@@ -83,16 +83,18 @@
   </nav>
   {% if skip_my_account is not defined %}
       {% if is_granted('ROLE_USER') %}
-        <div id="mega-basket">
+        {% if parameter('megabasket.enabled') %}
+          <div id="mega-basket">
 
-            {{ render_esi(controller('BasketBundle:Default:view', { 'template': 'BasketBundle:Default:megaBasket.html.twig' })) }}
+              {{ render_esi(controller('BasketBundle:Default:view', { 'template': 'BasketBundle:Default:megaBasket.html.twig' })) }}
 
-            <div class="delivery-text">
-                {{ 'footer.text'|trans({'%expected_delivery_date%': parameter('HD.expected_delivery_date')})|raw }}
-            </div>
-            <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" class="checkout-button sprite"></a>
-            <a href="#" class="close sprite"></a>
-        </div>
+              <div class="delivery-text">
+                  {{ 'footer.text'|trans({'%expected_delivery_date%': parameter('HD.expected_delivery_date')})|raw }}
+              </div>
+              <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" class="checkout-button sprite"></a>
+              <a href="#" class="close sprite"></a>
+          </div>
+        {% endif %}
     {% endif %}
   {% endif %}
 {% endif %}

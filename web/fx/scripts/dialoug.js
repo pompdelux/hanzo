@@ -204,11 +204,9 @@ var dialoug = (function($) {
 
     $('body').append('<div id="slide-notice-box" class="slide-notice-box"><div>' + message + '</div></div>');
     var $slide = $('#slide-notice-box');
-    var $basket =$('li#mini-basket.basket');
 
-    var offset = $basket.offset();
+    var offset = selector.offset();
     var slideWidth = $slide.outerWidth();
-
 
     // Desktops slides in from right.
     if(is_mobile === false){
@@ -219,15 +217,15 @@ var dialoug = (function($) {
       });
 
       $slide.css({
-        left: (offset.left - 7),
+        left: (offset.left - 17),
         width: 0
       });
 
       $slide.animate({
         width: (slideWidth),
-        left: (offset.left - (slideWidth + 7))
+        left: (offset.left - (slideWidth + 17))
       }).delay(duration).animate({
-        left: offset.left,
+        left: offset.left - 17,
         width: 0
       }, function() {
         $slide.remove();
