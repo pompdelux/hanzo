@@ -585,11 +585,6 @@ class ECommerceServices extends SoapService
                 }
             }
 
-            // no need to add empty entries
-            if (array_sum($stock_data) == 0) {
-                continue;
-            }
-
             if (empty($products[$key]['inventory'])) {
                 $products[$key]['inventory'] = [];
             }
