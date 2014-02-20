@@ -174,7 +174,6 @@ class DefaultController extends CoreController
 
         // Delete cached version in redis, used in the mega basket.
         $cache_id = [
-            '_fragment',
             'BasketBundle:Default:megaBasket.html.twig',
             $this->getRequest()->getSession()->getId(),
         ];
@@ -259,7 +258,6 @@ class DefaultController extends CoreController
 
             // Delete cached version in redis, used in the mega basket.
             $cache_id = [
-                '_fragment',
                 'BasketBundle:Default:megaBasket.html.twig',
                 $this->getRequest()->getSession()->getId(),
             ];
@@ -356,10 +354,9 @@ class DefaultController extends CoreController
     {
 
         // If this request is for the mega basket, check if we already has cached it.
-        if (rawurldecode($this->getRequest()->getPathInfo()) === $this->container->getParameter('fragment.path')) {
+        if ($template === 'BasketBundle:Default:megaBasket.html.twig') {
             $cache_id = [
-                '_fragment',
-                $template,
+                'BasketBundle:Default:megaBasket.html.twig',
                 $this->getRequest()->getSession()->getId(),
             ];
             $html = $this->getCache($cache_id);
