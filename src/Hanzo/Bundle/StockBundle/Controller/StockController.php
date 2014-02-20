@@ -156,6 +156,7 @@ class StockController extends CoreController
         $stock->prime($result);
 
         $data = [];
+        $message = '';
         foreach ($result as $record) {
             $date = $stock->check($record);
 
@@ -174,7 +175,6 @@ class StockController extends CoreController
                 'size_label' => $record->getPostfixedSize($translator),
             ];
 
-            $message = '';
             if ($date) {
                 $message = $translator->trans('late.delivery', [
                     '%date%'    => $date,
