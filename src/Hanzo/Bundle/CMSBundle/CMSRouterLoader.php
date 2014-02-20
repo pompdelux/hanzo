@@ -82,12 +82,11 @@ class CMSRouterLoader implements LoaderInterface
                 // Json encoded settings
                 $settings = json_decode($settings);
             }
-
             switch ($type) {
                 case 'category':
                     //test ... we should never enter this if tho...
-                    if (!$settings instanceof \stdClass || !isset($settings->category_id)) {
-                        Tools::log($page->toArray());
+                    if (!isset($settings->category_id)) {
+                        \Hanzo\Core\Tools::log('Missing category id on page id: ' . $id);
                         continue;
                     }
 
