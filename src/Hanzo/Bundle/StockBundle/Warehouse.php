@@ -133,7 +133,8 @@ class Warehouse
     {
         $multi = $this->redis->multi();
 
-        // start by cleaning up
+        // start by deleting all existing records
+        // this should be safe as long as it is done in a "multi" session, which creates a lock on the items in redis.
         $multi->delete('products_id.'.$product_id);
 
         $record_count = 0;

@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\StockBundle;
 
+use Hanzo\Model\Products;
 use Hanzo\Model\ProductsQuery;
 use Hanzo\Model\ProductsStockPeer;
 
@@ -10,6 +11,11 @@ use Hanzo\Bundle\AdminBundle\Event\FilterCategoryEvent;
 
 class Stock
 {
+    /**
+     * @var string
+     */
+    protected $locale;
+
     /**
      * @var array
      */
@@ -32,6 +38,7 @@ class Stock
      */
     public function __construct($locale, EventDispatcher $event_dispatcher, Warehouse $warehouse)
     {
+        $this->locale = $locale;
         $this->event_dispatcher = $event_dispatcher;
         $warehouse->setLocation($locale);
         $this->warehouse = $warehouse;
@@ -110,13 +117,18 @@ class Stock
         $now = date('Ymd');
 
         foreach ($this->stock[$id] as $date => $stock) {
+            // the total field is just to be skipped, but should never be removed.
             if ($date === 'total') {
                 continue;
             }
 
             $sum += $stock['quantity'];
             if ($stock['quantity'] >= $quantity) {
-                return $date > $now ? new \DateTime($date) : true;
+                // we return the date the product is available if it is later thant now, otherwise we just return true
+                return $date > $now
+                    ? new \DateTime($date)
+                    : true
+                ;
             }
         }
 
@@ -225,19 +237,14 @@ class Stock
 
         // NICETO: move all db stuff to event listeners
         if ($total == $quantity){
-            $con = self::getConnection();
-
-            $product->setIsOutOfStock(true);
-            $product->save($con);
+            $this->setStockStatus(true, $product);
             $this->warehouse->removeProductFromInventory($product_id);
 
             // find out if the whole style is out of stock
             // if so, tag it so and fire an event (for caching n' stuff)
             if (false === $this->checkStyleStock($product)) {
-                $master = ProductsQuery::create()->findOneBySku($product->getMaster(), $con);
-                $master->setIsOutOfStock(true);
-                $master->save($con);
-
+                $master = ProductsQuery::create()->findOneBySku($product->getMaster());
+                $this->setStockStatus(true, $master);
                 $this->event_dispatcher->dispatch('product.stock.zero', new FilterCategoryEvent($master, $this->locale));
             }
         }
@@ -274,16 +281,40 @@ class Stock
 
 
     /**
-     * @return \PropelPDO
+     * Updates the stock status across databases.
+     * This really should be moved to an event listener, as it is duplicated in ECommerceServices
+     *
+     * @param boolean  $is_out
+     * @param Products $product
      */
-    protected static function getConnection()
+    protected function setStockStatus($is_out, Products $product)
     {
-        static $con;
+        $connections = [
+            'da_DK' => ['default', 'pdldbde1', 'pdldbfi1', 'pdldbnl1', 'pdldbse1', 'pdldbat1', 'pdldbch1'],
+            'nb_NO' => ['default'],
+        ];
 
-        if (empty($con)) {
-            $con = \Propel::getConnection(ProductsStockPeer::DATABASE_NAME, \Propel::CONNECTION_WRITE);
+        if (isset($connections[$this->locale])) {
+            $product->setIsOutOfStock($is_out);
+
+            // note: in this loop we use raw PDO queries, Propel somehow caches
+            //       the query - even tho the connection has changed....
+            foreach ($connections[$this->locale] as $connection_name) {
+                $connection = Propel::getConnection($connection_name, Propel::CONNECTION_WRITE);
+
+                $sql = "
+                    UPDATE
+                        products
+                    SET
+                        is_out_of_stock = ".(int) $is_out."
+                        AND
+                            updated_at = NOW()
+                    WHERE
+                        id = ".$product->getId()
+                ;
+                $stmt = $connection->prepare($sql);
+                $stmt->execute();
+            }
         }
-
-        return $con;
     }
 }

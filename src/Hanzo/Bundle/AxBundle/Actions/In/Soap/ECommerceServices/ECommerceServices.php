@@ -482,6 +482,11 @@ class ECommerceServices extends SoapService
             return self::responseStatus('Error', 'SyncInventoryOnHandResult', array('no ItemId given'));
         }
 
+        if (empty($stock->InventDim)) {
+            $this->logger->addCritical(__METHOD__.' '.__LINE__.': No InventDim found on ItemId: ' . $stock->ItemId);
+            return self::responseStatus('Error', 'SyncInventoryOnHandResult', array('No InventDim found on ItemId: ' . $stock->ItemId));
+        }
+
         $master = ProductsQuery::create()->findOneBySku($stock->ItemId);
         if (!$master instanceof Products) {
             $this->logger->addCritical(__METHOD__.' '.__LINE__.': Unknown product, ItemId: ' . $stock->ItemId);
@@ -496,6 +501,10 @@ class ECommerceServices extends SoapService
         if (!is_array($stock->InventDim)) {
             $stock->InventDim = array($stock->InventDim);
         }
+
+        // ----------------------------------------------------------------
+        // 1. calculate reservations to be subtracted from the stock update
+        // ----------------------------------------------------------------
 
         $propel_connection = \Propel::getConnection(null, \Propel::CONNECTION_WRITE);
         $propel_statement = $propel_connection->prepare("
@@ -585,6 +594,7 @@ class ECommerceServices extends SoapService
                 $products[$key]['inventory'] = [];
             }
 
+            // handle any delayed stock
             if (!empty($stock_data['ordered'])) {
                 if (empty($products[$key]['inventory'][$item->InventQtyAvailOrderedDate])) {
                     $products[$key]['inventory'][$item->InventQtyAvailOrderedDate] = array(
@@ -596,6 +606,7 @@ class ECommerceServices extends SoapService
                 $products[$key]['inventory'][$item->InventQtyAvailOrderedDate]['quantity'] += $stock_data['ordered'];
             }
 
+            // handle stock on-hand
             if (isset($stock_data['onhand'])) {
                 if (empty($products[$key]['inventory']['onhand'])) {
                     $products[$key]['inventory']['onhand'] = array(
@@ -607,6 +618,10 @@ class ECommerceServices extends SoapService
                 $products[$key]['inventory']['onhand']['quantity'] += $stock_data['onhand'];
             }
         }
+
+        // ----------------------------------------------------------------
+        // 2. update the stock levels for the entire style
+        // ----------------------------------------------------------------
 
         $allout = true;
         foreach ($products as $item) {
@@ -1345,6 +1360,9 @@ class ECommerceServices extends SoapService
 
 
     /**
+     * Updates the stock status across databases.
+     * This really should be moved to an event listener, as it is duplicated in Stock.
+     *
      * @param boolean  $is_out
      * @param Products $product
      */
@@ -1357,7 +1375,7 @@ class ECommerceServices extends SoapService
 
         $connections = [
             'da_DK' => ['default', 'pdldbde1', 'pdldbfi1', 'pdldbnl1', 'pdldbse1', 'pdldbat1', 'pdldbch1'],
-            'nb_NO' => ['pdldbno1'],
+            'nb_NO' => ['default'],
         ];
 
         if (isset($connections[$locale])) {
