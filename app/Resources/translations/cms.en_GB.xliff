@@ -561,7 +561,7 @@
                 <target><![CDATA[
                     {
                         "category_id": "116",
-                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red,Rose"
                     }
                 ]]></target>
             </trans-unit>
@@ -705,7 +705,7 @@
                 <target><![CDATA[
                     {
                         "category_id": "123",
-                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red"
+                        "colors": "Navy,Navy Melange,Mustard,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red,Rose"
                     }
                 ]]></target>
             </trans-unit>
