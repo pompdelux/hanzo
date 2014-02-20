@@ -299,7 +299,7 @@
 
                 $('body').trigger('basket_product_added');
               } else {
-                dialoug.slideNotice(response.message, undefined, '#mini-basket');
+                dialoug.slideNotice(response.message, undefined, '#secondary-links');
               }
             }
             _resetForm();
