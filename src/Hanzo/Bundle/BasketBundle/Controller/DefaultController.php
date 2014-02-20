@@ -520,10 +520,12 @@ class DefaultController extends CoreController
             'products'          => $products,
             'total'             => $order->getTotalPrice(true),
         ));
+
         // If this request is for the mega basket, be sure to cache it.
-        if (rawurldecode($this->getRequest()->getPathInfo()) === $this->container->getParameter('fragment.path')) {
+        if ($template === 'BasketBundle:Default:megaBasket.html.twig') {
             $this->setCache($cache_id, $html, 5);
         }
+
         return $html;
     }
 
