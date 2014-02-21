@@ -154,9 +154,8 @@
                 <source>customer.service.contact.info</source>
                 <target><![CDATA[
                     <strong>Kundeservice</strong><br>
-                    Mandag til torsdag kl. 9 - 16<br>
+                    Mandag til torsdag kl. 9 - 18<br>
                     Fredag kl. 9 - 14<br>
-                    <!--Stengt 12 - 12.45<br>-->
                     Lørdag og søndag stengt.<br>
                     Tlf. nr.: +47 2274 2600 <br>
                     <a href="mailto:mail@pompdelux.no">mail@pompdelux.no</a>
