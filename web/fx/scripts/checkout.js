@@ -227,7 +227,7 @@
 
       $('#address-copy').on('change',function(e){
         $copied = $('#address-block form:nth-child(2)');
-        if ($(this).attr('checked')) {
+        if ($(this).prop('checked')) {
           $('#address-block form:first input[type=text]').each(function(i){
             $copied.find('#'+$(this).attr('id')).val($(this).val());
           });
