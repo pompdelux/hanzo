@@ -8,16 +8,16 @@ set :deploy_to,   "/var/www/testpompdelux"
 set :symfony_env_prod, "test_dk"
 set :symfony_env_prods, ["test_de", "test_fi", "test_se", "test_no", "test_com", "test_nl", "test_dk", "test_dk_consultant"]
 
-set :adminserver, "pomp-test"
-set :staticserver, "pomptest-db"
+set :adminserver, "pdltest"
+set :staticserver, "pdltest-db"
 
 set :branch, "testing"
 
 # list of server to deploy to
-role :app, 'pomp-test', 'pomptest-db'
+role :app, 'pdltest', 'pdltest-db'
 
 # :symfonyweb should contain our apache/nginx servers. Used in reload_apache and opcache-clear
-role :symfonyweb, "pomp-test"
+role :symfonyweb, "pdltest"
 
 # our redis server. clear cache here
 role :redis, adminserver, :primary => true
