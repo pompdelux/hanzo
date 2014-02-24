@@ -144,7 +144,7 @@
 
         var $address_confirm_box= $('<div></div>').addClass('address-confirm-box clearfix');
 
-        $('#address-block form').each(function (index, form) {
+        $('#address-block form').not('.location-locator').each(function (index, form) {
           var $form = $(form);
           var id = index;
 
