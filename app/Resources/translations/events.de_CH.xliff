@@ -378,13 +378,13 @@
                 <source>event.too.old.to.delete</source>
                 <target>Die Veranstaltung hat bereits stattgefunden und kann daher nicht bearbeitet oder gelöscht werden.</target>
             </trans-unit>
-            <trans-unit id="events.create_customer.header.text">
+           <trans-unit id="events.create_customer.header.text">
                 <source>events.create_customer.header.text</source>
-                <target>Kundeninformationen holen</target>
+                <target>Kundeninformationen holen (für existierende Kunden)</target>
             </trans-unit>
             <trans-unit id="events.create_customer.description.text">
                 <source>events.create_customer.description.text</source>
-                <target><![CDATA[<b>Neuer Kunde:</b> Geben Sie die Telefonnummer des Kunden ein und klicken Sie auf die Schaltfläche Holen.<br><b>Existierender Kunde:</b> Geben Sie die E-Mail-Adresse des Kunden ein und klicken Sie auf die Schaltfläche Holen.<br><br><span style="font-weight:bold; color:#A10000;">Bitte beachten:</span> Auf dieser Seite sollen Sie Ihre privaten Informationen ausfüllen (<u>nicht</u> evtl. Firmeninformationen)]]></target>
+                <target><![CDATA[<b>Existierender Kunde:</b> Geben Sie die E-Mail-Adresse oder Telefonnummer des Kunden ein un klicken Sie auf die Schaltfläche Holen.<br><br><span style="font-weight:bold; color:#A10000;">Bitte beachten:</span> Auf dieser Seite sollen Sie Ihre privaten Informationen ausfüllen (<u>nicht</u> evtl. Firmeninformationen)]]></target>
             </trans-unit>
             <trans-unit id="events.fetch_customer.placeholder" approved="no">
                 <source>events.fetch_customer.placeholder</source>
