@@ -79,7 +79,6 @@ class ShippingController extends CoreController
         } else {
             $break = new FreeShipping();
         }
-// \Hanzo\Core\Tools::log($break);
 
         $domains = ['' => '- vælg -'];
         foreach (DomainsQuery::Create()->find($this->getDbConnection()) as $domain) {
@@ -113,8 +112,7 @@ class ShippingController extends CoreController
                 'required' => false,
                 'attr' => ['class' => 'datepicker']
             ])
-            ->getForm()
-        ;
+            ->getForm();
 
         if ('POST' === $request->getMethod()) {
             $form->handleRequest($request);
