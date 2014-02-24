@@ -398,11 +398,11 @@
             </trans-unit>
             <trans-unit id="faceted.show.out.of.stock" approved="no">
                 <source>faceted.show.out.of.stock</source>
-                <target>Vis også udsolgte vare</target>
+                <target>Show also sold out items</target>
             </trans-unit>
             <trans-unit id="faceted.reset.filter" approved="no">
                 <source>faceted.reset.filter</source>
-                <target>» Nulstil filtre</target>
+                <target>» Reset filters</target>
             </trans-unit>
         </body>
     </file>
