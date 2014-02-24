@@ -189,7 +189,7 @@ class StockController extends CoreController
 
         return $this->json_response([
             'data'    => $data,
-            'message' => $message,
+            'message' => $message ? $message : '',
             'status'  => true,
         ]);
     }
