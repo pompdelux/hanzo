@@ -725,6 +725,15 @@ html.touch .product-list .buy-set {
   text-decoration: underline;
 }
 
+.body-category .sub-menu > ul li ul {
+  padding-left: 0;
+}
+.body-category .sub-menu > ul li ul li.active a,
+.body-category .sub-menu > ul li ul li a:hover {
+  font-weight: bold;
+  text-decoration: none;
+}
+
 .js-faceted-container label {
   margin-top: 0;
   margin-left: 5px;
@@ -2696,6 +2705,9 @@ div.sub-menu {
 .body-frontpage #main article .grid_2:nth-child(even) {
   float: right;
   clear: none;
+}
+.body-frontpage #main article .grid_2.grid_mobile-full {
+  width: 100%;
 }
 
 .body-pages article div {
