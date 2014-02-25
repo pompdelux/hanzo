@@ -522,7 +522,7 @@ class ECommerceServices extends SoapService
                 AND
                     orders.state < 40
                 AND
-                    orders.updated_at < '".date('Y-m-d H:i:s', strtotime('2 hours ago'))."'
+                    orders.updated_at > '".date('Y-m-d H:i:s', strtotime('2 hours ago'))."'
             GROUP BY
                 orders_lines.products_id
             LIMIT 1
