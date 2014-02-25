@@ -305,8 +305,10 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
 
     /**
      * cancel
+     *
+     * @param Customers $customer
+     * @param Orders $order
      * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function cancel(Customers $customer, Orders $order)
     {
@@ -315,10 +317,11 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
 
     /**
      * cancelReservation
+     *
      * @param Customers $customer
      * @param Orders $order
      * @return GothiaApiCallResponse
-     * @author Henrik Farre <hf@bellcom.dk>
+     * @throws GothiaApiCallException
      **/
     public function cancelReservation(Customers $customer, Orders $order)
     {
