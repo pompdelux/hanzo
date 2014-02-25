@@ -361,8 +361,6 @@ class DeadOrderService
             ->find(Propel::getConnection(null, Propel::CONNECTION_WRITE))
         ;
 
-\Hanzo\Core\Tools::log(\Propel::getConnection()->getLastExecutedQuery());
-
         return $orders;
     }
 }
