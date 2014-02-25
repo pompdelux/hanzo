@@ -34,22 +34,23 @@ class GeoPostalController extends CoreController
             $zip = 9334;
         }
 
-        // Valby(2500) is NOT in 3200 Helsinge!
-        // TODO: find out why valby is wrong?
-        if (($zip == 2500 || 'valby' == strtolower($zip)) && strtolower($country) == 'dk') {
-
-            return $this->json_response([
-                'status'  => true,
-                'message' => '',
-                'data'    => [
-                    'postcode' => [
-                        'lat' => 55.6621706,
-                        'lng' => 12.520596,
-                    ],
-                ],
-                '_time'   => (int) ((microtime(true) * 1000) - $this->start) .'ms',
-            ]);
-        }
+// removed, updated data in db - and this fix broke stuff anyway :)
+//        // Valby(2500) is NOT in 3200 Helsinge!
+//        // TODO: find out why valby is wrong?
+//        if (($zip == 2500 || 'valby' == strtolower($zip)) && strtolower($country) == 'dk') {
+//
+//            return $this->json_response([
+//                'status'  => true,
+//                'message' => '',
+//                'data'    => [
+//                    'postcode' => [
+//                        'lat' => 55.6621706,
+//                        'lng' => 12.520596,
+//                    ],
+//                ],
+//                '_time'   => (int) ((microtime(true) * 1000) - $this->start) .'ms',
+//            ]);
+//        }
 
         if (preg_match('/^[0-9]+$/', $zip)) {
             return $this->getByZip($country, $zip);
