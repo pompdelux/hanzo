@@ -299,7 +299,7 @@ class Stock
             // note: in this loop we use raw PDO queries, Propel somehow caches
             //       the query - even tho the connection has changed....
             foreach ($connections[$this->locale] as $connection_name) {
-                $connection = \Propel::getConnection($connection_name, Propel::CONNECTION_WRITE);
+                $connection = \Propel::getConnection($connection_name, \Propel::CONNECTION_WRITE);
 
                 $sql = "
                     UPDATE
