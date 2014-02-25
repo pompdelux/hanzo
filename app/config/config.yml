@@ -14,7 +14,9 @@ framework:
     session:
         storage_id:     session.storage.native
         handler_id:     session.handler.redis
-        gc_maxlifetime: 10800
+        gc_maxlifetime: 7200
+        #  7200 = 2 hours
+        # 10800 = 3 hours
     esi:
         enabled: true
     fragments:

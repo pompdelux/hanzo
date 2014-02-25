@@ -155,7 +155,7 @@
                 <target><![CDATA[
                     <strong>Kundservice</strong><br>
                     Telefon: 08-6117103<br>
-                    M&aring;ndag till torsdag kl. 9 - 18<br>
+                    M&aring;ndag till torsdag kl. 9 - 16<br>
                     Fredag 9 - 14<br>
                     Email: <a href="mailto:mail@pompdelux.se">mail@pompdelux.se</a><br>
                     Lördag, söndag och danska helgdagar stängt.
@@ -171,7 +171,11 @@
                         <li>DK-8520 Lystrup</li>
                         <li>Org. nr. 556782-8602</li>
                         <li><a href="mailto:mail@pompdelux.se">mail@pompdelux.se</a></li>
-                        <li>+46 8-6117103</li>
+                        <li>+46 8-6117103</li><br>
+						<li>Returnering av varor: POMPdeLUX Sverige AB</li>
+						<li>c/o POMPdeLUX</li>
+                        <li>Grydhøjparken 10</li>
+                        <li>DK-8381 Tilst</li>
                         <li><img src="%cdn%fx/images/creditcards_se.png" alt="credit cards" title="credit cards"></li>
                         <li><a href="http://www.facebook.com/sharer.php?u=%url%" class="facebook-button social-button" title="Share this page on facebook">Share</a></li>
                     </ul>

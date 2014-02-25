@@ -45,7 +45,8 @@ class CleanupService
             ->filterByBillingMethod(null, Criteria::ISNULL)
             ->filterByState(0, Criteria::LESS_THAN)
             ->filterByState(Orders::STATE_ERROR_PAYMENT, Criteria::GREATER_THAN)
-            ->filterByUpdatedAt(date('Y-m-d H:i:s', strtotime('3 hours ago')), Criteria::LESS_THAN)
+            ->filterByUpdatedAt(date('Y-m-d H:i:s', strtotime('2 hours ago')), Criteria::LESS_THAN)
+            ->filterByCreatedAt(date('Y-m-d H:i:s', strtotime('6 month ago')), Criteria::GREATER_THAN)
             ->filterByInEdit(false)
             ->find()
         ;
@@ -54,7 +55,7 @@ class CleanupService
         foreach ($orders as $order) {
             $attributes = $order->getAttributes();
 
-            // only delete orders wich has no payment info attached
+            // only delete orders which has no payment info attached
             if (empty($attributes->payment) || empty($attributes->payment->transact)) {
                 $count++;
                 if ($dry_run) {
@@ -92,7 +93,7 @@ class CleanupService
             ->filterByBillingMethod(null, Criteria::ISNULL)
             ->filterByState(Orders::STATE_PENDING, Criteria::LESS_THAN)
             ->filterByState(Orders::STATE_ERROR_PAYMENT, Criteria::GREATER_THAN)
-            ->filterByUpdatedAt(date('Y-m-d H:i:s', strtotime('3 hours ago')), Criteria::LESS_THAN)
+            ->filterByUpdatedAt(date('Y-m-d H:i:s', strtotime('2 hours ago')), Criteria::LESS_THAN)
             ->find()
         ;
 
