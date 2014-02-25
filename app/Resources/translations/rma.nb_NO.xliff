@@ -82,9 +82,9 @@
                 <source>rma.slip.company_details</source>
                 <target><![CDATA[
                     <ul>
-                        <li>Administrasjon: POMPdeLUX NO AS</li>
-						<li>c/o Granly &Oslash;konomiservice AS</li>
-                        <li>Nordseterveien 14, NO-1176 Oslo</li>
+                        <li>POMPdeLUX C/O</li>
+						<li>Postens godssenter</li>
+                        <li>NO-0060 Oslo</li>
                         <li>Org.nr. 994798510</li>
                         <li>mail@pompdelux.no +47 2274 2600</li>
                     </ul>
