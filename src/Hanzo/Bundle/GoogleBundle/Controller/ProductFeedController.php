@@ -26,21 +26,21 @@ class ProductFeedController extends Controller
     {
         // See definition here: https://support.google.com/merchants/answer/188494
 
-        $hanzo = Hanzo::getInstance();
+        $hanzo      = Hanzo::getInstance();
         $translator = $this->get('translator');
-        $router = $this->get('router');
+        $router     = $this->get('router');
 
         $exclude = [
-            'Hayward kneesocks',
-            'Arlington socks',
-            'Oregon socks',
+            'Adi kneesocks',
+            'Capel socks',
+            'Cowra socks',
+            'Sunderland socks',
             'POMP bag',
             'POMP big bag',
         ];
 
-        $items = [];
+        $items       = [];
         $product_ids = [];
-
         $router_keys = include $this->container->parameters['kernel.cache_dir'] . '/category_map.php';
 
         $products = ProductsQuery::create()
@@ -51,14 +51,15 @@ class ProductFeedController extends Controller
             ->useProductsI18nQuery()
                 ->filterByLocale($request->getLocale())
             ->endUse()
-            ->find();
+            ->find()
+        ;
+
         foreach ($products as $product) {
             $product_id = $product->getId();
             $product_sku = $product->getTitle();
             $product_sku_stripped = Tools::stripText($product_sku);
 
             $product_ids[] = $product_id;
-
 
             $products2category = ProductsToCategoriesQuery::create()
                 ->useProductsQuery()
@@ -67,6 +68,12 @@ class ProductFeedController extends Controller
                 ->findOne();
 
             $key = '_' . strtolower($request->getLocale()) . '_' . $products2category->getCategoriesId();
+
+            // skip products without routes
+            if (empty($router_keys[$key])) {
+                continue;
+            }
+
             $product_route = $router_keys[$key];
 
             $images = ProductsImagesQuery::create()
