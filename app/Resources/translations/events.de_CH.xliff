@@ -380,7 +380,7 @@
             </trans-unit>
            <trans-unit id="events.create_customer.header.text">
                 <source>events.create_customer.header.text</source>
-                <target>Kundeninformationen holen (für existierende Kunden)</target>
+                <target>Kundeninformationen holen</target>
             </trans-unit>
             <trans-unit id="events.create_customer.description.text">
                 <source>events.create_customer.description.text</source>
