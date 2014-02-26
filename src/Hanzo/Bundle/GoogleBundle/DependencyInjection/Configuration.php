@@ -20,6 +20,20 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('google');
 
+        $rootNode
+            ->children()
+                ->scalarNode('analytics_code')->defaultNull()->end()
+                ->scalarNode('conversion_id')->defaultNull()->end()
+                ->arrayNode('site_verification')
+                    ->prototype('scalar')->end()
+                    ->beforeNormalization()
+                        ->ifString()
+                        ->then(function($v) { return [$v]; })
+                    ->end()
+                ->end()
+            ->end()
+        ;
+
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for
         // more information on that topic.
