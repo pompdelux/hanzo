@@ -169,7 +169,7 @@
                 <source>footer.text</source>
                 <target><![CDATA[
                     <ul>
-                        <li><b>Postikulut</b> alkaen 7,50 EUR</li>
+                        <li><b>Postikulut</b> alkaen 6,50 EUR</li>
                         <li><b>Tilauksen käsittelyaika</b> %expected_delivery_date%</li>
                         <li><b>Vaihto</b> veloituksetta</li>
                     </ul>
