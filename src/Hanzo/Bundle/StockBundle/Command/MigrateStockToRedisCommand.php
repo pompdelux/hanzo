@@ -2,7 +2,6 @@
 
 namespace Hanzo\Bundle\StockBundle\Command;
 
-
 use Hanzo\Model\ProductsQuery;
 use Hanzo\Model\ProductsStockQuery;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
@@ -11,7 +10,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class MigrateStockToRedisCommand extends ContainerAwareCommand
 {
-
     protected $errors = [];
 
     protected function configure()
