@@ -81,7 +81,13 @@ class ProductFeedController extends Controller
                 ->find();
             $images_array = [];
             foreach ($images as $image) {
-                $images_array[] = Tools::productImageUrl($image->getImage(), '0x0');
+                $img = $image->getImage();
+                // only show "overview" images, there are a limit to how many images google allows pr product.
+                if (false === strpos($img, '_overview_')) {
+                    continue;
+                }
+
+                $images_array[$img] = Tools::productImageUrl($img, '0x0');
             }
 
             $translation_key = 'description.' . Tools::stripText($product->getSku(), '_', false);
@@ -92,7 +98,6 @@ class ProductFeedController extends Controller
             $description = preg_replace($find, $replace, $description);
 
             $is_in_stock = !$product->getIsOutOfStock();
-            //$is_in_stock = $this->get('stock')->checkStyleStock($product, true);
 
             $items[] = [
                 'product_id'        => $product_id,
@@ -104,7 +109,7 @@ class ProductFeedController extends Controller
                 'description'       => preg_replace('/\s+/', ' ', Tools::stripTags($description)),
                 'price'             => 0,
                 'availability'      => ($is_in_stock ? 'in stock' : 'out of stock'),
-                'image'             => Tools::productImageUrl($product->getProductsImagess()->getFirst()->getImage(), '0x0'),
+                'image'             => array_shift($images_array),
                 'additional_images' => $images_array,
             ];
         }
