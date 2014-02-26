@@ -149,7 +149,12 @@ DOC;
             return '';
         }
 
-        return '<meta name="google-site-verification" content="'.$this->site_verification.'">';
+        $html = '';
+        foreach ($this->site_verification as $code) {
+            $html .= '<meta name="google-site-verification" content="'.$code.'">'."\n";
+        }
+
+        return $html;
     }
 
 
