@@ -38,6 +38,9 @@ class BundleController extends CoreController
             $locale = strtolower($hanzo->get('core.locale'));
 
             $product = ProductsQuery::create()
+                ->useProductsI18nQuery()
+                    ->filterByLocale($hanzo->get('core.locale'))
+                ->endUse()
                 ->useProductsImagesQuery()
                     ->filterById($image_id)
                 ->endUse()
@@ -73,6 +76,7 @@ class BundleController extends CoreController
             $products[$product->getId()] = array(
                 'id' => $product->getId(),
                 'master' => $product->getSku(),
+                'title' => $product->getTitle(),
                 'color' => $image->getColor(),
                 'image' => $image->getImage(),
                 'url' => $router->generate($product_route, array(
@@ -83,6 +87,9 @@ class BundleController extends CoreController
             );
 
             $result = ProductsQuery::create()
+                ->useProductsI18nQuery()
+                    ->filterByLocale($hanzo->get('core.locale'))
+                ->endUse()
                 ->useProductsImagesProductReferencesQuery()
                     ->filterByProductsImagesId($image_id)
                 ->endUse()
@@ -120,6 +127,7 @@ class BundleController extends CoreController
                 $products[$product->getId()] = array(
                     'id' => $product->getId(),
                     'master' => $product->getSku(),
+                    'title' => $product->getTitle(),
                     'color' => $image->getColor(),
                     'image' => $image->getImage(),
                     'url' => $router->generate($product_route, array(
