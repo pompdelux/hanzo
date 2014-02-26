@@ -178,6 +178,11 @@ stock:
         norway:
             - nb_NO
 
+google:
+    conversion_id:     ~
+    site_verification: ~
+    analytics_code:    ~
+
 # @see https://github.com/ekino/EkinoNewRelicBundle
 ekino_new_relic:
     application_name: Pompdelux

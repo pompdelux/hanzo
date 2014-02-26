@@ -50,3 +50,8 @@ consignor:
                   country_iso2: DK
                   email: mail@pompdelux.se
                   phone: "+46 8-6117103"
+
+google:
+    analytics_code:    UA-1793665-3
+    conversion_id:     976104979
+    site_verification: "i-GTUV7HLYYWlH1qe3eO9rSythi037P722GF5w4zk_w"
