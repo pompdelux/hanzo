@@ -305,9 +305,8 @@ class Stock
                     UPDATE
                         products
                     SET
-                        is_out_of_stock = ".(int) $is_out."
-                        AND
-                            updated_at = NOW()
+                        is_out_of_stock = ".(int) $is_out.",
+                        updated_at = NOW()
                     WHERE
                         id = ".$product->getId()
                 ;
