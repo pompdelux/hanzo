@@ -180,7 +180,7 @@ class DefaultController extends Controller
 
 
     /**
-     * Finds the rigth cid or tid to use
+     * Finds the right cid or tid to use
      *
      * @param  string $type Either "cid" or "tid"
      * @return string
