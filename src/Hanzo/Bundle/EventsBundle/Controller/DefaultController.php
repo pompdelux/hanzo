@@ -32,7 +32,9 @@ class DefaultController extends CoreController
 {
     /**
      * createCustomerAction
-     * @return void
+     *
+     * @param Request $request
+     * @return Response
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function createCustomerAction(Request $request)
@@ -192,7 +194,8 @@ class DefaultController extends CoreController
 
     /**
      * fetchCustomerAction
-     * @return void
+     *
+     * @return Response
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function fetchCustomerAction()

@@ -4,7 +4,6 @@ namespace Hanzo\Bundle\StockBundle;
 
 use Hanzo\Model\Products;
 use Hanzo\Model\ProductsQuery;
-use Hanzo\Model\ProductsStockPeer;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Hanzo\Bundle\AdminBundle\Event\FilterCategoryEvent;
@@ -202,7 +201,7 @@ class Stock
      * decrease the stock level for a product
      *
      * @param \Hanzo\Model\Products $product a product object
-     * @param int $quantity the quantity by wich to decrease
+     * @param int $quantity the quantity by which to decrease
      * @return mixed, the expected delivery date on success, false otherwise.
      */
     public function decrease($product, $quantity = 1)
@@ -300,7 +299,7 @@ class Stock
             // note: in this loop we use raw PDO queries, Propel somehow caches
             //       the query - even tho the connection has changed....
             foreach ($connections[$this->locale] as $connection_name) {
-                $connection = Propel::getConnection($connection_name, Propel::CONNECTION_WRITE);
+                $connection = \Propel::getConnection($connection_name, \Propel::CONNECTION_WRITE);
 
                 $sql = "
                     UPDATE
