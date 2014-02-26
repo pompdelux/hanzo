@@ -55,8 +55,8 @@ class ProductFeedController extends Controller
         ;
 
         foreach ($products as $product) {
-            $product_id = $product->getId();
-            $product_sku = $product->getTitle();
+            $product_id           = $product->getId();
+            $product_sku          = $product->getTitle();
             $product_sku_stripped = Tools::stripText($product_sku);
 
             $product_ids[] = $product_id;
@@ -83,29 +83,32 @@ class ProductFeedController extends Controller
             foreach ($images as $image) {
                 $images_array[] = Tools::productImageUrl($image->getImage(), '0x0');
             }
-            $translation_key = 'description.' . Tools::stripText($product->getSku(), '_', false);
 
-            $find = '~(background|src)="(../|/)~';
-            $replace = '$1="' . $hanzo->get('core.cdn');
+            $translation_key = 'description.' . Tools::stripText($product->getSku(), '_', false);
+            $find            = '~(background|src)="(../|/)~';
+            $replace         = '$1="' . $hanzo->get('core.cdn');
 
             $description = $translator->trans($translation_key, array('%cdn%' => $hanzo->get('core.cdn')), 'products');
             $description = preg_replace($find, $replace, $description);
 
-            $is_in_stock = $this->get('stock')->check($product);
+            $is_in_stock = !$product->getIsOutOfStock();
+            //$is_in_stock = $this->get('stock')->checkStyleStock($product, true);
+
             $items[] = [
-                'product_id' => $product_id,
-                'url'   => $router->generate($product_route, [
+                'product_id'        => $product_id,
+                'url'               => $router->generate($product_route, [
                     'product_id' => $product_id,
                     'title'      => $product_sku_stripped,
                 ], true),
-                'name'  => $product_sku,
-                'description'  => preg_replace('/\s+/', ' ', Tools::stripTags($description)),
-                'price' => 0,
-                'availability' => $translator->trans(($is_in_stock) ? 'google.feed.availability.in_stock' : 'google.feed.availability.sold_out'),
-                'image' => Tools::productImageUrl($product->getProductsImagess()->getFirst()->getImage(), '0x0'),
+                'name'              => $product_sku,
+                'description'       => preg_replace('/\s+/', ' ', Tools::stripTags($description)),
+                'price'             => 0,
+                'availability'      => ($is_in_stock ? 'in stock' : 'out of stock'),
+                'image'             => Tools::productImageUrl($product->getProductsImagess()->getFirst()->getImage(), '0x0'),
                 'additional_images' => $images_array,
             ];
         }
+
         foreach (ProductsDomainsPricesPeer::getProductsPrices($product_ids) as $id => $prices) {
             foreach ($items as $i => $item) {
                 if ($item['product_id'] == $id) {
@@ -117,6 +120,7 @@ class ProductFeedController extends Controller
                 }
             }
         }
+
         $response = new Response($this->renderView('GoogleBundle:ProductFeed:feed.xml.twig', ['items' => $items]));
         $response->headers->set('Content-Type', 'application/xml');
 
