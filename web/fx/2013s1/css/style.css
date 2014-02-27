@@ -650,6 +650,11 @@ ul.sub-menu li.item a,
 .sub-menu > ul li.item a {
   line-height: 18px;
 }
+ul.sub-menu li.item a.search,
+.sub-menu > ul li.item a.search {
+  font-weight: bold;
+  margin: 6px 0 0;
+}
 ul.sub-menu li.heading > a, ul.sub-menu li.self-included > a,
 .sub-menu > ul li.heading > a,
 .sub-menu > ul li.self-included > a {
@@ -1860,13 +1865,34 @@ html.touch .product-list .buy-set {
   text-decoration: underline;
 }
 
-.body-category .sub-menu > ul li ul {
+.body-category .sub-menu > ul li ul,
+.body-page-861 .sub-menu > ul li ul,
+.body-page-862 .sub-menu > ul li ul,
+.body-page-863 .sub-menu > ul li ul,
+.body-page-864 .sub-menu > ul li ul {
   padding-left: 0;
 }
 .body-category .sub-menu > ul li ul li.active a,
-.body-category .sub-menu > ul li ul li a:hover {
+.body-category .sub-menu > ul li ul li a:hover,
+.body-page-861 .sub-menu > ul li ul li.active a,
+.body-page-861 .sub-menu > ul li ul li a:hover,
+.body-page-862 .sub-menu > ul li ul li.active a,
+.body-page-862 .sub-menu > ul li ul li a:hover,
+.body-page-863 .sub-menu > ul li ul li.active a,
+.body-page-863 .sub-menu > ul li ul li a:hover,
+.body-page-864 .sub-menu > ul li ul li.active a,
+.body-page-864 .sub-menu > ul li ul li a:hover {
   font-weight: bold;
   text-decoration: none;
+}
+
+.body-page-861 .sub-menu > ul > li > a,
+.body-page-862 .sub-menu > ul > li > a,
+.body-page-863 .sub-menu > ul > li > a,
+.body-page-864 .sub-menu > ul > li > a {
+  font-weight: normal;
+  text-transform: none;
+  margin-bottom: 6px;
 }
 
 .js-faceted-container label {

@@ -85,12 +85,35 @@ html.touch .product-list .buy-set{display: inline-block;}
 	text-decoration: underline;
 }
 
-.body-category .sub-menu > ul li ul {
-	padding-left: 0;
-	li.active a,
-	li a:hover {
-		font-weight: bold;
-		text-decoration: none;
+.body-category,
+// Hardcoded category landingpage pages.
+// TODO: not to do it.
+.body-page-861,
+.body-page-862,
+.body-page-863,
+.body-page-864 {
+	// Left align left sub menus.
+  .sub-menu > ul {
+  	li ul {
+			padding-left: 0;
+			li.active a,
+			li a:hover {
+				font-weight: bold;
+				text-decoration: none;
+			}
+		}
+	}
+}
+
+.body-page-861,
+.body-page-862,
+.body-page-863,
+.body-page-864 {
+  .sub-menu > ul > li > a {
+		// Very first element should look a bit different.
+		font-weight: normal;
+		text-transform: none;
+		margin-bottom: 6px;
 	}
 }
 
