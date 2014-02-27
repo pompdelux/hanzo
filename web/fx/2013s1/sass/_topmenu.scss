@@ -60,15 +60,8 @@ nav.main-menu {
           }
         }
         li {
-          text-align: left;
-          &.floaded {
-            margin-right: 10px;
-            display: inline-block;
-            vertical-align: top;
-            &.last {
-              margin-right: 0;
-            }
-          }
+          float: left;
+          margin-right: 10px;
           &.heading > a,
           &.self-included > a{
             font-weight: bold;
@@ -81,21 +74,6 @@ nav.main-menu {
         }
       }
     }
-  }
-}
-html.ie7 {
-// html.ie8,
-  nav.main-menu li.floaded {
-    display: inline;
-    float: left;
-  }
-}
-
-
-nav.first.main-menu > ul > li {
-  position: relative;
-  ul {
-    width: 250px;
   }
 }
 

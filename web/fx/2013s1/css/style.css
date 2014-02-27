@@ -2501,15 +2501,8 @@ nav.main-menu > ul > li > ul > li > ul > li {
   padding-top: 12px;
 }
 nav.main-menu > ul > li > ul li {
-  text-align: left;
-}
-nav.main-menu > ul > li > ul li.floaded {
+  float: left;
   margin-right: 10px;
-  display: inline-block;
-  vertical-align: top;
-}
-nav.main-menu > ul > li > ul li.floaded.last {
-  margin-right: 0;
 }
 nav.main-menu > ul > li > ul li.heading > a, nav.main-menu > ul > li > ul li.self-included > a {
   font-weight: bold;
@@ -2518,18 +2511,6 @@ nav.main-menu > ul > li > ul li.heading > a, nav.main-menu > ul > li > ul li.sel
   text-decoration: none;
   padding: 3px 0 3px 0px;
   cursor: default;
-}
-
-html.ie7 nav.main-menu li.floaded {
-  display: inline;
-  float: left;
-}
-
-nav.first.main-menu > ul > li {
-  position: relative;
-}
-nav.first.main-menu > ul > li ul {
-  width: 250px;
 }
 
 .consultant nav.main-menu > ul > li > a {
