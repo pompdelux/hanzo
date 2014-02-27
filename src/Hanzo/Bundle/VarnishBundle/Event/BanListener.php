@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\VarnishBundle\Event;
 
+use Hanzo\Model\Categories;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\EventDispatcher\Event as FilterEvent;
 
@@ -11,7 +12,7 @@ use Hanzo\Bundle\VarnishBundle\Varnish;
 use Hanzo\Core\Tools;
 
 use Hanzo\Model\Cms;
-use Hanzo\Model\CmsI18nQuery;
+use Hanzo\Model\CmsQuery;
 use Hanzo\Model\CategoriesQuery;
 
 class BanListener
@@ -19,12 +20,14 @@ class BanListener
     protected $varnish;
     protected $router;
     protected $cache_dir;
+    protected $translator;
 
-    public function __construct(Varnish $varnish, Router $router, $cache_dir)
+    public function __construct(Varnish $varnish, Router $router, $cache_dir, Translator $translator)
     {
-        $this->varnish = $varnish;
-        $this->router = $router;
-        $this->cache_dir = $cache_dir;
+        $this->varnish    = $varnish;
+        $this->router     = $router;
+        $this->cache_dir  = $cache_dir;
+        $this->translator = $translator;
     }
 
     /**
@@ -34,7 +37,6 @@ class BanListener
      */
     public function onBanCmsNode(FilterEvent $event)
     {
-        $path = '';
         $item = $event->getData();
 
         if ($item instanceof Cms) {
@@ -83,7 +85,7 @@ class BanListener
         ;
 
         foreach ($categories as $category) {
-            $this->purgeUrlsBasedOnCategory($category, $event->getLocale());
+            $this->purgeUrlsBasedOnCategory($category);
         }
 
         try {
@@ -97,53 +99,35 @@ class BanListener
     /**
      * do the actual category loockup and send purges
      *
-     * @param Hanzo\Model\Categories $category
+     * @param Categories $category
      */
-    protected function purgeUrlsBasedOnCategory($category, $locale = null)
+    protected function purgeUrlsBasedOnCategory($category)
     {
+        static $category_map;
+
         if (!$category instanceof Categories) {
             return;
         }
 
-        $query = CmsI18nQuery::create()
-            ->select(['Path', 'Locale'])
-            ->filterBySettings('%category%')
-            ->filterBySettings('%'.$category->getId().'%')
-        ;
-
-        if ($locale) {
-            $query->filterByLocale($locale);
+        if (empty($category_map)) {
+            $category_map = $this->getCategoryMapping();
         }
 
-        // g/b filter, should not be here - but for now it works...
-        $context = '';
-        if ($category->getContext()) {
-            $context = strtoupper(substr($category->getContext(), 0, 2));
-            switch ($context) {
-                case 'G_':
-                    $query->filterByPath('%/girl%');
-                    break;
-                case 'B_':
-                    $query->filterByPath('%/boy%');
-                    break;
-                case 'LG':
-                    $query->filterByPath('%/little-girl%');
-                    break;
-                case 'LB':
-                    $query->filterByPath('%/little-boy%');
-                    break;
-            }
+        if (empty($category_map[$category->getId()])) {
+            return;
         }
 
-        $items = $query->find();
+        $items = $category_map[$category->getId()];
 
         try {
-            foreach ($items as $index => $item) {
-                $path = '^/.*/'.$item['Path'].'.*';
+            foreach ($items as $path) {
+                $path = '^/'.$path.'.*';
+                Tools::log($path);
                 $this->varnish->banUrl($path);
             }
 
-            if ($context) {
+            if ($category->getContext()) {
+                $context = strtoupper(substr($category->getContext(), 0, 2));
                 $this->varnish->banUrl('^/.*/products/list/context/'.$context.'.*');
             }
 
@@ -151,4 +135,28 @@ class BanListener
             Tools::log($e->getMessage());
         }
     }
+
+
+    protected function getCategoryMapping()
+    {
+        $pages = CmsQuery::create()
+            ->filterByType('category')
+            ->find()
+        ;
+
+        $category_map = [];
+        foreach ($pages as $page) {
+            /** @var Cms $page */
+            $settings = $page->getSettings(null, false);
+
+            if (isset($settings->category_id)) {
+                foreach ($page->getCmsI18ns() as $i18n) {
+                    $category_map[$settings->category_id][] = $i18n->getPath();
+                }
+            }
+        }
+
+        return $category_map;
+    }
+
 }
