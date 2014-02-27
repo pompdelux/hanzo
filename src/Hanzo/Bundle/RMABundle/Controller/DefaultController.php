@@ -51,7 +51,7 @@ class DefaultController extends Controller
                 $products['product_' . $product['id']] = $product;
             }
         }
-
+\Hanzo\Core\Tools::log($products);
         $rma_products = json_decode($request->query->get('products'), true);
         // Time to generate some pdf's!
         if (count($rma_products)) {
