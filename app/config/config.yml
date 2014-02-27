@@ -65,6 +65,9 @@ services:
         arguments: [@security.context]
         tags:
             -   { name: kernel.event_listener, event: security.interactive_login }
+    hanzo.propel_replicator:
+        class:     Hanzo\Core\PropelReplicator
+        arguments: [@propel.configuration]
 
 twig:
     debug:            '%kernel.debug%'
