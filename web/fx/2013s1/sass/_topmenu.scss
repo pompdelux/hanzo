@@ -2,6 +2,7 @@
 | _topmenu
 */
 @import "compass/css3/box-shadow";
+@import "compass/css3/opacity";
 
 nav.main-menu {
   background: #484a4d;
@@ -28,18 +29,13 @@ nav.main-menu {
       left: 0;
       top: auto;
       z-index: 150;
-      @include box-shadow(#CECECE 2px 2px 8px);
     }
     > {
       a {
-        padding: 10px 30px 10px 0;
+        padding: 10px 20px 10px 0;
         display: block;
         font-size: 14px;
         color: white;
-        font-weight: bold;
-        span {
-          font-weight: normal;
-        }
       }
       // Sub menu-items
       ul {
@@ -52,7 +48,8 @@ nav.main-menu {
         font-family: $font-sans;
         font-size: $side-menu-size;
         line-height: $side-menu-line-height;
-
+        @include opacity(0.95);
+        @include box-shadow(#676767 2px 2px 8px);
         > li {
           float: none;
           padding: 10px 8px;
