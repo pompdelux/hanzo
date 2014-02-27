@@ -10,6 +10,7 @@ services:
             - @request
             - @logger
             - @event_dispatcher
+            - @hanzo.propel_replicator
         scope: request
     ax.out:
         class: %ax.out.service.class%
