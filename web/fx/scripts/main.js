@@ -88,7 +88,7 @@
         var menu_width = 0;
         $('li li.heading', $menu).each(function(index, element) {
           var $element = $(element);
-          var tmp_width = $element.width() - 40;
+          var tmp_width = $element.outerWidth();
           if (menu_width < tmp_width) {
             menu_width = tmp_width;
           }
@@ -98,8 +98,16 @@
         $('li li.heading', $menu).closest('ul').each(function(index, element) {
           var $element = $(element);
           var count = $('> li', $element).length;
-          $element.css('width', (menu_width * count) + 5);
+          $element.css('width', (menu_width * count));
         });
+
+        // Add a class to the last megamenu, if it is all to the right.
+        // TODO: This should be done on each megamenu, and be able to determine
+        // if it is possible to fit inside the container.
+        $main_menu = $menu.not('.first');
+        if ($main_menu.outerWidth() - $('>ul', $main_menu).width() < 100) {
+          $('> ul > li.last > ul', $main_menu).addClass('floaded-right');
+        }
 
 
         $('> ul > li > a', $menu).click(function(event) {

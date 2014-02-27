@@ -181,6 +181,10 @@ ul.sub-menu,
 		&.item{
 			a{
 				line-height: 18px;
+                &.search {
+                    font-weight: bold;
+                    margin: 6px 0 0;
+                }
 			}
 		}
 		&.heading > a,
