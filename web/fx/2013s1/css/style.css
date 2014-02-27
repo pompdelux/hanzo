@@ -2473,6 +2473,10 @@ nav.main-menu > ul > li > ul.on, nav.main-menu > ul > li:hover > ul {
   top: auto;
   z-index: 150;
 }
+nav.main-menu > ul > li.last:hover > ul.floaded-right {
+  left: initial;
+  right: 0;
+}
 nav.main-menu > ul > li > a {
   padding: 10px 20px 10px 0;
   display: block;
@@ -2498,6 +2502,7 @@ nav.main-menu > ul > li > ul {
 nav.main-menu > ul > li > ul > li {
   float: none;
   padding: 10px 8px;
+  width: 200px;
 }
 nav.main-menu > ul > li > ul > li > ul > li {
   float: none;
@@ -2505,7 +2510,6 @@ nav.main-menu > ul > li > ul > li > ul > li {
 }
 nav.main-menu > ul > li > ul li.floaded {
   float: left;
-  margin-right: 10px;
 }
 nav.main-menu > ul > li > ul li.heading > a, nav.main-menu > ul > li > ul li.self-included > a {
   font-weight: bold;

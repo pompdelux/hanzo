@@ -30,6 +30,10 @@ nav.main-menu {
       top: auto;
       z-index: 150;
     }
+    &.last:hover > ul.floaded-right {
+      left: initial;
+      right: 0;
+    }
     > {
       a {
         padding: 10px 20px 10px 0;
@@ -53,6 +57,7 @@ nav.main-menu {
         > li {
           float: none;
           padding: 10px 8px;
+          width: 200px;
           // Sub Sub menu-items
           > ul {
             > li {
@@ -64,7 +69,6 @@ nav.main-menu {
         li {
           &.floaded{
             float: left;
-            margin-right: 10px;
           }
           &.heading > a,
           &.self-included > a{
