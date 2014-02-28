@@ -650,6 +650,11 @@ ul.sub-menu li.item a,
 .sub-menu > ul li.item a {
   line-height: 18px;
 }
+ul.sub-menu li.item a.search,
+.sub-menu > ul li.item a.search {
+  font-weight: bold;
+  margin: 6px 0 0;
+}
 ul.sub-menu li.heading > a, ul.sub-menu li.self-included > a,
 .sub-menu > ul li.heading > a,
 .sub-menu > ul li.self-included > a {
@@ -1860,13 +1865,34 @@ html.touch .product-list .buy-set {
   text-decoration: underline;
 }
 
-.body-category .sub-menu > ul li ul {
+.body-category .sub-menu > ul li ul,
+.body-page-861 .sub-menu > ul li ul,
+.body-page-862 .sub-menu > ul li ul,
+.body-page-863 .sub-menu > ul li ul,
+.body-page-864 .sub-menu > ul li ul {
   padding-left: 0;
 }
 .body-category .sub-menu > ul li ul li.active a,
-.body-category .sub-menu > ul li ul li a:hover {
+.body-category .sub-menu > ul li ul li a:hover,
+.body-page-861 .sub-menu > ul li ul li.active a,
+.body-page-861 .sub-menu > ul li ul li a:hover,
+.body-page-862 .sub-menu > ul li ul li.active a,
+.body-page-862 .sub-menu > ul li ul li a:hover,
+.body-page-863 .sub-menu > ul li ul li.active a,
+.body-page-863 .sub-menu > ul li ul li a:hover,
+.body-page-864 .sub-menu > ul li ul li.active a,
+.body-page-864 .sub-menu > ul li ul li a:hover {
   font-weight: bold;
   text-decoration: none;
+}
+
+.body-page-861 .sub-menu > ul > li > a,
+.body-page-862 .sub-menu > ul > li > a,
+.body-page-863 .sub-menu > ul > li > a,
+.body-page-864 .sub-menu > ul > li > a {
+  font-weight: normal;
+  text-transform: none;
+  margin-bottom: 6px;
 }
 
 .js-faceted-container label {
@@ -2453,8 +2479,8 @@ nav.main-menu {
   padding: 0 10px;
 }
 nav.main-menu ul {
-  z-index: 310;
-  position: initial;
+  z-index: 210;
+  position: relative;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -2466,18 +2492,19 @@ nav.main-menu ul.outer {
 nav.main-menu > ul > li {
   float: left;
   width: auto;
-  position: initial;
+  position: relative;
 }
 nav.main-menu > ul > li > ul.on, nav.main-menu > ul > li:hover > ul {
   left: 0;
   top: auto;
-  z-index: 300;
-  -webkit-box-shadow: #cecece 0 2px 8px;
-  -moz-box-shadow: #cecece 0 2px 8px;
-  box-shadow: #cecece 0 2px 8px;
+  z-index: 150;
+}
+nav.main-menu > ul > li.last:hover > ul.floaded-right {
+  left: initial;
+  right: 0;
 }
 nav.main-menu > ul > li > a {
-  padding: 10px 30px 10px 0;
+  padding: 10px 20px 10px 0;
   display: block;
   font-size: 14px;
   color: white;
@@ -2486,30 +2513,29 @@ nav.main-menu > ul > li > ul {
   position: absolute;
   left: -9999px;
   border-top: 0;
-  width: 100%;
+  width: 250px;
+  z-index: 1;
   background-color: #fff;
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-size: 12px;
   line-height: 14px;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=95);
+  opacity: 0.95;
+  -webkit-box-shadow: #676767 2px 2px 8px;
+  -moz-box-shadow: #676767 2px 2px 8px;
+  box-shadow: #676767 2px 2px 8px;
 }
 nav.main-menu > ul > li > ul > li {
+  float: none;
   padding: 10px 8px;
-  width: 180px;
+  width: 200px;
 }
 nav.main-menu > ul > li > ul > li > ul > li {
   float: none;
   padding-top: 12px;
 }
-nav.main-menu > ul > li > ul li {
-  text-align: left;
-}
 nav.main-menu > ul > li > ul li.floaded {
-  margin-right: 10px;
-  display: inline-block;
-  vertical-align: top;
-}
-nav.main-menu > ul > li > ul li.floaded.last {
-  margin-right: 0;
+  float: left;
 }
 nav.main-menu > ul > li > ul li.heading > a, nav.main-menu > ul > li > ul li.self-included > a {
   font-weight: bold;
@@ -2518,18 +2544,6 @@ nav.main-menu > ul > li > ul li.heading > a, nav.main-menu > ul > li > ul li.sel
   text-decoration: none;
   padding: 3px 0 3px 0px;
   cursor: default;
-}
-
-html.ie7 nav.main-menu li.floaded {
-  display: inline;
-  float: left;
-}
-
-nav.first.main-menu > ul > li {
-  position: relative;
-}
-nav.first.main-menu > ul > li ul {
-  width: 250px;
 }
 
 .consultant nav.main-menu > ul > li > a {
