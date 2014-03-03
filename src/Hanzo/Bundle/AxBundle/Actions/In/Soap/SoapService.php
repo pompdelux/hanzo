@@ -23,6 +23,12 @@ class SoapService
 
     protected $timer;
 
+    /**
+     * @param Request          $request
+     * @param Logger           $logger
+     * @param EventDispatcher  $event_dispatcher
+     * @param PropelReplicator $replicator
+     */
     public function __construct(Request $request, $logger, EventDispatcher $event_dispatcher, PropelReplicator $replicator)
     {
         $this->request          = $request;
@@ -35,6 +41,11 @@ class SoapService
         }
     }
 
+
+    /**
+     * @param $service
+     * @return Response
+     */
     public function exec($service)
     {
         $this->timer = new Timer('soap');
@@ -51,6 +62,10 @@ class SoapService
         return $response;
     }
 
+
+    /**
+     * @return array
+     */
     public static function getDebugInfo()
     {
         return array(
