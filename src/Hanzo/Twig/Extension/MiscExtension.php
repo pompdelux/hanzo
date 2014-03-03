@@ -58,7 +58,6 @@ class MiscExtension extends Twig_Extension
             'print_r' => new Twig_Function_Function('print_r'),
             'parse' => new Twig_Function_Method($this, 'parse', array('pre_escape' => 'html', 'is_safe' => array('html'))),
             'meta_tags' => new Twig_Function_Method($this, 'metaTags', array('pre_escape' => 'html', 'is_safe' => array('html'))),
-            'google_analytics_tag' => new Twig_Function_Method($this, 'googleAnalyticsTag', array('pre_escape' => 'html', 'is_safe' => array('html'), 'needs_context' => true)),
             'front_page_teasers' => new Twig_Function_Method($this, 'frontPageTeasers', array('pre_escape' => 'html', 'is_safe' => array('html'))),
             'parameter' => new Twig_Function_Method($this, 'parameter', array('pre_escape' => 'html', 'is_safe' => array('html'))),
             'embed' => new Twig_Function_Method($this, 'embed', array('pre_escape' => 'html', 'is_safe' => array('html'), 'needs_environment' => true)),
@@ -142,95 +141,27 @@ class MiscExtension extends Twig_Extension
     */
     public function metaTags($exclude = '')
     {
-      $exclude = explode(',', trim($exclude));
+        $exclude = explode(',', trim($exclude));
 
-      $meta = Hanzo::getInstance()->getByNs('meta');
+        // move to GoogleBundle
+        array_unshift($exclude, 'google-site-verification');
 
-      $result = '';
-      foreach ($meta as $key => $value) {
-        if(!in_array($key, $exclude)) {
-          $attr = 'name';
-          if (0 === strpos($key, 'og:')) {
-            $attr = 'property';
-          }
-          $result .= '<meta '.$attr.'="'.$key.'" content="'.$value.'">'."\n";
-        }
-      }
+        $meta = Hanzo::getInstance()->getByNs('meta');
 
-      return $result;
-    }
+        $result = '';
+        foreach ($meta as $key => $value) {
+            if (!in_array($key, $exclude)) {
+                $attr = 'name';
+                if (0 === strpos($key, 'og:')) {
+                    $attr = 'property';
+                }
 
-
-     /**
-      * Google analytics tag, will only be displayed if a key is found
-      */
-     public function googleAnalyticsTag($context)
-     {
-        $google = Hanzo::getInstance()->getByNs('google');
-        if (empty($google['analytics_id'])) {
-            return '';
-        }
-
-        $ecommerce = '';
-
-        $context['page_type'] = empty($context['page_type'])
-            ? ''
-            : $context['page_type']
-        ;
-
-        /**
-         * if we are on the checkout success page,
-         * we will inject analytics/commerce tracking
-         */
-        if ('checkout-success' == $context['page_type']) {
-            $order = $context['order'];
-            $ecommerce .= "
-_gaq.push(['_addTrans',
-  '{$order['id']}',
-  '{$order['store_name']}',
-  '{$order['total']}',
-  '{$order['tax']}',
-  '{$order['shipping']}',
-  '{$order['city']}',
-  '{$order['state']}',
-  '{$order['country']}'
-]);
-";
-            foreach ($order['lines'] as $line) {
-                $ecommerce .= "
-_gaq.push(['_addItem',
-  '{$order['id']}',
-  '{$line['sku']}',
-  '{$line['name']}',
-  '{$line['variation']}',
-  '{$line['price']}',
-  '{$line['quantity']}'
-]);
-";
+                $result .= '<meta ' . $attr . '="' . $key . '" content="' . $value . '">' . "\n";
             }
-
-            $ecommerce .= "
-_gaq.push(['_trackTrans']);
-";
         }
 
-        $output = <<<DOC
-<script type="text/javascript">
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', '{$google['analytics_id']}']);
-_gaq.push(['_trackPageview']);
-{$ecommerce}
-(function() {
-  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();
-</script>
-DOC;
-
-        return $output;
-     }
-
+        return $result;
+    }
 
      /**
       * Build and return frontpage teasers

@@ -22,6 +22,14 @@ class GoogleExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
+        if (!is_array($config['site_verification'])) {
+            $config['site_verification'] = [$config['site_verification']];
+        }
+
+        $container->setParameter('google.analytics_code', $config['analytics_code']);
+        $container->setParameter('google.conversion_id', $config['conversion_id']);
+        $container->setParameter('google.site_verification', $config['site_verification']);
+
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
     }

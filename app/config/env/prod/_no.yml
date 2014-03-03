@@ -50,3 +50,11 @@ consignor:
                   country_iso2: NO
                   email: mail@pompdelux.no
                   phone: "+47 22742600"
+
+google:
+    analytics_code:    UA-1793665-4
+    conversion_id:     976104979
+    site_verification:
+        - "idm5dDOLlFrLJl2npZ8fgvE3j0a_OlYPK3O-j37DxLI"
+        - "MzH0LJSf9bE8-ncQFmMzVFGPXWyOWBO67b94i96RMoI"
+

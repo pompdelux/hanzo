@@ -4,17 +4,16 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
     <parameters>
-        <parameter key="google.example.class">Hanzo\Bundle\GoogleBundle\Example</parameter>
+        <parameter key="google.twig_extension.class">Hanzo\Bundle\GoogleBundle\Twig\Extension\GoogleExtension</parameter>
     </parameters>
 
     <services>
-        <service id="google.example" class="%google.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <service id="google.twig_extension" class="%google.twig_extension.class%">
+            <argument type="string">%google.analytics_code%</argument>
+            <argument type="string">%google.conversion_id%</argument>
+            <argument type="string">%google.site_verification%</argument>
+            <tag name="twig.extension"></tag>
         </service>
     </services>
-    -->
 </container>

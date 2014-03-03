@@ -14,17 +14,13 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <meta property="og:url" content="{{ app.request.uri }}">
 
 {% block meta %}
 {{ meta_tags() }}
 {% endblock %}
 
-{% if app.request.locale == 'da_DK' %}
-<meta name="google-site-verification" content="V6U4jsJtOJKEOK7J3Hkw9mTz344Yb7FYsNpjbCm3dQg">
-{% endif %}
-
+{{ google_site_verification_tag() }}
 
 <link rel="dns-prefetch" href="{{ cdn|replace({'http:':''}) }}">
 <link rel="dns-prefetch" href="//cdn.jquerytools.org">
@@ -201,16 +197,5 @@ if (1 == $('#shipping-block input').length) {
 </script>
 {% endif %}
 
-<script type="text/javascript">
-var google_conversion_id = 976104979;
-var google_custom_params = window.google_tag_params;
-var google_remarketing_only = true;
-</script>
-<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
-<noscript>
-    <div style="display:inline;">
-        <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/976104979/?value=0&amp;guid=ON&amp;script=0"/>
-    </div>
-</noscript>
 </body>
 </html>
