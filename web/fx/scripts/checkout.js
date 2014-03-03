@@ -40,10 +40,35 @@
         }
 
         $.getJSON(base_url+'muneris/gpc/'+value, function(response) {
-          var $city = $('.js-auto-city-'+$form.data('addresstype'), $form);
-
+          var $city = $('.js-auto-city-'+$form.data('addresstype'), $form),
+              $city_dropdown = $city.parent().find('.js-auto-city-dropdown');
           if (response.status) {
-            $city.prop('value', response.data.postcode.city);
+            if (response.data.postcodes.length > 1) {
+              // Many cities with same zip.
+              // Hide the city field and add a dropdown with all the cities.
+              $city.prop('type', 'hidden').hide();
+              if ($city_dropdown.length === 0) {
+                $city_dropdown = $('<select class="js-auto-city-dropdown"></select>')
+                  .appendTo($city.parent())
+                  .on('change', function(e){
+                    $city.val(this.value);
+                  });
+              } else {
+                $('option', $city_dropdown).remove();
+                $city_dropdown.show();
+              }
+              $.each(response.data.postcodes, function(index, postcode){
+                // Add all cities as an option.
+                $city_dropdown.append($('<option value="' + postcode.city + '">' + postcode.city + '</option>'));
+              });
+            } else {
+              // Only 1 result.
+              if ($city_dropdown) {
+                $city_dropdown.hide();
+              }
+              $city.prop('type', 'text').show();
+              $city.prop('value', response.data.postcodes[0].city);
+            }
           } else {
             // TODO: use css class
             $this.css('border', '2px solid #a10000');
