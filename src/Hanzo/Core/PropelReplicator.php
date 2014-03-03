@@ -5,7 +5,10 @@ namespace Hanzo\Core;
 
 class PropelReplicator
 {
-    protected $connections;
+    /**
+     * @var array
+     */
+    protected $connections = [];
 
     /**
      * @param \PropelConfiguration $configuration
@@ -17,9 +20,12 @@ class PropelReplicator
 
 
     /**
-     * @param string $sql
-     * @param array  $parameters
-     * @return array
+     * Executes a sql statement across all linked databases.
+     * The function will return an array of PDOStatement results
+     *
+     * @param  string $sql        The sql query to execute.
+     * @param  array  $parameters Optional array of PDOStatement::bindValue parameters
+     * @return array              An array of PDOStatement results
      */
     public function executeQuery($sql, array $parameters = [])
     {
@@ -41,6 +47,8 @@ class PropelReplicator
 
 
     /**
+     * Parses the Propel configuration to get a list of actual connections
+     *
      * @param \PropelConfiguration $configuration
      */
     protected function parseConfiguration(\PropelConfiguration $configuration)
