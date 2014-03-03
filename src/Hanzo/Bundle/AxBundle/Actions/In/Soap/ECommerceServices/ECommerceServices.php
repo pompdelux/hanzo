@@ -585,6 +585,7 @@ class ECommerceServices extends SoapService
 
             if (empty($products[$key]['inventory'])) {
                 $products[$key]['inventory'] = [];
+                $products[$key]['total']     = 0;
             }
 
             // handle any delayed stock
@@ -596,6 +597,7 @@ class ECommerceServices extends SoapService
                     );
                 }
 
+                $products[$key]['total'] += $stock_data['ordered'];
                 $products[$key]['inventory'][$item->InventQtyAvailOrderedDate]['quantity'] += $stock_data['ordered'];
             }
 
@@ -608,6 +610,7 @@ class ECommerceServices extends SoapService
                     );
                 }
 
+                $products[$key]['total'] += $stock_data['onhand'];
                 $products[$key]['inventory']['onhand']['quantity'] += $stock_data['onhand'];
             }
         }
@@ -621,12 +624,15 @@ class ECommerceServices extends SoapService
             $product = $item['product'];
 
             if (isset($item['inventory'])) {
+                $is_out = !((bool) $item['total']);
+
                 // inventory to products
-
                 $stock_service->setLevels($product->getId(), $item['inventory']);
+                $this->setStockStatus($is_out, $product);
 
-                $this->setStockStatus(false, $product);
-                $allout = false;
+                if (false === $is_out) {
+                    $allout = false;
+                }
             } else {
                 $this->setStockStatus(true, $product);
             }
@@ -1036,8 +1042,6 @@ class ECommerceServices extends SoapService
      */
     public function SalesOrderAddDocument($data)
     {
-        $errors = array();
-
         if (empty($data->eOrderNumber)) {
             $this->logger->addCritical(__METHOD__.' '.__LINE__.': no eOrderNumber given.');
             return self::responseStatus('Error', 'SalesOrderAddDocumentResult', array('no eOrderNumber given.'));
@@ -1356,42 +1360,20 @@ class ECommerceServices extends SoapService
      * Updates the stock status across databases.
      * This really should be moved to an event listener, as it is duplicated in Stock.
      *
-     * @param boolean  $is_out
-     * @param Products $product
+     * @param  boolean  $is_out
+     * @param  Products $product
+     * @return array
      */
     protected function setStockStatus($is_out, Products $product)
     {
-        static $locale;
-        if (empty($locale)) {
-            $locale = $this->request->getLocale();
-        }
-
-        $connections = [
-            'da_DK' => ['default', 'pdldbde1', 'pdldbfi1', 'pdldbnl1', 'pdldbse1', 'pdldbat1', 'pdldbch1'],
-            'nb_NO' => ['default'],
-        ];
-
-        if (isset($connections[$locale])) {
-            $product->setIsOutOfStock($is_out);
-
-            // note: in this loop we use raw PDO queries, Propel somehow caches
-            //       the query - even tho the connection has changed....
-            foreach ($connections[$locale] as $connection_name) {
-                $connection = Propel::getConnection($connection_name, Propel::CONNECTION_WRITE);
-
-                $sql = "
-                    UPDATE
-                        products
-                    SET
-                        is_out_of_stock = ".(int) $is_out."
-                        AND
-                            updated_at = NOW()
-                    WHERE
-                        id = ".$product->getId()
-                ;
-                $stmt = $connection->prepare($sql);
-                $stmt->execute();
-            }
-        }
+        return $this->replicator->executeQuery("
+            UPDATE
+                products
+            SET
+                is_out_of_stock = ".(int) $is_out.",
+                updated_at = NOW()
+            WHERE
+                id = ".$product->getId()
+        );
     }
 }

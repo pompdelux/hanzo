@@ -24,6 +24,9 @@ class DefaultController extends Controller
     {
         $order = OrdersQuery::create()
             ->joinWithOrdersLines()
+            ->useOrdersLinesQuery()
+                ->leftJoinWithProducts()
+            ->endUse()
             ->filterByCustomersId(CustomersPeer::getCurrent()->getId())
             ->findPk($order_id);
 
@@ -38,17 +41,18 @@ class DefaultController extends Controller
         foreach ($order_lines as $order_line) {
             if ($order_line->getType() == 'product') {
 
-                $product = $order_line->toArray(\BasePeer::TYPE_FIELDNAME);
+                $product = $order_line->getProducts();
+                $product_line = $order_line->toArray(\BasePeer::TYPE_FIELDNAME);
 
                 // Only generate an image if the product still exists.
-                if (isset($product['products_id'])) {
-                    $product['basket_image']
-                        = preg_replace('/[^a-z0-9]/i', '-', $product['products_name']) .
+                if ($product) {
+                    $product_line['basket_image']
+                        = preg_replace('/[^a-z0-9]/i', '-', $product->getMaster()) .
                         '_' .
-                        preg_replace('/[^a-z0-9]/i', '-', str_replace('/', '9', $product['products_color'])) .
+                        preg_replace('/[^a-z0-9]/i', '-', str_replace('/', '9', $product_line['products_color'])) .
                         '_overview_01.jpg';
                 }
-                $products['product_' . $product['id']] = $product;
+                $products['product_' . $product_line['id']] = $product_line;
             }
         }
 

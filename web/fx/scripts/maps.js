@@ -48,6 +48,10 @@ var maps = (function($) {
         populateMap(map, result.data, true);
         $('#consultants-map-canvas-2').show();
         google.maps.event.trigger(map, 'resize');
+      } else {
+        $.getJSON(base_url + 'rest/v1/gm/consultants', function(consultant_result) {
+          populateMap(map, consultant_result.data, true);
+        });
       }
     });
   };

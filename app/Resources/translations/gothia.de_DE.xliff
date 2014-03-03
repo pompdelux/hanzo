@@ -86,7 +86,7 @@ Wenden Sie sich bitte an den Kundendienst von Gothia: +45 7027 2795<br>Bei ander
       </trans-unit>
       <trans-unit id="bank_id" approved="no">
         <source>bank_id</source>
-        <target>IBAN</target>
+        <target>BLZ</target>
       </trans-unit>
       <trans-unit id="json.bank_account_no.to_long" approved="no">
         <source>json.bank_account_no.to_long</source>

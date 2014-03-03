@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\StockBundle;
 
+use Hanzo\Core\PropelReplicator;
 use Hanzo\Model\Products;
 use Hanzo\Model\ProductsQuery;
 
@@ -31,16 +32,23 @@ class Stock
     protected $warehouse;
 
     /**
-     * @param $locale
-     * @param EventDispatcher $event_dispatcher
-     * @param Warehouse       $warehouse
+     * @var PropelReplicator
      */
-    public function __construct($locale, EventDispatcher $event_dispatcher, Warehouse $warehouse)
+    protected $replicator;
+
+    /**
+     * @param string           $locale
+     * @param EventDispatcher  $event_dispatcher
+     * @param Warehouse        $warehouse
+     * @param PropelReplicator $replicator
+     */
+    public function __construct($locale, EventDispatcher $event_dispatcher, Warehouse $warehouse, PropelReplicator $replicator)
     {
         $this->locale = $locale;
         $this->event_dispatcher = $event_dispatcher;
         $warehouse->setLocation($locale);
         $this->warehouse = $warehouse;
+        $this->replicator = $replicator;
     }
 
 
@@ -283,37 +291,20 @@ class Stock
      * Updates the stock status across databases.
      * This really should be moved to an event listener, as it is duplicated in ECommerceServices
      *
-     * @param boolean  $is_out
-     * @param Products $product
+     * @param  boolean  $is_out
+     * @param  Products $product
+     * @return array
      */
     protected function setStockStatus($is_out, Products $product)
     {
-        $connections = [
-            'da_DK' => ['default', 'pdldbde1', 'pdldbfi1', 'pdldbnl1', 'pdldbse1', 'pdldbat1', 'pdldbch1'],
-            'nb_NO' => ['default'],
-        ];
-
-        if (isset($connections[$this->locale])) {
-            $product->setIsOutOfStock($is_out);
-
-            // note: in this loop we use raw PDO queries, Propel somehow caches
-            //       the query - even tho the connection has changed....
-            foreach ($connections[$this->locale] as $connection_name) {
-                $connection = \Propel::getConnection($connection_name, \Propel::CONNECTION_WRITE);
-
-                $sql = "
-                    UPDATE
-                        products
-                    SET
-                        is_out_of_stock = ".(int) $is_out."
-                        AND
-                            updated_at = NOW()
-                    WHERE
-                        id = ".$product->getId()
-                ;
-                $stmt = $connection->prepare($sql);
-                $stmt->execute();
-            }
-        }
+        return $this->replicator->executeQuery("
+            UPDATE
+                products
+            SET
+                is_out_of_stock = ".(int) $is_out.",
+                updated_at = NOW()
+            WHERE
+                id = ".$product->getId()
+        );
     }
 }
