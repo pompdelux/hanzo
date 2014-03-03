@@ -165,7 +165,7 @@ var account = (function($) {
       if (tld[1] == 'da_DK' || tld[1] == 'sv_SE' || tld[1] == 'nb_NO' ) {
         $('#customers_addresses_0_city').attr('readonly', 'readonly');
 
-        $(document).on('blur', '#customers_addresses_0_postal_code',  function () {
+        $(document).on('focusout blur', '#customers_addresses_0_postal_code',  function () {
           if ($('#customers_addresses_0_postal_code').val() === '') {
             $('#customers_addresses_0_postal_code')
               .css('border-color', '#a10000')
