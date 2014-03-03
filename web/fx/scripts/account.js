@@ -161,13 +161,11 @@ var account = (function($) {
     var tld_match = /\/([a-z]{2}_[A-Z]{2})\//;
     var tld = document.location.href.match(tld_match);
     try {
+      // set city to readonly
       if (tld[1] == 'da_DK' || tld[1] == 'sv_SE' || tld[1] == 'nb_NO' ) {
         $('#customers_addresses_0_city').attr('readonly', 'readonly');
 
-        // set city to readonly
-        $('#customers_addresses_0_city').focus(function () {
-          dialoug.loading( '#customers_addresses_0_city', Translator.get('js:please.wait') );
-          this.value = '';
+        $(document).on('blur', '#customers_addresses_0_postal_code',  function () {
           if ($('#customers_addresses_0_postal_code').val() === '') {
             $('#customers_addresses_0_postal_code')
               .css('border-color', '#a10000')
@@ -175,12 +173,36 @@ var account = (function($) {
               .fadeOut(100).fadeIn(100)
               .fadeOut(100).fadeIn(100)
               .focus();
-            dialoug.stopLoading();
             return;
           }
+
+          dialoug.loading( '#customers_addresses_0_city', Translator.get('js:please.wait') );
           $.getJSON( base_url+'muneris/gpc/'+$('#customers_addresses_0_postal_code').val(), function(data) {
-            if (data.status && data.data.postcode.city) {
-              $('#customers_addresses_0_city').val(data.data.postcode.city);
+            if (data.status && data.data.postcodes.length) {
+              if (data.data.postcodes.length > 1) {
+                // Many cities with same zip.
+                // Hide the city field and add a dropdown with all the cities.
+                $('#customers_addresses_0_city').prop('type', 'hidden').hide();
+                if ($('#customers_addresses_0_city_select_temp').length === 0) {
+                  $('<select id="customers_addresses_0_city_select_temp"></select>')
+                    .appendTo($('#customers_addresses_0_city').parent())
+                    .on('change', function(e){
+                      $('#customers_addresses_0_city').val(this.value);
+                    });
+                } else {
+                  $('#customers_addresses_0_city_select_temp option').remove();
+                  $('#customers_addresses_0_city_select_temp').show();
+                }
+                $.each(data.data.postcodes, function(index, postcode){
+                  // Add all cities as an option.
+                  $('#customers_addresses_0_city_select_temp').append($('<option value="' + postcode.city + '">' + postcode.city + '</option>'));
+                });
+              } else {
+                // Only 1 result.
+                $('#customers_addresses_0_city_select_temp').hide();
+                $('#customers_addresses_0_city').prop('type', 'text').show();
+                $('#customers_addresses_0_city').val(data.data.postcodes[0].city);
+              }
               $('#customers_addresses_0_postal_code').css('border-color', '#444345');
               try {
                 $('#customers_phone').focus();
@@ -199,6 +221,19 @@ var account = (function($) {
             }
             dialoug.stopLoading();
           });
+        });
+
+        $(document).on('focus', '#customers_addresses_0_city',  function () {
+          if ($('#customers_addresses_0_postal_code').val() === '') {
+            $('#customers_addresses_0_postal_code')
+              .css('border-color', '#a10000')
+              .fadeOut(100).fadeIn(100)
+              .fadeOut(100).fadeIn(100)
+              .fadeOut(100).fadeIn(100)
+              .focus();
+            dialoug.stopLoading();
+            return;
+          }
         });
       }
     } catch (e) {}
