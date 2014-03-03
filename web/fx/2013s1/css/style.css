@@ -3505,19 +3505,25 @@ form.full-width textarea {
   width: 97%;
   height: 120px;
 }
+form.full-width select {
+  width: 100%;
+}
 form input,
-form textarea {
+form textarea,
+form select {
   padding: 6px 5px;
   margin: 2px 0;
   color: #444444;
   font-family: "Merriweather", serif;
+  background: #FFF;
 }
 form textarea,
 form input[type="text"],
 form input[type="email"],
 form input[type="date"],
 form input[type="datetime"],
-form input[type="password"] {
+form input[type="password"],
+form select {
   border: 1px solid #444444;
 }
 form textarea.inline,
@@ -3525,10 +3531,12 @@ form input[type="text"].inline,
 form input[type="email"].inline,
 form input[type="date"].inline,
 form input[type="datetime"].inline,
-form input[type="password"].inline {
+form input[type="password"].inline,
+form select.inline {
   width: auto;
 }
-form input.error {
+form input.error,
+form select.error {
   border-color: #c18185;
 }
 
