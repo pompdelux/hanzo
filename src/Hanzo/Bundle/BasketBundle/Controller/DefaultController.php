@@ -510,7 +510,9 @@ class DefaultController extends CoreController
             $continueShopping = $router->generate('QuickOrderBundle_homepage');
         }
 
-        Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
+        if (!$embed) {
+            Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
+        }
 
         $html = $this->render($template, array(
             'continue_shopping' => $continueShopping,

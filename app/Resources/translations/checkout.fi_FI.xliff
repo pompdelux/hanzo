@@ -22,7 +22,7 @@
         <source>checkout.success.text</source>
         <target><![CDATA[
           <h2>E-tilausnumero</h2> <p>E-tilausnumero: <b>%id%</b></p>
-          <h2>Toimitusaika</h2> <p>Odotettu tilauksen käsittelyaika: %date%.</p>
+          <h2>Käsittelyaika</h2> <p>Odotettu tilauksen käsittelyaika: %date%.</p>
           <h2>Yhteystiedot</h2> <p>Tarvittaessa voit ottaa yhteyttä meihin.</p> <p>Puhelin 09 34870870</p> <p>Sähköposti: <a href="mailto:mailfi@pompdelux.com">mailfi@pompdelux.com</a></p>
           <h2>Oma sivu</h2> <p> Tilausten tarkastelu ja paljon muuta<br> <a href="%account%">» Omat Sivut</a> </p>
           <h2>FAQ</h2> <p> Tästä löydät yleisimmät kysymykset ja vastaukset POMPdeLUXista.<br> <a href="/fi_FI/koti/asiakaspalvelu/faq">» FAQ</a> </p>
