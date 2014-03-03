@@ -2,32 +2,52 @@
 
 namespace Hanzo\Bundle\VarnishBundle\Event;
 
-use Hanzo\Model\Categories;
-use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\EventDispatcher\Event as FilterEvent;
-
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
+
 use Hanzo\Bundle\VarnishBundle\Varnish;
 
 use Hanzo\Core\Tools;
+use Hanzo\Core\PropelReplicator;
 
-use Hanzo\Model\Cms;
-use Hanzo\Model\CmsQuery;
+use Hanzo\Model\Categories;
 use Hanzo\Model\CategoriesQuery;
+use Hanzo\Model\Cms;
 
 class BanListener
 {
+    /**
+     * @var Varnish
+     */
     protected $varnish;
-    protected $router;
-    protected $cache_dir;
-    protected $translator;
 
-    public function __construct(Varnish $varnish, Router $router, $cache_dir, Translator $translator)
+    /**
+     * @var Router
+     */
+    protected $router;
+
+    /**
+     * @var string
+     */
+    protected $cache_dir;
+
+    /**
+     * @var PropelReplicator
+     */
+    protected $replicator;
+
+    /**
+     * @param Varnish          $varnish
+     * @param Router           $router
+     * @param string           $cache_dir
+     * @param PropelReplicator $replicator
+     */
+    public function __construct(Varnish $varnish, Router $router, $cache_dir, PropelReplicator $replicator)
     {
         $this->varnish    = $varnish;
         $this->router     = $router;
         $this->cache_dir  = $cache_dir;
-        $this->translator = $translator;
+        $this->replicator = $replicator;
     }
 
     /**
@@ -122,7 +142,6 @@ class BanListener
         try {
             foreach ($items as $path) {
                 $path = '^/'.$path.'.*';
-                Tools::log($path);
                 $this->varnish->banUrl($path);
             }
 
@@ -137,21 +156,38 @@ class BanListener
     }
 
 
+    /**
+     * Fetches array of category paths to clear
+     *
+     * @return array
+     */
     protected function getCategoryMapping()
     {
-        $pages = CmsQuery::create()
-            ->filterByType('category')
-            ->find()
-        ;
+        $results = $this->replicator->executeQuery("
+            SELECT
+                cms_i18n.settings,
+                CONCAT(cms_i18n.locale, '/', cms_i18n.path) as path
+            FROM
+                cms
+            JOIN
+                cms_i18n
+            ON (
+                cms.id = cms_i18n.id
+            )
+            WHERE
+                cms.type = 'category'
+        ");
 
         $category_map = [];
-        foreach ($pages as $page) {
-            /** @var Cms $page */
-            $settings = $page->getSettings(null, false);
+        foreach ($results as $name => $sth) {
+            while ($record = $sth->fetch(\PDO::FETCH_ASSOC)) {
+                $settings = json_decode($record['settings']);
+                if (empty($category_map[$settings->category_id])) {
+                    $category_map[$settings->category_id] = [];
+                }
 
-            if (isset($settings->category_id)) {
-                foreach ($page->getCmsI18ns() as $i18n) {
-                    $category_map[$settings->category_id][] = $i18n->getPath();
+                if (!in_array($record['path'], $category_map[$settings->category_id])) {
+                    $category_map[$settings->category_id][] = $record['path'];
                 }
             }
         }
