@@ -46,7 +46,7 @@
             if (response.data.postcodes.length > 1) {
               // Many cities with same zip.
               // Hide the city field and add a dropdown with all the cities.
-              $city.prop('type', 'hidden').hide();
+              $city.hide();
               if ($city_dropdown.length === 0) {
                 $city_dropdown = $('<select class="js-auto-city-dropdown"></select>')
                   .appendTo($city.parent())
@@ -66,7 +66,7 @@
               if ($city_dropdown) {
                 $city_dropdown.hide();
               }
-              $city.prop('type', 'text').show();
+              $city.show();
               $city.prop('value', response.data.postcodes[0].city);
             }
           } else {
@@ -167,6 +167,9 @@
           fields : []
         };
 
+        // Be sure to copy the final address if "Copy address" is checked.
+        copyAddress();
+
         var $address_confirm_box= $('<div></div>').addClass('address-confirm-box clearfix');
 
         $('#address-block form').not('.location-locator').each(function (index, form) {
@@ -174,7 +177,7 @@
           var id = index;
 
           var $address_ul = $('<ul></ul>');
-          $('input, select', $form).each(function (index, element) {
+          $('input, select', $form).not('.js-auto-city-dropdown').each(function (index, element) {
             var $element = $(element);
             // TODO: use css class
             $element.css({'border': '1px solid #231F20'});
@@ -251,12 +254,9 @@
       });
 
       $('#address-copy').on('change',function(e){
-        $copied = $('#address-block form:nth-child(2)');
-        if ($(this).prop('checked')) {
-          $('#address-block form:first input[type=text]').each(function(i){
-            $copied.find('#'+$(this).attr('id')).val($(this).val());
-          });
-        } else {
+        var $copied = $('#address-block form:nth-child(2)');
+        if (!copyAddress()) {
+          // If address wasnt copied, reset the second.
           $copied.each(function(){
             this.reset();
           });
@@ -467,6 +467,21 @@
         jaiks.exec();
 
       };
+
+    /**
+     * Copies the address from first address block to second.
+     * @return boolean True if address was copied.
+     */
+    copyAddress = function() {
+      if ($('#address-copy').prop('checked')) {
+        var $copied = $('#address-block form:nth-child(2)');
+        $('#address-block form:first input[type=text]').each(function(i){
+          $copied.find('#'+$(this).attr('id')).val($(this).val());
+        });
+        return true;
+      }
+      return false;
+    };
 
     return pub;
   })(jQuery);

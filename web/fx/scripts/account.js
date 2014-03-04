@@ -182,7 +182,7 @@ var account = (function($) {
               if (data.data.postcodes.length > 1) {
                 // Many cities with same zip.
                 // Hide the city field and add a dropdown with all the cities.
-                $('#customers_addresses_0_city').prop('type', 'hidden').hide();
+                $('#customers_addresses_0_city').hide();
                 if ($('#customers_addresses_0_city_select_temp').length === 0) {
                   $('<select id="customers_addresses_0_city_select_temp"></select>')
                     .appendTo($('#customers_addresses_0_city').parent())
@@ -200,7 +200,7 @@ var account = (function($) {
               } else {
                 // Only 1 result.
                 $('#customers_addresses_0_city_select_temp').hide();
-                $('#customers_addresses_0_city').prop('type', 'text').show();
+                $('#customers_addresses_0_city').show();
                 $('#customers_addresses_0_city').val(data.data.postcodes[0].city);
               }
               $('#customers_addresses_0_postal_code').css('border-color', '#444345');
