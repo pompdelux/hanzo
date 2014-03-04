@@ -184,7 +184,6 @@ class AxService
         }
 
         if ($hostess_discount) {
-            $bag_price = 0.00;
             $big_bag_price = 0.00;
             $line = new stdClass();
             $line->ItemId     = 'HOSTESSDISCOUNT';
@@ -201,16 +200,13 @@ class AxService
                 case 'DE':
                 case 'FI':
                 case 'NL':
-                    $bag_price     = '1.95';
                     $big_bag_price = '4.95';
                 break;
                 case 'DK':
-                    $bag_price     = '10.00';
                     $big_bag_price = '40.00';
                     break;
                 case 'NO':
                 case 'SE':
-                    $bag_price     = '15.00';
                     $big_bag_price = '60.00';
                     break;
             }
@@ -233,6 +229,26 @@ class AxService
             if (((20140219 <= $date) && (20140519 >= $date)) ||
                 ($in_edit && (20140519 >= $order->getCreatedAt('Ymd')))
             ) {
+                $bag_price  = 0.00;
+                $domain_key = strtoupper($attributes->global->domain_key);
+                switch(str_replace('SALES', '', $domain_key)) {
+                    case 'AT':
+                    case 'CH':
+                    case 'COM':
+                    case 'DE':
+                    case 'FI':
+                    case 'NL':
+                        $bag_price     = '1.95';
+                        break;
+                    case 'DK':
+                        $bag_price     = '10.00';
+                        break;
+                    case 'NO':
+                    case 'SE':
+                        $bag_price     = '15.00';
+                        break;
+                }
+
                 $line = new stdClass();
                 $line->ItemId          = 'POMPBAGSS14';
                 $line->SalesPrice      = $bag_price;
