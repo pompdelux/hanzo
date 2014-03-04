@@ -37,3 +37,8 @@ consignor:
                   country_iso2: DE
                   email: mailde@pompdelux.com
                   phone: "040-3571 5072"
+
+google:
+    analytics_code:    UA-1793665-7
+    conversion_id:     967270518
+    site_verification: "URU_P3h0jo598hqu49Bc-wB7PKEUg9rNRFJTdF7w1fg"
