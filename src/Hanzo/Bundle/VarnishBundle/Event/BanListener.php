@@ -2,8 +2,9 @@
 
 namespace Hanzo\Bundle\VarnishBundle\Event;
 
-use Symfony\Component\EventDispatcher\Event as FilterEvent;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
+use Symfony\Bundle\FrameworkBundle\Translation\Translator;
+use Symfony\Component\EventDispatcher\Event as FilterEvent;
 
 use Hanzo\Bundle\VarnishBundle\Varnish;
 
@@ -37,17 +38,24 @@ class BanListener
     protected $replicator;
 
     /**
+     * @var Translator
+     */
+    protected $translator;
+
+    /**
      * @param Varnish          $varnish
      * @param Router           $router
      * @param string           $cache_dir
      * @param PropelReplicator $replicator
+     * @param Translator       $translator
      */
-    public function __construct(Varnish $varnish, Router $router, $cache_dir, PropelReplicator $replicator)
+    public function __construct(Varnish $varnish, Router $router, $cache_dir, PropelReplicator $replicator, Translator $translator)
     {
         $this->varnish    = $varnish;
         $this->router     = $router;
         $this->cache_dir  = $cache_dir;
         $this->replicator = $replicator;
+        $this->translator = $translator;
     }
 
     /**
@@ -165,7 +173,9 @@ class BanListener
     {
         $results = $this->replicator->executeQuery("
             SELECT
+                cms_i18n.id,
                 cms_i18n.settings,
+                cms_i18n.locale,
                 CONCAT(cms_i18n.locale, '/', cms_i18n.path) as path
             FROM
                 cms
@@ -179,9 +189,19 @@ class BanListener
         ");
 
         $category_map = [];
-        foreach ($results as $name => $sth) {
+        foreach ($results as $sth) {
             while ($record = $sth->fetch(\PDO::FETCH_ASSOC)) {
                 $settings = json_decode($record['settings']);
+
+                if (empty($settings->category_id)) {
+                    $t = $this->translator->trans($record['id'].'.settings', [], 'cms', $record['locale']);
+                    if ($t && $settings = json_decode($t)) {
+                        if (null == $settings) {
+                            return;
+                        }
+                    }
+                }
+
                 if (empty($category_map[$settings->category_id])) {
                     $category_map[$settings->category_id] = [];
                 }
