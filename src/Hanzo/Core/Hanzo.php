@@ -83,8 +83,11 @@ class Hanzo
         }
 
         if (empty($cache)) {
-            $this->initSettings();
-            $this->initDomain();
+            // workaround for travis-ci and not having a db connection on eg. install
+            try {
+                $this->initSettings();
+                $this->initDomain();
+            } catch (\Exception $e) {}
 
             if ($this->cache) {
                 $this->cache->setex($cache_id, 3600, $this->settings);
