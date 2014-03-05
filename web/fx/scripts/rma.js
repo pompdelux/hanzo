@@ -20,6 +20,7 @@ var rma = (function ($) {
         });
 
         $('.rma-submit').on('click', function (event) {
+            event.preventDefault();
             generatePdf();
         });
 
