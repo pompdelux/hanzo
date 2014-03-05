@@ -162,7 +162,7 @@ var account = (function($) {
     var tld = document.location.href.match(tld_match);
     try {
       // set city to readonly
-      if (tld[1] == 'da_DK' || tld[1] == 'sv_SE' || tld[1] == 'nb_NO' ) {
+      if (jQuery.inArray(tld[1], ['da_DK', 'fi_FI', 'sv_SE', 'nb_NO', 'nl_NL', 'de_DE', 'de_CH', 'de_AT']) > -1) {
         $('#customers_addresses_0_city').attr('readonly', 'readonly');
 
         $(document).on('focusout blur', '#customers_addresses_0_postal_code',  function () {
