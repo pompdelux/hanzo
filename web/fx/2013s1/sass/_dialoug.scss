@@ -42,6 +42,10 @@
   .alert!, .confirm! {}
   #cboxClose {
     display: none;
+    &.sprite {
+      text-indent: -100px;
+      display: inline-block;
+    }
   }
 }
 #colorbox.js-keep-close-button #cboxClose {

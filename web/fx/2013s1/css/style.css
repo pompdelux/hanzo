@@ -2589,6 +2589,10 @@ nav.main-menu > ul > li > ul li.heading > a, nav.main-menu > ul > li > ul li.sel
 #cboxContent #cboxClose {
   display: none;
 }
+#cboxContent #cboxClose.sprite {
+  text-indent: -100px;
+  display: inline-block;
+}
 
 #colorbox.js-keep-close-button #cboxClose {
   display: block;

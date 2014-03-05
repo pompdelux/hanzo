@@ -32,6 +32,7 @@ var dialoug = (function($) {
     }
 
     defaults.overlayClose = false;
+    defaults.closeButton = false;
     defaults.escKey = false;
     defaults.html = templates.confirm
       .replace('%title%', title)
@@ -171,6 +172,7 @@ var dialoug = (function($) {
       'maxWidth' : '500px',
       'close' : '',
       'overlayClose' : false,
+      'closeButton': false,
       'escKey' : false,
       'html': templates.alert
                        .replace('%title%', title)
