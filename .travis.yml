@@ -1,7 +1,6 @@
 language: php
 
 php:
-  - 5.4
   - 5.5
 
 services:
@@ -10,7 +9,7 @@ services:
 before_script:
   - echo "redis = redis.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - cp app/config/parameters.ini.dist app/config/parameters.ini
-  - sudo composer self-update
+  - composer self-update
   - composer install
 
 script: phpunit -c app/
