@@ -7,7 +7,7 @@ services:
   - redis-server
 
 before_script:
-  - echo "redis = redis.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - echo "extension=redis.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - cp app/config/parameters.ini.dist app/config/parameters.ini
   - composer self-update
   - sudo service mysql stop
