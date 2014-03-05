@@ -214,7 +214,7 @@ abstract class BaseMannequinImages extends BaseObject implements Persistent
      */
     public function setMaster($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -239,7 +239,7 @@ abstract class BaseMannequinImages extends BaseObject implements Persistent
      */
     public function setColor($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -281,7 +281,7 @@ abstract class BaseMannequinImages extends BaseObject implements Persistent
      */
     public function setImage($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -302,7 +302,7 @@ abstract class BaseMannequinImages extends BaseObject implements Persistent
      */
     public function setIcon($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 

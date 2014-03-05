@@ -294,7 +294,7 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
      */
     public function setLocale($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -315,7 +315,7 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
      */
     public function setTitle($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -336,7 +336,7 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
      */
     public function setPath($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -357,7 +357,7 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
      */
     public function setOldPath($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -378,7 +378,7 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
      */
     public function setContent($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -399,7 +399,7 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
      */
     public function setSettings($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 

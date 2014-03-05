@@ -225,7 +225,7 @@ abstract class BaseLanguages extends BaseObject implements Persistent
      */
     public function setName($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -246,7 +246,7 @@ abstract class BaseLanguages extends BaseObject implements Persistent
      */
     public function setLocalName($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -267,7 +267,7 @@ abstract class BaseLanguages extends BaseObject implements Persistent
      */
     public function setLocale($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -288,7 +288,7 @@ abstract class BaseLanguages extends BaseObject implements Persistent
      */
     public function setIso2($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -309,7 +309,7 @@ abstract class BaseLanguages extends BaseObject implements Persistent
      */
     public function setDirection($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 

@@ -572,7 +572,7 @@ abstract class BaseEventsParticipants extends BaseObject implements Persistent
      */
     public function setKey($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -614,7 +614,7 @@ abstract class BaseEventsParticipants extends BaseObject implements Persistent
      */
     public function setFirstName($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -635,7 +635,7 @@ abstract class BaseEventsParticipants extends BaseObject implements Persistent
      */
     public function setLastName($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -656,7 +656,7 @@ abstract class BaseEventsParticipants extends BaseObject implements Persistent
      */
     public function setEmail($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -677,7 +677,7 @@ abstract class BaseEventsParticipants extends BaseObject implements Persistent
      */
     public function setPhone($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 

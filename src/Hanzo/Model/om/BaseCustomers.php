@@ -540,7 +540,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      */
     public function setTitle($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -561,7 +561,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      */
     public function setFirstName($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -582,7 +582,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      */
     public function setLastName($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -603,7 +603,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      */
     public function setEmail($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -624,7 +624,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      */
     public function setPhone($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -645,7 +645,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      */
     public function setPassword($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -666,7 +666,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      */
     public function setPasswordClear($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 

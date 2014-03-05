@@ -164,7 +164,7 @@ abstract class BaseOrdersAttributes extends BaseObject implements Persistent
      */
     public function setNs($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -185,7 +185,7 @@ abstract class BaseOrdersAttributes extends BaseObject implements Persistent
      */
     public function setCKey($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -206,7 +206,7 @@ abstract class BaseOrdersAttributes extends BaseObject implements Persistent
      */
     public function setCValue($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 

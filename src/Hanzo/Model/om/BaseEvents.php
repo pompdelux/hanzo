@@ -569,7 +569,7 @@ abstract class BaseEvents extends BaseObject implements Persistent
      */
     public function setCode($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -590,7 +590,7 @@ abstract class BaseEvents extends BaseObject implements Persistent
      */
     public function setKey($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -684,7 +684,7 @@ abstract class BaseEvents extends BaseObject implements Persistent
      */
     public function setHost($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -705,7 +705,7 @@ abstract class BaseEvents extends BaseObject implements Persistent
      */
     public function setAddressLine1($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -726,7 +726,7 @@ abstract class BaseEvents extends BaseObject implements Persistent
      */
     public function setAddressLine2($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -747,7 +747,7 @@ abstract class BaseEvents extends BaseObject implements Persistent
      */
     public function setPostalCode($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -768,7 +768,7 @@ abstract class BaseEvents extends BaseObject implements Persistent
      */
     public function setCity($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -789,7 +789,7 @@ abstract class BaseEvents extends BaseObject implements Persistent
      */
     public function setPhone($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -810,7 +810,7 @@ abstract class BaseEvents extends BaseObject implements Persistent
      */
     public function setEmail($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -831,7 +831,7 @@ abstract class BaseEvents extends BaseObject implements Persistent
      */
     public function setDescription($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -852,7 +852,7 @@ abstract class BaseEvents extends BaseObject implements Persistent
      */
     public function setType($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 

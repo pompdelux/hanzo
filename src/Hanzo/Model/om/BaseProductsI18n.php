@@ -186,7 +186,7 @@ abstract class BaseProductsI18n extends BaseObject implements Persistent
      */
     public function setLocale($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -207,7 +207,7 @@ abstract class BaseProductsI18n extends BaseObject implements Persistent
      */
     public function setTitle($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -228,7 +228,7 @@ abstract class BaseProductsI18n extends BaseObject implements Persistent
      */
     public function setContent($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
