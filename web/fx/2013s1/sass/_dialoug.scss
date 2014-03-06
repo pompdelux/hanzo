@@ -78,23 +78,25 @@
 
 
 #newsletterModal {
-
-    &.type1 {
-        display: none;
-        background-image: url(/fx/images/ffffff.png);
+    display: none;
+    position: absolute;
+    z-index: 499;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    .inner {
+        z-index: 500;
         position: absolute;
-        z-index: 499;
         top: 0;
         right: 0;
-        bottom: 0;
         left: 0;
+    }
+
+    &.type1 {
+        background-image: url(/fx/images/ffffff.png);
 
         .inner {
-            z-index: 500;
-            position: absolute;
-            top: 0;
-            right: 0;
-            left: 0;
             margin: 200px auto 0 auto;
             padding: 20px 20px 5px 20px;
             width: 600px;
@@ -174,5 +176,13 @@
             height: 220px;
             clear: both;
         }
+    }
+
+    &.type2 {
+
+        .inner {}
+        .wrapper {}
+        .close-button {}
+        .bottom {}
     }
 }

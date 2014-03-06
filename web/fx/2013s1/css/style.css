@@ -2621,9 +2621,8 @@ nav.main-menu > ul > li > ul li.heading > a, nav.main-menu > ul > li > ul li.sel
   margin-left: 5px;
 }
 
-#newsletterModal.type1 {
+#newsletterModal {
   display: none;
-  background-image: url(/fx/images/ffffff.png);
   position: absolute;
   z-index: 499;
   top: 0;
@@ -2631,12 +2630,17 @@ nav.main-menu > ul > li > ul li.heading > a, nav.main-menu > ul > li > ul li.sel
   bottom: 0;
   left: 0;
 }
-#newsletterModal.type1 .inner {
+#newsletterModal .inner {
   z-index: 500;
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
+}
+#newsletterModal.type1 {
+  background-image: url(/fx/images/ffffff.png);
+}
+#newsletterModal.type1 .inner {
   margin: 200px auto 0 auto;
   padding: 20px 20px 5px 20px;
   width: 600px;
