@@ -7,6 +7,7 @@ services:
   - redis-server
 
 before_install:
+  - sudo apt-get update
   - sudo apt-get --reinstall install -qq language-pack-da language-pack-de language-pack-en language-pack-fi language-pack-nb language-pack-nl language-pack-se
 
 before_script:
