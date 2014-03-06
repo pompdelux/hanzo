@@ -2709,22 +2709,30 @@ nav.main-menu > ul > li > ul li.heading > a, nav.main-menu > ul > li > ul li.sel
   height: 220px;
   clear: both;
 }
+#newsletterModal.type2 {
+  background-image: url(/fx/images/ffffff.png);
+}
 #newsletterModal.type2 .inner {
   background: white;
   padding: 20px;
   width: 800px;
-}
-#newsletterModal.type2 .wrapper {
-  width: 757px;
-  height: 350px;
-  margin: 0 auto;
+  -webkit-border-radius: 0px 10px;
+  -moz-border-radius: 0px 10px;
+  border-radius: 0px 10px;
 }
 #newsletterModal.type2 .wrapper p, #newsletterModal.type2 .wrapper h2 {
   display: none;
 }
+#newsletterModal.type2 .wrapper form {
+  width: 757px;
+  height: 350px;
+  margin: 0 auto;
+  background-repeat: no-repeat;
+}
 #newsletterModal.type2 .wrapper form input[type="text"], #newsletterModal.type2 .wrapper form input[type="email"] {
   position: absolute;
   left: 478px;
+  width: 308px;
 }
 #newsletterModal.type2 .wrapper form input[type="text"] {
   top: 287px;
@@ -2734,10 +2742,19 @@ nav.main-menu > ul > li > ul li.heading > a, nav.main-menu > ul > li > ul li.sel
 }
 #newsletterModal.type2 .wrapper form input.button {
   position: absolute;
-  top: 201px;
-  left: 684px;
+  top: 198px;
+  left: 720px;
   text-indent: -9999px;
   background-position: initial;
+  height: 88px;
+  width: 88px;
+}
+#newsletterModal.type2 .wrapper form .dialoug-message {
+  position: absolute;
+  top: 0;
+}
+#newsletterModal.type2 .wrapper form.newsletter-subscribe-complete input {
+  display: none;
 }
 #newsletterModal.type2 .close-button {
   display: inline-block;
@@ -2750,80 +2767,80 @@ nav.main-menu > ul > li > ul li.heading > a, nav.main-menu > ul > li > ul li.sel
   background-position: initial;
 }
 
-body.domain-dk #newsletterModal .wrapper {
+body.domain-dk #newsletterModal .wrapper form {
   background-image: url(/fx/images/newsletter_overlay/type2/Billede_DK.jpg);
 }
-body.domain-dk #newsletterModal .wrapper.receipt {
+body.domain-dk #newsletterModal .wrapper form.newsletter-subscribe-complete {
   background-image: url(/fx/images/newsletter_overlay/type2/Kvittering_DK.jpg);
 }
 body.domain-dk #newsletterModal .wrapper form input.button {
   background-image: url(/fx/images/newsletter_overlay/type2/Tilmeld-knap_DK.png);
 }
 
-body.domain-de #newsletterModal .wrapper {
+body.domain-de #newsletterModal .wrapper form {
   background-image: url(/fx/images/newsletter_overlay/type2/Billede_DE.jpg);
 }
-body.domain-de #newsletterModal .wrapper.receipt {
+body.domain-de #newsletterModal .wrapper form.newsletter-subscribe-complete {
   background-image: url(/fx/images/newsletter_overlay/type2/Kvittering_DE.jpg);
 }
 body.domain-de #newsletterModal .wrapper form input.button {
   background-image: url(/fx/images/newsletter_overlay/type2/Tilmeld-knap_DE.png);
 }
 
-body.domain-com #newsletterModal .wrapper {
+body.domain-com #newsletterModal .wrapper form {
   background-image: url(/fx/images/newsletter_overlay/type2/Billede_COM.jpg);
 }
-body.domain-com #newsletterModal .wrapper.receipt {
+body.domain-com #newsletterModal .wrapper form.newsletter-subscribe-complete {
   background-image: url(/fx/images/newsletter_overlay/type2/Kvittering_COM.jpg);
 }
 body.domain-com #newsletterModal .wrapper form input.button {
   background-image: url(/fx/images/newsletter_overlay/type2/Tilmeld-knap_COM.png);
 }
 
-body.domain-fi #newsletterModal .wrapper {
+body.domain-fi #newsletterModal .wrapper form {
   background-image: url(/fx/images/newsletter_overlay/type2/Billede_FI.jpg);
 }
-body.domain-fi #newsletterModal .wrapper.receipt {
+body.domain-fi #newsletterModal .wrapper form.newsletter-subscribe-complete {
   background-image: url(/fx/images/newsletter_overlay/type2/Kvittering_FI.jpg);
 }
 body.domain-fi #newsletterModal .wrapper form input.button {
   background-image: url(/fx/images/newsletter_overlay/type2/Tilmeld-knap_FI.png);
 }
 
-body.domain-no #newsletterModal .wrapper {
+body.domain-no #newsletterModal .wrapper form {
   background-image: url(/fx/images/newsletter_overlay/type2/Billede_NO.jpg);
 }
-body.domain-no #newsletterModal .wrapper.receipt {
+body.domain-no #newsletterModal .wrapper form.newsletter-subscribe-complete {
   background-image: url(/fx/images/newsletter_overlay/type2/Kvittering_NO.jpg);
 }
 body.domain-no #newsletterModal .wrapper form input.button {
   background-image: url(/fx/images/newsletter_overlay/type2/Tilmeld-knap_NO.png);
 }
 
-body.domain-nl #newsletterModal .wrapper {
+body.domain-nl #newsletterModal .wrapper form {
   background-image: url(/fx/images/newsletter_overlay/type2/Billede_NL.jpg);
 }
-body.domain-nl #newsletterModal .wrapper.receipt {
+body.domain-nl #newsletterModal .wrapper form.newsletter-subscribe-complete {
   background-image: url(/fx/images/newsletter_overlay/type2/Kvittering_NL.jpg);
 }
 body.domain-nl #newsletterModal .wrapper form input.button {
   background-image: url(/fx/images/newsletter_overlay/type2/Tilmeld-knap_NL.png);
 }
 
-body.domain-se #newsletterModal .wrapper {
+body.domain-se #newsletterModal .wrapper form {
   background-image: url(/fx/images/newsletter_overlay/type2/Billede_SE.jpg);
 }
-body.domain-se #newsletterModal .wrapper.receipt {
+body.domain-se #newsletterModal .wrapper form.newsletter-subscribe-complete {
   background-image: url(/fx/images/newsletter_overlay/type2/Kvittering_SE.jpg);
 }
 body.domain-se #newsletterModal .wrapper form input.button {
   background-image: url(/fx/images/newsletter_overlay/type2/Tilmeld-knap_SE.png);
 }
 
-body.domain-ch #newsletterModal .wrapper {
+body.domain-ch #newsletterModal .wrapper form {
   background-image: url(/fx/images/newsletter_overlay/type2/Billede_CH.jpg);
 }
-body.domain-ch #newsletterModal .wrapper.receipt {
+body.domain-ch #newsletterModal .wrapper form.newsletter-subscribe-complete {
   background-image: url(/fx/images/newsletter_overlay/type2/Kvittering_CH.jpg);
 }
 body.domain-ch #newsletterModal .wrapper form input.button {
