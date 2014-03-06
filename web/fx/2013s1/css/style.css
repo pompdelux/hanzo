@@ -2621,7 +2621,7 @@ nav.main-menu > ul > li > ul li.heading > a, nav.main-menu > ul > li > ul li.sel
   margin-left: 5px;
 }
 
-#newsletterModal {
+#newsletterModal.type1 {
   display: none;
   background-image: url(/fx/images/ffffff.png);
   position: absolute;
@@ -2631,7 +2631,7 @@ nav.main-menu > ul > li > ul li.heading > a, nav.main-menu > ul > li > ul li.sel
   bottom: 0;
   left: 0;
 }
-#newsletterModal .inner {
+#newsletterModal.type1 .inner {
   z-index: 500;
   position: absolute;
   top: 0;
@@ -2645,42 +2645,42 @@ nav.main-menu > ul > li > ul li.heading > a, nav.main-menu > ul > li > ul li.sel
   overflow: hidden;
   display: inline-block;
 }
-#newsletterModal h2 {
+#newsletterModal.type1 h2 {
   font-family: "Merriweather", serif;
 }
-#newsletterModal .wrapper {
+#newsletterModal.type1 .wrapper {
   background-image: url(/fx/images/newsletter_overlay/letters.png);
   background-repeat: no-repeat;
   padding-left: 150px;
   padding-top: 20px;
 }
-#newsletterModal .wrapper p {
+#newsletterModal.type1 .wrapper p {
   width: 280px;
 }
-#newsletterModal .wrapper form {
+#newsletterModal.type1 .wrapper form {
   overflow: hidden;
 }
-#newsletterModal .wrapper div {
+#newsletterModal.type1 .wrapper div {
   width: 295px;
   float: left;
 }
-#newsletterModal .wrapper div input[type="text"] {
+#newsletterModal.type1 .wrapper div input[type="text"] {
   margin-top: 15px;
 }
-#newsletterModal .wrapper div input[type="text"], #newsletterModal .wrapper div input[type="email"] {
+#newsletterModal.type1 .wrapper div input[type="text"], #newsletterModal.type1 .wrapper div input[type="email"] {
   width: 100%;
 }
-#newsletterModal .wrapper div p {
+#newsletterModal.type1 .wrapper div p {
   width: 100%;
   padding-top: 5px;
 }
-#newsletterModal .wrapper div p a {
+#newsletterModal.type1 .wrapper div p a {
   font-size: 11px;
 }
-#newsletterModal .wrapper div p a:hover, #newsletterModal .wrapper div p a:focus {
+#newsletterModal.type1 .wrapper div p a:hover, #newsletterModal.type1 .wrapper div p a:focus {
   text-decoration: underline;
 }
-#newsletterModal .wrapper input.button {
+#newsletterModal.type1 .wrapper input.button {
   float: left;
   margin-left: 40px;
   height: 83px;
@@ -2689,7 +2689,7 @@ nav.main-menu > ul > li > ul li.heading > a, nav.main-menu > ul > li > ul li.sel
   text-indent: -999px;
   display: inline-block;
 }
-#newsletterModal .close-button {
+#newsletterModal.type1 .close-button {
   display: inline-block;
   height: 64px;
   width: 44px;
@@ -2698,7 +2698,7 @@ nav.main-menu > ul > li > ul li.heading > a, nav.main-menu > ul > li > ul li.sel
   top: 10px;
   right: 10px;
 }
-#newsletterModal .bottom {
+#newsletterModal.type1 .bottom {
   background-image: url(/fx/images/newsletter_overlay/bottom.png);
   background-repeat: no-repeat;
   background-position: bottom center;
