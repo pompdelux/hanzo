@@ -91,20 +91,20 @@
         top: 0;
         right: 0;
         left: 0;
+        margin: 200px auto 0 auto;
+        overflow: hidden;
+        display: inline-block;
     }
 
     &.type1 {
         background-image: url(/fx/images/ffffff.png);
 
         .inner {
-            margin: 200px auto 0 auto;
             padding: 20px 20px 5px 20px;
             width: 600px;
             // height: auto;
             border-radius: 2px;
             background-image: url(/fx/images/newsletter_overlay/bg.png);
-            overflow: hidden;
-            display: inline-block;
         }
 
         h2 {
@@ -180,9 +180,125 @@
 
     &.type2 {
 
-        .inner {}
-        .wrapper {}
-        .close-button {}
+        .inner {
+            // background-image: url(/fx/images/ffffff.png);
+            background: white;
+            padding: 20px;
+            width: 800px;
+        }
+        .wrapper {
+            p, h2 {
+                display: none;
+            }
+
+            width: 757px;
+            height: 350px;
+            margin: 0 auto;
+
+
+            form {
+                input[type="text"], input[type="email"] {
+                    position: absolute;
+                    left: 478px;
+                }
+                input[type="text"] {
+                    top: 287px;
+                }
+                input[type="email"] {
+                    top: 320px;
+                }
+                input.button {
+                    position: absolute;
+                    top: 201px;
+                    left: 684px;
+                    text-indent: -9999px;
+                    background-position: initial;
+                }
+            }
+        }
+        .close-button {
+            display: inline-block;
+            height: 23px;
+            width: 25px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-image: url(/fx/images/newsletter_overlay/type2/close.png);
+            background-position: initial;
+        }
         .bottom {}
+    }
+}
+
+body.domain-dk #newsletterModal .wrapper {
+    background-image: url(/fx/images/newsletter_overlay/type2/Billede_DK.jpg);
+    &.receipt {
+        background-image: url(/fx/images/newsletter_overlay/type2/Kvittering_DK.jpg);
+    }
+    form input.button {
+        background-image: url(/fx/images/newsletter_overlay/type2/Tilmeld-knap_DK.png);
+    }
+}
+body.domain-de #newsletterModal .wrapper {
+    background-image: url(/fx/images/newsletter_overlay/type2/Billede_DE.jpg);
+    &.receipt {
+        background-image: url(/fx/images/newsletter_overlay/type2/Kvittering_DE.jpg);
+    }
+    form input.button {
+        background-image: url(/fx/images/newsletter_overlay/type2/Tilmeld-knap_DE.png);
+    }
+}
+body.domain-com #newsletterModal .wrapper {
+    background-image: url(/fx/images/newsletter_overlay/type2/Billede_COM.jpg);
+    &.receipt {
+        background-image: url(/fx/images/newsletter_overlay/type2/Kvittering_COM.jpg);
+    }
+    form input.button {
+        background-image: url(/fx/images/newsletter_overlay/type2/Tilmeld-knap_COM.png);
+    }
+}
+body.domain-fi #newsletterModal .wrapper {
+    background-image: url(/fx/images/newsletter_overlay/type2/Billede_FI.jpg);
+    &.receipt {
+        background-image: url(/fx/images/newsletter_overlay/type2/Kvittering_FI.jpg);
+    }
+    form input.button {
+        background-image: url(/fx/images/newsletter_overlay/type2/Tilmeld-knap_FI.png);
+    }
+}
+body.domain-no #newsletterModal .wrapper {
+    background-image: url(/fx/images/newsletter_overlay/type2/Billede_NO.jpg);
+    &.receipt {
+        background-image: url(/fx/images/newsletter_overlay/type2/Kvittering_NO.jpg);
+    }
+    form input.button {
+        background-image: url(/fx/images/newsletter_overlay/type2/Tilmeld-knap_NO.png);
+    }
+}
+body.domain-nl #newsletterModal .wrapper {
+    background-image: url(/fx/images/newsletter_overlay/type2/Billede_NL.jpg);
+    &.receipt {
+        background-image: url(/fx/images/newsletter_overlay/type2/Kvittering_NL.jpg);
+    }
+    form input.button {
+        background-image: url(/fx/images/newsletter_overlay/type2/Tilmeld-knap_NL.png);
+    }
+}
+body.domain-se #newsletterModal .wrapper {
+    background-image: url(/fx/images/newsletter_overlay/type2/Billede_SE.jpg);
+    &.receipt {
+        background-image: url(/fx/images/newsletter_overlay/type2/Kvittering_SE.jpg);
+    }
+    form input.button {
+        background-image: url(/fx/images/newsletter_overlay/type2/Tilmeld-knap_SE.png);
+    }
+}
+body.domain-ch #newsletterModal .wrapper {
+    background-image: url(/fx/images/newsletter_overlay/type2/Billede_CH.jpg);
+    &.receipt {
+        background-image: url(/fx/images/newsletter_overlay/type2/Kvittering_CH.jpg);
+    }
+    form input.button {
+        background-image: url(/fx/images/newsletter_overlay/type2/Tilmeld-knap_CH.png);
     }
 }
