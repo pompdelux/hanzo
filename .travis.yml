@@ -25,7 +25,7 @@ notifications:
   email:
     recipients:
       - pdl@bellcom.dk
-#      - hd@pompdelux.dk
-#      - lv@pompdelux.dk
+      - hd@pompdelux.dk
+      - lv@pompdelux.dk
     on_success: always
     on_failure: always
