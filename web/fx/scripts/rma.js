@@ -88,19 +88,17 @@ var rma = (function ($) {
         });
 
         if (products.length > 0) {
-            // pop return lable window
+            // Force PDF download trough an iframe.
+            $('<iframe src="?order_id=' + rma_order_id + '&products=' + encodeURIComponent(JSON.stringify(products)) + '" width="1" height="0" class="off" frameborder="0"></iframe>')
+                .appendTo('body');
+            // Force download of return label with an iframe delayed a couple of
+            // seconds.
             if (-1 == jQuery.inArray($('html').data('domainkey'), ['nl', 'salesnl', 'com'])) {
-                window.open(base_url + 'account/consignor/return-label/' + rma_order_id);
+                window.setTimeout(function(){
+                    $('<iframe src="' + base_url + 'account/consignor/return-label/' + rma_order_id + '" width="1" height="0" class="off" frameborder="0"></iframe>')
+                        .appendTo('body');
+                }, 3000);
             }
-
-            // Add a hidden form to send.
-            var $form = $('<form></form>')
-                .attr('method', 'GET')
-                .append($('<input type="hidden" name="order_id">').val(rma_order_id))
-                .append($('<input type="hidden" name="products">').val(JSON.stringify(products)))
-                .appendTo('body')
-                .submit()
-            ;
         }
 
         dialoug.stopLoading();
