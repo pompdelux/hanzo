@@ -74,13 +74,6 @@ class DefaultController extends CoreController
 
                 if ($this->getFormat() == 'json') {
                     if (count($records)) {
-                        // hack to handle addresses where the "name" part is "N/A" - this confuses AX and Consignor.
-                        foreach ($records as $k => $data) {
-                            if (strtoupper($data['name']) == 'N/A') {
-                                $records[$k]['name'] = $customer->getName();
-                            }
-                        }
-
                         $response = [
                             'status'  => true,
                             'message' => '',
