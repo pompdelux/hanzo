@@ -73,6 +73,14 @@ class Addresses extends BaseAddresses
         return $title;
     }
 
+    /**
+     * get full name
+     */
+    public function getName()
+    {
+        return trim($this->getFirstName() . ' ' . $this->getLastName());
+    }
+
 
     /**
      * Validate length of users full name
