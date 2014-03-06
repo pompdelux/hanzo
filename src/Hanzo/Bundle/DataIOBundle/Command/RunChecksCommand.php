@@ -42,7 +42,7 @@ class RunChecksCommand extends ContainerAwareCommand
         $this->sendMail($input->getArgument('email'));
 
         if (false === $status) {
-            die(1);
+            exit(1);
         }
     }
 
