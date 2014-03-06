@@ -110,7 +110,7 @@ abstract class BaseRelatedProducts extends BaseObject implements Persistent
      */
     public function setMaster($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -135,7 +135,7 @@ abstract class BaseRelatedProducts extends BaseObject implements Persistent
      */
     public function setSku($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 

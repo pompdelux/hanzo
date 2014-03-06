@@ -64,8 +64,8 @@ class ToolsTest extends \PHPUnit_Framework_TestCase
 
         $order->setOrdersAttributess($c);
 
-        $this->assertEquals('order@pompdelux.dk', Tools::getBccEmailAddress('order', $order));
-        $this->assertEquals('retur@pompdelux.dk', Tools::getBccEmailAddress('retur', $order));
+        $this->assertEquals('orderdk@pompdelux.com', Tools::getBccEmailAddress('order', $order));
+        $this->assertEquals('returdk@pompdelux.com', Tools::getBccEmailAddress('retur', $order));
 
         $order = new Orders();
         $order->setId(2);
@@ -82,6 +82,6 @@ class ToolsTest extends \PHPUnit_Framework_TestCase
         $order->setOrdersAttributess($c);
 
         $this->assertEquals('orderfi@pompdelux.com', Tools::getBccEmailAddress('order', $order));
-        $this->assertEquals('returfi@pompdelux.dk', Tools::getBccEmailAddress('retur', $order));
+        $this->assertEquals('returfi@pompdelux.com', Tools::getBccEmailAddress('retur', $order));
     }
 }

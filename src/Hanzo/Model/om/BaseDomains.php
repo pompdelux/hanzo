@@ -180,7 +180,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
      */
     public function setDomainName($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -201,7 +201,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
      */
     public function setDomainKey($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 

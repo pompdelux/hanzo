@@ -345,7 +345,7 @@ abstract class BaseCountries extends BaseObject implements Persistent
      */
     public function setName($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -366,7 +366,7 @@ abstract class BaseCountries extends BaseObject implements Persistent
      */
     public function setLocalName($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -408,7 +408,7 @@ abstract class BaseCountries extends BaseObject implements Persistent
      */
     public function setIso2($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -429,7 +429,7 @@ abstract class BaseCountries extends BaseObject implements Persistent
      */
     public function setIso3($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -450,7 +450,7 @@ abstract class BaseCountries extends BaseObject implements Persistent
      */
     public function setContinent($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -492,7 +492,7 @@ abstract class BaseCountries extends BaseObject implements Persistent
      */
     public function setCurrencyCode($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -513,7 +513,7 @@ abstract class BaseCountries extends BaseObject implements Persistent
      */
     public function setCurrencyName($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 

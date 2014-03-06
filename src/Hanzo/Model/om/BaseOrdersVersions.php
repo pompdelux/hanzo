@@ -241,7 +241,7 @@ abstract class BaseOrdersVersions extends BaseObject implements Persistent
      */
     public function setContent($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 

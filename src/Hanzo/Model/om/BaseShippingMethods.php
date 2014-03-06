@@ -264,7 +264,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
      */
     public function setCarrier($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -285,7 +285,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
      */
     public function setMethod($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -306,7 +306,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
      */
     public function setExternalId($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -327,7 +327,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
      */
     public function setCalcEngine($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -390,7 +390,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
      */
     public function setFeeExternalId($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
