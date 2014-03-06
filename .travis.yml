@@ -13,6 +13,7 @@ before_install:
 before_script:
   - echo "extension=redis.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - echo 'date.timezone = "Europe/Copenhagen"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - echo 'sendmail_path=sendmail -t -i' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - cp app/config/parameters.ini.dist app/config/parameters.ini
   - composer self-update
   - composer install
