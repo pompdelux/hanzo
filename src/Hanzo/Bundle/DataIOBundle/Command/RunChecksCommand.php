@@ -36,10 +36,14 @@ class RunChecksCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->validateXliff();
+        $status = $this->validateXliff();
 
         // must be last!
-        $this->sendMail($input->getArgument('email'));
+        if (false === getenv('TRAVIS')) {
+            return $this->sendMail($input->getArgument('email'));
+        }
+
+        exit((int) !$status);
     }
 
     /**
@@ -62,6 +66,12 @@ class RunChecksCommand extends ContainerAwareCommand
                 $this->errors[] = $name . ":\n" .$e->getMessage()."\n";
             }
         }
+
+        if (count($this->errors)) {
+            return false;
+        }
+
+        return true;
     }
 
 
