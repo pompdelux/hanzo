@@ -19,7 +19,7 @@ before_script:
 
 script:
   - phpunit -c app/
-  - php app/console hanzo:run-checks --env=test_dk
+  - php app/console hanzo:run-checks
 
 notifications:
   email:
