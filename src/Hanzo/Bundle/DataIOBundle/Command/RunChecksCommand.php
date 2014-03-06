@@ -39,11 +39,11 @@ class RunChecksCommand extends ContainerAwareCommand
         $status = $this->validateXliff();
 
         // must be last!
-        $this->sendMail($input->getArgument('email'));
-
-        if (false === $status) {
-            exit(1);
+        if (false === getenv('TRAVIS')) {
+            return $this->sendMail($input->getArgument('email'));
         }
+
+        exit((int) !$status);
     }
 
     /**
