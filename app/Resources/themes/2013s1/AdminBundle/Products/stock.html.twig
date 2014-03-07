@@ -1,0 +1,47 @@
+{% extends '::adminbase.html.twig' %}
+{% block content %}
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li><a href="{{ path('admin_products', {'category_id' : category_id, 'subcategory_id' : subcategory_id}) }}" title="Tilbage til kategorien">Tilbage til kategorien</a></li>
+        </ul>
+
+        <form action="{{ path('admin_products') }}" method="get" class="navbar-form navbar-right">
+            <div class="form-group">
+                <input type="text" id="searh" name="q" placeholder="{{ 'search.label'|trans({}, 'admin') }}" class="form-control">
+                <input class="button search btn btn-default" type="submit" value="{{ 'search'|trans({}, 'admin') }}">
+            </div>
+        </form>
+    </div>
+</nav>
+
+
+{% for message in app.session.flashbag.get('notice') %}
+    <div class="alert alert-info">
+        {{ message|trans({}, 'admin') }}
+    </div>
+{% endfor %}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>SKU</th>
+            <th>Dato</th>
+            <th>Antal</th>
+            <th>Reservationer</th>
+        </tr>
+    </thead>
+    <tbody>
+    {%  for item in items %}
+        <tr>
+            <td>{{ item.sku }}</td>
+            <td>{{ item.date }}</td>
+            <td>{{ item.stock }}</td>
+            <td>{{ item.reservations }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
