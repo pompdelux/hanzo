@@ -333,7 +333,7 @@ class AddressController extends CoreController
             // remember to save the company name.
             if (in_array($method, ['company_shipping', 'overnightbox'])) {
                 if (empty($data['company_name'])) {
-                    $data['company_name'] = $data['first_name'];
+                    $data['company_name'] = trim($data['first_name'].' '.$data['last_name']);
                 }
                 $address->setCompanyName($data['company_name']);
             }
