@@ -18,6 +18,7 @@
         <service id="hanzo.warehouse" class="%hanzo.warehouse.class%">
             <argument type="service" id="redis.stock" />
             <argument>%stock.warehouses%</argument>
+            <argument type="service" id="hanzo.propel_replicator" />
         </service>
     </services>
 </container>
