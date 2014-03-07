@@ -80,10 +80,11 @@ class EdiSoftProvider extends BaseProvider
 
     /**
      * webservice api test endpoint
+     * the real test is only available on demand: http://qa-ws01.facility.dir.dk/ShipAdvisor/Main.asmx?WSDL
      *
      * @var string
      */
-    protected $dev_endpoint  = 'http://qa-ws01.facility.dir.dk/ShipAdvisor/Main.asmx?WSDL';
+    protected $dev_endpoint  = 'http://edi-ws01.facility.dir.dk/ShipAdvisor/main.asmx?WSDL';
 
     /**
      * webservice api prod endpoint

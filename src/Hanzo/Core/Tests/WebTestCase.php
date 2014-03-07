@@ -2,7 +2,10 @@
 
 namespace Hanzo\Core\Tests;
 
+use Hanzo\Core\Tools;
+use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase as BaseWebTestCase;
+use Symfony\Component\Console\Input\StringInput;
 
 class WebTestCase extends BaseWebTestCase
 {
@@ -10,9 +13,15 @@ class WebTestCase extends BaseWebTestCase
 
     public static function setUpBeforeClass()
     {
-        \Propel::disableInstancePooling();
+//        \Propel::disableInstancePooling();
+//        self::runCommand('propel:build --insert-sql');
+    }
 
-        self::runCommand('propel:build --insert-sql');
+    protected static function runCommand($command)
+    {
+        $command = sprintf('%s --quiet', $command);
+
+        return self::getApplication()->run(new StringInput($command));
     }
 
     protected static function getApplication()
@@ -20,17 +29,10 @@ class WebTestCase extends BaseWebTestCase
         if (null === self::$application) {
             $client = static::createClient(['environment' => 'test_dk']);
 
-            self::$application = new \Symfony\Bundle\FrameworkBundle\Console\Application($client->getKernel());
+            self::$application = new Application($client->getKernel());
             self::$application->setAutoExit(false);
         }
 
         return self::$application;
-    }
-
-    protected static function runCommand($command)
-    {
-        $command = sprintf('%s --quiet', $command);
-
-        return self::getApplication()->run(new \Symfony\Component\Console\Input\StringInput($command));
     }
 }

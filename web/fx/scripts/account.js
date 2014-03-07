@@ -201,8 +201,8 @@ var account = (function($) {
                 // Only 1 result.
                 $('#customers_addresses_0_city_select_temp').hide();
                 $('#customers_addresses_0_city').show();
-                $('#customers_addresses_0_city').val(data.data.postcodes[0].city);
               }
+              $('#customers_addresses_0_city').val(data.data.postcodes[0].city);
               $('#customers_addresses_0_postal_code').css('border-color', '#444345');
               try {
                 $('#customers_phone').focus();

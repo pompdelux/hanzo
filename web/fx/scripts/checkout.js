@@ -67,8 +67,8 @@
                 $city_dropdown.hide();
               }
               $city.show();
-              $city.prop('value', response.data.postcodes[0].city);
             }
+            $city.val(response.data.postcodes[0].city);
           } else {
             // TODO: use css class
             $this.css('border', '2px solid #a10000');
