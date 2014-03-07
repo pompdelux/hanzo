@@ -263,6 +263,48 @@ class Stock
 
 
     /**
+     * Returns the current quantity of reserved products
+     *
+     * @param $product_id
+     * @return int
+     */
+    public function getProductReservations($product_id)
+    {
+        $sql = "
+            SELECT
+                SUM(orders_lines.quantity) AS qty
+            FROM
+                orders_lines
+            INNER JOIN
+                orders
+                ON (
+                    orders_lines.orders_id = orders.id
+                )
+            WHERE
+                orders_lines.products_id = ".$product_id."
+                AND
+                    orders.state < 40
+                AND
+                    orders.updated_at > '".date('Y-m-d H:i:s', strtotime('2 hours ago'))."'
+            GROUP BY
+                orders_lines.products_id
+            LIMIT 1
+        ";
+
+        $results = $this->replicator->executeQuery($sql, [], $this->warehouse->getRelatedDatabases());
+
+        $res = 0;
+        foreach ($results as $result) {
+            if ($record = $result->fetch(\PDO::FETCH_ASSOC)) {
+                $res += $record['qty'];
+            }
+        }
+
+        return $res;
+    }
+
+
+    /**
      * Figure out whether or not a whole style is out of stock.
      *
      * @param $product
