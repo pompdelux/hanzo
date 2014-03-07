@@ -183,7 +183,7 @@
                 <source>footer.text</source>
                 <target><![CDATA[
                     <ul>
-                        <li><b>Versand</b> ab 4,95 EUR</li>
+                        <li><b>Bearbeitungszeit</b> ab 3,95 EUR</li>
                         <li><b>Lieferzeit</b> %expected_delivery_date%</li>
                         <li><b>Umtausch</b> Gratis</li>
                     </ul>
