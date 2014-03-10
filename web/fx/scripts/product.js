@@ -17,19 +17,14 @@
     };
 
     pub.initColors = function() {
-      var currentColor = $('.productimage-large a.image').data('color');
-      $('.product-color .color-'+currentColor).addClass('current');
-      $('.productimage-small a').hide();
-      $('.productimage-small a.color-'+currentColor).show();
+      _changeColor();
 
       $('a.product-color').click(function(e){
         e.preventDefault();
         var currentNumber = $('.productimage-large a.image').data('number');
         var currentType = $('.productimage-large a.image').data('type');
         if(!$(this).hasClass('current')){
-          currentColor = $(this).data('color');
-          $('.product-color.current').removeClass('current');
-          $(this).addClass('current');
+          var currentColor = $(this).data('color');
 
           var $swapped = $('.productimage-small a.color-'+currentColor +'.number-'+currentNumber+'.type-'+currentType);
           if($swapped.length === 0){
@@ -38,8 +33,8 @@
 
           product.swapImages($swapped.first());
 
-          $('.productimage-small a').hide();
-          $('.productimage-small a.color-'+currentColor).show();
+          _changeColor(currentColor);
+
           product.initZoom();
         }
       });
@@ -87,35 +82,18 @@
       $large_img.attr('src', small.medium);
       $large_img.attr('alt', small.alt);
 
-      // $small.data('src', large.medium);
-      // $small.attr('href', large.large);
-      // $small.data('id', large.id);
-      // $small.data('color', large.color);
-      // $small.data('number', large.number);
-      // $small.data('type', large.type);
-      // $small.removeClass('color-'+small.color);
-      // $small.addClass('color-'+large.color);
-      // $small.removeClass('number-'+small.number);
-      // $small.addClass('number-'+large.number);
-      // $small.removeClass('type-'+small.type);
-      // $small.addClass('type-'+large.type);
-      // $small_img.attr('src', large.small);
-      // $small_img.attr('alt', large.alt);
-      $('.productimage-small a').show();
-      // $small.hide();
-
-      $('.style-guide .element').hide();
-      $('.style-guide .' + small.id).show();
+      _changeColor();
 
       product.initStyleGuide();
     };
     // style guides
     pub.initStyleGuide = function() {
-      $('.productimage-large a').each(function() {
-        var $id = $(this).data('id');
+      $('.productimage-large a.image').each(function() {
+        var id = $(this).data('id');
         var $parent = $('.style-guide');
-        var $guide = $('.'+ $id, $parent);
+        var $guide = $('.'+ id, $parent);
         $parent.hide();
+        $('.element', $parent).hide();
 
         if ($guide.length) {
           $parent.show();
@@ -241,7 +219,7 @@
 
           // populate color select with options
           if (name === 'size') {
-            _resetColor();
+            _resetFormColor();
             $.each(response.data.products, function(index, product) {
               var $option = $('select.color option[value="' + product.color + '"]', $form);
               if ($option.length) {
@@ -411,11 +389,11 @@
       if (section === undefined) {
         $('select.size option:first', $this).prop('selected', true);
         $('select.color option:first', $this).prop('selected', true);
-        _resetColor();
+        _resetFormColor();
       }
     };
 
-    var _resetColor = function() {
+    var _resetFormColor = function() {
       var $this = $('form.buy');
       $('select.color', $this).prop('disabled', true);
       $('select.color option:first', $this).prop('selected', true);
@@ -428,6 +406,22 @@
           $(this).text($(this).data('text') + ' (' + Translator.get('js:out.of.stock') + ')');
         }
       });
+    };
+
+    /**
+     * Function to change color on images. Changes both small images, and color
+     * buttons.
+     *
+     * @param  string color The color to change to. Default the current color.
+     */
+    var _changeColor = function(color) {
+      if (typeof color === 'undefined') {
+        color = $('.productimage-large a.image').data('color');
+      }
+      $('.productimage-small a').hide();
+      $('.productimage-small a.color-' + color).show();
+      $('.product-color.current').removeClass('current');
+      $('.product-color.color-' + color).addClass('current');
     };
 
     return pub;
