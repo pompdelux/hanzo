@@ -169,6 +169,15 @@ admin_product:
     requirements:
         id: \d+
 
+admin_product_stock:
+    pattern:  /admin/products/stock/{id}/{category_id}/{subcategory_id}
+    defaults:
+        _controller: AdminBundle:Products:viewStock
+    requirements:
+        id: \d+
+        category_id: \d+
+        subcategory_id: \d+
+
 
 admin_product_delete_style:
     pattern:  /admin/products/delete-style/{id}

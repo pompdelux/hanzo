@@ -506,28 +506,6 @@ class ECommerceServices extends SoapService
         // 1. calculate reservations to be subtracted from the stock update
         // ----------------------------------------------------------------
 
-        $propel_connection = \Propel::getConnection(null, \Propel::CONNECTION_WRITE);
-        $propel_statement = $propel_connection->prepare("
-            SELECT
-                SUM(orders_lines.quantity) AS qty
-            FROM
-                orders_lines
-            INNER JOIN
-                orders
-                ON (
-                    orders_lines.orders_id = orders.id
-                )
-            WHERE
-                orders_lines.products_id = :products_id
-                AND
-                    orders.state < 40
-                AND
-                    orders.updated_at > '".date('Y-m-d H:i:s', strtotime('2 hours ago'))."'
-            GROUP BY
-                orders_lines.products_id
-            LIMIT 1
-        ");
-
         /** @var \Hanzo\Bundle\StockBundle\Stock $stock_service */
         $stock_service = $this->hanzo->container->get('stock');
 
@@ -549,14 +527,7 @@ class ECommerceServices extends SoapService
                 }
 
                 $products[$key]['product'] = $product;
-                $products[$key]['qty_in_use'] = 0;
-
-                $propel_statement->bindValue(':products_id', $product->getId(), \PDO::PARAM_INT);
-                $propel_statement->execute();
-
-                if ($qty = $propel_statement->fetchColumn()) {
-                    $products[$key]['qty_in_use'] = $qty;
-                }
+                $products[$key]['qty_in_use'] = $stock_service->getProductReservations($product->getId());
             }
 
             $item->InventQtyAvailOrderedDate = $item->InventQtyAvailOrderedDate
