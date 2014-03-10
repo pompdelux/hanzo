@@ -88,9 +88,14 @@ var rma = (function ($) {
         });
 
         if (products.length > 0) {
-            // Force PDF download trough an iframe.
-            $('<iframe src="?order_id=' + rma_order_id + '&products=' + encodeURIComponent(JSON.stringify(products)) + '" width="1" height="0" class="off" frameborder="0"></iframe>')
-                .appendTo('body');
+            // Force PDF download trough an POST form. Products variable can be
+            // extremely long.
+            $('<form></form>')
+                .attr('method', 'POST')
+                .append($('<input type="hidden" name="products">').val(JSON.stringify(products)))
+                .appendTo('body')
+                .submit();
+
             // Force download of return label with an iframe delayed a couple of
             // seconds.
             if (-1 == jQuery.inArray($('html').data('domainkey'), ['nl', 'salesnl', 'com'])) {
