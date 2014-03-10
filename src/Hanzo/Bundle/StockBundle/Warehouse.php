@@ -40,7 +40,8 @@ class Warehouse
         $this->setWarehouses($warehouses);
         $this->replicator = $replicator;
 
-        if (is_null($replicator)) {
+        // debugging ...
+        if (!$replicator instanceof PropelReplicator) {
             Tools::log('$replicator not set..: ', 0, true);
         }
     }
