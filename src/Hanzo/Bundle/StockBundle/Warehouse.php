@@ -4,6 +4,7 @@ namespace Hanzo\Bundle\StockBundle;
 
 use Hanzo\Bundle\RedisBundle\Client\Redis as RedisClient;
 use Hanzo\Core\PropelReplicator;
+use Hanzo\Core\Tools;
 
 class Warehouse
 {
@@ -33,11 +34,15 @@ class Warehouse
      * @param array            $warehouses
      * @param PropelReplicator $replicator
      */
-    public function __construct(RedisClient $redis, array $warehouses, PropelReplicator $replicator)
+    public function __construct(RedisClient $redis, array $warehouses, PropelReplicator $replicator = null)
     {
         $this->redis = $redis;
         $this->setWarehouses($warehouses);
         $this->replicator = $replicator;
+
+        if (is_null($replicator)) {
+            Tools::log('$replicator not set..: ', 0, true);
+        }
     }
 
 
