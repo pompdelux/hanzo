@@ -167,7 +167,7 @@
     pub.initCountdown = function() {
       // frontpage count down
       var $countdown = $('.countdown');
-      if ($countdown) {
+      if ($countdown.length) {
         $countdown.countdown({
           until : new Date(Translator.get('js:countdown.date')),
           layout : '<span>' + Translator.get('js:countdown.format') + '</span>',
