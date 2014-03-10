@@ -56,7 +56,7 @@ class DefaultController extends Controller
             }
         }
 
-        $rma_products = json_decode($request->query->get('products'), true);
+        $rma_products = json_decode($request->request->get('products'), true);
         // Time to generate some pdf's!
         if (count($rma_products)) {
 
