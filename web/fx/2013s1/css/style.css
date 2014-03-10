@@ -772,6 +772,7 @@ ul.breadcrumb li.last i.arrow-right {
   background: #d2c3c6;
   height: 100px;
   margin-bottom: 28px;
+  overflow: hidden;
 }
 .container .main header hgroup {
   color: white;
