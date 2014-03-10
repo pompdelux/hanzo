@@ -183,8 +183,8 @@
                 <source>footer.text</source>
                 <target><![CDATA[
                     <ul>
-                        <li><b>Bearbeitungszeit</b> EUR 4,95</li>
-                        <li><b>Lieferzeit</b> %expected_delivery_date%</li>
+                        <li><b>Bearbeitungszeit</b> %expected_delivery_date%</li>
+                        <li><b>Fracht</b> EUR 4,95</li>
                         <li><b>Umtausch</b> Gratis</li>
                     </ul>
                 ]]></target>
