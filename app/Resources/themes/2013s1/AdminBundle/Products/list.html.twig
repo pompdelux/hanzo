@@ -1,7 +1,5 @@
 {% extends '::adminbase.html.twig' %}
-
 {% block content %}
-
 
 <nav class="navbar navbar-default" role="navigation">
     <div class="collapse navbar-collapse">
@@ -125,6 +123,14 @@
             <tr>
                 <td>{{ product.id }}</td>
                 <td><a href="{{ path('admin_product', {'id' : product.id}) }}" title="{{ product.sku }}">{{ product.sku }}</a></td>
+                <td>
+                    <a href="{{ path('admin_product', {'id' : product.id}) }}" class="glyphicon glyphicon-edit" title="Gå til produktet"></a>
+                    <a href="{{ path('admin_product_stock', {
+                        'id' : product.id,
+                        'category_id' : app.request.get('category_id'),
+                        'subcategory_id' : app.request.get('subcategory_id')
+                    }) }}" class="glyphicon glyphicon-stats" title="Se aktuelle lagerstatus"></a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

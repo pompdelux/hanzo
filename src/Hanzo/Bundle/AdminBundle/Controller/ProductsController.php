@@ -2,6 +2,8 @@
 
 namespace Hanzo\Bundle\AdminBundle\Controller;
 
+use Hanzo\Model\Products;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -885,5 +887,57 @@ class ProductsController extends CoreController
                  'Content-Disposition' => sprintf('attachment; filename="stock_' . date('Y-m-d', time()) . '.csv"', 'stock_' . date('Y-m-d', time()) .'.csv')
             )
         );
+    }
+
+    /**
+     * Gives an overview of the stock state on a style
+     * @ParamConverter("product", class="Hanzo\Model\Products")
+     *
+     * @param  Products $product
+     * @param  int      $category_id
+     * @param  int      $subcategory_id
+     * @return Response
+     */
+    public function viewStockAction(Products $product, $category_id, $subcategory_id)
+    {
+        $stock = $this->container->get('stock');
+
+        $products = ProductsQuery::create()
+            ->filterByMaster($product->getSku())
+            ->orderBySku()
+            ->find()
+        ;
+
+        $stock->prime($products);
+
+        $items = [];
+        foreach ($products as $product) {
+
+            $current = '';
+            foreach ($stock->get($product, true) as $level) {
+                if (empty($level['date']) || (0 == $level['quantity'])) { continue; }
+
+                $reservations = '-';
+                if ($current != $product->getSku()) {
+                    $current = $product->getSku();
+
+                    $reservations = $stock->getProductReservations($product->getId());
+                }
+
+                $items[] = [
+                    'sku'          => $product->getSku(),
+                    'date'         => $level['date'],
+                    'stock'        => $level['quantity'],
+                    'reservations' => $reservations,
+                ];
+            }
+        }
+
+        return $this->render('AdminBundle:Products:stock.html.twig', array(
+            'category_id'    => $category_id,
+            'subcategory_id' => $subcategory_id,
+            'items'          => $items,
+            'database'       => $this->getRequest()->getSession()->get('database')
+        ));
     }
 }
