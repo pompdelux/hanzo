@@ -50,7 +50,7 @@
 
 <script type="text/javascript" src="{{ cdn }}fx/scripts/modernizr.js"></script>
 </head>
-<body id="body-{{ page_type|default('page') }}" class="{{ body_classes|default('') }} {{ html_lang }}">
+<body id="body-{{ page_type|default('page') }}" class="{{ body_classes|default('') }} {{ html_lang }} domain-{{ domain_key|lower }}">
 <div class="top-bar"></div>
 <div id="container" class="container container_8">
     <nav class="first grid_8 row main-menu">
