@@ -197,7 +197,7 @@
             form {
 
                 width: 757px;
-                height: 350px;
+                height: 355px;
                 margin: 0 auto;
                 background-repeat: no-repeat;
                 input[type="text"], input[type="email"] {
@@ -238,7 +238,7 @@
             position: absolute;
             top: 10px;
             right: 10px;
-            background-image: url(/fx/images/newsletter_overlay/type2/close.png);
+            background: url(/fx/images/newsletter_overlay/type2/close.png) no-repeat;
             background-position: initial;
         }
         .bottom {}
