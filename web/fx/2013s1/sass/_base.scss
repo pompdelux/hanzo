@@ -366,6 +366,11 @@ button {
 		height: icons-sprite-height(delete);
 		width: icons-sprite-width(delete);
 	}
+	&.close{
+		@include icons-sprite(close);
+		height: icons-sprite-height(close);
+		width: icons-sprite-width(close);
+	}
 	&.edit{
 		@include icons-sprite(edit);
 		height: icons-sprite-height(edit);
