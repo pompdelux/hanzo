@@ -42,6 +42,9 @@
   .alert!, .confirm! {}
   #cboxClose {
     display: none;
+    position:absolute;
+    right:0;
+    top: 0;
     &.sprite {
       text-indent: -100px;
       display: inline-block;
