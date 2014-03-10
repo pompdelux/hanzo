@@ -40,10 +40,35 @@
         }
 
         $.getJSON(base_url+'muneris/gpc/'+value, function(response) {
-          var $city = $('.js-auto-city-'+$form.data('addresstype'), $form);
-
+          var $city = $('.js-auto-city-'+$form.data('addresstype'), $form),
+              $city_dropdown = $city.parent().find('.js-auto-city-dropdown');
           if (response.status) {
-            $city.prop('value', response.data.postcode.city);
+            if (response.data.postcodes.length > 1) {
+              // Many cities with same zip.
+              // Hide the city field and add a dropdown with all the cities.
+              $city.hide();
+              if ($city_dropdown.length === 0) {
+                $city_dropdown = $('<select class="js-auto-city-dropdown"></select>')
+                  .appendTo($city.parent())
+                  .on('change', function(e){
+                    $city.val(this.value);
+                  });
+              } else {
+                $('option', $city_dropdown).remove();
+                $city_dropdown.show();
+              }
+              $.each(response.data.postcodes, function(index, postcode){
+                // Add all cities as an option.
+                $city_dropdown.append($('<option value="' + postcode.city + '">' + postcode.city + '</option>'));
+              });
+            } else {
+              // Only 1 result.
+              if ($city_dropdown) {
+                $city_dropdown.hide();
+              }
+              $city.show();
+            }
+            $city.val(response.data.postcodes[0].city);
           } else {
             // TODO: use css class
             $this.css('border', '2px solid #a10000');
@@ -142,14 +167,17 @@
           fields : []
         };
 
+        // Be sure to copy the final address if "Copy address" is checked.
+        copyAddress();
+
         var $address_confirm_box= $('<div></div>').addClass('address-confirm-box clearfix');
 
-        $('#address-block form').each(function (index, form) {
+        $('#address-block form').not('.location-locator').each(function (index, form) {
           var $form = $(form);
           var id = index;
 
           var $address_ul = $('<ul></ul>');
-          $('input, select', $form).each(function (index, element) {
+          $('input, select', $form).not('.js-auto-city-dropdown').each(function (index, element) {
             var $element = $(element);
             // TODO: use css class
             $element.css({'border': '1px solid #231F20'});
@@ -226,12 +254,9 @@
       });
 
       $('#address-copy').on('change',function(e){
-        $copied = $('#address-block form:nth-child(2)');
-        if ($(this).attr('checked')) {
-          $('#address-block form:first input[type=text]').each(function(i){
-            $copied.find('#'+$(this).attr('id')).val($(this).val());
-          });
-        } else {
+        var $copied = $('#address-block form:nth-child(2)');
+        if (!copyAddress()) {
+          // If address wasnt copied, reset the second.
           $copied.each(function(){
             this.reset();
           });
@@ -259,7 +284,7 @@
         $(document).trigger('shipping.address.changed');
 
         var m = $('input[name=method]:checked').val();
-        if ((m === "10") || (m === "30") || (m === "70") || (m === "500") || (m === "601")) { // Private postal
+        if ((m === "10") || (m === "30") || (m === "70") || (m === "500") || (m === "601") || (m === "800")) { // Private postal
           $('#address-copy').prop('checked', false).parent().removeClass('off');
         } else {
           $('#address-copy').parent().addClass('off');
@@ -442,6 +467,21 @@
         jaiks.exec();
 
       };
+
+    /**
+     * Copies the address from first address block to second.
+     * @return boolean True if address was copied.
+     */
+    copyAddress = function() {
+      if ($('#address-copy').prop('checked')) {
+        var $copied = $('#address-block form:nth-child(2)');
+        $('#address-block form:first input[type=text]').each(function(i){
+          $copied.find('#'+$(this).attr('id')).val($(this).val());
+        });
+        return true;
+      }
+      return false;
+    };
 
     return pub;
   })(jQuery);

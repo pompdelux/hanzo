@@ -9,12 +9,12 @@ var maps = (function($) {
       var url = base_url + "muneris/gpc/" + encodeURI($("#geo-zipcode-container #geo-zipcode").val());
 
       $.getJSON(url, function(response) {
-        if (false === response.status) {
+        if (false === response.status || typeof response.data.postcodes === 'undefined' || response.data.postcodes.length === 0) {
           dialoug.stopLoading();
           return;
         }
 
-        var req = '/' + geo_zipcode_params.type + '/' + response.data.postcode.lat + '/' + response.data.postcode.lng;
+        var req = '/' + geo_zipcode_params.type + '/' + response.data.postcodes[0].lat + '/' + response.data.postcodes[0].lng;
 
         $.getJSON(base_url + 'rest/v1/gm/near_you' + req, function(result) {
           dataToContainer(result.data);
@@ -48,6 +48,10 @@ var maps = (function($) {
         populateMap(map, result.data, true);
         $('#consultants-map-canvas-2').show();
         google.maps.event.trigger(map, 'resize');
+      } else {
+        $.getJSON(base_url + 'rest/v1/gm/consultants', function(consultant_result) {
+          populateMap(map, consultant_result.data, true);
+        });
       }
     });
   };

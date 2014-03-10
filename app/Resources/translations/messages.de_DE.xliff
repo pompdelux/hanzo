@@ -170,7 +170,10 @@
                         <li>DE-20354 Hamburg</li>
                         <li>USt-IdNr. DE290402183</li>
                         <li><a href="mailto:mailde@pompdelux.com">mailde@pompdelux.com</a></li>
-                        <li>040-35715072</li>
+                        <li>040-35715072</li><br>
+						<li>Rücksendung von Waren: POMPdeLUX Aps</li>
+                        <li>Grydhøjparken 10</li>
+                        <li>DK-8381 Tilst</li>
                         <li><img src="%cdn%fx/images/creditcards_de.png" alt="credit cards" title="credit cards"></li>
                         <li><a href="http://www.facebook.com/sharer.php?u=%url%" class="facebook-button social-button" title="Del denne side på Facebook">Auf Facebook teilen</a></li>
                     </ul>
@@ -180,8 +183,8 @@
                 <source>footer.text</source>
                 <target><![CDATA[
                     <ul>
-                        <li><b>Versand</b> ab 4,95 EUR</li>
-                        <li><b>Lieferzeit</b> %expected_delivery_date%</li>
+                        <li><b>Bearbeitungszeit</b> %expected_delivery_date%</li>
+                        <li><b>Fracht</b> EUR 4,95</li>
                         <li><b>Umtausch</b> Gratis</li>
                     </ul>
                 ]]></target>

@@ -400,11 +400,11 @@
             </trans-unit>
             <trans-unit id="faceted.show.out.of.stock" approved="no">
                 <source>faceted.show.out.of.stock</source>
-                <target>Vis også udsolgte vare</target>
+                <target>Näytä myös loppuunmyydyt tuotteet</target>
             </trans-unit>
             <trans-unit id="faceted.reset.filter" approved="no">
                 <source>faceted.reset.filter</source>
-                <target>» Nulstil filtre</target>
+                <target>» Puhdista haku</target>
             </trans-unit>
         </body>
     </file>

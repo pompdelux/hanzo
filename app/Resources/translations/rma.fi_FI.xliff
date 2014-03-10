@@ -82,8 +82,8 @@
                 <source>rma.slip.company_details</source>
                 <target><![CDATA[
                     <ul>
-                        <li>POMPdeLUX FI OY c/o POMPdeLUX ApS</li>
-                        <li>M&oslash;gelh&oslash;j 8, DK-8520 Lystrup</li>
+                        <li>POMPdeLUX Aps</li>
+                        <li>Grydh&oslash;jparken 10, DK-8381 Tilst</li>
                         <li>CRN 2482288-5</li>
                         <li>mailfi@pompdelux.com 09 34870870</li>
                     </ul>
@@ -120,7 +120,8 @@
             <trans-unit id="rma.slip.description">
                 <source>rma.slip.description</source>
                 <target><![CDATA[<p>Jos haluat vaihtaa tai palauttaa tuotteita, sinun tulee t&auml;ytt&auml;&auml; ja l&auml;hett&auml;&auml; tuotteiden mukana t&auml;m&auml; palautuslomake.<br>Palauttamasi tuotteet laitetaan uudelleen myyntiin, joten palautathan tuotteet niiden alkuper&auml;isiss&auml; pakkauksissaan tuote- ja hintalappuineen jne.
-<br><br>Tulosta ja k&auml;yt&auml; palautusetiketti&auml; palautuksessa, niin silloin palautus on maksutonta. Jos haluat tehd&auml; reklamaation tai palauttaa v&auml;&auml;rin toimitetun tuotteen, voit luonnollisesti l&auml;hett&auml;&auml; tuotteet aina maksutta.<br><br>Palautus on maksuton my&ouml;s silloin, jos haluat vaihtaa tuotteen toiseen kokoon, v&auml;riin tai kokonaan toiseen tuotteeseen. Tuotteen hinta ei kuitenkaan voi ylitt&auml;&auml; palautettavan tuotteen hintaa. Jos tuote, johon haluat vaihtaa, on loppuunmyyty, hyvit&auml;mme summan sinulle.<br><br>Jos olet maksanut kortilla, palautussumma siirret&auml;&auml;n maksukortille, jota olet k&auml;ytt&auml;nyt tilauksen yhteydess&auml;. Jos olet k&auml;ytt&auml;nyt PayByBill-maksutapaa, pyyd&auml;mme ottamaan yhteytt&auml; Gothia Oy:hyn, puh. 0207 229 462.<br><b>Huomaa:</b> Vaikka odotat hyvityst&auml; palauttamistasi tuotteista, sinun tulee maksaa laskusi 30 p&auml;iv&auml;n kuluessa.<br><br>Katso lis&auml;tietoja osoitteesta: <a href="/fi_FI/" target="_blank">www.pompdelux.fi</a></p>]]></target>
+<br><br><em>Huomaa: Omilta Sivuilta l&ouml;yd&auml;t palautusetiketin, k&auml;ytt&auml;ess&auml;si t&auml;t&auml; on palauttaminen maksutonta. Huomio! Paketti vied&auml;&auml;n Postitoimistoon. L&ouml;yd&auml;t toimipisteet <a href="www.posti.fi" target="_blank">www.posti.fi</a></em><br><br>Palautus on maksuton my&ouml;s silloin, jos haluat vaihtaa tuotteen toiseen kokoon, v&auml;riin tai kokonaan toiseen tuotteeseen. Tuotteen hinta ei kuitenkaan voi ylitt&auml;&auml; palautettavan tuotteen hintaa. Jos tuote, johon haluat vaihtaa, on loppuunmyyty, hyvit&auml;mme summan sinulle.<br><br>Jos olet maksanut kortilla, palautussumma siirret&auml;&auml;n maksukortille, jota olet k&auml;ytt&auml;nyt tilauksen yhteydess&auml;.<br><br>Jos olet maksanut PayPal:illa, hyvitet&auml;&auml;n summa PayPal tilillesi.<br>Jos olet k&auml;ytt&auml;nyt PayByBill-maksutapaa, pyyd&auml;mme ottamaan yhteytt&auml; Gothia Oy:hyn, puh.0207 229 462.<br><b>Huomaa:</b> Vaikka odotat hyvitystä palauttamistasi tuotteista, sinun tulee maksaa laskusi 30 päivän
+kuluessa.<br><br>Katso lis&auml;tietoja osoitteesta: <a href="/fi_FI/" target="_blank">www.pompdelux.fi</a></p>]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.activitycode">
                 <source>rma.slip.thead.activitycode</source>

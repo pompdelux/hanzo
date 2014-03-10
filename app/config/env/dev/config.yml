@@ -4,6 +4,10 @@ framework:
     profiler:
         only_exceptions:    false
 
+# always send mails to a bellcom address
+swiftmailer:
+    delivery_address: pdl@bellcom.dk
+
 web_profiler:
     toolbar:                true
     intercept_redirects:    false

@@ -12,11 +12,13 @@
             <argument>%locale%</argument>
             <argument type="service" id="event_dispatcher" />
             <argument type="service" id="hanzo.warehouse" />
+            <argument type="service" id="hanzo.propel_replicator" />
         </service>
 
         <service id="hanzo.warehouse" class="%hanzo.warehouse.class%">
             <argument type="service" id="redis.stock" />
             <argument>%stock.warehouses%</argument>
+            <argument type="service" id="hanzo.propel_replicator" />
         </service>
     </services>
 </container>

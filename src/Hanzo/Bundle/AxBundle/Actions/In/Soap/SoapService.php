@@ -11,6 +11,7 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Core\Timer;
+use Hanzo\Core\PropelReplicator;
 
 class SoapService
 {
@@ -18,20 +19,33 @@ class SoapService
     protected $logger;
     protected $hanzo;
     protected $event_dispatcher;
+    protected $replicator;
 
     protected $timer;
 
-    public function __construct(Request $request, $logger, EventDispatcher $event_dispatcher)
+    /**
+     * @param Request          $request
+     * @param Logger           $logger
+     * @param EventDispatcher  $event_dispatcher
+     * @param PropelReplicator $replicator
+     */
+    public function __construct(Request $request, $logger, EventDispatcher $event_dispatcher, PropelReplicator $replicator)
     {
         $this->request          = $request;
         $this->logger           = $logger;
         $this->event_dispatcher = $event_dispatcher;
+        $this->replicator       = $replicator;
 
         if (method_exists($this, 'boot')) {
             $this->boot();
         }
     }
 
+
+    /**
+     * @param $service
+     * @return Response
+     */
     public function exec($service)
     {
         $this->timer = new Timer('soap');
@@ -48,6 +62,10 @@ class SoapService
         return $response;
     }
 
+
+    /**
+     * @return array
+     */
     public static function getDebugInfo()
     {
         return array(

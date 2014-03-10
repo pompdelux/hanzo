@@ -275,7 +275,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
      */
     public function setName($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -296,7 +296,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
      */
     public function setEmail($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -317,7 +317,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
      */
     public function setTrigger($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -338,7 +338,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
      */
     public function setContent($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -359,7 +359,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
      */
     public function setDeletedBy($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 

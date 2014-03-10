@@ -184,7 +184,7 @@ class AxService
         }
 
         if ($hostess_discount) {
-            $bag_price = 0.00;
+            $big_bag_price = 0.00;
             $line = new stdClass();
             $line->ItemId     = 'HOSTESSDISCOUNT';
             $line->SalesPrice = number_format($hostess_discount, 2, '.', '');
@@ -196,25 +196,24 @@ class AxService
             switch(str_replace('SALES', '', $domain_key)) {
                 case 'AT':
                 case 'CH':
+                case 'COM':
                 case 'DE':
                 case 'FI':
                 case 'NL':
-                    $bag_price = '4.95';
-                    break;
+                    $big_bag_price = '4.95';
+                break;
                 case 'DK':
-                    $bag_price = '40.00';
+                    $big_bag_price = '40.00';
                     break;
                 case 'NO':
-                    $bag_price = '60.00';
-                    break;
                 case 'SE':
-                    $bag_price = '60.00';
+                    $big_bag_price = '60.00';
                     break;
             }
 
             $line = new stdClass();
-            $line->ItemId          = 'POMP BIG BAG';
-            $line->SalesPrice      = $bag_price;
+            $line->ItemId          = 'POMPBIGBAGSS14';
+            $line->SalesPrice      = $big_bag_price;
             $line->LineDiscPercent = 100;
             $line->SalesQty        = 1;
             $line->InventColorId   = 'Off White';
@@ -226,15 +225,37 @@ class AxService
         if ($order->getEventsId()) {
             $date = date('Ymd');
 
-            if (((20130812 <= $date) && (20130901 >= $date)) ||
-                ($in_edit && (20130901 >= $order->getCreatedAt('Ymd')))
+            // mellem 19/2'14 og 19/5'14
+            if (((20140219 <= $date) && (20140519 >= $date)) ||
+                ($in_edit && (20140519 >= $order->getCreatedAt('Ymd')))
             ) {
+                $bag_price  = 0.00;
+                $domain_key = strtoupper($attributes->global->domain_key);
+                switch(str_replace('SALES', '', $domain_key)) {
+                    case 'AT':
+                    case 'CH':
+                    case 'COM':
+                    case 'DE':
+                    case 'FI':
+                    case 'NL':
+                        $bag_price     = '1.95';
+                        break;
+                    case 'DK':
+                        $bag_price     = '10.00';
+                        break;
+                    case 'NO':
+                    case 'SE':
+                        $bag_price     = '15.00';
+                        break;
+                }
+
                 $line = new stdClass();
-                $line->ItemId          = 'VOUCHER';
-                $line->SalesPrice      = 0.00;
-                //$line->LineDiscPercent = 100;
+                $line->ItemId          = 'POMPBAGSS14';
+                $line->SalesPrice      = $bag_price;
+                $line->LineDiscPercent = 100;
                 $line->SalesQty        = 1;
-                $line->InventColorId   = str_replace('Sales', '', $attributes->global->domain_key);
+//                $line->InventColorId   = str_replace('Sales', '', $attributes->global->domain_key);
+                $line->InventColorId   = 'Off White';
                 $line->InventSizeId    = 'One Size';
                 $line->SalesUnit       = 'Stk.';
                 $salesLine[]           = $line;

@@ -82,10 +82,10 @@
                 <source>rma.slip.company_details</source>
                 <target><![CDATA[
                     <ul>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
+                       <li>POMPdeLUX ApS</li>
+                        <li>Postfach, 9024 St. Gallen</li>
+                        <li>CHE-206.261.379</li>
+                        <li>mailch@pompdelux.com Tel.044 201 33 33</li>
                     </ul>
                 ]]></target>
             </trans-unit>

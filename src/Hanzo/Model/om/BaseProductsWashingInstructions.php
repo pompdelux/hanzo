@@ -197,7 +197,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
      */
     public function setLocale($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -222,7 +222,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
      */
     public function setDescription($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 

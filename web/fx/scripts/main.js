@@ -85,9 +85,30 @@
           .toggleClass('active inactive')
         ;
 
-        $('li li.heading', $menu).each(function(index, element) {
-          $(element).addClass('floaded');
+        var menu_width = 0;
+        $('> ul > li > ul > li.heading', $menu).each(function(index, element) {
+          var $element = $(element);
+          var tmp_width = $element.outerWidth();
+          if (menu_width < tmp_width) {
+            menu_width = tmp_width;
+          }
+
+          $element.addClass('floaded');
         });
+        $('> ul > li > ul > li.heading', $menu).closest('ul').each(function(index, element) {
+          var $element = $(element);
+          var count = $('> li', $element).length;
+          $element.css('width', (menu_width * count));
+        });
+
+        // Add a class to the last megamenu, if it is all to the right.
+        // TODO: This should be done on each megamenu, and be able to determine
+        // if it is possible to fit inside the container.
+        $main_menu = $menu.not('.first');
+        if ($main_menu.outerWidth() - $('>ul', $main_menu).width() < 150) {
+          $('> ul > li.last > ul', $main_menu).addClass('floaded-right');
+        }
+
 
         $('> ul > li > a', $menu).click(function(event) {
           var $this = $(this).parent();
@@ -146,7 +167,7 @@
     pub.initCountdown = function() {
       // frontpage count down
       var $countdown = $('.countdown');
-      if ($countdown) {
+      if ($countdown.length) {
         $countdown.countdown({
           until : new Date(Translator.get('js:countdown.date')),
           layout : '<span>' + Translator.get('js:countdown.format') + '</span>',

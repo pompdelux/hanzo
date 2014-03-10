@@ -482,6 +482,11 @@ class ECommerceServices extends SoapService
             return self::responseStatus('Error', 'SyncInventoryOnHandResult', array('no ItemId given'));
         }
 
+        if (empty($stock->InventDim)) {
+            $this->logger->addCritical(__METHOD__.' '.__LINE__.': No InventDim found on ItemId: ' . $stock->ItemId);
+            return self::responseStatus('Error', 'SyncInventoryOnHandResult', array('No InventDim found on ItemId: ' . $stock->ItemId));
+        }
+
         $master = ProductsQuery::create()->findOneBySku($stock->ItemId);
         if (!$master instanceof Products) {
             $this->logger->addCritical(__METHOD__.' '.__LINE__.': Unknown product, ItemId: ' . $stock->ItemId);
@@ -497,29 +502,9 @@ class ECommerceServices extends SoapService
             $stock->InventDim = array($stock->InventDim);
         }
 
-        $propel_connection = \Propel::getConnection(null, \Propel::CONNECTION_WRITE);
-        $propel_statement = $propel_connection->prepare("
-            SELECT
-                SUM(orders_lines.quantity) AS qty
-            FROM
-                orders_lines
-            INNER JOIN
-                orders
-                ON (
-                    orders_lines.orders_id = orders.id
-                )
-            WHERE
-                orders_lines.products_id = :products_id
-                AND
-                    orders.state < 40
-                AND
-                    orders.updated_at > '".date('Y-m-d H:i:s', strtotime('2 hours ago'))."'
-                AND
-                    orders.created_at > '".date('Y-m-d H:i:s', strtotime('6 month ago'))."'
-            GROUP BY
-                orders_lines.products_id
-            LIMIT 1
-        ");
+        // ----------------------------------------------------------------
+        // 1. calculate reservations to be subtracted from the stock update
+        // ----------------------------------------------------------------
 
         /** @var \Hanzo\Bundle\StockBundle\Stock $stock_service */
         $stock_service = $this->hanzo->container->get('stock');
@@ -542,14 +527,7 @@ class ECommerceServices extends SoapService
                 }
 
                 $products[$key]['product'] = $product;
-                $products[$key]['qty_in_use'] = 0;
-
-                $propel_statement->bindValue(':products_id', $product->getId(), \PDO::PARAM_INT);
-                $propel_statement->execute();
-
-                if ($qty = $propel_statement->fetchColumn()) {
-                    $products[$key]['qty_in_use'] = $qty;
-                }
+                $products[$key]['qty_in_use'] = $stock_service->getProductReservations($product->getId());
             }
 
             $item->InventQtyAvailOrderedDate = $item->InventQtyAvailOrderedDate
@@ -576,15 +554,12 @@ class ECommerceServices extends SoapService
                 }
             }
 
-            // no need to add empty entries
-            if (array_sum($stock_data) == 0) {
-                continue;
-            }
-
             if (empty($products[$key]['inventory'])) {
                 $products[$key]['inventory'] = [];
+                $products[$key]['total']     = 0;
             }
 
+            // handle any delayed stock
             if (!empty($stock_data['ordered'])) {
                 if (empty($products[$key]['inventory'][$item->InventQtyAvailOrderedDate])) {
                     $products[$key]['inventory'][$item->InventQtyAvailOrderedDate] = array(
@@ -593,9 +568,11 @@ class ECommerceServices extends SoapService
                     );
                 }
 
-                $products[$key]['inventory'][$item->InventQtyAvailOrderedDate]['stock'] += $stock_data['ordered'];
+                $products[$key]['total'] += $stock_data['ordered'];
+                $products[$key]['inventory'][$item->InventQtyAvailOrderedDate]['quantity'] += $stock_data['ordered'];
             }
 
+            // handle stock on-hand
             if (isset($stock_data['onhand'])) {
                 if (empty($products[$key]['inventory']['onhand'])) {
                     $products[$key]['inventory']['onhand'] = array(
@@ -604,35 +581,35 @@ class ECommerceServices extends SoapService
                     );
                 }
 
+                $products[$key]['total'] += $stock_data['onhand'];
                 $products[$key]['inventory']['onhand']['quantity'] += $stock_data['onhand'];
             }
         }
+
+        // ----------------------------------------------------------------
+        // 2. update the stock levels for the entire style
+        // ----------------------------------------------------------------
 
         $allout = true;
         foreach ($products as $item) {
             $product = $item['product'];
 
             if (isset($item['inventory'])) {
+                $is_out = !((bool) $item['total']);
+
                 // inventory to products
-
                 $stock_service->setLevels($product->getId(), $item['inventory']);
+                $this->setStockStatus($is_out, $product);
 
-                $product->setIsOutOfStock(false);
-                $allout = false;
+                if (false === $is_out) {
+                    $allout = false;
+                }
             } else {
-                $product->setIsOutOfStock(true);
+                $this->setStockStatus(true, $product);
             }
-
-            $product->save();
         }
 
-        if ($allout) {
-            $master->setIsOutOfStock(true);
-        } else {
-            $master->setIsOutOfStock(false);
-        }
-
-        $master->save();
+        $this->setStockStatus($allout, $master);
 
         // purge varnish
         $this->event_dispatcher->dispatch('product.stock.zero', new FilterCategoryEvent($master, null, Propel::getConnection(null, Propel::CONNECTION_WRITE)));
@@ -1036,8 +1013,6 @@ class ECommerceServices extends SoapService
      */
     public function SalesOrderAddDocument($data)
     {
-        $errors = array();
-
         if (empty($data->eOrderNumber)) {
             $this->logger->addCritical(__METHOD__.' '.__LINE__.': no eOrderNumber given.');
             return self::responseStatus('Error', 'SalesOrderAddDocumentResult', array('no eOrderNumber given.'));
@@ -1349,5 +1324,27 @@ class ECommerceServices extends SoapService
     protected function boot()
     {
         $this->timer = new Timer('ax');
+    }
+
+
+    /**
+     * Updates the stock status across databases.
+     * This really should be moved to an event listener, as it is duplicated in Stock.
+     *
+     * @param  boolean  $is_out
+     * @param  Products $product
+     * @return array
+     */
+    protected function setStockStatus($is_out, Products $product)
+    {
+        return $this->replicator->executeQuery("
+            UPDATE
+                products
+            SET
+                is_out_of_stock = ".(int) $is_out.",
+                updated_at = NOW()
+            WHERE
+                id = ".$product->getId()
+        );
     }
 }

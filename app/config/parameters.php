@@ -51,22 +51,26 @@ $locale_map = [
 ];
 $container->setParameter('locale', $locale_map[$lang]);
 
-$dbUser     = $container->getParameter($db_prefix.'database_user');
-$dbPassword = $container->getParameter($db_prefix.'database_password');
-$dbName     = $container->getParameter($db_prefix.'database_name');
-$dbHost     = $container->getParameter($db_prefix.'database_host');
-
-$localDbConnection = new PDO( 'mysql:host='. $dbHost .';dbname='. $dbName , $dbUser, $dbPassword, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8") );
-$stmt              = $localDbConnection->prepare( "SELECT * FROM settings WHERE ns = 'core'" );
-$stmt->execute();
-$results           = $stmt->fetchAll();
-
 // setting up assetic version and baseurl, needed to support cdn
 $container->setParameter('assets_version', 1);
 $container->setParameter('assets_base_url', str_replace('http:', '', $container->getParameter('cdn')));
 
+// workaround for travis-ci and not having a db connection on eg. install
+try {
+    $localDbConnection = new PDO(
+        'mysql:host='.$container->getParameter($db_prefix.'database_host').';dbname='.$container->getParameter($db_prefix.'database_name'),
+        $container->getParameter($db_prefix.'database_user'),
+        $container->getParameter($db_prefix.'database_password'),
+        [PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"]
+    );
+
+    $stmt = $localDbConnection->prepare("SELECT * FROM settings WHERE ns = 'core'");
+    $stmt->execute();
+    $results = $stmt->fetchAll();
+} catch (\Exception $e) {}
+
 // Default settings
-if ( !empty($results) ) {
+if (!empty($results)) {
     foreach ($results as $result) {
         $container->setParameter($result['c_key'], $result['c_value']);
     }

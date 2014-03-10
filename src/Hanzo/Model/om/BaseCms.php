@@ -434,7 +434,7 @@ abstract class BaseCms extends BaseObject implements Persistent
      */
     public function setType($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -455,7 +455,7 @@ abstract class BaseCms extends BaseObject implements Persistent
      */
     public function setUpdatedBy($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 

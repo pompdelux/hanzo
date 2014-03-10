@@ -26,21 +26,21 @@ class ProductFeedController extends Controller
     {
         // See definition here: https://support.google.com/merchants/answer/188494
 
-        $hanzo = Hanzo::getInstance();
+        $hanzo      = Hanzo::getInstance();
         $translator = $this->get('translator');
-        $router = $this->get('router');
+        $router     = $this->get('router');
 
         $exclude = [
-            'Hayward kneesocks',
-            'Arlington socks',
-            'Oregon socks',
+            'Adi kneesocks',
+            'Capel socks',
+            'Cowra socks',
+            'Sunderland socks',
             'POMP bag',
             'POMP big bag',
         ];
 
-        $items = [];
+        $items       = [];
         $product_ids = [];
-
         $router_keys = include $this->container->parameters['kernel.cache_dir'] . '/category_map.php';
 
         $products = ProductsQuery::create()
@@ -51,14 +51,15 @@ class ProductFeedController extends Controller
             ->useProductsI18nQuery()
                 ->filterByLocale($request->getLocale())
             ->endUse()
-            ->find();
+            ->find()
+        ;
+
         foreach ($products as $product) {
-            $product_id = $product->getId();
-            $product_sku = $product->getTitle();
+            $product_id           = $product->getId();
+            $product_sku          = $product->getTitle();
             $product_sku_stripped = Tools::stripText($product_sku);
 
             $product_ids[] = $product_id;
-
 
             $products2category = ProductsToCategoriesQuery::create()
                 ->useProductsQuery()
@@ -67,6 +68,12 @@ class ProductFeedController extends Controller
                 ->findOne();
 
             $key = '_' . strtolower($request->getLocale()) . '_' . $products2category->getCategoriesId();
+
+            // skip products without routes
+            if (empty($router_keys[$key])) {
+                continue;
+            }
+
             $product_route = $router_keys[$key];
 
             $images = ProductsImagesQuery::create()
@@ -74,31 +81,39 @@ class ProductFeedController extends Controller
                 ->find();
             $images_array = [];
             foreach ($images as $image) {
-                $images_array[] = Tools::productImageUrl($image->getImage(), '0x0');
-            }
-            $translation_key = 'description.' . Tools::stripText($product->getSku(), '_', false);
+                $img = $image->getImage();
+                // only show "overview" images, there are a limit to how many images google allows pr product.
+                if (false === strpos($img, '_overview_')) {
+                    continue;
+                }
 
-            $find = '~(background|src)="(../|/)~';
-            $replace = '$1="' . $hanzo->get('core.cdn');
+                $images_array[$img] = Tools::productImageUrl($img, '0x0');
+            }
+
+            $translation_key = 'description.' . Tools::stripText($product->getSku(), '_', false);
+            $find            = '~(background|src)="(../|/)~';
+            $replace         = '$1="' . $hanzo->get('core.cdn');
 
             $description = $translator->trans($translation_key, array('%cdn%' => $hanzo->get('core.cdn')), 'products');
             $description = preg_replace($find, $replace, $description);
 
-            $is_in_stock = $this->get('stock')->check($product);
+            $is_in_stock = !$product->getIsOutOfStock();
+
             $items[] = [
-                'product_id' => $product_id,
-                'url'   => $router->generate($product_route, [
+                'product_id'        => $product_id,
+                'url'               => $router->generate($product_route, [
                     'product_id' => $product_id,
                     'title'      => $product_sku_stripped,
                 ], true),
-                'name'  => $product_sku,
-                'description'  => preg_replace('/\s+/', ' ', Tools::stripTags($description)),
-                'price' => 0,
-                'availability' => $translator->trans(($is_in_stock) ? 'google.feed.availability.in_stock' : 'google.feed.availability.sold_out'),
-                'image' => Tools::productImageUrl($product->getProductsImagess()->getFirst()->getImage(), '0x0'),
+                'name'              => $product_sku,
+                'description'       => preg_replace('/\s+/', ' ', Tools::stripTags($description)),
+                'price'             => 0,
+                'availability'      => ($is_in_stock ? 'in stock' : 'out of stock'),
+                'image'             => array_shift($images_array),
                 'additional_images' => $images_array,
             ];
         }
+
         foreach (ProductsDomainsPricesPeer::getProductsPrices($product_ids) as $id => $prices) {
             foreach ($items as $i => $item) {
                 if ($item['product_id'] == $id) {
@@ -110,6 +125,7 @@ class ProductFeedController extends Controller
                 }
             }
         }
+
         $response = new Response($this->renderView('GoogleBundle:ProductFeed:feed.xml.twig', ['items' => $items]));
         $response->headers->set('Content-Type', 'application/xml');
 

@@ -1136,12 +1136,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/liip/LiipThemeBundle.git",
-                "reference": "fa7f7851e1b9b12b9a7c9f6bcbbc24a23aba05aa"
+                "reference": "454030a9f27bcc4e6d46ba1db0b3c26aba247db0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liip/LiipThemeBundle/zipball/fa7f7851e1b9b12b9a7c9f6bcbbc24a23aba05aa",
-                "reference": "fa7f7851e1b9b12b9a7c9f6bcbbc24a23aba05aa",
+                "url": "https://api.github.com/repos/liip/LiipThemeBundle/zipball/454030a9f27bcc4e6d46ba1db0b3c26aba247db0",
+                "reference": "454030a9f27bcc4e6d46ba1db0b3c26aba247db0",
                 "shasum": ""
             },
             "require": {
@@ -1181,21 +1181,21 @@
                 "themes",
                 "theming"
             ],
-            "time": "2013-09-30 12:47:45"
+            "time": "2014-02-26 22:17:44"
         },
         {
             "name": "misd/guzzle-bundle",
-            "version": "v1.1.3",
+            "version": "v1.1.4",
             "target-dir": "Misd/GuzzleBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/misd-service-development/guzzle-bundle.git",
-                "reference": "9451d521306616d40d398d6f914058de1787d040"
+                "reference": "42fca1c6b09f50b0f540e3055dc98a2b37f04aa1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/misd-service-development/guzzle-bundle/zipball/9451d521306616d40d398d6f914058de1787d040",
-                "reference": "9451d521306616d40d398d6f914058de1787d040",
+                "url": "https://api.github.com/repos/misd-service-development/guzzle-bundle/zipball/42fca1c6b09f50b0f540e3055dc98a2b37f04aa1",
+                "reference": "42fca1c6b09f50b0f540e3055dc98a2b37f04aa1",
                 "shasum": ""
             },
             "require": {
@@ -1255,7 +1255,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2014-01-06 15:10:45"
+            "time": "2014-02-17 11:27:29"
         },
         {
             "name": "monolog/monolog",
@@ -1517,16 +1517,16 @@
         },
         {
             "name": "propel/propel1",
-            "version": "1.7.0",
+            "version": "1.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/propelorm/Propel.git",
-                "reference": "09058f1443bc287e550b9342a4379aac2e0a0b8f"
+                "reference": "af527736586388c21a5a0a5f97914e7264fe580c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/propelorm/Propel/zipball/09058f1443bc287e550b9342a4379aac2e0a0b8f",
-                "reference": "09058f1443bc287e550b9342a4379aac2e0a0b8f",
+                "url": "https://api.github.com/repos/propelorm/Propel/zipball/af527736586388c21a5a0a5f97914e7264fe580c",
+                "reference": "af527736586388c21a5a0a5f97914e7264fe580c",
                 "shasum": ""
             },
             "require": {
@@ -1576,7 +1576,7 @@
                 "orm",
                 "persistence"
             ],
-            "time": "2013-10-21 12:52:56"
+            "time": "2014-02-25 09:13:58"
         },
         {
             "name": "psr/log",
@@ -2032,16 +2032,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.3.10",
+            "version": "v2.3.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "e4b9ff28b7c357971947ed12f99fbc68ff116830"
+                "reference": "aa5b228e87dde1a1a9c7c3c78ad538739da05fe1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/e4b9ff28b7c357971947ed12f99fbc68ff116830",
-                "reference": "e4b9ff28b7c357971947ed12f99fbc68ff116830",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/aa5b228e87dde1a1a9c7c3c78ad538739da05fe1",
+                "reference": "aa5b228e87dde1a1a9c7c3c78ad538739da05fe1",
                 "shasum": ""
             },
             "require": {
@@ -2138,7 +2138,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2014-02-12 08:18:23"
+            "time": "2014-02-27 14:55:30"
         },
         {
             "name": "twig/extensions",

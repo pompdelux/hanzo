@@ -373,7 +373,7 @@
             </trans-unit>
             <trans-unit id="events.create_customer.description.text">
                 <source>events.create_customer.description.text</source>
-                <target><![CDATA['<b>Existerande kund:</b> Skriv in kundens e-mailadress eller telefonnummer och klicka på knappen Hämta.]]></target>
+                <target><![CDATA['<b>Existerande kund:</b> Skriv in kundens e-mailadress och klicka på knappen Hämta.]]></target>
             </trans-unit>
             <trans-unit id="events.fetch_customer.placeholder" approved="no">
                 <source>events.fetch_customer.placeholder</source>

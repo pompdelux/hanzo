@@ -1072,7 +1072,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setSessionId($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -1189,7 +1189,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setFirstName($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -1210,7 +1210,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setLastName($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -1231,7 +1231,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setEmail($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -1252,7 +1252,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setPhone($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -1294,7 +1294,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setCurrencyCode($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -1315,7 +1315,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setBillingTitle($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -1336,7 +1336,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setBillingFirstName($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -1357,7 +1357,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setBillingLastName($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -1378,7 +1378,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setBillingAddressLine1($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -1399,7 +1399,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setBillingAddressLine2($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -1420,7 +1420,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setBillingPostalCode($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -1441,7 +1441,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setBillingCity($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -1462,7 +1462,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setBillingCountry($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -1508,7 +1508,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setBillingStateProvince($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -1529,7 +1529,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setBillingCompanyName($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -1550,7 +1550,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setBillingMethod($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -1571,7 +1571,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setBillingExternalAddressId($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -1592,7 +1592,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setDeliveryTitle($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -1613,7 +1613,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setDeliveryFirstName($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -1634,7 +1634,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setDeliveryLastName($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -1655,7 +1655,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setDeliveryAddressLine1($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -1676,7 +1676,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setDeliveryAddressLine2($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -1697,7 +1697,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setDeliveryPostalCode($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -1718,7 +1718,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setDeliveryCity($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -1739,7 +1739,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setDeliveryCountry($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -1785,7 +1785,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setDeliveryStateProvince($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -1806,7 +1806,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setDeliveryCompanyName($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -1827,7 +1827,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setDeliveryMethod($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -1848,7 +1848,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setDeliveryExternalAddressId($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 

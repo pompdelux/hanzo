@@ -150,6 +150,7 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
         'nj@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
         'pc@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
         'sj@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
+        'ls@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
         // customer service
         'cd@pompdelux.dk'        => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
         'hb@pompdelux.dk'        => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
@@ -247,9 +248,14 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
      */
     public function isFullNameWithinLimits(ExecutionContext $context)
     {
-        $domain = Hanzo::getInstance()->get('core.domain_key');
+        $domain = strtoupper(Hanzo::getInstance()->get('core.domain_key'));
         $maxLength = 30;
-        if ($domain == 'DE') {
+
+        if (substr($domain, -2) == 'DK') {
+            $maxLength = 35;
+        }
+
+        if (substr($domain, -2) == 'DE') {
             // In germany the max length are including the Frau/Herr prefix
             // plus a space. Subtract 5 chars.
             $maxLength = 25;

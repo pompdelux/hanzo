@@ -211,7 +211,7 @@ abstract class BaseZipToCity extends BaseObject implements Persistent
      */
     public function setZip($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -232,7 +232,7 @@ abstract class BaseZipToCity extends BaseObject implements Persistent
      */
     public function setCountriesIso2($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -257,7 +257,7 @@ abstract class BaseZipToCity extends BaseObject implements Persistent
      */
     public function setCity($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -278,7 +278,7 @@ abstract class BaseZipToCity extends BaseObject implements Persistent
      */
     public function setCountyId($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -299,7 +299,7 @@ abstract class BaseZipToCity extends BaseObject implements Persistent
      */
     public function setCountyName($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -320,7 +320,7 @@ abstract class BaseZipToCity extends BaseObject implements Persistent
      */
     public function setComment($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 

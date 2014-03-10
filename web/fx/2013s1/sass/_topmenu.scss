@@ -2,13 +2,14 @@
 | _topmenu
 */
 @import "compass/css3/box-shadow";
+@import "compass/css3/opacity";
 
 nav.main-menu {
   background: #484a4d;
   padding: 0 10px;
   ul {
-    z-index: 310; // z-index and rpoition to fix rendering in IE7. This must be higher than the actually z-index of child
-    position: initial;
+    z-index: 210; // z-index and rpoition to fix rendering in IE7. This must be higher than the actually z-index of child
+    position: relative;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -21,18 +22,21 @@ nav.main-menu {
   > ul > li {
     float: left;
     width: auto;
-    position: initial;
+    position: relative;
     // Hover effect on submenus. .on class are used on touch devices.
     > ul.on,
     &:hover > ul {
       left: 0;
       top: auto;
-      z-index: 300;
-      @include box-shadow(#CECECE 0 2px 8px);
+      z-index: 150;
+    }
+    &.last:hover > ul.floaded-right {
+      left: initial;
+      right: 0;
     }
     > {
       a {
-        padding: 10px 30px 10px 0;
+        padding: 10px 20px 10px 0;
         display: block;
         font-size: 14px;
         color: white;
@@ -42,32 +46,29 @@ nav.main-menu {
         position: absolute;
         left: -9999px;
         border-top: 0;
-        width: 100%;
+        width: 250px;
+        z-index: 1;
         background-color: #fff;
         font-family: $font-sans;
         font-size: $side-menu-size;
         line-height: $side-menu-line-height;
-
+        @include opacity(0.95);
+        @include box-shadow(#676767 2px 2px 8px);
         > li {
+          float: none;
           padding: 10px 8px;
-          width: 180px;
+          width: 200px;
           // Sub Sub menu-items
           > ul {
-            > li {
+            li {
               float: none;
               padding-top: 12px;
             }
           }
         }
         li {
-          text-align: left;
-          &.floaded {
-            margin-right: 10px;
-            display: inline-block;
-            vertical-align: top;
-            &.last {
-              margin-right: 0;
-            }
+          &.floaded{
+            float: left;
           }
           &.heading > a,
           &.self-included > a{
@@ -81,21 +82,6 @@ nav.main-menu {
         }
       }
     }
-  }
-}
-html.ie7 {
-// html.ie8,
-  nav.main-menu li.floaded {
-    display: inline;
-    float: left;
-  }
-}
-
-
-nav.first.main-menu > ul > li {
-  position: relative;
-  ul {
-    width: 250px;
   }
 }
 

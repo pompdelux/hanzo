@@ -11,7 +11,11 @@
     <p>Udfyld formen og tryk "Gem"</p>
 
     {% form_theme form 'AdminBundle:Form:fields.html.twig' %}
-    <form action="{{ path('admin_shipping_breaks_edit', {id:break_id}) }}" method="post" {{ form_enctype(form) }} id="break-form" class="form-horizontal">
+    {% if break_id %}
+    <form action="{{ path('admin_shipping_breaks_edit', {'id' : break_id}) }}" method="post" {{ form_enctype(form) }} id="break-form" class="form-horizontal">
+    {% else %}
+    <form action="{{ path('admin_shipping_breaks_edit') }}" method="post" {{ form_enctype(form) }} id="break-form" class="form-horizontal">
+    {% endif %}
         {{ form_row(form._token) }}
         {{ form_rest(form) }}
         <p><br>Datoerne er <em>inklisive</em>, så hvis der angives "15-06-2013" er det "fra og med den 15/6 2013"</p>

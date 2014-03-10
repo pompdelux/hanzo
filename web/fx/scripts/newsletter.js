@@ -144,6 +144,7 @@ var newsletter = (function($) {
         if (response.status) {
           $('input[type="text"], input[type="email"]', $form).val('');
           $('input[type="text"], input[type="email"]', $form).removeClass('error');
+          $form.addClass('newsletter-subscribe-complete');
         } else {
           $('input[type="email"]', $form).addClass('error');
         }

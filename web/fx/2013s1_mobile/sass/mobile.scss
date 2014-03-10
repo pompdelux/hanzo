@@ -178,6 +178,9 @@ div.sub-menu {
                     float: right;
                     clear: none;
                 }
+                &.grid_mobile-full {
+                    width: 100%;
+                }
             }
         }
     }

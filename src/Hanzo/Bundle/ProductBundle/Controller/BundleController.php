@@ -38,6 +38,9 @@ class BundleController extends CoreController
             $locale = strtolower($hanzo->get('core.locale'));
 
             $product = ProductsQuery::create()
+                ->useProductsI18nQuery()
+                    ->filterByLocale($hanzo->get('core.locale'))
+                ->endUse()
                 ->useProductsImagesQuery()
                     ->filterById($image_id)
                 ->endUse()
@@ -73,6 +76,7 @@ class BundleController extends CoreController
             $products[$product->getId()] = array(
                 'id' => $product->getId(),
                 'master' => $product->getSku(),
+                'title' => $product->getTitle(),
                 'color' => $image->getColor(),
                 'image' => $image->getImage(),
                 'url' => $router->generate($product_route, array(
@@ -83,6 +87,9 @@ class BundleController extends CoreController
             );
 
             $result = ProductsQuery::create()
+                ->useProductsI18nQuery()
+                    ->filterByLocale($hanzo->get('core.locale'))
+                ->endUse()
                 ->useProductsImagesProductReferencesQuery()
                     ->filterByProductsImagesId($image_id)
                 ->endUse()
@@ -120,6 +127,7 @@ class BundleController extends CoreController
                 $products[$product->getId()] = array(
                     'id' => $product->getId(),
                     'master' => $product->getSku(),
+                    'title' => $product->getTitle(),
                     'color' => $image->getColor(),
                     'image' => $image->getImage(),
                     'url' => $router->generate($product_route, array(
@@ -142,17 +150,18 @@ class BundleController extends CoreController
 
         foreach ($products as $id => $product) {
 
-            $stock = $this->forward('WebServicesBundle:RestStock:check', array(
-                'version' => 'v1',
-                'master' => $product['master'],
-                'id' => '',
-            ));
-            $stock = json_decode($stock->getContent());
+            $variants = ProductsQuery::create()->findByMaster($product['master']);
+            $products_id = [];
+            $options = [];
+            foreach ($variants as $v) {
+                $product_ids[] = $v->getId();
+            }
 
-            $options = array();
-            if (isset($stock->data->products) && count($stock->data->products)) {
-                foreach ($stock->data->products as $p) {
-                    $options[$p->size] = $p->size;
+            $stock = $this->get('stock');
+            $stock->prime($product_ids);
+            foreach ($variants as $v) {
+                if ($stock->check($v->getId())) {
+                    $options[$v->getSize()] = $v->getSize();
                 }
                 $products[$id]['out_of_stock'] = false;
             }
@@ -275,17 +284,18 @@ class BundleController extends CoreController
                 continue;
             }
 
-            $stock = $this->forward('WebServicesBundle:RestStock:check', array(
-                'version' => 'v1',
-                'master' => $product['master'],
-                'id' => '',
-            ));
-            $stock = json_decode($stock->getContent());
+            $variants = ProductsQuery::create()->findByMaster($product['master']);
+            $products_id = [];
+            $options = [];
+            foreach ($variants as $v) {
+                $product_ids[] = $v->getId();
+            }
 
-            $options = array();
-            if (isset($stock->data->products) && count($stock->data->products)) {
-                foreach ($stock->data->products as $p) {
-                    $options[$p->size] = $p->size;
+            $stock = $this->get('stock');
+            $stock->prime($product_ids);
+            foreach ($variants as $v) {
+                if ($stock->check($v->getId())) {
+                    $options[$v->getSize()] = $v->getSize();
                 }
                 $products[$id]['out_of_stock'] = false;
             }

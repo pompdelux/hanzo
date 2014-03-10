@@ -24,7 +24,7 @@
     redis_session_password=""
 
     redis_cache1_host="localhost"
-    redis_cache1_port="6380"
+    redis_cache1_port="6379"
     redis_cache1_database="0"
     redis_cache1_password=""
 

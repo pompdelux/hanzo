@@ -1,30 +1,29 @@
 <?xml version="1.0"?>
-<rss version="2.0"
-xmlns:g="http://base.google.com/ns/1.0">
-  <channel>
-    <title>POMPdeLUX Product Feed</title>
-    <description>POMPdeLUX Product Feed</description>
-    <link>http://www.pompdelux.com</link>
-  {% for item in items %}
-    <item>
-      <title>{{ item.name }}</title>
-      <g:id>{{ item.url }}</g:id>
-      <description>{{ item.description }}</description>
-      {# <g:google_product_category>{{ item.url }}</g:google_product_category> #}
-      {# <g:product_type>{{ item.url }}</g:product_type> #}
-      <link>{{ item.url }}</link>
-      <g:price>{{ item.price }}</g:price>
-      {% if item.sale_price is defined %}
-        <g:sale_price>{{ item.sale_price }}</g:sale_price>
-      {% endif %}
-      <g:availability>{{ item.availability|trans({}, 'google') }}</g:availability>
-      <g:condition>{{ "google.feed.condition.new"|trans({}, 'google') }}</g:condition>
-      <g:image_link>{{ item.image }}</g:image_link>
-      {% for image in item.additional_images %}
-        <g:additional_image_link>{{ image }}</g:additional_image_link>
-      {% endfor %}
-      <g:brand>{{ "google.feed.brand"|trans({}, 'google') }}</g:brand>
-    </item>
-  {% endfor %}
-  </channel>
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
+    <channel>
+        <title>POMPdeLUX Product Feed</title>
+        <description>POMPdeLUX Product Feed</description>
+        <link>http://www.pompdelux.com</link>
+    {% for item in items %}
+        <item>
+            <title>{{ item.name }}</title>
+            <g:id>{{ item.url }}</g:id>
+            <description>{{ item.description }}</description>
+            <link>{{ item.url }}</link>
+            <g:google_product_category>Apparel &amp; Accessories &gt; Clothing</g:google_product_category>
+            <g:product_type>Apparel &amp; Accessories &gt; Clothing &gt; {{ item.name|split(' ')|last|capitalize }}</g:product_type>
+            <g:price>{{ item.price }}</g:price>
+        {% if item.sale_price is defined %}
+            <g:sale_price>{{ item.sale_price }}</g:sale_price>
+        {% endif %}
+            <g:availability>{{ item.availability }}</g:availability>
+            <g:condition>new</g:condition>
+            <g:image_link>{{ item.image }}</g:image_link>
+        {% for image in item.additional_images %}
+            <g:additional_image_link>{{ image }}</g:additional_image_link>
+        {% endfor %}
+            <g:brand>{{ "google.feed.brand"|trans({}, 'google') }}</g:brand>
+        </item>
+    {% endfor %}
+    </channel>
 </rss>

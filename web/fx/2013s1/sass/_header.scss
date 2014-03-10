@@ -58,7 +58,7 @@ nav.first.main-menu {
                 text-transform: uppercase;
                 font-family: $font-sans;
                 font-size: $main-menu-size;
-                padding: 0 10px 9px;
+                padding: 0 8px 9px;
                 color: #444;
                 font-weight: normal;
             }
@@ -181,6 +181,10 @@ ul.sub-menu,
 		&.item{
 			a{
 				line-height: 18px;
+                &.search {
+                    font-weight: bold;
+                    margin: 6px 0 0;
+                }
 			}
 		}
 		&.heading > a,
@@ -297,6 +301,7 @@ ul.breadcrumb {
 	background: #d2c3c6;
 	height: 100px;
 	margin-bottom: 28px;
+    overflow: hidden;
 	hgroup{
 		color: white;
 		padding: 10px;

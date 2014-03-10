@@ -232,7 +232,7 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
      */
     public function setImage($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -253,7 +253,7 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
      */
     public function setColor($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -274,7 +274,7 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
      */
     public function setType($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 

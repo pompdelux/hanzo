@@ -20,6 +20,7 @@ var rma = (function ($) {
         });
 
         $('.rma-submit').on('click', function (event) {
+            event.preventDefault();
             generatePdf();
         });
 
@@ -87,19 +88,22 @@ var rma = (function ($) {
         });
 
         if (products.length > 0) {
-            // pop return lable window
-            if (-1 == jQuery.inArray($('html').data('domainkey'), ['nl', 'salesnl', 'com'])) {
-                window.open(base_url + 'account/consignor/return-label/' + rma_order_id);
-            }
-
-            // Add a hidden form to send.
-            var $form = $('<form></form>')
-                .attr('method', 'GET')
-                .append($('<input type="hidden" name="order_id">').val(rma_order_id))
+            // Force PDF download trough an POST form. Products variable can be
+            // extremely long.
+            $('<form></form>')
+                .attr('method', 'POST')
                 .append($('<input type="hidden" name="products">').val(JSON.stringify(products)))
                 .appendTo('body')
-                .submit()
-            ;
+                .submit();
+
+            // Force download of return label with an iframe delayed a couple of
+            // seconds.
+            if (-1 == jQuery.inArray($('html').data('domainkey'), ['nl', 'salesnl', 'com'])) {
+                window.setTimeout(function(){
+                    $('<iframe src="' + base_url + 'account/consignor/return-label/' + rma_order_id + '" width="1" height="0" class="off" frameborder="0"></iframe>')
+                        .appendTo('body');
+                }, 3000);
+            }
         }
 
         dialoug.stopLoading();

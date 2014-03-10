@@ -1,5 +1,6 @@
 # Hanzo - PDL shop v2
 
+[![Build Status](https://magnum.travis-ci.com/pompdelux/hanzo.png?token=UA2TnLisELk6rr7prsvr&branch=master)](https://magnum.travis-ci.com/pompdelux/hanzo)
 
 ## Requirements:
 

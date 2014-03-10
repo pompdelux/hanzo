@@ -2,14 +2,20 @@
 
 namespace Hanzo\Bundle\StockBundle;
 
+use Hanzo\Core\PropelReplicator;
+use Hanzo\Model\Products;
 use Hanzo\Model\ProductsQuery;
-use Hanzo\Model\ProductsStockPeer;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Hanzo\Bundle\AdminBundle\Event\FilterCategoryEvent;
 
 class Stock
 {
+    /**
+     * @var string
+     */
+    protected $locale;
+
     /**
      * @var array
      */
@@ -26,15 +32,23 @@ class Stock
     protected $warehouse;
 
     /**
-     * @param $locale
-     * @param EventDispatcher $event_dispatcher
-     * @param Warehouse       $warehouse
+     * @var PropelReplicator
      */
-    public function __construct($locale, EventDispatcher $event_dispatcher, Warehouse $warehouse)
+    protected $replicator;
+
+    /**
+     * @param string           $locale
+     * @param EventDispatcher  $event_dispatcher
+     * @param Warehouse        $warehouse
+     * @param PropelReplicator $replicator
+     */
+    public function __construct($locale, EventDispatcher $event_dispatcher, Warehouse $warehouse, PropelReplicator $replicator)
     {
+        $this->locale = $locale;
         $this->event_dispatcher = $event_dispatcher;
         $warehouse->setLocation($locale);
         $this->warehouse = $warehouse;
+        $this->replicator = $replicator;
     }
 
 
@@ -110,13 +124,18 @@ class Stock
         $now = date('Ymd');
 
         foreach ($this->stock[$id] as $date => $stock) {
+            // the total field is just to be skipped, but should never be removed.
             if ($date === 'total') {
                 continue;
             }
 
             $sum += $stock['quantity'];
             if ($stock['quantity'] >= $quantity) {
-                return $date > $now ? new \DateTime($date) : true;
+                // we return the date the product is available if it is later thant now, otherwise we just return true
+                return $date > $now
+                    ? new \DateTime($date)
+                    : true
+                ;
             }
         }
 
@@ -190,7 +209,7 @@ class Stock
      * decrease the stock level for a product
      *
      * @param \Hanzo\Model\Products $product a product object
-     * @param int $quantity the quantity by wich to decrease
+     * @param int $quantity the quantity by which to decrease
      * @return mixed, the expected delivery date on success, false otherwise.
      */
     public function decrease($product, $quantity = 1)
@@ -225,19 +244,14 @@ class Stock
 
         // NICETO: move all db stuff to event listeners
         if ($total == $quantity){
-            $con = self::getConnection();
-
-            $product->setIsOutOfStock(true);
-            $product->save($con);
+            $this->setStockStatus(true, $product);
             $this->warehouse->removeProductFromInventory($product_id);
 
             // find out if the whole style is out of stock
             // if so, tag it so and fire an event (for caching n' stuff)
             if (false === $this->checkStyleStock($product)) {
-                $master = ProductsQuery::create()->findOneBySku($product->getMaster(), $con);
-                $master->setIsOutOfStock(true);
-                $master->save($con);
-
+                $master = ProductsQuery::create()->findOneBySku($product->getMaster());
+                $this->setStockStatus(true, $master);
                 $this->event_dispatcher->dispatch('product.stock.zero', new FilterCategoryEvent($master, $this->locale));
             }
         }
@@ -245,6 +259,48 @@ class Stock
         unset($this->stock[$product->getId()]);
 
         return $current['date'];
+    }
+
+
+    /**
+     * Returns the current quantity of reserved products
+     *
+     * @param $product_id
+     * @return int
+     */
+    public function getProductReservations($product_id)
+    {
+        $sql = "
+            SELECT
+                SUM(orders_lines.quantity) AS qty
+            FROM
+                orders_lines
+            INNER JOIN
+                orders
+                ON (
+                    orders_lines.orders_id = orders.id
+                )
+            WHERE
+                orders_lines.products_id = ".$product_id."
+                AND
+                    orders.state < 40
+                AND
+                    orders.updated_at > '".date('Y-m-d H:i:s', strtotime('2 hours ago'))."'
+            GROUP BY
+                orders_lines.products_id
+            LIMIT 1
+        ";
+
+        $results = $this->replicator->executeQuery($sql, [], $this->warehouse->getRelatedDatabases());
+
+        $res = 0;
+        foreach ($results as $result) {
+            if ($record = $result->fetch(\PDO::FETCH_ASSOC)) {
+                $res += $record['qty'];
+            }
+        }
+
+        return $res;
     }
 
 
@@ -274,16 +330,25 @@ class Stock
 
 
     /**
-     * @return \PropelPDO
+     * Updates the stock status across databases.
+     * This really should be moved to an event listener, as it is duplicated in ECommerceServices
+     *
+     * @param  boolean  $is_out
+     * @param  Products $product
+     * @return array
      */
-    protected static function getConnection()
+    protected function setStockStatus($is_out, Products $product)
     {
-        static $con;
+        $sql = "
+            UPDATE
+                products
+            SET
+                is_out_of_stock = ".(int) $is_out.",
+                updated_at = NOW()
+            WHERE
+                id = ".$product->getId()
+        ;
 
-        if (empty($con)) {
-            $con = \Propel::getConnection(ProductsStockPeer::DATABASE_NAME, \Propel::CONNECTION_WRITE);
-        }
-
-        return $con;
+        return $this->replicator->executeQuery($sql, [], $this->warehouse->getRelatedDatabases());
     }
 }

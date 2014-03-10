@@ -246,6 +246,6 @@ class Redis
             $list[] = is_scalar($argument) ? $argument : '[.. complex type ..]';
         }
 
-        return mb_substr(trim(strtoupper($command) . ' ' . implode(' ', $list)), 0, 256);
+        return mb_substr(trim(strtoupper($command) . ' ' . $this->getPrefix() . implode(' ', $list)), 0, 256);
     }
 }

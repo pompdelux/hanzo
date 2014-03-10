@@ -8,3 +8,6 @@ cms:
             type: sub
             from: 400
             offset: 482
+
+google:
+    analytics_code:    UA-48440455-1

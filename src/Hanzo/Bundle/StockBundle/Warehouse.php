@@ -3,6 +3,7 @@
 namespace Hanzo\Bundle\StockBundle;
 
 use Hanzo\Bundle\RedisBundle\Client\Redis as RedisClient;
+use Hanzo\Core\PropelReplicator;
 use Hanzo\Core\Tools;
 
 class Warehouse
@@ -23,15 +24,26 @@ class Warehouse
      */
     private $is_location_set = false;
 
+    /**
+     * @var \Hanzo\Core\PropelReplicator
+     */
+    private $replicator;
 
     /**
-     * @param RedisClient $redis
-     * @param array       $warehouses
+     * @param RedisClient      $redis
+     * @param array            $warehouses
+     * @param PropelReplicator $replicator
      */
-    public function __construct(RedisClient $redis, array $warehouses)
+    public function __construct(RedisClient $redis, array $warehouses, PropelReplicator $replicator = null)
     {
         $this->redis = $redis;
         $this->setWarehouses($warehouses);
+        $this->replicator = $replicator;
+
+        // debugging ...
+        if (!$replicator instanceof PropelReplicator) {
+            Tools::log('$replicator not set..: ', 0, true);
+        }
     }
 
 
@@ -49,7 +61,6 @@ class Warehouse
 
             $p = trim($this->redis->getPrefix(), ':');
             $this->redis->setPrefix($p.'.'.$this->is_location_set.':');
-
 
             return $this;
         }
@@ -133,7 +144,8 @@ class Warehouse
     {
         $multi = $this->redis->multi();
 
-        // start by cleaning up
+        // start by deleting all existing records
+        // this should be safe as long as it is done in a "multi" session, which creates a lock on the items in redis.
         $multi->delete('products_id.'.$product_id);
 
         $record_count = 0;
@@ -180,6 +192,46 @@ class Warehouse
     public function removeProductFromInventory($product_id)
     {
         return $this->redis->del('products_id.'.$product_id);
+    }
+
+
+    /**
+     * Returns an array of database connection names mapped against the warehouse list.
+     *
+     * @return array
+     * @throws \OutOfBoundsException
+     */
+    public function getRelatedDatabases()
+    {
+        if (!$this->is_location_set) {
+            throw new \OutOfBoundsException("Missing call to setLocation. Warehouse location must be set to get status.");
+        }
+
+        static $relations;
+
+        if (isset($relations[$this->is_location_set])) {
+            return $relations[$this->is_location_set];
+        }
+
+        $relations[$this->is_location_set] = [];
+
+        if (1 == count($this->warehouse_country_map[$this->is_location_set])) {
+            $relations[$this->is_location_set] = ['default'];
+        } else {
+            $map = ['default' => 'default'];
+            foreach ($this->warehouse_country_map[$this->is_location_set] as $locale) {
+                $v = 'pdldb'.strtolower(substr($locale, -2)).'1';
+                $map[$v] = $v;
+            }
+
+            foreach ($this->replicator->getConnectionNames() as $name) {
+                if (isset($map[$name])) {
+                    $relations[$this->is_location_set][] = $name;
+                }
+            }
+        }
+
+        return $relations[$this->is_location_set];
     }
 
 

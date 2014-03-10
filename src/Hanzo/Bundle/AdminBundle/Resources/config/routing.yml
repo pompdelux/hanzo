@@ -169,6 +169,15 @@ admin_product:
     requirements:
         id: \d+
 
+admin_product_stock:
+    pattern:  /admin/products/stock/{id}/{category_id}/{subcategory_id}
+    defaults:
+        _controller: AdminBundle:Products:viewStock
+    requirements:
+        id: \d+
+        category_id: \d+
+        subcategory_id: \d+
+
 
 admin_product_delete_style:
     pattern:  /admin/products/delete-style/{id}
@@ -777,14 +786,14 @@ admin_shipping_index:
     defaults:
         _controller: AdminBundle:Shipping:listFreeBreaks
 admin_shipping_breaks_add:
-    pattern: /admin/shipping/free-breaks/edit/
+    pattern: /admin/shipping/free-breaks/edit
     defaults:
         _controller: AdminBundle:Shipping:editFreeBreaks
 admin_shipping_breaks_edit:
-    pattern: /admin/shipping/free-breaks/edit/{id}/
+    pattern: /admin/shipping/free-breaks/edit/{id}
     defaults:
         _controller: AdminBundle:Shipping:editFreeBreaks
-        id: 0
+        id: NULL
 admin_shipping_breaks_delete:
     pattern: /admin/shipping/free-breaks/delete/{id}/
     defaults:

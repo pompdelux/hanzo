@@ -20,6 +20,7 @@
     right: 0;
     z-index: 900;
     padding: 8px 8px 19px 8px;
+    margin-right: 10px;
     text-align: center;
     overflow: hidden;
     background: #fff url('/fx/images/icons/icons/divider_left.png') no-repeat;
@@ -41,7 +42,17 @@
   .alert!, .confirm! {}
   #cboxClose {
     display: none;
+    position:absolute;
+    right:0;
+    top: 0;
+    &.sprite {
+      text-indent: -100px;
+      display: inline-block;
+    }
   }
+}
+#colorbox.js-keep-close-button #cboxClose {
+  display: block;
 }
 
 #dialoug-message {
@@ -71,14 +82,12 @@
 
 #newsletterModal {
     display: none;
-    background-image: url(/fx/images/ffffff.png);
     position: absolute;
     z-index: 499;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-
     .inner {
         z-index: 500;
         position: absolute;
@@ -86,82 +95,228 @@
         right: 0;
         left: 0;
         margin: 200px auto 0 auto;
-        padding: 20px 20px 5px 20px;
-        width: 600px;
-        // height: auto;
-        border-radius: 2px;
-        background-image: url(/fx/images/newsletter_overlay/bg.png);
         overflow: hidden;
         display: inline-block;
     }
 
-    h2 {
-        font-family: $font-serif;
-    }
+    &.type1 {
+        background-image: url(/fx/images/ffffff.png);
 
-    .wrapper {
-        background-image: url(/fx/images/newsletter_overlay/letters.png);
-        background-repeat: no-repeat;
-        padding-left: 150px;
-        padding-top: 20px;
-
-        p {
-            width: 280px;
+        .inner {
+            padding: 20px 20px 5px 20px;
+            width: 600px;
+            // height: auto;
+            border-radius: 2px;
+            background-image: url(/fx/images/newsletter_overlay/bg.png);
         }
 
-        form {
-            overflow: hidden;
+        h2 {
+            font-family: $font-serif;
         }
 
-        div {
-            width: 295px;
-            float: left;
-
-            input[type="text"] {
-                margin-top: 15px;
-            }
-            input[type="text"], input[type="email"] {
-                width: 100%;
-            }
+        .wrapper {
+            background-image: url(/fx/images/newsletter_overlay/letters.png);
+            background-repeat: no-repeat;
+            padding-left: 150px;
+            padding-top: 20px;
 
             p {
-                width: 100%;
-                padding-top: 5px;
-                a {
-                    font-size: $small-size;
+                width: 280px;
+            }
+
+            form {
+                overflow: hidden;
+            }
+
+            div {
+                width: 295px;
+                float: left;
+
+                input[type="text"] {
+                    margin-top: 15px;
                 }
-                a:hover, a:focus {
-                    text-decoration: underline;
+                input[type="text"], input[type="email"] {
+                    width: 100%;
                 }
+
+                p {
+                    width: 100%;
+                    padding-top: 5px;
+                    a {
+                        font-size: $small-size;
+                    }
+                    a:hover, a:focus {
+                        text-decoration: underline;
+                    }
+                }
+            }
+
+            input.button {
+                float: left;
+                margin-left: 40px;
+                height: 83px;
+                width: 84px;
+                background-color: inherit;
+                text-indent: -999px;
+                display: inline-block;
             }
         }
 
-        input.button {
-            float: left;
-            margin-left: 40px;
-            height: 83px;
-            width: 84px;
-            background-color: inherit;
-            text-indent: -999px;
+        .close-button {
             display: inline-block;
+            height: 64px;
+            width: 44px;
+            vertical-align: bottom;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .bottom {
+            background-image: url(/fx/images/newsletter_overlay/bottom.png);
+            background-repeat: no-repeat;
+            background-position: bottom center;
+            height: 220px;
+            clear: both;
         }
     }
 
-    .close-button {
-        display: inline-block;
-        height: 64px;
-        width: 44px;
-        vertical-align: bottom;
-        position: absolute;
-        top: 10px;
-        right: 10px;
-    }
+    &.type2 {
+        background-image: url(/fx/images/ffffff.png);
 
-    .bottom {
-        background-image: url(/fx/images/newsletter_overlay/bottom.png);
-        background-repeat: no-repeat;
-        background-position: bottom center;
-        height: 220px;
-        clear: both;
+        .inner {
+            background: white;
+            padding: 20px;
+            width: 800px;
+            -webkit-border-radius: 0px 10px;
+            -moz-border-radius: 0px 10px;
+            border-radius: 0px 10px;
+        }
+        .wrapper {
+            p, h2 {
+                display: none;
+            }
+
+            form {
+
+                width: 757px;
+                height: 355px;
+                margin: 0 auto;
+                background-repeat: no-repeat;
+                input[type="text"], input[type="email"] {
+                    position: absolute;
+                    left: 478px;
+                    width: 308px;
+                }
+                input[type="text"] {
+                    top: 287px;
+                }
+                input[type="email"] {
+                    top: 320px;
+                }
+                input.button {
+                    position: absolute;
+                    top: 198px;
+                    left: 720px;
+                    text-indent: -9999px;
+                    background-position: initial;
+                    height: 88px;
+                    width: 88px;
+                }
+                .dialoug-message {
+                    position: absolute;
+                    top:0;
+                }
+                &.newsletter-subscribe-complete {
+                    input{
+                        display: none;
+                    }
+                }
+            }
+        }
+        .close-button {
+            display: inline-block;
+            height: 23px;
+            width: 25px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: url(/fx/images/newsletter_overlay/type2/close.png) no-repeat;
+            background-position: initial;
+        }
+        .bottom {}
+    }
+}
+
+body.domain-dk #newsletterModal .wrapper form {
+    background-image: url(/fx/images/newsletter_overlay/type2/Billede_DK.jpg);
+    &.newsletter-subscribe-complete {
+        background-image: url(/fx/images/newsletter_overlay/type2/Kvittering_DK.jpg);
+    }
+    input.button {
+        background: url(/fx/images/newsletter_overlay/type2/Tilmeld-knap_DK.png);
+    }
+}
+body.domain-de #newsletterModal .wrapper form {
+    background-image: url(/fx/images/newsletter_overlay/type2/Billede_DE.jpg);
+    &.newsletter-subscribe-complete {
+        background-image: url(/fx/images/newsletter_overlay/type2/Kvittering_DE.jpg);
+    }
+    input.button {
+        background: url(/fx/images/newsletter_overlay/type2/Tilmeld-knap_DE.png);
+    }
+}
+body.domain-com #newsletterModal .wrapper form {
+    background-image: url(/fx/images/newsletter_overlay/type2/Billede_COM.jpg);
+    &.newsletter-subscribe-complete {
+        background-image: url(/fx/images/newsletter_overlay/type2/Kvittering_COM.jpg);
+    }
+    input.button {
+        background: url(/fx/images/newsletter_overlay/type2/Tilmeld-knap_COM.png);
+    }
+}
+body.domain-fi #newsletterModal .wrapper form {
+    background-image: url(/fx/images/newsletter_overlay/type2/Billede_FI.jpg);
+    &.newsletter-subscribe-complete {
+        background-image: url(/fx/images/newsletter_overlay/type2/Kvittering_FI.jpg);
+    }
+    input.button {
+        background: url(/fx/images/newsletter_overlay/type2/Tilmeld-knap_FI.png);
+    }
+}
+body.domain-no #newsletterModal .wrapper form {
+    background-image: url(/fx/images/newsletter_overlay/type2/Billede_NO.jpg);
+    &.newsletter-subscribe-complete {
+        background-image: url(/fx/images/newsletter_overlay/type2/Kvittering_NO.jpg);
+    }
+    input.button {
+        background: url(/fx/images/newsletter_overlay/type2/Tilmeld-knap_NO.png);
+    }
+}
+body.domain-nl #newsletterModal .wrapper form {
+    background-image: url(/fx/images/newsletter_overlay/type2/Billede_NL.jpg);
+    &.newsletter-subscribe-complete {
+        background-image: url(/fx/images/newsletter_overlay/type2/Kvittering_NL.jpg);
+    }
+    input.button {
+        background: url(/fx/images/newsletter_overlay/type2/Tilmeld-knap_NL.png);
+    }
+}
+body.domain-se #newsletterModal .wrapper form {
+    background-image: url(/fx/images/newsletter_overlay/type2/Billede_SE.jpg);
+    &.newsletter-subscribe-complete {
+        background-image: url(/fx/images/newsletter_overlay/type2/Kvittering_SE.jpg);
+    }
+    input.button {
+        background: url(/fx/images/newsletter_overlay/type2/Tilmeld-knap_SE.png);
+    }
+}
+body.domain-ch #newsletterModal .wrapper form {
+    background-image: url(/fx/images/newsletter_overlay/type2/Billede_CH.jpg);
+    &.newsletter-subscribe-complete {
+        background-image: url(/fx/images/newsletter_overlay/type2/Kvittering_CH.jpg);
+    }
+    input.button {
+        background: url(/fx/images/newsletter_overlay/type2/Tilmeld-knap_CH.png);
     }
 }

@@ -4,9 +4,10 @@
 <h1>{{ 'My account - history'|trans({}, 'account') }}</h1>
 
 {{ render(controller('AccountBundle:History:block', {
-    'limit': 0,
+    'limit': 20,
     'link': false,
-    'route' : app.request.attributes.get('_route')
+    'route' : app.request.attributes.get('_route'),
+    'pager' : app.request.attributes.get('pager')
 })) }}
 
 <br><a href="{{ path('_account') }}" class="button left">{{ 'Back'|trans({}, 'account') }}</a>

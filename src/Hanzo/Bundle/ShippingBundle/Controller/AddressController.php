@@ -69,8 +69,6 @@ class AddressController extends CoreController
                     case 12:
                         $type = 'overnightbox';
                         $address->setType('overnightbox');
-                        $address->setCountry('Denmark');
-                        $address->setCountriesId(58);
                         $address->setStateProvince(null);
                         $address->setCompanyName($order->getDeliveryCompanyName());
                         break;
@@ -322,22 +320,20 @@ class AddressController extends CoreController
             $address->setCity($data['city']);
             $address->setStateProvince(null);
 
+            $country = CountriesQuery::create()->findOneById($data['countries_id']);
+            $address->setCountry($country->getName());
+            $address->setCountriesId($data['countries_id']);
+
             // special rules apply for overnightbox
             if ($method == 'overnightbox') {
-                $address->setCountry('Denmark');
-                $address->setCountriesId(58);
                 $address->setExternalAddressId($data['external_address_id']);
                 $address->setAddressLine2(null);
-            } else {
-                $country = CountriesQuery::create()->findOneById($data['countries_id']);
-                $address->setCountry($country->getName());
-                $address->setCountriesId($data['countries_id']);
             }
 
             // remember to save the company name.
             if (in_array($method, ['company_shipping', 'overnightbox'])) {
                 if (empty($data['company_name'])) {
-                    $data['company_name'] = 'N/A';
+                    $data['company_name'] = trim($data['first_name'].' '.$data['last_name']);
                 }
                 $address->setCompanyName($data['company_name']);
             }

@@ -170,8 +170,11 @@
                         <li>CH-8002 Zürich</li>
                         <li>CHE-206.261.379</li>
                         <li><a href="mailto:mailch@pompdelux.com">mailch@pompdelux.com</a></li>
-                        <li>Tel.044 201 33 33</li>
-                        <li><img src="%cdn%fx/images/creditcards_de.png" alt="credit cards" title="credit cards"></li>
+                        <li>Tel.044 201 33 33</li><br>
+						<li>Rücksendung von Waren: POMPdeLUX Aps</li>
+                        <li>Postfach</li>
+                        <li>9024 St. Gallen</li>
+                        <li><img src="%cdn%fx/images/creditcards_ch.png" alt="credit cards" title="credit cards"></li>
                         <li><a href="http://www.facebook.com/sharer.php?u=%url%" class="facebook-button social-button" title="Del denne side på Facebook">Auf Facebook teilen</a></li>
                     </ul>
                 ]]></target>
@@ -255,9 +258,8 @@
             <trans-unit id="delivery.info" approved="no">
                 <source>delivery.info</source>
                 <target><![CDATA[
-                    <p>Alle Waren werden als Pakete mit der Schweizer Post verschickt. Sie haben die Möglichkeit, Ihr Paket ab Ankunft in die Schweiz bis zum Empfang mit Hilfe von Track & Trace zu verfolgen. Das Paket kann nach ca. 4 Tage nachdem der Status der Bestellung auf„Meine Seite“ mit „fakturiert“ vermerkt wurde, nachverfolgt werden. Die Lieferzeit für Bestellungen beträgt zwischen 6-10 Tage.<br>
+                    <p>Alle Waren werden als Pakete mit der Schweizer Post verschickt. Sie haben die Möglichkeit, Ihr Paket ab Ankunft in die Schweiz bis zum Empfang mit Hilfe von Track & Trace zu verfolgen. Das Paket kann nach ca. 4 Tage nachdem der Status der Bestellung auf„Meine Seite“ mit „fakturiert“ vermerkt wurde, nachverfolgt werden. Die Lieferzeit für Bestellungen beträgt zwischen 6-10 Tage. <br>
 Paket: Das Paket wird an Ihre Adresse geliefert und kostet CHF 8,95 (CHF 7,95, wenn Sie die Waren bei einer Homeshopping- oder Tag der offenen Tür-Veranstaltung gekauft haben). Wenn Sie zum Zeitpunkt der Lieferung nicht zu Hause sind, können Sie das Paket anschließend bei der Post abholen.<br><br>Wenn Sie das Paket empfangen haben, sollten Sie die Waren überprüfen. Wenn das Paket und/oder der Inhalt beschädigt sind, wenden Sie sich bitte umgehend an unseren Kundendienst oder an Die Post.
-
                     </p>
                 ]]></target>
             </trans-unit>

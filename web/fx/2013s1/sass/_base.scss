@@ -129,26 +129,33 @@ form{
 			width: 97%;
 			height: 120px;
 		}
+		select {
+			width: 100%;
+		}
 	}
 	input,
-	textarea {
+	textarea,
+	select {
 		padding: 6px 5px;
 		margin: 2px 0;
 		color: $font-color;
 		font-family: $font-serif;
+		background: #FFF;
 	}
 	textarea,
 	input[type="text"],
 	input[type="email"],
 	input[type="date"],
 	input[type="datetime"],
-	input[type="password"]{
+	input[type="password"],
+	select{
 		border: 1px solid $font-color;
 		&.inline{
 			width: auto;
 		}
 	}
-	input.error{
+	input.error,
+	select.error{
 		border-color: $form-error-color;
 	}
 
@@ -358,6 +365,11 @@ button {
 		@include icons-sprite(delete);
 		height: icons-sprite-height(delete);
 		width: icons-sprite-width(delete);
+	}
+	&.close{
+		@include icons-sprite(close);
+		height: icons-sprite-height(close);
+		width: icons-sprite-width(close);
 	}
 	&.edit{
 		@include icons-sprite(edit);

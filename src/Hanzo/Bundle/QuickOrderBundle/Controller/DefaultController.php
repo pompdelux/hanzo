@@ -37,18 +37,6 @@ class DefaultController extends CoreController
                 continue;
             }
 
-            // find first products2category match
-            $products2category = ProductsToCategoriesQuery::create()
-                ->useProductsQuery()
-                ->filterBySku($line['products_name'])
-                ->endUse()
-                ->findOne()
-            ;
-
-            if (!$products2category) {
-                Tools::log($locale.' -> '.$line['products_name'].' has no category relation');
-            }
-
             $line['expected_at'] = new \DateTime($line['expected_at']);
 
             $t = $line['expected_at']->getTimestamp();

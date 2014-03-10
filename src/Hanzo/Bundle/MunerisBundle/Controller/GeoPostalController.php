@@ -39,7 +39,6 @@ class GeoPostalController extends CoreController
         }
 
         return $this->getByName($country, $zip);
-
     }
 
     /**

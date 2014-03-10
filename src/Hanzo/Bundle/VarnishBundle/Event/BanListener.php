@@ -2,29 +2,60 @@
 
 namespace Hanzo\Bundle\VarnishBundle\Event;
 
+use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\EventDispatcher\Event as FilterEvent;
 
-use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Hanzo\Bundle\VarnishBundle\Varnish;
 
 use Hanzo\Core\Tools;
+use Hanzo\Core\PropelReplicator;
 
-use Hanzo\Model\Cms;
-use Hanzo\Model\CmsI18nQuery;
+use Hanzo\Model\Categories;
 use Hanzo\Model\CategoriesQuery;
+use Hanzo\Model\Cms;
 
 class BanListener
 {
+    /**
+     * @var Varnish
+     */
     protected $varnish;
+
+    /**
+     * @var Router
+     */
     protected $router;
+
+    /**
+     * @var string
+     */
     protected $cache_dir;
 
-    public function __construct(Varnish $varnish, Router $router, $cache_dir)
+    /**
+     * @var PropelReplicator
+     */
+    protected $replicator;
+
+    /**
+     * @var Translator
+     */
+    protected $translator;
+
+    /**
+     * @param Varnish          $varnish
+     * @param Router           $router
+     * @param string           $cache_dir
+     * @param PropelReplicator $replicator
+     * @param Translator       $translator
+     */
+    public function __construct(Varnish $varnish, Router $router, $cache_dir, PropelReplicator $replicator, Translator $translator)
     {
-        $this->varnish = $varnish;
-        $this->router = $router;
-        $this->cache_dir = $cache_dir;
+        $this->varnish    = $varnish;
+        $this->router     = $router;
+        $this->cache_dir  = $cache_dir;
+        $this->replicator = $replicator;
+        $this->translator = $translator;
     }
 
     /**
@@ -34,7 +65,6 @@ class BanListener
      */
     public function onBanCmsNode(FilterEvent $event)
     {
-        $path = '';
         $item = $event->getData();
 
         if ($item instanceof Cms) {
@@ -44,12 +74,8 @@ class BanListener
         $path = '^/'.$item->getLocale('.*').'/'.$item->getPath();
 
         $settings = $item->getSettings(null, false);
-        if ($settings && $settings[0] == '{') {
-            $settings = json_decode($settings);
-
-            if (isset($settings->is_frontpage) && $settings->is_frontpage == 1) {
-                $path = '^/'.$item->getLocale('.*').'/$';
-            }
+        if ($settings && isset($settings->is_frontpage) && $settings->is_frontpage == 1) {
+            $path = '^/'.$item->getLocale('.*').'/$';
         }
 
         try {
@@ -87,7 +113,7 @@ class BanListener
         ;
 
         foreach ($categories as $category) {
-            $this->purgeUrlsBasedOnCategory($category, $event->getLocale());
+            $this->purgeUrlsBasedOnCategory($category);
         }
 
         try {
@@ -101,58 +127,92 @@ class BanListener
     /**
      * do the actual category loockup and send purges
      *
-     * @param Hanzo\Model\Categories $category
+     * @param Categories $category
      */
-    protected function purgeUrlsBasedOnCategory($category, $locale = null)
+    protected function purgeUrlsBasedOnCategory($category)
     {
+        static $category_map;
+
         if (!$category instanceof Categories) {
             return;
         }
 
-        $query = CmsI18nQuery::create()
-            ->select(['Path', 'Locale'])
-            ->filterBySettings('%category%')
-            ->filterBySettings('%'.$category->getId().'%')
-        ;
-
-        if ($locale) {
-            $query->filterByLocale($locale);
+        if (empty($category_map)) {
+            $category_map = $this->getCategoryMapping();
         }
 
-        // g/b filter, should not be here - but for now it works...
-        $context = '';
-        if ($category->getContext()) {
-            $context = strtoupper(substr($category->getContext(), 0, 2));
-            switch ($context) {
-                case 'G_':
-                    $query->filterByPath('%/girl%');
-                    break;
-                case 'B_':
-                    $query->filterByPath('%/boy%');
-                    break;
-                case 'LG':
-                    $query->filterByPath('%/little-girl%');
-                    break;
-                case 'LB':
-                    $query->filterByPath('%/little-boy%');
-                    break;
-            }
+        if (empty($category_map[$category->getId()])) {
+            return;
         }
 
-        $items = $query->find();
+        $items = $category_map[$category->getId()];
 
         try {
-            foreach ($items as $index => $item) {
-                $path = '^/'.$item['Locale'].'/'.$item['Path'].'.*';
+            foreach ($items as $path) {
+                $path = '^/'.$path.'.*';
                 $this->varnish->banUrl($path);
             }
 
-            if ($context) {
-                $this->varnish->banUrl('^/'.($locale ?: '.*').'/products/list/context/'.$context.'.*');
+            if ($category->getContext()) {
+                $context = strtoupper(substr($category->getContext(), 0, 2));
+                $this->varnish->banUrl('^/.*/products/list/context/'.$context.'.*');
             }
 
         } catch (\Exception $e) {
             Tools::log($e->getMessage());
         }
     }
+
+
+    /**
+     * Fetches array of category paths to clear
+     *
+     * @return array
+     */
+    protected function getCategoryMapping()
+    {
+        $results = $this->replicator->executeQuery("
+            SELECT
+                cms_i18n.id,
+                cms_i18n.settings,
+                cms_i18n.locale,
+                CONCAT(cms_i18n.locale, '/', cms_i18n.path) as path
+            FROM
+                cms
+            JOIN
+                cms_i18n
+            ON (
+                cms.id = cms_i18n.id
+            )
+            WHERE
+                cms.type = 'category'
+        ");
+
+        $category_map = [];
+        foreach ($results as $sth) {
+            while ($record = $sth->fetch(\PDO::FETCH_ASSOC)) {
+                $settings = json_decode($record['settings']);
+
+                if (empty($settings->category_id)) {
+                    $t = $this->translator->trans($record['id'].'.settings', [], 'cms', $record['locale']);
+                    if ($t && $settings = json_decode($t)) {
+                        if (null == $settings) {
+                            return;
+                        }
+                    }
+                }
+
+                if (empty($category_map[$settings->category_id])) {
+                    $category_map[$settings->category_id] = [];
+                }
+
+                if (!in_array($record['path'], $category_map[$settings->category_id])) {
+                    $category_map[$settings->category_id][] = $record['path'];
+                }
+            }
+        }
+
+        return $category_map;
+    }
+
 }

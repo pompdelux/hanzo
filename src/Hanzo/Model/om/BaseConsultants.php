@@ -197,7 +197,7 @@ abstract class BaseConsultants extends BaseObject implements Persistent
      */
     public function setInitials($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -218,7 +218,7 @@ abstract class BaseConsultants extends BaseObject implements Persistent
      */
     public function setInfo($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -239,7 +239,7 @@ abstract class BaseConsultants extends BaseObject implements Persistent
      */
     public function setEventNotes($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 

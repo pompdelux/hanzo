@@ -186,7 +186,7 @@ abstract class BaseMessagesI18n extends BaseObject implements Persistent
      */
     public function setLocale($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -207,7 +207,7 @@ abstract class BaseMessagesI18n extends BaseObject implements Persistent
      */
     public function setSubject($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 
@@ -228,7 +228,7 @@ abstract class BaseMessagesI18n extends BaseObject implements Persistent
      */
     public function setBody($v)
     {
-        if ($v !== null && is_numeric($v)) {
+        if ($v !== null) {
             $v = (string) $v;
         }
 

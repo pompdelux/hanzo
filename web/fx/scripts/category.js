@@ -165,7 +165,7 @@
 
     pub.initHeader = function() {
       var $header = $('.main header');
-      $header.find('p').hide();
+      $('p', $header).hide();
       $header.on('click', function (event) {
           $header.find('p').slideToggle();
       });

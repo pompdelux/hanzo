@@ -174,7 +174,6 @@ class DefaultController extends CoreController
 
         // Delete cached version in redis, used in the mega basket.
         $cache_id = [
-            '_fragment',
             'BasketBundle:Default:megaBasket.html.twig',
             $this->getRequest()->getSession()->getId(),
         ];
@@ -259,7 +258,6 @@ class DefaultController extends CoreController
 
             // Delete cached version in redis, used in the mega basket.
             $cache_id = [
-                '_fragment',
                 'BasketBundle:Default:megaBasket.html.twig',
                 $this->getRequest()->getSession()->getId(),
             ];
@@ -298,23 +296,43 @@ class DefaultController extends CoreController
 
         $request            = $this->get('request');
         $product_to_replace = $request->request->get('product_to_replace');
+        $product            = ProductsPeer::findFromRequest($request);
+        $quantity           = $request->request->get('quantity');
 
-        $request_data = array(
-            'quantity' => $request->request->get('quantity'),
-            'master'   => $request->request->get('master'),
-            'size'     => $request->request->get('size'),
-            'color'    => $request->request->get('color'),
-        );
+        // could not find matching product, throw 404 ?
+        if (!$product instanceof Products) {
+            if ($this->getFormat() == 'json') {
+                return $this->json_response(array(
+                    'message' => '',
+                    'status'  => false,
+                ));
+            }
+        }
 
-        $response = $this->forward('WebServicesBundle:RestStock:check', $request_data);
-        $response = json_decode($response->getContent(), TRUE);
+        $stock_service = $this->get('stock');
+        $stock         = $stock_service->check($product, $quantity);
 
-        if ($response['status'] && isset($response['data']['products']) && count($response['data']['products']) == 1) {
-            $product = $response['data']['products'][0];
+        if ($stock) {
+
+            $request_data = array(
+                'quantity' => $request->request->get('quantity'),
+                'master'   => $request->request->get('master'),
+                'size'     => $request->request->get('size'),
+                'color'    => $request->request->get('color'),
+            );
 
             // if the product is backordered, require a confirmation to continue
-            if ($product['date'] && (false === $request->request->get('confirmed', false))) {
-                return $this->json_response($response);
+            if ($stock instanceof \DateTime && (false === $request->request->get('confirmed', false))) {
+                $request_data['date'] = $stock;
+                return $this->json_response(array(
+                    'message' => '',
+                    'status'  => true,
+                    'data' => array(
+                        'products' => array(
+                            array('date' => $stock->format('d/m-Y'))
+                        ),
+                    ),
+                ));
             }
 
             // ok, we proceed
@@ -329,7 +347,6 @@ class DefaultController extends CoreController
             if ($response['status']) {
                 $response['data'] = array();
 
-                $product = ProductsPeer::findFromRequest($request);
                 $prices  = ProductsDomainsPricesPeer::getProductsPrices(array($product->getId()));
                 $prices  = array_shift($prices);
 
@@ -340,9 +357,12 @@ class DefaultController extends CoreController
                 $response['data']['basket']     = $this->miniBasketAction(TRUE);
                 $response['data']['product_id'] = $product->getId();
             }
+            return $this->json_response($response);
         }
-
-        return $this->json_response($response);
+        return $this->json_response(array(
+            'message' => '',
+            'status'  => false,
+        ));
     }
 
 
@@ -356,10 +376,9 @@ class DefaultController extends CoreController
     {
 
         // If this request is for the mega basket, check if we already has cached it.
-        if (rawurldecode($this->getRequest()->getPathInfo()) === $this->container->getParameter('fragment.path')) {
+        if ($template === 'BasketBundle:Default:megaBasket.html.twig') {
             $cache_id = [
-                '_fragment',
-                $template,
+                'BasketBundle:Default:megaBasket.html.twig',
                 $this->getRequest()->getSession()->getId(),
             ];
             $html = $this->getCache($cache_id);
@@ -491,7 +510,9 @@ class DefaultController extends CoreController
             $continueShopping = $router->generate('QuickOrderBundle_homepage');
         }
 
-        Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
+        if (!$embed) {
+            Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
+        }
 
         $html = $this->render($template, array(
             'continue_shopping' => $continueShopping,
@@ -501,10 +522,12 @@ class DefaultController extends CoreController
             'products'          => $products,
             'total'             => $order->getTotalPrice(true),
         ));
+
         // If this request is for the mega basket, be sure to cache it.
-        if (rawurldecode($this->getRequest()->getPathInfo()) === $this->container->getParameter('fragment.path')) {
+        if ($template === 'BasketBundle:Default:megaBasket.html.twig') {
             $this->setCache($cache_id, $html, 5);
         }
+
         return $html;
     }
 

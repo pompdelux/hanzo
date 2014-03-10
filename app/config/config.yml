@@ -14,7 +14,9 @@ framework:
     session:
         storage_id:     session.storage.native
         handler_id:     session.handler.redis
-        gc_maxlifetime: 10800
+        gc_maxlifetime: 7200
+        #  7200 = 2 hours
+        # 10800 = 3 hours
     esi:
         enabled: true
     fragments:
@@ -63,6 +65,9 @@ services:
         arguments: [@security.context]
         tags:
             -   { name: kernel.event_listener, event: security.interactive_login }
+    hanzo.propel_replicator:
+        class:     Hanzo\Core\PropelReplicator
+        arguments: [@propel.configuration]
 
 twig:
     debug:            '%kernel.debug%'
@@ -172,8 +177,14 @@ stock:
             - fi_FI
             - nl_NL
             - sv_SE
+            - en_GB
         norway:
             - nb_NO
+
+google:
+    conversion_id:     ~
+    site_verification: ~
+    analytics_code:    ~
 
 # @see https://github.com/ekino/EkinoNewRelicBundle
 ekino_new_relic:
