@@ -339,7 +339,7 @@ class Stock
      */
     protected function setStockStatus($is_out, Products $product)
     {
-        return $this->replicator->executeQuery("
+        $sql = "
             UPDATE
                 products
             SET
@@ -347,6 +347,8 @@ class Stock
                 updated_at = NOW()
             WHERE
                 id = ".$product->getId()
-        );
+        ;
+
+        return $this->replicator->executeQuery($sql, [], $this->warehouse->getRelatedDatabases());
     }
 }
