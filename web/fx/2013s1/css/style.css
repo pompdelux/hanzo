@@ -2531,7 +2531,7 @@ nav.main-menu > ul > li > ul > li {
   padding: 10px 8px;
   width: 200px;
 }
-nav.main-menu > ul > li > ul > li > ul > li {
+nav.main-menu > ul > li > ul > li > ul li {
   float: none;
   padding-top: 12px;
 }

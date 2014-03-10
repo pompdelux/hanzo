@@ -86,7 +86,7 @@
         ;
 
         var menu_width = 0;
-        $('li li.heading', $menu).each(function(index, element) {
+        $('> ul > li > ul > li.heading', $menu).each(function(index, element) {
           var $element = $(element);
           var tmp_width = $element.outerWidth();
           if (menu_width < tmp_width) {
@@ -95,7 +95,7 @@
 
           $element.addClass('floaded');
         });
-        $('li li.heading', $menu).closest('ul').each(function(index, element) {
+        $('> ul > li > ul > li.heading', $menu).closest('ul').each(function(index, element) {
           var $element = $(element);
           var count = $('> li', $element).length;
           $element.css('width', (menu_width * count));
