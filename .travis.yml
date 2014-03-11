@@ -29,3 +29,7 @@ notifications:
       - lv@pompdelux.dk
     on_success: always
     on_failure: always
+  webhooks:
+    urls:
+      - http://193.84.27.240/remote/travis-hook.php
+    on_start: true
