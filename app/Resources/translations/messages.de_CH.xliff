@@ -183,7 +183,7 @@
                 <source>footer.text</source>
                 <target><![CDATA[
                     <ul>
-                        <li><b>Versand</b> ab CHF 7,95 EUR</li>
+                        <li><b>Versand</b> ab CHF 7,95</li>
                         <li><b>Lieferzeit</b> %expected_delivery_date%</li>
                         <li><b>Umtausch</b> Gratis</li>
                     </ul>
