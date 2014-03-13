@@ -23,41 +23,6 @@ use Symfony\Bundle\FrameworkBundle\Translation\Translator;
  */
 class EdiSoftProvider extends BaseProvider
 {
-    protected $product_concept_map = [
-        296  => ['country' => 'SE', 'name' => 'Schenker', 'method' => 'SchenkerSE_PrivpakOmbudStandard'],
-        547  => ['country' => 'SE', 'name' => 'SvenskePosten', 'method' => 'SvenskePostenSE_MyPackReturn'],
-        668  => ['country' => 'SE', 'name' => 'Schenker', 'method' => 'SchenkerSE_PrivpakOmbudEkonomi'],
-        607  => ['country' => 'SE', 'name' => 'SvenskePosten', 'method' => 'SvenskePostenSE_MyPackUtrikes'],
-        750  => ['country' => 'SE', 'name' => 'Schenker', 'method' => 'SchenkerDK_PrivpakOmdelingStandard'],
-        751  => ['country' => 'SE', 'name' => 'Schenker', 'method' => 'SchenkerDK_PrivpakOmdelingØkonomi'],
-        833  => ['country' => 'SE', 'name' => 'Schenker', 'method' => 'Ombud Ekonomi'],
-        897  => ['country' => 'SE', 'name' => 'Schenker', 'method' => 'Ombud Ekonomi Retur'],
-        904  => ['country' => 'SE', 'name' => 'Schenker', 'method' => 'Terminal'],
-        911  => ['country' => 'SE', 'name' => 'Direct Link', 'method' => 'MyPack'],
-        912  => ['country' => 'SE', 'name' => 'Direct Link', 'method' => 'MyPack Retur'],
-
-        2    => ['country' => 'NO', 'name' => 'Bring', 'method' => 'Servicepakke'],
-        60   => ['country' => 'NO', 'name' => 'Tollpost', 'method' => 'MyPack'],
-        591  => ['country' => 'NO', 'name' => 'Tollpost', 'method' => 'Tollpost MyPack'],
-        618  => ['country' => 'NO', 'name' => 'Tollpost', 'method' => 'Tollpost MyPack Retur'],
-        660  => ['country' => 'NO', 'name' => 'Schenker', 'method' => 'SchenkerNO_Privpak'],
-        661  => ['country' => 'NO', 'name' => 'Schenker', 'method' => 'SchenkerNO_PrivpakRetur'],
-        1034 => ['country' => 'NO', 'name' => 'Bring', 'method' => 'Bedriftspakke ekspress over natt 0900'],
-        1041 => ['country' => 'NO', 'name' => 'Bring', 'method' => 'Klimanøytral servicepakke'],
-        1152 => ['country' => 'NO', 'name' => 'Tollpost', 'method' => 'Mypack'],
-
-        525  => ['country' => 'FI', 'name' => 'Matkahuolto', 'method' => 'MatkahuoltoFI_NearParcel'],
-        1096 => ['country' => 'FI', 'name' => 'Matkahuolto', 'method' => 'Postal Parcel'],
-        1130 => ['country' => 'FI', 'name' => 'Posten Logistik SCM', 'method' => 'Mypack Ekspot'],
-
-        92   => ['country' => 'DK', 'name' => 'Post Danmark', 'method' => 'Privatpakke'],
-        254  => ['country' => 'DK', 'name' => 'Post Danmark', 'method' => 'Postopkrævingspakke'],
-        571  => ['country' => 'DK', 'name' => 'Post Danmark', 'method' => 'MyPack Bulksplit'],
-        749  => ['country' => 'DK', 'name' => 'Post Danmark', 'method' => 'MyPack'],
-        882  => ['country' => 'DK', 'name' => 'Post Danmark', 'method' => 'Customer Return'],
-    ];
-
-
     /**
      * locator settings
      *
@@ -84,14 +49,14 @@ class EdiSoftProvider extends BaseProvider
      *
      * @var string
      */
-    protected $dev_endpoint  = 'http://edi-ws01.facility.dir.dk/ShipAdvisor/main.asmx?WSDL';
+    protected $dev_endpoint  = 'http://ws2.consignorsupport.no/ShipAdvisor/main.asmx?wsdl';
 
     /**
      * webservice api prod endpoint
      *
      * @var string
      */
-    protected $prod_endpoint = 'http://edi-ws01.facility.dir.dk/ShipAdvisor/main.asmx?WSDL';
+    protected $prod_endpoint = 'http://ws2.consignorsupport.no/ShipAdvisor/main.asmx?wsdl';
 
 
     /**
