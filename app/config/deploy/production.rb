@@ -60,7 +60,7 @@ namespace :deploy do
   task :post_dashing do
     capifony_pretty_print "--> Posting to dashing (pepper-potts.pompdelux.com:3030)"
     set :now, `date "+%d/%m %H:%M:%S"`.strip
-    run_locally "curl -s -d '{\"auth_token\": \"puz6Raejpuz6Raej\", \"text\": \"#{now}<br />af #{whoami}\" }' http://pepper-potts.pompdelux.com:3030/widgets/lastdeploy"
+    run_locally "curl -s -d '{\"auth_token\": \"puz6Raejpuz6Raej\", \"text\": \"#{now}<br />af #{whoami}\" }' http://pepper-potts.bellcom.dk:3030/widgets/lastdeploy"
     capifony_puts_ok
   end
 end
