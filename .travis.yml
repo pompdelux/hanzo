@@ -22,13 +22,13 @@ script:
   - php app/console hanzo:run-checks
 
 notifications:
-  email:
-    recipients:
-      - pdl@bellcom.dk
-      - hd@pompdelux.dk
-      - lv@pompdelux.dk
-    on_success: always
-    on_failure: always
+#  email:
+#    recipients:
+#      - pdl@bellcom.dk
+#      - hd@pompdelux.dk
+#      - lv@pompdelux.dk
+#    on_success: always
+#    on_failure: always
   webhooks:
     urls:
       - http://193.84.27.240/remote/travis-hook.php
