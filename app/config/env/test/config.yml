@@ -28,4 +28,4 @@ ax:
 
 consignor:
     shipment_server:
-        endpoint: "https://qa-tic03.facility.dir.dk/json/ShipmentServerModule.dll"
+        endpoint: "https://www.shipmentserver.com/ship/ShipmentServerModule.dll"

@@ -33,4 +33,4 @@ ax:
 
 consignor:
     shipment_server:
-        endpoint: "https://edi-ship01.facility.dir.dk/ship/ShipmentServerModule.dll"
+        endpoint: "https://www.shipmentserver.com/ship/ShipmentServerModule.dll"
