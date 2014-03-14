@@ -61,7 +61,9 @@
         </div>
         {{ form_row(form.addresses.0.type) }}
         {{ form_row(form._token) }}
-        <input class="button button-black button-right" type="submit" value="{{ 'create.account'|trans({}, 'account') }}">
+        <button type="submit" class="button button-black pull-right">
+            {{ 'create.account'|trans({}, 'account') }} <i class="fa fa-arrow-right"></i>
+        </button>
         {{ 'create.account.vilkaar.link'|trans({}, 'messages')|raw }}
       </div>
     </div>

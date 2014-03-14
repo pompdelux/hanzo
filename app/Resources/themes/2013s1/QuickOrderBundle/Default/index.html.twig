@@ -94,9 +94,9 @@
 
     <div class="buttons">
       {% if products %}
-      <a class="button button-right proceed-to-basket" href="{{ path('basket_view') }}">{{ "proceed"|trans({}, 'checkout') }}</a>
+      <a class="button proceed-to-basket" href="{{ path('basket_view') }}">{{ "proceed"|trans({}, 'checkout') }} <i class="fa fa-arrow-right"></i></a>
       {% else %}
-      <a class="button button-right proceed-to-basket" style="display:none;" href="{{ path('basket_view') }}">{{ "proceed"|trans({}, 'checkout') }}</a>
+      <a class="button proceed-to-basket" style="display:none;" href="{{ path('basket_view') }}">{{ "proceed"|trans({}, 'checkout') }} <i class="fa fa-arrow-right"></i></a>
       {% endif %}
     </div>
 

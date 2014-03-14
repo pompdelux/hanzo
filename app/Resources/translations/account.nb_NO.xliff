@@ -75,7 +75,7 @@
             </trans-unit>
             <trans-unit id="retrive.password">
                 <source>retrive.password</source>
-                <target>» Få passord tilsendt pr. e-post</target>
+                <target>Få passord tilsendt pr. e-post</target>
             </trans-unit>
             <trans-unit id="47">
                 <source>New customer</source>

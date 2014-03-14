@@ -172,7 +172,7 @@ a.button,
 	font-family: $font-sans;
 	font-size: $font-size;
 	text-align: center;
-	padding: 6px;
+	padding: 6px 24px;
 	font-weight: normal;
 	color: white !important;
 	line-height: 18px;
@@ -193,13 +193,6 @@ a.button,
 		&:hover{
 			text-decoration: underline;
 		}
-	}
-	&.button-right,
-	&.button-left {
-		padding: 6px 24px;
-	}
-	&.button-right {
-		float: right;
 	}
 	&.button-small {
 		font-size: $small-size;

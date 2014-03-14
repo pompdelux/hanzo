@@ -15,7 +15,7 @@
         {{ form_widget(form) }}
       </div>
       <input class="button button-right" type="submit" value="{{ 'form.submit_step2'|trans({},'gothia') }}" name="action-submit-gothia-confirm" id="action-submit-gothia-confirm"/>
-      <a href="{{ path('PaymentBundle_gothia_payment_cancel') }}" class="button button-left">{{ 'form.cancel'|trans({},'gothia') }}</a>
+      <a href="{{ path('PaymentBundle_gothia_payment_cancel') }}" class="button"><i class="fa fa-arrow-left"></i> {{ 'form.cancel'|trans({},'gothia') }}</a>
     </form>
   </div>
 </div>
