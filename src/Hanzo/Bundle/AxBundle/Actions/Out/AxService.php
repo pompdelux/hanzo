@@ -183,6 +183,7 @@ class AxService
             $salesLine[] = $line;
         }
 
+        $domain_key = str_replace('SALES', '', strtoupper($attributes->global->domain_key));
         if ($hostess_discount) {
             $big_bag_price = 0.00;
             $line = new stdClass();
@@ -192,8 +193,7 @@ class AxService
             $line->SalesUnit  = 'Stk.';
             $salesLine[]      = $line;
 
-            $domain_key = strtoupper($attributes->global->domain_key);
-            switch(str_replace('SALES', '', $domain_key)) {
+            switch($domain_key) {
                 case 'AT':
                 case 'CH':
                 case 'COM':
@@ -230,8 +230,7 @@ class AxService
                 ($in_edit && (20140519 >= $order->getCreatedAt('Ymd')))
             ) {
                 $bag_price  = 0.00;
-                $domain_key = strtoupper($attributes->global->domain_key);
-                switch(str_replace('SALES', '', $domain_key)) {
+                switch($domain_key) {
                     case 'AT':
                     case 'CH':
                     case 'COM':
@@ -256,6 +255,20 @@ class AxService
                 $line->SalesQty        = 1;
 //                $line->InventColorId   = str_replace('Sales', '', $attributes->global->domain_key);
                 $line->InventColorId   = 'Off White';
+                $line->InventSizeId    = 'One Size';
+                $line->SalesUnit       = 'Stk.';
+                $salesLine[]           = $line;
+            }
+
+            // attach voucher between 20140324 and 20140406
+            if ((($date >= 20140324) && ($date <= 20140406)) ||
+                ($in_edit && ($order->getCreatedAt('Ymd') <= 20140406) && ($order->getCreatedAt('Ymd') >= 20140324))
+            ) {
+                $line = new stdClass();
+                $line->ItemId          = 'VOUCHER';
+                $line->SalesPrice      = 0.00;
+                $line->SalesQty        = 1;
+                $line->InventColorId   = $domain_key;
                 $line->InventSizeId    = 'One Size';
                 $line->SalesUnit       = 'Stk.';
                 $salesLine[]           = $line;

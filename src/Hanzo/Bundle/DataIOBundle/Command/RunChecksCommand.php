@@ -43,6 +43,11 @@ class RunChecksCommand extends ContainerAwareCommand
             return $this->sendMail($input->getArgument('email'));
         }
 
+        // see if these gets caught by travis and send in the report
+        if (count($this->errors)) {
+            echo implode("\n", $this->errors);
+        }
+
         exit((int) !$status);
     }
 
