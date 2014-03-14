@@ -262,7 +262,7 @@ class AxService
 
             // attach voucher between 20140324 and 20140406
             if ((($date >= 20140324) && ($date <= 20140406)) ||
-                ($in_edit && ($order->getCreatedAt('Ymd') <= 20140406))
+                ($in_edit && ($order->getCreatedAt('Ymd') <= 20140406) && ($order->getCreatedAt('Ymd') >= 20140324))
             ) {
                 $line = new stdClass();
                 $line->ItemId          = 'VOUCHER';
