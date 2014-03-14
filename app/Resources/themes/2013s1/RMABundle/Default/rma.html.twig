@@ -30,6 +30,10 @@
             <td>{{ customer.id }}</td>
           </tr>
           <tr>
+            <th>{{ 'date'|trans }}</th>
+            <td>{{ 'now'|date('d/m Y') }}</td>
+          </tr>
+          <tr>
             <th>{{ 'rma.slip.name'|trans({}, 'rma')|raw }}</th>
             <td>{{ customer.name }}</td>
           </tr>
