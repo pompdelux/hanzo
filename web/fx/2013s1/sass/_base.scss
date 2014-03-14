@@ -194,16 +194,12 @@ a.button,
 			text-decoration: underline;
 		}
 	}
-	&.button-right {
-		background: url(/fx/images/icons/icons/button-right.png) right no-repeat #474749;
-		border-right: 6px solid #474749;
-		padding: 6px 24px;
-		float: right;
-	}
+	&.button-right,
 	&.button-left {
-		background: url(/fx/images/icons/icons/button-left.png) left no-repeat #474749;
-		border-left: 6px solid #474749;
 		padding: 6px 24px;
+	}
+	&.button-right {
+		float: right;
 	}
 	&.button-small {
 		font-size: $small-size;

@@ -3731,22 +3731,20 @@ a.button.text-button:hover,
 .main article a.button.text-button:hover {
   text-decoration: underline;
 }
+input.button.button-right, input.button.button-left,
+button.button.button-right,
+button.button.button-left,
+a.button.button-right,
+a.button.button-left,
+.main article a.button.button-right,
+.main article a.button.button-left {
+  padding: 6px 24px;
+}
 input.button.button-right,
 button.button.button-right,
 a.button.button-right,
 .main article a.button.button-right {
-  background: url(/fx/images/icons/icons/button-right.png) right no-repeat #474749;
-  border-right: 6px solid #474749;
-  padding: 6px 24px;
   float: right;
-}
-input.button.button-left,
-button.button.button-left,
-a.button.button-left,
-.main article a.button.button-left {
-  background: url(/fx/images/icons/icons/button-left.png) left no-repeat #474749;
-  border-left: 6px solid #474749;
-  padding: 6px 24px;
 }
 input.button.button-small,
 button.button.button-small,
