@@ -4,6 +4,7 @@ div.quickorder {
   label{
     display: inline-block;
     width: auto;
+    float: left;
   }
   input, select {
     margin-right: 5px;
@@ -19,6 +20,11 @@ div.quickorder {
   input.quantity {
     width: 50px;
     text-align: center;
+  }
+  input[type=submit],
+  input[type=button] {
+    margin-top: 28px;
+    float: left;
   }
 }
 

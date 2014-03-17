@@ -7,7 +7,7 @@
             width: 100%;
             input, select, textarea {
                 display: block;
-                margin: 0 0 10px;
+                margin: 0 5px 10px;
             }
             textarea {
                 width: 60%;
@@ -21,6 +21,10 @@
             label, input, select {
                 display: inline;
                 width: auto;
+            }
+            input[type=submit],
+            input[type=button] {
+                margin-top: 12px;
             }
         }
         td.actions {

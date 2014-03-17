@@ -87,8 +87,8 @@
                   Quickorder to select a new product
                 #}
                 <div class="off rma-productreplacement quickorder">
+                  {{ 'rma.form.label.replacement'|trans({}, 'rma') }}<br>
                   <label>
-                    {{ 'rma.form.label.replacement'|trans({}, 'rma') }}<br>
                     <input type="text" id="replacement-master-lineid-{{ product.id }}" placeholder="{{ 'rma.form.placeholder.produkt'|trans({}, 'rma') }}" class="master">
                   </label>
                   <label class="off">
@@ -97,7 +97,7 @@
                   <label class="off">
                     <select id="replacement-color-lineid-{{ product.id }}" class="color"></select>
                   </label>
-                  <input type="button" id="reset" name="reset" class="off reset" value="{{ 'quickorder.reset.placeholder'|trans({}, 'quickorder') }}">
+                  <input type="button" id="reset" name="reset" class="off reset" value="{{ 'delete'|trans }}" tabindex="-1">
                   <div class="autocomplete-container"></div>
                 </div>
 

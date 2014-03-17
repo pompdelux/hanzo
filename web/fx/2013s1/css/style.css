@@ -3229,6 +3229,7 @@ form.quickorder label,
 div.quickorder label {
   display: inline-block;
   width: auto;
+  float: left;
 }
 form.quickorder input, form.quickorder select,
 div.quickorder input,
@@ -3249,6 +3250,13 @@ form.quickorder input.quantity,
 div.quickorder input.quantity {
   width: 50px;
   text-align: center;
+}
+form.quickorder input[type=submit],
+form.quickorder input[type=button],
+div.quickorder input[type=submit],
+div.quickorder input[type=button] {
+  margin-top: 28px;
+  float: left;
 }
 
 .tt-dropdown-menu {
@@ -3316,7 +3324,7 @@ div.quickorder input.quantity {
 }
 #body-rma .product-table label input, #body-rma .product-table label select, #body-rma .product-table label textarea {
   display: block;
-  margin: 0 0 10px;
+  margin: 0 5px 10px;
 }
 #body-rma .product-table label textarea {
   width: 60%;
@@ -3328,6 +3336,10 @@ div.quickorder input.quantity {
 #body-rma .product-table .quickorder label, #body-rma .product-table .quickorder input, #body-rma .product-table .quickorder select {
   display: inline;
   width: auto;
+}
+#body-rma .product-table .quickorder input[type=submit],
+#body-rma .product-table .quickorder input[type=button] {
+  margin-top: 12px;
 }
 #body-rma .product-table td.actions {
   width: 610px;

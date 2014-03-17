@@ -26,7 +26,7 @@ var quickorder = (function($) {
             }
         });
 
-        $('.quickorder .master').on('typeahead:selected', function(event, item) {
+        $('.quickorder .master').on('typeahead:autocompleted typeahead:selected', function(event, item) {
             var $context = $(this).closest('.quickorder');
 
             var XHR = $.ajax({
@@ -144,12 +144,17 @@ var quickorder = (function($) {
             if (e.type == 'keydown') {
                 var keyCode = e.keyCode || e.which;
                 if (keyCode === 9 || keyCode === 13) {
-                    e.preventDefault();
 
                     if ($(this).val() !== ''){
-                        $quantity_select.parent().show();
-                        $quantity_select.focus().select();
+                        if ($quantity_select.length) {
+                            e.preventDefault();
+                            $quantity_select.parent().show();
+                            $quantity_select.focus().select();
+                        }
                         $('input[type=submit]', $context).show();
+                    } else {
+                        // Dont go to next input if color is empty.
+                        e.preventDefault();
                     }
                 }
             } else {
