@@ -663,7 +663,7 @@
                 <target><![CDATA[
                     {
                         "category_id": "5",
-                        "colors": "Navy,Navy Melange,Mustard,Yellow,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black, Denim,Blue,Blue/White,Green,Red,Rose"
+                        "colors": "Navy,Navy Melange,Mustard,Yellow,Camel,Sand,White/Navy,Blue/Navy,Navy/White,Wine,Turquoise,Olive,Olive Melange,Light Blue/Olive,Grey,Grey Melange,White,Light Grey Melange,Black,Blue Denim,Blue,Blue/White,Green,Red,Rose"
                     }
                 ]]></target>
             </trans-unit>
