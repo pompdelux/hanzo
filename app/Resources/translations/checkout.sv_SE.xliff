@@ -156,7 +156,7 @@
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>
-        <target>Gothia faktura avgift</target>
+        <target>arvato Finance AB faktura avgift</target>
       </trans-unit>
       <trans-unit id="payment.canceled">
         <source>payment.canceled</source>
@@ -299,7 +299,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target><![CDATA[Gothia faktura (Väljer du att betala med PayByBill så tillkommer en avgift på SEK 29,00). I samband med att vi skickar dina varor från vårt lager, skickar vi din faktura per mail. Fakturan blir även tillgänglig på Min Sida som pdf fil inom 24 timmar.]]></target>
+        <target><![CDATA[arvato Finance AB faktura (Väljer du att betala med PayByBill så tillkommer en avgift på SEK 29,00). I samband med att vi skickar dina varor från vårt lager, skickar vi din faktura per mail. Fakturan blir även tillgänglig på Min Sida som pdf fil inom 24 timmar.]]></target>
       </trans-unit>
       <trans-unit id="payment.dibs.title">
         <source>payment.dibs.title</source>
@@ -397,7 +397,7 @@
          <source>dibs.down.message</source>
          <target><![CDATA[
           Kära kund<br>
-          Betalningssystemet (DIBS) är just nu inte i drift och du kan därför tyvärr inte betala med kort. Du kan i stället välja Gothia faktura betalning eller återkomma senare.<br>
+          Betalningssystemet (DIBS) är just nu inte i drift och du kan därför tyvärr inte betala med kort. Du kan i stället välja arvato Finance AB faktura betalning eller återkomma senare.<br>
           Med vänlig hälsning<br>
           POMPdeLUX
           ]]></target>
