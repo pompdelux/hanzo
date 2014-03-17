@@ -249,7 +249,7 @@
                 <target><![CDATA[
                     {
                         "category_id": "112",
-                        "colors": "Rose,Green,Olive,Yellow,Blue,Light Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,Camel,Ice Blue,Turquoise,Navy"
+                        "colors": "Rose,,Olive,Yellow,Blue,Light Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,Camel,Ice Blue,Turquoise,Navy"
                     }
                 ]]></target>
             </trans-unit>
