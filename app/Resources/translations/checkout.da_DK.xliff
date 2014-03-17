@@ -299,11 +299,11 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target><![CDATA[Gothia faktura (Gebyr DKK 39,00). Fakturaen sendes pr. email når vi sender dine varer fra vores lager. Fakturaen vil være tilgængelig på Min Side som en pdf indenfor 24 timer.]]></target>
+        <target><![CDATA[arvato Finance A/S faktura (Gebyr DKK 39,00). Fakturaen sendes pr. email når vi sender dine varer fra vores lager. Fakturaen vil være tilgængelig på Min Side som en pdf indenfor 24 timer.]]></target>
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>
-        <target>Gothia faktura afgift</target>
+        <target>arvato Finance A/S faktura afgift</target>
       </trans-unit>
       <trans-unit id="confirm.payment.fee">
         <source>confirm.payment.fee</source>
@@ -405,7 +405,7 @@
          <source>dibs.down.message</source>
          <target><![CDATA[
           Kære kunde<br>
-          Betalingssystemet (DIBS) er i øjeblikket ude af drift, du kan derfor ikke betale med kreditkort. Du kan i stedet benytte Gothia faktura betaling eller vende tilbage senere.<br>
+          Betalingssystemet (DIBS) er i øjeblikket ude af drift, du kan derfor ikke betale med kreditkort. Du kan i stedet benytte arvato Finance A/S faktura betaling eller vende tilbage senere.<br>
           Med venlig hilsen<br>
           POMPdeLUX
           ]]></target>
