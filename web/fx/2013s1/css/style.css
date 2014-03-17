@@ -2504,6 +2504,9 @@ nav.main-menu > ul > li.last:hover > ul.floaded-right {
   left: initial;
   right: 0;
 }
+nav.main-menu > ul > li.last > a {
+  padding-right: 0;
+}
 nav.main-menu > ul > li > a {
   padding: 10px 20px 10px 0;
   display: block;
