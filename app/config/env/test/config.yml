@@ -25,6 +25,7 @@ varnish:
 
 ax:
     wsdl: "http://193.89.255.251:8000/DynamicsAxServices.asmx?wsdl"
+    log_requests: true
 
 consignor:
     shipment_server:
