@@ -225,7 +225,7 @@ class AxService
         $date = date('Ymd');
         // Add BAG if is an event or either other, gift, private of type.
         if ($order->getEventsId() ||
-            (isset($attributes->purchase->type) && in_array($attributes->purchase->type, array('other', 'gift', 'private')))
+            (isset($attributes->purchase->type) && in_array($attributes->purchase->type, array('other', 'gift', 'private', 'friend')))
            ) {
 
             // mellem 19/2'14 og 19/5'14
