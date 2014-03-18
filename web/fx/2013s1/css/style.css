@@ -1934,6 +1934,24 @@ html.touch .product-list .buy-set {
   background: #DED8D2;
   color: #222;
   border: none;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  width: 67%;
+}
+#body-login .main input::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #222222;
+}
+#body-login .main input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #222222;
+}
+#body-login .main input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #222222;
+}
+#body-login .main input:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #222222;
 }
 
 form.create label:after {
@@ -3899,11 +3917,11 @@ button.right {
   vertical-align: baseline;
 }
 
-.pushleft {
+.pushleft, .pull-left {
   float: left;
 }
 
-.pushright {
+.pushright, .pull-right {
   float: right;
 }
 

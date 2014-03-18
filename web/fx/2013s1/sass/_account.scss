@@ -31,6 +31,9 @@
     background: #DED8D2;
     color: #222;
     border: none;
+    font-family: $font-sans;
+    width: 67%;
+    @include placeholder(#222);
   }
 }
 form.create {

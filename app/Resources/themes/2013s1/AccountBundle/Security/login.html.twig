@@ -45,15 +45,17 @@
     <div class="grid_3 alpha omega">
         <h3>{{ 'existing.customer'|trans({}, 'account') }}</h3>
         {{ 'my.account.existing.customer.notice'|trans({}, 'account')|raw }}
-        <form action="{{ path('login_check') }}" method="post" class="full-width">
+        <form action="{{ path('login_check') }}" method="post">
             <input type="text" id="username" name="_username" value="{{ last_username }}" placeholder="{{ 'email'|trans({}, 'account') }}" autofocus tabindex="1">
 
             <input type="password" id="password" name="_password" placeholder="{{ 'password'|trans({}, 'account') }}" tabindex="2">
 
             <input type="hidden" name="_target_path" value="{{ url(target) }}">
-            <button type="submit" name="login" class="button pull-right" tabindex="3">
-                {{ 'my.account.login'|trans({}, 'account') }} <i class="fa fa-arrow-right"></i>
-            </button>
+            <div>
+                <button type="submit" name="login" class="button pull-right" tabindex="3">
+                    {{ 'my.account.login'|trans({}, 'account') }} <i class="fa fa-arrow-right"></i>
+                </button>
+            </div>
         </form>
     </div>
 
