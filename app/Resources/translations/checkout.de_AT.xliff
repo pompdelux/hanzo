@@ -30,7 +30,7 @@
           <h2>Kontakt</h2>
           <p>Bei Fragen wenden Sie sich bitte an uns.</p>
           <p>Telefon 040-35715072</p>
-          <p>E-Mail: <a href="mailto:mailde@pompdelux.com">mailde@pompdelux.com</a></p>
+          <p>E-Mail: <a href="mailto:mailat@pompdelux.com">mailat@pompdelux.com</a></p>
 
           <h2>Meine Seite</h2>
           <p>
@@ -41,13 +41,13 @@
           <h2>FAQ</h2>
           <p>
             Hier finden Sie oft gestellte Fragen über und Antworten von POMPdeLUX.<br>
-            <a href="/de_DE/kundendienst/telefonzeiten/faq">&raquo; FAQ</a>
+            <a href="/de_AT/kundendienst/telefonzeiten/faq">&raquo; FAQ</a>
           </p>
 
           <h2>Neuigkeiten</h2>
           <p>
             Im Menü Neuigkeiten finden Sie immer die aktuellsten Neuigkeiten.<br>
-            <a href="/de_DE/home/neuigkeiten">&raquo; Neuigkeiten</a>
+            <a href="/de_AT/home/neuigkeiten">&raquo; Neuigkeiten</a>
           </p>
         ]]></target>
       </trans-unit>
@@ -176,7 +176,7 @@
       </trans-unit>
       <trans-unit id="product.size">
         <source>product.size</source>
-        <target>Größe</target>
+        <target>Grösse</target>
       </trans-unit>
       <trans-unit id="product.color">
         <source>product.color</source>
@@ -266,7 +266,7 @@
         <source>late.delivery.date.notice</source>
         <target><![CDATA[
           <p>Ihre Bestellung enthält eine oder mehrere Waren, die wir zurzeit nicht auf Lager haben. Die Bestellung wird verpackt, wenn wir alle Waren auf Lager haben.</p>
-          <p>Ihre gesamte Bestellung wird von unserem Lager erwartungsgemäß spätestens verschickt am: <strong>%date%</strong>.</p>
+          <p>Ihre gesamte Bestellung wird von unserem Lager erwartungsgemäss spätestens verschickt am: <strong>%date%</strong>.</p>
         ]]></target>
       </trans-unit>
       <trans-unit id="status.20" approved="no">
@@ -343,23 +343,23 @@
       </trans-unit>
       <trans-unit id="discount.private">
         <source>discount.private</source>
-        <target>Ermäßigung:</target>
+        <target>Ermässigung:</target>
       </trans-unit>
       <trans-unit id="discount.group">
         <source>discount.group</source>
-        <target>Ermäßigung:</target>
+        <target>Ermässigung:</target>
       </trans-unit>
       <trans-unit id="discount.hostess">
         <source>discount.hostess</source>
-        <target>Gastgeberinnenermäßigung:</target>
+        <target>Gastgeberinnenermässigung:</target>
       </trans-unit>
       <trans-unit id="discount.friend">
         <source>discount.friend</source>
-        <target>Ermäßigung:</target>
+        <target>Ermässigung:</target>
       </trans-unit>
       <trans-unit id="discount.gift">
         <source>discount.gift</source>
-        <target>Ermäßigung:</target>
+        <target>Ermässigung:</target>
       </trans-unit>
       <trans-unit id="product.group.g">
         <source>product.group.g</source>
@@ -409,18 +409,18 @@
          <source>dibs.down.message</source>
          <target><![CDATA[
           Lieber Kunde,<br>
-          das Zahlungssystem (DIBS) ist im Augenblick außer Betrieb. Daher können Sie nicht mit Kreditkarte bezahlen. Stattdessen können Sie die Zahlung per Gothia-Rechnung nutzen oder später wieder vorbeischauen.<br>
-          Mit freundlichen Grüßen<br>
+          das Zahlungssystem (DIBS) ist im Augenblick ausser Betrieb. Daher können Sie nicht mit Kreditkarte bezahlen. Stattdessen können Sie die Zahlung per Gothia-Rechnung nutzen oder später wieder vorbeischauen.<br>
+          Mit freundlichen Grüssen<br>
           POMPdeLUX
           ]]></target>
       </trans-unit>
       <trans-unit id="basket.header" approved="no">
         <source>basket.header</source>
-        <target><![CDATA[<h1>Ihr Warenkorb</h1><p>Benötigen Sie Hilfe? <a href="/de_DE/kundendienst/telefonzeiten/faq">FAQ</a></p>]]></target>
+        <target><![CDATA[<h1>Ihr Warenkorb</h1><p>Benötigen Sie Hilfe? <a href="/de_AT/kundendienst/telefonzeiten/faq">FAQ</a></p>]]></target>
       </trans-unit>
       <trans-unit id="order.amount.to.low" approved="no">
         <source>order.amount.to.low</source>
-        <target>Ihre Gastgeberinnenermäßigung überschreitet Ihren Gesamtbetrag.
+        <target>Ihre Gastgeberinnenermässigung überschreitet Ihren Gesamtbetrag.
 Sie müssen Waren hinzufügen.
 </target>
       </trans-unit>

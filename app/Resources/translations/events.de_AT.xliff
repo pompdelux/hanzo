@@ -352,15 +352,15 @@
             </trans-unit>
             <trans-unit id="event.sms.confirmation.reply">
                 <source>event.sms.confirmation.reply</source>
-                <target>Hallo %name%, vielen Dank für Ihre Anmeldung zur POMPdeLUX Home Shopping-Veranstaltung am %event_date% um %event_time% Uhr an der Adresse %address%, %zip% %city%. Ich freue mich, Sie begrüßen zu dürfen! %hostess%</target>
+                <target>Hallo %name%, vielen Dank für Ihre Anmeldung zur POMPdeLUX Home Shopping-Veranstaltung am %event_date% um %event_time% Uhr an der Adresse %address%, %zip% %city%. Ich freue mich, Sie begrüssen zu dürfen! %hostess%</target>
             </trans-unit>
             <trans-unit id="event.sms.invite">
                 <source>event.sms.invite</source>
-                <target>Hallo %name%, %hostess% möchte Sie zur POMPdeLUX Home Shopping-Veranstaltung am %event_date% um %event_time% Uhr an der Adresse %address%, %zip% %city% einladen. Möchten Sie dabei sein und schicke Kinderbekleidung erleben, dann antworten Sie auf dieses SMS mit dem Text "pdl %event_id%". Ich hoffe, Sie begrüßen zu dürfen!</target>
+                <target>Hallo %name%, %hostess% möchte Sie zur POMPdeLUX Home Shopping-Veranstaltung am %event_date% um %event_time% Uhr an der Adresse %address%, %zip% %city% einladen. Möchten Sie dabei sein und schicke Kinderbekleidung erleben, dann antworten Sie auf dieses SMS mit dem Text "pdl %event_id%". Ich hoffe, Sie begrüssen zu dürfen!</target>
             </trans-unit>
             <trans-unit id="event.sms.reminder">
                 <source>event.sms.reminder</source>
-                <target>Hallo %name%, vergessen Sie bitte die POMPdeLUX Home Shopping-Veranstaltung am %event_date% um %event_time% Uhr an folgender Adresse nicht: %address%, %zip% %city% Mit freundlichen Grüßen POMPdeLUX</target>
+                <target>Hallo %name%, vergessen Sie bitte die POMPdeLUX Home Shopping-Veranstaltung am %event_date% um %event_time% Uhr an folgender Adresse nicht: %address%, %zip% %city% Mit freundlichen Grüssen POMPdeLUX</target>
             </trans-unit>
             <trans-unit id="events.name">
                 <source>events.name</source>
@@ -412,15 +412,15 @@
             </trans-unit>
             <trans-unit id="event.type.other">
                 <source>event.type.other</source>
-                <target>Außerhalb der Veranstaltung</target>
+                <target>Ausserhalb der Veranstaltung</target>
             </trans-unit>
             <trans-unit id="hostess.discount">
                 <source>hostess.discount</source>
-                <target>Gastgeberinnenermäßigung</target>
+                <target>Gastgeberinnenermässigung</target>
             </trans-unit>
             <trans-unit id="event.close">
                 <source>event.close</source>
-                <target>Veranstaltung schließen</target>
+                <target>Veranstaltung schliessen</target>
             </trans-unit>
             <trans-unit id="event.closed">
                 <source>event.closed</source>
