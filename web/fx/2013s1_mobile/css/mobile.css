@@ -1608,7 +1608,7 @@ form.address .error {
   margin: 0 10px;
 }
 
-form.location-locator input.button.button-right {
+form.location-locator button.button {
   margin-left: 5px;
   float: none;
 }
@@ -1768,7 +1768,7 @@ div.invalid-order {
   margin-bottom: 10px;
 }
 
-#body-create-account form[action$="/edit"] .button-right {
+#body-create-account form[action$="/edit"] button[type=submit] {
   display: block;
 }
 #body-create-account .create {

@@ -28,6 +28,8 @@
   </div>
   <div class="buttons grid_8 alpha omega row">
     <a class="button" href="{{ continue_shopping }}"><i class="fa fa-arrow-left"></i> {{ "continue.shopping"|trans({}, 'checkout') }}</a>
-    <input type="submit" name="_submit" class="button button-right" value="{{ "proceed"|trans({}, 'checkout') }}">
+    <button type="submit" name="_submit" class="button pull-right">
+      {{ 'proceed'|trans({}, 'checkout') }} <i class="fa fa-arrow-right"></i>
+    </button>
   </div>
 </form>

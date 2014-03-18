@@ -8,7 +8,11 @@
   <form action="{{ path('add_entry') }}" method="post" id="wall-entry-form" class="clearfix">
     <dl>
       <dt><textarea name="message" cols="20" rows="2"  class="grow" title=""></textarea></dt>
-      <dd><input type="submit" name="wall_submit" value="Del" class="button button-right" /></dd>
+      <dd>
+        <button type="submit" class="button pull-right" name="wall_submit">
+          {{ 'Del'|trans }} <i class="fa fa-arrow-right"></i>
+        </button>
+      </dd>
     </dl>
   </form>
   <br />

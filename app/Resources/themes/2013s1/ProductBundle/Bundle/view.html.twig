@@ -58,8 +58,9 @@
               </select>
             </label>
           </div>
-
-          <input type="submit" value="{{ "add.to.basket"|trans }}" class="button button-right button-black">
+          <button type="submit" class="button pull-right">
+            {{ 'add.to.basket'|trans }} <i class="fa fa-arrow-right"></i>
+          </button>
           <input type="hidden" name="master" value="{{ product.master }}">
         {% endif %}
         </form>

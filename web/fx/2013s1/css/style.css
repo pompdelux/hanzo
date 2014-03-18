@@ -2065,7 +2065,7 @@ form.address .error {
   margin: 0 10px;
 }
 
-form.location-locator input.button.button-right {
+form.location-locator button.button {
   margin-left: 5px;
   float: none;
 }
@@ -2240,7 +2240,7 @@ div.invalid-order {
   border-radius: 5px;
   background: white;
 }
-#cart-edit-element a.button {
+#cart-edit-element a.text-button {
   position: absolute;
   bottom: 3px;
   right: 10px;

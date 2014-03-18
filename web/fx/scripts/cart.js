@@ -204,12 +204,12 @@
         });
 
         $edit.on('change', 'select#quantity', function() {
-          if ($('.button.button-right', $edit).length === 0) {
-            $(this).closest('div').after('<input type="button" class="button button-right" value="'+Translator.get('js:update')+'">');
+          if ($('.button.update', $edit).length === 0) {
+            $(this).closest('div').after('<a href="#" class="button pull-right update">'+Translator.get('js:update')+' <i class="fa fa-arrow-right"></i></a>');
           }
         });
 
-        $edit.on('click', 'input.button', function() {
+        $edit.on('click', '.button.update', function() {
           var $button = $(this);
           var request_data = {
             'product_to_replace': $info.data('product_id'),

@@ -14,7 +14,9 @@
       <div class="row">
         {{ form_widget(form) }}
       </div>
-      <input class="button button-right" type="submit" value="{{ 'form.submit_step2'|trans({},'gothia') }}" name="action-submit-gothia-confirm" id="action-submit-gothia-confirm"/>
+      <button type="submit" class="button pull-right" name="action-submit-gothia-confirm" id="action-submit-gothia-confirm">
+        {{ 'form.submit_step2'|trans({},'gothia') }} <i class="fa fa-arrow-right"></i>
+      </button>
       <a href="{{ path('PaymentBundle_gothia_payment_cancel') }}" class="button"><i class="fa fa-arrow-left"></i> {{ 'form.cancel'|trans({},'gothia') }}</a>
     </form>
   </div>
