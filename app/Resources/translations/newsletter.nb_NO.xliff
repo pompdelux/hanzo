@@ -52,6 +52,10 @@
           <a href="/nb_NO/forside/kundeservice/vilkar" target="_blank">Ved påmelding aksepterer jeg POMPdeLUX’ generelle vilkår.</a>
         ]]></target>
       </trans-unit>
+      <trans-unit id="newsletter.open.text">
+        <source>newsletter.open.text</source>
+        <target>MED DEG PÅ TIL NYHETSBREVET OG VINN EN VERDIKUPONG PÅ NOK 5000,-</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

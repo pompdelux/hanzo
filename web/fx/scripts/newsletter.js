@@ -121,13 +121,20 @@ var newsletter = (function($) {
     if ($('#newsletterModal').length) {
         if (!$.cookie('newsletter_prompt_off') && (false === $('body').hasClass('is-mobile'))) {
             $('#newsletterModal').show();
-
-            $('#newsletterModal a.close-button').on('click', function(event) {
-                event.preventDefault();
-                $('#newsletterModal').hide();
-                $.cookie('newsletter_prompt_off', 1, {expires : 3650});
-            });
+        } else {
+            $('#openNewsletterModal').fadeIn();
         }
+        $('#newsletterModal a.close-button').on('click', function(event) {
+            event.preventDefault();
+            $('#newsletterModal').hide();
+            $('#openNewsletterModal').fadeIn();
+            $.cookie('newsletter_prompt_off', 1, {expires : 3650});
+        });
+        $('#openNewsletterModal a').on('click', function(e){
+          e.preventDefault();
+          $('#openNewsletterModal').hide();
+          $('#newsletterModal').fadeIn();
+        });
     }
 
     $('.js-newsletter-form .button').on('click', function(event) {

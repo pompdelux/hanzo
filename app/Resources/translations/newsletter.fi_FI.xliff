@@ -52,6 +52,10 @@
           <a href="/fi_FI/koti/asiakaspalvelu/ehdot" target="_blank">Hyväksyn ilmoittautumisen yhteydessä POMPdeLUXin yleiset ehdot.</a>
         ]]></target>
       </trans-unit>
+      <trans-unit id="newsletter.open.text">
+        <source>newsletter.open.text</source>
+        <target>TILAA UUTISKIRJE JA VOITA EUR 600,-  ARVOINEN ETUSETELI!</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
