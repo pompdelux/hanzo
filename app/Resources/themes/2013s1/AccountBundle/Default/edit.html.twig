@@ -11,34 +11,34 @@
 {% endif %}
 
 <div class="row grid_8 alpha omega">
-	<div class="grid_5 alpha">
-		<form action="{{ path('_account_edit') }}" method="post" {{ form_enctype(form) }} class="create full-width" novalidate>
-		  <div id="customers" class="row grid_5 alpha omega">
-		      <div class="grid_2 alpha">
-		        {{ form_row(form.first_name) }}
-		        {{ form_row(form.last_name) }}
-		        {{ form_row(form.addresses.0.address_line_1) }}
-		        {{ form_row(form.addresses.0.postal_code) }}
-		        {{ form_row(form.addresses.0.city) }}
-		        {{ form_row(form.addresses.0.countries_id) }}
-		        {{ form_row(form.addresses.0.country) }}
-		      </div>
-		      <div class="grid_2 push_1 omega">
-		        {{ form_row(form.phone) }}
-		        {{ form_row(form.email) }}
-		        {{ form_row(form.password) }}
-		        {{ form_row(form.addresses.0.type) }}
-		        {{ form_row(form._token) }}
-		      </div>
-		  </div>
-		  <div class="row grid_5 alpha omega">
-			  <input class="button button-right" type="submit" value="{{ 'update.account'|trans({}, 'account') }}">
-			  <a class="button" href="{{ path('_account') }}"><i class="fa fa-arrow-left"></i> {{ 'cancel'|trans({}, 'account') }}</a>
-		  </div>
-		</form>
-	</div>
-	<div class="grid_2 push_1 omega">
-		{{ include('AccountBundle:Default:aside.html.twig') }}
-	</div>
+  <div class="grid_5 alpha">
+    <form action="{{ path('_account_edit') }}" method="post" {{ form_enctype(form) }} class="create full-width" novalidate>
+      <div id="customers" class="row grid_5 alpha omega">
+          <div class="grid_2 alpha">
+            {{ form_row(form.first_name) }}
+            {{ form_row(form.last_name) }}
+            {{ form_row(form.addresses.0.address_line_1) }}
+            {{ form_row(form.addresses.0.postal_code) }}
+            {{ form_row(form.addresses.0.city) }}
+            {{ form_row(form.addresses.0.countries_id) }}
+            {{ form_row(form.addresses.0.country) }}
+          </div>
+          <div class="grid_2 push_1 omega">
+            {{ form_row(form.phone) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.password) }}
+            {{ form_row(form.addresses.0.type) }}
+            {{ form_row(form._token) }}
+          </div>
+      </div>
+      <div class="row grid_5 alpha omega">
+        <input class="button button-right" type="submit" value="{{ 'update.account'|trans({}, 'account') }}">
+        <a class="button" href="{{ path('_account') }}"><i class="fa fa-arrow-left"></i> {{ 'cancel'|trans({}, 'account') }}</a>
+      </div>
+    </form>
+  </div>
+  <div class="grid_2 push_1 omega">
+    {{ include('AccountBundle:Default:aside.html.twig') }}
+  </div>
 </div>
 {% endblock %}
