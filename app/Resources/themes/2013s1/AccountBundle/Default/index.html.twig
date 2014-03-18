@@ -16,10 +16,13 @@
 		</div>
 		{% endfor %}
 
-      	{{ 'my.account.description'|trans({}, 'account')|raw }}
+    {{ 'my.account.description'|trans({}, 'account')|raw }}
 	</div>
 	<div class="grid_2 omega">
 		{{ include('AccountBundle:Default:aside.html.twig') }}
+    <aside>
+      {{ 'my.account.legends'|trans({}, 'account')|raw }}
+    </aside>
 	</div>
 
 	<div class="grid_8 alpha omega bottom-space">
