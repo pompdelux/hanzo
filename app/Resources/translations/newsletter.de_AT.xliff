@@ -49,7 +49,7 @@
       <trans-unit id="terms.link">
         <source>terms.link</source>
         <target><![CDATA[
-          <a href="/de_DE/home/kundendienst/abgs" target="_blank">Durch die Anmeldung akzeptiere ich POMPdeLUX allgemeine Bedingungen.</a>
+          <a href="/de_AT/home/kundendienst/abgs" target="_blank">Durch die Anmeldung akzeptiere ich POMPdeLUX allgemeine Bedingungen.</a>
         ]]></target>
       </trans-unit>
     </body>
