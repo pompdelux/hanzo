@@ -9,6 +9,29 @@
       @include paragraph-style;
     }
   }
+  h3 {
+    font-family: $font-sans;
+    font-size: 20px;
+    text-transform: uppercase;
+  }
+  // Right boxes.
+  > .grid_3 > .grid_3 {
+    border-bottom: 2px dotted #8D8D8D;
+    padding: 15px 0 10px;
+
+    &:first-child {
+      border-top: 2px dotted #8D8D8D;
+    }
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  input {
+    background: #DED8D2;
+    color: #222;
+    border: none;
+  }
 }
 form.create {
 	label{
