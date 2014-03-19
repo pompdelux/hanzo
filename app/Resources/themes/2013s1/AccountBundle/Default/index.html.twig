@@ -20,7 +20,8 @@
 	</div>
 	<div class="grid_2 omega">
 		{{ include('AccountBundle:Default:aside.html.twig') }}
-    <aside>
+    <aside class="legends">
+      <h3>{{ 'my.account.legends.header'|trans({}, 'account') }}</h3>
       {{ 'my.account.legends'|trans({}, 'account')|raw }}
     </aside>
 	</div>

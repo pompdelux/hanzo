@@ -1978,6 +1978,22 @@ form.create .button {
   display: inline-block;
 }
 
+#body-account .legends ul {
+  margin: 0;
+}
+#body-account .legends ul li {
+  display: table;
+  list-style-type: none;
+  padding-bottom: 20px;
+}
+#body-account .legends ul li i {
+  padding-right: 10px;
+}
+#body-account .legends ul li span, #body-account .legends ul li i {
+  display: table-cell;
+  vertical-align: middle;
+}
+
 .sprite.trackntrace {
   background-position: 0 -1200px;
   height: 25px;

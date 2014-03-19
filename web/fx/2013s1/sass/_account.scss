@@ -64,6 +64,26 @@ form.create {
     display: inline-block;
 }
 
+#body-account {
+  .legends {
+    ul {
+      margin: 0;
+      li {
+        display: table;
+        list-style-type: none;
+        padding-bottom: 20px;
+        i {
+          padding-right: 10px;
+        }
+        span, i {
+          display: table-cell;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+}
+
 .sprite.trackntrace {
   @include icons-sprite(trackntrace);
   height: icons-sprite-height(trackntrace);

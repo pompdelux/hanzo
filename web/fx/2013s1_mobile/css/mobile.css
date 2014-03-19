@@ -845,6 +845,7 @@ a.video-popper .sprite, #video-player-container a.video .sprite {
 }
 
 .body-product .main h1.title,
+.body-product .main h2.title,
 .body-product .main .prices {
   font-family: "Merriweather", serif;
   font-size: 16px;

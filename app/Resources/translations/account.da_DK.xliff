@@ -547,6 +547,24 @@ Herefter kan du nemt shoppe videre.</p><br>
                 <source>account.returnlabel.link</source>
                 <target>Print retur label</target>
             </trans-unit>
+            <trans-unit id="my.account.legends.header">
+                <source>my.account.legends.header</source>
+                <target>Det betyder ikonerne</target>
+            </trans-unit>
+            <trans-unit id="my.account.legends">
+                <source>my.account.legends</source>
+                <target><![CDATA[
+                    <ul>
+                        <li><i class="sprite edit"></i><span>Rediger din ordre</span></li>
+                        <li><i class="sprite delete"></i><span>Slet din ordre</span></li>
+                        <li><i class="sprite show"></i><span>Se din ordre</span></li>
+                        <li><i class="sprite pdf"></i><span>Faktura (pdf)</span></li>
+                        <li><i class="sprite return"></i><span>Returner en vare</span></li>
+                        <li><i class="sprite returnlabel"></i><span>Returlabel</span></li>
+                        <li><i class="sprite trackntrace"></i><span>Følg din pakke</span></li>
+                    </ul>
+                    ]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
