@@ -871,26 +871,27 @@ class ProductsController extends CoreController
             return $this->redirect($this->generateUrl('admin'));
         }
 
+        $stock = $this->container->get('stock');
         $parser = new \PropelCSVParser();
         $parser->delimiter = ';';
 
-        $stocks = ProductsQuery::create()
-            ->leftJoinWithProductsStock()
-            ->useProductsStockQuery(null, \Criteria::LEFT_JOIN)
-                ->withColumn('SUM(products_stock.quantity)', 'totalstock')
-            ->endUse()
+        $products = ProductsQuery::create()
             ->groupById()
             ->orderBySku()
             ->filterByMaster(null, \Criteria::ISNOTNULL)
             ->find($this->getDbConnection())
         ;
 
+        $stock->prime($products);
+
         $stock_data = [];
         $stock_data[0] = array('SKU','STOCK');
 
-        foreach ($stocks as $stock) {
-            $s = $stock->getVirtualColumn('totalstock') ?: 0;
-            $stock_data[] = array($stock->getSku(), $s);
+        foreach ($products as $product) {
+            foreach ($stock->get($product, true) as $level) {
+                if (empty($level['date']) || (0 == $level['quantity'])) { continue; }
+                $stock_data[] = array($product->getSku(), $level['quantity']);
+            }
         }
 
         return new Response(
