@@ -11,63 +11,67 @@
     <a href="javascript:history.go(-1)" title="{{ 'back.to.category'|trans }}" class="back-button"><i class="fa fa-arrow-left"></i>  {{ 'back.to.category'|trans }}</a>
   </div>
 
-  <h2>{{ 'buy.set'|trans }}</h2>
-  {{ 'buy.set.description'|trans }}
+  <div class="grid_8 alpha omega header">
+    <h2>{{ 'buy.set'|trans }}</h2>
+    {{ 'buy.set.description'|trans }}
+  </div>
 
   {% for product in products %}
-    <div class="block row grid_12 alpha omega">
-      <div class="grid_2 alpha">
-        <a href="{{ product.url }}" class="left">
-          {{ product_image_tag(product.image, '234x410', {'alt': product.master ~ ', ' ~ product.color}) }}
-        </a>
-      </div>
-      <div class="grid_2">
-
-        <h2 class="title">{{ product.title }}</h2>
-        <div class="prices">
-        {% if product.prices.sales is defined %}
-          <span class="normal strike">{{ product.prices.normal.price|money }}</span>
-          <span class="discount">{{ product.prices.sales.price|money }}</span>
-        {% else %}
-          <span class="normal">{{ product.prices.normal.price|money }}</span>
-        {% endif %}
+    <div class="block row grid_8 alpha omega">
+      <div class="grid_4 alpha">
+        <div class="grid_2 alpha">
+          <a href="{{ product.url }}" class="left">
+            {{ product_image_tag(product.image, '234x410', {'alt': product.master ~ ', ' ~ product.color}) }}
+          </a>
         </div>
+        <div class="grid_2 omega">
 
-        <form class="buy" action="{{ path('basket_add') }}">
-        {% if product.out_of_stock %}
-          {{ 'out.of.stock'|trans }}
-        {% else %}
-          <div class="options">
-            <label for="size">
-              <span>{{ 'size'|trans }}</span>
-              <select name="size" class="size">
-                <option value="">{{ 'choose'|trans }}</option>
-              {% for option in product.options %}
-                <option value="{{ option }}">{{ option }}</option>
-              {% endfor %}
-              </select>
-            </label>
-            <label for="color">
-              <span>{{ "color"|trans }}:</span>
-              <select name="color" class="color" disabled="disabled">
-                <option value="">{{ 'choose'|trans }}</option>
-              </select>
-            </label>
-            <label for="quantity" class="off">
-              <span>{{ "quantity"|trans }}:</span>
-              <select class="quantity" name="quantity">
-              {% for i in 1..10 %}
-                <option value="{{ i }}">{{ i }}</option>
-              {% endfor %}
-              </select>
-            </label>
+          <h2 class="title">{{ product.title }}</h2>
+          <div class="prices">
+          {% if product.prices.sales is defined %}
+            <span class="normal strike">{{ product.prices.normal.price|money }}</span>
+            <span class="discount">{{ product.prices.sales.price|money }}</span>
+          {% else %}
+            <span class="normal">{{ product.prices.normal.price|money }}</span>
+          {% endif %}
           </div>
-          <button type="submit" class="button pull-right">
-            {{ 'add.to.basket'|trans }} <i class="fa fa-arrow-right"></i>
-          </button>
-          <input type="hidden" name="master" value="{{ product.master }}">
-        {% endif %}
-        </form>
+
+          <form class="buy" action="{{ path('basket_add') }}">
+          {% if product.out_of_stock %}
+            {{ 'out.of.stock'|trans }}
+          {% else %}
+            <div class="options">
+              <label for="size">
+                <span>{{ 'size'|trans }}</span>
+                <select name="size" class="size">
+                  <option value="">{{ 'choose'|trans }}</option>
+                {% for option in product.options %}
+                  <option value="{{ option }}">{{ option }}</option>
+                {% endfor %}
+                </select>
+              </label>
+              <label for="color">
+                <span>{{ "color"|trans }}:</span>
+                <select name="color" class="color" disabled="disabled">
+                  <option value="">{{ 'choose'|trans }}</option>
+                </select>
+              </label>
+              <label for="quantity" class="off">
+                <span>{{ "quantity"|trans }}:</span>
+                <select class="quantity" name="quantity">
+                {% for i in 1..10 %}
+                  <option value="{{ i }}">{{ i }}</option>
+                {% endfor %}
+                </select>
+              </label>
+            </div>
+            <button type="submit" class="button pull-right">
+              {{ 'add.to.basket'|trans }} <i class="fa fa-arrow-right"></i>
+            </button>
+            <input type="hidden" name="master" value="{{ product.master }}">
+          {% endif %}
+          </form>
+        </div>
       </div>
 
       <div class="grid_4 omega">

@@ -1139,6 +1139,10 @@ a.video-popper .sprite, #video-player-container a.video .sprite {
   width: 234px;
 }
 
+.body-buy-set .header {
+  padding: 20px 0;
+}
+
 .body-product .main h1.title,
 .body-product .main h2.title,
 .body-product .main .prices {
