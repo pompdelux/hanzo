@@ -20,10 +20,15 @@
 	</div>
 	<div class="grid_2 omega">
 		{{ include('AccountBundle:Default:aside.html.twig') }}
-    <aside class="legends">
-      <h3>{{ 'my.account.legends.header'|trans({}, 'account') }}</h3>
-      {{ 'my.account.legends'|trans({}, 'account')|raw }}
-    </aside>
+
+    {% if 'my.account.legends'|trans({}, 'account') != 'my.account.legends' %}
+
+      <aside class="legends">
+        <h3>{{ 'my.account.legends.header'|trans({}, 'account') }}</h3>
+        {{ 'my.account.legends'|trans({}, 'account')|raw }}
+      </aside>
+    {% endif %}
+
 	</div>
 
 	<div class="grid_8 alpha omega bottom-space">
