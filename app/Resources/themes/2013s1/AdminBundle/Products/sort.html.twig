@@ -1,27 +1,30 @@
 {% extends '::adminbase.html.twig' %}
 
 {% block content %}
-<nav class="sub">
-  <ul>
-    <li><a href="#" class="save-sortable">{{ 'save.changes'|trans({}, 'admin') }}</a></li>
-    <li id="select-category" class="dropdown-menu">
-        <a class="open-menu" href="#">
-        	{{ 'categories.selector'|trans({}, 'admin') }}
-        </a>
-        <div style="display:none;">
-        	<ul>
-		    {% for category in categories %}
-		      <li>
-		      	<a href="{{ path('admin_products_sort', {'category_id' : category.id}) }}">
-		      		{{ category.group }} {{ category.title }}<span class="cat-id">(#{{ category.id }})</span>
-		      	</a>
-		      </li>
-		    {% endfor %}
-        	</ul>
+
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        {{ 'categories.selector'|trans({}, 'admin') }}
+                        <b class="caret"></b>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                      {% for category in categories %}
+                        <li>
+                          <a href="{{ path('admin_products_sort', {'category_id' : category.id}) }}">
+                            {{ category.group }} {{ category.title }}<span class="cat-id">(#{{ category.id }})</span>
+                          </a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                </li>
+                <li><a href="#" class="save-sortable">{{ 'save.changes'|trans({}, 'admin') }}</a></li>
+            </ul>
         </div>
-    </li>
-  </ul>
-</nav>
+    </nav>
 
 {% if current_category %}
 <h1>{{ 'admin.products.sort.header.text.%category-name%'|trans({'%category-name%' : current_category.title}, 'admin') }}</h1>
@@ -41,19 +44,22 @@
   	 <ul id="product-list-sort">
 	  {% for product in products %}
 
-	    <li id="item-{{ product.id }}-{{ product.image_id}}-{{ current_category.id }}" class="sortable-item item-num-{{ loop.index }}">
-	    	<span class="product-list-images">
-	        	{{ product_image_tag(product.image, '60x115', { 'alt' : product.title }) }}
-      		</span>
-	        <span class="product-id">(#{{ product.id }})</span>
-	        <span class="title">{{ product.title }}</span>
+	    <li id="item-{{ product.id }}-{{ product.color }}-{{ current_category.id }}" class="sortable-item item-num-{{ loop.index }}">
+        <div>
+  	    	<span class="product-list-images">
+            {{ product_image_tag(product.image, '60x115', { 'alt' : product.title }) }}
+          </span>
+          <span class="product-id">(#{{ product.id }})</span>
+          <span class="title">{{ product.title }}</span>
+          <div class="sort-buttons">
+            <a class="sort-up fa fa-chevron-up"></a>
+            <a class="sort-down fa fa-chevron-down"></a>
+          </div>
+        </div>
 	    </li>
 
 	  {% endfor %}
 	 </ul>
-    <div class="clearfix">
-      <a href="#" class="button right save-sortable">{{ 'save.changes'|trans({}, 'admin') }}</a>
-    </div>
   {% else %}
   	<ul id="categories-list">
     {% for category in categories %}
