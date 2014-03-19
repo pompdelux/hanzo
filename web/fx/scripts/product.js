@@ -146,7 +146,6 @@
         for (var i = list.length - 1; i >= 0; i--) {
           if($(list[i]).attr('href') === $('.productimage-large a.image').attr('href')) {
             next = i;
-            console.log(next);
             break;
           }
         }
@@ -162,14 +161,10 @@
           }
           next--;
         }
-        console.log(next);
-        console.log('length: ' + list.length);
         // At the end of the list. Start from first element.
         if (list.length == next || next < 0) {
           next = 0;
         }
-        console.log(next);
-        console.log(list[0]);
         product.swapImages(list[next]);
       });
     };
