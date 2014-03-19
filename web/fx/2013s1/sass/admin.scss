@@ -1,0 +1,42 @@
+/**
+ * _admin.scss
+ */
+
+
+// Sort product lists.
+#product-list-sort {
+  li {
+    width: 33%;
+    display: inline-block;
+    float: left;
+    margin-bottom: 30px;
+
+    > div {
+      margin: 5px;
+      border: 1px solid #CCC;
+      position: relative;
+    }
+
+    &.ui-sortable-helper {
+
+    }
+    &.placeholder {
+      background: #F5F5F5;
+    }
+
+    .sort-buttons {
+      position: absolute;
+      top: 0;
+      right: 0;
+      a {
+        padding: 3px;
+        background: #F5F5F5;
+        cursor: pointer;
+        &:hover{
+          text-decoration: none;
+          color: black;
+        }
+      }
+    }
+  }
+}

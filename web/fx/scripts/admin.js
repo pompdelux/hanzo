@@ -199,7 +199,6 @@
 
       // Sortable list for products ind a category
       $('ul#product-list-sort').sortable({
-        axis : 'y',
         distance : 30,
         forceHelperSize : true,
         forcePlaceholderSize : true,
@@ -208,7 +207,15 @@
         placeholder : 'placeholder',
         scroll: true
       });
-      $('.save-sortable').click(function(e){
+      $('ul#product-list-sort .sortable-item .sort-up').on('click', function(e) {
+        var current = $(this).closest('.sortable-item');
+        current.prev().insertAfter(current);
+      });
+      $('ul#product-list-sort .sortable-item .sort-down').on('click', function(e) {
+        var current = $(this).closest('.sortable-item');
+        current.next().insertBefore(current);
+      });
+      $('.save-sortable').on('click', function(e){
         e.preventDefault();
         var list = $('ul#product-list-sort').sortable('toArray');
         $.ajax({
@@ -224,8 +231,7 @@
               }
             }
             else {
-              window.scrollTo(window.scrollMinX, window.scrollMinY);
-              dialoug.slideNotice(response.message);
+              dialoug.alert(response.message, '');
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {
