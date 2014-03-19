@@ -109,18 +109,19 @@ a.video-popper, #video-player-container a.video {
       position: absolute;
       top: 50%;
       display: block;
+      cursor: pointer;
     }
     .prev {
       left: 0;
-      @include icons-sprite(button-left);
-      height: icons-sprite-height(button-left);
-      width: icons-sprite-width(button-left);
+      @include icons-sprite(arrowbox_left);
+      height: icons-sprite-height(arrowbox_left);
+      width: icons-sprite-width(arrowbox_left);
     }
     .next {
       right: 0;
-      @include icons-sprite(button-right);
-      height: icons-sprite-height(button-right);
-      width: icons-sprite-width(button-right);
+      @include icons-sprite(arrowbox_right);
+      height: icons-sprite-height(arrowbox_right);
+      width: icons-sprite-width(arrowbox_right);
     }
   }
 }
