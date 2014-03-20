@@ -3383,6 +3383,9 @@ div.quickorder input[type=button] {
 #body-rma div.quickorder {
   padding: 0;
 }
+#body-rma .cached-version {
+  float: right;
+}
 
 .rma-icon {
   text-transform: uppercase;

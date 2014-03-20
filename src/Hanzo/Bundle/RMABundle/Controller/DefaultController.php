@@ -6,6 +6,7 @@ use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\Addresses;
+use Hanzo\Core\CoreController;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 /**
  * DefaultController
  */
-class DefaultController extends Controller
+class DefaultController extends CoreController
 {
 
     /**
@@ -31,7 +32,7 @@ class DefaultController extends Controller
             ->findPk($order_id);
 
         if (!$order instanceof Orders || $order->getState() != Orders::STATE_SHIPPED) {
-            $this->get('session')->setFlash('notice', $this->get('translator')->trans('rma.not_allowed_wrong_state', [], 'rma'));
+            $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('rma.not_allowed_wrong_state', [], 'rma'));
             return $this->redirect($this->generateUrl('_account'));
         }
 
@@ -96,6 +97,9 @@ class DefaultController extends Controller
                 )
             );
 
+
+            $this->setCache('rma_generated_html.' . $order_id . '.' . CustomersPeer::getCurrent()->getId(), $html);
+
             // Return the generated PDF directly as a reponse.
             return new Response(
                 $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
@@ -106,14 +110,35 @@ class DefaultController extends Controller
                 )
             );
         } else {
+            $cached = $this->getCache('rma_generated_html.' . $order_id . '.' . CustomersPeer::getCurrent()->getId());
             return $this->render(
                 'RMABundle:Default:form.html.twig', array(
                     'order' => $order,
                     'order_lines' => $products,
                     'page_type' => 'rma',
+                    'is_cached' => $cached,
                 )
             );
         }
-
     }
+
+    public function getAction(Request $request, $order_id, $pdf = false) {
+
+        if ($html = $this->getCache('rma_generated_html.' . $order_id . '.' . CustomersPeer::getCurrent()->getId())) {
+            if ($pdf) {
+                return new Response(
+                    $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+                    200,
+                    array(
+                        'Content-Type'          => 'application/pdf',
+                        'Content-Disposition'   => 'attachment; filename="POMPdeLUX_RMA_' . $order_id . '.pdf"',
+                    )
+                );
+            } else {
+                return $this->response($html);
+            }
+        }
+        return $this->redirect($this->generateUrl('rma_form', array('order_id' => $order_id)));
+    }
+
 }

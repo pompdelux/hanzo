@@ -115,6 +115,11 @@
         </tbody>
       </table>
       <input type="button" class="button right rma-submit" value="{{ 'rma.form.submit'|trans({}, 'rma') }}">
+      <div class="cached-version {{ not is_cached ? 'off' : 'on' }}">
+        <a href="{{ path('rma_get', {'order_id' : order.id, 'pdf' : 'pdf'}) }}" target="_blank" title="Download PDF" class="sprite pdf"></a>
+        <a href="{{ path('rma_get', {'order_id' : order.id}) }}" target="_blank" title="Print" class="sprite show"></a>
+        <a href="{{ path('consignor_return_label', {'id' : order.id}) }}" target="_blank" title="{{ 'account.returnlabel.link'|trans({}, 'account') }}" class="sprite returnlabel"></a>
+      </div>
     {% endif %}
   </div>
 </div>
