@@ -15,7 +15,7 @@
                 <target><![CDATA[
                     <p>Pyyd&auml;mme sinua valitsemaan toiminnon ja syyn jokaiselle palautettavalle tuotteelle.<br>Kirjoita my&ouml;s kunkin tuotteen osalta mahdolliset kommentit. Jos palautat tuotteita useasta eri tilauksesta, t&auml;yt&auml; yksi palautuslomake tilausta kohti. L&auml;het&auml; palautettavat tuotteet kuitenkin samassa paketissa, vaikka ne olisivat eri tilauksista. Muista liitt&auml;&auml; palautuslomake/-lomakkeet mukaan pakettiisi. Lue lis&auml;&auml; palautuksesta palautuslomakkeesta, joka luodaan, kun napsautat Laadi palautuslomake -painiketta.<br><br>Lomakkeen avaamiseksi tarvitset ilmaisen Adobe Reader -ohjelman, jonka voit tarvittaessa ladata t&auml;st&auml;.<br />
     <br />
-    <a href="http://www.adobe.com/products/acrobat/readstep2.html" target="_blank"><img src="http://static.pompdelux.com/images/pages/PDF_logo.jpg" width="158" height="39" border="0" title="POMPdeLUX" /></a><br /></p>
+    <a href="http://www.adobe.com/products/acrobat/readstep2.html" target="_blank"><img src="//static.pompdelux.com/images/pages/PDF_logo.jpg" width="158" height="39" border="0" title="POMPdeLUX" /></a><br /></p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="rma.form.label.activitycode">
