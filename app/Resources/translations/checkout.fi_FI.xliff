@@ -93,7 +93,7 @@
       </trans-unit>
       <trans-unit id="payment.text">
         <source>payment.text</source>
-        <target>Valitse tilauksen maksutapa.</target>
+        <target>Valitse tilauksen maksutapa/ valitse korttityyppi - mikäli haluat maksaa debitpuolella, niin valitse yhdistelmäkortilla kortin taustapuolen numerot.</target>
       </trans-unit>
       <trans-unit id="confirm.vat">
         <source>confirm.vat</source>
