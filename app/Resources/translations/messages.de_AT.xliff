@@ -174,7 +174,7 @@
 						<li>Rücksendung von Waren: POMPdeLUX A GmbH</li>
                         <li>Paketfach 10</li>
                         <li>6965 Wolfurt-Bahnhof</li>
-                        <li><img src="%cdn%fx/images/creditcards_de.png" alt="credit cards" title="credit cards"></li>
+                        <li><img src="%cdn%fx/images/creditcards_at.png" alt="credit cards" title="credit cards"></li>
                         <li><a href="http://www.facebook.com/sharer.php?u=%url%" class="facebook-button social-button" title="Del denne side på Facebook">Auf Facebook teilen</a></li>
                     </ul>
                 ]]></target>
@@ -184,7 +184,7 @@
                 <target><![CDATA[
                     <ul>
                         <li><b>Versand</b> ab 4,95 EUR</li>
-                        <li><b>Lieferzeit</b> %expected_delivery_date%</li>
+                        <li><b>Lieferzeit</b> Werk%expected_delivery_date%</li>
                         <li><b>Umtausch</b> Gratis</li>
                     </ul>
                 ]]></target>
