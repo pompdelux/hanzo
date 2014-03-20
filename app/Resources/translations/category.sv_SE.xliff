@@ -2,6 +2,10 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
+		<trans-unit id="headers.category-770" approved="no">
+                <source>headers.category-770</source>
+                <target><![CDATA[]]></target>
+            </trans-unit>
             <trans-unit id="headers.category-14" approved="no">
                 <source>headers.category-14</source>
                 <target><![CDATA[<h1>Klänningar</h1>
