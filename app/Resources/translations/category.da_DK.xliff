@@ -14,12 +14,12 @@
             </trans-unit>
 			<trans-unit id="headers.category-19" approved="no">
                 <source>headers.category-19</source>
-                <target><![CDATA[<h1>Tunikaer-Bluser</h1>
+                <target><![CDATA[<h1>Tunikaer / Bluser</h1>
                 <p>POMPdeLUX har et bredt udvalg af tunikaer og bluser til store og små piger. Her finder du mange forskellige modeller og farver, og der er noget for enhver smag. Find både en basis bluse til hverdag, og en festlig tunika til særlige lejligheder. Vores tunikaer og bluser går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-13" approved="no">
                 <source>headers.category-13</source>
-                <target><![CDATA[<h1>Strik-Cardigans</h1>
+                <target><![CDATA[<h1>Strik / Cardigans</h1>
                 <p>Til kolde vinterdage og kølige sommeraftener er det dejligt med en varm trøje. POMPdeLUX har både striktrøjer og cardigans i lækre bløde kvaliteter, og du finder et bredt udvalg af farver og modeller. Find din favorit blandt fleecetrøjer, cardigans, bluser, sweats og jumpers. Vores striktrøjer og cardigans går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-80" approved="no">
@@ -44,12 +44,12 @@
             </trans-unit>
 			<trans-unit id="headers.category-18" approved="no">
                 <source>headers.category-18</source>
-                <target><![CDATA[<h1>Shorts-Nederdele</h1>
+                <target><![CDATA[<h1>Shorts / Nederdele</h1>
                 <p>POMPdeLUX har shorts og nederdele til alle piger. Vælg mellem flere forskellige modeller og lækre farver, og læg mærke til de mange fine detaljer med print og tyl. Kombiner både shorts og nederdel med underdele som leggings og strømpebukser eller overdele som tshirts, striktrøjer og cardigans. Vores shorts og nederdele går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-16" approved="no">
                 <source>headers.category-16</source>
-                <target><![CDATA[<h1>Overtøj-Fleece</h1>
+                <target><![CDATA[<h1>Overtøj / Fleece</h1>
                 <p>En vigtig del af dit barns garderobe er overtøj. Find din favorit dunjakke, fleecejakke, vest eller flyverdragt blandt mange farver og modeller. Alt vores overtøj er designet til at holde dit barn varm og tør i al slags vejr. Især er vores tekniske overtøj af høj kvalitet og stor sikkerhed, og er derfor både vandtæt, vindtæt og åndbart. Se også de mange detaljer såsom reflekser, aftagelig hætte, vindfang, fodstrop og lommer. Vores jakker, overtræksbukser, fleecejakker og flyverdragt går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-15" approved="no">
@@ -59,16 +59,16 @@
             </trans-unit>
 			<trans-unit id="headers.category-82" approved="no">
                 <source>headers.category-82</source>
-                <target><![CDATA[<h1>Strømper-Strømpebukser-Leggins</h1>
+                <target><![CDATA[<h1>Strømper / Strømpebukser / Leggins</h1>
                 <p>Strømper og strømpebukser er en fast del af dit barns basis garderobe. POMPdeLUX har masser af strømper og strømpebukser i lækre bløde materialer, som alle piger synes er skønne at have på. Brug strømpebukser under kjole, nederdel eller shorts, og glem ikke vores strømper, som passer perfekt i farven til hele vores kollektion. Vores strømpebukser går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-21" approved="no">
                 <source>headers.category-21</source>
-                <target><![CDATA[<h1>Undertøj-Nattøj</h1>
+                <target><![CDATA[<h1>Undertøj / Nattøj</h1>
                 <p>Hos POMPdeLUX laver vi undertøj og nattøj, som skal være lækkert at have på. Vi bruger derfor bløde materialer af høj kvalitet, som dit barn elsker at have på. Undertøj og nattøj skal dog ikke kun være praktisk, men også have et lækkert design. I kollektionen finder du både underbukser, hipsters, trusser, undertrøjer, natkjoler og pyjamas. Vores undertøj og nattøj går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target></trans-unit>
 			<trans-unit id="headers.category-12" approved="no">
                 <source>headers.category-12</source>
-                <target><![CDATA[<h1>Accessories-Badetøj</h1>
+                <target><![CDATA[<h1>Accessories / Badetøj</h1>
                 <p>For at fuldende dit barns garderobe kan kollektionen kombineres med vores mange skønne accessories. POMPdeLUX har alt lige fra hårpynt, seler og bælter til vanter, huer og halstørklæder. Vores populære accessories matcher resten af kollektionen, og kan derfor kombineres med smarte kjoler, lækre cardigans og seje bukser. Vores bælter, seler, vanter, huer, halstørklæder og hårpynt kan bruges af piger i alle aldre, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-45" approved="no">
@@ -78,8 +78,33 @@
             </trans-unit>
 			<trans-unit id="headers.category-46" approved="no">
                 <source>headers.category-46</source>
-                <target><![CDATA[<h1>Økologisk/GOTS</h1>
+                <target><![CDATA[<h1>Økologisk / GOTS</h1>
                 <p>Hos POMPdeLUX elsker vi kvalitetstøj, og dit barn skal naturligvis have det bedste. Derfor er vores underbukser, hipsters, trusser, undertrøjer, natkjoler og pyjamas GOTS certificeret. Det betyder at vi arbejder med organiske tekstiler, hvoraf mindst 95 % af materialerne er økologiske, samt at produktionen foregår miljømæssigt og socialt ansvarligt. Vi garanterer derfor lækre materialer af høj kvalitet til børn i alle aldre.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-112" approved="no">
+                <source>headers.category-112</source>
+                <target><![CDATA[<h1>Adventure</h1>
+                <p>Funktionelt overtøj bestående af shelljakke, shellbukser, softshell jakke, softshell suit og fleece. Serien holder dit barn tør og varm i al slags vejr. Shell- og softshellserien er vandtæt og vindtæt, og har et vandsøjletryk på op til 10.000 mm. Hos POMPdeLUX finder du det bedste overtøj på markedet til dit barn – anbefalet af både børn og deres forældre. Adventure fås fra størrelse 80 cm til 152 cm.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-115" approved="no">
+                <source>headers.category-115</source>
+                <target><![CDATA[<h1>Basis</h1>
+                <p>I vores basis sortiment finder du lækre toppe, tshirts, bluser og leggings. Vores basisvarer er fremstillet af lækre materialer, og kan bruges under, og sammen med, alle vores bukser, nederdele, shorts og kjoler. Her er du sikker på at finde den samme gode kvalitet hver eneste gang, og der er garanteret værdi for pengene. Vores basis serie går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-127" approved="no">
+                <source>headers.category-127</source>
+                <target><![CDATA[<h1>Regntøj</h1>
+                <p>Med vores lækre softshell og shell serie får du praktisk overtøj, som er langt bedre end det traditionelle regntøj, som du kender. Vores regntøj har vandsøjletryk på op til 10.000 mm og en åndbarhed på 3000 mvp. De skønne styles kan derfor bruges som erstatning for regntøj og termotøj – til alt slags vejr. Vores regntøj går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-114" approved="no">
+                <source>headers.category-114</source>
+                <target><![CDATA[<h1>Toppe</h1>
+                <p>Tshirts og toppe kan bruges året rundt, og er lækre både til sommer og vinter. POMPdeLUX har tshirts i mange forskellige farver og modeller, så der er noget til både store og små piger. Vores tshirts og toppe er i lækre bløde kvaliteter, og med mange fine detaljer. Find din favorit tshirt til hverdag eller en skøn top til festlige lejligheder. Vores tshirts og toppe går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-113" approved="no">
+                <source>headers.category-113</source>
+                <target><![CDATA[<h1>T-Shirts</h1>
+                <p>Tshirts og toppe kan bruges året rundt, og er lækre både til sommer og vinter. POMPdeLUX har tshirts i mange forskellige farver og modeller, så der er noget til både store og små piger. Vores tshirts og toppe er i lækre bløde kvaliteter, og med mange fine detaljer. Find din favorit tshirt til hverdag eller en skøn top til festlige lejligheder. Vores tshirts og toppe går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-10" approved="no">
                 <source>headers.category-10</source>
@@ -88,12 +113,12 @@
             </trans-unit>
 			<trans-unit id="headers.category-8" approved="no">
                 <source>headers.category-8</source>
-                <target><![CDATA[<h1>Skjorter-Polo shirts</h1>
+                <target><![CDATA[<h1>Skjorter / Polo shirts</h1>
                 <p>Skjorter og poloer er smarte til enhver dreng. POMPdeLUX laver mange forskellige modeller, mønstre og farver, som er med til at fuldende garderoben til både den lille og den store dreng. Især fokuserer vi på de mange fine detaljer såsom brystlommer, kraver, knapper og print. Find den skjorte eller polo som din dreng er vild med, og kombiner med en pullover, slipover, cardigan eller sweat. Vores skjorter og poloer går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-9" approved="no">
                 <source>headers.category-9</source>
-                <target><![CDATA[<h1>Cardigans-Pullovers</h1>
+                <target><![CDATA[<h1>Cardigans / Pullovers</h1>
                 <p>Til kolde vinterdage og kølige sommeraftener er det dejligt med en varm trøje eller cardigan. POMPdeLUX har både striktrøjer, cardigans og pullovers i lækre bløde kvaliteter, og du finder et bredt udvalg af farver og modeller. Find din favorit blandt fleecetrøjer, cardigans, bluser, sweats, slipovers og pullovers. Vores pullovers og cardigans går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-83" approved="no">
@@ -118,12 +143,12 @@
             </trans-unit>
 			<trans-unit id="headers.category-11" approved="no">
                 <source>headers.category-11</source>
-                <target><![CDATA[<h1>Undertøj-Nattøj</h1>
+                <target><![CDATA[<h1>Undertøj / Nattøj</h1>
                 <p>Hos POMPdeLUX laver vi undertøj og nattøj, som skal være lækkert at have på. Vi bruger derfor bløde materialer af høj kvalitet, som dit barn elsker at have på. Undertøj og nattøj skal dog ikke kun være praktisk, men også have et lækkert design. I kollektionen finder du både underbukser, boxershorts, undertrøjer og pyjamas. Vores undertøj og nattøj går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-5" approved="no">
                 <source>headers.category-5</source>
-                <target><![CDATA[<h1>Accessories-Badetøj</h1>
+                <target><![CDATA[<h1>Accessories / Badetøj</h1>
                 <p>For at fuldende dit barns garderobe kan kollektionen kombineres med vores mange skønne accessories. POMPdeLUX har alt lige fra seler og bælter til vanter, huer og halstørklæder. Vores populære accessories matcher resten af kollektionen, og kan derfor kombineres med smarte sweats, lækre cardigans og seje jeans. Vores bælter, seler, vanter, huer og halstørklæder kan bruges af drenge i alle aldre, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-43" approved="no">
@@ -133,8 +158,38 @@
             </trans-unit>
 			<trans-unit id="headers.category-44" approved="no">
                 <source>headers.category-44</source>
-                <target><![CDATA[<h1>Økologisk/GOTS</h1>
+                <target><![CDATA[<h1>Økologisk / GOTS</h1>
                 <p>Hos POMPdeLUX elsker vi kvalitetstøj, og dit barn skal naturligvis have det bedste. Derfor er vores underbukser, hipsters, trusser, undertrøjer, natkjoler og pyjamas GOTS certificeret. Det betyder at vi arbejder med organiske tekstiler, hvoraf mindst 95 % af materialerne er økologiske, samt at produktionen foregår miljømæssigt og socialt ansvarligt. Vi garanterer derfor lækre materialer af høj kvalitet til børn i alle aldre.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-116" approved="no">
+                <source>headers.category-116</source>
+                <target><![CDATA[<h1>Adventure</h1>
+                <p>Funktionelt overtøj bestående af shelljakke, shellbukser, softshell jakke, softshell suit og fleece. Serien holder dit barn tør og varm i al slags vejr. Shell- og softshellserien er vandtæt og vindtæt, og har et vandsøjletryk på op til 10.000 mm. Hos POMPdeLUX finder du det bedste overtøj på markedet til dit barn – anbefalet af både børn og deres forældre. Adventure fås fra størrelse 80 cm til 152 cm.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-119" approved="no">
+                <source>headers.category-119</source>
+                <target><![CDATA[<h1>Basis</h1>
+                <p>I vores basis sortiment finder du lækre toppe, tshirts, bluser og leggings. Vores basisvarer er fremstillet af lækre materialer, og kan bruges under, og sammen med, alle vores bukser, nederdele, shorts og kjoler. Her er du sikker på at finde den samme gode kvalitet hver eneste gang, og der er garanteret værdi for pengene. Vores basis serie går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-128" approved="no">
+                <source>headers.category-128</source>
+                <target><![CDATA[<h1>Regntøj</h1>
+                <p>Med vores lækre softshell og shell serie får du praktisk overtøj, som er langt bedre end det traditionelle regntøj, som du kender. Vores regntøj har vandsøjletryk på op til 10.000 mm og en åndbarhed på 3000 mvp. De skønne styles kan derfor bruges som erstatning for regntøj og termotøj – til alt slags vejr. Vores regntøj går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-120" approved="no">
+                <source>headers.category-120</source>
+                <target><![CDATA[<h1>Shorts</h1>
+                <p>Hos POMPdeLUX finder du et stort udvalg af lækre shorts, knickers og badeshorts. Vælg mellem lange og korte modeller i både sweat, denim og bomuld. Så er din dreng klar til sommer, strand og udeleg. Alle vores shorts kan kombineres med en cool skjorte, en blød tshirt eller en smart undertrøje. Vores shorts og knickers går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
+            </trans-unit>
+		<trans-unit id="headers.category-117" approved="no">
+                <source>headers.category-117</source>
+                <target><![CDATA[<h1>T-shirts, lange ærmer</h1>
+                <p>Tshirts kan bruges året rundt, og er lækre både til sommer og vinter. POMPdeLUX har tshirts i mange forskellige farver og modeller, så der er noget til både store og små drenge. Vores tshirts er i lækre bløde kvaliteter, og med mange fine detaljer og print. Find din favorit tshirt til hverdag eller en sej polo til festlige lejligheder. Vores tshirts går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-118" approved="no">
+                <source>headers.category-118</source>
+                <target><![CDATA[<h1>T-shirts, korte ærmer</h1>
+                <p>Tshirts kan bruges året rundt, og er lækre både til sommer og vinter. POMPdeLUX har tshirts i mange forskellige farver og modeller, så der er noget til både store og små drenge. Vores tshirts er i lækre bløde kvaliteter, og med mange fine detaljer og print. Find din favorit tshirt til hverdag eller en sej polo til festlige lejligheder. Vores tshirts går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-31" approved="no">
                 <source>headers.category-31</source>
@@ -143,17 +198,17 @@
             </trans-unit>
 			<trans-unit id="headers.category-36" approved="no">
                 <source>headers.category-36</source>
-                <target><![CDATA[<h1>T-shirts/Toppe</h1>
+                <target><![CDATA[<h1>T-shirts / Toppe</h1>
                 <p>Tshirts kan bruges året rundt, og er lækre både til sommer og vinter. POMPdeLUX har tshirts i mange forskellige farver og modeller, så der er noget til både store og små piger. Vores tshirts er i lækre bløde kvaliteter, og med mange fine detaljer. Find din favorit tshirt til hverdag eller en skøn top til festlige lejligheder. Vores tshirts går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-37" approved="no">
                 <source>headers.category-37</source>
-                <target><![CDATA[<h1>Tunikaer/Bluser</h1>
+                <target><![CDATA[<h1>Tunikaer / Bluser</h1>
                 <p>POMPdeLUX har et bredt udvalg af tunikaer og bluser til store og små piger. Her finder du mange forskellige modeller og farver, og der er noget for enhver smag. Find både en basis bluse til hverdag, og en festlig tunika til særlige lejligheder. Vores tunikaer og bluser går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-30" approved="no">
                 <source>headers.category-30</source>
-                <target><![CDATA[<h1>Strik/Cardigans</h1>
+                <target><![CDATA[<h1>Strik / Cardigans</h1>
                 <p>Til kolde vinterdage og kølige sommeraftener er det dejligt med en varm trøje. POMPdeLUX har både striktrøjer og cardigans i lækre bløde kvaliteter, og du finder et bredt udvalg af farver og modeller. Find din favorit blandt fleecetrøjer, cardigans, bluser, sweats og jumpers. Vores striktrøjer og cardigans går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-85" approved="no">
@@ -163,17 +218,17 @@
             </trans-unit>
 			<trans-unit id="headers.category-34" approved="no">
                 <source>headers.category-34</source>
-                <target><![CDATA[<h1>Bukser/Jeans</h1>
+                <target><![CDATA[<h1>Bukser / Jeans</h1>
                 <p>Hos POMPdeLUX finder du de bukser, som passer bedst til dit barn. Vi har et bredt udvalg af farver og modeller – lige meget om du er til jeggings, jeans, baggy eller slimfit bukser. Vores bukser er lavet i lækre materialer lige fra sweat til strik, og der er bukser til alle lejligheder. Vores bukser, jeggins og jeans går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-35" approved="no">
                 <source>headers.category-35</source>
-                <target><![CDATA[<h1>Shorts-Nederdele</h1>
+                <target><![CDATA[<h1>Shorts / Nederdele</h1>
                 <p>POMPdeLUX har shorts og nederdele til alle piger. Vælg mellem flere forskellige modeller og lækre farver, og læg mærke til de mange fine detaljer med print og tyl. Kombiner både shorts og nederdel med underdele som leggings og strømpebukser eller overdele som tshirts, striktrøjer og cardigans. Vores shorts og nederdele går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-33" approved="no">
                 <source>headers.category-33</source>
-                <target><![CDATA[<h1>Overtøj-Fleece</h1>
+                <target><![CDATA[<h1>Overtøj / Fleece</h1>
                 <p>En vigtig del af dit barns garderobe er overtøj. Find din favorit dunjakke, fleecejakke, vest eller flyverdragt blandt mange farver og modeller. Alt vores overtøj er designet til at holde dit barn varm og tør i al slags vejr. Især er vores tekniske overtøj af høj kvalitet og stor sikkerhed, og er derfor både vandtæt, vindtæt og åndbart. Se også de mange detaljer såsom reflekser, aftagelig hætte, vindfang, fodstrop og lommer. Vores jakker, overtræksbukser, fleecejakke og flyverdragt går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-32" approved="no">
@@ -183,17 +238,17 @@
             </trans-unit>
 			<trans-unit id="headers.category-87" approved="no">
                 <source>headers.category-87</source>
-                <target><![CDATA[<h1>Strømper-Strømpebukser-Leggings</h1>
+                <target><![CDATA[<h1>Strømper / Strømpebukser / Leggings</h1>
                 <p>Strømper og strømpebukser er en fast del af dit barns basis garderobe. POMPdeLUX har masser af strømper og strømpebukser i lækre bløde materialer, som alle piger synes er skønne at have på. Brug strømpebukser under kjole, nederdel eller shorts og glem ikke vores strømper, som passer perfekt i farven til hele vores kollektion.  Vores strømpebukser går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-38" approved="no">
                 <source>headers.category-38</source>
-                <target><![CDATA[<h1>Undertøj-Nattøj</h1>
+                <target><![CDATA[<h1>Undertøj / Nattøj</h1>
                 <p>Hos POMPdeLUX laver vi undertøj og nattøj, som skal være lækkert at have på. Vi bruger derfor bløde materialer af høj kvalitet, som dit barn elsker at have på. Undertøj og nattøj skal dog ikke kun være praktisk, men også have et lækkert design. I kollektionen finder du både underbukser, bodies, undertrøjer, natkjoler, natdragter og pyjamas. Vores undertøj og nattøj går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-29" approved="no">
                 <source>headers.category-29</source>
-                <target><![CDATA[<h1>Accessories-Badetøj</h1>
+                <target><![CDATA[<h1>Accessories / Badetøj</h1>
                 <p>For at fuldende dit barns garderobe kan kollektionen kombineres med vores mange skønne accessories. POMPdeLUX har alt lige fra hårpynt, seler og bælter til vanter, huer og halstørklæder. Vores populære accessories matcher resten af kollektionen, og kan derfor kombineres med smarte kjoler, lækre cardigans og seje bukser. Vores bælter, seler, vanter, huer, halstørklæder og hårpynt kan bruges af piger i alle aldre, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-49" approved="no">
@@ -203,22 +258,37 @@
             </trans-unit>
 			<trans-unit id="headers.category-50" approved="no">
                 <source>headers.category-50</source>
-                <target><![CDATA[<h1>Økologisk/GOTS</h1>
+                <target><![CDATA[<h1>Økologisk / GOTS</h1>
                 <p>Hos POMPdeLUX elsker vi kvalitetstøj, og dit barn skal naturligvis have det bedste. Derfor er vores underbukser, hipsters, trusser, undertrøjer, natkjoler og pyjamas GOTS certificeret. Det betyder at vi arbejder med organiske tekstiler, hvoraf mindst 95 % af materialerne er økologiske, samt at produktionen foregår miljømæssigt og socialt ansvarligt. Vi garanterer derfor lækre materialer af høj kvalitet til børn i alle aldre.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-121" approved="no">
+                <source>headers.category-121</source>
+                <target><![CDATA[<h1>Adventure</h1>
+                <p>Funktionelt overtøj bestående af shelljakke, shellbukser, softshell jakke, softshell suit og fleece. Serien holder dit barn tør og varm i al slags vejr. Shell- og softshellserien er vandtæt og vindtæt, og har et vandsøjletryk på op til 10.000 mm. Hos POMPdeLUX finder du det bedste overtøj på markedet til dit barn – anbefalet af både børn og deres forældre. Adventure fås fra størrelse 80 cm til 152 cm.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-122" approved="no">
+                <source>headers.category-122</source>
+                <target><![CDATA[<h1>Basis</h1>
+                <p>I vores basis sortiment finder du lækre toppe, tshirts, bluser og leggings. Vores basisvarer er fremstillet af lækre materialer, og kan bruges under, og sammen med, alle vores bukser, nederdele, shorts og kjoler. Her er du sikker på at finde den samme gode kvalitet hver eneste gang, og der er garanteret værdi for pengene. Vores basis serie går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-129" approved="no">
+                <source>headers.category-129</source>
+                <target><![CDATA[<h1>Regntøj</h1>
+                <p>Med vores lækre softshell og shell serie får du praktisk overtøj, som er langt bedre end det traditionelle regntøj, som du kender. Vores regntøj har vandsøjletryk på op til 10.000 mm og en åndbarhed på 3000 mvp. De skønne styles kan derfor bruges som erstatning for regntøj og termotøj – til alt slags vejr. Vores regntøj går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-27" approved="no">
                 <source>headers.category-27</source>
-                <target><![CDATA[<h1>T-Shirts</h1>
+                <target><![CDATA[<h1>T-Shirts, lange ærmer</h1>
                 <p>Tshirts kan bruges året rundt, og er lækre både til sommer og vinter. POMPdeLUX har tshirts i mange forskellige farver og modeller, så der er noget til både store og små drenge. Vores tshirts er i lækre bløde kvaliteter, og med mange fine detaljer og print. Find din favorit tshirt til hverdag eller en sej polo til festlige lejligheder. Vores tshirts går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-26" approved="no">
                 <source>headers.category-26</source>
-                <target><![CDATA[<h1>Skjorter-Polo shirts</h1>
+                <target><![CDATA[<h1>Skjorter / Polo shirts</h1>
                 <p>Skjorter og poloer er smarte til enhver dreng. POMPdeLUX laver mange forskellige modeller, mønstre og farver, som er med til at fuldende garderoben til både den lille og den store dreng. Især fokuserer vi på de mange fine detaljer såsom brystlommer, kraver, knapper og print. Find den skjorte eller polo som din dreng er vild med, og kombiner med en pullover, slipover, cardigan eller sweat. Vores skjorter og poloer går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-23" approved="no">
                 <source>headers.category-23</source>
-                <target><![CDATA[<h1>Cardigans-Pullovers</h1>
+                <target><![CDATA[<h1>Cardigans / Pullovers</h1>
                 <p>Til kolde vinterdage og kølige sommeraftener er det dejligt med en varm trøje eller cardigan. POMPdeLUX har både striktrøjer, cardigans og pullovers i lækre bløde kvaliteter, og du finder et bredt udvalg af farver og modeller. Find din favorit blandt fleecetrøjer, cardigans, bluser, sweats, slipovers og pullovers. Vores pullovers og cardigans går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-88" approved="no">
@@ -248,12 +318,12 @@
             </trans-unit>
 			<trans-unit id="headers.category-28" approved="no">
                 <source>headers.category-28</source>
-                <target><![CDATA[<h1>Undertøj-Nattøj</h1>
+                <target><![CDATA[<h1>Undertøj / Nattøj</h1>
                 <p>Hos POMPdeLUX laver vi undertøj og nattøj, som skal være lækkert at have på. Vi bruger derfor bløde materialer af høj kvalitet, som dit barn elsker at have på. Undertøj og nattøj skal dog ikke kun være praktisk, men også have et lækkert design. I kollektionen finder du både bodies, underbukser, boxershorts, undertrøjer, natdragter og pyjamas. Vores undertøj og nattøj går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-22" approved="no">
                 <source>headers.category-22</source>
-                <target><![CDATA[<h1>Accessories-Badetøj</h1>
+                <target><![CDATA[<h1>Accessories / Badetøj</h1>
                 <p>For at fuldende dit barns garderobe kan kollektionen kombineres med vores mange skønne accessories. POMPdeLUX har alt lige fra seler og bælter til vanter, huer og halstørklæder. Vores populære accessories matcher resten af kollektionen, og kan derfor kombineres med smarte sweats, lækre cardigans og seje jeans. Vores bælter, seler, vanter, huer og halstørklæder kan bruges af drenge i alle aldre, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-47" approved="no">
@@ -263,8 +333,33 @@
             </trans-unit>
 			<trans-unit id="headers.category-48" approved="no">
                 <source>headers.category-48</source>
-                <target><![CDATA[<h1>Økologisk/GOTS</h1>
+                <target><![CDATA[<h1>Økologisk / GOTS</h1>
                 <p>Hos POMPdeLUX elsker vi kvalitetstøj, og dit barn skal naturligvis have det bedste. Derfor er vores underbukser, hipsters, trusser, undertrøjer, natkjoler og pyjamas GOTS certificeret. Det betyder at vi arbejder med organiske tekstiler, hvoraf mindst 95 % af materialerne er økologiske, samt at produktionen foregår miljømæssigt og socialt ansvarligt. Vi garanterer derfor lækre materialer af høj kvalitet til børn i alle aldre.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-123" approved="no">
+                <source>headers.category-123</source>
+                <target><![CDATA[<h1>Adventure</h1>
+                <p>Funktionelt overtøj bestående af shelljakke, shellbukser, softshell jakke, softshell suit og fleece. Serien holder dit barn tør og varm i al slags vejr. Shell- og softshellserien er vandtæt og vindtæt, og har et vandsøjletryk på op til 10.000 mm. Hos POMPdeLUX finder du det bedste overtøj på markedet til dit barn – anbefalet af både børn og deres forældre. Adventure fås fra størrelse 80 cm til 152 cm.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-126" approved="no">
+                <source>headers.category-126</source>
+                <target><![CDATA[<h1>Basis</h1>
+                <p>I vores basis sortiment finder du lækre toppe, tshirts, bluser og leggings. Vores basisvarer er fremstillet af lækre materialer, og kan bruges under, og sammen med, alle vores bukser, nederdele, shorts og kjoler. Her er du sikker på at finde den samme gode kvalitet hver eneste gang, og der er garanteret værdi for pengene. Vores basis serie går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-130" approved="no">
+                <source>headers.category-130</source>
+                <target><![CDATA[<h1>Regntøj</h1>
+                <p>Med vores lækre softshell og shell serie får du praktisk overtøj, som er langt bedre end det traditionelle regntøj, som du kender. Vores regntøj har vandsøjletryk på op til 10.000 mm og en åndbarhed på 3000 mvp. De skønne styles kan derfor bruges som erstatning for regntøj og termotøj – til alt slags vejr. Vores regntøj går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-125" approved="no">
+                <source>headers.category-125</source>
+                <target><![CDATA[<h1>Shorts</h1>
+                <p>Hos POMPdeLUX finder du et stort udvalg af lækre shorts, knickers og badeshorts. Vælg mellem lange og korte modeller i både sweat, denim og bomuld. Så er din dreng klar til sommer, strand og udeleg. Alle vores shorts kan kombineres med en cool skjorte, en blød tshirt eller en smart undertrøje. Vores shorts og knickers går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-124" approved="no">
+                <source>headers.category-124</source>
+                <target><![CDATA[<h1>T-shirts, korte ærmer</h1>
+                <p>Tshirts kan bruges året rundt, og er lækre både til sommer og vinter. POMPdeLUX har tshirts i mange forskellige farver og modeller, så der er noget til både store og små drenge. Vores tshirts er i lækre bløde kvaliteter, og med mange fine detaljer og print. Find din favorit tshirt til hverdag eller en sej polo til festlige lejligheder. Vores tshirts går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.bycolour-673" approved="no">
                 <source>headers.bycolour-673</source>
