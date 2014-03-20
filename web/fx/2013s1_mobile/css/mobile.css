@@ -62,20 +62,20 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background: url('/fx/mobile/../images/icons/da-s7398167b80.png') no-repeat;
 }
 
-.icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-arrow_up, .icons-basket-grey, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-catwalk, .icons-checkout, .icons-close, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-print, .icons-return, .icons-returnlabel, .icons-search, .icons-shopping-bag, .icons-show, .icons-sizeguide, .icons-trackntrace, .icons-twitter, .icons-video, .icons-zoom, ul.tabs li a i, ul.tabs li a.current i, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, .sizeguide, table#order-status td a.trigger, footer .newsletter-block .sprite, #secondary-links li.basket .sprite, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.arrow-right, .sprite.arrow-left {
-  background: url('/fx/mobile/../images/icons/icons-s1a4e4f173f.png') no-repeat;
+.icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-arrow_up, .icons-basket-grey, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-catwalk, .icons-checkout, .icons-close, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-newsletter_2, .icons-pdf, .icons-pinterest, .icons-print, .icons-return, .icons-returnlabel, .icons-search, .icons-shopping-bag, .icons-show, .icons-sizeguide, .icons-trackntrace, .icons-twitter, .icons-video, .icons-zoom, ul.tabs li a i, ul.tabs li a.current i, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, .sizeguide, table#order-status td a.trigger, footer .newsletter-block .sprite, #secondary-links li.basket .sprite, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.arrow-right, .sprite.arrow-left {
+  background: url('/fx/mobile/../images/icons/icons-s64e2a39253.png') no-repeat;
 }
 
 .icons-Kundeservice_Green {
-  background-position: 0 -682px;
+  background-position: 0 -722px;
 }
 
 .icons-Kundeservice_Red {
-  background-position: 0 -586px;
+  background-position: 0 -626px;
 }
 
 .icons-Kundeservice_Yellow {
-  background-position: 0 -618px;
+  background-position: 0 -658px;
 }
 
 .icons-Oeko_Tex {
@@ -83,47 +83,47 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .icons-arrow_down {
-  background-position: 0 -1339px;
+  background-position: 0 -1379px;
 }
 
 .icons-arrow_left {
-  background-position: 0 -1348px;
+  background-position: 0 -1388px;
 }
 
 .icons-arrow_right {
-  background-position: 0 -1367px;
+  background-position: 0 -1407px;
 }
 
 .icons-arrow_up {
-  background-position: 0 -1358px;
+  background-position: 0 -1398px;
 }
 
 .icons-basket-grey {
-  background-position: 0 -1060px;
+  background-position: 0 -1100px;
 }
 
 .icons-basket {
-  background-position: 0 -868px;
+  background-position: 0 -908px;
 }
 
 .icons-button-left-black {
-  background-position: 0 -1306px;
+  background-position: 0 -1346px;
 }
 
 .icons-button-left {
-  background-position: 0 -1181px;
+  background-position: 0 -1221px;
 }
 
 .icons-button-right-black {
-  background-position: 0 -1287px;
+  background-position: 0 -1327px;
 }
 
 .icons-button-right {
-  background-position: 0 -1162px;
+  background-position: 0 -1202px;
 }
 
 .icons-catwalk {
-  background-position: 0 -442px;
+  background-position: 0 -482px;
 }
 
 .icons-checkout {
@@ -131,11 +131,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .icons-close {
-  background-position: 0 -1251px;
+  background-position: 0 -1291px;
 }
 
 .icons-delete {
-  background-position: 0 -1008px;
+  background-position: 0 -1048px;
 }
 
 .icons-delete_black {
@@ -143,7 +143,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .icons-delete_icon {
-  background-position: 0 -836px;
+  background-position: 0 -876px;
 }
 
 .icons-delete_white {
@@ -151,7 +151,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .icons-divider {
-  background-position: 0 -427px;
+  background-position: 0 -467px;
 }
 
 .icons-divider_left {
@@ -159,23 +159,23 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .icons-divider_right {
-  background-position: 0 -504px;
+  background-position: 0 -544px;
 }
 
 .icons-edit {
-  background-position: 0 -1110px;
+  background-position: 0 -1150px;
 }
 
 .icons-edit_icon {
-  background-position: 0 -918px;
+  background-position: 0 -958px;
 }
 
 .icons-facebook {
-  background-position: 0 -950px;
+  background-position: 0 -990px;
 }
 
 .icons-faq_icon {
-  background-position: 0 -714px;
+  background-position: 0 -754px;
 }
 
 .icons-gots {
@@ -183,11 +183,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .icons-gplus {
-  background-position: 0 -472px;
+  background-position: 0 -512px;
 }
 
 .icons-instagram {
-  background-position: 0 -650px;
+  background-position: 0 -690px;
 }
 
 .icons-kurv {
@@ -195,35 +195,39 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .icons-magnifier {
-  background-position: 0 -1271px;
+  background-position: 0 -1311px;
 }
 
 .icons-newsletter {
   background-position: 0 -168px;
 }
 
+.icons-newsletter_2 {
+  background-position: 0 -427px;
+}
+
 .icons-pdf {
-  background-position: 0 -778px;
+  background-position: 0 -818px;
 }
 
 .icons-pinterest {
-  background-position: 0 -554px;
+  background-position: 0 -594px;
 }
 
 .icons-print {
-  background-position: 0 -1377px;
+  background-position: 0 -1417px;
 }
 
 .icons-return {
-  background-position: 0 -1034px;
+  background-position: 0 -1074px;
 }
 
 .icons-returnlabel {
-  background-position: 0 -1136px;
+  background-position: 0 -1176px;
 }
 
 .icons-search {
-  background-position: 0 -1325px;
+  background-position: 0 -1365px;
 }
 
 .icons-shopping-bag {
@@ -231,27 +235,27 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .icons-show {
-  background-position: 0 -982px;
+  background-position: 0 -1022px;
 }
 
 .icons-sizeguide {
-  background-position: 0 -1225px;
+  background-position: 0 -1265px;
 }
 
 .icons-trackntrace {
-  background-position: 0 -1200px;
+  background-position: 0 -1240px;
 }
 
 .icons-twitter {
-  background-position: 0 -746px;
+  background-position: 0 -786px;
 }
 
 .icons-video {
-  background-position: 0 -804px;
+  background-position: 0 -844px;
 }
 
 .icons-zoom {
-  background-position: 0 -524px;
+  background-position: 0 -564px;
 }
 
 .fi-sprite, body.fi form.buy .submit-button, body.fi .buy-set, body.fi .new-price, body.fi .out-of-stock, body.fi .subscribe-button {
@@ -798,12 +802,12 @@ ul.tabs li a i {
   float: left;
   margin-right: 20px;
   margin-top: 2px;
-  background-position: 0 -1367px;
+  background-position: 0 -1407px;
   height: 10px;
   width: 9px;
 }
 ul.tabs li a.current i {
-  background-position: 0 -1339px;
+  background-position: 0 -1379px;
   height: 9px;
   width: 10px;
 }
@@ -825,7 +829,7 @@ div.panes > div {
   margin-top: 20px;
 }
 .zoom .sprite {
-  background-position: 0 -524px;
+  background-position: 0 -564px;
   height: 30px;
   width: 235px;
 }
@@ -839,7 +843,7 @@ a.video-popper, #video-player-container a.video {
   margin-top: 20px;
 }
 a.video-popper .sprite, #video-player-container a.video .sprite {
-  background-position: 0 -442px;
+  background-position: 0 -482px;
   height: 29px;
   width: 234px;
 }
@@ -950,7 +954,7 @@ form.buy h4.bordered {
 
 .sizeguide {
   display: block;
-  background-position: 0 -1225px;
+  background-position: 0 -1265px;
   line-height: 26px;
   padding-left: 33px;
 }
@@ -1814,7 +1818,7 @@ table#order-status tr.off {
   display: none;
 }
 table#order-status td a.trigger {
-  background-position: 0 -1271px;
+  background-position: 0 -1311px;
   width: 16px;
   height: 16px;
 }
@@ -2405,7 +2409,7 @@ footer .copy li {
 #secondary-links li.basket .sprite {
   display: inline-block;
   vertical-align: middle;
-  background-position: 0 -868px;
+  background-position: 0 -908px;
   height: 50px;
   width: 50px;
 }
@@ -2429,6 +2433,7 @@ footer .copy li {
 .body-product .main h1.title,
 .body-product .main .prices {
   font-family: Tahoma, Geneva, Verdana, sans-serif;
+  clear: none;
 }
 .body-product .main h4 {
   padding: 6px 0;
@@ -2552,7 +2557,7 @@ a.product-color {
 }
 
 a.video-popper .sprite, #video-player-container a.video .sprite {
-  background-position: 0 -804px;
+  background-position: 0 -844px;
   height: 31px;
   width: 31px;
 }
@@ -2802,34 +2807,34 @@ table.horizontal th {
   display: inline-block;
 }
 .sprite.delete {
-  background-position: 0 -1008px;
+  background-position: 0 -1048px;
   height: 26px;
   width: 26px;
 }
 .sprite.edit {
-  background-position: 0 -1110px;
+  background-position: 0 -1150px;
   height: 26px;
   width: 26px;
 }
 .sprite.show {
-  background-position: 0 -982px;
+  background-position: 0 -1022px;
   height: 26px;
   width: 26px;
 }
 .sprite.pdf {
-  background-position: 0 -778px;
+  background-position: 0 -818px;
   height: 26px;
   width: 26px;
 }
 .sprite.arrow-right {
   margin-left: 6px;
-  background-position: 0 -1367px;
+  background-position: 0 -1407px;
   height: 10px;
   width: 9px;
 }
 .sprite.arrow-left {
   margin-right: 6px;
-  background-position: 0 -1348px;
+  background-position: 0 -1388px;
   height: 10px;
   width: 9px;
 }
