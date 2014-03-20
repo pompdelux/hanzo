@@ -2864,6 +2864,7 @@ body.domain-ch #newsletterModal .wrapper form input.button {
   position: fixed;
   bottom: 0;
   left: 0;
+  z-index: 400;
   padding: 1px 3px;
 }
 #openNewsletterModal a {
