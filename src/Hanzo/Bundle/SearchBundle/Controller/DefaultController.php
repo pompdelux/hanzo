@@ -413,6 +413,7 @@ class DefaultController extends CoreController
      */
     protected function pageSearch($q, $locale)
     {
+        $q = '%'. $q . '%';
         // search pages
         $pages = CmsI18nQuery::create()
             ->useCmsQuery()
