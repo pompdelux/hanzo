@@ -413,7 +413,7 @@ class DefaultController extends CoreController
      */
     protected function pageSearch($q, $locale)
     {
-        $q = '%'. $q . '%';
+        $q = explode(' ', trim($q));
         // search pages
         $pages = CmsI18nQuery::create()
             ->useCmsQuery()
@@ -423,12 +423,17 @@ class DefaultController extends CoreController
             ->joinWithCms()
             ->filterByIsActive(true)
             ->filterByLocale($locale)
-            ->filterByTitle($q)
-            ->_or()
-            ->filterByContent($q)
-            ->orderByTitle()
-            ->find()
-        ;
+            ->orderByTitle();
+        foreach ($q as $string) {
+            if ($string !== reset($q)) {
+                $pages->_or();
+            }
+            $string = '%'.$string.'%';
+            $pages->filterByTitle($string)
+                ->_or()
+                ->filterByContent($string);
+        }
+        $pages = $pages->find();
 
         $result = [];
         foreach ($pages as $page) {
