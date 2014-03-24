@@ -158,7 +158,7 @@ class DefaultController extends CoreController
             }
         }
 
-        // make sure to remove doubble discount
+        // make sure to remove double discount
         if (isset($attributes->purchase) &&
             isset($attributes->purchase->type) &&
             ($attributes->purchase->type !== 'private')
@@ -166,7 +166,7 @@ class DefaultController extends CoreController
             $order->removeDiscountLine('discount.private');
         }
 
-        // make sure to remove doubble discount
+        // make sure to remove double discount
         if (isset($attributes->coupon) &&
             !empty($attributes->coupon->code)
         ) {
@@ -175,9 +175,9 @@ class DefaultController extends CoreController
             ;
 
             // make sure the coupon's minimum purchase limit is met.
-            if ($order->getTotalPrice() < $coupon->getMinPurchaseAmount()) {
+            if ($order->getTotalPrice(true) < $coupon->getMinPurchaseAmount()) {
                 $invalid_order_message = $this->get('translator')->trans('order.amount.to.low.for.coupon', [
-                    '%amount%' => Tools::moneyFormat($coupon_amount),
+                    '%amount%' => Tools::moneyFormat($coupon->getAmount()),
                 ], 'checkout');
             }
 
