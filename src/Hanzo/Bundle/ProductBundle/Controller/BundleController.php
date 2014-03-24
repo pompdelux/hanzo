@@ -215,6 +215,9 @@ class BundleController extends CoreController
 
             $result = ProductsQuery::create()
                 ->filterByIsActive(TRUE)
+                ->useProductsI18nQuery()
+                    ->filterByLocale($hanzo->get('core.locale'))
+                ->endUse()
                 ->useProductsImagesQuery()
                     ->filterByType('overview')
             ;
@@ -259,6 +262,7 @@ class BundleController extends CoreController
                 $products[$product->getId()] = array(
                     'id' => $product->getId(),
                     'master' => $product->getSku(),
+                    'title' => $product->getTitle(),
                     'color' => $image->getColor(),
                     'image' => $image->getImage(),
                     'url' => $router->generate($product_route, array(
