@@ -930,7 +930,16 @@ class ProductsController extends CoreController
 
             $current = '';
             foreach ($stock->get($product, true) as $level) {
-                if (empty($level['date']) || (0 == $level['quantity'])) { continue; }
+                if (empty($level['date']) || (!$level['quantity'])) {
+                    $items[] = [
+                        'sku'          => $product->getSku(),
+                        'date'         => '-',
+                        'stock'        => 0,
+                        'reservations' => 0,
+                    ];
+
+                    continue;
+                }
 
                 $reservations = '-';
                 if ($current != $product->getSku()) {
