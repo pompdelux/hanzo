@@ -16,8 +16,7 @@ class DefaultController extends CoreController
 {
     /**
      * blockAction
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
+     * @return Response
      **/
     public function blockAction()
     {
