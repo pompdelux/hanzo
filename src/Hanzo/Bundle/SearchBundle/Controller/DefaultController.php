@@ -270,7 +270,6 @@ class DefaultController extends CoreController
 
         if (isset($_GET['q'])) {
             $q = $request->get('q', null);
-            $q = '%'.$q.'%';
 
             // if webshop is closed, disable product search
             if (0 == $hanzo->get('webshop.closed')) {
@@ -301,6 +300,21 @@ class DefaultController extends CoreController
      */
     protected function productSearch($q, $locale, $domain_id)
     {
+        $q = explode(' ', trim($q));
+        $where = '';
+        foreach ($q as $string) {
+            if ($string !== reset($q)) {
+                $where .= 'OR ';
+            }
+            $where .= "p.size LIKE '%{$string}%'
+                    OR
+                        p.color LIKE '%{$string}%'
+                    OR
+                        p18.title LIKE '%{$string}%'
+                    OR
+                        p18.content LIKE '%{$string}%'
+                    ";
+        }
         $sql = "
             SELECT
                 p.id,
@@ -328,14 +342,9 @@ class DefaultController extends CoreController
                 ON
                     (p.id = p2c.products_id)
             WHERE (
-                    p.size LIKE '{$q}'
-                    OR
-                        p.color LIKE '{$q}'
-                    OR
-                        p18.title LIKE '{$q}'
-                    OR
-                        p18.content LIKE '{$q}'
+                {$where}
                 )
+                AND p.master IS NULL
             GROUP BY
                 pi.image
             ORDER BY
@@ -364,19 +373,20 @@ class DefaultController extends CoreController
             if (isset($router_keys[$key])) {
                 $product_route = $router_keys[$key];
             }
-
-            $result[] = array(
-                'sku' => $record['title'],
-                'id' => $record['id'],
-                'out_of_stock' => $record['is_out_of_stock'],
-                'title' => $record['title'],
-                'image' => $record['image'],
-                'url' => $router->generate($product_route, array(
-                        'product_id' => $record['id'],
-                        'title' => Tools::stripText($record['title']),
-                        'focus' => $record['image_id']
-                    )),
-            );
+            if (!empty($product_route)) {
+                $result[] = array(
+                    'sku' => $record['title'],
+                    'id' => $record['id'],
+                    'out_of_stock' => $record['is_out_of_stock'],
+                    'title' => $record['title'],
+                    'image' => $record['image'],
+                    'url' => $router->generate($product_route, array(
+                            'product_id' => $record['id'],
+                            'title' => Tools::stripText($record['title']),
+                            'focus' => $record['image_id']
+                        )),
+                );
+            }
         }
 
 
@@ -403,6 +413,7 @@ class DefaultController extends CoreController
      */
     protected function pageSearch($q, $locale)
     {
+        $q = '%'. $q . '%';
         // search pages
         $pages = CmsI18nQuery::create()
             ->useCmsQuery()
