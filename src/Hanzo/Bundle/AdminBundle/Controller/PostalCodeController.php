@@ -31,7 +31,7 @@ class PostalCodeController extends CoreController
             $data = $form->getData();
 
             try {
-                $result = $guzzle->get('gpc/countries/'.$data['country'].'/fuzies/'.$data['q'].'.json', [
+                $result = $guzzle->get('gpc/countries/'.$data['country'].'/fuzies/'.$data['q'].'', [
                     'Accept' => 'application/json'
                 ])->send();
             } catch (\Exception $e) {}
@@ -125,14 +125,14 @@ class PostalCodeController extends CoreController
                 $data['id'] = $form_data['id'];
 
                 try {
-                    $result = $guzzle->put('/app_dev.php/gpc/postcodes/'.$form_data['id'], ['Accept' => 'application/json'], $data)->send();
+                    $result = $guzzle->put('gpc/postcodes/'.$form_data['id'], ['Accept' => 'application/json'], $data)->send();
                 } catch (ClientErrorResponseException $e) {
                     Tools::log(get_class_methods($e));
                     Tools::log($e->getResponse());
                     throw $e;
                 }
             } else {
-                $result = $guzzle->post('/gpc/postcodes', ['Accept' => 'application/json'], $data)->send();
+                $result = $guzzle->post('gpc/postcodes', ['Accept' => 'application/json'], $data)->send();
             }
 
             $this->get('session')->getFlashBag()->add(
