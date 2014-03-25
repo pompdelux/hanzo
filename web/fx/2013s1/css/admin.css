@@ -29,3 +29,7 @@
   text-decoration: none;
   color: black;
 }
+
+.no-labels label {
+    display: none;
+}
