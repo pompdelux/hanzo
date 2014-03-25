@@ -28,3 +28,11 @@
     {% endif %}
 {% endspaceless %}
 {% endblock form_errors %}
+
+{% block button_row %}
+    {% spaceless %}
+        <div class="form-group">
+            {{ form_widget(form) }}
+        </div>
+    {% endspaceless %}
+{% endblock button_row %}
