@@ -786,6 +786,7 @@ class ProductsController extends CoreController
             ->endUse()
             ->joinWithProducts()
             ->useProductsImagesQuery()
+                ->filterByType('overview')
                 ->groupByImage()
             ->endUse()
             ->joinWithProductsImages()
@@ -803,7 +804,7 @@ class ProductsController extends CoreController
                 'id' => $product->getId(),
                 'title' => $product->getSku(),
                 'image' => $record->getProductsImages()->getImage(),
-                'image_id' => $record->getProductsImages()->getId(),
+                'color' => $record->getProductsImages()->getColor(),
                 'is_active' => $product->getIsActive()
             );
         }
@@ -825,16 +826,29 @@ class ProductsController extends CoreController
         foreach ($products as $product) {
             $item_parts = explode('-', substr($product, 5));
             $product_id = $item_parts[0];
-            $picture_id = $item_parts[1];
+            $color = $item_parts[1];
             $category_id = $item_parts[2];
-            $result = ProductsImagesCategoriesSortQuery::create()
+
+            $images = ProductsImagesQuery::create()
+                ->filterByProductsId($product_id)
+                ->filterByColor($color)
+                ->find();
+
+            $images_id = [];
+            foreach ($images as $image) {
+                $images_id[] = $image->getId();
+            }
+
+            $results = ProductsImagesCategoriesSortQuery::create()
                 ->filterByCategoriesId($category_id)
                 ->filterByProductsId($product_id)
-                ->filterByProductsImagesId($picture_id)
-                ->findOne($this->getDbConnection())
-                ->setSort($sort)
-                ->save($this->getDbConnection())
-            ;
+                ->filterByProductsImagesId($images_id)
+                ->update(array('Sort' => $sort), $this->getDbConnection());
+
+            // foreach ($results as $item) {
+            //     Tools::log($item->getProductsId());
+            //     $item->setSort($sort)->save($this->getDbConnection());
+            // }
 
             $node = new Categories();
             $node->setId($category_id);
@@ -857,26 +871,27 @@ class ProductsController extends CoreController
             return $this->redirect($this->generateUrl('admin'));
         }
 
+        $stock = $this->container->get('stock');
         $parser = new \PropelCSVParser();
         $parser->delimiter = ';';
 
-        $stocks = ProductsQuery::create()
-            ->leftJoinWithProductsStock()
-            ->useProductsStockQuery(null, \Criteria::LEFT_JOIN)
-                ->withColumn('SUM(products_stock.quantity)', 'totalstock')
-            ->endUse()
+        $products = ProductsQuery::create()
             ->groupById()
             ->orderBySku()
             ->filterByMaster(null, \Criteria::ISNOTNULL)
             ->find($this->getDbConnection())
         ;
 
+        $stock->prime($products);
+
         $stock_data = [];
         $stock_data[0] = array('SKU','STOCK');
 
-        foreach ($stocks as $stock) {
-            $s = $stock->getVirtualColumn('totalstock') ?: 0;
-            $stock_data[] = array($stock->getSku(), $s);
+        foreach ($products as $product) {
+            foreach ($stock->get($product, true) as $level) {
+                if (empty($level['date']) || (0 == $level['quantity'])) { continue; }
+                $stock_data[] = array($product->getSku(), $level['quantity']);
+            }
         }
 
         return new Response(
@@ -915,7 +930,16 @@ class ProductsController extends CoreController
 
             $current = '';
             foreach ($stock->get($product, true) as $level) {
-                if (empty($level['date']) || (0 == $level['quantity'])) { continue; }
+                if (empty($level['date']) || (!$level['quantity'])) {
+                    $items[] = [
+                        'sku'          => $product->getSku(),
+                        'date'         => '-',
+                        'stock'        => 0,
+                        'reservations' => 0,
+                    ];
+
+                    continue;
+                }
 
                 $reservations = '-';
                 if ($current != $product->getSku()) {

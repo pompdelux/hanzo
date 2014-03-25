@@ -19,15 +19,15 @@
                             ],
                            "Blue": [
                                 "Blue",
-								"Light Blue",
-								"Ice Blue",
-								"Camel",
+                                "Light Blue",
+                                "Ice Blue",
+                                "Camel",
                                 "Turquoise",
-								"Navy"
+                                "Navy"
                             ],
                             "Green": [
                                 "Green",
-                                "Camel"								
+                                "Camel"
                             ],
                             "Peach": [
                                 "Peach",
@@ -35,7 +35,7 @@
                             ],
                             "Olive": [
                                 "Olive",
-								"camel"
+                                "camel"
                             ],
                             "Yellow": [
                                 "Yellow",
@@ -43,31 +43,35 @@
                             ],
                             "Grey": [
                                 "Grey",
-								"Grey Melange",
-								"Off White",
-								"White",
-								"Light Grey Melange",
-								"Black"
-							 ],
-							"Denim": [
+                                "Grey Melange",
+                                "Off White",
+                                "White",
+                                "Light Grey Melange",
+                                "Black"
+                             ],
+                            "Denim": [
                                 "Blue Denim",
                                 "camel"
                             ]
                         },
                         "sizes": [
                             "110",
-							"116",
+                            "116",
                             "122",
-							"128",
+                            "128",
                             "134",
-							"140",
+                            "140",
                             "146",
-							"152"
+                            "152",
+                            "110-116",
+                            "122-128",
+                            "134-140",
+                            "146-152"
                         ]
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="662.settings">
+            <trans-unit id="662.settings">
                 <source>662.settings</source>
                 <target><![CDATA[
                     {
@@ -78,15 +82,15 @@
                             ],
                             "Blue": [
                                 "Blue",
-								"Light Blue",
-								"Ice Blue",
-								"Camel",
+                                "Light Blue",
+                                "Ice Blue",
+                                "Camel",
                                 "Turquoise",
-								"Navy"
+                                "Navy"
                             ],
                             "Green": [
                                 "Green",
-                                "Camel"								
+                                "Camel"
                             ],
                             "Peach": [
                                 "Peach",
@@ -94,7 +98,7 @@
                             ],
                             "Olive": [
                                 "Olive",
-								"camel"
+                                "camel"
                             ],
                             "Yellow": [
                                 "Yellow",
@@ -102,28 +106,29 @@
                             ],
                             "Grey": [
                                 "Grey",
-								"Grey Melange",
-								"Off White",
-								"White",
-								"Light Grey Melange",
-								"Black"
+                                "Grey Melange",
+                                "Off White",
+                                "White",
+                                "Light Grey Melange",
+                                "Black"
                             ],
-							"Denim": [
+                            "Denim": [
                                 "Blue Denim",
                                 "camel"
                             ]
                         },
                         "sizes": [
-                            "80",
-							"86",
+                           "80",
+                            "86",
                             "92",
-							"98",
-                            "104"
+                            "98",
+                            "104",
+                            "98-104"
                         ]
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="661.settings">
+            <trans-unit id="661.settings">
                 <source>661.settings</source>
                 <target><![CDATA[
                     {
@@ -131,64 +136,72 @@
                             "Navy & Mustard & Yellow": [
                                 "Navy",
                                 "Navy Melange",
-								"Mustard",
-								"Yellow",								
-								"Camel",
-								"Sand",
-								"White/Navy",
-								"Blue/Navy",
-								"Navy/White"
+                                "Mustard",
+                                "Yellow",
+                                "Camel",
+                                "Sand",
+                                "White/Navy",
+                                "Blue/Navy",
+                                "Navy/White"
                             ],
                             "Navy & Wine": [
                                 "Wine",
-								"Navy",
-								"White/Navy",
-								"Blue/Navy",
-								"Navy/White",
-								"Sand"
+                                "Navy",
+                                "White/Navy",
+                                "Blue/Navy",
+                                "Navy/White",
+                                "Sand"
                             ],
                             "Turquoise": [
-                                "Turquoise"						
+                                "Turquoise"
                             ],
                             "Blue": [
                                 "Blue",
                                 "Blue/Navy",
-								"Blue/White"
+                                "Blue/White"
                             ],
                             "Green & Red": [
                                 "Green",
-								"Red"
+                                "Red"
                             ],
                             "Olive": [
                                 "Olive",
                                 "Olive Melange",
-								"Light Blue/Olive"
+                                "Light Blue/Olive"
                             ],
                             "Grey": [
                                 "Grey",
-								"Grey Melange",
-								"White",
-								"Light Grey Melange",
-								"Black"
+                                "Grey Melange",
+                                "White",
+                                "Light Grey Melange",
+                                "Black"
                             ],
-							"Denim": [
+                            "Denim": [
                                 "Blue Denim"
                             ]
                         },
                         "sizes": [
                             "110",
-							"116",
+                            "116",
                             "122",
-							"128",
+                            "128",
                             "134",
-							"140",
+                            "140",
                             "146",
-							"152"
+                            "152",
+                            "110-116",
+                            "122-128",
+                            "134-140",
+                            "146-152",
+                            "110-116",
+                            "122-128",
+                            "134-140",
+                            "146-152"
                         ]
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="663.settings">
+            <trans-unit id="663.settings">
                 <source>663.settings</source>
                 <target><![CDATA[
                     {
@@ -196,56 +209,57 @@
                             "Navy & Mustard & Yellow": [
                                 "Navy",
                                 "Navy Melange",
-								"Mustard",
-								"Yellow",								
-								"Camel",
-								"Sand",
-								"White/Navy",
-								"Blue/Navy",
-								"Navy/White"
+                                "Mustard",
+                                "Yellow",
+                                "Camel",
+                                "Sand",
+                                "White/Navy",
+                                "Blue/Navy",
+                                "Navy/White"
                             ],
                             "Navy & Wine": [
                                 "Wine",
-								"Navy",
-								"White/Navy",
-								"Blue/Navy",
-								"Navy/White",
-								"Sand"
+                                "Navy",
+                                "White/Navy",
+                                "Blue/Navy",
+                                "Navy/White",
+                                "Sand"
                             ],
                             "Turquoise": [
-                                "Turquoise"						
+                                "Turquoise"
                             ],
                             "Blue": [
                                 "Blue",
                                 "Blue/Navy",
-								"Blue/White"
+                                "Blue/White"
                             ],
                             "Green & Red": [
                                 "Green",
-								"Red"
+                                "Red"
                             ],
                             "Olive": [
                                 "Olive",
                                 "Olive Melange",
-								"Light Blue/Olive"
+                                "Light Blue/Olive"
                             ],
                             "Grey": [
                                 "Grey",
-								"Grey Melange",
-								"White",
-								"Light Grey Melange",
-								"Black"
+                                "Grey Melange",
+                                "White",
+                                "Light Grey Melange",
+                                "Black"
                             ],
-							"Denim": [
+                            "Denim": [
                                 "Blue Denim"
                             ]
                         },
                         "sizes": [
-                            "80",
-							"86",
+                           "80",
+                            "86",
                             "92",
-							"98",
-                            "104"
+                            "98",
+                            "104",
+                            "98-104"
                         ]
                     }
                 ]]></target>
@@ -265,7 +279,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="617.settings">
+            <trans-unit id="617.settings">
                 <source>617.settings</source>
                 <target><![CDATA[
                     {
@@ -274,7 +288,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="868.settings">
+            <trans-unit id="868.settings">
                 <source>868.settings</source>
                 <target><![CDATA[
                     {
@@ -283,7 +297,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="611.settings">
+            <trans-unit id="611.settings">
                 <source>611.settings</source>
                 <target><![CDATA[
                     {
@@ -292,7 +306,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="612.settings">
+            <trans-unit id="612.settings">
                 <source>612.settings</source>
                 <target><![CDATA[
                     {
@@ -301,7 +315,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="869.settings">
+            <trans-unit id="869.settings">
                 <source>869.settings</source>
                 <target><![CDATA[
                     {
@@ -310,7 +324,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="613.settings">
+            <trans-unit id="613.settings">
                 <source>613.settings</source>
                 <target><![CDATA[
                     {
@@ -319,7 +333,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="614.settings">
+            <trans-unit id="614.settings">
                 <source>614.settings</source>
                 <target><![CDATA[
                     {
@@ -328,7 +342,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="768.settings">
+            <trans-unit id="768.settings">
                 <source>768.settings</source>
                 <target><![CDATA[
                     {
@@ -337,7 +351,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="615.settings">
+            <trans-unit id="615.settings">
                 <source>615.settings</source>
                 <target><![CDATA[
                     {
@@ -346,7 +360,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="769.settings">
+            <trans-unit id="769.settings">
                 <source>769.settings</source>
                 <target><![CDATA[
                     {
@@ -355,7 +369,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="616.settings">
+            <trans-unit id="616.settings">
                 <source>616.settings</source>
                 <target><![CDATA[
                     {
@@ -364,7 +378,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="770.settings">
+            <trans-unit id="770.settings">
                 <source>770.settings</source>
                 <target><![CDATA[
                     {
@@ -373,7 +387,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="619.settings">
+            <trans-unit id="619.settings">
                 <source>619.settings</source>
                 <target><![CDATA[
                     {
@@ -382,7 +396,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="621.settings">
+            <trans-unit id="621.settings">
                 <source>621.settings</source>
                 <target><![CDATA[
                     {
@@ -391,7 +405,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="620.settings">
+            <trans-unit id="620.settings">
                 <source>620.settings</source>
                 <target><![CDATA[
                     {
@@ -400,7 +414,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="622.settings">
+            <trans-unit id="622.settings">
                 <source>622.settings</source>
                 <target><![CDATA[
                     {
@@ -409,7 +423,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="623.settings">
+            <trans-unit id="623.settings">
                 <source>623.settings</source>
                 <target><![CDATA[
                     {
@@ -418,7 +432,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="875.settings">
+            <trans-unit id="875.settings">
                 <source>875.settings</source>
                 <target><![CDATA[
                     {
@@ -427,7 +441,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="642.settings">
+            <trans-unit id="642.settings">
                 <source>642.settings</source>
                 <target><![CDATA[
                     {
@@ -436,7 +450,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="876.settings">
+            <trans-unit id="876.settings">
                 <source>876.settings</source>
                 <target><![CDATA[
                     {
@@ -445,7 +459,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="636.settings">
+            <trans-unit id="636.settings">
                 <source>636.settings</source>
                 <target><![CDATA[
                     {
@@ -454,7 +468,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="637.settings">
+            <trans-unit id="637.settings">
                 <source>637.settings</source>
                 <target><![CDATA[
                     {
@@ -463,7 +477,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="638.settings">
+            <trans-unit id="638.settings">
                 <source>638.settings</source>
                 <target><![CDATA[
                     {
@@ -472,7 +486,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="639.settings">
+            <trans-unit id="639.settings">
                 <source>639.settings</source>
                 <target><![CDATA[
                     {
@@ -481,7 +495,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="645.settings">
+            <trans-unit id="645.settings">
                 <source>645.settings</source>
                 <target><![CDATA[
                     {
@@ -490,7 +504,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="640.settings">
+            <trans-unit id="640.settings">
                 <source>640.settings</source>
                 <target><![CDATA[
                     {
@@ -499,7 +513,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="641.settings">
+            <trans-unit id="641.settings">
                 <source>641.settings</source>
                 <target><![CDATA[
                     {
@@ -508,7 +522,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="643.settings">
+            <trans-unit id="643.settings">
                 <source>643.settings</source>
                 <target><![CDATA[
                     {
@@ -517,7 +531,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="644.settings">
+            <trans-unit id="644.settings">
                 <source>644.settings</source>
                 <target><![CDATA[
                     {
@@ -526,7 +540,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="646.settings">
+            <trans-unit id="646.settings">
                 <source>646.settings</source>
                 <target><![CDATA[
                     {
@@ -535,7 +549,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="877.settings">
+            <trans-unit id="877.settings">
                 <source>877.settings</source>
                 <target><![CDATA[
                     {
@@ -544,7 +558,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="647.settings">
+            <trans-unit id="647.settings">
                 <source>647.settings</source>
                 <target><![CDATA[
                     {
@@ -553,7 +567,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="648.settings">
+            <trans-unit id="648.settings">
                 <source>648.settings</source>
                 <target><![CDATA[
                     {
@@ -562,7 +576,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="870.settings">
+            <trans-unit id="870.settings">
                 <source>870.settings</source>
                 <target><![CDATA[
                     {
@@ -571,7 +585,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="630.settings">
+            <trans-unit id="630.settings">
                 <source>630.settings</source>
                 <target><![CDATA[
                     {
@@ -580,7 +594,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="871.settings">
+            <trans-unit id="871.settings">
                 <source>871.settings</source>
                 <target><![CDATA[
                     {
@@ -589,7 +603,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="625.settings">
+            <trans-unit id="625.settings">
                 <source>625.settings</source>
                 <target><![CDATA[
                     {
@@ -598,7 +612,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="872.settings">
+            <trans-unit id="872.settings">
                 <source>872.settings</source>
                 <target><![CDATA[
                     {
@@ -607,7 +621,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="626.settings">
+            <trans-unit id="626.settings">
                 <source>626.settings</source>
                 <target><![CDATA[
                     {
@@ -616,7 +630,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="627.settings">
+            <trans-unit id="627.settings">
                 <source>627.settings</source>
                 <target><![CDATA[
                     {
@@ -625,7 +639,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="771.settings">
+            <trans-unit id="771.settings">
                 <source>771.settings</source>
                 <target><![CDATA[
                     {
@@ -634,7 +648,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="873.settings">
+            <trans-unit id="873.settings">
                 <source>873.settings</source>
                 <target><![CDATA[
                     {
@@ -643,7 +657,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="628.settings">
+            <trans-unit id="628.settings">
                 <source>628.settings</source>
                 <target><![CDATA[
                     {
@@ -652,7 +666,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="772.settings">
+            <trans-unit id="772.settings">
                 <source>772.settings</source>
                 <target><![CDATA[
                     {
@@ -661,7 +675,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="631.settings">
+            <trans-unit id="631.settings">
                 <source>631.settings</source>
                 <target><![CDATA[
                     {
@@ -670,7 +684,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="632.settings">
+            <trans-unit id="632.settings">
                 <source>632.settings</source>
                 <target><![CDATA[
                     {
@@ -679,7 +693,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="874.settings">
+            <trans-unit id="874.settings">
                 <source>874.settings</source>
                 <target><![CDATA[
                     {
@@ -688,7 +702,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="633.settings">
+            <trans-unit id="633.settings">
                 <source>633.settings</source>
                 <target><![CDATA[
                     {
@@ -697,7 +711,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="634.settings">
+            <trans-unit id="634.settings">
                 <source>634.settings</source>
                 <target><![CDATA[
                     {
@@ -706,7 +720,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="878.settings">
+            <trans-unit id="878.settings">
                 <source>878.settings</source>
                 <target><![CDATA[
                     {
@@ -715,7 +729,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="655.settings">
+            <trans-unit id="655.settings">
                 <source>655.settings</source>
                 <target><![CDATA[
                     {
@@ -724,7 +738,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="879.settings">
+            <trans-unit id="879.settings">
                 <source>879.settings</source>
                 <target><![CDATA[
                     {
@@ -733,7 +747,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="880.settings">
+            <trans-unit id="880.settings">
                 <source>880.settings</source>
                 <target><![CDATA[
                     {
@@ -742,7 +756,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="881.settings">
+            <trans-unit id="881.settings">
                 <source>881.settings</source>
                 <target><![CDATA[
                     {
@@ -751,7 +765,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="651.settings">
+            <trans-unit id="651.settings">
                 <source>651.settings</source>
                 <target><![CDATA[
                     {
@@ -760,7 +774,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="652.settings">
+            <trans-unit id="652.settings">
                 <source>652.settings</source>
                 <target><![CDATA[
                     {
@@ -769,7 +783,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="654.settings">
+            <trans-unit id="654.settings">
                 <source>654.settings</source>
                 <target><![CDATA[
                     {
@@ -778,7 +792,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="882.settings">
+            <trans-unit id="882.settings">
                 <source>882.settings</source>
                 <target><![CDATA[
                     {
@@ -787,7 +801,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="653.settings">
+            <trans-unit id="653.settings">
                 <source>653.settings</source>
                 <target><![CDATA[
                     {
@@ -796,7 +810,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="776.settings">
+            <trans-unit id="776.settings">
                 <source>776.settings</source>
                 <target><![CDATA[
                     {
@@ -805,7 +819,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="656.settings">
+            <trans-unit id="656.settings">
                 <source>656.settings</source>
                 <target><![CDATA[
                     {
@@ -814,7 +828,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="657.settings">
+            <trans-unit id="657.settings">
                 <source>657.settings</source>
                 <target><![CDATA[
                     {
@@ -823,7 +837,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="883.settings">
+            <trans-unit id="883.settings">
                 <source>883.settings</source>
                 <target><![CDATA[
                     {
@@ -832,7 +846,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="658.settings">
+            <trans-unit id="658.settings">
                 <source>658.settings</source>
                 <target><![CDATA[
                     {
@@ -841,7 +855,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="659.settings">
+            <trans-unit id="659.settings">
                 <source>659.settings</source>
                 <target><![CDATA[
                     {

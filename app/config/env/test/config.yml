@@ -25,7 +25,8 @@ varnish:
 
 ax:
     wsdl: "http://193.89.255.251:8000/DynamicsAxServices.asmx?wsdl"
+    log_requests: true
 
 consignor:
     shipment_server:
-        endpoint: "https://qa-tic03.facility.dir.dk/json/ShipmentServerModule.dll"
+        endpoint: "https://www.shipmentserver.com/ship/ShipmentServerModule.dll"

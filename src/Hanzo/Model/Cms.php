@@ -25,7 +25,7 @@ class Cms extends BaseCms
     {
         $translator = Hanzo::getInstance()->container->get('translator');
         $test       = $this->getId().'.settings';
-        $settings   = trim($translator->trans($test, [], 'cms'));
+        $settings   = trim($translator->trans($test, [], 'cms', $this->getLocale()));
 
         if ($test == $settings) {
             $settings = parent::getSettings();

@@ -116,7 +116,7 @@
             </trans-unit>
             <trans-unit id="size">
                 <source>size</source>
-                <target>Größe</target>
+                <target>Grösse</target>
             </trans-unit>
             <trans-unit id="color">
                 <source>color</source>
@@ -136,7 +136,7 @@
             </trans-unit>
             <trans-unit id="store.address">
                 <source>store.address</source>
-                <target>POMPdeLUX ApS · Møgelhøj 8 · DK-8520 Lystrup · CVR-nr 29622035 · mail@pompdelux.dk · (+45) 8678 7879</target>
+                <target>POMPdeLUX A GmbH · Bauernmarkt 2 · AT – 1010 Wien · CVR-nr 29622035 · mail@pompdelux.dk · (+45) 8678 7879</target>
             </trans-unit>
             <trans-unit id="order.edit.global.notice">
                 <source>order.edit.global.notice</source>
@@ -146,7 +146,7 @@
                     Sie bearbeiten gerade die E-Bestellnummer <a href="%history_url%" title="se ordren">%order_id%</a>.<br>
                     Möchten Sie die Bearbeitung Ihrer Bestellung beenden - <a href="%stop_url%" title="stop editering af ordren">hier klicken.</a>
                   </p>
-                  <p>Möchten Sie eine Farbe oder Größe ändern, dann klicken Sie bitte auf den Bleistift im Warenkorb. Möchten Sie Waren hinzufügen, dann klicken Sie bitte auf das Menü Webshop.</p>
+                  <p>Möchten Sie eine Farbe oder Grösse ändern, dann klicken Sie bitte auf den Bleistift im Warenkorb. Möchten Sie Waren hinzufügen, dann klicken Sie bitte auf das Menü Webshop.</p>
                   <p class="last">Nach Abschluss Ihrer Änderungen klicken Sie bitte auf "Warenkorb anzeigen" und führen die Schritte 1 bis 6 aus. Wenn Sie Ihre Bestellung mit einer neuen Kreditkartenzahlung durchgeführt haben, wird die vorherige Zahlung automatisch gelöscht.</p>
                 ]]></target>
             </trans-unit>
@@ -165,16 +165,16 @@
                 <source>footer.address</source>
                 <target><![CDATA[
                     <ul>
-                        <li>POMPdeLUX ApS</li>
-                        <li>Møgelhøj 8</li>
-                        <li>DK-8520 Lystrup</li>
+                        <li>POMPdeLUX A GmbH</li>
+                        <li>Bauernmarkt 2</li>
+                        <li>AT – 1010 Wien</li>
                         <li>CVR-nr 29622035</li>
                         <li><a href="mailto:mailat@pompdelux.com">mailat@pompdelux.com</a></li>
                         <li>(+45) 8678 7879</li><br>
-						<li>Rücksendung von Waren: POMPdeLUX Aps</li>
+						<li>Rücksendung von Waren: POMPdeLUX A GmbH</li>
                         <li>Paketfach 10</li>
                         <li>6965 Wolfurt-Bahnhof</li>
-                        <li><img src="%cdn%fx/images/creditcards_de.png" alt="credit cards" title="credit cards"></li>
+                        <li><img src="%cdn%fx/images/creditcards_at.png" alt="credit cards" title="credit cards"></li>
                         <li><a href="http://www.facebook.com/sharer.php?u=%url%" class="facebook-button social-button" title="Del denne side på Facebook">Auf Facebook teilen</a></li>
                     </ul>
                 ]]></target>
@@ -183,7 +183,7 @@
                 <source>footer.text</source>
                 <target><![CDATA[
                     <ul>
-                        <li><b>Versand</b> ab 4,95 EUR</li>
+                        <li><b>Versand</b> ab 5,95 EUR</li>
                         <li><b>Lieferzeit</b> %expected_delivery_date%</li>
                         <li><b>Umtausch</b> Gratis</li>
                     </ul>
@@ -225,11 +225,11 @@
             </trans-unit>
             <trans-unit id="options.title" approved="no">
                 <source>options.title</source>
-                <target>Farbe und Größe</target>
+                <target>Farbe und Grösse</target>
             </trans-unit>
             <trans-unit id="choose.size.note" approved="no">
                 <source>choose.size.note</source>
-                <target>(Die Größe ist die Größe des Kindes in cm.)</target>
+                <target>(Die Grösse ist die Grösse des Kindes in cm.)</target>
             </trans-unit>
             <trans-unit id="click.to.zoom" approved="no">
                 <source>click.to.zoom</source>
@@ -259,7 +259,7 @@
                 <source>delivery.info</source>
                 <target><![CDATA[
                     <p>Alle Waren werden als Pakete mit DHL verschickt. Daher haben Sie die Möglichkeit, Ihr Paket ab dem Versand bis zum Empfang mit Hilfe von Track & Trace zu verfolgen.<br>
-Paket:Das Paket wird an Ihre Adresse geliefert und kostet EUR 4,95 (EUR 3,95, wenn Sie die Waren bei einer Home Shopping- oder Tag der offenen Tür-Veranstaltung gekauft haben). Wenn Sie zum Zeitpunkt der Lieferung nicht zu Hause sind, können Sie das Paket anschließend bei der Post abholen.<br><br> Wenn Sie das Paket empfangen haben, sollten Sie die Waren überprüfen. Wenn das Paket und/oder der Inhalt beschädigt sind, wenden Sie sich bitte umgehend an unseren Kundendienst oder an DHL. </p>
+Paket:Das Paket wird an Ihre Adresse geliefert und kostet EUR 4,95 (EUR 3,95, wenn Sie die Waren bei einer Home Shopping- oder Tag der offenen Tür-Veranstaltung gekauft haben). Wenn Sie zum Zeitpunkt der Lieferung nicht zu Hause sind, können Sie das Paket anschliessend bei der Post abholen.<br><br> Wenn Sie das Paket empfangen haben, sollten Sie die Waren überprüfen. Wenn das Paket und/oder der Inhalt beschädigt sind, wenden Sie sich bitte umgehend an unseren Kundendienst oder an DHL. </p>
 ]]>
 </target>
 </trans-unit>
@@ -271,7 +271,7 @@ Paket:Das Paket wird an Ihre Adresse geliefert und kostet EUR 4,95 (EUR 3,95, we
             <trans-unit id="return.info" approved="no">
                 <source>return.info</source>
                 <target><![CDATA[
-                    <p>Sie haben ein 21-tägiges Rückgaberecht auf alle Waren ab dem Tag des Empfangs der Ware (jedoch nur 14-tägig auf reduzierte Waren). Wenn Sie eine Ware in eine andere Größe oder Farbe umtauschen möchten, kann dies anhand des Rücksendescheins  geschehen. Ausverkaufte Waren sind jedoch vorbehalten.<br><br>
+                    <p>Sie haben ein 21-tägiges Rückgaberecht auf alle Waren ab dem Tag des Empfangs der Ware (jedoch nur 14-tägig auf reduzierte Waren). Wenn Sie eine Ware in eine andere Grösse oder Farbe umtauschen möchten, kann dies anhand des Rücksendescheins  geschehen. Ausverkaufte Waren sind jedoch vorbehalten.<br><br>
 					Die Waren müssen ungebraucht sein und in Originalverpackung, mit Textiletiketten usw. zurückgeschickt werden. Die Rücksendung von Strümpfen, Leggings und Strumpfhosen kann nur in ungeöffneter Originalverpackung erfolgen. Die Postverpackung, in der Sie Ihre Waren erhalten, ist so ausgelegt, dass sie zweimal verwendet werden kann. Auf der Verpackung können Sie sehen, wo man schneiden muss, um sie erneut verwenden zu können. Wir erstatten daher kein Geld für Rückverpackungen zurück. Wir nehmen keine Rücksendungen entgegen, die per Nachname verschickt werden. </p>
                 ]]></target>
             </trans-unit>

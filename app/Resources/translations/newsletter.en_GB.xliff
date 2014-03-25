@@ -52,6 +52,10 @@
           <a href="/en_GB/home/customer-service/terms-and-conditions" target="_blank">When signing up I accept the general terms of POMPdeLUX.</a>
         ]]></target>
       </trans-unit>
+      <trans-unit id="newsletter.open.text">
+        <source>newsletter.open.text</source>
+        <target>SUBSCRIBE TO OUR NEWSLETTER AND WIN A GIFT VOUCHER WORTH EUR 600,-</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

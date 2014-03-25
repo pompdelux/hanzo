@@ -87,8 +87,8 @@
                   Quickorder to select a new product
                 #}
                 <div class="off rma-productreplacement quickorder">
+                  {{ 'rma.form.label.replacement'|trans({}, 'rma') }}<br>
                   <label>
-                    {{ 'rma.form.label.replacement'|trans({}, 'rma') }}<br>
                     <input type="text" id="replacement-master-lineid-{{ product.id }}" placeholder="{{ 'rma.form.placeholder.produkt'|trans({}, 'rma') }}" class="master">
                   </label>
                   <label class="off">
@@ -97,7 +97,7 @@
                   <label class="off">
                     <select id="replacement-color-lineid-{{ product.id }}" class="color"></select>
                   </label>
-                  <input type="button" id="reset" name="reset" class="off reset" value="{{ 'quickorder.reset.placeholder'|trans({}, 'quickorder') }}">
+                  <input type="button" id="reset" name="reset" class="off reset" value="{{ 'delete'|trans }}" tabindex="-1">
                   <div class="autocomplete-container"></div>
                 </div>
 
@@ -115,6 +115,11 @@
         </tbody>
       </table>
       <input type="button" class="button right rma-submit" value="{{ 'rma.form.submit'|trans({}, 'rma') }}">
+      <div class="cached-version {{ not is_cached ? 'off' : 'on' }}">
+        <a href="{{ path('rma_get', {'order_id' : order.id, 'pdf' : 'pdf'}) }}" target="_blank" title="Download PDF" class="sprite pdf"></a>
+        <a href="{{ path('rma_get', {'order_id' : order.id}) }}" target="_blank" title="Print" class="sprite show"></a>
+        <a href="{{ path('consignor_return_label', {'id' : order.id}) }}" target="_blank" title="{{ 'account.returnlabel.link'|trans({}, 'account') }}" class="sprite returnlabel"></a>
+      </div>
     {% endif %}
   </div>
 </div>

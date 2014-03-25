@@ -289,11 +289,11 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target><![CDATA[Gothia faktura (Hvis du velger å betale med PayByBill Faktura, vil det i tillegg påløpe et gebyr på NOK 39,00). Fakturaen sendes pr. e-post når vi sender dine varer fra vårt lager. Fakturaen vil være tilgjengelig på Min Side som en pdf fil innen 24 timer.]]></target>
+        <target><![CDATA[arvato Finance AS faktura (Hvis du velger å betale med PayByBill Faktura, vil det i tillegg påløpe et gebyr på NOK 39,00). Fakturaen sendes pr. e-post når vi sender dine varer fra vårt lager. Fakturaen vil være tilgjengelig på Min Side som en pdf fil innen 24 timer.]]></target>
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>
-        <target>Gothia faktura avgift</target>
+        <target>arvato Finance AS faktura avgift</target>
       </trans-unit>
       <trans-unit id="confirm.payment.fee">
         <source>confirm.payment.fee</source>
@@ -395,7 +395,7 @@
          <source>dibs.down.message</source>
          <target><![CDATA[
           Kjære kunde<br>
-          Betalingssystemet (DIBS) er for øyeblikket ute av drift, og du kan derfor ikke betale med kredittkort. Du kan i stedet benytte Gothia fakturabetaling eller komme tilbake senere.<br>
+          Betalingssystemet (DIBS) er for øyeblikket ute av drift, og du kan derfor ikke betale med kredittkort. Du kan i stedet benytte arvato Finance AS fakturabetaling eller komme tilbake senere.<br>
           Med vennlig hilsen<br>
           POMPdeLUX
           ]]></target>

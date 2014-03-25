@@ -61,7 +61,7 @@
                 <target><![CDATA[
                     <p>Wir konnten die eingegebene E-Mail-Adresse leider nicht finden. Versuchen Sie es bitte erneut und überprüfen Sie, ob Sie Ihre E-Mail-Adresse korrekt eingegeben haben.</p>
                     <p>Wenn Sie Ihre E-Mail-Adresse korrekt eingegeben haben und diese Nachricht weiterhin erscheint, sind Sie nicht in unserem System registriert. Wenden Sie sich bitte an den Kundendienst, da es sein kann, dass Sie falsch registriert worden sind.</p>
-                    <a href="/de_DE/kundendienst/telefonzeiten">» Kundendienst</a>
+                    <a href="/de_AT/kundendienst/telefonzeiten">» Kundendienst</a>
                 ]]></target>
             </trans-unit>
             <trans-unit id="password.forgotten.resend">
@@ -152,7 +152,7 @@
             </trans-unit>
             <trans-unit id="55">
                 <source>Address line 1</source>
-                <target>Straße (sowie Hausnummer und Etage/Türnummer)</target>
+                <target>Strasse (sowie Hausnummer und Etage/Türnummer)</target>
             </trans-unit>
             <trans-unit id="56">
                 <source>Address line 2</source>
@@ -505,10 +505,10 @@
             </trans-unit>
             <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>
-                <target><![CDATA[<h3>MEINE SEITE</h3><p>Um alle Vorteile bei POMPdeLUX genießen zu können, müssen Sie sich als Kunde anmelden bevor Sie weitershoppen.<br><br>Dies gibt Ihnen unter anderem die Möglichkeit:<br>
+                <target><![CDATA[<h3>MEINE SEITE</h3><p>Um alle Vorteile bei POMPdeLUX geniessen zu können, müssen Sie sich als Kunde anmelden bevor Sie weitershoppen.<br><br>Dies gibt Ihnen unter anderem die Möglichkeit:<br>
 			<ul>
             <li>Ihre Bestellung zu prüfen und zu ändern bis diese gepackt und von unserem Lager gesandt wird.</li>
-            <li>Farben und Größen der bestellen Waren zu ändern </li>
+            <li>Farben und Grössen der bestellen Waren zu ändern </li>
             <li>Waren hinzuzufügen oder zu löschen solange Ihre Bestellung den Status „Warten auf Bearbeitung“ hat, d.h. bis mind. 24 Std. nachdem Sie bestellt haben.</li>
 			<li>Ihre früheren Bestellungen einzusehen und ältere Rechnungen abzurufen</li>
           </ul></p>]]></target>
