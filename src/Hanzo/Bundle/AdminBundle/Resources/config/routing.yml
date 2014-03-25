@@ -501,39 +501,31 @@ admin_consultants_frontpage_edit:
         _controller: AdminBundle:Consultants:consultantsFrontpageEdit
 
 admin_postalcode:
-    pattern:  /admin/settings/postalcode/{pager}
+    pattern:  /admin/settings/postalcode
     defaults:
         _controller: AdminBundle:PostalCode:index
-        pager: 1
-        locale: null
-    requirements:
-        pager: \d+
-admin_postalcode_locale:
-    pattern:  /admin/settings/postalcode/locale/{locale}/{pager}
-    defaults:
-        _controller: AdminBundle:PostalCode:index
-        pager: 1
-        locale: null
-    requirements:
-        pager: \d+
-
-admin_postalcode_edit:
-    pattern:  /admin/settings/postalcode/edit/{id}
+admin_postalcode_add:
+    pattern:  /admin/settings/postalcode/edit
     defaults:
         _controller: AdminBundle:PostalCode:view
-        id: null
+admin_postalcode_add:
+    pattern:  /admin/settings/postalcode/edit
+    defaults:
+        _controller: AdminBundle:PostalCode:edit
+admin_postalcode_edit:
+    pattern:  /admin/settings/postalcode/edit
+    defaults:
+        _controller: AdminBundle:PostalCode:edit
     requirements:
+        country: ^[A-Z]{2}$
         id: \d+
 admin_postalcode_delete:
-    pattern:  /admin/settings/postalcode/delete/{id}
+    pattern:  /admin/settings/postalcode/delete/{country}/{id}
     defaults:
         _controller: AdminBundle:PostalCode:delete
     requirements:
+        country: ^[A-Z]{2}$
         id: \d+
-admin_postalcode_import:
-    pattern:  /admin/settings/postalcode/import
-    defaults:
-        _controller: AdminBundle:PostalCode:import
 
 admin_settings_languages:
     pattern:  /admin/settings/languages/{id}

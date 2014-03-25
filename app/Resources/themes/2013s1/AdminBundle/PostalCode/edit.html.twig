@@ -1,0 +1,33 @@
+{% extends '::adminbase.html.twig' %}
+
+{% block content %}
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="{{ path('admin_postalcode_add') }}">{{ 'admin.zip_to_city.add.link'|trans({}, 'admin') }}</a>
+                </li>
+            </ul>
+
+            {% form_theme search_form 'AdminBundle:Form:fields.html.twig' %}
+            <form action="{{ path('admin_postalcode') }}" class="navbar-form navbar-right no-labels" method="post">
+                {{ form_rest(search_form) }}
+            </form>
+        </div>
+    </nav>
+
+    <h1>{{ 'admin.zip_to_city.header.text'|trans({}, 'admin') }}</h1>
+
+    {% for message in app.session.flashbag.get('notice') %}
+        <div class="alert alert-info">
+            {{ message|trans({}, 'admin') }}
+        </div>
+    {% endfor %}
+
+    {% form_theme edit_form 'AdminBundle:Form:fields.html.twig' %}
+    <form action="{{ path('admin_postalcode_edit') }}" class="form-horizontal" method="post">
+        {{ form_rest(edit_form) }}
+    </form>
+
+
+{% endblock %}
