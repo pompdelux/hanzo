@@ -2,296 +2,202 @@
 
 namespace Hanzo\Bundle\AdminBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\FormError;
-
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-
-use Hanzo\Core\Hanzo;
+use Guzzle\Http\Client;
+use Guzzle\Http\Exception\ClientErrorResponseException;
 use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
-
-use Hanzo\Model\ZipToCityQuery;
-use Hanzo\Model\ZipToCity;
-use Hanzo\Model\DomainsQuery;
-use Hanzo\Model\CountriesQuery;
+use Symfony\Component\HttpFoundation\Request;
 
 class PostalCodeController extends CoreController
 {
-
-    public function indexAction($locale, $pager)
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function indexAction(Request $request)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
-        $hanzo = Hanzo::getInstance();
-        $container = $hanzo->container;
-        $route = $container->get('request')->get('_route');
-        $router = $container->get('router');
+        $form = $this->getSearchForm();
 
-        $zip_to_city = ZipToCityQuery::create();
-        if($locale)
-        	$zip_to_city->filterByCountriesIso2($locale);
+        $search_result = [];
+        $search_empty  = false;
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            /** @var Client $guzzle */
+            $guzzle = $this->container->get('muneris.guzzle_postal_client');
+            $data = $form->getData();
 
-        if (isset($_GET['q'])) {
-            $q_clean = $this->getRequest()->get('q', null);
-            $q = '%'.$q_clean.'%';
+            try {
+                $result = $guzzle->get('gpc/countries/'.$data['country'].'/fuzies/'.$data['q'].'', [
+                    'Accept' => 'application/json'
+                ])->send();
+            } catch (\Exception $e) {}
 
-            $zip_to_city = $zip_to_city
-                ->filterByZip($q)
-                ->_or()
-                ->filterByCity($q)
-                ->_or()
-                ->filterByCountyName($q)
-                ->_or()
-                ->filterByComment($q)
-                ->orderByZip()
-                ->orderByCity()
-                ->paginate($pager, 50, $this->getDbConnection())
-            ;
-        } else {
+            if (isset($result)) {
+                $result = $result->json();
 
-            $zip_to_city = $zip_to_city
-                ->orderByZip()
-                ->orderByCity()
-                ->paginate($pager, 50, $this->getDbConnection())
-            ;
-        }
-        $paginate = null;
-        if ($zip_to_city->haveToPaginate()) {
-
-            $pages = array();
-            foreach ($zip_to_city->getLinks(20) as $page) {
-                if (isset($_GET['q']))
-                    $pages[$page] = $router->generate($route, array('pager' => $page, 'q' => $_GET['q']), TRUE);
-                else
-                    $pages[$page] = $router->generate($route, array('pager' => $page), TRUE);
-
+                if (!empty($result['postcodes'])) {
+                    $search_result = $result['postcodes'];
+                } else {
+                    $search_empty = $data['country'].' -> '.$data['q'];
+                }
             }
-
-            if (isset($_GET['q'])) // If search query, add it to the route
-                $paginate = array(
-                    'next' => ($zip_to_city->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $zip_to_city->getNextPage(), 'q' => $_GET['q']), TRUE)),
-                    'prew' => ($zip_to_city->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $zip_to_city->getPreviousPage(), 'q' => $_GET['q']), TRUE)),
-
-                    'pages' => $pages,
-                    'index' => $pager
-                );
-            else
-                $paginate = array(
-                    'next' => ($zip_to_city->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $zip_to_city->getNextPage()), TRUE)),
-                    'prew' => ($zip_to_city->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $zip_to_city->getPreviousPage()), TRUE)),
-
-                    'pages' => $pages,
-                    'index' => $pager
-                );
         }
-
-        $domains_availible = ZipToCityQuery::Create()
-            ->groupByCountriesIso2()
-            ->find($this->getDbConnection())
-        ;
 
         return $this->render('AdminBundle:PostalCode:index.html.twig', array(
-            'zip_to_city'     => $zip_to_city,
-            'paginate'      => $paginate,
-            'domains_availible' => $domains_availible,
-            'locale' => $locale,
-            'database' => $this->getRequest()->getSession()->get('database')
+            'search_form'   => $form->createView(),
+            'search_result' => $search_result,
+            'search_empty'  => $search_empty,
+            'database'      => $request->getSession()->get('database')
         ));
-
     }
 
-    public function viewAction($id)
+
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
+     * @throws \Guzzle\Http\Exception\ClientErrorResponseException
+     */
+    public function editAction(Request $request)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
-    	$zip_to_city = null;
-    	if($id)
-			$zip_to_city = ZipToCityQuery::create()
-	            ->filterById($id)
-                ->findOne($this->getDbConnection())
-	        ;
-	    else
-	    	$zip_to_city = new ZipToCity();
+        /** @var Client $guzzle */
+        $guzzle = $this->container->get('muneris.guzzle_postal_client');
 
-        $countries_availible = CountriesQuery::Create()
-            ->find($this->getDbConnection())
-        ;
-        $countries_availible_data = array();
-        foreach ($countries_availible as $country) {
-        	$countries_availible_data[$country->getIso2()] = $country->getName();
+        $data = [];
+
+        if ($request->query->has('id')) {
+            $result = $guzzle->get('gpc/postcodes/'.$request->query->get('id'), ['Accept' => 'application/json'])->send();
+            $data = $result->json();
+            $data['lat'] = str_replace(',', '.', $data['lat']);
+            $data['lng'] = str_replace(',', '.', $data['lng']);
         }
-        $form = $this->createFormBuilder($zip_to_city)
-            ->add('zip', 'text',
-                array(
-                    'label' => 'admin.zip_to_city.zip.label',
-                    'translation_domain' => 'admin'
-                )
-            )->add('countries_iso2', 'choice',
-                array(
-                	'choices' => $countries_availible_data,
-                    'label' => 'admin.zip_to_city.countries_iso2.label',
-                    'translation_domain' => 'admin'
-                )
-            )->add('city', 'text',
-                array(
-                    'label' => 'admin.zip_to_city.city.label',
-                    'translation_domain' => 'admin'
-                )
-            )->add('county_id', 'text',
-                array(
-                    'label' => 'admin.zip_to_city.county_id.label',
-                    'translation_domain' => 'admin',
-                    'required' => false
-                )
-            )->add('county_name', 'text',
-                array(
-                    'label' => 'admin.zip_to_city.county_name.label',
-                    'translation_domain' => 'admin',
-                    'required' => false
-                )
-            )->add('comment', 'text',
-                array(
-                    'label' => 'admin.zip_to_city.comment.label',
-                    'translation_domain' => 'admin',
-                    'required' => false
-                )
-            )->getForm()
+
+        $id = $request->query->get('id');
+        if (empty($id) && isset($data['id'])) {
+            $id = $data['id'];
+        }
+
+        $builder = $this->createFormBuilder($data);
+        $builder->add('country', 'country', [
+                'preferred_choices' => ['AD','AI','AT','AW','BE','BL','BM','BQ','BV','CH','CW','DE','DK','ES','FI','FK','FO','FR','GB','GG','GI','GL','GR','GS','IE','IM','IO','IS','IT','JE','KY','LI','LU','MC','MF','MS','MT','NC','NL','NO','PF','PM','PN','PT','SE','SH','SM','SX','TC','TF','VA','VG','WF'],
+                'empty_value' => 'Vælg land',
+            ])
+            ->add('language', 'language', [
+                'preferred_choices' => ['ca','da','de','el','en','es','fi','fr','is','it','mt','nl','no','pt','sv'],
+                'empty_value' => 'Vælg sprog',
+            ])
+            ->add('city', 'text')
+            ->add('zip_code', 'text')
+            ->add('lat', 'text')
+            ->add('lng', 'text')
+            ->add('save', 'submit', [
+                'attr' => ['class' => 'button btn btn-success']
+            ])
+            ->add('id', 'hidden', ['data' => $id, 'required' => false])
         ;
 
-        $request = $this->getRequest();
-        if ('POST' === $request->getMethod()) {
-            $form->handleRequest($request);
+        if (isset($data['id'])) {
+            $builder->add('id', 'hidden', ['data' => $data['id']]);
+        }
+        $form = $builder->getForm();
 
-            if ($form->isValid()) {
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            $form_data = $form->getData();
+            $data = [
+                'country' => $form_data['country'],
+                'language' => $form_data['language'],
+                'zipCode' => $form_data['zip_code'],
+                'city' => $form_data['city'],
+                'lat'  => $form_data['lat'],
+                'lng'  => $form_data['lng'],
+            ];
 
-                $zip_to_city->save($this->getDbConnection());
+            if (isset($form_data['id'])) {
+                $data['id'] = $form_data['id'];
 
-                $this->get('session')->getFlashBag()->add('notice', 'zip_to_city.updated');
+                try {
+                    $result = $guzzle->put('gpc/postcodes/'.$form_data['id'], ['Accept' => 'application/json'], $data)->send();
+                } catch (ClientErrorResponseException $e) {
+                    Tools::log(get_class_methods($e));
+                    Tools::log($e->getResponse());
+                    throw $e;
+                }
+            } else {
+                $result = $guzzle->post('gpc/postcodes', ['Accept' => 'application/json'], $data)->send();
             }
+
+            $this->get('session')->getFlashBag()->add(
+                'notice',
+                'Postnummer ændringerne er nu gemt.'
+            );
+
+            return $this->redirect($this->generateUrl('admin_postalcode'));
         }
 
-        return $this->render('AdminBundle:PostalCode:view.html.twig', array(
-            'form'      => $form->createView(),
-            'zip_to_city'  => $zip_to_city,
-            'database' => $this->getRequest()->getSession()->get('database')
+        return $this->render('AdminBundle:PostalCode:edit.html.twig', array(
+            'edit_form'   => $form->createView(),
+            'search_form' => $this->getSearchForm()->createView(),
+            'database'    => $request->getSession()->get('database')
         ));
     }
 
-    public function importAction(Request $request)
+
+    /**
+     * @param Request $request
+     * @param         $country
+     * @param null    $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function deleteAction(Request $request, $country, $id = null)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
-            throw new AccessDeniedException();
+            return $this->redirect($this->generateUrl('admin'));
         }
 
-        $domains_availible = ZipToCityQuery::Create()
-            ->select('CountriesIso2')
-            ->groupByCountriesIso2()
-            ->find($this->getDbConnection())
-        ;
+        /** @var Client $guzzle */
+        $guzzle = $this->container->get('muneris.guzzle_postal_client');
+        try {
+            $guzzle->delete('gpc/postcodes/'.$id, ['Accept' => 'application/json'])->send();
+        } catch (\Exception $e) {}
 
-        $domains = [''=>''];
-        foreach ($domains_availible as $domain) {
-            $domains[$domain] = $domain;
-        }
+        $this->get('session')->getFlashBag()->add(
+            'notice',
+            'Postnummeret er nu blevet slettet.'
+        );
 
-        $form = $this->createFormBuilder()
-            ->add('domain', 'choice', [
-                'choices' => $domains,
-                'required' => true,
+        return $this->redirect($this->generateUrl('admin_postalcode'));
+    }
+
+
+    /**
+     * @return \Symfony\Component\Form\Form
+     */
+    protected function getSearchForm()
+    {
+        // note, these are the once provided by the data set in out GeoPostcode data.
+        $preferred_choices = ['AD','AI','AT','AW','BE','BL','BM','BQ','BV','CH','CW','DE','DK','ES','FI','FK','FO','FR','GB','GG','GI','GL','GR','GS','IE','IM','IO','IS','IT','JE','KY','LI','LU','MC','MF','MS','MT','NC','NL','NO','PF','PM','PN','PT','SE','SH','SM','SX','TC','TF','VA','VG','WF'];
+        return $this->createFormBuilder()
+            ->add('country', 'country', [
+                'preferred_choices' => $preferred_choices,
+                'empty_value' => 'Vælg land',
             ])
-            ->add('attachment', 'file', [
-                'label' => 'CSV Fil',
-                'required' => true,
+            ->add('q', 'text', [
+                'attr' => ['placeholder' => 'Postnummer ..']
+            ])
+            ->add('submit', 'submit', [
+                'attr' => ['class' => 'button search btn btn-default'],
+                'label' => 'Søg',
             ])
             ->getForm()
         ;
-
-        if ('POST' === $request->getMethod()) {
-            $form->handleRequest($request);
-            $form_data = $form->getData();
-
-            if (empty($form_data['domain'])) {
-                $form->addError(new FormError('Der skal vælges et domain!'));
-            }
-
-            $file = $form['attachment']->getData();
-            if (('text/csv' !== $file->getClientMimeType()) ||
-                ('.csv' !== substr($file->getClientOriginalName(), -4))
-            ) {
-                $form->addError(new FormError('Filen skal overholde det beskrevne format og være gemt som .csv fil!'));
-            }
-
-            $error = null;
-            if ($form->isValid()) {
-                $handle = $file->openFile();
-
-                $loop = 0;
-                while ($line = $handle->fgets()) {
-                    $data = str_getcsv($line);
-                    if (0 === $loop) {
-                        $count = count($data);
-                        if ($count > 5 || $count < 2) {
-                            $error = 'invalid.file.format';
-                            break;
-                        }
-
-                        ZipToCityQuery::create()
-                            ->filterByCountriesIso2($form_data['domain'])
-                            ->delete($this->getDbConnection())
-                        ;
-                    }
-
-                    $code = new ZipToCity();
-                    $code->fromArray([
-                        'CountriesIso2' => $form_data['domain'],
-                        'Zip'        => $data[0],
-                        'City'       => $data[1],
-                        'CountyId'   => @$data[2],
-                        'CountyName' => @$data[3],
-                        'Comment'    => @$data[4],
-                    ]);
-                    $code->save($this->getDbConnection());
-
-                    $loop++;
-                }
-
-                $this->get('session')->getFlashBag()->add('notice', $loop.' postnumre er nu importeret til: '.$form_data['domain']);
-                return $this->redirect($this->generateUrl('admin_postalcode_import'));
-            }
-        }
-
-        return $this->render('AdminBundle:PostalCode:import.html.twig', array(
-            'form'      => $form->createView(),
-            'database' => $this->getRequest()->getSession()->get('database')
-        ));
-    }
-
-    public function deleteAction($id)
-    {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
-            throw new AccessDeniedException();
-        }
-
-        $zip_to_city = ZipToCityQuery::create()
-        	->filterById($id)
-            ->findOne($this->getDbConnection())
-        ;
-
-        if($zip_to_city instanceof ZipToCity){
-            $zip_to_city->delete($this->getDbConnection());
-        }
-
-        if ($this->getFormat() == 'json') {
-            return $this->json_response(array(
-                'status' => TRUE,
-                'message' => $this->get('translator')->trans('delete.zip_to_city.success', array(), 'admin'),
-            ));
-        }
     }
 }

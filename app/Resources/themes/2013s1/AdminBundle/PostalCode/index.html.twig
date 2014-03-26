@@ -1,102 +1,62 @@
 {% extends '::adminbase.html.twig' %}
 
 {% block content %}
-<nav class="sub">
-  <ul>
-    <li>
-      <form action="{{ path('admin_postalcode') }}" method="get">
-        <input type="text" id="searh" name="q" placeholder="{{ 'search.label'|trans({}, 'admin') }}">
-        <input class="button search" type="submit" value="{{ 'search'|trans({}, 'admin') }}">
-      </form>
-    </li>
-    <li id="select-language">
-      <a class="open-menu" href="#">
-        {% if locale %}
-          <span class="flag {{ locale }}"></span> |
-        {% endif %}
-        {{ 'country.selector'|trans({}, 'admin') }}
-      </a>
-      <div style="display:none;">
-        <ul>
-        {% for domain in domains_availible %}
-          <li>
-            <a href="{{ path('admin_postalcode_locale', {'locale' : domain.countriesiso2}) }}">
-              <span class="flag {{ domain.countriesiso2 }}"></span>{{ domain.countriesiso2 }}
-            </a>
-          </li>
-        {% endfor %}
-        </ul>
-      </div>
-    </li>
-    <li><a href="{{ path('admin_postalcode') }}">{{ 'admin.zip_to_city.list.link'|trans({}, 'admin') }}</a></li>
-    <li><a href="{{ path('admin_postalcode_import') }}">Importer</a></li>
-    <li><a href="{{ path('admin_postalcode_edit') }}">{{ 'admin.zip_to_city.add.link'|trans({}, 'admin') }}</a></li>
-  </ul>
-</nav>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="{{ path('admin_postalcode_add') }}">{{ 'admin.zip_to_city.add.link'|trans({}, 'admin') }}</a>
+                </li>
+            </ul>
 
-<h1>{{ 'admin.zip_to_city.header.text'|trans({}, 'admin') }}</h1>
+            {% form_theme search_form 'AdminBundle:Form:fields.html.twig' %}
+            <form action="{{ path('admin_postalcode') }}" class="navbar-form navbar-right no-labels" method="post">
+                {{ form_rest(search_form) }}
+            </form>
+        </div>
+    </nav>
+
+    <h1>{{ 'admin.zip_to_city.header.text'|trans({}, 'admin') }}</h1>
 
 {% for message in app.session.flashbag.get('notice') %}
-<div class="message notice">
-  {{ message|trans({}, 'admin') }}
-</div>
+    <div class="alert alert-info">
+        {{ message|trans({}, 'admin') }}
+    </div>
 {% endfor %}
 
-<p>{{ 'admin.zip_to_city.description.text'|trans({}, 'admin') }}</p>
+    <p>{{ 'admin.zip_to_city.description.text'|trans({}, 'admin') }}</p>
 
 
-{% if zip_to_city|length > 0 %}
+    {% if search_result|length > 0 %}
+    <table class="table table-striped" id="zip_to_city">
+        <thead>
+            <tr>
+                <th>Land</th>
+                <th>Sprog</th>
+                <th>Postnummer</th>
+                <th>By</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for zip in search_result %}
+            <tr>
+                <td>{{ zip.country }}</td>
+                <td>{{ zip.language }}</td>
+                <td>{{ zip.zip_code }}</td>
+                <td>{{ zip.city }}</td>
+                <td>
+                {% if zip.sequence is not defined %}
+                    <a href="{{ path('admin_postalcode_edit', {'country':zip.country, 'id':zip.id}) }}" class="glyphicon glyphicon-edit" title="ret postnummer"></a>
+                    <a href="{{ path('admin_postalcode_delete', {'country':zip.country, 'id':zip.id}) }}" class="glyphicon glyphicon-remove-circle" rel="confirm" data-confirm-message="Er du sikker på du vil slette dette postnummer ?" title="slet postnummer"></a>
+                {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% elseif search_empty %}
+        <div class="alert alert-warning">Ingen postnumre matchede din søgning på "{{ search_empty }}" .</div>
+    {% endif %}
 
-  {% if paginate %}
-    <div class="clearfix">
-      {% import "::macro.pager.html.twig" as p %}
-      {{ p.pager(paginate, 'postalcode') }}
-    </div>
-  {% endif %}
-<table id="zip_to_city" class="list">
-  <thead>
-    <tr>
-      <th>{{ 'admin.zip_to_city.zip'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.zip_to_city.countries_iso2'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.zip_to_city.city'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.zip_to_city.county_id'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.zip_to_city.county_name'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.zip_to_city.comment'|trans({}, 'admin') }}</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for zip_to_city_row in zip_to_city %}
-    <tr>
-      <td>{{ zip_to_city_row.zip }}</td>
-      <td>{{ zip_to_city_row.countriesiso2 }}</td>
-      <td>{{ zip_to_city_row.city }}</td>
-      <td>{{ zip_to_city_row.countyid }}</td>
-      <td>{{ zip_to_city_row.countyname }}</td>
-      <td>{{ zip_to_city_row.comment }}</td>
-      <th>
-        <a href="{{ path('admin_postalcode_edit', {'id' : zip_to_city_row.id}) }}">
-          {{ 'admin.zip_to_city.edit'|trans({}, 'admin') }}
-        </a>
-
-        <a href="{{ path('admin_postalcode_delete', {'id' : zip_to_city_row.id }) }}" class="delete">
-          {{ 'admin.zip_to_city.delete'|trans({}, 'admin') }}
-        </a>
-      </th>
-    </tr>
-  {% endfor %}
-  </tbody>
-</table>
-  {% if paginate %}
-    <div class="clearfix">
-      {% import "::macro.pager.html.twig" as p %}
-      {{ p.pager(paginate, 'postalcode') }}
-    </div>
-  {% endif %}
-
-{% else %}
-
-<p>{{ 'admin.zip_to_city.no.zip_to_city.text'|trans({}, 'admin') }}</p>
-
-{% endif %}
 {% endblock %}
