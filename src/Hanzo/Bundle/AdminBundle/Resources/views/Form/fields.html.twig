@@ -109,7 +109,7 @@
 {% spaceless %}
     <div class="panel-group" id="accordion">
         {% for child in form %}
-            <div class="panel panel-default">
+            <div class="panel panel-default" data-locale="{{ child.vars.value.locale }}">
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion" href="#{{ child.vars.value.locale }}">
