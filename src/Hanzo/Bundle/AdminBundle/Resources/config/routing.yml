@@ -106,11 +106,10 @@ admin_cms_add:
         locale: null
 
 admin_cms_edit:
-    pattern:  /admin/cms/edit/{id}/{locale}
+    pattern:  /admin/cms/edit/{id}/
     defaults:
         _controller: AdminBundle:Cms:edit
         id: 0
-        locale: null
     requirements:
         id: \d+
 
