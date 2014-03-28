@@ -123,12 +123,12 @@ class Hanzo
         $this->container->get('twig')->addGlobal('locale', $locale);
         $this->container->get('twig')->addGlobal('html_lang', $lang);
 
-        setLocale(LC_ALL, $locale.'.utf-8', $locale.'.utf8');
+        setLocale(LC_ALL, $locale.'.utf-8', $locale.'.utf8', $locale);
 
         // we piggy bag on nl to show euros, even for none euro countries
-        // note the locale has to be installed, and er need duch anyway, so...
+        // note the locale has to be installed, and we need Dutch anyway, so...
         if ($this->get('core.currency') == 'EUR') {
-            setlocale(LC_MONETARY, 'nl_NL.utf8', 'nl_NL.utf-8');
+            setlocale(LC_MONETARY, 'nl_NL.utf8', 'nl_NL.utf-8', 'nl_NL');
         }
     }
 
