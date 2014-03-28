@@ -22,7 +22,7 @@ consignor:
     shipment_server:
         options:
               actor: 205
-              product_concept_id: 94
+              product_concept_id: 1961
               service_id: ""
               key: PDLCH
               to_address:
