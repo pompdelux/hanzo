@@ -738,6 +738,7 @@ html.touch .product-list .buy-set {
 }
 
 .body-category .sub-menu > ul li ul,
+.body-bycolour .sub-menu > ul li ul,
 .body-page-861 .sub-menu > ul li ul,
 .body-page-862 .sub-menu > ul li ul,
 .body-page-863 .sub-menu > ul li ul,
@@ -746,6 +747,8 @@ html.touch .product-list .buy-set {
 }
 .body-category .sub-menu > ul li ul li.active a,
 .body-category .sub-menu > ul li ul li a:hover,
+.body-bycolour .sub-menu > ul li ul li.active a,
+.body-bycolour .sub-menu > ul li ul li a:hover,
 .body-page-861 .sub-menu > ul li ul li.active a,
 .body-page-861 .sub-menu > ul li ul li a:hover,
 .body-page-862 .sub-menu > ul li ul li.active a,
@@ -859,7 +862,7 @@ a.video-popper .sprite, #video-player-container a.video .sprite {
 .body-buy-set .header {
   padding: 20px 0;
 }
-.body-buy-set h2 {
+.body-buy-set .main h2 {
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-size: 20px;
   text-transform: uppercase;
@@ -2766,17 +2769,18 @@ div.sub-menu {
 .body-frontpage #main article {
   overflow: hidden;
 }
-.body-frontpage #main article .grid_2 {
-  width: 49%;
+.body-frontpage #main article .grid_2,
+.body-frontpage #main article .grid_4 {
   float: left;
-  clear: left;
+  padding: 0 3px;
+  box-sizing: border-box;
 }
-.body-frontpage #main article .grid_2:nth-child(even) {
-  float: right;
-  clear: none;
+.body-frontpage #main article .grid_2 {
+  width: 50%;
 }
-.body-frontpage #main article .grid_2.grid_mobile-full {
+.body-frontpage #main article .grid_4 {
   width: 100%;
+  clear: both;
 }
 
 .body-pages article div {
