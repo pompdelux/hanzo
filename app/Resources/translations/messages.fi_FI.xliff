@@ -314,6 +314,10 @@
                 <source>back.to.category</source>
                 <target>Takaisin kategoriaan</target>
             </trans-unit>
+            <trans-unit id="back" approved="no">
+                <source>back</source>
+                <target>Takaisin</target>
+            </trans-unit>
             <trans-unit id="on.stock" approved="no">
                 <source>on.stock</source>
                 <target>Varastossa</target>

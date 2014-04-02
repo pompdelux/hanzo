@@ -260,7 +260,7 @@
             <trans-unit id="delivery.info" approved="no">
                 <source>delivery.info</source>
                 <target><![CDATA[
-                    <p>Alla varor skickas som paketpost med Post Danmark och <a href="http://www.posten.se" target="_blank">www.posten.se</a>. Du har därför möjlighet att följa ditt paket via ett kollinummer, från det att det skickas från oss till att det blir levererat hos ditt postombud. Om du beställer dina varor via ett <a href="/sv_SE/forside/home-shopping">Home Shopping</a> arrangemang kostar frakten SEK 49,00. Om du beställer varor i vår Webshop kostar frakten SEK 69,00. <br />När du har mottagit ditt paket, bör du kontrollera varorna. Om paketet och/eller innehållet är skadat, ska du snarast kontakta vår Kundservice eller <a href="http://www.posten.se" target="_blank">www.posten.se</a>. 
+                    <p>Alla varor skickas som paketpost med Post Danmark och <a href="http://www.posten.se" target="_blank">www.posten.se</a>. Du har därför möjlighet att följa ditt paket via ett kollinummer, från det att det skickas från oss till att det blir levererat hos ditt postombud. Om du beställer dina varor via ett <a href="/sv_SE/forside/home-shopping">Home Shopping</a> arrangemang kostar frakten SEK 49,00. Om du beställer varor i vår Webshop kostar frakten SEK 69,00. <br />När du har mottagit ditt paket, bör du kontrollera varorna. Om paketet och/eller innehållet är skadat, ska du snarast kontakta vår Kundservice eller <a href="http://www.posten.se" target="_blank">www.posten.se</a>.
       <br />
       När du har mottagit ditt paket, bör du kontrollera varorna. Om paketet och/eller innehållet är skadat, ska du snarast kontakta vår Kundservice eller <a href="http://www.posten.se" target="_blank">www.posten.se</a>.</p>
                 ]]></target>
@@ -332,6 +332,10 @@
             <trans-unit id="back.to.category" approved="no">
                 <source>back.to.category</source>
                 <target>Tillbaka till kategorin</target>
+            </trans-unit>
+            <trans-unit id="back" approved="no">
+                <source>back</source>
+                <target>Tillbaka</target>
             </trans-unit>
             <trans-unit id="on.stock" approved="no">
                 <source>on.stock</source>

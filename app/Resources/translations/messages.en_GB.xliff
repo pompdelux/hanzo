@@ -326,6 +326,10 @@
                 <source>back.to.category</source>
                 <target>Back to category</target>
             </trans-unit>
+            <trans-unit id="back" approved="no">
+                <source>back</source>
+                <target>Back</target>
+            </trans-unit>
             <trans-unit id="on.stock" approved="no">
                 <source>on.stock</source>
                 <target>In stock</target>

@@ -331,6 +331,10 @@
                 <source>back.to.category</source>
                 <target>Tilbake til kategori</target>
             </trans-unit>
+            <trans-unit id="back" approved="no">
+                <source>back</source>
+                <target>Tilbake</target>
+            </trans-unit>
             <trans-unit id="on.stock" approved="no">
                 <source>on.stock</source>
                 <target>På lager</target>
