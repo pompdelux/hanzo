@@ -539,6 +539,18 @@ Hierna kun je gewoon doorgaan met winkelen.<br></p>
                 <source>account.returnlabel.link</source>
                 <target>Print retourlabel</target>
             </trans-unit>
-            </body>
+            <trans-unit id="my.account.legends.header">
+                <source>my.account.legends.header</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="my.account.legends">
+                <source>my.account.legends</source>
+                <target>my.account.legends</target>
+            </trans-unit>
+            <trans-unit id="my.account.existing.customer.notice">
+                <source>my.account.existing.customer.notice</source>
+                <target></target>
+            </trans-unit>
+        </body>
     </file>
 </xliff>

@@ -179,6 +179,10 @@
                 <source>buy.set</source>
                 <target>Osta koko setti</target>
             </trans-unit>
+            <trans-unit id="buy.set.description">
+                <source>buy.set.description</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="button.back">
                 <source>button.back</source>
                 <target>Takaisin</target>

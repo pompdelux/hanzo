@@ -565,6 +565,10 @@ Herefter kan du nemt shoppe videre.</p><br>
                     </ul>
                     ]]></target>
             </trans-unit>
+            <trans-unit id="my.account.existing.customer.notice">
+                <source>my.account.existing.customer.notice</source>
+                <target>Velkommen, vi er glade for at se dig igen!</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
