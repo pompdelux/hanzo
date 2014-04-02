@@ -547,7 +547,7 @@ Herefter kan du nemt shoppe videre.</p><br>
                 <source>account.returnlabel.link</source>
                 <target>Print retur label</target>
             </trans-unit>
-            <trans-unit id="my.account.legends.header">
+<!--             <trans-unit id="my.account.legends.header">
                 <source>my.account.legends.header</source>
                 <target>Det betyder ikonerne</target>
             </trans-unit>
@@ -564,7 +564,7 @@ Herefter kan du nemt shoppe videre.</p><br>
                         <li><i class="sprite trackntrace"></i><span>Følg din pakke</span></li>
                     </ul>
                     ]]></target>
-            </trans-unit>
+            </trans-unit> -->
             <trans-unit id="my.account.existing.customer.notice">
                 <source>my.account.existing.customer.notice</source>
                 <target>Velkommen, vi er glade for at se dig igen!</target>
