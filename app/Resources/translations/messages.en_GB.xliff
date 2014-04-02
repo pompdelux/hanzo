@@ -273,7 +273,7 @@
             <trans-unit id="return.info" approved="no">
                 <source>return.info</source>
                 <target><![CDATA[
-                    <p>The returned items must be in unused and original packaging with hangtags etc. Socks, leggings and tights can only be returned in unbroken packaging. The postal bag, in which you receive your items, can be reused - see instructions on the bag. Therefore we do not refund any package or postage charges if you only return part of your order. <br>
+                    <p>The returned items must be in unused and original packaging with hangtags etc. Socks, leggings and tights can only be returned in unbroken packaging. The postal bag, in which you receive your items, can be reused. Therefore we do not refund any package or postage charges if you only return part of your order. <br>
       <br>
       Return the items together with a <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_Eng.pdf" target="_blank">returns form</a>. Enter your personal details on the form and post the items to us. You will find our address on the form.</p>
                 ]]></target>

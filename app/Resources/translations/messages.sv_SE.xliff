@@ -276,7 +276,7 @@
             <trans-unit id="return.info" approved="no">
                 <source>return.info</source>
                 <target><![CDATA[
-                    <p>Varorna ska vara oanvända och returneras i original förpackning med etiketter osv. Strumpor, leggings och strumpbyxor kan endast returneras i obruten förpackning. Postpåsen som dina varor levereras i är gjord så att den kan användas två gånger. Du kan se på påsen hur du gör för att använda den igen. Vi återbetalar därför inte pengar för returemballage och heller inte för porto om du endast returnerar delar av din order. Vi tar inte emot returvaror som skickats mot postförskott.</p>
+                    <p>Varorna ska vara oanvända och returneras i original förpackning med etiketter osv. Strumpor, leggings och strumpbyxor kan endast returneras i obruten förpackning. Postpåsen som dina varor levereras i är gjord så att den kan användas två gånger. Vi återbetalar därför inte pengar för returemballage och heller inte för porto om du endast returnerar delar av din order. Vi tar inte emot returvaror som skickats mot postförskott.</p>
                 ]]></target>
             </trans-unit>
 			<trans-unit id="footer.menu_1" approved="no">
