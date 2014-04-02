@@ -17,14 +17,14 @@
   </div>
 
   {% for product in products %}
-    <div class="block row grid_8 alpha omega">
-      <div class="grid_4 alpha">
-        <div class="grid_2 alpha">
+    <div class="block row grid_8 alpha omega container_16">
+      <div class="grid_8 alpha">
+        <div class="grid_4 alpha">
           <a href="{{ product.url }}" class="left">
             {{ product_image_tag(product.image, '234x410', {'alt': product.master ~ ', ' ~ product.color}) }}
           </a>
         </div>
-        <div class="grid_2 omega">
+        <div class="grid_4 omega">
 
           <h2 class="title">{{ product.title }}</h2>
           <div class="prices">
@@ -74,7 +74,7 @@
         </div>
       </div>
 
-      <div class="grid_4 omega">
+      <div class="grid_7 push_1 omega">
         <div class="productdescription tab-box">
           <ul class="tabs bordered">
           {% if product.description %}
