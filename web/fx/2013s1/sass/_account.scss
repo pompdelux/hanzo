@@ -46,6 +46,9 @@
     &:focus {
       background: #DED8D2;
     }
+    &:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0px 1000px #DED8D2 inset;
+    }
   }
 }
 form.create {

@@ -2011,6 +2011,9 @@ html.touch .product-list .buy-set {
 #body-login .main input:focus {
   background: #DED8D2;
 }
+#body-login .main input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #DED8D2 inset;
+}
 
 form.create label:after {
   content: ":";
