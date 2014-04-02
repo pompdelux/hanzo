@@ -364,6 +364,14 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
                 <source>product.prices.description</source>
                 <target></target>
             </trans-unit>
+            <trans-unit id="faceted.show.out.of.stock" approved="no">
+                <source>faceted.show.out.of.stock</source>
+                <target>Laat ook uitverkochte artikelen zien</target>
+            </trans-unit>
+            <trans-unit id="faceted.reset.filter" approved="no">
+                <source>faceted.reset.filter</source>
+                <target>» Maak nieuwe selectie</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
