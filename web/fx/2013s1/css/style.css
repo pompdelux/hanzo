@@ -1914,6 +1914,7 @@ html.touch .product-list .buy-set {
 }
 
 .body-category .sub-menu > ul li ul,
+.body-bycolour .sub-menu > ul li ul,
 .body-page-861 .sub-menu > ul li ul,
 .body-page-862 .sub-menu > ul li ul,
 .body-page-863 .sub-menu > ul li ul,
@@ -1922,6 +1923,8 @@ html.touch .product-list .buy-set {
 }
 .body-category .sub-menu > ul li ul li.active a,
 .body-category .sub-menu > ul li ul li a:hover,
+.body-bycolour .sub-menu > ul li ul li.active a,
+.body-bycolour .sub-menu > ul li ul li a:hover,
 .body-page-861 .sub-menu > ul li ul li.active a,
 .body-page-861 .sub-menu > ul li ul li a:hover,
 .body-page-862 .sub-menu > ul li ul li.active a,
