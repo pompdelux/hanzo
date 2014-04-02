@@ -383,6 +383,14 @@
                 <source>product.prices.description</source>
                 <target></target>
             </trans-unit>
+            <trans-unit id="faceted.show.out.of.stock" approved="no">
+                <source>faceted.show.out.of.stock</source>
+                <target>Vis også udsolgte vare</target>
+            </trans-unit>
+            <trans-unit id="faceted.reset.filter" approved="no">
+                <source>faceted.reset.filter</source>
+                <target>» Nulstil filtre</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

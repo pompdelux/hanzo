@@ -365,6 +365,14 @@ Paket:Das Paket wird an Ihre Adresse geliefert und kostet EUR 4,95 (EUR 3,95, we
                 <source>product.prices.description</source>
                 <target>inkl. gesetzl. MwSt, zzgl. Versandkosten</target>
             </trans-unit>
+            <trans-unit id="faceted.show.out.of.stock" approved="no">
+                <source>faceted.show.out.of.stock</source>
+                <target>Auch ausverkaufte Ware anzeigen</target>
+            </trans-unit>
+            <trans-unit id="faceted.reset.filter" approved="no">
+                <source>faceted.reset.filter</source>
+                <target>» Filter zurücksetzen</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
