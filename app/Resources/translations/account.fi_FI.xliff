@@ -78,7 +78,7 @@
             </trans-unit>
             <trans-unit id="retrive.password">
                 <source>retrive.password</source>
-                <target>» Saat salasanan sähköpostilla</target>
+                <target>Saat salasanan sähköpostilla</target>
             </trans-unit>
             <trans-unit id="new.customer">
                 <source>new.customer</source>
@@ -492,7 +492,7 @@
             </trans-unit>
            <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>
-                <target><![CDATA[<h3>OMAT SIVUT</h3><p>Jotta voit nauttia lukuisista POMPdeLUXin tarjoamista eduista, sinun tulee rekisteröityä asiakkaaksi ennen kuin voit jatkaa ostoksiasi.<br><br>Rekisteröityneenä asiakkaana voit muun muassa:<br>
+                <target><![CDATA[<h2>OMAT SIVUT</h2><p>Jotta voit nauttia lukuisista POMPdeLUXin tarjoamista eduista, sinun tulee rekisteröityä asiakkaaksi ennen kuin voit jatkaa ostoksiasi.<br><br>Rekisteröityneenä asiakkaana voit muun muassa:<br>
 			<ul>
             <li>Tarkistaa ja korjata tilaustasi, kunnes se pakataan ja lähetetään varastoltamme.</li>
             <li>Muuttaa tilaamiesi tuotteiden värejä ja kokoja.</li>
@@ -536,6 +536,18 @@ Haluamme kuitenkin varmistaa, että tässä ei ole tapahtunut virhettä. Pyydäm
             <trans-unit id="account.returnlabel.link">
                 <source>account.returnlabel.link</source>
                 <target>Tulosta palautusetiketti</target>
+            </trans-unit>
+            <trans-unit id="my.account.legends.header">
+                <source>my.account.legends.header</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="my.account.legends">
+                <source>my.account.legends</source>
+                <target>my.account.legends</target>
+            </trans-unit>
+            <trans-unit id="my.account.existing.customer.notice">
+                <source>my.account.existing.customer.notice</source>
+                <target></target>
             </trans-unit>
         </body>
     </file>

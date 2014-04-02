@@ -1151,7 +1151,19 @@ a.video-popper .sprite, #video-player-container a.video .sprite {
   width: 234px;
 }
 
+.body-buy-set .header {
+  padding: 20px 0;
+}
+.body-buy-set .main h2 {
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
 .body-product .main h1.title,
+.body-product .main h2.title,
 .body-product .main .prices {
   font-family: "Merriweather", serif;
   font-size: 16px;
@@ -1159,6 +1171,7 @@ a.video-popper .sprite, #video-player-container a.video .sprite {
   line-height: 18px;
   color: #444444;
   clear: both;
+  text-transform: initial;
 }
 .body-product .main .prices {
   padding: 0 0 12px;
@@ -1901,6 +1914,7 @@ html.touch .product-list .buy-set {
 }
 
 .body-category .sub-menu > ul li ul,
+.body-bycolour .sub-menu > ul li ul,
 .body-page-861 .sub-menu > ul li ul,
 .body-page-862 .sub-menu > ul li ul,
 .body-page-863 .sub-menu > ul li ul,
@@ -1909,6 +1923,8 @@ html.touch .product-list .buy-set {
 }
 .body-category .sub-menu > ul li ul li.active a,
 .body-category .sub-menu > ul li ul li a:hover,
+.body-bycolour .sub-menu > ul li ul li.active a,
+.body-bycolour .sub-menu > ul li ul li a:hover,
 .body-page-861 .sub-menu > ul li ul li.active a,
 .body-page-861 .sub-menu > ul li ul li a:hover,
 .body-page-862 .sub-menu > ul li ul li.active a,
@@ -1948,6 +1964,58 @@ html.touch .product-list .buy-set {
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-weight: normal;
   line-height: 15px;
+  margin-top: 14px;
+}
+#body-login .main h2, #body-login .main h3 {
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+#body-login .main h3 {
+  font-size: 17px;
+  letter-spacing: initial;
+}
+#body-login .main > .grid_3 > .grid_3 {
+  border-bottom: 2px dotted #8D8D8D;
+  padding: 15px 0 10px;
+}
+#body-login .main > .grid_3 > .grid_3:first-child {
+  border-top: 2px dotted #8D8D8D;
+}
+#body-login .main > .grid_3 > .grid_3:last-child {
+  border-bottom: none;
+}
+#body-login .main input {
+  background: #DED8D2;
+  color: #222;
+  border: none;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  width: 67%;
+  outline: none;
+}
+#body-login .main input::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #222222;
+}
+#body-login .main input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #222222;
+}
+#body-login .main input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #222222;
+}
+#body-login .main input:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #222222;
+}
+#body-login .main input:focus {
+  background: #DED8D2;
+}
+#body-login .main input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #DED8D2 inset;
 }
 
 form.create label:after {
@@ -1971,6 +2039,22 @@ form.create .button {
 #body-event form.create .button,
 #body-edit-account form.create .button {
   display: inline-block;
+}
+
+#body-account .legends ul {
+  margin: 0;
+}
+#body-account .legends ul li {
+  display: table;
+  list-style-type: none;
+  padding-bottom: 20px;
+}
+#body-account .legends ul li i {
+  padding-right: 10px;
+}
+#body-account .legends ul li span, #body-account .legends ul li i {
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .sprite.trackntrace {
@@ -2099,7 +2183,7 @@ form.address .error {
   margin: 0 10px;
 }
 
-form.location-locator input.button.button-right {
+form.location-locator button.button {
   margin-left: 5px;
   float: none;
 }
@@ -2274,7 +2358,7 @@ div.invalid-order {
   border-radius: 5px;
   background: white;
 }
-#cart-edit-element a.button {
+#cart-edit-element a.text-button {
   position: absolute;
   bottom: 3px;
   right: 10px;
@@ -3781,7 +3865,7 @@ a.button,
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-size: 14px;
   text-align: center;
-  padding: 6px;
+  padding: 6px 24px;
   font-weight: normal;
   color: white !important;
   line-height: 18px;
@@ -3811,23 +3895,6 @@ button.button.text-button:hover,
 a.button.text-button:hover,
 .main article a.button.text-button:hover {
   text-decoration: underline;
-}
-input.button.button-right,
-button.button.button-right,
-a.button.button-right,
-.main article a.button.button-right {
-  background: url(/fx/images/icons/icons/button-right.png) right no-repeat #474749;
-  border-right: 6px solid #474749;
-  padding: 6px 24px;
-  float: right;
-}
-input.button.button-left,
-button.button.button-left,
-a.button.button-left,
-.main article a.button.button-left {
-  background: url(/fx/images/icons/icons/button-left.png) left no-repeat #474749;
-  border-left: 6px solid #474749;
-  padding: 6px 24px;
 }
 input.button.button-small,
 button.button.button-small,
@@ -3977,11 +4044,11 @@ button.right {
   vertical-align: baseline;
 }
 
-.pushleft {
+.pushleft, .pull-left {
   float: left;
 }
 
-.pushright {
+.pushright, .pull-right {
   float: right;
 }
 

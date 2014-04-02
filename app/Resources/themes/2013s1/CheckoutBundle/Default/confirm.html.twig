@@ -1,6 +1,6 @@
 <div id="checkout-block-confirm">
   <div class="msg hidden"></div>
-  <a class="button button-right" href="{{ path('basket_view') }}">{{ 'button.back'|trans({}, 'checkout') }}</a>
-  <a class="button button-left edit" href="{{ path('_checkout') }}">{{ 'button.edit'|trans({}, 'checkout') }}</a>
-  <a class="button button-right" id="checkout-execute" href="#">{{ 'button.process'|trans({}, 'checkout') }}</a>
+  <a class="button pull-right" href="{{ path('basket_view') }}">{{ 'button.back'|trans({}, 'checkout') }} <i class="fa fa-arrow-right"></i></a>
+  <a class="button edit" href="{{ path('_checkout') }}"><i class="fa fa-arrow-right"></i> {{ 'button.edit'|trans({}, 'checkout') }}</a>
+  <a class="button pull-right" id="checkout-execute" href="#">{{ 'button.process'|trans({}, 'checkout') }} <i class="fa fa-arrow-right"></i></a>
 </div>

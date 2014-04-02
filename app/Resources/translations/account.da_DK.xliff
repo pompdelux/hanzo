@@ -84,7 +84,7 @@
             </trans-unit>
             <trans-unit id="retrive.password">
                 <source>retrive.password</source>
-                <target>» Få din adgangskode tilsendt pr. e-post</target>
+                <target>Få din adgangskode tilsendt pr. e-post</target>
             </trans-unit>
             <trans-unit id="new.customer">
                 <source>new.customer</source>
@@ -507,7 +507,7 @@
             <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>
                 <target><![CDATA[
-                <h3>MIN SIDE</h3>
+                <h2>MIN SIDE</h2>
                 <p>For at give dig en række fordele hos POMPdeLUX, skal du oprette dig som kunde inden du kan shoppe videre.<br><br>Det giver dig blandt andet mulighed for at:</p>
                 <ul>
                     <li>Tjekke og rette din ordre, indtil den bliver pakket og sendt fra vores lager.</li>
@@ -546,6 +546,28 @@ Herefter kan du nemt shoppe videre.</p><br>
             <trans-unit id="account.returnlabel.link">
                 <source>account.returnlabel.link</source>
                 <target>Print retur label</target>
+            </trans-unit>
+<!--             <trans-unit id="my.account.legends.header">
+                <source>my.account.legends.header</source>
+                <target>Det betyder ikonerne</target>
+            </trans-unit>
+            <trans-unit id="my.account.legends">
+                <source>my.account.legends</source>
+                <target><![CDATA[
+                    <ul>
+                        <li><i class="sprite edit"></i><span>Rediger din ordre</span></li>
+                        <li><i class="sprite delete"></i><span>Slet din ordre</span></li>
+                        <li><i class="sprite show"></i><span>Se din ordre</span></li>
+                        <li><i class="sprite pdf"></i><span>Faktura (pdf)</span></li>
+                        <li><i class="sprite return"></i><span>Returner en vare</span></li>
+                        <li><i class="sprite returnlabel"></i><span>Returlabel</span></li>
+                        <li><i class="sprite trackntrace"></i><span>Følg din pakke</span></li>
+                    </ul>
+                    ]]></target>
+            </trans-unit> -->
+            <trans-unit id="my.account.existing.customer.notice">
+                <source>my.account.existing.customer.notice</source>
+                <target>Velkommen, vi er glade for at se dig igen!</target>
             </trans-unit>
         </body>
     </file>

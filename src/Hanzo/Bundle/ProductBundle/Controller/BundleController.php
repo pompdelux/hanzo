@@ -37,7 +37,7 @@ class BundleController extends CoreController
             $router_keys = include $this->container->parameters['kernel.cache_dir'] . '/category_map.php';
             $locale = strtolower($hanzo->get('core.locale'));
 
-            $product = ProductsQuery::create()
+            $main_product = ProductsQuery::create()
                 ->useProductsI18nQuery()
                     ->filterByLocale($hanzo->get('core.locale'))
                 ->endUse()
@@ -57,14 +57,14 @@ class BundleController extends CoreController
                 ->findOne()
             ;
 
-            if (!$product instanceof Products) {
+            if (!$main_product instanceof Products) {
                 return $this->redirect($this->generateUrl('_homepage'));
             }
 
-            $product_ids[] = $product->getId();
+            $product_ids[] = $main_product->getId();
             $products2category = ProductsToCategoriesQuery::create()
                 ->useProductsQuery()
-                ->filterBySku($product->getSku())
+                ->filterBySku($main_product->getSku())
                 ->endUse()
                 ->findOne()
             ;
@@ -72,16 +72,17 @@ class BundleController extends CoreController
             $key = '_' . $locale . '_' . $products2category->getCategoriesId();
             $product_route = $router_keys[$key];
 
-            $image = $product->getProductsImagess()->getFirst();
-            $products[$product->getId()] = array(
-                'id' => $product->getId(),
-                'master' => $product->getSku(),
-                'title' => $product->getTitle(),
+            $image = $main_product->getProductsImagess()->getFirst();
+            $products[$main_product->getId()] = array(
+                'id' => $main_product->getId(),
+                'master' => $main_product->getSku(),
+                'title' => $main_product->getTitle(),
                 'color' => $image->getColor(),
                 'image' => $image->getImage(),
+                'washing_id' => $main_product->getWashing(),
                 'url' => $router->generate($product_route, array(
-                    'product_id' => $product->getId(),
-                    'title' => Tools::stripText($product->getSku()),
+                    'product_id' => $main_product->getId(),
+                    'title' => Tools::stripText($main_product->getSku()),
                 )),
                 'out_of_stock' => true,
             );
@@ -130,6 +131,7 @@ class BundleController extends CoreController
                     'title' => $product->getTitle(),
                     'color' => $image->getColor(),
                     'image' => $image->getImage(),
+                    'washing_id' => $product->getWashing(),
                     'url' => $router->generate($product_route, array(
                         'product_id' => $product->getId(),
                         'title' => Tools::stripText($product->getSku()),
@@ -137,12 +139,36 @@ class BundleController extends CoreController
                     'out_of_stock' => true,
                 );
 
-
                 $product_ids[] = $product->getId();
             }
 
             foreach (ProductsDomainsPricesPeer::getProductsPrices($product_ids) as $i => $price) {
                 $products[$i]['prices'] = $price;
+            }
+
+            // Add description and washing details to all products.
+            $find = '~(background|src)="(../|/)~';
+            $replace = '$1="' . $hanzo->get('core.cdn');
+
+            foreach ($products as $id => $product) {
+
+                $translation_key = 'description.' . Tools::stripText($product['master'], '_', false);
+
+                $description = $translator->trans($translation_key, array('%cdn%' => $hanzo->get('core.cdn')), 'products');
+                $description = preg_replace($find, $replace, $description);
+
+                $washing = null;
+                $result = ProductsWashingInstructionsQuery::create()
+                    ->filterByLocale($hanzo->get('core.locale'))
+                    ->findOneByCode($product['washing_id']);
+
+                if ($result instanceof ProductsWashingInstructions) {
+                    $washing = stripslashes($result->getDescription());
+                    $washing = preg_replace($find, $replace, $washing);
+                }
+
+                $products[$id]['description'] = ($description !== $translation_key) ? $description : null;
+                $products[$id]['washing'] = $washing;
             }
 
             $this->setCache($cache_id, $products);
@@ -214,6 +240,9 @@ class BundleController extends CoreController
             $locale = strtolower($hanzo->get('core.locale'));
 
             $result = ProductsQuery::create()
+                ->useProductsI18nQuery()
+                    ->filterByLocale($hanzo->get('core.locale'))
+                ->endUse()
                 ->filterByIsActive(TRUE)
                 ->useProductsI18nQuery()
                     ->filterByLocale($hanzo->get('core.locale'))
@@ -265,6 +294,7 @@ class BundleController extends CoreController
                     'title' => $product->getTitle(),
                     'color' => $image->getColor(),
                     'image' => $image->getImage(),
+                    'washing_id' => $product->getWashing(),
                     'url' => $router->generate($product_route, array(
                         'product_id' => $product->getId(),
                         'title' => Tools::stripText($product->getSku()),
@@ -278,6 +308,31 @@ class BundleController extends CoreController
 
             foreach (ProductsDomainsPricesPeer::getProductsPrices($product_ids) as $i => $price) {
                 $products[$i]['prices'] = $price;
+            }
+
+            // Add description and washing details to all products.
+            $find = '~(background|src)="(../|/)~';
+            $replace = '$1="' . $hanzo->get('core.cdn');
+
+            foreach ($products as $id => $product) {
+
+                $translation_key = 'description.' . Tools::stripText($product['master'], '_', false);
+
+                $description = $translator->trans($translation_key, array('%cdn%' => $hanzo->get('core.cdn')), 'products');
+                $description = preg_replace($find, $replace, $description);
+
+                $washing = null;
+                $result = ProductsWashingInstructionsQuery::create()
+                    ->filterByLocale($hanzo->get('core.locale'))
+                    ->findOneByCode($product['washing_id']);
+
+                if ($result instanceof ProductsWashingInstructions) {
+                    $washing = stripslashes($result->getDescription());
+                    $washing = preg_replace($find, $replace, $washing);
+                }
+
+                $products[$id]['description'] = ($description !== $translation_key) ? $description : null;
+                $products[$id]['washing'] = $washing;
             }
 
             $this->setCache($cache_id, $products);
@@ -308,6 +363,7 @@ class BundleController extends CoreController
         }
 
         $this->setSharedMaxAge(86400);
+        $this->get('twig')->addGlobal('body_classes', 'body-product body-buy-set');
         $responce = $this->render('ProductBundle:Bundle:view.html.twig', array(
             'page_type' => 'bundle',
             'products' => $products,

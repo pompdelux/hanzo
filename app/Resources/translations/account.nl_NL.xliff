@@ -76,7 +76,7 @@
             </trans-unit>
             <trans-unit id="retrive.password">
                 <source>retrive.password</source>
-                <target>» Ontvang je wachtwoord per e-mail</target>
+                <target>Ontvang je wachtwoord per e-mail</target>
             </trans-unit>
             <trans-unit id="47">
                 <source>New customer</source>
@@ -493,7 +493,7 @@
             </trans-unit>
             <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>
-                <target><![CDATA[<h3>MIJN PAGINA</h3><p>Om je een aantal voordelen bij POMPdeLUX te geven, moet je je eerst registreren als klant. Daarna kun je weer doorgaan met winkelen.<br><br>Dit geeft je onder meer de mogelijkheid om:<br>
+                <target><![CDATA[<h2>MIJN PAGINA</h2><p>Om je een aantal voordelen bij POMPdeLUX te geven, moet je je eerst registreren als klant. Daarna kun je weer doorgaan met winkelen.<br><br>Dit geeft je onder meer de mogelijkheid om:<br>
 			<ul>
             <li>Je bestelling te controleren en te wijzigen totdat die gepakt en verzonden is.</li>
             <li>De kleur en maat van de artikelen die je hebt besteld te wijzigen.</li>
@@ -539,6 +539,18 @@ Hierna kun je gewoon doorgaan met winkelen.<br></p>
                 <source>account.returnlabel.link</source>
                 <target>Print retourlabel</target>
             </trans-unit>
-            </body>
+            <trans-unit id="my.account.legends.header">
+                <source>my.account.legends.header</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="my.account.legends">
+                <source>my.account.legends</source>
+                <target>my.account.legends</target>
+            </trans-unit>
+            <trans-unit id="my.account.existing.customer.notice">
+                <source>my.account.existing.customer.notice</source>
+                <target></target>
+            </trans-unit>
+        </body>
     </file>
 </xliff>

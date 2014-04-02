@@ -34,8 +34,8 @@
 </div>
 
 <div id="checkout-buttons">
-  <a class="button button-left" href="{{ path('basket_view') }}">{{ 'button.back'|trans({}, 'checkout') }}</a>
-  <a class="button button-right" id="checkout-execute" href="#">{{ 'button.process'|trans({}, 'checkout') }}</a>
+  <a class="button" href="{{ path('basket_view') }}"><i class="fa fa-arrow-left"></i> {{ 'button.back'|trans({}, 'checkout') }}</a>
+  <a class="button pull-right" id="checkout-execute" href="#">{{ 'button.process'|trans({}, 'checkout') }} <i class="fa fa-arrow-right"></i></a>
 </div>
 
 {% endblock %}

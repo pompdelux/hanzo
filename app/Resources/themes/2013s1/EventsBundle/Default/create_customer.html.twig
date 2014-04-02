@@ -50,7 +50,9 @@
         {{ form_row(form.addresses.0.type) }}
         {{ form_row(form._token) }}
       </div>
-      <input class="button off button-right" type="submit" value="{{ 'create.account'|trans({}, 'account') }}">
+      <button type="submit" class="button off pull-right">
+        {{ 'create.account'|trans({}, 'account') }} <i class="fa fa-arrow-right"></i>
+      </button>
     </form>
   </div>
 </div>

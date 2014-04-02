@@ -856,7 +856,19 @@ a.video-popper .sprite, #video-player-container a.video .sprite {
   width: 234px;
 }
 
+.body-buy-set .header {
+  padding: 20px 0;
+}
+.body-buy-set h2 {
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
 .body-product .main h1.title,
+.body-product .main h2.title,
 .body-product .main .prices {
   font-family: "Merriweather", serif;
   font-size: 16px;
@@ -864,6 +876,7 @@ a.video-popper .sprite, #video-player-container a.video .sprite {
   line-height: 18px;
   color: #444444;
   clear: both;
+  text-transform: initial;
 }
 .body-product .main .prices {
   padding: 0 0 12px;
@@ -1642,7 +1655,7 @@ form.address .error {
   margin: 0 10px;
 }
 
-form.location-locator input.button.button-right {
+form.location-locator button.button {
   margin-left: 5px;
   float: none;
 }
@@ -1802,7 +1815,7 @@ div.invalid-order {
   margin-bottom: 10px;
 }
 
-#body-create-account form[action$="/edit"] .button-right {
+#body-create-account form[action$="/edit"] button[type=submit] {
   display: block;
 }
 #body-create-account .create {

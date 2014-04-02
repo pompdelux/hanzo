@@ -172,7 +172,7 @@ a.button,
 	font-family: $font-sans;
 	font-size: $font-size;
 	text-align: center;
-	padding: 6px;
+	padding: 6px 24px;
 	font-weight: normal;
 	color: white !important;
 	line-height: 18px;
@@ -193,17 +193,6 @@ a.button,
 		&:hover{
 			text-decoration: underline;
 		}
-	}
-	&.button-right {
-		background: url(/fx/images/icons/icons/button-right.png) right no-repeat #474749;
-		border-right: 6px solid #474749;
-		padding: 6px 24px;
-		float: right;
-	}
-	&.button-left {
-		background: url(/fx/images/icons/icons/button-left.png) left no-repeat #474749;
-		border-left: 6px solid #474749;
-		padding: 6px 24px;
 	}
 	&.button-small {
 		font-size: $small-size;
@@ -323,8 +312,8 @@ button {
 .vert-align-top{vertical-align:top;}
 .vert-align-middle{vertical-align:middle;}
 .vert-align-bottom{vertical-align:baseline;}
-.pushleft{float:left;}
-.pushright{float:right;}
+.pushleft, .pull-left{float:left;}
+.pushright, .pull-right{float:right;}
 .small{font-size: 9px;}
 .strike {text-decoration:line-through;}
 .upper {text-transform: uppercase;}

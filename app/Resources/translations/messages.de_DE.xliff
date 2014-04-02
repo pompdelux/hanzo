@@ -197,6 +197,10 @@
                 <source>buy.set</source>
                 <target>Das ganze Set kaufen</target>
             </trans-unit>
+            <trans-unit id="buy.set.description">
+                <source>buy.set.description</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="button.back">
                 <source>button.back</source>
                 <target>Zurück</target>
@@ -333,6 +337,10 @@
             <trans-unit id="back.to.category" approved="no">
                 <source>back.to.category</source>
                 <target>Zurück zur Übersicht</target>
+            </trans-unit>
+            <trans-unit id="back" approved="no">
+                <source>back</source>
+                <target>Zurück</target>
             </trans-unit>
             <trans-unit id="on.stock" approved="no">
                 <source>on.stock</source>

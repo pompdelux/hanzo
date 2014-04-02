@@ -34,7 +34,7 @@
     }
 }
 #body-create-account {
-    form[action$="/edit"] .button-right {
+    form[action$="/edit"] button[type=submit] {
         display: block;
     }
     .create {

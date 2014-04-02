@@ -17,8 +17,10 @@
         {{ form_widget(form) }}
       </div>
       <div class="row buttons">
-        <input class="button button-right" type="submit" value="{{ 'form.submit_step1'|trans({},'gothia') }}" name="action-submit-gothia-checkcustomer" id="action-submit-gothia-checkcustomer"/>
-        <a href="{{ path('PaymentBundle_gothia_payment_cancel') }}" class="button button-left">{{ 'form.cancel'|trans({},'gothia') }}</a>
+        <button type="submit" class="button pull-right" name="action-submit-gothia-checkcustomer" id="action-submit-gothia-checkcustomer">
+          {{ 'form.submit_step1'|trans({},'gothia') }} <i class="fa fa-arrow-right"></i>
+        </button>
+        <a href="{{ path('PaymentBundle_gothia_payment_cancel') }}" class="button"><i class="fa fa-arrow-left"></i> {{ 'form.cancel'|trans({},'gothia') }}</a>
       </div>
     </form>
   </div>
@@ -30,8 +32,10 @@
     <form action="{{ path('PaymentBundle_gothia_payment_confirm') }}" method="post" {{ form_enctype(form) }} autocomplete="off">
 
     <div class="buttons">
-      <input class="button button-right" type="submit" value="{{ 'form.submit_step2'|trans({},'gothia') }}" name="action-submit-gothia-confirm" id="action-submit-gothia-confirm"/>
-      <a href="{{ path('PaymentBundle_gothia_payment_cancel') }}" class="button button-left">{{ 'form.cancel'|trans({},'gothia') }}</a>
+      <button type="submit" class="button pull-right" name="action-submit-gothia-confirm" id="action-submit-gothia-confirm">
+        {{ 'form.submit_step2'|trans({},'gothia') }} <i class="fa fa-arrow-right"></i>
+      </button>
+      <a href="{{ path('PaymentBundle_gothia_payment_cancel') }}" class="button"><i class="fa fa-arrow-left"></i> {{ 'form.cancel'|trans({},'gothia') }}</a>
     </div>
     </form>
   </div>

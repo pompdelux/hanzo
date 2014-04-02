@@ -35,28 +35,33 @@
 <div class="grid_3 push_1 omega">
 
 {% if store_mode == 'webshop' %}
-    <div class="grid_3 alpha omega bottom-space">
-        <h3>{{ 'new.customer'|trans({}, 'account') }}</h3>
+    <div class="grid_3 alpha omega">
+        <h2>{{ 'new.customer'|trans({}, 'account') }}</h2>
         {{ 'my.account.login.notice'|trans({}, 'account')|raw }}
-        <a href="{{ url('_account_create') }}" class="button button-black button-right">{{ "create.account.link"|trans({}, 'account') }}</a>
+        <a href="{{ url('_account_create') }}" class="button pull-right">{{ "create.account.link"|trans({}, 'account') }} <i class="fa fa-arrow-right"></i></a>
     </div>
 {% endif %}
 
-    <div class="grid_3 alpha omega bottom-space">
-        <h3>{{ 'existing.customer'|trans({}, 'account') }}</h3>
-        <form action="{{ path('login_check') }}" method="post" class="full-width">
+    <div class="grid_3 alpha omega">
+        <h2>{{ 'existing.customer'|trans({}, 'account') }}</h2>
+        {{ 'my.account.existing.customer.notice'|trans({}, 'account')|raw }}
+        <form action="{{ path('login_check') }}" method="post">
             <input type="text" id="username" name="_username" value="{{ last_username }}" placeholder="{{ 'email'|trans({}, 'account') }}" autofocus tabindex="1">
 
             <input type="password" id="password" name="_password" placeholder="{{ 'password'|trans({}, 'account') }}" tabindex="2">
 
             <input type="hidden" name="_target_path" value="{{ url(target) }}">
-            <input type="submit" name="login" value="{{ 'my.account.login'|trans({}, 'account') }}" class="button button-black button-right" tabindex="3">
+            <div>
+                <button type="submit" name="login" class="button pull-right" tabindex="3">
+                    {{ 'my.account.login'|trans({}, 'account') }} <i class="fa fa-arrow-right"></i>
+                </button>
+            </div>
         </form>
     </div>
 
-    <div class="grid_3 alpha omega bottom-space">
+    <div class="grid_3 alpha omega">
         <h3>{{ 'password.forgotten'|trans({}, 'account') }}</h3>
-        <p><a href="{{ url('_account_lost_password') }}">{{ 'retrive.password'|trans({}, 'account') }}</a></p>
+        <p><a href="{{ url('_account_lost_password') }}"><i class="fa fa-arrow-right"></i> {{ 'retrive.password'|trans({}, 'account') }}</a></p>
     </div>
 
 </div>
