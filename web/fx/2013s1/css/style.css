@@ -5,7 +5,7 @@
   background: url('/fx/2013s1/../images/icons/da-s7398167b80.png') no-repeat;
 }
 
-.icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-arrow_up, .icons-arrowbox_left, .icons-arrowbox_right, .icons-basket-grey, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-catwalk, .icons-checkout, .icons-close, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-newsletter_2, .icons-pdf, .icons-pinterest, .icons-print, .icons-return, .icons-returnlabel, .icons-search, .icons-shopping-bag, .icons-show, .icons-sizeguide, .icons-trackntrace, .icons-twitter, .icons-video, .icons-zoom, form.search-form:before, footer .footer-menu .newsletter .sprite, ul.tabs li a i, ul.tabs li a.current i, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, .sizeguide, .sprite.trackntrace, .sprite.returnlabel, #mega-basket .basket .sprite, #mini-basket.basket .sprite, #mega-basket .checkout-button, #mega-basket .close, #openNewsletterModal a i, .body-pages .newsletter-form-simple .sprite, .arrow-right, .arrow-left, .sprite.delete, .sprite.close, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.return {
+.icons-sprite, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-arrow_up, .icons-arrowbox_left, .icons-arrowbox_right, .icons-basket-grey, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-catwalk, .icons-checkout, .icons-close, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-newsletter_2, .icons-pdf, .icons-pinterest, .icons-print, .icons-return, .icons-returnlabel, .icons-search, .icons-shopping-bag, .icons-show, .icons-sizeguide, .icons-trackntrace, .icons-twitter, .icons-video, .icons-zoom, form.search-form:before, footer .footer-menu .newsletter .sprite, ul.tabs li a i, ul.tabs li a.current i, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, .body-product .main .productimage-large .prev, .body-product .main .productimage-large .next, .sizeguide, .sprite.trackntrace, .sprite.returnlabel, #mega-basket .basket .sprite, #mini-basket.basket .sprite, #mega-basket .checkout-button, #mega-basket .close, #openNewsletterModal a i, .body-pages .newsletter-form-simple .sprite, .arrow-right, .arrow-left, .sprite.delete, .sprite.close, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.return {
   background: url('/fx/2013s1/../images/icons/icons-s0165dd0372.png') no-repeat;
 }
 
@@ -1154,6 +1154,13 @@ a.video-popper .sprite, #video-player-container a.video .sprite {
 .body-buy-set .header {
   padding: 20px 0;
 }
+.body-buy-set h2 {
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
 
 .body-product .main h1.title,
 .body-product .main h2.title,
@@ -1164,6 +1171,7 @@ a.video-popper .sprite, #video-player-container a.video .sprite {
   line-height: 18px;
   color: #444444;
   clear: both;
+  text-transform: initial;
 }
 .body-product .main .prices {
   padding: 0 0 12px;
@@ -1176,6 +1184,28 @@ a.video-popper .sprite, #video-player-container a.video .sprite {
   padding: 6px 0;
   font-weight: 400;
   font-family: Tahoma, Geneva, Verdana, sans-serif;
+}
+.body-product .main .productimage-large {
+  position: relative;
+}
+.body-product .main .productimage-large .next,
+.body-product .main .productimage-large .prev {
+  position: absolute;
+  top: 50%;
+  display: block;
+  cursor: pointer;
+}
+.body-product .main .productimage-large .prev {
+  left: 0;
+  background-position: 0 -1327px;
+  height: 35px;
+  width: 35px;
+}
+.body-product .main .productimage-large .next {
+  right: 0;
+  background-position: 0 -1362px;
+  height: 35px;
+  width: 35px;
 }
 
 form.buy {
