@@ -1154,7 +1154,7 @@ a.video-popper .sprite, #video-player-container a.video .sprite {
 .body-buy-set .header {
   padding: 20px 0;
 }
-.body-buy-set h2 {
+.body-buy-set .main h2 {
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-size: 20px;
   text-transform: uppercase;
