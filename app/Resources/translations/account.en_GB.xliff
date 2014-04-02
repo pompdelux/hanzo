@@ -501,7 +501,7 @@
             </trans-unit>
             <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>
-                <target><![CDATA[<h3>MY ACCOUNT</h3><p>To give you several advantages at POMPdeLUX you must create an account to continue shopping.<br><br>This will provide you with the opportunity to:<br>
+                <target><![CDATA[<h2>MY ACCOUNT</h2><p>To give you several advantages at POMPdeLUX you must create an account to continue shopping.<br><br>This will provide you with the opportunity to:<br>
 			<ul>
             <li>Check and change your order until it is packet and shipped from our warehouse.</li>
             <li>Change colours and sizes on the selected items which you have ordered.</li>

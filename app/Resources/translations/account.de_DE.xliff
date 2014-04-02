@@ -504,7 +504,7 @@
                 <target><![CDATA[<p>Melden Sie sich hier als Kunde an</p>]]></target>
             </trans-unit><trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>
-                <target><![CDATA[<h3>MEINE SEITE</h3><p>Um alle Vorteile bei POMPdeLUX genießen zu können, müssen Sie sich als Kunde anmelden bevor Sie weitershoppen.<br><br>Dies gibt Ihnen unter anderem die Möglichkeit:<br>
+                <target><![CDATA[<h2>MEINE SEITE</h2><p>Um alle Vorteile bei POMPdeLUX genießen zu können, müssen Sie sich als Kunde anmelden bevor Sie weitershoppen.<br><br>Dies gibt Ihnen unter anderem die Möglichkeit:<br>
 			<ul>
             <li>Ihre Bestellung zu prüfen und zu ändern bis diese gepackt und von unserem Lager gesandt wird.</li>
             <li>Farben und Größen der bestellen Waren zu ändern </li>

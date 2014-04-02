@@ -493,7 +493,7 @@
             </trans-unit>
             <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>
-                <target><![CDATA[<h3>MIJN PAGINA</h3><p>Om je een aantal voordelen bij POMPdeLUX te geven, moet je je eerst registreren als klant. Daarna kun je weer doorgaan met winkelen.<br><br>Dit geeft je onder meer de mogelijkheid om:<br>
+                <target><![CDATA[<h2>MIJN PAGINA</h2><p>Om je een aantal voordelen bij POMPdeLUX te geven, moet je je eerst registreren als klant. Daarna kun je weer doorgaan met winkelen.<br><br>Dit geeft je onder meer de mogelijkheid om:<br>
 			<ul>
             <li>Je bestelling te controleren en te wijzigen totdat die gepakt en verzonden is.</li>
             <li>De kleur en maat van de artikelen die je hebt besteld te wijzigen.</li>

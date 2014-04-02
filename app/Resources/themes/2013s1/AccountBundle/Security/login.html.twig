@@ -36,14 +36,14 @@
 
 {% if store_mode == 'webshop' %}
     <div class="grid_3 alpha omega">
-        <h3>{{ 'new.customer'|trans({}, 'account') }}</h3>
+        <h2>{{ 'new.customer'|trans({}, 'account') }}</h2>
         {{ 'my.account.login.notice'|trans({}, 'account')|raw }}
         <a href="{{ url('_account_create') }}" class="button pull-right">{{ "create.account.link"|trans({}, 'account') }} <i class="fa fa-arrow-right"></i></a>
     </div>
 {% endif %}
 
     <div class="grid_3 alpha omega">
-        <h3>{{ 'existing.customer'|trans({}, 'account') }}</h3>
+        <h2>{{ 'existing.customer'|trans({}, 'account') }}</h2>
         {{ 'my.account.existing.customer.notice'|trans({}, 'account')|raw }}
         <form action="{{ path('login_check') }}" method="post">
             <input type="text" id="username" name="_username" value="{{ last_username }}" placeholder="{{ 'email'|trans({}, 'account') }}" autofocus tabindex="1">

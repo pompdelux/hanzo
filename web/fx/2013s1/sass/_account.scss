@@ -7,12 +7,19 @@
     padding-left: 20px;
     li {
       @include paragraph-style;
+      margin-top: 14px;
     }
   }
-  h3 {
+  h2, h3 {
     font-family: $font-sans;
     font-size: 20px;
     text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  h3 {
+    font-size: 17px;
+    letter-spacing: initial;
   }
   // Right boxes.
   > .grid_3 > .grid_3 {
@@ -33,7 +40,12 @@
     border: none;
     font-family: $font-sans;
     width: 67%;
+    outline: none;
     @include placeholder(#222);
+
+    &:focus {
+      background: #DED8D2;
+    }
   }
 }
 form.create {

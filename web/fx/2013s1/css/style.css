@@ -1919,11 +1919,18 @@ html.touch .product-list .buy-set {
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-weight: normal;
   line-height: 15px;
+  margin-top: 14px;
 }
-#body-login .main h3 {
+#body-login .main h2, #body-login .main h3 {
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-size: 20px;
   text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+#body-login .main h3 {
+  font-size: 17px;
+  letter-spacing: initial;
 }
 #body-login .main > .grid_3 > .grid_3 {
   border-bottom: 2px dotted #8D8D8D;
@@ -1941,6 +1948,7 @@ html.touch .product-list .buy-set {
   border: none;
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   width: 67%;
+  outline: none;
 }
 #body-login .main input::-webkit-input-placeholder {
   /* WebKit browsers */
@@ -1957,6 +1965,9 @@ html.touch .product-list .buy-set {
 #body-login .main input:-ms-input-placeholder {
   /* Internet Explorer 10+ */
   color: #222222;
+}
+#body-login .main input:focus {
+  background: #DED8D2;
 }
 
 form.create label:after {

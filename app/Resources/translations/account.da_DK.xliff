@@ -507,7 +507,7 @@
             <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>
                 <target><![CDATA[
-                <h3>MIN SIDE</h3>
+                <h2>MIN SIDE</h2>
                 <p>For at give dig en række fordele hos POMPdeLUX, skal du oprette dig som kunde inden du kan shoppe videre.<br><br>Det giver dig blandt andet mulighed for at:</p>
                 <ul>
                     <li>Tjekke og rette din ordre, indtil den bliver pakket og sendt fra vores lager.</li>
