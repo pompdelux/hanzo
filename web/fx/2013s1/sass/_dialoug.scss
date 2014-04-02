@@ -90,7 +90,7 @@
     left: 0;
     .inner {
         z-index: 500;
-        position: absolute;
+        position: fixed;
         top: 0;
         right: 0;
         left: 0;
@@ -318,5 +318,37 @@ body.domain-ch #newsletterModal .wrapper form {
     }
     input.button {
         background: url(/fx/images/newsletter_overlay/type2/Tilmeld-knap_CH.png);
+    }
+}
+
+#openNewsletterModal {
+    background: rgb(0, 0, 0); // Fallback
+    background: rgba(0, 0, 0, 0.7);
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 400;
+
+    padding: 1px 3px;
+
+    a {
+        display: block;
+        line-height: 20px;
+        i {
+            display: block;
+            float: left;
+            @include icons-sprite(newsletter_2);
+            height: icons-sprite-height(newsletter_2);
+            width: icons-sprite-width(newsletter_2);
+            margin-top: -2px;
+        }
+        span {
+            float: left;
+            padding: 10px 5px;
+            color: white;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
     }
 }

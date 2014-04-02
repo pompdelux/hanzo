@@ -244,6 +244,9 @@ class BundleController extends CoreController
                     ->filterByLocale($hanzo->get('core.locale'))
                 ->endUse()
                 ->filterByIsActive(TRUE)
+                ->useProductsI18nQuery()
+                    ->filterByLocale($hanzo->get('core.locale'))
+                ->endUse()
                 ->useProductsImagesQuery()
                     ->filterByType('overview')
             ;

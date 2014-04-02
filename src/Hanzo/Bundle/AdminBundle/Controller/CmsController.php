@@ -366,7 +366,26 @@ class CmsController extends CoreController
                 'required'           => false,
                 'translation_domain' => 'admin',
                 'attr'               => ['rows' => 10]
-            ))->getForm();
+            ))
+            ->add('type', 'choice', array(
+                    'label'     => 'Type',
+                    'choices'   => array(
+                        'frontpage'  => 'cms.edit.type.frontpage',
+                        'page'  => 'cms.edit.type.page',
+                        'url'  => 'cms.edit.type.url',
+                        'category'  => 'cms.edit.type.category',
+                        'category_search'  => 'cms.edit.type.category_search',
+                        'newsletter'  => 'cms.edit.type.newsletter',
+                        'advanced_search'  => 'cms.edit.type.advanced_search',
+                        'mannequin'  => 'cms.edit.type.mannequin',
+                        'bycolour'  => 'cms.edit.type.bycolour',
+                        'look'  => 'cms.edit.type.look',
+                        'heading'  => 'cms.edit.type.heading'
+                    ),
+                    'empty_value' => 'Vælg en type',
+                    'required'  => TRUE,
+                    'translation_domain' => 'admin'
+                ))->getForm();
 
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
@@ -660,10 +679,10 @@ class CmsController extends CoreController
                 'access' => ['ROLE_ADMIN'],
                 'title' => 'Rabatkoder',
             ],
-//            'admin_postalcode' => [
-//                'access' => ['ROLE_ADMIN'],
-//                'title' => 'Postnumre',
-//            ],
+            'admin_postalcode' => [
+                'access' => ['ROLE_ADMIN'],
+                'title' => 'Postnumre',
+            ],
             'admin_helpdesk' => [
                 'access' => ['ROLE_ADMIN'],
                 'title' => 'Helpdesk',

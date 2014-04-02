@@ -96,6 +96,9 @@ var rma = (function ($) {
                 .appendTo('body')
                 .submit();
 
+                window.setTimeout(function(){
+                    $('.cached-version').show();
+                }, 3000);
             // Force download of return label with an iframe delayed a couple of
             // seconds.
             if (-1 == jQuery.inArray($('html').data('domainkey'), ['nl', 'salesnl', 'com'])) {
@@ -103,6 +106,8 @@ var rma = (function ($) {
                     $('<iframe src="' + base_url + 'account/consignor/return-label/' + rma_order_id + '" width="1" height="0" class="off" frameborder="0"></iframe>')
                         .appendTo('body');
                 }, 3000);
+            } else {
+                $('.cached-version a.returnlabel').hide();
             }
         }
 

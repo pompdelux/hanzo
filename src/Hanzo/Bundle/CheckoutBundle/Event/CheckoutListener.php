@@ -241,7 +241,8 @@ class CheckoutListener
         }
 
         // Handle payment canceling of old order
-        if ($in_edit && ('gothia' !== $order->getBillingMethod())) {
+        if ($in_edit && !in_array($order->getBillingMethod(), array('gothia', 'gothiade'))) {
+
             $currentVersion = $order->getVersionId();
 
             // If the version number is less than 2 there is no previous version

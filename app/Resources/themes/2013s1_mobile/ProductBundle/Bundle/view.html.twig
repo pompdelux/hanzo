@@ -8,9 +8,9 @@
   {% for product in products %}
     <article class="block bottom-space bordered-bottom">
       <a href="{{ product.url }}" class="left">
-        {{ product_image_tag(product.image, '114x200', {'alt': product.master ~ ', ' ~ product.color}) }}
+        {{ product_image_tag(product.image, '114x200', {'alt': product.title ~ ', ' ~ product.color}) }}
       </a>
-      <h2 class="title">{{ product.master }}</h2>
+      <h2 class="title">{{ product.title }}</h2>
       <div class="prices">
       {% if product.prices.sales is defined %}
         <span class="normal strike">{{ product.prices.normal.price|money }}</span>

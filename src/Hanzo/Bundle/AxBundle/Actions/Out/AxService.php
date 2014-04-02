@@ -222,8 +222,11 @@ class AxService
             $salesLine[]           = $line;
         }
 
-        if ($order->getEventsId()) {
-            $date = date('Ymd');
+        $date = date('Ymd');
+        // Add BAG if is an event or either other, gift, private of type.
+        if ($order->getEventsId() ||
+            (isset($attributes->purchase->type) && in_array($attributes->purchase->type, array('other', 'gift', 'private', 'friend')))
+           ) {
 
             // mellem 19/2'14 og 19/5'14
             if (((20140219 <= $date) && (20140519 >= $date)) ||
@@ -253,13 +256,31 @@ class AxService
                 $line->SalesPrice      = $bag_price;
                 $line->LineDiscPercent = 100;
                 $line->SalesQty        = 1;
-//                $line->InventColorId   = str_replace('Sales', '', $attributes->global->domain_key);
                 $line->InventColorId   = 'Off White';
                 $line->InventSizeId    = 'One Size';
                 $line->SalesUnit       = 'Stk.';
                 $salesLine[]           = $line;
-            }
 
+                // attach voucher between 20140324 and 20140406
+                if ((($date >= 20140324) && ($date <= 20140406)) ||
+                    ( $in_edit &&
+                     ($order->getCreatedAt('Ymd') <= 20140406) &&
+                     ($order->getCreatedAt('Ymd') >= 20140324)
+                    )
+                ) {
+                    $line = new stdClass();
+                    $line->ItemId          = 'VOUCHER';
+                    $line->SalesPrice      = 0.00;
+                    $line->SalesQty        = 1;
+                    $line->InventColorId   = $domain_key;
+                    $line->InventSizeId    = 'One Size';
+                    $line->SalesUnit       = 'Stk.';
+                    $salesLine[]           = $line;
+                }
+            }
+        }
+
+        if ($order->getEventsId()) {
             // attach voucher between 20140324 and 20140406
             if ((($date >= 20140324) && ($date <= 20140406)) ||
                 ($in_edit && ($order->getCreatedAt('Ymd') <= 20140406) && ($order->getCreatedAt('Ymd') >= 20140324))

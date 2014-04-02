@@ -21,18 +21,18 @@ propel:
 consignor:
     shipment_server:
         options:
-              actor: 6202
-              product_concept_id: 94
+              actor: 205
+              product_concept_id: 1961
               service_id: ""
-              key: PompDeluxDE
+              key: PDLCH
               to_address:
-                  name: "POMPdeLUX De GmbH"
-                  address_line_1: "Dammtorstraße 12"
-                  postal_code: "20354"
-                  city: "Hamburg Ust-IdNr."
-                  country_iso2: DE
-                  email: mailde@pompdelux.com
-                  phone: "040-3571 5072"
+                  name: "POMPdeLUX Aps"
+                  address_line_1: "Postfach"
+                  postal_code: "9024"
+                  city: "St. Gallen"
+                  country_iso2: CH
+                  email: mailch@pompdelux.com
+                  phone: "044 201 33 33"
 
 google:
     analytics_code:    UA-1793665-8

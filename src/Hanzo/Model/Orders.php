@@ -404,7 +404,7 @@ class Orders extends BaseOrders
      *
      * Does not set products_id as the external id might clash with a real product + it may contain letters
      *
-     * @param ShippingMethod $shippingMethod
+     * @param ShippingMethods $shippingMethod
      * @param bool $isFee
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
@@ -473,10 +473,10 @@ class Orders extends BaseOrders
     /**
      * set or update a discount line
      *
-     * @param string $name     discount identifier
-     * @param float  $amount   discount amount
-     * @param float  $discount line discount in percent
-     * @return object Orders
+     * @param  string $name     discount identifier
+     * @param  float  $amount   discount amount
+     * @param  string $discount line discount in percent
+     * @return Orders
      */
     public function setDiscountLine($name, $amount, $discount = '')
     {

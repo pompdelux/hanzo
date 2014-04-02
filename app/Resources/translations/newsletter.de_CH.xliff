@@ -52,6 +52,10 @@
           <a href="/de_CH/home/kundendienst/abgs" target="_blank">Durch die Anmeldung akzeptiere ich POMPdeLUX allgemeine Bedingungen.</a>
         ]]></target>
       </trans-unit>
+      <trans-unit id="newsletter.open.text">
+        <source>newsletter.open.text</source>
+        <target>MELDEN SIE SICH FÜR UNSEREN NEWSLETTER AN UND GEWINNEN SIE EINEN GUTSCHEIN IM WERT VON CHF 800,-</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

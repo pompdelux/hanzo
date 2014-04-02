@@ -52,6 +52,10 @@
           <a href="/nl_NL/voorpagina/klantenservice/voorwaarden" target="_blank">Bij het aanmelden accepteer ik de algemene voorwaarden van POMPdeLUX.</a>
         ]]></target>
       </trans-unit>
+      <trans-unit id="newsletter.open.text">
+        <source>newsletter.open.text</source>
+        <target>MELD JE AAN VOOR DE NIEUWSBRIEF EN WIN EEN CADEAUBON T.W.V. EUR 600,-</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

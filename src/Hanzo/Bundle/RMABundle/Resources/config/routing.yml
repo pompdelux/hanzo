@@ -4,3 +4,9 @@ rma_form:
         _controller: RMABundle:Default:form
     requirements:
         order_id: \d+
+
+rma_get:
+    pattern:  /account/order/{order_id}/rma/get/{pdf}
+    defaults:
+        _controller: RMABundle:Default:get
+        pdf: NULL

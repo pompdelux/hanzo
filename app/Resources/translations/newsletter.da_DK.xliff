@@ -52,6 +52,10 @@
             <a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">Ved tilmelding accepterer jeg POMPdeLUX’s generelle vilkår.</a>
         ]]></target>
       </trans-unit>
+      <trans-unit id="newsletter.open.text">
+        <source>newsletter.open.text</source>
+        <target>TILMELD NYHEDSBREV OG VIND VÆRDIKUPON PÅ DKK 5000,-</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

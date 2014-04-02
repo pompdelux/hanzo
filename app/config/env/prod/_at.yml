@@ -21,10 +21,10 @@ propel:
 consignor:
     shipment_server:
         options:
-              actor: 6202
+              actor: 206
               product_concept_id: 94
               service_id: ""
-              key: PompDeluxDE
+              key: PDLAT
               to_address:
                   name: "POMPdeLUX De GmbH"
                   address_line_1: "Dammtorstraße 12"

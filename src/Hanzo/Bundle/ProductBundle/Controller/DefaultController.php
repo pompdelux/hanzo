@@ -87,10 +87,10 @@ class DefaultController extends CoreController
 
         $sorted_images = [];
         foreach ($images as $key => $data) {
-            $sorted_images[$data['type'].$key] = $data;
+            $sorted_images[$data['color'].$data['type'].$key] = $data;
         }
         krsort($sorted_images);
-
+#\Hanzo\Core\Tools::log($sorted_images);
         $all_colors = $colors = $sizes = array();
         $product_ids = array();
         $variants = ProductsQuery::create()->findByMaster($product->getSku());

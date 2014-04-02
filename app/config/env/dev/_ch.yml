@@ -1,22 +1,28 @@
+cms:
+    frontpage: 538
+
 framework:
     default_locale: de_CH
     session:
         cookie_path: '/de_CH'
 
-propel:
-    dbal:
-        default_connection: default
-        connections:
-            default:
-                driver:     %database_ch_driver%
-                user:       %database_ch_user%
-                password:   %database_ch_password%
-                dsn:        mysql:host=%database_ch_host%;dbname=%database_ch_name%
-                options:    {}
-                attributes: {}
-
-cms:
-    frontpage: 538
-
 consignor:
-    shipment_server: ~
+    shipment_server:
+        options:
+              actor: 6202
+              product_concept_id: 94
+              service_id: ""
+              key: PompDeluxDE
+              to_address:
+                  name: "POMPdeLUX De GmbH"
+                  address_line_1: "Dammtorstraße 12"
+                  postal_code: "20354"
+                  city: "Hamburg Ust-IdNr."
+                  country_iso2: DE
+                  email: mailde@pompdelux.com
+                  phone: "040-3571 5072"
+
+google:
+    analytics_code:    UA-1793665-8
+    conversion_id:     972329147
+    site_verification: "3fafy3BakvvcWFWLva7D16MtGZfhuqfx5Bt32sjGms4"

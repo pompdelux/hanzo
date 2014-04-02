@@ -56,7 +56,11 @@
                             "134",
 							"140",
                             "146",
-							"152"
+							"152",
+							"110-116",
+							"122-128",
+							"134-140",
+							"146-152"
                         ]
                     }
                 ]]></target>
@@ -108,11 +112,12 @@
                             ]
                         },
                         "sizes": [
-                            "80",
+                           "80",
 							"86",
                             "92",
 							"98",
-                            "104"
+                            "104",
+							"98-104"
                         ]
                     }
                 ]]></target>
@@ -177,7 +182,11 @@
                             "134",
 							"140",
                             "146",
-							"152"
+							"152",
+							"110-116",
+							"122-128",
+							"134-140",
+							"146-152"
                         ]
                     }
                 ]]></target>
@@ -235,11 +244,12 @@
                             ]
                         },
                         "sizes": [
-                            "80",
+                           "80",
 							"86",
                             "92",
 							"98",
-                            "104"
+                            "104",
+							"98-104"
                         ]
                     }
                 ]]></target>
@@ -275,8 +285,7 @@
                 <source>554.settings</source>
                 <target><![CDATA[
                     {
-                        "category_id": "14",
-                        "colors": "Rose,Green,Olive,Yellow,Blue,Light Blue,Blue Denim,Peach,Off White,White,Grey,Grey Melange,Black,Light Grey Melange,Black,Camel,Ice Blue,Turquoise,Navy"
+                        "category_id": "14"
                     }
                 ]]></target>
             </trans-unit>

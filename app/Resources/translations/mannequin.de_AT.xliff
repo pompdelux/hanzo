@@ -20,7 +20,7 @@
             </trans-unit>
             <trans-unit id="size">
                 <source>size</source>
-                <target>Größe</target>
+                <target>Grösse</target>
             </trans-unit>
             <trans-unit id="total">
                 <source>total</source>
@@ -30,7 +30,7 @@
                 <source>basket.notes</source>
                 <target><![CDATA[
                     <h6>Bitte beachten</h6>
-                    1) Um eine Ware zum Warenkorb hinzuzufügen, müssen Sie zunächst eine Größe wählen <img src="/fx/images/pencil.png" alt=""><br>
+                    1) Um eine Ware zum Warenkorb hinzuzufügen, müssen Sie zunächst eine Grösse wählen <img src="/fx/images/pencil.png" alt=""><br>
                     2) Danach klicken Sie bitte auf Zum Warenkorb hinzufügen <img src="/fx/images/basket_put.png" alt=""><br>
                     3) Wenn Sie eine Ware von der Puppe entfernen möchten, klicken Sie bitte auf Entfernen <img src="/fx/images/delete.png" alt=""><br>
                     4) Wenn Sie die Ware bereits in den Warenkorb gelegt haben, erscheint dieses Symbol <img src="/fx/images/bullet_green.png" alt="">
