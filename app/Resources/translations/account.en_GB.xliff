@@ -539,17 +539,26 @@ After this you can easily continue shopping.<br></p>
                 <source>account.returnlabel.link</source>
                 <target>Print return label</target>
             </trans-unit>
-            <trans-unit id="my.account.legends.header">
+            <!--             <trans-unit id="my.account.legends.header">
                 <source>my.account.legends.header</source>
-                <target></target>
+                <target>The icons mean</target>
             </trans-unit>
             <trans-unit id="my.account.legends">
                 <source>my.account.legends</source>
-                <target>my.account.legends</target>
-            </trans-unit>
+                <target><![CDATA[
+                    <ul>
+                        <li><i class="sprite edit"></i><span>Edit your order</span></li>
+                        <li><i class="sprite delete"></i><span>Delete your order</span></li>
+                        <li><i class="sprite show"></i><span>See you order</span></li>
+                        <li><i class="sprite pdf"></i><span>Invoice (pdf)</span></li>
+                        <li><i class="sprite return"></i><span>Return an item</span></li>
+                        <li><i class="sprite trackntrace"></i><span>Follow your parcel</span></li>
+                    </ul>
+                    ]]></target>
+            </trans-unit> -->
             <trans-unit id="my.account.existing.customer.notice">
                 <source>my.account.existing.customer.notice</source>
-                <target></target>
+                <target>Welcome, we are happy to see you again!</target>
             </trans-unit>
         </body>
     </file>

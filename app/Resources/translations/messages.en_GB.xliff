@@ -196,7 +196,7 @@
             </trans-unit>
             <trans-unit id="buy.set.description">
                 <source>buy.set.description</source>
-                <target></target>
+                <target>Choose the size and colour for each item you wish to put in to your basket.</target>
             </trans-unit>
             <trans-unit id="button.back">
                 <source>button.back</source>

@@ -537,17 +537,27 @@ Haluamme kuitenkin varmistaa, että tässä ei ole tapahtunut virhettä. Pyydäm
                 <source>account.returnlabel.link</source>
                 <target>Tulosta palautusetiketti</target>
             </trans-unit>
-            <trans-unit id="my.account.legends.header">
+           <!--             <trans-unit id="my.account.legends.header">
                 <source>my.account.legends.header</source>
-                <target></target>
+                <target>Ikonien merkitykset</target>
             </trans-unit>
             <trans-unit id="my.account.legends">
                 <source>my.account.legends</source>
-                <target>my.account.legends</target>
-            </trans-unit>
+                <target><![CDATA[
+                    <ul>
+                        <li><i class="sprite edit"></i><span>Muokkaa tilaustasi</span></li>
+                        <li><i class="sprite delete"></i><span>Poista tilauksesi</span></li>
+                        <li><i class="sprite show"></i><span>Katso tilaustasi</span></li>
+                        <li><i class="sprite pdf"></i><span>Lasku (pdf)</span></li>
+                        <li><i class="sprite return"></i><span>Tuotteen palauttaminen</span></li>
+                        <li><i class="sprite returnlabel"></i><span>Palautusetiketti</span></li>
+                        <li><i class="sprite trackntrace"></i><span>Seuraa tilauksen kuljetusta</span></li>
+                    </ul>
+                    ]]></target>
+            </trans-unit> -->
             <trans-unit id="my.account.existing.customer.notice">
                 <source>my.account.existing.customer.notice</source>
-                <target></target>
+                <target>Tervetuloa, mukavaa nähdä sinut jälleen!</target>
             </trans-unit>
         </body>
     </file>
