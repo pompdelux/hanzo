@@ -39,6 +39,8 @@ class MailService
      * @param string $template tis is the template identifier - excluding the .txt and/or .html postfix
      * @param mixed $parameters parameters send to the twig template
      * @param string $locale use to override default (current) locale
+     * @return MailService
+     * @throws \InvalidArgumentException
      */
     public function setMessage($template, $parameters = null, $locale = null)
     {
@@ -85,6 +87,7 @@ class MailService
      * @param string $body
      * @param string $type encoding type
      * @see Swift_Mime_Message::setBody
+     * @return MailService
      */
     public function setBody($body, $type = 'text/plain')
     {
@@ -98,6 +101,7 @@ class MailService
      *
      * @param string $subject
      * @see Swift_Mime_Message::setSubject
+     * @return MailService
      */
     public function setSubject($subject)
     {
@@ -148,8 +152,9 @@ class MailService
 
     /**
      * addPart
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
+     * @param string $message
+     * @param string $mime
+     * @return MailService
      **/
     public function addPart($message,$mime)
     {
@@ -179,5 +184,17 @@ class MailService
         }
 
         return $this->mailer->send($this->swift);
+    }
+
+    /**
+     * Attaches a file to the mail.
+     *
+     * @param $path
+     * @return MailService
+     */
+    public function addAttachment($path)
+    {
+        $this->swift->attach(\Swift_Attachment::fromPath($path));
+        return $this;
     }
 }
