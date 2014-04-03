@@ -56,6 +56,7 @@ class EditUsageCommand extends ContainerAwareCommand
             ->filterByCreatedAt(strtotime('2014-02-20 00:00:01'), \Criteria::GREATER_THAN)
             ->filterByCreatedAt(strtotime('2014-03-17 00:00:01'), \Criteria::LESS_THAN)
             ->filterByState(Orders::STATE_PENDING, \Criteria::GREATER_EQUAL)
+            ->filterByCurrencyCode('DKK')
             ->find()
         ;
 
