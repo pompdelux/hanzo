@@ -46,6 +46,13 @@ class DefaultController extends CoreController
             return $this->redirect($this->generateUrl('_homepage', ['_locale' => $locale]));
         }
 
+        // Add any extra classes from the cms settings.
+        $settings = $page->getSettings(null, false);
+        $class = '';
+        if (isset($settings->class)) {
+            $class = $settings->class;
+        }
+
         // TODO: figure out wether this still is an issue or ....
         $html = $page->getContent();
         $find = '~(background|src)="(../|/)~';
@@ -57,7 +64,7 @@ class DefaultController extends CoreController
 
         return $this->render('CMSBundle:Default:view.html.twig', array(
             'page_type' => $type,
-            'body_classes' => 'body-'.$type . ' body-page-' . $id,
+            'body_classes' => 'body-'.$type . ' body-page-' . $id . ' ' . $class,
             'page' => $page,
             'embedded_content' => $this->getEmbeddedContent($page),
             'parent_id' => ($page->getParentId()) ? $page->getParentId() : $id,
