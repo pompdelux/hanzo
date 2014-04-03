@@ -541,17 +541,27 @@ Um jedoch sicherzustellen, dass dabei keine Fehler aufgetreten sind, möchten wi
                 <source>account.returnlabel.link</source>
                 <target>Rücksendeetikett drucken</target>
             </trans-unit>
-            <trans-unit id="my.account.legends.header">
+            <!--             <trans-unit id="my.account.legends.header">
                 <source>my.account.legends.header</source>
-                <target></target>
+                <target>Das bedeuten die Symbole</target>
             </trans-unit>
             <trans-unit id="my.account.legends">
                 <source>my.account.legends</source>
-                <target>my.account.legends</target>
-            </trans-unit>
+                <target><![CDATA[
+                    <ul>
+                        <li><i class="sprite edit"></i><span>Ihre Bestellung ändern</span></li>
+                        <li><i class="sprite delete"></i><span>Ihre Bestellung löschen</span></li>
+                        <li><i class="sprite show"></i><span>Ihre Bestellung ansehen</span></li>
+                        <li><i class="sprite pdf"></i><span>Rechnung (pdf)</span></li>
+                        <li><i class="sprite return"></i><span>Eine Ware zurücksenden</span></li>
+                        <li><i class="sprite returnlabel"></i><span>Rücksendeetikett</span></li>
+                        <li><i class="sprite trackntrace"></i><span>Ihr Paket nachverfolgen</span></li>
+                    </ul>
+                    ]]></target>
+            </trans-unit> -->
             <trans-unit id="my.account.existing.customer.notice">
                 <source>my.account.existing.customer.notice</source>
-                <target></target>
+                <target>Willkommen, wir freuen uns Sie wiederzusehen!</target>
             </trans-unit>
         </body>
     </file>
