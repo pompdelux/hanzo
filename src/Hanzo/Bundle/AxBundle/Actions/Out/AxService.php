@@ -366,12 +366,9 @@ class AxService
                 break;
 
             case 'pensio':
-                if ('IDEALPAYMENT' == strtoupper($attributes->payment->nature)) {
-                    $custPaymMode = 'iDEAL';
-
-                    if (isset($attributes->payment->transaction_id)) {
-                        $attributes->payment->transact = $attributes->payment->transaction_id;
-                    }
+                $custPaymMode = 'iDEAL';
+                if (isset($attributes->payment->transaction_id)) {
+                    $attributes->payment->transact = $attributes->payment->transaction_id;
                 }
                 break;
         }
