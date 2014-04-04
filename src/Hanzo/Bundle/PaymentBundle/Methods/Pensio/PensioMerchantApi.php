@@ -68,6 +68,7 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
      * @param  Orders $order
      * @param  float $amount
      * @return PensioCallResponse
+     * @throws PaymentApiCallException
      */
     public function capture(Orders $order, $amount)
     {
@@ -92,10 +93,11 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
      * refund order amount
      *
      * @param  Orders $order
-     * @param  float $amount
-     * @return PensioCallResponse
+     * @param  float  $amount
+     * @return PensioCallResponse|false
+     * @throws PaymentApiCallException
      */
-    public function refund(Orders $order, $amount = 0)
+    public function refund(Orders $order, $amount = 0.0)
     {
         $this->checkConnection();
 
@@ -122,7 +124,8 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
      *
      * @param  Customers $customer
      * @param  Orders    $order
-     * @return PensioCallResponse
+     * @return PensioCallResponse|false
+     * @throws PaymentApiCallException
      */
     public function cancel(Customers $customer, Orders $order)
     {
@@ -155,6 +158,7 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
      * @param  Orders  $order                  Orders object
      * @param  Boolean $use_payment_gateway_id if set to true, we use the payment_gateway_id for lookups, not the transaction id
      * @return mixed
+     * @throws PaymentApiCallException
      */
     public function getPayment(Orders $order, $use_payment_gateway_id = false)
     {
