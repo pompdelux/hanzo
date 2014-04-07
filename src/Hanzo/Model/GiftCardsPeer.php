@@ -13,11 +13,12 @@ class GiftCardsPeer extends BaseGiftCardsPeer
      *
      * @param  integer $length Length of the code
      * @param  string  $prefix Code prefix, note this will not count as part of the length
+     * @param  PropelPDO|null
      * @return string
      */
     public static function generateCode($length = 9, $prefix = '', $con = null)
     {
-        // make sure we have a uniq code for every coupon
+        // make sure we have a unique code for every coupon
         while (true) {
             $code = $prefix.substr(str_shuffle(str_shuffle(str_repeat('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789', 2))), 0, $length);
 
