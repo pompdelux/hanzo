@@ -174,7 +174,7 @@ class ECommerceServices extends SoapService
                         }
                         $product->setSku($sku);
 
-                        if (isset($entry->IsVoucher) && $entry->IsVoucher) {
+                        if (isset($item->IsVoucher) && $item->IsVoucher) {
                             $product->setIsVoucher(true);
                         }
 
@@ -251,7 +251,7 @@ class ECommerceServices extends SoapService
                     $product->setWashing($washing);
                 }
 
-                if (isset($entry->IsVoucher) && $entry->IsVoucher) {
+                if (isset($item->IsVoucher) && $item->IsVoucher) {
                     $product->setIsVoucher(true);
                 }
 
