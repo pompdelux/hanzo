@@ -71,7 +71,6 @@ class GiftCardController extends CoreController
                 if ($total < $discount) {
                     $discount = $total;
                     $gift_card->setAmount($gift_card->getAmount() - $total);
-                    $gift_card->save();
 
                     // change the payment method, you should not go through gothia/dibs/... if the total is 0.00
                     $order->setPaymentMethod('gift_card');
