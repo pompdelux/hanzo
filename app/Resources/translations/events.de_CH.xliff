@@ -320,7 +320,7 @@
             </trans-unit>
             <trans-unit id="events.participants.notify_by_sms.label">
                 <source>events.participants.notify_by_sms.label</source>
-                <target>Wünschen Sie eine Erinnerung per SMS?</target>
+                <target></target>
             </trans-unit>
             <trans-unit id="events.participants.has_accepted.label">
                 <source>events.participants.has_accepted.label</source>
