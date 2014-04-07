@@ -2,15 +2,12 @@
 
 namespace Hanzo\Bundle\PaymentBundle\Methods\GiftCard;
 
-use Exception;
-
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\Customers;
 
 use Hanzo\Bundle\PaymentBundle\BasePaymentApi;
 use Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface;
-use Hanzo\Bundle\PaymentBundle\Methods\GiftCard\GiftCardCallResponse;
 
 use Symfony\Component\HttpFoundation\Request;
 
@@ -26,18 +23,19 @@ class GiftCardApi extends BasePaymentApi implements PaymentMethodApiInterface
     /**
      * __construct
      *
-     * @return void
+     * @param array $params
+     * @param array $settings
      */
-    public function __construct( $params, $settings )
+    public function __construct($params, $settings)
     {
         $this->settings = $settings;
         $this->settings['active'] = (isset($this->settings['method_enabled']) && $this->settings['method_enabled'] ? true : false);
     }
 
     /**
-     * call
      * Dummy implementation as this method does not use an api call
-     * @return boolean
+     *
+     * @return $this
      */
     public function call()
     {
@@ -47,9 +45,11 @@ class GiftCardApi extends BasePaymentApi implements PaymentMethodApiInterface
     /**
      * cancel
      *
+     * @param  Customers $customer
+     * @param  Orders    $order
      * @return GiftCardCallResponse
      */
-    public function cancel( Customers $customer, Orders $order )
+    public function cancel(Customers $customer, Orders $order)
     {
         return new GiftCardCallResponse();
     }
@@ -67,16 +67,22 @@ class GiftCardApi extends BasePaymentApi implements PaymentMethodApiInterface
             return false;
         }
 
-        return ( isset($this->settings['active']) ) ? $this->settings['active'] : false;
+        return isset($this->settings['active'])
+            ? $this->settings['active']
+            : false
+        ;
     }
 
     /**
      * getFeeExternalId
-     * @return void
+     * @return int|null
      */
     public function getFeeExternalId()
     {
-        return ( isset($this->settings['fee.id']) ) ? $this->settings['fee.id'] : null;
+        return isset($this->settings['fee.id'])
+            ? $this->settings['fee.id']
+            : null
+        ;
     }
 
     /**
@@ -84,12 +90,13 @@ class GiftCardApi extends BasePaymentApi implements PaymentMethodApiInterface
      *
      * TODO: priority: low, should use shared methods between all payment methods
      *
-     * @return void
+     * @param Request $request
+     * @param Orders  $order
      */
-    public function updateOrderFailed( Request $request, Orders $order)
+    public function updateOrderFailed(Request $request, Orders $order)
     {
-        $order->setState( Orders::STATE_ERROR_PAYMENT );
-        $order->setAttribute( 'paytype' , 'payment', 'gift_card' );
+        $order->setState(Orders::STATE_ERROR_PAYMENT);
+        $order->setAttribute('paytype' , 'payment', 'gift_card');
         $order->save();
     }
 
@@ -98,16 +105,22 @@ class GiftCardApi extends BasePaymentApi implements PaymentMethodApiInterface
      *
      * TODO: priority: low, should use shared methods between all payment methods
      *
-     * @return void
+     * @param Request $request
+     * @param Orders  $order
      */
-    public function updateOrderSuccess( Request $request, Orders $order )
+    public function updateOrderSuccess(Request $request, Orders $order)
     {
-        $order->setState( Orders::STATE_PAYMENT_OK );
-        $order->setAttribute( 'paytype' , 'payment', 'gift_card' );
+        $order->setState(Orders::STATE_PAYMENT_OK);
+        $order->setAttribute('paytype' , 'payment', 'gift_card');
         $order->save();
     }
 
 
+    /**
+     * @param  Orders  $order
+     * @param  Request $request
+     * @return array
+     */
     public function getProcessButton(Orders $order, Request $request)
     {
         return ['url' => 'payment/gift-card/callback'];
