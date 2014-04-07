@@ -129,7 +129,20 @@ class PensioApi extends BasePaymentApi
         ];
 
         foreach ($params as $key) {
-            $order->setAttribute($key, 'payment', $request->get($key));
+            $order->setAttribute($key, 'payment', $request->request->get($key));
+        }
+
+        // map out extra information found in the attached xml document - more might be needed
+        $xml = simplexml_load_string(urldecode($request->request->get('xml')), 'SimpleXMLElement', LIBXML_NOCDATA);
+        if (isset($xml->Body->Transactions->Transaction->PaymentNatureService) ) {
+            $map = [
+                'false' => 0,
+                'true'  => 1,
+            ];
+
+            foreach ($xml->Body->Transactions->Transaction->PaymentNatureService->children() as $child) {
+                $order->setAttribute($child->getName(), 'payment', $map[(string) $child]);
+            }
         }
 
         $order->setAttribute('paytype', 'payment', 'Pensio');
