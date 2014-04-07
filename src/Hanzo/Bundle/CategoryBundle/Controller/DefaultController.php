@@ -466,7 +466,7 @@ class DefaultController extends CoreController
             $image = $record->getProductsImages()->getImage();
 
             // Only use 01.
-            if (preg_match('/_01.jpg/', $image)) {
+            if (preg_match('/_01.[jpg|png]/', $image)) {
                 $product = $record->getProducts();
 
                 $product_ids[] = $product->getId();
