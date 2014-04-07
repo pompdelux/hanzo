@@ -539,17 +539,26 @@ Hierna kun je gewoon doorgaan met winkelen.<br></p>
                 <source>account.returnlabel.link</source>
                 <target>Print retourlabel</target>
             </trans-unit>
-            <trans-unit id="my.account.legends.header">
+           <!--             <trans-unit id="my.account.legends.header">
                 <source>my.account.legends.header</source>
-                <target></target>
+                <target>Hieronder volgt de verklaring van de iconen.</target>
             </trans-unit>
             <trans-unit id="my.account.legends">
                 <source>my.account.legends</source>
-                <target>my.account.legends</target>
-            </trans-unit>
+                <target><![CDATA[
+                    <ul>
+                        <li><i class="sprite edit"></i><span>Wijzig je order</span></li>
+                        <li><i class="sprite delete"></i><span>Wis je order</span></li>
+                        <li><i class="sprite show"></i><span>Bekijk je order</span></li>
+                        <li><i class="sprite pdf"></i><span>Factuur (pdf)</span></li>
+                        <li><i class="sprite return"></i><span>Retoursturen van een artikel</span></li>
+                        <li><i class="sprite trackntrace"></i><span>Volg je bestelling</span></li>
+                    </ul>
+                    ]]></target>
+            </trans-unit> -->
             <trans-unit id="my.account.existing.customer.notice">
                 <source>my.account.existing.customer.notice</source>
-                <target></target>
+                <target>Welkom! Leuk dat je ons weer bezoekt.</target>
             </trans-unit>
         </body>
     </file>

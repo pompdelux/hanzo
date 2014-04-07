@@ -404,17 +404,19 @@ class CouponsController extends CoreController
 
     protected function writeCouponFile($data)
     {
-        $target = $this->getCouponsDir().''.time().'.csv';
+        $db = $this->getRequest()->getSession()->get('database');
+
+        $target = $this->getCouponsDir().''.time().'.'.$db.'.csv';
         return file_put_contents($target, implode("\r\n", $data));
     }
 
     protected function listCouponFiles()
     {
-        $root = $this->get('request')->server->get('DOCUMENT_ROOT');
+        $db = $this->getRequest()->getSession()->get('database');
 
         $files = [];
         $finder = new Finder();
-        $finder->files()->name('*.csv');
+        $finder->files()->name('*.'.$db.'.csv');
 
         foreach ($finder->in($this->getCouponsDir()) as $file) {
             $files[] = [

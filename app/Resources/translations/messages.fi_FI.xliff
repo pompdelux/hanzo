@@ -181,7 +181,7 @@
             </trans-unit>
             <trans-unit id="buy.set.description">
                 <source>buy.set.description</source>
-                <target></target>
+                <target>Valitse toivottu koko ja väri tuotteen kohdalla ja laita ostoskoriin.</target>
             </trans-unit>
             <trans-unit id="button.back">
                 <source>button.back</source>

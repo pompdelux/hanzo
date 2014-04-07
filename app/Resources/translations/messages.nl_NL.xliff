@@ -196,7 +196,7 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
             </trans-unit>
             <trans-unit id="buy.set.description">
                 <source>buy.set.description</source>
-                <target></target>
+                <target>Kies de gewenste maat of kleur van elk artikel dat je graag in je winkelmandje wilt doen.</target>
             </trans-unit>
             <trans-unit id="button.back">
                 <source>button.back</source>
