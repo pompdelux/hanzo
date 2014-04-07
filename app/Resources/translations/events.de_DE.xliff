@@ -264,7 +264,7 @@
             </trans-unit>
             <trans-unit id="events.invite.description.text">
                 <source>events.invite.description.text</source>
-                <target>Gäste zu Ihrer Home Shopping-Veranstaltung einladen. Wenn Sie Handynummer ausfüllen, schicken wir Ihrem Gast eine SMS. Wenn Sie E-Mail-Adresse ausfüllen, schicken wir Ihrem Gast eine E-Mail. Sie können sowohl Handynummer als auch E-Mail-Adresse ausfüllen.</target>
+                <target>Gäste zu Ihrer Home Shopping-Veranstaltung einladen. Wenn Sie E-Mail-Adresse ausfüllen, schicken wir Ihrem Gast eine E-Mail. Sie können sowohl Handynummer als auch E-Mail-Adresse ausfüllen.</target>
             </trans-unit>
             <trans-unit id="events.invite.participant.button">
                 <source>events.invite.participant.button</source>
