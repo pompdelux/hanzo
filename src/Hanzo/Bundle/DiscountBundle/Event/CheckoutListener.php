@@ -101,6 +101,9 @@ class CheckoutListener
 
         $lines = $order->getOrdersLiness();
 
+        $from_ts = new \DateTime();
+        $to_ts   = $from_ts->modify('+3 years');
+
         foreach ($lines as $line) {
             if ($line->getIsVoucher()) {
 
@@ -113,12 +116,12 @@ class CheckoutListener
 
                 $codes = [];
                 for ($i=0;$i<$line->getQuantity();$i++) {
-                    $now = new \DateTime();
+
                     $gift_card = new GiftCards();
                     $gift_card->setCode(GiftCardsPeer::generateCode());
                     $gift_card->setAmount($line->getPrice());
-                    $gift_card->setActiveFrom($now);
-                    $gift_card->setActiveTo($now->modify('+3 years'));
+                    $gift_card->setActiveFrom($from_ts);
+                    $gift_card->setActiveTo($to_ts);
                     $gift_card->setCurrencyCode($order->getCurrencyCode());
                     $gift_card->save();
 
