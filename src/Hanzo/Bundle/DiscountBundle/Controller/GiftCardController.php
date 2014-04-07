@@ -7,14 +7,12 @@ use Symfony\Component\Form\FormError;
 
 use Criteria;
 
-use Hanzo\Core\Hanzo;
-use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
 
 use Hanzo\Model\GiftCards;
 use Hanzo\Model\GiftCardsQuery;
 use Hanzo\Model\OrdersPeer;
-use Hanzo\Model\OrdersToGiftCards;
+//use Hanzo\Model\OrdersToGiftCards;
 
 class GiftCardController extends CoreController
 {
@@ -85,11 +83,12 @@ class GiftCardController extends CoreController
 
                 $gift_card->save();
 
-                $relation = new OrdersToGiftCards();
-                $relation->setOrdersId($order->getId());
-                $relation->setGiftCardsId($gift_card->getId());
-                $relation->setAmount($discount);
-                $relation->save();
+//TODO: maby ?
+//                $relation = new OrdersToGiftCards();
+//                $relation->setOrdersId($order->getId());
+//                $relation->setGiftCardsId($gift_card->getId());
+//                $relation->setAmount($discount);
+//                $relation->save();
 
                 $text = $translator->trans('gift_card', [], 'checkout');
                 $order->setDiscountLine($text, -$discount, 'gift_card.code');
