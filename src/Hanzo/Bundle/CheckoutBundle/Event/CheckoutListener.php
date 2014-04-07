@@ -123,10 +123,8 @@ class CheckoutListener
 
         $shipping_cost = 0.00;
         $shipping_fee  = 0.00;
-        foreach ($order->getOrderLineShipping() as $line)
-        {
-            switch ($line->getType())
-            {
+        foreach ($order->getOrderLineShipping() as $line) {
+            switch ($line->getType()) {
                 case 'shipping':
                     $shipping_cost += $line->getPrice();
                     break;
