@@ -2769,17 +2769,18 @@ div.sub-menu {
 .body-frontpage #main article {
   overflow: hidden;
 }
-.body-frontpage #main article .grid_2 {
-  width: 49%;
+.body-frontpage #main article .grid_2,
+.body-frontpage #main article .grid_4 {
   float: left;
-  clear: left;
+  padding: 0 3px;
+  box-sizing: border-box;
 }
-.body-frontpage #main article .grid_2:nth-child(even) {
-  float: right;
-  clear: none;
+.body-frontpage #main article .grid_2 {
+  width: 50%;
 }
-.body-frontpage #main article .grid_2.grid_mobile-full {
+.body-frontpage #main article .grid_4 {
   width: 100%;
+  clear: both;
 }
 
 .body-pages article div {
