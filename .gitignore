@@ -26,6 +26,7 @@
 /web/images/ordre/
 /web/images/pdf/
 /web/images/products/*.jpg
+/web/images/products/*.png
 /web/images/products/thumb/*.jpg
 /web/images/products/thumb/*.png
 /web/images/products/import/
