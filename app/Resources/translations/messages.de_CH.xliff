@@ -262,7 +262,7 @@
             <trans-unit id="delivery.info" approved="no">
                 <source>delivery.info</source>
                 <target><![CDATA[
-                    <p>Alle Waren werden als Pakete mit der Schweizer Post verschickt. Sie haben die Möglichkeit, Ihr Paket ab Ankunft in die Schweiz bis zum Empfang mit Hilfe von Track & Trace zu verfolgen. Das Paket kann nach ca. 4 Werktage nachdem der Status der Bestellung auf„Meine Seite“ mit „fakturiert“ vermerkt wurde, nachverfolgt werden. Die Lieferzeit für Bestellungen beträgt zwischen 6-10 Werktage. <br>
+                    <p>Alle Waren werden als Pakete mit der Schweizer Post verschickt. Sie haben die Möglichkeit, Ihr Paket ab Ankunft in die Schweiz bis zum Empfang mit Hilfe von Track & Trace zu verfolgen. Das Paket kann nach ca. 4 Werktage nachdem der Status der Bestellung auf„Meine Seite“ mit „fakturiert“ vermerkt wurde, nachverfolgt werden. Die Lieferzeit für Bestellungen beträgt zwischen 6-8 Werktagen.<br>
 Paket: Das Paket wird an Ihre Adresse geliefert und kostet CHF 8,95 (CHF 7,95, wenn Sie die Waren bei einer Homeshopping- oder Tag der offenen Tür-Veranstaltung gekauft haben). Wenn Sie zum Zeitpunkt der Lieferung nicht zu Hause sind, können Sie das Paket anschließend bei der Post abholen.<br><br>Wenn Sie das Paket empfangen haben, sollten Sie die Waren überprüfen. Wenn das Paket und/oder der Inhalt beschädigt sind, wenden Sie sich bitte umgehend an unseren Kundendienst oder an Die Post.
                     </p>
                 ]]></target>
