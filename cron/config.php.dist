@@ -6,8 +6,8 @@
 $_databases = [
     // vip == dk
     'vip' => new PDO('mysql:host=localhost;dbname=hanzo',    'root', null, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")),
-    'de'  => new PDO('mysql:host=localhost;dbname=hanzo_de', 'root', null, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")),
-    'fi'  => new PDO('mysql:host=localhost;dbname=hanzo_fi', 'root', null, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")),
+//    'de'  => new PDO('mysql:host=localhost;dbname=hanzo_de', 'root', null, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")),
+//    'fi'  => new PDO('mysql:host=localhost;dbname=hanzo_fi', 'root', null, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")),
 //    'se' => new PDO('mysql:host=localhost;dbname=hanzo', 'root', null, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")),
 //    'nl' => new PDO('mysql:host=localhost;dbname=hanzo', 'root', null, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")),
 //    'fi' => new PDO('mysql:host=localhost;dbname=hanzo', 'root', null, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")),
