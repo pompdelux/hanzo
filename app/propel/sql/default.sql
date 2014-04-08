@@ -134,6 +134,7 @@ CREATE TABLE `coupons`
     `active_to` DATETIME,
     `is_active` TINYINT(1) DEFAULT 1 NOT NULL,
     `is_used` TINYINT(1) DEFAULT 0 NOT NULL,
+    `is_reusable` TINYINT(1) DEFAULT 0 NOT NULL,
     `created_at` DATETIME,
     `updated_at` DATETIME,
     PRIMARY KEY (`id`),
@@ -141,6 +142,7 @@ CREATE TABLE `coupons`
     INDEX `index3` (`active_from`, `active_to`),
     INDEX `index4` (`is_active`),
     INDEX `index5` (`is_used`),
+    INDEX `index7` (`is_reusable`),
     INDEX `index6` (`currency_code`)
 ) ENGINE=InnoDB;
 

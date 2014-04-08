@@ -99,6 +99,13 @@ abstract class BaseCoupons extends BaseObject implements Persistent
     protected $is_used;
 
     /**
+     * The value for the is_reusable field.
+     * Note: this column has a database default value of: false
+     * @var        boolean
+     */
+    protected $is_reusable;
+
+    /**
      * The value for the created_at field.
      * @var        string
      */
@@ -152,6 +159,7 @@ abstract class BaseCoupons extends BaseObject implements Persistent
     {
         $this->is_active = true;
         $this->is_used = false;
+        $this->is_reusable = false;
     }
 
     /**
@@ -323,6 +331,17 @@ abstract class BaseCoupons extends BaseObject implements Persistent
     {
 
         return $this->is_used;
+    }
+
+    /**
+     * Get the [is_reusable] column value.
+     *
+     * @return boolean
+     */
+    public function getIsReusable()
+    {
+
+        return $this->is_reusable;
     }
 
     /**
@@ -619,6 +638,35 @@ abstract class BaseCoupons extends BaseObject implements Persistent
     } // setIsUsed()
 
     /**
+     * Sets the value of the [is_reusable] column.
+     * Non-boolean arguments are converted using the following rules:
+     *   * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
+     *   * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
+     * Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
+     *
+     * @param boolean|integer|string $v The new value
+     * @return Coupons The current object (for fluent API support)
+     */
+    public function setIsReusable($v)
+    {
+        if ($v !== null) {
+            if (is_string($v)) {
+                $v = in_array(strtolower($v), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+            } else {
+                $v = (boolean) $v;
+            }
+        }
+
+        if ($this->is_reusable !== $v) {
+            $this->is_reusable = $v;
+            $this->modifiedColumns[] = CouponsPeer::IS_REUSABLE;
+        }
+
+
+        return $this;
+    } // setIsReusable()
+
+    /**
      * Sets the value of [created_at] column to a normalized version of the date/time value specified.
      *
      * @param mixed $v string, integer (timestamp), or DateTime value.
@@ -682,6 +730,10 @@ abstract class BaseCoupons extends BaseObject implements Persistent
                 return false;
             }
 
+            if ($this->is_reusable !== false) {
+                return false;
+            }
+
         // otherwise, everything was equal, so return true
         return true;
     } // hasOnlyDefaultValues()
@@ -713,8 +765,9 @@ abstract class BaseCoupons extends BaseObject implements Persistent
             $this->active_to = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
             $this->is_active = ($row[$startcol + 7] !== null) ? (boolean) $row[$startcol + 7] : null;
             $this->is_used = ($row[$startcol + 8] !== null) ? (boolean) $row[$startcol + 8] : null;
-            $this->created_at = ($row[$startcol + 9] !== null) ? (string) $row[$startcol + 9] : null;
-            $this->updated_at = ($row[$startcol + 10] !== null) ? (string) $row[$startcol + 10] : null;
+            $this->is_reusable = ($row[$startcol + 9] !== null) ? (boolean) $row[$startcol + 9] : null;
+            $this->created_at = ($row[$startcol + 10] !== null) ? (string) $row[$startcol + 10] : null;
+            $this->updated_at = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -724,7 +777,7 @@ abstract class BaseCoupons extends BaseObject implements Persistent
             }
             $this->postHydrate($row, $startcol, $rehydrate);
 
-            return $startcol + 11; // 11 = CouponsPeer::NUM_HYDRATE_COLUMNS.
+            return $startcol + 12; // 12 = CouponsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating Coupons object", $e);
@@ -993,6 +1046,9 @@ abstract class BaseCoupons extends BaseObject implements Persistent
         if ($this->isColumnModified(CouponsPeer::IS_USED)) {
             $modifiedColumns[':p' . $index++]  = '`is_used`';
         }
+        if ($this->isColumnModified(CouponsPeer::IS_REUSABLE)) {
+            $modifiedColumns[':p' . $index++]  = '`is_reusable`';
+        }
         if ($this->isColumnModified(CouponsPeer::CREATED_AT)) {
             $modifiedColumns[':p' . $index++]  = '`created_at`';
         }
@@ -1036,6 +1092,9 @@ abstract class BaseCoupons extends BaseObject implements Persistent
                         break;
                     case '`is_used`':
                         $stmt->bindValue($identifier, (int) $this->is_used, PDO::PARAM_INT);
+                        break;
+                    case '`is_reusable`':
+                        $stmt->bindValue($identifier, (int) $this->is_reusable, PDO::PARAM_INT);
                         break;
                     case '`created_at`':
                         $stmt->bindValue($identifier, $this->created_at, PDO::PARAM_STR);
@@ -1213,9 +1272,12 @@ abstract class BaseCoupons extends BaseObject implements Persistent
                 return $this->getIsUsed();
                 break;
             case 9:
-                return $this->getCreatedAt();
+                return $this->getIsReusable();
                 break;
             case 10:
+                return $this->getCreatedAt();
+                break;
+            case 11:
                 return $this->getUpdatedAt();
                 break;
             default:
@@ -1256,8 +1318,9 @@ abstract class BaseCoupons extends BaseObject implements Persistent
             $keys[6] => $this->getActiveTo(),
             $keys[7] => $this->getIsActive(),
             $keys[8] => $this->getIsUsed(),
-            $keys[9] => $this->getCreatedAt(),
-            $keys[10] => $this->getUpdatedAt(),
+            $keys[9] => $this->getIsReusable(),
+            $keys[10] => $this->getCreatedAt(),
+            $keys[11] => $this->getUpdatedAt(),
         );
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
@@ -1330,9 +1393,12 @@ abstract class BaseCoupons extends BaseObject implements Persistent
                 $this->setIsUsed($value);
                 break;
             case 9:
-                $this->setCreatedAt($value);
+                $this->setIsReusable($value);
                 break;
             case 10:
+                $this->setCreatedAt($value);
+                break;
+            case 11:
                 $this->setUpdatedAt($value);
                 break;
         } // switch()
@@ -1368,8 +1434,9 @@ abstract class BaseCoupons extends BaseObject implements Persistent
         if (array_key_exists($keys[6], $arr)) $this->setActiveTo($arr[$keys[6]]);
         if (array_key_exists($keys[7], $arr)) $this->setIsActive($arr[$keys[7]]);
         if (array_key_exists($keys[8], $arr)) $this->setIsUsed($arr[$keys[8]]);
-        if (array_key_exists($keys[9], $arr)) $this->setCreatedAt($arr[$keys[9]]);
-        if (array_key_exists($keys[10], $arr)) $this->setUpdatedAt($arr[$keys[10]]);
+        if (array_key_exists($keys[9], $arr)) $this->setIsReusable($arr[$keys[9]]);
+        if (array_key_exists($keys[10], $arr)) $this->setCreatedAt($arr[$keys[10]]);
+        if (array_key_exists($keys[11], $arr)) $this->setUpdatedAt($arr[$keys[11]]);
     }
 
     /**
@@ -1390,6 +1457,7 @@ abstract class BaseCoupons extends BaseObject implements Persistent
         if ($this->isColumnModified(CouponsPeer::ACTIVE_TO)) $criteria->add(CouponsPeer::ACTIVE_TO, $this->active_to);
         if ($this->isColumnModified(CouponsPeer::IS_ACTIVE)) $criteria->add(CouponsPeer::IS_ACTIVE, $this->is_active);
         if ($this->isColumnModified(CouponsPeer::IS_USED)) $criteria->add(CouponsPeer::IS_USED, $this->is_used);
+        if ($this->isColumnModified(CouponsPeer::IS_REUSABLE)) $criteria->add(CouponsPeer::IS_REUSABLE, $this->is_reusable);
         if ($this->isColumnModified(CouponsPeer::CREATED_AT)) $criteria->add(CouponsPeer::CREATED_AT, $this->created_at);
         if ($this->isColumnModified(CouponsPeer::UPDATED_AT)) $criteria->add(CouponsPeer::UPDATED_AT, $this->updated_at);
 
@@ -1463,6 +1531,7 @@ abstract class BaseCoupons extends BaseObject implements Persistent
         $copyObj->setActiveTo($this->getActiveTo());
         $copyObj->setIsActive($this->getIsActive());
         $copyObj->setIsUsed($this->getIsUsed());
+        $copyObj->setIsReusable($this->getIsReusable());
         $copyObj->setCreatedAt($this->getCreatedAt());
         $copyObj->setUpdatedAt($this->getUpdatedAt());
 
@@ -1812,6 +1881,7 @@ abstract class BaseCoupons extends BaseObject implements Persistent
         $this->active_to = null;
         $this->is_active = null;
         $this->is_used = null;
+        $this->is_reusable = null;
         $this->created_at = null;
         $this->updated_at = null;
         $this->alreadyInSave = false;

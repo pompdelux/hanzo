@@ -27,6 +27,7 @@ use Hanzo\Model\OrdersToCoupons;
  * @method CouponsQuery orderByActiveTo($order = Criteria::ASC) Order by the active_to column
  * @method CouponsQuery orderByIsActive($order = Criteria::ASC) Order by the is_active column
  * @method CouponsQuery orderByIsUsed($order = Criteria::ASC) Order by the is_used column
+ * @method CouponsQuery orderByIsReusable($order = Criteria::ASC) Order by the is_reusable column
  * @method CouponsQuery orderByCreatedAt($order = Criteria::ASC) Order by the created_at column
  * @method CouponsQuery orderByUpdatedAt($order = Criteria::ASC) Order by the updated_at column
  *
@@ -39,6 +40,7 @@ use Hanzo\Model\OrdersToCoupons;
  * @method CouponsQuery groupByActiveTo() Group by the active_to column
  * @method CouponsQuery groupByIsActive() Group by the is_active column
  * @method CouponsQuery groupByIsUsed() Group by the is_used column
+ * @method CouponsQuery groupByIsReusable() Group by the is_reusable column
  * @method CouponsQuery groupByCreatedAt() Group by the created_at column
  * @method CouponsQuery groupByUpdatedAt() Group by the updated_at column
  *
@@ -61,6 +63,7 @@ use Hanzo\Model\OrdersToCoupons;
  * @method Coupons findOneByActiveTo(string $active_to) Return the first Coupons filtered by the active_to column
  * @method Coupons findOneByIsActive(boolean $is_active) Return the first Coupons filtered by the is_active column
  * @method Coupons findOneByIsUsed(boolean $is_used) Return the first Coupons filtered by the is_used column
+ * @method Coupons findOneByIsReusable(boolean $is_reusable) Return the first Coupons filtered by the is_reusable column
  * @method Coupons findOneByCreatedAt(string $created_at) Return the first Coupons filtered by the created_at column
  * @method Coupons findOneByUpdatedAt(string $updated_at) Return the first Coupons filtered by the updated_at column
  *
@@ -73,6 +76,7 @@ use Hanzo\Model\OrdersToCoupons;
  * @method array findByActiveTo(string $active_to) Return Coupons objects filtered by the active_to column
  * @method array findByIsActive(boolean $is_active) Return Coupons objects filtered by the is_active column
  * @method array findByIsUsed(boolean $is_used) Return Coupons objects filtered by the is_used column
+ * @method array findByIsReusable(boolean $is_reusable) Return Coupons objects filtered by the is_reusable column
  * @method array findByCreatedAt(string $created_at) Return Coupons objects filtered by the created_at column
  * @method array findByUpdatedAt(string $updated_at) Return Coupons objects filtered by the updated_at column
  */
@@ -180,7 +184,7 @@ abstract class BaseCouponsQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `code`, `amount`, `min_purchase_amount`, `currency_code`, `active_from`, `active_to`, `is_active`, `is_used`, `created_at`, `updated_at` FROM `coupons` WHERE `id` = :p0';
+        $sql = 'SELECT `id`, `code`, `amount`, `min_purchase_amount`, `currency_code`, `active_from`, `active_to`, `is_active`, `is_used`, `is_reusable`, `created_at`, `updated_at` FROM `coupons` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -591,6 +595,33 @@ abstract class BaseCouponsQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(CouponsPeer::IS_USED, $isUsed, $comparison);
+    }
+
+    /**
+     * Filter the query on the is_reusable column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByIsReusable(true); // WHERE is_reusable = true
+     * $query->filterByIsReusable('yes'); // WHERE is_reusable = true
+     * </code>
+     *
+     * @param     boolean|string $isReusable The value to use as filter.
+     *              Non-boolean arguments are converted using the following rules:
+     *                * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
+     *                * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
+     *              Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return CouponsQuery The current query, for fluid interface
+     */
+    public function filterByIsReusable($isReusable = null, $comparison = null)
+    {
+        if (is_string($isReusable)) {
+            $isReusable = in_array(strtolower($isReusable), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+        }
+
+        return $this->addUsingAlias(CouponsPeer::IS_REUSABLE, $isReusable, $comparison);
     }
 
     /**
