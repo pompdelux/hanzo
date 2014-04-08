@@ -45,7 +45,7 @@
             <th>{{ 'admin.coupons.currency'|trans({}, 'admin') }}</th>
             <th>{{ 'admin.coupons.active_from'|trans({}, 'admin') }}</th>
             <th>{{ 'admin.coupons.active_to'|trans({}, 'admin') }}</th>
-            <th>{{ 'admin.coupon.is_active'|trans({}, 'admin') }}</th>
+            <th>Kan genbruges</th>
             <th>{{ 'admin.coupon.is_used'|trans({}, 'admin') }}</th>
             <th></th>
         </tr>
@@ -73,7 +73,7 @@
                 {% endif %}
                 </td>
                 <td>
-                {% if coupon.isactive %}
+                {% if coupon.isreusable %}
                     {{ 'admin.consultant.yes'|trans({}, 'admin') }}
                 {% else %}
                     {{ 'admin.consultant.no'|trans({}, 'admin') }}
