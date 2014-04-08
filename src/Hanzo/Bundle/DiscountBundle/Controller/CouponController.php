@@ -8,14 +8,13 @@ use Symfony\Component\Form\FormError;
 use Criteria;
 use PropelCollection;
 
-use Hanzo\Core\Hanzo;
-use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
 
 use Hanzo\Model\Coupons;
 use Hanzo\Model\CouponsQuery;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\OrdersToCoupons;
+use Hanzo\Model\OrdersToCouponsPeer;
 
 class CouponController extends CoreController
 {
@@ -71,8 +70,11 @@ class CouponController extends CoreController
 
             } else {
                 $discount = $coupon->getAmount();
-                $coupon->setIsUsed(1);
-                $coupon->save();
+                // only close the coupon if it is not a reusable code.
+                if (false === $coupon->getIsReusable()) {
+                    $coupon->setIsUsed(1);
+                    $coupon->save();
+                }
 
                 $text = $translator->trans('coupon', [], 'checkout');
                 $order->setDiscountLine($text, -$discount, 'coupon.code');
@@ -85,7 +87,9 @@ class CouponController extends CoreController
                 $c->setOrdersId($order->getId());
                 $c->setAmount($discount);
 
-                $collection = new PropelCollection();
+                $criteria = new Criteria();
+                $criteria->add(OrdersToCouponsPeer::ORDERS_ID, $order->getId(), Criteria::NOT_EQUAL);
+                $collection = $order->getOrdersToCouponss($criteria);
                 $collection->prepend($c);
 
                 $order->setOrdersToCouponss($collection);

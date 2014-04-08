@@ -162,8 +162,9 @@ class CouponsController extends CoreController
                 'label' => 'admin.coupon.is_used',
                 'translation_domain' => 'admin',
                 'required' => false,
-            ))
-            ->getForm()
+            ))->add('is_reusable', 'checkbox', [
+                'label' => 'Kan genbruges',
+            ])->getForm()
         ;
 
         if ('POST' === $request->getMethod()) {
@@ -270,7 +271,9 @@ class CouponsController extends CoreController
                 'translation_domain' => 'admin',
                 'required' => false,
                 'attr' => array('class' => 'datepicker')
-            ))->getForm()
+            ))->add('is_reusable', 'checkbox', [
+                'label' => 'Kan genbruges',
+            ])->getForm()
         ;
 
         if ('POST' === $request->getMethod()) {
@@ -293,6 +296,7 @@ class CouponsController extends CoreController
                     $c->setCurrencyCode($post->getCurrencyCode());
                     $c->setIsActive(true);
                     $c->setIsUsed(false);
+                    $c->setIsReusable((bool) $post->getIsReusable());
                     $c->save($this->getDbConnection());
 
                     $data = $c->toArray();

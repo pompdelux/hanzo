@@ -115,6 +115,7 @@
     <column name="active_to" type="TIMESTAMP" required="false"/>
     <column name="is_active" type="BOOLEAN" size="1" required="true" defaultValue="true"/>
     <column name="is_used" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
+    <column name="is_reusable" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
     <unique name="code_UNIQUE">
       <unique-column name="code"/>
     </unique>
@@ -127,6 +128,9 @@
     </index>
     <index name="index5">
       <index-column name="is_used"/>
+    </index>
+    <index name="index7">
+      <index-column name="is_reusable"/>
     </index>
     <index name="index6">
       <index-column name="currency_code"/>

@@ -51,6 +51,7 @@ class CouponsTableMap extends TableMap
         $this->addColumn('active_to', 'ActiveTo', 'TIMESTAMP', false, null, null);
         $this->addColumn('is_active', 'IsActive', 'BOOLEAN', true, 1, true);
         $this->addColumn('is_used', 'IsUsed', 'BOOLEAN', true, 1, false);
+        $this->addColumn('is_reusable', 'IsReusable', 'BOOLEAN', true, 1, false);
         $this->addColumn('created_at', 'CreatedAt', 'TIMESTAMP', false, null, null);
         $this->addColumn('updated_at', 'UpdatedAt', 'TIMESTAMP', false, null, null);
         // validators
