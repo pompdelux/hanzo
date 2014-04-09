@@ -57,6 +57,17 @@
     <behavior name="timestampable" />
   </table>
 
+  <table name="cms_revision">
+    <column name="id" required="true" primaryKey="true" type="INTEGER" />
+    <column name="created_at" primaryKey="true" type="TIMESTAMP" />
+    <column name="publish_on_date" type="TIMESTAMP"/>
+    <column name="revision" required="true" type="OBJECT" />
+    <behavior name="timestampable">
+      <parameter name="create_column" value="created_at" />
+      <parameter name="disable_updated_at" value="true" />
+    </behavior>
+  </table>
+
   <table name="countries">
     <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="name" type="VARCHAR" size="128" required="true"/>
