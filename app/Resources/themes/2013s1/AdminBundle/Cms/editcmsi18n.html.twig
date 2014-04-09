@@ -18,13 +18,19 @@
     </div>
 {% endfor %}
 
+{% if is_revision %}
+    <div class="alert alert-danger">
+        Du redigere nu en gammel version fra {{ is_revision }} af den nuværende side. <a href="{{ path('admin_cms_edit', {'id' : node.id }) }}" class="btn btn-xs btn-danger">Gå til oprindelig version</a>
+    </div>
+{% endif %}
+
     {% form_theme form 'AdminBundle:Form:fields.html.twig' %}
     <form action="{{ path('admin_cms_edit', {'id' : node.id }) }}" method="post" {{ form_enctype(form) }} id="cms-edit-form" class="form-horizontal" role="form">
         {{ form_errors(form) }}
 
         {% if node.getUpdatedBy %}
             <div class="cms-meta">
-                Last update by {{ node.getUpdatedBy }} {{ node.getUpdatedAt|date('d/m/Y H:i') }}
+                Last update by {{ node.getUpdatedBy }} {{ node.getUpdatedAt }}
             </div>
         {% endif %}
 
@@ -34,6 +40,22 @@
             <a class="button btn btn-default" href="{{ path('admin_cms') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
         </div>
     </form>
+
+    {% if revisions %}
+        <ul id="revisions">
+        {% for revision in revisions %}
+            <li>
+                <a class="btn btn-xs btn-default" href="{{ path('admin_cms_edit', {'id' : node.id, 'revision' : revision.CreatedAt }) }}">
+                    <i class="glyphicon glyphicon-cloud-download"></i> Brug version
+                </a>
+                <span class="label label-primary">{{ revision.CreatedAt }} af {{ revision.Revision.UpdatedBy }}</span>
+                {% if is_revision == revision.CreatedAt %}
+                    <i class="glyphicon glyphicon-ok"></i>
+                {% endif %}
+            </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
 
 {% endblock %}
 

@@ -40,6 +40,8 @@ use Hanzo\Bundle\AdminBundle\Form\Type\CmsType;
 use Hanzo\Bundle\AdminBundle\Entity\CmsNode;
 use Hanzo\Bundle\AdminBundle\Event\FilterCMSEvent;
 
+use Symfony\Component\HttpFoundation\Request;
+
 class CmsController extends CoreController
 {
 
@@ -259,11 +261,14 @@ class CmsController extends CoreController
     }
 
 
-    public function editAction($id)
+    public function editAction(Request $request, $id)
     {
         if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_MARKETING") or hasRole("ROLE_ADMIN")'))) {
             return $this->redirect($this->generateUrl('admin'));
         }
+
+        $revision_service = $this->get('cms_revision')->setCon($this->getDbConnection());
+
 
         $languages_availible = LanguagesQuery::Create()
             ->select('locale')
@@ -271,6 +276,11 @@ class CmsController extends CoreController
 
         $node = CmsQuery::create()
             ->findPK($id, $this->getDbConnection());
+
+        if ($request->query->get('revision')) {
+            $revision = $revision_service->getRevision($node, $request->query->get('revision'));
+            $node = $revision ? $revision : $node;
+        }
 
         $translations = CmsI18nQuery::create()
             ->filterById($node->getPrimaryKey())
@@ -421,6 +431,7 @@ class CmsController extends CoreController
             if ($form->isValid()) {
 
                 $node->save($this->getDbConnection());
+                $revision_service->saveRevision($node);
 
                 if($is_active){
                     $cache = $this->get('cache_manager');
@@ -437,6 +448,8 @@ class CmsController extends CoreController
         return $this->render('AdminBundle:Cms:editcmsi18n.html.twig', array(
             'form'      => $form->createView(),
             'node'      => $node,
+            'is_revision' => $request->query->get('revision'),
+            'revisions' => $revision_service->getRevisions($node),
             'languages' => $languages_availible,
             'paths'      => json_encode($parent_paths),
             'database' => $this->getRequest()->getSession()->get('database')
