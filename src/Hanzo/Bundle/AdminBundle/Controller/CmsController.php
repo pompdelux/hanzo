@@ -285,7 +285,7 @@ class CmsController extends CoreController
                 'options' => array(
                     'columns' => array(
                         'title' => array(
-                            'label'              => 'Titel',
+                            'label'              => 'Titel -',
                             'options'            => array(
                                 'translation_domain' => 'admin',
                                 'required' => true,
@@ -293,7 +293,7 @@ class CmsController extends CoreController
                             ),
                         ),
                         'path' => array(
-                            'label'              => 'Sti (URL)',
+                            'label'              => 'Sti (URL) -',
                             'options'            => array(
                                 'translation_domain' => 'admin',
                                 'required'           => true,
@@ -301,7 +301,7 @@ class CmsController extends CoreController
                             ),
                         ),
                         'is_active' => array(
-                            'label'              => 'Online',
+                            'label'              => 'Online -',
                             'options'            => array(
                                 'translation_domain' => 'admin',
                                 // 'label_attr'         => ['class' => 'col-sm-3'],
@@ -309,7 +309,7 @@ class CmsController extends CoreController
                             'type'               => 'checkbox'
                         ),
                         'is_restricted' => array(
-                            'label'              => 'Kræver godkendt IP i offline mode',
+                            'label'              => 'Kræver godkendt IP i offline mode -',
                             'options'            => array(
                                 'translation_domain' => 'admin',
                                 // 'label_attr'         => ['class' => 'col-sm-3'],
@@ -317,7 +317,7 @@ class CmsController extends CoreController
                             'type'               => 'checkbox'
                         ),
                         'on_mobile' => array(
-                            'label'              => 'Vises på mobilsitet',
+                            'label'              => 'Vises på mobilsitet -',
                             'options'            => array(
                                 'translation_domain' => 'admin',
                                 // 'label_attr'         => ['class' => 'col-sm-3'],
@@ -325,7 +325,7 @@ class CmsController extends CoreController
                             'type'               => 'checkbox'
                         ),
                         'content' => array(
-                            'label'              => 'Indhold',
+                            'label'              => 'Indhold -',
                             'options'            => array(
                                 'translation_domain' => 'admin',
                                 'attr'               => ['rows' => 10],
@@ -333,7 +333,7 @@ class CmsController extends CoreController
                             'type'               => 'textarea'
                         ),
                         'settings' => array(
-                            'label'              => 'Indstillinger',
+                            'label'              => 'Indstillinger -',
                             'options'            => array(
                                 'translation_domain' => 'admin',
                                 'attr'               => ['rows' => 10, 'class' => 'form-settings'],
