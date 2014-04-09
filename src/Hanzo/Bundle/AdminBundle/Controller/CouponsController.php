@@ -164,6 +164,7 @@ class CouponsController extends CoreController
                 'required' => false,
             ))->add('is_reusable', 'checkbox', [
                 'label' => 'Kan genbruges',
+                'required' => false,
             ])->getForm()
         ;
 
@@ -273,6 +274,7 @@ class CouponsController extends CoreController
                 'attr' => array('class' => 'datepicker')
             ))->add('is_reusable', 'checkbox', [
                 'label' => 'Kan genbruges',
+                'required' => false,
             ])->getForm()
         ;
 
