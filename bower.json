@@ -29,5 +29,6 @@
     "nanoscroller": "~0.8.0",
     "purl": "~2.3.1",
     "video-js": "~4.5.1"
-  }
+  },
+  "dependencies":{}
 }
