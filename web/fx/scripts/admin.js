@@ -203,6 +203,14 @@
         }
       });
 
+      $('#cms-edit-form .form-settings').on('blur', function(e){
+        try {
+            JSON.parse($(this).val());
+        } catch (exception) {
+          dialoug.error(Translator.get('js:notice'), 'Indstillinger er ikke kompatibelt JSON kode.');
+        }
+      });
+
       // Sortable list for products ind a category
       $('ul#product-list-sort').sortable({
         distance : 30,

@@ -285,7 +285,7 @@ class CmsController extends CoreController
                 'options' => array(
                     'columns' => array(
                         'title' => array(
-                            'label'              => 'cms.edit.label.title',
+                            'label'              => 'Titel',
                             'options'            => array(
                                 'translation_domain' => 'admin',
                                 'required' => true,
@@ -293,7 +293,7 @@ class CmsController extends CoreController
                             ),
                         ),
                         'path' => array(
-                            'label'              => 'cms.edit.label.path',
+                            'label'              => 'Sti (URL)',
                             'options'            => array(
                                 'translation_domain' => 'admin',
                                 'required'           => true,
@@ -301,7 +301,7 @@ class CmsController extends CoreController
                             ),
                         ),
                         'is_active' => array(
-                            'label'              => 'cms.edit.label.is_active',
+                            'label'              => 'Online',
                             'options'            => array(
                                 'translation_domain' => 'admin',
                                 // 'label_attr'         => ['class' => 'col-sm-3'],
@@ -309,7 +309,7 @@ class CmsController extends CoreController
                             'type'               => 'checkbox'
                         ),
                         'is_restricted' => array(
-                            'label'              => 'cms.edit.label.is_restricted',
+                            'label'              => 'Kræver godkendt IP i offline mode',
                             'options'            => array(
                                 'translation_domain' => 'admin',
                                 // 'label_attr'         => ['class' => 'col-sm-3'],
@@ -317,7 +317,7 @@ class CmsController extends CoreController
                             'type'               => 'checkbox'
                         ),
                         'on_mobile' => array(
-                            'label'              => 'cms.edit.label.on_mobile',
+                            'label'              => 'Vises på mobilsitet',
                             'options'            => array(
                                 'translation_domain' => 'admin',
                                 // 'label_attr'         => ['class' => 'col-sm-3'],
@@ -325,7 +325,7 @@ class CmsController extends CoreController
                             'type'               => 'checkbox'
                         ),
                         'content' => array(
-                            'label'              => 'cms.edit.label.content',
+                            'label'              => 'Indhold',
                             'options'            => array(
                                 'translation_domain' => 'admin',
                                 'attr'               => ['rows' => 10],
@@ -333,7 +333,7 @@ class CmsController extends CoreController
                             'type'               => 'textarea'
                         ),
                         'settings' => array(
-                            'label'              => 'cms.edit.label.settings',
+                            'label'              => 'Indstillinger',
                             'options'            => array(
                                 'translation_domain' => 'admin',
                                 'attr'               => ['rows' => 10, 'class' => 'form-settings'],
@@ -388,16 +388,11 @@ class CmsController extends CoreController
 
             $data = $form->getData();
 
+// error_log(print_r($form['form_cmsI18ns'], 1));
 
             $is_active = false;
             // validate settings, must be json encodable data
             foreach ($node->getCmsI18ns() as $translation) {
-                if ($s = $translation->getSettings()) {
-                    $s = json_decode($s);
-                    if (!$s) {
-                        $form->addError(new FormError('Formatet på Indstillinger er ikke korrekt'));
-                    }
-                }
                 $path = trim($translation->getPath(),'/');
                 // Find dublicate URL'er hvis der er angivet en URL
                 $urls = null;
