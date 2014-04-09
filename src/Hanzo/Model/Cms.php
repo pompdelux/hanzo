@@ -7,6 +7,9 @@ use \Hanzo\Core\Hanzo;
 use Hanzo\Model\CmsPeer;
 use Hanzo\Model\om\BaseCms;
 
+use Hanzo\Model\CmsRevision;
+use Hanzo\Model\CmsRevisionQuery;
+
 
 /**
  * Skeleton subclass for representing a row from the 'cms' table.
@@ -66,5 +69,69 @@ class Cms extends BaseCms
         }
 
         return $this;
+    }
+
+    /**
+     * Function to get a certain revision of this page.
+     *
+     * @param int $timestamp a given timestamp of a revision
+     *
+     * @return Cms
+     *    The revision of this Cms
+     */
+    public function getRevision($timestamp = null)
+    {
+        $query = CmsRevisionQuery::create()
+            ->filterById($this->getId());
+        $revision = null;
+        if ($timestamp) {
+            $revision = $query->findByCreatedAt($timestamp);
+        } else {
+            $revision = $query->lastCreatedFirst()->findOne();
+        }
+
+        if ($revision instanceof CmsRevision) {
+            return $revision->getRevision();
+        }
+
+        return null;
+    }
+
+    /**
+     * Return all revision for this CMS.
+     *
+     * @return CmsRevisionCollection The revisions
+     */
+    public function getRevisions()
+    {
+        $revisions = CmsRevisionQuery::create()
+            ->filterById($this->getId())
+            ->orderByCreatedAt()
+            ->find();
+
+        return $revisions;
+    }
+
+    /**
+     * Save a CMS as a revision.
+     *
+     * @param int $timestamp save as a certain revision timestamp. Omit to
+     * create a new one.
+     */
+    public function saveRevision($timestamp = null)
+    {
+        $revision = null;
+
+        if ($timestamp) {
+            $revision = CmsRevisionQuery::create()->fincByCreatedAt($timestamp);
+        }
+
+        if (!$revision instanceof CmsRevision) {
+            $revision = new CmsRevision();
+            $revision->setId($this->getId());
+        }
+
+        $revision->setRevision($this);
+        $revision->save();
     }
 } // Cms
