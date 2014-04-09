@@ -389,8 +389,6 @@ class CmsController extends CoreController
 
             $data = $form->getData();
 
-// error_log(print_r($form['form_cmsI18ns'], 1));
-
             $is_active = false;
             // validate settings, must be json encodable data
             foreach ($node->getCmsI18ns() as $translation) {
