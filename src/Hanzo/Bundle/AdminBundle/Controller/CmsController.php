@@ -282,6 +282,7 @@ class CmsController extends CoreController
                 'label' => 'Oversættelser',
                 'label_attr' => ['class' => 'translations-label'],
                 'required' => false,
+                'type' => new \Symfony\Bridge\Propel1\Form\Type\TranslationType(),
                 'options' => array(
                     'columns' => array(
                         'title' => array(
