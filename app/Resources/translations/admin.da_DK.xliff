@@ -196,7 +196,7 @@
       </trans-unit>
       <trans-unit id="cms.update.failed.dublicate.path">
         <source>cms.update.failed.dublicate.path</source>
-        <target>Siden kunne ikke gemmes. Der findes allerede en aktiv side med det valgte URL!</target>
+        <target>Siden kunne ikke gemmes. Der findes allerede en aktiv side med det valgte URL (%url%)</target>
       </trans-unit>
       <trans-unit id="admin_cms_page_type_page">
         <source>cms.edit.type.page</source>

@@ -14,6 +14,10 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+use Symfony\Bridge\Propel1\Form\Type\TranslationCollectionType;
+use Symfony\Bridge\Propel1\Form\Type\TranslationType;
+use Symfony\Bridge\Propel1\Form\PropelExtension;
+
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
@@ -255,117 +259,91 @@ class CmsController extends CoreController
     }
 
 
-    public function editAction($id, $locale)
+    public function editAction($id)
     {
         if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_MARKETING") or hasRole("ROLE_ADMIN")'))) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
-        if(!$locale) {
-            $locale = LanguagesQuery::create()
-                ->orderById()
-                ->findOne($this->getDbConnection())
-                ->getLocale();
-        }
-
-        $cache = $this->get('cache_manager');
-
         $languages_availible = LanguagesQuery::Create()
+            ->select('locale')
             ->find($this->getDbConnection());
 
         $node = CmsQuery::create()
-            ->joinWithI18n($locale, 'INNER JOIN')
             ->findPK($id, $this->getDbConnection());
 
-        $is_new = false;
-        if ( !($node instanceof Cms)) { // Oversættelsen findes ikke for det givne ID
-            $is_new = true;
+        $translations = CmsI18nQuery::create()
+            ->filterById($node->getPrimaryKey())
+            ->findOneOrCreate($this->getDbConnection());
 
-            // Vi laver en ny Oversættelse. Hent Settings fra en anden og brug dette.
-            $settings = CmsI18nQuery::create()
-                ->where('cms_i18n.settings IS NOT NULL')
-                ->filterById($id)
-                ->findOne($this->getDbConnection())
-            ;
-
-            $node = CmsQuery::create()
-                ->findPk($id, $this->getDbConnection());
-
-
-            if ($node instanceof Cms) {
-                $node->setLocale($locale);
-
-                if($settings instanceof CmsI18n){
-                    $node->setSettings($settings->getSettings(null, true));
-                }
-            }
-        }
-
-        // Vi skal bruge titel på Thread til Path
-        $cms_thread = CmsThreadQuery::create()
-            ->joinWithI18n($locale)
-            ->filterById($node->getCmsThreadId())
-            ->findOne($this->getDbConnection())
-        ;
-        $parent = CmsQuery::create()
-            ->joinWithI18n($locale)
-            ->filterById($node->getParentId())
-            ->findOne($this->getDbConnection())
-        ;
-
-        if ($parent) {
-            $parent_path = $parent->getPath();
-        }
-
-        if ($parent && (empty($parent_path) || $parent_path === '#')){
-            $parent = CmsQuery::create()
-                ->joinWithI18n($locale)
-                ->filterById($parent->getParentId())
-                ->findOne($this->getDbConnection())
-            ;
-        }
-
-        $form = $this->createFormBuilder($node)
-            ->add('locale', 'hidden')
-            ->add('is_active', 'checkbox', array(
-                'label'              => 'cms.edit.label.is_active',
-                'translation_domain' => 'admin',
-                'required'           => false,
-                'label_attr'         => ['class' => 'col-sm-3']
-            ))
-            ->add('is_restricted', 'checkbox', array(
-                'label'              => 'cms.edit.label.is_restricted',
-                'translation_domain' => 'admin',
-                'required'           => false,
-                'label_attr'         => ['class' => 'col-sm-3']
-            ))
-            ->add('on_mobile', 'checkbox', array(
-                'label'              => 'cms.edit.label.on_mobile',
-                'translation_domain' => 'admin',
-                'required'           => false,
-                'label_attr'         => ['class' => 'col-sm-3']
-            ))
-            ->add('title', null, array(
-                'label'              => 'cms.edit.label.title',
-                'required'           => true,
-                'translation_domain' => 'admin'
-            ))
-            ->add('path', null, array(
-                'label'              => 'cms.edit.label.path',
-                'required'           => true,
-                'translation_domain' => 'admin'
-            ))
-            ->add('content', 'textarea', array(
-                'label'              => 'cms.edit.label.content',
-                'required'           => false,
-                'translation_domain' => 'admin',
-                'attr'               => ['rows' => 10]
-            ))
-            ->add('settings', 'textarea', array(
-                'label'              => 'cms.edit.label.settings',
-                'required'           => false,
-                'translation_domain' => 'admin',
-                'attr'               => ['rows' => 10]
+        $form = $this->createFormBuilder($node, ['data_class' => 'Hanzo\Model\Cms'])
+            ->add('cmsI18ns', new \Symfony\Bridge\Propel1\Form\Type\TranslationCollectionType(), array(
+                'languages' => array_values($languages_availible->toArray()),
+                'label' => 'Oversættelser',
+                'label_attr' => ['class' => 'translations-label'],
+                'required' => false,
+                'type' => new \Symfony\Bridge\Propel1\Form\Type\TranslationType(),
+                'options' => array(
+                    'columns' => array(
+                        'title' => array(
+                            'label'              => 'Titel -',
+                            'options'            => array(
+                                'translation_domain' => 'admin',
+                                'required' => true,
+                                'attr' => ['class' => 'form-title'],
+                            ),
+                        ),
+                        'path' => array(
+                            'label'              => 'Sti (URL) -',
+                            'options'            => array(
+                                'translation_domain' => 'admin',
+                                'required'           => true,
+                                'attr' => ['class' => 'form-path'],
+                            ),
+                        ),
+                        'is_active' => array(
+                            'label'              => 'Online -',
+                            'options'            => array(
+                                'translation_domain' => 'admin',
+                                // 'label_attr'         => ['class' => 'col-sm-3'],
+                            ),
+                            'type'               => 'checkbox'
+                        ),
+                        'is_restricted' => array(
+                            'label'              => 'Kræver godkendt IP i offline mode -',
+                            'options'            => array(
+                                'translation_domain' => 'admin',
+                                // 'label_attr'         => ['class' => 'col-sm-3'],
+                            ),
+                            'type'               => 'checkbox'
+                        ),
+                        'on_mobile' => array(
+                            'label'              => 'Vises på mobilsitet -',
+                            'options'            => array(
+                                'translation_domain' => 'admin',
+                                // 'label_attr'         => ['class' => 'col-sm-3'],
+                            ),
+                            'type'               => 'checkbox'
+                        ),
+                        'content' => array(
+                            'label'              => 'Indhold -',
+                            'options'            => array(
+                                'translation_domain' => 'admin',
+                                'attr'               => ['rows' => 10],
+                            ),
+                            'type'               => 'textarea'
+                        ),
+                        'settings' => array(
+                            'label'              => 'Indstillinger -',
+                            'options'            => array(
+                                'translation_domain' => 'admin',
+                                'attr'               => ['rows' => 10, 'class' => 'form-settings'],
+                            ),
+                            'type'               => 'textarea'
+                        ),
+                    ),
+                    'data_class' => 'Hanzo\Model\CmsI18n',
+                )
             ))
             ->add('type', 'choice', array(
                     'label'     => 'Type',
@@ -387,6 +365,23 @@ class CmsController extends CoreController
                     'translation_domain' => 'admin'
                 ))->getForm();
 
+        // Get parents, to find some good URL of the nodes. If no url on parent,
+        // use title.
+        $parents = CmsI18nQuery::create()
+            ->filterById($node->getParentId())
+            ->find($this->getDbConnection())
+        ;
+        $parent_paths = [];
+        foreach ($parents as $parent) {
+            if ($parent instanceof CmsI18n) {
+                if ($parent->getPath() !== '#') {
+                    $parent_paths[$parent->getLocale()] = $parent->getPath();
+                } else {
+                    $parent_paths[$parent->getLocale()] = $parent->getTitle();
+                }
+            }
+        }
+
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
             $form->handleRequest($request);
@@ -394,16 +389,12 @@ class CmsController extends CoreController
 
             $data = $form->getData();
 
-            // validate settings, must be json encodable data
-            if ($s = $data->getSettings()) {
-                $s = json_decode($s);
-                if (!$s) {
-                    $form->addError(new FormError('Formatet på Indstillinger er ikke korrekt'));
-                }
-            }
+// error_log(print_r($form['form_cmsI18ns'], 1));
 
-            if ($form->isValid()) {
-                $path = trim($node->getPath(),'/');
+            $is_active = false;
+            // validate settings, must be json encodable data
+            foreach ($node->getCmsI18ns() as $translation) {
+                $path = trim($translation->getPath(),'/');
                 // Find dublicate URL'er hvis der er angivet en URL
                 $urls = null;
                 if($path !== '#' AND !empty($path)){
@@ -411,37 +402,45 @@ class CmsController extends CoreController
                         ->useCmsI18nQuery()
                             ->filterByIsActive(TRUE)
                             ->filterByPath($path)
+                            ->filterByLocale($translation->getLocale())
                         ->endUse()
                         ->joinCmsI18n(NULL, 'INNER JOIN')
                         ->where('cms.id <> ?', $node->getId())
                         ->findOne($this->getDbConnection())
                     ;
-                }
-
-                // Findes der ikke nogle med samme url-path _eller_ er node IKKE aktiv
-                if( !($urls instanceof Cms) || !$node->getIsActive())
-                {
-                    $node->setPath($path); // Trimmed version
-                    $node->save($this->getDbConnection());
-
-                    if($node->getIsActive()){
-                        $cache->clearRedisCache();
+                    // Findes der ikke nogle med samme url-path _eller_ er node IKKE aktiv
+                    if(($urls instanceof Cms) && $translation->getIsActive()) {
+                        $form->addError(new FormError($this->get('translator')->trans('cms.update.failed.dublicate.path', ['%url%' => $path], 'admin')));
+                    } else {
+                        $translation->setPath($path); // Trimmed version
                     }
-
-                    $this->get('session')->getFlashBag()->add('notice', 'cms.updated');
-                    $this->get('event_dispatcher')->dispatch('cms.node.updated', new FilterCMSEvent($node, $locale, $this->getDbConnection()));
+                    if(!$is_active && $translation->getIsActive()){
+                        $is_active = true;
+                    }
                 }
-                else // Dublicate url-path
-                {
-                    $this->get('session')->getFlashBag()->add('notice', 'cms.update.failed.dublicate.path');
+            }
+
+            if ($form->isValid()) {
+
+                $node->save($this->getDbConnection());
+
+                if($is_active){
+                    $cache = $this->get('cache_manager');
+                    $cache->clearRedisCache();
+                }
+
+                $this->get('session')->getFlashBag()->add('notice', 'cms.updated');
+                foreach ($node->getCmsI18ns() as $translation) {
+                    $this->get('event_dispatcher')->dispatch('cms.node.updated', new FilterCMSEvent($node, $translation->getLocale(), $this->getDbConnection()));
                 }
             }
         }
+
         return $this->render('AdminBundle:Cms:editcmsi18n.html.twig', array(
             'form'      => $form->createView(),
             'node'      => $node,
             'languages' => $languages_availible,
-            'path'      => ($parent)?$parent->getPath():'',
+            'paths'      => json_encode($parent_paths),
             'database' => $this->getRequest()->getSession()->get('database')
         ));
 
