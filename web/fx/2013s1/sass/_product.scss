@@ -79,8 +79,22 @@ a.video-popper, #video-player-container a.video {
 	}
 }
 
+.body-buy-set {
+  .header {
+    padding: 20px 0;
+  }
+  .main h2 {
+    font-family: $font-sans;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+}
+
 .body-product .main{
-	h1.title,
+  h1.title,
+	h2.title,
 	.prices {
 		font-family: $product-title-family;
 		font-size: $product-title-size;
@@ -88,6 +102,7 @@ a.video-popper, #video-player-container a.video {
 		line-height: $product-title-line-height;
 		color: $product-title-color;
     clear: both;
+    text-transform: initial;
 	}
 	.prices{
 		padding: 0 0 12px;

@@ -38,6 +38,7 @@ class PensioController extends CoreController
      * @Template("PaymentBundle:Pensio:form.html.twig")
      * @param  Request $request
      * @return Response
+     * @throws AccessDeniedException
      */
     public function formAction(Request $request)
     {
@@ -67,6 +68,7 @@ class PensioController extends CoreController
      * @Template("PaymentBundle:Pensio:wait.html.twig")
      * @param  Request $request
      * @return Response
+     * @throws AccessDeniedException
      */
     public function waitAction(Request $request)
     {
@@ -98,7 +100,10 @@ class PensioController extends CoreController
      *     checksum
      * ]
      *
-     * @return void
+     * @param Request $request
+     * @param string  $status
+     * @return Response
+     * @throws AccessDeniedException
      */
     public function callbackAction(Request $request, $status = 'failed')
     {
@@ -154,8 +159,8 @@ class PensioController extends CoreController
 
     /**
      * cancelAction
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
+     * @param  Request $request
+     * @return Response
      **/
     public function cancelAction(Request $request)
     {

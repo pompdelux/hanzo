@@ -682,10 +682,10 @@ class CmsController extends CoreController
                 'access' => ['ROLE_ADMIN'],
                 'title' => 'Rabatkoder',
             ],
-//            'admin_postalcode' => [
-//                'access' => ['ROLE_ADMIN'],
-//                'title' => 'Postnumre',
-//            ],
+            'admin_postalcode' => [
+                'access' => ['ROLE_ADMIN'],
+                'title' => 'Postnumre',
+            ],
             'admin_helpdesk' => [
                 'access' => ['ROLE_ADMIN'],
                 'title' => 'Helpdesk',

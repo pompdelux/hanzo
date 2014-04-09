@@ -179,6 +179,10 @@
                 <source>buy.set</source>
                 <target>Osta koko setti</target>
             </trans-unit>
+            <trans-unit id="buy.set.description">
+                <source>buy.set.description</source>
+                <target>Valitse toivottu koko ja väri tuotteen kohdalla ja laita ostoskoriin.</target>
+            </trans-unit>
             <trans-unit id="button.back">
                 <source>button.back</source>
                 <target>Takaisin</target>
@@ -314,6 +318,10 @@
                 <source>back.to.category</source>
                 <target>Takaisin kategoriaan</target>
             </trans-unit>
+            <trans-unit id="back" approved="no">
+                <source>back</source>
+                <target>Takaisin</target>
+            </trans-unit>
             <trans-unit id="on.stock" approved="no">
                 <source>on.stock</source>
                 <target>Varastossa</target>
@@ -349,6 +357,14 @@
             <trans-unit id="product.prices.description" approved="no">
                 <source>product.prices.description</source>
                 <target></target>
+            </trans-unit>
+            <trans-unit id="faceted.show.out.of.stock" approved="no">
+                <source>faceted.show.out.of.stock</source>
+                <target>Näytä myös loppuunmyydyt tuotteet</target>
+            </trans-unit>
+            <trans-unit id="faceted.reset.filter" approved="no">
+                <source>faceted.reset.filter</source>
+                <target>» Puhdista haku</target>
             </trans-unit>
         </body>
     </file>

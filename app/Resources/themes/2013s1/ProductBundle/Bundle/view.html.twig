@@ -7,72 +7,104 @@
 
 {% block content %}
 
-  <h1>{{ 'buy.set'|trans }}</h1>
+  <div class="grid_8 alpha omega history-link">
+    <a href="javascript:history.go(-1)" title="{{ 'back.to.category'|trans }}" class="back-button"><i class="fa fa-arrow-left"></i>  {{ 'back'|trans }}</a>
+  </div>
 
+  <div class="grid_8 alpha omega header">
+    <h2>{{ 'buy.set'|trans }}</h2>
+    {{ 'buy.set.description'|trans }}
+  </div>
 
   {% for product in products %}
-    <article class="block row grid_8">
-      <div class="grid_2 alpha">
-        <a href="{{ product.url }}" class="left">
-          {{ product_image_tag(product.image, '234x410', {'alt': product.master ~ ', ' ~ product.color}) }}
-        </a>
-      </div>
-      <div class="grid_2">
-
-      <h2>{{ product.title }}</h2>
-        <div class="prices">
-        {% if product.prices.sales is defined %}
-          <span class="normal strike">{{ product.prices.normal.price|money }}</span>
-          <span class="discount">{{ product.prices.sales.price|money }}</span>
-        {% else %}
-          <span class="normal">{{ product.prices.normal.price|money }}</span>
-        {% endif %}
+    <div class="block row grid_8 alpha omega container_16">
+      <div class="grid_8 alpha">
+        <div class="grid_4 alpha">
+          <a href="{{ product.url }}" class="left">
+            {{ product_image_tag(product.image, '234x410', {'alt': product.master ~ ', ' ~ product.color}) }}
+          </a>
         </div>
+        <div class="grid_4 omega">
 
-        <form class="buy" action="{{ path('basket_add') }}">
-        {% if product.out_of_stock %}
-          {{ 'out.of.stock'|trans }}
-        {% else %}
-          <div class="options">
-            <label for="size">
-              <span>{{ 'size'|trans }}</span>
-              <select name="size" class="size">
-                <option value="">{{ 'choose'|trans }}</option>
-              {% for option in product.options %}
-                <option value="{{ option }}">{{ option }}</option>
-              {% endfor %}
-              </select>
-            </label>
-            <label for="color">
-              <span>{{ "color"|trans }}:</span>
-              <select name="color" class="color" disabled="disabled">
-                <option value="">{{ 'choose'|trans }}</option>
-              </select>
-            </label>
-            <label for="quantity" class="off">
-              <span>{{ "quantity"|trans }}:</span>
-              <select class="quantity" name="quantity">
-              {% for i in 1..10 %}
-                <option value="{{ i }}">{{ i }}</option>
-              {% endfor %}
-              </select>
-            </label>
+          <h3 class="title">{{ product.title }}<h3>
+          <div class="prices">
+          {% if product.prices.sales is defined %}
+            <span class="normal strike">{{ product.prices.normal.price|money }}</span>
+            <span class="discount">{{ product.prices.sales.price|money }}</span>
+          {% else %}
+            <span class="normal">{{ product.prices.normal.price|money }}</span>
+          {% endif %}
           </div>
 
-          <input type="submit" value="{{ "add.to.basket"|trans }}" class="button button-right button-black">
-          <input type="hidden" name="master" value="{{ product.master }}">
-        {% endif %}
-        </form>
+          <form class="buy" action="{{ path('basket_add') }}">
+          {% if product.out_of_stock %}
+            {{ 'out.of.stock'|trans }}
+          {% else %}
+            <div class="options">
+              <label for="size">
+                <span>{{ 'size'|trans }}</span>
+                <select name="size" class="size">
+                  <option value="">{{ 'choose'|trans }}</option>
+                {% for option in product.options %}
+                  <option value="{{ option }}">{{ option }}</option>
+                {% endfor %}
+                </select>
+              </label>
+              <label for="color">
+                <span>{{ "color"|trans }}:</span>
+                <select name="color" class="color" disabled="disabled">
+                  <option value="">{{ 'choose'|trans }}</option>
+                </select>
+              </label>
+              <label for="quantity" class="off">
+                <span>{{ "quantity"|trans }}:</span>
+                <select class="quantity" name="quantity">
+                {% for i in 1..10 %}
+                  <option value="{{ i }}">{{ i }}</option>
+                {% endfor %}
+                </select>
+              </label>
+            </div>
+            <button type="submit" class="button pull-right">
+              {{ 'add.to.basket'|trans }} <i class="fa fa-arrow-right"></i>
+            </button>
+            <input type="hidden" name="master" value="{{ product.master }}">
+          {% endif %}
+          </form>
+        </div>
       </div>
 
-    </article>
+      <div class="grid_7 push_1 omega">
+        <div class="productdescription tab-box">
+          <ul class="tabs bordered">
+          {% if product.description %}
+            <li><a href=""><i></i>{{ "product.details"|trans }}</a></li>
+          {% endif %}
+          {% if product.washing %}
+            <li><a href=""><i></i>{{ "care.instructions"|trans }}</a></li>
+          {% endif %}
+          </ul>
+
+          <div class="panes">
+          {% if product.description %}
+            <div>
+              <p itemprop="description">{{ product.description|raw }}</p>
+            </div>
+          {% endif %}
+          {% if product.washing %}
+            <div class="off"><p>{{ product.washing|raw }}</p></div>
+          {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
   {% else %}
     huh ?!?
   {% endfor %}
 
 <div class="grid_8 alpha omega">
-  <a href="javascript: history.go(-1);" class="button button-left">{{ 'button.back'|trans }}</a>
-  <a href="{{ url('basket_view', {'_locale' : app.request.locale}) }}" class="button button-right proceed">{{ "proceed"|trans({}, 'checkout') }}</a>
+  <a href="javascript: history.go(-1);" class="button"><i class="fa fa-arrow-left"></i> {{ 'button.back'|trans }}</a>
+  <a href="{{ url('basket_view', {'_locale' : app.request.locale}) }}" class="button proceed pull-right">{{ "proceed"|trans({}, 'checkout') }} <i class="fa fa-arrow-right"></i></a>
 </div>
 
 {% endblock %}

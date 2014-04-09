@@ -256,11 +256,27 @@ class AxService
                 $line->SalesPrice      = $bag_price;
                 $line->LineDiscPercent = 100;
                 $line->SalesQty        = 1;
-//                $line->InventColorId   = str_replace('Sales', '', $attributes->global->domain_key);
                 $line->InventColorId   = 'Off White';
                 $line->InventSizeId    = 'One Size';
                 $line->SalesUnit       = 'Stk.';
                 $salesLine[]           = $line;
+
+                // attach voucher between 20140324 and 20140406
+                if ((($date >= 20140324) && ($date <= 20140406)) ||
+                    ( $in_edit &&
+                     ($order->getCreatedAt('Ymd') <= 20140406) &&
+                     ($order->getCreatedAt('Ymd') >= 20140324)
+                    )
+                ) {
+                    $line = new stdClass();
+                    $line->ItemId          = 'VOUCHER';
+                    $line->SalesPrice      = 0.00;
+                    $line->SalesQty        = 1;
+                    $line->InventColorId   = $domain_key;
+                    $line->InventSizeId    = 'One Size';
+                    $line->SalesUnit       = 'Stk.';
+                    $salesLine[]           = $line;
+                }
             }
         }
 

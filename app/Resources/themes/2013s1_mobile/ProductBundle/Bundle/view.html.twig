@@ -50,7 +50,9 @@
           </label>
         </div>
 
-        <input type="submit" value="{{ "add.to.basket"|trans }}" class="button button-right button-black">
+        <button type="submit" class="button pull-right">
+          {{ 'add.to.basket'|trans }} <i class="fa fa-arrow-right"></i>
+        </button>
         <input type="hidden" name="master" value="{{ product.master }}">
       {% endif %}
       </form>
@@ -60,8 +62,8 @@
   {% endfor %}
 
 <div class="grid_8 alpha omega">
-  <a href="javascript: history.go(-1);" class="button button-left">{{ 'button.back'|trans }}</a>
-  <a href="{{ url('basket_view', {'_locale' : app.request.locale}) }}" class="button button-right proceed">{{ "proceed"|trans({}, 'checkout') }}</a>
+  <a href="javascript: history.go(-1);" class="button"><i class="fa fa-arrow-left"></i> {{ 'button.back'|trans }}</a>
+  <a href="{{ url('basket_view', {'_locale' : app.request.locale}) }}" class="button pull-right proceed">{{ "proceed"|trans({}, 'checkout') }} <i class="fa fa-arrow-right"></i></a>
 </div>
 
 {% endblock %}

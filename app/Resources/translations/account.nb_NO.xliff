@@ -75,7 +75,7 @@
             </trans-unit>
             <trans-unit id="retrive.password">
                 <source>retrive.password</source>
-                <target>» Få passord tilsendt pr. e-post</target>
+                <target>Få passord tilsendt pr. e-post</target>
             </trans-unit>
             <trans-unit id="47">
                 <source>New customer</source>
@@ -493,7 +493,7 @@
             </trans-unit>
             <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>
-                <target><![CDATA[<h3>MIN SIDE</h3><p>For at vi kan gi deg de mange fordelene hos POMPdeLUX, skal du opprette deg som kunde før du kan shoppe videre.<br><br>Det gir deg blant annet mulighet for å:<br>
+                <target><![CDATA[<h2>MIN SIDE</h2><p>For at vi kan gi deg de mange fordelene hos POMPdeLUX, skal du opprette deg som kunde før du kan shoppe videre.<br><br>Det gir deg blant annet mulighet for å:<br>
 			<ul>
             <li>Sjekke og rette din ordre inntil den blir pakket og sendt fra lageret vårt.</li>
             <li>Endre farger og størrelser på de varene du har bestilt.</li>
@@ -538,6 +538,18 @@ Deretter kan du bare shoppe videre.</p><br>
             <trans-unit id="account.returnlabel.link">
                 <source>account.returnlabel.link</source>
                 <target>Print returlapp</target>
+            </trans-unit>
+            <trans-unit id="my.account.legends.header">
+                <source>my.account.legends.header</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="my.account.legends">
+                <source>my.account.legends</source>
+                <target>my.account.legends</target>
+            </trans-unit>
+            <trans-unit id="my.account.existing.customer.notice">
+                <source>my.account.existing.customer.notice</source>
+                <target></target>
             </trans-unit>
         </body>
     </file>

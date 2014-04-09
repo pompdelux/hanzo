@@ -8,13 +8,13 @@ var account = (function($) {
     if ($('form.create').length) {
 
       if ($('#customers_accept:checked').length) {
-          $('form.create input.button').show();
+          $('form.create button[type=submit]').show();
       }
       $('#customers_accept').on('change', function() {
           if ($(this).prop("checked")) {
-              $('form.create input.button').show();
+              $('form.create button[type=submit]').show();
           } else {
-              $('form.create input.button').hide();
+              $('form.create button[type=submit]').hide();
           }
       });
 

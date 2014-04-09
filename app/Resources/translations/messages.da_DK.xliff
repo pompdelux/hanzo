@@ -197,6 +197,10 @@
                 <source>buy.set</source>
                 <target>Køb hele sættet</target>
             </trans-unit>
+            <trans-unit id="buy.set.description">
+                <source>buy.set.description</source>
+                <target>Vælg den ønskede størrelse og farve ud for hver style du ønsker at putte i kurven.</target>
+            </trans-unit>
             <trans-unit id="button.back">
                 <source>button.back</source>
                 <target>Shop videre</target>
@@ -274,7 +278,7 @@
                 <source>return.info</source>
                 <target><![CDATA[
                     <p><b>Sådan gør du.</b><br>
-    Hos POMPdeLUX er det nemt at returnere en vare. Postposen som du modtager dine varer i, er lavet, så du let kan anvende den til tilbagesendelse af varen du ønsker at returnere – følg blot vejledningen på posen. Med denne mulighed, sparer vi dig for at skulle investere i dyr returemballage – til gavn for både dig og miljøet. <br>
+    Hos POMPdeLUX er det nemt at returnere en vare. Postposen som du modtager dine varer i, er lavet, så du let kan anvende den til tilbagesendelse af varen du ønsker at returnere. Med denne mulighed, sparer vi dig for at skulle investere i dyr returemballage – til gavn for både dig og miljøet. <br>
  Da din returvare skal sælges igen, vil det være en stor hjælp at du returnerer varen i original indpakning med hængemærker etc.<br>
  Varerne returneres sammen med en udfyldt returseddel. På retursedlen kan du se, hvilke oplysninger vi skal bruge fra dig, og hvor du skal sende varerne til. Posen afleveres som pakkepost på posthuset eller i en Pakkeboks.<br><br>
     <br>
@@ -343,6 +347,10 @@
                 <source>back.to.category</source>
                 <target>Tilbage til oversigten</target>
             </trans-unit>
+            <trans-unit id="back" approved="no">
+                <source>back</source>
+                <target>Tilbage</target>
+            </trans-unit>
             <trans-unit id="on.stock" approved="no">
                 <source>on.stock</source>
                 <target>På lager</target>
@@ -374,6 +382,14 @@
             <trans-unit id="product.prices.description" approved="no">
                 <source>product.prices.description</source>
                 <target></target>
+            </trans-unit>
+            <trans-unit id="faceted.show.out.of.stock" approved="no">
+                <source>faceted.show.out.of.stock</source>
+                <target>Vis også udsolgte vare</target>
+            </trans-unit>
+            <trans-unit id="faceted.reset.filter" approved="no">
+                <source>faceted.reset.filter</source>
+                <target>» Nulstil filtre</target>
             </trans-unit>
         </body>
     </file>

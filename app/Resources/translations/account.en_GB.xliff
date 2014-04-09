@@ -72,7 +72,7 @@
             </trans-unit>
             <trans-unit id="retrive.password">
                 <source>retrive.password</source>
-                <target>» Receive your password by e-mail</target>
+                <target>Receive your password by e-mail</target>
             </trans-unit>
             <trans-unit id="47">
                 <source>New customer</source>
@@ -501,7 +501,7 @@
             </trans-unit>
             <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>
-                <target><![CDATA[<h3>MY ACCOUNT</h3><p>To give you several advantages at POMPdeLUX you must create an account to continue shopping.<br><br>This will provide you with the opportunity to:<br>
+                <target><![CDATA[<h2>MY ACCOUNT</h2><p>To give you several advantages at POMPdeLUX you must create an account to continue shopping.<br><br>This will provide you with the opportunity to:<br>
 			<ul>
             <li>Check and change your order until it is packet and shipped from our warehouse.</li>
             <li>Change colours and sizes on the selected items which you have ordered.</li>
@@ -538,6 +538,27 @@ After this you can easily continue shopping.<br></p>
             <trans-unit id="account.returnlabel.link">
                 <source>account.returnlabel.link</source>
                 <target>Print return label</target>
+            </trans-unit>
+            <!--             <trans-unit id="my.account.legends.header">
+                <source>my.account.legends.header</source>
+                <target>The icons mean</target>
+            </trans-unit>
+            <trans-unit id="my.account.legends">
+                <source>my.account.legends</source>
+                <target><![CDATA[
+                    <ul>
+                        <li><i class="sprite edit"></i><span>Edit your order</span></li>
+                        <li><i class="sprite delete"></i><span>Delete your order</span></li>
+                        <li><i class="sprite show"></i><span>See you order</span></li>
+                        <li><i class="sprite pdf"></i><span>Invoice (pdf)</span></li>
+                        <li><i class="sprite return"></i><span>Return an item</span></li>
+                        <li><i class="sprite trackntrace"></i><span>Follow your parcel</span></li>
+                    </ul>
+                    ]]></target>
+            </trans-unit> -->
+            <trans-unit id="my.account.existing.customer.notice">
+                <source>my.account.existing.customer.notice</source>
+                <target>Welcome, we are happy to see you again!</target>
             </trans-unit>
         </body>
     </file>

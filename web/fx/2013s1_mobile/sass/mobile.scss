@@ -170,17 +170,18 @@ div.sub-menu {
         }
         article {
             overflow: hidden;
-            .grid_2 {
-                width: 49%;
+            .grid_2,
+            .grid_4 {
                 float: left;
-                clear: left;
-                &:nth-child(even) {
-                    float: right;
-                    clear: none;
-                }
-                &.grid_mobile-full {
-                    width: 100%;
-                }
+                padding: 0 3px;
+                box-sizing: border-box;
+            }
+            .grid_2 {
+                width: 50%;
+            }
+            .grid_4 {
+                width: 100%;
+                clear: both;
             }
         }
     }

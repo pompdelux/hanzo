@@ -194,6 +194,10 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
                 <source>buy.set</source>
                 <target>Koop de hele set</target>
             </trans-unit>
+            <trans-unit id="buy.set.description">
+                <source>buy.set.description</source>
+                <target>Kies de gewenste maat of kleur van elk artikel dat je graag in je winkelmandje wilt doen.</target>
+            </trans-unit>
             <trans-unit id="button.back">
                 <source>button.back</source>
                 <target>Ga door met winkelen</target>
@@ -328,6 +332,10 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
                 <source>back.to.category</source>
                 <target>Terug naar de categorie</target>
             </trans-unit>
+            <trans-unit id="back" approved="no">
+                <source>back</source>
+                <target>Terug</target>
+            </trans-unit>
             <trans-unit id="on.stock" approved="no">
                 <source>on.stock</source>
                 <target>Op voorraad</target>
@@ -363,6 +371,14 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
             <trans-unit id="product.prices.description" approved="no">
                 <source>product.prices.description</source>
                 <target></target>
+            </trans-unit>
+            <trans-unit id="faceted.show.out.of.stock" approved="no">
+                <source>faceted.show.out.of.stock</source>
+                <target>Laat ook uitverkochte artikelen zien</target>
+            </trans-unit>
+            <trans-unit id="faceted.reset.filter" approved="no">
+                <source>faceted.reset.filter</source>
+                <target>» Maak nieuwe selectie</target>
             </trans-unit>
         </body>
     </file>

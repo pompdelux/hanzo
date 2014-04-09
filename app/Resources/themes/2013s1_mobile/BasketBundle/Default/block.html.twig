@@ -55,7 +55,7 @@
         {{ render(controller('EventsBundle:Events:selectEvent')) }}
       {% else %}
         <div class="buttons">
-          <a class="button button-right proceed" href="{{ url('_checkout') }}">{{ "proceed"|trans({}, 'checkout') }}</a>
+          <a class="button proceed pull-right" href="{{ url('_checkout') }}">{{ "proceed"|trans({}, 'checkout') }} <i class="fa fa-arrow-right"></i></a>
         </div>
       {% endif %}
     {% endif %}

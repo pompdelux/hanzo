@@ -7,6 +7,47 @@
     padding-left: 20px;
     li {
       @include paragraph-style;
+      margin-top: 14px;
+    }
+  }
+  h2, h3 {
+    font-family: $font-sans;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  h3 {
+    font-size: 17px;
+    letter-spacing: initial;
+  }
+  // Right boxes.
+  > .grid_3 > .grid_3 {
+    border-bottom: 2px dotted #8D8D8D;
+    padding: 15px 0 10px;
+
+    &:first-child {
+      border-top: 2px dotted #8D8D8D;
+    }
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  input {
+    background: #DED8D2;
+    color: #222;
+    border: none;
+    font-family: $font-sans;
+    width: 67%;
+    outline: none;
+    @include placeholder(#222);
+
+    &:focus {
+      background: #DED8D2;
+    }
+    &:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0px 1000px #DED8D2 inset;
     }
   }
 }
@@ -36,6 +77,26 @@ form.create {
 #body-event form.create .button,
 #body-edit-account form.create .button {
     display: inline-block;
+}
+
+#body-account {
+  .legends {
+    ul {
+      margin: 0;
+      li {
+        display: table;
+        list-style-type: none;
+        padding-bottom: 20px;
+        i {
+          padding-right: 10px;
+        }
+        span, i {
+          display: table-cell;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
 }
 
 .sprite.trackntrace {

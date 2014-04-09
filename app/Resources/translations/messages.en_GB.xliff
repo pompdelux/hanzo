@@ -194,6 +194,10 @@
                 <source>buy.set</source>
                 <target>Buy the set</target>
             </trans-unit>
+            <trans-unit id="buy.set.description">
+                <source>buy.set.description</source>
+                <target>Choose the size and colour for each item you wish to put in to your basket.</target>
+            </trans-unit>
             <trans-unit id="button.back">
                 <source>button.back</source>
                 <target>Back</target>
@@ -269,7 +273,7 @@
             <trans-unit id="return.info" approved="no">
                 <source>return.info</source>
                 <target><![CDATA[
-                    <p>The returned items must be in unused and original packaging with hangtags etc. Socks, leggings and tights can only be returned in unbroken packaging. The postal bag, in which you receive your items, can be reused - see instructions on the bag. Therefore we do not refund any package or postage charges if you only return part of your order. <br>
+                    <p>The returned items must be in unused and original packaging with hangtags etc. Socks, leggings and tights can only be returned in unbroken packaging. The postal bag, in which you receive your items, can be reused. Therefore we do not refund any package or postage charges if you only return part of your order. <br>
       <br>
       Return the items together with a <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_Eng.pdf" target="_blank">returns form</a>. Enter your personal details on the form and post the items to us. You will find our address on the form.</p>
                 ]]></target>
@@ -326,6 +330,10 @@
                 <source>back.to.category</source>
                 <target>Back to category</target>
             </trans-unit>
+            <trans-unit id="back" approved="no">
+                <source>back</source>
+                <target>Back</target>
+            </trans-unit>
             <trans-unit id="on.stock" approved="no">
                 <source>on.stock</source>
                 <target>In stock</target>
@@ -357,6 +365,14 @@
             <trans-unit id="product.prices.description" approved="no">
                 <source>product.prices.description</source>
                 <target></target>
+            </trans-unit>
+            <trans-unit id="faceted.show.out.of.stock" approved="no">
+                <source>faceted.show.out.of.stock</source>
+                <target>Show also sold out items</target>
+            </trans-unit>
+            <trans-unit id="faceted.reset.filter" approved="no">
+                <source>faceted.reset.filter</source>
+                <target>» Reset filters</target>
             </trans-unit>
         </body>
     </file>

@@ -198,6 +198,10 @@
                 <source>buy.set</source>
                 <target>Kjøp hele settet</target>
             </trans-unit>
+            <trans-unit id="buy.set.description">
+                <source>buy.set.description</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="button.back">
                 <source>button.back</source>
                 <target>Tilbake</target>
@@ -331,6 +335,10 @@
                 <source>back.to.category</source>
                 <target>Tilbake til kategori</target>
             </trans-unit>
+            <trans-unit id="back" approved="no">
+                <source>back</source>
+                <target>Tilbake</target>
+            </trans-unit>
             <trans-unit id="on.stock" approved="no">
                 <source>on.stock</source>
                 <target>På lager</target>
@@ -362,6 +370,14 @@
             <trans-unit id="product.prices.description" approved="no">
                 <source>product.prices.description</source>
                 <target></target>
+            </trans-unit>
+            <trans-unit id="faceted.show.out.of.stock" approved="no">
+                <source>faceted.show.out.of.stock</source>
+                <target>Vis også utsolgte varer</target>
+            </trans-unit>
+            <trans-unit id="faceted.reset.filter" approved="no">
+                <source>faceted.reset.filter</source>
+                <target>» Nullstill filtre</target>
             </trans-unit>
         </body>
     </file>

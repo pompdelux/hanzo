@@ -284,7 +284,7 @@
         $(document).trigger('shipping.address.changed');
 
         var m = $('input[name=method]:checked').val();
-        if ((m === "10") || (m === "30") || (m === "70") || (m === "500") || (m === "601") || (m === "800")) { // Private postal
+        if ((m === "10") || (m === "30") || (m === "70") || (m === "500") || (m === "601") || (m === "800") || (m === "900")) { // Private postal
           $('#address-copy').prop('checked', false).parent().removeClass('off');
         } else {
           $('#address-copy').parent().addClass('off');

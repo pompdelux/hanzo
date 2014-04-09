@@ -76,7 +76,7 @@
             </trans-unit>
             <trans-unit id="retrive.password">
                 <source>retrive.password</source>
-                <target>» Få ditt lösenord skickat till din mail</target>
+                <target>Få ditt lösenord skickat till din mail</target>
             </trans-unit>
             <trans-unit id="47">
                 <source>New customer</source>
@@ -489,7 +489,7 @@
             </trans-unit>
             <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>
-                <target><![CDATA[<h3>MIN SIDA</h3><p>För att få tillgång till fördelarna hos POMPdeLUX, ska du upprätta dig som kund, innan du kan shoppa vidare.<br><br>Det ger dig bland annat möjlighet att:<br>
+                <target><![CDATA[<h2>MIN SIDA</h2><p>För att få tillgång till fördelarna hos POMPdeLUX, ska du upprätta dig som kund, innan du kan shoppa vidare.<br><br>Det ger dig bland annat möjlighet att:<br>
 			<ul>
             <li>Kontrollera och ändra i din order, fram tills den blir packad och skickad från vårt lager.</li>
             <li>Ändra färger och storlekar på de varor du har beställt. </li>
@@ -534,6 +534,18 @@ Därefter kan du enkelt shoppa vidare.<br></p>
                 <source>account.returnlabel.link</source>
                 <target>Skriv ut returetikett</target>
             </trans-unit>
-            </body>
+            <trans-unit id="my.account.legends.header">
+                <source>my.account.legends.header</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="my.account.legends">
+                <source>my.account.legends</source>
+                <target>my.account.legends</target>
+            </trans-unit>
+            <trans-unit id="my.account.existing.customer.notice">
+                <source>my.account.existing.customer.notice</source>
+                <target></target>
+            </trans-unit>
+        </body>
     </file>
 </xliff>

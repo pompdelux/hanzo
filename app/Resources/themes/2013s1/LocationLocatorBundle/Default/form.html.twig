@@ -8,7 +8,9 @@
         {{ form_label(form.q) }}
         {{ form_errors(form.q) }}
         {{ form_widget(form.q) }}
-        <input type="submit" value="{{ 'submit.label'|trans([], 'locator') }}" class="button button-right">
+        <button type="submit" class="button pull-right">
+        {{ 'submit.label'|trans({}, 'locator') }} <i class="fa fa-arrow-right"></i>
+        </button>
         {% endspaceless %}
     </div>
     {{ form_rest(form) }}
