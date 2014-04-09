@@ -72,66 +72,23 @@ class Cms extends BaseCms
     }
 
     /**
-     * Function to get a certain revision of this page.
+     * Override base fromArray function. This one allows to get any CmsI18ns.
      *
-     * @param int $timestamp a given timestamp of a revision
+     * @param array  $arr     An array to populate the object from.
+     * @param string $keyType The type of keys the array uses.
      *
-     * @return Cms
-     *    The revision of this Cms
+     * @return void
      */
-    public function getRevision($timestamp = null)
+    public function fromArray($arr, $keyType = BasePeer::TYPE_PHPNAME)
     {
-        $query = CmsRevisionQuery::create()
-            ->filterById($this->getId());
-        $revision = null;
-        if ($timestamp) {
-            $revision = $query->findByCreatedAt($timestamp);
-        } else {
-            $revision = $query->lastCreatedFirst()->findOne();
+        parent::fromArray($arr, $keyType = BasePeer::TYPE_PHPNAME);
+
+        if (isset($arr['CmsI18ns'])) {
+            foreach ($arr['CmsI18ns'] as $cmsI18n) {
+                $translation = new CmsI18n();
+                $translation->fromArray($cmsI18n);
+                $this->addCmsI18n($translation);
+            }
         }
-
-        if ($revision instanceof CmsRevision) {
-            return $revision->getRevision();
-        }
-
-        return null;
-    }
-
-    /**
-     * Return all revision for this CMS.
-     *
-     * @return CmsRevisionCollection The revisions
-     */
-    public function getRevisions()
-    {
-        $revisions = CmsRevisionQuery::create()
-            ->filterById($this->getId())
-            ->orderByCreatedAt()
-            ->find();
-
-        return $revisions;
-    }
-
-    /**
-     * Save a CMS as a revision.
-     *
-     * @param int $timestamp save as a certain revision timestamp. Omit to
-     * create a new one.
-     */
-    public function saveRevision($timestamp = null)
-    {
-        $revision = null;
-
-        if ($timestamp) {
-            $revision = CmsRevisionQuery::create()->fincByCreatedAt($timestamp);
-        }
-
-        if (!$revision instanceof CmsRevision) {
-            $revision = new CmsRevision();
-            $revision->setId($this->getId());
-        }
-
-        $revision->setRevision($this);
-        $revision->save();
     }
 } // Cms
