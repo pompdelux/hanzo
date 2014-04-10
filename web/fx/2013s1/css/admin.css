@@ -1,31 +1,7 @@
-/**
- * _admin.scss
- */
-#product-list-sort li {
-  width: 33%;
-  display: inline-block;
-  float: left;
-  margin-bottom: 30px;
-}
-#product-list-sort li > div {
-  margin: 5px;
-  border: 1px solid #CCC;
-  position: relative;
-}
-#product-list-sort li.placeholder {
-  background: #F5F5F5;
-}
-#product-list-sort li .sort-buttons {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-#product-list-sort li .sort-buttons a {
-  padding: 3px;
-  background: #F5F5F5;
-  cursor: pointer;
-}
-#product-list-sort li .sort-buttons a:hover {
-  text-decoration: none;
-  color: black;
-}
+/** _admin.scss */
+#product-list-sort li { width: 33%; display: inline-block; float: left; margin-bottom: 30px; }
+#product-list-sort li > div { margin: 5px; border: 1px solid #CCC; position: relative; }
+#product-list-sort li.placeholder { background: #F5F5F5; }
+#product-list-sort li .sort-buttons { position: absolute; top: 0; right: 0; }
+#product-list-sort li .sort-buttons a { padding: 3px; background: #F5F5F5; cursor: pointer; }
+#product-list-sort li .sort-buttons a:hover { text-decoration: none; color: black; }
