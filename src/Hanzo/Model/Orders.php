@@ -1373,7 +1373,7 @@ class Orders extends BaseOrders
         }
 
         $data = array();
-        $data['ordes'] = $this->toArray();
+        $data['orders'] = $this->toArray();
         $data['orders_lines'] = $this->getOrdersLiness(null, $con)->toArray();
         $data['orders_attributes'] = $this->getOrdersAttributess(null, $con)->toArray();
         $data['orders_state_log'] = $this->getOrdersStateLogs(null, $con)->toArray();
