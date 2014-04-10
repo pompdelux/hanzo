@@ -17,8 +17,8 @@
                     <ul class="dropdown-menu">
                         {% for domain in domains_availible %}
                             <li>
-                                <a href="{{ path('admin_customers_domain', {'domain_key' : domain.domainkey}) }}"><span class="flag {{ domain.domainkey|replace({'Sales': ''}) }}"></span>{{ domain.domainkey }}
-                                </a></li>
+                                <a href="{{ path('admin_customers_domain', {'domain_key' : domain.domainkey}) }}"><span class="flag {{ domain.domainkey|replace({'Sales': ''}) }}"></span>{{ domain.domainkey }}</a>
+                            </li>
                         {% endfor %}
                     </ul>
                 </li>
@@ -32,6 +32,7 @@
                         <li><a href="{{ path('admin_orders_dead') }}">{{ 'admin.orders.dead_list.link'|trans({}, 'admin') }}</a></li>
                         <li><a href="{{ path('admin_customers') }}">{{ 'admin.customers.list.link'|trans({}, 'admin') }}</a></li>
                         <li><a href="{{ path('admin_consultants') }}">{{ 'admin.consultants.list.link'|trans({}, 'admin') }}</a></li>
+                        <li><a href="{{ path('admin_orders_deleted_order') }}">Find slettede ordre</a></li>
                     </ul>
                 </li>
                 <li>

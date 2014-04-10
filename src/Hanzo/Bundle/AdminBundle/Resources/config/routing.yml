@@ -439,6 +439,17 @@ admin_orders_gothia_cancelreservation:
   defaults: { _controller: AdminBundle:Orders:gothiaCancelReservation, _format: json }
   requirements: { _format: (xml|json), _method: POST  }
 
+admin_orders_deleted_order:
+  pattern:  /admin/orders/deleted/{id}
+  defaults:
+      _controller: AdminBundle:Orders:deletedOrders
+      id: null
+
+admin_orders_recreate_deleted_order:
+  pattern:  /admin/orders/recreate-deleted/
+  defaults:
+      _controller: AdminBundle:Orders:recreatedDeletedOrders
+
 admin_employees:
     pattern:  /admin/employees/{pager}
     defaults:
