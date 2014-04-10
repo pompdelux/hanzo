@@ -873,7 +873,7 @@ class OrdersController extends CoreController
             $collection = new \PropelCollection();
             foreach ($data['orders_versions'] as $item) {
                 $line = new OrdersVersions();
-                $line->fromArray($line);
+                $line->fromArray($item);
                 $collection->prepend($line);
             }
             $order->setOrdersVersionss($collection);
