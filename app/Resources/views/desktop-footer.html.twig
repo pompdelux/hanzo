@@ -8,79 +8,9 @@
   var cdn_url = '{{ cdn }}';
 </script>
 
-<script type="text/javascript" src="{{ asset('bundles/bazingaexposetranslation/js/translator.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset_url('bundles/bazingaexposetranslation/js/translator.min.js') }}"></script>
 <script type="text/javascript" src="{{ url('bazinga_exposetranslation_js', { 'domain_name': 'js', '_locale' : app.request.locale }) }}"></script>
-
-{% javascripts
-  'fx/scripts/jquery.min.js'
-  'fx/scripts/json2.js'
-
-  'fx/scripts/jquerytools/src/tabs/tabs.js'
-  'fx/scripts/jquerytools/src/tabs/tabs.slideshow.js'
-  'fx/scripts/jquerytools/src/overlay/overlay.js'
-  'fx/scripts/jquerytools/src/scrollable/scrollable.js'
-  'fx/scripts/jquerytools/src/scrollable/scrollable.autoscroll.js'
-  'fx/scripts/jquerytools/src/scrollable/scrollable.navigator.js'
-
-  'fx/scripts/tinymce/jscripts/tiny_mce/jquery.tinymce.js'
-  'fx/scripts/colorbox/jquery.colorbox-min.js'
-  'fx/scripts/zoom/jquery.zoom.js'
-  'fx/scripts/accounting/accounting.min.js'
-  'fx/scripts/jquery.formparams.js'
-  'fx/scripts/jquery.cycle2.min.js'
-  'fx/scripts/jquery.fullimagebox.js'
-  'fx/scripts/jquery-cookie/jquery.cookie.js'
-  'fx/scripts/jquery.nanoscroller.min.js'
-
-  'fx/scripts/flowplayer/flowplayer-3.2.11.min.js'
-  'fx/scripts/countdown/jquery.countdown.min.js'
-  'fx/scripts/countdown/jquery.countdown-da.js'
-  'fx/scripts/countdown/jquery.countdown-de.js'
-  'fx/scripts/countdown/jquery.countdown-fi.js'
-  'fx/scripts/countdown/jquery.countdown-nb.js'
-  'fx/scripts/countdown/jquery.countdown-nl.js'
-  'fx/scripts/countdown/jquery.countdown-sv.js'
-  'fx/scripts/video-js/video.js'
-  'fx/scripts/history.js/scripts/bundled/html4+html5/jquery.history.js'
-  'fx/scripts/purl/purl.js'
-
-  'fx/scripts/jaiks/jaiks.min.js'
-  'fx/scripts/yatzy.js'
-  'fx/scripts/dialoug.js'
-  'fx/scripts/colorbox.js'
-  'fx/scripts/flowplayer.js'
-  'fx/scripts/video.js'
-  'fx/scripts/main.js'
-  'fx/scripts/social-buttons.js'
-
-  'fx/scripts/category.js'
-  'fx/scripts/product.js'
-  'fx/scripts/cart.js'
-  'fx/scripts/account.js'
-  'fx/scripts/preload.js'
-  'fx/scripts/checkout.js'
-  'fx/scripts/dibs-process.js'
-  'fx/scripts/wall.js'
-  'fx/scripts/events.js'
-  'fx/scripts/quickorder.js'
-
-  'fx/scripts/newsletter.js'
-
-  'fx/scripts/gothia.js'
-  'fx/scripts/maps.js'
-  'fx/scripts/search.js'
-  'fx/scripts/mannequin.js'
-  'fx/scripts/faq.js'
-  'fx/scripts/rma.js'
-
-  'fx/scripts/jquery.placeholder-enhanced.min.js'
-  'fx/scripts/oldie.js'
-
-  output='fx/cache/2013s1.js'
-  combine=true
-%}
-<script src="{{ asset_url }}"></script>
-{% endjavascripts %}
+<script type="text/javascript" src="{{ asset_url('fx/build/desktop.min.js') }}"></script>
 
 {% if app.environment matches '/^dev_|test_/' %}
 <script src="//code.jquery.com/jquery-migrate-1.2.1.js"></script>
