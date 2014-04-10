@@ -136,7 +136,7 @@
             </trans-unit>
             <trans-unit id="store.address">
                 <source>store.address</source>
-                <target>POMPdeLUX A GmbH · Bauernmarkt 2 · AT – 1010 Wien · CVR-nr 29622035 · mail@pompdelux.dk · (+45) 8678 7879</target>
+                <target>POMPdeLUX A GmbH · Bauernmarkt 2 · AT – 1010 Wien · ATU68522618 · mail@pompdelux.dk · (+45) 8678 7879</target>
             </trans-unit>
             <trans-unit id="order.edit.global.notice">
                 <source>order.edit.global.notice</source>
@@ -168,7 +168,7 @@
                         <li>POMPdeLUX A GmbH</li>
                         <li>Bauernmarkt 2</li>
                         <li>AT – 1010 Wien</li>
-                        <li>CVR-nr 29622035</li>
+                        <li>ATU68522618</li>
                         <li><a href="mailto:mailat@pompdelux.com">mailat@pompdelux.com</a></li>
                         <li>(+45) 8678 7879</li><br>
 						<li>Rücksendung von Waren: POMPdeLUX A GmbH</li>
