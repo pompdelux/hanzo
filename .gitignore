@@ -35,7 +35,6 @@
 /web/images/xhjkpiydjns/
 /web/uploads/
 .sass-cache
-/node_modules
 /.tags*
 /*.sublime-project
 /*.sublime-workspace
