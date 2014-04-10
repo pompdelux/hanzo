@@ -1,0 +1,321 @@
+{% extends '::adminbase.html.twig' %}
+
+{% block content %}
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ path('admin_orders') }}">{{ 'admin.orders.list.link'|trans({}, 'admin') }}</a></li>
+                <li><a href="{{ path('admin_orders_deleted_order', {bulk:1}) }}">Bulk</a></li>
+            </ul>
+
+            <form action="{{ path('admin_orders_deleted_order') }}" method="get" class="navbar-form navbar-right">
+                <div class="form-group">
+                    <input type="text" id="search" name="q" placeholder="{{ 'search.label'|trans({}, 'admin') }}" class="form-control">
+                    <input class="button search btn btn-default" type="submit" value="{{ 'search'|trans({}, 'admin') }}">
+                </div>
+            </form>
+        </div>
+    </nav>
+
+
+    {% for message in app.session.flashbag.get('notice') %}
+        <div class="alert alert-info">
+            {{ message|trans({}, 'admin') }}
+        </div>
+    {% endfor %}
+
+    {% if order is defined %}
+
+        <h1>{{ 'admin.order.header.text'|trans({}, 'admin') }}</h1>
+        <p>{{ 'admin.order.order.description.text'|trans({}, 'admin') }}</p>
+
+        <table id="order" class="table table-striped">
+            <tbody>
+            <tr>
+                <th>{{ 'admin.order.id'|trans({}, 'admin') }}</th>
+                <td>{{ order.Id }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.session_id'|trans({}, 'admin') }}</th>
+                <td>{{ order.SessionId }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.payment_gateway_id'|trans({}, 'admin') }}</th>
+                <td>{{ order.PaymentGatewayId }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.state'|trans({}, 'admin') }}</th>
+                <td>{{ order.State }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.in_edit'|trans({}, 'admin') }}</th>
+                <td>
+                    {% if order.InEdit == 1 %}
+                        {{ 'admin.order.in_edit.active'|trans({}, 'admin') }}
+                    {% else %}
+                        {{ 'admin.order.in_edit.deactive'|trans({}, 'admin') }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.first_name'|trans({}, 'admin') }}</th>
+                <td>{{ order.FirstName }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.last_name'|trans({}, 'admin') }}</th>
+                <td>{{ order.LastName }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.email'|trans({}, 'admin') }}</th>
+                <td>{{ order.Email }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.phone'|trans({}, 'admin') }}</th>
+                <td>{{ order.Phone }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.languages_id'|trans({}, 'admin') }}</th>
+                <td>{{ order.LanguagesId }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.currency_id'|trans({}, 'admin') }}</th>
+                <td>{{ order.CurrencyCode }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.created_at'|trans({}, 'admin') }}</th>
+                <td>{{ order.CreatedAt }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.finished_at'|trans({}, 'admin') }}</th>
+                <td>{{ order.FinishedAt }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.updated_at'|trans({}, 'admin') }}</th>
+                <td>{{ order.UpdatedAt }}</td>
+            </tr>
+            <tr>
+                <th colspan="2" class="table-header">{{ 'admin.order.billing_tablehead'|trans({}, 'admin') }}</th>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.billing_first_name'|trans({}, 'admin') }}</th>
+                <td>{{ order.BillingFirstName }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.billing_last_name'|trans({}, 'admin') }}</th>
+                <td>{{ order.BillingLastName }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.billing_address_line_1'|trans({}, 'admin') }}</th>
+                <td>{{ order.BillingAddressLine1 }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.billing_address_line_2'|trans({}, 'admin') }}</th>
+                <td>{{ order.BillingAddressLine2 }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.billing_postal_code'|trans({}, 'admin') }}</th>
+                <td>{{ order.BillingPostalCode }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.billing_city'|trans({}, 'admin') }}</th>
+                <td>{{ order.BillingCity }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.billing_country'|trans({}, 'admin') }}</th>
+                <td>{{ order.BillingCountry }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.billing_countries_id'|trans({}, 'admin') }}</th>
+                <td>{{ order.BillingCountriesId }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.billing_state_province'|trans({}, 'admin') }}</th>
+                <td>{{ order.BillingStateProvince }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.billing_company_name'|trans({}, 'admin') }}</th>
+                <td>{{ order.BillingCompanyName }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.billing_method'|trans({}, 'admin') }}</th>
+                <td>{{ order.BillingMethod }}</td>
+            </tr>
+            <tr>
+                <th colspan="2" class="table-header">{{ 'admin.order.delivery_tablehead'|trans({}, 'admin') }}</th>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.delivery_first_name'|trans({}, 'admin') }}</th>
+                <td>{{ order.DeliveryFirstName }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.delivery_last_name'|trans({}, 'admin') }}</th>
+                <td>{{ order.DeliveryLastName }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.delivery_address_line_1'|trans({}, 'admin') }}</th>
+                <td>{{ order.DeliveryAddressLine1 }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.delivery_address_line_2'|trans({}, 'admin') }}</th>
+                <td>{{ order.DeliveryAddressLine2 }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.delivery_postal_code'|trans({}, 'admin') }}</th>
+                <td>{{ order.DeliveryPostalCode }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.delivery_city'|trans({}, 'admin') }}</th>
+                <td>{{ order.DeliveryCity }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.delivery_country'|trans({}, 'admin') }}</th>
+                <td>{{ order.DeliveryCountry }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.delivery_countries_id'|trans({}, 'admin') }}</th>
+                <td>{{ order.DeliveryCountriesId }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.delivery_state_province'|trans({}, 'admin') }}</th>
+                <td>{{ order.DeliveryStateProvince }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.delivery_company_name'|trans({}, 'admin') }}</th>
+                <td>{{ order.DeliveryCompanyName }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'admin.order.delivery_method'|trans({}, 'admin') }}</th>
+                <td>{{ order.DeliveryMethod }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h1>{{ 'admin.order.lines.header.text'|trans({}, 'admin') }}</h1>
+
+        {% if order_lines|length > 0 %}
+
+            <p>{{ 'admin.order.lines.description.text'|trans({}, 'admin') }}</p>
+
+            <table id="orders-lines" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>{{ 'admin.order.lines.type'|trans({}, 'admin') }}</th>
+                    <th>{{ 'admin.order.lines.tax'|trans({}, 'admin') }}</th>
+                    <th>{{ 'admin.order.lines.products_id'|trans({}, 'admin') }}</th>
+                    <th>{{ 'admin.order.lines.products_sku'|trans({}, 'admin') }}</th>
+                    <th>{{ 'admin.order.lines.products_name'|trans({}, 'admin') }}</th>
+                    <th>{{ 'admin.order.lines.products_color'|trans({}, 'admin') }}</th>
+                    <th>{{ 'admin.order.lines.products_size'|trans({}, 'admin') }}</th>
+                    <th>{{ 'admin.order.lines.expected_at'|trans({}, 'admin') }}</th>
+                    <th>{{ 'admin.order.lines.price'|trans({}, 'admin') }}</th>
+                    <th>{{ 'admin.order.lines.quantity'|trans({}, 'admin') }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for orderline in order_lines %}
+                    <tr>
+                        <td>{{ orderline.Type }}</td>
+                        <td>{{ orderline.Vat|number_format(2, ',', '.') }}</td>
+                        <td>{{ orderline.ProductsId }}</td>
+                        <td>{{ orderline.ProductsSku }}</td>
+                        <td>{{ orderline.ProductsName }}</td>
+                        <td>{{ orderline.ProductsColor }}</td>
+                        <td>{{ orderline.ProductsSize }}</td>
+                        <td>{{ orderline.ExpectedAt|date("d/m/Y") }}</td>
+                        <td>{{ orderline.Price|number_format(2, ',', '.') }}</td>
+                        <td>{{ orderline.Quantity }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        {% else %}
+
+            <p>{{ 'admin.orders.no.order_lines.text'|trans({}, 'admin') }}</p>
+
+        {% endif %}
+
+        <h1>{{ 'admin.order.attributes.header.text'|trans({}, 'admin') }}</h1>
+
+        {% if order_attributes|length > 0 %}
+
+            <p>{{ 'admin.order.attributes.description.text'|trans({}, 'admin') }}</p>
+
+            <table id="orders-attributes" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>{{ 'admin.orders.lines.ns'|trans({}, 'admin') }}</th>
+                    <th>{{ 'admin.orders.lines.c_key'|trans({}, 'admin') }}</th>
+                    <th>{{ 'admin.orders.lines.c_value'|trans({}, 'admin') }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for order_attribute in order_attributes %}
+                    <tr>
+                        <td>{{ order_attribute.Ns }}</td>
+                        <td>{{ order_attribute.CKey }}</td>
+                        <td>{{ order_attribute.CValue }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+
+            <p>{{ 'admin.orders.no.order_attributes.text'|trans({}, 'admin') }}</p>
+
+        {% endif %}
+
+        {% if order_attachments|length > 0 %}
+
+            <h1>Filer</h1>
+            <p>Faktra og kreditnota.</p>
+            <table id="orders-attachments" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>{{ 'admin.orders.lines.c_key'|trans({}, 'admin') }}</th>
+                    <th>{{ 'admin.orders.lines.c_value'|trans({}, 'admin') }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for attachment in order_attachments %}
+                    <tr>
+                        <td>{{ attachment.key }}</td>
+                        <td><a href="{{ attachment.path }}">{{ attachment.file }}</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        {% endif %}
+
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <h3 class="panel-title">Genopret ordre ?</h3>
+            </div>
+            <div class="panel-body">
+                <form action="{{ path('admin_orders_recreate_deleted_order') }}" method="post" class="form-inline">
+                    <input type="hidden" name="form[ids]" value="{{ order.Id }}">
+                    <div class="form-group">
+                        <label for="elm-recreate">For at genoprette ordre #{{ order.Id }} tryk: </label>
+                        <input class="button btn btn-success" type="submit" value="Genopret" id="elm-recreate">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    {% endif %}
+
+
+    {% if app.request.get('bulk') %}
+        <h2>Bulk genoprettelse</h2>
+        <p>- et ordreid pr linie - og vær sikker på de skal genoprettes!</p>
+        {% form_theme form 'AdminBundle:Form:fields.html.twig' %}
+        <form action="{{ path('admin_orders_recreate_deleted_order') }}" method="post" class="form-horizontal">
+            {{ form_rest(form) }}
+            <div class="form-group">
+                <input class="button btn btn-success" type="submit" value="Genopret">
+            </div>
+        </form>
+    {% endif %}
+
+{% endblock %}
