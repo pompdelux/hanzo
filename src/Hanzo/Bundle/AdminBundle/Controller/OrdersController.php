@@ -441,7 +441,11 @@ class OrdersController extends CoreController
                 )
             )->add('state-to', 'choice',
                 array(
-                    'choices' => Orders::$state_message_map,
+                    'choices' => [
+                        Orders::STATE_PENDING         => 'Order pending',
+                        Orders::STATE_BEING_PROCESSED => 'Order beeing processed',
+                        Orders::STATE_SHIPPED         => 'Order shipped/done',
+                    ],
                     'label' => 'admin.orders.state_to.label',
                     'translation_domain' => 'admin',
                     'required' => true
