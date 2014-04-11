@@ -47,11 +47,13 @@
             <li>
                 {% if loop.first %}
                 <a class="btn btn-xs btn-default {{ (not is_revision) ? 'disabled' : '' }}" href="{{ path('admin_cms_edit', {'id' : node.id}) }}">
+                    <i class="glyphicon glyphicon-cloud-download"></i> Original
+                </a>
                 {% else %}
                 <a class="btn btn-xs btn-default {{ (is_revision == revision.CreatedAt or (loop.first and not is_revision)) ? 'disabled' : '' }}" href="{{ path('admin_cms_edit', {'id' : node.id, 'revision' : revision.CreatedAt }) }}">
-                {% endif %}
                     <i class="glyphicon glyphicon-cloud-download"></i> Brug version
                 </a>
+                {% endif %}
                 <span class="label label-primary">{{ revision.CreatedAt }} af {{ revision.Revision.UpdatedBy }}</span>
                 {% if (is_revision == revision.CreatedAt or (loop.first and not is_revision))  %}
                     <i class="glyphicon glyphicon-ok"></i>

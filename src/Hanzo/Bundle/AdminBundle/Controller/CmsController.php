@@ -395,14 +395,19 @@ class CmsController extends CoreController
 
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
+
+            $is_changed = false;
+
             $form->handleRequest($request);
-            $node->setUpdatedBy($this->get('security.context')->getToken()->getUser()->getUsername());
 
             $data = $form->getData();
 
             $is_active = false;
             // validate settings, must be json encodable data
             foreach ($node->getCmsI18ns() as $translation) {
+                if (!$is_changed && $translation->isModified()) {
+                    $is_changed = true;
+                }
                 $path = trim($translation->getPath(),'/');
                 // Find dublicate URL'er hvis der er angivet en URL
                 $urls = null;
@@ -429,7 +434,14 @@ class CmsController extends CoreController
                 }
             }
 
-            if ($form->isValid()) {
+            if (($is_changed || $node->isModified()) && $form->isValid()) {
+
+
+                $node->setUpdatedBy($this->get('security.context')->getToken()->getUser()->getUsername());
+
+                // Be sure to change the time. If only the i18n fields are changed
+                // it doesnt resolve in an updated time.
+                $node->setUpdatedAt(time());
 
                 $node->save($this->getDbConnection());
                 $revision_service->saveRevision($node);
