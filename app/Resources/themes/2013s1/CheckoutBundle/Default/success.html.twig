@@ -32,22 +32,24 @@
   <img height="1" width="1" border="0" src="//www.googleadservices.com/pagead/conversion/1056677768/?label=purchase&amp;guid=ON&amp;script=0"/>
 </noscript>
 
-{% if app.request.locale == 'de_DE' %}
-<script type="text/javascript">
-  var google_conversion_id       = 976104979;
-  var google_conversion_language = "en";
-  var google_conversion_format   = "3";
-  var google_conversion_color    = "ffffff";
-  var google_conversion_label    = "-A9aCK26vQkQk9y40QM";
-  var google_conversion_value    = 900;
-  var google_remarketing_only    = false;
-</script>
-<script src="//www.googleadservices.com/pagead/conversion.js"></script>
-<noscript>
-  <img height="1" width="1" border="0" src="//www.googleadservices.com/pagead/conversion/976104979/?value=900&amp;label=-A9aCK26vQkQk9y40QM&amp;guid=ON&amp;script=0"/>
-</noscript>
-{% endif %}
+{# moved to google_addwords_conversion_tag - see config/prod/_de.yml #}
+{#{% if app.request.locale == 'de_DE' %}#}
+{#<script type="text/javascript">#}
+  {#var google_conversion_id       = 976104979;#}
+  {#var google_conversion_language = "en";#}
+  {#var google_conversion_format   = "3";#}
+  {#var google_conversion_color    = "ffffff";#}
+  {#var google_conversion_label    = "-A9aCK26vQkQk9y40QM";#}
+  {#var google_conversion_value    = 900;#}
+  {#var google_remarketing_only    = false;#}
+{#</script>#}
+{#<script src="//www.googleadservices.com/pagead/conversion.js"></script>#}
+{#<noscript>#}
+  {#<img height="1" width="1" border="0" src="//www.googleadservices.com/pagead/conversion/976104979/?value=900&amp;label=-A9aCK26vQkQk9y40QM&amp;guid=ON&amp;script=0"/>#}
+{#</noscript>#}
+{#{% endif %}#}
 
+{{ google_addwords_conversion_tag({value: order.total}) }}
 {{ render(controller('RetargetingBundle:Default:successBlock', { 'order_id': order.id })) }}
 
 {% endblock javascript %}
