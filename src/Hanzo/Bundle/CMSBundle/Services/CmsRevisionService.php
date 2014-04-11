@@ -116,5 +116,30 @@ class CmsRevisionService
         }
         $revision->setRevision($cms->toArray(BasePeer::TYPE_PHPNAME, true, array(), true));
         $revision->save();
+
+        // Cleanup, remove the last one.
+        if ($this->getRevisionCount($cms) > 10) {
+            $lastRevision = CmsRevisionQuery::create()
+                ->filterById($cms->getId())
+                ->filterByPublishOnDate(null)
+                ->orderByCreatedAt()
+                ->findOne();
+            $lastRevision->delete();
+        }
+    }
+
+    /**
+     * Get the number of revisions a Cms has.
+     * @param Cms $cms The Cms Page.
+     *
+     * @return int     The number of revisions.
+     */
+    public function getRevisionCount(Cms $cms)
+    {
+        $revisionsCount = CmsRevisionQuery::create()
+            ->filterById($cms->getId())
+            ->count();
+
+        return $revisionsCount;
     }
 }
