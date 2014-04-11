@@ -270,6 +270,7 @@ class CmsController extends CoreController
             ->find($this->getDbConnection());
 
         $node = CmsQuery::create()
+            ->joinWithCmsI18n()
             ->findPK($id, $this->getDbConnection());
 
         $translations = CmsI18nQuery::create()
