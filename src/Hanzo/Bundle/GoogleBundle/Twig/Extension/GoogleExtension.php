@@ -16,6 +16,14 @@ class GoogleExtension extends \Twig_Extension
         $this->site_verification = $site_verification;
     }
 
+    /**
+     * @param $name
+     * @param $service
+     */
+    public function serviceInjection($name, $service)
+    {
+        $this->$name = $service;
+    }
 
     /**
      * @inherit
@@ -33,7 +41,8 @@ class GoogleExtension extends \Twig_Extension
     {
         return [
             new \Twig_SimpleFunction('google_tags', [$this, 'getAllTags'], ['pre_escape' => 'html', 'is_safe' => ['html'], 'needs_context' => true]),
-            new \Twig_SimpleFunction('google_conversion_tag', [$this, 'getConversionTag'], ['needs_context' => true]),
+            new \Twig_SimpleFunction('google_conversion_tag', [$this, 'getConversionTag'], ['needs_context' => true, 'pre_escape' => 'html', 'is_safe' => ['html']]),
+            new \Twig_SimpleFunction('google_addwords_conversion_tag', [$this, 'getAddWordsConversionTag'], ['needs_context' => true, 'pre_escape' => 'html', 'is_safe' => ['html']]),
             new \Twig_SimpleFunction('google_analytics_tag', [$this, 'getAnalyticsTag'], ['pre_escape' => 'html', 'is_safe' => ['html'], 'needs_context' => true]),
             new \Twig_SimpleFunction('google_site_verification_tag', [$this, 'getSiteVerificationTag'], ['pre_escape' => 'html', 'is_safe' => ['html'], 'needs_context' => true]),
         ];
@@ -112,6 +121,27 @@ DOC;
         return $output;
     }
 
+
+    /**
+     * @param $context
+     * @param $params
+     * @return string
+     */
+    public function getAddWordsConversionTag($context, $params)
+    {
+        if (('checkout-success' !== $context['page_type']) || empty($this->addwords_conversion)) {
+            return '';
+        }
+
+        /** @var \Hanzo\Bundle\GoogleBundle\Services\AddWords\AddWordsConversion $addwords */
+        $addwords = $this->addwords_conversion;
+
+        foreach ($params as $key => $value) {
+            $addwords->setParameter($key, $value);
+        }
+
+        return $addwords->getHtml();
+    }
 
     /**
      * @return string
