@@ -797,7 +797,7 @@ class CmsController extends CoreController
                     $menu .= '<span class="record-title">' . $record->getTitle() . '</span>';
                     $menu .= '<span class="record-type">' . $record->getType() . '</span>';
                     $menu .= '<div class="actions">';
-                    $menu .= '<a href="'. $this->get('router')->generate('admin_cms_edit', array('id' => $record->getId(), 'locale' => $record->getLocale())) .'" title="' . $t->trans('page.edit', array(), 'admin') . '" class="edit glyphicon glyphicon-edit" title="' . $t->trans('page.edit', [], 'admin') . '"></a>';
+                    $menu .= '<a href="'. $this->get('router')->generate('admin_cms_edit', array('id' => $record->getId())) .'" title="' . $t->trans('page.edit', array(), 'admin') . '" class="edit glyphicon glyphicon-edit" title="' . $t->trans('page.edit', [], 'admin') . '"></a>';
                     $menu .= '<a href="'. $this->get('router')->generate('admin_cms_delete', array('id' => $record->getId(), 'locale' => $record->getLocale())) .'" title="' . $t->trans('page.delete', array(), 'admin') . '" class="delete glyphicon glyphicon-remove-circle" title="' . $t->trans('page.delete', [], 'admin') . '"></a>';
                     $menu .= '</div>';
                     $menu .= '</div>';
