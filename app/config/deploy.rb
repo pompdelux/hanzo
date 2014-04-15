@@ -15,7 +15,7 @@ set :scm,         :git
 
 set :stage_dir, 'app/config/deploy'
 require 'capistrano/ext/multistage'
-set :stages,        %w(dev testing production)
+set :stages,        %w(dev testing production ec2)
 set :default_stage, "testing"
 
 # use composer for symfony 2.1
