@@ -162,8 +162,14 @@
 
 
       // CMS edit page, title text field slug creation
-      $('#cms-edit-form #form_title').blur(function(e){
-        if($('#form_path').val().length === 0 && $('#form_title').val().length !== 0){
+      $('#cms-edit-form .form-title').blur(function(e){
+        var $path = $(this).parent().parent().parent().find('.form-path');
+        if($path.val().length === 0 && $(this).val().length !== 0){
+          var locale = $(this).closest('.panel').data('locale');
+          var parent_path = '';
+          if (typeof paths[locale] !== "undefined") {
+            parent_path = paths[locale];
+          }
           var slug = '';
           var chars = {
               'æ' : 'ae', 'Æ' : 'AE',
@@ -179,7 +185,7 @@
               ' ' : '-',
               '/' : '-'
           };
-          var title = $('#form_title').val();
+          var title = $(this).val();
 
           for (var i = 0; i < title.length; i++) {
               if ( chars[title.charAt(i)] ) {
@@ -191,9 +197,17 @@
           slug = slug.replace(/[^-\w\s$\*\(\)\'\!\_]/g, '-');  // remove unneeded chars
           slug = slug.replace(/^\s+|\s+$/g, ''); // trim leading/trailing spaces
           slug = slug.replace(/[-\s]+/g, '-');   // convert spaces
-          slug = path + '/' + slug.replace(/-$/, '');         // remove trailing separator
+          slug = parent_path + '/' + slug.replace(/-$/, ''); // remove trailing separator
           slug = slug.toLowerCase();
-          $('#form_path').val(slug);
+          $path.val(slug);
+        }
+      });
+
+      $('#cms-edit-form .form-settings').on('blur', function(e){
+        try {
+            JSON.parse($(this).val());
+        } catch (exception) {
+          dialoug.error(Translator.get('js:notice'), 'Indstillinger er ikke kompatibelt JSON kode.');
         }
       });
 
