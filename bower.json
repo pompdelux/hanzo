@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "homepage": "https://github.com/pompdelux/hanzo",
   "authors": [
-    "ulrik nielsen <un@bellcom.dk>"
+    "Ulrik Nielsen <un@bellcom.dk>",
+    "Anders Bryrup <ab@bellcom.dk>"
   ],
   "description": "js vendor files for hanzo",
   "license": "MIT",
