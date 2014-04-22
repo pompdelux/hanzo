@@ -28,13 +28,15 @@ class UpdateCommand extends ContainerAwareCommand
      *
      * @param  InputInterface  $input
      * @param  OutputInterface $output
+     * @throws Exception
+     * @return void
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $element = $input->getArgument('element');
         $dispatcher = $this->getContainer()->get('event_dispatcher');
 
-        switch ($element) 
+        switch ($element)
         {
           case 'translations':
               $event = new FilterUpdateEvent( 'translations' );
