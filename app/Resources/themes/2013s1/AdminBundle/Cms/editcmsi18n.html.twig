@@ -5,18 +5,6 @@
     <nav class="navbar navbar-default" role="navigation">
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <span class="flag {{ node.locale }}"></span>{{ 'languages.selector'|trans({}, 'admin') }}
-                        <b class="caret"></b>
-                    </a>
-
-                    <ul class="dropdown-menu">
-                        {% for language in languages %}
-                            <li><a href="{{ path('admin_cms_edit', {'id' : node.id, 'locale' : language.locale}) }}"><span class="flag {{ language.locale }}"></span>{{ language.name }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </li>
                 <li><a href="{{ path('admin_cms') }}">{{ 'admin.back.button'|trans({}, 'admin') }}</a></li>
             </ul>
         </div>
@@ -30,45 +18,65 @@
     </div>
 {% endfor %}
 
+{% if is_revision %}
+    <div class="alert alert-danger">
+        Du redigere nu en gammel version fra {{ is_revision }} af den nuværende side. <a href="{{ path('admin_cms_edit', {'id' : node.id }) }}" class="btn btn-xs btn-danger">Gå til oprindelig version</a>
+    </div>
+{% endif %}
+
     {% form_theme form 'AdminBundle:Form:fields.html.twig' %}
-    <form action="{{ path('admin_cms_edit', {'id' : node.id, 'locale' : node.locale}) }}" method="post" {{ form_enctype(form) }} id="cms-edit-form" class="form-horizontal" role="form">
+    <form action="{{ path('admin_cms_edit', {'id' : node.id }) }}" method="post" {{ form_enctype(form) }} id="cms-edit-form" class="form-horizontal" role="form">
         {{ form_errors(form) }}
 
-    {% if node.getUpdatedBy %}
-        <div class="cms-meta">
-            Last update by {{ node.getUpdatedBy }} {{ node.getUpdatedAt|date('d/m/Y H:i') }}
-        </div>
-    {% endif %}
+        {% if node.getUpdatedBy %}
+            <div class="cms-meta">
+                Last update by {{ node.getUpdatedBy }} {{ node.getUpdatedAt }}
+            </div>
+        {% endif %}
 
-        {{ form_row(form.locale) }}
-        {{ form_row(form.is_active) }}
-        {{ form_row(form.is_restricted) }}
-        {{ form_row(form.on_mobile) }}
-        {{ form_row(form.type) }}
-        {{ form_row(form.title) }}
-        {{ form_row(form.path) }}
-        {{ form_row(form.content) }}
-        {{ form_row(form.settings) }}
-        {{ form_row(form._token) }}
-
+        {{ form_rest(form) }}
         <div class="form-group">
             <input class="button btn btn-success" type="submit" value="{{ 'update.cms'|trans({}, 'admin') }}">
             <a class="button btn btn-default" href="{{ path('admin_cms') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
         </div>
     </form>
 
+    {% if revisions %}
+        <ul id="revisions">
+        {% for revision in revisions %}
+            <li>
+                {% if loop.first %}
+                <a class="btn btn-xs btn-default {{ (not is_revision) ? 'disabled' : '' }}" href="{{ path('admin_cms_edit', {'id' : node.id}) }}">
+                    <i class="glyphicon glyphicon-cloud-download"></i> Original
+                </a>
+                {% else %}
+                <a class="btn btn-xs btn-default {{ (is_revision == revision.CreatedAt or (loop.first and not is_revision)) ? 'disabled' : '' }}" href="{{ path('admin_cms_edit', {'id' : node.id, 'revision' : revision.CreatedAt }) }}">
+                    <i class="glyphicon glyphicon-cloud-download"></i> Brug version
+                </a>
+                {% endif %}
+                <span class="label label-primary">{{ revision.CreatedAt }} af {{ revision.Revision.UpdatedBy }}</span>
+                {% if (is_revision == revision.CreatedAt or (loop.first and not is_revision))  %}
+                    <i class="glyphicon glyphicon-ok"></i>
+                {% endif %}
+            </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
 {% endblock %}
 
 {% block javascript %}
 
 <script type="text/javascript">
-  var path = "{{ path }}";
+  var paths = $.parseJSON('{{ paths | raw }}');
     $(document).ready(function(){
       /* Pretty print the settings in the textarea */
-      var settings = $('#form_settings').val();
-      if(settings !== "undefined" && settings){
-        $('#form_settings').val(JSON.stringify(JSON.parse(settings),null,'\t'));
-      }
+      $('.form-settings').each(function(index, element){
+          var settings = $(this).val();
+          if(settings !== "undefined" && settings){
+            $(this).val(JSON.stringify(JSON.parse(settings),null,'\t'));
+          }
+      });
     });
 </script>
 

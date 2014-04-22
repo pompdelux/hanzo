@@ -3,22 +3,89 @@
 {% block form_row %}
 {% spaceless %}
     <div class="form-group">
+        {{ form_label(form) }}
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+    </div>
+{% endspaceless %}
+{% endblock form_row %}
+
+{% block form_label %}
+{% spaceless %}
+    {% if label is not sameas(false) %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('col-sm-2') ~ ' control-label')|trim}) %}
+        {% if not compound %}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {% endif %}
+        {% if required %}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+        {% endif %}
+        {% if label is empty %}
+            {% set label = name|humanize %}
+        {% endif %}
+        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</label>
+    {% endif %}
+{% endspaceless %}
+{% endblock form_label %}
+
+{# {% block form_row %}
+{% spaceless %}
+    <div class="form-group">
         {% set label_attr = label_attr|merge({'class': (label_attr.class|default('col-sm-2') ~ ' control-label')|trim}) %}
         {{ form_label(form, '', {'label_attr': label_attr}) }}
 
-        <div class="col-sm-6">
+        <div class="col-sm-8">
             {{ form_errors(form) }}
             {% set attr = attr|merge({'class': attr.class|default('') ~ ' form-control'}) %}
             {{ form_widget(form, {'attr': attr}) }}
         </div>
     </div>
 {% endspaceless %}
-{% endblock form_row %}
+{% endblock form_row %} #}
+
+{% block form_widget_simple %}
+{% spaceless %}
+    {% set type = type|default('text') %}
+        <div class="col-sm-8">
+            {% set attr = attr|merge({'class': attr.class|default('') ~ ' form-control'}) %}
+            <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+        </div>
+{% endspaceless %}
+{% endblock form_widget_simple %}
+
+{% block textarea_widget %}
+{% spaceless %}
+
+    <div class="col-sm-8">
+        {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' form-control')|trim }) %}
+
+        <textarea {{ block('widget_attributes') }} rows="10">{{ value }}</textarea>
+    </div>
+{% endspaceless %}
+{% endblock textarea_widget %}
+
+{% block checkbox_widget %}
+{% spaceless %}
+    <div class="col-sm-8">
+        {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' form-control')|trim }) %}
+        <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+    </div>
+{% endspaceless %}
+{% endblock checkbox_widget %}
+
+{% block radio_widget %}
+{% spaceless %}
+    <div class="col-sm-8">
+        {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' form-control')|trim }) %}
+        <input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+    </div>
+{% endspaceless %}
+{% endblock radio_widget %}
 
 {% block form_errors %}
 {% spaceless %}
     {% if errors|length > 0 %}
-    <div class="alert alert-info">
+    <div class="alert alert-danger">
         <ul>
             {% for error in errors %}
                 <li>{{ error.message }}</li>
@@ -28,6 +95,38 @@
     {% endif %}
 {% endspaceless %}
 {% endblock form_errors %}
+
+{% block collection_widget %}
+{% spaceless %}
+    <div {{ block('widget_container_attributes') }}>
+        {{ block('collection_rows') }}
+{#         {{ form_rest(form) }}
+ #}    </div>
+{% endspaceless %}
+{% endblock collection_widget %}
+
+{% block collection_rows %}
+{% spaceless %}
+    <div class="panel-group" id="accordion">
+        {% for child in form %}
+            <div class="panel panel-default" data-locale="{{ child.vars.value.locale }}">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#{{ child.vars.value.locale }}">
+                            {{ child.vars.value.locale }}
+                        </a>
+                    </h4>
+                </div>
+                <div id="{{ child.vars.value.locale }}" class="panel-collapse collapse {{ loop.first ? 'in' : '' }}">
+                    <div class="panel-body">
+                        {{ form_widget(child) }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endspaceless %}
+{% endblock collection_rows %}
 
 {% block button_row %}
     {% spaceless %}

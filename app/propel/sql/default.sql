@@ -68,6 +68,21 @@ CREATE TABLE `cms`
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
+-- cms_revision
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `cms_revision`;
+
+CREATE TABLE `cms_revision`
+(
+    `id` INTEGER NOT NULL,
+    `created_at` DATETIME NOT NULL,
+    `publish_on_date` DATETIME,
+    `revision` TEXT NOT NULL,
+    PRIMARY KEY (`id`,`created_at`)
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
 -- countries
 -- ---------------------------------------------------------------------
 

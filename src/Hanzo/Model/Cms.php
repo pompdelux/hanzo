@@ -7,6 +7,9 @@ use \Hanzo\Core\Hanzo;
 use Hanzo\Model\CmsPeer;
 use Hanzo\Model\om\BaseCms;
 
+use Hanzo\Model\CmsRevision;
+use Hanzo\Model\CmsRevisionQuery;
+
 
 /**
  * Skeleton subclass for representing a row from the 'cms' table.
@@ -66,5 +69,26 @@ class Cms extends BaseCms
         }
 
         return $this;
+    }
+
+    /**
+     * Override base fromArray function. This one allows to get any CmsI18ns.
+     *
+     * @param array  $arr     An array to populate the object from.
+     * @param string $keyType The type of keys the array uses.
+     *
+     * @return void
+     */
+    public function fromArray($arr, $keyType = BasePeer::TYPE_PHPNAME)
+    {
+        parent::fromArray($arr, $keyType = BasePeer::TYPE_PHPNAME);
+
+        if (isset($arr['CmsI18ns'])) {
+            foreach ($arr['CmsI18ns'] as $cmsI18n) {
+                $translation = new CmsI18n();
+                $translation->fromArray($cmsI18n);
+                $this->addCmsI18n($translation);
+            }
+        }
     }
 } // Cms
