@@ -6,6 +6,7 @@
 
     <parameters>
         <parameter key="google.twig_extension.class">Hanzo\Bundle\GoogleBundle\Twig\Extension\GoogleExtension</parameter>
+        <parameter key="google.addwords.conversion.class">Hanzo\Bundle\GoogleBundle\Services\AddWords\AddWordsConversion</parameter>
     </parameters>
 
     <services>
@@ -14,6 +15,20 @@
             <argument type="string">%google.conversion_id%</argument>
             <argument type="string">%google.site_verification%</argument>
             <tag name="twig.extension"></tag>
+            <call method="serviceInjection">
+                <argument type="string">addwords_conversion</argument>
+                <argument type="service" id="google.addwords.conversion" />
+            </call>
+        </service>
+
+        <service id="google.addwords.conversion" class="%google.addwords.conversion.class%">
+            <argument type="string">%google.addwords.conversion.id%</argument>
+            <argument type="string">%google.addwords.conversion.language%</argument>
+            <argument type="string">%google.addwords.conversion.format%</argument>
+            <argument type="string">%google.addwords.conversion.color%</argument>
+            <argument type="string">%google.addwords.conversion.label%</argument>
+            <argument type="string">%google.addwords.conversion.value%</argument>
+            <argument type="string">%google.addwords.conversion.remarketing_only%</argument>
         </service>
     </services>
 </container>

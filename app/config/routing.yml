@@ -133,6 +133,8 @@ _splash:
     defaults:
         _controller: FrameworkBundle:Template:template
         template: CMSBundle:Default:splash.html.twig
+        maxAge:       864000
+        sharedAge:    864000
 
 liip_theme:
     resource: "@LiipThemeBundle/Resources/config/routing.xml"

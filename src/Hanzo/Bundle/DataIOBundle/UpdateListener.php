@@ -23,28 +23,27 @@ class UpdateListener
             ->findOneByCKey('assets_version')
             ;
 
-        if ( is_null( $assetsVersion ) )
-        {
-          $assetsVersion = new Settings();
-          $assetsVersion->setCKey('assets_version')
-              ->setNs('core')
-              ->setTitle('Assets version');
+        if (is_null( $assetsVersion )) {
+            $assetsVersion = new Settings();
+            $assetsVersion->setCKey('assets_version')
+                ->setNs('core')
+                ->setTitle('Assets version')
+            ;
         }
 
-        $assetsVersion->setCValue( time() );
+        $assetsVersion->setCValue(time());
         $assetsVersion->save();
     }
 
     /**
      * onUpdateTranslations
+     *
      * This triggers Capifony's "deploy:translations" task
      * For more info about this, check deploy.rb
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function onUpdateTranslations(FilterUpdateEvent $event)
     {
-        chdir( __DIR__.'/../../../../' );
+        chdir(__DIR__.'/../../../../');
         $command = 'cap deploy:translations';
         exec($command, $out, $return);
     }

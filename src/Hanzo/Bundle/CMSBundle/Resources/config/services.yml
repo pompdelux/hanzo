@@ -1,0 +1,6 @@
+parameters:
+    cms_revision.class: Hanzo\Bundle\CMSBundle\Services\CmsRevisionService
+
+services:
+    cms_revision:
+        class:           %cms_revision.class%
