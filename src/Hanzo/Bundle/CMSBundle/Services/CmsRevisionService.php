@@ -80,6 +80,7 @@ class CmsRevisionService
     {
         $revisions = CmsRevisionQuery::create()
             ->filterById($cms->getId())
+            ->filterByPublishOnDate(null)
             ->orderByCreatedAt('DESC')
             ->find();
 
@@ -107,7 +108,9 @@ class CmsRevisionService
         $revision = null;
 
         if ($timestamp) {
-            $revision = CmsRevisionQuery::create()->fincByCreatedAt($timestamp);
+            $revision = CmsRevisionQuery::create()
+                ->filterById($cms->getId())
+                ->findByCreatedAt($timestamp);
         }
 
         if (!$revision instanceof CmsRevision) {
@@ -129,6 +132,33 @@ class CmsRevisionService
     }
 
     /**
+     * Save a Cms from an revision.
+     *
+     * @param Cms $cms                  The Cms to save.
+     * @param int/CmsRevision $revision The revision to save or timestamp of
+     *                                  revision.
+     */
+    public function saveCmsFromRevision(Cms $cms, $revision)
+    {
+        if (!$revision instanceof CmsRevision && is_int($revision)) {
+            $revision = CmsRevisionQuery::create()
+                ->filterById($cms->getId())
+                ->findByCreatedAt($timestamp);
+        }
+
+        if (!$revision instanceof CmsRevision) {
+            throw new \Exception('No revisions found.');
+        }
+
+        $cms->fromArray($revision->getRevision());
+        $cms->save();
+
+        // Create new revision, and delete old one.
+        self::saveRevision($cms);
+        $revision->delete();
+    }
+
+    /**
      * Get the number of revisions a Cms has.
      * @param Cms $cms The Cms Page.
      *
@@ -141,5 +171,37 @@ class CmsRevisionService
             ->count();
 
         return $revisionsCount;
+    }
+
+    /**
+     * Find all revisions with older pulish date and publish them.
+     */
+    public function publishRevisions()
+    {
+        $query = CmsRevisionQuery::create()
+            ->filterByCreatedAt(array('max' => time()));
+
+        $revisionsToPublish = $query->find();
+
+        $numberOfRevisions = $query->count();
+
+        foreach ($revisionsToPublish as $revision) {
+            $cms = CmsQuery::create()
+                ->findOneById($revision->getId());
+
+            if ($cms instanceof Cms) {
+                self::saveCmsFromRevision($cms, $revision);
+
+                // This handles some caching updates.
+                foreach ($cms->getCmsI18ns() as $translation) {
+                    $this->get('event_dispatcher')->dispatch('cms.node.updated', new FilterCMSEvent($cms, $translation->getLocale()));
+                }
+            }
+        }
+
+        if ($numberOfRevisions) {
+            // Be sure to clear redis if there have been any new publications.
+            $this->get('cache_manager')->clearRedisCache();
+        }
     }
 }
