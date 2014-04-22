@@ -225,7 +225,7 @@ module.exports = function (grunt) {
         compass : {
             desktop: {
                 options: {
-                    outputStyle:    'compact',
+                    outputStyle:    'compressed',
                     basePath:       'web/fx/2013s1',
                     sassDir:        'sass',
                     cssDir:         'css',
@@ -237,7 +237,7 @@ module.exports = function (grunt) {
             },
             mobile: {
                 options: {
-                    outputStyle:    'compact',
+                    outputStyle:    'compressed',
                     basePath:       'web/fx/2013s1_mobile',
                     sassDir:        'sass',
                     cssDir:         'css',
