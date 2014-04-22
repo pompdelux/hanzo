@@ -6,6 +6,9 @@ use Hanzo\Core\Hanzo;
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Tools;
 
+use Hanzo\Model\OrdersAttributes;
+use Hanzo\Model\OrdersStateLog;
+use Hanzo\Model\OrdersVersions;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -17,6 +20,8 @@ use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\OrdersLines;
 use Hanzo\Model\OrdersLinesQuery;
 use Hanzo\Model\OrdersAttributesQuery;
+use Hanzo\Model\OrdersDeletedLogQuery;
+use Hanzo\Model\OrdersDeletedLog;
 use Hanzo\Model\OrdersSyncLogQuery;
 use Hanzo\Model\OrdersSyncLog;
 use Hanzo\Model\DomainsQuery;
@@ -436,7 +441,11 @@ class OrdersController extends CoreController
                 )
             )->add('state-to', 'choice',
                 array(
-                    'choices' => Orders::$state_message_map,
+                    'choices' => [
+                        Orders::STATE_PENDING         => 'Order pending',
+                        Orders::STATE_BEING_PROCESSED => 'Order beeing processed',
+                        Orders::STATE_SHIPPED         => 'Order shipped/done',
+                    ],
                     'label' => 'admin.orders.state_to.label',
                     'translation_domain' => 'admin',
                     'required' => true
@@ -728,5 +737,156 @@ class OrdersController extends CoreController
             'status' => true,
             'message' => 'Ok',
         ));
+    }
+
+    public function deletedOrdersAction(Request $request, $id = null)
+    {
+        $template_data = [
+            'database' => $request->getSession()->get('database')
+        ];
+
+        if ($request->query->has('bulk')) {
+            $form = $this->createFormBuilder()
+                ->add('ids', 'textarea', [
+                    'attr' => [
+                        'cols' => 30,
+                        'rows' => 20,
+                    ]
+                ])
+                ->getForm()
+            ;
+            $template_data['form'] = $form->createView();
+        }
+
+        if ($request->query->has('q')) {
+            $id = $request->query->get('q');
+        }
+
+        if ($id) {
+
+            $order = OrdersDeletedLogQuery::create()->findOneByOrdersId($id, $this->getDbConnection());
+
+            if (!$order instanceof OrdersDeletedLog) {
+                $this->get('session')->getFlashBag()->add('notice', 'Der findes ingen slettede ordre med id #'.$id);
+                return $this->redirect($this->generateUrl('admin_orders_deleted_order'));
+            }
+
+            $data = unserialize($order->getContent());
+            $cdn = Hanzo::getInstance()->get('core.cdn');
+
+            if (empty($data['orders'])) {
+                $data['orders'] = $data['ordes'];
+                unset ($data['ordes']);
+            }
+
+            $attributes = array();
+            $attachments = array();
+            foreach ($data['orders_attributes'] as $attribute) {
+                if ('attachment' == $attribute['Ns']) {
+                    $folder = $this->mapLanguageToPdfDir($data['orders']['LanguagesId']).'_'.substr($data['orders']['CreatedAt'], 0, 4);
+                    $attachments[] = [
+                        'key'  => $attribute['CKey'],
+                        'file' => $attribute['CValue'],
+                        'path' => $cdn . 'pdf.php?' . http_build_query(array(
+                                'folder' => $folder,
+                                'file'   => $attribute['CValue'],
+                                'key'    => md5(time())
+                            ))
+                    ];
+                } else {
+                    $attributes[] = $attribute;
+                }
+            }
+
+            $template_data['order']             = $data['orders'];
+            $template_data['order_lines']       = $data['orders_lines'];
+            $template_data['order_attributes']  = $attributes;
+            $template_data['order_attachments'] = $attachments;
+        }
+
+        return $this->render('AdminBundle:Orders:deleted_order_view.html.twig', $template_data);
+    }
+
+    public function recreatedDeletedOrdersAction(Request $request)
+    {
+        if ('POST' != $request->getMethod()) {
+            return $this->redirect($this->generateUrl('admin_orders_deleted_order'));
+        }
+
+        $ids = explode("\n", str_replace("\r", '', $request->request->get('form[ids]', null, true)));
+
+        if (empty($ids)) {
+            return $this->redirect($this->generateUrl('admin_orders_deleted_order'));
+        }
+
+        $orders = OrdersDeletedLogQuery::create()
+            ->filterByOrdersId($ids)
+            ->find($this->getDbConnection())
+        ;
+
+        /** @var OrdersDeletedLog $record */
+        foreach ($orders as $record) {
+            $data = unserialize($record->getContent());
+            if (empty($data['orders'])) {
+                $data['orders'] = $data['ordes'];
+                unset ($data['ordes']);
+            }
+
+            $order = new Orders();
+            $order->fromArray($data['orders']);
+            $order->setState(Orders::STATE_SHIPPED);
+            $order->setInEdit(false);
+            $order->setSessionId($order->getId());
+            $order->save($this->getDbConnection());
+
+            // set product lines
+            $collection = new \PropelCollection();
+            foreach ($data['orders_lines'] as $item) {
+                $line = new OrdersLines();
+                $line->fromArray($item);
+                $collection->prepend($line);
+            }
+            $order->setOrdersLiness($collection);
+
+            // ???
+            OrdersAttributesQuery::create()
+                ->findByOrdersId($order->getId(), $this->getDbConnection())
+                ->delete($this->getDbConnection())
+            ;
+            $order->clearOrdersAttributess();
+
+            // attributes
+            $collection = new \PropelCollection();
+            foreach ($data['orders_attributes'] as $item) {
+                $line = new OrdersAttributes();
+                $line->fromArray($item);
+                $collection->prepend($line);
+            }
+            $order->setOrdersAttributess($collection);
+
+            // state log
+            $collection = new \PropelCollection();
+            foreach ($data['orders_state_log'] as $item) {
+                $line = new OrdersStateLog();
+                $line->fromArray($item);
+                $collection->prepend($line);
+            }
+            $order->setOrdersStateLogs($collection);
+
+            // versions
+            $collection = new \PropelCollection();
+            foreach ($data['orders_versions'] as $item) {
+                $line = new OrdersVersions();
+                $line->fromArray($item);
+                $collection->prepend($line);
+            }
+            $order->setOrdersVersionss($collection);
+
+            $order->save($this->getDbConnection());
+            $record->delete($this->getDbConnection());
+        }
+
+        $this->container->get('session')->getFlashBag()->add('notice', 'Ordren(e) er nu genoprettet.');
+        return $this->redirect($this->generateUrl('admin_orders_deleted_order'));
     }
 }

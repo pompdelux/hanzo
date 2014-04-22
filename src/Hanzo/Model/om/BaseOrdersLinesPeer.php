@@ -1219,10 +1219,6 @@ abstract class BaseOrdersLinesPeer
             $criteria = $values->buildCriteria(); // build Criteria from OrdersLines object
         }
 
-        if ($criteria->containsKey(OrdersLinesPeer::ID) && $criteria->keyContainsValue(OrdersLinesPeer::ID) ) {
-            throw new PropelException('Cannot insert a value for auto-increment primary key ('.OrdersLinesPeer::ID.')');
-        }
-
 
         // Set the correct dbName
         $criteria->setDbName(OrdersLinesPeer::DATABASE_NAME);

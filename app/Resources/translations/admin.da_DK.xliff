@@ -504,7 +504,7 @@
       </trans-unit>
       <trans-unit id="admin.payment_delivery.link">
         <source>admin.payment_delivery.link</source>
-        <target>Fragt og betalingsindstillinger</target>
+        <target>Betalingsindstillinger</target>
       </trans-unit>
       <trans-unit id="admin.settings.paymentdelivery.header.text.%domain_key%">
         <source>admin.settings.paymentdelivery.header.text.%domain_key%</source>

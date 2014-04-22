@@ -608,7 +608,7 @@
     </foreign-key>
   </table>
 
-  <table name="orders_lines">
+  <table name="orders_lines" allowPkInsert="true">
     <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="orders_id" type="INTEGER" required="true"/>
     <column name="type" type="VARCHAR" size="12" required="true"/>
