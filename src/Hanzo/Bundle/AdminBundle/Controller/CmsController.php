@@ -40,6 +40,8 @@ use Hanzo\Bundle\AdminBundle\Form\Type\CmsType;
 use Hanzo\Bundle\AdminBundle\Entity\CmsNode;
 use Hanzo\Bundle\AdminBundle\Event\FilterCMSEvent;
 
+use Symfony\Component\HttpFoundation\Request;
+
 class CmsController extends CoreController
 {
 
@@ -259,18 +261,27 @@ class CmsController extends CoreController
     }
 
 
-    public function editAction($id)
+    public function editAction(Request $request, $id)
     {
         if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_MARKETING") or hasRole("ROLE_ADMIN")'))) {
             return $this->redirect($this->generateUrl('admin'));
         }
+
+        $revision_service = $this->get('cms_revision')->setCon($this->getDbConnection());
+
 
         $languages_availible = LanguagesQuery::Create()
             ->select('locale')
             ->find($this->getDbConnection());
 
         $node = CmsQuery::create()
+            ->joinWithCmsI18n()
             ->findPK($id, $this->getDbConnection());
+
+        if ($request->query->get('revision')) {
+            $revision = $revision_service->getRevision($node, $request->query->get('revision'));
+            $node = $revision ? $revision : $node;
+        }
 
         $translations = CmsI18nQuery::create()
             ->filterById($node->getPrimaryKey())
@@ -384,16 +395,19 @@ class CmsController extends CoreController
 
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
+
+            $is_changed = false;
+
             $form->handleRequest($request);
-            $node->setUpdatedBy($this->get('security.context')->getToken()->getUser()->getUsername());
 
             $data = $form->getData();
-
-// error_log(print_r($form['form_cmsI18ns'], 1));
 
             $is_active = false;
             // validate settings, must be json encodable data
             foreach ($node->getCmsI18ns() as $translation) {
+                if (!$is_changed && $translation->isModified()) {
+                    $is_changed = true;
+                }
                 $path = trim($translation->getPath(),'/');
                 // Find dublicate URL'er hvis der er angivet en URL
                 $urls = null;
@@ -420,9 +434,17 @@ class CmsController extends CoreController
                 }
             }
 
-            if ($form->isValid()) {
+            if (($is_changed || $node->isModified()) && $form->isValid()) {
+
+
+                $node->setUpdatedBy($this->get('security.context')->getToken()->getUser()->getUsername());
+
+                // Be sure to change the time. If only the i18n fields are changed
+                // it doesnt resolve in an updated time.
+                $node->setUpdatedAt(time());
 
                 $node->save($this->getDbConnection());
+                $revision_service->saveRevision($node);
 
                 if($is_active){
                     $cache = $this->get('cache_manager');
@@ -439,6 +461,8 @@ class CmsController extends CoreController
         return $this->render('AdminBundle:Cms:editcmsi18n.html.twig', array(
             'form'      => $form->createView(),
             'node'      => $node,
+            'is_revision' => $request->query->get('revision'),
+            'revisions' => $revision_service->getRevisions($node),
             'languages' => $languages_availible,
             'paths'      => json_encode($parent_paths),
             'database' => $this->getRequest()->getSession()->get('database')
@@ -785,7 +809,7 @@ class CmsController extends CoreController
                     $menu .= '<span class="record-title">' . $record->getTitle() . '</span>';
                     $menu .= '<span class="record-type">' . $record->getType() . '</span>';
                     $menu .= '<div class="actions">';
-                    $menu .= '<a href="'. $this->get('router')->generate('admin_cms_edit', array('id' => $record->getId(), 'locale' => $record->getLocale())) .'" title="' . $t->trans('page.edit', array(), 'admin') . '" class="edit glyphicon glyphicon-edit" title="' . $t->trans('page.edit', [], 'admin') . '"></a>';
+                    $menu .= '<a href="'. $this->get('router')->generate('admin_cms_edit', array('id' => $record->getId())) .'" title="' . $t->trans('page.edit', array(), 'admin') . '" class="edit glyphicon glyphicon-edit" title="' . $t->trans('page.edit', [], 'admin') . '"></a>';
                     $menu .= '<a href="'. $this->get('router')->generate('admin_cms_delete', array('id' => $record->getId(), 'locale' => $record->getLocale())) .'" title="' . $t->trans('page.delete', array(), 'admin') . '" class="delete glyphicon glyphicon-remove-circle" title="' . $t->trans('page.delete', [], 'admin') . '"></a>';
                     $menu .= '</div>';
                     $menu .= '</div>';
