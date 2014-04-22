@@ -11,6 +11,10 @@
         dateFormat : "dd-mm-yy"
       });
 
+      $('.datetimepicker').datetimepicker({
+        dateFormat : "dd-mm-yy"
+      });
+
       /* Cache controller */
       $('.cache-clear').click(function(e){
         e.preventDefault();
@@ -210,6 +214,8 @@
           dialoug.error(Translator.get('js:notice'), 'Indstillinger er ikke kompatibelt JSON kode.');
         }
       });
+
+      $('#cms-edit-form')
 
       // Sortable list for products ind a category
       $('ul#product-list-sort').sortable({

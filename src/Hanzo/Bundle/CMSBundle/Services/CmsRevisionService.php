@@ -62,6 +62,7 @@ class CmsRevisionService
             $cmsRevision = new Cms();
             $cmsRevision->fromArray($revision->getRevision());
             $cmsRevision->setId($cms->getId());
+            $cmsRevision->revision = $revision;
 
             return $cmsRevision;
         }
@@ -76,13 +77,20 @@ class CmsRevisionService
      *
      * @return CmsRevisionCollection The revisions
      */
-    public function getRevisions(Cms $cms)
+    public function getRevisions(Cms $cms, $publishOnDateRevisions = false)
     {
-        $revisions = CmsRevisionQuery::create()
-            ->filterById($cms->getId())
-            ->filterByPublishOnDate(null)
-            ->orderByCreatedAt('DESC')
-            ->find();
+        $query = CmsRevisionQuery::create()
+            ->filterById($cms->getId());
+
+        if ($publishOnDateRevisions) {
+            $query->filterByPublishOnDate(null, \Criteria::NOT_EQUAL)
+                  ->orderByPublishOnDate('ASC');
+        } else {
+            $query->filterByPublishOnDate(null)
+                  ->orderByCreatedAt('DESC');
+        }
+
+        $revisions = $query->find();
 
         $revisionsArray = array();
 
@@ -99,11 +107,14 @@ class CmsRevisionService
 
     /**
      * Save a CMS as a revision.
-     * @param Cms $cms       The Cms Page
-     * @param int $timestamp Save as a certain revision timestamp. Omit to
-     *                       create a new one.
+     * @param Cms      $cms           The Cms Page
+     * @param int      $timestamp     Save as a certain revision timestamp. Omit to
+     *                                create a new one.
+     * @param DateTime $publishOnDate The date the revision should be published.
+     *
+     * @return CmsRevision the saved revision.
      */
-    public function saveRevision(Cms $cms, $timestamp = null)
+    public function saveRevision(Cms $cms, $timestamp = null, $publishOnDate = null)
     {
         $revision = null;
 
@@ -117,6 +128,7 @@ class CmsRevisionService
             $revision = new CmsRevision();
             $revision->setId($cms->getId());
         }
+        $revision->setPublishOnDate($publishOnDate);
         $revision->setRevision($cms->toArray(BasePeer::TYPE_PHPNAME, true, array(), true));
         $revision->save();
 
@@ -129,6 +141,8 @@ class CmsRevisionService
                 ->findOne();
             $lastRevision->delete();
         }
+
+        return $revision;
     }
 
     /**

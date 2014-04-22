@@ -280,7 +280,10 @@ class CmsController extends CoreController
 
         if ($request->query->get('revision')) {
             $revision = $revision_service->getRevision($node, $request->query->get('revision'));
-            $node = $revision ? $revision : $node;
+            if ($revision instanceof Cms) {
+                $revision_date = $request->query->get('revision');
+                $node = $revision;
+            }
         }
 
         $translations = CmsI18nQuery::create()
@@ -401,7 +404,7 @@ class CmsController extends CoreController
             $form->handleRequest($request);
 
             $data = $form->getData();
-
+\Hanzo\Core\Tools::log($request->request->get('publish_on_date'));
             $is_active = false;
             // validate settings, must be json encodable data
             foreach ($node->getCmsI18ns() as $translation) {
@@ -436,33 +439,41 @@ class CmsController extends CoreController
 
             if (($is_changed || $node->isModified()) && $form->isValid()) {
 
-
                 $node->setUpdatedBy($this->get('security.context')->getToken()->getUser()->getUsername());
 
                 // Be sure to change the time. If only the i18n fields are changed
                 // it doesnt resolve in an updated time.
                 $node->setUpdatedAt(time());
 
-                $node->save($this->getDbConnection());
-                $revision_service->saveRevision($node);
+                if ($request->request->get('publish_on_date') && $publish_on_date = \DateTime::createFromFormat('d-m-Y H:i', $request->request->get('publish_on_date'))) {
+                    // This should be saved as an revision with a publish date.
+                    $revision = $revision_service->saveRevision($node, isset($revision_date) ? $revision_date : null, $publish_on_date);
+                    \Hanzo\Core\Tools::log($revision);
+                } else {
+                    $node->save($this->getDbConnection());
+                    $revision_service->saveRevision($node);
 
-                if($is_active){
-                    $cache = $this->get('cache_manager');
-                    $cache->clearRedisCache();
+                    if($is_active){
+                        $cache = $this->get('cache_manager');
+                        $cache->clearRedisCache();
+                    }
+
+                    $this->get('session')->getFlashBag()->add('notice', 'cms.updated');
+                    foreach ($node->getCmsI18ns() as $translation) {
+                        $this->get('event_dispatcher')->dispatch('cms.node.updated', new FilterCMSEvent($node, $translation->getLocale(), $this->getDbConnection()));
+                    }
                 }
 
-                $this->get('session')->getFlashBag()->add('notice', 'cms.updated');
-                foreach ($node->getCmsI18ns() as $translation) {
-                    $this->get('event_dispatcher')->dispatch('cms.node.updated', new FilterCMSEvent($node, $translation->getLocale(), $this->getDbConnection()));
-                }
             }
         }
 
         return $this->render('AdminBundle:Cms:editcmsi18n.html.twig', array(
             'form'      => $form->createView(),
             'node'      => $node,
-            'is_revision' => $request->query->get('revision'),
+            'revision' => isset($revision) ? $revision : null,
+            'revision_date' => isset($revision_date) ? $revision_date : null,
             'revisions' => $revision_service->getRevisions($node),
+            'publish_revisions' => $revision_service->getRevisions($node, true),
             'languages' => $languages_availible,
             'paths'      => json_encode($parent_paths),
             'database' => $this->getRequest()->getSession()->get('database')

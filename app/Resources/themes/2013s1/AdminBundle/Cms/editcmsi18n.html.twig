@@ -18,9 +18,14 @@
     </div>
 {% endfor %}
 
-{% if is_revision %}
+{% if revision %}
     <div class="alert alert-danger">
-        Du redigere nu en gammel version fra {{ is_revision }} af den nuværende side. <a href="{{ path('admin_cms_edit', {'id' : node.id }) }}" class="btn btn-xs btn-danger">Gå til oprindelig version</a>
+        {% if revision.revision.publishOnDate %}
+            Du redigere nu en revision planlagt til publisering d. {{ revision.revision.publishOnDate|date('d/m - Y') }} klokken {{ revision.revision.publishOnDate|date('H:j') }}.
+        {% else %}
+            Du redigere nu en gammel version fra {{ revision.CreatedAt|date('d/m - Y H:j') }} af den nuværende side.
+        {%endif %}
+        <a href="{{ path('admin_cms_edit', {'id' : node.id }) }}" class="btn btn-xs btn-danger">Gå til oprindelig version</a>
     </div>
 {% endif %}
 
@@ -35,27 +40,58 @@
         {% endif %}
 
         {{ form_rest(form) }}
-        <div class="form-group">
-            <input class="button btn btn-success" type="submit" value="{{ 'update.cms'|trans({}, 'admin') }}">
-            <a class="button btn btn-default" href="{{ path('admin_cms') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
+
+        <div class="form-group row clearfix">
+            <div class="col-sm-6">
+                <div class="input-group">
+                    <input type="datetime" name="publish_on_date" class="form-control datetimepicker" placeholder="Vælg dato" value="{{ revision ? revision.revision.PublishOnDate : '' }}">
+                    <span class="input-group-btn">
+                        <input class="btn btn-success" type="submit" value="Gem til senere publisering">
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <input class="button btn btn-success" type="submit" value="{{ 'update.cms'|trans({}, 'admin') }}">
+                <a class="button btn btn-default" href="{{ path('admin_cms') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
+            </div>
+
         </div>
     </form>
 
     {% if revisions %}
+        <h2>CMS Versioner</h2>
         <ul id="revisions">
-        {% for revision in revisions %}
+        {% for rev in revisions %}
             <li>
                 {% if loop.first %}
-                <a class="btn btn-xs btn-default {{ (not is_revision) ? 'disabled' : '' }}" href="{{ path('admin_cms_edit', {'id' : node.id}) }}">
+                <a class="btn btn-xs btn-default {{ (not revision) ? 'disabled' : '' }}" href="{{ path('admin_cms_edit', {'id' : node.id}) }}">
                     <i class="glyphicon glyphicon-cloud-download"></i> Original
                 </a>
                 {% else %}
-                <a class="btn btn-xs btn-default {{ (is_revision == revision.CreatedAt or (loop.first and not is_revision)) ? 'disabled' : '' }}" href="{{ path('admin_cms_edit', {'id' : node.id, 'revision' : revision.CreatedAt }) }}">
+                <a class="btn btn-xs btn-default {{ (revision_date == rev.CreatedAt or (loop.first and not revision)) ? 'disabled' : '' }}" href="{{ path('admin_cms_edit', {'id' : node.id, 'revision' : rev.CreatedAt }) }}">
                     <i class="glyphicon glyphicon-cloud-download"></i> Brug version
                 </a>
                 {% endif %}
-                <span class="label label-primary">{{ revision.CreatedAt }} af {{ revision.Revision.UpdatedBy }}</span>
-                {% if (is_revision == revision.CreatedAt or (loop.first and not is_revision))  %}
+                <span class="label label-primary">{{ rev.CreatedAt|date('d/m - Y H:j') }} af {{ rev.Revision.UpdatedBy }}</span>
+                {% if (revision_date == rev.CreatedAt or (loop.first and not revision))  %}
+                    <i class="glyphicon glyphicon-ok"></i>
+                {% endif %}
+            </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if publish_revisions %}
+        <h2>CMS fremtidige publiseringer</h2>
+        <ul id="publish_revisions">
+        {% for publish_rev in publish_revisions %}
+            <li>
+                <a class="btn btn-xs btn-default {{ (revision_date == publish_rev.CreatedAt) ? 'disabled' : '' }}" href="{{ path('admin_cms_edit', {'id' : node.id, 'revision' : publish_rev.CreatedAt }) }}">
+                    <i class="glyphicon glyphicon-cloud-download"></i> Rediger version
+                </a>
+                <span class="label label-primary">{{ publish_rev.CreatedAt|date('d/m - Y H:j') }} af {{ publish_rev.Revision.UpdatedBy }}</span>
+                <span class="label label-danger">Publiseres: {{ publish_rev.PublishOnDate|date('d/m - Y H:j') }}</span>
+                {% if (revision_date == publish_rev.CreatedAt)  %}
                     <i class="glyphicon glyphicon-ok"></i>
                 {% endif %}
             </li>

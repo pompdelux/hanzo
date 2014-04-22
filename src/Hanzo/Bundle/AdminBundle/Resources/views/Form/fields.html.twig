@@ -53,6 +53,12 @@
 {% endspaceless %}
 {% endblock form_widget_simple %}
 
+{% block hidden_widget %}
+{% spaceless %}
+    <input type="hidden" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+{% endspaceless %}
+{% endblock hidden_widget %}
+
 {% block textarea_widget %}
 {% spaceless %}
 
