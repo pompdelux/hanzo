@@ -2,6 +2,14 @@
 
 {% block content %}
 
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ path('admin_shipping_index') }}">Fragtpriser</a></li>
+            </ul>
+        </div>
+    </nav>
+
     {% for message in app.session.flashbag.get('notice') %}
         <div class="alert alert-info">
             {{ message|trans({}, 'admin') }}
@@ -33,9 +41,9 @@
                 <td>{{ break.validfrom|default('-') }}</td>
                 <td>{{ break.validto|default('-') }}</td>
                 <th>
-                    <a href="{{ path('admin_shipping_breaks_edit', {id : break.id}) }}" class="fa icon-edit"> Ret</a>
+                    <a href="{{ path('admin_shipping_breaks_edit', {id : break.id}) }}" class="edit glyphicon glyphicon-edit" title="Ret"></a>
                 {% if break.validfrom is not empty %}
-                    <a href="{{ path('admin_shipping_breaks_delete', {id : break.id}) }}" class="fa icon-remove"> Slet</a>
+                    <a href="{{ path('admin_shipping_breaks_delete', {id : break.id}) }}" class="delete glyphicon glyphicon-remove-circle" title="Slet"></a>
                 {% endif %}
                 </th>
             </tr>

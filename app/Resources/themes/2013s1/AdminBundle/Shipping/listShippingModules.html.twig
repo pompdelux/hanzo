@@ -1,0 +1,48 @@
+{% extends '::adminbase.html.twig' %}
+
+{% block content %}
+
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ path('admin_shipping_breaks') }}">Fri fragt</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <h1>Fragtpriser</h1>
+
+    {% for message in app.session.flashbag.get('notice') %}
+        <div class="alert alert-info">
+            {{ message|trans({}, 'admin') }}
+        </div>
+    {% endfor %}
+
+    <table class="list table table-striped">
+        <thead>
+            <tr>
+                <th>Carrier</th>
+                <th>Metode</th>
+                <th>AX id</th>
+                <th>Pris</th>
+                <th>Gebyr</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for module in modules %}
+            <tr>
+                <td>{{ module.carrier }}</td>
+                <td>{{ module.method }}</td>
+                <td>{{ module.externalId }}</td>
+                <td>{{ module.price|number_format(2,',','') }}</td>
+                <td>{{ module.fee|default(0.00)|number_format(2,',','') }}</td>
+                <th>
+                    <a href="{{ path('admin_shipping_price_edit', {id : module.id}) }}" class="edit glyphicon glyphicon-edit" title="ret"></a>
+                </th>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
