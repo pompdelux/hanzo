@@ -12,6 +12,9 @@ use \PropelPDO;
 use \Propel;
 use \BasePeer;
 
+/**
+ * CmsRevision Service
+ */
 class CmsRevisionService
 {
     protected $con;
@@ -79,7 +82,9 @@ class CmsRevisionService
     /**
      * Return all revision for this CMS.
      *
-     * @param Cms $cms The Cms Page
+     * @param Cms     $cms                    The Cms Page
+     * @param boolean $publishOnDateRevisions Show revisions with a publish
+     *                                        date. Default false.
      *
      * @return CmsRevisionCollection The revisions
      */
@@ -154,7 +159,7 @@ class CmsRevisionService
     /**
      * Save a Cms from an revision.
      *
-     * @param Cms $cms                  The Cms to save.
+     * @param Cms             $cms      The Cms to save.
      * @param int/CmsRevision $revision The revision to save or timestamp of
      *                                  revision.
      *
