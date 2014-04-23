@@ -55,9 +55,9 @@ class CmsRevisionService
             $query = CmsRevisionQuery::create()
                 ->filterById($cms->getId());
             if ($timestamp) {
-                $revision = $query->findOneByCreatedAt($timestamp);
+                $revision = $query->findOneByCreatedAt($timestamp, $this->con);
             } else {
-                $revision = $query->lastCreatedFirst()->findOne();
+                $revision = $query->lastCreatedFirst()->findOne($this->con);
             }
         } else {
             // The given timestamp is actually a CmsRevision.
@@ -96,7 +96,7 @@ class CmsRevisionService
                   ->orderByCreatedAt('DESC');
         }
 
-        $revisions = $query->find();
+        $revisions = $query->find($this->con);
 
         $revisionsArray = array();
 
@@ -127,7 +127,7 @@ class CmsRevisionService
         if ($timestamp) {
             $revision = CmsRevisionQuery::create()
                 ->filterById($cms->getId())
-                ->findByCreatedAt($timestamp);
+                ->findByCreatedAt($timestamp, $this->con);
         }
 
         if (!$revision instanceof CmsRevision) {
@@ -136,7 +136,7 @@ class CmsRevisionService
         }
         $revision->setPublishOnDate($publishOnDate);
         $revision->setRevision($cms->toArray(BasePeer::TYPE_PHPNAME, true, array(), true));
-        $revision->save();
+        $revision->save($this->con);
 
         // Cleanup, remove the last one.
         if ($this->getRevisionCount($cms) > 10) {
@@ -144,8 +144,8 @@ class CmsRevisionService
                 ->filterById($cms->getId())
                 ->filterByPublishOnDate(null)
                 ->orderByCreatedAt()
-                ->findOne();
-            $lastRevision->delete();
+                ->findOne($this->con);
+            $lastRevision->delete($this->con);
         }
 
         return $revision;
@@ -169,11 +169,11 @@ class CmsRevisionService
         }
 
         $cms->fromArray($cmsRevision->toArray());
-        $cms->save();
+        $cms->save($this->con);
 
         // Create new revision, and delete old one.
         // self::saveRevision($cmsRevision);
-        // $revision->delete();
+        // $revision->delete($this->con);
 
         return $cms;
     }
@@ -188,7 +188,7 @@ class CmsRevisionService
     {
         $revisionsCount = CmsRevisionQuery::create()
             ->filterById($cms->getId())
-            ->count();
+            ->count($this->con);
 
         return $revisionsCount;
     }
@@ -203,7 +203,7 @@ class CmsRevisionService
         $query = CmsRevisionQuery::create()
             ->filterByPublishOnDate(array('max' => time()));
 
-        $revisionsToPublish = $query->find();
+        $revisionsToPublish = $query->find($this->con);
 
         return $revisionsToPublish;
     }
