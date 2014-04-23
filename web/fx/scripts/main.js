@@ -11,7 +11,7 @@
       });
 
       // ios class added to body
-      switch (navigator.platfom) {
+      switch (navigator.platform) {
           case 'iPad':
           case 'iPhone':
           case 'iPod':
