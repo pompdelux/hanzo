@@ -151,6 +151,8 @@ class CmsRevisionService
      * @param Cms $cms                  The Cms to save.
      * @param int/CmsRevision $revision The revision to save or timestamp of
      *                                  revision.
+     *
+     * @return Cms The updated cms node.
      */
     public function saveCmsFromRevision(Cms $cms, $revision)
     {
@@ -170,6 +172,8 @@ class CmsRevisionService
         // Create new revision, and delete old one.
         self::saveRevision($cms);
         $revision->delete();
+
+        return $cms;
     }
 
     /**
@@ -189,11 +193,13 @@ class CmsRevisionService
 
     /**
      * Find all revisions with older pulish date and publish them.
+     *
+     * @return int the number of revisions which are published.
      */
     public function publishRevisions()
     {
         $query = CmsRevisionQuery::create()
-            ->filterByCreatedAt(array('max' => time()));
+            ->filterByPublishOnDate(array('max' => time()));
 
         $revisionsToPublish = $query->find();
 
@@ -204,18 +210,20 @@ class CmsRevisionService
                 ->findOneById($revision->getId());
 
             if ($cms instanceof Cms) {
-                self::saveCmsFromRevision($cms, $revision);
+                $cms = self::saveCmsFromRevision($cms, $revision);
 
                 // This handles some caching updates.
                 foreach ($cms->getCmsI18ns() as $translation) {
-                    $this->get('event_dispatcher')->dispatch('cms.node.updated', new FilterCMSEvent($cms, $translation->getLocale()));
+                    $this->getContainer()->get('event_dispatcher')->dispatch('cms.node.updated', new FilterCMSEvent($cms, $translation->getLocale()));
                 }
             }
         }
 
         if ($numberOfRevisions) {
             // Be sure to clear redis if there have been any new publications.
-            $this->get('cache_manager')->clearRedisCache();
+            $this->getContainer()->get('cache_manager')->clearRedisCache();
         }
+
+        return $numberOfRevisions;
     }
 }

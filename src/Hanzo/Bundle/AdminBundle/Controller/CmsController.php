@@ -404,7 +404,7 @@ class CmsController extends CoreController
             $form->handleRequest($request);
 
             $data = $form->getData();
-\Hanzo\Core\Tools::log($request->request->get('publish_on_date'));
+
             $is_active = false;
             // validate settings, must be json encodable data
             foreach ($node->getCmsI18ns() as $translation) {
@@ -447,8 +447,7 @@ class CmsController extends CoreController
 
                 if ($request->request->get('publish_on_date') && $publish_on_date = \DateTime::createFromFormat('d-m-Y H:i', $request->request->get('publish_on_date'))) {
                     // This should be saved as an revision with a publish date.
-                    $revision = $revision_service->saveRevision($node, isset($revision_date) ? $revision_date : null, $publish_on_date);
-                    \Hanzo\Core\Tools::log($revision);
+                    $revision_service->saveRevision($node, isset($revision_date) ? $revision_date : null, $publish_on_date);
                 } else {
                     $node->save($this->getDbConnection());
                     $revision_service->saveRevision($node);

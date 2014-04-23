@@ -20,7 +20,7 @@
 
 {% if revision %}
     <div class="alert alert-danger">
-        {% if revision.revision.publishOnDate %}
+        {% if revision.revision and revision.revision.publishOnDate %}
             Du redigere nu en revision planlagt til publisering d. {{ revision.revision.publishOnDate|date('d/m - Y') }} klokken {{ revision.revision.publishOnDate|date('H:j') }}.
         {% else %}
             Du redigere nu en gammel version fra {{ revision.CreatedAt|date('d/m - Y H:j') }} af den nuværende side.
