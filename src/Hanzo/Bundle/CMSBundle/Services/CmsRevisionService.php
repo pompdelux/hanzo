@@ -200,10 +200,9 @@ class CmsRevisionService
      */
     public function getRevisionsToPublish()
     {
-        $query = CmsRevisionQuery::create()
-            ->filterByPublishOnDate(array('max' => time()));
-
-        $revisionsToPublish = $query->find($this->con);
+        $revisionsToPublish = CmsRevisionQuery::create()
+            ->filterByPublishOnDate(array('max' => time()))
+            ->find($this->con);
 
         return $revisionsToPublish;
     }
