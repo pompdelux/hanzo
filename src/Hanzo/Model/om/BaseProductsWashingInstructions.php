@@ -1314,6 +1314,31 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
         return $this->getProductss($query, $con);
     }
 
+
+    /**
+     * If this collection has already been initialized with
+     * an identical criteria, it returns the collection.
+     * Otherwise if this ProductsWashingInstructions is new, it will return
+     * an empty collection; or if this ProductsWashingInstructions has previously
+     * been saved, it will retrieve related Productss from storage.
+     *
+     * This method is protected by default in order to keep the public
+     * api reasonable.  You can provide public methods for those you
+     * actually need in ProductsWashingInstructions.
+     *
+     * @param Criteria $criteria optional Criteria object to narrow the query
+     * @param PropelPDO $con optional connection object
+     * @param string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
+     * @return PropelObjectCollection|Products[] List of Products objects
+     */
+    public function getProductssJoinCategories($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    {
+        $query = ProductsQuery::create(null, $criteria);
+        $query->joinWith('Categories', $join_behavior);
+
+        return $this->getProductss($query, $con);
+    }
+
     /**
      * Clears the current object and sets all attributes to their default values
      */

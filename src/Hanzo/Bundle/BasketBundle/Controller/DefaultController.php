@@ -442,30 +442,36 @@ class DefaultController extends CoreController
                 $line['expected_at'] = NULL;
             }
 
-            // find first products2category match
-            $category_id = ProductsToCategoriesQuery::create()
-                ->select('CategoriesId')
-                ->useProductsQuery()
-                    ->useProductsi18nQuery()
-                        ->filterByTitle($line['products_name'])
-                        ->filterByLocale($this->getRequest()->getLocale())
+            // we need the id and sku from the master record to generate image and url to product.
+            $sql = "
+                SELECT p.id, p.sku, p.primary_categories_id FROM products AS p
+                WHERE p.sku = (
+                    SELECT pp.master FROM products AS pp
+                    WHERE pp.id = ".$line['products_id']."
+                )
+            ";
+            $master = \Propel::getConnection()
+                ->query($sql)
+                ->fetch(\PDO::FETCH_OBJ)
+            ;
+
+            if ($master->primary_categories_id) {
+                $category_id = $master->primary_categories_id;
+            } else {
+                // find first products2category match
+                $category_id = ProductsToCategoriesQuery::create()
+                    ->select('CategoriesId')
+                    ->useProductsQuery()
+                        ->useProductsi18nQuery()
+                            ->filterByTitle($line['products_name'])
+                            ->filterByLocale($this->getRequest()->getLocale())
+                        ->endUse()
                     ->endUse()
-                ->endUse()
-                ->findOne();
+                    ->findOne()
+                ;
+            }
 
             if ($category_id) {
-                // we need the id and sku from the master record to generate image and url to product.
-                $sql = "
-                    SELECT p.id, p.sku FROM products AS p
-                    WHERE p.sku = (
-                        SELECT pp.master FROM products AS pp
-                        WHERE pp.id = ".$line['products_id']."
-                    )
-                ";
-                $master = \Propel::getConnection()
-                    ->query($sql)
-                    ->fetch(\PDO::FETCH_OBJ);
-
                 $line['basket_image'] =
                     preg_replace('/[^a-z0-9]/i', '-', $master->sku) .
                     '_' .

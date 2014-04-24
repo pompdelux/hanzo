@@ -12,6 +12,7 @@ use \PropelCollection;
 use \PropelException;
 use \PropelObjectCollection;
 use \PropelPDO;
+use Hanzo\Model\Categories;
 use Hanzo\Model\MannequinImages;
 use Hanzo\Model\OrdersLines;
 use Hanzo\Model\Products;
@@ -41,6 +42,7 @@ use Hanzo\Model\SearchProductsTags;
  * @method ProductsQuery orderByIsOutOfStock($order = Criteria::ASC) Order by the is_out_of_stock column
  * @method ProductsQuery orderByIsActive($order = Criteria::ASC) Order by the is_active column
  * @method ProductsQuery orderByIsVoucher($order = Criteria::ASC) Order by the is_voucher column
+ * @method ProductsQuery orderByPrimaryCategoriesId($order = Criteria::ASC) Order by the primary_categories_id column
  * @method ProductsQuery orderByCreatedAt($order = Criteria::ASC) Order by the created_at column
  * @method ProductsQuery orderByUpdatedAt($order = Criteria::ASC) Order by the updated_at column
  *
@@ -55,6 +57,7 @@ use Hanzo\Model\SearchProductsTags;
  * @method ProductsQuery groupByIsOutOfStock() Group by the is_out_of_stock column
  * @method ProductsQuery groupByIsActive() Group by the is_active column
  * @method ProductsQuery groupByIsVoucher() Group by the is_voucher column
+ * @method ProductsQuery groupByPrimaryCategoriesId() Group by the primary_categories_id column
  * @method ProductsQuery groupByCreatedAt() Group by the created_at column
  * @method ProductsQuery groupByUpdatedAt() Group by the updated_at column
  *
@@ -69,6 +72,10 @@ use Hanzo\Model\SearchProductsTags;
  * @method ProductsQuery leftJoinProductsWashingInstructions($relationAlias = null) Adds a LEFT JOIN clause to the query using the ProductsWashingInstructions relation
  * @method ProductsQuery rightJoinProductsWashingInstructions($relationAlias = null) Adds a RIGHT JOIN clause to the query using the ProductsWashingInstructions relation
  * @method ProductsQuery innerJoinProductsWashingInstructions($relationAlias = null) Adds a INNER JOIN clause to the query using the ProductsWashingInstructions relation
+ *
+ * @method ProductsQuery leftJoinCategories($relationAlias = null) Adds a LEFT JOIN clause to the query using the Categories relation
+ * @method ProductsQuery rightJoinCategories($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Categories relation
+ * @method ProductsQuery innerJoinCategories($relationAlias = null) Adds a INNER JOIN clause to the query using the Categories relation
  *
  * @method ProductsQuery leftJoinMannequinImages($relationAlias = null) Adds a LEFT JOIN clause to the query using the MannequinImages relation
  * @method ProductsQuery rightJoinMannequinImages($relationAlias = null) Adds a RIGHT JOIN clause to the query using the MannequinImages relation
@@ -143,6 +150,7 @@ use Hanzo\Model\SearchProductsTags;
  * @method Products findOneByIsOutOfStock(boolean $is_out_of_stock) Return the first Products filtered by the is_out_of_stock column
  * @method Products findOneByIsActive(boolean $is_active) Return the first Products filtered by the is_active column
  * @method Products findOneByIsVoucher(boolean $is_voucher) Return the first Products filtered by the is_voucher column
+ * @method Products findOneByPrimaryCategoriesId(int $primary_categories_id) Return the first Products filtered by the primary_categories_id column
  * @method Products findOneByCreatedAt(string $created_at) Return the first Products filtered by the created_at column
  * @method Products findOneByUpdatedAt(string $updated_at) Return the first Products filtered by the updated_at column
  *
@@ -157,6 +165,7 @@ use Hanzo\Model\SearchProductsTags;
  * @method array findByIsOutOfStock(boolean $is_out_of_stock) Return Products objects filtered by the is_out_of_stock column
  * @method array findByIsActive(boolean $is_active) Return Products objects filtered by the is_active column
  * @method array findByIsVoucher(boolean $is_voucher) Return Products objects filtered by the is_voucher column
+ * @method array findByPrimaryCategoriesId(int $primary_categories_id) Return Products objects filtered by the primary_categories_id column
  * @method array findByCreatedAt(string $created_at) Return Products objects filtered by the created_at column
  * @method array findByUpdatedAt(string $updated_at) Return Products objects filtered by the updated_at column
  */
@@ -264,7 +273,7 @@ abstract class BaseProductsQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `sku`, `master`, `size`, `color`, `unit`, `washing`, `has_video`, `is_out_of_stock`, `is_active`, `is_voucher`, `created_at`, `updated_at` FROM `products` WHERE `id` = :p0';
+        $sql = 'SELECT `id`, `sku`, `master`, `size`, `color`, `unit`, `washing`, `has_video`, `is_out_of_stock`, `is_active`, `is_voucher`, `primary_categories_id`, `created_at`, `updated_at` FROM `products` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -693,6 +702,50 @@ abstract class BaseProductsQuery extends ModelCriteria
     }
 
     /**
+     * Filter the query on the primary_categories_id column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByPrimaryCategoriesId(1234); // WHERE primary_categories_id = 1234
+     * $query->filterByPrimaryCategoriesId(array(12, 34)); // WHERE primary_categories_id IN (12, 34)
+     * $query->filterByPrimaryCategoriesId(array('min' => 12)); // WHERE primary_categories_id >= 12
+     * $query->filterByPrimaryCategoriesId(array('max' => 12)); // WHERE primary_categories_id <= 12
+     * </code>
+     *
+     * @see       filterByCategories()
+     *
+     * @param     mixed $primaryCategoriesId The value to use as filter.
+     *              Use scalar values for equality.
+     *              Use array values for in_array() equivalent.
+     *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return ProductsQuery The current query, for fluid interface
+     */
+    public function filterByPrimaryCategoriesId($primaryCategoriesId = null, $comparison = null)
+    {
+        if (is_array($primaryCategoriesId)) {
+            $useMinMax = false;
+            if (isset($primaryCategoriesId['min'])) {
+                $this->addUsingAlias(ProductsPeer::PRIMARY_CATEGORIES_ID, $primaryCategoriesId['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($primaryCategoriesId['max'])) {
+                $this->addUsingAlias(ProductsPeer::PRIMARY_CATEGORIES_ID, $primaryCategoriesId['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
+        }
+
+        return $this->addUsingAlias(ProductsPeer::PRIMARY_CATEGORIES_ID, $primaryCategoriesId, $comparison);
+    }
+
+    /**
      * Filter the query on the created_at column
      *
      * Example usage:
@@ -928,6 +981,82 @@ abstract class BaseProductsQuery extends ModelCriteria
         return $this
             ->joinProductsWashingInstructions($relationAlias, $joinType)
             ->useQuery($relationAlias ? $relationAlias : 'ProductsWashingInstructions', '\Hanzo\Model\ProductsWashingInstructionsQuery');
+    }
+
+    /**
+     * Filter the query by a related Categories object
+     *
+     * @param   Categories|PropelObjectCollection $categories The related object(s) to use as filter
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return                 ProductsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
+     */
+    public function filterByCategories($categories, $comparison = null)
+    {
+        if ($categories instanceof Categories) {
+            return $this
+                ->addUsingAlias(ProductsPeer::PRIMARY_CATEGORIES_ID, $categories->getId(), $comparison);
+        } elseif ($categories instanceof PropelObjectCollection) {
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
+
+            return $this
+                ->addUsingAlias(ProductsPeer::PRIMARY_CATEGORIES_ID, $categories->toKeyValue('PrimaryKey', 'Id'), $comparison);
+        } else {
+            throw new PropelException('filterByCategories() only accepts arguments of type Categories or PropelCollection');
+        }
+    }
+
+    /**
+     * Adds a JOIN clause to the query using the Categories relation
+     *
+     * @param     string $relationAlias optional alias for the relation
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return ProductsQuery The current query, for fluid interface
+     */
+    public function joinCategories($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
+    {
+        $tableMap = $this->getTableMap();
+        $relationMap = $tableMap->getRelation('Categories');
+
+        // create a ModelJoin object for this join
+        $join = new ModelJoin();
+        $join->setJoinType($joinType);
+        $join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+        if ($previousJoin = $this->getPreviousJoin()) {
+            $join->setPreviousJoin($previousJoin);
+        }
+
+        // add the ModelJoin to the current object
+        if ($relationAlias) {
+            $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+            $this->addJoinObject($join, $relationAlias);
+        } else {
+            $this->addJoinObject($join, 'Categories');
+        }
+
+        return $this;
+    }
+
+    /**
+     * Use the Categories relation Categories object
+     *
+     * @see       useQuery()
+     *
+     * @param     string $relationAlias optional alias for the relation,
+     *                                   to be used as main alias in the secondary query
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return   \Hanzo\Model\CategoriesQuery A secondary query class using the current class as primary query
+     */
+    public function useCategoriesQuery($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
+    {
+        return $this
+            ->joinCategories($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'Categories', '\Hanzo\Model\CategoriesQuery');
     }
 
     /**
