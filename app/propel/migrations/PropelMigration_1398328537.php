@@ -53,11 +53,6 @@ ALTER TABLE `products` ADD CONSTRAINT `products_FK_3`
     ON UPDATE CASCADE
     ON DELETE SET NULL;
 
-ALTER TABLE `products_quantity_discount` ADD CONSTRAINT `products_quantity_discount_FK_1`
-    FOREIGN KEY (`products_master`)
-    REFERENCES `products` (`sku`)
-    ON DELETE CASCADE;
-
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;
 ',
@@ -83,8 +78,6 @@ ALTER TABLE `products` DROP FOREIGN KEY `products_FK_3`;
 DROP INDEX `products_FI_3` ON `products`;
 
 ALTER TABLE `products` DROP `primary_categories_id`;
-
-ALTER TABLE `products_quantity_discount` DROP FOREIGN KEY `products_quantity_discount_FK_1`;
 
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;
