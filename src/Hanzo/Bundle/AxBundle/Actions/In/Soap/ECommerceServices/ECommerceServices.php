@@ -155,8 +155,6 @@ class ECommerceServices extends SoapService
                         }
                     });
 
-                    $primary_category_id = $categories[0];
-
                     $categories = CategoriesQuery::create()
                         ->filterByContext($categories)
                         ->find()
@@ -169,6 +167,8 @@ class ECommerceServices extends SoapService
                         );
                         break;
                     }
+
+                    $primary_category_id = $categories->getFirst()->getId();
 
                     if (!$product instanceof Products) {
                         $product = new Products();
