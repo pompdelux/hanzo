@@ -155,9 +155,12 @@ class ECommerceServices extends SoapService
                         }
                     });
 
+                    $primary_category_id = $categories[0];
+
                     $categories = CategoriesQuery::create()
                         ->filterByContext($categories)
-                        ->find();
+                        ->find()
+                    ;
 
                     if (0 == $categories->count()) {
                         $errors = array(
@@ -217,6 +220,8 @@ class ECommerceServices extends SoapService
                     }
 
                     $product->setUnit(trim('1 ' .$item->Sales->UnitId));
+                    $product->setPrimaryCategoriesId($primary_category_id);
+
                     $washing = $item->WashInstruction;
                     if (is_scalar($washing) && !empty($washing)) {
                         $product->setWashing($washing);
