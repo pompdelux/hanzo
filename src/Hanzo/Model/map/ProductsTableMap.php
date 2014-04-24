@@ -53,6 +53,7 @@ class ProductsTableMap extends TableMap
         $this->addColumn('is_out_of_stock', 'IsOutOfStock', 'BOOLEAN', true, 1, false);
         $this->addColumn('is_active', 'IsActive', 'BOOLEAN', true, 1, true);
         $this->addColumn('is_voucher', 'IsVoucher', 'BOOLEAN', true, 1, false);
+        $this->addForeignKey('primary_categories_id', 'PrimaryCategoriesId', 'INTEGER', 'categories', 'id', false, null, null);
         $this->addColumn('created_at', 'CreatedAt', 'TIMESTAMP', false, null, null);
         $this->addColumn('updated_at', 'UpdatedAt', 'TIMESTAMP', false, null, null);
         // validators
@@ -65,6 +66,7 @@ class ProductsTableMap extends TableMap
     {
         $this->addRelation('ProductsRelatedByMaster', 'Hanzo\\Model\\Products', RelationMap::MANY_TO_ONE, array('master' => 'sku', ), 'CASCADE', null);
         $this->addRelation('ProductsWashingInstructions', 'Hanzo\\Model\\ProductsWashingInstructions', RelationMap::MANY_TO_ONE, array('washing' => 'code', ), null, null);
+        $this->addRelation('Categories', 'Hanzo\\Model\\Categories', RelationMap::MANY_TO_ONE, array('primary_categories_id' => 'id', ), 'SET NULL', 'CASCADE');
         $this->addRelation('MannequinImages', 'Hanzo\\Model\\MannequinImages', RelationMap::ONE_TO_MANY, array('sku' => 'master', ), 'CASCADE', null, 'MannequinImagess');
         $this->addRelation('ProductsRelatedBySku', 'Hanzo\\Model\\Products', RelationMap::ONE_TO_MANY, array('sku' => 'master', ), 'CASCADE', null, 'ProductssRelatedBySku');
         $this->addRelation('ProductsDomainsPrices', 'Hanzo\\Model\\ProductsDomainsPrices', RelationMap::ONE_TO_MANY, array('id' => 'products_id', ), 'CASCADE', null, 'ProductsDomainsPricess');

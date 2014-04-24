@@ -56,6 +56,7 @@ class CategoriesTableMap extends TableMap
     {
         $this->addRelation('CategoriesRelatedByParentId', 'Hanzo\\Model\\Categories', RelationMap::MANY_TO_ONE, array('parent_id' => 'id', ), 'SET NULL', null);
         $this->addRelation('CategoriesRelatedById', 'Hanzo\\Model\\Categories', RelationMap::ONE_TO_MANY, array('id' => 'parent_id', ), 'SET NULL', null, 'CategoriessRelatedById');
+        $this->addRelation('Products', 'Hanzo\\Model\\Products', RelationMap::ONE_TO_MANY, array('id' => 'primary_categories_id', ), 'SET NULL', 'CASCADE', 'Productss');
         $this->addRelation('ProductsImagesCategoriesSort', 'Hanzo\\Model\\ProductsImagesCategoriesSort', RelationMap::ONE_TO_MANY, array('id' => 'categories_id', ), 'CASCADE', null, 'ProductsImagesCategoriesSorts');
         $this->addRelation('ProductsToCategories', 'Hanzo\\Model\\ProductsToCategories', RelationMap::ONE_TO_MANY, array('id' => 'categories_id', ), 'CASCADE', null, 'ProductsToCategoriess');
         $this->addRelation('CategoriesI18n', 'Hanzo\\Model\\CategoriesI18n', RelationMap::ONE_TO_MANY, array('id' => 'id', ), 'CASCADE', null, 'CategoriesI18ns');

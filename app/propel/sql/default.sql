@@ -491,6 +491,7 @@ CREATE TABLE `products`
     `is_out_of_stock` TINYINT(1) DEFAULT 0 NOT NULL,
     `is_active` TINYINT(1) DEFAULT 1 NOT NULL,
     `is_voucher` TINYINT(1) DEFAULT 0 NOT NULL,
+    `primary_categories_id` INTEGER,
     `created_at` DATETIME,
     `updated_at` DATETIME,
     PRIMARY KEY (`id`),
@@ -500,13 +501,19 @@ CREATE TABLE `products`
     INDEX `key_is_voucher` (`is_voucher`),
     INDEX `index5` (`master`),
     INDEX `products_FI_2` (`washing`),
+    INDEX `products_FI_3` (`primary_categories_id`),
     CONSTRAINT `products_FK_1`
         FOREIGN KEY (`master`)
         REFERENCES `products` (`sku`)
         ON DELETE CASCADE,
     CONSTRAINT `products_FK_2`
         FOREIGN KEY (`washing`)
-        REFERENCES `products_washing_instructions` (`code`)
+        REFERENCES `products_washing_instructions` (`code`),
+    CONSTRAINT `products_FK_3`
+        FOREIGN KEY (`primary_categories_id`)
+        REFERENCES `categories` (`id`)
+        ON UPDATE CASCADE
+        ON DELETE SET NULL
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
