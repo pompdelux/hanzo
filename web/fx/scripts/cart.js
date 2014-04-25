@@ -27,6 +27,10 @@
               async : false,
               success : function(response, textStatus, jqXHR) {
                 if (response.status) {
+
+                  // for now we need to reload the page to handle quantity discounts.
+                  window.location.href = window.location.href.split('#')[0];
+
                   // add effects to the removal of a basket row
                   $item.fadeOut(function() {
                     $(this).remove();
@@ -246,6 +250,9 @@
                     }
                   }
                 }
+
+                // for now we need to reload the page to handle quantity discounts.
+                window.location.href = window.location.href.split('#')[0];
 
                 // update containers, and close overlay
                 if (response.data.normal !== undefined) {
