@@ -26,7 +26,7 @@
                 <source>show.basket</source>
                 <target>Näytä ostoskori</target>
             </trans-unit>
-            <trans-unit id="your.basket" approved="no">
+            <trans-unit id="your.basket">
                 <source>your.basket</source>
                 <target>Your Basket</target>
             </trans-unit>
@@ -165,7 +165,7 @@
                     </ul>]]>
                 </target>
             </trans-unit>
-            <trans-unit id="footer.text" approved="no">
+            <trans-unit id="footer.text">
                 <source>footer.text</source>
                 <target><![CDATA[
                     <ul>
@@ -199,47 +199,47 @@
                 <source>create.account.vilkaar.link</source>
                 <target><![CDATA[<a href="/fi_FI/koti/asiakaspalvelu/ehdot" target="_blank">POMPdeLUXin ehdot.</a>]]></target>
             </trans-unit>
-            <trans-unit id="category.selector.look" approved="no">
+            <trans-unit id="category.selector.look">
                 <source>category.selector.look</source>
                 <target>Looks</target>
             </trans-unit>
-            <trans-unit id="category.selector.overview" approved="no">
+            <trans-unit id="category.selector.overview">
                 <source>category.selector.overview</source>
                 <target>Overview</target>
             </trans-unit>
-            <trans-unit id="options.title" approved="no">
+            <trans-unit id="options.title">
                 <source>options.title</source>
                 <target>Väri ja koko</target>
             </trans-unit>
-            <trans-unit id="choose.size.note" approved="no">
+            <trans-unit id="choose.size.note">
                 <source>choose.size.note</source>
                 <target>(Koko tarkoittaa lapsen pituutta senttimetreinä.)</target>
             </trans-unit>
-            <trans-unit id="click.to.zoom" approved="no">
+            <trans-unit id="click.to.zoom">
                 <source>click.to.zoom</source>
                 <target>Zoomaa napsauttamalla</target>
             </trans-unit>
-            <trans-unit id="click.to.video" approved="no">
+            <trans-unit id="click.to.video">
                 <source>click.to.video</source>
                 <target>Video</target>
             </trans-unit>
-            <trans-unit id="product.pictures.title" approved="no">
+            <trans-unit id="product.pictures.title">
                 <source>product.pictures.title</source>
                 <target>Kuvat</target>
             </trans-unit>
-            <trans-unit id="buy.the.set.title" approved="no">
+            <trans-unit id="buy.the.set.title">
                 <source>buy.the.set.title</source>
                 <target>Osta setti</target>
             </trans-unit>
-            <trans-unit id="latest.seen.products.title" approved="no">
+            <trans-unit id="latest.seen.products.title">
                 <source>latest.seen.products.title</source>
                 <target>Myös katsottu</target>
             </trans-unit>
-            <trans-unit id="delivery.title" approved="no">
+            <trans-unit id="delivery.title">
                 <source>delivery.title</source>
                 <target>Toimitus</target>
             </trans-unit>
-            <trans-unit id="delivery.info" approved="no">
+            <trans-unit id="delivery.info">
                 <source>delivery.info</source>
                 <target><![CDATA[
                     <p>Kaikki tuotteet lähetetään postipakettina <a href="http://posti.fi/" target="_blank">Posti-</a> palvelun kautta. Tämän ansiosta voit seurata lähetyksen kulkua lähetyshetkestä toimitushetkeen asti.<br />
@@ -249,17 +249,17 @@
       Saapunut lähetys tulee tarkastaa heti. Jos pakkaus ja/tai tuotteet ovat vioittuneet, ota yhteyttä heti POMPdeLUXin asiakaspalveluun tai <a href="http://posti.fi/" target="_blank">Posti-</a>noutopisteeseen.</p>
                 ]]></target>
             </trans-unit>
-            <trans-unit id="return.title" approved="no">
+            <trans-unit id="return.title">
                 <source>return.title</source>
                 <target>Palautus</target>
             </trans-unit>
-            <trans-unit id="return.info" approved="no">
+            <trans-unit id="return.info">
                 <source>return.info</source>
                 <target><![CDATA[
                     <p>Tuotteiden on oltava käyttämättömiä, ja ne tulee palauttaa alkuperäisissä pakkauksissaan tuote- ja hintalappuineen. Sukat, leggingsit ja sukkahousut voi palauttaa vain, mikäli niiden pakkaukset ovat avaamattomia. Alkuperäinen postituspussi on vahvarakenteinen, joten sen voi käyttää toiseen kertaan. Pussiin on merkitty leikkauslinja uudelleenkäyttöä varten. Tämän vuoksi emme hyvitä palautuspakkauksen hintaa emmekä palautuspostimaksua, jos palautat vain osan tilauksestasi. Emme ota vastaan jälkivaatimuksella lähetettyjä palautustuotteita.</p>
                 ]]></target>
             </trans-unit>
-            <trans-unit id="footer.menu_1" approved="no">
+            <trans-unit id="footer.menu_1">
                 <source>footer.menu_1</source>
                 <target><![CDATA[
                 <h2>Asiakaspalvelu</h2>
@@ -277,7 +277,7 @@
                 </ul>
                 ]]></target>
             </trans-unit>
-            <trans-unit id="footer.menu_2" approved="no">
+            <trans-unit id="footer.menu_2">
                 <source>footer.menu_2</source>
                 <target><![CDATA[
                 <h2>Home Shopping</h2>
@@ -296,7 +296,7 @@
                 </ul>
                 ]]></target>
             </trans-unit>
-            <trans-unit id="footer.menu_3" approved="no">
+            <trans-unit id="footer.menu_3">
                 <source>footer.menu_3</source>
                 <target><![CDATA[
                 <h2>Lisää POMPdeLUXista</h2>
@@ -310,59 +310,59 @@
                </ul>
                 ]]></target>
             </trans-unit>
-            <trans-unit id="share.to.%method%" approved="no">
+            <trans-unit id="share.to.%method%">
                 <source>share.to.%method%</source>
                 <target>Jaa %method%</target>
             </trans-unit>
-            <trans-unit id="back.to.category" approved="no">
+            <trans-unit id="back.to.category">
                 <source>back.to.category</source>
                 <target>Takaisin kategoriaan</target>
             </trans-unit>
-            <trans-unit id="back" approved="no">
+            <trans-unit id="back">
                 <source>back</source>
                 <target>Takaisin</target>
             </trans-unit>
-            <trans-unit id="on.stock" approved="no">
+            <trans-unit id="on.stock">
                 <source>on.stock</source>
                 <target>Varastossa</target>
             </trans-unit>
-            <trans-unit id="on.stock.yes" approved="no">
+            <trans-unit id="on.stock.yes">
                 <source>on.stock.yes</source>
                 <target>Kyllä</target>
             </trans-unit>
-            <trans-unit id="on.stock.no" approved="no">
+            <trans-unit id="on.stock.no">
                 <source>on.stock.no</source>
                 <target>Ei</target>
             </trans-unit>
-            <trans-unit id="pager.pages.%total%" approved="no">
+            <trans-unit id="pager.pages.%total%">
                 <source>pager.pages.%total%</source>
                 <target>/ %total%</target>
             </trans-unit>
-            <trans-unit id="pager.see_all.%total%" approved="no">
+            <trans-unit id="pager.see_all.%total%">
                 <source>pager.see_all.%total%</source>
                 <target>katso kaikki(%total%)</target>
             </trans-unit>
-            <trans-unit id="more.bundle.info" approved="no">
+            <trans-unit id="more.bundle.info">
                 <source>more.bundle.info</source>
                 <target>Saat lisätietoja napsauttamalla.</target>
             </trans-unit>
-            <trans-unit id="goto.top.link" approved="no">
+            <trans-unit id="goto.top.link">
                 <source>goto.top.link</source>
                 <target>Siirry ylös</target>
             </trans-unit>
-            <trans-unit id="order.deleted" approved="no">
+            <trans-unit id="order.deleted">
                 <source>order.deleted</source>
                 <target>E-tilausnro %id% on peruttu.</target>
             </trans-unit>
-            <trans-unit id="product.prices.description" approved="no">
+            <trans-unit id="product.prices.description">
                 <source>product.prices.description</source>
                 <target></target>
             </trans-unit>
-            <trans-unit id="faceted.show.out.of.stock" approved="no">
+            <trans-unit id="faceted.show.out.of.stock">
                 <source>faceted.show.out.of.stock</source>
                 <target>Näytä myös loppuunmyydyt tuotteet</target>
             </trans-unit>
-            <trans-unit id="faceted.reset.filter" approved="no">
+            <trans-unit id="faceted.reset.filter">
                 <source>faceted.reset.filter</source>
                 <target>» Puhdista haku</target>
             </trans-unit>
