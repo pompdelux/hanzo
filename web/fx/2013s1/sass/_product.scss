@@ -143,7 +143,7 @@ a.video-popper, #video-player-container a.video {
 
 form.buy{
 	margin-bottom: 16px;
-  position: relative;
+    position: relative;
 	label{
 		display: block;
 		padding: 0 6px 0 0;
@@ -273,4 +273,9 @@ a.product-color{
     @include colorbutton(white9navy);
     @include colorbutton(wine);
     @include colorbutton(yellow);
+}
+
+.quantity-discount-table {
+    margin: 0 0 16px 0;
+    font-size: 0.9em;
 }
