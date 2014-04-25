@@ -379,23 +379,9 @@
                 <source>faceted.reset.filter</source>
                 <target>» Nullstill filtre</target>
             </trans-unit>
-            <trans-unit id="product.quantity.discount.header" approved="no">
-                <source>product.quantity.discount.header</source>
-                <target>Mængderabat</target>
-            </trans-unit>
-            <trans-unit id="product.quantity.discount.description" approved="no">
-                <source>product.quantity.discount.description</source>
-                <target><![CDATA[
-                    Hvis du køber mere end x, får du y kr i rabat på varen - uanset farve og størrelses kombinationer.
-                ]]></target>
-            </trans-unit>
-            <trans-unit id="product.quantity.discount.quantity" approved="no">
-                <source>product.quantity.discount.quantity</source>
-                <target>Antal</target>
-            </trans-unit>
             <trans-unit id="product.quantity.discount" approved="no">
                 <source>product.quantity.discount</source>
-                <target>Rabat</target>
+                <target>Køb %span% stk. og spar %discount% pr. stk.</target>
             </trans-unit>
         </body>
     </file>
