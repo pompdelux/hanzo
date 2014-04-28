@@ -72,7 +72,7 @@
             </trans-unit>
             <trans-unit id="rma.form.label.replacement">
                 <source>rma.form.label.replacement</source>
-                <target>Enter the product name you wish to exchange for</target>
+                <target>Enter the product name you wish to exchange for. Notice: the availability of the item cannot be guaranteed.</target>
             </trans-unit>
             <trans-unit id="rma.form.placeholder.produkt">
                 <source>rma.form.placeholder.produkt</source>
@@ -121,7 +121,7 @@
                 <source>rma.slip.description</source>
                 <target><![CDATA[<p>If you wish to exchange or return items, you must fill in and enclose this Returns form with your package.
 As the returned items will go back on sale it would be a great help if you can return the items in their original packaging with hangtags attached etc.
-<br><br>If you are returning a defect item or an incorrectly send item, we refund you the shipping charge.<br><br>If you wish to exchange an item to a different size, colour or another item, the new shipment is free of charge. Please note that the price of the new item may not exceed that of the returned item.<br><br>If the item you wish to exchange for is sold out, we refund you the returned item.<br><br><b>Notice:</b> the availability of the item cannot be guaranteed.<br><br>Any refund will automatically be issued to the credit card used to make the original purchase. <br><b>For more information please visit: <a href="/en_GB/" target="_blank">www.pompdelux.com</a></p>]]></target>
+<br><br>If you are returning a defect item or an incorrectly send item, we refund you the shipping charge.<br><br>If you wish to exchange an item to a different size, colour or another item, the new shipment is free of charge. Please note that the price of the new item may not exceed that of the returned item.<br><br>If the item you wish to exchange for is sold out, we refund you the returned item.<br><br>Any refund will automatically be issued to the credit card used to make the original purchase. <br><b>For more information please visit: <a href="/en_GB/" target="_blank">www.pompdelux.com</a></p>]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.activitycode">
                 <source>rma.slip.thead.activitycode</source>
