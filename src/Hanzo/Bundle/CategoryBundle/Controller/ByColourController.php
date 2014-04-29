@@ -44,6 +44,14 @@ class ByColourController extends CoreController
             $page = CmsPeer::getByPK($id, $locale);
             $settings = $page->getSettings(null, false);
 
+            if (!isset($settings->category_ids)) {
+                $settings->category_ids = [];
+            }
+
+            if (!isset($settings->ignore)) {
+                $settings->ignore = [];
+            }
+
             $includes = explode(',', $settings->category_ids);
             $ignores = explode(',', $settings->ignore);
             $color_map = explode(',', $settings->colors);
