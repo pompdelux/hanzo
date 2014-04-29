@@ -1545,6 +1545,11 @@ a.product-color.current .colorbuttons-yellow, a.product-color:hover .colorbutton
   background-position: 0 -884px;
 }
 
+.quantity-discount-table {
+  margin: 0 0 16px 0;
+  font-size: 0.9em;
+}
+
 .checkout-block {
   overflow: hidden;
   padding: 3px;

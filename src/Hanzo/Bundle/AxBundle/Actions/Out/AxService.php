@@ -171,7 +171,7 @@ class AxService
             }
 
             if ($discount_in_percent) {
-                $line->LineDiscPercent = number_format($discount_in_percent, 2, '.', '');
+                $line->LineDiscPercent = number_format($discount_in_percent, 4, '.', '');
             } elseif ($line_discount) {
                 $line->LineDiscPercent = $line_discount;
             }

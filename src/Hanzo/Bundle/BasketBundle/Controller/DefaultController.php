@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\BasketBundle\Controller;
 
+use Hanzo\Bundle\BasketBundle\Event\BasketEvent;
 use Hanzo\Model\ProductsI18nQuery;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -140,6 +141,7 @@ class DefaultController extends CoreController
 
         try {
             $order->save();
+            $this->container->get('event_dispatcher')->dispatch('basket.product.post_add', new BasketEvent($order, $product, $quantity));
         } catch(PropelException $e) {
             return $this->resetOrderAndUser($e, $request);
         }
@@ -232,15 +234,16 @@ class DefaultController extends CoreController
 
         foreach ($order_lines as $k => $line) {
             if ($line->getProductsId() == $product_id) {
-                $product_found = TRUE;
+                $product_found = $line->getProducts();
 
-                if ($quantity == 'all') {
+                if ('all' == $quantity) {
                     unset($order_lines[$k]);
-                }
-                else {
+                } else {
                     $line->setQuantity($line->getQuantity() - $quantity);
                     $order_lines[$k] = $line;
                 }
+
+                break;
             }
         }
 
@@ -248,6 +251,12 @@ class DefaultController extends CoreController
             $order->setOrdersLiness($order_lines);
             $order->setUpdatedAt(time());
             $order->save();
+
+            $quantity = ('all' == $quantity)
+                ? null
+                : $quantity
+            ;
+            $this->container->get('event_dispatcher')->dispatch('basket.product.post_remove', new BasketEvent($order, $product_found, $quantity));
 
             $data = array(
                 'quantity' => $order->getTotalQuantity(true),
@@ -313,7 +322,6 @@ class DefaultController extends CoreController
         $stock         = $stock_service->check($product, $quantity);
 
         if ($stock) {
-
             $request_data = array(
                 'quantity' => $request->request->get('quantity'),
                 'master'   => $request->request->get('master'),
@@ -324,6 +332,7 @@ class DefaultController extends CoreController
             // if the product is backordered, require a confirmation to continue
             if ($stock instanceof \DateTime && (false === $request->request->get('confirmed', false))) {
                 $request_data['date'] = $stock;
+
                 return $this->json_response(array(
                     'message' => '',
                     'status'  => true,
@@ -354,11 +363,14 @@ class DefaultController extends CoreController
                     $response['data'][$key.'_total'] = Tools::moneyFormat($price['price'] * $request->request->get('quantity'));
                     $response['data'][$key]          = Tools::moneyFormat($price['price']);
                 }
+
                 $response['data']['basket']     = $this->miniBasketAction(TRUE);
                 $response['data']['product_id'] = $product->getId();
             }
+
             return $this->json_response($response);
         }
+
         return $this->json_response(array(
             'message' => '',
             'status'  => false,
@@ -374,7 +386,6 @@ class DefaultController extends CoreController
 
     public function viewAction($embed = false, $orders_id = null, $template = 'BasketBundle:Default:view.html.twig')
     {
-
         // If this request is for the mega basket, check if we already has cached it.
         if ($template === 'BasketBundle:Default:megaBasket.html.twig') {
             $cache_id = [

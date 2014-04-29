@@ -26,7 +26,7 @@
                 <source>show.basket</source>
                 <target>Vis kurv</target>
             </trans-unit>
-            <trans-unit id="your.basket" approved="no">
+            <trans-unit id="your.basket">
                 <source>your.basket</source>
                 <target>Din kurv</target>
             </trans-unit>
@@ -179,7 +179,7 @@
                     </ul>
                 ]]></target>
             </trans-unit>
-            <trans-unit id="footer.text" approved="no">
+            <trans-unit id="footer.text">
                 <source>footer.text</source>
                 <target><![CDATA[
                     <ul>
@@ -219,47 +219,47 @@
                     <a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a>
                 ]]></target>
             </trans-unit>
-            <trans-unit id="category.selector.look" approved="no">
+            <trans-unit id="category.selector.look">
                 <source>category.selector.look</source>
                 <target>Looks</target>
             </trans-unit>
-            <trans-unit id="category.selector.overview" approved="no">
+            <trans-unit id="category.selector.overview">
                 <source>category.selector.overview</source>
                 <target>Overview</target>
             </trans-unit>
-            <trans-unit id="options.title" approved="no">
+            <trans-unit id="options.title">
                 <source>options.title</source>
                 <target>Farve og størrelse</target>
             </trans-unit>
-            <trans-unit id="choose.size.note" approved="no">
+            <trans-unit id="choose.size.note">
                 <source>choose.size.note</source>
                 <target>(Størrelsen er barnets højde i cm.)</target>
             </trans-unit>
-            <trans-unit id="click.to.zoom" approved="no">
+            <trans-unit id="click.to.zoom">
                 <source>click.to.zoom</source>
                 <target>Klik for zoom</target>
             </trans-unit>
-            <trans-unit id="click.to.video" approved="no">
+            <trans-unit id="click.to.video">
                 <source>click.to.video</source>
                 <target>Video</target>
             </trans-unit>
-            <trans-unit id="product.pictures.title" approved="no">
+            <trans-unit id="product.pictures.title">
                 <source>product.pictures.title</source>
                 <target>Billeder</target>
             </trans-unit>
-            <trans-unit id="buy.the.set.title" approved="no">
+            <trans-unit id="buy.the.set.title">
                 <source>buy.the.set.title</source>
                 <target>Køb sættet</target>
             </trans-unit>
-            <trans-unit id="latest.seen.products.title" approved="no">
+            <trans-unit id="latest.seen.products.title">
                 <source>latest.seen.products.title</source>
                 <target>Jeg har også kigget på</target>
             </trans-unit>
-            <trans-unit id="delivery.title" approved="no">
+            <trans-unit id="delivery.title">
                 <source>delivery.title</source>
                 <target>Levering</target>
             </trans-unit>
-            <trans-unit id="delivery.info" approved="no">
+            <trans-unit id="delivery.info">
                 <source>delivery.info</source>
                 <target><![CDATA[
                     <p>Alle varer sendes som pakkepost med <a href="http://www.postdanmark.dk" target="_blank">Post Danmark</a>. Du har derfor mulighed for at f&oslash;lge din pakke via <a href="http://www.postdanmark.dk/contentfull.dk?content=/cms/da-dk/app/tracktrace/track_og_trace.htm&amp;menufile=" target="_blank">track &amp; trace</a> fra den afsendes, til den bliver leveret. <br />
@@ -270,11 +270,11 @@
     N&aring;r du har modtaget pakken, b&oslash;r du kontrollere varerne. Hvis pakken og/eller indholdet er beskadiget, bedes du straks tage kontakt til vores <a href="/da_DK/forside/kundeservice">Kundeservice</a> eller til <a href="http://www.postdanmark.dk" target="_blank">Post Danmark</a>.</p>
                 ]]></target>
             </trans-unit>
-            <trans-unit id="return.title" approved="no">
+            <trans-unit id="return.title">
                 <source>return.title</source>
                 <target>Returnering</target>
             </trans-unit>
-            <trans-unit id="return.info" approved="no">
+            <trans-unit id="return.info">
                 <source>return.info</source>
                 <target><![CDATA[
                     <p><b>Sådan gør du.</b><br>
@@ -288,7 +288,7 @@
 <b>Bemærk:</b>På Min side finder du en returlabel, benyt denne og så modregner vi kun DKK 29,- fra værdien af dine returvarer.<br></p>
                 ]]></target>
             </trans-unit>
-            <trans-unit id="footer.menu_1" approved="no">
+            <trans-unit id="footer.menu_1">
                 <source>footer.menu_1</source>
                 <target><![CDATA[
                 <h2>KUNDESERVICE</h2>
@@ -306,7 +306,7 @@
                 </ul>
                 ]]></target>
             </trans-unit>
-            <trans-unit id="footer.menu_2" approved="no">
+            <trans-unit id="footer.menu_2">
                 <source>footer.menu_2</source>
                 <target><![CDATA[
                 <h2>HOME SHOPPING</h2>
@@ -325,7 +325,7 @@
                 </ul>
                 ]]></target>
             </trans-unit>
-            <trans-unit id="footer.menu_3" approved="no">
+            <trans-unit id="footer.menu_3">
                 <source>footer.menu_3</source>
                 <target><![CDATA[
                 <h2>MERE POMPDELUX</h2>
@@ -339,57 +339,61 @@
                 </ul>
                 ]]></target>
             </trans-unit>
-            <trans-unit id="share.to.%method%" approved="no">
+            <trans-unit id="share.to.%method%">
                 <source>share.to.%method%</source>
                 <target>Del på %method%</target>
             </trans-unit>
-            <trans-unit id="back.to.category" approved="no">
+            <trans-unit id="back.to.category">
                 <source>back.to.category</source>
                 <target>Tilbage til oversigten</target>
             </trans-unit>
-            <trans-unit id="back" approved="no">
+            <trans-unit id="back">
                 <source>back</source>
                 <target>Tilbage</target>
             </trans-unit>
-            <trans-unit id="on.stock" approved="no">
+            <trans-unit id="on.stock">
                 <source>on.stock</source>
                 <target>På lager</target>
             </trans-unit>
-            <trans-unit id="on.stock.yes" approved="no">
+            <trans-unit id="on.stock.yes">
                 <source>on.stock.yes</source>
                 <target>Ja</target>
             </trans-unit>
-            <trans-unit id="on.stock.no" approved="no">
+            <trans-unit id="on.stock.no">
                 <source>on.stock.no</source>
                 <target>Nej</target>
             </trans-unit>
-            <trans-unit id="pager.pages.%total%" approved="no">
+            <trans-unit id="pager.pages.%total%">
                 <source>pager.pages.%total%</source>
                 <target>af %total%</target>
             </trans-unit>
-            <trans-unit id="pager.see_all.%total%" approved="no">
+            <trans-unit id="pager.see_all.%total%">
                 <source>pager.see_all.%total%</source>
                 <target>se alle(%total%)</target>
             </trans-unit>
-            <trans-unit id="more.bundle.info" approved="no">
+            <trans-unit id="more.bundle.info">
                 <source>more.bundle.info</source>
                 <target>Klik her for at mere information.</target>
             </trans-unit>
-            <trans-unit id="goto.top.link" approved="no">
+            <trans-unit id="goto.top.link">
                 <source>goto.top.link</source>
                 <target>Til top</target>
             </trans-unit>
-            <trans-unit id="product.prices.description" approved="no">
+            <trans-unit id="product.prices.description">
                 <source>product.prices.description</source>
                 <target></target>
             </trans-unit>
-            <trans-unit id="faceted.show.out.of.stock" approved="no">
+            <trans-unit id="faceted.show.out.of.stock">
                 <source>faceted.show.out.of.stock</source>
                 <target>Vis også udsolgte vare</target>
             </trans-unit>
-            <trans-unit id="faceted.reset.filter" approved="no">
+            <trans-unit id="faceted.reset.filter">
                 <source>faceted.reset.filter</source>
                 <target>» Nulstil filtre</target>
+            </trans-unit>
+            <trans-unit id="product.quantity.discount" approved="no">
+                <source>product.quantity.discount</source>
+                <target>Køb %span% stk. og spar %discount% pr. stk.</target>
             </trans-unit>
         </body>
     </file>
