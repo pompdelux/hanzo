@@ -14,19 +14,15 @@ propel:
                 dsn:                  mysql:host=%prod_dk_database_host%;dbname=%prod_dk_database_name%
                 options:              {}
                 attributes:           {}
-                slaves:
-                    pdldbdk2:
-                        user:         %prod_dk_database_slave_1_user%
-                        password:     %prod_dk_database_slave_1_password%
-                        dsn:          %prod_dk_database_slave_1_dsn%
-                    # pdldbdk3:
-                    #     user:         %prod_dk_database_slave_2_user%
-                    #     password:     %prod_dk_database_slave_2_password%
-                    #     dsn:          %prod_dk_database_slave_2_dsn%
-                    # pdldbdk4:
-                    #     user:         %prod_dk_database_slave_3_user%
-                    #     password:     %prod_dk_database_slave_3_password%
-                    #     dsn:          %prod_dk_database_slave_3_dsn%
+# ------------------------------------------------------------------------------------------
+# we no longer use slaves, if we ever need to again - this is the block to enable/duplicate
+# ------------------------------------------------------------------------------------------
+#                slaves:
+#                    pdldbdk2:
+#                        user:         %prod_dk_database_slave_1_user%
+#                        password:     %prod_dk_database_slave_1_password%
+#                        dsn:          %prod_dk_database_slave_1_dsn%
+# ------------------------------------------------------------------------------------------
             pdldbde1:
                 driver:               %database_driver%
                 user:                 %prod_de_database_user%
