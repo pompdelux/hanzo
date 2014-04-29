@@ -68,13 +68,18 @@ class MailService
             $subject = $this->twig->parse($message->getSubject(), $parameters);
             $body = $this->twig->parse($message->getBody(), $parameters);
 
+            // skip empty messages
+            if ('' == $body) {
+                continue;
+            }
+
             if ('.txt' == substr($message->getMessages()->getKey(), -4)) {
                 $this->swift->addPart($body, 'text/plain');
-            }
-            elseif('.html' == substr($message->getMessages()->getKey(), -5)) {
+            } elseif('.html' == substr($message->getMessages()->getKey(), -5)) {
                 $this->swift->setBody($body, 'text/html');
             }
         }
+
         $this->swift->setSubject($subject);
 
         return $this;
