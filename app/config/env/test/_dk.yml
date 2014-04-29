@@ -49,6 +49,20 @@ propel:
                 dsn:                  mysql:host=%test_fi_database_host%;dbname=%test_fi_database_name%
                 options:              {}
                 attributes:           {}
+            pdldbch1:
+                driver:               %database_driver%
+                user:                 %test_ch_database_user%
+                password:             %test_ch_database_password%
+                dsn:                  mysql:host=%test_ch_database_host%;dbname=%test_ch_database_name%
+                options:              {}
+                attributes:           {}
+            pdldbat1:
+                driver:               %database_driver%
+                user:                 %test_at_database_user%
+                password:             %test_at_database_password%
+                dsn:                  mysql:host=%test_at_database_host%;dbname=%test_at_database_name%
+                options:              {}
+                attributes:           {}
 
 account:
     consignor:
