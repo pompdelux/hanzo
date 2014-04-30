@@ -21,16 +21,16 @@
 {% if revision %}
     <div class="alert alert-danger">
         {% if revision.revision and revision.revision.publishOnDate %}
-            Du redigere nu en revision planlagt til publisering d. {{ revision.revision.publishOnDate|date('d/m - Y') }} klokken {{ revision.revision.publishOnDate|date('H:j') }}.
+            Du redigere nu en revision planlagt til publisering d. {{ revision.revision.publishOnDate|date('d/m - Y') }} klokken {{ revision.revision.publishOnDate|date('H:i') }}.
         {% else %}
-            Du redigere nu en gammel version fra {{ revision.CreatedAt|date('d/m - Y H:j') }} af den nuværende side.
+            Du redigere nu en gammel version fra {{ revision.CreatedAt|date('d/m - Y H:i') }} af den nuværende side.
         {%endif %}
         <a href="{{ path('admin_cms_edit', {'id' : node.id }) }}" class="btn btn-xs btn-danger">Gå til oprindelig version</a>
     </div>
 {% endif %}
 
     {% form_theme form 'AdminBundle:Form:fields.html.twig' %}
-    <form action="{{ path('admin_cms_edit', {'id' : node.id }) }}" method="post" {{ form_enctype(form) }} id="cms-edit-form" class="form-horizontal" role="form">
+    <form action="{{ path('admin_cms_edit', {'id' : node.id , 'revision' : revision_date }) }}" method="post" {{ form_enctype(form) }} id="cms-edit-form" class="form-horizontal" role="form">
         {{ form_errors(form) }}
 
         {% if node.getUpdatedBy %}
@@ -40,11 +40,10 @@
         {% endif %}
 
         {{ form_rest(form) }}
-
         <div class="form-group row clearfix">
             <div class="col-sm-6">
                 <div class="input-group">
-                    <input type="datetime" name="publish_on_date" class="form-control datetimepicker" placeholder="Vælg dato" value="{{ revision ? revision.revision.PublishOnDate : '' }}">
+                    <input type="datetime" name="publish_on_date" class="form-control datetimepicker" placeholder="Vælg dato" value="{{ revision and revision.revision.PublishOnDate ? revision.revision.PublishOnDate|date('d-m-Y H:i') : '' }}">
                     <span class="input-group-btn">
                         <input class="btn btn-success" type="submit" value="Gem til senere publisering">
                     </span>
@@ -72,7 +71,7 @@
                     <i class="glyphicon glyphicon-cloud-download"></i> Brug version
                 </a>
                 {% endif %}
-                <span class="label label-primary">{{ rev.CreatedAt|date('d/m - Y H:j') }} af {{ rev.Revision.UpdatedBy }}</span>
+                <span class="label label-primary">{{ rev.CreatedAt|date('d/m - Y H:i') }} af {{ rev.Revision.UpdatedBy }}</span>
                 {% if (revision_date == rev.CreatedAt or (loop.first and not revision))  %}
                     <i class="glyphicon glyphicon-ok"></i>
                 {% endif %}
@@ -89,8 +88,8 @@
                 <a class="btn btn-xs btn-default {{ (revision_date == publish_rev.CreatedAt) ? 'disabled' : '' }}" href="{{ path('admin_cms_edit', {'id' : node.id, 'revision' : publish_rev.CreatedAt }) }}">
                     <i class="glyphicon glyphicon-cloud-download"></i> Rediger version
                 </a>
-                <span class="label label-primary">{{ publish_rev.CreatedAt|date('d/m - Y H:j') }} af {{ publish_rev.Revision.UpdatedBy }}</span>
-                <span class="label label-danger">Publiseres: {{ publish_rev.PublishOnDate|date('d/m - Y H:j') }}</span>
+                <span class="label label-primary">{{ publish_rev.CreatedAt|date('d/m - Y H:i') }} af {{ publish_rev.Revision.UpdatedBy }}</span>
+                <span class="label label-danger">Publiseres: {{ publish_rev.PublishOnDate|date('d/m - Y H:i') }}</span>
                 {% if (revision_date == publish_rev.CreatedAt)  %}
                     <i class="glyphicon glyphicon-ok"></i>
                 {% endif %}

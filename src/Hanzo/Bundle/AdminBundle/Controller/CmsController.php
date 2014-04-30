@@ -277,7 +277,7 @@ class CmsController extends CoreController
         $node = CmsQuery::create()
             ->joinWithCmsI18n()
             ->findPK($id, $this->getDbConnection());
-
+        $revision_date = null;
         if ($request->query->get('revision')) {
             $revision = $revision_service->getRevision($node, $request->query->get('revision'));
             if ($revision instanceof Cms) {
@@ -444,10 +444,15 @@ class CmsController extends CoreController
                 // Be sure to change the time. If only the i18n fields are changed
                 // it doesnt resolve in an updated time.
                 $node->setUpdatedAt(time());
-
                 if ($request->request->get('publish_on_date') && $publish_on_date = \DateTime::createFromFormat('d-m-Y H:i', $request->request->get('publish_on_date'))) {
                     // This should be saved as an revision with a publish date.
-                    $revision_service->saveRevision($node, isset($revision_date) ? $revision_date : null, $publish_on_date);
+                    $new_revision = $revision_service->saveRevision($node, isset($revision_date) ? $revision_date : null, $publish_on_date);
+
+                    $this->get('session')->getFlashBag()->add('notice', 'cms.updated');
+                    if (empty($revision_date)) {
+\Hanzo\Core\Tools::log('revision' . $revision_date);
+                        return $this->redirect($this->generateUrl('admin_cms_edit', array('id' => $node->getId(), 'revision' => $new_revision->getCreatedAt())));
+                    }
                 } else {
                     $node->save($this->getDbConnection());
                     $revision_service->saveRevision($node);

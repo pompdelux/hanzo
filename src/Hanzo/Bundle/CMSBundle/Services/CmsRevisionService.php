@@ -54,7 +54,10 @@ class CmsRevisionService
     public function getRevision(Cms $cms, $timestamp = null)
     {
         $revision = null;
-        if (!$timestamp instanceof CmsRevision) {
+        if ($timestamp instanceof CmsRevision) {
+            // The given timestamp is actually a CmsRevision.
+            $revision = $timestamp;
+        } else {
             $query = CmsRevisionQuery::create()
                 ->filterById($cms->getId());
             if ($timestamp) {
@@ -62,9 +65,6 @@ class CmsRevisionService
             } else {
                 $revision = $query->lastCreatedFirst()->findOne($this->con);
             }
-        } else {
-            // The given timestamp is actually a CmsRevision.
-            $revision = $timestamp;
         }
 
         if ($revision instanceof CmsRevision) {
@@ -132,7 +132,7 @@ class CmsRevisionService
         if ($timestamp) {
             $revision = CmsRevisionQuery::create()
                 ->filterById($cms->getId())
-                ->findByCreatedAt($timestamp, $this->con);
+                ->findOneByCreatedAt($timestamp, $this->con);
         }
 
         if (!$revision instanceof CmsRevision) {
@@ -144,7 +144,7 @@ class CmsRevisionService
         $revision->save($this->con);
 
         // Cleanup, remove the last one.
-        if ($this->getRevisionCount($cms) > 10) {
+        if (!$publishOnDate && $this->getRevisionCount($cms) > 10) {
             $lastRevision = CmsRevisionQuery::create()
                 ->filterById($cms->getId())
                 ->filterByPublishOnDate(null)
@@ -170,15 +170,19 @@ class CmsRevisionService
         $cmsRevision = $this->getRevision($cms, $revision);
 
         if (!$cmsRevision instanceof Cms) {
-            throw new \Exception('No revisions found.');
+            throw new \Exception('No revisions found for CMS ID : ' . $cms->getId());
         }
 
-        $cms->fromArray($cmsRevision->toArray());
-        $cms->save($this->con);
+        $cmsRevision->setId($cms->getId());
+        $cmsRevision->setNew(false);
+        foreach ($cmsRevision->getCmsI18ns() as $translation) {
+            $translation->setNew(false);
+        }
+        $cmsRevision->save($this->con);
 
         // Create new revision, and delete old one.
-        // self::saveRevision($cmsRevision);
-        // $revision->delete($this->con);
+        $this->saveRevision($cmsRevision);
+        $revision->delete($this->con);
 
         return $cms;
     }
@@ -207,6 +211,7 @@ class CmsRevisionService
     {
         $revisionsToPublish = CmsRevisionQuery::create()
             ->filterByPublishOnDate(array('max' => time()))
+            ->orderByPublishOnDate('DESC')
             ->find($this->con);
 
         return $revisionsToPublish;
