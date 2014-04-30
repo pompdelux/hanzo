@@ -7,16 +7,25 @@ use Symfony\Component\HttpFoundation\Response;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
+use Symfony\Component\HttpFoundation\Request;
+use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
 
 use Hanzo\Model\Cms;
 use Hanzo\Model\CmsPeer;
 
 class DefaultController extends CoreController
 {
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $hanzo = Hanzo::getInstance();
         $page = CmsPeer::getFrontpage($hanzo->get('core.locale'));
+
+        // Be able to preview an revision. Only for admins!!!
+        if ($this->get('security.context')->isGranted(new Expression('hasRole("ROLE_MARKETING") or hasRole("ROLE_ADMIN")')) && $request->query->get('revision')) {
+            $revision_service = $this->get('cms_revision');
+            $page = $revision_service->getRevision($page, $request->query->get('revision'));
+            $page->setLocale($hanzo->get('core.locale'));
+        }
 
         $this->setSharedMaxAge(86400);
         return $this->forward('CMSBundle:Default:view', array(
@@ -25,10 +34,17 @@ class DefaultController extends CoreController
         ));
     }
 
-    public function viewAction($id, $page = NULL)
+    public function viewAction(Request $request, $id, $page = NULL)
     {
         $hanzo = Hanzo::getInstance();
         $locale = $hanzo->get('core.locale');
+
+        // Be able to preview an revision. Only for admins!!!
+        if ($this->get('security.context')->isGranted(new Expression('hasRole("ROLE_MARKETING") or hasRole("ROLE_ADMIN")')) && $request->query->get('revision')) {
+            $revision_service = $this->get('cms_revision');
+            $page = $revision_service->getRevision($page, $request->query->get('revision'));
+            $page->setLocale($hanzo->get('core.locale'));
+        }
 
         if ($page instanceof Cms) {
             $type = $page->getType();

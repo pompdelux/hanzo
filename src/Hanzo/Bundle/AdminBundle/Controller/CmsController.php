@@ -406,7 +406,7 @@ class CmsController extends CoreController
             $data = $form->getData();
 
             $is_active = false;
-            // validate settings, must be json encodable data
+
             foreach ($node->getCmsI18ns() as $translation) {
                 if (!$is_changed && $translation->isModified()) {
                     $is_changed = true;
@@ -470,6 +470,8 @@ class CmsController extends CoreController
             }
         }
 
+        $settings = json_decode($node->getSettings(false));
+
         return $this->render('AdminBundle:Cms:editcmsi18n.html.twig', array(
             'form'      => $form->createView(),
             'node'      => $node,
@@ -479,7 +481,8 @@ class CmsController extends CoreController
             'publish_revisions' => $revision_service->getRevisions($node, true),
             'languages' => $languages_availible,
             'paths'      => json_encode($parent_paths),
-            'database' => $this->getRequest()->getSession()->get('database')
+            'database' => $this->getRequest()->getSession()->get('database'),
+            'is_frontpage' => isset($settings->is_frontpage) ? (bool) $settings->is_frontpage : false
         ));
 
     }

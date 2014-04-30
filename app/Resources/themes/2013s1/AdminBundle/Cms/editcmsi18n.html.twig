@@ -91,6 +91,9 @@
                 <span class="label label-primary">{{ publish_rev.CreatedAt|date('d/m - Y H:i') }} af {{ publish_rev.Revision.UpdatedBy }}</span>
                 <span class="label label-danger">Publiseres: {{ publish_rev.PublishOnDate|date('d/m - Y H:i') }}</span>
                 <a href="{{ path('admin_cms_delete_revision', {'id' : node.id, 'timestamp' : publish_rev.CreatedAt }) }}" title="Slet revision" class="delete glyphicon glyphicon-remove-circle"></a>
+                {% for translation in node.getCmsI18ns %}
+                    <a href="/{{ translation.locale }}/{{ is_frontpage ? '' : translation.path }}?revision={{ publish_rev.CreatedAt }}" title="{{ translation.locale }}" class="glyphicon glyphicon-eye-open"></a>
+                {% endfor %}
                 {% if (revision_date == publish_rev.CreatedAt)  %}
                     <i class="glyphicon glyphicon-ok"></i>
                 {% endif %}
