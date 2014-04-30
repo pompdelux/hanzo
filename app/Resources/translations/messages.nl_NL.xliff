@@ -382,7 +382,7 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
             </trans-unit>
             <trans-unit id="product.quantity.discount" approved="no">
                 <source>product.quantity.discount</source>
-                <target>Køb %span% stk. og spar %discount% pr. stk.</target>
+                <target>Koop %span% stk. en spaar %discount% pr. stk.</target>
             </trans-unit>
         </body>
     </file>
