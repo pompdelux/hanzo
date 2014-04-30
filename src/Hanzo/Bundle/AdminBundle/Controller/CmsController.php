@@ -450,7 +450,6 @@ class CmsController extends CoreController
 
                     $this->get('session')->getFlashBag()->add('notice', 'cms.updated');
                     if (empty($revision_date)) {
-\Hanzo\Core\Tools::log('revision' . $revision_date);
                         return $this->redirect($this->generateUrl('admin_cms_edit', array('id' => $node->getId(), 'revision' => $new_revision->getCreatedAt())));
                     }
                 } else {
