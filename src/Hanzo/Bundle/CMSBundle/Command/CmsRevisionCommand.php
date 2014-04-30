@@ -38,9 +38,12 @@ class CmsRevisionCommand extends ContainerAwareCommand
                 if (isset($publishedCmsArray[$revision->getId()])) {
                     // A newer revision of this CMS has already been published in
                     // this cron. Skip this one and delete it.
-                    // TODO: Delete the revision, else it will be published at next run.
+                    $revisionService->deleteRevision($revision);
+                    $output->writeln('Revision deleted');
+
                     continue;
                 }
+
                 $cms = CmsQuery::create()
                     ->findOneById($revision->getId());
 
@@ -57,6 +60,8 @@ class CmsRevisionCommand extends ContainerAwareCommand
                         $this->getContainer()->get('event_dispatcher')->dispatch('cms.node.updated', new FilterCMSEvent($cms, $translation->getLocale()));
                     }
                 }
+
+                // Remember which revisions has already been published.
                 $publishedCmsArray[$cms->getId()] = $cms->getId();
             }
 

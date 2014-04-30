@@ -157,6 +157,17 @@ class CmsRevisionService
     }
 
     /**
+     * Delete a revision from a CMS.
+     * @param mixed $revision The revision to be delete.
+     */
+    public function deleteRevision($revision)
+    {
+        if ($revision instanceof CmsRevision) {
+            $revision->delete($this->con);
+        }
+    }
+
+    /**
      * Save a Cms from an revision.
      *
      * @param Cms             $cms      The Cms to save.
