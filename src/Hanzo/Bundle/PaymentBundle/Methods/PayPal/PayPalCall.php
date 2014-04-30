@@ -38,16 +38,18 @@ class PayPalCall implements PaymentMethodApiCallInterface
 
     /**
      * __construct
-     * @return void
      */
     private function __construct(){}
 
 
     /**
      * someFunc
-     * @return void
+     *
+     * @param  array      $settings
+     * @param  PayPalApi  $api
+     * @return PayPalCall
      */
-    public static function getInstance(array$settings, PayPalApi $api)
+    public static function getInstance(array $settings, PayPalApi $api)
     {
         if (self::$instance === null) {
             self::$instance = new self;
@@ -64,6 +66,7 @@ class PayPalCall implements PaymentMethodApiCallInterface
     /**
      * Cancel payment
      *
+     * @param  Customers          $customer
      * @param  Orders             $order  Order object
      * @return PayPalCallResponse
      */
@@ -129,6 +132,7 @@ class PayPalCall implements PaymentMethodApiCallInterface
      * @param  Orders             $order  Order object
      * @param  int                $amount Amount to refund in order's currency
      * @return PayPalCallResponse
+     * @throws \Exception
      */
     public function refund(Orders $order, $amount)
     {
@@ -200,6 +204,8 @@ class PayPalCall implements PaymentMethodApiCallInterface
 
         $logger = $this->api->getLogger();
         $logger->debug('PayPal call to "'.$function.'" send to "'.$this->base_url.'".', $params);
+
+        $this->api->service_logger->plog($query, ['outgoing', 'payment', 'paypal', $function]);
 
         $response = @file_get_contents($query);
 
