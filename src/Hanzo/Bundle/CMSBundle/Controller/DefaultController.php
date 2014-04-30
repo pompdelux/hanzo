@@ -25,9 +25,12 @@ class DefaultController extends CoreController
             $revision_service = $this->get('cms_revision');
             $page = $revision_service->getRevision($page, $request->query->get('revision'));
             $page->setLocale($hanzo->get('core.locale'));
+            $page->is_revision = true;
         }
 
-        $this->setSharedMaxAge(86400);
+        if (!isset($page->is_revision)) {
+            $this->setSharedMaxAge(86400);
+        }
         return $this->forward('CMSBundle:Default:view', array(
             'id'  => NULL,
             'page' => $page
@@ -39,13 +42,6 @@ class DefaultController extends CoreController
         $hanzo = Hanzo::getInstance();
         $locale = $hanzo->get('core.locale');
 
-        // Be able to preview an revision. Only for admins!!!
-        if ($this->get('security.context')->isGranted(new Expression('hasRole("ROLE_MARKETING") or hasRole("ROLE_ADMIN")')) && $request->query->get('revision')) {
-            $revision_service = $this->get('cms_revision');
-            $page = $revision_service->getRevision($page, $request->query->get('revision'));
-            $page->setLocale($hanzo->get('core.locale'));
-        }
-
         if ($page instanceof Cms) {
             $type = $page->getType();
         } else {
@@ -55,6 +51,14 @@ class DefaultController extends CoreController
             if (is_null($page)) {
                 throw $this->createNotFoundException('The page does not exist (id: '.$id.' )');
             }
+        }
+
+        // Be able to preview an revision. Only for admins!!!
+        if ($this->get('security.context')->isGranted(new Expression('hasRole("ROLE_MARKETING") or hasRole("ROLE_ADMIN")')) && $request->query->get('revision')) {
+            $revision_service = $this->get('cms_revision');
+            $page = $revision_service->getRevision($page, $request->query->get('revision'));
+            $page->setLocale($hanzo->get('core.locale'));
+            $page->is_revision = true;
         }
 
         // access check - should be done better tho...
@@ -76,7 +80,9 @@ class DefaultController extends CoreController
         $html = preg_replace($find, $replace, $html);
         $page->setContent($html);
 
-        $this->setSharedMaxAge(86400);
+        if (!isset($page->is_revision)) {
+            $this->setSharedMaxAge(86400);
+        }
 
         return $this->render('CMSBundle:Default:view.html.twig', array(
             'page_type' => $type,
