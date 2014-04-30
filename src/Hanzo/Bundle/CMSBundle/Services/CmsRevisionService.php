@@ -157,7 +157,20 @@ class CmsRevisionService
     }
 
     /**
-     * Delete a revision from a CMS.
+     * Delete a revision by a timestamp and a Cms.
+     * @param Cms   $cms       The Cms.
+     * @param mixed $timestamp The revision timestamp.
+     */
+    public function deleteRevisionFromTimestamp(Cms $cms, $timestamp)
+    {
+        CmsRevisionQuery::create()
+            ->filterById($cms->getId())
+            ->filterByCreatedAt($timestamp)
+            ->delete($this->con);
+    }
+
+    /**
+     * Delete a revision.
      * @param mixed $revision The revision to be delete.
      */
     public function deleteRevision($revision)

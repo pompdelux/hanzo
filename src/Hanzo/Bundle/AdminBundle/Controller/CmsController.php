@@ -751,6 +751,27 @@ class CmsController extends CoreController
         ');
     }
 
+    public function deleteRevisionAction($id, $timestamp)
+    {
+
+        $node = CmsQuery::create()->findPK($id, $this->getDbConnection());
+
+        $revision_service = $this->get('cms_revision')->setCon($this->getDbConnection());
+
+        $revision_service->deleteRevisionFromTimestamp($node, $timestamp);
+
+        if ($this->getFormat() == 'json') {
+            return $this->json_response(array(
+                'status' => true,
+                'message' => 'Revision er nu slettet.',
+            ));
+        }
+
+        $this->get('session')->getFlashBag()->add('notice', 'Revision er blevet slettet.');
+
+        return $this->redirect($this->generateUrl('admin_cms_edit', array('id' => $id)));
+    }
+
 
     /**
      * Creates the html for a System Tree of the CMS. Works recursivly.

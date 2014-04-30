@@ -90,6 +90,7 @@
                 </a>
                 <span class="label label-primary">{{ publish_rev.CreatedAt|date('d/m - Y H:i') }} af {{ publish_rev.Revision.UpdatedBy }}</span>
                 <span class="label label-danger">Publiseres: {{ publish_rev.PublishOnDate|date('d/m - Y H:i') }}</span>
+                <a href="{{ path('admin_cms_delete_revision', {'id' : node.id, 'timestamp' : publish_rev.CreatedAt }) }}" title="Slet revision" class="delete glyphicon glyphicon-remove-circle"></a>
                 {% if (revision_date == publish_rev.CreatedAt)  %}
                     <i class="glyphicon glyphicon-ok"></i>
                 {% endif %}
