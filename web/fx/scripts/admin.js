@@ -209,7 +209,9 @@
 
       $('#cms-edit-form .form-settings').on('blur', function(e){
         try {
+          if($(this).val()) {
             JSON.parse($(this).val());
+          }
         } catch (exception) {
           dialoug.error(Translator.get('js:notice'), 'Indstillinger er ikke kompatibelt JSON kode.');
         }
