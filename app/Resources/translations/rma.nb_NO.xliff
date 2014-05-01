@@ -13,7 +13,7 @@
             <trans-unit id="rma.form.description">
                 <source>rma.form.description</source>
                 <target><![CDATA[
-                    <p>For hver vare du &oslash;nsker &aring; returnere, skal du vennligst velge en aktivitet og en &aring;rsak. Noter ogs&aring; eventuelle kommentarer til den enkelte varen.<br>Returnerer du varer fra flere forskjellige ordrer, skal du opprette et returskjema pr. ordre. Dine returvarer sender du naturligvis bare i en og samme pakke, uansett om de kommer fra flere ordrer. Husk &aring; legge ved returskjemaet / returskjemaene i pakken. Les mer om returneringen p&aring; returskjemaet, som blir opprettet n&aring;r du klikker p&aring; knappen &quot;Opprett returskjema&quot;.<br><br><b>Merk:</b> Varens tilgjængelighet kan ikke garanteres.<br><br>For &aring; kunne se lappen, skal du ha installert gratisprogrammet Adobe Reader. Hvis du ikke har installert Adobe Reader, kan du laste ned programmet her.<br />
+                    <p>For hver vare du &oslash;nsker &aring; returnere, skal du vennligst velge en aktivitet og en &aring;rsak. Noter ogs&aring; eventuelle kommentarer til den enkelte varen.<br>Returnerer du varer fra flere forskjellige ordrer, skal du opprette et returskjema pr. ordre. Dine returvarer sender du naturligvis bare i en og samme pakke, uansett om de kommer fra flere ordrer. Husk &aring; legge ved returskjemaet / returskjemaene i pakken. Les mer om returneringen p&aring; returskjemaet, som blir opprettet n&aring;r du klikker p&aring; knappen &quot;Opprett returskjema&quot;<br><br>For &aring; kunne se lappen, skal du ha installert gratisprogrammet Adobe Reader. Hvis du ikke har installert Adobe Reader, kan du laste ned programmet her.<br />
     <br />
     <a href="http://www.adobe.com/products/acrobat/readstep2.html" target="_blank"><img src="//static.pompdelux.com/images/pages/PDF_logo.jpg" width="158" height="39" border="0" title="POMPdeLUX" /></a><br /></p>
                 ]]></target>
@@ -72,7 +72,7 @@
             </trans-unit>
             <trans-unit id="rma.form.label.replacement">
                 <source>rma.form.label.replacement</source>
-                <target>Inntast produktnavn for den varen du vil bytte med</target>
+                <target>Inntast produktnavn for den varen du vil bytte med. Merk: Varens tilgjængelighet kan ikke garanteres.</target>
             </trans-unit>
             <trans-unit id="rma.form.placeholder.produkt">
                 <source>rma.form.placeholder.produkt</source>

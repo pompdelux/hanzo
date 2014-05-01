@@ -792,7 +792,7 @@ admin_tools_dibs_tools:
         _controller: AdminBundle:Tools:dibsTools
         action: ''
 
-admin_shipping_index:
+admin_shipping_breaks:
     pattern: /admin/shipping/free-breaks/
     defaults:
         _controller: AdminBundle:Shipping:listFreeBreaks
@@ -809,3 +809,19 @@ admin_shipping_breaks_delete:
     pattern: /admin/shipping/free-breaks/delete/{id}/
     defaults:
         _controller: AdminBundle:Shipping:deleteFreeBreaks
+admin_shipping_index:
+    pattern: /admin/shipping/free-breaks/
+    defaults:
+        _controller: AdminBundle:Shipping:listFreeBreaks
+
+admin_shipping_index:
+    pattern: /admin/shipping/
+    defaults:
+        _controller: AdminBundle:Shipping:listShippingModules
+admin_shipping_price_edit:
+    pattern: /admin/shipping/edit/{id}
+    defaults:
+        _controller: AdminBundle:Shipping:editShippingModule
+    requirements:
+        id: \d+
+

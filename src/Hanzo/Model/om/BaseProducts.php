@@ -15,6 +15,8 @@ use \PropelDateTime;
 use \PropelException;
 use \PropelObjectCollection;
 use \PropelPDO;
+use Hanzo\Model\Categories;
+use Hanzo\Model\CategoriesQuery;
 use Hanzo\Model\MannequinImages;
 use Hanzo\Model\MannequinImagesQuery;
 use Hanzo\Model\OrdersLines;
@@ -137,6 +139,12 @@ abstract class BaseProducts extends BaseObject implements Persistent
     protected $is_voucher;
 
     /**
+     * The value for the primary_categories_id field.
+     * @var        int
+     */
+    protected $primary_categories_id;
+
+    /**
      * The value for the created_at field.
      * @var        string
      */
@@ -157,6 +165,11 @@ abstract class BaseProducts extends BaseObject implements Persistent
      * @var        ProductsWashingInstructions
      */
     protected $aProductsWashingInstructions;
+
+    /**
+     * @var        Categories
+     */
+    protected $aCategories;
 
     /**
      * @var        PropelObjectCollection|MannequinImages[] Collection to store aggregation of MannequinImages objects.
@@ -518,6 +531,17 @@ abstract class BaseProducts extends BaseObject implements Persistent
     }
 
     /**
+     * Get the [primary_categories_id] column value.
+     *
+     * @return int
+     */
+    public function getPrimaryCategoriesId()
+    {
+
+        return $this->primary_categories_id;
+    }
+
+    /**
      * Get the [optionally formatted] temporal [created_at] column value.
      *
      * This accessor only only work with unix epoch dates.  Consider enabling the propel.useDateTimeClass
@@ -873,6 +897,31 @@ abstract class BaseProducts extends BaseObject implements Persistent
     } // setIsVoucher()
 
     /**
+     * Set the value of [primary_categories_id] column.
+     *
+     * @param  int $v new value
+     * @return Products The current object (for fluent API support)
+     */
+    public function setPrimaryCategoriesId($v)
+    {
+        if ($v !== null && is_numeric($v)) {
+            $v = (int) $v;
+        }
+
+        if ($this->primary_categories_id !== $v) {
+            $this->primary_categories_id = $v;
+            $this->modifiedColumns[] = ProductsPeer::PRIMARY_CATEGORIES_ID;
+        }
+
+        if ($this->aCategories !== null && $this->aCategories->getId() !== $v) {
+            $this->aCategories = null;
+        }
+
+
+        return $this;
+    } // setPrimaryCategoriesId()
+
+    /**
      * Sets the value of [created_at] column to a normalized version of the date/time value specified.
      *
      * @param mixed $v string, integer (timestamp), or DateTime value.
@@ -977,8 +1026,9 @@ abstract class BaseProducts extends BaseObject implements Persistent
             $this->is_out_of_stock = ($row[$startcol + 8] !== null) ? (boolean) $row[$startcol + 8] : null;
             $this->is_active = ($row[$startcol + 9] !== null) ? (boolean) $row[$startcol + 9] : null;
             $this->is_voucher = ($row[$startcol + 10] !== null) ? (boolean) $row[$startcol + 10] : null;
-            $this->created_at = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
-            $this->updated_at = ($row[$startcol + 12] !== null) ? (string) $row[$startcol + 12] : null;
+            $this->primary_categories_id = ($row[$startcol + 11] !== null) ? (int) $row[$startcol + 11] : null;
+            $this->created_at = ($row[$startcol + 12] !== null) ? (string) $row[$startcol + 12] : null;
+            $this->updated_at = ($row[$startcol + 13] !== null) ? (string) $row[$startcol + 13] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -988,7 +1038,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
             }
             $this->postHydrate($row, $startcol, $rehydrate);
 
-            return $startcol + 13; // 13 = ProductsPeer::NUM_HYDRATE_COLUMNS.
+            return $startcol + 14; // 14 = ProductsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating Products object", $e);
@@ -1016,6 +1066,9 @@ abstract class BaseProducts extends BaseObject implements Persistent
         }
         if ($this->aProductsWashingInstructions !== null && $this->washing !== $this->aProductsWashingInstructions->getCode()) {
             $this->aProductsWashingInstructions = null;
+        }
+        if ($this->aCategories !== null && $this->primary_categories_id !== $this->aCategories->getId()) {
+            $this->aCategories = null;
         }
     } // ensureConsistency
 
@@ -1058,6 +1111,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
 
             $this->aProductsRelatedByMaster = null;
             $this->aProductsWashingInstructions = null;
+            $this->aCategories = null;
             $this->collMannequinImagess = null;
 
             $this->collProductssRelatedBySku = null;
@@ -1229,6 +1283,13 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     $affectedRows += $this->aProductsWashingInstructions->save($con);
                 }
                 $this->setProductsWashingInstructions($this->aProductsWashingInstructions);
+            }
+
+            if ($this->aCategories !== null) {
+                if ($this->aCategories->isModified() || $this->aCategories->isNew()) {
+                    $affectedRows += $this->aCategories->save($con);
+                }
+                $this->setCategories($this->aCategories);
             }
 
             if ($this->isNew() || $this->isModified()) {
@@ -1554,6 +1615,9 @@ abstract class BaseProducts extends BaseObject implements Persistent
         if ($this->isColumnModified(ProductsPeer::IS_VOUCHER)) {
             $modifiedColumns[':p' . $index++]  = '`is_voucher`';
         }
+        if ($this->isColumnModified(ProductsPeer::PRIMARY_CATEGORIES_ID)) {
+            $modifiedColumns[':p' . $index++]  = '`primary_categories_id`';
+        }
         if ($this->isColumnModified(ProductsPeer::CREATED_AT)) {
             $modifiedColumns[':p' . $index++]  = '`created_at`';
         }
@@ -1603,6 +1667,9 @@ abstract class BaseProducts extends BaseObject implements Persistent
                         break;
                     case '`is_voucher`':
                         $stmt->bindValue($identifier, (int) $this->is_voucher, PDO::PARAM_INT);
+                        break;
+                    case '`primary_categories_id`':
+                        $stmt->bindValue($identifier, $this->primary_categories_id, PDO::PARAM_INT);
                         break;
                     case '`created_at`':
                         $stmt->bindValue($identifier, $this->created_at, PDO::PARAM_STR);
@@ -1720,6 +1787,12 @@ abstract class BaseProducts extends BaseObject implements Persistent
             if ($this->aProductsWashingInstructions !== null) {
                 if (!$this->aProductsWashingInstructions->validate($columns)) {
                     $failureMap = array_merge($failureMap, $this->aProductsWashingInstructions->getValidationFailures());
+                }
+            }
+
+            if ($this->aCategories !== null) {
+                if (!$this->aCategories->validate($columns)) {
+                    $failureMap = array_merge($failureMap, $this->aCategories->getValidationFailures());
                 }
             }
 
@@ -1918,9 +1991,12 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 return $this->getIsVoucher();
                 break;
             case 11:
-                return $this->getCreatedAt();
+                return $this->getPrimaryCategoriesId();
                 break;
             case 12:
+                return $this->getCreatedAt();
+                break;
+            case 13:
                 return $this->getUpdatedAt();
                 break;
             default:
@@ -1963,8 +2039,9 @@ abstract class BaseProducts extends BaseObject implements Persistent
             $keys[8] => $this->getIsOutOfStock(),
             $keys[9] => $this->getIsActive(),
             $keys[10] => $this->getIsVoucher(),
-            $keys[11] => $this->getCreatedAt(),
-            $keys[12] => $this->getUpdatedAt(),
+            $keys[11] => $this->getPrimaryCategoriesId(),
+            $keys[12] => $this->getCreatedAt(),
+            $keys[13] => $this->getUpdatedAt(),
         );
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
@@ -1977,6 +2054,9 @@ abstract class BaseProducts extends BaseObject implements Persistent
             }
             if (null !== $this->aProductsWashingInstructions) {
                 $result['ProductsWashingInstructions'] = $this->aProductsWashingInstructions->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
+            }
+            if (null !== $this->aCategories) {
+                $result['Categories'] = $this->aCategories->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
             }
             if (null !== $this->collMannequinImagess) {
                 $result['MannequinImagess'] = $this->collMannequinImagess->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
@@ -2091,9 +2171,12 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 $this->setIsVoucher($value);
                 break;
             case 11:
-                $this->setCreatedAt($value);
+                $this->setPrimaryCategoriesId($value);
                 break;
             case 12:
+                $this->setCreatedAt($value);
+                break;
+            case 13:
                 $this->setUpdatedAt($value);
                 break;
         } // switch()
@@ -2131,8 +2214,9 @@ abstract class BaseProducts extends BaseObject implements Persistent
         if (array_key_exists($keys[8], $arr)) $this->setIsOutOfStock($arr[$keys[8]]);
         if (array_key_exists($keys[9], $arr)) $this->setIsActive($arr[$keys[9]]);
         if (array_key_exists($keys[10], $arr)) $this->setIsVoucher($arr[$keys[10]]);
-        if (array_key_exists($keys[11], $arr)) $this->setCreatedAt($arr[$keys[11]]);
-        if (array_key_exists($keys[12], $arr)) $this->setUpdatedAt($arr[$keys[12]]);
+        if (array_key_exists($keys[11], $arr)) $this->setPrimaryCategoriesId($arr[$keys[11]]);
+        if (array_key_exists($keys[12], $arr)) $this->setCreatedAt($arr[$keys[12]]);
+        if (array_key_exists($keys[13], $arr)) $this->setUpdatedAt($arr[$keys[13]]);
     }
 
     /**
@@ -2155,6 +2239,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
         if ($this->isColumnModified(ProductsPeer::IS_OUT_OF_STOCK)) $criteria->add(ProductsPeer::IS_OUT_OF_STOCK, $this->is_out_of_stock);
         if ($this->isColumnModified(ProductsPeer::IS_ACTIVE)) $criteria->add(ProductsPeer::IS_ACTIVE, $this->is_active);
         if ($this->isColumnModified(ProductsPeer::IS_VOUCHER)) $criteria->add(ProductsPeer::IS_VOUCHER, $this->is_voucher);
+        if ($this->isColumnModified(ProductsPeer::PRIMARY_CATEGORIES_ID)) $criteria->add(ProductsPeer::PRIMARY_CATEGORIES_ID, $this->primary_categories_id);
         if ($this->isColumnModified(ProductsPeer::CREATED_AT)) $criteria->add(ProductsPeer::CREATED_AT, $this->created_at);
         if ($this->isColumnModified(ProductsPeer::UPDATED_AT)) $criteria->add(ProductsPeer::UPDATED_AT, $this->updated_at);
 
@@ -2230,6 +2315,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
         $copyObj->setIsOutOfStock($this->getIsOutOfStock());
         $copyObj->setIsActive($this->getIsActive());
         $copyObj->setIsVoucher($this->getIsVoucher());
+        $copyObj->setPrimaryCategoriesId($this->getPrimaryCategoriesId());
         $copyObj->setCreatedAt($this->getCreatedAt());
         $copyObj->setUpdatedAt($this->getUpdatedAt());
 
@@ -2486,6 +2572,58 @@ abstract class BaseProducts extends BaseObject implements Persistent
         }
 
         return $this->aProductsWashingInstructions;
+    }
+
+    /**
+     * Declares an association between this object and a Categories object.
+     *
+     * @param                  Categories $v
+     * @return Products The current object (for fluent API support)
+     * @throws PropelException
+     */
+    public function setCategories(Categories $v = null)
+    {
+        if ($v === null) {
+            $this->setPrimaryCategoriesId(NULL);
+        } else {
+            $this->setPrimaryCategoriesId($v->getId());
+        }
+
+        $this->aCategories = $v;
+
+        // Add binding for other direction of this n:n relationship.
+        // If this object has already been added to the Categories object, it will not be re-added.
+        if ($v !== null) {
+            $v->addProducts($this);
+        }
+
+
+        return $this;
+    }
+
+
+    /**
+     * Get the associated Categories object
+     *
+     * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
+     * @return Categories The associated Categories object.
+     * @throws PropelException
+     */
+    public function getCategories(PropelPDO $con = null, $doQuery = true)
+    {
+        if ($this->aCategories === null && ($this->primary_categories_id !== null) && $doQuery) {
+            $this->aCategories = CategoriesQuery::create()->findPk($this->primary_categories_id, $con);
+            /* The following can be used additionally to
+                guarantee the related object contains a reference
+                to this object.  This level of coupling may, however, be
+                undesirable since it could result in an only partially populated collection
+                in the referenced object.
+                $this->aCategories->addProductss($this);
+             */
+        }
+
+        return $this->aCategories;
     }
 
 
@@ -3020,6 +3158,31 @@ abstract class BaseProducts extends BaseObject implements Persistent
     {
         $query = ProductsQuery::create(null, $criteria);
         $query->joinWith('ProductsWashingInstructions', $join_behavior);
+
+        return $this->getProductssRelatedBySku($query, $con);
+    }
+
+
+    /**
+     * If this collection has already been initialized with
+     * an identical criteria, it returns the collection.
+     * Otherwise if this Products is new, it will return
+     * an empty collection; or if this Products has previously
+     * been saved, it will retrieve related ProductssRelatedBySku from storage.
+     *
+     * This method is protected by default in order to keep the public
+     * api reasonable.  You can provide public methods for those you
+     * actually need in Products.
+     *
+     * @param Criteria $criteria optional Criteria object to narrow the query
+     * @param PropelPDO $con optional connection object
+     * @param string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
+     * @return PropelObjectCollection|Products[] List of Products objects
+     */
+    public function getProductssRelatedBySkuJoinCategories($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    {
+        $query = ProductsQuery::create(null, $criteria);
+        $query->joinWith('Categories', $join_behavior);
 
         return $this->getProductssRelatedBySku($query, $con);
     }
@@ -6168,6 +6331,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
         $this->is_out_of_stock = null;
         $this->is_active = null;
         $this->is_voucher = null;
+        $this->primary_categories_id = null;
         $this->created_at = null;
         $this->updated_at = null;
         $this->alreadyInSave = false;
@@ -6274,6 +6438,9 @@ abstract class BaseProducts extends BaseObject implements Persistent
             if ($this->aProductsWashingInstructions instanceof Persistent) {
               $this->aProductsWashingInstructions->clearAllReferences($deep);
             }
+            if ($this->aCategories instanceof Persistent) {
+              $this->aCategories->clearAllReferences($deep);
+            }
 
             $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
@@ -6344,6 +6511,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
         $this->collProductsI18ns = null;
         $this->aProductsRelatedByMaster = null;
         $this->aProductsWashingInstructions = null;
+        $this->aCategories = null;
     }
 
     /**

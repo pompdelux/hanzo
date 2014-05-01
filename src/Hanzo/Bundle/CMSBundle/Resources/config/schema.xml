@@ -371,6 +371,7 @@
     <column name="is_out_of_stock" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
     <column name="is_active" type="BOOLEAN" size="1" required="true" defaultValue="true"/>
     <column name="is_voucher" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
+    <column name="primary_categories_id" type="INTEGER" required="false"/>
     <column name="title" type="VARCHAR" required="true" primaryString="true" />
     <column name="content" type="LONGVARCHAR" />
     <foreign-key foreignTable="products" onDelete="CASCADE">
@@ -378,6 +379,9 @@
     </foreign-key>
     <foreign-key foreignTable="products_washing_instructions">
       <reference local="washing" foreign="code"/>
+    </foreign-key>
+    <foreign-key foreignTable="categories" onDelete="SET NULL" onUpdate="CASCADE">
+        <reference local="primary_categories_id" foreign="id"/>
     </foreign-key>
     <unique name="sku_UNIQUE">
       <unique-column name="sku"/>

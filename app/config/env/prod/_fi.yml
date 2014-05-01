@@ -17,19 +17,6 @@ propel:
                 dsn:                  mysql:host=%prod_fi_database_host%;dbname=%prod_fi_database_name%
                 options:              {}
                 attributes:           {}
-                # slaves:
-                #     pdldbdk2:
-                #         user:         %database_slave_1_user%
-                #         password:     %database_slave_1_password%
-                #         dsn:          %database_slave_1_dsn%
-                #     pdldbdk3:
-                #         user:         %database_slave_2_user%
-                #         password:     %database_slave_2_password%
-                #         dsn:          %database_slave_2_dsn%
-                #     pdldbdk4:
-                #         user:         %database_slave_3_user%
-                #         password:     %database_slave_3_password%
-                #         dsn:          %database_slave_3_dsn%
 
 account:
     consignor:

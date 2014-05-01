@@ -19,9 +19,21 @@ use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 
 class SmsService
 {
+    /**
+     * @var array
+     */
     protected $settings;
+
+    /**
+     * @var Translator
+     */
     protected $translator;
 
+    /**
+     * @param $parameters
+     * @param $settings
+     * @throws \InvalidArgumentException
+     */
     public function __construct($parameters, $settings)
     {
         if (!$parameters[0] instanceof Translator) {
@@ -48,6 +60,24 @@ class SmsService
         $this->settings = $settings;
     }
 
+
+    /**
+     * check whether or not reminders is enabled for this account.
+     *
+     * @return bool
+     */
+    public function isEventRemindersEnabled()
+    {
+        return (bool) $this->settings['send.event.reminders'];
+    }
+
+
+    /**
+     * Send invite via sms
+     *
+     * @param $participant
+     * @return bool|mixed|\Smesg\Provider\Common\Response
+     */
     public function sendEventInvite($participant)
     {
         if ((false === Tools::isBellcomRequest()) && (0 == $this->settings['send.event.invites'])) {
@@ -77,13 +107,15 @@ class SmsService
         return $response;
     }
 
+
+    /**
+     * Send confirmation sms
+     *
+     * @param $participant
+     * @return bool|mixed|\Smesg\Provider\Common\Response
+     */
     public function sendEventConfirmationReply($participant)
     {
-        // if ((0 == $this->settings['send.event.confirmations'])) {
-        //     return;
-        // }
-// Tools::log('sending sms conformation to:'.$participant->getPhone());
-
         $event = $participant->getEvents();
         $parameters = array(
             '%name%' => $participant->getFirstName(),
@@ -103,16 +135,15 @@ class SmsService
 
         $response = $provider->send();
 
-// $parameters['%to%'] = $to;
-// Tools::log($parameters);
-// Tools::log($response);
         return $response;
     }
+
 
     /**
      * send sms reminders to event participants.
      *
-     * @return array responses from the sms gateway
+     * @param string $locale
+     * @return array
      */
     public function eventReminder($locale = 'da_DK')
     {
@@ -175,6 +206,10 @@ class SmsService
         return $responses;
     }
 
+
+    /**
+     * @return UnwireProvider
+     */
     protected function getProvider()
     {
         return new UnwireProvider(new PhpStreamAdapter(), array(

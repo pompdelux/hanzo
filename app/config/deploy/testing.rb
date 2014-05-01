@@ -6,7 +6,7 @@ set :deploy_to,   "/var/www/testpompdelux"
 
 # default environment, used by default functions
 set :symfony_env_prod, "test_dk"
-set :symfony_env_prods, ["test_de", "test_fi", "test_se", "test_no", "test_com", "test_nl", "test_dk", "test_dk_consultant"]
+set :symfony_env_prods, ["test_at", "test_ch", "test_de", "test_fi", "test_se", "test_no", "test_com", "test_nl", "test_dk", "test_dk_consultant"]
 
 set :adminserver, "pdltest"
 set :staticserver, "pdltest-db"

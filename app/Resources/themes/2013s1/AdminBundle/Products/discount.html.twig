@@ -33,34 +33,31 @@
 
     {% if quantity_discounts|length > 0 %}
 
-<table id="quantity_discounts" class="list">
-  <thead>
-    <tr>
-      <th>{{ 'admin.products.discount.domains_id'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.products.discount.span'|trans({}, 'admin') }}</th>
-      <th>{{ 'admin.products.discount.discount'|trans({}, 'admin') }}</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for quantity_discount in quantity_discounts %}
-    <tr>
-      <td>{{ quantity_discount.domains.domainkey }}</td>
-      <td>{{ quantity_discount.span }}</td>
-      <td>{{ quantity_discount.discount|number_format(2, ',', '.')  }}</td>
-      <th>
-        <a href="{{ path('admin_products_discount_delete', {'master' : quantity_discount.productsmaster , 'domains_id' : quantity_discount.domainsid, 'span' : quantity_discount.span  }) }}" class="delete">
-          {{ 'admin.products.discount.delete'|trans({}, 'admin') }}
-        </a>
-      </th>
-    </tr>
-  {% endfor %}
-  </tbody>
-</table>
-{% else %}
+        <table id="quantity_discounts" class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ 'admin.products.discount.domains_id'|trans({}, 'admin') }}</th>
+                <th>{{ 'admin.products.discount.span'|trans({}, 'admin') }}</th>
+                <th>{{ 'admin.products.discount.discount'|trans({}, 'admin') }}</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for quantity_discount in quantity_discounts %}
+                <tr>
+                    <td>{{ quantity_discount.domains.domainkey }}</td>
+                    <td>{{ quantity_discount.span }}</td>
+                    <td>{{ quantity_discount.discount|number_format(2, ',', '.') }}</td>
+                    <th>
+                        <a href="{{ path('admin_products_discount_delete', {'master' : quantity_discount.productsmaster , 'domains_id' : quantity_discount.domainsid, 'span' : quantity_discount.span  }) }}" class="right delete glyphicon glyphicon-remove-circle" title="{{ 'admin.products.discount.delete'|trans({}, 'admin') }}"></a>
+                    </th>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-<p>{{ 'admin.products.no.discounts.text'|trans({}, 'admin') }}</p>
-
-{% endif %}
+    {% else %}
+        <p>{{ 'admin.products.no.discounts.text'|trans({}, 'admin') }}</p>
+    {% endif %}
 
 {% endblock %}
