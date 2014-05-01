@@ -39,7 +39,7 @@ class CmsRevisionCommand extends ContainerAwareCommand
                     // A newer revision of this CMS has already been published in
                     // this cron. Skip this one and delete it.
                     $revisionService->deleteRevision($revision);
-                    $output->writeln('Revision deleted');
+                    $output->writeln('Revision deleted for CMS: ' . $revision->getId());
 
                     continue;
                 }
@@ -63,6 +63,7 @@ class CmsRevisionCommand extends ContainerAwareCommand
 
                 // Remember which revisions has already been published.
                 $publishedCmsArray[$cms->getId()] = $cms->getId();
+                $output->writeln('Revision published for CMS: ' . $cms->getId());
             }
 
             if (count($revisionsToPublish)) {

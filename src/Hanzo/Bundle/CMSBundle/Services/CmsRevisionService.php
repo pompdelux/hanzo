@@ -71,6 +71,7 @@ class CmsRevisionService
             $cmsRevision = new Cms();
             $cmsRevision->fromArray($revision->getRevision());
             $cmsRevision->setId($cms->getId());
+            // Keep a copy of the revision object.
             $cmsRevision->revision = $revision;
 
             return $cmsRevision;
@@ -192,20 +193,29 @@ class CmsRevisionService
     public function saveCmsFromRevision(Cms $cms, $revision)
     {
         $cmsRevision = $this->getRevision($cms, $revision);
-
         if (!$cmsRevision instanceof Cms) {
             throw new \Exception('No revisions found for CMS ID : ' . $cms->getId());
         }
 
-        $cmsRevision->setId($cms->getId());
-        $cmsRevision->setNew(false);
-        foreach ($cmsRevision->getCmsI18ns() as $translation) {
-            $translation->setNew(false);
-        }
-        $cmsRevision->save($this->con);
+        $cms->fromArray($cmsRevision->toArray(BasePeer::TYPE_PHPNAME, true, array(), true));
 
+
+        $cms->setId($cms->getId());
+        foreach ($cms->getCmsI18ns() as $translation) {
+            $translation->setNew(false);
+
+            // Be sure that IsActive and OnMobile is set. This failed in Propel.
+            $isActive = $cmsRevision->setLocale($translation->getLocale())->getIsActive();
+            $translation->setIsActive($isActive);
+
+            $onMobile = $cmsRevision->setLocale($translation->getLocale())->getOnMobile();
+            $translation->setOnMobile($onMobile);
+        }
+        $cms->setNew(false);
+
+        $cms->save($this->con);
         // Create new revision, and delete old one.
-        $this->saveRevision($cmsRevision);
+        $this->saveRevision($cms);
         $revision->delete($this->con);
 
         return $cms;

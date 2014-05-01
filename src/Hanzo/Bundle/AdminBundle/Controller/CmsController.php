@@ -277,6 +277,7 @@ class CmsController extends CoreController
         $node = CmsQuery::create()
             ->joinWithCmsI18n()
             ->findPK($id, $this->getDbConnection());
+
         $revision_date = null;
         if ($request->query->get('revision')) {
             $revision = $revision_service->getRevision($node, $request->query->get('revision'));
