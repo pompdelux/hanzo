@@ -466,6 +466,11 @@ class CmsController extends CoreController
                     foreach ($node->getCmsI18ns() as $translation) {
                         $this->get('event_dispatcher')->dispatch('cms.node.updated', new FilterCMSEvent($node, $translation->getLocale(), $this->getDbConnection()));
                     }
+
+                    // If this is an old revision. Redirect to the live cms.
+                    if (!empty($revision_date)) {
+                        return $this->redirect($this->generateUrl('admin_cms_edit', array('id' => $node->getId())));
+                    }
                 }
 
             }

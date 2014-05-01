@@ -68,13 +68,24 @@ class CmsRevisionService
         }
 
         if ($revision instanceof CmsRevision) {
+
             $cmsRevision = new Cms();
             $cmsRevision->fromArray($revision->getRevision());
-            $cmsRevision->setId($cms->getId());
-            // Keep a copy of the revision object.
-            $cmsRevision->revision = $revision;
+            $cms->fromArray($cmsRevision->toArray(BasePeer::TYPE_PHPNAME, true, array(), true));
+            foreach ($cms->getCmsI18ns(null, $this->con) as $translation) {
+                $translation->setNew(false);
 
-            return $cmsRevision;
+                // Be sure that IsActive and OnMobile is/not set. This failed in Propel.
+                $isActive = $cmsRevision->setLocale($translation->getLocale())->getIsActive();
+                $translation->setIsActive($isActive);
+
+                $onMobile = $cmsRevision->setLocale($translation->getLocale())->getOnMobile();
+                $translation->setOnMobile($onMobile);
+            }
+            $cms->setNew(false);
+            $cms->revision = $revision;
+
+            return $cms;
         }
 
         return null;
@@ -192,26 +203,10 @@ class CmsRevisionService
      */
     public function saveCmsFromRevision(Cms $cms, $revision)
     {
-        $cmsRevision = $this->getRevision($cms, $revision);
-        if (!$cmsRevision instanceof Cms) {
+        $cms = $this->getRevision($cms, $revision);
+        if (!$cms instanceof Cms) {
             throw new \Exception('No revisions found for CMS ID : ' . $cms->getId());
         }
-
-        $cms->fromArray($cmsRevision->toArray(BasePeer::TYPE_PHPNAME, true, array(), true));
-
-
-        $cms->setId($cms->getId());
-        foreach ($cms->getCmsI18ns() as $translation) {
-            $translation->setNew(false);
-
-            // Be sure that IsActive and OnMobile is set. This failed in Propel.
-            $isActive = $cmsRevision->setLocale($translation->getLocale())->getIsActive();
-            $translation->setIsActive($isActive);
-
-            $onMobile = $cmsRevision->setLocale($translation->getLocale())->getOnMobile();
-            $translation->setOnMobile($onMobile);
-        }
-        $cms->setNew(false);
 
         $cms->save($this->con);
         // Create new revision, and delete old one.

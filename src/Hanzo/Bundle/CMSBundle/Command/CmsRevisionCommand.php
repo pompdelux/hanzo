@@ -56,7 +56,7 @@ class CmsRevisionCommand extends ContainerAwareCommand
                     }
 
                     // This handles some caching updates.
-                    foreach ($cms->getCmsI18ns() as $translation) {
+                    foreach ($cms->getCmsI18ns(null, Propel::getConnection($connection, Propel::CONNECTION_WRITE)) as $translation) {
                         $this->getContainer()->get('event_dispatcher')->dispatch('cms.node.updated', new FilterCMSEvent($cms, $translation->getLocale()));
                     }
                 }
