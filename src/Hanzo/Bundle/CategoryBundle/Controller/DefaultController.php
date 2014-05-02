@@ -433,8 +433,7 @@ class DefaultController extends CoreController
                     ->addDescendingOrderByColumn(sprintf(
                         "FIELD(%s, %s)",
                         ProductsImagesPeer::COLOR,
-
-                        '\''.implode('\',\'', $color_filter).'\''
+                        "'".implode("','", $color_filter)."'"
 
                     ))
                     ->filterByColor($color_filter)
@@ -444,8 +443,7 @@ class DefaultController extends CoreController
                     ->addAscendingOrderByColumn(sprintf(
                         "FIELD(%s, %s)",
                         ProductsImagesPeer::COLOR,
-
-                        '\''.implode('\',\'', $color_filter).'\''
+                        "'".implode("','", $color_filter)."'"
 
                     ))
                 ->endUse();
