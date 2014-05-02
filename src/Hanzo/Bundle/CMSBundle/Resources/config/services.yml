@@ -1,14 +1,6 @@
 parameters:
     cms_revision.class: Hanzo\Bundle\CMSBundle\Services\CmsRevisionService
-    kernel.listener.cms_bundle_exception_listener.class: Hanzo\Bundle\CMSBundle\Listener\ExceptionListener
 
 services:
     cms_revision:
         class: %cms_revision.class%
-    kernel.listener.cms_bundle_exception_listener:
-        class: %kernel.listener.cms_bundle_exception_listener.class%
-        arguments:
-            - @http_kernel
-            - @service_container
-        tags:
-            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
