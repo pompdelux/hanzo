@@ -1927,6 +1927,10 @@
         <source>admin.coupons.amount</source>
         <target>Beløb</target>
       </trans-unit>
+      <trans-unit id="admin.coupons.amount.type">
+        <source>admin.coupons.amount.type</source>
+        <target>Beløbstype</target>
+      </trans-unit>
       <trans-unit id="admin.coupons.min.purchase.amount">
         <source>admin.coupons.min.purchase.amount</source>
         <target>Mindste købsbeløb</target>
