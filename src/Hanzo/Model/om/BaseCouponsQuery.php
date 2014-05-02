@@ -21,6 +21,7 @@ use Hanzo\Model\OrdersToCoupons;
  * @method CouponsQuery orderById($order = Criteria::ASC) Order by the id column
  * @method CouponsQuery orderByCode($order = Criteria::ASC) Order by the code column
  * @method CouponsQuery orderByAmount($order = Criteria::ASC) Order by the amount column
+ * @method CouponsQuery orderByAmountType($order = Criteria::ASC) Order by the amount_type column
  * @method CouponsQuery orderByMinPurchaseAmount($order = Criteria::ASC) Order by the min_purchase_amount column
  * @method CouponsQuery orderByCurrencyCode($order = Criteria::ASC) Order by the currency_code column
  * @method CouponsQuery orderByActiveFrom($order = Criteria::ASC) Order by the active_from column
@@ -34,6 +35,7 @@ use Hanzo\Model\OrdersToCoupons;
  * @method CouponsQuery groupById() Group by the id column
  * @method CouponsQuery groupByCode() Group by the code column
  * @method CouponsQuery groupByAmount() Group by the amount column
+ * @method CouponsQuery groupByAmountType() Group by the amount_type column
  * @method CouponsQuery groupByMinPurchaseAmount() Group by the min_purchase_amount column
  * @method CouponsQuery groupByCurrencyCode() Group by the currency_code column
  * @method CouponsQuery groupByActiveFrom() Group by the active_from column
@@ -57,6 +59,7 @@ use Hanzo\Model\OrdersToCoupons;
  *
  * @method Coupons findOneByCode(string $code) Return the first Coupons filtered by the code column
  * @method Coupons findOneByAmount(string $amount) Return the first Coupons filtered by the amount column
+ * @method Coupons findOneByAmountType(string $amount_type) Return the first Coupons filtered by the amount_type column
  * @method Coupons findOneByMinPurchaseAmount(string $min_purchase_amount) Return the first Coupons filtered by the min_purchase_amount column
  * @method Coupons findOneByCurrencyCode(string $currency_code) Return the first Coupons filtered by the currency_code column
  * @method Coupons findOneByActiveFrom(string $active_from) Return the first Coupons filtered by the active_from column
@@ -70,6 +73,7 @@ use Hanzo\Model\OrdersToCoupons;
  * @method array findById(int $id) Return Coupons objects filtered by the id column
  * @method array findByCode(string $code) Return Coupons objects filtered by the code column
  * @method array findByAmount(string $amount) Return Coupons objects filtered by the amount column
+ * @method array findByAmountType(string $amount_type) Return Coupons objects filtered by the amount_type column
  * @method array findByMinPurchaseAmount(string $min_purchase_amount) Return Coupons objects filtered by the min_purchase_amount column
  * @method array findByCurrencyCode(string $currency_code) Return Coupons objects filtered by the currency_code column
  * @method array findByActiveFrom(string $active_from) Return Coupons objects filtered by the active_from column
@@ -184,7 +188,7 @@ abstract class BaseCouponsQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `code`, `amount`, `min_purchase_amount`, `currency_code`, `active_from`, `active_to`, `is_active`, `is_used`, `is_reusable`, `created_at`, `updated_at` FROM `coupons` WHERE `id` = :p0';
+        $sql = 'SELECT `id`, `code`, `amount`, `amount_type`, `min_purchase_amount`, `currency_code`, `active_from`, `active_to`, `is_active`, `is_used`, `is_reusable`, `created_at`, `updated_at` FROM `coupons` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -384,6 +388,35 @@ abstract class BaseCouponsQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(CouponsPeer::AMOUNT, $amount, $comparison);
+    }
+
+    /**
+     * Filter the query on the amount_type column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByAmountType('fooValue');   // WHERE amount_type = 'fooValue'
+     * $query->filterByAmountType('%fooValue%'); // WHERE amount_type LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $amountType The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return CouponsQuery The current query, for fluid interface
+     */
+    public function filterByAmountType($amountType = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($amountType)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $amountType)) {
+                $amountType = str_replace('*', '%', $amountType);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(CouponsPeer::AMOUNT_TYPE, $amountType, $comparison);
     }
 
     /**

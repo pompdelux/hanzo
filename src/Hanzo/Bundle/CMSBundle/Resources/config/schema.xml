@@ -120,6 +120,7 @@
     <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="code" type="VARCHAR" size="12" required="true"/>
     <column name="amount" type="DECIMAL" size="15" scale="4" required="true"/>
+    <column name="amount_type" type="VARCHAR" size="6" defaultValue="amount" required="true"/>
     <column name="min_purchase_amount" type="DECIMAL" size="15" scale="4" required="false"/>
     <column name="currency_code" type="VARCHAR" size="3" required="true"/>
     <column name="active_from" type="TIMESTAMP" required="false"/>

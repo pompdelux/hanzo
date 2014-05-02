@@ -143,6 +143,7 @@ CREATE TABLE `coupons`
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `code` VARCHAR(12) NOT NULL,
     `amount` DECIMAL(15,4) NOT NULL,
+    `amount_type` VARCHAR(6) DEFAULT 'amount' NOT NULL,
     `min_purchase_amount` DECIMAL(15,4),
     `currency_code` VARCHAR(3) NOT NULL,
     `active_from` DATETIME,
