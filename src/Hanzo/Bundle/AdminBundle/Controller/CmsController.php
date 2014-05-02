@@ -87,18 +87,26 @@ class CmsController extends CoreController
 
         $cache = $this->get('cache_manager');
 
-        $node = CmsI18nQuery::create()
-            ->filterByLocale($locale)
+        $translations = CmsI18nQuery::create()
             ->filterById($id)
-            ->findOne($this->getDbConnection())
+            ->find($this->getDbConnection())
         ;
 
-        if($node instanceof CmsI18n) {
-            $node->delete($this->getDbConnection());
-
-            $this->get('event_dispatcher')->dispatch('cms.node.deleted', new FilterCMSEvent($node, $locale));
+        $delete_cms = true;
+        foreach ($translations as $translation) {
+            if ($translation->getLocale() == $locale) {
+                $translation->delete($this->getDbConnection());
+                $this->get('event_dispatcher')->dispatch('cms.node.deleted', new FilterCMSEvent($translation, $locale));
+            }
+            else {
+                // There are other translations. Dont delete the master CMS.
+                $delete_cms = false;
+            }
         }
 
+        if ($delete_cms) {
+            CmsQuery::create()->filterById($id)->delete($this->getDbConnection());
+        }
 
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
