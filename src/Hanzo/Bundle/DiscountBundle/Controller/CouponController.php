@@ -69,30 +69,13 @@ class CouponController extends CoreController
                 }
 
             } else {
-                $discount = $coupon->getAmount();
                 // only close the coupon if it is not a reusable code.
                 if (false === $coupon->getIsReusable()) {
                     $coupon->setIsUsed(1);
                     $coupon->save();
                 }
 
-                $text = $translator->trans('coupon', [], 'checkout');
-                $order->setDiscountLine($text, -$discount, 'coupon.code');
-                $order->setAttribute('amount', 'coupon', $discount);
                 $order->setAttribute('code', 'coupon', $coupon->getCode());
-                $order->setAttribute('text', 'coupon', $text);
-
-                $c = new OrdersToCoupons();
-                $c->setCouponsId($coupon->getId());
-                $c->setOrdersId($order->getId());
-                $c->setAmount($discount);
-
-                $criteria = new Criteria();
-                $criteria->add(OrdersToCouponsPeer::ORDERS_ID, $order->getId(), Criteria::NOT_EQUAL);
-                $collection = $order->getOrdersToCouponss($criteria);
-                $collection->prepend($c);
-
-                $order->setOrdersToCouponss($collection);
                 $order->save();
 
                 if ($this->getFormat() == 'json') {
