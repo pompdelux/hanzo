@@ -257,6 +257,12 @@ class ProductsController extends CoreController
 
             if ($form_hasVideo->isValid()) {
                 $current_product->save($this->getDbConnection());
+
+                // update child products
+                ProductsQuery::create()
+                    ->filterByMaster($current_product->getSku())
+                    ->update(['IsDiscountable' => $current_product->getIsDiscountable()])
+                ;
             }
         }
 
