@@ -78,6 +78,15 @@ class PayPalCall implements PaymentMethodApiCallInterface
             return $this->doDoVoid($attributes->payment->TRANSACTIONID);
         }
 
+        if (empty($attributes->payment->TRANSACTIONID)) {
+            \Hanzo\Core\Tools::log(
+                'PayPal transaction problems with order: #'.$order->getId()."\n\n".
+                print_r($order->toArray(), 1)."\n".
+                print_r($attributes, 1)."\n".
+                '----------------------------------------------------'
+            );
+        }
+
         return $this->doRefundTransaction(
             $attributes->payment->TRANSACTIONID,
             $order->getCustomersId(),
