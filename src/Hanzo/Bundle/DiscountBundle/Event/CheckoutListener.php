@@ -82,6 +82,8 @@ class CheckoutListener
             $discount_amount = ($total / 100) * $discount;
             $order->setDiscountLine($discount_label, $discount_amount, $discount);
         }
+
+
     }
 
 
