@@ -492,6 +492,7 @@ CREATE TABLE `products`
     `is_out_of_stock` TINYINT(1) DEFAULT 0 NOT NULL,
     `is_active` TINYINT(1) DEFAULT 1 NOT NULL,
     `is_voucher` TINYINT(1) DEFAULT 0 NOT NULL,
+    `is_discountable` TINYINT(1) DEFAULT 1 NOT NULL,
     `primary_categories_id` INTEGER,
     `created_at` DATETIME,
     `updated_at` DATETIME,

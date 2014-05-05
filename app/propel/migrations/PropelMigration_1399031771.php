@@ -43,6 +43,7 @@ class PropelMigration_1399031771
 SET FOREIGN_KEY_CHECKS = 0;
 
 ALTER TABLE `coupons` ADD `amount_type` VARCHAR(6) DEFAULT \'amount\' NOT NULL AFTER `amount`;
+ALTER TABLE `products` ADD `is_discountable` TINYINT(1) DEFAULT 1 NOT NULL AFTER `is_voucher`;
 
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;
@@ -65,6 +66,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 SET FOREIGN_KEY_CHECKS = 0;
 
 ALTER TABLE `coupons` DROP `amount_type`;
+ALTER TABLE `products` DROP `is_discountable`;
 
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;

@@ -139,6 +139,13 @@ abstract class BaseProducts extends BaseObject implements Persistent
     protected $is_voucher;
 
     /**
+     * The value for the is_discountable field.
+     * Note: this column has a database default value of: true
+     * @var        boolean
+     */
+    protected $is_discountable;
+
+    /**
      * The value for the primary_categories_id field.
      * @var        int
      */
@@ -397,6 +404,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
         $this->is_out_of_stock = false;
         $this->is_active = true;
         $this->is_voucher = false;
+        $this->is_discountable = true;
     }
 
     /**
@@ -528,6 +536,17 @@ abstract class BaseProducts extends BaseObject implements Persistent
     {
 
         return $this->is_voucher;
+    }
+
+    /**
+     * Get the [is_discountable] column value.
+     *
+     * @return boolean
+     */
+    public function getIsDiscountable()
+    {
+
+        return $this->is_discountable;
     }
 
     /**
@@ -897,6 +916,35 @@ abstract class BaseProducts extends BaseObject implements Persistent
     } // setIsVoucher()
 
     /**
+     * Sets the value of the [is_discountable] column.
+     * Non-boolean arguments are converted using the following rules:
+     *   * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
+     *   * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
+     * Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
+     *
+     * @param boolean|integer|string $v The new value
+     * @return Products The current object (for fluent API support)
+     */
+    public function setIsDiscountable($v)
+    {
+        if ($v !== null) {
+            if (is_string($v)) {
+                $v = in_array(strtolower($v), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+            } else {
+                $v = (boolean) $v;
+            }
+        }
+
+        if ($this->is_discountable !== $v) {
+            $this->is_discountable = $v;
+            $this->modifiedColumns[] = ProductsPeer::IS_DISCOUNTABLE;
+        }
+
+
+        return $this;
+    } // setIsDiscountable()
+
+    /**
      * Set the value of [primary_categories_id] column.
      *
      * @param  int $v new value
@@ -993,6 +1041,10 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 return false;
             }
 
+            if ($this->is_discountable !== true) {
+                return false;
+            }
+
         // otherwise, everything was equal, so return true
         return true;
     } // hasOnlyDefaultValues()
@@ -1026,9 +1078,10 @@ abstract class BaseProducts extends BaseObject implements Persistent
             $this->is_out_of_stock = ($row[$startcol + 8] !== null) ? (boolean) $row[$startcol + 8] : null;
             $this->is_active = ($row[$startcol + 9] !== null) ? (boolean) $row[$startcol + 9] : null;
             $this->is_voucher = ($row[$startcol + 10] !== null) ? (boolean) $row[$startcol + 10] : null;
-            $this->primary_categories_id = ($row[$startcol + 11] !== null) ? (int) $row[$startcol + 11] : null;
-            $this->created_at = ($row[$startcol + 12] !== null) ? (string) $row[$startcol + 12] : null;
-            $this->updated_at = ($row[$startcol + 13] !== null) ? (string) $row[$startcol + 13] : null;
+            $this->is_discountable = ($row[$startcol + 11] !== null) ? (boolean) $row[$startcol + 11] : null;
+            $this->primary_categories_id = ($row[$startcol + 12] !== null) ? (int) $row[$startcol + 12] : null;
+            $this->created_at = ($row[$startcol + 13] !== null) ? (string) $row[$startcol + 13] : null;
+            $this->updated_at = ($row[$startcol + 14] !== null) ? (string) $row[$startcol + 14] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -1038,7 +1091,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
             }
             $this->postHydrate($row, $startcol, $rehydrate);
 
-            return $startcol + 14; // 14 = ProductsPeer::NUM_HYDRATE_COLUMNS.
+            return $startcol + 15; // 15 = ProductsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating Products object", $e);
@@ -1615,6 +1668,9 @@ abstract class BaseProducts extends BaseObject implements Persistent
         if ($this->isColumnModified(ProductsPeer::IS_VOUCHER)) {
             $modifiedColumns[':p' . $index++]  = '`is_voucher`';
         }
+        if ($this->isColumnModified(ProductsPeer::IS_DISCOUNTABLE)) {
+            $modifiedColumns[':p' . $index++]  = '`is_discountable`';
+        }
         if ($this->isColumnModified(ProductsPeer::PRIMARY_CATEGORIES_ID)) {
             $modifiedColumns[':p' . $index++]  = '`primary_categories_id`';
         }
@@ -1667,6 +1723,9 @@ abstract class BaseProducts extends BaseObject implements Persistent
                         break;
                     case '`is_voucher`':
                         $stmt->bindValue($identifier, (int) $this->is_voucher, PDO::PARAM_INT);
+                        break;
+                    case '`is_discountable`':
+                        $stmt->bindValue($identifier, (int) $this->is_discountable, PDO::PARAM_INT);
                         break;
                     case '`primary_categories_id`':
                         $stmt->bindValue($identifier, $this->primary_categories_id, PDO::PARAM_INT);
@@ -1991,12 +2050,15 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 return $this->getIsVoucher();
                 break;
             case 11:
-                return $this->getPrimaryCategoriesId();
+                return $this->getIsDiscountable();
                 break;
             case 12:
-                return $this->getCreatedAt();
+                return $this->getPrimaryCategoriesId();
                 break;
             case 13:
+                return $this->getCreatedAt();
+                break;
+            case 14:
                 return $this->getUpdatedAt();
                 break;
             default:
@@ -2039,9 +2101,10 @@ abstract class BaseProducts extends BaseObject implements Persistent
             $keys[8] => $this->getIsOutOfStock(),
             $keys[9] => $this->getIsActive(),
             $keys[10] => $this->getIsVoucher(),
-            $keys[11] => $this->getPrimaryCategoriesId(),
-            $keys[12] => $this->getCreatedAt(),
-            $keys[13] => $this->getUpdatedAt(),
+            $keys[11] => $this->getIsDiscountable(),
+            $keys[12] => $this->getPrimaryCategoriesId(),
+            $keys[13] => $this->getCreatedAt(),
+            $keys[14] => $this->getUpdatedAt(),
         );
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
@@ -2171,12 +2234,15 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 $this->setIsVoucher($value);
                 break;
             case 11:
-                $this->setPrimaryCategoriesId($value);
+                $this->setIsDiscountable($value);
                 break;
             case 12:
-                $this->setCreatedAt($value);
+                $this->setPrimaryCategoriesId($value);
                 break;
             case 13:
+                $this->setCreatedAt($value);
+                break;
+            case 14:
                 $this->setUpdatedAt($value);
                 break;
         } // switch()
@@ -2214,9 +2280,10 @@ abstract class BaseProducts extends BaseObject implements Persistent
         if (array_key_exists($keys[8], $arr)) $this->setIsOutOfStock($arr[$keys[8]]);
         if (array_key_exists($keys[9], $arr)) $this->setIsActive($arr[$keys[9]]);
         if (array_key_exists($keys[10], $arr)) $this->setIsVoucher($arr[$keys[10]]);
-        if (array_key_exists($keys[11], $arr)) $this->setPrimaryCategoriesId($arr[$keys[11]]);
-        if (array_key_exists($keys[12], $arr)) $this->setCreatedAt($arr[$keys[12]]);
-        if (array_key_exists($keys[13], $arr)) $this->setUpdatedAt($arr[$keys[13]]);
+        if (array_key_exists($keys[11], $arr)) $this->setIsDiscountable($arr[$keys[11]]);
+        if (array_key_exists($keys[12], $arr)) $this->setPrimaryCategoriesId($arr[$keys[12]]);
+        if (array_key_exists($keys[13], $arr)) $this->setCreatedAt($arr[$keys[13]]);
+        if (array_key_exists($keys[14], $arr)) $this->setUpdatedAt($arr[$keys[14]]);
     }
 
     /**
@@ -2239,6 +2306,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
         if ($this->isColumnModified(ProductsPeer::IS_OUT_OF_STOCK)) $criteria->add(ProductsPeer::IS_OUT_OF_STOCK, $this->is_out_of_stock);
         if ($this->isColumnModified(ProductsPeer::IS_ACTIVE)) $criteria->add(ProductsPeer::IS_ACTIVE, $this->is_active);
         if ($this->isColumnModified(ProductsPeer::IS_VOUCHER)) $criteria->add(ProductsPeer::IS_VOUCHER, $this->is_voucher);
+        if ($this->isColumnModified(ProductsPeer::IS_DISCOUNTABLE)) $criteria->add(ProductsPeer::IS_DISCOUNTABLE, $this->is_discountable);
         if ($this->isColumnModified(ProductsPeer::PRIMARY_CATEGORIES_ID)) $criteria->add(ProductsPeer::PRIMARY_CATEGORIES_ID, $this->primary_categories_id);
         if ($this->isColumnModified(ProductsPeer::CREATED_AT)) $criteria->add(ProductsPeer::CREATED_AT, $this->created_at);
         if ($this->isColumnModified(ProductsPeer::UPDATED_AT)) $criteria->add(ProductsPeer::UPDATED_AT, $this->updated_at);
@@ -2315,6 +2383,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
         $copyObj->setIsOutOfStock($this->getIsOutOfStock());
         $copyObj->setIsActive($this->getIsActive());
         $copyObj->setIsVoucher($this->getIsVoucher());
+        $copyObj->setIsDiscountable($this->getIsDiscountable());
         $copyObj->setPrimaryCategoriesId($this->getPrimaryCategoriesId());
         $copyObj->setCreatedAt($this->getCreatedAt());
         $copyObj->setUpdatedAt($this->getUpdatedAt());
@@ -6331,6 +6400,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
         $this->is_out_of_stock = null;
         $this->is_active = null;
         $this->is_voucher = null;
+        $this->is_discountable = null;
         $this->primary_categories_id = null;
         $this->created_at = null;
         $this->updated_at = null;
