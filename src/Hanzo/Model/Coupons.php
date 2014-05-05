@@ -20,6 +20,9 @@ class Coupons extends BaseCoupons {
 
     protected $quantity;
 
+    const TYPE_AMOUNT     = 'amount';
+    const TYPE_PERCENTAGE = 'pct';
+
     public function setQuantity($v)
     {
         $this->quantity = $v;
