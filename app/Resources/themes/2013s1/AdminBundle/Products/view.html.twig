@@ -172,7 +172,7 @@
 
   <h1>{{ 'admin.product.has_video.header'|trans({}, 'admin') }}</h1>
   <form action="{{ path('admin_product', {'id' : current_product.id}) }}" method="post" {{ form_enctype(has_video_form) }} id="product-edit-form" class="inline-form">
-    <div id="product-edit">
+    <div id="product-edit" class="clearfix">
       {{ form_rest(has_video_form) }}
       {{ form_row(has_video_form._token) }}
     </div>

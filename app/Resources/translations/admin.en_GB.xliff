@@ -252,15 +252,19 @@
       </trans-unit>
       <trans-unit id="admin.product.has_video.header">
         <source>admin.product.has_video.header</source>
-        <target>Video på produktet</target>
+        <target>Ekstra på produktet</target>
       </trans-unit>
       <trans-unit id="product.label.has_video">
         <source>product.label.has_video</source>
         <target>Skal produktet have en video?</target>
       </trans-unit>
+      <trans-unit id="product.label.is_discountable">
+        <source>product.label.is_discountable</source>
+        <target>Skal produktet kunne sælges med rabatter?</target>
+      </trans-unit>
       <trans-unit id="product.has_video.submit">
         <source>product.has_video.submit</source>
-        <target>Gem Video</target>
+        <target>Gem</target>
       </trans-unit>
       <trans-unit id="admin.category.edit.header.text">
         <source>admin.category.edit.header.text</source>
