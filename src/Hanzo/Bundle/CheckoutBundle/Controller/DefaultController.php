@@ -56,7 +56,6 @@ class DefaultController extends CoreController
     /**
      * confirmAction
      *
-     * @author Henrik Farre <hf@bellcom.dk>
      * @return Response
      **/
     public function confirmAction()
@@ -70,14 +69,13 @@ class DefaultController extends CoreController
     /**
      * summeryAction
      *
-     * @author Henrik Farre <hf@bellcom.dk>
      * @return Response
      **/
     public function summeryAction()
     {
         $invalid_order_message = '';
 
-        // we only want the masterdata here, no slaves thank you...
+        // we only want the master data here, no slaves thank you...
         Propel::setForceMasterConnection(true);
 
         $order = OrdersPeer::getCurrent(true);
@@ -181,23 +179,27 @@ class DefaultController extends CoreController
                 ], 'checkout');
             }
 
-            // we sometimes see orders where the discount is missing from the orders_lines table, we re-add it.
-            $discount = OrdersLinesQuery::create()
-                ->joinWithProducts()
-                ->filterByType('discount')
-                ->filterByProductsName('coupon.code')
-                ->findByOrdersId($order->getId())
-            ;
-
-            if (!$discount instanceof OrdersLines) {
-                $order->setDiscountLine(
-                    $this->get('translator')->trans('coupon', [], 'checkout'),
-                    -$coupon->getAmount(),
-                    'coupon.code'
-                );
-            }
+// if we need this again, we need to address it in the event listener.
+//
+//            // we sometimes see orders where the discount is missing from the orders_lines table, we re-add it.
+//            $discount = OrdersLinesQuery::create()
+//                ->joinWithProducts()
+//                ->filterByType('discount')
+//                ->filterByProductsName('coupon.code')
+//                ->findByOrdersId($order->getId())
+//            ;
+//
+//            if (!$discount instanceof OrdersLines) {
+//                $order->setDiscountLine(
+//                    $this->get('translator')->trans('coupon', [], 'checkout'),
+//                    -$coupon->getAmount(),
+//                    'coupon.code'
+//                );
+//            }
         }
 
+        /* ------------------------------------------------- */
+        $this->container->get('event_dispatcher')->dispatch('order.summery.updated', new FilterOrderEvent($order));
         /* ------------------------------------------------- */
         $order->save();
         $order->reload(true, Propel::getConnection(OrdersPeer::DATABASE_NAME, Propel::CONNECTION_READ));
@@ -303,15 +305,15 @@ class DefaultController extends CoreController
 
     /**
      * failedAction
+     *
      * @return Response
-     * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function failedAction()
     {
         $order = OrdersPeer::getCurrent();
 
-        if ( $order->getState() >= Orders::STATE_PAYMENT_OK ) // Last check before we declare the order failed
-        {
+        // Last check before we declare the order failed
+        if ($order->getState() >= Orders::STATE_PAYMENT_OK) {
             return $this->redirect($this->generateUrl('_checkout_success'));
         }
 
@@ -340,7 +342,7 @@ class DefaultController extends CoreController
     {
         $order = OrdersPeer::getCurrent();
 
-        if ( ($order->isNew() === true) || ($order->getTotalQuantity(true) == 0)) {
+        if (($order->isNew() === true) || ($order->getTotalQuantity(true) == 0)) {
             return $this->redirect($this->generateUrl('basket_view'));
         }
 
