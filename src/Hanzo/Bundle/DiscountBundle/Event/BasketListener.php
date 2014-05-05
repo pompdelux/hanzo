@@ -2,6 +2,8 @@
 
 namespace Hanzo\Bundle\DiscountBundle\Event;
 
+use Hanzo\Bundle\DiscountBundle\Handlers\CouponHandler;
+use Hanzo\Bundle\DiscountBundle\Handlers\QuantityDiscountHandler;
 use Hanzo\Core\Hanzo;
 use Hanzo\Model\Customers;
 use Hanzo\Model\OrdersLinesPeer;
@@ -18,11 +20,25 @@ class BasketListener
     private $logger;
 
     /**
-     * @param Logger $logger
+     * @var \Hanzo\Bundle\DiscountBundle\Handlers\CouponHandler
      */
-    public function __construct(Logger $logger)
+    private $coupon_handler;
+
+    /**
+     * @var \Hanzo\Bundle\DiscountBundle\Handlers\QuantityDiscountHandler
+     */
+    private $quantity_discount_handler;
+
+    /**
+     * @param Logger                  $logger
+     * @param CouponHandler           $coupon_handler
+     * @param QuantityDiscountHandler $quantity_discount_handler
+     */
+    public function __construct(Logger $logger, CouponHandler $coupon_handler, QuantityDiscountHandler $quantity_discount_handler)
     {
-        $this->logger = $logger;
+        $this->logger                    = $logger;
+        $this->coupon_handler            = $coupon_handler;
+        $this->quantity_discount_handler = $quantity_discount_handler;
     }
 
     /**
@@ -30,52 +46,10 @@ class BasketListener
      */
     public function onBasketChange(BasketEvent $event)
     {
-        $master = $event->getProduct()->getMaster();
-        $breaks = ProductsQuantityDiscountQuery::create()
-            ->orderBySpan(\Criteria::DESC)
-            ->findByProductsMaster($master)
-        ;
+        $product = $event->getProduct();
+        $order   = $event->getOrder();
 
-        if (0 === $breaks->count()) {
-            return;
-        }
-
-        $order = $event->getOrder();
-
-        // disable quantity discount for shopping advisors and employees - if there personal discounts is in effect.
-        $customer = $order->getCustomers();
-        if (($customer instanceof Customers) &&
-            (1 < $customer->getGroupsId()) &&
-            (0 == Hanzo::getInstance()->get('webshop.disable_discounts'))
-        ) {
-            return;
-        }
-
-        $ids = ProductsQuery::create()->select('Id')->findByMaster($master)->toArray();
-
-        $c = new \Criteria();
-        $c->add(OrdersLinesPeer::PRODUCTS_ID, $ids, \Criteria::IN);
-
-        $total = 0;
-        foreach ($order->getOrdersLiness($c) as $line) {
-            $total += $line->getQuantity();
-        }
-
-        $discount = 0;
-        foreach ($breaks as $break) {
-            if ($total >= $break->getSpan()) {
-                $discount = $break->getDiscount();
-                break;
-            }
-        }
-
-        foreach ($order->getOrdersLiness() as $line) {
-            if (!in_array($line->getProductsId(), $ids)) {
-                continue;
-            }
-
-            $line->setPrice($line->getOriginalPrice() - $discount);
-            $line->save();
-        }
+        $order = $this->coupon_handler->initialize($order)->handle();
+        $order = $this->quantity_discount_handler->initialize($order, $product)->handle();
     }
 }
