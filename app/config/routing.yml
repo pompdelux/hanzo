@@ -1,3 +1,7 @@
+hanzo_kraken:
+    resource: "@HanzoKrakenBundle/Resources/config/routing.xml"
+    prefix:   /
+
 stock:
     resource: "@StockBundle/Controller/"
     prefix:   /{_locale}/
