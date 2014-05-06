@@ -18,7 +18,7 @@ services:
             - @hanzo.discount.handler.coupon_handler
             - @hanzo.discount.handler.personal_discount_handler
         tags:
-            - { name: kernel.event_listener, event: order.summery.finalize, method: onFinalize, priority: 20 }
+            - { name: kernel.event_listener, event: order.summery.updated, method: onFinalize, priority: 20 }
 
     hanzo.discount.checkout.listener:
         class: Hanzo\Bundle\DiscountBundle\Event\CheckoutListener
