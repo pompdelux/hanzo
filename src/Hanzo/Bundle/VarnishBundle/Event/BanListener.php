@@ -202,6 +202,11 @@ class BanListener
                     }
                 }
 
+                // we should not be here, but...
+                if (empty($settings->category_id)) {
+                    continue;
+                }
+
                 if (empty($category_map[$settings->category_id])) {
                     $category_map[$settings->category_id] = [];
                 }

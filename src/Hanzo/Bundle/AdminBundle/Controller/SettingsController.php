@@ -544,7 +544,11 @@ class SettingsController extends CoreController
             ->find($this->getDbConnection())
         ;
 
-        $message_ns_availible = MessagesQuery::create()->find($this->getDbConnection());
+        $message_ns_availible = MessagesQuery::create()
+            ->orderByNs()
+            ->orderByKey()
+            ->find($this->getDbConnection())
+        ;
         $languages_availible = LanguagesQuery::Create()->find($this->getDbConnection());
 
         $languages = array();
@@ -695,13 +699,13 @@ class SettingsController extends CoreController
 
         $message = MessagesI18nQuery::create();
 
-        if($locale){
+        if ($locale){
             $message = $message->filterByLocale($locale);
         }
 
         $message = $message->filterById($id)->findOne($this->getDbConnection());
 
-        if($message instanceof MessagesI18n){
+        if ($message instanceof MessagesI18n){
             $message->delete($this->getDbConnection());
         }
 

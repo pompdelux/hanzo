@@ -5,10 +5,7 @@ namespace Hanzo\Bundle\PaymentBundle\Methods\PayPal;
 use Hanzo\Model\Customers;
 use Hanzo\Model\Orders;
 
-use Hanzo\Core\Hanzo;
 use Hanzo\Bundle\PaymentBundle\PaymentMethodApiCallInterface;
-use Hanzo\Bundle\PaymentBundle\Methods\PayPal\PayPalApi;
-use Hanzo\Bundle\PaymentBundle\Methods\PayPal\PayPalCallResponse;
 
 class PayPalCall implements PaymentMethodApiCallInterface
 {
@@ -36,18 +33,15 @@ class PayPalCall implements PaymentMethodApiCallInterface
      */
     protected $api = null;
 
-    /**
-     * __construct
-     */
     private function __construct(){}
 
 
     /**
-     * someFunc
+     * Factory method
      *
-     * @param  array      $settings
-     * @param  PayPalApi  $api
-     * @return PayPalCall
+     * @param  array     $settings
+     * @param  PayPalApi $api
+     * @return self
      */
     public static function getInstance(array $settings, PayPalApi $api)
     {
@@ -67,8 +61,8 @@ class PayPalCall implements PaymentMethodApiCallInterface
      * Cancel payment
      *
      * @param  Customers          $customer
-     * @param  Orders             $order  Order object
-     * @return PayPalCallResponse
+     * @param  Orders             $order
+     * @return PayPalCallResponse|PayPallDummyCallResponse
      */
     public function cancel(Customers $customer, Orders $order)
     {
@@ -79,6 +73,19 @@ class PayPalCall implements PaymentMethodApiCallInterface
             ('authorization' == strtolower($attributes->payment->PENDINGREASON))
         ) {
             return $this->doDoVoid($attributes->payment->TRANSACTIONID);
+        }
+
+        if (empty($attributes->payment->TRANSACTIONID)) {
+            if (1 == $order->getVersionId()) {
+                return new PayPallDummyCallResponse();
+            }
+
+            \Hanzo\Core\Tools::log(
+                'PayPal transaction problems with order: #'.$order->getId()."\n\n".
+                print_r($order->toArray(), 1)."\n".
+                print_r($attributes, 1)."\n".
+                '----------------------------------------------------'
+            );
         }
 
         return $this->doRefundTransaction(

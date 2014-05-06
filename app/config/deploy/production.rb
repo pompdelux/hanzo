@@ -8,16 +8,16 @@ set :deploy_to,   "/var/www/pompdelux"
 set :symfony_env_prod, "prod_dk"
 set :symfony_env_prods, ["prod_ch", "prod_at", "prod_de", "prod_fi", "prod_se", "prod_no", "prod_com", "prod_nl", "prod_dk", "prod_ch_consultant", "prod_at_consultant", "prod_de_consultant", "prod_fi_consultant", "prod_se_consultant", "prod_no_consultant", "prod_nl_consultant", "prod_dk_consultant"]
 
-set :adminserver, "pdladmin"
-set :staticserver, "pdlstatic1"
+set :adminserver, "pdladmin1.bellcom.dk"
+set :staticserver, "pdlstatic1.bellcom.dk"
 
 set :branch, "master"
 
 # list of servers to deploy to
-role :app, 'pdlfront-dk3', 'pdlfront-dk2', 'pdlfront-no1', 'pdlfront-nl1', 'pdlfront-fi1', 'pdlfront-dk4', 'pdlfront-dk5', 'pdlfront-de1', 'pdladmin', 'pdlkons-dk1', 'pdlstatic1'
+role :app, 'pdlweb1.bellcom.dk', 'pdlweb2.bellcom.dk', 'pdlweb3.bellcom.dk', 'pdlweb4.bellcom.dk', 'pdladmin1.bellcom.dk', 'pdlstatic1.bellcom.dk'
 
 # :symfonyweb should contain our apache/nginx servers running symfony. Used in reload_apache and opcode-clear
-role :symfonyweb, 'pdlfront-dk3', 'pdlfront-dk2', 'pdlfront-no1', 'pdlfront-nl1', 'pdlfront-fi1', 'pdlfront-dk4', 'pdlfront-dk5', 'pdlfront-de1', 'pdladmin', 'pdlkons-dk1'
+role :symfonyweb, 'pdlweb1.bellcom.dk', 'pdlweb2.bellcom.dk', 'pdlweb3.bellcom.dk', 'pdlweb4.bellcom.dk', 'pdladmin1.bellcom.dk'
 
 # our redis server. clear cache here
 role :redis, adminserver, :primary => true
@@ -33,21 +33,11 @@ after 'deploy:send_email', 'deploy:newrelic_notify', 'deploy:post_dashing'
 
 # own tasks. copy config
 namespace :deploy do
-  desc "Copy default parameters.ini and hanzo.yml to shared dir"
+  desc "Copy default parameters.ini to shared dir"
   task :copy_prod_config do
-    capifony_pretty_print "--> Copying parameters.ini and hanzo.yml"
-    run("mkdir -p #{shared_path}/app/config/ && wget -q --output-document=#{shared_path}/app/config/parameters.ini http://tools.bellcom.dk/hanzo/parameters.ini && wget -q --output-document=#{shared_path}/app/config/hanzo.yml http://tools.bellcom.dk/hanzo/hanzo.yml")
+    capifony_pretty_print "--> Copying parameters.ini"
+    run("mkdir -p #{shared_path}/app/config/ && wget -q --output-document=#{shared_path}/app/config/parameters.ini http://tools.bellcom.dk/hanzo/parameters.ini")
     capifony_puts_ok
-  end
-# own tasks. copy vhost
-  desc "Copy default vhost from stat"
-  task :copy_vhost, :roles => :symfonyweb do
-    run("sudo wget -q --output-document=/etc/apache2/sites-available/pompdelux http://tools.bellcom.dk/hanzo/pompdelux-vhost.txt")
-  end
-# own tasks. enable vhost
-  desc "Enable vhost from stat"
-  task :enable_vhost, :roles => :symfonyweb do
-    run("sudo a2ensite pompdelux")
   end
 # post deploy to new relic. Only for prod
   desc "Send deploy to New Relic"
@@ -56,6 +46,7 @@ namespace :deploy do
     run_locally("curl -s -H 'x-api-key:9c7777826c9d0aed79810e82e0d07dacde3a7e94a94d03a' -d 'deployment[app_name]=Pompdelux' -d 'deployment[user]=#{whoami}' https://rpm.newrelic.com/deployments.xml")
     capifony_puts_ok
   end
+# post deploy to new Pepper Potts dashing
   desc "Post deploy to Pepper Potts dashing"
   task :post_dashing do
     capifony_pretty_print "--> Posting to dashing (pepper-potts.pompdelux.com:3030)"

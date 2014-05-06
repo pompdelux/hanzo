@@ -19,6 +19,10 @@ var maps = (function($) {
         $.getJSON(base_url + 'rest/v1/gm/near_you' + req, function(result) {
           dataToContainer(result.data);
 
+          if (typeof gm_settings === 'undefined') {
+              return;
+          }
+
           var map = getMap('consultants-map-canvas-2');
           if (result.data.length) {
             populateMap(map, result.data, true);
@@ -43,6 +47,10 @@ var maps = (function($) {
     $.getJSON(base_url + 'rest/v1/gm/near_you' + req, function(result) {
       dataToContainer(result.data);
 
+      if (typeof gm_settings === 'undefined') {
+          return;
+      }
+
       var map = getMap('consultants-map-canvas-2');
       if (result.data.length) {
         populateMap(map, result.data, true);
@@ -64,7 +72,7 @@ var maps = (function($) {
   };
 
 
-  getMap = function(id) {
+  var getMap = function(id) {
     var zc = (undefined === gm_settings.zoomControl) ? true : gm_settings.zoomControl;
     return new google.maps.Map(document.getElementById(id), {
       zoom: gm_settings.zoom,
@@ -79,7 +87,7 @@ var maps = (function($) {
     });
   };
 
-  populateMap = function(map, data, fit) {
+  var populateMap = function(map, data, fit) {
     var bounds = new google.maps.LatLngBounds();
     $.each(data, function(i,item) {
       var text = Translator.get('js:consultant') + '<br>' + item.name + '<br>' + item.zip + ' '+ item.city + '<br><br><p>' + Translator.get('js:phone') + ': ' + item.phone + '<br>' + Translator.get('js:email') + ': <a href="mailto:' + item.email + '">' + item.email + '</a><br><br>' + item.info;
@@ -109,7 +117,7 @@ var maps = (function($) {
   };
 
 
-  dataToContainer = function(data) {
+  var dataToContainer = function(data) {
     $('#near-you-container div:not(.dialoug-loading), #near-you-container hr').remove();
     $('#near-you-container').append(yatzy.render('consultantItem', data));
 
@@ -134,5 +142,8 @@ if ($('#consultants-map-canvas').length) {
     gm_settings.zoom = gm_settings.zoom - 1;
     $('#consultants-map-canvas').width('100%');
   }
-  maps.initConsultantsmap();
+
+  if (typeof gm_settings !== 'undefined') {
+    maps.initConsultantsmap();
+  }
 }
