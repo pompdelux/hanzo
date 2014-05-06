@@ -108,10 +108,12 @@ class CouponHandler
         $discount     = $this->coupon->getAmount();
         $coupon_label = $this->translator->trans('coupon', [], 'checkout');
 
+        $this->addOrderToCoupon($discount);
+
         $this->order->setDiscountLine($coupon_label, -$discount, 'coupon.code');
+
         $this->order->setAttribute('amount', 'coupon', $discount);
         $this->order->setAttribute('text', 'coupon', $coupon_label);
-        $this->addOrderToCoupon($discount);
     }
 
 
@@ -186,6 +188,7 @@ class CouponHandler
             $ids[] = $id;
         }
 
+        $dct = 0;
         foreach ($this->order->getOrdersLiness() as $line) {
             if (!in_array($line->getProductsId(), $ids)) {
                 continue;
@@ -194,7 +197,16 @@ class CouponHandler
             $discount = ($line->getOriginalPrice() / 100) * $this->coupon->getAmount();
             $line->setPrice($line->getOriginalPrice() - $discount);
             $line->save();
+
+            $dct += ($line->getOriginalPrice() - $line->getPrice());
         }
+
+        $coupon_label = $this->translator->trans('coupon', [], 'checkout');
+
+        $this->addOrderToCoupon($dct);
+
+        $this->order->setAttribute('amount', 'coupon', $dct);
+        $this->order->setAttribute('text', 'coupon', $coupon_label);
     }
 
 
@@ -212,17 +224,21 @@ class CouponHandler
         ;
 
         if (!$o2c instanceof OrdersToCoupons) {
-            $c = new OrdersToCoupons();
-            $c->setCouponsId($this->coupon->getId());
-            $c->setOrdersId($this->order->getId());
-            $c->setAmount($amount);
-
-            $criteria = new \Criteria();
-            $criteria->add(OrdersToCouponsPeer::ORDERS_ID, $this->order->getId(), \Criteria::NOT_EQUAL);
-            $collection = $this->order->getOrdersToCouponss($criteria);
-            $collection->prepend($c);
-            $this->order->setOrdersToCouponss($collection);
+            $o2c = new OrdersToCoupons();
+            $o2c->setCouponsId($this->coupon->getId());
+            $o2c->setOrdersId($this->order->getId());
         }
+
+        $o2c->setAmount($amount);
+
+        $criteria = new \Criteria();
+        $criteria->add(OrdersToCouponsPeer::ORDERS_ID, $this->order->getId(), \Criteria::NOT_EQUAL);
+        $criteria->add(OrdersToCouponsPeer::COUPONS_ID, $this->coupon->getId(), \Criteria::NOT_EQUAL);
+
+        $collection = $this->order->getOrdersToCouponss($criteria);
+        $collection->prepend($o2c);
+
+        $this->order->setOrdersToCouponss($collection);
     }
 
 
