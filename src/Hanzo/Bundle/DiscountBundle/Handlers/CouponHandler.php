@@ -18,7 +18,6 @@ use Hanzo\Model\OrdersLinesQuery;
 use Hanzo\Model\OrdersToCoupons;
 use Hanzo\Model\OrdersToCouponsPeer;
 use Hanzo\Model\OrdersToCouponsQuery;
-use Hanzo\Model\ProductsDomainsPricesPeer;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Translation\Translator;
 
@@ -135,7 +134,6 @@ class CouponHandler
                 $this->order->removeOrdersAttributes($attribute);
             }
 
-            //$this->order->removeDiscountLine($this->translator->trans('coupon', [], 'checkout'));
             $this->removeOrderToCoupon();
 
             $lines = new \PropelCollection();
@@ -184,8 +182,8 @@ class CouponHandler
         ;
 
         $ids = [];
-        foreach ($lines as $line) {
-            $ids[] = $line->getProductsId();
+        foreach ($lines as $id) {
+            $ids[] = $id;
         }
 
         foreach ($this->order->getOrdersLiness() as $line) {
