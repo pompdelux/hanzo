@@ -5,10 +5,7 @@ namespace Hanzo\Bundle\PaymentBundle\Methods\PayPal;
 use Hanzo\Model\Customers;
 use Hanzo\Model\Orders;
 
-use Hanzo\Core\Hanzo;
 use Hanzo\Bundle\PaymentBundle\PaymentMethodApiCallInterface;
-use Hanzo\Bundle\PaymentBundle\Methods\PayPal\PayPalApi;
-use Hanzo\Bundle\PaymentBundle\Methods\PayPal\PayPalCallResponse;
 
 class PayPalCall implements PaymentMethodApiCallInterface
 {
@@ -36,16 +33,15 @@ class PayPalCall implements PaymentMethodApiCallInterface
      */
     protected $api = null;
 
-    /**
-     * __construct
-     * @return void
-     */
     private function __construct(){}
 
 
     /**
-     * someFunc
-     * @return void
+     * Factory method
+     *
+     * @param  array     $settings
+     * @param  PayPalApi $api
+     * @return self
      */
     public static function getInstance(array$settings, PayPalApi $api)
     {
@@ -64,8 +60,9 @@ class PayPalCall implements PaymentMethodApiCallInterface
     /**
      * Cancel payment
      *
-     * @param  Orders             $order  Order object
-     * @return PayPalCallResponse
+     * @param  Customers          $customer
+     * @param  Orders             $order
+     * @return PayPalCallResponse|PayPallDummyCallResponse
      */
     public function cancel(Customers $customer, Orders $order)
     {
@@ -79,6 +76,10 @@ class PayPalCall implements PaymentMethodApiCallInterface
         }
 
         if (empty($attributes->payment->TRANSACTIONID)) {
+            if (1 == $order->getVersionId()) {
+                return new PayPallDummyCallResponse();
+            }
+
             \Hanzo\Core\Tools::log(
                 'PayPal transaction problems with order: #'.$order->getId()."\n\n".
                 print_r($order->toArray(), 1)."\n".
@@ -138,6 +139,7 @@ class PayPalCall implements PaymentMethodApiCallInterface
      * @param  Orders             $order  Order object
      * @param  int                $amount Amount to refund in order's currency
      * @return PayPalCallResponse
+     * @throws \Exception
      */
     public function refund(Orders $order, $amount)
     {
