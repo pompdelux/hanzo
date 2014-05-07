@@ -156,8 +156,8 @@
       $('#form_cms_thread_id').change(function(e){
         var $sel = $('#form_parent_id'),
             thread = $(this).val();
-        $('optgroup, optgroup > option', $sel).hide();
-        $('optgroup[label^="' + thread + '"]', $sel).children().andSelf().show();
+        $('optgroup:not([label^=' + thread + ']), optgroup:not([label^=' + thread + ']) option', $sel).remove();
+        $(this).attr('disabled', 'disabled');
       });
 
 
