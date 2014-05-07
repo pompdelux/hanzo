@@ -13,6 +13,7 @@ use Hanzo\Model\Categories;
 use Hanzo\Model\CategoriesI18nPeer;
 use Hanzo\Model\CategoriesPeer;
 use Hanzo\Model\ProductsImagesCategoriesSortPeer;
+use Hanzo\Model\ProductsPeer;
 use Hanzo\Model\ProductsToCategoriesPeer;
 use Hanzo\Model\map\CategoriesTableMap;
 
@@ -388,6 +389,9 @@ abstract class BaseCategoriesPeer
         // Invalidate objects in CategoriesPeer instance pool,
         // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
         CategoriesPeer::clearInstancePool();
+        // Invalidate objects in ProductsPeer instance pool,
+        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
+        ProductsPeer::clearInstancePool();
         // Invalidate objects in ProductsImagesCategoriesSortPeer instance pool,
         // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
         ProductsImagesCategoriesSortPeer::clearInstancePool();

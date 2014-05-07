@@ -10,3 +10,10 @@ services:
         arguments: [ @logger ]
         tags:
             - { name: kernel.event_listener, event: order.payment.collected, method: onPaymentCollected, priority: 100 }
+
+    hanzo.discount.basket.listener:
+        class: Hanzo\Bundle\DiscountBundle\Event\BasketListener
+        arguments: [@logger]
+        tags:
+            - { name: kernel.event_listener, event: basket.product.post_add, method: onBasketChange }
+            - { name: kernel.event_listener, event: basket.product.post_remove, method: onBasketChange }

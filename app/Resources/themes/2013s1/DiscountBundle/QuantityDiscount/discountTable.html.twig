@@ -1,0 +1,10 @@
+{% if table %}
+    <div class="quantity-discount-table">
+        {% for break in table %}
+            {{ 'product.quantity.discount'|trans({
+                '%span%'     : break.span,
+                '%discount%' : break.discount|money
+            }) }}<br>
+        {% endfor %}
+    </div>
+{% endif %}

@@ -14,19 +14,15 @@ propel:
                 dsn:                  mysql:host=%prod_dk_database_host%;dbname=%prod_dk_database_name%
                 options:              {}
                 attributes:           {}
-                slaves:
-                    pdldbdk2:
-                        user:         %prod_dk_database_slave_1_user%
-                        password:     %prod_dk_database_slave_1_password%
-                        dsn:          %prod_dk_database_slave_1_dsn%
-                    # pdldbdk3:
-                    #     user:         %prod_dk_database_slave_2_user%
-                    #     password:     %prod_dk_database_slave_2_password%
-                    #     dsn:          %prod_dk_database_slave_2_dsn%
-                    # pdldbdk4:
-                    #     user:         %prod_dk_database_slave_3_user%
-                    #     password:     %prod_dk_database_slave_3_password%
-                    #     dsn:          %prod_dk_database_slave_3_dsn%
+# ------------------------------------------------------------------------------------------
+# we no longer use slaves, if we ever need to again - this is the block to enable/duplicate
+# ------------------------------------------------------------------------------------------
+#                slaves:
+#                    pdldbdk2:
+#                        user:         %prod_dk_database_slave_1_user%
+#                        password:     %prod_dk_database_slave_1_password%
+#                        dsn:          %prod_dk_database_slave_1_dsn%
+# ------------------------------------------------------------------------------------------
             pdldbde1:
                 driver:               %database_driver%
                 user:                 %prod_de_database_user%
@@ -90,9 +86,9 @@ consignor:
               key: PompDeluxDK
               to_address:
                   name: "POMPdeLUX ApS"
-                  address_line_1: "Møgelhøj 8"
-                  postal_code: "8520"
-                  city: "Lystrup"
+                  address_line_1: "Grydhøjparken 10"
+                  postal_code: "8381"
+                  city: "Tilst"
                   country_iso2: DK
                   email: mail@pompdelux.dk
                   phone: "+45 8678 7871"

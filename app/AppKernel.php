@@ -120,7 +120,7 @@ class AppKernel extends Kernel
 
         if (isset($_SERVER['HTTP_HOST'])) {
             $script = $_SERVER['SCRIPT_NAME'];
-            if ('/app.php' == $script) {
+            if (0 === strpos($script, '/app.php')) {
                 $script = '';
             }
 

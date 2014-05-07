@@ -703,43 +703,39 @@ class EventsController extends CoreController
             }
 
             $form_rsvp = $this->createFormBuilder($events_participant)
-                ->add('first_name', 'text',
-                    array(
-                        'label' => 'events.participants.first_name.label',
-                        'translation_domain' => 'events'
-                    )
-                )->add('last_name', 'text',
-                    array(
-                        'label' => 'events.participants.last_name.label',
-                        'translation_domain' => 'events'
-                    )
-                )->add('phone', 'text',
-                    array(
-                        'label' => 'events.participants.phone.label',
-                        'translation_domain' => 'events',
-                        'required' => false
-                    )
-                )->add('notify_by_sms', 'checkbox',
-                    array(
-                        'label' => 'events.participants.notify_by_sms.label',
-                        'translation_domain' => 'events',
-                        'required' => false
-                    )
-                )->add('has_accepted', 'choice',
-                    array(
-                        'choices' => array(
-                            '1' => $this->get('translator')->trans('events.hasaccepted.yes', array(), 'events'),
-                            '0' => $this->get('translator')->trans('events.hasaccepted.no', array(), 'events')
-                        ),
-                        'data' => $accept,
-                        'multiple' => false,
-                        'expanded' => false,
-                        'label' => 'events.participants.has_accepted.label',
-                        'translation_domain' => 'events',
-                        'required' => false
-                    )
-                )->getForm()
+                ->add('first_name', 'text', array(
+                    'label' => 'events.participants.first_name.label',
+                    'translation_domain' => 'events'
+                ))->add('last_name', 'text', array(
+                    'label' => 'events.participants.last_name.label',
+                    'translation_domain' => 'events'
+                ))->add('phone', 'text', array(
+                    'label' => 'events.participants.phone.label',
+                    'translation_domain' => 'events',
+                    'required' => false
+                ))->add('has_accepted', 'choice', array(
+                    'choices' => array(
+                        '1' => $this->get('translator')->trans('events.hasaccepted.yes', array(), 'events'),
+                        '0' => $this->get('translator')->trans('events.hasaccepted.no', array(), 'events')
+                    ),
+                    'data' => $accept,
+                    'multiple' => false,
+                    'expanded' => false,
+                    'label' => 'events.participants.has_accepted.label',
+                    'translation_domain' => 'events',
+                    'required' => false
+                ))
             ;
+
+            if ($this->container->get('sms_manager')->isEventRemindersEnabled()) {
+                $form_rsvp->add('notify_by_sms', 'checkbox', array(
+                    'label' => 'events.participants.notify_by_sms.label',
+                    'translation_domain' => 'events',
+                    'required' => false
+                ));
+            }
+
+            $form_rsvp = $form_rsvp->getForm();
 
             $request = $this->getRequest();
             if ('POST' === $request->getMethod()) {

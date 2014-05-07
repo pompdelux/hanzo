@@ -2,9 +2,11 @@
 
 namespace Hanzo\Bundle\AdminBundle\Controller;
 
+use Hanzo\Model\ShippingMethods;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
@@ -12,6 +14,7 @@ use Hanzo\Core\CoreController;
 use Hanzo\Model\DomainsQuery;
 use Hanzo\Model\FreeShipping;
 use Hanzo\Model\FreeShippingQuery;
+use Hanzo\Model\ShippingMethodsQuery;
 
 class ShippingController extends CoreController
 {
@@ -19,8 +22,10 @@ class ShippingController extends CoreController
     /**
      * List Free Shipping table
      *
+     * @param Request $request
      * @Template()
      * @return array
+     * @throws AccessDeniedException
      */
     public function listFreeBreaksAction(Request $request)
     {
@@ -68,6 +73,7 @@ class ShippingController extends CoreController
      * @param  Request $request
      * @param  integet $id
      * @return array
+     * @throws AccessDeniedException
      */
     public function editFreeBreaksAction(Request $request, $id = NULL)
     {
@@ -121,7 +127,7 @@ class ShippingController extends CoreController
                 $this->get('session')->getFlashBag()->add('notice', 'Gemt!');
             }
 
-            return $this->redirect($this->generateUrl('admin_shipping_index'));
+            return $this->redirect($this->generateUrl('admin_shipping_breaks'));
         }
 
         return [
@@ -131,6 +137,13 @@ class ShippingController extends CoreController
         ];
     }
 
+
+    /**
+     * @param  Request $request
+     * @param  int     $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
+     */
     public function deleteFreeBreaksAction(Request $request, $id)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
@@ -140,6 +153,64 @@ class ShippingController extends CoreController
         FreeShippingQuery::create()->filterById($id)->delete($this->getDbConnection());
         $this->get('session')->getFlashBag()->add('notice', 'Så er den slettet!');
 
-        return $this->redirect($this->generateUrl('admin_shipping_index'));
+        return $this->redirect($this->generateUrl('admin_shipping_breaks'));
+    }
+
+
+    /**
+     * @Template()
+     * @return array
+     * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
+     */
+    public function listShippingModulesAction()
+    {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+
+        return [
+            'database' => $this->getRequest()->getSession()->get('database'),
+            'modules'  => ShippingMethodsQuery::create()
+                    ->orderByCarrier()
+                    ->orderByMethod()
+                    ->orderByExternalId()
+                    ->find($this->getDbConnection())
+        ];
+    }
+
+
+    /**
+     * @param  ShippingMethods $module
+     * @param  Request $request
+     * @return array
+     * @Template()
+     * @ParamConverter("module", class="\Hanzo\Model\ShippingMethods")
+     */
+    public function editShippingModuleAction(ShippingMethods $module, Request $request)
+    {
+        $form = $this->createFormBuilder($module)
+            ->add('carrier', 'text')
+            ->add('method', 'text')
+            ->add('external_id', 'integer')
+            ->add('price', 'money', ['currency' => false])
+            ->add('fee', 'money', ['currency' => false, 'required' => false])
+            ->add('fee_external_id', 'integer', ['required' => false])
+            ->getForm()
+        ;
+
+        if ('POST' === $request->getMethod()) {
+            $form->handleRequest($request);
+            if ($form->isValid()) {
+                $module->save($this->getDbConnection());
+                $this->get('session')->getFlashBag()->add('notice', 'Fragtprisen er nu opdateret, bemærk at Redis skal ryddes før ændringerne kan træde i kraft.');
+
+                return $this->redirect($this->generateUrl('admin_shipping_index'));
+            }
+        }
+
+        return [
+            'database' => $this->getRequest()->getSession()->get('database'),
+            'form'     => $form->createView()
+        ];
     }
 }

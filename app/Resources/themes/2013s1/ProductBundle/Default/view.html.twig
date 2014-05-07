@@ -123,6 +123,8 @@
       <div class="description">{{ "product.prices.description"|trans }}</div>
     </div>
 
+    {% render(controller('DiscountBundle:QuantityDiscount:discountTable', {'master': product.sku})) %}
+
     <div class="buybox clearfix">
 
     {%  if product.sizes|length == 0 %}

@@ -9,6 +9,7 @@ use \PDOStatement;
 use \Propel;
 use \PropelException;
 use \PropelPDO;
+use Hanzo\Model\CategoriesPeer;
 use Hanzo\Model\MannequinImagesPeer;
 use Hanzo\Model\OrdersLinesPeer;
 use Hanzo\Model\Products;
@@ -42,13 +43,13 @@ abstract class BaseProductsPeer
     const TM_CLASS = 'Hanzo\\Model\\map\\ProductsTableMap';
 
     /** The total number of columns. */
-    const NUM_COLUMNS = 13;
+    const NUM_COLUMNS = 14;
 
     /** The number of lazy-loaded columns. */
     const NUM_LAZY_LOAD_COLUMNS = 0;
 
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-    const NUM_HYDRATE_COLUMNS = 13;
+    const NUM_HYDRATE_COLUMNS = 14;
 
     /** the column name for the id field */
     const ID = 'products.id';
@@ -83,6 +84,9 @@ abstract class BaseProductsPeer
     /** the column name for the is_voucher field */
     const IS_VOUCHER = 'products.is_voucher';
 
+    /** the column name for the primary_categories_id field */
+    const PRIMARY_CATEGORIES_ID = 'products.primary_categories_id';
+
     /** the column name for the created_at field */
     const CREATED_AT = 'products.created_at';
 
@@ -115,12 +119,12 @@ abstract class BaseProductsPeer
      * e.g. ProductsPeer::$fieldNames[ProductsPeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('Id', 'Sku', 'Master', 'Size', 'Color', 'Unit', 'Washing', 'HasVideo', 'IsOutOfStock', 'IsActive', 'IsVoucher', 'CreatedAt', 'UpdatedAt', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'sku', 'master', 'size', 'color', 'unit', 'washing', 'hasVideo', 'isOutOfStock', 'isActive', 'isVoucher', 'createdAt', 'updatedAt', ),
-        BasePeer::TYPE_COLNAME => array (ProductsPeer::ID, ProductsPeer::SKU, ProductsPeer::MASTER, ProductsPeer::SIZE, ProductsPeer::COLOR, ProductsPeer::UNIT, ProductsPeer::WASHING, ProductsPeer::HAS_VIDEO, ProductsPeer::IS_OUT_OF_STOCK, ProductsPeer::IS_ACTIVE, ProductsPeer::IS_VOUCHER, ProductsPeer::CREATED_AT, ProductsPeer::UPDATED_AT, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'SKU', 'MASTER', 'SIZE', 'COLOR', 'UNIT', 'WASHING', 'HAS_VIDEO', 'IS_OUT_OF_STOCK', 'IS_ACTIVE', 'IS_VOUCHER', 'CREATED_AT', 'UPDATED_AT', ),
-        BasePeer::TYPE_FIELDNAME => array ('id', 'sku', 'master', 'size', 'color', 'unit', 'washing', 'has_video', 'is_out_of_stock', 'is_active', 'is_voucher', 'created_at', 'updated_at', ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, )
+        BasePeer::TYPE_PHPNAME => array ('Id', 'Sku', 'Master', 'Size', 'Color', 'Unit', 'Washing', 'HasVideo', 'IsOutOfStock', 'IsActive', 'IsVoucher', 'PrimaryCategoriesId', 'CreatedAt', 'UpdatedAt', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'sku', 'master', 'size', 'color', 'unit', 'washing', 'hasVideo', 'isOutOfStock', 'isActive', 'isVoucher', 'primaryCategoriesId', 'createdAt', 'updatedAt', ),
+        BasePeer::TYPE_COLNAME => array (ProductsPeer::ID, ProductsPeer::SKU, ProductsPeer::MASTER, ProductsPeer::SIZE, ProductsPeer::COLOR, ProductsPeer::UNIT, ProductsPeer::WASHING, ProductsPeer::HAS_VIDEO, ProductsPeer::IS_OUT_OF_STOCK, ProductsPeer::IS_ACTIVE, ProductsPeer::IS_VOUCHER, ProductsPeer::PRIMARY_CATEGORIES_ID, ProductsPeer::CREATED_AT, ProductsPeer::UPDATED_AT, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'SKU', 'MASTER', 'SIZE', 'COLOR', 'UNIT', 'WASHING', 'HAS_VIDEO', 'IS_OUT_OF_STOCK', 'IS_ACTIVE', 'IS_VOUCHER', 'PRIMARY_CATEGORIES_ID', 'CREATED_AT', 'UPDATED_AT', ),
+        BasePeer::TYPE_FIELDNAME => array ('id', 'sku', 'master', 'size', 'color', 'unit', 'washing', 'has_video', 'is_out_of_stock', 'is_active', 'is_voucher', 'primary_categories_id', 'created_at', 'updated_at', ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, )
     );
 
     /**
@@ -130,12 +134,12 @@ abstract class BaseProductsPeer
      * e.g. ProductsPeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Sku' => 1, 'Master' => 2, 'Size' => 3, 'Color' => 4, 'Unit' => 5, 'Washing' => 6, 'HasVideo' => 7, 'IsOutOfStock' => 8, 'IsActive' => 9, 'IsVoucher' => 10, 'CreatedAt' => 11, 'UpdatedAt' => 12, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'sku' => 1, 'master' => 2, 'size' => 3, 'color' => 4, 'unit' => 5, 'washing' => 6, 'hasVideo' => 7, 'isOutOfStock' => 8, 'isActive' => 9, 'isVoucher' => 10, 'createdAt' => 11, 'updatedAt' => 12, ),
-        BasePeer::TYPE_COLNAME => array (ProductsPeer::ID => 0, ProductsPeer::SKU => 1, ProductsPeer::MASTER => 2, ProductsPeer::SIZE => 3, ProductsPeer::COLOR => 4, ProductsPeer::UNIT => 5, ProductsPeer::WASHING => 6, ProductsPeer::HAS_VIDEO => 7, ProductsPeer::IS_OUT_OF_STOCK => 8, ProductsPeer::IS_ACTIVE => 9, ProductsPeer::IS_VOUCHER => 10, ProductsPeer::CREATED_AT => 11, ProductsPeer::UPDATED_AT => 12, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'SKU' => 1, 'MASTER' => 2, 'SIZE' => 3, 'COLOR' => 4, 'UNIT' => 5, 'WASHING' => 6, 'HAS_VIDEO' => 7, 'IS_OUT_OF_STOCK' => 8, 'IS_ACTIVE' => 9, 'IS_VOUCHER' => 10, 'CREATED_AT' => 11, 'UPDATED_AT' => 12, ),
-        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'sku' => 1, 'master' => 2, 'size' => 3, 'color' => 4, 'unit' => 5, 'washing' => 6, 'has_video' => 7, 'is_out_of_stock' => 8, 'is_active' => 9, 'is_voucher' => 10, 'created_at' => 11, 'updated_at' => 12, ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, )
+        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Sku' => 1, 'Master' => 2, 'Size' => 3, 'Color' => 4, 'Unit' => 5, 'Washing' => 6, 'HasVideo' => 7, 'IsOutOfStock' => 8, 'IsActive' => 9, 'IsVoucher' => 10, 'PrimaryCategoriesId' => 11, 'CreatedAt' => 12, 'UpdatedAt' => 13, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'sku' => 1, 'master' => 2, 'size' => 3, 'color' => 4, 'unit' => 5, 'washing' => 6, 'hasVideo' => 7, 'isOutOfStock' => 8, 'isActive' => 9, 'isVoucher' => 10, 'primaryCategoriesId' => 11, 'createdAt' => 12, 'updatedAt' => 13, ),
+        BasePeer::TYPE_COLNAME => array (ProductsPeer::ID => 0, ProductsPeer::SKU => 1, ProductsPeer::MASTER => 2, ProductsPeer::SIZE => 3, ProductsPeer::COLOR => 4, ProductsPeer::UNIT => 5, ProductsPeer::WASHING => 6, ProductsPeer::HAS_VIDEO => 7, ProductsPeer::IS_OUT_OF_STOCK => 8, ProductsPeer::IS_ACTIVE => 9, ProductsPeer::IS_VOUCHER => 10, ProductsPeer::PRIMARY_CATEGORIES_ID => 11, ProductsPeer::CREATED_AT => 12, ProductsPeer::UPDATED_AT => 13, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'SKU' => 1, 'MASTER' => 2, 'SIZE' => 3, 'COLOR' => 4, 'UNIT' => 5, 'WASHING' => 6, 'HAS_VIDEO' => 7, 'IS_OUT_OF_STOCK' => 8, 'IS_ACTIVE' => 9, 'IS_VOUCHER' => 10, 'PRIMARY_CATEGORIES_ID' => 11, 'CREATED_AT' => 12, 'UPDATED_AT' => 13, ),
+        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'sku' => 1, 'master' => 2, 'size' => 3, 'color' => 4, 'unit' => 5, 'washing' => 6, 'has_video' => 7, 'is_out_of_stock' => 8, 'is_active' => 9, 'is_voucher' => 10, 'primary_categories_id' => 11, 'created_at' => 12, 'updated_at' => 13, ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, )
     );
 
     /**
@@ -220,6 +224,7 @@ abstract class BaseProductsPeer
             $criteria->addSelectColumn(ProductsPeer::IS_OUT_OF_STOCK);
             $criteria->addSelectColumn(ProductsPeer::IS_ACTIVE);
             $criteria->addSelectColumn(ProductsPeer::IS_VOUCHER);
+            $criteria->addSelectColumn(ProductsPeer::PRIMARY_CATEGORIES_ID);
             $criteria->addSelectColumn(ProductsPeer::CREATED_AT);
             $criteria->addSelectColumn(ProductsPeer::UPDATED_AT);
         } else {
@@ -234,6 +239,7 @@ abstract class BaseProductsPeer
             $criteria->addSelectColumn($alias . '.is_out_of_stock');
             $criteria->addSelectColumn($alias . '.is_active');
             $criteria->addSelectColumn($alias . '.is_voucher');
+            $criteria->addSelectColumn($alias . '.primary_categories_id');
             $criteria->addSelectColumn($alias . '.created_at');
             $criteria->addSelectColumn($alias . '.updated_at');
         }
@@ -634,6 +640,57 @@ abstract class BaseProductsPeer
 
 
     /**
+     * Returns the number of rows matching criteria, joining the related Categories table
+     *
+     * @param      Criteria $criteria
+     * @param      boolean $distinct Whether to select only distinct columns; deprecated: use Criteria->setDistinct() instead.
+     * @param      PropelPDO $con
+     * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
+     * @return int Number of matching rows.
+     */
+    public static function doCountJoinCategories(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    {
+        // we're going to modify criteria, so copy it first
+        $criteria = clone $criteria;
+
+        // We need to set the primary table name, since in the case that there are no WHERE columns
+        // it will be impossible for the BasePeer::createSelectSql() method to determine which
+        // tables go into the FROM clause.
+        $criteria->setPrimaryTableName(ProductsPeer::TABLE_NAME);
+
+        if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+            $criteria->setDistinct();
+        }
+
+        if (!$criteria->hasSelectClause()) {
+            ProductsPeer::addSelectColumns($criteria);
+        }
+
+        $criteria->clearOrderByColumns(); // ORDER BY won't ever affect the count
+
+        // Set the correct dbName
+        $criteria->setDbName(ProductsPeer::DATABASE_NAME);
+
+        if ($con === null) {
+            $con = Propel::getConnection(ProductsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+        }
+
+        $criteria->addJoin(ProductsPeer::PRIMARY_CATEGORIES_ID, CategoriesPeer::ID, $join_behavior);
+
+        $stmt = BasePeer::doCount($criteria, $con);
+
+        if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+            $count = (int) $row[0];
+        } else {
+            $count = 0; // no rows returned; we infer that means 0 matches.
+        }
+        $stmt->closeCursor();
+
+        return $count;
+    }
+
+
+    /**
      * Selects a collection of Products objects pre-filled with their ProductsWashingInstructions objects.
      * @param      Criteria  $criteria
      * @param      PropelPDO $con
@@ -701,6 +758,73 @@ abstract class BaseProductsPeer
 
 
     /**
+     * Selects a collection of Products objects pre-filled with their Categories objects.
+     * @param      Criteria  $criteria
+     * @param      PropelPDO $con
+     * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
+     * @return array           Array of Products objects.
+     * @throws PropelException Any exceptions caught during processing will be
+     *		 rethrown wrapped into a PropelException.
+     */
+    public static function doSelectJoinCategories(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    {
+        $criteria = clone $criteria;
+
+        // Set the correct dbName if it has not been overridden
+        if ($criteria->getDbName() == Propel::getDefaultDB()) {
+            $criteria->setDbName(ProductsPeer::DATABASE_NAME);
+        }
+
+        ProductsPeer::addSelectColumns($criteria);
+        $startcol = ProductsPeer::NUM_HYDRATE_COLUMNS;
+        CategoriesPeer::addSelectColumns($criteria);
+
+        $criteria->addJoin(ProductsPeer::PRIMARY_CATEGORIES_ID, CategoriesPeer::ID, $join_behavior);
+
+        $stmt = BasePeer::doSelect($criteria, $con);
+        $results = array();
+
+        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+            $key1 = ProductsPeer::getPrimaryKeyHashFromRow($row, 0);
+            if (null !== ($obj1 = ProductsPeer::getInstanceFromPool($key1))) {
+                // We no longer rehydrate the object, since this can cause data loss.
+                // See http://www.propelorm.org/ticket/509
+                // $obj1->hydrate($row, 0, true); // rehydrate
+            } else {
+
+                $cls = ProductsPeer::getOMClass();
+
+                $obj1 = new $cls();
+                $obj1->hydrate($row);
+                ProductsPeer::addInstanceToPool($obj1, $key1);
+            } // if $obj1 already loaded
+
+            $key2 = CategoriesPeer::getPrimaryKeyHashFromRow($row, $startcol);
+            if ($key2 !== null) {
+                $obj2 = CategoriesPeer::getInstanceFromPool($key2);
+                if (!$obj2) {
+
+                    $cls = CategoriesPeer::getOMClass();
+
+                    $obj2 = new $cls();
+                    $obj2->hydrate($row, $startcol);
+                    CategoriesPeer::addInstanceToPool($obj2, $key2);
+                } // if obj2 already loaded
+
+                // Add the $obj1 (Products) to $obj2 (Categories)
+                $obj2->addProducts($obj1);
+
+            } // if joined row was not null
+
+            $results[] = $obj1;
+        }
+        $stmt->closeCursor();
+
+        return $results;
+    }
+
+
+    /**
      * Returns the number of rows matching criteria, joining all related tables
      *
      * @param      Criteria $criteria
@@ -737,6 +861,8 @@ abstract class BaseProductsPeer
         }
 
         $criteria->addJoin(ProductsPeer::WASHING, ProductsWashingInstructionsPeer::CODE, $join_behavior);
+
+        $criteria->addJoin(ProductsPeer::PRIMARY_CATEGORIES_ID, CategoriesPeer::ID, $join_behavior);
 
         $stmt = BasePeer::doCount($criteria, $con);
 
@@ -775,7 +901,12 @@ abstract class BaseProductsPeer
         ProductsWashingInstructionsPeer::addSelectColumns($criteria);
         $startcol3 = $startcol2 + ProductsWashingInstructionsPeer::NUM_HYDRATE_COLUMNS;
 
+        CategoriesPeer::addSelectColumns($criteria);
+        $startcol4 = $startcol3 + CategoriesPeer::NUM_HYDRATE_COLUMNS;
+
         $criteria->addJoin(ProductsPeer::WASHING, ProductsWashingInstructionsPeer::CODE, $join_behavior);
+
+        $criteria->addJoin(ProductsPeer::PRIMARY_CATEGORIES_ID, CategoriesPeer::ID, $join_behavior);
 
         $stmt = BasePeer::doSelect($criteria, $con);
         $results = array();
@@ -810,6 +941,24 @@ abstract class BaseProductsPeer
 
                 // Add the $obj1 (Products) to the collection in $obj2 (ProductsWashingInstructions)
                 $obj2->addProducts($obj1);
+            } // if joined row not null
+
+            // Add objects for joined Categories rows
+
+            $key3 = CategoriesPeer::getPrimaryKeyHashFromRow($row, $startcol3);
+            if ($key3 !== null) {
+                $obj3 = CategoriesPeer::getInstanceFromPool($key3);
+                if (!$obj3) {
+
+                    $cls = CategoriesPeer::getOMClass();
+
+                    $obj3 = new $cls();
+                    $obj3->hydrate($row, $startcol3);
+                    CategoriesPeer::addInstanceToPool($obj3, $key3);
+                } // if obj3 loaded
+
+                // Add the $obj1 (Products) to the collection in $obj3 (Categories)
+                $obj3->addProducts($obj1);
             } // if joined row not null
 
             $results[] = $obj1;
@@ -857,6 +1006,8 @@ abstract class BaseProductsPeer
         }
 
         $criteria->addJoin(ProductsPeer::WASHING, ProductsWashingInstructionsPeer::CODE, $join_behavior);
+
+        $criteria->addJoin(ProductsPeer::PRIMARY_CATEGORIES_ID, CategoriesPeer::ID, $join_behavior);
 
         $stmt = BasePeer::doCount($criteria, $con);
 
@@ -907,6 +1058,59 @@ abstract class BaseProductsPeer
             $con = Propel::getConnection(ProductsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
         }
 
+        $criteria->addJoin(ProductsPeer::PRIMARY_CATEGORIES_ID, CategoriesPeer::ID, $join_behavior);
+
+        $stmt = BasePeer::doCount($criteria, $con);
+
+        if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+            $count = (int) $row[0];
+        } else {
+            $count = 0; // no rows returned; we infer that means 0 matches.
+        }
+        $stmt->closeCursor();
+
+        return $count;
+    }
+
+
+    /**
+     * Returns the number of rows matching criteria, joining the related Categories table
+     *
+     * @param      Criteria $criteria
+     * @param      boolean $distinct Whether to select only distinct columns; deprecated: use Criteria->setDistinct() instead.
+     * @param      PropelPDO $con
+     * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
+     * @return int Number of matching rows.
+     */
+    public static function doCountJoinAllExceptCategories(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    {
+        // we're going to modify criteria, so copy it first
+        $criteria = clone $criteria;
+
+        // We need to set the primary table name, since in the case that there are no WHERE columns
+        // it will be impossible for the BasePeer::createSelectSql() method to determine which
+        // tables go into the FROM clause.
+        $criteria->setPrimaryTableName(ProductsPeer::TABLE_NAME);
+
+        if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+            $criteria->setDistinct();
+        }
+
+        if (!$criteria->hasSelectClause()) {
+            ProductsPeer::addSelectColumns($criteria);
+        }
+
+        $criteria->clearOrderByColumns(); // ORDER BY should not affect count
+
+        // Set the correct dbName
+        $criteria->setDbName(ProductsPeer::DATABASE_NAME);
+
+        if ($con === null) {
+            $con = Propel::getConnection(ProductsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+        }
+
+        $criteria->addJoin(ProductsPeer::WASHING, ProductsWashingInstructionsPeer::CODE, $join_behavior);
+
         $stmt = BasePeer::doCount($criteria, $con);
 
         if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
@@ -931,6 +1135,178 @@ abstract class BaseProductsPeer
      *		 rethrown wrapped into a PropelException.
      */
     public static function doSelectJoinAllExceptProductsRelatedByMaster(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    {
+        $criteria = clone $criteria;
+
+        // Set the correct dbName if it has not been overridden
+        // $criteria->getDbName() will return the same object if not set to another value
+        // so == check is okay and faster
+        if ($criteria->getDbName() == Propel::getDefaultDB()) {
+            $criteria->setDbName(ProductsPeer::DATABASE_NAME);
+        }
+
+        ProductsPeer::addSelectColumns($criteria);
+        $startcol2 = ProductsPeer::NUM_HYDRATE_COLUMNS;
+
+        ProductsWashingInstructionsPeer::addSelectColumns($criteria);
+        $startcol3 = $startcol2 + ProductsWashingInstructionsPeer::NUM_HYDRATE_COLUMNS;
+
+        CategoriesPeer::addSelectColumns($criteria);
+        $startcol4 = $startcol3 + CategoriesPeer::NUM_HYDRATE_COLUMNS;
+
+        $criteria->addJoin(ProductsPeer::WASHING, ProductsWashingInstructionsPeer::CODE, $join_behavior);
+
+        $criteria->addJoin(ProductsPeer::PRIMARY_CATEGORIES_ID, CategoriesPeer::ID, $join_behavior);
+
+
+        $stmt = BasePeer::doSelect($criteria, $con);
+        $results = array();
+
+        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+            $key1 = ProductsPeer::getPrimaryKeyHashFromRow($row, 0);
+            if (null !== ($obj1 = ProductsPeer::getInstanceFromPool($key1))) {
+                // We no longer rehydrate the object, since this can cause data loss.
+                // See http://www.propelorm.org/ticket/509
+                // $obj1->hydrate($row, 0, true); // rehydrate
+            } else {
+                $cls = ProductsPeer::getOMClass();
+
+                $obj1 = new $cls();
+                $obj1->hydrate($row);
+                ProductsPeer::addInstanceToPool($obj1, $key1);
+            } // if obj1 already loaded
+
+                // Add objects for joined ProductsWashingInstructions rows
+
+                $key2 = ProductsWashingInstructionsPeer::getPrimaryKeyHashFromRow($row, $startcol2);
+                if ($key2 !== null) {
+                    $obj2 = ProductsWashingInstructionsPeer::getInstanceFromPool($key2);
+                    if (!$obj2) {
+
+                        $cls = ProductsWashingInstructionsPeer::getOMClass();
+
+                    $obj2 = new $cls();
+                    $obj2->hydrate($row, $startcol2);
+                    ProductsWashingInstructionsPeer::addInstanceToPool($obj2, $key2);
+                } // if $obj2 already loaded
+
+                // Add the $obj1 (Products) to the collection in $obj2 (ProductsWashingInstructions)
+                $obj2->addProducts($obj1);
+
+            } // if joined row is not null
+
+                // Add objects for joined Categories rows
+
+                $key3 = CategoriesPeer::getPrimaryKeyHashFromRow($row, $startcol3);
+                if ($key3 !== null) {
+                    $obj3 = CategoriesPeer::getInstanceFromPool($key3);
+                    if (!$obj3) {
+
+                        $cls = CategoriesPeer::getOMClass();
+
+                    $obj3 = new $cls();
+                    $obj3->hydrate($row, $startcol3);
+                    CategoriesPeer::addInstanceToPool($obj3, $key3);
+                } // if $obj3 already loaded
+
+                // Add the $obj1 (Products) to the collection in $obj3 (Categories)
+                $obj3->addProducts($obj1);
+
+            } // if joined row is not null
+
+            $results[] = $obj1;
+        }
+        $stmt->closeCursor();
+
+        return $results;
+    }
+
+
+    /**
+     * Selects a collection of Products objects pre-filled with all related objects except ProductsWashingInstructions.
+     *
+     * @param      Criteria  $criteria
+     * @param      PropelPDO $con
+     * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
+     * @return array           Array of Products objects.
+     * @throws PropelException Any exceptions caught during processing will be
+     *		 rethrown wrapped into a PropelException.
+     */
+    public static function doSelectJoinAllExceptProductsWashingInstructions(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    {
+        $criteria = clone $criteria;
+
+        // Set the correct dbName if it has not been overridden
+        // $criteria->getDbName() will return the same object if not set to another value
+        // so == check is okay and faster
+        if ($criteria->getDbName() == Propel::getDefaultDB()) {
+            $criteria->setDbName(ProductsPeer::DATABASE_NAME);
+        }
+
+        ProductsPeer::addSelectColumns($criteria);
+        $startcol2 = ProductsPeer::NUM_HYDRATE_COLUMNS;
+
+        CategoriesPeer::addSelectColumns($criteria);
+        $startcol3 = $startcol2 + CategoriesPeer::NUM_HYDRATE_COLUMNS;
+
+        $criteria->addJoin(ProductsPeer::PRIMARY_CATEGORIES_ID, CategoriesPeer::ID, $join_behavior);
+
+
+        $stmt = BasePeer::doSelect($criteria, $con);
+        $results = array();
+
+        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+            $key1 = ProductsPeer::getPrimaryKeyHashFromRow($row, 0);
+            if (null !== ($obj1 = ProductsPeer::getInstanceFromPool($key1))) {
+                // We no longer rehydrate the object, since this can cause data loss.
+                // See http://www.propelorm.org/ticket/509
+                // $obj1->hydrate($row, 0, true); // rehydrate
+            } else {
+                $cls = ProductsPeer::getOMClass();
+
+                $obj1 = new $cls();
+                $obj1->hydrate($row);
+                ProductsPeer::addInstanceToPool($obj1, $key1);
+            } // if obj1 already loaded
+
+                // Add objects for joined Categories rows
+
+                $key2 = CategoriesPeer::getPrimaryKeyHashFromRow($row, $startcol2);
+                if ($key2 !== null) {
+                    $obj2 = CategoriesPeer::getInstanceFromPool($key2);
+                    if (!$obj2) {
+
+                        $cls = CategoriesPeer::getOMClass();
+
+                    $obj2 = new $cls();
+                    $obj2->hydrate($row, $startcol2);
+                    CategoriesPeer::addInstanceToPool($obj2, $key2);
+                } // if $obj2 already loaded
+
+                // Add the $obj1 (Products) to the collection in $obj2 (Categories)
+                $obj2->addProducts($obj1);
+
+            } // if joined row is not null
+
+            $results[] = $obj1;
+        }
+        $stmt->closeCursor();
+
+        return $results;
+    }
+
+
+    /**
+     * Selects a collection of Products objects pre-filled with all related objects except Categories.
+     *
+     * @param      Criteria  $criteria
+     * @param      PropelPDO $con
+     * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
+     * @return array           Array of Products objects.
+     * @throws PropelException Any exceptions caught during processing will be
+     *		 rethrown wrapped into a PropelException.
+     */
+    public static function doSelectJoinAllExceptCategories(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
     {
         $criteria = clone $criteria;
 
@@ -985,56 +1361,6 @@ abstract class BaseProductsPeer
                 $obj2->addProducts($obj1);
 
             } // if joined row is not null
-
-            $results[] = $obj1;
-        }
-        $stmt->closeCursor();
-
-        return $results;
-    }
-
-
-    /**
-     * Selects a collection of Products objects pre-filled with all related objects except ProductsWashingInstructions.
-     *
-     * @param      Criteria  $criteria
-     * @param      PropelPDO $con
-     * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
-     * @return array           Array of Products objects.
-     * @throws PropelException Any exceptions caught during processing will be
-     *		 rethrown wrapped into a PropelException.
-     */
-    public static function doSelectJoinAllExceptProductsWashingInstructions(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
-    {
-        $criteria = clone $criteria;
-
-        // Set the correct dbName if it has not been overridden
-        // $criteria->getDbName() will return the same object if not set to another value
-        // so == check is okay and faster
-        if ($criteria->getDbName() == Propel::getDefaultDB()) {
-            $criteria->setDbName(ProductsPeer::DATABASE_NAME);
-        }
-
-        ProductsPeer::addSelectColumns($criteria);
-        $startcol2 = ProductsPeer::NUM_HYDRATE_COLUMNS;
-
-
-        $stmt = BasePeer::doSelect($criteria, $con);
-        $results = array();
-
-        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-            $key1 = ProductsPeer::getPrimaryKeyHashFromRow($row, 0);
-            if (null !== ($obj1 = ProductsPeer::getInstanceFromPool($key1))) {
-                // We no longer rehydrate the object, since this can cause data loss.
-                // See http://www.propelorm.org/ticket/509
-                // $obj1->hydrate($row, 0, true); // rehydrate
-            } else {
-                $cls = ProductsPeer::getOMClass();
-
-                $obj1 = new $cls();
-                $obj1->hydrate($row);
-                ProductsPeer::addInstanceToPool($obj1, $key1);
-            } // if obj1 already loaded
 
             $results[] = $obj1;
         }
