@@ -1,17 +1,17 @@
 <div id="near-you-container" class="near-you-container grid_6 omega"></div>
-<script src="//maps.google.com/maps/api/js?sensor=false&language={{ language|default('DA') }}" type="text/javascript"></script>
+{#<script src="//maps.google.com/maps/api/js?sensor=false&language={{ language|default('DA') }}" type="text/javascript"></script>#}
 <script type="text/javascript">
 var near_you_params = {
   type : geo_zipcode_params.type || "{{ type }}",
   lat  : {{ lat }},
   lon  : {{ lon }}
 };
-var gm_settings = {
+{#var gm_settings = {
   lat: near_you_params.lat,
   lng: near_you_params.lon,
   zoom: 7,
   zoomControl: false
-};
+};#}
 </script>
 
 <script type="text/html" id="consultantItem">
