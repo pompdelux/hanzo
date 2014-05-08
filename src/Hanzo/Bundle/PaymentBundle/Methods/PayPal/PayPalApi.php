@@ -28,18 +28,26 @@ class PayPalApi extends BasePaymentApi implements PaymentMethodApiInterface
 
     protected $router;
     protected $translator;
+
+    /**
+     * @var LoggerInterface
+     */
     protected $logger;
 
     /**
+     * @var \Hanzo\Core\ServiceLogger
+     */
+    public $service_logger;
+
+    /**
      * __construct
-     *
-     * @return void
      */
     public function __construct($parameters, $settings)
     {
         $this->router             = $parameters[0];
         $this->translator         = $parameters[1];
         $this->logger             = $parameters[2];
+        $this->service_logger     = $parameters[3];
         $this->settings           = $settings;
         $this->settings['active'] = (isset($this->settings['method_enabled']) && $this->settings['method_enabled'] ? true : false);
 
@@ -74,6 +82,8 @@ class PayPalApi extends BasePaymentApi implements PaymentMethodApiInterface
     /**
      * cancel
      *
+     * @param Customers $customer
+     * @param Orders    $order
      * @return PayPalCallResponse
      */
     public function cancel(Customers $customer, Orders $order)
@@ -99,7 +109,7 @@ class PayPalApi extends BasePaymentApi implements PaymentMethodApiInterface
 
     /**
      * getFeeExternalId
-     * @return void
+     * @return mixed
      */
     public function getFeeExternalId()
     {
@@ -109,7 +119,9 @@ class PayPalApi extends BasePaymentApi implements PaymentMethodApiInterface
     /**
      * updateOrderFailed
      *
-     * @return void
+     * @param Request $request
+     * @param Orders $order
+     * @return Orders
      */
     public function updateOrderFailed(Request $request, Orders $order)
     {
@@ -119,7 +131,9 @@ class PayPalApi extends BasePaymentApi implements PaymentMethodApiInterface
     /**
      * updateOrderSuccess
      *
-     * @return void
+     * @param Request $request
+     * @param Orders $order
+     * @return Orders
      */
     public function updateOrderSuccess(Request $request, Orders $order)
     {
@@ -130,8 +144,10 @@ class PayPalApi extends BasePaymentApi implements PaymentMethodApiInterface
     /**
      * getProcessButton
      *
-     * @param  Orders $order
+     * @param  Orders  $order
+     * @param  Request $request
      * @return array
+     * @throws \Exception
      */
     public function getProcessButton(Orders $order, Request $request)
     {
@@ -271,9 +287,9 @@ class PayPalApi extends BasePaymentApi implements PaymentMethodApiInterface
     /**
      * apply payment details to the params array to send to paypal
      *
-     * @param  array $params initial
-     * @param  [type] $order  [description]
-     * @return [type]         [description]
+     * @param  array  $params initial
+     * @param  Orders $order
+     * @return array
      */
     protected function paymentDetails($params, $order)
     {
@@ -327,5 +343,4 @@ class PayPalApi extends BasePaymentApi implements PaymentMethodApiInterface
 
         return $params;
     }
-
 }

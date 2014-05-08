@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\ConsignorBundle\Services\ShipmentServer;
 
+use Hanzo\Core\ServiceLogger;
 use Hanzo\Core\Tools;
 use Hanzo\Bundle\ConsignorBundle\Consignor;
 use Symfony\Component\Routing\Exception\MissingMandatoryParametersException;
@@ -12,6 +13,11 @@ class SubmitShipment
      * @var \Hanzo\Bundle\ConsignorBundle\Consignor
      */
     private $consignor;
+
+    /**
+     * @var ServiceLogger
+     */
+    private $service_logger;
 
     /**
      * @var ConsignorAddress
@@ -41,9 +47,10 @@ class SubmitShipment
     /**
      * Setup service
      *
-     * @param Consignor $consignor
+     * @param Consignor     $consignor
+     * @param ServiceLogger $service_logger
      */
-    public function __construct(Consignor $consignor)
+    public function __construct(Consignor $consignor, ServiceLogger $service_logger)
     {
         $this->consignor = $consignor;
 
@@ -173,6 +180,7 @@ class SubmitShipment
         ];
 
         $request = $this->consignor->getGuzzleClient()->post(null, null, $data);
+        $this->service_logger->plog($data, ['outgoing', 'consignor', 'SubmitShipment']);
 
         // consignor's ssl cert is not ... hmm verified, so we skip verification
         $request->getCurlOptions()->set(CURLOPT_SSL_VERIFYHOST, false);

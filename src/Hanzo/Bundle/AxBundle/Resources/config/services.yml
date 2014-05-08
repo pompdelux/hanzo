@@ -9,6 +9,7 @@ services:
         arguments:
             - @request
             - @logger
+            - @hanzo.external_service.logger
             - @event_dispatcher
             - @hanzo.propel_replicator
         scope: request
@@ -18,11 +19,15 @@ services:
             - %ax.wsdl%
             - %ax.log_requests%
             - @logger
+            - @hanzo.external_service.logger
             - @event_dispatcher
             - @translator
 
     ax.out.checkout.listener:
         class: Hanzo\Bundle\AxBundle\Event\CheckoutListener
-        arguments: [ @ax.out, @logger ]
+        arguments:
+            - @ax.out
+            - @logger
+#            - @hanzo.external_service.logger
         tags:
             - { name: kernel.event_listener, event: order.payment.collected, method: onPaymentCollected, priority: 0 }

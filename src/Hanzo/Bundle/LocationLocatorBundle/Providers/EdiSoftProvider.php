@@ -71,8 +71,8 @@ class EdiSoftProvider extends BaseProvider
             $address_parts['city'] = $address_parts['streetName'];
             $address_parts['streetName'] = '';
         }
-        preg_match('/^([0-9]{3,7}) (.+)/', $address_parts['city'], $result);
 
+        preg_match('/^([0-9]{3,7}) (.+)/', $address_parts['city'], $result);
         if (3 == count($result)) {
             $address_parts['postalCode'] = trim($result[1]);
             $address_parts['city'] = trim($result[2]);
@@ -92,6 +92,12 @@ class EdiSoftProvider extends BaseProvider
             $result = $client->SearchForDropPoints($lookup);
         } catch (\Exception $e) {
             $this->logger->err($e->getMessage());
+        }
+
+        // log call
+        $this->logRemoteCall('SearchForDropPoints', $client);
+
+        if (empty($result)) {
             return [];
         }
 
@@ -117,6 +123,12 @@ class EdiSoftProvider extends BaseProvider
             ]);
         } catch (\Exception $e) {
             $this->logger->err($e->getMessage());
+        }
+
+        // log call
+        $this->logRemoteCall('SearchForDropPoints', $client);
+
+        if (empty($result)) {
             return [];
         }
 
@@ -146,6 +158,12 @@ class EdiSoftProvider extends BaseProvider
             ]);
         } catch (\Exception $e) {
             $this->logger->err($e->getMessage());
+        }
+
+        // log call
+        $this->logRemoteCall('GetChODAllDropPointsOnMap', $client);
+
+        if (empty($result)) {
             return [];
         }
 
@@ -155,9 +173,6 @@ class EdiSoftProvider extends BaseProvider
 
     /**
      * Perform the actual lookup
-     *
-     * @param  string   $service names service
-     * @param  array    $data    request data
      */
     protected function getClient()
     {
@@ -198,9 +213,9 @@ class EdiSoftProvider extends BaseProvider
     /**
      * Parse the SOAP result and return standardized array
      *
-     * @param  stdClass $result The SOAP result class
-     * @param  string   $key    Result key name
-     * @return array            List of locations
+     * @param  \stdClass $result The SOAP result class
+     * @param  string    $key    Result key name
+     * @return array             List of locations
      */
     protected function parseResult($result, $key)
     {
@@ -239,5 +254,17 @@ class EdiSoftProvider extends BaseProvider
         }
 
         return $set;
+    }
+
+    /**
+     * Send log data to parent.
+     *
+     * @param  string     $method
+     * @param  SoapClient $client
+     * @return mixed
+     */
+    public function logRemoteCall($method, $client)
+    {
+        return parent::logRemoteCall($method, $client->__getLastRequest());
     }
 }

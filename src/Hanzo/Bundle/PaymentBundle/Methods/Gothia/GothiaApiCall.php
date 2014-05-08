@@ -28,28 +28,24 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
      * undocumented class variable
      *
      * @var GothiaApiCall instance
-     **/
+     */
     private static $instance = null;
 
     /**
      * undocumented class variable
      *
      * @var GothiaApi
-     **/
+     */
     protected $api = null;
 
     /**
      * __construct
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     private function __construct() {}
 
     /**
      * someFunc
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public static function getInstance( Array $settings, GothiaApi $api)
     {
         if (self::$instance === null) {
@@ -64,9 +60,12 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
 
     /**
      * call
+     *
+     * @param string $function
+     * @param string $request
      * @return GothiaApiCallResponse
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     * @throws GothiaApiCallException
+     */
     protected function call( $function, $request )
     {
         $hanzo = Hanzo::getInstance();
@@ -77,6 +76,8 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         } else {
             $client = AFSWS_Init( 'live' );
         }
+
+        $this->api->service_logger->plog($request, ['outgoing', 'payment', 'gothia', $function]);
 
         try {
             $response = $client->call( $function, $request );
@@ -129,11 +130,11 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
 
     /**
      * callAcquirersStatus
+     *
      * @param Customers $customer
      * @param Orders $order
      * @return GothiaApiCallResponse
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function checkCustomer(Customers $customer, Orders $order)
     {
         $hanzo      = Hanzo::getInstance();
@@ -195,9 +196,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
 
     /**
      * getTestCustomerId
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function getTestCustomerId( $ssn )
     {
         $customerId = false;
@@ -268,11 +267,11 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
 
     /**
      * placeReservation
+     *
      * @param Customers $customer
      * @param Orders $order
      * @return GothiaApiCallResponse
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function placeReservation( Customers $customer, Orders $order )
     {
         $amount         = number_format( $order->getTotalPrice(), 2, '.', '' );
@@ -309,7 +308,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
      * @param Customers $customer
      * @param Orders $order
      * @return void
-     **/
+     */
     public function cancel(Customers $customer, Orders $order)
     {
         return $this->cancelReservation($customer, $order);
@@ -322,7 +321,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
      * @param Orders $order
      * @return GothiaApiCallResponse
      * @throws GothiaApiCallException
-     **/
+     */
     public function cancelReservation(Customers $customer, Orders $order)
     {
         $timer = new Timer('gothia', true);
@@ -370,8 +369,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
     /**
      * userString
      * @return string
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     private function userString()
     {
         return AFSWS_User($this->settings['username'], $this->settings['password'], $this->settings['clientId']);
@@ -383,8 +381,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
      * @param Orders $order
      * @param Array $additional_info
      * @return GothiaApiCallResponse
-     * @author Anders Bryrup <ab@bellcom.dk>
-     **/
+     */
     public function checkCustomerAndPlaceReservation( Customers $customer, Orders $order, array $additional_info = NULL )
     {
         $hanzo         = Hanzo::getInstance();
