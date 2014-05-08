@@ -52,7 +52,8 @@ class SubmitShipment
      */
     public function __construct(Consignor $consignor, ServiceLogger $service_logger)
     {
-        $this->consignor = $consignor;
+        $this->consignor      = $consignor;
+        $this->service_logger = $service_logger;
 
         if (('' != $this->consignor->getOption('key')) &&
             ('' != $this->consignor->getOption('actor'))
