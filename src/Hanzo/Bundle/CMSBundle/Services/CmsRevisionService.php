@@ -72,15 +72,20 @@ class CmsRevisionService
             $cmsRevision = new Cms();
             $cmsRevision->fromArray($revision->getRevision());
             $cms->fromArray($cmsRevision->toArray(BasePeer::TYPE_PHPNAME, true, array(), true));
-            foreach ($cms->getCmsI18ns(null, $this->con) as $translation) {
+            foreach ($cms->getCmsI18ns(null, $this->con) as &$translation) {
                 $translation->setNew(false);
 
                 // Be sure that IsActive and OnMobile is/not set. This failed in Propel.
                 $isActive = $cmsRevision->setLocale($translation->getLocale())->getIsActive();
-                $translation->setIsActive($isActive);
-
                 $onMobile = $cmsRevision->setLocale($translation->getLocale())->getOnMobile();
-                $translation->setOnMobile($onMobile);
+                $isRestricted = $cmsRevision->setLocale($translation->getLocale())->getIsRestricted();
+                $cms->setLocale($translation->getLocale())
+                    ->setIsActive('no')
+                    ->setIsActive($isActive)
+                    ->setIsRestricted('no')
+                    ->setIsRestricted($isRestricted)
+                    ->setOnMobile('no')
+                    ->setOnMobile($onMobile);
             }
             $cms->setNew(false);
             $cms->revision = $revision;
@@ -209,6 +214,7 @@ class CmsRevisionService
         }
 
         $cms->save($this->con);
+
         // Create new revision, and delete old one.
         $this->saveRevision($cms);
         $revision->delete($this->con);
