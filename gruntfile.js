@@ -29,14 +29,14 @@ module.exports = function (grunt) {
             },
             js: {
                 tasks: ['modernizr', 'uglify'],
-                files: files.desktop_js.concat(files.mobile_js)
+                files: files.desktop_js.concat(files.mobile_js, files.admin_js, files.consultant_js)
             }
         },
 
         compass : {
             desktop: {
                 options: {
-                    outputStyle:    'compressed',
+                    // outputStyle:    'compressed',
                     basePath:       'web/fx/2013s1',
                     sassDir:        'sass',
                     cssDir:         'css',
@@ -48,7 +48,7 @@ module.exports = function (grunt) {
             },
             mobile: {
                 options: {
-                    outputStyle:    'compressed',
+                    // outputStyle:    'compressed',
                     basePath:       'web/fx/2013s1_mobile',
                     sassDir:        'sass',
                     cssDir:         'css',
