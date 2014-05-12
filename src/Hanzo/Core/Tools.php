@@ -253,11 +253,6 @@ class Tools
             }
         }
 
-        // handle logging when running in fast cgi mode (nginx)
-        if ('fpm-fcgi' == php_sapi_name()) {
-            return error_log('['.date('r').'] '.$file.' +'.$line.' :: '.$data."\n", 3, $root.'/app/logs/php.log');
-        }
-
         error_log($file.' +'.$line.' :: '.$data);
     }
 
@@ -311,7 +306,7 @@ class Tools
      *
      * @see http://dk.php.net/manual/en/function.money-format.php
      *
-     * @param float  $numner
+     * @param float  $number
      * @param string $format see php.net for format documentation
      * @return string
      */
