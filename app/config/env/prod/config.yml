@@ -4,10 +4,17 @@ monolog:
             type:         fingers_crossed
             action_level: error
             handler:      nested
+            channels: [ "!3ps" ]
         nested:
             type:         stream
             path:         %kernel.logs_dir%/%kernel.environment%.log
             level:        debug
+            channels:     [ "!3ps" ]
+        third_party_services:
+            type:     stream
+            path:     %kernel.logs_dir%/%kernel.environment%.log
+            level:    info
+            channels: [ "3ps" ]
 
 framework:
     trusted_proxies: [ %proxy_ip% ]

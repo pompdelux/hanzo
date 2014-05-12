@@ -22,6 +22,7 @@
 
         <service id="consignor.service.submit_shipment" class="%consignor.submit_shipment.class%">
             <argument type="service" id="consignor.service" />
+            <argument type="service" id="hanzo.external_service.logger" />
         </service>
     </services>
 </container>

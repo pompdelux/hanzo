@@ -3,7 +3,7 @@
 namespace Hanzo\Bundle\ConsignorBundle;
 
 use Guzzle\Service\Client;
-use Symfony\Bridge\Monolog\Logger;
+use Psr\Log\LoggerInterface;
 
 class Consignor
 {
@@ -24,10 +24,10 @@ class Consignor
 
 
     /**
-     * @param Client $guzzle_client
-     * @param Logger $logger
+     * @param Client          $guzzle_client
+     * @param LoggerInterface $logger
      */
-    public function __construct(Client $guzzle_client, Logger $logger)
+    public function __construct(Client $guzzle_client, LoggerInterface $logger)
     {
         $this->guzzle = $guzzle_client;
         $this->logger = $logger;

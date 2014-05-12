@@ -97,6 +97,7 @@ class PostNordProvider extends BaseProvider
      *
      * @param  string   $service names service
      * @param  array    $data    request data
+     * @return array
      */
     protected function lookup($service, array $data = [])
     {
@@ -110,6 +111,7 @@ class PostNordProvider extends BaseProvider
             'max_redirects' => 0,
         ]]);
 
+        $this->logRemoteCall($service, $query);
         $response = @file_get_contents($query, false, $context);
 
         $records = [];

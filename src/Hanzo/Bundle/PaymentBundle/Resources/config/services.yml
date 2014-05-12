@@ -14,7 +14,7 @@ services:
         factory_method:  get
         arguments:
             service:     dibsapi
-            parameters:  [@router]
+            parameters:  [@router, @hanzo.external_service.logger]
             class:       %payment.dibsapi.class%
 
     payment.gothiaapi:
@@ -23,7 +23,7 @@ services:
         factory_method:  get
         arguments:
             service:     gothiaapi
-            parameters:  ~
+            parameters:  [@hanzo.external_service.logger]
             class:       %payment.gothiaapi.class%
 
     payment.gothiadeapi:
@@ -32,7 +32,7 @@ services:
         factory_method:  get
         arguments:
             service:     gothiadeapi
-            parameters:  ~
+            parameters:  [@hanzo.external_service.logger]
             class:       %payment.gothiadeapi.class%
 
     payment.manualpaymentapi:
@@ -60,7 +60,7 @@ services:
         factory_method:  get
         arguments:
             service:     pensioapi
-            parameters:  [@router]
+            parameters:  [@router, @hanzo.external_service.logger]
             class:       %payment.pensio.class%
 
     payment.paypalapi:
@@ -69,5 +69,5 @@ services:
         factory_method:  get
         arguments:
             service:     paypalapi
-            parameters:  [@router, @translator, @logger]
+            parameters:  [@router, @translator, @logger, @hanzo.external_service.logger]
             class:       %payment.paypal.class%

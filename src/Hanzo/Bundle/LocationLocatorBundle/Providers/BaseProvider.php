@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\LocationLocatorBundle\Providers;
 
+use Hanzo\Core\ServiceLogger;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\FormBuilder;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
@@ -72,24 +73,40 @@ abstract class BaseProvider
      */
     protected $settings = [];
 
+    /**
+     * @var LoggerInterface
+     */
+    protected $logger;
+
+    /**
+     * @var ServiceLogger
+     */
+    protected $service_logger;
+
+    /**
+     * @var string
+     */
+    protected $environment;
 
     /**
      * Setup provider
      *
-     * @param  Array      $settings     Array of settings
-     * @param  Translator $translator   Translator object
-     * @param  Logger     $logger       Logger object
-     * @throws InvalidArgumentException If there are problems with the arguments
+     * @param array         $settings     Array of settings
+     * @param Translator    $translator   Translator object
+     * @param Logger        $logger       Logger object
+     * @param ServiceLogger $service_logger
+     * @param string        $environment
      */
-    public function setup(array $settings = [], Translator $translator, Logger $logger, $environment)
+    public function setup(array $settings = [], Translator $translator, Logger $logger, ServiceLogger $service_logger, $environment)
     {
         foreach ($settings as $key => $value) {
             $this->settings[$key] = $value;
         }
 
-        $this->translator  = $translator;
-        $this->logger      = $logger;
-        $this->environment = $environment;
+        $this->translator     = $translator;
+        $this->logger         = $logger;
+        $this->service_logger = $service_logger;
+        $this->environment    = $environment;
     }
 
 
@@ -122,5 +139,16 @@ abstract class BaseProvider
         }
 
         return $builder;
+    }
+
+
+    /**
+     * @param  string $method
+     * @param  mixed  $data
+     * @return mixed
+     */
+    public function logRemoteCall($method, $data)
+    {
+        return $this->service_logger->plog($data, ['outgoing', 'location-locator', $method, $this->getProviderName()]);
     }
 }

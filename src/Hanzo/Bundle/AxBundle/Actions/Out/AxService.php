@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\AxBundle\Actions\Out;
 
+use Hanzo\Core\ServiceLogger;
 use Propel;
 use SoapFault;
 use stdClass;
@@ -24,6 +25,7 @@ class AxService
 {
     protected $wsdl;
     protected $logger;
+    protected $service_logger;
     protected $event_dispatcher;
     protected $client;
     protected $translator;
@@ -31,11 +33,12 @@ class AxService
     protected $skip_send    = false;
     protected $log_requests = false;
 
-    public function __construct($wsdl, $log_requests, Logger $logger, EventDispatcher $event_dispatcher, Translator $translator)
+    public function __construct($wsdl, $log_requests, Logger $logger, ServiceLogger $service_logger, EventDispatcher $event_dispatcher, Translator $translator)
     {
         $this->wsdl             = $wsdl;
         $this->log_requests     = $log_requests;
         $this->logger           = $logger;
+        $this->service_logger   = $service_logger;
         $this->event_dispatcher = $event_dispatcher;
         $this->translator       = $translator;
 
@@ -686,12 +689,16 @@ class AxService
         }
 
         try {
-            return $this->client->{$service}($request);
+            $result = $this->client->{$service}($request);
         } catch (SoapFault $e) {
             $this->logger->addCritical('Request.: '.$this->client->__getLastRequest());
             $this->logger->addCritical('Response: '.$this->client->__getLastResponse());
-            return $e;
+            $result = $e;
         }
+
+        $this->logAxRequest($service);
+
+        return $result;
     }
 
 
@@ -760,5 +767,17 @@ class AxService
         }
 
         return $entry->save($con);
+    }
+
+
+    /**
+     * Log the request
+     *
+     * @param $action
+     * @return mixed
+     */
+    protected function logAxRequest($action)
+    {
+        return $this->service_logger->plog($this->client->__getLastRequest(), ['outgoing', 'ax', 'soap', $action]);
     }
 }

@@ -62,6 +62,11 @@ class DibsPaymentWindow extends BasePaymentApi implements PaymentMethodApiInterf
     protected $router;
 
     /**
+     * @var \Hanzo\Core\ServiceLogger
+     */
+    public $service_logger;
+
+    /**
      * __construct
      *
      * @param array $parameters
@@ -69,7 +74,8 @@ class DibsPaymentWindow extends BasePaymentApi implements PaymentMethodApiInterf
      */
     public function __construct($parameters, array $settings)
     {
-        $this->router = $parameters[0];
+        $this->router         = $parameters[0];
+        $this->service_logger = $parameters[1];
 
         $this->settings = $settings;
         $this->settings['active'] = (isset($this->settings['method_enabled']) && $this->settings['method_enabled']
@@ -428,7 +434,11 @@ class DibsPaymentWindow extends BasePaymentApi implements PaymentMethodApiInterf
     public function getProcessButton(Orders $order, Request $request)
     {
         $fields = '';
-        foreach ($this->buildFormFields($order) as $name => $value) {
+        $data = $this->buildFormFields($order);
+
+        $this->service_logger->plog($data, ['outgoing', 'payment', 'dibs', 'dibs-payment-window',  'payment-form']);
+
+        foreach ($data as $name => $value) {
             $fields .= '<input type="hidden" name="'.$name.'" value="'.$value.'">';
         }
 

@@ -3,6 +3,7 @@
 namespace Hanzo\Bundle\PaymentBundle\Methods\Pensio;
 
 use Exception;
+use Hanzo\Core\ServiceLogger;
 use SimpleXMLElement;
 
 use Hanzo\Core\Tools;
@@ -38,6 +39,10 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
      */
     private static $instance;
 
+    /**
+     * @var \Hanzo\Core\ServiceLogger
+     */
+    private $service_logger;
 
     /**
      * construct
@@ -51,14 +56,29 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
      * @param  array $settings
      * @return PensioMerchantApi
      */
-    public static function getInstance(array $settings)
+    public static function getInstance(array $settings, $service_logger)
     {
         if (!self::$instance) {
             self::$instance = new self;
         }
 
-        self::$instance->setup($settings);
+        self::$instance->setup($settings, $service_logger);
         return self::$instance;
+    }
+
+
+    /**
+     * setup object
+     *
+     * @param array         $settings
+     * @param ServiceLogger $service_logger
+     */
+    protected function setup(array $settings, ServiceLogger $service_logger)
+    {
+        $this->settings       = $settings;
+        $this->service_logger = $service_logger;
+        $this->base_url       = sprintf($this->base_url, $this->settings['gateway']);
+        $this->connect();
     }
 
 
@@ -202,19 +222,6 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
 
 
     /**
-     * setup object
-     *
-     * @param  array  $settings
-     */
-    protected function setup(array $settings)
-    {
-        $this->settings = $settings;
-        $this->base_url = sprintf($this->base_url, $this->settings['gateway']);
-        $this->connect();
-    }
-
-
-    /**
      * connect, aka setup parameters used and test connection
      *
      * @return void
@@ -285,6 +292,8 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
     protected function callAPIMethod($method, array $args = [])
     {
         $result = @file_get_contents($this->base_url."/merchant/API/".$method, false, $this->createContext($args));
+
+        $this->service_logger->plog($args, ['outgoing', 'payment', 'pensio', $method]);
 
         if ($result !== false) {
             return new PensioCallResponse($http_response_header, new SimpleXMLElement($result));
