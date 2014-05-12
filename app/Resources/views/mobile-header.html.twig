@@ -28,17 +28,5 @@
 <link rel="dns-prefetch" href="//cdn.jquerytools.org">
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
 
-{% stylesheets
-  'fx/css/jquery-ui.css'
-  'fx/scripts/fullcalendar/fullcalendar.css'
-  'fx/css/colorbox/theme4/colorbox.css'
-
-  'fx/2013s1_mobile/css/mobile.css'
-
-  output='fx/cache/2013s1_mobile.css'
-  combine=true
-%}
-<link rel="stylesheet" href="{{ asset_url }}" />
-{% endstylesheets %}
-
-<script type="text/javascript" src="{{ cdn }}fx/scripts/modernizr.js"></script>
+<link rel="stylesheet" href="{{ asset_url('fx/build/mobile.min.css') }}" />
+<script type="text/javascript" src="{{ asset_url('fx/build/modernizr-custom.js') }}"></script>
