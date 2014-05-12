@@ -91,7 +91,10 @@ class PersonalDiscountHandler
                     $line->setVat($price['normal']['vat']);
                     $line->setOriginalPrice($price['normal']['price']);
 
-                    $total += ($line->getPrice() * $line->getQuantity());
+                    // only discountable products should be used.
+                    if (true === $line->getProducts()->getIsDiscountable()) {
+                        $total += ($line->getPrice() * $line->getQuantity());
+                    }
                 }
             }
 
