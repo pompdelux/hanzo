@@ -44,7 +44,7 @@
               {% spaceless %}
               {% for color in product.all_colors %}
                 <a href="#" class="product-color color-{{ color|lower|replace({' ':'-', '/':'9'}) }}" data-color="{{ color|lower|replace({' ':'-', '/':'9'}) }}">
-                  <div class="sprite-block colorbuttons colorbuttons-{{ color|lower|replace({' ':'-', '/':'9'}) }}"></div>
+                  <div class="sprite-block colorbuttons colorbuttons-_{{ color|lower|replace({' ':'-', '/':'9'}) }}"></div>
                   <span>{{ color }}</span>
                 </a>
               {% endfor %}

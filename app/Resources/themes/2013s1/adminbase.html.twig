@@ -33,23 +33,6 @@
 <link href='//fonts.googleapis.com/css?family=Merriweather:400,700,900' rel='stylesheet' type='text/css'>
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
-{# stylesheets
-    'fx/css/boilerplate.css'
-    'fx/css/colorbox/theme4/colorbox.css'
-    'fx/css/jquery-ui.css'
-    'fx/scripts/video-js/video-js.css'
-
-    'fx/css/main.css'
-    'fx/css/admin.css'
-    'fx/css/dialoug.css'
-    'fx/css/maps.css'
-
-    output='fx/cache/admin-all.css'
-    combine=true
-%}
-<link rel="stylesheet" href="{{ asset_url }}" media="all">
-{% endstylesheets #}
-
 <script type="text/javascript" src="{{ cdn|replace({'http:':''}) }}fx/scripts/modernizr.js"></script>
 <script type="text/javascript">
 var base_url = '{{ url('admin') }}';
@@ -132,43 +115,13 @@ var cdn_url = '{{ cdn }}';
         </div>
     </div>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-
 <script type="text/javascript" src="{{ asset('bundles/bazingaexposetranslation/js/translator.min.js') }}"></script>
 <script type="text/javascript" src="{{ url('bazinga_exposetranslation_js', { 'domain_name': 'js', '_locale' : app.request.locale }) }}"></script>
 
-{% javascripts
-    'fx/scripts/jquery.tools.min.js'
-    'fx/scripts/jquery.ui.nestedSortable.js'
-    'fx/scripts/colorbox/jquery.colorbox-min.js'
-    'fx/scripts/zoom/jquery.zoom.js'
-
-    'fx/scripts/flowplayer/flowplayer-3.2.11.min.js'
-    'fx/scripts/countdown/jquery.countdown.js'
-    'fx/scripts/countdown/jquery.countdown-dk.js'
-    'fx/scripts/video-js/video.js'
-    'fx/scripts/history.js/scripts/bundled/html4+html5/jquery.history.js'
-
-    'fx/scripts/yatzy.js'
-    'fx/scripts/dialoug.js'
-    'fx/scripts/colorbox.js'
-    'fx/scripts/flowplayer.js'
-    'fx/scripts/video.js'
-
-    'fx/scripts/admin.js'
-
-    'fx/scripts/admin.gothia.js'
-    'fx/scripts/maps.js'
-
-    'fx/scripts/admin.dead_orders.js'
-
-    output='fx/cache/admin-all.js'
-    combine=true
-%}
-<script src="{{ asset_url }}"></script>
-{% endjavascripts %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="{{ asset_url('fx/build/admin.min.js') }}"></script>
 
 <script>
 $(document).ready(function(){ adminDeadOrders.init() });

@@ -29,6 +29,7 @@ class AssetExtension extends Twig_Extension
             'fx_image_url' => new Twig_Function_Method($this, 'fx_image_url'),
             'image_path' => new Twig_Function_Method($this, 'image_path', array()),
             'image_tag' => new Twig_Function_Method($this, 'image_tag', array('pre_escape' => 'html', 'is_safe' => array('html'))),
+            'asset_url' => new Twig_Function_Method($this, 'asset_url', array('pre_escape' => 'html', 'is_safe' => array('html'))),
         );
     }
 
@@ -84,5 +85,15 @@ class AssetExtension extends Twig_Extension
     public function image_path($src, $preset = '')
     {
         return Tools::imagePath($src, $preset);
+    }
+
+    /**
+     * @param $path
+     * @return string
+     */
+    public function asset_url($path)
+    {
+        $hanzo = Hanzo::getInstance();
+        return str_replace(['http:', 'https:'], '', $hanzo->get('core.cdn')).$path.'?'.$hanzo->get('core.assets_version', 'z4');
     }
 }

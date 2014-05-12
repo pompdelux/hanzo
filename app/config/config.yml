@@ -82,18 +82,6 @@ twig:
         resources:
             - 'TwigBundle:Form:fields.html.twig'
 
-assetic:
-    debug:          '%kernel.debug%'
-    use_controller: false
-    java:           /usr/bin/java
-    sass:           %sass_bin%
-    node:           %node_bin%
-    filters:
-        cssrewrite: ~
-        compass:
-            bin:      %compass_bin%
-            apply_to: "\.scss$"
-
 swiftmailer:
     transport: '%mailer_transport%'
     host:      '%mailer_host%'

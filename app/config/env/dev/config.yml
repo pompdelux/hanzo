@@ -23,9 +23,6 @@ monolog:
             type:           firephp
             level:          info
 
-assetic:
-    use_controller:         true
-
 propel:
     dbal:
         default_connection: default
