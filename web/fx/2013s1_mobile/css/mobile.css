@@ -2701,10 +2701,10 @@ video {
   display: none;
 }
 
-.video {
+video {
   display: block;
 }
-.video img  {
+video img  {
   width: 100%;
 }
 
