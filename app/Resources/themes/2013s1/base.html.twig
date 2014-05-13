@@ -31,10 +31,11 @@
 <link href="//fonts.googleapis.com/css?family=Merriweather:400,700,900" rel="stylesheet" type="text/css">
 <link rel="shortcut icon" href="/fx/images/favicon.ico" title="POMPdeLUX" type="image/ico">
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset_url('fx/build/desktop.min.css') }}">
 
-<link rel="stylesheet" href="{{ asset_url('fx/build/desktop.min.css') }}" />
-<script type="text/javascript" src="{{ asset_url('fx/build/modernizr-custom.js') }}"></script>
-
+<!--[if lt IE 9]>
+<script src="{{ asset_url('vendors/html5shiv/dist/html5shiv.min.js') }}"></script>
+<![endif]-->
 </head>
 <body id="body-{{ page_type|default('page') }}" class="{{ body_classes|default('') }} {{ html_lang }} domain-{{ domain_key|lower }}">
 <div class="top-bar"></div>
@@ -157,7 +158,11 @@
             <div class="hr"></div>
         </div>
         <div class="copy grid_8">
-            {{ 'footer.address'|trans({'%cdn%':cdn, '%url%':app.request.uri|url_encode })|raw }}
+            {{ 'footer.address'|trans({
+                '%cdn%'   : cdn,
+                '%url%'   : app.request.uri|url_encode,
+                '%build%' : assets_version()
+            })|raw }}
         </div>
     </footer>
 </div>

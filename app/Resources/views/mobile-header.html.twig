@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="robots" content="all">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta property="og:url" content="{{ app.request.uri }}">
 
 {% block meta %}
@@ -28,5 +28,7 @@
 <link rel="dns-prefetch" href="//cdn.jquerytools.org">
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
 
-<link rel="stylesheet" href="{{ asset_url('fx/build/mobile.min.css') }}" />
-<script type="text/javascript" src="{{ asset_url('fx/build/modernizr-custom.js') }}"></script>
+<link rel="stylesheet" href="{{ asset_url('fx/build/mobile.min.css') }}">
+<!--[if lt IE 9]>
+<script src="{{ asset_url('vendors/html5shiv/dist/html5shiv.min.js') }}"></script>
+<![endif]-->
