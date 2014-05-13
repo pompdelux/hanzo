@@ -32,25 +32,9 @@
 <link rel="shortcut icon" href="/fx/images/favicon.ico" title="POMPdeLUX" type="image/ico">
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
-{% stylesheets
-    'fx/2013s1/css/960_8_3_3.css'
-    'fx/2013s1/css/jquery.fullimagebox.css'
+<link rel="stylesheet" href="{{ asset_url('fx/build/desktop.min.css') }}" />
+<script type="text/javascript" src="{{ asset_url('fx/build/modernizr-custom.js') }}"></script>
 
-    'fx/css/colorbox/theme4/colorbox.css'
-    'fx/css/jquery-ui.css'
-    'fx/scripts/video-js/video-js.css'
-    'fx/scripts/fullcalendar/fullcalendar.css'
-
-    'fx/2013s1/css/screen.css'
-    'fx/2013s1/css/style.css'
-
-    output='fx/cache/2013s1.css'
-    combine=true
-%}
-<link rel="stylesheet" href="{{ asset_url }}" />
-{% endstylesheets %}
-
-<script type="text/javascript" src="{{ cdn }}fx/scripts/modernizr.js"></script>
 </head>
 <body id="body-{{ page_type|default('page') }}" class="{{ body_classes|default('') }} {{ html_lang }} domain-{{ domain_key|lower }}">
 <div class="top-bar"></div>

@@ -1,0 +1,35 @@
+{
+  "name": "hanzo",
+  "version": "0.0.1",
+  "homepage": "https://github.com/pompdelux/hanzo",
+  "authors": [
+    "Ulrik Nielsen <un@bellcom.dk>",
+    "Anders Bryrup <ab@bellcom.dk>"
+  ],
+  "description": "js vendor files for hanzo",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "web/vendors",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "accounting": "~0.3.2",
+    "history.js": "~1.8.0",
+    "jquery-colorbox": "~1.5.6",
+    "jquery-cookie": "~1.4.0",
+    "jquery-cycle2": "~2.1.0",
+    "jquery-zoom": "~1.7.12",
+    "jquery.formParams": "~0.1.1",
+    "jquery": "1.11.0",
+    "json2": "*",
+    "nanoscroller": "~0.8.0",
+    "purl": "~2.3.1",
+    "video-js": "~4.5.1"
+  },
+  "dependencies":{}
+}

@@ -31,7 +31,9 @@ set :pwd, `pwd`.strip
 set :hosts, ENV["HOSTS"]
 
 # do dump the js and css with uglify
-set :dump_assetic_assets,   true
+# un@2014.05.12 depricated, should be removed along with any other assetic
+# related stuff, but do so when we are 100% certain it works as expected
+set :dump_assetic_assets, false
 
 # use below to rsync the files instead of git clone. Requires capistrano_rsync_with_remote_cache installed (gem install)
 set :deploy_via,  :rsync_with_remote_cache
@@ -245,14 +247,14 @@ namespace :propel do
     desc "Run migrations"
     task :migrate, :roles => :db do
       capifony_pretty_print "--> Running propel migrations"
-      symfony_env_prods.each do |i| 
+      symfony_env_prods.each do |i|
         run("cd #{latest_release} && php app/console propel:migration:migrate --env=#{i}")
       end
       capifony_puts_ok
     end
     desc "Migrations status"
     task :status, :roles => :db do
-      symfony_env_prods.each do |i| 
+      symfony_env_prods.each do |i|
         run("cd #{latest_release} && php app/console propel:migration:status --env=#{i}")
       end
     end

@@ -36,6 +36,11 @@ class PensioApi extends BasePaymentApi
     protected $router;
 
     /**
+     * @var \Hanzo\Core\ServiceLogger
+     */
+    public $service_logger;
+
+    /**
      * __construct
      *
      * @param array $parameters
@@ -44,7 +49,8 @@ class PensioApi extends BasePaymentApi
      */
     public function __construct($parameters, $settings)
     {
-        $this->router = $parameters[0];
+        $this->router         = $parameters[0];
+        $this->service_logger = $parameters[1];
 
         foreach ($settings as $key => $value) {
             $this->settings[$key] = $value;
@@ -66,7 +72,7 @@ class PensioApi extends BasePaymentApi
      */
     public function call()
     {
-        return PensioMerchantApi::getInstance($this->settings);
+        return PensioMerchantApi::getInstance($this->settings, $this->service_logger);
     }
 
     /**
@@ -242,6 +248,8 @@ class PensioApi extends BasePaymentApi
             'ignore_errors' => false,
             'content'       => http_build_query($data),
         ]];
+
+        $this->service_logger->plog(array_merge($data, $headers), ['outgoing', 'payment', 'pensio', 'createPaymentRequest']);
 
         $context = stream_context_create($request);
         $response = trim(file_get_contents('https://'.$this->settings['gateway'].'.pensio.com/merchant/API/createPaymentRequest', FALSE, $context));

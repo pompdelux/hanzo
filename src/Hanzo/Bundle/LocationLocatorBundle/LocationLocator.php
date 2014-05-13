@@ -42,10 +42,11 @@ class LocationLocator
      */
     public function __construct($container, $environment)
     {
-        $this->container   = $container;
-        $this->logger      = $container->get('logger');
-        $this->translator  = $container->get('translator');
-        $this->environment = $environment;
+        $this->container      = $container;
+        $this->logger         = $container->get('logger');
+        $this->service_logger = $container->get('hanzo.external_service.logger');
+        $this->translator     = $container->get('translator');
+        $this->environment    = $environment;
     }
 
     /**
@@ -74,7 +75,7 @@ class LocationLocator
             throw new InvalidArgumentException('Method ('.$method_name.') not supported');
         }
 
-        $provider->setup($settings, $this->translator, $this->logger, $this->environment);
+        $provider->setup($settings, $this->translator, $this->logger, $this->service_logger, $this->environment);
         return call_user_func_array([$provider, $method_name], $arguments);
     }
 }

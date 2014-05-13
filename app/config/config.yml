@@ -71,24 +71,18 @@ services:
         class:     Hanzo\Core\PropelReplicator
         arguments: [@propel.configuration]
 
+    hanzo.external_service.logger:
+        class: Hanzo\Core\ServiceLogger
+        arguments: ["@logger"]
+        tags:
+            - { name: monolog.logger, channel: 3ps }
+
 twig:
     debug:            '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     form:
         resources:
             - 'TwigBundle:Form:fields.html.twig'
-
-assetic:
-    debug:          '%kernel.debug%'
-    use_controller: false
-    java:           /usr/bin/java
-    sass:           %sass_bin%
-    node:           %node_bin%
-    filters:
-        cssrewrite: ~
-        compass:
-            bin:      %compass_bin%
-            apply_to: "\.scss$"
 
 swiftmailer:
     transport: '%mailer_transport%'

@@ -43,7 +43,7 @@ class PayPalCall implements PaymentMethodApiCallInterface
      * @param  PayPalApi $api
      * @return self
      */
-    public static function getInstance(array$settings, PayPalApi $api)
+    public static function getInstance(array $settings, PayPalApi $api)
     {
         if (self::$instance === null) {
             self::$instance = new self;
@@ -211,6 +211,8 @@ class PayPalCall implements PaymentMethodApiCallInterface
 
         $logger = $this->api->getLogger();
         $logger->debug('PayPal call to "'.$function.'" send to "'.$this->base_url.'".', $params);
+
+        $this->api->service_logger->plog($query, ['outgoing', 'payment', 'paypal', $function]);
 
         $response = @file_get_contents($query);
 
