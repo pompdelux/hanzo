@@ -8,8 +8,9 @@
   var counter_offset = 1314691200;
 </script>
 
+<script type="text/javascript" src="{{ asset_url('fx/build/modernizr-custom.js') }}"></script>
 <script type="text/javascript" src="{{ asset_url('bundles/bazingaexposetranslation/js/translator.min.js') }}"></script>
-<script type="text/javascript" src="{{ url('bazinga_exposetranslation_js', { 'domain_name': 'js', '_locale' : app.request.locale }) }}"></script>
+<script type="text/javascript" src="{{ url('bazinga_exposetranslation_js', { 'domain_name': 'js', '_locale' : app.request.locale }) }}?{{ assets_version() }}"></script>
 <script type="text/javascript" src="{{ asset_url('fx/build/mobile.min.js') }}"></script>
 
 {% if app.environment matches '/^dev_|test_/' %}
