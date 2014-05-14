@@ -21,7 +21,7 @@ class DefaultController extends CoreController
         $page = CmsPeer::getFrontpage($hanzo->get('core.locale'));
 
         // Be able to preview an revision. Only for admins!!!
-        if ($request->query->get('revision') && in_array($this->getRequest()->getHost(), array('admin.pompdelux.com', 'testpompdelux.com', 'pdl.ab'))) {
+        if ($request->query->get('revision') && in_array($this->getRequest()->getHost(), array('admin.pompdelux.com', 'www.testpompdelux.com', 'pdl.ab'))) {
             $revision_service = $this->get('cms_revision');
             $page = $revision_service->getRevision($page, $request->query->get('revision'));
             $page->setLocale($hanzo->get('core.locale'));
