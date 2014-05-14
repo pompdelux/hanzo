@@ -151,6 +151,15 @@ admin_cms_redirect_delete:
     requirements:
         id: \d+
 
+admin_cms_delete_revision:
+    pattern:  /admin/cms/revision/delete/{id}/{timestamp}
+    defaults:
+        _controller: AdminBundle:Cms:deleteRevision
+        _format: json
+    requirements:
+        _format: html|json
+        id: \d+
+
 admin_products:
     pattern:  /admin/products/cat/{category_id}/{subcategory_id}
     defaults:

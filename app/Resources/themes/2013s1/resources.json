@@ -71,6 +71,7 @@
     "admin_js": [
         "web/fx/scripts/jquery.tools.min.js",
         "web/fx/scripts/jquery.ui.nestedSortable.js",
+        "web/fx/scripts/jquery-ui-timepicker-addon.js",
         "web/fx/scripts/colorbox/jquery.colorbox-min.js",
         "web/fx/scripts/zoom/jquery.zoom.js",
         "web/fx/scripts/flowplayer/flowplayer-3.2.11.min.js",

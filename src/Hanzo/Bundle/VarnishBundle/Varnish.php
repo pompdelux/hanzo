@@ -97,7 +97,7 @@ class Varnish
                 $status = $this->status_map[$status];
             }
 
-            throw new VarnishException("Ban method returned status: '{$status}' request send: '{$request}' (".__LINE__.")");
+            throw new VarnishException("Ban method returned status: '{$status}' regex send: '{$regex}' (".__LINE__.")");
         }
 
         return true;
