@@ -201,7 +201,7 @@
             </trans-unit>
             <trans-unit id="buy.set.description">
                 <source>buy.set.description</source>
-                <target></target>
+                <target>Välj storlek och färg vid varje style du vill lägga i korgen.</target>
             </trans-unit>
             <trans-unit id="button.back">
                 <source>button.back</source>
