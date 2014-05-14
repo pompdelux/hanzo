@@ -57,7 +57,7 @@ class CmsRevisionCommand extends ContainerAwareCommand
 
                     // This handles some caching updates.
                     foreach ($cms->getCmsI18ns(null, Propel::getConnection($connection, Propel::CONNECTION_WRITE)) as $translation) {
-                        $this->getContainer()->get('event_dispatcher')->dispatch('cms.node.updated', new FilterCMSEvent($cms, $translation->getLocale()));
+                        $this->getContainer()->get('event_dispatcher')->dispatch('cms.node.updated', new FilterCMSEvent($cms, $translation->getLocale(), Propel::getConnection($connection, Propel::CONNECTION_WRITE)));
                         // Flush all varnish for this locale. If this is a new
                         // CMS, the menues might get updated.
                         $this->getContainer()->get('varnish.controle')->banUrl('^/' . $translation->getLocale() . '/*');
