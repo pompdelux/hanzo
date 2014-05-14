@@ -21,7 +21,9 @@
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
 <link rel="stylesheet" href="{{ asset_url('fx/build/desktop.min.css') }}" />
-<script type="text/javascript" src="{{ asset_url('fx/build/modernizr-custom.js') }}"></script>
+<!--[if lt IE 9]>
+<script src="{{ asset_url('vendors/html5shiv/dist/html5shiv.min.js') }}"></script>
+<![endif]-->
 </head>
 <body id="body-{{ page_type|default('page') }}" class="{{ body_classes|default('') }} consultant {{ html_lang }}">
 
@@ -87,7 +89,10 @@
       <hr class="left row">
     </div>
     <div class="copy grid_8">
-      {{ 'footer.address'|trans({'%cdn%':cdn})|raw }}
+      {{ 'footer.address'|trans({
+        '%cdn%'   : cdn,
+        '%build%' : assets_version()
+      })|raw }}
     </div>
   </footer>
 </div>
@@ -102,8 +107,9 @@
   var counter_offset = 1314691200;
 </script>
 
+<script type="text/javascript" src="{{ asset_url('fx/build/modernizr-custom.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bundles/bazingaexposetranslation/js/translator.min.js') }}"></script>
-<script type="text/javascript" src="{{ url('bazinga_exposetranslation_js', { 'domain_name': 'js', '_locale' : app.request.locale }) }}"></script>
+<script type="text/javascript" src="{{ url('bazinga_exposetranslation_js', { 'domain_name': 'js', '_locale' : app.request.locale }) }}?{{ assets_version() }}"></script>
 <script src="{{ asset_url('fx/build/consultant.min.js') }}"></script>
 
 {% block javascript %}{% endblock %}
