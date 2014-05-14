@@ -72,7 +72,11 @@
 
     <a href="" title="{{ 'footer.goto.website.link'|trans({}, 'mobile') }}" class="switch-site-view">{{ 'footer.goto.website.link'|trans({}, 'mobile') }}</a>
     <div class="copy small">
-      {{ 'footer.address'|trans({'%cdn%':cdn, '%url%':app.request.uri|url_encode })|raw }}
+      {{ 'footer.address'|trans({
+        '%cdn%'   : cdn,
+        '%url%'   : app.request.uri|url_encode,
+        '%build%' : assets_version()
+      })|raw }}
     </div>
   </footer>
 </div>

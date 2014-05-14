@@ -93,7 +93,7 @@ module.exports = function (grunt) {
                 },
                 outputFile: 'web/fx/build/modernizr-custom.js',
                 "extra" : {
-                    "shiv" : true,
+                    "shiv" : false,
                     "printshiv" : false,
                     "load" : true,
                     "mq" : false,

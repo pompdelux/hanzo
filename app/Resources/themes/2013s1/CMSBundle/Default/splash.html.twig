@@ -19,12 +19,13 @@
 <meta name="robots" content="all">
 
 <link rel="shortcut icon" href="{{ image_path('/fx/images/favicon.ico') }}" title="POMPdeLUX" />
-<script type="text/javascript" src="{{ cdn|replace({'http:':''}) }}fx/scripts/modernizr.js"></script>
-
 <link href='//fonts.googleapis.com/css?family=Merriweather:400,700,900' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="{{ cdn }}fx/css/boilerplate.css" />
 <link rel="stylesheet" type="text/css" href="{{ cdn }}fx/css/splash.css" />
 
+<!--[if lt IE 9]>
+<script src="{{ asset_url('vendors/html5shiv/dist/html5shiv.min.js') }}"></script>
+<![endif]-->
 </head>
 <body id="body-{{ page_type|default('page') }}" class="{{ body_classes|default('cms global') }}">
 
@@ -45,5 +46,6 @@
   </div>
 </div>
 
+<script type="text/javascript" src="{{ cdn|replace({'http:':''}) }}fx/scripts/modernizr.js"></script>
 </body>
 </html>
