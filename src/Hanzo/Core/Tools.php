@@ -650,6 +650,12 @@ class Tools
             $params['class'] .= ' lazy';
         }
 
+        $noscript = false;
+        if (isset($params['noscript'])) {
+            $noscript = $params['noscript'];
+            unset($params['noscript']);
+        }
+
         $extra = '';
 
         foreach ($params as $key => $value) {
@@ -657,7 +663,10 @@ class Tools
         }
 
         if ($lazy) {
-            return '<img data-original="' . $src . '"' . $extra . '><noscript><img src="' . $src . '"' . str_replace(' lazy', '', $extra) . '></noscript>';
+            if ($noscript) {
+                $noscript = '<noscript><img src="' . $src . '"' . str_replace(' lazy', '', $extra) . '></noscript>';
+            }
+            return '<img data-original="' . $src . '"' . $extra . '>'.$noscript;
         }
 
         return '<img src="' . $src . '"' . $extra . '>';
