@@ -55,16 +55,11 @@
           {{ form_widget(form.newsletter) }}
           {{ form_label(form.newsletter) }}
         </div>
-        <div>
-          {{ form_widget(form.accept) }}
-          {{ form_label(form.accept) }}
-        </div>
         {{ form_row(form.addresses.0.type) }}
         {{ form_row(form._token) }}
         <button type="submit" class="button button-black pull-right">
             {{ 'create.account'|trans({}, 'account') }} <i class="fa fa-arrow-right"></i>
         </button>
-        {{ 'create.account.vilkaar.link'|trans({}, 'messages')|raw }}
       </div>
     </div>
   </form>
