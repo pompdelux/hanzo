@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "ba153caa7611b02191d7ccb065ac1854",
+    "hash": "3a55a9e9051c56e311ecaadcea316c41",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1479,12 +1479,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pompdelux/kraken-bundle.git",
-                "reference": "c5f30e5e7939e3b6cf58e80b65a0681b88a51cca"
+                "reference": "733f61f48ae7fe3535f3c5ece25b366125d36f40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pompdelux/kraken-bundle/zipball/c5f30e5e7939e3b6cf58e80b65a0681b88a51cca",
-                "reference": "c5f30e5e7939e3b6cf58e80b65a0681b88a51cca",
+                "url": "https://api.github.com/repos/pompdelux/kraken-bundle/zipball/733f61f48ae7fe3535f3c5ece25b366125d36f40",
+                "reference": "733f61f48ae7fe3535f3c5ece25b366125d36f40",
                 "shasum": ""
             },
             "require": {
@@ -1497,6 +1497,7 @@
                     "Pompdelux\\KrakenBundle\\": ""
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1516,11 +1517,7 @@
                 "kraken.io",
                 "web service"
             ],
-            "support": {
-                "issues": "https://github.com/pompdelux/kraken-bundle/issues",
-                "source": "https://github.com/pompdelux/kraken-bundle/tree/master"
-            },
-            "time": "2014-05-19 08:48:50"
+            "time": "2014-05-19 09:07:59"
         },
         {
             "name": "propel/propel-bundle",

@@ -28,17 +28,9 @@
         "liip/theme-bundle": "dev-master",
         "drak/native-session": "master-dev",
         "misd/guzzle-bundle": "~1.0",
-
         "knplabs/knp-snappy-bundle": "1.1",
-
         "pompdelux/kraken-bundle": "master-dev"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/pompdelux/kraken-bundle"
-        }
-    ],
     "scripts": {
         "post-install-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
