@@ -66,6 +66,9 @@
       <parameter name="create_column" value="created_at" />
       <parameter name="disable_updated_at" value="true" />
     </behavior>
+    <foreign-key foreignTable="cms" onDelete="CASCADE">
+      <reference local="id" foreign="id" />
+    </foreign-key>
   </table>
 
   <table name="countries">

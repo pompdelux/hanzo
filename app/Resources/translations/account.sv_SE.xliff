@@ -530,17 +530,27 @@ Därefter kan du enkelt shoppa vidare.<br></p>
                 <source>account.returnlabel.link</source>
                 <target>Skriv ut returetikett</target>
             </trans-unit>
-            <trans-unit id="my.account.legends.header">
+            <!--             <trans-unit id="my.account.legends.header">
                 <source>my.account.legends.header</source>
-                <target></target>
+                <target>Ikonerna betyder följande</target>
             </trans-unit>
             <trans-unit id="my.account.legends">
                 <source>my.account.legends</source>
-                <target>my.account.legends</target>
-            </trans-unit>
+                <target><![CDATA[
+                    <ul>
+                        <li><i class="sprite edit"></i><span>Redigera din order</span></li>
+                        <li><i class="sprite delete"></i><span>Ta bort din/radera din order</span></li>
+                        <li><i class="sprite show"></i><span>Se din order</span></li>
+                        <li><i class="sprite pdf"></i><span>Faktura (pdf)</span></li>
+                        <li><i class="sprite return"></i><span>Returnera en vara</span></li>
+                        <li><i class="sprite returnlabel"></i><span>Returetikett</span></li>
+                        <li><i class="sprite trackntrace"></i><span>Följ ditt paket</span></li>
+                    </ul>
+                    ]]></target>
+            </trans-unit> -->
             <trans-unit id="my.account.existing.customer.notice">
                 <source>my.account.existing.customer.notice</source>
-                <target></target>
+                <target>Välkommen, vi är glada för att se dig igen.</target>
             </trans-unit>
         </body>
     </file>

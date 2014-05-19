@@ -7,25 +7,37 @@ use Symfony\Component\HttpFoundation\Response;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
+use Symfony\Component\HttpFoundation\Request;
+use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
 
 use Hanzo\Model\Cms;
 use Hanzo\Model\CmsPeer;
 
 class DefaultController extends CoreController
 {
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $hanzo = Hanzo::getInstance();
         $page = CmsPeer::getFrontpage($hanzo->get('core.locale'));
 
-        $this->setSharedMaxAge(86400);
+        // Be able to preview an revision. Only for admins!!!
+        if ($request->query->get('revision') && in_array($this->getRequest()->getHost(), array('admin.pompdelux.com', 'www.testpompdelux.com', 'pdl.ab'))) {
+            $revision_service = $this->get('cms_revision');
+            $page = $revision_service->getRevision($page, $request->query->get('revision'));
+            $page->setLocale($hanzo->get('core.locale'));
+            $page->is_revision = true;
+        }
+
+        if (!isset($page->is_revision)) {
+            $this->setSharedMaxAge(86400);
+        }
         return $this->forward('CMSBundle:Default:view', array(
             'id'  => NULL,
             'page' => $page
         ));
     }
 
-    public function viewAction($id, $page = NULL)
+    public function viewAction(Request $request, $id, $page = NULL)
     {
         $hanzo = Hanzo::getInstance();
         $locale = $hanzo->get('core.locale');
@@ -39,6 +51,14 @@ class DefaultController extends CoreController
             if (is_null($page)) {
                 throw $this->createNotFoundException('The page does not exist (id: '.$id.' )');
             }
+        }
+
+        // Be able to preview an revision. Only for admins!!!
+        if ($request->query->get('revision') && in_array($this->getRequest()->getHost(), array('admin.pompdelux.com', 'www.testpompdelux.com', 'pdl.ab'))) {
+            $revision_service = $this->get('cms_revision');
+            $page = $revision_service->getRevision($page, $request->query->get('revision'));
+            $page->setLocale($hanzo->get('core.locale'));
+            $page->is_revision = true;
         }
 
         // access check - should be done better tho...
@@ -60,7 +80,9 @@ class DefaultController extends CoreController
         $html = preg_replace($find, $replace, $html);
         $page->setContent($html);
 
-        $this->setSharedMaxAge(86400);
+        if (!isset($page->is_revision)) {
+            $this->setSharedMaxAge(86400);
+        }
 
         return $this->render('CMSBundle:Default:view.html.twig', array(
             'page_type' => $type,

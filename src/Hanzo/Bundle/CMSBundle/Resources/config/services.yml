@@ -3,4 +3,4 @@ parameters:
 
 services:
     cms_revision:
-        class:           %cms_revision.class%
+        class: %cms_revision.class%

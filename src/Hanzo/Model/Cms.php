@@ -82,7 +82,7 @@ class Cms extends BaseCms
     public function fromArray($arr, $keyType = BasePeer::TYPE_PHPNAME)
     {
         parent::fromArray($arr, $keyType = BasePeer::TYPE_PHPNAME);
-
+        $this->initCmsI18ns();
         if (isset($arr['CmsI18ns'])) {
             foreach ($arr['CmsI18ns'] as $cmsI18n) {
                 $translation = new CmsI18n();
