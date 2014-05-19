@@ -238,10 +238,6 @@
                 <source>nno.fetch</source>
                 <target>Holen</target>
             </trans-unit>
-            <trans-unit id="71">
-                <source>create.accept</source>
-                <target>Ich bestelle hiermit das oben Angeführte und bestätige, dass ich Folgendes gelesen habe und akzeptiere </target>
-            </trans-unit>
             <trans-unit id="72">
                 <source>create.newsletter</source>
                 <target>Newsletter bestellen</target>

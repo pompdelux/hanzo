@@ -210,12 +210,6 @@
                 <source>browser.title</source>
                 <target>POMPdeLUX - Cool clothes for kids!</target>
             </trans-unit>
-            <trans-unit id="create.account.vilkaar.link">
-                <source>create.account.vilkaar.link</source>
-                <target><![CDATA[
-                    <a href="/en_GB/home/customer-service/terms-and-conditions" target="_blank">Terms and conditions</a>
-                ]]></target>
-            </trans-unit>
             <trans-unit id="category.selector.look">
                 <source>category.selector.look</source>
                 <target>Looks</target>

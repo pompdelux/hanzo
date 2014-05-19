@@ -218,10 +218,6 @@
                 <source>nno.fetch</source>
                 <target>Hämta</target>
             </trans-unit>
-            <trans-unit id="71">
-                <source>create.accept</source>
-                <target>Jag bekräftar härmed att jag har läst och accepterar</target>
-            </trans-unit>
             <trans-unit id="72">
                 <source>create.newsletter</source>
                 <target>Registrera nyhetsbrev</target>

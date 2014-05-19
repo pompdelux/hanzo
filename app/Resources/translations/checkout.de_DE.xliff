@@ -452,6 +452,13 @@ Sie müssen Waren hinzufügen.
         <source>coupon.invalid.code</source>
         <target>Der Rabattcode ist unkorrekt</target>
       </trans-unit>
+        <trans-unit id="checkout.confirm.terms" approved="no">
+            <source>checkout.confirm.terms</source>
+            <target><![CDATA[
+                <label for="js_checkout_confirm_terms">Ich bestelle hiermit das oben Angeführte und bestätige, dass ich Folgendes gelesen habe und akzeptiere</label>
+                <a href="/de_DE/home/kundendienst/abgs" class="js-external">POMPdeLUX AGB's</a>.
+            ]]></target>
+        </trans-unit>
     </body>
   </file>
 </xliff>

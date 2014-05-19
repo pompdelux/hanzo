@@ -222,10 +222,6 @@
                 <source>nno.fetch</source>
                 <target>Toon</target>
             </trans-unit>
-            <trans-unit id="71">
-                <source>create.accept</source>
-                <target>Ik bevestig dat ik de heb gelezen en geaccepteerd.</target>
-            </trans-unit>
             <trans-unit id="72">
                 <source>create.newsletter</source>
                 <target>Meld je aan voor de nieuwsbrief</target>

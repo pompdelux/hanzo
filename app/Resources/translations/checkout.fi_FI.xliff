@@ -415,6 +415,13 @@
         <source>coupon.invalid.code</source>
         <target>Väärä alennuskoodi</target>
       </trans-unit>
+        <trans-unit id="checkout.confirm.terms" approved="no">
+            <source>checkout.confirm.terms</source>
+            <target><![CDATA[
+                <label for="js_checkout_confirm_terms">Teen yllä olevan tilauksen ja vahvistan, että olen lukenut</label>
+                <a href="/fi_FI/koti/asiakaspalvelu/ehdot" class="js-external">POMPdeLUXin ehdot</a>.
+            ]]></target>
+        </trans-unit>
     </body>
   </file>
 </xliff>

@@ -232,10 +232,6 @@
                 <source>nno.fetch</source>
                 <target>Nouda</target>
             </trans-unit>
-            <trans-unit id="71">
-                <source>create.accept</source>
-                <target>Teen yllä olevan tilauksen ja vahvistan, että olen lukenut </target>
-            </trans-unit>
             <trans-unit id="72">
                 <source>create.newsletter</source>
                 <target>Tilaa uutiskirje</target>

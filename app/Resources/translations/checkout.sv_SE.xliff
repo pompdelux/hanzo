@@ -438,6 +438,13 @@
         <source>coupon.invalid.code</source>
         <target>Ogiltig rabattkod</target>
       </trans-unit>
+        <trans-unit id="checkout.confirm.terms" approved="no">
+            <source>checkout.confirm.terms</source>
+            <target><![CDATA[
+                <label for="js_checkout_confirm_terms">Jag bekräftar härmed att jag har läst och accepterar</label>
+                <a href="/sv_SE/forside/kundservice/villkor" class="js-external">POMPdeLUX Villkor</a>.
+          ]]></target>
+        </trans-unit>
     </body>
   </file>
 </xliff>

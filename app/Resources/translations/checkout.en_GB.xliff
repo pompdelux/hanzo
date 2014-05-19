@@ -418,6 +418,13 @@
         <source>coupon.invalid.code</source>
         <target>Invalid discount code</target>
       </trans-unit>
+        <trans-unit id="checkout.confirm.terms" approved="no">
+            <source>checkout.confirm.terms</source>
+            <target><![CDATA[
+                <label for="js_checkout_confirm_terms">I confirm the above order and confirm that I have read and accept POMPdeLUX terms and conditions</label>
+                <a href="/en_GB/home/customer-service/terms-and-conditions" class="js-external">Terms and conditions</a>.
+            ]]></target>
+        </trans-unit>
     </body>
   </file>
 </xliff>
