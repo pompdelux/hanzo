@@ -223,3 +223,10 @@ consignor:
     shipment_server: ~
     ship_advisor:    ~
 
+kraken:
+    services:
+        test:
+            api_key:    9332c545acb473d6f998631158446253
+            api_secret: 296aede492f1b1b40ae0d41683012b337870c417
+            type:       url
+
