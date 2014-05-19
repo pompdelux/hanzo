@@ -19,7 +19,8 @@
                     'alt' : product.alt,
                     'data-flip': product_image_url(product.image_flip, '234x410'),
                     'height' : '410',
-                    'width' : '234'
+                    'width' : '234',
+                    'lazy': true
                   }) }}
                   {% if product.prices.sales is defined and show_new_price_badge %}
                   <div class="new-price"></div>

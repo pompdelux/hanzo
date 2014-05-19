@@ -12,6 +12,15 @@
 <script type="text/javascript" src="{{ asset_url('bundles/bazingaexposetranslation/js/translator.min.js') }}"></script>
 <script type="text/javascript" src="{{ url('bazinga_exposetranslation_js', { 'domain_name': 'js', '_locale' : app.request.locale }) }}?{{ assets_version() }}"></script>
 <script type="text/javascript" src="{{ asset_url('fx/build/desktop.min.js') }}"></script>
+<script src="{{ asset_url('fx/scripts/jquery.lazyload.min.js') }}" type="text/javascript"></script>
+<script>
+(function($) {
+    $("img.lazy").lazyload({
+        threshold : 200,
+        effect : "fadeIn"
+    });
+})(jQuery);
+</script>
 
 {% if app.environment matches '/^dev_|test_/' %}
 <script src="//code.jquery.com/jquery-migrate-1.2.1.js"></script>

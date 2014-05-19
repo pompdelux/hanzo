@@ -639,10 +639,25 @@ class Tools
             $params['alt'] = '';
         }
 
+        $lazy = false;
+        if (isset($params['lazy']) && (true === $params['lazy'])) {
+            $lazy = true;
+            unset($params['lazy']);
+
+            if (empty($params['class'])) {
+                $params['class'] = '';
+            }
+            $params['class'] .= ' lazy';
+        }
+
         $extra = '';
 
         foreach ($params as $key => $value) {
             $extra .= ' ' . $key . '="'.$value.'"';
+        }
+
+        if ($lazy) {
+            return '<img data-original="' . $src . '"' . $extra . '><noscript><img src="' . $src . '"' . str_replace(' lazy', '', $extra) . '></noscript>';
         }
 
         return '<img src="' . $src . '"' . $extra . '>';
