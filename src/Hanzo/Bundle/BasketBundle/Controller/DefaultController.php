@@ -80,7 +80,6 @@ class DefaultController extends CoreController
             return $this->forward('BasketBundle:Default:view');
         }
 
-        $date  = $stock_service->decrease($product, $quantity);
         $order = OrdersPeer::getCurrent();
 
         if ($order->getState() >= Orders::STATE_PRE_PAYMENT) {
@@ -89,7 +88,6 @@ class DefaultController extends CoreController
                 'status'  => false,
             ));
         }
-
 
         // fraud detection
         $total_order_quantity = OrdersLinesQuery::create()
@@ -136,6 +134,7 @@ class DefaultController extends CoreController
             }
         }
 
+        $date  = $stock_service->decrease($product, $quantity);
         $order->setOrderLineQty($product, $quantity, false, $date);
         $order->setUpdatedAt(time());
 
