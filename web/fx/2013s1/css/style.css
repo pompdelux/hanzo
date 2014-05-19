@@ -2029,12 +2029,9 @@ form.create label:after {
 form.create label.required:after {
   content: ": *";
 }
-form.create .button {
-  display: none;
-}
 
-#body-events-create-customer input.button.off {
-  display: none;
+#body-events-create-customer form #customers {
+  margin-bottom: 10px;
 }
 
 #event-edit-form .button {
@@ -2124,6 +2121,16 @@ form.address .error {
 #body-checkout #main form.address > h3 {
   margin-top: 0;
   margin-bottom: 5px;
+}
+#body-checkout .checkout-confirm-terms {
+  display: block;
+  margin: 20px 5px;
+}
+#body-checkout .checkout-confirm-terms a {
+  text-decoration: underline;
+}
+#body-checkout #checkout-buttons {
+  display: none;
 }
 #body-checkout #checkout-buttons .dialoug-loading {
   float: right;

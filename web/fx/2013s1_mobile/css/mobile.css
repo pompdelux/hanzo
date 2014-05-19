@@ -1600,6 +1600,16 @@ form.address .error {
   margin-top: 0;
   margin-bottom: 5px;
 }
+#body-checkout .checkout-confirm-terms {
+  display: block;
+  margin: 20px 5px;
+}
+#body-checkout .checkout-confirm-terms a {
+  text-decoration: underline;
+}
+#body-checkout #checkout-buttons {
+  display: none;
+}
 #body-checkout #checkout-buttons .dialoug-loading {
   float: right;
 }

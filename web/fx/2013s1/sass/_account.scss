@@ -60,13 +60,10 @@ form.create {
 			content: ": *";
 		}
 	}
-    .button {
-        display: none;
-    }
 }
 #body-events-create-customer{
-    input.button.off{
-        display: none;
+    form #customers {
+        margin-bottom: 10px;
     }
 }
 
