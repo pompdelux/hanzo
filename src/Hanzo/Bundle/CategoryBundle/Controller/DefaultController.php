@@ -473,8 +473,7 @@ class DefaultController extends CoreController
                 $image_overview = str_replace('_set_', '_overview_', $image);
                 $image_set = str_replace('_overview_', '_set_', $image);
 
-
-                $alt = trim(Tools::stripTags($translator->trans('headers.category-'.$settings->category_id, [], 'category'))).': '.$product->getSku();
+                $alt = trim(Tools::stripTags($translator->trans('headers.category-'.$settings->category_id, [], 'category'))).': '.$product->getTitle($request->getLocale());
 
                 $records[] = array(
 

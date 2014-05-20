@@ -639,10 +639,34 @@ class Tools
             $params['alt'] = '';
         }
 
+        $lazy = false;
+        if (isset($params['lazy']) && (true === $params['lazy'])) {
+            $lazy = true;
+            unset($params['lazy']);
+
+            if (empty($params['class'])) {
+                $params['class'] = '';
+            }
+            $params['class'] .= ' lazy';
+        }
+
+        $noscript = false;
+        if (isset($params['noscript'])) {
+            $noscript = $params['noscript'];
+            unset($params['noscript']);
+        }
+
         $extra = '';
 
         foreach ($params as $key => $value) {
             $extra .= ' ' . $key . '="'.$value.'"';
+        }
+
+        if ($lazy) {
+            if ($noscript) {
+                $noscript = '<noscript><img src="' . $src . '"' . str_replace(' lazy', '', $extra) . '></noscript>';
+            }
+            return '<img data-original="' . $src . '"' . $extra . '>'.$noscript;
         }
 
         return '<img src="' . $src . '"' . $extra . '>';

@@ -159,6 +159,12 @@
         }
         document.location.href = document.location.href;
       });
+
+      // lazy load images via jquery.lazyload
+      $("img.lazy").lazyload({
+        threshold : 200,
+        effect : "fadeIn"
+      });
     };
 
     /**
