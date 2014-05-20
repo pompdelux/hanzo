@@ -5,6 +5,7 @@ namespace Hanzo\Bundle\AxBundle\Actions\In\Soap;
 use Hanzo\Core\ServiceLogger;
 use Monolog;
 
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -22,7 +23,7 @@ class SoapService
     protected $request;
 
     /**
-     * @var Logger
+     * @var LoggerInterface
      */
     protected $logger;
 
@@ -58,12 +59,12 @@ class SoapService
 
     /**
      * @param Request          $request
-     * @param Logger           $logger
+     * @param LoggerInterface  $logger
      * @param ServiceLogger    $service_logger
      * @param EventDispatcher  $event_dispatcher
      * @param PropelReplicator $replicator
      */
-    public function __construct(Request $request, $logger, ServiceLogger $service_logger, EventDispatcher $event_dispatcher, PropelReplicator $replicator)
+    public function __construct(Request $request, LoggerInterface $logger, ServiceLogger $service_logger, EventDispatcher $event_dispatcher, PropelReplicator $replicator)
     {
         $this->request          = $request;
         $this->logger           = $logger;
