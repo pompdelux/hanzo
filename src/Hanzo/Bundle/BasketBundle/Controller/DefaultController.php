@@ -431,13 +431,10 @@ class DefaultController extends CoreController
         // product lines- if any
         $c = new \Criteria();
         $c->addAscendingOrderByColumn(OrdersLinesPeer::PRODUCTS_NAME);
+        $c->add(OrdersLinesPeer::TYPE, 'product');
         foreach ($order->getOrdersLiness($c) as $line) {
             $line->setProductsSize($line->getPostfixedSize($translator));
             $line = $line->toArray(\BasePeer::TYPE_FIELDNAME);
-
-            if ($line['type'] != 'product') {
-                continue;
-            }
 
             $line['url'] = '';
             $line['basket_image'] = '';
@@ -457,13 +454,17 @@ class DefaultController extends CoreController
                 SELECT p.id, p.sku, p.primary_categories_id FROM products AS p
                 WHERE p.sku = (
                     SELECT pp.master FROM products AS pp
-                    WHERE pp.id = ".$line['products_id']."
+                    WHERE pp.id = ".(int) $line['products_id']."
                 )
             ";
             $master = \Propel::getConnection()
                 ->query($sql)
                 ->fetch(\PDO::FETCH_OBJ)
             ;
+
+            if (empty($master)) {
+                continue;
+            }
 
             if ($master->primary_categories_id) {
                 $category_id = $master->primary_categories_id;
