@@ -473,6 +473,12 @@ ol{
 	margin-right: 3px;
 }
 
+// helps to float stuff to the right in grids (only g4 so far)
+.grid_4.right {
+    margin-right: 0;
+    float: right;
+}
+
 .main > .grid_1,
 .main > .grid_2,
 .main > .grid_3,
