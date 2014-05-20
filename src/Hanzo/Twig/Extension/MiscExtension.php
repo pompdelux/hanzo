@@ -398,8 +398,6 @@ class MiscExtension extends Twig_Extension
                         $attr['class'] = $block['class'];
                     }
 
-                    $attr['lazy'] = true;
-                    $attr['noscript'] = false;
                     $html = Tools::imageTag($block['src'], $attr);
 
                     if (!empty($block['href'])) {
