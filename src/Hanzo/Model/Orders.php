@@ -1028,6 +1028,11 @@ class Orders extends BaseOrders
      */
     public function setState($v)
     {
+        // no need to set the state to its own state..
+        if ($v == $this->getState()) {
+            return $this;
+        }
+
         $log = new OrdersStateLog();
         $log->setOrdersId($this->getId());
         $log->setState($v);
