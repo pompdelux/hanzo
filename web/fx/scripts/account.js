@@ -6,6 +6,8 @@ var account = (function($) {
     pub.zipToCityInit();
 
     if ($('form.create').length) {
+      var $form = $('form.create');
+
       // email address validation - check existing status
       $('#customers_email_email_address', $form).blur(function() {
         $form.removeClass('hasError');
@@ -248,10 +250,10 @@ var account = (function($) {
   return pub;
 })(jQuery);
 
-if ($("#body-create-account").length) {
+if ($("#body-create-account, #body-edit-account").length) {
   account.init();
 }
-if ($("#body-events-create-customer, #body-edit-account").length) {
+if ($("#body-events-create-customer").length) {
   account.zipToCityInit();
 }
 
