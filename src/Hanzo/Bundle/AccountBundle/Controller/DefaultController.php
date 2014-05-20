@@ -193,6 +193,14 @@ class DefaultController extends CoreController
         $message = '';
 
         if ('POST' === $request->getMethod()) {
+
+            if (false === filter_var($request->request->get('email'), FILTER_VALIDATE_EMAIL)) {
+                return $this->render('AccountBundle:Default:password_forgotten.html.twig', array(
+                    'page_type' => 'password-forgotten',
+                    'message'   => 'password.forgotten.not_found'
+                ));
+            }
+
             // find the user by email address
             $customer = CustomersPeer::getByEmail($request->request->get('email'));
             if ($customer instanceof Customers) {
