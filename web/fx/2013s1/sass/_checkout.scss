@@ -49,6 +49,9 @@ form.address {
 	}
 
     .checkout-confirm-terms {
+        text-align: center;
+        border: 3px solid $alert-border-color;
+        padding: 10px;
         display: block;
         margin: 20px 5px;
         a {

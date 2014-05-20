@@ -1601,6 +1601,9 @@ form.address .error {
   margin-bottom: 5px;
 }
 #body-checkout .checkout-confirm-terms {
+  text-align: center;
+  border: 3px solid #c18185;
+  padding: 10px;
   display: block;
   margin: 20px 5px;
 }
