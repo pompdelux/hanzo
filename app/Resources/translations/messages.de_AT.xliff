@@ -293,11 +293,19 @@ Paket: Das Paket wird an Ihre Adresse geliefert und kostet EUR 5,95. Wenn Sie zu
             <trans-unit id="footer.menu_2">
                 <source>footer.menu_2</source>
                 <target><![CDATA[
-                <h2>BE SOCIAL</h2>
-				<ul class="menu">
-				<li><a href="http://instagram.com/pompdelux_official" target="_blank"> Instagram</a></li>
-				<li><a href="https://www.facebook.com/POMPdeLUXDK" target="_blank">Facebook</a></li>
-				<li><a href="/de_AT/home/katalog/backstage-video">Backstage video</a></li>
+                <h2>HOME SHOPPING</h2>
+                <ul class="menu">
+                    <li><a href="/de_AT/home/uber-home-shopping/werden-sie-gastgeberin">Werden Sie Gastgeberin </a></li>
+                    <li><a href="/de_AT/home/home-shopping/beraterin-finden">Shopping Advisor finden</a></li>
+                    <li><a href="/de_AT/home/home-shopping/tag-der-offenen-tur">Tag der offenen Tür</a></li>
+                    <li><a href="/de_AT/home/katalog">Katalog</a></li>
+                    <li><a href="/de_AT/home/beraterin-werden/ein-schoner-nebenjob">Shopping Advisor werden</a></li>
+				</ul><br>
+				<h2>BE SOCIAL</h2>
+				 <ul class="menu">
+                    <li><a href="http://instagram.com/pompdelux_official" target="_blank"> Instagram</a></li>
+                    <li><a href="https://www.facebook.com/POMPdeLUXDK" target="_blank">Facebook</a></li>
+                    <li><a href="/de_AT/home/katalog/backstage-video">Backstage video</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>
