@@ -47,11 +47,15 @@
         <tr>
             <th>{{ 'admin.order.state'|trans({}, 'admin') }}</th>
             <td>
+            {% if is_granted('ROLE_ADMIN') %}
                 <form action="{{ path('admin_customer_order', {'order_id' : order.id }) }}" method="post" {{ form_enctype(form_state) }} id="order-state-edit-form" class="edit-form inline">
                     {{ form_row(form_state._token) }}
                     {{ form_widget(form_state.state) }}
                     <input class="button right" type="submit" value="{{ 'update.state'|trans({}, 'admin') }}">
                 </form>
+            {% else %}
+                {{ ('status.' ~ order.state|replace({'-': 'neg.'}))|trans({}, 'checkout') }}
+            {% endif %}
             </td>
         </tr>
         <tr>

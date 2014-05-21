@@ -698,7 +698,7 @@ class CmsController extends CoreController
                 'title' => 'CMS',
             ],
             'admin_customers' => [
-                'access' => ['ROLE_ADMIN', 'ROLE_CUSTOMERS_SERVICE'],
+                'access' => ['ROLE_ADMIN', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_LOGISTICS'],
                 'title' => 'Kunder',
             ],
             'admin_consultants' => [
@@ -710,7 +710,7 @@ class CmsController extends CoreController
                 'title' => 'Medarbejdere',
             ],
             'admin_orders' => [
-                'access' => ['ROLE_ADMIN', 'ROLE_SALES'],
+                'access' => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_LOGISTICS'],
                 'title' => 'Ordrer',
             ],
             'admin_products' => [

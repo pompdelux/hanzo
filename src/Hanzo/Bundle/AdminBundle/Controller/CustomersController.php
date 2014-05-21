@@ -27,7 +27,7 @@ class CustomersController extends CoreController
      */
     public function indexAction(Request $request, $domain_key, $pager)
     {
-        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_CUSTOMERS_SERVICE")'))) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_CUSTOMERS_SERVICE") or hasRole("ROLE_LOGISTICS")'))) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
@@ -135,7 +135,7 @@ class CustomersController extends CoreController
      */
     public function viewAction($id)
     {
-        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_CUSTOMERS_SERVICE")'))) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_CUSTOMERS_SERVICE") or hasRole("ROLE_LOGISTICS")'))) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
