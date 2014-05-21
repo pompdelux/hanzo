@@ -25,17 +25,17 @@ use Hanzo\Model\OrdersDeletedLog;
 use Hanzo\Model\OrdersSyncLogQuery;
 use Hanzo\Model\OrdersSyncLog;
 use Hanzo\Model\DomainsQuery;
-use Hanzo\Model\GothiaAccounts;
-use Hanzo\Bundle\PaymentBundle\Gothia\GothiaApi;
-use Hanzo\Bundle\PaymentBundle\Gothia\GothiaApiCallException;
+
+use Hanzo\Bundle\PaymentBundle\Methods\Gothia\GothiaApi;
+use Hanzo\Bundle\PaymentBundle\Methods\Gothia\GothiaApiCallException;
+use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
 
 class OrdersController extends CoreController
 {
 
     public function indexAction(Request $request, $customer_id, $domain_key, $pager)
     {
-
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_LOGISTICS")'))) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
@@ -153,7 +153,7 @@ class OrdersController extends CoreController
 
     public function viewAction(Request $request, $order_id)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_LOGISTICS")'))) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
@@ -243,7 +243,7 @@ class OrdersController extends CoreController
 
     public function previewAction($order_id)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_LOGISTICS")'))) {
             throw new AccessDeniedException();
         }
 

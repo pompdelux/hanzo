@@ -23,11 +23,13 @@
           <td>{{ order.comment|replace({'--->' : '<br>--->'})|raw }}</td>
           <td>{{ order.data.salesOrder.SalesTable.TransactionType }}</td>
           <td nowrap>
+          {% if is_granted('ROLE_ADMIN') %}
             <a href="#" class="delete-order" data-order-id="{{ order.ordersId }}" data-confirm-message="Er du sikker på du ønsker at slette ordrenummer: {{ order.ordersId }}" title="Slet"><span class="glyphicon glyphicon-remove-circle"></span></a>
+          {% endif %}
             <a href="{{ path('admin_orders_preview', {order_id : order.ordersId}) }}" class="preview-order" title="Gennemse"><span class="glyphicon glyphicon-search"></span></a>
-            {% if order.data.salesOrder.SalesTable.TransactionType == 'Write' %}
-              <a href="{{ path('admin_orders_resync_sync', {order_id : order.ordersId}) }}" class="resend-order" title="Gensend"><span class="glyphicon glyphicon-refresh"></span></a>
-            {% endif %}
+          {% if is_granted('ROLE_ADMIN') and order.data.salesOrder.SalesTable.TransactionType == 'Write' %}
+            <a href="{{ path('admin_orders_resync_sync', {order_id : order.ordersId}) }}" class="resend-order" title="Gensend"><span class="glyphicon glyphicon-refresh"></span></a>
+          {% endif %}
           </td>
         </tr>
 
