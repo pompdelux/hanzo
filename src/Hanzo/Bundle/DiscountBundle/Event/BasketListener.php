@@ -30,9 +30,12 @@ class BasketListener
      */
     public function onBasketChange(BasketEvent $event)
     {
+        $hanzo  = Hanzo::getInstance();
         $master = $event->getProduct()->getMaster();
+
         $breaks = ProductsQuantityDiscountQuery::create()
             ->orderBySpan(\Criteria::DESC)
+            ->filterByDomainsId($hanzo->get('core.domain_id'))
             ->findByProductsMaster($master)
         ;
 
@@ -46,7 +49,7 @@ class BasketListener
         $customer = $order->getCustomers();
         if (($customer instanceof Customers) &&
             (1 < $customer->getGroupsId()) &&
-            (0 == Hanzo::getInstance()->get('webshop.disable_discounts'))
+            (0 == $hanzo->get('webshop.disable_discounts'))
         ) {
             return;
         }
