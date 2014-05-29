@@ -200,5 +200,35 @@ class AppKernel extends Kernel
     {
         return isset($this->settings[$key]) ? $this->settings[$key] : $default;
     }
+
+    public function getCacheDir()
+    {
+        if ($this->isVagrantEnv()) {
+            return '/dev/shm/hanzo/cache/' .  $this->getEnvironment();
+        }
+
+        return parent::getCacheDir();
+    }
+
+    public function getLogDir()
+    {
+        if ($this->isVagrantEnv()) {
+            return '/dev/shm/hanzo/logs';
+        }
+
+        return parent::getLogDir();
+    }
+
+
+    private function isVagrantEnv()
+    {
+        if (preg_match('/^(test|dev)_/', $this->getEnvironment())) {
+            if (is_file('/etc/vagrant_box_build_time')) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
 
