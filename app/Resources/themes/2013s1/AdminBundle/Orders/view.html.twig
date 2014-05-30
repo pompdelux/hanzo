@@ -5,11 +5,14 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="{{ path('admin_orders') }}">{{ 'admin.orders.list.link'|trans({}, 'admin') }}</a></li>
-                <li><a href="{{ path('admin_customers') }}">{{ 'admin.customers.list.link'|trans({}, 'admin') }}</a>
-                </li>
-                <li><a href="{{ path('admin_consultants') }}">{{ 'admin.consultants.list.link'|trans({}, 'admin') }}</a>
-                </li>
+                <li><a href="{{ path('admin_customers') }}">{{ 'admin.customers.list.link'|trans({}, 'admin') }}</a></li>
+                <li><a href="{{ path('admin_consultants') }}">{{ 'admin.consultants.list.link'|trans({}, 'admin') }}</a></li>
+
             </ul>
+
+        {% if order.state >= 30 %}
+            <a href="{{ path('admin_orders_resend_confirmation_mail', {'id': order.id}) }}" class="btn btn-default navbar-btn">Gensend konfirmations e-mail</a>
+        {% endif %}
 
             <form action="{{ path('admin_orders') }}" method="get" class="navbar-form navbar-right">
                 <div class="form-group">

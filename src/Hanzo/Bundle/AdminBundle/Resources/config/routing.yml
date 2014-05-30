@@ -412,6 +412,13 @@ admin_customer_order:
     requirements:
         order_id: \d+
 
+admin_orders_resend_confirmation_mail:
+    pattern:  /admin/customer/orders/id/{id}/resend-confirmation-mail
+    defaults:
+        _controller: AdminBundle:Orders:resendConfirmationMail
+    requirements:
+        order_id: \d+
+
 admin_orders_dead:
   pattern:  /admin/orders/dead
   defaults:
