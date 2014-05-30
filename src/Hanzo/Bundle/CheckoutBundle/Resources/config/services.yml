@@ -18,3 +18,10 @@ services:
             - { name: kernel.event_listener, event: order.edit.start, method: onEditStart }
             - { name: kernel.event_listener, event: order.edit.cancel, method: onEditCancel }
             - { name: kernel.event_listener, event: order.edit.done, method: onEditDone }
+
+    hanzo.order.send.confirmation.mail:
+        class: Hanzo\Bundle\CheckoutBundle\SendOrderConfirmationMail
+        arguments:
+            - @translator
+            - @mail_manager
+            - @hanzo.address_formatter
