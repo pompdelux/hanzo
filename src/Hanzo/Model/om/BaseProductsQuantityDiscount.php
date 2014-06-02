@@ -5,10 +5,12 @@ namespace Hanzo\Model\om;
 use \BaseObject;
 use \BasePeer;
 use \Criteria;
+use \DateTime;
 use \Exception;
 use \PDO;
 use \Persistent;
 use \Propel;
+use \PropelDateTime;
 use \PropelException;
 use \PropelPDO;
 use Hanzo\Model\Domains;
@@ -63,6 +65,18 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
      * @var        string
      */
     protected $discount;
+
+    /**
+     * The value for the valid_from field.
+     * @var        string
+     */
+    protected $valid_from;
+
+    /**
+     * The value for the valid_to field.
+     * @var        string
+     */
+    protected $valid_to;
 
     /**
      * @var        Products
@@ -136,6 +150,90 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
     {
 
         return $this->discount;
+    }
+
+    /**
+     * Get the [optionally formatted] temporal [valid_from] column value.
+     *
+     * This accessor only only work with unix epoch dates.  Consider enabling the propel.useDateTimeClass
+     * option in order to avoid conversions to integers (which are limited in the dates they can express).
+     *
+     * @param string $format The date/time format string (either date()-style or strftime()-style).
+     *				 If format is null, then the raw unix timestamp integer will be returned.
+     * @return mixed Formatted date/time value as string or (integer) unix timestamp (if format is null), null if column is null, and 0 if column value is 0000-00-00
+     * @throws PropelException - if unable to parse/validate the date/time value.
+     */
+    public function getValidFrom($format = 'Y-m-d')
+    {
+        if ($this->valid_from === null) {
+            return null;
+        }
+
+        if ($this->valid_from === '0000-00-00') {
+            // while technically this is not a default value of null,
+            // this seems to be closest in meaning.
+            return null;
+        }
+
+        try {
+            $dt = new DateTime($this->valid_from);
+        } catch (Exception $x) {
+            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->valid_from, true), $x);
+        }
+
+        if ($format === null) {
+            // We cast here to maintain BC in API; obviously we will lose data if we're dealing with pre-/post-epoch dates.
+            return (int) $dt->format('U');
+        }
+
+        if (strpos($format, '%') !== false) {
+            return strftime($format, $dt->format('U'));
+        }
+
+        return $dt->format($format);
+
+    }
+
+    /**
+     * Get the [optionally formatted] temporal [valid_to] column value.
+     *
+     * This accessor only only work with unix epoch dates.  Consider enabling the propel.useDateTimeClass
+     * option in order to avoid conversions to integers (which are limited in the dates they can express).
+     *
+     * @param string $format The date/time format string (either date()-style or strftime()-style).
+     *				 If format is null, then the raw unix timestamp integer will be returned.
+     * @return mixed Formatted date/time value as string or (integer) unix timestamp (if format is null), null if column is null, and 0 if column value is 0000-00-00
+     * @throws PropelException - if unable to parse/validate the date/time value.
+     */
+    public function getValidTo($format = 'Y-m-d')
+    {
+        if ($this->valid_to === null) {
+            return null;
+        }
+
+        if ($this->valid_to === '0000-00-00') {
+            // while technically this is not a default value of null,
+            // this seems to be closest in meaning.
+            return null;
+        }
+
+        try {
+            $dt = new DateTime($this->valid_to);
+        } catch (Exception $x) {
+            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->valid_to, true), $x);
+        }
+
+        if ($format === null) {
+            // We cast here to maintain BC in API; obviously we will lose data if we're dealing with pre-/post-epoch dates.
+            return (int) $dt->format('U');
+        }
+
+        if (strpos($format, '%') !== false) {
+            return strftime($format, $dt->format('U'));
+        }
+
+        return $dt->format($format);
+
     }
 
     /**
@@ -231,6 +329,52 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
     } // setDiscount()
 
     /**
+     * Sets the value of [valid_from] column to a normalized version of the date/time value specified.
+     *
+     * @param mixed $v string, integer (timestamp), or DateTime value.
+     *               Empty strings are treated as null.
+     * @return ProductsQuantityDiscount The current object (for fluent API support)
+     */
+    public function setValidFrom($v)
+    {
+        $dt = PropelDateTime::newInstance($v, null, 'DateTime');
+        if ($this->valid_from !== null || $dt !== null) {
+            $currentDateAsString = ($this->valid_from !== null && $tmpDt = new DateTime($this->valid_from)) ? $tmpDt->format('Y-m-d') : null;
+            $newDateAsString = $dt ? $dt->format('Y-m-d') : null;
+            if ($currentDateAsString !== $newDateAsString) {
+                $this->valid_from = $newDateAsString;
+                $this->modifiedColumns[] = ProductsQuantityDiscountPeer::VALID_FROM;
+            }
+        } // if either are not null
+
+
+        return $this;
+    } // setValidFrom()
+
+    /**
+     * Sets the value of [valid_to] column to a normalized version of the date/time value specified.
+     *
+     * @param mixed $v string, integer (timestamp), or DateTime value.
+     *               Empty strings are treated as null.
+     * @return ProductsQuantityDiscount The current object (for fluent API support)
+     */
+    public function setValidTo($v)
+    {
+        $dt = PropelDateTime::newInstance($v, null, 'DateTime');
+        if ($this->valid_to !== null || $dt !== null) {
+            $currentDateAsString = ($this->valid_to !== null && $tmpDt = new DateTime($this->valid_to)) ? $tmpDt->format('Y-m-d') : null;
+            $newDateAsString = $dt ? $dt->format('Y-m-d') : null;
+            if ($currentDateAsString !== $newDateAsString) {
+                $this->valid_to = $newDateAsString;
+                $this->modifiedColumns[] = ProductsQuantityDiscountPeer::VALID_TO;
+            }
+        } // if either are not null
+
+
+        return $this;
+    } // setValidTo()
+
+    /**
      * Indicates whether the columns in this object are only set to default values.
      *
      * This method can be used in conjunction with isModified() to indicate whether an object is both
@@ -266,6 +410,8 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
             $this->domains_id = ($row[$startcol + 1] !== null) ? (int) $row[$startcol + 1] : null;
             $this->span = ($row[$startcol + 2] !== null) ? (int) $row[$startcol + 2] : null;
             $this->discount = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
+            $this->valid_from = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
+            $this->valid_to = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -275,7 +421,7 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
             }
             $this->postHydrate($row, $startcol, $rehydrate);
 
-            return $startcol + 4; // 4 = ProductsQuantityDiscountPeer::NUM_HYDRATE_COLUMNS.
+            return $startcol + 6; // 6 = ProductsQuantityDiscountPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating ProductsQuantityDiscount object", $e);
@@ -522,6 +668,12 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
         if ($this->isColumnModified(ProductsQuantityDiscountPeer::DISCOUNT)) {
             $modifiedColumns[':p' . $index++]  = '`discount`';
         }
+        if ($this->isColumnModified(ProductsQuantityDiscountPeer::VALID_FROM)) {
+            $modifiedColumns[':p' . $index++]  = '`valid_from`';
+        }
+        if ($this->isColumnModified(ProductsQuantityDiscountPeer::VALID_TO)) {
+            $modifiedColumns[':p' . $index++]  = '`valid_to`';
+        }
 
         $sql = sprintf(
             'INSERT INTO `products_quantity_discount` (%s) VALUES (%s)',
@@ -544,6 +696,12 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
                         break;
                     case '`discount`':
                         $stmt->bindValue($identifier, $this->discount, PDO::PARAM_STR);
+                        break;
+                    case '`valid_from`':
+                        $stmt->bindValue($identifier, $this->valid_from, PDO::PARAM_STR);
+                        break;
+                    case '`valid_to`':
+                        $stmt->bindValue($identifier, $this->valid_to, PDO::PARAM_STR);
                         break;
                 }
             }
@@ -702,6 +860,12 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
             case 3:
                 return $this->getDiscount();
                 break;
+            case 4:
+                return $this->getValidFrom();
+                break;
+            case 5:
+                return $this->getValidTo();
+                break;
             default:
                 return null;
                 break;
@@ -735,6 +899,8 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
             $keys[1] => $this->getDomainsId(),
             $keys[2] => $this->getSpan(),
             $keys[3] => $this->getDiscount(),
+            $keys[4] => $this->getValidFrom(),
+            $keys[5] => $this->getValidTo(),
         );
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
@@ -794,6 +960,12 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
             case 3:
                 $this->setDiscount($value);
                 break;
+            case 4:
+                $this->setValidFrom($value);
+                break;
+            case 5:
+                $this->setValidTo($value);
+                break;
         } // switch()
     }
 
@@ -822,6 +994,8 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
         if (array_key_exists($keys[1], $arr)) $this->setDomainsId($arr[$keys[1]]);
         if (array_key_exists($keys[2], $arr)) $this->setSpan($arr[$keys[2]]);
         if (array_key_exists($keys[3], $arr)) $this->setDiscount($arr[$keys[3]]);
+        if (array_key_exists($keys[4], $arr)) $this->setValidFrom($arr[$keys[4]]);
+        if (array_key_exists($keys[5], $arr)) $this->setValidTo($arr[$keys[5]]);
     }
 
     /**
@@ -837,6 +1011,8 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
         if ($this->isColumnModified(ProductsQuantityDiscountPeer::DOMAINS_ID)) $criteria->add(ProductsQuantityDiscountPeer::DOMAINS_ID, $this->domains_id);
         if ($this->isColumnModified(ProductsQuantityDiscountPeer::SPAN)) $criteria->add(ProductsQuantityDiscountPeer::SPAN, $this->span);
         if ($this->isColumnModified(ProductsQuantityDiscountPeer::DISCOUNT)) $criteria->add(ProductsQuantityDiscountPeer::DISCOUNT, $this->discount);
+        if ($this->isColumnModified(ProductsQuantityDiscountPeer::VALID_FROM)) $criteria->add(ProductsQuantityDiscountPeer::VALID_FROM, $this->valid_from);
+        if ($this->isColumnModified(ProductsQuantityDiscountPeer::VALID_TO)) $criteria->add(ProductsQuantityDiscountPeer::VALID_TO, $this->valid_to);
 
         return $criteria;
     }
@@ -914,6 +1090,8 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
         $copyObj->setDomainsId($this->getDomainsId());
         $copyObj->setSpan($this->getSpan());
         $copyObj->setDiscount($this->getDiscount());
+        $copyObj->setValidFrom($this->getValidFrom());
+        $copyObj->setValidTo($this->getValidTo());
 
         if ($deepCopy && !$this->startCopy) {
             // important: temporarily setNew(false) because this affects the behavior of
@@ -1086,6 +1264,8 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
         $this->domains_id = null;
         $this->span = null;
         $this->discount = null;
+        $this->valid_from = null;
+        $this->valid_to = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
         $this->alreadyInClearAllReferencesDeep = false;

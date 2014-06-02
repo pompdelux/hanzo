@@ -20,6 +20,8 @@ use Hanzo\Model\CmsI18n;
 use Hanzo\Model\CmsI18nQuery;
 use Hanzo\Model\CmsPeer;
 use Hanzo\Model\CmsQuery;
+use Hanzo\Model\CmsRevision;
+use Hanzo\Model\CmsRevisionQuery;
 use Hanzo\Model\CmsThread;
 use Hanzo\Model\CmsThreadQuery;
 
@@ -111,6 +113,12 @@ abstract class BaseCms extends BaseObject implements Persistent
     protected $collCmssRelatedByIdPartial;
 
     /**
+     * @var        PropelObjectCollection|CmsRevision[] Collection to store aggregation of CmsRevision objects.
+     */
+    protected $collCmsRevisions;
+    protected $collCmsRevisionsPartial;
+
+    /**
      * @var        PropelObjectCollection|CmsI18n[] Collection to store aggregation of CmsI18n objects.
      */
     protected $collCmsI18ns;
@@ -155,6 +163,12 @@ abstract class BaseCms extends BaseObject implements Persistent
      * @var		PropelObjectCollection
      */
     protected $cmssRelatedByIdScheduledForDeletion = null;
+
+    /**
+     * An array of objects scheduled for deletion.
+     * @var		PropelObjectCollection
+     */
+    protected $cmsRevisionsScheduledForDeletion = null;
 
     /**
      * An array of objects scheduled for deletion.
@@ -643,6 +657,8 @@ abstract class BaseCms extends BaseObject implements Persistent
             $this->aCmsRelatedByParentId = null;
             $this->collCmssRelatedById = null;
 
+            $this->collCmsRevisions = null;
+
             $this->collCmsI18ns = null;
 
         } // if (deep)
@@ -810,6 +826,23 @@ abstract class BaseCms extends BaseObject implements Persistent
 
             if ($this->collCmssRelatedById !== null) {
                 foreach ($this->collCmssRelatedById as $referrerFK) {
+                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
+                        $affectedRows += $referrerFK->save($con);
+                    }
+                }
+            }
+
+            if ($this->cmsRevisionsScheduledForDeletion !== null) {
+                if (!$this->cmsRevisionsScheduledForDeletion->isEmpty()) {
+                    CmsRevisionQuery::create()
+                        ->filterByPrimaryKeys($this->cmsRevisionsScheduledForDeletion->getPrimaryKeys(false))
+                        ->delete($con);
+                    $this->cmsRevisionsScheduledForDeletion = null;
+                }
+            }
+
+            if ($this->collCmsRevisions !== null) {
+                foreach ($this->collCmsRevisions as $referrerFK) {
                     if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
@@ -1043,6 +1076,14 @@ abstract class BaseCms extends BaseObject implements Persistent
                     }
                 }
 
+                if ($this->collCmsRevisions !== null) {
+                    foreach ($this->collCmsRevisions as $referrerFK) {
+                        if (!$referrerFK->validate($columns)) {
+                            $failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+                        }
+                    }
+                }
+
                 if ($this->collCmsI18ns !== null) {
                     foreach ($this->collCmsI18ns as $referrerFK) {
                         if (!$referrerFK->validate($columns)) {
@@ -1162,6 +1203,9 @@ abstract class BaseCms extends BaseObject implements Persistent
             }
             if (null !== $this->collCmssRelatedById) {
                 $result['CmssRelatedById'] = $this->collCmssRelatedById->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+            }
+            if (null !== $this->collCmsRevisions) {
+                $result['CmsRevisions'] = $this->collCmsRevisions->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
             }
             if (null !== $this->collCmsI18ns) {
                 $result['CmsI18ns'] = $this->collCmsI18ns->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
@@ -1359,6 +1403,12 @@ abstract class BaseCms extends BaseObject implements Persistent
                 }
             }
 
+            foreach ($this->getCmsRevisions() as $relObj) {
+                if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
+                    $copyObj->addCmsRevision($relObj->copy($deepCopy));
+                }
+            }
+
             foreach ($this->getCmsI18ns() as $relObj) {
                 if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
                     $copyObj->addCmsI18n($relObj->copy($deepCopy));
@@ -1532,6 +1582,9 @@ abstract class BaseCms extends BaseObject implements Persistent
     {
         if ('CmsRelatedById' == $relationName) {
             $this->initCmssRelatedById();
+        }
+        if ('CmsRevision' == $relationName) {
+            $this->initCmsRevisions();
         }
         if ('CmsI18n' == $relationName) {
             $this->initCmsI18ns();
@@ -1786,6 +1839,234 @@ abstract class BaseCms extends BaseObject implements Persistent
         $query->joinWith('CmsThread', $join_behavior);
 
         return $this->getCmssRelatedById($query, $con);
+    }
+
+    /**
+     * Clears out the collCmsRevisions collection
+     *
+     * This does not modify the database; however, it will remove any associated objects, causing
+     * them to be refetched by subsequent calls to accessor method.
+     *
+     * @return Cms The current object (for fluent API support)
+     * @see        addCmsRevisions()
+     */
+    public function clearCmsRevisions()
+    {
+        $this->collCmsRevisions = null; // important to set this to null since that means it is uninitialized
+        $this->collCmsRevisionsPartial = null;
+
+        return $this;
+    }
+
+    /**
+     * reset is the collCmsRevisions collection loaded partially
+     *
+     * @return void
+     */
+    public function resetPartialCmsRevisions($v = true)
+    {
+        $this->collCmsRevisionsPartial = $v;
+    }
+
+    /**
+     * Initializes the collCmsRevisions collection.
+     *
+     * By default this just sets the collCmsRevisions collection to an empty array (like clearcollCmsRevisions());
+     * however, you may wish to override this method in your stub class to provide setting appropriate
+     * to your application -- for example, setting the initial array to the values stored in database.
+     *
+     * @param boolean $overrideExisting If set to true, the method call initializes
+     *                                        the collection even if it is not empty
+     *
+     * @return void
+     */
+    public function initCmsRevisions($overrideExisting = true)
+    {
+        if (null !== $this->collCmsRevisions && !$overrideExisting) {
+            return;
+        }
+        $this->collCmsRevisions = new PropelObjectCollection();
+        $this->collCmsRevisions->setModel('CmsRevision');
+    }
+
+    /**
+     * Gets an array of CmsRevision objects which contain a foreign key that references this object.
+     *
+     * If the $criteria is not null, it is used to always fetch the results from the database.
+     * Otherwise the results are fetched from the database the first time, then cached.
+     * Next time the same method is called without $criteria, the cached collection is returned.
+     * If this Cms is new, it will return
+     * an empty collection or the current collection; the criteria is ignored on a new object.
+     *
+     * @param Criteria $criteria optional Criteria object to narrow the query
+     * @param PropelPDO $con optional connection object
+     * @return PropelObjectCollection|CmsRevision[] List of CmsRevision objects
+     * @throws PropelException
+     */
+    public function getCmsRevisions($criteria = null, PropelPDO $con = null)
+    {
+        $partial = $this->collCmsRevisionsPartial && !$this->isNew();
+        if (null === $this->collCmsRevisions || null !== $criteria  || $partial) {
+            if ($this->isNew() && null === $this->collCmsRevisions) {
+                // return empty collection
+                $this->initCmsRevisions();
+            } else {
+                $collCmsRevisions = CmsRevisionQuery::create(null, $criteria)
+                    ->filterByCms($this)
+                    ->find($con);
+                if (null !== $criteria) {
+                    if (false !== $this->collCmsRevisionsPartial && count($collCmsRevisions)) {
+                      $this->initCmsRevisions(false);
+
+                      foreach ($collCmsRevisions as $obj) {
+                        if (false == $this->collCmsRevisions->contains($obj)) {
+                          $this->collCmsRevisions->append($obj);
+                        }
+                      }
+
+                      $this->collCmsRevisionsPartial = true;
+                    }
+
+                    $collCmsRevisions->getInternalIterator()->rewind();
+
+                    return $collCmsRevisions;
+                }
+
+                if ($partial && $this->collCmsRevisions) {
+                    foreach ($this->collCmsRevisions as $obj) {
+                        if ($obj->isNew()) {
+                            $collCmsRevisions[] = $obj;
+                        }
+                    }
+                }
+
+                $this->collCmsRevisions = $collCmsRevisions;
+                $this->collCmsRevisionsPartial = false;
+            }
+        }
+
+        return $this->collCmsRevisions;
+    }
+
+    /**
+     * Sets a collection of CmsRevision objects related by a one-to-many relationship
+     * to the current object.
+     * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
+     * and new objects from the given Propel collection.
+     *
+     * @param PropelCollection $cmsRevisions A Propel collection.
+     * @param PropelPDO $con Optional connection object
+     * @return Cms The current object (for fluent API support)
+     */
+    public function setCmsRevisions(PropelCollection $cmsRevisions, PropelPDO $con = null)
+    {
+        $cmsRevisionsToDelete = $this->getCmsRevisions(new Criteria(), $con)->diff($cmsRevisions);
+
+
+        //since at least one column in the foreign key is at the same time a PK
+        //we can not just set a PK to NULL in the lines below. We have to store
+        //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
+        $this->cmsRevisionsScheduledForDeletion = clone $cmsRevisionsToDelete;
+
+        foreach ($cmsRevisionsToDelete as $cmsRevisionRemoved) {
+            $cmsRevisionRemoved->setCms(null);
+        }
+
+        $this->collCmsRevisions = null;
+        foreach ($cmsRevisions as $cmsRevision) {
+            $this->addCmsRevision($cmsRevision);
+        }
+
+        $this->collCmsRevisions = $cmsRevisions;
+        $this->collCmsRevisionsPartial = false;
+
+        return $this;
+    }
+
+    /**
+     * Returns the number of related CmsRevision objects.
+     *
+     * @param Criteria $criteria
+     * @param boolean $distinct
+     * @param PropelPDO $con
+     * @return int             Count of related CmsRevision objects.
+     * @throws PropelException
+     */
+    public function countCmsRevisions(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+    {
+        $partial = $this->collCmsRevisionsPartial && !$this->isNew();
+        if (null === $this->collCmsRevisions || null !== $criteria || $partial) {
+            if ($this->isNew() && null === $this->collCmsRevisions) {
+                return 0;
+            }
+
+            if ($partial && !$criteria) {
+                return count($this->getCmsRevisions());
+            }
+            $query = CmsRevisionQuery::create(null, $criteria);
+            if ($distinct) {
+                $query->distinct();
+            }
+
+            return $query
+                ->filterByCms($this)
+                ->count($con);
+        }
+
+        return count($this->collCmsRevisions);
+    }
+
+    /**
+     * Method called to associate a CmsRevision object to this object
+     * through the CmsRevision foreign key attribute.
+     *
+     * @param    CmsRevision $l CmsRevision
+     * @return Cms The current object (for fluent API support)
+     */
+    public function addCmsRevision(CmsRevision $l)
+    {
+        if ($this->collCmsRevisions === null) {
+            $this->initCmsRevisions();
+            $this->collCmsRevisionsPartial = true;
+        }
+
+        if (!in_array($l, $this->collCmsRevisions->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
+            $this->doAddCmsRevision($l);
+
+            if ($this->cmsRevisionsScheduledForDeletion and $this->cmsRevisionsScheduledForDeletion->contains($l)) {
+                $this->cmsRevisionsScheduledForDeletion->remove($this->cmsRevisionsScheduledForDeletion->search($l));
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param	CmsRevision $cmsRevision The cmsRevision object to add.
+     */
+    protected function doAddCmsRevision($cmsRevision)
+    {
+        $this->collCmsRevisions[]= $cmsRevision;
+        $cmsRevision->setCms($this);
+    }
+
+    /**
+     * @param	CmsRevision $cmsRevision The cmsRevision object to remove.
+     * @return Cms The current object (for fluent API support)
+     */
+    public function removeCmsRevision($cmsRevision)
+    {
+        if ($this->getCmsRevisions()->contains($cmsRevision)) {
+            $this->collCmsRevisions->remove($this->collCmsRevisions->search($cmsRevision));
+            if (null === $this->cmsRevisionsScheduledForDeletion) {
+                $this->cmsRevisionsScheduledForDeletion = clone $this->collCmsRevisions;
+                $this->cmsRevisionsScheduledForDeletion->clear();
+            }
+            $this->cmsRevisionsScheduledForDeletion[]= clone $cmsRevision;
+            $cmsRevision->setCms(null);
+        }
+
+        return $this;
     }
 
     /**
@@ -2061,6 +2342,11 @@ abstract class BaseCms extends BaseObject implements Persistent
                     $o->clearAllReferences($deep);
                 }
             }
+            if ($this->collCmsRevisions) {
+                foreach ($this->collCmsRevisions as $o) {
+                    $o->clearAllReferences($deep);
+                }
+            }
             if ($this->collCmsI18ns) {
                 foreach ($this->collCmsI18ns as $o) {
                     $o->clearAllReferences($deep);
@@ -2084,6 +2370,10 @@ abstract class BaseCms extends BaseObject implements Persistent
             $this->collCmssRelatedById->clearIterator();
         }
         $this->collCmssRelatedById = null;
+        if ($this->collCmsRevisions instanceof PropelCollection) {
+            $this->collCmsRevisions->clearIterator();
+        }
+        $this->collCmsRevisions = null;
         if ($this->collCmsI18ns instanceof PropelCollection) {
             $this->collCmsI18ns->clearIterator();
         }
