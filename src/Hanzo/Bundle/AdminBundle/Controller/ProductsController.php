@@ -309,23 +309,38 @@ class ProductsController extends CoreController
         $quantity_discount = new ProductsQuantityDiscount();
         $quantity_discount->setProductsMaster($current_product->getSku());
         $form = $this->createFormBuilder($quantity_discount)
-            ->add('domains_id', 'choice', array(
-                    'label'     => 'admin.products.discount.domains_id',
-                    'choices'   => $domains_availible_data,
-                    'required'  => TRUE,
-                    'translation_domain' => 'admin'
-                )
-            )->add('span', 'integer', array(
-                    'label'              => 'admin.products.discount.span',
-                    'required'           => true,
-                    'translation_domain' => 'admin'
-                )
-            )->add('discount', 'number', array(
-                    'label'              => 'admin.products.discount.discount',
-                    'required'           => true,
-                    'translation_domain' => 'admin'
-                )
-            )->getForm()
+            ->add('domains_id', 'choice', [
+                'label'              => 'admin.products.discount.domains_id',
+                'choices'            => $domains_availible_data,
+                'required'           => true,
+                'translation_domain' => 'admin'
+            ])->add('span', 'integer', [
+                'label'              => 'admin.products.discount.span',
+                'required'           => true,
+                'translation_domain' => 'admin'
+            ])->add('discount', 'number', [
+                'label'              => 'admin.products.discount.discount',
+                'required'           => true,
+                'translation_domain' => 'admin'
+            ])->add('valid_from', 'date', [
+                'input'              => 'string',
+                'widget'             => 'single_text',
+                'format'             => 'dd-MM-yyyy',
+                'label'              => 'admin.gift_cards.active_from',
+                'translation_domain' => 'admin',
+                'required'           => false,
+                'attr'               => ['class' => 'datepicker'],
+                'data'               => $quantity_discount->getValidFrom('Y-m-d'),
+            ])->add('valid_to', 'date', [
+                'input'              => 'string',
+                'widget'             => 'single_text',
+                'format'             => 'dd-MM-yyyy',
+                'label'              => 'admin.gift_cards.active_to',
+                'translation_domain' => 'admin',
+                'required'           => false,
+                'attr'               => ['class' => 'datepicker'],
+                'data'               => $quantity_discount->getValidTo('Y-m-d'),
+            ])->getForm()
         ;
 
         $request = $this->getRequest();
