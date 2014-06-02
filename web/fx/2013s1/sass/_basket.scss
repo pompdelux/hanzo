@@ -101,6 +101,10 @@
 	display:inline-block;
 	vertical-align: middle;
 	margin-left: 5px;
+
+    &.total {
+        min-width: 100px;
+    }
 }
 
 // Mega basket

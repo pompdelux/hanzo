@@ -215,7 +215,7 @@ class DefaultController extends CoreController
             ));
         }
 
-        return $this->response($total);
+        return $this->response('');
     }
 
 
