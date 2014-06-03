@@ -112,3 +112,37 @@ Follow the [best practices](http://compass-style.org/help/tutorials/best_practic
   - `payment.scss` - Styles for payment
   - ...
 
+## Vagrant
+
+There is a vagrant box provider, it requires:
+
+- vagrant version 1.6+
+- a running mysql server on your host computer
+- a running redis server on your host computer
+
+To use, simply `cd` to the root directory of the project and do a
+
+```bash
+$ vagrant up
+```
+
+It will take forever (the first time) - when done, you should be able to go to `http://pdl.dev/` and `http://c.pdl.dev/`
+
+To ssh into the box, do a:
+
+```bash
+$ vagrant ssh
+```
+
+To shut it down:
+
+```bash
+$ vagrant halt
+```
+
+If the page returns a "nginx - bad gateway" error run the following commands:
+
+```bash
+$ vagrant ssh
+$ sudo chown www-data. /var/run/php5-fpm*
+```
