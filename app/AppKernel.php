@@ -88,7 +88,7 @@ class AppKernel extends Kernel
         return $env;
     }
 
-    
+
     /**
      * handle kernel boot
      */
