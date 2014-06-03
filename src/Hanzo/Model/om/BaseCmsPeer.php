@@ -12,6 +12,7 @@ use \PropelPDO;
 use Hanzo\Model\Cms;
 use Hanzo\Model\CmsI18nPeer;
 use Hanzo\Model\CmsPeer;
+use Hanzo\Model\CmsRevisionPeer;
 use Hanzo\Model\CmsThreadPeer;
 use Hanzo\Model\map\CmsTableMap;
 
@@ -407,6 +408,9 @@ abstract class BaseCmsPeer
         // Invalidate objects in CmsPeer instance pool,
         // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
         CmsPeer::clearInstancePool();
+        // Invalidate objects in CmsRevisionPeer instance pool,
+        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
+        CmsRevisionPeer::clearInstancePool();
         // Invalidate objects in CmsI18nPeer instance pool,
         // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
         CmsI18nPeer::clearInstancePool();

@@ -23,11 +23,15 @@ use Hanzo\Model\ProductsQuantityDiscountQuery;
  * @method ProductsQuantityDiscountQuery orderByDomainsId($order = Criteria::ASC) Order by the domains_id column
  * @method ProductsQuantityDiscountQuery orderBySpan($order = Criteria::ASC) Order by the span column
  * @method ProductsQuantityDiscountQuery orderByDiscount($order = Criteria::ASC) Order by the discount column
+ * @method ProductsQuantityDiscountQuery orderByValidFrom($order = Criteria::ASC) Order by the valid_from column
+ * @method ProductsQuantityDiscountQuery orderByValidTo($order = Criteria::ASC) Order by the valid_to column
  *
  * @method ProductsQuantityDiscountQuery groupByProductsMaster() Group by the products_master column
  * @method ProductsQuantityDiscountQuery groupByDomainsId() Group by the domains_id column
  * @method ProductsQuantityDiscountQuery groupBySpan() Group by the span column
  * @method ProductsQuantityDiscountQuery groupByDiscount() Group by the discount column
+ * @method ProductsQuantityDiscountQuery groupByValidFrom() Group by the valid_from column
+ * @method ProductsQuantityDiscountQuery groupByValidTo() Group by the valid_to column
  *
  * @method ProductsQuantityDiscountQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method ProductsQuantityDiscountQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -48,11 +52,15 @@ use Hanzo\Model\ProductsQuantityDiscountQuery;
  * @method ProductsQuantityDiscount findOneByDomainsId(int $domains_id) Return the first ProductsQuantityDiscount filtered by the domains_id column
  * @method ProductsQuantityDiscount findOneBySpan(int $span) Return the first ProductsQuantityDiscount filtered by the span column
  * @method ProductsQuantityDiscount findOneByDiscount(string $discount) Return the first ProductsQuantityDiscount filtered by the discount column
+ * @method ProductsQuantityDiscount findOneByValidFrom(string $valid_from) Return the first ProductsQuantityDiscount filtered by the valid_from column
+ * @method ProductsQuantityDiscount findOneByValidTo(string $valid_to) Return the first ProductsQuantityDiscount filtered by the valid_to column
  *
  * @method array findByProductsMaster(string $products_master) Return ProductsQuantityDiscount objects filtered by the products_master column
  * @method array findByDomainsId(int $domains_id) Return ProductsQuantityDiscount objects filtered by the domains_id column
  * @method array findBySpan(int $span) Return ProductsQuantityDiscount objects filtered by the span column
  * @method array findByDiscount(string $discount) Return ProductsQuantityDiscount objects filtered by the discount column
+ * @method array findByValidFrom(string $valid_from) Return ProductsQuantityDiscount objects filtered by the valid_from column
+ * @method array findByValidTo(string $valid_to) Return ProductsQuantityDiscount objects filtered by the valid_to column
  */
 abstract class BaseProductsQuantityDiscountQuery extends ModelCriteria
 {
@@ -145,7 +153,7 @@ abstract class BaseProductsQuantityDiscountQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `products_master`, `domains_id`, `span`, `discount` FROM `products_quantity_discount` WHERE `products_master` = :p0 AND `domains_id` = :p1 AND `span` = :p2';
+        $sql = 'SELECT `products_master`, `domains_id`, `span`, `discount`, `valid_from`, `valid_to` FROM `products_quantity_discount` WHERE `products_master` = :p0 AND `domains_id` = :p1 AND `span` = :p2';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_STR);
@@ -405,6 +413,92 @@ abstract class BaseProductsQuantityDiscountQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(ProductsQuantityDiscountPeer::DISCOUNT, $discount, $comparison);
+    }
+
+    /**
+     * Filter the query on the valid_from column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByValidFrom('2011-03-14'); // WHERE valid_from = '2011-03-14'
+     * $query->filterByValidFrom('now'); // WHERE valid_from = '2011-03-14'
+     * $query->filterByValidFrom(array('max' => 'yesterday')); // WHERE valid_from < '2011-03-13'
+     * </code>
+     *
+     * @param     mixed $validFrom The value to use as filter.
+     *              Values can be integers (unix timestamps), DateTime objects, or strings.
+     *              Empty strings are treated as NULL.
+     *              Use scalar values for equality.
+     *              Use array values for in_array() equivalent.
+     *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return ProductsQuantityDiscountQuery The current query, for fluid interface
+     */
+    public function filterByValidFrom($validFrom = null, $comparison = null)
+    {
+        if (is_array($validFrom)) {
+            $useMinMax = false;
+            if (isset($validFrom['min'])) {
+                $this->addUsingAlias(ProductsQuantityDiscountPeer::VALID_FROM, $validFrom['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($validFrom['max'])) {
+                $this->addUsingAlias(ProductsQuantityDiscountPeer::VALID_FROM, $validFrom['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
+        }
+
+        return $this->addUsingAlias(ProductsQuantityDiscountPeer::VALID_FROM, $validFrom, $comparison);
+    }
+
+    /**
+     * Filter the query on the valid_to column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByValidTo('2011-03-14'); // WHERE valid_to = '2011-03-14'
+     * $query->filterByValidTo('now'); // WHERE valid_to = '2011-03-14'
+     * $query->filterByValidTo(array('max' => 'yesterday')); // WHERE valid_to < '2011-03-13'
+     * </code>
+     *
+     * @param     mixed $validTo The value to use as filter.
+     *              Values can be integers (unix timestamps), DateTime objects, or strings.
+     *              Empty strings are treated as NULL.
+     *              Use scalar values for equality.
+     *              Use array values for in_array() equivalent.
+     *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return ProductsQuantityDiscountQuery The current query, for fluid interface
+     */
+    public function filterByValidTo($validTo = null, $comparison = null)
+    {
+        if (is_array($validTo)) {
+            $useMinMax = false;
+            if (isset($validTo['min'])) {
+                $this->addUsingAlias(ProductsQuantityDiscountPeer::VALID_TO, $validTo['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($validTo['max'])) {
+                $this->addUsingAlias(ProductsQuantityDiscountPeer::VALID_TO, $validTo['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
+        }
+
+        return $this->addUsingAlias(ProductsQuantityDiscountPeer::VALID_TO, $validTo, $comparison);
     }
 
     /**

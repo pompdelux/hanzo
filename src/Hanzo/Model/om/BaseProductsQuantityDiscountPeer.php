@@ -31,13 +31,13 @@ abstract class BaseProductsQuantityDiscountPeer
     const TM_CLASS = 'Hanzo\\Model\\map\\ProductsQuantityDiscountTableMap';
 
     /** The total number of columns. */
-    const NUM_COLUMNS = 4;
+    const NUM_COLUMNS = 6;
 
     /** The number of lazy-loaded columns. */
     const NUM_LAZY_LOAD_COLUMNS = 0;
 
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-    const NUM_HYDRATE_COLUMNS = 4;
+    const NUM_HYDRATE_COLUMNS = 6;
 
     /** the column name for the products_master field */
     const PRODUCTS_MASTER = 'products_quantity_discount.products_master';
@@ -50,6 +50,12 @@ abstract class BaseProductsQuantityDiscountPeer
 
     /** the column name for the discount field */
     const DISCOUNT = 'products_quantity_discount.discount';
+
+    /** the column name for the valid_from field */
+    const VALID_FROM = 'products_quantity_discount.valid_from';
+
+    /** the column name for the valid_to field */
+    const VALID_TO = 'products_quantity_discount.valid_to';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -70,12 +76,12 @@ abstract class BaseProductsQuantityDiscountPeer
      * e.g. ProductsQuantityDiscountPeer::$fieldNames[ProductsQuantityDiscountPeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('ProductsMaster', 'DomainsId', 'Span', 'Discount', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('productsMaster', 'domainsId', 'span', 'discount', ),
-        BasePeer::TYPE_COLNAME => array (ProductsQuantityDiscountPeer::PRODUCTS_MASTER, ProductsQuantityDiscountPeer::DOMAINS_ID, ProductsQuantityDiscountPeer::SPAN, ProductsQuantityDiscountPeer::DISCOUNT, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('PRODUCTS_MASTER', 'DOMAINS_ID', 'SPAN', 'DISCOUNT', ),
-        BasePeer::TYPE_FIELDNAME => array ('products_master', 'domains_id', 'span', 'discount', ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
+        BasePeer::TYPE_PHPNAME => array ('ProductsMaster', 'DomainsId', 'Span', 'Discount', 'ValidFrom', 'ValidTo', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('productsMaster', 'domainsId', 'span', 'discount', 'validFrom', 'validTo', ),
+        BasePeer::TYPE_COLNAME => array (ProductsQuantityDiscountPeer::PRODUCTS_MASTER, ProductsQuantityDiscountPeer::DOMAINS_ID, ProductsQuantityDiscountPeer::SPAN, ProductsQuantityDiscountPeer::DISCOUNT, ProductsQuantityDiscountPeer::VALID_FROM, ProductsQuantityDiscountPeer::VALID_TO, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('PRODUCTS_MASTER', 'DOMAINS_ID', 'SPAN', 'DISCOUNT', 'VALID_FROM', 'VALID_TO', ),
+        BasePeer::TYPE_FIELDNAME => array ('products_master', 'domains_id', 'span', 'discount', 'valid_from', 'valid_to', ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, )
     );
 
     /**
@@ -85,12 +91,12 @@ abstract class BaseProductsQuantityDiscountPeer
      * e.g. ProductsQuantityDiscountPeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('ProductsMaster' => 0, 'DomainsId' => 1, 'Span' => 2, 'Discount' => 3, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('productsMaster' => 0, 'domainsId' => 1, 'span' => 2, 'discount' => 3, ),
-        BasePeer::TYPE_COLNAME => array (ProductsQuantityDiscountPeer::PRODUCTS_MASTER => 0, ProductsQuantityDiscountPeer::DOMAINS_ID => 1, ProductsQuantityDiscountPeer::SPAN => 2, ProductsQuantityDiscountPeer::DISCOUNT => 3, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('PRODUCTS_MASTER' => 0, 'DOMAINS_ID' => 1, 'SPAN' => 2, 'DISCOUNT' => 3, ),
-        BasePeer::TYPE_FIELDNAME => array ('products_master' => 0, 'domains_id' => 1, 'span' => 2, 'discount' => 3, ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
+        BasePeer::TYPE_PHPNAME => array ('ProductsMaster' => 0, 'DomainsId' => 1, 'Span' => 2, 'Discount' => 3, 'ValidFrom' => 4, 'ValidTo' => 5, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('productsMaster' => 0, 'domainsId' => 1, 'span' => 2, 'discount' => 3, 'validFrom' => 4, 'validTo' => 5, ),
+        BasePeer::TYPE_COLNAME => array (ProductsQuantityDiscountPeer::PRODUCTS_MASTER => 0, ProductsQuantityDiscountPeer::DOMAINS_ID => 1, ProductsQuantityDiscountPeer::SPAN => 2, ProductsQuantityDiscountPeer::DISCOUNT => 3, ProductsQuantityDiscountPeer::VALID_FROM => 4, ProductsQuantityDiscountPeer::VALID_TO => 5, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('PRODUCTS_MASTER' => 0, 'DOMAINS_ID' => 1, 'SPAN' => 2, 'DISCOUNT' => 3, 'VALID_FROM' => 4, 'VALID_TO' => 5, ),
+        BasePeer::TYPE_FIELDNAME => array ('products_master' => 0, 'domains_id' => 1, 'span' => 2, 'discount' => 3, 'valid_from' => 4, 'valid_to' => 5, ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, )
     );
 
     /**
@@ -168,11 +174,15 @@ abstract class BaseProductsQuantityDiscountPeer
             $criteria->addSelectColumn(ProductsQuantityDiscountPeer::DOMAINS_ID);
             $criteria->addSelectColumn(ProductsQuantityDiscountPeer::SPAN);
             $criteria->addSelectColumn(ProductsQuantityDiscountPeer::DISCOUNT);
+            $criteria->addSelectColumn(ProductsQuantityDiscountPeer::VALID_FROM);
+            $criteria->addSelectColumn(ProductsQuantityDiscountPeer::VALID_TO);
         } else {
             $criteria->addSelectColumn($alias . '.products_master');
             $criteria->addSelectColumn($alias . '.domains_id');
             $criteria->addSelectColumn($alias . '.span');
             $criteria->addSelectColumn($alias . '.discount');
+            $criteria->addSelectColumn($alias . '.valid_from');
+            $criteria->addSelectColumn($alias . '.valid_to');
         }
     }
 

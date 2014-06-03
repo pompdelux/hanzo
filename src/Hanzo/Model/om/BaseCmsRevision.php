@@ -13,6 +13,8 @@ use \Propel;
 use \PropelDateTime;
 use \PropelException;
 use \PropelPDO;
+use Hanzo\Model\Cms;
+use Hanzo\Model\CmsQuery;
 use Hanzo\Model\CmsRevision;
 use Hanzo\Model\CmsRevisionPeer;
 use Hanzo\Model\CmsRevisionQuery;
@@ -68,6 +70,11 @@ abstract class BaseCmsRevision extends BaseObject implements Persistent
      * @var        object
      */
     protected $revision_unserialized;
+
+    /**
+     * @var        Cms
+     */
+    protected $aCms;
 
     /**
      * Flag to prevent endless save loop, if this object is referenced
@@ -215,6 +222,10 @@ abstract class BaseCmsRevision extends BaseObject implements Persistent
             $this->modifiedColumns[] = CmsRevisionPeer::ID;
         }
 
+        if ($this->aCms !== null && $this->aCms->getId() !== $v) {
+            $this->aCms = null;
+        }
+
 
         return $this;
     } // setId()
@@ -351,6 +362,9 @@ abstract class BaseCmsRevision extends BaseObject implements Persistent
     public function ensureConsistency()
     {
 
+        if ($this->aCms !== null && $this->id !== $this->aCms->getId()) {
+            $this->aCms = null;
+        }
     } // ensureConsistency
 
     /**
@@ -390,6 +404,7 @@ abstract class BaseCmsRevision extends BaseObject implements Persistent
 
         if ($deep) {  // also de-associate any related objects?
 
+            $this->aCms = null;
         } // if (deep)
     }
 
@@ -506,6 +521,18 @@ abstract class BaseCmsRevision extends BaseObject implements Persistent
         $affectedRows = 0; // initialize var to track total num of affected rows
         if (!$this->alreadyInSave) {
             $this->alreadyInSave = true;
+
+            // We call the save method on the following object(s) if they
+            // were passed to this object by their corresponding set
+            // method.  This object relates to these object(s) by a
+            // foreign key reference.
+
+            if ($this->aCms !== null) {
+                if ($this->aCms->isModified() || $this->aCms->isNew()) {
+                    $affectedRows += $this->aCms->save($con);
+                }
+                $this->setCms($this->aCms);
+            }
 
             if ($this->isNew() || $this->isModified()) {
                 // persist changes
@@ -662,6 +689,18 @@ abstract class BaseCmsRevision extends BaseObject implements Persistent
             $failureMap = array();
 
 
+            // We call the validate method on the following object(s) if they
+            // were passed to this object by their corresponding set
+            // method.  This object relates to these object(s) by a
+            // foreign key reference.
+
+            if ($this->aCms !== null) {
+                if (!$this->aCms->validate($columns)) {
+                    $failureMap = array_merge($failureMap, $this->aCms->getValidationFailures());
+                }
+            }
+
+
             if (($retval = CmsRevisionPeer::doValidate($this, $columns)) !== true) {
                 $failureMap = array_merge($failureMap, $retval);
             }
@@ -731,10 +770,11 @@ abstract class BaseCmsRevision extends BaseObject implements Persistent
      *                    Defaults to BasePeer::TYPE_PHPNAME.
      * @param     boolean $includeLazyLoadColumns (optional) Whether to include lazy loaded columns. Defaults to true.
      * @param     array $alreadyDumpedObjects List of objects to skip to avoid recursion
+     * @param     boolean $includeForeignObjects (optional) Whether to include hydrated related objects. Default to FALSE.
      *
      * @return array an associative array containing the field names (as keys) and field values
      */
-    public function toArray($keyType = BasePeer::TYPE_PHPNAME, $includeLazyLoadColumns = true, $alreadyDumpedObjects = array())
+    public function toArray($keyType = BasePeer::TYPE_PHPNAME, $includeLazyLoadColumns = true, $alreadyDumpedObjects = array(), $includeForeignObjects = false)
     {
         if (isset($alreadyDumpedObjects['CmsRevision'][serialize($this->getPrimaryKey())])) {
             return '*RECURSION*';
@@ -752,6 +792,11 @@ abstract class BaseCmsRevision extends BaseObject implements Persistent
             $result[$key] = $virtualColumn;
         }
 
+        if ($includeForeignObjects) {
+            if (null !== $this->aCms) {
+                $result['Cms'] = $this->aCms->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
+            }
+        }
 
         return $result;
     }
@@ -914,6 +959,18 @@ abstract class BaseCmsRevision extends BaseObject implements Persistent
         $copyObj->setCreatedAt($this->getCreatedAt());
         $copyObj->setPublishOnDate($this->getPublishOnDate());
         $copyObj->setRevision($this->getRevision());
+
+        if ($deepCopy && !$this->startCopy) {
+            // important: temporarily setNew(false) because this affects the behavior of
+            // the getter/setter methods for fkey referrer objects.
+            $copyObj->setNew(false);
+            // store object hash to prevent cycle
+            $this->startCopy = true;
+
+            //unflag object copy
+            $this->startCopy = false;
+        } // if ($deepCopy)
+
         if ($makeNew) {
             $copyObj->setNew(true);
         }
@@ -960,6 +1017,58 @@ abstract class BaseCmsRevision extends BaseObject implements Persistent
     }
 
     /**
+     * Declares an association between this object and a Cms object.
+     *
+     * @param                  Cms $v
+     * @return CmsRevision The current object (for fluent API support)
+     * @throws PropelException
+     */
+    public function setCms(Cms $v = null)
+    {
+        if ($v === null) {
+            $this->setId(NULL);
+        } else {
+            $this->setId($v->getId());
+        }
+
+        $this->aCms = $v;
+
+        // Add binding for other direction of this n:n relationship.
+        // If this object has already been added to the Cms object, it will not be re-added.
+        if ($v !== null) {
+            $v->addCmsRevision($this);
+        }
+
+
+        return $this;
+    }
+
+
+    /**
+     * Get the associated Cms object
+     *
+     * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
+     * @return Cms The associated Cms object.
+     * @throws PropelException
+     */
+    public function getCms(PropelPDO $con = null, $doQuery = true)
+    {
+        if ($this->aCms === null && ($this->id !== null) && $doQuery) {
+            $this->aCms = CmsQuery::create()->findPk($this->id, $con);
+            /* The following can be used additionally to
+                guarantee the related object contains a reference
+                to this object.  This level of coupling may, however, be
+                undesirable since it could result in an only partially populated collection
+                in the referenced object.
+                $this->aCms->addCmsRevisions($this);
+             */
+        }
+
+        return $this->aCms;
+    }
+
+    /**
      * Clears the current object and sets all attributes to their default values
      */
     public function clear()
@@ -991,10 +1100,14 @@ abstract class BaseCmsRevision extends BaseObject implements Persistent
     {
         if ($deep && !$this->alreadyInClearAllReferencesDeep) {
             $this->alreadyInClearAllReferencesDeep = true;
+            if ($this->aCms instanceof Persistent) {
+              $this->aCms->clearAllReferences($deep);
+            }
 
             $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
+        $this->aCms = null;
     }
 
     /**

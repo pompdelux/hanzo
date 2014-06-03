@@ -5,11 +5,14 @@ namespace Hanzo\Model\om;
 use \Criteria;
 use \Exception;
 use \ModelCriteria;
+use \ModelJoin;
 use \PDO;
 use \Propel;
+use \PropelCollection;
 use \PropelException;
 use \PropelObjectCollection;
 use \PropelPDO;
+use Hanzo\Model\Cms;
 use Hanzo\Model\CmsRevision;
 use Hanzo\Model\CmsRevisionPeer;
 use Hanzo\Model\CmsRevisionQuery;
@@ -28,6 +31,10 @@ use Hanzo\Model\CmsRevisionQuery;
  * @method CmsRevisionQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method CmsRevisionQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
  * @method CmsRevisionQuery innerJoin($relation) Adds a INNER JOIN clause to the query
+ *
+ * @method CmsRevisionQuery leftJoinCms($relationAlias = null) Adds a LEFT JOIN clause to the query using the Cms relation
+ * @method CmsRevisionQuery rightJoinCms($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Cms relation
+ * @method CmsRevisionQuery innerJoinCms($relationAlias = null) Adds a INNER JOIN clause to the query using the Cms relation
  *
  * @method CmsRevision findOne(PropelPDO $con = null) Return the first CmsRevision matching the query
  * @method CmsRevision findOneOrCreate(PropelPDO $con = null) Return the first CmsRevision matching the query, or a new CmsRevision object populated from the query conditions when no match is found
@@ -245,6 +252,8 @@ abstract class BaseCmsRevisionQuery extends ModelCriteria
      * $query->filterById(array('max' => 12)); // WHERE id <= 12
      * </code>
      *
+     * @see       filterByCms()
+     *
      * @param     mixed $id The value to use as filter.
      *              Use scalar values for equality.
      *              Use array values for in_array() equivalent.
@@ -377,6 +386,82 @@ abstract class BaseCmsRevisionQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(CmsRevisionPeer::REVISION, $revision, $comparison);
+    }
+
+    /**
+     * Filter the query by a related Cms object
+     *
+     * @param   Cms|PropelObjectCollection $cms The related object(s) to use as filter
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return                 CmsRevisionQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
+     */
+    public function filterByCms($cms, $comparison = null)
+    {
+        if ($cms instanceof Cms) {
+            return $this
+                ->addUsingAlias(CmsRevisionPeer::ID, $cms->getId(), $comparison);
+        } elseif ($cms instanceof PropelObjectCollection) {
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
+
+            return $this
+                ->addUsingAlias(CmsRevisionPeer::ID, $cms->toKeyValue('PrimaryKey', 'Id'), $comparison);
+        } else {
+            throw new PropelException('filterByCms() only accepts arguments of type Cms or PropelCollection');
+        }
+    }
+
+    /**
+     * Adds a JOIN clause to the query using the Cms relation
+     *
+     * @param     string $relationAlias optional alias for the relation
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return CmsRevisionQuery The current query, for fluid interface
+     */
+    public function joinCms($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    {
+        $tableMap = $this->getTableMap();
+        $relationMap = $tableMap->getRelation('Cms');
+
+        // create a ModelJoin object for this join
+        $join = new ModelJoin();
+        $join->setJoinType($joinType);
+        $join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+        if ($previousJoin = $this->getPreviousJoin()) {
+            $join->setPreviousJoin($previousJoin);
+        }
+
+        // add the ModelJoin to the current object
+        if ($relationAlias) {
+            $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+            $this->addJoinObject($join, $relationAlias);
+        } else {
+            $this->addJoinObject($join, 'Cms');
+        }
+
+        return $this;
+    }
+
+    /**
+     * Use the Cms relation Cms object
+     *
+     * @see       useQuery()
+     *
+     * @param     string $relationAlias optional alias for the relation,
+     *                                   to be used as main alias in the secondary query
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return   \Hanzo\Model\CmsQuery A secondary query class using the current class as primary query
+     */
+    public function useCmsQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    {
+        return $this
+            ->joinCms($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'Cms', '\Hanzo\Model\CmsQuery');
     }
 
     /**

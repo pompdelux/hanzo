@@ -16,6 +16,7 @@ use Hanzo\Model\Cms;
 use Hanzo\Model\CmsI18n;
 use Hanzo\Model\CmsPeer;
 use Hanzo\Model\CmsQuery;
+use Hanzo\Model\CmsRevision;
 use Hanzo\Model\CmsThread;
 
 /**
@@ -52,6 +53,10 @@ use Hanzo\Model\CmsThread;
  * @method CmsQuery leftJoinCmsRelatedById($relationAlias = null) Adds a LEFT JOIN clause to the query using the CmsRelatedById relation
  * @method CmsQuery rightJoinCmsRelatedById($relationAlias = null) Adds a RIGHT JOIN clause to the query using the CmsRelatedById relation
  * @method CmsQuery innerJoinCmsRelatedById($relationAlias = null) Adds a INNER JOIN clause to the query using the CmsRelatedById relation
+ *
+ * @method CmsQuery leftJoinCmsRevision($relationAlias = null) Adds a LEFT JOIN clause to the query using the CmsRevision relation
+ * @method CmsQuery rightJoinCmsRevision($relationAlias = null) Adds a RIGHT JOIN clause to the query using the CmsRevision relation
+ * @method CmsQuery innerJoinCmsRevision($relationAlias = null) Adds a INNER JOIN clause to the query using the CmsRevision relation
  *
  * @method CmsQuery leftJoinCmsI18n($relationAlias = null) Adds a LEFT JOIN clause to the query using the CmsI18n relation
  * @method CmsQuery rightJoinCmsI18n($relationAlias = null) Adds a RIGHT JOIN clause to the query using the CmsI18n relation
@@ -810,6 +815,80 @@ abstract class BaseCmsQuery extends ModelCriteria
         return $this
             ->joinCmsRelatedById($relationAlias, $joinType)
             ->useQuery($relationAlias ? $relationAlias : 'CmsRelatedById', '\Hanzo\Model\CmsQuery');
+    }
+
+    /**
+     * Filter the query by a related CmsRevision object
+     *
+     * @param   CmsRevision|PropelObjectCollection $cmsRevision  the related object to use as filter
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return                 CmsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
+     */
+    public function filterByCmsRevision($cmsRevision, $comparison = null)
+    {
+        if ($cmsRevision instanceof CmsRevision) {
+            return $this
+                ->addUsingAlias(CmsPeer::ID, $cmsRevision->getId(), $comparison);
+        } elseif ($cmsRevision instanceof PropelObjectCollection) {
+            return $this
+                ->useCmsRevisionQuery()
+                ->filterByPrimaryKeys($cmsRevision->getPrimaryKeys())
+                ->endUse();
+        } else {
+            throw new PropelException('filterByCmsRevision() only accepts arguments of type CmsRevision or PropelCollection');
+        }
+    }
+
+    /**
+     * Adds a JOIN clause to the query using the CmsRevision relation
+     *
+     * @param     string $relationAlias optional alias for the relation
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return CmsQuery The current query, for fluid interface
+     */
+    public function joinCmsRevision($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    {
+        $tableMap = $this->getTableMap();
+        $relationMap = $tableMap->getRelation('CmsRevision');
+
+        // create a ModelJoin object for this join
+        $join = new ModelJoin();
+        $join->setJoinType($joinType);
+        $join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+        if ($previousJoin = $this->getPreviousJoin()) {
+            $join->setPreviousJoin($previousJoin);
+        }
+
+        // add the ModelJoin to the current object
+        if ($relationAlias) {
+            $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+            $this->addJoinObject($join, $relationAlias);
+        } else {
+            $this->addJoinObject($join, 'CmsRevision');
+        }
+
+        return $this;
+    }
+
+    /**
+     * Use the CmsRevision relation CmsRevision object
+     *
+     * @see       useQuery()
+     *
+     * @param     string $relationAlias optional alias for the relation,
+     *                                   to be used as main alias in the secondary query
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return   \Hanzo\Model\CmsRevisionQuery A secondary query class using the current class as primary query
+     */
+    public function useCmsRevisionQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    {
+        return $this
+            ->joinCmsRevision($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'CmsRevision', '\Hanzo\Model\CmsRevisionQuery');
     }
 
     /**

@@ -61,6 +61,7 @@ class CmsTableMap extends TableMap
         $this->addRelation('CmsThread', 'Hanzo\\Model\\CmsThread', RelationMap::MANY_TO_ONE, array('cms_thread_id' => 'id', ), 'CASCADE', 'CASCADE');
         $this->addRelation('CmsRelatedByParentId', 'Hanzo\\Model\\Cms', RelationMap::MANY_TO_ONE, array('parent_id' => 'id', ), 'CASCADE', null);
         $this->addRelation('CmsRelatedById', 'Hanzo\\Model\\Cms', RelationMap::ONE_TO_MANY, array('id' => 'parent_id', ), 'CASCADE', null, 'CmssRelatedById');
+        $this->addRelation('CmsRevision', 'Hanzo\\Model\\CmsRevision', RelationMap::ONE_TO_MANY, array('id' => 'id', ), 'CASCADE', null, 'CmsRevisions');
         $this->addRelation('CmsI18n', 'Hanzo\\Model\\CmsI18n', RelationMap::ONE_TO_MANY, array('id' => 'id', ), 'CASCADE', null, 'CmsI18ns');
     } // buildRelations()
 

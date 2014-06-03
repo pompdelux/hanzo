@@ -46,6 +46,8 @@ class ProductsQuantityDiscountTableMap extends TableMap
         $this->addForeignPrimaryKey('domains_id', 'DomainsId', 'INTEGER' , 'domains', 'id', true, null, null);
         $this->addPrimaryKey('span', 'Span', 'INTEGER', true, null, null);
         $this->addColumn('discount', 'Discount', 'DECIMAL', true, 15, null);
+        $this->addColumn('valid_from', 'ValidFrom', 'DATE', false, null, null);
+        $this->addColumn('valid_to', 'ValidTo', 'DATE', false, null, null);
         // validators
     } // initialize()
 
