@@ -10,6 +10,14 @@ use Hanzo\Core\Tools;
 class AppKernel extends Kernel
 {
     protected $settings = array();
+    protected $locale;
+
+    public function __construct($environment, $debug, $locale = null)
+    {
+        parent::__construct($environment, $debug);
+        $this->locale = $locale;
+    }
+
 
     public function registerBundles()
     {
@@ -95,6 +103,10 @@ class AppKernel extends Kernel
     public function boot()
     {
         parent::boot();
+
+        if (!is_null($this->locale)) {
+            $this->getContainer()->setParameter('locale', $this->locale);
+        }
 
         $store_mode = $this->getStoreMode();
         list($dir, $lang,) = explode('_', $this->getEnvironment());

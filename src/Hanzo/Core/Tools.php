@@ -321,8 +321,11 @@ class Tools
     }
 
 
+    public static $env;
+    public static $locale;
+
     /**
-     * Figure out wich environment to use for the requested domain
+     * Figure out which environment to use for the requested domain
      *
      * @return string
      */
@@ -339,6 +342,10 @@ class Tools
             'sv_se' => 'se',
             'de_at' => 'at',
             'de_ch' => 'ch',
+
+            // odd languages
+            'sv_fi' => 'se',
+            'fr_ch' => 'ch',
         );
 
         $path = explode('/', trim(str_replace($_SERVER['SCRIPT_NAME'], '', strtolower($_SERVER['REQUEST_URI'])), '/'));
@@ -355,10 +362,10 @@ class Tools
         elseif (empty($path[0]) || !isset($env_map[$path[0]])) {
             $path[0] = 'da_dk';
         }
-        $tld = $path[0];
+        $locale = $path[0];
 
-        if (isset($env_map[$tld])) {
-            $env = $env_map[$tld];
+        if (isset($env_map[$locale])) {
+            $env = $env_map[$locale];
         } else {
             $env = 'dk';
         }
@@ -366,6 +373,11 @@ class Tools
         if (substr($_SERVER['HTTP_HOST'], 0, 2) == 'c.') {
             $env = $env.'_consultant';
         }
+
+        $locale = explode('_', $locale);
+
+        self::$env = $env;
+        self::$locale = $locale[0].'_'.strtoupper($locale[1]);
 
         return $env;
     }
@@ -377,7 +389,7 @@ class Tools
     public static function handleRobots()
     {
         // robots only allowed on the www domain
-        if(($_SERVER['REQUEST_URI'] == '/robots.txt')) {
+        if (($_SERVER['REQUEST_URI'] == '/robots.txt')) {
             header('Content-type: text/plain');
 
             if ((substr($_SERVER['HTTP_HOST'], 0, 4) !== 'www.')) {

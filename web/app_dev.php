@@ -33,6 +33,7 @@ $loader = require_once __DIR__.'/../app/bootstrap.php.cache';
 require_once __DIR__.'/../app/AppKernel.php';
 
 $env = Tools::mapDomainToEnvironment();
+Tools::log(Tools::$env.' -> '.Tools::$locale);
 
 $kernel = new AppKernel('dev_'.$env, true);
 $kernel->loadClassCache();

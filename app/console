@@ -15,8 +15,9 @@ use Symfony\Component\Console\Input\ArgvInput;
 
 $input = new ArgvInput();
 $env = $input->getParameterOption(array('--env', '-e'), getenv('SYMFONY_ENV') ?: 'dev');
+$locale = $input->getParameterOption(array('--locale', ''), getenv('SYMFONY_LOCALE') ?: null);
 $debug = !$input->hasParameterOption(array('--no-debug', ''));
 
-$kernel = new AppKernel($env, $debug);
+$kernel = new AppKernel($env, $debug, $locale);
 $application = new Application($kernel);
 $application->run();
