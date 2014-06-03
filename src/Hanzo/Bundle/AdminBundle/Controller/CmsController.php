@@ -87,18 +87,26 @@ class CmsController extends CoreController
 
         $cache = $this->get('cache_manager');
 
-        $node = CmsI18nQuery::create()
-            ->filterByLocale($locale)
+        $translations = CmsI18nQuery::create()
             ->filterById($id)
-            ->findOne($this->getDbConnection())
+            ->find($this->getDbConnection())
         ;
 
-        if($node instanceof CmsI18n) {
-            $node->delete($this->getDbConnection());
-
-            $this->get('event_dispatcher')->dispatch('cms.node.deleted', new FilterCMSEvent($node, $locale));
+        $delete_cms = true;
+        foreach ($translations as $translation) {
+            if ($translation->getLocale() == $locale) {
+                $translation->delete($this->getDbConnection());
+                $this->get('event_dispatcher')->dispatch('cms.node.deleted', new FilterCMSEvent($translation, $locale));
+            }
+            else {
+                // There are other translations. Dont delete the master CMS.
+                $delete_cms = false;
+            }
         }
 
+        if ($delete_cms) {
+            CmsQuery::create()->filterById($id)->delete($this->getDbConnection());
+        }
 
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
@@ -278,9 +286,13 @@ class CmsController extends CoreController
             ->joinWithCmsI18n()
             ->findPK($id, $this->getDbConnection());
 
+        $revision_date = null;
         if ($request->query->get('revision')) {
             $revision = $revision_service->getRevision($node, $request->query->get('revision'));
-            $node = $revision ? $revision : $node;
+            if ($revision instanceof Cms) {
+                $revision_date = $request->query->get('revision');
+                $node = $revision;
+            }
         }
 
         $translations = CmsI18nQuery::create()
@@ -403,7 +415,7 @@ class CmsController extends CoreController
             $data = $form->getData();
 
             $is_active = false;
-            // validate settings, must be json encodable data
+
             foreach ($node->getCmsI18ns() as $translation) {
                 if (!$is_changed && $translation->isModified()) {
                     $is_changed = true;
@@ -436,36 +448,55 @@ class CmsController extends CoreController
 
             if (($is_changed || $node->isModified()) && $form->isValid()) {
 
-
                 $node->setUpdatedBy($this->get('security.context')->getToken()->getUser()->getUsername());
 
                 // Be sure to change the time. If only the i18n fields are changed
                 // it doesnt resolve in an updated time.
                 $node->setUpdatedAt(time());
+                if ($request->request->get('publish_on_date') && $publish_on_date = \DateTime::createFromFormat('d-m-Y H:i', $request->request->get('publish_on_date'))) {
+                    // This should be saved as an revision with a publish date.
+                    $new_revision = $revision_service->saveRevision($node, isset($revision_date) ? $revision_date : null, $publish_on_date);
 
-                $node->save($this->getDbConnection());
-                $revision_service->saveRevision($node);
+                    $this->get('session')->getFlashBag()->add('notice', 'cms.updated');
+                    if (empty($revision_date)) {
+                        return $this->redirect($this->generateUrl('admin_cms_edit', array('id' => $node->getId(), 'revision' => $new_revision->getCreatedAt())));
+                    }
+                } else {
+                    $node->save($this->getDbConnection());
+                    $revision_service->saveRevision($node);
 
-                if($is_active){
-                    $cache = $this->get('cache_manager');
-                    $cache->clearRedisCache();
+                    if($is_active){
+                        $cache = $this->get('cache_manager');
+                        $cache->clearRedisCache();
+                    }
+
+                    $this->get('session')->getFlashBag()->add('notice', 'cms.updated');
+                    foreach ($node->getCmsI18ns() as $translation) {
+                        $this->get('event_dispatcher')->dispatch('cms.node.updated', new FilterCMSEvent($node, $translation->getLocale(), $this->getDbConnection()));
+                    }
+
+                    // If this is an old revision. Redirect to the live cms.
+                    if (!empty($revision_date)) {
+                        return $this->redirect($this->generateUrl('admin_cms_edit', array('id' => $node->getId())));
+                    }
                 }
 
-                $this->get('session')->getFlashBag()->add('notice', 'cms.updated');
-                foreach ($node->getCmsI18ns() as $translation) {
-                    $this->get('event_dispatcher')->dispatch('cms.node.updated', new FilterCMSEvent($node, $translation->getLocale(), $this->getDbConnection()));
-                }
             }
         }
+
+        $settings = json_decode($node->getSettings(false));
 
         return $this->render('AdminBundle:Cms:editcmsi18n.html.twig', array(
             'form'      => $form->createView(),
             'node'      => $node,
-            'is_revision' => $request->query->get('revision'),
+            'revision' => isset($revision) ? $revision : null,
+            'revision_date' => isset($revision_date) ? $revision_date : null,
             'revisions' => $revision_service->getRevisions($node),
+            'publish_revisions' => $revision_service->getRevisions($node, true),
             'languages' => $languages_availible,
             'paths'      => json_encode($parent_paths),
-            'database' => $this->getRequest()->getSession()->get('database')
+            'database' => $this->getRequest()->getSession()->get('database'),
+            'is_frontpage' => isset($settings->is_frontpage) ? (bool) $settings->is_frontpage : false
         ));
 
     }
@@ -667,7 +698,7 @@ class CmsController extends CoreController
                 'title' => 'CMS',
             ],
             'admin_customers' => [
-                'access' => ['ROLE_ADMIN', 'ROLE_CUSTOMERS_SERVICE'],
+                'access' => ['ROLE_ADMIN', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_LOGISTICS'],
                 'title' => 'Kunder',
             ],
             'admin_consultants' => [
@@ -679,7 +710,7 @@ class CmsController extends CoreController
                 'title' => 'Medarbejdere',
             ],
             'admin_orders' => [
-                'access' => ['ROLE_ADMIN', 'ROLE_SALES'],
+                'access' => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_LOGISTICS'],
                 'title' => 'Ordrer',
             ],
             'admin_products' => [
@@ -735,6 +766,27 @@ class CmsController extends CoreController
               '.$links.'
               </ul>
         ');
+    }
+
+    public function deleteRevisionAction($id, $timestamp)
+    {
+
+        $node = CmsQuery::create()->findPK($id, $this->getDbConnection());
+
+        $revision_service = $this->get('cms_revision')->setCon($this->getDbConnection());
+
+        $revision_service->deleteRevisionFromTimestamp($node, $timestamp);
+
+        if ($this->getFormat() == 'json') {
+            return $this->json_response(array(
+                'status' => true,
+                'message' => 'Revision er nu slettet.',
+            ));
+        }
+
+        $this->get('session')->getFlashBag()->add('notice', 'Revision er blevet slettet.');
+
+        return $this->redirect($this->generateUrl('admin_cms_edit', array('id' => $id)));
     }
 
 

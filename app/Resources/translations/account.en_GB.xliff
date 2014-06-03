@@ -226,10 +226,6 @@
                 <source>nno.fetch</source>
                 <target>Get</target>
             </trans-unit>
-            <trans-unit id="create.accept">
-                <source>create.accept</source>
-                <target><![CDATA[I confirm the above order and confirm that I have read and accept POMPdeLUX terms and conditions ]]></target>
-            </trans-unit>
             <trans-unit id="72">
                 <source>create.newsletter</source>
                 <target>Newsletter</target>

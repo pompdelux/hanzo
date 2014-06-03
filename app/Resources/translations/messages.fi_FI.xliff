@@ -160,7 +160,7 @@
 						<li>Tuotteiden palauttaminen: POMPdeLUX Aps</li>
                         <li>Grydhøjparken 10</li>
                         <li>DK-8381 Tilst</li>
-                        <li><img src="%cdn%fx/images/creditcards_fi.png" alt="credit cards" title="credit cards"></li>
+                        <li><img src="%cdn%fx/images/creditcards_fi.png?%build%" alt="credit cards" title="credit cards"></li>
                         <li><a href="http://www.facebook.com/sharer.php?u=%url%" class="facebook-button social-button" title="Share this page on facebook">Share</a></li>
                     </ul>]]>
                 </target>
@@ -194,10 +194,6 @@
             <trans-unit id="browser.title">
                 <source>browser.title</source>
                 <target>POMPdeLUX - Pidätkö sinäkin lastenvaatteista</target>
-            </trans-unit>
-            <trans-unit id="create.account.vilkaar.link">
-                <source>create.account.vilkaar.link</source>
-                <target><![CDATA[<a href="/fi_FI/koti/asiakaspalvelu/ehdot" target="_blank">POMPdeLUXin ehdot.</a>]]></target>
             </trans-unit>
             <trans-unit id="category.selector.look">
                 <source>category.selector.look</source>

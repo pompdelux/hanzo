@@ -6,21 +6,7 @@ var account = (function($) {
     pub.zipToCityInit();
 
     if ($('form.create').length) {
-
-      if ($('#customers_accept:checked').length) {
-          $('form.create button[type=submit]').show();
-      }
-      $('#customers_accept').on('change', function() {
-          if ($(this).prop("checked")) {
-              $('form.create button[type=submit]').show();
-          } else {
-              $('form.create button[type=submit]').hide();
-          }
-      });
-
       var $form = $('form.create');
-      var $a = $('form.create a');
-      $form.find('label[for="customers_accept"]').append($a);
 
       // email address validation - check existing status
       $('#customers_email_email_address', $form).blur(function() {
@@ -264,10 +250,10 @@ var account = (function($) {
   return pub;
 })(jQuery);
 
-if ($("#body-create-account").length) {
+if ($("#body-create-account, #body-edit-account").length) {
   account.init();
 }
-if ($("#body-events-create-customer, #body-edit-account").length) {
+if ($("#body-events-create-customer").length) {
   account.zipToCityInit();
 }
 

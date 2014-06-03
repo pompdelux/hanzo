@@ -45,15 +45,15 @@ class ByColourController extends CoreController
             $settings = $page->getSettings(null, false);
 
             if (!isset($settings->category_ids)) {
-                $settings->category_ids = [];
+                $settings->category_ids = '0';
             }
 
             if (!isset($settings->ignore)) {
-                $settings->ignore = [];
+                $settings->ignore = '';
             }
 
-            $includes = explode(',', $settings->category_ids);
-            $ignores = explode(',', $settings->ignore);
+            $includes  = explode(',', $settings->category_ids);
+            $ignores   = explode(',', $settings->ignore);
             $color_map = explode(',', $settings->colors);
 
             $show_by_look = (bool) ($show === 'look');
@@ -61,7 +61,8 @@ class ByColourController extends CoreController
             $categories = array();
             $resultset = CategoriesI18nQuery::create()
                 ->filterByLocale($locale)
-                ->findById($includes)
+                ->filterById($includes)
+                ->find()
             ;
             foreach ($resultset as $category) {
                 $categories[$category->getId()] = $category->getTitle();

@@ -69,6 +69,7 @@
 .cboxIE6 #cboxMiddleLeft{background:url(/fx/css/colorbox/theme4/images/ie6/borderMiddleLeft.png);}
 .cboxIE6 #cboxMiddleRight{background:url(/fx/css/colorbox/theme4/images/ie6/borderMiddleRight.png);}
 
+/* un@bellcom.dk - test removed.
 .cboxIE6 #cboxTopLeft,
 .cboxIE6 #cboxTopCenter,
 .cboxIE6 #cboxTopRight,
@@ -79,3 +80,4 @@
 .cboxIE6 #cboxMiddleRight {
     _behavior: expression(this.src = this.src ? this.src : this.currentStyle.backgroundImage.split('"')[1], this.style.background = "none", this.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src=" + this.src + ", sizingMethod='scale')");
 }
+*/

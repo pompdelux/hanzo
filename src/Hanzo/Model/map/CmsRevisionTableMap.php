@@ -42,7 +42,7 @@ class CmsRevisionTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(false);
         // columns
-        $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
+        $this->addForeignPrimaryKey('id', 'Id', 'INTEGER' , 'cms', 'id', true, null, null);
         $this->addPrimaryKey('created_at', 'CreatedAt', 'TIMESTAMP', true, null, null);
         $this->addColumn('publish_on_date', 'PublishOnDate', 'TIMESTAMP', false, null, null);
         $this->addColumn('revision', 'Revision', 'OBJECT', true, null, null);
@@ -54,6 +54,7 @@ class CmsRevisionTableMap extends TableMap
      */
     public function buildRelations()
     {
+        $this->addRelation('Cms', 'Hanzo\\Model\\Cms', RelationMap::MANY_TO_ONE, array('id' => 'id', ), 'CASCADE', null);
     } // buildRelations()
 
     /**

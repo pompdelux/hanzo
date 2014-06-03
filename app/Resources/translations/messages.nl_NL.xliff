@@ -175,7 +175,7 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
 						<li>Retoursturen van artikelen: POMPdeLUX Aps</li>
                         <li>Grydhøjparken 10</li>
                         <li>DK-8381 Tilst</li>
-                        <li><img src="%cdn%fx/images/creditcards_nl.png" alt="credit cards" title="credit cards"></li>
+                        <li><img src="%cdn%fx/images/creditcards_nl.png?%build%" alt="credit cards" title="credit cards"></li>
                         <li><a href="http://www.facebook.com/sharer.php?u=%url%" class="facebook-button social-button" title="Share this page on facebook">Share</a></li>
                     </ul>
                 ]]></target>
@@ -209,12 +209,6 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
             <trans-unit id="browser.title">
                 <source>browser.title</source>
                 <target>POMPdeLUX - Coole kinderkleding</target>
-            </trans-unit>
-            <trans-unit id="create.account.vilkaar.link">
-                <source>create.account.vilkaar.link</source>
-                <target><![CDATA[
-                    <a href="/nl_NL/voorpagina/klantenservice/voorwaarden" target="_blank">POMPdeLUX Voorwaarden.</a>
-                ]]></target>
             </trans-unit>
             <trans-unit id="category.selector.look">
                 <source>category.selector.look</source>

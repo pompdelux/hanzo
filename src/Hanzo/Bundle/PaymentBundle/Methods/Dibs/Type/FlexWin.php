@@ -66,6 +66,11 @@ class FlexWin extends BasePaymentApi implements PaymentMethodApiInterface
     protected $router;
 
     /**
+     * @var \Hanzo\Core\ServiceLogger
+     */
+    public $service_logger;
+
+    /**
      * __construct
      *
      * @param array $parameters
@@ -73,7 +78,8 @@ class FlexWin extends BasePaymentApi implements PaymentMethodApiInterface
      */
     public function __construct($parameters, array $settings)
     {
-        $this->router = $parameters[0];
+        $this->router         = $parameters[0];
+        $this->service_logger = $parameters[1];
 
         $this->settings = $settings;
         $this->settings['active'] = (isset($this->settings['method_enabled']) && $this->settings['method_enabled']
@@ -452,7 +458,11 @@ class FlexWin extends BasePaymentApi implements PaymentMethodApiInterface
     public function getProcessButton(Orders $order, Request $request)
     {
         $fields = '';
-        foreach ($this->buildFormFields($order) as $name => $value) {
+        $data = $this->buildFormFields($order);
+
+        $this->service_logger->plog($data, ['outgoing', 'payment', 'dibs', 'flex-win',  'payment-form']);
+
+        foreach ($data as $name => $value) {
             $fields .= '<input type="hidden" name="'.$name.'" value="'.$value.'" >';
         }
 

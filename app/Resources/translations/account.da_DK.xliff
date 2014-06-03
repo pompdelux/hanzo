@@ -238,10 +238,6 @@
                 <source>nno.fetch</source>
                 <target>Hent</target>
             </trans-unit>
-            <trans-unit id="71">
-                <source>create.accept</source>
-                <target>Jeg bestiller hermed overstående og bekræfter, at jeg har læst og accepterer </target>
-            </trans-unit>
             <trans-unit id="72">
                 <source>create.newsletter</source>
                 <target>Tilmeld nyhedsbrev</target>

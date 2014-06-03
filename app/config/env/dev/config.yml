@@ -19,16 +19,9 @@ monolog:
             type:           stream
             path:           %kernel.logs_dir%/%kernel.environment%.log
             level:          debug
-        # logstash:
-        #     type:           socket
-        #     connection_string: tcp://logstash.bellcom.dk:5544
-        #     level:          debug
         firephp:
             type:           firephp
             level:          info
-
-assetic:
-    use_controller:         true
 
 propel:
     dbal:
@@ -52,9 +45,9 @@ propel:
             #     attributes:           {}
 
     build_properties:
-      propel.project: '%database_name%'
-      propel.addValidators: all
-      propel.namespace.autoPackage: true
+        propel.project: '%database_name%'
+        propel.addValidators: all
+        propel.namespace.autoPackage: true
 
 cms:
     frontpage: 556

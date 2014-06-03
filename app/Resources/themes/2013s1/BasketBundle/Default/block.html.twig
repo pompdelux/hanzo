@@ -99,9 +99,11 @@
     {% endif %}
 
   {% else %}
-    <p>{{ "cart.is.empty"|trans({}, 'checkout') }}</p>
-    <div class="buttons">
-      <a class="button" href="{{ continue_shopping }}"><i class="fa fa-arrow-left"></i> {{ "continue.shopping"|trans({}, 'checkout') }}</a>
-    </div>
+    {% if embedded == false %}
+        <p>{{ "cart.is.empty"|trans({}, 'checkout') }}</p>
+        <div class="buttons">
+          <a class="button" href="{{ continue_shopping }}"><i class="fa fa-arrow-left"></i> {{ "continue.shopping"|trans({}, 'checkout') }}</a>
+        </div>
+    {% endif %}
   {% endif %}
 </div>

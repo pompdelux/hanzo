@@ -75,9 +75,19 @@ class QuantityDiscountHandler
      */
     public function handle()
     {
+        $time   = time();
+        $hanzo  = Hanzo::getInstance();
+
         $master = $this->product->getMaster();
         $breaks = ProductsQuantityDiscountQuery::create()
             ->orderBySpan(\Criteria::DESC)
+            ->filterByDomainsId($hanzo->get('core.domain_id'))
+            ->filterByValidFrom($time, \Criteria::LESS_EQUAL)
+            ->_or()
+            ->filterByValidFrom(null, \Criteria::ISNULL)
+            ->filterByValidTo($time, \Criteria::GREATER_EQUAL)
+            ->_or()
+            ->filterByValidTo(null, \Criteria::ISNULL)
             ->findByProductsMaster($master)
         ;
 

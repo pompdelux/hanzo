@@ -266,6 +266,14 @@
       if ($('.js-invalid-order').length) {
         $('#checkout-buttons').hide();
       }
+
+      $('.checkout-confirm-terms input[type=checkbox]').on('change', function() {
+        if ($(this).prop("checked")) {
+          $('#checkout-buttons').show();
+        } else {
+          $('#checkout-buttons').hide();
+        }
+      });
     };
 
     pub.setStepStatus = function(step, status) {

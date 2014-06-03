@@ -79,7 +79,11 @@ CREATE TABLE `cms_revision`
     `created_at` DATETIME NOT NULL,
     `publish_on_date` DATETIME,
     `revision` TEXT NOT NULL,
-    PRIMARY KEY (`id`,`created_at`)
+    PRIMARY KEY (`id`,`created_at`),
+    CONSTRAINT `cms_revision_FK_1`
+        FOREIGN KEY (`id`)
+        REFERENCES `cms` (`id`)
+        ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
@@ -630,7 +634,10 @@ CREATE TABLE `products_quantity_discount`
     `domains_id` INTEGER NOT NULL,
     `span` INTEGER NOT NULL,
     `discount` DECIMAL(15,4) NOT NULL,
+    `valid_from` DATE,
+    `valid_to` DATE,
     PRIMARY KEY (`products_master`,`domains_id`,`span`),
+    INDEX `pqd_date_index` (`valid_from`, `valid_to`),
     INDEX `products_quantity_discount_FI_2` (`domains_id`),
     CONSTRAINT `products_quantity_discount_FK_1`
         FOREIGN KEY (`products_master`)

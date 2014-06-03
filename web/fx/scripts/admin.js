@@ -11,6 +11,10 @@
         dateFormat : "dd-mm-yy"
       });
 
+      $('.datetimepicker').datetimepicker({
+        dateFormat : "dd-mm-yy"
+      });
+
       /* Cache controller */
       $('.cache-clear').click(function(e){
         e.preventDefault();
@@ -156,8 +160,8 @@
       $('#form_cms_thread_id').change(function(e){
         var $sel = $('#form_parent_id'),
             thread = $(this).val();
-        $('optgroup, optgroup > option', $sel).hide();
-        $('optgroup[label^="' + thread + '"]', $sel).children().andSelf().show();
+        $('optgroup:not([label^=' + thread + ']), optgroup:not([label^=' + thread + ']) option', $sel).remove();
+        $(this).attr('disabled', 'disabled');
       });
 
 
@@ -205,11 +209,15 @@
 
       $('#cms-edit-form .form-settings').on('blur', function(e){
         try {
+          if($(this).val()) {
             JSON.parse($(this).val());
+          }
         } catch (exception) {
           dialoug.error(Translator.get('js:notice'), 'Indstillinger er ikke kompatibelt JSON kode.');
         }
       });
+
+      $('#cms-edit-form')
 
       // Sortable list for products ind a category
       $('ul#product-list-sort').sortable({

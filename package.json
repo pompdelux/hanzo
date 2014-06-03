@@ -1,0 +1,28 @@
+{
+  "name": "hanzo",
+  "version": "0.0.1",
+  "description": "npm packages for hanzo",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/pompdelux/hanzo.git"
+  },
+  "author": "ulrik nielsen <un@bellcom.dk>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pompdelux/hanzo/issues"
+  },
+  "homepage": "https://github.com/pompdelux/hanzo",
+  "devDependencies": {
+    "grunt": "^0.4.4",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-uglify": "^0.4.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-contrib-compass": "^0.7.2",
+    "grunt-modernizr": "^0.5.2",
+    "grunt-contrib-concat": "^0.4.0",
+    "grunt-contrib-cssmin": "^0.9.0"
+  },
+  "dependencies": {
+    "grunt-modernizr": "^0.5.2"
+  }
+}

@@ -175,7 +175,7 @@
 						<li>Returnering av varer: POMPdeLUX C/O</li>
                         <li>Postens godssenter</li>
                         <li>NO-0060 Oslo</li>
-                        <li><img src="%cdn%fx/images/creditcards_se.png" alt="credit cards" title="credit cards"></li>
+                        <li><img src="%cdn%fx/images/creditcards_se.png?%build%" alt="credit cards" title="credit cards"></li>
                         <li><a href="http://www.facebook.com/sharer.php?u=%url%" class="facebook-button social-button" title="Share this page on facebook">Share</a></li>
                     </ul>
                 ]]></target>
@@ -213,12 +213,6 @@
             <trans-unit id="browser.title">
                 <source>browser.title</source>
                 <target>POMPdeLUX - Hekta på barneklær!</target>
-            </trans-unit>
-            <trans-unit id="create.account.vilkaar.link">
-                <source>create.account.vilkaar.link</source>
-                <target><![CDATA[
-                    <a href="/nb_NO/forside/kundeservice/vilkar" target="_blank">POMPdeLUX vilkår.</a>
-                ]]></target>
             </trans-unit>
             <trans-unit id="category.selector.look">
                 <source>category.selector.look</source>

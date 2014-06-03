@@ -2,45 +2,36 @@
 
 namespace Hanzo\Bundle\AxBundle\Actions\In\Soap\ECommerceServices;
 
-use Hanzo\Bundle\AxBundle\Actions\In\Soap\SoapService;
-
 use Hanzo\Core\Tools;
 use Hanzo\Core\Timer;
 
-use Hanzo\Model\ProductsDomainsPrices;
-use Hanzo\Model\ProductsDomainsPricesQuery;
-use Hanzo\Model\ProductsI18n;
-use Hanzo\Model\Products;
-use Hanzo\Model\ProductsQuery;
-use Hanzo\Model\ProductsStock;
-use Hanzo\Model\ProductsToCategories;
-use Hanzo\Model\ProductsToCategoriesQuery;
-
+use Hanzo\Model\Addresses;
+use Hanzo\Model\AddressesQuery;
+use Hanzo\Model\CategoriesQuery;
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersQuery;
 use Hanzo\Model\Consultants;
-use Hanzo\Model\Addresses;
-use Hanzo\Model\AddressesQuery;
 use Hanzo\Model\Countries;
 use Hanzo\Model\CountriesQuery;
-
 use Hanzo\Model\DomainsQuery;
-use Hanzo\Model\CategoriesQuery;
 use Hanzo\Model\LanguagesQuery;
-
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersQuery;
-use Hanzo\Model\OrdersLinesPeer;
-use Hanzo\Model\OrdersLinesQuery;
 use Hanzo\Model\OrdersAttributes;
 use Hanzo\Model\OrdersAttributesQuery;
+use Hanzo\Model\Products;
+use Hanzo\Model\ProductsDomainsPrices;
+use Hanzo\Model\ProductsDomainsPricesQuery;
+use Hanzo\Model\ProductsI18n;
+use Hanzo\Model\ProductsToCategories;
+use Hanzo\Model\ProductsToCategoriesQuery;
+use Hanzo\Model\ProductsQuery;
 
+use Hanzo\Bundle\AdminBundle\Event\FilterCategoryEvent;
+use Hanzo\Bundle\AxBundle\Actions\In\Soap\SoapService;
 use Hanzo\Bundle\NewsletterBundle\NewsletterApi;
 use Hanzo\Bundle\PaymentBundle\PaymentApiCallException;
 
-use Hanzo\Bundle\AdminBundle\Event\FilterCategoryEvent;
-
-use Criteria;
 use Exception;
 use Propel;
 use PropelCollection;
@@ -92,7 +83,7 @@ class ECommerceServices extends SoapService
         $item = $data->item->InventTable;
 
         if (!$item->ItemGroupId OR !$item->ItemId OR !$item->ItemName) {
-            $this->logger->addCritical(__METHOD__.' '.__LINE__.': no ItemGroupId OR ItemId OR ItemName given');
+            $this->logger->info(__METHOD__.' '.__LINE__.': no ItemGroupId OR ItemId OR ItemName given');
 
             return self::responseStatus('Error', 'SyncItemResult', array(
                 'no ItemGroupId OR ItemId OR ItemName given'
@@ -105,7 +96,7 @@ class ECommerceServices extends SoapService
                 'InventId: ' . $item->ItemId,
                 'WebEnabled set to "' . $item->WebEnabled . '" it should be set to "1"'
             );
-            $this->logger->addCritical(__METHOD__.' '.__LINE__.': WebEnabled set to "' . $item->WebEnabled . '", it should be set to "1"', $errors);
+            $this->logger->info(__METHOD__.' '.__LINE__.': WebEnabled set to "' . $item->WebEnabled . '", it should be set to "1"', $errors);
 
             return self::responseStatus('Error', 'SyncItemResult', $errors);
         }
@@ -116,7 +107,7 @@ class ECommerceServices extends SoapService
                 'InventId: ' . $item->ItemId,
                 'WebDomain empty, we need at lest one domain to create/update the product.'
             );
-            $this->logger->addCritical(__METHOD__.' '.__LINE__.': No WebDomain parameters', $errors);
+            $this->logger->info(__METHOD__.' '.__LINE__.': No WebDomain parameters', $errors);
 
             return self::responseStatus('Error', 'SyncItemResult', $errors);
         }
@@ -277,7 +268,7 @@ class ECommerceServices extends SoapService
         // ....................
 
         if (count($errors)) {
-            $this->logger->addCritical(__METHOD__.' '.__LINE__.': SyncItem failed with the following error(s)', $errors);
+            $this->logger->info(__METHOD__.' '.__LINE__.': SyncItem failed with the following error(s)', $errors);
 
             return self::responseStatus('Error', 'SyncItemResult', $errors);
         }
@@ -313,7 +304,7 @@ class ECommerceServices extends SoapService
         $prices = $data->priceList;
 
         if (!$prices->ItemId) {
-            $this->logger->addCritical(__METHOD__.' '.__LINE__.': no ItemId given');
+            $this->logger->info(__METHOD__.' '.__LINE__.': no ItemId given');
             return self::responseStatus('Error', 'SyncPriceListResult', array('no ItemId given'));
         }
 
@@ -448,7 +439,7 @@ class ECommerceServices extends SoapService
 
 
         if (count($errors)) {
-            $this->logger->addCritical(__METHOD__.' '.__LINE__.': SyncPriceList failed with the following error(s)', $errors);
+            $this->logger->info(__METHOD__.' '.__LINE__.': SyncPriceList failed with the following error(s)', $errors);
             return self::responseStatus('Error', 'SyncPriceListResult', $errors);
         }
 
@@ -483,18 +474,18 @@ class ECommerceServices extends SoapService
         $stock = $data->inventoryOnHand->InventSum;
 
         if (!$stock->ItemId) {
-            $this->logger->addCritical(__METHOD__.' '.__LINE__.': no ItemId given');
+            $this->logger->info(__METHOD__.' '.__LINE__.': no ItemId given');
             return self::responseStatus('Error', 'SyncInventoryOnHandResult', array('no ItemId given'));
         }
 
         if (empty($stock->InventDim)) {
-            $this->logger->addCritical(__METHOD__.' '.__LINE__.': No InventDim found on ItemId: ' . $stock->ItemId);
+            $this->logger->info(__METHOD__.' '.__LINE__.': No InventDim found on ItemId: ' . $stock->ItemId);
             return self::responseStatus('Error', 'SyncInventoryOnHandResult', array('No InventDim found on ItemId: ' . $stock->ItemId));
         }
 
         $master = ProductsQuery::create()->findOneBySku($stock->ItemId);
         if (!$master instanceof Products) {
-            $this->logger->addCritical(__METHOD__.' '.__LINE__.': Unknown product, ItemId: ' . $stock->ItemId);
+            $this->logger->info(__METHOD__.' '.__LINE__.': Unknown product, ItemId: ' . $stock->ItemId);
             return self::responseStatus('Error', 'SyncInventoryOnHandResult', array('Unknown ItemId: ' . $stock->ItemId));
         }
 
@@ -634,7 +625,7 @@ class ECommerceServices extends SoapService
         // ....................
 
         if (count($errors)) {
-            $this->logger->addCritical(__METHOD__.' '.__LINE__.': SyncInventoryOnHand failed with the following error(s)', $errors);
+            $this->logger->info(__METHOD__.' '.__LINE__.': SyncInventoryOnHand failed with the following error(s)', $errors);
             return self::responseStatus('Error', 'SyncInventoryOnHandResult', $errors);
         }
 
@@ -678,7 +669,7 @@ class ECommerceServices extends SoapService
         $errors = array();
 
         if (!$data instanceof \stdClass || empty($data->customer->CustTable)) {
-            $this->logger->addCritical(__METHOD__.' '.__LINE__.': not a customer object');
+            $this->logger->info(__METHOD__.' '.__LINE__.': not a customer object');
             return self::responseStatus('Error', 'SyncCustomerResult', array('not a customer object'));
         }
 
@@ -691,7 +682,7 @@ class ECommerceServices extends SoapService
         $country = CountriesQuery::create()->findOneByIso2($data->AddressCountryRegionId);
 
         if (!$country instanceof Countries) {
-            $this->logger->addCritical(__METHOD__.' '.__LINE__.': unknown country reference: ' . $data->AddressCountryRegionId . ' for account: #' . $data->AccountNum);
+            $this->logger->info(__METHOD__.' '.__LINE__.': unknown country reference: ' . $data->AddressCountryRegionId . ' for account: #' . $data->AccountNum);
             return self::responseStatus('Error', 'SyncCustomerResult', array('unknown country reference: ' . $data->AddressCountryRegionId . ' for account: #' . $data->AccountNum));
         }
 
@@ -786,7 +777,7 @@ class ECommerceServices extends SoapService
         // ....................
 
         if (count($errors)) {
-            $this->logger->addCritical(__METHOD__.' '.__LINE__.': SyncCustomerResult failed with the following error(s)', $errors);
+            $this->logger->info(__METHOD__.' '.__LINE__.': SyncCustomerResult failed with the following error(s)', $errors);
             return self::responseStatus('Error', 'SyncCustomerResult', $errors);
         }
 
@@ -820,7 +811,7 @@ class ECommerceServices extends SoapService
     {
         $errors = [];
         if (empty($data->eOrderNumber)) {
-            $this->logger->addCritical(__METHOD__.' '.__LINE__.': no eOrderNumber given.');
+            $this->logger->info(__METHOD__.' '.__LINE__.': no eOrderNumber given.');
             return self::responseStatus('Error', 'DeleteSalesOrderResult', array('no eOrderNumber given.'));
         }
 
@@ -832,7 +823,7 @@ class ECommerceServices extends SoapService
 
         if (!$order instanceof Orders) {
             $msg = 'no order found with eOrderNumber "' . $data->eOrderNumber . '".';
-            $this->logger->addCritical($msg);
+            $this->logger->info($msg);
             return self::responseStatus('Error', 'DeleteSalesOrderResult', array($msg));
         }
 
@@ -840,7 +831,7 @@ class ECommerceServices extends SoapService
             try {
                 $order->delete();
             } catch (\Exception $e) {
-                $this->logger->addCritical(__METHOD__.' '.__LINE__.': Could not cancel payment: "'.$e->getMessage().'"');
+                $this->logger->info(__METHOD__.' '.__LINE__.': Could not cancel payment: "'.$e->getMessage().'"');
                 return self::responseStatus('Error', 'DeleteSalesOrderResult', array('Could not cancel payment: "'.$e->getMessage().'"'));
             }
         }
@@ -851,7 +842,7 @@ class ECommerceServices extends SoapService
         // ....................
 
         if (count($errors)) {
-            $this->logger->addCritical(__METHOD__.' '.__LINE__.': DeleteSalesOrderResult failed with the following error(s)', $errors);
+            $this->logger->info(__METHOD__.' '.__LINE__.': DeleteSalesOrderResult failed with the following error(s)', $errors);
             return self::responseStatus('Error', 'DeleteSalesOrderResult', $errors);
         }
 
@@ -875,7 +866,7 @@ class ECommerceServices extends SoapService
         $errors = array();
 
         if (empty($data->eOrderNumber)) {
-            $this->logger->addCritical(__METHOD__.' '.__LINE__.': no eOrderNumber given.');
+            $this->logger->info(__METHOD__.' '.__LINE__.': no eOrderNumber given.');
             return self::responseStatus('Error', 'SalesOrderCaptureOrRefundResult', array('no eOrderNumber given.'));
         }
 
@@ -883,7 +874,7 @@ class ECommerceServices extends SoapService
 
         if (!$order instanceof Orders) {
             $msg = 'no order found with eOrderNumber "' . $data->eOrderNumber . '".';
-            $this->logger->addCritical($msg);
+            $this->logger->info($msg);
             return self::responseStatus('Error', 'SalesOrderCaptureOrRefundResult', array($msg));
         }
 
@@ -915,7 +906,7 @@ class ECommerceServices extends SoapService
 
 
         if (count($errors)) {
-            $this->logger->addCritical(__METHOD__.' '.__LINE__.': SalesOrderCaptureOrRefundResult failed with the following error(s)', $errors);
+            $this->logger->info(__METHOD__.' '.__LINE__.': SalesOrderCaptureOrRefundResult failed with the following error(s)', $errors);
             $this->timer->logAll('Time spend on order: #'.$order->getId());
             return self::responseStatus('Error', 'SalesOrderCaptureOrRefundResult', $errors);
         }
@@ -944,24 +935,24 @@ class ECommerceServices extends SoapService
     public function SalesOrderLockUnlock ($data)
     {
         if (empty($data->eOrderNumber)) {
-            $this->logger->addCritical(__METHOD__.' '.__LINE__.': no eOrderNumber given.');
+            $this->logger->info(__METHOD__.' '.__LINE__.': no eOrderNumber given.');
             return self::responseStatus('Error', 'SalesOrderLockUnlockResult', array('no eOrderNumber given.'));
         }
 
         if ($data->orderStatus < 1 || $data->orderStatus > 4) {
-            $this->logger->addCritical(__METHOD__.' '.__LINE__.': order status id #' . $data->orderStatus . ' is not known.');
+            $this->logger->info(__METHOD__.' '.__LINE__.': order status id #' . $data->orderStatus . ' is not known.');
             return self::responseStatus('Error', 'SalesOrderLockUnlockResult', array('order status id #' . $data->orderStatus . ' is not known.'));
         }
 
         $order = OrdersQuery::create()->findOneById($data->eOrderNumber);
 
         if (!$order instanceof Orders) {
-            $this->logger->addCritical(__METHOD__.' '.__LINE__.': order #' . $data->eOrderNumber . ' does not exist.');
+            $this->logger->info(__METHOD__.' '.__LINE__.': order #' . $data->eOrderNumber . ' does not exist.');
             return self::responseStatus('Error', 'SalesOrderLockUnlockResult', array('order #' . $data->eOrderNumber . ' does not exist.'));
         }
 
         if ($order->getInEdit()) {
-            $this->logger->addCritical(__METHOD__.' '.__LINE__.': order #' . $data->eOrderNumber . ' cannot be locked, the order is "in edit".');
+            $this->logger->info(__METHOD__.' '.__LINE__.': order #' . $data->eOrderNumber . ' cannot be locked, the order is "in edit".');
             return self::responseStatus('Error', 'SalesOrderLockUnlockResult', array('order #' . $data->eOrderNumber . ' cannot be locked, the order is "in edit".'));
         }
 
@@ -1019,7 +1010,7 @@ class ECommerceServices extends SoapService
     public function SalesOrderAddDocument($data)
     {
         if (empty($data->eOrderNumber)) {
-            $this->logger->addCritical(__METHOD__.' '.__LINE__.': no eOrderNumber given.');
+            $this->logger->info(__METHOD__.' '.__LINE__.': no eOrderNumber given.');
             return self::responseStatus('Error', 'SalesOrderAddDocumentResult', array('no eOrderNumber given.'));
         }
 
@@ -1029,7 +1020,7 @@ class ECommerceServices extends SoapService
         ;
 
         if (!$order) {
-            $this->logger->addCritical(__METHOD__.' '.__LINE__.': order #' . $data->eOrderNumber . ' does not exist.');
+            $this->logger->info(__METHOD__.' '.__LINE__.': order #' . $data->eOrderNumber . ' does not exist.');
             return self::responseStatus('Error', 'SalesOrderAddDocumentResult', array('order #' . $data->eOrderNumber . ' does not exist.'));
         }
 

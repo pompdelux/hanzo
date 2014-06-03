@@ -428,6 +428,13 @@
         <source>coupon.invalid.code</source>
         <target>Ongeldige kortingscode</target>
       </trans-unit>
+        <trans-unit id="checkout.confirm.terms" approved="no">
+            <source>checkout.confirm.terms</source>
+            <target><![CDATA[
+                <label for="js_checkout_confirm_terms">Ik bevestig dat ik de heb gelezen en geaccepteerd</label>
+                <a href="/nl_NL/voorpagina/klantenservice/voorwaarden" class="js-external">POMPdeLUX Voorwaarden</a>.
+          ]]></target>
+        </trans-unit>
     </body>
   </file>
 </xliff>

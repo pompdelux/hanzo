@@ -253,11 +253,6 @@ class Tools
             }
         }
 
-        // handle logging when running in fast cgi mode (nginx)
-        if ('fpm-fcgi' == php_sapi_name()) {
-            return error_log('['.date('r').'] '.$file.' +'.$line.' :: '.$data."\n", 3, $root.'/app/logs/php.log');
-        }
-
         error_log($file.' +'.$line.' :: '.$data);
     }
 
@@ -311,7 +306,7 @@ class Tools
      *
      * @see http://dk.php.net/manual/en/function.money-format.php
      *
-     * @param float  $numner
+     * @param float  $number
      * @param string $format see php.net for format documentation
      * @return string
      */
@@ -644,10 +639,34 @@ class Tools
             $params['alt'] = '';
         }
 
+        $lazy = false;
+        if (isset($params['lazy']) && (true === $params['lazy'])) {
+            $lazy = true;
+            unset($params['lazy']);
+
+            if (empty($params['class'])) {
+                $params['class'] = '';
+            }
+            $params['class'] .= ' lazy';
+        }
+
+        $noscript = false;
+        if (isset($params['noscript'])) {
+            $noscript = $params['noscript'];
+            unset($params['noscript']);
+        }
+
         $extra = '';
 
         foreach ($params as $key => $value) {
             $extra .= ' ' . $key . '="'.$value.'"';
+        }
+
+        if ($lazy) {
+            if ($noscript) {
+                $noscript = '<noscript><img src="' . $src . '"' . str_replace(' lazy', '', $extra) . '></noscript>';
+            }
+            return '<img data-original="' . $src . '"' . $extra . '>'.$noscript;
         }
 
         return '<img src="' . $src . '"' . $extra . '>';

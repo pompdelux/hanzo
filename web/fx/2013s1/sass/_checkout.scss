@@ -47,9 +47,25 @@ form.address {
 		margin-top: 0;
 		margin-bottom: 5px;
 	}
-	#checkout-buttons .dialoug-loading{
-		float:right;
-	}
+
+    .checkout-confirm-terms {
+        text-align: center;
+        border: 3px solid $alert-border-color;
+        padding: 10px;
+        display: block;
+        margin: 20px 5px;
+        a {
+            text-decoration: underline;
+        }
+    }
+
+    #checkout-buttons {
+        display: none;
+        .dialoug-loading{
+            float:right;
+        }
+    }
+
 }
 
 #address-block{

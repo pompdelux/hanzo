@@ -31,26 +31,11 @@
 <link href="//fonts.googleapis.com/css?family=Merriweather:400,700,900" rel="stylesheet" type="text/css">
 <link rel="shortcut icon" href="/fx/images/favicon.ico" title="POMPdeLUX" type="image/ico">
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset_url('fx/build/desktop.min.css') }}">
 
-{% stylesheets
-    'fx/2013s1/css/960_8_3_3.css'
-    'fx/2013s1/css/jquery.fullimagebox.css'
-
-    'fx/css/colorbox/theme4/colorbox.css'
-    'fx/css/jquery-ui.css'
-    'fx/scripts/video-js/video-js.css'
-    'fx/scripts/fullcalendar/fullcalendar.css'
-
-    'fx/2013s1/css/screen.css'
-    'fx/2013s1/css/style.css'
-
-    output='fx/cache/2013s1.css'
-    combine=true
-%}
-<link rel="stylesheet" href="{{ asset_url }}" />
-{% endstylesheets %}
-
-<script type="text/javascript" src="{{ cdn }}fx/scripts/modernizr.js"></script>
+<!--[if lt IE 9]>
+<script src="{{ asset_url('vendors/html5shiv/dist/html5shiv.min.js') }}"></script>
+<![endif]-->
 </head>
 <body id="body-{{ page_type|default('page') }}" class="{{ body_classes|default('') }} {{ html_lang }} domain-{{ domain_key|lower }}">
 <div class="top-bar"></div>
@@ -173,14 +158,19 @@
             <div class="hr"></div>
         </div>
         <div class="copy grid_8">
-            {{ 'footer.address'|trans({'%cdn%':cdn, '%url%':app.request.uri|url_encode })|raw }}
+            {{ 'footer.address'|trans({
+                '%cdn%'   : cdn,
+                '%url%'   : app.request.uri|url_encode,
+                '%build%' : assets_version()
+            })|raw }}
         </div>
     </footer>
 </div>
 
-<div id="openNewsletterModal" class="type2 off">
-    <a href="#"><i></i><span>{{ 'newsletter.open.text'|trans({}, 'newsletter')|raw }}</span></a>
-</div>
+{# newsletter thingy #}
+{#<div id="openNewsletterModal" class="type2 off">#}
+    {#<a href="#"><i></i><span>{{ 'newsletter.open.text'|trans({}, 'newsletter')|raw }}</span></a>#}
+{#</div>#}
 
 {{ include('::desktop-footer.html.twig') }}
 {% block javascript %}{% endblock %}

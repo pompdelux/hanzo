@@ -31,5 +31,5 @@ notifications:
 #    on_failure: always
   webhooks:
     urls:
-      - http://193.84.27.240/remote/travis-hook.php
+      - http://tools.pompdelux.com/travis-hook.php
     on_start: true

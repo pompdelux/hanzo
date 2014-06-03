@@ -10,6 +10,7 @@
     <div class="product-list clearfix grid_6 alpha omega row">
       <div class="old-item">
         {% for product in products %}
+          {% set _lazy = (loop.index > 3) ? true : false %}
           {% if loop.index % 3 == 1 %}
             <div class="grid_6 alpha omega row">
           {% endif %}
@@ -19,7 +20,9 @@
                     'alt' : product.alt,
                     'data-flip': product_image_url(product.image_flip, '234x410'),
                     'height' : '410',
-                    'width' : '234'
+                    'width' : '234',
+                    'lazy': _lazy,
+                    'noscript': _lazy
                   }) }}
                   {% if product.prices.sales is defined and show_new_price_badge %}
                   <div class="new-price"></div>

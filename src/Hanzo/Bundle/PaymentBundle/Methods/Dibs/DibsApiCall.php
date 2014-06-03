@@ -30,7 +30,7 @@ class DibsApiCall implements PaymentMethodApiCallInterface
     protected $settings = array();
 
     /**
-     * @var DibsApi
+     * @var \Hanzo\Bundle\PaymentBundle\Methods\Dibs\Type\FlexWin|\Hanzo\Bundle\PaymentBundle\Methods\Dibs\Type\DibsPaymentWindow
      **/
     protected $api = null;
 
@@ -92,6 +92,8 @@ class DibsApiCall implements PaymentMethodApiCallInterface
         $response = curl_exec($ch);
 
         curl_close($ch);
+
+        $this->api->service_logger->plog($params, ['outgoing', 'payment', 'dibs', $function]);
 
         if ($response === false) {
             throw new DibsApiCallException('Kommunikation med DIBS fejlede, fejlen var: "'.curl_error($ch).'"');

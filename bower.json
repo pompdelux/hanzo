@@ -1,0 +1,24 @@
+{
+  "name": "hanzo",
+  "version": "0.0.1",
+  "homepage": "https://github.com/pompdelux/hanzo",
+  "authors": [
+    "Ulrik Nielsen <un@bellcom.dk>",
+    "Anders Bryrup <ab@bellcom.dk>"
+  ],
+  "description": "js vendor files for hanzo",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "web/vendors",
+    "test",
+    "tests"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "html5shiv": "~3.7.2"
+  }
+}

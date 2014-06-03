@@ -436,6 +436,13 @@
         <source>coupon.invalid.code</source>
         <target>Ugyldig rabattkode</target>
       </trans-unit>
+        <trans-unit id="checkout.confirm.terms" approved="no">
+            <source>checkout.confirm.terms</source>
+            <target><![CDATA[
+              <label for="js_checkout_confirm_terms">Jeg bestiller hermed overstående og bekrefter at jeg har lest og aksepterer</label>
+              <a href="/nb_NO/forside/kundeservice/vilkar" class="js-external">POMPdeLUX vilkår</a>.
+          ]]></target>
+        </trans-unit>
     </body>
   </file>
 </xliff>

@@ -174,7 +174,7 @@
 						<li>Rücksendung von Waren: POMPdeLUX Aps</li>
                         <li>Grydhøjparken 10</li>
                         <li>DK-8381 Tilst</li>
-                        <li><img src="%cdn%fx/images/creditcards_de.png" alt="credit cards" title="credit cards"></li>
+                        <li><img src="%cdn%fx/images/creditcards_de.png?%build%" alt="credit cards" title="credit cards"></li>
                         <li><a href="http://www.facebook.com/sharer.php?u=%url%" class="facebook-button social-button" title="Del denne side på Facebook">Auf Facebook teilen</a></li>
                     </ul>
                 ]]></target>
@@ -212,12 +212,6 @@
             <trans-unit id="browser.title">
                 <source>browser.title</source>
                 <target>POMPdeLUX - wir lieben Kinderbekleidung</target>
-            </trans-unit>
-            <trans-unit id="create.account.vilkaar.link">
-                <source>create.account.vilkaar.link</source>
-                <target><![CDATA[
-                    <a href="/de_DE/home/kundendienst/abgs" target="_blank">POMPdeLUX AGB's.</a>
-                ]]></target>
             </trans-unit>
             <trans-unit id="category.selector.look">
                 <source>category.selector.look</source>

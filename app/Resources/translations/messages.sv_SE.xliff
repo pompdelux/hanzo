@@ -176,7 +176,7 @@
 						<li>c/o POMPdeLUX</li>
                         <li>Grydhøjparken 10</li>
                         <li>DK-8381 Tilst</li>
-                        <li><img src="%cdn%fx/images/creditcards_se.png" alt="credit cards" title="credit cards"></li>
+                        <li><img src="%cdn%fx/images/creditcards_se.png?%build%" alt="credit cards" title="credit cards"></li>
                         <li><a href="http://www.facebook.com/sharer.php?u=%url%" class="facebook-button social-button" title="Share this page on facebook">Share</a></li>
                     </ul>
                 ]]></target>
@@ -201,7 +201,7 @@
             </trans-unit>
             <trans-unit id="buy.set.description">
                 <source>buy.set.description</source>
-                <target></target>
+                <target>Välj storlek och färg vid varje style du vill lägga i korgen.</target>
             </trans-unit>
             <trans-unit id="button.back">
                 <source>button.back</source>
@@ -214,12 +214,6 @@
             <trans-unit id="browser.title">
                 <source>browser.title</source>
                 <target>POMPdeLUX - Tokig i barnkläder!</target>
-            </trans-unit>
-            <trans-unit id="create.account.vilkaar.link">
-                <source>create.account.vilkaar.link</source>
-                <target><![CDATA[
-                    <a href="/sv_SE/forside/kundservice/villkor" target="_blank">POMPdeLUX Villkor.</a>
-                ]]></target>
             </trans-unit>
             <trans-unit id="category.selector.look">
                 <source>category.selector.look</source>

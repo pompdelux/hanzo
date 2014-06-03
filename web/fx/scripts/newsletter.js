@@ -163,4 +163,4 @@ var newsletter = (function($) {
 })(jQuery);
 
 newsletter.footer();
-newsletter.allover();
+//newsletter.allover();

@@ -25,100 +25,36 @@ use Symfony\Component\Validator\ExecutionContext;
 class Customers extends BaseCustomers implements AdvancedUserInterface
 {
     protected $acl;
-
-
-    /**
-     * shortcut for access checks on the customer.
-     *
-     * @param $role
-     * @return boolean
-     */
-    public function isGranted($role)
-    {
-        if (empty($this->acl)) {
-            $this->acl = Hanzo::getInstance()->container->get('security.context');
-        }
-
-        return $this->acl->isGranted($role);
-    }
-
-    /**
-     * login check
-     *
-     * @return boolean
-     */
-    public function isLoggedIn()
-    {
-        return $this->isGranted('IS_AUTHENTICATED_FULLY');
-    }
-
-
-    /**
-     * get full name
-     */
-     public function getName()
-     {
-         return trim($this->getFirstName() . ' ' . $this->getLastName());
-     }
-
-
-    /**
-     * The following methods is needed by the form component.....
-     */
-
-    public function getAddresses($criteria = null, PropelPDO $con = null)
-    {
-        return $this->getAddressess($criteria, $con);
-    }
-
     protected $accept = false;
-    public function getAccept()
-    {
-        return (bool) $this->getName();
-    }
 
-    /**
-     * validate uniq emails
-     *
-     * @return boolean
-     */
-    public function isEmailUniq()
-    {
-        if ($email = $this->getEmail()) {
-            $customer = CustomersQuery::create()->findOneByEmail($email);
-            if ($customer instanceof Customers) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-
-    private $map = array(
-        'consultant' => array(
+    private $map = [
+        'consultant' => [
             'ROLE_CONSULTANT',
             'ROLE_USER',
-        ),
-        'customer' => array(
+        ],
+        'customer' => [
             'ROLE_CUSTOMER',
             'ROLE_USER',
-        ),
-        'employee' => array(
+        ],
+        'employee' => [
             'ROLE_EMPLOYEE',
             'ROLE_USER',
-        ),
-        'customers_service' => array(
+        ],
+        'customers_service' => [
             'ROLE_USER',
             'ROLE_CUSTOMERS_SERVICE'
-        ),
-        'admin' => array(
+        ],
+        'admin' => [
             'ROLE_ADMIN',
             'ROLE_EMPLOYEE',
             'ROLE_SALES',
             'ROLE_USER',
-        ),
-    );
+        ],
+        'logistics' => [
+            'ROLE_USER',
+            'ROLE_LOGISTICS',
+        ]
+    ];
 
     // NICETO: should not be hardcoded
     private $extended = [
@@ -162,7 +98,82 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
         'pf@pompdelux.dk'        => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
         'tt@pompdelux.dk'        => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
         'vs@pompdelux.dk'        => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
+        // logistics
+        'nh@pompdelux.dk'        => ['ROLE_LOGISTICS', 'ROLE_EMPLOYEE'],
     ];
+
+
+    /**
+     * shortcut for access checks on the customer.
+     *
+     * @param $role
+     * @return boolean
+     */
+    public function isGranted($role)
+    {
+        if (empty($this->acl)) {
+            $this->acl = Hanzo::getInstance()->container->get('security.context');
+        }
+
+        return $this->acl->isGranted($role);
+    }
+
+    /**
+     * login check
+     *
+     * @return boolean
+     */
+    public function isLoggedIn()
+    {
+        return $this->isGranted('IS_AUTHENTICATED_FULLY');
+    }
+
+
+    /**
+     * get full name
+     */
+     public function getName()
+     {
+         return trim($this->getFirstName().' '.$this->getLastName());
+     }
+
+
+    /**
+     * The following methods is needed by the form component.....
+     */
+
+    public function getAddresses($criteria = null, PropelPDO $con = null)
+    {
+        return $this->getAddressess($criteria, $con);
+    }
+
+
+    /**
+     * @return bool
+     */
+    public function getAccept()
+    {
+        return (bool) $this->getName();
+    }
+
+
+    /**
+     * validate uniq emails
+     *
+     * @return boolean
+     */
+    public function isEmailUniq()
+    {
+        if ($email = $this->getEmail()) {
+            $customer = CustomersQuery::create()->findOneByEmail($email);
+            if ($customer instanceof Customers) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
 
     /**
      * {@inheritDoc}
@@ -188,6 +199,7 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
         return '';
     }
 
+
     /**
      * {@inheritDoc}
      */
@@ -195,6 +207,7 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
     {
         return $this->getEmail();
     }
+
 
     /**
      * {@inheritDoc}
@@ -208,6 +221,7 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
      * {@inheritDoc}
      */
     public function eraseCredentials() {}
+
 
     /**
      * {@inheritDoc}
@@ -225,6 +239,7 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
         return true;
     }
 
+
     /**
      * {@inheritDoc}
      */
@@ -233,6 +248,7 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
         return true;
     }
 
+
     /**
      * {@inheritDoc}
      */
@@ -240,6 +256,7 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
     {
         return true;
     }
+
 
     /**
      * Validate length of users full name

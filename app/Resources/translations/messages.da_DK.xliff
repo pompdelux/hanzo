@@ -174,7 +174,7 @@
 						<li>Returnering af varer: POMPdeLUX Aps</li>
                         <li>Grydhøjparken 10</li>
                         <li>DK-8381 Tilst</li>
-                        <li><img src="%cdn%fx/images/creditcards_dk.png" alt="credit cards" title="credit cards"></li>
+                        <li><img src="%cdn%fx/images/creditcards_dk.png?%build%" alt="credit cards" title="credit cards"></li>
                         <li><a href="http://www.facebook.com/sharer.php?u=%url%" class="facebook-button social-button" title="Del denne side på Facebook">Del på Facebook</a></li>
                     </ul>
                 ]]></target>

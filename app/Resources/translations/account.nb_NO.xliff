@@ -221,10 +221,6 @@
                 <source>nno.fetch</source>
                 <target>Last</target>
             </trans-unit>
-            <trans-unit id="71" approved="no">
-                <source>create.accept</source>
-                <target>Jeg bestiller hermed overstående og bekrefter at jeg har lest og aksepterer </target>
-            </trans-unit>
             <trans-unit id="72">
                 <source>create.newsletter</source>
                 <target>Påmelding nyhetsbrev</target>

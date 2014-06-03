@@ -151,6 +151,15 @@ admin_cms_redirect_delete:
     requirements:
         id: \d+
 
+admin_cms_delete_revision:
+    pattern:  /admin/cms/revision/delete/{id}/{timestamp}
+    defaults:
+        _controller: AdminBundle:Cms:deleteRevision
+        _format: json
+    requirements:
+        _format: html|json
+        id: \d+
+
 admin_products:
     pattern:  /admin/products/cat/{category_id}/{subcategory_id}
     defaults:
@@ -400,6 +409,13 @@ admin_customer_order:
     pattern:  /admin/customer/orders/id/{order_id}
     defaults:
         _controller: AdminBundle:Orders:view
+    requirements:
+        order_id: \d+
+
+admin_orders_resend_confirmation_mail:
+    pattern:  /admin/customer/orders/id/{id}/resend-confirmation-mail
+    defaults:
+        _controller: AdminBundle:Orders:resendConfirmationMail
     requirements:
         order_id: \d+
 

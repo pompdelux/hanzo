@@ -12,6 +12,7 @@ use Hanzo\Model\OrdersVersions;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 use Propel;
 use Exception;
@@ -25,17 +26,17 @@ use Hanzo\Model\OrdersDeletedLog;
 use Hanzo\Model\OrdersSyncLogQuery;
 use Hanzo\Model\OrdersSyncLog;
 use Hanzo\Model\DomainsQuery;
-use Hanzo\Model\GothiaAccounts;
-use Hanzo\Bundle\PaymentBundle\Gothia\GothiaApi;
-use Hanzo\Bundle\PaymentBundle\Gothia\GothiaApiCallException;
+
+use Hanzo\Bundle\PaymentBundle\Methods\Gothia\GothiaApi;
+use Hanzo\Bundle\PaymentBundle\Methods\Gothia\GothiaApiCallException;
+use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
 
 class OrdersController extends CoreController
 {
 
     public function indexAction(Request $request, $customer_id, $domain_key, $pager)
     {
-
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_LOGISTICS")'))) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
@@ -153,7 +154,7 @@ class OrdersController extends CoreController
 
     public function viewAction(Request $request, $order_id)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_LOGISTICS")'))) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
@@ -243,7 +244,7 @@ class OrdersController extends CoreController
 
     public function previewAction($order_id)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_LOGISTICS")'))) {
             throw new AccessDeniedException();
         }
 
@@ -888,5 +889,28 @@ class OrdersController extends CoreController
 
         $this->container->get('session')->getFlashBag()->add('notice', 'Ordren(e) er nu genoprettet.');
         return $this->redirect($this->generateUrl('admin_orders_deleted_order'));
+    }
+
+    /**
+     * Resend an orders confirmation email.
+     *
+     * @ParamConverter("order", class="Hanzo\Model\Orders")
+     *
+     * @param  Orders $order
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function resendConfirmationMailAction(Orders $order)
+    {
+        if ($order->getState() < Orders::STATE_PENDING) {
+            $this->container->get('session')->getFlashBag()->add('notice', 'Ordre nummer #'.$order->getId().' er ikke så langt at der kan gensendes en konfirmationsmail.');
+            return $this->redirect($this->generateUrl('admin_customer_order', ['order_id' => $order->getId()]));
+        }
+
+        $mailer = $this->container->get('hanzo.order.send.confirmation.mail');
+        $mailer->build($order);
+        $mailer->send();
+
+        $this->container->get('session')->getFlashBag()->add('notice', 'Konfirmationsmailen er nu gensendt for ordre nummer #'.$order->getId().' til '.$order->getEmail());
+        return $this->redirect($this->generateUrl('admin_customer_order', ['order_id' => $order->getId()]));
     }
 }

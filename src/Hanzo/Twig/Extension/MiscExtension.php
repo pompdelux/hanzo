@@ -398,17 +398,35 @@ class MiscExtension extends Twig_Extension
                         $attr['class'] = $block['class'];
                     }
 
+                    if (!empty($block['height']) && preg_match('/\d+/', $block['height'])) {
+                        $attr['height'] = $block['height'];
+                    }
+
+                    if (!empty($block['width']) && preg_match('/\d+/', $block['width'])) {
+                        $attr['width'] = $block['width'];
+                    }
+
                     $html = Tools::imageTag($block['src'], $attr);
 
                     if (!empty($block['href'])) {
-                      $params = '';
-                      if (isset($block['params']) && is_array($block['params'])) {
-                          foreach ($block['params'] as $k => $v) {
-                              $params .= ' '.$k.'="'.$v.'"';
-                          }
-                      }
+                        $params = '';
+                        if (isset($block['params']) && is_array($block['params'])) {
 
-                      $html = '<a href="'.$block['href'].'"'.$params.'>'.$html.'</a>';
+                            if (isset($block['params']['target']) && ('_blank' == $block['params']['target'])) {
+                                if (empty($block['params']['class'])) {
+                                    $block['params']['class'] = '';
+                                }
+
+                                $block['params']['class'] .= ' js-external';
+                                unset($block['params']['target']);
+                            }
+
+                            foreach ($block['params'] as $k => $v) {
+                                $params .= ' '.$k.'="'.$v.'"';
+                            }
+                        }
+
+                        $html = '<a href="'.$block['href'].'"'.$params.'>'.$html.'</a>';
                     }
 
                     if (isset($block['caption']) && $block['caption']) {
