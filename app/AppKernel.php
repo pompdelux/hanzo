@@ -88,6 +88,7 @@ class AppKernel extends Kernel
         return $env;
     }
 
+    
     /**
      * handle kernel boot
      */
@@ -144,6 +145,9 @@ class AppKernel extends Kernel
     }
 
 
+    /**
+     * @param LoaderInterface $loader
+     */
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
         list($env, $lang,) = explode('_', $this->getEnvironment());
@@ -179,6 +183,9 @@ class AppKernel extends Kernel
     }
 
 
+    /**
+     * @return string
+     */
     public function getStoreMode()
     {
         $mode = 'webshop';
@@ -191,16 +198,33 @@ class AppKernel extends Kernel
         return $mode;
     }
 
+
+    /**
+     * @param string $key
+     * @param mixed  $value
+     */
     public function setSetting($key, $value)
     {
         $this->settings[$key] = $value;
     }
 
+
+    /**
+     * @param  string $key
+     * @param  mixed  $default
+     * @return mixed
+     */
     public function getSetting($key, $default = null)
     {
         return isset($this->settings[$key]) ? $this->settings[$key] : $default;
     }
 
+
+    /**
+     * Override Kernel::getCacheDir to let us deal with vagrant environments
+     *
+     * @return string
+     */
     public function getCacheDir()
     {
         if ($this->isVagrantEnv()) {
@@ -210,6 +234,12 @@ class AppKernel extends Kernel
         return parent::getCacheDir();
     }
 
+
+    /**
+     * Override Kernel::getLogDir to let us deal with vagrant environments
+     *
+     * @return string
+     */
     public function getLogDir()
     {
         if ($this->isVagrantEnv()) {
@@ -220,6 +250,11 @@ class AppKernel extends Kernel
     }
 
 
+    /**
+     * Test dev/test env for beeing vagrant boxes.
+     *
+     * @return bool
+     */
     private function isVagrantEnv()
     {
         if (preg_match('/^(test|dev)_/', $this->getEnvironment())) {
