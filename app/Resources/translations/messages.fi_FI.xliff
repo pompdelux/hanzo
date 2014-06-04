@@ -2,6 +2,10 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
+            <trans-unit id="unable.to.delete.order.in.current.state">
+                <source>unable.to.delete.order.in.current.state</source>
+                <target>Ordren kan ikke slettes i dens nuværende tilstand.</target>
+            </trans-unit>
             <trans-unit id="size.label.postfix">
                 <source>size.label.postfix</source>
                 <target></target>

@@ -200,7 +200,7 @@ class HistoryController extends CoreController
             ->findOneById($order_id)
         ;
 
-        if (!$order instanceof Orders) {
+        if ((!$order instanceof Orders) || $order->getInEdit()) {
             $this->get('session')->getFlashBag()->add('notice', 'unable.to.delete.order.in.current.state');
         } else {
             $msg = $this->get('translator')->trans('order.deleted', array( '%id%' => $order_id ));
