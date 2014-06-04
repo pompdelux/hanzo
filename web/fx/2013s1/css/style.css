@@ -2417,6 +2417,9 @@ div.invalid-order {
   vertical-align: middle;
   margin-left: 5px;
 }
+#mini-basket.basket a.total {
+  min-width: 100px;
+}
 
 #mega-basket {
   position: absolute;
