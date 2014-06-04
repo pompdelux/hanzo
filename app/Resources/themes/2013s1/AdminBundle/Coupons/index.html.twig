@@ -55,7 +55,7 @@
             <tr>
                 <td>{{ coupon.id }}</td>
                 <td>{{ coupon.code }}</td>
-                <td>{{ coupon.amount|number_format(2, ',', '.') }}</td>
+                <td>{{ coupon.amount|number_format(2, ',', '.') }}{% if coupon.amounttype == 'pct' %}%{% endif %}</td>
                 <td>{{ coupon.minpurchaseamount|number_format(2, ',', '.') }}</td>
                 <td>{{ coupon.currencycode }}</td>
                 <td>

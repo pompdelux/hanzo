@@ -129,6 +129,11 @@ class CouponsController extends CoreController
                 'label' => 'admin.coupons.amount',
                 'translation_domain' => 'admin',
                 'required' => true
+            ))->add('amount_type', 'choice', array(
+                'choices' => ['amount' => 'Beløb', 'pct' => 'Procent'],
+                'label' => 'admin.coupons.amount.type',
+                'translation_domain' => 'admin',
+                'required' => false
             ))->add('min_purchase_amount', 'text', array(
                 'label' => 'admin.coupons.min.purchase.amount',
                 'translation_domain' => 'admin',
@@ -243,6 +248,11 @@ class CouponsController extends CoreController
                 'label' => 'Beløb:',
                 'translation_domain' => 'admin',
                 'required' => true
+            ))->add('amount_type', 'choice', array(
+                'choices' => ['amount' => 'Beløb', 'pct' => 'Procent'],
+                'label' => 'admin.coupons.amount.type',
+                'translation_domain' => 'admin',
+                'required' => false
             ))->add('currency_code', 'choice', array(
                 'choices' => $currencies_data,
                 'label' => 'Valuta:',
@@ -292,6 +302,7 @@ class CouponsController extends CoreController
                     $c = new Coupons();
                     $c->setCode($code);
                     $c->setAmount($post->getAmount());
+                    $c->setAmountType($post->getAmountType());
                     $c->setMinPurchaseAmount($post->getMinPurchaseAmount());
                     $c->setActiveFrom($post->getActiveFrom());
                     $c->setActiveTo($post->getActiveTo());

@@ -53,6 +53,7 @@ class ProductsTableMap extends TableMap
         $this->addColumn('is_out_of_stock', 'IsOutOfStock', 'BOOLEAN', true, 1, false);
         $this->addColumn('is_active', 'IsActive', 'BOOLEAN', true, 1, true);
         $this->addColumn('is_voucher', 'IsVoucher', 'BOOLEAN', true, 1, false);
+        $this->addColumn('is_discountable', 'IsDiscountable', 'BOOLEAN', true, 1, true);
         $this->addForeignKey('primary_categories_id', 'PrimaryCategoriesId', 'INTEGER', 'categories', 'id', false, null, null);
         $this->addColumn('created_at', 'CreatedAt', 'TIMESTAMP', false, null, null);
         $this->addColumn('updated_at', 'UpdatedAt', 'TIMESTAMP', false, null, null);

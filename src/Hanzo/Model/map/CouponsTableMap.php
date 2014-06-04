@@ -45,6 +45,7 @@ class CouponsTableMap extends TableMap
         $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
         $this->addColumn('code', 'Code', 'VARCHAR', true, 12, null);
         $this->addColumn('amount', 'Amount', 'DECIMAL', true, 15, null);
+        $this->addColumn('amount_type', 'AmountType', 'VARCHAR', true, 6, 'amount');
         $this->addColumn('min_purchase_amount', 'MinPurchaseAmount', 'DECIMAL', false, 15, null);
         $this->addColumn('currency_code', 'CurrencyCode', 'VARCHAR', true, 3, null);
         $this->addColumn('active_from', 'ActiveFrom', 'TIMESTAMP', false, null, null);

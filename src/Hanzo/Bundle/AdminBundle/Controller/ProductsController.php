@@ -240,12 +240,15 @@ class ProductsController extends CoreController
 
 
         $form_hasVideo = $this->createFormBuilder($current_product)
-            ->add('has_video', 'checkbox', array(
-                    'label'              => 'product.label.has_video',
-                    'translation_domain' => 'admin',
-                    'required'           => false
-                )
-            )->getForm()
+            ->add('has_video', 'checkbox', [
+                'label'              => 'product.label.has_video',
+                'translation_domain' => 'admin',
+                'required'           => false
+            ])->add('is_discountable', 'checkbox', [
+                'label'              => 'product.label.is_discountable',
+                'translation_domain' => 'admin',
+                'required'           => false
+            ])->getForm()
         ;
 
         $request = $this->getRequest();
@@ -254,6 +257,12 @@ class ProductsController extends CoreController
 
             if ($form_hasVideo->isValid()) {
                 $current_product->save($this->getDbConnection());
+
+                // update child products
+                ProductsQuery::create()
+                    ->filterByMaster($current_product->getSku())
+                    ->update(['IsDiscountable' => $current_product->getIsDiscountable()])
+                ;
             }
         }
 

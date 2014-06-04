@@ -43,13 +43,13 @@ abstract class BaseProductsPeer
     const TM_CLASS = 'Hanzo\\Model\\map\\ProductsTableMap';
 
     /** The total number of columns. */
-    const NUM_COLUMNS = 14;
+    const NUM_COLUMNS = 15;
 
     /** The number of lazy-loaded columns. */
     const NUM_LAZY_LOAD_COLUMNS = 0;
 
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-    const NUM_HYDRATE_COLUMNS = 14;
+    const NUM_HYDRATE_COLUMNS = 15;
 
     /** the column name for the id field */
     const ID = 'products.id';
@@ -83,6 +83,9 @@ abstract class BaseProductsPeer
 
     /** the column name for the is_voucher field */
     const IS_VOUCHER = 'products.is_voucher';
+
+    /** the column name for the is_discountable field */
+    const IS_DISCOUNTABLE = 'products.is_discountable';
 
     /** the column name for the primary_categories_id field */
     const PRIMARY_CATEGORIES_ID = 'products.primary_categories_id';
@@ -119,12 +122,12 @@ abstract class BaseProductsPeer
      * e.g. ProductsPeer::$fieldNames[ProductsPeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('Id', 'Sku', 'Master', 'Size', 'Color', 'Unit', 'Washing', 'HasVideo', 'IsOutOfStock', 'IsActive', 'IsVoucher', 'PrimaryCategoriesId', 'CreatedAt', 'UpdatedAt', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'sku', 'master', 'size', 'color', 'unit', 'washing', 'hasVideo', 'isOutOfStock', 'isActive', 'isVoucher', 'primaryCategoriesId', 'createdAt', 'updatedAt', ),
-        BasePeer::TYPE_COLNAME => array (ProductsPeer::ID, ProductsPeer::SKU, ProductsPeer::MASTER, ProductsPeer::SIZE, ProductsPeer::COLOR, ProductsPeer::UNIT, ProductsPeer::WASHING, ProductsPeer::HAS_VIDEO, ProductsPeer::IS_OUT_OF_STOCK, ProductsPeer::IS_ACTIVE, ProductsPeer::IS_VOUCHER, ProductsPeer::PRIMARY_CATEGORIES_ID, ProductsPeer::CREATED_AT, ProductsPeer::UPDATED_AT, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'SKU', 'MASTER', 'SIZE', 'COLOR', 'UNIT', 'WASHING', 'HAS_VIDEO', 'IS_OUT_OF_STOCK', 'IS_ACTIVE', 'IS_VOUCHER', 'PRIMARY_CATEGORIES_ID', 'CREATED_AT', 'UPDATED_AT', ),
-        BasePeer::TYPE_FIELDNAME => array ('id', 'sku', 'master', 'size', 'color', 'unit', 'washing', 'has_video', 'is_out_of_stock', 'is_active', 'is_voucher', 'primary_categories_id', 'created_at', 'updated_at', ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, )
+        BasePeer::TYPE_PHPNAME => array ('Id', 'Sku', 'Master', 'Size', 'Color', 'Unit', 'Washing', 'HasVideo', 'IsOutOfStock', 'IsActive', 'IsVoucher', 'IsDiscountable', 'PrimaryCategoriesId', 'CreatedAt', 'UpdatedAt', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'sku', 'master', 'size', 'color', 'unit', 'washing', 'hasVideo', 'isOutOfStock', 'isActive', 'isVoucher', 'isDiscountable', 'primaryCategoriesId', 'createdAt', 'updatedAt', ),
+        BasePeer::TYPE_COLNAME => array (ProductsPeer::ID, ProductsPeer::SKU, ProductsPeer::MASTER, ProductsPeer::SIZE, ProductsPeer::COLOR, ProductsPeer::UNIT, ProductsPeer::WASHING, ProductsPeer::HAS_VIDEO, ProductsPeer::IS_OUT_OF_STOCK, ProductsPeer::IS_ACTIVE, ProductsPeer::IS_VOUCHER, ProductsPeer::IS_DISCOUNTABLE, ProductsPeer::PRIMARY_CATEGORIES_ID, ProductsPeer::CREATED_AT, ProductsPeer::UPDATED_AT, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'SKU', 'MASTER', 'SIZE', 'COLOR', 'UNIT', 'WASHING', 'HAS_VIDEO', 'IS_OUT_OF_STOCK', 'IS_ACTIVE', 'IS_VOUCHER', 'IS_DISCOUNTABLE', 'PRIMARY_CATEGORIES_ID', 'CREATED_AT', 'UPDATED_AT', ),
+        BasePeer::TYPE_FIELDNAME => array ('id', 'sku', 'master', 'size', 'color', 'unit', 'washing', 'has_video', 'is_out_of_stock', 'is_active', 'is_voucher', 'is_discountable', 'primary_categories_id', 'created_at', 'updated_at', ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, )
     );
 
     /**
@@ -134,12 +137,12 @@ abstract class BaseProductsPeer
      * e.g. ProductsPeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Sku' => 1, 'Master' => 2, 'Size' => 3, 'Color' => 4, 'Unit' => 5, 'Washing' => 6, 'HasVideo' => 7, 'IsOutOfStock' => 8, 'IsActive' => 9, 'IsVoucher' => 10, 'PrimaryCategoriesId' => 11, 'CreatedAt' => 12, 'UpdatedAt' => 13, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'sku' => 1, 'master' => 2, 'size' => 3, 'color' => 4, 'unit' => 5, 'washing' => 6, 'hasVideo' => 7, 'isOutOfStock' => 8, 'isActive' => 9, 'isVoucher' => 10, 'primaryCategoriesId' => 11, 'createdAt' => 12, 'updatedAt' => 13, ),
-        BasePeer::TYPE_COLNAME => array (ProductsPeer::ID => 0, ProductsPeer::SKU => 1, ProductsPeer::MASTER => 2, ProductsPeer::SIZE => 3, ProductsPeer::COLOR => 4, ProductsPeer::UNIT => 5, ProductsPeer::WASHING => 6, ProductsPeer::HAS_VIDEO => 7, ProductsPeer::IS_OUT_OF_STOCK => 8, ProductsPeer::IS_ACTIVE => 9, ProductsPeer::IS_VOUCHER => 10, ProductsPeer::PRIMARY_CATEGORIES_ID => 11, ProductsPeer::CREATED_AT => 12, ProductsPeer::UPDATED_AT => 13, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'SKU' => 1, 'MASTER' => 2, 'SIZE' => 3, 'COLOR' => 4, 'UNIT' => 5, 'WASHING' => 6, 'HAS_VIDEO' => 7, 'IS_OUT_OF_STOCK' => 8, 'IS_ACTIVE' => 9, 'IS_VOUCHER' => 10, 'PRIMARY_CATEGORIES_ID' => 11, 'CREATED_AT' => 12, 'UPDATED_AT' => 13, ),
-        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'sku' => 1, 'master' => 2, 'size' => 3, 'color' => 4, 'unit' => 5, 'washing' => 6, 'has_video' => 7, 'is_out_of_stock' => 8, 'is_active' => 9, 'is_voucher' => 10, 'primary_categories_id' => 11, 'created_at' => 12, 'updated_at' => 13, ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, )
+        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Sku' => 1, 'Master' => 2, 'Size' => 3, 'Color' => 4, 'Unit' => 5, 'Washing' => 6, 'HasVideo' => 7, 'IsOutOfStock' => 8, 'IsActive' => 9, 'IsVoucher' => 10, 'IsDiscountable' => 11, 'PrimaryCategoriesId' => 12, 'CreatedAt' => 13, 'UpdatedAt' => 14, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'sku' => 1, 'master' => 2, 'size' => 3, 'color' => 4, 'unit' => 5, 'washing' => 6, 'hasVideo' => 7, 'isOutOfStock' => 8, 'isActive' => 9, 'isVoucher' => 10, 'isDiscountable' => 11, 'primaryCategoriesId' => 12, 'createdAt' => 13, 'updatedAt' => 14, ),
+        BasePeer::TYPE_COLNAME => array (ProductsPeer::ID => 0, ProductsPeer::SKU => 1, ProductsPeer::MASTER => 2, ProductsPeer::SIZE => 3, ProductsPeer::COLOR => 4, ProductsPeer::UNIT => 5, ProductsPeer::WASHING => 6, ProductsPeer::HAS_VIDEO => 7, ProductsPeer::IS_OUT_OF_STOCK => 8, ProductsPeer::IS_ACTIVE => 9, ProductsPeer::IS_VOUCHER => 10, ProductsPeer::IS_DISCOUNTABLE => 11, ProductsPeer::PRIMARY_CATEGORIES_ID => 12, ProductsPeer::CREATED_AT => 13, ProductsPeer::UPDATED_AT => 14, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'SKU' => 1, 'MASTER' => 2, 'SIZE' => 3, 'COLOR' => 4, 'UNIT' => 5, 'WASHING' => 6, 'HAS_VIDEO' => 7, 'IS_OUT_OF_STOCK' => 8, 'IS_ACTIVE' => 9, 'IS_VOUCHER' => 10, 'IS_DISCOUNTABLE' => 11, 'PRIMARY_CATEGORIES_ID' => 12, 'CREATED_AT' => 13, 'UPDATED_AT' => 14, ),
+        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'sku' => 1, 'master' => 2, 'size' => 3, 'color' => 4, 'unit' => 5, 'washing' => 6, 'has_video' => 7, 'is_out_of_stock' => 8, 'is_active' => 9, 'is_voucher' => 10, 'is_discountable' => 11, 'primary_categories_id' => 12, 'created_at' => 13, 'updated_at' => 14, ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, )
     );
 
     /**
@@ -224,6 +227,7 @@ abstract class BaseProductsPeer
             $criteria->addSelectColumn(ProductsPeer::IS_OUT_OF_STOCK);
             $criteria->addSelectColumn(ProductsPeer::IS_ACTIVE);
             $criteria->addSelectColumn(ProductsPeer::IS_VOUCHER);
+            $criteria->addSelectColumn(ProductsPeer::IS_DISCOUNTABLE);
             $criteria->addSelectColumn(ProductsPeer::PRIMARY_CATEGORIES_ID);
             $criteria->addSelectColumn(ProductsPeer::CREATED_AT);
             $criteria->addSelectColumn(ProductsPeer::UPDATED_AT);
@@ -239,6 +243,7 @@ abstract class BaseProductsPeer
             $criteria->addSelectColumn($alias . '.is_out_of_stock');
             $criteria->addSelectColumn($alias . '.is_active');
             $criteria->addSelectColumn($alias . '.is_voucher');
+            $criteria->addSelectColumn($alias . '.is_discountable');
             $criteria->addSelectColumn($alias . '.primary_categories_id');
             $criteria->addSelectColumn($alias . '.created_at');
             $criteria->addSelectColumn($alias . '.updated_at');

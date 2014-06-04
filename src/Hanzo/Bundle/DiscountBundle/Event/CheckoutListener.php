@@ -2,15 +2,10 @@
 
 namespace Hanzo\Bundle\DiscountBundle\Event;
 
-use Propel;
-use PropelCollection;
-
-use Hanzo\Core\Hanzo;
-use Hanzo\Core\Tools;
+use Hanzo\Bundle\DiscountBundle\Handlers\CouponHandler;
+use Hanzo\Bundle\DiscountBundle\Handlers\PersonalDiscountHandler;
 use Hanzo\Model\Customers;
 use Hanzo\Model\Orders;
-use Hanzo\Model\OrdersLinesQuery;
-use Hanzo\Model\ProductsDomainsPricesPeer;
 use Hanzo\Model\GiftCards;
 use Hanzo\Model\GiftCardsPeer;
 use Hanzo\Model\GiftCardsQuery;
@@ -21,10 +16,14 @@ use Symfony\Bridge\Monolog\Logger;
 class CheckoutListener
 {
     protected $logger;
+    protected $coupon_handler;
+    protected $personal_discount_handler;
 
-    public function __construct(Logger $logger)
+    public function __construct(Logger $logger, CouponHandler $coupon_handler, PersonalDiscountHandler $personal_discount_handler)
     {
-        $this->logger = $logger;
+        $this->logger                    = $logger;
+        $this->coupon_handler            = $coupon_handler;
+        $this->personal_discount_handler = $personal_discount_handler;
     }
 
     public function onFinalize(FilterOrderEvent $event)
@@ -37,51 +36,8 @@ class CheckoutListener
             return;
         }
 
-        $hanzo    = Hanzo::getInstance();
-        $discount = 0;
-
-        // apply group and private discounts if discounts is not disabled
-        if (0 == $hanzo->get('webshop.disable_discounts')) {
-            if ($customer->getDiscount()) {
-                $discount_label = 'discount.private';
-                $discount = $customer->getDiscount();
-            } else {
-                if ($customer->getGroups()) {
-                    $discount_label = 'discount.group';
-                    $discount = $customer->getGroups()->getDiscount();
-                }
-            }
-        }
-
-        // we do not stack discounts, so we need to recalculate the orderlines
-        if ($discount <> 0.00) {
-            $lines = $order->getOrdersLiness();
-
-            $product_ids = array();
-            foreach ($lines as $line) {
-                if('product' == $line->getType()) {
-                    $product_ids[] = $line->getProductsId();
-                }
-            }
-            $prices = ProductsDomainsPricesPeer::getProductsPrices($product_ids);
-
-            $total = 0;
-            foreach ($lines as $line) {
-                if('product' == $line->getType()) {
-                    $price = $prices[$line->getProductsId()];
-
-                    $line->setPrice($price['normal']['price']);
-                    $line->setVat($price['normal']['vat']);
-                    $line->setOriginalPrice($price['normal']['price']);
-
-                    $total += ($line->getPrice() * $line->getQuantity());
-                }
-            }
-
-            // so far _all_ discounts are handled as % discounts
-            $discount_amount = ($total / 100) * $discount;
-            $order->setDiscountLine($discount_label, $discount_amount, $discount);
-        }
+        $order = $this->personal_discount_handler->initialize($order)->handle();
+        $order = $this->coupon_handler->initialize($order)->handle();
     }
 
 

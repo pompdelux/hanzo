@@ -1,19 +1,40 @@
 services:
+    hanzo.discount.handler.coupon_handler:
+        class: Hanzo\Bundle\DiscountBundle\Handlers\CouponHandler
+        arguments: [@logger, @translator]
+
+    hanzo.discount.handler.quantity_discount_handler:
+        class: Hanzo\Bundle\DiscountBundle\Handlers\QuantityDiscountHandler
+        arguments: [@logger]
+
+    hanzo.discount.handler.personal_discount_handler:
+        class: Hanzo\Bundle\DiscountBundle\Handlers\PersonalDiscountHandler
+        arguments: [@logger]
+
     hanzo.discount.checkout.finalize.listener:
         class: Hanzo\Bundle\DiscountBundle\Event\CheckoutListener
-        arguments: [ @logger ]
+        arguments:
+            - @logger
+            - @hanzo.discount.handler.coupon_handler
+            - @hanzo.discount.handler.personal_discount_handler
         tags:
-            - { name: kernel.event_listener, event: order.summery.finalize, method: onFinalize, priority: 20 }
+            - { name: kernel.event_listener, event: order.summery.updated, method: onFinalize, priority: 20 }
 
     hanzo.discount.checkout.listener:
         class: Hanzo\Bundle\DiscountBundle\Event\CheckoutListener
-        arguments: [ @logger ]
+        arguments:
+            - @logger
+            - @hanzo.discount.handler.coupon_handler
+            - @hanzo.discount.handler.personal_discount_handler
         tags:
             - { name: kernel.event_listener, event: order.payment.collected, method: onPaymentCollected, priority: 100 }
 
     hanzo.discount.basket.listener:
         class: Hanzo\Bundle\DiscountBundle\Event\BasketListener
-        arguments: [@logger]
+        arguments:
+            - @logger
+            - @hanzo.discount.handler.coupon_handler
+            - @hanzo.discount.handler.quantity_discount_handler
         tags:
             - { name: kernel.event_listener, event: basket.product.post_add, method: onBasketChange }
             - { name: kernel.event_listener, event: basket.product.post_remove, method: onBasketChange }
