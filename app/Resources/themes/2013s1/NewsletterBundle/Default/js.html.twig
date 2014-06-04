@@ -1,1 +1,10 @@
-<script>$(document).ready(function(){ if ( $("#newsletter-lists-container").length > 0 ) { newsletter.init('{{ newsletter_jsonp_url }}');{% if not customer.isnew %}newsletter.lists.get( {{ listid }} );{% endif %} } });</script>
+<script>
+$(document).ready(function(){
+    if ($("#newsletter-lists-container").length > 0) {
+        newsletter.init('{{ newsletter_jsonp_url }}');
+    {% if not customer.isnew %}
+        newsletter.lists.get( {{ listid }} );
+    {% endif %}
+    }
+});
+</script>
