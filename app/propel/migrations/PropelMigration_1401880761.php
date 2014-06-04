@@ -5,7 +5,7 @@
  * up to version 1399031771.
  * Generated on 2014-05-02 13:56:11 by un
  */
-class PropelMigration_1399031771
+class PropelMigration_1401880761
 {
 
     public function preUp($manager)
