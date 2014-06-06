@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\RMABundle\Controller;
 
+use Hanzo\Core\Tools;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\CustomersPeer;
@@ -100,13 +101,29 @@ class DefaultController extends CoreController
 
             $this->setCache('rma_generated_html.' . $order_id . '.' . CustomersPeer::getCurrent()->getId(), $html);
 
-            // Return the generated PDF directly as a reponse.
+            $pdf_data = $this->get('knp_snappy.pdf')->getOutputFromHtml($html);
+            $pdf_name = 'POMPdeLUX_RMA_' . $order_id . '.pdf';
+
+            try {
+                $mail = $this->container->get('mail_manager');
+                $mail->addAttachment($pdf_data, false, $pdf_name);
+                $mail->setMessage('order.rma', []);
+                $mail->setTo($order->getEmail(), $order->getCustomersName());
+
+                if ($bcc = Tools::getBccEmailAddress('rma', $order)) {
+                    $mail->setBcc($bcc);
+                }
+
+                $mail->send();
+            } catch (\Exception $e) {}
+
+            // Return the generated PDF directly as a response.
             return new Response(
-                $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+                $pdf_data,
                 200,
                 array(
                     'Content-Type'          => 'application/pdf',
-                    'Content-Disposition'   => 'attachment; filename="POMPdeLUX_RMA_' . $order_id . '.pdf"',
+                    'Content-Disposition'   => 'attachment; filename="'.$pdf_name,
                 )
             );
         } else {
