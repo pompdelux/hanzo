@@ -194,12 +194,25 @@ class MailService
     /**
      * Attaches a file to the mail.
      *
-     * @param $path
+     * @param  string  $input   file path or attachment data
+     * @param  boolean $is_file if $input is a string, set this to false
+     * @param  string  $name    attachment name (if not linked file)
+     *
+     * @throws \InvalidArgumentException
      * @return MailService
      */
-    public function addAttachment($path)
+    public function addAttachment($input, $is_file = true, $name = null)
     {
-        $this->swift->attach(\Swift_Attachment::fromPath($path));
+        if ($is_file) {
+            if (!is_file($input) || !is_readable($input)) {
+                throw new \InvalidArgumentException('Attachment not readable!');
+            }
+
+            $this->swift->attach(\Swift_Attachment::fromPath($input));
+        } else if ($input) {
+            $this->swift->attach(\Swift_Attachment::newInstance($input, $name));
+        }
+
         return $this;
     }
 }
