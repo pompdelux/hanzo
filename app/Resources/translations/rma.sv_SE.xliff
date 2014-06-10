@@ -13,7 +13,7 @@
             <trans-unit id="rma.form.description">
                 <source>rma.form.description</source>
                 <target><![CDATA[
-                    <p>F&ouml;r varje vara du &ouml;nskar att returnera, ber vi dig att v&auml;lja en aktivitet samt orsak.<br>Skriv &auml;ven eventuella kommentarer p&aring; varje vara. Om du returnerar varor fr&aring;n olika ordrar, ska du uppr&auml;tta en retursedel per order. Dina returvaror skickar du naturligtvis i samma paket, oavsett om de kommer fr&aring;n flera ordrar. Kom ih&aring;g att bifoga retursedeln/retursedlarna i ditt paket. L&auml;s mer om returnering p&aring; retursedeln som blir uppr&auml;ttad n&auml;r du klickar p&aring; ”Uppr&auml;tta retursedel” knappen.<br><br>F&ouml;r att kunna se retursedeln, ska du ha gratis programmet Adobe Reader. Om du inte har Adobe Reader installerat, kan du ladda ner programmet h&auml;r.<br />
+                    <p>Hos POMPdeLUX &auml;r det l&auml;tt att byta eller returnera en vara. Det enklaste s&auml;ttet att g&ouml;ra detta &auml;r att fylla i och bifoga retursedeln i paketet. Det vill vara en stor hj&auml;lp f&ouml;r oss att du returnerar varan i originalf&ouml;rpackning, med etiketter p&aring;, etc.<br><br>F&ouml;r att kunna se retursedeln, ska du ha gratis programmet Adobe Reader. Om du inte har Adobe Reader installerat, kan du ladda ner programmet h&auml;r.<br />
     <br />
     <a href="http://www.adobe.com/products/acrobat/readstep2.html" target="_blank"><img src="//static.pompdelux.com/images/pages/PDF_logo.jpg" width="158" height="39" border="0" title="POMPdeLUX" /></a><br /></p>
                 ]]></target>
