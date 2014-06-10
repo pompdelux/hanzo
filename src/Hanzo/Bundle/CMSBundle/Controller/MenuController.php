@@ -39,6 +39,7 @@ class MenuController extends CoreController
         $stripped_uri = array_pop($stripped_uri);
 
         $cache_id = [
+            (int) $request->attributes->get('admin_enabled'),
             'menu',
             $type,
             $stripped_uri
@@ -169,8 +170,9 @@ class MenuController extends CoreController
     protected function getTopIdFromTrail()
     {
         foreach ($this->trail as $top) {
-            if(!$top->getParentId())
+            if (!$top->getParentId()) {
                 return $top->getId();
+            }
         }
         return null;
     }
@@ -180,23 +182,31 @@ class MenuController extends CoreController
     {
         if ('pc' == $this->device) {
             $query = CmsQuery::create()
-                ->useCmsI18nQuery()
-                    ->filterByIsActive(true)
-                ->endUse()
                 ->joinWithI18n($this->locale)
                 ->filterByCmsThreadId($this->cms_thread)
                 ->orderBySort()
             ;
+
+            if ($this->getRequest()->attributes->get('admin_enabled')) {
+                $query->useCmsI18nQuery()->filterByIsActive(true)->_or()->filterByIsRestricted(true)->endUse();
+            } else {
+                $query->useCmsI18nQuery()->filterByIsActive(true)->endUse();
+            }
         } else {
             $query = CmsQuery::create()
                 ->useCmsI18nQuery()
-                    ->filterByIsActive(true)
                     ->filterByOnMobile(true)
                 ->endUse()
                 ->joinWithI18n($this->locale)
                 ->filterByCmsThreadId($this->cms_thread)
                 ->orderBySort()
             ;
+
+            if ($this->getRequest()->attributes->get('admin_enabled')) {
+                $query->useCmsI18nQuery()->filterByIsActive(true)->_or()->filterByIsRestricted(true)->endUse();
+            } else {
+                $query->useCmsI18nQuery()->filterByIsActive(true)->endUse();
+            }
         }
 
         if (empty($parent_id)) {
@@ -281,23 +291,31 @@ class MenuController extends CoreController
     {
         if ('pc' == $this->device) {
             $query = CmsQuery::create()
-                ->useCmsI18nQuery()
-                    ->filterByIsActive(true)
-                ->endUse()
                 ->joinWithI18n($this->locale)
                 ->filterByCmsThreadId($this->cms_thread)
                 ->orderBySort()
             ;
+
+            if ($this->getRequest()->attributes->get('admin_enabled')) {
+                $query->useCmsI18nQuery()->filterByIsActive(true)->_or()->filterByIsRestricted(true)->endUse();
+            } else {
+                $query->useCmsI18nQuery()->filterByIsActive(true)->endUse();
+            }
         } else {
             $query = CmsQuery::create()
                 ->useCmsI18nQuery()
-                    ->filterByIsActive(true)
                     ->filterByOnMobile(true)
                 ->endUse()
                 ->joinWithI18n($this->locale)
                 ->filterByCmsThreadId($this->cms_thread)
                 ->orderBySort()
             ;
+
+            if ($this->getRequest()->attributes->get('admin_enabled')) {
+                $query->useCmsI18nQuery()->filterByIsActive(true)->_or()->filterByIsRestricted(true)->endUse();
+            } else {
+                $query->useCmsI18nQuery()->filterByIsActive(true)->endUse();
+            }
         }
 
         if (!$parent_id) {
@@ -382,23 +400,31 @@ class MenuController extends CoreController
 
         if ('pc' == $this->device) {
             $query = CmsQuery::create()
-                ->useCmsI18nQuery()
-                    ->filterByIsActive(true)
-                ->endUse()
                 ->joinWithI18n($this->locale)
                 ->orderBySort()
                 ->filterByParentId($parent_id)
             ;
+
+            if ($this->getRequest()->attributes->get('admin_enabled')) {
+                $query->useCmsI18nQuery()->filterByIsActive(true)->_or()->filterByIsRestricted(true)->endUse();
+            } else {
+                $query->useCmsI18nQuery()->filterByIsActive(true)->endUse();
+            }
         } else {
             $query = CmsQuery::create()
                 ->useCmsI18nQuery()
-                    ->filterByIsActive(true)
                     ->filterByOnMobile(true)
                 ->endUse()
                 ->joinWithI18n($this->locale)
                 ->orderBySort()
                 ->filterByParentId($parent_id)
             ;
+
+            if ($this->getRequest()->attributes->get('admin_enabled')) {
+                $query->useCmsI18nQuery()->filterByIsActive(true)->_or()->filterByIsRestricted(true)->endUse();
+            } else {
+                $query->useCmsI18nQuery()->filterByIsActive(true)->endUse();
+            }
         }
 
         if(!empty($from)){
@@ -406,6 +432,7 @@ class MenuController extends CoreController
         }
 
         $result = $query->find();
+
         if ($result->count()) {
 
             $css_class = '';
@@ -532,9 +559,10 @@ class MenuController extends CoreController
     public function byTitleAction($title, $parent_id = null)
     {
         $cache_id = [
+            (int) $this->getRequest()->attributes->get('admin_enabled'),
             'menu',
             $title,
-            $this->get('request')->getRequestUri()
+            $this->getRequest()->getRequestUri()
         ];
         $html = $this->getCache($cache_id);
 
@@ -552,10 +580,10 @@ class MenuController extends CoreController
      *
      * @todo replace generateFull with this method
      *
-     * @param  [type] $title     [description]
-     * @param  [type] $parent_id [description]
+     * @param  string $title     [description]
+     * @param  mixed $parent_id [description]
      *
-     * @return [type]            [description]
+     * @return string            [description]
      */
     protected function byTitleBuilder($title, $parent_id = null)
     {
@@ -577,14 +605,17 @@ class MenuController extends CoreController
                     ->filterByTitle($title)
                 ->endUse()
             ->endUse()
-            ->useCmsI18nQuery()
-                ->filterByIsActive(true)
-            ->endUse()
             ->joinWithI18n($locale)
             ->orderBySort()
             ->filterByParentId($parent_id)
             ->groupById()
         ;
+
+        if ($this->getRequest()->attributes->get('admin_enabled')) {
+            $query->useCmsI18nQuery()->filterByIsActive(true)->_or()->filterByIsRestricted(true)->endUse();
+        } else {
+            $query->useCmsI18nQuery()->filterByIsActive(true)->endUse();
+        }
 
         if (false !== strpos($device, 'mobile')) {
             $query->useCmsI18nQuery()
