@@ -140,6 +140,7 @@ class CustomersController extends CoreController
         }
 
         $read_only = !$this->get('security.context')->isGranted('ROLE_ADMIN');
+        $read_only_enabled = !$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_SALES")'));
 
         $customer = CustomersQuery::create()
             ->filterById($id)
@@ -203,7 +204,7 @@ class CustomersController extends CoreController
                     'disabled' => $read_only,
                 )
             )
-            ->add('password_clear', 'text', // Puha
+            ->add('password_clear', 'text', // puha ... meget ...
                 array(
                     'label' => 'admin.customer.password_clear.label',
                     'translation_domain' => 'admin'
@@ -214,7 +215,7 @@ class CustomersController extends CoreController
                     'label' => 'admin.customer.is_active.label',
                     'translation_domain' => 'admin',
                     'required' => false,
-                    'disabled' => $read_only,
+                    'disabled' => $read_only_enabled,
                 )
             )
             ->getForm()
