@@ -52,7 +52,7 @@ services:
 
     hanzo.boot_listener:
         class:     Hanzo\Core\HanzoBoot
-        arguments: ['@router', '@kernel']
+        arguments: ['@security.context', '@router', '@kernel']
         tags:
             -   { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: -10 }
     hanzo.exception_listener:
