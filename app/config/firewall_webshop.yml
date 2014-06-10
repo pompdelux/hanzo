@@ -2,6 +2,9 @@
 # the security section MUST be defined in one place, and cannot be overwritten
 security:
     firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
         kernel_global:
             pattern: ^/da_DK/retarteging/order-feed/
             anonymous: ~
@@ -23,21 +26,48 @@ security:
             provider: main
 
     access_control:
-        - { path: ^/fx/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/_wdt, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        account_login:
+            path: login
+            roles: IS_AUTHENTICATED_ANONYMOUSLY
+            requires_channel: https
+        account_password_forgotten:
+            path: ^/[a-z]{2}_[A-Z]{2}/account/password-forgotten
+            roles: IS_AUTHENTICATED_ANONYMOUSLY
+            requires_channel: https
+        account_create:
+            path: ^/[a-z]{2}_[A-Z]{2}/account/create
+            roles: IS_AUTHENTICATED_ANONYMOUSLY
+            requires_channel: https
+        account_check:
+            path: ^/[a-z]{2}_[A-Z]{2}/account/check/
+            roles: IS_AUTHENTICATED_ANONYMOUSLY
+            requires_channel: https
+        account_nno:
+            path: ^/[a-z]{2}_[A-Z]{2}/account/nno
+            roles: IS_AUTHENTICATED_ANONYMOUSLY
+            requires_channel: https
+        admin_login:
+            path: admin_login
+            roles: IS_AUTHENTICATED_ANONYMOUSLY
+            requires_channel: https
 
-        - { path: login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
 
-        - { path: ^/.*/account/password-forgotten, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
-        - { path: ^/.*/account/create, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
-        - { path: ^/.*/account/check/, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
-        - { path: ^/.*/account/nno, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        account:
+            path: ^/[a-z]{2}_[A-Z]{2}/account
+            roles: ROLE_USER
+            requires_channel: https
+        checkout:
+            path: ^/[a-z]{2}_[A-Z]{2}/checkout
+            roles: ROLE_USER
+            requires_channel: https
 
-        - { path: ^/.*/account, roles: ROLE_USER, requires_channel: https }
-        - { path: ^/.*/checkout, roles: ROLE_USER, requires_channel: https }
-
-        - { path: ^/.*/admin, roles: ROLE_EMPLOYEE }
-        - { path: ^/.*/retarteging/order-feed/, roles: ROLE_KG_API_USER, requires_channel: https }
+        admin:
+            path: ^/[a-z]{2}_[A-Z]{2}/admin
+            roles: ROLE_EMPLOYEE
+        retarteting:
+            path: ^/[a-z]{2}_[A-Z]{2}/retarteging/order-feed/
+            roles: ROLE_KG_API_USER
+            requires_channel: https
 
     providers:
         main:
