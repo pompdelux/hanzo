@@ -42,6 +42,7 @@ class CMSRouterLoader implements LoaderInterface
      * @param  string $resource unused, but required
      * @param  string $type     unused, but required
      * @return RouteCollection
+     * @throws \RuntimeException
      */
     public function load($resource, $type = null)
     {
@@ -53,7 +54,6 @@ class CMSRouterLoader implements LoaderInterface
         $routes = new RouteCollection();
 
         $pages = CmsI18nQuery::create()
-            ->filterByIsActive(true)
             ->rightJoinWithCms()
             ->orderByPath()
             ->findByLocale($this->locale)
@@ -66,7 +66,11 @@ class CMSRouterLoader implements LoaderInterface
             $path = '{_locale}/'.trim($page->getPath());
             $type = trim($page->getCms()->getType());
             $title = trim($page->getTitle());
-            $is_restricted = (int) $page->getIsRestricted();
+
+            $is_restricted = 0;
+            if (!$page->getIsActive()) {
+                $is_restricted = (int) $page->getIsRestricted();
+            }
 
             if (('' == $title) || isset($processed[$path])) {
                 continue;
