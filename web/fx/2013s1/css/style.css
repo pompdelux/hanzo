@@ -3076,6 +3076,39 @@ article div ul {
   list-style-position: outside;
 }
 
+.inline-edit-menu {
+  position: absolute;
+  top: 10px;
+  left: 5px;
+  z-index: 100;
+  width: 170px;
+  background-color: #dcd8d2;
+  padding: 10px;
+  font-weight: normal;
+}
+.inline-edit-menu h6:hover {
+  color: #fff;
+  cursor: pointer;
+}
+.inline-edit-menu li {
+  height: 30px;
+}
+.inline-edit-menu a {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  padding: 5px 10px;
+  background-color: #000;
+  color: #fff;
+}
+.inline-edit-menu a:hover {
+  color: #000;
+  background-color: #fff;
+  text-decoration: none;
+}
+
 /**
 | _faq
 */

@@ -1,6 +1,10 @@
 /**
 | _cms
 */
+
+@import "compass/css3";
+@import "compass/utilities";
+
 .body-pages{
 	// Specific styles for CMS pages
 	h3{
@@ -56,4 +60,39 @@ article div ul {
     margin-left: 20px;
     list-style-type: disc;
     list-style-position: outside;
+}
+
+.inline-edit-menu {
+    position: absolute;
+    top: 10px;
+    left: 5px;
+    z-index: 100;
+    width: 170px;
+    background-color: #dcd8d2;
+    padding: 10px;
+    font-weight: normal;
+
+    h6 {
+    }
+    h6:hover {
+        color: #fff;
+        cursor: pointer;
+    }
+
+
+    li {
+        height: 30px;
+    }
+
+    a {
+        @include border-radius(5px);
+        padding: 5px 10px;
+        background-color: #000;
+        color: #fff;
+    }
+    a:hover {
+        color: #000;
+        background-color: #fff;
+        text-decoration: none;
+    }
 }
