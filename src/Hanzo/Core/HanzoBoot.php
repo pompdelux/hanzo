@@ -175,6 +175,7 @@ class HanzoBoot
 
         $request->attributes->set('admin_enabled', true);
 
+        // we do not care about requests for resources or sub requests
         if (preg_match('~/[a-z]{2}_[A-Z]{2}/(_wdt|i18n/js)~', $request_uri) ||
             (HttpKernelInterface::SUB_REQUEST === $request_type)
         ) {
