@@ -435,25 +435,29 @@
             </trans-unit>
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
-                <target><![CDATA[
-                    <p>
-                        På Min Side kan du rette i opplysningene dine og melde deg av og på til nyhetsbrevet. Du har også mulighet for å redigere i din ordre.<br><br>
-                        Din ordre kan ha følgende status:<br><br>
-                        <b>Venter</b><br>
-                        Din ordre er ikke ekspedert enda, og du har som minimum 24 timer til å redigere i ordren. Du har mulighet for å endre/tilføye/slette i ordren. Du skal klikke på <img src="/fx/images/icons/icons/edit.png" alt="Edit"> ved redigering. Merk: Betalingen skal gjennomføres – tidligere betalingsreservasjon blir automatisk slettet. Ønsker du å slette hele ordren, skal du klikke på <img src="/fx/images/icons/icons/delete.png" alt="Delete">.<br><br>
-                        <b>Stop editering</b><br>
-                        Du har eventuelt kommet til å avbryte redigeringen. Trykk på knappen ”Stop editering”, så kan du redigere ordren på nytt.<br><br>
-                        <b>Under behandling</b><br>
-                        Din ordre er nå i gang med å bli behandlet på lageret vårt og blir sendt til deg i løpet av 1-2 dager. Det er ikke mulig å redigere/bremse ordren.<br><br>
-                        <b>Fakturert</b><br>
-                        Din ordre er sendt fra vårt lager. Fakturaen er vedlagt som PDF-fil under kolonnen Faktura i løpet av 24 timer etter at ordren er sendt.<br><br>
-                        <b>Returnering</b><br>
-                        Ønsker du å returnere en vare, skal du trykke på <img src="/fx/images/icons/icons/return.png" alt="Return"><strong>Merk:</strong> Returlappen og returskjema ligger som egen PDF og kan skrives ut hver for seg.<br><br>
-                        Kan du ikke finne varen du ønsker å returnere, kan du trykke på linken her og skrive ut returskjema manuelt: <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_NO.pdf" target="_blank">Returskjema(PDF)</a><br><br>
-						Trykk på <img src="/fx/images/icons/icons/returnlabel.png" alt="Returnlabel"> ute for din ordre for å få en returlapp. Returlappen åpner i et nytt vindu.<br><br>
-                        Trykk på <img src="/fx/images/icons/icons/trackntrace.png" alt="Track 'n trace"> ut for din ordre for å følge din pakke. Sporingssiden åpner i et nytt vindu.<br><br>
-                    </p>
-                ]]></target>
+                <target><![CDATA[ <p>
+      På Min Side kan du redigere i din ordre og printe ut en returlapp og et returskjema. Du kan også rette i dine opplysninger og melde deg på/av nyhetsbrevet vårt.<br><br>
+      <em>Din ordre kan ha følgende status:</em><br><br>
+      <b>Venter</b><br>
+      Din ordre er ikke blitt ekspedert enda, og du har som minimum 24 timer etter at ordren er avgitt til å redigere i din ordre. Du har mulighet for å endre/tilføye/slette i ordren. <br>Merk: Etter redigering skal betalingen gjennomføres på nytt – tidligere betalingsreservasjon blir automatisk slettet.<br><br>
+      <b>Stopp editering</b><br>
+      Du har eventuelt avbrutt redigeringen. Trykk på knappen ”Stopp editering”, og du kan deretter redigere i ordre på nytt.<br><br>
+      <b>Under behandling</b><br>
+     Din ordre blir nå pakket på lageret vårt og sendes til deg i løpet av 1-2 dager. Det er ikke mulig å redigere/bremse ordren.<br><br>
+      <b>Fakturert</b><br>
+      Din ordre er sendt fra lageret vårt. Fakturaen finner du som en PDF-fil under kolonnen Faktura senest 24 timer etter sending.<br><br>
+      <b>Når pakken er sendt/mottatt, har du følgende muligheter:</b><br><br>
+      <b>Følg pakken</b><br>
+      Klikk på ikonet ved ordren for å spore pakken. Track and Trace-siden åpner i et nytt vindu.<br><br>
+      <b>Returnering, bytting og reklamasjon</b><br>
+      Ønsker du å returnere en vare, klikker du på ikonet ved din ordre nedenfor. 
+Returlapp og returskjema ligger i hver sin PDF-fil, og skal printes hver for seg. Benytter du vår returlapp, motregner vi kun 69,- NOK fra verdien av dine returvarer. 
+<br>Returnerer du en vare med tanke på å bytte den, eller har du mottatt en vare med feil, så returnerer du bare varen og vi sender deg en ny – selvfølgelig uten omkostninger for deg. Hvis varen er utsolgt, tilbakefører vi varens kjøpspris til deg.<br><br>
+      <b>Returskjema</b><br>
+      Kan du ikke finne varen som du ønsker å returnere på det interaktive returskjemaet, kan du klikke på linken her og skrive ut returskjema manuelt. <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_NO.pdf">» Returskjema (PDF)</a>
+      <br><br>
+      <b>Returlapp</b><br>
+      Klikk på ikonet ved din ordre for å få en returlapp. Benytter du vår returlapp, motregner vi kun 69,- NOK fra verdien av dine returvarer. Returlapp åpner i et nytt vindu. </p>  ]]></target>
             </trans-unit>
             <trans-unit id="newsletter" approved="no">
                 <source>newsletter</source>
@@ -535,7 +539,7 @@ Deretter kan du bare shoppe videre.</p><br>
                 <source>account.returnlabel.link</source>
                 <target>Print returlapp</target>
             </trans-unit>
-<!--             <trans-unit id="my.account.legends.header">
+			<trans-unit id="my.account.legends.header">
                 <source>my.account.legends.header</source>
                 <target>Det betyr ikonene</target>
             </trans-unit>
@@ -552,7 +556,7 @@ Deretter kan du bare shoppe videre.</p><br>
                         <li><i class="sprite trackntrace"></i><span>Følg din pakke</span></li>
                     </ul>
                     ]]></target>
-            </trans-unit> -->
+            </trans-unit>
             <trans-unit id="my.account.existing.customer.notice">
                 <source>my.account.existing.customer.notice</source>
                 <target>Velkommen, vi er glade for og se deg igjen!</target>

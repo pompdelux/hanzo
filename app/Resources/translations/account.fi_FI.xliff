@@ -432,27 +432,31 @@
                 <source>my.account.%name%</source>
                 <target>Tervetuloa %name%!</target>
             </trans-unit>
-            <trans-unit id="my.account.description" approved="no">
+           <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
-                <target><![CDATA[
-                    <p>
-                        Omilla sivuilla voit muuttaa tietojasi sekä tilata uutiskirjeen tai perua sen tilauksen. Voit myös muokata tilaustasi.<br><br>
-                        Tilauksellasi voi olla seuraavat tilat:<br><br>
-                        <b>Odottaa</b><br>
-                        Tilaustasi ei ole vielä toimitettu, ja sinulla on vähintään 24 tuntia aikaa muokata tilaustasi. Voit muuttaa tilaustasi, lisätä siihen tuotteita tai poistaa tuotteita. Napsauta <img src="/fx/images/icons/icons/edit.png" alt="Edit"> kuvaa, jos haluat muokata tilausta. Huomaa: Sinun tulee suorittaa maksu – aiempi maksuvaraus poistuu automaattisesti. Jos haluat poistaa koko tilauksen, napsauta <img src="/fx/images/icons/icons/delete.png" alt="Delete">-kohtaa.<br><br>
-                        <b>Keskeytä muokkaus</b><br>
-                        Voit halutessasi keskeyttää muokkauksen. Napsauta ”Keskeytä muokkaus” -painiketta ja voit aloittaa tilauksen muokkaamisen alusta.<br><br
-                        ><b>Käsittelyssä</b><br>
-                        Tilaus on nyt käsittelyssä ja lähetetään sinulle 1–2 päivän kuluessa. Tilausta ei voi enää muokata/viivästyttää.<br><br>
-                        <b>Laskutettu</b><br>
-                        Tilauksesi on lähetetty varastostamme. Lasku näkyy PDF-tiedostona Lasku-sarakkeessa 24 tunnin kuluessa tilauksen lähettämisestä.<br><br>
-                        <b>Palautukset</b><br>
-                        Haluatko palauttaa tuotteen, napsauta tästä <img src="/fx/images/icons/icons/return.png" alt="Return"> <strong>Huomio:</strong> Palautusetiketti sekä palautuslomake ovat omassa PDF tiedostossaan ja ovat tulostettava erikseen.<br><br>
-                        Jos toivomaasi palautettavaa tuotetta ei löydy listalta, niin voit linkkiä painamalla avata ja tulostaa sekä täyttää palautuslomakkeen käsin: <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_FI.pdf" target="_blank">&raquo; Palautuslomake (PDF)</a><br><br>
-						Napsauta <img src="/fx/images/icons/icons/returnlabel.png" alt="Returnlabel"> tilauksessasi saadaksesi palautus etiketin. Palautusetiketti avautuu uudessa ikkunassa.<br><br>
-                        Napsauta <img src="/fx/images/icons/icons/trackntrace.png" alt="Track 'n trace"> seurataksesi lähetyksesi kulkua. Seuranta numeron sivu avautuu uudessa ikkunassa.<br><br>
-                    </p>
-                ]]></target>
+                <target><![CDATA[ <p>
+     Omilla sivuilla voit muokata tilausta, tulostaa palautustarran ja palautuslomakkeen. Voit myös muokata omia tietojasi ja tilata/perua uutiskirjeemme.<br><br>
+      <em>Tilauksellasi voi olla seuraavat tilat:</em><br><br>
+      <b>Odottaa</b><br>
+      Tilaustasi ei ole vielä toimitettu, ja sinulla on tilausvahvistuksen jälkeen vähintään 24 tuntia aikaa muokata tilaustasi. Voit muuttaa tilaustasi, lisätä siihen tuotteita tai poistaa tuotteita.<br>Huomaa: Muokkaamisen jälkeen sinun tulee suorittaa maksu uudelleen – aiempi maksuvaraus poistuu automaattisesti.<br><br>
+      <b>Keskeytä muokkaus</b><br>
+      Voit halutessasi keskeyttää muokkauksen. Paina Keskeytä muokkaus -painiketta ja voit myöhemmin muokata tilaustasi uudelleen.<br><br>
+      <b>Käsittelyssä</b><br>
+      Tilauksesi on nyt käsittelyssä. Se pakataan varastollamme ja lähetetään sinulle 1–2 päivän kuluessa. Tilausta ei voi enää muokata/viivästyttää.<br><br>
+      <b>Laskutettu</b><br>
+      Tilauksesi on lähetetty varastostamme. Lasku näkyy PDF-tiedostona Lasku-sarakkeessa viimeistään 24 tunnin kuluessa tilauksen lähettämisestä.<br><br>
+      <b>Kun pakettisi on lähetetty/vastaanotettu, sinulla on seuraavat mahdollisuudet:</b><br><br>
+      <b>Lähetyksen seuraaminen</b><br>
+     Napsauta tilauksen kohdalla olevaa kuvaketta, jos haluat seurata pakettiasi. Track and Trace -sivu avautuu uuteen ikkunaan.<br><br>
+      <b>Palautus, vaihto ja reklamaatio</b><br>
+      Jos haluat palauttaa tuotteen, napsauta kuvaketta tilauksen kohdalla<br> 
+      Palautustarra ja palautuslomake ovat omina PDF-tiedostoinaan ja ne molemmat tulee tulostaa. Jos käytät palautustarraamme, on palauttaminen maksutonta. <br>
+      Jos palautat tuotteen vaihtoon tai jos olet saanut viallisen tuotteen, voit vain palauttaa tuotteen ja lähetämme sinulle uuden – sinulle ei luonnollisesti aiheudu tästä kustannuksia. Jos tuote on loppuunmyyty, hyvitämme tuotteen ostohinnan.<br><br>
+      <b>Palautuslomake</b><br>
+      Jos et löydä tuotetta, jonka haluat palauttaa, interaktiivisesta palautuslomakkeesta, voit napsauttaa linkkiä tässä ja tulostaa palautuslomakkeen manuaalisesti. <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_FI.pdf">» Palautuslomake (PDF)</a>
+      <br><br>
+      <b>Palautustarra</b><br>
+      Napsauta tilauksen kohdalla olevaa kuvaketta, jos haluat palautustarran. Jos käytät palautustarraamme, on palauttaminen maksutonta. Palautustarra avautuu uuteen ikkunaan. </p>  ]]></target>
             </trans-unit>
             <trans-unit id="newsletter" approved="no">
                 <source>newsletter</source>
@@ -533,7 +537,7 @@ Haluamme kuitenkin varmistaa, että tässä ei ole tapahtunut virhettä. Pyydäm
                 <source>account.returnlabel.link</source>
                 <target>Tulosta palautusetiketti</target>
             </trans-unit>
-           <!--             <trans-unit id="my.account.legends.header">
+            <trans-unit id="my.account.legends.header">
                 <source>my.account.legends.header</source>
                 <target>Ikonien merkitykset</target>
             </trans-unit>
@@ -550,7 +554,7 @@ Haluamme kuitenkin varmistaa, että tässä ei ole tapahtunut virhettä. Pyydäm
                         <li><i class="sprite trackntrace"></i><span>Seuraa tilauksen kuljetusta</span></li>
                     </ul>
                     ]]></target>
-            </trans-unit> -->
+            </trans-unit>
             <trans-unit id="my.account.existing.customer.notice">
                 <source>my.account.existing.customer.notice</source>
                 <target>Tervetuloa, mukavaa nähdä sinut jälleen!</target>

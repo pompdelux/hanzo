@@ -448,25 +448,29 @@
             </trans-unit>
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
-                <target><![CDATA[
-                    <p>
-                        På Min Side kan du rette dine informationer og til- og afmelde nyhedsbrev. Du har ligeledes mulighed for at redigere i din ordre.</p><br><br>
-                        Din ordre kan have følgende status:<br><br>
-                        <b>Afventer</b><br>
-                        Din ordre er endnu ikke ekspederet, og du har som minimum 24 timer til at redigere i din ordre. Du har mulighed for at ændre/tilføje/slette på din ordre. Du skal klikke på <img src="/fx/images/icons/icons/edit.png" alt="Edit">ved redigering. Bemærk: Betalingen skal gennemføres – tidligere betalingsreservation bliver automatisk slettet. Ønsker du at slette hele din ordre, klikker du på <img src="/fx/images/icons/icons/delete.png" alt="Delete"><br><br>
-                        <b>Stop editering</b><br>
-                        Du er eventuelt kommet til at afbryde din redigering. Tryk på knappen ”Stop editering”, og du kan efterfølgende redigere din ordre på ny.<br><br>
-                        <b>Under behandling</b><br>
-                        Din ordre er nu i gang med at blive behandlet på vores lager og bliver afsendt til dig inden for 1-2 dage. Det er ikke muligt at redigere/bremse din ordre.<br><br>
-                        <b>Faktureret</b><br>
-                        Din ordre er afsendt fra vores lager. Fakturaen finder du vedhæftet som PDF fil, under kolonnen faktura <img src="/fx/images/icons/icons/pdf.png" alt="PDF">i løbet af 24 timer efter afsendelsen.<br><br>
-                        <b>Returnering</b><br>
-                        Ønsker du at returnere en vare, klikker du på <img src="/fx/images/icons/icons/return.png" alt="Return"> <strong>Bemærk:</strong> Returlabel og returseddel ligger i hver sin PDF og skal printes hver for sig.<br><br>
-                        Kan du ikke finde varen du ønsker at returnere, kan du klikke på linket her og udskrive returseddel manuelt. <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_DK.pdf" target="_blank">Returseddel (PDF)</a><br><br>
-						Klik på <img src="/fx/images/icons/icons/returnlabel.png" alt="Returnlabel"> ud for din ordre for, at få en returlabel. Returlabel åbner i et nyt vindue.<br><br>
-						Klik på <img src="/fx/images/icons/icons/trackntrace.png" alt="Track 'n trace"> ud for din ordre for at følge din pakke. Track and Trace siden åbner i et nyt vindue.<br><br>
-                    </p>
-                ]]></target>
+                <target><![CDATA[ <p>
+      På Min Side kan du redigere i din ordre, samt udskrive returlabel og returseddel. Du kan ligeledes rette dine informationer og tilmelde/afmelde vores nyhedsbrev.<br><br>
+      <em>Din ordre kan have følgende status:</em><br><br>
+      <b>Afventer</b><br>
+      Din ordre er endnu ikke ekspederet, og du har som minimum 24 timer efter ordreafgivelse til at redigere i din ordre. Du har mulighed for at ændre/tilføje/slette på din ordre. <br>Bemærk: Efter redigering skal betalingen gennemføres igen – tidligere betalingsreservation bliver automatisk slettet.<br><br>
+      <b>Stop editering</b><br>
+      Du er eventuelt kommet til at afbryde din redigering. Tryk på knappen ”Stop editering”, og du kan efterfølgende redigere din ordre på ny.<br><br>
+      <b>Under behandling</b><br>
+      Din ordre er nu i gang med at blive pakket på vores lager og bliver afsendt til dig inden for 1-2 dage. Det er ikke muligt at redigere/bremse din ordre.<br><br>
+      <b>Faktureret</b><br>
+      Din ordre er afsendt fra vores lager. Fakturaen finder du som en PDF-fil under kolonnen faktura senest 24 timer efter afsendelsen.<br><br>
+      <b>Når din pakke er afsendt/modtaget har du følgende muligheder:</b><br><br>
+      <b>Følg din pakke</b><br>
+      Klik på ikonet ud for din ordre for at følge din pakke. Track and Trace siden åbner i et nyt vindue.<br><br>
+      <b>Returnering, ombytning og reklamation</b><br>
+      Ønsker du at returnere en vare, klikker du på ikonet ud for din ordre nedenfor.<br> 
+      Returlabel og returseddel ligger i hver sin PDF, og skal printes hver for sig. Benytter du vores returlabel modregner vi kun DKK 29,- fra værdien af dine returvarer. <br>
+      Returnerer du en vare med henblik på ombytning, eller har du modtaget en vare med fejl, returnerer du blot varen og vi sender dig en ny – selvfølgelig uden omkostninger for dig. Er varen udsolgt, tilbagefører vi varens købspris til dig.<br><br>
+      <b>Returseddel</b><br>
+      Kan du ikke finde varen, du ønsker at returnere, på den interaktive returseddel, kan du klikke på linket her og udskrive retursedlen manuelt. <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_DK.pdf">» Returseddel (PDF)</a>
+      <br><br>
+      <b>Returlabel</b><br>
+      Klik på ikonet ud for din ordre for at få en returlabel. Benytter du vores returlabel modregner vi kun DKK 29,- fra værdien af dine returvarer. Returlabel åbner i et nyt vindue.</p>  ]]></target>
             </trans-unit>
             <trans-unit id="newsletter" approved="no">
                 <source>newsletter</source>
@@ -543,7 +547,7 @@ Herefter kan du nemt shoppe videre.</p><br>
                 <source>account.returnlabel.link</source>
                 <target>Print retur label</target>
             </trans-unit>
-<!--             <trans-unit id="my.account.legends.header">
+			<trans-unit id="my.account.legends.header">
                 <source>my.account.legends.header</source>
                 <target>Det betyder ikonerne</target>
             </trans-unit>
@@ -560,7 +564,7 @@ Herefter kan du nemt shoppe videre.</p><br>
                         <li><i class="sprite trackntrace"></i><span>Følg din pakke</span></li>
                     </ul>
                     ]]></target>
-            </trans-unit> -->
+            </trans-unit>
             <trans-unit id="my.account.existing.customer.notice">
                 <source>my.account.existing.customer.notice</source>
                 <target>Velkommen, vi er glade for at se dig igen!</target>
