@@ -1,8 +1,11 @@
 {% if app.request.attributes.has('admin_enabled') %}
     <div class="inline-edit-menu">
-        <h6 data-toggle-text="Vis menu" data-toggle-class="fa-toggle-down fa-toggle-right" class="js-toggle-next fa fa-toggle-right"> Skjul menu</h6>
+        <h6 data-toggle-text=" Vis menu" data-toggle-class="fa-toggle-down fa-toggle-right" class="js-toggle-next fa fa-toggle-down"> Skjul menu</h6>
         <ul>
             <li><a href="{{ path('admin') }}" class="js-external"><i class="fa fa-cube"></i> Til admin</a></li>
+            <li><a href="{{ path('admin_cms') }}" class="js-external"><i class="fa fa-file-word-o"></i> CMS</a></li>
+            <li><a href="{{ path('admin_customers') }}" class="js-external"><i class="fa fa-users"></i> Kunder</a></li>
+            <li><a href="{{ path('admin_orders') }}" class="js-external"><i class="fa fa-bank"></i> Ordre</a></li>
         {% if page is defined %}
             <li><a href="{{ path('admin_cms_edit', {'id': page.id}) }}" class="js-external"><i class="fa fa-pencil-square-o"></i> Editer siden</a></li>
         {% endif %}
