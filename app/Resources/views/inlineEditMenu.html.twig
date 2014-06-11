@@ -2,15 +2,25 @@
     <div class="inline-edit-menu">
         <h6 data-toggle-text=" Vis menu" data-toggle-class="fa-toggle-down fa-toggle-right" class="js-toggle-next fa fa-toggle-down"> Skjul menu</h6>
         <ul>
-            <li><a href="{{ path('admin') }}" class="js-external"><i class="fa fa-cube"></i> Til admin</a></li>
-            <li><a href="{{ path('admin_cms') }}" class="js-external"><i class="fa fa-file-word-o"></i> CMS</a></li>
-            <li><a href="{{ path('admin_customers') }}" class="js-external"><i class="fa fa-users"></i> Kunder</a></li>
-            <li><a href="{{ path('admin_orders') }}" class="js-external"><i class="fa fa-bank"></i> Ordre</a></li>
+            <li><a href="{{ path('admin') }}"><i class="fa fa-cube"></i> Til admin</a></li>
+            <li><a href="{{ path('admin_cms') }}"><i class="fa fa-file-word-o"></i> CMS</a></li>
+            <li><a href="{{ path('admin_customers') }}"><i class="fa fa-users"></i> Kunder</a></li>
+            <li><a href="{{ path('admin_orders') }}"><i class="fa fa-bank"></i> Ordre</a></li>
         {% if page is defined %}
-            <li><a href="{{ path('admin_cms_edit', {'id': page.id}) }}" class="js-external"><i class="fa fa-pencil-square-o"></i> Editer siden</a></li>
+            <li><a href="{{ path('admin_cms_edit', {'id': page.id}) }}"><i class="fa fa-pencil-square-o"></i> Editer siden</a></li>
+
+            <li><br>
+                <i class="fa fa-mobile fa-box {% if page.onMobile %}green{% else %}red{% endif %}" title="{% if not page.onMobile %}ikke {% endif %}synlig på mobil sitet"></i>
+            {% if page.isRestricted %}
+                <i class="fa fa-lock fa-box red" title="kun på admin"></i>
+            {% else %}
+                <i class="fa fa-unlock fa-box green" title="synlig på live site"></i>
+            {% endif %}
+                <span class="ts">{{ page.updatedAt|date("d/m 'y H:i") }} - {{ page.updatedBy|split('@')[0] }}</span>
+            </li>
         {% endif %}
         {% if product is defined %}
-            <li><a href="{{ path('admin_product', {'id': product.id}) }}" class="js-external"><i class="fa fa-pencil-square-o"></i> Editer produktet</a></li>
+            <li><a href="{{ path('admin_product', {'id': product.id}) }}"><i class="fa fa-pencil-square-o"></i> Editer produktet</a></li>
         {% endif %}
         </ul>
     </div>
