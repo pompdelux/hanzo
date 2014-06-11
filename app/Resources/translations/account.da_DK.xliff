@@ -447,11 +447,8 @@
                 <target>Velkommen %name%!</target>
             </trans-unit>
             <trans-unit id="my.account.description" approved="no">
-  <source>
-  my.account.description
-  </source>
-  <target>
-    <![CDATA[ <p>
+                <source>my.account.description</source>
+                <target><![CDATA[ <p>
       På Min Side kan du redigere i din ordre, samt udskrive returlabel og returseddel. Du kan ligeledes rette dine informationer og tilmelde/afmelde vores nyhedsbrev. </p><br><br>
       Din ordre kan have følgende status:<br><br>
       <b>Afventer</b><br>
@@ -474,10 +471,8 @@
 	  <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_DK.pdf">» Returseddel (PDF)</a>
       <br><br>
       <b>Returlabel</b><br>
-      Klik på ikonet ud for din ordre for at få en returlabel. Benytter du vores returlabel modregner vi kun DKK 29,- fra værdien af dine returvarer. Returlabel åbner i et nyt vindue. <br><br> </p> ]]>
-  </target>
-</trans-unit>
-
+      Klik på ikonet ud for din ordre for at få en returlabel. Benytter du vores returlabel modregner vi kun DKK 29,- fra værdien af dine returvarer. Returlabel åbner i et nyt vindue. <br><br> </p>  ]]></target>
+            </trans-unit>
             <trans-unit id="newsletter" approved="no">
                 <source>newsletter</source>
                 <target>Nyhedsbreve</target>
