@@ -1,0 +1,22 @@
+{% block admin_subnav %}
+{% set __time__ = random() %}
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#subnav-{{ __time__ }}">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand visible-xs" href="#">Undermenu</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="subnav-{{ __time__ }}">
+            <ul class="nav navbar-nav">
+                {% block subnav_content %}{% endblock %}
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock admin_subnav %}
