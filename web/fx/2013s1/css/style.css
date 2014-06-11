@@ -3078,19 +3078,26 @@ article div ul {
 
 .inline-edit-menu {
   position: absolute;
-  top: 10px;
+  top: 0;
   left: 5px;
   z-index: 100;
   width: 170px;
   background-color: #dcd8d2;
   padding: 10px;
+  padding-bottom: 0;
   font-weight: normal;
+}
+.inline-edit-menu h6 {
+  padding-bottom: 10px;
 }
 .inline-edit-menu h6:hover {
   color: #fff;
   cursor: pointer;
 }
-.inline-edit-menu li {
+.inline-edit-menu ul {
+  margin: 10px 0;
+}
+.inline-edit-menu ul li {
   height: 30px;
 }
 .inline-edit-menu a {
@@ -3102,6 +3109,12 @@ article div ul {
   padding: 5px 10px;
   background-color: #000;
   color: #fff;
+  width: 148px;
+  display: block;
+  font-weight: normal;
+}
+.inline-edit-menu a i {
+  margin-right: 5px;
 }
 .inline-edit-menu a:hover {
   color: #000;
