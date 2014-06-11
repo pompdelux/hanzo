@@ -446,26 +446,30 @@
                 <source>my.account.%name%</source>
                 <target>Willkommen %name%!</target>
             </trans-unit>
-            <trans-unit id="my.account.description" approved="no">
+           <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
-                <target><![CDATA[
-                    <p>
-                        Auf Meine Seite können Sie Informationen ändern und sich für den Newsletter anmelden oder ihn abbestellen. Sie haben auch die Möglichkeit, Ihre Bestellung zu bearbeiten.<br><br>
-                        Ihre Bestellung kann folgenden Status haben:<br><br>
-                        <b>Warten auf Bearbeitung</b><br>
-                        Ihre Bestellung wurde noch nicht bearbeitet und Sie haben zum Bearbeiten Ihrer Bestellung mind. 24 Stunden Zeit. Sie können Ihre Bestellung ändern oder etwas hinzufügen bzw. entfernen. Klicken Sie bei der Bearbeitung auf den <img src="/fx/images/icons/icons/edit.png" alt="Edit">. Bitte beachten: Die Zahlung muss durchgeführt werden – frühere Zahlungsreservierungen werden automatisch gelöscht. Möchten Sie Ihre gesamte Bestellung löschen, dann klicken Sie bitte auf <img src="/fx/images/icons/icons/delete.png" alt="Delete">.<br><br>
-                        <b>Bearbeitung stoppen</b><br>
-                        Sie haben evtl. Ihre Bearbeitung abgebrochen. Drücken Sie auf die Schaltfläche ”Bearbeitung stoppen”, danach können Sie Ihre Bestellung erneut bearbeiten.<br><br>
-                        <b>Wird bearbeitet</b><br>
-                        Ihre Bestellung wird jetzt in unserem Lager bearbeitet und im Laufe von 1-2 Tagen an Sie verschickt. Es ist nicht möglich, Ihre Bestellung zu bearbeiten/zu stoppen.<br><br>
-                        <b>In Rechnung gestellt</b><br>
-                        Ihre Bestellung hat unser Lager verlassen. Die Rechnung finden Sie als beigefügte PDF-Datei in der Spalte Rechnung im Laufe von 24 Stunden nach dem Versand.<br><br>
-                        <b>Rücksendung</b><br>
-                        Möchten Sie die Ware zurückschicken, dann klicken Sie bitte hier <img src="/fx/images/icons/icons/return.png" alt="Return"><br><br><strong>Bitte beachten:</strong>Das Rücksendeetikett und der Rücksendeschein werden einzeln in zwei verschiedenen PDF-Dokumenten geöffnet und müssen einzeln ausgedruckt werden.<br><br>
-						Klicken Sie auf <img src="/fx/images/icons/icons/returnlabel.png" alt="Returnlabel"><img src="/fx/images/icons/icons/returnlabel.png" alt="Returnlabel"> neben Ihrer Bestellung um ein Rücksendeetikett zu erstellen. Das Rücksendeetikett öffnet sich in einem neuen Fenster.<br><br>
-						Klicken Sie auf <img src="/fx/images/icons/icons/trackntrace.png" alt="Track 'n trace"> neben Ihrer Bestellung, um Ihr Paket nachzuverfolgen. Die Track & Trace Webseite öffnet sich in einem neuen Fenster.<br><br>
-                    </p>
-                ]]></target>
+                <target><![CDATA[ <p>
+      Auf Meine Seite können Sie Ihre Bestellung bearbeiten und das Rücksendeetikett samt Rücksendeschein ausdrucken. Sie haben ebenfalls die Möglichkeit Informationen zu ändern und sich für den Newsletter anzumelden oder ihn abzubestellen<br><br>
+      <em>Ihre Bestellung kann folgenden Status haben:</em><br><br>
+      <b>Warten auf Bearbeitung</b><br>
+      Ihre Bestellung wurde noch nicht bearbeitet und Sie haben zum Bearbeiten Ihrer Bestellung mind. 24 Stunden Zeit. Sie können Ihre Bestellung ändern oder etwas hinzufügen bzw. entfernen.<br>Bitte beachten Sie: Nachdem Sie die Änderungen vorgenommen haben, muss die Zahlung nochmals durchgeführt werden – frühere Zahlungsreservationen werden automatisch gelöscht. <br><br>
+      <b>Bearbeitung stoppen</b><br>
+      Sie haben evtl. Ihre Bearbeitung abgebrochen. Drücken Sie auf die Schaltfläche ”Bearbeitung stoppen”, danach können Sie Ihre Bestellung erneut bearbeiten.<br><br>
+      <b>Wird bearbeitet</b><br>
+      Ihre Bestellung wird jetzt in unserem Lager bearbeitet und im Laufe von 1-2 Tagen an Sie verschickt. Es ist nicht mehr möglich, Ihre Bestellung zu bearbeiten/zu stoppen.<br><br>
+      <b>In Rechnung gestellt</b><br>
+      Ihre Bestellung hat unser Lager verlassen. Die Rechnung finden Sie als beigefügte PDF-Datei in der Spalte Rechnung spätestens 24 Stunden nach dem Versand.<br><br>
+      <b>Nachdem Ihre Sendung abgeschickt/empfangen wurde, haben Sie folgende Möglichkeiten:</b><br><br>
+      <b>Das Paket nachverfolgen</b><br>
+      Klicken Sie auf das Symbol neben Ihrer Bestellung um das Paket nachzuverfolgen. Die Track & Trace Seite öffnet sich in einem neuen Fenster.<br><br>
+      <b>Rücksendung</b><br>
+      Möchten Sie die Ware zurückschicken, dann klicken Sie bitte auf das grüne Symbol neben Ihrer Bestellung.<br> 
+     Bitte beachten: Das Rücksendeetikett und der Rücksendeschein werden einzeln in zwei verschiedenen PDF-Dokumenten geöffnet und müssen einzeln ausgedruckt werden.<br><br>
+      <b>Rücksendeschein</b><br>
+      Falls Sie die Waren, die Sie zurückschicken möchten nicht im interaktiven Rücksendeschein finden können, klicken Sie auf diesen Link und drucken den Rücksendeschein manuell aus.  <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_AT.pdf">» Rücksendeschein (PDF)</a>
+      <br><br>
+      <b>Rücksendeetikett</b><br>
+      Klicken Sie auf das graue Symbol neben Ihrer Bestellung um ein Rücksendeetikett zu erstellen. Das Rücksendeetikett öffnet sich in einem neuen Fenster.</p>  ]]></target>
             </trans-unit>
             <trans-unit id="newsletter" approved="no">
                 <source>newsletter</source>
