@@ -5,3 +5,58 @@
 #product-list-sort li .sort-buttons { position: absolute; top: 0; right: 0; }
 #product-list-sort li .sort-buttons a { padding: 3px; background: #F5F5F5; cursor: pointer; }
 #product-list-sort li .sort-buttons a:hover { text-decoration: none; color: black; }
+
+.sidebar {
+}
+
+
+.nav-sidebar {
+    position: absolute;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar-toggle {
+    display: none;
+    float: left;
+    padding-top: 20px;
+    padding-left: 5px;
+}
+@media (max-width:767px) {
+    .nav-sidebar {
+        top:0;
+        position: absolute;
+    }
+
+    .sidebar-toggle {
+        float: left;
+        display: inline-block;
+    }
+
+    .container-fluid.active {
+        position: relative;
+        left: 200px;
+    }
+    .sidebar {
+        margin-left: -16.666666666666664%;
+        width: 16.666666666666664%;
+        height: 100%;
+        left: 0;
+        position: fixed;
+        overflow-y: auto;
+        z-index: 1000;
+        transition: all 0.4s ease 0s;
+        display: block;
+    }
+
+    .container-fluid.active .sidebar {
+        left: 50px;
+        width: 200px;
+        transition: all 0.4s ease 0s;
+        background-color: #000;
+    }
+    .container-fluid.active .sidebar a {
+        color: #fff;
+    }
+}
