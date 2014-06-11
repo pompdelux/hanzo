@@ -160,14 +160,24 @@ class HanzoBoot
      */
     protected function adminAccessCheck(GetResponseEvent $event)
     {
-        $request_uri = $event->getRequest()->getRequestUri();
-        if ((substr($event->getRequest()->getHttpHost(), 0, 6) !== 'admin.')) {
+        $request      = $event->getRequest();
+        $request_uri  = $request->getRequestUri();
+        $request_type = $event->getRequestType();
+
+        if ((substr($request->getHttpHost(), 0, 6) !== 'admin.')) {
+            // if a user tries to access the admin section via the website, redirect the user to the admin. domain
+            if (preg_match('~^/[a-z]{2}_[a-z]{2}/admin/~i', $request_uri)) {
+                return new RedirectResponse(str_replace('www.', 'admin.', $this->router->generate('admin', ['_locale' => $request->getLocale()], true)));
+            }
+
             return;
         }
 
-        $event->getRequest()->attributes->set('admin_enabled', true);
+        $request->attributes->set('admin_enabled', true);
 
-        if (preg_match('~(_wdt|i18n/js|_fragment)~', $request_uri)) {
+        if (preg_match('~/[a-z]{2}_[A-Z]{2}/(_wdt|i18n/js)~', $request_uri) ||
+            (HttpKernelInterface::SUB_REQUEST === $request_type)
+        ) {
             return;
         }
 
@@ -179,7 +189,6 @@ class HanzoBoot
         ) {
             return new RedirectResponse($login_url);
         }
-
     }
 
 
