@@ -1,13 +1,16 @@
 {% extends '::adminbase.html.twig' %}
+{% use '::admin-subnav.html.twig' %}
+
+{% block subnav_content %}
+    <ul class="nav navbar-nav">
+        <li><a href="{{ path('admin_orders') }}">{{ 'admin.back.button'|trans({}, 'admin') }}</a></li>
+    </ul>
+{% endblock %}
 
 {% block content %}
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="{{ path('admin_orders') }}">{{ 'admin.back.button'|trans({}, 'admin') }}</a></li>
-            </ul>
-        </div>
-    </nav>
+    {% block admin_subnav %}
+        {{ parent() }}
+    {% endblock %}
 
     <h1>{{ 'admin.orders.changestate.header.text'|trans({}, 'admin') }}</h1>
 

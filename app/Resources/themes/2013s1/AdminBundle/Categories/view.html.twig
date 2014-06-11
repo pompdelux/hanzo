@@ -1,16 +1,18 @@
 {% extends '::adminbase.html.twig' %}
+{% use '::admin-subnav.html.twig' %}
+
+{% block subnav_content %}
+    <ul class="nav navbar-nav">
+        <li><a href="{{ path('admin_category_edit') }}" title="{{ 'admin.add.category'|trans({}, 'admin') }}">{{ 'admin.add.category'|trans({}, 'admin') }}</a></li>
+    </ul>
+{% endblock %}
 
 {% block content %}
-<nav class="sub">
-  <ul>
-    <li>
-      <a href="{{ path('admin_category_edit') }}" title="{{ 'admin.add.category'|trans({}, 'admin') }}">
-        {{ 'admin.add.category'|trans({}, 'admin') }}
-      </a>
-    </li>
-  </ul>
-</nav>
-<h1>{{ 'admin.category.edit.header.text'|trans({}, 'admin') }}</h1>
+    {% block admin_subnav %}
+        {{ parent() }}
+    {% endblock %}
+
+    <h1>{{ 'admin.category.edit.header.text'|trans({}, 'admin') }}</h1>
 
 {% for message in app.session.flashbag.get('notice') %}
 <div class="message notice">

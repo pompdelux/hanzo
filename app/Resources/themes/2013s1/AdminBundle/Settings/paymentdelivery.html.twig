@@ -1,27 +1,30 @@
 {% extends '::adminbase.html.twig' %}
+{% use '::admin-subnav.html.twig' %}
+
+{% block subnav_content %}
+    <ul class="nav navbar-nav">
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                {% if domain_key %}
+                    <span class="flag {{ domain_key|replace({'Sales':''}) }}"></span> |
+                {% endif %}
+                {{ 'domain.selector'|trans({}, 'admin') }}
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                {% for domain in domains_availible %}
+                    <li><a href="{{ path('admin_settings_domain', {'domain_key' : domain.domainkey}) }}"><span class="flag {{ domain.domainkey|replace({'Sales':''}) }}"></span>{{ domain.domainkey }}</a></li>
+                {% endfor %}
+            </ul>
+        </li>
+        <li><a href="{{ path('admin_settings') }}">{{ 'settings.global.settings'|trans({}, 'admin') }}</a></li>
+    </ul>
+{% endblock %}
 
 {% block content %}
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        {% if domain_key %}
-                            <span class="flag {{ domain_key|replace({'Sales':''}) }}"></span> |
-                        {% endif %}
-                        {{ 'domain.selector'|trans({}, 'admin') }}
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        {% for domain in domains_availible %}
-                            <li><a href="{{ path('admin_settings_domain', {'domain_key' : domain.domainkey}) }}"><span class="flag {{ domain.domainkey|replace({'Sales':''}) }}"></span>{{ domain.domainkey }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </li>
-                <li><a href="{{ path('admin_settings') }}">{{ 'settings.global.settings'|trans({}, 'admin') }}</a></li>
-            </ul>
-        </div>
-    </nav>
+    {% block admin_subnav %}
+        {{ parent() }}
+    {% endblock %}
 
     <h1>{{ 'admin.settings.paymentdelivery.header.text.%domain_key%'|trans({'%domain_key%' : domain}, 'admin') }}</h1>
 

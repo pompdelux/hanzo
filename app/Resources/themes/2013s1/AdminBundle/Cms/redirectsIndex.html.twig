@@ -1,31 +1,33 @@
 {% extends '::adminbase.html.twig' %}
+{% use '::admin-subnav.html.twig' %}
+
+{% block subnav_content %}
+    <ul class="nav navbar-nav">
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                {% if domain_key %}
+                    <span class="flag {{ domain_key|replace({'Sales': ''}) }}"></span><span class="domain-key">.{{ domain_key }}</span> |
+                {% endif %}
+                {{ 'domain.selector'|trans({}, 'admin') }}
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                {% for domain in domains_availible %}
+                    <li><a href="{{ path('admin_cms_redirects', {'domain_key' : domain.domainkey}) }}"><span class="flag {{ domain.domainkey|replace({'Sales': ''}) }}"></span>{{ domain.domainkey }}</a></li>
+                {% endfor %}
+            </ul>
+        </li>
+
+        <li><a href="{{ path('admin_cms_redirects') }}">{{ 'admin.cms.redirect.all.link'|trans({}, 'admin') }}</a></li>
+        <li><a href="{{ path('admin_cms_redirect_edit') }}">{{ 'admin.cms.redirect.add.link'|trans({}, 'admin') }}</a></li>
+        <li><a href="{{ path('admin_cms') }}">{{ 'admin.back.button'|trans({}, 'admin') }}</a></li>
+    </ul>
+{% endblock %}
 
 {% block content %}
-
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        {% if domain_key %}
-                            <span class="flag {{ domain_key|replace({'Sales': ''}) }}"></span><span class="domain-key">.{{ domain_key }}</span> |
-                        {% endif %}
-                        {{ 'domain.selector'|trans({}, 'admin') }}
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        {% for domain in domains_availible %}
-                            <li><a href="{{ path('admin_cms_redirects', {'domain_key' : domain.domainkey}) }}"><span class="flag {{ domain.domainkey|replace({'Sales': ''}) }}"></span>{{ domain.domainkey }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </li>
-
-                <li><a href="{{ path('admin_cms_redirects') }}">{{ 'admin.cms.redirect.all.link'|trans({}, 'admin') }}</a></li>
-                <li><a href="{{ path('admin_cms_redirect_edit') }}">{{ 'admin.cms.redirect.add.link'|trans({}, 'admin') }}</a></li>
-                <li><a href="{{ path('admin_cms') }}">{{ 'admin.back.button'|trans({}, 'admin') }}</a></li>
-            </ul>
-        </div>
-    </nav>
+    {% block admin_subnav %}
+        {{ parent() }}
+    {% endblock %}
 
 {% if domain_key %}
     <h1>{{ 'admin.cms.redirects.header.text.%domain_key%'|trans({'%domain_key%' : domain_key}, 'admin') }}</h1>
