@@ -430,26 +430,31 @@
                 <source>my.account.%name%</source>
                 <target>Välkommen %name%!</target>
             </trans-unit>
-            <trans-unit id="my.account.description" approved="no">
+           <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
-                <target><![CDATA[
-                    <p>
-                        På Min Sida kan du ändra dina uppgifter samt registrera dig till vårt nyhetsbrev. Du har även möjlighet för att redigera i din order. Din order kan ha följande status:<br><br>
-                        <b>Väntar</b><br>
-                        Din order är ännu inte behandlad och du har minst 24 timmar på dig att redigera i din order. Du har möjlighet att ändra/lägga till/radera i din order. Du ska klicka på <img src="/fx/images/icons/icons/edit.png" alt="Edit"> för redigering. Observera: Betalningen ska genomföras på nytt – tidigare reservation blir automatiskt raderad. Om du önskar att radera hela din order, klickar du på <img src="/fx/images/icons/icons/delete.png" alt="Delete">.<br><br>
-                        <b>Stop editering</b><br>
-                        Du har troligtvis avbrutit din redigering. Klicka på ”Stop editing” så kan du redigera din order igen.<br><br>
-                        <b>Under behandling</b><br>
-                        Din order blir nu behandlad på vårt lager och blir skickad inom 1-2 dagar. Det är inte längre möjligt att redigera/stoppa ordern.<br><br>
-                        <b>Fakturerad</b><br>
-                        Din order är skickad från vårt lager. Inom 24 timmar kan du se din faktura som en PDF fil under kolumnen faktura <img src="/fx/images/icons/icons/pdf.png" alt="PDF"><br><br>
-                        <b>Returnering</b><br>
-                        Om du önskar att returnera en vara ska du klicka på <img src="/fx/images/icons/icons/return.png" alt="Return"> <strong>Observera:</strong> Returetikett och retursedel ligger i två PDF-filer och ska skrivas ut var för sig.<br><br>
-                        Om du inte hittar varan som du önskar att returnera på retursedeln, kan du klicka på länken här och manuellt skriva ut en retursedel:<a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_SE.pdf" target="_blank">Retursedel (PDF)</a><br><br>
-						Klicka på <img src="/fx/images/icons/icons/returnlabel.png" alt="Returnlabel"> vid din order för att få en returetikett. Returetiketten öppnas i ett nytt fönster.<br><br>
-                        Klicka på <img src="/fx/images/icons/icons/trackntrace.png" alt="Track 'n trace"> vid din order för att följa ditt paket. Track and Trace sidan öppnas i ett nytt fönster.<br><br>
-                    </p>
-                ]]></target>
+                <target><![CDATA[ <p>
+      På Min sida kan du redigera din order och skriva ut returetiketter och retursedlar. Du kan också ändra dina kontoupplysningar och registrera/avregistrera dig till vårt nyhetsbrev. <br><br>
+      <em>En order kan ha följande status:</em><br><br>
+      <b>Väntar</b><br>
+     Din order är ännu inte behandlad och du kan redigera den i minst 24 timmar efter det att ordern blev lagd. Du kan redigera, lägga till, ta bort varor eller radera din order.<br>Obs! När du har redigerat måste man göra en ny betalning. Den tidigare kortreservationen annulleras automatiskt. <br><br>
+      <b>Avbryt redigering</b><br>
+      Du har troligtvis avbrutit redigeringen. Klicka på knappen ”Avbryt redigering”, så kan du redigera din order igen.<br><br>
+      <b>Under behandling</b><br>
+      Din order packas på vårt lager och kommer att skickas inom 1–2 dagar. Det är inte längre möjligt att redigera eller radera din order.<br><br>
+      <b>Fakturerad</b><br>
+      Din order är skickad från vårt lager. Inom 24 timmar kan du se fakturan som pdf-fil under fakturakulmnen.<br><br>
+      <b>När paketet har skickats/tagits emot visas följande alternativ:</b><br><br>
+      <b>Spåra ditt paket</b><br>
+      Klicka på ikonen vid sidan av din order om du vill spåra paketet. Sidan Track and Trace öppnas i ett nytt fönster.<br><br>
+      <b>Retur, byte och reklamation</b><br>
+      Om du vill returnera en vara klickar du på ikonen vid ordern.<br> 
+     Returetiketten och retursedeln ligger i två olika pdf-filer och ska skrivas ut var för sig. Om du använder vår returetikett drar vi av SEK 49 från värdet av dina returvaror.<br>
+      Om du vill byta en vara eller har fått en vara med fel returnerar du bara varan så skickar vi en ny – naturligtvis helt kostnadsfritt. Om varan är utsåld får du pengarna tillbaka för varan.<br><br>
+      <b>Retursedel</b><br>
+      Om du inte hittar varan du vill returnera på den interaktiva retursedeln kan du klicka på den här länken och skriva ut retursedeln manuellt. <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_SE.pdf">» Retursedel (PDF)</a>
+      <br><br>
+      <b>Returetikett</b><br>
+      Klicka på ikonen vid sidan av ordern om du vill skriva ut en returetikett. Om du använder vår returetikett drar vi av SEK 49 från värdet av dina returvaror. Returetiketten öppnas i ett nytt fönster.</p>  ]]></target>
             </trans-unit>
             <trans-unit id="newsletter" approved="no">
                 <source>newsletter</source>
@@ -530,7 +535,7 @@ Därefter kan du enkelt shoppa vidare.<br></p>
                 <source>account.returnlabel.link</source>
                 <target>Skriv ut returetikett</target>
             </trans-unit>
-            <!--             <trans-unit id="my.account.legends.header">
+            <trans-unit id="my.account.legends.header">
                 <source>my.account.legends.header</source>
                 <target>Ikonerna betyder följande</target>
             </trans-unit>
@@ -547,7 +552,7 @@ Därefter kan du enkelt shoppa vidare.<br></p>
                         <li><i class="sprite trackntrace"></i><span>Följ ditt paket</span></li>
                     </ul>
                     ]]></target>
-            </trans-unit> -->
+            </trans-unit>
             <trans-unit id="my.account.existing.customer.notice">
                 <source>my.account.existing.customer.notice</source>
                 <target>Välkommen, vi är glada för att se dig igen.</target>
