@@ -106,4 +106,24 @@ article div ul {
         background-color: #fff;
         text-decoration: none;
     }
+
+    .fa-box {
+        @include border-radius(2px);
+        padding: 2px;
+        color: #fff;
+        display: inline-block;
+        width: 16px;
+        text-align: center;
+
+        &.red {
+            background-color: #FF0000;
+        }
+        &.green {
+            background-color: #009926;
+        }
+
+    }
+    .ts {
+        font-size: 0.8em;
+    }
 }

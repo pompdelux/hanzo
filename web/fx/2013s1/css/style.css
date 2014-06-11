@@ -3121,6 +3121,27 @@ article div ul {
   background-color: #fff;
   text-decoration: none;
 }
+.inline-edit-menu .fa-box {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  padding: 2px;
+  color: #fff;
+  display: inline-block;
+  width: 16px;
+  text-align: center;
+}
+.inline-edit-menu .fa-box.red {
+  background-color: #FF0000;
+}
+.inline-edit-menu .fa-box.green {
+  background-color: #009926;
+}
+.inline-edit-menu .ts {
+  font-size: 0.8em;
+}
 
 /**
 | _faq
