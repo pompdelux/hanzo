@@ -11,20 +11,24 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
+use Symfony\Component\Security\Core\SecurityContextInterface;
 
 class HanzoBoot
 {
     protected $router;
     protected $kernel;
+    protected $securityContext;
 
     /**
      * __construct
      *
-     * @param Router    $router
-     * @param AppKernel $kernel
+     * @param SecurityContextInterface $securityContext
+     * @param Router                   $router
+     * @param AppKernel                $kernel
      */
-    public function __construct(Router $router, AppKernel $kernel)
+    public function __construct(SecurityContextInterface $securityContext, Router $router, AppKernel $kernel)
     {
+        $this->securityContext = $securityContext;
         $this->router = $router;
         $this->kernel = $kernel;
     }
@@ -37,7 +41,11 @@ class HanzoBoot
      */
     public function onKernelRequest(GetResponseEvent $event)
     {
-        $this->sslHandeling($event);
+        $response = $this->adminAccessCheck($event);
+        if ($response instanceof RedirectResponse) {
+            return $event->setResponse($response);
+        }
+
         $this->deviceCheck($event);
         $this->webshopAccessRestrictionCheck($event);
 
@@ -50,63 +58,6 @@ class HanzoBoot
         }
 
         $container->get('twig')->addGlobal('video_cdn', str_replace(['http:', 'https:'], '', $video_cdn));
-    }
-
-
-    protected function sslHandeling($event)
-    {
-return; // WIP: work in progress...
-
-        // only scan MASTER_REQUESTS
-        if (HttpKernelInterface::MASTER_REQUEST !== $event->getRequestType()) {
-            return;
-        }
-
-        $request = $event->getRequest();
-
-        // skip ssl check for these routes
-        if (in_array($request->attributes->get('_route'), [
-            // misc routes
-            '_account_create',
-            '_account_lost_password',
-            '_account_phone_lookup',
-            '_internal',
-            '_wdt',
-            'bazinga_exposetranslation_js',
-            'login',
-            'login_check',
-            'muneris_nno_lookup',
-
-            // dibs callbacks
-            'PaymentBundle_dibs_callback',
-
-            // pensio callbacks
-            '_pensio_form',
-            '_pensio_wait',
-            '_pensio_callback',
-            '_pensio_process',
-
-            // ax calls
-            'ax_soap',
-
-            // paypal
-            '_paypal_callback',
-            '_paypal_cancel',
-        ])) {
-            return;
-        }
-
-        if (($request->isSecure()) &&
-            (!$this->kernel->getContainer()->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY'))
-        ) {
-            $request->server->set('HTTPS', false);
-            $request->server->set('SERVER_PORT', 80);
-
-            $response = new RedirectResponse($request->getUri());
-            $response->headers->clearCookie('auth');
-
-            return $event->setResponse($response);
-        }
     }
 
 
@@ -151,6 +102,10 @@ return; // WIP: work in progress...
      */
     protected function webshopAccessRestrictionCheck(GetResponseEvent $event)
     {
+        if ($event->getRequest()->attributes->has('admin_enabled')) {
+            return;
+        }
+
         $hanzo = Hanzo::getInstance();
 
         if (1 == $hanzo->get('webshop.closed', 0)) {
@@ -195,6 +150,45 @@ return; // WIP: work in progress...
                     header('Location: '.$goto); exit;
                 }
             }
+        }
+    }
+
+
+    /**
+     * @param  GetResponseEvent $event
+     * @return RedirectResponse|null
+     */
+    protected function adminAccessCheck(GetResponseEvent $event)
+    {
+        $request      = $event->getRequest();
+        $request_uri  = $request->getRequestUri();
+        $request_type = $event->getRequestType();
+
+        if ((substr($request->getHttpHost(), 0, 6) !== 'admin.')) {
+            // if a user tries to access the admin section via the website, redirect the user to the admin. domain
+            if (preg_match('~^/[a-z]{2}_[a-z]{2}/admin/~i', $request_uri)) {
+                return new RedirectResponse(str_replace('www.', 'admin.', $this->router->generate('admin', ['_locale' => $request->getLocale()], true)));
+            }
+
+            return;
+        }
+
+        $request->attributes->set('admin_enabled', true);
+
+        // we do not care about requests for resources or sub requests
+        if (preg_match('~/[a-z]{2}_[A-Z]{2}/(_wdt|i18n/js)~', $request_uri) ||
+            (HttpKernelInterface::SUB_REQUEST === $request_type)
+        ) {
+            return;
+        }
+
+        $login_url = $this->router->generate('admin_login');
+        if (($request_uri !== $login_url) &&
+            (($this->securityContext->getToken() === '') ||
+             ($this->securityContext->getToken()->getUser() === 'anon.')
+            )
+        ) {
+            return new RedirectResponse($login_url);
         }
     }
 

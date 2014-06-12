@@ -1,0 +1,15 @@
+{% extends '::adminbase.html.twig' %}
+
+{% block content %}
+
+    <form action="{{ path('admin_login') }}" method="post" class="form-signin">
+        <h2 class="form-signin-heading">Log ind</h2>
+
+        <input type="email" id="username" name="_username" value="" placeholder="Brugernavn" autofocus tabindex="1" class="form-control">
+        <input type="password" id="password" name="_password" placeholder="Adgangskode" tabindex="2" class="form-control">
+        <button class="btn btn-lg btn-primary btn-block" type="submit" tabindex="3">
+            {{ 'my.account.login'|trans({}, 'account') }}
+        </button>
+    </form>
+
+{% endblock %}

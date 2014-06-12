@@ -7,7 +7,7 @@
     </hgroup>
 </header>
 <article class="grid_8 alpha omega">
-	<div class="grid_6 alpha">
+	<div class="grid_5 alpha">
 		<h1>{{ 'my.account.%name%'|trans({'%name%' : user.FirstName|capitalize }, 'account') }}</h1>
 
 		{% for message in app.session.flashbag.get('notice') %}
@@ -18,7 +18,7 @@
 
     {{ 'my.account.description'|trans({}, 'account')|raw }}
 	</div>
-	<div class="grid_2 omega">
+	<div class="grid_2 push_1 omega">
 		{{ include('AccountBundle:Default:aside.html.twig') }}
 
     {% if 'my.account.legends'|trans({}, 'account') != 'my.account.legends' %}

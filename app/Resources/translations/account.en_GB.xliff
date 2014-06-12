@@ -444,24 +444,26 @@
             </trans-unit>
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
-                <target><![CDATA[
-                    <p>
-                        On My account you can change your account details and subscribe or unsubscribe to our newsletter. Furthermore you can also edit your order.<br><br>
-                        Your order can have following status:<br><br>
-                        <b>Pending</b><br>
-                        Your order has been registered, and you have as a minimum 24 hours to edit your order. You can change/add/delete items on your order. Just click on the <img src="/fx/images/icons/icons/edit.png" alt="Edit"> if you wish to edit your order. Please note: You must proceed through to the payment, when you edit your order. If you pay by credit card - please be aware that any previous authorizations, placed on your credit card account, can take up to 30 days to expire. If you wish to cancel your order, click on <img src="/fx/images/icons/icons/delete.png" alt="Delete">.<br><br>
-                        <b>Stop editing</b><br>
-                        If you are interrupted during editing, just click on “Stop editing” and you can then start again.<br><br>
-                        <b>Being processed</b>
-                        <br>We are now packing your order and it will be shipped within 1-2 days. You cannot edit/cancel your order anymore.<br><br>
-                        <b>Shipped</b><br>
-                        Your order has been shipped from our warehouse. You can see the invoice as a PDF file, under the column Invoice, within 24 hours after your order has been shipped.<br><br>
-                        <b>Returns</b><br>
-                        If you want to return an item, you click on <img src="/fx/images/icons/icons/return.png" alt="Return"><br><br>
-                        If you cannot find the item you wish to return, click on the link and print out a blank Returns Form: <a href="{{ cdn }}images/pdf/POMPdeLUX_Returseddel_ENG.pdf" target="_blank">&raquo; Returns form (PDF)</a><br><br>
-                        Click on the <img src="/fx/images/icons/icons/trackntrace.png" alt="Track 'n trace"> next to your order to follow your parcel. The Track and Trace page will open in a new window.<br><br>
-                    </p>
-                ]]></target>
+                <target><![CDATA[ <p>
+      On My account you can edit your order, print the returns form. You can also edit your personal details and subscribe/unsubscribe to our newsletter.<br><br>
+      <em>Your order can have the following status:</em><br><br>
+      <b>Pending</b><br>
+      Your order has not been processed yet, and from the time you place your order, you have a minimum of 24 hours to edit your order. You can add, change or cancel items on your order.<br>Please note: To complete the editing you must proceed to payment – previous payment reservation will automatically be cancelled. It can sometimes take up to 30 days until the reservation will be cancelled on your credit card. <br><br>
+      <b>Stop editing</b><br>
+      You have been logged out while editing your order. Click on ”Stop editing” and you can then start all over again with your editing.<br><br>
+      <b>Being processed</b><br>
+      Your order is now being packed in our warehouse and will be shipped within 1-2 days. You will not be able to edit or hold back your order.<br><br>
+      <b>Shipped</b><br>
+     Your order has been shipped from our warehouse. You can find the Pdf invoice under the column Invoice at the latest 24 hours after dispatch.<br><br>
+      <b>You have the following options when your order has been shipped/received:</b><br><br>
+      <b>Track your parcel</b><br>
+      Click on the icon next to your order to follow your parcel. The Track and Trace page will open in a new window.<br><br>
+      <b>Returns, exchanges and defects</b><br>
+      If you wish to return an item, click on the green icon next to your order below.<br> 
+      The returns form needs to be filled out and can be opened in a PDF-file. You can then print the PDF-file. <br>
+      If you wish to exchange an item or you have received an item with manufacturing flaws or defects, please just return the item to us. If the defect is accepted by us, we will send you a new item free of charge and we will refund your postage. Please make the amount you have paid visible on the parcel or make a note on the returns form. In case you are returning items without flaws/defects and without the purpose of having them exchanged, we cannot refund any postage. If the item is sold out, we will give you a full refund. <br><br>
+      <b>Returns form</b><br>
+      If you cannot find the item you wish to return on the returns form, please click on the link here and you can print a returns form manually. <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_COM.pdf">» Returns form (PDF)</a><br><br></p>  ]]></target>
             </trans-unit>
             <trans-unit id="newsletter" approved="no">
                 <source>newsletter</source>
@@ -535,7 +537,7 @@ After this you can easily continue shopping.<br></p>
                 <source>account.returnlabel.link</source>
                 <target>Print return label</target>
             </trans-unit>
-            <!--             <trans-unit id="my.account.legends.header">
+            <trans-unit id="my.account.legends.header">
                 <source>my.account.legends.header</source>
                 <target>The icons mean</target>
             </trans-unit>
@@ -551,7 +553,7 @@ After this you can easily continue shopping.<br></p>
                         <li><i class="sprite trackntrace"></i><span>Follow your parcel</span></li>
                     </ul>
                     ]]></target>
-            </trans-unit> -->
+            </trans-unit>
             <trans-unit id="my.account.existing.customer.notice">
                 <source>my.account.existing.customer.notice</source>
                 <target>Welcome, we are happy to see you again!</target>

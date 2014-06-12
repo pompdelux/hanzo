@@ -30,7 +30,7 @@
 
 <link href="//fonts.googleapis.com/css?family=Merriweather:400,700,900" rel="stylesheet" type="text/css">
 <link rel="shortcut icon" href="/fx/images/favicon.ico" title="POMPdeLUX" type="image/ico">
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset_url('fx/build/desktop.min.css') }}">
 
 <!--[if lt IE 9]>
@@ -38,6 +38,8 @@
 <![endif]-->
 </head>
 <body id="body-{{ page_type|default('page') }}" class="{{ body_classes|default('') }} {{ html_lang }} domain-{{ domain_key|lower }}">
+{% include '::inlineEditMenu.html.twig' %}
+
 <div class="top-bar"></div>
 <div id="container" class="container container_8">
     <nav class="first grid_8 row main-menu">

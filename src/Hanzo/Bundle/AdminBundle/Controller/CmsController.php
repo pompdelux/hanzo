@@ -333,7 +333,7 @@ class CmsController extends CoreController
                             'type'               => 'checkbox'
                         ),
                         'is_restricted' => array(
-                            'label'              => 'Kræver godkendt IP i offline mode -',
+                            'label'              => 'Vis på admin...com -',
                             'options'            => array(
                                 'translation_domain' => 'admin',
                                 // 'label_attr'         => ['class' => 'col-sm-3'],

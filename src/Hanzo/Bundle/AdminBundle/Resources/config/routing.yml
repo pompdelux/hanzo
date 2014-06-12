@@ -2,6 +2,10 @@ admin:
     pattern:  /admin/
     defaults: { _controller: AdminBundle:Default:index }
 
+admin_login:
+    pattern:  /admin/login
+    defaults: { _controller: AdminBundle:Security:login }
+
 admin_database:
     pattern:  /admin/database/{name}
     defaults:
