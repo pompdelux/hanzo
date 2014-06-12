@@ -1,17 +1,18 @@
 {% extends '::adminbase.html.twig' %}
+{% use '::admin-subnav.html.twig' %}
+
+{% block subnav_content %}
+    <ul class="nav navbar-nav">
+        <li><a href="{{ path('admin_orders') }}">{{ 'admin.orders.list.link'|trans({}, 'admin') }}</a></li>
+    </ul>
+{% endblock %}
 
 {% block content %}
-
-
     <h1>I see dead orders!</h1>
 
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="{{ path('admin_orders') }}">{{ 'admin.orders.list.link'|trans({}, 'admin') }}</a></li>
-            </ul>
-        </div>
-    </nav>
+    {% block admin_subnav %}
+        {{ parent() }}
+    {% endblock %}
 
 {% for order in orders %}
 

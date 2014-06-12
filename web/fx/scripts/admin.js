@@ -928,3 +928,10 @@ function helpdesk_open (key) {
   $.colorbox(defaults);
   return false;
 }
+
+$(".sidebar-toggle").click(function(e) {
+    e.preventDefault();
+    $(".container-fluid").toggleClass("active");
+    $(".container-fluid .sidebar-toggle").toggleClass("glyphicon-step-forward glyphicon-step-backward");
+});
+

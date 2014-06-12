@@ -1,16 +1,18 @@
 {% extends '::adminbase.html.twig' %}
+{% use '::admin-subnav.html.twig' %}
+
+{% block subnav_content %}
+    <ul class="nav navbar-nav">
+        <li><a href="{{ path('admin_postalcode') }}">{{ 'admin.back.button'|trans({}, 'admin') }}</a></li>
+    </ul>
+{% endblock %}
 
 {% block content %}
-<nav class="sub">
-  <ul>
-    <li>
-      <a href="{{ path('admin_postalcode') }}">
-        {{ 'admin.back.button'|trans({}, 'admin') }}
-      </a>
-    </li>
-  </ul>
-</nav>
-<h1>Importer postnumre</h1>
+    {% block admin_subnav %}
+        {{ parent() }}
+    {% endblock %}
+
+    <h1>Importer postnumre</h1>
 
 {% for type, flashMessages in app.session.flashbag.all() %}
     {% for flashMessage in flashMessages %}

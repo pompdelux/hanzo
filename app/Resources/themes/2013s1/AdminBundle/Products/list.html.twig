@@ -1,35 +1,38 @@
 {% extends '::adminbase.html.twig' %}
-{% block content %}
+{% use '::admin-subnav.html.twig' %}
 
-<nav class="navbar navbar-default" role="navigation">
-    <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-        {% if categories|length > 0 and parent_category %}
-            <li><a href="{{ path('admin_products') }}" title="{{ 'admin.back.button'|trans({}, 'admin') }}">{{ 'admin.back.button'|trans({}, 'admin') }}</a></li>
-            {% if is_granted('ROLE_ADMIN') %}
-                <li><a href="{{ path('admin_category_edit') }}" title="{{ 'admin.add.category'|trans({}, 'admin') }}">{{ 'admin.add.category'|trans({}, 'admin') }}</a></li>
-                <li><a href="{{ path('admin_stock') }}" title="{{ 'admin.stock.export'|trans({}, 'admin') }}">{{ 'admin.stock.export'|trans({}, 'admin') }}</a></li>
-            {% endif %}
-        {% elseif products|length > 0 %}
-            <li><a href="{{ path('admin_products', {'category_id' : category_id}) }}" title="{{ 'admin.back.button'|trans({}, 'admin') }}">{{ 'admin.back.button'|trans({}, 'admin') }}</a></li>
-            {% if is_granted('ROLE_ADMIN') %}
-                <li><a href="{{ path('admin_stock') }}" title="{{ 'admin.stock.export'|trans({}, 'admin') }}">{{ 'admin.stock.export'|trans({}, 'admin') }}</a></li>
-            {% endif %}
-        {% else %}
-            {% if is_granted('ROLE_ADMIN') %}
-                <li><a href="{{ path('admin_stock') }}" title="{{ 'admin.stock.export'|trans({}, 'admin') }}">{{ 'admin.stock.export'|trans({}, 'admin') }}</a></li>
-            {% endif %}
+{% block subnav_content %}
+    <ul class="nav navbar-nav">
+    {% if categories|length > 0 and parent_category %}
+        <li><a href="{{ path('admin_products') }}" title="{{ 'admin.back.button'|trans({}, 'admin') }}">{{ 'admin.back.button'|trans({}, 'admin') }}</a></li>
+        {% if is_granted('ROLE_ADMIN') %}
+            <li><a href="{{ path('admin_category_edit') }}" title="{{ 'admin.add.category'|trans({}, 'admin') }}">{{ 'admin.add.category'|trans({}, 'admin') }}</a></li>
+            <li><a href="{{ path('admin_stock') }}" title="{{ 'admin.stock.export'|trans({}, 'admin') }}">{{ 'admin.stock.export'|trans({}, 'admin') }}</a></li>
         {% endif %}
-        </ul>
+    {% elseif products|length > 0 %}
+        <li><a href="{{ path('admin_products', {'category_id' : category_id}) }}" title="{{ 'admin.back.button'|trans({}, 'admin') }}">{{ 'admin.back.button'|trans({}, 'admin') }}</a></li>
+        {% if is_granted('ROLE_ADMIN') %}
+            <li><a href="{{ path('admin_stock') }}" title="{{ 'admin.stock.export'|trans({}, 'admin') }}">{{ 'admin.stock.export'|trans({}, 'admin') }}</a></li>
+        {% endif %}
+    {% else %}
+        {% if is_granted('ROLE_ADMIN') %}
+            <li><a href="{{ path('admin_stock') }}" title="{{ 'admin.stock.export'|trans({}, 'admin') }}">{{ 'admin.stock.export'|trans({}, 'admin') }}</a></li>
+        {% endif %}
+    {% endif %}
+    </ul>
 
-        <form action="{{ path('admin_products') }}" method="get" class="navbar-form navbar-right">
-            <div class="form-group">
-                <input type="text" id="searh" name="q" placeholder="{{ 'search.label'|trans({}, 'admin') }}" class="form-control">
-                <input class="button search btn btn-default" type="submit" value="{{ 'search'|trans({}, 'admin') }}">
-            </div>
-        </form>
-    </div>
-</nav>
+    <form action="{{ path('admin_products') }}" method="get" class="navbar-form navbar-right">
+        <div class="form-group">
+            <input type="text" id="searh" name="q" placeholder="{{ 'search.label'|trans({}, 'admin') }}" class="form-control">
+            <input class="button search btn btn-default" type="submit" value="{{ 'search'|trans({}, 'admin') }}">
+        </div>
+    </form>
+{% endblock %}
+
+{% block content %}
+    {% block admin_subnav %}
+        {{ parent() }}
+    {% endblock %}
 
 
 {% for message in app.session.flashbag.get('notice') %}
