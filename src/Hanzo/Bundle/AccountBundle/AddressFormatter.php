@@ -34,6 +34,7 @@ class AddressFormatter
      * @param  string    $format  Either "html", "txt" or "json"
      * @param  string    $locale  Optional locale, only set if you need to override the current locale
      * @return string
+     * @throws \InvalidArgumentException
      */
     public function format(Addresses $address, $format = 'html', $locale = null)
     {

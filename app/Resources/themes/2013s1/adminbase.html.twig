@@ -41,6 +41,7 @@ var cdn_url = '{{ cdn }}';
 </head>
 <body id="body-{{ page_type|default('admin') }}" class="{{ body_classes|default('cms global') }}">
 
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -50,12 +51,11 @@ var cdn_url = '{{ cdn }}';
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/admin/">
+                <a class="navbar-brand" href="{{ path('admin') }}">
                     {{ fx_image_tag('images/POMPdeLUX_logo_SS12.png', '', {'id':'logo', 'alt':'POMPdeLUX', 'style': 'height:30px;'}) }}
                     POMPdeLUX admin
                 </a>
             </div>
-
             <div class="navbar-collapse collapse" id="bs-top-menu-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
@@ -83,17 +83,31 @@ var cdn_url = '{{ cdn }}';
                     </li>
                 {% endif %}
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gå til POMPdeLUX site <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Se site på admin: <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="http://www.pompdelux.com/de_AT/">Austria</a></li>
-                            <li><a href="http://www.pompdelux.com/da_DK/">Denmark</a></li>
-                            <li><a href="http://www.pompdelux.com/de_DE/">Germany</a></li>
-                            <li><a href="http://www.pompdelux.com/fi_FI/">Finland</a></li>
-                            <li><a href="http://www.pompdelux.com/en_GB/">International</a></li>
-                            <li><a href="http://www.pompdelux.com/nl_NL/">Netherlands</a></li>
-                            <li><a href="http://www.pompdelux.com/nb_NO/">Norway</a></li>
-                            <li><a href="http://www.pompdelux.com/sv_SE/">Sweden</a></li>
-                            <li><a href="http://www.pompdelux.com/de_CH/">Switzerland</a></li>
+                            <li><a href="{{ url('_homepage', {'_locale': 'de_AT'}) }}">Austria</a></li>
+                            <li><a href="{{ url('_homepage', {'_locale': 'da_DK'}) }}">Denmark</a></li>
+                            <li><a href="{{ url('_homepage', {'_locale': 'de_DE'}) }}">Germany</a></li>
+                            <li><a href="{{ url('_homepage', {'_locale': 'fi_FI'}) }}">Finland</a></li>
+                            <li><a href="{{ url('_homepage', {'_locale': 'en_GB'}) }}">International</a></li>
+                            <li><a href="{{ url('_homepage', {'_locale': 'nl_NL'}) }}">Netherlands</a></li>
+                            <li><a href="{{ url('_homepage', {'_locale': 'nb_NO'}) }}">Norway</a></li>
+                            <li><a href="{{ url('_homepage', {'_locale': 'sv_SE'}) }}">Sweden</a></li>
+                            <li><a href="{{ url('_homepage', {'_locale': 'de_CH'}) }}">Switzerland</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Se site på live: <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url('_homepage', {'_locale': 'de_AT'})|replace({'admin': 'www'}) }}">Austria</a></li>
+                            <li><a href="{{ url('_homepage', {'_locale': 'da_DK'})|replace({'admin': 'www'}) }}">Denmark</a></li>
+                            <li><a href="{{ url('_homepage', {'_locale': 'de_DE'})|replace({'admin': 'www'}) }}">Germany</a></li>
+                            <li><a href="{{ url('_homepage', {'_locale': 'fi_FI'})|replace({'admin': 'www'}) }}">Finland</a></li>
+                            <li><a href="{{ url('_homepage', {'_locale': 'en_GB'})|replace({'admin': 'www'}) }}">International</a></li>
+                            <li><a href="{{ url('_homepage', {'_locale': 'nl_NL'})|replace({'admin': 'www'}) }}">Netherlands</a></li>
+                            <li><a href="{{ url('_homepage', {'_locale': 'nb_NO'})|replace({'admin': 'www'}) }}">Norway</a></li>
+                            <li><a href="{{ url('_homepage', {'_locale': 'sv_SE'})|replace({'admin': 'www'}) }}">Sweden</a></li>
+                            <li><a href="{{ url('_homepage', {'_locale': 'de_CH'})|replace({'admin': 'www'}) }}">Switzerland</a></li>
                         </ul>
                     </li>
 
@@ -110,10 +124,14 @@ var cdn_url = '{{ cdn }}';
                 {{ render(controller('AdminBundle:Cms:adminMenu')) }}
             </div>
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+{% endif %}
                 {% block content %}{% endblock %}
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
             </div><!-- /div#main -->
         </div>
     </div>
+
+{% endif %}
 
 <script type="text/javascript" src="{{ asset('bundles/bazingaexposetranslation/js/translator.min.js') }}"></script>
 <script type="text/javascript" src="{{ url('bazinga_exposetranslation_js', { 'domain_name': 'js', '_locale' : app.request.locale }) }}"></script>

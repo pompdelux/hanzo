@@ -140,7 +140,7 @@
       </trans-unit>
       <trans-unit id="cms.edit.label.is_restricted">
         <source>cms.edit.label.is_restricted</source>
-        <target>Kræver godkendt IP i offline mode</target>
+        <target>Vis på admin...com</target>
       </trans-unit>
       <trans-unit id="cms.edit.label.on_mobile">
         <source>cms.edit.label.on_mobile</source>

@@ -165,6 +165,20 @@
         threshold : 200,
         effect : "fadeIn"
       });
+
+      $(document).on('click', '.js-toggle-next', function(e) {
+          e.preventDefault();
+
+          var $this = $(this);
+          var ct = $this.text();
+          var nt = $this.data('toggleText');
+          var c = $this.data('toggleClass');
+          var $next = $this.next();
+          $next.slideToggle();
+          $this.toggleClass(c);
+          $this.text(nt);
+          $this.data('toggleText', ct);
+      });
     };
 
     /**
