@@ -310,7 +310,7 @@ class Stock
      * @param  Products|string $query
      * @return bool
      */
-    protected function checkStyleStock($query)
+    public function checkStyleStock($query)
     {
         if ($query instanceof Products) {
             $query = $query->getMaster();
