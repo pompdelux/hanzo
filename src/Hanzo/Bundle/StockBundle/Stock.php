@@ -307,14 +307,18 @@ class Stock
     /**
      * Figure out whether or not a whole style is out of stock.
      *
-     * @param $product
+     * @param  Products|string $query
      * @return bool
      */
-    protected function checkStyleStock($product)
+    protected function checkStyleStock($query)
     {
+        if ($query instanceof Products) {
+            $query = $query->getMaster();
+        }
+
         $ids = ProductsQuery::create()
             ->select('Id')
-            ->filterByMaster($product->getMaster())
+            ->filterByMaster($query)
             ->find()
             ->getData()
         ;
