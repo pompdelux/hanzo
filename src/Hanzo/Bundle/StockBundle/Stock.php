@@ -308,9 +308,10 @@ class Stock
      * Figure out whether or not a whole style is out of stock.
      *
      * @param  Products|string $query
+     * @param  bool            $return_count
      * @return bool
      */
-    public function checkStyleStock($query)
+    public function checkStyleStock($query, $return_count = false)
     {
         if ($query instanceof Products) {
             $query = $query->getMaster();
@@ -327,6 +328,10 @@ class Stock
         $total_stock = 0;
         foreach ($ids as $id) {
             $total_stock += $this->get($id);
+        }
+
+        if ($return_count) {
+            return $total_stock;
         }
 
         return (boolean) $total_stock;
