@@ -75,6 +75,12 @@ abstract class BaseProducts extends BaseObject implements Persistent
     protected $id;
 
     /**
+     * The value for the range field.
+     * @var        string
+     */
+    protected $range;
+
+    /**
      * The value for the sku field.
      * @var        string
      */
@@ -429,6 +435,17 @@ abstract class BaseProducts extends BaseObject implements Persistent
     }
 
     /**
+     * Get the [range] column value.
+     *
+     * @return string
+     */
+    public function getRange()
+    {
+
+        return $this->range;
+    }
+
+    /**
      * Get the [sku] column value.
      *
      * @return string
@@ -664,6 +681,27 @@ abstract class BaseProducts extends BaseObject implements Persistent
 
         return $this;
     } // setId()
+
+    /**
+     * Set the value of [range] column.
+     *
+     * @param  string $v new value
+     * @return Products The current object (for fluent API support)
+     */
+    public function setRange($v)
+    {
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->range !== $v) {
+            $this->range = $v;
+            $this->modifiedColumns[] = ProductsPeer::RANGE;
+        }
+
+
+        return $this;
+    } // setRange()
 
     /**
      * Set the value of [sku] column.
@@ -1068,20 +1106,21 @@ abstract class BaseProducts extends BaseObject implements Persistent
         try {
 
             $this->id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
-            $this->sku = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
-            $this->master = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
-            $this->size = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
-            $this->color = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
-            $this->unit = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
-            $this->washing = ($row[$startcol + 6] !== null) ? (int) $row[$startcol + 6] : null;
-            $this->has_video = ($row[$startcol + 7] !== null) ? (boolean) $row[$startcol + 7] : null;
-            $this->is_out_of_stock = ($row[$startcol + 8] !== null) ? (boolean) $row[$startcol + 8] : null;
-            $this->is_active = ($row[$startcol + 9] !== null) ? (boolean) $row[$startcol + 9] : null;
-            $this->is_voucher = ($row[$startcol + 10] !== null) ? (boolean) $row[$startcol + 10] : null;
-            $this->is_discountable = ($row[$startcol + 11] !== null) ? (boolean) $row[$startcol + 11] : null;
-            $this->primary_categories_id = ($row[$startcol + 12] !== null) ? (int) $row[$startcol + 12] : null;
-            $this->created_at = ($row[$startcol + 13] !== null) ? (string) $row[$startcol + 13] : null;
-            $this->updated_at = ($row[$startcol + 14] !== null) ? (string) $row[$startcol + 14] : null;
+            $this->range = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
+            $this->sku = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
+            $this->master = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
+            $this->size = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
+            $this->color = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
+            $this->unit = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
+            $this->washing = ($row[$startcol + 7] !== null) ? (int) $row[$startcol + 7] : null;
+            $this->has_video = ($row[$startcol + 8] !== null) ? (boolean) $row[$startcol + 8] : null;
+            $this->is_out_of_stock = ($row[$startcol + 9] !== null) ? (boolean) $row[$startcol + 9] : null;
+            $this->is_active = ($row[$startcol + 10] !== null) ? (boolean) $row[$startcol + 10] : null;
+            $this->is_voucher = ($row[$startcol + 11] !== null) ? (boolean) $row[$startcol + 11] : null;
+            $this->is_discountable = ($row[$startcol + 12] !== null) ? (boolean) $row[$startcol + 12] : null;
+            $this->primary_categories_id = ($row[$startcol + 13] !== null) ? (int) $row[$startcol + 13] : null;
+            $this->created_at = ($row[$startcol + 14] !== null) ? (string) $row[$startcol + 14] : null;
+            $this->updated_at = ($row[$startcol + 15] !== null) ? (string) $row[$startcol + 15] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -1091,7 +1130,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
             }
             $this->postHydrate($row, $startcol, $rehydrate);
 
-            return $startcol + 15; // 15 = ProductsPeer::NUM_HYDRATE_COLUMNS.
+            return $startcol + 16; // 16 = ProductsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating Products object", $e);
@@ -1638,6 +1677,9 @@ abstract class BaseProducts extends BaseObject implements Persistent
         if ($this->isColumnModified(ProductsPeer::ID)) {
             $modifiedColumns[':p' . $index++]  = '`id`';
         }
+        if ($this->isColumnModified(ProductsPeer::RANGE)) {
+            $modifiedColumns[':p' . $index++]  = '`range`';
+        }
         if ($this->isColumnModified(ProductsPeer::SKU)) {
             $modifiedColumns[':p' . $index++]  = '`sku`';
         }
@@ -1693,6 +1735,9 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 switch ($columnName) {
                     case '`id`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
+                        break;
+                    case '`range`':
+                        $stmt->bindValue($identifier, $this->range, PDO::PARAM_STR);
                         break;
                     case '`sku`':
                         $stmt->bindValue($identifier, $this->sku, PDO::PARAM_STR);
@@ -2020,45 +2065,48 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 return $this->getId();
                 break;
             case 1:
-                return $this->getSku();
+                return $this->getRange();
                 break;
             case 2:
-                return $this->getMaster();
+                return $this->getSku();
                 break;
             case 3:
-                return $this->getSize();
+                return $this->getMaster();
                 break;
             case 4:
-                return $this->getColor();
+                return $this->getSize();
                 break;
             case 5:
-                return $this->getUnit();
+                return $this->getColor();
                 break;
             case 6:
-                return $this->getWashing();
+                return $this->getUnit();
                 break;
             case 7:
-                return $this->getHasVideo();
+                return $this->getWashing();
                 break;
             case 8:
-                return $this->getIsOutOfStock();
+                return $this->getHasVideo();
                 break;
             case 9:
-                return $this->getIsActive();
+                return $this->getIsOutOfStock();
                 break;
             case 10:
-                return $this->getIsVoucher();
+                return $this->getIsActive();
                 break;
             case 11:
-                return $this->getIsDiscountable();
+                return $this->getIsVoucher();
                 break;
             case 12:
-                return $this->getPrimaryCategoriesId();
+                return $this->getIsDiscountable();
                 break;
             case 13:
-                return $this->getCreatedAt();
+                return $this->getPrimaryCategoriesId();
                 break;
             case 14:
+                return $this->getCreatedAt();
+                break;
+            case 15:
                 return $this->getUpdatedAt();
                 break;
             default:
@@ -2091,20 +2139,21 @@ abstract class BaseProducts extends BaseObject implements Persistent
         $keys = ProductsPeer::getFieldNames($keyType);
         $result = array(
             $keys[0] => $this->getId(),
-            $keys[1] => $this->getSku(),
-            $keys[2] => $this->getMaster(),
-            $keys[3] => $this->getSize(),
-            $keys[4] => $this->getColor(),
-            $keys[5] => $this->getUnit(),
-            $keys[6] => $this->getWashing(),
-            $keys[7] => $this->getHasVideo(),
-            $keys[8] => $this->getIsOutOfStock(),
-            $keys[9] => $this->getIsActive(),
-            $keys[10] => $this->getIsVoucher(),
-            $keys[11] => $this->getIsDiscountable(),
-            $keys[12] => $this->getPrimaryCategoriesId(),
-            $keys[13] => $this->getCreatedAt(),
-            $keys[14] => $this->getUpdatedAt(),
+            $keys[1] => $this->getRange(),
+            $keys[2] => $this->getSku(),
+            $keys[3] => $this->getMaster(),
+            $keys[4] => $this->getSize(),
+            $keys[5] => $this->getColor(),
+            $keys[6] => $this->getUnit(),
+            $keys[7] => $this->getWashing(),
+            $keys[8] => $this->getHasVideo(),
+            $keys[9] => $this->getIsOutOfStock(),
+            $keys[10] => $this->getIsActive(),
+            $keys[11] => $this->getIsVoucher(),
+            $keys[12] => $this->getIsDiscountable(),
+            $keys[13] => $this->getPrimaryCategoriesId(),
+            $keys[14] => $this->getCreatedAt(),
+            $keys[15] => $this->getUpdatedAt(),
         );
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
@@ -2204,45 +2253,48 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 $this->setId($value);
                 break;
             case 1:
-                $this->setSku($value);
+                $this->setRange($value);
                 break;
             case 2:
-                $this->setMaster($value);
+                $this->setSku($value);
                 break;
             case 3:
-                $this->setSize($value);
+                $this->setMaster($value);
                 break;
             case 4:
-                $this->setColor($value);
+                $this->setSize($value);
                 break;
             case 5:
-                $this->setUnit($value);
+                $this->setColor($value);
                 break;
             case 6:
-                $this->setWashing($value);
+                $this->setUnit($value);
                 break;
             case 7:
-                $this->setHasVideo($value);
+                $this->setWashing($value);
                 break;
             case 8:
-                $this->setIsOutOfStock($value);
+                $this->setHasVideo($value);
                 break;
             case 9:
-                $this->setIsActive($value);
+                $this->setIsOutOfStock($value);
                 break;
             case 10:
-                $this->setIsVoucher($value);
+                $this->setIsActive($value);
                 break;
             case 11:
-                $this->setIsDiscountable($value);
+                $this->setIsVoucher($value);
                 break;
             case 12:
-                $this->setPrimaryCategoriesId($value);
+                $this->setIsDiscountable($value);
                 break;
             case 13:
-                $this->setCreatedAt($value);
+                $this->setPrimaryCategoriesId($value);
                 break;
             case 14:
+                $this->setCreatedAt($value);
+                break;
+            case 15:
                 $this->setUpdatedAt($value);
                 break;
         } // switch()
@@ -2270,20 +2322,21 @@ abstract class BaseProducts extends BaseObject implements Persistent
         $keys = ProductsPeer::getFieldNames($keyType);
 
         if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
-        if (array_key_exists($keys[1], $arr)) $this->setSku($arr[$keys[1]]);
-        if (array_key_exists($keys[2], $arr)) $this->setMaster($arr[$keys[2]]);
-        if (array_key_exists($keys[3], $arr)) $this->setSize($arr[$keys[3]]);
-        if (array_key_exists($keys[4], $arr)) $this->setColor($arr[$keys[4]]);
-        if (array_key_exists($keys[5], $arr)) $this->setUnit($arr[$keys[5]]);
-        if (array_key_exists($keys[6], $arr)) $this->setWashing($arr[$keys[6]]);
-        if (array_key_exists($keys[7], $arr)) $this->setHasVideo($arr[$keys[7]]);
-        if (array_key_exists($keys[8], $arr)) $this->setIsOutOfStock($arr[$keys[8]]);
-        if (array_key_exists($keys[9], $arr)) $this->setIsActive($arr[$keys[9]]);
-        if (array_key_exists($keys[10], $arr)) $this->setIsVoucher($arr[$keys[10]]);
-        if (array_key_exists($keys[11], $arr)) $this->setIsDiscountable($arr[$keys[11]]);
-        if (array_key_exists($keys[12], $arr)) $this->setPrimaryCategoriesId($arr[$keys[12]]);
-        if (array_key_exists($keys[13], $arr)) $this->setCreatedAt($arr[$keys[13]]);
-        if (array_key_exists($keys[14], $arr)) $this->setUpdatedAt($arr[$keys[14]]);
+        if (array_key_exists($keys[1], $arr)) $this->setRange($arr[$keys[1]]);
+        if (array_key_exists($keys[2], $arr)) $this->setSku($arr[$keys[2]]);
+        if (array_key_exists($keys[3], $arr)) $this->setMaster($arr[$keys[3]]);
+        if (array_key_exists($keys[4], $arr)) $this->setSize($arr[$keys[4]]);
+        if (array_key_exists($keys[5], $arr)) $this->setColor($arr[$keys[5]]);
+        if (array_key_exists($keys[6], $arr)) $this->setUnit($arr[$keys[6]]);
+        if (array_key_exists($keys[7], $arr)) $this->setWashing($arr[$keys[7]]);
+        if (array_key_exists($keys[8], $arr)) $this->setHasVideo($arr[$keys[8]]);
+        if (array_key_exists($keys[9], $arr)) $this->setIsOutOfStock($arr[$keys[9]]);
+        if (array_key_exists($keys[10], $arr)) $this->setIsActive($arr[$keys[10]]);
+        if (array_key_exists($keys[11], $arr)) $this->setIsVoucher($arr[$keys[11]]);
+        if (array_key_exists($keys[12], $arr)) $this->setIsDiscountable($arr[$keys[12]]);
+        if (array_key_exists($keys[13], $arr)) $this->setPrimaryCategoriesId($arr[$keys[13]]);
+        if (array_key_exists($keys[14], $arr)) $this->setCreatedAt($arr[$keys[14]]);
+        if (array_key_exists($keys[15], $arr)) $this->setUpdatedAt($arr[$keys[15]]);
     }
 
     /**
@@ -2296,6 +2349,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
         $criteria = new Criteria(ProductsPeer::DATABASE_NAME);
 
         if ($this->isColumnModified(ProductsPeer::ID)) $criteria->add(ProductsPeer::ID, $this->id);
+        if ($this->isColumnModified(ProductsPeer::RANGE)) $criteria->add(ProductsPeer::RANGE, $this->range);
         if ($this->isColumnModified(ProductsPeer::SKU)) $criteria->add(ProductsPeer::SKU, $this->sku);
         if ($this->isColumnModified(ProductsPeer::MASTER)) $criteria->add(ProductsPeer::MASTER, $this->master);
         if ($this->isColumnModified(ProductsPeer::SIZE)) $criteria->add(ProductsPeer::SIZE, $this->size);
@@ -2373,6 +2427,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
      */
     public function copyInto($copyObj, $deepCopy = false, $makeNew = true)
     {
+        $copyObj->setRange($this->getRange());
         $copyObj->setSku($this->getSku());
         $copyObj->setMaster($this->getMaster());
         $copyObj->setSize($this->getSize());
@@ -6390,6 +6445,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
     public function clear()
     {
         $this->id = null;
+        $this->range = null;
         $this->sku = null;
         $this->master = null;
         $this->size = null;

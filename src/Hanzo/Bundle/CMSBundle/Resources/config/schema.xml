@@ -365,6 +365,7 @@
 
     <table name="products" allowPkInsert="true">
         <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+        <column name="range" type="VARCHAR" size="4" required="false"/>
         <column name="sku" type="VARCHAR" size="128" required="true"/>
         <column name="master" type="VARCHAR" size="128" required="false"/>
         <column name="size" type="VARCHAR" size="32" required="false"/>
@@ -391,6 +392,9 @@
         <unique name="sku_UNIQUE">
             <unique-column name="sku"/>
         </unique>
+        <index name="key_range">
+            <index-column name="range"/>
+        </index>
         <index name="key_size_color">
             <index-column name="size"/>
             <index-column name="color"/>
