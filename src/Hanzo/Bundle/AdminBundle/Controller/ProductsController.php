@@ -42,9 +42,7 @@ class ProductsController extends CoreController
         if (isset($_GET['q'])) {
             $q_clean = $this->getRequest()->get('q', null);
             $q = '%'.$q_clean.'%';
-            /**
-             * @todo Lav søgning så man kan søge på hele navn. Sammenkobling på for og efternavn.
-             */
+
             $products = ProductsQuery::create()
                 ->filterBySku($q)
                 ->_or()
