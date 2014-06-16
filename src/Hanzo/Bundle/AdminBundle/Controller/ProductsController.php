@@ -180,7 +180,7 @@ class ProductsController extends CoreController
         }
 
         if ((count($ranges) === 1) && empty($filter)) {
-            return $this->redirect($this->generateUrl('admin_products_list', ['range' => $ranges[0]]));
+            return $this->redirect($this->generateUrl('admin_products_list', ['range' => end($ranges)]));
         }
 
         if (empty($filter)) {
