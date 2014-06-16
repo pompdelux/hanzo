@@ -43,6 +43,7 @@ class ProductsTableMap extends TableMap
         $this->setUseIdGenerator(true);
         // columns
         $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
+        $this->addColumn('range', 'Range', 'VARCHAR', false, 4, null);
         $this->addColumn('sku', 'Sku', 'VARCHAR', true, 128, null);
         $this->addForeignKey('master', 'Master', 'VARCHAR', 'products', 'sku', false, 128, null);
         $this->addColumn('size', 'Size', 'VARCHAR', false, 32, null);

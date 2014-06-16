@@ -486,6 +486,7 @@ DROP TABLE IF EXISTS `products`;
 CREATE TABLE `products`
 (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `range` VARCHAR(4),
     `sku` VARCHAR(128) NOT NULL,
     `master` VARCHAR(128),
     `size` VARCHAR(32),
@@ -502,6 +503,7 @@ CREATE TABLE `products`
     `updated_at` DATETIME,
     PRIMARY KEY (`id`),
     UNIQUE INDEX `sku_UNIQUE` (`sku`),
+    INDEX `key_range` (`range`),
     INDEX `key_size_color` (`size`, `color`),
     INDEX `key_out_of_stock` (`is_out_of_stock`),
     INDEX `key_is_voucher` (`is_voucher`),

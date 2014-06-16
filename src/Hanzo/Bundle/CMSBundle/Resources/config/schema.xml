@@ -1,354 +1,354 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <database name="default" namespace="Hanzo\Model" defaultIdMethod="native">
-  <table name="categories" allowPkInsert="true">
-    <column name="id" required="true" primaryKey="true" autoIncrement="true" type="INTEGER" />
-    <column name="parent_id" type="INTEGER"  defaultValue="NULL" />
-    <column name="context" type="VARCHAR" size="32" defaultValue="" />
-    <column name="title" type="VARCHAR" required="true" primaryString="true" />
-    <column name="content" type="LONGVARCHAR" />
-    <column name="is_active" type="BOOLEAN" required="true" defaultValue="TRUE" />
-    <behavior name="i18n">
-      <parameter name="i18n_columns" value="title, content" />
-      <parameter name="default_locale" value="da_DK" />
-    </behavior>
-    <index name="index2">
-      <index-column name="context"/>
-    </index>
-    <foreign-key foreignTable="categories" onDelete="setnull">
-      <reference local="parent_id" foreign="id" />
-    </foreign-key>
-  </table>
+    <table name="categories" allowPkInsert="true">
+        <column name="id" required="true" primaryKey="true" autoIncrement="true" type="INTEGER"/>
+        <column name="parent_id" type="INTEGER" defaultValue="NULL"/>
+        <column name="context" type="VARCHAR" size="32" defaultValue=""/>
+        <column name="title" type="VARCHAR" required="true" primaryString="true"/>
+        <column name="content" type="LONGVARCHAR"/>
+        <column name="is_active" type="BOOLEAN" required="true" defaultValue="TRUE"/>
+        <behavior name="i18n">
+            <parameter name="i18n_columns" value="title, content"/>
+            <parameter name="default_locale" value="da_DK"/>
+        </behavior>
+        <index name="index2">
+            <index-column name="context"/>
+        </index>
+        <foreign-key foreignTable="categories" onDelete="setnull">
+            <reference local="parent_id" foreign="id"/>
+        </foreign-key>
+    </table>
 
-  <table name="cms_thread">
-    <column name="id" required="true" primaryKey="true" autoIncrement="true" type="INTEGER" />
-    <column name="title" type="VARCHAR" required="true" primaryString="true" />
-    <column name="is_active" type="BOOLEAN" required="true" defaultValue="TRUE" />
-    <behavior name="i18n">
-      <parameter name="i18n_columns" value="title" />
-      <parameter name="default_locale" value="da_DK" />
-    </behavior>
-  </table>
+    <table name="cms_thread">
+        <column name="id" required="true" primaryKey="true" autoIncrement="true" type="INTEGER"/>
+        <column name="title" type="VARCHAR" required="true" primaryString="true"/>
+        <column name="is_active" type="BOOLEAN" required="true" defaultValue="TRUE"/>
+        <behavior name="i18n">
+            <parameter name="i18n_columns" value="title"/>
+            <parameter name="default_locale" value="da_DK"/>
+        </behavior>
+    </table>
 
-  <table name="cms">
-    <column name="id" required="true" primaryKey="true" autoIncrement="true" type="INTEGER" />
-    <column name="parent_id" type="INTEGER"  defaultValue="NULL" />
-    <column name="cms_thread_id" required="true" type="INTEGER" />
-    <column name="sort" type="INTEGER" required="true" defaultValue="1"/>
-    <column name="type" type="VARCHAR" required="true" defaultValue="cms" />
-    <column name="title" type="VARCHAR" required="true" primaryString="true" />
-    <column name="path" type="VARCHAR" required="true" />
-    <column name="old_path" type="VARCHAR" required="false" defaultValue="NULL" />
-    <column name="content" type="LONGVARCHAR" defaultValue="null" />
-    <column name="settings" type="LONGVARCHAR" defaultValue="null" />
-    <column name="is_active" type="BOOLEAN" required="true" defaultValue="TRUE" />
-    <column name="is_restricted" type="BOOLEAN" required="true" defaultValue="FALSE" />
-    <column name="on_mobile" type="BOOLEAN" required="true" defaultValue="TRUE" />
-    <column name="updated_by" type="VARCHAR" required="false" />
-    <foreign-key foreignTable="cms_thread" name="fk_cms_1" onDelete="CASCADE" onUpdate="CASCADE">
-      <reference local="cms_thread_id" foreign="id" />
-    </foreign-key>
-    <foreign-key foreignTable="cms" name="fk_cms_2" onDelete="CASCADE">
-      <reference local="parent_id" foreign="id" />
-    </foreign-key>
-    <behavior name="i18n">
-      <parameter name="i18n_columns" value="title, path, old_path, content, settings, is_restricted, is_active, on_mobile" />
-      <parameter name="default_locale" value="da_DK" />
-    </behavior>
-    <behavior name="timestampable" />
-  </table>
+    <table name="cms">
+        <column name="id" required="true" primaryKey="true" autoIncrement="true" type="INTEGER"/>
+        <column name="parent_id" type="INTEGER" defaultValue="NULL"/>
+        <column name="cms_thread_id" required="true" type="INTEGER"/>
+        <column name="sort" type="INTEGER" required="true" defaultValue="1"/>
+        <column name="type" type="VARCHAR" required="true" defaultValue="cms"/>
+        <column name="title" type="VARCHAR" required="true" primaryString="true"/>
+        <column name="path" type="VARCHAR" required="true"/>
+        <column name="old_path" type="VARCHAR" required="false" defaultValue="NULL"/>
+        <column name="content" type="LONGVARCHAR" defaultValue="null"/>
+        <column name="settings" type="LONGVARCHAR" defaultValue="null"/>
+        <column name="is_active" type="BOOLEAN" required="true" defaultValue="TRUE"/>
+        <column name="is_restricted" type="BOOLEAN" required="true" defaultValue="FALSE"/>
+        <column name="on_mobile" type="BOOLEAN" required="true" defaultValue="TRUE"/>
+        <column name="updated_by" type="VARCHAR" required="false"/>
+        <foreign-key foreignTable="cms_thread" name="fk_cms_1" onDelete="CASCADE" onUpdate="CASCADE">
+            <reference local="cms_thread_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="cms" name="fk_cms_2" onDelete="CASCADE">
+            <reference local="parent_id" foreign="id"/>
+        </foreign-key>
+        <behavior name="i18n">
+            <parameter name="i18n_columns" value="title, path, old_path, content, settings, is_restricted, is_active, on_mobile"/>
+            <parameter name="default_locale" value="da_DK"/>
+        </behavior>
+        <behavior name="timestampable"/>
+    </table>
 
-  <table name="cms_revision">
-    <column name="id" required="true" primaryKey="true" type="INTEGER" />
-    <column name="created_at" primaryKey="true" type="TIMESTAMP" />
-    <column name="publish_on_date" type="TIMESTAMP"/>
-    <column name="revision" required="true" type="OBJECT" />
-    <behavior name="timestampable">
-      <parameter name="create_column" value="created_at" />
-      <parameter name="disable_updated_at" value="true" />
-    </behavior>
-    <foreign-key foreignTable="cms" onDelete="CASCADE">
-      <reference local="id" foreign="id" />
-    </foreign-key>
-  </table>
+    <table name="cms_revision">
+        <column name="id" required="true" primaryKey="true" type="INTEGER"/>
+        <column name="created_at" primaryKey="true" type="TIMESTAMP"/>
+        <column name="publish_on_date" type="TIMESTAMP"/>
+        <column name="revision" required="true" type="OBJECT"/>
+        <behavior name="timestampable">
+            <parameter name="create_column" value="created_at"/>
+            <parameter name="disable_updated_at" value="true"/>
+        </behavior>
+        <foreign-key foreignTable="cms" onDelete="CASCADE">
+            <reference local="id" foreign="id"/>
+        </foreign-key>
+    </table>
 
-  <table name="countries">
-    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
-    <column name="name" type="VARCHAR" size="128" required="true"/>
-    <column name="local_name" type="VARCHAR" size="128" required="true"/>
-    <column name="code" type="INTEGER" required="false"/>
-    <column name="iso2" type="VARCHAR" size="2" required="true"/>
-    <column name="iso3" type="VARCHAR" size="3" required="true"/>
-    <column name="continent" type="VARCHAR" size="2" required="true"/>
-    <column name="currency_id" type="INTEGER" required="true"/>
-    <column name="currency_code" type="VARCHAR" size="3" required="true"/>
-    <column name="currency_name" type="VARCHAR" size="32" required="true"/>
-    <column name="vat" type="DECIMAL" size="4" scale="2" required="false" defaultValue="NULL"/>
-    <column name="calling_code" type="INTEGER" required="false" defaultValue="NULL"/>
-    <unique name="index2">
-      <unique-column name="code"/>
-    </unique>
-    <unique name="index3">
-      <unique-column name="iso2"/>
-    </unique>
-    <unique name="index4">
-      <unique-column name="iso3"/>
-    </unique>
-  </table>
+    <table name="countries">
+        <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+        <column name="name" type="VARCHAR" size="128" required="true"/>
+        <column name="local_name" type="VARCHAR" size="128" required="true"/>
+        <column name="code" type="INTEGER" required="false"/>
+        <column name="iso2" type="VARCHAR" size="2" required="true"/>
+        <column name="iso3" type="VARCHAR" size="3" required="true"/>
+        <column name="continent" type="VARCHAR" size="2" required="true"/>
+        <column name="currency_id" type="INTEGER" required="true"/>
+        <column name="currency_code" type="VARCHAR" size="3" required="true"/>
+        <column name="currency_name" type="VARCHAR" size="32" required="true"/>
+        <column name="vat" type="DECIMAL" size="4" scale="2" required="false" defaultValue="NULL"/>
+        <column name="calling_code" type="INTEGER" required="false" defaultValue="NULL"/>
+        <unique name="index2">
+            <unique-column name="code"/>
+        </unique>
+        <unique name="index3">
+            <unique-column name="iso2"/>
+        </unique>
+        <unique name="index4">
+            <unique-column name="iso3"/>
+        </unique>
+    </table>
 
-  <table name="gift_cards">
-    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
-    <column name="code" type="VARCHAR" size="12" required="true"/>
-    <column name="amount" type="DECIMAL" size="15" scale="4" required="true"/>
-    <column name="currency_code" type="VARCHAR" size="3" required="true"/>
-    <column name="active_from" type="TIMESTAMP" required="false"/>
-    <column name="active_to" type="TIMESTAMP" required="false"/>
-    <column name="is_active" type="BOOLEAN" size="1" required="true" defaultValue="true"/>
-    <unique name="code_UNIQUE">
-      <unique-column name="code"/>
-    </unique>
-    <index name="index3">
-      <index-column name="active_from"/>
-      <index-column name="active_to"/>
-    </index>
-    <index name="index4">
-      <index-column name="is_active"/>
-    </index>
-    <index name="index5">
-      <index-column name="currency_code"/>
-    </index>
-    <behavior name="timestampable" />
-  </table>
+    <table name="gift_cards">
+        <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+        <column name="code" type="VARCHAR" size="12" required="true"/>
+        <column name="amount" type="DECIMAL" size="15" scale="4" required="true"/>
+        <column name="currency_code" type="VARCHAR" size="3" required="true"/>
+        <column name="active_from" type="TIMESTAMP" required="false"/>
+        <column name="active_to" type="TIMESTAMP" required="false"/>
+        <column name="is_active" type="BOOLEAN" size="1" required="true" defaultValue="true"/>
+        <unique name="code_UNIQUE">
+            <unique-column name="code"/>
+        </unique>
+        <index name="index3">
+            <index-column name="active_from"/>
+            <index-column name="active_to"/>
+        </index>
+        <index name="index4">
+            <index-column name="is_active"/>
+        </index>
+        <index name="index5">
+            <index-column name="currency_code"/>
+        </index>
+        <behavior name="timestampable"/>
+    </table>
 
-  <table name="coupons">
-    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
-    <column name="code" type="VARCHAR" size="12" required="true"/>
-    <column name="amount" type="DECIMAL" size="15" scale="4" required="true"/>
-    <column name="amount_type" type="VARCHAR" size="6" defaultValue="amount" required="true"/>
-    <column name="min_purchase_amount" type="DECIMAL" size="15" scale="4" required="false"/>
-    <column name="currency_code" type="VARCHAR" size="3" required="true"/>
-    <column name="active_from" type="TIMESTAMP" required="false"/>
-    <column name="active_to" type="TIMESTAMP" required="false"/>
-    <column name="is_active" type="BOOLEAN" size="1" required="true" defaultValue="true"/>
-    <column name="is_used" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
-    <column name="is_reusable" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
-    <unique name="code_UNIQUE">
-      <unique-column name="code"/>
-    </unique>
-    <index name="index3">
-      <index-column name="active_from"/>
-      <index-column name="active_to"/>
-    </index>
-    <index name="index4">
-      <index-column name="is_active"/>
-    </index>
-    <index name="index5">
-      <index-column name="is_used"/>
-    </index>
-    <index name="index7">
-      <index-column name="is_reusable"/>
-    </index>
-    <index name="index6">
-      <index-column name="currency_code"/>
-    </index>
-    <behavior name="timestampable" />
-  </table>
+    <table name="coupons">
+        <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+        <column name="code" type="VARCHAR" size="12" required="true"/>
+        <column name="amount" type="DECIMAL" size="15" scale="4" required="true"/>
+        <column name="amount_type" type="VARCHAR" size="6" defaultValue="amount" required="true"/>
+        <column name="min_purchase_amount" type="DECIMAL" size="15" scale="4" required="false"/>
+        <column name="currency_code" type="VARCHAR" size="3" required="true"/>
+        <column name="active_from" type="TIMESTAMP" required="false"/>
+        <column name="active_to" type="TIMESTAMP" required="false"/>
+        <column name="is_active" type="BOOLEAN" size="1" required="true" defaultValue="true"/>
+        <column name="is_used" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
+        <column name="is_reusable" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
+        <unique name="code_UNIQUE">
+            <unique-column name="code"/>
+        </unique>
+        <index name="index3">
+            <index-column name="active_from"/>
+            <index-column name="active_to"/>
+        </index>
+        <index name="index4">
+            <index-column name="is_active"/>
+        </index>
+        <index name="index5">
+            <index-column name="is_used"/>
+        </index>
+        <index name="index7">
+            <index-column name="is_reusable"/>
+        </index>
+        <index name="index6">
+            <index-column name="currency_code"/>
+        </index>
+        <behavior name="timestampable"/>
+    </table>
 
-  <table name="orders_to_coupons">
-    <column name="orders_id" type="INTEGER" primaryKey="true" required="true"/>
-    <column name="coupons_id" type="INTEGER" primaryKey="true" required="true"/>
-    <column name="amount" type="DECIMAL" size="15" scale="4" required="true"/>
-    <foreign-key foreignTable="coupons" onDelete="CASCADE">
-      <reference local="coupons_id" foreign="id"/>
-    </foreign-key>
-    <foreign-key foreignTable="orders" onDelete="CASCADE">
-      <reference local="orders_id" foreign="id"/>
-    </foreign-key>
-  </table>
+    <table name="orders_to_coupons">
+        <column name="orders_id" type="INTEGER" primaryKey="true" required="true"/>
+        <column name="coupons_id" type="INTEGER" primaryKey="true" required="true"/>
+        <column name="amount" type="DECIMAL" size="15" scale="4" required="true"/>
+        <foreign-key foreignTable="coupons" onDelete="CASCADE">
+            <reference local="coupons_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="orders" onDelete="CASCADE">
+            <reference local="orders_id" foreign="id"/>
+        </foreign-key>
+    </table>
 
-  <table name="customers" allowPkInsert="true">
-    <column name="id" type="INTEGER" primaryKey="true" required="true" autoIncrement="true"/>
-    <column name="groups_id" type="INTEGER" required="true" defaultValue="1"/>
-    <column name="title" type="VARCHAR" size="12" required="false"/>
-    <column name="first_name" type="VARCHAR" size="128" required="true"/>
-    <column name="last_name" type="VARCHAR" size="128" required="true"/>
-    <column name="email" type="VARCHAR" size="255" required="true"/>
-    <column name="phone" type="VARCHAR" size="32" required="false"/>
-    <column name="password" type="VARCHAR" size="128" required="true"/>
-    <column name="password_clear" type="VARCHAR" size="45" required="false"/>
-    <column name="discount" type="DECIMAL" size="8" scale="2" required="false" defaultValue="0.00"/>
-    <column name="is_active" type="BOOLEAN" size="1" required="true" defaultValue="true"/>
-    <foreign-key foreignTable="groups" onUpdate="CASCADE">
-      <reference local="groups_id" foreign="id"/>
-    </foreign-key>
-    <unique name="customers_email">
-      <unique-column name="email"/>
-    </unique>
-    <behavior name="timestampable" />
-    <behavior name="delegate">
-      <parameter name="to" value="consultants" />
-    </behavior>
-  </table>
+    <table name="customers" allowPkInsert="true">
+        <column name="id" type="INTEGER" primaryKey="true" required="true" autoIncrement="true"/>
+        <column name="groups_id" type="INTEGER" required="true" defaultValue="1"/>
+        <column name="title" type="VARCHAR" size="12" required="false"/>
+        <column name="first_name" type="VARCHAR" size="128" required="true"/>
+        <column name="last_name" type="VARCHAR" size="128" required="true"/>
+        <column name="email" type="VARCHAR" size="255" required="true"/>
+        <column name="phone" type="VARCHAR" size="32" required="false"/>
+        <column name="password" type="VARCHAR" size="128" required="true"/>
+        <column name="password_clear" type="VARCHAR" size="45" required="false"/>
+        <column name="discount" type="DECIMAL" size="8" scale="2" required="false" defaultValue="0.00"/>
+        <column name="is_active" type="BOOLEAN" size="1" required="true" defaultValue="true"/>
+        <foreign-key foreignTable="groups" onUpdate="CASCADE">
+            <reference local="groups_id" foreign="id"/>
+        </foreign-key>
+        <unique name="customers_email">
+            <unique-column name="email"/>
+        </unique>
+        <behavior name="timestampable"/>
+        <behavior name="delegate">
+            <parameter name="to" value="consultants"/>
+        </behavior>
+    </table>
 
-  <table name="consultants">
-    <column name="initials" type="VARCHAR" size="10" required="false"/>
-    <column name="info" type="LONGVARCHAR" defaultValue="null" required="false"/>
-    <column name="event_notes" type="LONGVARCHAR" defaultValue="null" required="false"/>
-    <column name="hide_info" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
-    <column name="max_notified" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
-  </table>
+    <table name="consultants">
+        <column name="initials" type="VARCHAR" size="10" required="false"/>
+        <column name="info" type="LONGVARCHAR" defaultValue="null" required="false"/>
+        <column name="event_notes" type="LONGVARCHAR" defaultValue="null" required="false"/>
+        <column name="hide_info" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
+        <column name="max_notified" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
+    </table>
 
-  <table name="addresses">
-    <column name="customers_id" type="INTEGER" primaryKey="true" required="true"/>
-    <column name="type" type="VARCHAR" size="32" primaryKey="true" required="true" defaultValue="payment"/>
-    <column name="title" type="VARCHAR" size="12" required="false"/>
-    <column name="first_name" type="VARCHAR" size="128" required="true"/>
-    <column name="last_name" type="VARCHAR" size="128" required="true"/>
-    <column name="address_line_1" type="VARCHAR" size="255" required="true"/>
-    <column name="address_line_2" type="VARCHAR" size="255" required="false"/>
-    <column name="postal_code" type="VARCHAR" size="12" required="true"/>
-    <column name="city" type="VARCHAR" size="64" required="true"/>
-    <column name="country" type="VARCHAR" size="128" required="true"/>
-    <column name="countries_id" type="INTEGER" required="true"/>
-    <column name="state_province" type="VARCHAR" size="64" required="false"/>
-    <column name="company_name" type="VARCHAR" size="128" required="false"/>
-    <column name="external_address_id" type="VARCHAR" size="128" required="false"/>
-    <foreign-key foreignTable="customers" onDelete="CASCADE">
-      <reference local="customers_id" foreign="id"/>
-    </foreign-key>
-    <foreign-key foreignTable="countries">
-      <reference local="countries_id" foreign="id"/>
-    </foreign-key>
-    <behavior name="geocodable">
-        <parameter name="auto_update" value="false" />
-        <parameter name="geocoder_api_key_provider" value="\Hanzo\Core\Hanzo::getInstance()->getGoogleMapsKey()" />
-        <parameter name="geocoder_provider" value="\Geocoder\Provider\GoogleMapsProvider" />
-        <parameter name="geocode_address" value="true" />
-        <parameter name="address_columns" value="address_line_1,address_line_2,state_province,postal_code,country" />
-    </behavior>
-    <behavior name="timestampable" />
-  </table>
+    <table name="addresses">
+        <column name="customers_id" type="INTEGER" primaryKey="true" required="true"/>
+        <column name="type" type="VARCHAR" size="32" primaryKey="true" required="true" defaultValue="payment"/>
+        <column name="title" type="VARCHAR" size="12" required="false"/>
+        <column name="first_name" type="VARCHAR" size="128" required="true"/>
+        <column name="last_name" type="VARCHAR" size="128" required="true"/>
+        <column name="address_line_1" type="VARCHAR" size="255" required="true"/>
+        <column name="address_line_2" type="VARCHAR" size="255" required="false"/>
+        <column name="postal_code" type="VARCHAR" size="12" required="true"/>
+        <column name="city" type="VARCHAR" size="64" required="true"/>
+        <column name="country" type="VARCHAR" size="128" required="true"/>
+        <column name="countries_id" type="INTEGER" required="true"/>
+        <column name="state_province" type="VARCHAR" size="64" required="false"/>
+        <column name="company_name" type="VARCHAR" size="128" required="false"/>
+        <column name="external_address_id" type="VARCHAR" size="128" required="false"/>
+        <foreign-key foreignTable="customers" onDelete="CASCADE">
+            <reference local="customers_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="countries">
+            <reference local="countries_id" foreign="id"/>
+        </foreign-key>
+        <behavior name="geocodable">
+            <parameter name="auto_update" value="false"/>
+            <parameter name="geocoder_api_key_provider" value="\Hanzo\Core\Hanzo::getInstance()->getGoogleMapsKey()"/>
+            <parameter name="geocoder_provider" value="\Geocoder\Provider\GoogleMapsProvider"/>
+            <parameter name="geocode_address" value="true"/>
+            <parameter name="address_columns" value="address_line_1,address_line_2,state_province,postal_code,country"/>
+        </behavior>
+        <behavior name="timestampable"/>
+    </table>
 
-  <table name="domains">
-    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
-    <column name="domain_name" type="VARCHAR" size="255" required="true"/>
-    <column name="domain_key" type="VARCHAR" size="12" required="true"/>
-    <index name="index2">
-      <index-column name="domain_key"/>
-    </index>
-  </table>
+    <table name="domains">
+        <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+        <column name="domain_name" type="VARCHAR" size="255" required="true"/>
+        <column name="domain_key" type="VARCHAR" size="12" required="true"/>
+        <index name="index2">
+            <index-column name="domain_key"/>
+        </index>
+    </table>
 
-  <table name="domains_settings">
-    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
-    <column name="domain_key" type="VARCHAR" size="12" required="true"/>
-    <column name="c_key" type="VARCHAR" size="128" required="true"/>
-    <column name="ns" type="VARCHAR" size="64" required="true"/>
-    <column name="c_value" type="LONGVARCHAR" required="true"/>
-    <foreign-key foreignTable="domains" name="fk_domains_settings_1" onDelete="CASCADE">
-      <reference local="domain_key" foreign="domain_key"/>
-    </foreign-key>
-    <unique name="domains_settings_unique">
-      <unique-column name="c_key"/>
-      <unique-column name="ns"/>
-      <unique-column name="domain_key"/>
-    </unique>
-  </table>
+    <table name="domains_settings">
+        <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+        <column name="domain_key" type="VARCHAR" size="12" required="true"/>
+        <column name="c_key" type="VARCHAR" size="128" required="true"/>
+        <column name="ns" type="VARCHAR" size="64" required="true"/>
+        <column name="c_value" type="LONGVARCHAR" required="true"/>
+        <foreign-key foreignTable="domains" name="fk_domains_settings_1" onDelete="CASCADE">
+            <reference local="domain_key" foreign="domain_key"/>
+        </foreign-key>
+        <unique name="domains_settings_unique">
+            <unique-column name="c_key"/>
+            <unique-column name="ns"/>
+            <unique-column name="domain_key"/>
+        </unique>
+    </table>
 
-  <table name="events" allowPkInsert="true">
-    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
-    <column name="code" type="VARCHAR" size="32" required="true"/>
-    <column name="key" type="VARCHAR" size="64" required="true"/>
-    <column name="consultants_id" type="INTEGER" required="true"/>
-    <column name="customers_id" type="INTEGER" required="true"/>
-    <column name="event_date" type="TIMESTAMP" required="true"/>
-    <column name="host" type="VARCHAR" size="128" required="true"/>
-    <column name="address_line_1" type="VARCHAR" size="128" required="true"/>
-    <column name="address_line_2" type="VARCHAR" size="128" required="false"/>
-    <column name="postal_code" type="VARCHAR" size="12" required="true"/>
-    <column name="city" type="VARCHAR" size="64" required="true"/>
-    <column name="phone" type="VARCHAR" size="32" required="true"/>
-    <column name="email" type="VARCHAR" size="255" required="true"/>
-    <column name="description" type="LONGVARCHAR" required="false"/>
-    <column name="type" type="VARCHAR" size="3" required="true" defaultValue="AR"/>
-    <column name="is_open" type="BOOLEAN" size="1" required="false" defaultValue="NULL"/>
-    <column name="notify_hostess" type="BOOLEAN" size="1" required="true" defaultValue="true"/>
-    <foreign-key foreignTable="customers" name="fk_events_1">
-      <reference local="consultants_id" foreign="id"/>
-    </foreign-key>
-    <foreign-key foreignTable="customers" name="fk_events_2">
-      <reference local="customers_id" foreign="id"/>
-    </foreign-key>
-    <unique name="key_UNIQUE">
-      <unique-column name="key"/>
-    </unique>
-    <unique name="code_UNIQUE">
-      <unique-column name="code"/>
-    </unique>
-    <behavior name="timestampable" />
-  </table>
+    <table name="events" allowPkInsert="true">
+        <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+        <column name="code" type="VARCHAR" size="32" required="true"/>
+        <column name="key" type="VARCHAR" size="64" required="true"/>
+        <column name="consultants_id" type="INTEGER" required="true"/>
+        <column name="customers_id" type="INTEGER" required="true"/>
+        <column name="event_date" type="TIMESTAMP" required="true"/>
+        <column name="host" type="VARCHAR" size="128" required="true"/>
+        <column name="address_line_1" type="VARCHAR" size="128" required="true"/>
+        <column name="address_line_2" type="VARCHAR" size="128" required="false"/>
+        <column name="postal_code" type="VARCHAR" size="12" required="true"/>
+        <column name="city" type="VARCHAR" size="64" required="true"/>
+        <column name="phone" type="VARCHAR" size="32" required="true"/>
+        <column name="email" type="VARCHAR" size="255" required="true"/>
+        <column name="description" type="LONGVARCHAR" required="false"/>
+        <column name="type" type="VARCHAR" size="3" required="true" defaultValue="AR"/>
+        <column name="is_open" type="BOOLEAN" size="1" required="false" defaultValue="NULL"/>
+        <column name="notify_hostess" type="BOOLEAN" size="1" required="true" defaultValue="true"/>
+        <foreign-key foreignTable="customers" name="fk_events_1">
+            <reference local="consultants_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="customers" name="fk_events_2">
+            <reference local="customers_id" foreign="id"/>
+        </foreign-key>
+        <unique name="key_UNIQUE">
+            <unique-column name="key"/>
+        </unique>
+        <unique name="code_UNIQUE">
+            <unique-column name="code"/>
+        </unique>
+        <behavior name="timestampable"/>
+    </table>
 
-  <table name="events_participants" allowPkInsert="true">
-    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
-    <column name="events_id" type="INTEGER" required="true"/>
-    <column name="key" type="VARCHAR" size="64" required="true"/>
-    <column name="invited_by" type="INTEGER" required="false"/>
-    <column name="first_name" type="VARCHAR" size="128" required="true"/>
-    <column name="last_name" type="VARCHAR" size="128" required="false"/>
-    <column name="email" type="VARCHAR" size="255" required="false"/>
-    <column name="phone" type="VARCHAR" size="32" required="false"/>
-    <column name="tell_a_friend" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
-    <column name="notify_by_sms" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
-    <column name="sms_send_at" type="DATE" required="false"/>
-    <column name="has_accepted" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
-    <column name="expires_at" type="TIMESTAMP" required="false"/>
-    <column name="responded_at" type="TIMESTAMP" required="false"/>
-    <foreign-key foreignTable="events" name="fk_events_participants_1" onDelete="CASCADE">
-      <reference local="events_id" foreign="id"/>
-    </foreign-key>
-    <unique name="key_UNIQUE">
-      <unique-column name="key"/>
-    </unique>
-    <behavior name="timestampable" />
-  </table>
+    <table name="events_participants" allowPkInsert="true">
+        <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+        <column name="events_id" type="INTEGER" required="true"/>
+        <column name="key" type="VARCHAR" size="64" required="true"/>
+        <column name="invited_by" type="INTEGER" required="false"/>
+        <column name="first_name" type="VARCHAR" size="128" required="true"/>
+        <column name="last_name" type="VARCHAR" size="128" required="false"/>
+        <column name="email" type="VARCHAR" size="255" required="false"/>
+        <column name="phone" type="VARCHAR" size="32" required="false"/>
+        <column name="tell_a_friend" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
+        <column name="notify_by_sms" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
+        <column name="sms_send_at" type="DATE" required="false"/>
+        <column name="has_accepted" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
+        <column name="expires_at" type="TIMESTAMP" required="false"/>
+        <column name="responded_at" type="TIMESTAMP" required="false"/>
+        <foreign-key foreignTable="events" name="fk_events_participants_1" onDelete="CASCADE">
+            <reference local="events_id" foreign="id"/>
+        </foreign-key>
+        <unique name="key_UNIQUE">
+            <unique-column name="key"/>
+        </unique>
+        <behavior name="timestampable"/>
+    </table>
 
-  <table name="groups">
-    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
-    <column name="name" type="VARCHAR" size="45" required="true"/>
-    <column name="discount" type="DECIMAL" size="15" scale="4" required="false"/>
-  </table>
+    <table name="groups">
+        <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+        <column name="name" type="VARCHAR" size="45" required="true"/>
+        <column name="discount" type="DECIMAL" size="15" scale="4" required="false"/>
+    </table>
 
-  <table name="helpdesk_data_log">
-    <column name="key" type="VARCHAR" size="64" primaryKey="true" required="true"/>
-    <column name="data" type="CLOB" required="true"/>
-    <column name="created_at" type="TIMESTAMP" required="true"/>
-  </table>
+    <table name="helpdesk_data_log">
+        <column name="key" type="VARCHAR" size="64" primaryKey="true" required="true"/>
+        <column name="data" type="CLOB" required="true"/>
+        <column name="created_at" type="TIMESTAMP" required="true"/>
+    </table>
 
-  <table name="languages">
-    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
-    <column name="name" type="VARCHAR" size="32" required="true"/>
-    <column name="local_name" type="VARCHAR" size="45" required="true"/>
-    <column name="locale" type="VARCHAR" size="5" required="true"/>
-    <column name="iso2" type="VARCHAR" size="2" required="true"/>
-    <column name="direction" type="VARCHAR" size="3" required="true" defaultValue="ltr"/>
-    <index name="languages_index_3">
-      <index-column name="locale"/>
-    </index>
-    <index name="index2">
-      <index-column name="iso2"/>
-    </index>
-  </table>
+    <table name="languages">
+        <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+        <column name="name" type="VARCHAR" size="32" required="true"/>
+        <column name="local_name" type="VARCHAR" size="45" required="true"/>
+        <column name="locale" type="VARCHAR" size="5" required="true"/>
+        <column name="iso2" type="VARCHAR" size="2" required="true"/>
+        <column name="direction" type="VARCHAR" size="3" required="true" defaultValue="ltr"/>
+        <index name="languages_index_3">
+            <index-column name="locale"/>
+        </index>
+        <index name="index2">
+            <index-column name="iso2"/>
+        </index>
+    </table>
 
-  <table name="mannequin_images">
-    <column name="master" type="VARCHAR" size="128" primaryKey="true" required="true"/>
-    <column name="color" type="VARCHAR" size="32" primaryKey="true" required="true"/>
-    <column name="layer" type="INTEGER" required="true"/>
-    <column name="image" type="VARCHAR" size="128" required="true"/>
-    <column name="icon" type="VARCHAR" size="128" required="true"/>
-    <column name="weight" type="INTEGER" required="true" defaultValue="0"/>
-    <column name="is_main" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
-    <foreign-key foreignTable="products" name="fk_mannequin_images_1" onDelete="CASCADE">
-      <reference local="master" foreign="sku"/>
-    </foreign-key>
-  </table>
+    <table name="mannequin_images">
+        <column name="master" type="VARCHAR" size="128" primaryKey="true" required="true"/>
+        <column name="color" type="VARCHAR" size="32" primaryKey="true" required="true"/>
+        <column name="layer" type="INTEGER" required="true"/>
+        <column name="image" type="VARCHAR" size="128" required="true"/>
+        <column name="icon" type="VARCHAR" size="128" required="true"/>
+        <column name="weight" type="INTEGER" required="true" defaultValue="0"/>
+        <column name="is_main" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
+        <foreign-key foreignTable="products" name="fk_mannequin_images_1" onDelete="CASCADE">
+            <reference local="master" foreign="sku"/>
+        </foreign-key>
+    </table>
 
     <table name="products_washing_instructions">
         <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
@@ -364,380 +364,384 @@
     </table>
 
     <table name="products" allowPkInsert="true">
-    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
-    <column name="sku" type="VARCHAR" size="128" required="true"/>
-    <column name="master" type="VARCHAR" size="128" required="false"/>
-    <column name="size" type="VARCHAR" size="32" required="false"/>
-    <column name="color" type="VARCHAR" size="128" required="false"/>
-    <column name="unit" type="VARCHAR" size="12" required="false"/>
-    <column name="washing" type="INTEGER" required="false"/>
-    <column name="has_video" type="BOOLEAN" size="1" required="true" defaultValue="true"/>
-    <column name="is_out_of_stock" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
-    <column name="is_active" type="BOOLEAN" size="1" required="true" defaultValue="true"/>
-    <column name="is_voucher" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
-    <column name="is_discountable" type="BOOLEAN" size="1" required="true" defaultValue="true"/>
-    <column name="primary_categories_id" type="INTEGER" required="false"/>
-    <column name="title" type="VARCHAR" required="true" primaryString="true" />
-    <column name="content" type="LONGVARCHAR" />
-    <foreign-key foreignTable="products" onDelete="CASCADE">
-      <reference local="master" foreign="sku"/>
-    </foreign-key>
-    <foreign-key foreignTable="products_washing_instructions">
-      <reference local="washing" foreign="code"/>
-    </foreign-key>
-    <foreign-key foreignTable="categories" onDelete="SET NULL" onUpdate="CASCADE">
-        <reference local="primary_categories_id" foreign="id"/>
-    </foreign-key>
-    <unique name="sku_UNIQUE">
-      <unique-column name="sku"/>
-    </unique>
-    <index name="key_size_color">
-      <index-column name="size"/>
-      <index-column name="color"/>
-    </index>
-    <index name="key_out_of_stock">
-      <index-column name="is_out_of_stock"/>
-    </index>
-    <index name="key_is_voucher">
-      <index-column name="is_voucher"/>
-    </index>
-    <index name="index5">
-      <index-column name="master"/>
-    </index>
-    <behavior name="i18n">
-      <parameter name="i18n_columns" value="title, content" />
-      <parameter name="default_locale" value="da_DK" />
-    </behavior>
-    <behavior name="timestampable" />
-  </table>
+        <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+        <column name="range" type="VARCHAR" size="4" required="false"/>
+        <column name="sku" type="VARCHAR" size="128" required="true"/>
+        <column name="master" type="VARCHAR" size="128" required="false"/>
+        <column name="size" type="VARCHAR" size="32" required="false"/>
+        <column name="color" type="VARCHAR" size="128" required="false"/>
+        <column name="unit" type="VARCHAR" size="12" required="false"/>
+        <column name="washing" type="INTEGER" required="false"/>
+        <column name="has_video" type="BOOLEAN" size="1" required="true" defaultValue="true"/>
+        <column name="is_out_of_stock" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
+        <column name="is_active" type="BOOLEAN" size="1" required="true" defaultValue="true"/>
+        <column name="is_voucher" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
+        <column name="is_discountable" type="BOOLEAN" size="1" required="true" defaultValue="true"/>
+        <column name="primary_categories_id" type="INTEGER" required="false"/>
+        <column name="title" type="VARCHAR" required="true" primaryString="true"/>
+        <column name="content" type="LONGVARCHAR"/>
+        <foreign-key foreignTable="products" onDelete="CASCADE">
+            <reference local="master" foreign="sku"/>
+        </foreign-key>
+        <foreign-key foreignTable="products_washing_instructions">
+            <reference local="washing" foreign="code"/>
+        </foreign-key>
+        <foreign-key foreignTable="categories" onDelete="SET NULL" onUpdate="CASCADE">
+            <reference local="primary_categories_id" foreign="id"/>
+        </foreign-key>
+        <unique name="sku_UNIQUE">
+            <unique-column name="sku"/>
+        </unique>
+        <index name="key_range">
+            <index-column name="range"/>
+        </index>
+        <index name="key_size_color">
+            <index-column name="size"/>
+            <index-column name="color"/>
+        </index>
+        <index name="key_out_of_stock">
+            <index-column name="is_out_of_stock"/>
+        </index>
+        <index name="key_is_voucher">
+            <index-column name="is_voucher"/>
+        </index>
+        <index name="index5">
+            <index-column name="master"/>
+        </index>
+        <behavior name="i18n">
+            <parameter name="i18n_columns" value="title, content"/>
+            <parameter name="default_locale" value="da_DK"/>
+        </behavior>
+        <behavior name="timestampable"/>
+    </table>
 
-  <table name="products_domains_prices">
-    <column name="products_id" type="INTEGER" primaryKey="true" required="true"/>
-    <column name="domains_id" type="INTEGER" primaryKey="true" required="true"/>
-    <column name="price" type="DECIMAL" size="15" scale="4" required="true"/>
-    <column name="vat" type="DECIMAL" size="15" scale="4" required="true"/>
-    <column name="currency_id" type="INTEGER" required="true"/>
-    <column name="from_date" type="TIMESTAMP" primaryKey="true" required="true"/>
-    <column name="to_date" type="TIMESTAMP" required="false"/>
-    <foreign-key foreignTable="products" name="fk_products_domains_prices_1" onDelete="CASCADE">
-      <reference local="products_id" foreign="id"/>
-    </foreign-key>
-    <foreign-key foreignTable="domains" name="fk_products_domains_prices_2" onDelete="CASCADE">
-      <reference local="domains_id" foreign="id"/>
-    </foreign-key>
-  </table>
+    <table name="products_domains_prices">
+        <column name="products_id" type="INTEGER" primaryKey="true" required="true"/>
+        <column name="domains_id" type="INTEGER" primaryKey="true" required="true"/>
+        <column name="price" type="DECIMAL" size="15" scale="4" required="true"/>
+        <column name="vat" type="DECIMAL" size="15" scale="4" required="true"/>
+        <column name="currency_id" type="INTEGER" required="true"/>
+        <column name="from_date" type="TIMESTAMP" primaryKey="true" required="true"/>
+        <column name="to_date" type="TIMESTAMP" required="false"/>
+        <foreign-key foreignTable="products" name="fk_products_domains_prices_1" onDelete="CASCADE">
+            <reference local="products_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="domains" name="fk_products_domains_prices_2" onDelete="CASCADE">
+            <reference local="domains_id" foreign="id"/>
+        </foreign-key>
+    </table>
 
-  <table name="products_images" allowPkInsert="true">
-    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
-    <column name="products_id" type="INTEGER" required="true"/>
-    <column name="image" type="VARCHAR" size="255" required="true"/>
-    <column name="color" type="VARCHAR" size="128" required="false"/>
-    <column name="type" type="VARCHAR" size="128" required="false"/>
-    <foreign-key foreignTable="products" name="fk_products_images_1" onDelete="CASCADE">
-      <reference local="products_id" foreign="id"/>
-    </foreign-key>
-  </table>
+    <table name="products_images" allowPkInsert="true">
+        <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+        <column name="products_id" type="INTEGER" required="true"/>
+        <column name="image" type="VARCHAR" size="255" required="true"/>
+        <column name="color" type="VARCHAR" size="128" required="false"/>
+        <column name="type" type="VARCHAR" size="128" required="false"/>
+        <foreign-key foreignTable="products" name="fk_products_images_1" onDelete="CASCADE">
+            <reference local="products_id" foreign="id"/>
+        </foreign-key>
+    </table>
 
-  <table name="products_images_categories_sort">
-    <column name="products_id" type="INTEGER" primaryKey="true" required="true"/>
-    <column name="categories_id" type="INTEGER" primaryKey="true" required="true"/>
-    <column name="products_images_id" type="INTEGER" primaryKey="true" required="false"/>
-    <column name="sort" type="INTEGER" required="false"/>
-    <foreign-key foreignTable="products" name="fk_products_images_categories_sort_1" onDelete="CASCADE">
-      <reference local="products_id" foreign="id"/>
-    </foreign-key>
-    <foreign-key foreignTable="products_images" name="fk_products_images_categories_sort_2" onDelete="CASCADE">
-      <reference local="products_images_id" foreign="id"/>
-    </foreign-key>
-    <foreign-key foreignTable="categories" name="fk_products_images_categories_sort_3" onDelete="CASCADE">
-      <reference local="categories_id" foreign="id"/>
-    </foreign-key>
-  </table>
+    <table name="products_images_categories_sort">
+        <column name="products_id" type="INTEGER" primaryKey="true" required="true"/>
+        <column name="categories_id" type="INTEGER" primaryKey="true" required="true"/>
+        <column name="products_images_id" type="INTEGER" primaryKey="true" required="false"/>
+        <column name="sort" type="INTEGER" required="false"/>
+        <foreign-key foreignTable="products" name="fk_products_images_categories_sort_1" onDelete="CASCADE">
+            <reference local="products_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="products_images" name="fk_products_images_categories_sort_2" onDelete="CASCADE">
+            <reference local="products_images_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="categories" name="fk_products_images_categories_sort_3" onDelete="CASCADE">
+            <reference local="categories_id" foreign="id"/>
+        </foreign-key>
+    </table>
 
-  <table name="products_images_product_references">
-    <column name="products_images_id" type="INTEGER" primaryKey="true" required="true"/>
-    <column name="products_id" type="INTEGER" primaryKey="true" required="true"/>
-    <column name="color" type="VARCHAR" size="255" required="false"/>
-    <foreign-key foreignTable="products_images" name="fk_products_images_product_references_1" onDelete="CASCADE">
-      <reference local="products_images_id" foreign="id"/>
-    </foreign-key>
-    <foreign-key foreignTable="products" name="fk_products_images_product_references_2" onDelete="CASCADE">
-      <reference local="products_id" foreign="id"/>
-    </foreign-key>
-  </table>
+    <table name="products_images_product_references">
+        <column name="products_images_id" type="INTEGER" primaryKey="true" required="true"/>
+        <column name="products_id" type="INTEGER" primaryKey="true" required="true"/>
+        <column name="color" type="VARCHAR" size="255" required="false"/>
+        <foreign-key foreignTable="products_images" name="fk_products_images_product_references_1" onDelete="CASCADE">
+            <reference local="products_images_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="products" name="fk_products_images_product_references_2" onDelete="CASCADE">
+            <reference local="products_id" foreign="id"/>
+        </foreign-key>
+    </table>
 
-  <table name="products_quantity_discount">
-    <column name="products_master" type="VARCHAR" size="128" primaryKey="true" required="true"/>
-    <column name="domains_id" type="INTEGER" primaryKey="true" required="true"/>
-    <column name="span" type="INTEGER" primaryKey="true" required="true"/>
-    <column name="discount" type="DECIMAL" size="15" scale="4" required="true"/>
-    <column name="valid_from" type="DATE" required="false" defaultValue="NULL"/>
-    <column name="valid_to" type="DATE" required="false" defaultValue="NULL"/>
-    <foreign-key foreignTable="products" onDelete="CASCADE">
-      <reference local="products_master" foreign="sku"/>
-    </foreign-key>
-    <foreign-key foreignTable="domains" onDelete="CASCADE">
-      <reference local="domains_id" foreign="id"/>
-    </foreign-key>
-    <index name="pqd_date_index">
-      <index-column name="valid_from"/>
-      <index-column name="valid_to"/>
-    </index>
-  </table>
+    <table name="products_quantity_discount">
+        <column name="products_master" type="VARCHAR" size="128" primaryKey="true" required="true"/>
+        <column name="domains_id" type="INTEGER" primaryKey="true" required="true"/>
+        <column name="span" type="INTEGER" primaryKey="true" required="true"/>
+        <column name="discount" type="DECIMAL" size="15" scale="4" required="true"/>
+        <column name="valid_from" type="DATE" required="false" defaultValue="NULL"/>
+        <column name="valid_to" type="DATE" required="false" defaultValue="NULL"/>
+        <foreign-key foreignTable="products" onDelete="CASCADE">
+            <reference local="products_master" foreign="sku"/>
+        </foreign-key>
+        <foreign-key foreignTable="domains" onDelete="CASCADE">
+            <reference local="domains_id" foreign="id"/>
+        </foreign-key>
+        <index name="pqd_date_index">
+            <index-column name="valid_from"/>
+            <index-column name="valid_to"/>
+        </index>
+    </table>
 
-  <table name="products_stock">
-    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
-    <column name="products_id" type="INTEGER" required="true"/>
-    <column name="quantity" type="INTEGER" required="true"/>
-    <column name="available_from" type="DATE" required="true" defaultValue="2000-01-01" />
-    <foreign-key foreignTable="products" name="fk_products_stock_1" onDelete="CASCADE">
-      <reference local="products_id" foreign="id"/>
-    </foreign-key>
-    <index name="key_available_from">
-      <index-column name="available_from"/>
-    </index>
-  </table>
+    <table name="products_stock">
+        <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+        <column name="products_id" type="INTEGER" required="true"/>
+        <column name="quantity" type="INTEGER" required="true"/>
+        <column name="available_from" type="DATE" required="true" defaultValue="2000-01-01"/>
+        <foreign-key foreignTable="products" name="fk_products_stock_1" onDelete="CASCADE">
+            <reference local="products_id" foreign="id"/>
+        </foreign-key>
+        <index name="key_available_from">
+            <index-column name="available_from"/>
+        </index>
+    </table>
 
-  <table name="products_to_categories">
-    <column name="products_id" type="INTEGER" primaryKey="true" required="true"/>
-    <column name="categories_id" type="INTEGER" primaryKey="true" required="true"/>
-    <foreign-key foreignTable="products" name="products_to_categories_ibfk_1" onDelete="CASCADE">
-      <reference local="products_id" foreign="id"/>
-    </foreign-key>
-    <foreign-key foreignTable="categories" name="products_to_categories_ibfk_2" onDelete="CASCADE">
-      <reference local="categories_id" foreign="id"/>
-    </foreign-key>
-  </table>
+    <table name="products_to_categories">
+        <column name="products_id" type="INTEGER" primaryKey="true" required="true"/>
+        <column name="categories_id" type="INTEGER" primaryKey="true" required="true"/>
+        <foreign-key foreignTable="products" name="products_to_categories_ibfk_1" onDelete="CASCADE">
+            <reference local="products_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="categories" name="products_to_categories_ibfk_2" onDelete="CASCADE">
+            <reference local="categories_id" foreign="id"/>
+        </foreign-key>
+    </table>
 
-  <table name="redirects">
-    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
-    <column name="source" type="VARCHAR" size="255" required="true"/>
-    <column name="target" type="VARCHAR" size="255" required="true"/>
-    <column name="domain_key" type="VARCHAR" size="12" required="true"/>
-    <index name="index2">
-      <index-column name="source"/>
-    </index>
-  </table>
+    <table name="redirects">
+        <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+        <column name="source" type="VARCHAR" size="255" required="true"/>
+        <column name="target" type="VARCHAR" size="255" required="true"/>
+        <column name="domain_key" type="VARCHAR" size="12" required="true"/>
+        <index name="index2">
+            <index-column name="source"/>
+        </index>
+    </table>
 
-  <table name="settings">
-    <column name="c_key" type="VARCHAR" size="64" primaryKey="true" required="true"/>
-    <column name="ns" type="VARCHAR" size="64" primaryKey="true" required="true"/>
-    <column name="title" type="VARCHAR" size="128" required="true"/>
-    <column name="c_value" type="LONGVARCHAR" required="true"/>
-    <behavior name="timestampable" />
-  </table>
+    <table name="settings">
+        <column name="c_key" type="VARCHAR" size="64" primaryKey="true" required="true"/>
+        <column name="ns" type="VARCHAR" size="64" primaryKey="true" required="true"/>
+        <column name="title" type="VARCHAR" size="128" required="true"/>
+        <column name="c_value" type="LONGVARCHAR" required="true"/>
+        <behavior name="timestampable"/>
+    </table>
 
-  <table name="zip_to_city">
-    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
-    <column name="zip" type="VARCHAR" size="12" required="true"/>
-    <column name="countries_iso2" type="VARCHAR" size="2" required="true"/>
-    <column name="city" type="VARCHAR" size="128" required="true"/>
-    <column name="county_id" type="VARCHAR" size="12" required="false"/>
-    <column name="county_name" type="VARCHAR" size="128" required="false"/>
-    <column name="comment" type="VARCHAR" size="255" required="false"/>
-    <foreign-key foreignTable="countries" name="fk_zip_to_city_1">
-      <reference local="countries_iso2" foreign="iso2"/>
-    </foreign-key>
-    <index name="index2">
-      <index-column name="zip"/>
-      <index-column name="countries_iso2"/>
-    </index>
-  </table>
+    <table name="zip_to_city">
+        <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+        <column name="zip" type="VARCHAR" size="12" required="true"/>
+        <column name="countries_iso2" type="VARCHAR" size="2" required="true"/>
+        <column name="city" type="VARCHAR" size="128" required="true"/>
+        <column name="county_id" type="VARCHAR" size="12" required="false"/>
+        <column name="county_name" type="VARCHAR" size="128" required="false"/>
+        <column name="comment" type="VARCHAR" size="255" required="false"/>
+        <foreign-key foreignTable="countries" name="fk_zip_to_city_1">
+            <reference local="countries_iso2" foreign="iso2"/>
+        </foreign-key>
+        <index name="index2">
+            <index-column name="zip"/>
+            <index-column name="countries_iso2"/>
+        </index>
+    </table>
 
-  <table name="orders" allowPkInsert="true">
-    <column name="id" type="INTEGER" primaryKey="true" required="true" autoIncrement="true"/>
-    <column name="version_id" type="INTEGER" required="true" defaultValue="1"/>
-    <column name="session_id" type="VARCHAR" size="32" required="true"/>
-    <column name="payment_gateway_id" type="INTEGER" required="false" defaultValue="NULL"/>
-    <column name="state" type="INTEGER" required="true" defaultValue="-50"/>
-    <column name="in_edit" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
-    <column name="customers_id" type="INTEGER" required="false"/>
-    <column name="first_name" type="VARCHAR" size="128" required="false"/>
-    <column name="last_name" type="VARCHAR" size="128" required="false"/>
-    <column name="email" type="VARCHAR" size="255" required="false"/>
-    <column name="phone" type="VARCHAR" size="32" required="false"/>
-    <column name="languages_id" type="INTEGER" required="true"/>
-    <column name="currency_code" type="VARCHAR" size="12" required="true" defaultValue=""/>
-    <column name="billing_title" type="VARCHAR" size="12" required="false"/>
-    <column name="billing_first_name" type="VARCHAR" size="128" required="true"/>
-    <column name="billing_last_name" type="VARCHAR" size="128" required="true"/>
-    <column name="billing_address_line_1" type="VARCHAR" size="255" required="false"/>
-    <column name="billing_address_line_2" type="VARCHAR" size="255" required="false"/>
-    <column name="billing_postal_code" type="VARCHAR" size="12" required="false"/>
-    <column name="billing_city" type="VARCHAR" size="64" required="false"/>
-    <column name="billing_country" type="VARCHAR" size="128" required="false"/>
-    <column name="billing_countries_id" type="INTEGER" required="false" defaultValue="NULL"/>
-    <column name="billing_state_province" type="VARCHAR" size="64" required="false"/>
-    <column name="billing_company_name" type="VARCHAR" size="128" required="false"/>
-    <column name="billing_method" type="VARCHAR" size="64" required="false"/>
-    <column name="billing_external_address_id" type="VARCHAR" size="128" required="false"/>
-    <column name="delivery_title" type="VARCHAR" size="12" required="false"/>
-    <column name="delivery_first_name" type="VARCHAR" size="128" required="true"/>
-    <column name="delivery_last_name" type="VARCHAR" size="128" required="true"/>
-    <column name="delivery_address_line_1" type="VARCHAR" size="255" required="false"/>
-    <column name="delivery_address_line_2" type="VARCHAR" size="255" required="false"/>
-    <column name="delivery_postal_code" type="VARCHAR" size="12" required="false"/>
-    <column name="delivery_city" type="VARCHAR" size="64" required="false"/>
-    <column name="delivery_country" type="VARCHAR" size="128" required="false"/>
-    <column name="delivery_countries_id" type="INTEGER" required="false" defaultValue="NULL"/>
-    <column name="delivery_state_province" type="VARCHAR" size="64" required="false"/>
-    <column name="delivery_company_name" type="VARCHAR" size="128" required="false"/>
-    <column name="delivery_method" type="VARCHAR" size="64" required="false"/>
-    <column name="delivery_external_address_id" type="VARCHAR" size="128" required="false"/>
-    <column name="events_id" type="INTEGER" required="false" defaultValue="NULL"/>
-    <column name="finished_at" type="TIMESTAMP" required="false"/>
-    <unique name="index2">
-      <unique-column name="session_id"/>
-    </unique>
-    <unique name="index3">
-      <unique-column name="payment_gateway_id"/>
-    </unique>
-    <foreign-key foreignTable="customers" onDelete="SETNULL" onUpdate="CASCADE">
-      <reference local="customers_id" foreign="id"/>
-    </foreign-key>
-    <foreign-key foreignTable="countries" name="fk_customers_1">
-      <reference local="billing_countries_id" foreign="id"/>
-    </foreign-key>
-    <foreign-key foreignTable="countries" name="fk_customers_2">
-      <reference local="delivery_countries_id" foreign="id"/>
-    </foreign-key>
-    <foreign-key foreignTable="events" onDelete="RESTRICT" onUpdate="CASCADE">
-      <reference local="events_id" foreign="id"/>
-    </foreign-key>
-    <index name="index5">
-      <index-column name="languages_id"/>
-    </index>
-    <index name="index8">
-      <index-column name="state"/>
-    </index>
-    <behavior name="timestampable" />
-  </table>
+    <table name="orders" allowPkInsert="true">
+        <column name="id" type="INTEGER" primaryKey="true" required="true" autoIncrement="true"/>
+        <column name="version_id" type="INTEGER" required="true" defaultValue="1"/>
+        <column name="session_id" type="VARCHAR" size="32" required="true"/>
+        <column name="payment_gateway_id" type="INTEGER" required="false" defaultValue="NULL"/>
+        <column name="state" type="INTEGER" required="true" defaultValue="-50"/>
+        <column name="in_edit" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
+        <column name="customers_id" type="INTEGER" required="false"/>
+        <column name="first_name" type="VARCHAR" size="128" required="false"/>
+        <column name="last_name" type="VARCHAR" size="128" required="false"/>
+        <column name="email" type="VARCHAR" size="255" required="false"/>
+        <column name="phone" type="VARCHAR" size="32" required="false"/>
+        <column name="languages_id" type="INTEGER" required="true"/>
+        <column name="currency_code" type="VARCHAR" size="12" required="true" defaultValue=""/>
+        <column name="billing_title" type="VARCHAR" size="12" required="false"/>
+        <column name="billing_first_name" type="VARCHAR" size="128" required="true"/>
+        <column name="billing_last_name" type="VARCHAR" size="128" required="true"/>
+        <column name="billing_address_line_1" type="VARCHAR" size="255" required="false"/>
+        <column name="billing_address_line_2" type="VARCHAR" size="255" required="false"/>
+        <column name="billing_postal_code" type="VARCHAR" size="12" required="false"/>
+        <column name="billing_city" type="VARCHAR" size="64" required="false"/>
+        <column name="billing_country" type="VARCHAR" size="128" required="false"/>
+        <column name="billing_countries_id" type="INTEGER" required="false" defaultValue="NULL"/>
+        <column name="billing_state_province" type="VARCHAR" size="64" required="false"/>
+        <column name="billing_company_name" type="VARCHAR" size="128" required="false"/>
+        <column name="billing_method" type="VARCHAR" size="64" required="false"/>
+        <column name="billing_external_address_id" type="VARCHAR" size="128" required="false"/>
+        <column name="delivery_title" type="VARCHAR" size="12" required="false"/>
+        <column name="delivery_first_name" type="VARCHAR" size="128" required="true"/>
+        <column name="delivery_last_name" type="VARCHAR" size="128" required="true"/>
+        <column name="delivery_address_line_1" type="VARCHAR" size="255" required="false"/>
+        <column name="delivery_address_line_2" type="VARCHAR" size="255" required="false"/>
+        <column name="delivery_postal_code" type="VARCHAR" size="12" required="false"/>
+        <column name="delivery_city" type="VARCHAR" size="64" required="false"/>
+        <column name="delivery_country" type="VARCHAR" size="128" required="false"/>
+        <column name="delivery_countries_id" type="INTEGER" required="false" defaultValue="NULL"/>
+        <column name="delivery_state_province" type="VARCHAR" size="64" required="false"/>
+        <column name="delivery_company_name" type="VARCHAR" size="128" required="false"/>
+        <column name="delivery_method" type="VARCHAR" size="64" required="false"/>
+        <column name="delivery_external_address_id" type="VARCHAR" size="128" required="false"/>
+        <column name="events_id" type="INTEGER" required="false" defaultValue="NULL"/>
+        <column name="finished_at" type="TIMESTAMP" required="false"/>
+        <unique name="index2">
+            <unique-column name="session_id"/>
+        </unique>
+        <unique name="index3">
+            <unique-column name="payment_gateway_id"/>
+        </unique>
+        <foreign-key foreignTable="customers" onDelete="SETNULL" onUpdate="CASCADE">
+            <reference local="customers_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="countries" name="fk_customers_1">
+            <reference local="billing_countries_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="countries" name="fk_customers_2">
+            <reference local="delivery_countries_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="events" onDelete="RESTRICT" onUpdate="CASCADE">
+            <reference local="events_id" foreign="id"/>
+        </foreign-key>
+        <index name="index5">
+            <index-column name="languages_id"/>
+        </index>
+        <index name="index8">
+            <index-column name="state"/>
+        </index>
+        <behavior name="timestampable"/>
+    </table>
 
-  <table name="orders_attributes">
-    <column name="orders_id" type="INTEGER" primaryKey="true" required="true"/>
-    <column name="ns" type="VARCHAR" size="64" primaryKey="true" required="true"/>
-    <column name="c_key" type="VARCHAR" size="64" primaryKey="true" required="true"/>
-    <column name="c_value" type="VARCHAR" size="255" required="false"/>
-    <foreign-key foreignTable="orders" onDelete="CASCADE">
-      <reference local="orders_id" foreign="id"/>
-    </foreign-key>
-  </table>
+    <table name="orders_attributes">
+        <column name="orders_id" type="INTEGER" primaryKey="true" required="true"/>
+        <column name="ns" type="VARCHAR" size="64" primaryKey="true" required="true"/>
+        <column name="c_key" type="VARCHAR" size="64" primaryKey="true" required="true"/>
+        <column name="c_value" type="VARCHAR" size="255" required="false"/>
+        <foreign-key foreignTable="orders" onDelete="CASCADE">
+            <reference local="orders_id" foreign="id"/>
+        </foreign-key>
+    </table>
 
-  <table name="orders_lines" allowPkInsert="true">
-    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
-    <column name="orders_id" type="INTEGER" required="true"/>
-    <column name="type" type="VARCHAR" size="12" required="true"/>
-    <column name="products_id" type="INTEGER" required="false"/>
-    <column name="products_sku" type="VARCHAR" size="255" required="false"/>
-    <column name="products_name" type="VARCHAR" size="255" required="true"/>
-    <column name="products_color" type="VARCHAR" size="128" required="false"/>
-    <column name="products_size" type="VARCHAR" size="32" required="true"/>
-    <column name="expected_at" type="DATE" required="false" defaultValue="1970-01-01"/>
-    <column name="original_price" type="DECIMAL" size="15" scale="4" required="false"/>
-    <column name="price" type="DECIMAL" size="15" scale="4" required="false"/>
-    <column name="vat" type="DECIMAL" size="15" scale="4" required="false" defaultValue="0.00"/>
-    <column name="quantity" type="INTEGER" required="false"/>
-    <column name="unit" type="VARCHAR" size="12" required="false"/>
-    <column name="is_voucher" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
-    <column name="note" type="VARCHAR" size="255" required="false"/>
-    <foreign-key foreignTable="orders" name="fk_orders_lines_1" onDelete="CASCADE">
-      <reference local="orders_id" foreign="id"/>
-    </foreign-key>
-    <foreign-key foreignTable="products" name="fk_orders_lines_2" onDelete="SET NULL">
-      <reference local="products_id" foreign="id"/>
-    </foreign-key>
-  </table>
+    <table name="orders_lines" allowPkInsert="true">
+        <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+        <column name="orders_id" type="INTEGER" required="true"/>
+        <column name="type" type="VARCHAR" size="12" required="true"/>
+        <column name="products_id" type="INTEGER" required="false"/>
+        <column name="products_sku" type="VARCHAR" size="255" required="false"/>
+        <column name="products_name" type="VARCHAR" size="255" required="true"/>
+        <column name="products_color" type="VARCHAR" size="128" required="false"/>
+        <column name="products_size" type="VARCHAR" size="32" required="true"/>
+        <column name="expected_at" type="DATE" required="false" defaultValue="1970-01-01"/>
+        <column name="original_price" type="DECIMAL" size="15" scale="4" required="false"/>
+        <column name="price" type="DECIMAL" size="15" scale="4" required="false"/>
+        <column name="vat" type="DECIMAL" size="15" scale="4" required="false" defaultValue="0.00"/>
+        <column name="quantity" type="INTEGER" required="false"/>
+        <column name="unit" type="VARCHAR" size="12" required="false"/>
+        <column name="is_voucher" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
+        <column name="note" type="VARCHAR" size="255" required="false"/>
+        <foreign-key foreignTable="orders" name="fk_orders_lines_1" onDelete="CASCADE">
+            <reference local="orders_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="products" name="fk_orders_lines_2" onDelete="SET NULL">
+            <reference local="products_id" foreign="id"/>
+        </foreign-key>
+    </table>
 
-  <table name="orders_state_log">
-    <column name="orders_id" type="INTEGER" required="true" primaryKey="true"/>
-    <column name="state" type="INTEGER" required="true" primaryKey="true"/>
-    <column name="created_at" type="TIMESTAMP" required="true" primaryKey="true"/>
-    <column name="message" type="VARCHAR" size="128" required="true"/>
-    <foreign-key foreignTable="orders" onDelete="CASCADE">
-      <reference local="orders_id" foreign="id"/>
-    </foreign-key>
-  </table>
+    <table name="orders_state_log">
+        <column name="orders_id" type="INTEGER" required="true" primaryKey="true"/>
+        <column name="state" type="INTEGER" required="true" primaryKey="true"/>
+        <column name="created_at" type="TIMESTAMP" required="true" primaryKey="true"/>
+        <column name="message" type="VARCHAR" size="128" required="true"/>
+        <foreign-key foreignTable="orders" onDelete="CASCADE">
+            <reference local="orders_id" foreign="id"/>
+        </foreign-key>
+    </table>
 
-  <table name="orders_sync_log">
-    <column name="orders_id" type="INTEGER" required="true" primaryKey="true"/>
-    <column name="created_at" type="TIMESTAMP" required="true" primaryKey="true"/>
-    <column name="state" type="VARCHAR" size="12" required="true" defaultValue="ok"/>
-    <column name="content" type="LONGVARCHAR" required="false"/>
-    <column name="comment" type="LONGVARCHAR" required="false"/>
-    <foreign-key foreignTable="orders" name="fk_orders_lines_3" onDelete="CASCADE">
-      <reference local="orders_id" foreign="id"/>
-    </foreign-key>
-  </table>
+    <table name="orders_sync_log">
+        <column name="orders_id" type="INTEGER" required="true" primaryKey="true"/>
+        <column name="created_at" type="TIMESTAMP" required="true" primaryKey="true"/>
+        <column name="state" type="VARCHAR" size="12" required="true" defaultValue="ok"/>
+        <column name="content" type="LONGVARCHAR" required="false"/>
+        <column name="comment" type="LONGVARCHAR" required="false"/>
+        <foreign-key foreignTable="orders" name="fk_orders_lines_3" onDelete="CASCADE">
+            <reference local="orders_id" foreign="id"/>
+        </foreign-key>
+    </table>
 
-  <table name="orders_versions">
-    <column name="orders_id" type="INTEGER" required="true" primaryKey="true"/>
-    <column name="version_id" type="INTEGER" required="true" primaryKey="true"/>
-    <column name="created_at" type="TIMESTAMP" required="true"/>
-    <column name="content" type="CLOB" required="true"/>
-    <foreign-key foreignTable="orders" onDelete="CASCADE">
-      <reference local="orders_id" foreign="id"/>
-    </foreign-key>
-  </table>
+    <table name="orders_versions">
+        <column name="orders_id" type="INTEGER" required="true" primaryKey="true"/>
+        <column name="version_id" type="INTEGER" required="true" primaryKey="true"/>
+        <column name="created_at" type="TIMESTAMP" required="true"/>
+        <column name="content" type="CLOB" required="true"/>
+        <foreign-key foreignTable="orders" onDelete="CASCADE">
+            <reference local="orders_id" foreign="id"/>
+        </foreign-key>
+    </table>
 
-  <table name="orders_deleted_log">
-    <column name="orders_id" type="INTEGER" required="true" primaryKey="true"/>
-    <column name="customers_id" type="INTEGER" required="false"/>
-    <column name="name" type="VARCHAR" size="255" required="false"/>
-    <column name="email" type="VARCHAR" size="255" required="false"/>
-    <column name="trigger" type="VARCHAR" size="255" required="false"/>
-    <column name="content" type="CLOB" required="true"/>
-    <column name="deleted_by" type="VARCHAR" size="255" required="true"/>
-    <column name="deleted_at" type="TIMESTAMP" required="true"/>
-    <index>
-      <index-column name="customers_id" />
-    </index>
-    <index>
-      <index-column name="email" />
-    </index>
-  </table>
+    <table name="orders_deleted_log">
+        <column name="orders_id" type="INTEGER" required="true" primaryKey="true"/>
+        <column name="customers_id" type="INTEGER" required="false"/>
+        <column name="name" type="VARCHAR" size="255" required="false"/>
+        <column name="email" type="VARCHAR" size="255" required="false"/>
+        <column name="trigger" type="VARCHAR" size="255" required="false"/>
+        <column name="content" type="CLOB" required="true"/>
+        <column name="deleted_by" type="VARCHAR" size="255" required="true"/>
+        <column name="deleted_at" type="TIMESTAMP" required="true"/>
+        <index>
+            <index-column name="customers_id"/>
+        </index>
+        <index>
+            <index-column name="email"/>
+        </index>
+    </table>
 
-  <table name="sequences">
-    <column name="name" type="VARCHAR" size="32" required="true" primaryKey="true" />
-    <column name="id" type="BIGINT" required="true" />
-  </table>
+    <table name="sequences">
+        <column name="name" type="VARCHAR" size="32" required="true" primaryKey="true"/>
+        <column name="id" type="BIGINT" required="true"/>
+    </table>
 
-  <table name="related_products">
-    <column name="master" type="VARCHAR" size="128" primaryKey="true" required="true"/>
-    <column name="sku" type="VARCHAR" size="128" primaryKey="true" required="true"/>
-    <foreign-key foreignTable="products" onDelete="CASCADE">
-      <reference local="master" foreign="sku"/>
-    </foreign-key>
-    <foreign-key foreignTable="products" onDelete="CASCADE">
-      <reference local="sku" foreign="sku"/>
-    </foreign-key>
-  </table>
+    <table name="related_products">
+        <column name="master" type="VARCHAR" size="128" primaryKey="true" required="true"/>
+        <column name="sku" type="VARCHAR" size="128" primaryKey="true" required="true"/>
+        <foreign-key foreignTable="products" onDelete="CASCADE">
+            <reference local="master" foreign="sku"/>
+        </foreign-key>
+        <foreign-key foreignTable="products" onDelete="CASCADE">
+            <reference local="sku" foreign="sku"/>
+        </foreign-key>
+    </table>
 
-  <table name="wall">
-    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
-    <column name="parent_id" type="INTEGER" required="false" defaultValue="NULL"/>
-    <column name="customers_id" type="INTEGER" required="true"/>
-    <column name="messate" type="CLOB" required="true"/>
-    <column name="status" type="BOOLEAN" required="true" defaultValue="TRUE"/>
-    <foreign-key foreignTable="wall" onDelete="CASCADE">
-      <reference local="parent_id" foreign="id" />
-    </foreign-key>
-    <foreign-key foreignTable="customers" onDelete="CASCADE">
-      <reference local="customers_id" foreign="id"/>
-    </foreign-key>
-    <behavior name="timestampable"/>
-  </table>
+    <table name="wall">
+        <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+        <column name="parent_id" type="INTEGER" required="false" defaultValue="NULL"/>
+        <column name="customers_id" type="INTEGER" required="true"/>
+        <column name="messate" type="CLOB" required="true"/>
+        <column name="status" type="BOOLEAN" required="true" defaultValue="TRUE"/>
+        <foreign-key foreignTable="wall" onDelete="CASCADE">
+            <reference local="parent_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="customers" onDelete="CASCADE">
+            <reference local="customers_id" foreign="id"/>
+        </foreign-key>
+        <behavior name="timestampable"/>
+    </table>
 
-  <table name="wall_likes">
-    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
-    <column name="wall_id" type="INTEGER" required="true"/>
-    <column name="customers_id" type="INTEGER" required="true"/>
-    <column name="status" type="BOOLEAN" required="true" defaultValue="TRUE"/>
-    <foreign-key foreignTable="wall" onDelete="CASCADE">
-      <reference local="wall_id" foreign="id"/>
-    </foreign-key>
-    <foreign-key foreignTable="customers" onDelete="CASCADE">
-      <reference local="customers_id" foreign="id"/>
-    </foreign-key>
-  </table>
+    <table name="wall_likes">
+        <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+        <column name="wall_id" type="INTEGER" required="true"/>
+        <column name="customers_id" type="INTEGER" required="true"/>
+        <column name="status" type="BOOLEAN" required="true" defaultValue="TRUE"/>
+        <foreign-key foreignTable="wall" onDelete="CASCADE">
+            <reference local="wall_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="customers" onDelete="CASCADE">
+            <reference local="customers_id" foreign="id"/>
+        </foreign-key>
+    </table>
 
 </database>

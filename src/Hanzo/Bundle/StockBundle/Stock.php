@@ -307,14 +307,19 @@ class Stock
     /**
      * Figure out whether or not a whole style is out of stock.
      *
-     * @param $product
+     * @param  Products|string $query
+     * @param  bool            $return_count
      * @return bool
      */
-    protected function checkStyleStock($product)
+    public function checkStyleStock($query, $return_count = false)
     {
+        if ($query instanceof Products) {
+            $query = $query->getMaster();
+        }
+
         $ids = ProductsQuery::create()
             ->select('Id')
-            ->filterByMaster($product->getMaster())
+            ->filterByMaster($query)
             ->find()
             ->getData()
         ;
@@ -325,7 +330,34 @@ class Stock
             $total_stock += $this->get($id);
         }
 
+        if ($return_count) {
+            return $total_stock;
+        }
+
         return (boolean) $total_stock;
+    }
+
+
+    /**
+     * Remove stock from style
+     *
+     * @param Products $product
+     */
+    public function flushStyle(Products $product)
+    {
+        $items = ProductsQuery::create()
+            ->select('Id')
+            ->filterByMaster($product->getSku())
+            ->find()
+        ;
+
+        $ids = [];
+        foreach ($items as $id) {
+            $this->warehouse->removeProductFromInventory($id);
+            $ids[] = $id;
+        }
+
+        $this->setStockStatus(true, $ids);
     }
 
 
@@ -333,12 +365,21 @@ class Stock
      * Updates the stock status across databases.
      * This really should be moved to an event listener, as it is duplicated in ECommerceServices
      *
-     * @param  boolean  $is_out
-     * @param  Products $product
+     * @param  boolean        $is_out
+     * @param  Products|array $product
      * @return array
+     * @throws \InvalidArgumentException
      */
-    protected function setStockStatus($is_out, Products $product)
+    protected function setStockStatus($is_out, $product)
     {
+        if ($product instanceof Products) {
+            $product = [$product->getId()];
+        }
+
+        if (!is_array($product)) {
+            throw new \InvalidArgumentException('$product parameter not an array or instance of Products');
+        }
+
         $sql = "
             UPDATE
                 products
@@ -346,8 +387,8 @@ class Stock
                 is_out_of_stock = ".(int) $is_out.",
                 updated_at = NOW()
             WHERE
-                id = ".$product->getId()
-        ;
+                id IN (".implode(',', $product).")
+        ";
 
         return $this->replicator->executeQuery($sql, [], $this->warehouse->getRelatedDatabases());
     }

@@ -95,3 +95,14 @@
     border-top-right-radius: 0;
 }
 
+td.right {
+    text-align: right;
+}
+table caption {
+    text-align: left;
+    font-weight: bold;
+}
+
+.carefull {
+    color: #f00;
+}

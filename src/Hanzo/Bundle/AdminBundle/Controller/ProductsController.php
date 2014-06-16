@@ -2,8 +2,11 @@
 
 namespace Hanzo\Bundle\AdminBundle\Controller;
 
+use Hanzo\Model\LanguagesQuery;
 use Hanzo\Model\Products;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -33,7 +36,13 @@ use Hanzo\Bundle\AdminBundle\Event\FilterCategoryEvent;
 
 class ProductsController extends CoreController
 {
-
+    /**
+     * @Template()
+     *
+     * @param $category_id
+     * @param $subcategory_id
+     * @return array
+     */
     public function indexAction($category_id, $subcategory_id)
     {
         $categories = null;
@@ -42,9 +51,7 @@ class ProductsController extends CoreController
         if (isset($_GET['q'])) {
             $q_clean = $this->getRequest()->get('q', null);
             $q = '%'.$q_clean.'%';
-            /**
-             * @todo Lav søgning så man kan søge på hele navn. Sammenkobling på for og efternavn.
-             */
+
             $products = ProductsQuery::create()
                 ->filterBySku($q)
                 ->_or()
@@ -130,7 +137,7 @@ class ProductsController extends CoreController
 
         }
 
-        return $this->render('AdminBundle:Products:list.html.twig', array(
+        return [
             'categories'      => $categories_list,
             'products'        => $products_list,
             'parent_category' => $parent_category,
@@ -138,8 +145,126 @@ class ProductsController extends CoreController
             'subcategory_id'  => $subcategory_id,
             'search_query'    => $q_clean,
             'database'        => $this->getRequest()->getSession()->get('database')
-        ));
+        ];
     }
+
+
+    /**
+     * @Template()
+     *
+     * @param  Request $request
+     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function listAction(Request $request)
+    {
+        $locale = $request->query->get('locale');
+
+        if (!$locale) {
+            $locale = LanguagesQuery::create()
+                ->orderById()
+                ->findOne($this->getDbConnection())
+                ->getLocale()
+            ;
+        }
+
+        $filter = $request->query->get('range');
+
+        $ranges = [];
+        $result = ProductsQuery::create()
+            ->select('Range')
+            ->distinct()
+            ->find($this->getDbConnection())
+        ;
+        foreach ($result as $range) {
+            $ranges[$range] = $range;
+        }
+
+        if ((count($ranges) === 1) && empty($filter)) {
+            return $this->redirect($this->generateUrl('admin_products_list', ['range' => end($ranges)]));
+        }
+
+        if (empty($filter)) {
+            return [
+                'ranges'     => $ranges,
+                'range_data' => []
+            ];
+        }
+
+        $cache_key = ['admin', 'products', 'list', $locale, $filter];
+        $data = $this->getCache($cache_key);
+
+        if (empty($data)) {
+            $sql_filter = '';
+            if (!empty($filter)) {
+                $sql_filter = 'AND p.range = ?';
+                $filter = [$filter];
+            } else {
+                $filter = [];
+            }
+
+            $sql = "
+                SELECT
+                    p.id,
+                    p.range,
+                    p.sku,
+                    p.is_out_of_stock,
+                    pi.title,
+                    (
+                      SELECT
+                        group_concat(ci.title)
+                        FROM
+                            categories_i18n AS ci
+                        JOIN
+                            products_to_categories AS p2c
+                            ON (
+                                ci.id = p2c.categories_id
+                            )
+                        WHERE
+                            p2c.products_id = p.id
+                    ) AS categories
+                FROM
+                    products as p
+                JOIN
+                    products_i18n AS pi
+                    ON (
+                        p.id = pi.id
+                    )
+                WHERE
+                    p.master IS NULL
+                {$sql_filter}
+                ORDER BY
+                    p.range,
+                    p.sku
+            ";
+
+            $stock = $this->container->get('stock');
+            $conn  = $this->getDbConnection();
+            $query = $conn->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
+
+            $query->execute($filter);
+
+            $data = [];
+            while ($record = $query->fetch(\PDO::FETCH_ASSOC)) {
+                if (isset($data[$record['range']][$record['id']])) {
+                    continue;
+                }
+
+                $record['categories'] = implode(', ', array_unique(explode(',', $record['categories'])));
+                $record['stock']      = $stock->checkStyleStock($record['sku'], true);
+
+                $data[$record['range']][$record['id']] = $record;
+            }
+
+            uksort($data, "strnatcmp");
+            $this->setCache($cache_key, $data);
+        }
+
+        return [
+            'ranges'     => $ranges,
+            'range_data' => $data
+        ];
+    }
+
 
     public function viewAction($id)
     {
@@ -867,12 +992,8 @@ class ProductsController extends CoreController
                 ->filterByCategoriesId($category_id)
                 ->filterByProductsId($product_id)
                 ->filterByProductsImagesId($images_id)
-                ->update(array('Sort' => $sort), $this->getDbConnection());
-
-            // foreach ($results as $item) {
-            //     Tools::log($item->getProductsId());
-            //     $item->setSort($sort)->save($this->getDbConnection());
-            // }
+                ->update(array('Sort' => $sort), $this->getDbConnection())
+            ;
 
             $node = new Categories();
             $node->setId($category_id);
@@ -991,5 +1112,26 @@ class ProductsController extends CoreController
             'items'          => $items,
             'database'       => $this->getRequest()->getSession()->get('database')
         ));
+    }
+
+
+    /**
+     * @ParamConverter("product", class="Hanzo\Model\Products")
+     *
+     * @param Products $product
+     * @param Request  $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function purgeStockAction(Products $product, Request $request)
+    {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+
+        $stock = $this->container->get('stock');
+        $stock->flushStyle($product);
+
+        $this->container->get('session')->getFlashBag()->add('notice', 'Lageret for "'.$product->getSku().'" er nu nulstillet.');
+        return $this->redirect($this->generateUrl('admin_products_list', ['range' => $request->query->get('range')]));
     }
 }

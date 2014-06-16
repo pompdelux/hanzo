@@ -90,7 +90,7 @@ class ECommerceServices extends SoapService
             ));
         }
 
-        // only allow web enabled ptoducts to go into the database.
+        // only allow web enabled products to go into the database.
         if ($item->WebEnabled != 1) {
             $errors = array(
                 'InventId: ' . $item->ItemId,
@@ -210,6 +210,7 @@ class ECommerceServices extends SoapService
                         $product->setProductsToCategoriess($collection);
                     }
 
+                    $product->setRange(substr($item->ItemId, -4));
                     $product->setUnit(trim('1 ' .$item->Sales->UnitId));
                     $product->setPrimaryCategoriesId($primary_category_id);
 
@@ -237,6 +238,7 @@ class ECommerceServices extends SoapService
                     $product->setSize($entry->InventSizeId);
                 }
 
+                $product->setRange(substr($item->ItemId, -4));
                 $product->setUnit(trim('1 ' .$item->Sales->UnitId));
                 $product->setHasVideo(true);
                 $product->setIsOutOfStock(false);

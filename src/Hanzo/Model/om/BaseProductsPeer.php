@@ -43,16 +43,19 @@ abstract class BaseProductsPeer
     const TM_CLASS = 'Hanzo\\Model\\map\\ProductsTableMap';
 
     /** The total number of columns. */
-    const NUM_COLUMNS = 15;
+    const NUM_COLUMNS = 16;
 
     /** The number of lazy-loaded columns. */
     const NUM_LAZY_LOAD_COLUMNS = 0;
 
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-    const NUM_HYDRATE_COLUMNS = 15;
+    const NUM_HYDRATE_COLUMNS = 16;
 
     /** the column name for the id field */
     const ID = 'products.id';
+
+    /** the column name for the range field */
+    const RANGE = 'products.range';
 
     /** the column name for the sku field */
     const SKU = 'products.sku';
@@ -122,12 +125,12 @@ abstract class BaseProductsPeer
      * e.g. ProductsPeer::$fieldNames[ProductsPeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('Id', 'Sku', 'Master', 'Size', 'Color', 'Unit', 'Washing', 'HasVideo', 'IsOutOfStock', 'IsActive', 'IsVoucher', 'IsDiscountable', 'PrimaryCategoriesId', 'CreatedAt', 'UpdatedAt', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'sku', 'master', 'size', 'color', 'unit', 'washing', 'hasVideo', 'isOutOfStock', 'isActive', 'isVoucher', 'isDiscountable', 'primaryCategoriesId', 'createdAt', 'updatedAt', ),
-        BasePeer::TYPE_COLNAME => array (ProductsPeer::ID, ProductsPeer::SKU, ProductsPeer::MASTER, ProductsPeer::SIZE, ProductsPeer::COLOR, ProductsPeer::UNIT, ProductsPeer::WASHING, ProductsPeer::HAS_VIDEO, ProductsPeer::IS_OUT_OF_STOCK, ProductsPeer::IS_ACTIVE, ProductsPeer::IS_VOUCHER, ProductsPeer::IS_DISCOUNTABLE, ProductsPeer::PRIMARY_CATEGORIES_ID, ProductsPeer::CREATED_AT, ProductsPeer::UPDATED_AT, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'SKU', 'MASTER', 'SIZE', 'COLOR', 'UNIT', 'WASHING', 'HAS_VIDEO', 'IS_OUT_OF_STOCK', 'IS_ACTIVE', 'IS_VOUCHER', 'IS_DISCOUNTABLE', 'PRIMARY_CATEGORIES_ID', 'CREATED_AT', 'UPDATED_AT', ),
-        BasePeer::TYPE_FIELDNAME => array ('id', 'sku', 'master', 'size', 'color', 'unit', 'washing', 'has_video', 'is_out_of_stock', 'is_active', 'is_voucher', 'is_discountable', 'primary_categories_id', 'created_at', 'updated_at', ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, )
+        BasePeer::TYPE_PHPNAME => array ('Id', 'Range', 'Sku', 'Master', 'Size', 'Color', 'Unit', 'Washing', 'HasVideo', 'IsOutOfStock', 'IsActive', 'IsVoucher', 'IsDiscountable', 'PrimaryCategoriesId', 'CreatedAt', 'UpdatedAt', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'range', 'sku', 'master', 'size', 'color', 'unit', 'washing', 'hasVideo', 'isOutOfStock', 'isActive', 'isVoucher', 'isDiscountable', 'primaryCategoriesId', 'createdAt', 'updatedAt', ),
+        BasePeer::TYPE_COLNAME => array (ProductsPeer::ID, ProductsPeer::RANGE, ProductsPeer::SKU, ProductsPeer::MASTER, ProductsPeer::SIZE, ProductsPeer::COLOR, ProductsPeer::UNIT, ProductsPeer::WASHING, ProductsPeer::HAS_VIDEO, ProductsPeer::IS_OUT_OF_STOCK, ProductsPeer::IS_ACTIVE, ProductsPeer::IS_VOUCHER, ProductsPeer::IS_DISCOUNTABLE, ProductsPeer::PRIMARY_CATEGORIES_ID, ProductsPeer::CREATED_AT, ProductsPeer::UPDATED_AT, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'RANGE', 'SKU', 'MASTER', 'SIZE', 'COLOR', 'UNIT', 'WASHING', 'HAS_VIDEO', 'IS_OUT_OF_STOCK', 'IS_ACTIVE', 'IS_VOUCHER', 'IS_DISCOUNTABLE', 'PRIMARY_CATEGORIES_ID', 'CREATED_AT', 'UPDATED_AT', ),
+        BasePeer::TYPE_FIELDNAME => array ('id', 'range', 'sku', 'master', 'size', 'color', 'unit', 'washing', 'has_video', 'is_out_of_stock', 'is_active', 'is_voucher', 'is_discountable', 'primary_categories_id', 'created_at', 'updated_at', ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, )
     );
 
     /**
@@ -137,12 +140,12 @@ abstract class BaseProductsPeer
      * e.g. ProductsPeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Sku' => 1, 'Master' => 2, 'Size' => 3, 'Color' => 4, 'Unit' => 5, 'Washing' => 6, 'HasVideo' => 7, 'IsOutOfStock' => 8, 'IsActive' => 9, 'IsVoucher' => 10, 'IsDiscountable' => 11, 'PrimaryCategoriesId' => 12, 'CreatedAt' => 13, 'UpdatedAt' => 14, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'sku' => 1, 'master' => 2, 'size' => 3, 'color' => 4, 'unit' => 5, 'washing' => 6, 'hasVideo' => 7, 'isOutOfStock' => 8, 'isActive' => 9, 'isVoucher' => 10, 'isDiscountable' => 11, 'primaryCategoriesId' => 12, 'createdAt' => 13, 'updatedAt' => 14, ),
-        BasePeer::TYPE_COLNAME => array (ProductsPeer::ID => 0, ProductsPeer::SKU => 1, ProductsPeer::MASTER => 2, ProductsPeer::SIZE => 3, ProductsPeer::COLOR => 4, ProductsPeer::UNIT => 5, ProductsPeer::WASHING => 6, ProductsPeer::HAS_VIDEO => 7, ProductsPeer::IS_OUT_OF_STOCK => 8, ProductsPeer::IS_ACTIVE => 9, ProductsPeer::IS_VOUCHER => 10, ProductsPeer::IS_DISCOUNTABLE => 11, ProductsPeer::PRIMARY_CATEGORIES_ID => 12, ProductsPeer::CREATED_AT => 13, ProductsPeer::UPDATED_AT => 14, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'SKU' => 1, 'MASTER' => 2, 'SIZE' => 3, 'COLOR' => 4, 'UNIT' => 5, 'WASHING' => 6, 'HAS_VIDEO' => 7, 'IS_OUT_OF_STOCK' => 8, 'IS_ACTIVE' => 9, 'IS_VOUCHER' => 10, 'IS_DISCOUNTABLE' => 11, 'PRIMARY_CATEGORIES_ID' => 12, 'CREATED_AT' => 13, 'UPDATED_AT' => 14, ),
-        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'sku' => 1, 'master' => 2, 'size' => 3, 'color' => 4, 'unit' => 5, 'washing' => 6, 'has_video' => 7, 'is_out_of_stock' => 8, 'is_active' => 9, 'is_voucher' => 10, 'is_discountable' => 11, 'primary_categories_id' => 12, 'created_at' => 13, 'updated_at' => 14, ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, )
+        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Range' => 1, 'Sku' => 2, 'Master' => 3, 'Size' => 4, 'Color' => 5, 'Unit' => 6, 'Washing' => 7, 'HasVideo' => 8, 'IsOutOfStock' => 9, 'IsActive' => 10, 'IsVoucher' => 11, 'IsDiscountable' => 12, 'PrimaryCategoriesId' => 13, 'CreatedAt' => 14, 'UpdatedAt' => 15, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'range' => 1, 'sku' => 2, 'master' => 3, 'size' => 4, 'color' => 5, 'unit' => 6, 'washing' => 7, 'hasVideo' => 8, 'isOutOfStock' => 9, 'isActive' => 10, 'isVoucher' => 11, 'isDiscountable' => 12, 'primaryCategoriesId' => 13, 'createdAt' => 14, 'updatedAt' => 15, ),
+        BasePeer::TYPE_COLNAME => array (ProductsPeer::ID => 0, ProductsPeer::RANGE => 1, ProductsPeer::SKU => 2, ProductsPeer::MASTER => 3, ProductsPeer::SIZE => 4, ProductsPeer::COLOR => 5, ProductsPeer::UNIT => 6, ProductsPeer::WASHING => 7, ProductsPeer::HAS_VIDEO => 8, ProductsPeer::IS_OUT_OF_STOCK => 9, ProductsPeer::IS_ACTIVE => 10, ProductsPeer::IS_VOUCHER => 11, ProductsPeer::IS_DISCOUNTABLE => 12, ProductsPeer::PRIMARY_CATEGORIES_ID => 13, ProductsPeer::CREATED_AT => 14, ProductsPeer::UPDATED_AT => 15, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'RANGE' => 1, 'SKU' => 2, 'MASTER' => 3, 'SIZE' => 4, 'COLOR' => 5, 'UNIT' => 6, 'WASHING' => 7, 'HAS_VIDEO' => 8, 'IS_OUT_OF_STOCK' => 9, 'IS_ACTIVE' => 10, 'IS_VOUCHER' => 11, 'IS_DISCOUNTABLE' => 12, 'PRIMARY_CATEGORIES_ID' => 13, 'CREATED_AT' => 14, 'UPDATED_AT' => 15, ),
+        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'range' => 1, 'sku' => 2, 'master' => 3, 'size' => 4, 'color' => 5, 'unit' => 6, 'washing' => 7, 'has_video' => 8, 'is_out_of_stock' => 9, 'is_active' => 10, 'is_voucher' => 11, 'is_discountable' => 12, 'primary_categories_id' => 13, 'created_at' => 14, 'updated_at' => 15, ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, )
     );
 
     /**
@@ -217,6 +220,7 @@ abstract class BaseProductsPeer
     {
         if (null === $alias) {
             $criteria->addSelectColumn(ProductsPeer::ID);
+            $criteria->addSelectColumn(ProductsPeer::RANGE);
             $criteria->addSelectColumn(ProductsPeer::SKU);
             $criteria->addSelectColumn(ProductsPeer::MASTER);
             $criteria->addSelectColumn(ProductsPeer::SIZE);
@@ -233,6 +237,7 @@ abstract class BaseProductsPeer
             $criteria->addSelectColumn(ProductsPeer::UPDATED_AT);
         } else {
             $criteria->addSelectColumn($alias . '.id');
+            $criteria->addSelectColumn($alias . '.range');
             $criteria->addSelectColumn($alias . '.sku');
             $criteria->addSelectColumn($alias . '.master');
             $criteria->addSelectColumn($alias . '.size');

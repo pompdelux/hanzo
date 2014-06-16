@@ -32,6 +32,7 @@ use Hanzo\Model\SearchProductsTags;
 
 /**
  * @method ProductsQuery orderById($order = Criteria::ASC) Order by the id column
+ * @method ProductsQuery orderByRange($order = Criteria::ASC) Order by the range column
  * @method ProductsQuery orderBySku($order = Criteria::ASC) Order by the sku column
  * @method ProductsQuery orderByMaster($order = Criteria::ASC) Order by the master column
  * @method ProductsQuery orderBySize($order = Criteria::ASC) Order by the size column
@@ -48,6 +49,7 @@ use Hanzo\Model\SearchProductsTags;
  * @method ProductsQuery orderByUpdatedAt($order = Criteria::ASC) Order by the updated_at column
  *
  * @method ProductsQuery groupById() Group by the id column
+ * @method ProductsQuery groupByRange() Group by the range column
  * @method ProductsQuery groupBySku() Group by the sku column
  * @method ProductsQuery groupByMaster() Group by the master column
  * @method ProductsQuery groupBySize() Group by the size column
@@ -142,6 +144,7 @@ use Hanzo\Model\SearchProductsTags;
  * @method Products findOne(PropelPDO $con = null) Return the first Products matching the query
  * @method Products findOneOrCreate(PropelPDO $con = null) Return the first Products matching the query, or a new Products object populated from the query conditions when no match is found
  *
+ * @method Products findOneByRange(string $range) Return the first Products filtered by the range column
  * @method Products findOneBySku(string $sku) Return the first Products filtered by the sku column
  * @method Products findOneByMaster(string $master) Return the first Products filtered by the master column
  * @method Products findOneBySize(string $size) Return the first Products filtered by the size column
@@ -158,6 +161,7 @@ use Hanzo\Model\SearchProductsTags;
  * @method Products findOneByUpdatedAt(string $updated_at) Return the first Products filtered by the updated_at column
  *
  * @method array findById(int $id) Return Products objects filtered by the id column
+ * @method array findByRange(string $range) Return Products objects filtered by the range column
  * @method array findBySku(string $sku) Return Products objects filtered by the sku column
  * @method array findByMaster(string $master) Return Products objects filtered by the master column
  * @method array findBySize(string $size) Return Products objects filtered by the size column
@@ -277,7 +281,7 @@ abstract class BaseProductsQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `sku`, `master`, `size`, `color`, `unit`, `washing`, `has_video`, `is_out_of_stock`, `is_active`, `is_voucher`, `is_discountable`, `primary_categories_id`, `created_at`, `updated_at` FROM `products` WHERE `id` = :p0';
+        $sql = 'SELECT `id`, `range`, `sku`, `master`, `size`, `color`, `unit`, `washing`, `has_video`, `is_out_of_stock`, `is_active`, `is_voucher`, `is_discountable`, `primary_categories_id`, `created_at`, `updated_at` FROM `products` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -406,6 +410,35 @@ abstract class BaseProductsQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(ProductsPeer::ID, $id, $comparison);
+    }
+
+    /**
+     * Filter the query on the range column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByRange('fooValue');   // WHERE range = 'fooValue'
+     * $query->filterByRange('%fooValue%'); // WHERE range LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $range The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return ProductsQuery The current query, for fluid interface
+     */
+    public function filterByRange($range = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($range)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $range)) {
+                $range = str_replace('*', '%', $range);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(ProductsPeer::RANGE, $range, $comparison);
     }
 
     /**

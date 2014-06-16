@@ -174,6 +174,11 @@ admin_products:
         category_id: \d+
         subcategory_id: \d+
 
+admin_products_list:
+    pattern:  /admin/products/list
+    defaults:
+        _controller: AdminBundle:Products:list
+
 admin_product:
     pattern:  /admin/products/id/{id}
     defaults:
@@ -185,10 +190,19 @@ admin_product_stock:
     pattern:  /admin/products/stock/{id}/{category_id}/{subcategory_id}
     defaults:
         _controller: AdminBundle:Products:viewStock
+        category_id: 0
+        subcategory_id: 0
     requirements:
         id: \d+
         category_id: \d+
         subcategory_id: \d+
+
+admin_product_stock_purge:
+    pattern:  /admin/products/stock-purge/{id}
+    defaults:
+        _controller: AdminBundle:Products:purgeStock
+    requirements:
+        id: \d+
 
 
 admin_product_delete_style:
@@ -733,7 +747,7 @@ admin_helpdesk_delete:
         _controller: AdminBundle:Helpdesk:delete
 
 admin_stock:
-    pattern: /admin/products/stock
+    pattern: /admin/products/stock.csv
     defaults:
         _controller: AdminBundle:Products:stock
 
