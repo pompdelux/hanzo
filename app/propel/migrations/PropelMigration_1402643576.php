@@ -44,6 +44,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 
 ALTER TABLE `products` ADD `range` VARCHAR(4) AFTER `id`;
 CREATE INDEX `key_range` ON `products` (`range`);
+UPDATE `products` SET `range` = "SS14";
 
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;
