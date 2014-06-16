@@ -61,7 +61,7 @@
                     <td>
                         <a href="{{ path('admin_product', {'id': product.id}) }}" class="glyphicon glyphicon-edit" title="Gå til produktet"></a>
                         <a href="{{ path('admin_product_stock', {'id': product.id}) }}" class="glyphicon glyphicon-stats" title="Se lagerstatus"></a>
-                        <a href="{{ path('admin_product_stock_purge', {'id': product.id}) }}" class="glyphicon glyphicon-fire carefull" rel="confirm" title="Fjern styles lager" data-confirm-message="Er du ABSOLUT sikker på du vil nulstille (aka 'fjerne') lageret på denne style - hva, hva, hva ??"></a>
+                        <a href="{{ path('admin_product_stock_purge', {'id': product.id, 'range': app.request.get('range')}) }}" class="glyphicon glyphicon-fire carefull" rel="confirm" title="Fjern styles lager" data-confirm-message="Er du ABSOLUT sikker på du vil nulstille (aka 'fjerne') lageret på denne style - hva, hva, hva ??"></a>
                     </td>
                 </tr>
             {% endfor %}
