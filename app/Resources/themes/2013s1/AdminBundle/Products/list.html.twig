@@ -61,7 +61,9 @@
                     <td>
                         <a href="{{ path('admin_product', {'id': product.id}) }}" class="glyphicon glyphicon-edit" title="Gå til produktet"></a>
                         <a href="{{ path('admin_product_stock', {'id': product.id}) }}" class="glyphicon glyphicon-stats" title="Se lagerstatus"></a>
+                    {% if is_granted('ROLE_ADMIN') %}
                         <a href="{{ path('admin_product_stock_purge', {'id': product.id, 'range': app.request.get('range')}) }}" class="glyphicon glyphicon-fire carefull" rel="confirm" title="Fjern styles lager" data-confirm-message="Er du ABSOLUT sikker på du vil nulstille (aka 'fjerne') lageret på denne style - hva, hva, hva ??"></a>
+                    {% endif %}
                     </td>
                 </tr>
             {% endfor %}
@@ -78,8 +80,9 @@
 
     <p>
         <a><i class="glyphicon glyphicon-edit"></i></a> Produkt info,
-        <a><i class="glyphicon glyphicon-stats"></i></a> Lagerstatus,
+        <a><i class="glyphicon glyphicon-stats"></i></a> Lagerstatus{% if is_granted('ROLE_ADMIN') %},
         <i class="glyphicon glyphicon-fire carefull"></i> Slet style lager
+        {% endif %}
     </p>
 
     <div class="panel panel-default panel-primary">

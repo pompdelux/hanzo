@@ -152,8 +152,8 @@ class ProductsController extends CoreController
     /**
      * @Template()
      *
-     * @param Request $request
-     * @return array
+     * @param  Request $request
+     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function listAction(Request $request)
     {
@@ -177,6 +177,10 @@ class ProductsController extends CoreController
         ;
         foreach ($result as $range) {
             $ranges[$range] = $range;
+        }
+
+        if ((count($range) === 1) && empty($filter)) {
+            return $this->redirect($this->generateUrl('admin_products_list', ['range' => $ranges[0]]));
         }
 
         if (empty($filter)) {
@@ -1120,6 +1124,10 @@ class ProductsController extends CoreController
      */
     public function purgeStockAction(Products $product, Request $request)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+
         $stock = $this->container->get('stock');
         $stock->flushStyle($product);
 
