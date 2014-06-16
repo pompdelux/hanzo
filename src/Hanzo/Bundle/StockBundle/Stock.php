@@ -339,15 +339,47 @@ class Stock
 
 
     /**
+     * Remove stock from style
+     *
+     * @param Products $product
+     */
+    public function flushStyle(Products $product)
+    {
+        $items = ProductsQuery::create()
+            ->select('Id')
+            ->filterByMaster($product->getSku())
+            ->find()
+        ;
+
+        $ids = [];
+        foreach ($items as $id) {
+            $this->warehouse->removeProductFromInventory($id);
+            $ids[] = $id;
+        }
+
+        $this->setStockStatus(true, $ids);
+    }
+
+
+    /**
      * Updates the stock status across databases.
      * This really should be moved to an event listener, as it is duplicated in ECommerceServices
      *
-     * @param  boolean  $is_out
-     * @param  Products $product
+     * @param  boolean        $is_out
+     * @param  Products|array $product
      * @return array
+     * @throws \InvalidArgumentException
      */
-    protected function setStockStatus($is_out, Products $product)
+    protected function setStockStatus($is_out, $product)
     {
+        if ($product instanceof Products) {
+            $product = [$product->getId()];
+        }
+
+        if (!is_array($product)) {
+            throw new \InvalidArgumentException('$product parameter not an array or instance of Products');
+        }
+
         $sql = "
             UPDATE
                 products
@@ -355,8 +387,8 @@ class Stock
                 is_out_of_stock = ".(int) $is_out.",
                 updated_at = NOW()
             WHERE
-                id = ".$product->getId()
-        ;
+                id IN (".implode(',', $product).")
+        ";
 
         return $this->replicator->executeQuery($sql, [], $this->warehouse->getRelatedDatabases());
     }
