@@ -3,7 +3,12 @@
 
 {% block subnav_content %}
     <ul class="nav navbar-nav">
-        <li><a href="{{ path('admin_products', {'category_id' : category_id, 'subcategory_id' : subcategory_id}) }}" title="Tilbage til kategorien">Tilbage til kategorien</a></li>
+        {% if 0 == category_id %}
+            {% set _route_ = path('admin_products_list') %}
+        {% else %}
+            {% set _route_ = path('admin_products', {'category_id' : category_id, 'subcategory_id' : subcategory_id}) %}
+        {% endif %}
+        <li><a href="{{ _route_ }}" title="Tilbage til kategorien">Tilbage til oversigten</a></li>
     </ul>
 
     <form action="{{ path('admin_products') }}" method="get" class="navbar-form navbar-right">
