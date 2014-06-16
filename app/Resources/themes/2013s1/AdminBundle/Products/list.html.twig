@@ -3,28 +3,25 @@
 
 {% block subnav_content %}
     <ul class="nav navbar-nav">
-    {% if categories|length > 0 and parent_category %}
         <li><a href="{{ path('admin_products') }}" title="{{ 'admin.back.button'|trans({}, 'admin') }}">{{ 'admin.back.button'|trans({}, 'admin') }}</a></li>
-        {% if is_granted('ROLE_ADMIN') %}
-            <li><a href="{{ path('admin_category_edit') }}" title="{{ 'admin.add.category'|trans({}, 'admin') }}">{{ 'admin.add.category'|trans({}, 'admin') }}</a></li>
-            <li><a href="{{ path('admin_stock') }}" title="{{ 'admin.stock.export'|trans({}, 'admin') }}">{{ 'admin.stock.export'|trans({}, 'admin') }}</a></li>
-        {% endif %}
-    {% elseif products|length > 0 %}
-        <li><a href="{{ path('admin_products', {'category_id' : category_id}) }}" title="{{ 'admin.back.button'|trans({}, 'admin') }}">{{ 'admin.back.button'|trans({}, 'admin') }}</a></li>
-        {% if is_granted('ROLE_ADMIN') %}
-            <li><a href="{{ path('admin_stock') }}" title="{{ 'admin.stock.export'|trans({}, 'admin') }}">{{ 'admin.stock.export'|trans({}, 'admin') }}</a></li>
-        {% endif %}
-    {% else %}
-        {% if is_granted('ROLE_ADMIN') %}
-            <li><a href="{{ path('admin_stock') }}" title="{{ 'admin.stock.export'|trans({}, 'admin') }}">{{ 'admin.stock.export'|trans({}, 'admin') }}</a></li>
-        {% endif %}
-    {% endif %}
     </ul>
 
     <form action="{{ path('admin_products') }}" method="get" class="navbar-form navbar-right">
         <div class="form-group">
             <input type="text" id="searh" name="q" placeholder="{{ 'search.label'|trans({}, 'admin') }}" class="form-control">
             <input class="button search btn btn-default" type="submit" value="{{ 'search'|trans({}, 'admin') }}">
+        </div>
+    </form>
+
+    <form action="{{ path('admin_products_list') }}" method="get" class="navbar-form navbar-right">
+        <div class="form-group">
+            <input class="button search btn btn-default" type="submit" value="Vis sæson">
+            <select class="form-control" name="range">
+                <option value="">- vælg -</option>
+            {% for range in ranges %}
+                <option value="{{ range }}"{% if app.request.get('range') == range %} selected{% endif %}>{{ range|upper }}</option>
+            {% endfor %}
+            </select>
         </div>
     </form>
 {% endblock %}
@@ -41,103 +38,54 @@
     </div>
 {% endfor %}
 
-{% if categories|length > 0 %}
-    {% if parent_category %}
-        <h1>{{ 'admin.categories.list.header.text.%category-name%'|trans({'%category-name%' : parent_category.title}, 'admin') }}</h1>
-        <p>{{ 'admin.subcategories.list.description.text'|trans({}, 'admin') }}</p>
-
-        <table id="customers" class="table table-striped">
+    {% for range, products in range_data %}
+    <div class="table-responsive">
+        <table class="table table-striped table-condensed">
             <thead>
+                <caption>{{ range|upper }}</caption>
                 <tr>
                     <th>#</th>
-                    <th>Navn</th>
+                    <th>Title</th>
+                    <th>Stock</th>
+                    <th>Kategorier</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-            {% for category in categories %}
-                <tr>
-                    <td>{{ category.id }}</td>
-                    <td><a href="{{ path('admin_products', {'category_id' : parent_category.id, 'subcategory_id' : category.id}) }}" title="{{ category.title }}">{{ category.title }}</a></td>
+            {% for product in products %}
+                <tr class="{% if product.is_out_of_stock %}danger{% endif %}">
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.title }}</td>
+                    <td class="right">{{ product.stock }}</td>
+                    <td>{{ product.categories }}</td>
                     <td>
-                        <a href="{{ path('admin_products_sort', {'category_id' : category.id}) }}" class="right glyphicon glyphicon-sort" title="{{ 'admin.categories.list.sort-link.text'|trans({}, 'admin') }}"></a>
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <a href="{{ path('admin_category_edit', {'id' : category.id}) }}" class="right glyphicon glyphicon-edit" title="{{ 'admin.categories.list.edit-link.text'|trans({}, 'admin') }}"></a>
-                        <a href="{{ path('admin_category_delete', {'id' : category.id}) }}" class="right delete glyphicon glyphicon-remove-circle" title="{{ 'admin.categories.list.delete-link.text'|trans({}, 'admin') }}"></a>
-                    {% endif %}
+                        <a href="{{ path('admin_product', {'id': product.id}) }}" class="glyphicon glyphicon-edit" title="Gå til produktet"></a>
+                        <a href="{{ path('admin_product_stock', {'id': product.id}) }}" class="glyphicon glyphicon-stats" title="Se lagerstatus"></a>
+                        <a href="{{ path('admin_product_stock_purge', {'id': product.id}) }}" class="glyphicon glyphicon-fire carefull" rel="confirm" title="Fjern styles lager" data-confirm-message="Er du ABSOLUT sikker på du vil nulstille (aka 'fjerne') lageret på denne style - hva, hva, hva ??"></a>
                     </td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
-
+    </div>
     {% else %}
+        <div class="panel panel-default panel-primary">
+            <div class="panel-body">
+                Vælg "sæson" herover og tryk "Vis sæson".
+            </div>
+        </div>
+    {% endfor %}
 
-        <h1>{{ 'admin.categories.list.header.text'|trans({}, 'admin') }}</h1>
-        <p>{{ 'admin.categories.list.description.text'|trans({}, 'admin') }}</p>
+    <p>
+        <a><i class="glyphicon glyphicon-edit"></i></a> Produkt info,
+        <a><i class="glyphicon glyphicon-stats"></i></a> Lagerstatus,
+        <i class="glyphicon glyphicon-fire carefull"></i> Slet style lager
+    </p>
 
-        <table id="customers" class="table table-striped">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Navn</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for category in categories %}
-                <tr>
-                    <td>{{ category.id }}</td>
-                    <td><a href="{{ path('admin_products', {'category_id' : category.id}) }}" title="{{ category.title }}">{{ category.title }}</a></td>
-                    <td>
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <a href="{{ path('admin_category_edit', {'id' : category.id}) }}" class="right glyphicon glyphicon-edit" title="{{ 'admin.categories.list.edit-link.text'|trans({}, 'admin') }}"></a>
-                        <a href="{{ path('admin_category_delete', {'id' : category.id}) }}" class="right delete glyphicon glyphicon-remove-circle" title="{{ 'admin.categories.list.delete-link.text'|trans({}, 'admin') }}"></a>
-                    {% endif %}
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-
-    {% endif %}
-{% endif %}
-
-{% if products|length > 0 %}
-    {% if parent_category %}
-        <h1>{{ 'admin.products.list.header.text.%category-name%'|trans({'%category-name%' : parent_category.title}, 'admin') }}</h1>
-    {% elseif search_query %}
-        <h1>{{ 'admin.products.list.header.text.%search-query%'|trans({'%search-query%' : search_query}, 'admin') }}</h1>
-    {% else %}
-        <h1>{{ 'admin.categories.list.header.text'|trans({}, 'admin') }}</h1>
-    {% endif %}
-    <p>{{ 'admin.products.list.description.text'|trans({}, 'admin') }}</p>
-
-    <table id="customers" class="table table-striped">
-        <thead>
-        <tr>
-            <th>#</th>
-            <th>Navn</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for product in products %}
-            <tr>
-                <td>{{ product.id }}</td>
-                <td><a href="{{ path('admin_product', {'id' : product.id}) }}" title="{{ product.sku }}">{{ product.sku }}</a></td>
-                <td>
-                    <a href="{{ path('admin_product', {'id' : product.id}) }}" class="glyphicon glyphicon-edit" title="Gå til produktet"></a>
-                    <a href="{{ path('admin_product_stock', {
-                        'id' : product.id,
-                        'category_id' : app.request.get('category_id'),
-                        'subcategory_id' : app.request.get('subcategory_id')
-                    }) }}" class="glyphicon glyphicon-stats" title="Se aktuelle lagerstatus"></a>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-{% endif %}
+    <div class="panel panel-default panel-primary">
+        <div class="panel-body">
+            <strong>Bemærk</strong> at lagerantallet er vejledende, da det kun opdateres ca. en gang i timen. For et retvisende billede, tryk på <i class="glyphicon glyphicon-stats"></i> ikonet
+        </div>
+    </div>
 
 {% endblock %}
