@@ -16,8 +16,9 @@
         {% endif %}
     {% else %}
         {% if is_granted('ROLE_ADMIN') %}
-            <li><a href="{{ path('admin_stock') }}" title="{{ 'admin.stock.export'|trans({}, 'admin') }}">{{ 'admin.stock.export'|trans({}, 'admin') }}</a></li>
+            <li><a href="{{ path('admin_stock') }}" title="Download lagerudtræk">Download lagerudtræk <i class="glyphicon glyphicon-download-alt"></i></a></li>
         {% endif %}
+        <li><a href="{{ path('admin_products_list') }}" title="Rå produkt liste">Produkter <i class="glyphicon glyphicon-list"></i></a></li>
     {% endif %}
     </ul>
 
