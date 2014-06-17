@@ -22,6 +22,13 @@
         {% if product is defined %}
             <li><a href="{{ cms_admin_link('admin_cms_edit', {'id': product.id}) }}"><i class="fa fa-pencil-square-o"></i> Editer produktet</a></li>
         {% endif %}
+
+            <li>
+                <form action="{{ path('product_set_active_range') }}" method="get">
+                    <label for="product-range-select">Kollektion:</label>
+                    {{ product_range_select({'onchange': 'this.form.submit()', 'id': 'product-range-select'}) }}
+                </form>
+            </li>
         </ul>
     </div>
 {% endif %}
