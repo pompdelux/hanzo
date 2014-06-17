@@ -1,7 +1,17 @@
 parameters:
-#    hanzo_product.example.class: Hanzo\Bundle\ProductBundle\Example
+    hanzo_product.range.class: Hanzo\Bundle\ProductBundle\Range
+    hanzo_product.range.twig.extension.class: Hanzo\Bundle\ProductBundle\Twig\Extension\RangeExtension
 
 services:
-#    hanzo_product.example:
-#        class: %hanzo_product.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    hanzo_product.range:
+        class: %hanzo_product.range.class%
+        arguments:
+            - @session
+            - %core.active_procuct_range%
+
+    hanzo_product.range.twig.extension:
+        class: %hanzo_product.range.twig.extension.class%
+        arguments:
+            - @hanzo_product.range
+        tags:
+            -   { name: twig.extension }
