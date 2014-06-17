@@ -3464,6 +3464,19 @@ article div ul {
 .inline-edit-menu .ts {
   font-size: 0.8em;
 }
+.inline-edit-menu form {
+  margin-top: 20px;
+}
+.inline-edit-menu form label {
+  margin: 0;
+  float: left;
+  width: auto;
+}
+.inline-edit-menu form select {
+  float: right;
+  margin: 0;
+  width: 50%;
+}
 
 /**
 | _faq
