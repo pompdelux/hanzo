@@ -22,7 +22,7 @@ use Hanzo\Model\ProductsDomainsPricesPeer;
  */
 class CategoriesPeer extends BaseCategoriesPeer
 {
-    public static function getCategoryProductsByCategoryId($category_id, $pager, $show)
+    public static function getCategoryProductsByCategoryId($category_id, $pager, $show, $product_range)
     {
         $hanzo = Hanzo::getInstance();
         $container = $hanzo->container;
@@ -33,6 +33,7 @@ class CategoriesPeer extends BaseCategoriesPeer
 
         $result = ProductsImagesCategoriesSortQuery::create()
             ->useProductsQuery()
+                ->filterByRange($product_range)
                 ->where('products.MASTER IS NULL')
                 ->filterByIsOutOfStock(FALSE)
                 ->useProductsDomainsPricesQuery()
@@ -118,7 +119,7 @@ class CategoriesPeer extends BaseCategoriesPeer
         return $data;
     }
 
-    public static function getStylesByCategoryId($category_id, $pager)
+    public static function getStylesByCategoryId($category_id, $pager, $product_range)
     {
         $hanzo     = Hanzo::getInstance();
         $container = $hanzo->container;
@@ -128,6 +129,7 @@ class CategoriesPeer extends BaseCategoriesPeer
 
         $result = ProductsImagesProductReferencesQuery::create()
             ->useProductsQuery()
+                ->filterByRange($product_range)
                 ->where('products.MASTER IS NULL')
                 ->filterByIsOutOfStock(FALSE)
                 ->useProductsDomainsPricesQuery()
