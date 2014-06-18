@@ -53,6 +53,17 @@ class Stock
 
 
     /**
+     * Change warehouse location, please be careful with this!
+     *
+     * @param $locale
+     */
+    public function changeLocation($locale)
+    {
+        $this->warehouse->setLocation($locale);
+    }
+
+
+    /**
      * fetch the stock put of db and save it in a static var
      *
      * @param  array $products an array of product object
