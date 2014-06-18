@@ -60,6 +60,7 @@ var cdn_url = '{{ cdn }}';
             <div class="navbar-collapse collapse" id="bs-top-menu-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
+                        {% set database = app.request.session.get('database') %}
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="flag {{ database|default('pdldbda') }}"></span>{{ database|default('default') }} - Vælg domæne database <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ path('admin_database') }}" class=""><span class="flag DK"></span><span class="flag COM"></span> .DK/.COM (pdlda)</a></li>
