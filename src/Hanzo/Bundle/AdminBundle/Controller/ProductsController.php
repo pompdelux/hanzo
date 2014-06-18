@@ -186,7 +186,7 @@ class ProductsController extends CoreController
         if (empty($filter)) {
             return [
                 'ranges'     => $ranges,
-                'range_data' => []
+                'range_data' => [],
             ];
         }
 
@@ -238,6 +238,12 @@ class ProductsController extends CoreController
             ";
 
             $stock = $this->container->get('stock');
+
+            // FIXME: now!!!! this is a major hack, and we need to figure out how to change this !
+            if ('pdldbno1' === $this->getRequest()->getSession()->get('database')) {
+                $stock->changeLocation('nb_NO');
+            }
+
             $conn  = $this->getDbConnection();
             $query = $conn->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
 
@@ -255,13 +261,18 @@ class ProductsController extends CoreController
                 $data[$record['range']][$record['id']] = $record;
             }
 
+            // FIXME: now!!!! this is a major hack, and we need to figure out how to change this !
+            if ('pdldbno1' === $this->getRequest()->getSession()->get('database')) {
+                $stock->changeLocation('da_DK');
+            }
+
             uksort($data, "strnatcmp");
             $this->setCache($cache_key, $data);
         }
 
         return [
             'ranges'     => $ranges,
-            'range_data' => $data
+            'range_data' => $data,
         ];
     }
 
@@ -1066,6 +1077,11 @@ class ProductsController extends CoreController
     {
         $stock = $this->container->get('stock');
 
+        // FIXME: now!!!! this is a major hack, and we need to figure out how to change this !
+        if ('pdldbno1' === $this->getRequest()->getSession()->get('database')) {
+            $stock->changeLocation('nb_NO');
+        }
+
         $products = ProductsQuery::create()
             ->filterByMaster($product->getSku())
             ->orderBySku()
@@ -1106,6 +1122,11 @@ class ProductsController extends CoreController
             }
         }
 
+        // FIXME: now!!!! this is a major hack, and we need to figure out how to change this !
+        if ('pdldbno1' === $this->getRequest()->getSession()->get('database')) {
+            $stock->changeLocation('da_DK');
+        }
+
         return $this->render('AdminBundle:Products:stock.html.twig', array(
             'category_id'    => $category_id,
             'subcategory_id' => $subcategory_id,
@@ -1129,7 +1150,18 @@ class ProductsController extends CoreController
         }
 
         $stock = $this->container->get('stock');
+
+        // FIXME: now!!!! this is a major hack, and we need to figure out how to change this !
+        if ('pdldbno1' === $this->getRequest()->getSession()->get('database')) {
+            $stock->changeLocation('nb_NO');
+        }
+
         $stock->flushStyle($product);
+
+        // FIXME: now!!!! this is a major hack, and we need to figure out how to change this !
+        if ('pdldbno1' === $this->getRequest()->getSession()->get('database')) {
+            $stock->changeLocation('da_DK');
+        }
 
         $this->container->get('session')->getFlashBag()->add('notice', 'Lageret for "'.$product->getSku().'" er nu nulstillet.');
         return $this->redirect($this->generateUrl('admin_products_list', ['range' => $request->query->get('range')]));
