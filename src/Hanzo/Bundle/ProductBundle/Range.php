@@ -54,8 +54,8 @@ class Range
      */
     public function getCurrentRange()
     {
-        if ($this->session->has('active_range')) {
-            return $this->session->get('active_range');
+        if ($this->session->has('active_procuct_range')) {
+            return $this->session->get('active_procuct_range');
         }
 
         return $this->active_range;
@@ -98,7 +98,7 @@ class Range
     {
         $name = strtoupper($name);
         $this->validateRange($name);
-        $this->session->set('active_range', $name);
+        $this->session->set('active_procuct_range', $name);
     }
 
 
