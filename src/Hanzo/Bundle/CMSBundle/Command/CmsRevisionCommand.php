@@ -45,7 +45,7 @@ class CmsRevisionCommand extends ContainerAwareCommand
                 }
 
                 $cms = CmsQuery::create()
-                    ->findOneById($revision->getId());
+                    ->findOneById($revision->getId(), Propel::getConnection($connection, Propel::CONNECTION_WRITE));
 
                 if ($cms instanceof Cms) {
                     try {
@@ -62,11 +62,13 @@ class CmsRevisionCommand extends ContainerAwareCommand
                         // CMS, the menues might get updated.
                         $this->getContainer()->get('varnish.controle')->banUrl('^/' . $translation->getLocale() . '/*');
                     }
+                    // Remember which revisions has already been published.
+                    $publishedCmsArray[$cms->getId()] = $cms->getId();
+                    $output->writeln('Revision published for CMS: ' . $cms->getId());
+                } else {
+                    $output->writeln('No CMS found with Revision ID: ' . $revision->getId());
                 }
 
-                // Remember which revisions has already been published.
-                $publishedCmsArray[$cms->getId()] = $cms->getId();
-                $output->writeln('Revision published for CMS: ' . $cms->getId());
             }
 
             if (count($revisionsToPublish)) {
