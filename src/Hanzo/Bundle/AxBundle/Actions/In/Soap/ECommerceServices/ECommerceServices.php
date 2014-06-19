@@ -712,6 +712,8 @@ class ECommerceServices extends SoapService
             $customer->setConsultants($consultant);
         }
 
+        $customer->setGroupsId($group_id);
+
         $names = explode(' ', $data->CustName);
         $first_name = array_shift($names);
         $last_names = implode(' ', $names);
