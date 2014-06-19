@@ -190,7 +190,7 @@ class ProductsController extends CoreController
             ];
         }
 
-        $cache_key = ['admin', 'products', 'list', $locale, $filter];
+        $cache_key = ['admin', 'products', 'list', $filter, $this->getRequest()->getSession()->get('database')];
         $data = $this->getCache($cache_key);
 
         if (empty($data)) {
