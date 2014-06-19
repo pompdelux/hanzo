@@ -12,6 +12,7 @@ class Warehouse
      * @var \Hanzo\Bundle\RedisBundle\Client\Redis
      */
     private $redis;
+    private $base_prefix;
 
     /**
      * @var array
@@ -37,6 +38,7 @@ class Warehouse
     public function __construct(RedisClient $redis, array $warehouses, PropelReplicator $replicator = null)
     {
         $this->redis = $redis;
+        $this->base_prefix = $redis->getPrefix();
         $this->setWarehouses($warehouses);
         $this->replicator = $replicator;
 
@@ -59,7 +61,7 @@ class Warehouse
         if (isset($this->country_warehouse_map[$locale])) {
             $this->is_location_set = $this->country_warehouse_map[$locale];
 
-            $p = trim($this->redis->getPrefix(), ':');
+            $p = trim($this->base_prefix, ':');
             $this->redis->setPrefix($p.'.'.$this->is_location_set.':');
 
             return $this;
