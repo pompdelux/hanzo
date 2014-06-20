@@ -32,9 +32,16 @@ class DefaultController extends CoreController
         );
     }
 
-    public function setDatabaseConnectionAction($name)
+    public function setDatabaseConnectionAction(Request $request, $name)
     {
     	$this->getRequest()->getSession()->set('database', $name);
-    	return $this->redirect($this->generateUrl('admin'));
+
+        if ($request->query->has('goto')) {
+            $url = $request->query->get('goto');
+        } else {
+            $url = $this->generateUrl('admin');
+        }
+
+    	return $this->redirect($url);
     }
 }
