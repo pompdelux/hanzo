@@ -46,6 +46,7 @@ class AdminExtension extends \Twig_Extension
             $db = 'default';
         }
 
+        $parameters['_locale'] = 'da_DK';
         return $this->router->generate('admin_database', [
             'goto'    => $this->router->generate($route, $parameters),
             'name'    => $db,
