@@ -7,7 +7,7 @@
             <li><a href="{{ path('admin_customers') }}"><i class="fa fa-users"></i> Kunder</a></li>
             <li><a href="{{ path('admin_orders') }}"><i class="fa fa-bank"></i> Ordre</a></li>
         {% if page is defined %}
-            <li><a href="{{ path('admin_cms_edit', {'id': page.id}) }}"><i class="fa fa-pencil-square-o"></i> Editer siden</a></li>
+            <li><a href="{{ cms_admin_link('admin_cms_edit', {'id': page.id}) }}"><i class="fa fa-pencil-square-o"></i> Editer siden</a></li>
 
             <li><br>
                 <i class="fa fa-mobile fa-box {% if page.onMobile %}green{% else %}red{% endif %}" title="{% if not page.onMobile %}ikke {% endif %}synlig på mobil sitet"></i>
@@ -20,7 +20,7 @@
             </li>
         {% endif %}
         {% if product is defined %}
-            <li><a href="{{ path('admin_product', {'id': product.id}) }}"><i class="fa fa-pencil-square-o"></i> Editer produktet</a></li>
+            <li><a href="{{ cms_admin_link('admin_cms_edit', {'id': product.id}) }}"><i class="fa fa-pencil-square-o"></i> Editer produktet</a></li>
         {% endif %}
         </ul>
     </div>
