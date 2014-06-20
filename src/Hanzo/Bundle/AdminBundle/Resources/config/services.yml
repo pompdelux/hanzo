@@ -1,5 +1,5 @@
 parameters:
-#    admin.example.class: Hanzo\Bundle\AdminBundle\Example
+    hanzo_admin.cms_link.twig.extension.class: Hanzo\Bundle\AdminBundle\Twig\Extension\AdminExtension
 
 services:
     cms.node.deleted.listener:
@@ -20,3 +20,11 @@ services:
             - %muneris.host%
         tags:
             - { name: guzzle.client }
+
+    hanzo_admin.cms_link.twig.extension:
+        class: %hanzo_admin.cms_link.twig.extension.class%
+        arguments:
+            - %locale%
+            - @router.default
+        tags:
+            -   { name: twig.extension }
