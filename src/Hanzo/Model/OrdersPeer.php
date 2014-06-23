@@ -85,7 +85,11 @@ class OrdersPeer extends BaseOrdersPeer
                 $gateway_id,
                 Propel::getConnection(null, Propel::CONNECTION_WRITE)
         );
-        $order->reload(true);
+
+        try {
+            $order->reload(true);
+        } catch(\PropelException $e) {}
+
         return $order;
     }
 
