@@ -149,10 +149,18 @@ class DefaultController extends CoreController
         $price = array_shift($price);
         $price = array_shift($price);
 
+        $master_id = null;
+        try {
+            $master_id = $product->getProductsRelatedByMaster()->getId();
+        } catch (\Exception $e) {
+            Tools::log("Failed to get master::id for:\n".print_r($product->toArray(),1)."------------------------------");
+        }
+
+
         $latest = array(
             'expected_at'  => '',
             'id'           => $product->getId(),
-            'master_id'    => $product->getProductsRelatedByMaster()->getId(),
+            'master_id'    => $master_id,
             'price'        => Tools::moneyFormat($price['price'] * $quantity),
             'single_price' => Tools::moneyFormat($price['price']),
         );
