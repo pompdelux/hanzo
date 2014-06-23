@@ -61,6 +61,8 @@ class PayPalController extends CoreController
             )
         ;
 
+        $flash_bag = $this->get('session')->getFlashBag();
+
         if ($order instanceof Orders) {
             $order->reload(true);
             $api = $this->get('payment.paypalapi');
@@ -85,9 +87,9 @@ class PayPalController extends CoreController
 
             $api->updateOrderFailed($request, $order);
 
-            $this->get('session')->setFlash('notice', $this->get('translator')->trans($message, [], 'paypal'));
+            $flash_bag->add('notice', $this->get('translator')->trans($message, [], 'paypal'));
         } else {
-            $this->get('session')->setFlash('notice', $this->get('translator')->trans('order.not.found', [], 'paypal'));
+            $flash_bag->add('notice', $this->get('translator')->trans('order.not.found', [], 'paypal'));
         }
 
         return $this->redirect($this->generateUrl('_checkout'));
