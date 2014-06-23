@@ -61,7 +61,6 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
         // admin
         'hd@pompdelux.dk'        => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
         'jm@pompdelux.dk'        => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
-        'lv@pompdelux.dk'        => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
         // admin (bellcom)
         'andersbryrup@gmail.com' => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
         'hanzo@bellcom.dk'       => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
