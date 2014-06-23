@@ -448,12 +448,16 @@ class AxService
             return false;
         }
 
-        $this->sendDebtor($order->getCustomers($con), $return, $con);
-        $result = $this->Send('SyncSalesOrder', $syncSalesOrder);
+        if (false === $this->sendDebtor($order->getCustomers($con), $return, $con)) {
+            $this->logOrderSyncStatus($order->getId(), $syncSalesOrder, 'failed', 'Customer sync failed, order sync halted.', $con);
+            return false;
+        }
 
         $comment = '';
+        $result  = $this->Send('SyncSalesOrder', $syncSalesOrder);
+
         if ($result instanceof Exception) {
-            $state = 'failed';
+            $state   = 'failed';
             $comment = $result->getMessage();
         } else {
             if ( isset($result->SyncSalesOrderResult->Status) && strtoupper($result->SyncSalesOrderResult->Status) == 'OK') {
@@ -517,7 +521,7 @@ class AxService
         $sc = new stdClass();
         $sc->customer  = $cu;
 
-        // NICETO: no hardcoded switches
+        // FIXME: no hardcoded switches
         // Use: $syncSalesOrder->endpointDomain = $attributes->global->domain_key; ??
         $sc->endpointDomain = 'DK';
         switch ($ct->AddressCountryRegionId) {
