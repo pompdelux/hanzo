@@ -43,7 +43,7 @@ class DefaultController extends CoreController
         $product    = ProductsPeer::findFromRequest($request);
 
         // could not find matching product, throw 404 ?
-        if (!$product instanceof Products) {
+        if ((!$product instanceof Products) || !$product->getColor() || !$product->getSize()) {
             if ($this->getFormat() == 'json') {
                 return $this->json_response(array(
                     'message' => '',
