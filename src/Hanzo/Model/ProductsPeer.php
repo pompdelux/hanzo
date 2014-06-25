@@ -6,8 +6,18 @@ use Hanzo\Core\Hanzo;
 use Hanzo\Model\om\BaseProductsPeer;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class ProductsPeer
+ *
+ * @package Hanzo\Model
+ */
 class ProductsPeer extends BaseProductsPeer
 {
+    /**
+     * @param Request $request
+     *
+     * @return mixed
+     */
     public static function findFromRequest(Request $request)
     {
         static $product_cache = array();
@@ -43,11 +53,14 @@ class ProductsPeer extends BaseProductsPeer
         return $product_cache[$key];
     }
 
+    /**
+     * @return string
+     */
     protected static function mergeRequestParams()
     {
         $request = array_merge($_GET, $_POST);
         $keys = array('master', 'size', 'color', 'product_id');
-        foreach($request as $key => $v) {
+        foreach ($request as $key => $v) {
             if (!in_array($key, $keys)) {
                 unset($request[$key]);
             }
