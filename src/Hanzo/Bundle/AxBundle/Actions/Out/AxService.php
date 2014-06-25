@@ -695,8 +695,8 @@ class AxService
         try {
             $result = $this->client->{$service}($request);
         } catch (SoapFault $e) {
-            $this->logger->addCritical('Request.: '.$this->client->__getLastRequest());
-            $this->logger->addCritical('Response: '.$this->client->__getLastResponse());
+            $this->logger->addCritical('Request.: '.str_replace("\n", '', $this->client->__getLastRequest()));
+            $this->logger->addCritical('Response: '.str_replace("\n", '', $this->client->__getLastResponse()));
             $result = $e;
         }
 
