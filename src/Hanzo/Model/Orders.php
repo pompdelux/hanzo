@@ -1351,7 +1351,10 @@ class Orders extends BaseOrders
 
                 if ($this->getIgnoreDeleteConstraints()) {
                     // allow delete for priority deletes
-                    Hanzo::getInstance()->container->get('ax.out')->deleteOrder($this, $con);
+                    $result = Hanzo::getInstance()->container->get('ax.out')->deleteOrder($this, $con);
+                    if ($result instanceof Exception) {
+                        throw $result;
+                    }
                 } else {
                     throw $e;
                 }
