@@ -16,7 +16,7 @@
     <h1>{{ 'admin.messages.edit.header.text'|trans({}, 'admin') }}</h1>
 
 {% for message in app.session.flashbag.get('notice') %}
-    <div class="message notice">
+    <div class="alert alert-info">
         {{ message|trans({}, 'admin') }}
     </div>
 {% endfor %}
