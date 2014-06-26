@@ -24,7 +24,7 @@ trait KernelTrait
     protected function bundles()
     {
         $bundles = [
-            // CORE BUNDLES
+            // CORE BUNDLES -----------------------------------------
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
@@ -34,16 +34,18 @@ trait KernelTrait
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
+            // ------------------------------------------------------
 
-            // ADDON BUNDLES
+            // ADD-ON BUNDLES ---------------------------------------
             new Propel\PropelBundle\PropelBundle(),
             new Bazinga\ExposeTranslationBundle\BazingaExposeTranslationBundle(),
             new Ekino\Bundle\NewRelicBundle\EkinoNewRelicBundle(),
             new Liip\ThemeBundle\LiipThemeBundle(),
             new Misd\GuzzleBundle\MisdGuzzleBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+            // ------------------------------------------------------
 
-            // APP BUNDLES
+            // APP BUNDLES ------------------------------------------
             new Hanzo\Bundle\AccountBundle\AccountBundle(),
             new Hanzo\Bundle\AdminBundle\AdminBundle(),
             new Hanzo\Bundle\BasketBundle\BasketBundle(),
@@ -74,6 +76,7 @@ trait KernelTrait
             new Hanzo\Bundle\StockBundle\StockBundle(),
             new Hanzo\Bundle\GoogleBundle\GoogleBundle(),
             new Hanzo\Bundle\ConsignorBundle\ConsignorBundle(),
+            // ------------------------------------------------------
         ];
 
         if (preg_match('/^(test|dev)_/', $this->getEnvironment())) {
