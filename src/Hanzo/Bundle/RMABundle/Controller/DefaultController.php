@@ -80,7 +80,7 @@ class DefaultController extends CoreController
 
             $address_block = mb_convert_encoding($address_formatter->format($address), 'HTML-ENTITIES', 'UTF-8');
 
-            // Only show the products which are choosed to RMA.
+            // Only show the products which are chosed to RMA.
             foreach ($rma_products as &$rma_product) {
                 if (isset($products['product_' . $rma_product['id']])) {
                     $rma_product['rma_description'] = mb_convert_encoding($rma_product['rma_description'], 'HTML-ENTITIES', 'UTF-8');
@@ -98,7 +98,6 @@ class DefaultController extends CoreController
                 )
             );
 
-
             $this->setCache('rma_generated_html.' . $order_id . '.' . CustomersPeer::getCurrent()->getId(), $html);
 
             $pdf_data = $this->get('knp_snappy.pdf')->getOutputFromHtml($html);
@@ -107,7 +106,10 @@ class DefaultController extends CoreController
             try {
                 $mail = $this->container->get('mail_manager');
                 $mail->addAttachment($pdf_data, false, $pdf_name);
-                $mail->setMessage('order.rma', []);
+                $mail->setMessage('order.rma', [
+                    'order_id'      => $order_id,
+                    'customer_name' => $order->getCustomersName(),
+                ]);
                 $mail->setTo($order->getEmail(), $order->getCustomersName());
 
                 if ($bcc = Tools::getBccEmailAddress('rma', $order)) {
