@@ -10,6 +10,7 @@ use Hanzo\Model\OrdersAttributes;
 use Hanzo\Model\OrdersStateLog;
 use Hanzo\Model\OrdersVersions;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -388,8 +389,12 @@ class OrdersController extends CoreController
 
     /**
      * deleteOrder
-     * @return void
-     **/
+     *
+     * @param Request $request
+     * @param int     $order_id
+     * @return Response
+     * @throws AccessDeniedException
+     */
     public function deleteAction(Request $request, $order_id)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
@@ -512,9 +517,8 @@ class OrdersController extends CoreController
      * viewFailedAction
      *
      * @param Request $request
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     * @return Response
+     */
     public function viewDeadAction(Request $request)
     {
         $deadOrderBuster = $this->get('deadorder_manager');
@@ -532,9 +536,10 @@ class OrdersController extends CoreController
 
     /**
      * checkDeadOrderAction
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     *
+     * @param int $id
+     * @return Response
+     */
     public function checkDeadOrderAction( $id )
     {
         $deadOrderBuster = $this->get('deadorder_manager');
@@ -558,9 +563,10 @@ class OrdersController extends CoreController
 
     /**
      * performDeadAction
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     *
+     * @param string $action
+     * @return Response
+     */
     public function performDeadAction( $action )
     {
         return $this->json_response( array('hest'=>true) );
@@ -568,9 +574,10 @@ class OrdersController extends CoreController
 
     /**
      * gothiaAction
+     *
+     * @param Request $request
      * @return Response
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function gothiaAction(Request $request)
     {
         return $this->render('AdminBundle:Orders:gothia.html.twig', [
@@ -580,9 +587,10 @@ class OrdersController extends CoreController
 
     /**
      * gothiaGetOrderAction
+     *
+     * @param Request $request
      * @return Response
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function gothiaGetOrderAction(Request $request)
     {
         $return = array(
@@ -621,9 +629,10 @@ class OrdersController extends CoreController
 
     /**
      * gothiaPlaceReservationAction
+     *
+     * @param Request $request
      * @return Response
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function gothiaPlaceReservationAction(Request $request)
     {
         $api        = $this->get('payment.gothiaapi');
@@ -636,7 +645,7 @@ class OrdersController extends CoreController
         {
             // Validate information @ gothia
             $api = $this->get('payment.gothiaapi');
-            $response = $api->call()->checkCustomer( $customer );
+            $response = $api->call()->checkCustomer($customer, $order);
         }
         catch( GothiaApiCallException $g )
         {
@@ -699,9 +708,10 @@ class OrdersController extends CoreController
 
     /**
      * gothiaCancelReservationAction
+     *
+     * @param Request $request
      * @return Response
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function gothiaCancelReservationAction(Request $request)
     {
         $api        = $this->get('payment.gothiaapi');
