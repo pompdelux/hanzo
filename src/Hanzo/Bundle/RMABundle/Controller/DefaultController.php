@@ -124,8 +124,8 @@ class DefaultController extends CoreController
                 $pdf_data,
                 200,
                 array(
-                    'Content-Type'          => 'application/pdf',
-                    'Content-Disposition'   => 'attachment; filename="'.$pdf_name,
+                    'Content-Type'        => 'application/pdf',
+                    'Content-Disposition' => 'attachment; filename="' . $pdf_name,
                 )
             );
         } else {
