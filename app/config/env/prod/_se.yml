@@ -31,9 +31,9 @@ consignor:
               key: PompDeluxSE
               to_address:
                   name: "POMPdeLUX Sverige AB c/o POMPdeLUX"
-                  address_line_1: "Møgelhøj 8"
-                  postal_code: "8520"
-                  city: "Lystrup"
+                  address_line_1: "Grydhøjparken 10"
+                  postal_code: "8381"
+                  city: "Tilst"
                   country_iso2: DK
                   email: mail@pompdelux.se
                   phone: "+46 8-6117103"
