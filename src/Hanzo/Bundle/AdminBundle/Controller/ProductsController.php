@@ -267,7 +267,7 @@ class ProductsController extends CoreController
             }
 
             uksort($data, "strnatcmp");
-            $this->setCache($cacheKey, $data);
+            $this->setCache($cacheKey, $data, 300);
         }
 
         return [
