@@ -101,6 +101,10 @@ class Orders extends BaseOrders
         return $title;
     }
 
+    public function getCustomersName()
+    {
+        return trim($this->getFirstName().' '.$this->getLastName());
+    }
 
     /**
      * Create a new version of the current order.
