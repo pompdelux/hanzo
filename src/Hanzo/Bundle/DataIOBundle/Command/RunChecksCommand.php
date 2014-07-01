@@ -1,4 +1,4 @@
-<?php /* vim: set sw=4: */
+﻿<?php /* vim: set sw=4: */
 
 namespace Hanzo\Bundle\DataIOBundle\Command;
 
@@ -94,7 +94,7 @@ class RunChecksCommand extends ContainerAwareCommand
 
         $recipients = [
             'hd@pompdelux.dk',
-            'lv@POMPdeLUX.dk',
+            'cc@pompdelux.dk',
             'un@bellcom.dk',
             'mmh@bellcom.dk',
             'ab@bellcom.dk',
