@@ -238,7 +238,7 @@
       </trans-unit>
       <trans-unit id="button.process">
         <source>button.process</source>
-        <target>Siirry maksamaan</target>
+        <target>Suorita tilaus ja maksa</target>
       </trans-unit>
       <trans-unit id="late.delivery.date.notice">
         <source>late.delivery.date.notice</source>

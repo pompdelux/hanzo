@@ -271,9 +271,18 @@
             <trans-unit id="return.info">
                 <source>return.info</source>
                 <target><![CDATA[
-                    <p>The returned items must be in unused and original packaging with hangtags etc. Socks, leggings and tights can only be returned in unbroken packaging. The postal bag, in which you receive your items, can be reused. Therefore we do not refund any package or postage charges if you only return part of your order. <br>
-      <br>
-      Return the items together with a <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_Eng.pdf" target="_blank">returns form</a>. Enter your personal details on the form and post the items to us. You will find our address on the form.</p>
+                    <p><b>RETURNS</b><br>
+You have 14 days from the day of receipt to return any POMPdeLUX items. The only thing you need to do when returning goods is to inform us about it. The easiest way to inform us is by filling out the returns form which you can find under “My Account” on the website. 
+<br><br>
+<b>This is how you do it</b><br>
+At POMPdeLUX it is easy to return goods. The plastic bag in which you received the goods is made to be reused for returning items. This means that there is no need to buy expensive return package – which benefits both you and the environment. 
+<br><br>
+It would be a great help if you could return the items in unused and original packaging with hangtags etc. We expect you to send the items shortly after you have informed us and after 14 days at the latest. You should make sure that the items are properly packed as you are liable for them until we have received them. Always keep receipts and track & trace numbers. 
+<br><br>
+The easiest and quickest way to return or exchange the items is by filling out and enclosing the returns form. You can fill out the returns form on “My Account”. The parcel can be handed in at the post office. 
+<br><br>
+<b>Remember:</b> Please make a note on the returns form how much postage you paid for sending the items back. We can return postage for standard priority shipments. 
+</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="footer.menu_1">
