@@ -1,4 +1,4 @@
-﻿<?php /* vim: set sw=4: */
+<?php /* vim: set sw=4: */
 
 namespace Hanzo\Bundle\DataIOBundle\Command;
 
