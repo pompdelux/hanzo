@@ -269,7 +269,24 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
             <trans-unit id="return.info">
                 <source>return.info</source>
                 <target><![CDATA[
-                    <p>De artikelen moeten ongebruikt zijn en in de oorspronkelijke verpakking zitten met het prijskaartje enz. eraan. Kousen, leggings en maillots kunnen alleen geretourneerd worden als de verpakking ongeopend is. De zak waarin je je artikelen hebt ontvangen is zo gemaakt dat je deze twee keer kunt gebruiken. Op de zak kun je zien waar je moet knippen om hem nogmaals te kunnen gebruiken. We betalen niet voor de emballage van je retourzending en we betalen de porto niet terug als je je order maar gedeeltelijk retourneert. Retourzendingen onder rembours worden niet geaccepteerd.</p>
+                    <p><b>Recht van retour</b><br>
+Je hebt 14 dagen recht van retour op alle artikelen van POMPdeLUX, vanaf de dag dat je ze ontvangt. Het enige wat je hiervoor moet doen, is ons hierover informeren door het invullen van het retourformulier, dat je vindt onder Mijn Pagina.<br><br>
+
+<b>Zo retourneer je een artikel</b><br>
+Bij POMPdeLUX kun je een artikel eenvoudig retourneren. De zak waarin je je artikelen ontvangen hebt, is zo gemaakt dat je deze ook kunt gebruiken voor het retourneren van artikelen. Op deze manier hoef je geen dure emballage te kopen – dus goed voor jou en voor het milieu. Stuur het graag z.s.m. – en uiterlijk binnen 14 dagen- terug in de oorspronkelijke verpakking, met de prijskaartjes enz. eraan, nadat je ons over je retourzending hebt geïnformeerd. Je zorgt er zelf voor dat de retourzending goed is ingepakt en draagt hiervoor verantwoording totdat het pakketje door POMPdeLUX in ontvangst is genomen. Bewaar daarom altijd het bewijs van aflevering en evt. het track en tracenummer.<br><br>
+
+Retourneer de artikelen altijd met een volledig ingevuld retourformulier, dat je vindt onder Mijn Pagina. Op het retourformulier kun je zien welke gegevens we van je nodig hebben en waar je de artikelen naartoe moet sturen. De zak t.a.v. POMPdeLUX kun je zonder retourlabel afleveren bij het dichtstbijzijnde DHL Servicepoint , dat te vinden is op www.dhlparcel.nl. Hiervoor ontvang je een bewijs van aflevering. Voor aflevering op het postkantoor kun je het gratis retourlabel gebruiken, dat je hier kunt downloaden. retourlabel. Hiervoor ontvang je een bewijs van aflevering. 
+<br><br>
+<b>Let op:</b> Retourneren zonder ruilen of een gedeelte van je order retoursturen?
+Wil je een artikel of meerdere artikelen retourneren zonder te ruilen, dan ontvang je het aankoopbedrag terug minus de verzendkosten van EUR 7, - ongeacht de grootte van het retourpakket. <br><br>
+
+<b>Terugbetaling</b><br>
+Wij storten het betreffende bedrag terug, zodra we je retourzending hebben ontvangen en gecontroleerd. Het bedrag wordt altijd teruggestort via hetzelfde betaalmiddel, waarmee je bestelling betaald is. <br><br>
+
+Het artikel mag natuurlijk altijd gepast worden, zoals je het in de winkel zou doen. We attenderen je erop, dat het recht op terugbetaling van het verkoopbedrag, gedeeltelijk of geheel kan komen te vervallen, als de waarde van het artikel aanzienlijk verminderd is, doordat het artikel is gebruikt.
+<br><br>
+<b>Reclamaties en verkeerd geleverde artikelen</b><br>
+Heb je een beschadigd of verkeerd artikel ontvangen, dan retourneer je eenvoudigweg je artikel zoals hierboven staat aangegeven. Vinden we je klacht terecht, dan sturen we je gratis een nieuw artikel. Is het artikel uitverkocht, dan betalen we het bedrag ervan terug.</p>
                 ]]></target>
             </trans-unit>
 			<trans-unit id="footer.menu_1">
