@@ -39,7 +39,7 @@ class DefaultController extends CoreController
             $selected_payment_type = $order->getBillingMethod().':'.$order->getAttributes()->payment->paytype;
         }
 
-        $redis = $this->get('redis.permanent');
+        $redis = $this->get('pdl.phpredis.permanent');
         $dibs_status = $redis->hget('service.status', 'dibs');
 
 
@@ -113,7 +113,7 @@ class DefaultController extends CoreController
         // Currently hardcoded to 0 vat
         // It also only supports one order line with payment fee, as all others are deleted
 
-        if ('DOWN' !== $this->get('redis.permanent')->hget('service.status', 'dibs')) {
+        if ('DOWN' !== $this->get('pdl.phpredis.permanent')->hget('service.status', 'dibs')) {
             $order->setPaymentFee($method, $api->getFee($method), 0, $api->getFeeExternalId());
         }
 

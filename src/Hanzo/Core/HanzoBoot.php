@@ -3,9 +3,6 @@
 namespace Hanzo\Core;
 
 use AppKernel;
-use Hanzo\Core\Hanzo;
-use Hanzo\Core\Tools;
-use Hanzo\Core\RedisCache;
 
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;

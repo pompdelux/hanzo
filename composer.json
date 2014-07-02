@@ -29,7 +29,8 @@
         "drak/native-session": "master-dev",
         "misd/guzzle-bundle": "~1.0",
 
-        "knplabs/knp-snappy-bundle": "1.1"
+        "knplabs/knp-snappy-bundle": "1.1",
+        "pompdelux/phpredis-bundle": "1.*"
     },
     "scripts": {
         "post-install-cmd": [

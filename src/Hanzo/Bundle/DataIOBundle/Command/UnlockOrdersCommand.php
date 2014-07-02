@@ -37,6 +37,8 @@ class UnlockOrdersCommand extends ContainerAwareCommand
      *
      * @param  InputInterface  $input
      * @param  OutputInterface $output
+     *
+     * @return null
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -53,6 +55,6 @@ class UnlockOrdersCommand extends ContainerAwareCommand
         }
 
         $prefix = substr($this->getContainer()->getParameter('locale'), -2);
-        $this->getContainer()->get('redis.permanent')->hset('cron.log', $prefix.':unlock_orders', time());
+        $this->getContainer()->get('pdl.phpredis.permanent')->hset('cron.log', $prefix.':unlock_orders', time());
     }
 }

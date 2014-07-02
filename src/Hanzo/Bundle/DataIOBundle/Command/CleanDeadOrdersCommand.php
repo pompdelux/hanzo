@@ -31,6 +31,8 @@ class CleanDeadOrdersCommand extends ContainerAwareCommand
      *
      * @param  InputInterface  $input
      * @param  OutputInterface $output
+     *
+     * @return null
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -51,6 +53,6 @@ class CleanDeadOrdersCommand extends ContainerAwareCommand
         $deadOrderBuster->autoCleanup( $dryrun, $debug );
 
         $prefix = substr($this->getContainer()->getParameter('locale'), -2);
-        $this->getContainer()->get('redis.permanent')->hset('cron.log', $prefix.':clean_dead_orders', time());
+        $this->getContainer()->get('pdl.phpredis.permanent')->hset('cron.log', $prefix.':clean_dead_orders', time());
     }
 }

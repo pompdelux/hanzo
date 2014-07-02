@@ -35,6 +35,8 @@ class CleanOrdersDeletedLogCommand extends ContainerAwareCommand
      *
      * @param  InputInterface  $input
      * @param  OutputInterface $output
+     *
+     * @return null
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -49,6 +51,6 @@ class CleanOrdersDeletedLogCommand extends ContainerAwareCommand
         }
 
         $prefix = substr($this->getContainer()->getParameter('locale'), -2);
-        $this->getContainer()->get('redis.permanent')->hset('cron.log', $prefix.':clean_deleted_orders_log', time());
+        $this->getContainer()->get('pdl.phpredis.permanent')->hset('cron.log', $prefix.':clean_deleted_orders_log', time());
     }
 }

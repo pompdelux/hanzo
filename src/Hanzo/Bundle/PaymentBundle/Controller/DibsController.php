@@ -2,17 +2,13 @@
 
 namespace Hanzo\Bundle\PaymentBundle\Controller;
 
-use Propel;
 use Exception;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
-use Hanzo\Core\Hanzo;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
-use Hanzo\Model\AddressesPeer;
 use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
 use Hanzo\Bundle\PaymentBundle\Methods\Dibs\DibsApi;
@@ -24,9 +20,10 @@ class DibsController extends CoreController
     /**
      * callbackAction
      *
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     * @param Request $request
+     *
+     * @return Response
+     */
     public function callbackAction(Request $request)
     {
         $api = $this->get('payment.dibsapi');
@@ -69,13 +66,12 @@ class DibsController extends CoreController
     /**
      * blockAction
      *
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     * @return Response
+     */
     public function blockAction()
     {
         $api = $this->get('payment.dibsapi');
-        $redis = $this->get('redis.permanent');
+        $redis = $this->get('pdl.phpredis.permanent');
 
         $dibs_status = $redis->hget('service.status', 'dibs');
 
@@ -112,8 +108,7 @@ class DibsController extends CoreController
      * Checks the current state of the order, this should allow the callback from dibs to be completed
      *
      * @return array
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function stateCheckAction()
     {
         $order   = OrdersPeer::getCurrent();
@@ -132,9 +127,10 @@ class DibsController extends CoreController
      *
      * This shows the customer a page that checks the state of the ordre until it is correct (<= payment ok ) or fails
      *
-     * @return object Response
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     * @param int $order_id
+     *
+     * @return Response
+     */
     public function processAction($order_id)
     {
         $order = OrdersPeer::retriveByPaymentGatewayId( $order_id );

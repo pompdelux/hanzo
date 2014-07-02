@@ -56,7 +56,7 @@ $stock->check(123);
 
 return;
 
-        $redis = $this->getContainer()->get('redis.stock');
+        $redis = $this->getContainer()->get('pdl.phpredis.stock');
 //        $redis->hMset('products_id.123', ['2013-12-01' => 1,  'id' => '123']);
 //        $redis->hMset('products_id.123', ['2000-11-01' => 12, 'id' => '123']);
 //        $redis->hMset('products_id.123', ['2013-12-12' => 3,  'id' => '123']);
