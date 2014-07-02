@@ -43,6 +43,7 @@ trait KernelTrait
             new Liip\ThemeBundle\LiipThemeBundle(),
             new Misd\GuzzleBundle\MisdGuzzleBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+            new Pompdelux\PHPRedisBundle\PHPRedisBundle(),
             // ------------------------------------------------------
 
             // APP BUNDLES ------------------------------------------
@@ -67,7 +68,6 @@ trait KernelTrait
             new Hanzo\Bundle\WallBundle\WallBundle(),
             new Hanzo\Bundle\WebServicesBundle\WebServicesBundle(),
             new Hanzo\Bundle\VarnishBundle\VarnishBundle(),
-            new Hanzo\Bundle\RedisBundle\RedisBundle(),
             new Hanzo\Bundle\LocationLocatorBundle\LocationLocatorBundle(),
             new Hanzo\Bundle\MunerisBundle\MunerisBundle(),
             new Hanzo\Bundle\AxBundle\AxBundle(),

@@ -4,7 +4,6 @@ namespace Hanzo\Core;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Session;
 
 use Propel;
 
@@ -66,7 +65,7 @@ class CoreController extends Controller
     protected function getCache($key)
     {
         if (empty($this->cache)) {
-            $this->cache = $this->get('redis.main');
+            $this->cache = $this->get('pdl.phpredis.main');
         }
 
         return $this->cache->get($this->cache->generateKey($key));
@@ -83,7 +82,7 @@ class CoreController extends Controller
     protected function setCache($key, $data, $ttl = 3600)
     {
         if (empty($this->cache)) {
-            $this->cache = $this->get('redis.main');
+            $this->cache = $this->get('pdl.phpredis.main');
         }
 
         return $this->cache->setex($this->cache->generateKey($key), $ttl, $data);
@@ -190,6 +189,8 @@ class CoreController extends Controller
      * @param mixed $data
      * @param int $code http status code, defaults to 200
      * @global $_REQUEST['_xjson'] if set the method will setup and send a x-json response.
+     *
+     * @return Response
      */
     public function json_response($data, $code = 200) {
         /**
@@ -228,7 +229,7 @@ class CoreController extends Controller
     /**
      * Gets the connection for which database to use
      *
-     * @return Propel connection              [description]
+     * @return Propel connection
      */
     public function getDbConnection()
     {
@@ -243,8 +244,9 @@ class CoreController extends Controller
     /**
      * try to map language ids to folders, this is not a 1-1 match, so we need this little hack.
      *
-     * @param  [type] $language_id [description]
-     * @return [type]              [description]
+     * @param int $language_id
+     *
+     * @return string
      */
     protected function mapLanguageToPdfDir($language_id)
     {

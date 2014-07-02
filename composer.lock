@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a2cead56a3c53c70981ef13936b6871f",
+    "hash": "9d6d807bc24933b0ef5c83020fcb9b28",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1498,6 +1498,49 @@
                 "type"
             ],
             "time": "2014-01-09 22:37:17"
+        },
+        {
+            "name": "pompdelux/phpredis-bundle",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pompdelux/phpredis-bundle.git",
+                "reference": "a0822de3d7510099acd347d8be66b361ccc560e6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pompdelux/phpredis-bundle/zipball/a0822de3d7510099acd347d8be66b361ccc560e6",
+                "reference": "a0822de3d7510099acd347d8be66b361ccc560e6",
+                "shasum": ""
+            },
+            "require": {
+                "ext-redis": "2.2.x",
+                "php": ">=5.5"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Pompdelux\\PHPRedisBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ulrik Nielsen",
+                    "email": "un@bellcom.dk"
+                }
+            ],
+            "description": "Adds phpredis to symfony.",
+            "homepage": "https://github.com/pompdelux/phpredis-bundle",
+            "keywords": [
+                "phpredis",
+                "redis",
+                "symfony"
+            ],
+            "time": "2014-08-06 06:38:48"
         },
         {
             "name": "propel/propel-bundle",

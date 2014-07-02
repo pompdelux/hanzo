@@ -14,5 +14,5 @@ services:
         arguments:
             - @service_container
             - @muneris.guzzle.client
-            - @redis.permanent
+            - @pdl.phpredis.permanent
             - @logger

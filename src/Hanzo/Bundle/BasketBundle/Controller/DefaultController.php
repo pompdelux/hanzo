@@ -186,7 +186,7 @@ class DefaultController extends CoreController
             'BasketBundle:Default:megaBasket.html.twig',
             $this->getRequest()->getSession()->getId(),
         ];
-        $this->get('redis.main')->del($cache_id);
+        $this->get('pdl.phpredis.main')->del($cache_id);
 
         if ($this->getFormat() == 'json') {
             return $this->json_response($template_data);
@@ -282,7 +282,7 @@ class DefaultController extends CoreController
                 'BasketBundle:Default:megaBasket.html.twig',
                 $this->getRequest()->getSession()->getId(),
             ];
-            $this->get('redis.main')->del($cache_id);
+            $this->get('pdl.phpredis.main')->del($cache_id);
 
             if ($this->getFormat() == 'json') {
                 return $this->json_response(array(

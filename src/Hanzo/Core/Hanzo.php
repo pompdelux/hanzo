@@ -2,23 +2,17 @@
 
 namespace Hanzo\Core;
 
-use Hanzo\Core\Tools;
-
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpFoundation\Request;
-use Predis\Network\ConnectionException;
+use Pompdelux\PHPRedisBundle\Client\PHPRedisCommunicationException;
 
 use Hanzo\Model;
 use Hanzo\Model\SettingsQuery;
 use Hanzo\Model\LanguagesQuery;
-use Hanzo\Model\DomainsQuery;
 use Hanzo\Model\DomainsSettingsQuery;
 use Hanzo\Model\DomainsSettingsPeer;
-
-use Symfony\Component\Yaml\Yaml;
 
 class Hanzo
 {
@@ -62,13 +56,13 @@ class Hanzo
         $this->container               = $container;
         $this->kernel                  = $container->get('kernel');
         $this->settings['core']['env'] = $this->kernel->getEnvironment();
-        $this->cache                   = $this->container->get('redis.main');
+        $this->cache                   = $this->container->get('pdl.phpredis.main');
 
         if (('cli' !== PHP_SAPI) && empty($_SERVER['HTTP_SOAPACTION'])) {
 
             try {
-                $this->cache = $this->container->get('redis.main');
-            } catch (ConnectionException $e) {
+                $this->cache = $this->container->get('pdl.phpredis.main');
+            } catch (PHPRedisCommunicationException $e) {
                 $event = new GetResponseForExceptionEvent($container->get('kernel'), new Request(), HttpKernelInterface::MASTER_REQUEST, $e);
                 $container->get('event_dispatcher')->dispatch(KernelEvents::EXCEPTION, $event);
                 return;
