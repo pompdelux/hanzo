@@ -1,10 +1,9 @@
 <?php
 
-namespace Hanzo\Bundle\CmsBundle\Services;
+namespace Hanzo\Bundle\CMSBundle\Services;
 
 use Hanzo\Model\Cms;
 use Hanzo\Model\CmsPeer;
-use Hanzo\Model\CmsQuery;
 use Hanzo\Model\CmsRevision;
 use Hanzo\Model\CmsRevisionQuery;
 
