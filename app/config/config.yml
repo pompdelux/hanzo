@@ -21,6 +21,9 @@ framework:
         enabled: true
     fragments:
         path: /_fragment
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    http_method_override: true
 
 services:
     # native redis session handeling
