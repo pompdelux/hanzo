@@ -4,25 +4,21 @@ namespace Hanzo\Bundle\NewsletterBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\EventDispatcher\Event;
-use Symfony\Component\EventDispatcher\EventDispatcher;
 
 use Hanzo\Core\Hanzo;
-use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
 use Hanzo\Model\CmsPeer;
-use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersPeer;
-use Hanzo\Bundle\NewsletterBundle\TestEvents;
-use Hanzo\Bundle\NewsletterBundle\FilterTestEvent;
 
 class DefaultController extends CoreController
 {
     /**
      * handleAction
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     *
+     * @param string $action
+     *
+     * @return Response
+     */
     public function handleAction( $action )
     {
         $name  = $this->get('request')->get('name');

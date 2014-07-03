@@ -4,11 +4,8 @@ namespace Hanzo\Bundle\DataIOBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\EventDispatcher\Event;
-use Symfony\Component\EventDispatcher\EventDispatcher;
 
 use Hanzo\Core\Hanzo;
-use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
 
 use Hanzo\Model\OrdersPeer;

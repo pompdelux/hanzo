@@ -9,8 +9,8 @@ use stdClass;
 use Exception;
 
 use Symfony\Bridge\Monolog\Logger;
-use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 use Hanzo\Core\Tools;
 
@@ -33,7 +33,7 @@ class AxService
     protected $skip_send    = false;
     protected $log_requests = false;
 
-    public function __construct($wsdl, $log_requests, Logger $logger, ServiceLogger $service_logger, EventDispatcher $event_dispatcher, Translator $translator)
+    public function __construct($wsdl, $log_requests, Logger $logger, ServiceLogger $service_logger, EventDispatcherInterface $event_dispatcher, Translator $translator)
     {
         $this->wsdl             = $wsdl;
         $this->log_requests     = $log_requests;

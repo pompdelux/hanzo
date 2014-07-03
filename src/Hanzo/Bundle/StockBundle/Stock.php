@@ -6,7 +6,7 @@ use Hanzo\Core\PropelReplicator;
 use Hanzo\Model\Products;
 use Hanzo\Model\ProductsQuery;
 
-use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Hanzo\Bundle\AdminBundle\Event\FilterCategoryEvent;
 
 class Stock
@@ -22,7 +22,7 @@ class Stock
     protected $stock = [];
 
     /**
-     * @var EventDispatcher
+     * @var EventDispatcherInterface
      */
     protected $event_dispatcher;
 
@@ -37,12 +37,12 @@ class Stock
     protected $replicator;
 
     /**
-     * @param string           $locale
-     * @param EventDispatcher  $event_dispatcher
-     * @param Warehouse        $warehouse
-     * @param PropelReplicator $replicator
+     * @param string                   $locale
+     * @param EventDispatcherInterface $event_dispatcher
+     * @param Warehouse                $warehouse
+     * @param PropelReplicator         $replicator
      */
-    public function __construct($locale, EventDispatcher $event_dispatcher, Warehouse $warehouse, PropelReplicator $replicator)
+    public function __construct($locale, EventDispatcherInterface $event_dispatcher, Warehouse $warehouse, PropelReplicator $replicator)
     {
         $this->locale = $locale;
         $this->event_dispatcher = $event_dispatcher;
