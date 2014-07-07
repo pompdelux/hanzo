@@ -103,6 +103,7 @@ table caption {
     font-weight: bold;
 }
 
-.carefull {
+.carefull,
+.glyphicon-fire {
     color: #f00;
 }

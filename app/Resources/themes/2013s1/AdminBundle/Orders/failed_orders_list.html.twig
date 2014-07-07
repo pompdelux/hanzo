@@ -2,7 +2,7 @@
 {% for order in orders %}
 
   {% if loop.first %}
-
+    <p>Se ikonforklaring i bunden</p>
     <form action="{{ path('admin_orders_resync_sync', {order_id : 0, all : 1}) }}" method="post" id="failed-orders-form">
       <table class="table table-striped">
         <thead>
@@ -24,7 +24,8 @@
           <td>{{ order.data.salesOrder.SalesTable.TransactionType }}</td>
           <td nowrap>
           {% if is_granted('ROLE_ADMIN') %}
-            <a href="#" class="delete-order" data-order-id="{{ order.ordersId }}" data-confirm-message="Er du sikker på du ønsker at slette ordrenummer: {{ order.ordersId }}" title="Slet"><span class="glyphicon glyphicon-remove-circle"></span></a>
+            <a href="{{ path('admin_orders_sync_log_delete', {'orders_id': order.ordersId, 'state': order.state}) }}" class="delete-order-log" data-order-id="{{ order.ordersId }}" data-confirm-message="Er du sikker på du ønsker at fjerne ordrenummer: {{ order.ordersId }} fra errorloggen" title="Slet ordren fra loggen"><span class="glyphicon glyphicon-fire"></span></a>
+            <a href="#" class="delete-order" data-order-id="{{ order.ordersId }}" data-confirm-message="Er du sikker på du ønsker at slette ordrenummer: {{ order.ordersId }}" title="Slet ordren permanent"><span class="glyphicon glyphicon-remove-circle"></span></a>
           {% endif %}
             <a href="{{ path('admin_orders_preview', {order_id : order.ordersId}) }}" class="preview-order" title="Gennemse"><span class="glyphicon glyphicon-search"></span></a>
           {% if is_granted('ROLE_ADMIN') and order.data.salesOrder.SalesTable.TransactionType == 'Write' %}
@@ -37,6 +38,14 @@
 
       </table>
     </form>
+
+    Ikonforklaring:
+    <ul>
+        <li><a class="delete-order-log"><i class="glyphicon glyphicon-fire"></i></a> slet loglinie, sletter IKKE ordren, fjerner kun linien fra loggen</li>
+        <li><a><i class="glyphicon glyphicon-remove-circle"></i></a> slet ordren helt, fra både shop AX og betalingsgateway</li>
+        <li><a><i class="glyphicon glyphicon-search"></i></a> gennemse ordren i det "billede" der sendes til AX</li>
+        <li><a><i class="glyphicon glyphicon-refresh"></i></a> gensend ordren ned i AX</li>
+    </ul>
 
   {% endif %}
 

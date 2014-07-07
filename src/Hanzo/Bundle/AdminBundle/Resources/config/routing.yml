@@ -656,6 +656,16 @@ admin_orders_delete:
     requirements:
         order_id: \d+
 
+admin_orders_sync_log_delete:
+    pattern: /admin/orders/delete-log-line/{state}/{orders_id}
+    defaults:
+        _controller: AdminBundle:Orders:deleteSyncLogMessage
+        orders_id: 0
+        state: 'failed'
+    requirements:
+        orders_id: \d+
+        state: 'ok|failed'
+
 admin_statistics_realtime:
     pattern: /admin/statistics/realtime
     defaults:

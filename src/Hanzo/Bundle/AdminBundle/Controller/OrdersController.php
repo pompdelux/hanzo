@@ -923,4 +923,28 @@ class OrdersController extends CoreController
         $this->container->get('session')->getFlashBag()->add('notice', 'Konfirmationsmailen er nu gensendt for ordre nummer #'.$order->getId().' til '.$order->getEmail());
         return $this->redirect($this->generateUrl('admin_customer_order', ['order_id' => $order->getId()]));
     }
+
+    /**
+     * @param int $orders_id
+     * @param string state
+     *
+     * @return Response
+     */
+    public function deleteSyncLogMessageAction($orders_id, $state)
+    {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+
+        OrdersSyncLogQuery::create()
+            ->filterByOrdersId($orders_id)
+            ->filterByState($state)
+            ->delete($this->getDbConnection())
+        ;
+
+        return $this->json_response([
+            'status'  => true,
+            'message' => 'ok',
+        ]);
+    }
 }

@@ -30,6 +30,34 @@ var adminDeadOrders = (function($) {
             });
         });
 
+
+        $("a.delete-order-log").on('click', function(event) {
+            event.preventDefault();
+            var $element = $(this).closest('tr');
+            var href = this.href;
+            dialoug.confirm(Translator.get('js:notice'), $(this).data('confirm-message'), function(choise) {
+                if (choise !== 'ok') {
+                    return;
+                }
+
+                var xhr = $.ajax({
+                    url: href,
+                    dataType: 'json',
+                    async : false
+                });
+
+                xhr.done(function(response) {
+                    if (!response.status) {
+                        return;
+                    }
+
+                    $element.fadeOut(function() {
+                        $element.remove();
+                    });
+                });
+            });
+        });
+
         // preview and re-send orders
         $('a.preview-order, a.resend-order').on('click', function(event) {
             event.preventDefault();
