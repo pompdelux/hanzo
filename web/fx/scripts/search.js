@@ -1,8 +1,8 @@
 (function($){
     $('.button.loading').on('click', function() {
-      $this = $(this);
+      var $this = $(this);
       var key = $this.data('info');
-      dialoug.loading($this, Translator.get('js:'+key));
+      dialoug.loading($this, Translator.trans(''+key));
     });
     $("#body-category-search ul.tabs").tabs("div.panes > div");
 })(jQuery);

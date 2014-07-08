@@ -6,7 +6,7 @@ var consultantNewsletter = (function($) {
       e.preventDefault();
       // warn the user before sending the emails.
       $this = $(this);
-      dialoug.confirm(Translator.get('js:notice'), Translator.get('js:consultant.newsletter.confirm.send'), function(choice) {
+      dialoug.confirm(Translator.trans('notice'), Translator.trans('consultant.newsletter.confirm.send'), function(choice) {
         if (choice == 'ok') {
           tinyMCE.triggerSave();
 
@@ -22,7 +22,7 @@ var consultantNewsletter = (function($) {
             success: function(response, textStatus, jqXHR) {
               if (false === response.status) {
                 if (response.message) {
-                  dialoug.alert(Translator.get('js:notice'), response.message);
+                  dialoug.alert(Translator.trans('notice'), response.message);
                 }
               } else {
                 window.scrollTo(window.scrollMinX, window.scrollMinY);
@@ -52,7 +52,7 @@ var consultantNewsletter = (function($) {
         success: function(response, textStatus, jqXHR) {
           if (false === response.status) {
             if (response.message) {
-              dialoug.alert(Translator.get('js:notice'), response.message);
+              dialoug.alert(Translator.trans('notice'), response.message);
             }
           } else {
             window.scrollTo(window.scrollMinX, window.scrollMinY);
@@ -67,7 +67,7 @@ var consultantNewsletter = (function($) {
       e.preventDefault();
       var $html = $(this).parent().find('.colorbox').html();
       var defaults = {
-        'close' : Translator.get('js:close'),
+        'close' : Translator.trans('close'),
         'overlayClose' : true,
         'escKey' : true,
         'html' : '<div class="dialoug alert info">' + $html + '</div>'
@@ -86,7 +86,7 @@ var consultantNewsletter = (function($) {
         success: function(response, textStatus, jqXHR) {
           if (false === response.status) {
             if (response.message) {
-              dialoug.alert(Translator.get('js:notice'), response.message);
+              dialoug.alert(Translator.trans('notice'), response.message);
             }
           } else {
             window.location.href = base_url + 'consultantnewsletter/' + response.id;
@@ -100,7 +100,7 @@ var consultantNewsletter = (function($) {
       var $a = $(this);
 
       // warn the user before removing the product.
-      dialoug.confirm(Translator.get('js:notice'), Translator.get('js:consultant.newsletter.delete.draft'), function(choice) {
+      dialoug.confirm(Translator.trans('notice'), Translator.trans('consultant.newsletter.delete.draft'), function(choice) {
         if (choice == 'ok') {
           $.ajax({
             url : $a.attr('href'),
@@ -124,7 +124,7 @@ var consultantNewsletter = (function($) {
       var $a = $(this);
 
       // warn the user before removing the product.
-      dialoug.confirm(Translator.get('js:notice'), Translator.get('js:consultant.newsletter.delete.user'), function(choice) {
+      dialoug.confirm(Translator.trans('notice'), Translator.trans('consultant.newsletter.delete.user'), function(choice) {
         if (choice == 'ok') {
           $.ajax({
             url : $a.attr('href'),

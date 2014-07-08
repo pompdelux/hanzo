@@ -5,7 +5,7 @@ var maps = (function($) {
     $("#geo-zipcode-form").submit(function(e) {
       e.preventDefault();
 
-      dialoug.loading('#near-you-container', Translator.get('js:loading.std'), 'prepend');
+      dialoug.loading('#near-you-container', Translator.trans('loading.std'), 'prepend');
       var url = base_url + "muneris/gpc/" + encodeURI($("#geo-zipcode-container #geo-zipcode").val());
 
       $.getJSON(url, function(response) {
@@ -40,7 +40,7 @@ var maps = (function($) {
   };
 
   pub.initContainer = function() {
-    dialoug.loading('#near-you-container', Translator.get('js:loading.std'), 'prepend');
+    dialoug.loading('#near-you-container', Translator.trans('loading.std'), 'prepend');
     $('#near-you-container').after('<div id="consultants-map-canvas-2" style="width:100%; height:300px; display:none;"></div>');
 
     var req = '/'+near_you_params.type+'/0/0';
@@ -90,7 +90,7 @@ var maps = (function($) {
   var populateMap = function(map, data, fit) {
     var bounds = new google.maps.LatLngBounds();
     $.each(data, function(i,item) {
-      var text = Translator.get('js:consultant') + '<br>' + item.name + '<br>' + item.zip + ' '+ item.city + '<br><br><p>' + Translator.get('js:phone') + ': ' + item.phone + '<br>' + Translator.get('js:email') + ': <a href="mailto:' + item.email + '">' + item.email + '</a><br><br>' + item.info;
+      var text = Translator.trans('consultant') + '<br>' + item.name + '<br>' + item.zip + ' '+ item.city + '<br><br><p>' + Translator.trans('phone') + ': ' + item.phone + '<br>' + Translator.trans('email') + ': <a href="mailto:' + item.email + '">' + item.email + '</a><br><br>' + item.info;
       var point = new google.maps.LatLng(item.latitude, item.longitude);
       bounds.extend(point);
 

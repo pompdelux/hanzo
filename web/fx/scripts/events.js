@@ -16,11 +16,11 @@ var events = (function($) {
       var email_regex = RegExp(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
       if(!$('#form_email', $(this)).val() && !$('#form_phone', $(this)).val()){
         e.preventDefault();
-        dialoug.notice(Translator.get('js:events.error.email.or.phone'), 'error',3000, $(this));
+        dialoug.notice(Translator.trans('events.error.email.or.phone'), 'error',3000, $(this));
       }
       if($('#form_email', $(this)).val() && !email_regex.test($('#form_email', $(this)).val())){
         e.preventDefault();
-        dialoug.notice(Translator.get('js:email.invalid'), 'error',3000, $(this));
+        dialoug.notice(Translator.trans('email.invalid'), 'error',3000, $(this));
       }
     });
   };
@@ -85,10 +85,10 @@ var events = (function($) {
             }
 
             if (undefined === response.data.first_name) {
-              dialoug.alert(Translator.get('js:notice'), Translator.get('js:event.user.email.not.found'));
+              dialoug.alert(Translator.trans('notice'), Translator.trans('event.user.email.not.found'));
             }
           } else {
-            dialoug.alert(Translator.get('js:notice'), Translator.get('js:event.user.email.not.found'));
+            dialoug.alert(Translator.trans('notice'), Translator.trans('event.user.email.not.found'));
           }
 
           dialoug.stopLoading();
@@ -134,7 +134,7 @@ $('#body-event .participants a.delete').on('click', function(event) {
   var $this = $(this);
   var tr = $this.closest('tr');
 
-  dialoug.confirm( Translator.get('js:notice'), Translator.get('js:event.confirm.delete.participant')+'<br><strong>'+tr.find('td.name').text()+'</strong>', function(choise) {
+  dialoug.confirm( Translator.trans('notice'), Translator.trans('event.confirm.delete.participant')+'<br><strong>'+tr.find('td.name').text()+'</strong>', function(choise) {
     if (choise === 'ok') {
       $.post(base_url+'events/remove/participant/'+$this.data('event')+'/'+$this.data('participant'), function(response) {
         tr.fadeOut();
@@ -163,7 +163,7 @@ $('#find-customer-by-phone-form').submit(function(e){
       success: function(response, textStatus, jqXHR) {
         if (false === response.status) {
           if (response.message) {
-            dialoug.alert(Translator.get('js:notice'), response.message);
+            dialoug.alert(Translator.trans('notice'), response.message);
           }
         } else {
           var data = response.data.number;
@@ -177,7 +177,7 @@ $('#find-customer-by-phone-form').submit(function(e){
         $submit.attr('disabled', false);
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        dialoug.error(Translator.get('js:notice'), Translator.get('js:an.error.occurred'));
+        dialoug.error(Translator.trans('notice'), Translator.trans('an.error.occurred'));
         $submit.attr('disabled', false);
       }
     });
@@ -195,7 +195,7 @@ $('#find-customer-by-email-form').submit(function(e){
       success: function(response, textStatus, jqXHR) {
         if (false === response.status) {
           if (response.message) {
-            dialoug.alert(Translator.get('js:notice'), response.message);
+            dialoug.alert(Translator.trans('notice'), response.message);
           }
         } else {
           $('#form_customers_id').val(response.data.id);
@@ -210,7 +210,7 @@ $('#find-customer-by-email-form').submit(function(e){
         $submit.attr('disabled', false);
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        dialoug.error(Translator.get('js:notice'), Translator.get('js:an.error.occurred'));
+        dialoug.error(Translator.trans('notice'), Translator.trans('an.error.occurred'));
         $submit.attr('disabled', false);
       }
     });
@@ -219,7 +219,7 @@ $('#find-customer-by-email-form').submit(function(e){
 $('.delete-event').click(function(e){
   e.preventDefault();
   var $a = $(this);
-  dialoug.confirm( Translator.get('js:notice'), $(this).data('confirm-message'), function(choise) {
+  dialoug.confirm( Translator.trans('notice'), $(this).data('confirm-message'), function(choise) {
     if (choise === 'ok') {
       window.location.href = $a.attr('href');
     }

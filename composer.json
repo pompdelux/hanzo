@@ -21,7 +21,7 @@
         "jms/di-extra-bundle": "dev-master",
         "propel/propel-bundle": "1.4.*",
         "willdurand/geocoder": "*",
-        "willdurand/expose-translation-bundle": "1.1.*",
+        "willdurand/js-translation-bundle": "2.*",
         "mrbase/smesg": "*",
         "ekino/newrelic-bundle": "master-dev",
         "liip/theme-bundle": "dev-master",

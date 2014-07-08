@@ -228,3 +228,6 @@ consignor:
     shipment_server: ~
     ship_advisor:    ~
 
+bazinga_js_translation:
+    locale_fallback: %locale%
+    default_domain: js

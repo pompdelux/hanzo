@@ -32,7 +32,7 @@
   $(function () {
     var $button = $(".buttons a.button.proceed");
     $button.hide();
-    dialoug.confirm('Notice', Translator.get('js:late.delivery.notice', { 'date' : '{{ delivery_date|date('d-m-Y') }}' }), function(choice) {
+    dialoug.confirm('Notice', Translator.trans('late.delivery.notice', { 'date' : '{{ delivery_date|date('d-m-Y') }}' }), function(choice) {
       if (choice == 'ok') {
         $button.show();
       }

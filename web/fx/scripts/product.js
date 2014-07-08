@@ -202,13 +202,13 @@
         lookup.done(function(response) {
           if (false === response.status) {
             if (response.message) {
-              dialoug.alert(Translator.get('js:notice'), response.message);
+              dialoug.alert(Translator.trans('notice'), response.message);
             }
             return;
           }
 
           if (undefined === response.data.products) {
-            $('div', $form).replaceWith(Translator.get('js:out.of.stock'));
+            $('div', $form).replaceWith(Translator.trans('out.of.stock'));
             return;
           }
 
@@ -229,7 +229,7 @@
           if (name == 'color') {
             var product = response.data.products[0];
             if (product.date) {
-              dialoug.confirm(Translator.get('js:notice'), response.message, function(c) {
+              dialoug.confirm(Translator.trans('notice'), response.message, function(c) {
                 if (c == 'ok') {
                   $('select.quantity', $form).closest('label').removeClass('off');
                   $form.append('<input type="hidden" name="date" value="' + product.date + '">');
@@ -275,7 +275,7 @@
               }
 
               if (response.message) {
-                dialoug.alert(Translator.get('js:notice'), response.message);
+                dialoug.alert(Translator.trans('notice'), response.message);
               }
             } else {
               window.scrollTo(window.scrollMinX, window.scrollMinY);
@@ -301,10 +301,10 @@
           });
 
           lookup.fail(function() {
-            dialoug.error(Translator.get('js:notice!'), Translator.get('js:an.error.occurred'));
+            dialoug.error(Translator.trans('notice!'), Translator.trans('an.error.occurred'));
           });
         } else {
-          dialoug.notice(Translator.get('js:form.buy.choose.first'), 'error',3000, $('.button', $form).parent());
+          dialoug.notice(Translator.trans('form.buy.choose.first'), 'error',3000, $('.button', $form).parent());
         }
       });
     };
@@ -398,7 +398,7 @@
           if (!$(this).data('text')) {
             $(this).data('text', $(this).text());
           }
-          $(this).text($(this).data('text') + ' (' + Translator.get('js:out.of.stock') + ')');
+          $(this).text($(this).data('text')+' ('+Translator.trans('out.of.stock')+')');
         }
       });
     };

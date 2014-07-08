@@ -46,17 +46,17 @@
                   class="add-like">
                   <? if(undefined !== data[i].is_liked && data[i].is_liked == 1) {?>
                     <span class="remove-like show">
-                      <?=Translator.get('js:wall.remove.like.link')?>
+                      <?=Translator.trans('wall.remove.like.link')?>
                     </span>
                     <span class="add-like hidden">
-                      <?=Translator.get('js:wall.add.like.link')?>
+                      <?=Translator.trans('wall.add.like.link')?>
                     </span>
                   <? }else {?>
                     <span class="remove-like hidden">
-                      <?=Translator.get('js:wall.remove.like.link')?>
+                      <?=Translator.trans('wall.remove.like.link')?>
                     </span>
                     <span class="add-like show">
-                      <?=Translator.get('js:wall.add.like.link')?>
+                      <?=Translator.trans('wall.add.like.link')?>
                     </span>
                   <? }?>
               </a><br>
@@ -66,41 +66,41 @@
 
                   <? if(undefined !== data[i].is_liked && data[i].is_liked == 0) {?>
                     <span class="remove-like show">
-                      <?=Translator.get('js:wall.remove.dislike.link')?>
+                      <?=Translator.trans('wall.remove.dislike.link')?>
                     </span>
                     <span class="add-like hidden">
-                      <?=Translator.get('js:wall.add.dislike.link')?>
+                      <?=Translator.trans('wall.add.dislike.link')?>
                     </span>
                   <? }else {?>
                     <span class="remove-like hidden">
-                      <?=Translator.get('js:wall.remove.dislike.link')?>
+                      <?=Translator.trans('wall.remove.dislike.link')?>
                     </span>
                     <span class="add-like show">
-                      <?=Translator.get('js:wall.add.dislike.link')?>
+                      <?=Translator.trans('wall.add.dislike.link')?>
                     </span>
                   <? }?>
               </a>
               <div class="wall-add-comment">
-                <a href="<?=base_url?>wall/add-comment/<?=data[i].id?>" title="<?=Translator.get('js:wall.add.response')?>" rel="wall-comment" class="wall-comment"><?=Translator.get('js:wall.add.response')?></a>
-                <div class="dialoug alert form-pop"><h2><?=Translator.get('js:wall.add.response')?></h2>
+                <a href="<?=base_url?>wall/add-comment/<?=data[i].id?>" title="<?=Translator.trans('wall.add.response')?>" rel="wall-comment" class="wall-comment"><?=Translator.trans('wall.add.response')?></a>
+                <div class="dialoug alert form-pop"><h2><?=Translator.trans('wall.add.response')?></h2>
                   <form action="<?=base_url?>wall/add-comment/<?=data[i].id?>" method="post" class="wall-subentry-form">
                     <input type="hidden" name="parent_id" value="<?=data[i].id?>">
                     <dl>
-                      <dt><textarea class="grow subform" cols="40" rows="1" name="message" title="<?=Translator.get('js:wall.share')?>"></textarea></dt>
-                      <dd><input type="submit" name="wall_submit" value="<?=Translator.get('js:wall.share')?>" class="cssbutton"></dd>
+                      <dt><textarea class="grow subform" cols="40" rows="1" name="message" title="<?=Translator.trans('wall.share')?>"></textarea></dt>
+                      <dd><input type="submit" name="wall_submit" value="<?=Translator.trans('wall.share')?>" class="cssbutton"></dd>
                     </dl>
                   </form>
                 </div>
               </div>
               <? if(data[i].is_author) {?>
                   <div class="wall-edit">
-                    <a href="<?=base_url?>wall/edit-entry/<?=data[i].id?>" class="cssbutton" title="<?=Translator.get('js:wall.edit.entry')?>" rel="wall-edit"><?=Translator.get('js:wall.edit.entry')?></a>
-                    <div class="dialoug alert form-pop"><h2><?=Translator.get('js:wall.add.response')?></h2>
+                    <a href="<?=base_url?>wall/edit-entry/<?=data[i].id?>" class="cssbutton" title="<?=Translator.trans('wall.edit.entry')?>" rel="wall-edit"><?=Translator.trans('wall.edit.entry')?></a>
+                    <div class="dialoug alert form-pop"><h2><?=Translator.trans('wall.add.response')?></h2>
                       <form action="<?=base_url?>wall/edit-entry/<?=data[i].id?>" method="post" class="wall-subentry-form">
                         <input type="hidden" name="id" value="<?=data[i].id?>">
                         <dl>
-                          <dt><textarea class="grow subform" cols="40" rows="1" name="message" title="<?=Translator.get('js:wall.update')?>"><?=data[i].clean_message?></textarea></dt>
-                          <dd><input type="submit" name="wall_submit" value="<?=Translator.get('js:wall.update')?>" class="cssbutton"></dd>
+                          <dt><textarea class="grow subform" cols="40" rows="1" name="message" title="<?=Translator.trans('wall.update')?>"><?=data[i].clean_message?></textarea></dt>
+                          <dd><input type="submit" name="wall_submit" value="<?=Translator.trans('wall.update')?>" class="cssbutton"></dd>
                         </dl>
                       </form>
                     </div>
@@ -110,7 +110,7 @@
               <a href="<?=base_url?>wall/delete-entry/<?=data[i].id?>"
                   rel="wall-delete"
                   class="delete-entry">
-                <?=Translator.get('js:wall.delete.entry.link')?>
+                <?=Translator.trans('wall.delete.entry.link')?>
               </a>
               <? }?>
           </div>
@@ -122,18 +122,18 @@
                   <? if(data[i].num_likes > 0) {?>
                     <i>
                       <? if(data[i].num_likes > 1) {?>
-                        <?=Translator.get('js:wall.likes.plural.%likes%', {'likes' : data[i].num_likes})?>
+                        <?=Translator.trans('wall.likes.plural.%likes%', {'likes' : data[i].num_likes})?>
                       <? }else {?>
-                        <?=Translator.get('js:wall.likes.single.%likes%', {'likes' : data[i].num_likes})?>
+                        <?=Translator.trans('wall.likes.single.%likes%', {'likes' : data[i].num_likes})?>
                       <? }?>
                     </i>
                   <? }?>
                   <? if(data[i].num_dislikes > 0) {?>
                     <u>
                       <? if(data[i].num_dislikes > 1) {?>
-                        <?=Translator.get('js:wall.dislikes.plural.%likes%', {'likes' : data[i].num_dislikes})?>
+                        <?=Translator.trans('wall.dislikes.plural.%likes%', {'likes' : data[i].num_dislikes})?>
                       <? }else {?>
-                        <?=Translator.get('js:wall.dislikes.single.%likes%', {'likes' : data[i].num_dislikes})?>
+                        <?=Translator.trans('wall.dislikes.single.%likes%', {'likes' : data[i].num_dislikes})?>
                       <? }?>
                     </u>
                   <? }?>
@@ -157,7 +157,7 @@
               <? for(j=0, k=data[i].sub_posts.length; j<k; j++) {?>
 
                   <? if (data[i].sub_posts[j].is_first && data[i].number_of_subposts > 3) {?>
-                    <div class="show-all"><i>&nbsp;</i><?=Translator.get('js:wall.show.all')?></div>
+                    <div class="show-all"><i>&nbsp;</i><?=Translator.trans('wall.show.all')?></div>
                     <div class="hide">
                   <? }?>
                   <div class="wall-post<?=data[i].sub_posts[j].is_last ? ' last' : (data[i].sub_posts[j].is_first ? ' first' : '') ?> clearfix" id="wall-post-<?=data[i].sub_posts[j].id ?>">
@@ -178,12 +178,12 @@
                               <div class="links">
                                 <? if(data[i].sub_posts[j].is_author) {?>
                                     <div class="wall-edit">
-                                      <a href="<?=base_url?>wall/wall-edit/<?=data[i].sub_posts[j].id?>" class="cssbutton" title="<?=Translator.get('js:wall.edit.entry')?>" rel="wall-edit"><?=Translator.get('js:wall.edit.entry')?></a>
-                                      <div class="dialoug alert form-pop"><h2><?=Translator.get('js:wall.add.response')?></h2>
+                                      <a href="<?=base_url?>wall/wall-edit/<?=data[i].sub_posts[j].id?>" class="cssbutton" title="<?=Translator.trans('wall.edit.entry')?>" rel="wall-edit"><?=Translator.trans('wall.edit.entry')?></a>
+                                      <div class="dialoug alert form-pop"><h2><?=Translator.trans('wall.add.response')?></h2>
                                         <form action="<?=base_url?>wall/edit-entry/<?=data[i].sub_posts[j].id?>" method="post" class="wall-subentry-form">
                                           <dl>
-                                            <dt><textarea class="grow subform" cols="40" rows="1" name="message" title="<?=Translator.get('js:wall.update')?>"><?=data[i].sub_posts[j].clean_message?></textarea></dt>
-                                            <dd><input type="submit" name="wall_submit" value="<?=Translator.get('js:wall.update')?>" class="cssbutton"></dd>
+                                            <dt><textarea class="grow subform" cols="40" rows="1" name="message" title="<?=Translator.trans('wall.update')?>"><?=data[i].sub_posts[j].clean_message?></textarea></dt>
+                                            <dd><input type="submit" name="wall_submit" value="<?=Translator.trans('wall.update')?>" class="cssbutton"></dd>
                                           </dl>
                                         </form>
                                       </div>
@@ -194,7 +194,7 @@
                                 <a href="<?=base_url?>wall/delete-entry/<?=data[i].sub_posts[j].id?>"
                                     rel="wall-delete"
                                     class="delete-entry">
-                                  <?=Translator.get('js:wall.delete.entry.link')?>
+                                  <?=Translator.trans('wall.delete.entry.link')?>
                                 </a>
                                 <? }?>
                               </div>
@@ -228,13 +228,13 @@
               <span class="links">
                 <? if(data[i].is_author) {?>
                     <div class="wall-edit">
-                      <a href="<?=base_url?>wall/wall-edit/<?=data[i].id?>" class="cssbutton" title="<?=Translator.get('js:wall.edit.entry')?>" rel="wall-edit"><?=Translator.get('js:wall.edit.entry')?></a>
+                      <a href="<?=base_url?>wall/wall-edit/<?=data[i].id?>" class="cssbutton" title="<?=Translator.trans('wall.edit.entry')?>" rel="wall-edit"><?=Translator.trans('wall.edit.entry')?></a>
                       <div class="dialoug alert form-pop">
-                        <h2><?=Translator.get('js:wall.add.response')?></h2>
+                        <h2><?=Translator.trans('wall.add.response')?></h2>
                         <form action="<?=base_url?>wall/edit-entry/<?=data[i].id?>" method="post" class="wall-subentry-form">
                           <dl>
-                            <dt><textarea class="grow subform" cols="40" rows="1" name="message" title="<?=Translator.get('js:wall.update')?>"><?=data[i].clean_message?></textarea></dt>
-                            <dd><input type="submit" name="wall_submit" value="<?=Translator.get('js:wall.update')?>" class="cssbutton"></dd>
+                            <dt><textarea class="grow subform" cols="40" rows="1" name="message" title="<?=Translator.trans('wall.update')?>"><?=data[i].clean_message?></textarea></dt>
+                            <dd><input type="submit" name="wall_submit" value="<?=Translator.trans('wall.update')?>" class="cssbutton"></dd>
                           </dl>
                         </form>
                       </div>

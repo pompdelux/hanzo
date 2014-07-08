@@ -40,7 +40,7 @@ var quickorder = (function($) {
             XHR.done(function(response) {
                 if (false === response.status) {
                     if (response.message) {
-                        dialoug.alert(Translator.get('js:notice', response.message));
+                        dialoug.alert(Translator.trans('notice', response.message));
                     }
                 } else {
                     var $size_select = $('select.size', $context);
@@ -51,7 +51,7 @@ var quickorder = (function($) {
                     ){
                         $size_select.append($("<option></option>").
                             attr("value", '').
-                            text(Translator.get('js:quickorder.choose.size'))
+                            text(Translator.trans('quickorder.choose.size'))
                         );
 
                         var last = '';
@@ -70,14 +70,14 @@ var quickorder = (function($) {
                         $('.reset').show();
                     } else {
                         if (response.message) {
-                            dialoug.alert(Translator.get('js:notice'), response.message);
+                            dialoug.alert(Translator.trans('notice'), response.message);
                         }
                     }
                 }
             });
 
             XHR.fail(function() {
-                dialoug.error(Translator.get('js:notice'), Translator.get('js:an.error.occurred'));
+                dialoug.error(Translator.trans('notice'), Translator.trans('an.error.occurred'));
             });
         });
 
@@ -201,7 +201,7 @@ var quickorder = (function($) {
                 XHR.done(function(response) {
                     if (false === response.status) {
                         if (response.message) {
-                            dialoug.alert(Translator.get('js:notice'), response.message);
+                            dialoug.alert(Translator.trans('notice'), response.message);
                         }
                     } else {
                         var c = color.toString();
@@ -235,11 +235,11 @@ var quickorder = (function($) {
                                     '<div class="info" data-product_id="'+response.latest.id+'" data-confirmed="" data-master="'+master+'"> '+
                                         '<a href="'+base_url+'product/view/'+response.latest.master_id+'" class="title">'+title+'</a> '+
                                         '<div class="size"> '+
-                                            '<label>'+Translator.get('js:size')+':</label> '+
+                                            '<label>'+Translator.trans('size')+':</label> '+
                                             '<span>'+size_label+'</span> '+
                                         '</div> '+
                                         '<div class="color"> '+
-                                            '<label>'+Translator.get('js:color')+':</label> '+
+                                            '<label>'+Translator.trans('color')+':</label> '+
                                             '<span>'+color+'</span> '+
                                         '</div> '+
                                     '</div> '+
@@ -262,14 +262,14 @@ var quickorder = (function($) {
                         if ($('.buttons a.proceed-to-basket').length > 0) {
                             $('.buttons a.proceed-to-basket').show();
                         } else {
-                            $('.buttons').append('<a class="button right proceed-to-basket" href="'+base_url+'basket">'+Translator.get('js:proceed')+'</a>');
+                            $('.buttons').append('<a class="button right proceed-to-basket" href="'+base_url+'basket">'+Translator.trans('proceed')+'</a>');
                         }
                     }
                     _resetForm($form);
                 });
 
                 XHR.fail(function() {
-                    dialoug.error(Translator.get('js:notice!'), Translator.get('js:an.error.occurred'));
+                    dialoug.error(Translator.trans('notice!'), Translator.trans('an.error.occurred'));
                 });
             }
         });
@@ -300,7 +300,7 @@ var quickorder = (function($) {
             XHR.done(function(response) {
                 if (false === response.status) {
                     if (response.message) {
-                        dialoug.alert(Translator.get('js:notice', response.message));
+                        dialoug.alert(Translator.trans('notice', response.message));
                     }
                 } else {
 
@@ -312,7 +312,7 @@ var quickorder = (function($) {
                     ){
                         $select.append($("<option></option>").
                             attr("value", '').
-                            text(Translator.get('js:quickorder.choose.color'))
+                            text(Translator.trans('quickorder.choose.color'))
                         );
 
                         var last = '';
@@ -331,14 +331,14 @@ var quickorder = (function($) {
                         $select.focus().select();
                     } else {
                         if (response.message) {
-                            dialoug.alert(Translator.get('js:notice'), response.message);
+                            dialoug.alert(Translator.trans('notice'), response.message);
                         }
                     }
                 }
             });
 
             XHR.fail(function() {
-                dialoug.error(Translator.get('js:notice'), Translator.get('js:an.error.occurred'));
+                dialoug.error(Translator.trans('notice'), Translator.trans('an.error.occurred'));
             });
         }
     };
