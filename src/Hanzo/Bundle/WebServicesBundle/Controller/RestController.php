@@ -34,7 +34,7 @@ class RestController extends CoreController
         $handler = new $service_class($this);
 
         $response = array();
-        return new Response(json_encode($response), 200, array(‘Content-type’ => ‘application/json’));
+        return new Response(json_encode($response), 200, ['Content-type' => 'application/json']);
     }
 
     public function jaiksAction(Request $request)
