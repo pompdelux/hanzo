@@ -533,8 +533,14 @@ class ECommerceServices extends SoapService
                 : 0
             ;
 
+            // never allow negative stock
+            $physical = (int) $item->InventQtyAvailPhysical;
+            if ($physical < 0) {
+                $physical = 0;
+            }
+
             $stock_data = array(
-                'onhand'  => (int) $item->InventQtyAvailPhysical,
+                'onhand'  => $physical,
                 'ordered' => (int) $item->InventQtyAvailOrdered,
             );
 
