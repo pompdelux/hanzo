@@ -459,12 +459,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekino/EkinoNewRelicBundle.git",
-                "reference": "7a09914d8e8782413833c01518edc29810ac3115"
+                "reference": "2f62ed3ba3d906a7ee6e03fc610b2d38afe35794"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekino/EkinoNewRelicBundle/zipball/7a09914d8e8782413833c01518edc29810ac3115",
-                "reference": "7a09914d8e8782413833c01518edc29810ac3115",
+                "url": "https://api.github.com/repos/ekino/EkinoNewRelicBundle/zipball/2f62ed3ba3d906a7ee6e03fc610b2d38afe35794",
+                "reference": "2f62ed3ba3d906a7ee6e03fc610b2d38afe35794",
                 "shasum": ""
             },
             "require-dev": {
@@ -504,7 +504,7 @@
                 "monitoring",
                 "performance"
             ],
-            "time": "2014-04-28 09:18:29"
+            "time": "2014-07-11 22:42:24"
         },
         {
             "name": "guzzle/guzzle",
@@ -809,16 +809,16 @@
         },
         {
             "name": "jms/metadata",
-            "version": "1.5.0",
+            "version": "1.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/metadata.git",
-                "reference": "88ffa28bc987e4c26229fc84a2e541b6ed4e1459"
+                "reference": "22b72455559a25777cfd28c4ffda81ff7639f353"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/metadata/zipball/88ffa28bc987e4c26229fc84a2e541b6ed4e1459",
-                "reference": "88ffa28bc987e4c26229fc84a2e541b6ed4e1459",
+                "url": "https://api.github.com/repos/schmittjoh/metadata/zipball/22b72455559a25777cfd28c4ffda81ff7639f353",
+                "reference": "22b72455559a25777cfd28c4ffda81ff7639f353",
                 "shasum": ""
             },
             "require": {
@@ -857,7 +857,7 @@
                 "xml",
                 "yaml"
             ],
-            "time": "2013-11-05 23:02:36"
+            "time": "2014-07-12 07:13:19"
         },
         {
             "name": "jms/parser-lib",
@@ -2084,16 +2084,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.3.17",
+            "version": "v2.3.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "c02f56f7948f2699c8cc8b118c7faeb13470e357"
+                "reference": "75e07e6bde6391a6f49c8546a43740c80ac1b06b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/c02f56f7948f2699c8cc8b118c7faeb13470e357",
-                "reference": "c02f56f7948f2699c8cc8b118c7faeb13470e357",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/75e07e6bde6391a6f49c8546a43740c80ac1b06b",
+                "reference": "75e07e6bde6391a6f49c8546a43740c80ac1b06b",
                 "shasum": ""
             },
             "require": {
@@ -2190,7 +2190,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2014-07-07 12:59:36"
+            "time": "2014-07-15 14:20:44"
         },
         {
             "name": "twig/extensions",
