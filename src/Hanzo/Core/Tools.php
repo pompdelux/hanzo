@@ -497,6 +497,16 @@ class Tools
 
 
     /**
+     * Shorthand method to remove order edit cookies.
+     */
+    public static function unsetEditCookies()
+    {
+        Tools::setCookie('__ice', '', -3600, true);
+        Tools::setCookie('__ice_n', '', -3600, false);
+    }
+
+
+    /**
      * returns true if the request is send form a bellcom address
      * usefull when testing stuff when live
      *
