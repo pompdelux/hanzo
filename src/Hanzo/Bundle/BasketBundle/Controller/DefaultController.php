@@ -174,7 +174,7 @@ class DefaultController extends CoreController
         Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
 
         $template_data = [
-            'data'    => $this->miniBasketAction(TRUE),
+            'data'    => $this->miniBasketAction($request, true),
             'latest'  => $latest,
             'message' => $translator->trans('product.added.to.cart', array('%product%' => $product->getTitle().' '.$product->getSize().' '.$product->getColor())),
             'status'  => TRUE,
@@ -376,7 +376,7 @@ class DefaultController extends CoreController
                     $response['data'][$key]          = Tools::moneyFormat($price['price']);
                 }
 
-                $response['data']['basket']     = $this->miniBasketAction(TRUE);
+                $response['data']['basket']     = $this->miniBasketAction($request, true);
                 $response['data']['product_id'] = $product->getId();
             }
 
