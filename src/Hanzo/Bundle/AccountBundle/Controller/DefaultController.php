@@ -29,10 +29,8 @@ class DefaultController extends CoreController
 {
     public function indexAction(Request $request)
     {
-        $session = $request->getSession();
-
-        // if we access the account page vith an active "edit" we close it.
-        if ($session->has('in_edit')) {
+        // if we access the account page with an active "edit" we close it.
+        if ($request->getSession()->has('in_edit')) {
             $this->get('event_dispatcher')->dispatch('order.edit.cancel', new FilterOrderEvent(OrdersPeer::getCurrent()));
 
             // update/set basket cookie
@@ -40,9 +38,18 @@ class DefaultController extends CoreController
             return $this->redirect($this->generateUrl('_account'));
         }
 
+        // some times edit order cookies are not "closed"
+        if ($request->cookies->has('__ice')) {
+            $order = OrdersPeer::getCurrent();
+
+            if ($order->isNew()) {
+                Tools::unsetEditCookies();
+            }
+        }
+
         return $this->render('AccountBundle:Default:index.html.twig', array(
             'page_type' => 'account',
-            'user' => CustomersPeer::getCurrent(),
+            'user'      => CustomersPeer::getCurrent(),
         ));
     }
 

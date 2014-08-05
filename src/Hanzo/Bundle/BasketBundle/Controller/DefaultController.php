@@ -174,7 +174,7 @@ class DefaultController extends CoreController
         Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
 
         $template_data = [
-            'data'    => $this->miniBasketAction(TRUE),
+            'data'    => $this->miniBasketAction($request, true),
             'latest'  => $latest,
             'message' => $translator->trans('product.added.to.cart', array('%product%' => $product->getTitle().' '.$product->getSize().' '.$product->getColor())),
             'status'  => TRUE,
@@ -196,13 +196,18 @@ class DefaultController extends CoreController
     }
 
 
-    public function miniBasketAction($return = false)
+    public function miniBasketAction(Request $request, $return = false)
     {
         $order = OrdersPeer::getCurrent();
         $total = '('.$order->getTotalQuantity(true).') ' . Tools::moneyFormat( $order->getTotalPrice(true) );
 
         if ($return) {
             return $total;
+        }
+
+        // some times edit order cookies are not "closed"
+        if ($request->cookies->has('__ice') && $order->isNew()) {
+            Tools::unsetEditCookies();
         }
 
         Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
@@ -371,7 +376,7 @@ class DefaultController extends CoreController
                     $response['data'][$key]          = Tools::moneyFormat($price['price']);
                 }
 
-                $response['data']['basket']     = $this->miniBasketAction(TRUE);
+                $response['data']['basket']     = $this->miniBasketAction($request, true);
                 $response['data']['product_id'] = $product->getId();
             }
 
@@ -391,13 +396,13 @@ class DefaultController extends CoreController
     }
 
 
-    public function viewAction($embed = false, $orders_id = null, $template = 'BasketBundle:Default:view.html.twig')
+    public function viewAction(Request $request, $embed = false, $orders_id = null, $template = 'BasketBundle:Default:view.html.twig')
     {
         // If this request is for the mega basket, check if we already has cached it.
         if ($template === 'BasketBundle:Default:megaBasket.html.twig') {
             $cache_id = [
                 'BasketBundle:Default:megaBasket.html.twig',
-                $this->getRequest()->getSession()->getId(),
+                $request->getSession()->getId(),
             ];
             $html = $this->getCache($cache_id);
             if ($html) {
@@ -536,6 +541,11 @@ class DefaultController extends CoreController
         }
 
         if (!$embed) {
+            // some times edit order cookies are not "closed"
+            if ($request->cookies->has('__ice') && $order->isNew()) {
+                Tools::unsetEditCookies();
+            }
+
             Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
         }
 
