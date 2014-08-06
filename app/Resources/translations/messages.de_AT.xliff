@@ -140,7 +140,7 @@
             </trans-unit>
             <trans-unit id="store.address">
                 <source>store.address</source>
-                <target>POMPdeLUX A GmbH · Bauernmarkt 2 · AT – 1010 Wien · ATU68522618 · mail@pompdelux.dk · (+45) 8678 7879</target>
+                <target>POMPdeLUX A GmbH · Bauernmarkt 2 · AT – 1010 Wien · ATU68522618 · mail@pompdelux.dk · 01/5350375</target>
             </trans-unit>
             <trans-unit id="order.edit.global.notice">
                 <source>order.edit.global.notice</source>
@@ -158,7 +158,7 @@
                 <source>customer.service.contact.info</source>
                 <target><![CDATA[
                     <strong>Kundendienst</strong><br>
-                    Telefon: (+45) 8678 7879<br>
+                    Telefon: 01/5350375<br>
                     E-Mail: <a href="mailto:mailat@pompdelux.com">mailat@pompdelux.com</a><br>
                     Montags bis Donnerstags 9 - 16 Uhr<br>
                     Freitags 9 - 14 Uhr<br>
@@ -174,7 +174,7 @@
                         <li>AT – 1010 Wien</li>
                         <li>ATU68522618</li>
                         <li><a href="mailto:mailat@pompdelux.com">mailat@pompdelux.com</a></li>
-                        <li>(+45) 8678 7879</li><br>
+                        <li>01/5350375</li><br>
 						<li>Rücksendung von Waren: POMPdeLUX A GmbH</li>
                         <li>Paketfach 10</li>
                         <li>6965 Wolfurt-Bahnhof</li>

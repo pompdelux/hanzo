@@ -21,7 +21,7 @@
       <trans-unit id="json_err35">
         <source>json.checkcustomer.error</source>
         <target><![CDATA[<b>Die Reservierung konnte nicht erstellt werden</b><br>Dies kann daran liegen, dass Ihr Kreditmaximum von 3.000,- Euro erreicht wurde.
-Wenden Sie sich bitte an den Kundendienst von Gothia: +45 7027 2795<br>Bei anderen Zulassungsfehlern – wenden Sie sich bitte an den Kundendienst von POMPdeLUX: +45 8678 7879]]></target>
+Wenden Sie sich bitte an den Kundendienst von Gothia: +45 7027 2795<br>Bei anderen Zulassungsfehlern – wenden Sie sich bitte an den Kundendienst von POMPdeLUX: 01/5350375]]></target>
       </trans-unit>
       <trans-unit id="json_err40">
         <source>json.checkcustomer.purchasestop</source>
