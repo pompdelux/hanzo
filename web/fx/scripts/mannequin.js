@@ -233,7 +233,7 @@
       } else {
         $('#mannequin-basket tfoot td.total').text('');
         $('#mannequin-basket tfoot').hide();
-        $('#mannequin-basket tbody').append('<tr class="empty"><td colspan="6">' + Translator.get('js:mannequin.empty') + '</td></tr>');
+        $('#mannequin-basket tbody').append('<tr class="empty"><td colspan="6">' + Translator.trans('mannequin.empty') + '</td></tr>');
 
         if ($('#mannequin-mini-basket').hasClass('under')) {
           if ($('#mannequin-mini-basket').hasClass('bg')) {

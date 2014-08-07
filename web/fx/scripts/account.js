@@ -19,7 +19,7 @@ var account = (function($) {
         if (!$element.val()) {
           return;
         }else if (!email_regex.test($element.val())){
-          scrollToAndShowError($element, $form, Translator.get('js:email.invalid'));
+          scrollToAndShowError($element, $form, Translator.trans('email.invalid'));
         }
 
         $.ajax({
@@ -43,7 +43,7 @@ var account = (function($) {
         $element = $('#customers_email_email_address_repeated', $form);
 
         if ($element.val() && $email.val() !== $element.val()){
-          scrollToAndShowError($element, $form, Translator.get('js:email.repeat.invalid'));
+          scrollToAndShowError($element, $form, Translator.trans('email.repeat.invalid'));
         }
       });
 
@@ -53,7 +53,7 @@ var account = (function($) {
         $element.removeClass('error');
 
         if ($element.val() && $element.val().length < 5){
-          scrollToAndShowError($element, $form, Translator.get('js:password.min.length'));
+          scrollToAndShowError($element, $form, Translator.trans('password.min.length'));
         }
       });
 
@@ -64,7 +64,7 @@ var account = (function($) {
         $element.removeClass('error');
 
         if ($element.val() && $password.val() !== $element.val()){
-          scrollToAndShowError($element, $form, Translator.get('js:password.invalid.match'));
+          scrollToAndShowError($element, $form, Translator.trans('password.invalid.match'));
         }
 
       });
@@ -75,7 +75,7 @@ var account = (function($) {
         $element.removeClass('error');
 
         if ($element.val() && (/^\d+$/.test($element.val()) !== true || $element.val().length < 8)){
-          scrollToAndShowError($element, $form, Translator.get('js:phone.invalid'));
+          scrollToAndShowError($element, $form, Translator.trans('phone.invalid'));
         }
       });
 
@@ -84,14 +84,14 @@ var account = (function($) {
           if (!$(this).val()){
             e.preventDefault();
             $form.addClass('hasError');
-            dialoug.notice(Translator.get('js:field.required'), 'error', 4800, $form);
+            dialoug.notice(Translator.trans('field.required'), 'error', 4800, $form);
             $(this).focus();
             $(this).select();
             return false;
           }
           if ($(this).is(':checkbox') && !$(this).attr('checked')){
             e.preventDefault();
-            scrollToAndShowError($(this), $form, Translator.get('js:approve.conditions.required'));
+            scrollToAndShowError($(this), $form, Translator.trans('approve.conditions.required'));
           }
         });
       });
@@ -162,7 +162,7 @@ var account = (function($) {
             return;
           }
 
-          dialoug.loading( '#customers_addresses_0_city', Translator.get('js:please.wait') );
+          dialoug.loading( '#customers_addresses_0_city', Translator.trans('please.wait') );
           $.getJSON( base_url+'muneris/gpc/'+$('#customers_addresses_0_postal_code').val(), function(data) {
             if (data.status && data.data.postcodes.length) {
               if (data.data.postcodes.length > 1) {
@@ -229,7 +229,7 @@ var account = (function($) {
     $('a.edit').on('click', function(event) {
       event.preventDefault();
       var href = this.href;
-      dialoug.confirm(Translator.get('js:notice'), Translator.get('js:edit.order.notice'), function(c) {
+      dialoug.confirm(Translator.trans('notice'), Translator.trans('edit.order.notice'), function(c) {
         if (c == 'ok') {
           document.location.href = href;
         }
@@ -239,7 +239,7 @@ var account = (function($) {
     $('a.delete').on('click', function(event) {
       event.preventDefault();
       var href = this.href;
-      dialoug.confirm(Translator.get('js:notice'), Translator.get('js:delete.order.notice'), function(c) {
+      dialoug.confirm(Translator.trans('notice'), Translator.trans('delete.order.notice'), function(c) {
         if (c == 'ok') {
           document.location.href = href;
         }

@@ -42,7 +42,7 @@ var rma = (function ($) {
                     .slideDown('fast')
                     .css('display', 'inline-block')
                     .find('select')
-                    .val(Translator.get('js:rma.return.all.text'));
+                    .val(Translator.trans('rma.return.all.text'));
             }
         });
 
@@ -55,7 +55,7 @@ var rma = (function ($) {
             var id = $(this).data('id');
             if ($('#replacement-master-lineid-' + id).val() &&
                 (!$('#replacement-size-lineid-' + id).val() || !$('#replacement-color-lineid-' + id).val())) {
-                dialoug.notice(Translator.get('js:rma.product.not.filled.correctly'), 'error', 4000, $('#replacement-master-lineid-' + id).closest('.quickorder'));
+                dialoug.notice(Translator.trans('rma.product.not.filled.correctly'), 'error', 4000, $('#replacement-master-lineid-' + id).closest('.quickorder'));
                 has_errors = true;
             }
         });
@@ -66,7 +66,7 @@ var rma = (function ($) {
 
         var $submit_button = $('.rma-submit');
         $submit_button.attr('disabled', 'disabled');
-        dialoug.loading($submit_button, Translator.get('js:please.wait'));
+        dialoug.loading($submit_button, Translator.trans('please.wait'));
         var products = [];
 
         $('.rma-activitycode').each(function (index, el) {

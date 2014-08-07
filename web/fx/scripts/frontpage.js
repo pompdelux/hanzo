@@ -12,7 +12,7 @@
     var expandedHeight = $('html div.xyz div').outerHeight(true);
     $('html div.xyz').remove();
 
-    $('article a.button').data('text', Translator.get('js:close'));
+    $('article a.button').data('text', Translator.trans('close'));
     $('article a.button').on('click', function(event) {
       event.preventDefault();
 

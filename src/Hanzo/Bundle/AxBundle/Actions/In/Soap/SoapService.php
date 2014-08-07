@@ -6,12 +6,11 @@ use Hanzo\Core\ServiceLogger;
 use Monolog;
 
 use Psr\Log\LoggerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\EventDispatcher\EventDispatcher;
 
 use Hanzo\Core\Hanzo;
-use Hanzo\Core\Tools;
 use Hanzo\Core\Timer;
 use Hanzo\Core\PropelReplicator;
 
@@ -58,13 +57,13 @@ class SoapService
     protected $raw_post_data;
 
     /**
-     * @param Request          $request
-     * @param LoggerInterface  $logger
-     * @param ServiceLogger    $service_logger
-     * @param EventDispatcher  $event_dispatcher
-     * @param PropelReplicator $replicator
+     * @param Request                  $request
+     * @param LoggerInterface          $logger
+     * @param ServiceLogger            $service_logger
+     * @param EventDispatcherInterface $event_dispatcher
+     * @param PropelReplicator         $replicator
      */
-    public function __construct(Request $request, LoggerInterface $logger, ServiceLogger $service_logger, EventDispatcher $event_dispatcher, PropelReplicator $replicator)
+    public function __construct(Request $request, LoggerInterface $logger, ServiceLogger $service_logger, EventDispatcherInterface $event_dispatcher, PropelReplicator $replicator)
     {
         $this->request          = $request;
         $this->logger           = $logger;

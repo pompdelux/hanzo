@@ -21,6 +21,9 @@ framework:
         enabled: true
     fragments:
         path: /_fragment
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    http_method_override: true
 
 services:
     # native redis session handeling
@@ -225,3 +228,6 @@ consignor:
     shipment_server: ~
     ship_advisor:    ~
 
+bazinga_js_translation:
+    locale_fallback: %locale%
+    default_domain: js

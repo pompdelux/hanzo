@@ -35,7 +35,7 @@
           url = State.url;
         event.preventDefault();
         // start loading anim
-        dialoug.loading('.pager.ajax ul', Translator.get('js:loading.std'));
+        dialoug.loading('.pager.ajax ul', Translator.trans('loading.std'));
 
         // fetch unknown pages via ajax
         if ( cache[url] === undefined ) {

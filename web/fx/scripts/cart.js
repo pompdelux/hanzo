@@ -19,7 +19,7 @@
             $mega_basket = $('#mega-basket');
 
         // warn the user before removing the product.
-        dialoug.confirm(Translator.get('js:notice'), Translator.get('js:delete.from.basket.warning', { 'product' : name }), function(choice) {
+        dialoug.confirm(Translator.trans('notice'), Translator.trans('delete.from.basket.warning', { 'product' : name }), function(choice) {
           if (choice == 'ok') {
             $.ajax({
               url : $a.attr('href'),
@@ -84,7 +84,7 @@
           color  : $('div.color span', $info).text()
         };
 
-        var $html = $('<div id="cart-edit-element"><a href="" class="button text-button">' + Translator.get('js:cancel') + '</a></div>');
+        var $html = $('<div id="cart-edit-element"><a href="" class="button text-button">' + Translator.trans('cancel') + '</a></div>');
 
         if (is_mobile) {
           $target.before($html);
@@ -134,7 +134,7 @@
           async : false,
           success : function(response, textStatus, jqXHR) {
             if (response.status) {
-              var $size = $('<select id="size" name="size"><option value="">' + Translator.get('js:choose') + '</option></select>');
+              var $size = $('<select id="size" name="size"><option value="">' + Translator.trans('choose') + '</option></select>');
               var used = [];
               $.each(response.data.products, function(index, product) {
                 if (-1 == $.inArray(product.size, used)) {
@@ -173,7 +173,7 @@
             success : function(response, textStatus, jqXHR) {
               if (name == 'size') {
                 if (response.status) {
-                  var $color = $('<select id="color" name="color"><option value="">' + Translator.get('js:choose') + '</option></select>');
+                  var $color = $('<select id="color" name="color"><option value="">' + Translator.trans('choose') + '</option></select>');
                   var used = [];
                   $.each(response.data.products, function(index, product) {
                     if (-1 == $.inArray(product.color, used)) {
@@ -188,7 +188,7 @@
                 if (response.status) {
                   var product = response.data.products[0];
                   if (product.date) {
-                    dialoug.confirm(Translator.get('js:notice'), response.message, function(c) {
+                    dialoug.confirm(Translator.trans('notice'), response.message, function(c) {
                       if (c != 'ok') {
                         $('#cboxOverlay').css({"opacity": 0.9, "cursor": "auto", "z-index": 9998}).show();
                         return;
@@ -196,7 +196,7 @@
                     });
                   }
 
-                  $('.info', $edit).append('<div class="quantity"><label for="quantity">' + Translator.get('js:quantity') + ':</label> <select name="quantity" id="quantity"><option value="">' + Translator.get('js:choose') + '</option></select></div>');
+                  $('.info', $edit).append('<div class="quantity"><label for="quantity">' + Translator.trans('quantity') + ':</label> <select name="quantity" id="quantity"><option value="">' + Translator.trans('choose') + '</option></select></div>');
                   for (var i=1; i<11; i++) {
                     $('.info select#quantity', $edit).append('<option value="'+i+'">'+i+'</option>');
                   }
@@ -209,7 +209,7 @@
 
         $edit.on('change', 'select#quantity', function() {
           if ($('.button.update', $edit).length === 0) {
-            $(this).closest('div').after('<a href="#" class="button pull-right update">'+Translator.get('js:update')+' <i class="fa fa-arrow-right"></i></a>');
+            $(this).closest('div').after('<a href="#" class="button pull-right update">'+Translator.trans('update')+' <i class="fa fa-arrow-right"></i></a>');
           }
         });
 
@@ -243,7 +243,7 @@
                   }
                   else {
                     if (product.date) {
-                      var notice = Translator.get('js:late.delivery', {'product' : request_data.master+' '+request_data.color+' '+request_data.size , 'date' : product.date});
+                      var notice = Translator.trans('late.delivery', {'product' : request_data.master+' '+request_data.color+' '+request_data.size , 'date' : product.date});
                       $html.append('<div class="delivery-notice">'+notice+'</div>');
                       $info.data('confirmed', true);
                       return;

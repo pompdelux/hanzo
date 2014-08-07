@@ -149,7 +149,7 @@
         // shipping
         if (!checkout.getStepStatus('shipping')) {
           var $block = $('#shipping-block');
-          $('.msg', $block).text(Translator.get('js:checkout.choose.shipping.method')).toggleClass('hidden error');
+          $('.msg', $block).text(Translator.trans('checkout.choose.shipping.method')).toggleClass('hidden error');
           $('html,body').animate({ scrollTop : $('#shipping-block').offset().top - 20 });
           return false;
         }
@@ -157,7 +157,7 @@
         // payment
         if (!checkout.getStepStatus('payment')) {
           var $block = $('#payment-block');
-          $('.msg', $block).text(Translator.get('js:checkout.choose.payment.method')).toggleClass('hidden error');
+          $('.msg', $block).text(Translator.trans('checkout.choose.payment.method')).toggleClass('hidden error');
           $('html,body').animate({ scrollTop : $('#payment-block').offset().top - 20 });
           return false;
         }
@@ -199,13 +199,13 @@
         });
 
         if (address_errors.has_errors) {
-          dialoug.notice(Translator.get('js:not.filled.correctly'), 'error', 4000, '#address-block');
+          dialoug.notice(Translator.trans('not.filled.correctly'), 'error', 4000, '#address-block');
           $('html,body').animate({ scrollTop : $('#address-block').offset().top - 20 });
           return false;
         }
 
         // Confirm that the entered addresses are correct.
-        dialoug.confirm(Translator.get('js:checkout.confirm.address.block'), $address_confirm_box[0].outerHTML, function(choice) {
+        dialoug.confirm(Translator.trans('checkout.confirm.address.block'), $address_confirm_box[0].outerHTML, function(choice) {
           if (choice !== 'ok') {
             var elementHeight = $('#address-block').height(),
                 elementOffsetTop = $('#address-block').offset().top,
@@ -420,8 +420,8 @@
         // pop "please be patient" notice
         window.setTimeout(function() {
           dialoug.blockingNotice(
-            Translator.get('js:checkout.payment.progress.alert.title'),
-            Translator.get('js:checkout.payment.progress.alert.message', {'url' : base_url+'payment/cancel'})
+            Translator.trans('checkout.payment.progress.alert.title'),
+            Translator.trans('checkout.payment.progress.alert.message', {'url' : base_url+'payment/cancel'})
           );
         }, 3000);
       } else {

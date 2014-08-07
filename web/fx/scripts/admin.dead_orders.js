@@ -9,7 +9,7 @@ var adminDeadOrders = (function($) {
         $("#dead-orders-form a.delete-order, #failed-orders-form a.delete-order").click(function(e) {
             e.preventDefault();
             var orderId = $(this).data('order-id');
-            dialoug.confirm( Translator.get('js:notice'), $(this).data('confirm-message'), function(choise) {
+            dialoug.confirm( Translator.trans('notice'), $(this).data('confirm-message'), function(choise) {
                 if (choise === 'ok') {
                     $.ajax({
                         url: base_url+'orders/delete/'+orderId,
@@ -76,13 +76,13 @@ var adminDeadOrders = (function($) {
             $.getJSON(this.href+oid, function(result) {
               if (result.status) {
                 if (result.message) {
-                  dialoug.info(Translator.get('js:notice'), result.message);
+                  dialoug.info(Translator.trans('notice'), result.message);
                   $row.fadeOut();
                 } else {
                   $.colorbox({html: result.data.html});
                 }
               } else {
-                dialoug.alert(Translator.get('js:notice'), result.message);
+                dialoug.alert(Translator.trans('notice'), result.message);
               }
               $a.parent().find('.loader').hide();
             });
@@ -99,7 +99,7 @@ var adminDeadOrders = (function($) {
                 success: function(result) {
                     if (result.status) {
                         if (result.message) {
-                            dialoug.info(Translator.get('js:notice'), result.message);
+                            dialoug.info(Translator.trans('notice'), result.message);
                             $row.fadeOut();
                         }
                     } else {

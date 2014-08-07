@@ -189,8 +189,8 @@
       var $countdown = $('.countdown');
       if ($countdown.length) {
         $countdown.countdown({
-          until : new Date(Translator.get('js:countdown.date')),
-          layout : '<span>' + Translator.get('js:countdown.format') + '</span>',
+          until : new Date(Translator.trans('countdown.date')),
+          layout : '<span>' + Translator.trans('countdown.format') + '</span>',
           timezone : +1,
           serverSync : function () {
             var time = null;
