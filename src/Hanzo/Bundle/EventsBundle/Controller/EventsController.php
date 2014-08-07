@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\EventsBundle\Controller;
 
+use Hanzo\Bundle\EventsBundle\Form\Type\EventsParticipantType;
 use Hanzo\Bundle\EventsBundle\Form\Type\EventsType;
 use Hanzo\Bundle\EventsBundle\Helpers\EventHostess;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -259,9 +260,11 @@ class EventsController extends CoreController
     }
 
 
-    public function deleteAction($id)
+    public function deleteAction(Request $request, $id)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') && false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if ((false === $this->container->get('security.context')->isGranted('ROLE_CONSULTANT')) &&
+            (false === $this->container->get('security.context')->isGranted('ROLE_ADMIN'))
+        ) {
             throw new AccessDeniedException();
         }
 
@@ -270,7 +273,7 @@ class EventsController extends CoreController
 
             // no deleting old events
             if ($event->getEventDate('U') < time()) {
-                $this->get('session')->getFlashBag()->add('notice', 'event.too.old.to.delete');
+                $request->getSession()->getFlashBag()->add('notice', 'event.too.old.to.delete');
                 return $this->redirect($this->generateUrl('events_index'));
             }
 
@@ -328,16 +331,16 @@ class EventsController extends CoreController
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
                 'status' => true,
-                'message' => $this->get('translator')->trans('events.delete.success', array(), 'events')
+                'message' => $this->container->get('translator')->trans('events.delete.success', array(), 'events')
             ));
         }
 
-        $this->get('session')->getFlashBag()->add('notice', 'events.delete.success');
+        $request->getSession()->getFlashBag()->add('notice', 'events.delete.success');
 
         return $this->redirect($this->generateUrl('events_index'));
     }
 
-    public function inviteAction($key)
+    public function inviteAction(Request $request, $key)
     {
         $customer = CustomersPeer::getCurrent();
         $event = EventsQuery::create()
@@ -346,104 +349,50 @@ class EventsController extends CoreController
             ->findOneByKey($key)
         ;
 
-        $events_participants = null;
+        $eventsParticipant = null;
         $form = null;
 
         if ($event instanceof Events) {
-            $events_participant = new EventsParticipants();
+            $eventsParticipant = new EventsParticipants();
+            $form              = $this->createForm(new EventsParticipantType(), $eventsParticipant);
 
-            $form = $this->createFormBuilder($events_participant)
-                ->add('first_name', 'text',
-                    array(
-                        'label' => 'events.participants.first_name.label',
-                        'translation_domain' => 'events'
-                    )
-                )->add('last_name', 'text',
-                    array(
-                        'label' => 'events.participants.last_name.label',
-                        'translation_domain' => 'events'
-                    )
-                )->add('email', 'email',
-                    array(
-                        'label' => 'events.participants.email.label',
-                        'required' => false,
-                        'translation_domain' => 'events'
-                    )
-                )->add('phone', 'text',
-                    array(
-                        'label' => 'events.participants.phone.label',
-                        'translation_domain' => 'events',
-                        'required' => false,
-                        'attr' => array('class' => 'dk')
-                    )
-                )->add('tell_a_friend', 'checkbox',
-                    array(
-                        'label' => 'events.participants.tell_a_friend.label',
-                        'translation_domain' => 'events',
-                        'required' => false
-                    )
-                )->getForm()
-            ;
-
-            $request = $this->getRequest();
             if ('POST' === $request->getMethod()) {
                 $form->handleRequest($request);
 
-                if ($events_participant->getEmail()) {
+                if ($eventsParticipant->getEmail()) {
                     $res = EventsParticipantsQuery::create()
                         ->filterByEventsId($event->getId())
-                        ->findByEmail($events_participant->getEmail())
+                        ->findByEmail($eventsParticipant->getEmail())
                     ;
 
                     if ($res->count()) {
-                        $error = new FormError($this->get('translator')->trans('event.email.exists', array(), 'events'));
+                        $error = new FormError($this->container->get('translator')->trans('event.email.exists', array(), 'events'));
                         $form->addError($error);
                     }
                 }
 
                 if ($form->isValid()) {
-                    $events_participant->setKey(sha1(time()));
-                    $events_participant->setEventsId($event->getId());
-                    $events_participant->save();
+                    $eventsParticipant->setKey(sha1(time()));
+                    $eventsParticipant->setEventsId($event->getId());
+                    $eventsParticipant->save();
 
                     // Now send out some emails!
-                    if ($events_participant->getEmail()) {
-                        $mailer = $this->get('mail_manager');
-
-                        $mailer->setMessage('events.participant.invited', array(
-                            'event_date'       => $event->getEventDate('d/m'),
-                            'event_time'       => $event->getEventDate('H:i'),
-                            'to_name'          => $events_participant->getFirstName(). ' ' .$events_participant->getLastName(),
-                            'hostess'          => $event->getHost(),
-                            'address'          => $event->getAddressLine1(). ' ' .$event->getAddressLine2(),
-                            'zip'              => $event->getPostalCode(),
-                            'city'             => $event->getCity(),
-                            'email'            => $event->getEmail(),
-                            'phone'            => $event->getPhone(),
-                            'link'             => $this->generateUrl('events_rsvp', array('key' => $events_participant->getKey()), true)
-                        ));
-
-                        $mailer->setTo(
-                            $events_participant->getEmail(),
-                            $events_participant->getFirstName(). ' ' .$events_participant->getLastName()
-                        );
-                        $mailer->setFrom(array('events@pompdelux.com' => $event->getHost(). ' (via POMPdeLUX)'));
-                        $mailer->setSender('events@pompdelux.com', 'POMPdeLUX', true);
-                        $mailer->setReplyTo($event->getEmail(), $event->getHost());
-                        $mailer->send();
+                    if ($eventsParticipant->getEmail()) {
+                        $mailer = $this->container->get('hanzo.event.mailer');
+                        $mailer->setEventData($event);
+                        $mailer->sendParticipantEventInviteEmail($eventsParticipant);
                     }
 
-                    if ($events_participant->getPhone()) {
-                        $this->get('sms_manager')->sendEventInvite($events_participant);
+                    if ($eventsParticipant->getPhone()) {
+                        $this->container->get('sms_manager')->sendEventInvite($eventsParticipant);
                     }
 
-                    $this->get('session')->getFlashBag()->add('notice', 'events.participant.invited');
+                    $request->getSession()->getFlashBag()->add('notice', 'events.participant.invited');
                 }
             }
 
-            $form = $form->createView();
-
-            $events_participants = EventsParticipantsQuery::create()->findByEventsId($event->getId());
+            $form              = $form->createView();
+            $eventsParticipant = EventsParticipantsQuery::create()->findByEventsId($event->getId());
         }
 
         return $this->render('EventsBundle:Events:invite.html.twig', array(
@@ -451,7 +400,7 @@ class EventsController extends CoreController
             'key'          => $key,
             'event'        => $event,
             'form'         => $form,
-            'participants' => $events_participants
+            'participants' => $eventsParticipant
         ));
     }
 

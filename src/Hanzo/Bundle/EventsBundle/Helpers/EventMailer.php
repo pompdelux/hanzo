@@ -14,6 +14,7 @@ use Hanzo\Bundle\ServiceBundle\Services\MailService;
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\Events;
+use Hanzo\Model\EventsParticipants;
 use Hanzo\Model\EventsParticipantsQuery;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 
@@ -59,7 +60,7 @@ class EventMailer
      * @param EventHostess $hostess
      * @param Customers    $consultant
      */
-    public function setEventData(Events $event, EventHostess $hostess, Customers $consultant)
+    public function setEventData(Events $event, EventHostess $hostess = null, Customers $consultant = null)
     {
         $this->event      = $event;
         $this->hostess    = $hostess->getHostess();
@@ -71,7 +72,7 @@ class EventMailer
         if ($this->event->getNotifyHostess()){
 
             // Send an email to the new Host
-            $this->mailer->setMessage('events.hostess.create', array(
+            $this->mailer->setMessage('events.hostess.create', [
                 'event_date'       => $this->event->getEventDate('d/m'),
                 'event_time'       => $this->event->getEventDate('H:i'),
                 'to_name'          => $this->event->getHost(),
@@ -81,13 +82,13 @@ class EventMailer
                 'email'            => $this->hostess->getEmail(),
                 'password'         => $this->hostess->getPasswordClear(),
                 'phone'            => $this->event->getPhone(),
-                'link'             => $this->generateUrl('events_invite', array('key' => $this->event->getKey()), true),
+                'link'             => $this->generateUrl('events_invite', ['key' => $this->event->getKey()], true),
                 'consultant_name'  => $this->consultant->getFirstName(). ' ' .$this->consultant->getLastName(),
                 'consultant_email' => $this->consultant->getEmail()
-            ));
+            ]);
 
-            $this->mailer->setTo(array($this->event->getEmail() => $this->event->getHost()));
-            $this->mailer->setFrom(array($this->consultant->getEmail() => $this->consultant->getFirstName(). ' ' .$this->consultant->getLastName()));
+            $this->mailer->setTo([$this->event->getEmail() => $this->event->getHost()]);
+            $this->mailer->setFrom([$this->consultant->getEmail() => $this->consultant->getFirstName(). ' ' .$this->consultant->getLastName()]);
             $this->mailer->send();
         }
     }
@@ -98,7 +99,7 @@ class EventMailer
 
         if ($this->event->getNotifyHostess()) {
             // Send an email to the old Host
-            $this->mailer->setMessage('events.hostess.eventmovedfrom', array(
+            $this->mailer->setMessage('events.hostess.eventmovedfrom', [
                 'event_date'       => $this->event->getEventDate('d/m'),
                 'event_time'       => $this->event->getEventDate('H:i'),
                 'name'             => $oldEvent->getHost(),
@@ -110,17 +111,17 @@ class EventMailer
                 'to_zip'           => $this->event->getPostalCode(),
                 'to_city'          => $this->event->getCity(),
                 'to_phone'         => $this->event->getPhone(),
-                'link'             => $this->router->generate('events_invite', array('key' => $this->event->getKey()), true),
+                'link'             => $this->router->generate('events_invite', ['key' => $this->event->getKey()], true),
                 'consultant_name'  => $consultant->getFirstName(). ' ' .$consultant->getLastName(),
                 'consultant_email' => $consultant->getEmail()
-            ));
+            ]);
 
-            $this->mailer->setTo(array($oldEvent->getEmail() => $oldEvent->getHost()));
-            $this->mailer->setFrom(array($consultant->getEmail() => $consultant->getFirstName(). ' ' .$consultant->getLastName()));
+            $this->mailer->setTo([$oldEvent->getEmail() => $oldEvent->getHost()]);
+            $this->mailer->setFrom([$consultant->getEmail() => $consultant->getFirstName(). ' ' .$consultant->getLastName()]);
             $this->mailer->send();
 
             // Send an email to the new Host
-            $this->mailer->setMessage('events.hostess.eventmovedto', array(
+            $this->mailer->setMessage('events.hostess.eventmovedto', [
                 'event_date'       => $this->event->getEventDate('d/m'),
                 'event_time'       => $this->event->getEventDate('H:i'),
                 'from_name'        => $oldEvent->getHost(),
@@ -135,13 +136,13 @@ class EventMailer
                 'email'            => $this->hostess->getHostess()->getEmail(),
                 'password'         => $this->hostess->getHostess()->getPasswordClear(),
                 'phone'            => $this->event->getPhone(),
-                'link'             => $this->router->generate('events_invite', array('key' => $this->event->getKey()), true),
+                'link'             => $this->router->generate('events_invite', ['key' => $this->event->getKey()], true),
                 'consultant_name'  => $consultant->getFirstName(). ' ' .$consultant->getLastName(),
                 'consultant_email' => $consultant->getEmail()
-            ));
+            ]);
 
-            $this->mailer->setTo(array($this->event->getEmail() => $this->event->getHost()));
-            $this->mailer->setFrom(array($consultant->getEmail() => $consultant->getFirstName(). ' ' .$consultant->getLastName()));
+            $this->mailer->setTo([$this->event->getEmail() => $this->event->getHost()]);
+            $this->mailer->setFrom([$consultant->getEmail() => $consultant->getFirstName(). ' ' .$consultant->getLastName()]);
             $this->mailer->send();
         }
     }
@@ -163,7 +164,7 @@ class EventMailer
                 continue;
             }
 
-            $this->mailer->setMessage('events.participant.eventchanged', array(
+            $this->mailer->setMessage('events.participant.eventchanged', [
                 'event_date'       => $this->event->getEventDate('d/m'),
                 'event_time'       => $this->event->getEventDate('H:i'),
                 'to_name'          => $participant->getFirstName(). ' ' .$participant->getLastName(),
@@ -173,14 +174,38 @@ class EventMailer
                 'city'             => $this->event->getCity(),
                 'phone'            => $this->event->getPhone(),
                 'email'            => $this->event->getEmail(),
-                'link'             => $this->router->generate('events_rsvp', array('key' => $participant->getKey()), true),
+                'link'             => $this->router->generate('events_rsvp', ['key' => $participant->getKey()], true),
                 'consultant_name'  => $consultant->getFirstName(). ' ' .$consultant->getLastName(),
                 'consultant_email' => $consultant->getEmail()
-            ));
+            ]);
 
-            $this->mailer->setTo(array($participant->getEmail() => $participant->getFirstName(). ' ' .$participant->getLastName()));
-            $this->mailer->setFrom(array($this->event->getEmail() => $this->event->getHost()));
+            $this->mailer->setTo([$participant->getEmail() => $participant->getFirstName(). ' ' .$participant->getLastName()]);
+            $this->mailer->setFrom([$this->event->getEmail() => $this->event->getHost()]);
             $this->mailer->send();
         }
+    }
+
+    public function sendParticipantEventInviteEmail(EventsParticipants $eventsParticipant)
+    {
+        $this->mailer->setMessage('events.participant.invited', [
+            'event_date' => $this->event->getEventDate('d/m'),
+            'event_time' => $this->event->getEventDate('H:i'),
+            'to_name'    => $eventsParticipant->getFirstName() . ' ' . $eventsParticipant->getLastName(),
+            'hostess'    => $this->event->getHost(),
+            'address'    => $this->event->getAddressLine1() . ' ' . $this->event->getAddressLine2(),
+            'zip'        => $this->event->getPostalCode(),
+            'city'       => $this->event->getCity(),
+            'email'      => $this->event->getEmail(),
+            'phone'      => $this->event->getPhone(),
+            'link'       => $this->router->generate('events_rsvp', ['key' => $eventsParticipant->getKey()], true)
+        ]);
+
+        $this->mailer->setTo(
+            $eventsParticipant->getEmail(),
+            $eventsParticipant->getFirstName(). ' ' .$eventsParticipant->getLastName()
+        );
+
+        $this->mailer->setFrom([$this->event->getEmail() => $this->event->getHost()]);
+        $this->mailer->send();
     }
 }
