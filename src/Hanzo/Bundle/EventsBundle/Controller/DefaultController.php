@@ -251,7 +251,7 @@ class DefaultController extends CoreController
             case 'phone':
                 $domain_key = Hanzo::getInstance()->get('core.domain_key');
 
-                // phone number lookyup only in denmark
+                // phone number lookup only in denmark
                 if (!in_array($domain_key, array('DK', 'SalesDK'))) {
                     break;
                 }

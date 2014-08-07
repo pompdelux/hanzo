@@ -2,28 +2,17 @@
 
 namespace Hanzo\Bundle\EventsBundle\Controller;
 
+use Hanzo\Bundle\EventsBundle\Form\Type\EventsType;
+use Hanzo\Bundle\EventsBundle\Helpers\EventHostess;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 
-use Propel;
-
 use Hanzo\Core\Hanzo;
-use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
 use Hanzo\Model\EventsQuery;
 use Hanzo\Model\Events;
 use Hanzo\Model\EventsParticipantsQuery;
-use Hanzo\Model\EventsParticipants;
-use Hanzo\Model\CustomersQuery;
 use Hanzo\Model\CustomersPeer;
-use Hanzo\Model\Customers;
-use Hanzo\Model\AddressesPeer;
-use Hanzo\Model\Addresses;
-use Hanzo\Model\Orders;
-use Hanzo\Model\OrdersPeer;
-use Hanzo\Model\OrdersLinesQuery;
-use Hanzo\Model\CountriesQuery;
 
 class EventsController extends CoreController
 {
@@ -116,7 +105,7 @@ class EventsController extends CoreController
         ));
     }
 
-    public function createAction($id)
+    public function createAction(Request $request, $id)
     {
         $hanzo = Hanzo::getInstance();
         if (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') && false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
@@ -131,82 +120,22 @@ class EventsController extends CoreController
 
             // no editing old events
             if ($event->getEventDate('U') < time()) {
-                $this->get('session')->getFlashBag()->add('notice', 'event.too.old.to.edit');
+                $request->getSession()->getFlashBag()->add('notice', 'event.too.old.to.edit');
+
                 return $this->redirect($this->generateUrl('events_index'));
             }
         } else {
             $event = new Events();
         }
 
-        $form = $this->createFormBuilder($event, array('translation_domain' => 'events'))
-            ->add('customers_id', 'hidden')
-            ->add('event_date', 'text',
-                array(
-                    'attr' => array('class' => 'datetimepicker'),
-                    'label' => 'events.event_date.label',
-                    'translation_domain' => 'events',
-                    'data' => $event->getEventDate('m/d/Y H:i')
-                )
-            )->add('host', 'text',
-                array(
-                    'label' => 'events.host.label',
-                    'translation_domain' => 'events',
-                )
-            )->add('address_line_1', 'text',
-                array(
-                    'label' => 'events.address_line_1.label',
-                    'translation_domain' => 'events',
-                )
-            )->add('postal_code', 'text',
-                array(
-                    'label' => 'events.postal_code.label',
-                    'translation_domain' => 'events',
-                )
-            )->add('city', 'text',
-                array(
-                    'label' => 'events.city.label',
-                    'translation_domain' => 'events',
-                )
-            )->add('phone', 'text',
-                array(
-                    'label' => 'events.phone.label',
-                    'translation_domain' => 'events',
-                )
-            )->add('email', 'text',
-                array(
-                    'label' => 'events.email.label',
-                    'translation_domain' => 'events',
-                )
-            )->add('description', 'textarea',
-                array(
-                    'label' => 'events.description.label',
-                    'translation_domain' => 'events',
-                    'required' => false
-                )
-            )->add('type', 'choice',
-                array(
-                    'choices' => array(
-                        'AR' => 'events.type.choice.ar',
-                        'HUS' => 'events.type.choice.hus',
-                    ),
-                    'label' => 'events.type.label',
-                    'translation_domain' => 'events'
-                )
-            )->add('notify_hostess', 'checkbox',
-                array(
-                    'label' => 'events.notify_hostess.label',
-                    'translation_domain' => 'events',
-                    'required' => false
-                )
-            )->getForm()
-        ;
+        $form = $this->createForm(new EventsType(), $event);
+        $form->get('event_date')->setData($event->getEventDate('m/d/Y H:i'));
 
-        $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
 
-            $changed = isset($id) ? true : false; // Keep track of which this is a new event or an old event
+            $changed = $event->isNew();
             if ($changed) {
-                $old_event = $event->copy(); // Keep a copy of the old data before we bind the request
+                $oldEvent = $event->copy();
             }
 
             $form->handleRequest($request);
@@ -214,54 +143,16 @@ class EventsController extends CoreController
             if ($form->isValid()) {
                 $consultant = CustomersPeer::getCurrent();
 
-                $customers_id = $event->getCustomersId(); // from the form
-                $host = null; // Customers Object
-                $changed_host = false; // Bool wheter the host has changed
-                $new_host = false; // Bool wheter a new Customers have been created
+                $host         = null;
+                $changedHost = false;
 
                 // Hvis der er ændret i email = ny host
-                if ($changed && ($old_event->getEmail() != $event->getEmail())) {
-                    $changed_host = true; // Keep track if the host is new/changed
+                if ($changed && ($oldEvent->getEmail() != $event->getEmail())) {
+                    $changedHost = true;
                 }
 
-                $host = CustomersQuery::create()
-                    ->findOneByEmail($event->getEmail())
-                ;
-
-                // Der er ikke tilknyttet nogle Customers som vært, opret en ny
-                if (!($host instanceof Customers)){
-                    @list($first, $last) = explode(' ', $event->getHost(), 2);
-
-                    $new_host = true;
-                    $host = new Customers();
-                    $host->setPasswordClear($event->getPhone());
-                    $host->setPassword(sha1($event->getPhone()));
-                    $host->setPhone($event->getPhone());
-                    $host->setEmail($event->getEmail());
-                    $host->setFirstName($first);
-                    $host->setLastName($last);
-
-                    try {
-                        $host->save();
-
-                        $country = CountriesQuery::create()->findOneByIso2($hanzo->get('core.country'));
-
-                        // create customer payment address
-                        $address = new Addresses();
-                        $address->setCustomersId($host->getId());
-                        $address->setFirstName($first);
-                        $address->setLastName($last);
-                        $address->setAddressLine1($event->getAddressLine1());
-                        $address->setPostalCode($event->getPostalCode());
-                        $address->setCity($event->getCity());
-                        $address->setCountry($country->getName());
-                        $address->setCountriesId($country->getId());
-                        $address->save();
-
-                    } catch(\PropelException $e) {
-                        Tools::log($event->toArray());
-                    }
-                }
+                $hostess = new EventHostess($event);
+                $host = $hostess->getHostess();
 
                 $event->setCustomersId($host->getId());
                 $event->setConsultantsId($consultant->getId());
@@ -286,113 +177,16 @@ class EventsController extends CoreController
 
                 $event->save();
 
-                $mailer = $this->get('mail_manager');
+                $mailer = $this->container->get('hanzo.event.mailer');
+                $mailer->setEventData($event, $hostess, $consultant);
+
                 if ($changed) {
-                    if ($changed_host){ // If the event has changed and its a new host, send specific mails to all
-                        if ($event->getNotifyHostess()){
-
-                            // Send an email to the old Host
-                            $mailer->setMessage('events.hostess.eventmovedfrom', array(
-                                'event_date'       => $event->getEventDate('d/m'),
-                                'event_time'       => $event->getEventDate('H:i'),
-                                'name'             => $old_event->getHost(),
-                                'from_address'     => $old_event->getAddressLine1(). ' ' .$old_event->getAddressLine2(),
-                                'from_zip'         => $old_event->getPostalCode(),
-                                'from_city'        => $old_event->getCity(),
-                                'to_name'          => $event->getHost(),
-                                'to_address'       => $event->getAddressLine1(). ' ' .$event->getAddressLine2(),
-                                'to_zip'           => $event->getPostalCode(),
-                                'to_city'          => $event->getCity(),
-                                'to_phone'         => $event->getPhone(),
-                                'link'             => $this->generateUrl('events_invite', array('key' => $event->getKey()), true),
-                                'consultant_name'  => $consultant->getFirstName(). ' ' .$consultant->getLastName(),
-                                'consultant_email' => $consultant->getEmail()
-                            ));
-                            $mailer->setTo(array($old_event->getEmail() => $old_event->getHost()));
-                            $mailer->setFrom(array($consultant->getEmail() => $consultant->getFirstName(). ' ' .$consultant->getLastName()));
-                            $mailer->send();
-
-                            // Send an email to the new Host
-                            $mailer->setMessage('events.hostess.eventmovedto', array(
-                                'event_date'       => $event->getEventDate('d/m'),
-                                'event_time'       => $event->getEventDate('H:i'),
-                                'from_name'        => $old_event->getHost(),
-                                'from_address'     => $old_event->getAddressLine1(). ' ' .$old_event->getAddressLine2(),
-                                'from_zip'         => $old_event->getPostalCode(),
-                                'from_city'        => $old_event->getCity(),
-                                'from_phone'       => $old_event->getPhone(),
-                                'name'             => $event->getHost(),
-                                'to_address'       => $event->getAddressLine1(). ' ' .$event->getAddressLine2(),
-                                'to_zip'           => $event->getPostalCode(),
-                                'to_city'          => $event->getCity(),
-                                'email'            => $host->getEmail(),
-                                'password'         => $host->getPasswordClear(),
-                                'phone'            => $event->getPhone(),
-                                'link'             => $this->generateUrl('events_invite', array('key' => $event->getKey()), true),
-                                'consultant_name'  => $consultant->getFirstName(). ' ' .$consultant->getLastName(),
-                                'consultant_email' => $consultant->getEmail()
-                            ));
-                            $mailer->setTo(array($event->getEmail() => $event->getHost()));
-                            $mailer->setFrom(array($consultant->getEmail() => $consultant->getFirstName(). ' ' .$consultant->getLastName()));
-                            $mailer->send();
-                        }
-
-                        // Find all participants.
-                        $participants = EventsParticipantsQuery::create()
-                            ->filterByEventsId($event->getId())
-                            ->find()
-                        ;
-
-                        // Send an email to all participants
-                        foreach ($participants as $participant) {
-                            if (!$participant->getEmail()) {
-                                continue;
-                            }
-
-                            $mailer->setMessage('events.participant.eventchanged', array(
-                                'event_date'       => $event->getEventDate('d/m'),
-                                'event_time'       => $event->getEventDate('H:i'),
-                                'to_name'          => $participant->getFirstName(). ' ' .$participant->getLastName(),
-                                'hostess'          => $event->getHost(),
-                                'address'          => $event->getAddressLine1(). ' ' .$event->getAddressLine2(),
-                                'zip'              => $event->getPostalCode(),
-                                'city'             => $event->getCity(),
-                                'phone'            => $event->getPhone(),
-                                'email'            => $event->getEmail(),
-                                'link'             => $this->generateUrl('events_rsvp', array('key' => $participant->getKey()), true),
-                                'consultant_name'  => $consultant->getFirstName(). ' ' .$consultant->getLastName(),
-                                'consultant_email' => $consultant->getEmail()
-                            ));
-
-                            $mailer->setTo(array($participant->getEmail() => $participant->getFirstName(). ' ' .$participant->getLastName()));
-                            $mailer->setFrom(array('events@pompdelux.com' => $event->getHost() . ' (via POMPdeLUX)'));
-                            $mailer->setSender('events@pompdelux.com', 'POMPdeLUX', true);
-                            $mailer->setReplyTo($event->getEmail(), $event->getHost());
-                            $mailer->send();
-                        }
+                    if ($changedHost) {
+                        $mailer->sendChangeHostessEmail($oldEvent);
+                        $mailer->sendChangeHostessParticipantEmail();
                     }
                 } else {
-                    if ($event->getNotifyHostess()){
-
-                        // Send an email to the new Host
-                        $mailer->setMessage('events.hostess.create', array(
-                            'event_date'       => $event->getEventDate('d/m'),
-                            'event_time'       => $event->getEventDate('H:i'),
-                            'to_name'          => $event->getHost(),
-                            'address'          => $event->getAddressLine1(). ' ' .$event->getAddressLine2(),
-                            'zip'              => $event->getPostalCode(),
-                            'city'             => $event->getCity(),
-                            'email'            => $host->getEmail(),
-                            'password'         => $host->getPasswordClear(),
-                            'phone'            => $event->getPhone(),
-                            'link'             => $this->generateUrl('events_invite', array('key' => $event->getKey()), true),
-                            'consultant_name'  => $consultant->getFirstName(). ' ' .$consultant->getLastName(),
-                            'consultant_email' => $consultant->getEmail()
-                        ));
-                        $mailer->setTo(array($event->getEmail() => $event->getHost()));
-                        $mailer->setFrom(array($consultant->getEmail() => $consultant->getFirstName(). ' ' .$consultant->getLastName()));
-                        $mailer->send();
-                    }
+                    $mailer->sendHostessEmail();
                 }
 
                 $this->get('session')->getFlashBag()->add('notice', 'events.created');
@@ -409,7 +203,9 @@ class EventsController extends CoreController
 
     public function getCustomerAction($email)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') && false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if ((false === $this->get('security.context')->isGranted('ROLE_CONSULTANT')) &&
+            (false === $this->get('security.context')->isGranted('ROLE_ADMIN'))
+        ) {
             throw new AccessDeniedException();
         }
 

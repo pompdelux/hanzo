@@ -4,3 +4,9 @@ services:
         arguments: [ @mail_manager, @translator ]
         tags:
             - { name: kernel.event_listener, event: order.summery.finalize, method: onFinalize, priority: 10 }
+
+    hanzo.event.mailer:
+        class: Hanzo\Bundle\EventsBundle\Helpers\EventMailer
+        arguments:
+            mailer: @mail_manager
+            router: @router.default
