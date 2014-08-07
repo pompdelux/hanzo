@@ -240,7 +240,7 @@ class ECommerceServices extends SoapService
 
                 $product->setRange(substr($item->ItemId, -4));
                 $product->setUnit(trim('1 ' .$item->Sales->UnitId));
-                $product->setHasVideo(true);
+                $product->setHasVideo(false);
                 $product->setIsOutOfStock(false);
                 $product->setIsActive(true);
 
