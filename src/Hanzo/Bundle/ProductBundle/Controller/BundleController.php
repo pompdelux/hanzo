@@ -34,7 +34,7 @@ class BundleController extends CoreController
         if (empty($products)) {
             $product_ids = array();
 
-            $router_keys = include $this->container->parameters['kernel.cache_dir'] . '/category_map.php';
+            $router_keys = include $this->container->getParameter('kernel.cache_dir') . '/category_map.php';
             $locale = strtolower($hanzo->get('core.locale'));
 
             $main_product = ProductsQuery::create()

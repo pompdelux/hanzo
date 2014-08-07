@@ -9,7 +9,7 @@ use Hanzo\Model\om\BaseCustomers;
 use Hanzo\Model\CustomersQuery;
 
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
-use Symfony\Component\Validator\ExecutionContext;
+use Symfony\Component\Validator\ExecutionContextInterface;
 
 /**
  * Skeleton subclass for representing a row from the 'customers' table.
@@ -262,9 +262,9 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
     /**
      * Validate length of users full name
      *
-     * @param  ExecutionContext $context
+     * @param  ExecutionContextInterface $context
      */
-    public function isFullNameWithinLimits(ExecutionContext $context)
+    public function isFullNameWithinLimits(ExecutionContextInterface $context)
     {
         $domain = strtoupper(Hanzo::getInstance()->get('core.domain_key'));
         $maxLength = 30;
