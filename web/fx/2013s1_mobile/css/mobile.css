@@ -949,6 +949,9 @@ form.buy h4.bordered {
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-size: 12px;
 }
+form.buy #dialoug-message {
+  width: 85%;
+}
 
 .latest-seen-poducts a,
 .productimage-small a,

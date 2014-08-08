@@ -207,13 +207,18 @@
                     }
 
                     if (undefined === response.data.products) {
-                        $('div', $form).replaceWith(Translator.trans('out.of.stock'));
+                        if ('size' === name) {
+                            $('div', $form).replaceWith(Translator.trans('out.of.stock'));
+                        } else {
+                            dialoug.notice($('h1').text()+' not available in '+$('.size option:selected', $form).text()+' '+value, 'error', 6000, 'label[for="color"]');
+                            _resetFormColor();
+                        }
 
                         return;
                     }
 
                     // populate color select with options
-                    if (name === 'size') {
+                    if ('size' === name) {
                         _resetFormColor();
 
                         $.each(response.data.products, function (index, product) {
@@ -394,6 +399,7 @@
 
         var _resetFormColor = function () {
             var $this = $('form.buy');
+
             $('select.color', $this).prop('disabled', true);
             $('select.color option:first', $this).prop('selected', true);
             $('select.color option', $this).each(function (index) {

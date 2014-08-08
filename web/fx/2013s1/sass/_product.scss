@@ -141,10 +141,10 @@ a.video-popper, #video-player-container a.video {
   }
 }
 
-form.buy{
+form.buy {
 	margin-bottom: 16px;
     position: relative;
-	label{
+	label {
 		display: block;
 		padding: 0 6px 0 0;
 		margin: 10px 0;
@@ -170,6 +170,9 @@ form.buy{
 		font-family: $font-sans;
 		font-size: $paragraph-size;
 	}
+    #dialoug-message {
+        width: 85%;
+    }
 }
 
 .latest-seen-poducts,

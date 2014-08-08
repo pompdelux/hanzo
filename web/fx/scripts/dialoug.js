@@ -135,8 +135,7 @@ var dialoug = (function($) {
 
     if ($notice.length && !$('body').hasClass('is-mobile')) {
       $notice.after(tpl);
-    }
-    else {
+    } else {
       if ($main.is('input')) {
         $main.before(tpl);
         $main = $main.parent();
