@@ -36,7 +36,8 @@ class ExceptionHandler
     /**
      * __construct
      *
-     * @param Object $service_container
+     * @param ContainerInterface  $service_container
+     * @param HttpKernelInterface $kernel
      */
     public function __construct(ContainerInterface $service_container, HttpKernelInterface $kernel)
     {
