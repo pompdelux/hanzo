@@ -210,7 +210,10 @@
                         if ('size' === name) {
                             $('div', $form).replaceWith(Translator.trans('out.of.stock'));
                         } else {
-                            dialoug.notice($('h1').text()+' not available in '+$('.size option:selected', $form).text()+' '+value, 'error', 6000, 'label[for="color"]');
+                            dialoug.notice(Translator.trans('variant.out.of.stock', {
+                                name : $('h1').text(),
+                                dimensions : $('.size option:selected', $form).text()+' '+value
+                            }), 'error', 6000, 'label[for="color"]');
                             _resetFormColor();
                         }
 

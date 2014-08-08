@@ -122,6 +122,10 @@
                 <source>out.of.stock</source>
                 <target>Uitverkocht</target>
             </trans-unit>
+            <trans-unit id="variant.out.of.stock">
+                <source>variant.out.of.stock</source>
+                <target>%name% er desværre udsolgt i %dimensions%</target>
+            </trans-unit>
             <trans-unit id="BC_TEXT_NEWSLETTER_USER_NOT_EXISTS" approved="no">
                 <source>BC_TEXT_NEWSLETTER_USER_NOT_EXISTS</source>
                 <target>Dit e-mailadres "%email%" is niet aangemeld voor de nieuwsbrief</target>

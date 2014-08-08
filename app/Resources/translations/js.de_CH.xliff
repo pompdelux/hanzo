@@ -126,6 +126,10 @@
                 <source>out.of.stock</source>
                 <target>Ausverkauft</target>
             </trans-unit>
+            <trans-unit id="variant.out.of.stock">
+                <source>variant.out.of.stock</source>
+                <target>%name% er desværre udsolgt i %dimensions%</target>
+            </trans-unit>
             <trans-unit id="wall.add.response">
                 <source>wall.add.response</source>
                 <target>Beitrag beantworten</target>
