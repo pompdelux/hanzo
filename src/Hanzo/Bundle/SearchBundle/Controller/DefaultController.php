@@ -355,7 +355,7 @@ class DefaultController extends CoreController
         $query = $conn->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
         $query->execute();
 
-        $router_keys = include $this->container->parameters['kernel.cache_dir'] . '/category_map.php';
+        $router_keys = include $this->container->getParameter('kernel.cache_dir') . '/category_map.php';
         $router = $this->get('router');
 
         $result = [];

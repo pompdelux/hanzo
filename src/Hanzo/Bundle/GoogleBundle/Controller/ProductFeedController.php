@@ -41,7 +41,7 @@ class ProductFeedController extends Controller
 
         $items       = [];
         $product_ids = [];
-        $router_keys = include $this->container->parameters['kernel.cache_dir'] . '/category_map.php';
+        $router_keys = include $this->container->getParameter('kernel.cache_dir').'/category_map.php';
 
         $products = ProductsQuery::create()
             ->filterByMaster(null, \Criteria::ISNULL)
