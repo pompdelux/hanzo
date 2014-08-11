@@ -34,20 +34,15 @@ class DefaultController extends CoreController
             return $this->redirect($this->generateUrl('_homepage'));
         }
 
-        $locale = $hanzo->get('core.locale');
-        $domain_id = $hanzo->get('core.domain_id');
-
-        $page = CmsPeer::getByPK($id, $locale);
-
-        $settings = json_decode($page->getSettings());
-        $group = $settings->group;
-
-        $categories  = array_map('trim', explode(',', $settings->category_ids));
-
+        $locale         = $hanzo->get('core.locale');
+        $domain_id      = $hanzo->get('core.domain_id');
+        $page           = CmsPeer::getByPK($id, $locale);
+        $settings       = json_decode($page->getSettings());
+        $group          = $settings->group;
+        $categories     = array_map('trim', explode(',', $settings->category_ids));
         $no_accessories = $categories;
-        $accessories = array_shift($no_accessories);
-
-        $category_sort = implode(',', $no_accessories);
+        $accessories    = array_shift($no_accessories);
+        $category_sort  = implode(',', $no_accessories);
 
         // TODO: figure out a way to avoid this..
         // setup size grouping
@@ -78,8 +73,8 @@ class DefaultController extends CoreController
         }
 
         $result_set = [];
-        if ('POST' === $this->getRequest()->getMethod()) {
-            $size = $this->getRequest()->get('size');
+        if ('POST' === $request->getMethod()) {
+            $size = $request->get('size');
 
             if (empty($size) || empty($sizes[$size])) {
                 return $this->redirect($request->headers->get('referer'));
@@ -191,42 +186,49 @@ class DefaultController extends CoreController
 
             if (count($product_ids)) {
                 $products = ProductsQuery::create()
+                    ->useProductsI18nQuery()
+                        ->filterByLocale($locale)
+                    ->endUse()
                     ->useProductsImagesQuery()
                         ->groupByImage()
                     ->endUse()
                     ->joinWithProductsImages()
+                    ->joinWithProductsI18n()
                     ->findById($product_ids)
                 ;
 
-                $prices = ProductsDomainsPricesPeer::getProductsPrices($product_ids);
-
-                $router_keys = include $this->container->getParameter('kernel.cache_dir').'/category_map.php';
-                $router = $this->get('router');
+                $prices      = ProductsDomainsPricesPeer::getProductsPrices($product_ids);
+                $router_keys = include $this->container->getParameter('kernel.cache_dir') . '/category_map.php';
+                $router      = $this->get('router');
 
                 foreach ($products as $product) {
-                    if (!$product->getSku() || $product->getIsOutOfStock()) {
+                    /** @var \Hanzo\Model\Products $product */
+                    if (!$product->getSku() ||
+                        $product->getIsOutOfStock()
+                    ) {
                         continue;
                     }
+
+                    $product->setLocale($locale);
 
                     foreach ($category_map as $category => $map) {
                         foreach ($map as $id) {
                             if ($id == $product->getId()) {
-                                $product_route = $router_keys['_' . strtolower($locale) . '_' . $category_ids[$category]];
-
+                                $product_route  = $router_keys['_' . strtolower($locale) . '_' . $category_ids[$category]];
                                 $image_overview = str_replace('_set_', '_overview_', $product->getProductsImagess()->getFirst()->getImage());
-                                $image_set = str_replace('_overview_', '_set_', $product->getProductsImagess()->getFirst()->getImage());
+                                $image_set      = str_replace('_overview_', '_set_', $product->getProductsImagess()->getFirst()->getImage());
 
                                 $result_set[$category][$id] = array(
                                     'sku' => $product->getSku(),
                                     'id' => $product->getId(),
                                     'out_of_stock' => $product->getIsOutOfStock(),
-                                    'title' => $product->getSku(),
+                                    'title' => $product->getTitle(),
                                     'image' => $image_set,
                                     'image_flip' => $image_overview,
                                     'prices' => $prices[$id],
                                     'url' => $router->generate($product_route, array(
                                         'product_id' => $product->getId(),
-                                        'title' => Tools::stripText($product->getSku()),
+                                        'title' => Tools::stripText($product->getTitle()),
                                     )),
                                 );
                             }
@@ -243,8 +245,8 @@ class DefaultController extends CoreController
             'title'     => $page->getTitle(),
             'result'    => $result_set,
             'sizes'     => (is_array($sizes) ? $sizes : array()),
-            'route'     => $this->getRequest()->get('_route'),
-            'selected'  => $this->getRequest()->get('size', ''),
+            'route'     => $request->get('_route'),
+            'selected'  => $request->get('size', ''),
             'cms_id'    => $page->getParentId()
         ));
     }
