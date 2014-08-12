@@ -76,7 +76,7 @@ class SmsService
      * Send invite via sms
      *
      * @param $participant
-     * @return bool|mixed|\Smesg\Provider\Common\Response
+     * @return bool|\Smesg\Common\Response
      */
     public function sendEventInvite($participant)
     {
@@ -86,17 +86,17 @@ class SmsService
 
         $event = $participant->getEvents();
         $parameters = array(
-            '%name%' => trim($participant->getFirstName().' '.$participant->getLastName()),
+            '%name%'       => trim($participant->getFirstName() . ' ' . $participant->getLastName()),
             '%event_date%' => $event->getEventDate('d-m-Y'),
             '%event_time%' => $event->getEventDate('G:i'),
-            '%address%' => $event->getAddressLine1(),
-            '%zip%' => $event->getPostalCode(),
-            '%city%' => $event->getCity(),
-            '%hostess%' => $event->getHost(),
-            '%event_id%' => 'e'.$event->getId(),
+            '%address%'    => $event->getAddressLine1(),
+            '%zip%'        => $event->getPostalCode(),
+            '%city%'       => $event->getCity(),
+            '%hostess%'    => $event->getHost(),
+            '%event_id%'   => 'e' . $event->getId(),
         );
 
-        $to = $this->settings['provider.calling_code'].ltrim($participant->getPhone(), '0');
+        $to      = $this->settings['provider.calling_code'].ltrim($participant->getPhone(), '0');
         $message = $this->translator->trans('event.sms.invite', $parameters, 'events');
 
         $provider = $this->getProvider();

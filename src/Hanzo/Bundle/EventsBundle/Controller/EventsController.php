@@ -2,7 +2,6 @@
 
 namespace Hanzo\Bundle\EventsBundle\Controller;
 
-use Hanzo\Bundle\EventsBundle\Form\Type\EventsParticipantType;
 use Hanzo\Bundle\EventsBundle\Form\Type\EventsType;
 use Hanzo\Bundle\EventsBundle\Helpers\EventHostess;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -14,6 +13,13 @@ use Hanzo\Model\EventsQuery;
 use Hanzo\Model\Events;
 use Hanzo\Model\EventsParticipantsQuery;
 use Hanzo\Model\CustomersPeer;
+use Hanzo\Model\EventsParticipants;
+use Hanzo\Model\CustomersQuery;
+use Hanzo\Model\Customers;
+use Hanzo\Model\AddressesPeer;
+use Hanzo\Model\Orders;
+use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\OrdersLinesQuery;
 
 class EventsController extends CoreController
 {
@@ -134,7 +140,7 @@ class EventsController extends CoreController
 
         if ('POST' === $request->getMethod()) {
 
-            $changed = $event->isNew();
+            $changed = !$event->isNew();
             if ($changed) {
                 $oldEvent = $event->copy();
             }
@@ -354,7 +360,7 @@ class EventsController extends CoreController
 
         if ($event instanceof Events) {
             $eventsParticipant = new EventsParticipants();
-            $form              = $this->createForm(new EventsParticipantType(), $eventsParticipant);
+            $form              = $this->createForm('events_participant', $eventsParticipant);
 
             if ('POST' === $request->getMethod()) {
                 $form->handleRequest($request);
@@ -404,113 +410,62 @@ class EventsController extends CoreController
         ));
     }
 
-    public function rsvpAction($key)
+    public function rsvpAction(Request $request, $key)
     {
-        $events_participant = EventsParticipantsQuery::create()->findOneByKey($key);
         $event = null;
-        if($events_participant instanceof EventsParticipants){
+        $eventParticipant = EventsParticipantsQuery::create()->findOneByKey($key);
+
+        if ($eventParticipant instanceof EventsParticipants) {
             $event = EventsQuery::create()
                 ->filterByEventDate(array('min' => date('Y-m-d H:i:s')))
-                ->findOneById($events_participant->getEventsId())
+                ->findOneById($eventParticipant->getEventsId())
             ;
         }
-        $form_rsvp = null;
-        $form_tell_a_friend = null;
 
-        if($events_participant instanceof EventsParticipants && $event instanceof Events){
-            if(true === $events_participant->getTellAFriend()){
-                $form_tell_a_friend = $this->createFormBuilder(new EventsParticipants())
-                    ->add('first_name', 'text',
-                        array(
-                            'label' => 'events.participants.first_name.label',
-                            'translation_domain' => 'events'
-                        )
-                    )->add('last_name', 'text',
-                        array(
-                            'label' => 'events.participants.last_name.label',
-                            'translation_domain' => 'events'
-                        )
-                    )->add('email', 'email',
-                        array(
-                            'label' => 'events.participants.email.label',
-                            'translation_domain' => 'events',
-                            'required' => false
-                        )
-                    )->add('phone', 'text',
-                        array(
-                            'label' => 'events.participants.phone.label',
-                            'translation_domain' => 'events',
-                            'required' => false
-                        )
-                    )->getForm()
-                ;
-                $form_tell_a_friend = $form_tell_a_friend->createView();
+        $formRsvp = null;
+        $formTellAFriend = null;
+
+        if ($eventParticipant instanceof EventsParticipants && $event instanceof Events){
+            if (true === $eventParticipant->getTellAFriend()) {
+                $formTellAFriend = $this->createForm('events_tell_a_friend');
+                $formTellAFriend = $formTellAFriend->createView();
             }
 
-            $accept = 1;
-            if ($events_participant->getRespondedAt()) {
-                $accept = $events_participant->getHasAccepted();
-            }
-
-            $form_rsvp = $this->createFormBuilder($events_participant)
-                ->add('first_name', 'text', array(
-                    'label' => 'events.participants.first_name.label',
-                    'translation_domain' => 'events'
-                ))->add('last_name', 'text', array(
-                    'label' => 'events.participants.last_name.label',
-                    'translation_domain' => 'events'
-                ))->add('phone', 'text', array(
-                    'label' => 'events.participants.phone.label',
-                    'translation_domain' => 'events',
-                    'required' => false
-                ))->add('has_accepted', 'choice', array(
-                    'choices' => array(
-                        '1' => $this->get('translator')->trans('events.hasaccepted.yes', array(), 'events'),
-                        '0' => $this->get('translator')->trans('events.hasaccepted.no', array(), 'events')
-                    ),
-                    'data' => $accept,
-                    'multiple' => false,
-                    'expanded' => false,
-                    'label' => 'events.participants.has_accepted.label',
-                    'translation_domain' => 'events',
-                    'required' => false
-                ))
-            ;
+            $formRsvp = $this->createForm('events_rsvp', $eventParticipant);
 
             if ($this->container->get('sms_manager')->isEventRemindersEnabled()) {
-                $form_rsvp->add('notify_by_sms', 'checkbox', array(
-                    'label' => 'events.participants.notify_by_sms.label',
+                $formRsvp->add('notify_by_sms', 'checkbox', array(
+                    'label'              => 'events.participants.notify_by_sms.label',
                     'translation_domain' => 'events',
-                    'required' => false
+                    'required'           => false
                 ));
             }
 
-            $form_rsvp = $form_rsvp->getForm();
-
-            $request = $this->getRequest();
             if ('POST' === $request->getMethod()) {
-                $form_rsvp->bind($request);
+                $formRsvp->handleRequest($request);
 
-                if ($form_rsvp->isValid()) {
-                    $events_participant->setRespondedAt(time());
-                    $events_participant->save();
+                if ($formRsvp->isValid()) {
+                    $eventParticipant->setHasAccepted($formRsvp->get('has_accepted'));
+                    $eventParticipant->setRespondedAt(time());
+                    $eventParticipant->save();
 
-                    $this->get('session')->getFlashBag()->add('notice', 'events.participant.rsvp.success');
+                    $request->getSession()->getFlashBag()->add('notice', 'events.participant.rsvp.success');
                 }
             }
-            $form_rsvp = $form_rsvp->createView();
+
+            $formRsvp = $formRsvp->createView();
         }
 
         return $this->render('EventsBundle:Events:rsvp.html.twig', array(
             'page_type'          => 'event',
             'key'                => $key,
             'event'              => $event,
-            'form_rsvp'          => $form_rsvp,
-            'form_tell_a_friend' => $form_tell_a_friend
+            'form_rsvp'          => $formRsvp,
+            'form_tell_a_friend' => $formTellAFriend
         ));
     }
 
-    public function tellAFriendAction($key)
+    public function tellAFriendAction(Request $request, $key)
     {
         $friend = EventsParticipantsQuery::create()
             ->filterByTellAFriend(true)
@@ -521,66 +476,41 @@ class EventsController extends CoreController
             $event = EventsQuery::create()
                 ->findOneById($friend->getEventsId())
             ;
-            $events_participant = new EventsParticipants();
 
-            $form = $this->createFormBuilder($events_participant)
-                ->add('first_name', 'text',
-                    array(
-                        'label' => 'events.participants.first_name.label',
-                        'translation_domain' => 'events'
-                    )
-                )->add('last_name', 'text',
-                    array(
-                        'label' => 'events.participants.last_name.label',
-                        'translation_domain' => 'events'
-                    )
-                )->add('email', 'email',
-                    array(
-                        'label' => 'events.participants.email.label',
-                        'translation_domain' => 'events',
-                        'required' => false
-                    )
-                )->add('phone', 'text',
-                    array(
-                        'label' => 'events.participants.phone.label',
-                        'translation_domain' => 'events',
-                        'required' => false
-                    )
-                )->getForm()
-            ;
+            $eventParticipant = new EventsParticipants();
+            $form = $this->createForm('events_tell_a_friend', $eventParticipant);
 
-            $request = $this->getRequest();
             if ('POST' === $request->getMethod()) {
                 $form->handleRequest($request);
 
                 if ($form->isValid()) {
-                    $events_participant->setKey(sha1(time()));
-                    $events_participant->setEventsId($friend->getEventsId());
-                    $events_participant->setInvitedBy($friend->getId());
-                    $events_participant->save();
+                    $eventParticipant->setKey(sha1(time()));
+                    $eventParticipant->setEventsId($friend->getEventsId());
+                    $eventParticipant->setInvitedBy($friend->getId());
+                    $eventParticipant->save();
 
                     // Now send out some emails!
-                    if ($events_participant->getEmail()) {
+                    if ($eventParticipant->getEmail()) {
                         $mailer = $this->get('mail_manager');
 
                         $mailer->setMessage('events.participant.invited', array(
                             'event_date'       => $event->getEventDate('d/m'),
                             'event_time'       => $event->getEventDate('H:i'),
-                            'to_name'          => $events_participant->getFirstName(). ' ' .$events_participant->getLastName(),
+                            'to_name'          => $eventParticipant->getFirstName(). ' ' .$eventParticipant->getLastName(),
                             'hostess'          => $event->getHost(),
                             'address'          => $event->getAddressLine1(). ' ' .$event->getAddressLine2(),
                             'zip'              => $event->getPostalCode(),
                             'city'             => $event->getCity(),
                             'email'            => $event->getEmail(),
                             'phone'            => $event->getPhone(),
-                            'link'             => $this->generateUrl('events_rsvp', array('key' => $events_participant->getKey()), true),
+                            'link'             => $this->generateUrl('events_rsvp', array('key' => $eventParticipant->getKey()), true),
                             'consultant_name'  => $event->getCustomersRelatedByConsultantsId()->getFirstName(). ' ' .$event->getCustomersRelatedByConsultantsId()->getLastName(),
                             'consultant_email' => $event->getCustomersRelatedByConsultantsId()->getEmail()
                         ));
 
                         $mailer->setTo(
-                            $events_participant->getEmail(),
-                            $events_participant->getFirstName(). ' ' .$events_participant->getLastName()
+                            $eventParticipant->getEmail(),
+                            $eventParticipant->getFirstName(). ' ' .$eventParticipant->getLastName()
                         );
 
                         $name = $friend->getFirstName(). ' ' .$friend->getLastName();
@@ -705,10 +635,14 @@ class EventsController extends CoreController
         return $this->redirect($this->generateUrl($goto));
     }
 
-    public function myEventsAction()
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function myEventsAction(Request $request)
     {
         $customer = CustomersPeer::getCurrent();
-        $events = EventsQuery::create()
+        $events   = EventsQuery::create()
             ->joinCustomersRelatedByConsultantsId()
             ->filterByEventDate(array('min' => date('Y-m-d H:i:s')))
             ->filterByCustomersId($customer->getId())
@@ -721,133 +655,70 @@ class EventsController extends CoreController
         // store them and the event data in the master events array myEvents.
         // Multiple forms on one page, requires a Form object to each.
         foreach ($events as $event) {
-            if ($event instanceof Events) {
-                $myEvents[$event->getId()] = array(
-                    'data' => $event,
-                    'form' => $this->createFormBuilder()
-                        ->add('first_name', 'text',
-                            array(
-                                'label' => 'events.participants.first_name.label',
-                                'translation_domain' => 'events'
-                            )
-                        )->add('last_name', 'text',
-                            array(
-                                'label' => 'events.participants.last_name.label',
-                                'translation_domain' => 'events'
-                            )
-                        )->add('email', 'email',
-                            array(
-                                'label' => 'events.participants.email.label',
-                                'translation_domain' => 'events',
-                                'required' => false,
-                                'error_bubbling' => true
-                            )
-                        )->add('phone', 'text',
-                            array(
-                                'label' => 'events.participants.phone.label',
-                                'translation_domain' => 'events',
-                                'required' => false,
-                                'error_bubbling' => true
-                            )
-                        )->add('tell_a_friend', 'checkbox',
-                            array(
-                                'label' => 'events.participants.tell_a_friend.label',
-                                'translation_domain' => 'events',
-                                'required' => false
-                            )
-                        )->add('event_id', 'hidden', array('data' => $event->getId()))
-                        ->getForm()
-                );
-                $myEvents[$event->getId()]['form_view'] = $myEvents[$event->getId()]['form']->createView();
+            if (!$event instanceof Events) {
+                continue;
             }
+
+            $participant = new EventsParticipants();
+            $participant->setEventsId($event->getId());
+
+            $myEvents[$event->getId()] = array(
+                'data' => $event,
+                'form' => $this->createForm('events_participant', $participant)->createView(),
+            );
         }
 
-        $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
-
-            $form = &$myEvents[$request->request->get('form')['event_id']]['form']; // Get the correct form instance for the given event. The eventid is sent with a hidden field
+            $form = $this->createForm('events_participant');
             $form->handleRequest($request);
 
-            $data = $form->getData();
+            /** @var \Hanzo\Model\EventsParticipants $participant */
+            $participant = $form->getData();
 
-            if (!(empty($data['email']) && empty($data['phone'])) && $form->isValid()) {
+            if ($form->isValid()) {
+                $eventParticipant = EventsParticipantsQuery::create()
+                    ->filterByEventsId($participant->getEventsId())
+                    ->filterByEmail($participant->getEmail())
+                    ->_or()
+                    ->filterByPhone($participant->getPhone())
+                    ->findOne();
 
-                $event = $myEvents[$data['event_id']]['data'];
-
-                $query = EventsParticipantsQuery::create()
-                    ->filterByEventsId($data['event_id'])
-                ;
-                if (!empty($data['email'])) {
-                    $query->filterByEmail($data['email']);
+                if ($eventParticipant instanceof EventsParticipants) {
+                    $this->container->get('session')->getFlashBag()->add('notice', 'events.participant.exists');
+                    return $this->redirect($this->generateUrl('events_my_events'));
                 }
-                if (!empty($data['phone']) && empty($data['email'])) {
-                    $query->filterByPhone($data['phone']);
-                }
-                $events_participant = $query->findOne();
 
-                if(!$events_participant instanceof EventsParticipants){
-                    $events_participant = new EventsParticipants();
-                    $events_participant->setKey(sha1(time()))
-                                       ->setEventsId($data['event_id']);
-
-                }
-                $events_participant->setInvitedBy($customer->getId())
-                    ->setEmail($data['email'])
-                    ->setPhone($data['phone'])
-                    ->setFirstName($data['first_name'])
-                    ->setLastName($data['last_name'])
-                    ->setTellAFriend($data['tell_a_friend'])
+                $participant
+                    ->setInvitedBy($customer->getId())
+                    ->setKey(sha1(time()))
                     ->save();
 
+                $event = $myEvents[$participant->getEventsId()]['data'];
+
                 // Now send out some emails!
-                if ($events_participant->getEmail()) {
-                    $mailer = $this->get('mail_manager');
-
-                    $mailer->setMessage('events.participant.invited', array(
-                        'event_date'       => $event->getEventDate('d/m'),
-                        'event_time'       => $event->getEventDate('H:i'),
-                        'to_name'          => $events_participant->getFirstName(). ' ' .$events_participant->getLastName(),
-                        'hostess'          => $event->getHost(),
-                        'address'          => $event->getAddressLine1(). ' ' .$event->getAddressLine2(),
-                        'zip'              => $event->getPostalCode(),
-                        'city'             => $event->getCity(),
-                        'email'            => $event->getEmail(),
-                        'phone'            => $event->getPhone(),
-                        'link'             => $this->generateUrl('events_rsvp', array('key' => $events_participant->getKey()), true),
-                        'consultant_name'  => $myEvents[$data['event_id']]['data']->getCustomersRelatedByConsultantsId()->getFirstName(). ' ' .$myEvents[$data['event_id']]['data']->getCustomersRelatedByConsultantsId()->getLastName(),
-                        'consultant_email' => $myEvents[$data['event_id']]['data']->getCustomersRelatedByConsultantsId()->getEmail()
-                    ));
-
-                    $mailer->setTo(
-                        $events_participant->getEmail(),
-                        $events_participant->getFirstName(). ' ' .$events_participant->getLastName()
-                    );
-
-                    $mailer->setFrom(array('events@pompdelux.com' => $event->getHost(). ' (via POMPdeLUX)'));
-                    $mailer->setSender('events@pompdelux.com', 'POMPdeLUX', true);
-                    $mailer->setReplyTo($event->getEmail(), $event->getHost());
-                    $mailer->send();
+                if ($participant->getEmail()) {
+                    $mailer = $this->get('hanzo.event.mailer');
+                    $mailer->setEventData($event, null, $myEvents[$participant->getEventsId()]['data']->getCustomersRelatedByConsultantsId());
+                    $mailer->sendParticipantEventInviteEmail($participant);
                 }
 
-                if ($events_participant->getPhone()) {
-                    $this->get('sms_manager')->sendEventInvite($events_participant);
+                if ($participant->getPhone()) {
+                    $this->get('sms_manager')->sendEventInvite($participant);
                 }
 
                 $this->get('session')->getFlashBag()->add('notice', 'events.participant.invited');
+                return $this->redirect($this->generateUrl('events_my_events'));
             }
         }
 
         // Store all participants in the master events array.
         foreach ($events as $event) {
-            if ($event instanceof Events) {
-                $events_participants = EventsParticipantsQuery::create()->findByEventsId($event->getId());
-                $myEvents[$event->getId()]['participants'] = $events_participants;
-            }
+            $myEvents[$event->getId()]['participants'] = EventsParticipantsQuery::create()->findByEventsId($event->getId());
         }
 
         return $this->render('EventsBundle:Events:myEvents.html.twig', array(
-            'page_type'     => 'event',
-            'events'        => $myEvents
+            'page_type' => 'event',
+            'events'    => $myEvents
         ));
     }
 }

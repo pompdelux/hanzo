@@ -40,7 +40,13 @@ class EventsParticipantType extends AbstractType
             ])->add('tell_a_friend', 'checkbox', [
                 'label'    => 'events.participants.tell_a_friend.label',
                 'required' => false
+            ])->add('events_id', 'hidden',  [
+                'required' => false
             ]);
+
+        if (!empty($options['events_id'])) {
+            $builder->add('events_id', 'hidden');
+        }
     }
 
 

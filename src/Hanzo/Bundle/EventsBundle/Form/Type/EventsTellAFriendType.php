@@ -10,26 +10,12 @@
 
 namespace Hanzo\Bundle\EventsBundle\Form\Type;
 
-use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class EventsRsvpType extends AbstractType
+class EventsTellAFriendType extends AbstractType
 {
-    /**
-     * @var Translator
-     */
-    private $translator;
-
-    /**
-     * @param Translator $translator
-     */
-    public function __construct(Translator $translator)
-    {
-        $this->translator = $translator;
-    }
-
     /**
      * @param FormBuilderInterface $builder
      * @param array                $options
@@ -41,18 +27,12 @@ class EventsRsvpType extends AbstractType
                 'label' => 'events.participants.first_name.label',
             ])->add('last_name', 'text', [
                 'label' => 'events.participants.last_name.label',
-            ])->add('phone', 'text', [
-                'label'    => 'events.participants.phone.label',
+            ])->add('email', 'email', [
+                'label' => 'events.participants.email.label',
                 'required' => false
-            ])->add('has_accepted', 'choice', [
-                'choices' => [
-                    '1' => $this->translator->trans('events.hasaccepted.yes', [], 'events'),
-                    '0' => $this->translator->trans('events.hasaccepted.no', [], 'events')
-                ],
-                'multiple' => false,
-                'expanded' => false,
-                'required' => false,
-                'label'    => 'events.participants.has_accepted.label',
+            ])->add('phone', 'text', [
+                'label' => 'events.participants.phone.label',
+                'required' => false
             ]);
     }
 
@@ -62,6 +42,7 @@ class EventsRsvpType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
+            'data_class'         => 'Hanzo\Model\EventsParticipants',
             'translation_domain' => 'events',
         ));
     }
@@ -71,6 +52,6 @@ class EventsRsvpType extends AbstractType
      */
     public function getName()
     {
-        return 'events_rsvp';
+        return 'events_tell_a_friend';
     }
 }

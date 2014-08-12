@@ -30,7 +30,6 @@ class EventsType extends AbstractType
             ->add('event_date', 'text', [
                 'attr' => array('class' => 'datetimepicker'),
                 'label' => 'events.event_date.label',
-//                'data' => $event->getEventDate('m/d/Y H:i')
             ])->add('host', 'text', [
                 'label' => 'events.host.label',
             ])->add('address_line_1', 'text', [

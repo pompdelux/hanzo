@@ -36,7 +36,7 @@ class EventMailer
     private $event;
 
     /**
-     * @var EventHostess
+     * @var Customers
      */
     private $hostess;
 
@@ -63,8 +63,11 @@ class EventMailer
     public function setEventData(Events $event, EventHostess $hostess = null, Customers $consultant = null)
     {
         $this->event      = $event;
-        $this->hostess    = $hostess->getHostess();
         $this->consultant = $consultant;
+
+        if ($hostess instanceof EventHostess) {
+            $this->hostess = $hostess->getHostess();
+        }
     }
 
     public function sendHostessEmail()
@@ -82,7 +85,7 @@ class EventMailer
                 'email'            => $this->hostess->getEmail(),
                 'password'         => $this->hostess->getPasswordClear(),
                 'phone'            => $this->event->getPhone(),
-                'link'             => $this->generateUrl('events_invite', ['key' => $this->event->getKey()], true),
+                'link'             => $this->router->generate('events_invite', ['key' => $this->event->getKey()], true),
                 'consultant_name'  => $this->consultant->getFirstName(). ' ' .$this->consultant->getLastName(),
                 'consultant_email' => $this->consultant->getEmail()
             ]);
@@ -133,8 +136,8 @@ class EventMailer
                 'to_address'       => $this->event->getAddressLine1(). ' ' .$this->event->getAddressLine2(),
                 'to_zip'           => $this->event->getPostalCode(),
                 'to_city'          => $this->event->getCity(),
-                'email'            => $this->hostess->getHostess()->getEmail(),
-                'password'         => $this->hostess->getHostess()->getPasswordClear(),
+                'email'            => $this->hostess->getEmail(),
+                'password'         => $this->hostess->getPasswordClear(),
                 'phone'            => $this->event->getPhone(),
                 'link'             => $this->router->generate('events_invite', ['key' => $this->event->getKey()], true),
                 'consultant_name'  => $consultant->getFirstName(). ' ' .$consultant->getLastName(),
@@ -188,16 +191,18 @@ class EventMailer
     public function sendParticipantEventInviteEmail(EventsParticipants $eventsParticipant)
     {
         $this->mailer->setMessage('events.participant.invited', [
-            'event_date' => $this->event->getEventDate('d/m'),
-            'event_time' => $this->event->getEventDate('H:i'),
-            'to_name'    => $eventsParticipant->getFirstName() . ' ' . $eventsParticipant->getLastName(),
-            'hostess'    => $this->event->getHost(),
-            'address'    => $this->event->getAddressLine1() . ' ' . $this->event->getAddressLine2(),
-            'zip'        => $this->event->getPostalCode(),
-            'city'       => $this->event->getCity(),
-            'email'      => $this->event->getEmail(),
-            'phone'      => $this->event->getPhone(),
-            'link'       => $this->router->generate('events_rsvp', ['key' => $eventsParticipant->getKey()], true)
+            'event_date'       => $this->event->getEventDate('d/m'),
+            'event_time'       => $this->event->getEventDate('H:i'),
+            'to_name'          => $eventsParticipant->getFirstName() . ' ' . $eventsParticipant->getLastName(),
+            'hostess'          => $this->event->getHost(),
+            'address'          => $this->event->getAddressLine1() . ' ' . $this->event->getAddressLine2(),
+            'zip'              => $this->event->getPostalCode(),
+            'city'             => $this->event->getCity(),
+            'email'            => $this->event->getEmail(),
+            'phone'            => $this->event->getPhone(),
+            'link'             => $this->router->generate('events_rsvp', ['key' => $eventsParticipant->getKey()], true),
+            'consultant_name'  => $this->consultant->getFirstName() . ' ' . $this->consultant->getLastName(),
+            'consultant_email' => $this->consultant->getEmail()
         ]);
 
         $this->mailer->setTo(
