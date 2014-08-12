@@ -190,7 +190,11 @@ class EventsController extends CoreController
                 if ($changed) {
                     if ($changedHost) {
                         $mailer->sendChangeHostessEmail($oldEvent);
-                        $mailer->sendChangeHostessParticipantEmail();
+                        $mailer->sendParticipantEventChangesEmail();
+                    } else {
+                        $oldDate = new \DateTime($oldEvent->getEventDate(null));
+                        $mailer->sendDateChangedHostessEmail($oldDate);
+                        $mailer->sendDateChangedParticipantEmail($oldDate);
                     }
                 } else {
                     $mailer->sendHostessEmail();
@@ -291,44 +295,16 @@ class EventsController extends CoreController
             ;
 
             // Now send out some emails!
-            $mailer = $this->get('mail_manager');
-
-            $mailer->setMessage('events.hostess.delete', array(
-                'event_date'       => $event->getEventDate('d/m'),
-                'event_time'       => $event->getEventDate('H:i'),
-                'to_name'          => $event->getHost(),
-                'address'          => $event->getAddressLine1(). ' ' .$event->getAddressLine2(),
-                'zip'              => $event->getPostalCode(),
-                'city'             => $event->getCity(),
-                'consultant_name'  => $consultant->getFirstName(). ' ' .$consultant->getLastName(),
-                'consultant_email' => $consultant->getEmail()
-            ));
-
-            $mailer->setTo(array($event->getEmail() => $event->getHost()));
-            $mailer->setFrom(array($consultant->getEmail() => $consultant->getFirstName(). ' ' .$consultant->getLastName()));
-            $mailer->send();
+            $mailer = $this->get('hanzo.event.mailer');
+            $mailer->setEventData($event, null, $consultant);
+            $mailer->sendHostessDeletedEventEmail();
 
             foreach ($participants as $participant) {
                 if (!$participant->getEmail()) {
                     continue;
                 }
 
-                $mailer->setMessage('events.participants.delete', array(
-                    'event_date'    => $event->getEventDate('d/m'),
-                    'event_time'    => $event->getEventDate('H:i'),
-                    'to_name'       => $participant->getFirstName(),
-                    'address'       => $event->getAddressLine1(). ' ' .$event->getAddressLine2(),
-                    'zip'           => $event->getPostalCode(),
-                    'city'          => $event->getCity(),
-                    'hostess'       => $event->getHost(),
-                    'hostess_email' => $event->getEmail()
-                ));
-
-                $mailer->setTo($participant->getEmail(), $participant->getFirstName(). ' ' .$participant->getLastName());
-                $mailer->setFrom(array('events@pompdelux.com' => $event->getHost() . ' (via POMPdeLUX)'));
-                $mailer->setSender('events@pompdelux.com', 'POMPdeLUX', true);
-                $mailer->setReplyTo($event->getEmail(), $event->getHost());
-                $mailer->send();
+                $mailer->sendParticipantDeletedEventEmail($participant);
             }
 
             $event->delete();
@@ -342,21 +318,26 @@ class EventsController extends CoreController
         }
 
         $request->getSession()->getFlashBag()->add('notice', 'events.delete.success');
-
         return $this->redirect($this->generateUrl('events_index'));
     }
 
+    /**
+     * @param Request $request
+     * @param string  $key
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function inviteAction(Request $request, $key)
     {
         $customer = CustomersPeer::getCurrent();
-        $event = EventsQuery::create()
+        $event    = EventsQuery::create()
             ->filterByEventDate(array('min' => date('Y-m-d H:i:s')))
             ->filterByCustomersId($customer->getId())
             ->findOneByKey($key)
         ;
 
         $eventsParticipant = null;
-        $form = null;
+        $form              = null;
 
         if ($event instanceof Events) {
             $eventsParticipant = new EventsParticipants();
@@ -368,8 +349,7 @@ class EventsController extends CoreController
                 if ($eventsParticipant->getEmail()) {
                     $res = EventsParticipantsQuery::create()
                         ->filterByEventsId($event->getId())
-                        ->findByEmail($eventsParticipant->getEmail())
-                    ;
+                        ->findByEmail($eventsParticipant->getEmail());
 
                     if ($res->count()) {
                         $error = new FormError($this->container->get('translator')->trans('event.email.exists', array(), 'events'));
@@ -410,6 +390,12 @@ class EventsController extends CoreController
         ));
     }
 
+    /**
+     * @param  Request $request
+     * @param  string  $key
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function rsvpAction(Request $request, $key)
     {
         $event = null;
@@ -427,8 +413,7 @@ class EventsController extends CoreController
 
         if ($eventParticipant instanceof EventsParticipants && $event instanceof Events){
             if (true === $eventParticipant->getTellAFriend()) {
-                $formTellAFriend = $this->createForm('events_tell_a_friend');
-                $formTellAFriend = $formTellAFriend->createView();
+                $formTellAFriend = $this->createForm('events_tell_a_friend')->createView();
             }
 
             $formRsvp = $this->createForm('events_rsvp', $eventParticipant);
@@ -465,6 +450,12 @@ class EventsController extends CoreController
         ));
     }
 
+    /**
+     * @param Request $request
+     * @param string  $key
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function tellAFriendAction(Request $request, $key)
     {
         $friend = EventsParticipantsQuery::create()
@@ -491,33 +482,9 @@ class EventsController extends CoreController
 
                     // Now send out some emails!
                     if ($eventParticipant->getEmail()) {
-                        $mailer = $this->get('mail_manager');
-
-                        $mailer->setMessage('events.participant.invited', array(
-                            'event_date'       => $event->getEventDate('d/m'),
-                            'event_time'       => $event->getEventDate('H:i'),
-                            'to_name'          => $eventParticipant->getFirstName(). ' ' .$eventParticipant->getLastName(),
-                            'hostess'          => $event->getHost(),
-                            'address'          => $event->getAddressLine1(). ' ' .$event->getAddressLine2(),
-                            'zip'              => $event->getPostalCode(),
-                            'city'             => $event->getCity(),
-                            'email'            => $event->getEmail(),
-                            'phone'            => $event->getPhone(),
-                            'link'             => $this->generateUrl('events_rsvp', array('key' => $eventParticipant->getKey()), true),
-                            'consultant_name'  => $event->getCustomersRelatedByConsultantsId()->getFirstName(). ' ' .$event->getCustomersRelatedByConsultantsId()->getLastName(),
-                            'consultant_email' => $event->getCustomersRelatedByConsultantsId()->getEmail()
-                        ));
-
-                        $mailer->setTo(
-                            $eventParticipant->getEmail(),
-                            $eventParticipant->getFirstName(). ' ' .$eventParticipant->getLastName()
-                        );
-
-                        $name = $friend->getFirstName(). ' ' .$friend->getLastName();
-                        $mailer->setFrom(array('events@pompdelux.com' => $name . ' (via POMPdeLUX)'));
-                        $mailer->setSender('events@pompdelux.com', 'POMPdeLUX', true);
-                        $mailer->setReplyTo($friend->getEmail(), $name);
-                        $mailer->send();
+                        $mailer = $this->get('hanzo.event.mailer');
+                        $mailer->setEventData($event, null, $event->getCustomersRelatedByConsultantsId());
+                        $mailer->sendParticipantEventInviteEmail($eventParticipant);
                     }
 
                     // Make sure that the friend only invites one
@@ -534,7 +501,9 @@ class EventsController extends CoreController
         return $this->redirect($this->generateUrl('events_rsvp', array('key' => $key)));
     }
 
-
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function listAction()
     {
         $customer = CustomersPeer::getCurrent();
@@ -550,7 +519,12 @@ class EventsController extends CoreController
         ));
     }
 
-
+    /**
+     * @param int $event_id
+     * @param int $participant_id
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function removeParticipantAction($event_id, $participant_id)
     {
         EventsParticipantsQuery::create()
@@ -561,11 +535,14 @@ class EventsController extends CoreController
         ;
 
         return $this->json_response(array(
-            'status' => true,
+            'status'  => true,
             'message' => ''
         ));
     }
 
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function selectEventAction()
     {
         $customer = CustomersPeer::getCurrent();
@@ -577,12 +554,16 @@ class EventsController extends CoreController
         ;
 
         return $this->render('EventsBundle:Events:selectEvent.html.twig', array(
-            'events' => $events,
+            'events'            => $events,
             'continue_shopping' => $this->get('router')->generate('QuickOrderBundle_homepage'),
             'disable_discounts' => (bool) Hanzo::getInstance()->get('webshop.disable_discounts', 0),
         ));
     }
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function setOrderTypeAction(Request $request)
     {
         $order = OrdersPeer::getCurrent();

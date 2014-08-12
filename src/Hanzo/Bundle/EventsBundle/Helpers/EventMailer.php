@@ -56,24 +56,28 @@ class EventMailer
     }
 
     /**
-     * @param Events       $event
-     * @param EventHostess $hostess
-     * @param Customers    $consultant
+     * @param Events                      $event
+     * @param EventHostess|Customers|null $hostess
+     * @param Customers                   $consultant
      */
-    public function setEventData(Events $event, EventHostess $hostess = null, Customers $consultant = null)
+    public function setEventData(Events $event, $hostess = null, Customers $consultant = null)
     {
         $this->event      = $event;
         $this->consultant = $consultant;
 
         if ($hostess instanceof EventHostess) {
             $this->hostess = $hostess->getHostess();
+        } elseif ($hostess instanceof Customers) {
+            $this->hostess = $hostess;
         }
     }
 
+    /**
+     * Send event created email to hostess.
+     */
     public function sendHostessEmail()
     {
         if ($this->event->getNotifyHostess()){
-
             // Send an email to the new Host
             $this->mailer->setMessage('events.hostess.create', [
                 'event_date'       => $this->event->getEventDate('d/m'),
@@ -96,6 +100,9 @@ class EventMailer
         }
     }
 
+    /**
+     * Send event moved emails to hostess.
+     */
     public function sendChangeHostessEmail(Events $oldEvent)
     {
         $consultant = CustomersPeer::getCurrent();
@@ -150,6 +157,9 @@ class EventMailer
         }
     }
 
+    /**
+     * Send event changed emails to participants.
+     */
     public function sendParticipantEventChangesEmail()
     {
         $consultant = CustomersPeer::getCurrent();
@@ -188,6 +198,11 @@ class EventMailer
         }
     }
 
+    /**
+     * Send event participant invite mail.
+     *
+     * @param EventsParticipants $eventsParticipant
+     */
     public function sendParticipantEventInviteEmail(EventsParticipants $eventsParticipant)
     {
         $this->mailer->setMessage('events.participant.invited', [
@@ -212,5 +227,111 @@ class EventMailer
 
         $this->mailer->setFrom([$this->event->getEmail() => $this->event->getHost()]);
         $this->mailer->send();
+    }
+
+    /**
+     * Send email to event hostess if an event is canceled.
+     */
+    public function sendHostessDeletedEventEmail()
+    {
+        $this->mailer->setMessage('events.hostess.delete', array(
+            'event_date'       => $this->event->getEventDate('d/m'),
+            'event_time'       => $this->event->getEventDate('H:i'),
+            'to_name'          => $this->event->getHost(),
+            'address'          => $this->event->getAddressLine1(). ' ' .$this->event->getAddressLine2(),
+            'zip'              => $this->event->getPostalCode(),
+            'city'             => $this->event->getCity(),
+            'consultant_name'  => $this->consultant->getFirstName(). ' ' .$this->consultant->getLastName(),
+            'consultant_email' => $this->consultant->getEmail()
+        ));
+
+        $this->mailer->setTo(array($this->event->getEmail() => $this->event->getHost()));
+        $this->mailer->setFrom(array($this->consultant->getEmail() => $this->consultant->getFirstName(). ' ' .$this->consultant->getLastName()));
+        $this->mailer->send();
+    }
+
+    /**
+     * Send email to event participants if an event is canceled.
+     *
+     * @param EventsParticipants $participant
+     */
+    public function sendParticipantDeletedEventEmail(EventsParticipants $participant)
+    {
+        $this->mailer->setMessage('events.participants.delete', array(
+            'event_date'    => $this->event->getEventDate('d/m'),
+            'event_time'    => $this->event->getEventDate('H:i'),
+            'to_name'       => $participant->getFirstName(),
+            'address'       => $this->event->getAddressLine1().' ' .$this->event->getAddressLine2(),
+            'zip'           => $this->event->getPostalCode(),
+            'city'          => $this->event->getCity(),
+            'hostess'       => $this->event->getHost(),
+            'hostess_email' => $this->event->getEmail()
+        ));
+
+        $this->mailer->setTo($participant->getEmail(), $participant->getFirstName(). ' ' .$participant->getLastName());
+        $this->mailer->setFrom(array($this->event->getEmail() => $this->event->getHost()));
+        $this->mailer->send();
+    }
+
+    public function sendDateChangedHostessEmail(\DateTime $oldDate)
+    {
+        $this->mailer->setMessage('events.hostess.event_date_changed', [
+            'to_event_date'    => $this->event->getEventDate('d/m'),
+            'to_event_time'    => $this->event->getEventDate('H:i'),
+            'from_event_date'  => $oldDate->format('d/m'),
+            'from_event_time'  => $oldDate->format('H:i'),
+            'name'             => $this->event->getHost(),
+            'address'          => $this->event->getAddressLine1() . ' ' . $this->event->getAddressLine2(),
+            'zip'              => $this->event->getPostalCode(),
+            'city'             => $this->event->getCity(),
+            'email'            => $this->hostess->getEmail(),
+            'password'         => $this->hostess->getPasswordClear(),
+            'phone'            => $this->event->getPhone(),
+            'link'             => $this->router->generate('events_invite', ['key' => $this->event->getKey()], true),
+            'consultant_name'  => $this->consultant->getFirstName() . ' ' . $this->consultant->getLastName(),
+            'consultant_email' => $this->consultant->getEmail()
+        ]);
+
+        $this->mailer->setTo([$this->event->getEmail() => $this->event->getHost()]);
+        $this->mailer->setFrom([$this->consultant->getEmail() => $this->consultant->getFirstName(). ' ' .$this->consultant->getLastName()]);
+        $this->mailer->send();
+    }
+
+    public function sendDateChangedParticipantEmail(\DateTime $oldDate)
+    {
+        // Find all participants.
+        $participants = EventsParticipantsQuery::create()
+            ->filterByEventsId($this->event->getId())
+            ->find()
+        ;
+
+        // Send an email to all participants
+        foreach ($participants as $participant) {
+            /** @var \Hanzo\Model\EventsParticipants $participant */
+            if (!$participant->getEmail()) {
+                continue;
+            }
+
+            $this->mailer->setMessage('events.participant.event_date_changed', [
+                'to_event_date'    => $this->event->getEventDate('d/m'),
+                'to_event_time'    => $this->event->getEventDate('H:i'),
+                'from_event_date'  => $oldDate->format('d/m'),
+                'from_event_time'  => $oldDate->format('H:i'),
+                'name'             => $participant->getFirstName() . ' ' . $participant->getLastName(),
+                'hostess'          => $this->event->getHost(),
+                'address'          => $this->event->getAddressLine1() . ' ' . $this->event->getAddressLine2(),
+                'zip'              => $this->event->getPostalCode(),
+                'city'             => $this->event->getCity(),
+                'phone'            => $this->event->getPhone(),
+                'email'            => $this->event->getEmail(),
+                'link'             => $this->router->generate('events_rsvp', ['key' => $participant->getKey()], true),
+                'consultant_name'  => $this->consultant->getFirstName() . ' ' . $this->consultant->getLastName(),
+                'consultant_email' => $this->consultant->getEmail()
+            ]);
+
+            $this->mailer->setTo([$participant->getEmail() => $participant->getFirstName(). ' ' .$participant->getLastName()]);
+            $this->mailer->setFrom([$this->event->getEmail() => $this->event->getHost()]);
+            $this->mailer->send();
+        }
     }
 }
