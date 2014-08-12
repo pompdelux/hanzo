@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9da8c99a2a43d539c250fdc9afedaa9c",
+    "hash": "a2cead56a3c53c70981ef13936b6871f",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -508,16 +508,16 @@
         },
         {
             "name": "guzzle/guzzle",
-            "version": "v3.9.1",
+            "version": "v3.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle3.git",
-                "reference": "92d9934f2fca1da15178c91239576ae26e505e60"
+                "reference": "54991459675c1a2924122afbb0e5609ade581155"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/92d9934f2fca1da15178c91239576ae26e505e60",
-                "reference": "92d9934f2fca1da15178c91239576ae26e505e60",
+                "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/54991459675c1a2924122afbb0e5609ade581155",
+                "reference": "54991459675c1a2924122afbb0e5609ade581155",
                 "shasum": ""
             },
             "require": {
@@ -561,7 +561,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.8-dev"
+                    "dev-master": "3.9-dev"
                 }
             },
             "autoload": {
@@ -596,7 +596,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2014-05-07 17:04:22"
+            "time": "2014-08-11 04:32:36"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -1761,6 +1761,56 @@
             "time": "2014-05-22 23:27:44"
         },
         {
+            "name": "sensio/generator-bundle",
+            "version": "v2.3.5",
+            "target-dir": "Sensio/Bundle/GeneratorBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sensiolabs/SensioGeneratorBundle.git",
+                "reference": "8b7a33aa3d22388443b6de0b0cf184122e9f60d2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/8b7a33aa3d22388443b6de0b0cf184122e9f60d2",
+                "reference": "8b7a33aa3d22388443b6de0b0cf184122e9f60d2",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/console": "~2.0",
+                "symfony/framework-bundle": "~2.2"
+            },
+            "require-dev": {
+                "doctrine/orm": "~2.2,>=2.2.3",
+                "symfony/doctrine-bridge": "~2.2",
+                "twig/twig": "~1.11"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Sensio\\Bundle\\GeneratorBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
+                }
+            ],
+            "description": "This bundle generates code for you",
+            "time": "2014-04-28 14:01:06"
+        },
+        {
             "name": "sensiolabs/security-checker",
             "version": "v2.0.0",
             "source": {
@@ -2428,58 +2478,7 @@
             "time": "2014-07-29 09:19:11"
         }
     ],
-    "packages-dev": [
-        {
-            "name": "sensio/generator-bundle",
-            "version": "v2.3.5",
-            "target-dir": "Sensio/Bundle/GeneratorBundle",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sensiolabs/SensioGeneratorBundle.git",
-                "reference": "8b7a33aa3d22388443b6de0b0cf184122e9f60d2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/8b7a33aa3d22388443b6de0b0cf184122e9f60d2",
-                "reference": "8b7a33aa3d22388443b6de0b0cf184122e9f60d2",
-                "shasum": ""
-            },
-            "require": {
-                "symfony/console": "~2.0",
-                "symfony/framework-bundle": "~2.2"
-            },
-            "require-dev": {
-                "doctrine/orm": "~2.2,>=2.2.3",
-                "symfony/doctrine-bridge": "~2.2",
-                "twig/twig": "~1.11"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.3.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Sensio\\Bundle\\GeneratorBundle": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com",
-                    "homepage": "http://fabien.potencier.org",
-                    "role": "Lead Developer"
-                }
-            ],
-            "description": "This bundle generates code for you",
-            "time": "2014-04-28 14:01:06"
-        }
-    ],
+    "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
@@ -2489,6 +2488,7 @@
         "liip/theme-bundle": 20,
         "drak/native-session": 20
     },
+    "prefer-stable": false,
     "platform": {
         "php": ">=5.3.3"
     },
