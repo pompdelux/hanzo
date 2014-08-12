@@ -342,6 +342,10 @@
                 <source>events.participant.invited</source>
                 <target>Die Person wurde zur Liste hinzugefügt und hat eine E-Mail erhalten.</target>
             </trans-unit>
+            <trans-unit id="events.participant.exists">
+                <source>events.participant.exists</source>
+                <target>Personen er allerede inviteret til arrangementet.</target>
+            </trans-unit>
             <trans-unit id="events.participant.invite.failed">
                 <source>events.participant.invite.failed</source>
                 <target>Es ist leider ein Fehler aufgetreten. Bitte versuchen Sie es erneut.</target>
