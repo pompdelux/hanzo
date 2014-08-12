@@ -4,13 +4,9 @@ namespace Hanzo\Bundle\ServiceBundle\Services;
 
 use Criteria;
 
-use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 
-use Hanzo\Model\EventsQuery;
 use Hanzo\Model\EventsParticipantsQuery;
-use Hanzo\Model\AddressesPeer;
-use Hanzo\Model\MessagesI18nQuery;
 
 use Smesg\Adapter\PhpStreamAdapter;
 use Smesg\Provider\UnwireProvider;
@@ -112,7 +108,7 @@ class SmsService
      * Send confirmation sms
      *
      * @param $participant
-     * @return bool|mixed|\Smesg\Provider\Common\Response
+     * @return bool|mixed|\Smesg\Common\Response
      */
     public function sendEventConfirmationReply($participant)
     {
