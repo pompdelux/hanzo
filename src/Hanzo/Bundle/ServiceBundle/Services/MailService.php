@@ -13,6 +13,11 @@ class MailService
 {
     protected $mailer, $twig, $settings, $swift;
 
+    /**
+     * @param array $parameters
+     * @param array $settings
+     * @throws \InvalidArgumentException
+     */
     public function __construct($parameters, $settings)
     {
         if ($parameters[0] instanceof Swift_Mailer) {
@@ -39,6 +44,7 @@ class MailService
      * @param string $template tis is the template identifier - excluding the .txt and/or .html postfix
      * @param mixed $parameters parameters send to the twig template
      * @param string $locale use to override default (current) locale
+     *
      * @return MailService
      * @throws \InvalidArgumentException
      */
@@ -91,7 +97,9 @@ class MailService
      *
      * @param string $body
      * @param string $type encoding type
+     *
      * @see Swift_Mime_Message::setBody
+     *
      * @return MailService
      */
     public function setBody($body, $type = 'text/plain')
@@ -106,6 +114,7 @@ class MailService
      *
      * @param string $subject
      * @see Swift_Mime_Message::setSubject
+     *
      * @return MailService
      */
     public function setSubject($subject)
@@ -117,31 +126,52 @@ class MailService
 
     /**
      * Set to address(es)
-     * @see Swift_Mime_Message::setFrom
+     *
+     * @see Swift_Mime_Message::setTo
+     *
+     * @param string $address
+     * @param string $name
+     *
+     * @return MailService
      */
     public function setTo($address, $name = null)
     {
         $this->swift->setTo($address, $name);
+
         return $this;
     }
 
     /**
      * Set cc address(es)
-     * @see Swift_Mime_Message::setFrom
+     *
+     * @see \Swift_Mime_Message
+     *
+     * @param string $address
+     * @param string $name
+     *
+     * @return MailService
      */
     public function setCc($address, $name = null)
     {
         $this->swift->setCc($address, $name);
+
         return $this;
     }
 
     /**
      * Set bcc address(es)
-     * @see Swift_Mime_Message::setFrom
+     *
+     * @see \Swift_Mime_Message::setFrom
+     *
+     * @param string $address
+     * @param string $name
+     *
+     * @return MailService
      */
     public function setBcc($address, $name = null)
     {
         $this->swift->setBcc($address, $name);
+
         return $this;
     }
 
@@ -160,10 +190,14 @@ class MailService
      *
      * @param $address
      * @param $name
+     *
+     * @return MailService
      */
     public function setReplyTo($address, $name)
     {
         $this->swift->setReplyTo([$address => $name]);
+
+        return $this;
     }
 
     /**
@@ -172,6 +206,8 @@ class MailService
      * @param string  $address
      * @param string  $name
      * @param boolean $asReturnPath
+     *
+     * @return MailService
      */
     public function setSender($address, $name, $asReturnPath = false)
     {
@@ -180,27 +216,35 @@ class MailService
         if ($asReturnPath) {
             $this->setReturnPath($address);
         }
+
+        return $this;
     }
 
     /**
      * Set Return-Path
      *
      * @param $address
+     *
+     * @return MailService
      */
     public function setReturnPath($address)
     {
         $this->swift->setReturnPath($address);
+
+        return $this;
     }
 
     /**
      * addPart
      * @param string $message
      * @param string $mime
+     *
      * @return MailService
      **/
     public function addPart($message,$mime)
     {
         $this->swift->addPart($message,$mime);
+
         return $this;
     }
 
