@@ -2,12 +2,9 @@
 
 namespace Hanzo\Bundle\AdminBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
@@ -19,8 +16,6 @@ use Hanzo\Model\SettingsQuery;
 use Hanzo\Model\Settings;
 use Hanzo\Model\EventsQuery;
 use Hanzo\Model\Events;
-
-use Propel\Runtime\Parser\PropelCSVParser;
 
 class ConsultantsController extends CoreController
 {
