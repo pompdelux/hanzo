@@ -60,15 +60,15 @@
             <tbody>
             {% for event in events %}
                 <tr>
-                    <td style="white-space: nowrap">
+                    <td class="nowrap">
                         Kode: {{ event.code }}<br>
                         Key: {{ event.key }}
                     </td>
-                    <td style="white-space: nowrap">
+                    <td class="nowrap">
                         {{ event.eventdate|date('d/m/Y') }}<br>
                         Kl: {{ event.eventdate|date('H:i') }}
                     </td>
-                    <td>
+                    <td class="nowrap">
                         <a href="{{ path('admin_customer', {'id': event.customersId }) }}">{{ event.host }}</a><br>
                         {{ event.addressline1 }}<br>
                         {% if event.addressline2 %}

@@ -107,3 +107,7 @@ table caption {
 .glyphicon-fire {
     color: #f00;
 }
+
+.nowrap {
+  white-space: nowrap;
+}
