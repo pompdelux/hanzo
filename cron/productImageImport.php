@@ -351,7 +351,7 @@ if (count($image_records_to_delete)) {
     $txt .= "\nbum og sov godt!\n";
 
     mail(
-        'hd@pompdelux.dk,un@bellcom.dk,ab@bellcom.dk',
+        'hd@pompdelux.dk,cc@pompdelux.dk,un@bellcom.dk',
         'slettede billeder i billedeimporten',
         $txt,
         "Reply-To: hd@pompdelux.dk\r\nReturn-Path: hd@pompdelux.dk\r\nErrors-To: hd@pompdelux.dk\r\n",
@@ -367,7 +367,7 @@ if (count($failed)) {
     $txt .= "\nFix dem, nu!\n";
 
     mail(
-        'hd@pompdelux.dk,un@bellcom.dk,ab@bellcom.dk',
+        'hd@pompdelux.dk,cc@pompdelux.dk,un@bellcom.dk',
         'fejl i billedeimporten',
         $txt,
         "Reply-To: hd@pompdelux.dk\r\nReturn-Path: hd@pompdelux.dk\r\nErrors-To: hd@pompdelux.dk\r\n",

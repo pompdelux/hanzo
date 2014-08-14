@@ -97,7 +97,6 @@ class RunChecksCommand extends ContainerAwareCommand
             'cc@pompdelux.dk',
             'un@bellcom.dk',
             'mmh@bellcom.dk',
-            'ab@bellcom.dk',
         ];
 
         if ($email) {
