@@ -4,6 +4,7 @@
 /bin/phing
 /bin/propel-gen
 /bin/propel-gen.bat
+/bin/security-checker
 /tmp/*
 /vendor/*
 /app/config/parameters.ini
