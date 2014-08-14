@@ -46,6 +46,7 @@ class ResendEventInvitesCommand extends ContainerAwareCommand
                         'event_date'       => $event->getEventDate('d/m'),
                         'event_time'       => $event->getEventDate('H:i'),
                         'to_name'          => $participant->getFirstName(). ' ' .$participant->getLastName(),
+                        'name'             => $participant->getFirstName(). ' ' .$participant->getLastName(),
                         'hostess'          => $event->getHost(),
                         'address'          => $event->getAddressLine1(). ' ' .$event->getAddressLine2(),
                         'zip'              => $event->getPostalCode(),
