@@ -163,7 +163,33 @@ class MailService
      */
     public function setReplyTo($address, $name)
     {
-        $this->swift->setReplyTo($address, $name);
+        $this->swift->setReplyTo([$address => $name]);
+    }
+
+    /**
+     * Set Sender
+     *
+     * @param string  $address
+     * @param string  $name
+     * @param boolean $asReturnPath
+     */
+    public function setSender($address, $name, $asReturnPath = false)
+    {
+        $this->swift->setSender([$address => $name]);
+
+        if ($asReturnPath) {
+            $this->setReturnPath($address);
+        }
+    }
+
+    /**
+     * Set Return-Path
+     *
+     * @param $address
+     */
+    public function setReturnPath($address)
+    {
+        $this->swift->setReturnPath($address);
     }
 
     /**
@@ -190,10 +216,13 @@ class MailService
         $hanzo = Hanzo::getInstance();
         $return_address = array($hanzo->get('email.from_email') => $hanzo->get('email.from_name'));
 
-        $this->swift
-            ->setSender($return_address)
-            ->setReturnPath($hanzo->get('email.from_email'))
-        ;
+        if (!$this->swift->getSender()) {
+            $this->swift->setSender($return_address);
+        }
+
+        if (!$this->swift->getReturnPath()) {
+            $this->swift->setReturnPath($hanzo->get('email.from_email'));
+        }
 
         if (0 == count($this->swift->getFrom())) {
             $this->setFrom($return_address);

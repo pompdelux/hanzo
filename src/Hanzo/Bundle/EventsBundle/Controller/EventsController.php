@@ -2,7 +2,6 @@
 
 namespace Hanzo\Bundle\EventsBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,7 +15,6 @@ use Hanzo\Model\EventsQuery;
 use Hanzo\Model\Events;
 use Hanzo\Model\EventsParticipantsQuery;
 use Hanzo\Model\EventsParticipants;
-use Hanzo\Model\ConsultantsQuery;
 use Hanzo\Model\CustomersQuery;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\Customers;
@@ -25,7 +23,6 @@ use Hanzo\Model\Addresses;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\OrdersLinesQuery;
-use Hanzo\Model\Countries;
 use Hanzo\Model\CountriesQuery;
 
 class EventsController extends CoreController
@@ -366,8 +363,10 @@ class EventsController extends CoreController
                                 'consultant_name'  => $consultant->getFirstName(). ' ' .$consultant->getLastName(),
                                 'consultant_email' => $consultant->getEmail()
                             ));
+
                             $mailer->setTo(array($participant->getEmail() => $participant->getFirstName(). ' ' .$participant->getLastName()));
-                            $mailer->setFrom(array($hanzo->get('email.from_email') => $event->getHost() . ' (via POMPdeLUX)'));
+                            $mailer->setFrom(array('events@pompdelux.com' => $event->getHost() . ' (via POMPdeLUX)'));
+                            $mailer->setSender('events@pompdelux.com', 'POMPdeLUX', true);
                             $mailer->setReplyTo($event->getEmail(), $event->getHost());
                             $mailer->send();
                         }
@@ -519,8 +518,10 @@ class EventsController extends CoreController
                     'hostess'       => $event->getHost(),
                     'hostess_email' => $event->getEmail()
                 ));
+
                 $mailer->setTo($participant->getEmail(), $participant->getFirstName(). ' ' .$participant->getLastName());
-                $mailer->setFrom(array(Hanzo::getInstance()->get('email.from_email') => $event->getHost() . ' (via POMPdeLUX)'));
+                $mailer->setFrom(array('events@pompdelux.com' => $event->getHost() . ' (via POMPdeLUX)'));
+                $mailer->setSender('events@pompdelux.com', 'POMPdeLUX', true);
                 $mailer->setReplyTo($event->getEmail(), $event->getHost());
                 $mailer->send();
             }
@@ -630,7 +631,8 @@ class EventsController extends CoreController
                             $events_participant->getEmail(),
                             $events_participant->getFirstName(). ' ' .$events_participant->getLastName()
                         );
-                        $mailer->setFrom(array(Hanzo::getInstance()->get('email.from_email') => $event->getHost(). ' (via POMPdeLUX)'));
+                        $mailer->setFrom(array('events@pompdelux.com' => $event->getHost(). ' (via POMPdeLUX)'));
+                        $mailer->setSender('events@pompdelux.com', 'POMPdeLUX', true);
                         $mailer->setReplyTo($event->getEmail(), $event->getHost());
                         $mailer->send();
                     }
@@ -837,7 +839,8 @@ class EventsController extends CoreController
                         );
 
                         $name = $friend->getFirstName(). ' ' .$friend->getLastName();
-                        $mailer->setFrom(array(Hanzo::getInstance()->get('email.from_email') => $name . ' (via POMPdeLUX)'));
+                        $mailer->setFrom(array('events@pompdelux.com' => $name . ' (via POMPdeLUX)'));
+                        $mailer->setSender('events@pompdelux.com', 'POMPdeLUX', true);
                         $mailer->setReplyTo($friend->getEmail(), $name);
                         $mailer->send();
                     }
@@ -1074,7 +1077,9 @@ class EventsController extends CoreController
                         $events_participant->getEmail(),
                         $events_participant->getFirstName(). ' ' .$events_participant->getLastName()
                     );
-                    $mailer->setFrom(array(Hanzo::getInstance()->get('email.from_email') => $event->getHost(). ' (via POMPdeLUX)'));
+
+                    $mailer->setFrom(array('events@pompdelux.com' => $event->getHost(). ' (via POMPdeLUX)'));
+                    $mailer->setSender('events@pompdelux.com', 'POMPdeLUX', true);
                     $mailer->setReplyTo($event->getEmail(), $event->getHost());
                     $mailer->send();
                 }
