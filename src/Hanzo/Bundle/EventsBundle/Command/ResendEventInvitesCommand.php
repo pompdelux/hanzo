@@ -28,8 +28,13 @@ class ResendEventInvitesCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $ids = explode(',', $input->getArgument('events'));
+
+        $progress = $this->getHelper('progress');
+        $progress->start($output, count($ids));
+
         $events = EventsQuery::create()
-            ->filterById(explode(',', $input->getArgument('events')))
+            ->filterById($ids)
             ->find();
 
         $router = $this->getContainer()->get('router');
@@ -74,6 +79,10 @@ class ResendEventInvitesCommand extends ContainerAwareCommand
                     } catch (\Exception $e) {}
                 }
             }
+
+            $progress->advance();
         }
+
+        $progress->finish();
     }
 }
