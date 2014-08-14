@@ -367,7 +367,8 @@ class EventsController extends CoreController
                                 'consultant_email' => $consultant->getEmail()
                             ));
                             $mailer->setTo(array($participant->getEmail() => $participant->getFirstName(). ' ' .$participant->getLastName()));
-                            $mailer->setFrom(array($event->getEmail() => $event->getHost()));
+                            $mailer->setFrom(array($hanzo->get('email.from_email') => $event->getHost() . ' (via POMPdeLUX)'));
+                            $mailer->setReplyTo($event->getEmail(), $event->getHost());
                             $mailer->send();
                         }
                     }
@@ -519,7 +520,8 @@ class EventsController extends CoreController
                     'hostess_email' => $event->getEmail()
                 ));
                 $mailer->setTo($participant->getEmail(), $participant->getFirstName(). ' ' .$participant->getLastName());
-                $mailer->setFrom(array($event->getEmail() => $event->getHost()));
+                $mailer->setFrom(array(Hanzo::getInstance()->get('email.from_email') => $event->getHost() . ' (via POMPdeLUX)'));
+                $mailer->setReplyTo($event->getEmail(), $event->getHost());
                 $mailer->send();
             }
 
@@ -628,7 +630,8 @@ class EventsController extends CoreController
                             $events_participant->getEmail(),
                             $events_participant->getFirstName(). ' ' .$events_participant->getLastName()
                         );
-                        $mailer->setFrom(array($event->getEmail() => $event->getHost()));
+                        $mailer->setFrom(array(Hanzo::getInstance()->get('email.from_email') => $event->getHost(). ' (via POMPdeLUX)'));
+                        $mailer->setReplyTo($event->getEmail(), $event->getHost());
                         $mailer->send();
                     }
 
@@ -767,7 +770,7 @@ class EventsController extends CoreController
             ->findOneByKey($key)
         ;
 
-        if($friend instanceof EventsParticipants){
+        if ($friend instanceof EventsParticipants) {
             $event = EventsQuery::create()
                 ->findOneById($friend->getEventsId())
             ;
@@ -832,7 +835,10 @@ class EventsController extends CoreController
                             $events_participant->getEmail(),
                             $events_participant->getFirstName(). ' ' .$events_participant->getLastName()
                         );
-                        $mailer->setFrom(array($friend->getEmail() => $friend->getFirstName(). ' ' .$friend->getLastName()));
+
+                        $name = $friend->getFirstName(). ' ' .$friend->getLastName();
+                        $mailer->setFrom(array(Hanzo::getInstance()->get('email.from_email') => $name . ' (via POMPdeLUX)'));
+                        $mailer->setReplyTo($friend->getEmail(), $name);
                         $mailer->send();
                     }
 
@@ -1068,7 +1074,8 @@ class EventsController extends CoreController
                         $events_participant->getEmail(),
                         $events_participant->getFirstName(). ' ' .$events_participant->getLastName()
                     );
-                    $mailer->setFrom(array($event->getEmail() => $event->getHost()));
+                    $mailer->setFrom(array(Hanzo::getInstance()->get('email.from_email') => $event->getHost(). ' (via POMPdeLUX)'));
+                    $mailer->setReplyTo($event->getEmail(), $event->getHost());
                     $mailer->send();
                 }
 

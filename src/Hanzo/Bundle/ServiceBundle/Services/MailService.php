@@ -156,6 +156,17 @@ class MailService
     }
 
     /**
+     * Set Reply-To
+     *
+     * @param $address
+     * @param $name
+     */
+    public function setReplyTo($address, $name)
+    {
+        $this->swift->setReplyTo($address, $name);
+    }
+
+    /**
      * addPart
      * @param string $message
      * @param string $mime
