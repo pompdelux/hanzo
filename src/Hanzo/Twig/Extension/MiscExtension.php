@@ -87,7 +87,13 @@ class MiscExtension extends Twig_Extension
     public function getLayout()
     {
         $hanzo = Hanzo::getInstance();
-        $device = $hanzo->container->get('request')->attributes->get('_x_device');
+
+        try {
+            $device = $hanzo->container->get('request')->attributes->get('_x_device');
+        } catch(\Exception $e) {
+            $device = 'pc';
+        }
+
         $mode = $hanzo->container->get('kernel')->getStoreMode();
 
         if ('webshop' == $mode) {
