@@ -48,15 +48,8 @@
             <thead>
             <tr>
                 <th class="code">{{ 'admin.consultants.events.code'|trans({}, 'admin') }}</th>
-                <th class="key">{{ 'admin.consultants.events.key'|trans({}, 'admin') }}</th>
                 <th class="event_date">{{ 'admin.consultants.events.event_date'|trans({}, 'admin') }}</th>
                 <th class="host">{{ 'admin.consultants.events.host'|trans({}, 'admin') }}</th>
-                <th class="address_line_1">{{ 'admin.consultants.events.address_line_1'|trans({}, 'admin') }}</th>
-                {#<th class="address_line_2">{{ 'admin.consultants.events.address_line_2'|trans({}, 'admin') }}</th>#}
-                <th class="postal_code">{{ 'admin.consultants.events.postal_code'|trans({}, 'admin') }}</th>
-                <th class="city">{{ 'admin.consultants.events.city'|trans({}, 'admin') }}</th>
-                <th class="phone">{{ 'admin.consultants.events.phone'|trans({}, 'admin') }}</th>
-                <th class="email">{{ 'admin.consultants.events.email'|trans({}, 'admin') }}</th>
                 <th class="description">{{ 'admin.consultants.events.description'|trans({}, 'admin') }}</th>
                 <th class="type">{{ 'admin.consultants.events.type'|trans({}, 'admin') }}</th>
                 <th class="is_open">{{ 'admin.consultants.events.is_open'|trans({}, 'admin') }}</th>
@@ -67,16 +60,24 @@
             <tbody>
             {% for event in events %}
                 <tr>
-                    <td>{{ event.code }}</td>
-                    <td><span title="{{ event.key }}" class="fa fa-key"></span></td>
-                    <td>{{ event.eventdate|date('d/m/Y H:i') }}</td>
-                    <td>{{ event.host }}</td>
-                    <td>{{ event.addressline1 }}</td>
-                    {#<td>{{ event.addressline2 }}</td>#}
-                    <td>{{ event.postalcode }}</td>
-                    <td>{{ event.city }}</td>
-                    <td>{{ event.phone }}</td>
-                    <td><a href="mailto:{{ event.email }}">{{ event.email }}</a></td>
+                    <td style="white-space: nowrap">
+                        Kode: {{ event.code }}<br>
+                        Key: {{ event.key }}
+                    </td>
+                    <td style="white-space: nowrap">
+                        {{ event.eventdate|date('d/m/Y') }}<br>
+                        Kl: {{ event.eventdate|date('H:i') }}
+                    </td>
+                    <td>
+                        <a href="{{ path('admin_customer', {'id': event.customersId }) }}">{{ event.host }}</a><br>
+                        {{ event.addressline1 }}<br>
+                        {% if event.addressline2 %}
+                            {{ event.addressline2 }}<br>
+                        {% endif %}
+                        {{ event.postalcode }} {{ event.city }}<br>
+                        <i class="glyphicon glyphicon-earphone"></i> <a href="tel:{{ event.phone }}">{{ event.phone }}</a><br>
+                        <i class="glyphicon glyphicon-envelope"></i> <a href="mailto:{{ event.email }}">{{ event.email }}</a>
+                    </td>
                     <td>{{ event.description }}</td>
                     <td>{{ event.type }}</td>
                     <td>
