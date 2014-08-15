@@ -583,13 +583,8 @@ class ProductsController extends CoreController
             ->findOne($this->getDbConnection())
         ;
 
-        $styles = ProductsQuery::create()
-            ->filterByMaster($master->getSku())
-            ->find($this->getDbConnection())
-        ;
-
-        if($styles instanceof \PropelObjectCollection){
-            $styles->delete($this->getDbConnection());
+        if ($master instanceof Products) {
+            $master->delete($this->getDbConnection());
 
             $this->get('session')->getFlashBag()->add('notice', 'delete.products.styles.success');
 
