@@ -14,8 +14,8 @@ class GeoPostalController extends CoreController
     /**
      * Lookup handler for zip code and city requests
      *
-     * @param  string   $country Country code (iso2)
-     * @param  integer  $zip     Zip code
+     * @param  string  $country Country code (iso2)
+     * @param  string  $zip     Zip code
      * @return Response          Returns a JSON encoded Response
      */
     public function lookupAction($country = '', $zip = '')
