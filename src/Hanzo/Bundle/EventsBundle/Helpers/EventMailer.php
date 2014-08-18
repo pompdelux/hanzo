@@ -193,7 +193,9 @@ class EventMailer
             ]);
 
             $this->mailer->setTo([$participant->getEmail() => $participant->getFirstName(). ' ' .$participant->getLastName()]);
-            $this->mailer->setFrom([$this->event->getEmail() => $this->event->getHost()]);
+            $this->mailer->setFrom(['events@pompdelux.com' => $this->event->getHost() . ' (via POMPdeLUX)']);
+            $this->mailer->setSender('events@pompdelux.com', 'POMPdeLUX', true);
+            $this->mailer->setReplyTo($this->event->getEmail(), $this->event->getHost());
             $this->mailer->send();
         }
     }
@@ -225,7 +227,9 @@ class EventMailer
             $eventsParticipant->getFirstName(). ' ' .$eventsParticipant->getLastName()
         );
 
-        $this->mailer->setFrom([$this->event->getEmail() => $this->event->getHost()]);
+        $this->mailer->setFrom(['events@pompdelux.com' => $this->event->getHost() . ' (via POMPdeLUX)']);
+        $this->mailer->setSender('events@pompdelux.com', 'POMPdeLUX', true);
+        $this->mailer->setReplyTo($this->event->getEmail(), $this->event->getHost());
         $this->mailer->send();
     }
 
@@ -269,7 +273,9 @@ class EventMailer
         ));
 
         $this->mailer->setTo($participant->getEmail(), $participant->getFirstName(). ' ' .$participant->getLastName());
-        $this->mailer->setFrom(array($this->event->getEmail() => $this->event->getHost()));
+        $this->mailer->setFrom(['events@pompdelux.com' => $this->event->getHost() . ' (via POMPdeLUX)']);
+        $this->mailer->setSender('events@pompdelux.com', 'POMPdeLUX', true);
+        $this->mailer->setReplyTo($this->event->getEmail(), $this->event->getHost());
         $this->mailer->send();
     }
 
@@ -330,7 +336,9 @@ class EventMailer
             ]);
 
             $this->mailer->setTo([$participant->getEmail() => $participant->getFirstName(). ' ' .$participant->getLastName()]);
-            $this->mailer->setFrom([$this->event->getEmail() => $this->event->getHost()]);
+            $this->mailer->setFrom(['events@pompdelux.com' => $this->event->getHost() . ' (via POMPdeLUX)']);
+            $this->mailer->setSender('events@pompdelux.com', 'POMPdeLUX', true);
+            $this->mailer->setReplyTo($this->event->getEmail(), $this->event->getHost());
             $this->mailer->send();
         }
     }
