@@ -225,7 +225,6 @@ class DefaultController extends CoreController
                         'shipping'
                     ));
                     $c->add(AddressesPeer::TYPE, 'payment');
-                    $c->addOr(AddressesPeer::TYPE, 'shipping');
                     $c->setLimit(1);
 
                     $address = $customer->getAddressess($c);
