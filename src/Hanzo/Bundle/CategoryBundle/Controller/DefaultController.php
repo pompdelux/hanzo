@@ -291,14 +291,15 @@ class DefaultController extends CoreController
                 $color = strtr($color, $escapes);
                 if (isset($color_mapping[$color])) {
                     $color_filter = array_merge($color_filter, $color_mapping[$color]);
+                    $use_filter = true;
                 }
             }
 
             foreach ($request->query->get('size', []) as $size) {
                 $size_filter[] = $size;
+                $use_filter = true;
             }
 
-            $use_filter = true;
         }
 
         $settings = $cms_page->getSettings(null, false);
