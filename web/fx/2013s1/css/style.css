@@ -3554,6 +3554,15 @@ div.quickorder input[type=button] {
   border-bottom: none;
 }
 
+#geo-zipcode-container #dialoug-message {
+  width: 300px;
+}
+#geo-zipcode-container select#geo-zipcode {
+  height: 30px;
+  float: left;
+  margin-right: 5px;
+}
+
 /**
 | _rma
 */
