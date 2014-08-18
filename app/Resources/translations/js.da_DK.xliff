@@ -418,6 +418,10 @@
                 <source>checkout.confirm.address.block</source>
                 <target>Bekræft at dine adresseoplysninger er korrekte.</target>
             </trans-unit>
+            <trans-unit id="maps.choose.correct.location" approved="no">
+                <source>maps.choose.correct.location</source>
+                <target>Der var flere resultater af din søgning, vælg den rette og tryl så "Find".</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

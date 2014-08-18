@@ -3,15 +3,36 @@ var maps = (function($) {
 
   pub.initZip = function() {
     $("#geo-zipcode-form").submit(function(e) {
+      var $this = $(this);
       e.preventDefault();
 
       dialoug.loading('#near-you-container', Translator.trans('loading.std'), 'prepend');
-      var url = base_url + "muneris/gpc/" + encodeURI($("#geo-zipcode-container #geo-zipcode").val());
+      var url = base_url + "muneris/gpc/" + encodeURI($("#geo-zipcode", $this).val());
 
       $.getJSON(url, function(response) {
         if (false === response.status || typeof response.data.postcodes === 'undefined' || response.data.postcodes.length === 0) {
           dialoug.stopLoading();
           return;
+        }
+
+        // handle more than one result, not just using the first.
+        if (response.data.postcodes.length > 1) {
+            dialoug.notice(Translator.trans('maps.choose.correct.location'), 'info', 6000, '#geo-zipcode-form p');
+            var html = '<select id="geo-zipcode">';
+
+            $.each(response.data.postcodes, function(i, city) {
+                html += '<option value="'+city.zip_code+'">'+city.zip_code+' - '+city.city+'</option>';
+            });
+
+            html += '</select>';
+            $("#geo-zipcode", $this).replaceWith(html);
+            dialoug.stopLoading();
+
+            return;
+        } else {
+            if ($('#geo-zipcode', $this).is('select')) {
+                $("#geo-zipcode", $this).replaceWith('<input type="text" id="geo-zipcode">');
+            }
         }
 
         var req = '/' + geo_zipcode_params.type + '/' + response.data.postcodes[0].lat + '/' + response.data.postcodes[0].lng;
@@ -34,7 +55,7 @@ var maps = (function($) {
         });
 
       });
-      $("#geo-zipcode-container #geo-zipcode").val("");
+      $("#geo-zipcode", $this).val("");
     });
 
   };
