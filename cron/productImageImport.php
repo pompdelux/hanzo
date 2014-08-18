@@ -354,8 +354,8 @@ if (count($image_records_to_delete)) {
         'hd@pompdelux.dk,cc@pompdelux.dk,un@bellcom.dk',
         'slettede billeder i billedeimporten',
         $txt,
-        "Reply-To: hd@pompdelux.dk\r\nReturn-Path: hd@pompdelux.dk\r\nErrors-To: hd@pompdelux.dk\r\n",
-        '-fhd@pompdelux.dk'
+        "Reply-To: hd@pompdelux.dk\r\nReturn-Path: pompdelux@pompdelux.com\r\nErrors-To: pompdelux@pompdelux.com\r\n",
+        '-fpompdelux@pompdelux.com'
     );}
 
 
@@ -370,8 +370,8 @@ if (count($failed)) {
         'hd@pompdelux.dk,cc@pompdelux.dk,un@bellcom.dk',
         'fejl i billedeimporten',
         $txt,
-        "Reply-To: hd@pompdelux.dk\r\nReturn-Path: hd@pompdelux.dk\r\nErrors-To: hd@pompdelux.dk\r\n",
-        '-fhd@pompdelux.dk'
+        "Reply-To: hd@pompdelux.dk\r\nReturn-Path: pompdelux@pompdelux.com\r\nErrors-To: pompdelux@pompdelux.com\r\n",
+        '-fpompdelux@pompdelux.com'
     );
 }
 
