@@ -105,12 +105,19 @@
                 var $form = $(element).closest('form');
                 var method = 'shipping';
 
+                if ('da' === $('html').attr('lang')) {
+                    $('#form_phone').parent().removeClass('message error');
+                }
                 switch (element.value) {
                     case '11':
                         method = 'company_shipping';
                         break;
                     case '12':
                         method = 'overnightbox';
+                        if ('da' === $('html').attr('lang')) {
+                            $('#form_phone').parent().addClass('message error');
+                            dialoug.alert(Translator.trans('checkout.confirm.mobile.title'), Translator.trans('checkout.confirm.mobile.text'));
+                        }
                         break;
                 }
 
