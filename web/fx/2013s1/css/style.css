@@ -3027,13 +3027,13 @@ body.domain-no #newsletterModal.type3 .wrapper form input.button {
   background: url(/fx/images/newsletter_overlay/type3/NO/Tilmeld-knap.png);
 }
 
-body.domain-nl #newsletterModal.type2 .wrapper form {
+body.domain-nl #newsletterModal.type3 .wrapper form {
   background-image: url(/fx/images/newsletter_overlay/type3/NL/Info.jpg);
 }
-body.domain-nl #newsletterModal.type2 .wrapper form.newsletter-subscribe-complete {
+body.domain-nl #newsletterModal.type3 .wrapper form.newsletter-subscribe-complete {
   background-image: url(/fx/images/newsletter_overlay/type3/NL/Kvittering.jpg);
 }
-body.domain-nl #newsletterModal.type2 .wrapper form input.button {
+body.domain-nl #newsletterModal.type3 .wrapper form input.button {
   background: url(/fx/images/newsletter_overlay/type3/NL/Tilmeld-knap.png);
 }
 
@@ -3047,14 +3047,24 @@ body.domain-se #newsletterModal.type3 .wrapper form input.button {
   background: url(/fx/images/newsletter_overlay/type3/SE/Tilmeld-knap.png);
 }
 
-body.domain-ch #newsletterModal.type2 .wrapper form {
+body.domain-ch #newsletterModal.type3 .wrapper form {
   background-image: url(/fx/images/newsletter_overlay/type3/CH/Info.jpg);
 }
-body.domain-ch #newsletterModal.type2 .wrapper form.newsletter-subscribe-complete {
+body.domain-ch #newsletterModal.type3 .wrapper form.newsletter-subscribe-complete {
   background-image: url(/fx/images/newsletter_overlay/type3/CH/Kvittering.jpg);
 }
-body.domain-ch #newsletterModal.type2 .wrapper form input.button {
+body.domain-ch #newsletterModal.type3 .wrapper form input.button {
   background: url(/fx/images/newsletter_overlay/type3/CH/Tilmeld-knap.png);
+}
+
+body.domain-at #newsletterModal.type3 .wrapper form {
+  background-image: url(/fx/images/newsletter_overlay/type3/AT/Info.jpg);
+}
+body.domain-at #newsletterModal.type3 .wrapper form.newsletter-subscribe-complete {
+  background-image: url(/fx/images/newsletter_overlay/type3/AT/Kvittering.jpg);
+}
+body.domain-at #newsletterModal.type3 .wrapper form input.button {
+  background: url(/fx/images/newsletter_overlay/type3/AT/Tilmeld-knap.png);
 }
 
 #openNewsletterModal {

@@ -357,7 +357,7 @@ body.domain-no #newsletterModal.#{$active-newsletter-type} .wrapper form {
         background: url(/fx/images/newsletter_overlay/#{$active-newsletter-type}/NO/Tilmeld-knap.png);
     }
 }
-body.domain-nl #newsletterModal.type2 .wrapper form {
+body.domain-nl #newsletterModal.#{$active-newsletter-type} .wrapper form {
     background-image: url(/fx/images/newsletter_overlay/#{$active-newsletter-type}/NL/Info.jpg);
     &.newsletter-subscribe-complete {
         background-image: url(/fx/images/newsletter_overlay/#{$active-newsletter-type}/NL/Kvittering.jpg);
@@ -375,13 +375,22 @@ body.domain-se #newsletterModal.#{$active-newsletter-type} .wrapper form {
         background: url(/fx/images/newsletter_overlay/#{$active-newsletter-type}/SE/Tilmeld-knap.png);
     }
 }
-body.domain-ch #newsletterModal.type2 .wrapper form {
+body.domain-ch #newsletterModal.#{$active-newsletter-type} .wrapper form {
     background-image: url(/fx/images/newsletter_overlay/#{$active-newsletter-type}/CH/Info.jpg);
     &.newsletter-subscribe-complete {
         background-image: url(/fx/images/newsletter_overlay/#{$active-newsletter-type}/CH/Kvittering.jpg);
     }
     input.button {
         background: url(/fx/images/newsletter_overlay/#{$active-newsletter-type}/CH/Tilmeld-knap.png);
+    }
+}
+body.domain-at #newsletterModal.#{$active-newsletter-type} .wrapper form {
+    background-image: url(/fx/images/newsletter_overlay/#{$active-newsletter-type}/AT/Info.jpg);
+    &.newsletter-subscribe-complete {
+        background-image: url(/fx/images/newsletter_overlay/#{$active-newsletter-type}/AT/Kvittering.jpg);
+    }
+    input.button {
+        background: url(/fx/images/newsletter_overlay/#{$active-newsletter-type}/AT/Tilmeld-knap.png);
     }
 }
 
