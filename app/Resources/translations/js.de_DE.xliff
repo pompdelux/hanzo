@@ -392,7 +392,7 @@
             </trans-unit>
             <trans-unit id="maps.choose.correct.location" approved="no">
                 <source>maps.choose.correct.location</source>
-                <target>Der var flere resultater af din søgning, vælg den rette og tryl så "Find".</target>
+                <target>Ihre Suche ergibt mehrere Ergebnisse. Wählen Sie die Stadt im Dropdown-Fenster unten.</target>
             </trans-unit>
         </body>
     </file>

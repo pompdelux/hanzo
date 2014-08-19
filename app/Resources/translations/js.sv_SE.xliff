@@ -373,7 +373,7 @@
             </trans-unit>
             <trans-unit id="maps.choose.correct.location" approved="no">
                 <source>maps.choose.correct.location</source>
-                <target>Der var flere resultater af din søgning, vælg den rette og tryl så "Find".</target>
+                <target>Din sökning gav flera resultat. Välj i rullistan nedan.</target>
             </trans-unit>
         </body>
     </file>

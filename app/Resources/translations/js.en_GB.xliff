@@ -288,7 +288,7 @@
             </trans-unit>
             <trans-unit id="maps.choose.correct.location" approved="no">
                 <source>maps.choose.correct.location</source>
-                <target>Der var flere resultater af din søgning, vælg den rette og tryl så "Find".</target>
+                <target>There are too many results for your search. Please select town in drop down menu below.</target>
             </trans-unit>
         </body>
     </file>

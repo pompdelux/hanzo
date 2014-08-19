@@ -385,7 +385,7 @@
             </trans-unit>
             <trans-unit id="maps.choose.correct.location" approved="no">
                 <source>maps.choose.correct.location</source>
-                <target>Der var flere resultater af din søgning, vælg den rette og tryl så "Find".</target>
+                <target>Det var flere resultater av ditt søk. Velg vennligst sted i dropdown-vinduet under.</target>
             </trans-unit>
         </body>
     </file>
