@@ -1,45 +1,47 @@
 {% extends layout %}
 {% block content %}
 
-<header class="grid_8 alpha omega">
-    <hgroup>
-        <h1>{{ 'checkout.headline'|trans({}, 'checkout') }}</h1>
-    </hgroup>
-</header>
+    <header class="grid_8 alpha omega">
+        <hgroup>
+            <h1>{{ 'checkout.headline'|trans({}, 'checkout') }}</h1>
+        </hgroup>
+    </header>
 
-{% for message in app.session.flashbag.get('notice') %}
-  <div class="message error">
-    {{ message }}
-  </div>
-{% endfor %}
+    {% for message in app.session.flashbag.get('notice') %}
+        <div class="message error">
+            {{ message }}
+        </div>
+    {% endfor %}
 
-{{ render(controller('ShippingBundle:Default:block')) }}
+    {{ render(controller('ShippingBundle:Default:block')) }}
 
-<h2>{{ 'addresses'|trans({}, 'checkout') }}</h2>
-<div class="checkout-block" id="address-block">
-  {{ render(controller('ShippingBundle:Address:form', {type: 'payment'})) }}
-  {{ render(controller('ShippingBundle:Address:form', {type: 'CURRENT-SHIPPING-ADDRESS'})) }}
-  <label class="off">
-    <input type="checkbox" id="address-copy">{{ 'address.copy'|trans({}, 'checkout') }}
-  </label>
-</div>
+    <h2>{{ 'addresses'|trans({}, 'checkout') }}</h2>
+    <div class="checkout-block" id="address-block">
+        {{ render(controller('ShippingBundle:Address:form', {type: 'payment'})) }}
+        {{ render(controller('ShippingBundle:Address:form', {type: 'CURRENT-SHIPPING-ADDRESS'})) }}
+        <label class="off">
+            <input type="checkbox" id="address-copy">{{ 'address.copy'|trans({}, 'checkout') }}
+        </label>
+    </div>
 
-{{ render(controller('PaymentBundle:Default:block')) }}
-{# render(controller('DiscountBundle:GiftCard:block')) #}
-{{ render(controller('DiscountBundle:Coupon:block')) }}
+    {{ render(controller('PaymentBundle:Default:block')) }}
+    {# render(controller('DiscountBundle:GiftCard:block')) #}
+    {{ render(controller('DiscountBundle:Coupon:block')) }}
 
-<h2>{{ 'confirm.title'|trans({}, 'checkout') }}</h2>
-<div id="checkout-block-summery" class="checkout-block" style="display: block; ">
-    {{ render(controller('CheckoutBundle:Default:summery')) }}
-</div>
+    <h2>{{ 'confirm.title'|trans({}, 'checkout') }}</h2>
+    <div id="checkout-block-summery" class="checkout-block" style="display: block; ">
+        {{ render(controller('CheckoutBundle:Default:summery')) }}
+    </div>
 
-<div class="checkout-confirm-terms">
-    {{ 'checkout.confirm.terms'|trans({}, 'checkout')|raw }}
-    <input type="checkbox" name="checkout_confirm_terms" id="js_checkout_confirm_terms">
-</div>
-<div id="checkout-buttons">
-    <a class="button" href="{{ path('basket_view') }}"><i class="fa fa-arrow-left"></i> {{ 'button.back'|trans({}, 'checkout') }}</a>
-    <a class="button pull-right" id="checkout-execute" href="#">{{ 'button.process'|trans({}, 'checkout') }} <i class="fa fa-arrow-right"></i></a>
-</div>
+    <div class="checkout-confirm-terms">
+        {{ 'checkout.confirm.terms'|trans({}, 'checkout')|raw }}
+        <input type="checkbox" name="checkout_confirm_terms" id="js_checkout_confirm_terms">
+    </div>
+    <div id="checkout-buttons">
+        <a class="button" href="{{ path('basket_view') }}"><i class="fa fa-arrow-left"></i> {{ 'button.back'|trans({}, 'checkout') }}
+        </a>
+        <a class="button pull-right" id="checkout-execute" href="#">{{ 'button.process'|trans({}, 'checkout') }}
+            <i class="fa fa-arrow-right"></i></a>
+    </div>
 
 {% endblock %}
