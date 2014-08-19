@@ -21,7 +21,7 @@ var maps = (function($) {
             var html = '<select id="geo-zipcode">';
 
             $.each(response.data.postcodes, function(i, city) {
-                html += '<option value="'+city.zip_code+'">'+city.zip_code+' - '+city.city+'</option>';
+                html += '<option value="'+city.zip_code+','+city.city+'">'+city.zip_code+' - '+city.city+'</option>';
             });
 
             html += '</select>';
