@@ -2958,10 +2958,12 @@ nav.main-menu > ul > li > ul li.heading > a, nav.main-menu > ul > li > ul li.sel
   right: 53px;
   height: 55px;
   width: 291px;
+  text-indent: -9999px;
 }
 #newsletterModal.type3 .wrapper form .dialoug-message {
   position: absolute;
   top: 0;
+  z-index: 600;
 }
 #newsletterModal.type3 .wrapper form.newsletter-subscribe-complete input {
   display: none;
@@ -3068,8 +3070,8 @@ body.domain-at #newsletterModal.type3 .wrapper form input.button {
 }
 
 #openNewsletterModal {
-  background: black;
-  background: rgba(0, 0, 0, 0.7);
+  background: #738c9c;
+  background: rgba(115, 140, 156, 0.8);
   position: fixed;
   bottom: 0;
   left: 0;

@@ -282,11 +282,13 @@
                     right: 53px;
                     height: 55px;
                     width: 291px;
+                    text-indent: -9999px;
                 }
 
                 .dialoug-message {
                     position: absolute;
                     top:0;
+                    z-index: 600;
                 }
 
                 &.newsletter-subscribe-complete {
@@ -469,8 +471,8 @@ body.domain-at #newsletterModal.#{$active-newsletter-type} .wrapper form {
 //}
 
 #openNewsletterModal {
-    background: rgb(0, 0, 0); // Fallback
-    background: rgba(0, 0, 0, 0.7);
+    background: rgb(115, 140, 156); // Fallback
+    background: rgba(115, 140, 156, 0.8);
 
     position: fixed;
     bottom: 0;
