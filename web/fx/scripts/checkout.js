@@ -102,21 +102,25 @@
                 dialoug.loading($('#shipping-block').next('h2'), '', 'append');
                 $('.msg.error').toggleClass('hidden error');
 
-                var $form = $(element).closest('form');
                 var method = 'shipping';
+                var lang   = $('html').attr('lang');
 
-                if ('da' === $('html').attr('lang')) {
+                if ('da' === lang) {
                     $('#form_phone').parent().removeClass('message error');
                 }
+
                 switch (element.value) {
                     case '11':
                         method = 'company_shipping';
                         break;
                     case '12':
                         method = 'overnightbox';
-                        if ('da' === $('html').attr('lang')) {
-                            $('#form_phone').parent().addClass('message error');
-                            dialoug.alert(Translator.trans('checkout.confirm.mobile.title'), Translator.trans('checkout.confirm.mobile.text'));
+                        if ('da' === lang) {
+                            $('#form_phone').parent().addClass('message notice');
+                            dialoug.alert(
+                                Translator.trans('checkout.confirm.mobile.title'),
+                                Translator.trans('checkout.confirm.mobile.text')
+                            );
                         }
                         break;
                 }
@@ -135,8 +139,6 @@
                  */
                 dialoug.loading($('#payment-block').prev('h2'), '', 'append');
                 $('.msg.error').toggleClass('hidden error');
-
-                var $ul = $(element).closest('ul');
 
                 jaiks.add('/checkout/payment/set/method', pub.handleCallbackErrors, {method: element.value});
                 jaiks.add('/checkout/summery', checkout.handlePaymentMethodUpdates);
@@ -181,7 +183,6 @@
 
                 $('#address-block form').not('.location-locator').each(function (index, form) {
                     var $form = $(form);
-                    var id = index;
 
                     var $address_ul = $('<ul></ul>');
                     $('input, select', $form).not('.js-auto-city-dropdown').each(function (index, element) {
@@ -196,13 +197,14 @@
                             address_errors.has_errors = true;
                             address_errors.fields.push(field);
                         }
+
                         // Add the element to the confirm address box
-                        if ($element.attr('type') !== 'hidden' && element.id !== 'form_phone') {
+                        if (($element.attr('type') !== 'hidden')) {
                             $address_ul.append('<li><b>' + $('label[for=' + element.id + ']').first().text() + '</b> ' + element.value + '</li>');
                         }
                     });
-                    $address_confirm_box.append($('<div>').append($(this).parent().find('h3').clone())
-                        .append($address_ul));
+
+                    $address_confirm_box.append($('<div>').append($(this).parent().find('h3').clone()).append($address_ul));
                 });
 
                 if (address_errors.has_errors) {
