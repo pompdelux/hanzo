@@ -324,7 +324,7 @@ body.domain-dk #newsletterModal.#{$active-newsletter-type} .wrapper form {
     }
 }
 body.domain-de #newsletterModal.#{$active-newsletter-type} .wrapper form {
-    background-image: url(/fx/images/newsletter_overlay/#{$active-newsletter-type}/DK/Info.jpg);
+    background-image: url(/fx/images/newsletter_overlay/#{$active-newsletter-type}/DE/Info.jpg);
     &.newsletter-subscribe-complete {
         background-image: url(/fx/images/newsletter_overlay/#{$active-newsletter-type}/DE/Kvittering.jpg);
     }
