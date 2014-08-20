@@ -30,8 +30,8 @@ class ResyncOrdersCommand extends ContainerAwareCommand
             $ids = explode(',', $ids);
         }
 
-        $ids = array_map('trim', $ids);
-        $ax  = $this->getContainer()->get('ax.out');
+        $ids     = array_map('trim', $ids);
+        $ax      = $this->getContainer()->get('ax.out');
         $unknown = 0;
 
         $output->writeln('Resending '.count($ids).' orders.');
