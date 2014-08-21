@@ -167,6 +167,7 @@ class ECommerceServices extends SoapService
                             $product->setId($products_id_map[strtolower($sku)]);
                         }
                         $product->setSku($sku);
+                        $product->setHasVideo(false);
 
                         if (isset($item->IsVoucher) && $item->IsVoucher) {
                             $product->setIsVoucher(true);
