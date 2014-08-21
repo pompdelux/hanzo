@@ -761,6 +761,7 @@ class AxService
      */
     protected function logOrderSyncStatus($order_id, $data, $state = 'ok', $comment = '', $con = null)
     {
+        // major hack to allow us to spam AX (test)
         if (defined('SKIP_SYNC_LOG'))  {
             return;
         }
