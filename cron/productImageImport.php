@@ -73,7 +73,10 @@ foreach ($images as $image) {
 
     $product_image = $product_image_stmt->fetchColumn();
 
-    if(empty($product_image) || empty($index)){
+    if (empty($product_image) ||
+        empty($index) ||
+        preg_match('/(\(| |copy)/', $image)
+    ){
         $failed[] = $image;
         _dbug("Error in picture: {$image}");
         continue;
