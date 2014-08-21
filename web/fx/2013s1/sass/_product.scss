@@ -162,9 +162,10 @@ form.buy {
 		cursor: pointer;
 		@include image-replacement;
 		display: block;
-    position: absolute;
-    top: 50px;
-    right: 0;
+        position: absolute;
+        top: 50px;
+        right: 0;
+        background-color: #fff;
 	}
 	h4.bordered {
 		font-family: $font-sans;

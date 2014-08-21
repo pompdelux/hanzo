@@ -1244,6 +1244,7 @@ form.buy .submit-button {
   position: absolute;
   top: 50px;
   right: 0;
+  background-color: #fff;
 }
 form.buy h4.bordered {
   font-family: Tahoma, Geneva, Verdana, sans-serif;
