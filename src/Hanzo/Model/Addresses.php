@@ -103,4 +103,25 @@ class Addresses extends BaseAddresses
         }
     }
 
-} // Addresses
+
+    /**
+     * update geocode information
+     */
+    public function forceGeocode()
+    {
+        $geocoder      = new \Geocoder\Geocoder(new \Geocoder\Provider\GoogleMapsProvider(new \Geocoder\HttpAdapter\CurlHttpAdapter()));
+        $address_parts = array();
+
+        $address_parts['AddressLine1']  = $this->getAddressLine1();
+        $address_parts['AddressLine2']  = $this->getAddressLine2();
+        $address_parts['StateProvince'] = $this->getStateProvince();
+        $address_parts['PostalCode']    = $this->getPostalCode();
+        $address_parts['Country']       = $this->getCountry();
+
+        $result = $geocoder->geocode(join(',', array_filter($address_parts)));
+        if (isset($result) && $coordinates = $result->getCoordinates()) {
+            $this->setLatitude($coordinates[0]);
+            $this->setLongitude($coordinates[1]);
+        }
+    }
+}
