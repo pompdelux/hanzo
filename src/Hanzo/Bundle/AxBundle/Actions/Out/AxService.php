@@ -761,6 +761,10 @@ class AxService
      */
     protected function logOrderSyncStatus($order_id, $data, $state = 'ok', $comment = '', $con = null)
     {
+        if (defined('SKIP_SYNC_LOG'))  {
+            return;
+        }
+
         $entry = new OrdersSyncLog();
         $entry->setOrdersId($order_id);
         $entry->setCreatedAt('now');
