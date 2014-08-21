@@ -82,7 +82,7 @@ class DefaultController extends CoreController
         if ($focus && isset($images[$focus])) {
             $main_image = $images[$focus];
         } else {
-            $main_image = array_shift($images);
+            $main_image = reset($images);
         }
 
         $sorted_images = [];
