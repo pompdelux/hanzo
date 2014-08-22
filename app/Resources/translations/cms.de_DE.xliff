@@ -45,7 +45,7 @@
                             "Black & Grey": [
                                 "Grey",
 								"Grey Melange",
-								"Grey/Off White"
+								"Grey/Off White",
 								"Black",
 								"Cream",
 								"Off White",
@@ -76,7 +76,6 @@
                     {
                         "colormap": {
                             "Rose": [
-                                  "Rose": [
                                 "Rose",
 								"Rose/Grey",
 								"Rose/Eggplant",
