@@ -51,7 +51,7 @@
 								"Off White,"
 								"White",
 								"Grey Melange/Black"
-                            
+                            ]
                         },
                         "sizes": [
                             "110",
@@ -120,7 +120,7 @@
 								"Off White,"
 								"White",
 								"Grey Melange/Black"
-								
+							]	
                         },
                         "sizes": [
                            "80",
@@ -170,6 +170,7 @@
 								"Grey Melange",
 								"Black",
 								"White"
+							]
                         },
                         "sizes": [
                             "110",
@@ -225,6 +226,7 @@
 								"Grey Melange",
 								"Black",
 								"White"
+							]
                         },
                         "sizes": [
                            "80",
