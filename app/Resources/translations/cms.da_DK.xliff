@@ -144,7 +144,7 @@
                 <target><![CDATA[
                     {
                         "colormap": {
-                            "Navy, Wine & Mustard": [
+                             "Navy, Wine & Mustard": [
                                 "Navy",
 								"Mustard",
 								"Navy/Mustard",
@@ -176,7 +176,6 @@
 								"Grey Melange",
 								"Black",
 								"White"
-
                         },
                         "sizes": [
                             "110",
