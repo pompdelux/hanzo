@@ -4,6 +4,7 @@ namespace Hanzo\Bundle\ProductBundle\Controller;
 
 use Criteria;
 
+use Hanzo\Model\ProductsImagesPeer;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 use Hanzo\Core\Hanzo;
@@ -60,7 +61,13 @@ class DefaultController extends CoreController
         // find all product images
         $images = array();
         $image_ids = array();
-        $product_images = $product->getProductsImagess();
+
+        $c = new \Criteria();
+        $c->addAscendingOrderByColumn(ProductsImagesPeer::COLOR);
+        $c->addDescendingOrderByColumn(ProductsImagesPeer::TYPE);
+        $c->addAscendingOrderByColumn(ProductsImagesPeer::IMAGE);
+        $product_images = $product->getProductsImagess($c);
+
         foreach ($product_images as $image) {
             $path_params = explode('_', explode('.', $image->getImage())[0]);
             $number = isset($path_params[3]) ? (int)$path_params[3] : 0;
@@ -87,9 +94,13 @@ class DefaultController extends CoreController
 
         $sorted_images = [];
         foreach ($images as $key => $data) {
-            $sorted_images[$data['color'].$data['type'].$key] = $data;
+            $s = $data['type'];
+            if ('set' === $s) {
+                $s = 'aaa'.$s;
+            }
+            $sorted_images[$data['color'].$s.$key] = $data;
         }
-        krsort($sorted_images);
+        ksort($sorted_images);
 
         $all_colors = $colors = $sizes = array();
         $product_ids = array();
