@@ -2,7 +2,7 @@
 
 namespace Hanzo\Bundle\CategoryBundle\Controller;
 
-use Hanzo\Model\CmsI18nQuery;
+use     Hanzo\Model\CmsI18nQuery;
 use Hanzo\Model\CmsQuery;
 use Hanzo\Model\SearchProductsTagsQuery;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
@@ -482,15 +482,14 @@ class DefaultController extends CoreController
                     'out_of_stock' => $product->getIsOutOfStock(),
                     'id'           => $product->getId(),
                     'title'        => $product->getTitle(),
-                    'image'        => ($show_by_look) ? $image_set : $image_overview,
-                    'image_flip'   => ($show_by_look) ? $image_overview : $image_set,
+                    'image'        => (($show_by_look) ? $image_set      : $image_overview),
+                    'image_flip'   => (($show_by_look) ? $image_overview : $image_set),
                     'alt'          => $alt,
-                    'url'          => $router->generate($product_route, array(
+                    'url'          => $router->generate($product_route, [
                         'product_id' => $product->getId(),
                         'title'      => Tools::stripText($product->getTitle()),
                         'focus'      => $record->getProductsImages()->getId()
-
-                    )),
+                    ]),
                 );
             }
         }
