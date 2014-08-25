@@ -233,7 +233,7 @@ var account = (function($) {
       dialoug.confirm(Translator.trans('notice'), Translator.trans('edit.order.notice'), function(c) {
         if (c == 'ok') {
           dialoug.loading($a, '', 'prepend');
-//          document.location.href = href;
+          document.location.href = href;
         }
       }, { maxWidth : '600px' });
     });
