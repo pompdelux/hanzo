@@ -228,10 +228,12 @@ var account = (function($) {
   pub.orderHistoryInit = function() {
     $('a.edit').on('click', function(event) {
       event.preventDefault();
+      var $a = $(this);
       var href = this.href;
       dialoug.confirm(Translator.trans('notice'), Translator.trans('edit.order.notice'), function(c) {
         if (c == 'ok') {
-          document.location.href = href;
+          dialoug.loading($a, '', 'prepend');
+//          document.location.href = href;
         }
       }, { maxWidth : '600px' });
     });

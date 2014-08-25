@@ -2265,6 +2265,10 @@ form.create label.required:after {
   margin-right: 10px;
 }
 
+#order-status .dialoug-loading {
+  height: 26px;
+}
+
 .checkout-block {
   overflow: hidden;
   padding: 3px;
