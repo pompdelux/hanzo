@@ -386,6 +386,14 @@
                 <source>maps.choose.correct.location</source>
                 <target>Haullasi tuli useita tuloksia. Valitse alla olevasta pudotusvalikosta.</target>
             </trans-unit>
+            <trans-unit id="checkout.confirm.mobile.title" approved="no">
+                <source>checkout.confirm.mobile.title</source>
+                <target>Vigtigt</target>
+            </trans-unit>
+            <trans-unit id="checkout.confirm.mobile.text" approved="no">
+                <source>checkout.confirm.mobile.text</source>
+                <target><![CDATA[Verificér venligst at dit mobilnummer er korrekt.<br><br>Hvis det ikke er kan Post Danmark ikke komme i kontakt dig vedrørende forsendelsen.]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

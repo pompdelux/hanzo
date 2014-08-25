@@ -2377,6 +2377,11 @@ form.address .error {
   padding-top: 9px;
   border: 1px solid #7B7577;
 }
+#body-checkout div .address .message.notice {
+  border: 2px solid #c18185;
+  padding: 10px;
+  margin: 5px 0;
+}
 
 .voucher-block form {
   overflow: hidden;
@@ -2449,7 +2454,7 @@ div.invalid-order {
   vertical-align: top;
 }
 .dialoug .address-confirm-box b {
-  width: 100px;
+  width: 120px;
   word-wrap: break-word;
   display: inline-block;
 }
