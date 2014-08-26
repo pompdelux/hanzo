@@ -1040,7 +1040,7 @@ class ProductsController extends CoreController
 
         foreach ($products as $product) {
             foreach ($stock->get($product, true) as $level) {
-                if (empty($level['date']) || (0 == $level['quantity'])) {
+                if (!is_array($level) || empty($level['date']) || (0 == $level['quantity'])) {
                     $stock_data[] = array($product->getSku(), 0);
                     continue;
                 }

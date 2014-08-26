@@ -41,12 +41,17 @@ class CheckStockLevelCommand extends ContainerAwareCommand
         $table->setHeaders(['SKU', 'date', 'quantity']);
 
         foreach ($products as $product) {
-            foreach ($stock->get($product, true) as $level)
-            $table->addRow([
-                $product->getSku(),
-                $level['date'],
-                $level['quantity']
-            ]);
+            foreach ($stock->get($product, true) as $level) {
+                if (!is_array($level)) {
+                    continue;
+                }
+
+                $table->addRow([
+                    $product->getSku(),
+                    $level['date'],
+                    $level['quantity']
+                ]);
+            }
         }
 
         $table->render($output);
