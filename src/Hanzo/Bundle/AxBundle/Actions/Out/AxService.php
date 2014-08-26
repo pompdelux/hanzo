@@ -215,7 +215,7 @@ class AxService
             }
 
             $line = new stdClass();
-            $line->ItemId          = 'POMPBIGBAGSS14';
+            $line->ItemId          = 'POMPBIGBAGAW14';
             $line->SalesPrice      = $big_bag_price;
             $line->LineDiscPercent = 100;
             $line->SalesQty        = 1;
@@ -227,13 +227,11 @@ class AxService
 
         $date = date('Ymd');
         // Add BAG if is an event or either other, gift, private of type.
-        if ($order->getEventsId() ||
-            (isset($attributes->purchase->type) && in_array($attributes->purchase->type, array('other', 'gift', 'private', 'friend')))
-           ) {
+        if ($order->getEventsId() || (isset($attributes->purchase->type) && in_array($attributes->purchase->type, array('other', 'gift', 'private', 'friend')))) {
 
-            // mellem 19/2'14 og 19/5'14
-            if (((20140219 <= $date) && (20140519 >= $date)) ||
-                ($in_edit && (20140519 >= $order->getCreatedAt('Ymd')))
+            // mellem 28/8'14 og 27/11'14
+            if (((20140828 <= $date) && (20141127 >= $date)) ||
+                ($in_edit && (20141127 >= $order->getCreatedAt('Ymd')))
             ) {
                 $bag_price  = 0.00;
                 switch($domain_key) {
@@ -255,7 +253,7 @@ class AxService
                 }
 
                 $line = new stdClass();
-                $line->ItemId          = 'POMPBAGSS14';
+                $line->ItemId          = 'POMPBAGAW14';
                 $line->SalesPrice      = $bag_price;
                 $line->LineDiscPercent = 100;
                 $line->SalesQty        = 1;
@@ -264,40 +262,40 @@ class AxService
                 $line->SalesUnit       = 'Stk.';
                 $salesLine[]           = $line;
 
-                // attach voucher between 20140324 and 20140406
-                if ((($date >= 20140324) && ($date <= 20140406)) ||
-                    ( $in_edit &&
-                     ($order->getCreatedAt('Ymd') <= 20140406) &&
-                     ($order->getCreatedAt('Ymd') >= 20140324)
-                    )
-                ) {
-                    $line = new stdClass();
-                    $line->ItemId          = 'VOUCHER';
-                    $line->SalesPrice      = 0.00;
-                    $line->SalesQty        = 1;
-                    $line->InventColorId   = $domain_key;
-                    $line->InventSizeId    = 'One Size';
-                    $line->SalesUnit       = 'Stk.';
-                    $salesLine[]           = $line;
-                }
+//                // attach voucher between 20140324 and 20140406
+//                if ((($date >= 20140324) && ($date <= 20140406)) ||
+//                    ( $in_edit &&
+//                     ($order->getCreatedAt('Ymd') <= 20140406) &&
+//                     ($order->getCreatedAt('Ymd') >= 20140324)
+//                    )
+//                ) {
+//                    $line = new stdClass();
+//                    $line->ItemId          = 'VOUCHER';
+//                    $line->SalesPrice      = 0.00;
+//                    $line->SalesQty        = 1;
+//                    $line->InventColorId   = $domain_key;
+//                    $line->InventSizeId    = 'One Size';
+//                    $line->SalesUnit       = 'Stk.';
+//                    $salesLine[]           = $line;
+//                }
             }
         }
 
-        if ($order->getEventsId()) {
-            // attach voucher between 20140324 and 20140406
-            if ((($date >= 20140324) && ($date <= 20140406)) ||
-                ($in_edit && ($order->getCreatedAt('Ymd') <= 20140406) && ($order->getCreatedAt('Ymd') >= 20140324))
-            ) {
-                $line = new stdClass();
-                $line->ItemId          = 'VOUCHER';
-                $line->SalesPrice      = 0.00;
-                $line->SalesQty        = 1;
-                $line->InventColorId   = $domain_key;
-                $line->InventSizeId    = 'One Size';
-                $line->SalesUnit       = 'Stk.';
-                $salesLine[]           = $line;
-            }
-        }
+//        if ($order->getEventsId()) {
+//            // attach voucher between 20140324 and 20140406
+//            if ((($date >= 20140324) && ($date <= 20140406)) ||
+//                ($in_edit && ($order->getCreatedAt('Ymd') <= 20140406) && ($order->getCreatedAt('Ymd') >= 20140324))
+//            ) {
+//                $line = new stdClass();
+//                $line->ItemId          = 'VOUCHER';
+//                $line->SalesPrice      = 0.00;
+//                $line->SalesQty        = 1;
+//                $line->InventColorId   = $domain_key;
+//                $line->InventSizeId    = 'One Size';
+//                $line->SalesUnit       = 'Stk.';
+//                $salesLine[]           = $line;
+//            }
+//        }
 
         if ($gift_card) {
             $line = new stdClass();
