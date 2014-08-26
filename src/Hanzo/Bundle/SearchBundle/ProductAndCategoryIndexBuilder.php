@@ -21,7 +21,7 @@ class ProductAndCategoryIndexBuilder extends IndexBuilder
             $connection = $this->getConnection($name);
 
             foreach ($this->getLocales($connection) as $locale) {
-                $this->updateCategoryIndex($locale, $connection);
+                //$this->updateCategoryIndex($locale, $connection);
                 $this->updateProductIndex($locale, $connection);
             }
         }
