@@ -91,13 +91,11 @@
 								"Eggplant/Grey",
 								"Eggplant/Mustard",
 								"Mustard"
-
                             ],
                             "Peach": [
                                 "Peach",
 								"Grey/Peach",
 								"Black"
-
                             ],
                             "Petrol & Blue": [
                                 "Petrol",
@@ -108,7 +106,6 @@
 								"Navy",
 								"Navy/Rose",
 								"Blue/Mustard"
-
                             ],
                             "Black & Grey": [
                                 "Grey",
@@ -135,7 +132,7 @@
 			<trans-unit id="604.settings">
                 <source>661.settings</source>
                 <target><![CDATA[
-                   {
+                    {
                         "colormap": {
                              "Navy, Wine & Mustard": [
                                 "Navy",
@@ -143,13 +140,11 @@
 								"Navy/Mustard",
 								"Navy/Wine",
 								"Wine"
-
                             ],
                             "Green": [
 								"Green",
 								"Olive",
 								"Brown"
-
                             ],
                             "Blue": [
                                 "Blue",
@@ -157,12 +152,10 @@
 								"Yellow",
 								"Orange",
 								"Lime"
-
                             ],
                             "Petrol": [
                                 "Petrol",
 								"Turquoise"
-
                             ],
                             "Grey": [
                                 "Grey",
