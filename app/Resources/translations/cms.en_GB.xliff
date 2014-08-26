@@ -263,15 +263,6 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="868.settings">
-                <source>868.settings</source>
-                <target><![CDATA[
-                    {
-                        "category_id": "127",
-                        "colors": "Rose,Rose/Grey,Rose/Eggplant,Eggplant,Eggplant/Rose,Grey/Rose/Eggplant,Eggplant/Grey,Eggplant/Mustard,Mustard,Peach,Grey/Peach,Navy/Rose,Navy,Blue Denim,Blue,Blue/Off White,Blue/Mustard,Petrol,Blue/Petrol,Grey/Petrol,Grey,Grey Melange,Grey/Off White,Black,Cream,Off White,White,Grey Melange/Black"
-                    }
-                ]]></target>
-            </trans-unit>
 			<trans-unit id="611.settings">
                 <source>611.settings</source>
                 <target><![CDATA[
@@ -286,15 +277,6 @@
                 <target><![CDATA[
                     {
                         "category_id": "113",
-                        "colors": "Rose,Rose/Grey,Rose/Eggplant,Eggplant,Eggplant/Rose,Grey/Rose/Eggplant,Eggplant/Grey,Eggplant/Mustard,Mustard,Peach,Grey/Peach,Navy/Rose,Navy,Blue Denim,Blue,Blue/Off White,Blue/Mustard,Petrol,Blue/Petrol,Grey/Petrol,Grey,Grey Melange,Grey/Off White,Black,Cream,Off White,White,Grey Melange/Black"
-                    }
-                ]]></target>
-            </trans-unit>
-			<trans-unit id="869.settings">
-                <source>869.settings</source>
-                <target><![CDATA[
-                    {
-                        "category_id": "114",
                         "colors": "Rose,Rose/Grey,Rose/Eggplant,Eggplant,Eggplant/Rose,Grey/Rose/Eggplant,Eggplant/Grey,Eggplant/Mustard,Mustard,Peach,Grey/Peach,Navy/Rose,Navy,Blue Denim,Blue,Blue/Off White,Blue/Mustard,Petrol,Blue/Petrol,Grey/Petrol,Grey,Grey Melange,Grey/Off White,Black,Cream,Off White,White,Grey Melange/Black"
                     }
                 ]]></target>
@@ -425,15 +407,6 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="876.settings">
-                <source>876.settings</source>
-                <target><![CDATA[
-                    {
-                        "category_id": "129",
-                        "colors": "Rose,Rose/Grey,Rose/Eggplant,Eggplant,Eggplant/Rose,Grey/Rose/Eggplant,Eggplant/Grey,Eggplant/Mustard,Mustard,Peach,Grey/Peach,Navy/Rose,Navy,Blue Denim,Blue,Blue/Off White,Blue/Mustard,Petrol,Blue/Petrol,Grey/Petrol,Grey,Grey Melange,Grey/Off White,Black,Cream,Off White,White,Grey Melange/Black"
-                    }
-                ]]></target>
-            </trans-unit>
 			<trans-unit id="636.settings">
                 <source>636.settings</source>
                 <target><![CDATA[
@@ -551,6 +524,24 @@
                     }
                 ]]></target>
             </trans-unit>
+			<trans-unit id="919.settings">
+                <source>919.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "136",
+                        "colors": "Rose,Rose/Grey,Rose/Eggplant,Eggplant,Eggplant/Rose,Grey/Rose/Eggplant,Eggplant/Grey,Eggplant/Mustard,Mustard,Peach,Grey/Peach,Navy/Rose,Navy,Blue Denim,Blue,Blue/Off White,Blue/Mustard,Petrol,Blue/Petrol,Grey/Petrol,Grey,Grey Melange,Grey/Off White,Black,Cream,Off White,White,Grey Melange/Black"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="921.settings">
+                <source>921.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "137",
+                        "colors": "Rose,Rose/Grey,Rose/Eggplant,Eggplant,Eggplant/Rose,Grey/Rose/Eggplant,Eggplant/Grey,Eggplant/Mustard,Mustard,Peach,Grey/Peach,Navy/Rose,Navy,Blue Denim,Blue,Blue/Off White,Blue/Mustard,Petrol,Blue/Petrol,Grey/Petrol,Grey,Grey Melange,Grey/Off White,Black,Cream,Off White,White,Grey Melange/Black"
+                    }
+                ]]></target>
+            </trans-unit>
 			<trans-unit id="870.settings">
                 <source>870.settings</source>
                 <target><![CDATA[
@@ -565,33 +556,6 @@
                 <target><![CDATA[
                     {
                         "category_id": "6",
-                        "colors": "Navy,Mustard,Navy/Mustard,Navy/Wine,Wine,Petrol,Grey/Navy/Petrol,Green,Brown,Olive,Yellow,Orange,Lime,Blue,Blue Denim,Grey,Grey Melange,Black,White,Turquoise"
-                    }
-                ]]></target>
-            </trans-unit>
-			<trans-unit id="871.settings">
-                <source>871.settings</source>
-                <target><![CDATA[
-                    {
-                        "category_id": "128",
-                        "colors": "Navy,Mustard,Navy/Mustard,Navy/Wine,Wine,Petrol,Grey/Navy/Petrol,Green,Brown,Olive,Yellow,Orange,Lime,Blue,Blue Denim,Grey,Grey Melange,Black,White,Turquoise"
-                    }
-                ]]></target>
-            </trans-unit>
-			<trans-unit id="625.settings">
-                <source>625.settings</source>
-                <target><![CDATA[
-                    {
-                        "category_id": "117",
-                        "colors": "Navy,Mustard,Navy/Mustard,Navy/Wine,Wine,Petrol,Grey/Navy/Petrol,Green,Brown,Olive,Yellow,Orange,Lime,Blue,Blue Denim,Grey,Grey Melange,Black,White,Turquoise"
-                    }
-                ]]></target>
-            </trans-unit>
-			<trans-unit id="872.settings">
-                <source>872.settings</source>
-                <target><![CDATA[
-                    {
-                        "category_id": "118",
                         "colors": "Navy,Mustard,Navy/Mustard,Navy/Wine,Wine,Petrol,Grey/Navy/Petrol,Green,Brown,Olive,Yellow,Orange,Lime,Blue,Blue Denim,Grey,Grey Melange,Black,White,Turquoise"
                     }
                 ]]></target>
@@ -619,15 +583,6 @@
                 <target><![CDATA[
                     {
                         "category_id": "83",
-                        "colors": "Navy,Mustard,Navy/Mustard,Navy/Wine,Wine,Petrol,Grey/Navy/Petrol,Green,Brown,Olive,Yellow,Orange,Lime,Blue,Blue Denim,Grey,Grey Melange,Black,White,Turquoise"
-                    }
-                ]]></target>
-            </trans-unit>
-			<trans-unit id="873.settings">
-                <source>873.settings</source>
-                <target><![CDATA[
-                    {
-                        "category_id": "120",
                         "colors": "Navy,Mustard,Navy/Mustard,Navy/Wine,Wine,Petrol,Grey/Navy/Petrol,Green,Brown,Olive,Yellow,Orange,Lime,Blue,Blue Denim,Grey,Grey Melange,Black,White,Turquoise"
                     }
                 ]]></target>
@@ -713,33 +668,6 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="879.settings">
-                <source>879.settings</source>
-                <target><![CDATA[
-                    {
-                        "category_id": "130",
-                        "colors": "Navy,Mustard,Navy/Mustard,Navy/Wine,Wine,Petrol,Grey/Navy/Petrol,Green,Brown,Olive,Yellow,Orange,Lime,Blue,Blue Denim,Grey,Grey Melange,Black,White,Turquoise"
-                    }
-                ]]></target>
-            </trans-unit>
-			<trans-unit id="880.settings">
-                <source>880.settings</source>
-                <target><![CDATA[
-                    {
-                        "category_id": "27",
-                        "colors": "Navy,Mustard,Navy/Mustard,Navy/Wine,Wine,Petrol,Grey/Navy/Petrol,Green,Brown,Olive,Yellow,Orange,Lime,Blue,Blue Denim,Grey,Grey Melange,Black,White,Turquoise"
-                    }
-                ]]></target>
-            </trans-unit>
-			<trans-unit id="881.settings">
-                <source>881.settings</source>
-                <target><![CDATA[
-                    {
-                        "category_id": "124",
-                        "colors": "Navy,Mustard,Navy/Mustard,Navy/Wine,Wine,Petrol,Grey/Navy/Petrol,Green,Brown,Olive,Yellow,Orange,Lime,Blue,Blue Denim,Grey,Grey Melange,Black,White,Turquoise"
-                    }
-                ]]></target>
-            </trans-unit>
 			<trans-unit id="651.settings">
                 <source>651.settings</source>
                 <target><![CDATA[
@@ -763,15 +691,6 @@
                 <target><![CDATA[
                     {
                         "category_id": "88",
-                        "colors": "Navy,Mustard,Navy/Mustard,Navy/Wine,Wine,Petrol,Grey/Navy/Petrol,Green,Brown,Olive,Yellow,Orange,Lime,Blue,Blue Denim,Grey,Grey Melange,Black,White,Turquoise"
-                    }
-                ]]></target>
-            </trans-unit>
-			<trans-unit id="882.settings">
-                <source>882.settings</source>
-                <target><![CDATA[
-                    {
-                        "category_id": "125",
                         "colors": "Navy,Mustard,Navy/Mustard,Navy/Wine,Wine,Petrol,Grey/Navy/Petrol,Green,Brown,Olive,Yellow,Orange,Lime,Blue,Blue Denim,Grey,Grey Melange,Black,White,Turquoise"
                     }
                 ]]></target>
@@ -835,6 +754,33 @@
                 <target><![CDATA[
                     {
                         "category_id": "48",
+                        "colors": "Navy,Mustard,Navy/Mustard,Navy/Wine,Wine,Petrol,Grey/Navy/Petrol,Green,Brown,Olive,Yellow,Orange,Lime,Blue,Blue Denim,Grey,Grey Melange,Black,White,Turquoise"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="922.settings">
+                <source>922.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "135",
+                        "colors": "Navy,Mustard,Navy/Mustard,Navy/Wine,Wine,Petrol,Grey/Navy/Petrol,Green,Brown,Olive,Yellow,Orange,Lime,Blue,Blue Denim,Grey,Grey Melange,Black,White,Turquoise"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="650.settings">
+                <source>650.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "138",
+                        "colors": "Navy,Mustard,Navy/Mustard,Navy/Wine,Wine,Petrol,Grey/Navy/Petrol,Green,Brown,Olive,Yellow,Orange,Lime,Blue,Blue Denim,Grey,Grey Melange,Black,White,Turquoise"
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="924.settings">
+                <source>924.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "139",
                         "colors": "Navy,Mustard,Navy/Mustard,Navy/Wine,Wine,Petrol,Grey/Navy/Petrol,Green,Brown,Olive,Yellow,Orange,Lime,Blue,Blue Denim,Grey,Grey Melange,Black,White,Turquoise"
                     }
                 ]]></target>
