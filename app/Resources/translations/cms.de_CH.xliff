@@ -130,7 +130,7 @@
                 ]]></target>
             </trans-unit>
 			<trans-unit id="604.settings">
-                <source>661.settings</source>
+                <source>604.settings</source>
                 <target><![CDATA[
                     {
                         "colormap": {
