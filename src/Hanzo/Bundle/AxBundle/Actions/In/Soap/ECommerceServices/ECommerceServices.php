@@ -374,13 +374,13 @@ class ECommerceServices extends SoapService
             if ($domain['vat'] > 0) {
                 // 100/(1+(25/100) = 80
                 $thePrice = $thePrice / (1 + ($domain['vat'] / 100));
-                $vat = $entry->AmountCur - $thePrice;
+                $vat      = $entry->AmountCur - $thePrice;
             }
 
 
             // fix decimals in db...
-            $vat = number_format( $vat, 2, '.', '' );
-            $thePrice = number_format( $thePrice, 2, '.', '' );
+            $vat      = number_format($vat, 4, '.', '');
+            $thePrice = number_format($thePrice, 4, '.', '');
 
             // perhaps we could skip this, pompdelux does not use alternative prices pr. variant
             $products[$key]['prices'][] = array(
