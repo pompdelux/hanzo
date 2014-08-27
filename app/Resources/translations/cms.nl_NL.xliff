@@ -2,7 +2,7 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
-		<trans-unit id="590.settings">
+            <trans-unit id="590.settings">
                 <source>590.settings</source>
                 <target><![CDATA[
                     {
@@ -51,7 +51,7 @@
 								"Off White",
 								"White",
 								"Grey Melange/Black"
-                            
+                            ]
                         },
                         "sizes": [
                             "110",
@@ -119,7 +119,7 @@
 								"Off White",
 								"White",
 								"Grey Melange/Black"
-								
+							]	
                         },
                         "sizes": [
                            "80",
@@ -169,6 +169,7 @@
 								"Grey Melange",
 								"Black",
 								"White"
+							]
                         },
                         "sizes": [
                             "110",
@@ -224,6 +225,7 @@
 								"Grey Melange",
 								"Black",
 								"White"
+							]
                         },
                         "sizes": [
                            "80",
