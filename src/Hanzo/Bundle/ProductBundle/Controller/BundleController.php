@@ -312,7 +312,7 @@ class BundleController extends CoreController
 
             // Add description and washing details to all products.
             $find = '~(background|src)="(../|/)~';
-            $replace = '$1="' . $hanzo->get('core.cdn');
+            $replace = '$1="' . str_replace(['https:', 'http:'], '', $hanzo->get('core.cdn'));
 
             foreach ($products as $id => $product) {
 
