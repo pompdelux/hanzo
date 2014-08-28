@@ -551,10 +551,6 @@ admin_postalcode:
 admin_postalcode_add:
     pattern:  /admin/settings/postalcode/edit
     defaults:
-        _controller: AdminBundle:PostalCode:view
-admin_postalcode_add:
-    pattern:  /admin/settings/postalcode/edit
-    defaults:
         _controller: AdminBundle:PostalCode:edit
 admin_postalcode_edit:
     pattern:  /admin/settings/postalcode/edit
