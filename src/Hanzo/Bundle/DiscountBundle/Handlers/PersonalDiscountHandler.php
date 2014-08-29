@@ -11,6 +11,8 @@
 namespace Hanzo\Bundle\DiscountBundle\Handlers;
 
 use Hanzo\Core\Hanzo;
+use Hanzo\Model\Consultants;
+use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\Orders;
 use Hanzo\Model\ProductsDomainsPricesPeer;
 use Psr\Log\LoggerInterface;
@@ -29,7 +31,7 @@ class PersonalDiscountHandler
 
 
     /**
-     * @param Logger $logger
+     * @param LoggerInterface $logger
      */
     public function __construct(LoggerInterface $logger)
     {
@@ -56,6 +58,18 @@ class PersonalDiscountHandler
     {
         $discount = 0;
         $customer = $this->order->getCustomers();
+
+        // prevent employees from getting stacked discounts
+        if ($customer->getConsultants() instanceof Consultants) {
+            $attributes = $this->order->getAttributes();
+
+            if (isset($attributes->purchase->type) &&
+                ('gift' === $attributes->purchase->type) &&
+                ($this->order->getCustomersId() == CustomersPeer::getCurrent()->getId())
+            ) {
+                return $this->order;
+            }
+        }
 
         // apply group and private discounts if discounts is not disabled
         if (0 == Hanzo::getInstance()->get('webshop.disable_discounts')) {
