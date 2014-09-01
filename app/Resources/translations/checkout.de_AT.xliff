@@ -130,6 +130,18 @@
         <source>confirm.total</source>
         <target>Gesamtbetrag</target>
       </trans-unit>
+	   <trans-unit id="payment.manualpayment.title">
+        <source>payment.manualpayment.title</source>
+        <target>Banküberweisung</target>
+      </trans-unit>
+      <trans-unit id="payment.manualpayment.text">
+        <source>payment.manualpayment.text</source>
+        <target><![CDATA[<b>Bitte beachten:</b> Banküberweisung darf <b><u>nur</u></b> bei fehlender Internetverbindung verwendet werden.]]></target>
+      </trans-unit>
+      <trans-unit id="payment.manualpayment.label">
+        <source>payment.manualpayment.label</source>
+        <target>Banküberweisung</target>
+      </trans-unit>
       <trans-unit id="payment.paybybill.title">
         <source>payment.paybybill.title</source>
         <target>Banküberweisung</target>
