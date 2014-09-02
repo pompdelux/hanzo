@@ -2,9 +2,10 @@ var maps = (function ($) {
     var pub = {};
 
     pub.initZip = function () {
-        $("#geo-zipcode-form").submit(function (e) {
+        var $geoZipForm = $("#geo-zipcode-form");
+        $geoZipForm.submit(function (event) {
             var $this = $(this);
-            e.preventDefault();
+            event.preventDefault();
 
             dialoug.loading('#near-you-container', Translator.trans('loading.std'), 'prepend');
             var url = base_url + "muneris/gpc/" + encodeURI($("#geo-zipcode", $this).val());
@@ -17,7 +18,7 @@ var maps = (function ($) {
 
                 // handle more than one result, not just using the first.
                 if (response.data.postcodes.length > 1) {
-                    dialoug.notice(Translator.trans('maps.choose.correct.location'), 'info', 6000, '#geo-zipcode-form p');
+                    dialoug.notice(Translator.trans('maps.choose.correct.location'), 'info', 8000, '#geo-zipcode-form p');
                     var html = '<select id="geo-zipcode">';
 
                     $.each(response.data.postcodes, function (i, city) {
@@ -58,6 +59,9 @@ var maps = (function ($) {
             $("#geo-zipcode", $this).val("");
         });
 
+        $geoZipForm.on('change', 'select', function() {
+            $geoZipForm.submit();
+        });
     };
 
     pub.initContainer = function () {
