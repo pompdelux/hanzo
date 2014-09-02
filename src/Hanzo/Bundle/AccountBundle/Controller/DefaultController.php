@@ -30,13 +30,15 @@ class DefaultController extends CoreController
     public function indexAction(Request $request)
     {
         // if we access the account page with an active "edit" we close it.
-        if ($request->getSession()->has('in_edit')) {
-            $this->get('event_dispatcher')->dispatch('order.edit.cancel', new FilterOrderEvent(OrdersPeer::getCurrent()));
 
-            // update/set basket cookie
-            Tools::setCookie('basket', '(0) '.Tools::moneyFormat(0.00), 0, false);
-            return $this->redirect($this->generateUrl('_account'));
-        }
+// allow orders to "hang" in-edit
+//        if ($request->getSession()->has('in_edit')) {
+//            $this->get('event_dispatcher')->dispatch('order.edit.cancel', new FilterOrderEvent(OrdersPeer::getCurrent()));
+//
+//            // update/set basket cookie
+//            Tools::setCookie('basket', '(0) '.Tools::moneyFormat(0.00), 0, false);
+//            return $this->redirect($this->generateUrl('_account'));
+//        }
 
         // some times edit order cookies are not "closed"
         if ($request->cookies->has('__ice')) {
