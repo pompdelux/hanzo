@@ -904,13 +904,14 @@ class OrdersController extends CoreController
     /**
      * Resend an orders confirmation email.
      *
-     * @ParamConverter("order", class="Hanzo\Model\Orders")
-     *
-     * @param  Orders $order
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param  Request $request
+     * @param  int     $id
+     * @return Response
      */
-    public function resendConfirmationMailAction(Orders $order)
+    public function resendConfirmationMailAction(Request $request, $id = null)
     {
+        $order = OrdersQuery::create()->findOneById($id, $this->getDbConnection());
+
         if ($order->getState() < Orders::STATE_PENDING) {
             $this->container->get('session')->getFlashBag()->add('notice', 'Ordre nummer #'.$order->getId().' er ikke så langt at der kan gensendes en konfirmationsmail.');
             return $this->redirect($this->generateUrl('admin_customer_order', ['order_id' => $order->getId()]));
