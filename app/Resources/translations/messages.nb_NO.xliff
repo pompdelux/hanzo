@@ -272,7 +272,9 @@
             <trans-unit id="return.info">
                 <source>return.info</source>
                 <target><![CDATA[
-                    <p>Varene skal være ubrukte og returneres i original emballasje med hengemerker osv. Strømper, leggings og strømpebukser kan kun returneres i ubrutt emballasje. Postposen som du mottar varene i er fremstilt slik at den kan brukes to ganger. På posen kan du se hvor du skal klippe slik at du kan bruke den igjen. Vi refunderer derfor ikke penger for returemballasje, og vi refunderer heller ikke penger for porto hvis du kun sender deler av ordren i retur. Vi mottar ikke returvarer som sendes per etterkrav.</p>
+                    <p>Hvis du ønsker å bytte eller returnere en vare, har du hos POMPdeLUX 14 dagers angrerett fra den dagen du mottar varen. Det er viktig at varen returneres med hengemerker og i samme stand som da du mottok den, hvis du ønsker å få byttet den til en tilsvarende vare eller få tilbakebetalt det fulle kjøpsbeløpet. Du kan lese mer om hvordan du skal gjøre hvis du ønsker å returnere eller bytte en vare under <a href="/nb_NO/forside/kundeservice/returnering" target="_blank">Returnering og Bytting.</a> 
+Du kan lese mer om angrerett under <a href="/nb_NO/forside/kundeservice/vilkar-betingelser" target="_blank">Vilkår og betingelser.</a>
+</p>
                 ]]></target>
             </trans-unit>
 			<trans-unit id="footer.menu_1">

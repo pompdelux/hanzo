@@ -281,24 +281,8 @@
             <trans-unit id="return.info">
                 <source>return.info</source>
                 <target><![CDATA[
-                    <p><b>FORTRYDELSESRET</b><br>
-  Du har 14 dages fortrydelsesret på alle varer fra POMPdeLUX fra den dag, du modtager dem.  Hvis du fortryder dit køb, er det eneste, du skal gøre at give os besked, hvilket du lettest gør ved at udfylde retursedlen, som du finder på Min Side. <br>
-  <br>
-  <b>SÅDAN GØR DU</b><br>
-  Hos POMPdeLUX er det nemt at returnere en vare. Postposen, som du modtager dine varer i, er lavet, så du let kan anvende den til at sende varen, du ønsker at returnere, tilbage.  Med denne mulighed, sparer vi dig for at skulle investere i dyr returemballage – til gavn for både dig og miljøet. 
-  Det vil være en stor hjælp at du returnerer varen i original indpakning med hængemærker etc. Vi forventer, at du afsender varerne hurtigst muligt efter, du har givet os besked, og senest indenfor 14 dage. Ved tilbagelevering bør du sørge for, at varerne er forsvarligt indpakket, da du har ansvaret for pakken/varerne, indtil vi modtager den. Gem derfor postkvittering samt evt. track and trace nummer. <br>
-  <br>
-  Den nemmeste og hurtigste måde at returnere eller ombytte er at sende varerne sammen med en udfyldt returseddel. Retursedlen udfylder du på Min Side. Posen afleveres som pakkepost på posthuset eller i en Pakkeboks pakkeautomat. <br>
-  <br>
-  <b>Bemærk:</b>På Min Side finder du desuden en returlabel, benyt denne og så modregner vi kun DKK 29,- fra værdien af dine returvarer. <br>
-  <br>
-  <b>TILBAGEBETALING</b><br>
-  Vi tilbagefører dine penge, så snart vi har modtaget og kontrolleret din returnering. Beløbet bliver altid overført til samme betalingsmiddel, som du betalte dine varer med. <br>
-  <br>
-  Du skal være opmærksom på, at du kan miste dit købsbeløb, helt eller delvist, hvis vi vurderer, at varens værdi er forringet, fordi du reelt har taget varen i brug. Det er naturligvis tilladt at prøve varen på samme måde, som du ville gøre i en fysisk butik.<br>
-  <br>
-  <b>REKLAMATION OG FEJLLEVEREDE VARER</b><br>
-  Har du modtaget en vare med fejl, eller har vi sendt dig en forkert vare, returnerer du blot varen som beskrevet ovenfor. Hvis vi vurderer din reklamation er berettiget, sender vi dig en ny vare fragtfrit. Er varen udsolgt, tilbagefører vi varens købspris dig. </p>
+                    <p><b>RETURNERING</b><br>
+Hvis du ønsker at ombytte eller returnere en vare, har du hos POMPdeLUX 14 dages fortrydelsesret fra den dag, du modtager varen. Det er vigtigt, at varen returneres med hængemærker og i samme stand, som da du modtog den, hvis du ønsker at få ombyttet til en tilsvarende vare eller få tilbagebetalt det fulde returbeløb. Du kan læse mere om, hvordan du skal gøre, hvis du ønsker at returnere eller bytte en vare under <a href="/da_DK/forside/kundeservice/returnering" target="_blank">Returnering og Ombytning.</a><br> Du kan læse mere om fortrydelsesret i vores <a href="/da_DK/forside/kundeservice/vilkaar-betingelser" target="_blank">Vilkår og betingelser.</a>
                 ]]></target>
             </trans-unit>
             <trans-unit id="footer.menu_1">
