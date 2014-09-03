@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /images/xhjkpiydjns/
+Disallow: /images/pdf/
+Disallow: /images/mailsignatur/
