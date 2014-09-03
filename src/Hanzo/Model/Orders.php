@@ -45,14 +45,12 @@ class Orders extends BaseOrders
 {
     /**
      * Definition of the different status a order can have
-     *
      */
     const STATE_ERROR_PAYMENT   = -110;
     const STATE_ERROR           = -100;
     const STATE_BUILDING        =  -50;
     const STATE_PRE_CONFIRM     =  -30; // nuke ???
     const STATE_PRE_PAYMENT     =  -20;
-    const STATE_POST_PAYMENT    =   10; // nuke ??
     const STATE_PAYMENT_OK      =   20;
     const STATE_PENDING         =   30; // sidste "edit" step
     const STATE_BEING_PROCESSED =   40; // hos ax
@@ -64,34 +62,44 @@ class Orders extends BaseOrders
     const TYPE_OUTSIDE_EVENT    =  -4;
     const TYPE_NORMAL           = -10;
 
-    public static $state_message_map = array(
+    public static $state_message_map = [
         self::STATE_ERROR_PAYMENT   => 'Payment error',
         self::STATE_ERROR           => 'General error',
         self::STATE_BUILDING        => 'Building order',
         self::STATE_PRE_CONFIRM     => 'Order in pre confirm state',
         self::STATE_PRE_PAYMENT     => 'Order in pre payment state',
-        self::STATE_POST_PAYMENT    => 'Order in post confirm state',
         self::STATE_PAYMENT_OK      => 'Order payment confirmed',
         self::STATE_PENDING         => 'Order pending',
         self::STATE_BEING_PROCESSED => 'Order beeing processed',
         self::STATE_SHIPPED         => 'Order shipped/done',
-    );
+    ];
 
     protected $ignore_delete_constraints = false;
-
     protected $pdo_con = null;
 
-
+    /**
+     * @param Translator $translator
+     * @return string
+     */
     public function getDeliveryTitle(Translator $translator = null)
     {
         return $this->translateNameTitle($translator, parent::getDeliveryTitle());
     }
 
+    /**
+     * @param Translator $translator
+     * @return string
+     */
     public function getBillingTitle(Translator $translator = null)
     {
         return $this->translateNameTitle($translator, parent::getBillingTitle());
     }
 
+    /**
+     * @param $translator
+     * @param $title
+     * @return string
+     */
     private function translateNameTitle($translator, $title)
     {
         if ($title && ($translator instanceof Translator)) {
@@ -101,6 +109,10 @@ class Orders extends BaseOrders
         return $title;
     }
 
+    /**
+     * Get full customer name.
+     * @return string
+     */
     public function getCustomersName()
     {
         return trim($this->getFirstName().' '.$this->getLastName());
@@ -201,6 +213,7 @@ class Orders extends BaseOrders
      *
      * @param  int $version_id the version id to switch to
      * @return object Orders
+     * @throws \Exception
      */
     public function toVersion($version_id)
     {
@@ -262,11 +275,12 @@ class Orders extends BaseOrders
     /**
      * getOrderAtVersion
      * Based on this->toVersion
+     *
      * @param int $version_id
      * @return Orders
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    public function getOrderAtVersion( $version_id )
+     * @throws OutOfBoundsException
+     */
+    public function getOrderAtVersion($version_id)
     {
         // if it's the same version, just return self.
         if ($this->getVersionId() == $version_id) {
@@ -297,6 +311,7 @@ class Orders extends BaseOrders
             $line->fromArray($item);
             $collection->prepend($line);
         }
+
         $order->setOrdersLiness($collection);
 
         foreach ($data['attributes'] as $item) {
@@ -346,7 +361,7 @@ class Orders extends BaseOrders
      * @param string   $date     availability date
      * @return OrdersLines
      */
-    public function setOrderLineQty($product, $quantity, $exact = FALSE, $date = '1970-01-01')
+    public function setOrderLineQty($product, $quantity, $exact = false, $date = '1970-01-01')
     {
         // first update existing product lines, if any
         $lines = $this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
@@ -358,7 +373,7 @@ class Orders extends BaseOrders
         foreach ($lines as $index => $line) {
             if ($product->getId() == $line->getProductsId()) {
                 $offset = 0;
-                if (FALSE === $exact) {
+                if (false === $exact) {
                     $offset = $line->getQuantity();
                 }
 
@@ -411,8 +426,7 @@ class Orders extends BaseOrders
      * @param ShippingMethods $shippingMethod
      * @param bool $isFee
      * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function setShipping(ShippingMethods $shippingMethod, $isFee = false)
     {
         $sku = $shippingMethod->getFeeExternalId();
@@ -463,8 +477,7 @@ class Orders extends BaseOrders
      * getOrderLineDiscount
      * NICETO: create filter function that is used by getOrderLineXXX
      * @return float
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function getOrderLineDiscount()
     {
         return OrdersLinesQuery::create()
@@ -525,8 +538,7 @@ class Orders extends BaseOrders
     /**
      * getTotalProductPrice
      * @return float
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function getTotalProductPrice()
     {
         return $this->getTotalPrice( true );
@@ -535,7 +547,6 @@ class Orders extends BaseOrders
     public function getTotalPrice($products_only = false)
     {
         // this is done so Orders::getOrderAtVersion don't throw up
-        #$lines = $this->getOrdersLiness();
         if ($this->isNew()) {
             $lines = $this->getOrdersLiness();
         } else {
@@ -550,10 +561,6 @@ class Orders extends BaseOrders
 
         $total = 0;
         foreach ($lines as $line) {
-            // if ($products_only && ('product' != $line->getType())) {
-            //     continue;
-            // }
-
             $total += ($line->getPrice() * $line->getQuantity());
         }
 
@@ -574,7 +581,6 @@ class Orders extends BaseOrders
 
     public function getTotalQuantity($products_only = false)
     {
-        #$lines = $this->getOrdersLiness();
         if ($this->isNew()) {
             $lines = $this->getOrdersLiness();
         } else {
@@ -589,10 +595,6 @@ class Orders extends BaseOrders
 
         $total = 0;
         foreach ($lines as $line) {
-            // if ($products_only && ('product' != $line->getType())) {
-            //     continue;
-            // }
-
             $total += $line->getQuantity();
         }
 
@@ -600,17 +602,14 @@ class Orders extends BaseOrders
     }
 
     /**
-     * setAttribute
-     *
      * Sets an order attribute
      *
      * @param string $key Name of the attribute
      * @param string $ns Namespace of the attribute, e.g. payment
      * @param string $value The value of the attribute
      * @return object Orders object returned to keep the chain alive.
-     * @author Henrik Farre <hf@bellcom.dk>
      */
-    public function setAttribute( $key, $ns, $value )
+    public function setAttribute($key, $ns, $value)
     {
         $attributes = $this->getOrdersAttributess(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
 
@@ -625,9 +624,9 @@ class Orders extends BaseOrders
         }
 
         $attribute = new OrdersAttributes();
-        $attribute->setCKey( $key );
-        $attribute->setNs( $ns );
-        $attribute->setCValue( $value );
+        $attribute->setCKey($key);
+        $attribute->setNs($ns);
+        $attribute->setCValue($value);
 
         $this->addOrdersAttributes($attribute);
 
@@ -636,24 +635,24 @@ class Orders extends BaseOrders
 
     /**
      * setPaymentMethod
+     *
      * @param string $method
      * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    public function setPaymentMethod( $method )
+     */
+    public function setPaymentMethod($method)
     {
-        $this->setBillingMethod( $method );
+        $this->setBillingMethod($method);
     }
 
     /**
      * setPaymentPaytype
+     *
      * @param string $paytype
      * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    public function setPaymentPaytype( $paytype )
+     */
+    public function setPaymentPaytype($paytype)
     {
-        $this->setAttribute( 'paytype', 'payment', $paytype );
+        $this->setAttribute('paytype', 'payment', $paytype);
     }
 
     /**
@@ -667,7 +666,8 @@ class Orders extends BaseOrders
         if (isset($attributes->payment->paytype)) {
             return $attributes->payment->paytype;
         }
-        return FALSE;
+
+        return false;
     }
 
     /**
@@ -683,9 +683,8 @@ class Orders extends BaseOrders
      * @param float $vat
      * @param string $sku
      * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    public function setPaymentFee( $name, $price, $vat, $sku )
+     */
+    public function setPaymentFee($name, $price, $vat, $sku)
     {
         $fee = OrdersLinesQuery::create()
             ->filterByOrdersId($this->getId())
@@ -713,8 +712,7 @@ class Orders extends BaseOrders
      * Note: only supports one payment.fee line
      *
      * @return float
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function getPaymentFee()
     {
         $line = OrdersLinesQuery::create()
@@ -736,8 +734,7 @@ class Orders extends BaseOrders
      * Note: only supports one shipping.fee line
      *
      * @return float
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function getShippingFee()
     {
         $line = OrdersLinesQuery::create()
@@ -767,7 +764,6 @@ class Orders extends BaseOrders
     public function setOrderLine($type, $id, $name, $price = 0.00, $vat = 0.00, $quantity = 1)
     {
         $lines = $this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
-        // $lines = $this->getOrdersLiness();
 
         foreach ($lines as $index => $line) {
             if ($line->getType() == $type) {
@@ -817,37 +813,35 @@ class Orders extends BaseOrders
      * setBillingAddress
      * @param Addresses $address
      * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    public function setBillingAddress( Addresses $address )
+     * @throws Exception
+     */
+    public function setBillingAddress(Addresses $address)
     {
         if ( $address->getType() != 'payment' ) {
             throw new Exception( 'Address is not of type payment' );
         }
 
-        $this->setBillingAddressLine1( $address->getAddressLine1() )
-            ->setBillingAddressLine2( $address->getAddressLine2() )
-            ->setBillingCity( $address->getCity() )
-            ->setBillingPostalCode( $address->getPostalCode() )
-            ->setBillingCountry( $address->getCountry() )
-            ->setBillingCountriesId( $address->getCountriesId() )
-            ->setBillingStateProvince( $address->getStateProvince() )
-            ->setBillingCompanyName( $address->getCompanyName() )
-            ->setBillingTitle( $address->getTitle() )
-            ->setBillingFirstName( $address->getFirstName() )
-            ->setBillingLastName( $address->getLastName() )
-            ->setBillingExternalAddressId( $address->getExternalAddressId() )
+        $this->setBillingAddressLine1($address->getAddressLine1())
+            ->setBillingAddressLine2($address->getAddressLine2())
+            ->setBillingCity($address->getCity())
+            ->setBillingPostalCode($address->getPostalCode())
+            ->setBillingCountry($address->getCountry())
+            ->setBillingCountriesId($address->getCountriesId())
+            ->setBillingStateProvince($address->getStateProvince())
+            ->setBillingCompanyName($address->getCompanyName())
+            ->setBillingTitle($address->getTitle())
+            ->setBillingFirstName($address->getFirstName())
+            ->setBillingLastName($address->getLastName())
+            ->setBillingExternalAddressId($address->getExternalAddressId())
         ;
     }
 
     /**
      * clearBillingAddress
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function clearBillingAddress()
     {
-        $fields = array(
+        $this->fromArray([
             'BillingTitle'             => null,
             'BillingAddressLine1'      => null,
             'BillingAddressLine2'      => null,
@@ -860,19 +854,15 @@ class Orders extends BaseOrders
             'BillingFirstName'         => null,
             'BillingLastName'          => null,
             'BillingExternalAddressId' => null,
-        );
-
-        $this->fromArray($fields);
+        ]);
     }
 
     /**
      * clearBillingAddress
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function clearDeliveryAddress()
     {
-        $fields = array(
+        $this->fromArray([
             'DeliveryTitle'             => null,
             'DeliveryAddressLine1'      => null,
             'DeliveryAddressLine2'      => null,
@@ -885,16 +875,14 @@ class Orders extends BaseOrders
             'DeliveryFirstName'         => null,
             'DeliveryLastName'          => null,
             'DeliveryExternalAddressId' => null,
-        );
-
-        $this->fromArray($fields);
+        ]);
     }
 
     /**
      * clearPaymentAttributes
+     *
      * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function clearPaymentAttributes()
     {
         $this->clearAttributesByNS('payment');
@@ -902,9 +890,9 @@ class Orders extends BaseOrders
 
     /**
      * clearFees
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     *
+     * @return int
+     */
     public function clearFees()
     {
         return OrdersLinesQuery::create()
@@ -916,11 +904,11 @@ class Orders extends BaseOrders
 
     /**
      * clearAttributesByKey
+     *
      * @param string $key
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    public function clearAttributesByKey( $key )
+     * @return int
+     */
+    public function clearAttributesByKey($key)
     {
         return OrdersAttributesQuery::create()
             ->filterByOrdersId($this->getId())
@@ -932,10 +920,9 @@ class Orders extends BaseOrders
     /**
      * clearAttributesByNS
      * @param string $ns
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    public function clearAttributesByNS( $ns )
+     * @return int
+     */
+    public function clearAttributesByNS($ns)
     {
         return OrdersAttributesQuery::create()
             ->filterByOrdersId($this->getId())
@@ -949,26 +936,26 @@ class Orders extends BaseOrders
      *
      * @param Addresses $address
      * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    public function setDeliveryAddress( Addresses $address )
+     * @throws Exception
+     */
+    public function setDeliveryAddress(Addresses $address)
     {
         if ( !in_array( $address->getType(), array('shipping','overnightbox', 'company_shipping') )  ) {
             throw new Exception( 'Delivery address is not a valid type "'.$address->getType().'"' );
         }
 
-        $this->setDeliveryAddressLine1( $address->getAddressLine1() )
-            ->setDeliveryAddressLine2( $address->getAddressLine2() )
-            ->setDeliveryCity( $address->getCity() )
-            ->setDeliveryPostalCode( $address->getPostalCode() )
-            ->setDeliveryCountry( $address->getCountry() )
-            ->setDeliveryCountriesId( $address->getCountriesId() )
-            ->setDeliveryStateProvince( $address->getStateProvince() )
-            ->setDeliveryCompanyName( $address->getCompanyName() )
-            ->setDeliveryTitle( $address->getTitle() )
-            ->setDeliveryFirstName( $address->getFirstName() )
-            ->setDeliveryLastName( $address->getLastName() )
-            ->setDeliveryExternalAddressId( $address->getExternalAddressId() )
+        $this->setDeliveryAddressLine1($address->getAddressLine1())
+            ->setDeliveryAddressLine2($address->getAddressLine2())
+            ->setDeliveryCity($address->getCity())
+            ->setDeliveryPostalCode($address->getPostalCode())
+            ->setDeliveryCountry($address->getCountry())
+            ->setDeliveryCountriesId($address->getCountriesId())
+            ->setDeliveryStateProvince($address->getStateProvince())
+            ->setDeliveryCompanyName($address->getCompanyName())
+            ->setDeliveryTitle($address->getTitle())
+            ->setDeliveryFirstName($address->getFirstName())
+            ->setDeliveryLastName($address->getLastName())
+            ->setDeliveryExternalAddressId($address->getExternalAddressId())
         ;
     }
 
@@ -1080,8 +1067,8 @@ class Orders extends BaseOrders
      * Cancels the payment for the specific order, so you don't have to know which payment method was used
      *
      * @return bool
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     * @throws Exception
+     */
     public function cancelPayment()
     {
         if ( ($this->getState() > self::STATE_PENDING) && (false === $this->getIgnoreDeleteConstraints()) ) {
@@ -1329,7 +1316,7 @@ class Orders extends BaseOrders
 
         $session = Hanzo::getInstance()->getSession();
 
-        if(FALSE === $session->has('order_id')) {
+        if(false === $session->has('order_id')) {
             $session->set('order_id', $this->getId());
         }
 
