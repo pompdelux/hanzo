@@ -1115,13 +1115,13 @@ class Orders extends BaseOrders
               $msg .= ' at Gothia (Transaction ID: '. $response->transactionId .')';
             }
 
-            Tools::debug( 'Cancel payment failed', __METHOD__, array( 'PaymentMethod' => $paymentMethod, $debug));
+            Tools::debug( 'Cancel payment failed', __METHOD__, ['PaymentMethod' => $paymentMethod, $debug]);
             throw new Exception( $msg );
         }
 
         if (!is_object($response)) {
             $msg = 'Could not cancel order #'.$this->getId();
-            Tools::debug('Cancel payment failed, response is not an object', __METHOD__, array( 'PaymentMethod' => $paymentMethod));
+            Tools::debug('Cancel payment failed, response is not an object', __METHOD__, ['PaymentMethod' => $paymentMethod]);
             throw new Exception($msg);
         }
 
@@ -1132,17 +1132,18 @@ class Orders extends BaseOrders
     /**
      * returns latest delivery date.
      *
-     * @return string
+     * @param  string $format
+     * @return mixed|string
+     * @throws Exception
+     * @throws PropelException
      */
     public function getExpectedDeliveryDate($format = 'Y-m-d')
     {
-        $now = date('Ymd');
-        $latest = 0;
-
-        $hanzo = Hanzo::getInstance();
-
-        $result = $hanzo->get('HD.expected_delivery_date');
-        $expected_at = is_null( $result ) ? '' : $result;
+        $now         = date('Ymd');
+        $latest      = 0;
+        $hanzo       = Hanzo::getInstance();
+        $result      = $hanzo->get('HD.expected_delivery_date');
+        $expected_at = is_null($result) ? '' : $result;
 
         foreach ($this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE)) as $line) {
             $date = $line->getExpectedAt('Ymd');
@@ -1155,17 +1156,29 @@ class Orders extends BaseOrders
         return $expected_at;
     }
 
+
+    /**
+     * @param $v
+     */
     public function setIgnoreDeleteConstraints($v)
     {
         $this->ignore_delete_constraints = (bool) $v;
     }
 
+
+    /**
+     * @return bool
+     */
     public function getIgnoreDeleteConstraints()
     {
         return $this->ignore_delete_constraints;
     }
 
 
+    /**
+     * @return $this
+     * @throws Exception
+     */
     public function recalculate()
     {
         $hanzo = Hanzo::getInstance();
@@ -1187,9 +1200,9 @@ class Orders extends BaseOrders
 
             $lines = $this->getOrdersLiness();
 
-            $product_ids = array();
+            $product_ids = [];
             foreach ($lines as $line) {
-                if('product' == $line->getType()) {
+                if ('product' == $line->getType()) {
                     $product_ids[] = $line->getProductsId();
                 }
             }
@@ -1198,7 +1211,7 @@ class Orders extends BaseOrders
             $collection = new PropelCollection();
 
             foreach ($lines as $line) {
-                if('product' == $line->getType()) {
+                if ('product' == $line->getType()) {
                     $price = $prices[$line->getProductsId()];
 
                     $sales = $price['normal'];
@@ -1219,6 +1232,7 @@ class Orders extends BaseOrders
 
         return $this;
     }
+
 
     /**
      * figure out if the order is for a hostess or not
@@ -1269,6 +1283,11 @@ class Orders extends BaseOrders
     }
 
 
+    /**
+     * @param  PropelPDO $con
+     * @return bool
+     * @throws Exception
+     */
     public function preSave(PropelPDO $con = null)
     {
         if (!$this->getSessionId()) {
@@ -1296,6 +1315,7 @@ class Orders extends BaseOrders
                 $c = new Criteria;
                 $c->add(AddressesPeer::TYPE, 'payment');
                 $address = $customer->getAddressess($c)->getFirst();
+
                 if ($address) {
                     $this->setBillingAddress($address);
                     $this->setPhone($customer->getPhone());
@@ -1308,15 +1328,21 @@ class Orders extends BaseOrders
         return true;
     }
 
+
+    /**
+     * @param  PropelPDO $con
+     * @return bool|void
+     * @throws Exception
+     */
     public function postSave(PropelPDO $con = null)
     {
-        if ( PHP_SAPI == 'cli' ) {
+        if (PHP_SAPI == 'cli') {
             return true;
         }
 
         $session = Hanzo::getInstance()->getSession();
 
-        if(false === $session->has('order_id')) {
+        if (false === $session->has('order_id')) {
             $session->set('order_id', $this->getId());
         }
 
@@ -1337,7 +1363,7 @@ class Orders extends BaseOrders
             try {
                 $this->cancelPayment();
                 Hanzo::getInstance()->container->get('ax.out')->deleteOrder($this, $con);
-            } catch ( Exception $e ) {
+            } catch (Exception $e) {
                 // Tools::log($e->getMessage());
 
                 if ($this->getIgnoreDeleteConstraints()) {
@@ -1352,7 +1378,7 @@ class Orders extends BaseOrders
             }
         }
 
-        return parent::delete($con);
+        parent::delete($con);
     }
 
 
@@ -1374,7 +1400,7 @@ class Orders extends BaseOrders
             return true;
         }
 
-        $data = array();
+        $data = [];
         $data['orders'] = $this->toArray();
         $data['orders_lines'] = $this->getOrdersLiness(null, $con)->toArray();
         $data['orders_attributes'] = $this->getOrdersAttributess(null, $con)->toArray();
