@@ -28,8 +28,7 @@ class DefaultController extends CoreController
      * blockAction
      *
      * @return object Response
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function blockAction()
     {
         $order = OrdersPeer::getCurrent();
@@ -41,7 +40,6 @@ class DefaultController extends CoreController
 
         $redis = $this->get('redis.permanent');
         $dibs_status = $redis->hget('service.status', 'dibs');
-
 
         $modules = [];
         foreach ($this->services as $service => $controller) {
@@ -69,23 +67,30 @@ class DefaultController extends CoreController
                 }
             }
         }
+
         // Order the modules by index, and reverse them so the highest index get in top.
         ksort($modules);
         $modules = array_reverse($modules);
 
         return $this->render('PaymentBundle:Default:block.html.twig', [
-            'modules' => $modules,
+            'modules'               => $modules,
             'selected_payment_type' => $selected_payment_type,
         ]);
     }
 
 
+    /**
+     * @param Request $request
+     * @return Response
+     * @throws \Exception
+     * @throws \PropelException
+     */
     public function setMethodAction(Request $request)
     {
-        $response = array(
-            'status' => false,
+        $response = [
+            'status'  => false,
             'message' => 'unknown payment method',
-        );
+        ];
 
         list($provider, $method) = explode(':', $request->request->get('method'));
 
@@ -129,6 +134,12 @@ class DefaultController extends CoreController
     }
 
 
+    /**
+     * @param Request $request
+     * @return Response
+     * @throws \Exception
+     * @throws \PropelException
+     */
     public function getProcessButtonAction(Request $request)
     {
         $response = [
@@ -157,9 +168,9 @@ class DefaultController extends CoreController
                 'data'    => ['name' => 'payment'],
             ]);
         }
-        $provider = strtolower($order->getBillingMethod());
 
-        $key = 'payment.'.$provider.'api';
+        $provider = strtolower($order->getBillingMethod());
+        $key      = 'payment.' . $provider . 'api';
 
         if (isset($this->services[$key])) {
             $api = $this->get($key);
@@ -170,10 +181,10 @@ class DefaultController extends CoreController
                 'data'    => $api->getProcessButton($order, $request),
             ];
         }
-// Tools::log($response);
+
         // If the customer cancels payment, state is back to building
         // Customer is only allowed to add products to the basket if state is >= pre payment
-        $order->setState( Orders::STATE_PRE_PAYMENT );
+        $order->setState(Orders::STATE_PRE_PAYMENT);
         $order->save();
 
         return $this->json_response($response);
@@ -183,8 +194,8 @@ class DefaultController extends CoreController
     /**
      * Cancels a Gothia Payment, and restores the order in good state
      *
-     * @return void
-     **/
+     * @return Response
+     */
     public function cancelAction()
     {
         $translator = $this->get('translator');
@@ -193,7 +204,7 @@ class DefaultController extends CoreController
         $order->setState( Orders::STATE_BUILDING );
         $order->save();
 
-        $this->get('session')->getFlashBag()->add('notice', $translator->trans( 'payment.canceled', array(), 'checkout' ));
+        $this->get('session')->getFlashBag()->add('notice', $translator->trans('payment.canceled', [], 'checkout'));
 
         return $this->redirect($this->generateUrl('_checkout'));
     }
