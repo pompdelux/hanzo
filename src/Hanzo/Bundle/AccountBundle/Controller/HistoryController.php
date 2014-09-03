@@ -21,9 +21,9 @@ class HistoryController extends CoreController
 {
     public function indexAction()
     {
-        return $this->render('AccountBundle:History:index.html.twig', array(
+        return $this->render('AccountBundle:History:index.html.twig', [
             'page_type' => 'account-history',
-        ));
+        ]);
     }
 
 
@@ -40,7 +40,7 @@ class HistoryController extends CoreController
 
         $order_lines = $order->getOrdersLiness();
 
-        $addresses = array();
+        $addresses = [];
         foreach ($order->toArray() as $key => $value) {
             if (substr($key, 0, 7) == 'Billing') {
                 $key = strtolower(substr($key, 7));
@@ -53,12 +53,12 @@ class HistoryController extends CoreController
             }
         }
 
-        return $this->render('AccountBundle:History:view.html.twig', array(
+        return $this->render('AccountBundle:History:view.html.twig', [
             'page_type' => 'account-history-view',
             'order' => $order,
             'order_lines' => $order_lines,
             'addresses' => $addresses,
-        ));
+        ]);
     }
 
 
@@ -88,7 +88,7 @@ class HistoryController extends CoreController
     }
 
 
-    public function blockAction($limit = 6, $link = TRUE, $route = FALSE, $pager = 1)
+    public function blockAction($limit = 6, $link = true, $route = false, $pager = 1)
     {
         $hanzo = Hanzo::getInstance();
         $customer = CustomersPeer::getCurrent();
@@ -109,21 +109,21 @@ class HistoryController extends CoreController
             ->paginate($pager, $limit)
         ;
 
-        $paginate = FALSE;
+        $paginate = false;
 
         if (!$link) {
-            $pages = array();
+            $pages = [];
             if ($result->haveToPaginate()) {
                 foreach ($result->getLinks(20) as $page) {
-                    $pages[$page] = $router->generate($route, array('pager' => $page), TRUE);
+                    $pages[$page] = $router->generate($route, ['pager' => $page], true);
                 }
 
-                $paginate = array(
-                    'next' => ($result->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $result->getNextPage()), TRUE)),
-                    'prew' => ($result->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $result->getPreviousPage()), TRUE)),
+                $paginate = [
+                    'next' => ($result->getNextPage() == $pager ? '' : $router->generate($route, ['pager' => $result->getNextPage()], true)),
+                    'prew' => ($result->getPreviousPage() == $pager ? '' : $router->generate($route, ['pager' => $result->getPreviousPage()], true)),
                     'pages' => $pages,
                     'index' => $pager
-                );
+                ];
             }
         }
 
@@ -138,17 +138,17 @@ class HistoryController extends CoreController
             $return_lable_route = $submit_shipment->getRoute();
         }
 
-        $orders = array();
+        $orders = [];
         foreach ($result as $record) {
             $folder = $this->mapLanguageToPdfDir($record->getLanguagesId()).'_'.$record->getCreatedAt('Y');
 
-            $attachments = array();
+            $attachments = [];
             foreach ($record->getAttachments() as $key => $attachment) {
-                $attachments[] = $hanzo->get('core.cdn') . 'pdf.php?' . http_build_query(array(
+                $attachments[] = $hanzo->get('core.cdn') . 'pdf.php?' . http_build_query([
                     'folder' => $folder,
                     'file'   => $attachment,
                     'key'    => $this->get('session')->getId()
-                ));
+                ]);
             }
 
             $track_n_trace = '';
@@ -164,7 +164,7 @@ class HistoryController extends CoreController
                 }
             }
 
-            $orders[] = array(
+            $orders[] = [
                 'id'               => $record->getId(),
                 'in_edit'          => $record->getInEdit(),
                 'can_modify'       => (($record->getState() <= Orders::STATE_PENDING) ? true : false),
@@ -174,15 +174,15 @@ class HistoryController extends CoreController
                 'attachments'      => $attachments,
                 'track_n_trace'    => $track_n_trace,
                 'return_lable_url' => $return_lable_url,
-            );
+            ];
         }
 
-        return $this->render('AccountBundle:History:block.html.twig', array(
+        return $this->render('AccountBundle:History:block.html.twig', [
             'page_type' => 'account-history',
             'orders'    => (count($orders) ? $orders : null),
             'link'      => $link,
             'paginate'  => $paginate
-        ));
+        ]);
     }
 
 
@@ -203,36 +203,11 @@ class HistoryController extends CoreController
         if ((!$order instanceof Orders) || $order->getInEdit()) {
             $this->get('session')->getFlashBag()->add('notice', 'unable.to.delete.order.in.current.state');
         } else {
-            $msg = $this->get('translator')->trans('order.deleted', array( '%id%' => $order_id ));
-
-            // NICETO: not hardcoded
-            $attributes = $order->getAttributes();
-            $sw = isset($attributes->global->domain_key) ? $attributes->global->domain_key : '';
-            switch ($sw) {
-                case 'SalesFI':
-                case 'FI':
-                    $bcc = 'orderfi@pompdelux.com';
-                    break;
-                case 'SalesNL':
-                case 'NL':
-                    $bcc = 'ordernl@pompdelux.com';
-                    break;
-                case 'SalesSE':
-                case 'SE':
-                    $bcc = 'order@pompdelux.se';
-                    break;
-                case 'SalesNO':
-                case 'NO':
-                    $bcc = 'order@pompdelux.no';
-                    break;
-                default:
-                    $bcc = 'order@pompdelux.dk';
-                    break;
-            }
+            $msg = $this->get('translator')->trans('order.deleted', ['%id%' => $order_id]);
+            $bcc = Tools::getBccEmailAddress('order', $order);
 
             // nuke order
-            try
-            {
+            try {
                 $firstName = $order->getFirstName();
                 $lastName  = $order->getLastName();
                 $id        = $order->getId();
@@ -242,19 +217,17 @@ class HistoryController extends CoreController
 
                 // send delete notification
                 $mailer = $this->get('mail_manager');
-                $mailer->setMessage('order.deleted', array(
+                $mailer->setMessage('order.deleted', [
                     'name'     => $firstName,
                     'order_id' => $id,
                     'date' => date('d-m-Y'),
                     'time' => date('H:i'),
-                ));
+                ]);
 
                 $mailer->setBcc($bcc);
                 $mailer->setTo($email, $firstName.' '.$lastName);
                 $mailer->send();
-            }
-            catch ( Exception $e )
-            {
+            } catch (Exception $e) {
                 $msg = $e->getMessage();
             }
 
