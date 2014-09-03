@@ -458,7 +458,9 @@ class AxService
             $state   = 'failed';
             $comment = $result->getMessage();
         } else {
-            if ( isset($result->SyncSalesOrderResult->Status) && strtoupper($result->SyncSalesOrderResult->Status) == 'OK') {
+            if (isset($result->SyncSalesOrderResult->Status) &&
+                (strtoupper($result->SyncSalesOrderResult->Status) == 'OK')
+            ) {
                 $state = 'ok';
             } else {
                 $state = 'failed';
