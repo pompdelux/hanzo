@@ -937,7 +937,7 @@ class ECommerceServices extends SoapService
     /**
      * change status of an order, the method also sends statuschanges on request.
      *
-     * @param stdCLass $data
+     * @param stdCLass|object $data
      *   $data->eOrderNumber; // string
      *   $data->orderStatus;  // integer
      *   $data->sendMail;     // bool
@@ -998,7 +998,6 @@ class ECommerceServices extends SoapService
 
         // the order is considered finished when shipped
         if (4 == $data->orderStatus) {
-            #$order->setState(Orders::STATE_SHIPPED);
             $order->setFinishedAt(time());
         }
 
@@ -1293,6 +1292,9 @@ class ECommerceServices extends SoapService
     /**
      * tmp mapping of currency to domain.
      * @fixme: skal laves om i både ax og web. og skal ikke være hardcoded
+     *
+     * @param \stdClass $entry
+     * @return array|false
      */
     public function getDomainKeyFromCurrencyKey($entry)
     {
