@@ -463,27 +463,40 @@ class Orders extends BaseOrders
 
     /**
      * NICETO: create filter function that is used by getOrderLineXXX
+     *
+     * @param null|PropelPDO $conn
+     * @return array|mixed
      */
-    public function getOrderLineShipping()
+    public function getOrderLineShipping($conn = null)
     {
+        $conn = is_null($conn)
+            ? Propel::getConnection(null, Propel::CONNECTION_WRITE)
+            : $conn;
+
         return OrdersLinesQuery::create()
             ->filterByType(['shipping', 'shipping.fee'], Criteria::IN)
             ->filterByOrdersId($this->getId())
-            ->find(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+            ->find($conn)
         ;
     }
 
     /**
      * getOrderLineDiscount
      * NICETO: create filter function that is used by getOrderLineXXX
-     * @return float
+     *
+     * @param null|PropelPDO $conn
+     * @return array|mixed
      */
-    public function getOrderLineDiscount()
+    public function getOrderLineDiscount($conn = null)
     {
+        $conn = is_null($conn)
+            ? Propel::getConnection(null, Propel::CONNECTION_WRITE)
+            : $conn;
+
         return OrdersLinesQuery::create()
             ->filterByType('discount')
             ->filterByOrdersId($this->getId())
-            ->find(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+            ->find($conn)
         ;
     }
 

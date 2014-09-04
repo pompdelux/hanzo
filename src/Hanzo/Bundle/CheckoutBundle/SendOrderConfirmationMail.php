@@ -39,6 +39,11 @@ class SendOrderConfirmationMail
     private $is_mail_build = false;
 
     /**
+     * @var null|\PropelPDO
+     */
+    private $db_conn = null;
+
+    /**
      * @param Translator       $translator
      * @param MailService      $mail_service
      * @param AddressFormatter $address_formatter
@@ -49,6 +54,16 @@ class SendOrderConfirmationMail
         $this->mail_service      = $mail_service;
         $this->address_formatter = $address_formatter;
     }
+
+
+    /**
+     * @param $conn
+     */
+    public function setDBConnection($conn)
+    {
+        $this->db_conn = $conn;
+    }
+
 
     /**
      * Send the confirmation mail build with the build() method.
@@ -75,14 +90,14 @@ class SendOrderConfirmationMail
     public function build(Orders $order)
     {
         // build and send order confirmation.
-        $attributes     = $order->getAttributes();
+        $attributes     = $order->getAttributes($this->db_conn);
         $email          = $order->getEmail();
         $name           = trim($order->getFirstName() . ' ' . $order->getLastName());
         $shipping_title = $this->translator->trans('shipping_method.name.' . $order->getDeliveryMethod(), [], 'shipping');
 
         $shipping_cost = 0.00;
         $shipping_fee  = 0.00;
-        foreach ($order->getOrderLineShipping() as $line) {
+        foreach ($order->getOrderLineShipping($this->db_conn) as $line) {
             switch ($line->getType()) {
                 case 'shipping':
                     $shipping_cost += $line->getPrice();
@@ -128,7 +143,7 @@ class SendOrderConfirmationMail
 
         $event_id = isset($attributes->global->HomePartyId) ? $attributes->global->HomePartyId : '';
 
-        foreach ($order->getOrdersLiness() as $line) {
+        foreach ($order->getOrdersLiness(null, $this->db_conn) as $line) {
             $line->setProductsSize($line->getPostfixedSize($this->translator));
         }
 
@@ -144,8 +159,8 @@ class SendOrderConfirmationMail
             'shipping_cost'    => $shipping_cost,
             'shipping_fee'     => $shipping_fee,
             'expected_at'      => $order->getExpectedDeliveryDate( 'd-m-Y' ),
-            'username'         => $order->getCustomers()->getEmail(),
-            'password'         => $order->getCustomers()->getPasswordClear(),
+            'username'         => $order->getCustomers($this->db_conn)->getEmail(),
+            'password'         => $order->getCustomers($this->db_conn)->getPasswordClear(),
             'event_id'         => $event_id,
         );
 
@@ -171,7 +186,7 @@ class SendOrderConfirmationMail
             $params['gift_card_name'] = $attributes->gift_card->text;
         }
 
-        foreach ($order->getOrdersLiness() as $line) {
+        foreach ($order->getOrdersLiness(null, $this->db_conn) as $line) {
             if ('discount' == $line->getType()) {
                 if (empty($params['hostess_discount'])) {
                     $params['hostess_discount'] = $line->getPrice();

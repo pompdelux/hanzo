@@ -918,6 +918,7 @@ class OrdersController extends CoreController
         }
 
         $mailer = $this->container->get('hanzo.order.send.confirmation.mail');
+        $mailer->setDBConnection($this->getDbConnection());
         $mailer->build($order);
         $mailer->send();
 
