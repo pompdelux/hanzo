@@ -927,8 +927,8 @@ class OrdersController extends CoreController
     }
 
     /**
-     * @param int $orders_id
-     * @param string state
+     * @param int    $orders_id
+     * @param string $state
      *
      * @return Response
      */
