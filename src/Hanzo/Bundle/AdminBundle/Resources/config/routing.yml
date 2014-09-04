@@ -840,10 +840,6 @@ admin_shipping_breaks_delete:
     pattern: /admin/shipping/free-breaks/delete/{id}/
     defaults:
         _controller: AdminBundle:Shipping:deleteFreeBreaks
-admin_shipping_index:
-    pattern: /admin/shipping/free-breaks/
-    defaults:
-        _controller: AdminBundle:Shipping:listFreeBreaks
 
 admin_shipping_index:
     pattern: /admin/shipping/
