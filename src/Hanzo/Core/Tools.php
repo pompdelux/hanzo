@@ -696,4 +696,31 @@ class Tools
 
         return $hanzo;
     }
+
+
+    /**
+     * Map a domain_key to an AX endpoint
+     *
+     * @param $key
+     * @return string
+     */
+    public static function domainKeyToEndpoint($key)
+    {
+        $key      = strtoupper(substr($key, -2));
+        $endPoint = 'DK';
+
+        switch ($key) {
+            case 'AT':
+            case 'CH':
+            case 'DE':
+            case 'FI':
+            case 'NL':
+            case 'NO':
+            case 'SE':
+                $endPoint = $key;
+                break;
+        }
+
+        return $endPoint;
+    }
 }
