@@ -93,8 +93,24 @@ class Orders extends BaseOrders
      */
     public function getDeliveryTitle(Translator $translator = null)
     {
-        return $this->translateNameTitle($translator, parent::getDeliveryTitle());
+        $title = parent::getDeliveryTitle();
+        if ('' == $title) {
+            return '';
+        }
+
+        return $this->translateNameTitle($translator, $title);
     }
+
+
+    /**
+     * @param Translator $translator
+     * @return string
+     */
+    public function getDeliveryFullName(Translator $translator = null)
+    {
+        return trim($this->getDeliveryTitle().' '.$this->getDeliveryFirstName().' '.$this->getDeliveryLastName());
+    }
+
 
     /**
      * @param Translator $translator
