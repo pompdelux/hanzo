@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a2cead56a3c53c70981ef13936b6871f",
+    "hash": "f588c5062bc5192362dc4c2f556edb25",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1145,18 +1145,74 @@
             "time": "2013-07-19 00:03:27"
         },
         {
+            "name": "leezy/pheanstalk-bundle",
+            "version": "2.4.1",
+            "target-dir": "Leezy/PheanstalkBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/armetiz/LeezyPheanstalkBundle.git",
+                "reference": "b1b1aa4f0bc7f2b3fad0d98b55a7f58f5f0ee424"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/armetiz/LeezyPheanstalkBundle/zipball/b1b1aa4f0bc7f2b3fad0d98b55a7f58f5f0ee424",
+                "reference": "b1b1aa4f0bc7f2b3fad0d98b55a7f58f5f0ee424",
+                "shasum": ""
+            },
+            "require": {
+                "pda/pheanstalk": ">=2.1.0,<3.0-dev",
+                "symfony/console": "~2.0",
+                "symfony/framework-bundle": ">=2.0",
+                "symfony/monolog-bridge": ">=2.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Leezy\\PheanstalkBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Thomas Tourlourat",
+                    "email": "thomas@tourlourat.com",
+                    "homepage": "http://www.armetiz.info"
+                }
+            ],
+            "description": "The LeezyPheanstalkBundle is a Symfony2 Bundle that provides a command line interface for manage the Beanstalkd workqueue server & a pheanstalk integration.",
+            "homepage": "https://github.com/armetiz/LeezyPheanstalkBundle",
+            "keywords": [
+                "asynchronous",
+                "beanstalkd",
+                "bundle",
+                "messaging",
+                "pheanstalk",
+                "queueing",
+                "symfony"
+            ],
+            "time": "2014-08-22 12:32:21"
+        },
+        {
             "name": "liip/theme-bundle",
             "version": "dev-master",
             "target-dir": "Liip/ThemeBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/liip/LiipThemeBundle.git",
-                "reference": "4a1d776c6ceaf538c6c45e51e13a8cc3079776f9"
+                "reference": "c4b69e047bb49aa5821664b03a60b657a6676c8d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liip/LiipThemeBundle/zipball/4a1d776c6ceaf538c6c45e51e13a8cc3079776f9",
-                "reference": "4a1d776c6ceaf538c6c45e51e13a8cc3079776f9",
+                "url": "https://api.github.com/repos/liip/LiipThemeBundle/zipball/c4b69e047bb49aa5821664b03a60b657a6676c8d",
+                "reference": "c4b69e047bb49aa5821664b03a60b657a6676c8d",
                 "shasum": ""
             },
             "require": {
@@ -1169,7 +1225,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "1.1-dev"
                 }
             },
             "autoload": {
@@ -1196,7 +1252,7 @@
                 "themes",
                 "theming"
             ],
-            "time": "2014-07-30 06:34:10"
+            "time": "2014-08-29 15:32:53"
         },
         {
             "name": "misd/guzzle-bundle",
@@ -1378,6 +1434,48 @@
                 "sms"
             ],
             "time": "2012-03-12 20:35:07"
+        },
+        {
+            "name": "pda/pheanstalk",
+            "version": "v2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pda/pheanstalk.git",
+                "reference": "ab006cf9330fb5d3799f30a5d9841b85edb40a0f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pda/pheanstalk/zipball/ab006cf9330fb5d3799f30a5d9841b85edb40a0f",
+                "reference": "ab006cf9330fb5d3799f30a5d9841b85edb40a0f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Pheanstalk": "classes/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Paul Annesley",
+                    "email": "paul@annesley.cc",
+                    "homepage": "http://paul.annesley.cc/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP client for beanstalkd queue",
+            "homepage": "https://github.com/pda/pheanstalk",
+            "keywords": [
+                "beanstalkd"
+            ],
+            "time": "2013-04-03 09:15:34"
         },
         {
             "name": "phing/phing",
@@ -1703,22 +1801,22 @@
         },
         {
             "name": "sensio/framework-extra-bundle",
-            "version": "v3.0.1",
+            "version": "v3.0.2",
             "target-dir": "Sensio/Bundle/FrameworkExtraBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioFrameworkExtraBundle.git",
-                "reference": "dbc1e5aa830f3bf8063b29102add3c1e476d616e"
+                "reference": "9b22aaee517e80aad3238ea0328458b6f964066f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/dbc1e5aa830f3bf8063b29102add3c1e476d616e",
-                "reference": "dbc1e5aa830f3bf8063b29102add3c1e476d616e",
+                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/9b22aaee517e80aad3238ea0328458b6f964066f",
+                "reference": "9b22aaee517e80aad3238ea0328458b6f964066f",
                 "shasum": ""
             },
             "require": {
                 "doctrine/common": "~2.2",
-                "symfony/framework-bundle": "~2.5"
+                "symfony/framework-bundle": "~2.3"
             },
             "require-dev": {
                 "symfony/expression-language": "~2.4",
@@ -1746,9 +1844,7 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com",
-                    "homepage": "http://fabien.potencier.org",
-                    "role": "Lead Developer"
+                    "email": "fabien@symfony.com"
                 }
             ],
             "description": "This bundle provides a way to configure your controllers with annotations",
@@ -1756,7 +1852,7 @@
                 "annotations",
                 "controllers"
             ],
-            "time": "2014-05-22 23:27:44"
+            "time": "2014-09-02 07:11:30"
         },
         {
             "name": "sensio/generator-bundle",
@@ -2137,16 +2233,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.5.3",
+            "version": "v2.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "f077a238c781f845487a7c81fea8033ccd0e6a02"
+                "reference": "3a369dddea56596df91977d8c2083e70784852f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/f077a238c781f845487a7c81fea8033ccd0e6a02",
-                "reference": "f077a238c781f845487a7c81fea8033ccd0e6a02",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/3a369dddea56596df91977d8c2083e70784852f2",
+                "reference": "3a369dddea56596df91977d8c2083e70784852f2",
                 "shasum": ""
             },
             "require": {
@@ -2204,7 +2300,7 @@
                 "doctrine/data-fixtures": "1.0.*",
                 "doctrine/dbal": "~2.2",
                 "doctrine/orm": "~2.2,>=2.2.3",
-                "egulias/email-validator": "1.1.0",
+                "egulias/email-validator": "~1.2",
                 "ircmaxell/password-compat": "1.0.*",
                 "monolog/monolog": "~1.3",
                 "ocramius/proxy-manager": ">=0.3.1,<0.6-dev",
@@ -2247,7 +2343,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2014-08-06 07:03:01"
+            "time": "2014-09-03 09:51:48"
         },
         {
             "name": "twig/extensions",
@@ -2356,16 +2452,16 @@
         },
         {
             "name": "willdurand/geocoder",
-            "version": "2.5.0",
+            "version": "2.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/geocoder-php/Geocoder.git",
-                "reference": "50e54f88b539de0ca3864e8e6a48412d1358d8b7"
+                "reference": "aeae3a5d2e90d9a79e83da02aa6392214e30aa09"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/geocoder-php/Geocoder/zipball/50e54f88b539de0ca3864e8e6a48412d1358d8b7",
-                "reference": "50e54f88b539de0ca3864e8e6a48412d1358d8b7",
+                "url": "https://api.github.com/repos/geocoder-php/Geocoder/zipball/aeae3a5d2e90d9a79e83da02aa6392214e30aa09",
+                "reference": "aeae3a5d2e90d9a79e83da02aa6392214e30aa09",
                 "shasum": ""
             },
             "require": {
@@ -2373,6 +2469,7 @@
             },
             "require-dev": {
                 "geoip/geoip": "~1.13",
+                "geoip2/geoip2": "~0.6",
                 "guzzle/guzzle": "@stable",
                 "kriswallsmith/buzz": "@stable",
                 "zendframework/zend-http": "~2.1"
@@ -2381,6 +2478,7 @@
                 "ext-curl": "Enabling the curl extension allows you to use the CurlHttpAdapter.",
                 "ext-geoip": "Enabling the geoip extension allows you to use the MaxMindProvider.",
                 "geoip/geoip": "If you are going to use the MaxMindBinaryProvider (conflict with geoip extension).",
+                "geoip2/geoip2": "If you are going to use the GeoIP2DatabaseProvider.",
                 "guzzle/guzzle": "Enabling Guzzle allows you to use the GuzzleHttpAdapter.",
                 "kriswallsmith/buzz": "Enabling Buzz allows you to use the BuzzHttpAdapter.",
                 "zendframework/zend-http": "Enabling Zend Http allows you to use the ZendHttpAdapter."
@@ -2388,7 +2486,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.5-dev"
+                    "dev-master": "2.6-dev"
                 }
             },
             "autoload": {
@@ -2403,8 +2501,7 @@
             "authors": [
                 {
                     "name": "William Durand",
-                    "email": "william.durand1@gmail.com",
-                    "homepage": "http://www.willdurand.fr"
+                    "email": "william.durand1@gmail.com"
                 }
             ],
             "description": "The almost missing Geocoder PHP 5.3 library.",
@@ -2415,7 +2512,7 @@
                 "geocoding",
                 "geoip"
             ],
-            "time": "2014-05-16 09:11:44"
+            "time": "2014-09-02 09:06:45"
         },
         {
             "name": "willdurand/js-translation-bundle",
