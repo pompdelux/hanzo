@@ -15,6 +15,8 @@ use Hanzo\Bundle\AxBundle\Logger;
 use Hanzo\Bundle\CheckoutBundle\SendOrderConfirmationMail;
 use Hanzo\Model\CustomersQuery;
 use Hanzo\Model\OrdersQuery;
+use Hanzo\Model\OrdersToAxQueueLog;
+use Hanzo\Model\OrdersToAxQueueLogQuery;
 use Leezy\PheanstalkBundle\Proxy\PheanstalkProxy;
 
 class PheanstalkWorker
@@ -23,6 +25,10 @@ class PheanstalkWorker
     private $serviceWrapper;
     private $orderConfirmationMailer;
     private $logger;
+
+    /**
+     * @var null|\PropelPDO
+     */
     private $dbConn = null;
 
     /**
@@ -98,6 +104,50 @@ class PheanstalkWorker
         $this->orderConfirmationMailer->send();
 
         $this->logger->write($jobData['order_id'], 'ok');
+        $this->removeFromQueueLog($jobData['order_id']);
+
+        return true;
+    }
+
+
+    /**
+     * Delete order in ax.
+     *
+     * @param array $jobData
+     * @return bool
+     */
+    public function delete(array $jobData)
+    {
+        $jobData['iteration'] += 1;
+        $this->dbConn = \Propel::getConnection($jobData['db_conn']);
+        $this->logger->setDBConnection($this->dbConn);
+
+        if ($jobData['iteration'] > 5) {
+            $comment = 'PheanstalkWorker tried to delete the order #'.$jobData['order_id'].' '.$jobData['iteration'].' times in the last ~10 minutes - we give up!';
+
+            $this->logger->write($jobData['order_id'], 'failed', [], $comment);
+            $this->logger->error($comment);
+
+            return false;
+        }
+
+        $order = OrdersQuery::create()
+            ->findOneById($jobData['order_id'], $this->dbConn)
+        ;
+
+        try {
+            $orderSyncState = $this->serviceWrapper->SyncDeleteSalesOrder($order, false, $this->dbConn);
+        } catch (\Exception $e) {
+            $this->logger->write($jobData['order_id'], 'failed', [], 'Syncronization halted: '.$e->getMessage());
+
+            return false;
+        }
+
+        if (false === $orderSyncState) {
+            return $this->reQueue($jobData, 'SyncDeleteSalesOrder');
+        }
+
+        $this->removeFromQueueLog($jobData['order_id']);
 
         return true;
     }
@@ -114,9 +164,31 @@ class PheanstalkWorker
     {
         $seconds = $jobData['iteration'] * 45;
         $this->logger->info('PheanstalkWorker Job "'.$type.'" failed, scheduling for re-run in '.$seconds.' seconds.');
-        $this->pheanstalkProxy->putInTube('orders2ax',  json_encode($jobData), \Pheanstalk_PheanstalkInterface::DEFAULT_PRIORITY, $seconds);
+        $queue_id = $this->pheanstalkProxy->putInTube('orders2ax',  json_encode($jobData), \Pheanstalk_PheanstalkInterface::DEFAULT_PRIORITY, $seconds);
+
+        // bump timestamp and queue id in queue log
+        $this->dbConn->query("
+            UPDATE
+                orders_to_ax_queue_log
+            SET
+                created_at = now(),
+                queue_id = ".(int) $queue_id."
+            WHERE
+                orders_id = ".(int) $jobData['order_id']
+        );
 
         return true;
     }
 
+    /**
+     * @param  int $order_id
+     * @return int
+     * @throws \Exception
+     */
+    private function removeFromQueueLog($order_id)
+    {
+        return OrdersToAxQueueLogQuery::create()
+            ->filterByOrdersId($order_id)
+            ->delete($this->dbConn);
+    }
 }
