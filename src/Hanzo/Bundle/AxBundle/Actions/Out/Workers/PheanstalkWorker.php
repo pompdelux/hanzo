@@ -71,6 +71,7 @@ class PheanstalkWorker
 
             $this->logger->write($jobData['order_id'], 'failed', [], $comment);
             $this->logger->error($comment);
+            $this->removeFromQueueLog($jobData['order_id']);
 
             return false;
         }
@@ -91,6 +92,7 @@ class PheanstalkWorker
             $orderSyncState = $this->serviceWrapper->SyncSalesOrder($order, false, $this->dbConn, $jobData['order_in_edit']);
         } catch (\Exception $e) {
             $this->logger->write($jobData['order_id'], 'failed', [], 'Syncronization halted: '.$e->getMessage());
+            $this->removeFromQueueLog($jobData['order_id']);
 
             return false;
         }
@@ -127,6 +129,7 @@ class PheanstalkWorker
 
             $this->logger->write($jobData['order_id'], 'failed', [], $comment);
             $this->logger->error($comment);
+            $this->removeFromQueueLog($jobData['order_id']);
 
             return false;
         }
@@ -139,6 +142,7 @@ class PheanstalkWorker
             $orderSyncState = $this->serviceWrapper->SyncDeleteSalesOrder($order, false, $this->dbConn);
         } catch (\Exception $e) {
             $this->logger->write($jobData['order_id'], 'failed', [], 'Syncronization halted: '.$e->getMessage());
+            $this->removeFromQueueLog($jobData['order_id']);
 
             return false;
         }
