@@ -49,12 +49,18 @@ class DeadOrderService
      */
     private $eventDispatcher;
 
+    /**
+     * @var \Hanzo\Bundle\AxBundle\Actions\Out\PheanstalkQueue
+     */
+    private $pheanstalkQueue;
+
 
     public function __construct($parameters, $settings)
     {
         $this->dibsApi         = $parameters[0];
         $this->eventDispatcher = $parameters[1];
         $this->ax              = $parameters[2];
+        $this->pheanstalkQueue = $parameters[3];
         $this->settings        = $settings;
 
         if (!$this->dibsApi instanceof DibsApi) {
@@ -127,8 +133,8 @@ class DeadOrderService
     /**
      * checkOrderForErrors
      *
-     * @param Orders $order
-     * @return void
+     * @param  Orders $order
+     * @return array
      */
     public function checkOrderForErrors($order)
     {
@@ -283,9 +289,8 @@ class DeadOrderService
                         try {
                             $this->debug( '  Syncing to ax...' );
 
-                            if ($this->ax->SyncCustomer($order->getCustomers())) {
-                                $this->ax->SyncSalesOrder($order);
-                            }
+                            // let the queue system handle this
+                            $this->pheanstalkQueue->appendSendOrder($order);
 
                             $order->setState( Orders::STATE_PENDING );
                             $order->setInEdit(false);
