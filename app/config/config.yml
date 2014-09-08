@@ -231,3 +231,10 @@ consignor:
 bazinga_js_translation:
     locale_fallback: %locale%
     default_domain: js
+
+leezy_pheanstalk:
+    enabled: true
+    pheanstalks:
+        primary:
+            server: %beanstalkd.server%
+            default: true
