@@ -75,5 +75,5 @@ services:
         factory_method:  get
         arguments:
             service:     deadorder
-            parameters:  [@payment.dibsapi, @event_dispatcher, @ax.out]
+            parameters:  [@payment.dibsapi, @event_dispatcher, @ax.out.service.wrapper]
             class:       %deadorder_manager.class%
