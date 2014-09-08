@@ -4,7 +4,7 @@
         <body>
             <trans-unit id="unable.to.delete.order.in.current.state">
                 <source>unable.to.delete.order.in.current.state</source>
-                <target>Ordren kan ikke slettes i dens nuværende tilstand.</target>
+                <target>Ordren kan ikke slettes i dens nuværende tilstand. </target>
             </trans-unit>
             <trans-unit id="size.label.postfix">
                 <source>size.label.postfix</source>
