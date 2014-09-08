@@ -1384,13 +1384,13 @@ class Orders extends BaseOrders
         if (($this->getState() >= self::STATE_PAYMENT_OK) || $this->getIgnoreDeleteConstraints()) {
             try {
                 $this->cancelPayment();
-                Hanzo::getInstance()->container->get('ax.out')->deleteOrder($this, $con);
+                Hanzo::getInstance()->container->get('ax.out.service.wrapper')->SyncDeleteSalesOrder($this, $con);
             } catch (Exception $e) {
                 // Tools::log($e->getMessage());
 
                 if ($this->getIgnoreDeleteConstraints()) {
                     // allow delete for priority deletes
-                    $result = Hanzo::getInstance()->container->get('ax.out')->deleteOrder($this, $con);
+                    $result = Hanzo::getInstance()->container->get('ax.out.service.wrapper')->SyncDeleteSalesOrder($this, $con);
                     if ($result instanceof Exception) {
                         throw $result;
                     }
