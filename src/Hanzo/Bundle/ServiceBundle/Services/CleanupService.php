@@ -107,7 +107,7 @@ class CleanupService
             }
 
             $order->toPreviousVersion();
-            $container->get('ax.out')->lockUnlockSalesOrder($order, false);
+            $container->get('ax.out.service.wrapper')->SalesOrderLockUnlock($order, false);
 
             $log = new OrdersStateLog();
             $log->setOrdersId($order->getId());
