@@ -8,6 +8,8 @@
  * file that was distributed with this source code.
  */
 
+declare(ticks=1);
+
 namespace Hanzo\Bundle\AxBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
@@ -25,6 +27,7 @@ class AxBeanstalkWorkerCommand extends ContainerAwareCommand
      * @var bool
      */
     private $shutdown = false;
+    private $isWorking = false;
 
     /**
      * {@inheritDoc}
@@ -82,7 +85,7 @@ class AxBeanstalkWorkerCommand extends ContainerAwareCommand
         }
 
         /** @var \Leezy\PheanstalkBundle\Proxy\PheanstalkProxy $pheanstalk */
-        $pheanstalk = $this->getContainer('leezy.pheanstalk');
+        $pheanstalk = $this->getContainer()->get('leezy.pheanstalk');
 
         /** @var \Pheanstalk_Job $job */
         $job = $pheanstalk
@@ -90,6 +93,7 @@ class AxBeanstalkWorkerCommand extends ContainerAwareCommand
             ->ignore('default')
             ->reserve();
 
+        $this->isWorking = true;
         $data = json_decode($job->getData(), true);
 
         try {
@@ -103,6 +107,7 @@ class AxBeanstalkWorkerCommand extends ContainerAwareCommand
         }
 
         $pheanstalk->delete($job);
+        $this->isWorking = false;
 
         return true;
     }
@@ -110,9 +115,15 @@ class AxBeanstalkWorkerCommand extends ContainerAwareCommand
 
     /**
      * Shutdown running process - if in demon mode.
+     *
+     * @param int $signal pcntl signal
      */
-    public function shutdown()
+    public function shutdown($signal)
     {
+        if (!$this->isWorking) {
+            exit;
+        }
+
         $this->shutdown = true;
     }
 
@@ -122,8 +133,10 @@ class AxBeanstalkWorkerCommand extends ContainerAwareCommand
      */
     private function bind()
     {
-        pcntl_signal(SIGTERM, array($this, 'shutdown'));
+        pcntl_signal(SIGALRM, array($this, 'shutdown'));
+        pcntl_signal(SIGINT,  array($this, 'shutdown'));
         pcntl_signal(SIGQUIT, array($this, 'shutdown'));
-        pcntl_signal(SIGINT, array($this, 'shutdown'));
+        pcntl_signal(SIGTERM, array($this, 'shutdown'));
+        pcntl_alarm(2);
     }
 }
