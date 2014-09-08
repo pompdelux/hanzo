@@ -2,37 +2,19 @@
 
 namespace Hanzo\Bundle\CheckoutBundle\Event;
 
-use Propel;
-use PropelCollection;
-
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
-
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersLinesQuery;
-use Hanzo\Model\OrdersSyncLogQuery;
-
-use Hanzo\Bundle\AccountBundle\AddressFormatter;
-use Hanzo\Bundle\ServiceBundle\Services\MailService;
-use Hanzo\Bundle\AxBundle\Actions\Out\AxService;
-
-use Symfony\Bundle\FrameworkBundle\Translation\Translator;
-use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class CheckoutListener
 {
-    protected $mailer;
-    protected $translator;
     protected $session;
-    protected $formatter;
 
-    public function __construct(MailService $mailer, Translator $translator, Session $session, AddressFormatter $formatter)
+    public function __construct(Session $session)
     {
-        $this->mailer     = $mailer;
-        $this->translator = $translator;
-        $this->session    = $session;
-        $this->formatter  = $formatter;
+        $this->session = $session;
     }
 
     /**
