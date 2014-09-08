@@ -243,8 +243,8 @@ class CoreController extends Controller
     /**
      * try to map language ids to folders, this is not a 1-1 match, so we need this little hack.
      *
-     * @param  [type] $language_id [description]
-     * @return [type]              [description]
+     * @param  int    $language_id
+     * @return string
      */
     protected function mapLanguageToPdfDir($language_id)
     {
