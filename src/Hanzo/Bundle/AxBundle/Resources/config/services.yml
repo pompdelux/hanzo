@@ -87,4 +87,3 @@ services:
         class: Hanzo\Bundle\AxBundle\Actions\Out\PheanstalkQueue
         arguments:
             pheanstalk: @leezy.pheanstalk
-
