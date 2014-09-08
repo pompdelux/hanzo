@@ -220,7 +220,7 @@
             <trans-unit id="create.account.vilkaar.link">
                 <source>create.account.vilkaar.link</source>
                 <target><![CDATA[
-                    <a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a>
+                    <a href="/da_DK/forside/kundeservice/vilkaar-betingelser" target="_blank">POMPdeLUX vilkår og betingelser.</a>
                 ]]></target>
             </trans-unit>
             <trans-unit id="category.selector.look">
@@ -297,7 +297,7 @@ Hvis du ønsker at ombytte eller returnere en vare, har du hos POMPdeLUX 14 dage
                 <li><a href="/da_DK/forside/kundeservice/returseddel">Returseddel</a></li>
                 <li><a href="/da_DK/forside/kundeservice/vaske-raad">Vaskeråd</a></li>
 				<li><a href="/da_DK/forside/kundeservice/sizeguide">Sizeguide</a></li>
-				<li><a href="/da_DK/forside/kundeservice/vilkaar">Vilkår</a></li>
+				<li><a href="/da_DK/forside/kundeservice/vilkaar-betingelser">Vilkår og betingelser</a></li>
 				<li><a href="/da_DK/forside/kundeservice/om-webshoppen">Om Webshoppen</a></li>
 				<li><a href="/da_DK/forside/kundeservice/fragt-og-levering">Fragt og levering</a></li>
                 </ul>

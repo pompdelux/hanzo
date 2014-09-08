@@ -270,23 +270,9 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
                 <source>return.info</source>
                 <target><![CDATA[
                     <p><b>Recht van retour</b><br>
-Je hebt 14 dagen recht van retour op alle artikelen van POMPdeLUX, vanaf de dag dat je ze ontvangt. Het enige wat je hiervoor moet doen, is ons hierover informeren door het invullen van het retourformulier, dat je vindt onder Mijn Pagina.<br><br>
-
-<b>Zo retourneer je een artikel</b><br>
-Bij POMPdeLUX kun je een artikel eenvoudig retourneren. De zak waarin je je artikelen ontvangen hebt, is zo gemaakt dat je deze ook kunt gebruiken voor het retourneren van artikelen. Op deze manier hoef je geen dure emballage te kopen – dus goed voor jou en voor het milieu. Stuur het graag z.s.m. – en uiterlijk binnen 14 dagen- terug in de oorspronkelijke verpakking, met de prijskaartjes enz. eraan, nadat je ons over je retourzending hebt geïnformeerd. Je zorgt er zelf voor dat de retourzending goed is ingepakt en draagt hiervoor verantwoording totdat het pakketje door POMPdeLUX in ontvangst is genomen. Bewaar daarom altijd het bewijs van aflevering en evt. het track en tracenummer.<br><br>
-
-Retourneer de artikelen altijd met een volledig ingevuld retourformulier, dat je vindt onder Mijn Pagina. Op het retourformulier kun je zien welke gegevens we van je nodig hebben en waar je de artikelen naartoe moet sturen. De zak t.a.v. POMPdeLUX kun je zonder retourlabel afleveren bij het dichtstbijzijnde DHL Servicepoint , dat te vinden is op www.dhlparcel.nl. Hiervoor ontvang je een bewijs van aflevering. Voor aflevering op het postkantoor kun je het gratis retourlabel gebruiken, dat je hier kunt downloaden. retourlabel. Hiervoor ontvang je een bewijs van aflevering. 
-<br><br>
-<b>Let op:</b> Retourneren zonder ruilen of een gedeelte van je order retoursturen?
-Wil je een artikel of meerdere artikelen retourneren zonder te ruilen, dan ontvang je het aankoopbedrag terug minus de verzendkosten van EUR 7, - ongeacht de grootte van het retourpakket. <br><br>
-
-<b>Terugbetaling</b><br>
-Wij storten het betreffende bedrag terug, zodra we je retourzending hebben ontvangen en gecontroleerd. Het bedrag wordt altijd teruggestort via hetzelfde betaalmiddel, waarmee je bestelling betaald is. <br><br>
-
-Het artikel mag natuurlijk altijd gepast worden, zoals je het in de winkel zou doen. We attenderen je erop, dat het recht op terugbetaling van het verkoopbedrag, gedeeltelijk of geheel kan komen te vervallen, als de waarde van het artikel aanzienlijk verminderd is, doordat het artikel is gebruikt.
-<br><br>
-<b>Reclamaties en verkeerd geleverde artikelen</b><br>
-Heb je een beschadigd of verkeerd artikel ontvangen, dan retourneer je eenvoudigweg je artikel zoals hierboven staat aangegeven. Vinden we je klacht terecht, dan sturen we je gratis een nieuw artikel. Is het artikel uitverkocht, dan betalen we het bedrag ervan terug.</p>
+Wil je een artikel ruilen of retourneren, dan heb je bij POMPdeLUX 14 dagen recht van retour vanaf de dag dat je het artikel ontvangt. Het is belangrijk dat je het artikel retourneert met het prijskaartje eraan en in dezelfde staat als  je het ontvangen hebt,  wanneer je het wilt ruilen voor een zelfde soort artikel of het volledige aankoopbedrag terugbetaald wilt krijgen. Je kunt meer lezen over hoe je een artikel retourneert of ruilt onder <a href="/nl_NL/voorpagina/klantenservice/retourneren" target="_blank">Retourneren</a> en <a href="/nl_NL/voorpagina/klantenservice/ruilen" target="_blank">Ruilen.</a><br><br> 
+Je kunt meer lezen over het recht van retour in onze <a href="/nl_NL/voorpagina/klantenservice/voorwaarden" target="_blank">Algemene voorwaarden.</a>
+</p>
                 ]]></target>
             </trans-unit>
 			<trans-unit id="footer.menu_1">
@@ -301,7 +287,7 @@ Heb je een beschadigd of verkeerd artikel ontvangen, dan retourneer je eenvoudig
                     <li><a href="/nl_NL/voorpagina/klantenservice/retourformulier">Retourformulier</a></li>
 					<li><a href="/nl_NL/voorpagina/het-wassen">Het wassen</a></li>
                     <li><a href="/nl_NL/voorpagina/klantenservice/sizeguide">Sizeguide</a></li>
-					<li><a href="/nl_NL/voorpagina/klantenservice/voorwaarden">Voorwaarden</a></li>
+					<li><a href="/nl_NL/voorpagina/klantenservice/voorwaarden">Algemne Voorwaarden</a></li>
 					<li><a href="/nl_NL/voorpagina/klantenservice/over-de-webshop">Over de Webshop</a></li>
 					<li><a href="/nl_NL/klantenservice/telefoontijden/verzending-en-levering">Verzending en levering</a></li>
                 </ul>
