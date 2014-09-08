@@ -46,3 +46,4 @@
     proxy_ip=""
 
     nno_api_key="delux"
+    beanstalkd.server=localhost
