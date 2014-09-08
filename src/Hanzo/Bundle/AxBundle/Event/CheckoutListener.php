@@ -2,23 +2,36 @@
 
 namespace Hanzo\Bundle\AxBundle\Event;
 
-use Propel;
-
-use Hanzo\Model\OrdersSyncLogQuery;
-use Hanzo\Bundle\AxBundle\Actions\Out\AxService;
 use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
-use Symfony\Bridge\Monolog\Logger;
+use Hanzo\Core\ServiceLogger;
+use Hanzo\Core\Tools;
+use Hanzo\Model\Orders;
+use Hanzo\Model\OrdersStateLog;
+use Leezy\PheanstalkBundle\Proxy\PheanstalkProxy;
 
 class CheckoutListener
 {
-    protected $logger;
-    protected $ax;
+    /**
+     * @var PheanstalkProxy
+     */
+    protected $pheanstalk;
 
-    public function __construct(AxService $ax, Logger $logger)
+    /**
+     * @var ServiceLogger
+     */
+    protected $logger;
+
+
+    /**
+     * @param PheanstalkProxy $pheanstalk
+     * @param ServiceLogger   $logger
+     */
+    public function __construct(PheanstalkProxy $pheanstalk, ServiceLogger $logger)
     {
-        $this->ax = $ax;
-        $this->logger = $logger;
+        $this->pheanstalk = $pheanstalk;
+        $this->logger     = $logger;
     }
+
 
     /**
      * Sync order to AX
@@ -29,20 +42,29 @@ class CheckoutListener
      */
     public function onPaymentCollected(FilterOrderEvent $event)
     {
-        $order  = $event->getOrder();
-        $logged = false;
+        $order    = $event->getOrder();
+        $endPoint = Tools::domainKeyToEndpoint($order->getAttributes()->global->domain_key);
 
-        if ($this->ax->sendOrder($order, false, null, $event->getInEdit())) {
-            $logged = OrdersSyncLogQuery::create()
-                ->select('State')
-                ->filterByOrdersId($order->getId())
-                ->findOne(Propel::getConnection(null, Propel::CONNECTION_WRITE))
-            ;
-        }
+        $id = $this->pheanstalk->putInTube('orders2ax', json_encode([
+            'order_id'      => $order->getId(),
+            'order_in_edit' => $event->getInEdit(),
+            'customer_id'   => $order->getCustomersId(),
+            'iteration'     => 0,
+            'end_point'     => $endPoint,
+            'db_conn'       => 'pdldb'.strtolower($endPoint).'1',
+        ]));
 
-        if (!$logged) {
-            $this->logger->addError('Order #'.$order->getId().' was not send to AX and error not written to db!');
-            $event->stopPropagation();
-        }
+        $log = new OrdersStateLog();
+        $log->setOrdersId($order->getId());
+        $log->setState(0);
+        $log->setMessage(Orders::INFO_STATE_IN_QUEUE);
+        $log->setCreatedAt(time());
+        $log->save();
+
+        $this->logger->debug('Order added to beanstalk queue (initial add).', [
+            'job_id'   => $id,
+            'order_id' => $order->getId(),
+            'queue'    => 'orders2ax',
+        ]);
     }
 }
