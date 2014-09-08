@@ -34,6 +34,22 @@ class DeadOrderService
         207 => 'SEK',
     ];
 
+    /**
+     * @var \Hanzo\Bundle\AxBundle\Actions\Out\AxServiceWrapper
+     */
+    private $ax;
+
+    /**
+     * @var \Hanzo\Bundle\PaymentBundle\Methods\Dibs\DibsApi
+     */
+    private $dibsApi;
+
+    /**
+     * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
+     */
+    private $eventDispatcher;
+
+
     public function __construct($parameters, $settings)
     {
         $this->dibsApi         = $parameters[0];
@@ -164,7 +180,7 @@ class DeadOrderService
 
                 if (!$this->dryrun) {
                     $order->toPreviousVersion();
-                    $this->ax->lockUnlockSalesOrder($order, false);
+                    $this->ax->SalesOrderLockUnlock($order, false);
 
                     $log = new OrdersStateLog();
                     $log->setOrdersId($order->getId());
@@ -266,7 +282,11 @@ class DeadOrderService
 
                         try {
                             $this->debug( '  Syncing to ax...' );
-                            $this->ax->sendOrder($order);
+
+                            if ($this->ax->SyncCustomer($order->getCustomers())) {
+                                $this->ax->SyncSalesOrder($order);
+                            }
+
                             $order->setState( Orders::STATE_PENDING );
                             $order->setInEdit(false);
                             $order->setSessionId($order->getId());
