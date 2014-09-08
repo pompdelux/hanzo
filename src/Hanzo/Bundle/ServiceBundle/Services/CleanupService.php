@@ -3,6 +3,7 @@
 namespace Hanzo\Bundle\ServiceBundle\Services;
 
 use Criteria;
+use Hanzo\Model\OrdersStateLog;
 use Propel;
 
 use Hanzo\Core\Hanzo;
@@ -107,6 +108,13 @@ class CleanupService
 
             $order->toPreviousVersion();
             $container->get('ax.out')->lockUnlockSalesOrder($order, false);
+
+            $log = new OrdersStateLog();
+            $log->setOrdersId($order->getId());
+            $log->setState(0);
+            $log->setMessage(Orders::INFO_STATE_EDIT_CANCLED_BY_CLEANUP);
+            $log->setCreatedAt(time());
+            $log->save();
         }
 
         return $count;
