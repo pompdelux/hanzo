@@ -4,6 +4,7 @@ namespace Hanzo\Bundle\ServiceBundle\Services;
 
 use Exception;
 use Criteria;
+use Hanzo\Model\OrdersStateLog;
 use Propel;
 
 use Hanzo\Core\Hanzo;
@@ -164,6 +165,13 @@ class DeadOrderService
                 if (!$this->dryrun) {
                     $order->toPreviousVersion();
                     $this->ax->lockUnlockSalesOrder($order, false);
+
+                    $log = new OrdersStateLog();
+                    $log->setOrdersId($order->getId());
+                    $log->setState(0);
+                    $log->setMessage(Orders::INFO_STATE_EDIT_CANCLED_BY_CLEANUP);
+                    $log->setCreatedAt(time());
+                    $log->save();
                 } else {
                     $this->debug( '  Should role back to prew version of order... ' . implode(', ', $order->getVersionIds()));
                 }
@@ -247,6 +255,13 @@ class DeadOrderService
                                     Tools::log( 'Could not cancel payment for old order, id: '. $oldOrder->getId() .' error was: '. $e->getMessage());
                                 }
                             }
+
+                            $log = new OrdersStateLog();
+                            $log->setOrdersId($order->getId());
+                            $log->setState(0);
+                            $log->setMessage(Orders::INFO_STATE_EDIT_CANCLED_BY_CLEANUP);
+                            $log->setCreatedAt(time());
+                            $log->save();
                         }
 
                         try {

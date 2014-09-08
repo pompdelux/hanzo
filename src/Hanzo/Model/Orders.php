@@ -74,6 +74,16 @@ class Orders extends BaseOrders
         self::STATE_SHIPPED         => 'Order shipped/done',
     ];
 
+    /**
+     * Used purely for info in the state log, and is here only for reference.
+     */
+    const INFO_STATE_IN_QUEUE                = 'Order in AX transfer queue';
+    const INFO_STATE_EDIT_STARTED            = 'Edit started';
+    const INFO_STATE_EDIT_CANCLED_BY_USER    = 'Edit cancled by user';
+    const INFO_STATE_EDIT_CANCLED_BY_CLEANUP = 'Edit cancled by cleanup';
+    const INFO_STATE_EDIT_DONE               = 'Edit done';
+
+
     protected $ignore_delete_constraints = false;
     protected $pdo_con = null;
 
@@ -1312,11 +1322,10 @@ class Orders extends BaseOrders
             $this->setCurrencyCode($hanzo->get('core.currency'));
             $this->setLanguagesId($hanzo->get('core.language_id'));
             $this->setPaymentGatewayId(Tools::getPaymentGatewayId());
-            $this->setAttribute('domain_name', 'global', $_SERVER['HTTP_HOST']);
             $this->setAttribute('domain_key', 'global', $hanzo->get('core.domain_key'));
 
             if ($request = $hanzo->container->get('request')) {
-                $this->setAttribute('user_agent', 'global', $_SERVER['HTTP_USER_AGENT']);
+                $this->setAttribute('user_agent', 'global', $request->server->get('HTTP_USER_AGENT'));
                 $this->setAttribute('client_ip', 'global', $request->getClientIp());
             }
         }
