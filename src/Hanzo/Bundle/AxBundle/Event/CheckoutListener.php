@@ -2,19 +2,20 @@
 
 namespace Hanzo\Bundle\AxBundle\Event;
 
+use Hanzo\Bundle\AxBundle\Actions\Out\OrderAlreadyInQueueException;
+use Hanzo\Bundle\AxBundle\Actions\Out\PheanstalkQueue;
 use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
 use Hanzo\Core\ServiceLogger;
 use Hanzo\Core\Tools;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersStateLog;
-use Leezy\PheanstalkBundle\Proxy\PheanstalkProxy;
 
 class CheckoutListener
 {
     /**
-     * @var PheanstalkProxy
+     * @var PheanstalkQueue
      */
-    protected $pheanstalk;
+    protected $pheanstalkQueue;
 
     /**
      * @var ServiceLogger
@@ -23,12 +24,12 @@ class CheckoutListener
 
 
     /**
-     * @param PheanstalkProxy $pheanstalk
+     * @param PheanstalkQueue $pheanstalkQueue
      * @param ServiceLogger   $logger
      */
-    public function __construct(PheanstalkProxy $pheanstalk, ServiceLogger $logger)
+    public function __construct(PheanstalkQueue $pheanstalkQueue, ServiceLogger $logger)
     {
-        $this->pheanstalk = $pheanstalk;
+        $this->pheanstalkQueue = $pheanstalkQueue;
         $this->logger     = $logger;
     }
 
@@ -42,29 +43,31 @@ class CheckoutListener
      */
     public function onPaymentCollected(FilterOrderEvent $event)
     {
-        $order    = $event->getOrder();
-        $endPoint = Tools::domainKeyToEndpoint($order->getAttributes()->global->domain_key);
+        $order = $event->getOrder();
 
-        $id = $this->pheanstalk->putInTube('orders2ax', json_encode([
-            'order_id'      => $order->getId(),
-            'order_in_edit' => $event->getInEdit(),
-            'customer_id'   => $order->getCustomersId(),
-            'iteration'     => 0,
-            'end_point'     => $endPoint,
-            'db_conn'       => 'pdldb'.strtolower($endPoint).'1',
-        ]));
+        try {
+            $id = $this->pheanstalkQueue->appendSendOrder($order, $order->getInEdit());
+            $this->stateLog($order->getId());
+            $message = 'Order added to beanstalk queue (initial add).';
+        } catch (OrderAlreadyInQueueException $e) {
+            $message = $e->getMessage();
+        }
 
-        $log = new OrdersStateLog();
-        $log->setOrdersId($order->getId());
-        $log->setState(0);
-        $log->setMessage(Orders::INFO_STATE_IN_QUEUE);
-        $log->setCreatedAt(time());
-        $log->save();
-
-        $this->logger->debug('Order added to beanstalk queue (initial add).', [
+        $this->logger->debug($message, [
             'job_id'   => $id,
             'order_id' => $order->getId(),
             'queue'    => 'orders2ax',
         ]);
+    }
+
+    private function stateLog($order_id)
+    {
+        $log = new OrdersStateLog();
+        $log->setOrdersId($order_id);
+        $log->setState(0);
+        $log->setMessage(Orders::INFO_STATE_IN_QUEUE);
+        $log->setCreatedAt(time());
+
+        return $log->save();
     }
 }

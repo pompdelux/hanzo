@@ -75,5 +75,9 @@ services:
         factory_method:  get
         arguments:
             service:     deadorder
-            parameters:  [@payment.dibsapi, @event_dispatcher, @ax.out.service.wrapper]
+            parameters:
+                dibsapi:          @payment.dibsapi
+                event_dispatcher: @event_dispatcher
+                service_wrapper:  @ax.out.service.wrapper
+                pheanstalk_queue: @ax.pheanstalk_queue
             class:       %deadorder_manager.class%

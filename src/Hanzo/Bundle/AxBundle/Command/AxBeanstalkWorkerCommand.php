@@ -93,7 +93,11 @@ class AxBeanstalkWorkerCommand extends ContainerAwareCommand
         $data = json_decode($job->getData(), true);
 
         try {
-            $this->getContainer()->get('ax.out.pheanstalk.send')->send($data);
+            if (isset($data['action']) && ('delete' === $data['action'])) {
+                $this->getContainer()->get('ax.out.pheanstalk.send')->delete($data);
+            } else {
+                $this->getContainer()->get('ax.out.pheanstalk.send')->send($data);
+            }
         } catch (\Exception $exception) {
             $this->getContainer()->get('logger')->error('AxBeanstalkWorkerCommand: Exception detected: '.$exception->getMessage());
         }

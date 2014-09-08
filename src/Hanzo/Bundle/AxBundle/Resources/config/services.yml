@@ -16,7 +16,7 @@ services:
     ax.out.checkout.listener:
         class: Hanzo\Bundle\AxBundle\Event\CheckoutListener
         arguments:
-            leezy_pheanstalk: @leezy.pheanstalk
+            pheanstalk_queue: @ax.pheanstalk_queue
             serviceLogger:    @hanzo.external_service.logger
         tags:
             - { name: kernel.event_listener, event: order.payment.collected, method: onPaymentCollected, priority: 0 }
@@ -82,3 +82,8 @@ services:
         class: Hanzo\Bundle\AxBundle\Logger
         arguments:
             logger: @logger
+
+    ax.pheanstalk_queue:
+        class: Hanzo\Bundle\AxBundle\Actions\Out\PheanstalkQueue
+        arguments:
+            pheanstalk: @leezy.pheanstalk
