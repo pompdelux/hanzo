@@ -43,6 +43,7 @@ trait KernelTrait
             new Liip\ThemeBundle\LiipThemeBundle(),
             new Misd\GuzzleBundle\MisdGuzzleBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+            new Leezy\PheanstalkBundle\LeezyPheanstalkBundle(),
             // ------------------------------------------------------
 
             // APP BUNDLES ------------------------------------------
