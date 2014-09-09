@@ -8,6 +8,7 @@ use Hanzo\Core\Tools;
 
 use Hanzo\Model\OrdersAttributes;
 use Hanzo\Model\OrdersStateLog;
+use Hanzo\Model\OrdersToAxQueueLogQuery;
 use Hanzo\Model\OrdersVersions;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -951,4 +952,15 @@ class OrdersController extends CoreController
             'message' => 'ok',
         ]);
     }
+
+    public function axQueueAction()
+    {
+        $items = OrdersToAxQueueLogQuery::create()
+            ->orderByCreatedAt()
+            ->orderByIteration()
+            ->find($this->getDbConnection());
+
+        return $this->render('AdminBundle:Orders:ax_queue_list.html.twig', ['items' => $items]);
+    }
+
 }
