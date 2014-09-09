@@ -67,9 +67,9 @@ class PheanstalkWorker
         $this->logger->setDBConnection($this->dbConn);
 
         if ($jobData['iteration'] > 5) {
-            $comment = 'PheanstalkWorker tried to syncronize the order #'.$jobData['order_id'].' '.$jobData['iteration'].' times in the last ~10 minutes - we give up!';
+            $comment = 'PheanstalkWorker tried to syncronize the order #'.$jobData['order_id'].' '.($jobData['iteration'] -1).' times in the last ~10 minutes - we give up!';
 
-            $this->logger->write($jobData['order_id'], 'failed', [], $comment);
+            $this->logger->write($jobData['order_id'], 'failed', ['action' => $jobData['action']], $comment);
             $this->logger->error($comment);
             $this->removeFromQueueLog($jobData['order_id']);
 
@@ -91,7 +91,7 @@ class PheanstalkWorker
         try {
             $orderSyncState = $this->serviceWrapper->SyncSalesOrder($order, false, $this->dbConn, $jobData['order_in_edit']);
         } catch (\Exception $e) {
-            $this->logger->write($jobData['order_id'], 'failed', [], 'Syncronization halted: '.$e->getMessage());
+            $this->logger->write($jobData['order_id'], 'failed', ['action' => $jobData['action']], 'Syncronization halted: '.$e->getMessage());
             $this->removeFromQueueLog($jobData['order_id']);
 
             return false;
@@ -105,7 +105,7 @@ class PheanstalkWorker
         $this->orderConfirmationMailer->build($order);
         $this->orderConfirmationMailer->send();
 
-        $this->logger->write($jobData['order_id'], 'ok');
+        $this->logger->write($jobData['order_id'], 'ok', ['action' => $jobData['action']]);
         $this->removeFromQueueLog($jobData['order_id']);
 
         return true;
@@ -141,7 +141,9 @@ class PheanstalkWorker
         try {
             $orderSyncState = $this->serviceWrapper->SyncDeleteSalesOrder($order, false, $this->dbConn);
         } catch (\Exception $e) {
-            $this->logger->write($jobData['order_id'], 'failed', [], 'Syncronization halted: '.$e->getMessage());
+            $this->logger->write($jobData['order_id'], 'failed', [
+                'action' => $jobData['action'],
+            ], 'Syncronization halted: '.$e->getMessage());
             $this->removeFromQueueLog($jobData['order_id']);
 
             return false;
