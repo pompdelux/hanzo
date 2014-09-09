@@ -17,10 +17,12 @@ use Hanzo\Model\OrdersToAxQueueLogQuery;
 /**
  * @method OrdersToAxQueueLogQuery orderByOrdersId($order = Criteria::ASC) Order by the orders_id column
  * @method OrdersToAxQueueLogQuery orderByQueueId($order = Criteria::ASC) Order by the queue_id column
+ * @method OrdersToAxQueueLogQuery orderByIteration($order = Criteria::ASC) Order by the iteration column
  * @method OrdersToAxQueueLogQuery orderByCreatedAt($order = Criteria::ASC) Order by the created_at column
  *
  * @method OrdersToAxQueueLogQuery groupByOrdersId() Group by the orders_id column
  * @method OrdersToAxQueueLogQuery groupByQueueId() Group by the queue_id column
+ * @method OrdersToAxQueueLogQuery groupByIteration() Group by the iteration column
  * @method OrdersToAxQueueLogQuery groupByCreatedAt() Group by the created_at column
  *
  * @method OrdersToAxQueueLogQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
@@ -32,10 +34,12 @@ use Hanzo\Model\OrdersToAxQueueLogQuery;
  *
  * @method OrdersToAxQueueLog findOneByOrdersId(int $orders_id) Return the first OrdersToAxQueueLog filtered by the orders_id column
  * @method OrdersToAxQueueLog findOneByQueueId(int $queue_id) Return the first OrdersToAxQueueLog filtered by the queue_id column
+ * @method OrdersToAxQueueLog findOneByIteration(int $iteration) Return the first OrdersToAxQueueLog filtered by the iteration column
  * @method OrdersToAxQueueLog findOneByCreatedAt(string $created_at) Return the first OrdersToAxQueueLog filtered by the created_at column
  *
  * @method array findByOrdersId(int $orders_id) Return OrdersToAxQueueLog objects filtered by the orders_id column
  * @method array findByQueueId(int $queue_id) Return OrdersToAxQueueLog objects filtered by the queue_id column
+ * @method array findByIteration(int $iteration) Return OrdersToAxQueueLog objects filtered by the iteration column
  * @method array findByCreatedAt(string $created_at) Return OrdersToAxQueueLog objects filtered by the created_at column
  */
 abstract class BaseOrdersToAxQueueLogQuery extends ModelCriteria
@@ -129,7 +133,7 @@ abstract class BaseOrdersToAxQueueLogQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `orders_id`, `queue_id`, `created_at` FROM `orders_to_ax_queue_log` WHERE `orders_id` = :p0 AND `queue_id` = :p1 AND `created_at` = :p2';
+        $sql = 'SELECT `orders_id`, `queue_id`, `iteration`, `created_at` FROM `orders_to_ax_queue_log` WHERE `orders_id` = :p0 AND `queue_id` = :p1 AND `created_at` = :p2';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);
@@ -316,6 +320,48 @@ abstract class BaseOrdersToAxQueueLogQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(OrdersToAxQueueLogPeer::QUEUE_ID, $queueId, $comparison);
+    }
+
+    /**
+     * Filter the query on the iteration column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByIteration(1234); // WHERE iteration = 1234
+     * $query->filterByIteration(array(12, 34)); // WHERE iteration IN (12, 34)
+     * $query->filterByIteration(array('min' => 12)); // WHERE iteration >= 12
+     * $query->filterByIteration(array('max' => 12)); // WHERE iteration <= 12
+     * </code>
+     *
+     * @param     mixed $iteration The value to use as filter.
+     *              Use scalar values for equality.
+     *              Use array values for in_array() equivalent.
+     *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return OrdersToAxQueueLogQuery The current query, for fluid interface
+     */
+    public function filterByIteration($iteration = null, $comparison = null)
+    {
+        if (is_array($iteration)) {
+            $useMinMax = false;
+            if (isset($iteration['min'])) {
+                $this->addUsingAlias(OrdersToAxQueueLogPeer::ITERATION, $iteration['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($iteration['max'])) {
+                $this->addUsingAlias(OrdersToAxQueueLogPeer::ITERATION, $iteration['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
+        }
+
+        return $this->addUsingAlias(OrdersToAxQueueLogPeer::ITERATION, $iteration, $comparison);
     }
 
     /**

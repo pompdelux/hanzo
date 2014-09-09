@@ -46,6 +46,7 @@ CREATE TABLE `orders_to_ax_queue_log`
 (
     `orders_id` INTEGER NOT NULL,
     `queue_id` INTEGER NOT NULL,
+    `iteration` INTEGER NOT NULL DEFAULT 0,
     `created_at` DATETIME NOT NULL,
     PRIMARY KEY (`orders_id`,`queue_id`,`created_at`)
 ) ENGINE=InnoDB;
