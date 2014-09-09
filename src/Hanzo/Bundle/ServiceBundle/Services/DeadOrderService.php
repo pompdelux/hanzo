@@ -23,11 +23,20 @@ use Hanzo\Bundle\PaymentBundle\Methods\Dibs\DibsApiCallException;
 
 class DeadOrderService
 {
+    /**
+     * @var array
+     */
     protected $settings;
 
+    /**
+     * @var bool
+     */
     protected $dryrun = false;
     protected $debug  = false;
 
+    /**
+     * @var array
+     */
     protected $currency_map = [
         58  => 'DKK',
         161 => 'NOK',
@@ -55,6 +64,10 @@ class DeadOrderService
     private $pheanstalkQueue;
 
 
+    /**
+     * @param $parameters
+     * @param $settings
+     */
     public function __construct($parameters, $settings)
     {
         $this->dibsApi         = $parameters['dibsapi'];
@@ -83,7 +96,7 @@ class DeadOrderService
         $this->debug  = $debug;
 
         $this->debug("Starting DeadOrderService Auto Clean");
-        if ( $this->dryrun ) {
+        if ($this->dryrun) {
             $this->debug("Dry run mode");
         }
 
@@ -93,23 +106,23 @@ class DeadOrderService
     /**
      * getOrdersToBeDeleted
      *
-     * @param int $limit
+     * @param int  $limit
      * @param bool $instanceDelete
      * @return array
      */
     public function getOrdersToBeDeleted($limit = 0, $instanceDelete = false)
     {
-        $toBeDeleted = array();
-        $orders = $this->getOrders( $limit );
+        $toBeDeleted = [];
+        $orders      = $this->getOrders( $limit );
 
         $this->debug("Found ".count($orders)." that matches filter");
 
         $i = 1;
         foreach ($orders as $order) {
-            $this->debug( $i++ .' of '. count($orders) );
-            $status = array();
+            $this->debug($i++ .' of '. count($orders));
             $status = $this->checkOrderForErrors($order);
-            if (isset($status['is_error']) && $status['is_error'] === true) {
+
+            if (isset($status['is_error']) && ($status['is_error'] === true)) {
                 if ($instanceDelete) {
                     if (!$this->dryrun) {
                         $this->debug("  Deleting order: ".$order->getId());
@@ -138,12 +151,12 @@ class DeadOrderService
      */
     public function checkOrderForErrors($order)
     {
-        $status = array(
+        $status = [
             'is_error'          => false,
             'error_msg'         => '',
             'id'                => $order->getId(),
             'order_last_update' => $order->getUpdatedAt()
-        );
+        ];
 
         // fix broken currency code
         if (!$order->getCurrencyCode()) {
@@ -151,6 +164,7 @@ class DeadOrderService
             if (isset($this->currency_map[$order->getBillingCountriesId()])){
                 $code = $this->currency_map[$order->getBillingCountriesId()];
             }
+
             $order->setCurrencyCode($code);
         }
 
@@ -167,10 +181,9 @@ class DeadOrderService
                 if (isset($callbackData['orderid'])) {
                     mail('un@bellcom.dk', 'setPaymentGatewayId', 'for order id: '.$order->getId()."\n\n".__FILE__.' '.__LINE__."\n\n");
                     $order->setPaymentGatewayId($callbackData['orderid']);
-                    $pgId = $callbackData['orderid'];
                 }
             } catch (DibsApiCallException $e) {
-                $this->debug( '  Dibs call failed: '. $e->getMessage() );
+                $this->debug('  Dibs call failed: '. $e->getMessage());
                 $status['is_error'] = false;
                 $status['error_msg'] = $e->getMessage();
 
@@ -195,18 +208,18 @@ class DeadOrderService
                     $log->setCreatedAt(time());
                     $log->save();
                 } else {
-                    $this->debug( '  Should role back to prew version of order... ' . implode(', ', $order->getVersionIds()));
+                    $this->debug('  Should role back to prew version of order... ' . implode(', ', $order->getVersionIds()));
                 }
             } else {
-                $this->debug( '  No trans id found' );
-                $status['is_error'] = true;
+                $this->debug('  No trans id found');
+                $status['is_error']  = true;
                 $status['error_msg'] = 'Slet: Ingen transaktions id kunne findes';
             }
 
             return $status;
         }
 
-        $order->setAttribute( 'transact', 'payment', $transId );
+        $order->setAttribute('transact', 'payment', $transId);
         $this->debug("  Setting transId: ". $transId);
 
         if (!$this->dryrun) {
@@ -214,11 +227,11 @@ class DeadOrderService
         }
 
         try {
-            $orderStatus = $this->getStatus( $order );
+            $orderStatus = $this->getStatus($order);
             $this->debug( "  Order status by dibs, desc: ". $orderStatus->data['status_description'] .' status: '. $orderStatus->data['status'] );
         } catch (DibsApiCallException $e) {
-            $this->debug( '  Dibs call failed: '. $e->getMessage() );
-            $status['is_error'] = false;
+            $this->debug('  Dibs call failed: '. $e->getMessage());
+            $status['is_error']  = false;
             $status['error_msg'] = $e->getMessage();
 
             return $status;
@@ -228,11 +241,21 @@ class DeadOrderService
             switch ($orderStatus->data['status']) {
                 case 2:
                     // Looks like payment is ok -> update order
-                    $this->debug( "  Payment looks ok, updating order, state ok");
-                    $order->setState( Orders::STATE_PAYMENT_OK );
+                    $this->debug("  Payment looks ok, updating order, state ok");
+                    $order->setState(Orders::STATE_PAYMENT_OK);
                     $order->setFinishedAt(time());
 
-                    $fields = array(
+                    try {
+                        $callbackData = $this->dibsApi->call()->callback($order);
+                    } catch (DibsApiCallException $e) {
+                        $this->debug('  Dibs call failed: '. $e->getMessage());
+                        $status['is_error']  = false;
+                        $status['error_msg'] = $e->getMessage();
+
+                        return $status;
+                    }
+
+                    $fields = [
                         'paytype',
                         'cardnomask',
                         'cardprefix',
@@ -242,39 +265,31 @@ class DeadOrderService
                         'ip',
                         'approvalcode',
                         'transact',
-                    );
-
-                    try {
-                        $callbackData = $this->dibsApi->call()->callback($order);
-                    } catch (DibsApiCallException $e) {
-                        $this->debug( '  Dibs call failed: '. $e->getMessage() );
-                        $status['is_error'] = false;
-                        $status['error_msg'] = $e->getMessage();
-                        return $status;
-                    }
+                    ];
 
                     foreach ($fields as $field) {
                         if (isset($callbackData->data[$field])) {
-                            $this->debug( "  Setting field ".$field." to ".$callbackData->data[$field]);
-                            $order->setAttribute( $field , 'payment', $callbackData->data[$field] );
+                            $this->debug("  Setting field ".$field." to ".$callbackData->data[$field]);
+                            $order->setAttribute($field , 'payment', $callbackData->data[$field]);
                         }
                     }
 
                     if (!$this->dryrun) {
                         if ($order->getInEdit()) {
-                            $this->debug( '  Order was in edit mode' );
+                            $this->debug('  Order was in edit mode');
                             $currentVersion = $order->getVersionId();
 
                             // If the version number is less than 2 there is no previous version
                             if (!($currentVersion < 2)) {
-                                $oldOrderVersion = ( $currentVersion - 1);
-                                $oldOrder = $order->getOrderAtVersion($oldOrderVersion);
+                                $oldOrderVersion = ($currentVersion - 1);
+                                $oldOrder        = $order->getOrderAtVersion($oldOrderVersion);
+
                                 try {
-                                    $this->debug( '  Canceling old payment' );
+                                    $this->debug('  Canceling old payment');
                                     $oldOrder->cancelPayment();
                                 } catch (\Exception $e) {
-                                    $this->debug( '  Could not cancel payment for old order, id: '. $oldOrder->getId() .' error was: '. $e->getMessage());
-                                    Tools::log( 'Could not cancel payment for old order, id: '. $oldOrder->getId() .' error was: '. $e->getMessage());
+                                    $this->debug('  Could not cancel payment for old order, id: '. $oldOrder->getId() .' error was: '. $e->getMessage());
+                                    Tools::log('DOS: Could not cancel payment for old order, id: '. $oldOrder->getId() .' error was: '. $e->getMessage());
                                 }
                             }
 
@@ -287,28 +302,28 @@ class DeadOrderService
                         }
 
                         try {
-                            $this->debug( '  Syncing to ax...' );
+                            $this->debug('  Syncing to ax...');
 
                             // let the queue system handle this
                             $this->pheanstalkQueue->appendSendOrder($order);
 
-                            $order->setState( Orders::STATE_PENDING );
+                            $order->setState(Orders::STATE_PENDING);
                             $order->setInEdit(false);
                             $order->setSessionId($order->getId());
                             $order->save();
                         } catch (Exception $e) {
-                            $this->debug( '  Sync failed: '.$e->getMessage() );
+                            $this->debug('  Sync failed: '.$e->getMessage());
                         }
                     }
 
                     break;
 
                 default:
-                    $this->debug( '  Order status er '. $orderStatus->data['status'] );
-                    $status['is_error'] = true;
+                    $this->debug('  Order status er '. $orderStatus->data['status']);
+                    $status['is_error']  = true;
                     $status['error_msg'] = 'Order status er '. $orderStatus->data['status'];
+
                     return $status;
-                    break;
             }
         }
 
@@ -321,7 +336,7 @@ class DeadOrderService
      * @param array $toBeDeleted array of order objects to delete.
      * @return void
      */
-    protected function deleteOrders(Array $toBeDeleted)
+    protected function deleteOrders(array $toBeDeleted)
     {
         foreach ($toBeDeleted as $order) {
             if (!$this->dryrun) {
@@ -342,14 +357,16 @@ class DeadOrderService
      */
     public function debug($msg)
     {
-        $this->debug ? error_log('[DEBUG]: '.$msg) : '';
+        $this->debug
+            ? error_log('[DEBUG]: '.$msg)
+            : '';
     }
 
     /**
      * getStatus
      *
      * @param Orders $order
-     * @return void
+     * @return \Hanzo\Bundle\PaymentBundle\Methods\Dibs\DibsApiCallResponse
      */
     protected function getStatus(Orders $order)
     {
@@ -360,7 +377,7 @@ class DeadOrderService
      * getTransactionId
      *
      * @param Orders $order
-     * @return void
+     * @return string|null
      */
     protected function getTransactionId(Orders $order)
     {
@@ -388,10 +405,10 @@ class DeadOrderService
      * Get all orders that are older than 2 hours, which have not been finished, payed via dibs, and have not reached a state higher than 0...
      *
      * NICETO: priority: low, support limit
-     * @param int $limit
+     * @param  int $limit
      * @return array
      */
-    public function getOrders( $limit = 0 )
+    public function getOrders($limit = 0)
     {
         $orders = OrdersQuery::create()
             ->filterByUpdatedAt(date('Y-m-d H:i:s', strtotime('2 hours ago')), Criteria::LESS_THAN)
