@@ -932,6 +932,7 @@ CREATE TABLE `orders_to_ax_queue_log`
 (
     `orders_id` INTEGER NOT NULL,
     `queue_id` INTEGER NOT NULL,
+    `iteration` INTEGER DEFAULT 1 NOT NULL,
     `created_at` DATETIME NOT NULL,
     PRIMARY KEY (`orders_id`,`queue_id`,`created_at`)
 ) ENGINE=InnoDB;

@@ -29,19 +29,22 @@ abstract class BaseOrdersToAxQueueLogPeer
     const TM_CLASS = 'Hanzo\\Model\\map\\OrdersToAxQueueLogTableMap';
 
     /** The total number of columns. */
-    const NUM_COLUMNS = 3;
+    const NUM_COLUMNS = 4;
 
     /** The number of lazy-loaded columns. */
     const NUM_LAZY_LOAD_COLUMNS = 0;
 
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-    const NUM_HYDRATE_COLUMNS = 3;
+    const NUM_HYDRATE_COLUMNS = 4;
 
     /** the column name for the orders_id field */
     const ORDERS_ID = 'orders_to_ax_queue_log.orders_id';
 
     /** the column name for the queue_id field */
     const QUEUE_ID = 'orders_to_ax_queue_log.queue_id';
+
+    /** the column name for the iteration field */
+    const ITERATION = 'orders_to_ax_queue_log.iteration';
 
     /** the column name for the created_at field */
     const CREATED_AT = 'orders_to_ax_queue_log.created_at';
@@ -65,12 +68,12 @@ abstract class BaseOrdersToAxQueueLogPeer
      * e.g. OrdersToAxQueueLogPeer::$fieldNames[OrdersToAxQueueLogPeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('OrdersId', 'QueueId', 'CreatedAt', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('ordersId', 'queueId', 'createdAt', ),
-        BasePeer::TYPE_COLNAME => array (OrdersToAxQueueLogPeer::ORDERS_ID, OrdersToAxQueueLogPeer::QUEUE_ID, OrdersToAxQueueLogPeer::CREATED_AT, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ORDERS_ID', 'QUEUE_ID', 'CREATED_AT', ),
-        BasePeer::TYPE_FIELDNAME => array ('orders_id', 'queue_id', 'created_at', ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, )
+        BasePeer::TYPE_PHPNAME => array ('OrdersId', 'QueueId', 'Iteration', 'CreatedAt', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('ordersId', 'queueId', 'iteration', 'createdAt', ),
+        BasePeer::TYPE_COLNAME => array (OrdersToAxQueueLogPeer::ORDERS_ID, OrdersToAxQueueLogPeer::QUEUE_ID, OrdersToAxQueueLogPeer::ITERATION, OrdersToAxQueueLogPeer::CREATED_AT, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ORDERS_ID', 'QUEUE_ID', 'ITERATION', 'CREATED_AT', ),
+        BasePeer::TYPE_FIELDNAME => array ('orders_id', 'queue_id', 'iteration', 'created_at', ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
     );
 
     /**
@@ -80,12 +83,12 @@ abstract class BaseOrdersToAxQueueLogPeer
      * e.g. OrdersToAxQueueLogPeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('OrdersId' => 0, 'QueueId' => 1, 'CreatedAt' => 2, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('ordersId' => 0, 'queueId' => 1, 'createdAt' => 2, ),
-        BasePeer::TYPE_COLNAME => array (OrdersToAxQueueLogPeer::ORDERS_ID => 0, OrdersToAxQueueLogPeer::QUEUE_ID => 1, OrdersToAxQueueLogPeer::CREATED_AT => 2, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ORDERS_ID' => 0, 'QUEUE_ID' => 1, 'CREATED_AT' => 2, ),
-        BasePeer::TYPE_FIELDNAME => array ('orders_id' => 0, 'queue_id' => 1, 'created_at' => 2, ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, )
+        BasePeer::TYPE_PHPNAME => array ('OrdersId' => 0, 'QueueId' => 1, 'Iteration' => 2, 'CreatedAt' => 3, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('ordersId' => 0, 'queueId' => 1, 'iteration' => 2, 'createdAt' => 3, ),
+        BasePeer::TYPE_COLNAME => array (OrdersToAxQueueLogPeer::ORDERS_ID => 0, OrdersToAxQueueLogPeer::QUEUE_ID => 1, OrdersToAxQueueLogPeer::ITERATION => 2, OrdersToAxQueueLogPeer::CREATED_AT => 3, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ORDERS_ID' => 0, 'QUEUE_ID' => 1, 'ITERATION' => 2, 'CREATED_AT' => 3, ),
+        BasePeer::TYPE_FIELDNAME => array ('orders_id' => 0, 'queue_id' => 1, 'iteration' => 2, 'created_at' => 3, ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
     );
 
     /**
@@ -161,10 +164,12 @@ abstract class BaseOrdersToAxQueueLogPeer
         if (null === $alias) {
             $criteria->addSelectColumn(OrdersToAxQueueLogPeer::ORDERS_ID);
             $criteria->addSelectColumn(OrdersToAxQueueLogPeer::QUEUE_ID);
+            $criteria->addSelectColumn(OrdersToAxQueueLogPeer::ITERATION);
             $criteria->addSelectColumn(OrdersToAxQueueLogPeer::CREATED_AT);
         } else {
             $criteria->addSelectColumn($alias . '.orders_id');
             $criteria->addSelectColumn($alias . '.queue_id');
+            $criteria->addSelectColumn($alias . '.iteration');
             $criteria->addSelectColumn($alias . '.created_at');
         }
     }
@@ -385,11 +390,11 @@ abstract class BaseOrdersToAxQueueLogPeer
     public static function getPrimaryKeyHashFromRow($row, $startcol = 0)
     {
         // If the PK cannot be derived from the row, return null.
-        if ($row[$startcol] === null && $row[$startcol + 1] === null && $row[$startcol + 2] === null) {
+        if ($row[$startcol] === null && $row[$startcol + 1] === null && $row[$startcol + 3] === null) {
             return null;
         }
 
-        return serialize(array((string) $row[$startcol], (string) $row[$startcol + 1], (string) $row[$startcol + 2]));
+        return serialize(array((string) $row[$startcol], (string) $row[$startcol + 1], (string) $row[$startcol + 3]));
     }
 
     /**
@@ -404,7 +409,7 @@ abstract class BaseOrdersToAxQueueLogPeer
     public static function getPrimaryKeyFromRow($row, $startcol = 0)
     {
 
-        return array((int) $row[$startcol], (int) $row[$startcol + 1], (string) $row[$startcol + 2]);
+        return array((int) $row[$startcol], (int) $row[$startcol + 1], (string) $row[$startcol + 3]);
     }
 
     /**

@@ -44,6 +44,7 @@ class OrdersToAxQueueLogTableMap extends TableMap
         // columns
         $this->addPrimaryKey('orders_id', 'OrdersId', 'INTEGER', true, null, null);
         $this->addPrimaryKey('queue_id', 'QueueId', 'INTEGER', true, null, null);
+        $this->addColumn('iteration', 'Iteration', 'INTEGER', true, null, 1);
         $this->addPrimaryKey('created_at', 'CreatedAt', 'TIMESTAMP', true, null, null);
         // validators
     } // initialize()
