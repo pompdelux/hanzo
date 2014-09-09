@@ -177,8 +177,8 @@ class PheanstalkWorker
             UPDATE
                 orders_to_ax_queue_log
             SET
-                created_at = now(),
-                queue_id = ".(int) $queue_id."
+                queue_id = ".(int) $queue_id.",
+                iteration = iteration + 1
             WHERE
                 orders_id = ".(int) $jobData['order_id']
         );
