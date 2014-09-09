@@ -57,10 +57,10 @@ class DeadOrderService
 
     public function __construct($parameters, $settings)
     {
-        $this->dibsApi         = $parameters[0];
-        $this->eventDispatcher = $parameters[1];
-        $this->ax              = $parameters[2];
-        $this->pheanstalkQueue = $parameters[3];
+        $this->dibsApi         = $parameters['dibsapi'];
+        $this->eventDispatcher = $parameters['event_dispatcher'];
+        $this->ax              = $parameters['service_wrapper'];
+        $this->pheanstalkQueue = $parameters['pheanstalk_queue'];
         $this->settings        = $settings;
 
         if (!$this->dibsApi instanceof DibsApi) {
