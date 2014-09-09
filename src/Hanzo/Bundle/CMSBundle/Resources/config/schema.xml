@@ -676,6 +676,7 @@
     <table name="orders_to_ax_queue_log">
         <column name="orders_id" type="INTEGER" required="true" primaryKey="true"/>
         <column name="queue_id" type="INTEGER" required="true" primaryKey="true"/>
+        <column name="iteration" type="INTEGER" required="true" defaultValue="1"/>
         <column name="created_at" type="TIMESTAMP" required="true" primaryKey="true"/>
     </table>
 

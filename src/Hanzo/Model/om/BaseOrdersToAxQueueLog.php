@@ -51,6 +51,13 @@ abstract class BaseOrdersToAxQueueLog extends BaseObject implements Persistent
     protected $queue_id;
 
     /**
+     * The value for the iteration field.
+     * Note: this column has a database default value of: 1
+     * @var        int
+     */
+    protected $iteration;
+
+    /**
      * The value for the created_at field.
      * @var        string
      */
@@ -77,6 +84,27 @@ abstract class BaseOrdersToAxQueueLog extends BaseObject implements Persistent
     protected $alreadyInClearAllReferencesDeep = false;
 
     /**
+     * Applies default values to this object.
+     * This method should be called from the object's constructor (or
+     * equivalent initialization method).
+     * @see        __construct()
+     */
+    public function applyDefaultValues()
+    {
+        $this->iteration = 1;
+    }
+
+    /**
+     * Initializes internal state of BaseOrdersToAxQueueLog object.
+     * @see        applyDefaults()
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->applyDefaultValues();
+    }
+
+    /**
      * Get the [orders_id] column value.
      *
      * @return int
@@ -96,6 +124,17 @@ abstract class BaseOrdersToAxQueueLog extends BaseObject implements Persistent
     {
 
         return $this->queue_id;
+    }
+
+    /**
+     * Get the [iteration] column value.
+     *
+     * @return int
+     */
+    public function getIteration()
+    {
+
+        return $this->iteration;
     }
 
     /**
@@ -183,6 +222,27 @@ abstract class BaseOrdersToAxQueueLog extends BaseObject implements Persistent
     } // setQueueId()
 
     /**
+     * Set the value of [iteration] column.
+     *
+     * @param  int $v new value
+     * @return OrdersToAxQueueLog The current object (for fluent API support)
+     */
+    public function setIteration($v)
+    {
+        if ($v !== null && is_numeric($v)) {
+            $v = (int) $v;
+        }
+
+        if ($this->iteration !== $v) {
+            $this->iteration = $v;
+            $this->modifiedColumns[] = OrdersToAxQueueLogPeer::ITERATION;
+        }
+
+
+        return $this;
+    } // setIteration()
+
+    /**
      * Sets the value of [created_at] column to a normalized version of the date/time value specified.
      *
      * @param mixed $v string, integer (timestamp), or DateTime value.
@@ -215,6 +275,10 @@ abstract class BaseOrdersToAxQueueLog extends BaseObject implements Persistent
      */
     public function hasOnlyDefaultValues()
     {
+            if ($this->iteration !== 1) {
+                return false;
+            }
+
         // otherwise, everything was equal, so return true
         return true;
     } // hasOnlyDefaultValues()
@@ -239,7 +303,8 @@ abstract class BaseOrdersToAxQueueLog extends BaseObject implements Persistent
 
             $this->orders_id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
             $this->queue_id = ($row[$startcol + 1] !== null) ? (int) $row[$startcol + 1] : null;
-            $this->created_at = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
+            $this->iteration = ($row[$startcol + 2] !== null) ? (int) $row[$startcol + 2] : null;
+            $this->created_at = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -249,7 +314,7 @@ abstract class BaseOrdersToAxQueueLog extends BaseObject implements Persistent
             }
             $this->postHydrate($row, $startcol, $rehydrate);
 
-            return $startcol + 3; // 3 = OrdersToAxQueueLogPeer::NUM_HYDRATE_COLUMNS.
+            return $startcol + 4; // 4 = OrdersToAxQueueLogPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating OrdersToAxQueueLog object", $e);
@@ -463,6 +528,9 @@ abstract class BaseOrdersToAxQueueLog extends BaseObject implements Persistent
         if ($this->isColumnModified(OrdersToAxQueueLogPeer::QUEUE_ID)) {
             $modifiedColumns[':p' . $index++]  = '`queue_id`';
         }
+        if ($this->isColumnModified(OrdersToAxQueueLogPeer::ITERATION)) {
+            $modifiedColumns[':p' . $index++]  = '`iteration`';
+        }
         if ($this->isColumnModified(OrdersToAxQueueLogPeer::CREATED_AT)) {
             $modifiedColumns[':p' . $index++]  = '`created_at`';
         }
@@ -482,6 +550,9 @@ abstract class BaseOrdersToAxQueueLog extends BaseObject implements Persistent
                         break;
                     case '`queue_id`':
                         $stmt->bindValue($identifier, $this->queue_id, PDO::PARAM_INT);
+                        break;
+                    case '`iteration`':
+                        $stmt->bindValue($identifier, $this->iteration, PDO::PARAM_INT);
                         break;
                     case '`created_at`':
                         $stmt->bindValue($identifier, $this->created_at, PDO::PARAM_STR);
@@ -620,6 +691,9 @@ abstract class BaseOrdersToAxQueueLog extends BaseObject implements Persistent
                 return $this->getQueueId();
                 break;
             case 2:
+                return $this->getIteration();
+                break;
+            case 3:
                 return $this->getCreatedAt();
                 break;
             default:
@@ -652,7 +726,8 @@ abstract class BaseOrdersToAxQueueLog extends BaseObject implements Persistent
         $result = array(
             $keys[0] => $this->getOrdersId(),
             $keys[1] => $this->getQueueId(),
-            $keys[2] => $this->getCreatedAt(),
+            $keys[2] => $this->getIteration(),
+            $keys[3] => $this->getCreatedAt(),
         );
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
@@ -699,6 +774,9 @@ abstract class BaseOrdersToAxQueueLog extends BaseObject implements Persistent
                 $this->setQueueId($value);
                 break;
             case 2:
+                $this->setIteration($value);
+                break;
+            case 3:
                 $this->setCreatedAt($value);
                 break;
         } // switch()
@@ -727,7 +805,8 @@ abstract class BaseOrdersToAxQueueLog extends BaseObject implements Persistent
 
         if (array_key_exists($keys[0], $arr)) $this->setOrdersId($arr[$keys[0]]);
         if (array_key_exists($keys[1], $arr)) $this->setQueueId($arr[$keys[1]]);
-        if (array_key_exists($keys[2], $arr)) $this->setCreatedAt($arr[$keys[2]]);
+        if (array_key_exists($keys[2], $arr)) $this->setIteration($arr[$keys[2]]);
+        if (array_key_exists($keys[3], $arr)) $this->setCreatedAt($arr[$keys[3]]);
     }
 
     /**
@@ -741,6 +820,7 @@ abstract class BaseOrdersToAxQueueLog extends BaseObject implements Persistent
 
         if ($this->isColumnModified(OrdersToAxQueueLogPeer::ORDERS_ID)) $criteria->add(OrdersToAxQueueLogPeer::ORDERS_ID, $this->orders_id);
         if ($this->isColumnModified(OrdersToAxQueueLogPeer::QUEUE_ID)) $criteria->add(OrdersToAxQueueLogPeer::QUEUE_ID, $this->queue_id);
+        if ($this->isColumnModified(OrdersToAxQueueLogPeer::ITERATION)) $criteria->add(OrdersToAxQueueLogPeer::ITERATION, $this->iteration);
         if ($this->isColumnModified(OrdersToAxQueueLogPeer::CREATED_AT)) $criteria->add(OrdersToAxQueueLogPeer::CREATED_AT, $this->created_at);
 
         return $criteria;
@@ -817,6 +897,7 @@ abstract class BaseOrdersToAxQueueLog extends BaseObject implements Persistent
     {
         $copyObj->setOrdersId($this->getOrdersId());
         $copyObj->setQueueId($this->getQueueId());
+        $copyObj->setIteration($this->getIteration());
         $copyObj->setCreatedAt($this->getCreatedAt());
         if ($makeNew) {
             $copyObj->setNew(true);
@@ -870,11 +951,13 @@ abstract class BaseOrdersToAxQueueLog extends BaseObject implements Persistent
     {
         $this->orders_id = null;
         $this->queue_id = null;
+        $this->iteration = null;
         $this->created_at = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
         $this->alreadyInClearAllReferencesDeep = false;
         $this->clearAllReferences();
+        $this->applyDefaultValues();
         $this->resetModified();
         $this->setNew(true);
         $this->setDeleted(false);
