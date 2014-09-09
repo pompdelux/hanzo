@@ -49,6 +49,13 @@ class AxBeanstalkWorkerCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        if (!$input->getOption('quiet')) {
+            $output->writeln(sprintf(
+                '<comment>[%s]</comment> <info>Loaded. Ctrl+C to break</info>',
+                date('Y-m-d H:i:s')
+            ));
+        }
+
         $loop = 0;
         $now  = time();
         $ttl  = (int) $input->getOption('ttl');
@@ -56,7 +63,7 @@ class AxBeanstalkWorkerCommand extends ContainerAwareCommand
         // bind pcntl signals
         $this->bind();
 
-        while ($this->watch()) {
+        while ($this->watch($input, $output)) {
             $loop++;
 
             if ($ttl && strtotime('now +'.(int)$ttl.' seconds') > $now) {
@@ -78,10 +85,17 @@ class AxBeanstalkWorkerCommand extends ContainerAwareCommand
      *
      * @return bool
      */
-    private function watch()
+    private function watch(InputInterface $input, OutputInterface $output)
     {
         if ($this->shutdown) {
             exit;
+        }
+
+        if (!$input->getOption('quiet')) {
+            $output->writeln(sprintf(
+                '<comment>[%s]</comment> <info>Watching for incomming jobs ...</info>',
+                date('Y-m-d H:i:s')
+            ));
         }
 
         /** @var \Leezy\PheanstalkBundle\Proxy\PheanstalkProxy $pheanstalk */
@@ -95,6 +109,13 @@ class AxBeanstalkWorkerCommand extends ContainerAwareCommand
 
         $this->isWorking = true;
         $data = json_decode($job->getData(), true);
+
+        if (!$input->getOption('quiet')) {
+            $output->writeln(sprintf(
+                '<comment>[%s]</comment> <info>Job #'.$job->getId().' received - processing</info>',
+                date('Y-m-d H:i:s')
+            ));
+        }
 
         try {
             if (isset($data['action']) && ('delete' === $data['action'])) {
@@ -120,11 +141,20 @@ class AxBeanstalkWorkerCommand extends ContainerAwareCommand
      */
     public function shutdown($signal)
     {
-        if (!$this->isWorking) {
-            exit;
-        }
+        $map = [
+            SIGINT  => 'SIGINT',
+            SIGQUIT => 'SIGQUIT',
+            SIGTERM => 'SIGTERM',
+            SIGHUP  => 'SIGHUP',
+        ];
 
-        $this->shutdown = true;
+        if (isset($map[$signal])) {
+            if (!$this->isWorking) {
+                exit;
+            }
+
+            $this->shutdown = true;
+        }
     }
 
 
