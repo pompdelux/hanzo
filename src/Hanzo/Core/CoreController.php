@@ -228,7 +228,7 @@ class CoreController extends Controller
     /**
      * Gets the connection for which database to use
      *
-     * @return Propel connection              [description]
+     * @return Propel|\PropelPDO
      */
     public function getDbConnection()
     {
