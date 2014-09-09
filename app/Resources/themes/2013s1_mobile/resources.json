@@ -16,6 +16,7 @@
         "web/fx/scripts/jquerytools/src/scrollable/scrollable.autoscroll.js",
         "web/fx/scripts/jquerytools/src/scrollable/scrollable.navigator.js",
         "web/fx/scripts/jquery.cycle2.min.js",
+        "web/fx/scripts/jquery.color.min.js",
         "web/fx/scripts/jquery.formparams.js",
         "web/fx/scripts/jquery.lazyload.min.js",
         "web/fx/scripts/colorbox/jquery.colorbox-min.js",
