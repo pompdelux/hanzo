@@ -326,7 +326,9 @@ class OrdersController extends CoreController
         }
 
         try {
-            $this->container->get('ax.out.service.wrapper')->SyncSalesOrder($order, false, $this->getDbConnection());
+            $queue = $this->container->get('ax.pheanstalk_queue');
+            $queue->setDBConnection($this->getDbConnection());
+            $queue_id = $queue->appendSendOrder($order, $order->getInEdit());
         } catch (Exception $e) {
             if ('json' === $this->getFormat()) {
                 return $this->json_response(array(
@@ -341,7 +343,7 @@ class OrdersController extends CoreController
         if ('json' === $this->getFormat()) {
             return $this->json_response(array(
                 'status' => true,
-                'message' => sprintf('Ordren #%d er nu sendt', $order_id),
+                'message' => sprintf('Ordren #%d er nu lagt i kø med jobnummer #%d', $order_id, $queue_id),
             ));
         }
 
@@ -407,12 +409,13 @@ class OrdersController extends CoreController
 
         if ($order) {
             // find old log entry and delete it
-            $order_log = OrdersSyncLogQuery::create()
+            OrdersSyncLogQuery::create()
                 ->filterByState('failed')
                 ->filterByOrdersId($order_id)
-                ->delete($this->getDbConnection())
-            ;
+                ->delete($this->getDbConnection());
+
             $order->setIgnoreDeleteConstraints(true);
+
             try {
                 $order->delete($this->getDbConnection());
             } catch (Exception $e) {
