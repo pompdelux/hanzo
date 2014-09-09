@@ -662,6 +662,12 @@ admin_orders_sync_log_delete:
         orders_id: \d+
         state: 'ok|failed'
 
+admin_orders_ax_qeueu:
+    pattern: /admin/orders/ax/queue
+    defaults:
+        _controller: AdminBundle:Orders:axQueue
+
+
 admin_statistics_realtime:
     pattern: /admin/statistics/realtime
     defaults:
