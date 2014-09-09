@@ -67,7 +67,7 @@ class PheanstalkQueue
             throw new OrderAlreadyInQueueException('The order #'.$order->getId().' is already in the queue. It was added @ '.date('Y-m-d H:i:s', $ts));
         }
 
-        $endPoint = Tools::domainKeyToEndpoint($order->getAttributes()->global->domain_key);
+        $endPoint = Tools::domainKeyToEndpoint($order->getAttributes($this->dbConn)->global->domain_key);
         $data     = json_encode([
             'action'        => 'create',
             'customer_id'   => $order->getCustomersId(),
@@ -101,7 +101,7 @@ class PheanstalkQueue
             throw new OrderAlreadyInQueueException('The order #'.$order->getId().' is already in the queue. It was added @ '.date('Y-m-d H:i:s', $ts));
         }
 
-        $endPoint = Tools::domainKeyToEndpoint($order->getAttributes()->global->domain_key);
+        $endPoint = Tools::domainKeyToEndpoint($order->getAttributes($this->dbConn)->global->domain_key);
         $data     = json_encode([
             'action'    => 'delete',
             'db_conn'   => 'pdldb' . strtolower($endPoint) . '1',
