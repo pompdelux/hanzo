@@ -44,6 +44,7 @@ trait KernelTrait
             new Misd\GuzzleBundle\MisdGuzzleBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             new Leezy\PheanstalkBundle\LeezyPheanstalkBundle(),
+            new Glorpen\Propel\PropelBundle\GlorpenPropelBundle(),
             // ------------------------------------------------------
 
             // APP BUNDLES ------------------------------------------
