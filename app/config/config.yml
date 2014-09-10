@@ -96,8 +96,9 @@ swiftmailer:
 propel:
     dbal:
         driver:     '%database_driver%'
-        options:    {  }
-        attributes: {  }
+        options:    {}
+        attributes: {}
+        classname:  Glorpen\Propel\PropelBundle\Connection\EventPropelPDO
     path:             '%kernel.root_dir%/../vendor/propel'
     phing_path:       '%kernel.root_dir%/../vendor/phing'
     logging:          '%kernel.debug%'
@@ -110,6 +111,9 @@ propel:
         propel.defaultTimeFormat:         "H:i:s"
         propel.defaultDateFormat:         "Y-m-d"
         propel.behavior.geocodable.class: "%kernel.root_dir%.propel.propel-behaviors.GeocodableBehavior.src.GeocodableBehavior"
+        propel.behavior.event.class:      'vendor.glorpen.propel-bundle.Glorpen.Propel.PropelBundle.Behaviors.EventBehavior'
+        propel.behavior.default:          "event"
+
 
 jms_security_extra:
     secure_all_services: false
