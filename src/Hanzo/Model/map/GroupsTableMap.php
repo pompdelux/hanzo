@@ -56,4 +56,18 @@ class GroupsTableMap extends TableMap
         $this->addRelation('Customers', 'Hanzo\\Model\\Customers', RelationMap::ONE_TO_MANY, array('id' => 'groups_id', ), null, 'CASCADE', 'Customerss');
     } // buildRelations()
 
+    /**
+     *
+     * Gets the list of behaviors registered for this table
+     *
+     * @return array Associative array (name => parameters) of behaviors
+     */
+    public function getBehaviors()
+    {
+        return array(
+            'event' =>  array (
+),
+        );
+    } // getBehaviors()
+
 } // GroupsTableMap

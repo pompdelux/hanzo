@@ -92,6 +92,8 @@ class CustomersTableMap extends TableMap
             'delegate' =>  array (
   'to' => 'consultants',
 ),
+            'event' =>  array (
+),
         );
     } // getBehaviors()
 

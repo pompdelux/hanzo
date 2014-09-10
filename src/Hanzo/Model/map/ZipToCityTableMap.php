@@ -60,4 +60,18 @@ class ZipToCityTableMap extends TableMap
         $this->addRelation('Countries', 'Hanzo\\Model\\Countries', RelationMap::MANY_TO_ONE, array('countries_iso2' => 'iso2', ), null, null);
     } // buildRelations()
 
+    /**
+     *
+     * Gets the list of behaviors registered for this table
+     *
+     * @return array Associative array (name => parameters) of behaviors
+     */
+    public function getBehaviors()
+    {
+        return array(
+            'event' =>  array (
+),
+        );
+    } // getBehaviors()
+
 } // ZipToCityTableMap

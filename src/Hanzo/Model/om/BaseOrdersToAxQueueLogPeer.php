@@ -9,6 +9,8 @@ use \PDOStatement;
 use \Propel;
 use \PropelException;
 use \PropelPDO;
+use Glorpen\Propel\PropelBundle\Dispatcher\EventDispatcherProxy;
+use Glorpen\Propel\PropelBundle\Events\PeerEvent;
 use Hanzo\Model\OrdersToAxQueueLog;
 use Hanzo\Model\OrdersToAxQueueLogPeer;
 use Hanzo\Model\map\OrdersToAxQueueLogTableMap;
@@ -767,3 +769,4 @@ abstract class BaseOrdersToAxQueueLogPeer
 //
 BaseOrdersToAxQueueLogPeer::buildTableMap();
 
+EventDispatcherProxy::trigger(array('construct','peer.construct'), new PeerEvent('Hanzo\Model\om\BaseOrdersToAxQueueLogPeer'));
