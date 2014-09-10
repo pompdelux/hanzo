@@ -9,6 +9,8 @@ use \PDOStatement;
 use \Propel;
 use \PropelException;
 use \PropelPDO;
+use Glorpen\Propel\PropelBundle\Dispatcher\EventDispatcherProxy;
+use Glorpen\Propel\PropelBundle\Events\PeerEvent;
 use Hanzo\Model\MannequinImages;
 use Hanzo\Model\MannequinImagesPeer;
 use Hanzo\Model\ProductsPeer;
@@ -1010,3 +1012,4 @@ abstract class BaseMannequinImagesPeer
 //
 BaseMannequinImagesPeer::buildTableMap();
 
+EventDispatcherProxy::trigger(array('construct','peer.construct'), new PeerEvent('Hanzo\Model\om\BaseMannequinImagesPeer'));
