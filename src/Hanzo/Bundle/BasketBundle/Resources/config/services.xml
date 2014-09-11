@@ -5,13 +5,25 @@
 
     <parameters>
         <parameter key="basket.propel_event.orders.pre_save.class">Hanzo\Bundle\BasketBundle\Event\Listener\Model\Orders\OnPreSaveEvent</parameter>
+        <parameter key="basket.propel_event.orders.post_save.class">Hanzo\Bundle\BasketBundle\Event\Listener\Model\Orders\OnPostSaveEvent</parameter>
+        <parameter key="basket.propel_event.orders.pre_delete.class">Hanzo\Bundle\BasketBundle\Event\Listener\Model\Orders\OnPreDeleteEvent</parameter>
     </parameters>
 
     <services>
-        <service id="basket.propel_event.orders.pre_save" class="%basket.propel_event.orders.pre_save.class%" scope="request" synchronized="true">
+        <service id="basket.propel_event.orders.pre_save" class="%basket.propel_event.orders.pre_save.class%" scope="request">
             <argument type="service" id="request" on-invalid="null" />
             <argument type="service" id="kernel" />
             <tag name="propel.event" method="handle" event="model.save.pre" priority="0" />
+        </service>
+
+        <service id="basket.propel_event.orders.post_save" class="%basket.propel_event.orders.post_save.class%">
+            <argument type="service" id="session" on-invalid="null" />
+            <tag name="propel.event" method="handle" event="model.save.post" priority="0" />
+        </service>
+
+        <service id="basket.propel_event.orders.pre_delete" class="%basket.propel_event.orders.pre_delete.class%" scope="request">
+            <argument type="service" id="request" on-invalid="null" />
+            <tag name="propel.event" method="handle" event="model.delete.pre" priority="0" />
         </service>
     </services>
 </container>

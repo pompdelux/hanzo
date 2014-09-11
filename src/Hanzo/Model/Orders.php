@@ -83,9 +83,18 @@ class Orders extends BaseOrders
     const INFO_STATE_EDIT_CANCLED_BY_CLEANUP = 'Edit cancled by cleanup';
     const INFO_STATE_EDIT_DONE               = 'Edit done';
 
-
     protected $ignore_delete_constraints = false;
     protected $pdo_con = null;
+
+    public function getDBConnection()
+    {
+        return $this->pdo_con;
+    }
+
+    public function setDBConnection($connection)
+    {
+        $this->pdo_con = $connection;
+    }
 
     /**
      * @param Translator $translator
@@ -166,8 +175,8 @@ class Orders extends BaseOrders
         $data['order'] = $this->toArray();
         unset($data['order']['Id']);
 
-        $data['products'] = $this->getOrdersLiness(Propel::getConnection(null, Propel::CONNECTION_WRITE))->toArray();
-        $data['attributes'] = $this->getOrdersAttributess(Propel::getConnection(null, Propel::CONNECTION_WRITE))->toArray();
+        $data['products'] = $this->getOrdersLiness($this->getDBConnection())->toArray();
+        $data['attributes'] = $this->getOrdersAttributess($this->getDBConnection())->toArray();
 
         $version_ids = $this->getVersionIds();
 
@@ -202,7 +211,7 @@ class Orders extends BaseOrders
             ->select('VersionId')
             ->filterByOrdersId($this->getId())
             ->orderByVersionId('desc')
-            ->find(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+            ->find($this->getDBConnection())
         ;
 
         $ids = [];
@@ -217,8 +226,7 @@ class Orders extends BaseOrders
     /**
      * delete a version, note you cannot delete the current version
      *
-     * @param  int $version_id the version you wich to delete
-     * @return boolean
+     * @param  int $version_id the version you which to delete
      */
     public function deleteVersion($version_id)
     {
@@ -226,11 +234,10 @@ class Orders extends BaseOrders
             throw new OutOfBoundsException('Invalid version id');
         }
 
-        return OrdersVersionsQuery::create()
+        OrdersVersionsQuery::create()
             ->filterByOrdersId($this->getId())
             ->findOneByVersionId($version_id)
-            ->delete()
-        ;
+            ->delete();
     }
 
 
@@ -251,7 +258,7 @@ class Orders extends BaseOrders
         $version = OrdersVersionsQuery::create()
             ->filterByOrdersId($this->getId())
             ->filterByVersionId($version_id)
-            ->findOne(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+            ->findOne($this->getDBConnection())
         ;
 
         if (!$version instanceof OrdersVersions) {
@@ -274,7 +281,7 @@ class Orders extends BaseOrders
         $this->setOrdersLiness($collection);
 
         OrdersAttributesQuery::create()
-            ->findByOrdersId($this->getId(), Propel::getConnection(null, Propel::CONNECTION_WRITE))
+            ->findByOrdersId($this->getId(), $this->getDBConnection())
             ->delete()
         ;
         $this->clearOrdersAttributess();
@@ -316,7 +323,7 @@ class Orders extends BaseOrders
         $version = OrdersVersionsQuery::create()
             ->filterByOrdersId($this->getId())
             ->filterByVersionId($version_id)
-            ->findOne(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+            ->findOne($this->getDBConnection())
         ;
 
         if (!$version instanceof OrdersVersions) {
@@ -367,7 +374,7 @@ class Orders extends BaseOrders
             ->filterByOrdersId($this->getId())
             ->filterByVersionId($this->getVersionId(), \Criteria::LESS_THAN)
             ->orderByVersionId('desc')
-            ->findOne(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+            ->findOne($this->getDBConnection())
         ;
         $this->toVersion($version);
 
@@ -390,7 +397,7 @@ class Orders extends BaseOrders
     public function setOrderLineQty($product, $quantity, $exact = false, $date = '1970-01-01')
     {
         // first update existing product lines, if any
-        $lines = $this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
+        $lines = $this->getOrdersLiness(null, $this->getDBConnection());
 
         if ($this->getState() !== self::STATE_BUILDING) {
             $this->setState(self::STATE_BUILDING);
@@ -469,7 +476,7 @@ class Orders extends BaseOrders
         $line = OrdersLinesQuery::create()
             ->filterByType($type)
             ->filterByOrdersId($this->getId())
-            ->findOne(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+            ->findOne($this->getDBConnection())
         ;
 
         if (!$line instanceof OrdersLines) {
@@ -496,7 +503,7 @@ class Orders extends BaseOrders
     public function getOrderLineShipping($conn = null)
     {
         $conn = is_null($conn)
-            ? Propel::getConnection(null, Propel::CONNECTION_WRITE)
+            ? $this->getDBConnection()
             : $conn;
 
         return OrdersLinesQuery::create()
@@ -516,7 +523,7 @@ class Orders extends BaseOrders
     public function getOrderLineDiscount($conn = null)
     {
         $conn = is_null($conn)
-            ? Propel::getConnection(null, Propel::CONNECTION_WRITE)
+            ? $this->getDBConnection()
             : $conn;
 
         return OrdersLinesQuery::create()
@@ -595,7 +602,7 @@ class Orders extends BaseOrders
                 $query->filterByType('product');
             }
 
-            $lines = $query->find(Propel::getConnection(null, Propel::CONNECTION_WRITE));
+            $lines = $query->find($this->getDBConnection());
         }
 
         $total = 0;
@@ -629,7 +636,7 @@ class Orders extends BaseOrders
                 $query->filterByType('product');
             }
 
-            $lines = $query->find(Propel::getConnection(null, Propel::CONNECTION_WRITE));
+            $lines = $query->find($this->getDBConnection());
         }
 
         $total = 0;
@@ -650,7 +657,7 @@ class Orders extends BaseOrders
      */
     public function setAttribute($key, $ns, $value)
     {
-        $attributes = $this->getOrdersAttributess(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
+        $attributes = $this->getOrdersAttributess(null, $this->getDBConnection());
 
         // Update existing attributes
         foreach ($attributes as $index => $attribute) {
@@ -728,7 +735,7 @@ class Orders extends BaseOrders
         $fee = OrdersLinesQuery::create()
             ->filterByOrdersId($this->getId())
             ->filterByType('payment.fee')
-            ->findOne(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+            ->findOne($this->getDBConnection())
         ;
 
         if (!$fee instanceof OrdersLines) {
@@ -757,7 +764,7 @@ class Orders extends BaseOrders
         $line = OrdersLinesQuery::create()
             ->filterByType('payment.fee')
             ->filterByOrdersId($this->getId())
-            ->findOne(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+            ->findOne($this->getDBConnection())
         ;
 
         if ($line instanceof OrdersLines) {
@@ -779,7 +786,7 @@ class Orders extends BaseOrders
         $line = OrdersLinesQuery::create()
             ->filterByType('shipping.fee')
             ->filterByOrdersId($this->getId())
-            ->findOne(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+            ->findOne($this->getDBConnection())
         ;
 
         if ($line instanceof OrdersLines) {
@@ -802,7 +809,7 @@ class Orders extends BaseOrders
      */
     public function setOrderLine($type, $id, $name, $price = 0.00, $vat = 0.00, $quantity = 1)
     {
-        $lines = $this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
+        $lines = $this->getOrdersLiness(null, $this->getDBConnection());
 
         foreach ($lines as $index => $line) {
             if ($line->getType() == $type) {
@@ -937,7 +944,7 @@ class Orders extends BaseOrders
         return OrdersLinesQuery::create()
             ->filterByOrdersId($this->getId())
             ->filterByType('payment.fee')
-            ->delete(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+            ->delete($this->getDBConnection())
         ;
     }
 
@@ -1008,7 +1015,7 @@ class Orders extends BaseOrders
         $attributes = OrdersAttributesQuery::create()
             ->filterByOrdersId($this->getId())
             ->filterByNs('attachment')
-            ->find(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+            ->find($this->getDBConnection())
         ;
 
         $attachments = array();
@@ -1021,8 +1028,8 @@ class Orders extends BaseOrders
 
     public function getAttributes($con = null)
     {
-        if ($this->pdo_con) {
-            $con = $this->pdo_con;
+        if ($this->getDBConnection()) {
+            $con = $this->getDBConnection();
         }
 
         $attributes = new \stdClass();
@@ -1084,7 +1091,7 @@ class Orders extends BaseOrders
     public function hasProduct($product_id)
     {
         $isInt = preg_match('/^[0-9]+$/', $product_id);
-        foreach ($this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE)) as $line) {
+        foreach ($this->getOrdersLiness(null, $this->getDBConnection()) as $line) {
             if ($isInt) {
                 if ($line->getProductsId() == $product_id) {
                     return true;
@@ -1184,7 +1191,7 @@ class Orders extends BaseOrders
         $result      = $hanzo->get('HD.expected_delivery_date');
         $expected_at = is_null($result) ? '' : $result;
 
-        foreach ($this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE)) as $line) {
+        foreach ($this->getOrdersLiness(null, $this->getDBConnection()) as $line) {
             $date = $line->getExpectedAt('Ymd');
             if (($date > $now) && ($date > $latest)) {
                 $latest = $date;
@@ -1323,27 +1330,6 @@ class Orders extends BaseOrders
 
 
     /**
-     * @param  PropelPDO $con
-     * @return bool|void
-     * @throws Exception
-     */
-    public function postSave(PropelPDO $con = null)
-    {
-        if (PHP_SAPI == 'cli') {
-            return true;
-        }
-
-        $session = Hanzo::getInstance()->getSession();
-
-        if (false === $session->has('order_id')) {
-            $session->set('order_id', $this->getId());
-        }
-
-        return true;
-    }
-
-
-    /**
      * wrap delete() to cleanup payment and ax
      */
     public function delete(PropelPDO $con = null)
@@ -1372,63 +1358,6 @@ class Orders extends BaseOrders
         }
 
         parent::delete($con);
-    }
-
-
-    /**
-     * log all order deletes so we can track errors, and potentially restore the order
-     *
-     * @param  PropelPDO $con pdo connection
-     * @return boolean
-     */
-    public function preDelete(PropelPDO $con = null)
-    {
-        // If the order is:
-        // - empty (new)
-        // - customers_id and email is empty
-        // we skip saving.
-        if (($this->isNew()) ||
-            (!$this->getCustomersId() && !$this->getEmail())
-        ) {
-            return true;
-        }
-
-        $data = [];
-        $data['orders'] = $this->toArray();
-        $data['orders_lines'] = $this->getOrdersLiness(null, $con)->toArray();
-        $data['orders_attributes'] = $this->getOrdersAttributess(null, $con)->toArray();
-        $data['orders_state_log'] = $this->getOrdersStateLogs(null, $con)->toArray();
-        $data['orders_versions'] = $this->getOrdersVersionss(null, $con)->toArray();
-
-        if (defined('ACTION_TRIGGER')) {
-            $trigger = 'cli';
-            $deleted_by = ACTION_TRIGGER;
-        } else {
-            $trigger = $_SERVER['REQUEST_URI'];
-            $deleted_by = 'cid: '.CustomersPeer::getCurrent()->getId();
-        }
-
-        $entry = OrdersDeletedLogQuery::create()->findOneByOrdersId($this->getId());
-        if (!$entry instanceof OrdersDeletedLog) {
-            $entry = new OrdersDeletedLog();
-            $entry->setOrdersId($this->getId());
-            $entry->setCustomersId($this->getCustomersId());
-            $entry->setName($this->getFirstName().' '.$this->getLastName());
-            $entry->setEmail($this->getEmail());
-        }
-
-        $entry->setTrigger($trigger);
-        $entry->setContent(serialize($data));
-        $entry->setDeletedBy($deleted_by);
-        $entry->setDeletedAt(time());
-
-        try {
-            $entry->save($con);
-        } catch (Exception $e) {
-            //Tools::log($e->getMessage());
-        }
-
-        return parent::preDelete($con);
     }
 
 } // Orders
