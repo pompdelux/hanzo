@@ -678,6 +678,9 @@
         <column name="queue_id" type="INTEGER" required="true" primaryKey="true"/>
         <column name="iteration" type="INTEGER" required="true" defaultValue="1"/>
         <column name="created_at" type="TIMESTAMP" required="true" primaryKey="true"/>
+        <foreign-key foreignTable="orders" name="fk_orders_to_ax_queue_log_1" onDelete="CASCADE">
+            <reference local="orders_id" foreign="id"/>
+        </foreign-key>
     </table>
 
 

@@ -51,6 +51,11 @@ CREATE TABLE `orders_to_ax_queue_log`
     PRIMARY KEY (`orders_id`,`queue_id`,`created_at`)
 ) ENGINE=InnoDB;
 
+ALTER TABLE `orders_to_ax_queue_log` ADD CONSTRAINT `fk_orders_to_ax_queue_log_1`
+    FOREIGN KEY (`orders_id`)
+    REFERENCES `orders` (`id`)
+    ON DELETE CASCADE;
+
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;
 ',
