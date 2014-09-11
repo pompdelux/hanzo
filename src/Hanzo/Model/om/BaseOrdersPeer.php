@@ -20,6 +20,7 @@ use Hanzo\Model\OrdersLinesPeer;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\OrdersStateLogPeer;
 use Hanzo\Model\OrdersSyncLogPeer;
+use Hanzo\Model\OrdersToAxQueueLogPeer;
 use Hanzo\Model\OrdersToCouponsPeer;
 use Hanzo\Model\OrdersVersionsPeer;
 use Hanzo\Model\map\OrdersTableMap;
@@ -596,6 +597,9 @@ abstract class BaseOrdersPeer
         // Invalidate objects in OrdersSyncLogPeer instance pool,
         // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
         OrdersSyncLogPeer::clearInstancePool();
+        // Invalidate objects in OrdersToAxQueueLogPeer instance pool,
+        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
+        OrdersToAxQueueLogPeer::clearInstancePool();
         // Invalidate objects in OrdersVersionsPeer instance pool,
         // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
         OrdersVersionsPeer::clearInstancePool();
