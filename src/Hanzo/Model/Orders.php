@@ -1318,52 +1318,7 @@ class Orders extends BaseOrders
         $a = new Addresses();
         $a->fromArray($address, \BasePeer::TYPE_FIELDNAME);
 
-        return $a;
-    }
-
-
-    /**
-     * @param  PropelPDO $con
-     * @return bool
-     * @throws Exception
-     */
-    public function preSave(PropelPDO $con = null)
-    {
-        if (!$this->getSessionId()) {
-            $this->setSessionId(Hanzo::getInstance()->getSession()->getId());
-        }
-
-        if ($this->isNew()) {
-            $hanzo = Hanzo::getInstance();
-            $this->setCurrencyCode($hanzo->get('core.currency'));
-            $this->setLanguagesId($hanzo->get('core.language_id'));
-            $this->setPaymentGatewayId(Tools::getPaymentGatewayId());
-            $this->setAttribute('domain_key', 'global', $hanzo->get('core.domain_key'));
-
-            if ($request = $hanzo->container->get('request')) {
-                $this->setAttribute('user_agent', 'global', $request->server->get('HTTP_USER_AGENT'));
-                $this->setAttribute('client_ip', 'global', $request->getClientIp());
-            }
-        }
-
-        // set billing address - if not already set.
-        if ('' == $this->getBillingFirstName()) {
-            $customer = CustomersPeer::getCurrent();
-            if (!$customer->isNew()) {
-                $c = new Criteria;
-                $c->add(AddressesPeer::TYPE, 'payment');
-                $address = $customer->getAddressess($c)->getFirst();
-
-                if ($address) {
-                    $this->setBillingAddress($address);
-                    $this->setPhone($customer->getPhone());
-                } else {
-                    Tools::log('Missing payment address: '.$customer->getId());
-                }
-            }
-        }
-
-        return true;
+        return;
     }
 
 
