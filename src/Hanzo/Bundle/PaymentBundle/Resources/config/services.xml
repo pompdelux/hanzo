@@ -1,0 +1,90 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="payment.dibsapi.class">Hanzo\Bundle\PaymentBundle\Methods\Dibs\DibsApi</parameter>
+        <parameter key="payment.gothiaapi.class">Hanzo\Bundle\PaymentBundle\Methods\Gothia\GothiaApi</parameter>
+        <parameter key="payment.gothiadeapi.class">Hanzo\Bundle\PaymentBundle\Methods\Gothia\GothiaDEApi</parameter>
+        <parameter key="payment.manualpaymentapi.class">Hanzo\Bundle\PaymentBundle\Methods\ManualPayment\ManualPaymentApi</parameter>
+        <parameter key="payment.giftcardapi.class">Hanzo\Bundle\PaymentBundle\Methods\GiftCard\GiftCardApi</parameter>
+        <parameter key="payment.pensioapi.class">Hanzo\Bundle\PaymentBundle\Methods\Pensio\PensioApi</parameter>
+        <parameter key="payment.paypalapi.class">Hanzo\Bundle\PaymentBundle\Methods\PayPal\PayPalApi</parameter>
+        <parameter key="payment.action_proxy.class">Hanzo\Bundle\PaymentBundle\PaymentActionsProxy</parameter>
+    </parameters>
+
+    <services>
+        <service id="payment.dibsapi" class="%payment.dibsapi.class%" factory-service="service_factory" factory-method="get">
+            <argument type="string">dibsapi</argument>
+            <argument type="collection">
+                <argument type="service" id="router" />
+                <argument type="service" id="hanzo.external_service.logger" />
+            </argument>
+            <argument type="string">%payment.dibsapi.class%</argument>
+            <tag name="payment.api" />
+        </service>
+
+        <service id="payment.gothiaapi" class="%payment.gothiaapi.class%" factory-service="service_factory" factory-method="get">
+            <argument type="string">gothiaapi</argument>
+            <argument type="collection">
+                <argument type="service" id="hanzo.external_service.logger" />
+            </argument>
+            <argument type="string">%payment.gothiaapi.class%</argument>
+            <tag name="payment.api" />
+        </service>
+
+        <service id="payment.gothiadeapi" class="%payment.gothiadeapi.class%" factory-service="service_factory" factory-method="get">
+            <argument type="string">gothiadeapi</argument>
+            <argument type="collection">
+                <argument type="service" id="hanzo.external_service.logger" />
+            </argument>
+            <argument type="string">%payment.gothiadeapi.class%</argument>
+            <tag name="payment.api" />
+        </service>
+
+        <service id="payment.manualpaymentapi" class="%payment.manualpaymentapi.class%" factory-service="service_factory" factory-method="get" scope="request">
+            <argument type="string">manualpaymentapi</argument>
+            <argument type="collection">
+                <argument type="string">%kernel.environment%</argument>
+            </argument>
+            <argument type="string">%payment.manualpaymentapi.class%</argument>
+            <tag name="payment.api" />
+        </service>
+
+        <service id="payment.giftcardapi" class="%payment.giftcardapi.class%" factory-service="service_factory" factory-method="get" scope="request">
+            <argument type="string">giftcardapi</argument>
+            <argument type="collection">
+                <argument type="string" />
+            </argument>
+            <argument type="string">%payment.giftcardapi.class%</argument>
+            <tag name="payment.api" />
+        </service>
+
+        <service id="payment.pensioapi" class="%payment.pensioapi.class%" factory-service="service_factory" factory-method="get" scope="request">
+            <argument type="string">pensioapi</argument>
+            <argument type="collection">
+                <argument type="service" id="router" />
+                <argument type="service" id="hanzo.external_service.logger" />
+            </argument>
+            <argument type="string">%payment.pensioapi.class%</argument>
+            <tag name="payment.api" />
+        </service>
+
+        <service id="payment.paypalapi" class="%payment.paypalapi.class%" factory-service="service_factory" factory-method="get" scope="request">
+            <argument type="string">paypalapi</argument>
+            <argument type="collection">
+                <argument type="service" id="router" />
+                <argument type="service" id="translator" />
+                <argument type="service" id="logger" />
+                <argument type="service" id="hanzo.external_service.logger" />
+            </argument>
+            <argument type="string">%payment.paypalapi.class%</argument>
+            <tag name="payment.api" />
+        </service>
+
+        <service id="payment.actions.proxy" class="%payment.action_proxy.class%" scope="request">
+            <argument type="service" id="payment.tagged_api_holder"/>
+        </service>
+    </services>
+</container>
