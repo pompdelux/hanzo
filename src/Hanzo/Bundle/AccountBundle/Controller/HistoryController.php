@@ -212,16 +212,18 @@ class HistoryController extends CoreController
                 $lastName  = $order->getLastName();
                 $id        = $order->getId();
                 $email     = $order->getEmail();
+                $amount    = Tools::moneyFormat($order->getTotalPrice());
 
                 $order->delete();
 
                 // send delete notification
                 $mailer = $this->get('mail_manager');
                 $mailer->setMessage('order.deleted', [
+                    'amount'   => $amount,
                     'name'     => $firstName,
                     'order_id' => $id,
-                    'date' => date('d-m-Y'),
-                    'time' => date('H:i'),
+                    'date'     => date('d-m-Y'),
+                    'time'     => date('H:i'),
                 ]);
 
                 $mailer->setBcc($bcc);
