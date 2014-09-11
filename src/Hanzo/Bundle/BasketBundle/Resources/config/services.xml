@@ -1,11 +1,17 @@
-parameters:
-#    basket.example.class: Hanzo\Bundle\BasketBundle\Example
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-services:
-    basket.propel_event.orders.pre_save:
-        class: Hanzo\Bundle\BasketBundle\Event\Listener\Model\Orders\OnPreSaveEvent
-        scope: request
-        arguments:
-            request: @request
-        tags:
-            - { name: propel.event, method: handle, event: model.save.pre, priority: 0 }
+    <parameters>
+        <parameter key="basket.propel_event.orders.pre_save.class">Hanzo\Bundle\BasketBundle\Event\Listener\Model\Orders\OnPreSaveEvent</parameter>
+    </parameters>
+
+    <services>
+        <service id="basket.propel_event.orders.pre_save" class="%basket.propel_event.orders.pre_save.class%" scope="request" synchronized="true">
+            <argument type="service" id="request" on-invalid="null" />
+            <argument type="service" id="kernel" />
+            <tag name="propel.event" method="handle" event="model.save.pre" priority="0" />
+        </service>
+    </services>
+</container>
