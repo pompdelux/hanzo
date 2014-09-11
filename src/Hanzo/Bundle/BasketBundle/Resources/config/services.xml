@@ -1,0 +1,11 @@
+parameters:
+#    basket.example.class: Hanzo\Bundle\BasketBundle\Example
+
+services:
+    basket.propel_event.orders.pre_save:
+        class: Hanzo\Bundle\BasketBundle\Event\Listener\Model\Orders\OnPreSaveEvent
+        scope: request
+        arguments:
+            request: @request
+        tags:
+            - { name: propel.event, method: handle, event: model.save.pre, priority: 0 }
