@@ -54,6 +54,16 @@ class OnPreSaveEvent
             $order->setSessionId($this->request->getSession()->getId());
         }
 
+        $this->init($order);
+        $this->setBillingAddress($order);
+    }
+
+    /**
+     * @param  Orders $order
+     * @throws \Exception
+     */
+    private function init(Orders $order)
+    {
         if ($order->isNew()) {
             $hanzo = Hanzo::getInstance();
             $order->setAttribute('domain_key', 'global', $hanzo->get('core.domain_key'));
@@ -66,23 +76,35 @@ class OnPreSaveEvent
                 $order->setAttribute('user_agent', 'global', $this->request->server->get('HTTP_USER_AGENT'));
             }
         }
+    }
 
-        // set billing address - if not already set.
-        if ('' == $order->getBillingFirstName()) {
-            $customer = CustomersPeer::getCurrent();
-            if (!$customer->isNew()) {
-                $c = new \Criteria();
-                $c->add(AddressesPeer::TYPE, 'payment');
-                $address = $customer->getAddressess($c)->getFirst();
 
-                if ($address) {
-                    $order->setBillingAddress($address);
-                    $order->setPhone($customer->getPhone());
-                } else {
-                    Tools::log('Missing payment address: '.$customer->getId());
-                }
-            }
+    /**
+     * Attach customer billing address.
+     *
+     * @param  Orders $order
+     * @throws \Exception
+     */
+    private function setBillingAddress(Orders $order)
+    {
+        if ($order->getBillingFirstName()) {
+            return;
         }
 
+        $customer = CustomersPeer::getCurrent();
+        if ($customer->isNew()) {
+            return;
+        }
+
+        $c = new \Criteria();
+        $c->add(AddressesPeer::TYPE, 'payment');
+        $address = $customer->getAddressess($c)->getFirst();
+
+        if ($address) {
+            $order->setBillingAddress($address);
+            $order->setPhone($customer->getPhone());
+        } else {
+            Tools::log('Missing payment address: '.$customer->getId());
+        }
     }
 }
