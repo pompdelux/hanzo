@@ -1107,73 +1107,6 @@ class Orders extends BaseOrders
         return false;
     }
 
-    /**
-     * cancelPayment
-     *
-     * Cancels the payment for the specific order, so you don't have to know which payment method was used
-     *
-     * @return bool
-     * @throws Exception
-     */
-    public function cancelPayment()
-    {
-        if ( ($this->getState() > self::STATE_PENDING) && (false === $this->getIgnoreDeleteConstraints()) ) {
-            throw new Exception('Not possible to cancel payment on an order in state "'.$this->getState().'"');
-        }
-
-        $paymentMethod = $this->getBillingMethod();
-
-        // hf@bellcom.dk, 12-jun-2012: handle old junk -->>
-        switch ($paymentMethod)
-        {
-            case 'DIBS Payment Services (Credit Ca':
-            case 'DIBS Betaling (Kredittkort)':
-                $paymentMethod = 'dibs';
-                break;
-            case 'Gothia':
-                $paymentMethod = 'gothia';
-                break;
-        }
-        // <<-- hf@bellcom.dk, 12-jun-2012: handle old junk
-
-        if (empty($paymentMethod)) {
-            return;
-        }
-
-        try {
-            $api = Hanzo::getInstance()->container->get('payment.'.$paymentMethod.'api');
-        } catch (Exception $e) {
-            return;
-        }
-
-        $response = null;
-        $customer = CustomersQuery::create()->findOneById($this->getCustomersId(), $this->pdo_con);
-        if (null !== $customer) {
-            $response = $api->call()->cancel( $customer, $this );
-        }
-
-        if (is_object($response) && $response->isError()) {
-            $debug = array();
-            $msg = 'Could not cancel order';
-
-            if (in_array($paymentMethod, ['gothia', 'gothiade'])) {
-              $debug['TransactionId'] = $response->transactionId;
-              $msg .= ' at Gothia (Transaction ID: '. $response->transactionId .')';
-            }
-
-            Tools::debug( 'Cancel payment failed', __METHOD__, ['PaymentMethod' => $paymentMethod, $debug]);
-            throw new Exception( $msg );
-        }
-
-        if (!is_object($response)) {
-            $msg = 'Could not cancel order #'.$this->getId();
-            Tools::debug('Cancel payment failed, response is not an object', __METHOD__, ['PaymentMethod' => $paymentMethod]);
-            throw new Exception($msg);
-        }
-
-        return $response;
-    }
-
 
     /**
      * returns latest delivery date.
@@ -1330,31 +1263,12 @@ class Orders extends BaseOrders
 
 
     /**
-     * wrap delete() to cleanup payment and ax
+     * wrap delete() to allow us to set PDO connection
      */
     public function delete(PropelPDO $con = null)
     {
         if ($con) {
             $this->pdo_con = $con;
-        }
-
-        if (($this->getState() >= self::STATE_PAYMENT_OK) || $this->getIgnoreDeleteConstraints()) {
-            try {
-                $this->cancelPayment();
-                Hanzo::getInstance()->container->get('ax.out.service.wrapper')->SyncDeleteSalesOrder($this, $con);
-            } catch (Exception $e) {
-                // Tools::log($e->getMessage());
-
-                if ($this->getIgnoreDeleteConstraints()) {
-                    // allow delete for priority deletes
-                    $result = Hanzo::getInstance()->container->get('ax.out.service.wrapper')->SyncDeleteSalesOrder($this, $con);
-                    if ($result instanceof Exception) {
-                        throw $result;
-                    }
-                } else {
-                    throw $e;
-                }
-            }
         }
 
         parent::delete($con);
