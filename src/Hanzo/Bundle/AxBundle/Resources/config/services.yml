@@ -87,3 +87,10 @@ services:
         class: Hanzo\Bundle\AxBundle\Actions\Out\PheanstalkQueue
         arguments:
             pheanstalk: @leezy.pheanstalk
+
+    ax.propel_event.orders.pre_delete:
+        class: Hanzo\Bundle\AxBundle\Event\Listener\Model\Orders\OnPreDeleteEvent
+        arguments:
+            pheanstalkQueue: @ax.pheanstalk_queue
+        tags:
+            - { name: "propel.event", method: "handle", event: "model.delete.pre", priority: "50" }
