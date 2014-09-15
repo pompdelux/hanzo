@@ -208,7 +208,7 @@ class Hanzo
             // unserialize the cached data if needed
             $data = stripslashes($record->getCValue());
             if ($data && (substr($data, 0, 5) == ':[S]:')) {
-                $data = unserialize(substr($data), 5);
+                $data = unserialize(substr($data, 5));
             }
 
             $this->settings[$record->getNs()][$record->getCKey()] = $data;

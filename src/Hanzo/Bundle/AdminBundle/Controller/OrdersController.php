@@ -418,7 +418,7 @@ class OrdersController extends CoreController
             $order->setIgnoreDeleteConstraints(true);
 
             try {
-                $order->delete($this->getDbConnection());
+                $this->container->get('hanzo.core.orders_service')->deleteOrder($order);
             } catch (Exception $e) {
                 return $this->json_response(array(
                     'status' => false,

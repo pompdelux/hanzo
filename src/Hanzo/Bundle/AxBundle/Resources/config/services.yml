@@ -11,6 +11,7 @@ services:
             - @hanzo.external_service.logger
             - @event_dispatcher
             - @hanzo.propel_replicator
+            - @hanzo.core.orders_service
         scope: request
 
     ax.out.checkout.listener:

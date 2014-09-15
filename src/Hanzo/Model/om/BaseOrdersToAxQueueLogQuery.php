@@ -5,11 +5,16 @@ namespace Hanzo\Model\om;
 use \Criteria;
 use \Exception;
 use \ModelCriteria;
+use \ModelJoin;
 use \PDO;
 use \Propel;
+use \PropelCollection;
 use \PropelException;
 use \PropelObjectCollection;
 use \PropelPDO;
+use Glorpen\Propel\PropelBundle\Dispatcher\EventDispatcherProxy;
+use Glorpen\Propel\PropelBundle\Events\QueryEvent;
+use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersToAxQueueLog;
 use Hanzo\Model\OrdersToAxQueueLogPeer;
 use Hanzo\Model\OrdersToAxQueueLogQuery;
@@ -28,6 +33,10 @@ use Hanzo\Model\OrdersToAxQueueLogQuery;
  * @method OrdersToAxQueueLogQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method OrdersToAxQueueLogQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
  * @method OrdersToAxQueueLogQuery innerJoin($relation) Adds a INNER JOIN clause to the query
+ *
+ * @method OrdersToAxQueueLogQuery leftJoinOrders($relationAlias = null) Adds a LEFT JOIN clause to the query using the Orders relation
+ * @method OrdersToAxQueueLogQuery rightJoinOrders($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Orders relation
+ * @method OrdersToAxQueueLogQuery innerJoinOrders($relationAlias = null) Adds a INNER JOIN clause to the query using the Orders relation
  *
  * @method OrdersToAxQueueLog findOne(PropelPDO $con = null) Return the first OrdersToAxQueueLog matching the query
  * @method OrdersToAxQueueLog findOneOrCreate(PropelPDO $con = null) Return the first OrdersToAxQueueLog matching the query, or a new OrdersToAxQueueLog object populated from the query conditions when no match is found
@@ -60,6 +69,7 @@ abstract class BaseOrdersToAxQueueLogQuery extends ModelCriteria
             $modelName = 'Hanzo\\Model\\OrdersToAxQueueLog';
         }
         parent::__construct($dbName, $modelName, $modelAlias);
+        EventDispatcherProxy::trigger(array('construct','query.construct'), new QueryEvent($this));
     }
 
     /**
@@ -249,6 +259,8 @@ abstract class BaseOrdersToAxQueueLogQuery extends ModelCriteria
      * $query->filterByOrdersId(array('max' => 12)); // WHERE orders_id <= 12
      * </code>
      *
+     * @see       filterByOrders()
+     *
      * @param     mixed $ordersId The value to use as filter.
      *              Use scalar values for equality.
      *              Use array values for in_array() equivalent.
@@ -408,6 +420,82 @@ abstract class BaseOrdersToAxQueueLogQuery extends ModelCriteria
     }
 
     /**
+     * Filter the query by a related Orders object
+     *
+     * @param   Orders|PropelObjectCollection $orders The related object(s) to use as filter
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return                 OrdersToAxQueueLogQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
+     */
+    public function filterByOrders($orders, $comparison = null)
+    {
+        if ($orders instanceof Orders) {
+            return $this
+                ->addUsingAlias(OrdersToAxQueueLogPeer::ORDERS_ID, $orders->getId(), $comparison);
+        } elseif ($orders instanceof PropelObjectCollection) {
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
+
+            return $this
+                ->addUsingAlias(OrdersToAxQueueLogPeer::ORDERS_ID, $orders->toKeyValue('PrimaryKey', 'Id'), $comparison);
+        } else {
+            throw new PropelException('filterByOrders() only accepts arguments of type Orders or PropelCollection');
+        }
+    }
+
+    /**
+     * Adds a JOIN clause to the query using the Orders relation
+     *
+     * @param     string $relationAlias optional alias for the relation
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return OrdersToAxQueueLogQuery The current query, for fluid interface
+     */
+    public function joinOrders($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    {
+        $tableMap = $this->getTableMap();
+        $relationMap = $tableMap->getRelation('Orders');
+
+        // create a ModelJoin object for this join
+        $join = new ModelJoin();
+        $join->setJoinType($joinType);
+        $join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+        if ($previousJoin = $this->getPreviousJoin()) {
+            $join->setPreviousJoin($previousJoin);
+        }
+
+        // add the ModelJoin to the current object
+        if ($relationAlias) {
+            $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+            $this->addJoinObject($join, $relationAlias);
+        } else {
+            $this->addJoinObject($join, 'Orders');
+        }
+
+        return $this;
+    }
+
+    /**
+     * Use the Orders relation Orders object
+     *
+     * @see       useQuery()
+     *
+     * @param     string $relationAlias optional alias for the relation,
+     *                                   to be used as main alias in the secondary query
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return   \Hanzo\Model\OrdersQuery A secondary query class using the current class as primary query
+     */
+    public function useOrdersQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    {
+        return $this
+            ->joinOrders($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'Orders', '\Hanzo\Model\OrdersQuery');
+    }
+
+    /**
      * Exclude object from result
      *
      * @param   OrdersToAxQueueLog $ordersToAxQueueLog Object to remove from the list of results
@@ -424,6 +512,75 @@ abstract class BaseOrdersToAxQueueLogQuery extends ModelCriteria
         }
 
         return $this;
+    }
+
+    /**
+     * Code to execute before every SELECT statement
+     *
+     * @param     PropelPDO $con The connection object used by the query
+     */
+    protected function basePreSelect(PropelPDO $con)
+    {
+        // event behavior
+        EventDispatcherProxy::trigger('query.select.pre', new QueryEvent($this));
+
+        return $this->preSelect($con);
+    }
+
+    /**
+     * Code to execute before every DELETE statement
+     *
+     * @param     PropelPDO $con The connection object used by the query
+     */
+    protected function basePreDelete(PropelPDO $con)
+    {
+        // event behavior
+        EventDispatcherProxy::trigger(array('delete.pre','query.delete.pre'), new QueryEvent($this));
+
+        return $this->preDelete($con);
+    }
+
+    /**
+     * Code to execute after every DELETE statement
+     *
+     * @param     int $affectedRows the number of deleted rows
+     * @param     PropelPDO $con The connection object used by the query
+     */
+    protected function basePostDelete($affectedRows, PropelPDO $con)
+    {
+        // event behavior
+        EventDispatcherProxy::trigger(array('delete.post','query.delete.post'), new QueryEvent($this));
+
+        return $this->postDelete($affectedRows, $con);
+    }
+
+    /**
+     * Code to execute before every UPDATE statement
+     *
+     * @param     array $values The associative array of columns and values for the update
+     * @param     PropelPDO $con The connection object used by the query
+     * @param     boolean $forceIndividualSaves If false (default), the resulting call is a BasePeer::doUpdate(), otherwise it is a series of save() calls on all the found objects
+     */
+    protected function basePreUpdate(&$values, PropelPDO $con, $forceIndividualSaves = false)
+    {
+        // event behavior
+        EventDispatcherProxy::trigger(array('update.pre', 'query.update.pre'), new QueryEvent($this));
+
+        return $this->preUpdate($values, $con, $forceIndividualSaves);
+    }
+
+    /**
+     * Code to execute after every UPDATE statement
+     *
+     * @param     int $affectedRows the number of updated rows
+     * @param     PropelPDO $con The connection object used by the query
+     */
+    protected function basePostUpdate($affectedRows, PropelPDO $con)
+    {
+        // event behavior
+        EventDispatcherProxy::trigger(array('update.post', 'query.update.post'), new QueryEvent($this));
+
+        return $this->postUpdate($affectedRows, $con);
     }
 
 }

@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="hanzo.core.class">Hanzo\Bundle\CoreBundle\Core</parameter>
+        <parameter key="hanzo.core.orders_service.class">Hanzo\Bundle\CoreBundle\Service\Model\OrdersService</parameter>
+    </parameters>
+
+    <services>
+        <service id="hanzo.core" class="%hanzo.core.class%">
+            <argument>%hanzo.core.parameters%</argument>
+        </service>
+
+        <service id="hanzo.core.orders_service" class="%hanzo.core.orders_service.class%">
+            <argument type="service" id="hanzo.core" />
+            <argument type="service" id="ax.pheanstalk_queue" />
+            <argument type="service" id="ax.logger" />
+        </service>
+    </services>
+</container>

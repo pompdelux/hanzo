@@ -59,4 +59,18 @@ class LanguagesTableMap extends TableMap
         $this->addRelation('ProductsWashingInstructions', 'Hanzo\\Model\\ProductsWashingInstructions', RelationMap::ONE_TO_MANY, array('locale' => 'locale', ), 'CASCADE', null, 'ProductsWashingInstructionss');
     } // buildRelations()
 
+    /**
+     *
+     * Gets the list of behaviors registered for this table
+     *
+     * @return array Associative array (name => parameters) of behaviors
+     */
+    public function getBehaviors()
+    {
+        return array(
+            'event' =>  array (
+),
+        );
+    } // getBehaviors()
+
 } // LanguagesTableMap

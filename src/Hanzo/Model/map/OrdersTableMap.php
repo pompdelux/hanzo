@@ -102,6 +102,7 @@ class OrdersTableMap extends TableMap
         $this->addRelation('OrdersLines', 'Hanzo\\Model\\OrdersLines', RelationMap::ONE_TO_MANY, array('id' => 'orders_id', ), 'CASCADE', null, 'OrdersLiness');
         $this->addRelation('OrdersStateLog', 'Hanzo\\Model\\OrdersStateLog', RelationMap::ONE_TO_MANY, array('id' => 'orders_id', ), 'CASCADE', null, 'OrdersStateLogs');
         $this->addRelation('OrdersSyncLog', 'Hanzo\\Model\\OrdersSyncLog', RelationMap::ONE_TO_MANY, array('id' => 'orders_id', ), 'CASCADE', null, 'OrdersSyncLogs');
+        $this->addRelation('OrdersToAxQueueLog', 'Hanzo\\Model\\OrdersToAxQueueLog', RelationMap::ONE_TO_MANY, array('id' => 'orders_id', ), 'CASCADE', null, 'OrdersToAxQueueLogs');
         $this->addRelation('OrdersVersions', 'Hanzo\\Model\\OrdersVersions', RelationMap::ONE_TO_MANY, array('id' => 'orders_id', ), 'CASCADE', null, 'OrdersVersionss');
     } // buildRelations()
 
@@ -118,6 +119,8 @@ class OrdersTableMap extends TableMap
   'create_column' => 'created_at',
   'update_column' => 'updated_at',
   'disable_updated_at' => 'false',
+),
+            'event' =>  array (
 ),
         );
     } // getBehaviors()

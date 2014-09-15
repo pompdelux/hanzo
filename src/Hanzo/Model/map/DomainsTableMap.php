@@ -58,4 +58,18 @@ class DomainsTableMap extends TableMap
         $this->addRelation('ProductsQuantityDiscount', 'Hanzo\\Model\\ProductsQuantityDiscount', RelationMap::ONE_TO_MANY, array('id' => 'domains_id', ), 'CASCADE', null, 'ProductsQuantityDiscounts');
     } // buildRelations()
 
+    /**
+     *
+     * Gets the list of behaviors registered for this table
+     *
+     * @return array Associative array (name => parameters) of behaviors
+     */
+    public function getBehaviors()
+    {
+        return array(
+            'event' =>  array (
+),
+        );
+    } // getBehaviors()
+
 } // DomainsTableMap

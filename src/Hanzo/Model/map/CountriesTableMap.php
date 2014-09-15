@@ -68,4 +68,18 @@ class CountriesTableMap extends TableMap
         $this->addRelation('OrdersRelatedByDeliveryCountriesId', 'Hanzo\\Model\\Orders', RelationMap::ONE_TO_MANY, array('id' => 'delivery_countries_id', ), null, null, 'OrderssRelatedByDeliveryCountriesId');
     } // buildRelations()
 
+    /**
+     *
+     * Gets the list of behaviors registered for this table
+     *
+     * @return array Associative array (name => parameters) of behaviors
+     */
+    public function getBehaviors()
+    {
+        return array(
+            'event' =>  array (
+),
+        );
+    } // getBehaviors()
+
 } // CountriesTableMap

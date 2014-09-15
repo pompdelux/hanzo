@@ -57,7 +57,8 @@ services:
         factory_method:  get
         arguments:
             service:     cleanup
-            parameters:  [@payment.dibsapi]
+            parameters:
+                - @hanzo.core.orders_service
             class:       %cleanup_manager.class%
 
     replication_manager:
@@ -80,4 +81,5 @@ services:
                 event_dispatcher: @event_dispatcher
                 service_wrapper:  @ax.out.service.wrapper
                 pheanstalk_queue: @ax.pheanstalk_queue
+                orders_service:   @hanzo.core.orders_service
             class:       %deadorder_manager.class%

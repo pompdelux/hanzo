@@ -15,6 +15,8 @@ use \PropelDateTime;
 use \PropelException;
 use \PropelObjectCollection;
 use \PropelPDO;
+use Glorpen\Propel\PropelBundle\Dispatcher\EventDispatcherProxy;
+use Glorpen\Propel\PropelBundle\Events\ModelEvent;
 use Hanzo\Model\Countries;
 use Hanzo\Model\CountriesQuery;
 use Hanzo\Model\Customers;
@@ -32,6 +34,8 @@ use Hanzo\Model\OrdersStateLog;
 use Hanzo\Model\OrdersStateLogQuery;
 use Hanzo\Model\OrdersSyncLog;
 use Hanzo\Model\OrdersSyncLogQuery;
+use Hanzo\Model\OrdersToAxQueueLog;
+use Hanzo\Model\OrdersToAxQueueLogQuery;
 use Hanzo\Model\OrdersToCoupons;
 use Hanzo\Model\OrdersToCouponsQuery;
 use Hanzo\Model\OrdersVersions;
@@ -371,6 +375,12 @@ abstract class BaseOrders extends BaseObject implements Persistent
     protected $collOrdersSyncLogsPartial;
 
     /**
+     * @var        PropelObjectCollection|OrdersToAxQueueLog[] Collection to store aggregation of OrdersToAxQueueLog objects.
+     */
+    protected $collOrdersToAxQueueLogs;
+    protected $collOrdersToAxQueueLogsPartial;
+
+    /**
      * @var        PropelObjectCollection|OrdersVersions[] Collection to store aggregation of OrdersVersions objects.
      */
     protected $collOrdersVersionss;
@@ -430,6 +440,12 @@ abstract class BaseOrders extends BaseObject implements Persistent
      * An array of objects scheduled for deletion.
      * @var		PropelObjectCollection
      */
+    protected $ordersToAxQueueLogsScheduledForDeletion = null;
+
+    /**
+     * An array of objects scheduled for deletion.
+     * @var		PropelObjectCollection
+     */
     protected $ordersVersionssScheduledForDeletion = null;
 
     /**
@@ -454,6 +470,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
     {
         parent::__construct();
         $this->applyDefaultValues();
+        EventDispatcherProxy::trigger(array('construct','model.construct'), new ModelEvent($this));
     }
 
     /**
@@ -2143,6 +2160,8 @@ abstract class BaseOrders extends BaseObject implements Persistent
 
             $this->collOrdersSyncLogs = null;
 
+            $this->collOrdersToAxQueueLogs = null;
+
             $this->collOrdersVersionss = null;
 
         } // if (deep)
@@ -2173,9 +2192,13 @@ abstract class BaseOrders extends BaseObject implements Persistent
             $deleteQuery = OrdersQuery::create()
                 ->filterByPrimaryKey($this->getPrimaryKey());
             $ret = $this->preDelete($con);
+            // event behavior
+            EventDispatcherProxy::trigger(array('delete.pre','model.delete.pre'), new ModelEvent($this));
             if ($ret) {
                 $deleteQuery->delete($con);
                 $this->postDelete($con);
+                // event behavior
+                EventDispatcherProxy::trigger(array('delete.post', 'model.delete.post'), new ModelEvent($this));
                 $con->commit();
                 $this->setDeleted(true);
             } else {
@@ -2215,6 +2238,8 @@ abstract class BaseOrders extends BaseObject implements Persistent
         $isInsert = $this->isNew();
         try {
             $ret = $this->preSave($con);
+            // event behavior
+            EventDispatcherProxy::trigger('model.save.pre', new ModelEvent($this));
             if ($isInsert) {
                 $ret = $ret && $this->preInsert($con);
                 // timestampable behavior
@@ -2224,21 +2249,31 @@ abstract class BaseOrders extends BaseObject implements Persistent
                 if (!$this->isColumnModified(OrdersPeer::UPDATED_AT)) {
                     $this->setUpdatedAt(time());
                 }
+                // event behavior
+                EventDispatcherProxy::trigger('model.insert.pre', new ModelEvent($this));
             } else {
                 $ret = $ret && $this->preUpdate($con);
                 // timestampable behavior
                 if ($this->isModified() && !$this->isColumnModified(OrdersPeer::UPDATED_AT)) {
                     $this->setUpdatedAt(time());
                 }
+                // event behavior
+                EventDispatcherProxy::trigger(array('update.pre', 'model.update.pre'), new ModelEvent($this));
             }
             if ($ret) {
                 $affectedRows = $this->doSave($con);
                 if ($isInsert) {
                     $this->postInsert($con);
+                    // event behavior
+                    EventDispatcherProxy::trigger('model.insert.post', new ModelEvent($this));
                 } else {
                     $this->postUpdate($con);
+                    // event behavior
+                    EventDispatcherProxy::trigger(array('update.post', 'model.update.post'), new ModelEvent($this));
                 }
                 $this->postSave($con);
+                // event behavior
+                EventDispatcherProxy::trigger('model.save.post', new ModelEvent($this));
                 OrdersPeer::addInstanceToPool($this);
             } else {
                 $affectedRows = 0;
@@ -2392,6 +2427,23 @@ abstract class BaseOrders extends BaseObject implements Persistent
 
             if ($this->collOrdersSyncLogs !== null) {
                 foreach ($this->collOrdersSyncLogs as $referrerFK) {
+                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
+                        $affectedRows += $referrerFK->save($con);
+                    }
+                }
+            }
+
+            if ($this->ordersToAxQueueLogsScheduledForDeletion !== null) {
+                if (!$this->ordersToAxQueueLogsScheduledForDeletion->isEmpty()) {
+                    OrdersToAxQueueLogQuery::create()
+                        ->filterByPrimaryKeys($this->ordersToAxQueueLogsScheduledForDeletion->getPrimaryKeys(false))
+                        ->delete($con);
+                    $this->ordersToAxQueueLogsScheduledForDeletion = null;
+                }
+            }
+
+            if ($this->collOrdersToAxQueueLogs !== null) {
+                foreach ($this->collOrdersToAxQueueLogs as $referrerFK) {
                     if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
@@ -2878,6 +2930,14 @@ abstract class BaseOrders extends BaseObject implements Persistent
                     }
                 }
 
+                if ($this->collOrdersToAxQueueLogs !== null) {
+                    foreach ($this->collOrdersToAxQueueLogs as $referrerFK) {
+                        if (!$referrerFK->validate($columns)) {
+                            $failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+                        }
+                    }
+                }
+
                 if ($this->collOrdersVersionss !== null) {
                     foreach ($this->collOrdersVersionss as $referrerFK) {
                         if (!$referrerFK->validate($columns)) {
@@ -3155,6 +3215,9 @@ abstract class BaseOrders extends BaseObject implements Persistent
             }
             if (null !== $this->collOrdersSyncLogs) {
                 $result['OrdersSyncLogs'] = $this->collOrdersSyncLogs->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+            }
+            if (null !== $this->collOrdersToAxQueueLogs) {
+                $result['OrdersToAxQueueLogs'] = $this->collOrdersToAxQueueLogs->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
             }
             if (null !== $this->collOrdersVersionss) {
                 $result['OrdersVersionss'] = $this->collOrdersVersionss->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
@@ -3586,6 +3649,12 @@ abstract class BaseOrders extends BaseObject implements Persistent
                 }
             }
 
+            foreach ($this->getOrdersToAxQueueLogs() as $relObj) {
+                if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
+                    $copyObj->addOrdersToAxQueueLog($relObj->copy($deepCopy));
+                }
+            }
+
             foreach ($this->getOrdersVersionss() as $relObj) {
                 if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
                     $copyObj->addOrdersVersions($relObj->copy($deepCopy));
@@ -3875,6 +3944,9 @@ abstract class BaseOrders extends BaseObject implements Persistent
         }
         if ('OrdersSyncLog' == $relationName) {
             $this->initOrdersSyncLogs();
+        }
+        if ('OrdersToAxQueueLog' == $relationName) {
+            $this->initOrdersToAxQueueLogs();
         }
         if ('OrdersVersions' == $relationName) {
             $this->initOrdersVersionss();
@@ -5069,6 +5141,234 @@ abstract class BaseOrders extends BaseObject implements Persistent
     }
 
     /**
+     * Clears out the collOrdersToAxQueueLogs collection
+     *
+     * This does not modify the database; however, it will remove any associated objects, causing
+     * them to be refetched by subsequent calls to accessor method.
+     *
+     * @return Orders The current object (for fluent API support)
+     * @see        addOrdersToAxQueueLogs()
+     */
+    public function clearOrdersToAxQueueLogs()
+    {
+        $this->collOrdersToAxQueueLogs = null; // important to set this to null since that means it is uninitialized
+        $this->collOrdersToAxQueueLogsPartial = null;
+
+        return $this;
+    }
+
+    /**
+     * reset is the collOrdersToAxQueueLogs collection loaded partially
+     *
+     * @return void
+     */
+    public function resetPartialOrdersToAxQueueLogs($v = true)
+    {
+        $this->collOrdersToAxQueueLogsPartial = $v;
+    }
+
+    /**
+     * Initializes the collOrdersToAxQueueLogs collection.
+     *
+     * By default this just sets the collOrdersToAxQueueLogs collection to an empty array (like clearcollOrdersToAxQueueLogs());
+     * however, you may wish to override this method in your stub class to provide setting appropriate
+     * to your application -- for example, setting the initial array to the values stored in database.
+     *
+     * @param boolean $overrideExisting If set to true, the method call initializes
+     *                                        the collection even if it is not empty
+     *
+     * @return void
+     */
+    public function initOrdersToAxQueueLogs($overrideExisting = true)
+    {
+        if (null !== $this->collOrdersToAxQueueLogs && !$overrideExisting) {
+            return;
+        }
+        $this->collOrdersToAxQueueLogs = new PropelObjectCollection();
+        $this->collOrdersToAxQueueLogs->setModel('OrdersToAxQueueLog');
+    }
+
+    /**
+     * Gets an array of OrdersToAxQueueLog objects which contain a foreign key that references this object.
+     *
+     * If the $criteria is not null, it is used to always fetch the results from the database.
+     * Otherwise the results are fetched from the database the first time, then cached.
+     * Next time the same method is called without $criteria, the cached collection is returned.
+     * If this Orders is new, it will return
+     * an empty collection or the current collection; the criteria is ignored on a new object.
+     *
+     * @param Criteria $criteria optional Criteria object to narrow the query
+     * @param PropelPDO $con optional connection object
+     * @return PropelObjectCollection|OrdersToAxQueueLog[] List of OrdersToAxQueueLog objects
+     * @throws PropelException
+     */
+    public function getOrdersToAxQueueLogs($criteria = null, PropelPDO $con = null)
+    {
+        $partial = $this->collOrdersToAxQueueLogsPartial && !$this->isNew();
+        if (null === $this->collOrdersToAxQueueLogs || null !== $criteria  || $partial) {
+            if ($this->isNew() && null === $this->collOrdersToAxQueueLogs) {
+                // return empty collection
+                $this->initOrdersToAxQueueLogs();
+            } else {
+                $collOrdersToAxQueueLogs = OrdersToAxQueueLogQuery::create(null, $criteria)
+                    ->filterByOrders($this)
+                    ->find($con);
+                if (null !== $criteria) {
+                    if (false !== $this->collOrdersToAxQueueLogsPartial && count($collOrdersToAxQueueLogs)) {
+                      $this->initOrdersToAxQueueLogs(false);
+
+                      foreach ($collOrdersToAxQueueLogs as $obj) {
+                        if (false == $this->collOrdersToAxQueueLogs->contains($obj)) {
+                          $this->collOrdersToAxQueueLogs->append($obj);
+                        }
+                      }
+
+                      $this->collOrdersToAxQueueLogsPartial = true;
+                    }
+
+                    $collOrdersToAxQueueLogs->getInternalIterator()->rewind();
+
+                    return $collOrdersToAxQueueLogs;
+                }
+
+                if ($partial && $this->collOrdersToAxQueueLogs) {
+                    foreach ($this->collOrdersToAxQueueLogs as $obj) {
+                        if ($obj->isNew()) {
+                            $collOrdersToAxQueueLogs[] = $obj;
+                        }
+                    }
+                }
+
+                $this->collOrdersToAxQueueLogs = $collOrdersToAxQueueLogs;
+                $this->collOrdersToAxQueueLogsPartial = false;
+            }
+        }
+
+        return $this->collOrdersToAxQueueLogs;
+    }
+
+    /**
+     * Sets a collection of OrdersToAxQueueLog objects related by a one-to-many relationship
+     * to the current object.
+     * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
+     * and new objects from the given Propel collection.
+     *
+     * @param PropelCollection $ordersToAxQueueLogs A Propel collection.
+     * @param PropelPDO $con Optional connection object
+     * @return Orders The current object (for fluent API support)
+     */
+    public function setOrdersToAxQueueLogs(PropelCollection $ordersToAxQueueLogs, PropelPDO $con = null)
+    {
+        $ordersToAxQueueLogsToDelete = $this->getOrdersToAxQueueLogs(new Criteria(), $con)->diff($ordersToAxQueueLogs);
+
+
+        //since at least one column in the foreign key is at the same time a PK
+        //we can not just set a PK to NULL in the lines below. We have to store
+        //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
+        $this->ordersToAxQueueLogsScheduledForDeletion = clone $ordersToAxQueueLogsToDelete;
+
+        foreach ($ordersToAxQueueLogsToDelete as $ordersToAxQueueLogRemoved) {
+            $ordersToAxQueueLogRemoved->setOrders(null);
+        }
+
+        $this->collOrdersToAxQueueLogs = null;
+        foreach ($ordersToAxQueueLogs as $ordersToAxQueueLog) {
+            $this->addOrdersToAxQueueLog($ordersToAxQueueLog);
+        }
+
+        $this->collOrdersToAxQueueLogs = $ordersToAxQueueLogs;
+        $this->collOrdersToAxQueueLogsPartial = false;
+
+        return $this;
+    }
+
+    /**
+     * Returns the number of related OrdersToAxQueueLog objects.
+     *
+     * @param Criteria $criteria
+     * @param boolean $distinct
+     * @param PropelPDO $con
+     * @return int             Count of related OrdersToAxQueueLog objects.
+     * @throws PropelException
+     */
+    public function countOrdersToAxQueueLogs(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+    {
+        $partial = $this->collOrdersToAxQueueLogsPartial && !$this->isNew();
+        if (null === $this->collOrdersToAxQueueLogs || null !== $criteria || $partial) {
+            if ($this->isNew() && null === $this->collOrdersToAxQueueLogs) {
+                return 0;
+            }
+
+            if ($partial && !$criteria) {
+                return count($this->getOrdersToAxQueueLogs());
+            }
+            $query = OrdersToAxQueueLogQuery::create(null, $criteria);
+            if ($distinct) {
+                $query->distinct();
+            }
+
+            return $query
+                ->filterByOrders($this)
+                ->count($con);
+        }
+
+        return count($this->collOrdersToAxQueueLogs);
+    }
+
+    /**
+     * Method called to associate a OrdersToAxQueueLog object to this object
+     * through the OrdersToAxQueueLog foreign key attribute.
+     *
+     * @param    OrdersToAxQueueLog $l OrdersToAxQueueLog
+     * @return Orders The current object (for fluent API support)
+     */
+    public function addOrdersToAxQueueLog(OrdersToAxQueueLog $l)
+    {
+        if ($this->collOrdersToAxQueueLogs === null) {
+            $this->initOrdersToAxQueueLogs();
+            $this->collOrdersToAxQueueLogsPartial = true;
+        }
+
+        if (!in_array($l, $this->collOrdersToAxQueueLogs->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
+            $this->doAddOrdersToAxQueueLog($l);
+
+            if ($this->ordersToAxQueueLogsScheduledForDeletion and $this->ordersToAxQueueLogsScheduledForDeletion->contains($l)) {
+                $this->ordersToAxQueueLogsScheduledForDeletion->remove($this->ordersToAxQueueLogsScheduledForDeletion->search($l));
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param	OrdersToAxQueueLog $ordersToAxQueueLog The ordersToAxQueueLog object to add.
+     */
+    protected function doAddOrdersToAxQueueLog($ordersToAxQueueLog)
+    {
+        $this->collOrdersToAxQueueLogs[]= $ordersToAxQueueLog;
+        $ordersToAxQueueLog->setOrders($this);
+    }
+
+    /**
+     * @param	OrdersToAxQueueLog $ordersToAxQueueLog The ordersToAxQueueLog object to remove.
+     * @return Orders The current object (for fluent API support)
+     */
+    public function removeOrdersToAxQueueLog($ordersToAxQueueLog)
+    {
+        if ($this->getOrdersToAxQueueLogs()->contains($ordersToAxQueueLog)) {
+            $this->collOrdersToAxQueueLogs->remove($this->collOrdersToAxQueueLogs->search($ordersToAxQueueLog));
+            if (null === $this->ordersToAxQueueLogsScheduledForDeletion) {
+                $this->ordersToAxQueueLogsScheduledForDeletion = clone $this->collOrdersToAxQueueLogs;
+                $this->ordersToAxQueueLogsScheduledForDeletion->clear();
+            }
+            $this->ordersToAxQueueLogsScheduledForDeletion[]= clone $ordersToAxQueueLog;
+            $ordersToAxQueueLog->setOrders(null);
+        }
+
+        return $this;
+    }
+
+    /**
      * Clears out the collOrdersVersionss collection
      *
      * This does not modify the database; however, it will remove any associated objects, causing
@@ -5392,6 +5692,11 @@ abstract class BaseOrders extends BaseObject implements Persistent
                     $o->clearAllReferences($deep);
                 }
             }
+            if ($this->collOrdersToAxQueueLogs) {
+                foreach ($this->collOrdersToAxQueueLogs as $o) {
+                    $o->clearAllReferences($deep);
+                }
+            }
             if ($this->collOrdersVersionss) {
                 foreach ($this->collOrdersVersionss as $o) {
                     $o->clearAllReferences($deep);
@@ -5433,6 +5738,10 @@ abstract class BaseOrders extends BaseObject implements Persistent
             $this->collOrdersSyncLogs->clearIterator();
         }
         $this->collOrdersSyncLogs = null;
+        if ($this->collOrdersToAxQueueLogs instanceof PropelCollection) {
+            $this->collOrdersToAxQueueLogs->clearIterator();
+        }
+        $this->collOrdersToAxQueueLogs = null;
         if ($this->collOrdersVersionss instanceof PropelCollection) {
             $this->collOrdersVersionss->clearIterator();
         }
@@ -5476,5 +5785,17 @@ abstract class BaseOrders extends BaseObject implements Persistent
 
         return $this;
     }
+
+    // event behavior
+    public function preCommit(\PropelPDO $con = null){}
+    public function preCommitSave(\PropelPDO $con = null){}
+    public function preCommitDelete(\PropelPDO $con = null){}
+    public function preCommitUpdate(\PropelPDO $con = null){}
+    public function preCommitInsert(\PropelPDO $con = null){}
+    public function preRollback(\PropelPDO $con = null){}
+    public function preRollbackSave(\PropelPDO $con = null){}
+    public function preRollbackDelete(\PropelPDO $con = null){}
+    public function preRollbackUpdate(\PropelPDO $con = null){}
+    public function preRollbackInsert(\PropelPDO $con = null){}
 
 }

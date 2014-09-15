@@ -58,4 +58,18 @@ class MessagesI18nTableMap extends TableMap
         $this->addRelation('Messages', 'Hanzo\\Model\\Messages', RelationMap::MANY_TO_ONE, array('id' => 'id', ), 'CASCADE', null);
     } // buildRelations()
 
+    /**
+     *
+     * Gets the list of behaviors registered for this table
+     *
+     * @return array Associative array (name => parameters) of behaviors
+     */
+    public function getBehaviors()
+    {
+        return array(
+            'event' =>  array (
+),
+        );
+    } // getBehaviors()
+
 } // MessagesI18nTableMap

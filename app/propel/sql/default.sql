@@ -934,7 +934,11 @@ CREATE TABLE `orders_to_ax_queue_log`
     `queue_id` INTEGER NOT NULL,
     `iteration` INTEGER DEFAULT 1 NOT NULL,
     `created_at` DATETIME NOT NULL,
-    PRIMARY KEY (`orders_id`,`queue_id`,`created_at`)
+    PRIMARY KEY (`orders_id`,`queue_id`,`created_at`),
+    CONSTRAINT `fk_orders_to_ax_queue_log_1`
+        FOREIGN KEY (`orders_id`)
+        REFERENCES `orders` (`id`)
+        ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------

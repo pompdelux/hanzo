@@ -71,6 +71,8 @@ class CmsRevisionTableMap extends TableMap
   'update_column' => 'updated_at',
   'disable_updated_at' => 'true',
 ),
+            'event' =>  array (
+),
         );
     } // getBehaviors()
 
