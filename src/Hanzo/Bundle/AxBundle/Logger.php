@@ -58,7 +58,7 @@ class Logger implements LoggerInterface
     public function write($orderId, $state = 'ok', $data = [], $comment = '')
     {
         if (empty($this->connection)) {
-            throw new \InvalidArgumentException("You must set DB connection via  setDBConnection() !");
+            throw new \InvalidArgumentException("You must set DB connection via setDBConnection() !");
         }
 
         $entry = new OrdersSyncLog();
