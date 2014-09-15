@@ -32,11 +32,10 @@ class Core
      * @param array $parameters
      * @param ContainerInterface $container
      */
-    public function __construct(array $parameters = [], ContainerInterface $container)
+    public function __construct(array $parameters = [], ContainerInterface $container = null)
     {
         $this->parameters = $parameters;
         $this->container = $container;
-error_log('x');
     }
 
     /**
