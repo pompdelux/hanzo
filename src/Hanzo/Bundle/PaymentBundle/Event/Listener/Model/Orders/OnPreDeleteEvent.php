@@ -20,13 +20,23 @@ use Hanzo\Model\Orders;
  */
 class OnPreDeleteEvent
 {
+    /**
+     * @var PaymentActionsProxy
+     */
     private $actionsProxy;
 
+    /**
+     * @param PaymentActionsProxy $actionsProxy
+     */
     public function __construct(PaymentActionsProxy $actionsProxy)
     {
         $this->actionsProxy = $actionsProxy;
     }
 
+    /**
+     * @param  ModelEvent $event
+     * @throws \Exception
+     */
     public function handle(ModelEvent $event)
     {
         $order = $event->getModel();
