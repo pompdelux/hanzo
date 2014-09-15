@@ -71,9 +71,10 @@ class OnPreSaveEvent
             $order->setLanguagesId($hanzo->get('core.language_id'));
             $order->setPaymentGatewayId(Tools::getPaymentGatewayId());
 
-            if ($this->$this->serviceContainer->has('request')) {
-                $order->setAttribute('client_ip',  'global', $this->serviceContainer->get('request')->getClientIp());
-                $order->setAttribute('user_agent', 'global', $this->serviceContainer->get('request')->server->get('HTTP_USER_AGENT'));
+            if ($this->serviceContainer->has('request')) {
+                $request = $this->serviceContainer->get('request');
+                $order->setAttribute('client_ip',  'global', $request->getClientIp());
+                $order->setAttribute('user_agent', 'global', $request->server->get('HTTP_USER_AGENT'));
             }
         }
     }
