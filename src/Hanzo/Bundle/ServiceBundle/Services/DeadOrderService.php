@@ -63,6 +63,10 @@ class DeadOrderService
      */
     private $pheanstalkQueue;
 
+    /**
+     * @var \Hanzo\Bundle\CoreBundle\Service\Model\OrdersService
+     */
+    private $ordersService;
 
     /**
      * @param $parameters
@@ -74,6 +78,7 @@ class DeadOrderService
         $this->eventDispatcher = $parameters['event_dispatcher'];
         $this->ax              = $parameters['service_wrapper'];
         $this->pheanstalkQueue = $parameters['pheanstalk_queue'];
+        $this->ordersService   = $parameters['orders_service'];
         $this->settings        = $settings;
 
         if (!$this->dibsApi instanceof DibsApi) {
@@ -126,8 +131,10 @@ class DeadOrderService
                 if ($instanceDelete) {
                     if (!$this->dryrun) {
                         $this->debug("  Deleting order: ".$order->getId());
+
+                        $order->setDBConnection(\Propel::getConnection());
                         $order->setIgnoreDeleteConstraints(true);
-                        $order->delete();
+                        $this->ordersService->deleteOrder($order);
                     } else {
                         $this->debug("  (Dryrun) Deleting order: ".$order->getId());
                     }
@@ -341,8 +348,10 @@ class DeadOrderService
         foreach ($toBeDeleted as $order) {
             if (!$this->dryrun) {
                 $this->debug("Deleting order: ".$order->getId());
+
+                $order->setDBConnection(\Propel::getConnection());
                 $order->setIgnoreDeleteConstraints(true);
-                $order->delete();
+                $this->ordersService->deleteOrder($order);
             } else {
                 $this->debug("(Dryrun) Deleting order: ".$order->getId());
             }
