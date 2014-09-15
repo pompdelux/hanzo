@@ -16,21 +16,6 @@ use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 
 use Hanzo\Model\om\BaseOrders;
-use Hanzo\Model\OrdersLines;
-use Hanzo\Model\OrdersLinesPeer;
-use Hanzo\Model\OrdersLinesQuery;
-use Hanzo\Model\OrdersStateLog;
-use Hanzo\Model\OrdersAttributes;
-use Hanzo\Model\OrdersAttributesPeer;
-use Hanzo\Model\OrdersAttributesQuery;
-use Hanzo\Model\OrdersVersions;
-use Hanzo\Model\OrdersVersionsQuery;
-use Hanzo\Model\OrdersDeletedLog;
-use Hanzo\Model\OrdersDeletedLogQuery;
-use Hanzo\Model\ShippingMethods;
-use Hanzo\Model\Customers;
-use Hanzo\Model\CustomersPeer;
-use Hanzo\Model\AddressesPeer;
 
 /**
  * Skeleton subclass for representing a row from the 'orders' table.
@@ -1263,7 +1248,10 @@ class Orders extends BaseOrders
 
 
     /**
-     * wrap delete() to allow us to set PDO connection
+     * Wrap delete() to allow us to set PDO connection
+     * Never call this directly, it should _always_ be called through CoreBundle\Service\Model\OrdersService::deleteOrder
+     *
+     * @param PropelPDO|null $con
      */
     public function delete(PropelPDO $con = null)
     {
