@@ -242,3 +242,10 @@ leezy_pheanstalk:
         primary:
             server: %beanstalkd.server%
             default: true
+
+core:
+    parameters:
+        core:
+            domain_key:  %core.domain_key%
+            language_id: %core.language_id%
+            locale:      %locale%

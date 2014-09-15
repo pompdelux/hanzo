@@ -48,6 +48,7 @@ trait KernelTrait
             // ------------------------------------------------------
 
             // APP BUNDLES ------------------------------------------
+            new Hanzo\Bundle\CoreBundle\CoreBundle(),
             new Hanzo\Bundle\AccountBundle\AccountBundle(),
             new Hanzo\Bundle\AdminBundle\AdminBundle(),
             new Hanzo\Bundle\BasketBundle\BasketBundle(),
