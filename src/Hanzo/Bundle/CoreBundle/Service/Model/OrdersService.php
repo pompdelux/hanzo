@@ -65,6 +65,8 @@ class OrdersService
 
         if ($syncCheck) {
             $this->pheanstalkQueue->appendDeleteOrder($order);
+        } else {
+            $this->logger->debug('OrdersService::deleteOrder('.$order->getId().') not in ax, we skip the ax-delete-step.');
         }
 
         try {
