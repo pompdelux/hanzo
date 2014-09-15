@@ -115,11 +115,11 @@
             </trans-unit>
             <trans-unit id="rma.slip.title.order_id">
                 <source>rma.slip.title.order_id</source>
-                <target><![CDATA[POMPdeLUX R&uuml;CKSENDESCHEIN BESTELL ID %order_id%]]></target>
+                <target><![CDATA[POMPdeLUX RÜCKSENDESCHEIN BESTELL ID %order_id%]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.description">
                 <source>rma.slip.description</source>
-                <target><![CDATA[<p>Bei POMPdeLUX ist es einfach, Waren zur&uuml;ckzuschicken. Der einfachste Weg ist, dieser R&uuml;cksendeschein auszufüllen und mit zusenden.<br> 
+                <target><![CDATA[<p>Bei POMPdeLUX ist es einfach, Waren zur&uuml;ckzuschicken. Der einfachste Weg ist, dieser R&uuml;cksendeschein auszuf&uuml;llen und mit zusenden.<br> 
 Es ist wichtig, dass die Ware mit H&auml;ngeetiketten und im gleichen Zustand wie aus der Originalverpackung, zur&uuml;ckkommen, wenn Sie den Umtausch in eine gleichwertige Ware w&uuml;nschen oder Ihr Geld zurück haben m&ouml;chten.<br><br>
 <b>R&uuml;ckgabe, Umtausch, Reklamation</b><br>
 Wenn Sie eine Ware zur&uuml;cksenden m&ouml;chten, verwenden Sie bitte unbedingt unser R&uuml;cksendeetikett, welches Sie auf &quot;Meine Seite&quot; finden. <br><br>
