@@ -3,19 +3,22 @@
 namespace Hanzo\Bundle\ServiceBundle\Services;
 
 use Criteria;
+use Hanzo\Bundle\CoreBundle\Service\Model\OrdersService;
+use Hanzo\Model\Orders;
+use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\OrdersStateLog;
 use Propel;
 
-use Hanzo\Core\Hanzo;
-use Hanzo\Core\Tools;
-
-use Hanzo\Model\Orders;
-use Hanzo\Model\OrdersPeer;
-use Hanzo\Model\OrdersQuery;
-
 class CleanupService
 {
-    protected $parameters;
+    /**
+     * @var OrdersService
+     */
+    protected $ordersService;
+
+    /**
+     * @var array
+     */
     protected $settings;
 
     /**
@@ -26,7 +29,7 @@ class CleanupService
      */
     public function __construct($parameters, $settings)
     {
-        $this->parameters = $parameters;
+        $this->ordersService = $parameters[0];
         $this->settings = $settings;
     }
 
@@ -53,6 +56,7 @@ class CleanupService
         ;
 
         $count = 0;
+        /** @var \Hanzo\Model\Orders $order */
         foreach ($orders as $order) {
             $attributes = $order->getAttributes();
 
@@ -65,7 +69,8 @@ class CleanupService
                 }
 
                 $order->setIgnoreDeleteConstraints(true);
-                $order->delete();
+                $order->setDBConnection(Propel::getConnection());
+                $this->ordersService->deleteOrder($order);
             }
         }
 
