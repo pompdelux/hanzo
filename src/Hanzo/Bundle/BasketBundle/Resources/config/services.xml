@@ -10,9 +10,8 @@
     </parameters>
 
     <services>
-        <service id="basket.propel_event.orders.pre_save" class="%basket.propel_event.orders.pre_save.class%" scope="request">
-            <argument type="service" id="request" on-invalid="null" />
-            <argument type="service" id="kernel" />
+        <service id="basket.propel_event.orders.pre_save" class="%basket.propel_event.orders.pre_save.class%">
+            <argument type="service" id="service_container" />
             <tag name="propel.event" method="handle" event="model.save.pre" priority="0" />
         </service>
 
@@ -21,8 +20,8 @@
             <tag name="propel.event" method="handle" event="model.save.post" priority="0" />
         </service>
 
-        <service id="basket.propel_event.orders.pre_delete" class="%basket.propel_event.orders.pre_delete.class%" scope="request">
-            <argument type="service" id="request" on-invalid="null" />
+        <service id="basket.propel_event.orders.pre_delete" class="%basket.propel_event.orders.pre_delete.class%">
+            <argument type="service" id="service_container" on-invalid="null" />
             <tag name="propel.event" method="handle" event="model.delete.pre" priority="0" />
         </service>
     </services>

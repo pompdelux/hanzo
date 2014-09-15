@@ -70,6 +70,7 @@ class OrdersService
         try {
             $order->delete($order->getDBConnection());
         } catch (\Exception $e) {
+            $this->logger->setDBConnection($order->getDBConnection());
             $this->logger->write($order->getId(), 'failed', [], $e->getMessage());
         }
     }
