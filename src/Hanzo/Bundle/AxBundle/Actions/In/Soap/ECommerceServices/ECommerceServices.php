@@ -840,7 +840,7 @@ class ECommerceServices extends SoapService
 
         if ($order->getPaymentGatewayId()) {
             try {
-                $order->delete();
+                $this->ordersService->deleteOrder($order);
             } catch (\Exception $e) {
                 $this->logger->info(__METHOD__.' '.__LINE__.': Could not cancel payment: "'.$e->getMessage().'"');
                 return self::responseStatus('Error', 'DeleteSalesOrderResult', array('Could not cancel payment: "'.$e->getMessage().'"'));

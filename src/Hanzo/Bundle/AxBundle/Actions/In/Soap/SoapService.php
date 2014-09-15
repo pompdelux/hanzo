@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\AxBundle\Actions\In\Soap;
 
+use Hanzo\Bundle\CoreBundle\Service\Model\OrdersService;
 use Hanzo\Core\ServiceLogger;
 use Monolog;
 
@@ -47,6 +48,11 @@ class SoapService
     protected $replicator;
 
     /**
+     * @var OrdersService
+     */
+    protected $ordersService;
+
+    /**
      * @var \Hanzo\Core\Timer
      */
     protected $timer;
@@ -62,14 +68,16 @@ class SoapService
      * @param ServiceLogger            $service_logger
      * @param EventDispatcherInterface $event_dispatcher
      * @param PropelReplicator         $replicator
+     * @param OrdersService            $ordersService
      */
-    public function __construct(Request $request, LoggerInterface $logger, ServiceLogger $service_logger, EventDispatcherInterface $event_dispatcher, PropelReplicator $replicator)
+    public function __construct(Request $request, LoggerInterface $logger, ServiceLogger $service_logger, EventDispatcherInterface $event_dispatcher, PropelReplicator $replicator, OrdersService $ordersService)
     {
         $this->request          = $request;
         $this->logger           = $logger;
         $this->service_logger   = $service_logger;
         $this->event_dispatcher = $event_dispatcher;
         $this->replicator       = $replicator;
+        $this->ordersService    = $ordersService;
 
         if (method_exists($this, 'boot')) {
             $this->boot();
