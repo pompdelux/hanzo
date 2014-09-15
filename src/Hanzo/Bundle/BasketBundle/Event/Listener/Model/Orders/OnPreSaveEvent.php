@@ -16,7 +16,7 @@ use Hanzo\Core\Tools;
 use Hanzo\Model\AddressesPeer;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\Orders;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Class OnPreSave
@@ -25,16 +25,16 @@ use Symfony\Component\HttpFoundation\Request;
 class OnPreSaveEvent
 {
     /**
-     * @var Request
+     * @var ContainerInterface
      */
-    private $request;
+    private $serviceContainer;
 
     /**
-     * @param Request $request
+     * @param ContainerInterface $serviceContainer
      */
-    public function __construct(Request $request = null)
+    public function __construct(ContainerInterface $serviceContainer = null)
     {
-        $this->request = $request;
+        $this->serviceContainer = $serviceContainer;
     }
 
 
@@ -50,8 +50,8 @@ class OnPreSaveEvent
             return;
         }
 
-        if (!$order->getSessionId() && $this->request) {
-            $order->setSessionId($this->request->getSession()->getId());
+        if (!$order->getSessionId() && $this->serviceContainer->has('request')) {
+            $order->setSessionId($this->serviceContainer->get('request')->getSession()->getId());
         }
 
         $this->init($order);
@@ -71,9 +71,9 @@ class OnPreSaveEvent
             $order->setLanguagesId($hanzo->get('core.language_id'));
             $order->setPaymentGatewayId(Tools::getPaymentGatewayId());
 
-            if ($this->request) {
-                $order->setAttribute('client_ip',  'global', $this->request->getClientIp());
-                $order->setAttribute('user_agent', 'global', $this->request->server->get('HTTP_USER_AGENT'));
+            if ($this->$this->serviceContainer->has('request')) {
+                $order->setAttribute('client_ip',  'global', $this->serviceContainer->get('request')->getClientIp());
+                $order->setAttribute('user_agent', 'global', $this->serviceContainer->get('request')->server->get('HTTP_USER_AGENT'));
             }
         }
     }

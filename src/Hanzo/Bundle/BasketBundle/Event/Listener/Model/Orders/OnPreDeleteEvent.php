@@ -15,6 +15,7 @@ use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersDeletedLog;
 use Hanzo\Model\OrdersDeletedLogQuery;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -24,16 +25,16 @@ use Symfony\Component\HttpFoundation\Request;
 class OnPreDeleteEvent
 {
     /**
-     * @var Request
+     * @var ContainerInterface
      */
-    private $request;
+    private $serviceContainer;
 
     /**
-     * @param Request $request
+     * @param ContainerInterface $serviceContainer
      */
-    public function __construct(Request $request = null)
+    public function __construct(ContainerInterface $serviceContainer = null)
     {
-        $this->request = $request;
+        $this->serviceContainer = $serviceContainer;
     }
 
     /**
@@ -70,7 +71,7 @@ class OnPreDeleteEvent
             $trigger    = 'cli';
             $deleted_by = ACTION_TRIGGER;
         } else {
-            $trigger    = $this->request->getUri();
+            $trigger    = $this->serviceContainer->get('request')->getUri();
             $deleted_by = 'cid: ' . CustomersPeer::getCurrent()->getId();
         }
 

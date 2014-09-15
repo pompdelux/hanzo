@@ -44,7 +44,7 @@
             <tag name="payment.api" />
         </service>
 
-        <service id="payment.manualpaymentapi" class="%payment.manualpaymentapi.class%" factory-service="service_factory" factory-method="get" scope="request">
+        <service id="payment.manualpaymentapi" class="%payment.manualpaymentapi.class%" factory-service="service_factory" factory-method="get">
             <argument type="string">manualpaymentapi</argument>
             <argument type="collection">
                 <argument type="string">%kernel.environment%</argument>
@@ -84,11 +84,11 @@
             <tag name="payment.api" />
         </service>
 
-        <service id="payment.actions.proxy" class="%payment.action_proxy.class%" scope="request">
+        <service id="payment.actions.proxy" class="%payment.action_proxy.class%">
             <argument type="service" id="payment.tagged_api_holder"/>
         </service>
 
-        <service id="payment.propel_event.orders.pre_delete" class="%payment.propel_event.orders.pre_delete.class%" scope="request">
+        <service id="payment.propel_event.orders.pre_delete" class="%payment.propel_event.orders.pre_delete.class%">
             <argument type="service" id="payment.actions.proxy" />
             <tag name="propel.event" method="handle" event="model.delete.pre" priority="100" />
         </service>

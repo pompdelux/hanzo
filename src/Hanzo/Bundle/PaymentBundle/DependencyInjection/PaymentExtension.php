@@ -29,7 +29,6 @@ class PaymentExtension extends Extension
         if (!$container->hasDefinition('payment.tagged_api_holder')) {
             $definition = new Definition();
             $definition->setClass('SplDoublyLinkedList');
-            $definition->setScope('request');
             $container->setDefinition('payment.tagged_api_holder', $definition);
         }
     }
