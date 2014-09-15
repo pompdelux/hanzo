@@ -75,46 +75,45 @@ class GoogleExtension extends \Twig_Extension
         if ('checkout-success' == $context['page_type']) {
             $order = $context['order'];
             $ecommerce .= "
-_gaq.push(['_addTrans',
-  '{$order['id']}',
-  '{$order['store_name']}',
-  '{$order['total']}',
-  '{$order['tax']}',
-  '{$order['shipping']}',
-  '{$order['city']}',
-  '{$order['state']}',
-  '{$order['country']}'
-]);
+ga('require', 'ecommerce');
+ga('ecommerce:addTransaction', {
+    'id'          : '{$order['id']}',
+    'affiliation' : '{$order['store_name']}'',
+    'revenue'     : '{$order['total']}',
+    'shipping'    : '{$order['shipping']}',
+    'tax'         : '{$order['tax']}',
+    'currency'    : '{$order['currency']}'
+});
 ";
             foreach ($order['lines'] as $line) {
                 $ecommerce .= "
-_gaq.push(['_addItem',
-  '{$order['id']}',
-  '{$line['sku']}',
-  '{$line['name']}',
-  '{$line['variation']}',
-  '{$line['price']}',
-  '{$line['quantity']}'
-]);
+ga('ecommerce:addItem', {
+    'id'       : '{$order['id']}',
+    'name'     : '{$line['name']}',
+    'sku'      : '{$line['sku']}',
+    'category' : '{$line['variation']}',
+    'price'    : '{$line['price']}',
+    'quantity' : '{$line['quantity']}'
+});
 ";
             }
 
             $ecommerce .= "
-_gaq.push(['_trackTrans']);
+ga('ecommerce:send');
 ";
         }
 
         $output = <<<DOC
-<script type="text/javascript">
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', '{$this->analytics_code}']);
-_gaq.push(['_trackPageview']);
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', '{$this->analytics_code}', 'auto');
+ga('send', 'pageview');
+
 {$ecommerce}
-(function() {
-  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();
 </script>
 DOC;
 
