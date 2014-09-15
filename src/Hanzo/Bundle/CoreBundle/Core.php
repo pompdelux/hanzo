@@ -12,7 +12,7 @@ namespace Hanzo\Bundle\CoreBundle;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Class CoreService
+ * Class Core
  * @package Hanzo\Bundle\CoreBundle
  */
 class Core
