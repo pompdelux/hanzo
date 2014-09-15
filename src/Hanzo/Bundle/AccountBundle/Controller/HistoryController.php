@@ -214,7 +214,7 @@ class HistoryController extends CoreController
                 $email     = $order->getEmail();
                 $amount    = Tools::moneyFormat($order->getTotalPrice());
 
-                $order->delete();
+                $this->container->get('hanzo.core.orders_service')->deleteOrder($order);
 
                 // send delete notification
                 $mailer = $this->get('mail_manager');
