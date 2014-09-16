@@ -256,6 +256,7 @@ class DefaultController extends CoreController
         $data = [
             'city'        => $order->getBillingCity(),
             'country'     => $order->getBillingCountry(),
+            'currency'    => $order->getCurrencyCode(),
             'expected_at' => $order->getExpectedDeliveryDate( 'd-m-Y' ),
             'id'          => $order->getId(),
             'shipping'    => number_format($shipping_total, 2, '.', ''),
