@@ -113,7 +113,6 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 ga('create', '{$this->analytics_code}', 'auto');
 ga('require', 'displayfeatures');
 ga('send', 'pageview');
-
 {$ecommerce}
 </script>
 DOC;
