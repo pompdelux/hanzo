@@ -12,6 +12,7 @@ declare(ticks=1);
 
 namespace Hanzo\Bundle\AxBundle\Command;
 
+use Hanzo\Core\Tools;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -124,6 +125,7 @@ class AxBeanstalkWorkerCommand extends ContainerAwareCommand
                 $this->getContainer()->get('ax.out.pheanstalk.send')->send($data);
             }
         } catch (\Exception $exception) {
+            Tools::log('AxBeanstalkWorkerCommand: Exception detected: '.$exception->getMessage());
             $this->getContainer()->get('logger')->error('AxBeanstalkWorkerCommand: Exception detected: '.$exception->getMessage());
         }
 
