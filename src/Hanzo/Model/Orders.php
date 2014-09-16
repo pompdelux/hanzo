@@ -1243,7 +1243,7 @@ class Orders extends BaseOrders
         $a = new Addresses();
         $a->fromArray($address, \BasePeer::TYPE_FIELDNAME);
 
-        return;
+        return $a;
     }
 
 
