@@ -33,17 +33,19 @@ var adminDeadOrders = (function($) {
 
         $("a.delete-order-log").on('click', function(event) {
             event.preventDefault();
-            var $element = $(this).closest('tr');
-            var href = this.href;
-            dialoug.confirm(Translator.get('js:notice'), $(this).data('confirm-message'), function(choise) {
+            var $this    = $(this);
+            var $element = $this.closest('tr');
+            var href      = this.href;
+
+            dialoug.confirm(Translator.trans('notice'), $this.data('confirmMessage'), function(choise) {
                 if (choise !== 'ok') {
                     return;
                 }
 
                 var xhr = $.ajax({
-                    url: href,
-                    dataType: 'json',
-                    async : false
+                    url      : href,
+                    dataType : 'json',
+                    async    : false
                 });
 
                 xhr.done(function(response) {
