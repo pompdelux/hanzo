@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\CheckoutBundle\Event;
 
+use Hanzo\Bundle\PaymentBundle\PaymentActionsProxy;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Model\Orders;
@@ -11,17 +12,23 @@ use Symfony\Component\HttpFoundation\Session\Session;
 class CheckoutListener
 {
     protected $session;
+    protected $paymentActions;
 
-    public function __construct(Session $session)
+    /**
+     * @param Session             $session
+     * @param PaymentActionsProxy $paymentActions
+     */
+    public function __construct(Session $session, PaymentActionsProxy $paymentActions)
     {
-        $this->session = $session;
+        $this->session        = $session;
+        $this->paymentActions = $paymentActions;
     }
 
     /**
      * onPaymentFailed
      *
      * @param FilterOrderEvent $event
-     **/
+     */
     public function onPaymentFailed(FilterOrderEvent $event)
     {
         if ($this->session->has('failed_order_mail_sent')) {
@@ -113,7 +120,7 @@ class CheckoutListener
                 $oldOrder = $order->getOrderAtVersion($oldOrderVersion);
 
                 try {
-                    $oldOrder->cancelPayment();
+                    $this->paymentActions->cancelPayment($oldOrder);
                 } catch (\Exception $e) {
                     Tools::log( 'Could not cancel payment for old order, id: '. $oldOrder->getId() .' error was: '. $e->getMessage());
                 }

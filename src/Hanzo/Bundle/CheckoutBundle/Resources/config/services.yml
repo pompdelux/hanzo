@@ -5,7 +5,8 @@ services:
     hanzo.checkout.checkout.listener:
         class: Hanzo\Bundle\CheckoutBundle\Event\CheckoutListener
         arguments:
-            session: @session
+            session:       @session
+            payment_proxy: @payment.actions.proxy
         tags:
             - { name: kernel.event_listener, event: order.payment.collected, method: onPaymentCollectedFirst, priority: 255 }
             - { name: kernel.event_listener, event: order.payment.collected, method: onPaymentCollected, priority: -255 }
