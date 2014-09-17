@@ -32,6 +32,8 @@ class SalesOrderLockUnlock extends BaseService
      */
     public function get()
     {
+        $this->data->endpointDomain = $this->getEndPoint();
+
         return $this->data;
     }
 
@@ -44,6 +46,6 @@ class SalesOrderLockUnlock extends BaseService
     public function setData(Orders $order, $lock = true)
     {
         $this->data->eOrderNumber = $order->getId();
-        $this->data->lockOrder = (int) $lock;
+        $this->data->lockOrder    = (int)$lock;
     }
 }
