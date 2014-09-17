@@ -50,7 +50,17 @@ class OrderListener
         $order = $event->getOrder();
 
         // if we are unable to lock the order, we should not allow edits to start.
-        if (!$this->axServiceWrapper->SalesOrderLockUnlock($order, true)) {
+        $bail = false;
+        try {
+            if (!$this->axServiceWrapper->SalesOrderLockUnlock($order, true)) {
+                $bail = true;
+            }
+        } catch (\Exception $e) {
+            Tools::log($e->getMessage());
+            $bail = true;
+        }
+
+        if ($bail) {
             $event->setStatus(false, 'unable.to.lock.order');
             return;
         }
