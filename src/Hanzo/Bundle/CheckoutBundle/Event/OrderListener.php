@@ -147,15 +147,18 @@ class OrderListener
      */
     public function onEditDone(FilterOrderEvent $event)
     {
+Tools::log('onEditDone');
         $order = $event->getOrder();
         $order->setSessionId($order->getId());
-
-        $log = new OrdersStateLog();
-        $log->setOrdersId($order->getId());
-        $log->setState(0);
-        $log->setMessage(Orders::INFO_STATE_EDIT_DONE);
-        $log->setCreatedAt(time());
-        $log->save();
+        
+        try {
+            $log = new OrdersStateLog();
+            $log->setOrdersId($order->getId());
+            $log->setState(0);
+            $log->setMessage(Orders::INFO_STATE_EDIT_DONE);
+            $log->setCreatedAt(time());
+            $log->save();
+        } catch (\Exception $e) {}
 
         // unset session vars.
         $this->session->remove('in_edit');
