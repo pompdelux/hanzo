@@ -52,6 +52,8 @@ class SyncDeleteSalesOrder extends BaseService
      */
     public function get()
     {
+        $this->data->endpointDomain = $this->getEndPoint();
+
         return $this->data;
     }
 
