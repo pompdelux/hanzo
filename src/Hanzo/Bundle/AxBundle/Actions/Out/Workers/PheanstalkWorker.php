@@ -13,6 +13,7 @@ namespace Hanzo\Bundle\AxBundle\Actions\Out\Workers;
 use Hanzo\Bundle\AxBundle\Actions\Out\AxServiceWrapper;
 use Hanzo\Bundle\AxBundle\Logger;
 use Hanzo\Bundle\CheckoutBundle\SendOrderConfirmationMail;
+use Hanzo\Core\Tools;
 use Hanzo\Model\CustomersQuery;
 use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\OrdersToAxQueueLog;
@@ -141,9 +142,7 @@ class PheanstalkWorker
         try {
             $orderSyncState = $this->serviceWrapper->SyncDeleteSalesOrder($order, false, $this->dbConn);
         } catch (\Exception $e) {
-            $this->logger->write($jobData['order_id'], 'failed', [
-                'action' => $jobData['action'],
-            ], 'Syncronization halted: '.$e->getMessage());
+            Tools::log('PheanstalkWorker::delete() Syncronization halted: '.$e->getMessage());
             $this->removeFromQueueLog($jobData['order_id']);
 
             return false;
