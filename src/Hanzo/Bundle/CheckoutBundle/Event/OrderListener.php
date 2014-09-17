@@ -92,10 +92,7 @@ class OrderListener
         $order->save();
 
         $log = new OrdersStateLog();
-        $log->setOrdersId($order->getId());
-        $log->setState(0);
-        $log->setMessage(Orders::INFO_STATE_EDIT_STARTED);
-        $log->setCreatedAt(time());
+        $log->info($order->getId(), Orders::INFO_STATE_EDIT_STARTED);
         $log->save();
 
         $this->session->set('in_edit', true);
@@ -121,10 +118,7 @@ class OrderListener
         $order->toPreviousVersion();
 
         $log = new OrdersStateLog();
-        $log->setOrdersId($order->getId());
-        $log->setState(0);
-        $log->setMessage(Orders::INFO_STATE_EDIT_CANCLED_BY_USER);
-        $log->setCreatedAt(time());
+        $log->info($order->getId(), Orders::INFO_STATE_EDIT_CANCLED_BY_USER);
         $log->save();
 
         // unset session vars.
@@ -150,13 +144,10 @@ class OrderListener
 Tools::log('onEditDone');
         $order = $event->getOrder();
         $order->setSessionId($order->getId());
-        
+
         try {
             $log = new OrdersStateLog();
-            $log->setOrdersId($order->getId());
-            $log->setState(0);
-            $log->setMessage(Orders::INFO_STATE_EDIT_DONE);
-            $log->setCreatedAt(time());
+            $log->info($order->getId(), Orders::INFO_STATE_EDIT_DONE);
             $log->save();
         } catch (\Exception $e) {}
 

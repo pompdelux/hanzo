@@ -115,10 +115,7 @@ class CleanupService
             $container->get('ax.out.service.wrapper')->SalesOrderLockUnlock($order, false);
 
             $log = new OrdersStateLog();
-            $log->setOrdersId($order->getId());
-            $log->setState(0);
-            $log->setMessage(Orders::INFO_STATE_EDIT_CANCLED_BY_CLEANUP);
-            $log->setCreatedAt(time());
+            $log->info($order->getId(), Orders::INFO_STATE_EDIT_CANCLED_BY_CLEANUP);
             $log->save();
         }
 

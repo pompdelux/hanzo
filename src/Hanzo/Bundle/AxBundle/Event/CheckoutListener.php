@@ -63,10 +63,7 @@ class CheckoutListener
     private function stateLog($order_id)
     {
         $log = new OrdersStateLog();
-        $log->setOrdersId($order_id);
-        $log->setState(0);
-        $log->setMessage(Orders::INFO_STATE_IN_QUEUE);
-        $log->setCreatedAt(time());
+        $log->info($order_id, Orders::INFO_STATE_IN_QUEUE);
 
         return $log->save();
     }

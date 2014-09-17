@@ -209,10 +209,7 @@ class DeadOrderService
                     $this->ax->SalesOrderLockUnlock($order, false);
 
                     $log = new OrdersStateLog();
-                    $log->setOrdersId($order->getId());
-                    $log->setState(0);
-                    $log->setMessage(Orders::INFO_STATE_EDIT_CANCLED_BY_CLEANUP);
-                    $log->setCreatedAt(time());
+                    $log->info($order->getId(), Orders::INFO_STATE_EDIT_CANCLED_BY_CLEANUP);
                     $log->save();
                 } else {
                     $this->debug('  Should role back to prew version of order... ' . implode(', ', $order->getVersionIds()));
