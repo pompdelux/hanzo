@@ -293,7 +293,7 @@ class DeadOrderService
 
                                 try {
                                     $this->debug('  Canceling old payment');
-                                    $oldOrder->cancelPayment();
+                                    $this->dibsApi->call()->cancel($oldOrder->getCustomers(), $oldOrder);
                                 } catch (\Exception $e) {
                                     $this->debug('  Could not cancel payment for old order, id: '. $oldOrder->getId() .' error was: '. $e->getMessage());
                                     Tools::log('DOS: Could not cancel payment for old order, id: '. $oldOrder->getId() .' error was: '. $e->getMessage());
