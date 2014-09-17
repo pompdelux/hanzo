@@ -9,12 +9,13 @@ use Symfony\Component\HttpFoundation\Request;
  * Class DibsApi
  * @package Hanzo\Bundle\PaymentBundle\Methods\Dibs
  *
- * @method array buildFormFields(Orders $order)
- * @method array checkSettings(array $settings)
- * @method bool  isActive()
- * @method void  updateOrderFailed(Request $request, Orders $order)
- * @method void  updateOrderSuccess(Request $request, Orders $order)
- * @method void  verifyCallback(Request $callbackRequest, Orders $order)
+ * @method array       buildFormFields(Orders $order)
+ * @method DibsApiCall call()
+ * @method array       checkSettings(array $settings)
+ * @method bool        isActive()
+ * @method void        updateOrderFailed(Request $request, Orders $order)
+ * @method void        updateOrderSuccess(Request $request, Orders $order)
+ * @method void        verifyCallback(Request $callbackRequest, Orders $order)
  */
 class DibsApi
 {
