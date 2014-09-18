@@ -415,6 +415,10 @@ class OrdersController extends CoreController
                 ->filterByOrdersId($order_id)
                 ->delete($this->getDbConnection());
 
+            OrdersToAxQueueLogQuery::create()
+                ->filterByOrdersId($order->getId())
+                ->delete($this->getDbConnection());
+
             $order->setIgnoreDeleteConstraints(true);
 
             try {
