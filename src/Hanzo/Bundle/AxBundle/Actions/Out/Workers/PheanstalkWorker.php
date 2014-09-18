@@ -71,7 +71,7 @@ class PheanstalkWorker
         if ($jobData['iteration'] > 5) {
             $comment = 'PheanstalkWorker tried to syncronize the order #'.$jobData['order_id'].' '.($jobData['iteration'] -1).' times in the last ~10 minutes - we give up!';
 
-            $this->logger->write($jobData['order_id'], 'failed', ['action' => $jobData['action']], $comment);
+            $this->writeLog('send', 'failed', ['action' => $jobData['action']], $comment);
             $this->logger->error($comment);
             $this->removeFromQueueLog($jobData['order_id']);
 
@@ -93,7 +93,7 @@ class PheanstalkWorker
         try {
             $orderSyncState = $this->serviceWrapper->SyncSalesOrder($order, false, $this->dbConn, $jobData['order_in_edit']);
         } catch (\Exception $e) {
-            $this->logger->write($jobData['order_id'], 'failed', ['action' => $jobData['action']], 'Syncronization halted: '.$e->getMessage());
+            $this->writeLog('send', 'failed', ['action' => $jobData['action']], 'Syncronization halted: '.$e->getMessage());
             $this->removeFromQueueLog($jobData['order_id']);
 
             return false;
@@ -107,7 +107,7 @@ class PheanstalkWorker
         $this->orderConfirmationMailer->build($order);
         $this->orderConfirmationMailer->send();
 
-        $this->logger->write($jobData['order_id'], 'ok', ['action' => $jobData['action']]);
+        $this->writeLog('send', 'ok', ['action' => $jobData['action']]);
         $this->removeFromQueueLog($jobData['order_id']);
 
         return true;
@@ -129,7 +129,7 @@ class PheanstalkWorker
         if ($jobData['iteration'] > 5) {
             $comment = 'PheanstalkWorker tried to delete the order #'.$jobData['order_id'].' '.$jobData['iteration'].' times in the last ~10 minutes - we give up!';
 
-            $this->logger->write($jobData['order_id'], 'failed', $jobData, $comment);
+            $this->writeLog('delete', 'failed', $jobData, $comment);
             $this->logger->error($comment);
             $this->removeFromQueueLog($jobData['order_id']);
 
@@ -144,17 +144,11 @@ class PheanstalkWorker
         $order->setEndPoint($jobData['end_point']);
 
         try {
-            $orderSyncState = $this->serviceWrapper->SyncDeleteSalesOrder($order, false, $this->dbConn);
+            $orderSyncState = $this->serviceWrapper->SyncDeleteSalesOrder($order, $this->dbConn, false);
         } catch (\Exception $e) {
             Tools::log('PheanstalkWorker::delete() Syncronization halted: '.$e->getMessage());
 
-            // we need an order record otherwise the db scheme breaks, and we do not want to change that.
-            $ts = strtotime('+1 week');
-            $order->setCreatedAt($ts);
-            $order->setUpdatedAt($ts);
-            $order->save($this->dbConn);
-
-            $this->logger->write($jobData['order_id'], 'failed', $jobData, 'PheanstalkWorker::delete() Syncronization halted: '.$e->getMessage());
+            $this->writeLog('delete', 'failed', $jobData, 'PheanstalkWorker::delete() Syncronization halted: '.$e->getMessage());
             $this->removeFromQueueLog($jobData['order_id']);
 
             return false;
@@ -207,5 +201,33 @@ class PheanstalkWorker
         return OrdersToAxQueueLogQuery::create()
             ->filterByOrdersId($order_id)
             ->delete($this->dbConn);
+    }
+
+    /**
+     * @param string $type
+     * @param string $status
+     * @param array  $jobData
+     * @param string $message
+     */
+    private function writeLog($type, $status, $jobData, $message = '')
+    {
+        if ($type == 'delete') {
+            // we need an order record otherwise the db scheme breaks, and we do not want to change that.
+            $ts = strtotime('+1 week');
+            $order = new Orders();
+            $order->setId($jobData['order_id']);
+            $order->setSessionId($jobData['order_id']);
+            $order->setCustomersId($jobData['customer_id']);
+            $order->setCreatedAt($ts);
+            $order->setUpdatedAt($ts);
+
+            try {
+                $order->save($this->dbConn);
+            } catch (\Exception $e) {
+                Tools::log($e->getMessage());
+            }
+        }
+
+        $this->logger->write($jobData['order_id'], $status, $jobData, $message);
     }
 }
