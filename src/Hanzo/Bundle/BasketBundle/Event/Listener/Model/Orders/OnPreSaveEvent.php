@@ -46,7 +46,7 @@ class OnPreSaveEvent
     {
         $order = $event->getModel();
 
-        if (!$order instanceof Orders) {
+        if ((!$order instanceof Orders) || ('cli' === PHP_SAPI)) {
             return;
         }
 

@@ -128,15 +128,9 @@ class AxServiceWrapper
      */
     public function SyncDeleteSalesOrder(Orders $order, $dbCon = null, $return = false)
     {
-        $attributes = $order->getAttributes($dbCon);
-        $paymentId = isset($attributes->payment->transact)
-            ? $attributes->payment->transact
-            : ''
-        ;
-
         $this->syncDeleteSalesOrder->setDBConnection($dbCon);
-        $this->syncDeleteSalesOrder->setEndPoint(Tools::domainKeyToEndpoint($attributes->global->domain_key));
-        $this->syncDeleteSalesOrder->setData($order, $paymentId);
+        $this->syncDeleteSalesOrder->setEndPoint($order->getEndPoint());
+        $this->syncDeleteSalesOrder->setOrder($order);
 
         if ($return) {
             return $this->syncDeleteSalesOrder->get();

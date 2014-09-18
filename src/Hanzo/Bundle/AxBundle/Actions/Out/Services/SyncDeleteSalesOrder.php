@@ -36,14 +36,13 @@ class SyncDeleteSalesOrder extends BaseService
      * Set data needed to complete request
      *
      * @param Orders $order
-     * @param string $payment_id
      */
-    public function setData(Orders $order, $payment_id = '')
+    public function setOrder(Orders $order)
     {
         $this->data->salesOrder->SalesTable = new SalesTableDelete([
             'CustAccount'  => $order->getCustomersId(),
             'EOrderNumber' => $order->getId(),
-            'PaymentId'    => $payment_id,
+            'PaymentId'    => $order->getPaymentTransactionId(),
         ]);
     }
 

@@ -15,6 +15,7 @@ use Hanzo\Bundle\AxBundle\Logger;
 use Hanzo\Bundle\CheckoutBundle\SendOrderConfirmationMail;
 use Hanzo\Core\Tools;
 use Hanzo\Model\CustomersQuery;
+use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\OrdersToAxQueueLog;
 use Hanzo\Model\OrdersToAxQueueLogQuery;
@@ -128,21 +129,32 @@ class PheanstalkWorker
         if ($jobData['iteration'] > 5) {
             $comment = 'PheanstalkWorker tried to delete the order #'.$jobData['order_id'].' '.$jobData['iteration'].' times in the last ~10 minutes - we give up!';
 
-            $this->logger->write($jobData['order_id'], 'failed', [], $comment);
+            $this->logger->write($jobData['order_id'], 'failed', $jobData, $comment);
             $this->logger->error($comment);
             $this->removeFromQueueLog($jobData['order_id']);
 
             return false;
         }
 
-        $order = OrdersQuery::create()
-            ->findOneById($jobData['order_id'], $this->dbConn)
-        ;
+        // we build a fake order 'cause the original might be deleted from the db when we need it.
+        $order = new Orders();
+        $order->setId($jobData['order_id']);
+        $order->setCustomersId($jobData['customer_id']);
+        $order->setPaymentTransactionId($jobData['payment_id']);
+        $order->setEndPoint($jobData['end_point']);
 
         try {
             $orderSyncState = $this->serviceWrapper->SyncDeleteSalesOrder($order, false, $this->dbConn);
         } catch (\Exception $e) {
             Tools::log('PheanstalkWorker::delete() Syncronization halted: '.$e->getMessage());
+
+            // we need an order record otherwise the db scheme breaks, and we do not want to change that.
+            $ts = strtotime('+1 week');
+            $order->setCreatedAt($ts);
+            $order->setUpdatedAt($ts);
+            $order->save($this->dbConn);
+
+            $this->logger->write($jobData['order_id'], 'failed', $jobData, 'PheanstalkWorker::delete() Syncronization halted: '.$e->getMessage());
             $this->removeFromQueueLog($jobData['order_id']);
 
             return false;
