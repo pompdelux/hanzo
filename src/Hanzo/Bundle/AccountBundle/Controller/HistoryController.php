@@ -77,6 +77,7 @@ class HistoryController extends CoreController
         $this->get('event_dispatcher')->dispatch('order.edit.start', $event);
 
         $status = $event->getStatus();
+
         if (false === $status->code) {
             $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans($status->message, ['%order_id%' => $order_id], 'account'));
             return $this->redirect($this->generateUrl('_account'));
