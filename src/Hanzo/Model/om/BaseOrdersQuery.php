@@ -24,7 +24,6 @@ use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\OrdersStateLog;
 use Hanzo\Model\OrdersSyncLog;
-use Hanzo\Model\OrdersToAxQueueLog;
 use Hanzo\Model\OrdersToCoupons;
 use Hanzo\Model\OrdersVersions;
 
@@ -156,10 +155,6 @@ use Hanzo\Model\OrdersVersions;
  * @method OrdersQuery leftJoinOrdersSyncLog($relationAlias = null) Adds a LEFT JOIN clause to the query using the OrdersSyncLog relation
  * @method OrdersQuery rightJoinOrdersSyncLog($relationAlias = null) Adds a RIGHT JOIN clause to the query using the OrdersSyncLog relation
  * @method OrdersQuery innerJoinOrdersSyncLog($relationAlias = null) Adds a INNER JOIN clause to the query using the OrdersSyncLog relation
- *
- * @method OrdersQuery leftJoinOrdersToAxQueueLog($relationAlias = null) Adds a LEFT JOIN clause to the query using the OrdersToAxQueueLog relation
- * @method OrdersQuery rightJoinOrdersToAxQueueLog($relationAlias = null) Adds a RIGHT JOIN clause to the query using the OrdersToAxQueueLog relation
- * @method OrdersQuery innerJoinOrdersToAxQueueLog($relationAlias = null) Adds a INNER JOIN clause to the query using the OrdersToAxQueueLog relation
  *
  * @method OrdersQuery leftJoinOrdersVersions($relationAlias = null) Adds a LEFT JOIN clause to the query using the OrdersVersions relation
  * @method OrdersQuery rightJoinOrdersVersions($relationAlias = null) Adds a RIGHT JOIN clause to the query using the OrdersVersions relation
@@ -2533,80 +2528,6 @@ abstract class BaseOrdersQuery extends ModelCriteria
         return $this
             ->joinOrdersSyncLog($relationAlias, $joinType)
             ->useQuery($relationAlias ? $relationAlias : 'OrdersSyncLog', '\Hanzo\Model\OrdersSyncLogQuery');
-    }
-
-    /**
-     * Filter the query by a related OrdersToAxQueueLog object
-     *
-     * @param   OrdersToAxQueueLog|PropelObjectCollection $ordersToAxQueueLog  the related object to use as filter
-     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-     *
-     * @return                 OrdersQuery The current query, for fluid interface
-     * @throws PropelException - if the provided filter is invalid.
-     */
-    public function filterByOrdersToAxQueueLog($ordersToAxQueueLog, $comparison = null)
-    {
-        if ($ordersToAxQueueLog instanceof OrdersToAxQueueLog) {
-            return $this
-                ->addUsingAlias(OrdersPeer::ID, $ordersToAxQueueLog->getOrdersId(), $comparison);
-        } elseif ($ordersToAxQueueLog instanceof PropelObjectCollection) {
-            return $this
-                ->useOrdersToAxQueueLogQuery()
-                ->filterByPrimaryKeys($ordersToAxQueueLog->getPrimaryKeys())
-                ->endUse();
-        } else {
-            throw new PropelException('filterByOrdersToAxQueueLog() only accepts arguments of type OrdersToAxQueueLog or PropelCollection');
-        }
-    }
-
-    /**
-     * Adds a JOIN clause to the query using the OrdersToAxQueueLog relation
-     *
-     * @param     string $relationAlias optional alias for the relation
-     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-     *
-     * @return OrdersQuery The current query, for fluid interface
-     */
-    public function joinOrdersToAxQueueLog($relationAlias = null, $joinType = Criteria::INNER_JOIN)
-    {
-        $tableMap = $this->getTableMap();
-        $relationMap = $tableMap->getRelation('OrdersToAxQueueLog');
-
-        // create a ModelJoin object for this join
-        $join = new ModelJoin();
-        $join->setJoinType($joinType);
-        $join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
-        if ($previousJoin = $this->getPreviousJoin()) {
-            $join->setPreviousJoin($previousJoin);
-        }
-
-        // add the ModelJoin to the current object
-        if ($relationAlias) {
-            $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
-            $this->addJoinObject($join, $relationAlias);
-        } else {
-            $this->addJoinObject($join, 'OrdersToAxQueueLog');
-        }
-
-        return $this;
-    }
-
-    /**
-     * Use the OrdersToAxQueueLog relation OrdersToAxQueueLog object
-     *
-     * @see       useQuery()
-     *
-     * @param     string $relationAlias optional alias for the relation,
-     *                                   to be used as main alias in the secondary query
-     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-     *
-     * @return   \Hanzo\Model\OrdersToAxQueueLogQuery A secondary query class using the current class as primary query
-     */
-    public function useOrdersToAxQueueLogQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
-    {
-        return $this
-            ->joinOrdersToAxQueueLog($relationAlias, $joinType)
-            ->useQuery($relationAlias ? $relationAlias : 'OrdersToAxQueueLog', '\Hanzo\Model\OrdersToAxQueueLogQuery');
     }
 
     /**

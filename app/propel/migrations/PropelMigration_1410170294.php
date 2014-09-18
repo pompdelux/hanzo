@@ -42,19 +42,13 @@ class PropelMigration_1410170294
 # It "suspends judgement" for fkey relationships until are tables are set.
 SET FOREIGN_KEY_CHECKS = 0;
 
-CREATE TABLE `orders_to_ax_queue_log`
-(
+CREATE TABLE `orders_to_ax_queue_log` (
     `orders_id` INTEGER NOT NULL,
     `queue_id` INTEGER NOT NULL,
     `iteration` INTEGER NOT NULL DEFAULT 0,
     `created_at` DATETIME NOT NULL,
     PRIMARY KEY (`orders_id`,`queue_id`,`created_at`)
 ) ENGINE=InnoDB;
-
-ALTER TABLE `orders_to_ax_queue_log` ADD CONSTRAINT `fk_orders_to_ax_queue_log_1`
-    FOREIGN KEY (`orders_id`)
-    REFERENCES `orders` (`id`)
-    ON DELETE CASCADE;
 
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;

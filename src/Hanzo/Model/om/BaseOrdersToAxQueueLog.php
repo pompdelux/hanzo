@@ -15,8 +15,6 @@ use \PropelException;
 use \PropelPDO;
 use Glorpen\Propel\PropelBundle\Dispatcher\EventDispatcherProxy;
 use Glorpen\Propel\PropelBundle\Events\ModelEvent;
-use Hanzo\Model\Orders;
-use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\OrdersToAxQueueLog;
 use Hanzo\Model\OrdersToAxQueueLogPeer;
 use Hanzo\Model\OrdersToAxQueueLogQuery;
@@ -66,11 +64,6 @@ abstract class BaseOrdersToAxQueueLog extends BaseObject implements Persistent
      * @var        string
      */
     protected $created_at;
-
-    /**
-     * @var        Orders
-     */
-    protected $aOrders;
 
     /**
      * Flag to prevent endless save loop, if this object is referenced
@@ -204,10 +197,6 @@ abstract class BaseOrdersToAxQueueLog extends BaseObject implements Persistent
         if ($this->orders_id !== $v) {
             $this->orders_id = $v;
             $this->modifiedColumns[] = OrdersToAxQueueLogPeer::ORDERS_ID;
-        }
-
-        if ($this->aOrders !== null && $this->aOrders->getId() !== $v) {
-            $this->aOrders = null;
         }
 
 
@@ -351,9 +340,6 @@ abstract class BaseOrdersToAxQueueLog extends BaseObject implements Persistent
     public function ensureConsistency()
     {
 
-        if ($this->aOrders !== null && $this->orders_id !== $this->aOrders->getId()) {
-            $this->aOrders = null;
-        }
     } // ensureConsistency
 
     /**
@@ -393,7 +379,6 @@ abstract class BaseOrdersToAxQueueLog extends BaseObject implements Persistent
 
         if ($deep) {  // also de-associate any related objects?
 
-            $this->aOrders = null;
         } // if (deep)
     }
 
@@ -522,18 +507,6 @@ abstract class BaseOrdersToAxQueueLog extends BaseObject implements Persistent
         $affectedRows = 0; // initialize var to track total num of affected rows
         if (!$this->alreadyInSave) {
             $this->alreadyInSave = true;
-
-            // We call the save method on the following object(s) if they
-            // were passed to this object by their corresponding set
-            // method.  This object relates to these object(s) by a
-            // foreign key reference.
-
-            if ($this->aOrders !== null) {
-                if ($this->aOrders->isModified() || $this->aOrders->isNew()) {
-                    $affectedRows += $this->aOrders->save($con);
-                }
-                $this->setOrders($this->aOrders);
-            }
 
             if ($this->isNew() || $this->isModified()) {
                 // persist changes
@@ -690,18 +663,6 @@ abstract class BaseOrdersToAxQueueLog extends BaseObject implements Persistent
             $failureMap = array();
 
 
-            // We call the validate method on the following object(s) if they
-            // were passed to this object by their corresponding set
-            // method.  This object relates to these object(s) by a
-            // foreign key reference.
-
-            if ($this->aOrders !== null) {
-                if (!$this->aOrders->validate($columns)) {
-                    $failureMap = array_merge($failureMap, $this->aOrders->getValidationFailures());
-                }
-            }
-
-
             if (($retval = OrdersToAxQueueLogPeer::doValidate($this, $columns)) !== true) {
                 $failureMap = array_merge($failureMap, $retval);
             }
@@ -771,11 +732,10 @@ abstract class BaseOrdersToAxQueueLog extends BaseObject implements Persistent
      *                    Defaults to BasePeer::TYPE_PHPNAME.
      * @param     boolean $includeLazyLoadColumns (optional) Whether to include lazy loaded columns. Defaults to true.
      * @param     array $alreadyDumpedObjects List of objects to skip to avoid recursion
-     * @param     boolean $includeForeignObjects (optional) Whether to include hydrated related objects. Default to FALSE.
      *
      * @return array an associative array containing the field names (as keys) and field values
      */
-    public function toArray($keyType = BasePeer::TYPE_PHPNAME, $includeLazyLoadColumns = true, $alreadyDumpedObjects = array(), $includeForeignObjects = false)
+    public function toArray($keyType = BasePeer::TYPE_PHPNAME, $includeLazyLoadColumns = true, $alreadyDumpedObjects = array())
     {
         if (isset($alreadyDumpedObjects['OrdersToAxQueueLog'][serialize($this->getPrimaryKey())])) {
             return '*RECURSION*';
@@ -793,11 +753,6 @@ abstract class BaseOrdersToAxQueueLog extends BaseObject implements Persistent
             $result[$key] = $virtualColumn;
         }
 
-        if ($includeForeignObjects) {
-            if (null !== $this->aOrders) {
-                $result['Orders'] = $this->aOrders->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
-            }
-        }
 
         return $result;
     }
@@ -963,18 +918,6 @@ abstract class BaseOrdersToAxQueueLog extends BaseObject implements Persistent
         $copyObj->setQueueId($this->getQueueId());
         $copyObj->setIteration($this->getIteration());
         $copyObj->setCreatedAt($this->getCreatedAt());
-
-        if ($deepCopy && !$this->startCopy) {
-            // important: temporarily setNew(false) because this affects the behavior of
-            // the getter/setter methods for fkey referrer objects.
-            $copyObj->setNew(false);
-            // store object hash to prevent cycle
-            $this->startCopy = true;
-
-            //unflag object copy
-            $this->startCopy = false;
-        } // if ($deepCopy)
-
         if ($makeNew) {
             $copyObj->setNew(true);
         }
@@ -1021,58 +964,6 @@ abstract class BaseOrdersToAxQueueLog extends BaseObject implements Persistent
     }
 
     /**
-     * Declares an association between this object and a Orders object.
-     *
-     * @param                  Orders $v
-     * @return OrdersToAxQueueLog The current object (for fluent API support)
-     * @throws PropelException
-     */
-    public function setOrders(Orders $v = null)
-    {
-        if ($v === null) {
-            $this->setOrdersId(NULL);
-        } else {
-            $this->setOrdersId($v->getId());
-        }
-
-        $this->aOrders = $v;
-
-        // Add binding for other direction of this n:n relationship.
-        // If this object has already been added to the Orders object, it will not be re-added.
-        if ($v !== null) {
-            $v->addOrdersToAxQueueLog($this);
-        }
-
-
-        return $this;
-    }
-
-
-    /**
-     * Get the associated Orders object
-     *
-     * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
-     * @return Orders The associated Orders object.
-     * @throws PropelException
-     */
-    public function getOrders(PropelPDO $con = null, $doQuery = true)
-    {
-        if ($this->aOrders === null && ($this->orders_id !== null) && $doQuery) {
-            $this->aOrders = OrdersQuery::create()->findPk($this->orders_id, $con);
-            /* The following can be used additionally to
-                guarantee the related object contains a reference
-                to this object.  This level of coupling may, however, be
-                undesirable since it could result in an only partially populated collection
-                in the referenced object.
-                $this->aOrders->addOrdersToAxQueueLogs($this);
-             */
-        }
-
-        return $this->aOrders;
-    }
-
-    /**
      * Clears the current object and sets all attributes to their default values
      */
     public function clear()
@@ -1104,14 +995,10 @@ abstract class BaseOrdersToAxQueueLog extends BaseObject implements Persistent
     {
         if ($deep && !$this->alreadyInClearAllReferencesDeep) {
             $this->alreadyInClearAllReferencesDeep = true;
-            if ($this->aOrders instanceof Persistent) {
-              $this->aOrders->clearAllReferences($deep);
-            }
 
             $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
-        $this->aOrders = null;
     }
 
     /**

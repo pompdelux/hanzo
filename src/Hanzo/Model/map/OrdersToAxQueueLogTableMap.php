@@ -42,7 +42,7 @@ class OrdersToAxQueueLogTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(false);
         // columns
-        $this->addForeignPrimaryKey('orders_id', 'OrdersId', 'INTEGER' , 'orders', 'id', true, null, null);
+        $this->addPrimaryKey('orders_id', 'OrdersId', 'INTEGER', true, null, null);
         $this->addPrimaryKey('queue_id', 'QueueId', 'INTEGER', true, null, null);
         $this->addColumn('iteration', 'Iteration', 'INTEGER', true, null, 1);
         $this->addPrimaryKey('created_at', 'CreatedAt', 'TIMESTAMP', true, null, null);
@@ -54,7 +54,6 @@ class OrdersToAxQueueLogTableMap extends TableMap
      */
     public function buildRelations()
     {
-        $this->addRelation('Orders', 'Hanzo\\Model\\Orders', RelationMap::MANY_TO_ONE, array('orders_id' => 'id', ), 'CASCADE', null);
     } // buildRelations()
 
     /**
@@ -66,7 +65,8 @@ class OrdersToAxQueueLogTableMap extends TableMap
     public function getBehaviors()
     {
         return array(
-            'event' =>  array (),
+            'event' =>  array (
+),
         );
     } // getBehaviors()
 
