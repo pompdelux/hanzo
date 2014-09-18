@@ -69,16 +69,76 @@ class Orders extends BaseOrders
     const INFO_STATE_EDIT_DONE               = 'Edit done';
 
     protected $ignore_delete_constraints = false;
+
+
+    /**
+     * Unmapped payment id, used in ax sync
+     *
+     * @var int
+     */
+    private $paymentTransactionId;
+
+    /**
+     * Unmapped endpoint, used in ax sync
+     *
+     * @var string
+     */
+    private $endPoint;
+
+
+    /**
+     * @var \PDO|\PropelPDO
+     */
     protected $pdo_con = null;
 
+    /**
+     * Get DB Connection
+     *
+     * @return null|\PDO|\PropelPDO
+     */
     public function getDBConnection()
     {
         return $this->pdo_con;
     }
 
+    /**
+     * Set DB Connection
+     *
+     * @param \PDO|\PropelPDO $connection
+     */
     public function setDBConnection($connection)
     {
         $this->pdo_con = $connection;
+    }
+
+    /**
+     * Set payment transaction id, note this is used in ax "delete order" actions
+     *
+     * @param int $id
+     */
+    public function setPaymentTransactionId($id)
+    {
+        $this->paymentTransactionId = $id;
+    }
+
+    /**
+     * Get payment transaction id, note this is used in ax "delete order" actions
+     *
+     * @return int
+     */
+    public function getPaymentTransactionId()
+    {
+        return $this->paymentTransactionId;
+    }
+
+    public function setEndPoint($v)
+    {
+        $this->endPoint = $v;
+    }
+
+    public function getEndPoint()
+    {
+        return $this->endPoint;
     }
 
     /**
