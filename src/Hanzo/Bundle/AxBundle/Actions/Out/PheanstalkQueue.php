@@ -101,7 +101,7 @@ class PheanstalkQueue
             throw new OrderAlreadyInQueueException('The order #'.$order->getId().' is already in the queue. It was added @ '.date('Y-m-d H:i:s', $ts));
         }
 
-        $attributes = $order->getAttributes($this->dbCon);
+        $attributes = $order->getAttributes($this->dbConn);
         $paymentId = isset($attributes->payment->transact)
             ? $attributes->payment->transact
             : ''
