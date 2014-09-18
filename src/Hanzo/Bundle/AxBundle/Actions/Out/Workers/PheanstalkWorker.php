@@ -71,7 +71,7 @@ class PheanstalkWorker
         if ($jobData['iteration'] > 5) {
             $comment = 'PheanstalkWorker tried to syncronize the order #'.$jobData['order_id'].' '.($jobData['iteration'] -1).' times in the last ~10 minutes - we give up!';
 
-            $this->writeLog('send', 'failed', ['action' => $jobData['action']], $comment);
+            $this->writeLog('send', 'failed', $jobData, $comment);
             $this->logger->error($comment);
             $this->removeFromQueueLog($jobData['order_id']);
 
@@ -93,7 +93,7 @@ class PheanstalkWorker
         try {
             $orderSyncState = $this->serviceWrapper->SyncSalesOrder($order, false, $this->dbConn, $jobData['order_in_edit']);
         } catch (\Exception $e) {
-            $this->writeLog('send', 'failed', ['action' => $jobData['action']], 'Syncronization halted: '.$e->getMessage());
+            $this->writeLog('send', 'failed', $jobData, 'Syncronization halted: '.$e->getMessage());
             $this->removeFromQueueLog($jobData['order_id']);
 
             return false;
@@ -107,7 +107,7 @@ class PheanstalkWorker
         $this->orderConfirmationMailer->build($order);
         $this->orderConfirmationMailer->send();
 
-        $this->writeLog('send', 'ok', ['action' => $jobData['action']]);
+        $this->writeLog('send', 'ok', $jobData);
         $this->removeFromQueueLog($jobData['order_id']);
 
         return true;
