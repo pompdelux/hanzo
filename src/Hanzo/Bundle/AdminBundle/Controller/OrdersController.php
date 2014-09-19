@@ -408,6 +408,15 @@ class OrdersController extends CoreController
             ->findOne($this->getDbConnection())
         ;
 
+        $job = OrdersToAxQueueLogQuery::create()
+            ->filterByOrdersId($order_id)
+            ->findOne($this->getDbConnection());
+
+        if ($job) {
+            $this->container->get('ax.pheanstalk_queue')->removeFromQuery($job->getQueueId());
+            $job->delete($this->getDbConnection());
+        }
+
         if ($order) {
             // find old log entry and delete it
             OrdersSyncLogQuery::create()
@@ -415,9 +424,6 @@ class OrdersController extends CoreController
                 ->filterByOrdersId($order_id)
                 ->delete($this->getDbConnection());
 
-            OrdersToAxQueueLogQuery::create()
-                ->filterByOrdersId($order->getId())
-                ->delete($this->getDbConnection());
 
             $order->setIgnoreDeleteConstraints(true);
 
@@ -436,6 +442,12 @@ class OrdersController extends CoreController
                 'status' => true,
                 'message' => 'Ordren blev slettet!',
             ));
+        }
+
+        if ($request->query->has('goto')) {
+            if ('ax-queue' === $request->query->get('goto')) {
+                return $this->redirect($this->generateUrl('admin_orders_ax_qeueu'));
+            }
         }
     }
 
