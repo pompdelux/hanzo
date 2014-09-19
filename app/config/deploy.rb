@@ -62,7 +62,7 @@ ssh_options[:forward_agent] = true
 set :deploydiff, "Nothing - Rollback maybe?"
 
 # own rules for running tasks after deploy
-after 'deploy:restart', 'deploy:symlinks', 'symfony:cache:assets_update', 'symfony:cache:redis_clear', 'deploy:opcode_clear', 'symfony:cache:varnish_clear', 'deploy:cleanup', 'deploy:update_permissions', 'deploy:update_permissions_shared', 'deploy:update_permissions_releases'
+after 'deploy:restart', 'deploy:symlinks', 'symfony:cache:assets_update', 'symfony:cache:redis_clear', 'deploy:restart_beanstalkd_worker', 'deploy:opcode_clear', 'symfony:cache:varnish_clear', 'deploy:cleanup', 'deploy:update_permissions', 'deploy:update_permissions_shared', 'deploy:update_permissions_releases'
 # send_email moved here. dont want a deploy email on rollback
 after 'deploy', 'deploy:send_email'
 ## also clear redis and varnish when calling cache:clear
@@ -201,6 +201,13 @@ namespace :deploy do
     deployed_already = previous_revision
     to_be_deployed = `cd .rsync_cache && git rev-parse --short "HEAD" && cd ..`.strip
     set :deploydiff, `cd .rsync_cache && git log --no-merges --pretty=format:"* %s %b (%cn)" #{deployed_already}..#{to_be_deployed}`.gsub("'", "\"")
+    capifony_puts_ok
+  end
+  # restart supervisord job
+  desc "Restarting supervisor hanzo beanstalkd job"
+  task :restart_beanstalkd_worker, :roles => :redis do
+    capifony_pretty_print "--> Restarting supervisor hanzo beanstalkd job"
+    run("supervisorctl restart hanzo:hanzo_ax_beanstalk_worker")
     capifony_puts_ok
   end
 end
