@@ -34,7 +34,7 @@
                 <td>{{ item.getOrdersId }}</td>
                 <td>{{ item.getIteration }}</td>
                 <td>{{ item.getCreatedAt }}</td>
-                <td><a href="{{ path('admin_orders_delete', {'order_id': item.getOrdersId}) }}" rel="confirm" data-confirm-message="Er du sikker på du vil slette ordren?"><span class="glyphicon glyphicon-remove-circle"></span></a></td>
+                <td><a href="{{ path('admin_orders_delete', {'order_id': item.getOrdersId, 'goto': 'ax-queue'}) }}" rel="confirm" data-confirm-message="Er du sikker på du vil slette ordren?"><span class="glyphicon glyphicon-remove-circle"></span></a></td>
             </tr>
         {% else %}
             <tr>
