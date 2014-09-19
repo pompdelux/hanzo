@@ -103,8 +103,13 @@ class AxServiceWrapper
      */
     public function SyncSalesOrder(Orders $order, $return = false, $dbCon = null, $inEdit = false)
     {
+        $endPoint = $order->getEndPoint();
+        if (!$endPoint) {
+            $endPoint = Tools::domainKeyToEndpoint($order->getAttributes($dbCon)->global->domain_key);
+        }
+
         $this->syncSalesOrder->setDBConnection($dbCon);
-        $this->syncSalesOrder->setEndPoint(Tools::domainKeyToEndpoint($order->getAttributes($dbCon)->global->domain_key));
+        $this->syncSalesOrder->setEndPoint($endPoint);
         $this->syncSalesOrder->setInEdit($inEdit);
         $this->syncSalesOrder->setOrder($order);
         $this->syncSalesOrder->setOrderLines($order->getOrdersLiness(null, $dbCon));

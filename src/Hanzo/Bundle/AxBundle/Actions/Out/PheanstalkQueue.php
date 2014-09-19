@@ -103,13 +103,21 @@ class PheanstalkQueue
             throw new OrderAlreadyInQueueException('The order #'.$order->getId().' is already in the queue. It was added @ '.date('Y-m-d H:i:s', $ts));
         }
 
-        $attributes = $order->getAttributes($this->dbConn);
-        $paymentId = isset($attributes->payment->transact)
-            ? $attributes->payment->transact
-            : ''
-        ;
+        if ($order->getPaymentTransactionId()) {
+            $paymentId = $order->getPaymentTransactionId();
+        } else {
+            $attributes = $order->getAttributes($this->dbConn);
+            $paymentId  = isset($attributes->payment->transact)
+                ? $attributes->payment->transact
+                : ''
+            ;
+        }
 
-        $endPoint = Tools::domainKeyToEndpoint($order->getAttributes($this->dbConn)->global->domain_key);
+        if ($order->getEndPoint()) {
+            $endPoint = $order->getEndPoint();
+        } else {
+            $endPoint = Tools::domainKeyToEndpoint($order->getAttributes($this->dbConn)->global->domain_key);
+        }
 
         $data = json_encode([
             'action'      => 'delete',
