@@ -296,6 +296,76 @@ class OrdersController extends CoreController
         ));
     }
 
+
+    /**
+     * @param  int      $orderId
+     * @param  int      $state
+     * @return Response
+     * @throws Exception
+     * @throws \Hanzo\Bundle\AxBundle\Actions\Out\OrderAlreadyInQueueException
+     * @throws \PropelException
+     */
+    public function resendFailedEntryAction($orderId, $state)
+    {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+
+        $log = OrdersSyncLogQuery::create()
+            ->filterByState($state)
+            ->filterByOrdersId($orderId)
+            ->findOne($this->getDbConnection());
+
+        if (!$log instanceof OrdersSyncLog) {
+            $this->get('session')->getFlashBag()->add('notice', 'Den entry findes ikke...');
+            return $this->redirect($this->generateUrl('admin'));
+        }
+
+        $jobData = unserialize($log->getContent());
+
+        $log->delete($this->getDbConnection());
+
+        if (empty($jobData['action'])) {
+            $this->get('session')->getFlashBag()->add('notice', 'Kan kun sende "nye" fejl der er genereret efter skiftet til kø systemet.');
+            return $this->redirect($this->generateUrl('admin'));
+        }
+
+        $jobMethod = $jobData['action'];
+
+        switch ($jobMethod) {
+            case 'delete':
+                $order = new Orders();
+                $order->setId($jobData['order_id']);
+                $order->setDBConnection($this->getDbConnection());
+                $order->setEndPoint($jobData['end_point']);
+                $order->setPaymentTransactionId($jobData['payment_id']);
+                $order->setCustomersId($jobData['customer_id']);
+
+                $jobId = $this->container->get('ax.pheanstalk_queue')->appendDeleteOrder($order);
+                break;
+            case 'send':
+                $order = OrdersQuery::create()
+                    ->findOneById($orderId, $this->getDbConnection());
+
+                $jobId = $this->container->get('ax.pheanstalk_queue')->appendSendOrder($order, $jobData['order_in_edit']);
+                break;
+        }
+
+        $message = sprintf('Ordren #%d er nu lagt i (%s) kø med jobnummer #%d', $orderId, $jobMethod, $jobId);
+
+        if ('json' === $this->getFormat()) {
+            return $this->json_response(array(
+                'status'  => true,
+                'message' => $message
+            ));
+        }
+
+        $this->container->get('session')->getFlashBag()->add('notice', $message);
+        return $this->redirect($this->generateUrl('admin_orders_ax_qeueu'));
+    }
+
+
+
     public function resyncAction($order_id)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
@@ -540,8 +610,7 @@ class OrdersController extends CoreController
      */
     public function viewDeadAction(Request $request)
     {
-        $deadOrderBuster = $this->get('deadorder_manager');
-        $orders = $deadOrderBuster->getOrders(null);
+        $orders = $this->get('deadorder_manager')->getOrders(null);
 
         foreach ($orders as $order) {
             $order->statemessage = Orders::$state_message_map[$order->getState()];
