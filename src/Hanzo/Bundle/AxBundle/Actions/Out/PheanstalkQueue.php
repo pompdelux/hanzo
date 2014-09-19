@@ -42,6 +42,7 @@ class PheanstalkQueue
         $this->pheanstalk = $pheanstalk;
     }
 
+
     /**
      * @param null|\PropelPDO $dbConn
      */
@@ -49,6 +50,7 @@ class PheanstalkQueue
     {
         $this->dbConn = $dbConn;
     }
+
 
     /**
      * Append an order to the queue and queue log.
@@ -149,18 +151,36 @@ class PheanstalkQueue
         return false;
     }
 
+
     /**
      * Remove an entry from the
-     * @param  int $order_id
+     * @param  int $orderId
      * @return int
      * @throws \Exception
      */
-    public function removeFromQueryLog($order_id)
+    public function removeFromQueryLog($orderId)
     {
         return OrdersToAxQueueLogQuery::create()
-            ->filterByOrdersId($order_id)
+            ->filterByOrdersId($orderId)
             ->delete($this->dbConn);
     }
+
+
+    /**
+     * Delete a job from the beanstalk queue
+     *
+     * @param $jobId
+     * @return mixed
+     */
+    public function removeFromQuery($jobId)
+    {
+        if ($job = $this->pheanstalk->peek($jobId)) {
+            return $this->pheanstalk->delete($job);
+        }
+
+        return false;
+    }
+
 
     /**
      * Add to queue log.
