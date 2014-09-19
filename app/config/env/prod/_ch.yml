@@ -37,4 +37,7 @@ consignor:
 google:
     analytics_code:    UA-1793665-8
     conversion_id:     972329147
-    site_verification: "3fafy3BakvvcWFWLva7D16MtGZfhuqfx5Bt32sjGms4"
+    site_verification:
+        - "3fafy3BakvvcWFWLva7D16MtGZfhuqfx5Bt32sjGms4"
+        - "QSPLT5CPgnZKHXMZ_UlD0FnCBB0VeyCuQT3uV9YW2_s" # Heinrich
+        - "Ge0BAo7GXDHJnjyKgUAwDITI6qgHiUflWHeWSWHUZUs" # Katrine
