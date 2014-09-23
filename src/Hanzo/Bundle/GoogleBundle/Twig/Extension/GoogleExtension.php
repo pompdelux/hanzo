@@ -78,7 +78,7 @@ class GoogleExtension extends \Twig_Extension
 ga('require', 'ecommerce');
 ga('ecommerce:addTransaction', {
     'id'          : '{$order['id']}',
-    'affiliation' : '{$order['store_name']}'',
+    'affiliation' : '{$order['store_name']}',
     'revenue'     : '{$order['total']}',
     'shipping'    : '{$order['shipping']}',
     'tax'         : '{$order['tax']}',
