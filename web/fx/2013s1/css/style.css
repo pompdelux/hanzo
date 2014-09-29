@@ -2839,6 +2839,7 @@ nav.main-menu > ul > li > ul.on, nav.main-menu > ul > li:hover > ul {
   z-index: 150;
 }
 nav.main-menu > ul > li.last:hover > ul.floaded-right {
+  margin-left: -70px;
   left: initial;
   right: 0;
 }

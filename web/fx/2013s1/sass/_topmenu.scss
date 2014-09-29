@@ -23,7 +23,7 @@ nav.main-menu {
     float: left;
     width: auto;
     position: relative;
-    // Hover effect on submenus. .on class are used on touch devices.
+    // Hover effect on sub-menus. .on class are used on touch devices.
     > ul.on,
     &:hover > ul {
       left: 0;
@@ -31,6 +31,7 @@ nav.main-menu {
       z-index: 150;
     }
     &.last:hover > ul.floaded-right {
+      margin-left: -70px;
       left: initial;
       right: 0;
     }
