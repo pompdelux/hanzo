@@ -82,11 +82,11 @@ Wenden Sie sich bitte an den Kundendienst von GFG Finanz: 06131-9075259<br>Bei a
       </trans-unit>
       <trans-unit id="bank_account_no" approved="no">
         <source>bank_account_no</source>
-        <target>Bankkontonummer</target>
+        <target>IBAN-Nummer</target>
       </trans-unit>
       <trans-unit id="bank_id" approved="no">
         <source>bank_id</source>
-        <target>BLZ</target>
+        <target>BIC-Nummer</target>
       </trans-unit>
       <trans-unit id="json.bank_account_no.to_long" approved="no">
         <source>json.bank_account_no.to_long</source>
