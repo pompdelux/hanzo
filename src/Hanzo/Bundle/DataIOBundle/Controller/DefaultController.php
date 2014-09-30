@@ -1,4 +1,4 @@
-<?php /* vim: set sw=4: */
+<?php
 
 namespace Hanzo\Bundle\DataIOBundle\Controller;
 
@@ -15,15 +15,29 @@ use Hanzo\Model\HelpdeskDataLog;
 use Hanzo\Bundle\DataIOBundle\Events;
 use Hanzo\Bundle\DataIOBundle\FilterUpdateEvent;
 
+/**
+ * Class DefaultController
+ *
+ * @package Hanzo\Bundle\DataIOBundle
+ */
 class DefaultController extends CoreController
 {
+    /**
+     * Check stuff
+     *
+     * @param Request $request Request object
+     *
+     * @return Response
+     * @throws \Exception
+     * @throws \PropelException
+     */
     public function checkAction(Request $request)
     {
         $uniqid = '';
         if ('POST' === $request->getMethod()) {
             $log = new HelpdeskDataLog();
             $log->setKey($_POST['uniqid']);
-            $log->setCreatedAt(date());
+            $log->setCreatedAt(time());
 
             unset($_POST['uniqid']);
 
@@ -36,13 +50,13 @@ class DefaultController extends CoreController
                 $session_data[$key] = $value;
             }
 
-            $log->setData(json_encode(array(
+            $log->setData(json_encode([
                 'browser_data'     => $_POST,
                 'cookie_data'      => $_COOKIE,
                 'session_data'     => $session_data,
                 'current_order_id' => OrdersPeer::getCurrent()->getId(),
                 'current_user_id'  => CustomersPeer::getCurrent()->getId(),
-            )));
+            ]));
 
             $log->save();
 
