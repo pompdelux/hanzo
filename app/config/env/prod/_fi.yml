@@ -26,7 +26,7 @@ consignor:
     shipment_server:
         options:
               actor: 144
-              product_concept_id: 957
+              product_concept_id: 560
               service_id: ""
               key: PompDeluxFI
               to_address:
