@@ -305,7 +305,15 @@
                                 $('.item-count', $mega_basket).text(response.data.match(item_count_regex));
                                 $('body').trigger('basket_product_added');
                             } else {
-                                dialoug.slideNotice(response.message, undefined, '#secondary-links');
+
+                                // response.message
+                                var msg = '<img src="' + response.latest.basket_image + '" height="100" width="57" alt="">'+
+                                          '<p>'+Translator.trans('basket.latest.added')+':</p>'+
+                                          '<p>'+$('h1.title').text()+'</p>'+
+                                          '<p>'+Translator.trans('quickorder.choose.size')+': '+$('select.size', $form).val()+'</p>'+
+                                          '<p>'+Translator.trans('quickorder.choose.color')+': '+$('select.color', $form).val()+'</p>';
+
+                                _showAddToBasket(msg);
                             }
                         }
                         _resetForm();
@@ -324,6 +332,8 @@
         /**
          * track products the visitor has last seen.
          * currently we track the latest 10 products.
+         *
+         * @public
          */
         pub.initLastSeen = function () {
             if ($('#body-product input#master').length) {
@@ -366,6 +376,12 @@
         };
 
 
+        /**
+         * Reset the purchase form.
+         *
+         * @param {string} section
+         * @private
+         */
         var _resetForm = function (section) {
             var $this = $('form.buy');
 
@@ -400,6 +416,11 @@
             }
         };
 
+        /**
+         * Reset the color selection part of the form.
+         *
+         * @private
+         */
         var _resetFormColor = function () {
             var $this = $('form.buy');
 
@@ -419,10 +440,10 @@
         };
 
         /**
-         * Function to change color on images. Changes both small images, and color
-         * buttons.
+         * Function to change color on images. Changes both small images, and color buttons.
          *
-         * @param  string color The color to change to. Default the current color.
+         * @param {string} color The color to change to. Default the current color.
+         * @private
          */
         var _changeColor = function (color) {
             if (typeof color === 'undefined') {
@@ -434,6 +455,33 @@
             $('.product-color.current').removeClass('current');
             $('.product-color.color-' + color).addClass('current');
         };
+
+
+        /**
+         * Show the animated "added to basket" message.
+         *
+         * @param {string} html
+         * @private
+         */
+        var _showAddToBasket = function(html) {
+            var $target = $('#new-basket-item');
+
+            $target.css({
+                'width': $target.outerWidth() + 60
+            });
+
+            $('div', $target).html(html);
+
+            var slideWidth = $target.outerWidth() - 65;
+
+            $target.animate({
+                right : slideWidth
+            }).delay(4000).animate({
+                right : 29,
+                width : 210
+            });
+        };
+
 
         return pub;
     })(jQuery);
