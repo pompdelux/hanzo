@@ -55,7 +55,6 @@ class GothiaApiCallResponse
 
     /**
      * isError
-     * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function isError()
