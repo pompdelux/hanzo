@@ -30,9 +30,9 @@ consignor:
               service_id: ""
               key: PompDeluxNO
               to_address:
-                  name: "POMPdeLUX c/o Tollpost"
-                  address_line_1: "Globe Postens Godssenter"
-                  postal_code: "0668"
+                  name: "POMPdeLUX C/O"
+                  address_line_1: "Postens godssenter"
+                  postal_code: "NO-0060"
                   city: "Oslo"
                   country_iso2: NO
                   email: mail@pompdelux.no
