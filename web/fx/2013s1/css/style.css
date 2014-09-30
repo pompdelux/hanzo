@@ -942,6 +942,27 @@ ul.breadcrumb li.last i.arrow-right {
   color: #444;
 }
 
+#new-basket-item {
+  position: absolute;
+  top: -6px;
+  right: 29px;
+  width: 200px;
+  height: 95px;
+  z-index: -1;
+  background: #c0c0c0;
+  padding: 5px 10px 0;
+  border: 1px solid #c0c0c0;
+  -webkit-border-radius: 0 0 0 20px;
+  -moz-border-radius: 0 0 0 20px;
+  border-radius: 0 0 0 20px;
+}
+#new-basket-item img {
+  float: left;
+  height: 85px;
+  width: auto;
+  margin-right: 10px;
+}
+
 .category-17 .main header {
   background: #d2c3c6;
   background: url("/fx/images/headers/Top_Kjoler_955x200.jpg") no-repeat top center;
@@ -1156,8 +1177,9 @@ div.panes > div {
 }
 
 .zoom {
-  display: inline-block;
+  display: block;
   margin-top: 20px;
+  text-align: center;
 }
 .zoom .sprite {
   background-position: 0 -1672px;

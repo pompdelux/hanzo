@@ -864,8 +864,9 @@ div.panes > div {
 }
 
 .zoom {
-  display: inline-block;
+  display: block;
   margin-top: 20px;
+  text-align: center;
 }
 .zoom .sprite {
   background-position: 0 -1672px;
