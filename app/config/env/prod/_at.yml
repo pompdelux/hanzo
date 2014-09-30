@@ -26,13 +26,13 @@ consignor:
               service_id: ""
               key: PDLAT
               to_address:
-                  name: "POMPdeLUX De GmbH"
-                  address_line_1: "Dammtorstraße 12"
-                  postal_code: "20354"
-                  city: "Hamburg Ust-IdNr."
-                  country_iso2: DE
-                  email: mailde@pompdelux.com
-                  phone: "040-3571 5072"
+                  name: "POMPdeLUX A GmbH"
+                  address_line_1: "Paketfach 10"
+                  postal_code: "6965"
+                  city: "Wolfurt-Bahnhof"
+                  country_iso2: AT
+                  email: mailat@pompdelux.com
+                  phone: "01/5350375"
 
 google:
     analytics_code:    UA-1793665-9
