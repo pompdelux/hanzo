@@ -294,11 +294,11 @@ class GothiaDEController extends CoreController
                 case 'DE':
                     /**
                      * Deutchland:
-                     *   Bank account <= 10
+                     *   Bank account <= 34
                      *   Bank id       =  8
                      */
 
-                    if ((strlen($bankAccountNo) > 10 || !is_numeric($bankAccountNo))) {
+                    if ((strlen($bankAccountNo) > 34 || !is_numeric($bankAccountNo))) {
                         return $this->json_response([
                             'status'  => false,
                             'message' => $translator->trans('json.bank_account_no.to_long', [], 'gothia')
