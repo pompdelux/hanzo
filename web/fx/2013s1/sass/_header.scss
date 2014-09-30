@@ -346,10 +346,33 @@ ul.breadcrumb {
 #body-pensio-wait .main header{
 	background: #d2c3c6;
 	background: url('/fx/images/headers/Kategori_Min_side_960x100.jpg') no-repeat top center;
-	hgroup{
+
+    hgroup {
 		h1,h2,h3,h4,h5,h6,a,p{
 			color: #444;
 		}
 	}
 }
 
+#new-basket-item {
+    position: absolute;
+    top: -6px;
+    right: 29px;
+    width: 200px;
+    height: 95px;
+    z-index: -1;
+    background: #c0c0c0;
+    padding: 5px 10px 0;
+
+    border: 1px solid #c0c0c0;
+    -webkit-border-radius: 0 0 0 20px;
+       -moz-border-radius: 0 0 0 20px;
+            border-radius: 0 0 0 20px;
+
+    img {
+        float: left;
+        height: 85px;
+        width: auto;
+        margin-right: 10px;
+    }
+}
