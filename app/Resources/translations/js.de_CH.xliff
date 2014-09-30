@@ -406,6 +406,10 @@
                 <source>wishlist.select.color</source>
                 <target>Farve</target>
             </trans-unit>
+            <trans-unit id="basket.latest.added">
+                <source>basket.latest.added</source>
+                <target>Netop tilføjet</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
