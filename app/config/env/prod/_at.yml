@@ -22,7 +22,7 @@ consignor:
     shipment_server:
         options:
               actor: 206
-              product_concept_id: 94
+              product_concept_id: 1904
               service_id: ""
               key: PDLAT
               to_address:
