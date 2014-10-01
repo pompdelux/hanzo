@@ -295,16 +295,17 @@ class GothiaDEController extends CoreController
                     /**
                      * Deutchland:
                      *   Bank account <= 34
-                     *   Bank id       =  8
+                     *   Bank id       = 11
                      */
 
-                    if ((strlen($bankAccountNo) > 34 || !is_numeric($bankAccountNo))) {
+                    if (!preg_match('/^[a-z0-9]{1,34}$/i', $bankAccountNo)) {
                         return $this->json_response([
                             'status'  => false,
                             'message' => $translator->trans('json.bank_account_no.to_long', [], 'gothia')
                         ]);
                     }
-                    if ((strlen($bankId) != 8 || !is_numeric($bankId))) {
+
+                    if (!preg_match('/^[a-z0-9]{1,11}$/i', $bankId)) {
                         return $this->json_response([
                             'status'  => false,
                             'message' => $translator->trans('json.bank_id.to_long', [], 'gothia')
@@ -320,7 +321,7 @@ class GothiaDEController extends CoreController
             $order->save();
         }
 
-        if ( $order->getState() > Orders::STATE_PRE_PAYMENT ) {
+        if ($order->getState() > Orders::STATE_PRE_PAYMENT) {
             return $this->json_response([
                 'status'  => false,
                 'message' => $translator->trans('json.order.state_pre_payment.locked', [], 'gothia'),
