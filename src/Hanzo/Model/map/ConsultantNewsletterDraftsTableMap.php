@@ -58,4 +58,18 @@ class ConsultantNewsletterDraftsTableMap extends TableMap
         $this->addRelation('Customers', 'Hanzo\\Model\\Customers', RelationMap::MANY_TO_ONE, array('consultants_id' => 'id', ), null, null);
     } // buildRelations()
 
+    /**
+     *
+     * Gets the list of behaviors registered for this table
+     *
+     * @return array Associative array (name => parameters) of behaviors
+     */
+    public function getBehaviors()
+    {
+        return array(
+            'event' =>  array (
+),
+        );
+    } // getBehaviors()
+
 } // ConsultantNewsletterDraftsTableMap

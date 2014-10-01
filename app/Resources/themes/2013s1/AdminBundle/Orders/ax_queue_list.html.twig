@@ -1,0 +1,46 @@
+{% extends '::adminbase.html.twig' %}
+{% use '::admin-subnav.html.twig' %}
+
+{% block subnav_content %}
+    <ul class="nav navbar-nav">
+        <li><a href="{{ path('admin_orders_ax_qeueu') }}">Ordre i kø til AX</a></li>
+        <li><a href="{{ path('admin_orders') }}">Ordre</a></li>
+        <li><a href="{{ path('admin_customers') }}">Kunder</a></li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    {% if is_granted('ROLE_ADMIN') %}
+        {% block admin_subnav %}
+            {{ parent() }}
+        {% endblock %}
+    {% endif %}
+
+    <h1>Ordre kø (mod ax)</h1>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Job ID</th>
+            <th>Ordre ID</th>
+            <th>Gennemløb nr</th>
+            <th>Start tidspunkt</th>
+            <th></th>
+        </tr>
+        </thead>
+        {% for item in items %}
+            <tr>
+                <td>{{ item.getQueueId }}</td>
+                <td>{{ item.getOrdersId }}</td>
+                <td>{{ item.getIteration }}</td>
+                <td>{{ item.getCreatedAt }}</td>
+                <td><a href="{{ path('admin_orders_delete', {'order_id': item.getOrdersId, 'goto': 'ax-queue'}) }}" rel="confirm" data-confirm-message="Er du sikker på du vil slette ordren?"><span class="glyphicon glyphicon-remove-circle"></span></a></td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Køen er tom.</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

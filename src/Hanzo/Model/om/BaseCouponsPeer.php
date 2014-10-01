@@ -9,6 +9,8 @@ use \PDOStatement;
 use \Propel;
 use \PropelException;
 use \PropelPDO;
+use Glorpen\Propel\PropelBundle\Dispatcher\EventDispatcherProxy;
+use Glorpen\Propel\PropelBundle\Events\PeerEvent;
 use Hanzo\Model\Coupons;
 use Hanzo\Model\CouponsPeer;
 use Hanzo\Model\OrdersToCouponsPeer;
@@ -823,3 +825,4 @@ abstract class BaseCouponsPeer
 //
 BaseCouponsPeer::buildTableMap();
 
+EventDispatcherProxy::trigger(array('construct','peer.construct'), new PeerEvent('Hanzo\Model\om\BaseCouponsPeer'));

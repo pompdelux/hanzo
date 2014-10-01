@@ -16,21 +16,6 @@ use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 
 use Hanzo\Model\om\BaseOrders;
-use Hanzo\Model\OrdersLines;
-use Hanzo\Model\OrdersLinesPeer;
-use Hanzo\Model\OrdersLinesQuery;
-use Hanzo\Model\OrdersStateLog;
-use Hanzo\Model\OrdersAttributes;
-use Hanzo\Model\OrdersAttributesPeer;
-use Hanzo\Model\OrdersAttributesQuery;
-use Hanzo\Model\OrdersVersions;
-use Hanzo\Model\OrdersVersionsQuery;
-use Hanzo\Model\OrdersDeletedLog;
-use Hanzo\Model\OrdersDeletedLogQuery;
-use Hanzo\Model\ShippingMethods;
-use Hanzo\Model\Customers;
-use Hanzo\Model\CustomersPeer;
-use Hanzo\Model\AddressesPeer;
 
 /**
  * Skeleton subclass for representing a row from the 'orders' table.
@@ -74,8 +59,87 @@ class Orders extends BaseOrders
         self::STATE_SHIPPED         => 'Order shipped/done',
     ];
 
+    /**
+     * Used purely for info in the state log, and is here only for reference.
+     */
+    const INFO_STATE_IN_QUEUE                = 'Order in AX transfer queue';
+    const INFO_STATE_EDIT_STARTED            = 'Edit started';
+    const INFO_STATE_EDIT_CANCLED_BY_USER    = 'Edit cancled by user';
+    const INFO_STATE_EDIT_CANCLED_BY_CLEANUP = 'Edit cancled by cleanup';
+    const INFO_STATE_EDIT_DONE               = 'Edit done';
+
     protected $ignore_delete_constraints = false;
+
+
+    /**
+     * Unmapped payment id, used in ax sync
+     *
+     * @var int
+     */
+    private $paymentTransactionId;
+
+    /**
+     * Unmapped endpoint, used in ax sync
+     *
+     * @var string
+     */
+    private $endPoint;
+
+
+    /**
+     * @var \PDO|\PropelPDO
+     */
     protected $pdo_con = null;
+
+    /**
+     * Get DB Connection
+     *
+     * @return null|\PDO|\PropelPDO
+     */
+    public function getDBConnection()
+    {
+        return $this->pdo_con;
+    }
+
+    /**
+     * Set DB Connection
+     *
+     * @param \PDO|\PropelPDO $connection
+     */
+    public function setDBConnection($connection)
+    {
+        $this->pdo_con = $connection;
+    }
+
+    /**
+     * Set payment transaction id, note this is used in ax "delete order" actions
+     *
+     * @param int $id
+     */
+    public function setPaymentTransactionId($id)
+    {
+        $this->paymentTransactionId = $id;
+    }
+
+    /**
+     * Get payment transaction id, note this is used in ax "delete order" actions
+     *
+     * @return int
+     */
+    public function getPaymentTransactionId()
+    {
+        return $this->paymentTransactionId;
+    }
+
+    public function setEndPoint($v)
+    {
+        $this->endPoint = $v;
+    }
+
+    public function getEndPoint()
+    {
+        return $this->endPoint;
+    }
 
     /**
      * @param Translator $translator
@@ -83,8 +147,24 @@ class Orders extends BaseOrders
      */
     public function getDeliveryTitle(Translator $translator = null)
     {
-        return $this->translateNameTitle($translator, parent::getDeliveryTitle());
+        $title = parent::getDeliveryTitle();
+        if ('' == $title) {
+            return '';
+        }
+
+        return $this->translateNameTitle($translator, $title);
     }
+
+
+    /**
+     * @param Translator $translator
+     * @return string
+     */
+    public function getDeliveryFullName(Translator $translator = null)
+    {
+        return trim($this->getDeliveryTitle().' '.$this->getDeliveryFirstName().' '.$this->getDeliveryLastName());
+    }
+
 
     /**
      * @param Translator $translator
@@ -140,8 +220,8 @@ class Orders extends BaseOrders
         $data['order'] = $this->toArray();
         unset($data['order']['Id']);
 
-        $data['products'] = $this->getOrdersLiness(Propel::getConnection(null, Propel::CONNECTION_WRITE))->toArray();
-        $data['attributes'] = $this->getOrdersAttributess(Propel::getConnection(null, Propel::CONNECTION_WRITE))->toArray();
+        $data['products'] = $this->getOrdersLiness($this->getDBConnection())->toArray();
+        $data['attributes'] = $this->getOrdersAttributess($this->getDBConnection())->toArray();
 
         $version_ids = $this->getVersionIds();
 
@@ -176,7 +256,7 @@ class Orders extends BaseOrders
             ->select('VersionId')
             ->filterByOrdersId($this->getId())
             ->orderByVersionId('desc')
-            ->find(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+            ->find($this->getDBConnection())
         ;
 
         $ids = [];
@@ -191,8 +271,7 @@ class Orders extends BaseOrders
     /**
      * delete a version, note you cannot delete the current version
      *
-     * @param  int $version_id the version you wich to delete
-     * @return boolean
+     * @param  int $version_id the version you which to delete
      */
     public function deleteVersion($version_id)
     {
@@ -200,11 +279,10 @@ class Orders extends BaseOrders
             throw new OutOfBoundsException('Invalid version id');
         }
 
-        return OrdersVersionsQuery::create()
+        OrdersVersionsQuery::create()
             ->filterByOrdersId($this->getId())
             ->findOneByVersionId($version_id)
-            ->delete()
-        ;
+            ->delete();
     }
 
 
@@ -225,7 +303,7 @@ class Orders extends BaseOrders
         $version = OrdersVersionsQuery::create()
             ->filterByOrdersId($this->getId())
             ->filterByVersionId($version_id)
-            ->findOne(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+            ->findOne($this->getDBConnection())
         ;
 
         if (!$version instanceof OrdersVersions) {
@@ -248,7 +326,7 @@ class Orders extends BaseOrders
         $this->setOrdersLiness($collection);
 
         OrdersAttributesQuery::create()
-            ->findByOrdersId($this->getId(), Propel::getConnection(null, Propel::CONNECTION_WRITE))
+            ->findByOrdersId($this->getId(), $this->getDBConnection())
             ->delete()
         ;
         $this->clearOrdersAttributess();
@@ -290,7 +368,7 @@ class Orders extends BaseOrders
         $version = OrdersVersionsQuery::create()
             ->filterByOrdersId($this->getId())
             ->filterByVersionId($version_id)
-            ->findOne(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+            ->findOne($this->getDBConnection())
         ;
 
         if (!$version instanceof OrdersVersions) {
@@ -341,7 +419,7 @@ class Orders extends BaseOrders
             ->filterByOrdersId($this->getId())
             ->filterByVersionId($this->getVersionId(), \Criteria::LESS_THAN)
             ->orderByVersionId('desc')
-            ->findOne(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+            ->findOne($this->getDBConnection())
         ;
         $this->toVersion($version);
 
@@ -364,7 +442,7 @@ class Orders extends BaseOrders
     public function setOrderLineQty($product, $quantity, $exact = false, $date = '1970-01-01')
     {
         // first update existing product lines, if any
-        $lines = $this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
+        $lines = $this->getOrdersLiness(null, $this->getDBConnection());
 
         if ($this->getState() !== self::STATE_BUILDING) {
             $this->setState(self::STATE_BUILDING);
@@ -443,7 +521,7 @@ class Orders extends BaseOrders
         $line = OrdersLinesQuery::create()
             ->filterByType($type)
             ->filterByOrdersId($this->getId())
-            ->findOne(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+            ->findOne($this->getDBConnection())
         ;
 
         if (!$line instanceof OrdersLines) {
@@ -470,7 +548,7 @@ class Orders extends BaseOrders
     public function getOrderLineShipping($conn = null)
     {
         $conn = is_null($conn)
-            ? Propel::getConnection(null, Propel::CONNECTION_WRITE)
+            ? $this->getDBConnection()
             : $conn;
 
         return OrdersLinesQuery::create()
@@ -490,7 +568,7 @@ class Orders extends BaseOrders
     public function getOrderLineDiscount($conn = null)
     {
         $conn = is_null($conn)
-            ? Propel::getConnection(null, Propel::CONNECTION_WRITE)
+            ? $this->getDBConnection()
             : $conn;
 
         return OrdersLinesQuery::create()
@@ -569,7 +647,7 @@ class Orders extends BaseOrders
                 $query->filterByType('product');
             }
 
-            $lines = $query->find(Propel::getConnection(null, Propel::CONNECTION_WRITE));
+            $lines = $query->find($this->getDBConnection());
         }
 
         $total = 0;
@@ -603,7 +681,7 @@ class Orders extends BaseOrders
                 $query->filterByType('product');
             }
 
-            $lines = $query->find(Propel::getConnection(null, Propel::CONNECTION_WRITE));
+            $lines = $query->find($this->getDBConnection());
         }
 
         $total = 0;
@@ -624,7 +702,7 @@ class Orders extends BaseOrders
      */
     public function setAttribute($key, $ns, $value)
     {
-        $attributes = $this->getOrdersAttributess(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
+        $attributes = $this->getOrdersAttributess(null, $this->getDBConnection());
 
         // Update existing attributes
         foreach ($attributes as $index => $attribute) {
@@ -702,7 +780,7 @@ class Orders extends BaseOrders
         $fee = OrdersLinesQuery::create()
             ->filterByOrdersId($this->getId())
             ->filterByType('payment.fee')
-            ->findOne(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+            ->findOne($this->getDBConnection())
         ;
 
         if (!$fee instanceof OrdersLines) {
@@ -731,7 +809,7 @@ class Orders extends BaseOrders
         $line = OrdersLinesQuery::create()
             ->filterByType('payment.fee')
             ->filterByOrdersId($this->getId())
-            ->findOne(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+            ->findOne($this->getDBConnection())
         ;
 
         if ($line instanceof OrdersLines) {
@@ -753,7 +831,7 @@ class Orders extends BaseOrders
         $line = OrdersLinesQuery::create()
             ->filterByType('shipping.fee')
             ->filterByOrdersId($this->getId())
-            ->findOne(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+            ->findOne($this->getDBConnection())
         ;
 
         if ($line instanceof OrdersLines) {
@@ -776,7 +854,7 @@ class Orders extends BaseOrders
      */
     public function setOrderLine($type, $id, $name, $price = 0.00, $vat = 0.00, $quantity = 1)
     {
-        $lines = $this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
+        $lines = $this->getOrdersLiness(null, $this->getDBConnection());
 
         foreach ($lines as $index => $line) {
             if ($line->getType() == $type) {
@@ -911,7 +989,7 @@ class Orders extends BaseOrders
         return OrdersLinesQuery::create()
             ->filterByOrdersId($this->getId())
             ->filterByType('payment.fee')
-            ->delete(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+            ->delete($this->getDBConnection())
         ;
     }
 
@@ -982,7 +1060,7 @@ class Orders extends BaseOrders
         $attributes = OrdersAttributesQuery::create()
             ->filterByOrdersId($this->getId())
             ->filterByNs('attachment')
-            ->find(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+            ->find($this->getDBConnection())
         ;
 
         $attachments = array();
@@ -995,8 +1073,8 @@ class Orders extends BaseOrders
 
     public function getAttributes($con = null)
     {
-        if ($this->pdo_con) {
-            $con = $this->pdo_con;
+        if ($this->getDBConnection()) {
+            $con = $this->getDBConnection();
         }
 
         $attributes = new \stdClass();
@@ -1058,7 +1136,7 @@ class Orders extends BaseOrders
     public function hasProduct($product_id)
     {
         $isInt = preg_match('/^[0-9]+$/', $product_id);
-        foreach ($this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE)) as $line) {
+        foreach ($this->getOrdersLiness(null, $this->getDBConnection()) as $line) {
             if ($isInt) {
                 if ($line->getProductsId() == $product_id) {
                     return true;
@@ -1072,73 +1150,6 @@ class Orders extends BaseOrders
         }
 
         return false;
-    }
-
-    /**
-     * cancelPayment
-     *
-     * Cancels the payment for the specific order, so you don't have to know which payment method was used
-     *
-     * @return bool
-     * @throws Exception
-     */
-    public function cancelPayment()
-    {
-        if ( ($this->getState() > self::STATE_PENDING) && (false === $this->getIgnoreDeleteConstraints()) ) {
-            throw new Exception('Not possible to cancel payment on an order in state "'.$this->getState().'"');
-        }
-
-        $paymentMethod = $this->getBillingMethod();
-
-        // hf@bellcom.dk, 12-jun-2012: handle old junk -->>
-        switch ($paymentMethod)
-        {
-            case 'DIBS Payment Services (Credit Ca':
-            case 'DIBS Betaling (Kredittkort)':
-                $paymentMethod = 'dibs';
-                break;
-            case 'Gothia':
-                $paymentMethod = 'gothia';
-                break;
-        }
-        // <<-- hf@bellcom.dk, 12-jun-2012: handle old junk
-
-        if (empty($paymentMethod)) {
-            return;
-        }
-
-        try {
-            $api = Hanzo::getInstance()->container->get('payment.'.$paymentMethod.'api');
-        } catch (Exception $e) {
-            return;
-        }
-
-        $response = null;
-        $customer = CustomersQuery::create()->findOneById($this->getCustomersId(), $this->pdo_con);
-        if (null !== $customer) {
-            $response = $api->call()->cancel( $customer, $this );
-        }
-
-        if (is_object($response) && $response->isError()) {
-            $debug = array();
-            $msg = 'Could not cancel order';
-
-            if (in_array($paymentMethod, ['gothia', 'gothiade'])) {
-              $debug['TransactionId'] = $response->transactionId;
-              $msg .= ' at Gothia (Transaction ID: '. $response->transactionId .')';
-            }
-
-            Tools::debug( 'Cancel payment failed', __METHOD__, ['PaymentMethod' => $paymentMethod, $debug]);
-            throw new Exception( $msg );
-        }
-
-        if (!is_object($response)) {
-            $msg = 'Could not cancel order #'.$this->getId();
-            Tools::debug('Cancel payment failed, response is not an object', __METHOD__, ['PaymentMethod' => $paymentMethod]);
-            throw new Exception($msg);
-        }
-
-        return $response;
     }
 
 
@@ -1158,7 +1169,7 @@ class Orders extends BaseOrders
         $result      = $hanzo->get('HD.expected_delivery_date');
         $expected_at = is_null($result) ? '' : $result;
 
-        foreach ($this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE)) as $line) {
+        foreach ($this->getOrdersLiness(null, $this->getDBConnection()) as $line) {
             $date = $line->getExpectedAt('Ymd');
             if (($date > $now) && ($date > $latest)) {
                 $latest = $date;
@@ -1297,74 +1308,10 @@ class Orders extends BaseOrders
 
 
     /**
-     * @param  PropelPDO $con
-     * @return bool
-     * @throws Exception
-     */
-    public function preSave(PropelPDO $con = null)
-    {
-        if (!$this->getSessionId()) {
-            $this->setSessionId(Hanzo::getInstance()->getSession()->getId());
-        }
-
-        if ($this->isNew()) {
-            $hanzo = Hanzo::getInstance();
-            $this->setCurrencyCode($hanzo->get('core.currency'));
-            $this->setLanguagesId($hanzo->get('core.language_id'));
-            $this->setPaymentGatewayId(Tools::getPaymentGatewayId());
-            $this->setAttribute('domain_name', 'global', $_SERVER['HTTP_HOST']);
-            $this->setAttribute('domain_key', 'global', $hanzo->get('core.domain_key'));
-
-            if ($request = $hanzo->container->get('request')) {
-                $this->setAttribute('user_agent', 'global', $_SERVER['HTTP_USER_AGENT']);
-                $this->setAttribute('client_ip', 'global', $request->getClientIp());
-            }
-        }
-
-        // set billing address - if not already set.
-        if ('' == $this->getBillingFirstName()) {
-            $customer = CustomersPeer::getCurrent();
-            if (!$customer->isNew()) {
-                $c = new Criteria;
-                $c->add(AddressesPeer::TYPE, 'payment');
-                $address = $customer->getAddressess($c)->getFirst();
-
-                if ($address) {
-                    $this->setBillingAddress($address);
-                    $this->setPhone($customer->getPhone());
-                } else {
-                    Tools::log('Missing payment address: '.$customer->getId());
-                }
-            }
-        }
-
-        return true;
-    }
-
-
-    /**
-     * @param  PropelPDO $con
-     * @return bool|void
-     * @throws Exception
-     */
-    public function postSave(PropelPDO $con = null)
-    {
-        if (PHP_SAPI == 'cli') {
-            return true;
-        }
-
-        $session = Hanzo::getInstance()->getSession();
-
-        if (false === $session->has('order_id')) {
-            $session->set('order_id', $this->getId());
-        }
-
-        return true;
-    }
-
-
-    /**
-     * wrap delete() to cleanup payment and ax
+     * Wrap delete() to allow us to set PDO connection
+     * Never call this directly, it should _always_ be called through CoreBundle\Service\Model\OrdersService::deleteOrder
+     *
+     * @param PropelPDO|null $con
      */
     public function delete(PropelPDO $con = null)
     {
@@ -1372,83 +1319,7 @@ class Orders extends BaseOrders
             $this->pdo_con = $con;
         }
 
-        if (($this->getState() >= self::STATE_PAYMENT_OK) || $this->getIgnoreDeleteConstraints()) {
-            try {
-                $this->cancelPayment();
-                Hanzo::getInstance()->container->get('ax.out')->deleteOrder($this, $con);
-            } catch (Exception $e) {
-                // Tools::log($e->getMessage());
-
-                if ($this->getIgnoreDeleteConstraints()) {
-                    // allow delete for priority deletes
-                    $result = Hanzo::getInstance()->container->get('ax.out')->deleteOrder($this, $con);
-                    if ($result instanceof Exception) {
-                        throw $result;
-                    }
-                } else {
-                    throw $e;
-                }
-            }
-        }
-
         parent::delete($con);
-    }
-
-
-    /**
-     * log all order deletes so we can track errors, and potentially restore the order
-     *
-     * @param  PropelPDO $con pdo connection
-     * @return boolean
-     */
-    public function preDelete(PropelPDO $con = null)
-    {
-        // If the order is:
-        // - empty (new)
-        // - customers_id and email is empty
-        // we skip saving.
-        if (($this->isNew()) ||
-            (!$this->getCustomersId() && !$this->getEmail())
-        ) {
-            return true;
-        }
-
-        $data = [];
-        $data['orders'] = $this->toArray();
-        $data['orders_lines'] = $this->getOrdersLiness(null, $con)->toArray();
-        $data['orders_attributes'] = $this->getOrdersAttributess(null, $con)->toArray();
-        $data['orders_state_log'] = $this->getOrdersStateLogs(null, $con)->toArray();
-        $data['orders_versions'] = $this->getOrdersVersionss(null, $con)->toArray();
-
-        if (defined('ACTION_TRIGGER')) {
-            $trigger = 'cli';
-            $deleted_by = ACTION_TRIGGER;
-        } else {
-            $trigger = $_SERVER['REQUEST_URI'];
-            $deleted_by = 'cid: '.CustomersPeer::getCurrent()->getId();
-        }
-
-        $entry = OrdersDeletedLogQuery::create()->findOneByOrdersId($this->getId());
-        if (!$entry instanceof OrdersDeletedLog) {
-            $entry = new OrdersDeletedLog();
-            $entry->setOrdersId($this->getId());
-            $entry->setCustomersId($this->getCustomersId());
-            $entry->setName($this->getFirstName().' '.$this->getLastName());
-            $entry->setEmail($this->getEmail());
-        }
-
-        $entry->setTrigger($trigger);
-        $entry->setContent(serialize($data));
-        $entry->setDeletedBy($deleted_by);
-        $entry->setDeletedAt(time());
-
-        try {
-            $entry->save($con);
-        } catch (Exception $e) {
-            //Tools::log($e->getMessage());
-        }
-
-        return parent::preDelete($con);
     }
 
 } // Orders

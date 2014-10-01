@@ -80,6 +80,8 @@ class CategoriesTableMap extends TableMap
   'default_locale' => 'da_DK',
   'locale_alias' => '',
 ),
+            'event' =>  array (
+),
         );
     } // getBehaviors()
 

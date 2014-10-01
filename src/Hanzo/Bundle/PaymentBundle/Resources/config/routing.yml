@@ -20,11 +20,6 @@ PaymentBundle_dibs_cancel:
     pattern:  /payment/dibs/cancel
     defaults: { _controller: PaymentBundle:Default:cancel }
 
-_order_state_check:
-    pattern: /payment/dibs/state-check
-    defaults: { _controller: PaymentBundle:Dibs:stateCheck, _format: json }
-    requirements: { _format: (xml|json), _method: POST }
-
 # GOTHIA }-------------------------
 PaymentBundle_gothia_payment:
     pattern:  /payment/gothia

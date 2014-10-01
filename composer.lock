@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a2cead56a3c53c70981ef13936b6871f",
+    "hash": "b0d589b1f170362ae7b834d7e6c2c4c3",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -495,6 +495,46 @@
                 "performance"
             ],
             "time": "2014-07-11 22:42:24"
+        },
+        {
+            "name": "glorpen/propel-bundle",
+            "version": "dev-default",
+            "target-dir": "Glorpen/Propel/PropelBundle",
+            "source": {
+                "type": "hg",
+                "url": "https://bitbucket.org/glorpen/glorpenpropelbundle",
+                "reference": "6db5f1ad1e36edebeb34df59122322e6926282db"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://bitbucket.org/glorpen/glorpenpropelbundle/get/6db5f1ad1e36edebeb34df59122322e6926282db.zip",
+                "reference": "6db5f1ad1e36edebeb34df59122322e6926282db",
+                "shasum": ""
+            },
+            "require": {
+                "propel/propel-bundle": "1.*",
+                "symfony/symfony": "<3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "*"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Glorpen\\Propel\\PropelBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Arkadiusz Dzięgiel"
+                }
+            ],
+            "description": "Propel events and model extending for Symfony2.",
+            "time": "2014-03-14 12:17:23"
         },
         {
             "name": "guzzle/guzzle",
@@ -1133,6 +1173,62 @@
             "time": "2013-07-19 00:03:27"
         },
         {
+            "name": "leezy/pheanstalk-bundle",
+            "version": "2.4.1",
+            "target-dir": "Leezy/PheanstalkBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/armetiz/LeezyPheanstalkBundle.git",
+                "reference": "b1b1aa4f0bc7f2b3fad0d98b55a7f58f5f0ee424"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/armetiz/LeezyPheanstalkBundle/zipball/b1b1aa4f0bc7f2b3fad0d98b55a7f58f5f0ee424",
+                "reference": "b1b1aa4f0bc7f2b3fad0d98b55a7f58f5f0ee424",
+                "shasum": ""
+            },
+            "require": {
+                "pda/pheanstalk": ">=2.1.0,<3.0-dev",
+                "symfony/console": "~2.0",
+                "symfony/framework-bundle": ">=2.0",
+                "symfony/monolog-bridge": ">=2.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Leezy\\PheanstalkBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Thomas Tourlourat",
+                    "email": "thomas@tourlourat.com",
+                    "homepage": "http://www.armetiz.info"
+                }
+            ],
+            "description": "The LeezyPheanstalkBundle is a Symfony2 Bundle that provides a command line interface for manage the Beanstalkd workqueue server & a pheanstalk integration.",
+            "homepage": "https://github.com/armetiz/LeezyPheanstalkBundle",
+            "keywords": [
+                "asynchronous",
+                "beanstalkd",
+                "bundle",
+                "messaging",
+                "pheanstalk",
+                "queueing",
+                "symfony"
+            ],
+            "time": "2014-08-22 12:32:21"
+        },
+        {
             "name": "liip/theme-bundle",
             "version": "dev-master",
             "target-dir": "Liip/ThemeBundle",
@@ -1370,6 +1466,48 @@
                 "sms"
             ],
             "time": "2012-03-12 20:35:07"
+        },
+        {
+            "name": "pda/pheanstalk",
+            "version": "v2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pda/pheanstalk.git",
+                "reference": "ab006cf9330fb5d3799f30a5d9841b85edb40a0f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pda/pheanstalk/zipball/ab006cf9330fb5d3799f30a5d9841b85edb40a0f",
+                "reference": "ab006cf9330fb5d3799f30a5d9841b85edb40a0f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Pheanstalk": "classes/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Paul Annesley",
+                    "email": "paul@annesley.cc",
+                    "homepage": "http://paul.annesley.cc/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP client for beanstalkd queue",
+            "homepage": "https://github.com/pda/pheanstalk",
+            "keywords": [
+                "beanstalkd"
+            ],
+            "time": "2013-04-03 09:15:34"
         },
         {
             "name": "phing/phing",
@@ -2470,7 +2608,8 @@
         "jms/di-extra-bundle": 20,
         "ekino/newrelic-bundle": 20,
         "liip/theme-bundle": 20,
-        "drak/native-session": 20
+        "drak/native-session": 20,
+        "glorpen/propel-bundle": 20
     },
     "prefer-stable": false,
     "platform": {

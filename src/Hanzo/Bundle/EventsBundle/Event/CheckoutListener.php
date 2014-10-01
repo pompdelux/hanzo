@@ -22,13 +22,11 @@ use Symfony\Component\HttpFoundation\Session\Session;
 class CheckoutListener
 {
     protected $mailer;
-    protected $ax;
     protected $translator;
 
-    public function __construct(MailService $mailer, AxService $ax, Translator $translator)
+    public function __construct(MailService $mailer, Translator $translator)
     {
         $this->mailer     = $mailer;
-        $this->ax         = $ax;
         $this->translator = $translator;
     }
 

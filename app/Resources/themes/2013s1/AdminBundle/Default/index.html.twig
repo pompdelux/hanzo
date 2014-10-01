@@ -1,26 +1,38 @@
 {% extends '::adminbase.html.twig' %}
+{% use '::admin-subnav.html.twig' %}
+
+{% block subnav_content %}
+    <ul class="nav navbar-nav">
+        <li><a href="{{ path('admin_orders_ax_qeueu') }}">Ordre i kø til AX</a></li>
+        <li><a href="{{ path('admin_orders') }}">Ordre</a></li>
+        <li><a href="{{ path('admin_customers') }}">Kunder</a></li>
+    </ul>
+{% endblock %}
 
 {% block content %}
+    {% if is_granted('ROLE_ADMIN') %}
+        {% block admin_subnav %}
+            {{ parent() }}
+        {% endblock %}
+    {% endif %}
 
-{% if is_granted('ROLE_ADMIN') %}
+    {% if is_granted('ROLE_ADMIN') %}
 
-    <div class="row">
+        <div class="row">
+            <h2>Ordresynkronisering</h2>
 
-<h2>Ordresynkronisering</h2>
+            <form class="form-inline pull-right" role="form">
+                <div class="form-group">
+                    <label class="sr-only" for="form_orders_id">Indtast ordre #:</label>
+                    <input name="orders_id" id="form_orders_id" placeholder="Ordre#">
+                </div>
+                <a href="{{ path('admin_orders_preview') }}" class="preview-order" title="Gennemse"><span class="glyphicon glyphicon-search"></span></a>
+                <a href="{{ path('admin_orders_resync_sync') }}" class="resend-order" title="Gensend"><span class="glyphicon glyphicon-refresh"></span></a>
+            </form>
+        </div>
+        <div class="row">
+            {{ render(controller("AdminBundle:Orders:syncStatus")) }}
+        </div>
 
-<form class="form-inline pull-right" role="form">
-    <div class="form-group">
-        <label class="sr-only" for="form_orders_id">Indtast ordre #:</label>
-        <input name="orders_id" id="form_orders_id" placeholder="Ordre#">
-    </div>
-    <a href="{{ path('admin_orders_preview') }}" class="preview-order" title="Gennemse"><span class="glyphicon glyphicon-search"></span></a>
-    <a href="{{ path('admin_orders_resync_sync') }}" class="resend-order" title="Gensend"><span class="glyphicon glyphicon-refresh"></span></a>
-</form>
-    </div>
-<div class="row">
-  {{ render(controller("AdminBundle:Orders:syncStatus")) }}
-</div>
-
-{% endif %}
-
+    {% endif %}
 {% endblock %}

@@ -696,4 +696,52 @@ class Tools
 
         return $hanzo;
     }
+
+
+    /**
+     * Map a domain_key to an AX endpoint
+     *
+     * @param $key
+     * @return string
+     */
+    public static function domainKeyToEndpoint($key)
+    {
+        $key      = strtoupper(substr($key, -2));
+        $endPoint = 'DK';
+
+        switch ($key) {
+            case 'AT':
+            case 'CH':
+            case 'DE':
+            case 'FI':
+            case 'NL':
+            case 'NO':
+            case 'SE':
+                $endPoint = $key;
+                break;
+        }
+
+        return $endPoint;
+    }
+
+    /**
+     * Flatten array into 'key.subkey => value' sets
+     *
+     * @param array  $array
+     * @param string $prefix
+     * @return array
+     */
+    public static function flatten(array $array, $prefix = '')
+    {
+        $result = array();
+        foreach ($array as $key => $value) {
+            if (is_array($value)) {
+                $result = $result + self::flatten($value, $prefix.$key . '.');
+            } else {
+                $result[$prefix.$key] = $value;
+            }
+        }
+
+        return $result;
+    }
 }
