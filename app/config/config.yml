@@ -189,10 +189,11 @@ google:
     site_verification: ~
     analytics_code:    ~
 
-# @see https://github.com/ekino/EkinoNewRelicBundle
-ekino_new_relic:
-    application_name: Pompdelux
-    api_key:          3909fb3d64adf610708e4fc0aa59fc956a94d03a
+# un: 2014.09.29 - removed to see if new-relics own sf support is better.
+## @see https://github.com/ekino/EkinoNewRelicBundle
+#ekino_new_relic:
+#    application_name: Pompdelux
+#    api_key:          3909fb3d64adf610708e4fc0aa59fc956a94d03a
 
 # @see https://github.com/liip/LiipThemeBundle
 liip_theme:

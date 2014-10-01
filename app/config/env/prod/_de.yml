@@ -25,18 +25,18 @@ account:
 consignor:
     shipment_server:
         options:
-              actor: 147
-              product_concept_id: 1765
-              service_id: ""
-              key: PompDeluxDE
-              to_address:
-                  name: "POMPdeLUX"
-                  address_line_1: "Krokamp 128"
-                  postal_code: "24539"
-                  city: "Neumünster"
-                  country_iso2: DE
-                  email: mailde@pompdelux.com
-                  phone: "040-3571 5072"
+            actor: 147
+            product_concept_id: 1765
+            service_id: ""
+            key: PompDeluxDE
+            to_address:
+                name: "POMPdeLUX"
+                address_line_1: "Krokamp 128"
+                postal_code: "24539"
+                city: "Neumünster"
+                country_iso2: DE
+                email: mailde@pompdelux.com
+                phone: "040-3571 5072"
 
 google:
     analytics_code:    UA-1793665-7
