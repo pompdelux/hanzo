@@ -25,18 +25,18 @@ account:
 consignor:
     shipment_server:
         options:
-              actor: 142
-              product_concept_id: 560
-              service_id: ""
-              key: PompDeluxNO
-              to_address:
-                  name: "POMPdeLUX C/O"
-                  address_line_1: "Postens godssenter"
-                  postal_code: "NO-0060"
-                  city: "Oslo"
-                  country_iso2: NO
-                  email: mail@pompdelux.no
-                  phone: "+47 22742600"
+            actor: 142
+            product_concept_id: 560
+            service_id: ""
+            key: PompDeluxNO
+            to_address:
+                name: "POMPdeLUX C/O"
+                address_line_1: "Postens godssenter"
+                postal_code: "NO-0060"
+                city: "Oslo"
+                country_iso2: NO
+                email: mail@pompdelux.no
+                phone: "+47 22742600"
 
 google:
     analytics_code:    UA-1793665-4

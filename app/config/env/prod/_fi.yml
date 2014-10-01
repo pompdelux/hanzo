@@ -25,18 +25,18 @@ account:
 consignor:
     shipment_server:
         options:
-              actor: 144
-              product_concept_id: 560
-              service_id: ""
-              key: PompDeluxFI
-              to_address:
-                  name: "POMPdeLUX"
-                  address_line_1: "PL 6530"
-                  postal_code: "00002"
-                  city: "Helsinki"
-                  country_iso2: FI
-                  email: mailfi@pompdelux.com
-                  phone: "09-34870870"
+            actor: 144
+            product_concept_id: 560
+            service_id: ""
+            key: PompDeluxFI
+            to_address:
+                name: "POMPdeLUX"
+                address_line_1: "PL 6530"
+                postal_code: "00002"
+                city: "Helsinki"
+                country_iso2: FI
+                email: mailfi@pompdelux.com
+                phone: "09-34870870"
 
 google:
     analytics_code:    UA-1793665-6
