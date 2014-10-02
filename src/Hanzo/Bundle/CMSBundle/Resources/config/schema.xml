@@ -544,8 +544,6 @@
         <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
         <column name="wishlists_id" type="VARCHAR" size="5" required="true"/>
         <column name="products_id" type="INTEGER" required="false"/>
-        <column name="products_color" type="VARCHAR" size="128" required="false"/>
-        <column name="products_size" type="VARCHAR" size="32" required="true"/>
         <column name="quantity" type="INTEGER" required="false"/>
         <foreign-key foreignTable="wishlists" name="fk_wishlists_lines_1" onDelete="CASCADE">
             <reference local="wishlists_id" foreign="id"/>

@@ -59,18 +59,6 @@ abstract class BaseWishlistsLines extends BaseObject implements Persistent
     protected $products_id;
 
     /**
-     * The value for the products_color field.
-     * @var        string
-     */
-    protected $products_color;
-
-    /**
-     * The value for the products_size field.
-     * @var        string
-     */
-    protected $products_size;
-
-    /**
      * The value for the quantity field.
      * @var        int
      */
@@ -137,28 +125,6 @@ abstract class BaseWishlistsLines extends BaseObject implements Persistent
     {
 
         return $this->products_id;
-    }
-
-    /**
-     * Get the [products_color] column value.
-     *
-     * @return string
-     */
-    public function getProductsColor()
-    {
-
-        return $this->products_color;
-    }
-
-    /**
-     * Get the [products_size] column value.
-     *
-     * @return string
-     */
-    public function getProductsSize()
-    {
-
-        return $this->products_size;
     }
 
     /**
@@ -244,48 +210,6 @@ abstract class BaseWishlistsLines extends BaseObject implements Persistent
     } // setProductsId()
 
     /**
-     * Set the value of [products_color] column.
-     *
-     * @param  string $v new value
-     * @return WishlistsLines The current object (for fluent API support)
-     */
-    public function setProductsColor($v)
-    {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->products_color !== $v) {
-            $this->products_color = $v;
-            $this->modifiedColumns[] = WishlistsLinesPeer::PRODUCTS_COLOR;
-        }
-
-
-        return $this;
-    } // setProductsColor()
-
-    /**
-     * Set the value of [products_size] column.
-     *
-     * @param  string $v new value
-     * @return WishlistsLines The current object (for fluent API support)
-     */
-    public function setProductsSize($v)
-    {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->products_size !== $v) {
-            $this->products_size = $v;
-            $this->modifiedColumns[] = WishlistsLinesPeer::PRODUCTS_SIZE;
-        }
-
-
-        return $this;
-    } // setProductsSize()
-
-    /**
      * Set the value of [quantity] column.
      *
      * @param  int $v new value
@@ -341,9 +265,7 @@ abstract class BaseWishlistsLines extends BaseObject implements Persistent
             $this->id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
             $this->wishlists_id = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
             $this->products_id = ($row[$startcol + 2] !== null) ? (int) $row[$startcol + 2] : null;
-            $this->products_color = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
-            $this->products_size = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
-            $this->quantity = ($row[$startcol + 5] !== null) ? (int) $row[$startcol + 5] : null;
+            $this->quantity = ($row[$startcol + 3] !== null) ? (int) $row[$startcol + 3] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -353,7 +275,7 @@ abstract class BaseWishlistsLines extends BaseObject implements Persistent
             }
             $this->postHydrate($row, $startcol, $rehydrate);
 
-            return $startcol + 6; // 6 = WishlistsLinesPeer::NUM_HYDRATE_COLUMNS.
+            return $startcol + 4; // 4 = WishlistsLinesPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating WishlistsLines object", $e);
@@ -601,12 +523,6 @@ abstract class BaseWishlistsLines extends BaseObject implements Persistent
         if ($this->isColumnModified(WishlistsLinesPeer::PRODUCTS_ID)) {
             $modifiedColumns[':p' . $index++]  = '`products_id`';
         }
-        if ($this->isColumnModified(WishlistsLinesPeer::PRODUCTS_COLOR)) {
-            $modifiedColumns[':p' . $index++]  = '`products_color`';
-        }
-        if ($this->isColumnModified(WishlistsLinesPeer::PRODUCTS_SIZE)) {
-            $modifiedColumns[':p' . $index++]  = '`products_size`';
-        }
         if ($this->isColumnModified(WishlistsLinesPeer::QUANTITY)) {
             $modifiedColumns[':p' . $index++]  = '`quantity`';
         }
@@ -629,12 +545,6 @@ abstract class BaseWishlistsLines extends BaseObject implements Persistent
                         break;
                     case '`products_id`':
                         $stmt->bindValue($identifier, $this->products_id, PDO::PARAM_INT);
-                        break;
-                    case '`products_color`':
-                        $stmt->bindValue($identifier, $this->products_color, PDO::PARAM_STR);
-                        break;
-                    case '`products_size`':
-                        $stmt->bindValue($identifier, $this->products_size, PDO::PARAM_STR);
                         break;
                     case '`quantity`':
                         $stmt->bindValue($identifier, $this->quantity, PDO::PARAM_INT);
@@ -801,12 +711,6 @@ abstract class BaseWishlistsLines extends BaseObject implements Persistent
                 return $this->getProductsId();
                 break;
             case 3:
-                return $this->getProductsColor();
-                break;
-            case 4:
-                return $this->getProductsSize();
-                break;
-            case 5:
                 return $this->getQuantity();
                 break;
             default:
@@ -841,9 +745,7 @@ abstract class BaseWishlistsLines extends BaseObject implements Persistent
             $keys[0] => $this->getId(),
             $keys[1] => $this->getWishlistsId(),
             $keys[2] => $this->getProductsId(),
-            $keys[3] => $this->getProductsColor(),
-            $keys[4] => $this->getProductsSize(),
-            $keys[5] => $this->getQuantity(),
+            $keys[3] => $this->getQuantity(),
         );
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
@@ -901,12 +803,6 @@ abstract class BaseWishlistsLines extends BaseObject implements Persistent
                 $this->setProductsId($value);
                 break;
             case 3:
-                $this->setProductsColor($value);
-                break;
-            case 4:
-                $this->setProductsSize($value);
-                break;
-            case 5:
                 $this->setQuantity($value);
                 break;
         } // switch()
@@ -936,9 +832,7 @@ abstract class BaseWishlistsLines extends BaseObject implements Persistent
         if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
         if (array_key_exists($keys[1], $arr)) $this->setWishlistsId($arr[$keys[1]]);
         if (array_key_exists($keys[2], $arr)) $this->setProductsId($arr[$keys[2]]);
-        if (array_key_exists($keys[3], $arr)) $this->setProductsColor($arr[$keys[3]]);
-        if (array_key_exists($keys[4], $arr)) $this->setProductsSize($arr[$keys[4]]);
-        if (array_key_exists($keys[5], $arr)) $this->setQuantity($arr[$keys[5]]);
+        if (array_key_exists($keys[3], $arr)) $this->setQuantity($arr[$keys[3]]);
     }
 
     /**
@@ -953,8 +847,6 @@ abstract class BaseWishlistsLines extends BaseObject implements Persistent
         if ($this->isColumnModified(WishlistsLinesPeer::ID)) $criteria->add(WishlistsLinesPeer::ID, $this->id);
         if ($this->isColumnModified(WishlistsLinesPeer::WISHLISTS_ID)) $criteria->add(WishlistsLinesPeer::WISHLISTS_ID, $this->wishlists_id);
         if ($this->isColumnModified(WishlistsLinesPeer::PRODUCTS_ID)) $criteria->add(WishlistsLinesPeer::PRODUCTS_ID, $this->products_id);
-        if ($this->isColumnModified(WishlistsLinesPeer::PRODUCTS_COLOR)) $criteria->add(WishlistsLinesPeer::PRODUCTS_COLOR, $this->products_color);
-        if ($this->isColumnModified(WishlistsLinesPeer::PRODUCTS_SIZE)) $criteria->add(WishlistsLinesPeer::PRODUCTS_SIZE, $this->products_size);
         if ($this->isColumnModified(WishlistsLinesPeer::QUANTITY)) $criteria->add(WishlistsLinesPeer::QUANTITY, $this->quantity);
 
         return $criteria;
@@ -1021,8 +913,6 @@ abstract class BaseWishlistsLines extends BaseObject implements Persistent
     {
         $copyObj->setWishlistsId($this->getWishlistsId());
         $copyObj->setProductsId($this->getProductsId());
-        $copyObj->setProductsColor($this->getProductsColor());
-        $copyObj->setProductsSize($this->getProductsSize());
         $copyObj->setQuantity($this->getQuantity());
 
         if ($deepCopy && !$this->startCopy) {
@@ -1194,8 +1084,6 @@ abstract class BaseWishlistsLines extends BaseObject implements Persistent
         $this->id = null;
         $this->wishlists_id = null;
         $this->products_id = null;
-        $this->products_color = null;
-        $this->products_size = null;
         $this->quantity = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
