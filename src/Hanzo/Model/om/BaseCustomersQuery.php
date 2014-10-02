@@ -24,6 +24,7 @@ use Hanzo\Model\Groups;
 use Hanzo\Model\Orders;
 use Hanzo\Model\Wall;
 use Hanzo\Model\WallLikes;
+use Hanzo\Model\Wishlists;
 
 /**
  * @method CustomersQuery orderById($order = Criteria::ASC) Order by the id column
@@ -73,6 +74,10 @@ use Hanzo\Model\WallLikes;
  * @method CustomersQuery leftJoinEventsRelatedByCustomersId($relationAlias = null) Adds a LEFT JOIN clause to the query using the EventsRelatedByCustomersId relation
  * @method CustomersQuery rightJoinEventsRelatedByCustomersId($relationAlias = null) Adds a RIGHT JOIN clause to the query using the EventsRelatedByCustomersId relation
  * @method CustomersQuery innerJoinEventsRelatedByCustomersId($relationAlias = null) Adds a INNER JOIN clause to the query using the EventsRelatedByCustomersId relation
+ *
+ * @method CustomersQuery leftJoinWishlists($relationAlias = null) Adds a LEFT JOIN clause to the query using the Wishlists relation
+ * @method CustomersQuery rightJoinWishlists($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Wishlists relation
+ * @method CustomersQuery innerJoinWishlists($relationAlias = null) Adds a INNER JOIN clause to the query using the Wishlists relation
  *
  * @method CustomersQuery leftJoinOrders($relationAlias = null) Adds a LEFT JOIN clause to the query using the Orders relation
  * @method CustomersQuery rightJoinOrders($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Orders relation
@@ -1061,6 +1066,80 @@ abstract class BaseCustomersQuery extends ModelCriteria
         return $this
             ->joinEventsRelatedByCustomersId($relationAlias, $joinType)
             ->useQuery($relationAlias ? $relationAlias : 'EventsRelatedByCustomersId', '\Hanzo\Model\EventsQuery');
+    }
+
+    /**
+     * Filter the query by a related Wishlists object
+     *
+     * @param   Wishlists|PropelObjectCollection $wishlists  the related object to use as filter
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return                 CustomersQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
+     */
+    public function filterByWishlists($wishlists, $comparison = null)
+    {
+        if ($wishlists instanceof Wishlists) {
+            return $this
+                ->addUsingAlias(CustomersPeer::ID, $wishlists->getCustomersId(), $comparison);
+        } elseif ($wishlists instanceof PropelObjectCollection) {
+            return $this
+                ->useWishlistsQuery()
+                ->filterByPrimaryKeys($wishlists->getPrimaryKeys())
+                ->endUse();
+        } else {
+            throw new PropelException('filterByWishlists() only accepts arguments of type Wishlists or PropelCollection');
+        }
+    }
+
+    /**
+     * Adds a JOIN clause to the query using the Wishlists relation
+     *
+     * @param     string $relationAlias optional alias for the relation
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return CustomersQuery The current query, for fluid interface
+     */
+    public function joinWishlists($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
+    {
+        $tableMap = $this->getTableMap();
+        $relationMap = $tableMap->getRelation('Wishlists');
+
+        // create a ModelJoin object for this join
+        $join = new ModelJoin();
+        $join->setJoinType($joinType);
+        $join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+        if ($previousJoin = $this->getPreviousJoin()) {
+            $join->setPreviousJoin($previousJoin);
+        }
+
+        // add the ModelJoin to the current object
+        if ($relationAlias) {
+            $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+            $this->addJoinObject($join, $relationAlias);
+        } else {
+            $this->addJoinObject($join, 'Wishlists');
+        }
+
+        return $this;
+    }
+
+    /**
+     * Use the Wishlists relation Wishlists object
+     *
+     * @see       useQuery()
+     *
+     * @param     string $relationAlias optional alias for the relation,
+     *                                   to be used as main alias in the secondary query
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return   \Hanzo\Model\WishlistsQuery A secondary query class using the current class as primary query
+     */
+    public function useWishlistsQuery($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
+    {
+        return $this
+            ->joinWishlists($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'Wishlists', '\Hanzo\Model\WishlistsQuery');
     }
 
     /**
