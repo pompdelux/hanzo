@@ -778,6 +778,15 @@
                     }
                 ]]></target>
             </trans-unit>
+			<trans-unit id="573.settings">
+                <source>573.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "6",
+                        "colors": "Navy,Mustard,Navy/Mustard,Navy/Wine,Wine,Petrol,Grey/Navy/Petrol,Green,Brown,Olive,Yellow,Orange,Lime,Blue,Blue Denim,Grey,Grey Melange,Black,White,Turquoise"
+                    }
+                ]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
