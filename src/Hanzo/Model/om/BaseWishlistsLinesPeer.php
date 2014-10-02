@@ -9,144 +9,94 @@ use \PDOStatement;
 use \Propel;
 use \PropelException;
 use \PropelPDO;
-use Hanzo\Model\CategoriesPeer;
-use Hanzo\Model\MannequinImagesPeer;
-use Hanzo\Model\OrdersLinesPeer;
-use Hanzo\Model\Products;
-use Hanzo\Model\ProductsDomainsPricesPeer;
-use Hanzo\Model\ProductsI18nPeer;
-use Hanzo\Model\ProductsImagesCategoriesSortPeer;
-use Hanzo\Model\ProductsImagesPeer;
-use Hanzo\Model\ProductsImagesProductReferencesPeer;
 use Hanzo\Model\ProductsPeer;
-use Hanzo\Model\ProductsQuantityDiscountPeer;
-use Hanzo\Model\ProductsStockPeer;
-use Hanzo\Model\ProductsToCategoriesPeer;
-use Hanzo\Model\ProductsWashingInstructionsPeer;
-use Hanzo\Model\RelatedProductsPeer;
-use Hanzo\Model\SearchProductsTagsPeer;
+use Hanzo\Model\WishlistsLines;
 use Hanzo\Model\WishlistsLinesPeer;
-use Hanzo\Model\map\ProductsTableMap;
+use Hanzo\Model\WishlistsPeer;
+use Hanzo\Model\map\WishlistsLinesTableMap;
 
-abstract class BaseProductsPeer
+abstract class BaseWishlistsLinesPeer
 {
 
     /** the default database name for this class */
     const DATABASE_NAME = 'default';
 
     /** the table name for this class */
-    const TABLE_NAME = 'products';
+    const TABLE_NAME = 'wishlists_lines';
 
     /** the related Propel class for this table */
-    const OM_CLASS = 'Hanzo\\Model\\Products';
+    const OM_CLASS = 'Hanzo\\Model\\WishlistsLines';
 
     /** the related TableMap class for this table */
-    const TM_CLASS = 'Hanzo\\Model\\map\\ProductsTableMap';
+    const TM_CLASS = 'Hanzo\\Model\\map\\WishlistsLinesTableMap';
 
     /** The total number of columns. */
-    const NUM_COLUMNS = 16;
+    const NUM_COLUMNS = 6;
 
     /** The number of lazy-loaded columns. */
     const NUM_LAZY_LOAD_COLUMNS = 0;
 
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-    const NUM_HYDRATE_COLUMNS = 16;
+    const NUM_HYDRATE_COLUMNS = 6;
 
     /** the column name for the id field */
-    const ID = 'products.id';
+    const ID = 'wishlists_lines.id';
 
-    /** the column name for the range field */
-    const RANGE = 'products.range';
+    /** the column name for the wishlists_id field */
+    const WISHLISTS_ID = 'wishlists_lines.wishlists_id';
 
-    /** the column name for the sku field */
-    const SKU = 'products.sku';
+    /** the column name for the products_id field */
+    const PRODUCTS_ID = 'wishlists_lines.products_id';
 
-    /** the column name for the master field */
-    const MASTER = 'products.master';
+    /** the column name for the products_color field */
+    const PRODUCTS_COLOR = 'wishlists_lines.products_color';
 
-    /** the column name for the size field */
-    const SIZE = 'products.size';
+    /** the column name for the products_size field */
+    const PRODUCTS_SIZE = 'wishlists_lines.products_size';
 
-    /** the column name for the color field */
-    const COLOR = 'products.color';
-
-    /** the column name for the unit field */
-    const UNIT = 'products.unit';
-
-    /** the column name for the washing field */
-    const WASHING = 'products.washing';
-
-    /** the column name for the has_video field */
-    const HAS_VIDEO = 'products.has_video';
-
-    /** the column name for the is_out_of_stock field */
-    const IS_OUT_OF_STOCK = 'products.is_out_of_stock';
-
-    /** the column name for the is_active field */
-    const IS_ACTIVE = 'products.is_active';
-
-    /** the column name for the is_voucher field */
-    const IS_VOUCHER = 'products.is_voucher';
-
-    /** the column name for the is_discountable field */
-    const IS_DISCOUNTABLE = 'products.is_discountable';
-
-    /** the column name for the primary_categories_id field */
-    const PRIMARY_CATEGORIES_ID = 'products.primary_categories_id';
-
-    /** the column name for the created_at field */
-    const CREATED_AT = 'products.created_at';
-
-    /** the column name for the updated_at field */
-    const UPDATED_AT = 'products.updated_at';
+    /** the column name for the quantity field */
+    const QUANTITY = 'wishlists_lines.quantity';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
 
     /**
-     * An identity map to hold any loaded instances of Products objects.
+     * An identity map to hold any loaded instances of WishlistsLines objects.
      * This must be public so that other peer classes can access this when hydrating from JOIN
      * queries.
-     * @var        array Products[]
+     * @var        array WishlistsLines[]
      */
     public static $instances = array();
 
 
-    // i18n behavior
-
-    /**
-     * The default locale to use for translations
-     * @var        string
-     */
-    const DEFAULT_LOCALE = 'da_DK';
     /**
      * holds an array of fieldnames
      *
      * first dimension keys are the type constants
-     * e.g. ProductsPeer::$fieldNames[ProductsPeer::TYPE_PHPNAME][0] = 'Id'
+     * e.g. WishlistsLinesPeer::$fieldNames[WishlistsLinesPeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('Id', 'Range', 'Sku', 'Master', 'Size', 'Color', 'Unit', 'Washing', 'HasVideo', 'IsOutOfStock', 'IsActive', 'IsVoucher', 'IsDiscountable', 'PrimaryCategoriesId', 'CreatedAt', 'UpdatedAt', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'range', 'sku', 'master', 'size', 'color', 'unit', 'washing', 'hasVideo', 'isOutOfStock', 'isActive', 'isVoucher', 'isDiscountable', 'primaryCategoriesId', 'createdAt', 'updatedAt', ),
-        BasePeer::TYPE_COLNAME => array (ProductsPeer::ID, ProductsPeer::RANGE, ProductsPeer::SKU, ProductsPeer::MASTER, ProductsPeer::SIZE, ProductsPeer::COLOR, ProductsPeer::UNIT, ProductsPeer::WASHING, ProductsPeer::HAS_VIDEO, ProductsPeer::IS_OUT_OF_STOCK, ProductsPeer::IS_ACTIVE, ProductsPeer::IS_VOUCHER, ProductsPeer::IS_DISCOUNTABLE, ProductsPeer::PRIMARY_CATEGORIES_ID, ProductsPeer::CREATED_AT, ProductsPeer::UPDATED_AT, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'RANGE', 'SKU', 'MASTER', 'SIZE', 'COLOR', 'UNIT', 'WASHING', 'HAS_VIDEO', 'IS_OUT_OF_STOCK', 'IS_ACTIVE', 'IS_VOUCHER', 'IS_DISCOUNTABLE', 'PRIMARY_CATEGORIES_ID', 'CREATED_AT', 'UPDATED_AT', ),
-        BasePeer::TYPE_FIELDNAME => array ('id', 'range', 'sku', 'master', 'size', 'color', 'unit', 'washing', 'has_video', 'is_out_of_stock', 'is_active', 'is_voucher', 'is_discountable', 'primary_categories_id', 'created_at', 'updated_at', ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, )
+        BasePeer::TYPE_PHPNAME => array ('Id', 'WishlistsId', 'ProductsId', 'ProductsColor', 'ProductsSize', 'Quantity', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'wishlistsId', 'productsId', 'productsColor', 'productsSize', 'quantity', ),
+        BasePeer::TYPE_COLNAME => array (WishlistsLinesPeer::ID, WishlistsLinesPeer::WISHLISTS_ID, WishlistsLinesPeer::PRODUCTS_ID, WishlistsLinesPeer::PRODUCTS_COLOR, WishlistsLinesPeer::PRODUCTS_SIZE, WishlistsLinesPeer::QUANTITY, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'WISHLISTS_ID', 'PRODUCTS_ID', 'PRODUCTS_COLOR', 'PRODUCTS_SIZE', 'QUANTITY', ),
+        BasePeer::TYPE_FIELDNAME => array ('id', 'wishlists_id', 'products_id', 'products_color', 'products_size', 'quantity', ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, )
     );
 
     /**
      * holds an array of keys for quick access to the fieldnames array
      *
      * first dimension keys are the type constants
-     * e.g. ProductsPeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
+     * e.g. WishlistsLinesPeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Range' => 1, 'Sku' => 2, 'Master' => 3, 'Size' => 4, 'Color' => 5, 'Unit' => 6, 'Washing' => 7, 'HasVideo' => 8, 'IsOutOfStock' => 9, 'IsActive' => 10, 'IsVoucher' => 11, 'IsDiscountable' => 12, 'PrimaryCategoriesId' => 13, 'CreatedAt' => 14, 'UpdatedAt' => 15, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'range' => 1, 'sku' => 2, 'master' => 3, 'size' => 4, 'color' => 5, 'unit' => 6, 'washing' => 7, 'hasVideo' => 8, 'isOutOfStock' => 9, 'isActive' => 10, 'isVoucher' => 11, 'isDiscountable' => 12, 'primaryCategoriesId' => 13, 'createdAt' => 14, 'updatedAt' => 15, ),
-        BasePeer::TYPE_COLNAME => array (ProductsPeer::ID => 0, ProductsPeer::RANGE => 1, ProductsPeer::SKU => 2, ProductsPeer::MASTER => 3, ProductsPeer::SIZE => 4, ProductsPeer::COLOR => 5, ProductsPeer::UNIT => 6, ProductsPeer::WASHING => 7, ProductsPeer::HAS_VIDEO => 8, ProductsPeer::IS_OUT_OF_STOCK => 9, ProductsPeer::IS_ACTIVE => 10, ProductsPeer::IS_VOUCHER => 11, ProductsPeer::IS_DISCOUNTABLE => 12, ProductsPeer::PRIMARY_CATEGORIES_ID => 13, ProductsPeer::CREATED_AT => 14, ProductsPeer::UPDATED_AT => 15, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'RANGE' => 1, 'SKU' => 2, 'MASTER' => 3, 'SIZE' => 4, 'COLOR' => 5, 'UNIT' => 6, 'WASHING' => 7, 'HAS_VIDEO' => 8, 'IS_OUT_OF_STOCK' => 9, 'IS_ACTIVE' => 10, 'IS_VOUCHER' => 11, 'IS_DISCOUNTABLE' => 12, 'PRIMARY_CATEGORIES_ID' => 13, 'CREATED_AT' => 14, 'UPDATED_AT' => 15, ),
-        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'range' => 1, 'sku' => 2, 'master' => 3, 'size' => 4, 'color' => 5, 'unit' => 6, 'washing' => 7, 'has_video' => 8, 'is_out_of_stock' => 9, 'is_active' => 10, 'is_voucher' => 11, 'is_discountable' => 12, 'primary_categories_id' => 13, 'created_at' => 14, 'updated_at' => 15, ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, )
+        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'WishlistsId' => 1, 'ProductsId' => 2, 'ProductsColor' => 3, 'ProductsSize' => 4, 'Quantity' => 5, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'wishlistsId' => 1, 'productsId' => 2, 'productsColor' => 3, 'productsSize' => 4, 'quantity' => 5, ),
+        BasePeer::TYPE_COLNAME => array (WishlistsLinesPeer::ID => 0, WishlistsLinesPeer::WISHLISTS_ID => 1, WishlistsLinesPeer::PRODUCTS_ID => 2, WishlistsLinesPeer::PRODUCTS_COLOR => 3, WishlistsLinesPeer::PRODUCTS_SIZE => 4, WishlistsLinesPeer::QUANTITY => 5, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'WISHLISTS_ID' => 1, 'PRODUCTS_ID' => 2, 'PRODUCTS_COLOR' => 3, 'PRODUCTS_SIZE' => 4, 'QUANTITY' => 5, ),
+        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'wishlists_id' => 1, 'products_id' => 2, 'products_color' => 3, 'products_size' => 4, 'quantity' => 5, ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, )
     );
 
     /**
@@ -161,10 +111,10 @@ abstract class BaseProductsPeer
      */
     public static function translateFieldName($name, $fromType, $toType)
     {
-        $toNames = ProductsPeer::getFieldNames($toType);
-        $key = isset(ProductsPeer::$fieldKeys[$fromType][$name]) ? ProductsPeer::$fieldKeys[$fromType][$name] : null;
+        $toNames = WishlistsLinesPeer::getFieldNames($toType);
+        $key = isset(WishlistsLinesPeer::$fieldKeys[$fromType][$name]) ? WishlistsLinesPeer::$fieldKeys[$fromType][$name] : null;
         if ($key === null) {
-            throw new PropelException("'$name' could not be found in the field names of type '$fromType'. These are: " . print_r(ProductsPeer::$fieldKeys[$fromType], true));
+            throw new PropelException("'$name' could not be found in the field names of type '$fromType'. These are: " . print_r(WishlistsLinesPeer::$fieldKeys[$fromType], true));
         }
 
         return $toNames[$key];
@@ -181,11 +131,11 @@ abstract class BaseProductsPeer
      */
     public static function getFieldNames($type = BasePeer::TYPE_PHPNAME)
     {
-        if (!array_key_exists($type, ProductsPeer::$fieldNames)) {
+        if (!array_key_exists($type, WishlistsLinesPeer::$fieldNames)) {
             throw new PropelException('Method getFieldNames() expects the parameter $type to be one of the class constants BasePeer::TYPE_PHPNAME, BasePeer::TYPE_STUDLYPHPNAME, BasePeer::TYPE_COLNAME, BasePeer::TYPE_FIELDNAME, BasePeer::TYPE_NUM. ' . $type . ' was given.');
         }
 
-        return ProductsPeer::$fieldNames[$type];
+        return WishlistsLinesPeer::$fieldNames[$type];
     }
 
     /**
@@ -197,12 +147,12 @@ abstract class BaseProductsPeer
      *		$c->addJoin(TablePeer::alias("alias1", TablePeer::PRIMARY_KEY_COLUMN), TablePeer::PRIMARY_KEY_COLUMN);
      * </code>
      * @param      string $alias The alias for the current table.
-     * @param      string $column The column name for current table. (i.e. ProductsPeer::COLUMN_NAME).
+     * @param      string $column The column name for current table. (i.e. WishlistsLinesPeer::COLUMN_NAME).
      * @return string
      */
     public static function alias($alias, $column)
     {
-        return str_replace(ProductsPeer::TABLE_NAME.'.', $alias.'.', $column);
+        return str_replace(WishlistsLinesPeer::TABLE_NAME.'.', $alias.'.', $column);
     }
 
     /**
@@ -220,39 +170,19 @@ abstract class BaseProductsPeer
     public static function addSelectColumns(Criteria $criteria, $alias = null)
     {
         if (null === $alias) {
-            $criteria->addSelectColumn(ProductsPeer::ID);
-            $criteria->addSelectColumn(ProductsPeer::RANGE);
-            $criteria->addSelectColumn(ProductsPeer::SKU);
-            $criteria->addSelectColumn(ProductsPeer::MASTER);
-            $criteria->addSelectColumn(ProductsPeer::SIZE);
-            $criteria->addSelectColumn(ProductsPeer::COLOR);
-            $criteria->addSelectColumn(ProductsPeer::UNIT);
-            $criteria->addSelectColumn(ProductsPeer::WASHING);
-            $criteria->addSelectColumn(ProductsPeer::HAS_VIDEO);
-            $criteria->addSelectColumn(ProductsPeer::IS_OUT_OF_STOCK);
-            $criteria->addSelectColumn(ProductsPeer::IS_ACTIVE);
-            $criteria->addSelectColumn(ProductsPeer::IS_VOUCHER);
-            $criteria->addSelectColumn(ProductsPeer::IS_DISCOUNTABLE);
-            $criteria->addSelectColumn(ProductsPeer::PRIMARY_CATEGORIES_ID);
-            $criteria->addSelectColumn(ProductsPeer::CREATED_AT);
-            $criteria->addSelectColumn(ProductsPeer::UPDATED_AT);
+            $criteria->addSelectColumn(WishlistsLinesPeer::ID);
+            $criteria->addSelectColumn(WishlistsLinesPeer::WISHLISTS_ID);
+            $criteria->addSelectColumn(WishlistsLinesPeer::PRODUCTS_ID);
+            $criteria->addSelectColumn(WishlistsLinesPeer::PRODUCTS_COLOR);
+            $criteria->addSelectColumn(WishlistsLinesPeer::PRODUCTS_SIZE);
+            $criteria->addSelectColumn(WishlistsLinesPeer::QUANTITY);
         } else {
             $criteria->addSelectColumn($alias . '.id');
-            $criteria->addSelectColumn($alias . '.range');
-            $criteria->addSelectColumn($alias . '.sku');
-            $criteria->addSelectColumn($alias . '.master');
-            $criteria->addSelectColumn($alias . '.size');
-            $criteria->addSelectColumn($alias . '.color');
-            $criteria->addSelectColumn($alias . '.unit');
-            $criteria->addSelectColumn($alias . '.washing');
-            $criteria->addSelectColumn($alias . '.has_video');
-            $criteria->addSelectColumn($alias . '.is_out_of_stock');
-            $criteria->addSelectColumn($alias . '.is_active');
-            $criteria->addSelectColumn($alias . '.is_voucher');
-            $criteria->addSelectColumn($alias . '.is_discountable');
-            $criteria->addSelectColumn($alias . '.primary_categories_id');
-            $criteria->addSelectColumn($alias . '.created_at');
-            $criteria->addSelectColumn($alias . '.updated_at');
+            $criteria->addSelectColumn($alias . '.wishlists_id');
+            $criteria->addSelectColumn($alias . '.products_id');
+            $criteria->addSelectColumn($alias . '.products_color');
+            $criteria->addSelectColumn($alias . '.products_size');
+            $criteria->addSelectColumn($alias . '.quantity');
         }
     }
 
@@ -272,21 +202,21 @@ abstract class BaseProductsPeer
         // We need to set the primary table name, since in the case that there are no WHERE columns
         // it will be impossible for the BasePeer::createSelectSql() method to determine which
         // tables go into the FROM clause.
-        $criteria->setPrimaryTableName(ProductsPeer::TABLE_NAME);
+        $criteria->setPrimaryTableName(WishlistsLinesPeer::TABLE_NAME);
 
         if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
             $criteria->setDistinct();
         }
 
         if (!$criteria->hasSelectClause()) {
-            ProductsPeer::addSelectColumns($criteria);
+            WishlistsLinesPeer::addSelectColumns($criteria);
         }
 
         $criteria->clearOrderByColumns(); // ORDER BY won't ever affect the count
-        $criteria->setDbName(ProductsPeer::DATABASE_NAME); // Set the correct dbName
+        $criteria->setDbName(WishlistsLinesPeer::DATABASE_NAME); // Set the correct dbName
 
         if ($con === null) {
-            $con = Propel::getConnection(ProductsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+            $con = Propel::getConnection(WishlistsLinesPeer::DATABASE_NAME, Propel::CONNECTION_READ);
         }
         // BasePeer returns a PDOStatement
         $stmt = BasePeer::doCount($criteria, $con);
@@ -305,7 +235,7 @@ abstract class BaseProductsPeer
      *
      * @param      Criteria $criteria object used to create the SELECT statement.
      * @param      PropelPDO $con
-     * @return Products
+     * @return WishlistsLines
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
@@ -313,7 +243,7 @@ abstract class BaseProductsPeer
     {
         $critcopy = clone $criteria;
         $critcopy->setLimit(1);
-        $objects = ProductsPeer::doSelect($critcopy, $con);
+        $objects = WishlistsLinesPeer::doSelect($critcopy, $con);
         if ($objects) {
             return $objects[0];
         }
@@ -331,7 +261,7 @@ abstract class BaseProductsPeer
      */
     public static function doSelect(Criteria $criteria, PropelPDO $con = null)
     {
-        return ProductsPeer::populateObjects(ProductsPeer::doSelectStmt($criteria, $con));
+        return WishlistsLinesPeer::populateObjects(WishlistsLinesPeer::doSelectStmt($criteria, $con));
     }
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
@@ -349,16 +279,16 @@ abstract class BaseProductsPeer
     public static function doSelectStmt(Criteria $criteria, PropelPDO $con = null)
     {
         if ($con === null) {
-            $con = Propel::getConnection(ProductsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+            $con = Propel::getConnection(WishlistsLinesPeer::DATABASE_NAME, Propel::CONNECTION_READ);
         }
 
         if (!$criteria->hasSelectClause()) {
             $criteria = clone $criteria;
-            ProductsPeer::addSelectColumns($criteria);
+            WishlistsLinesPeer::addSelectColumns($criteria);
         }
 
         // Set the correct dbName
-        $criteria->setDbName(ProductsPeer::DATABASE_NAME);
+        $criteria->setDbName(WishlistsLinesPeer::DATABASE_NAME);
 
         // BasePeer returns a PDOStatement
         return BasePeer::doSelect($criteria, $con);
@@ -372,7 +302,7 @@ abstract class BaseProductsPeer
      * to the cache in order to ensure that the same objects are always returned by doSelect*()
      * and retrieveByPK*() calls.
      *
-     * @param Products $obj A Products object.
+     * @param WishlistsLines $obj A WishlistsLines object.
      * @param      string $key (optional) key to use for instance map (for performance boost if key was already calculated externally).
      */
     public static function addInstanceToPool($obj, $key = null)
@@ -381,7 +311,7 @@ abstract class BaseProductsPeer
             if ($key === null) {
                 $key = (string) $obj->getId();
             } // if key === null
-            ProductsPeer::$instances[$key] = $obj;
+            WishlistsLinesPeer::$instances[$key] = $obj;
         }
     }
 
@@ -393,7 +323,7 @@ abstract class BaseProductsPeer
      * methods in your stub classes -- you may need to explicitly remove objects
      * from the cache in order to prevent returning objects that no longer exist.
      *
-     * @param      mixed $value A Products object or a primary key value.
+     * @param      mixed $value A WishlistsLines object or a primary key value.
      *
      * @return void
      * @throws PropelException - if the value is invalid.
@@ -401,17 +331,17 @@ abstract class BaseProductsPeer
     public static function removeInstanceFromPool($value)
     {
         if (Propel::isInstancePoolingEnabled() && $value !== null) {
-            if (is_object($value) && $value instanceof Products) {
+            if (is_object($value) && $value instanceof WishlistsLines) {
                 $key = (string) $value->getId();
             } elseif (is_scalar($value)) {
                 // assume we've been passed a primary key
                 $key = (string) $value;
             } else {
-                $e = new PropelException("Invalid value passed to removeInstanceFromPool().  Expected primary key or Products object; got " . (is_object($value) ? get_class($value) . ' object.' : var_export($value,true)));
+                $e = new PropelException("Invalid value passed to removeInstanceFromPool().  Expected primary key or WishlistsLines object; got " . (is_object($value) ? get_class($value) . ' object.' : var_export($value,true)));
                 throw $e;
             }
 
-            unset(ProductsPeer::$instances[$key]);
+            unset(WishlistsLinesPeer::$instances[$key]);
         }
     } // removeInstanceFromPool()
 
@@ -422,14 +352,14 @@ abstract class BaseProductsPeer
      * a multi-column primary key, a serialize()d version of the primary key will be returned.
      *
      * @param      string $key The key (@see getPrimaryKeyHash()) for this instance.
-     * @return Products Found object or null if 1) no instance exists for specified key or 2) instance pooling has been disabled.
+     * @return WishlistsLines Found object or null if 1) no instance exists for specified key or 2) instance pooling has been disabled.
      * @see        getPrimaryKeyHash()
      */
     public static function getInstanceFromPool($key)
     {
         if (Propel::isInstancePoolingEnabled()) {
-            if (isset(ProductsPeer::$instances[$key])) {
-                return ProductsPeer::$instances[$key];
+            if (isset(WishlistsLinesPeer::$instances[$key])) {
+                return WishlistsLinesPeer::$instances[$key];
             }
         }
 
@@ -444,67 +374,19 @@ abstract class BaseProductsPeer
     public static function clearInstancePool($and_clear_all_references = false)
     {
       if ($and_clear_all_references) {
-        foreach (ProductsPeer::$instances as $instance) {
+        foreach (WishlistsLinesPeer::$instances as $instance) {
           $instance->clearAllReferences(true);
         }
       }
-        ProductsPeer::$instances = array();
+        WishlistsLinesPeer::$instances = array();
     }
 
     /**
-     * Method to invalidate the instance pool of all tables related to products
+     * Method to invalidate the instance pool of all tables related to wishlists_lines
      * by a foreign key with ON DELETE CASCADE
      */
     public static function clearRelatedInstancePool()
     {
-        // Invalidate objects in MannequinImagesPeer instance pool,
-        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
-        MannequinImagesPeer::clearInstancePool();
-        // Invalidate objects in ProductsPeer instance pool,
-        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
-        ProductsPeer::clearInstancePool();
-        // Invalidate objects in ProductsDomainsPricesPeer instance pool,
-        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
-        ProductsDomainsPricesPeer::clearInstancePool();
-        // Invalidate objects in ProductsImagesPeer instance pool,
-        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
-        ProductsImagesPeer::clearInstancePool();
-        // Invalidate objects in ProductsImagesCategoriesSortPeer instance pool,
-        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
-        ProductsImagesCategoriesSortPeer::clearInstancePool();
-        // Invalidate objects in ProductsImagesProductReferencesPeer instance pool,
-        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
-        ProductsImagesProductReferencesPeer::clearInstancePool();
-        // Invalidate objects in ProductsQuantityDiscountPeer instance pool,
-        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
-        ProductsQuantityDiscountPeer::clearInstancePool();
-        // Invalidate objects in ProductsStockPeer instance pool,
-        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
-        ProductsStockPeer::clearInstancePool();
-        // Invalidate objects in ProductsToCategoriesPeer instance pool,
-        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
-        ProductsToCategoriesPeer::clearInstancePool();
-        // Invalidate objects in WishlistsLinesPeer instance pool,
-        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
-        WishlistsLinesPeer::clearInstancePool();
-        // Invalidate objects in OrdersLinesPeer instance pool,
-        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
-        OrdersLinesPeer::clearInstancePool();
-        // Invalidate objects in RelatedProductsPeer instance pool,
-        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
-        RelatedProductsPeer::clearInstancePool();
-        // Invalidate objects in RelatedProductsPeer instance pool,
-        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
-        RelatedProductsPeer::clearInstancePool();
-        // Invalidate objects in SearchProductsTagsPeer instance pool,
-        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
-        SearchProductsTagsPeer::clearInstancePool();
-        // Invalidate objects in SearchProductsTagsPeer instance pool,
-        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
-        SearchProductsTagsPeer::clearInstancePool();
-        // Invalidate objects in ProductsI18nPeer instance pool,
-        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
-        ProductsI18nPeer::clearInstancePool();
     }
 
     /**
@@ -554,11 +436,11 @@ abstract class BaseProductsPeer
         $results = array();
 
         // set the class once to avoid overhead in the loop
-        $cls = ProductsPeer::getOMClass();
+        $cls = WishlistsLinesPeer::getOMClass();
         // populate the object(s)
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-            $key = ProductsPeer::getPrimaryKeyHashFromRow($row, 0);
-            if (null !== ($obj = ProductsPeer::getInstanceFromPool($key))) {
+            $key = WishlistsLinesPeer::getPrimaryKeyHashFromRow($row, 0);
+            if (null !== ($obj = WishlistsLinesPeer::getInstanceFromPool($key))) {
                 // We no longer rehydrate the object, since this can cause data loss.
                 // See http://www.propelorm.org/ticket/509
                 // $obj->hydrate($row, 0, true); // rehydrate
@@ -567,7 +449,7 @@ abstract class BaseProductsPeer
                 $obj = new $cls();
                 $obj->hydrate($row);
                 $results[] = $obj;
-                ProductsPeer::addInstanceToPool($obj, $key);
+                WishlistsLinesPeer::addInstanceToPool($obj, $key);
             } // if key exists
         }
         $stmt->closeCursor();
@@ -581,21 +463,21 @@ abstract class BaseProductsPeer
      * @param      int $startcol The 0-based offset for reading from the resultset row.
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
-     * @return array (Products object, last column rank)
+     * @return array (WishlistsLines object, last column rank)
      */
     public static function populateObject($row, $startcol = 0)
     {
-        $key = ProductsPeer::getPrimaryKeyHashFromRow($row, $startcol);
-        if (null !== ($obj = ProductsPeer::getInstanceFromPool($key))) {
+        $key = WishlistsLinesPeer::getPrimaryKeyHashFromRow($row, $startcol);
+        if (null !== ($obj = WishlistsLinesPeer::getInstanceFromPool($key))) {
             // We no longer rehydrate the object, since this can cause data loss.
             // See http://www.propelorm.org/ticket/509
             // $obj->hydrate($row, $startcol, true); // rehydrate
-            $col = $startcol + ProductsPeer::NUM_HYDRATE_COLUMNS;
+            $col = $startcol + WishlistsLinesPeer::NUM_HYDRATE_COLUMNS;
         } else {
-            $cls = ProductsPeer::OM_CLASS;
+            $cls = WishlistsLinesPeer::OM_CLASS;
             $obj = new $cls();
             $col = $obj->hydrate($row, $startcol);
-            ProductsPeer::addInstanceToPool($obj, $key);
+            WishlistsLinesPeer::addInstanceToPool($obj, $key);
         }
 
         return array($obj, $col);
@@ -603,7 +485,7 @@ abstract class BaseProductsPeer
 
 
     /**
-     * Returns the number of rows matching criteria, joining the related ProductsWashingInstructions table
+     * Returns the number of rows matching criteria, joining the related Wishlists table
      *
      * @param      Criteria $criteria
      * @param      boolean $distinct Whether to select only distinct columns; deprecated: use Criteria->setDistinct() instead.
@@ -611,7 +493,7 @@ abstract class BaseProductsPeer
      * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
      * @return int Number of matching rows.
      */
-    public static function doCountJoinProductsWashingInstructions(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    public static function doCountJoinWishlists(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
     {
         // we're going to modify criteria, so copy it first
         $criteria = clone $criteria;
@@ -619,26 +501,26 @@ abstract class BaseProductsPeer
         // We need to set the primary table name, since in the case that there are no WHERE columns
         // it will be impossible for the BasePeer::createSelectSql() method to determine which
         // tables go into the FROM clause.
-        $criteria->setPrimaryTableName(ProductsPeer::TABLE_NAME);
+        $criteria->setPrimaryTableName(WishlistsLinesPeer::TABLE_NAME);
 
         if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
             $criteria->setDistinct();
         }
 
         if (!$criteria->hasSelectClause()) {
-            ProductsPeer::addSelectColumns($criteria);
+            WishlistsLinesPeer::addSelectColumns($criteria);
         }
 
         $criteria->clearOrderByColumns(); // ORDER BY won't ever affect the count
 
         // Set the correct dbName
-        $criteria->setDbName(ProductsPeer::DATABASE_NAME);
+        $criteria->setDbName(WishlistsLinesPeer::DATABASE_NAME);
 
         if ($con === null) {
-            $con = Propel::getConnection(ProductsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+            $con = Propel::getConnection(WishlistsLinesPeer::DATABASE_NAME, Propel::CONNECTION_READ);
         }
 
-        $criteria->addJoin(ProductsPeer::WASHING, ProductsWashingInstructionsPeer::CODE, $join_behavior);
+        $criteria->addJoin(WishlistsLinesPeer::WISHLISTS_ID, WishlistsPeer::ID, $join_behavior);
 
         $stmt = BasePeer::doCount($criteria, $con);
 
@@ -654,7 +536,7 @@ abstract class BaseProductsPeer
 
 
     /**
-     * Returns the number of rows matching criteria, joining the related Categories table
+     * Returns the number of rows matching criteria, joining the related Products table
      *
      * @param      Criteria $criteria
      * @param      boolean $distinct Whether to select only distinct columns; deprecated: use Criteria->setDistinct() instead.
@@ -662,7 +544,7 @@ abstract class BaseProductsPeer
      * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
      * @return int Number of matching rows.
      */
-    public static function doCountJoinCategories(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    public static function doCountJoinProducts(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
     {
         // we're going to modify criteria, so copy it first
         $criteria = clone $criteria;
@@ -670,26 +552,26 @@ abstract class BaseProductsPeer
         // We need to set the primary table name, since in the case that there are no WHERE columns
         // it will be impossible for the BasePeer::createSelectSql() method to determine which
         // tables go into the FROM clause.
-        $criteria->setPrimaryTableName(ProductsPeer::TABLE_NAME);
+        $criteria->setPrimaryTableName(WishlistsLinesPeer::TABLE_NAME);
 
         if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
             $criteria->setDistinct();
         }
 
         if (!$criteria->hasSelectClause()) {
-            ProductsPeer::addSelectColumns($criteria);
+            WishlistsLinesPeer::addSelectColumns($criteria);
         }
 
         $criteria->clearOrderByColumns(); // ORDER BY won't ever affect the count
 
         // Set the correct dbName
-        $criteria->setDbName(ProductsPeer::DATABASE_NAME);
+        $criteria->setDbName(WishlistsLinesPeer::DATABASE_NAME);
 
         if ($con === null) {
-            $con = Propel::getConnection(ProductsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+            $con = Propel::getConnection(WishlistsLinesPeer::DATABASE_NAME, Propel::CONNECTION_READ);
         }
 
-        $criteria->addJoin(ProductsPeer::PRIMARY_CATEGORIES_ID, CategoriesPeer::ID, $join_behavior);
+        $criteria->addJoin(WishlistsLinesPeer::PRODUCTS_ID, ProductsPeer::ID, $join_behavior);
 
         $stmt = BasePeer::doCount($criteria, $con);
 
@@ -705,61 +587,61 @@ abstract class BaseProductsPeer
 
 
     /**
-     * Selects a collection of Products objects pre-filled with their ProductsWashingInstructions objects.
+     * Selects a collection of WishlistsLines objects pre-filled with their Wishlists objects.
      * @param      Criteria  $criteria
      * @param      PropelPDO $con
      * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
-     * @return array           Array of Products objects.
+     * @return array           Array of WishlistsLines objects.
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
-    public static function doSelectJoinProductsWashingInstructions(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    public static function doSelectJoinWishlists(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
     {
         $criteria = clone $criteria;
 
         // Set the correct dbName if it has not been overridden
         if ($criteria->getDbName() == Propel::getDefaultDB()) {
-            $criteria->setDbName(ProductsPeer::DATABASE_NAME);
+            $criteria->setDbName(WishlistsLinesPeer::DATABASE_NAME);
         }
 
-        ProductsPeer::addSelectColumns($criteria);
-        $startcol = ProductsPeer::NUM_HYDRATE_COLUMNS;
-        ProductsWashingInstructionsPeer::addSelectColumns($criteria);
+        WishlistsLinesPeer::addSelectColumns($criteria);
+        $startcol = WishlistsLinesPeer::NUM_HYDRATE_COLUMNS;
+        WishlistsPeer::addSelectColumns($criteria);
 
-        $criteria->addJoin(ProductsPeer::WASHING, ProductsWashingInstructionsPeer::CODE, $join_behavior);
+        $criteria->addJoin(WishlistsLinesPeer::WISHLISTS_ID, WishlistsPeer::ID, $join_behavior);
 
         $stmt = BasePeer::doSelect($criteria, $con);
         $results = array();
 
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-            $key1 = ProductsPeer::getPrimaryKeyHashFromRow($row, 0);
-            if (null !== ($obj1 = ProductsPeer::getInstanceFromPool($key1))) {
+            $key1 = WishlistsLinesPeer::getPrimaryKeyHashFromRow($row, 0);
+            if (null !== ($obj1 = WishlistsLinesPeer::getInstanceFromPool($key1))) {
                 // We no longer rehydrate the object, since this can cause data loss.
                 // See http://www.propelorm.org/ticket/509
                 // $obj1->hydrate($row, 0, true); // rehydrate
             } else {
 
-                $cls = ProductsPeer::getOMClass();
+                $cls = WishlistsLinesPeer::getOMClass();
 
                 $obj1 = new $cls();
                 $obj1->hydrate($row);
-                ProductsPeer::addInstanceToPool($obj1, $key1);
+                WishlistsLinesPeer::addInstanceToPool($obj1, $key1);
             } // if $obj1 already loaded
 
-            $key2 = ProductsWashingInstructionsPeer::getPrimaryKeyHashFromRow($row, $startcol);
+            $key2 = WishlistsPeer::getPrimaryKeyHashFromRow($row, $startcol);
             if ($key2 !== null) {
-                $obj2 = ProductsWashingInstructionsPeer::getInstanceFromPool($key2);
+                $obj2 = WishlistsPeer::getInstanceFromPool($key2);
                 if (!$obj2) {
 
-                    $cls = ProductsWashingInstructionsPeer::getOMClass();
+                    $cls = WishlistsPeer::getOMClass();
 
                     $obj2 = new $cls();
                     $obj2->hydrate($row, $startcol);
-                    ProductsWashingInstructionsPeer::addInstanceToPool($obj2, $key2);
+                    WishlistsPeer::addInstanceToPool($obj2, $key2);
                 } // if obj2 already loaded
 
-                // Add the $obj1 (Products) to $obj2 (ProductsWashingInstructions)
-                $obj2->addProducts($obj1);
+                // Add the $obj1 (WishlistsLines) to $obj2 (Wishlists)
+                $obj2->addWishlistsLines($obj1);
 
             } // if joined row was not null
 
@@ -772,61 +654,61 @@ abstract class BaseProductsPeer
 
 
     /**
-     * Selects a collection of Products objects pre-filled with their Categories objects.
+     * Selects a collection of WishlistsLines objects pre-filled with their Products objects.
      * @param      Criteria  $criteria
      * @param      PropelPDO $con
      * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
-     * @return array           Array of Products objects.
+     * @return array           Array of WishlistsLines objects.
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
-    public static function doSelectJoinCategories(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    public static function doSelectJoinProducts(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
     {
         $criteria = clone $criteria;
 
         // Set the correct dbName if it has not been overridden
         if ($criteria->getDbName() == Propel::getDefaultDB()) {
-            $criteria->setDbName(ProductsPeer::DATABASE_NAME);
+            $criteria->setDbName(WishlistsLinesPeer::DATABASE_NAME);
         }
 
+        WishlistsLinesPeer::addSelectColumns($criteria);
+        $startcol = WishlistsLinesPeer::NUM_HYDRATE_COLUMNS;
         ProductsPeer::addSelectColumns($criteria);
-        $startcol = ProductsPeer::NUM_HYDRATE_COLUMNS;
-        CategoriesPeer::addSelectColumns($criteria);
 
-        $criteria->addJoin(ProductsPeer::PRIMARY_CATEGORIES_ID, CategoriesPeer::ID, $join_behavior);
+        $criteria->addJoin(WishlistsLinesPeer::PRODUCTS_ID, ProductsPeer::ID, $join_behavior);
 
         $stmt = BasePeer::doSelect($criteria, $con);
         $results = array();
 
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-            $key1 = ProductsPeer::getPrimaryKeyHashFromRow($row, 0);
-            if (null !== ($obj1 = ProductsPeer::getInstanceFromPool($key1))) {
+            $key1 = WishlistsLinesPeer::getPrimaryKeyHashFromRow($row, 0);
+            if (null !== ($obj1 = WishlistsLinesPeer::getInstanceFromPool($key1))) {
                 // We no longer rehydrate the object, since this can cause data loss.
                 // See http://www.propelorm.org/ticket/509
                 // $obj1->hydrate($row, 0, true); // rehydrate
             } else {
 
-                $cls = ProductsPeer::getOMClass();
+                $cls = WishlistsLinesPeer::getOMClass();
 
                 $obj1 = new $cls();
                 $obj1->hydrate($row);
-                ProductsPeer::addInstanceToPool($obj1, $key1);
+                WishlistsLinesPeer::addInstanceToPool($obj1, $key1);
             } // if $obj1 already loaded
 
-            $key2 = CategoriesPeer::getPrimaryKeyHashFromRow($row, $startcol);
+            $key2 = ProductsPeer::getPrimaryKeyHashFromRow($row, $startcol);
             if ($key2 !== null) {
-                $obj2 = CategoriesPeer::getInstanceFromPool($key2);
+                $obj2 = ProductsPeer::getInstanceFromPool($key2);
                 if (!$obj2) {
 
-                    $cls = CategoriesPeer::getOMClass();
+                    $cls = ProductsPeer::getOMClass();
 
                     $obj2 = new $cls();
                     $obj2->hydrate($row, $startcol);
-                    CategoriesPeer::addInstanceToPool($obj2, $key2);
+                    ProductsPeer::addInstanceToPool($obj2, $key2);
                 } // if obj2 already loaded
 
-                // Add the $obj1 (Products) to $obj2 (Categories)
-                $obj2->addProducts($obj1);
+                // Add the $obj1 (WishlistsLines) to $obj2 (Products)
+                $obj2->addWishlistsLines($obj1);
 
             } // if joined row was not null
 
@@ -855,28 +737,28 @@ abstract class BaseProductsPeer
         // We need to set the primary table name, since in the case that there are no WHERE columns
         // it will be impossible for the BasePeer::createSelectSql() method to determine which
         // tables go into the FROM clause.
-        $criteria->setPrimaryTableName(ProductsPeer::TABLE_NAME);
+        $criteria->setPrimaryTableName(WishlistsLinesPeer::TABLE_NAME);
 
         if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
             $criteria->setDistinct();
         }
 
         if (!$criteria->hasSelectClause()) {
-            ProductsPeer::addSelectColumns($criteria);
+            WishlistsLinesPeer::addSelectColumns($criteria);
         }
 
         $criteria->clearOrderByColumns(); // ORDER BY won't ever affect the count
 
         // Set the correct dbName
-        $criteria->setDbName(ProductsPeer::DATABASE_NAME);
+        $criteria->setDbName(WishlistsLinesPeer::DATABASE_NAME);
 
         if ($con === null) {
-            $con = Propel::getConnection(ProductsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+            $con = Propel::getConnection(WishlistsLinesPeer::DATABASE_NAME, Propel::CONNECTION_READ);
         }
 
-        $criteria->addJoin(ProductsPeer::WASHING, ProductsWashingInstructionsPeer::CODE, $join_behavior);
+        $criteria->addJoin(WishlistsLinesPeer::WISHLISTS_ID, WishlistsPeer::ID, $join_behavior);
 
-        $criteria->addJoin(ProductsPeer::PRIMARY_CATEGORIES_ID, CategoriesPeer::ID, $join_behavior);
+        $criteria->addJoin(WishlistsLinesPeer::PRODUCTS_ID, ProductsPeer::ID, $join_behavior);
 
         $stmt = BasePeer::doCount($criteria, $con);
 
@@ -891,12 +773,12 @@ abstract class BaseProductsPeer
     }
 
     /**
-     * Selects a collection of Products objects pre-filled with all related objects.
+     * Selects a collection of WishlistsLines objects pre-filled with all related objects.
      *
      * @param      Criteria  $criteria
      * @param      PropelPDO $con
      * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
-     * @return array           Array of Products objects.
+     * @return array           Array of WishlistsLines objects.
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
@@ -906,73 +788,73 @@ abstract class BaseProductsPeer
 
         // Set the correct dbName if it has not been overridden
         if ($criteria->getDbName() == Propel::getDefaultDB()) {
-            $criteria->setDbName(ProductsPeer::DATABASE_NAME);
+            $criteria->setDbName(WishlistsLinesPeer::DATABASE_NAME);
         }
 
+        WishlistsLinesPeer::addSelectColumns($criteria);
+        $startcol2 = WishlistsLinesPeer::NUM_HYDRATE_COLUMNS;
+
+        WishlistsPeer::addSelectColumns($criteria);
+        $startcol3 = $startcol2 + WishlistsPeer::NUM_HYDRATE_COLUMNS;
+
         ProductsPeer::addSelectColumns($criteria);
-        $startcol2 = ProductsPeer::NUM_HYDRATE_COLUMNS;
+        $startcol4 = $startcol3 + ProductsPeer::NUM_HYDRATE_COLUMNS;
 
-        ProductsWashingInstructionsPeer::addSelectColumns($criteria);
-        $startcol3 = $startcol2 + ProductsWashingInstructionsPeer::NUM_HYDRATE_COLUMNS;
+        $criteria->addJoin(WishlistsLinesPeer::WISHLISTS_ID, WishlistsPeer::ID, $join_behavior);
 
-        CategoriesPeer::addSelectColumns($criteria);
-        $startcol4 = $startcol3 + CategoriesPeer::NUM_HYDRATE_COLUMNS;
-
-        $criteria->addJoin(ProductsPeer::WASHING, ProductsWashingInstructionsPeer::CODE, $join_behavior);
-
-        $criteria->addJoin(ProductsPeer::PRIMARY_CATEGORIES_ID, CategoriesPeer::ID, $join_behavior);
+        $criteria->addJoin(WishlistsLinesPeer::PRODUCTS_ID, ProductsPeer::ID, $join_behavior);
 
         $stmt = BasePeer::doSelect($criteria, $con);
         $results = array();
 
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-            $key1 = ProductsPeer::getPrimaryKeyHashFromRow($row, 0);
-            if (null !== ($obj1 = ProductsPeer::getInstanceFromPool($key1))) {
+            $key1 = WishlistsLinesPeer::getPrimaryKeyHashFromRow($row, 0);
+            if (null !== ($obj1 = WishlistsLinesPeer::getInstanceFromPool($key1))) {
                 // We no longer rehydrate the object, since this can cause data loss.
                 // See http://www.propelorm.org/ticket/509
                 // $obj1->hydrate($row, 0, true); // rehydrate
             } else {
-                $cls = ProductsPeer::getOMClass();
+                $cls = WishlistsLinesPeer::getOMClass();
 
                 $obj1 = new $cls();
                 $obj1->hydrate($row);
-                ProductsPeer::addInstanceToPool($obj1, $key1);
+                WishlistsLinesPeer::addInstanceToPool($obj1, $key1);
             } // if obj1 already loaded
 
-            // Add objects for joined ProductsWashingInstructions rows
+            // Add objects for joined Wishlists rows
 
-            $key2 = ProductsWashingInstructionsPeer::getPrimaryKeyHashFromRow($row, $startcol2);
+            $key2 = WishlistsPeer::getPrimaryKeyHashFromRow($row, $startcol2);
             if ($key2 !== null) {
-                $obj2 = ProductsWashingInstructionsPeer::getInstanceFromPool($key2);
+                $obj2 = WishlistsPeer::getInstanceFromPool($key2);
                 if (!$obj2) {
 
-                    $cls = ProductsWashingInstructionsPeer::getOMClass();
+                    $cls = WishlistsPeer::getOMClass();
 
                     $obj2 = new $cls();
                     $obj2->hydrate($row, $startcol2);
-                    ProductsWashingInstructionsPeer::addInstanceToPool($obj2, $key2);
+                    WishlistsPeer::addInstanceToPool($obj2, $key2);
                 } // if obj2 loaded
 
-                // Add the $obj1 (Products) to the collection in $obj2 (ProductsWashingInstructions)
-                $obj2->addProducts($obj1);
+                // Add the $obj1 (WishlistsLines) to the collection in $obj2 (Wishlists)
+                $obj2->addWishlistsLines($obj1);
             } // if joined row not null
 
-            // Add objects for joined Categories rows
+            // Add objects for joined Products rows
 
-            $key3 = CategoriesPeer::getPrimaryKeyHashFromRow($row, $startcol3);
+            $key3 = ProductsPeer::getPrimaryKeyHashFromRow($row, $startcol3);
             if ($key3 !== null) {
-                $obj3 = CategoriesPeer::getInstanceFromPool($key3);
+                $obj3 = ProductsPeer::getInstanceFromPool($key3);
                 if (!$obj3) {
 
-                    $cls = CategoriesPeer::getOMClass();
+                    $cls = ProductsPeer::getOMClass();
 
                     $obj3 = new $cls();
                     $obj3->hydrate($row, $startcol3);
-                    CategoriesPeer::addInstanceToPool($obj3, $key3);
+                    ProductsPeer::addInstanceToPool($obj3, $key3);
                 } // if obj3 loaded
 
-                // Add the $obj1 (Products) to the collection in $obj3 (Categories)
-                $obj3->addProducts($obj1);
+                // Add the $obj1 (WishlistsLines) to the collection in $obj3 (Products)
+                $obj3->addWishlistsLines($obj1);
             } // if joined row not null
 
             $results[] = $obj1;
@@ -984,7 +866,7 @@ abstract class BaseProductsPeer
 
 
     /**
-     * Returns the number of rows matching criteria, joining the related ProductsRelatedByMaster table
+     * Returns the number of rows matching criteria, joining the related Wishlists table
      *
      * @param      Criteria $criteria
      * @param      boolean $distinct Whether to select only distinct columns; deprecated: use Criteria->setDistinct() instead.
@@ -992,7 +874,7 @@ abstract class BaseProductsPeer
      * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
      * @return int Number of matching rows.
      */
-    public static function doCountJoinAllExceptProductsRelatedByMaster(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    public static function doCountJoinAllExceptWishlists(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
     {
         // we're going to modify criteria, so copy it first
         $criteria = clone $criteria;
@@ -1000,28 +882,26 @@ abstract class BaseProductsPeer
         // We need to set the primary table name, since in the case that there are no WHERE columns
         // it will be impossible for the BasePeer::createSelectSql() method to determine which
         // tables go into the FROM clause.
-        $criteria->setPrimaryTableName(ProductsPeer::TABLE_NAME);
+        $criteria->setPrimaryTableName(WishlistsLinesPeer::TABLE_NAME);
 
         if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
             $criteria->setDistinct();
         }
 
         if (!$criteria->hasSelectClause()) {
-            ProductsPeer::addSelectColumns($criteria);
+            WishlistsLinesPeer::addSelectColumns($criteria);
         }
 
         $criteria->clearOrderByColumns(); // ORDER BY should not affect count
 
         // Set the correct dbName
-        $criteria->setDbName(ProductsPeer::DATABASE_NAME);
+        $criteria->setDbName(WishlistsLinesPeer::DATABASE_NAME);
 
         if ($con === null) {
-            $con = Propel::getConnection(ProductsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+            $con = Propel::getConnection(WishlistsLinesPeer::DATABASE_NAME, Propel::CONNECTION_READ);
         }
 
-        $criteria->addJoin(ProductsPeer::WASHING, ProductsWashingInstructionsPeer::CODE, $join_behavior);
-
-        $criteria->addJoin(ProductsPeer::PRIMARY_CATEGORIES_ID, CategoriesPeer::ID, $join_behavior);
+        $criteria->addJoin(WishlistsLinesPeer::PRODUCTS_ID, ProductsPeer::ID, $join_behavior);
 
         $stmt = BasePeer::doCount($criteria, $con);
 
@@ -1037,7 +917,7 @@ abstract class BaseProductsPeer
 
 
     /**
-     * Returns the number of rows matching criteria, joining the related ProductsWashingInstructions table
+     * Returns the number of rows matching criteria, joining the related Products table
      *
      * @param      Criteria $criteria
      * @param      boolean $distinct Whether to select only distinct columns; deprecated: use Criteria->setDistinct() instead.
@@ -1045,7 +925,7 @@ abstract class BaseProductsPeer
      * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
      * @return int Number of matching rows.
      */
-    public static function doCountJoinAllExceptProductsWashingInstructions(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    public static function doCountJoinAllExceptProducts(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
     {
         // we're going to modify criteria, so copy it first
         $criteria = clone $criteria;
@@ -1053,26 +933,26 @@ abstract class BaseProductsPeer
         // We need to set the primary table name, since in the case that there are no WHERE columns
         // it will be impossible for the BasePeer::createSelectSql() method to determine which
         // tables go into the FROM clause.
-        $criteria->setPrimaryTableName(ProductsPeer::TABLE_NAME);
+        $criteria->setPrimaryTableName(WishlistsLinesPeer::TABLE_NAME);
 
         if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
             $criteria->setDistinct();
         }
 
         if (!$criteria->hasSelectClause()) {
-            ProductsPeer::addSelectColumns($criteria);
+            WishlistsLinesPeer::addSelectColumns($criteria);
         }
 
         $criteria->clearOrderByColumns(); // ORDER BY should not affect count
 
         // Set the correct dbName
-        $criteria->setDbName(ProductsPeer::DATABASE_NAME);
+        $criteria->setDbName(WishlistsLinesPeer::DATABASE_NAME);
 
         if ($con === null) {
-            $con = Propel::getConnection(ProductsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+            $con = Propel::getConnection(WishlistsLinesPeer::DATABASE_NAME, Propel::CONNECTION_READ);
         }
 
-        $criteria->addJoin(ProductsPeer::PRIMARY_CATEGORIES_ID, CategoriesPeer::ID, $join_behavior);
+        $criteria->addJoin(WishlistsLinesPeer::WISHLISTS_ID, WishlistsPeer::ID, $join_behavior);
 
         $stmt = BasePeer::doCount($criteria, $con);
 
@@ -1088,67 +968,16 @@ abstract class BaseProductsPeer
 
 
     /**
-     * Returns the number of rows matching criteria, joining the related Categories table
-     *
-     * @param      Criteria $criteria
-     * @param      boolean $distinct Whether to select only distinct columns; deprecated: use Criteria->setDistinct() instead.
-     * @param      PropelPDO $con
-     * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
-     * @return int Number of matching rows.
-     */
-    public static function doCountJoinAllExceptCategories(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
-    {
-        // we're going to modify criteria, so copy it first
-        $criteria = clone $criteria;
-
-        // We need to set the primary table name, since in the case that there are no WHERE columns
-        // it will be impossible for the BasePeer::createSelectSql() method to determine which
-        // tables go into the FROM clause.
-        $criteria->setPrimaryTableName(ProductsPeer::TABLE_NAME);
-
-        if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-            $criteria->setDistinct();
-        }
-
-        if (!$criteria->hasSelectClause()) {
-            ProductsPeer::addSelectColumns($criteria);
-        }
-
-        $criteria->clearOrderByColumns(); // ORDER BY should not affect count
-
-        // Set the correct dbName
-        $criteria->setDbName(ProductsPeer::DATABASE_NAME);
-
-        if ($con === null) {
-            $con = Propel::getConnection(ProductsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
-        }
-
-        $criteria->addJoin(ProductsPeer::WASHING, ProductsWashingInstructionsPeer::CODE, $join_behavior);
-
-        $stmt = BasePeer::doCount($criteria, $con);
-
-        if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-            $count = (int) $row[0];
-        } else {
-            $count = 0; // no rows returned; we infer that means 0 matches.
-        }
-        $stmt->closeCursor();
-
-        return $count;
-    }
-
-
-    /**
-     * Selects a collection of Products objects pre-filled with all related objects except ProductsRelatedByMaster.
+     * Selects a collection of WishlistsLines objects pre-filled with all related objects except Wishlists.
      *
      * @param      Criteria  $criteria
      * @param      PropelPDO $con
      * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
-     * @return array           Array of Products objects.
+     * @return array           Array of WishlistsLines objects.
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
-    public static function doSelectJoinAllExceptProductsRelatedByMaster(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    public static function doSelectJoinAllExceptWishlists(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
     {
         $criteria = clone $criteria;
 
@@ -1156,75 +985,51 @@ abstract class BaseProductsPeer
         // $criteria->getDbName() will return the same object if not set to another value
         // so == check is okay and faster
         if ($criteria->getDbName() == Propel::getDefaultDB()) {
-            $criteria->setDbName(ProductsPeer::DATABASE_NAME);
+            $criteria->setDbName(WishlistsLinesPeer::DATABASE_NAME);
         }
 
+        WishlistsLinesPeer::addSelectColumns($criteria);
+        $startcol2 = WishlistsLinesPeer::NUM_HYDRATE_COLUMNS;
+
         ProductsPeer::addSelectColumns($criteria);
-        $startcol2 = ProductsPeer::NUM_HYDRATE_COLUMNS;
+        $startcol3 = $startcol2 + ProductsPeer::NUM_HYDRATE_COLUMNS;
 
-        ProductsWashingInstructionsPeer::addSelectColumns($criteria);
-        $startcol3 = $startcol2 + ProductsWashingInstructionsPeer::NUM_HYDRATE_COLUMNS;
-
-        CategoriesPeer::addSelectColumns($criteria);
-        $startcol4 = $startcol3 + CategoriesPeer::NUM_HYDRATE_COLUMNS;
-
-        $criteria->addJoin(ProductsPeer::WASHING, ProductsWashingInstructionsPeer::CODE, $join_behavior);
-
-        $criteria->addJoin(ProductsPeer::PRIMARY_CATEGORIES_ID, CategoriesPeer::ID, $join_behavior);
+        $criteria->addJoin(WishlistsLinesPeer::PRODUCTS_ID, ProductsPeer::ID, $join_behavior);
 
 
         $stmt = BasePeer::doSelect($criteria, $con);
         $results = array();
 
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-            $key1 = ProductsPeer::getPrimaryKeyHashFromRow($row, 0);
-            if (null !== ($obj1 = ProductsPeer::getInstanceFromPool($key1))) {
+            $key1 = WishlistsLinesPeer::getPrimaryKeyHashFromRow($row, 0);
+            if (null !== ($obj1 = WishlistsLinesPeer::getInstanceFromPool($key1))) {
                 // We no longer rehydrate the object, since this can cause data loss.
                 // See http://www.propelorm.org/ticket/509
                 // $obj1->hydrate($row, 0, true); // rehydrate
             } else {
-                $cls = ProductsPeer::getOMClass();
+                $cls = WishlistsLinesPeer::getOMClass();
 
                 $obj1 = new $cls();
                 $obj1->hydrate($row);
-                ProductsPeer::addInstanceToPool($obj1, $key1);
+                WishlistsLinesPeer::addInstanceToPool($obj1, $key1);
             } // if obj1 already loaded
 
-                // Add objects for joined ProductsWashingInstructions rows
+                // Add objects for joined Products rows
 
-                $key2 = ProductsWashingInstructionsPeer::getPrimaryKeyHashFromRow($row, $startcol2);
+                $key2 = ProductsPeer::getPrimaryKeyHashFromRow($row, $startcol2);
                 if ($key2 !== null) {
-                    $obj2 = ProductsWashingInstructionsPeer::getInstanceFromPool($key2);
+                    $obj2 = ProductsPeer::getInstanceFromPool($key2);
                     if (!$obj2) {
 
-                        $cls = ProductsWashingInstructionsPeer::getOMClass();
+                        $cls = ProductsPeer::getOMClass();
 
                     $obj2 = new $cls();
                     $obj2->hydrate($row, $startcol2);
-                    ProductsWashingInstructionsPeer::addInstanceToPool($obj2, $key2);
+                    ProductsPeer::addInstanceToPool($obj2, $key2);
                 } // if $obj2 already loaded
 
-                // Add the $obj1 (Products) to the collection in $obj2 (ProductsWashingInstructions)
-                $obj2->addProducts($obj1);
-
-            } // if joined row is not null
-
-                // Add objects for joined Categories rows
-
-                $key3 = CategoriesPeer::getPrimaryKeyHashFromRow($row, $startcol3);
-                if ($key3 !== null) {
-                    $obj3 = CategoriesPeer::getInstanceFromPool($key3);
-                    if (!$obj3) {
-
-                        $cls = CategoriesPeer::getOMClass();
-
-                    $obj3 = new $cls();
-                    $obj3->hydrate($row, $startcol3);
-                    CategoriesPeer::addInstanceToPool($obj3, $key3);
-                } // if $obj3 already loaded
-
-                // Add the $obj1 (Products) to the collection in $obj3 (Categories)
-                $obj3->addProducts($obj1);
+                // Add the $obj1 (WishlistsLines) to the collection in $obj2 (Products)
+                $obj2->addWishlistsLines($obj1);
 
             } // if joined row is not null
 
@@ -1237,16 +1042,16 @@ abstract class BaseProductsPeer
 
 
     /**
-     * Selects a collection of Products objects pre-filled with all related objects except ProductsWashingInstructions.
+     * Selects a collection of WishlistsLines objects pre-filled with all related objects except Products.
      *
      * @param      Criteria  $criteria
      * @param      PropelPDO $con
      * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
-     * @return array           Array of Products objects.
+     * @return array           Array of WishlistsLines objects.
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
-    public static function doSelectJoinAllExceptProductsWashingInstructions(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    public static function doSelectJoinAllExceptProducts(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
     {
         $criteria = clone $criteria;
 
@@ -1254,125 +1059,51 @@ abstract class BaseProductsPeer
         // $criteria->getDbName() will return the same object if not set to another value
         // so == check is okay and faster
         if ($criteria->getDbName() == Propel::getDefaultDB()) {
-            $criteria->setDbName(ProductsPeer::DATABASE_NAME);
+            $criteria->setDbName(WishlistsLinesPeer::DATABASE_NAME);
         }
 
-        ProductsPeer::addSelectColumns($criteria);
-        $startcol2 = ProductsPeer::NUM_HYDRATE_COLUMNS;
+        WishlistsLinesPeer::addSelectColumns($criteria);
+        $startcol2 = WishlistsLinesPeer::NUM_HYDRATE_COLUMNS;
 
-        CategoriesPeer::addSelectColumns($criteria);
-        $startcol3 = $startcol2 + CategoriesPeer::NUM_HYDRATE_COLUMNS;
+        WishlistsPeer::addSelectColumns($criteria);
+        $startcol3 = $startcol2 + WishlistsPeer::NUM_HYDRATE_COLUMNS;
 
-        $criteria->addJoin(ProductsPeer::PRIMARY_CATEGORIES_ID, CategoriesPeer::ID, $join_behavior);
+        $criteria->addJoin(WishlistsLinesPeer::WISHLISTS_ID, WishlistsPeer::ID, $join_behavior);
 
 
         $stmt = BasePeer::doSelect($criteria, $con);
         $results = array();
 
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-            $key1 = ProductsPeer::getPrimaryKeyHashFromRow($row, 0);
-            if (null !== ($obj1 = ProductsPeer::getInstanceFromPool($key1))) {
+            $key1 = WishlistsLinesPeer::getPrimaryKeyHashFromRow($row, 0);
+            if (null !== ($obj1 = WishlistsLinesPeer::getInstanceFromPool($key1))) {
                 // We no longer rehydrate the object, since this can cause data loss.
                 // See http://www.propelorm.org/ticket/509
                 // $obj1->hydrate($row, 0, true); // rehydrate
             } else {
-                $cls = ProductsPeer::getOMClass();
+                $cls = WishlistsLinesPeer::getOMClass();
 
                 $obj1 = new $cls();
                 $obj1->hydrate($row);
-                ProductsPeer::addInstanceToPool($obj1, $key1);
+                WishlistsLinesPeer::addInstanceToPool($obj1, $key1);
             } // if obj1 already loaded
 
-                // Add objects for joined Categories rows
+                // Add objects for joined Wishlists rows
 
-                $key2 = CategoriesPeer::getPrimaryKeyHashFromRow($row, $startcol2);
+                $key2 = WishlistsPeer::getPrimaryKeyHashFromRow($row, $startcol2);
                 if ($key2 !== null) {
-                    $obj2 = CategoriesPeer::getInstanceFromPool($key2);
+                    $obj2 = WishlistsPeer::getInstanceFromPool($key2);
                     if (!$obj2) {
 
-                        $cls = CategoriesPeer::getOMClass();
+                        $cls = WishlistsPeer::getOMClass();
 
                     $obj2 = new $cls();
                     $obj2->hydrate($row, $startcol2);
-                    CategoriesPeer::addInstanceToPool($obj2, $key2);
+                    WishlistsPeer::addInstanceToPool($obj2, $key2);
                 } // if $obj2 already loaded
 
-                // Add the $obj1 (Products) to the collection in $obj2 (Categories)
-                $obj2->addProducts($obj1);
-
-            } // if joined row is not null
-
-            $results[] = $obj1;
-        }
-        $stmt->closeCursor();
-
-        return $results;
-    }
-
-
-    /**
-     * Selects a collection of Products objects pre-filled with all related objects except Categories.
-     *
-     * @param      Criteria  $criteria
-     * @param      PropelPDO $con
-     * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
-     * @return array           Array of Products objects.
-     * @throws PropelException Any exceptions caught during processing will be
-     *		 rethrown wrapped into a PropelException.
-     */
-    public static function doSelectJoinAllExceptCategories(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
-    {
-        $criteria = clone $criteria;
-
-        // Set the correct dbName if it has not been overridden
-        // $criteria->getDbName() will return the same object if not set to another value
-        // so == check is okay and faster
-        if ($criteria->getDbName() == Propel::getDefaultDB()) {
-            $criteria->setDbName(ProductsPeer::DATABASE_NAME);
-        }
-
-        ProductsPeer::addSelectColumns($criteria);
-        $startcol2 = ProductsPeer::NUM_HYDRATE_COLUMNS;
-
-        ProductsWashingInstructionsPeer::addSelectColumns($criteria);
-        $startcol3 = $startcol2 + ProductsWashingInstructionsPeer::NUM_HYDRATE_COLUMNS;
-
-        $criteria->addJoin(ProductsPeer::WASHING, ProductsWashingInstructionsPeer::CODE, $join_behavior);
-
-
-        $stmt = BasePeer::doSelect($criteria, $con);
-        $results = array();
-
-        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-            $key1 = ProductsPeer::getPrimaryKeyHashFromRow($row, 0);
-            if (null !== ($obj1 = ProductsPeer::getInstanceFromPool($key1))) {
-                // We no longer rehydrate the object, since this can cause data loss.
-                // See http://www.propelorm.org/ticket/509
-                // $obj1->hydrate($row, 0, true); // rehydrate
-            } else {
-                $cls = ProductsPeer::getOMClass();
-
-                $obj1 = new $cls();
-                $obj1->hydrate($row);
-                ProductsPeer::addInstanceToPool($obj1, $key1);
-            } // if obj1 already loaded
-
-                // Add objects for joined ProductsWashingInstructions rows
-
-                $key2 = ProductsWashingInstructionsPeer::getPrimaryKeyHashFromRow($row, $startcol2);
-                if ($key2 !== null) {
-                    $obj2 = ProductsWashingInstructionsPeer::getInstanceFromPool($key2);
-                    if (!$obj2) {
-
-                        $cls = ProductsWashingInstructionsPeer::getOMClass();
-
-                    $obj2 = new $cls();
-                    $obj2->hydrate($row, $startcol2);
-                    ProductsWashingInstructionsPeer::addInstanceToPool($obj2, $key2);
-                } // if $obj2 already loaded
-
-                // Add the $obj1 (Products) to the collection in $obj2 (ProductsWashingInstructions)
-                $obj2->addProducts($obj1);
+                // Add the $obj1 (WishlistsLines) to the collection in $obj2 (Wishlists)
+                $obj2->addWishlistsLines($obj1);
 
             } // if joined row is not null
 
@@ -1392,7 +1123,7 @@ abstract class BaseProductsPeer
      */
     public static function getTableMap()
     {
-        return Propel::getDatabaseMap(ProductsPeer::DATABASE_NAME)->getTable(ProductsPeer::TABLE_NAME);
+        return Propel::getDatabaseMap(WishlistsLinesPeer::DATABASE_NAME)->getTable(WishlistsLinesPeer::TABLE_NAME);
     }
 
     /**
@@ -1400,9 +1131,9 @@ abstract class BaseProductsPeer
      */
     public static function buildTableMap()
     {
-      $dbMap = Propel::getDatabaseMap(BaseProductsPeer::DATABASE_NAME);
-      if (!$dbMap->hasTable(BaseProductsPeer::TABLE_NAME)) {
-        $dbMap->addTableObject(new \Hanzo\Model\map\ProductsTableMap());
+      $dbMap = Propel::getDatabaseMap(BaseWishlistsLinesPeer::DATABASE_NAME);
+      if (!$dbMap->hasTable(BaseWishlistsLinesPeer::TABLE_NAME)) {
+        $dbMap->addTableObject(new \Hanzo\Model\map\WishlistsLinesTableMap());
       }
     }
 
@@ -1414,13 +1145,13 @@ abstract class BaseProductsPeer
      */
     public static function getOMClass($row = 0, $colnum = 0)
     {
-        return ProductsPeer::OM_CLASS;
+        return WishlistsLinesPeer::OM_CLASS;
     }
 
     /**
-     * Performs an INSERT on the database, given a Products or Criteria object.
+     * Performs an INSERT on the database, given a WishlistsLines or Criteria object.
      *
-     * @param      mixed $values Criteria or Products object containing data that is used to create the INSERT statement.
+     * @param      mixed $values Criteria or WishlistsLines object containing data that is used to create the INSERT statement.
      * @param      PropelPDO $con the PropelPDO connection to use
      * @return mixed           The new primary key.
      * @throws PropelException Any exceptions caught during processing will be
@@ -1429,18 +1160,22 @@ abstract class BaseProductsPeer
     public static function doInsert($values, PropelPDO $con = null)
     {
         if ($con === null) {
-            $con = Propel::getConnection(ProductsPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+            $con = Propel::getConnection(WishlistsLinesPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
         }
 
         if ($values instanceof Criteria) {
             $criteria = clone $values; // rename for clarity
         } else {
-            $criteria = $values->buildCriteria(); // build Criteria from Products object
+            $criteria = $values->buildCriteria(); // build Criteria from WishlistsLines object
+        }
+
+        if ($criteria->containsKey(WishlistsLinesPeer::ID) && $criteria->keyContainsValue(WishlistsLinesPeer::ID) ) {
+            throw new PropelException('Cannot insert a value for auto-increment primary key ('.WishlistsLinesPeer::ID.')');
         }
 
 
         // Set the correct dbName
-        $criteria->setDbName(ProductsPeer::DATABASE_NAME);
+        $criteria->setDbName(WishlistsLinesPeer::DATABASE_NAME);
 
         try {
             // use transaction because $criteria could contain info
@@ -1457,9 +1192,9 @@ abstract class BaseProductsPeer
     }
 
     /**
-     * Performs an UPDATE on the database, given a Products or Criteria object.
+     * Performs an UPDATE on the database, given a WishlistsLines or Criteria object.
      *
-     * @param      mixed $values Criteria or Products object containing data that is used to create the UPDATE statement.
+     * @param      mixed $values Criteria or WishlistsLines object containing data that is used to create the UPDATE statement.
      * @param      PropelPDO $con The connection to use (specify PropelPDO connection object to exert more control over transactions).
      * @return int             The number of affected rows (if supported by underlying database driver).
      * @throws PropelException Any exceptions caught during processing will be
@@ -1468,35 +1203,35 @@ abstract class BaseProductsPeer
     public static function doUpdate($values, PropelPDO $con = null)
     {
         if ($con === null) {
-            $con = Propel::getConnection(ProductsPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+            $con = Propel::getConnection(WishlistsLinesPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
         }
 
-        $selectCriteria = new Criteria(ProductsPeer::DATABASE_NAME);
+        $selectCriteria = new Criteria(WishlistsLinesPeer::DATABASE_NAME);
 
         if ($values instanceof Criteria) {
             $criteria = clone $values; // rename for clarity
 
-            $comparison = $criteria->getComparison(ProductsPeer::ID);
-            $value = $criteria->remove(ProductsPeer::ID);
+            $comparison = $criteria->getComparison(WishlistsLinesPeer::ID);
+            $value = $criteria->remove(WishlistsLinesPeer::ID);
             if ($value) {
-                $selectCriteria->add(ProductsPeer::ID, $value, $comparison);
+                $selectCriteria->add(WishlistsLinesPeer::ID, $value, $comparison);
             } else {
-                $selectCriteria->setPrimaryTableName(ProductsPeer::TABLE_NAME);
+                $selectCriteria->setPrimaryTableName(WishlistsLinesPeer::TABLE_NAME);
             }
 
-        } else { // $values is Products object
+        } else { // $values is WishlistsLines object
             $criteria = $values->buildCriteria(); // gets full criteria
             $selectCriteria = $values->buildPkeyCriteria(); // gets criteria w/ primary key(s)
         }
 
         // set the correct dbName
-        $criteria->setDbName(ProductsPeer::DATABASE_NAME);
+        $criteria->setDbName(WishlistsLinesPeer::DATABASE_NAME);
 
         return BasePeer::doUpdate($selectCriteria, $criteria, $con);
     }
 
     /**
-     * Deletes all rows from the products table.
+     * Deletes all rows from the wishlists_lines table.
      *
      * @param      PropelPDO $con the connection to use
      * @return int             The number of affected rows (if supported by underlying database driver).
@@ -1505,19 +1240,19 @@ abstract class BaseProductsPeer
     public static function doDeleteAll(PropelPDO $con = null)
     {
         if ($con === null) {
-            $con = Propel::getConnection(ProductsPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+            $con = Propel::getConnection(WishlistsLinesPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
         }
         $affectedRows = 0; // initialize var to track total num of affected rows
         try {
             // use transaction because $criteria could contain info
             // for more than one table or we could emulating ON DELETE CASCADE, etc.
             $con->beginTransaction();
-            $affectedRows += BasePeer::doDeleteAll(ProductsPeer::TABLE_NAME, $con, ProductsPeer::DATABASE_NAME);
+            $affectedRows += BasePeer::doDeleteAll(WishlistsLinesPeer::TABLE_NAME, $con, WishlistsLinesPeer::DATABASE_NAME);
             // Because this db requires some delete cascade/set null emulation, we have to
             // clear the cached instance *after* the emulation has happened (since
             // instances get re-added by the select statement contained therein).
-            ProductsPeer::clearInstancePool();
-            ProductsPeer::clearRelatedInstancePool();
+            WishlistsLinesPeer::clearInstancePool();
+            WishlistsLinesPeer::clearRelatedInstancePool();
             $con->commit();
 
             return $affectedRows;
@@ -1528,9 +1263,9 @@ abstract class BaseProductsPeer
     }
 
     /**
-     * Performs a DELETE on the database, given a Products or Criteria object OR a primary key value.
+     * Performs a DELETE on the database, given a WishlistsLines or Criteria object OR a primary key value.
      *
-     * @param      mixed $values Criteria or Products object or primary key or array of primary keys
+     * @param      mixed $values Criteria or WishlistsLines object or primary key or array of primary keys
      *              which is used to create the DELETE statement
      * @param      PropelPDO $con the connection to use
      * @return int The number of affected rows (if supported by underlying database driver).  This includes CASCADE-related rows
@@ -1541,32 +1276,32 @@ abstract class BaseProductsPeer
      public static function doDelete($values, PropelPDO $con = null)
      {
         if ($con === null) {
-            $con = Propel::getConnection(ProductsPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+            $con = Propel::getConnection(WishlistsLinesPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
         }
 
         if ($values instanceof Criteria) {
             // invalidate the cache for all objects of this type, since we have no
             // way of knowing (without running a query) what objects should be invalidated
             // from the cache based on this Criteria.
-            ProductsPeer::clearInstancePool();
+            WishlistsLinesPeer::clearInstancePool();
             // rename for clarity
             $criteria = clone $values;
-        } elseif ($values instanceof Products) { // it's a model object
+        } elseif ($values instanceof WishlistsLines) { // it's a model object
             // invalidate the cache for this single object
-            ProductsPeer::removeInstanceFromPool($values);
+            WishlistsLinesPeer::removeInstanceFromPool($values);
             // create criteria based on pk values
             $criteria = $values->buildPkeyCriteria();
         } else { // it's a primary key, or an array of pks
-            $criteria = new Criteria(ProductsPeer::DATABASE_NAME);
-            $criteria->add(ProductsPeer::ID, (array) $values, Criteria::IN);
+            $criteria = new Criteria(WishlistsLinesPeer::DATABASE_NAME);
+            $criteria->add(WishlistsLinesPeer::ID, (array) $values, Criteria::IN);
             // invalidate the cache for this object(s)
             foreach ((array) $values as $singleval) {
-                ProductsPeer::removeInstanceFromPool($singleval);
+                WishlistsLinesPeer::removeInstanceFromPool($singleval);
             }
         }
 
         // Set the correct dbName
-        $criteria->setDbName(ProductsPeer::DATABASE_NAME);
+        $criteria->setDbName(WishlistsLinesPeer::DATABASE_NAME);
 
         $affectedRows = 0; // initialize var to track total num of affected rows
 
@@ -1576,7 +1311,7 @@ abstract class BaseProductsPeer
             $con->beginTransaction();
 
             $affectedRows += BasePeer::doDelete($criteria, $con);
-            ProductsPeer::clearRelatedInstancePool();
+            WishlistsLinesPeer::clearRelatedInstancePool();
             $con->commit();
 
             return $affectedRows;
@@ -1587,13 +1322,13 @@ abstract class BaseProductsPeer
     }
 
     /**
-     * Validates all modified columns of given Products object.
+     * Validates all modified columns of given WishlistsLines object.
      * If parameter $columns is either a single column name or an array of column names
      * than only those columns are validated.
      *
      * NOTICE: This does not apply to primary or foreign keys for now.
      *
-     * @param Products $obj The object to validate.
+     * @param WishlistsLines $obj The object to validate.
      * @param      mixed $cols Column name or array of column names.
      *
      * @return mixed TRUE if all columns are valid or the error message of the first invalid column.
@@ -1603,8 +1338,8 @@ abstract class BaseProductsPeer
         $columns = array();
 
         if ($cols) {
-            $dbMap = Propel::getDatabaseMap(ProductsPeer::DATABASE_NAME);
-            $tableMap = $dbMap->getTable(ProductsPeer::TABLE_NAME);
+            $dbMap = Propel::getDatabaseMap(WishlistsLinesPeer::DATABASE_NAME);
+            $tableMap = $dbMap->getTable(WishlistsLinesPeer::TABLE_NAME);
 
             if (! is_array($cols)) {
                 $cols = array($cols);
@@ -1620,7 +1355,7 @@ abstract class BaseProductsPeer
 
         }
 
-        return BasePeer::doValidate(ProductsPeer::DATABASE_NAME, ProductsPeer::TABLE_NAME, $columns);
+        return BasePeer::doValidate(WishlistsLinesPeer::DATABASE_NAME, WishlistsLinesPeer::TABLE_NAME, $columns);
     }
 
     /**
@@ -1628,23 +1363,23 @@ abstract class BaseProductsPeer
      *
      * @param int $pk the primary key.
      * @param      PropelPDO $con the connection to use
-     * @return Products
+     * @return WishlistsLines
      */
     public static function retrieveByPK($pk, PropelPDO $con = null)
     {
 
-        if (null !== ($obj = ProductsPeer::getInstanceFromPool((string) $pk))) {
+        if (null !== ($obj = WishlistsLinesPeer::getInstanceFromPool((string) $pk))) {
             return $obj;
         }
 
         if ($con === null) {
-            $con = Propel::getConnection(ProductsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+            $con = Propel::getConnection(WishlistsLinesPeer::DATABASE_NAME, Propel::CONNECTION_READ);
         }
 
-        $criteria = new Criteria(ProductsPeer::DATABASE_NAME);
-        $criteria->add(ProductsPeer::ID, $pk);
+        $criteria = new Criteria(WishlistsLinesPeer::DATABASE_NAME);
+        $criteria->add(WishlistsLinesPeer::ID, $pk);
 
-        $v = ProductsPeer::doSelect($criteria, $con);
+        $v = WishlistsLinesPeer::doSelect($criteria, $con);
 
         return !empty($v) > 0 ? $v[0] : null;
     }
@@ -1654,31 +1389,31 @@ abstract class BaseProductsPeer
      *
      * @param      array $pks List of primary keys
      * @param      PropelPDO $con the connection to use
-     * @return Products[]
+     * @return WishlistsLines[]
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
     public static function retrieveByPKs($pks, PropelPDO $con = null)
     {
         if ($con === null) {
-            $con = Propel::getConnection(ProductsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+            $con = Propel::getConnection(WishlistsLinesPeer::DATABASE_NAME, Propel::CONNECTION_READ);
         }
 
         $objs = null;
         if (empty($pks)) {
             $objs = array();
         } else {
-            $criteria = new Criteria(ProductsPeer::DATABASE_NAME);
-            $criteria->add(ProductsPeer::ID, $pks, Criteria::IN);
-            $objs = ProductsPeer::doSelect($criteria, $con);
+            $criteria = new Criteria(WishlistsLinesPeer::DATABASE_NAME);
+            $criteria->add(WishlistsLinesPeer::ID, $pks, Criteria::IN);
+            $objs = WishlistsLinesPeer::doSelect($criteria, $con);
         }
 
         return $objs;
     }
 
-} // BaseProductsPeer
+} // BaseWishlistsLinesPeer
 
 // This is the static code needed to register the TableMap for this table with the main Propel class.
 //
-BaseProductsPeer::buildTableMap();
+BaseWishlistsLinesPeer::buildTableMap();
 
