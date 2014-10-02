@@ -31,13 +31,13 @@ abstract class BaseWishlistsLinesPeer
     const TM_CLASS = 'Hanzo\\Model\\map\\WishlistsLinesTableMap';
 
     /** The total number of columns. */
-    const NUM_COLUMNS = 6;
+    const NUM_COLUMNS = 4;
 
     /** The number of lazy-loaded columns. */
     const NUM_LAZY_LOAD_COLUMNS = 0;
 
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-    const NUM_HYDRATE_COLUMNS = 6;
+    const NUM_HYDRATE_COLUMNS = 4;
 
     /** the column name for the id field */
     const ID = 'wishlists_lines.id';
@@ -47,12 +47,6 @@ abstract class BaseWishlistsLinesPeer
 
     /** the column name for the products_id field */
     const PRODUCTS_ID = 'wishlists_lines.products_id';
-
-    /** the column name for the products_color field */
-    const PRODUCTS_COLOR = 'wishlists_lines.products_color';
-
-    /** the column name for the products_size field */
-    const PRODUCTS_SIZE = 'wishlists_lines.products_size';
 
     /** the column name for the quantity field */
     const QUANTITY = 'wishlists_lines.quantity';
@@ -76,12 +70,12 @@ abstract class BaseWishlistsLinesPeer
      * e.g. WishlistsLinesPeer::$fieldNames[WishlistsLinesPeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('Id', 'WishlistsId', 'ProductsId', 'ProductsColor', 'ProductsSize', 'Quantity', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'wishlistsId', 'productsId', 'productsColor', 'productsSize', 'quantity', ),
-        BasePeer::TYPE_COLNAME => array (WishlistsLinesPeer::ID, WishlistsLinesPeer::WISHLISTS_ID, WishlistsLinesPeer::PRODUCTS_ID, WishlistsLinesPeer::PRODUCTS_COLOR, WishlistsLinesPeer::PRODUCTS_SIZE, WishlistsLinesPeer::QUANTITY, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'WISHLISTS_ID', 'PRODUCTS_ID', 'PRODUCTS_COLOR', 'PRODUCTS_SIZE', 'QUANTITY', ),
-        BasePeer::TYPE_FIELDNAME => array ('id', 'wishlists_id', 'products_id', 'products_color', 'products_size', 'quantity', ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, )
+        BasePeer::TYPE_PHPNAME => array ('Id', 'WishlistsId', 'ProductsId', 'Quantity', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'wishlistsId', 'productsId', 'quantity', ),
+        BasePeer::TYPE_COLNAME => array (WishlistsLinesPeer::ID, WishlistsLinesPeer::WISHLISTS_ID, WishlistsLinesPeer::PRODUCTS_ID, WishlistsLinesPeer::QUANTITY, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'WISHLISTS_ID', 'PRODUCTS_ID', 'QUANTITY', ),
+        BasePeer::TYPE_FIELDNAME => array ('id', 'wishlists_id', 'products_id', 'quantity', ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
     );
 
     /**
@@ -91,12 +85,12 @@ abstract class BaseWishlistsLinesPeer
      * e.g. WishlistsLinesPeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'WishlistsId' => 1, 'ProductsId' => 2, 'ProductsColor' => 3, 'ProductsSize' => 4, 'Quantity' => 5, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'wishlistsId' => 1, 'productsId' => 2, 'productsColor' => 3, 'productsSize' => 4, 'quantity' => 5, ),
-        BasePeer::TYPE_COLNAME => array (WishlistsLinesPeer::ID => 0, WishlistsLinesPeer::WISHLISTS_ID => 1, WishlistsLinesPeer::PRODUCTS_ID => 2, WishlistsLinesPeer::PRODUCTS_COLOR => 3, WishlistsLinesPeer::PRODUCTS_SIZE => 4, WishlistsLinesPeer::QUANTITY => 5, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'WISHLISTS_ID' => 1, 'PRODUCTS_ID' => 2, 'PRODUCTS_COLOR' => 3, 'PRODUCTS_SIZE' => 4, 'QUANTITY' => 5, ),
-        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'wishlists_id' => 1, 'products_id' => 2, 'products_color' => 3, 'products_size' => 4, 'quantity' => 5, ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, )
+        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'WishlistsId' => 1, 'ProductsId' => 2, 'Quantity' => 3, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'wishlistsId' => 1, 'productsId' => 2, 'quantity' => 3, ),
+        BasePeer::TYPE_COLNAME => array (WishlistsLinesPeer::ID => 0, WishlistsLinesPeer::WISHLISTS_ID => 1, WishlistsLinesPeer::PRODUCTS_ID => 2, WishlistsLinesPeer::QUANTITY => 3, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'WISHLISTS_ID' => 1, 'PRODUCTS_ID' => 2, 'QUANTITY' => 3, ),
+        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'wishlists_id' => 1, 'products_id' => 2, 'quantity' => 3, ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
     );
 
     /**
@@ -173,15 +167,11 @@ abstract class BaseWishlistsLinesPeer
             $criteria->addSelectColumn(WishlistsLinesPeer::ID);
             $criteria->addSelectColumn(WishlistsLinesPeer::WISHLISTS_ID);
             $criteria->addSelectColumn(WishlistsLinesPeer::PRODUCTS_ID);
-            $criteria->addSelectColumn(WishlistsLinesPeer::PRODUCTS_COLOR);
-            $criteria->addSelectColumn(WishlistsLinesPeer::PRODUCTS_SIZE);
             $criteria->addSelectColumn(WishlistsLinesPeer::QUANTITY);
         } else {
             $criteria->addSelectColumn($alias . '.id');
             $criteria->addSelectColumn($alias . '.wishlists_id');
             $criteria->addSelectColumn($alias . '.products_id');
-            $criteria->addSelectColumn($alias . '.products_color');
-            $criteria->addSelectColumn($alias . '.products_size');
             $criteria->addSelectColumn($alias . '.quantity');
         }
     }

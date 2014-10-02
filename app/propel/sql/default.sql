@@ -759,8 +759,6 @@ CREATE TABLE `wishlists_lines`
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `wishlists_id` VARCHAR(5) NOT NULL,
     `products_id` INTEGER,
-    `products_color` VARCHAR(128),
-    `products_size` VARCHAR(32) NOT NULL,
     `quantity` INTEGER,
     PRIMARY KEY (`id`),
     INDEX `FI_wishlists_lines_1` (`wishlists_id`),

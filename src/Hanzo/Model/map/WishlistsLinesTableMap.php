@@ -45,8 +45,6 @@ class WishlistsLinesTableMap extends TableMap
         $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
         $this->addForeignKey('wishlists_id', 'WishlistsId', 'VARCHAR', 'wishlists', 'id', true, 5, null);
         $this->addForeignKey('products_id', 'ProductsId', 'INTEGER', 'products', 'id', false, null, null);
-        $this->addColumn('products_color', 'ProductsColor', 'VARCHAR', false, 128, null);
-        $this->addColumn('products_size', 'ProductsSize', 'VARCHAR', true, 32, null);
         $this->addColumn('quantity', 'Quantity', 'INTEGER', false, null, null);
         // validators
     } // initialize()

@@ -22,15 +22,11 @@ use Hanzo\Model\WishlistsLinesQuery;
  * @method WishlistsLinesQuery orderById($order = Criteria::ASC) Order by the id column
  * @method WishlistsLinesQuery orderByWishlistsId($order = Criteria::ASC) Order by the wishlists_id column
  * @method WishlistsLinesQuery orderByProductsId($order = Criteria::ASC) Order by the products_id column
- * @method WishlistsLinesQuery orderByProductsColor($order = Criteria::ASC) Order by the products_color column
- * @method WishlistsLinesQuery orderByProductsSize($order = Criteria::ASC) Order by the products_size column
  * @method WishlistsLinesQuery orderByQuantity($order = Criteria::ASC) Order by the quantity column
  *
  * @method WishlistsLinesQuery groupById() Group by the id column
  * @method WishlistsLinesQuery groupByWishlistsId() Group by the wishlists_id column
  * @method WishlistsLinesQuery groupByProductsId() Group by the products_id column
- * @method WishlistsLinesQuery groupByProductsColor() Group by the products_color column
- * @method WishlistsLinesQuery groupByProductsSize() Group by the products_size column
  * @method WishlistsLinesQuery groupByQuantity() Group by the quantity column
  *
  * @method WishlistsLinesQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
@@ -50,15 +46,11 @@ use Hanzo\Model\WishlistsLinesQuery;
  *
  * @method WishlistsLines findOneByWishlistsId(string $wishlists_id) Return the first WishlistsLines filtered by the wishlists_id column
  * @method WishlistsLines findOneByProductsId(int $products_id) Return the first WishlistsLines filtered by the products_id column
- * @method WishlistsLines findOneByProductsColor(string $products_color) Return the first WishlistsLines filtered by the products_color column
- * @method WishlistsLines findOneByProductsSize(string $products_size) Return the first WishlistsLines filtered by the products_size column
  * @method WishlistsLines findOneByQuantity(int $quantity) Return the first WishlistsLines filtered by the quantity column
  *
  * @method array findById(int $id) Return WishlistsLines objects filtered by the id column
  * @method array findByWishlistsId(string $wishlists_id) Return WishlistsLines objects filtered by the wishlists_id column
  * @method array findByProductsId(int $products_id) Return WishlistsLines objects filtered by the products_id column
- * @method array findByProductsColor(string $products_color) Return WishlistsLines objects filtered by the products_color column
- * @method array findByProductsSize(string $products_size) Return WishlistsLines objects filtered by the products_size column
  * @method array findByQuantity(int $quantity) Return WishlistsLines objects filtered by the quantity column
  */
 abstract class BaseWishlistsLinesQuery extends ModelCriteria
@@ -165,7 +157,7 @@ abstract class BaseWishlistsLinesQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `wishlists_id`, `products_id`, `products_color`, `products_size`, `quantity` FROM `wishlists_lines` WHERE `id` = :p0';
+        $sql = 'SELECT `id`, `wishlists_id`, `products_id`, `quantity` FROM `wishlists_lines` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -367,64 +359,6 @@ abstract class BaseWishlistsLinesQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(WishlistsLinesPeer::PRODUCTS_ID, $productsId, $comparison);
-    }
-
-    /**
-     * Filter the query on the products_color column
-     *
-     * Example usage:
-     * <code>
-     * $query->filterByProductsColor('fooValue');   // WHERE products_color = 'fooValue'
-     * $query->filterByProductsColor('%fooValue%'); // WHERE products_color LIKE '%fooValue%'
-     * </code>
-     *
-     * @param     string $productsColor The value to use as filter.
-     *              Accepts wildcards (* and % trigger a LIKE)
-     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-     *
-     * @return WishlistsLinesQuery The current query, for fluid interface
-     */
-    public function filterByProductsColor($productsColor = null, $comparison = null)
-    {
-        if (null === $comparison) {
-            if (is_array($productsColor)) {
-                $comparison = Criteria::IN;
-            } elseif (preg_match('/[\%\*]/', $productsColor)) {
-                $productsColor = str_replace('*', '%', $productsColor);
-                $comparison = Criteria::LIKE;
-            }
-        }
-
-        return $this->addUsingAlias(WishlistsLinesPeer::PRODUCTS_COLOR, $productsColor, $comparison);
-    }
-
-    /**
-     * Filter the query on the products_size column
-     *
-     * Example usage:
-     * <code>
-     * $query->filterByProductsSize('fooValue');   // WHERE products_size = 'fooValue'
-     * $query->filterByProductsSize('%fooValue%'); // WHERE products_size LIKE '%fooValue%'
-     * </code>
-     *
-     * @param     string $productsSize The value to use as filter.
-     *              Accepts wildcards (* and % trigger a LIKE)
-     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-     *
-     * @return WishlistsLinesQuery The current query, for fluid interface
-     */
-    public function filterByProductsSize($productsSize = null, $comparison = null)
-    {
-        if (null === $comparison) {
-            if (is_array($productsSize)) {
-                $comparison = Criteria::IN;
-            } elseif (preg_match('/[\%\*]/', $productsSize)) {
-                $productsSize = str_replace('*', '%', $productsSize);
-                $comparison = Criteria::LIKE;
-            }
-        }
-
-        return $this->addUsingAlias(WishlistsLinesPeer::PRODUCTS_SIZE, $productsSize, $comparison);
     }
 
     /**
