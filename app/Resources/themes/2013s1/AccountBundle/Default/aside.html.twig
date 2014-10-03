@@ -11,3 +11,7 @@
 	<h3>{{ 'newsletter'|trans({}, 'account') }}</h3>
 	{{ render(controller('NewsletterBundle:Default:allLists')) }}
 </aside>
+
+<aside class="js-slider wishlist">
+    {{ include('AccountBundle:Wishlist:info.html.twig') }}
+</aside>
