@@ -1,0 +1,27 @@
+{% extends layout %}
+{% block content %}
+
+    <section class="grid_8 alpha omega">
+        <h1>{{ 'wishlist.add.to.list'|trans({}, 'account') }}</h1>
+
+        <form action="">
+            <div>
+                <input type="text" name="q" id="form-item-q" placeholder="{{ 'wishlist.placeholder.query'|trans({}, 'account') }}" autocomplete="off">
+                <label form="form-item-q">{{ 'wishlist.query.description'|trans({}, 'account') }}</label>
+            </div>
+            <div>
+                <select disabled name="size">
+                    <option value="">{{ 'wishlist.select.size'|trans({}, 'account') }}</option>
+                </select>
+            </div>
+            <div>
+                <select disabled name="color">
+                    <option value="">{{ 'wishlist.select.color'|trans({}, 'account') }}</option>
+                </select>
+            </div>
+
+            <input type="submit" value="{{ "add.to.basket"|trans }}" class="button submit-button">
+        </form>
+    </section>
+
+{% endblock %}

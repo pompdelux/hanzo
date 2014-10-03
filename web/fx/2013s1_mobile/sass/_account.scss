@@ -9,30 +9,100 @@
     margin-left: 10px;
 }
 
-#account-block-newsletter-all {
+aside.js-slider {
     margin-bottom: 10px;
     border-bottom: 1px solid #000;
-    h3 {
+
+    .container {
         border-top: 1px solid #000;
+        margin: 0;
+        display: none;
+    }
+
+    h3 {
+        margin-top: 0;
         cursor: pointer;
+        border-top: 1px solid #000;
+
         span {
             display: block;
             padding: 2px 0px 2px 5px;
             margin-right: 5px;
             background: url(/fx/images/icons/icons/arrow_right.png) center right no-repeat;
+
             &.open {
                 background: url(/fx/images/icons/icons/arrow_down.png) center right no-repeat;
             }
         }
     }
+}
+
+
+.wishlist {
+    a.create-wishlist {
+        margin: 10px auto;
+    }
+
+    ul {
+        margin: 10px 5px 10px 20px;
+
+        li {
+            vertical-align: top;
+            padding: 0 0 5px 0;
+            max-width: 90%;
+            list-style: decimal;
+        }
+    }
+
+    .container {
+        padding-bottom: 20px;
+    }
+}
+
+#body-wishlist {
+    input {
+        width: 100%;
+    }
+    select {
+        margin-bottom: 10px;
+        width: 100%;
+        padding: 6px 5px;
+    }
+    label {
+        margin-top: 0;
+        margin-bottom: 12px;
+        font-style: italic;
+        font-size: 0.9em;
+    }
+}
+
+#account-block-newsletter-all {
+    h3 {
+        border-top: 1px solid #000;
+        cursor: pointer;
+
+        span {
+            display: block;
+            padding: 2px 0px 2px 5px;
+            margin-right: 5px;
+            background: url(/fx/images/icons/icons/arrow_right.png) center right no-repeat;
+
+            &.open {
+                background: url(/fx/images/icons/icons/arrow_down.png) center right no-repeat;
+            }
+        }
+    }
+
     #newsletter-lists-container-all {
         display: none;
+
         form {
             border-top: 1px solid #000;
             margin-bottom: 10px;
         }
     }
 }
+
 #body-create-account {
     form[action$="/edit"] button[type=submit] {
         display: block;

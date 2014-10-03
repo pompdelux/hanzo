@@ -1,78 +1,112 @@
 login:
-    pattern: /login
+    path: /login
     defaults:
         _controller: AccountBundle:Security:login
 
 logout:
-    pattern: /logout
+    path: /logout
     defaults:
         _controller: AccountBundle:Security:logout
 
 login_check:
-    pattern: /login_check
+    path: /login_check
 
 _account:
-    pattern: /account
+    path: /account
     defaults:
         _controller: AccountBundle:Default:index
 
 _account_create:
-    pattern: /account/create
+    path: /account/create
     defaults:
         _controller: AccountBundle:Default:create
 
 _account_lost_password:
-    pattern: /account/password-forgotten
+    path: /account/password-forgotten
     defaults:
         _controller: AccountBundle:Default:passwordForgotten
 
 _account_history:
-    pattern: /account/history/{pager}
+    path: /account/history/{pager}
     defaults:
         _controller: AccountBundle:History:index
         pager: 1
 
 _account_show_order:
-    pattern: /account/order/{order_id}/show
+    path: /account/order/{order_id}/show
     defaults:
         _controller: AccountBundle:History:view
     requirements:
         order_id: \d+
 
 _account_edit_order:
-    pattern: /account/order/{order_id}/edit
+    path: /account/order/{order_id}/edit
     defaults:
         _controller: AccountBundle:History:edit
     requirements:
         order_id: \d+
 
 _account_stop_edit_order:
-    pattern: /account/order/{order_id}/stop-edit
+    path: /account/order/{order_id}/stop-edit
     defaults:
         _controller: AccountBundle:Default:stopOrderEdit
     requirements:
         order_id: \d+
 
 _account_delete_order:
-    pattern: /account/order/{order_id}/delete
+    path: /account/order/{order_id}/delete
     defaults:
         _controller: AccountBundle:History:delete
     requirements:
         order_id: \d+
 
 _account_edit:
-    pattern: /account/edit
+    path: /account/edit
     defaults:
         _controller: AccountBundle:Default:edit
 
 _account_edit_address:
-    pattern: /account/edit/address/{type}/{shipping_id}
+    path: /account/edit/address/{type}/{shipping_id}
     defaults:
         _controller: AccountBundle:Default:editAddress
         type: ''
         shipping_id: ''
 
 _account_check:
-    pattern: /account/check/{type}
+    path: /account/check/{type}
     defaults:
         _controller: AccountBundle:Default:check
+
+# ----------------
+# wishlist section
+# ----------------
+_account_wishlist_create:
+    path: /account/wishlist/create
+    defaults:
+        _controller: AccountBundle:Wishlist:add
+
+_account_wishlist_remove:
+    path: /account/wishlist/remove/{id}
+    defaults:
+        _controller: AccountBundle:Wishlist:delete
+    requirements:
+        order_id: ^[A-Z0-9]{5}$
+
+_account_wishlist_add_item:
+    path: /account/wishlist/add-item
+    defaults:
+        _controller: AccountBundle:Wishlist:addItem
+    methods: [POST]
+
+_account_wishlist_remove_item:
+    path: /account/wishlist/remove-item
+    defaults:
+        _controller: AccountBundle:Wishlist:deleteItem
+    methods: [POST]
+
+_account_wishlist_update_item:
+    path: /account/wishlist/update-item
+    defaults:
+        _controller: AccountBundle:Wishlist:updateItem
+    methods: [POST]
+# ----------------
