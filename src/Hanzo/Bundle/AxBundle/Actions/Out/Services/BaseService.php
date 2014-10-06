@@ -49,6 +49,10 @@ abstract class BaseService
      */
     protected $data;
 
+    /**
+     * @var mixed
+     */
+    protected $errors;
 
     /**
      * Set database connection if it needs to be overridden.
@@ -126,6 +130,15 @@ abstract class BaseService
         $this->endPoint = $e;
     }
 
+    /**
+     * Retrive any errors catched
+     *
+     * @return array
+     */
+    public function getErrors()
+    {
+        return $this->errors;
+    }
 
     /**
      * Get current AX endpoint
@@ -166,7 +179,9 @@ abstract class BaseService
         try {
             $this->axClient->send($name, $data);
         } catch (\Exception $e) {
+\Hanzo\Core\Tools::log(get_class($e));
             $this->logger->critical('An error occured in '.$name.' sync! Error message: "'.$e->getMessage().'"');
+            $this->errors = $e;
 
             return false;
         }
