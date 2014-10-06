@@ -39,11 +39,12 @@ class CheckoutListener
      *
      * If this fails completely, propagation is halted.
      *
-     * @param  FilterOrderEvent $event
+     * @param FilterOrderEvent $event
      */
     public function onPaymentCollected(FilterOrderEvent $event)
     {
         $order = $event->getOrder();
+        $id    = null;
 
         try {
             $id = $this->pheanstalkQueue->appendSendOrder($order, $order->getInEdit());
@@ -60,10 +61,17 @@ class CheckoutListener
         ]);
     }
 
-    private function stateLog($order_id)
+    /**
+     * @param int $orderId
+     *
+     * @return int
+     * @throws \Exception
+     * @throws \PropelException
+     */
+    private function stateLog($orderId)
     {
         $log = new OrdersStateLog();
-        $log->info($order_id, Orders::INFO_STATE_IN_QUEUE);
+        $log->info($orderId, Orders::INFO_STATE_IN_QUEUE);
 
         return $log->save();
     }
