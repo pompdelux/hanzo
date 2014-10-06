@@ -46,6 +46,11 @@ class AxServiceWrapper
     private $salesOrderLockUnlock;
 
     /**
+     * @var mixed
+     */
+    private $errors;
+
+    /**
      * Construct
      *
      * @param SyncCustomer         $syncCustomer
@@ -59,6 +64,7 @@ class AxServiceWrapper
         $this->syncSalesOrder       = $syncSalesOrder;
         $this->syncDeleteSalesOrder = $syncDeleteSalesOrder;
         $this->salesOrderLockUnlock = $salesOrderLockUnlock;
+        $this->errors               = null;
     }
 
     /**
@@ -84,10 +90,16 @@ class AxServiceWrapper
         $this->syncCustomer->setDBConnection($dbCon);
 
         if ($return) {
-            return $this->syncCustomer->get();
+            $result       = $this->syncCustomer->get();
+            $this->errors = $this->syncCustomer->getErrors();
+
+            return $result;
         }
 
-        return $this->syncCustomer->send();
+        $result       = $this->syncCustomer->send();
+        $this->errors = $this->syncCustomer->getErrors();
+
+        return $result;
     }
 
     /**
@@ -115,10 +127,16 @@ class AxServiceWrapper
         $this->syncSalesOrder->setOrderAttributes($order->getOrdersAttributess(null, $dbCon));
 
         if ($return) {
-            return $this->syncSalesOrder->get();
+            $result       = $this->syncSalesOrder->get();
+            $this->errors = $this->syncSalesOrder->getErrors();
+
+            return $result;
         }
 
-        return $this->syncSalesOrder->send();
+        $result       = $this->syncSalesOrder->send();
+        $this->errors = $this->syncSalesOrder->getErrors();
+
+        return $result;
     }
 
     /**
@@ -137,10 +155,16 @@ class AxServiceWrapper
         $this->syncDeleteSalesOrder->setOrder($order);
 
         if ($return) {
-            return $this->syncDeleteSalesOrder->get();
+            $result       = $this->syncDeleteSalesOrder->get();
+            $this->errors = $this->syncDeleteSalesOrder->getErrors();
+
+            return $result;
         }
 
-        return $this->syncDeleteSalesOrder->send();
+        $result       = $this->syncDeleteSalesOrder->send();
+        $this->errors = $this->syncDeleteSalesOrder->getErrors();
+
+        return $result;
     }
 
     /**
@@ -160,9 +184,25 @@ class AxServiceWrapper
         $this->salesOrderLockUnlock->setEndPoint(Tools::domainKeyToEndpoint($order->getAttributes($dbCon)->global->domain_key));
 
         if ($return) {
-            return $this->salesOrderLockUnlock->get();
+            $result       = $this->salesOrderLockUnlock->get();
+            $this->errors = $this->salesOrderLockUnlock->getErrors();
+
+            return $result;
         }
 
-        return $this->salesOrderLockUnlock->send();
+        $result       = $this->salesOrderLockUnlock->send();
+        $this->errors = $this->salesOrderLockUnlock->getErrors();
+
+        return $result;
+    }
+
+    /**
+     * Get any errors
+     *
+     * @return mixed|null
+     */
+    public function getErrors()
+    {
+        return $this->errors;
     }
 }
