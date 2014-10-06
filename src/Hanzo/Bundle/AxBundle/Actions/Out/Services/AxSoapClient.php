@@ -54,6 +54,12 @@ class AxSoapClient
      */
     private $wsdl;
 
+    /**
+     * @param string        $wsdl
+     * @param bool          $logRequests
+     * @param Logger        $logger
+     * @param ServiceLogger $serviceLogger
+     */
     public function __construct($wsdl, $logRequests, Logger $logger, ServiceLogger $serviceLogger)
     {
         $this->wsdl            = $wsdl;
@@ -126,15 +132,15 @@ class AxSoapClient
 
         // first we test the connection, soap has lousy timeout handeling
         $c = curl_init();
-        curl_setopt_array($c, array(
+        curl_setopt_array($c, [
             CURLOPT_URL            => $this->wsdl,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_CONNECTTIMEOUT => 8,  // connection
             CURLOPT_TIMEOUT        => 10, // execution timeout
-        ));
+        ]);
 
         $file = curl_exec($c);
-        $status = curl_getinfo($c,  CURLINFO_HTTP_CODE);
+        $status = curl_getinfo($c, CURLINFO_HTTP_CODE);
         curl_close($c);
 
         // ok the header send was ok, and we have file content.
@@ -145,11 +151,12 @@ class AxSoapClient
             return false;
         }
 
-        $this->client = new \SoapClient($this->wsdl, array(
+        $this->client = new \SoapClient($this->wsdl, [
             'trace'              => true,
             'exceptions'         => true,
             'connection_timeout' => 600,
-        ));
+        ]);
+
         $this->client->__setLocation(str_replace('?wsdl', '', $this->wsdl));
 
         return true;
@@ -159,7 +166,7 @@ class AxSoapClient
     /**
      * Log the request
      *
-     * @param $action
+     * @param string $action
      */
     private function logAction($action)
     {
