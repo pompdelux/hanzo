@@ -12,6 +12,7 @@ namespace Hanzo\Bundle\AxBundle\Actions\Out\Services\Mappers;
 
 /**
  * Class CustTable
+ *
  * @package Hanzo\Bundle\AxBundle\Actions\Out\Services\Mappers
  */
 class CustTable extends BaseMapper
@@ -24,6 +25,7 @@ class CustTable extends BaseMapper
         'AddressZipCode'         => null,
         'CustName'               => null,
         'Email'                  => null,
+        'InitialsId'             => null,
         'Phone'                  => null,
     ];
 }
