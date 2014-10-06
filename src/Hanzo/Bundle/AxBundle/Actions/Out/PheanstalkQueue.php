@@ -19,6 +19,7 @@ use Leezy\PheanstalkBundle\Proxy\PheanstalkProxyInterface;
 
 /**
  * Class PheanstalkQueue
+ *
  * @package Hanzo\Bundle\AxBundle
  */
 class PheanstalkQueue
@@ -97,12 +98,15 @@ class PheanstalkQueue
      * @param Orders $order
      * @param int    $priority
      * @param int    $delay
+     *
      * @return int
      * @throws OrderAlreadyInQueueException
      */
     public function appendDeleteOrder(Orders $order, $priority = \Pheanstalk_PheanstalkInterface::DEFAULT_PRIORITY, $delay = \Pheanstalk_PheanstalkInterface::DEFAULT_DELAY)
     {
-        if ($ts = $this->isOrderInQueue($order)) {
+        $ts = $this->isOrderInQueue($order);
+        
+        if ($ts) {
             throw new OrderAlreadyInQueueException('The order #'.$order->getId().' is already in the queue. It was added @ '.date('Y-m-d H:i:s', $ts));
         }
 
@@ -132,17 +136,18 @@ class PheanstalkQueue
             'payment_id'  => $paymentId,
         ]);
 
-        $queue_id = $this->pheanstalk->putInTube('orders2ax', $data, $priority, $delay);
-        $this->addToQueueLog($order->getId(), $queue_id);
+        $queueId = $this->pheanstalk->putInTube('orders2ax', $data, $priority, $delay);
+        $this->addToQueueLog($order->getId(), $queueId);
 
-        return $queue_id;
+        return $queueId;
     }
 
 
     /**
      * Check if an order is in the queue.
      *
-     * @param  Orders|int $order Orders object or order id
+     * @param Orders|int $order Orders object or order id
+     *
      * @return false|int         false if not in queue, timestamp of insertion if found.
      */
     public function isOrderInQueue($order)
@@ -165,7 +170,8 @@ class PheanstalkQueue
 
     /**
      * Remove an entry from the
-     * @param  int $orderId
+     * @param int $orderId
+     *
      * @return int
      * @throws \Exception
      */
@@ -180,12 +186,15 @@ class PheanstalkQueue
     /**
      * Delete a job from the beanstalk queue
      *
-     * @param $jobId
+     * @param int $jobId
+     *
      * @return mixed
      */
     public function removeFromQuery($jobId)
     {
-        if ($job = $this->pheanstalk->peek($jobId)) {
+        $job = $this->pheanstalk->peek($jobId);
+
+        if ($job) {
             return $this->pheanstalk->delete($job);
         }
 
@@ -196,16 +205,17 @@ class PheanstalkQueue
     /**
      * Add to queue log.
      *
-     * @param  int $order_id
-     * @param  int $queue_id
+     * @param int $orderId
+     * @param int $queueId
+     *
      * @throws \Exception
      */
-    private function addToQueueLog($order_id, $queue_id)
+    private function addToQueueLog($orderId, $queueId)
     {
         $log = new OrdersToAxQueueLog();
         $log->setCreatedAt(time());
-        $log->setOrdersId($order_id);
-        $log->setQueueId($queue_id);
+        $log->setOrdersId($orderId);
+        $log->setQueueId($queueId);
         $log->save($this->dbConn);
     }
 }
