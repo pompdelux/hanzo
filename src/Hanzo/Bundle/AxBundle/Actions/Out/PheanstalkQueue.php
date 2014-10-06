@@ -105,7 +105,7 @@ class PheanstalkQueue
     public function appendDeleteOrder(Orders $order, $priority = \Pheanstalk_PheanstalkInterface::DEFAULT_PRIORITY, $delay = \Pheanstalk_PheanstalkInterface::DEFAULT_DELAY)
     {
         $ts = $this->isOrderInQueue($order);
-        
+
         if ($ts) {
             throw new OrderAlreadyInQueueException('The order #'.$order->getId().' is already in the queue. It was added @ '.date('Y-m-d H:i:s', $ts));
         }
