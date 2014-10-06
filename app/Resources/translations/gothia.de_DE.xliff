@@ -90,11 +90,11 @@ Wenden Sie sich bitte an den Kundendienst von GFG Finanz: 06131-9075259<br>Bei a
       </trans-unit>
       <trans-unit id="json.bank_account_no.to_long" approved="no">
         <source>json.bank_account_no.to_long</source>
-        <target>The entered Bank Acccount number must be less than 11 digits.</target>
+        <target>The entered IBAN number must be less than 34 characters.</target>
       </trans-unit>
       <trans-unit id="json.bank_id.to_long" approved="no">
         <source>json.bank_id.to_long</source>
-        <target>The entered Bank ID must be 8 digits long.</target>
+        <target>The entered BIC number must be 11 characters long.</target>
       </trans-unit>
       <trans-unit id="GFG Finanz.response.5000">
         <source>We are unable to connect to GFG Finanz Invoice service, please try again later.</source>

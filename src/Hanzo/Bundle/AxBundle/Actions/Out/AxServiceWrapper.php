@@ -76,8 +76,7 @@ class AxServiceWrapper
             ->joinWithCountries()
             ->filterByType('payment')
             ->filterByCustomersId($customer->getId())
-            ->findOne($dbCon)
-        ;
+            ->findOne($dbCon);
 
         $this->syncCustomer->setEndPoint(Tools::domainKeyToEndpoint($address->getCountries()->getIso2()));
         $this->syncCustomer->setCustomer($customer);

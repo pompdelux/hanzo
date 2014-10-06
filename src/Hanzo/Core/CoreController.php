@@ -215,9 +215,10 @@ class CoreController extends Controller
     /**
      * Shortcut for AppKernel::setTerminateEvent
      *
-     * @see                      AppKernel::setTerminateEvent
      * @param string $event      event key
      * @param mixed  $parameters parameters to send to the event
+     *
+     * @see                      AppKernel::setTerminateEvent
      */
     public function setTerminateEvent($event, $parameters)
     {
@@ -228,12 +229,12 @@ class CoreController extends Controller
     /**
      * Gets the connection for which database to use
      *
-     * @return Propel|\PropelPDO
+     * @return \PropelPDO|\PDO
      */
     public function getDbConnection()
     {
         if ($this->getRequest()->getSession()->get('database')) {
-            return Propel::getConnection( $this->getRequest()->getSession()->get('database') , Propel::CONNECTION_WRITE );
+            return Propel::getConnection($this->getRequest()->getSession()->get('database'), Propel::CONNECTION_WRITE);
         } else {
             return Propel::getConnection();
         }
@@ -243,13 +244,14 @@ class CoreController extends Controller
     /**
      * try to map language ids to folders, this is not a 1-1 match, so we need this little hack.
      *
-     * @param  int    $language_id
+     * @param int $languageId
+     *
      * @return string
      */
-    protected function mapLanguageToPdfDir($language_id)
+    protected function mapLanguageToPdfDir($languageId)
     {
-        if (isset($this->pdf_language_to_code[$language_id])) {
-            return $this->pdf_language_to_code[$language_id];
+        if (isset($this->pdf_language_to_code[$languageId])) {
+            return $this->pdf_language_to_code[$languageId];
         }
 
         return 'DK';
