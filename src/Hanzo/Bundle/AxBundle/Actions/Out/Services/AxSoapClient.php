@@ -89,6 +89,7 @@ class AxSoapClient
         if ($this->logRequests) {
             $x = print_r($request, 1);
             error_log(__METHOD__.' '.__LINE__.' '.$x);
+
             $x = trim(preg_replace("/ +/", ' ', str_replace(['Hanzo\\Bundle\\AxBundle\\Actions\\Out\\Services\\Mappers\\', "\n"], '', $x)));
             $this->logger->debug('Calling: '.$service, (array) $x);
         }
@@ -113,6 +114,11 @@ class AxSoapClient
 
         if ($result instanceof \Exception) {
             throw $result;
+        }
+
+        // Error code exist in $result->SyncSalesOrderResult->Status, but it
+        if (isset($result->SyncSalesOrderResult->Status) && ('ERROR' === strtoupper($result->SyncSalesOrderResult->Status))) {
+            throw new \Exception($service.' sync failed, error was: '. implode(' & ', $result->SyncSalesOrderResult->Message));
         }
 
         return true;
