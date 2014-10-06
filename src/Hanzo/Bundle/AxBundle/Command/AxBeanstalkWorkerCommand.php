@@ -113,7 +113,7 @@ class AxBeanstalkWorkerCommand extends ContainerAwareCommand
 
         if (!$input->getOption('quiet')) {
             $output->writeln(sprintf(
-                '<comment>[%s]</comment> <info>Job #'.$job->getId().' received - processing</info>',
+                '<comment>[%s]</comment> <info>Job #'.$job->getId().' received - processing (order id: '.$data['order_id'].' action: '.$data['action'].')</info>',
                 date('Y-m-d H:i:s')
             ));
         }
