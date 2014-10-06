@@ -11,6 +11,7 @@
 namespace Hanzo\Bundle\AxBundle\Actions\Out\Workers;
 
 use Hanzo\Bundle\AxBundle\Actions\Out\AxServiceWrapper;
+use Hanzo\Bundle\AxBundle\Actions\Out\Services\AxDataException;
 use Hanzo\Bundle\AxBundle\Logger;
 use Hanzo\Bundle\CheckoutBundle\SendOrderConfirmationMail;
 use Hanzo\Core\Tools;
@@ -81,15 +82,16 @@ class PheanstalkWorker
 
         $customer = CustomersQuery::create()->findOneById($jobData['customer_id'], $this->dbConn);
 
-        try {
-            if (!$this->serviceWrapper->SyncCustomer($customer, false, $this->dbConn)) {
-                return $this->reQueue($jobData, 'SyncCustomer');
-            }
-        } catch (\Exception $e) {
-            $this->writeLog('send', 'failed', $jobData, 'Syncronization halted: '.$e->getMessage());
-            $this->removeFromQueueLog($jobData['order_id']);
+        if (!$this->serviceWrapper->SyncCustomer($customer, false, $this->dbConn)) {
+            $error = $this->serviceWrapper->getErrors();
+            if ($error instanceof AxDataException) {
+                $this->writeLog('send', 'failed', $jobData, 'Syncronization halted: '.$error->getMessage());
+                $this->removeFromQueueLog($jobData['order_id']);
 
-            return false;
+                return false;
+            }
+
+            return $this->reQueue($jobData, 'SyncCustomer');
         }
 
         $order = OrdersQuery::create()->findOneById($jobData['order_id'], $this->dbConn);
@@ -104,6 +106,14 @@ class PheanstalkWorker
         }
 
         if (false === $orderSyncState) {
+            $error = $this->serviceWrapper->getErrors();
+            if ($error instanceof AxDataException) {
+                $this->writeLog('send', 'failed', $jobData, 'Syncronization halted: '.$error->getMessage());
+                $this->removeFromQueueLog($jobData['order_id']);
+
+                return false;
+            }
+
             return $this->reQueue($jobData, 'SyncSalesOrder');
         }
 
