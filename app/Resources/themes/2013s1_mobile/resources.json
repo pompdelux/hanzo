@@ -52,6 +52,8 @@
         "web/fx/scripts/account.js",
         "web/fx/scripts/newsletter.js",
         "web/fx/scripts/events.js",
-        "web/fx/2013s1_mobile/scripts/checkout.js"
+        "web/fx/2013s1_mobile/scripts/checkout.js",
+        "web/fx/scripts/App.js",
+        "web/fx/scripts/App.ProductFinder.js"
     ]
 }

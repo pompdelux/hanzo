@@ -64,7 +64,7 @@ aside.js-slider {
         width: 100%;
     }
     select {
-        margin-bottom: 10px;
+        margin-bottom: 15px;
         width: 100%;
         padding: 6px 5px;
     }
@@ -73,6 +73,22 @@ aside.js-slider {
         margin-bottom: 12px;
         font-style: italic;
         font-size: 0.9em;
+    }
+
+    .twitter-typeahead {
+        width: 98%;
+    }
+    .tt-dropdown-menu {
+        background-color: #fff;
+        border: 1px solid #c0c0c0;
+        width: 97%;
+        padding: 5px;
+    }
+
+    .tt-is-under-cursor {
+        padding: 0 5px;
+        background-color: #dedede;
+        font-weight: bold;
     }
 }
 

@@ -1,12 +1,12 @@
 {% extends layout %}
 {% block content %}
 
-    <section class="grid_8 alpha omega">
+    <section class="grid_8 alpha omega js-hanzo-module" data-module-name="ProductFinder">
         <h1>{{ 'wishlist.add.to.list'|trans({}, 'account') }}</h1>
 
-        <form action="">
+        <form action="" class="">
             <div>
-                <input type="text" name="q" id="form-item-q" placeholder="{{ 'wishlist.placeholder.query'|trans({}, 'account') }}" autocomplete="off">
+                <input type="text" name="q" id="form-item-q" placeholder="{{ 'wishlist.placeholder.query'|trans({}, 'account') }}" autocomplete="off" class="master">
                 <label form="form-item-q">{{ 'wishlist.query.description'|trans({}, 'account') }}</label>
             </div>
             <div>
@@ -19,9 +19,22 @@
                     <option value="">{{ 'wishlist.select.color'|trans({}, 'account') }}</option>
                 </select>
             </div>
+            <div>
+                <select disabled name="quantity">
+                {% for i in 1..10 %}
+                    <option value="{{ i }}">{{ i }}</option>
+                {% endfor %}
+                </select>
+            </div>
 
+            <input type="hidden" name="master" value="">
             <input type="submit" value="{{ "add.to.basket"|trans }}" class="button submit-button">
         </form>
     </section>
 
 {% endblock %}
+
+{% block javascript %}
+<script src="{{ asset('/fx/scripts/typeahead.min.js') }}"></script>
+<script>$(function () {App.init();});</script>
+{% endblock javascript %}
