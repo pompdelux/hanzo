@@ -56,16 +56,19 @@ class PheanstalkQueue
      * Append an order to the queue and queue log.
      * If the order is already in the queue, OrderAlreadyInQueueException is thrown.
      *
-     * @param  Orders $order
-     * @param  bool   $inEdit
-     * @param  int    $priority
-     * @param  int    $delay
+     * @param Orders $order
+     * @param bool   $inEdit
+     * @param int    $priority
+     * @param int    $delay
+     *
      * @return int
      * @throws OrderAlreadyInQueueException
      */
     public function appendSendOrder(Orders $order, $inEdit = false, $priority = \Pheanstalk_PheanstalkInterface::DEFAULT_PRIORITY, $delay = \Pheanstalk_PheanstalkInterface::DEFAULT_DELAY)
     {
-        if ($ts = $this->isOrderInQueue($order)) {
+        $ts = $this->isOrderInQueue($order);
+
+        if ($ts) {
             throw new OrderAlreadyInQueueException('The order #'.$order->getId().' is already in the queue. It was added @ '.date('Y-m-d H:i:s', $ts));
         }
 
@@ -80,10 +83,10 @@ class PheanstalkQueue
             'order_in_edit' => $inEdit,
         ]);
 
-        $queue_id = $this->pheanstalk->putInTube('orders2ax', $data, $priority, $delay);
-        $this->addToQueueLog($order->getId(), $queue_id);
+        $queueId = $this->pheanstalk->putInTube('orders2ax', $data, $priority, $delay);
+        $this->addToQueueLog($order->getId(), $queueId);
 
-        return $queue_id;
+        return $queueId;
     }
 
 
