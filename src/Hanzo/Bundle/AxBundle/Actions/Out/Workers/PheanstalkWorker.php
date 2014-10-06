@@ -51,7 +51,7 @@ class PheanstalkWorker
     /**
      * Send customer and order to AX or fail the jobs.
      *
-     * @param  array $jobData [
+     * @param array $jobData [
      *     'order_id'      => (int)
      *     'order_in_edit' => (bool),
      *     'customer_id'   => (int),
@@ -59,6 +59,7 @@ class PheanstalkWorker
      *     'end_point'     => (string),
      *     'db_conn'       => (string),
      * ]
+     *
      * @return bool
      * @throws \BuildException
      */
@@ -78,17 +79,13 @@ class PheanstalkWorker
             return false;
         }
 
-        $customer = CustomersQuery::create()
-            ->findOneById($jobData['customer_id'], $this->dbConn)
-        ;
+        $customer = CustomersQuery::create()->findOneById($jobData['customer_id'], $this->dbConn);
 
         if (!$this->serviceWrapper->SyncCustomer($customer, false, $this->dbConn)) {
             return $this->reQueue($jobData, 'SyncCustomer');
         }
 
-        $order = OrdersQuery::create()
-            ->findOneById($jobData['order_id'], $this->dbConn)
-        ;
+        $order = OrdersQuery::create()->findOneById($jobData['order_id'], $this->dbConn);
 
         try {
             $orderSyncState = $this->serviceWrapper->SyncSalesOrder($order, false, $this->dbConn, $jobData['order_in_edit']);
@@ -118,6 +115,7 @@ class PheanstalkWorker
      * Delete order in ax.
      *
      * @param array $jobData
+     *
      * @return bool
      */
     public function delete(array $jobData)
@@ -167,22 +165,23 @@ class PheanstalkWorker
     /**
      * Re-queue a job.
      *
-     * @param  $jobData
-     * @param  $type
+     * @param array  $jobData
+     * @param string $type
+     *
      * @return bool
      */
     private function reQueue($jobData, $type)
     {
         $seconds = $jobData['iteration'] * 45;
         $this->logger->info('PheanstalkWorker Job "'.$type.'" failed, scheduling for re-run in '.$seconds.' seconds.');
-        $queue_id = $this->pheanstalkProxy->putInTube('orders2ax',  json_encode($jobData), \Pheanstalk_PheanstalkInterface::DEFAULT_PRIORITY, $seconds);
+        $queueId = $this->pheanstalkProxy->putInTube('orders2ax', json_encode($jobData), \Pheanstalk_PheanstalkInterface::DEFAULT_PRIORITY, $seconds);
 
         // bump timestamp and queue id in queue log
         $this->dbConn->query("
             UPDATE
                 orders_to_ax_queue_log
             SET
-                queue_id = ".(int) $queue_id.",
+                queue_id = ".(int) $queueId.",
                 iteration = iteration + 1
             WHERE
                 orders_id = ".(int) $jobData['order_id']
@@ -192,14 +191,15 @@ class PheanstalkWorker
     }
 
     /**
-     * @param  int $order_id
+     * @param int $orderId
+     *
      * @return int
      * @throws \Exception
      */
-    private function removeFromQueueLog($order_id)
+    private function removeFromQueueLog($orderId)
     {
         return OrdersToAxQueueLogQuery::create()
-            ->filterByOrdersId($order_id)
+            ->filterByOrdersId($orderId)
             ->delete($this->dbConn);
     }
 

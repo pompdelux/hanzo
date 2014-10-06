@@ -169,12 +169,11 @@ class SyncSalesOrder extends BaseService
         $st['DeliveryCountryRegionId'] = $this->getIso2CountryCode($this->order->getDeliveryCountriesId());
 
         // only set SalesGroup on event orders.
-        if ($event = $this->order->getEvents($this->getDBConnection())) {
+        if ($this->order->getEventsId() && ($event = $this->order->getEvents($this->getDBConnection()))) {
             $st['SalesGroup'] = $event
                 ->getCustomersRelatedByConsultantsId($this->getDBConnection())
                 ->getConsultants($this->getDBConnection())
-                ->getInitials()
-            ;
+                ->getInitials();
         }
     }
 
