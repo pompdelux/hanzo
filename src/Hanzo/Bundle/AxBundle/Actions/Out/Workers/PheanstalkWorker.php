@@ -81,8 +81,15 @@ class PheanstalkWorker
 
         $customer = CustomersQuery::create()->findOneById($jobData['customer_id'], $this->dbConn);
 
-        if (!$this->serviceWrapper->SyncCustomer($customer, false, $this->dbConn)) {
-            return $this->reQueue($jobData, 'SyncCustomer');
+        try {
+            if (!$this->serviceWrapper->SyncCustomer($customer, false, $this->dbConn)) {
+                return $this->reQueue($jobData, 'SyncCustomer');
+            }
+        } catch (\Exception $e) {
+            $this->writeLog('send', 'failed', $jobData, 'Syncronization halted: '.$e->getMessage());
+            $this->removeFromQueueLog($jobData['order_id']);
+
+            return false;
         }
 
         $order = OrdersQuery::create()->findOneById($jobData['order_id'], $this->dbConn);
