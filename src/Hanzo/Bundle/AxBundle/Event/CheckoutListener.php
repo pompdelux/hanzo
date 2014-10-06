@@ -10,6 +10,11 @@ use Hanzo\Core\Tools;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersStateLog;
 
+/**
+ * Class CheckoutListener
+ *
+ * @package Hanzo\Bundle\AxBundle
+ */
 class CheckoutListener
 {
     /**
