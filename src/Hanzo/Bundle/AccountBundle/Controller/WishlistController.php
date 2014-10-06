@@ -36,9 +36,42 @@ class WishlistController extends CoreController
      *
      * @Template
      */
-    public function addAction()
+    public function addAction(Request $request)
     {
-        return ['page_type' => 'wishlist'];
+        $items = WishlistsLinesQuery::create()
+            ->joinWithProducts()
+            ->useWishlistsQuery()
+                ->filterByCustomersId(CustomersPeer::getCurrent()->getId())
+            ->endUse()
+            ->find();
+
+        $products = [];
+
+        /** @var \Hanzo\Model\WishlistsLines $item */
+        foreach ($items as $item) {
+            $product = $item->getProducts();
+            $product->setLocale($request->getLocale());
+
+            $sku = explode(' ', $product->getSku())[0];
+            $image = preg_replace('/[^a-z0-9]/i', '-', $sku) .
+                '_' .
+                preg_replace('/[^a-z0-9]/i', '-', str_replace('/', '9', $product->getColor())) .
+                '_overview_01.jpg';
+
+            $products[] = [
+                'id'       => $item->getProductsId(),
+                'title'    => $product->getTitle(),
+                'size'     => $product->getSize(),
+                'color'    => $product->getColor(),
+                'image'    => $image,
+                'quantity' => $item->getQuantity(),
+            ];
+        }
+
+        return [
+            'page_type' => 'wishlist',
+            'products'  => $products
+        ];
     }
 
     /**
@@ -52,12 +85,17 @@ class WishlistController extends CoreController
      */
     public function addItemAction(Request $request)
     {
+        $customerId = CustomersPeer::getCurrent()->getId();
+
         $list = WishlistsQuery::create()
-            ->filterByCustomersId(CustomersPeer::getCurrent()->getId())
+            ->filterByCustomersId($customerId)
             ->findOne();
 
         if (!$list instanceof Wishlists) {
-            $list = $this->addAction()['list'];
+            $list = new Wishlists();
+            $list->setCustomersId($customerId);
+            $list->setId($this->random(5));
+            $list->save();
         }
 
 
