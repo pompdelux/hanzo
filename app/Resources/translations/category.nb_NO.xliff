@@ -7,9 +7,9 @@
                 <target><![CDATA[<h1>Kjoler</h1>
                 <p>POMPdeLUX har kjoler i mange forskjellige farger og snitt. Du finner kjoler til både fest og spesielle anledninger, og kjoler som er perfekte til hverdag og lek. Blant kjolene fra POMPdeLUX finnes det noe for alle jenter – både store og små. Så det er bare å velge din favorittkjole. Våre kjoler går fra størrelse 80 cm til 152 cm, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
             </trans-unit>
-             <trans-unit id="headers.category-20" approved="no">
-                <source>headers.category-20</source>
-                <target><![CDATA[<h1>T-skjorter / Topper</h1>
+             <trans-unit id="headers.category-35" approved="no">
+                <source>headers.category-35</source>
+                <target><![CDATA[<h1>T-skjorter</h1>
                 <p>T-skjorter og topper kan brukes året rundt, og de er lekre både til sommer og vinter. POMPdeLUX har t-skjorter i mange forskjellige farger og modeller, så det er noe til både store og små jenter. Våre T-skjorter og topper er i lekre myke kvaliteter, og med mange fine detaljer. Finn din favoritt T-skjorte til hverdag eller en skjønn topp til festlige anledninger. Våre T-skjorter går fra størrelse 80 cm til 152 cm, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-19" approved="no">
@@ -54,13 +54,13 @@
             </trans-unit>
 			<trans-unit id="headers.category-15" approved="no">
                 <source>headers.category-15</source>
-                <target><![CDATA[<h1>Leggings</h1>
-                <p>Leggings er en fast del av barnets basisgarderobe. POMPdeLUX har leggings i lekre myke materialer, som alle jenter liker å ha på. Bruk leggings under kjole, skjørt eller shorts, og glem ikke basis-toppene, som passer perfekt til våre leggings. Våre leggings går fra størrelse 80 cm til 152 cm, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
+                <target><![CDATA[<h1>Sokker / Strømpebukser / Leggings</h1>
+                <p>Strømper, strømpebukser og leggings er en fast del av barnets basisgarderobe. POMPdeLUX har strømper, strømpebukser og leggings i lekre myke materialer, som alle jenter liker å ha på. Bruk strømper, strømpebukser og leggings under kjole, skjørt eller shorts, og glem ikke basis-toppene, som passer perfekt til våre leggings. Våre leggings går fra størrelse 80 cm til 152 cm, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-82" approved="no">
                 <source>headers.category-82</source>
                 <target><![CDATA[<h1>Sokker / Strømpebukser</h1>
-                <p>For å fullende ditt barns garderobe kan kolleksjonen kombineres med våre mange skjønne accessories. POMPdeLUX har alt fra strømper, strømpebukser, leggings, badetøy, badedrakt, bikini, hårpynt, seler og belter til vanter, luer og skjerf. Vårt populære tilbehør matcher resten av kolleksjonen, og kan derfor kombineres med tøffe kjoler, lekre cardigans og kule bukser. Våre belter, seler, vanter, luer, skjerf og hårpynt kan brukes av jenter i alle aldre, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
+                <p>For å fullende ditt barns garderobe kan kolleksjonen kombineres med våre mange skjønne accessories. POMPdeLUX har alt fra strømper, strømpebukser, leggings, hårpynt, seler og belter til vanter, luer og skjerf. Vårt populære tilbehør matcher resten av kolleksjonen, og kan derfor kombineres med tøffe kjoler, lekre cardigans og kule bukser. Våre belter, seler, vanter, luer, skjerf og hårpynt kan brukes av jenter i alle aldre, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-21" approved="no">
                 <source>headers.category-21</source>
@@ -69,7 +69,7 @@
 			<trans-unit id="headers.category-12" approved="no">
                 <source>headers.category-12</source>
                 <target><![CDATA[<h1>Tilbehør</h1>
-                <p>For å fullende ditt barns garderobe kan kolleksjonen kombineres med våre mange skjønne accessories. POMPdeLUX har alt fra strømper, strømpebukser, leggings, badetøy, badedrakt, bikini, hårpynt, seler og belter til vanter, luer og skjerf. Vårt populære tilbehør matcher resten av kolleksjonen, og kan derfor kombineres med tøffe kjoler, lekre cardigans og kule bukser. Våre belter, seler, vanter, luer, skjerf og hårpynt kan brukes av jenter i alle aldre, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
+                <p>For å fullende ditt barns garderobe kan kolleksjonen kombineres med våre mange skjønne accessories. POMPdeLUX har alt fra strømper, strømpebukser, leggings, hårpynt, seler og belter til vanter, luer og skjerf. Vårt populære tilbehør matcher resten av kolleksjonen, og kan derfor kombineres med tøffe kjoler, lekre cardigans og kule bukser. Våre belter, seler, vanter, luer, skjerf og hårpynt kan brukes av jenter i alle aldre, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-45" approved="no">
                 <source>headers.category-45</source>
@@ -78,7 +78,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-46" approved="no">
                 <source>headers.category-46</source>
-                <target><![CDATA[<h1>Organic</h1>
+                <target><![CDATA[<h1>Økologi / GOTS</h1>
                 <p>Hos POMPdeLUX elsker vi kvalitetstøy, og ditt barn skal naturligvis ha det beste. Derfor er våre underbukser, hipsters, truser, undertrøyer, nattkjoler og pyjamaser GOTS sertifisert. Det betyr at vi jobber med organiske tekstiler, hvor minst 95 % av materialene er økologiske, og at produksjonen foregår miljømessig og sosialt ansvarlig. Vi garanterer derfor lekre materialer av høy kvalitet til barn i alle aldre.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-112" approved="no">
@@ -118,13 +118,13 @@
             </trans-unit>
 			<trans-unit id="headers.category-9" approved="no">
                 <source>headers.category-9</source>
-                <target><![CDATA[<h1>Cardigans / Pullovers</h1>
+                <target><![CDATA[<h1>Strikk / Cardigans</h1>
                 <p>Til kalde vinterdager og kjølige sommerkvelder er det godt med en varm trøye eller cardigan. POMPdeLUX har både strikkegensere, cardigans og pullovere i lekre myke kvaliteter, og du finner et bredt utvalg av farger og modeller. POMPdeLUX har både strikkegensere, cardigans og pullovere i lekre myke kvaliteter, og du finner et bredt utvalg av farger og modeller. Våre cardigans og trøyer går fra størrelse 80 cm til 152 cm, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-83" approved="no">
                 <source>headers.category-83</source>
-                <target><![CDATA[<h1>Sweatshirts</h1>
-                <p>En sweatshirt er kul til både store og små gutter. Hos POMPdeLUX finner du både sweats med print, lekre myke fleece-gensere og kule sportsjakker med glidelås i de lekreste materialer av høy kvalitet. Finn din favoritt blant mange farger og modeller. Våre sweatshirts, sportsjakker og fleece-gensere går fra størrelse 80 cm til 152 cm, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
+                <target><![CDATA[<h1>Sweatshirts / Sweatpants</h1>
+                <p>Sweatpants og sweatshirts er populære! Velg mellom lekre myke gensere, jakker, bukser og buksedrakter. Våre sweat-plagg er alltid i en lekker kvalitet, som er behagelig for barnet ditt, og som samtidig skaper en kul look. Våre sweatshirts og sweatbukser fås fra str. 80-152 cm til både jenter og gutter.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-7" approved="no">
                 <source>headers.category-7</source>
@@ -149,7 +149,7 @@
 			<trans-unit id="headers.category-5" approved="no">
                 <source>headers.category-5</source>
                 <target><![CDATA[<h1>Tilbehør</h1>
-                <p>For å fullende ditt barns garderobe kan kolleksjonen kombineres med våre mange skjønne accessories. POMPdeLUX har alt fra strømper, strømpebukser, leggings, badetøy, badedrakt, bikini, hårpynt, seler og belter til vanter, luer og skjerf. Vårt populære tilbehør matcher resten av kolleksjonen, og kan derfor kombineres med tøffe kjoler, lekre cardigans og kule bukser. Våre belter, seler, vanter, luer, skjerf og hårpynt kan brukes av jenter i alle aldre, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
+                <p>For å fullende ditt barns garderobe kan kolleksjonen kombineres med våre mange skjønne accessories. POMPdeLUX har alt fra strømper, strømpebukser, leggings, hårpynt, seler og belter til vanter, luer og skjerf. Vårt populære tilbehør matcher resten av kolleksjonen, og kan derfor kombineres med tøffe kjoler, lekre cardigans og kule bukser. Våre belter, seler, vanter, luer, skjerf og hårpynt kan brukes av jenter i alle aldre, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-43" approved="no">
                 <source>headers.category-43</source>
@@ -158,7 +158,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-44" approved="no">
                 <source>headers.category-44</source>
-                <target><![CDATA[<h1>Organic</h1>
+                <target><![CDATA[<h1>Økologi / GOTS</h1>
                 <p>Hos POMPdeLUX elsker vi kvalitetstøy, og ditt barn skal naturligvis ha det beste. Derfor er våre underbukser, hipsters, truser, undertrøyer, nattkjoler og pyjamaser GOTS sertifisert. Det betyr at vi jobber med organiske tekstiler, hvor minst 95 % av materialene er økologiske, og at produksjonen foregår miljømessig og sosialt ansvarlig. Vi garanterer derfor lekre materialer av høy kvalitet til barn i alle aldre.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-116" approved="no">
@@ -221,8 +221,8 @@
                 <target><![CDATA[<h1>Bukser</h1>
                 <p>Hos POMPdeLUX finner du de buksene som passer best til ditt barn. Vi har et bredt utvalg av farger og modeller – uansett om du foretrekker jeggings, jeans, baggy eller slimfit bukser. Buksene våre er fremstilt i lekre materialer, fra sweat til strikk, og det finnes bukser til alle anledninger. Våre bukser, jeggings og jeans går fra størrelse 80 cm til 152 cm, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
             </trans-unit>
-			<trans-unit id="headers.category-35" approved="no">
-                <source>headers.category-35</source>
+			<trans-unit id="headers.category-86" approved="no">
+                <source>headers.category-86</source>
                 <target><![CDATA[<h1>Shorts / Skjørt</h1>
                 <p>POMPdeLUX har shorts og skjørt til alle jenter. Velg mellom flere forskjellige modeller og lekre farger, og legg merke til de mange fine detaljene med trykk og tyll. Velg mellom flere forskjellige modeller og lekre farger, og legg merke til de mange fine detaljene med trykk og tyll. Våre shorts og skjørt går fra størrelse 80 cm til 152 cm, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
             </trans-unit>
@@ -239,7 +239,7 @@
 			<trans-unit id="headers.category-87" approved="no">
                 <source>headers.category-87</source>
                 <target><![CDATA[<h1>Sokker / Strømpebukser</h1>
-                <p>For å fullende ditt barns garderobe kan kolleksjonen kombineres med våre mange skjønne accessories. POMPdeLUX har alt fra strømper, strømpebukser, leggings, badetøy, badedrakt, bikini, hårpynt, seler og belter til vanter, luer og skjerf. Vårt populære tilbehør matcher resten av kolleksjonen, og kan derfor kombineres med tøffe kjoler, lekre cardigans og kule bukser. Våre belter, seler, vanter, luer, skjerf og hårpynt kan brukes av jenter i alle aldre, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
+                <p>For å fullende ditt barns garderobe kan kolleksjonen kombineres med våre mange skjønne accessories. POMPdeLUX har alt fra strømper, strømpebukser, leggings, hårpynt, seler og belter til vanter, luer og skjerf. Vårt populære tilbehør matcher resten av kolleksjonen, og kan derfor kombineres med tøffe kjoler, lekre cardigans og kule bukser. Våre belter, seler, vanter, luer, skjerf og hårpynt kan brukes av jenter i alle aldre, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-38" approved="no">
                 <source>headers.category-38</source>
@@ -249,7 +249,7 @@
 			<trans-unit id="headers.category-29" approved="no">
                 <source>headers.category-29</source>
                 <target><![CDATA[<h1>Tilbehør</h1>
-                <p>For å fullende ditt barns garderobe kan kolleksjonen kombineres med våre mange skjønne accessories. POMPdeLUX har alt fra strømper, strømpebukser, leggings, badetøy, badedrakt, bikini, hårpynt, seler og belter til vanter, luer og skjerf. Vårt populære tilbehør matcher resten av kolleksjonen, og kan derfor kombineres med tøffe kjoler, lekre cardigans og kule bukser. Våre belter, seler, vanter, luer, skjerf og hårpynt kan brukes av jenter i alle aldre, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
+                <p>For å fullende ditt barns garderobe kan kolleksjonen kombineres med våre mange skjønne accessories. POMPdeLUX har alt fra strømper, strømpebukser, leggings, hårpynt, seler og belter til vanter, luer og skjerf. Vårt populære tilbehør matcher resten av kolleksjonen, og kan derfor kombineres med tøffe kjoler, lekre cardigans og kule bukser. Våre belter, seler, vanter, luer, skjerf og hårpynt kan brukes av jenter i alle aldre, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-49" approved="no">
                 <source>headers.category-49</source>
@@ -258,7 +258,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-50" approved="no">
                 <source>headers.category-50</source>
-                <target><![CDATA[<h1>Organic</h1>
+                <target><![CDATA[<h1>Økologi / GOTS</h1>
                 <p>Hos POMPdeLUX elsker vi kvalitetstøy, og ditt barn skal naturligvis ha det beste. Derfor er våre underbukser, hipsters, truser, undertrøyer, nattkjoler og pyjamaser GOTS sertifisert. Det betyr at vi jobber med organiske tekstiler, hvor minst 95 % av materialene er økologiske, og at produksjonen foregår miljømessig og sosialt ansvarlig. Vi garanterer derfor lekre materialer av høy kvalitet til barn i alle aldre.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-121" approved="no">
@@ -288,13 +288,13 @@
             </trans-unit>
 			<trans-unit id="headers.category-23" approved="no">
                 <source>headers.category-23</source>
-                <target><![CDATA[<h1>Cardigans / Pullovers</h1>
+                <target><![CDATA[<h1>Strikk / Cardigans</h1>
                 <p>Til kalde vinterdager og kjølige sommerkvelder er det godt med en varm trøye eller cardigan. POMPdeLUX har både strikkegensere, cardigans og pullovere i lekre myke kvaliteter, og du finner et bredt utvalg av farger og modeller. POMPdeLUX har både strikkegensere, cardigans og pullovere i lekre myke kvaliteter, og du finner et bredt utvalg av farger og modeller. Våre cardigans og trøyer går fra størrelse 80 cm til 152 cm, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-88" approved="no">
                 <source>headers.category-88</source>
-                <target><![CDATA[<h1>Sweatshirts</h1>
-                <p>En sweatshirt er kul til både store og små gutter. Hos POMPdeLUX finner du både sweats med print, lekre myke fleece-gensere og kule sportsjakker med glidelås i de lekreste materialer av høy kvalitet. Finn din favoritt blant mange farger og modeller. Våre sweatshirts, sportsjakker og fleece-gensere går fra størrelse 80 cm til 152 cm, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
+                <target><![CDATA[<h1>Sweatshirts / Sweatpants</h1>
+                <p>Sweatpants og sweatshirts er populære! Velg mellom lekre myke gensere, jakker, bukser og buksedrakter. Våre sweat-plagg er alltid i en lekker kvalitet, som er behagelig for barnet ditt, og som samtidig skaper en kul look. Våre sweatshirts og sweatbukser fås fra str. 80-152 cm til både jenter og gutter.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-89" approved="no">
                 <source>headers.category-89</source>
@@ -324,7 +324,7 @@
 			<trans-unit id="headers.category-22" approved="no">
                 <source>headers.category-22</source>
                 <target><![CDATA[<h1>Tilbehør</h1>
-                <p>For å fullende ditt barns garderobe kan kolleksjonen kombineres med våre mange skjønne accessories. POMPdeLUX har alt fra strømper, strømpebukser, leggings, badetøy, badedrakt, bikini, hårpynt, seler og belter til vanter, luer og skjerf. Vårt populære tilbehør matcher resten av kolleksjonen, og kan derfor kombineres med tøffe kjoler, lekre cardigans og kule bukser. Våre belter, seler, vanter, luer, skjerf og hårpynt kan brukes av jenter i alle aldre, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
+                <p>For å fullende ditt barns garderobe kan kolleksjonen kombineres med våre mange skjønne accessories. POMPdeLUX har alt fra strømper, strømpebukser, leggings, hårpynt, seler og belter til vanter, luer og skjerf. Vårt populære tilbehør matcher resten av kolleksjonen, og kan derfor kombineres med tøffe kjoler, lekre cardigans og kule bukser. Våre belter, seler, vanter, luer, skjerf og hårpynt kan brukes av jenter i alle aldre, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-47" approved="no">
                 <source>headers.category-47</source>
@@ -333,7 +333,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-48" approved="no">
                 <source>headers.category-48</source>
-                <target><![CDATA[<h1>Organic</h1>
+                <target><![CDATA[<h1>Økologi / GOTS</h1>
                 <p>Hos POMPdeLUX elsker vi kvalitetstøy, og ditt barn skal naturligvis ha det beste. Derfor er våre underbukser, hipsters, truser, undertrøyer, nattkjoler og pyjamaser GOTS sertifisert. Det betyr at vi jobber med organiske tekstiler, hvor minst 95 % av materialene er økologiske, og at produksjonen foregår miljømessig og sosialt ansvarlig. Vi garanterer derfor lekre materialer av høy kvalitet til barn i alle aldre.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-123" approved="no">
@@ -354,7 +354,7 @@
 			<trans-unit id="headers.category-125" approved="no">
                 <source>headers.category-125</source>
                 <target><![CDATA[<h1>Shorts</h1>
-                <p>Hos POMPdeLUX finner du et stort utvalg av lekre shorts, nikkerser og badeshorts. Velg mellom lange og korte modeller i både sweat, denim og bomull. Så er gutten din klar til sommer, strand og utelek. Alle våre shorts kan kombineres med en kul skjorte, en myk T-skjorte eller en tøff undertrøye. Våre shorts og nikkerser går fra størrelse 80 cm til 152 cm, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
+                <p>Hos POMPdeLUX finner du et stort utvalg av lekre shorts og nikkerser. Velg mellom lange og korte modeller i både sweat, denim og bomull. Så er gutten din klar til sommer, strand og utelek. Alle våre shorts kan kombineres med en kul skjorte, en myk T-skjorte eller en tøff undertrøye. Våre shorts og nikkerser går fra størrelse 80 cm til 152 cm, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-124" approved="no">
                 <source>headers.category-124</source>
