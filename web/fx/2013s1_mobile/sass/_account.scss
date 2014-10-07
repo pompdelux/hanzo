@@ -60,6 +60,9 @@ aside.js-slider {
 }
 
 #body-wishlist {
+    form {
+        margin-bottom: 20px;
+    }
     input {
         width: 100%;
     }
@@ -84,11 +87,29 @@ aside.js-slider {
         width: 97%;
         padding: 5px;
     }
-
     .tt-is-under-cursor {
         padding: 0 5px;
         background-color: #dedede;
         font-weight: bold;
+    }
+
+    article {
+        border-top: 2px solid #c0c0c0;
+        overflow: hidden;
+
+        img {
+            vertical-align: top;
+            margin-left: 10px;
+            float: left;
+        }
+
+        p {
+            padding-top: 10px;
+            text-align: center;
+            display: block;
+            width: 260px;
+            float: right;
+        }
     }
 }
 

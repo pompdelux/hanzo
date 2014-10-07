@@ -30,16 +30,18 @@ var App = (function($) {
      */
     publicMethods.init = function() {
         $('.js-hanzo-module').each(function(i, module) {
-            var $module    = $(module);
-            var moduleName = $module.data('moduleName');
+            var $element   = $(module);
+            var moduleName = $element.data('moduleName').split(' ');
 
-            if (undefined === publicMethods[moduleName]) {
-                throw 'Unknown moduleName "'+moduleName+'" called.';
-            }
+            $.each(moduleName, function(i, name) {
+                if (undefined === publicMethods[name]) {
+                    throw 'Unknown name "'+name+'" called.';
+                }
 
-            if (typeof publicMethods[moduleName].init === 'function') {
-                publicMethods[moduleName].init($module);
-            }
+                if (typeof publicMethods[name].init === 'function') {
+                    publicMethods[name].init($element);
+                }
+            });
         });
     };
 
