@@ -12,3 +12,8 @@ ax_soap_test:
     defaults:
         _controller: AxBundle:Soap:test
         version: v1
+
+ax_soap_faker:
+    pattern:  /soap/service-faker
+    defaults:
+        _controller: AxBundle:Soap:fakeService
