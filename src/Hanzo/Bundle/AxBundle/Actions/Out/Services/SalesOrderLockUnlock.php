@@ -14,10 +14,14 @@ use Hanzo\Model\Orders;
 
 /**
  * Class SalesOrderLockUnlock
+ * 
  * @package Hanzo\Bundle\AxBundle
  */
 class SalesOrderLockUnlock extends BaseService
 {
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         $this->data = (object) [
@@ -46,6 +50,6 @@ class SalesOrderLockUnlock extends BaseService
     public function setData(Orders $order, $lock = true)
     {
         $this->data->eOrderNumber = $order->getId();
-        $this->data->lockOrder    = (int)$lock;
+        $this->data->lockOrder    = (int) $lock;
     }
 }
