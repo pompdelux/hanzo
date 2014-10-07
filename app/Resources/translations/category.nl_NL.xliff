@@ -7,9 +7,9 @@
                 <target><![CDATA[<h1>Jurken</h1>
                 <p>POMPdeLUX heeft veel verschillende kleuren en modellen jurken. Zowel jurken voor feesten en bijzondere gelegenheden als jurken om doordeweeks in te spelen. Met jurken van POMPdeLUX is er voor elk wat wils – voor de grote en de kleine meisjes. Dus kies je favoriete jurk. Onze jurken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind. </p>]]></target>
             </trans-unit>
-             <trans-unit id="headers.category-20" approved="no">
-                <source>headers.category-20</source>
-                <target><![CDATA[<h1>T-shirts / Tops</h1>
+             <trans-unit id="headers.category-35" approved="no">
+                <source>headers.category-35</source>
+                <target><![CDATA[<h1>T-shirts</h1>
                 <p>T-shirts en tops kun je het hele jaar door dragen en ze zijn fijn voor de zomer en de winter. POMPdeLUX heeft veel verschillende kleuren en modellen t-shirts voor de grote en de kleine meisjes. Onze t-shirts en tops zijn gemaakt van lekker zacht materiaal, met veel mooie details. Vind je favoriete t-shirt voor doordeweeks of een leuke top voor een feestelijke gelegenheid. Onze t-shirts en tops zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-19" approved="no">
@@ -54,7 +54,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-15" approved="no">
                 <source>headers.category-15</source>
-                <target><![CDATA[<h1>Leggings</h1>
+                <target><![CDATA[<h1>Sokken / Maillots / Leggings</h1>
                 <p>Leggings horen in de basisgarderobe van je kind. POMPdeLUX heeft leggings van lekker zacht materiaal zodat alle meisjes ze wel aan willen hebben. Gebruik de legging onder een jurk, rok of shorts en vergeet niet onze basic tops die perfect bij onze leggings passen. Onze leggings zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-82" approved="no">
@@ -79,7 +79,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-46" approved="no">
                 <source>headers.category-46</source>
-                <target><![CDATA[<h1>Organic</h1>
+                <target><![CDATA[<h1>Organic / GOTS</h1>
                 <p>Bij POMPdeLUX zijn we gek op kwaliteitskleding en je kind moet natuurlijk het allerbeste hebben. Daarom zijn onze onderbroeken, hipsters, slips, hemden, nachtjapons en pyjama’s GOTS gecertificeerd. Dat betekent dat we werken met biologische textielen waarvan minstens 95% van de stof biologisch is en dat de productie op een milieuvriendelijke, sociaal verantwoorde manier gebeurt. We garanderen daarmee mooie materialen van een hoge kwaliteit voor kinderen van alle leeftijden.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-112" approved="no">
@@ -119,13 +119,13 @@
             </trans-unit>
 			<trans-unit id="headers.category-9" approved="no">
                 <source>headers.category-9</source>
-                <target><![CDATA[<h1>Vesten / Truien</h1>
+                <target><![CDATA[<h1>Truien / Vesten</h1>
                 <p>Voor de koude winterdagen en de wat koelere zomeravonden is een warme trui of vest heerlijk om bij de hand te hebben. POMPdeLUX heeft truien, vesten en pullovers van lekker zacht materiaal en je kunt bij ons kiezen uit verschillende kleuren en modellen. Kies je favoriet uit onze fleecetruien, vesten, sweatshirts, slipovers en pullovers. Onze pullovers en vesten zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-83" approved="no">
                 <source>headers.category-83</source>
-                <target><![CDATA[<h1>Sweatshirts</h1>
-                <p>Een sweatshirt is cool voor zowel grote als kleine jongens. Bij POMPdeLUX vind je sweatshirts met print, lekkere zachte fleecetruien en stoere sportjacks met ritssluiting, gemaakt van het mooiste materiaal en de beste kwaliteit. Kies je favoriet uit de vele kleuren en modellen. Onze sweatshirts, sportjacks en fleecetruien zijn verkrijgbaar van maat 80 tot maat 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+                <target><![CDATA[<h1>Sweatshirts / Sweatpants</h1>
+                <p>Sweatbroeken en sweatshirts zijn populair! Kies uit lekkere zachte truien, jacks, broeken en joggingpakken. Onze sweatartikelen zijn gemaakt van een mooie stof die lekker zit, maar ze zien er ook cool uit. Onze sweatshirts en sweatbroeken zijn verkrijgbaar van maat 80-152 en zijn er voor de meisjes en de jongens.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-7" approved="no">
                 <source>headers.category-7</source>
@@ -159,7 +159,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-44" approved="no">
                 <source>headers.category-44</source>
-                <target><![CDATA[<h1>Organic</h1>
+                <target><![CDATA[<h1>Organic / GOTS</h1>
                 <p>Bij POMPdeLUX zijn we gek op kwaliteitskleding en je kind moet natuurlijk het allerbeste hebben. Daarom zijn onze onderbroeken, hipsters, slips, hemden, nachtjapons en pyjama’s GOTS gecertificeerd. Dat betekent dat we werken met biologische textielen waarvan minstens 95% van de stof biologisch is en dat de productie op een milieuvriendelijke, sociaal verantwoorde manier gebeurt. We garanderen daarmee mooie materialen van een hoge kwaliteit voor kinderen van alle leeftijden.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-116" approved="no">
@@ -222,8 +222,8 @@
                 <target><![CDATA[<h1>Broeken</h1>
                 <p>Bij POMPdeLUX vind je de broek die het beste bij jouw kind past. We hebben een groot assortiment kleuren en modellen – ongeacht of het hierbij gaat om jeggings, spijkerbroeken, baggy of slimfit broeken. Onze broeken zijn gemaakt van mooie materialen zoals sweatstof en gebreide stof en er zijn broeken voor allerlei gelegenheden. Onze broeken, jeggings en spijkerbroeken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
             </trans-unit>
-			<trans-unit id="headers.category-35" approved="no">
-                <source>headers.category-35</source>
+			<trans-unit id="headers.category-86" approved="no">
+                <source>headers.category-86</source>
                 <target><![CDATA[<h1>Shorts / Rokken</h1>
                 <p>POMPdeLUX heeft shorts en rokken voor alle meisjes. Kies uit verschillende modellen en kleuren en bewonder de mooie details met print en tule. Combineer een shorts en rok met leggings en maillots of tops zoals t-shirts, truien en vesten. Onze shorts en rokken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
             </trans-unit>
@@ -239,7 +239,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-87" approved="no">
                 <source>headers.category-87</source>
-                <target><![CDATA[<h1>Sokken / Maillots</h1>
+                <target><![CDATA[<h1>Sokken / Maillots / Leggings</h1>
                 <p>Om de garderobe van je kind te completeren kun je de collectie combineren met onze leuke accessories. POMPdeLUX heeft van alles, van haaraccessoires, zwemkleding, sokken, maillots en leggings, bretels en riemen tot wanten, mutsen en dassen. Onze populaire accessoires passen bij de rest van de collectie en kunnen daarom gecombineerd worden met de mooie jurken, vesten en broeken. Onze riemen, bretels, wanten, mutsen, dassen en haaraccessoires zijn voor meisjes van alle leeftijden en in onze webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-38" approved="no">
@@ -259,7 +259,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-50" approved="no">
                 <source>headers.category-50</source>
-                <target><![CDATA[<h1>Organic</h1>
+                <target><![CDATA[<h1>Organic / GOTS</h1>
                 <p>Bij POMPdeLUX zijn we gek op kwaliteitskleding en je kind moet natuurlijk het allerbeste hebben. Daarom zijn onze onderbroeken, hipsters, slips, hemden, nachtjapons en pyjama’s GOTS gecertificeerd. Dat betekent dat we werken met biologische textielen waarvan minstens 95% van de stof biologisch is en dat de productie op een milieuvriendelijke, sociaal verantwoorde manier gebeurt. We garanderen daarmee mooie materialen van een hoge kwaliteit voor kinderen van alle leeftijden.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-121" approved="no">
@@ -289,13 +289,13 @@
             </trans-unit>
 			<trans-unit id="headers.category-23" approved="no">
                 <source>headers.category-23</source>
-                <target><![CDATA[<h1>Vesten / Truien</h1>
+                <target><![CDATA[<h1>Truien / Vesten</h1>
                 <p>Voor de koude winterdagen en de wat koelere zomeravonden is een warme trui of vest heerlijk om bij de hand te hebben. POMPdeLUX heeft truien, vesten en pullovers van lekker zacht materiaal en je kunt bij ons kiezen uit verschillende kleuren en modellen. Kies je favoriet uit onze fleecetruien, vesten, sweatshirts, slipovers en pullovers. Onze pullovers en vesten zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-88" approved="no">
                 <source>headers.category-88</source>
-                <target><![CDATA[<h1>Sweatshirts</h1>
-                <p>Een sweatshirt is cool voor zowel grote als kleine jongens. Bij POMPdeLUX vind je sweatshirts met print, lekkere zachte fleecetruien en stoere sportjacks met ritssluiting, gemaakt van de mooiste materialen en de beste kwaliteit. Kies je favoriet uit de vele kleuren en modellen. Onze sweatshirts, sportjacks en fleecetruien zijn verkrijgbaar van maat 80 tot maat 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+                <target><![CDATA[<h1>Sweatshirts / Sweatpants</h1>
+                <p>Sweatbroeken en sweatshirts zijn populair! Kies uit lekkere zachte truien, jacks, broeken en joggingpakken. Onze sweatartikelen zijn gemaakt van een mooie stof die lekker zit, maar ze zien er ook cool uit. Onze sweatshirts en sweatbroeken zijn verkrijgbaar van maat 80-152 en zijn er voor de meisjes en de jongens.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-89" approved="no">
                 <source>headers.category-89</source>
@@ -334,7 +334,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-48" approved="no">
                 <source>headers.category-48</source>
-                <target><![CDATA[<h1>Organic</h1>
+                <target><![CDATA[<h1>Organic / GOTS</h1>
                 <p>Bij POMPdeLUX zijn we gek op kwaliteitskleding en je kind moet natuurlijk het allerbeste hebben. Daarom zijn onze onderbroeken, hipsters, slips, hemden, nachtjapons en pyjama’s GOTS gecertificeerd. Dat betekent dat we werken met biologische textielen waarvan minstens 95% van de stof biologisch is en dat de productie op een milieuvriendelijke, sociaal verantwoorde manier gebeurt. We garanderen daarmee mooie materialen van een hoge kwaliteit voor kinderen van alle leeftijden.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-123" approved="no">
