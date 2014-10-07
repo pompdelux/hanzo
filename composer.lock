@@ -1493,17 +1493,17 @@
         },
         {
             "name": "propel/propel-bundle",
-            "version": "1.4.3",
+            "version": "1.4.4",
             "target-dir": "Propel/PropelBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/propelorm/PropelBundle.git",
-                "reference": "2652ade31cad2b933a075b5515be1a07d10962d4"
+                "reference": "0aee6aa0c952fde9eadc512936a3f5af07a56306"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/propelorm/PropelBundle/zipball/2652ade31cad2b933a075b5515be1a07d10962d4",
-                "reference": "2652ade31cad2b933a075b5515be1a07d10962d4",
+                "url": "https://api.github.com/repos/propelorm/PropelBundle/zipball/0aee6aa0c952fde9eadc512936a3f5af07a56306",
+                "reference": "0aee6aa0c952fde9eadc512936a3f5af07a56306",
                 "shasum": ""
             },
             "require": {
@@ -1536,7 +1536,7 @@
                 "persistence",
                 "propel"
             ],
-            "time": "2014-09-29 09:14:01"
+            "time": "2014-10-01 15:25:21"
         },
         {
             "name": "propel/propel1",
@@ -1842,20 +1842,20 @@
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v5.2.2",
+            "version": "v5.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "e02f71a35436af4bd58a1bd90116089e632e29e1"
+                "reference": "b86b927dfefdb56ab0b22d1350033d9a38e9f205"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/e02f71a35436af4bd58a1bd90116089e632e29e1",
-                "reference": "e02f71a35436af4bd58a1bd90116089e632e29e1",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/b86b927dfefdb56ab0b22d1350033d9a38e9f205",
+                "reference": "b86b927dfefdb56ab0b22d1350033d9a38e9f205",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.2.4"
+                "php": ">=5.3.3"
             },
             "require-dev": {
                 "mockery/mockery": "~0.9.1"
@@ -1863,7 +1863,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.2-dev"
+                    "dev-master": "5.3-dev"
                 }
             },
             "autoload": {
@@ -1890,7 +1890,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2014-09-20 07:17:36"
+            "time": "2014-10-04 05:53:18"
         },
         {
             "name": "symfony/assetic-bundle",
@@ -2341,16 +2341,16 @@
         },
         {
             "name": "willdurand/geocoder",
-            "version": "2.7.0",
+            "version": "2.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/geocoder-php/Geocoder.git",
-                "reference": "830f3653d8a612d39b0e82077902f7e6bc04bd62"
+                "reference": "48c5d047f6b679b4eae64337a1adc74095a2cda5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/geocoder-php/Geocoder/zipball/830f3653d8a612d39b0e82077902f7e6bc04bd62",
-                "reference": "830f3653d8a612d39b0e82077902f7e6bc04bd62",
+                "url": "https://api.github.com/repos/geocoder-php/Geocoder/zipball/48c5d047f6b679b4eae64337a1adc74095a2cda5",
+                "reference": "48c5d047f6b679b4eae64337a1adc74095a2cda5",
                 "shasum": ""
             },
             "require": {
@@ -2375,7 +2375,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.7-dev"
+                    "dev-master": "2.8-dev"
                 }
             },
             "autoload": {
@@ -2401,7 +2401,7 @@
                 "geocoding",
                 "geoip"
             ],
-            "time": "2014-09-14 16:59:43"
+            "time": "2014-10-03 08:08:28"
         },
         {
             "name": "willdurand/js-translation-bundle",
