@@ -34,7 +34,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-17" approved="no">
                 <source>headers.category-17</source>
-                <target><![CDATA[<h1>Hosen</h1>
+                <target><![CDATA[<h1>Hosen / Jeans</h1>
                 <p>Bei POMPdeLUX finden Sie die Hosen, die am besten zu Ihrem Kind passen. Wir haben eine breite Auswahl an Farben und Modellen – ganz gleich ob Sie Jeggins, Jeans, Baggy oder Slimfit Hosen vorziehen. Unsere Hosen wurden aus schicken Materialien hergestellt von Sweat bis Strickware, und es sind Hosen für alle Anlässe erhältlich. Unsere Hosen, Jeggins und Jeans gibt es in den Größen 80 cm bis 152 cm und hier gibt es viele Anregungen für die Garderobe Ihrer Kinder zu holen.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-79" approved="no">
@@ -360,6 +360,11 @@
                 <source>headers.category-124</source>
                 <target><![CDATA[<h1>T-Shirt, kurzärmig</h1>
                 <p>T-Shirts kann man das ganze Jahr über verwenden und sind schick im Sommer und im Winter. POMPdeLUX hat T-Shirts in vielen verschiedenen Farben und Modellen. Es ist also etwas für große und kleine Jungen da. Unsere T-Shirts sind aus schöner, weicher Qualität und haben viele schicke Details und Prints. Finden Sie Ihr Lieblings-T-Shirt für den Alltag oder ein cooles Polohemd für festliche Anlässe. Unsere T-Shirts gibt es in den Größen 80 cm bis 152 cm und hier gibt es viele Anregungen für die Garderobe Ihrer Kinder zu holen.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-137" approved="no">
+                <source>headers.category-137</source>
+                <target><![CDATA[<h1>Sweatshirts / Sweatpants</h1>
+                <p>Jogginghosen und Sweatshirts sind beliebt! Sie haben die Wahl zwischen schicken weichen Pullis, Jacken, Hosen und Hosenanzügen. Unsere Sweats sind immer von toller Qualität, welche gemütlich für Ihr Kind zum Tragen sind und gleichzeitig einen coolen Look schaffen. Unsere Sweatshirts und Jogginghosen gibt es in Gr. 80-152cm für Mädchen und Jungen.</p>]]></target>
             </trans-unit>
         </body>
     </file>
