@@ -36,6 +36,7 @@ class SyncInventory extends BaseService
     public function send($name = null)
     {
         ini_set("default_socket_timeout", 600);
+
         return parent::send();
     }
 }

@@ -14,7 +14,7 @@ use Hanzo\Model\Orders;
 
 /**
  * Class SalesOrderLockUnlock
- * 
+ *
  * @package Hanzo\Bundle\AxBundle
  */
 class SalesOrderLockUnlock extends BaseService

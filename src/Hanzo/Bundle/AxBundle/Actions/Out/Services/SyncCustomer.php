@@ -17,6 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 
 /**
  * Class SyncCustomer
+ *
  * @package Hanzo\Bundle\AxBundle
  */
 class SyncCustomer extends BaseService
@@ -83,7 +84,7 @@ class SyncCustomer extends BaseService
 
             $this->data = (object) [
                 'customer' => (object) [
-                    'CustTable' => new CustTable([
+                    'CustTable' => (object) [
                         'AccountNum'             => $this->customer->getId(),
                         'AddressCity'            => $this->address->getCity(),
                         'AddressCountryRegionId' => $this->address->getCountries()->getIso2(),
@@ -92,7 +93,7 @@ class SyncCustomer extends BaseService
                         'CustName'               => trim($this->address->getTitle($this->translator).' '.$this->address->getFirstName().' '.$this->address->getLastName()),
                         'Email'                  => $this->customer->getEmail(),
                         'Phone'                  => $this->customer->getPhone(),
-                    ])
+                    ]
                 ],
                 'endpointDomain' => $this->getEndPoint(),
             ];
