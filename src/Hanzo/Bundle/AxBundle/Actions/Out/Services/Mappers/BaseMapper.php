@@ -39,7 +39,8 @@ class BaseMapper implements \ArrayAccess
     /**
      * Getter implementation
      *
-     * @param $key
+     * @param mixed $key
+     *
      * @return null
      */
     public function __get($key)
@@ -55,7 +56,8 @@ class BaseMapper implements \ArrayAccess
      * Setter implementation
      *
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
+     *
      * @return mixed
      * @throws \OutOfBoundsException
      */
