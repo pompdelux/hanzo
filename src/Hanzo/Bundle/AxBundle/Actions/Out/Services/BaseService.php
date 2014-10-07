@@ -179,7 +179,6 @@ abstract class BaseService
         try {
             $this->axClient->send($name, $data);
         } catch (\Exception $e) {
-\Hanzo\Core\Tools::log(get_class($e));
             $this->logger->critical('An error occured in '.$name.' sync! Error message: "'.$e->getMessage().'"');
             $this->errors = $e;
 
@@ -206,5 +205,7 @@ abstract class BaseService
      *
      * @throws \Exception
      */
-    protected function validate(){}
+    protected function validate()
+    {
+    }
 }
