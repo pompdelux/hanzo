@@ -2074,6 +2074,9 @@ aside.js-slider h3 span.open {
   padding-bottom: 20px;
 }
 
+#body-wishlist form {
+  margin-bottom: 20px;
+}
 #body-wishlist input {
   width: 100%;
 }
@@ -2101,6 +2104,22 @@ aside.js-slider h3 span.open {
   padding: 0 5px;
   background-color: #dedede;
   font-weight: bold;
+}
+#body-wishlist article {
+  border-top: 2px solid #c0c0c0;
+  overflow: hidden;
+}
+#body-wishlist article img {
+  vertical-align: top;
+  margin-left: 10px;
+  float: left;
+}
+#body-wishlist article p {
+  padding-top: 10px;
+  text-align: center;
+  display: block;
+  width: 260px;
+  float: right;
 }
 
 #account-block-newsletter-all h3 {

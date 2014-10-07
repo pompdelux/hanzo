@@ -569,7 +569,7 @@ Herefter kan du nemt shoppe videre.</p><br>
                 <source>my.account.existing.customer.notice</source>
                 <target>Velkommen, vi er glade for at se dig igen!</target>
             </trans-unit>
-
+<!-- nyt -->
             <trans-unit id="wishlist.add.label">
                 <source>wishlist.add.label</source>
                 <target>Opret shoppingliste</target>
@@ -606,6 +606,10 @@ Herefter kan du nemt shoppe videre.</p><br>
             <trans-unit id="wishlist.select.color">
                 <source>wishlist.select.color</source>
                 <target>Farve</target>
+            </trans-unit>
+            <trans-unit id="wishlist.number">
+                <source>wishlist.number</source>
+                <target>Shoppingliste ID: %number%</target>
             </trans-unit>
         </body>
     </file>

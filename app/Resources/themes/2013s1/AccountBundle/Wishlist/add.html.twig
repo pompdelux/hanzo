@@ -1,10 +1,14 @@
 {% extends layout %}
 {% block content %}
 
-    <section class="grid_8 alpha omega js-hanzo-module" data-module-name="ProductFinder">
+    <div class="grid_8 alpha omega list-number">
+        {{ 'wishlist.number'|trans({'%number%': wishlist_id}, 'account') }}
+    </div>
+
+    <section class="grid_8 alpha omega js-hanzo-module" data-module-name="ProductFinder WishlistBuilder">
         <h1>{{ 'wishlist.add.to.list'|trans({}, 'account') }}</h1>
 
-        <form action="" class="">
+        <form action="{{ path('_account_wishlist_add_item') }}" class="">
             <div>
                 <input type="text" name="q" id="form-item-q" placeholder="{{ 'wishlist.placeholder.query'|trans({}, 'account') }}" autocomplete="off" class="master">
                 <label form="form-item-q">{{ 'wishlist.query.description'|trans({}, 'account') }}</label>
@@ -28,9 +32,28 @@
             </div>
 
             <input type="hidden" name="master" value="">
+            <input type="hidden" name="product_id" value="">
             <input type="submit" value="{{ "add.to.basket"|trans }}" class="button submit-button">
         </form>
     </section>
+
+    <section class="grid_8 alpha omega js-wishlist-target">
+    {% for product in products %}
+        <article class="{% if loop.first %}first{% endif %}">
+            <img src="{{ product.image }}" alt="">
+            <p>
+                {{ product.title }}<br>
+                {{ product.size }}<br>
+                {{ product.color }}<br>
+                {{ product.quantity }} stk<br>
+            </p>
+        </article>
+    {% endfor %}
+    </section>
+
+    <div class="grid_8 alpha omega list-number">
+        {{ 'wishlist.number'|trans({'%number%': wishlist_id}, 'account') }}
+    </div>
 
 {% endblock %}
 

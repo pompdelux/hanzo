@@ -8,6 +8,7 @@ App.register('ProductFinder', function() {
     var $_element;
     var $_searchField;
     var $_masterField;
+    var $_productIdField;
     var $_sizeSelect;
     var $_colorSelect;
     var $_quantitySelect;
@@ -22,6 +23,7 @@ App.register('ProductFinder', function() {
 
         $_searchField    = $('input[name="q"]', $_form);
         $_masterField    = $('input[name="master"]', $_form);
+        $_productIdField = $('input[name="product_id"]', $_form);
         $_sizeSelect     = $('select[name="size"]', $_form);
         $_colorSelect    = $('select[name="color"]', $_form);
         $_quantitySelect = $('select[name="quantity"]', $_form);
@@ -70,11 +72,11 @@ App.register('ProductFinder', function() {
             switch (data.target) {
                 case 'size':
                     $target = $_sizeSelect;
-                    label   = Translator.trans('choice.choose_size');
+                    label   = Translator.trans('wishlist.select.size');
                     break;
                 case 'color':
                     $target = $_colorSelect;
-                    label   = Translator.trans('choice.choose_color');
+                    label   = Translator.trans('wishlist.select.color');
                     break;
             }
 
@@ -95,7 +97,7 @@ App.register('ProductFinder', function() {
                     label = value.size_label || value[data.target];
                 }
 
-                $target.append('<option value="'+value[data.target]+'" data-master="'+value.master+'">'+label+'</option>');
+                $target.append('<option value="'+value[data.target]+'" data-master="'+value.master+'" data-product-id="'+value.product_id+'">'+label+'</option>');
             });
 
             $target.focus();
@@ -116,14 +118,9 @@ App.register('ProductFinder', function() {
 
         // set field state and focus
         $_colorSelect.on('change', function() {
+            $_productIdField.val($(':selected', $_colorSelect).data('productId'));
             $_quantitySelect.prop('disabled', false);
             $_quantitySelect.focus();
-        });
-
-        $_form.on('submit', function(event) {
-            event.preventDefault();
-
-            console.log($_form.serialize());
         });
     };
 
@@ -149,9 +146,6 @@ App.register('ProductFinder', function() {
             dialoug.error(Translator.trans('notice'), Translator.trans('an.error.occurred'));
         });
     };
-
-
-
 
     return publicMethods;
 });

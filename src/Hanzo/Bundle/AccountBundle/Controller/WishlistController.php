@@ -11,6 +11,7 @@
 namespace Hanzo\Bundle\AccountBundle\Controller;
 
 use Hanzo\Core\CoreController;
+use Hanzo\Core\Tools;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\Wishlists;
 use Hanzo\Model\WishlistsLines;
@@ -26,9 +27,10 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class WishlistController extends CoreController
 {
-
     /**
      * Create a new wish list.
+     *
+     * @param Request $request
      *
      * @return array
      * @throws \Exception
@@ -38,39 +40,53 @@ class WishlistController extends CoreController
      */
     public function addAction(Request $request)
     {
-        $items = WishlistsLinesQuery::create()
-            ->joinWithProducts()
-            ->useWishlistsQuery()
-                ->filterByCustomersId(CustomersPeer::getCurrent()->getId())
-            ->endUse()
-            ->find();
+        $query = "
+            SELECT
+                wl.*,
+                p.size,
+                p.color,
+                p.sku, (
+                SELECT
+                    products_i18n.title
+                FROM
+                    products_i18n
+                JOIN
+                    products ON (
+                        products_i18n.id = products.id
+                    )
+                WHERE
+                    products_i18n.locale = '".$request->getLocale()."'
+                    AND
+                      products.sku = p.master
+            ) as title
+            FROM
+                wishlists_lines as wl
+            JOIN
+                products as p ON (
+                    p.id = wl.products_id
+                )
+            JOIN
+                wishlists as w ON (
+                    wl.wishlists_id = w.id
+                )
+            WHERE
+                w.customers_id = ".(int) CustomersPeer::getCurrent()->getId()."
+        ";
 
+        $con      = \Propel::getConnection();
+        $result   = $con->query($query);
+        $locale   = $request->getLocale();
         $products = [];
 
         /** @var \Hanzo\Model\WishlistsLines $item */
-        foreach ($items as $item) {
-            $product = $item->getProducts();
-            $product->setLocale($request->getLocale());
-
-            $sku = explode(' ', $product->getSku())[0];
-            $image = preg_replace('/[^a-z0-9]/i', '-', $sku) .
-                '_' .
-                preg_replace('/[^a-z0-9]/i', '-', str_replace('/', '9', $product->getColor())) .
-                '_overview_01.jpg';
-
-            $products[] = [
-                'id'       => $item->getProductsId(),
-                'title'    => $product->getTitle(),
-                'size'     => $product->getSize(),
-                'color'    => $product->getColor(),
-                'image'    => $image,
-                'quantity' => $item->getQuantity(),
-            ];
+        foreach ($result as $item) {
+            $products[] = $this->getItemViewData($item, $locale);
         }
 
         return [
-            'page_type' => 'wishlist',
-            'products'  => $products
+            'wishlist_id' => $this->getWishlist()->getId(),
+            'page_type'   => 'wishlist',
+            'products'    => $products
         ];
     }
 
@@ -85,20 +101,34 @@ class WishlistController extends CoreController
      */
     public function addItemAction(Request $request)
     {
-        $customerId = CustomersPeer::getCurrent()->getId();
+        $list = $this->getWishlist();
+        $type = 'add';
 
-        $list = WishlistsQuery::create()
-            ->filterByCustomersId($customerId)
+        $productId = $request->request->get('product_id');
+
+        $item = WishlistsLinesQuery::create()
+            ->filterByProductsId($productId)
+            ->filterByWishlists($list)
             ->findOne();
 
-        if (!$list instanceof Wishlists) {
-            $list = new Wishlists();
-            $list->setCustomersId($customerId);
-            $list->setId($this->random(5));
-            $list->save();
+        if ($item instanceof WishlistsLines) {
+            $type = 'update';
+            $item->setQuantity($request->request->get('quantity', 1));
+        } else {
+            $item = new WishlistsLines();
+            $item->setQuantity($request->request->get('quantity', 1));
+            $item->setWishlists($list);
+            $item->setProductsId($productId);
         }
 
+        $item->save();
 
+        return $this->json_response([
+            'data'    => $this->getItemViewData($item, $request->getLocale()),
+            'message' => '',
+            'status'  => true,
+            'type'    => $type,
+        ]);
     }
 
     /**
@@ -199,4 +229,80 @@ class WishlistController extends CoreController
             }
         }
     }
+
+    /**
+     * Retrive customers list
+     *
+     * @return Wishlists
+     * @throws \Exception
+     * @throws \PropelException
+     */
+    private function getWishlist()
+    {
+        $customerId = CustomersPeer::getCurrent()->getId();
+
+        $list = WishlistsQuery::create()
+            ->filterByCustomersId($customerId)
+            ->findOne();
+
+        if (!$list instanceof Wishlists) {
+            $list = new Wishlists();
+            $list->setCustomersId($customerId);
+            $list->setId($this->random(5));
+            $list->save();
+        }
+
+        return $list;
+    }
+
+    /**
+     * Get view data for a wishlist item
+     *
+     * @param WishlistsLines|array $item
+     * @param string               $locale
+     *
+     * @return array
+     */
+    private function getItemViewData($item, $locale)
+    {
+        $sizeLabel = $this->container->get('translator')->trans('size.label.postfix');
+        if ('size.label.postfix' === $sizeLabel) {
+            $sizeLabel = '';
+        }
+
+        if (is_array($item)) {
+            $image = preg_replace('/[^a-z0-9]/i', '-', explode(' ', $item['sku'])[0]) .
+                '_' .
+                preg_replace('/[^a-z0-9]/i', '-', str_replace('/', '9', $item['color'])) .
+                '_overview_01.jpg';
+
+            return [
+                'color'    => $item['color'],
+                'id'       => $item['products_id'],
+                'image'    => Tools::productImageUrl($image, '57x100'),
+                'quantity' => $item['quantity'],
+                'size'     => $item['size'].$sizeLabel,
+                'sku'      => $item['sku'],
+                'title'    => $item['title'],
+            ];
+        }
+
+        $product = $item->getProducts();
+        $image   = preg_replace('/[^a-z0-9]/i', '-', explode(' ', $product->getSku())[0]) .
+            '_' .
+            preg_replace('/[^a-z0-9]/i', '-', str_replace('/', '9', $product->getColor())) .
+            '_overview_01.jpg';
+
+        return [
+            'color'    => $product->getColor(),
+            'id'       => $item->getProductsId(),
+            'image'    => Tools::productImageUrl($image, '57x100'),
+            'quantity' => $item->getQuantity(),
+            'size'     => $product->getPostfixedSize($this->container->get('translator')),
+            'sku'      => $product->getSku(),
+            'title'    => '',
+        ];
+    }
+
+
 }

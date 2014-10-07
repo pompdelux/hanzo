@@ -6,141 +6,141 @@
   background-repeat: no-repeat;
 }
 
-.icons-sprite, .icons-Edit_icon, .icons-Hearticon, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-Step1, .icons-Step2, .icons-Step3, .icons-Step4, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-arrow_up, .icons-arrowbox_left, .icons-arrowbox_right, .icons-basket-grey, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-catwalk, .icons-checkout, .icons-close, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-newsletter_2, .icons-pdf, .icons-pinterest, .icons-print, .icons-return, .icons-returnlabel, .icons-search, .icons-shopping-bag, .icons-show, .icons-sizeguide, .icons-trackntrace, .icons-twitter, .icons-video, .icons-zoom, form.search-form:before, footer .footer-menu .newsletter .sprite, ul.tabs li a i, ul.tabs li a.current i, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, .body-product .main .productimage-large .prev, .body-product .main .productimage-large .next, .sizeguide, .sprite.trackntrace, .sprite.returnlabel, #mega-basket .basket .sprite, #mini-basket.basket .sprite, #mega-basket .checkout-button, #mega-basket .close, #openNewsletterModal a i, .body-pages .newsletter-form-simple .sprite, .arrow-right, .arrow-left, .sprite.delete, .sprite.close, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.return {
-  background-image: url('/fx/2013s1/../images/icons/icons-s0efdfc4446.png');
+.icons-sprite, .icons-Hearticon, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-Step1, .icons-Step2, .icons-Step3, .icons-Step4, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-arrow_up, .icons-arrowbox_left, .icons-arrowbox_right, .icons-basket-grey, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-catwalk, .icons-checkout, .icons-close, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-newsletter_2, .icons-pdf, .icons-pinterest, .icons-print, .icons-return, .icons-returnlabel, .icons-search, .icons-shopping-bag, .icons-show, .icons-sizeguide, .icons-trackntrace, .icons-twitter, .icons-video, .icons-zoom, form.search-form:before, footer .footer-menu .newsletter .sprite, ul.tabs li a i, ul.tabs li a.current i, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, .body-product .main .productimage-large .prev, .body-product .main .productimage-large .next, .sizeguide, .sprite.trackntrace, .sprite.returnlabel, #mega-basket .basket .sprite, #mini-basket.basket .sprite, #mega-basket .checkout-button, #mega-basket .close, #openNewsletterModal a i, .body-pages .newsletter-form-simple .sprite, .arrow-right, .arrow-left, .sprite.delete, .sprite.close, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.return {
+  background-image: url('/fx/2013s1/../images/icons/icons-s68c127bc08.png');
   background-repeat: no-repeat;
 }
 
-.icons-Edit_icon {
+.icons-Hearticon {
   background-position: 0 0;
 }
 
-.icons-Hearticon {
-  background-position: 0 -35px;
-}
-
 .icons-Kundeservice_Green {
-  background-position: 0 -84px;
+  background-position: 0 -49px;
 }
 
 .icons-Kundeservice_Red {
-  background-position: 0 -116px;
+  background-position: 0 -81px;
 }
 
 .icons-Kundeservice_Yellow {
-  background-position: 0 -148px;
+  background-position: 0 -113px;
 }
 
 .icons-Oeko_Tex {
-  background-position: 0 -180px;
+  background-position: 0 -145px;
 }
 
 .icons-Step1 {
-  background-position: 0 -238px;
+  background-position: 0 -203px;
 }
 
 .icons-Step2 {
-  background-position: 0 -276px;
+  background-position: 0 -241px;
 }
 
 .icons-Step3 {
-  background-position: 0 -314px;
+  background-position: 0 -279px;
 }
 
 .icons-Step4 {
-  background-position: 0 -352px;
+  background-position: 0 -317px;
 }
 
 .icons-arrow_down {
-  background-position: 0 -390px;
+  background-position: 0 -355px;
 }
 
 .icons-arrow_left {
-  background-position: 0 -399px;
+  background-position: 0 -364px;
 }
 
 .icons-arrow_right {
-  background-position: 0 -409px;
+  background-position: 0 -374px;
 }
 
 .icons-arrow_up {
-  background-position: 0 -419px;
+  background-position: 0 -384px;
 }
 
 .icons-arrowbox_left {
-  background-position: 0 -428px;
+  background-position: 0 -393px;
 }
 
 .icons-arrowbox_right {
-  background-position: 0 -463px;
+  background-position: 0 -428px;
 }
 
 .icons-basket-grey {
-  background-position: 0 -498px;
+  background-position: 0 -463px;
 }
 
 .icons-basket {
-  background-position: 0 -548px;
+  background-position: 0 -513px;
 }
 
 .icons-button-left-black {
-  background-position: 0 -598px;
+  background-position: 0 -563px;
 }
 
 .icons-button-left {
-  background-position: 0 -617px;
+  background-position: 0 -582px;
 }
 
 .icons-button-right-black {
-  background-position: 0 -636px;
+  background-position: 0 -601px;
 }
 
 .icons-button-right {
-  background-position: 0 -655px;
+  background-position: 0 -620px;
 }
 
 .icons-catwalk {
-  background-position: 0 -674px;
+  background-position: 0 -639px;
 }
 
 .icons-checkout {
-  background-position: 0 -704px;
+  background-position: 0 -669px;
 }
 
 .icons-close {
-  background-position: 0 -794px;
+  background-position: 0 -759px;
 }
 
 .icons-delete {
-  background-position: 0 -814px;
+  background-position: 0 -779px;
 }
 
 .icons-delete_black {
-  background-position: 0 -840px;
+  background-position: 0 -805px;
 }
 
 .icons-delete_icon {
-  background-position: 0 -850px;
+  background-position: 0 -815px;
 }
 
 .icons-delete_white {
-  background-position: 0 -882px;
+  background-position: 0 -847px;
 }
 
 .icons-divider {
-  background-position: 0 -892px;
+  background-position: 0 -857px;
 }
 
 .icons-divider_left {
-  background-position: 0 -907px;
+  background-position: 0 -872px;
 }
 
 .icons-divider_right {
-  background-position: 0 -927px;
+  background-position: 0 -892px;
 }
 
 .icons-edit {
-  background-position: 0 -947px;
+  background-position: 0 -912px;
+}
+
+.icons-edit_icon {
+  background-position: 0 -938px;
 }
 
 .icons-facebook {
@@ -1138,12 +1138,12 @@ ul.tabs li a i {
   float: left;
   margin-right: 20px;
   margin-top: 2px;
-  background-position: 0 -409px;
+  background-position: 0 -374px;
   height: 10px;
   width: 9px;
 }
 ul.tabs li a.current i {
-  background-position: 0 -390px;
+  background-position: 0 -355px;
   height: 9px;
   width: 10px;
 }
@@ -1179,7 +1179,7 @@ a.video-popper, #video-player-container a.video {
   margin-top: 20px;
 }
 a.video-popper .sprite, #video-player-container a.video .sprite {
-  background-position: 0 -674px;
+  background-position: 0 -639px;
   height: 29px;
   width: 234px;
 }
@@ -1230,13 +1230,13 @@ a.video-popper .sprite, #video-player-container a.video .sprite {
 }
 .body-product .main .productimage-large .prev {
   left: 0;
-  background-position: 0 -428px;
+  background-position: 0 -393px;
   height: 35px;
   width: 35px;
 }
 .body-product .main .productimage-large .next {
   right: 0;
-  background-position: 0 -463px;
+  background-position: 0 -428px;
   height: 35px;
   width: 35px;
 }
@@ -2624,13 +2624,13 @@ div.invalid-order {
 }
 
 #mega-basket .basket .sprite {
-  background-position: 0 -548px;
+  background-position: 0 -513px;
   height: 50px;
   width: 50px;
 }
 
 #mini-basket.basket .sprite {
-  background-position: 0 -498px;
+  background-position: 0 -463px;
   height: 50px;
   width: 50px;
 }
@@ -2681,7 +2681,7 @@ div.invalid-order {
   position: absolute;
   bottom: 10px;
   right: 15px;
-  background-position: 0 -704px;
+  background-position: 0 -669px;
   height: 90px;
   width: 90px;
 }
@@ -2689,7 +2689,7 @@ div.invalid-order {
   position: absolute;
   top: 25px;
   right: 10px;
-  background-position: 0 -794px;
+  background-position: 0 -759px;
   height: 20px;
   width: 21px;
 }
@@ -4322,14 +4322,14 @@ a.button.button-full-width,
 
 .arrow-right {
   margin-left: 6px;
-  background-position: 0 -409px;
+  background-position: 0 -374px;
   height: 10px;
   width: 9px;
 }
 
 .arrow-left {
   margin-right: 6px;
-  background-position: 0 -399px;
+  background-position: 0 -364px;
   height: 10px;
   width: 9px;
 }
@@ -4497,17 +4497,17 @@ button.right {
   display: inline-block;
 }
 .sprite.delete {
-  background-position: 0 -814px;
+  background-position: 0 -779px;
   height: 26px;
   width: 26px;
 }
 .sprite.close {
-  background-position: 0 -794px;
+  background-position: 0 -759px;
   height: 20px;
   width: 21px;
 }
 .sprite.edit {
-  background-position: 0 -947px;
+  background-position: 0 -912px;
   height: 26px;
   width: 26px;
 }
