@@ -70,7 +70,7 @@ class PheanstalkQueue
         $ts = $this->isOrderInQueue($order);
 
         if ($ts) {
-            throw new OrderAlreadyInQueueException('The order #'.$order->getId().' is already in the queue. It was added @ '.date('Y-m-d H:i:s', $ts));
+            throw new OrderAlreadyInQueueException('The order #'.$order->getId().' is already in the queue. It was added @ '.$ts);
         }
 
         $endPoint = Tools::domainKeyToEndpoint($order->getAttributes($this->dbConn)->global->domain_key);

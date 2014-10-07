@@ -10,8 +10,6 @@
 
 namespace Hanzo\Bundle\AxBundle\Actions\Out\Services;
 
-use Hanzo\Bundle\AxBundle\Actions\Out\Services\Mappers\SalesLine;
-use Hanzo\Bundle\AxBundle\Actions\Out\Services\Mappers\SalesTable;
 use Hanzo\Model\Countries;
 use Hanzo\Model\CountriesQuery;
 use Hanzo\Model\Orders;
@@ -21,6 +19,7 @@ use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 
 /**
  * Class SyncSalesOrder
+ *
  * @package Hanzo\Bundle\AxBundle
  */
 class SyncSalesOrder extends BaseService
@@ -59,10 +58,10 @@ class SyncSalesOrder extends BaseService
     {
         $this->translator = $translator;
 
-        $this->data = (object) [
+        $this->data = [
             'endpointDomain' => '',
-            'salesOrder' => (object) [
-                'SalesTable' => new SalesTable()
+            'salesOrder' => [
+                'SalesTable' => []
             ]
         ];
     }
@@ -74,7 +73,7 @@ class SyncSalesOrder extends BaseService
      */
     public function get()
     {
-        $this->data->endpointDomain = $this->getEndPoint();
+        $this->data['endpointDomain'] = $this->getEndPoint();
         $this->buildMetaData();
         $this->buildSalesLines();
         // extra order lines
@@ -115,7 +114,7 @@ class SyncSalesOrder extends BaseService
         // map attributes
         $attr = [];
         foreach ($attributes as $a) {
-            $ns = str_replace(array(':', '.'), '_', $a->getNs());
+            $ns = str_replace([':', '.'], '_', $a->getNs());
 
             if (empty($attr[$ns])) {
                 $attr[$ns] = [];
@@ -144,29 +143,37 @@ class SyncSalesOrder extends BaseService
      */
     private function buildMetaData()
     {
-        $st = $this->data->salesOrder->SalesTable;
-        $st['CustAccount']             = $this->order->getCustomersId();
-        $st['EOrderNumber']            = $this->order->getId();
-        $st['PaymentId']               = $this->getPaymentTransactionId();
-        $st['HomePartyId']             = $this->getAttribute('global', 'HomePartyId');
-        $st['SalesResponsible']        = $this->getAttribute('global', 'SalesResponsible');
-        $st['CurrencyCode']            = $this->order->getCurrencyCode();
-        $st['SalesName']               = $this->order->getCustomersName();
-        $st['InvoiceAccount']          = $this->order->getCustomersId();
-        $st['FreightType']             = $this->order->getDeliveryMethod();
-        $st['FreightFeeAmt']           = $this->calculateCost(['shipping']);
-        $st['HandlingFeeAmt']          = $this->calculateCost(['shipping.fee', 'payment.fee']);
-        $st['PayByBillFeeAmt']         = $this->calculateCost(['payment']);
-        $st['CustPaymMode']            = $this->getCustPaymMode();
-        $st['BankAccountNumber']       = $this->getAttribute('payment', 'bank_account_no');
-        $st['BankId']                  = $this->getAttribute('payment', 'bank_id');
-        $st['DeliveryDropPointId']     = $this->order->getDeliveryExternalAddressId();
-        $st['DeliveryCompanyName']     = $this->order->getDeliveryCompanyName();
-        $st['DeliveryCity']            = $this->order->getDeliveryCity();
-        $st['DeliveryName']            = $this->order->getDeliveryFullName($this->translator);
-        $st['DeliveryStreet']          = $this->order->getDeliveryAddressLine1();
-        $st['DeliveryZipCode']         = $this->order->getDeliveryPostalCode();
-        $st['DeliveryCountryRegionId'] = $this->getIso2CountryCode($this->order->getDeliveryCountriesId());
+        $this->data['salesOrder']['SalesTable'] = [
+            'CustAccount'             => $this->order->getCustomersId(),
+            'EOrderNumber'            => $this->order->getId(),
+            'PaymentId'               => $this->getPaymentTransactionId(),
+            'HomePartyId'             => $this->getAttribute('global', 'HomePartyId'),
+            'SalesResponsible'        => $this->getAttribute('global', 'SalesResponsible'),
+            'CurrencyCode'            => $this->order->getCurrencyCode(),
+            'SalesName'               => $this->order->getCustomersName(),
+            'InvoiceAccount'          => $this->order->getCustomersId(),
+            'FreightType'             => $this->order->getDeliveryMethod(),
+            'FreightFeeAmt'           => $this->calculateCost(['shipping']),
+            'HandlingFeeAmt'          => $this->calculateCost(['shipping.fee', 'payment.fee']),
+            'PayByBillFeeAmt'         => $this->calculateCost(['payment']),
+            'CustPaymMode'            => $this->getCustPaymMode(),
+            'BankAccountNumber'       => $this->getAttribute('payment', 'bank_account_no'),
+            'BankId'                  => $this->getAttribute('payment', 'bank_id'),
+            'DeliveryDropPointId'     => $this->order->getDeliveryExternalAddressId(),
+            'DeliveryCompanyName'     => $this->order->getDeliveryCompanyName(),
+            'DeliveryCity'            => $this->order->getDeliveryCity(),
+            'DeliveryName'            => $this->order->getDeliveryFullName($this->translator),
+            'DeliveryStreet'          => $this->order->getDeliveryAddressLine1(),
+            'DeliveryZipCode'         => $this->order->getDeliveryPostalCode(),
+            'DeliveryCountryRegionId' => $this->getIso2CountryCode($this->order->getDeliveryCountriesId()),
+        ];
+
+        // purge empty
+        foreach ($this->data['salesOrder']['SalesTable'] as $key => $value) {
+            if (empty($value)) {
+                unset($this->data['salesOrder']['SalesTable'][$key]);
+            }
+        }
 
         // only set SalesGroup on event orders.
         if ($this->order->getEventsId() && ($event = $this->order->getEvents($this->getDBConnection()))) {
@@ -185,7 +192,6 @@ class SyncSalesOrder extends BaseService
         $hostessDiscount = 0.00;
         $lineDiscount    = 0.00;
         $products        = [];
-        $salesLines      = [];
 
         /** @var \Hanzo\Model\OrdersLines $line */
         foreach ($this->orderLines as $line) {
@@ -220,7 +226,7 @@ class SyncSalesOrder extends BaseService
 
             $itemId = trim(str_replace($product->getproductsColor().' '.$product->getProductsSize(), '', $product->getProductsSku()));
 
-            $line = new SalesLine([
+            $line = [
                 'ItemId'        => $itemId,
                 'SalesLineText' => $product->getProductsName(),
                 'SalesPrice'    => number_format($product->getOriginalPrice(), 2, '.', ''),
@@ -228,7 +234,7 @@ class SyncSalesOrder extends BaseService
                 'InventColorId' => $product->getProductsColor(),
                 'InventSizeId'  => $product->getProductsSize(),
                 'SalesUnit'     => $product->getUnit(),
-            ]);
+            ];
 
             $discount = $product->getOriginalPrice() - $product->getPrice();
 
@@ -246,19 +252,18 @@ class SyncSalesOrder extends BaseService
                 $line['VoucherCode'] = $product->getNote();
             }
 
-            $salesLines[] = $line;
+            $this->data['salesOrder']['SalesTable']['SalesLine'][] = $line;
         }
 
         $domainKey = str_replace('SALES', '', strtoupper($this->getAttribute('global', 'domain_key')));
         if ($hostessDiscount) {
             $bigBagPrice = 0.00;
-            $line = new SalesLine([
+            $this->data['salesOrder']['SalesTable']['SalesLine'][] = [
                 'ItemId'     =>  'HOSTESSDISCOUNT',
                 'SalesPrice' =>  number_format($hostessDiscount, 2, '.', ''),
                 'SalesQty'   =>  1,
                 'SalesUnit'  =>  'Stk.',
-            ]);
-            $salesLines[] = $line;
+            ];
 
             switch($domainKey) {
                 case 'AT':
@@ -278,7 +283,7 @@ class SyncSalesOrder extends BaseService
                     break;
             }
 
-            $line = new SalesLine([
+            $this->data['salesOrder']['SalesTable']['SalesLine'][] = [
                 'ItemId'          => 'POMPBIGBAGAW14',
                 'SalesPrice'      => $bigBagPrice,
                 'LineDiscPercent' => 100,
@@ -286,11 +291,8 @@ class SyncSalesOrder extends BaseService
                 'InventColorId'   => 'Off White',
                 'InventSizeId'    => 'One Size',
                 'SalesUnit'       => 'Stk.',
-            ]);
-            $salesLines[] = $line;
+            ];
         }
-
-        $this->data->salesOrder->SalesTable['SalesLine'] = $salesLines;
     }
 
     /**
@@ -302,7 +304,6 @@ class SyncSalesOrder extends BaseService
     {
         $date = date('Ymd');
         $domainKey = str_replace('SALES', '', strtoupper($this->getAttribute('global', 'domain_key')));
-        $salesLines = [];
 
         // Add BAG if is an event or either other, gift, private of type.
         if ($this->order->getEventsId() ||
@@ -332,7 +333,7 @@ class SyncSalesOrder extends BaseService
                         break;
                 }
 
-                $line = new SalesLine([
+                $this->data['salesOrder']['SalesTable']['SalesLine'][] = [
                     'ItemId'          => 'POMPBAGAW14',
                     'SalesPrice'      => $bagPrice,
                     'LineDiscPercent' => 100,
@@ -340,8 +341,7 @@ class SyncSalesOrder extends BaseService
                     'InventColorId'   => 'Off White',
                     'InventSizeId'    => 'One Size',
                     'SalesUnit'       => 'Stk.',
-                ]);
-                $salesLines[] = $line;
+                ];
 
 //                // attach voucher between 20140324 and 20140406
 //                if ((($date >= 20140324) && ($date <= 20140406)) ||
@@ -379,15 +379,6 @@ class SyncSalesOrder extends BaseService
 //                $salesLines[] = $line;
 //            }
 //        }
-
-        if (count($salesLines)) {
-            // this is here due to some crazy ArrayAccess limitation ..
-            $lines = $this->data->salesOrder->SalesTable['SalesLine'];
-            foreach ($salesLines as $line) {
-                $lines[] = $line;
-            }
-            $this->data->salesOrder->SalesTable['SalesLine'] = $lines;
-        }
     }
 
     /**
@@ -399,9 +390,7 @@ class SyncSalesOrder extends BaseService
 
         /** @var \Hanzo\Model\OrdersLines $line */
         foreach ($this->orderLines as $line) {
-            if (('discount' !== $line->getType()) &&
-                ('gift_card.code' !== $line->getProductsName())
-            ){
+            if (('discount' !== $line->getType()) && ('gift_card.code' !== $line->getProductsName())) {
                 continue;
             }
 
@@ -409,18 +398,13 @@ class SyncSalesOrder extends BaseService
         }
 
         if ($giftCard) {
-            $line = new SalesLine([
+            $this->data['salesOrder']['SalesTable']['SalesLine'][] = [
                 'ItemId'      => 'GIFTCARD',
                 'SalesPrice'  => number_format(($giftCard->getPrice()), 2, '.', ''),
                 'SalesQty'    => 1,
                 'SalesUnit'   => 'Stk.',
                 'VoucherCode' => $this->getAttribute('gift_card', 'code'),
-            ]);
-
-            // this is here due to some crazy ArrayAccess limitation ..
-            $lines = $this->data->salesOrder->SalesTable['SalesLine'];
-            $lines[] = $line;
-            $this->data->salesOrder->SalesTable['SalesLine'] = $lines;
+            ];
         }
     }
 
@@ -444,17 +428,12 @@ class SyncSalesOrder extends BaseService
         }
 
         if ($coupon) {
-            $line = new SalesLine([
+            $this->data['salesOrder']['SalesTable']['SalesLine'][] = [
                 'ItemId'     => 'COUPON',
                 'SalesPrice' => number_format(($coupon->getPrice()), 2, '.', ''),
                 'SalesQty'   => 1,
                 'SalesUnit'  => 'Stk.',
-            ]);
-
-            // this is here due to some crazy ArrayAccess limitation where you cannot do $xxx['var'][] = $yyy; ..
-            $lines = $this->data->salesOrder->SalesTable['SalesLine'];
-            $lines[] = $line;
-            $this->data->salesOrder->SalesTable['SalesLine'] = $lines;
+            ];
         }
     }
 
@@ -462,15 +441,15 @@ class SyncSalesOrder extends BaseService
     /**
      * Convert country id to iso-2 country code.
      *
-     * @param int $country_id
+     * @param int $countryId
      *
      * @return string|null
      */
-    private function getIso2CountryCode($country_id)
+    private function getIso2CountryCode($countryId)
     {
         $result = CountriesQuery::create()
             ->select('Iso2')
-            ->findOneById($country_id);
+            ->findOneById($countryId);
 
         if ($result instanceof Countries) {
             return $result->getIso2();
@@ -568,6 +547,7 @@ class SyncSalesOrder extends BaseService
      * Calculate cost based on OrdersLines::type
      *
      * @param array $keys
+     *
      * @return string
      */
     private function calculateCost(array $keys)
@@ -590,6 +570,7 @@ class SyncSalesOrder extends BaseService
      *
      * @param string $ns
      * @param string $key
+     *
      * @return string
      */
     private function getAttribute($ns, $key)
@@ -609,10 +590,8 @@ class SyncSalesOrder extends BaseService
      */
     protected function validate()
     {
-        $h = $this->data->salesOrder->SalesTable->HomePartyId;
-        $s = $this->data->salesOrder->SalesTable->SalesResponsible;
-
-        if (empty($h) || empty($s)) {
+        error_log(print_r($this->data, 1));
+        if (empty($this->data['salesOrder']['SalesTable']['HomePartyId']) || empty($this->data['salesOrder']['SalesTable']['SalesResponsible'])) {
             throw new \Exception('Validation error - SyncSalesOrder: Missing SalesResponsible or HomePartyId');
         }
 

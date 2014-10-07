@@ -10,7 +10,6 @@
 
 namespace Hanzo\Bundle\AxBundle\Actions\Out\Services;
 
-use Hanzo\Bundle\AxBundle\Actions\Out\Services\Mappers\SalesTableDelete;
 use Hanzo\Model\Orders;
 
 /**
@@ -24,9 +23,9 @@ class SyncDeleteSalesOrder extends BaseService
      */
     public function __construct()
     {
-        $this->data = (object) [
+        $this->data = [
             'endpointDomain' => '',
-            'salesOrder' => (object) [
+            'salesOrder' => [
                 'SalesTable' => null
             ]
         ];
@@ -39,11 +38,11 @@ class SyncDeleteSalesOrder extends BaseService
      */
     public function setOrder(Orders $order)
     {
-        $this->data->salesOrder->SalesTable = new SalesTableDelete([
+        $this->data['salesOrder']['SalesTable'] = [
             'CustAccount'  => $order->getCustomersId(),
             'EOrderNumber' => $order->getId(),
             'PaymentId'    => $order->getPaymentTransactionId(),
-        ]);
+        ];
     }
 
     /**
@@ -51,7 +50,7 @@ class SyncDeleteSalesOrder extends BaseService
      */
     public function get()
     {
-        $this->data->endpointDomain = $this->getEndPoint();
+        $this->data['endpointDomain'] = $this->getEndPoint();
 
         return $this->data;
     }

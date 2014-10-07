@@ -10,13 +10,13 @@
 
 namespace Hanzo\Bundle\AxBundle\Actions\Out\Services;
 
-use Hanzo\Bundle\AxBundle\Actions\Out\Services\Mappers\CustTable;
 use Hanzo\Model\Addresses;
 use Hanzo\Model\Customers;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 
 /**
  * Class SyncCustomer
+ *
  * @package Hanzo\Bundle\AxBundle
  */
 class SyncCustomer extends BaseService
@@ -81,9 +81,9 @@ class SyncCustomer extends BaseService
                 throw new \InvalidArgumentException("Customer or Address object not set !");
             }
 
-            $this->data = (object) [
-                'customer' => (object) [
-                    'CustTable' => new CustTable([
+            $this->data = [
+                'customer' => [
+                    'CustTable' => [
                         'AccountNum'             => $this->customer->getId(),
                         'AddressCity'            => $this->address->getCity(),
                         'AddressCountryRegionId' => $this->address->getCountries()->getIso2(),
@@ -92,13 +92,13 @@ class SyncCustomer extends BaseService
                         'CustName'               => trim($this->address->getTitle($this->translator).' '.$this->address->getFirstName().' '.$this->address->getLastName()),
                         'Email'                  => $this->customer->getEmail(),
                         'Phone'                  => $this->customer->getPhone(),
-                    ])
+                    ]
                 ],
                 'endpointDomain' => $this->getEndPoint(),
             ];
 
             if (2 == $this->customer->getGroupsId()) {
-                $this->data->customer->CustTable->InitialsId = $this->customer->getInitials();
+                $this->data['customer']['CustTable']['InitialsId'] = $this->customer->getInitials();
             }
         }
 
