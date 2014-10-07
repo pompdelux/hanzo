@@ -362,6 +362,12 @@
                 <target><![CDATA[<h1>T-paidat, lyhythihainen</h1>
                 <p>T-paitoja voi käyttää ympäri vuoden ja ne ovat kauniita sekä kesällä että talvella. POMPdeLUXilla on T-paitoja monessa eri värissä ja mallissa, joten valikoimasta löytyy jotain sekä isoille että pienille tytöille. T-paitamme ovat ihanan pehmeää materiaalia, ja niissä on paljon hienoja yksityiskohtia. Löydä oma suosikkipaitasi arkeen tai kaunis toppi juhlavampiin tilaisuuksiin. Meiltä löytyy T-paitoja koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
             </trans-unit>
+			<trans-unit id="headers.category-137" approved="no">
+                <source>headers.category-137</source>
+                <target><![CDATA[<h1>Sweatshirts / Sweatpants</h1>
+                <p>Sweatbroeken en sweatshirts zijn populair! Kies uit lekkere zachte truien, jacks, broeken en joggingpakken. Onze sweatartikelen zijn gemaakt van een mooie stof die lekker zit, maar ze zien er ook cool uit. Onze sweatshirts en sweatbroeken zijn verkrijgbaar van maat 80-152 en zijn er voor de meisjes en de jongens.
+</p>]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
