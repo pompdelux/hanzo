@@ -3,7 +3,7 @@ ax_soap:
     defaults:
         _controller: AxBundle:Soap:index
         version: v1
-        service_name: ECommerceServices
+        serviceName: ECommerceServices
     requirements:
         version: "v[0-9]+"
 
