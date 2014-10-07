@@ -168,6 +168,12 @@ class SyncSalesOrder extends BaseService
             'DeliveryCountryRegionId' => $this->getIso2CountryCode($this->order->getDeliveryCountriesId()),
         ];
 
+        // purge empty
+        foreach ($this->data['salesOrder']['SalesTable'] as $key => $value) {
+            if (empty($value)) {
+                unset($this->data['salesOrder']['SalesTable'][$key]);
+            }
+        }
 
         // only set SalesGroup on event orders.
         if ($this->order->getEventsId() && ($event = $this->order->getEvents($this->getDBConnection()))) {
