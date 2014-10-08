@@ -13,9 +13,15 @@ namespace Hanzo\Bundle\CheckoutBundle;
 use Hanzo\Core\Tools;
 use Hanzo\Bundle\AccountBundle\AddressFormatter;
 use Hanzo\Bundle\ServiceBundle\Services\MailService;
+use Hanzo\Model\LanguagesQuery;
 use Hanzo\Model\Orders;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 
+/**
+ * Class SendOrderConfirmationMail
+ *
+ * @package Hanzo\Bundle\CheckoutBundle
+ */
 class SendOrderConfirmationMail
 {
     /**
@@ -89,11 +95,13 @@ class SendOrderConfirmationMail
      */
     public function build(Orders $order)
     {
+        $locale = $this->getLocale($order);
+
         // build and send order confirmation.
         $attributes     = $order->getAttributes($this->dbConn);
         $email          = $order->getEmail();
         $name           = trim($order->getFirstName() . ' ' . $order->getLastName());
-        $shippingTitle  = $this->translator->trans('shipping_method.name.' . $order->getDeliveryMethod(), [], 'shipping');
+        $shippingTitle  = $this->translator->trans('shipping_method.name.' . $order->getDeliveryMethod(), [], 'shipping', $locale);
 
         $shippingCost = 0.00;
         $shippingFee  = 0.00;
@@ -138,7 +146,7 @@ class SendOrderConfirmationMail
             }
         }
 
-        $companyAddress = $this->translator->trans('store.address', []);
+        $companyAddress = $this->translator->trans('store.address', [], null, $locale);
         $companyAddress = str_replace(' · ', "\n", $companyAddress);
 
         $eventId = isset($attributes->global->HomePartyId) ? $attributes->global->HomePartyId : '';
@@ -149,12 +157,12 @@ class SendOrderConfirmationMail
 
         $params = [
             'order'            => $order,
-            'payment_address'  => $this->addressFormatter->format($order->getOrderAddress('payment'), 'txt'),
+            'payment_address'  => $this->addressFormatter->format($order->getOrderAddress('payment'), 'txt', $locale),
             'company_address'  => $companyAddress,
-            'delivery_address' => $this->addressFormatter->format($order->getOrderAddress('shipping'), 'txt'),
+            'delivery_address' => $this->addressFormatter->format($order->getOrderAddress('shipping'), 'txt', $locale),
             'customer_id'      => $order->getCustomersId(),
             'order_date'       => $order->getCreatedAt('Y-m-d'),
-            'payment_method'   => $this->translator->trans('payment.'. $order->getBillingMethod() .'.title', [], 'checkout'),
+            'payment_method'   => $this->translator->trans('payment.'. $order->getBillingMethod() .'.title', [], 'checkout', $locale),
             'shipping_title'   => $shippingTitle,
             'shipping_cost'    => $shippingCost,
             'shipping_fee'     => $shippingFee,
@@ -190,14 +198,14 @@ class SendOrderConfirmationMail
             if ('discount' == $line->getType()) {
                 if (empty($params['hostess_discount'])) {
                     $params['hostess_discount'] = $line->getPrice();
-                    $params['hostess_discount_title'] = $this->translator->trans($line->getProductsSku(), [], 'checkout');
+                    $params['hostess_discount_title'] = $this->translator->trans($line->getProductsSku(), [], 'checkout', $locale);
                 }
             }
 
             // or Sku == 91 ?
             if ($line->getType('payment.fee') && $line->getProductsName() == 'gothia') {
                 $params['gothia_fee'] = $line->getPrice();
-                $params['gothia_fee_title'] = $this->translator->trans('payment.fee.gothia.title', [], 'checkout');
+                $params['gothia_fee_title'] = $this->translator->trans('payment.fee.gothia.title', [], 'checkout', $locale);
 
                 if (isset($params['payment_fee'])) {
                     unset($params['payment_fee']);
@@ -207,7 +215,7 @@ class SendOrderConfirmationMail
 
         $bcc = Tools::getBccEmailAddress('order', $order);
 
-        $this->mailService->setMessage('order.confirmation', $params);
+        $this->mailService->setMessage('order.confirmation', $params, $locale);
         $this->mailService->setTo($email, $name);
 
         if ($bcc) {
@@ -215,5 +223,12 @@ class SendOrderConfirmationMail
         }
 
         $this->isMailBuild = true;
+    }
+
+    private function getLocale(Orders $order)
+    {
+        return LanguagesQuery::create()
+            ->select('Locale')
+            ->findOneById($order->getLanguagesId());
     }
 }
