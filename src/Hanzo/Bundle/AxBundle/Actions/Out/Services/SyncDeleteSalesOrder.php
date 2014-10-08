@@ -14,6 +14,7 @@ use Hanzo\Model\Orders;
 
 /**
  * Class SyncDeleteSalesOrder
+ * 
  * @package Hanzo\Bundle\AxBundle
  */
 class SyncDeleteSalesOrder extends BaseService
@@ -42,6 +43,10 @@ class SyncDeleteSalesOrder extends BaseService
             'CustAccount'  => $order->getCustomersId(),
             'EOrderNumber' => $order->getId(),
             'PaymentId'    => $order->getPaymentTransactionId(),
+            // static info
+            'Completed'       => 1,
+            'SalesType'       => 'Sales',
+            'TransactionType' => 'Delete',
         ];
     }
 

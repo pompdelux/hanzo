@@ -15,6 +15,11 @@ use Hanzo\Model\Sequences;
 use Hanzo\Model\SequencesPeer;
 use Hanzo\Model\SequencesQuery;
 
+/**
+ * Class Tools
+ *
+ * @package Hanzo\Core
+ */
 class Tools
 {
     /**
@@ -23,11 +28,12 @@ class Tools
      * @param string  $v
      * @param string  $with
      * @param boolean $lower
+     *
      * @return string
      */
     public static function stripText($v, $with = '-', $lower = true)
     {
-        $url_safe_char_map = array(
+        $urlSafeCharMap = [
             'æ' => 'ae', 'Æ' => 'AE',
             'ø' => 'oe', 'Ø' => 'OE',
             'å' => 'aa', 'Å' => 'AA',
@@ -40,10 +46,10 @@ class Tools
             'ý' => 'y', 'Ý' => 'Y',
             ' ' => '-',
             '/' => '-',
-        );
+        ];
 
-        $search  = array_keys($url_safe_char_map);
-        $replace = array_values($url_safe_char_map);
+        $search  = array_keys($urlSafeCharMap);
+        $replace = array_values($urlSafeCharMap);
 
         $v = str_replace(' ', $with, trim($v));
         $v = str_replace($search, $replace, $v);
@@ -66,7 +72,8 @@ class Tools
     /**
      * better strip tags implementation
      *
-     * @param  string $text
+     * @param string $text
+     *
      * @return string
      */
     public static function stripTags($text)
@@ -82,6 +89,11 @@ class Tools
 
     /**
      * NICETO: not hardcoded
+     *
+     * @param string              $type
+     * @param \Hanzo\Model\Orders $order
+     *
+     * @return string
      */
     public static function getBccEmailAddress($type, $order)
     {
@@ -170,7 +182,8 @@ class Tools
      * Sequence generator, returns next sequesce id of a named sequence.
      * Unknown sequences is created on first request.
      *
-     * @param  string $name the name of the sequence
+     * @param string $name the name of the sequence
+     *
      * @return int
      * @throws \InvalidArgumentException
      */
@@ -191,40 +204,41 @@ class Tools
             $item->setId(1);
         }
 
-        $sequence_id = $item->getId();
+        $sequenceId = $item->getId();
 
         while (true) {
-            $o = OrdersQuery::create()->findOneByPaymentGatewayId($sequence_id, $con);
+            $o = OrdersQuery::create()->findOneByPaymentGatewayId($sequenceId, $con);
             if ($o instanceof Orders) {
-                $sequence_id++;
+                $sequenceId++;
             } else {
                 goto while_end;
             }
         }
         while_end: // yes labeled break...
 
-        $item->setId($sequence_id + 1);
+        $item->setId($sequenceId + 1);
         $item->save($con);
 
         $con->commit();
 
-        return $sequence_id;
+        return $sequenceId;
     }
 
 
     /**
      * Wrapping the getPaymentGatewayId method to auto-generate gateway id's
      *
-     * @param int $gateway_id if specified, this is used over the auto generated one
+     * @param int $gatewayId if specified, this is used over the auto generated one
+     *
      * @return int;
      */
-    public static function getPaymentGatewayId($gateway_id = null)
+    public static function getPaymentGatewayId($gatewayId = null)
     {
-        if (is_null($gateway_id)) {
-            $gateway_id = self::getNextSequenceId('payment gateway');
+        if (is_null($gatewayId)) {
+            $gatewayId = self::getNextSequenceId('payment gateway');
         }
 
-        return $gateway_id;
+        return $gatewayId;
     }
 
 
@@ -234,6 +248,7 @@ class Tools
      * @param mixed   $data  the data to log
      * @param integer $back  how many levels back we dump trace for
      * @param boolean $trace set to true and the log will get a backtrace dump attached
+     *
      * @return mixed
      */
     public static function log($data, $back = 0, $trace = false)
@@ -267,12 +282,12 @@ class Tools
      * - current order state (if any)
      * - current customer id on the order (if there is one)
      *
-     * @param string $msg The message to log
+     * @param string $msg     The message to log
      * @param string $context In which context was the message generated, e.g. __METHOD__
-     * @param array $data Key/value to dump
+     * @param array  $data    Key/value to dump
+     *
      * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public static function debug( $msg, $context, $data = array())
     {
         // we do not have access to session data here...
@@ -292,9 +307,9 @@ class Tools
         if (!empty($data)) {
             foreach ($data as $key => $value) {
                 if (is_array($value)) {
-                    $value = print_r($value,1);
+                    $value = print_r($value, 1);
                 }
-                $out .= str_pad( $key, 23 ).": ". $value."\n";
+                $out .= str_pad($key, 23).": ". $value."\n";
             }
         }
 
@@ -304,10 +319,11 @@ class Tools
     /**
      * Wrapper for php's money_format function
      *
+     * @param float  $number
+     * @param string $format
+     *
      * @see http://dk.php.net/manual/en/function.money-format.php
      *
-     * @param float  $number
-     * @param string $format see php.net for format documentation
      * @return string
      */
     public static function moneyFormat($number, $format = '%.2i')
@@ -329,7 +345,7 @@ class Tools
     public static function mapDomainToEnvironment()
     {
         // we use environments to switch domain configurations.
-        $env_map = array(
+        $envMap = [
             'da_dk' => 'dk',
             'de_de' => 'de',
             'en_gb' => 'com',
@@ -339,26 +355,26 @@ class Tools
             'sv_se' => 'se',
             'de_at' => 'at',
             'de_ch' => 'ch',
-        );
+        ];
 
         $path = explode('/', trim(str_replace($_SERVER['SCRIPT_NAME'], '', strtolower($_SERVER['REQUEST_URI'])), '/'));
 
         if (substr($path[0], 0, 9) === '_fragment') {
             // Extract the locale from the _fragment query. Hack to make ESI work on locale.
-            $esi_attributes = [];
+            $esiAttributes = [];
             $query = urldecode($_SERVER['QUERY_STRING']);
-            parse_str($query, $esi_attributes);
+            parse_str($query, $esiAttributes);
 
-            $path[0] = strtolower($esi_attributes['_locale']);
+            $path[0] = strtolower($esiAttributes['_locale']);
         }
         // redirect to splash screen
-        elseif (empty($path[0]) || !isset($env_map[$path[0]])) {
+        elseif (empty($path[0]) || !isset($envMap[$path[0]])) {
             $path[0] = 'da_dk';
         }
         $tld = $path[0];
 
-        if (isset($env_map[$tld])) {
-            $env = $env_map[$tld];
+        if (isset($envMap[$tld])) {
+            $env = $envMap[$tld];
         } else {
             $env = 'dk';
         }
@@ -377,7 +393,7 @@ class Tools
     public static function handleRobots()
     {
         // robots only allowed on the www domain
-        if(($_SERVER['REQUEST_URI'] == '/robots.txt')) {
+        if (($_SERVER['REQUEST_URI'] == '/robots.txt')) {
             header('Content-type: text/plain');
 
             if ((substr($_SERVER['HTTP_HOST'], 0, 4) !== 'www.')) {
@@ -385,14 +401,20 @@ class Tools
             }
 
             die("User-agent: *\nDisallow:\n");
-            #die("User-agent: *\nDisallow: /de_CH/\nDisallow: /de_AT/\n");
+            // die("User-agent: *\nDisallow: /de_CH/\nDisallow: /de_AT/\n");
         }
     }
 
 
+    /**
+     * @param int $size
+     *
+     * @return string
+     */
     public static function humanReadableSize($size)
     {
-        $unit = array('b','kb','mb','gb','tb','pb');
+        $unit = ['b','kb','mb','gb','tb','pb'];
+
         return @round($size/pow(1024, ($i = floor(log($size, 1024)))), 2) . ' ' . $unit[$i];
     }
 

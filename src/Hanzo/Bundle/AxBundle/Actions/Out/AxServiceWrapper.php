@@ -21,6 +21,7 @@ use Hanzo\Model\Orders;
 
 /**
  * Class AxServiceWrapper
+ *
  * @package Hanzo\Bundle\AxBundle\Actions\Out
  */
 class AxServiceWrapper

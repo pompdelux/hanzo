@@ -18,10 +18,14 @@ use Hanzo\Core\Tools;
 use Hanzo\Model\CustomersQuery;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersQuery;
-use Hanzo\Model\OrdersToAxQueueLog;
 use Hanzo\Model\OrdersToAxQueueLogQuery;
 use Leezy\PheanstalkBundle\Proxy\PheanstalkProxy;
 
+/**
+ * Class PheanstalkWorker
+ *
+ * @package Hanzo\Bundle\AxBundle\Actions\Out
+ */
 class PheanstalkWorker
 {
     private $pheanstalkProxy;
@@ -118,6 +122,7 @@ class PheanstalkWorker
         }
 
         // send order confirmation
+        $this->orderConfirmationMailer->setDBConnection($this->dbConn);
         $this->orderConfirmationMailer->build($order);
         $this->orderConfirmationMailer->send();
 
