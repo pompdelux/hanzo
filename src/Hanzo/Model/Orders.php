@@ -5,7 +5,6 @@ namespace Hanzo\Model;
 use Exception;
 use BasePeer;
 use Criteria;
-use Propel;
 use PropelPDO;
 use PropelCollection;
 use PropelException;
@@ -18,13 +17,9 @@ use Hanzo\Core\Tools;
 use Hanzo\Model\om\BaseOrders;
 
 /**
- * Skeleton subclass for representing a row from the 'orders' table.
+ * Class Orders
  *
- * You should add additional methods to this class to meet the
- * application requirements.  This class will only be generated as
- * long as it does not already exist in the output directory.
- *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model
+ * @package Hanzo\Model
  */
 class Orders extends BaseOrders
 {
@@ -70,7 +65,6 @@ class Orders extends BaseOrders
 
     protected $ignore_delete_constraints = false;
 
-
     /**
      * Unmapped payment id, used in ax sync
      *
@@ -85,11 +79,10 @@ class Orders extends BaseOrders
      */
     private $endPoint;
 
-
     /**
      * @var \PDO|\PropelPDO
      */
-    protected $pdo_con = null;
+    protected $dbConn = null;
 
     /**
      * Get DB Connection
@@ -98,7 +91,7 @@ class Orders extends BaseOrders
      */
     public function getDBConnection()
     {
-        return $this->pdo_con;
+        return $this->dbConn;
     }
 
     /**
@@ -108,7 +101,7 @@ class Orders extends BaseOrders
      */
     public function setDBConnection($connection)
     {
-        $this->pdo_con = $connection;
+        $this->dbConn = $connection;
     }
 
     /**
@@ -131,11 +124,17 @@ class Orders extends BaseOrders
         return $this->paymentTransactionId;
     }
 
+    /**
+     * @param string $v
+     */
     public function setEndPoint($v)
     {
         $this->endPoint = $v;
     }
 
+    /**
+     * @return string
+     */
     public function getEndPoint()
     {
         return $this->endPoint;
@@ -143,6 +142,7 @@ class Orders extends BaseOrders
 
     /**
      * @param Translator $translator
+     *
      * @return string
      */
     public function getDeliveryTitle(Translator $translator = null)
@@ -155,9 +155,9 @@ class Orders extends BaseOrders
         return $this->translateNameTitle($translator, $title);
     }
 
-
     /**
      * @param Translator $translator
+     *
      * @return string
      */
     public function getDeliveryFullName(Translator $translator = null)
@@ -165,9 +165,9 @@ class Orders extends BaseOrders
         return trim($this->getDeliveryTitle().' '.$this->getDeliveryFirstName().' '.$this->getDeliveryLastName());
     }
 
-
     /**
      * @param Translator $translator
+     *
      * @return string
      */
     public function getBillingTitle(Translator $translator = null)
@@ -176,8 +176,9 @@ class Orders extends BaseOrders
     }
 
     /**
-     * @param $translator
-     * @param $title
+     * @param Translator $translator
+     * @param string     $title
+     *
      * @return string
      */
     private function translateNameTitle($translator, $title)
@@ -191,6 +192,7 @@ class Orders extends BaseOrders
 
     /**
      * Get full customer name.
+     *
      * @return string
      */
     public function getCustomersName()
@@ -223,27 +225,26 @@ class Orders extends BaseOrders
         $data['products'] = $this->getOrdersLiness($this->getDBConnection())->toArray();
         $data['attributes'] = $this->getOrdersAttributess($this->getDBConnection())->toArray();
 
-        $version_ids = $this->getVersionIds();
+        $versionIds = $this->getVersionIds();
 
-        if (count($version_ids)) {
-            $version_id = max($version_ids) +1;
+        if (count($versionIds)) {
+            $versionId = max($versionIds) +1;
         } else {
-            $version_id = 1;
+            $versionId = 1;
         }
 
         $version = new OrdersVersions();
         $version->setOrdersId($this->getId());
-        $version->setVersionId($version_id);
+        $version->setVersionId($versionId);
         $version->setContent(serialize($data));
         $version->setCreatedAt(time());
         $version->save();
 
-        $this->setVersionId($version_id + 1);
+        $this->setVersionId($versionId + 1);
         $this->save();
 
         return $this;
     }
-
 
     /**
      * Get all version ids including the current version
@@ -256,8 +257,7 @@ class Orders extends BaseOrders
             ->select('VersionId')
             ->filterByOrdersId($this->getId())
             ->orderByVersionId('desc')
-            ->find($this->getDBConnection())
-        ;
+            ->find($this->getDBConnection());
 
         $ids = [];
         foreach ($versions as $version) {
@@ -267,47 +267,45 @@ class Orders extends BaseOrders
         return $ids;
     }
 
-
     /**
      * delete a version, note you cannot delete the current version
      *
-     * @param  int $version_id the version you which to delete
+     * @param int $versionId the version you which to delete
      */
-    public function deleteVersion($version_id)
+    public function deleteVersion($versionId)
     {
-        if (!in_array($version_id, $this->getVersionIds())) {
+        if (!in_array($versionId, $this->getVersionIds())) {
             throw new OutOfBoundsException('Invalid version id');
         }
 
         OrdersVersionsQuery::create()
             ->filterByOrdersId($this->getId())
-            ->findOneByVersionId($version_id)
+            ->findOneByVersionId($versionId)
             ->delete();
     }
-
 
     /**
      * switch the order object to another version
      *
-     * @param  int $version_id the version id to switch to
-     * @return object Orders
+     * @param int $versionId the version id to switch to
+     *
+     * @return object     Orders
      * @throws \Exception
      */
-    public function toVersion($version_id)
+    public function toVersion($versionId)
     {
         // if it's the same version, just return self.
-        if ($this->getVersionId() == $version_id) {
+        if ($this->getVersionId() == $versionId) {
             return $this;
         }
 
         $version = OrdersVersionsQuery::create()
             ->filterByOrdersId($this->getId())
-            ->filterByVersionId($version_id)
-            ->findOne($this->getDBConnection())
-        ;
+            ->filterByVersionId($versionId)
+            ->findOne($this->getDBConnection());
 
         if (!$version instanceof OrdersVersions) {
-            throw new OutOfBoundsException('No such version: ' . $version_id . ' of order nr: ' . $this->getId());
+            throw new OutOfBoundsException('No such version: ' . $versionId . ' of order nr: ' . $this->getId());
         }
 
         $data = unserialize($version->getContent());
@@ -327,8 +325,8 @@ class Orders extends BaseOrders
 
         OrdersAttributesQuery::create()
             ->findByOrdersId($this->getId(), $this->getDBConnection())
-            ->delete()
-        ;
+            ->delete();
+
         $this->clearOrdersAttributess();
 
         $collection = new PropelCollection();
@@ -354,25 +352,25 @@ class Orders extends BaseOrders
      * getOrderAtVersion
      * Based on this->toVersion
      *
-     * @param int $version_id
+     * @param int $versionId
+     *
      * @return Orders
      * @throws OutOfBoundsException
      */
-    public function getOrderAtVersion($version_id)
+    public function getOrderAtVersion($versionId)
     {
         // if it's the same version, just return self.
-        if ($this->getVersionId() == $version_id) {
+        if ($this->getVersionId() == $versionId) {
             return $this;
         }
 
         $version = OrdersVersionsQuery::create()
             ->filterByOrdersId($this->getId())
-            ->filterByVersionId($version_id)
-            ->findOne($this->getDBConnection())
-        ;
+            ->filterByVersionId($versionId)
+            ->findOne($this->getDBConnection());
 
         if (!$version instanceof OrdersVersions) {
-            throw new OutOfBoundsException('No such version: ' . $version_id . ' of order nr: ' . $this->getId());
+            throw new OutOfBoundsException('No such version: ' . $versionId . ' of order nr: ' . $this->getId());
         }
 
         $data = unserialize($version->getContent());
@@ -419,8 +417,8 @@ class Orders extends BaseOrders
             ->filterByOrdersId($this->getId())
             ->filterByVersionId($this->getVersionId(), \Criteria::LESS_THAN)
             ->orderByVersionId('desc')
-            ->findOne($this->getDBConnection())
-        ;
+            ->findOne($this->getDBConnection());
+
         $this->toVersion($version);
 
         // delete abandoned version
@@ -429,14 +427,14 @@ class Orders extends BaseOrders
         return $this;
     }
 
-
     /**
      * set quantity on a product line in the current order
      *
-     * @param Products $product
+     * @param Products $product  the product
      * @param int      $quantity can be positive to increase the quantity of the order or negative to decrease
      * @param bool     $exact    if set to true, the quantity send is the quantity used, otherwise the quantity is calculated using the existing as offset.
      * @param string   $date     availability date
+     *
      * @return OrdersLines
      */
     public function setOrderLineQty($product, $quantity, $exact = false, $date = '1970-01-01')
@@ -459,6 +457,7 @@ class Orders extends BaseOrders
                 $lines[$index] = $line;
                 $this->setOrdersLiness($lines);
                 $line->setExpectedAt($date);
+
                 return;
             }
         }
@@ -466,13 +465,13 @@ class Orders extends BaseOrders
         // if the product is not already on the order, add it.
 
         // fetch price information
-        $price = ProductsDomainsPricesPeer::getProductsPrices(array($product->getId()));
+        $price = ProductsDomainsPricesPeer::getProductsPrices([$product->getId()]);
 
-        $price = array_shift($price);
-        $original_price = $price['normal'];
-        $price = array_shift($price);
+        $price         = array_shift($price);
+        $originalPrice = $price['normal'];
+        $price         = array_shift($price);
 
-        $line = new OrdersLines;
+        $line = new OrdersLines();
         $line->setOrdersId($this->getId());
         $line->setProductsId($product->getId());
         $line->setProductsName($product->getTitle());
@@ -481,7 +480,7 @@ class Orders extends BaseOrders
         $line->setProductsSize($product->getSize());
         $line->setQuantity($quantity);
         $line->setPrice($price['price']);
-        $line->setOriginalPrice($original_price['price']);
+        $line->setOriginalPrice($originalPrice['price']);
         $line->setVat($price['vat']);
         $line->setType('product');
         $line->setUnit('Stk.');
@@ -502,7 +501,8 @@ class Orders extends BaseOrders
      * Does not set products_id as the external id might clash with a real product + it may contain letters
      *
      * @param ShippingMethods $shippingMethod
-     * @param bool $isFee
+     * @param bool            $isFee
+     *
      * @return void
      */
     public function setShipping(ShippingMethods $shippingMethod, $isFee = false)
@@ -521,21 +521,20 @@ class Orders extends BaseOrders
         $line = OrdersLinesQuery::create()
             ->filterByType($type)
             ->filterByOrdersId($this->getId())
-            ->findOne($this->getDBConnection())
-        ;
+            ->findOne($this->getDBConnection());
 
         if (!$line instanceof OrdersLines) {
-            $line = new OrdersLines;
+            $line = new OrdersLines();
             $line->setOrdersId($this->getId());
             $line->setType($type);
             $line->setQuantity(1);
             $line->setVat(0.00);
         }
 
-        $line->setProductsSku( $sku );
-        $line->setProductsName( $name );
-        $line->setPrice( $price );
-        $line->setVat( 0.00 );
+        $line->setProductsSku($sku);
+        $line->setProductsName($name);
+        $line->setPrice($price);
+        $line->setVat(0.00);
         $line->save();
     }
 
@@ -543,6 +542,7 @@ class Orders extends BaseOrders
      * NICETO: create filter function that is used by getOrderLineXXX
      *
      * @param null|PropelPDO $conn
+     *
      * @return array|mixed
      */
     public function getOrderLineShipping($conn = null)
@@ -554,8 +554,7 @@ class Orders extends BaseOrders
         return OrdersLinesQuery::create()
             ->filterByType(['shipping', 'shipping.fee'], Criteria::IN)
             ->filterByOrdersId($this->getId())
-            ->find($conn)
-        ;
+            ->find($conn);
     }
 
     /**
@@ -563,6 +562,7 @@ class Orders extends BaseOrders
      * NICETO: create filter function that is used by getOrderLineXXX
      *
      * @param null|PropelPDO $conn
+     *
      * @return array|mixed
      */
     public function getOrderLineDiscount($conn = null)
@@ -574,16 +574,16 @@ class Orders extends BaseOrders
         return OrdersLinesQuery::create()
             ->filterByType('discount')
             ->filterByOrdersId($this->getId())
-            ->find($conn)
-        ;
+            ->find($conn);
     }
 
     /**
      * set or update a discount line
      *
-     * @param  string $name     discount identifier
-     * @param  float  $amount   discount amount
-     * @param  string $discount line discount in percent
+     * @param string $name     discount identifier
+     * @param float  $amount   discount amount
+     * @param string $discount line discount in percent
+     *
      * @return Orders
      */
     public function setDiscountLine($name, $amount, $discount = '')
@@ -591,6 +591,7 @@ class Orders extends BaseOrders
         foreach ($this->getOrderLineDiscount() as $line) {
             if ($name == $line->getProductsSku()) {
                 $line->setPrice(number_format($amount, 4, '.', ''));
+
                 return $this;
             }
         }
@@ -611,7 +612,8 @@ class Orders extends BaseOrders
     /**
      * remove a discount line from an order
      *
-     * @param  string $name discount identifier
+     * @param string $name discount identifier
+     *
      * @return object Orders
      */
     public function removeDiscountLine($name)
@@ -628,14 +630,20 @@ class Orders extends BaseOrders
 
     /**
      * getTotalProductPrice
+     *
      * @return float
      */
     public function getTotalProductPrice()
     {
-        return $this->getTotalPrice( true );
+        return $this->getTotalPrice(true);
     }
 
-    public function getTotalPrice($products_only = false)
+    /**
+     * @param bool $productsOnly
+     *
+     * @return int|string
+     */
+    public function getTotalPrice($productsOnly = false)
     {
         // this is done so Orders::getOrderAtVersion don't throw up
         if ($this->isNew()) {
@@ -643,7 +651,7 @@ class Orders extends BaseOrders
         } else {
             $query = OrdersLinesQuery::create()->filterByOrdersId($this->getId());
 
-            if ($products_only) {
+            if ($productsOnly) {
                 $query->filterByType('product');
             }
 
@@ -658,6 +666,9 @@ class Orders extends BaseOrders
         return $total;
     }
 
+    /**
+     * @return int|string
+     */
     public function getTotalVat()
     {
         $lines = $this->getOrdersLiness();
@@ -670,14 +681,19 @@ class Orders extends BaseOrders
         return $total;
     }
 
-    public function getTotalQuantity($products_only = false)
+    /**
+     * @param bool $productsOnly
+     *
+     * @return int
+     */
+    public function getTotalQuantity($productsOnly = false)
     {
         if ($this->isNew()) {
             $lines = $this->getOrdersLiness();
         } else {
             $query = OrdersLinesQuery::create()->filterByOrdersId($this->getId());
 
-            if ($products_only) {
+            if ($productsOnly) {
                 $query->filterByType('product');
             }
 
@@ -695,9 +711,10 @@ class Orders extends BaseOrders
     /**
      * Sets an order attribute
      *
-     * @param string $key Name of the attribute
-     * @param string $ns Namespace of the attribute, e.g. payment
+     * @param string $key   Name of the attribute
+     * @param string $ns    Namespace of the attribute, e.g. payment
      * @param string $value The value of the attribute
+     *
      * @return object Orders object returned to keep the chain alive.
      */
     public function setAttribute($key, $ns, $value)
@@ -709,7 +726,8 @@ class Orders extends BaseOrders
             if (($attribute->getCKey() == $key) &&
                 ($attribute->getNs() == $ns)
             ) {
-                $attribute->setCValue( $value );
+                $attribute->setCValue($value);
+
                 return $this;
             }
         }
@@ -728,6 +746,7 @@ class Orders extends BaseOrders
      * setPaymentMethod
      *
      * @param string $method
+     *
      * @return void
      */
     public function setPaymentMethod($method)
@@ -739,6 +758,7 @@ class Orders extends BaseOrders
      * setPaymentPaytype
      *
      * @param string $paytype
+     *
      * @return void
      */
     public function setPaymentPaytype($paytype)
@@ -767,12 +787,13 @@ class Orders extends BaseOrders
      * Note, this only supports one line with payment fee
      *
      * NICETO: rewrite to use self::setOrderLine
+     * @param string $name
+     * @param float  $price
+     * @param float  $vat
+     * @param string $sku
+     *
      * @see setOrderLineShipping
      *
-     * @param string $name
-     * @param float $price
-     * @param float $vat
-     * @param string $sku
      * @return void
      */
     public function setPaymentFee($name, $price, $vat, $sku)
@@ -780,11 +801,10 @@ class Orders extends BaseOrders
         $fee = OrdersLinesQuery::create()
             ->filterByOrdersId($this->getId())
             ->filterByType('payment.fee')
-            ->findOne($this->getDBConnection())
-        ;
+            ->findOne($this->getDBConnection());
 
         if (!$fee instanceof OrdersLines) {
-            $fee = new OrdersLines;
+            $fee = new OrdersLines();
             $fee->setOrdersId($this->getId());
             $fee->setQuantity(1);
             $fee->setType('payment.fee');
@@ -809,8 +829,7 @@ class Orders extends BaseOrders
         $line = OrdersLinesQuery::create()
             ->filterByType('payment.fee')
             ->filterByOrdersId($this->getId())
-            ->findOne($this->getDBConnection())
-        ;
+            ->findOne($this->getDBConnection());
 
         if ($line instanceof OrdersLines) {
             return $line->getPrice();
@@ -831,8 +850,7 @@ class Orders extends BaseOrders
         $line = OrdersLinesQuery::create()
             ->filterByType('shipping.fee')
             ->filterByOrdersId($this->getId())
-            ->findOne($this->getDBConnection())
-        ;
+            ->findOne($this->getDBConnection());
 
         if ($line instanceof OrdersLines) {
             return $line->getPrice();
@@ -845,11 +863,13 @@ class Orders extends BaseOrders
      * set an orderline
      * note if the type is not "product" only one line pr. type is handled
      *
-     * @param string $type  the line type
-     * @param int    $id    product id, must be set even for virtual lines
-     * @param string $name  line description
-     * @param float  $price price
-     * @param float  $vat   vat
+     * @param string $type     the line type
+     * @param int    $id       product id, must be set even for virtual lines
+     * @param string $name     line description
+     * @param float  $price    price
+     * @param float  $vat      vat
+     * @param int    $quantity quantity
+     *
      * @return object Orders object returned to keep the chain alive.
      */
     public function setOrderLine($type, $id, $name, $price = 0.00, $vat = 0.00, $quantity = 1)
@@ -859,11 +879,11 @@ class Orders extends BaseOrders
         foreach ($lines as $index => $line) {
             if ($line->getType() == $type) {
                 if ($type != 'product') {
-                    $line->setProductsId( $id );
-                    $line->setProductsName( $name );
-                    $line->setPrice( $price );
-                    $line->setVat( $vat );
-                    $line->setQuantity( $quantity );
+                    $line->setProductsId($id);
+                    $line->setProductsName($name);
+                    $line->setPrice($price);
+                    $line->setVat($vat);
+                    $line->setQuantity($quantity);
                     $lines[$index] = $line;
                     $this->setOrdersLiness($lines);
 
@@ -871,10 +891,10 @@ class Orders extends BaseOrders
                     return $this;
                 } else {
                     if ($line->getProductsId() == $id) {
-                        $line->setProductsName( $name );
-                        $line->setPrice( $price );
-                        $line->setVat( $vat );
-                        $line->setQuantity( $quantity );
+                        $line->setProductsName($name);
+                        $line->setPrice($price);
+                        $line->setVat($vat);
+                        $line->setQuantity($quantity);
                         $lines[$index] = $line;
                         $this->setOrdersLiness($lines);
 
@@ -886,14 +906,14 @@ class Orders extends BaseOrders
         }
 
         // add new line
-        $line = new OrdersLines;
-        $line->setType( $type );
+        $line = new OrdersLines();
+        $line->setType($type);
         $line->setOrdersId($this->getId());
-        $line->setProductsId( $id );
-        $line->setProductsName( $name );
-        $line->setQuantity( $quantity );
-        $line->setPrice( $price );
-        $line->setVat( $vat );
+        $line->setProductsId($id);
+        $line->setProductsName($name);
+        $line->setQuantity($quantity);
+        $line->setPrice($price);
+        $line->setVat($vat);
         $this->addOrdersLines($line);
 
         // maintain chain, return self
@@ -902,14 +922,16 @@ class Orders extends BaseOrders
 
     /**
      * setBillingAddress
+     *
      * @param Addresses $address
+     *
      * @return void
      * @throws Exception
      */
     public function setBillingAddress(Addresses $address)
     {
         if ( $address->getType() != 'payment' ) {
-            throw new Exception( 'Address is not of type payment' );
+            throw new Exception('Address is not of type payment');
         }
 
         $this->setBillingAddressLine1($address->getAddressLine1())
@@ -923,8 +945,7 @@ class Orders extends BaseOrders
             ->setBillingTitle($address->getTitle())
             ->setBillingFirstName($address->getFirstName())
             ->setBillingLastName($address->getLastName())
-            ->setBillingExternalAddressId($address->getExternalAddressId())
-        ;
+            ->setBillingExternalAddressId($address->getExternalAddressId());
     }
 
     /**
@@ -989,14 +1010,14 @@ class Orders extends BaseOrders
         return OrdersLinesQuery::create()
             ->filterByOrdersId($this->getId())
             ->filterByType('payment.fee')
-            ->delete($this->getDBConnection())
-        ;
+            ->delete($this->getDBConnection());
     }
 
     /**
      * clearAttributesByKey
      *
      * @param string $key
+     *
      * @return int
      */
     public function clearAttributesByKey($key)
@@ -1004,13 +1025,14 @@ class Orders extends BaseOrders
         return OrdersAttributesQuery::create()
             ->filterByOrdersId($this->getId())
             ->filterByCKey($key)
-            ->delete()
-        ;
+            ->delete();
     }
 
     /**
      * clearAttributesByNS
+     *
      * @param string $ns
+     *
      * @return int
      */
     public function clearAttributesByNS($ns)
@@ -1018,21 +1040,21 @@ class Orders extends BaseOrders
         return OrdersAttributesQuery::create()
             ->filterByOrdersId($this->getId())
             ->filterByNs($ns)
-            ->delete()
-        ;
+            ->delete();
     }
 
     /**
      * setDeliveryAddress
      *
      * @param Addresses $address
+     *
      * @return void
      * @throws Exception
      */
     public function setDeliveryAddress(Addresses $address)
     {
-        if ( !in_array( $address->getType(), array('shipping','overnightbox', 'company_shipping') )  ) {
-            throw new Exception( 'Delivery address is not a valid type "'.$address->getType().'"' );
+        if (!in_array($address->getType(), ['shipping','overnightbox', 'company_shipping'])) {
+            throw new Exception('Delivery address is not a valid type "'.$address->getType().'"');
         }
 
         $this->setDeliveryAddressLine1($address->getAddressLine1())
@@ -1046,8 +1068,7 @@ class Orders extends BaseOrders
             ->setDeliveryTitle($address->getTitle())
             ->setDeliveryFirstName($address->getFirstName())
             ->setDeliveryLastName($address->getLastName())
-            ->setDeliveryExternalAddressId($address->getExternalAddressId())
-        ;
+            ->setDeliveryExternalAddressId($address->getExternalAddressId());
     }
 
     /**
@@ -1093,7 +1114,7 @@ class Orders extends BaseOrders
     /**
      * Wrapping the setPaymentGatewayId method to auto-generate gateway id's
      *
-     * @param int $gateway_id if specified, this is used over the auto generated one
+     * @param  int    $gateway_id if specified, this is used over the auto generated one
      * @return Orders The current object (for fluent API support)
      */
     public function setPaymentGatewayId($gateway_id = null)
@@ -1101,11 +1122,10 @@ class Orders extends BaseOrders
         return parent::setPaymentGatewayId($gateway_id);
     }
 
-
     /**
      * Wrapping the setState method to log all state changes
      *
-     * @param int $v state id
+     * @param  int    $v state id
      * @return Orders The current object (for fluent API support)
      */
     public function setState($v)
@@ -1126,12 +1146,11 @@ class Orders extends BaseOrders
         return parent::setState($v);
     }
 
-
     /**
      * Check wether a product is in the "cart" or not
      *
-     * @param  mixed $product_id id or sku of the product
-     * @return boolean             [description]
+     * @param  mixed   $product_id id or sku of the product
+     * @return boolean [description]
      */
     public function hasProduct($product_id)
     {
@@ -1152,11 +1171,10 @@ class Orders extends BaseOrders
         return false;
     }
 
-
     /**
      * returns latest delivery date.
      *
-     * @param  string $format
+     * @param  string          $format
      * @return mixed|string
      * @throws Exception
      * @throws PropelException
@@ -1180,7 +1198,6 @@ class Orders extends BaseOrders
         return $expected_at;
     }
 
-
     /**
      * @param $v
      */
@@ -1189,7 +1206,6 @@ class Orders extends BaseOrders
         $this->ignore_delete_constraints = (bool) $v;
     }
 
-
     /**
      * @return bool
      */
@@ -1197,7 +1213,6 @@ class Orders extends BaseOrders
     {
         return $this->ignore_delete_constraints;
     }
-
 
     /**
      * @return $this
@@ -1210,7 +1225,7 @@ class Orders extends BaseOrders
         if ('' == $this->getBillingFirstName()) {
             $customer = $this->getCustomers();
             if ($customer instanceof Customers) {
-                $c = new Criteria;
+                $c = new Criteria();
                 $c->add(AddressesPeer::TYPE, 'payment');
                 $this->setBillingAddress($customer->getAddressess($c)->getFirst());
             }
@@ -1257,7 +1272,6 @@ class Orders extends BaseOrders
         return $this;
     }
 
-
     /**
      * figure out if the order is for a hostess or not
      *
@@ -1273,11 +1287,10 @@ class Orders extends BaseOrders
         return false;
     }
 
-
     /**
      * build and return a order Addresses object based on the type
      *
-     * @param  string $type Can be either of the types set in the addresses table
+     * @param  string    $type Can be either of the types set in the addresses table
      * @return Addresses
      */
     public function getOrderAddress($type = 'payment')
@@ -1306,7 +1319,6 @@ class Orders extends BaseOrders
         return $a;
     }
 
-
     /**
      * Wrap delete() to allow us to set PDO connection
      * Never call this directly, it should _always_ be called through CoreBundle\Service\Model\OrdersService::deleteOrder
@@ -1316,7 +1328,7 @@ class Orders extends BaseOrders
     public function delete(PropelPDO $con = null)
     {
         if ($con) {
-            $this->pdo_con = $con;
+            $this->dbConn = $con;
         }
 
         parent::delete($con);
