@@ -430,8 +430,6 @@
                 <source>checkout.confirm.mobile.text</source>
                 <target><![CDATA[Verificér venligst at dit mobilnummer er korrekt.<br><br>Hvis det ikke er kan Post Danmark ikke komme i kontakt dig vedrørende forsendelsen.]]></target>
             </trans-unit>
-
-<!-- nyt -->
             <trans-unit id="wishlist.select.size">
                 <source>wishlist.select.size</source>
                 <target>Størrelse</target>
