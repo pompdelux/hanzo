@@ -13,6 +13,8 @@ namespace Hanzo\Bundle\AccountBundle\Controller;
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Tools;
 use Hanzo\Model\CustomersPeer;
+use Hanzo\Model\ProductsI18n;
+use Hanzo\Model\ProductsI18nQuery;
 use Hanzo\Model\Wishlists;
 use Hanzo\Model\WishlistsLines;
 use Hanzo\Model\WishlistsLinesQuery;
@@ -45,6 +47,7 @@ class WishlistController extends CoreController
                 wl.*,
                 p.size,
                 p.color,
+                p.master,
                 p.sku, (
                 SELECT
                     products_i18n.title
@@ -80,8 +83,11 @@ class WishlistController extends CoreController
 
         /** @var \Hanzo\Model\WishlistsLines $item */
         foreach ($result as $item) {
-            $products[] = $this->getItemViewData($item, $locale);
+            $item = $this->getItemViewData($item, $locale);
+            $products[$item['sku']] = $item;
         }
+
+        ksort($products);
 
         return [
             'wishlist_id' => $this->getWishlist()->getId(),
@@ -185,7 +191,7 @@ class WishlistController extends CoreController
      *
      * @param string $id
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Exception
      * @throws \PropelException
      */
@@ -208,6 +214,32 @@ class WishlistController extends CoreController
     }
 
     /**
+     * Delete all items in a users wishlist
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
+     * @throws \PropelException
+     */
+    public function removeAllItemsAction()
+    {
+        WishlistsLinesQuery::create()
+            ->filterByWishlists($this->getWishlist())
+            ->delete();
+
+        if ('json' === $this->getFormat()) {
+            return $this->json_response([
+                'status'  => true,
+                'message' => 'wishlist.all.items.deleted'
+            ]);
+        }
+
+        $this->container->get('session')->getFlashBag()->add('notice', 'wishlist.all.items.deleted');
+
+        return $this->redirect($this->generateUrl('_account'));
+    }
+
+
+    /**
      * Generate unique random key string.
      * Unique in the way that it's not already in use.
      *
@@ -218,7 +250,7 @@ class WishlistController extends CoreController
     private function random($length = 5)
     {
         while (true) {
-            $string = implode('', array_rand(str_split('ABCDEFGHJKLMNPQRSTUVWXYZ98765432'), $length));
+            $string = implode('', array_rand(array_flip(str_split('ABCDEFGHJKLMNPQRSTUVWXYZ98765432')), $length));
 
             $found = WishlistsQuery::create()
                 ->filterById($string)
@@ -280,6 +312,7 @@ class WishlistController extends CoreController
                 'color'    => $item['color'],
                 'id'       => $item['products_id'],
                 'image'    => Tools::productImageUrl($image, '57x100'),
+                'master'   => $item['master'],
                 'quantity' => $item['quantity'],
                 'size'     => $item['size'].$sizeLabel,
                 'sku'      => $item['sku'],
@@ -293,16 +326,23 @@ class WishlistController extends CoreController
             preg_replace('/[^a-z0-9]/i', '-', str_replace('/', '9', $product->getColor())) .
             '_overview_01.jpg';
 
+        $title = ProductsI18nQuery::create()
+            ->select('Title')
+            ->filterByLocale($locale)
+            ->useProductsQuery()
+                ->filterBySku($product->getMaster())
+            ->endUse()
+            ->findOne();
+
         return [
             'color'    => $product->getColor(),
             'id'       => $item->getProductsId(),
             'image'    => Tools::productImageUrl($image, '57x100'),
+            'master'   => $product->getMaster(),
             'quantity' => $item->getQuantity(),
             'size'     => $product->getPostfixedSize($this->container->get('translator')),
             'sku'      => $product->getSku(),
-            'title'    => '',
+            'title'    => $title,
         ];
     }
-
-
 }
