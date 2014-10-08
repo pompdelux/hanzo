@@ -34,11 +34,14 @@
                 <td>{{ item.getOrdersId }}</td>
                 <td>{{ item.getIteration }}</td>
                 <td>{{ item.getCreatedAt }}</td>
-                <td><a href="{{ path('admin_orders_delete', {'order_id': item.getOrdersId, 'goto': 'ax-queue'}) }}" rel="confirm" data-confirm-message="Er du sikker på du vil slette ordren?"><span class="glyphicon glyphicon-remove-circle"></span></a></td>
+                <td>
+                    <a href="{{ path('admin_orders_delete_from_queue_log') }}" class="delete-order-log" data-confirm-message="Er du sikker på du ønsker at fjerne ordrenummer: {{ item.getOrdersId }} fra kø loggen ?" title="Slet ordren fra loggen"><span class="glyphicon glyphicon-fire"></span></a>
+                    <a href="{{ path('admin_orders_delete', {'order_id': item.getOrdersId, 'goto': 'ax-queue'}) }}" rel="confirm" data-confirm-message="Er du sikker på du vil slette ordren?"><span class="glyphicon glyphicon-remove-circle"></span></a>
+                </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">Køen er tom.</td>
+                <td colspan="5">Køen er tom.</td>
             </tr>
         {% endfor %}
     </table>

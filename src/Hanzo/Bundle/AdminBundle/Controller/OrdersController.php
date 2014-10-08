@@ -1048,4 +1048,14 @@ class OrdersController extends CoreController
         return $this->render('AdminBundle:Orders:ax_queue_list.html.twig', ['items' => $items]);
     }
 
+    public function axQueueDeleteItemAction($orders_id)
+    {
+        OrdersToAxQueueLogQuery::create()
+            ->filterByOrdersId($orders_id)
+            ->delete($this->getDbConnection());
+
+        $this->container->get('session')->getFlashBag()->add('notice', 'Loglinien er nu slettet.');
+
+        return $this->redirect($this->generateUrl('admin_orders_ax_qeueu'));
+    }
 }
