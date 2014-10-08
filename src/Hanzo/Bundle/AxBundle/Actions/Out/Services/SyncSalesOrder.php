@@ -10,6 +10,7 @@
 
 namespace Hanzo\Bundle\AxBundle\Actions\Out\Services;
 
+use Hanzo\Core\Tools;
 use Hanzo\Model\Countries;
 use Hanzo\Model\CountriesQuery;
 use Hanzo\Model\Orders;
@@ -390,11 +391,13 @@ class SyncSalesOrder extends BaseService
 
         /** @var \Hanzo\Model\OrdersLines $line */
         foreach ($this->orderLines as $line) {
-            if (('discount' !== $line->getType()) && ('gift_card.code' !== $line->getProductsName())) {
-                continue;
+            if (('discount'       === $line->getType()) &&
+                ('gift_card.code' === $line->getProductsName())
+            ) {
+                $giftCard = $line;
+                break;
             }
 
-            $giftCard = $line;
         }
 
         if ($giftCard) {
@@ -418,13 +421,13 @@ class SyncSalesOrder extends BaseService
 
         /** @var \Hanzo\Model\OrdersLines $line */
         foreach ($this->orderLines as $line) {
-            if (('discount' !== $line->getType()) &&
-                ('coupon.code' !== $line->getProductsName())
+            if (('discount'    === $line->getType()) &&
+                ('coupon.code' === $line->getProductsName())
             ) {
-                continue;
+                $coupon = $line;
+                break;
             }
 
-            $coupon = $line;
         }
 
         if ($coupon) {
