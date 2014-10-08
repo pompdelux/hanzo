@@ -32,6 +32,29 @@ App.register('ProductFinder', function() {
         setupListeners();
     };
 
+    /**
+     * Reset the form elements this module cares about.
+     */
+    publicMethods.resetForm = function() {
+        $('.tt-dropdown-menu', $_form).html('');
+        $_searchField.val('');
+        $_masterField.val('');
+        $_productIdField.val('');
+
+        $_sizeSelect.prop('disabled', true);
+        $('option:first', $_sizeSelect).prop('selected', true);
+
+        $_colorSelect.prop('disabled', true);
+        $('option:first', $_colorSelect).prop('selected', true);
+
+        $_quantitySelect.prop('disabled', true);
+        $('option:first', $_quantitySelect).prop('selected', true);
+    };
+
+
+    /**
+     * Setup the search form
+     */
     var setupSearch = function() {
         // setup typeahead search
         $_searchField.typeahead({
@@ -57,11 +80,14 @@ App.register('ProductFinder', function() {
         });
     };
 
+    /**
+     * Setup listeners
+     */
     var setupListeners = function() {
         // handle typeahead requests
         $_searchField.on('typeahead:autocompleted typeahead:selected', function(event, item) {
             $_masterField.val(item.name);
-            stockCheck({master: item.name}, 'size');
+            publicMethods.stockCheck({master: item.name}, 'size');
         });
 
         // handle found products ...
@@ -110,7 +136,7 @@ App.register('ProductFinder', function() {
 
         // look up colors from a master and a size
         $_sizeSelect.on('change', function() {
-            stockCheck({
+            publicMethods.stockCheck({
                 master : $_masterField.val(),
                 size   : $_sizeSelect.val()
             }, 'color');
@@ -124,7 +150,13 @@ App.register('ProductFinder', function() {
         });
     };
 
-    var stockCheck = function(data, target) {
+    /**
+     * Perform the stockcheck
+     *
+     * @param data
+     * @param target
+     */
+    publicMethods.stockCheck = function(data, target) {
         var xhr = $.ajax({
             url      : base_url + "stock-check",
             dataType : 'json',
