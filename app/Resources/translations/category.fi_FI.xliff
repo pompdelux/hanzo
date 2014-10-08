@@ -219,7 +219,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-34" approved="no">
                 <source>headers.category-34</source>
-                <target><![CDATA[<h1>Housut</h1>
+                <target><![CDATA[<h1>Housut / Farkut</h1>
                 <p>POMPdeLUXilta löydät housuja, jotka sopivat lapsellesi parhaiten. Meillä on suuri valikoima värejä ja malleja – pidätpä sitten eniten jeggingseistä, farkuista, baggyista tai slimfit-mallista. Housumme on valmistettu ihanista materiaaleista aina collegesta neuleeseen, ja meillä on housuja joka tilaisuuteen. Meiltä löytyy housuja, jeggingsejä ja farkkuja koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-86" approved="no">
@@ -239,7 +239,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-87" approved="no">
                 <source>headers.category-87</source>
-                <target><![CDATA[<h1>Sukat / Sukkahousut</h1>
+                <target><![CDATA[<h1>Sukat / Sukkahousut / Leggingsit</h1>
                 <p>Voit viimeistellä lapsesi vaatevaraston yhdistämällä vaatteisiin monia kauniita asusteitamme. POMPdeLUXilta löytyy kaikkea  sukkahousuista, sukista, leggingseistä, uima-asuista ,hiuskoristeista, henkseleistä ja vöistä käsineisiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat yhteen muun malliston kanssa ja niitä voidaan siten yhdistellä hienoihin mekkoihin, ihaniin neuletakkeihin ja siisteihin housuihin. Vöitämme, henkseleitämme, käsineitämme, lakkejamme, kaulahuivejamme ja hiuskoristeitamme voidaan käyttää kaikenikäisillä tytöillä. Tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-38" approved="no">
@@ -361,6 +361,12 @@
                 <source>headers.category-124</source>
                 <target><![CDATA[<h1>T-paidat, lyhythihainen</h1>
                 <p>T-paitoja voi käyttää ympäri vuoden ja ne ovat kauniita sekä kesällä että talvella. POMPdeLUXilla on T-paitoja monessa eri värissä ja mallissa, joten valikoimasta löytyy jotain sekä isoille että pienille tytöille. T-paitamme ovat ihanan pehmeää materiaalia, ja niissä on paljon hienoja yksityiskohtia. Löydä oma suosikkipaitasi arkeen tai kaunis toppi juhlavampiin tilaisuuksiin. Meiltä löytyy T-paitoja koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-137" approved="no">
+                <source>headers.category-137</source>
+                <target><![CDATA[<h1>Sweatshirts / Sweatpants</h1>
+                <p>Sweatbroeken en sweatshirts zijn populair! Kies uit lekkere zachte truien, jacks, broeken en joggingpakken. Onze sweatartikelen zijn gemaakt van een mooie stof die lekker zit, maar ze zien er ook cool uit. Onze sweatshirts en sweatbroeken zijn verkrijgbaar van maat 80-152 en zijn er voor de meisjes en de jongens.
+</p>]]></target>
             </trans-unit>
         </body>
     </file>

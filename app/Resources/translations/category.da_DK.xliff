@@ -381,6 +381,11 @@
                 <target><![CDATA[<h1>Shorts / Nederdel</h1>
                 <p>POMPdeLUX har shorts og nederdele til alle piger. Vælg mellem flere forskellige modeller og lækre farver, og læg mærke til de mange fine detaljer med print og tyl. Kombiner både shorts og nederdel med underdele som leggings og strømpebukser eller overdele som tshirts, striktrøjer og cardigans. Vores shorts og nederdele går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
             </trans-unit>
+			<trans-unit id="headers.category-137" approved="no">
+                <source>headers.category-137</source>
+                <target><![CDATA[<h1>Sweatshirts / Sweatpants</h1>
+                <p>Sweatpants og sweatshirts er populære! Vælg mellem lækre bløde trøjer, jakker, bukser og buksedragter. Vores sweat er altid i en lækker kvalitet, som er behageligt for dit barn at have på, men som samtidig skaber et cool look. Vores sweatshirts og sweatbukser fås fra str. 80-152 cm til både piger og drenge.</p>]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
