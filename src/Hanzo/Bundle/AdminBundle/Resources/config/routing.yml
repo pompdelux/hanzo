@@ -677,6 +677,11 @@ admin_orders_ax_qeueu:
     defaults:
         _controller: AdminBundle:Orders:axQueue
 
+admin_orders_delete_from_queue_log:
+    pattern: /admin/orders/ax/queue/delete-item/{orders_id}
+    defaults:
+        _controller: AdminBundle:Orders:axQueueDeleteItem
+
 
 admin_statistics_realtime:
     pattern: /admin/statistics/realtime
