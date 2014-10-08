@@ -127,6 +127,7 @@
                 </tbody>
             </table>
 
+            <h1>Adresseinformationer</h1>
             <div class="tab-content">
                 <ul class="nav nav-tabs" role="tablist" id="js-order-details">
                     <li class="active"><a href="#order-details-billing" role="tab" data-toggle="tab">{{ 'admin.order.billing_tablehead'|trans({}, 'admin') }}</a></li>
@@ -148,10 +149,12 @@
                                 <th>{{ 'admin.order.billing_address_line_1'|trans({}, 'admin') }}</th>
                                 <td>{{ order.billingaddressline1 }}</td>
                             </tr>
-                            {#<tr>#}
-                                {#<th>{{ 'admin.order.billing_address_line_2'|trans({}, 'admin') }}</th>#}
-                                {#<td>{{ order.billingaddressline2 }}</td>#}
-                            {#</tr>#}
+                        {% if order.billingaddressline2 %}
+                            <tr>
+                                <th>{{ 'admin.order.billing_address_line_2'|trans({}, 'admin') }}</th>
+                                <td>{{ order.billingaddressline2 }}</td>
+                            </tr>
+                        {% endif %}
                             <tr>
                                 <th>{{ 'admin.order.billing_postal_code'|trans({}, 'admin') }}</th>
                                 <td>{{ order.billingpostalcode }}</td>
@@ -199,10 +202,12 @@
                                 <th>{{ 'admin.order.delivery_address_line_1'|trans({}, 'admin') }}</th>
                                 <td>{{ order.deliveryaddressline1 }}</td>
                             </tr>
+                        {% if order.deliveryaddressline2 %}
                             <tr>
                                 <th>{{ 'admin.order.delivery_address_line_2'|trans({}, 'admin') }}</th>
                                 <td>{{ order.deliveryaddressline2 }}</td>
                             </tr>
+                        {% endif %}
                             <tr>
                                 <th>{{ 'admin.order.delivery_postal_code'|trans({}, 'admin') }}</th>
                                 <td>{{ order.deliverypostalcode }}</td>
