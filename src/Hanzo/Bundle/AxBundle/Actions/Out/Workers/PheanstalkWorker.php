@@ -118,6 +118,7 @@ class PheanstalkWorker
         }
 
         // send order confirmation
+        $this->orderConfirmationMailer->setDBConnection($this->dbConn);
         $this->orderConfirmationMailer->build($order);
         $this->orderConfirmationMailer->send();
 
