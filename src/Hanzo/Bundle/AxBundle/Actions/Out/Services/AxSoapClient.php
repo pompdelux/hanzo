@@ -12,6 +12,7 @@ namespace Hanzo\Bundle\AxBundle\Actions\Out\Services;
 
 use Hanzo\Bundle\AxBundle\Logger;
 use Hanzo\Core\ServiceLogger;
+use Hanzo\Core\Tools;
 
 /**
  * Class AxSoapClient
@@ -118,7 +119,21 @@ class AxSoapClient
 
         // Error code exist in $result->SyncSalesOrderResult->Status, but it
         if (isset($result->SyncSalesOrderResult->Status) && ('ERROR' === strtoupper($result->SyncSalesOrderResult->Status))) {
-            throw new AxDataException($service.' sync failed, error was: '. implode(' & ', $result->SyncSalesOrderResult->Message));
+
+            $message = 'unknown errro';
+            if (isset($result->SyncSalesOrderResult->Message)) {
+                if (is_array($result->SyncSalesOrderResult->Message)) {
+                    $message = implode(' & ', $result->SyncSalesOrderResult->Message);
+                }
+
+                $message = $result->SyncSalesOrderResult->Message;
+            }
+
+            if ('unknown errro' === $message) {
+                Tools::log($result);
+            }
+
+            throw new AxDataException($service.' sync failed, error was: '. $message);
         }
 
         return true;
