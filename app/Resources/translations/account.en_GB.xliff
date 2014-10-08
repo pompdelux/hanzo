@@ -459,7 +459,7 @@
       <b>Track your parcel</b><br>
       Click on the icon next to your order to follow your parcel. The Track and Trace page will open in a new window.<br><br>
       <b>Returns, exchanges and defects</b><br>
-      If you wish to return an item, click on the green icon next to your order below.<br> 
+      If you wish to return an item, click on the green icon next to your order below.<br>
       The returns form needs to be filled out and can be opened in a PDF-file. You can then print the PDF-file. <br>
       If you wish to exchange an item or you have received an item with manufacturing flaws or defects, please just return the item to us. If the defect is accepted by us, we will send you a new item free of charge and we will refund your postage. Please make the amount you have paid visible on the parcel or make a note on the returns form. In case you are returning items without flaws/defects and without the purpose of having them exchanged, we cannot refund any postage. If the item is sold out, we will give you a full refund. <br><br>
       <b>Returns form</b><br>
@@ -557,6 +557,55 @@ After this you can easily continue shopping.<br></p>
             <trans-unit id="my.account.existing.customer.notice">
                 <source>my.account.existing.customer.notice</source>
                 <target>Welcome, we are happy to see you again!</target>
+            </trans-unit>
+            <trans-unit id="wishlist.add.label">
+                <source>wishlist.add.label</source>
+                <target>Opret shoppingliste</target>
+            </trans-unit>
+            <trans-unit id="wishlist.add.description">
+                <source>wishlist.add.description</source>
+                <target><![CDATA[
+                    <p>Her kan du oprette en liste med de styles, du ønsker at bestille ved et Home Shopping arrangement eller Åbent Hus.</p>
+                    <ul>
+                        <li>Tryk på "Opret Shoppingliste". Din Shoppingliste får et unikt nummer, som din Shopping Advisor skal bruge.</li>
+                        <li>Tilføj de styles du ønsker at købe.</li>
+                        <li>Vis Shoppingliste nummeret til din Shopping Advisor, som behandler din ordre.</li>
+                        <li>Lagerbeholdning tjekkes, ordren gennemføres i samarbejde med din Shopping Advisor og herefter vil du modtage en ordrebekræftelse på din ordre.</li>
+                    </ul>
+                    <p>HUSK! Vær opmærksom på, at du først har afgivet din ordre, når din Shopping Advisor har indlæst dit Shoppingliste nummer, og du har fået en odrebekræftelse. Varene på din Shoppingliste er ikke reserveret selvom de er tilføjet, så der kan opstå tilfælde, hvor en vare desværre er udsolgt.</p>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="wishlist.add.to.list">
+                <source>wishlist.add.to.list</source>
+                <target>Shoppingliste</target>
+            </trans-unit>
+            <trans-unit id="wishlist.placeholder.query">
+                <source>wishlist.placeholder.query</source>
+                <target>Tilføj vare</target>
+            </trans-unit>
+            <trans-unit id="wishlist.query.description">
+                <source>wishlist.query.description</source>
+                <target>Indtast de tre første bogstaver i stylens navn og vælg den ønskede style fra listen.</target>
+            </trans-unit>
+            <trans-unit id="wishlist.select.size">
+                <source>wishlist.select.size</source>
+                <target>Størrelse</target>
+            </trans-unit>
+            <trans-unit id="wishlist.select.color">
+                <source>wishlist.select.color</source>
+                <target>Farve</target>
+            </trans-unit>
+            <trans-unit id="wishlist.number">
+                <source>wishlist.number</source>
+                <target><![CDATA[Shoppingliste Nr: <span>%number%</span>]]></target>
+            </trans-unit>
+            <trans-unit id="add.to.wishlist">
+                <source>add.to.wishlist</source>
+                <target>Tilføj til listen</target>
+            </trans-unit>
+            <trans-unit id="wishlist.remove.all.items">
+                <source>wishlist.remove.all.items</source>
+                <target>Ryd listen</target>
             </trans-unit>
         </body>
     </file>

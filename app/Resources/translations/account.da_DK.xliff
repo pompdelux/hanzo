@@ -569,7 +569,6 @@ Herefter kan du nemt shoppe videre.</p><br>
                 <source>my.account.existing.customer.notice</source>
                 <target>Velkommen, vi er glade for at se dig igen!</target>
             </trans-unit>
-<!-- nyt -->
             <trans-unit id="wishlist.add.label">
                 <source>wishlist.add.label</source>
                 <target>Opret shoppingliste</target>
@@ -609,7 +608,15 @@ Herefter kan du nemt shoppe videre.</p><br>
             </trans-unit>
             <trans-unit id="wishlist.number">
                 <source>wishlist.number</source>
-                <target>Shoppingliste ID: %number%</target>
+                <target><![CDATA[Shoppingliste Nr: <span>%number%</span>]]></target>
+            </trans-unit>
+            <trans-unit id="add.to.wishlist">
+                <source>add.to.wishlist</source>
+                <target>Tilføj til listen</target>
+            </trans-unit>
+            <trans-unit id="wishlist.remove.all.items">
+                <source>wishlist.remove.all.items</source>
+                <target>Ryd listen</target>
             </trans-unit>
         </body>
     </file>
