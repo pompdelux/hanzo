@@ -2105,7 +2105,12 @@ aside.js-slider h3 span.open {
   background-color: #dedede;
   font-weight: bold;
 }
+#body-wishlist .tt-suggestion p {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
 #body-wishlist article {
+  position: relative;
   border-top: 2px solid #c0c0c0;
   overflow: hidden;
 }
@@ -2118,8 +2123,33 @@ aside.js-slider h3 span.open {
   padding-top: 10px;
   text-align: center;
   display: block;
-  width: 260px;
-  float: right;
+  width: 250px;
+  float: left;
+}
+#body-wishlist article .sprite {
+  position: absolute;
+  top: 10px;
+  right: 5px;
+}
+#body-wishlist article.js-in-edit {
+  border: 2px solid #9aac9a;
+  margin: 5px;
+}
+#body-wishlist .list-number {
+  padding: 15px 0 15px 60px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  font-size: 1.4em;
+}
+#body-wishlist .list-number span {
+  padding: 3px 7px;
+  background-color: #d69495;
+}
+#body-wishlist .list-number.last {
+  margin-top: 20px;
+}
+#body-wishlist .wishlist-target {
+  border-bottom: 2px solid #c0c0c0;
 }
 
 #account-block-newsletter-all h3 {
