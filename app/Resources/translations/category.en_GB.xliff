@@ -218,7 +218,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-34" approved="no">
                 <source>headers.category-34</source>
-                <target><![CDATA[<h1>Pants</h1>
+                <target><![CDATA[<h1>Pants / Jeans</h1>
                 <p>At POMPdeLUX you will find trousers with the best fit to your child. We have a wide range of colours and models – regardless whether you prefer jeggings, jeans, baggy or slimfit trousers. Our trousers are made from lovely materials including sweat and knitted fabric and you will find trousers for all occasions. Our trousers start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-86" approved="no">
@@ -284,7 +284,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-26" approved="no">
                 <source>headers.category-26</source>
-                <target><![CDATA[<h1>Shirts-Polo shirts</h1>
+                <target><![CDATA[<h1>Shirts / Polo shirts</h1>
                 <p>Shirts and polos are smart on any boy. POMPdeLUX makes many different models, patterns and colours which complete both the small and the big boy’s wardrobe. We focus especially on the many fine details such as breast pocket, collars, buttons and print. Find the shirt or polo your boy will love and combine it with a pullover, slipover, cardigan or sweatshirt. Our shirts and polos start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-23" approved="no">
@@ -361,6 +361,11 @@
                 <source>headers.category-124</source>
                 <target><![CDATA[<h1>T-shirts, short sleeve</h1>
                 <p>T-shirts can be worn all year round and they are lovely both in summer and winter. POMPdeLUX has t-shirts in many different colours and models as well as something for both big and small boys. Our t-shirts are lovely soft quality and have many great details and prints. Find your favourite t-shirt for everyday wear or a cool polo for festive occasions. Our t-shirts start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-137" approved="no">
+                <source>headers.category-137</source>
+                <target><![CDATA[<h1>SWEATPANTS/SWEATSHIRTS</h1>
+                <p>Sweat pants and sweat shirts are very popular! Choose between lovely soft jumpers, jackets, pants and jumpsuits. Our sweat is always high quality, and your child will love wearing it and at the same time look really cool. Our sweat shirts and sweat pants are available for both boys and girls in sizes 80-152 cm.</p>]]></target>
             </trans-unit>
         </body>
     </file>
