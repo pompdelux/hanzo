@@ -14,7 +14,7 @@ use Hanzo\Model\Orders;
 
 /**
  * Class SyncDeleteSalesOrder
- * 
+ *
  * @package Hanzo\Bundle\AxBundle
  */
 class SyncDeleteSalesOrder extends BaseService
