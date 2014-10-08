@@ -119,7 +119,6 @@ class AxSoapClient
 
         // Error code exist in $result->SyncSalesOrderResult->Status, but it
         if (isset($result->SyncSalesOrderResult->Status) && ('ERROR' === strtoupper($result->SyncSalesOrderResult->Status))) {
-
             $message = 'unknown error';
             if (isset($result->SyncSalesOrderResult->Message)) {
                 if (is_array($result->SyncSalesOrderResult->Message)) {
@@ -130,7 +129,7 @@ class AxSoapClient
             }
 
             if ('unknown error' === $message) {
-                Tools::log($result);
+                Tools::log('AX comm error: '.print_r($result, 1));
             }
 
             throw new AxDataException($service.' sync failed, error was: '. $message);
