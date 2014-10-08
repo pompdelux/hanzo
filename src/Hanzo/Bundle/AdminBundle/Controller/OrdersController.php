@@ -8,6 +8,7 @@ use Hanzo\Core\Tools;
 
 use Hanzo\Model\OrdersAttributes;
 use Hanzo\Model\OrdersStateLog;
+use Hanzo\Model\OrdersStateLogQuery;
 use Hanzo\Model\OrdersVersions;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -200,11 +201,15 @@ class OrdersController extends CoreController
             }
         }
 
+        $order_states = OrdersStateLogQuery::create()
+            ->filterByOrdersId($order->getId())
+            ->find($this->getDbConnection());
+
         $order_sync_states = OrdersSyncLogQuery::create()
             ->orderByCreatedAt('ASC')
             ->filterByOrdersId($order->getId())
-            ->find($this->getDbConnection())
-        ;
+            ->find($this->getDbConnection());
+
         $form_state = $this->createFormBuilder(array('state' => $order->getState()))
             ->add('state', 'choice',
                 array(
@@ -230,15 +235,16 @@ class OrdersController extends CoreController
             }
         }
 
-        return $this->render('AdminBundle:Orders:view.html.twig', array(
-            'order'  => $order,
-            'order_lines' => $order_lines,
-            'order_attributes' => $attributes,
+        return $this->render('AdminBundle:Orders:view.html.twig', [
+            'order'             => $order,
+            'order_lines'       => $order_lines,
+            'order_attributes'  => $attributes,
             'order_attachments' => $attachments,
             'order_sync_states' => $order_sync_states,
-            'form_state' => $form_state->createView(),
-            'database' => $request->getSession()->get('database')
-        ));
+            'order_states'      => $order_states,
+            'form_state'        => $form_state->createView(),
+            'database'          => $request->getSession()->get('database')
+        ]);
     }
 
 
