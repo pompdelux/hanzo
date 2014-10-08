@@ -167,6 +167,13 @@ class SyncSalesOrder extends BaseService
             'DeliveryStreet'          => $this->order->getDeliveryAddressLine1(),
             'DeliveryZipCode'         => $this->order->getDeliveryPostalCode(),
             'DeliveryCountryRegionId' => $this->getIso2CountryCode($this->order->getDeliveryCountriesId()),
+
+            // static info
+            'Completed'        => 1,
+            'HandlingFeeType'  => 90,
+            'PayByBillFeeType' => 91,
+            'SalesType'        => 'Sales',
+            'TransactionType'  => 'Write',
         ];
 
         // purge empty
