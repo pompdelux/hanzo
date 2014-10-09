@@ -14,6 +14,12 @@
     <p>{{ 'quickorder.description.text'|trans({}, 'quickorder') }}</p>
     <div>
 
+        <form method="post" action="" class="js-load-wishlist load-wishlist">
+            <label>Hent Shoppingliste</label>
+            <input name="q" value="" autocomplete="off" placeholder="Shoppingliste nr." type="text">
+            <button type="submit" class="button">Hent</button>
+        </form>
+
 
         <form action="{{ url('basket_add', {}, true) }}" method="post" class="quickorder">
             <label>{{ 'quickorder.master.placeholder'|trans({}, 'quickorder') }}<br>
@@ -109,6 +115,34 @@
 
         </div>
     </div>
+
+    <script type="text/html" id="quickOrderItemTpl">
+        <tr class="item">
+            <td class="image"><img src="<?= data.img ?>" alt="<?= data.title ?>">
+                <div class="info" data-product_id="<?= data.latest.id ?>" data-confirmed="" data-master="<?= data.master ?>">
+                    <a href="<?= data.base_url ?>product/view/<?= data.latest.master_id ?>" class="title"><?= data.title ?></a>
+                    <div class="size">
+                        <label>{{ 'size'|trans({}, 'js') }}:</label>
+                        <span><?= data.size_label ?></span>
+                    </div>
+                    <div class="color">
+                        <label>{{ 'color'|trans({}, 'js') }}:</label>
+                        <span><?= data.color ?></span>
+                    </div>
+                </div>
+            </td>
+            <td class="right date">
+                <?= data.latest.expected_at ?>
+            </td>
+            <td class="right price"><?= data.latest.single_price ?></td>
+            <td class="center quantity"><?= data.quantity ?></td>
+            <td class="actions">
+                <a href="<?= data.base_url ?>remove-from-basket/<?= data.latest.id ?>" class="sprite delete"></a>
+                <a href="<?= data.latest.id ?>" class="sprite edit"></a>
+            </td>
+            <td class="right total"><?= data.latest.price ?></td>
+        </tr>
+    </script>
 
 {% endblock %}
 
