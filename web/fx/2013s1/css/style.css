@@ -3823,6 +3823,10 @@ div.quickorder input[type=button] {
   background-color: #D9D9D9;
 }
 
+form.load-wishlist {
+  margin-bottom: 20px;
+}
+
 /**
 | _find-consultants
 */
