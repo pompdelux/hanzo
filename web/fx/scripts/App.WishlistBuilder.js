@@ -49,6 +49,7 @@ App.register('WishlistBuilder', function() {
                 // show resetter link and shoppinglist number below list when not empty.
                 $_resetter.removeClass('off');
                 $('.list-number.last').removeClass('off');
+                $_searchField.focus();
             });
 
             xhr.fail(function() {

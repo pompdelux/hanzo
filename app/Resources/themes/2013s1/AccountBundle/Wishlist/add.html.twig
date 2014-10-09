@@ -1,8 +1,14 @@
 {% extends layout %}
 {% block content %}
 
-    <section class="grid_8 alpha omega js-hanzo-module" data-module-name="ProductFinder WishlistBuilder">
+    <section class="grid_{% if is_mobile_layout %}8{% else %}4{% endif %} alpha omega js-hanzo-module" data-module-name="ProductFinder WishlistBuilder">
         <h1>{{ 'wishlist.add.to.list'|trans({}, 'account') }}</h1>
+
+        {% if is_mobile_layout == false %}
+            <section class="grid_8 alpha omega wishlist-info-block">
+                {{ include('AccountBundle:Wishlist:info.html.twig') }}
+            </section>
+        {% endif  %}
 
         <form action="{{ path('_account_wishlist_add_item') }}" class="">
             <div>
@@ -37,7 +43,7 @@
         {{ 'wishlist.number'|trans({'%number%': wishlist_id}, 'account')|raw }}
     </div>
 
-    <section class="grid_8 alpha omega js-wishlist-target wishlist-target">
+    <section class="grid_{% if is_mobile_layout %}8{% else %}4{% endif %} alpha omega js-wishlist-target wishlist-target">
     {% for product in products %}
         <article
                 data-product-id="{{ product.id }}"
@@ -58,7 +64,7 @@
         </article>
     {% endfor %}
 
-        <div class="grid_8 alpha omega right">
+        <div class="right">
             <a href="{{ path('_account_wishlist_remove_all') }}" class="js-wishlist-flush-list{% if products|length == 0 %} off{% endif %} js-confirm" data-confirm-message="Er du sikker på du vil fjerne alle produkter på listen ?">{{ 'wishlist.remove.all.items'|trans({}, 'account') }}</a>
         </div>
     </section>

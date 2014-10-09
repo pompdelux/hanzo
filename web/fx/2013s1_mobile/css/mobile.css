@@ -2021,19 +2021,6 @@ div.invalid-order {
   padding-bottom: 12px;
 }
 
-#body-account article .grid_6 {
-  display: table-footer-group;
-}
-
-#body-account article .grid_2 {
-  display: table-header-group;
-}
-
-#body-account article aside li {
-  line-height: 1.8em;
-  margin-left: 10px;
-}
-
 aside.js-slider {
   margin-bottom: 10px;
   border-bottom: 1px solid #000;
@@ -2058,24 +2045,32 @@ aside.js-slider h3 span.open {
   background: url(/fx/images/icons/icons/arrow_down.png) center right no-repeat;
 }
 
-.wishlist a.create-wishlist {
+.wishlist-info-block a.create-wishlist, .wishlist a.create-wishlist {
   margin: 10px auto;
 }
-.wishlist ul {
+.wishlist-info-block ul, .wishlist ul {
   margin: 10px 5px 10px 20px;
 }
-.wishlist ul li {
+.wishlist-info-block ul li, .wishlist ul li {
   vertical-align: top;
   padding: 0 0 5px 0;
   max-width: 90%;
   list-style: decimal;
+  font-size: 12px;
 }
-.wishlist .container {
+.wishlist-info-block .container, .wishlist .container {
   padding-bottom: 20px;
+}
+
+.desktop .wishlist-info-block a, .desktop .wishlist-info-block h3 {
+  display: none;
 }
 
 #body-wishlist form {
   margin-bottom: 20px;
+}
+#body-wishlist .grid_4 form {
+  width: 70%;
 }
 #body-wishlist input {
   width: 100%;
@@ -2150,6 +2145,19 @@ aside.js-slider h3 span.open {
 }
 #body-wishlist .wishlist-target {
   border-bottom: 2px solid #c0c0c0;
+}
+
+#body-account article .grid_6 {
+  display: table-footer-group;
+}
+
+#body-account article .grid_2 {
+  display: table-header-group;
+}
+
+#body-account article aside li {
+  line-height: 1.8em;
+  margin-left: 10px;
 }
 
 #account-block-newsletter-all h3 {

@@ -36,7 +36,10 @@ App.register('ProductFinder', function() {
      * Reset the form elements this module cares about.
      */
     publicMethods.resetForm = function() {
-        $('.tt-dropdown-menu', $_form).html('');
+        var $_ttdd = $('.tt-dropdown-menu', $_form);
+        $_ttdd.html('');
+        $_ttdd.css('display', 'none');
+
         $_searchField.val('');
         $_masterField.val('');
         $_productIdField.val('');

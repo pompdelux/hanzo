@@ -3894,6 +3894,132 @@ div.quickorder input[type=button] {
   display: inline-block;
 }
 
+aside.js-slider {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #000;
+}
+aside.js-slider .container {
+  border-top: 1px solid #000;
+  margin: 0;
+  display: none;
+}
+aside.js-slider h3 {
+  margin-top: 0;
+  cursor: pointer;
+  border-top: 1px solid #000;
+}
+aside.js-slider h3 span {
+  display: block;
+  padding: 2px 0px 2px 5px;
+  margin-right: 5px;
+  background: url(/fx/images/icons/icons/arrow_right.png) center right no-repeat;
+}
+aside.js-slider h3 span.open {
+  background: url(/fx/images/icons/icons/arrow_down.png) center right no-repeat;
+}
+
+.wishlist-info-block a.create-wishlist, .wishlist a.create-wishlist {
+  margin: 10px auto;
+}
+.wishlist-info-block ul, .wishlist ul {
+  margin: 10px 5px 10px 20px;
+}
+.wishlist-info-block ul li, .wishlist ul li {
+  vertical-align: top;
+  padding: 0 0 5px 0;
+  max-width: 90%;
+  list-style: decimal;
+  font-size: 12px;
+}
+.wishlist-info-block .container, .wishlist .container {
+  padding-bottom: 20px;
+}
+
+.desktop .wishlist-info-block a, .desktop .wishlist-info-block h3 {
+  display: none;
+}
+
+#body-wishlist form {
+  margin-bottom: 20px;
+}
+#body-wishlist .grid_4 form {
+  width: 70%;
+}
+#body-wishlist input {
+  width: 100%;
+}
+#body-wishlist select {
+  margin-bottom: 15px;
+  width: 100%;
+  padding: 6px 5px;
+}
+#body-wishlist label {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-style: italic;
+  font-size: 0.9em;
+}
+#body-wishlist .twitter-typeahead {
+  width: 98%;
+}
+#body-wishlist .tt-dropdown-menu {
+  background-color: #fff;
+  border: 1px solid #c0c0c0;
+  width: 97%;
+  padding: 5px;
+}
+#body-wishlist .tt-is-under-cursor {
+  padding: 0 5px;
+  background-color: #dedede;
+  font-weight: bold;
+}
+#body-wishlist .tt-suggestion p {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+#body-wishlist article {
+  position: relative;
+  border-top: 2px solid #c0c0c0;
+  overflow: hidden;
+}
+#body-wishlist article img {
+  vertical-align: top;
+  margin-left: 10px;
+  float: left;
+}
+#body-wishlist article p {
+  padding-top: 10px;
+  text-align: center;
+  display: block;
+  width: 250px;
+  float: left;
+}
+#body-wishlist article .sprite {
+  position: absolute;
+  top: 10px;
+  right: 5px;
+}
+#body-wishlist article.js-in-edit {
+  border: 2px solid #9aac9a;
+  margin: 5px;
+}
+#body-wishlist .list-number {
+  padding: 15px 0 15px 60px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  font-size: 1.4em;
+}
+#body-wishlist .list-number span {
+  padding: 3px 7px;
+  background-color: #d69495;
+}
+#body-wishlist .list-number.last {
+  margin-top: 20px;
+}
+#body-wishlist .wishlist-target {
+  border-bottom: 2px solid #c0c0c0;
+}
+
 /**
 | _ie
 */
