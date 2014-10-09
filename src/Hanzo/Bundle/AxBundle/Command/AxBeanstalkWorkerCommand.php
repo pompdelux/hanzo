@@ -13,6 +13,7 @@ declare(ticks=1);
 namespace Hanzo\Bundle\AxBundle\Command;
 
 use Hanzo\Core\Tools;
+use Hanzo\Model\Orders;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -84,6 +85,9 @@ class AxBeanstalkWorkerCommand extends ContainerAwareCommand
     /**
      * Watch for incoming jobs
      *
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     *
      * @return bool
      */
     private function watch(InputInterface $input, OutputInterface $output)
@@ -125,8 +129,7 @@ class AxBeanstalkWorkerCommand extends ContainerAwareCommand
                 $this->getContainer()->get('ax.out.pheanstalk.send')->send($data);
             }
         } catch (\Exception $exception) {
-            Tools::log('AxBeanstalkWorkerCommand: Exception detected: '.$exception->getMessage());
-            $this->getContainer()->get('logger')->error('AxBeanstalkWorkerCommand: Exception detected: '.$exception->getMessage());
+            $this->halt($data, 'AxBeanstalkWorkerCommand: Exception detected: '.$exception->getMessage());
         }
 
         $pheanstalk->delete($job);
@@ -165,10 +168,38 @@ class AxBeanstalkWorkerCommand extends ContainerAwareCommand
      */
     private function bind()
     {
-        pcntl_signal(SIGALRM, array($this, 'shutdown'));
-        pcntl_signal(SIGINT,  array($this, 'shutdown'));
-        pcntl_signal(SIGQUIT, array($this, 'shutdown'));
-        pcntl_signal(SIGTERM, array($this, 'shutdown'));
+        pcntl_signal(SIGALRM, [$this, 'shutdown']);
+        pcntl_signal(SIGINT,  [$this, 'shutdown']);
+        pcntl_signal(SIGQUIT, [$this, 'shutdown']);
+        pcntl_signal(SIGTERM, [$this, 'shutdown']);
         pcntl_alarm(2);
+    }
+
+
+    /**
+     * @param array  $data
+     * @param string $message
+     */
+    private function halt(array $data, $message)
+    {
+        // we need an order record otherwise the db scheme breaks, and we do not want to change that.
+        if ('delete' === $data['action']) {
+            $ts = strtotime('+1 week');
+
+            $order = new Orders();
+            $order->setId($data['order_id']);
+            $order->setSessionId($data['order_id']);
+            $order->setCustomersId($data['customer_id']);
+            $order->setCreatedAt($ts);
+            $order->setUpdatedAt($ts);
+
+            try {
+                $order->save(\Propel::getConnection($data['db_conn']));
+            } catch (\Exception $e) {
+                Tools::log($e->getMessage());
+            }
+        }
+
+        $this->getContainer()->get('ax.logger')->write($data['order_id'], 'failed', $data, $message);
     }
 }
