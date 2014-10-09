@@ -366,23 +366,8 @@
                 <target><![CDATA[<h1>Sweatshirts & Sweatpants</h1>
                 <p>Sweatpants og sweatshirts er populære! Velg mellom lekre myke gensere, jakker, bukser og buksedrakter. Våre sweat-plagg er alltid i en lekker kvalitet, som er behagelig for barnet ditt, og som samtidig skaper en kul look. Våre sweatshirts og sweatbukser fås fra str. 80-152 cm til både jenter og gutter.</p>]]></target>
             </trans-unit>
-			<trans-unit id="headers.category-794" approved="no">
-                <source>headers.category-794</source>
-                <target><![CDATA[<h1>Tilbud</h1>
-                <p>Tilbud</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-795" approved="no">
-                <source>headers.category-795</source>
-                <target><![CDATA[<h1>Tilbud</h1>
-                <p>Tilbud</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-796" approved="no">
-                <source>headers.category-796</source>
-                <target><![CDATA[<h1>Tilbud</h1>
-                <p>Tilbud</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-797" approved="no">
-                <source>headers.category-797</source>
+			<trans-unit id="headers.category-141" approved="no">
+                <source>headers.category-141</source>
                 <target><![CDATA[<h1>Tilbud</h1>
                 <p>Tilbud</p>]]></target>
             </trans-unit>
