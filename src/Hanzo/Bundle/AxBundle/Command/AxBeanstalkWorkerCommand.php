@@ -52,6 +52,7 @@ class AxBeanstalkWorkerCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        // Disable instance pooling when operating in a loop..
         \Propel::disableInstancePooling();
 
         if (!$input->getOption('quiet')) {
