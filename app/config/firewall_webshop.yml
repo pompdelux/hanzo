@@ -80,7 +80,7 @@ security:
                     # Kernel Global api access user.
                     # Here to allow access to: ^/da_DK/retarteging/order-feed/*
                     kg_api:
-                        password: "KG1s0=s1_aw0z"
+                        password: "KG1s0=s1_aw0z....NO-ACCESS"
                         roles:    ROLE_KG_API_USER
 
     encoders:
