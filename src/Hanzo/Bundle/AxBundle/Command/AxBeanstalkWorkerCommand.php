@@ -14,6 +14,7 @@ namespace Hanzo\Bundle\AxBundle\Command;
 
 use Hanzo\Core\Tools;
 use Hanzo\Model\Orders;
+use Hanzo\Model\OrdersToAxQueueLogQuery;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -200,6 +201,10 @@ class AxBeanstalkWorkerCommand extends ContainerAwareCommand
             }
         }
 
-        $this->getContainer()->get('ax.logger')->write($data['order_id'], 'failed', $data, $message);
+        OrdersToAxQueueLogQuery::create()
+            ->filterByOrdersId($data['order_id'])
+            ->delete(\Propel::getConnection($data['db_conn']));
+
+        $this->getContainer()->get('ax.logger')->write($data['order_id'], 'failed', $data, $message . ' ('.$data['db_conn'].')');
     }
 }
