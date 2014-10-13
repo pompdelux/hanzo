@@ -600,7 +600,6 @@ class SyncSalesOrder extends BaseService
      */
     protected function validate()
     {
-        error_log(print_r($this->data, 1));
         if (empty($this->data['salesOrder']['SalesTable']['HomePartyId']) || empty($this->data['salesOrder']['SalesTable']['SalesResponsible'])) {
             throw new \Exception('Validation error - SyncSalesOrder: Missing SalesResponsible or HomePartyId');
         }
