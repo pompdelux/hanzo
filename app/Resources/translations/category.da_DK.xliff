@@ -386,6 +386,11 @@
                 <target><![CDATA[<h1>Sweatshirts / Sweatpants</h1>
                 <p>Sweatpants og sweatshirts er populære! Vælg mellem lækre bløde trøjer, jakker, bukser og buksedragter. Vores sweat er altid i en lækker kvalitet, som er behageligt for dit barn at have på, men som samtidig skaber et cool look. Vores sweatshirts og sweatbukser fås fra str. 80-152 cm til både piger og drenge.</p>]]></target>
             </trans-unit>
+			<trans-unit id="headers.category-141" approved="no">
+                <source>headers.category-141</source>
+                <target><![CDATA[<h1>Tilbud</h1>
+                <p>Tilbud</p>]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

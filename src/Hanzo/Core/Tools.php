@@ -3,9 +3,6 @@
 namespace Hanzo\Core;
 
 use Propel;
-use BasePeer;
-
-use Hanzo\Core\Hanzo;
 
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
@@ -90,12 +87,12 @@ class Tools
     /**
      * NICETO: not hardcoded
      *
-     * @param string              $type
-     * @param \Hanzo\Model\Orders $order
+     * @param        $type
+     * @param Orders $order
      *
      * @return string
      */
-    public static function getBccEmailAddress($type, $order)
+    public static function getBccEmailAddress($type, Orders $order)
     {
         $attributes = $order->getAttributes();
 
@@ -135,8 +132,8 @@ class Tools
                         $to = 'orderdk@pompdelux.com';
                         break;
                 }
-
                 break;
+
             case 'retur':
                 switch ($attributes->global->domain_key) {
                     case 'DE':
@@ -169,6 +166,42 @@ class Tools
                         break;
                     default:
                         $to = 'returdk@pompdelux.com';
+                        break;
+                }
+                break;
+
+            case 'rma':
+                switch ($attributes->global->domain_key) {
+                    case 'DE':
+                    case 'SalesDE':
+                        $to = 'rmade@pompdelux.com';
+                        break;
+                    case 'FI':
+                    case 'SalesFI':
+                        $to = 'rmafi@pompdelux.com';
+                        break;
+                    case 'NL':
+                    case 'SalesNL':
+                        $to = 'rmanl@pompdelux.com';
+                        break;
+                    case 'NO':
+                    case 'SalesNO':
+                        $to = 'rmano@pompdelux.com';
+                        break;
+                    case 'SE':
+                    case 'SalesSE':
+                        $to = 'rmase@pompdelux.com';
+                        break;
+                    case 'AT':
+                    case 'SalesAT':
+                        $to = 'rmaat@pompdelux.com';
+                        break;
+                    case 'CH':
+                    case 'SalesCH':
+                        $to = 'rmach@pompdelux.com';
+                        break;
+                    default:
+                        $to = 'rmadk@pompdelux.com';
                         break;
                 }
                 break;
@@ -288,7 +321,7 @@ class Tools
      *
      * @return void
      */
-    public static function debug( $msg, $context, $data = array())
+    public static function debug( $msg, $context, $data = [])
     {
         // we do not have access to session data here...
         if (('cli' === PHP_SAPI)) {
@@ -322,9 +355,9 @@ class Tools
      * @param float  $number
      * @param string $format
      *
-     * @see http://dk.php.net/manual/en/function.money-format.php
-     *
      * @return string
+     *
+     * @see http://dk.php.net/manual/en/function.money-format.php
      */
     public static function moneyFormat($number, $format = '%.2i')
     {
@@ -431,7 +464,7 @@ class Tools
     */
     public static function isMobileRequest()
     {
-        $useragents = array(
+        $userAgents = [
             "iphone",         // Apple iPhone
             "ipod",           // Apple iPod touch
             "aspen",          // iPhone simulator
@@ -444,9 +477,9 @@ class Tools
             "webos",          // Experimental
             "incognito",      // Other iPhone browser
             "webmate"         // Other iPhone browser
-        );
+        ];
 
-        if (preg_match('/('.implode('|', $useragents).')/i', $_SERVER['HTTP_USER_AGENT'], $matches)) {
+        if (preg_match('/('.implode('|', $userAgents).')/i', $_SERVER['HTTP_USER_AGENT'], $matches)) {
             return strtolower($matches[1]);
         }
 
@@ -458,20 +491,21 @@ class Tools
      * build and return "in order edit warning"
      *
      * @param bool $compact
+     *
      * @return string
      */
     public static function getInEditWarning($compact = false)
     {
-        $hanzo = self::getHanzoInstance();
+        $hanzo   = self::getHanzoInstance();
         $session = $hanzo->getSession();
-        $trans = $hanzo->container->get('translator');
-        $router = $hanzo->container->get('router');
+        $trans   = $hanzo->container->get('translator');
+        $router  = $hanzo->container->get('router');
 
-        $params = array(
-            '%history_url%' => $router->generate('_account_show_order', array('order_id' => $session->get('order_id'))),
-            '%order_id%' => $session->get('order_id'),
-            '%stop_url%' => $router->generate('_account', array('stop' => 1)),
-        );
+        $params = [
+            '%history_url%' => $router->generate('_account_show_order', ['order_id' => $session->get('order_id')]),
+            '%order_id%'    => $session->get('order_id'),
+            '%stop_url%'    => $router->generate('_account', ['stop' => 1]),
+        ];
 
         $html = '<div id="in-edit-warning">'.$trans->trans('order.edit.global.notice', $params).'</div>';
 
@@ -492,10 +526,11 @@ class Tools
      * @param string  $name      name of the cookie
      * @param string  $value     value of the cookie
      * @param integer $ttl       cookie ttl, defaults to session cookie (0)
-     * @param boolean $http_only set to false if cookie is http only (ie. no javascript access)
+     * @param boolean $httpOnly  set to false if cookie is http only (ie. no javascript access)
+     *
      * @return boolean
      */
-    public static function setCookie($name, $value, $ttl = 0, $http_only = true)
+    public static function setCookie($name, $value, $ttl = 0, $httpOnly = true)
     {
         static $path;
 
@@ -514,7 +549,7 @@ class Tools
             $path .= '/'.self::getHanzoInstance()->container->get('request')->getLocale().'/';
         }
 
-        return setcookie($name, $value, $ttl, $path, $_SERVER['HTTP_HOST'], false, $http_only);
+        return setcookie($name, $value, $ttl, $path, $_SERVER['HTTP_HOST'], false, $httpOnly);
     }
 
 
@@ -551,12 +586,13 @@ class Tools
      */
     public static function isSecure()
     {
-        $is_secure = isset($_SERVER['HTTPS']) && ('ON' == strtoupper($_SERVER['HTTPS']));
-        if (!$is_secure) {
-            $is_secure = isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && ('HTTPS' == strtoupper($_SERVER['HTTP_X_FORWARDED_PROTO']));
+        $isSecure = isset($_SERVER['HTTPS']) && ('ON' == strtoupper($_SERVER['HTTPS']));
+
+        if (!$isSecure) {
+            $isSecure = isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && ('HTTPS' == strtoupper($_SERVER['HTTP_X_FORWARDED_PROTO']));
         }
 
-        return $is_secure;
+        return $isSecure;
     }
 
 
@@ -572,21 +608,36 @@ class Tools
      * @param string $src image source
      * @param string $preset the image preset to use - format heightXwidth
      * @param array $params
-     * @return type
+     *
+     * @return string
      */
-    public static function fxImageTag($src, $preset = '', array $params = array())
+    public static function fxImageTag($src, $preset = '', array $params = [])
     {
         $src = self::getHanzoInstance()->get('core.cdn') . 'fx/' . $src;
         return self::generateImageTag(self::imagePath($src, $preset), $params);
     }
 
-    public static function fxImageUrl($src, $preset = '', array $params = array())
+    /**
+     * @param        $src
+     * @param string $preset
+     * @param array  $params
+     *
+     * @return string
+     */
+    public static function fxImageUrl($src, $preset = '', array $params = [])
     {
         $src = self::getHanzoInstance()->get('core.cdn') . 'fx/' . $src;
         return self::imagePath($src, $preset);
     }
 
-    public static function productImageTag($src, $preset = '50x50', array $params = array())
+    /**
+     * @param        $src
+     * @param string $preset
+     * @param array  $params
+     *
+     * @return string
+     */
+    public static function productImageTag($src, $preset = '50x50', array $params = [])
     {
         $dir = 'images/products/thumb/';
         if($preset === '0x0'){
@@ -596,7 +647,14 @@ class Tools
         return self::generateImageTag(self::imagePath($src, $preset), $params);
     }
 
-    public static function productImageUrl($src, $preset = '50x50', array $params = array())
+    /**
+     * @param        $src
+     * @param string $preset
+     * @param array  $params
+     *
+     * @return string
+     */
+    public static function productImageUrl($src, $preset = '50x50', array $params = [])
     {
         $dir = 'images/products/thumb/';
         if($preset === '0x0'){
@@ -606,8 +664,13 @@ class Tools
         return self::imagePath($src, $preset);
     }
 
-
-    public static function imageTag($src, array $params = array())
+    /**
+     * @param       $src
+     * @param array $params
+     *
+     * @return string
+     */
+    public static function imageTag($src, array $params = [])
     {
         $src = self::getHanzoInstance()->get('core.cdn') . '' . $src;
         return self::generateImageTag(self::imagePath($src), $params);
@@ -618,6 +681,7 @@ class Tools
      *
      * @param string $src image source
      * @param string $preset the image preset to use - format heightXwidth
+     *
      * @throws \InvalidArgumentException
      * @return string
      */
@@ -656,9 +720,10 @@ class Tools
     /**
      * @param string $src
      * @param array  $params
+     *
      * @return string
      */
-    protected static function generateImageTag($src, array $params = array())
+    protected static function generateImageTag($src, array $params = [])
     {
         // title and alt should never be the same...
         // if (empty($params['title']) && !empty($params['alt'])) {
