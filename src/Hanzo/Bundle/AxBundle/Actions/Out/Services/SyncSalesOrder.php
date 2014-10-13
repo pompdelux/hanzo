@@ -178,6 +178,11 @@ class SyncSalesOrder extends BaseService
 
         // purge empty
         foreach ($this->data['salesOrder']['SalesTable'] as $key => $value) {
+            // some needs to be there - and empty ... ??
+            if (in_array($key, ['SmoreContactInfo'])) {
+                continue;
+            }
+
             if (empty($value)) {
                 unset($this->data['salesOrder']['SalesTable'][$key]);
             }
@@ -236,7 +241,7 @@ class SyncSalesOrder extends BaseService
 
             $line = [
                 'ItemId'        => $itemId,
-                'SalesLineText' => $product->getProductsName(),
+                //'SalesLineText' => $product->getProductsName(), ??
                 'SalesPrice'    => number_format($product->getOriginalPrice(), 2, '.', ''),
                 'SalesQty'      => $product->getQuantity(),
                 'InventColorId' => $product->getProductsColor(),
