@@ -24,8 +24,20 @@ use Hanzo\Model\OrdersLinesPeer;
 use Hanzo\Model\OrdersLinesQuery;
 use Hanzo\Model\CategoriesQuery;
 
+/**
+ * Class DefaultController
+ *
+ * @package Hanzo\Bundle\BasketBundle
+ */
 class DefaultController extends CoreController
 {
+    /**
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws PropelException
+     * @throws \Exception
+     */
     public function addAction(Request $request)
     {
         $this->get('twig')->addGlobal('page_type', 'basket');
@@ -45,10 +57,10 @@ class DefaultController extends CoreController
         // could not find matching product, throw 404 ?
         if ((!$product instanceof Products) || !$product->getColor() || !$product->getSize()) {
             if ($this->getFormat() == 'json') {
-                return $this->json_response(array(
+                return $this->json_response([
                     'message' => '',
                     'status'  => false,
-                ));
+                ]);
             }
 
             return $this->redirect($request->headers->get('referer'));
@@ -71,10 +83,10 @@ class DefaultController extends CoreController
 
         if (false === $stock) {
             if ($this->getFormat() == 'json') {
-                return $this->json_response(array(
+                return $this->json_response([
                     'message' => $translator->trans('product.out.of.stock', ['%product%' => $product_name]),
                     'status'  => false,
-                ));
+                ]);
             }
 
             return $this->forward('BasketBundle:Default:view');
@@ -83,10 +95,10 @@ class DefaultController extends CoreController
         $order = OrdersPeer::getCurrent();
 
         if ($order->getState() >= Orders::STATE_PRE_PAYMENT) {
-            return $this->json_response(array(
-                'message' => $translator->trans('order.state_pre_payment.locked', array(), 'checkout'),
+            return $this->json_response([
+                'message' => $translator->trans('order.state_pre_payment.locked', [], 'checkout'),
                 'status'  => false,
-            ));
+            ]);
         }
 
         // fraud detection
@@ -101,11 +113,11 @@ class DefaultController extends CoreController
 
         // force login if customer has 20 or more items in the basket.
         if (($total_order_quantity >= 20) && !$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
-            return $this->json_response(array(
+            return $this->json_response([
                 'force_login' => true,
-                'message'     => $translator->trans('order.force.login.description', array(), 'checkout'),
+                'message'     => $translator->trans('order.force.login.description', [], 'checkout'),
                 'status'      => false,
-            ));
+            ]);
         }
 
         $fraud_id = 'fraud_mail_send_'.$order->getId();
@@ -113,7 +125,7 @@ class DefaultController extends CoreController
             $mail = $this->get('mail_manager');
             $mail->setTo('hd@pompdelux.dk', 'Heinrich Dalby');
             $mail->setSubject("Måske en snyder på spil.");
-            $mail->setBody("Hej,\n\nKig lige på ".$this->getRequest()->getLocale()." ordre: #".$order->getId()."\n\nDenne har ".$total_order_quantity." vare i kurven.\n\n-- \nmvh\nspambotten per\n");
+            $mail->setBody("Hej,\n\nKig lige på ".$request->getLocale()." ordre: #".$order->getId()."\n\nDenne har ".$total_order_quantity." vare i kurven.\n\n-- \nmvh\nspambotten per\n");
             $mail->send();
             $session->set($fraud_id, true);
         }
@@ -145,7 +157,7 @@ class DefaultController extends CoreController
             return $this->resetOrderAndUser($e, $request);
         }
 
-        $price = ProductsDomainsPricesPeer::getProductsPrices(array($product->getId()));
+        $price = ProductsDomainsPricesPeer::getProductsPrices([$product->getId()]);
         $price = array_shift($price);
         $price = array_shift($price);
 
@@ -157,13 +169,13 @@ class DefaultController extends CoreController
         }
 
 
-        $latest = array(
+        $latest = [
             'expected_at'  => '',
             'id'           => $product->getId(),
             'master_id'    => $master_id,
             'price'        => Tools::moneyFormat($price['price'] * $quantity),
             'single_price' => Tools::moneyFormat($price['price']),
-        );
+        ];
 
         $t = new \DateTime($date);
         $t = $t->getTimestamp();
@@ -176,8 +188,8 @@ class DefaultController extends CoreController
         $template_data = [
             'data'    => $this->miniBasketAction($request, true),
             'latest'  => $latest,
-            'message' => $translator->trans('product.added.to.cart', array('%product%' => $product->getTitle().' '.$product->getSize().' '.$product->getColor())),
-            'status'  => TRUE,
+            'message' => $translator->trans('product.added.to.cart', ['%product%' => $product->getTitle().' '.$product->getSize().' '.$product->getColor()]),
+            'status'  => true,
             'total'   => $order->getTotalQuantity(true),
         ];
 
@@ -196,6 +208,12 @@ class DefaultController extends CoreController
     }
 
 
+    /**
+     * @param Request $request
+     * @param bool    $return
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function miniBasketAction(Request $request, $return = false)
     {
         $order = OrdersPeer::getCurrent();
@@ -218,25 +236,39 @@ class DefaultController extends CoreController
                 $warning = Tools::getInEditWarning();
             }
 
-            return $this->json_response(array(
-                'data'    => array(
+            return $this->json_response([
+                'data'    => [
                     'total'   => $total,
                     'warning' => $warning,
-                ),
+                ],
                 'message' => '',
-                'status'  => TRUE,
-            ));
+                'status'  => true,
+            ]);
         }
 
         return $this->response('');
     }
 
 
+    /**
+     * @param $product_id
+     * @param $quantity
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function setAction($product_id, $quantity)
     {
         return $this->response('set basket entry');
     }
 
+    /**
+     * @param $product_id
+     * @param $quantity
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @throws PropelException
+     * @throws \Exception
+     */
     public function removeAction($product_id, $quantity)
     {
         $order = OrdersPeer::getCurrent();
@@ -270,10 +302,10 @@ class DefaultController extends CoreController
             ;
             $this->container->get('event_dispatcher')->dispatch('basket.product.post_remove', new BasketEvent($order, $product_found, $quantity));
 
-            $data = array(
+            $data = [
                 'quantity' => $order->getTotalQuantity(true),
                 'total'    => Tools::moneyFormat($order->getTotalPrice(true)),
-            );
+            ];
 
             Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
 
@@ -285,25 +317,28 @@ class DefaultController extends CoreController
             $this->get('redis.main')->del($cache_id);
 
             if ($this->getFormat() == 'json') {
-                return $this->json_response(array(
+                return $this->json_response([
                     'data'    => $data,
                     'message' => '',
-                    'status'  => TRUE,
-                ));
+                    'status'  => true,
+                ]);
             }
         }
 
         if ($this->getFormat() == 'json') {
-            return $this->json_response(array(
+            return $this->json_response([
                 'message' => $this->get('translator')->trans('no.such.product.in.cart'),
                 'status'  => false,
-            ));
+            ]);
         }
 
         return $this->redirect($this->generateUrl('basket_view'));
     }
 
 
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function replaceItemAction()
     {
         // 0. sanetize request
@@ -323,10 +358,10 @@ class DefaultController extends CoreController
         // could not find matching product, throw 404 ?
         if (!$product instanceof Products) {
             if ($this->getFormat() == 'json') {
-                return $this->json_response(array(
+                return $this->json_response([
                     'message' => '',
                     'status'  => false,
-                ));
+                ]);
             }
         }
 
@@ -334,41 +369,41 @@ class DefaultController extends CoreController
         $stock         = $stock_service->check($product, $quantity);
 
         if ($stock) {
-            $request_data = array(
+            $request_data = [
                 'quantity' => $request->request->get('quantity'),
                 'master'   => $request->request->get('master'),
                 'size'     => $request->request->get('size'),
                 'color'    => $request->request->get('color'),
-            );
+            ];
 
             // if the product is backordered, require a confirmation to continue
             if ($stock instanceof \DateTime && (false === $request->request->get('confirmed', false))) {
                 $request_data['date'] = $stock;
 
-                return $this->json_response(array(
+                return $this->json_response([
                     'message' => '',
                     'status'  => true,
-                    'data' => array(
-                        'products' => array(
-                            array('date' => $stock->format('d/m-Y'))
-                        ),
-                    ),
-                ));
+                    'data' => [
+                        'products' => [
+                            ['date' => $stock->format('d/m-Y')]
+                        ],
+                    ],
+                ]);
             }
 
             // ok, we proceed
             // first, nuke original product
-            $this->forward('BasketBundle:Default:remove', array('product_id' => $product_to_replace, 'quantity' => 'all'));
+            $this->forward('BasketBundle:Default:remove', ['product_id' => $product_to_replace, 'quantity' => 'all']);
 
             // then add new product to cart
             $response = $this->forward('BasketBundle:Default:add', $request_data);
-            $response = json_decode($response->getContent(), TRUE);
+            $response = json_decode($response->getContent(), true);
 
             // we need the product!
             if ($response['status']) {
-                $response['data'] = array();
+                $response['data'] = [];
 
-                $prices  = ProductsDomainsPricesPeer::getProductsPrices(array($product->getId()));
+                $prices  = ProductsDomainsPricesPeer::getProductsPrices([$product->getId()]);
                 $prices  = array_shift($prices);
 
                 foreach ($prices as $key => $price) {
@@ -383,28 +418,41 @@ class DefaultController extends CoreController
             return $this->json_response($response);
         }
 
-        return $this->json_response(array(
+        return $this->json_response([
             'message' => '',
             'status'  => false,
-        ));
+        ]);
     }
 
 
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function updateAction()
     {
         return $this->response('update basket');
     }
 
 
+    /**
+     * @param Request $request
+     * @param bool    $embed
+     * @param null    $orders_id
+     * @param string  $template
+     *
+     * @return mixed|\Symfony\Component\HttpFoundation\Response
+     * @throws PropelException
+     * @throws \Exception
+     */
     public function viewAction(Request $request, $embed = false, $orders_id = null, $template = 'BasketBundle:Default:view.html.twig')
     {
         // If this request is for the mega basket, check if we already has cached it.
         if ($template === 'BasketBundle:Default:megaBasket.html.twig') {
-            $cache_id = [
+            $cacheId = [
                 'BasketBundle:Default:megaBasket.html.twig',
                 $request->getSession()->getId(),
             ];
-            $html = $this->getCache($cache_id);
+            $html = $this->getCache($cacheId);
             if ($html) {
                 return $html;
             }
@@ -422,7 +470,7 @@ class DefaultController extends CoreController
         $translator  = $this->container->get('translator');
 
         $mode = $this->get('kernel')->getStoreMode();
-        $cid  = array('category2group');
+        $cid  = ['category2group'];
 
         $category2group = $this->getCache($cid);
         if (empty($category2group)) {
@@ -438,13 +486,14 @@ class DefaultController extends CoreController
         }
 
 
-        $products = array();
+        $products = [];
         $delivery_date = 0;
 
         // product lines- if any
         $c = new \Criteria();
         $c->addAscendingOrderByColumn(OrdersLinesPeer::PRODUCTS_NAME);
         $c->add(OrdersLinesPeer::TYPE, 'product');
+
         foreach ($order->getOrdersLiness($c) as $line) {
             $line->setProductsSize($line->getPostfixedSize($translator));
             $line = $line->toArray(\BasePeer::TYPE_FIELDNAME);
@@ -510,13 +559,13 @@ class DefaultController extends CoreController
                 $line['master'] = $master->sku;
 
                 if ('consultant' == $mode) {
-                    $line['url'] = $router->generate('product_info', array('product_id' => $master->id));
+                    $line['url'] = $router->generate('product_info', ['product_id' => $master->id]);
                 } else {
                     if (isset($router_keys[$key])) {
-                        $line['url'] = $router->generate($router_keys[$key], array(
+                        $line['url'] = $router->generate($router_keys[$key], [
                             'product_id' => $master->id,
                             'title'      => Tools::stripText($line['products_name']),
-                        ));
+                        ]);
                     }
                 }
             } else {
@@ -549,24 +598,29 @@ class DefaultController extends CoreController
             Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
         }
 
-        $html = $this->render($template, array(
+        $html = $this->render($template, [
             'continue_shopping' => $continueShopping,
             'delivery_date'     => $delivery_date,
             'embedded'          => $embed,
             'page_type'         => 'basket',
             'products'          => $products,
             'total'             => $order->getTotalPrice(true),
-        ));
+        ]);
 
         // If this request is for the mega basket, be sure to cache it.
         if ($template === 'BasketBundle:Default:megaBasket.html.twig') {
-            $this->setCache($cache_id, $html, 5);
+            $this->setCache($cacheId, $html, 5);
         }
 
         return $html;
     }
 
-
+    /**
+     * @param         $e
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     private function resetOrderAndUser($e, Request $request)
     {
         // if the session is expired, we issue the user a new session and send him on his way
@@ -576,13 +630,13 @@ class DefaultController extends CoreController
             $session->save();
 
             Tools::setCookie('basket', '(0) '.Tools::moneyFormat(0.00), 0, false);
-            return $this->json_response(array(
+            return $this->json_response([
                 'data'    => [
                     'location' => $this->generateUrl('_homepage')
                 ],
                 'message' => 'session.died',
                 'status'  => false,
-            ));
+            ]);
         }
     }
 }
