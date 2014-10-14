@@ -13,13 +13,35 @@
 
     <p>{{ 'quickorder.description.text'|trans({}, 'quickorder') }}</p>
     <div>
-
-        <form method="post" action="" class="js-load-wishlist load-wishlist">
+        <form method="post" action="{{ path('quickorder_load_from_list') }}" class="js-load-wishlist load-wishlist">
             <label>Hent Shoppingliste</label>
             <input name="q" value="" autocomplete="off" placeholder="Shoppingliste nr." type="text">
             <button type="submit" class="button">Hent</button>
         </form>
 
+        {% if wishlist_misses|length %}
+            <div class="wishlist-misses">
+                <h4>{{ 'wishlist.misses.header'|trans({}, 'quickorder') }}</h4>
+                <table>
+                    <thead>
+                    <tr>
+                        <th> </th>
+                        <th>{{ "size"|trans }}</th>
+                        <th>{{ "color"|trans }}</th>
+                        <th>{{ "quantity"|trans }}</th>
+                    </tr>
+                    </thead>
+                    {% for item in wishlist_misses %}
+                    <tr>
+                        <td>{{ item.title }}</td>
+                        <td>{{ item.size }}</td>
+                        <td>{{ item.color }}</td>
+                        <td>{{ item.quantity }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        {% endif %}
 
         <form action="{{ url('basket_add', {}, true) }}" method="post" class="quickorder">
             <label>{{ 'quickorder.master.placeholder'|trans({}, 'quickorder') }}<br>
