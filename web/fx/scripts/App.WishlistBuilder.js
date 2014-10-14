@@ -103,6 +103,13 @@ App.register('WishlistBuilder', function() {
                 scrollTop: $_searchField.offset().top - 50
             });
         });
+
+        $(document).on('click', '.js-wishlist-delete-item-trigger', function(event) {
+            event.preventDefault();
+
+            $.post(this.href);
+            $(this).closest('article').remove();
+        });
     };
 
     return publicMethods;

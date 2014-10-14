@@ -61,6 +61,7 @@
                 <span>{{ product.quantity }}</span> stk<br>
             </p>
             <a href="" class="sprite edit js-wishlist-edit-item-trigger"></a>
+            <a href="{{ path('_account_wishlist_remove_item', {'product_id': product.id}) }}" class="sprite delete js-wishlist-delete-item-trigger"></a>
         </article>
     {% endfor %}
 
@@ -90,6 +91,7 @@
             <span><?= data.quantity ?></span> stk<br>
         </p>
         <a href="" class="sprite edit js-wishlist-edit-item-trigger"></a>
+        <a href="{{ path('_homepage') }}account/wishlist/remove-item/<?= data.id ?>" class="sprite delete js-wishlist-delete-item-trigger"></a>
     </article>
 </script>
 

@@ -166,18 +166,17 @@ class WishlistController extends CoreController
      * Remove a line from a wishlist
      *
      * @param Request $request
+     * @param int     $product_id
      *
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Exception
      * @throws \PropelException
      */
-    public function deleteItemAction(Request $request)
+    public function deleteItemAction(Request $request, $product_id = null)
     {
-        $post = $request->request->all();
-
         WishlistsLinesQuery::create()
-            ->filterByWishlistsId($post['list_id'])
-            ->filterByProductsId($post['products_id'])
+            ->filterByWishlistsId($this->getWishlist()->getId())
+            ->filterByProductsId($product_id)
             ->delete();
 
         return $this->json_response([

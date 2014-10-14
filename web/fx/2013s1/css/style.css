@@ -4008,6 +4008,9 @@ aside.js-slider h3 span.open {
   top: 10px;
   right: 5px;
 }
+#body-wishlist article .sprite.delete {
+  top: 40px;
+}
 #body-wishlist article.js-in-edit {
   border: 2px solid #9aac9a;
   margin: 5px;
