@@ -58,8 +58,22 @@ class SyncSalesOrder extends BaseService
     public function __construct(Translator $translator)
     {
         $this->translator = $translator;
+        $this->reset();
+    }
 
-        $this->data = [
+    /**
+     * Reset object
+     */
+    public function reset()
+    {
+        $this->setDBConnection(null);
+        $this->setEndPoint('');
+
+        $this->inEdit          = false;
+        $this->orderAttributes = null;
+        $this->orderLines      = null;
+        $this->order           = null;
+        $this->data =          [
             'endpointDomain' => '',
             'salesOrder' => [
                 'SalesTable' => []

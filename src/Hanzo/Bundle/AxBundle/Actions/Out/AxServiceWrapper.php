@@ -85,6 +85,7 @@ class AxServiceWrapper
             ->filterByCustomersId($customer->getId())
             ->findOne($dbCon);
 
+        $this->syncCustomer->reset();
         $this->syncCustomer->setEndPoint(Tools::domainKeyToEndpoint($address->getCountries()->getIso2()));
         $this->syncCustomer->setCustomer($customer);
         $this->syncCustomer->setAddress($address);
@@ -120,6 +121,7 @@ class AxServiceWrapper
             $endPoint = Tools::domainKeyToEndpoint($order->getAttributes($dbCon)->global->domain_key);
         }
 
+        $this->syncSalesOrder->reset();
         $this->syncSalesOrder->setDBConnection($dbCon);
         $this->syncSalesOrder->setEndPoint($endPoint);
         $this->syncSalesOrder->setInEdit($inEdit);
@@ -151,6 +153,7 @@ class AxServiceWrapper
      */
     public function SyncDeleteSalesOrder(Orders $order, $dbCon = null, $return = false)
     {
+        $this->syncDeleteSalesOrder->reset();
         $this->syncDeleteSalesOrder->setDBConnection($dbCon);
         $this->syncDeleteSalesOrder->setEndPoint($order->getEndPoint());
         $this->syncDeleteSalesOrder->setOrder($order);
@@ -180,6 +183,7 @@ class AxServiceWrapper
      */
     public function SalesOrderLockUnlock(Orders $order, $lock = true, $dbCon = null, $return = false)
     {
+        $this->salesOrderLockUnlock->reset();
         $this->salesOrderLockUnlock->setData($order, $lock);
         $this->salesOrderLockUnlock->setDBConnection($dbCon);
         $this->salesOrderLockUnlock->setEndPoint(Tools::domainKeyToEndpoint($order->getAttributes($dbCon)->global->domain_key));
