@@ -87,14 +87,15 @@ class Tools
     /**
      * NICETO: not hardcoded
      *
-     * @param        $type
-     * @param Orders $order
+     * @param string          $type
+     * @param Orders          $order
+     * @param \PDO|\PropelPDO $conn
      *
      * @return string
      */
-    public static function getBccEmailAddress($type, Orders $order)
+    public static function getBccEmailAddress($type, Orders $order, $conn = null)
     {
-        $attributes = $order->getAttributes();
+        $attributes = $order->getAttributes($conn);
 
         $to = '';
         switch ($type) {

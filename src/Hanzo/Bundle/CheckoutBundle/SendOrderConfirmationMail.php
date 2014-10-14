@@ -213,7 +213,7 @@ class SendOrderConfirmationMail
             }
         }
 
-        $bcc = Tools::getBccEmailAddress('order', $order);
+        $bcc = Tools::getBccEmailAddress('order', $order, $this->dbConn);
 
         $this->mailService->setMessage('order.confirmation', $params, $locale);
         $this->mailService->setTo($email, $name);
