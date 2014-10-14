@@ -447,7 +447,7 @@ class ConsultantsController extends CoreController
             ->joinCustomers()
             ->useCustomersQuery()
                 ->filterByEmail('%@bellcom.dk', \Criteria::NOT_LIKE)
-                ->filterByEmail(array('hdkon@pompdelux.dk','mail@pompdelux.dk','hd@pompdelux.dk','kk@pompdelux.dk','sj@pompdelux.dk','ak@pompdelux.dk','test@pompdelux.dk'), \Criteria::NOT_IN)
+                ->filterByEmail(array('hdkon@pompdelux.dk','mail@pompdelux.dk','hd@pompdelux.dk','test@pompdelux.dk'), \Criteria::NOT_IN)
                 ->filterByGroupsId(2)
                 ->filterByIsActive(TRUE)
                 ->orderByFirstName()
