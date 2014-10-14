@@ -43,11 +43,12 @@ class MailService
      * @param string $template   tis is the template identifier - excluding the .txt and/or .html postfix
      * @param mixed  $parameters parameters send to the twig template
      * @param string $locale     use to override default (current) locale
+     * @param string $dbConn     use to override default (current) db connection
      *
      * @return MailService
      * @throws \InvalidArgumentException
      */
-    public function setMessage($template, $parameters = null, $locale = null)
+    public function setMessage($template, $parameters = null, $locale = null, $dbConn = null)
     {
         if (empty($locale)) {
             $locale = Hanzo::getInstance()->get('core.locale');
@@ -62,7 +63,7 @@ class MailService
                 ->_or()
                 ->filterByKey($template.'.html')
             ->endUse()
-            ->find();
+            ->find($dbConn);
 
         if (0 == $messages->count()) {
             throw new \InvalidArgumentException('No messages exists for the [email]: "' . $template .'" key');

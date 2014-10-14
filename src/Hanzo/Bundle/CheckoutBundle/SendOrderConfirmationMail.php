@@ -221,7 +221,7 @@ class SendOrderConfirmationMail
 
         $bcc = Tools::getBccEmailAddress('order', $order, $this->dbConn);
 
-        $this->mailService->setMessage('order.confirmation', $params, $locale);
+        $this->mailService->setMessage('order.confirmation', $params, $locale, $this->dbConn);
         $this->mailService->setTo($email, $name);
 
         if ($bcc) {
@@ -237,6 +237,6 @@ class SendOrderConfirmationMail
     {
         return LanguagesQuery::create()
             ->select('Locale')
-            ->findOneById($order->getLanguagesId());
+            ->findOneById($order->getLanguagesId(), $this->dbConn);
     }
 }
