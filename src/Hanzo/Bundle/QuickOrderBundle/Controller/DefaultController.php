@@ -5,11 +5,11 @@ namespace Hanzo\Bundle\QuickOrderBundle\Controller;
 use Hanzo\Core\Tools;
 use Hanzo\Core\Hanzo;
 
+use Hanzo\Model\Products;
 use Hanzo\Model\ProductsQuery;
 use Hanzo\Model\OrdersPeer;
 
 use Hanzo\Core\CoreController;
-use Hanzo\Model\WishlistsLinesQuery;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -23,10 +23,12 @@ class DefaultController extends CoreController
     /**
      * All logic is a copy of BasketBundle.Default.viewAction
      *
+     * @param Request $request
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Exception
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $order        = OrdersPeer::getCurrent();
         $translator   = $this->container->get('translator');
@@ -86,12 +88,19 @@ class DefaultController extends CoreController
 
         Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
 
+        $outOfStock = [];
+        if ($request->getSession()->has('missing_wishlist_products')) {
+            $outOfStock = $request->getSession()->get('missing_wishlist_products');
+            $request->getSession()->remove('missing_wishlist_products');
+        }
+
         return $this->render('QuickOrderBundle:Default:index.html.twig', [
-            'embedded'      => false,
-            'page_type'     => 'basket',
-            'products'      => $products,
-            'total'         => $order->getTotalPrice(true),
-            'delivery_date' => $deliveryDate
+            'embedded'        => false,
+            'page_type'       => 'basket',
+            'products'        => $products,
+            'total'           => $order->getTotalPrice(true),
+            'delivery_date'   => $deliveryDate,
+            'wishlist_misses' => $outOfStock,
         ]);
     }
 
@@ -151,7 +160,6 @@ class DefaultController extends CoreController
      */
     public function loadWishListAction(Request $request)
     {
-
         $query = "
             SELECT
                 wl.*,
@@ -186,47 +194,61 @@ class DefaultController extends CoreController
         $stmt = $con->prepare($query);
         $stmt->execute([
             ':locale'       => $request->getLocale(),
-            ':wishlists_id' => $request->query->get('q'),
+            ':wishlists_id' => $request->request->get('q'),
         ]);
 
         $lines = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
-        $productIds = [];
-        /** @var \Hanzo\Model\WishlistsLines $line */
-        foreach ($lines as $line) {
-            $productIds[] = $line['products_is'];
-        }
-
-        $stock = $this->container->get('stock');
-        $stock->prime($productIds);
-
-        $products = [];
-        $outOfStock = [];
-
-        /** @var \Hanzo\Model\WishlistsLines $line */
-        foreach ($lines as $line) {
-            if ($stock->check($line['products_is'], $line['quantity'])) {
-                $this->addToOrder($line['products_is'], $line['quantity']);
-            } else {
-                $outOfStock[] = $line;
-            }
-        }
-
-        if (0 === count($products)) {
+        if (0 === count($lines)) {
             $request->getSession()->set('notice', 'wishlist.not.found');
 
             return $this->redirect($this->generateUrl('QuickOrderBundle_homepage'));
         }
 
-        $request->getSession()->set('missing_wishlist_products', $outOfStock);
+        $outOfStock = [];
+
+        /** @var \Hanzo\Model\WishlistsLines $line */
+        foreach ($lines as $line) {
+            $product = ProductsQuery::create()
+                ->findOneById($line['products_id']);
+
+            $product->setLocale($request->getLocale());
+            $product->setTitle($line['title']);
+
+            if (!$this->addToOrder($product, $line['quantity'])) {
+                $outOfStock[] = $line;
+            }
+        }
+
+        if (count($outOfStock)) {
+            $request->getSession()->set('missing_wishlist_products', $outOfStock);
+        }
 
         return $this->redirect($this->generateUrl('QuickOrderBundle_homepage'));
     }
 
     /**
-     * @param $productsId
-     * @param $quantity
+     * @param Products $products
+     * @param int      $quantity
+     *
+     * @return bool
      */
-    private function addToOrder($productsId, $quantity)
-    {}
+    private function addToOrder(Products $products, $quantity = 1)
+    {
+        static $basket;
+
+        if (empty($basket)) {
+            $basket = $this->container->get('hanzo.basket');
+            $basket->setOrder(OrdersPeer::getCurrent());
+            $basket->flush();
+        }
+
+        try {
+            $basket->addProduct($products, $quantity);
+        } catch (\Exception $e) {
+            return false;
+        }
+
+        return true;
+    }
 }
