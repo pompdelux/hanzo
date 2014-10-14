@@ -97,6 +97,12 @@ class SendOrderConfirmationMail
     {
         $locale = $this->getLocale($order);
 
+        // needs locale to be set to the correct locale to have correct currency labels.
+        setLocale(LC_ALL, $locale.'.utf-8', $locale.'.utf8');
+        if ('EUR' == $order->getCurrencyCode()) {
+            setLocale(LC_MONETARY, 'nl_NL.utf8', 'nl_NL.utf-8');
+        }
+
         // build and send order confirmation.
         $attributes     = $order->getAttributes($this->dbConn);
         $email          = $order->getEmail();
@@ -223,6 +229,8 @@ class SendOrderConfirmationMail
         }
 
         $this->isMailBuild = true;
+
+        setLocale(LC_ALL, 'da_DK.utf-8', 'da_DK.utf8');
     }
 
     private function getLocale(Orders $order)
