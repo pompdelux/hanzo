@@ -3,6 +3,9 @@
 namespace Hanzo\Bundle\BasketBundle\Controller;
 
 use Hanzo\Bundle\BasketBundle\Event\BasketEvent;
+use Hanzo\Bundle\BasketBundle\Service\InvalidSessionException;
+use Hanzo\Bundle\BasketBundle\Service\OutOfStockException;
+use Hanzo\Bundle\PaymentBundle\Methods\Pensio\InvalidOrderStateException;
 use Hanzo\Model\ProductsI18nQuery;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -42,17 +45,47 @@ class DefaultController extends CoreController
     {
         $this->get('twig')->addGlobal('page_type', 'basket');
 
-        $session = $request->getSession();
+        $order      = OrdersPeer::getCurrent();
+        $session    = $request->getSession();
+        $translator = $this->get('translator');
 
         // this is set in the dibs controller, but never unset - so we better do it here.
         if ($session->has('last_successful_order_id')) {
             $session->remove('last_successful_order_id');
         }
 
+        // fraud detection
+        $totalOrderQuantity = OrdersLinesQuery::create()
+            ->select('total')
+            ->filterByOrdersId($order->getId())
+            ->filterByType('product')
+            ->withColumn('SUM(quantity)', 'total')
+            ->find()
+            ->getFirst()
+        ;
+
+        // force login if customer has 20 or more items in the basket.
+        if (($totalOrderQuantity >= 20) && !$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->json_response([
+                'force_login' => true,
+                'message'     => $translator->trans('order.force.login.description', [], 'checkout'),
+                'status'      => false,
+            ]);
+        }
+
+        $fraudId = 'fraud_mail_send_'.$order->getId();
+        if (($totalOrderQuantity >= 100) && !$session->has($fraudId)) {
+            $mail = $this->get('mail_manager');
+            $mail->setTo('hd@pompdelux.dk', 'Heinrich Dalby');
+            $mail->setSubject("Måske en snyder på spil.");
+            $mail->setBody("Hej,\n\nKig lige på ".$request->getLocale()." ordre: #".$order->getId()."\n\nDenne har ".$totalOrderQuantity." vare i kurven.\n\n-- \nmvh\nspambotten per\n");
+            $mail->send();
+            $session->set($fraudId, true);
+        }
+
         // product_id,master,size,color,quantity
-        $translator = $this->get('translator');
-        $quantity   = $request->request->get('quantity', 1);
-        $product    = ProductsPeer::findFromRequest($request);
+        $quantity = $request->request->get('quantity', 1);
+        $product  = ProductsPeer::findFromRequest($request);
 
         // could not find matching product, throw 404 ?
         if ((!$product instanceof Products) || !$product->getColor() || !$product->getSize()) {
@@ -78,10 +111,20 @@ class DefaultController extends CoreController
         $product->setLocale($request->getLocale());
         $product->setTitle($product_name);
 
-        $stock_service = $this->get('stock');
-        $stock         = $stock_service->check($product, $quantity);
+        $basket = $this->container->get('hanzo.basket');
 
-        if (false === $stock) {
+        try {
+            $basket->setOrder($order);
+        } catch (InvalidOrderStateException $e) {
+            return $this->json_response([
+                'message' => $translator->trans('order.state_pre_payment.locked', [], 'checkout'),
+                'status'  => false,
+            ]);
+        }
+
+        try {
+            $date = $basket->addProduct($product, $quantity);
+        } catch (OutOfStockException $e) {
             if ($this->getFormat() == 'json') {
                 return $this->json_response([
                     'message' => $translator->trans('product.out.of.stock', ['%product%' => $product_name]),
@@ -90,70 +133,7 @@ class DefaultController extends CoreController
             }
 
             return $this->forward('BasketBundle:Default:view');
-        }
-
-        $order = OrdersPeer::getCurrent();
-
-        if ($order->getState() >= Orders::STATE_PRE_PAYMENT) {
-            return $this->json_response([
-                'message' => $translator->trans('order.state_pre_payment.locked', [], 'checkout'),
-                'status'  => false,
-            ]);
-        }
-
-        // fraud detection
-        $total_order_quantity = OrdersLinesQuery::create()
-            ->select('total')
-            ->filterByOrdersId($order->getId())
-            ->filterByType('product')
-            ->withColumn('SUM(quantity)', 'total')
-            ->find()
-            ->getFirst()
-        ;
-
-        // force login if customer has 20 or more items in the basket.
-        if (($total_order_quantity >= 20) && !$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
-            return $this->json_response([
-                'force_login' => true,
-                'message'     => $translator->trans('order.force.login.description', [], 'checkout'),
-                'status'      => false,
-            ]);
-        }
-
-        $fraud_id = 'fraud_mail_send_'.$order->getId();
-        if (($total_order_quantity >= 100) && !$session->has($fraud_id)) {
-            $mail = $this->get('mail_manager');
-            $mail->setTo('hd@pompdelux.dk', 'Heinrich Dalby');
-            $mail->setSubject("Måske en snyder på spil.");
-            $mail->setBody("Hej,\n\nKig lige på ".$request->getLocale()." ordre: #".$order->getId()."\n\nDenne har ".$total_order_quantity." vare i kurven.\n\n-- \nmvh\nspambotten per\n");
-            $mail->send();
-            $session->set($fraud_id, true);
-        }
-
-
-        // we need to figure out why some information seems to hang in the session where it shouldn't
-        // this is one of the things that could be wrong, so we test it and logs any findings.
-        if ($session->has('last_successful_order_id')) {
-            if ($session->get('last_successful_order_id') == $order->getId()) {
-                // this should not be possible, but the test is here to see if there is some issues we need to address...
-                $message =
-                    "We should not be here !!!\n".
-                    'Session: '.print_r($session->all(), 1)."\n".
-                    'Order..: '.print_r($order->toArray(), 1).
-                    "\n- - - - - -\n"
-                ;
-                Tools::log($message);
-            }
-        }
-
-        $date  = $stock_service->decrease($product, $quantity);
-        $order->setOrderLineQty($product, $quantity, false, $date);
-        $order->setUpdatedAt(time());
-
-        try {
-            $order->save();
-            $this->container->get('event_dispatcher')->dispatch('basket.product.post_add', new BasketEvent($order, $product, $quantity));
-        } catch(PropelException $e) {
+        } catch (InvalidSessionException $e) {
             return $this->resetOrderAndUser($e, $request);
         }
 
@@ -161,18 +141,17 @@ class DefaultController extends CoreController
         $price = array_shift($price);
         $price = array_shift($price);
 
-        $master_id = null;
+        $masterId = null;
         try {
-            $master_id = $product->getProductsRelatedByMaster()->getId();
+            $masterId = $product->getProductsRelatedByMaster()->getId();
         } catch (\Exception $e) {
-            Tools::log("Failed to get master::id for:\n".print_r($product->toArray(),1)."------------------------------");
+            Tools::log("Failed to get master::id for:\n".print_r($product->toArray(), 1)."------------------------------");
         }
-
 
         $latest = [
             'expected_at'  => '',
             'id'           => $product->getId(),
-            'master_id'    => $master_id,
+            'master_id'    => $masterId,
             'price'        => Tools::moneyFormat($price['price'] * $quantity),
             'single_price' => Tools::moneyFormat($price['price']),
         ];
@@ -185,7 +164,7 @@ class DefaultController extends CoreController
 
         Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
 
-        $template_data = [
+        $templateData = [
             'data'    => $this->miniBasketAction($request, true),
             'latest'  => $latest,
             'message' => $translator->trans('product.added.to.cart', ['%product%' => $product->getTitle().' '.$product->getSize().' '.$product->getColor()]),
@@ -194,17 +173,18 @@ class DefaultController extends CoreController
         ];
 
         // Delete cached version in redis, used in the mega basket.
-        $cache_id = [
+        $cacheId = [
             'BasketBundle:Default:megaBasket.html.twig',
-            $this->getRequest()->getSession()->getId(),
+            $session->getId(),
         ];
-        $this->get('redis.main')->del($cache_id);
+
+        $this->get('redis.main')->del($cacheId);
 
         if ($this->getFormat() == 'json') {
-            return $this->json_response($template_data);
+            return $this->json_response($templateData);
         }
 
-        return $this->forward('BasketBundle:Default:view', $template_data);
+        return $this->forward('BasketBundle:Default:view', $templateData);
     }
 
 
