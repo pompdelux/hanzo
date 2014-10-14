@@ -75,3 +75,8 @@ div.quickorder {
 form.load-wishlist {
     margin-bottom: 20px;
 }
+
+.wishlist-misses {
+    border: 3px solid $alert-border-color;
+    padding: 10px;
+}

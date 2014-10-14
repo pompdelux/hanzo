@@ -3827,6 +3827,11 @@ form.load-wishlist {
   margin-bottom: 20px;
 }
 
+.wishlist-misses {
+  border: 3px solid #c18185;
+  padding: 10px;
+}
+
 /**
 | _find-consultants
 */
