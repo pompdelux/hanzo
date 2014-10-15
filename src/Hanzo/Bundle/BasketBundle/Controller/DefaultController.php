@@ -61,8 +61,7 @@ class DefaultController extends CoreController
             ->filterByType('product')
             ->withColumn('SUM(quantity)', 'total')
             ->find()
-            ->getFirst()
-        ;
+            ->getFirst();
 
         // force login if customer has 20 or more items in the basket.
         if (($totalOrderQuantity >= 20) && !$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
@@ -99,17 +98,16 @@ class DefaultController extends CoreController
             return $this->redirect($request->headers->get('referer'));
         }
 
-        $product_name = ProductsI18nQuery::create()
+        $productName = ProductsI18nQuery::create()
             ->select('Title')
             ->useProductsQuery()
                 ->filterBySku($product->getMaster())
             ->endUse()
             ->filterByLocale($request->getLocale())
-            ->findOne()
-        ;
+            ->findOne();
 
         $product->setLocale($request->getLocale());
-        $product->setTitle($product_name);
+        $product->setTitle($productName);
 
         $basket = $this->container->get('hanzo.basket');
 
@@ -127,7 +125,7 @@ class DefaultController extends CoreController
         } catch (OutOfStockException $e) {
             if ($this->getFormat() == 'json') {
                 return $this->json_response([
-                    'message' => $translator->trans('product.out.of.stock', ['%product%' => $product_name]),
+                    'message' => $translator->trans('product.out.of.stock', ['%product%' => $productName]),
                     'status'  => false,
                 ]);
             }
@@ -197,7 +195,7 @@ class DefaultController extends CoreController
     public function miniBasketAction(Request $request, $return = false)
     {
         $order = OrdersPeer::getCurrent();
-        $total = '('.$order->getTotalQuantity(true).') ' . Tools::moneyFormat( $order->getTotalPrice(true) );
+        $total = '(' . $order->getTotalQuantity(true) . ') ' . Tools::moneyFormat($order->getTotalPrice(true));
 
         if ($return) {
             return $total;
@@ -231,8 +229,8 @@ class DefaultController extends CoreController
 
 
     /**
-     * @param $product_id
-     * @param $quantity
+     * @param int $product_id
+     * @param int $quantity
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -242,8 +240,8 @@ class DefaultController extends CoreController
     }
 
     /**
-     * @param $product_id
-     * @param $quantity
+     * @param int $product_id
+     * @param int $quantity
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      * @throws PropelException
@@ -253,26 +251,26 @@ class DefaultController extends CoreController
     {
         $order = OrdersPeer::getCurrent();
 
-        $order_lines = $order->getOrdersLiness();
-        $product_found = false;
+        $orderLines = $order->getOrdersLiness();
+        $productFound = false;
 
-        foreach ($order_lines as $k => $line) {
+        foreach ($orderLines as $k => $line) {
             if ($line->getProductsId() == $product_id) {
-                $product_found = $line->getProducts();
+                $productFound = $line->getProducts();
 
                 if ('all' == $quantity) {
-                    unset($order_lines[$k]);
+                    unset($orderLines[$k]);
                 } else {
                     $line->setQuantity($line->getQuantity() - $quantity);
-                    $order_lines[$k] = $line;
+                    $orderLines[$k] = $line;
                 }
 
                 break;
             }
         }
 
-        if ($product_found) {
-            $order->setOrdersLiness($order_lines);
+        if ($productFound) {
+            $order->setOrdersLiness($orderLines);
             $order->setUpdatedAt(time());
             $order->save();
 
@@ -280,7 +278,7 @@ class DefaultController extends CoreController
                 ? null
                 : $quantity
             ;
-            $this->container->get('event_dispatcher')->dispatch('basket.product.post_remove', new BasketEvent($order, $product_found, $quantity));
+            $this->container->get('event_dispatcher')->dispatch('basket.product.post_remove', new BasketEvent($order, $productFound, $quantity));
 
             $data = [
                 'quantity' => $order->getTotalQuantity(true),
@@ -290,11 +288,12 @@ class DefaultController extends CoreController
             Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
 
             // Delete cached version in redis, used in the mega basket.
-            $cache_id = [
+            $cacheId = [
                 'BasketBundle:Default:megaBasket.html.twig',
                 $this->getRequest()->getSession()->getId(),
             ];
-            $this->get('redis.main')->del($cache_id);
+
+            $this->get('redis.main')->del($cacheId);
 
             if ($this->getFormat() == 'json') {
                 return $this->json_response([
@@ -330,10 +329,10 @@ class DefaultController extends CoreController
         // 3. remove the old product
         // 4. add the new
 
-        $request            = $this->get('request');
-        $product_to_replace = $request->request->get('product_to_replace');
-        $product            = ProductsPeer::findFromRequest($request);
-        $quantity           = $request->request->get('quantity');
+        $request          = $this->get('request');
+        $productToReplace = $request->request->get('product_to_replace');
+        $product          = ProductsPeer::findFromRequest($request);
+        $quantity         = $request->request->get('quantity');
 
         // could not find matching product, throw 404 ?
         if (!$product instanceof Products) {
@@ -345,11 +344,11 @@ class DefaultController extends CoreController
             }
         }
 
-        $stock_service = $this->get('stock');
-        $stock         = $stock_service->check($product, $quantity);
+        $stockService = $this->get('stock');
+        $stock        = $stockService->check($product, $quantity);
 
         if ($stock) {
-            $request_data = [
+            $requestData = [
                 'quantity' => $request->request->get('quantity'),
                 'master'   => $request->request->get('master'),
                 'size'     => $request->request->get('size'),
@@ -358,7 +357,7 @@ class DefaultController extends CoreController
 
             // if the product is backordered, require a confirmation to continue
             if ($stock instanceof \DateTime && (false === $request->request->get('confirmed', false))) {
-                $request_data['date'] = $stock;
+                $requestData['date'] = $stock;
 
                 return $this->json_response([
                     'message' => '',
@@ -373,10 +372,10 @@ class DefaultController extends CoreController
 
             // ok, we proceed
             // first, nuke original product
-            $this->forward('BasketBundle:Default:remove', ['product_id' => $product_to_replace, 'quantity' => 'all']);
+            $this->forward('BasketBundle:Default:remove', ['product_id' => $productToReplace, 'quantity' => 'all']);
 
             // then add new product to cart
-            $response = $this->forward('BasketBundle:Default:add', $request_data);
+            $response = $this->forward('BasketBundle:Default:add', $requestData);
             $response = json_decode($response->getContent(), true);
 
             // we need the product!
@@ -444,10 +443,10 @@ class DefaultController extends CoreController
             $order = OrdersPeer::getCurrent();
         }
 
-        $router      = $this->get('router');
-        $router_keys = include $this->container->getParameter('kernel.cache_dir').'/category_map.php';
-        $locale      = strtolower(Hanzo::getInstance()->get('core.locale'));
-        $translator  = $this->container->get('translator');
+        $router       = $this->get('router');
+        $routerKeys = include $this->container->getParameter('kernel.cache_dir').'/category_map.php';
+        $locale       = strtolower(Hanzo::getInstance()->get('core.locale'));
+        $translator   = $this->container->get('translator');
 
         $mode = $this->get('kernel')->getStoreMode();
         $cid  = ['category2group'];
@@ -466,8 +465,8 @@ class DefaultController extends CoreController
         }
 
 
-        $products = [];
-        $delivery_date = 0;
+        $products     = [];
+        $deliveryDate = 0;
 
         // product lines- if any
         $c = new \Criteria();
@@ -478,17 +477,17 @@ class DefaultController extends CoreController
             $line->setProductsSize($line->getPostfixedSize($translator));
             $line = $line->toArray(\BasePeer::TYPE_FIELDNAME);
 
-            $line['url'] = '';
+            $line['url']          = '';
             $line['basket_image'] = '';
 
             $t = strtotime($line['expected_at']);
             if (($t > 0) && ($t > time())) {
                 $line['expected_at'] = $t;
-                if ($delivery_date < $line['expected_at']) {
-                    $delivery_date = $line['expected_at'];
+                if ($deliveryDate < $line['expected_at']) {
+                    $deliveryDate = $line['expected_at'];
                 }
             } else {
-                $line['expected_at'] = NULL;
+                $line['expected_at'] = null;
             }
 
             // we need the id and sku from the master record to generate image and url to product.
@@ -501,18 +500,17 @@ class DefaultController extends CoreController
             ";
             $master = \Propel::getConnection()
                 ->query($sql)
-                ->fetch(\PDO::FETCH_OBJ)
-            ;
+                ->fetch(\PDO::FETCH_OBJ);
 
             if (empty($master)) {
                 continue;
             }
 
             if ($master->primary_categories_id) {
-                $category_id = $master->primary_categories_id;
+                $categoryId = $master->primary_categories_id;
             } else {
                 // find first products2category match
-                $category_id = ProductsToCategoriesQuery::create()
+                $categoryId = ProductsToCategoriesQuery::create()
                     ->select('CategoriesId')
                     ->useProductsQuery()
                         ->useProductsi18nQuery()
@@ -520,11 +518,10 @@ class DefaultController extends CoreController
                             ->filterByLocale($this->getRequest()->getLocale())
                         ->endUse()
                     ->endUse()
-                    ->findOne()
-                ;
+                    ->findOne();
             }
 
-            if ($category_id) {
+            if ($categoryId) {
                 $line['basket_image'] =
                     preg_replace('/[^a-z0-9]/i', '-', $master->sku) .
                     '_' .
@@ -533,16 +530,16 @@ class DefaultController extends CoreController
                 ;
 
                 // find matching router
-                $key    = '_' . $locale . '_' . $category_id;
-                $group  = $category2group[$category_id];
+                $key    = '_' . $locale . '_' . $categoryId;
+                $group  = $category2group[$categoryId];
 
                 $line['master'] = $master->sku;
 
                 if ('consultant' == $mode) {
                     $line['url'] = $router->generate('product_info', ['product_id' => $master->id]);
                 } else {
-                    if (isset($router_keys[$key])) {
-                        $line['url'] = $router->generate($router_keys[$key], [
+                    if (isset($routerKeys[$key])) {
+                        $line['url'] = $router->generate($routerKeys[$key], [
                             'product_id' => $master->id,
                             'title'      => Tools::stripText($line['products_name']),
                         ]);
@@ -580,7 +577,7 @@ class DefaultController extends CoreController
 
         $html = $this->render($template, [
             'continue_shopping' => $continueShopping,
-            'delivery_date'     => $delivery_date,
+            'delivery_date'     => $deliveryDate,
             'embedded'          => $embed,
             'page_type'         => 'basket',
             'products'          => $products,
@@ -596,8 +593,8 @@ class DefaultController extends CoreController
     }
 
     /**
-     * @param         $e
-     * @param Request $request
+     * @param \Exception $e
+     * @param Request    $request
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -610,6 +607,7 @@ class DefaultController extends CoreController
             $session->save();
 
             Tools::setCookie('basket', '(0) '.Tools::moneyFormat(0.00), 0, false);
+
             return $this->json_response([
                 'data'    => [
                     'location' => $this->generateUrl('_homepage')
