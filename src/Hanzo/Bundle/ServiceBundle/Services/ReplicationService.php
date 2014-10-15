@@ -2,14 +2,8 @@
 
 namespace Hanzo\Bundle\ServiceBundle\Services;
 
-use Propel;
-use PropelConfiguration;
-use Hanzo\Core\Tools;
-
-use Hanzo\Model\Categories;
 use Hanzo\Model\CategoriesQuery;
 use Hanzo\Model\LanguagesQuery;
-
 use Hanzo\Model\ProductsImages;
 use Hanzo\Model\ProductsImagesQuery;
 use Hanzo\Model\ProductsImagesProductReferences;
@@ -18,23 +12,35 @@ use Hanzo\Model\ProductsImagesCategoriesSort;
 use Hanzo\Model\ProductsImagesCategoriesSortQuery;
 use Hanzo\Model\ProductsToCategories;
 use Hanzo\Model\ProductsToCategoriesQuery;
+use Hanzo\Model\WishlistsQuery;
+use Propel;
+use PropelConfiguration;
 
+/**
+ * Class ReplicationService
+ *
+ * @package Hanzo\Bundle\ServiceBundle\Services
+ */
 class ReplicationService
 {
-    protected $propel_configuration;
-    protected $master_connection = 'default';
-    protected $replicated_connections = array();
+    protected $propelConfiguration;
+    protected $masterConnection = 'default';
+    protected $replicatedConnections = [];
 
     protected $settings;
     protected $connections;
 
+    /**
+     * @param array $parameters
+     * @param array $settings
+     */
     public function __construct($parameters, $settings)
     {
         if (!$parameters[0] instanceof PropelConfiguration) {
             throw new \InvalidArgumentException('PropelConfiguration object expected as first parameter.');
         }
 
-        $this->propel_configuration = $parameters[0];
+        $this->propelConfiguration = $parameters[0];
         $this->settings = $settings;
 
         $this->mapReplicatedConnections();
@@ -48,10 +54,9 @@ class ReplicationService
     {
         $categories = CategoriesQuery::create()
           ->joinWithI18n('da_DK')
-          ->find()
-        ;
+          ->find();
 
-        foreach ($this->replicated_connections as $name) {
+        foreach ($this->replicatedConnections as $name) {
             $conn = $this->getConnection($name);
 
             CategoriesQuery::create()
@@ -65,8 +70,8 @@ class ReplicationService
             foreach ($categories as $category) {
                 $c = CategoriesQuery::create()
                     ->filterById($category->getId())
-                    ->findOneOrCreate($conn)
-                ;
+                    ->findOneOrCreate($conn);
+
                 $c->setParentId($category->getParentId());
                 $c->setContext($category->getContext());
                 $c->setIsActive($category->getIsActive());
@@ -78,7 +83,8 @@ class ReplicationService
 
                 try {
                     $c->save($conn);
-                } catch (\Exception $e) {}
+                } catch (\Exception $e) {
+                }
             }
         }
     }
@@ -91,7 +97,7 @@ class ReplicationService
     {
         $images = ProductsImagesQuery::create()->find();
 
-        foreach ($this->replicated_connections as $name) {
+        foreach ($this->replicatedConnections as $name) {
             $conn = $this->getConnection($name);
 
             // delete all images in replicated table
@@ -110,7 +116,8 @@ class ReplicationService
 
                 try {
                     $i->save($conn);
-                } catch (\Exception $e) {}
+                } catch (\Exception $e) {
+                }
             }
         }
     }
@@ -123,7 +130,7 @@ class ReplicationService
     {
         $guides = ProductsImagesProductReferencesQuery::create()->find();
 
-        foreach ($this->replicated_connections as $name) {
+        foreach ($this->replicatedConnections as $name) {
             $conn = $this->getConnection($name);
 
             ProductsImagesProductReferencesQuery::create()
@@ -138,7 +145,8 @@ class ReplicationService
 
                 try {
                     $g->save($conn);
-                } catch (\Exception $e) {}
+                } catch (\Exception $e) {
+                }
             }
         }
     }
@@ -152,13 +160,12 @@ class ReplicationService
         $images = ProductsImagesCategoriesSortQuery::create()->find();
         $categories = ProductsToCategoriesQuery::create()->find();
 
-        foreach ($this->replicated_connections as $name) {
+        foreach ($this->replicatedConnections as $name) {
             $conn = $this->getConnection($name);
 
             ProductsToCategoriesQuery::create()
                 ->filterByProductsId(0, \Criteria::GREATER_THAN)
-                ->delete($conn)
-            ;
+                ->delete($conn);
 
             foreach ($categories as $category) {
                 $s = new ProductsToCategories();
@@ -167,13 +174,13 @@ class ReplicationService
 
                 try {
                     $s->save($conn);
-                } catch (\Exception $e) {}
+                } catch (\Exception $e) {
+                }
             }
 
             ProductsImagesCategoriesSortQuery::create()
                 ->filterByProductsId(0, \Criteria::GREATER_THAN)
-                ->delete($conn)
-            ;
+                ->delete($conn);
 
             foreach ($images as $image) {
                 $s = new ProductsImagesCategoriesSort();
@@ -184,8 +191,19 @@ class ReplicationService
 
                 try {
                     $s->save($conn);
-                } catch (\Exception $e) {}
+                } catch (\Exception $e) {
+                }
             }
+        }
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function flushAllWishlists()
+    {
+        foreach ($this->replicatedConnections as $name) {
+            WishlistsQuery::create()->deleteAll($this->getConnection($name));
         }
     }
 
@@ -195,7 +213,7 @@ class ReplicationService
      */
     protected function mapReplicatedConnections()
     {
-        foreach ($this->propel_configuration->getFlattenedParameters() as $key => $value) {
+        foreach ($this->propelConfiguration->getFlattenedParameters() as $key => $value) {
             list($namespace, $name, $rest) = explode('.', $key, 3);
 
             // only add one connection, and only if the user is set
@@ -204,8 +222,8 @@ class ReplicationService
                 ($namespace == 'datasources')
             ) {
                 $value = trim($value);
-                if (!empty($value) && empty($this->replicated_connections[$name])) {
-                    $this->replicated_connections[$name] = $name;
+                if (!empty($value) && empty($this->replicatedConnections[$name])) {
+                    $this->replicatedConnections[$name] = $name;
                     continue;
                 }
             }
@@ -215,7 +233,8 @@ class ReplicationService
     /**
      * Get Propel connection object
      *
-     * @param  string $name name of the Propel connection to retrive
+     * @param string $name name of the Propel connection to retrive
+     *
      * @return Propel
      */
     protected function getConnection($name)

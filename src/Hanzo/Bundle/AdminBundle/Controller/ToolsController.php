@@ -5,6 +5,8 @@ namespace Hanzo\Bundle\AdminBundle\Controller;
 use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
 use Hanzo\Model\OrdersQuery;
+use Hanzo\Model\WishlistsQuery;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -29,7 +31,7 @@ class ToolsController extends CoreController
     /**
      * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function syncCategoriesAction(Request $request)
     {
@@ -43,7 +45,7 @@ class ToolsController extends CoreController
     /**
      * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function syncImagesAction(Request $request)
     {
@@ -57,7 +59,7 @@ class ToolsController extends CoreController
     /**
      * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function syncImagesStyleguideAction(Request $request)
     {
@@ -71,7 +73,7 @@ class ToolsController extends CoreController
     /**
      * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function syncImagesSortingAction(Request $request)
     {
@@ -85,7 +87,7 @@ class ToolsController extends CoreController
     /**
      * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      * @throws \VarnishException
      */
     public function clearVarnishCacheAction(Request $request)
@@ -114,7 +116,6 @@ class ToolsController extends CoreController
     {
         if ($request->query->get('run')) {
             $builder = $this->get('hanzo_search.product.index_builder');
-            // $builder->setConnection($this->getDbConnection());
             $builder->build();
 
             $request->getSession()->getFlashBag()->add('notice', 'Søgeindekset er nu opdateret.');
@@ -220,13 +221,28 @@ class ToolsController extends CoreController
     /**
      * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function updateSearchIndexAction(Request $request)
     {
         $this->container->get('hanzo_search.product_and_category_indexer')->build();
 
         $request->getSession()->getFlashBag()->add('notice', 'Søgeindexer opdateret for produkter og kategorier.');
+
+        return $this->redirect($this->generateUrl('admin_tools'));
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
+     */
+    public function wishlistsFlushAllAction(Request $request)
+    {
+        WishlistsQuery::create()->deleteAll($this->getDbConnection());
+
+        $request->getSession()->getFlashBag()->add('notice', 'Alle shoppinglister er nu tømt.');
 
         return $this->redirect($this->generateUrl('admin_tools'));
     }
