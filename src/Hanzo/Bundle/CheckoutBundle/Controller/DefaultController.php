@@ -12,23 +12,29 @@ use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\OrdersLines;
 use Hanzo\Model\OrdersLinesQuery;
-use Hanzo\Model\Addresses;
-use Hanzo\Model\AddressesPeer;
-use Hanzo\Model\AddressesQuery;
-use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\ProductsDomainsPricesPeer;
-use Hanzo\Model\ShippingMethods;
 use Hanzo\Model\CouponsQuery;
 
 use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
 
 use Exception;
 use Propel;
-use BasePeer;
 
+/**
+ * Class DefaultController
+ *
+ * @package Hanzo\Bundle\CheckoutBundle
+ */
 class DefaultController extends CoreController
 {
-    public function indexAction()
+    /**
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @throws Exception
+     * @throws \PropelException
+     */
+    public function indexAction(Request $request)
     {
         $order = OrdersPeer::getCurrent(true);
 
@@ -40,18 +46,16 @@ class DefaultController extends CoreController
         $this->get('event_dispatcher')->dispatch('order.summery.finalize', new FilterOrderEvent($order));
 
         if ($order->isHostessOrder() && ($order->getTotalPrice() < 0)) {
-            $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('order.amount.to.low', [], 'checkout'));
+            $request->getFlashBag()->add('notice', $this->get('translator')->trans('order.amount.to.low', [], 'checkout'));
+
             return $this->redirect($this->generateUrl('basket_view'));
         }
 
         $order->setUpdatedAt(time());
         $order->save();
 
-        return $this->render('CheckoutBundle:Default:flow.html.twig', array(
-            'page_type' => 'checkout'
-        ));
+        return $this->render('CheckoutBundle:Default:flow.html.twig', ['page_type' => 'checkout']);
     }
-
 
     /**
      * confirmAction
@@ -65,7 +69,6 @@ class DefaultController extends CoreController
         ]);
     }
 
-
     /**
      * summeryAction
      *
@@ -73,14 +76,14 @@ class DefaultController extends CoreController
      **/
     public function summeryAction()
     {
-        $invalid_order_message = '';
+        $invalidOrderMessage = '';
 
         // we only want the master data here, no slaves thank you...
         Propel::setForceMasterConnection(true);
 
-        $order = OrdersPeer::getCurrent(true);
-        $hanzo = Hanzo::getInstance();
-        $domain_key = $hanzo->get('core.domain_key');
+        $order     = OrdersPeer::getCurrent(true);
+        $hanzo     = Hanzo::getInstance();
+        $domainKey = $hanzo->get('core.domain_key');
 
         // first we finalize the order, aka. setting misc order attributes and updating lines ect.
 
@@ -89,33 +92,33 @@ class DefaultController extends CoreController
         $products = OrdersLinesQuery::create()
             ->joinWithProducts()
             ->filterByType('product')
-            ->findByOrdersId($order->getId())
-        ;
+            ->findByOrdersId($order->getId());
 
-        $product_ids = array();
-        $product_units = array();
+        $productIds = [];
+        $productUnits = [];
+
         foreach ($products as $product) {
-            $product_ids[] = $product->getProductsId();
-            $product_units[$product->getProductsId()] = $product->getProducts()->getUnit();
+            $productIds[] = $product->getProductsId();
+            $productUnits[$product->getProductsId()] = $product->getProducts()->getUnit();
         }
 
-        $product_prices = ProductsDomainsPricesPeer::getProductsPrices($product_ids);
+        $productPrices = ProductsDomainsPricesPeer::getProductsPrices($productIds);
 
         foreach ($products as $product) {
-            $product->setOriginalPrice($product_prices[$product->getProductsId()]['normal']['price']);
+            $product->setOriginalPrice($productPrices[$product->getProductsId()]['normal']['price']);
             $product->setUnit('Stk.');
             $product->save();
         }
 
         if (!$order->getDeliveryMethod()) {
             $shippingApi = $this->get('shipping.shippingapi');
-            $shipping_methods = $shippingApi->getMethods();
+            $shippingMethods = $shippingApi->getMethods();
 
             if (('DKK' == $order->getCurrencyCode()) && $order->getDeliveryCompanyName()) {
                 $order->setDeliveryMethod(11);
             } else {
-                $firstShippingMethod = array_shift($shipping_methods);
-                $order->setDeliveryMethod( $firstShippingMethod->getExternalId() );
+                $firstShippingMethod = array_shift($shippingMethods);
+                $order->setDeliveryMethod($firstShippingMethod->getExternalId());
             }
         }
 
@@ -128,25 +131,26 @@ class DefaultController extends CoreController
         }
 
         if (empty($attributes->global->HomePartyId)) {
-            $key = str_replace('Sales', '', $domain_key);
+            $key = str_replace('Sales', '', $domainKey);
             $order->setAttribute('HomePartyId', 'global', 'WEB ' . $key);
         }
 
         if (empty($attributes->global->SalesResponsible)) {
-            $key = str_replace('Sales', '', $domain_key);
+            $key = str_replace('Sales', '', $domainKey);
             $order->setAttribute('SalesResponsible', 'global', 'WEB ' . $key);
         }
 
         if (empty($attributes->global->domain_key)) {
-            $order->setAttribute('domain_key', 'global', $domain_key);
+            $order->setAttribute('domain_key', 'global', $domainKey);
         }
 
         // sometimes free shipping is ignored, we try to handle errors here
-        $free_limit = $hanzo->get('shipping.free_shipping', 0);
-        if ($free_limit > 0) {
+        $freeLimit = $hanzo->get('shipping.free_shipping', 0);
+
+        if ($freeLimit > 0) {
             $total = $order->getTotalPrice(true);
 
-            if ($free_limit && ($total > $free_limit)) {
+            if ($freeLimit && ($total > $freeLimit)) {
                 foreach ($order->getOrderLineShipping() as $line) {
                     if ($line->getPrice() > 0) {
                         $line->setPrice(0.00);
@@ -169,33 +173,14 @@ class DefaultController extends CoreController
             !empty($attributes->coupon->code)
         ) {
             $coupon = CouponsQuery::create()
-                ->findOneByCode($attributes->coupon->code)
-            ;
+                ->findOneByCode($attributes->coupon->code);
 
             // make sure the coupon's minimum purchase limit is met.
             if ($order->getTotalPrice(true) < $coupon->getMinPurchaseAmount()) {
-                $invalid_order_message = $this->get('translator')->trans('order.amount.to.low.for.coupon', [
+                $invalidOrderMessage = $this->get('translator')->trans('order.amount.to.low.for.coupon', [
                     '%amount%' => Tools::moneyFormat($coupon->getAmount()),
                 ], 'checkout');
             }
-
-// if we need this again, we need to address it in the event listener.
-//
-//            // we sometimes see orders where the discount is missing from the orders_lines table, we re-add it.
-//            $discount = OrdersLinesQuery::create()
-//                ->joinWithProducts()
-//                ->filterByType('discount')
-//                ->filterByProductsName('coupon.code')
-//                ->findByOrdersId($order->getId())
-//            ;
-//
-//            if (!$discount instanceof OrdersLines) {
-//                $order->setDiscountLine(
-//                    $this->get('translator')->trans('coupon', [], 'checkout'),
-//                    -$coupon->getAmount(),
-//                    'coupon.code'
-//                );
-//            }
         }
 
         /* ------------------------------------------------- */
@@ -205,34 +190,33 @@ class DefaultController extends CoreController
         $order->reload(true, Propel::getConnection(OrdersPeer::DATABASE_NAME, Propel::CONNECTION_READ));
         /* ------------------------------------------------- */
 
-        $attributes = array();
+        $attributes = [];
         foreach ($order->getOrdersAttributess() as $att) {
             $attributes[$att->getNs()][$att->getCKey()] = $att->getCValue();
         }
 
-        $html = $this->render('CheckoutBundle:Default:summery.html.twig', array(
+        $html = $this->render('CheckoutBundle:Default:summery.html.twig', [
             'attributes'            => $attributes,
-            'invalid_order_message' => $invalid_order_message,
+            'invalid_order_message' => $invalidOrderMessage,
             'order'                 => $order,
             'skip_my_account'       => true,
-        ));
+        ]);
 
         // reset connection
         Propel::setForceMasterConnection(false);
 
         if ( $this->get('request')->isXmlHttpRequest() ) {
             if ($this->getFormat() == 'json') {
-                return $this->json_response(array(
+                return $this->json_response([
                     'status' => true,
                     'message' => '',
                     'data' => $html->getContent()
-                ));
+                ]);
             }
         }
 
         return $html;
     }
-
 
     /**
      * success Action
@@ -248,18 +232,18 @@ class DefaultController extends CoreController
             return $this->redirect($this->generateUrl('basket_view'));
         }
 
-        $shipping_total = 0;
+        $shippingTotal = 0;
         foreach ($order->getOrderLineShipping() as $line) {
-            $shipping_total += $line->getPrice();
+            $shippingTotal += $line->getPrice();
         }
 
         $data = [
             'city'        => $order->getBillingCity(),
             'country'     => $order->getBillingCountry(),
             'currency'    => $order->getCurrencyCode(),
-            'expected_at' => $order->getExpectedDeliveryDate( 'd-m-Y' ),
+            'expected_at' => $order->getExpectedDeliveryDate('d-m-Y'),
             'id'          => $order->getId(),
-            'shipping'    => number_format($shipping_total, 2, '.', ''),
+            'shipping'    => number_format($shippingTotal, 2, '.', ''),
             'state'       => $order->getBillingStateProvince(),
             'store_name'  => 'POMPdeLUX',
             'tax'         => 0,
@@ -280,7 +264,6 @@ class DefaultController extends CoreController
             ];
         }
 
-
         // the order is now complete, so we remove it from the session
         $session = $hanzo->getSession();
         $session->remove('order_id');
@@ -299,9 +282,9 @@ class DefaultController extends CoreController
         // update/set basket cookie
         Tools::setCookie('basket', '(0) '.Tools::moneyFormat(0.00), 0, false);
 
-        return $this->render('CheckoutBundle:Default:success.html.twig', array(
+        return $this->render('CheckoutBundle:Default:success.html.twig', [
             'order' => $data,
-        ));
+        ]);
     }
 
     /**
@@ -332,13 +315,17 @@ class DefaultController extends CoreController
         // update/set basket cookie
         Tools::setCookie('basket', '(0) '.Tools::moneyFormat(0.00), 0, false);
 
-        return $this->render('CheckoutBundle:Default:failed.html.twig', array(
-            'error' => '', // NICETO: pass error from paymentmodule to this page
+        return $this->render('CheckoutBundle:Default:failed.html.twig', [
+            'error'    => '', // NICETO: pass error from paymentmodule to this page
             'order_id' => $order->getId()
-        ));
+        ]);
     }
 
-
+    /**
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @throws Exception
+     * @throws \PropelException
+     */
     public function testAction()
     {
         $order = OrdersPeer::getCurrent();
@@ -350,20 +337,20 @@ class DefaultController extends CoreController
         // trigger event, handles discounts and other stuff.
         $this->get('event_dispatcher')->dispatch('order.summery.finalize', new FilterOrderEvent($order));
 
-
         if ($order->isHostessOrder() && ($order->getTotalPrice() < 0)) {
             $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('order.amount.to.low', [], 'checkout'));
+
             return $this->redirect($this->generateUrl('basket_view'));
         }
 
         $order->save();
         $order->reload(true);
 
-        return $this->render('CheckoutBundle:Default:flow.html.twig', array(
+        return $this->render('CheckoutBundle:Default:flow.html.twig', [
             'page_type'       => 'checkout',
             'order'           => $order,
             'skip_my_account' => true,
-        ));
+        ]);
     }
 
 }

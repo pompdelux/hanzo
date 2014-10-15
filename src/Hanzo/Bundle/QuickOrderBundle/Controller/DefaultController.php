@@ -162,6 +162,7 @@ class DefaultController extends CoreController
     {
         $query = "
             SELECT
+                w.customers_id,
                 wl.*,
                 p.size,
                 p.color,
@@ -186,6 +187,10 @@ class DefaultController extends CoreController
                 products as p ON (
                     p.id = wl.products_id
                 )
+            JOIN
+                wishlists as w ON (
+                  w.id = wl.wishlists_id
+                )
             WHERE
                 wl.wishlists_id = :wishlists_id
         ";
@@ -206,6 +211,7 @@ class DefaultController extends CoreController
         }
 
         $outOfStock = [];
+        $wishlistId = '';
 
         /** @var \Hanzo\Model\WishlistsLines $line */
         foreach ($lines as $line) {
@@ -218,10 +224,18 @@ class DefaultController extends CoreController
             if (!$this->addToOrder($product, $line['quantity'])) {
                 $outOfStock[] = $line;
             }
+
+            $wishlistId = $line['wishlists_id'];
         }
 
         if (count($outOfStock)) {
             $request->getSession()->set('missing_wishlist_products', $outOfStock);
+        }
+
+        if ($wishlistId) {
+            $order = OrdersPeer::getCurrent();
+            $order->setAttribute('id', 'wishlist', $wishlistId);
+            $order->save();
         }
 
         return $this->redirect($this->generateUrl('QuickOrderBundle_homepage'));

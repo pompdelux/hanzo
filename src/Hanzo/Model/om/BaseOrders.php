@@ -2173,11 +2173,10 @@ abstract class BaseOrders extends BaseObject implements Persistent
 
         $con->beginTransaction();
         try {
+            EventDispatcherProxy::trigger(array('delete.pre','model.delete.pre'), new ModelEvent($this));
             $deleteQuery = OrdersQuery::create()
                 ->filterByPrimaryKey($this->getPrimaryKey());
             $ret = $this->preDelete($con);
-            // event behavior
-            EventDispatcherProxy::trigger(array('delete.pre','model.delete.pre'), new ModelEvent($this));
             if ($ret) {
                 $deleteQuery->delete($con);
                 $this->postDelete($con);

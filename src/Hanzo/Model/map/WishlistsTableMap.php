@@ -72,6 +72,8 @@ class WishlistsTableMap extends TableMap
   'update_column' => 'updated_at',
   'disable_updated_at' => 'false',
 ),
+            'event' =>  array (
+),
         );
     } // getBehaviors()
 
