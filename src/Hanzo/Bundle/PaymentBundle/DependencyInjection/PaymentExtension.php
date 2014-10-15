@@ -4,6 +4,7 @@ namespace Hanzo\Bundle\PaymentBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
@@ -22,7 +23,13 @@ class PaymentExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.yml');
+        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('services.xml');
+
+        if (!$container->hasDefinition('payment.tagged_api_holder')) {
+            $definition = new Definition();
+            $definition->setClass('SplDoublyLinkedList');
+            $container->setDefinition('payment.tagged_api_holder', $definition);
+        }
     }
 }

@@ -25,6 +25,7 @@ class Tools
      * @param string  $v
      * @param string  $with
      * @param boolean $lower
+     *
      * @return string
      */
     public static function stripText($v, $with = '-', $lower = true)
@@ -68,7 +69,8 @@ class Tools
     /**
      * better strip tags implementation
      *
-     * @param  string $text
+     * @param string $text
+     *
      * @return string
      */
     public static function stripTags($text)
@@ -85,14 +87,15 @@ class Tools
     /**
      * NICETO: not hardcoded
      *
-     * @param        $type
-     * @param Orders $order
+     * @param string          $type
+     * @param Orders          $order
+     * @param \PDO|\PropelPDO $conn
      *
      * @return string
      */
-    public static function getBccEmailAddress($type, Orders $order)
+    public static function getBccEmailAddress($type, Orders $order, $conn = null)
     {
-        $attributes = $order->getAttributes();
+        $attributes = $order->getAttributes($conn);
 
         $to = '';
         switch ($type) {
@@ -213,7 +216,7 @@ class Tools
      * Sequence generator, returns next sequesce id of a named sequence.
      * Unknown sequences is created on first request.
      *
-     * @param  string $name the name of the sequence
+     * @param string $name the name of the sequence
      *
      * @return int
      * @throws \InvalidArgumentException
@@ -279,6 +282,7 @@ class Tools
      * @param mixed   $data  the data to log
      * @param integer $back  how many levels back we dump trace for
      * @param boolean $trace set to true and the log will get a backtrace dump attached
+     *
      * @return mixed
      */
     public static function log($data, $back = 0, $trace = false)
@@ -312,9 +316,11 @@ class Tools
      * - current order state (if any)
      * - current customer id on the order (if there is one)
      *
-     * @param string $msg The message to log
+     * @param string $msg     The message to log
      * @param string $context In which context was the message generated, e.g. __METHOD__
-     * @param array $data Key/value to dump
+     * @param array  $data    Key/value to dump
+     *
+     * @return void
      */
     public static function debug( $msg, $context, $data = [])
     {
@@ -335,9 +341,9 @@ class Tools
         if (!empty($data)) {
             foreach ($data as $key => $value) {
                 if (is_array($value)) {
-                    $value = print_r($value,1);
+                    $value = print_r($value, 1);
                 }
-                $out .= str_pad( $key, 23 ).": ". $value."\n";
+                $out .= str_pad($key, 23).": ". $value."\n";
             }
         }
 
@@ -348,7 +354,7 @@ class Tools
      * Wrapper for php's money_format function
      *
      * @param float  $number
-     * @param string $format see php.net for format documentation
+     * @param string $format
      *
      * @return string
      *
@@ -421,7 +427,7 @@ class Tools
     public static function handleRobots()
     {
         // robots only allowed on the www domain
-        if(($_SERVER['REQUEST_URI'] == '/robots.txt')) {
+        if (($_SERVER['REQUEST_URI'] == '/robots.txt')) {
             header('Content-type: text/plain');
 
             if ((substr($_SERVER['HTTP_HOST'], 0, 4) !== 'www.')) {
@@ -429,14 +435,20 @@ class Tools
             }
 
             die("User-agent: *\nDisallow:\n");
-            #die("User-agent: *\nDisallow: /de_CH/\nDisallow: /de_AT/\n");
+            // die("User-agent: *\nDisallow: /de_CH/\nDisallow: /de_AT/\n");
         }
     }
 
 
+    /**
+     * @param int $size
+     *
+     * @return string
+     */
     public static function humanReadableSize($size)
     {
-        $unit = array('b','kb','mb','gb','tb','pb');
+        $unit = ['b','kb','mb','gb','tb','pb'];
+
         return @round($size/pow(1024, ($i = floor(log($size, 1024)))), 2) . ' ' . $unit[$i];
     }
 
@@ -771,5 +783,53 @@ class Tools
         }
 
         return $hanzo;
+    }
+
+
+    /**
+     * Map a domain_key to an AX endpoint
+     *
+     * @param $key
+     * @return string
+     */
+    public static function domainKeyToEndpoint($key)
+    {
+        $key      = strtoupper(substr($key, -2));
+        $endPoint = 'DK';
+
+        switch ($key) {
+            case 'AT':
+            case 'CH':
+            case 'DE':
+            case 'FI':
+            case 'NL':
+            case 'NO':
+            case 'SE':
+                $endPoint = $key;
+                break;
+        }
+
+        return $endPoint;
+    }
+
+    /**
+     * Flatten array into 'key.subkey => value' sets
+     *
+     * @param array  $array
+     * @param string $prefix
+     * @return array
+     */
+    public static function flatten(array $array, $prefix = '')
+    {
+        $result = array();
+        foreach ($array as $key => $value) {
+            if (is_array($value)) {
+                $result = $result + self::flatten($value, $prefix.$key . '.');
+            } else {
+                $result[$prefix.$key] = $value;
+            }
+        }
+
+        return $result;
     }
 }

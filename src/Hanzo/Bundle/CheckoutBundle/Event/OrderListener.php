@@ -2,33 +2,41 @@
 
 namespace Hanzo\Bundle\CheckoutBundle\Event;
 
-use Propel;
-
+use Hanzo\Bundle\AxBundle\Actions\Out\AxServiceWrapper;
 use Hanzo\Core\Tools;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\OrdersQuery;
-use Hanzo\Bundle\AxBundle\Actions\Out\AxService;
-
+use Hanzo\Model\OrdersStateLog;
+use Propel;
 use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Class OrderListener
+ * @package Hanzo\Bundle\CheckoutBundle
+ */
 class OrderListener
 {
+    /**
+     * @var Session
+     */
     protected $session;
-    protected $ax;
-    protected $cookie_path;
+
+    /**
+     * @var AxServiceWrapper
+     */
+    protected $axServiceWrapper;
 
     /**
      * OrderListener constructor
      *
-     * @param Session   $session Session object
-     * @param AxService $ax      AxService object
+     * @param Session          $session
+     * @param AxServiceWrapper $axServiceWrapper
      */
-    public function __construct(Session $session, AxService $ax)
+    public function __construct(Session $session, AxServiceWrapper $axServiceWrapper)
     {
         $this->session = $session;
-        $this->ax = $ax;
+        $this->axServiceWrapper = $axServiceWrapper;
     }
 
 
@@ -42,7 +50,17 @@ class OrderListener
         $order = $event->getOrder();
 
         // if we are unable to lock the order, we should not allow edits to start.
-        if (!$this->ax->lockUnlockSalesOrder($order, true)) {
+        $bail = false;
+        try {
+            if (!$this->axServiceWrapper->SalesOrderLockUnlock($order, true)) {
+                $bail = true;
+            }
+        } catch (\Exception $e) {
+            Tools::log($e->getMessage());
+            $bail = true;
+        }
+
+        if ($bail) {
             $event->setStatus(false, 'unable.to.lock.order');
             return;
         }
@@ -73,6 +91,10 @@ class OrderListener
         $order->setUpdatedAt(time());
         $order->save();
 
+        $log = new OrdersStateLog();
+        $log->info($order->getId(), Orders::INFO_STATE_EDIT_STARTED);
+        $log->save();
+
         $this->session->set('in_edit', true);
         $this->session->set('order_id', $order->getId());
         $this->session->save();
@@ -85,7 +107,7 @@ class OrderListener
 
 
     /**
-     * onEditCancel event handeling
+     * onEditCancel event handling
      *
      * @param  FilterOrderEvent $event
      */
@@ -94,6 +116,10 @@ class OrderListener
         $order = $event->getOrder();
         // reset order object
         $order->toPreviousVersion();
+
+        $log = new OrdersStateLog();
+        $log->info($order->getId(), Orders::INFO_STATE_EDIT_CANCLED_BY_USER);
+        $log->save();
 
         // unset session vars.
         $this->session->remove('in_edit');
@@ -104,7 +130,7 @@ class OrderListener
         // note, cookies must be set after session stuff is done
         $this->setEditCookie(false);
 
-        $this->ax->lockUnlockSalesOrder($order, false);
+        $this->axServiceWrapper->SalesOrderLockUnlock($order, false);
     }
 
 
@@ -115,8 +141,15 @@ class OrderListener
      */
     public function onEditDone(FilterOrderEvent $event)
     {
+Tools::log('onEditDone');
         $order = $event->getOrder();
         $order->setSessionId($order->getId());
+
+        try {
+            $log = new OrdersStateLog();
+            $log->info($order->getId(), Orders::INFO_STATE_EDIT_DONE);
+            $log->save();
+        } catch (\Exception $e) {}
 
         // unset session vars.
         $this->session->remove('in_edit');
@@ -125,7 +158,7 @@ class OrderListener
         // note, cookies must be set after session stuff is done
         $this->setEditCookie(false);
 
-        $this->ax->lockUnlockSalesOrder($order, false);
+        $this->axServiceWrapper->SalesOrderLockUnlock($order, false);
     }
 
 

@@ -9,6 +9,8 @@ use \PDOStatement;
 use \Propel;
 use \PropelException;
 use \PropelPDO;
+use Glorpen\Propel\PropelBundle\Dispatcher\EventDispatcherProxy;
+use Glorpen\Propel\PropelBundle\Events\PeerEvent;
 use Hanzo\Model\Cms;
 use Hanzo\Model\CmsI18nPeer;
 use Hanzo\Model\CmsPeer;
@@ -1275,3 +1277,4 @@ abstract class BaseCmsPeer
 //
 BaseCmsPeer::buildTableMap();
 
+EventDispatcherProxy::trigger(array('construct','peer.construct'), new PeerEvent('Hanzo\Model\om\BaseCmsPeer'));

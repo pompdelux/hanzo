@@ -11,32 +11,32 @@ class DibsApiCall implements PaymentMethodApiCallInterface
 {
     /**
      * @var bool
-     **/
+     */
     const USE_AUTH_HEADERS = true;
 
     /**
      * @var DibsApiCall instance
-     **/
+     */
     private static $instance = null;
 
     /**
      * @var string
-     **/
+     */
     protected $baseUrl = 'https://payment.architrade.com/';
 
     /**
      * @var array
-     **/
+     */
     protected $settings = array();
 
     /**
      * @var \Hanzo\Bundle\PaymentBundle\Methods\Dibs\Type\FlexWin|\Hanzo\Bundle\PaymentBundle\Methods\Dibs\Type\DibsPaymentWindow
-     **/
+     */
     protected $api = null;
 
     /**
      * __construct
-     **/
+     */
     private function __construct() {}
 
     /**
@@ -45,7 +45,7 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      * @param array $settings
      * @param DibsApi
      * @return self
-     **/
+     */
     public static function getInstance(array $settings, $api)
     {
         if (self::$instance === null) {
@@ -66,7 +66,7 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      * @param bool $useAuthHeaders Should extra authorization headers be send in request
      * @return DibsApiCallResponse
      * @throws DibsApiCallException
-     **/
+     */
     protected function call($function, array $params, $useAuthHeaders = false)
     {
         $ch = curl_init();
@@ -107,8 +107,7 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      *
      * @param string $acquirer
      * @return DibsApiCallResponse
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function status($acquirer = 'all')
     {
         $params = [
@@ -127,7 +126,7 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      * @param Orders $order
      * @return DibsApiCallResponse
      * @throws DibsApiCallException
-     **/
+     */
     public function cancel(Customers $customer, Orders $order)
     {
         $attributes = $order->getAttributes();
@@ -229,7 +228,7 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      * @param Orders $order
      * @return DibsApiCallResponse
      * @throws DibsApiCallException
-     **/
+     */
     public function payinfo( Orders $order )
     {
         $attributes  = $order->getAttributes();
@@ -251,7 +250,7 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      * @param Orders $order
      * @return DibsApiCallResponse
      * @throws DibsApiCallException
-     **/
+     */
     public function transstatus(Orders $order)
     {
         $attributes = $order->getAttributes();
@@ -278,7 +277,7 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      * @param Orders $order
      * @return DibsApiCallResponse
      * @throws DibsApiCallException
-     **/
+     */
     public function callback(Orders $order)
     {
         $attributes = $order->getAttributes();
@@ -302,9 +301,7 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      *
      * @param Orders $order
      * @return DibsApiCallResponse
-     *
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function transinfo(Orders $order)
     {
         $paymentGatewayId = $order->getPaymentGatewayId();

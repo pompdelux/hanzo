@@ -23,28 +23,14 @@ class FilterOrderEvent extends Event
         return $this->order;
     }
 
-    public function setStatus($code, $message = '')
-    {
-        $this->status = (object) [
-          'code' => $code,
-          'message' => 'message'
-        ];
-
-        if (false === $code) {
-          $this->stopPropagation();
-        }
-
-        return $this;
-    }
-
     public function getStatusCode()
     {
-      return $this->status->code;
+        return $this->status->code;
     }
 
     public function getStatusMessage()
     {
-      return $this->status->message;
+        return $this->status->message;
     }
 
     public function getStatus()
@@ -52,9 +38,16 @@ class FilterOrderEvent extends Event
         return $this->status;
     }
 
-    public function setInEdit($state = true)
+    public function setStatus($code, $message = '')
     {
-        $this->in_edit = (bool) $state;
+        $this->status = (object) [
+            'code'    => $code,
+            'message' => $message
+        ];
+
+        if (false === $code) {
+            $this->stopPropagation();
+        }
 
         return $this;
     }
@@ -62,5 +55,12 @@ class FilterOrderEvent extends Event
     public function getInEdit()
     {
         return $this->in_edit;
+    }
+
+    public function setInEdit($state = true)
+    {
+        $this->in_edit = (bool)$state;
+
+        return $this;
     }
 }

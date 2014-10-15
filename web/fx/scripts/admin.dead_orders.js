@@ -8,25 +8,22 @@ var adminDeadOrders = (function($) {
     function attachEvents() {
         $("#dead-orders-form a.delete-order, #failed-orders-form a.delete-order").click(function(e) {
             e.preventDefault();
-            var orderId = $(this).data('order-id');
-            dialoug.confirm( Translator.trans('notice'), $(this).data('confirm-message'), function(choise) {
-                if (choise === 'ok') {
-                    $.ajax({
-                        url: base_url+'orders/delete/'+orderId,
-                        dataType: 'json',
-                        async : false,
-                        success: function(data) {
-                            if (response.status) {
-                              $a.parent().parent().fadeOut(function() {
-                                $(this).remove();
-                              });
+            var $url = this.href;
 
-                              window.scrollTo(window.scrollMinX, window.scrollMinY);
-                              dialoug.slideNotice(response.message);
-                            }
-                        }
-                    });
+            dialoug.confirm(Translator.trans('notice'), $(this).data('confirm-message'), function(choise) {
+                if (choise !== 'ok') {
+                    return;
                 }
+
+                var xhr = $.ajax({url: $url, dataType: 'json', async: false});
+
+                xhr.done(function(response) {
+                    if (response.status) {
+                        $a.parent().parent().fadeOut(function() { $(this).remove(); });
+                        window.scrollTo(window.scrollMinX, window.scrollMinY);
+                        dialoug.slideNotice(response.message);
+                    }
+                });
             });
         });
 

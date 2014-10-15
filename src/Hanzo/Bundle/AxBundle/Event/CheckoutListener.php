@@ -2,47 +2,82 @@
 
 namespace Hanzo\Bundle\AxBundle\Event;
 
-use Propel;
-
-use Hanzo\Model\OrdersSyncLogQuery;
-use Hanzo\Bundle\AxBundle\Actions\Out\AxService;
+use Hanzo\Bundle\AxBundle\Actions\Out\OrderAlreadyInQueueException;
+use Hanzo\Bundle\AxBundle\Actions\Out\PheanstalkQueue;
 use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
-use Symfony\Bridge\Monolog\Logger;
+use Hanzo\Core\ServiceLogger;
+use Hanzo\Core\Tools;
+use Hanzo\Model\Orders;
+use Hanzo\Model\OrdersStateLog;
 
+/**
+ * Class CheckoutListener
+ *
+ * @package Hanzo\Bundle\AxBundle
+ */
 class CheckoutListener
 {
-    protected $logger;
-    protected $ax;
+    /**
+     * @var PheanstalkQueue
+     */
+    protected $pheanstalkQueue;
 
-    public function __construct(AxService $ax, Logger $logger)
+    /**
+     * @var ServiceLogger
+     */
+    protected $logger;
+
+
+    /**
+     * @param PheanstalkQueue $pheanstalkQueue
+     * @param ServiceLogger   $logger
+     */
+    public function __construct(PheanstalkQueue $pheanstalkQueue, ServiceLogger $logger)
     {
-        $this->ax = $ax;
-        $this->logger = $logger;
+        $this->pheanstalkQueue = $pheanstalkQueue;
+        $this->logger     = $logger;
     }
+
 
     /**
      * Sync order to AX
      *
      * If this fails completely, propagation is halted.
      *
-     * @param  FilterOrderEvent $event
+     * @param FilterOrderEvent $event
      */
     public function onPaymentCollected(FilterOrderEvent $event)
     {
-        $order  = $event->getOrder();
-        $logged = false;
+        $order = $event->getOrder();
+        $id    = null;
 
-        if ($this->ax->sendOrder($order, false, null, $event->getInEdit())) {
-            $logged = OrdersSyncLogQuery::create()
-                ->select('State')
-                ->filterByOrdersId($order->getId())
-                ->findOne(Propel::getConnection(null, Propel::CONNECTION_WRITE))
-            ;
+        try {
+            $id = $this->pheanstalkQueue->appendSendOrder($order, $order->getInEdit());
+            $this->stateLog($order->getId());
+            $message = 'Order added to beanstalk queue (initial add).';
+        } catch (OrderAlreadyInQueueException $e) {
+            $message = $e->getMessage();
         }
 
-        if (!$logged) {
-            $this->logger->addError('Order #'.$order->getId().' was not send to AX and error not written to db!');
-            $event->stopPropagation();
-        }
+        $this->logger->debug($message, [
+            'job_id'   => $id,
+            'order_id' => $order->getId(),
+            'queue'    => 'orders2ax',
+        ]);
+    }
+
+    /**
+     * @param int $orderId
+     *
+     * @return int
+     * @throws \Exception
+     * @throws \PropelException
+     */
+    private function stateLog($orderId)
+    {
+        $log = new OrdersStateLog();
+        $log->info($orderId, Orders::INFO_STATE_IN_QUEUE);
+
+        return $log->save();
     }
 }

@@ -5,13 +5,19 @@ namespace Hanzo\Model;
 use Hanzo\Model\om\BaseOrdersLines;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 
+/**
+ * Class OrdersLines
+ *
+ * @package Hanzo\Model
+ */
 class OrdersLines extends BaseOrdersLines
 {
     /**
      * Adds postfix to the size label.
      *
-     * @see Hanzo\Model\Products::getPostfixedSize
      * @param Translator $translator
+     *
+     * @see Hanzo\Model\Products::getPostfixedSize
      * @return string
      */
     public function getPostfixedSize(Translator $translator)
@@ -23,12 +29,18 @@ class OrdersLines extends BaseOrdersLines
             return $size;
         }
 
-        return $size.$translator->trans('size.label.postfix');
+        $sizeLabel = $translator->trans('size.label.postfix');
+        if ('size.label.postfix' === $sizeLabel) {
+            $sizeLabel = '';
+        }
+
+        return $size.$sizeLabel;
     }
 
 
     /**
      * @param string $v
+     *
      * @return OrdersLines
      */
     public function setPrice($v)
@@ -39,6 +51,7 @@ class OrdersLines extends BaseOrdersLines
 
     /**
      * @param string $v
+     *
      * @return OrdersLines
      */
     public function setOriginalPrice($v)

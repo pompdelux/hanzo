@@ -44,9 +44,12 @@ trait KernelTrait
             new Liip\ThemeBundle\LiipThemeBundle(),
             new Misd\GuzzleBundle\MisdGuzzleBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+            new Leezy\PheanstalkBundle\LeezyPheanstalkBundle(),
+            new Glorpen\Propel\PropelBundle\GlorpenPropelBundle(),
             // ------------------------------------------------------
 
             // APP BUNDLES ------------------------------------------
+            new Hanzo\Bundle\CoreBundle\CoreBundle(),
             new Hanzo\Bundle\AccountBundle\AccountBundle(),
             new Hanzo\Bundle\AdminBundle\AdminBundle(),
             new Hanzo\Bundle\BasketBundle\BasketBundle(),

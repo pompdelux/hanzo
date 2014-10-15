@@ -9,6 +9,8 @@ use \PDOStatement;
 use \Propel;
 use \PropelException;
 use \PropelPDO;
+use Glorpen\Propel\PropelBundle\Dispatcher\EventDispatcherProxy;
+use Glorpen\Propel\PropelBundle\Events\PeerEvent;
 use Hanzo\Model\OrdersDeletedLog;
 use Hanzo\Model\OrdersDeletedLogPeer;
 use Hanzo\Model\map\OrdersDeletedLogTableMap;
@@ -790,3 +792,4 @@ abstract class BaseOrdersDeletedLogPeer
 //
 BaseOrdersDeletedLogPeer::buildTableMap();
 
+EventDispatcherProxy::trigger(array('construct','peer.construct'), new PeerEvent('Hanzo\Model\om\BaseOrdersDeletedLogPeer'));

@@ -5,25 +5,19 @@ namespace Hanzo\Model;
 use Hanzo\Model\om\BaseProducts;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 
-
 /**
- * Skeleton subclass for representing a row from the 'products' table.
+ * Class Products
  *
- *
- *
- * You should add additional methods to this class to meet the
- * application requirements.  This class will only be generated as
- * long as it does not already exist in the output directory.
- *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model
+ * @package Hanzo\Model
  */
 class Products extends BaseProducts
 {
     /**
      * Adds postfix to the size label.
      *
-     * @see Hanzo\Model\OrdersLines::getPostfixedSize
      * @param Translator $translator
+     *
+     * @see Hanzo\Model\OrdersLines::getPostfixedSize
      * @return string
      */
     public function getPostfixedSize(Translator $translator)
@@ -35,7 +29,12 @@ class Products extends BaseProducts
             return $size;
         }
 
-        return $size.$translator->trans('size.label.postfix');
+        $sizeLabel = $translator->trans('size.label.postfix');
+        if ('size.label.postfix' === $sizeLabel) {
+            $sizeLabel = '';
+        }
+
+        return $size.$sizeLabel;
     }
 
     /**

@@ -9,6 +9,8 @@ use \PDOStatement;
 use \Propel;
 use \PropelException;
 use \PropelPDO;
+use Glorpen\Propel\PropelBundle\Dispatcher\EventDispatcherProxy;
+use Glorpen\Propel\PropelBundle\Events\PeerEvent;
 use Hanzo\Model\FreeShipping;
 use Hanzo\Model\FreeShippingPeer;
 use Hanzo\Model\map\FreeShippingTableMap;
@@ -789,3 +791,4 @@ abstract class BaseFreeShippingPeer
 //
 BaseFreeShippingPeer::buildTableMap();
 
+EventDispatcherProxy::trigger(array('construct','peer.construct'), new PeerEvent('Hanzo\Model\om\BaseFreeShippingPeer'));

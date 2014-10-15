@@ -128,7 +128,7 @@ class Hanzo
         // we piggy bag on nl to show euros, even for none euro countries
         // note the locale has to be installed, and er need duch anyway, so...
         if ($this->get('core.currency') == 'EUR') {
-            setlocale(LC_MONETARY, 'nl_NL.utf8', 'nl_NL.utf-8');
+            setLocale(LC_MONETARY, 'nl_NL.utf8', 'nl_NL.utf-8');
         }
     }
 
@@ -208,7 +208,7 @@ class Hanzo
             // unserialize the cached data if needed
             $data = stripslashes($record->getCValue());
             if ($data && (substr($data, 0, 5) == ':[S]:')) {
-                $data = unserialize(substr($data), 5);
+                $data = unserialize(substr($data, 5));
             }
 
             $this->settings[$record->getNs()][$record->getCKey()] = $data;
