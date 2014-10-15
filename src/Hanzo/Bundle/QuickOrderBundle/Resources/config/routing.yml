@@ -9,3 +9,9 @@ quickorder_get_sku:
         _format: json
     requirements:
         _format: html|json
+
+quickorder_load_from_list:
+    pattern: /quickorder/load-wishlist
+    defaults:
+        _controller: QuickOrderBundle:Default:loadWishList
+    methods: [POST]

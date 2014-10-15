@@ -4,7 +4,13 @@ var quickorder = (function($) {
     pub.init = function() {
         _resetForm();
 
-        $('.quickorder .master').typeahead({
+        var $_quickOrderForm     = $('.quickorder');
+        var $_searchField        = $('.master', $_quickOrderForm);
+        var $_itemContainerTable = $('.product-table');
+
+        yatzy.compile('quickOrderItemTpl');
+
+        $_searchField.typeahead({
             name       : "sku",
             remote     : {
                 url: base_url + "quickorder/get-sku?name=%QUERY",
@@ -26,7 +32,7 @@ var quickorder = (function($) {
             }
         });
 
-        $('.quickorder .master').on('typeahead:autocompleted typeahead:selected', function(event, item) {
+        $_searchField.on('typeahead:autocompleted typeahead:selected', function(event, item) {
             var $context = $(this).closest('.quickorder');
 
             var XHR = $.ajax({
@@ -85,7 +91,7 @@ var quickorder = (function($) {
         // mouseup : desktop with mouse
         // keydown : desktop with keyboard
         // blur    : tablet/mobile
-        $('.quickorder .size').on('keydown mouseup blur change' ,function(e) {
+        $('.size', $_quickOrderForm).on('keydown mouseup blur change' ,function(e) {
             var $select        = $(this),
                 selected_value = $select.val(),
                 $context       = $(this).parent().parent(),
@@ -125,7 +131,7 @@ var quickorder = (function($) {
         // mouseup : desktop with mouse
         // keydown : desktop with keyboard
         // blur    : tablet/mobile
-        $('.quickorder .color').on('keydown mouseup blur change' ,function(e){
+        $('.color', $_quickOrderForm).on('keydown mouseup blur change' ,function(e){
             var $context = $(this).parent().parent(),
                 is_ie    = $('html').hasClass('ie9') || $('html').hasClass('oldie'),
                 is_rma   = $context.hasClass('rma-productreplacement')
@@ -168,14 +174,13 @@ var quickorder = (function($) {
             e.stopPropagation();
         });
 
-        $('form.quickorder').on('submit', function(event) {
+        $_quickOrderForm.on('submit', function(event) {
             event.preventDefault();
 
             var $form    = $(this),
                 title    = $('.master', $form).val(),
                 master   = $('.size option:selected', $form).attr('data-master'),
                 size     = $('.size option:selected', $form).val(),
-                size_label     = $('.size option:selected', $form).text(),
                 color    = $('.color option:selected', $form).val(),
                 quantity = $('.quantity', $form).val()
             ;
@@ -228,39 +233,21 @@ var quickorder = (function($) {
                             $('body').trigger('basket_product_added');
                         }
 
+                        $('tbody', $_itemContainerTable).prepend(yatzy.render('quickOrderItemTpl', {
+                            img: img,
+                            master: master,
+                            title: title,
+                            size: size,
+                            color: color,
+                            quantity: quantity,
+                            latest: response.latest
+                        }));
 
-                        $('table tbody').prepend(' ' +
-                            '<tr class="item"> ' +
-                                '<td class="image"><img src="'+img+'" alt="'+title+'"> '+
-                                    '<div class="info" data-product_id="'+response.latest.id+'" data-confirmed="" data-master="'+master+'"> '+
-                                        '<a href="'+base_url+'product/view/'+response.latest.master_id+'" class="title">'+title+'</a> '+
-                                        '<div class="size"> '+
-                                            '<label>'+Translator.trans('size')+':</label> '+
-                                            '<span>'+size_label+'</span> '+
-                                        '</div> '+
-                                        '<div class="color"> '+
-                                            '<label>'+Translator.trans('color')+':</label> '+
-                                            '<span>'+color+'</span> '+
-                                        '</div> '+
-                                    '</div> '+
-                                '</td> '+
-                                '<td class="right date"> '+
-                                    ''+response.latest.expected_at+' '+
-                                '</td> '+
-                                '<td class="right price">'+response.latest.single_price+'</td> '+
-                                '<td class="center quantity">'+quantity+'</td> '+
-                                '<td class="actions"> '+
-                                    '<a href="'+base_url+'remove-from-basket/'+response.latest.id+'" class="sprite delete"></a> '+
-                                    '<a href="'+response.latest.id+'" class="sprite edit"></a> '+
-                                '</td> '+
-                                '<td class="right total">'+response.latest.price+'</td> '+
-                            '</tr>'
-                        );
+                        $('tfoot td.total', $_itemContainerTable).html(response.data);
 
-                        $('table tfoot td.total').html(response.data);
-
-                        if ($('.buttons a.proceed-to-basket').length > 0) {
-                            $('.buttons a.proceed-to-basket').show();
+                        var $proceedToBasket = $('.buttons a.proceed-to-basket');
+                        if ($proceedToBasket.length > 0) {
+                            $proceedToBasket.show();
                         } else {
                             $('.buttons').append('<a class="button right proceed-to-basket" href="'+base_url+'basket">'+Translator.trans('proceed')+'</a>');
                         }

@@ -58,8 +58,22 @@ class SyncSalesOrder extends BaseService
     public function __construct(Translator $translator)
     {
         $this->translator = $translator;
+        $this->reset();
+    }
 
-        $this->data = [
+    /**
+     * Reset object
+     */
+    public function reset()
+    {
+        $this->setDBConnection(null);
+        $this->setEndPoint('');
+
+        $this->inEdit          = false;
+        $this->orderAttributes = null;
+        $this->orderLines      = null;
+        $this->order           = null;
+        $this->data =          [
             'endpointDomain' => '',
             'salesOrder' => [
                 'SalesTable' => []
@@ -178,6 +192,11 @@ class SyncSalesOrder extends BaseService
 
         // purge empty
         foreach ($this->data['salesOrder']['SalesTable'] as $key => $value) {
+            // some needs to be there - and empty ... ??
+            if (in_array($key, ['SmoreContactInfo'])) {
+                continue;
+            }
+
             if (empty($value)) {
                 unset($this->data['salesOrder']['SalesTable'][$key]);
             }
@@ -236,7 +255,7 @@ class SyncSalesOrder extends BaseService
 
             $line = [
                 'ItemId'        => $itemId,
-                'SalesLineText' => $product->getProductsName(),
+                //'SalesLineText' => $product->getProductsName(), ??
                 'SalesPrice'    => number_format($product->getOriginalPrice(), 2, '.', ''),
                 'SalesQty'      => $product->getQuantity(),
                 'InventColorId' => $product->getProductsColor(),
@@ -600,7 +619,6 @@ class SyncSalesOrder extends BaseService
      */
     protected function validate()
     {
-        error_log(print_r($this->data, 1));
         if (empty($this->data['salesOrder']['SalesTable']['HomePartyId']) || empty($this->data['salesOrder']['SalesTable']['SalesResponsible'])) {
             throw new \Exception('Validation error - SyncSalesOrder: Missing SalesResponsible or HomePartyId');
         }

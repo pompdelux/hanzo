@@ -71,7 +71,7 @@ $locale_map = [
         'core.language_id' => 4,
     ],
     'se'  => [
-        'lcoale'           => 'sv_SE',
+        'locale'           => 'sv_SE',
         'core.domain_key'  => 'NO',
         'core.language_id' => 3,
     ],

@@ -10,29 +10,32 @@
 }
 
 #account-block-newsletter-all {
-    margin-bottom: 10px;
-    border-bottom: 1px solid #000;
     h3 {
         border-top: 1px solid #000;
         cursor: pointer;
+
         span {
             display: block;
             padding: 2px 0px 2px 5px;
             margin-right: 5px;
             background: url(/fx/images/icons/icons/arrow_right.png) center right no-repeat;
+
             &.open {
                 background: url(/fx/images/icons/icons/arrow_down.png) center right no-repeat;
             }
         }
     }
+
     #newsletter-lists-container-all {
         display: none;
+
         form {
             border-top: 1px solid #000;
             margin-bottom: 10px;
         }
     }
 }
+
 #body-create-account {
     form[action$="/edit"] button[type=submit] {
         display: block;

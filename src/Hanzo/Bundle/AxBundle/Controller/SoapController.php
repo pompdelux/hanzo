@@ -91,11 +91,15 @@ class SoapController extends Controller
             ]);
         }
 
-        $xml = simplexml_load_string($request->getContent(), null, null, "http://schemas.xmlsoap.org/soap/envelope/");
-        $ns  = $xml->getNamespaces(true);
-
+        $xml  = simplexml_load_string($request->getContent(), null, null, "http://schemas.xmlsoap.org/soap/envelope/");
+        $ns   = $xml->getNamespaces(true);
         $body = $xml->children($ns['SOAP-ENV'])->Body;
-        $ns2 = $body->children($ns['ns2']);
+
+        if (isset($ns['ns2'])) {
+            $ns2 = $body->children($ns['ns2']);
+        } else {
+            $ns2 = $body->children($ns['ns1']);
+        }
 
         $response = '';
         switch ($ns2->getName()) {
@@ -123,6 +127,9 @@ class SoapController extends Controller
                 }
 
                 $response = '<?xml version="1.0" encoding="utf-8"?><soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><soap:Body><SyncSalesOrderResponse xmlns="http://pompdelux.dk/webintegration/"><SyncSalesOrderResult><Message>Info: Anmodning modtaget SalesOrder </Message><Message>Info: Eordre '.$orderId.' oprettet </Message><Message>Info: Eordre '.$orderId.' afsluttet </Message><Status>Ok</Status></SyncSalesOrderResult></SyncSalesOrderResponse></soap:Body></soap:Envelope>';
+                break;
+
+            case 'SalesOrderLockUnlock':
                 break;
         }
 

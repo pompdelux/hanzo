@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\StockBundle\Controller;
 
+use Hanzo\Core\Tools;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -125,6 +126,7 @@ class StockController extends CoreController
      * find products based on parameter filters
      *
      * @param array $filters
+     *
      * @return Response
      */
     protected function filteredProduct(array $filters)
@@ -140,8 +142,7 @@ class StockController extends CoreController
             ->withColumn('CONVERT(SUBSTRING_INDEX(products.SIZE,\'-\',1),UNSIGNED INTEGER)', 'size_num')
             ->orderBy('size_num')
             ->orderBy('color')
-            ->groupById()
-        ;
+            ->groupById();
 
         $result = $query->findByArray($filters);
         if (!$result->count()) {

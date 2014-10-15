@@ -48,6 +48,8 @@ use Hanzo\Model\RelatedProducts;
 use Hanzo\Model\RelatedProductsQuery;
 use Hanzo\Model\SearchProductsTags;
 use Hanzo\Model\SearchProductsTagsQuery;
+use Hanzo\Model\WishlistsLines;
+use Hanzo\Model\WishlistsLinesQuery;
 
 abstract class BaseProducts extends BaseObject implements Persistent
 {
@@ -241,6 +243,12 @@ abstract class BaseProducts extends BaseObject implements Persistent
     protected $collProductsToCategoriessPartial;
 
     /**
+     * @var        PropelObjectCollection|WishlistsLines[] Collection to store aggregation of WishlistsLines objects.
+     */
+    protected $collWishlistsLiness;
+    protected $collWishlistsLinessPartial;
+
+    /**
      * @var        PropelObjectCollection|OrdersLines[] Collection to store aggregation of OrdersLines objects.
      */
     protected $collOrdersLiness;
@@ -363,6 +371,12 @@ abstract class BaseProducts extends BaseObject implements Persistent
      * @var		PropelObjectCollection
      */
     protected $productsToCategoriessScheduledForDeletion = null;
+
+    /**
+     * An array of objects scheduled for deletion.
+     * @var		PropelObjectCollection
+     */
+    protected $wishlistsLinessScheduledForDeletion = null;
 
     /**
      * An array of objects scheduled for deletion.
@@ -1225,6 +1239,8 @@ abstract class BaseProducts extends BaseObject implements Persistent
 
             $this->collProductsToCategoriess = null;
 
+            $this->collWishlistsLiness = null;
+
             $this->collOrdersLiness = null;
 
             $this->collRelatedProductssRelatedByMaster = null;
@@ -1561,6 +1577,23 @@ abstract class BaseProducts extends BaseObject implements Persistent
 
             if ($this->collProductsToCategoriess !== null) {
                 foreach ($this->collProductsToCategoriess as $referrerFK) {
+                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
+                        $affectedRows += $referrerFK->save($con);
+                    }
+                }
+            }
+
+            if ($this->wishlistsLinessScheduledForDeletion !== null) {
+                if (!$this->wishlistsLinessScheduledForDeletion->isEmpty()) {
+                    WishlistsLinesQuery::create()
+                        ->filterByPrimaryKeys($this->wishlistsLinessScheduledForDeletion->getPrimaryKeys(false))
+                        ->delete($con);
+                    $this->wishlistsLinessScheduledForDeletion = null;
+                }
+            }
+
+            if ($this->collWishlistsLiness !== null) {
+                foreach ($this->collWishlistsLiness as $referrerFK) {
                     if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
@@ -1997,6 +2030,14 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     }
                 }
 
+                if ($this->collWishlistsLiness !== null) {
+                    foreach ($this->collWishlistsLiness as $referrerFK) {
+                        if (!$referrerFK->validate($columns)) {
+                            $failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+                        }
+                    }
+                }
+
                 if ($this->collOrdersLiness !== null) {
                     foreach ($this->collOrdersLiness as $referrerFK) {
                         if (!$referrerFK->validate($columns)) {
@@ -2215,6 +2256,9 @@ abstract class BaseProducts extends BaseObject implements Persistent
             }
             if (null !== $this->collProductsToCategoriess) {
                 $result['ProductsToCategoriess'] = $this->collProductsToCategoriess->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+            }
+            if (null !== $this->collWishlistsLiness) {
+                $result['WishlistsLiness'] = $this->collWishlistsLiness->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
             }
             if (null !== $this->collOrdersLiness) {
                 $result['OrdersLiness'] = $this->collOrdersLiness->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
@@ -2523,6 +2567,12 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 }
             }
 
+            foreach ($this->getWishlistsLiness() as $relObj) {
+                if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
+                    $copyObj->addWishlistsLines($relObj->copy($deepCopy));
+                }
+            }
+
             foreach ($this->getOrdersLiness() as $relObj) {
                 if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
                     $copyObj->addOrdersLines($relObj->copy($deepCopy));
@@ -2806,6 +2856,9 @@ abstract class BaseProducts extends BaseObject implements Persistent
         }
         if ('ProductsToCategories' == $relationName) {
             $this->initProductsToCategoriess();
+        }
+        if ('WishlistsLines' == $relationName) {
+            $this->initWishlistsLiness();
         }
         if ('OrdersLines' == $relationName) {
             $this->initOrdersLiness();
@@ -5071,6 +5124,256 @@ abstract class BaseProducts extends BaseObject implements Persistent
     }
 
     /**
+     * Clears out the collWishlistsLiness collection
+     *
+     * This does not modify the database; however, it will remove any associated objects, causing
+     * them to be refetched by subsequent calls to accessor method.
+     *
+     * @return Products The current object (for fluent API support)
+     * @see        addWishlistsLiness()
+     */
+    public function clearWishlistsLiness()
+    {
+        $this->collWishlistsLiness = null; // important to set this to null since that means it is uninitialized
+        $this->collWishlistsLinessPartial = null;
+
+        return $this;
+    }
+
+    /**
+     * reset is the collWishlistsLiness collection loaded partially
+     *
+     * @return void
+     */
+    public function resetPartialWishlistsLiness($v = true)
+    {
+        $this->collWishlistsLinessPartial = $v;
+    }
+
+    /**
+     * Initializes the collWishlistsLiness collection.
+     *
+     * By default this just sets the collWishlistsLiness collection to an empty array (like clearcollWishlistsLiness());
+     * however, you may wish to override this method in your stub class to provide setting appropriate
+     * to your application -- for example, setting the initial array to the values stored in database.
+     *
+     * @param boolean $overrideExisting If set to true, the method call initializes
+     *                                        the collection even if it is not empty
+     *
+     * @return void
+     */
+    public function initWishlistsLiness($overrideExisting = true)
+    {
+        if (null !== $this->collWishlistsLiness && !$overrideExisting) {
+            return;
+        }
+        $this->collWishlistsLiness = new PropelObjectCollection();
+        $this->collWishlistsLiness->setModel('WishlistsLines');
+    }
+
+    /**
+     * Gets an array of WishlistsLines objects which contain a foreign key that references this object.
+     *
+     * If the $criteria is not null, it is used to always fetch the results from the database.
+     * Otherwise the results are fetched from the database the first time, then cached.
+     * Next time the same method is called without $criteria, the cached collection is returned.
+     * If this Products is new, it will return
+     * an empty collection or the current collection; the criteria is ignored on a new object.
+     *
+     * @param Criteria $criteria optional Criteria object to narrow the query
+     * @param PropelPDO $con optional connection object
+     * @return PropelObjectCollection|WishlistsLines[] List of WishlistsLines objects
+     * @throws PropelException
+     */
+    public function getWishlistsLiness($criteria = null, PropelPDO $con = null)
+    {
+        $partial = $this->collWishlistsLinessPartial && !$this->isNew();
+        if (null === $this->collWishlistsLiness || null !== $criteria  || $partial) {
+            if ($this->isNew() && null === $this->collWishlistsLiness) {
+                // return empty collection
+                $this->initWishlistsLiness();
+            } else {
+                $collWishlistsLiness = WishlistsLinesQuery::create(null, $criteria)
+                    ->filterByProducts($this)
+                    ->find($con);
+                if (null !== $criteria) {
+                    if (false !== $this->collWishlistsLinessPartial && count($collWishlistsLiness)) {
+                      $this->initWishlistsLiness(false);
+
+                      foreach ($collWishlistsLiness as $obj) {
+                        if (false == $this->collWishlistsLiness->contains($obj)) {
+                          $this->collWishlistsLiness->append($obj);
+                        }
+                      }
+
+                      $this->collWishlistsLinessPartial = true;
+                    }
+
+                    $collWishlistsLiness->getInternalIterator()->rewind();
+
+                    return $collWishlistsLiness;
+                }
+
+                if ($partial && $this->collWishlistsLiness) {
+                    foreach ($this->collWishlistsLiness as $obj) {
+                        if ($obj->isNew()) {
+                            $collWishlistsLiness[] = $obj;
+                        }
+                    }
+                }
+
+                $this->collWishlistsLiness = $collWishlistsLiness;
+                $this->collWishlistsLinessPartial = false;
+            }
+        }
+
+        return $this->collWishlistsLiness;
+    }
+
+    /**
+     * Sets a collection of WishlistsLines objects related by a one-to-many relationship
+     * to the current object.
+     * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
+     * and new objects from the given Propel collection.
+     *
+     * @param PropelCollection $wishlistsLiness A Propel collection.
+     * @param PropelPDO $con Optional connection object
+     * @return Products The current object (for fluent API support)
+     */
+    public function setWishlistsLiness(PropelCollection $wishlistsLiness, PropelPDO $con = null)
+    {
+        $wishlistsLinessToDelete = $this->getWishlistsLiness(new Criteria(), $con)->diff($wishlistsLiness);
+
+
+        $this->wishlistsLinessScheduledForDeletion = $wishlistsLinessToDelete;
+
+        foreach ($wishlistsLinessToDelete as $wishlistsLinesRemoved) {
+            $wishlistsLinesRemoved->setProducts(null);
+        }
+
+        $this->collWishlistsLiness = null;
+        foreach ($wishlistsLiness as $wishlistsLines) {
+            $this->addWishlistsLines($wishlistsLines);
+        }
+
+        $this->collWishlistsLiness = $wishlistsLiness;
+        $this->collWishlistsLinessPartial = false;
+
+        return $this;
+    }
+
+    /**
+     * Returns the number of related WishlistsLines objects.
+     *
+     * @param Criteria $criteria
+     * @param boolean $distinct
+     * @param PropelPDO $con
+     * @return int             Count of related WishlistsLines objects.
+     * @throws PropelException
+     */
+    public function countWishlistsLiness(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+    {
+        $partial = $this->collWishlistsLinessPartial && !$this->isNew();
+        if (null === $this->collWishlistsLiness || null !== $criteria || $partial) {
+            if ($this->isNew() && null === $this->collWishlistsLiness) {
+                return 0;
+            }
+
+            if ($partial && !$criteria) {
+                return count($this->getWishlistsLiness());
+            }
+            $query = WishlistsLinesQuery::create(null, $criteria);
+            if ($distinct) {
+                $query->distinct();
+            }
+
+            return $query
+                ->filterByProducts($this)
+                ->count($con);
+        }
+
+        return count($this->collWishlistsLiness);
+    }
+
+    /**
+     * Method called to associate a WishlistsLines object to this object
+     * through the WishlistsLines foreign key attribute.
+     *
+     * @param    WishlistsLines $l WishlistsLines
+     * @return Products The current object (for fluent API support)
+     */
+    public function addWishlistsLines(WishlistsLines $l)
+    {
+        if ($this->collWishlistsLiness === null) {
+            $this->initWishlistsLiness();
+            $this->collWishlistsLinessPartial = true;
+        }
+
+        if (!in_array($l, $this->collWishlistsLiness->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
+            $this->doAddWishlistsLines($l);
+
+            if ($this->wishlistsLinessScheduledForDeletion and $this->wishlistsLinessScheduledForDeletion->contains($l)) {
+                $this->wishlistsLinessScheduledForDeletion->remove($this->wishlistsLinessScheduledForDeletion->search($l));
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param	WishlistsLines $wishlistsLines The wishlistsLines object to add.
+     */
+    protected function doAddWishlistsLines($wishlistsLines)
+    {
+        $this->collWishlistsLiness[]= $wishlistsLines;
+        $wishlistsLines->setProducts($this);
+    }
+
+    /**
+     * @param	WishlistsLines $wishlistsLines The wishlistsLines object to remove.
+     * @return Products The current object (for fluent API support)
+     */
+    public function removeWishlistsLines($wishlistsLines)
+    {
+        if ($this->getWishlistsLiness()->contains($wishlistsLines)) {
+            $this->collWishlistsLiness->remove($this->collWishlistsLiness->search($wishlistsLines));
+            if (null === $this->wishlistsLinessScheduledForDeletion) {
+                $this->wishlistsLinessScheduledForDeletion = clone $this->collWishlistsLiness;
+                $this->wishlistsLinessScheduledForDeletion->clear();
+            }
+            $this->wishlistsLinessScheduledForDeletion[]= $wishlistsLines;
+            $wishlistsLines->setProducts(null);
+        }
+
+        return $this;
+    }
+
+
+    /**
+     * If this collection has already been initialized with
+     * an identical criteria, it returns the collection.
+     * Otherwise if this Products is new, it will return
+     * an empty collection; or if this Products has previously
+     * been saved, it will retrieve related WishlistsLiness from storage.
+     *
+     * This method is protected by default in order to keep the public
+     * api reasonable.  You can provide public methods for those you
+     * actually need in Products.
+     *
+     * @param Criteria $criteria optional Criteria object to narrow the query
+     * @param PropelPDO $con optional connection object
+     * @param string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
+     * @return PropelObjectCollection|WishlistsLines[] List of WishlistsLines objects
+     */
+    public function getWishlistsLinessJoinWishlists($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    {
+        $query = WishlistsLinesQuery::create(null, $criteria);
+        $query->joinWith('Wishlists', $join_behavior);
+
+        return $this->getWishlistsLiness($query, $con);
+    }
+
+    /**
      * Clears out the collOrdersLiness collection
      *
      * This does not modify the database; however, it will remove any associated objects, causing
@@ -6547,6 +6850,11 @@ abstract class BaseProducts extends BaseObject implements Persistent
                     $o->clearAllReferences($deep);
                 }
             }
+            if ($this->collWishlistsLiness) {
+                foreach ($this->collWishlistsLiness as $o) {
+                    $o->clearAllReferences($deep);
+                }
+            }
             if ($this->collOrdersLiness) {
                 foreach ($this->collOrdersLiness as $o) {
                     $o->clearAllReferences($deep);
@@ -6630,6 +6938,10 @@ abstract class BaseProducts extends BaseObject implements Persistent
             $this->collProductsToCategoriess->clearIterator();
         }
         $this->collProductsToCategoriess = null;
+        if ($this->collWishlistsLiness instanceof PropelCollection) {
+            $this->collWishlistsLiness->clearIterator();
+        }
+        $this->collWishlistsLiness = null;
         if ($this->collOrdersLiness instanceof PropelCollection) {
             $this->collOrdersLiness->clearIterator();
         }

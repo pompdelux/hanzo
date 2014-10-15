@@ -463,7 +463,7 @@
       <b>Das Paket nachverfolgen</b><br>
      Klicken Sie auf das Symbol neben Ihrer Bestellung um das Paket nachzuverfolgen. Die Track & Trace Seite öffnet sich in einem neuen Fenster.<br><br>
       <b>Rücksendung</b><br>
-      Möchten Sie die Ware zurückschicken, dann klicken Sie bitte auf das grüne Symbol neben Ihrer Bestellung.<br> 
+      Möchten Sie die Ware zurückschicken, dann klicken Sie bitte auf das grüne Symbol neben Ihrer Bestellung.<br>
      Bitte beachten: Das Rücksendeetikett und der Rücksendeschein werden einzeln in zwei verschiedenen PDF-Dokumenten geöffnet und müssen einzeln ausgedruckt werden. Für Rücksendungen hat das Rücksendeetikett einen Wert von CHF 8,95, der von dem Betrag der retournierten Waren entgegengerechnet wird. Wenn Sie eine Ware in eine andere Grösse oder Farbe umtauschen möchten ist der Versand für die Rücksendung kostenfrei. Es ist ebenfalls kostenlos fehlerhafte Waren zurückzusenden. Ausverkaufte Waren sind jedoch vom Umtausch vorbehalten.<br><br>
       <b>Rücksendeschein</b><br>
       Falls Sie die Waren, die Sie zurückschicken möchten nicht im interaktiven Rücksendeschein finden können, klicken Sie auf diesen Link und drucken den Rücksendeschein manuell aus.    <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_CH.pdf">» Rücksendeschein (PDF)</a>
@@ -562,6 +562,55 @@ Um jedoch sicherzustellen, dass dabei keine Fehler aufgetreten sind, möchten wi
             <trans-unit id="my.account.existing.customer.notice">
                 <source>my.account.existing.customer.notice</source>
                 <target>Willkommen, wir freuen uns Sie wiederzusehen!</target>
+            </trans-unit>
+            <trans-unit id="wishlist.add.label">
+                <source>wishlist.add.label</source>
+                <target>Opret shoppingliste</target>
+            </trans-unit>
+            <trans-unit id="wishlist.add.description">
+                <source>wishlist.add.description</source>
+                <target><![CDATA[
+                    <p>Her kan du oprette en liste med de styles, du ønsker at bestille ved et Home Shopping arrangement eller Åbent Hus.</p>
+                    <ul>
+                        <li>Tryk på "Opret Shoppingliste". Din Shoppingliste får et unikt nummer, som din Shopping Advisor skal bruge.</li>
+                        <li>Tilføj de styles du ønsker at købe.</li>
+                        <li>Vis Shoppingliste nummeret til din Shopping Advisor, som behandler din ordre.</li>
+                        <li>Lagerbeholdning tjekkes, ordren gennemføres i samarbejde med din Shopping Advisor og herefter vil du modtage en ordrebekræftelse på din ordre.</li>
+                    </ul>
+                    <p>HUSK! Vær opmærksom på, at du først har afgivet din ordre, når din Shopping Advisor har indlæst dit Shoppingliste nummer, og du har fået en odrebekræftelse. Varene på din Shoppingliste er ikke reserveret selvom de er tilføjet, så der kan opstå tilfælde, hvor en vare desværre er udsolgt.</p>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="wishlist.add.to.list">
+                <source>wishlist.add.to.list</source>
+                <target>Shoppingliste</target>
+            </trans-unit>
+            <trans-unit id="wishlist.placeholder.query">
+                <source>wishlist.placeholder.query</source>
+                <target>Tilføj vare</target>
+            </trans-unit>
+            <trans-unit id="wishlist.query.description">
+                <source>wishlist.query.description</source>
+                <target>Indtast de tre første bogstaver i stylens navn og vælg den ønskede style fra listen.</target>
+            </trans-unit>
+            <trans-unit id="wishlist.select.size">
+                <source>wishlist.select.size</source>
+                <target>Størrelse</target>
+            </trans-unit>
+            <trans-unit id="wishlist.select.color">
+                <source>wishlist.select.color</source>
+                <target>Farve</target>
+            </trans-unit>
+            <trans-unit id="wishlist.number">
+                <source>wishlist.number</source>
+                <target><![CDATA[Shoppingliste Nr: <span>%number%</span>]]></target>
+            </trans-unit>
+            <trans-unit id="add.to.wishlist">
+                <source>add.to.wishlist</source>
+                <target>Tilføj til listen</target>
+            </trans-unit>
+            <trans-unit id="wishlist.remove.all.items">
+                <source>wishlist.remove.all.items</source>
+                <target>Ryd listen</target>
             </trans-unit>
         </body>
     </file>

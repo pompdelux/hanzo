@@ -791,6 +791,42 @@
                     }
                 ]]></target>
             </trans-unit>
+			<trans-unit id="946.settings">
+                <source>946.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "141",
+						"colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="947.settings">
+                <source>947.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "141",
+						"colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="948.settings">
+                <source>948.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "141",
+						"colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="949.settings">
+                <source>949.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "141",
+						"colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

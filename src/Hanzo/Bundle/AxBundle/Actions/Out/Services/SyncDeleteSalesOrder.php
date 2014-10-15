@@ -24,6 +24,17 @@ class SyncDeleteSalesOrder extends BaseService
      */
     public function __construct()
     {
+        $this->reset();
+    }
+
+    /**
+     * Reset object
+     */
+    public function reset()
+    {
+        $this->setDBConnection(null);
+        $this->setEndPoint('');
+
         $this->data = [
             'endpointDomain' => '',
             'salesOrder' => [

@@ -57,9 +57,9 @@ abstract class BaseService
     /**
      * Set database connection if it needs to be overridden.
      *
-     * @param \PropelPDO $con
+     * @param \PropelPDO|null $con
      */
-    public function setDBConnection($con)
+    public function setDBConnection($con = null)
     {
         $this->dbConnection = $con;
     }
@@ -206,6 +206,13 @@ abstract class BaseService
      * @throws \Exception
      */
     protected function validate()
+    {
+    }
+
+    /**
+     * Reset a service
+     */
+    public function reset()
     {
     }
 }

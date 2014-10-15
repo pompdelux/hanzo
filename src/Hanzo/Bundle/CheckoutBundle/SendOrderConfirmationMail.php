@@ -96,6 +96,13 @@ class SendOrderConfirmationMail
     public function build(Orders $order)
     {
         $locale = $this->getLocale($order);
+        $order->setDBConnection($this->dbConn);
+
+        // needs locale to be set to the correct locale to have correct currency labels.
+        setlocale(LC_ALL, $locale.'.utf-8', $locale.'.utf8');
+        if ('EUR' == $order->getCurrencyCode()) {
+            setlocale(LC_MONETARY, 'nl_NL.utf8', 'nl_NL.utf-8');
+        }
 
         // build and send order confirmation.
         $attributes     = $order->getAttributes($this->dbConn);
@@ -213,9 +220,9 @@ class SendOrderConfirmationMail
             }
         }
 
-        $bcc = Tools::getBccEmailAddress('order', $order);
+        $bcc = Tools::getBccEmailAddress('order', $order, $this->dbConn);
 
-        $this->mailService->setMessage('order.confirmation', $params, $locale);
+        $this->mailService->setMessage('order.confirmation', $params, $locale, $this->dbConn);
         $this->mailService->setTo($email, $name);
 
         if ($bcc) {
@@ -223,12 +230,20 @@ class SendOrderConfirmationMail
         }
 
         $this->isMailBuild = true;
+
+        setlocale(LC_ALL, 'da_DK.utf-8', 'da_DK.utf8');
     }
 
+    /**
+     * @param Orders $order
+     *
+     * @return mixed
+     * @throws \PropelException
+     */
     private function getLocale(Orders $order)
     {
         return LanguagesQuery::create()
             ->select('Locale')
-            ->findOneById($order->getLanguagesId());
+            ->findOneById($order->getLanguagesId(), $this->dbConn);
     }
 }

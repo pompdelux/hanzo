@@ -45,6 +45,16 @@ class SyncCustomer extends BaseService
         $this->translator = $translator;
     }
 
+    public function reset()
+    {
+        $this->setDBConnection(null);
+        $this->setEndPoint('');
+
+        $this->customer = null;
+        $this->address  = null;
+        $this->data     = [];
+
+    }
 
     /**
      * Set customer object.

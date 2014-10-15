@@ -1,13 +1,18 @@
 <aside>
-	<h3>{{ 'my.account'|trans({}, 'account') }}</h3>
-	<ul>
-	  <li><a href="{{ path('_account_edit') }}">» {{ 'account.details'|trans({}, 'account') }}</a></li>
-      <li><a href="{{ path('logout') }}">» {{ 'my.account.logout'|trans({}, 'account') }}</a></li>
-	  <li><a href="{{ path('events_my_events') }}">» {{ 'my.account.my.events'|trans({}, 'account') }}</a></li>
-	</ul>
+    <h3>{{ 'my.account'|trans({}, 'account') }}</h3>
+    <ul>
+        <li><a href="{{ path('_account_edit') }}">» {{ 'account.details'|trans({}, 'account') }}</a></li>
+        <li><a href="{{ path('logout') }}">» {{ 'my.account.logout'|trans({}, 'account') }}</a></li>
+        <li><a href="{{ path('events_my_events') }}">» {{ 'my.account.my.events'|trans({}, 'account') }}</a></li>
+        <li><a href="{{ path('_account_wishlist_create') }}">» {{ 'wishlist.add.label'|trans({}, 'account') }}</a></li>
+    </ul>
 </aside>
 
 <aside id="account-block-newsletter-all">
-	<h3>{{ 'newsletter'|trans({}, 'account') }}</h3>
-	{{ render(controller('NewsletterBundle:Default:allLists')) }}
+    <h3>{{ 'newsletter'|trans({}, 'account') }}</h3>
+    {{ render(controller('NewsletterBundle:Default:allLists')) }}
+</aside>
+
+<aside class="js-slider wishlist">
+    {{ include('AccountBundle:Wishlist:info.html.twig') }}
 </aside>

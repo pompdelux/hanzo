@@ -123,16 +123,17 @@ class AxSoapClient
             if (isset($result->SyncSalesOrderResult->Message)) {
                 if (is_array($result->SyncSalesOrderResult->Message)) {
                     $message = implode(' & ', $result->SyncSalesOrderResult->Message);
+                } else {
+                    $message = $result->SyncSalesOrderResult->Message;
                 }
 
-                $message = $result->SyncSalesOrderResult->Message;
             }
 
             if ('unknown error' === $message) {
                 Tools::log('AX comm error: '.print_r($result, 1));
             }
 
-            throw new AxDataException($service.' sync failed, error was: '. $message);
+            throw new AxDataException($service.' sync failed, error was: '.$message);
         }
 
         return true;

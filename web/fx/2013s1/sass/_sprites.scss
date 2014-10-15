@@ -58,6 +58,11 @@ body.da{
         height: da-sprite-height(subscribe-button);
         width: da-sprite-width(subscribe-button);
     }
+    .create-wishlist{
+        @include da-sprite(create-wishlist);
+        height: da-sprite-height(create-wishlist);
+        width: da-sprite-width(create-wishlist);
+    }
 }
 
 body.de{

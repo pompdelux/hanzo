@@ -531,6 +531,28 @@
         <behavior name="timestampable"/>
     </table>
 
+    <table name="wishlists" allowPkInsert="true">
+        <column name="id" type="VARCHAR" size="5" primaryKey="true" required="true"/>
+        <column name="customers_id" type="INTEGER" required="false"/>
+        <behavior name="timestampable"/>
+        <foreign-key foreignTable="customers" onDelete="CASCADE" onUpdate="CASCADE">
+            <reference local="customers_id" foreign="id"/>
+        </foreign-key>
+    </table>
+
+    <table name="wishlists_lines">
+        <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+        <column name="wishlists_id" type="VARCHAR" size="5" required="true"/>
+        <column name="products_id" type="INTEGER" required="false"/>
+        <column name="quantity" type="INTEGER" required="false"/>
+        <foreign-key foreignTable="wishlists" name="fk_wishlists_lines_1" onDelete="CASCADE">
+            <reference local="wishlists_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="products" name="fk_wishlists_lines_2" onDelete="CASCADE">
+            <reference local="products_id" foreign="id"/>
+        </foreign-key>
+    </table>
+
     <table name="zip_to_city">
         <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
         <column name="zip" type="VARCHAR" size="12" required="true"/>
