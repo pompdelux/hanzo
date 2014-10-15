@@ -26,9 +26,21 @@ use Exception;
 use Propel;
 use BasePeer;
 
+/**
+ * Class DefaultController
+ *
+ * @package Hanzo\Bundle\CheckoutBundle
+ */
 class DefaultController extends CoreController
 {
-    public function indexAction()
+    /**
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @throws Exception
+     * @throws \PropelException
+     */
+    public function indexAction(Request $request)
     {
         $order = OrdersPeer::getCurrent(true);
 
@@ -40,16 +52,15 @@ class DefaultController extends CoreController
         $this->get('event_dispatcher')->dispatch('order.summery.finalize', new FilterOrderEvent($order));
 
         if ($order->isHostessOrder() && ($order->getTotalPrice() < 0)) {
-            $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('order.amount.to.low', [], 'checkout'));
+            $request->getFlashBag()->add('notice', $this->get('translator')->trans('order.amount.to.low', [], 'checkout'));
+
             return $this->redirect($this->generateUrl('basket_view'));
         }
 
         $order->setUpdatedAt(time());
         $order->save();
 
-        return $this->render('CheckoutBundle:Default:flow.html.twig', array(
-            'page_type' => 'checkout'
-        ));
+        return $this->render('CheckoutBundle:Default:flow.html.twig', ['page_type' => 'checkout']);
     }
 
 
