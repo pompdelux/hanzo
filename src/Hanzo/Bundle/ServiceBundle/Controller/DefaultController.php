@@ -59,9 +59,9 @@ class DefaultController extends CoreController
         // $cleanup->failedPaymentOrders();
         // $sms = $this->get('sms_manager');
         // $sms->eventReminder();
-        $ax = $this->get('ax.out');
+        $ax = $this->get('ax.out.service.wrapper');
         //$result = $ax->sendDebtor(\Hanzo\Model\CustomersQuery::create()->findPk(129798), true);
-        $result = $ax->sendOrder(\Hanzo\Model\OrdersQuery::create()->findPk(569178), true);
+        $result = $ax->SyncSalesOrder(\Hanzo\Model\OrdersQuery::create()->findPk(569178), true);
 
 Tools::log($result);
 

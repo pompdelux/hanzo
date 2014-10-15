@@ -9,6 +9,8 @@ use \PDOStatement;
 use \Propel;
 use \PropelException;
 use \PropelPDO;
+use Glorpen\Propel\PropelBundle\Dispatcher\EventDispatcherProxy;
+use Glorpen\Propel\PropelBundle\Events\PeerEvent;
 use Hanzo\Model\ProductsI18n;
 use Hanzo\Model\ProductsI18nPeer;
 use Hanzo\Model\ProductsPeer;
@@ -995,3 +997,4 @@ abstract class BaseProductsI18nPeer
 //
 BaseProductsI18nPeer::buildTableMap();
 
+EventDispatcherProxy::trigger(array('construct','peer.construct'), new PeerEvent('Hanzo\Model\om\BaseProductsI18nPeer'));

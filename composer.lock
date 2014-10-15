@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a2cead56a3c53c70981ef13936b6871f",
+    "hash": "b0d589b1f170362ae7b834d7e6c2c4c3",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -449,12 +449,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekino/EkinoNewRelicBundle.git",
-                "reference": "2f62ed3ba3d906a7ee6e03fc610b2d38afe35794"
+                "reference": "a54596b1b6367e134810a28818527abca11f8a93"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekino/EkinoNewRelicBundle/zipball/2f62ed3ba3d906a7ee6e03fc610b2d38afe35794",
-                "reference": "2f62ed3ba3d906a7ee6e03fc610b2d38afe35794",
+                "url": "https://api.github.com/repos/ekino/EkinoNewRelicBundle/zipball/a54596b1b6367e134810a28818527abca11f8a93",
+                "reference": "a54596b1b6367e134810a28818527abca11f8a93",
                 "shasum": ""
             },
             "require-dev": {
@@ -494,7 +494,48 @@
                 "monitoring",
                 "performance"
             ],
-            "time": "2014-07-11 22:42:24"
+            "time": "2014-10-14 14:40:42"
+        },
+        {
+            "name": "glorpen/propel-bundle",
+            "version": "dev-default",
+            "target-dir": "Glorpen/Propel/PropelBundle",
+            "source": {
+                "type": "hg",
+                "url": "https://bitbucket.org/glorpen/glorpenpropelbundle",
+                "reference": "c80ecd31d92380533c66b371f1fcbe700c7a6a60"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://bitbucket.org/glorpen/glorpenpropelbundle/get/c80ecd31d92380533c66b371f1fcbe700c7a6a60.zip",
+                "reference": "c80ecd31d92380533c66b371f1fcbe700c7a6a60",
+                "shasum": ""
+            },
+            "require": {
+                "propel/propel-bundle": "1.*",
+                "symfony/symfony": "<3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "*",
+                "propel/propel-bundle": ">=1.4.4"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Glorpen\\Propel\\PropelBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Arkadiusz Dzięgiel"
+                }
+            ],
+            "description": "Propel events and model extending for Symfony2.",
+            "time": "2014-10-10 22:08:08"
         },
         {
             "name": "guzzle/guzzle",
@@ -1063,16 +1104,16 @@
         },
         {
             "name": "kriswallsmith/assetic",
-            "version": "v1.1.2",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kriswallsmith/assetic.git",
-                "reference": "735cffd3982c6e8cdebe292d5db39d077f65890f"
+                "reference": "df991c124a2212371443b586a1be767500036dee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/735cffd3982c6e8cdebe292d5db39d077f65890f",
-                "reference": "735cffd3982c6e8cdebe292d5db39d077f65890f",
+                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/df991c124a2212371443b586a1be767500036dee",
+                "reference": "df991c124a2212371443b586a1be767500036dee",
                 "shasum": ""
             },
             "require": {
@@ -1087,7 +1128,9 @@
                 "leafo/scssphp": "*",
                 "leafo/scssphp-compass": "*",
                 "mrclay/minify": "*",
-                "phpunit/phpunit": "~3.7",
+                "patchwork/jsqueeze": "~1.0",
+                "phpunit/phpunit": "~4",
+                "psr/log": "~1.0",
                 "ptachoire/cssembed": "*",
                 "twig/twig": "~1.6"
             },
@@ -1095,13 +1138,14 @@
                 "leafo/lessphp": "Assetic provides the integration with the lessphp LESS compiler",
                 "leafo/scssphp": "Assetic provides the integration with the scssphp SCSS compiler",
                 "leafo/scssphp-compass": "Assetic provides the integration with the SCSS compass plugin",
+                "patchwork/jsqueeze": "Assetic provides the integration with the JSqueeze JavaScript compressor",
                 "ptachoire/cssembed": "Assetic provides the integration with phpcssembed to embed data uris",
                 "twig/twig": "Assetic provides the integration with the Twig templating engine"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1-dev"
+                    "dev-master": "1.2-dev"
                 }
             },
             "autoload": {
@@ -1130,7 +1174,63 @@
                 "compression",
                 "minification"
             ],
-            "time": "2013-07-19 00:03:27"
+            "time": "2014-10-14 14:45:32"
+        },
+        {
+            "name": "leezy/pheanstalk-bundle",
+            "version": "2.4.1",
+            "target-dir": "Leezy/PheanstalkBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/armetiz/LeezyPheanstalkBundle.git",
+                "reference": "b1b1aa4f0bc7f2b3fad0d98b55a7f58f5f0ee424"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/armetiz/LeezyPheanstalkBundle/zipball/b1b1aa4f0bc7f2b3fad0d98b55a7f58f5f0ee424",
+                "reference": "b1b1aa4f0bc7f2b3fad0d98b55a7f58f5f0ee424",
+                "shasum": ""
+            },
+            "require": {
+                "pda/pheanstalk": ">=2.1.0,<3.0-dev",
+                "symfony/console": "~2.0",
+                "symfony/framework-bundle": ">=2.0",
+                "symfony/monolog-bridge": ">=2.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Leezy\\PheanstalkBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Thomas Tourlourat",
+                    "email": "thomas@tourlourat.com",
+                    "homepage": "http://www.armetiz.info"
+                }
+            ],
+            "description": "The LeezyPheanstalkBundle is a Symfony2 Bundle that provides a command line interface for manage the Beanstalkd workqueue server & a pheanstalk integration.",
+            "homepage": "https://github.com/armetiz/LeezyPheanstalkBundle",
+            "keywords": [
+                "asynchronous",
+                "beanstalkd",
+                "bundle",
+                "messaging",
+                "pheanstalk",
+                "queueing",
+                "symfony"
+            ],
+            "time": "2014-08-22 12:32:21"
         },
         {
             "name": "liip/theme-bundle",
@@ -1370,6 +1470,48 @@
                 "sms"
             ],
             "time": "2012-03-12 20:35:07"
+        },
+        {
+            "name": "pda/pheanstalk",
+            "version": "v2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pda/pheanstalk.git",
+                "reference": "ab006cf9330fb5d3799f30a5d9841b85edb40a0f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pda/pheanstalk/zipball/ab006cf9330fb5d3799f30a5d9841b85edb40a0f",
+                "reference": "ab006cf9330fb5d3799f30a5d9841b85edb40a0f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Pheanstalk": "classes/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Paul Annesley",
+                    "email": "paul@annesley.cc",
+                    "homepage": "http://paul.annesley.cc/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP client for beanstalkd queue",
+            "homepage": "https://github.com/pda/pheanstalk",
+            "keywords": [
+                "beanstalkd"
+            ],
+            "time": "2013-04-03 09:15:34"
         },
         {
             "name": "phing/phing",
@@ -1894,21 +2036,20 @@
         },
         {
             "name": "symfony/assetic-bundle",
-            "version": "v2.3.0",
-            "target-dir": "Symfony/Bundle/AsseticBundle",
+            "version": "v2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/AsseticBundle.git",
-                "reference": "146dd3cb46b302bd471560471c6aaa930483dac1"
+                "reference": "c07c0e500fe255ac0211eea9d0446c139f12da9c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/AsseticBundle/zipball/146dd3cb46b302bd471560471c6aaa930483dac1",
-                "reference": "146dd3cb46b302bd471560471c6aaa930483dac1",
+                "url": "https://api.github.com/repos/symfony/AsseticBundle/zipball/c07c0e500fe255ac0211eea9d0446c139f12da9c",
+                "reference": "c07c0e500fe255ac0211eea9d0446c139f12da9c",
                 "shasum": ""
             },
             "require": {
-                "kriswallsmith/assetic": "~1.1",
+                "kriswallsmith/assetic": "~1.2",
                 "php": ">=5.3.0",
                 "symfony/framework-bundle": "~2.1"
             },
@@ -1917,22 +2058,22 @@
                 "symfony/console": "~2.1",
                 "symfony/css-selector": "~2.1",
                 "symfony/dom-crawler": "~2.1",
-                "symfony/form": "~2.1",
                 "symfony/twig-bundle": "~2.1",
                 "symfony/yaml": "~2.1"
             },
             "suggest": {
+                "kriswallsmith/spork": "v0.2",
                 "symfony/twig-bundle": "~2.1"
             },
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.1.x-dev"
+                    "dev-master": "2.4-dev"
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Symfony\\Bundle\\AsseticBundle": ""
+                "psr-4": {
+                    "Symfony\\Bundle\\AsseticBundle\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1953,7 +2094,7 @@
                 "compression",
                 "minification"
             ],
-            "time": "2013-05-16 05:32:23"
+            "time": "2014-09-03 23:37:07"
         },
         {
             "name": "symfony/icu",
@@ -2470,7 +2611,8 @@
         "jms/di-extra-bundle": 20,
         "ekino/newrelic-bundle": 20,
         "liip/theme-bundle": 20,
-        "drak/native-session": 20
+        "drak/native-session": 20,
+        "glorpen/propel-bundle": 20
     },
     "prefer-stable": false,
     "platform": {

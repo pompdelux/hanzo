@@ -36,7 +36,6 @@
         "web/fx/scripts/main.js",
         "web/fx/scripts/cart.js",
         "web/fx/scripts/checkout.js",
-        "web/fx/scripts/dibs-process.js",
         "web/fx/scripts/gothia.js",
         "web/fx/scripts/events.js",
         "web/fx/scripts/maps.js",

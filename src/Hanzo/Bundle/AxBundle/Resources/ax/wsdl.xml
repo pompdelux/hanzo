@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://pompdelux.dk/webintegration/" xmlns:s1="http://schemas.pompdelux.dk/webintegration/Customer" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s2="http://schemas.pompdelux.dk/webintegration/SalesOrder" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://pompdelux.dk/webintegration/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://pompdelux.dk/webintegration/">
+      <s:import namespace="http://schemas.pompdelux.dk/webintegration/Customer" />
+      <s:import namespace="http://schemas.pompdelux.dk/webintegration/SalesOrder" />
+      <s:element name="SalesOrderLockUnlock">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="eOrderNumber" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="lockOrder" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="endpointDomain" type="tns:EndpointDomain" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="EndpointDomain">
+        <s:restriction base="s:string">
+          <s:enumeration value="DE" />
+          <s:enumeration value="DK" />
+          <s:enumeration value="FI" />
+          <s:enumeration value="NL" />
+          <s:enumeration value="NO" />
+          <s:enumeration value="SE" />
+          <s:enumeration value="AT" />
+          <s:enumeration value="CH" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="SalesOrderLockUnlockResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SalesOrderLockUnlockResult" type="tns:ResponseStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseStatus">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="Status">
+        <s:restriction base="s:string">
+          <s:enumeration value="Error" />
+          <s:enumeration value="Ok" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="SyncCustomer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:customer" />
+            <s:element minOccurs="1" maxOccurs="1" name="endpointDomain" type="tns:EndpointDomain" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SyncCustomerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SyncCustomerResult" type="tns:ResponseStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SyncInventory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="endpointDomain" type="tns:EndpointDomain" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SyncInventoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SyncInventoryResult" type="tns:ResponseStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SyncSalesOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s2:salesOrder" />
+            <s:element minOccurs="1" maxOccurs="1" name="endpointDomain" type="tns:EndpointDomain" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SyncSalesOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SyncSalesOrderResult" type="tns:ResponseStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://schemas.pompdelux.dk/webintegration/Customer">
+      <s:element name="customer" type="s1:Customer" />
+      <s:complexType name="Customer">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CustTable" type="s1:CustTable" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CustTable">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="AccountNum" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AddressCity" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AddressCountryRegionId" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AddressStreet" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AddressZipCode" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustCurrencyCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CustName" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Email" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InitialsId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Phone" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhoneLocal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhoneMobile" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SalesDiscountPercent" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="TeleFax" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://schemas.pompdelux.dk/webintegration/SalesOrder">
+      <s:element name="salesOrder" type="s2:SalesOrder" />
+      <s:complexType name="SalesOrder">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SalesTable" type="s2:SalesTable" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SalesTable">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="BankAccountNumber" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BankId" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Completed" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CurrencyCode" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CustAccount" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CustPaymMode" nillable="true" type="s2:CustPaymMode" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeliveryCity" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeliveryCompanyName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeliveryCountryRegionId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DeliveryDropPointId" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeliveryName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeliveryStreet" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeliveryZipCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="EOrderNumber" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FreightFeeAmt" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="FreightType" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GiftVoucherAmt" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="HandlingFeeAmt" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="HandlingFeeType" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="HomePartyId" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceAccount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PayByBillFeeAmt" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PayByBillFeeType" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PaymentId" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SalesGroup" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SalesLine" type="s2:SalesLine" />
+          <s:element minOccurs="0" maxOccurs="1" name="SalesName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SalesResponsible" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SalesType" nillable="true" type="s2:SalesType" />
+          <s:element minOccurs="0" maxOccurs="1" name="SmoreContactInfo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TransactionType" nillable="true" type="s2:TransactionType" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="CustPaymMode">
+        <s:restriction base="s:string">
+          <s:enumeration value="Bank" />
+          <s:enumeration value="DanKort" />
+          <s:enumeration value="ELV" />
+          <s:enumeration value="iDEAL" />
+          <s:enumeration value="MasterCard" />
+          <s:enumeration value="PayByBill" />
+          <s:enumeration value="PayPal" />
+          <s:enumeration value="VISA" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="SalesLine">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="InventColorId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InventSizeId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ItemId" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LineDiscAmt" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="LineDiscPercent" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="SalesLineText" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SalesPrice" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="SalesQty" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="SalesUnit" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="VoucherCode" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="SalesType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Blanket" />
+          <s:enumeration value="ItemReq" />
+          <s:enumeration value="Journal" />
+          <s:enumeration value="Quotation" />
+          <s:enumeration value="ReturnItem" />
+          <s:enumeration value="Sales" />
+          <s:enumeration value="Subscription" />
+          <s:enumeration value="Undefined" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="TransactionType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Delete" />
+          <s:enumeration value="Write" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="SalesOrderLockUnlockSoapIn">
+    <wsdl:part name="parameters" element="tns:SalesOrderLockUnlock" />
+  </wsdl:message>
+  <wsdl:message name="SalesOrderLockUnlockSoapOut">
+    <wsdl:part name="parameters" element="tns:SalesOrderLockUnlockResponse" />
+  </wsdl:message>
+  <wsdl:message name="SyncCustomerSoapIn">
+    <wsdl:part name="parameters" element="tns:SyncCustomer" />
+  </wsdl:message>
+  <wsdl:message name="SyncCustomerSoapOut">
+    <wsdl:part name="parameters" element="tns:SyncCustomerResponse" />
+  </wsdl:message>
+  <wsdl:message name="SyncInventorySoapIn">
+    <wsdl:part name="parameters" element="tns:SyncInventory" />
+  </wsdl:message>
+  <wsdl:message name="SyncInventorySoapOut">
+    <wsdl:part name="parameters" element="tns:SyncInventoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="SyncSalesOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:SyncSalesOrder" />
+  </wsdl:message>
+  <wsdl:message name="SyncSalesOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:SyncSalesOrderResponse" />
+  </wsdl:message>
+  <wsdl:portType name="DynamicsAxServicesSoap">
+    <wsdl:operation name="SalesOrderLockUnlock">
+      <wsdl:input message="tns:SalesOrderLockUnlockSoapIn" />
+      <wsdl:output message="tns:SalesOrderLockUnlockSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SyncCustomer">
+      <wsdl:input message="tns:SyncCustomerSoapIn" />
+      <wsdl:output message="tns:SyncCustomerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SyncInventory">
+      <wsdl:input message="tns:SyncInventorySoapIn" />
+      <wsdl:output message="tns:SyncInventorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SyncSalesOrder">
+      <wsdl:input message="tns:SyncSalesOrderSoapIn" />
+      <wsdl:output message="tns:SyncSalesOrderSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DynamicsAxServicesSoap" type="tns:DynamicsAxServicesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SalesOrderLockUnlock">
+      <soap:operation soapAction="http://pompdelux.dk/webintegration/SalesOrderLockUnlock" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SyncCustomer">
+      <soap:operation soapAction="http://pompdelux.dk/webintegration/SyncCustomer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SyncInventory">
+      <soap:operation soapAction="http://pompdelux.dk/webintegration/SyncInventory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SyncSalesOrder">
+      <soap:operation soapAction="http://pompdelux.dk/webintegration/SyncSalesOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DynamicsAxServicesSoap12" type="tns:DynamicsAxServicesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SalesOrderLockUnlock">
+      <soap12:operation soapAction="http://pompdelux.dk/webintegration/SalesOrderLockUnlock" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SyncCustomer">
+      <soap12:operation soapAction="http://pompdelux.dk/webintegration/SyncCustomer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SyncInventory">
+      <soap12:operation soapAction="http://pompdelux.dk/webintegration/SyncInventory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SyncSalesOrder">
+      <soap12:operation soapAction="http://pompdelux.dk/webintegration/SyncSalesOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DynamicsAxServices">
+    <wsdl:port name="DynamicsAxServicesSoap" binding="tns:DynamicsAxServicesSoap">
+      <soap:address location="http://193.89.255.250:8000/DynamicsAxServices.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DynamicsAxServicesSoap12" binding="tns:DynamicsAxServicesSoap12">
+      <soap12:address location="http://193.89.255.250:8000/DynamicsAxServices.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

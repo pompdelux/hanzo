@@ -26,6 +26,7 @@ monolog:
 propel:
     dbal:
         default_connection: default
+        classname: Glorpen\Propel\PropelBundle\Connection\EventDebugPDO
         connections:
             default:
                 driver:     %database_driver%

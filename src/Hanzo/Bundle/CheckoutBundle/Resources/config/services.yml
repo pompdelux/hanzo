@@ -4,7 +4,9 @@ parameters:
 services:
     hanzo.checkout.checkout.listener:
         class: Hanzo\Bundle\CheckoutBundle\Event\CheckoutListener
-        arguments: [ @mail_manager, @ax.out, @translator, @session, @hanzo.address_formatter ]
+        arguments:
+            session:       @session
+            payment_proxy: @payment.actions.proxy
         tags:
             - { name: kernel.event_listener, event: order.payment.collected, method: onPaymentCollectedFirst, priority: 255 }
             - { name: kernel.event_listener, event: order.payment.collected, method: onPaymentCollected, priority: -255 }
@@ -13,7 +15,9 @@ services:
 
     hanzo.order:
         class: Hanzo\Bundle\CheckoutBundle\Event\OrderListener
-        arguments: [ @session, @ax.out ]
+        arguments:
+            session:         @session
+            service_wrapper: @ax.out.service.wrapper
         tags:
             - { name: kernel.event_listener, event: order.edit.start, method: onEditStart }
             - { name: kernel.event_listener, event: order.edit.cancel, method: onEditCancel }
@@ -22,6 +26,6 @@ services:
     hanzo.order.send.confirmation.mail:
         class: Hanzo\Bundle\CheckoutBundle\SendOrderConfirmationMail
         arguments:
-            - @translator
-            - @mail_manager
-            - @hanzo.address_formatter
+            translator:        @translator
+            mail_manager:      @mail_manager
+            address_formatter: @hanzo.address_formatter

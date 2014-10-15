@@ -1,6 +1,5 @@
 parameters:
     ax.ecommerce.services.class: Hanzo\Bundle\AxBundle\Actions\In\Soap\ECommerceServices\ECommerceServices
-    ax.out.service.class: Hanzo\Bundle\AxBundle\Actions\Out\AxService
 
 services:
     # don't change naming format - the controller needs this
@@ -12,22 +11,80 @@ services:
             - @hanzo.external_service.logger
             - @event_dispatcher
             - @hanzo.propel_replicator
+            - @hanzo.core.orders_service
         scope: request
-    ax.out:
-        class: %ax.out.service.class%
-        arguments:
-            - %ax.wsdl%
-            - %ax.log_requests%
-            - @logger
-            - @hanzo.external_service.logger
-            - @event_dispatcher
-            - @translator
 
     ax.out.checkout.listener:
         class: Hanzo\Bundle\AxBundle\Event\CheckoutListener
         arguments:
-            - @ax.out
-            - @logger
-#            - @hanzo.external_service.logger
+            pheanstalk_queue: @ax.pheanstalk_queue
+            serviceLogger:    @hanzo.external_service.logger
         tags:
             - { name: kernel.event_listener, event: order.payment.collected, method: onPaymentCollected, priority: 0 }
+
+    ax.out.pheanstalk.send:
+        class: Hanzo\Bundle\AxBundle\Actions\Out\Workers\PheanstalkWorker
+        arguments:
+            pheanstalk:       @leezy.pheanstalk
+            axServiceWrapper: @ax.out.service.wrapper
+            mailer:           @hanzo.order.send.confirmation.mail
+            logger:           @ax.logger
+
+    ax.out.service.wrapper:
+        class: Hanzo\Bundle\AxBundle\Actions\Out\AxServiceWrapper
+        arguments:
+            - @ax.out.service.send_customer
+            - @ax.out.service.send_order
+            - @ax.out.service.send_delete_order
+            - @ax.out.service.send_lock_unlock_order
+
+    ax.out.service.client:
+        class: Hanzo\Bundle\AxBundle\Actions\Out\Services\AxSoapClient
+        arguments:
+            wsdl:          %ax.wsdl%
+            logRequests:   %ax.log_requests%
+            logger:        @ax.logger
+            serviceLogger: @hanzo.external_service.logger
+        public: false
+
+    ax.out.service.base_service:
+        class:    Hanzo\Bundle\AxBundle\Actions\Out\Services\BaseService
+        abstract: true
+        calls:
+            - [setLogger, ["@ax.logger"]]
+            - [setServiceLogger, ["@hanzo.external_service.logger"]]
+            - [setAxClient, [@ax.out.service.client]]
+
+    ax.out.service.send_customer:
+        class:  Hanzo\Bundle\AxBundle\Actions\Out\Services\SyncCustomer
+        parent: ax.out.service.base_service
+        arguments:
+            - @translator
+
+    ax.out.service.send_order:
+        class:  Hanzo\Bundle\AxBundle\Actions\Out\Services\SyncSalesOrder
+        parent: ax.out.service.base_service
+        arguments:
+            - @translator
+
+    ax.out.service.send_delete_order:
+        class:  Hanzo\Bundle\AxBundle\Actions\Out\Services\SyncDeleteSalesOrder
+        parent: ax.out.service.base_service
+
+    ax.out.service.send_stock_sync_trigger:
+        class:  Hanzo\Bundle\AxBundle\Actions\Out\Services\SyncInventory
+        parent: ax.out.service.base_service
+
+    ax.out.service.send_lock_unlock_order:
+        class:  Hanzo\Bundle\AxBundle\Actions\Out\Services\SalesOrderLockUnlock
+        parent: ax.out.service.base_service
+
+    ax.logger:
+        class: Hanzo\Bundle\AxBundle\Logger
+        arguments:
+            logger: @logger
+
+    ax.pheanstalk_queue:
+        class: Hanzo\Bundle\AxBundle\Actions\Out\PheanstalkQueue
+        arguments:
+            pheanstalk: @leezy.pheanstalk
