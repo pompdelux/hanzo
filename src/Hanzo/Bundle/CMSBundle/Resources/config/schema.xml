@@ -260,6 +260,7 @@
         <column name="consultants_id" type="INTEGER" required="true"/>
         <column name="customers_id" type="INTEGER" required="true"/>
         <column name="event_date" type="TIMESTAMP" required="true"/>
+        <column name="event_end_time" type="TIMESTAMP" required="false"/>
         <column name="host" type="VARCHAR" size="128" required="true"/>
         <column name="address_line_1" type="VARCHAR" size="128" required="true"/>
         <column name="address_line_2" type="VARCHAR" size="128" required="false"/>
@@ -271,6 +272,8 @@
         <column name="type" type="VARCHAR" size="3" required="true" defaultValue="AR"/>
         <column name="is_open" type="BOOLEAN" size="1" required="false" defaultValue="NULL"/>
         <column name="notify_hostess" type="BOOLEAN" size="1" required="true" defaultValue="true"/>
+        <column name="rsvp_type" type="SMALLINT" size="1" required="false"/>
+        <column name="public_note" type="LONGVARCHAR" defaultValue="null" required="false"/>
         <foreign-key foreignTable="customers" name="fk_events_1">
             <reference local="consultants_id" foreign="id"/>
         </foreign-key>

@@ -85,6 +85,12 @@ abstract class BaseEvents extends BaseObject implements Persistent
     protected $event_date;
 
     /**
+     * The value for the event_end_time field.
+     * @var        string
+     */
+    protected $event_end_time;
+
+    /**
      * The value for the host field.
      * @var        string
      */
@@ -151,6 +157,18 @@ abstract class BaseEvents extends BaseObject implements Persistent
      * @var        boolean
      */
     protected $notify_hostess;
+
+    /**
+     * The value for the rsvp_type field.
+     * @var        int
+     */
+    protected $rsvp_type;
+
+    /**
+     * The value for the public_note field.
+     * @var        string
+     */
+    protected $public_note;
 
     /**
      * The value for the created_at field.
@@ -339,6 +357,48 @@ abstract class BaseEvents extends BaseObject implements Persistent
     }
 
     /**
+     * Get the [optionally formatted] temporal [event_end_time] column value.
+     *
+     * This accessor only only work with unix epoch dates.  Consider enabling the propel.useDateTimeClass
+     * option in order to avoid conversions to integers (which are limited in the dates they can express).
+     *
+     * @param string $format The date/time format string (either date()-style or strftime()-style).
+     *				 If format is null, then the raw unix timestamp integer will be returned.
+     * @return mixed Formatted date/time value as string or (integer) unix timestamp (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
+     * @throws PropelException - if unable to parse/validate the date/time value.
+     */
+    public function getEventEndTime($format = 'Y-m-d H:i:s')
+    {
+        if ($this->event_end_time === null) {
+            return null;
+        }
+
+        if ($this->event_end_time === '0000-00-00 00:00:00') {
+            // while technically this is not a default value of null,
+            // this seems to be closest in meaning.
+            return null;
+        }
+
+        try {
+            $dt = new DateTime($this->event_end_time);
+        } catch (Exception $x) {
+            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->event_end_time, true), $x);
+        }
+
+        if ($format === null) {
+            // We cast here to maintain BC in API; obviously we will lose data if we're dealing with pre-/post-epoch dates.
+            return (int) $dt->format('U');
+        }
+
+        if (strpos($format, '%') !== false) {
+            return strftime($format, $dt->format('U'));
+        }
+
+        return $dt->format($format);
+
+    }
+
+    /**
      * Get the [host] column value.
      *
      * @return string
@@ -457,6 +517,28 @@ abstract class BaseEvents extends BaseObject implements Persistent
     {
 
         return $this->notify_hostess;
+    }
+
+    /**
+     * Get the [rsvp_type] column value.
+     *
+     * @return int
+     */
+    public function getRsvpType()
+    {
+
+        return $this->rsvp_type;
+    }
+
+    /**
+     * Get the [public_note] column value.
+     *
+     * @return string
+     */
+    public function getPublicNote()
+    {
+
+        return $this->public_note;
     }
 
     /**
@@ -678,6 +760,29 @@ abstract class BaseEvents extends BaseObject implements Persistent
 
         return $this;
     } // setEventDate()
+
+    /**
+     * Sets the value of [event_end_time] column to a normalized version of the date/time value specified.
+     *
+     * @param mixed $v string, integer (timestamp), or DateTime value.
+     *               Empty strings are treated as null.
+     * @return Events The current object (for fluent API support)
+     */
+    public function setEventEndTime($v)
+    {
+        $dt = PropelDateTime::newInstance($v, null, 'DateTime');
+        if ($this->event_end_time !== null || $dt !== null) {
+            $currentDateAsString = ($this->event_end_time !== null && $tmpDt = new DateTime($this->event_end_time)) ? $tmpDt->format('Y-m-d H:i:s') : null;
+            $newDateAsString = $dt ? $dt->format('Y-m-d H:i:s') : null;
+            if ($currentDateAsString !== $newDateAsString) {
+                $this->event_end_time = $newDateAsString;
+                $this->modifiedColumns[] = EventsPeer::EVENT_END_TIME;
+            }
+        } // if either are not null
+
+
+        return $this;
+    } // setEventEndTime()
 
     /**
      * Set the value of [host] column.
@@ -927,6 +1032,48 @@ abstract class BaseEvents extends BaseObject implements Persistent
     } // setNotifyHostess()
 
     /**
+     * Set the value of [rsvp_type] column.
+     *
+     * @param  int $v new value
+     * @return Events The current object (for fluent API support)
+     */
+    public function setRsvpType($v)
+    {
+        if ($v !== null && is_numeric($v)) {
+            $v = (int) $v;
+        }
+
+        if ($this->rsvp_type !== $v) {
+            $this->rsvp_type = $v;
+            $this->modifiedColumns[] = EventsPeer::RSVP_TYPE;
+        }
+
+
+        return $this;
+    } // setRsvpType()
+
+    /**
+     * Set the value of [public_note] column.
+     *
+     * @param  string $v new value
+     * @return Events The current object (for fluent API support)
+     */
+    public function setPublicNote($v)
+    {
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->public_note !== $v) {
+            $this->public_note = $v;
+            $this->modifiedColumns[] = EventsPeer::PUBLIC_NOTE;
+        }
+
+
+        return $this;
+    } // setPublicNote()
+
+    /**
      * Sets the value of [created_at] column to a normalized version of the date/time value specified.
      *
      * @param mixed $v string, integer (timestamp), or DateTime value.
@@ -1018,19 +1165,22 @@ abstract class BaseEvents extends BaseObject implements Persistent
             $this->consultants_id = ($row[$startcol + 3] !== null) ? (int) $row[$startcol + 3] : null;
             $this->customers_id = ($row[$startcol + 4] !== null) ? (int) $row[$startcol + 4] : null;
             $this->event_date = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
-            $this->host = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
-            $this->address_line_1 = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
-            $this->address_line_2 = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
-            $this->postal_code = ($row[$startcol + 9] !== null) ? (string) $row[$startcol + 9] : null;
-            $this->city = ($row[$startcol + 10] !== null) ? (string) $row[$startcol + 10] : null;
-            $this->phone = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
-            $this->email = ($row[$startcol + 12] !== null) ? (string) $row[$startcol + 12] : null;
-            $this->description = ($row[$startcol + 13] !== null) ? (string) $row[$startcol + 13] : null;
-            $this->type = ($row[$startcol + 14] !== null) ? (string) $row[$startcol + 14] : null;
-            $this->is_open = ($row[$startcol + 15] !== null) ? (boolean) $row[$startcol + 15] : null;
-            $this->notify_hostess = ($row[$startcol + 16] !== null) ? (boolean) $row[$startcol + 16] : null;
-            $this->created_at = ($row[$startcol + 17] !== null) ? (string) $row[$startcol + 17] : null;
-            $this->updated_at = ($row[$startcol + 18] !== null) ? (string) $row[$startcol + 18] : null;
+            $this->event_end_time = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
+            $this->host = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
+            $this->address_line_1 = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
+            $this->address_line_2 = ($row[$startcol + 9] !== null) ? (string) $row[$startcol + 9] : null;
+            $this->postal_code = ($row[$startcol + 10] !== null) ? (string) $row[$startcol + 10] : null;
+            $this->city = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
+            $this->phone = ($row[$startcol + 12] !== null) ? (string) $row[$startcol + 12] : null;
+            $this->email = ($row[$startcol + 13] !== null) ? (string) $row[$startcol + 13] : null;
+            $this->description = ($row[$startcol + 14] !== null) ? (string) $row[$startcol + 14] : null;
+            $this->type = ($row[$startcol + 15] !== null) ? (string) $row[$startcol + 15] : null;
+            $this->is_open = ($row[$startcol + 16] !== null) ? (boolean) $row[$startcol + 16] : null;
+            $this->notify_hostess = ($row[$startcol + 17] !== null) ? (boolean) $row[$startcol + 17] : null;
+            $this->rsvp_type = ($row[$startcol + 18] !== null) ? (int) $row[$startcol + 18] : null;
+            $this->public_note = ($row[$startcol + 19] !== null) ? (string) $row[$startcol + 19] : null;
+            $this->created_at = ($row[$startcol + 20] !== null) ? (string) $row[$startcol + 20] : null;
+            $this->updated_at = ($row[$startcol + 21] !== null) ? (string) $row[$startcol + 21] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -1040,7 +1190,7 @@ abstract class BaseEvents extends BaseObject implements Persistent
             }
             $this->postHydrate($row, $startcol, $rehydrate);
 
-            return $startcol + 19; // 19 = EventsPeer::NUM_HYDRATE_COLUMNS.
+            return $startcol + 22; // 22 = EventsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating Events object", $e);
@@ -1139,11 +1289,10 @@ abstract class BaseEvents extends BaseObject implements Persistent
 
         $con->beginTransaction();
         try {
+            EventDispatcherProxy::trigger(array('delete.pre','model.delete.pre'), new ModelEvent($this));
             $deleteQuery = EventsQuery::create()
                 ->filterByPrimaryKey($this->getPrimaryKey());
             $ret = $this->preDelete($con);
-            // event behavior
-            EventDispatcherProxy::trigger(array('delete.pre','model.delete.pre'), new ModelEvent($this));
             if ($ret) {
                 $deleteQuery->delete($con);
                 $this->postDelete($con);
@@ -1360,6 +1509,9 @@ abstract class BaseEvents extends BaseObject implements Persistent
         if ($this->isColumnModified(EventsPeer::EVENT_DATE)) {
             $modifiedColumns[':p' . $index++]  = '`event_date`';
         }
+        if ($this->isColumnModified(EventsPeer::EVENT_END_TIME)) {
+            $modifiedColumns[':p' . $index++]  = '`event_end_time`';
+        }
         if ($this->isColumnModified(EventsPeer::HOST)) {
             $modifiedColumns[':p' . $index++]  = '`host`';
         }
@@ -1392,6 +1544,12 @@ abstract class BaseEvents extends BaseObject implements Persistent
         }
         if ($this->isColumnModified(EventsPeer::NOTIFY_HOSTESS)) {
             $modifiedColumns[':p' . $index++]  = '`notify_hostess`';
+        }
+        if ($this->isColumnModified(EventsPeer::RSVP_TYPE)) {
+            $modifiedColumns[':p' . $index++]  = '`rsvp_type`';
+        }
+        if ($this->isColumnModified(EventsPeer::PUBLIC_NOTE)) {
+            $modifiedColumns[':p' . $index++]  = '`public_note`';
         }
         if ($this->isColumnModified(EventsPeer::CREATED_AT)) {
             $modifiedColumns[':p' . $index++]  = '`created_at`';
@@ -1428,6 +1586,9 @@ abstract class BaseEvents extends BaseObject implements Persistent
                     case '`event_date`':
                         $stmt->bindValue($identifier, $this->event_date, PDO::PARAM_STR);
                         break;
+                    case '`event_end_time`':
+                        $stmt->bindValue($identifier, $this->event_end_time, PDO::PARAM_STR);
+                        break;
                     case '`host`':
                         $stmt->bindValue($identifier, $this->host, PDO::PARAM_STR);
                         break;
@@ -1460,6 +1621,12 @@ abstract class BaseEvents extends BaseObject implements Persistent
                         break;
                     case '`notify_hostess`':
                         $stmt->bindValue($identifier, (int) $this->notify_hostess, PDO::PARAM_INT);
+                        break;
+                    case '`rsvp_type`':
+                        $stmt->bindValue($identifier, $this->rsvp_type, PDO::PARAM_INT);
+                        break;
+                    case '`public_note`':
+                        $stmt->bindValue($identifier, $this->public_note, PDO::PARAM_STR);
                         break;
                     case '`created_at`':
                         $stmt->bindValue($identifier, $this->created_at, PDO::PARAM_STR);
@@ -1656,42 +1823,51 @@ abstract class BaseEvents extends BaseObject implements Persistent
                 return $this->getEventDate();
                 break;
             case 6:
-                return $this->getHost();
+                return $this->getEventEndTime();
                 break;
             case 7:
-                return $this->getAddressLine1();
+                return $this->getHost();
                 break;
             case 8:
-                return $this->getAddressLine2();
+                return $this->getAddressLine1();
                 break;
             case 9:
-                return $this->getPostalCode();
+                return $this->getAddressLine2();
                 break;
             case 10:
-                return $this->getCity();
+                return $this->getPostalCode();
                 break;
             case 11:
-                return $this->getPhone();
+                return $this->getCity();
                 break;
             case 12:
-                return $this->getEmail();
+                return $this->getPhone();
                 break;
             case 13:
-                return $this->getDescription();
+                return $this->getEmail();
                 break;
             case 14:
-                return $this->getType();
+                return $this->getDescription();
                 break;
             case 15:
-                return $this->getIsOpen();
+                return $this->getType();
                 break;
             case 16:
-                return $this->getNotifyHostess();
+                return $this->getIsOpen();
                 break;
             case 17:
-                return $this->getCreatedAt();
+                return $this->getNotifyHostess();
                 break;
             case 18:
+                return $this->getRsvpType();
+                break;
+            case 19:
+                return $this->getPublicNote();
+                break;
+            case 20:
+                return $this->getCreatedAt();
+                break;
+            case 21:
                 return $this->getUpdatedAt();
                 break;
             default:
@@ -1729,19 +1905,22 @@ abstract class BaseEvents extends BaseObject implements Persistent
             $keys[3] => $this->getConsultantsId(),
             $keys[4] => $this->getCustomersId(),
             $keys[5] => $this->getEventDate(),
-            $keys[6] => $this->getHost(),
-            $keys[7] => $this->getAddressLine1(),
-            $keys[8] => $this->getAddressLine2(),
-            $keys[9] => $this->getPostalCode(),
-            $keys[10] => $this->getCity(),
-            $keys[11] => $this->getPhone(),
-            $keys[12] => $this->getEmail(),
-            $keys[13] => $this->getDescription(),
-            $keys[14] => $this->getType(),
-            $keys[15] => $this->getIsOpen(),
-            $keys[16] => $this->getNotifyHostess(),
-            $keys[17] => $this->getCreatedAt(),
-            $keys[18] => $this->getUpdatedAt(),
+            $keys[6] => $this->getEventEndTime(),
+            $keys[7] => $this->getHost(),
+            $keys[8] => $this->getAddressLine1(),
+            $keys[9] => $this->getAddressLine2(),
+            $keys[10] => $this->getPostalCode(),
+            $keys[11] => $this->getCity(),
+            $keys[12] => $this->getPhone(),
+            $keys[13] => $this->getEmail(),
+            $keys[14] => $this->getDescription(),
+            $keys[15] => $this->getType(),
+            $keys[16] => $this->getIsOpen(),
+            $keys[17] => $this->getNotifyHostess(),
+            $keys[18] => $this->getRsvpType(),
+            $keys[19] => $this->getPublicNote(),
+            $keys[20] => $this->getCreatedAt(),
+            $keys[21] => $this->getUpdatedAt(),
         );
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
@@ -1814,42 +1993,51 @@ abstract class BaseEvents extends BaseObject implements Persistent
                 $this->setEventDate($value);
                 break;
             case 6:
-                $this->setHost($value);
+                $this->setEventEndTime($value);
                 break;
             case 7:
-                $this->setAddressLine1($value);
+                $this->setHost($value);
                 break;
             case 8:
-                $this->setAddressLine2($value);
+                $this->setAddressLine1($value);
                 break;
             case 9:
-                $this->setPostalCode($value);
+                $this->setAddressLine2($value);
                 break;
             case 10:
-                $this->setCity($value);
+                $this->setPostalCode($value);
                 break;
             case 11:
-                $this->setPhone($value);
+                $this->setCity($value);
                 break;
             case 12:
-                $this->setEmail($value);
+                $this->setPhone($value);
                 break;
             case 13:
-                $this->setDescription($value);
+                $this->setEmail($value);
                 break;
             case 14:
-                $this->setType($value);
+                $this->setDescription($value);
                 break;
             case 15:
-                $this->setIsOpen($value);
+                $this->setType($value);
                 break;
             case 16:
-                $this->setNotifyHostess($value);
+                $this->setIsOpen($value);
                 break;
             case 17:
-                $this->setCreatedAt($value);
+                $this->setNotifyHostess($value);
                 break;
             case 18:
+                $this->setRsvpType($value);
+                break;
+            case 19:
+                $this->setPublicNote($value);
+                break;
+            case 20:
+                $this->setCreatedAt($value);
+                break;
+            case 21:
                 $this->setUpdatedAt($value);
                 break;
         } // switch()
@@ -1882,19 +2070,22 @@ abstract class BaseEvents extends BaseObject implements Persistent
         if (array_key_exists($keys[3], $arr)) $this->setConsultantsId($arr[$keys[3]]);
         if (array_key_exists($keys[4], $arr)) $this->setCustomersId($arr[$keys[4]]);
         if (array_key_exists($keys[5], $arr)) $this->setEventDate($arr[$keys[5]]);
-        if (array_key_exists($keys[6], $arr)) $this->setHost($arr[$keys[6]]);
-        if (array_key_exists($keys[7], $arr)) $this->setAddressLine1($arr[$keys[7]]);
-        if (array_key_exists($keys[8], $arr)) $this->setAddressLine2($arr[$keys[8]]);
-        if (array_key_exists($keys[9], $arr)) $this->setPostalCode($arr[$keys[9]]);
-        if (array_key_exists($keys[10], $arr)) $this->setCity($arr[$keys[10]]);
-        if (array_key_exists($keys[11], $arr)) $this->setPhone($arr[$keys[11]]);
-        if (array_key_exists($keys[12], $arr)) $this->setEmail($arr[$keys[12]]);
-        if (array_key_exists($keys[13], $arr)) $this->setDescription($arr[$keys[13]]);
-        if (array_key_exists($keys[14], $arr)) $this->setType($arr[$keys[14]]);
-        if (array_key_exists($keys[15], $arr)) $this->setIsOpen($arr[$keys[15]]);
-        if (array_key_exists($keys[16], $arr)) $this->setNotifyHostess($arr[$keys[16]]);
-        if (array_key_exists($keys[17], $arr)) $this->setCreatedAt($arr[$keys[17]]);
-        if (array_key_exists($keys[18], $arr)) $this->setUpdatedAt($arr[$keys[18]]);
+        if (array_key_exists($keys[6], $arr)) $this->setEventEndTime($arr[$keys[6]]);
+        if (array_key_exists($keys[7], $arr)) $this->setHost($arr[$keys[7]]);
+        if (array_key_exists($keys[8], $arr)) $this->setAddressLine1($arr[$keys[8]]);
+        if (array_key_exists($keys[9], $arr)) $this->setAddressLine2($arr[$keys[9]]);
+        if (array_key_exists($keys[10], $arr)) $this->setPostalCode($arr[$keys[10]]);
+        if (array_key_exists($keys[11], $arr)) $this->setCity($arr[$keys[11]]);
+        if (array_key_exists($keys[12], $arr)) $this->setPhone($arr[$keys[12]]);
+        if (array_key_exists($keys[13], $arr)) $this->setEmail($arr[$keys[13]]);
+        if (array_key_exists($keys[14], $arr)) $this->setDescription($arr[$keys[14]]);
+        if (array_key_exists($keys[15], $arr)) $this->setType($arr[$keys[15]]);
+        if (array_key_exists($keys[16], $arr)) $this->setIsOpen($arr[$keys[16]]);
+        if (array_key_exists($keys[17], $arr)) $this->setNotifyHostess($arr[$keys[17]]);
+        if (array_key_exists($keys[18], $arr)) $this->setRsvpType($arr[$keys[18]]);
+        if (array_key_exists($keys[19], $arr)) $this->setPublicNote($arr[$keys[19]]);
+        if (array_key_exists($keys[20], $arr)) $this->setCreatedAt($arr[$keys[20]]);
+        if (array_key_exists($keys[21], $arr)) $this->setUpdatedAt($arr[$keys[21]]);
     }
 
     /**
@@ -1912,6 +2103,7 @@ abstract class BaseEvents extends BaseObject implements Persistent
         if ($this->isColumnModified(EventsPeer::CONSULTANTS_ID)) $criteria->add(EventsPeer::CONSULTANTS_ID, $this->consultants_id);
         if ($this->isColumnModified(EventsPeer::CUSTOMERS_ID)) $criteria->add(EventsPeer::CUSTOMERS_ID, $this->customers_id);
         if ($this->isColumnModified(EventsPeer::EVENT_DATE)) $criteria->add(EventsPeer::EVENT_DATE, $this->event_date);
+        if ($this->isColumnModified(EventsPeer::EVENT_END_TIME)) $criteria->add(EventsPeer::EVENT_END_TIME, $this->event_end_time);
         if ($this->isColumnModified(EventsPeer::HOST)) $criteria->add(EventsPeer::HOST, $this->host);
         if ($this->isColumnModified(EventsPeer::ADDRESS_LINE_1)) $criteria->add(EventsPeer::ADDRESS_LINE_1, $this->address_line_1);
         if ($this->isColumnModified(EventsPeer::ADDRESS_LINE_2)) $criteria->add(EventsPeer::ADDRESS_LINE_2, $this->address_line_2);
@@ -1923,6 +2115,8 @@ abstract class BaseEvents extends BaseObject implements Persistent
         if ($this->isColumnModified(EventsPeer::TYPE)) $criteria->add(EventsPeer::TYPE, $this->type);
         if ($this->isColumnModified(EventsPeer::IS_OPEN)) $criteria->add(EventsPeer::IS_OPEN, $this->is_open);
         if ($this->isColumnModified(EventsPeer::NOTIFY_HOSTESS)) $criteria->add(EventsPeer::NOTIFY_HOSTESS, $this->notify_hostess);
+        if ($this->isColumnModified(EventsPeer::RSVP_TYPE)) $criteria->add(EventsPeer::RSVP_TYPE, $this->rsvp_type);
+        if ($this->isColumnModified(EventsPeer::PUBLIC_NOTE)) $criteria->add(EventsPeer::PUBLIC_NOTE, $this->public_note);
         if ($this->isColumnModified(EventsPeer::CREATED_AT)) $criteria->add(EventsPeer::CREATED_AT, $this->created_at);
         if ($this->isColumnModified(EventsPeer::UPDATED_AT)) $criteria->add(EventsPeer::UPDATED_AT, $this->updated_at);
 
@@ -1993,6 +2187,7 @@ abstract class BaseEvents extends BaseObject implements Persistent
         $copyObj->setConsultantsId($this->getConsultantsId());
         $copyObj->setCustomersId($this->getCustomersId());
         $copyObj->setEventDate($this->getEventDate());
+        $copyObj->setEventEndTime($this->getEventEndTime());
         $copyObj->setHost($this->getHost());
         $copyObj->setAddressLine1($this->getAddressLine1());
         $copyObj->setAddressLine2($this->getAddressLine2());
@@ -2004,6 +2199,8 @@ abstract class BaseEvents extends BaseObject implements Persistent
         $copyObj->setType($this->getType());
         $copyObj->setIsOpen($this->getIsOpen());
         $copyObj->setNotifyHostess($this->getNotifyHostess());
+        $copyObj->setRsvpType($this->getRsvpType());
+        $copyObj->setPublicNote($this->getPublicNote());
         $copyObj->setCreatedAt($this->getCreatedAt());
         $copyObj->setUpdatedAt($this->getUpdatedAt());
 
@@ -2735,6 +2932,7 @@ abstract class BaseEvents extends BaseObject implements Persistent
         $this->consultants_id = null;
         $this->customers_id = null;
         $this->event_date = null;
+        $this->event_end_time = null;
         $this->host = null;
         $this->address_line_1 = null;
         $this->address_line_2 = null;
@@ -2746,6 +2944,8 @@ abstract class BaseEvents extends BaseObject implements Persistent
         $this->type = null;
         $this->is_open = null;
         $this->notify_hostess = null;
+        $this->rsvp_type = null;
+        $this->public_note = null;
         $this->created_at = null;
         $this->updated_at = null;
         $this->alreadyInSave = false;

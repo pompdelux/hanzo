@@ -1056,8 +1056,9 @@ abstract class BaseOrdersLinesQuery extends ModelCriteria
      */
     protected function basePreDelete(PropelPDO $con)
     {
-        // event behavior
         EventDispatcherProxy::trigger(array('delete.pre','query.delete.pre'), new QueryEvent($this));
+        // event behavior
+        // placeholder, issue #5
 
         return $this->preDelete($con);
     }

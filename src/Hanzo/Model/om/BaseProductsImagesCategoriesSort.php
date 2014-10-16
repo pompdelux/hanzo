@@ -392,11 +392,10 @@ abstract class BaseProductsImagesCategoriesSort extends BaseObject implements Pe
 
         $con->beginTransaction();
         try {
+            EventDispatcherProxy::trigger(array('delete.pre','model.delete.pre'), new ModelEvent($this));
             $deleteQuery = ProductsImagesCategoriesSortQuery::create()
                 ->filterByPrimaryKey($this->getPrimaryKey());
             $ret = $this->preDelete($con);
-            // event behavior
-            EventDispatcherProxy::trigger(array('delete.pre','model.delete.pre'), new ModelEvent($this));
             if ($ret) {
                 $deleteQuery->delete($con);
                 $this->postDelete($con);
