@@ -68,8 +68,9 @@ class EventsController extends CoreController
         $start = $request->query->get('start', null);
         $end   = $request->query->get('end', null);
 
-        $dateFilter['min'] =  gmdate("Y-m-d H:i:s", $start);
-        $dateFilter['max'] =  gmdate("Y-m-d H:i:s", $end);
+        $dateFilter['min'] = gmdate("Y-m-d H:i:s", $start);
+        $dateFilter['max'] = gmdate("Y-m-d H:i:s", $end);
+
         $events = EventsQuery::create()
             ->filterByEventDate($dateFilter)
             ->filterByConsultantsId($this->get('security.context')->getToken()->getUser()->getPrimaryKey())
@@ -164,13 +165,25 @@ class EventsController extends CoreController
         $form->get('event_date')->setData($event->getEventDate('m/d/Y H:i'));
 
         if ('POST' === $request->getMethod()) {
-
             $changed = !$event->isNew();
             if ($changed) {
                 $oldEvent = $event->copy();
             }
 
             $form->handleRequest($request);
+
+            if ('HUS' === $event->getType()) {
+                if ('' == $event->getEventEndTime()) {
+                    $form->get('event_end_time')->addError(new FormError($this->container->get('translator')->trans('events.missing.event_end_time', [], 'events')));
+                }
+                if ('' == $event->getRsvpType()) {
+                    $form->get('rsvp_type')->addError(new FormError($this->container->get('translator')->trans('events.missing.rsvp_type', [], 'events')));
+                }
+            } else {
+                $event->setEventEndTime(null);
+                $event->setRsvpType(null);
+                $event->setPublicNote(null);
+            }
 
             if ($form->isValid()) {
                 $consultant = CustomersPeer::getCurrent();
