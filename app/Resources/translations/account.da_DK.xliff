@@ -618,6 +618,12 @@ Herefter kan du nemt shoppe videre.</p><br>
                 <source>wishlist.remove.all.items</source>
                 <target>Ryd listen</target>
             </trans-unit>
+            <trans-unit id="wishlist.footer.description">
+                <source>wishlist.footer.description</source>
+                <target><![CDATA[
+                    <strong>HUSK!</strong> Vær opmærksom på, at du først har afgivet din ordre, når din Shopping Advisor har indlæst dit Shoppingliste nummer, og du har fået en odrebekræftelse. Varene på din Shoppingliste er ikke reserveret selvom de er tilføjet, så der kan opstå tilfælde, hvor en vare desværre er udsolgt.
+                ]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

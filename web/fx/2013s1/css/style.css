@@ -2,7 +2,7 @@
 | _sprites.
 */
 .da-sprite, body.da form.buy .submit-button, body.da .buy-set, body.da .new-price, body.da .out-of-stock, body.da .close-button, body.da .subscribe-button, body.da .create-wishlist {
-  background-image: url('/fx/2013s1/../images/icons/da-sc8b7ff7802.png');
+  background-image: url('/fx/2013s1/../images/icons/da-sc62e1a87a8.png');
   background-repeat: no-repeat;
 }
 
@@ -275,7 +275,7 @@
 }
 
 body.da form.buy .submit-button {
-  background-position: 0 -787px;
+  background-position: 0 -686px;
   height: 84px;
   width: 87px;
 }
@@ -285,12 +285,12 @@ body.da .buy-set {
   width: 87px;
 }
 body.da .new-price {
-  background-position: 0 -292px;
+  background-position: 0 -191px;
   height: 410px;
   width: 234px;
 }
 body.da .out-of-stock {
-  background-position: 0 -702px;
+  background-position: 0 -601px;
   height: 85px;
   width: 86px;
 }
@@ -300,14 +300,14 @@ body.da .close-button {
   width: 44px;
 }
 body.da .subscribe-button {
-  background-position: 0 -871px;
+  background-position: 0 -770px;
   height: 83px;
   width: 84px;
 }
 body.da .create-wishlist {
   background-position: 0 -148px;
-  height: 144px;
-  width: 340px;
+  height: 43px;
+  width: 200px;
 }
 
 body.de form.buy .submit-button {
@@ -3929,6 +3929,7 @@ aside.js-slider h3 span.open {
 
 .wishlist-info-block a.create-wishlist, .wishlist a.create-wishlist {
   margin: 10px auto;
+  display: block;
 }
 .wishlist-info-block ul, .wishlist ul {
   margin: 10px 5px 10px 20px;
@@ -4000,7 +4001,7 @@ aside.js-slider h3 span.open {
   padding-top: 10px;
   text-align: center;
   display: block;
-  width: 250px;
+  width: 200px;
   float: left;
 }
 #body-wishlist article .sprite {
@@ -4016,20 +4017,31 @@ aside.js-slider h3 span.open {
   margin: 5px;
 }
 #body-wishlist .list-number {
-  padding: 15px 0 15px 60px;
+  padding: 5px;
   margin-bottom: 15px;
-  font-weight: bold;
-  font-size: 1.4em;
+  text-transform: uppercase;
+  background-color: #eceaea;
 }
 #body-wishlist .list-number span {
-  padding: 3px 7px;
-  background-color: #d69495;
+  font-weight: bold;
+  text-decoration: underline;
 }
 #body-wishlist .list-number.last {
   margin-top: 20px;
 }
+#body-wishlist .list-number .icons-Hearticon {
+  padding: 15px 15px 15px 55px;
+}
 #body-wishlist .wishlist-target {
   border-bottom: 2px solid #c0c0c0;
+}
+#body-wishlist .wishlist-flush-list {
+  text-align: right;
+  margin-bottom: 10px;
+}
+#body-wishlist .footer {
+  border: 0;
+  margin-top: 10px;
 }
 
 /**

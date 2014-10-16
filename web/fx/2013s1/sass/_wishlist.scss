@@ -29,6 +29,7 @@ aside.js-slider {
 .wishlist-info-block, .wishlist {
     a.create-wishlist {
         margin: 10px auto;
+        display: block;
     }
 
     ul {
@@ -113,7 +114,7 @@ aside.js-slider {
             padding-top: 10px;
             text-align: center;
             display: block;
-            width: 250px;
+            width: 200px;
             float: left;
         }
 
@@ -134,22 +135,36 @@ aside.js-slider {
     }
 
     .list-number  {
-        padding: 15px 0 15px 60px;
+        padding: 5px;
         margin-bottom: 15px;
-        font-weight: bold;
-        font-size: 1.4em;
+        text-transform: uppercase;
+        background-color: #eceaea;
 
         span {
-            padding: 3px 7px;
-            background-color: rgb(214,148, 149);
+            font-weight: bold;
+            text-decoration: underline;
         }
 
         &.last {
             margin-top: 20px;
         }
+
+        .icons-Hearticon {
+            padding: 15px 15px 15px 55px;
+        }
     }
 
     .wishlist-target {
         border-bottom: 2px solid #c0c0c0;
+    }
+
+    .wishlist-flush-list {
+        text-align: right;
+        margin-bottom: 10px;
+    }
+
+    .footer {
+        border: 0;
+        margin-top: 10px;
     }
 }

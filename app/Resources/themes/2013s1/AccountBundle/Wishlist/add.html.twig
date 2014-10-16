@@ -39,8 +39,10 @@
         </form>
     </section>
 
-    <div class="grid_8 alpha omega list-number icons-Hearticon">
-        {{ 'wishlist.number'|trans({'%number%': wishlist_id}, 'account')|raw }}
+    <div class="grid_8 alpha omega list-number">
+        <div class="icons-Hearticon">
+            {{ 'wishlist.number'|trans({'%number%': wishlist_id}, 'account')|raw }}
+        </div>
     </div>
 
     <section class="grid_{% if is_mobile_layout %}8{% else %}4{% endif %} alpha omega js-wishlist-target wishlist-target">
@@ -65,14 +67,21 @@
         </article>
     {% endfor %}
 
-        <div class="right">
-            <a href="{{ path('_account_wishlist_remove_all') }}" class="js-wishlist-flush-list{% if products|length == 0 %} off{% endif %} js-confirm" data-confirm-message="Er du sikker på du vil fjerne alle produkter på listen ?">{{ 'wishlist.remove.all.items'|trans({}, 'account') }}</a>
-        </div>
     </section>
 
-    <div class="grid_8 alpha omega list-number icons-Hearticon last{% if products|length == 0 %} off{% endif %}">
-        {{ 'wishlist.number'|trans({'%number%': wishlist_id}, 'account')|raw }}
+    <div class="grid_8 alpha omega wishlist-flush-list">
+        <a href="{{ path('_account_wishlist_remove_all') }}" class="js-wishlist-flush-list{% if products|length == 0 %} off{% endif %} js-confirm" data-confirm-message="Er du sikker på du vil fjerne alle produkter på listen ?">{{ 'wishlist.remove.all.items'|trans({}, 'account') }}</a>
     </div>
+
+    <div class="grid_8 alpha omega list-number last{% if products|length == 0 %} off{% endif %}">
+        <div class="icons-Hearticon">
+            {{ 'wishlist.number'|trans({'%number%': wishlist_id}, 'account')|raw }}
+        </div>
+    </div>
+
+    <article class="footer">
+        {{ 'wishlist.footer.description'|trans({}, 'account')|raw }}
+    </article>
 
 <script type="text/html" id="wishlistItemTpl">
     <article
