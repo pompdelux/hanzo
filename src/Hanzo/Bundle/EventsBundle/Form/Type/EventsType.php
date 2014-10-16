@@ -65,7 +65,7 @@ class EventsType extends AbstractType
                 'label'    => 'events.rsvp_type.label',
                 'required' => false,
                 'empty_value' => 'events.choose.rsvp_type'
-                ])->add('public_note', 'textarea', [
+            ])->add('public_note', 'textarea', [
                 'label'    => 'events.public_note.label',
                 'required' => false
             ])->add('notify_hostess', 'checkbox', [
