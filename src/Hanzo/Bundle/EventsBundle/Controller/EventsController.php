@@ -4,9 +4,6 @@ namespace Hanzo\Bundle\EventsBundle\Controller;
 
 use Hanzo\Bundle\EventsBundle\Form\Type\EventsType;
 use Hanzo\Bundle\EventsBundle\Helpers\EventHostess;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Symfony\Component\HttpFoundation\Request;
-
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\CoreController;
 use Hanzo\Model\EventsQuery;
@@ -20,50 +17,65 @@ use Hanzo\Model\AddressesPeer;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\OrdersLinesQuery;
+use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
+use Symfony\Component\Form\FormError;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Class EventsController
+ *
+ * @package Hanzo\Bundle\EventsBundle
+ */
 class EventsController extends CoreController
 {
-    public function indexAction()
+    /**
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function indexAction(Request $request)
     {
-        $hanzo = Hanzo::getInstance();
-        if (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') && false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
-            return $this->redirect($this->generateUrl('login', ['_locale' => $hanzo->get('core.locale')]));
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_CONSULTANT") or hasRole("ROLE_ADMIN")'))) {
+            return $this->redirect($this->generateUrl('login', ['_locale' => $request->getLocale()]));
         }
 
-        $date_filter['max'] = date('Y-m-d H:i:s');
-        $archived_events = EventsQuery::create()
-            ->filterByEventDate($date_filter)
+        $dateFilter['max'] = date('Y-m-d H:i:s');
+        $archivedEvents = EventsQuery::create()
+            ->filterByEventDate($dateFilter)
             ->filterByConsultantsId($this->get('security.context')->getToken()->getUser()->getPrimaryKey())
             ->orderByEventDate('DESC')
-            ->find()
-        ;
+            ->find();
 
-        return $this->render('EventsBundle:Events:index.html.twig', array(
-            'page_type' => 'calendar',
-            'archived_events' => $archived_events
-        ));
+        return $this->render('EventsBundle:Events:index.html.twig', [
+            'page_type'       => 'calendar',
+            'archived_events' => $archivedEvents
+        ]);
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function getEventsAction(Request $request)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') &&
-            false === $this->get('security.context')->isGranted('ROLE_ADMIN')
-        ) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_CONSULTANT") or hasRole("ROLE_ADMIN")'))) {
             throw new AccessDeniedException();
         }
 
         $start = $request->query->get('start', null);
         $end   = $request->query->get('end', null);
 
-        $date_filter['min'] =  gmdate("Y-m-d H:i:s", $start);
-        $date_filter['max'] =  gmdate("Y-m-d H:i:s", $end);
+        $dateFilter['min'] =  gmdate("Y-m-d H:i:s", $start);
+        $dateFilter['max'] =  gmdate("Y-m-d H:i:s", $end);
         $events = EventsQuery::create()
-            ->filterByEventDate($date_filter)
+            ->filterByEventDate($dateFilter)
             ->filterByConsultantsId($this->get('security.context')->getToken()->getUser()->getPrimaryKey())
-            ->find()
-        ;
+            ->find();
 
-        $events_array = array();
+        $eventsArray = [];
 
         foreach ($events as $event) {
 
@@ -75,48 +87,61 @@ class EventsController extends CoreController
                 }
             }
 
-            $events_array[] = array(
-                'id' => $event->getId(),
-                'title' => $event->getCode(),
-                'allDay' => false,
-                'start' => $event->getEventDate('c'),
-                'url' => $this->get('router')->generate('events_view', array('id' => $event->getId())),
+            $eventsArray[] = [
+                'id'        => $event->getId(),
+                'title'     => $event->getCode(),
+                'allDay'    => false,
+                'start'     => $event->getEventDate('c'),
+                'url'       => $this->get('router')->generate('events_view', ['id' => $event->getId()]),
                 'className' => $event->getType(),
-                'editable' => false,
-                'color' => $color,
-            );
+                'editable'  => false,
+                'color'     => $color,
+            ];
         }
 
         // Returns directly to the fullCalendar jQuery plugin
         if ($this->getFormat() == 'json') {
-            return $this->json_response($events_array);
+            return $this->json_response($eventsArray);
         }
     }
 
-    public function viewAction($id)
+    /**
+     * @param Request $request
+     * @param int     $id
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
+     */
+    public function viewAction(Request $request, $id)
     {
-        $hanzo = Hanzo::getInstance();
-        if (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') && false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
-            return $this->redirect($this->generateUrl('login', ['_locale' => $hanzo->get('core.locale')]));
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_CONSULTANT") or hasRole("ROLE_ADMIN")'))) {
+            return $this->redirect($this->generateUrl('login', ['_locale' => $request->getLocale()]));
         }
 
         $event = EventsQuery::create()->findPK($id);
 
-        $events_participants = EventsParticipantsQuery::create()->findByEventsId($event->getId());
+        $eventsParticipants = EventsParticipantsQuery::create()->findByEventsId($event->getId());
 
-        return $this->render('EventsBundle:Events:view.html.twig', array(
-            'page_type' => 'calendar',
-            'event' => $event,
-            'participants'  => $events_participants,
-            'id'    => $id
-        ));
+        return $this->render('EventsBundle:Events:view.html.twig', [
+            'page_type'    => 'calendar',
+            'event'        => $event,
+            'participants' => $eventsParticipants,
+            'id'           => $id
+        ]);
     }
 
+    /**
+     * @param Request $request
+     * @param int     $id
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
+     * @throws \PropelException
+     */
     public function createAction(Request $request, $id)
     {
-        $hanzo = Hanzo::getInstance();
-        if (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') && false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
-            return $this->redirect($this->generateUrl('login', ['_locale' => $hanzo->get('core.locale')]));
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_CONSULTANT") or hasRole("ROLE_ADMIN")'))) {
+            return $this->redirect($this->generateUrl('login', ['_locale' => $request->getLocale()]));
         }
 
         $hanzo = Hanzo::getInstance();
@@ -165,7 +190,7 @@ class EventsController extends CoreController
                 $event->setConsultantsId($consultant->getId());
 
                 // Its a new event. generate a key to send out to host
-                if (!$changed){
+                if (!$changed) {
                     $event->setKey(sha1(time()));
                 }
 
@@ -192,7 +217,7 @@ class EventsController extends CoreController
                         $mailer->sendChangeHostessEmail($oldEvent);
                         $mailer->sendParticipantEventChangesEmail();
                     } else {
-                        $oldDate = new \DateTime($oldEvent->getEventDate(null));
+                        $oldDate = new \DateTime($oldEvent->getEventDate());
                         $mailer->sendDateChangedHostessEmail($oldDate);
                         $mailer->sendDateChangedParticipantEmail($oldDate);
                     }
@@ -201,22 +226,26 @@ class EventsController extends CoreController
                 }
 
                 $this->get('session')->getFlashBag()->add('notice', 'events.created');
+
                 return $this->redirect($this->generateUrl('events_index'));
             }
         }
 
-        return $this->render('EventsBundle:Events:create.html.twig', array(
+        return $this->render('EventsBundle:Events:create.html.twig', [
             'page_type' => 'calendar',
             'form'      => $form->createView(),
             'id'        => $id
-        ));
+        ]);
     }
 
+    /**
+     * @param string $email
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function getCustomerAction($email)
     {
-        if ((false === $this->get('security.context')->isGranted('ROLE_CONSULTANT')) &&
-            (false === $this->get('security.context')->isGranted('ROLE_ADMIN'))
-        ) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_CONSULTANT") or hasRole("ROLE_ADMIN")'))) {
             throw new AccessDeniedException();
         }
 
@@ -228,34 +257,41 @@ class EventsController extends CoreController
             $address = $customer->getAddressess()->getFirst();
 
             if ($this->getFormat() == 'json') {
-                return $this->json_response(array(
-                    'status' => true,
-                    'message' => $this->get('translator')->trans('events.customer.found', array(), 'events'),
-                    'data' => array(
+                return $this->json_response([
+                    'status'  => true,
+                    'message' => $this->get('translator')->trans('events.customer.found', [], 'events'),
+                    'data'    => [
                         'id' => $customer->getId(),
-                        'name' => $customer->getFirstName().' '.$customer->getLastName(),
-                        'phone' => $customer->getPhone(),
-                        'email' => $customer->getEmail(),
+                        'name'    => $customer->getFirstName() . ' ' . $customer->getLastName(),
+                        'phone'   => $customer->getPhone(),
+                        'email'   => $customer->getEmail(),
                         'address' => $address->getAddressLine1(),
-                        'zip' => $address->getPostalCode(),
-                        'city' => $address->getCity()
-                    )
-                ));
+                        'zip'     => $address->getPostalCode(),
+                        'city'    => $address->getCity()
+                    ]
+                ]);
             }
         }
 
         if ($this->getFormat() == 'json') {
-            return $this->json_response(array(
-                'status' => false,
-                'message' => $this->get('translator')->trans('events.customer.notfound', array(), 'events')
-            ));
+            return $this->json_response([
+                'status'  => false,
+                'message' => $this->get('translator')->trans('events.customer.notfound', [], 'events')
+            ]);
         }
     }
 
-
-    public function closeAction($id)
+    /**
+     * @param Request $request
+     * @param int     $id
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws \Exception
+     * @throws \PropelException
+     */
+    public function closeAction(Request $request, $id)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') && false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_CONSULTANT") or hasRole("ROLE_ADMIN")'))) {
             throw new AccessDeniedException();
         }
 
@@ -265,25 +301,32 @@ class EventsController extends CoreController
             $event->save();
         }
 
-        $this->getRequest()->getSession()->getFlashBag()->add('notice', $this->get('translator')->trans('event.closed', array(), 'events'));
+        $request->getSession()->getFlashBag()->add('notice', $this->get('translator')->trans('event.closed', [], 'events'));
+
         return $this->redirect($this->generateUrl('events_index'));
     }
 
-
+    /**
+     * @param Request $request
+     * @param int     $id
+     *
+     * @throws \Exception
+     * @throws \PropelException
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function deleteAction(Request $request, $id)
     {
-        if ((false === $this->container->get('security.context')->isGranted('ROLE_CONSULTANT')) &&
-            (false === $this->container->get('security.context')->isGranted('ROLE_ADMIN'))
-        ) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_CONSULTANT") or hasRole("ROLE_ADMIN")'))) {
             throw new AccessDeniedException();
         }
 
         $event = EventsQuery::create()->findPK($id);
-        if ($event instanceof Events){
+        if ($event instanceof Events) {
 
             // no deleting old events
             if ($event->getEventDate('U') < time()) {
                 $request->getSession()->getFlashBag()->add('notice', 'event.too.old.to.delete');
+
                 return $this->redirect($this->generateUrl('events_index'));
             }
 
@@ -291,8 +334,7 @@ class EventsController extends CoreController
             // Send some emails for the host and participants
             $participants = EventsParticipantsQuery::create()
                 ->filterByEventsId($event->getId())
-                ->find()
-            ;
+                ->find();
 
             // Now send out some emails!
             $mailer = $this->get('hanzo.event.mailer');
@@ -311,13 +353,14 @@ class EventsController extends CoreController
         }
 
         if ($this->getFormat() == 'json') {
-            return $this->json_response(array(
+            return $this->json_response([
                 'status' => true,
-                'message' => $this->container->get('translator')->trans('events.delete.success', array(), 'events')
-            ));
+                'message' => $this->container->get('translator')->trans('events.delete.success', [], 'events')
+            ]);
         }
 
         $request->getSession()->getFlashBag()->add('notice', 'events.delete.success');
+
         return $this->redirect($this->generateUrl('events_index'));
     }
 
@@ -331,10 +374,9 @@ class EventsController extends CoreController
     {
         $customer = CustomersPeer::getCurrent();
         $event    = EventsQuery::create()
-            ->filterByEventDate(array('min' => date('Y-m-d H:i:s')))
+            ->filterByEventDate(['min' => date('Y-m-d H:i:s')])
             ->filterByCustomersId($customer->getId())
-            ->findOneByKey($key)
-        ;
+            ->findOneByKey($key);
 
         $eventsParticipant = null;
         $form              = null;
@@ -352,7 +394,7 @@ class EventsController extends CoreController
                         ->findByEmail($eventsParticipant->getEmail());
 
                     if ($res->count()) {
-                        $error = new FormError($this->container->get('translator')->trans('event.email.exists', array(), 'events'));
+                        $error = new FormError($this->container->get('translator')->trans('event.email.exists', [], 'events'));
                         $form->addError($error);
                     }
                 }
@@ -381,18 +423,18 @@ class EventsController extends CoreController
             $eventsParticipant = EventsParticipantsQuery::create()->findByEventsId($event->getId());
         }
 
-        return $this->render('EventsBundle:Events:invite.html.twig', array(
+        return $this->render('EventsBundle:Events:invite.html.twig', [
             'page_type'    => 'event',
             'key'          => $key,
             'event'        => $event,
             'form'         => $form,
             'participants' => $eventsParticipant
-        ));
+        ]);
     }
 
     /**
-     * @param  Request $request
-     * @param  string  $key
+     * @param Request $request
+     * @param string  $key
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -403,15 +445,14 @@ class EventsController extends CoreController
 
         if ($eventParticipant instanceof EventsParticipants) {
             $event = EventsQuery::create()
-                ->filterByEventDate(array('min' => date('Y-m-d H:i:s')))
-                ->findOneById($eventParticipant->getEventsId())
-            ;
+                ->filterByEventDate(['min' => date('Y-m-d H:i:s')])
+                ->findOneById($eventParticipant->getEventsId());
         }
 
         $formRsvp = null;
         $formTellAFriend = null;
 
-        if ($eventParticipant instanceof EventsParticipants && $event instanceof Events){
+        if ($eventParticipant instanceof EventsParticipants && $event instanceof Events) {
             if (true === $eventParticipant->getTellAFriend()) {
                 $formTellAFriend = $this->createForm('events_tell_a_friend')->createView();
             }
@@ -419,11 +460,11 @@ class EventsController extends CoreController
             $formRsvp = $this->createForm('events_rsvp', $eventParticipant);
 
             if ($this->container->get('sms_manager')->isEventRemindersEnabled()) {
-                $formRsvp->add('notify_by_sms', 'checkbox', array(
+                $formRsvp->add('notify_by_sms', 'checkbox', [
                     'label'              => 'events.participants.notify_by_sms.label',
                     'translation_domain' => 'events',
                     'required'           => false
-                ));
+                ]);
             }
 
             if ('POST' === $request->getMethod()) {
@@ -441,13 +482,13 @@ class EventsController extends CoreController
             $formRsvp = $formRsvp->createView();
         }
 
-        return $this->render('EventsBundle:Events:rsvp.html.twig', array(
+        return $this->render('EventsBundle:Events:rsvp.html.twig', [
             'page_type'          => 'event',
             'key'                => $key,
             'event'              => $event,
             'form_rsvp'          => $formRsvp,
             'form_tell_a_friend' => $formTellAFriend
-        ));
+        ]);
     }
 
     /**
@@ -460,13 +501,11 @@ class EventsController extends CoreController
     {
         $friend = EventsParticipantsQuery::create()
             ->filterByTellAFriend(true)
-            ->findOneByKey($key)
-        ;
+            ->findOneByKey($key);
 
         if ($friend instanceof EventsParticipants) {
             $event = EventsQuery::create()
-                ->findOneById($friend->getEventsId())
-            ;
+                ->findOneById($friend->getEventsId());
 
             $eventParticipant = new EventsParticipants();
             $form = $this->createForm('events_tell_a_friend', $eventParticipant);
@@ -492,13 +531,15 @@ class EventsController extends CoreController
                     $friend->save();
 
                     $this->get('session')->getFlashBag()->add('notice', 'events.participant.invited');
-                    return $this->redirect($this->generateUrl('events_rsvp', array('key' => $key)));
+
+                    return $this->redirect($this->generateUrl('events_rsvp', ['key' => $key]));
                 }
             }
         }
 
         $this->get('session')->getFlashBag()->add('notice', 'events.participant.invite.failed');
-        return $this->redirect($this->generateUrl('events_rsvp', array('key' => $key)));
+
+        return $this->redirect($this->generateUrl('events_rsvp', ['key' => $key]));
     }
 
     /**
@@ -508,21 +549,22 @@ class EventsController extends CoreController
     {
         $customer = CustomersPeer::getCurrent();
         $events = EventsQuery::create()
-            ->filterByEventDate(array('min' => date('Y-m-d H:i:s')))
+            ->filterByEventDate(['min' => date('Y-m-d H:i:s')])
             ->filterByCustomersId($customer->getId())
             ->filterByIsOpen(true)
-            ->find()
-        ;
+            ->find();
 
-        return $this->render('EventsBundle:Events:list.html.twig', array(
+        return $this->render('EventsBundle:Events:list.html.twig', [
             'events' => $events,
-        ));
+        ]);
     }
 
     /**
      * @param int $event_id
      * @param int $participant_id
      *
+     * @throws \Exception
+     * @throws \PropelException
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function removeParticipantAction($event_id, $participant_id)
@@ -531,13 +573,12 @@ class EventsController extends CoreController
             ->filterByEventsId($event_id)
             ->filterById($participant_id)
             ->findOne()
-            ->delete()
-        ;
+            ->delete();
 
-        return $this->json_response(array(
+        return $this->json_response([
             'status'  => true,
             'message' => ''
-        ));
+        ]);
     }
 
     /**
@@ -550,19 +591,21 @@ class EventsController extends CoreController
             ->filterByConsultantsId($customer->getId())
             ->orderByEventDate(\Criteria::ASC)
             ->filterByIsOpen(true)
-            ->find()
-        ;
+            ->find();
 
-        return $this->render('EventsBundle:Events:selectEvent.html.twig', array(
+        return $this->render('EventsBundle:Events:selectEvent.html.twig', [
             'events'            => $events,
             'continue_shopping' => $this->get('router')->generate('QuickOrderBundle_homepage'),
             'disable_discounts' => (bool) Hanzo::getInstance()->get('webshop.disable_discounts', 0),
-        ));
+        ]);
     }
 
     /**
      * @param Request $request
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws \Exception
+     * @throws \PropelException
      */
     public function setOrderTypeAction(Request $request)
     {
@@ -576,7 +619,7 @@ class EventsController extends CoreController
             $order->clearBillingAddress();
             $order->clearDeliveryAddress();
 
-            Propel::setForceMasterConnection(TRUE);
+            \Propel::setForceMasterConnection(true);
 
             // remove any discount lines if changing event
             OrdersLinesQuery::create()
@@ -595,7 +638,7 @@ class EventsController extends CoreController
             if ($id == 'x') {
                 $order->setAttribute('type', 'purchase', $code);
 
-                if (in_array($code, array('private'))) {
+                if (in_array($code, ['private'])) {
                     $goto = '_checkout';
                 }
             } else {
@@ -618,19 +661,20 @@ class EventsController extends CoreController
 
     /**
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     *
+     * @return Response
      */
     public function myEventsAction(Request $request)
     {
         $customer = CustomersPeer::getCurrent();
         $events   = EventsQuery::create()
             ->joinCustomersRelatedByConsultantsId()
-            ->filterByEventDate(array('min' => date('Y-m-d H:i:s')))
+            ->filterByEventDate(['min' => date('Y-m-d H:i:s')])
             ->filterByCustomersId($customer->getId())
             ->orderByEventDate()
-            ->find()
-        ;
-        $myEvents = array();
+            ->find();
+
+        $myEvents = [];
 
         // Generate forms and form views for all events,
         // store them and the event data in the master events array myEvents.
@@ -643,10 +687,10 @@ class EventsController extends CoreController
             $participant = new EventsParticipants();
             $participant->setEventsId($event->getId());
 
-            $myEvents[$event->getId()] = array(
+            $myEvents[$event->getId()] = [
                 'data' => $event,
                 'form' => $this->createForm('events_participant', $participant)->createView(),
-            );
+            ];
         }
 
         if ('POST' === $request->getMethod()) {
@@ -666,6 +710,7 @@ class EventsController extends CoreController
 
                 if ($eventParticipant instanceof EventsParticipants) {
                     $this->container->get('session')->getFlashBag()->add('notice', 'events.participant.exists');
+
                     return $this->redirect($this->generateUrl('events_my_events'));
                 }
 
@@ -688,6 +733,7 @@ class EventsController extends CoreController
                 }
 
                 $this->get('session')->getFlashBag()->add('notice', 'events.participant.invited');
+
                 return $this->redirect($this->generateUrl('events_my_events'));
             }
         }
@@ -697,9 +743,9 @@ class EventsController extends CoreController
             $myEvents[$event->getId()]['participants'] = EventsParticipantsQuery::create()->findByEventsId($event->getId());
         }
 
-        return $this->render('EventsBundle:Events:myEvents.html.twig', array(
+        return $this->render('EventsBundle:Events:myEvents.html.twig', [
             'page_type' => 'event',
             'events'    => $myEvents
-        ));
+        ]);
     }
 }
