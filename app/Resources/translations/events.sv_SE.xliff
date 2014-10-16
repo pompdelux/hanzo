@@ -447,6 +447,42 @@
                 <source>events.hostess.header.text</source>
                 <target>Kundupplysningar</target>
             </trans-unit>
+            <trans-unit id="events.missing.event_end_time" approved="no">
+                <source>events.missing.event_end_time</source>
+                <target>Du skal udfylde slut tidspunktet for åbenhus arrangementer.</target>
+            </trans-unit>
+            <trans-unit id="events.missing.rsvp_type" approved="no">
+                <source>events.missing.rsvp_type</source>
+                <target>Vælg svar type</target>
+            </trans-unit>
+            <trans-unit id="events.event_end_time.label" approved="no">
+                <source>events.event_end_time.label</source>
+                <target>Stoptidspunkt</target>
+            </trans-unit>
+            <trans-unit id="events.rsvp_type.label" approved="no">
+                <source>events.rsvp_type.label</source>
+                <target>Svar type</target>
+            </trans-unit>
+            <trans-unit id="events.rsvp_type.choice.need_to" approved="no">
+                <source>events.rsvp_type.choice.need_to</source>
+                <target>Tilmelding nødvendig</target>
+            </trans-unit>
+            <trans-unit id="events.rsvp_type.choice.nice_to" approved="no">
+                <source>events.rsvp_type.choice.nice_to</source>
+                <target>Tilmelding ikke nødvendig</target>
+            </trans-unit>
+            <trans-unit id="events.rsvp_type.choice.sms_email" approved="no">
+                <source>events.rsvp_type.choice.sms_email</source>
+                <target>Tilmelding gerne per mail eller sms</target>
+            </trans-unit>
+            <trans-unit id="events.public_note.label" approved="no">
+                <source>events.public_note.label</source>
+                <target>Valg fri tekst</target>
+            </trans-unit>
+            <trans-unit id="events.choose.rsvp_type" approved="no">
+                <source>events.choose.rsvp_type</source>
+                <target>Vælg tilmeldings type</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
