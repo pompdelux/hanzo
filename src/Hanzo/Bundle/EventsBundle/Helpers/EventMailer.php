@@ -18,6 +18,11 @@ use Hanzo\Model\EventsParticipants;
 use Hanzo\Model\EventsParticipantsQuery;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 
+/**
+ * Class EventMailer
+ *
+ * @package Hanzo\Bundle\EventsBundle
+ */
 class EventMailer
 {
     /**
@@ -77,11 +82,12 @@ class EventMailer
      */
     public function sendHostessEmail()
     {
-        if ($this->event->getNotifyHostess()){
+        if ($this->event->getNotifyHostess()) {
             // Send an email to the new Host
             $this->mailer->setMessage('events.hostess.create', [
                 'event_date'       => $this->event->getEventDate('d/m'),
                 'event_time'       => $this->event->getEventDate('H:i'),
+                'name'          => $this->event->getHost(),
                 'to_name'          => $this->event->getHost(),
                 'address'          => $this->event->getAddressLine1(). ' ' .$this->event->getAddressLine2(),
                 'zip'              => $this->event->getPostalCode(),
@@ -102,6 +108,10 @@ class EventMailer
 
     /**
      * Send event moved emails to hostess.
+     *
+     * @param Events $oldEvent
+     *
+     * @throws \PropelException
      */
     public function sendChangeHostessEmail(Events $oldEvent)
     {
@@ -167,8 +177,7 @@ class EventMailer
         // Find all participants.
         $participants = EventsParticipantsQuery::create()
             ->filterByEventsId($this->event->getId())
-            ->find()
-        ;
+            ->find();
 
         // Send an email to all participants
         foreach ($participants as $participant) {
@@ -238,7 +247,7 @@ class EventMailer
      */
     public function sendHostessDeletedEventEmail()
     {
-        $this->mailer->setMessage('events.hostess.delete', array(
+        $this->mailer->setMessage('events.hostess.delete', [
             'event_date'       => $this->event->getEventDate('d/m'),
             'event_time'       => $this->event->getEventDate('H:i'),
             'to_name'          => $this->event->getHost(),
@@ -247,10 +256,10 @@ class EventMailer
             'city'             => $this->event->getCity(),
             'consultant_name'  => $this->consultant->getFirstName(). ' ' .$this->consultant->getLastName(),
             'consultant_email' => $this->consultant->getEmail()
-        ));
+        ]);
 
-        $this->mailer->setTo(array($this->event->getEmail() => $this->event->getHost()));
-        $this->mailer->setFrom(array($this->consultant->getEmail() => $this->consultant->getFirstName(). ' ' .$this->consultant->getLastName()));
+        $this->mailer->setTo([$this->event->getEmail() => $this->event->getHost()]);
+        $this->mailer->setFrom([$this->consultant->getEmail() => $this->consultant->getFirstName(). ' ' .$this->consultant->getLastName()]);
         $this->mailer->send();
     }
 
@@ -261,7 +270,7 @@ class EventMailer
      */
     public function sendParticipantDeletedEventEmail(EventsParticipants $participant)
     {
-        $this->mailer->setMessage('events.participants.delete', array(
+        $this->mailer->setMessage('events.participants.delete', [
             'event_date'    => $this->event->getEventDate('d/m'),
             'event_time'    => $this->event->getEventDate('H:i'),
             'to_name'       => $participant->getFirstName(),
@@ -270,7 +279,7 @@ class EventMailer
             'city'          => $this->event->getCity(),
             'hostess'       => $this->event->getHost(),
             'hostess_email' => $this->event->getEmail()
-        ));
+        ]);
 
         $this->mailer->setTo($participant->getEmail(), $participant->getFirstName(). ' ' .$participant->getLastName());
         $this->mailer->setFrom(['events@pompdelux.com' => $this->event->getHost() . ' (via POMPdeLUX)']);
@@ -279,6 +288,11 @@ class EventMailer
         $this->mailer->send();
     }
 
+    /**
+     * @param \DateTime $oldDate
+     *
+     * @throws \PropelException
+     */
     public function sendDateChangedHostessEmail(\DateTime $oldDate)
     {
         $this->mailer->setMessage('events.hostess.event_date_changed', [
@@ -303,13 +317,17 @@ class EventMailer
         $this->mailer->send();
     }
 
+    /**
+     * @param \DateTime $oldDate
+     *
+     * @throws \PropelException
+     */
     public function sendDateChangedParticipantEmail(\DateTime $oldDate)
     {
         // Find all participants.
         $participants = EventsParticipantsQuery::create()
             ->filterByEventsId($this->event->getId())
-            ->find()
-        ;
+            ->find();
 
         // Send an email to all participants
         foreach ($participants as $participant) {
