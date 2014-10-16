@@ -16,6 +16,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * Class EventsType
+ *
  * @package Hanzo\Bundle\EventsBundle\Form\Type
  */
 class EventsType extends AbstractType
@@ -28,8 +29,12 @@ class EventsType extends AbstractType
     {
         $builder->add('customers_id', 'hidden')
             ->add('event_date', 'text', [
-                'attr' => array('class' => 'datetimepicker'),
+                'attr'  => ['class' => 'datetimepicker'],
                 'label' => 'events.event_date.label',
+            ])->add('event_end_time', 'text', [
+                'attr'     => ['class' => 'datetimepicker'],
+                'label'    => 'events.event_end_time.label',
+                'required' => false,
             ])->add('host', 'text', [
                 'label' => 'events.host.label',
             ])->add('address_line_1', 'text', [
@@ -43,16 +48,28 @@ class EventsType extends AbstractType
             ])->add('email', 'text', [
                 'label' => 'events.email.label',
             ])->add('description', 'textarea', [
-                'label' => 'events.description.label',
+                'label'    => 'events.description.label',
                 'required' => false
             ])->add('type', 'choice', [
                 'choices' => [
-                    'AR' => 'events.type.choice.ar',
+                    'AR'  => 'events.type.choice.ar',
                     'HUS' => 'events.type.choice.hus',
                 ],
                 'label' => 'events.type.label',
+            ])->add('rsvp_type', 'choice', [
+                'choices' => [
+                    1 => 'events.rsvp_type.choice.need_to',
+                    2 => 'events.rsvp_type.choice.nice_to',
+                    3 => 'events.rsvp_type.choice.sms_email',
+                ],
+                'label'    => 'events.rsvp_type.label',
+                'required' => false,
+                'empty_value' => 'events.choose.rsvp_type'
+                ])->add('public_note', 'textarea', [
+                'label'    => 'events.public_note.label',
+                'required' => false
             ])->add('notify_hostess', 'checkbox', [
-                'label' => 'events.notify_hostess.label',
+                'label'    => 'events.notify_hostess.label',
                 'required' => false
             ]);
     }
@@ -62,10 +79,10 @@ class EventsType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'translation_domain' => 'events',
             'data_class'         => 'Hanzo\Model\Events',
-        ));
+        ]);
     }
 
     /**
