@@ -255,10 +255,8 @@ class CMSRouterLoader implements LoaderInterface
 
                 case 'advisor_map':
                 case 'advisor_open_house':
-                    $method = lcfirst(str_replace(' ', '', trim(ucwords(str_replace(['advisor', '_'], ' ', $type)))));
-
                     $route = new Route("/".$path, [
-                            '_controller'   => "EventBundle:Advisor:{$method}",
+                            '_controller'   => "EventsBundle:Advisor:render",
                             'id'            => $id,
                             'ip_restricted' => $isRestricted,
                         ], [
