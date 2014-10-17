@@ -3,7 +3,9 @@
 namespace Hanzo\Bundle\EventsBundle\Controller;
 
 use Hanzo\Core\CoreController;
-use Symfony\Component\HttpFoundation\Request;
+use Hanzo\Core\Tools;
+use Hanzo\Model\CmsI18n;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -14,22 +16,34 @@ use Symfony\Component\HttpFoundation\Response;
 class AdvisorController extends CoreController
 {
     /**
-     * @param Request $request
+     * @param CmsI18n $page
      *
      * @return Response
+     *
+     * @ParamConverter("page", class="Hanzo\model\CmsI18n", options={"with"={"Cms"}})
      */
-    public function openHouseAction(Request $request)
+    public function renderAction(CmsI18n $page)
     {
-        return $this->render('EventsBundle:Advisor:openHouse.html.twig');
-    }
+        $cms = $page->getCms();
+        $tpl = $type = $cms->getType();
 
-    /**
-     * @param Request $request
-     *
-     * @return Response
-     */
-    public function mapAction(Request $request)
-    {
-        return $this->render('EventsBundle:Advisor:map.html.twig');
+        if ('advisor_finder' == $tpl) {
+            $tpl = 'advisor_open_house';
+        }
+
+        $tpl  = str_replace('advisor_', 'EventsBundle:Advisor:', $tpl) . '.html.twig';
+
+        // supported $settings = [
+        //   'show_all' => 1,
+        //   'country'  => 'xxx'
+        // ]
+Tools::log($page->getSettings(false));
+        return $this->render('CMSBundle:Default:view.html.twig', [
+            'page_type'        => $type,
+            'page'             => $page,
+            'embedded_content' => $this->renderView($tpl, (array) $page->getSettings(false)),
+            'parent_id'        => $cms->getParentId() ?: $page->getId(),
+            'browser_title'    => $page->getTitle(),
+        ]);
     }
 }

@@ -64,14 +64,15 @@ class CmsController extends CoreController
     }
 
     /**
-     * @param int    $id
-     * @param string $locale
+     * @param Request $request
+     * @param int     $id
+     * @param string  $locale
      *
-     * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Exception
      * @throws \PropelException
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function deleteAction($id, $locale)
+    public function deleteAction(Request $request, $id, $locale)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
@@ -98,10 +99,14 @@ class CmsController extends CoreController
 
         if ($this->getFormat() == 'json') {
             return $this->json_response([
-                'status' => true,
+                'status'  => true,
                 'message' => $this->get('translator')->trans('delete.node.success', [], 'admin'),
             ]);
         }
+
+        $request->getSession()->getFlashBag()->add('notice', $this->get('translator')->trans('delete.node.success', [], 'admin'));
+
+        return $this->redirect($this->generateUrl('admin_cms'));
     }
 
     /**
@@ -212,6 +217,9 @@ class CmsController extends CoreController
                     case 'frontpage':
                         $node->setType('frontpage');
                         $settings['is_frontpage'] = true;
+                        break;
+                    case 'advisor_map':
+                        $settings['country'] = 'Denmark';
                         break;
                 }
 
@@ -917,6 +925,7 @@ class CmsController extends CoreController
             'bycolour'           => 'cms.edit.type.bycolour',
             'look'               => 'cms.edit.type.look',
             'heading'            => 'cms.edit.type.heading',
+            'advisor_finder'     => 'Find konsulent',
             'advisor_map'        => 'Konsulenter på kort',
             'advisor_open_house' => 'Åbenthus arrangementer',
         ];

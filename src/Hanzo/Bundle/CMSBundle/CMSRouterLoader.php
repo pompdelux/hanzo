@@ -253,6 +253,7 @@ class CMSRouterLoader implements LoaderInterface
 
                     break;
 
+                case 'advisor_finder':
                 case 'advisor_map':
                 case 'advisor_open_house':
                     $route = new Route("/".$path, [

@@ -76,8 +76,8 @@ class MapsExtension extends Twig_Extension
     public function zip_code_form(Twig_Environment $env, $type = 'near', $country = 'Denmark')
     {
         return $env->render('CMSBundle:Twig:zip_form.html.twig', [
-                'type'    => $type,
-                'country' => $country
+            'type'    => $type,
+            'country' => $country
         ]);
     }
 
@@ -102,14 +102,16 @@ class MapsExtension extends Twig_Extension
     /**
      * @param Twig_Environment $env
      * @param string           $type
+     * @param string           $all
      *
      * @return string
      */
-    public function consultants_near_you(Twig_Environment $env, $type = 'near')
+    public function consultants_near_you(Twig_Environment $env, $type = 'near', $all = 'false')
     {
         $result = $this->maxmind->lookup();
 
         return $env->render('CMSBundle:Twig:consultants_near_you.html.twig', [
+            'all'  => $all,
             'type' => $type,
             'lat'  => number_format((double) $result->city->location->latitude, 8, '.', ''),
             'lon'  => number_format((double) $result->city->location->longitude, 8, '.', ''),

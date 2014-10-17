@@ -2,9 +2,10 @@
 {#<script src="//maps.google.com/maps/api/js?sensor=false&language={{ language|default('DA') }}" type="text/javascript"></script>#}
 <script type="text/javascript">
 var near_you_params = {
-  type : geo_zipcode_params.type || "{{ type }}",
-  lat  : {{ lat }},
-  lon  : {{ lon }}
+    type : geo_zipcode_params.type || "{{ type }}",
+    lat  : {{ lat }},
+    lon  : {{ lon }},
+    all  : {{ all|default('false') }}
 };
 {#var gm_settings = {
   lat: near_you_params.lat,
