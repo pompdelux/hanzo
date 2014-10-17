@@ -105,13 +105,14 @@ class CmsController extends CoreController
     }
 
     /**
-     * @param string $locale
+     * @param Request $request
+     * @param string  $locale
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      * @throws \Exception
      * @throws \PropelException
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function addAction($locale)
+    public function addAction(Request $request, $locale)
     {
         if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_MARKETING") or hasRole("ROLE_ADMIN")'))) {
             return $this->redirect($this->generateUrl('admin'));
@@ -172,7 +173,6 @@ class CmsController extends CoreController
                 'translation_domain' => 'admin'
             ])->getForm();
 
-        $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
             $form->handleRequest($request);
 
@@ -252,7 +252,7 @@ class CmsController extends CoreController
                 $this->get('session')->getFlashBag()->add('notice', 'cms.added');
 
                 return $this->redirect($this->generateUrl('admin_cms_edit', [
-                    'id' => $node->getId(),
+                    'id'     => $node->getId(),
                     'locale' => $locale
                 ]));
             }
@@ -260,7 +260,7 @@ class CmsController extends CoreController
 
         return $this->render('AdminBundle:Cms:addcms.html.twig', [
             'form'     => $form->createView(),
-            'database' => $this->getRequest()->getSession()->get('database')
+            'database' => $request->getSession()->get('database')
         ]);
     }
 
