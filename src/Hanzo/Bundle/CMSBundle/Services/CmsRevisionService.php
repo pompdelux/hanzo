@@ -2,17 +2,18 @@
 
 namespace Hanzo\Bundle\CMSBundle\Services;
 
+use BasePeer;
 use Hanzo\Model\Cms;
 use Hanzo\Model\CmsPeer;
 use Hanzo\Model\CmsRevision;
 use Hanzo\Model\CmsRevisionQuery;
-
-use \PropelPDO;
-use \Propel;
-use \BasePeer;
+use Propel;
+use PropelPDO;
 
 /**
  * CmsRevision Service
+ *
+ * @package Hanzo\Bundle\CMSBundle\Services
  */
 class CmsRevisionService
 {
@@ -23,7 +24,6 @@ class CmsRevisionService
 
     /**
      * __construct
-     *
      */
     public function __construct()
     {
@@ -32,6 +32,7 @@ class CmsRevisionService
 
     /**
      * Set Propel Connection.
+     *
      * @param PropelPDO $con
      *
      * @return  CmsRevisionService Return this
@@ -47,11 +48,9 @@ class CmsRevisionService
      * Function to get a certain revision of this page.
      *
      * @param Cms             $cms       The Cms Page
-     * @param int/CmsRevision $timestamp A given timestamp of a revision, or the
-     *                                   actually CmsRevision object
+     * @param int/CmsRevision $timestamp A given timestamp of a revision, or the actually CmsRevision object
      *
-     * @return Cms
-     *    The revision of this Cms
+     * @return Cms The revision of this Cms
      */
     public function getRevision(Cms $cms, $timestamp = null)
     {
@@ -102,10 +101,9 @@ class CmsRevisionService
      * Return all revision for this CMS.
      *
      * @param Cms     $cms                    The Cms Page
-     * @param boolean $publishOnDateRevisions Show revisions with a publish
-     *                                        date. Default false.
+     * @param boolean $publishOnDateRevisions Show revisions with a publish date. Default false.
      *
-     * @return CmsRevisionCollection The revisions
+     * @return array The revisions
      */
     public function getRevisions(Cms $cms, $publishOnDateRevisions = false)
     {
@@ -203,9 +201,10 @@ class CmsRevisionService
      * Save a Cms from an revision.
      *
      * @param Cms             $cms      The Cms to save.
-     * @param int/CmsRevision $revision The revision to save or timestamp of
-     *                                  revision.
+     * @param int|CmsRevision $revision The revision to save or timestamp of revision.
      *
+     * @throws \Exception
+     * @throws \PropelException
      * @return Cms The updated cms node.
      */
     public function saveCmsFromRevision(Cms $cms, $revision)
@@ -228,7 +227,7 @@ class CmsRevisionService
      * Get the number of revisions a Cms has.
      * @param Cms $cms The Cms Page.
      *
-     * @return int     The number of revisions.
+     * @return int The number of revisions.
      */
     public function getRevisionCount(Cms $cms)
     {
