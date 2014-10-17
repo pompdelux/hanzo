@@ -138,13 +138,12 @@ class CmsController extends CoreController
         $node = new Cms();
         $form = $this->createFormBuilder($node)
             ->add('type', 'choice', [
-                    'label'              => 'cms.edit.label.settings',
-                    'choices'            => $this->getCmsNodeTypes(),
-                    'empty_value'        => 'Vælg en type',
-                    'required'           => true,
-                    'translation_domain' => 'admin'
-                ])
-            ->add('cms_thread_id', 'choice', [
+                'label'              => 'cms.edit.label.settings',
+                'choices'            => $this->getCmsNodeTypes(),
+                'empty_value'        => 'Vælg en type',
+                'required'           => true,
+                'translation_domain' => 'admin'
+            ])->add('cms_thread_id', 'choice', [
                 'label'              => 'cms.edit.label.cms_thread',
                 'choices'            => $cmsThreadChoices,
                 'empty_value'        => 'Vælg en Thread',
@@ -284,7 +283,6 @@ class CmsController extends CoreController
 
         $form = $this->createFormBuilder($node, ['data_class' => 'Hanzo\Model\Cms'])
             ->add('cmsI18ns', new TranslationCollectionType(), [
-                'data_class' => 'Hanzo\Model\CmsI18n',
                 'languages'  => array_values($languagesAvailible->toArray()),
                 'label'      => 'Oversættelser',
                 'label_attr' => ['class' => 'translations-label'],
@@ -346,6 +344,7 @@ class CmsController extends CoreController
                             'type'               => 'textarea'
                         ],
                     ],
+                    'data_class' => 'Hanzo\Model\CmsI18n',
                 ]
             ])->add('type', 'choice', [
                 'label'              => 'Type',
