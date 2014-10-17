@@ -16,6 +16,9 @@ use \BasePeer;
  */
 class CmsRevisionService
 {
+    /**
+     * @var \PDO|\PropelPDO
+     */
     protected $con;
 
     /**
@@ -70,7 +73,7 @@ class CmsRevisionService
 
             $cmsRevision = new Cms();
             $cmsRevision->fromArray($revision->getRevision());
-            $cms->fromArray($cmsRevision->toArray(BasePeer::TYPE_PHPNAME, true, array(), true));
+            $cms->fromArray($cmsRevision->toArray(BasePeer::TYPE_PHPNAME, true, [], true));
             foreach ($cms->getCmsI18ns(null, $this->con) as &$translation) {
                 $translation->setNew(false);
 
@@ -119,7 +122,7 @@ class CmsRevisionService
 
         $revisions = $query->find($this->con);
 
-        $revisionsArray = array();
+        $revisionsArray = [];
 
         foreach ($revisions as $revision) {
             if ($revision instanceof CmsRevision) {
@@ -134,10 +137,9 @@ class CmsRevisionService
 
     /**
      * Save a CMS as a revision.
-     * @param Cms      $cms           The Cms Page
-     * @param int      $timestamp     Save as a certain revision timestamp. Omit to
-     *                                create a new one.
-     * @param DateTime $publishOnDate The date the revision should be published.
+     * @param Cms       $cms           The Cms Page
+     * @param int       $timestamp     Save as a certain revision timestamp. Omit to create a new one.
+     * @param \DateTime $publishOnDate The date the revision should be published.
      *
      * @return CmsRevision the saved revision.
      */
@@ -156,7 +158,7 @@ class CmsRevisionService
             $revision->setId($cms->getId());
         }
         $revision->setPublishOnDate($publishOnDate);
-        $revision->setRevision($cms->toArray(BasePeer::TYPE_PHPNAME, true, array(), true));
+        $revision->setRevision($cms->toArray(BasePeer::TYPE_PHPNAME, true, [], true));
         $revision->save($this->con);
 
         // Cleanup, remove the last one.
@@ -166,6 +168,7 @@ class CmsRevisionService
                 ->filterByPublishOnDate(null)
                 ->orderByCreatedAt()
                 ->findOne($this->con);
+
             $lastRevision->delete($this->con);
         }
 
@@ -244,7 +247,7 @@ class CmsRevisionService
     public function getRevisionsToPublish()
     {
         $revisionsToPublish = CmsRevisionQuery::create()
-            ->filterByPublishOnDate(array('max' => time()))
+            ->filterByPublishOnDate(['max' => time()])
             ->orderByPublishOnDate('DESC')
             ->find($this->con);
 

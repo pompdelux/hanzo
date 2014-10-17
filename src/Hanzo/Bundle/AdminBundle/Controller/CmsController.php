@@ -138,23 +138,8 @@ class CmsController extends CoreController
         $node = new Cms();
         $form = $this->createFormBuilder($node)
             ->add('type', 'choice', [
-                    'label'     => 'cms.edit.label.settings',
-                    'choices'   => [
-                        'frontpage'          => 'cms.edit.type.frontpage',
-                        'page'               => 'cms.edit.type.page',
-                        'url'                => 'cms.edit.type.url',
-                        'newsletter'         => 'cms.edit.type.newsletter',
-                        'category'           => 'cms.edit.type.category',
-                        'category_search'    => 'cms.edit.type.category_search',
-                        'advanced_search'    => 'cms.edit.type.advanced_search',
-                        'mannequin'          => 'cms.edit.type.mannequin',
-                        'search'             => 'Størrelse/kategori søgning',
-                        'bycolour'           => 'cms.edit.type.bycolour',
-                        'look'               => 'cms.edit.type.look',
-                        'heading'            => 'cms.edit.type.heading',
-                        'advisor_map'        => 'Konsulenter på kort',
-                        'advisor_open_house' => 'Åbenthus arrangementer',
-                    ],
+                    'label'              => 'cms.edit.label.settings',
+                    'choices'            => $this->getCmsNodeTypes(),
                     'empty_value'        => 'Vælg en type',
                     'required'           => true,
                     'translation_domain' => 'admin'
@@ -297,18 +282,15 @@ class CmsController extends CoreController
             }
         }
 
-        $translations = CmsI18nQuery::create()
-            ->filterById($node->getPrimaryKey())
-            ->findOneOrCreate($this->getDbConnection());
-
         $form = $this->createFormBuilder($node, ['data_class' => 'Hanzo\Model\Cms'])
             ->add('cmsI18ns', new TranslationCollectionType(), [
+                'data_class' => 'Hanzo\Model\CmsI18n',
                 'languages'  => array_values($languagesAvailible->toArray()),
                 'label'      => 'Oversættelser',
                 'label_attr' => ['class' => 'translations-label'],
                 'required'   => false,
                 'type'       => new TranslationType(),
-                'options' => [
+                'options'    => [
                     'columns' => [
                         'title' => [
                             'label'              => 'Titel -',
@@ -364,31 +346,14 @@ class CmsController extends CoreController
                             'type'               => 'textarea'
                         ],
                     ],
-                    'data_class' => 'Hanzo\Model\CmsI18n',
                 ]
-            ])
-            ->add('type', 'choice', [
-                    'label'     => 'Type',
-                    'choices'   => [
-                        'frontpage'          => 'cms.edit.type.frontpage',
-                        'page'               => 'cms.edit.type.page',
-                        'url'                => 'cms.edit.type.url',
-                        'newsletter'         => 'cms.edit.type.newsletter',
-                        'category'           => 'cms.edit.type.category',
-                        'category_search'    => 'cms.edit.type.category_search',
-                        'advanced_search'    => 'cms.edit.type.advanced_search',
-                        'search'             => 'Størrelse/kategori søgning',
-                        'mannequin'          => 'cms.edit.type.mannequin',
-                        'bycolour'           => 'cms.edit.type.bycolour',
-                        'look'               => 'cms.edit.type.look',
-                        'heading'            => 'cms.edit.type.heading',
-                        'advisor_map'        => 'Konsulenter på kort',
-                        'advisor_open_house' => 'Åbenthus arrangementer',
-                    ],
-                    'empty_value' => 'Vælg en type',
-                    'required'  => true,
-                    'translation_domain' => 'admin'
-                ])->getForm();
+            ])->add('type', 'choice', [
+                'label'              => 'Type',
+                'choices'            => $this->getCmsNodeTypes(),
+                'empty_value'        => 'Vælg en type',
+                'required'           => true,
+                'translation_domain' => 'admin'
+            ])->getForm();
 
         // Get parents, to find some good URL of the nodes. If no url on parent,
         // use title.
@@ -407,15 +372,12 @@ class CmsController extends CoreController
             }
         }
 
-        $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
 
+            $isActive  = false;
             $isChanged = false;
 
             $form->handleRequest($request);
-            $data = $form->getData();
-
-            $isActive = false;
 
             foreach ($node->getCmsI18ns() as $translation) {
                 if (!$isChanged && $translation->isModified()) {
@@ -936,5 +898,28 @@ class CmsController extends CoreController
         }
 
         return $menu;
+    }
+
+    /**
+     * @return array
+     */
+    private function getCmsNodeTypes()
+    {
+        return [
+            'frontpage'          => 'cms.edit.type.frontpage',
+            'page'               => 'cms.edit.type.page',
+            'url'                => 'cms.edit.type.url',
+            'newsletter'         => 'cms.edit.type.newsletter',
+            'category'           => 'cms.edit.type.category',
+            'category_search'    => 'cms.edit.type.category_search',
+            'advanced_search'    => 'cms.edit.type.advanced_search',
+            'search'             => 'Størrelse/kategori søgning',
+            'mannequin'          => 'cms.edit.type.mannequin',
+            'bycolour'           => 'cms.edit.type.bycolour',
+            'look'               => 'cms.edit.type.look',
+            'heading'            => 'cms.edit.type.heading',
+            'advisor_map'        => 'Konsulenter på kort',
+            'advisor_open_house' => 'Åbenthus arrangementer',
+        ];
     }
 }
