@@ -3,23 +3,25 @@
 namespace Hanzo\Model;
 
 use Hanzo\Core\Hanzo;
-use Hanzo\Core\Tools;
 use Hanzo\Model\om\BaseCmsI18n;
-
 
 /**
  * Skeleton subclass for representing a row from the 'cms_i18n' table.
- *
- *
  *
  * You should add additional methods to this class to meet the
  * application requirements.  This class will only be generated as
  * long as it does not already exist in the output directory.
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model
+ * @package Hanzo\Model
  */
 class CmsI18n extends BaseCmsI18n
 {
+    /**
+     * @param bool $raw
+     *
+     * @return mixed|string
+     * @throws \Exception
+     */
     public function getSettings($raw = true)
     {
         $translator = Hanzo::getInstance()->container->get('translator');
