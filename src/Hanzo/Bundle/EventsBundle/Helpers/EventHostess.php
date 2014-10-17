@@ -10,7 +10,6 @@
 
 namespace Hanzo\Bundle\EventsBundle\Helpers;
 
-
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Model\Addresses;
@@ -19,6 +18,11 @@ use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersQuery;
 use Hanzo\Model\Events;
 
+/**
+ * Class EventHostess
+ *
+ * @package Hanzo\Bundle\EventsBundle
+ */
 class EventHostess
 {
     /**
@@ -26,6 +30,9 @@ class EventHostess
      */
     private $event;
 
+    /**
+     * @param Events $event
+     */
     public function __construct(Events $event)
     {
         $this->event = $event;
@@ -71,7 +78,7 @@ class EventHostess
                 $address->setCountriesId($country->getId());
                 $address->save();
 
-            } catch(\PropelException $e) {
+            } catch (\PropelException $e) {
                 Tools::log($this->event->toArray());
             }
         }
