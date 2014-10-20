@@ -131,6 +131,7 @@ class AddressController extends CoreController
             if ($type == 'overnightbox') {
                 $label = 'overnightbox.label';
             }
+
             $builder->add('company_name', null, [
                 'label'              => $label,
                 'required'           => true,
@@ -155,6 +156,7 @@ class AddressController extends CoreController
             'required'           => true,
             'translation_domain' => 'account'
         ]);
+
         $builder->add('last_name', null, [
             'required'           => true,
             'translation_domain' => 'account'
@@ -183,6 +185,7 @@ class AddressController extends CoreController
             'translation_domain' => 'account',
             'attr'               => $attr,
         ]);
+
         $builder->add('city', null, [
             'required'           => true,
             'translation_domain' => 'account',
@@ -228,6 +231,7 @@ class AddressController extends CoreController
         }
 
         $builder->add('customers_id', 'hidden', ['data' => $customer_id]);
+
         $form = $builder->getForm();
 
         $response = $this->render('ShippingBundle:Address:form.html.twig', [
