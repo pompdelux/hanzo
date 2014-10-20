@@ -3,7 +3,6 @@
 namespace Hanzo\Bundle\EventsBundle\Controller;
 
 use Hanzo\Core\CoreController;
-use Hanzo\Core\Tools;
 use Hanzo\Model\CmsI18n;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Response;
