@@ -3806,9 +3806,16 @@ div.quickorder input[type=button] {
 }
 .near-you-container .entry img {
   display: block;
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
 .near-you-container .entry .box {
   width: 216px;
+}
+.near-you-container .entry .open-house-block {
+  margin-top: 5px;
+  border-top: 1px solid #C9C9C9;
+  padding-top: 5px;
 }
 .near-you-container .row {
   border-bottom: 1px solid whiteSmoke;
