@@ -37,7 +37,7 @@ class AdvisorController extends CoreController
         //   'show_all' => 1,
         //   'country'  => 'xxx'
         // ]
-Tools::log($page->getSettings(false));
+
         return $this->render('CMSBundle:Default:view.html.twig', [
             'page_type'        => $type,
             'page'             => $page,
