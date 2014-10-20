@@ -218,7 +218,7 @@ class Orders extends BaseOrders
          *     orders_products
          *     orders_attributes
          */
-        $data = array();
+        $data = [];
         $data['order'] = $this->toArray();
         unset($data['order']['Id']);
 
