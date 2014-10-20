@@ -28,7 +28,22 @@ class EventsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('customers_id', 'hidden')
-            ->add('event_date', 'text', [
+            ->add('type', 'choice', [
+                'choices' => [
+                    'AR'  => 'events.type.choice.ar',
+                    'HUS' => 'events.type.choice.hus',
+                ],
+                'label' => 'events.type.label',
+            ])->add('rsvp_type', 'choice', [
+                'choices' => [
+                    1 => 'events.rsvp_type.choice.need_to',
+                    2 => 'events.rsvp_type.choice.nice_to',
+                    3 => 'events.rsvp_type.choice.sms_email',
+                ],
+                'label'    => 'events.rsvp_type.label',
+                'required' => false,
+                'empty_value' => 'events.choose.rsvp_type'
+            ])->add('event_date', 'text', [
                 'attr'  => ['class' => 'datetimepicker'],
                 'label' => 'events.event_date.label',
             ])->add('event_end_time', 'text', [
@@ -50,21 +65,6 @@ class EventsType extends AbstractType
             ])->add('description', 'textarea', [
                 'label'    => 'events.description.label',
                 'required' => false
-            ])->add('type', 'choice', [
-                'choices' => [
-                    'AR'  => 'events.type.choice.ar',
-                    'HUS' => 'events.type.choice.hus',
-                ],
-                'label' => 'events.type.label',
-            ])->add('rsvp_type', 'choice', [
-                'choices' => [
-                    1 => 'events.rsvp_type.choice.need_to',
-                    2 => 'events.rsvp_type.choice.nice_to',
-                    3 => 'events.rsvp_type.choice.sms_email',
-                ],
-                'label'    => 'events.rsvp_type.label',
-                'required' => false,
-                'empty_value' => 'events.choose.rsvp_type'
             ])->add('public_note', 'textarea', [
                 'label'    => 'events.public_note.label',
                 'required' => false
