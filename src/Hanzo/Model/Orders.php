@@ -162,7 +162,7 @@ class Orders extends BaseOrders
      */
     public function getDeliveryFullName(Translator $translator = null)
     {
-        return trim($this->getDeliveryTitle().' '.$this->getDeliveryFirstName().' '.$this->getDeliveryLastName());
+        return trim($this->getDeliveryTitle($translator).' '.$this->getDeliveryFirstName().' '.$this->getDeliveryLastName());
     }
 
     /**
