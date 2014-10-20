@@ -10,6 +10,7 @@
 
 namespace Hanzo\Bundle\AxBundle\Actions\Out\Services;
 
+use Hanzo\Core\Tools;
 use Hanzo\Model\Addresses;
 use Hanzo\Model\Customers;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
@@ -45,6 +46,9 @@ class SyncCustomer extends BaseService
         $this->translator = $translator;
     }
 
+    /**
+     * Reset object
+     */
     public function reset()
     {
         $this->setDBConnection(null);
@@ -86,30 +90,30 @@ class SyncCustomer extends BaseService
      */
     public function get()
     {
-        if (empty($this->data)) {
-            if (empty($this->customer) || empty($this->address)) {
-                throw new \InvalidArgumentException("Customer or Address object not set !");
-            }
+        if (empty($this->customer) || empty($this->address)) {
+            throw new \InvalidArgumentException("Customer or Address object not set !");
+        }
 
-            $this->data = [
-                'customer' => [
-                    'CustTable' => [
-                        'AccountNum'             => $this->customer->getId(),
-                        'AddressCity'            => $this->address->getCity(),
-                        'AddressCountryRegionId' => $this->address->getCountries()->getIso2(),
-                        'AddressStreet'          => $this->address->getAddressLine1(),
-                        'AddressZipCode'         => $this->address->getPostalCode(),
-                        'CustName'               => trim($this->address->getTitle($this->translator).' '.$this->address->getFirstName().' '.$this->address->getLastName()),
-                        'Email'                  => $this->customer->getEmail(),
-                        'Phone'                  => $this->customer->getPhone(),
-                    ]
-                ],
-                'endpointDomain' => $this->getEndPoint(),
-            ];
+        $this->translator->setLocale(Tools::getLocaleFromDomainKey($this->getEndPoint()));
 
-            if (2 == $this->customer->getGroupsId()) {
-                $this->data['customer']['CustTable']['InitialsId'] = $this->customer->getInitials();
-            }
+        $this->data = [
+            'customer' => [
+                'CustTable' => [
+                    'AccountNum'             => $this->customer->getId(),
+                    'AddressCity'            => $this->address->getCity(),
+                    'AddressCountryRegionId' => $this->address->getCountries()->getIso2(),
+                    'AddressStreet'          => $this->address->getAddressLine1(),
+                    'AddressZipCode'         => $this->address->getPostalCode(),
+                    'CustName'               => trim($this->address->getTitle($this->translator).' '.$this->address->getFirstName().' '.$this->address->getLastName()),
+                    'Email'                  => $this->customer->getEmail(),
+                    'Phone'                  => $this->customer->getPhone(),
+                ]
+            ],
+            'endpointDomain' => $this->getEndPoint(),
+        ];
+
+        if (2 == $this->customer->getGroupsId()) {
+            $this->data['customer']['CustTable']['InitialsId'] = $this->customer->getInitials();
         }
 
         return $this->data;
