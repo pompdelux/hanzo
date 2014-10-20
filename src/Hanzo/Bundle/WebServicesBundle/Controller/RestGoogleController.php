@@ -4,7 +4,9 @@ namespace Hanzo\Bundle\WebServicesBundle\Controller;
 
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\CoreController;
+use Hanzo\Core\Tools;
 use Hanzo\Model\CustomersQuery;
+use Hanzo\Model\EventsQuery;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -51,7 +53,7 @@ class RestGoogleController extends CoreController
         $longitude = (float) $longitude;
 
         // un@bellcom.dk, fix sweedish koordinats for lerum - note this is a google maps issue!
-        if ($latitude == 57.5752035 && $longitude == 17.1677372) {
+        if (($latitude == 57.5752035) && ($longitude == 17.1677372)) {
             $latitude  = 57.815504;
             $longitude = 12.268982;
         }
@@ -70,8 +72,6 @@ class RestGoogleController extends CoreController
             $radius   = $showAll ? 20000 : 150;
             $numItems = $showAll ? 20000 : 18;
             $filter    = "
-            AND
-                cn.event_notes != ''
             AND
                 cn.hide_info = 0
           ";
@@ -120,16 +120,25 @@ class RestGoogleController extends CoreController
                 {$numItems}
         ";
 
-        $cdn    = Hanzo::getInstance()->get('core.cdn');
+        $cdn    = preg_replace('/http[s]?:/', '', Hanzo::getInstance()->get('core.cdn'));
         $con    = \Propel::getConnection();
         $result = $con->query($query);
 
         $data = [];
         foreach ($result as $record) {
+            $info   = $record['info'];
+            $avatar = '';
 
-            $info = $record['info'];
             if ($type == 'hus') {
-                $info = str_replace("\n", "<br>", $record['event_notes']);
+                preg_match('/\<img[^>]+\>/', $info, $matches);
+
+                // do we need a fallback avatar ?
+                if (empty($matches[0])) {
+                    $matches[0] = '<img src="//cdn.pdl.un/images/consultantsDK/LineSkovsen.jpg" width="100" height="75">';
+                }
+
+                $avatar = $matches[0];
+                $info   = str_replace("\n", "<br>", $record['event_notes']);
             }
 
             $info = str_replace('src="/', 'src="' . $cdn, $info);
@@ -138,7 +147,7 @@ class RestGoogleController extends CoreController
                 $info = '';
             }
 
-            $data[] = [
+            $data[$record['id']] = [
                 'id'        => $record['id'],
                 'name'      => $record['first_name'] . ' ' . $record['last_name'],
                 'zip'       => $record['postal_code'],
@@ -149,12 +158,65 @@ class RestGoogleController extends CoreController
                 'latitude'  => $record['latitude'],
                 'longitude' => $record['longitude'],
                 'info'      => $info,
+                'avatar'    => $avatar,
             ];
+        }
+
+        if ('hus' == $type) {
+            $openHouseEvents = EventsQuery::create()
+                ->filterByRsvpType(null, \Criteria::ISNOTNULL)
+                ->filterByEventDate(['min' => date('Y-m-d 00:00:01')])
+                ->filterByConsultantsId(array_keys($data))
+                ->orderByEventDate()
+                ->find();
+
+            $events = [];
+
+            /** @var \Hanzo\Model\Events $event */
+            foreach ($openHouseEvents as $event) {
+                $start = $event->getEventDate('U');
+                $end   = $event->getEventEndTime('U');
+                $key   = $event->getPostalCode().$event->getAddressLine1();
+                $cid   = $event->getConsultantsId();
+                $note  = str_replace("\n", '<br>', Tools::stripTags($event->getPublicNote()));
+
+                if (empty($events[$cid][$key])) {
+                    $events[$cid][$key] = [
+                        'address' => $event->getAddressLine1(),
+                        'city'    => $event->getCity(),
+                        'dates'   => [],
+                        'host'    => $event->getHost(),
+                        'notes'   => [],
+                        'rsvp'    => $event->getRsvpType(),
+                        'zip'     => $event->getPostalCode(),
+                    ];
+                }
+
+                $events[$cid][$key]['dates'][] = [
+                    'date' => strftime('%A %e/%m, %k:%M', $start) . ' - ' . strftime('%k:%M', $end),
+                    'note' => $note,
+                    'rswp' => $event->getRsvpType(),
+                ];
+
+                $events[$cid][$key]['notes'][] = $note;
+            }
+
+            foreach ($events as $consultantId => $items) {
+                if (empty($data[$consultantId])) {
+                    continue;
+                }
+
+                foreach ($items as $j => $event) {
+                    $data[$consultantId]['events'][] = $event;
+                }
+
+                unset($data[$consultantId]['info']);
+            }
         }
 
         $response = [
             'status' => true,
-            'data'   => $data
+            'data'   => array_values($data)
         ];
 
         return $this->json_response($response);
