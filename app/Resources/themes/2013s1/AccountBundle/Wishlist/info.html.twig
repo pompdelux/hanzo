@@ -5,7 +5,9 @@
 
     <div class="container">
     {% if is_mobile_layout %}
-        <a href="{{ path('_account_wishlist_create') }}" class="sprite create-wishlist"></a>
+        <a href="{{ path('_account_wishlist_create') }}" class="add-wishlist">
+            <i class="icons-Hearticon">{{ 'wishlist.add.label'|trans({}, 'account') }}</i>
+        </a>
     {% endif %}
         {{ 'wishlist.add.description'|trans({}, 'account')|raw }}
     </div>
