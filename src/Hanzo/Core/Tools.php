@@ -524,10 +524,10 @@ class Tools
     /**
      * helper function for setting cookies
      *
-     * @param string  $name      name of the cookie
-     * @param string  $value     value of the cookie
-     * @param integer $ttl       cookie ttl, defaults to session cookie (0)
-     * @param boolean $httpOnly  set to false if cookie is http only (ie. no javascript access)
+     * @param string  $name     name of the cookie
+     * @param string  $value    value of the cookie
+     * @param integer $ttl      cookie ttl, defaults to session cookie (0)
+     * @param boolean $httpOnly set to false if cookie is http only (ie. no javascript access)
      *
      * @return boolean
      */
@@ -605,21 +605,23 @@ class Tools
     /**
      * generates a formatted image tag.
      *
-     * @see Functions::image_path()
-     * @param string $src image source
+     * @param string $src    image source
      * @param string $preset the image preset to use - format heightXwidth
-     * @param array $params
+     * @param array  $params parameters
      *
      * @return string
+     *
+     * @see Functions::image_path()
      */
     public static function fxImageTag($src, $preset = '', array $params = [])
     {
         $src = self::getHanzoInstance()->get('core.cdn') . 'fx/' . $src;
+
         return self::generateImageTag(self::imagePath($src, $preset), $params);
     }
 
     /**
-     * @param        $src
+     * @param string $src
      * @param string $preset
      * @param array  $params
      *
@@ -628,11 +630,12 @@ class Tools
     public static function fxImageUrl($src, $preset = '', array $params = [])
     {
         $src = self::getHanzoInstance()->get('core.cdn') . 'fx/' . $src;
+
         return self::imagePath($src, $preset);
     }
 
     /**
-     * @param        $src
+     * @param string $src
      * @param string $preset
      * @param array  $params
      *
@@ -641,15 +644,16 @@ class Tools
     public static function productImageTag($src, $preset = '50x50', array $params = [])
     {
         $dir = 'images/products/thumb/';
-        if($preset === '0x0'){
+        if ($preset === '0x0') {
             $dir = 'images/products/';
         }
         $src = self::getHanzoInstance()->get('core.cdn2') . $dir . $src;
+
         return self::generateImageTag(self::imagePath($src, $preset), $params);
     }
 
     /**
-     * @param        $src
+     * @param string $src
      * @param string $preset
      * @param array  $params
      *
@@ -658,29 +662,31 @@ class Tools
     public static function productImageUrl($src, $preset = '50x50', array $params = [])
     {
         $dir = 'images/products/thumb/';
-        if($preset === '0x0'){
+        if ($preset === '0x0') {
             $dir = 'images/products/';
         }
         $src = self::getHanzoInstance()->get('core.cdn2') . $dir . $src;
+
         return self::imagePath($src, $preset);
     }
 
     /**
-     * @param       $src
-     * @param array $params
+     * @param string $src
+     * @param array  $params
      *
      * @return string
      */
     public static function imageTag($src, array $params = [])
     {
         $src = self::getHanzoInstance()->get('core.cdn') . '' . $src;
+
         return self::generateImageTag(self::imagePath($src), $params);
     }
 
     /**
      * build image path based on source and preset
      *
-     * @param string $src image source
+     * @param string $src    image source
      * @param string $preset the image preset to use - format heightXwidth
      *
      * @throws \InvalidArgumentException
@@ -694,7 +700,7 @@ class Tools
 
         if ($preset && $preset !== '0x0') {
             $preset .= ',';
-        }else{
+        } else {
             $preset = '';
         }
 
@@ -764,6 +770,7 @@ class Tools
             if ($noscript) {
                 $noscript = '<noscript><img src="' . $src . '"' . str_replace(' lazy', '', $extra) . '></noscript>';
             }
+
             return '<img data-original="' . $src . '"' . $extra . '>'.$noscript;
         }
 
@@ -789,7 +796,8 @@ class Tools
     /**
      * Map a domain_key to an AX endpoint
      *
-     * @param $key
+     * @param string $key
+     *
      * @return string
      */
     public static function domainKeyToEndpoint($key)
@@ -817,11 +825,12 @@ class Tools
      *
      * @param array  $array
      * @param string $prefix
+     *
      * @return array
      */
     public static function flatten(array $array, $prefix = '')
     {
-        $result = array();
+        $result = [];
         foreach ($array as $key => $value) {
             if (is_array($value)) {
                 $result = $result + self::flatten($value, $prefix.$key . '.');
@@ -832,4 +841,79 @@ class Tools
 
         return $result;
     }
+
+    /**
+     * @param string $key
+     *
+     * @return string
+     */
+    public static function getLocaleFromDomainKey($key)
+    {
+        $key = strtoupper($key);
+
+        foreach (self::getDomainLocaleMaps() as $data) {
+            if ($key === $data['core.domain_key']) {
+                return $data['locale'];
+            }
+        }
+
+        return 'da_DK';
+    }
+
+    /**
+     * @return array
+     *
+     * @TODO should not be hardcoded!
+     */
+    public static function getDomainLocaleMaps()
+    {
+        return [
+            'at'  => [
+                'locale'           => 'de_AT',
+                'core.domain_key'  => 'AT',
+                'core.language_id' => 8,
+            ],
+            'ch'  => [
+                'locale'           => 'de_CH',
+                'core.domain_key'  => 'CH',
+                'core.language_id' => 9,
+            ],
+            'com' => [
+                'locale'           => 'en_GB',
+                'core.domain_key'  => 'COM',
+                'core.language_id' => 2,
+            ],
+            'dk'  => [
+                'locale'           => 'da_DK',
+                'core.domain_key'  => 'DK',
+                'core.language_id' => 1,
+            ],
+            'de'  => [
+                'locale'           => 'de_DE',
+                'core.domain_key'  => 'DE',
+                'core.language_id' => 7,
+            ],
+            'fi'  => [
+                'locale'           => 'fi_FI',
+                'core.domain_key'  => 'FI',
+                'core.language_id' => 6,
+            ],
+            'nl'  => [
+                'locale'           => 'nl_NL',
+                'core.domain_key'  => 'NL',
+                'core.language_id' => 5,
+            ],
+            'no'  => [
+                'locale'           => 'nb_NO',
+                'core.domain_key'  => 'NO',
+                'core.language_id' => 4,
+            ],
+            'se'  => [
+                'locale'           => 'sv_SE',
+                'core.domain_key'  => 'SE',
+                'core.language_id' => 3,
+            ],
+        ];
+    }
+
 }

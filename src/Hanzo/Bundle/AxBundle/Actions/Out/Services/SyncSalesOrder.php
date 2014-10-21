@@ -13,6 +13,7 @@ namespace Hanzo\Bundle\AxBundle\Actions\Out\Services;
 use Hanzo\Core\Tools;
 use Hanzo\Model\Countries;
 use Hanzo\Model\CountriesQuery;
+use Hanzo\Model\LanguagesQuery;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersAttributes;
 use Hanzo\Model\OrdersLines;
@@ -107,6 +108,7 @@ class SyncSalesOrder extends BaseService
     public function setOrder(Orders $order)
     {
         $this->order = $order;
+        $this->translator->setLocale($this->getLocaleFromLanguageId($order->getLanguagesId()));
     }
 
     /**
@@ -611,11 +613,22 @@ class SyncSalesOrder extends BaseService
         return '';
     }
 
+    /**
+     * @param int $id
+     *
+     * @return mixed
+     * @throws \PropelException
+     */
+    private function getLocaleFromLanguageId($id)
+    {
+        return LanguagesQuery::create()
+            ->select('locale')
+            ->filterById($id)
+            ->findOne($this->getDBConnection());
+    }
 
     /**
      * {@inheritdoc}
-     *
-     * @return bool|void
      */
     protected function validate()
     {

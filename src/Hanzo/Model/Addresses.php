@@ -17,7 +17,7 @@ use Symfony\Component\Validator\ExecutionContextInterface;
  * application requirements.  This class will only be generated as
  * long as it does not already exist in the output directory.
  *
- * @package    propel.generator.src.Hanzo.Model
+ * @package Hanzo\Model
  */
 class Addresses extends BaseAddresses
 {
@@ -43,11 +43,11 @@ class Addresses extends BaseAddresses
         return null;
     }
 
-
     /**
      * shortcut phone setters into the address object, but only for payment addresses
      *
      * @param int $v phone number
+     *
      * @return mixed null or Customers object
      */
     public function setPhone($v)
@@ -63,29 +63,44 @@ class Addresses extends BaseAddresses
         return null;
     }
 
+    /**
+     * @param Translator $translator
+     *
+     * @return string
+     */
     public function getTitle(Translator $translator = null)
     {
         $title = parent::getTitle();
         if ($title && ($translator instanceof Translator)) {
-            $title = $translator->trans('title.'.parent::getTitle(), [], 'account');
+            $key   = 'title.' . parent::getTitle();
+            $title = $translator->trans($key, [], 'account');
+
+            if ($title === $key) {
+                return '';
+            }
         }
 
         return $title;
     }
 
+
     /**
      * get full name
+     *
+     * @param Translator $translator
+     *
+     * @return string
      */
-    public function getName()
+    public function getName(Translator $translator = null)
     {
-        return trim($this->getFirstName() . ' ' . $this->getLastName());
+        return trim($this->getTitle($translator).' '.$this->getFirstName() . ' ' . $this->getLastName());
     }
 
 
     /**
      * Validate length of users full name
      *
-     * @param  ExecutionContextInterface $context
+     * @param ExecutionContextInterface $context
      */
     public function isFullNameWithinLimits(ExecutionContextInterface $context)
     {
@@ -110,15 +125,15 @@ class Addresses extends BaseAddresses
     public function forceGeocode()
     {
         $geocoder      = new \Geocoder\Geocoder(new \Geocoder\Provider\GoogleMapsProvider(new \Geocoder\HttpAdapter\CurlHttpAdapter()));
-        $address_parts = array();
+        $addressParts = [];
 
-        $address_parts['AddressLine1']  = $this->getAddressLine1();
-        $address_parts['AddressLine2']  = $this->getAddressLine2();
-        $address_parts['StateProvince'] = $this->getStateProvince();
-        $address_parts['PostalCode']    = $this->getPostalCode();
-        $address_parts['Country']       = $this->getCountry();
+        $addressParts['AddressLine1']  = $this->getAddressLine1();
+        $addressParts['AddressLine2']  = $this->getAddressLine2();
+        $addressParts['StateProvince'] = $this->getStateProvince();
+        $addressParts['PostalCode']    = $this->getPostalCode();
+        $addressParts['Country']       = $this->getCountry();
 
-        $result = $geocoder->geocode(join(',', array_filter($address_parts)));
+        $result = $geocoder->geocode(join(',', array_filter($addressParts)));
         if (isset($result) && $coordinates = $result->getCoordinates()) {
             $this->setLatitude($coordinates[0]);
             $this->setLongitude($coordinates[1]);

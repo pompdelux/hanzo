@@ -17,19 +17,26 @@ use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\ShippingMethods;
 
+/**
+ * Class AddressController
+ *
+ * @package Hanzo\Bundle\ShippingBundle\Controller
+ */
 class AddressController extends CoreController
 {
     /**
      * Builds the address form based on address type.
      *
-     * @param Request $request
      * @param string  $type
      * @param integer $customer_id
+     *
+     * @throws \Exception
+     * @internal param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function formAction(Request $request, $type = 'payment', $customer_id = null)
+    public function formAction($type = 'payment', $customer_id = null)
     {
-        $short_domain_key = substr(Hanzo::getInstance()->get('core.domain_key'), -2);
+        $shortDomainKey = substr(Hanzo::getInstance()->get('core.domain_key'), -2);
         $order = OrdersPeer::getCurrent(false);
 
         if (null === $customer_id) {
@@ -43,11 +50,11 @@ class AddressController extends CoreController
             }
         }
 
-        $countries          = CountriesPeer::getAvailableDomainCountries(true);
-        $delivery_method_id = $order->getDeliveryMethod();
+        $countries        = CountriesPeer::getAvailableDomainCountries(true);
+        $deliveryMethodId = $order->getDeliveryMethod();
 
         if ($type == 'CURRENT-SHIPPING-ADDRESS') {
-            if ($delivery_method_id && $order->getDeliveryFirstName()) {
+            if ($deliveryMethodId && $order->getDeliveryFirstName()) {
                 $address = new Addresses();
                 $address->setCustomersId($customer_id);
                 $address->setFirstName($order->getDeliveryFirstName());
@@ -60,7 +67,7 @@ class AddressController extends CoreController
                 $address->setStateProvince($order->getDeliveryStateProvince());
                 $address->setExternalAddressId($order->getDeliveryExternalAddressId());
 
-                switch ($delivery_method_id) {
+                switch ($deliveryMethodId) {
                     case 11:
                         $type = 'company_shipping';
                         $address->setType('company_shipping');
@@ -82,11 +89,11 @@ class AddressController extends CoreController
                 $form = '<div class="block"><form action="" method="post" class="address"></form></div>';
 
                 if ('json' === $this->getFormat()) {
-                    return $this->json_response(array(
+                    return $this->json_response([
                         'status'  => true,
                         'message' => '',
-                        'data'    => array('html' => $form),
-                    ));
+                        'data'    => ['html' => $form],
+                    ]);
                 }
 
                 return $this->response($form);
@@ -95,12 +102,11 @@ class AddressController extends CoreController
             $address = AddressesQuery::create()
               ->filterByCustomersId($customer_id)
               ->filterByType($type)
-              ->findOne()
-            ;
+              ->findOne();
         }
 
         // to enable address locator or not.
-        $enable_locator = ($type != 'payment' && in_array($delivery_method_id, [12, 71]));
+        $enableLocator = ($type != 'payment' && in_array($deliveryMethodId, [12, 71]));
 
         if (!$address) {
             $address = new Addresses();
@@ -125,6 +131,7 @@ class AddressController extends CoreController
             if ($type == 'overnightbox') {
                 $label = 'overnightbox.label';
             }
+
             $builder->add('company_name', null, [
                 'label'              => $label,
                 'required'           => true,
@@ -132,7 +139,7 @@ class AddressController extends CoreController
             ]);
         }
 
-        if (in_array($short_domain_key, ['DE'])) {
+        if (in_array($shortDomainKey, ['DE'])) {
             $builder->add('title', 'choice', [
                 'choices' => [
                     'female' => 'title.female',
@@ -149,6 +156,7 @@ class AddressController extends CoreController
             'required'           => true,
             'translation_domain' => 'account'
         ]);
+
         $builder->add('last_name', null, [
             'required'           => true,
             'translation_domain' => 'account'
@@ -168,7 +176,7 @@ class AddressController extends CoreController
         ]);
 
         $attr = [];
-        if (in_array($short_domain_key, ['AT', 'CH', 'DE', 'DK', 'FI', 'NL', 'NO', 'SE'])) {
+        if (in_array($shortDomainKey, ['AT', 'CH', 'DE', 'DK', 'FI', 'NL', 'NO', 'SE'])) {
             $attr = ['class' => 'auto-city'];
         }
 
@@ -177,6 +185,7 @@ class AddressController extends CoreController
             'translation_domain' => 'account',
             'attr'               => $attr,
         ]);
+
         $builder->add('city', null, [
             'required'           => true,
             'translation_domain' => 'account',
@@ -184,12 +193,13 @@ class AddressController extends CoreController
             'attr'               => ['class' => 'js-auto-city-'.$type]
         ]);
 
-        if ('overnightbox' === $type || $enable_locator) {
-            list($country_id, $country_name) = each($countries);
-            $address->setCountriesId($country_id);
-            $address->setCountry($country_name);
+        if ('overnightbox' === $type || $enableLocator) {
+            list($countryId, $countryName) = each($countries);
 
-            $builder->add('countries_id', 'hidden', ['data' => $country_id]);
+            $address->setCountriesId($countryId);
+            $address->setCountry($countryName);
+
+            $builder->add('countries_id', 'hidden', ['data' => $countryId]);
             $builder->add('external_address_id', 'hidden', ['data' => $address->getExternalAddressId()]);
         } else {
             if (count($countries) > 1) {
@@ -200,12 +210,12 @@ class AddressController extends CoreController
                     'translation_domain' => 'account'
                 ]);
             } else {
-                list($country_id, $country_name) = each($countries);
+                list($countryId, $countryName) = each($countries);
 
-                $address->setCountriesId($country_id);
-                $address->setCountry($country_name);
+                $address->setCountriesId($countryId);
+                $address->setCountry($countryName);
 
-                $builder->add('countries_id', 'hidden', ['data' => $country_id]);
+                $builder->add('countries_id', 'hidden', ['data' => $countryId]);
                 $builder->add('country', null, [
                     'read_only'          => true,
                     'translation_domain' => 'account'
@@ -214,18 +224,19 @@ class AddressController extends CoreController
         }
 
         // if the locator is enables, set all elements to read-only to prevent customers from editing the found address.
-        if ($enable_locator) {
+        if ($enableLocator) {
             foreach ($builder->all() as $element) {
                 $element->setDisabled(true);
             }
         }
 
         $builder->add('customers_id', 'hidden', ['data' => $customer_id]);
+
         $form = $builder->getForm();
 
         $response = $this->render('ShippingBundle:Address:form.html.twig', [
             'type'           => $type,
-            'enable_locator' => $enable_locator,
+            'enable_locator' => $enableLocator,
             'form'           => $form->createView(),
         ]);
 
@@ -236,7 +247,7 @@ class AddressController extends CoreController
             return $this->json_response([
                 'status'  => true,
                 'message' => '',
-                'data'    => array('html' => $html),
+                'data'    => ['html' => $html],
             ]);
         }
 
@@ -248,7 +259,8 @@ class AddressController extends CoreController
      * Processes the address of a given type
      *
      * @param Request $request
-     * @param string  $type    Address type
+     * @param string  $type
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function processAction(Request $request, $type)
@@ -257,19 +269,19 @@ class AddressController extends CoreController
 
         if ('POST' === $request->getMethod()) {
             // TODO: not hardcoded
-            $type_map = [
+            $typeMap = [
                 'company_shipping' => 'shipping',
                 'overnightbox'     => 'shipping',
             ];
 
-            if (isset($type_map[$type])) {
-                $type = $type_map[$type];
+            if (isset($typeMap[$type])) {
+                $type = $typeMap[$type];
             }
 
             $order = OrdersPeer::getCurrent();
             $data  = $request->request->get('form');
 
-             if ($type == 'shipping') {
+            if ($type == 'shipping') {
                 switch ($order->getDeliveryMethod()) {
                     case 11:
                         $method = 'company_shipping';
@@ -277,7 +289,7 @@ class AddressController extends CoreController
                     case 12:
                     case 71:
                         $method = 'overnightbox';
-                        $validation_fields[] = 'company_name';
+                        $validationFields[] = 'company_name';
                         break;
                     default:
                         $method = 'shipping';
@@ -290,8 +302,7 @@ class AddressController extends CoreController
             $address = AddressesQuery::create()
                 ->filterByCustomersId($order->getCustomersId())
                 ->filterByType($method)
-                ->findOne()
-            ;
+                ->findOne();
 
             if (!$address instanceof Addresses) {
                 $address = new Addresses();
@@ -348,12 +359,12 @@ class AddressController extends CoreController
             $translator = $this->get('translator');
 
             // fi uses different validation group to support different rules
-            $validation_group = 'shipping_bundle_'.$method;
+            $validationGroup = 'shipping_bundle_'.$method;
 
-            $object_errors = $validator->validate($address, [$validation_group]);
+            $objectErrors = $validator->validate($address, [$validationGroup]);
 
             $errors = [];
-            foreach ($object_errors->getIterator() as $error) {
+            foreach ($objectErrors->getIterator() as $error) {
                 if (null === $error->getMessagePluralization()) {
                     $errors[] = $translator->trans(
                         $error->getMessageTemplate(),
@@ -376,10 +387,11 @@ class AddressController extends CoreController
                 $order->save();
 
                 $message = '<ul class="error"><li>'.implode('</li><li>', $errors).'</li></ul>';
-                return $this->json_response(array(
-                    'status' => false,
+
+                return $this->json_response([
+                    'status'  => false,
                     'message' => $message,
-                ));
+                ]);
             }
 
             $address->save();
@@ -401,10 +413,10 @@ class AddressController extends CoreController
         }
 
         if ('json' === $this->getFormat()) {
-            return $this->json_response(array(
-                'status' => $status,
+            return $this->json_response([
+                'status'  => $status,
                 'message' => '',
-            ));
+            ]);
         }
     }
 }
