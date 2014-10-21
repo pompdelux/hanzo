@@ -40,9 +40,8 @@
     </section>
 
     <div class="grid_{% if is_mobile_layout %}8{% else %}4{% endif %} alpha omega list-number">
-        <div class="icons-Hearticon">
-            {{ 'wishlist.number'|trans({'%number%': wishlist_id}, 'account')|raw }}
-        </div>
+        {{ image_tag('fx/images/icons/icons/Hearticon.png') }}
+        {{ 'wishlist.number'|trans({'%number%': wishlist_id}, 'account')|raw }}
     </div>
 
     <section class="grid_{% if is_mobile_layout %}8{% else %}4{% endif %} alpha omega js-wishlist-target wishlist-target">
@@ -77,9 +76,8 @@
     </div>
 
     <div class="grid_{% if is_mobile_layout %}8{% else %}4{% endif %} alpha omega list-number last{% if products|length == 0 %} off{% endif %}">
-        <div class="icons-Hearticon">
-            {{ 'wishlist.number'|trans({'%number%': wishlist_id}, 'account')|raw }}
-        </div>
+        {{ image_tag('fx/images/icons/icons/Hearticon.png') }}
+        {{ 'wishlist.number'|trans({'%number%': wishlist_id}, 'account')|raw }}
     </div>
 
     <article class="footer grid_8 alpha omega ">

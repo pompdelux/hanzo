@@ -6,7 +6,7 @@
     <div class="container">
     {% if is_mobile_layout %}
         <a href="{{ path('_account_wishlist_create') }}" class="add-wishlist">
-            <i class="icons-Hearticon">{{ 'wishlist.add.label'|trans({}, 'account') }}</i>
+            {{ image_tag('fx/images/icons/icons/Hearticon.png') }}{{ 'wishlist.add.label'|trans({}, 'account') }}
         </a>
     {% endif %}
         {{ 'wishlist.add.description'|trans({}, 'account')|raw }}

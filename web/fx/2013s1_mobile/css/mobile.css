@@ -2249,22 +2249,27 @@ table#order-status td a.trigger {
 a.add-wishlist {
   margin: 20px 0;
   background-color: #e7e5e5;
-  padding: 17px 0 16px 7px;
+  padding: 10px;
   display: block;
   text-decoration: none;
-}
-a.add-wishlist .icons-Hearticon {
-  padding: 10px 0 11px 55px;
+  text-align: center;
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 1.2em;
+}
+a.add-wishlist img {
+  height: 35px;
+  width: 35px;
+  vertical-align: middle;
+  margin-right: 10px;
 }
 
 #body-wishlist .wishlist-flush-list a {
   margin-top: 10px;
   width: 315px;
 }
-#body-wishlist .list-number .icons-Hearticon {
-  padding-top: 10px;
+#body-wishlist .list-number img {
+  vertical-align: middle;
+  margin-right: 10px;
 }
 
 .basket h3 {
