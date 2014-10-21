@@ -133,10 +133,9 @@ class EventExporter
             $data[0][date('d-m-Y', $date)] = date('d-m-Y', $date);
         }
 
+        /** @var \Hanzo\Model\Consultants $consultant */
         foreach ($consultants as $consultant) {
-            /** @var \Hanzo\Model\Customers $customerData */
-            $customerData = $consultant->getCustomers($this->getDBConnection());
-            $data[$consultant->getId()][0] = utf8_decode($customerData->getName());
+            $data[$consultant->getId()][0] = utf8_decode($consultant->getInitials());
 
             for ($date = strtotime($this->startDate); $date <= strtotime($this->endDate); $date = strtotime('+1 day', $date)) {
                 $data[$consultant->getId()][date('d-m-Y', $date)] = '-';

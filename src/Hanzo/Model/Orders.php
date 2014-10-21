@@ -63,7 +63,7 @@ class Orders extends BaseOrders
     const INFO_STATE_EDIT_CANCLED_BY_CLEANUP = 'Edit cancled by cleanup';
     const INFO_STATE_EDIT_DONE               = 'Edit done';
 
-    protected $ignore_delete_constraints = false;
+    protected $ignoreDeleteConstraints = false;
 
     /**
      * Unmapped payment id, used in ax sync
@@ -162,7 +162,7 @@ class Orders extends BaseOrders
      */
     public function getDeliveryFullName(Translator $translator = null)
     {
-        return trim($this->getDeliveryTitle().' '.$this->getDeliveryFirstName().' '.$this->getDeliveryLastName());
+        return trim($this->getDeliveryTitle($translator).' '.$this->getDeliveryFirstName().' '.$this->getDeliveryLastName());
     }
 
     /**
@@ -218,7 +218,7 @@ class Orders extends BaseOrders
          *     orders_products
          *     orders_attributes
          */
-        $data = array();
+        $data = [];
         $data['order'] = $this->toArray();
         unset($data['order']['Id']);
 
@@ -1081,10 +1081,9 @@ class Orders extends BaseOrders
         $attributes = OrdersAttributesQuery::create()
             ->filterByOrdersId($this->getId())
             ->filterByNs('attachment')
-            ->find($this->getDBConnection())
-        ;
+            ->find($this->getDBConnection());
 
-        $attachments = array();
+        $attachments = [];
         foreach ($attributes as $attribute) {
             $attachments[$attribute->getCKey()] = $attribute->getCValue();
         }
@@ -1092,6 +1091,11 @@ class Orders extends BaseOrders
         return $attachments;
     }
 
+    /**
+     * @param null $con
+     *
+     * @return \stdClass
+     */
     public function getAttributes($con = null)
     {
         if ($this->getDBConnection()) {
@@ -1100,7 +1104,7 @@ class Orders extends BaseOrders
 
         $attributes = new \stdClass();
         foreach ($this->getOrdersAttributess(null, $con) as $attr) {
-            $ns = str_replace(array(':', '.'), '_', $attr->getNs());
+            $ns = str_replace([':', '.'], '_', $attr->getNs());
 
             if (empty($attributes->{$ns})) {
                 $attributes->{$ns} = new \stdClass();
@@ -1114,18 +1118,20 @@ class Orders extends BaseOrders
     /**
      * Wrapping the setPaymentGatewayId method to auto-generate gateway id's
      *
-     * @param  int    $gateway_id if specified, this is used over the auto generated one
+     * @param int $gatewayId if specified, this is used over the auto generated one
+     *
      * @return Orders The current object (for fluent API support)
      */
-    public function setPaymentGatewayId($gateway_id = null)
+    public function setPaymentGatewayId($gatewayId = null)
     {
-        return parent::setPaymentGatewayId($gateway_id);
+        return parent::setPaymentGatewayId($gatewayId);
     }
 
     /**
      * Wrapping the setState method to log all state changes
      *
-     * @param  int    $v state id
+     * @param int $v state id
+     *
      * @return Orders The current object (for fluent API support)
      */
     public function setState($v)
@@ -1149,20 +1155,21 @@ class Orders extends BaseOrders
     /**
      * Check wether a product is in the "cart" or not
      *
-     * @param  mixed   $product_id id or sku of the product
-     * @return boolean [description]
+     * @param mixed $productId id or sku of the product
+     *
+     * @return bool
      */
-    public function hasProduct($product_id)
+    public function hasProduct($productId)
     {
-        $isInt = preg_match('/^[0-9]+$/', $product_id);
+        $isInt = preg_match('/^[0-9]+$/', $productId);
         foreach ($this->getOrdersLiness(null, $this->getDBConnection()) as $line) {
             if ($isInt) {
-                if ($line->getProductsId() == $product_id) {
+                if ($line->getProductsId() == $productId) {
                     return true;
                 }
             } else {
                 // note the "name" here is the same as the master "sku"
-                if ($line->getProductsName() == $product_id) {
+                if ($line->getProductsName() == $productId) {
                     return true;
                 }
             }
@@ -1174,36 +1181,37 @@ class Orders extends BaseOrders
     /**
      * returns latest delivery date.
      *
-     * @param  string          $format
+     * @param string $format
+     *
      * @return mixed|string
      * @throws Exception
      * @throws PropelException
      */
     public function getExpectedDeliveryDate($format = 'Y-m-d')
     {
-        $now         = date('Ymd');
-        $latest      = 0;
-        $hanzo       = Hanzo::getInstance();
-        $result      = $hanzo->get('HD.expected_delivery_date');
-        $expected_at = is_null($result) ? '' : $result;
+        $now        = date('Ymd');
+        $latest     = 0;
+        $hanzo      = Hanzo::getInstance();
+        $result     = $hanzo->get('HD.expected_delivery_date');
+        $expectedAt = is_null($result) ? '' : $result;
 
         foreach ($this->getOrdersLiness(null, $this->getDBConnection()) as $line) {
             $date = $line->getExpectedAt('Ymd');
             if (($date > $now) && ($date > $latest)) {
                 $latest = $date;
-                $expected_at = $line->getExpectedAt($format);
+                $expectedAt = $line->getExpectedAt($format);
             }
         }
 
-        return $expected_at;
+        return $expectedAt;
     }
 
     /**
-     * @param $v
+     * @param bool $v
      */
     public function setIgnoreDeleteConstraints($v)
     {
-        $this->ignore_delete_constraints = (bool) $v;
+        $this->ignoreDeleteConstraints = (bool) $v;
     }
 
     /**
@@ -1211,7 +1219,7 @@ class Orders extends BaseOrders
      */
     public function getIgnoreDeleteConstraints()
     {
-        return $this->ignore_delete_constraints;
+        return $this->ignoreDeleteConstraints;
     }
 
     /**
@@ -1239,14 +1247,14 @@ class Orders extends BaseOrders
 
             $lines = $this->getOrdersLiness();
 
-            $product_ids = [];
+            $productIds = [];
             foreach ($lines as $line) {
                 if ('product' == $line->getType()) {
-                    $product_ids[] = $line->getProductsId();
+                    $productIds[] = $line->getProductsId();
                 }
             }
 
-            $prices = ProductsDomainsPricesPeer::getProductsPrices($product_ids);
+            $prices = ProductsDomainsPricesPeer::getProductsPrices($productIds);
             $collection = new PropelCollection();
 
             foreach ($lines as $line) {
@@ -1290,7 +1298,8 @@ class Orders extends BaseOrders
     /**
      * build and return a order Addresses object based on the type
      *
-     * @param  string    $type Can be either of the types set in the addresses table
+     * @param string $type Can be either of the types set in the addresses table
+     *
      * @return Addresses
      */
     public function getOrderAddress($type = 'payment')
