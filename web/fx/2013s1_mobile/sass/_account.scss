@@ -92,14 +92,18 @@ table#order-status {
 a.add-wishlist {
     margin: 20px 0;
     background-color: rgb(231, 229, 229);
-    padding: 17px 0 16px 7px;
+    padding: 10px;
     display: block;
     text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2em;
 
-    .icons-Hearticon {
-        padding: 10px 0 11px 55px;
-        font-weight: bold;
-        font-size: 1.5em;
+    img {
+        height: 35px;
+        width: 35px;
+        vertical-align: middle;
+        margin-right: 10px;
     }
 }
 
@@ -110,8 +114,9 @@ a.add-wishlist {
     }
 
     .list-number {
-        .icons-Hearticon {
-            padding-top: 10px;
+        img {
+            vertical-align: middle;
+            margin-right: 10px;
         }
     }
 }
