@@ -13,6 +13,7 @@
 
     <p>{{ 'quickorder.description.text'|trans({}, 'quickorder') }}</p>
     <div>
+{% if domain_key == 'SalesDK' or domain_key == 'DK' %}
         <form method="post" action="{{ path('quickorder_load_from_list') }}" class="js-load-wishlist load-wishlist">
             <label>Hent Shoppingliste</label>
             <input name="q" value="" autocomplete="off" placeholder="Shoppingliste nr." type="text">
@@ -42,6 +43,7 @@
                 </table>
             </div>
         {% endif %}
+{% endif %}
 
         <form action="{{ url('basket_add', {}, true) }}" method="post" class="quickorder">
             <label>{{ 'quickorder.master.placeholder'|trans({}, 'quickorder') }}<br>

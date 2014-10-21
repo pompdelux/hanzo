@@ -89,3 +89,29 @@ table#order-status {
         height: 16px;
     }
 }
+a.add-wishlist {
+    margin: 20px 0;
+    background-color: rgb(231, 229, 229);
+    padding: 17px 0 16px 7px;
+    display: block;
+    text-decoration: none;
+
+    .icons-Hearticon {
+        padding: 10px 0 12px 55px;
+        font-weight: bold;
+        font-size: 1.5em;
+    }
+}
+
+#body-wishlist {
+    .wishlist-flush-list a {
+        margin-top: 10px;
+        width: 315px;
+    }
+
+    .list-number {
+        .icons-Hearticon {
+            padding-top: 10px;
+        }
+    }
+}

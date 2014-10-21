@@ -150,7 +150,7 @@ aside.js-slider {
         }
 
         .icons-Hearticon {
-            padding: 15px 15px 15px 55px;
+            padding: 20px 15px 15px 55px;
         }
     }
 
@@ -161,6 +161,11 @@ aside.js-slider {
     .wishlist-flush-list {
         text-align: right;
         margin-bottom: 10px;
+
+        a {
+            margin: 0;
+            width: 425px;
+        }
     }
 
     .footer {

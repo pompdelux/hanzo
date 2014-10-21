@@ -571,14 +571,14 @@ Herefter kan du nemt shoppe videre.</p><br>
             </trans-unit>
             <trans-unit id="wishlist.add.label">
                 <source>wishlist.add.label</source>
-                <target>Opret shoppingliste</target>
+                <target>Min shoppingliste</target>
             </trans-unit>
             <trans-unit id="wishlist.add.description">
                 <source>wishlist.add.description</source>
                 <target><![CDATA[
                     <p>Her kan du oprette en liste med de styles, du ønsker at bestille ved et Home Shopping arrangement eller Åbent Hus.</p>
                     <ul>
-                        <li>Tryk på "Opret Shoppingliste". Din Shoppingliste får et unikt nummer, som din Shopping Advisor skal bruge.</li>
+                        <li>Tryk på "Min shoppingliste". Din Shoppingliste får et unikt nummer, som din Shopping Advisor skal bruge.</li>
                         <li>Tilføj de styles du ønsker at købe.</li>
                         <li>Vis Shoppingliste nummeret til din Shopping Advisor, som behandler din ordre.</li>
                         <li>Lagerbeholdning tjekkes, ordren gennemføres i samarbejde med din Shopping Advisor og herefter vil du modtage en ordrebekræftelse på din ordre.</li>
