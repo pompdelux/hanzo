@@ -12,6 +12,8 @@
     {{ render(controller('NewsletterBundle:Default:allLists')) }}
 </aside>
 
+{% if domain_key == 'DK' %}
 <aside class="js-slider wishlist">
     {{ include('AccountBundle:Wishlist:info.html.twig') }}
 </aside>
+{% endif %}
