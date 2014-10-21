@@ -2143,7 +2143,7 @@ aside.js-slider h3 span.open {
   margin-top: 20px;
 }
 #body-wishlist .list-number .icons-Hearticon {
-  padding: 20px 15px 15px 55px;
+  padding: 20px 15px 10px 55px;
 }
 #body-wishlist .wishlist-target {
   border-bottom: 2px solid #c0c0c0;
@@ -2254,7 +2254,7 @@ a.add-wishlist {
   text-decoration: none;
 }
 a.add-wishlist .icons-Hearticon {
-  padding: 10px 0 12px 55px;
+  padding: 10px 0 11px 55px;
   font-weight: bold;
   font-size: 1.5em;
 }
