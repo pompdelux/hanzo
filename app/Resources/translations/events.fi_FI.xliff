@@ -442,6 +442,10 @@
                 <source>events.choose.rsvp_type</source>
                 <target>Vælg tilmeldings type</target>
             </trans-unit>
+            <trans-unit id="open.house.label" approved="no">
+                <source>open.house.label</source>
+                <target>Åbent hus</target>
+            </trans-unit>
         </body>
    </file>
 </xliff>
