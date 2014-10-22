@@ -64,7 +64,7 @@
         $.timepicker.datetimeRange(
             $startEventDate,
             $endEventDate, {
-                minDate     : new Date({{ 'now'|date('Y, m, d') }}, 8, 0),
+                minDate     : new Date("{{ 'today 1am'|date('r') }}"),
                 minInterval : (1000*60*60), // 1hr
                 stepMinute  : 15,
                 controlType : 'select'
