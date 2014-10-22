@@ -792,8 +792,8 @@ class CmsController extends CoreController
     /**
      * Creates the html for a System Tree of the CMS. Works recursivly.
      *
-     * @param int    $cms_thread
-     * @param int    $parent_id
+     * @param int    $cmsThread
+     * @param int    $parentId
      * @param string $locale
      *
      * @return string ordered list
@@ -801,13 +801,13 @@ class CmsController extends CoreController
      * @todo no-recursive: This could be done better, with an left join. How? Too many Propel Calls.
      * @todo remove html from controller and make an array instead.
      */
-    protected function getCmsTree($cms_thread, $parent_id, $locale)
+    protected function getCmsTree($cmsThread, $parentId, $locale)
     {
         $t = $this->get('translator');
         $menu = '';
 
         // First level is the CMS_THREAD, next are CMS
-        if (empty($cms_thread)) {
+        if (empty($cmsThread)) {
             $query = CmsThreadQuery::create()
                 ->joinWithI18n($locale)
                 ->orderById();
@@ -833,15 +833,15 @@ class CmsController extends CoreController
             }
         } else {
             $query = CmsQuery::create()
-                ->filterByCmsThreadId($cms_thread)
+                ->filterByCmsThreadId($cmsThread)
                 ->joinWithI18n($locale, \Criteria::RIGHT_JOIN)
                 ->groupById()
                 ->orderBySort();
 
-            if (empty($parent_id)) {
+            if (empty($parentId)) {
                 $query->filterByParentId(null, \Criteria::ISNULL);
             } else {
-                $query->filterByParentId($parent_id);
+                $query->filterByParentId($parentId);
             }
             $result = $query->find($this->getDbConnection());
 
@@ -861,7 +861,7 @@ class CmsController extends CoreController
                     $menu .= '</div>';
 
                     // Retrieve all this nodes leafs/childrens
-                    $menu .= $this->getCmsTree($cms_thread, $record->getId(), $locale);
+                    $menu .= $this->getCmsTree($cmsThread, $record->getId(), $locale);
                     $menu .= '</li>';
                 }
 
@@ -875,19 +875,19 @@ class CmsController extends CoreController
     /**
      * Creates an single dimension array og cms pages. Used as the options in a select.
      *
-     * @param int    $from_thread the thread
-     * @param string $locale      locale
-     * @param int    $parent      The parent, initial null
-     * @param int    $indention   level of indention
+     * @param int    $fromThread the thread
+     * @param string $locale     locale
+     * @param int    $parent     The parent, initial null
+     * @param int    $indention  level of indention
      *
      * @return array  the array
      */
-    protected function getSelectCms($from_thread, $locale, $parent = null, $indention = 0)
+    protected function getSelectCms($fromThread, $locale, $parent = null, $indention = 0)
     {
         $menu = [];
 
         $query = CmsQuery::create()
-            ->filterByCmsThreadId($from_thread)
+            ->filterByCmsThreadId($fromThread)
             ->joinWithI18n($locale, \Criteria::RIGHT_JOIN)
             ->groupById()
             ->orderBySort();
@@ -901,7 +901,7 @@ class CmsController extends CoreController
 
         foreach ($result as $cms) {
             $menu[$cms->getId()] = str_repeat('- ', $indention) . $cms->getId(). ' - ' .$cms->getTitle();
-            $menu = $menu + $this->getSelectCms($from_thread, $locale, $cms->getId(), $indention + 1);
+            $menu = $menu + $this->getSelectCms($fromThread, $locale, $cms->getId(), $indention + 1);
         }
 
         return $menu;
