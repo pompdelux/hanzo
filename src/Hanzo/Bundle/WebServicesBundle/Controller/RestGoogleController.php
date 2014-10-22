@@ -71,10 +71,19 @@ class RestGoogleController extends CoreController
         if ($type == 'hus') {
             $radius   = $showAll ? 20000 : 150;
             $numItems = $showAll ? 20000 : 18;
-            $filter    = "
-            AND
-                cn.hide_info = 0
-          ";
+            $filter   = "
+                AND
+                    cn.hide_info = 0
+            ";
+        }
+
+        if ($this->isProdEnv()) {
+            $filter .= "
+                AND
+                    c.email NOT LIKE ('%@bellcom.dk')
+                AND
+                    c.email NOT IN ('".implode("','", $this->getIgnoreList())."')
+            ";
         }
 
         $query = "
@@ -107,10 +116,6 @@ class RestGoogleController extends CoreController
                 c.groups_id = 2
                 AND
                     c.is_active = 1
-                AND
-                    c.email NOT LIKE ('%@bellcom.dk')
-                AND
-                    c.email NOT IN ('hdkon@pompdelux.dk','mail@pompdelux.dk','hd@pompdelux.dk','kk@pompdelux.dk','sj@pompdelux.dk','ak@pompdelux.dk','test@pompdelux.dk','pd@pompdelux.dk')
             {$filter}
             HAVING
                 distance < {$radius}
@@ -134,7 +139,7 @@ class RestGoogleController extends CoreController
 
                 // do we need a fallback avatar ?
                 if (empty($matches[0])) {
-                    $matches[0] = '<img src="//cdn.pdl.un/images/consultantsDK/LineSkovsen.jpg" width="100" height="75">';
+                    $matches[0] = '<img src="'.$cdn.'/images/debitorDK/JohnDoe.jpg" width="100" height="75">';
                 }
 
                 $avatar = $matches[0];
@@ -228,28 +233,21 @@ class RestGoogleController extends CoreController
      */
     public function consultantsAction()
     {
-        $ignore = [
-            'hdkon@pompdelux.dk',
-            'mail@pompdelux.dk',
-            'hd@pompdelux.dk',
-            'kk@pompdelux.dk',
-            'sj@pompdelux.dk',
-            'ak@pompdelux.dk',
-            'test@pompdelux.dk',
-            'pd@pompdelux.dk'
-        ];
-
-        $consultants = CustomersQuery::create()
-            ->filterByEmail('%@bellcom.dk', \Criteria::NOT_LIKE)
-            ->filterByEmail($ignore, \Criteria::NOT_IN)
+        $query = CustomersQuery::create()
             ->filterByGroupsId(2)
             ->filterByIsActive(true)
             ->useAddressesQuery()
-            ->filterByType('payment')
+                ->filterByType('payment')
             ->endUse()
-            ->joinWithAddresses()
-            ->find();
+            ->joinWithAddresses();
 
+        if ($this->isProdEnv()) {
+            $query
+                ->filterByEmail('%@bellcom.dk', \Criteria::NOT_LIKE)
+                ->filterByEmail($this->getIgnoreList(), \Criteria::NOT_IN);
+        }
+
+        $consultants = $query->find();
         $cdn = Hanzo::getInstance()->get('core.cdn');
 
         $data = [];
@@ -279,5 +277,35 @@ class RestGoogleController extends CoreController
         ];
 
         return $this->json_response($response);
+    }
+
+    /**
+     * @return bool
+     */
+    private function isProdEnv()
+    {
+        list($env,) = explode('_', $this->container->get('kernel')->getEnvironment());
+
+        return 'prod' === $env;
+    }
+
+
+    /**
+     * @return array
+     */
+    private function getIgnoreList()
+    {
+        $ignores = [
+            'hdkon@pompdelux.dk',
+            'mail@pompdelux.dk',
+            'hd@pompdelux.dk',
+            'kk@pompdelux.dk',
+            'sj@pompdelux.dk',
+            'ak@pompdelux.dk',
+            'test@pompdelux.dk',
+            'pd@pompdelux.dk',
+        ];
+
+        return $ignores;
     }
 }
