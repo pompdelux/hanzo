@@ -1,19 +1,14 @@
+<script type="text/javascript">
+var geo_zipcode_params = {
+    type : "near",
+    country : "{{ country }}"
+};
+</script>
 <div>
-{% if country is defined and country %}
     {% if show_all is defined and show_all %}
-        <script type="text/javascript">
-            var geo_zipcode_params = {
-                type : "near",
-                country : "{{ country }}"
-            };
-        </script>
-        {{ consultants_near_you('near', 'true') }}
+        {{ consultants_near_you('hus', 'true') }}
     {% else %}
-        <p>{{ 'advisor.locater_form.label'|trans }} {{ geo_zip_code_form('near', country) }}</p>
-        {{ consultants_near_you() }}
+        <p>{{ 'advisor.locater_form.label'|trans }} {{ geo_zip_code_form('hus') }}</p>
+        {{ consultants_near_you('hus') }}
     {% endif %}
-{% else %}
-    <p>{{ 'advisor.locater_form.label'|trans }} {{ geo_zip_code_form("hus") }}</p>
-    {{ consultants_near_you("hus") }}
-{% endif %}
 </div>

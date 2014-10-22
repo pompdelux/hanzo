@@ -24,23 +24,25 @@ class AdvisorController extends CoreController
     public function renderAction(CmsI18n $page)
     {
         $cms = $page->getCms();
+
+        // supported types:
+        //   advisor_finder
+        //   advisor_map
+        //   advisor_open_house
         $tpl = $type = $cms->getType();
-
-        if ('advisor_finder' == $tpl) {
-            $tpl = 'advisor_open_house';
-        }
-
-        $tpl  = str_replace('advisor_', 'EventsBundle:Advisor:', $tpl) . '.html.twig';
+        $tpl = str_replace('advisor_', 'EventsBundle:Advisor:', $tpl) . '.html.twig';
 
         // supported $settings = [
         //   'show_all' => 1,
         //   'country'  => 'xxx'
         // ]
+        $settings = (array) $page->getSettings(false);
+        $settings['page_type'] = $type;
 
         return $this->render('CMSBundle:Default:view.html.twig', [
             'page_type'        => $type,
             'page'             => $page,
-            'embedded_content' => $this->renderView($tpl, (array) $page->getSettings(false)),
+            'embedded_content' => $this->renderView($tpl, $settings),
             'parent_id'        => $cms->getParentId() ?: $page->getId(),
             'browser_title'    => $page->getTitle(),
         ]);
