@@ -14,19 +14,28 @@ use Hanzo\Bundle\ServiceBundle\Services\TwigStringService;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 
+/**
+ * Class MapsExtension
+ *
+ * @package Hanzo\Twig\Extension
+ */
 class MapsExtension extends Twig_Extension
 {
-    protected $twig_string;
+    protected $twigString;
     protected $maxmind;
 
-    public function __construct(TwigStringService $twig_string, $maxmind)
+    /**
+     * @param TwigStringService $twigString
+     * @param object            $maxmind
+     */
+    public function __construct(TwigStringService $twigString, $maxmind)
     {
-        $this->twig_string = $twig_string;
-        $this->maxmind = $maxmind;
+        $this->twigString = $twigString;
+        $this->maxmind    = $maxmind;
     }
 
     /**
-     * @inherit
+     * {@inheritdoc}
      */
     public function getName()
     {
@@ -34,45 +43,78 @@ class MapsExtension extends Twig_Extension
     }
 
     /**
-     * @inherit
+     * {@inheritdoc}
      */
     public function getFunctions()
     {
-        return array(
-            'geo_zip_code_form' => new Twig_Function_Method($this, 'zip_code_form', array('pre_escape' => 'html', 'is_safe' => array('html'), 'needs_environment' => true)),
-            'consultants_near_you' => new Twig_Function_Method($this, 'consultants_near_you', array('pre_escape' => 'html', 'is_safe' => array('html'), 'needs_environment' => true)),
-            'consultants_map' => new Twig_Function_Method($this, 'consultants_map', array('pre_escape' => 'html', 'is_safe' => array('html'), 'needs_environment' => true)),
-        );
+        return [
+            'geo_zip_code_form' => new Twig_Function_Method(
+                $this,
+                'zip_code_form',
+                ['pre_escape' => 'html', 'is_safe' => ['html'], 'needs_environment' => true]
+            ),
+            'consultants_near_you' => new Twig_Function_Method(
+                $this,
+                'consultants_near_you',
+                ['pre_escape' => 'html', 'is_safe' => ['html'], 'needs_environment' => true]
+            ),
+            'consultants_map' => new Twig_Function_Method(
+                $this,
+                'consultants_map',
+                ['pre_escape' => 'html', 'is_safe' => ['html'], 'needs_environment' => true]
+            ),
+        ];
     }
 
+    /**
+     * @param Twig_Environment $env
+     * @param string           $type
+     * @param string           $country
+     *
+     * @return string
+     */
     public function zip_code_form(Twig_Environment $env, $type = 'near', $country = 'Denmark')
     {
-        return $env->render('CMSBundle:Twig:zip_form.html.twig', array(
-            'type' => $type,
+        return $env->render('CMSBundle:Twig:zip_form.html.twig', [
+            'type'    => $type,
             'country' => $country
-        ));
+        ]);
     }
 
+    /**
+     * @param Twig_Environment $env
+     *
+     * @return string
+     * @throws \Exception
+     */
     public function consultants_map(Twig_Environment $env)
     {
         $hanzo = Hanzo::getInstance();
         $config = $hanzo->getByNs('maps');
 
-        return $env->render('CMSBundle:Twig:consultants_map.html.twig', array(
+        return $env->render('CMSBundle:Twig:consultants_map.html.twig', [
             'settings' => 'lat:' . $config['consultants_map.lat'] . ',lng:' . $config['consultants_map.lng'].', zoom:' . $config['consultants_map.zoom'],
             'language' => $config['consultants_map.language'],
             'height'   => $config['consultants_map.height'],
-        ));
+        ]);
     }
 
-    public function consultants_near_you(Twig_Environment $env, $type = 'near')
+    /**
+     * @param Twig_Environment $env
+     * @param string           $type
+     * @param string           $all
+     *
+     * @return string
+     */
+    public function consultants_near_you(Twig_Environment $env, $type = 'near', $all = 'false')
     {
         $result = $this->maxmind->lookup();
 
-        return $env->render('CMSBundle:Twig:consultants_near_you.html.twig', array(
+        return $env->render('CMSBundle:Twig:consultants_near_you.html.twig', [
+            'all'  => $all,
             'type' => $type,
-            'lat' => number_format((double) $result->city->location->latitude, 8, '.', ''),
-            'lon' => number_format((double) $result->city->location->longitude, 8, '.', ''),
-        ));
+            'lat'  => number_format((double) $result->city->location->latitude, 8, '.', ''),
+            'lon'  => number_format((double) $result->city->location->longitude, 8, '.', ''),
+        ]);
     }
 }

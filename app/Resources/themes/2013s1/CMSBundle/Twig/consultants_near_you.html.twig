@@ -1,40 +1,52 @@
 <div id="near-you-container" class="near-you-container grid_6 omega"></div>
-{#<script src="//maps.google.com/maps/api/js?sensor=false&language={{ language|default('DA') }}" type="text/javascript"></script>#}
 <script type="text/javascript">
 var near_you_params = {
-  type : geo_zipcode_params.type || "{{ type }}",
-  lat  : {{ lat }},
-  lon  : {{ lon }}
+    type : geo_zipcode_params.type || "{{ type }}",
+    lat  : {{ lat }},
+    lon  : {{ lon }},
+    all  : {{ all|default('false') }}
 };
-{#var gm_settings = {
-  lat: near_you_params.lat,
-  lng: near_you_params.lon,
-  zoom: 7,
-  zoomControl: false
-};#}
 </script>
 
 <script type="text/html" id="consultantItem">
 <? for(i=0, l=data.length; i<l; i++) { ?>
-<? if((i+1)%3 === 1) {?>
-  <div class="grid_6 alpha omega row">
-<?}?>
-<div class="entry <?= (i%2 ? 'even' : 'odd') ?> grid_2 <? if((i+1)%3===1){?>alpha<?}?> <? if((i+1)%3===0){?>omega<?}?>">
-  <div class="wrapper box">
-    <div class="info">
-      <?= data[i].name ?><br>
-      <?= data[i].zip ?> <?= data[i].city ?><br>
-      {{ 'Phone'|trans }}: <?= data[i].phone ?><br>
-      {{ 'Email'|trans }}: <a href="mailto:<?= data[i].email ?>"><?= data[i].email ?></a><br>
-    </div>
-    <div class="note">
-      <?= data[i].info ?>
-    </div>
-  </div>
-</div>
-<? if((i+1)%3 === 0 || (i+1) === l){?>
-  </div>
-<?}?>
-<? }?>
+    <? if ((i+1) %3 === 1) { ?>
+        <div class="grid_6 alpha omega row">
+    <? } ?>
+        <div class="entry <?= (i%2 ? 'even' : 'odd') ?> grid_2 <? if ((i+1) %3 ===1) { ?>alpha<? } ?> <? if ((i+1) %3 ===0) { ?>omega<? } ?>">
+            <div class="wrapper box">
+                <div class="info">
+                    <?= data[i].name ?><br>
+                    <?= data[i].zip ?> <?= data[i].city ?><br>
+                    {{ 'Phone'|trans }}: <?= data[i].phone ?><br>
+                    {{ 'Email'|trans }}: <a href="mailto:<?= data[i].email ?>"><?= data[i].email ?></a><br>
+                </div>
+                <div class="note">
+                    <? if (undefined !== data[i].events && data[i].events.length) { ?>
+                        <?= data[i].avatar ?>
+                        <strong>{{ 'open.house.label'|trans({}, 'events') }}</strong>
+                        <? jQuery.each(data[i].events, function(i, event) { ?>
+                            <div class="open-house-block">
+                                <? jQuery.each(event.dates, function(ii, date) { ?>
+                                    <?= date.date ?><br>
+                                <? }); ?>
+                                <p>
+                                    <?= event.zip ?> <?= event.city ?><br>
+                                    <?= event.address ?>
+                                </p>
+                                <em><?= event.notes.join("<br>") ?></em>
+                            </div>
+                        <? }); ?>
+
+                    <? } else { ?>
+                        <?= data[i].info ?>
+                    <? } ?>
+                </div>
+            </div>
+        </div>
+    <? if (((i+1) %3 === 0) || (i+1) === l) { ?>
+        </div>
+    <? } ?>
+<? } ?>
 </script>
 

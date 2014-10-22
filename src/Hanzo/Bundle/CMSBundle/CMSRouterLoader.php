@@ -7,40 +7,43 @@
 
 namespace Hanzo\Bundle\CMSBundle;
 
-use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
-
 use Hanzo\Model\CmsI18nQuery;
-
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Config\Loader\LoaderResolverInterface;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 
+/**
+ * Class CMSRouterLoader
+ *
+ * @package Hanzo\Bundle\CMSBundle
+ */
 class CMSRouterLoader implements LoaderInterface
 {
     private $loaded = false;
     private $locale;
-    private $cache_dir;
+    private $cacheDir;
 
     /**
      * setup required variables
      *
-     * @param string $locale    active locale
-     * @param string $cache_dir Path to filesystem cache
+     * @param string $locale   active locale
+     * @param string $cacheDir Path to filesystem cache
      */
-    public function __construct($locale, $cache_dir)
+    public function __construct($locale, $cacheDir)
     {
         $this->locale = $locale;
-        $this->cache_dir = $cache_dir;
+        $this->cacheDir = $cacheDir;
     }
 
 
     /**
      * load the routes
      *
-     * @param  string $resource unused, but required
-     * @param  string $type     unused, but required
+     * @param string $resource unused, but required
+     * @param string $type     unused, but required
+     *
      * @return RouteCollection
      * @throws \RuntimeException
      */
@@ -50,26 +53,26 @@ class CMSRouterLoader implements LoaderInterface
             throw new \RuntimeException('Do not add this loader twice');
         }
 
-        $categories = array();
+        $categories = [];
         $routes = new RouteCollection();
 
         $pages = CmsI18nQuery::create()
             ->rightJoinWithCms()
             ->orderByPath()
-            ->findByLocale($this->locale)
-        ;
+            ->findByLocale($this->locale);
 
+        /** @var \Hanzo\Model\CmsI18n $page */
         foreach ($pages as $page) {
-            $id = $page->getId();
-            $locale = trim($page->getLocale());
-            $locale_lower = strtolower($locale);
-            $path = '{_locale}/'.trim($page->getPath());
-            $type = trim($page->getCms()->getType());
-            $title = trim($page->getTitle());
+            $id          = $page->getId();
+            $locale      = trim($page->getLocale());
+            $localeLower = strtolower($locale);
+            $path        = '{_locale}/' . trim($page->getPath());
+            $type        = trim($page->getCms()->getType());
+            $title       = trim($page->getTitle());
 
-            $is_restricted = 0;
+            $isRestricted = 0;
             if (!$page->getIsActive()) {
-                $is_restricted = (int) $page->getIsRestricted();
+                $isRestricted = (int) $page->getIsRestricted();
             }
 
             if (('' == $title) || isset($processed[$path])) {
@@ -82,168 +85,193 @@ class CMSRouterLoader implements LoaderInterface
             if (substr($settings, 0, 2) == 'a:') {
                 // serialized settings
                 $settings = unserialize(stripslashes($settings));
-            } else if(substr($settings, 0, 1) == '{') {
+            } elseif (substr($settings, 0, 1) == '{') {
                 // Json encoded settings
                 $settings = json_decode($settings);
             }
+
             switch ($type) {
                 case 'category':
                     //test ... we should never enter this if tho...
                     if (!isset($settings->category_id)) {
-                        \Hanzo\Core\Tools::log('Missing category id on page id: ' . $id);
+                        Tools::log('Missing category id on page id: ' . $id);
                         continue;
                     }
 
-                    $category_key = '_' . $locale_lower . '_' . $settings->category_id;
-                    $category_path = 'category_' . $id . '_' . $locale_lower;
-                    $product_path = 'product_' . $id . '_' . $locale_lower ;
+                    $categoryKey  = '_' . $localeLower . '_' . $settings->category_id;
+                    $categoryPath = 'category_' . $id . '_' . $localeLower;
+                    $productPath  = 'product_' . $id . '_' . $localeLower;
 
-                    $categories[$category_key] = $product_path;
+                    $categories[$categoryKey] = $productPath;
 
                     // product route
-                    $route = new Route("/{$path}/{product_id}/{title}", array(
-                        '_controller' => 'ProductBundle:Default:view',
-                        '_format' => 'html',
-                        'cms_id' => $id,
-                        'category_id' => $settings->category_id,
-                        'title' => '',
-                        'ip_restricted' => true,
-                    ), array(
-                        'product_id' => '\d+',
-                        '_format' => 'html|json',
-                    ));
-                    $routes->add($product_path, $route);
+                    $route = new Route("/{$path}/{product_id}/{title}", [
+                            '_controller'   => 'ProductBundle:Default:view',
+                            '_format'       => 'html',
+                            'cms_id'        => $id,
+                            'category_id'   => $settings->category_id,
+                            'title'         => '',
+                            'ip_restricted' => true,
+                        ], [
+                            'product_id' => '\d+',
+                            '_format'    => 'html|json',
+                    ]);
+
+                    $routes->add($productPath, $route);
+
                     // category route
-                    $route = new Route("/{$path}/{show}/{pager}", array(
-                        '_controller' => 'CategoryBundle:Default:view',
-                        '_format' => 'html',
-                        'cms_id' => $id,
-                        'category_id' => $settings->category_id,
-                        'pager' => 1,
-                        'show' => 'overview',
-                        'ip_restricted' => true,
-                    ), array(
-                        '_format' => 'html|json',
-                    ));
-                    $routes->add($category_path, $route);
+                    $route = new Route("/{$path}/{show}/{pager}", [
+                            '_controller'   => 'CategoryBundle:Default:view',
+                            '_format'       => 'html',
+                            'cms_id'        => $id,
+                            'category_id'   => $settings->category_id,
+                            'pager'         => 1,
+                            'show'          => 'overview',
+                            'ip_restricted' => true,
+                        ], [
+                            '_format' => 'html|json',
+                    ]);
+                    $routes->add($categoryPath, $route);
+
                     break;
 
                 case 'look':
                     //test ... we should never enter this if tho...
-                    if (!$settings instanceof \stdClass || !isset($settings->category_id)) {
+                    if ((!$settings instanceof \stdClass) || !isset($settings->category_id)) {
                         Tools::log('Missing category id on CMS #' . $page->getId());
                         continue;
                     }
 
-                    $look_key = '_' . $locale_lower . '_' . $settings->category_id;
-                    $look_path = 'look_' . $id . '_' . $locale_lower;
-                    $product_path = 'product_' . $id . '_' . $locale_lower ;
+                    $lookKey     = '_' . $localeLower . '_' . $settings->category_id;
+                    $lookPath    = 'look_' . $id . '_' . $localeLower;
+                    $productPath = 'product_' . $id . '_' . $localeLower;
 
-                    $categories[$look_key] = $product_path;
+                    $categories[$lookKey] = $productPath;
 
                     // look route
-                    $route = new Route("/{$path}/{pager}", array(
-                        '_controller' => 'CategoryBundle:ByLook:view',
-                        '_format' => 'html',
-                        'cms_id' => $id,
-                        'category_id' => $settings->category_id,
-                        'pager' => 1,
-                        'ip_restricted' => true,
-                    ), array(
-                        'pager' => '\d+',
-                        '_format' => 'html|json',
-                    ));
-                    $routes->add($look_path, $route);
+                    $route = new Route("/{$path}/{pager}", [
+                            '_controller'   => 'CategoryBundle:ByLook:view',
+                            '_format'       => 'html',
+                            'cms_id'        => $id,
+                            'category_id'   => $settings->category_id,
+                            'pager'         => 1,
+                            'ip_restricted' => true,
+                        ], [
+                            'pager'   => '\d+',
+                            '_format' => 'html|json',
+                    ]);
+                    $routes->add($lookPath, $route);
 
                     // product route
-                    $route = new Route("/{$path}/{product_id}/{title}", array(
-                        '_controller' => 'ProductBundle:Default:view',
-                        '_format' => 'html',
-                        'product_id' => 0,
-                        'cms_id' => $id,
-                        'look_id' => $settings->category_id,
-                        'title' => '',
-                        'ip_restricted' => true,
-                    ), array(
-                        'product_id' => '\d+',
-                        '_format' => 'html|json',
-                    ));
-                    $routes->add($product_path, $route);
-                    break;
+                    $route = new Route("/{$path}/{product_id}/{title}", [
+                            '_controller'   => 'ProductBundle:Default:view',
+                            '_format'       => 'html',
+                            'product_id'    => 0,
+                            'cms_id'        => $id,
+                            'look_id'       => $settings->category_id,
+                            'title'         => '',
+                            'ip_restricted' => true,
+                        ], [
+                            'product_id' => '\d+',
+                            '_format'    => 'html|json',
+                    ]);
+                    $routes->add($productPath, $route);
 
-                case 'page':
-                    $route = new Route("/".$path, array(
-                        '_controller' => 'CMSBundle:Default:view',
-                        'id' => $id,
-                        'ip_restricted' => $is_restricted,
-                    ));
-                    $routes->add('page_'.$id, $route);
-                    break;
-
-                case 'mannequin':
-                    $route = new Route("/".$path, array(
-                        '_controller' => 'MannequinBundle:Default:view',
-                        'id' => $id,
-                    ));
-                    $routes->add('mannequin_'.$id, $route);
                     break;
 
                 case 'bycolour':
-                    $route = new Route("/{$path}/{show}", array(
-                        '_controller' => 'CategoryBundle:ByColour:view',
-                        'id' => $id,
-                        'show' => 'overview',
-                        'ip_restricted' => true,
-                    ));
-                    $routes->add('bycolour_'.$id . '_' . $locale_lower, $route);
+                    $route = new Route("/{$path}/{show}", [
+                            '_controller'   => 'CategoryBundle:ByColour:view',
+                            'id'            => $id,
+                            'show'          => 'overview',
+                            'ip_restricted' => true,
+                        ]);
+                    $routes->add('bycolour_'.$id . '_' . $localeLower, $route);
 
-                    $product_path = 'product_' . $id . '_' . $locale_lower ;
+                    $productPath = 'product_' . $id . '_' . $localeLower ;
                     // product route
-                    $route = new Route("/{$path}/{product_id}/{title}", array(
-                        '_controller' => 'ProductBundle:Default:view',
-                        '_format' => 'html',
-                        'product_id' => 0,
-                        'cms_id' => $id,
-                        'title' => '',
-                        'ip_restricted' => true,
-                    ), array(
-                        'product_id' => '\d+',
-                        '_format' => 'html|json',
-                    ));
-                    $routes->add($product_path, $route);
+                    $route = new Route("/{$path}/{product_id}/{title}", [
+                            '_controller'   => 'ProductBundle:Default:view',
+                            '_format'       => 'html',
+                            'product_id'    => 0,
+                            'cms_id'        => $id,
+                            'title'         => '',
+                            'ip_restricted' => true,
+                        ], [
+                            'product_id' => '\d+',
+                            '_format'    => 'html|json',
+                        ]);
+                    $routes->add($productPath, $route);
+
+                    break;
+
+                case 'page':
+                    $route = new Route("/".$path, [
+                        '_controller'   => 'CMSBundle:Default:view',
+                        'id'            => $id,
+                        'ip_restricted' => $isRestricted,
+                    ]);
+                    $routes->add('page_'.$id, $route);
+
+                    break;
+
+                case 'mannequin':
+                    $route = new Route("/".$path, [
+                        '_controller' => 'MannequinBundle:Default:view',
+                        'id'          => $id,
+                    ]);
+                    $routes->add('mannequin_'.$id, $route);
+
                     break;
 
                 case 'newsletter':
-                    $route = new Route("/".$path, array(
+                    $route = new Route("/".$path, [
                         '_controller' => 'NewsletterBundle:Default:view',
-                        'id' => $id,
-                    ));
+                        'id'          => $id,
+                    ]);
                     $routes->add('newsletter_'.$id, $route);
+
                     break;
 
                 case 'search':
-                    if (!$settings instanceof \stdClass || !isset($settings->type)) {
+                    if ((!$settings instanceof \stdClass) || !isset($settings->type)) {
                         continue;
                     }
-                    $method = $settings->type;
+
+                    $method     = $settings->type;
                     $restricted = (($settings->type == 'category') ? 'true' : 'false');
 
-                    $route = new Route("/".$path, array(
-                        '_controller' => "SearchBundle:Default:{$method}",
-                        '_format' => 'html',
-                        'id' => $id,
-                        'ip_restricted' => $restricted,
-                    ), array(
-                        '_format' => 'html|json'
-                    ));
+                    $route = new Route("/".$path, [
+                            '_controller'   => "SearchBundle:Default:{$method}",
+                            '_format'       => 'html',
+                            'id'            => $id,
+                            'ip_restricted' => $restricted,
+                        ], [
+                            '_format' => 'html|json'
+                    ]);
                     $routes->add($settings->type.'_search_'.$id, $route);
+
+                    break;
+
+                case 'advisor_finder':
+                case 'advisor_map':
+                case 'advisor_open_house':
+                    $route = new Route("/".$path, [
+                            '_controller'   => "EventsBundle:Advisor:render",
+                            'id'            => $id,
+                            'ip_restricted' => $isRestricted,
+                        ], [
+                            '_format' => 'html|json'
+                        ]);
+                    $routes->add($type.'_'.$id, $route);
+
                     break;
             }
         }
 
         // cache the category map
-        $category_map_out = '<?php # -:[' . date('Y-m-d H:i:s') . ']:-'."\nreturn ". var_export($categories, 1) . ";\n";
-        file_put_contents($this->cache_dir.'/category_map.php', $category_map_out);
+        $categoryMapOut = '<?php # -:[' . date('Y-m-d H:i:s') . ']:-'."\nreturn ". var_export($categories, 1) . ";\n";
+        file_put_contents($this->cacheDir.'/category_map.php', $categoryMapOut);
 
         return $routes;
     }
@@ -261,11 +289,15 @@ class CMSRouterLoader implements LoaderInterface
     /**
      * {@inheritDoc}
      */
-    public function getResolver(){}
+    public function getResolver()
+    {
+    }
 
 
     /**
      * {@inheritDoc}
      */
-    public function setResolver(LoaderResolverInterface $resolver){}
+    public function setResolver(LoaderResolverInterface $resolver)
+    {
+    }
 }

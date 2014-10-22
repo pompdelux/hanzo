@@ -28,6 +28,7 @@ use Hanzo\Model\Orders;
  * @method EventsQuery orderByConsultantsId($order = Criteria::ASC) Order by the consultants_id column
  * @method EventsQuery orderByCustomersId($order = Criteria::ASC) Order by the customers_id column
  * @method EventsQuery orderByEventDate($order = Criteria::ASC) Order by the event_date column
+ * @method EventsQuery orderByEventEndTime($order = Criteria::ASC) Order by the event_end_time column
  * @method EventsQuery orderByHost($order = Criteria::ASC) Order by the host column
  * @method EventsQuery orderByAddressLine1($order = Criteria::ASC) Order by the address_line_1 column
  * @method EventsQuery orderByAddressLine2($order = Criteria::ASC) Order by the address_line_2 column
@@ -39,6 +40,8 @@ use Hanzo\Model\Orders;
  * @method EventsQuery orderByType($order = Criteria::ASC) Order by the type column
  * @method EventsQuery orderByIsOpen($order = Criteria::ASC) Order by the is_open column
  * @method EventsQuery orderByNotifyHostess($order = Criteria::ASC) Order by the notify_hostess column
+ * @method EventsQuery orderByRsvpType($order = Criteria::ASC) Order by the rsvp_type column
+ * @method EventsQuery orderByPublicNote($order = Criteria::ASC) Order by the public_note column
  * @method EventsQuery orderByCreatedAt($order = Criteria::ASC) Order by the created_at column
  * @method EventsQuery orderByUpdatedAt($order = Criteria::ASC) Order by the updated_at column
  *
@@ -48,6 +51,7 @@ use Hanzo\Model\Orders;
  * @method EventsQuery groupByConsultantsId() Group by the consultants_id column
  * @method EventsQuery groupByCustomersId() Group by the customers_id column
  * @method EventsQuery groupByEventDate() Group by the event_date column
+ * @method EventsQuery groupByEventEndTime() Group by the event_end_time column
  * @method EventsQuery groupByHost() Group by the host column
  * @method EventsQuery groupByAddressLine1() Group by the address_line_1 column
  * @method EventsQuery groupByAddressLine2() Group by the address_line_2 column
@@ -59,6 +63,8 @@ use Hanzo\Model\Orders;
  * @method EventsQuery groupByType() Group by the type column
  * @method EventsQuery groupByIsOpen() Group by the is_open column
  * @method EventsQuery groupByNotifyHostess() Group by the notify_hostess column
+ * @method EventsQuery groupByRsvpType() Group by the rsvp_type column
+ * @method EventsQuery groupByPublicNote() Group by the public_note column
  * @method EventsQuery groupByCreatedAt() Group by the created_at column
  * @method EventsQuery groupByUpdatedAt() Group by the updated_at column
  *
@@ -90,6 +96,7 @@ use Hanzo\Model\Orders;
  * @method Events findOneByConsultantsId(int $consultants_id) Return the first Events filtered by the consultants_id column
  * @method Events findOneByCustomersId(int $customers_id) Return the first Events filtered by the customers_id column
  * @method Events findOneByEventDate(string $event_date) Return the first Events filtered by the event_date column
+ * @method Events findOneByEventEndTime(string $event_end_time) Return the first Events filtered by the event_end_time column
  * @method Events findOneByHost(string $host) Return the first Events filtered by the host column
  * @method Events findOneByAddressLine1(string $address_line_1) Return the first Events filtered by the address_line_1 column
  * @method Events findOneByAddressLine2(string $address_line_2) Return the first Events filtered by the address_line_2 column
@@ -101,6 +108,8 @@ use Hanzo\Model\Orders;
  * @method Events findOneByType(string $type) Return the first Events filtered by the type column
  * @method Events findOneByIsOpen(boolean $is_open) Return the first Events filtered by the is_open column
  * @method Events findOneByNotifyHostess(boolean $notify_hostess) Return the first Events filtered by the notify_hostess column
+ * @method Events findOneByRsvpType(int $rsvp_type) Return the first Events filtered by the rsvp_type column
+ * @method Events findOneByPublicNote(string $public_note) Return the first Events filtered by the public_note column
  * @method Events findOneByCreatedAt(string $created_at) Return the first Events filtered by the created_at column
  * @method Events findOneByUpdatedAt(string $updated_at) Return the first Events filtered by the updated_at column
  *
@@ -110,6 +119,7 @@ use Hanzo\Model\Orders;
  * @method array findByConsultantsId(int $consultants_id) Return Events objects filtered by the consultants_id column
  * @method array findByCustomersId(int $customers_id) Return Events objects filtered by the customers_id column
  * @method array findByEventDate(string $event_date) Return Events objects filtered by the event_date column
+ * @method array findByEventEndTime(string $event_end_time) Return Events objects filtered by the event_end_time column
  * @method array findByHost(string $host) Return Events objects filtered by the host column
  * @method array findByAddressLine1(string $address_line_1) Return Events objects filtered by the address_line_1 column
  * @method array findByAddressLine2(string $address_line_2) Return Events objects filtered by the address_line_2 column
@@ -121,6 +131,8 @@ use Hanzo\Model\Orders;
  * @method array findByType(string $type) Return Events objects filtered by the type column
  * @method array findByIsOpen(boolean $is_open) Return Events objects filtered by the is_open column
  * @method array findByNotifyHostess(boolean $notify_hostess) Return Events objects filtered by the notify_hostess column
+ * @method array findByRsvpType(int $rsvp_type) Return Events objects filtered by the rsvp_type column
+ * @method array findByPublicNote(string $public_note) Return Events objects filtered by the public_note column
  * @method array findByCreatedAt(string $created_at) Return Events objects filtered by the created_at column
  * @method array findByUpdatedAt(string $updated_at) Return Events objects filtered by the updated_at column
  */
@@ -229,7 +241,7 @@ abstract class BaseEventsQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `code`, `key`, `consultants_id`, `customers_id`, `event_date`, `host`, `address_line_1`, `address_line_2`, `postal_code`, `city`, `phone`, `email`, `description`, `type`, `is_open`, `notify_hostess`, `created_at`, `updated_at` FROM `events` WHERE `id` = :p0';
+        $sql = 'SELECT `id`, `code`, `key`, `consultants_id`, `customers_id`, `event_date`, `event_end_time`, `host`, `address_line_1`, `address_line_2`, `postal_code`, `city`, `phone`, `email`, `description`, `type`, `is_open`, `notify_hostess`, `rsvp_type`, `public_note`, `created_at`, `updated_at` FROM `events` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -550,6 +562,49 @@ abstract class BaseEventsQuery extends ModelCriteria
     }
 
     /**
+     * Filter the query on the event_end_time column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByEventEndTime('2011-03-14'); // WHERE event_end_time = '2011-03-14'
+     * $query->filterByEventEndTime('now'); // WHERE event_end_time = '2011-03-14'
+     * $query->filterByEventEndTime(array('max' => 'yesterday')); // WHERE event_end_time < '2011-03-13'
+     * </code>
+     *
+     * @param     mixed $eventEndTime The value to use as filter.
+     *              Values can be integers (unix timestamps), DateTime objects, or strings.
+     *              Empty strings are treated as NULL.
+     *              Use scalar values for equality.
+     *              Use array values for in_array() equivalent.
+     *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return EventsQuery The current query, for fluid interface
+     */
+    public function filterByEventEndTime($eventEndTime = null, $comparison = null)
+    {
+        if (is_array($eventEndTime)) {
+            $useMinMax = false;
+            if (isset($eventEndTime['min'])) {
+                $this->addUsingAlias(EventsPeer::EVENT_END_TIME, $eventEndTime['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($eventEndTime['max'])) {
+                $this->addUsingAlias(EventsPeer::EVENT_END_TIME, $eventEndTime['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
+        }
+
+        return $this->addUsingAlias(EventsPeer::EVENT_END_TIME, $eventEndTime, $comparison);
+    }
+
+    /**
      * Filter the query on the host column
      *
      * Example usage:
@@ -862,6 +917,77 @@ abstract class BaseEventsQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(EventsPeer::NOTIFY_HOSTESS, $notifyHostess, $comparison);
+    }
+
+    /**
+     * Filter the query on the rsvp_type column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByRsvpType(1234); // WHERE rsvp_type = 1234
+     * $query->filterByRsvpType(array(12, 34)); // WHERE rsvp_type IN (12, 34)
+     * $query->filterByRsvpType(array('min' => 12)); // WHERE rsvp_type >= 12
+     * $query->filterByRsvpType(array('max' => 12)); // WHERE rsvp_type <= 12
+     * </code>
+     *
+     * @param     mixed $rsvpType The value to use as filter.
+     *              Use scalar values for equality.
+     *              Use array values for in_array() equivalent.
+     *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return EventsQuery The current query, for fluid interface
+     */
+    public function filterByRsvpType($rsvpType = null, $comparison = null)
+    {
+        if (is_array($rsvpType)) {
+            $useMinMax = false;
+            if (isset($rsvpType['min'])) {
+                $this->addUsingAlias(EventsPeer::RSVP_TYPE, $rsvpType['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($rsvpType['max'])) {
+                $this->addUsingAlias(EventsPeer::RSVP_TYPE, $rsvpType['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
+        }
+
+        return $this->addUsingAlias(EventsPeer::RSVP_TYPE, $rsvpType, $comparison);
+    }
+
+    /**
+     * Filter the query on the public_note column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByPublicNote('fooValue');   // WHERE public_note = 'fooValue'
+     * $query->filterByPublicNote('%fooValue%'); // WHERE public_note LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $publicNote The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return EventsQuery The current query, for fluid interface
+     */
+    public function filterByPublicNote($publicNote = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($publicNote)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $publicNote)) {
+                $publicNote = str_replace('*', '%', $publicNote);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(EventsPeer::PUBLIC_NOTE, $publicNote, $comparison);
     }
 
     /**
