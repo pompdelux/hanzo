@@ -576,7 +576,7 @@ Herefter kan du nemt shoppe videre.</p><br>
             <trans-unit id="wishlist.add.description">
                 <source>wishlist.add.description</source>
                 <target><![CDATA[
-                    <p>Her kan du oprette en liste med de styles, du ønsker at bestille ved et Home Shopping arrangement eller Åbent Hus.</p>
+                    <p>Her kan du oprette en liste med de styles, du ønsker at bestille ved et Home Shopping arrangement eller Åbent Hus. Din Shoppingliste gemmes automatisk.</p>
                     <ul>
                         <li>Tryk på "Min shoppingliste". Din Shoppingliste får et unikt nummer, som din Shopping Advisor skal bruge.</li>
                         <li>Tilføj de styles du ønsker at købe.</li>
@@ -621,7 +621,7 @@ Herefter kan du nemt shoppe videre.</p><br>
             <trans-unit id="wishlist.footer.description">
                 <source>wishlist.footer.description</source>
                 <target><![CDATA[
-                    <strong>HUSK!</strong> Vær opmærksom på, at du først har afgivet din ordre, når din Shopping Advisor har indlæst dit Shoppingliste nummer, og du har fået en ordrebekræftelse. Varene på din Shoppingliste er ikke reserveret selvom de er tilføjet, så der kan opstå tilfælde, hvor en vare desværre er udsolgt.
+                    <strong>HUSK!</strong> Vær opmærksom på, at du først har afgivet din ordre, når din Shopping Advisor har indlæst dit Shoppingliste nummer, og du har fået en ordrebekræftelse. Varerne på din Shoppingliste er ikke reserveret selvom de er tilføjet, så der kan opstå tilfælde, hvor en vare desværre er udsolgt.
                 ]]></target>
             </trans-unit>
         </body>
