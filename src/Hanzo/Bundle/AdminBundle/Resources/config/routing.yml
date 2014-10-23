@@ -843,6 +843,11 @@ admin_tools_dibs_tools:
     defaults:
         _controller: AdminBundle:Tools:dibsTools
         action: ''
+admin_tools_flush_wishlists:
+    pattern: /admin/tools/wishlists/flush-all
+    defaults:
+        _controller: AdminBundle:Tools:wishlistsFlushAll
+
 
 admin_shipping_breaks:
     pattern: /admin/shipping/free-breaks/

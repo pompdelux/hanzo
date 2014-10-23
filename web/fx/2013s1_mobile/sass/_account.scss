@@ -10,29 +10,32 @@
 }
 
 #account-block-newsletter-all {
-    margin-bottom: 10px;
-    border-bottom: 1px solid #000;
     h3 {
         border-top: 1px solid #000;
         cursor: pointer;
+
         span {
             display: block;
             padding: 2px 0px 2px 5px;
             margin-right: 5px;
             background: url(/fx/images/icons/icons/arrow_right.png) center right no-repeat;
+
             &.open {
                 background: url(/fx/images/icons/icons/arrow_down.png) center right no-repeat;
             }
         }
     }
+
     #newsletter-lists-container-all {
         display: none;
+
         form {
             border-top: 1px solid #000;
             margin-bottom: 10px;
         }
     }
 }
+
 #body-create-account {
     form[action$="/edit"] button[type=submit] {
         display: block;
@@ -84,5 +87,36 @@ table#order-status {
         @include icons-sprite(magnifier);
         width: 16px;
         height: 16px;
+    }
+}
+a.add-wishlist {
+    margin: 20px 0;
+    background-color: rgb(231, 229, 229);
+    padding: 10px;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2em;
+
+    img {
+        height: 35px;
+        width: 35px;
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+}
+
+#body-wishlist {
+    .wishlist-flush-list a {
+        margin-top: 10px;
+        width: 315px;
+    }
+
+    .list-number {
+        img {
+            vertical-align: middle;
+            margin-right: 10px;
+        }
     }
 }

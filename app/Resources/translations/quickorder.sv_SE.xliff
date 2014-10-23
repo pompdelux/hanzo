@@ -42,6 +42,10 @@
                 <source>quickorder.no.products.found</source>
                 <target>Kunde inte hitta produkten.</target>
             </trans-unit>
+            <trans-unit id="wishlist.misses.header">
+                <source>wishlist.misses.header</source>
+                <target>Følgende produkter kan ikke tilføjes kurven da de ikke længere er på lager.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

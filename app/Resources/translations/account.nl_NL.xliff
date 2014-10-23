@@ -451,7 +451,7 @@
       <b>Volg je pakketje</b><br>
       Klik op het icoontje naast je bestelling om je pakketje te volgen. De Track and Trace pagina opent in een nieuw venster.<br><br>
       <b>Retourneren, ruilen en reclameren</b><br>
-      Wil je een artikel ruilen, klik dan op het icoontje naast je bestelling. 
+      Wil je een artikel ruilen, klik dan op het icoontje naast je bestelling.
 Het retourlabel en retourformulier zitten in twee afzonderlijke PDF- bestanden en je moet ze afzonderlijk printen. Als je ons retourlabel gebruikt, dan trekken we slechts €7,00 van de waarde van de geretourneerde artikelen af.<br>Retourneer je een artikel omdat je het wilt ruilen of heb je een verkeerd artikel ontvangen, stuur dan het artikel terug en we zullen je een nieuw artikel zenden – voor jou is dit natuurlijk gratis. Is het artikel inmiddels uitverkocht, dan betalen we je de prijs van het artikel terug.<br><br>
       <b>Retourformulier</b><br>
       Kun je het artikel dat je wilt terugsturen niet vinden op het interactieve retourformulier, dan kun je hier op de link klikken en het retourformulier handmatig printen. <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_NL.pdf">» Retourformulier (PDF)</a>
@@ -559,6 +559,55 @@ Hierna kun je gewoon doorgaan met winkelen.<br></p>
             <trans-unit id="my.account.existing.customer.notice">
                 <source>my.account.existing.customer.notice</source>
                 <target>Welkom! Leuk dat je ons weer bezoekt.</target>
+            </trans-unit>
+            <trans-unit id="wishlist.add.label">
+                <source>wishlist.add.label</source>
+                <target>Opret shoppingliste</target>
+            </trans-unit>
+            <trans-unit id="wishlist.add.description">
+                <source>wishlist.add.description</source>
+                <target><![CDATA[
+                    <p>Her kan du oprette en liste med de styles, du ønsker at bestille ved et Home Shopping arrangement eller Åbent Hus.</p>
+                    <ul>
+                        <li>Tryk på "Opret Shoppingliste". Din Shoppingliste får et unikt nummer, som din Shopping Advisor skal bruge.</li>
+                        <li>Tilføj de styles du ønsker at købe.</li>
+                        <li>Vis Shoppingliste nummeret til din Shopping Advisor, som behandler din ordre.</li>
+                        <li>Lagerbeholdning tjekkes, ordren gennemføres i samarbejde med din Shopping Advisor og herefter vil du modtage en ordrebekræftelse på din ordre.</li>
+                    </ul>
+                    <p>HUSK! Vær opmærksom på, at du først har afgivet din ordre, når din Shopping Advisor har indlæst dit Shoppingliste nummer, og du har fået en odrebekræftelse. Varene på din Shoppingliste er ikke reserveret selvom de er tilføjet, så der kan opstå tilfælde, hvor en vare desværre er udsolgt.</p>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="wishlist.add.to.list">
+                <source>wishlist.add.to.list</source>
+                <target>Shoppingliste</target>
+            </trans-unit>
+            <trans-unit id="wishlist.placeholder.query">
+                <source>wishlist.placeholder.query</source>
+                <target>Tilføj vare</target>
+            </trans-unit>
+            <trans-unit id="wishlist.query.description">
+                <source>wishlist.query.description</source>
+                <target>Indtast de tre første bogstaver i stylens navn og vælg den ønskede style fra listen.</target>
+            </trans-unit>
+            <trans-unit id="wishlist.select.size">
+                <source>wishlist.select.size</source>
+                <target>Størrelse</target>
+            </trans-unit>
+            <trans-unit id="wishlist.select.color">
+                <source>wishlist.select.color</source>
+                <target>Farve</target>
+            </trans-unit>
+            <trans-unit id="wishlist.number">
+                <source>wishlist.number</source>
+                <target><![CDATA[Shoppingliste Nr: <span>%number%</span>]]></target>
+            </trans-unit>
+            <trans-unit id="add.to.wishlist">
+                <source>add.to.wishlist</source>
+                <target>Tilføj til listen</target>
+            </trans-unit>
+            <trans-unit id="wishlist.remove.all.items">
+                <source>wishlist.remove.all.items</source>
+                <target>Ryd listen</target>
             </trans-unit>
         </body>
     </file>

@@ -1,63 +1,64 @@
 {% extends '::adminbase.html.twig' %}
 {% block content %}
 
-<h1>Knapper</h1>
+    <h1>Knapper</h1>
 
-{% for message in app.session.flashbag.get('notice') %}
-    <div class="alert alert-info">
-        {{ message }}
+    {% for message in app.session.flashbag.get('notice') %}
+        <div class="alert alert-info">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+
+    <div class="message">
+        <h2>Heads up !</h2>
+        <ul>
+            <li>Det er <em>vigtigt</em> at man står i "default" databasen - se i højre hjørne, her skal stå: "default - Vælg domæne database"</li>
+            <li>Hvis der trykkes på "Synkroniser produktbilleder" ryger <em>alle</em> styleguides og sorteringer fra alle lande (pånær .dk)</li>
+            <li>Hvis der efterfølgende synkroniseres styleguides og sorteringer er man igen up-2-date.</li>
+        </ul>
     </div>
-{% endfor %}
+
+    <br>
+    <h2>Billeder</h2>
+    <ul>
+        <li><a href="http://static.pompdelux.dk/trigger-image-import.php">Igangsæt billedeimport.</a></li>
+    </ul>
+    <p>Alle data synkroniseres <em>fra .dk</em> til alle de andre sites.</p>
+    <ul>
+        <li><a href="{{ path('admin_tools_sync_categories') }}" rel="confirm" data-confirm-message="Er du sikker på du vil synkronisere kattegorierne ?<br>Alle relaterede informationer vil gå tabt!">Synkroniser kategorier</a></li>
+        <li><a href="{{ path('admin_tools_sync_images') }}">Synkroniser produktbilleder</a></li>
+        <li><a href="{{ path('admin_tools_sync_styleguide') }}">Synkroniser styleguides</a></li>
+        <li><a href="{{ path('admin_tools_sync_images_sort') }}">Synkroniser billedesortering</a></li>
+    </ul>
+
+    <h2>Cache</h2>
+    <p>Når Varnish cleares, så ryger <em>al</em> varnish caching på <em>alle</em> domæner - bare til info...</p>
+    <ul>
+        <li><a href="{{ path('admin_tools_clear_varnish') }}">Ryd Varnish cache</a></li>
+    </ul>
 
 
-<div class="message">
-  <h2>Heads up !</h2>
-  <ul>
-    <li>Det er <em>vigtigt</em> at man står i "default" databasen - se i højre hjørne, her skal stå: "default - Vælg domæne database"</li>
-    <li>Hvis der trykkes på "Synkroniser produktbilleder" ryger <em>alle</em> styleguides og sorteringer fra alle lande (pånær .dk)</li>
-    <li>Hvis der efterfølgende synkroniseres styleguides og sorteringer er man igen up-2-date.</li>
-  </ul>
-</div>
-
-<br>
-<h2>Billeder</h2>
-<ul>
-    <li><a href="http://static.pompdelux.dk/trigger-image-import.php">Igangsæt billedeimport.</a></li>
-</ul>
-<p>Alle data synkroniseres <em>fra .dk</em> til alle de andre sites.</p>
-<ul>
-  <li><a href="{{ path('admin_tools_sync_categories') }}" rel="confirm" data-confirm-message="Er du sikker på du vil synkronisere kattegorierne ?<br>Alle relaterede informationer vil gå tabt!">Synkroniser kategorier</a></li>
-  <li><a href="{{ path('admin_tools_sync_images') }}">Synkroniser produktbilleder</a></li>
-  <li><a href="{{ path('admin_tools_sync_styleguide') }}">Synkroniser styleguides</a></li>
-  <li><a href="{{ path('admin_tools_sync_images_sort') }}">Synkroniser billedesortering</a></li>
-</ul>
-
-<h2>Cache</h2>
-<p>Når Varnish cleares, så ryger <em>al</em> varnish caching på <em>alle</em> domæner - bare til info...</p>
-<ul>
-  <li><a href="{{ path('admin_tools_clear_varnish') }}">Ryd Varnish cache</a></li>
-</ul>
+    <h2>Misc</h2>
+    <ul>
+        <li><a href="{{ path('admin_orders_bulk_resync_sync') }}">Bulk gensend ordre</a></li>
+        <li><a href="{{ path('admin_tools_dibs_tools') }}">Dibs værktøjer</a></li>
+        <li><a href="{{ path('admin_tools_flush_wishlists') }}" rel="confirm" data-confirm-message="Er du helt sikker på du vil slette alle kunders shoppinglister ?">Tøm ønskelister</a></li>
+    </ul>
 
 
-<h2>Misc</h2>
-<ul>
-  <li><a href="{{ path('admin_orders_bulk_resync_sync') }}">Bulk gensend ordre</a></li>
-  <li><a href="{{ path('admin_tools_dibs_tools') }}">Dibs værktøjer</a></li>
-</ul>
-
-
-<h2>Søgeindexering</h2>
-<ul>
-    <li><a href="{{ path('admin_tools_faceted_search_indexer') }}" class="js-loading-spinner">Opdatér faceted søgnings indekset.</a></li>
-    <li><a href="{{ path('admin_tools_search_index_update') }}" class="js-loading-spinner">Opdatér produkt- og kategorisøgning</a></li>
-</ul>
+    <h2>Søgeindexering</h2>
+    <ul>
+        <li><a href="{{ path('admin_tools_faceted_search_indexer') }}" class="js-loading-spinner">Opdatér faceted søgnings indekset.</a></li>
+        <li><a href="{{ path('admin_tools_search_index_update') }}" class="js-loading-spinner">Opdatér produkt- og kategorisøgning</a></li>
+    </ul>
 
 {% endblock %}
 
 {% block javascript %}
-<script>
-$('#main ul li a').on('click', function() {
-  dialoug.loading($(this));
-});
-</script>
+    <script>
+        $('#main').on('click', 'ul li a', function () {
+            dialoug.loading($(this));
+        });
+    </script>
 {% endblock %}

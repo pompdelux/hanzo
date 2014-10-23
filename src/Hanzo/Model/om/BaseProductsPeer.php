@@ -27,6 +27,7 @@ use Hanzo\Model\ProductsToCategoriesPeer;
 use Hanzo\Model\ProductsWashingInstructionsPeer;
 use Hanzo\Model\RelatedProductsPeer;
 use Hanzo\Model\SearchProductsTagsPeer;
+use Hanzo\Model\WishlistsLinesPeer;
 use Hanzo\Model\map\ProductsTableMap;
 
 abstract class BaseProductsPeer
@@ -485,6 +486,9 @@ abstract class BaseProductsPeer
         // Invalidate objects in ProductsToCategoriesPeer instance pool,
         // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
         ProductsToCategoriesPeer::clearInstancePool();
+        // Invalidate objects in WishlistsLinesPeer instance pool,
+        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
+        WishlistsLinesPeer::clearInstancePool();
         // Invalidate objects in OrdersLinesPeer instance pool,
         // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
         OrdersLinesPeer::clearInstancePool();
