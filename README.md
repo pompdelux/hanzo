@@ -7,18 +7,20 @@
 First off, the same requirements as [symfony2](http://symfony.com/doc/2.0/reference/requirements.html), besides this, we have these addons:
 
 1. [redis](http://redis.io/) must be installed and working
-2. [cdn](https://github.com/bellcom/hanzo) must be setup (this is the same repos as hanzo see docs/vhost.cdn.conf)
-3. Apache must be setup with mod_rewrite
-4. Apc for php is also a must-have module.
+2. cdn must be setup (this is the same repos as hanzo see docs/vhost.cdn.conf)
+3. Apache or Nginx must be setup up (Apache with mod_rewrite)
+4. PHP modules needed (recommended)
+    * Zend OPcache
+    * PDO (mysql)
+    * Curl
+    * Imagick
+    * [phpredis](https://github.com/nicolasff/phpredis) native c extension til at kører sessions i redis, kræver også [NativeSession](https://github.com/drak/NativeSession) til symfony.
+6. [Beanstalkd](http://kr.github.io/beanstalkd/) must be instaled
 
 These are only required on dev servers:
 
 1. Compass and Sass [compass](http://compass-style.org/install/)
 2. [Grunt](http://gruntjs.com/) must be installed
-
-soon to come:
-
-1. [phpredis](https://github.com/nicolasff/phpredis) nativec extension til at kører sessions i redis, kræver også [NativeSession](https://github.com/drak/NativeSession) til symfony.
 
 
 ## Install:
@@ -44,7 +46,9 @@ soon to come:
 
 To access a dev page, the structure is as follows, {locale} is one of the configured locales: `http://yourdomain.tld/app_dev.php/{locale}` or `http://yourdomain.tld/app_test.php/{locale}` prod is never used, well - in production but else...
 
-At the moment `da_DK`, `sv_SE`, `nb_NO`, `nl_NL` and `en_GB` is configued.
+At the moment `da_DK`, `sv_SE`, `nb_NO`, `nl_NL`, `en_GB`, `de_DE`, 'de_CH` and `de_AT` is configued.
+
+Please notice, you need to have the utf8 locales for these languages installed (ex: da_DK.utf8) !
 
 
 ## Misc
@@ -70,6 +74,7 @@ redis:
 - flushing the cache: `FLUSHALL`
 - find a key: `KEYS *xx*`
 - help, well: `HELP` or go see the [docs](http://redis.io/documentation), they are great.
+
 
 ## Themes
 
@@ -112,6 +117,7 @@ Follow the [best practices](http://compass-style.org/help/tutorials/best_practic
   - `payment.scss` - Styles for payment
   - ...
 
+
 ## Vagrant
 
 There is a vagrant box provider, it requires:
@@ -146,3 +152,22 @@ If the page returns a "nginx - bad gateway" error run the following commands:
 $ vagrant ssh
 $ sudo chown www-data. /var/run/php5-fpm*
 ```
+
+## Beanstalkd
+
+Is for processing orders, so they are send "to ax" in dev mode - and you get your confirmation emails.
+
+To run the beanstalk jobs you do:
+
+```bash
+$ php app/console hanzo:ax:pheanstalk-worker --limit=10 --verbose --env=dev_dk
+```
+
+where `--limit=10` can be anything, its the number of jobs executes before quitting - remember not to set it to 100.000, php does not handle memory that well...
+
+also, you should always remember to restart the jobs when changing any related code.
+
+
+## Supervisord
+
+There is a config file for supervisord in [docs/supervisord-hanzo.conf](docs/supervisord-hanzo.conf) - this is a copy of the configuration currently in production.
