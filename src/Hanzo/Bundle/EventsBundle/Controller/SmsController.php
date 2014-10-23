@@ -16,17 +16,29 @@ use Hanzo\Core\Hanzo;
 use Hanzo\Model\EventsParticipants;
 use Hanzo\Model\EventsParticipantsQuery;
 
+/**
+ * Class SmsController
+ *
+ * @package Hanzo\Bundle\EventsBundle
+ */
 class SmsController extends CoreController
 {
 
     // TODO this should not be hardcoded ! but we need to figure out where to store the information...
-    protected $appnr_map = array(
-        1231  => 45,  // dk
-        2201  => 47,  // no
-        17163 => 358, // fi
-        72445 => 46,  // se
-    );
+    protected $appnrMap = [
+        1231          => 45,  // dk
+        2201          => 47,  // no
+        17163         => 358, // fi
+        72445         => 46,  // se
+        31625585489   => 31, // nl
+        4915142359909 => 49, // nl
+    ];
 
+    /**
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function rsvpAction(Request $request)
     {
         // _GET: Array (
@@ -41,27 +53,26 @@ class SmsController extends CoreController
         $appnr  = trim($request->query->get('appnr'));
         $text   = trim($request->query->get('text'));
 
-        // TODO should not be bardcoded
-        if (in_array($appnr, array(1231, 2201, 17163, 72445)) &&
+        if (in_array($appnr, array_keys($this->appnrMap)) &&
             (strtolower(substr($text, 0, 5)) == 'pdl e')
         ) {
-            @list($mediacode, $event_id, $junk) = explode(' ', $text, 3);
-            $event_id = preg_replace('/[^0-9]+/', '', $event_id);
+            @list($mediacode, $eventId, $junk) = explode(' ', $text, 3);
+
+            $eventId = preg_replace('/[^0-9]+/', '', $eventId);
 
             // we need to strip the country code from the phone number.
-            $lookup = substr($sender, strlen($this->appnr_map[$appnr]));
+            $lookup = substr($sender, strlen($this->appnrMap[$appnr]));
 
             $participant = EventsParticipantsQuery::create()
                 ->joinWithEvents()
-                ->filterByEventsId($event_id)
+                ->filterByEventsId($eventId)
                 ->filterByPhone($lookup)
                 ->_or()
                 ->filterByPhone('0'.$lookup)
                 ->_or()
                 ->filterByPhone($sender)
                 ->filterByRespondedAt(null, \Criteria::ISNULL)
-                ->findOne()
-            ;
+                ->findOne();
 
             if ($participant instanceof EventsParticipants) {
                 try {
@@ -70,7 +81,8 @@ class SmsController extends CoreController
                     $participant->save();
 
                     $this->get('sms_manager')->sendEventConfirmationReply($participant);
-                } catch (\Exception $e) {}
+                } catch (\Exception $e) {
+                }
             }
         }
 
@@ -78,35 +90,38 @@ class SmsController extends CoreController
         return $this->response('');
     }
 
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function sendtestAction()
     {
         // http://..../events/sms/test-123
         // dansk.: 29927366 / 1231
         // svensk: 0739415117 / 72445
 
-        $context = stream_context_create(array(
-            'http' => array(
-            'method' => 'POST',
-            'header' => "Content-type: application/x-www-form-urlencoded",
-            'max_redirects' => 0,
-            'timeout' => 5,
-            'content' => http_build_query(array(
-                'user' => 'pompdelux',
-                'password' => 'fpgyhiu345',
-                'to' => 46 . ltrim('0739415117', '0'),
-                // 'smsc' => 'tdc.telmore',
-                'price' => '0.00SEK',
-                'appnr' => 72445,
-                'text' => 'Hej Jeanette, lige en test fra det svenske konsulentsite. Vil du ikke være så venlig at svare tilbage på denne sms ? Bare skriv "hej" eller noget :) Mvh Heinrich',
-                'mediacode' => 'pdl',
-                'sessionid' => '4529927366:' . date('Ymdhis'),
-            ))
-        )));
+        $context = stream_context_create([
+            'http' => [
+                'method'        => 'POST',
+                'header'        => "Content-type: application/x-www-form-urlencoded",
+                'max_redirects' => 0,
+                'timeout'       => 5,
+                'content'       => http_build_query([
+                    // 'smsc' => 'tdc.telmore',
+                    'user'      => 'pompdelux',
+                    'password'  => 'fpgyhiu345',
+                    'to'        => 46 . ltrim('0739415117', '0'),
+                    'price'     => '0.00SEK',
+                    'appnr'     => 72445,
+                    'text'      => 'Hej Jeanette, lige en test fra det svenske konsulentsite. Vil du ikke være så venlig at svare tilbage på denne sms ? Bare skriv "hej" eller noget :) Mvh Heinrich',
+                    'mediacode' => 'pdl',
+                    'sessionid' => '4529927366:' . date('Ymdhis'),
+                ])
+        ]]);
 
-        $response = file_get_contents('https://gw.unwire.com/service/smspush', false, $context);
-        $response_headers = $http_response_header;
+        $response        = file_get_contents('https://gw.unwire.com/service/smspush', false, $context);
+        $responseHeaders = $http_response_header;
 
-        $out = "<pre>".print_r($response_headers, 1)."\n".$response."</pre>";
+        $out = "<pre>".print_r($responseHeaders, 1)."\n".$response."</pre>";
 
         return $this->response($out);
     }
