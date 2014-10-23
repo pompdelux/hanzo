@@ -21,6 +21,7 @@ set :default_stage, "testing"
 # use composer for symfony 2.1
 set :use_composer, true
 set :composer_bin, "/usr/local/bin/composer"
+set :composer_options, "--no-dev --verbose --prefer-dist --optimize-autoloader --no-progress --no-interaction"
 
 # dont delete web/app_* please
 set :clear_controllers, false
