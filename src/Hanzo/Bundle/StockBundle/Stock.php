@@ -9,6 +9,11 @@ use Hanzo\Model\ProductsQuery;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Hanzo\Bundle\AdminBundle\Event\FilterCategoryEvent;
 
+/**
+ * Class Stock
+ *
+ * @package Hanzo\Bundle\StockBundle
+ */
 class Stock
 {
     /**
@@ -24,7 +29,7 @@ class Stock
     /**
      * @var EventDispatcherInterface
      */
-    protected $event_dispatcher;
+    protected $eventDispatcher;
 
     /**
      * @var Warehouse
@@ -38,16 +43,16 @@ class Stock
 
     /**
      * @param string                   $locale
-     * @param EventDispatcherInterface $event_dispatcher
+     * @param EventDispatcherInterface $eventDispatcher
      * @param Warehouse                $warehouse
      * @param PropelReplicator         $replicator
      */
-    public function __construct($locale, EventDispatcherInterface $event_dispatcher, Warehouse $warehouse, PropelReplicator $replicator)
+    public function __construct($locale, EventDispatcherInterface $eventDispatcher, Warehouse $warehouse, PropelReplicator $replicator)
     {
-        $this->locale = $locale;
-        $this->event_dispatcher = $event_dispatcher;
+        $this->locale          = $locale;
+        $this->eventDispatcher = $eventDispatcher;
         $warehouse->setLocation($locale);
-        $this->warehouse = $warehouse;
+        $this->warehouse  = $warehouse;
         $this->replicator = $replicator;
     }
 
@@ -55,7 +60,7 @@ class Stock
     /**
      * Change warehouse location, please be careful with this!
      *
-     * @param $locale
+     * @param string $locale
      */
     public function changeLocation($locale)
     {
@@ -66,7 +71,8 @@ class Stock
     /**
      * fetch the stock put of db and save it in a static var
      *
-     * @param  array $products an array of product object
+     * @param array $products an array of product object
+     *
      * @return array
      */
     protected function load($products)
@@ -76,14 +82,14 @@ class Stock
         }
 
         $ids = [];
-        foreach($products as $product) {
+        foreach ($products as $product) {
             if (is_object($product) && method_exists($product, 'getId')) {
                 $id = $product->getId();
             } else {
                 $id = (int) $product;
             }
 
-            if (isset($this->stock[$id])){
+            if (isset($this->stock[$id])) {
                 continue;
             }
 
@@ -104,6 +110,7 @@ class Stock
      * load a collection of products stock to be tested in a loop or the like.
      *
      * @param array $products an array of product objects
+     *
      * @return void
      */
     public function prime($products)
@@ -115,9 +122,10 @@ class Stock
     /**
      * check whether or not a product is in stock or not.
      *
-     * @param  mixed $product   A product object or product id
-     * @param  int   $quantity  The quantity to check against
-     * @return mixed            True if the product is available now, a DateTime object if it is available in the future, false if not in stock
+     * @param mixed $product  A product object or product id
+     * @param int   $quantity The quantity to check against
+     *
+     * @return mixed True if the product is available now, a DateTime object if it is available in the future, false if not in stock
      */
     public function check($product, $quantity = 1)
     {
@@ -156,11 +164,12 @@ class Stock
     /**
      * get total stock for a product
      *
-     * @param  mixed   $product a product object or product id
-     * @param  boolean $as_object
+     * @param mixed   $product a product object or product id
+     * @param boolean $asObject
+     *
      * @return mixed
      */
-    public function get($product, $as_object = false)
+    public function get($product, $asObject = false)
     {
         if (is_object($product)) {
             $id = $product->getId();
@@ -172,7 +181,7 @@ class Stock
             $this->load($product);
         }
 
-        if ($as_object) {
+        if ($asObject) {
             return $this->stock[$id];
         }
 
@@ -183,13 +192,13 @@ class Stock
     /**
      * Set the stock level on a product in the current warehouse.
      *
-     * @param integer $product_id
+     * @param integer $productId
      * @param string  $date
      * @param int     $quantity
      */
-    public function setLevel($product_id, $date, $quantity = 0)
+    public function setLevel($productId, $date, $quantity = 0)
     {
-        $this->warehouse->setInventoryRecord($product_id, $date, $quantity);
+        $this->warehouse->setInventoryRecord($productId, $date, $quantity);
     }
 
 
@@ -199,10 +208,10 @@ class Stock
      *
      * Note: This method cleans out any records not in the supplied data set.
      *
-     * @param integer $product_id
+     * @param integer $productId
      * @param array   $data
      *
-     * $data format
+     * @example $data format
      * [
      *    'xxxx' => [
      *        'date'     => '2001-01-01',
@@ -210,17 +219,18 @@ class Stock
      *    ],
      * ]
      */
-    public function setLevels($product_id, $data)
+    public function setLevels($productId, $data)
     {
-        $this->warehouse->setInventoryRecords($product_id, $data);
+        $this->warehouse->setInventoryRecords($productId, $data);
     }
 
 
     /**
      * decrease the stock level for a product
      *
-     * @param \Hanzo\Model\Products $product a product object
-     * @param int $quantity the quantity by which to decrease
+     * @param \Hanzo\Model\Products $product  a product object
+     * @param int                   $quantity the quantity by which to decrease
+     *
      * @return mixed, the expected delivery date on success, false otherwise.
      */
     public function decrease($product, $quantity = 1)
@@ -239,31 +249,32 @@ class Stock
             return false;
         }
 
-        $left = $quantity;
-        $product_id = $product->getId();
+        $left      = $quantity;
+        $productId = $product->getId();
+
         while ($left > 0) {
             $current = array_shift($stock);
 
             if ($current['quantity'] <= $left) {
-                $this->warehouse->deleteInventoryRecord($product_id, $current['date']);
+                $this->warehouse->deleteInventoryRecord($productId, $current['date']);
             } else {
-                $this->warehouse->setInventoryRecord($product_id, $current['date'], $current['quantity'] - $left);
+                $this->warehouse->setInventoryRecord($productId, $current['date'], $current['quantity'] - $left);
             }
 
             $left = $left - $current['quantity'];
         }
 
         // NICETO: move all db stuff to event listeners
-        if ($total == $quantity){
+        if ($total == $quantity) {
             $this->setStockStatus(true, $product);
-            $this->warehouse->removeProductFromInventory($product_id);
+            $this->warehouse->removeProductFromInventory($productId);
 
             // find out if the whole style is out of stock
             // if so, tag it so and fire an event (for caching n' stuff)
             if (false === $this->checkStyleStock($product)) {
                 $master = ProductsQuery::create()->findOneBySku($product->getMaster());
                 $this->setStockStatus(true, $master);
-                $this->event_dispatcher->dispatch('product.stock.zero', new FilterCategoryEvent($master, $this->locale));
+                $this->eventDispatcher->dispatch('product.stock.zero', new FilterCategoryEvent($master, $this->locale));
             }
         }
 
@@ -276,10 +287,11 @@ class Stock
     /**
      * Returns the current quantity of reserved products
      *
-     * @param $product_id
+     * @param int $productId
+     *
      * @return int
      */
-    public function getProductReservations($product_id)
+    public function getProductReservations($productId)
     {
         $sql = "
             SELECT
@@ -292,7 +304,7 @@ class Stock
                     orders_lines.orders_id = orders.id
                 )
             WHERE
-                orders_lines.products_id = ".$product_id."
+                orders_lines.products_id = ".$productId."
                 AND
                     orders.state < 40
                 AND
@@ -318,11 +330,12 @@ class Stock
     /**
      * Figure out whether or not a whole style is out of stock.
      *
-     * @param  Products|string $query
-     * @param  bool            $return_count
+     * @param Products|string $query
+     * @param bool            $returnCount
+     *
      * @return bool
      */
-    public function checkStyleStock($query, $return_count = false)
+    public function checkStyleStock($query, $returnCount = false)
     {
         if ($query instanceof Products) {
             $query = $query->getMaster();
@@ -332,20 +345,20 @@ class Stock
             ->select('Id')
             ->filterByMaster($query)
             ->find()
-            ->getData()
-        ;
+            ->getData();
 
         $this->load($ids);
-        $total_stock = 0;
+        $totalStock = 0;
+
         foreach ($ids as $id) {
-            $total_stock += $this->get($id);
+            $totalStock += $this->get($id);
         }
 
-        if ($return_count) {
-            return $total_stock;
+        if ($returnCount) {
+            return $totalStock;
         }
 
-        return (boolean) $total_stock;
+        return (boolean) $totalStock;
     }
 
 
@@ -359,8 +372,7 @@ class Stock
         $items = ProductsQuery::create()
             ->select('Id')
             ->filterByMaster($product->getSku())
-            ->find()
-        ;
+            ->find();
 
         $ids = [];
         foreach ($items as $id) {
@@ -376,12 +388,13 @@ class Stock
      * Updates the stock status across databases.
      * This really should be moved to an event listener, as it is duplicated in ECommerceServices
      *
-     * @param  boolean        $is_out
-     * @param  Products|array $product
+     * @param boolean        $isOut
+     * @param Products|array $product
+     *
      * @return array
      * @throws \InvalidArgumentException
      */
-    protected function setStockStatus($is_out, $product)
+    protected function setStockStatus($isOut, $product)
     {
         if ($product instanceof Products) {
             $product = [$product->getId()];
@@ -395,7 +408,7 @@ class Stock
             UPDATE
                 products
             SET
-                is_out_of_stock = ".(int) $is_out.",
+                is_out_of_stock = ".(int) $isOut.",
                 updated_at = NOW()
             WHERE
                 id IN (".implode(',', $product).")
