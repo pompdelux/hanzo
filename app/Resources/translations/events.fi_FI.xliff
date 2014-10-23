@@ -446,6 +446,10 @@
                 <source>open.house.label</source>
                 <target>Åbent hus</target>
             </trans-unit>
+            <trans-unit id="sa_search.zip_code.placeholder" approved="no">
+                <source>sa_search.zip_code.placeholder</source>
+                <target>Postnummer eller by</target>
+            </trans-unit>
         </body>
    </file>
 </xliff>

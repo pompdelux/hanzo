@@ -3,14 +3,10 @@
 namespace Hanzo\Bundle\ServiceBundle\Services;
 
 use Criteria;
-
 use Hanzo\Core\Tools;
-
 use Hanzo\Model\EventsParticipantsQuery;
-
 use Smesg\Adapter\PhpStreamAdapter;
 use Smesg\Provider\UnwireProvider;
-
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 
 /**
@@ -99,7 +95,7 @@ class SmsService
             '%event_id%'   => 'e' . $event->getId(),
         ];
 
-        $to      = $this->settings['provider.calling_code'].ltrim($participant->getPhone(), '0');
+        $to      = $this->settings['provider.calling_code'] . ltrim($participant->getPhone(), '0');
         $message = $this->translator->trans('event.sms.invite', $parameters, 'events');
 
         $provider = $this->getProvider();
