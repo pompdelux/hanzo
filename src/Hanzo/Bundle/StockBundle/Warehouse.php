@@ -6,24 +6,29 @@ use Hanzo\Bundle\RedisBundle\Client\Redis as RedisClient;
 use Hanzo\Core\PropelReplicator;
 use Hanzo\Core\Tools;
 
+/**
+ * Class Warehouse
+ *
+ * @package Hanzo\Bundle\StockBundle
+ */
 class Warehouse
 {
     /**
      * @var \Hanzo\Bundle\RedisBundle\Client\Redis
      */
     private $redis;
-    private $base_prefix;
+    private $basePrefix;
 
     /**
      * @var array
      */
-    private $warehouse_country_map = [];
-    private $country_warehouse_map = [];
+    private $warehouseCountryMap = [];
+    private $countryWarehouseMap = [];
 
     /**
      * @var boolean
      */
-    private $is_location_set = false;
+    private $isLocationSet = false;
 
     /**
      * @var \Hanzo\Core\PropelReplicator
@@ -38,7 +43,7 @@ class Warehouse
     public function __construct(RedisClient $redis, array $warehouses, PropelReplicator $replicator = null)
     {
         $this->redis = $redis;
-        $this->base_prefix = $redis->getPrefix();
+        $this->basePrefix = $redis->getPrefix();
         $this->setWarehouses($warehouses);
         $this->replicator = $replicator;
 
@@ -52,17 +57,18 @@ class Warehouse
     /**
      * Set the required warehouse location by locale.
      *
-     * @param  $locale
+     * @param string $locale
+     *
      * @return Warehouse
      * @throws \InvalidArgumentException
      */
     public function setLocation($locale)
     {
-        if (isset($this->country_warehouse_map[$locale])) {
-            $this->is_location_set = $this->country_warehouse_map[$locale];
+        if (isset($this->countryWarehouseMap[$locale])) {
+            $this->isLocationSet = $this->countryWarehouseMap[$locale];
 
-            $p = trim($this->base_prefix, ':');
-            $this->redis->setPrefix($p.'.'.$this->is_location_set.':');
+            $p = trim($this->basePrefix, ':');
+            $this->redis->setPrefix($p.'.'.$this->isLocationSet.':');
 
             return $this;
         }
@@ -74,20 +80,21 @@ class Warehouse
     /**
      * Get inventory status for a range of products.
      *
-     * @param $product_ids Array of product id's
+     * @param array $productIds Array of product id's
+     *
      * @return array
      * @throws \OutOfBoundsException
      */
-    public function getInventory($product_ids)
+    public function getInventory($productIds)
     {
-        if (!$this->is_location_set) {
+        if (!$this->isLocationSet) {
             throw new \OutOfBoundsException("Missing call to setLocation. Warehouse location must be set to get status.");
         }
 
         $stock = [];
-
         $this->redis->multi();
-        foreach ($product_ids as $id) {
+
+        foreach ($productIds as $id) {
             $this->redis->hGetAll('products_id.'.$id);
 
             $stock[$id] = ['total' => 0];
@@ -119,38 +126,40 @@ class Warehouse
     /**
      * Update or set an inventory record.
      *
-     * @param  int    $product_id
-     * @param  string $date
-     * @param  int    $quantity
+     * @param int    $productId
+     * @param string $date
+     * @param int    $quantity
+     *
      * @return mixed
      */
-    public function setInventoryRecord($product_id, $date, $quantity = 0)
+    public function setInventoryRecord($productId, $date, $quantity = 0)
     {
         return $this->redis
             ->multi()
-                ->hSet('products_id.'.$product_id, $date, $quantity)
-                ->hSet('products_id.'.$product_id, 'id', $product_id)
-            ->exec()
-        ;
+                ->hSet('products_id.'.$productId, $date, $quantity)
+                ->hSet('products_id.'.$productId, 'id', $productId)
+            ->exec();
     }
 
 
     /**
      * Update or set inventory records.
      *
-     * @param $product_id
-     * @param $data
+     * @param int   $productId
+     * @param array $data
+     *
      * @return mixed
      */
-    public function setInventoryRecords($product_id, $data)
+    public function setInventoryRecords($productId, $data)
     {
         $multi = $this->redis->multi();
 
         // start by deleting all existing records
         // this should be safe as long as it is done in a "multi" session, which creates a lock on the items in redis.
-        $multi->delete('products_id.'.$product_id);
+        $multi->delete('products_id.'.$productId);
 
-        $record_count = 0;
+        $recordCount = 0;
+
         foreach ($data as $record) {
             if (empty($record['date']) ||
                 empty($record['quantity'])
@@ -159,13 +168,13 @@ class Warehouse
             }
 
             // only add records with actual data
-            $multi->hSet('products_id.'.$product_id, $record['date'], $record['quantity']);
-            $record_count++;
+            $multi->hSet('products_id.'.$productId, $record['date'], $record['quantity']);
+            $recordCount++;
         }
 
         // re-add the product_id key to handle lookups.
-        if ($record_count) {
-            $multi->hSet('products_id.'.$product_id, 'id', $product_id);
+        if ($recordCount) {
+            $multi->hSet('products_id.'.$productId, 'id', $productId);
         }
 
         return $multi->exec();
@@ -175,25 +184,27 @@ class Warehouse
     /**
      * Delete an inventory record.
      *
-     * @param  int    $product_id
-     * @param  string $date
+     * @param int    $productId
+     * @param string $date
+     *
      * @return mixed
      */
-    public function deleteInventoryRecord($product_id, $date)
+    public function deleteInventoryRecord($productId, $date)
     {
-        return $this->redis->hDel('products_id.'.$product_id, $date);
+        return $this->redis->hDel('products_id.'.$productId, $date);
     }
 
 
     /**
      * Remove a full style from the inventory.
      *
-     * @param $product_id
+     * @param int $productId
+     *
      * @return mixed
      */
-    public function removeProductFromInventory($product_id)
+    public function removeProductFromInventory($productId)
     {
-        return $this->redis->del('products_id.'.$product_id);
+        return $this->redis->del('products_id.'.$productId);
     }
 
 
@@ -205,35 +216,35 @@ class Warehouse
      */
     public function getRelatedDatabases()
     {
-        if (!$this->is_location_set) {
+        if (!$this->isLocationSet) {
             throw new \OutOfBoundsException("Missing call to setLocation. Warehouse location must be set to get status.");
         }
 
         static $relations;
 
-        if (isset($relations[$this->is_location_set])) {
-            return $relations[$this->is_location_set];
+        if (isset($relations[$this->isLocationSet])) {
+            return $relations[$this->isLocationSet];
         }
 
-        $relations[$this->is_location_set] = [];
+        $relations[$this->isLocationSet] = [];
 
-        if (1 == count($this->warehouse_country_map[$this->is_location_set])) {
-            $relations[$this->is_location_set] = ['default'];
+        if (1 == count($this->warehouseCountryMap[$this->isLocationSet])) {
+            $relations[$this->isLocationSet] = ['default'];
         } else {
-            $map = ['default' => 'default'];
-            foreach ($this->warehouse_country_map[$this->is_location_set] as $locale) {
+            $map = [];
+            foreach ($this->warehouseCountryMap[$this->isLocationSet] as $locale) {
                 $v = 'pdldb'.strtolower(substr($locale, -2)).'1';
                 $map[$v] = $v;
             }
 
             foreach ($this->replicator->getConnectionNames() as $name) {
                 if (isset($map[$name])) {
-                    $relations[$this->is_location_set][] = $name;
+                    $relations[$this->isLocationSet][] = $name;
                 }
             }
         }
 
-        return $relations[$this->is_location_set];
+        return $relations[$this->isLocationSet];
     }
 
 
@@ -246,10 +257,10 @@ class Warehouse
     private function setWarehouses(array $map)
     {
         foreach ($map as $warehouse => $locales) {
-            $this->warehouse_country_map[$warehouse] = $locales;
+            $this->warehouseCountryMap[$warehouse] = $locales;
 
             foreach ($locales as $locale) {
-                $this->country_warehouse_map[$locale] = $warehouse;
+                $this->countryWarehouseMap[$locale] = $warehouse;
             }
         }
     }
