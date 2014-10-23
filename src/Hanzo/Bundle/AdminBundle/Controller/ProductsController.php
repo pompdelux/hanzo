@@ -1167,7 +1167,7 @@ class ProductsController extends CoreController
         $products = ProductsQuery::create()
             ->filterByMaster($product->getSku())
             ->orderBySku()
-            ->find();
+            ->find($this->getDbConnection());
 
         $stock->prime($products);
 
