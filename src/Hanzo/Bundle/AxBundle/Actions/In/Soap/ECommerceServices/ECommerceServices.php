@@ -36,6 +36,11 @@ use Exception;
 use Propel;
 use PropelCollection;
 
+/**
+ * Class ECommerceServices
+ *
+ * @package Hanzo\Bundle\AxBundle\Actions
+ */
 class ECommerceServices extends SoapService
 {
     /**
@@ -73,29 +78,30 @@ class ECommerceServices extends SoapService
      *        <IsVoucher/>
      *      </InventTable>
      *    </item>
+     *
      * @return object SyncItemResult
      */
     public function SyncItem($data)
     {
         require __DIR__.'/products_id_map.php';
 
-        $errors = array();
+        $errors = [];
         $item = $data->item->InventTable;
 
         if (!$item->ItemGroupId OR !$item->ItemId OR !$item->ItemName) {
             $this->logger->info(__METHOD__.' '.__LINE__.': no ItemGroupId OR ItemId OR ItemName given');
 
-            return self::responseStatus('Error', 'SyncItemResult', array(
+            return self::responseStatus('Error', 'SyncItemResult', [
                 'no ItemGroupId OR ItemId OR ItemName given'
-            ));
+            ]);
         }
 
         // only allow web enabled products to go into the database.
         if ($item->WebEnabled != 1) {
-            $errors = array(
+            $errors = [
                 'InventId: ' . $item->ItemId,
                 'WebEnabled set to "' . $item->WebEnabled . '" it should be set to "1"'
-            );
+            ];
             $this->logger->info(__METHOD__.' '.__LINE__.': WebEnabled set to "' . $item->WebEnabled . '", it should be set to "1"', $errors);
 
             return self::responseStatus('Error', 'SyncItemResult', $errors);
@@ -103,21 +109,21 @@ class ECommerceServices extends SoapService
 
         // domain check
         if (!$item->WebDomain) {
-            $errors = array(
+            $errors = [
                 'InventId: ' . $item->ItemId,
                 'WebDomain empty, we need at lest one domain to create/update the product.'
-            );
+            ];
             $this->logger->info(__METHOD__.' '.__LINE__.': No WebDomain parameters', $errors);
 
             return self::responseStatus('Error', 'SyncItemResult', $errors);
         }
 
         if (!is_array($item->WebDomain)) {
-            $item->WebDomain = array($item->WebDomain);
+            $item->WebDomain = [$item->WebDomain];
         }
 
         if (!is_array($item->InventDim)) {
-            $item->InventDim = array($item->InventDim);
+            $item->InventDim = [$item->InventDim];
         }
 
         // ....................
@@ -152,10 +158,10 @@ class ECommerceServices extends SoapService
                     ;
 
                     if (0 == $categories->count()) {
-                        $errors = array(
+                        $errors = [
                             'InventId: ' . $item->ItemId,
                             'No category/categories found for ItemGroupId: '.$item->ItemGroupId.'.',
-                        );
+                        ];
                         break;
                     }
 
@@ -259,10 +265,10 @@ class ECommerceServices extends SoapService
             }
 
         } catch(Exception $e) {
-            $errors = array(
+            $errors = [
                 //'InventId: ' . $item->ItemId,
                 $e->getMessage(),
-            );
+            ];
         }
 
 
@@ -303,12 +309,12 @@ class ECommerceServices extends SoapService
      */
     public function SyncPriceList($data)
     {
-        $errors = array();
+        $errors = [];
         $prices = $data->priceList;
 
         if (!$prices->ItemId) {
             $this->logger->info(__METHOD__.' '.__LINE__.': no ItemId given');
-            return self::responseStatus('Error', 'SyncPriceListResult', array('no ItemId given'));
+            return self::responseStatus('Error', 'SyncPriceListResult', ['no ItemId given']);
         }
 
         if (empty($prices->SalesPrice)) {
@@ -317,24 +323,24 @@ class ECommerceServices extends SoapService
         }
 
         if (!is_array($prices->SalesPrice)) {
-            $prices->SalesPrice = array($prices->SalesPrice);
+            $prices->SalesPrice = [$prices->SalesPrice];
         }
 
         // ....................
         // .....<ze code>......
         // ....................
 
-        $domains = array();
+        $domains = [];
         foreach(DomainsQuery::create()->find() as $domain) {
             $domains[$domain->getDomainKey()] = $domain->getId();
         }
 
-        $products = array(
-            "{$prices->ItemId}" => array(
+        $products = [
+            "{$prices->ItemId}" => [
                 'product' => ProductsQuery::create()->findOneBySku($prices->ItemId),
-                'prices' => array()
-            )
-        );
+                'prices' => []
+            ]
+        ];
 
         foreach ($prices->SalesPrice as $entry)
         {
@@ -383,24 +389,24 @@ class ECommerceServices extends SoapService
             $thePrice = number_format($thePrice, 4, '.', '');
 
             // perhaps we could skip this, pompdelux does not use alternative prices pr. variant
-            $products[$key]['prices'][] = array(
+            $products[$key]['prices'][] = [
                 'domain'    => $domain['domain'],
                 'currency'  => $domain['currency'],
                 'amount'    => $thePrice,
                 'vat'       => $vat,
                 'from_date' => $entry->PriceDate,
                 'to_date'   => (isset($entry->PriceDateTo) ? $entry->PriceDateTo : null),
-            );
+            ];
 
             // this is here to maintain price info on the master product also
-            $products[$prices->ItemId]['prices'][$domain['domain'].$entry->PriceDate] = array(
+            $products[$prices->ItemId]['prices'][$domain['domain'].$entry->PriceDate] = [
                 'domain'    => $domain['domain'],
                 'currency'  => $domain['currency'],
                 'amount'    => $thePrice,
                 'vat'       => $vat,
                 'from_date' => $entry->PriceDate,
                 'to_date'   => (isset($entry->PriceDateTo) ? $entry->PriceDateTo : null),
-            );
+            ];
         }
 
         foreach ($products as $item) {
@@ -413,8 +419,8 @@ class ECommerceServices extends SoapService
 
             ProductsDomainsPricesQuery::create()
                 ->findByProductsId($product->getId(), Propel::getConnection(null, Propel::CONNECTION_WRITE))
-                ->delete()
-            ;
+                ->delete();
+
             $product->clearProductsDomainsPricess();
 
             // products 2 domain
@@ -473,23 +479,26 @@ class ECommerceServices extends SoapService
      */
     public function SyncInventoryOnHand($data)
     {
-        $errors = array();
+        $errors = [];
         $stock = $data->inventoryOnHand->InventSum;
 
         if (!$stock->ItemId) {
             $this->logger->info(__METHOD__.' '.__LINE__.': no ItemId given');
-            return self::responseStatus('Error', 'SyncInventoryOnHandResult', array('no ItemId given'));
+
+            return self::responseStatus('Error', 'SyncInventoryOnHandResult', ['no ItemId given']);
         }
 
         if (empty($stock->InventDim)) {
             $this->logger->info(__METHOD__.' '.__LINE__.': No InventDim found on ItemId: ' . $stock->ItemId);
-            return self::responseStatus('Error', 'SyncInventoryOnHandResult', array('No InventDim found on ItemId: ' . $stock->ItemId));
+
+            return self::responseStatus('Error', 'SyncInventoryOnHandResult', ['No InventDim found on ItemId: ' . $stock->ItemId]);
         }
 
         $master = ProductsQuery::create()->findOneBySku($stock->ItemId);
         if (!$master instanceof Products) {
             $this->logger->info(__METHOD__.' '.__LINE__.': Unknown product, ItemId: ' . $stock->ItemId);
-            return self::responseStatus('Error', 'SyncInventoryOnHandResult', array('Unknown ItemId: ' . $stock->ItemId));
+
+            return self::responseStatus('Error', 'SyncInventoryOnHandResult', ['Unknown ItemId: ' . $stock->ItemId]);
         }
 
         // ....................
@@ -498,7 +507,7 @@ class ECommerceServices extends SoapService
 
         // if there is only one item it is not send as an array
         if (!is_array($stock->InventDim)) {
-            $stock->InventDim = array($stock->InventDim);
+            $stock->InventDim = [$stock->InventDim];
         }
 
         // ----------------------------------------------------------------
@@ -508,7 +517,7 @@ class ECommerceServices extends SoapService
         /** @var \Hanzo\Bundle\StockBundle\Stock $stock_service */
         $stock_service = $this->hanzo->container->get('stock');
 
-        $products = array();
+        $products = [];
         foreach($stock->InventDim as $item) {
             $key = $stock->ItemId . ' ' . $item->InventColorId . ' ' . $item->InventSizeId;
 
@@ -540,10 +549,10 @@ class ECommerceServices extends SoapService
                 $physical = 0;
             }
 
-            $stock_data = array(
+            $stock_data = [
                 'onhand'  => $physical,
                 'ordered' => (int) $item->InventQtyAvailOrdered,
-            );
+            ];
 
             foreach ($stock_data as $k => $value) {
                 // subtract "reservations"
@@ -567,10 +576,10 @@ class ECommerceServices extends SoapService
             // handle any delayed stock
             if (!empty($stock_data['ordered'])) {
                 if (empty($products[$key]['inventory'][$item->InventQtyAvailOrderedDate])) {
-                    $products[$key]['inventory'][$item->InventQtyAvailOrderedDate] = array(
+                    $products[$key]['inventory'][$item->InventQtyAvailOrderedDate] = [
                         'date'     => $item->InventQtyAvailOrderedDate,
                         'quantity' => 0,
-                    );
+                    ];
                 }
 
                 $products[$key]['total'] += $stock_data['ordered'];
@@ -580,10 +589,10 @@ class ECommerceServices extends SoapService
             // handle stock on-hand
             if (isset($stock_data['onhand'])) {
                 if (empty($products[$key]['inventory']['onhand'])) {
-                    $products[$key]['inventory']['onhand'] = array(
+                    $products[$key]['inventory']['onhand'] = [
                         'date'     => '2000-01-01',
                         'quantity' => 0,
-                    );
+                    ];
                 }
 
                 $products[$key]['total'] += $stock_data['onhand'];
@@ -675,11 +684,12 @@ class ECommerceServices extends SoapService
          *  id: >= 20,000          = customers   = 1
          */
 
-        $errors = array();
+        $errors = [];
 
         if (!$data instanceof \stdClass || empty($data->customer->CustTable)) {
             $this->logger->info(__METHOD__.' '.__LINE__.': not a customer object');
-            return self::responseStatus('Error', 'SyncCustomerResult', array('not a customer object'));
+
+            return self::responseStatus('Error', 'SyncCustomerResult', ['not a customer object']);
         }
 
         $data = $data->customer->CustTable;
@@ -692,7 +702,8 @@ class ECommerceServices extends SoapService
 
         if (!$country instanceof Countries) {
             $this->logger->info(__METHOD__.' '.__LINE__.': unknown country reference: ' . $data->AddressCountryRegionId . ' for account: #' . $data->AccountNum);
-            return self::responseStatus('Error', 'SyncCustomerResult', array('unknown country reference: ' . $data->AddressCountryRegionId . ' for account: #' . $data->AccountNum));
+
+            return self::responseStatus('Error', 'SyncCustomerResult', ['unknown country reference: ' . $data->AddressCountryRegionId . ' for account: #' . $data->AccountNum]);
         }
 
         $group_id = ($data->AccountNum < 15000 ? 2 : ($data->AccountNum < 20000 ? 3 : 1));
@@ -789,6 +800,7 @@ class ECommerceServices extends SoapService
 
         if (count($errors)) {
             $this->logger->info(__METHOD__.' '.__LINE__.': SyncCustomerResult failed with the following error(s)', $errors);
+
             return self::responseStatus('Error', 'SyncCustomerResult', $errors);
         }
 
@@ -823,7 +835,7 @@ class ECommerceServices extends SoapService
         $errors = [];
         if (empty($data->eOrderNumber)) {
             $this->logger->info(__METHOD__.' '.__LINE__.': no eOrderNumber given.');
-            return self::responseStatus('Error', 'DeleteSalesOrderResult', array('no eOrderNumber given.'));
+            return self::responseStatus('Error', 'DeleteSalesOrderResult', ['no eOrderNumber given.']);
         }
 
         // ....................
@@ -835,7 +847,7 @@ class ECommerceServices extends SoapService
         if (!$order instanceof Orders) {
             $msg = 'no order found with eOrderNumber "' . $data->eOrderNumber . '".';
             $this->logger->info($msg);
-            return self::responseStatus('Error', 'DeleteSalesOrderResult', array($msg));
+            return self::responseStatus('Error', 'DeleteSalesOrderResult', [$msg]);
         }
 
         if ($order->getPaymentGatewayId()) {
@@ -843,7 +855,7 @@ class ECommerceServices extends SoapService
                 $this->ordersService->deleteOrder($order);
             } catch (\Exception $e) {
                 $this->logger->info(__METHOD__.' '.__LINE__.': Could not cancel payment: "'.$e->getMessage().'"');
-                return self::responseStatus('Error', 'DeleteSalesOrderResult', array('Could not cancel payment: "'.$e->getMessage().'"'));
+                return self::responseStatus('Error', 'DeleteSalesOrderResult', ['Could not cancel payment: "'.$e->getMessage().'"']);
             }
         }
 
@@ -865,20 +877,23 @@ class ECommerceServices extends SoapService
      * capture or refund an amount on an order
      * on success we update the order status to 4, and sends an email
      *
-     * @see ECommerceServices::SalesOrderLockUnlock
      * @param stdClass $data
      *   $data->eOrderNumber; // string
      *   $data->amount;       // decimal
      *   $data->initials;     // string
+     *
      * @return object SalesOrderCaptureOrRefundResult
+     *
+     * @see ECommerceServices::SalesOrderLockUnlock
      */
     public function SalesOrderCaptureOrRefund ($data)
     {
-        $errors = array();
+        $errors = [];
 
         if (empty($data->eOrderNumber)) {
             $this->logger->info(__METHOD__.' '.__LINE__.': no eOrderNumber given.');
-            return self::responseStatus('Error', 'SalesOrderCaptureOrRefundResult', array('no eOrderNumber given.'));
+
+            return self::responseStatus('Error', 'SalesOrderCaptureOrRefundResult', ['no eOrderNumber given.']);
         }
 
         $order = OrdersQuery::create()->findOneById($data->eOrderNumber);
@@ -886,7 +901,8 @@ class ECommerceServices extends SoapService
         if (!$order instanceof Orders) {
             $msg = 'no order found with eOrderNumber "' . $data->eOrderNumber . '".';
             $this->logger->info($msg);
-            return self::responseStatus('Error', 'SalesOrderCaptureOrRefundResult', array($msg));
+
+            return self::responseStatus('Error', 'SalesOrderCaptureOrRefundResult', [$msg]);
         }
 
         // ....................
@@ -919,14 +935,15 @@ class ECommerceServices extends SoapService
         if (count($errors)) {
             $this->logger->info(__METHOD__.' '.__LINE__.': SalesOrderCaptureOrRefundResult failed with the following error(s)', $errors);
             $this->timer->logAll('Time spend on order: #'.$order->getId());
+
             return self::responseStatus('Error', 'SalesOrderCaptureOrRefundResult', $errors);
         }
 
-        $this->SalesOrderLockUnlock((object) array(
+        $this->SalesOrderLockUnlock((object) [
             'eOrderNumber' => $data->eOrderNumber,
             'orderStatus'  => 4,
             'sendMail'     => 0,
-        ));
+        ]);
 
         $this->timer->logAll('Time spend on order: #'.$order->getId());
 
@@ -937,46 +954,51 @@ class ECommerceServices extends SoapService
     /**
      * change status of an order, the method also sends statuschanges on request.
      *
-     * @param stdCLass|object $data
+     * @param \stdCLass|object $data
      *   $data->eOrderNumber; // string
      *   $data->orderStatus;  // integer
      *   $data->sendMail;     // bool
+     *
      * @return object SalesOrderLockUnlockResult
      */
     public function SalesOrderLockUnlock ($data)
     {
         if (empty($data->eOrderNumber)) {
             $this->logger->info(__METHOD__.' '.__LINE__.': no eOrderNumber given.');
-            return self::responseStatus('Error', 'SalesOrderLockUnlockResult', array('no eOrderNumber given.'));
+
+            return self::responseStatus('Error', 'SalesOrderLockUnlockResult', ['no eOrderNumber given.']);
         }
 
         if ($data->orderStatus < 1 || $data->orderStatus > 4) {
             $this->logger->info(__METHOD__.' '.__LINE__.': order status id #' . $data->orderStatus . ' is not known.');
-            return self::responseStatus('Error', 'SalesOrderLockUnlockResult', array('order status id #' . $data->orderStatus . ' is not known.'));
+
+            return self::responseStatus('Error', 'SalesOrderLockUnlockResult', ['order status id #' . $data->orderStatus . ' is not known.']);
         }
 
         $order = OrdersQuery::create()->findOneById($data->eOrderNumber);
 
         if (!$order instanceof Orders) {
             $this->logger->info(__METHOD__.' '.__LINE__.': order #' . $data->eOrderNumber . ' does not exist.');
-            return self::responseStatus('Error', 'SalesOrderLockUnlockResult', array('order #' . $data->eOrderNumber . ' does not exist.'));
+
+            return self::responseStatus('Error', 'SalesOrderLockUnlockResult', ['order #' . $data->eOrderNumber . ' does not exist.']);
         }
 
         if ($order->getInEdit()) {
             $this->logger->info(__METHOD__.' '.__LINE__.': order #' . $data->eOrderNumber . ' cannot be locked, the order is "in edit".');
-            return self::responseStatus('Error', 'SalesOrderLockUnlockResult', array('order #' . $data->eOrderNumber . ' cannot be locked, the order is "in edit".'));
+
+            return self::responseStatus('Error', 'SalesOrderLockUnlockResult', ['order #' . $data->eOrderNumber . ' cannot be locked, the order is "in edit".']);
         }
 
         // ....................
         // .....<ze code>......
         // ....................
 
-        $status_map = array(
+        $status_map = [
             1 => Orders::STATE_PENDING,
             2 => Orders::STATE_BUILDING,
             3 => Orders::STATE_BEING_PROCESSED,
             4 => Orders::STATE_SHIPPED,
-        );
+        ];
 
         if ($data->sendMail) {
             $this->timer->reset();
@@ -984,9 +1006,9 @@ class ECommerceServices extends SoapService
                 $name = trim($order->getFirstName() . ' ' . $order->getLastName());
                 $mailer = $this->hanzo->container->get('mail_manager');
                 $mailer->setTo($order->getEmail(), $name);
-                $mailer->setMessage('order.status_processing', array(
+                $mailer->setMessage('order.status_processing', [
                     'order_id' => $order->getId()
-                ));
+                ]);
                 $mailer->send();
             } catch (Exception $e) {
                 Tools::log($e->getMessage());
@@ -1021,7 +1043,8 @@ class ECommerceServices extends SoapService
     {
         if (empty($data->eOrderNumber)) {
             $this->logger->info(__METHOD__.' '.__LINE__.': no eOrderNumber given.');
-            return self::responseStatus('Error', 'SalesOrderAddDocumentResult', array('no eOrderNumber given.'));
+
+            return self::responseStatus('Error', 'SalesOrderAddDocumentResult', ['no eOrderNumber given.']);
         }
 
         $order = OrdersQuery::create()
@@ -1031,7 +1054,8 @@ class ECommerceServices extends SoapService
 
         if (!$order) {
             $this->logger->info(__METHOD__.' '.__LINE__.': order #' . $data->eOrderNumber . ' does not exist.');
-            return self::responseStatus('Error', 'SalesOrderAddDocumentResult', array('order #' . $data->eOrderNumber . ' does not exist.'));
+
+            return self::responseStatus('Error', 'SalesOrderAddDocumentResult', ['order #' . $data->eOrderNumber . ' does not exist.']);
         }
 
         // ....................
@@ -1046,7 +1070,7 @@ class ECommerceServices extends SoapService
         ;
 
         if ($exists) {
-            return self::responseStatus('Error', 'SalesOrderAddDocumentResult', array('Document "'.$data->fileName.'" already exists for order #'.$data->eOrderNumber));
+            return self::responseStatus('Error', 'SalesOrderAddDocumentResult', ['Document "'.$data->fileName.'" already exists for order #'.$data->eOrderNumber]);
         }
 
         $attachment_index = OrdersAttributesQuery::create()
@@ -1099,10 +1123,12 @@ class ECommerceServices extends SoapService
     /**
      * SalesOrderCapture - split out from SalesOrderCaptureOrRefund
      *
+     * @param \stdClass $data  soap data object
+     * @param Orders    $order order object
+     *
+     * @return mixed true on success array of errors on error
+     *
      * @see ECommerceServices::SalesOrderCaptureOrRefund
-     * @param stdClass $data  soap data object
-     * @param Orders   $order order object
-     * @return mixed   true on success array of errors on error
      */
     protected function SalesOrderCapture($data, Orders $order)
     {
@@ -1159,26 +1185,26 @@ class ECommerceServices extends SoapService
                 $response = $gateway->call()->capture($order, $data->amount);
                 $result = $response->debug();
             } catch (PaymentApiCallException $e) {
-                $error = array(
+                $error = [
                     'cound not capture order #' . $data->eOrderNumber,
                     'error: ' . $e->getMessage(),
                     'line : ' . __LINE__
-                );
+                ];
             }
             $this->timer->lap('time in '.$provider.' gateway');
 
             if (empty($result['status']) || (!in_array($result['status'], [true, 'ACCEPTED'], true))) {
-                $error = array(
+                $error = [
                     'cound not capture order #' . $data->eOrderNumber,
                     'error: '.(empty($result['status_description']) ? 'unknown error' : $result['status_description'])
-                );
+                ];
             }
         } catch (Exception $e) {
-            $error = array(
+            $error = [
                 'cound not capture order #' . $data->eOrderNumber,
                 'error: ' . $e->getMessage(),
                 'line : ' . __LINE__
-            );
+            ];
         }
 
         if (count($error)) {
@@ -1193,15 +1219,17 @@ class ECommerceServices extends SoapService
     /**
      * SalesOrderRefund - split out from SalesOrderCaptureOrRefund
      *
-     * @see ECommerceServices::SalesOrderCaptureOrRefund
      * @param array  $data  refund data
      * @param Orders $order order object
-     * @return mixed        true on success array of errors on error
+     *
+     * @return mixed true on success array of errors on error
+     *
+     * @see ECommerceServices::SalesOrderCaptureOrRefund
      */
     protected function SalesOrderRefund($data, Orders $order)
     {
         $setStatus = false;
-        $errors = array();
+        $errors = [];
 
         $provider = strtolower($order->getBillingMethod());
         $gateway = $this->hanzo->container->get('payment.'.$provider.'api');
@@ -1223,18 +1251,18 @@ class ECommerceServices extends SoapService
 
             if (!in_array($result['status'], [0, true, 1, '1', 'ACCEPTED'], true)) {
                 $doSendError = true;
-                $errors = array(
+                $errors = [
                     'cound not refund order #' . $data->eOrderNumber,
                     'error: ' . $result['status_description'],
                     'line : ' . __LINE__
-                );
+                ];
             } else {
                 $name = $order->getFirstName() . ' ' . $order->getLastName();
-                $parameters = array(
+                $parameters = [
                     'order_id' => $order->getId(),
                     'name'     => $name,
                     'amount'   => $data->amount,
-                );
+                ];
 
                 $this->timer->reset();
                 $mailer = $this->hanzo->container->get('mail_manager');
@@ -1259,11 +1287,11 @@ class ECommerceServices extends SoapService
 
         } catch (Exception $e) {
             $doSendError = true;
-            $errors = array(
+            $errors = [
                 'cound not refund order #' . $data->eOrderNumber,
                 'error: ' . $e->getMessage(),
                 'line : ' . __LINE__
-            );
+            ];
         }
 
         if ($doSendError) {
@@ -1294,38 +1322,39 @@ class ECommerceServices extends SoapService
      * @fixme: skal laves om i både ax og web. og skal ikke være hardcoded
      *
      * @param \stdClass $entry
+     *
      * @return array|false
      */
     public function getDomainKeyFromCurrencyKey($entry)
     {
         $k = strtolower($entry->Currency.'.'.$entry->CustAccount);
 
-        $c_map = array(
-            'dkk.dkk'     => array('currency' => 'DKK', 'domain' => 'DK',      'vat' => 25),
-            'eur.eur'     => array('currency' => 'EUR', 'domain' => 'COM',     'vat' => 25),
-            'dkk.salesdk' => array('currency' => 'DKK', 'domain' => 'SalesDK', 'vat' => 25),
+        $c_map = [
+            'dkk.dkk'     => ['currency' => 'DKK', 'domain' => 'DK',      'vat' => 25],
+            'eur.eur'     => ['currency' => 'EUR', 'domain' => 'COM',     'vat' => 25],
+            'dkk.salesdk' => ['currency' => 'DKK', 'domain' => 'SalesDK', 'vat' => 25],
 
-            'nok.nok'     => array('currency' => 'NOK', 'domain' => 'NO',      'vat' => 25),
-            'nok.salesno' => array('currency' => 'NOK', 'domain' => 'SalesNO', 'vat' => 25),
+            'nok.nok'     => ['currency' => 'NOK', 'domain' => 'NO',      'vat' => 25],
+            'nok.salesno' => ['currency' => 'NOK', 'domain' => 'SalesNO', 'vat' => 25],
 
-            'sek.sek'     => array('currency' => 'NOK', 'domain' => 'SE',      'vat' => 25),
-            'sek.salesse' => array('currency' => 'NOK', 'domain' => 'SalesSE', 'vat' => 25),
+            'sek.sek'     => ['currency' => 'NOK', 'domain' => 'SE',      'vat' => 25],
+            'sek.salesse' => ['currency' => 'NOK', 'domain' => 'SalesSE', 'vat' => 25],
 
-            'eur.fin'     => array('currency' => 'NOK', 'domain' => 'FI',      'vat' => 24),
-            'eur.salesfi' => array('currency' => 'NOK', 'domain' => 'SalesFI', 'vat' => 24),
+            'eur.fin'     => ['currency' => 'NOK', 'domain' => 'FI',      'vat' => 24],
+            'eur.salesfi' => ['currency' => 'NOK', 'domain' => 'SalesFI', 'vat' => 24],
 
-            'eur.nld'     => array('currency' => 'NOK', 'domain' => 'NL',      'vat' => 21),
-            'eur.salesnl' => array('currency' => 'NOK', 'domain' => 'SalesNL', 'vat' => 21),
+            'eur.nld'     => ['currency' => 'NOK', 'domain' => 'NL',      'vat' => 21],
+            'eur.salesnl' => ['currency' => 'NOK', 'domain' => 'SalesNL', 'vat' => 21],
 
-            'eur.de'      => array('currency' => 'EUR', 'domain' => 'DE',      'vat' => 19),
-            'eur.salesde' => array('currency' => 'EUR', 'domain' => 'SalesDE', 'vat' => 19),
+            'eur.de'      => ['currency' => 'EUR', 'domain' => 'DE',      'vat' => 19],
+            'eur.salesde' => ['currency' => 'EUR', 'domain' => 'SalesDE', 'vat' => 19],
 
-            'eur.aut'     => array('currency' => 'EUR', 'domain' => 'AT',      'vat' => 20),
-            'eur.salesat' => array('currency' => 'EUR', 'domain' => 'SalesAT', 'vat' => 20),
+            'eur.aut'     => ['currency' => 'EUR', 'domain' => 'AT',      'vat' => 20],
+            'eur.salesat' => ['currency' => 'EUR', 'domain' => 'SalesAT', 'vat' => 20],
 
-            'chf.chf'     => array('currency' => 'CHF', 'domain' => 'CH',      'vat' => 8),
-            'chf.salesch' => array('currency' => 'CHF', 'domain' => 'SalesCH', 'vat' => 8),
-        );
+            'chf.chf'     => ['currency' => 'CHF', 'domain' => 'CH',      'vat' => 8],
+            'chf.salesch' => ['currency' => 'CHF', 'domain' => 'SalesCH', 'vat' => 8],
+        ];
 
         return isset($c_map[$k]) ? $c_map[$k] : false;
     }
