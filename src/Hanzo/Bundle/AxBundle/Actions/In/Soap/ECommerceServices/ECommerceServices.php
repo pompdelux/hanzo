@@ -609,21 +609,21 @@ class ECommerceServices extends SoapService
             $product = $item['product'];
 
             if (isset($item['inventory'])) {
-                $is_out = !((bool) $item['total']);
+                $isOut = !((bool) $item['total']);
 
                 // inventory to products
                 $stock_service->setLevels($product->getId(), $item['inventory']);
-                $this->setStockStatus($is_out, $product);
+                $stock_service->setStockStatus($isOut, $product);
 
-                if (false === $is_out) {
+                if (false === $isOut) {
                     $allout = false;
                 }
             } else {
-                $this->setStockStatus(true, $product);
+                $stock_service->setStockStatus(true, $product);
             }
         }
 
-        $this->setStockStatus($allout, $master);
+        $stock_service->setStockStatus($allout, $master);
 
         // purge varnish
         $this->event_dispatcher->dispatch('product.stock.zero', new FilterCategoryEvent($master, null, Propel::getConnection(null, Propel::CONNECTION_WRITE)));
@@ -1362,27 +1362,5 @@ class ECommerceServices extends SoapService
     protected function boot()
     {
         $this->timer = new Timer('ax');
-    }
-
-
-    /**
-     * Updates the stock status across databases.
-     * This really should be moved to an event listener, as it is duplicated in Stock.
-     *
-     * @param  boolean  $is_out
-     * @param  Products $product
-     * @return array
-     */
-    protected function setStockStatus($is_out, Products $product)
-    {
-        return $this->replicator->executeQuery("
-            UPDATE
-                products
-            SET
-                is_out_of_stock = ".(int) $is_out.",
-                updated_at = NOW()
-            WHERE
-                id = ".$product->getId()
-        );
     }
 }
