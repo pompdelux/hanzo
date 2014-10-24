@@ -385,6 +385,8 @@ Tools::log($master->toArray(), 1);
             $ids[] = $id;
         }
 
+Tools::log('flushing style ...');
+Tools::log($ids, 1);
         $this->setStockStatus(true, $ids);
     }
 
