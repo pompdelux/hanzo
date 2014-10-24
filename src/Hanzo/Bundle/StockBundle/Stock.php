@@ -267,8 +267,6 @@ class Stock
 
         // NICETO: move all db stuff to event listeners
         if ($total == $quantity) {
-Tools::log('variant out ...');
-Tools::log($product->toArray(), 1);
             $this->setStockStatus(true, $product);
             $this->warehouse->removeProductFromInventory($productId);
 
@@ -276,8 +274,6 @@ Tools::log($product->toArray(), 1);
             // if so, tag it so and fire an event (for caching n' stuff)
             if (false === $this->checkStyleStock($product)) {
                 $master = ProductsQuery::create()->findOneBySku($product->getMaster());
-Tools::log('style out ...');
-Tools::log($master->toArray(), 1);
                 $this->setStockStatus(true, $master);
                 $this->eventDispatcher->dispatch('product.stock.zero', new FilterCategoryEvent($master, $this->locale));
             }
@@ -385,8 +381,6 @@ Tools::log($master->toArray(), 1);
             $ids[] = $id;
         }
 
-Tools::log('flushing style ...');
-Tools::log($ids, 1);
         $this->setStockStatus(true, $ids);
     }
 
@@ -401,7 +395,7 @@ Tools::log($ids, 1);
      * @return array
      * @throws \InvalidArgumentException
      */
-    protected function setStockStatus($isOut, $product)
+    public function setStockStatus($isOut, $product)
     {
         if ($product instanceof Products) {
             $product = [$product->getId()];
