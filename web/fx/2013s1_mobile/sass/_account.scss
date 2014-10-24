@@ -96,7 +96,7 @@ a.add-wishlist {
     display: block;
     text-decoration: none;
     text-align: center;
-    font-weight: bold;
+    text-transform: uppercase;
     font-size: 1.2em;
 
     img {
@@ -111,12 +111,5 @@ a.add-wishlist {
     .wishlist-flush-list a {
         margin-top: 10px;
         width: 315px;
-    }
-
-    .list-number {
-        img {
-            vertical-align: middle;
-            margin-right: 10px;
-        }
     }
 }
