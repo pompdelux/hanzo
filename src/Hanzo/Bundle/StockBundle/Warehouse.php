@@ -26,9 +26,9 @@ class Warehouse
     private $countryWarehouseMap = [];
 
     /**
-     * @var boolean
+     * @var string|false
      */
-    private $isLocationSet = false;
+    private $locationSetTo = false;
 
     /**
      * @var \Hanzo\Core\PropelReplicator
@@ -65,10 +65,10 @@ class Warehouse
     public function setLocation($locale)
     {
         if (isset($this->countryWarehouseMap[$locale])) {
-            $this->isLocationSet = $this->countryWarehouseMap[$locale];
+            $this->locationSetTo = $this->countryWarehouseMap[$locale];
 
             $p = trim($this->basePrefix, ':');
-            $this->redis->setPrefix($p.'.'.$this->isLocationSet.':');
+            $this->redis->setPrefix($p.'.'.$this->locationSetTo.':');
 
             return $this;
         }
@@ -87,7 +87,7 @@ class Warehouse
      */
     public function getInventory($productIds)
     {
-        if (!$this->isLocationSet) {
+        if (!$this->locationSetTo) {
             throw new \OutOfBoundsException("Missing call to setLocation. Warehouse location must be set to get status.");
         }
 
@@ -216,35 +216,35 @@ class Warehouse
      */
     public function getRelatedDatabases()
     {
-        if (!$this->isLocationSet) {
+        if (!$this->locationSetTo) {
             throw new \OutOfBoundsException("Missing call to setLocation. Warehouse location must be set to get status.");
         }
 
         static $relations;
 
-        if (isset($relations[$this->isLocationSet])) {
-            return $relations[$this->isLocationSet];
+        if (isset($relations[$this->locationSetTo])) {
+            return $relations[$this->locationSetTo];
         }
 
-        $relations[$this->isLocationSet] = [];
+        $relations[$this->locationSetTo] = [];
 
-        if (1 == count($this->warehouseCountryMap[$this->isLocationSet])) {
-            $relations[$this->isLocationSet] = ['default'];
+        if (1 == count($this->warehouseCountryMap[$this->locationSetTo])) {
+            $relations[$this->locationSetTo] = ['default'];
         } else {
             $map = [];
-            foreach ($this->warehouseCountryMap[$this->isLocationSet] as $locale) {
+            foreach ($this->warehouseCountryMap[$this->locationSetTo] as $locale) {
                 $v = 'pdldb'.strtolower(substr($locale, -2)).'1';
                 $map[$v] = $v;
             }
 
             foreach ($this->replicator->getConnectionNames() as $name) {
                 if (isset($map[$name])) {
-                    $relations[$this->isLocationSet][] = $name;
+                    $relations[$this->locationSetTo][] = $name;
                 }
             }
         }
 
-        return $relations[$this->isLocationSet];
+        return $relations[$this->locationSetTo];
     }
 
 
