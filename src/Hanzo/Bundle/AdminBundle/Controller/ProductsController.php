@@ -11,7 +11,6 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Response;
 
 use Hanzo\Core\Hanzo;
-use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
 
 use Hanzo\Model\ProductsDomainsPricesQuery;
@@ -23,7 +22,6 @@ use Hanzo\Model\ProductsToCategoriesQuery;
 use Hanzo\Model\ProductsToCategories;
 use Hanzo\Model\ProductsImagesQuery;
 use Hanzo\Model\ProductsQuery;
-use Hanzo\Model\ProductsStockQuery;
 use Hanzo\Model\ProductsQuantityDiscountQuery;
 use Hanzo\Model\ProductsQuantityDiscount;
 use Hanzo\Model\DomainsQuery;
@@ -34,32 +32,37 @@ use Hanzo\Model\RelatedProductsQuery;
 
 use Hanzo\Bundle\AdminBundle\Event\FilterCategoryEvent;
 
+/**
+ * Class ProductsController
+ *
+ * @package Hanzo\Bundle\AdminBundle
+ */
 class ProductsController extends CoreController
 {
     /**
      * @Template()
      *
-     * @param $category_id
-     * @param $subcategory_id
+     * @param int $category_id
+     * @param int $subcategory_id
+     *
      * @return array
      */
     public function indexAction($category_id, $subcategory_id)
     {
         $categories = null;
         $products = null;
-        $q_clean = null;
+        $qClean = null;
         if (isset($_GET['q'])) {
-            $q_clean = $this->getRequest()->get('q', null);
-            $q = '%'.$q_clean.'%';
+            $qClean = $this->getRequest()->get('q', null);
+            $q = '%'.$qClean.'%';
 
             $products = ProductsQuery::create()
                 ->filterBySku($q)
                 ->_or()
-                ->filterById($q_clean)
-                ->find($this->getDbConnection())
-            ;
+                ->filterById($qClean)
+                ->find($this->getDbConnection());
 
-            $parent_category = null;
+            $parentCategory = null;
 
         } elseif (!$category_id) {
 
@@ -67,9 +70,9 @@ class ProductsController extends CoreController
                 ->where('categories.PARENT_ID IS NULL')
                 ->joinWithI18n('en_GB')
                 ->orderById()
-                ->find($this->getDbConnection())
-            ;
-            $parent_category = null;
+                ->find($this->getDbConnection());
+
+            $parentCategory = null;
 
         } elseif (!$subcategory_id) {
 
@@ -77,53 +80,51 @@ class ProductsController extends CoreController
                 ->filterByParentId($category_id)
                 ->joinWithI18n('en_GB')
                 ->orderById()
-                ->find($this->getDbConnection())
-            ;
+                ->find($this->getDbConnection());
 
-            $parent_category = CategoriesQuery::create()
+            $parentCategory = CategoriesQuery::create()
                 ->joinWithI18n('en_GB')
                 ->filterById($category_id)
-                ->findOne($this->getDbConnection())
-            ;
+                ->findOne($this->getDbConnection());
 
             $products = ProductsQuery::create()
                 ->useProductsToCategoriesQuery()
                 ->filterByCategoriesId($category_id)
                 ->endUse()
-                ->find($this->getDbConnection())
-            ;
+                ->find($this->getDbConnection());
 
-        } else { // Both $category_id and $subcategory_id are set. Show some products!
+        } else {
+            // Both $category_id and $subcategory_id are set. Show some products!
 
             $products = ProductsQuery::create()
                 ->useProductsToCategoriesQuery()
                     ->filterByCategoriesId($subcategory_id)
                 ->endUse()
-                ->find($this->getDbConnection())
-            ;
+                ->find($this->getDbConnection());
 
-            $parent_category = CategoriesQuery::create()
+            $parentCategory = CategoriesQuery::create()
                 ->joinWithI18n('en_GB')
                 ->filterById($subcategory_id)
-                ->findOne($this->getDbConnection())
-            ;
+                ->findOne($this->getDbConnection());
         }
-        $categories_list = [];
-        $products_list = [];
+
+        $categoriesList = [];
+        $productsList   = [];
+
         if ($categories) {
             foreach ($categories as $category) {
-                $categories_list[] = array(
+                $categoriesList[] = [
                     'id'        => $category->getId(),
                     'context'   => $category->getContext(),
                     'is_active' => $category->getIsActive(),
                     'title'     => $category->getTitle(),
-                );
+                ];
             }
         }
 
         if ($products) {
             foreach ($products as $product) {
-                $products_list[] = array(
+                $productsList[] = [
                     'id'              => $product->getId(),
                     'sku'             => $product->getSku(),
                     'master'          => $product->getMaster(),
@@ -132,27 +133,27 @@ class ProductsController extends CoreController
                     'unit'            => $product->getUnit(),
                     'is_out_of_stock' => $product->getIsOutOfStock(),
                     'is_active'       => $product->getIsActive()
-                );
+                ];
             }
 
         }
 
         return [
-            'categories'      => $categories_list,
-            'products'        => $products_list,
-            'parent_category' => $parent_category,
+            'categories'      => $categoriesList,
+            'products'        => $productsList,
+            'parent_category' => $parentCategory,
             'category_id'     => $category_id,
             'subcategory_id'  => $subcategory_id,
-            'search_query'    => $q_clean,
+            'search_query'    => $qClean,
             'database'        => $this->getRequest()->getSession()->get('database')
         ];
     }
 
-
     /**
      * @Template()
      *
-     * @param  Request $request
+     * @param Request $request
+     *
      * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function listAction(Request $request)
@@ -163,8 +164,7 @@ class ProductsController extends CoreController
             $locale = LanguagesQuery::create()
                 ->orderById()
                 ->findOne($this->getDbConnection())
-                ->getLocale()
-            ;
+                ->getLocale();
         }
 
         $filter = $request->query->get('range');
@@ -173,8 +173,8 @@ class ProductsController extends CoreController
         $result = ProductsQuery::create()
             ->select('Range')
             ->distinct()
-            ->find($this->getDbConnection())
-        ;
+            ->find($this->getDbConnection());
+
         foreach ($result as $range) {
             $ranges[$range] = $range;
         }
@@ -190,13 +190,13 @@ class ProductsController extends CoreController
             ];
         }
 
-        $cache_key = ['admin', 'products', 'list', $filter, $this->getRequest()->getSession()->get('database')];
-        $data = $this->getCache($cache_key);
+        $cacheKey = ['admin', 'products', 'list', $filter, $this->getRequest()->getSession()->get('database')];
+        $data = $this->getCache($cacheKey);
 
         if (empty($data)) {
-            $sql_filter = '';
+            $sqlFilter = '';
             if (!empty($filter)) {
-                $sql_filter = 'AND p.range = ?';
+                $sqlFilter = 'AND p.range = ?';
                 $filter = [$filter];
             } else {
                 $filter = [];
@@ -231,7 +231,7 @@ class ProductsController extends CoreController
                     )
                 WHERE
                     p.master IS NULL
-                {$sql_filter}
+                {$sqlFilter}
                 ORDER BY
                     p.range,
                     p.sku
@@ -245,7 +245,7 @@ class ProductsController extends CoreController
             }
 
             $conn  = $this->getDbConnection();
-            $query = $conn->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
+            $query = $conn->prepare($sql, [\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY]);
 
             $query->execute($filter);
 
@@ -267,7 +267,7 @@ class ProductsController extends CoreController
             }
 
             uksort($data, "strnatcmp");
-            $this->setCache($cache_key, $data);
+            $this->setCache($cacheKey, $data);
         }
 
         return [
@@ -276,106 +276,101 @@ class ProductsController extends CoreController
         ];
     }
 
-
+    /**
+     * @param int $id
+     *
+     * @return Response
+     * @throws \Exception
+     * @throws \PropelException
+     */
     public function viewAction($id)
     {
         $categories = CategoriesQuery::create()
             ->where('categories.PARENT_ID IS NOT NULL')
             ->joinWithI18n('en_GB')
             ->orderByContext()
-            ->find($this->getDbConnection())
-        ;
+            ->find($this->getDbConnection());
 
-        $product_categories = CategoriesQuery::create()
+        $productCategories = CategoriesQuery::create()
             ->useProductsToCategoriesQuery()
                 ->filterByProductsId($id)
             ->endUse()
             ->orderById()
-            ->find($this->getDbConnection())
-        ;
+            ->find($this->getDbConnection());
 
-        $current_product = ProductsQuery::create()
+        $currentProduct = ProductsQuery::create()
             ->filterById($id)
             ->orderBySku()
-            ->findOne($this->getDbConnection())
-        ;
+            ->findOne($this->getDbConnection());
 
         $styles = ProductsQuery::create()
-            ->filterByMaster($current_product->getSku())
+            ->filterByMaster($currentProduct->getSku())
             ->orderBySku()
-            ->find($this->getDbConnection())
-        ;
+            ->find($this->getDbConnection());
 
-        $all_products = ProductsQuery::create()
-            ->filterByMaster(NULL)
+        $allProducts = ProductsQuery::create()
+            ->filterByMaster(null)
             ->orderBySku()
-            ->find($this->getDbConnection())
-        ;
+            ->find($this->getDbConnection());
 
-        $product_images = ProductsImagesQuery::create()
+        $productImages = ProductsImagesQuery::create()
             ->joinProducts()
             ->filterByProductsId($id)
-            ->find($this->getDbConnection())
-        ;
+            ->find($this->getDbConnection());
 
-        $related_products = RelatedProductsQuery::create()
-            ->filterByMaster($current_product->getSku())
+        $relatedProducts = RelatedProductsQuery::create()
+            ->filterByMaster($currentProduct->getSku())
             ->orderBySku()
-            ->find($this->getDbConnection())
-        ;
+            ->find($this->getDbConnection());
 
-        $product_images_list = [];
+        $productImagesList = [];
 
-        foreach ($product_images as $record) {
-            $product_image_in_categories = ProductsImagesCategoriesSortQuery::create()
+        foreach ($productImages as $record) {
+            $productImageInCategories = ProductsImagesCategoriesSortQuery::create()
                 ->joinWithCategories()
                 ->filterByProductsImagesId($record->getId())
-                ->find($this->getDbConnection())
-            ;
+                ->find($this->getDbConnection());
 
+            $imageCategoriesList = [];
+            foreach ($productImageInCategories as $ref) {
 
-            $image_categories_list = [];
-            foreach ($product_image_in_categories as $ref) {
-
-                $image_categories_list[] = array(
+                $imageCategoriesList[] = [
                     'id'          => $record->getId(),
                     'category_id' => $ref->getCategoriesId(),
                     'title'       => $ref->getCategories()->getContext()
-                );
+                ];
             }
 
-            $products_refs = ProductsImagesProductReferencesQuery::create()
+            $productsRefs = ProductsImagesProductReferencesQuery::create()
                 ->joinWithProducts()
                 ->joinWithProductsImages()
                 ->filterByProductsImagesId($record->getId())
-                ->find($this->getDbConnection())
-            ;
+                ->find($this->getDbConnection());
 
-            $products_refs_list = [];
-            if($products_refs){
-                foreach ($products_refs as $ref) {
+            $productsRefsList = [];
 
-                    $product_ref = $ref->getProducts();
+            if ($productsRefs) {
+                foreach ($productsRefs as $ref) {
+                    $productRef = $ref->getProducts();
 
-                    $products_refs_list[] = array(
-                        'id'    => $product_ref->getId(),
-                        'sku'   => $product_ref->getSku(),
+                    $productsRefsList[] = [
+                        'id'    => $productRef->getId(),
+                        'sku'   => $productRef->getSku(),
                         'color' => $ref->getColor()
-                    );
+                    ];
                 }
             }
 
-            $product_images_list[$record->getId()] = array(
+            $productImagesList[$record->getId()] = [
                 'id'               => $record->getProductsId(),
                 'image'            => $record->getImage(),
                 'image_id'         => $record->getId(),
-                'product_ref_ids'  => $products_refs_list,
-                'image_categories' => $image_categories_list
-            );
+                'product_ref_ids'  => $productsRefsList,
+                'image_categories' => $imageCategoriesList
+            ];
         }
 
-
-        $form_hasVideo = $this->createFormBuilder($current_product)
+        $formHasVideo = $this->createFormBuilder($currentProduct)
             ->add('has_video', 'checkbox', [
                 'label'              => 'product.label.has_video',
                 'translation_domain' => 'admin',
@@ -384,25 +379,23 @@ class ProductsController extends CoreController
                 'label'              => 'product.label.is_discountable',
                 'translation_domain' => 'admin',
                 'required'           => false
-            ])->getForm()
-        ;
+            ])->getForm();
 
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
-            $form_hasVideo->bind($request);
+            $formHasVideo->bind($request);
 
-            if ($form_hasVideo->isValid()) {
-                $current_product->save($this->getDbConnection());
+            if ($formHasVideo->isValid()) {
+                $currentProduct->save($this->getDbConnection());
 
                 // update child products
                 ProductsQuery::create()
-                    ->filterByMaster($current_product->getSku())
-                    ->update(['IsDiscountable' => $current_product->getIsDiscountable()])
-                ;
+                    ->filterByMaster($currentProduct->getSku())
+                    ->update(['IsDiscountable' => $currentProduct->getIsDiscountable()]);
             }
         }
 
-        $prices_result = ProductsDomainsPricesQuery::create()
+        $pricesResult = ProductsDomainsPricesQuery::create()
             ->filterByProductsId($id)
             ->joinWithDomains()
             ->orderByProductsId()
@@ -410,7 +403,7 @@ class ProductsController extends CoreController
             ->find($this->getDbConnection());
 
         $prices = [];
-        foreach ($prices_result as $price) {
+        foreach ($pricesResult as $price) {
             $prices[] = [
                 'domain'    => $price->getDomains()->getDomainKey(),
                 'price'     => number_format($price->getPrice()+$price->getVat(), 2, ',', ''),
@@ -419,44 +412,51 @@ class ProductsController extends CoreController
             ];
         }
 
-
-        return $this->render('AdminBundle:Products:view.html.twig', array(
+        return $this->render('AdminBundle:Products:view.html.twig', [
             'styles'                => $styles,
-            'product_categories'    => $product_categories,
+            'product_categories'    => $productCategories,
             'categories'            => $categories,
-            'current_product'       => $current_product,
-            'product_images'        => $product_images_list,
-            'products'              => $all_products,
-            'related_products'      => $related_products,
-            'has_video_form'        => $form_hasVideo->createView(),
+            'current_product'       => $currentProduct,
+            'product_images'        => $productImagesList,
+            'products'              => $allProducts,
+            'related_products'      => $relatedProducts,
+            'has_video_form'        => $formHasVideo->createView(),
             'prices'                => $prices,
             'database' => $this->getRequest()->getSession()->get('database')
-        ));
+        ]);
     }
 
+
+    /**
+     * @param int $product_id
+     *
+     * @return Response
+     * @throws \Exception
+     * @throws \PropelException
+     */
     public function quantityDiscountsAction($product_id)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
-        $current_product = ProductsQuery::create()
+        $currentProduct = ProductsQuery::create()
             ->filterById($product_id)
-            ->findOne($this->getDbConnection())
-        ;
+            ->findOne($this->getDbConnection());
 
-        $domains_availible = DomainsQuery::Create()->find($this->getDbConnection());
+        $domainsAvailible = DomainsQuery::Create()->find($this->getDbConnection());
 
-        foreach ($domains_availible as $domain) {
-            $domains_availible_data[$domain->getId()] = $domain->getDomainKey();
+        foreach ($domainsAvailible as $domain) {
+            $domainsAvailibleData[$domain->getId()] = $domain->getDomainKey();
         }
 
-        $quantity_discount = new ProductsQuantityDiscount();
-        $quantity_discount->setProductsMaster($current_product->getSku());
-        $form = $this->createFormBuilder($quantity_discount)
+        $quantityDiscount = new ProductsQuantityDiscount();
+        $quantityDiscount->setProductsMaster($currentProduct->getSku());
+
+        $form = $this->createFormBuilder($quantityDiscount)
             ->add('domains_id', 'choice', [
                 'label'              => 'admin.products.discount.domains_id',
-                'choices'            => $domains_availible_data,
+                'choices'            => $domainsAvailibleData,
                 'required'           => true,
                 'translation_domain' => 'admin'
             ])->add('span', 'integer', [
@@ -475,7 +475,7 @@ class ProductsController extends CoreController
                 'translation_domain' => 'admin',
                 'required'           => false,
                 'attr'               => ['class' => 'datepicker'],
-                'data'               => $quantity_discount->getValidFrom('Y-m-d'),
+                'data'               => $quantityDiscount->getValidFrom('Y-m-d'),
             ])->add('valid_to', 'date', [
                 'input'              => 'string',
                 'widget'             => 'single_text',
@@ -484,9 +484,8 @@ class ProductsController extends CoreController
                 'translation_domain' => 'admin',
                 'required'           => false,
                 'attr'               => ['class' => 'datepicker'],
-                'data'               => $quantity_discount->getValidTo('Y-m-d'),
-            ])->getForm()
-        ;
+                'data'               => $quantityDiscount->getValidTo('Y-m-d'),
+            ])->getForm();
 
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
@@ -495,20 +494,20 @@ class ProductsController extends CoreController
             if ($form->isValid()) {
 
                 $duplicate = ProductsQuantityDiscountQuery::create()
-                    ->filterByProductsMaster($quantity_discount->getProductsMaster())
-                    ->filterBySpan($quantity_discount->getSpan())
-                    ->filterByDomainsId($quantity_discount->getDomainsId())
+                    ->filterByProductsMaster($quantityDiscount->getProductsMaster())
+                    ->filterBySpan($quantityDiscount->getSpan())
+                    ->filterByDomainsId($quantityDiscount->getDomainsId())
                     ->findOne($this->getDbConnection())
                 ;
 
                 if ($duplicate instanceof ProductsQuantityDiscount) {
 
-                    $duplicate->setDiscount($quantity_discount->getDiscount());
+                    $duplicate->setDiscount($quantityDiscount->getDiscount());
                     $duplicate->save($this->getDbConnection());
 
-                }else{
+                } else {
 
-                    $quantity_discount->save($this->getDbConnection());
+                    $quantityDiscount->save($this->getDbConnection());
 
                 }
 
@@ -516,21 +515,29 @@ class ProductsController extends CoreController
             }
         }
 
-        $quantity_discounts = ProductsQuantityDiscountQuery::create()
+        $quantityDiscounts = ProductsQuantityDiscountQuery::create()
             ->joinWithDomains()
-            ->filterByProductsMaster($current_product->getSku())
+            ->filterByProductsMaster($currentProduct->getSku())
             ->orderByDomainsId()
-            ->find($this->getDbConnection())
-        ;
+            ->find($this->getDbConnection());
 
-        return $this->render('AdminBundle:Products:discount.html.twig', array(
-            'quantity_discounts'    => $quantity_discounts,
+        return $this->render('AdminBundle:Products:discount.html.twig', [
+            'quantity_discounts'    => $quantityDiscounts,
             'form'                  => $form->createView(),
-            'current_product'       => $current_product,
+            'current_product'       => $currentProduct,
             'database' => $this->getRequest()->getSession()->get('database')
-        ));
+        ]);
     }
 
+    /**
+     * @param string $master
+     * @param int    $domains_id
+     * @param mixed  $span
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @throws \Exception
+     * @throws \PropelException
+     */
     public function deleteQuantityDiscountAction($master, $domains_id, $span)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
@@ -541,37 +548,44 @@ class ProductsController extends CoreController
             ->filterByProductsMaster($master)
             ->filterBySpan($span)
             ->filterByDomainsId($domains_id)
-            ->findOne($this->getDbConnection())
-        ;
+            ->findOne($this->getDbConnection());
 
-        if($discount instanceof ProductsQuantityDiscount){
+        if ($discount instanceof ProductsQuantityDiscount) {
             $discount->delete($this->getDbConnection());
 
             if ($this->getFormat() == 'json') {
-                return $this->json_response(array(
-                    'status' => TRUE,
+                return $this->json_response([
+                    'status'  => true,
                     'message' => $this->get('translator')->trans('delete.products.discount.success', [], 'admin')
-                ));
+                ]);
             }
 
             $this->get('session')->getFlashBag()->add('notice', 'delete.products.discount.success');
 
-            return $this->redirect($this->generateUrl('admin_products_discount', array('product_id' => $master->getId())));
+            return $this->redirect($this->generateUrl('admin_products_discount', ['product_id' => $master->getId()]));
         }
 
         if ($this->getFormat() == 'json') {
-            return $this->json_response(array(
-                'status' => FALSE,
+            return $this->json_response([
+                'status'  => false,
                 'message' => $this->get('translator')->trans('delete.products.discount.failed', [], 'admin')
-            ));
+            ]);
         }
 
         $this->get('session')->getFlashBag()->add('notice', 'delete.products.discount.failed');
 
-        return $this->redirect($this->generateUrl('admin_products_discount', array('product_id' => $master->getId())));
+        return $this->redirect($this->generateUrl('admin_products_discount', ['product_id' => $master->getId()]));
 
     }
 
+
+    /**
+     * @param int $id
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws \Exception
+     * @throws \PropelException
+     */
     public function deleteStylesAction($id)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
@@ -580,23 +594,29 @@ class ProductsController extends CoreController
 
         $master = ProductsQuery::create()
             ->filterById($id)
-            ->findOne($this->getDbConnection())
-        ;
+            ->findOne($this->getDbConnection());
 
         if ($master instanceof Products) {
             $master->delete($this->getDbConnection());
 
             $this->get('session')->getFlashBag()->add('notice', 'delete.products.styles.success');
 
-            return $this->redirect($this->generateUrl('admin_product', array('id' => $id)));
+            return $this->redirect($this->generateUrl('admin_product', ['id' => $id]));
         }
 
         $this->get('session')->getFlashBag()->add('notice', 'delete.products.styles.failed');
 
-        return $this->redirect($this->generateUrl('admin_product', array('id' => $id)));
+        return $this->redirect($this->generateUrl('admin_product', ['id' => $id]));
 
     }
 
+    /**
+     * @param int $id
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @throws \Exception
+     * @throws \PropelException
+     */
     public function deleteStyleAction($id)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
@@ -605,37 +625,40 @@ class ProductsController extends CoreController
 
         $style = ProductsQuery::create()
             ->filterById($id)
-            ->findOne($this->getDbConnection())
-        ;
+            ->findOne($this->getDbConnection());
 
-        if($style instanceof ProductsQuery){
+        if ($style instanceof ProductsQuery) {
             $style->delete($this->getDbConnection());
 
             if ($this->getFormat() == 'json') {
-                return $this->json_response(array(
-                    'status' => TRUE,
+                return $this->json_response([
+                    'status'  => true,
                     'message' => $this->get('translator')->trans('delete.products.style.success', [], 'admin')
-                ));
+                ]);
             }
             $this->get('session')->getFlashBag()->add('notice', 'delete.products.style.success');
 
-            return $this->redirect($this->generateUrl('admin_product', array('id' => $id)));
+            return $this->redirect($this->generateUrl('admin_product', ['id' => $id]));
         }
 
         if ($this->getFormat() == 'json') {
-            return $this->json_response(array(
-                'status' => FALSE,
+            return $this->json_response([
+                'status'  => false,
                 'message' => $this->get('translator')->trans('delete.products.style.failed', [], 'admin')
-            ));
+            ]);
         }
 
         $this->get('session')->getFlashBag()->add('notice', 'delete.products.style.failed');
 
-        return $this->redirect($this->generateUrl('admin_product', array('id' => $id)));
-
+        return $this->redirect($this->generateUrl('admin_product', ['id' => $id]));
 
     }
 
+    /**
+     * @return Response
+     * @throws \Exception
+     * @throws \PropelException
+     */
     public function addCategoryAction()
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
@@ -643,60 +666,74 @@ class ProductsController extends CoreController
         }
 
         $requests = $this->get('request');
-        $category_id = $requests->get('category');
-        $product_id = $requests->get('product');
+        $categoryId = $requests->get('category');
+        $productId = $requests->get('product');
 
-        $category_to_product = new ProductsToCategories();
-        $category_to_product->setCategoriesId($category_id);
-        $category_to_product->setProductsId($product_id);
+        $categoryToProduct = new ProductsToCategories();
+        $categoryToProduct->setCategoriesId($categoryId);
+        $categoryToProduct->setProductsId($productId);
 
         try {
-            $category_to_product->save($this->getDbConnection());
+            $categoryToProduct->save($this->getDbConnection());
         } catch (PropelException $e) {
             if ($this->getFormat() == 'json') {
-                return $this->json_response(array(
-                    'status' => FALSE,
+                return $this->json_response([
+                    'status' => true,
                     'message' => $this->get('translator')->trans('save.changes.failed', [], 'admin')
-                ));
+                ]);
             }
         }
 
         if ($this->getFormat() == 'json') {
-            return $this->json_response(array(
-                'status' => TRUE,
+            return $this->json_response([
+                'status'  => true,
                 'message' => $this->get('translator')->trans('save.changes.success', [], 'admin')
-            ));
+            ]);
         }
     }
 
+    /**
+     * @param int $category_id
+     * @param int $product_id
+     *
+     * @return Response
+     * @throws \Exception
+     * @throws \PropelException
+     */
     public function deleteCategoryAction($category_id, $product_id)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
 
-        $category_to_product = ProductsToCategoriesQuery::create()
+        $categoryToProduct = ProductsToCategoriesQuery::create()
             ->filterByCategoriesId($category_id)
             ->filterByProductsId($product_id)
-            ->findOne($this->getDbConnection())
-        ;
+            ->findOne($this->getDbConnection());
 
-        if($category_to_product) {
-            $category_to_product->delete($this->getDbConnection());
+        if ($categoryToProduct) {
+            $categoryToProduct->delete($this->getDbConnection());
         }
 
         $node = new Categories();
         $node->setId($category_id);
+
         $this->get('event_dispatcher')->dispatch('category.node.deleted', new FilterCategoryEvent($node, null, $this->getDbConnection()));
 
         if ($this->getFormat() == 'json') {
-            return $this->json_response(array(
-                'status' => TRUE,
+            return $this->json_response([
+                'status'  => true,
                 'message' => $this->get('translator')->trans('delete.changes.success', [], 'admin'),
-            ));
+            ]);
         }
     }
 
+
+    /**
+     * @return Response
+     * @throws \Exception
+     * @throws \PropelException
+     */
     public function addRelatedProductAction()
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
@@ -707,150 +744,182 @@ class ProductsController extends CoreController
         $master = $requests->get('master');
         $sku = $requests->get('sku');
 
-        $related_products = new RelatedProducts();
-        $related_products->setMaster($master);
-        $related_products->setSku($sku);
+        $relatedProducts = new RelatedProducts();
+        $relatedProducts->setMaster($master);
+        $relatedProducts->setSku($sku);
 
         try {
-            $related_products->save($this->getDbConnection());
+            $relatedProducts->save($this->getDbConnection());
         } catch (PropelException $e) {
             if ($this->getFormat() == 'json') {
-                return $this->json_response(array(
-                    'status' => FALSE,
+                return $this->json_response([
+                    'status'  => true,
                     'message' => $this->get('translator')->trans('save.changes.failed', [], 'admin')
-                ));
+                ]);
             }
         }
 
         if ($this->getFormat() == 'json') {
-            return $this->json_response(array(
-                'status' => TRUE,
+            return $this->json_response([
+                'status'  => true,
                 'message' => $this->get('translator')->trans('save.changes.success', [], 'admin')
-            ));
+            ]);
         }
     }
 
+
+    /**
+     * @param string $master
+     * @param string $sku
+     *
+     * @return Response
+     * @throws \Exception
+     * @throws \PropelException
+     */
     public function deleteRelatedProductAction($master, $sku)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
 
-        $related_product = RelatedProductsQuery::create()
+        $relatedProduct = RelatedProductsQuery::create()
             ->filterByMaster($master)
             ->filterBySku($sku)
-            ->findOne($this->getDbConnection())
-        ;
+            ->findOne($this->getDbConnection());
 
-        if($related_product instanceof RelatedProducts)
-            $related_product->delete($this->getDbConnection());
+        if ($relatedProduct instanceof RelatedProducts) {
+            $relatedProduct->delete($this->getDbConnection());
+        }
 
         if ($this->getFormat() == 'json') {
-            return $this->json_response(array(
-                'status' => TRUE,
+            return $this->json_response([
+                'status'  => true,
                 'message' => $this->get('translator')->trans('delete.changes.success', [], 'admin'),
-            ));
+            ]);
         }
     }
 
+    /**
+     * @return Response
+     * @throws \Exception
+     * @throws \PropelException
+     */
     public function addReferenceAction()
     {
-        $requests = $this->get('request');
-        $image_id = $requests->get('image');
-        $product_id = $requests->get('product');
-        $color = $requests->get('color');
+        $requests  = $this->get('request');
+        $imageId   = $requests->get('image');
+        $productId = $requests->get('product');
+        $color     = $requests->get('color');
 
         $reference = new ProductsImagesProductReferences();
-        $reference->setProductsImagesId($image_id);
-        $reference->setProductsId($product_id);
+        $reference->setProductsImagesId($imageId);
+        $reference->setProductsId($productId);
         $reference->setColor($color);
 
         try {
             $reference->save($this->getDbConnection());
         } catch (PropelException $e) {
             if ($this->getFormat() == 'json') {
-                return $this->json_response(array(
-                    'status' => FALSE,
+                return $this->json_response([
+                    'status'  => true,
                     'message' => $this->get('translator')->trans('save.changes.failed', [], 'admin')
-                ));
+                ]);
             }
         }
 
         if ($this->getFormat() == 'json') {
-            return $this->json_response(array(
-                'status' => TRUE,
+            return $this->json_response([
+                'status'  => true,
                 'message' => $this->get('translator')->trans('save.changes.success', [], 'admin')
-            ));
+            ]);
         }
     }
 
+
+    /**
+     * @return Response
+     */
     public function addReferenceGetColorsAction()
     {
-        $requests = $this->get('request');
-        $product_id = $requests->get('product');
+        $requests  = $this->get('request');
+        $productId = $requests->get('product');
 
         $images = ProductsImagesQuery::create()
-            ->filterByProductsId($product_id)
+            ->filterByProductsId($productId)
             ->groupBy('Color')
             ->find($this->getDbConnection());
 
-        $all_colors = [];
+        $allColors = [];
 
         foreach ($images as $image) {
-            $all_colors[] = $image->getColor();
+            $allColors[] = $image->getColor();
         }
-        return $this->json_response(array(
-            'status' => TRUE,
+
+        return $this->json_response([
+            'status'  => true,
             'message' => $this->get('translator')->trans('save.changes.failed', [], 'admin'),
-            'data' => $all_colors
-        ));
+            'data'    => $allColors
+        ]);
     }
 
+    /**
+     * @param int $image_id
+     * @param int $product_id
+     *
+     * @return Response
+     * @throws \Exception
+     * @throws \PropelException
+     */
     public function deleteReferenceAction($image_id, $product_id)
     {
-        $product_ref = ProductsImagesProductReferencesQuery::create()
+        $productRef = ProductsImagesProductReferencesQuery::create()
             ->filterByProductsImagesId($image_id)
             ->filterByProductsId($product_id)
-            ->findOne($this->getDbConnection())
-        ;
+            ->findOne($this->getDbConnection());
 
-        if($product_ref) {
-            $product_ref->delete($this->getDbConnection());
+        if ($productRef) {
+            $productRef->delete($this->getDbConnection());
         }
 
         if ($this->getFormat() == 'json') {
-            return $this->json_response(array(
-                'status' => TRUE,
+            return $this->json_response([
+                'status'  => true,
                 'message' => $this->get('translator')->trans('delete.imageReference.success', [], 'admin'),
-            ));
+            ]);
         }
     }
 
+
+    /**
+     * @return Response
+     * @throws \Exception
+     * @throws \PropelException
+     */
     public function addImageToCategoryAction()
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
-        $requests = $this->get('request');
-        $image_id = $requests->get('image');
-        $category_id = $requests->get('category');
-        $image = ProductsImagesQuery::create()->findOneById($image_id);
+
+        $requests   = $this->get('request');
+        $imageId    = $requests->get('image');
+        $categoryId = $requests->get('category');
+        $image      = ProductsImagesQuery::create()->findOneById($imageId);
 
         $reference = new ProductsImagesCategoriesSort();
         $reference->setProductsId($image->getProductsId());
-        $reference->setProductsImagesId($image_id);
-        $reference->setCategoriesId($category_id);
+        $reference->setProductsImagesId($imageId);
+        $reference->setCategoriesId($categoryId);
 
         $c = ProductsToCategoriesQuery::create()
             ->filterByProductsId($image->getProductsId())
-            ->filterByCategoriesId($category_id)
-            ->findOne($this->getDbConnection())
-        ;
+            ->filterByCategoriesId($categoryId)
+            ->findOne($this->getDbConnection());
 
         if (!$c instanceof ProductsToCategories) {
             $c = new ProductsToCategories();
             $c->setProductsId($image->getProductsId());
-            $c->setCategoriesId($category_id);
+            $c->setCategoriesId($categoryId);
             $c->save($this->getDbConnection());
         }
 
@@ -859,21 +928,29 @@ class ProductsController extends CoreController
 
         } catch (PropelException $e) {
             if ($this->getFormat() == 'json') {
-                return $this->json_response(array(
-                    'status' => FALSE,
+                return $this->json_response([
+                    'status'  => true,
                     'message' => $this->get('translator')->trans('save.changes.failed', [], 'admin')
-                ));
+                ]);
             }
         }
 
         if ($this->getFormat() == 'json') {
-            return $this->json_response(array(
-                'status' => TRUE,
+            return $this->json_response([
+                'status'  => true,
                 'message' => $this->get('translator')->trans('save.changes.success', [], 'admin')
-            ));
+            ]);
         }
     }
 
+    /**
+     * @param int $image_id
+     * @param int $category_id
+     *
+     * @return Response
+     * @throws \Exception
+     * @throws \PropelException
+     */
     public function deleteImageFromCategoryAction($image_id, $category_id)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
@@ -882,53 +959,54 @@ class ProductsController extends CoreController
         $ref = ProductsImagesCategoriesSortQuery::create()
             ->filterByProductsImagesId($image_id)
             ->filterByCategoriesId($category_id)
-            ->findOne($this->getDbConnection())
-        ;
+            ->findOne($this->getDbConnection());
 
         if ($ref) {
-            $product_id = $ref->getProductsId();
+            $productId = $ref->getProductsId();
             $ref->delete($this->getDbConnection());
 
-            $image_count = ProductsImagesCategoriesSortQuery::create()
-                ->filterByProductsId($product_id)
+            $imageCount = ProductsImagesCategoriesSortQuery::create()
+                ->filterByProductsId($productId)
                 ->filterByCategoriesId($category_id)
-                ->count($this->getDbConnection())
-            ;
+                ->count($this->getDbConnection());
 
-            if (0 === $image_count) {
+            if (0 === $imageCount) {
                 ProductsToCategoriesQuery::create()
-                    ->filterByProductsId($product_id)
+                    ->filterByProductsId($productId)
                     ->filterByCategoriesId($category_id)
-                    ->delete($this->getDbConnection())
-                ;
+                    ->delete($this->getDbConnection());
             }
         }
 
         if ($this->getFormat() == 'json') {
-            return $this->json_response(array(
-                'status' => TRUE,
+            return $this->json_response([
+                'status'  => true,
                 'message' => $this->get('translator')->trans('delete.success', [], 'admin'),
-            ));
+            ]);
         }
     }
 
+
+    /**
+     * @param $category_id
+     *
+     * @return Response
+     */
     public function sortAction($category_id)
     {
-        $current_category = CategoriesQuery::create()
+        $currentCategory = CategoriesQuery::create()
             ->joinWithI18n()
             ->filterById($category_id)
-            ->findOne($this->getDbConnection())
-        ;
+            ->findOne($this->getDbConnection());
 
-        $categories_result = CategoriesQuery::create()
+        $categoriesResult = CategoriesQuery::create()
             ->where('categories.PARENT_ID IS NOT NULL')
             ->joinWithI18n()
             ->orderByParentId()
-            ->find($this->getDbConnection())
-        ;
+            ->find($this->getDbConnection());
 
         $categories = [];
-        foreach ($categories_result as $category) {
+        foreach ($categoriesResult as $category) {
             $tmp = explode('_', $category->getContext());
             $categories[$category->getContext()]['group'] = $tmp[0];
             $categories[$category->getContext()]['title']= $category->getTitle();
@@ -947,31 +1025,36 @@ class ProductsController extends CoreController
             ->joinWithProductsImages()
             ->orderBySort()
             ->filterByCategoriesId($category_id)
-            ->find($this->getDbConnection())
-        ;
+            ->find($this->getDbConnection());
 
         $records = [];
         foreach ($products as $record) {
             $product = $record->getProducts();
 
-            $records[] = array(
-                'sku' => $product->getSku(),
-                'id' => $product->getId(),
-                'title' => $product->getSku(),
-                'image' => $record->getProductsImages()->getImage(),
-                'color' => $record->getProductsImages()->getColor(),
+            $records[] = [
+                'sku'       => $product->getSku(),
+                'id'        => $product->getId(),
+                'title'     => $product->getSku(),
+                'image'     => $record->getProductsImages()->getImage(),
+                'color'     => $record->getProductsImages()->getColor(),
                 'is_active' => $product->getIsActive()
-            );
+            ];
         }
 
-        return $this->render('AdminBundle:Products:sort.html.twig', array(
+        return $this->render('AdminBundle:Products:sort.html.twig', [
             'products'          => $records,
-            'current_category'  => $current_category,
+            'current_category'  => $currentCategory,
             'categories'        => $categories,
-            'database' => $this->getRequest()->getSession()->get('database')
-        ));
+            'database'          => $this->getRequest()->getSession()->get('database')
+        ]);
     }
 
+
+    /**
+     * @return Response
+     * @throws \Exception
+     * @throws \PropelException
+     */
     public function updateSortAction()
     {
         $requests = $this->get('request');
@@ -979,43 +1062,46 @@ class ProductsController extends CoreController
 
         $sort = 0;
         foreach ($products as $product) {
-            $item_parts = explode('-', substr($product, 5));
-            $product_id = $item_parts[0];
-            $color = $item_parts[1];
-            $category_id = $item_parts[2];
+            $itemParts  = explode('-', substr($product, 5));
+            $productId  = $itemParts[0];
+            $color      = $itemParts[1];
+            $categoryId = $itemParts[2];
 
             $images = ProductsImagesQuery::create()
-                ->filterByProductsId($product_id)
+                ->filterByProductsId($productId)
                 ->filterByColor($color)
                 ->find();
 
-            $images_id = [];
+            $imagesId = [];
             foreach ($images as $image) {
-                $images_id[] = $image->getId();
+                $imagesId[] = $image->getId();
             }
 
             $results = ProductsImagesCategoriesSortQuery::create()
-                ->filterByCategoriesId($category_id)
-                ->filterByProductsId($product_id)
-                ->filterByProductsImagesId($images_id)
-                ->update(array('Sort' => $sort), $this->getDbConnection())
-            ;
+                ->filterByCategoriesId($categoryId)
+                ->filterByProductsId($productId)
+                ->filterByProductsImagesId($imagesId)
+                ->update(['Sort' => $sort], $this->getDbConnection());
 
             $node = new Categories();
-            $node->setId($category_id);
+            $node->setId($categoryId);
             $this->get('event_dispatcher')->dispatch('category.product_sort.update', new FilterCategoryEvent($node, null, $this->getDbConnection()));
 
             $sort++;
         }
 
         if ($this->getFormat() == 'json') {
-            return $this->json_response(array(
-                'status' => TRUE,
+            return $this->json_response([
+                'status'  => true,
                 'message' => $this->get('translator')->trans('save.changes.success', [], 'admin')
-            ));
+            ]);
         }
     }
 
+
+    /**
+     * @return Response
+     */
     public function stockAction()
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
@@ -1030,43 +1116,44 @@ class ProductsController extends CoreController
             ->groupById()
             ->orderBySku()
             ->filterByMaster(null, \Criteria::ISNOTNULL)
-            ->find($this->getDbConnection())
-        ;
+            ->find($this->getDbConnection());
 
         $stock->prime($products);
 
-        $stock_data = [];
-        $stock_data[0] = array('SKU','STOCK');
+        $stockData = [];
+        $stockData[0] = ['SKU', 'STOCK'];
 
         foreach ($products as $product) {
             foreach ($stock->get($product, true) as $level) {
                 if (!is_array($level) || empty($level['date']) || (0 == $level['quantity'])) {
-                    $stock_data[] = array($product->getSku(), 0);
+                    $stockData[] = [$product->getSku(), 0];
                     continue;
                 }
 
-                $stock_data[] = array($product->getSku(), $level['quantity']);
+                $stockData[] = [$product->getSku(), $level['quantity']];
             }
         }
 
         return new Response(
-            $parser->toCSV($stock_data, true, false),
+            $parser->toCSV($stockData, true, false),
             200,
-            array(
+            [
                  'Content-Type' => 'text/csv',
                  'Content-Disposition' => sprintf('attachment; filename="stock_' . date('Y-m-d', time()) . '.csv"', 'stock_' . date('Y-m-d', time()) .'.csv')
-            )
+            ]
         );
     }
 
     /**
      * Gives an overview of the stock state on a style
-     * @ParamConverter("product", class="Hanzo\Model\Products")
      *
-     * @param  Products $product
-     * @param  int      $category_id
-     * @param  int      $subcategory_id
+     * @param Products $product
+     * @param int      $category_id
+     * @param int      $subcategory_id
+     *
      * @return Response
+     *
+     * @ParamConverter("product", class="Hanzo\Model\Products")
      */
     public function viewStockAction(Products $product, $category_id, $subcategory_id)
     {
@@ -1080,8 +1167,7 @@ class ProductsController extends CoreController
         $products = ProductsQuery::create()
             ->filterByMaster($product->getSku())
             ->orderBySku()
-            ->find()
-        ;
+            ->find($this->getDbConnection());
 
         $stock->prime($products);
 
@@ -1090,6 +1176,10 @@ class ProductsController extends CoreController
 
             $current = '';
             foreach ($stock->get($product, true) as $level) {
+                if (!is_array($level)) {
+                    continue;
+                }
+
                 if (empty($level['date']) || (!$level['quantity'])) {
                     $items[] = [
                         'sku'          => $product->getSku(),
@@ -1122,21 +1212,21 @@ class ProductsController extends CoreController
             $stock->changeLocation('da_DK');
         }
 
-        return $this->render('AdminBundle:Products:stock.html.twig', array(
+        return $this->render('AdminBundle:Products:stock.html.twig', [
             'category_id'    => $category_id,
             'subcategory_id' => $subcategory_id,
             'items'          => $items,
             'database'       => $this->getRequest()->getSession()->get('database')
-        ));
+        ]);
     }
 
-
     /**
-     * @ParamConverter("product", class="Hanzo\Model\Products")
-     *
      * @param Products $product
      * @param Request  $request
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     *
+     * @ParamConverter("product", class="Hanzo\Model\Products")
      */
     public function purgeStockAction(Products $product, Request $request)
     {
@@ -1159,6 +1249,7 @@ class ProductsController extends CoreController
         }
 
         $this->container->get('session')->getFlashBag()->add('notice', 'Lageret for "'.$product->getSku().'" er nu nulstillet.');
+
         return $this->redirect($this->generateUrl('admin_products_list', ['range' => $request->query->get('range')]));
     }
 }
