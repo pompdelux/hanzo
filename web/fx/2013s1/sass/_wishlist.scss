@@ -134,11 +134,16 @@ aside.js-slider {
         }
     }
 
-    .list-number  {
+    .list-number {
         padding: 5px;
         margin-bottom: 15px;
         text-transform: uppercase;
         background-color: #eceaea;
+
+        img {
+            vertical-align: middle;
+            margin-right: 10px;
+        }
 
         span {
             font-weight: bold;
@@ -147,10 +152,6 @@ aside.js-slider {
 
         &.last {
             margin-top: 20px;
-        }
-
-        .icons-Hearticon {
-            padding: 20px 15px 10px 55px;
         }
     }
 
