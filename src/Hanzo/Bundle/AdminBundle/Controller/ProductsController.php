@@ -1176,10 +1176,6 @@ class ProductsController extends CoreController
 
             $current = '';
             foreach ($stock->get($product, true) as $level) {
-                if (!is_array($level)) {
-                    continue;
-                }
-
                 if (empty($level['date']) || (!$level['quantity'])) {
                     $items[] = [
                         'sku'          => $product->getSku(),
