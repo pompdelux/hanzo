@@ -243,22 +243,6 @@ class Warehouse
         if (empty($relations[$this->locationSetTo])) {
             $relations[$this->locationSetTo] = ['default'];
         }
-error_log(print_r($relations,1));
-//        if (1 == count($this->warehouseCountryMap[$this->locationSetTo])) {
-//            $relations[$this->locationSetTo] = ['default'];
-//        } else {
-//            $map = [];
-//            foreach ($this->warehouseCountryMap[$this->locationSetTo] as $locale) {
-//                $v = 'pdldb'.strtolower(substr($locale, -2)).'1';
-//                $map[$v] = $v;
-//            }
-//
-//            foreach ($this->replicator->getConnectionNames() as $name) {
-//                if (isset($map[$name])) {
-//                    $relations[$this->locationSetTo][] = $name;
-//                }
-//            }
-//        }
 
         return $relations[$this->locationSetTo];
     }
