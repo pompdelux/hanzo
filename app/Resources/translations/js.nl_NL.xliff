@@ -404,7 +404,7 @@
             </trans-unit>
             <trans-unit id="basket.latest.added">
                 <source>basket.latest.added</source>
-                <target>Netop tilføjet</target>
+                <target>Net toegevoegd</target>
             </trans-unit>
         </body>
     </file>
