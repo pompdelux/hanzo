@@ -3,6 +3,7 @@
 namespace Hanzo\Bundle\StockBundle;
 
 use Hanzo\Core\PropelReplicator;
+use Hanzo\Core\Tools;
 use Hanzo\Model\Products;
 use Hanzo\Model\ProductsQuery;
 
@@ -266,6 +267,8 @@ class Stock
 
         // NICETO: move all db stuff to event listeners
         if ($total == $quantity) {
+Tools::log('variant out ...');
+Tools::log($product->toArray(), 1);
             $this->setStockStatus(true, $product);
             $this->warehouse->removeProductFromInventory($productId);
 
@@ -273,6 +276,8 @@ class Stock
             // if so, tag it so and fire an event (for caching n' stuff)
             if (false === $this->checkStyleStock($product)) {
                 $master = ProductsQuery::create()->findOneBySku($product->getMaster());
+Tools::log('style out ...');
+Tools::log($master->toArray(), 1);
                 $this->setStockStatus(true, $master);
                 $this->eventDispatcher->dispatch('product.stock.zero', new FilterCategoryEvent($master, $this->locale));
             }
