@@ -391,7 +391,7 @@ class DefaultController extends CoreController
             $response = json_decode($response->getContent(), true);
 
             // we need the product!
-            if ($response['status']) {
+            if (isset($response['status']) && $response['status']) {
                 $response['data'] = [];
 
                 $prices  = ProductsDomainsPricesPeer::getProductsPrices([$product->getId()]);

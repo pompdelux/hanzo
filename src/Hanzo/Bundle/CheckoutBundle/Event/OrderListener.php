@@ -141,7 +141,6 @@ class OrderListener
      */
     public function onEditDone(FilterOrderEvent $event)
     {
-Tools::log('onEditDone');
         $order = $event->getOrder();
         $order->setSessionId($order->getId());
 

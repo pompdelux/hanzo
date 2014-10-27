@@ -3,6 +3,7 @@
 namespace Hanzo\Bundle\StockBundle;
 
 use Hanzo\Core\PropelReplicator;
+use Hanzo\Core\Tools;
 use Hanzo\Model\Products;
 use Hanzo\Model\ProductsQuery;
 
@@ -394,7 +395,7 @@ class Stock
      * @return array
      * @throws \InvalidArgumentException
      */
-    protected function setStockStatus($isOut, $product)
+    public function setStockStatus($isOut, $product)
     {
         if ($product instanceof Products) {
             $product = [$product->getId()];

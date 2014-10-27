@@ -9,9 +9,9 @@
  */
 
 namespace Hanzo\Bundle\AdminBundle\Exporter;
+
 use Hanzo\Model\ConsultantsQuery;
 use Hanzo\Model\EventsQuery;
-
 
 /**
  * Class EventExporter
