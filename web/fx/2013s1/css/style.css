@@ -942,6 +942,28 @@ ul.breadcrumb li.last i.arrow-right {
   color: #444;
 }
 
+#new-basket-item {
+  position: absolute;
+  top: -6px;
+  right: 29px;
+  width: 200px;
+  height: 95px;
+  z-index: -1;
+  background: #cacaca;
+  padding: 5px 10px 0;
+  border: 1px solid #cacaca;
+  -webkit-border-radius: 0 0 0 20px;
+  -moz-border-radius: 0 0 0 20px;
+  border-radius: 0 0 0 20px;
+}
+#new-basket-item img {
+  float: left;
+  height: 80px;
+  width: auto;
+  margin-right: 10px;
+  margin-left: 5px;
+}
+
 .category-17 .main header {
   background: #d2c3c6;
   background: url("/fx/images/headers/Top_Kjoler_955x200.jpg") no-repeat top center;
@@ -1156,8 +1178,9 @@ div.panes > div {
 }
 
 .zoom {
-  display: inline-block;
+  display: block;
   margin-top: 20px;
+  text-align: center;
 }
 .zoom .sprite {
   background-position: 0 -1672px;
@@ -4024,15 +4047,16 @@ aside.js-slider h3 span.open {
   text-transform: uppercase;
   background-color: #eceaea;
 }
+#body-wishlist .list-number img {
+  vertical-align: middle;
+  margin-right: 10px;
+}
 #body-wishlist .list-number span {
   font-weight: bold;
   text-decoration: underline;
 }
 #body-wishlist .list-number.last {
   margin-top: 20px;
-}
-#body-wishlist .list-number .icons-Hearticon {
-  padding: 20px 15px 10px 55px;
 }
 #body-wishlist .wishlist-target {
   border-bottom: 2px solid #c0c0c0;

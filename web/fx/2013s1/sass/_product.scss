@@ -62,8 +62,9 @@ div.panes > div {
 }
 
 .zoom {
-    display: inline-block;
+    display: block;
     margin-top: 20px;
+    text-align: center;
     .sprite {
         @include icons-sprite(zoom);
         height: icons-sprite-height(zoom);

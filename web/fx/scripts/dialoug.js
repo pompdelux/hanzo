@@ -234,6 +234,7 @@ var dialoug = (function($) {
 
       return;
     }
+
     // Mobile devices slide down from top in fixed view.
     $slide.hide();
     $slide.slideDown(300, function(){

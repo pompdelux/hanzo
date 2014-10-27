@@ -37,30 +37,30 @@
         };
 
         pub.swapImages = function (current) {
-            var $small     = $(current);
+            var $small = $(current);
             var $small_img = $small.find('img').first();
-            var small      = {
-                small:  $small_img.attr('src'),
+            var small = {
+                small: $small_img.attr('src'),
                 medium: $small.data('src'),
-                large:  $small.attr('href'),
-                id:     $small.data('id'),
-                color:  $small.data('color'),
+                large: $small.attr('href'),
+                id: $small.data('id'),
+                color: $small.data('color'),
                 number: $small.data('number'),
-                type:   $small.data('type'),
-                alt:    $small_img.attr('alt')
+                type: $small.data('type'),
+                alt: $small_img.attr('alt')
             };
 
-            var $large     = $('.productimage-large a.image');
+            var $large = $('.productimage-large a.image');
             var $large_img = $large.find('img').first();
-            var large      = {
-                small:  $large.data('src'),
+            var large = {
+                small: $large.data('src'),
                 medium: $large_img.attr('src'),
-                large:  $large.attr('href'),
-                id:     $large.data('id'),
-                color:  $large.data('color'),
+                large: $large.attr('href'),
+                id: $large.data('id'),
+                color: $large.data('color'),
                 number: $large.data('number'),
-                type:   $large.data('type'),
-                alt:    $large_img.attr('alt')
+                type: $large.data('type'),
+                alt: $large_img.attr('alt')
             };
 
             $large.data('src', small.small);
@@ -148,10 +148,8 @@
                 }
 
                 if ($(this).hasClass('next')) {
-                    // Next button pressed.
                     next++;
                 } else {
-                    // Prev button pressed.
                     if (next === 0) {
                         // At beginning, start from last element.
                         next = list.length;
@@ -171,15 +169,16 @@
         pub.initPurchase = function () {
             _resetForm();
             var in_progress = false;
+            var $form = $('form.buy');
 
-            $('form.buy select.size, form.buy select.color').on('change', function () {
+            $('select.size, select.color', $form).on('change', function () {
                 if (in_progress) {
                     return;
                 }
 
                 in_progress = true;
-                var name    = this.name;
-                var value   = this.value;
+                var name = this.name;
+                var value = this.value;
 
                 dialoug.loading($(this));
 
@@ -188,13 +187,13 @@
                     _resetForm(name);
                 }
 
-                var $form = $(this).closest('form');
+                //var $form = $(this).closest('form');
 
                 var lookup = $.ajax({
-                    url:       base_url + 'stock-check',
+                    url: base_url + 'stock-check',
                     dataType: 'json',
-                    data:     $form.serialize(),
-                    cache:    false
+                    data: $form.serialize(),
+                    cache: false
                 });
 
                 lookup.done(function (response) {
@@ -211,8 +210,8 @@
                             $('div', $form).replaceWith(Translator.trans('out.of.stock'));
                         } else {
                             dialoug.notice(Translator.trans('variant.out.of.stock', {
-                                name : $('h1').text(),
-                                dimensions : $('.size option:selected', $form).text()+' '+value
+                                name: $('h1').text(),
+                                dimensions: $('.size option:selected', $form).text() + ' ' + value
                             }), 'error', 6000, 'label[for="color"]');
                             _resetFormColor();
                         }
@@ -257,20 +256,21 @@
                     in_progress = false;
                 });
 
-                lookup.fail(function (jqXHR, textStatus) {/* todo: implement failure handeling */});
+                /* todo: implement failure handeling */
+                lookup.fail(function (jqXHR, textStatus) {});
             });
 
-            $('form.buy').on('submit', function (event) {
+            $form.on('submit', function (event) {
                 event.preventDefault();
 
-                var $form = $(this);
+                //var $form = $(this);
                 if ($('select.size', $form).val() && $('select.color', $form).val() && $('select.quantity', $form).val()) {
                     var lookup = $.ajax({
-                        url:      $form.attr('action'),
+                        url: $form.attr('action'),
                         dataType: 'json',
-                        type:     'POST',
-                        data:     $form.serialize(),
-                        async:    false
+                        type: 'POST',
+                        data: $form.serialize(),
+                        async: false
                     });
 
                     lookup.done(function (response) {
@@ -305,7 +305,15 @@
                                 $('.item-count', $mega_basket).text(response.data.match(item_count_regex));
                                 $('body').trigger('basket_product_added');
                             } else {
-                                dialoug.slideNotice(response.message, undefined, '#secondary-links');
+
+                                // response.message
+                                var msg = '<img src="' + response.latest.basket_image + '" height="100" width="57" alt="">'+
+                                          '<p>'+Translator.trans('basket.latest.added')+':</p>'+
+                                          '<p>'+$('h1.title').text()+'</p>'+
+                                          '<p>'+Translator.trans('quickorder.choose.size')+': '+$('select.size', $form).val()+'</p>'+
+                                          '<p>'+Translator.trans('quickorder.choose.color')+': '+$('select.color', $form).val()+'</p>';
+
+                                _showAddToBasket(msg);
                             }
                         }
                         _resetForm();
@@ -324,6 +332,8 @@
         /**
          * track products the visitor has last seen.
          * currently we track the latest 10 products.
+         *
+         * @public
          */
         pub.initLastSeen = function () {
             if ($('#body-product input#master').length) {
@@ -332,7 +342,7 @@
                 if (data) {
                     data = JSON.parse(data);
                 } else {
-                    data = { images: [], keys: [] };
+                    data = {images: [], keys: []};
                 }
 
                 var id = $('input#master').val().replace(/[^a-z0-9]+/gi, '');
@@ -366,6 +376,12 @@
         };
 
 
+        /**
+         * Reset the purchase form.
+         *
+         * @param {string} section
+         * @private
+         */
         var _resetForm = function (section) {
             var $this = $('form.buy');
 
@@ -400,6 +416,11 @@
             }
         };
 
+        /**
+         * Reset the color selection part of the form.
+         *
+         * @private
+         */
         var _resetFormColor = function () {
             var $this = $('form.buy');
 
@@ -419,10 +440,10 @@
         };
 
         /**
-         * Function to change color on images. Changes both small images, and color
-         * buttons.
+         * Function to change color on images. Changes both small images, and color buttons.
          *
-         * @param  string color The color to change to. Default the current color.
+         * @param {string} color The color to change to. Default the current color.
+         * @private
          */
         var _changeColor = function (color) {
             if (typeof color === 'undefined') {
@@ -434,6 +455,33 @@
             $('.product-color.current').removeClass('current');
             $('.product-color.color-' + color).addClass('current');
         };
+
+
+        /**
+         * Show the animated "added to basket" message.
+         *
+         * @param {string} html
+         * @private
+         */
+        var _showAddToBasket = function(html) {
+            var $target = $('#new-basket-item');
+
+            $target.css({
+                'width': $target.outerWidth() + 60
+            });
+
+            $('div', $target).html(html);
+
+            var slideWidth = $target.outerWidth() - 65;
+
+            $target.animate({
+                right : slideWidth
+            }).delay(4000).animate({
+                right : 29,
+                width : 210
+            });
+        };
+
 
         return pub;
     })(jQuery);

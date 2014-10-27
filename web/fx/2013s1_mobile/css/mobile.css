@@ -864,8 +864,9 @@ div.panes > div {
 }
 
 .zoom {
-  display: inline-block;
+  display: block;
   margin-top: 20px;
+  text-align: center;
 }
 .zoom .sprite {
   background-position: 0 -1672px;
@@ -2135,15 +2136,16 @@ aside.js-slider h3 span.open {
   text-transform: uppercase;
   background-color: #eceaea;
 }
+#body-wishlist .list-number img {
+  vertical-align: middle;
+  margin-right: 10px;
+}
 #body-wishlist .list-number span {
   font-weight: bold;
   text-decoration: underline;
 }
 #body-wishlist .list-number.last {
   margin-top: 20px;
-}
-#body-wishlist .list-number .icons-Hearticon {
-  padding: 20px 15px 10px 55px;
 }
 #body-wishlist .wishlist-target {
   border-bottom: 2px solid #c0c0c0;
@@ -2253,7 +2255,7 @@ a.add-wishlist {
   display: block;
   text-decoration: none;
   text-align: center;
-  font-weight: bold;
+  text-transform: uppercase;
   font-size: 1.2em;
 }
 a.add-wishlist img {
@@ -2266,10 +2268,6 @@ a.add-wishlist img {
 #body-wishlist .wishlist-flush-list a {
   margin-top: 10px;
   width: 315px;
-}
-#body-wishlist .list-number img {
-  vertical-align: middle;
-  margin-right: 10px;
 }
 
 .basket h3 {
