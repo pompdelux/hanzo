@@ -361,18 +361,19 @@ ul.breadcrumb {
     width: 200px;
     height: 95px;
     z-index: -1;
-    background: #c0c0c0;
+    background: rgb(202, 202, 202);
     padding: 5px 10px 0;
 
-    border: 1px solid #c0c0c0;
+    border: 1px solid rgb(202, 202, 202);
     -webkit-border-radius: 0 0 0 20px;
        -moz-border-radius: 0 0 0 20px;
             border-radius: 0 0 0 20px;
 
     img {
         float: left;
-        height: 85px;
+        height: 80px;
         width: auto;
         margin-right: 10px;
+        margin-left: 5px;
     }
 }
