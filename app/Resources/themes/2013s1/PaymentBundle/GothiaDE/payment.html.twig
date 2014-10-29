@@ -1,35 +1,40 @@
 {% extends layout %}
-
 {% block content %}
-<header class="grid_8 alpha omega">
-    <hgroup>
-        <h1>{{ 'page.heading'|trans({},'gothia') }}</h1>
-    </hgroup>
-</header>
+    <header class="grid_8 alpha omega">
+        <hgroup>
+            <h1>{{ 'page.heading'|trans({},'gothia') }}</h1>
+        </hgroup>
+    </header>
 
-<div id="gothia-payment-step-2" style="display: none">
-  <h2>{{ 'page.heading_step2'|trans({},'gothia') }}</h2>
-  <div id="gothia-confirm-container">
-    <form action="{{ path('PaymentBundle_gothiade_payment_confirm') }}" method="post" {{ form_enctype(form) }}>
-      <div class="row">
-        {{ form_widget(form) }}
-      </div>
-      <button type="submit" class="button pull-right" name="action-submit-gothia-confirm" id="action-submit-gothia-confirm">
-        {{ 'form.submit_step2'|trans({},'gothia') }} <i class="fa fa-arrow-right"></i>
-      </button>
-      <a href="{{ path('PaymentBundle_gothia_payment_cancel') }}" class="button"><i class="fa fa-arrow-left"></i> {{ 'form.cancel'|trans({},'gothia') }}</a>
-    </form>
-  </div>
-</div>
-<div id="gothia-payment-step-3" style="display: none">
-  <div id="gothia-success-container">
-    <form action="{{ path('PaymentBundle_gothiade_process') }}" method="post" {{ form_enctype(form) }}>
-      <input type="hidden" value="gothia" name="paytype" />
-    </form>
-  </div>
-</div>
+    <div class="grid_8 alpha omega">
+        <div class="form-error-block off">some error</div>
+    </div>
+
+    <div id="gothia-payment-step-2" style="display: none">
+        <h2>{{ 'page.heading_step2'|trans({},'gothia') }}</h2>
+
+        <div id="gothia-confirm-container">
+            <form action="{{ path('PaymentBundle_gothiade_payment_confirm') }}" method="post" {{ form_enctype(form) }}>
+                <div class="row">
+                    {{ form_widget(form) }}
+                </div>
+                <button type="submit" class="button pull-right" name="action-submit-gothia-confirm" id="action-submit-gothia-confirm">
+                    {{ 'form.submit_step2'|trans({},'gothia') }} <i class="fa fa-arrow-right"></i>
+                </button>
+                <a href="{{ path('PaymentBundle_gothia_payment_cancel') }}" class="button"><i class="fa fa-arrow-left"></i> {{ 'form.cancel'|trans({},'gothia') }}
+                </a>
+            </form>
+        </div>
+    </div>
+    <div id="gothia-payment-step-3" style="display: none">
+        <div id="gothia-success-container">
+            <form action="{{ path('PaymentBundle_gothiade_process') }}" method="post" {{ form_enctype(form) }}>
+                <input type="hidden" value="gothia" name="paytype"/>
+            </form>
+        </div>
+    </div>
 {% endblock %}
 
 {% block javascript %}
-<script>$(function () {gothia.init( 2 );});</script>
+<script>$(function () { gothia.init(2); });</script>
 {% endblock javascript %}
