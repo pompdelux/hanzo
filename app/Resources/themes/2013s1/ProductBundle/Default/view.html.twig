@@ -54,16 +54,24 @@
         </div>
       </div>
 
+    {% if product.has_video %}
       <div class="grid_8 alpha omega">
-      {% if product.has_video %}
-          <a href="{{ url('ws_product_video') }}" title="{{ 'click.to.video'|trans }}" data-width="594" data-height="594" data-src="{{ product.sku }}" data-banner="video_bg" class="video video-popper">
-            <div class="sprite"></div>
-          </a>
-      {% endif %}
-        <a href="{{ product_image_url(product.main_image.name, '0x0') }}" title="{{ 'click.to.zoom'|trans }}" data-id="image-id-{{ product.main_image.id }}" data-src="{{ product_image_url(product.main_image.name, '114x200') }}" class="picture-zoom zoom">
+        <a href="{{ url('ws_product_video') }}" title="{{ 'click.to.video'|trans }}" data-width="594" data-height="594" data-src="{{ product.sku }}" data-banner="video_bg" class="video video-popper">
           <div class="sprite"></div>
         </a>
+        <a href="{{ product_image_url(product.main_image.name, '0x0') }}" title="{{ 'click.to.zoom'|trans }}" data-id="image-id-{{ product.main_image.id }}" data-src="{{ product_image_url(product.main_image.name, '114x200') }}" class="picture-zoom zoom">
+          <div class="sprite">zoom</div>
+        </a>
       </div>
+    {% else %}
+        <div class="grid_8 alpha omega">
+            <div class="grid_4 push_2">
+            <a href="{{ product_image_url(product.main_image.name, '0x0') }}" title="{{ 'click.to.zoom'|trans }}" data-id="image-id-{{ product.main_image.id }}" data-src="{{ product_image_url(product.main_image.name, '114x200') }}" class="picture-zoom zoom">
+                <div class="sprite">zoom</div>
+            </a>
+            </div>
+        </div>
+    {% endif %}
 
     {% if product.images is not empty %}
       <div class="productimage-small grid_8 alpha omega bordered-top">
