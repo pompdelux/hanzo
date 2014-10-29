@@ -28,13 +28,11 @@ use Propel;
 class DefaultController extends CoreController
 {
     /**
-     * @param Request $request
-     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      * @throws Exception
      * @throws \PropelException
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
         $order = OrdersPeer::getCurrent(true);
 
@@ -46,7 +44,7 @@ class DefaultController extends CoreController
         $this->get('event_dispatcher')->dispatch('order.summery.finalize', new FilterOrderEvent($order));
 
         if ($order->isHostessOrder() && ($order->getTotalPrice() < 0)) {
-            $request->getFlashBag()->add('notice', $this->get('translator')->trans('order.amount.to.low', [], 'checkout'));
+            $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('order.amount.to.low', [], 'checkout'));
 
             return $this->redirect($this->generateUrl('basket_view'));
         }
