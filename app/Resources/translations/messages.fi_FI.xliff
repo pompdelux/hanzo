@@ -150,7 +150,7 @@
             </trans-unit>
             <trans-unit id="customer.service.contact.info">
                 <source>customer.service.contact.info</source>
-                <target><![CDATA[Asiakaspalvelu<br>Puhelin: 09 34870870<br>Sähköposti: <a href="mailto:mailfi@pompdelux.com">mailfi@pompdelux.com</a><br>MMaanantaista torstaihin klo 10-17<br>Perjantaisin 10-15<br>Suljettu lauantaisin, sunnuntaisin ja tanskalaisina pyhäpäivinä.]]></target>
+                <target><![CDATA[Asiakaspalvelu<br>Puhelin: 09 34870870<br>Sähköposti: <a href="mailto:mailfi@pompdelux.com">mailfi@pompdelux.com</a><br>Maanantaista torstaihin klo 10-17<br>Perjantaisin 10-15<br>Suljettu lauantaisin, sunnuntaisin ja tanskalaisina pyhäpäivinä.]]></target>
             </trans-unit>
             <trans-unit id="footer.address">
                 <source>footer.address</source>
