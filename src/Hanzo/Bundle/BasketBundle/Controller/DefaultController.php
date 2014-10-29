@@ -139,9 +139,20 @@ class DefaultController extends CoreController
         $price = array_shift($price);
         $price = array_shift($price);
 
-        $masterId = null;
+        $basketImage
+            = $masterId
+            = null;
+
         try {
-            $masterId = $product->getProductsRelatedByMaster()->getId();
+            $master      = $product->getProductsRelatedByMaster();
+            $masterId    = $master->getId();
+            $basketImage = Tools::productImageUrl(
+                preg_replace('/[^a-z0-9]/i', '-', $master->getSku()) .
+                '_' .
+                preg_replace('/[^a-z0-9]/i', '-', str_replace('/', '9', $product->getColor())) .
+                '_overview_01.jpg',
+                '57x100'
+            );
         } catch (\Exception $e) {
             Tools::log("Failed to get master::id for:\n".print_r($product->toArray(), 1)."------------------------------");
         }
@@ -150,6 +161,7 @@ class DefaultController extends CoreController
             'expected_at'  => '',
             'id'           => $product->getId(),
             'master_id'    => $masterId,
+            'basket_image' => $basketImage,
             'price'        => Tools::moneyFormat($price['price'] * $quantity),
             'single_price' => Tools::moneyFormat($price['price']),
         ];
