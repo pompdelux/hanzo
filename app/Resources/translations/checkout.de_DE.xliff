@@ -297,6 +297,10 @@
         <source>payment.gothia.title</source>
         <target>Rechnung</target>
       </trans-unit>
+      <trans-unit id="payment.gothiade.title">
+        <source>payment.gothiade.title</source>
+        <target>ELV Lastschrifteinzug</target>
+      </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
         <target><![CDATA[BFS Finanz GmbH-Rechnung (Gebühr 5,00 Euro). Die Rechnung wird per E-Mail verschickt, wenn alle Waren unser Lager verlassen haben. Sie finden die Rechnung im Laufe von 24 Stunden als PDF auf "Meine Seite".]]></target>
