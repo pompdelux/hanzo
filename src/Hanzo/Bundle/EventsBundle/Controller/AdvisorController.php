@@ -19,7 +19,7 @@ class AdvisorController extends CoreController
      *
      * @return Response
      *
-     * @ParamConverter("page", class="Hanzo\model\CmsI18n", options={"with"={"Cms"}})
+     * @ParamConverter("page", class="Hanzo\Model\CmsI18n", options={"with"={"Cms"}})
      */
     public function renderAction(CmsI18n $page)
     {

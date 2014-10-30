@@ -2,9 +2,6 @@
 
 namespace Hanzo\Bundle\EventsBundle\Controller;
 
-use Propel;
-use Hanzo\Bundle\EventsBundle\Form\Type\EventsType;
-use Hanzo\Bundle\EventsBundle\Helpers\EventHostess;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\CoreController;
 use Hanzo\Model\AddressesPeer;
@@ -20,6 +17,7 @@ use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\OrdersLinesQuery;
 use Hanzo\Model\WishlistsQuery;
 use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
+use Propel;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -155,7 +153,7 @@ class EventsController extends CoreController
 
             // no editing old events
             if ($event->getEventDate('U') < time()) {
-                $request->getSession()->getFlashBag()->add('notice', 'event.too.old.to.edit');
+                $this->get('session')->getFlashBag()->add('notice', 'event.too.old.to.edit');
 
                 return $this->redirect($this->generateUrl('events_index'));
             }
@@ -340,7 +338,7 @@ class EventsController extends CoreController
 
             // no deleting old events
             if ($event->getEventDate('U') < time()) {
-                $request->getSession()->getFlashBag()->add('notice', 'event.too.old.to.delete');
+                $this->get('session')->getFlashBag()->add('notice', 'event.too.old.to.delete');
 
                 return $this->redirect($this->generateUrl('events_index'));
             }
@@ -390,7 +388,7 @@ class EventsController extends CoreController
     public function inviteAction(Request $request, $key)
     {
         $customer = CustomersPeer::getCurrent();
-        $event = EventsQuery::create()
+        $event    = EventsQuery::create()
             ->filterByEventDate(['min' => date('Y-m-d H:i:s')])
             ->filterByCustomersId($customer->getId())
             ->findOneByKey($key);
@@ -582,9 +580,9 @@ class EventsController extends CoreController
      * @param int $event_id
      * @param int $participant_id
      *
-     * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Exception
      * @throws \PropelException
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function removeParticipantAction($event_id, $participant_id)
     {

@@ -2,9 +2,9 @@
 
 namespace Hanzo\Bundle\EventsBundle\Controller;
 
-use Criteria;
-use Hanzo\Bundle\AccountBundle\Form\Type\CustomersType;
+use Doctrine\Common\Collections\Criteria;
 use Hanzo\Bundle\AccountBundle\Form\Type\AddressesType;
+use Hanzo\Bundle\AccountBundle\Form\Type\CustomersType;
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Hanzo;
 use Hanzo\Model\Addresses;
@@ -68,8 +68,8 @@ class DefaultController extends CoreController
                     ->findOneById($customerId);
 
                 if ($customer instanceof Customers) {
-                    $pwd               = $customer->getPassword();
-                    $address           = $customer->getAddresses()->getFirst();
+                    $pwd              = $customer->getPassword();
+                    $address          = $customer->getAddresses()->getFirst();
                     $validationGroups = 'customer_edit';
                 }
             }
@@ -107,7 +107,7 @@ class DefaultController extends CoreController
 
                 if ($email != $formEmail) {
                     $c = CustomersQuery::create()
-                        ->filterById($customer->getId(), Criteria::NOT_EQUAL)
+                        ->filterById($customer->getId(), \Criteria::NOT_EQUAL)
                         ->findOneByEmail($formEmail);
 
                     if ($c instanceof Customers) {
