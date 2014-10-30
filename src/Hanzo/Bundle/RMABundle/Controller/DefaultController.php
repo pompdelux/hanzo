@@ -2,25 +2,30 @@
 
 namespace Hanzo\Bundle\RMABundle\Controller;
 
+use Hanzo\Core\CoreController;
 use Hanzo\Core\Tools;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\Addresses;
-use Hanzo\Core\CoreController;
-
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
- * DefaultController
+ * Class DefaultController
+ *
+ * @package Hanzo\Bundle\RMABundle
  */
 class DefaultController extends CoreController
 {
 
     /**
      * Action formAction.
+     *
+     * @param Request $request
+     * @param int     $order_id
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function formAction(Request $request, $order_id)
     {
@@ -34,33 +39,34 @@ class DefaultController extends CoreController
 
         if (!$order instanceof Orders || $order->getState() != Orders::STATE_SHIPPED) {
             $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('rma.not_allowed_wrong_state', [], 'rma'));
+
             return $this->redirect($this->generateUrl('_account'));
         }
 
-        $order_lines = $order->getOrdersLiness();
+        $orderLines = $order->getOrdersLiness();
 
         $products = [];
-        foreach ($order_lines as $order_line) {
-            if ($order_line->getType() == 'product') {
+        foreach ($orderLines as $orderLine) {
+            if ($orderLine->getType() == 'product') {
 
-                $product = $order_line->getProducts();
-                $product_line = $order_line->toArray(\BasePeer::TYPE_FIELDNAME);
+                $product = $orderLine->getProducts();
+                $productLine = $orderLine->toArray(\BasePeer::TYPE_FIELDNAME);
 
                 // Only generate an image if the product still exists.
                 if ($product) {
-                    $product_line['basket_image']
+                    $productLine['basket_image']
                         = preg_replace('/[^a-z0-9]/i', '-', $product->getMaster()) .
                         '_' .
-                        preg_replace('/[^a-z0-9]/i', '-', str_replace('/', '9', $product_line['products_color'])) .
+                        preg_replace('/[^a-z0-9]/i', '-', str_replace('/', '9', $productLine['products_color'])) .
                         '_overview_01.jpg';
                 }
-                $products['product_' . $product_line['id']] = $product_line;
+                $products['product_' . $productLine['id']] = $productLine;
             }
         }
 
-        $rma_products = json_decode($request->request->get('products'), true);
+        $rmaProducts = json_decode($request->request->get('products'), true);
         // Time to generate some pdf's!
-        if (count($rma_products)) {
+        if (count($rmaProducts)) {
 
             // Generate an address for the delivery address of this order. Used
             // in the rma pdf.
@@ -76,36 +82,34 @@ class DefaultController extends CoreController
             $address->setStateProvince($order->getDeliveryStateProvince());
             $address->setCompanyName($order->getDeliveryCompanyName());
 
-            $address_formatter = $this->get('hanzo.address_formatter');
+            $addressFormatter = $this->get('hanzo.address_formatter');
 
-            $address_block = mb_convert_encoding($address_formatter->format($address), 'HTML-ENTITIES', 'UTF-8');
+            $addressBlock = mb_convert_encoding($addressFormatter->format($address), 'HTML-ENTITIES', 'UTF-8');
 
             // Only show the products which are chosed to RMA.
-            foreach ($rma_products as &$rma_product) {
-                if (isset($products['product_' . $rma_product['id']])) {
-                    $rma_product['rma_description'] = mb_convert_encoding($rma_product['rma_description'], 'HTML-ENTITIES', 'UTF-8');
-                    $rma_product['rma_cause'] = mb_convert_encoding($rma_product['rma_cause'], 'HTML-ENTITIES', 'UTF-8');
-                    $rma_product += $products['product_' . $rma_product['id']];
+            foreach ($rmaProducts as &$rmaProduct) {
+                if (isset($products['product_' . $rmaProduct['id']])) {
+                    $rmaProduct['rma_description'] = mb_convert_encoding($rmaProduct['rma_description'], 'HTML-ENTITIES', 'UTF-8');
+                    $rmaProduct['rma_cause'] = mb_convert_encoding($rmaProduct['rma_cause'], 'HTML-ENTITIES', 'UTF-8');
+                    $rmaProduct += $products['product_' . $rmaProduct['id']];
                 }
             }
 
-            $html = $this->renderView(
-                'RMABundle:Default:rma.html.twig', array(
-                    'products'  => $rma_products,
-                    'order' => $order,
-                    'customer' => CustomersPeer::getCurrent(),
-                    'address_block' => $address_block,
-                )
-            );
+            $html = $this->renderView('RMABundle:Default:rma.html.twig', [
+                'products'      => $rmaProducts,
+                'order'         => $order,
+                'customer'      => CustomersPeer::getCurrent(),
+                'address_block' => $addressBlock,
+            ]);
 
             $this->setCache('rma_generated_html.' . $order_id . '.' . CustomersPeer::getCurrent()->getId(), $html);
 
-            $pdf_data = $this->get('knp_snappy.pdf')->getOutputFromHtml($html);
-            $pdf_name = 'POMPdeLUX_RMA_' . $order_id . '.pdf';
+            $pdfData = $this->get('knp_snappy.pdf')->getOutputFromHtml($html);
+            $pdfName = 'POMPdeLUX_RMA_' . $order_id . '.pdf';
 
             try {
                 $mail = $this->container->get('mail_manager');
-                $mail->addAttachment($pdf_data, false, $pdf_name);
+                $mail->addAttachment($pdfData, false, $pdfName);
                 $mail->setMessage('order.rma', [
                     'order_id'      => $order_id,
                     'customer_name' => $order->getCustomersName(),
@@ -117,47 +121,48 @@ class DefaultController extends CoreController
                 }
 
                 $mail->send();
-            } catch (\Exception $e) {}
+            } catch (\Exception $e) {
+            }
 
             // Return the generated PDF directly as a response.
-            return new Response(
-                $pdf_data,
-                200,
-                array(
-                    'Content-Type'        => 'application/pdf',
-                    'Content-Disposition' => 'attachment; filename="' . $pdf_name,
-                )
-            );
+            return new Response($pdfData, 200, [
+                'Content-Type'        => 'application/pdf',
+                'Content-Disposition' => 'attachment; filename="' . $pdfName,
+            ]);
         } else {
             $cached = $this->getCache('rma_generated_html.' . $order_id . '.' . CustomersPeer::getCurrent()->getId());
-            return $this->render(
-                'RMABundle:Default:form.html.twig', array(
-                    'order' => $order,
-                    'order_lines' => $products,
-                    'page_type' => 'rma',
-                    'is_cached' => $cached,
-                )
-            );
+
+            return $this->render('RMABundle:Default:form.html.twig', [
+                'order' => $order,
+                'order_lines' => $products,
+                'page_type' => 'rma',
+                'is_cached' => $cached,
+            ]);
         }
     }
 
-    public function getAction(Request $request, $order_id, $pdf = false) {
+    /**
+     * @param int  $order_id
+     * @param bool $pdf
+     *
+     * @return Response
+     */
+    public function getAction($order_id, $pdf = false)
+    {
+        $html = $this->getCache('rma_generated_html.' . $order_id . '.' . CustomersPeer::getCurrent()->getId());
 
-        if ($html = $this->getCache('rma_generated_html.' . $order_id . '.' . CustomersPeer::getCurrent()->getId())) {
+        if ($html) {
             if ($pdf) {
-                return new Response(
-                    $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
-                    200,
-                    array(
-                        'Content-Type'          => 'application/pdf',
-                        'Content-Disposition'   => 'attachment; filename="POMPdeLUX_RMA_' . $order_id . '.pdf"',
-                    )
-                );
+                return new Response($this->get('knp_snappy.pdf')->getOutputFromHtml($html), 200, [
+                    'Content-Type'          => 'application/pdf',
+                    'Content-Disposition'   => 'attachment; filename="POMPdeLUX_RMA_' . $order_id . '.pdf"',
+                ]);
             } else {
                 return $this->response($html);
             }
         }
-        return $this->redirect($this->generateUrl('rma_form', array('order_id' => $order_id)));
+
+        return $this->redirect($this->generateUrl('rma_form', ['order_id' => $order_id]));
     }
 
 }
