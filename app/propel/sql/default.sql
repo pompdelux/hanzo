@@ -731,6 +731,52 @@ CREATE TABLE `settings`
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
+-- wishlists
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `wishlists`;
+
+CREATE TABLE `wishlists`
+(
+    `id` VARCHAR(5) NOT NULL,
+    `customers_id` INTEGER,
+    `created_at` DATETIME,
+    `updated_at` DATETIME,
+    PRIMARY KEY (`id`),
+    INDEX `wishlists_FI_1` (`customers_id`),
+    CONSTRAINT `wishlists_FK_1`
+        FOREIGN KEY (`customers_id`)
+        REFERENCES `customers` (`id`)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
+-- wishlists_lines
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `wishlists_lines`;
+
+CREATE TABLE `wishlists_lines`
+(
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `wishlists_id` VARCHAR(5) NOT NULL,
+    `products_id` INTEGER,
+    `quantity` INTEGER,
+    PRIMARY KEY (`id`),
+    INDEX `FI_wishlists_lines_1` (`wishlists_id`),
+    INDEX `FI_wishlists_lines_2` (`products_id`),
+    CONSTRAINT `fk_wishlists_lines_1`
+        FOREIGN KEY (`wishlists_id`)
+        REFERENCES `wishlists` (`id`)
+        ON DELETE CASCADE,
+    CONSTRAINT `fk_wishlists_lines_2`
+        FOREIGN KEY (`products_id`)
+        REFERENCES `products` (`id`)
+        ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
 -- zip_to_city
 -- ---------------------------------------------------------------------
 

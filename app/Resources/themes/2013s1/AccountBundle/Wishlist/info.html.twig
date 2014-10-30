@@ -1,0 +1,13 @@
+
+{% if is_mobile_layout %}
+    <h3><span>{{ 'wishlist.add.label'|trans({}, 'account') }}</span></h3>
+{% endif %}
+
+    <div class="container">
+    {% if is_mobile_layout %}
+        <a href="{{ path('_account_wishlist_create') }}" class="add-wishlist">
+            {{ image_tag('fx/images/icons/icons/Hearticon.png') }}{{ 'wishlist.add.label'|trans({}, 'account') }}
+        </a>
+    {% endif %}
+        {{ 'wishlist.add.description'|trans({}, 'account')|raw }}
+    </div>

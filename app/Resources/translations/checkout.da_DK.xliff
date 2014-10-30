@@ -424,7 +424,7 @@
       </trans-unit>
       <trans-unit id="coupon" approved="no">
         <source>coupon</source>
-        <target>Rabatskode</target>
+        <target>Rabatkode</target>
       </trans-unit>
       <trans-unit id="coupon.toggle.form" approved="no">
         <source>coupon.toggle.form</source>

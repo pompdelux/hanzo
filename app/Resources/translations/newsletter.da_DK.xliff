@@ -49,7 +49,7 @@
       <trans-unit id="terms.link">
         <source>terms.link</source>
         <target><![CDATA[
-            <a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">Ved tilmelding accepterer jeg POMPdeLUX’s generelle vilkår.</a>
+            <a href="/da_DK/forside/kundeservice/vilkaar-betingelser" target="_blank">Ved tilmelding accepterer jeg POMPdeLUX’s generelle vilkår.</a>
         ]]></target>
       </trans-unit>
       <trans-unit id="newsletter.open.text">

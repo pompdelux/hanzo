@@ -2,22 +2,20 @@
 
 namespace Hanzo\Bundle\EventsBundle\Controller;
 
-use Criteria;
-use Hanzo\Bundle\AccountBundle\Form\Type\CustomersType;
+use Doctrine\Common\Collections\Criteria;
 use Hanzo\Bundle\AccountBundle\Form\Type\AddressesType;
+use Hanzo\Bundle\AccountBundle\Form\Type\CustomersType;
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Hanzo;
-use Hanzo\Model\Customers;
 use Hanzo\Model\Addresses;
 use Hanzo\Model\AddressesPeer;
 use Hanzo\Model\CountriesPeer;
+use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersQuery;
-use Hanzo\Model\EventsQuery;
 use Hanzo\Model\OrdersPeer;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
 
 /**
  * Class DefaultController
@@ -39,10 +37,9 @@ class DefaultController extends CoreController
 
         // if the customer has been adding stuff to the basket, use that information here.
         $customerId = $request->request->get('id');
-
-        $hanzo     = Hanzo::getInstance();
-        $domainKey = $hanzo->get('core.domain_key');
-        $errors    = '';
+        $hanzo      = Hanzo::getInstance();
+        $domainKey  = $hanzo->get('core.domain_key');
+        $errors     = '';
 
         $countries = CountriesPeer::getAvailableDomainCountries();
 
@@ -110,7 +107,7 @@ class DefaultController extends CoreController
 
                 if ($email != $formEmail) {
                     $c = CustomersQuery::create()
-                        ->filterById($customer->getId(), Criteria::NOT_EQUAL)
+                        ->filterById($customer->getId(), \Criteria::NOT_EQUAL)
                         ->findOneByEmail($formEmail);
 
                     if ($c instanceof Customers) {
@@ -177,15 +174,13 @@ class DefaultController extends CoreController
             }
         }
 
-        return $this->render(
-            'EventsBundle:Default:create_customer.html.twig', [
-                'page_type'  => 'events-create-customer',
-                'is_hostess' => $isHostess,
-                'form'       => $form->createView(),
-                'errors'     => $errors,
-                'domain_key' => $domainKey,
-            ]
-        );
+        return $this->render('EventsBundle:Default:create_customer.html.twig', [
+            'page_type'  => 'events-create-customer',
+            'is_hostess' => $isHostess,
+            'form'       => $form->createView(),
+            'errors'     => $errors,
+            'domain_key' => $domainKey,
+        ]);
     }
 
     /**

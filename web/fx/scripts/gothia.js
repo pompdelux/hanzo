@@ -14,6 +14,11 @@ var gothia = (function ($) {
 
             var data = $(this).serialize();
             var url  = $(this).attr('action');
+            var $errorBlock = $('.form-error-block');
+
+            if (!$errorBlock.hasClass('off')) {
+                $errorBlock.addClass('off');
+            }
 
             $.ajax({
                 url: url,
@@ -25,12 +30,12 @@ var gothia = (function ($) {
                     if (data.status === true) {
                         $("#gothia-payment-step-3 form").submit();
                     } else {
-                        dialoug.error(Translator.trans('an.error.occurred'), data.message);
+                        $errorBlock.removeClass('off').html(data.message);
                     }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     $.colorbox.close();
-                    dialoug.error(Translator.trans('an.error.occurred'), errorThrown);
+                    $errorBlock.removeClass('off').html(errorThrown);
                 }
             });
         });

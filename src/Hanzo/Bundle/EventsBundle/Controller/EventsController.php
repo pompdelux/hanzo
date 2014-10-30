@@ -2,8 +2,7 @@
 
 namespace Hanzo\Bundle\EventsBundle\Controller;
 
-use Hanzo\Bundle\EventsBundle\Form\Type\EventsType;
-use Hanzo\Bundle\EventsBundle\Helpers\EventHostess;
+
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\CoreController;
 use Hanzo\Model\EventsQuery;
@@ -17,7 +16,9 @@ use Hanzo\Model\AddressesPeer;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\OrdersLinesQuery;
+use Hanzo\Model\WishlistsQuery;
 use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
+use Propel;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
@@ -153,7 +154,7 @@ class EventsController extends CoreController
 
             // no editing old events
             if ($event->getEventDate('U') < time()) {
-                $request->getSession()->getFlashBag()->add('notice', 'event.too.old.to.edit');
+                $this->get('session')->getFlashBag()->add('notice', 'event.too.old.to.edit');
 
                 return $this->redirect($this->generateUrl('events_index'));
             }
@@ -274,14 +275,14 @@ class EventsController extends CoreController
                     'status'  => true,
                     'message' => $this->get('translator')->trans('events.customer.found', [], 'events'),
                     'data'    => [
-                        'id' => $customer->getId(),
+                        'id'      => $customer->getId(),
                         'name'    => $customer->getFirstName() . ' ' . $customer->getLastName(),
                         'phone'   => $customer->getPhone(),
                         'email'   => $customer->getEmail(),
                         'address' => $address->getAddressLine1(),
                         'zip'     => $address->getPostalCode(),
-                        'city'    => $address->getCity()
-                    ]
+                        'city'    => $address->getCity(),
+                    ],
                 ]);
             }
         }
@@ -338,7 +339,7 @@ class EventsController extends CoreController
 
             // no deleting old events
             if ($event->getEventDate('U') < time()) {
-                $request->getSession()->getFlashBag()->add('notice', 'event.too.old.to.delete');
+                $this->get('session')->getFlashBag()->add('notice', 'event.too.old.to.delete');
 
                 return $this->redirect($this->generateUrl('events_index'));
             }
@@ -367,7 +368,7 @@ class EventsController extends CoreController
 
         if ($this->getFormat() == 'json') {
             return $this->json_response([
-                'status' => true,
+                'status'  => true,
                 'message' => $this->container->get('translator')->trans('events.delete.success', [], 'events')
             ]);
         }
@@ -382,6 +383,8 @@ class EventsController extends CoreController
      * @param string  $key
      *
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
+     * @throws \PropelException
      */
     public function inviteAction(Request $request, $key)
     {
@@ -509,6 +512,8 @@ class EventsController extends CoreController
      * @param string  $key
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws \Exception
+     * @throws \PropelException
      */
     public function tellAFriendAction(Request $request, $key)
     {
@@ -596,6 +601,7 @@ class EventsController extends CoreController
 
     /**
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
      */
     public function selectEventAction()
     {
@@ -664,6 +670,17 @@ class EventsController extends CoreController
                 $order->clearAttributesByKey('is_hostess_order');
             } else {
                 $order->setAttribute('is_hostess_order', 'event', true);
+            }
+
+            $attributes = $order->getAttributes();
+
+            if (isset($attributes->wishlist, $attributes->wishlist->id)) {
+                $customersId = WishlistsQuery::create()
+                    ->select('customers_id')
+                    ->findOneById($attributes->wishlist->id);
+
+                $order->setCustomersId($customersId);
+                $goto = '_checkout';
             }
 
             $order->save();

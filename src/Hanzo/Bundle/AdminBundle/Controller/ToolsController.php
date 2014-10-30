@@ -2,59 +2,95 @@
 
 namespace Hanzo\Bundle\AdminBundle\Controller;
 
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Symfony\Component\HttpFoundation\Request;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
-use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
-
 use Hanzo\Model\OrdersQuery;
+use Hanzo\Model\WishlistsQuery;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class ToolsController
+ *
+ * @package Hanzo\Bundle\AdminBundle
+ */
 class ToolsController extends CoreController
 {
-
-    public function indexAction()
+    /**
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function indexAction(Request $request)
     {
         return $this->render('AdminBundle:Tools:index.html.twig', [
-            'database' => $this->getRequest()->getSession()->get('database')
+            'database' => $request->getSession()->get('database')
         ]);
     }
 
-    public function syncCategoriesAction()
+    /**
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function syncCategoriesAction(Request $request)
     {
         $this->get('replication_manager')->syncCategories();
 
-        $this->getRequest()->getSession()->getFlashBag()->add('notice', 'Kategori synkronisering færdig..');
+        $request->getSession()->getFlashBag()->add('notice', 'Kategori synkronisering færdig..');
+
         return $this->redirect($this->generateUrl('admin_tools'));
     }
 
-    public function syncImagesAction()
+    /**
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function syncImagesAction(Request $request)
     {
         $this->get('replication_manager')->syncProductsImages();
 
-        $this->getRequest()->getSession()->getFlashBag()->add('notice', 'Billede synkronisering færdig..');
+        $request->getSession()->getFlashBag()->add('notice', 'Billede synkronisering færdig..');
+
         return $this->redirect($this->generateUrl('admin_tools'));
     }
 
-    public function syncImagesStyleguideAction()
+    /**
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function syncImagesStyleguideAction(Request $request)
     {
         $this->get('replication_manager')->syncStyleGuide();
 
-        $this->getRequest()->getSession()->getFlashBag()->add('notice', 'Styleguide synkronisering færdig..');
+        $request->getSession()->getFlashBag()->add('notice', 'Styleguide synkronisering færdig..');
+
         return $this->redirect($this->generateUrl('admin_tools'));
     }
 
-    public function syncImagesSortingAction()
+    /**
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function syncImagesSortingAction(Request $request)
     {
         $this->get('replication_manager')->syncImageSorting();
 
-        $this->getRequest()->getSession()->getFlashBag()->add('notice', 'Billedesorterings synkronisering færdig..');
+        $request->getSession()->getFlashBag()->add('notice', 'Billedesorterings synkronisering færdig..');
+
         return $this->redirect($this->generateUrl('admin_tools'));
     }
 
-    public function clearVarnishCacheAction()
+    /**
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \VarnishException
+     */
+    public function clearVarnishCacheAction(Request $request)
     {
         try {
             $this->get('varnish.controle')->banUrl('^/*');
@@ -62,12 +98,17 @@ class ToolsController extends CoreController
             Tools::log($e->getMessage());
         }
 
-        $this->getRequest()->getSession()->getFlashBag()->add('notice', 'Varnish cache tømt.');
+        $request->getSession()->getFlashBag()->add('notice', 'Varnish cache tømt.');
+
         return $this->redirect($this->generateUrl('admin_tools'));
     }
 
     /**
      * Build product search index
+     *
+     * @param Request $request
+     *
+     * @return array
      *
      * @Template("AdminBundle:Tools:productSearchIndexer.html.twig")
      */
@@ -75,31 +116,30 @@ class ToolsController extends CoreController
     {
         if ($request->query->get('run')) {
             $builder = $this->get('hanzo_search.product.index_builder');
-            // $builder->setConnection($this->getDbConnection());
             $builder->build();
 
             $request->getSession()->getFlashBag()->add('notice', 'Søgeindekset er nu opdateret.');
+
             return $this->redirect($this->generateUrl($request->get('_route')));
         }
 
-        return [
-            'database' => $this->getRequest()->getSession()->get('database'),
-        ];
+        return ['database' => $request->getSession()->get('database')];
     }
 
     /**
      * [dibsToolsAction description]
      *
+     * @param Request $request
+     * @param string  $action
+     *
      * @Template("AdminBundle:Tools:dibsTools.html.twig")
-     * @param  Request $request
-     * @param  string  $action
      * @return array
      */
     public function dibsToolsAction(Request $request, $action = '')
     {
         $return = [
             'action'   => $action,
-            'database' => $this->getRequest()->getSession()->get('database'),
+            'database' => $request->getSession()->get('database'),
             'message'  => '',
             'data'     => [
                 'fixed'   => '',
@@ -178,20 +218,50 @@ class ToolsController extends CoreController
         return $return;
     }
 
-    public function updateSearchIndexAction()
+    /**
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function updateSearchIndexAction(Request $request)
     {
         $this->container->get('hanzo_search.product_and_category_indexer')->build();
 
-        $this->getRequest()->getSession()->getFlashBag()->add('notice', 'Søgeindexer opdateret for produkter og kategorier.');
+        $request->getSession()->getFlashBag()->add('notice', 'Søgeindexer opdateret for produkter og kategorier.');
+
         return $this->redirect($this->generateUrl('admin_tools'));
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
+     */
+    public function wishlistsFlushAllAction(Request $request)
+    {
+        WishlistsQuery::create()->deleteAll($this->getDbConnection());
 
+        $request->getSession()->getFlashBag()->add('notice', 'Alle shoppinglister er nu tømt.');
+
+        return $this->redirect($this->generateUrl('admin_tools'));
+    }
+
+    /**
+     * @param array $return
+     * @param array $ids
+     *
+     * @return mixed
+     * @throws \Exception
+     * @throws \PropelException
+     */
     protected function fixTransactionId($return, $ids)
     {
         $api = $this->get('payment.dibsapi');
+
         foreach ($ids as $id => $item) {
             $order = OrdersQuery::create()->findOneById($id);
+
             if (!$order) {
                 $return['message'] = 'Ordren #'.$id.' findes altså ikke...';
                 continue;

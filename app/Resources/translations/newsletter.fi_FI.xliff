@@ -49,7 +49,7 @@
       <trans-unit id="terms.link">
         <source>terms.link</source>
         <target><![CDATA[
-          <a href="/fi_FI/koti/asiakaspalvelu/ehdot" target="_blank">Hyväksyn ilmoittautumisen yhteydessä POMPdeLUXin yleiset ehdot.</a>
+          <a href="/fi_FI/koti/asiakaspalvelu/ehdotjavaatimukset" target="_blank">Hyväksyn ilmoittautumisen yhteydessä POMPdeLUXin yleiset ehdot.</a>
         ]]></target>
       </trans-unit>
       <trans-unit id="newsletter.open.text">

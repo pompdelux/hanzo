@@ -194,7 +194,7 @@
                 <source>wall.delete.entry.confirm</source>
                 <target>Er du sikker på du vil slette dette indlæg?</target>
             </trans-unit>
-            <trans-unit id="BC_TEXT_NEWSLETTER_USER_NOT_EXISTS" approved="no">
+            <trans-unit id="BC_TEXT_NEWSLETTER_USER_NOT_EXISTS">
                 <source>BC_TEXT_NEWSLETTER_USER_NOT_EXISTS</source>
                 <target>E-mail adressen "%email%" er ikke tilmeldt</target>
             </trans-unit>
@@ -318,91 +318,91 @@
                 <source>proceed</source>
                 <target>Fortsæt</target>
             </trans-unit>
-            <trans-unit id="checkout.choose.shipping.method" approved="no">
+            <trans-unit id="checkout.choose.shipping.method">
                 <source>checkout.choose.shipping.method</source>
                 <target>Du skal vælge en leveringsmetode.</target>
             </trans-unit>
-            <trans-unit id="checkout.choose.payment.method" approved="no">
+            <trans-unit id="checkout.choose.payment.method">
                 <source>checkout.choose.payment.method</source>
                 <target>Du skal vælge en betalingsmetode.</target>
             </trans-unit>
-            <trans-unit id="form.buy.choose.first" approved="no">
+            <trans-unit id="form.buy.choose.first">
                 <source>form.buy.choose.first</source>
                 <target>Du skal vælge størrelse og farve først.</target>
             </trans-unit>
-            <trans-unit id="email.invalid" approved="no">
+            <trans-unit id="email.invalid">
                 <source>email.invalid</source>
                 <target>Ugyldig email</target>
             </trans-unit>
-            <trans-unit id="email.repeat.invalid" approved="no">
+            <trans-unit id="email.repeat.invalid">
                 <source>email.repeat.invalid</source>
                 <target>Email er ikke ens</target>
             </trans-unit>
-            <trans-unit id="phone.invalid" approved="no">
+            <trans-unit id="phone.invalid">
                 <source>phone.invalid</source>
                 <target>Ugyldig telefonnummer. Må kun indeholde tal og skal være mindst 8 tegn.</target>
             </trans-unit>
-            <trans-unit id="password.invalid.match" approved="no">
+            <trans-unit id="password.invalid.match">
                 <source>password.invalid.match</source>
                 <target>Adgangskode bekræftigelsen skal være den samme som dit adgangskoden.</target>
             </trans-unit>
-            <trans-unit id="password.min.length" approved="no">
+            <trans-unit id="password.min.length">
                 <source>password.min.length</source>
                 <target>Adgangskode skal være min 5 tegn</target>
             </trans-unit>
-            <trans-unit id="field.required" approved="no">
+            <trans-unit id="field.required">
                 <source>field.required</source>
                 <target>Alle felter med (*) er nødvendige.</target>
             </trans-unit>
-            <trans-unit id="approve.conditions.required" approved="no">
+            <trans-unit id="approve.conditions.required">
                 <source>approve.conditions.required</source>
                 <target>Du skal godkende POMPdeLUX betingelser først</target>
             </trans-unit>
-            <trans-unit id="checkout.payment.progress.alert.title" approved="no">
+            <trans-unit id="checkout.payment.progress.alert.title">
                 <source>checkout.payment.progress.alert.title</source>
                 <target>Betalingsvinduet hentes</target>
             </trans-unit>
-            <trans-unit id="checkout.payment.progress.alert.message" approved="no">
+            <trans-unit id="checkout.payment.progress.alert.message">
                 <source>checkout.payment.progress.alert.message</source>
                 <target><![CDATA[Vent venligst på at betalingsvinduet bliver hentet. Det kan tage op til 30 sekunder at hente betalingsvinduet. Går der mere end 30 sekunder, skal du klikke på Afbryd betaling knappen herunder og prøve igen.<br><br>På forhånd tak.<br><br><a href="%url%">» Afbryde betaling</a>]]></target>
             </trans-unit>
-            <trans-unit id="more.product.info" approved="no">
+            <trans-unit id="more.product.info">
                 <source>more.product.info</source>
                 <target>Klik her for at mere information om %name%.</target>
             </trans-unit>
-            <trans-unit id="more.bundle.info" approved="no">
+            <trans-unit id="more.bundle.info">
                 <source>more.bundle.info</source>
                 <target>Klik her for at mere information.</target>
             </trans-unit>
-            <trans-unit id="events.error.email.or.phone" approved="no">
+            <trans-unit id="events.error.email.or.phone">
                 <source>events.error.email.or.phone</source>
                 <target>Email eller telefon er krævet.</target>
             </trans-unit>
-            <trans-unit id="bookmarkbubble.android" approved="no">
+            <trans-unit id="bookmarkbubble.android">
                 <source>bookmarkbubble.android</source>
                 <target><![CDATA[<b>Install this app:</b><br /> 1) Add to Bookmarks,<br /> 2) Tap and Hold the bookmark,<br /> 3) Select "<b>Add Shortcut to Home</b>"]]></target>
             </trans-unit>
-            <trans-unit id="bookmarkbubble.android3" approved="no">
+            <trans-unit id="bookmarkbubble.android3">
                 <source>bookmarkbubble.android3</source>
                 <target><![CDATA[<b>Install this app:</b><br /> Tap <img src="%image_url%" style="height: 1.5em;display: inline-block;padding:0;margin:0;" />,<br /> select "<b>Add to</b>" and then "<b>Home screen</b>"]]></target>
             </trans-unit>
-            <trans-unit id="bookmarkbubble.android4" approved="no">
+            <trans-unit id="bookmarkbubble.android4">
                 <source>bookmarkbubble.android4</source>
                 <target><![CDATA[<b>Install this app:</b><br /> 1) Tap <img src="%image_url%" style="height: 1.5em;play: inline-block;padding:0;margin:0;" />,<br /> 2) Select "<b>Save to bookmarks</b>",<br /> Select "<b>Add to</b>" and then "<b>Home</b>"]]></target>
             </trans-unit>
-            <trans-unit id="bookmarkbubble.blackberry" approved="no">
+            <trans-unit id="bookmarkbubble.blackberry">
                 <source>bookmarkbubble.blackberry</source>
                 <target><![CDATA[<b>Install this app:</b><br /> Tap <img src="%image_url%" style="height: 1em;display: inline-block;padding:0;margin:0" />, select "<b>Add to Home Screen</b>"]]></target>
             </trans-unit>
-            <trans-unit id="bookmarkbubble.playbook" approved="no">
+            <trans-unit id="bookmarkbubble.playbook">
                 <source>bookmarkbubble.playbook</source>
                 <target><![CDATA[<b>Install this app:</b><br /> Tap <img src="%image_url%" style="height: 1.5em;display: inline-block;padding:0;margin:0;" />, select  <br />"<b>Add to Home Screen</b>"]]></target>
             </trans-unit>
-            <trans-unit id="bookmarkbubble.ios42orlater" approved="no">
+            <trans-unit id="bookmarkbubble.ios42orlater">
                 <source>bookmarkbubble.ios42orlater</source>
                 <target><![CDATA[<b>Install this app</b>:<br /> Tap <img src="%image_url%" style="height: 1em;display: inline-block;padding: 0;margin: 0" /> and then <b>"Add to Home Screen"</b>]]></target>
             </trans-unit>
-            <trans-unit id="bookmarkbubble.ioslegacy" approved="no">
+            <trans-unit id="bookmarkbubble.ioslegacy">
                 <source>bookmarkbubble.ioslegacy</source>
                 <target><![CDATA[<b>Install this app</b>:<br /> Tap <b style="font-size:15px">+</b> and then <b>"Add to Home Screen"</b>]]></target>
             </trans-unit>
@@ -414,21 +414,33 @@
                 <source>rma.product.not.filled.correctly</source>
                 <target>Ved ombytning af din vare skal du indtaste både størrelse og farve.</target>
             </trans-unit>
-            <trans-unit id="checkout.confirm.address.block" approved="no">
+            <trans-unit id="checkout.confirm.address.block">
                 <source>checkout.confirm.address.block</source>
                 <target>Bekræft at dine adresseoplysninger er korrekte.</target>
             </trans-unit>
-            <trans-unit id="maps.choose.correct.location" approved="no">
+            <trans-unit id="maps.choose.correct.location">
                 <source>maps.choose.correct.location</source>
                 <target>Der var flere resultater af din søgning. Vælg by i dropdown vinduet herunder.</target>
             </trans-unit>
-            <trans-unit id="checkout.confirm.mobile.title" approved="no">
+            <trans-unit id="checkout.confirm.mobile.title">
                 <source>checkout.confirm.mobile.title</source>
                 <target>Vigtigt</target>
             </trans-unit>
-            <trans-unit id="checkout.confirm.mobile.text" approved="no">
+            <trans-unit id="checkout.confirm.mobile.text">
                 <source>checkout.confirm.mobile.text</source>
                 <target><![CDATA[Verificér venligst at dit mobilnummer er korrekt.<br><br>Hvis det ikke er kan Post Danmark ikke komme i kontakt dig vedrørende forsendelsen.]]></target>
+            </trans-unit>
+            <trans-unit id="wishlist.select.size">
+                <source>wishlist.select.size</source>
+                <target>Størrelse</target>
+            </trans-unit>
+            <trans-unit id="wishlist.select.color">
+                <source>wishlist.select.color</source>
+                <target>Farve</target>
+            </trans-unit>
+            <trans-unit id="basket.latest.added">
+                <source>basket.latest.added</source>
+                <target>Netop tilføjet</target>
             </trans-unit>
         </body>
     </file>

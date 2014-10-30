@@ -38,6 +38,8 @@ use Hanzo\Model\Wall;
 use Hanzo\Model\WallLikes;
 use Hanzo\Model\WallLikesQuery;
 use Hanzo\Model\WallQuery;
+use Hanzo\Model\Wishlists;
+use Hanzo\Model\WishlistsQuery;
 
 abstract class BaseCustomers extends BaseObject implements Persistent
 {
@@ -165,6 +167,12 @@ abstract class BaseCustomers extends BaseObject implements Persistent
     protected $collEventssRelatedByCustomersIdPartial;
 
     /**
+     * @var        PropelObjectCollection|Wishlists[] Collection to store aggregation of Wishlists objects.
+     */
+    protected $collWishlistss;
+    protected $collWishlistssPartial;
+
+    /**
      * @var        PropelObjectCollection|Orders[] Collection to store aggregation of Orders objects.
      */
     protected $collOrderss;
@@ -235,6 +243,12 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      * @var		PropelObjectCollection
      */
     protected $eventssRelatedByCustomersIdScheduledForDeletion = null;
+
+    /**
+     * An array of objects scheduled for deletion.
+     * @var		PropelObjectCollection
+     */
+    protected $wishlistssScheduledForDeletion = null;
 
     /**
      * An array of objects scheduled for deletion.
@@ -916,6 +930,8 @@ abstract class BaseCustomers extends BaseObject implements Persistent
 
             $this->collEventssRelatedByCustomersId = null;
 
+            $this->collWishlistss = null;
+
             $this->collOrderss = null;
 
             $this->collWalls = null;
@@ -1135,6 +1151,23 @@ abstract class BaseCustomers extends BaseObject implements Persistent
 
             if ($this->collEventssRelatedByCustomersId !== null) {
                 foreach ($this->collEventssRelatedByCustomersId as $referrerFK) {
+                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
+                        $affectedRows += $referrerFK->save($con);
+                    }
+                }
+            }
+
+            if ($this->wishlistssScheduledForDeletion !== null) {
+                if (!$this->wishlistssScheduledForDeletion->isEmpty()) {
+                    WishlistsQuery::create()
+                        ->filterByPrimaryKeys($this->wishlistssScheduledForDeletion->getPrimaryKeys(false))
+                        ->delete($con);
+                    $this->wishlistssScheduledForDeletion = null;
+                }
+            }
+
+            if ($this->collWishlistss !== null) {
+                foreach ($this->collWishlistss as $referrerFK) {
                     if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
@@ -1471,6 +1504,14 @@ abstract class BaseCustomers extends BaseObject implements Persistent
                     }
                 }
 
+                if ($this->collWishlistss !== null) {
+                    foreach ($this->collWishlistss as $referrerFK) {
+                        if (!$referrerFK->validate($columns)) {
+                            $failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+                        }
+                    }
+                }
+
                 if ($this->collOrderss !== null) {
                     foreach ($this->collOrderss as $referrerFK) {
                         if (!$referrerFK->validate($columns)) {
@@ -1649,6 +1690,9 @@ abstract class BaseCustomers extends BaseObject implements Persistent
             }
             if (null !== $this->collEventssRelatedByCustomersId) {
                 $result['EventssRelatedByCustomersId'] = $this->collEventssRelatedByCustomersId->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+            }
+            if (null !== $this->collWishlistss) {
+                $result['Wishlistss'] = $this->collWishlistss->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
             }
             if (null !== $this->collOrderss) {
                 $result['Orderss'] = $this->collOrderss->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
@@ -1903,6 +1947,12 @@ abstract class BaseCustomers extends BaseObject implements Persistent
                 }
             }
 
+            foreach ($this->getWishlistss() as $relObj) {
+                if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
+                    $copyObj->addWishlists($relObj->copy($deepCopy));
+                }
+            }
+
             foreach ($this->getOrderss() as $relObj) {
                 if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
                     $copyObj->addOrders($relObj->copy($deepCopy));
@@ -2058,6 +2108,9 @@ abstract class BaseCustomers extends BaseObject implements Persistent
         }
         if ('EventsRelatedByCustomersId' == $relationName) {
             $this->initEventssRelatedByCustomersId();
+        }
+        if ('Wishlists' == $relationName) {
+            $this->initWishlistss();
         }
         if ('Orders' == $relationName) {
             $this->initOrderss();
@@ -2771,6 +2824,231 @@ abstract class BaseCustomers extends BaseObject implements Persistent
             }
             $this->eventssRelatedByCustomersIdScheduledForDeletion[]= clone $eventsRelatedByCustomersId;
             $eventsRelatedByCustomersId->setCustomersRelatedByCustomersId(null);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Clears out the collWishlistss collection
+     *
+     * This does not modify the database; however, it will remove any associated objects, causing
+     * them to be refetched by subsequent calls to accessor method.
+     *
+     * @return Customers The current object (for fluent API support)
+     * @see        addWishlistss()
+     */
+    public function clearWishlistss()
+    {
+        $this->collWishlistss = null; // important to set this to null since that means it is uninitialized
+        $this->collWishlistssPartial = null;
+
+        return $this;
+    }
+
+    /**
+     * reset is the collWishlistss collection loaded partially
+     *
+     * @return void
+     */
+    public function resetPartialWishlistss($v = true)
+    {
+        $this->collWishlistssPartial = $v;
+    }
+
+    /**
+     * Initializes the collWishlistss collection.
+     *
+     * By default this just sets the collWishlistss collection to an empty array (like clearcollWishlistss());
+     * however, you may wish to override this method in your stub class to provide setting appropriate
+     * to your application -- for example, setting the initial array to the values stored in database.
+     *
+     * @param boolean $overrideExisting If set to true, the method call initializes
+     *                                        the collection even if it is not empty
+     *
+     * @return void
+     */
+    public function initWishlistss($overrideExisting = true)
+    {
+        if (null !== $this->collWishlistss && !$overrideExisting) {
+            return;
+        }
+        $this->collWishlistss = new PropelObjectCollection();
+        $this->collWishlistss->setModel('Wishlists');
+    }
+
+    /**
+     * Gets an array of Wishlists objects which contain a foreign key that references this object.
+     *
+     * If the $criteria is not null, it is used to always fetch the results from the database.
+     * Otherwise the results are fetched from the database the first time, then cached.
+     * Next time the same method is called without $criteria, the cached collection is returned.
+     * If this Customers is new, it will return
+     * an empty collection or the current collection; the criteria is ignored on a new object.
+     *
+     * @param Criteria $criteria optional Criteria object to narrow the query
+     * @param PropelPDO $con optional connection object
+     * @return PropelObjectCollection|Wishlists[] List of Wishlists objects
+     * @throws PropelException
+     */
+    public function getWishlistss($criteria = null, PropelPDO $con = null)
+    {
+        $partial = $this->collWishlistssPartial && !$this->isNew();
+        if (null === $this->collWishlistss || null !== $criteria  || $partial) {
+            if ($this->isNew() && null === $this->collWishlistss) {
+                // return empty collection
+                $this->initWishlistss();
+            } else {
+                $collWishlistss = WishlistsQuery::create(null, $criteria)
+                    ->filterByCustomers($this)
+                    ->find($con);
+                if (null !== $criteria) {
+                    if (false !== $this->collWishlistssPartial && count($collWishlistss)) {
+                      $this->initWishlistss(false);
+
+                      foreach ($collWishlistss as $obj) {
+                        if (false == $this->collWishlistss->contains($obj)) {
+                          $this->collWishlistss->append($obj);
+                        }
+                      }
+
+                      $this->collWishlistssPartial = true;
+                    }
+
+                    $collWishlistss->getInternalIterator()->rewind();
+
+                    return $collWishlistss;
+                }
+
+                if ($partial && $this->collWishlistss) {
+                    foreach ($this->collWishlistss as $obj) {
+                        if ($obj->isNew()) {
+                            $collWishlistss[] = $obj;
+                        }
+                    }
+                }
+
+                $this->collWishlistss = $collWishlistss;
+                $this->collWishlistssPartial = false;
+            }
+        }
+
+        return $this->collWishlistss;
+    }
+
+    /**
+     * Sets a collection of Wishlists objects related by a one-to-many relationship
+     * to the current object.
+     * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
+     * and new objects from the given Propel collection.
+     *
+     * @param PropelCollection $wishlistss A Propel collection.
+     * @param PropelPDO $con Optional connection object
+     * @return Customers The current object (for fluent API support)
+     */
+    public function setWishlistss(PropelCollection $wishlistss, PropelPDO $con = null)
+    {
+        $wishlistssToDelete = $this->getWishlistss(new Criteria(), $con)->diff($wishlistss);
+
+
+        $this->wishlistssScheduledForDeletion = $wishlistssToDelete;
+
+        foreach ($wishlistssToDelete as $wishlistsRemoved) {
+            $wishlistsRemoved->setCustomers(null);
+        }
+
+        $this->collWishlistss = null;
+        foreach ($wishlistss as $wishlists) {
+            $this->addWishlists($wishlists);
+        }
+
+        $this->collWishlistss = $wishlistss;
+        $this->collWishlistssPartial = false;
+
+        return $this;
+    }
+
+    /**
+     * Returns the number of related Wishlists objects.
+     *
+     * @param Criteria $criteria
+     * @param boolean $distinct
+     * @param PropelPDO $con
+     * @return int             Count of related Wishlists objects.
+     * @throws PropelException
+     */
+    public function countWishlistss(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+    {
+        $partial = $this->collWishlistssPartial && !$this->isNew();
+        if (null === $this->collWishlistss || null !== $criteria || $partial) {
+            if ($this->isNew() && null === $this->collWishlistss) {
+                return 0;
+            }
+
+            if ($partial && !$criteria) {
+                return count($this->getWishlistss());
+            }
+            $query = WishlistsQuery::create(null, $criteria);
+            if ($distinct) {
+                $query->distinct();
+            }
+
+            return $query
+                ->filterByCustomers($this)
+                ->count($con);
+        }
+
+        return count($this->collWishlistss);
+    }
+
+    /**
+     * Method called to associate a Wishlists object to this object
+     * through the Wishlists foreign key attribute.
+     *
+     * @param    Wishlists $l Wishlists
+     * @return Customers The current object (for fluent API support)
+     */
+    public function addWishlists(Wishlists $l)
+    {
+        if ($this->collWishlistss === null) {
+            $this->initWishlistss();
+            $this->collWishlistssPartial = true;
+        }
+
+        if (!in_array($l, $this->collWishlistss->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
+            $this->doAddWishlists($l);
+
+            if ($this->wishlistssScheduledForDeletion and $this->wishlistssScheduledForDeletion->contains($l)) {
+                $this->wishlistssScheduledForDeletion->remove($this->wishlistssScheduledForDeletion->search($l));
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param	Wishlists $wishlists The wishlists object to add.
+     */
+    protected function doAddWishlists($wishlists)
+    {
+        $this->collWishlistss[]= $wishlists;
+        $wishlists->setCustomers($this);
+    }
+
+    /**
+     * @param	Wishlists $wishlists The wishlists object to remove.
+     * @return Customers The current object (for fluent API support)
+     */
+    public function removeWishlists($wishlists)
+    {
+        if ($this->getWishlistss()->contains($wishlists)) {
+            $this->collWishlistss->remove($this->collWishlistss->search($wishlists));
+            if (null === $this->wishlistssScheduledForDeletion) {
+                $this->wishlistssScheduledForDeletion = clone $this->collWishlistss;
+                $this->wishlistssScheduledForDeletion->clear();
+            }
+            $this->wishlistssScheduledForDeletion[]= $wishlists;
+            $wishlists->setCustomers(null);
         }
 
         return $this;
@@ -3929,6 +4207,11 @@ abstract class BaseCustomers extends BaseObject implements Persistent
                     $o->clearAllReferences($deep);
                 }
             }
+            if ($this->collWishlistss) {
+                foreach ($this->collWishlistss as $o) {
+                    $o->clearAllReferences($deep);
+                }
+            }
             if ($this->collOrderss) {
                 foreach ($this->collOrderss as $o) {
                     $o->clearAllReferences($deep);
@@ -3974,6 +4257,10 @@ abstract class BaseCustomers extends BaseObject implements Persistent
             $this->collEventssRelatedByCustomersId->clearIterator();
         }
         $this->collEventssRelatedByCustomersId = null;
+        if ($this->collWishlistss instanceof PropelCollection) {
+            $this->collWishlistss->clearIterator();
+        }
+        $this->collWishlistss = null;
         if ($this->collOrderss instanceof PropelCollection) {
             $this->collOrderss->clearIterator();
         }

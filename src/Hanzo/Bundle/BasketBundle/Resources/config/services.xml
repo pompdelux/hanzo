@@ -7,6 +7,8 @@
         <parameter key="basket.propel_event.orders.pre_save.class">Hanzo\Bundle\BasketBundle\Event\Listener\Model\Orders\OnPreSaveEvent</parameter>
         <parameter key="basket.propel_event.orders.post_save.class">Hanzo\Bundle\BasketBundle\Event\Listener\Model\Orders\OnPostSaveEvent</parameter>
         <parameter key="basket.propel_event.orders.pre_delete.class">Hanzo\Bundle\BasketBundle\Event\Listener\Model\Orders\OnPreDeleteEvent</parameter>
+
+        <parameter key="hanzo.basket.class">Hanzo\Bundle\BasketBundle\Service\Basket</parameter>
     </parameters>
 
     <services>
@@ -23,6 +25,12 @@
         <service id="basket.propel_event.orders.pre_delete" class="%basket.propel_event.orders.pre_delete.class%">
             <argument type="service" id="service_container" on-invalid="null" />
             <tag name="propel.event" method="handle" event="model.delete.pre" priority="0" />
+        </service>
+
+        <service id="hanzo.basket" class="%hanzo.basket.class%">
+            <argument type="service" id="stock" />
+            <argument type="service" id="event_dispatcher" />
+            <argument type="service" id="security.context" />
         </service>
     </services>
 </container>

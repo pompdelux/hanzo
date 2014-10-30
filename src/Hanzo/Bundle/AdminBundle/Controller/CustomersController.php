@@ -7,7 +7,6 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\CoreController;
-use Hanzo\Core\Tools;
 
 use Hanzo\Model\CustomersQuery;
 use Hanzo\Model\Addresses;
@@ -17,13 +16,20 @@ use Hanzo\Model\GroupsQuery;
 
 use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
 
+/**
+ * Class CustomersController
+ *
+ * @package Hanzo\Bundle\AdminBundle\Controller
+ */
 class CustomersController extends CoreController
 {
     /**
-     * @param  Request $request
-     * @param  string  $domain_key
-     * @param  int     $pager
-     * @return Response
+     * @param Request $request
+     * @param string $domain_key
+     * @param int    $pager
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
      */
     public function indexAction(Request $request, $domain_key, $pager)
     {
@@ -31,25 +37,20 @@ class CustomersController extends CoreController
             return $this->redirect($this->generateUrl('admin'));
         }
 
-        $hanzo = Hanzo::getInstance();
-        $container = $hanzo->container;
-        $route = $request->get('_route');
-        $router = $container->get('router');
+        $route  = $request->get('_route');
+        $router = $this->container->get('router');
 
         $customers = CustomersQuery::create();
 
         if ($request->query->has('debitor')) {
-            $debitor = $request->query->get('debitor');
-
-            $customers = $customers
-                ->filterById($debitor)
-            ;
+            $debitor   = $request->query->get('debitor');
+            $customers = $customers->filterById($debitor);
         }
 
-        $q_clean = null;
+        $qClean = null;
         if ($request->query->has('q')) {
-            $q_clean = $request->query->get('q');
-            $q = '%'.$q_clean.'%';
+            $qClean = $request->query->get('q');
+            $q = '%'.$qClean.'%';
 
             /**
              * @todo Lav søgning så man kan søge på hele navn. Sammenkobling på for og efternavn.
@@ -57,14 +58,13 @@ class CustomersController extends CoreController
             $customers = $customers
                 ->filterByFirstname($q)
                 ->_or()
-                ->filterByLastname($q)
+                    ->filterByLastname($q)
                 ->_or()
-                ->filterByEmail($q)
+                    ->filterByEmail($q)
                 ->_or()
-                ->filterByPhone($q)
+                    ->filterByPhone($q)
                 ->_or()
-                ->filterById($q_clean)
-            ;
+                    ->filterById($qClean);
         }
 
         if ($domain_key) {
@@ -76,152 +76,126 @@ class CustomersController extends CoreController
                     ->endUse()
                     ->joinOrdersAttributes()
                 ->endUse()
-                ->groupById()
-            ;
+                ->groupById();
         }
 
         $customers = $customers
             ->orderByUpdatedAt('DESC')
             ->orderByFirstName()
             ->orderByLastName()
-            ->paginate($pager, 50, $this->getDbConnection())
-        ;
+            ->paginate($pager, 50, $this->getDbConnection());
 
         $paginate = null;
         if ($customers->haveToPaginate()) {
 
-            $pages = array();
+            $pages = [];
             foreach ($customers->getLinks(10) as $page) {
-                if ($q_clean) {
-                    $pages[$page] = $router->generate($route, array('pager' => $page, 'q' => $q_clean), TRUE);
+                if ($qClean) {
+                    $pages[$page] = $router->generate($route, ['pager' => $page, 'q' => $qClean], true);
                 } else {
-                    $pages[$page] = $router->generate($route, array('pager' => $page), TRUE);
+                    $pages[$page] = $router->generate($route, ['pager' => $page], true);
                 }
             }
 
             // If search query, add it to the route
-            if ($q_clean) {
-                $paginate = array(
-                    'next' => ($customers->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $customers->getNextPage(), 'q' => $q_clean), TRUE)),
-                    'prew' => ($customers->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $customers->getPreviousPage(), 'q' => $q_clean), TRUE)),
-
+            if ($qClean) {
+                $paginate = [
+                    'next' => ($customers->getNextPage() == $pager ? '' : $router->generate($route, ['pager' => $customers->getNextPage(), 'q' => $qClean], true)),
+                    'prew' => ($customers->getPreviousPage() == $pager ? '' : $router->generate($route, ['pager' => $customers->getPreviousPage(), 'q' => $qClean], true)),
                     'pages' => $pages,
                     'index' => $pager
-                );
+                ];
             } else {
-                $paginate = array(
-                    'next' => ($customers->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $customers->getNextPage()), TRUE)),
-                    'prew' => ($customers->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $customers->getPreviousPage()), TRUE)),
-
+                $paginate = [
+                    'next' => ($customers->getNextPage() == $pager ? '' : $router->generate($route, ['pager' => $customers->getNextPage()], true)),
+                    'prew' => ($customers->getPreviousPage() == $pager ? '' : $router->generate($route, ['pager' => $customers->getPreviousPage()], true)),
                     'pages' => $pages,
                     'index' => $pager
-                );
+                ];
             }
         }
 
-        return $this->render('AdminBundle:Customers:list.html.twig', array(
+        return $this->render('AdminBundle:Customers:list.html.twig', [
             'customers'         => $customers,
             'paginate'          => $paginate,
             'domain_key'        => $domain_key,
             'domains_availible' => DomainsQuery::Create()->find($this->getDbConnection()),
             'database'          => $this->getRequest()->getSession()->get('database')
-        ));
+        ]);
 
     }
 
     /**
-     * @param  int $id
-     * @return Response
+     * @param Request $request
+     * @param int     $id
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
+     * @throws \PropelException
      */
-    public function viewAction($id)
+    public function viewAction(Request $request, $id)
     {
         if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_CUSTOMERS_SERVICE") or hasRole("ROLE_LOGISTICS")'))) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
-        $read_only = !$this->get('security.context')->isGranted('ROLE_ADMIN');
-        $read_only_enabled = !$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_SALES")'));
+        $readOnly = !$this->get('security.context')->isGranted('ROLE_ADMIN');
+        $readOnlyEnabled = !$this->get('security.context')->isGranted(
+            new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_SALES")')
+        );
 
         $customer = CustomersQuery::create()
             ->filterById($id)
-            ->findOne($this->getDbConnection())
-        ;
+            ->findOne($this->getDbConnection());
 
         $addresses = AddressesQuery::create()
             ->filterByCustomersId($id)
-            ->find($this->getDbConnection())
-        ;
+            ->find($this->getDbConnection());
 
         $groups = GroupsQuery::create()->find($this->getDbConnection());
 
-        $group_choices = array();
+        $groupChoices = [];
         foreach ($groups as $group) {
-            $group_choices[$group->getId()] = $group->getName();
+            $groupChoices[$group->getId()] = $group->getName();
         }
 
         $form = $this->createFormBuilder($customer)
-            ->add('first_name', 'text',
-                array(
-                    'label' => 'admin.customer.first_name.label',
-                    'translation_domain' => 'admin',
-                    'disabled' => $read_only,
-                )
-            )
-            ->add('last_name', 'text',
-                array(
-                    'label' => 'admin.customer.last_name.label',
-                    'translation_domain' => 'admin',
-                    'disabled' => $read_only,
-                )
-            )
-            ->add('groups_id', 'choice',
-                array(
-                    'choices' => $group_choices,
-                    'label' => 'admin.customer.group.label',
-                    'translation_domain' => 'admin',
-                    'disabled' => $read_only,
-                )
-            )
-            ->add('email', 'text',
-                array(
-                    'label' => 'admin.customer.email.label',
-                    'translation_domain' => 'admin',
-                    'disabled' => $read_only,
-                )
-            )
-            ->add('phone', 'text',
-                array(
-                    'label' => 'admin.customer.phone.label',
-                    'translation_domain' => 'admin',
-                    'required' => false,
-                    'disabled' => $read_only,
-                )
-            )
-            ->add('discount', 'text',
-                array(
-                    'label' => 'admin.customer.discount.label',
-                    'translation_domain' => 'admin',
-                    'disabled' => $read_only,
-                )
-            )
-            ->add('password_clear', 'text', // puha ... meget ...
-                array(
-                    'label' => 'admin.customer.password_clear.label',
-                    'translation_domain' => 'admin'
-                )
-            )
-            ->add('is_active', 'checkbox',
-                array(
-                    'label' => 'admin.customer.is_active.label',
-                    'translation_domain' => 'admin',
-                    'required' => false,
-                    'disabled' => $read_only_enabled,
-                )
-            )
-            ->getForm()
-        ;
+            ->add('first_name', 'text', [
+                'label'              => 'admin.customer.first_name.label',
+                'translation_domain' => 'admin',
+                'disabled'           => $readOnly,
+            ])->add('last_name', 'text', [
+                'label'              => 'admin.customer.last_name.label',
+                'translation_domain' => 'admin',
+                'disabled'           => $readOnly,
+            ])->add('groups_id', 'choice', [
+                'choices'            => $groupChoices,
+                'label'              => 'admin.customer.group.label',
+                'translation_domain' => 'admin',
+                'disabled'           => $readOnly,
+            ])->add('email', 'text', [
+                'label'              => 'admin.customer.email.label',
+                'translation_domain' => 'admin',
+                'disabled'           => $readOnly,
+            ])->add('phone', 'text', [
+                'label'              => 'admin.customer.phone.label',
+                'translation_domain' => 'admin',
+                'required'           => false,
+                'disabled'           => $readOnly,
+            ])->add('discount', 'text', [
+                'label'              => 'admin.customer.discount.label',
+                'translation_domain' => 'admin',
+                'disabled'           => $readOnly,
+            ])->add('password_clear', 'text', [
+                'label'              => 'admin.customer.password_clear.label',
+                'translation_domain' => 'admin'
+            ])->add('is_active', 'checkbox', [
+                'label'              => 'admin.customer.is_active.label',
+                'translation_domain' => 'admin',
+                'required'           => false,
+                'disabled'           => $readOnlyEnabled,
+            ])->getForm();
 
-        $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
             $form->handleRequest($request);
 
@@ -233,130 +207,118 @@ class CustomersController extends CoreController
             }
         }
 
-        return $this->render('AdminBundle:Customers:view.html.twig', array(
-            'form'      => $form->createView(),
-            'customer'  => $customer,
-            'addresses' => $addresses,
-            'database' => $this->getRequest()->getSession()->get('database')
-        ));
+        return $this->render('AdminBundle:Customers:view.html.twig', [
+                'form'      => $form->createView(),
+                'customer'  => $customer,
+                'addresses' => $addresses,
+                'database'  => $request->getSession()->get('database')
+        ]);
     }
 
+    /**
+     * @param int $id
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
+     * @throws \PropelException
+     */
     public function deleteAction($id)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
 
-        $customer = CustomersQuery::create()
+        CustomersQuery::create()
             ->filterById($id)
-            ->delete($this->getDbConnection())
-        ;
+            ->delete($this->getDbConnection());
 
         if ($this->getFormat() == 'json') {
-            return $this->json_response(array(
-                'status' => TRUE,
-                'message' => $this->get('translator')->trans('delete.customer.success', array(), 'admin'),
-            ));
+            return $this->json_response([
+                'status'  => true,
+                'message' => $this->get('translator')->trans('delete.customer.success', [], 'admin'),
+            ]);
         }
     }
 
-    public function editAddressAction($id, $type)
+    /**
+     * @param Request $request
+     * @param int     $id
+     * @param string  $type
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
+     * @throws \PropelException
+     */
+    public function editAddressAction(Request $request, $id, $type)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
         $address = null;
-        if($type){
+        if ($type) {
             $address = AddressesQuery::create()
                 ->filterByType($type)
                 ->filterByCustomersId($id)
-                ->findOne($this->getDbConnection())
-            ;
-        }else{
+                ->findOne($this->getDbConnection());
+        } else {
             $address = new Addresses();
         }
 
         $form = $this->createFormBuilder($address)
-            ->add('first_name', 'text',
-                array(
-                    'label' => 'admin.customers.addresses.first_name',
-                    'translation_domain' => 'admin'
-                )
-            )->add('last_name', 'text',
-                array(
-                    'label' => 'admin.customers.addresses.last_name',
-                    'translation_domain' => 'admin'
-                )
-            )->add('address_line_1', 'text',
-                array(
-                    'label' => 'admin.customers.addresses.address_line_1',
-                    'translation_domain' => 'admin'
-                )
-            )->add('address_line_2', 'text',
-                array(
-                    'label' => 'admin.customers.addresses.address_line_2',
-                    'translation_domain' => 'admin',
-                    'required' => false
-                )
-            )->add('postal_code', 'text',
-                array(
-                    'label' => 'admin.customers.addresses.postal_code',
-                    'translation_domain' => 'admin'
-                )
-            )->add('city', 'text',
-                array(
-                    'label' => 'admin.customers.addresses.city',
-                    'translation_domain' => 'admin'
-                )
-            )->add('country', 'text',
-                array(
-                    'label' => 'admin.customers.addresses.country',
-                    'translation_domain' => 'admin'
-                )
-            )->add('state_province', 'text',
-                array(
-                    'label' => 'admin.customers.addresses.state_province',
-                    'translation_domain' => 'admin',
-                    'required' => false,
-                )
-            )->add('company_name', 'text',
-                array(
-                    'label' => 'admin.customers.addresses.company_name',
-                    'translation_domain' => 'admin',
-                    'required' => false
-                )
-            )->add('latitude', 'text',
-                array(
-                    'label' => 'admin.customers.addresses.latitude',
-                    'translation_domain' => 'admin',
-                    'required' => false
-                )
-            )->add('longitude', 'text',
-                array(
-                    'label' => 'admin.customers.addresses.longitude',
-                    'translation_domain' => 'admin',
-                    'required' => false
-                )
-            )->getForm()
-        ;
+            ->add('first_name', 'text', [
+                'label'              => 'admin.customers.addresses.first_name',
+                'translation_domain' => 'admin'
+            ])->add('last_name', 'text', [
+                'label'              => 'admin.customers.addresses.last_name',
+                'translation_domain' => 'admin'
+            ])->add('address_line_1', 'text', [
+                'label'              => 'admin.customers.addresses.address_line_1',
+                'translation_domain' => 'admin'
+            ])->add('address_line_2', 'text', [
+                'label'              => 'admin.customers.addresses.address_line_2',
+                'translation_domain' => 'admin',
+                'required'           => false
+            ])->add('postal_code', 'text', [
+                'label'              => 'admin.customers.addresses.postal_code',
+                'translation_domain' => 'admin'
+            ])->add('city', 'text', [
+                'label'              => 'admin.customers.addresses.city',
+                'translation_domain' => 'admin'
+            ])->add('country', 'text', [
+                'label'              => 'admin.customers.addresses.country',
+                'translation_domain' => 'admin'
+            ])->add('state_province', 'text', [
+                'label'              => 'admin.customers.addresses.state_province',
+                'translation_domain' => 'admin',
+                'required'           => false,
+            ])->add('company_name', 'text', [
+                'label'              => 'admin.customers.addresses.company_name',
+                'translation_domain' => 'admin',
+                'required'           => false
+            ])->add('latitude', 'text', [
+                'label'              => 'admin.customers.addresses.latitude',
+                'translation_domain' => 'admin',
+                'required'           => false
+            ])->add('longitude', 'text', [
+                'label'              => 'admin.customers.addresses.longitude',
+                'translation_domain' => 'admin',
+                'required'           => false
+            ])->getForm();
 
-        $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
             $form->handleRequest($request);
 
             if ($form->isValid()) {
-
                 $address->save($this->getDbConnection());
-
                 $this->get('session')->getFlashBag()->add('notice', 'address.updated');
             }
         }
 
-        return $this->render('AdminBundle:Customers:editAddress.html.twig', array(
-            'form'      => $form->createView(),
-            'address'   => $address,
-            'database' => $this->getRequest()->getSession()->get('database')
-        ));
+        return $this->render('AdminBundle:Customers:editAddress.html.twig', [
+            'form'     => $form->createView(),
+            'address'  => $address,
+            'database' => $request->getSession()->get('database')
+        ]);
     }
 }
