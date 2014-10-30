@@ -565,19 +565,19 @@ Um jedoch sicherzustellen, dass dabei keine Fehler aufgetreten sind, möchten wi
             </trans-unit>
             <trans-unit id="wishlist.add.label">
                 <source>wishlist.add.label</source>
-                <target>Opret shoppingliste</target>
+                <target>Meine Shoppingliste</target>
             </trans-unit>
             <trans-unit id="wishlist.add.description">
                 <source>wishlist.add.description</source>
                 <target><![CDATA[
-                    <p>Her kan du oprette en liste med de styles, du ønsker at bestille ved et Home Shopping arrangement eller Åbent Hus.</p>
+                    <p>Hier können Sie eine Liste mit den Styles erstellen, welche Sie bei einer Home Shopping Veranstaltung oder bei einem Tag der offenen Tür bestellen möchten. Ihre Shoppingliste wird automatisch gespeichert.</p>
                     <ul>
-                        <li>Tryk på "Opret Shoppingliste". Din Shoppingliste får et unikt nummer, som din Shopping Advisor skal bruge.</li>
-                        <li>Tilføj de styles du ønsker at købe.</li>
-                        <li>Vis Shoppingliste nummeret til din Shopping Advisor, som behandler din ordre.</li>
-                        <li>Lagerbeholdning tjekkes, ordren gennemføres i samarbejde med din Shopping Advisor og herefter vil du modtage en ordrebekræftelse på din ordre.</li>
+                        <li>Klicken Sie auf ”Meine Shoppingliste”. Ihre Shoppingliste bekommt eine persönliche Nummer zugeordnet, welche Ihr Shopping Advisor eingeben kann.</li>
+                        <li>Fügen Sie die gewünschten Styles hinzu.</li>
+                        <li>Zeigen Sie Ihrem Shopping Advisor die Shoppingliste.</li>
+                        <li>Die Lagerverfügbarkeit wird überprüft, die Bestellung wird in Zusammenarbeit mit Ihrem Shopping Advisor durchgeführt und danach erhalten Sie eine Bestellbestätigung zu Ihrer Bestellung.</li>
                     </ul>
-                    <p>HUSK! Vær opmærksom på, at du først har afgivet din ordre, når din Shopping Advisor har indlæst dit Shoppingliste nummer, og du har fået en odrebekræftelse. Varene på din Shoppingliste er ikke reserveret selvom de er tilføjet, så der kan opstå tilfælde, hvor en vare desværre er udsolgt.</p>
+                    <p>Bitte beachten: Ihre Bestellung wird erst dann gültig, wenn Ihr Shopping Advisor die Nummer Ihrer Shoppingliste eingegeben hat und Sie Ihre Bestellbestätigung erhalten haben. Die Waren auf Ihrer Shoppingliste werden nicht reserviert, auch wenn diese hinzugefügt wurden. Es kann also vorkommen, dass eine Ware bei Bestelleingabe ausverkauft ist.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="wishlist.add.to.list">
@@ -586,19 +586,19 @@ Um jedoch sicherzustellen, dass dabei keine Fehler aufgetreten sind, möchten wi
             </trans-unit>
             <trans-unit id="wishlist.placeholder.query">
                 <source>wishlist.placeholder.query</source>
-                <target>Tilføj vare</target>
+                <target>Ware hinzufügen</target>
             </trans-unit>
             <trans-unit id="wishlist.query.description">
                 <source>wishlist.query.description</source>
-                <target>Indtast de tre første bogstaver i stylens navn og vælg den ønskede style fra listen.</target>
+                <target>Geben Sie die ersten drei Buchstaben des Style-Namen ein, und wählen Sie den gewünschten Style von der Liste aus.</target>
             </trans-unit>
             <trans-unit id="wishlist.select.size">
                 <source>wishlist.select.size</source>
-                <target>Størrelse</target>
+                <target>Größe</target>
             </trans-unit>
             <trans-unit id="wishlist.select.color">
                 <source>wishlist.select.color</source>
-                <target>Farve</target>
+                <target>Farbe</target>
             </trans-unit>
             <trans-unit id="wishlist.number">
                 <source>wishlist.number</source>
@@ -606,11 +606,11 @@ Um jedoch sicherzustellen, dass dabei keine Fehler aufgetreten sind, möchten wi
             </trans-unit>
             <trans-unit id="add.to.wishlist">
                 <source>add.to.wishlist</source>
-                <target>Tilføj til listen</target>
+                <target>Liste hinzufügen</target>
             </trans-unit>
             <trans-unit id="wishlist.remove.all.items">
                 <source>wishlist.remove.all.items</source>
-                <target>Ryd listen</target>
+                <target>Liste zurücksetzen</target>
             </trans-unit>
         </body>
     </file>
