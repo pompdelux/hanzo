@@ -198,7 +198,7 @@ class RestGoogleController extends CoreController
                 }
 
                 $events[$cid][$key]['dates'][] = [
-                    'date' => strftime('%A %e/%m, %k:%M', $start) . ' - ' . strftime('%k:%M', $end),
+                    'date' => ucfirst(strftime('%A %e/%m, %k:%M', $start) . ' - ' . strftime('%k:%M', $end)),
                     'note' => $note,
                     'rswp' => $event->getRsvpType(),
                 ];
