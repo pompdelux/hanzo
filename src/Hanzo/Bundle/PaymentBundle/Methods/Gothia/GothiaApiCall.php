@@ -257,9 +257,11 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
             ];
 
             $clientError = $client->getError();
+
             if (!empty($clientError)) {
                 array_push($errorMessages, $t->trans($clientError, [], 'gothia'));
             }
+
             if (is_array($gothiaApiCallResponse->errors)) {
                 foreach ($gothiaApiCallResponse->errors as $error) {
                     if (!empty($error) && !in_array($t->trans($error, [], 'gothia'), $errorMessages)) {
@@ -268,10 +270,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
                 }
             }
 
-            array_push(
-                $errorMessages,
-                $t->trans('Please contact POMPdeLUX customer service if you keep receiving this error.', [], 'gothia')
-            );
+            array_push($errorMessages, $t->trans('Please contact POMPdeLUX customer service if you keep receiving this error.', [], 'gothia'));
 
             Tools::debug('Gothia Response Error', __METHOD__, [
                 'Transaction id' => $gothiaApiCallResponse->transactionId,
