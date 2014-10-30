@@ -1817,6 +1817,12 @@ form.address .error {
   padding: 10px;
 }
 
+.form-error-block {
+  border: 2px solid #A00;
+  margin: 10px 0;
+  padding: 10px;
+}
+
 #body-checkout #main form.address > h3 {
   margin-top: 0;
   margin-bottom: 5px;

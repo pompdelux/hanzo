@@ -156,6 +156,7 @@ class GothiaDEController extends CoreController
             return $this->json_response([
                 'status'  => false,
                 'message' => $translator->trans('json.checkcustomer.failed', ['%msg%' => 'no customer'], 'gothia'),
+                '_line' => __LINE__,
             ]);
         }
 
@@ -175,13 +176,15 @@ class GothiaDEController extends CoreController
                         return $this->json_response([
                             'status'  => false,
                             'message' => $translator->trans('json.ssn.to_short', [], 'gothia'),
+                            '_line' => __LINE__,
                         ]);
                     }
 
                     if (strlen($SSN) > 11) {
                         return $this->json_response([
                             'status'  => false,
-                            'message' => $translator->trans('json.ssn.to_long', [], 'gothia')
+                            'message' => $translator->trans('json.ssn.to_long', [], 'gothia'),
+                            '_line' => __LINE__,
                         ]);
                     }
                     break;
@@ -195,13 +198,15 @@ class GothiaDEController extends CoreController
                         return $this->json_response([
                             'status'  => false,
                             'message' => $translator->trans('json.ssn.to_short', [], 'gothia'),
+                            '_line' => __LINE__,
                         ]);
                     }
 
                     if (strlen($SSN) > 11) {
                         return $this->json_response([
                             'status'  => false,
-                            'message' => $translator->trans('json.ssn.to_long', [], 'gothia')
+                            'message' => $translator->trans('json.ssn.to_long', [], 'gothia'),
+                            '_line' => __LINE__,
                         ]);
                     }
                     break;
@@ -221,13 +226,15 @@ class GothiaDEController extends CoreController
                         return $this->json_response([
                             'status'  => false,
                             'message' => $translator->trans('json.ssn.to_short', [], 'gothia'),
+                            '_line' => __LINE__,
                         ]);
                     }
 
                     if (strlen($SSN) > 8) {
                         return $this->json_response([
                             'status'  => false,
-                            'message' => $translator->trans('json.ssn.to_long', [], 'gothia')
+                            'message' => $translator->trans('json.ssn.to_long', [], 'gothia'),
+                            '_line' => __LINE__,
                         ]);
                     }
                     break;
@@ -243,19 +250,22 @@ class GothiaDEController extends CoreController
                         return $this->json_response([
                             'status'  => false,
                             'message' => $translator->trans('json.ssn.not_numeric', [], 'gothia'),
+                            '_line' => __LINE__,
                         ]);
                     }
                     if (strlen($SSN) < 10) {
                         return $this->json_response([
                             'status'  => false,
                             'message' => $translator->trans('json.ssn.to_short', [], 'gothia'),
+                            '_line' => __LINE__,
                         ]);
                     }
 
                     if (strlen($SSN) > 10) {
                         return $this->json_response([
                             'status'  => false,
-                            'message' => $translator->trans('json.ssn.to_long', [], 'gothia')
+                            'message' => $translator->trans('json.ssn.to_long', [], 'gothia'),
+                            '_line' => __LINE__,
                         ]);
                     }
                     break;
@@ -283,6 +293,7 @@ class GothiaDEController extends CoreController
                 return $this->json_response([
                     'status'  => false,
                     'message' => $translator->trans('json.placereservation.error', [], 'gothia'),
+                    '_line' => __LINE__,
                 ]);
             }
         }
@@ -301,14 +312,16 @@ class GothiaDEController extends CoreController
                     if (!preg_match('/^[a-z0-9]{1,34}$/i', $bankAccountNo)) {
                         return $this->json_response([
                             'status'  => false,
-                            'message' => $translator->trans('json.bank_account_no.to_long', [], 'gothia')
+                            'message' => $translator->trans('json.bank_account_no.to_long', [], 'gothia'),
+                            '_line' => __LINE__,
                         ]);
                     }
 
                     if (!preg_match('/^[a-z0-9]{1,11}$/i', $bankId)) {
                         return $this->json_response([
                             'status'  => false,
-                            'message' => $translator->trans('json.bank_id.to_long', [], 'gothia')
+                            'message' => $translator->trans('json.bank_id.to_long', [], 'gothia'),
+                            '_line' => __LINE__,
                         ]);
                     }
                     break;
@@ -325,6 +338,7 @@ class GothiaDEController extends CoreController
             return $this->json_response([
                 'status'  => false,
                 'message' => $translator->trans('json.order.state_pre_payment.locked', [], 'gothia'),
+                '_line' => __LINE__,
             ]);
         }
 
@@ -354,6 +368,7 @@ class GothiaDEController extends CoreController
                         return $this->json_response([
                             'status'  => false,
                             'message' => $translator->trans('json.cancelreservation.failed', ['%msg%' => $e->getMessage()], 'gothia'),
+                            '_line' => __LINE__,
                         ]);
                     }
 
@@ -363,6 +378,7 @@ class GothiaDEController extends CoreController
                         return $this->json_response([
                             'status' => false,
                             'message' => $translator->trans('json.cancelreservation.error', [], 'gothia'),
+                            '_line' => __LINE__,
                         ]);
                     }
                 }
@@ -387,6 +403,7 @@ class GothiaDEController extends CoreController
             return $this->json_response([
                 'status'  => false,
                 'message' => $translator->trans('json.placereservation.failed', ['%msg%' => $e->getMessage()], 'gothia'),
+                '_line' => __LINE__,
             ]);
         }
 
@@ -400,6 +417,7 @@ class GothiaDEController extends CoreController
             return $this->json_response([
                 'status'  => true,
                 'message' => '',
+                '_line' => __LINE__,
             ]);
         } catch (Exception $e) {
             if (Tools::isBellcomRequest()) {
@@ -412,6 +430,7 @@ class GothiaDEController extends CoreController
             return $this->json_response([
                 'status'  => false,
                 'message' => $translator->trans('json.placereservation.error', [], 'gothia'),
+                '_line' => __LINE__,
             ]);
         }
     }
