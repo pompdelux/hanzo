@@ -15,6 +15,11 @@ use Hanzo\Model\Settings;
 use Hanzo\Model\SettingsQuery;
 use Symfony\Component\HttpFoundation\Session\Session;
 
+/**
+ * Class Range
+ *
+ * @package Hanzo\Bundle\ProductBundle
+ */
 class Range
 {
     /**
@@ -25,24 +30,24 @@ class Range
     /**
      * @var string
      */
-    private $active_range;
+    private $activeRange;
 
     /**
      * @var array
      */
-    private $available_ranges = [];
+    private $availableRanges = [];
 
 
     /**
      * Construct
      *
      * @param Session $session
-     * @param string  $active_range
+     * @param string  $activeRange
      */
-    public function __construct(Session $session, $active_range)
+    public function __construct(Session $session, $activeRange)
     {
-        $this->session      = $session;
-        $this->active_range = $active_range;
+        $this->session     = $session;
+        $this->activeRange = $activeRange;
     }
 
 
@@ -58,7 +63,7 @@ class Range
             return $this->session->get('active_procuct_range');
         }
 
-        return $this->active_range;
+        return $this->activeRange;
     }
 
 
@@ -71,13 +76,12 @@ class Range
     {
         $name = strtoupper($name);
         $this->validateRange($name);
-        $this->active_range = $name;
+        $this->activeRange = $name;
 
         $range = SettingsQuery::create()
             ->filterByNs('core')
             ->filterByCKey('active_procuct_range')
-            ->findOne()
-        ;
+            ->findOne();
 
         if (!$range instanceof Settings) {
             $range = new Settings();
@@ -109,11 +113,11 @@ class Range
      */
     public function getRangeList()
     {
-        if (0 === count($this->available_ranges)) {
+        if (0 === count($this->availableRanges)) {
             $this->loadAvailable();
         }
 
-        return $this->available_ranges;
+        return $this->availableRanges;
     }
 
 
@@ -125,28 +129,29 @@ class Range
         $result = ProductsQuery::create()
             ->select('Range')
             ->distinct()
-            ->find()
-        ;
+            ->find();
 
         foreach ($result as $range) {
             $range = strtoupper($range);
-            $this->available_ranges[$range] = $range;
+            $this->availableRanges[$range] = $range;
         }
     }
 
 
     /**
      * Validate a range name to see if it's actually available
+     *
      * @param string $name
+     *
      * @throws \InvalidArgumentException
      */
     private function validateRange($name)
     {
-        if (empty($this->available_ranges)) {
+        if (empty($this->availableRanges)) {
             $this->loadAvailable();
         }
 
-        if (!isset($this->available_ranges[$name])) {
+        if (!isset($this->availableRanges[$name])) {
             throw new \InvalidArgumentException("Unknown range specified!");
         }
     }
