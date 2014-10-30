@@ -60,7 +60,12 @@ try {
 // Default settings
 if (!empty($results)) {
     foreach ($results as $result) {
-        $container->setParameter($result['c_key'], $result['c_value']);
+
+        $prefix = 'core.';
+        if ('assets_version' === $result['c_key']) {
+            $prefix = '';
+        }
+        $container->setParameter($prefix.$result['c_key'], $result['c_value']);
     }
 }
 

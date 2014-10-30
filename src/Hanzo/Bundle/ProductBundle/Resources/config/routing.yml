@@ -19,3 +19,8 @@ product_custom_set:
     defaults:
         _controller: ProductBundle:Bundle:custom
         set: 1
+
+product_set_active_range:
+    pattern: /set/active/product/range
+    defaults:
+        _controller: ProductBundle:Range:setRange

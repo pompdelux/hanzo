@@ -803,6 +803,10 @@ html.touch .product-list .buy-set {
   margin-left: 5px;
 }
 
+.no-products-in-category {
+  padding-top: 10px;
+}
+
 /**
 | _product
 */

@@ -65,6 +65,7 @@ class DefaultController extends CoreController
         }
 
         $rmaProducts = json_decode($request->request->get('products'), true);
+
         // Time to generate some pdf's!
         if (count($rmaProducts)) {
 
@@ -83,8 +84,7 @@ class DefaultController extends CoreController
             $address->setCompanyName($order->getDeliveryCompanyName());
 
             $addressFormatter = $this->get('hanzo.address_formatter');
-
-            $addressBlock = mb_convert_encoding($addressFormatter->format($address), 'HTML-ENTITIES', 'UTF-8');
+            $addressBlock     = mb_convert_encoding($addressFormatter->format($address), 'HTML-ENTITIES', 'UTF-8');
 
             // Only show the products which are chosed to RMA.
             foreach ($rmaProducts as &$rmaProduct) {
@@ -109,12 +109,12 @@ class DefaultController extends CoreController
 
             try {
                 $mail = $this->container->get('mail_manager');
+                $mail->setTo($order->getEmail(), $order->getCustomersName());
                 $mail->addAttachment($pdfData, false, $pdfName);
                 $mail->setMessage('order.rma', [
                     'order_id'      => $order_id,
                     'customer_name' => $order->getCustomersName(),
                 ]);
-                $mail->setTo($order->getEmail(), $order->getCustomersName());
 
                 if ($bcc = Tools::getBccEmailAddress('rma', $order)) {
                     $mail->setBcc($bcc);
