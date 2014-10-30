@@ -115,7 +115,7 @@
             </trans-unit>
             <trans-unit id="rma.slip.title.order_id">
                 <source>rma.slip.title.order_id</source>
-                <target><![CDATA[POMPdeLUX R&Uuml;CKSENDESCHEIN BESTELL ID %order_id%]]></target>
+                <target><![CDATA[POMPdeLUX RÜCKSENDESCHEIN BESTELL ID %order_id%]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.description">
                 <source>rma.slip.description</source>
