@@ -8,7 +8,7 @@ var geo_zipcode_params = {
     {% if show_all is defined and show_all %}
         {{ consultants_near_you('hus', 'true') }}
     {% else %}
-        <p>{{ 'advisor.locater_form.label'|trans }} {{ geo_zip_code_form('hus') }}</p>
+        <p>{{ 'advisor.locater_form.label'|trans({}, 'events') }} {{ geo_zip_code_form('hus') }}</p>
         {{ consultants_near_you('hus') }}
     {% endif %}
 </div>
