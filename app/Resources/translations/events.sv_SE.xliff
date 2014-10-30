@@ -491,6 +491,10 @@
                 <source>sa_search.zip_code.placeholder</source>
                 <target>Postnummer eller by</target>
             </trans-unit>
+            <trans-unit id="advisor.locater_form.label" approved="no">
+                <source>advisor.locater_form.label</source>
+                <target>Indtast din by eller dit postnummer</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
