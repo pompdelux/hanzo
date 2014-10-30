@@ -4,9 +4,7 @@
         <li><a href="{{ path('_account_edit') }}">» {{ 'account.details'|trans({}, 'account') }}</a></li>
         <li><a href="{{ path('logout') }}">» {{ 'my.account.logout'|trans({}, 'account') }}</a></li>
         <li><a href="{{ path('events_my_events') }}">» {{ 'my.account.my.events'|trans({}, 'account') }}</a></li>
-{% if domain_key == 'DK' %}
         <li><a href="{{ path('_account_wishlist_create') }}">» {{ 'wishlist.add.label'|trans({}, 'account') }}</a></li>
-{% endif %}
     </ul>
 </aside>
 
