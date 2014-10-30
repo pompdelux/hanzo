@@ -563,19 +563,19 @@ Deretter kan du bare shoppe videre.</p><br>
             </trans-unit>
             <trans-unit id="wishlist.add.label">
                 <source>wishlist.add.label</source>
-                <target>Opret shoppingliste</target>
+                <target>Min Shoppingliste</target>
             </trans-unit>
             <trans-unit id="wishlist.add.description">
                 <source>wishlist.add.description</source>
                 <target><![CDATA[
-                    <p>Her kan du oprette en liste med de styles, du ønsker at bestille ved et Home Shopping arrangement eller Åbent Hus.</p>
+                    <p>Her kan du opprette en liste med styles som du ønsker å bestille ved et Home Shopping arrangement eller Åpent Hus. Din Shoppingliste lagres automatisk.</p>
                     <ul>
-                        <li>Tryk på "Opret Shoppingliste". Din Shoppingliste får et unikt nummer, som din Shopping Advisor skal bruge.</li>
-                        <li>Tilføj de styles du ønsker at købe.</li>
-                        <li>Vis Shoppingliste nummeret til din Shopping Advisor, som behandler din ordre.</li>
-                        <li>Lagerbeholdning tjekkes, ordren gennemføres i samarbejde med din Shopping Advisor og herefter vil du modtage en ordrebekræftelse på din ordre.</li>
+                        <li>Trykk på "Min shoppingliste". Shoppinglisten får et unikt nummer som din Shopping Advisor skal bruke.</li>
+                        <li>Tilføy de styles som du ønsker å kjøpe.</li>
+                        <li>Vis Shoppingliste-nummeret til din Shopping Advisor, som behandler din ordre.</li>
+                        <li>Lagerbeholdningen undersøkes, ordren gjennomføres i samarbeid med din Shopping Advisor og heretter vil du motta en ordrebekreftelse på din ordre.</li>
                     </ul>
-                    <p>HUSK! Vær opmærksom på, at du først har afgivet din ordre, når din Shopping Advisor har indlæst dit Shoppingliste nummer, og du har fået en odrebekræftelse. Varene på din Shoppingliste er ikke reserveret selvom de er tilføjet, så der kan opstå tilfælde, hvor en vare desværre er udsolgt.</p>
+                    <p>HUSK! Vær oppmerksom på at du først har avgitt din ordre når Shopping Advisor har lest inn Shoppingliste-nummeret ditt, og du har fått en ordrebekreftelse. Varene på din Shoppingliste er ikke reservert selv om de er tilføyd. Det kan være at en vare dessverre er utsolgt.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="wishlist.add.to.list">
@@ -584,11 +584,11 @@ Deretter kan du bare shoppe videre.</p><br>
             </trans-unit>
             <trans-unit id="wishlist.placeholder.query">
                 <source>wishlist.placeholder.query</source>
-                <target>Tilføj vare</target>
+                <target>Tilføy vare</target>
             </trans-unit>
             <trans-unit id="wishlist.query.description">
                 <source>wishlist.query.description</source>
-                <target>Indtast de tre første bogstaver i stylens navn og vælg den ønskede style fra listen.</target>
+                <target>Tast inn de tre første bokstavene i stylens navn og velg ønsket style fra listen.</target>
             </trans-unit>
             <trans-unit id="wishlist.select.size">
                 <source>wishlist.select.size</source>
@@ -596,7 +596,7 @@ Deretter kan du bare shoppe videre.</p><br>
             </trans-unit>
             <trans-unit id="wishlist.select.color">
                 <source>wishlist.select.color</source>
-                <target>Farve</target>
+                <target>Farge</target>
             </trans-unit>
             <trans-unit id="wishlist.number">
                 <source>wishlist.number</source>
@@ -604,11 +604,11 @@ Deretter kan du bare shoppe videre.</p><br>
             </trans-unit>
             <trans-unit id="add.to.wishlist">
                 <source>add.to.wishlist</source>
-                <target>Tilføj til listen</target>
+                <target>Tilføy til listen</target>
             </trans-unit>
             <trans-unit id="wishlist.remove.all.items">
                 <source>wishlist.remove.all.items</source>
-                <target>Ryd listen</target>
+                <target>RYDD LISTEN</target>
             </trans-unit>
         </body>
     </file>
