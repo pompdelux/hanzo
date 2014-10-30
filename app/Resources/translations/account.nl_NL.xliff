@@ -562,7 +562,7 @@ Hierna kun je gewoon doorgaan met winkelen.<br></p>
             </trans-unit>
             <trans-unit id="wishlist.add.label">
                 <source>wishlist.add.label</source>
-                <target>Mijn Shoppinglijst/target>
+                <target>Mijn Shoppinglijst</target>
             </trans-unit>
             <trans-unit id="wishlist.add.description">
                 <source>wishlist.add.description</source>
