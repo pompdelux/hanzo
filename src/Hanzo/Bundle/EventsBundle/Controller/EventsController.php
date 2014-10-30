@@ -2,6 +2,8 @@
 
 namespace Hanzo\Bundle\EventsBundle\Controller;
 
+use Hanzo\Bundle\EventsBundle\Form\Type\EventsType;
+use Hanzo\Bundle\EventsBundle\Helpers\EventHostess;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\CoreController;
 use Hanzo\Model\AddressesPeer;
