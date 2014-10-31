@@ -2,7 +2,6 @@
 
 namespace Hanzo\Bundle\EventsBundle\Controller;
 
-use Doctrine\Common\Collections\Criteria;
 use Hanzo\Bundle\AccountBundle\Form\Type\AddressesType;
 use Hanzo\Bundle\AccountBundle\Form\Type\CustomersType;
 use Hanzo\Core\CoreController;
@@ -206,7 +205,7 @@ class DefaultController extends CoreController
                     ->findOneByEmail($value);
 
                 if ($customer instanceof Customers) {
-                    $c = new Criteria();
+                    $c = new \Criteria();
                     $c->addAscendingOrderByColumn(
                         sprintf(
                             "FIELD(%s, '%s', '%s')",
