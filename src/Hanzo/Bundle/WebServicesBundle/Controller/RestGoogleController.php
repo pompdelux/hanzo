@@ -6,6 +6,7 @@ use Hanzo\Core\Hanzo;
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Tools;
 use Hanzo\Model\CustomersQuery;
+use Hanzo\Model\Events;
 use Hanzo\Model\EventsQuery;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -143,7 +144,7 @@ class RestGoogleController extends CoreController
                 }
 
                 $avatar = $matches[0];
-                $info   = str_replace("\n", "<br>", $record['event_notes']);
+                $info   = $avatar; // str_replace("\n", "<br>", $record['event_notes']);
             }
 
             $info = str_replace('src="/', 'src="' . $cdn, $info);
@@ -176,6 +177,7 @@ class RestGoogleController extends CoreController
                 ->find();
 
             $events = [];
+            $translator = $this->container->get('translator');
 
             /** @var \Hanzo\Model\Events $event */
             foreach ($openHouseEvents as $event) {
@@ -192,7 +194,7 @@ class RestGoogleController extends CoreController
                         'dates'   => [],
                         'host'    => $event->getHost(),
                         'notes'   => [],
-                        'rsvp'    => $event->getRsvpType(),
+                        'rsvp'    => $translator->trans(Events::$eventRsvpMap[$event->getRsvpType()], [], 'events'),
                         'zip'     => $event->getPostalCode(),
                     ];
                 }
@@ -200,7 +202,7 @@ class RestGoogleController extends CoreController
                 $events[$cid][$key]['dates'][] = [
                     'date' => ucfirst(strftime('%A %e/%m, %k:%M', $start) . ' - ' . strftime('%k:%M', $end)),
                     'note' => $note,
-                    'rswp' => $event->getRsvpType(),
+                    'rsvp' => $translator->trans(Events::$eventRsvpMap[$event->getRsvpType()], [], 'events'),
                 ];
 
                 $events[$cid][$key]['notes'][] = $note;
