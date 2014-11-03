@@ -51,7 +51,7 @@ set :model_manager, "propelXX"
 
 set :keep_releases,  3
 
-set :shared_files,      ["app/config/parameters.ini", "app/config/hanzo.yml", "cron/config.php"]
+set :shared_files,      ["app/config/parameters.ini", "cron/config.php", "app/config/products_id_map.php"]
 
 set :shared_children,     [app_path + "/logs", web_path + "/uploads", "vendor", web_path + "/images", web_path + "/video", web_path + "/pdfupload"]
 
