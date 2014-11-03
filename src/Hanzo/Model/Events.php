@@ -4,18 +4,18 @@ namespace Hanzo\Model;
 
 use Hanzo\Model\om\BaseEvents;
 
-
 /**
- * Skeleton subclass for representing a row from the 'events' table.
+ * Class Events
  *
- * 
- *
- * You should add additional methods to this class to meet the
- * application requirements.  This class will only be generated as
- * long as it does not already exist in the output directory.
- *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model
+ * @package Hanzo\Model
  */
-class Events extends BaseEvents {
-
-} // Events
+class Events extends BaseEvents
+{
+    public static $eventRsvpMap = [
+        '' => 'none.needed',
+        0  => 'none.needed',
+        1  => 'events.rsvp_type.choice.need_to',
+        2  => 'events.rsvp_type.choice.nice_to',
+        3  => 'events.rsvp_type.choice.sms_email',
+    ];
+}
