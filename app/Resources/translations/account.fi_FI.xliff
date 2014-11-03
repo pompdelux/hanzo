@@ -561,40 +561,40 @@ Haluamme kuitenkin varmistaa, että tässä ei ole tapahtunut virhettä. Pyydäm
             </trans-unit>
             <trans-unit id="wishlist.add.label">
                 <source>wishlist.add.label</source>
-                <target>Opret shoppingliste</target>
+                <target>Ostoslistani</target>
             </trans-unit>
             <trans-unit id="wishlist.add.description">
                 <source>wishlist.add.description</source>
                 <target><![CDATA[
-                    <p>Her kan du oprette en liste med de styles, du ønsker at bestille ved et Home Shopping arrangement eller Åbent Hus.</p>
+                    <p>Tässä voit laatia listan niistä tuotteista, joita haluat tilata Home Shopping- tai Avoimet ovet -tilaisuudessa. Ostoslistasi tallennetaan automaattisesti.</p>
                     <ul>
-                        <li>Tryk på "Opret Shoppingliste". Din Shoppingliste får et unikt nummer, som din Shopping Advisor skal bruge.</li>
-                        <li>Tilføj de styles du ønsker at købe.</li>
-                        <li>Vis Shoppingliste nummeret til din Shopping Advisor, som behandler din ordre.</li>
-                        <li>Lagerbeholdning tjekkes, ordren gennemføres i samarbejde med din Shopping Advisor og herefter vil du modtage en ordrebekræftelse på din ordre.</li>
+                        <li>Valitse "Ostoslistani". Ostoslistasi saa ainutkertaisen numeron, jota Shopping Advisorisi tulee käyttää.</li>
+                        <li>Lisää tuotteet, jotka haluat ostaa.</li>
+                        <li>Näytä Ostoslistan numero Shopping Advisorillesi, joka tekee tilauksen.</li>
+                        <li>Seuraavaksi tarkistetaan varastotilanne ja tehdään tilaus yhdessä Shopping Advisorisi kanssa, minkä jälkeen saat tilausvahvistuksen.</li>
                     </ul>
-                    <p>HUSK! Vær opmærksom på, at du først har afgivet din ordre, når din Shopping Advisor har indlæst dit Shoppingliste nummer, og du har fået en odrebekræftelse. Varene på din Shoppingliste er ikke reserveret selvom de er tilføjet, så der kan opstå tilfælde, hvor en vare desværre er udsolgt.</p>
+                    <p>HUOM! Huomaa, että tilaus on tehty vasta, kun Shopping Advisorisi on antanut Ostoslistasi numeron ja olet saanut tilausvahvistuksen. Ostoslistan tuotteet eivät ole varattuina, vaikka ne olisi lisätty, joten joissakin tapauksissa ne saattavat valitettavasti olla loppuunmyytyjä.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="wishlist.add.to.list">
                 <source>wishlist.add.to.list</source>
-                <target>Shoppingliste</target>
+                <target>Ostoslista</target>
             </trans-unit>
             <trans-unit id="wishlist.placeholder.query">
                 <source>wishlist.placeholder.query</source>
-                <target>Tilføj vare</target>
+                <target>Lisää tuote</target>
             </trans-unit>
             <trans-unit id="wishlist.query.description">
                 <source>wishlist.query.description</source>
-                <target>Indtast de tre første bogstaver i stylens navn og vælg den ønskede style fra listen.</target>
+                <target>Anna kolme ensimmäistä kirjainta tuotteen nimestä ja valitse haluamasi tuote listalta.</target>
             </trans-unit>
             <trans-unit id="wishlist.select.size">
                 <source>wishlist.select.size</source>
-                <target>Størrelse</target>
+                <target>Koko</target>
             </trans-unit>
             <trans-unit id="wishlist.select.color">
                 <source>wishlist.select.color</source>
-                <target>Farve</target>
+                <target>Väri</target>
             </trans-unit>
             <trans-unit id="wishlist.number">
                 <source>wishlist.number</source>
@@ -602,11 +602,11 @@ Haluamme kuitenkin varmistaa, että tässä ei ole tapahtunut virhettä. Pyydäm
             </trans-unit>
             <trans-unit id="add.to.wishlist">
                 <source>add.to.wishlist</source>
-                <target>Tilføj til listen</target>
+                <target>Lisää listalle.</target>
             </trans-unit>
             <trans-unit id="wishlist.remove.all.items">
                 <source>wishlist.remove.all.items</source>
-                <target>Ryd listen</target>
+                <target>Tyhjennä lista</target>
             </trans-unit>
         </body>
     </file>

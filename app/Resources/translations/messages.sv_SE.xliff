@@ -140,7 +140,7 @@
             </trans-unit>
             <trans-unit id="store.address">
                 <source>store.address</source>
-                <target>POMPdeLUX Sverige AB • c/o POMPdeLUX ApS • Møgelhøj 8 • DK-8520 Lystrup • Org. nr. 556782-8602 • mail@pompdelux.se  • +46 8-6117103</target>
+                <target>POMPdeLUX Sverige AB • c/o POMPdeLUX ApS • Møgelhøj 8 • DK-8520 Lystrup • Org. nr. 556782-8602 • mailse@POMPdeLUX.com  • +46 8-6117103</target>
             </trans-unit>
             <trans-unit id="order.edit.global.notice">
                 <source>order.edit.global.notice</source>
@@ -161,7 +161,7 @@
                     Telefon: 08-6117103<br>
                     M&aring;ndag till torsdag kl. 9 - 16<br>
                     Fredag 9 - 14<br>
-                    Email: <a href="mailto:mail@pompdelux.se">mail@pompdelux.se</a><br>
+                    Email: <a href="mailto:mailse@POMPdeLUX.com">mailse@POMPdeLUX.com</a><br>
                     Lördag, söndag och danska helgdagar stängt.
                 ]]></target>
             </trans-unit>
@@ -174,7 +174,7 @@
                         <li>Møgelhøj 8</li>
                         <li>DK-8520 Lystrup</li>
                         <li>Org. nr. 556782-8602</li>
-                        <li><a href="mailto:mail@pompdelux.se">mail@pompdelux.se</a></li>
+                        <li><a href="mailto:mailse@POMPdeLUX.com">mailse@POMPdeLUX.com</a></li>
                         <li>+46 8-6117103</li><br>
 						<li>Returnering av varor: POMPdeLUX Sverige AB</li>
 						<li>c/o POMPdeLUX</li>

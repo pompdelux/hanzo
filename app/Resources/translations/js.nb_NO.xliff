@@ -401,7 +401,7 @@
             </trans-unit>
             <trans-unit id="wishlist.select.color">
                 <source>wishlist.select.color</source>
-                <target>Farve</target>
+                <target>Farge</target>
             </trans-unit>
             <trans-unit id="basket.latest.added">
                 <source>basket.latest.added</source>
