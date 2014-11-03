@@ -814,6 +814,31 @@ admin_tools_search_index_update:
     defaults:
         _controller: AdminBundle:Tools:updateSearchIndex
 
+admin_tools_clear_varnish:
+    pattern: /admin/tools/cache/clear-varnish
+    defaults:
+        _controller: AdminBundle:Tools:clearVarnishCache
+
+admin_tools_dibs_tools:
+    pattern: /admin/tools/dibs/{action}
+    defaults:
+        _controller: AdminBundle:Tools:dibsTools
+        action: ''
+admin_tools_flush_wishlists:
+    pattern: /admin/tools/wishlists/flush-all
+    defaults:
+        _controller: AdminBundle:Tools:wishlistsFlushAll
+
+admin_tools_purge_product_range:
+    pattern: /admin/tools/products/delete-range
+    defaults:
+        _controller: AdminBundle:Tools:purgeProductRange
+
+admin_tools_generate_product_mapping:
+    pattern: /admin/tools/products/generate-mapping
+    defaults:
+        _controller: AdminBundle:Tools:generateProductMapping
+
 # Image Categories Sort
 admin_product_image_category_add:
     pattern:  /admin/products/add-image-to-category/
@@ -832,22 +857,6 @@ admin_product_image_category_delete:
         _format: html|json
         image_id: \d+
         category_id: \d+
-
-admin_tools_clear_varnish:
-    pattern: /admin/tools/cache/clear-varnish
-    defaults:
-        _controller: AdminBundle:Tools:clearVarnishCache
-
-admin_tools_dibs_tools:
-    pattern: /admin/tools/dibs/{action}
-    defaults:
-        _controller: AdminBundle:Tools:dibsTools
-        action: ''
-admin_tools_flush_wishlists:
-    pattern: /admin/tools/wishlists/flush-all
-    defaults:
-        _controller: AdminBundle:Tools:wishlistsFlushAll
-
 
 admin_shipping_breaks:
     pattern: /admin/shipping/free-breaks/

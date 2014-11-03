@@ -12,6 +12,7 @@ services:
             - @event_dispatcher
             - @hanzo.propel_replicator
             - @hanzo.core.orders_service
+            - %kernel.root_dir%/config/products_id_map.php
         scope: request
 
     ax.out.checkout.listener:
