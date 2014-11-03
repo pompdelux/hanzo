@@ -1,0 +1,28 @@
+{% extends '::adminbase.html.twig' %}
+{% block content %}
+
+    <h1>Slet kollektion</h1>
+
+    {% for message in app.session.flashbag.get('notice') %}
+        <div class="alert alert-info">
+            {{ message }}
+        </div><br>
+    {% endfor %}
+
+    <p>Vælg den kollektion du vil slette.</p>
+    <p>Husk, du skal gøre det her for hvert land!</p>
+
+    <p class="alert alert-danger"><strong>Husk på</strong> at alle produkt, billeder, sorteringer og andre produktknytninger permanent slettets og ikke kan genskabes!</p>
+
+    <form action="{{ path('admin_tools_purge_product_range') }}" method="post" class="form-inline">
+        <select name="range" class="form-control">
+            <option value="">- vælg kollektion -</option>
+        {% for range in ranges %}
+            <option value="{{ range }}">{{ range }}</option>
+        {% endfor %}
+        </select>
+        <button type="submit" class="btn btn-danger">Slet skidtet</button>
+        <a href="{{ path('admin_tools') }}" class="btn btn-default">Ej, jeg smutter igen</a>
+    </form>
+
+{% endblock %}
