@@ -562,40 +562,40 @@ Hierna kun je gewoon doorgaan met winkelen.<br></p>
             </trans-unit>
             <trans-unit id="wishlist.add.label">
                 <source>wishlist.add.label</source>
-                <target>Opret shoppingliste</target>
+                <target>Mijn Shoppinglijst</target>
             </trans-unit>
             <trans-unit id="wishlist.add.description">
                 <source>wishlist.add.description</source>
                 <target><![CDATA[
-                    <p>Her kan du oprette en liste med de styles, du ønsker at bestille ved et Home Shopping arrangement eller Åbent Hus.</p>
+                    <p>Hier kun je een lijstje opstellen met de stijlen die je tijdens een Home Shopping arrangement of een Open Huis wilt bestellen. Je Shoppinglijst wordt automatisch opgeslagen.</p>
                     <ul>
-                        <li>Tryk på "Opret Shoppingliste". Din Shoppingliste får et unikt nummer, som din Shopping Advisor skal bruge.</li>
-                        <li>Tilføj de styles du ønsker at købe.</li>
-                        <li>Vis Shoppingliste nummeret til din Shopping Advisor, som behandler din ordre.</li>
-                        <li>Lagerbeholdning tjekkes, ordren gennemføres i samarbejde med din Shopping Advisor og herefter vil du modtage en ordrebekræftelse på din ordre.</li>
+                        <li>Klik op "Mijn shoppinglijst". Je Shoppinglijst krijgt een uniek nummer toebedeeld dat je aan je Shopping Advisor door moet geven.</li>
+                        <li>Voeg de stijlen toe die je wilt kopen.</li>
+                        <li>Laat het nummer van je Shoppinglijst aan je Shopping Advisor zien en de Shopping Advisor zal de bestelling voor je verwerken.</li>
+                        <li>Het systeem controleert de voorraad en samen met je Shopping Advisor plaats je de bestelling en je ontvangt daarna een orderbevestiging.</li>
                     </ul>
-                    <p>HUSK! Vær opmærksom på, at du først har afgivet din ordre, når din Shopping Advisor har indlæst dit Shoppingliste nummer, og du har fået en odrebekræftelse. Varene på din Shoppingliste er ikke reserveret selvom de er tilføjet, så der kan opstå tilfælde, hvor en vare desværre er udsolgt.</p>
+                    <p>LET OP! Je hebt je bestelling pas geplaatst als je Shopping Advisor het nummer van je shoppinglijst heeft ingevoerd en jij een orderbevestiging hebt ontvangen. De artikelen op je shoppinglijst zijn niet gereserveerd, al heb je ze aan je lijstje toegevoegd. Het kan dus helaas voorkomen dat een artikel uitverkocht is.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="wishlist.add.to.list">
                 <source>wishlist.add.to.list</source>
-                <target>Shoppingliste</target>
+                <target>Shoppinglijst</target>
             </trans-unit>
             <trans-unit id="wishlist.placeholder.query">
                 <source>wishlist.placeholder.query</source>
-                <target>Tilføj vare</target>
+                <target>Voeg een artikel toe</target>
             </trans-unit>
             <trans-unit id="wishlist.query.description">
                 <source>wishlist.query.description</source>
-                <target>Indtast de tre første bogstaver i stylens navn og vælg den ønskede style fra listen.</target>
+                <target>Typ de eerste drie letters van de naam van de stijl en selecteer dan de stijl op de lijst.</target>
             </trans-unit>
             <trans-unit id="wishlist.select.size">
                 <source>wishlist.select.size</source>
-                <target>Størrelse</target>
+                <target>Maat</target>
             </trans-unit>
             <trans-unit id="wishlist.select.color">
                 <source>wishlist.select.color</source>
-                <target>Farve</target>
+                <target>Kleur</target>
             </trans-unit>
             <trans-unit id="wishlist.number">
                 <source>wishlist.number</source>
@@ -603,11 +603,11 @@ Hierna kun je gewoon doorgaan met winkelen.<br></p>
             </trans-unit>
             <trans-unit id="add.to.wishlist">
                 <source>add.to.wishlist</source>
-                <target>Tilføj til listen</target>
+                <target>Voeg toe aan je lijstje</target>
             </trans-unit>
             <trans-unit id="wishlist.remove.all.items">
                 <source>wishlist.remove.all.items</source>
-                <target>Ryd listen</target>
+                <target>WIS JE LIJSTJE</target>
             </trans-unit>
         </body>
     </file>

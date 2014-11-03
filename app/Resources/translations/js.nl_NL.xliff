@@ -396,11 +396,11 @@
             </trans-unit>
             <trans-unit id="wishlist.select.size">
                 <source>wishlist.select.size</source>
-                <target>Størrelse</target>
+                <target>Maat</target>
             </trans-unit>
             <trans-unit id="wishlist.select.color">
                 <source>wishlist.select.color</source>
-                <target>Farve</target>
+                <target>Kleur</target>
             </trans-unit>
             <trans-unit id="basket.latest.added">
                 <source>basket.latest.added</source>

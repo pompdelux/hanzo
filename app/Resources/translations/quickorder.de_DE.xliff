@@ -44,19 +44,19 @@
             </trans-unit>
             <trans-unit id="wishlist.misses.header">
                 <source>wishlist.misses.header</source>
-                <target>Følgende produkter kan ikke tilføjes kurven da de ikke længere er på lager.</target>
+                <target>Die folgenden Produkte können nicht dem Warenkorb hinzugefügt werden, da diese leider ausverkauft sind.</target>
             </trans-unit>
             <trans-unit id="quickorder.wishlist_form.label">
                 <source>quickorder.wishlist_form.label</source>
-                <target>Hent Shoppingliste</target>
+                <target>Shoppingliste öffnen</target>
             </trans-unit>
             <trans-unit id="quickorder.wishlist_form.placeholder">
                 <source>quickorder.wishlist_form.placeholder</source>
-                <target>Shoppingliste nr.</target>
+                <target>Shoppingliste NR.</target>
             </trans-unit>
             <trans-unit id="quickorder.wishlist_form.button_label">
                 <source>quickorder.wishlist_form.button_label</source>
-                <target>Hent</target>
+                <target>Öffnen</target>
             </trans-unit>
         </body>
     </file>

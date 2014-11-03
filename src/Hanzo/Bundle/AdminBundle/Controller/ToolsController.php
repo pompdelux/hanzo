@@ -5,6 +5,7 @@ namespace Hanzo\Bundle\AdminBundle\Controller;
 use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
 use Hanzo\Model\OrdersQuery;
+use Hanzo\Model\ProductsQuery;
 use Hanzo\Model\WishlistsQuery;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
@@ -285,5 +286,87 @@ class ToolsController extends CoreController
         }
 
         return $return;
+    }
+
+    /**
+     * Delete a whole product collection. Requires confirmation.
+     *
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
+     * @throws \PropelException
+     */
+    public function purgeProductRangeAction(Request $request)
+    {
+        if ('POST' == $request->getMethod()) {
+            if ('' == $request->request->get('range')) {
+                $this->container->get('session')->getFlashBag()->set('notice', 'Liiige vælge en kollektion tak.');
+
+                return $this->redirect($this->generateUrl('admin_tools_purge_product_range'));
+            }
+
+            if (false === $request->request->get('confirm', false)) {
+                return $this->render('AdminBundle:Tools:confirm.html.twig', [
+                    'action'   => 'admin_tools_purge_product_range',
+                    'data'     => ['range' => $request->request->get('range')],
+                    'database' => $request->getSession()->get('database'),
+                    'message'  => 'Er du sikker på du vil slette kollektionen "'.$request->request->get('range').'" ?<br><br> - alle produkt, billeder, sorteringer og andre produktknytninger bliver slettet og kan <em>ikke</em> genskabes!',
+                ]);
+            }
+
+            $range = $request->request->get('range');
+
+            ProductsQuery::create()
+                ->filterByRange($range)
+                ->delete($this->getDbConnection());
+
+            $this->container->get('session')->getFlashBag()->set('notice', 'Kollektionen "'.$range.'" er nu slettet, dvs - alle produkter, billeder, sorteringer og andre databaseknytninger er væk og kan ikke genskabes!');
+
+            return $this->redirect($this->generateUrl('admin_tools_purge_product_range'));
+        }
+
+        $ranges = [];
+        $result = ProductsQuery::create()
+            ->select('Range')
+            ->distinct()
+            ->find($this->getDbConnection());
+
+        foreach ($result as $range) {
+            $ranges[$range] = $range;
+        }
+
+        return $this->render('AdminBundle:Tools:purgeProductRange.html.twig', [
+            'database' => $request->getSession()->get('database'),
+            'ranges'   => $ranges,
+        ]);
+    }
+
+    /**
+     * Generate product mapping used in cross-database product imports.
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws \PropelException
+     */
+    public function generateProductMappingAction()
+    {
+        $file = $this->container->getParameter('kernel.root_dir').'/config/products_id_map.php';
+
+        $products = ProductsQuery::create()
+            ->select(['Id', 'Sku'])
+            ->orderBySku()
+            ->find();
+
+        $data = [];
+        foreach ($products as $product) {
+            $data[strtolower($product['Sku'])] = $product['Id'];
+        }
+
+        $data = "<?php /* generated: " . date('Y-m-d H:i:s') . " */\n\$products_id_map = " . var_export($data, 1) .";\n";
+        file_put_contents($file, $data);
+
+        $this->container->get('session')->getFlashBag()->set('notice', 'Produkt mapping filen er nu blevet opdateret.');
+
+        return $this->redirect($this->generateUrl('admin_tools'));
     }
 }
