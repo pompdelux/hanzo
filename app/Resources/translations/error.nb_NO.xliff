@@ -22,7 +22,7 @@
                 <source>500.description</source>
                 <target><![CDATA[
                     <p>Det ser ut til at det er skjedd en feil. Forsøk å oppdatere siden.</p>
-                    <p>Hvis du fortsatt opplever feil på siden, kan du kontakte kundeservice på telefon (+47) 2274 2600 eller sende oss en e-post på <a href="mailto:mail@pompdelux.no">mail@pompdelux.no</a>. Vi beklager feilen!</p>
+                    <p>Hvis du fortsatt opplever feil på siden, kan du kontakte kundeservice på telefon (+47) 2274 2600 eller sende oss en e-post på <a href="mailto:mailno@POMPdeLUX.com">mailno@POMPdeLUX.com</a>. Vi beklager feilen!</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="403.title">
@@ -33,7 +33,7 @@
                 <source>403.description</source>
                 <target><![CDATA[
                     <p>Du er havnet i avdelingen for tekniske problemer, vi beklager.</p>
-                    <p>Hvis du fortsatt opplever feil på siden, kan du kontakte kundeservice på telefon (+47) 2274 2600 eller sende oss en e-post på <a href="mailto:mail@pompdelux.no">mail@pompdelux.no</a>. Vi beklager feilen!</p>
+                    <p>Hvis du fortsatt opplever feil på siden, kan du kontakte kundeservice på telefon (+47) 2274 2600 eller sende oss en e-post på <a href="mailto:mailno@POMPdeLUX.com">mailno@POMPdeLUX.com</a>. Vi beklager feilen!</p>
                 ]]></target>
             </trans-unit>
         </body>
