@@ -17,6 +17,7 @@ use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\Products;
 use Hanzo\Model\ProductsI18n;
 use Hanzo\Model\ProductsI18nQuery;
+use Hanzo\Model\ProductsPeer;
 use Hanzo\Model\ProductsQuery;
 use Hanzo\Model\Wishlists;
 use Hanzo\Model\WishlistsLines;
@@ -115,6 +116,10 @@ class WishlistController extends CoreController
         $type = 'add';
 
         $productId = $request->request->get('product_id');
+        if (empty($productId)) {
+            $product = ProductsPeer::findFromRequest($request);
+            $productId = $product->getId();
+        }
 
         $item = WishlistsLinesQuery::create()
             ->filterByProductsId($productId)
