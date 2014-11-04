@@ -84,6 +84,20 @@
         {{ 'wishlist.footer.description'|trans({}, 'account')|raw }}
     </article>
 
+    <div class="footer grid_8 alpha omega js-hanzo-module" data-module-name="WishlistMailer">
+        <a href="" class="button"><i class="fa fa-envelope"></i> Send listen til en ven</a>
+
+        <div id="js-send-wishlist" class="off">
+            <h4>{{ 'wishlist.send_list.header'|trans({}, 'account') }}</h4>
+            <p>{{ 'wishlist.send_list.description'|trans({}, 'account') }}</p>
+            <div class="message off"></div>
+            <form action="" class="send-wishlist">
+                <input name="to_address" placeholder="{{ 'wishlist.send_list.placeholder'|trans({}, 'account') }}">
+                <button type="submit" class="button right">{{ 'wishlist.send_list.button_label'|trans({}, 'account') }} <i class="fa fa-arrow-right"></i></button>
+            </form>
+        </div>
+    </div>
+
 <script type="text/html" id="wishlistItemTpl">
     <article
             data-product-id="<?= data.id ?>"

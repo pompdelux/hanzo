@@ -624,6 +624,35 @@ Herefter kan du nemt shoppe videre.</p><br>
                     <strong>HUSK!</strong> Vær opmærksom på, at du først har afgivet din ordre, når din Shopping Advisor har indlæst dit Shoppingliste nummer, og du har fået en ordrebekræftelse. Varerne på din Shoppingliste er ikke reserveret selvom de er tilføjet, så der kan opstå tilfælde, hvor en vare desværre er udsolgt.
                 ]]></target>
             </trans-unit>
+
+            <trans-unit id="wishlist.send_list.header">
+                <source>wishlist.send_list.header</source>
+                <target>Send shoppinglisten til en du kender</target>
+            </trans-unit>
+            <trans-unit id="wishlist.send_list.description">
+                <source>wishlist.send_list.description</source>
+                <target>jadi jadi jadi ja ... jadi jadi jadi ja ... jadi jadi jadi ja ... jadi jadi jadi ja ...</target>
+            </trans-unit>
+            <trans-unit id="wishlist.send_list.placeholder">
+                <source>wishlist.send_list.placeholder</source>
+                <target>Modtager email adresse</target>
+            </trans-unit>
+            <trans-unit id="wishlist.send_list.button_label">
+                <source>wishlist.send_list.button_label</source>
+                <target>Send</target>
+            </trans-unit>
+            <trans-unit id="wishlist.invalid_to_address">
+                <source>wishlist.invalid_to_address</source>
+                <target>Ugyldig emailaddresse</target>
+            </trans-unit>
+            <trans-unit id="wishlist.send">
+                <source>wishlist.send</source>
+                <target>Shoppinglisten er nu sendt.</target>
+            </trans-unit>
+            <trans-unit id="">
+                <source></source>
+                <target></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -2175,6 +2175,13 @@ aside.js-slider h3 span.open {
   border: 0;
   margin-top: 10px;
 }
+#body-wishlist .send-wishlist p {
+  margin-bottom: 10px;
+}
+#body-wishlist .send-wishlist input {
+  max-width: 96%;
+  margin-bottom: 10px;
+}
 
 #body-account article .grid_6 {
   display: table-footer-group;
