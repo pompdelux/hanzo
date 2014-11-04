@@ -310,6 +310,10 @@
                 <source>basket.latest.added</source>
                 <target>Product added</target>
             </trans-unit>
+            <trans-unit id="product.added.to.wishlist">
+                <source>product.added.to.wishlist</source>
+                <target>Produktet er nu lagt på din ønskeliste.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
