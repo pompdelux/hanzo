@@ -989,6 +989,12 @@ form.buy h4.bordered {
 form.buy #dialoug-message {
   width: 85%;
 }
+form.buy button {
+  display: block;
+  position: absolute;
+  top: 155px;
+  right: 0;
+}
 
 .latest-seen-poducts a,
 .productimage-small a,
