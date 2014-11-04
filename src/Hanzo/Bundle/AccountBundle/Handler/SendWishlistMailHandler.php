@@ -54,7 +54,7 @@ class SendWishlistMailHandler
         $this->mailService->setTo($toAddress);
         $this->mailService->setMessage('wishlist', [
             'listId' => $listId,
-            'owner'  => $customer->getName(),
+            'name'  => $customer->getName(),
             'date'   => date('d/m-Y'),
             'link'   => $this->router->generate('_account_wishlist_load', ['listId' => $listId], true),
         ]);
