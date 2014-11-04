@@ -19,29 +19,7 @@
             <button type="submit" class="button">{{ 'quickorder.wishlist_form.button_label'|trans({}, 'quickorder') }}</button>
         </form>
 
-        {% if wishlist_misses|length %}
-            <div class="wishlist-misses">
-                <h4>{{ 'wishlist.misses.header'|trans({}, 'quickorder') }}</h4>
-                <table>
-                    <thead>
-                    <tr>
-                        <th> </th>
-                        <th>{{ "size"|trans }}</th>
-                        <th>{{ "color"|trans }}</th>
-                        <th>{{ "quantity"|trans }}</th>
-                    </tr>
-                    </thead>
-                    {% for item in wishlist_misses %}
-                    <tr>
-                        <td>{{ item.title }}</td>
-                        <td>{{ item.size }}</td>
-                        <td>{{ item.color }}</td>
-                        <td>{{ item.quantity }}</td>
-                    </tr>
-                    {% endfor %}
-                </table>
-            </div>
-        {% endif %}
+        {{ render(controller('AccountBundle:Wishlist:listMissingProducts', {'session': app.session})) }}
 
         <form action="{{ url('basket_add', {}, true) }}" method="post" class="quickorder">
             <label>{{ 'quickorder.master.placeholder'|trans({}, 'quickorder') }}<br>

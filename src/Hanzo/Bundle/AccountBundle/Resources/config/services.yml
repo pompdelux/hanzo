@@ -16,3 +16,9 @@ services:
         arguments:  [@service_container, @router]
         tags:
             - { name: 'monolog.logger', channel: 'security' }
+
+    hanzo.send_wishlist_handler:
+        class: Hanzo\Bundle\AccountBundle\Handler\SendWishlistMailHandler
+        arguments:
+          mailService: @mail_manager
+          router: @router

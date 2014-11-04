@@ -98,7 +98,7 @@ class Basket
         try {
             $this->order->save();
             $this->eventDispatcher->dispatch('basket.product.post_add', new BasketEvent($this->order, $product, $quantity));
-        } catch(\PropelException $e) {
+        } catch (\PropelException $e) {
             throw new InvalidSessionException('user.session.invalid');
         }
 
@@ -106,6 +106,7 @@ class Basket
     }
 
     /**
+     * @return int
      * @throws \Exception
      * @throws \PropelException
      */
@@ -116,6 +117,7 @@ class Basket
         }
 
         $this->order->clearOrdersLiness();
+
         return $this->order->save();
     }
 }
