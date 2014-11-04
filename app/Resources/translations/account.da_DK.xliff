@@ -624,7 +624,6 @@ Herefter kan du nemt shoppe videre.</p><br>
                     <strong>HUSK!</strong> Vær opmærksom på, at du først har afgivet din ordre, når din Shopping Advisor har indlæst dit Shoppingliste nummer, og du har fået en ordrebekræftelse. Varerne på din Shoppingliste er ikke reserveret selvom de er tilføjet, så der kan opstå tilfælde, hvor en vare desværre er udsolgt.
                 ]]></target>
             </trans-unit>
-
             <trans-unit id="wishlist.send_list.header">
                 <source>wishlist.send_list.header</source>
                 <target>Send shoppinglisten til en du kender</target>
@@ -648,10 +647,6 @@ Herefter kan du nemt shoppe videre.</p><br>
             <trans-unit id="wishlist.send">
                 <source>wishlist.send</source>
                 <target>Shoppinglisten er nu sendt.</target>
-            </trans-unit>
-            <trans-unit id="">
-                <source></source>
-                <target></target>
             </trans-unit>
         </body>
     </file>
