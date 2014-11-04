@@ -326,6 +326,26 @@
                     dialoug.notice(Translator.trans('form.buy.choose.first'), 'error', 3000, $('.button', $form).parent());
                 }
             });
+
+            $(document).on('click', '.buy button', function(event) {
+                event.preventDefault();
+
+                var $trigger = $(this);
+                var $form = $trigger.closest('form');
+                if ('' == $('.color', $form).val()) {
+                    return;
+                }
+
+                var xhr = $.post($trigger.data('href'), $form.serialize());
+
+                xhr.done(function() {
+                    dialoug.notice(Translator.trans('product.added.to.wishlist'), 'info', 3000);
+                });
+
+                xhr.fail(function() {
+                    console.log(arguments);
+                });
+            });
         };
 
 
