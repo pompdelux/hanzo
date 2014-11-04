@@ -13,13 +13,14 @@ ws_product_video:
         version: v1
 
 ws_google_maps_near_you:
-    pattern: /rest/{version}/gm/near_you/{type}/{latitude}/{longitude}
+    pattern: /rest/{version}/gm/near_you/{type}/{latitude}/{longitude}/{showAll}
     defaults:
         _controller: WebServicesBundle:RestGoogle:nearYou
         version: v1
         type: 'near'
         latitude: 0.00
         longitude: 0.00
+        showAll: 0
     requirements:
         type: '(near|hus)'
 

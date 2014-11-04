@@ -40,7 +40,8 @@ class ByLookController extends CoreController
         if ($this->getFormat() == 'json') {
             $data = $this->getCache($cache_id);
             if (!$data) {
-                $data = CategoriesPeer::getStylesByCategoryId($category_id, $pager);
+                $product_range = $this->container->get('hanzo_product.range')->getCurrentRange();
+                $data = CategoriesPeer::getStylesByCategoryId($category_id, $pager, $product_range);
                 $this->setCache($cache_id, $data, 5);
             }
 
@@ -59,7 +60,8 @@ class ByLookController extends CoreController
         $html = $this->getCache($cache_id);
 
         if (!$html) {
-            $data = CategoriesPeer::getStylesByCategoryId($category_id, $pager);
+            $product_range = $this->container->get('hanzo_product.range')->getCurrentRange();
+            $data = CategoriesPeer::getStylesByCategoryId($category_id, $pager, $product_range);
             $data['products'] = $this->setAlt($data['products'], $category_id);
             $cms_page = CmsQuery::create()->findOneById($cms_id);
 

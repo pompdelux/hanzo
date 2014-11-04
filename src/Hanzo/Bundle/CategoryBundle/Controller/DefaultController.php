@@ -321,11 +321,12 @@ class DefaultController extends CoreController
 
         $domain_id = $hanzo->get('core.domain_id');
         $show_by_look = (bool) ($show === 'look');
-
+        $product_range = $this->container->get('hanzo_product.range')->getCurrentRange();
 
         $result = ProductsImagesCategoriesSortQuery::create()
             ->joinWithProducts()
             ->useProductsQuery()
+                ->filterByRange($product_range)
                 ->joinProductsI18n()
                 ->where('products.MASTER IS NULL')
                 // ->filterByIsOutOfStock(FALSE)

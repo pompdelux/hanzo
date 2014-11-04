@@ -1,0 +1,14 @@
+<script type="text/javascript">
+    var geo_zipcode_params = {
+        type : "near",
+        country : "{{ country }}"
+    };
+</script>
+<div>
+    {% if show_all is defined and show_all %}
+        {{ consultants_near_you('near', 'true') }}
+    {% else %}
+        <p>{{ 'advisor.locater_form.label'|trans({}, 'events') }} {{ geo_zip_code_form('near', country) }}</p>
+        {{ consultants_near_you() }}
+    {% endif %}
+</div>

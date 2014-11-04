@@ -73,6 +73,7 @@ class ByColourController extends CoreController
             $products = array();
             $masters = ProductsToCategoriesQuery::create()
                 ->useProductsQuery()
+                    ->filterByRange($this->container->get('hanzo_product.range')->getCurrentRange())
                     ->filterBySku($ignores, Criteria::NOT_IN)
                     ->filterByMaster(null, Criteria::ISNULL)
                     ->useProductsDomainsPricesQuery()

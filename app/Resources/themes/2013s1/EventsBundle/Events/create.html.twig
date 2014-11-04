@@ -25,11 +25,13 @@
             <div id="find-customer">
             {% if 'da_DK' == app.request.locale %}
                 <form id="find-customer-by-phone-form">
-                    <input type="text" id="find-customer-by-phone" placeholder="{{ 'events.find_customer_by_phone.placeholder'|trans({}, 'events') }}"><input type="submit" id="find-customer-by-phone-button" value="{{ 'events.find_customer_by_phone.button'|trans({}, 'events') }}">
+                    <input type="text" id="find-customer-by-phone" placeholder="{{ 'events.find_customer_by_phone.placeholder'|trans({}, 'events') }}">
+                    <input type="submit" class="button" id="find-customer-by-phone-button" value="{{ 'events.find_customer_by_phone.button'|trans({}, 'events') }}">
                 </form>
             {% endif %}
                 <form id="find-customer-by-email-form">
-                    <input type="text" id="find-customer-by-email" placeholder="{{ 'events.find_customer_by_email.placeholder'|trans({}, 'events') }}"><input type="submit" id="find-customer-by-email-button" value="{{ 'events.find_customer_by_email.button'|trans({}, 'events') }}">
+                    <input type="text" id="find-customer-by-email" placeholder="{{ 'events.find_customer_by_email.placeholder'|trans({}, 'events') }}">
+                    <input type="submit" class="button" id="find-customer-by-email-button" value="{{ 'events.find_customer_by_email.button'|trans({}, 'events') }}">
                 </form>
             </div>
             <form action="{{ path('events_create', {'id' : id}) }}" method="post" {{ form_enctype(form) }} id="event-edit-form" class="create full-width" novalidate>
@@ -52,7 +54,43 @@
 <script src="/fx/scripts/jquery-ui-timepicker-addon.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
-        $('.datetimepicker').datetimepicker();
+        var $startEventDate = $('#events_event_date');
+        var $endEventDate   = $('#events_event_end_time');
+        var $form           = $endEventDate.closest('form');
+
+        $startEventDate.prop('readonly', true);
+        $endEventDate.prop('readonly', true);
+
+        $.timepicker.datetimeRange(
+            $startEventDate,
+            $endEventDate, {
+                minDate     : new Date("{{ 'today 1am'|date('r') }}"),
+                minInterval : (1000*60*60), // 1hr
+                stepMinute  : 15,
+                controlType : 'select'
+        });
+
+        if ('HUS' !== $('#events_type', $form).val()) {
+            var $e;
+
+            $e = $('#events_event_end_time', $form);
+            $e.val('');
+            $e.closest('div').addClass('off');
+
+            $e = $('#events_rsvp_type', $form);
+            $e.val('');
+            $e.closest('div').addClass('off');
+
+            $e = $('#events_public_note', $form);
+            $e.val('');
+            $e.closest('div').addClass('off');
+        }
+
+        $('#events_type', $form).change(function() {
+            $('#events_event_end_time', $form).closest('div').toggleClass('off');
+            $('#events_rsvp_type', $form).closest('div').toggleClass('off');
+            $('#events_public_note', $form).closest('div').toggleClass('off');
+        });
     });
 </script>
 {% endblock %}

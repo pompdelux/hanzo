@@ -4,3 +4,33 @@ services:
         arguments: [ @mail_manager, @translator ]
         tags:
             - { name: kernel.event_listener, event: order.summery.finalize, method: onFinalize, priority: 10 }
+
+    hanzo.event.mailer:
+        class: Hanzo\Bundle\EventsBundle\Helpers\EventMailer
+        arguments:
+            mailer: @mail_manager
+            router: @router.default
+
+# form types
+
+    hanzo.event.form_type.event:
+        class: Hanzo\Bundle\EventsBundle\Form\Type\EventsType
+        tags:
+            - { name: form.type, alias: events }
+
+    hanzo.event.form_type.rsvp:
+        class: Hanzo\Bundle\EventsBundle\Form\Type\EventsRsvpType
+        arguments:
+            translator: @translator
+        tags:
+            - { name: form.type, alias: events_rsvp }
+
+    hanzo.event.form_type.tell_a_friend:
+        class: Hanzo\Bundle\EventsBundle\Form\Type\EventsTellAFriendType
+        tags:
+            - { name: form.type, alias: events_tell_a_friend }
+
+    hanzo.event.form_type.participant:
+        class: Hanzo\Bundle\EventsBundle\Form\Type\EventsParticipantType
+        tags:
+            - { name: form.type, alias: events_participant }

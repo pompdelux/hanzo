@@ -3,18 +3,10 @@
 namespace Hanzo\Bundle\ServiceBundle\Services;
 
 use Criteria;
-
-use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
-
-use Hanzo\Model\EventsQuery;
 use Hanzo\Model\EventsParticipantsQuery;
-use Hanzo\Model\AddressesPeer;
-use Hanzo\Model\MessagesI18nQuery;
-
 use Smesg\Adapter\PhpStreamAdapter;
 use Smesg\Provider\UnwireProvider;
-
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 
 /**

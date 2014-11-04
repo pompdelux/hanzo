@@ -115,6 +115,8 @@ class DefaultController extends CoreController
                 WHERE
                     p.size IN ('".implode("','", $sizes[$size])."')
                 AND
+                    p.range = '".$this->container->get('hanzo_product.range')->getCurrentRange()."'
+                AND
                     p.is_out_of_stock = 0
                 AND
                     pdp.domains_id = {$domain_id}
@@ -164,6 +166,8 @@ class DefaultController extends CoreController
                     )
                 WHERE
                     pdp.domains_id = {$domain_id}
+                AND
+                    p.range = '".$this->container->get('hanzo_product.range')->getCurrentRange()."'
                 AND
                     p.is_out_of_stock = 0
                 AND
@@ -347,6 +351,7 @@ class DefaultController extends CoreController
                 {$where}
                 )
                 AND p.master IS NULL
+                AND p.range = '".$this->container->get('hanzo_product.range')->getCurrentRange()."'
             GROUP BY
                 pi.image
             ORDER BY
