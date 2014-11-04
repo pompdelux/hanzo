@@ -69,7 +69,8 @@
         "web/fx/scripts/oldie.js",
         "web/fx/scripts/App.js",
         "web/fx/scripts/App.ProductFinder.js",
-        "web/fx/scripts/App.WishlistBuilder.js"
+        "web/fx/scripts/App.WishlistBuilder.js",
+        "web/fx/scripts/App.WishlistMailer.js"
     ],
 
     "admin_js": [
