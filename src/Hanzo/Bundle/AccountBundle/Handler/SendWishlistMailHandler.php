@@ -59,8 +59,8 @@ class SendWishlistMailHandler
             'link'   => $this->router->generate('_account_wishlist_load', ['listId' => $listId], true),
         ]);
 
-        $this->mailService->setFrom(['events@pompdelux.com' => $customer->getName() . ' (via POMPdeLUX)']);
-        $this->mailService->setSender('events@pompdelux.com', 'POMPdeLUX', true);
+        $this->mailService->setFrom(['pompdelux@pompdelux.com' => $customer->getName() . ' (via POMPdeLUX)']);
+        $this->mailService->setSender('pompdelux@pompdelux.com', 'POMPdeLUX', true);
         $this->mailService->setReplyTo($customer->getEmail(), $customer->getName());
 
         return $this->mailService->send();
