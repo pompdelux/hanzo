@@ -11,6 +11,11 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\DependencyInjection\Container;
 
+/**
+ * Class LogoutSuccessHandler
+ *
+ * @package Hanzo\Bundle\AccountBundle\Handler
+ */
 class LogoutSuccessHandler implements LogoutSuccessHandlerInterface
 {
     /**
@@ -29,7 +34,8 @@ class LogoutSuccessHandler implements LogoutSuccessHandlerInterface
     /**
      * handle logout success response
      *
-     * @param  Request $request
+     * @param Request $request
+     *
      * @return RedirectResponse
      */
     public function onLogoutSuccess(Request $request)
@@ -48,6 +54,6 @@ class LogoutSuccessHandler implements LogoutSuccessHandlerInterface
         $url = $this->router->generate($route, ['_locale' => $request->getLocale()]);
         $response = new RedirectResponse($url);
 
-    	return $response;
-	}
+        return $response;
+    }
 }
