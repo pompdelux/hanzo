@@ -116,4 +116,17 @@ _account_wishlist_remove_all:
     path: /account/wishlist/delete-all-items
     defaults:
         _controller: AccountBundle:Wishlist:removeAllItems
+
+_account_wishlist_load:
+    path: /wishlist/load/{listId}
+    defaults:
+        _controller: AccountBundle:Wishlist:wishListToBasket
+        listId: null
+
+_account_wishlist_send:
+    path: /account/wishlist/send
+    defaults:
+        _controller: AccountBundle:Wishlist:sendWishlist
+        listId: null
+
 # ----------------

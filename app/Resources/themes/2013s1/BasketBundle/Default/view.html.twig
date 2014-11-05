@@ -1,22 +1,22 @@
 {% extends layout %}
-
 {% block content %}
 
-  <header class="grid_8 alpha omega">
-      <hgroup>
-        {{ 'basket.header'|trans({}, 'checkout')|raw }}
-      </hgroup>
-  </header>
+    <header class="grid_8 alpha omega">
+        <hgroup>
+            {{ 'basket.header'|trans({}, 'checkout')|raw }}
+        </hgroup>
+    </header>
 
-  <h3 class="upper">{{ "basket"|trans({}, 'checkout') }}</h3>
+    <h3 class="upper">{{ "basket"|trans({}, 'checkout') }}</h3>
 
-  {% for message in app.session.flashbag.get('notice') %}
-  <div class="message notice">
-    {{ message|trans({}, 'checkout') }}
-  </div>
-  {% endfor %}
+    {% for message in app.session.flashbag.get('notice') %}
+        <div class="message notice">
+            {{ message|trans({}, 'checkout') }}
+        </div>
+    {% endfor %}
 
-  {{ include('BasketBundle:Default:block.html.twig') }}
+    {{ render(controller('AccountBundle:Wishlist:listMissingProducts', {'session': app.session})) }}
+    {{ include('BasketBundle:Default:block.html.twig') }}
 
 {% endblock %}
 
@@ -27,17 +27,17 @@
  #}
 
 {% block javascript %}
-  {% if delivery_date > 0 %}
-  <script type="text/javascript">
-  $(function () {
+{% if delivery_date > 0 %}
+<script type="text/javascript">
+$(function () {
     var $button = $(".buttons a.button.proceed");
     $button.hide();
-    dialoug.confirm('Notice', Translator.trans('late.delivery.notice', { 'date' : '{{ delivery_date|date('d-m-Y') }}' }), function(choice) {
-      if (choice == 'ok') {
-        $button.show();
-      }
+    dialoug.confirm('Notice', Translator.trans('late.delivery.notice', {'date': '{{ delivery_date|date('d-m-Y') }}'}), function (choice) {
+        if (choice == 'ok') {
+            $button.show();
+        }
     });
-  });
-  </script>
-  {% endif %}
+});
+</script>
+{% endif %}
 {% endblock javascript %}

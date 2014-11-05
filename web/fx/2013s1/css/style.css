@@ -1303,6 +1303,12 @@ form.buy h4.bordered {
 form.buy #dialoug-message {
   width: 85%;
 }
+form.buy button {
+  display: block;
+  position: absolute;
+  top: 155px;
+  right: 0;
+}
 
 .latest-seen-poducts a,
 .productimage-small a,
@@ -4102,6 +4108,13 @@ aside.js-slider h3 span.open {
 #body-wishlist .footer {
   border: 0;
   margin-top: 10px;
+}
+#body-wishlist .send-wishlist p {
+  margin-bottom: 10px;
+}
+#body-wishlist .send-wishlist input {
+  max-width: 96%;
+  margin-bottom: 10px;
 }
 
 /**
