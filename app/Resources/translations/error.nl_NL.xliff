@@ -22,7 +22,7 @@
                 <source>500.description</source>
                 <target><![CDATA[
                     <p>Er ging iets mis. Probeer de pagina nogmaals te laden.</p>
-                    <p>Gaat er nog steeds iets mis met de pagina, dan kun je contact opnemen met de klantenservice via telefoonnummer 085-3001100, of ons een e-mail sturen via <a href="mailto:mail@pompdelux.nl">mail@pompdelux.nl</a>. Onze excuses voor het ongemak!</p>
+                    <p>Gaat er nog steeds iets mis met de pagina, dan kun je contact opnemen met de klantenservice via telefoonnummer 085-3001100, of ons een e-mail sturen via <a href="mailto:mailnl@POMPdeLUX.com">mailnl@POMPdeLUX.com</a>. Onze excuses voor het ongemak!</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="403.title">
@@ -33,7 +33,7 @@
                 <source>403.description</source>
                 <target><![CDATA[
                     <p>Er ging iets mis. Probeer de pagina nogmaals te laden.</p>
-                    <p>Gaat er nog steeds iets mis met de pagina, dan kun je contact opnemen met de klantenservice via telefoonnummer 085-3001100, of ons een e-mail sturen via <a href="mailto:mail@pompdelux.nl">mail@pompdelux.nl</a>. Onze excuses voor het ongemak!</p>
+                    <p>Gaat er nog steeds iets mis met de pagina, dan kun je contact opnemen met de klantenservice via telefoonnummer 085-3001100, of ons een e-mail sturen via <a href="mailto:mailnl@POMPdeLUX.com">mailnl@POMPdeLUX.com</a>. Onze excuses voor het ongemak!</p>
                 ]]></target>
             </trans-unit>
         </body>
