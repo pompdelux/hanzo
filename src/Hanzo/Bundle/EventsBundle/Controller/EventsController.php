@@ -1003,17 +1003,6 @@ class EventsController extends CoreController
                 $order->setAttribute('is_hostess_order', 'event', true);
             }
 
-            $attributes = $order->getAttributes();
-
-            if (isset($attributes->wishlist, $attributes->wishlist->id)) {
-                $customersId = WishlistsQuery::create()
-                    ->select('customers_id')
-                    ->findOneById($attributes->wishlist->id);
-
-                $order->setCustomersId($customersId);
-                $goto = '_checkout';
-            }
-
             $order->save();
         }
 
