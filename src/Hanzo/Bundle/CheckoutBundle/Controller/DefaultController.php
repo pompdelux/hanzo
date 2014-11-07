@@ -34,6 +34,7 @@ class DefaultController extends CoreController
      */
     public function indexAction()
     {
+Tools::log('IF YOU SEE THIS, REMOVE THE ERROR LOGGER - DETECTING DEAD CODE');
         $order = OrdersPeer::getCurrent(true);
 
         if ( ($order->isNew() === true) || ($order->getTotalQuantity(true) == 0)) {
