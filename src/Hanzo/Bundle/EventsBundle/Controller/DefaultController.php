@@ -4,6 +4,7 @@ namespace Hanzo\Bundle\EventsBundle\Controller;
 
 use Criteria;
 
+use Hanzo\Model\WishlistsQuery;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -45,30 +46,40 @@ class DefaultController extends CoreController
         $countries = CountriesPeer::getAvailableDomainCountries();
 
         // If order is for the hostess, find her and use the Customer
+        $presetCustomer = false;
         $isHostess = $order->isHostessOrder();
 
         if ($isHostess === true) {
             $event = EventsQuery::create()
                 ->filterById($order->getEventsId())
-                ->findOne()
-            ;
+                ->findOne();
 
             if ($event->getCustomersId()) {
                 $customerId = $event->getCustomersId();
+                $presetCustomer = true;
             } else {
                 $isHostess = false;
             }
+        } else {
+            $attributes = $order->getAttributes();
+
+            if (isset($attributes->wishlist, $attributes->wishlist->id)) {
+                $customerId = WishlistsQuery::create()
+                    ->select('customers_id')
+                    ->findOneById($attributes->wishlist->id);
+
+                $presetCustomer = true;
+            }
         }
 
-        if ('POST' == $request->getMethod() || $isHostess) {
+        if ('POST' == $request->getMethod() || $presetCustomer) {
             if ($customerId) {
                 $customer = CustomersQuery::create()
                     ->joinWithAddresses()
                     ->useAddressesQuery()
                         ->filterByType('payment')
                     ->endUse()
-                    ->findOneById($customerId)
-                ;
+                    ->findOneById($customerId);
 
                 if ($customer instanceof Customers) {
                     $pwd               = $customer->getPassword();
@@ -111,8 +122,8 @@ class DefaultController extends CoreController
                 if ($email != $formEmail) {
                     $c = CustomersQuery::create()
                         ->filterById($customer->getId(), Criteria::NOT_EQUAL)
-                        ->findOneByEmail($formEmail)
-                    ;
+                        ->findOneByEmail($formEmail);
+
                     if ($c instanceof Customers) {
                         $form->addError(new FormError('email.exists'));
                     }
@@ -142,8 +153,8 @@ class DefaultController extends CoreController
                     $customer->setPasswordClear($pwd);
                 }
 
-                $address->setFirstName( $customer->getFirstName() );
-                $address->setLastName( $customer->getLastName() );
+                $address->setFirstName($customer->getFirstName());
+                $address->setLastName($customer->getLastName());
 
                 $customer->save();
                 $address->save();
