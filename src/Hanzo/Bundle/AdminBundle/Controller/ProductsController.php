@@ -1183,7 +1183,10 @@ class ProductsController extends CoreController
         foreach ($products as $product) {
             $current    = '';
             $sku        = $product->getSku();
-            $skus[$sku] = $product->getId();
+            $skus[$sku] = [
+                'id'         => $product->getId(),
+                'marked_out' => $product->getIsOutOfStock()
+            ];
 
             foreach ($stock->get($product, true) as $key => $level) {
                 if ('total' === $key) {
@@ -1221,13 +1224,14 @@ class ProductsController extends CoreController
         }
 
         // we add any products not on stock to show the full stock/reservation "picture" for a given style
-        foreach ($skus as $sku => $productId) {
+        foreach ($skus as $sku => $product) {
             if (empty($skusInStock[$sku])) {
                 $items[] = [
                     'sku'          => $sku,
                     'date'         => '-',
                     'stock'        => 0,
-                    'reservations' => $stock->getProductReservations($productId),
+                    'reservations' => $stock->getProductReservations($product['id']),
+                    'marked_out'   => ($product['marked_out'] ? 'Ja' : 'Nej'),
                 ];
             }
         }
