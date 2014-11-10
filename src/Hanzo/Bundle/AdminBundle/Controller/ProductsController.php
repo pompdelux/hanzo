@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\AdminBundle\Controller;
 
+use Hanzo\Core\Tools;
 use Hanzo\Model\LanguagesQuery;
 use Hanzo\Model\Products;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -1147,6 +1148,7 @@ class ProductsController extends CoreController
     /**
      * Gives an overview of the stock state on a style
      *
+     * @param Request  $request
      * @param Products $product
      * @param int      $category_id
      * @param int      $subcategory_id
@@ -1155,12 +1157,14 @@ class ProductsController extends CoreController
      *
      * @ParamConverter("product", class="Hanzo\Model\Products")
      */
-    public function viewStockAction(Products $product, $category_id, $subcategory_id)
+    public function viewStockAction(Request $request, Products $product, $category_id, $subcategory_id)
     {
         $stock = $this->container->get('stock');
 
         // FIXME: now!!!! this is a major hack, and we need to figure out how to change this !
-        if ('pdldbno1' === $this->getRequest()->getSession()->get('database')) {
+        // The "why" is, no is not the same db/locale as the rest, and we need locale to switch
+        // warehouse, and so far the only way is to hardcode it..
+        if ('pdldbno1' === $request->getSession()->get('database')) {
             $stock->changeLocation('nb_NO');
         }
 
@@ -1171,40 +1175,66 @@ class ProductsController extends CoreController
 
         $stock->prime($products);
 
-        $items = [];
+
+        $items       = [];
+        $skus        = [];
+        $skusInStock = [];
+
         foreach ($products as $product) {
+            $current    = '';
+            $sku        = $product->getSku();
+            $skus[$sku] = $sku;
 
-            $current = '';
-            foreach ($stock->get($product, true) as $level) {
-                if (empty($level['date']) || (!$level['quantity'])) {
-                    $items[] = [
-                        'sku'          => $product->getSku(),
-                        'date'         => '-',
-                        'stock'        => 0,
-                        'reservations' => 0,
-                    ];
-
+            foreach ($stock->get($product, true) as $key => $level) {
+                if ('total' === $key) {
                     continue;
                 }
 
-                $reservations = '-';
-                if ($current != $product->getSku()) {
-                    $current = $product->getSku();
+                $skusInStock[$sku] = $sku;
 
-                    $reservations = $stock->getProductReservations($product->getId());
+                $data = [
+                    'sku'          => $sku,
+                    'date'         => '-',
+                    'stock'        => 0,
+                    'reservations' => 0,
+                    'marked_out'   => ($product->getIsOutOfStock() ? 'Ja' : 'Nej'),
+                ];
+
+                // only show reservations once
+                if ($current != $sku) {
+                    $current = $sku;
+
+                    $data['reservations'] = $stock->getProductReservations($product->getId());
                 }
 
+                if ($level['date']) {
+                    $data['date'] = $level['date'];
+                }
+
+                if ($level['quantity']) {
+                    $data['stock'] = $level['quantity'];
+                }
+
+
+                $items[] = $data;
+            }
+        }
+
+        // here we filter out un nessesary empty values, but leave one for "show" and reservations
+
+        foreach ($skus as $sku) {
+            if (empty($skusInStock[$sku])) {
                 $items[] = [
-                    'sku'          => $product->getSku(),
-                    'date'         => $level['date'],
-                    'stock'        => $level['quantity'],
-                    'reservations' => $reservations,
+                    'sku'          => $sku,
+                    'date'         => '-',
+                    'stock'        => 0,
+                    'reservations' => 0,
                 ];
             }
         }
 
         // FIXME: now!!!! this is a major hack, and we need to figure out how to change this !
-        if ('pdldbno1' === $this->getRequest()->getSession()->get('database')) {
+        if ('pdldbno1' === $request->getSession()->get('database')) {
             $stock->changeLocation('da_DK');
         }
 
