@@ -38,15 +38,17 @@
             <th>Dato</th>
             <th>Antal</th>
             <th>Reservationer</th>
+            <th>Markeret udsolgt</th>
         </tr>
     </thead>
     <tbody>
     {%  for item in items %}
-        <tr>
+        <tr class="{% if item.marked_out == 'Ja' %}danger{% endif %}">
             <td>{{ item.sku }}</td>
             <td>{{ item.date }}</td>
             <td>{{ item.stock }}</td>
             <td>{{ item.reservations }}</td>
+            <td>{{ item.marked_out }}</td>
         </tr>
     {% endfor %}
     </tbody>
