@@ -450,6 +450,10 @@
                 <source>events.choose.rsvp_type</source>
                 <target>Kies soort aanmelding</target>
             </trans-unit>
+			<trans-unit id="open.house.label" approved="no">
+                <source>open.house.label</source>
+                <target>Open Huis</target>
+            </trans-unit>
             <trans-unit id="sa_search.zip_code.placeholder" approved="no">
                 <source>sa_search.zip_code.placeholder</source>
                 <target>Postcode of woonplaats</target>
