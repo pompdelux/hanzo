@@ -96,10 +96,16 @@ class EditStatsExporter
                         orders_lines
                     WHERE
                         orders_lines.orders_id = o.id
-	            ) AS total
-
+	            ) AS total,
+                oa.c_value AS sales_chanel
 			FROM
 				orders AS o
+            LEFT JOIN
+                orders_attributes AS oa ON (
+                  oa.orders_id = o.id
+                  AND
+                  oa.c_key = 'domain_key'
+                )
             WHERE
                 o.version_id > 1
                 AND (
@@ -123,6 +129,7 @@ class EditStatsExporter
                 'previous_version' => 1,
                 'current_total'    => number_format($record['total'], 2, ',', ''),
                 'previous_total'   => 0,
+                'sales_chanel'     => $record['sales_chanel'],
             ];
         }
 
@@ -153,16 +160,27 @@ class EditStatsExporter
         foreach (array_keys($orderData) as $orderId) {
             $stmt->execute(['orderId' => $orderId]);
 
-            $record = $stmt->fetch(\PDO::FETCH_ASSOC);
-            $products = unserialize($record['content'])['products'];
+            $record     = $stmt->fetch(\PDO::FETCH_ASSOC);
+            $content    = unserialize($record['content']);
+            $products   = $content['products'];
+            $attributes = $content['attributes'];
 
             $total = 0;
             foreach ($products as $product) {
                 $total += ($product['Price'] * $product['Quantity']);
             }
 
+            $salesChanel = 'DK';
+            foreach ($attributes as $attribute) {
+                if ('domain_key' == $attribute['CKey']) {
+                    $salesChanel = $attribute['CValue'];
+                    break;
+                }
+            }
+
             $orderData[$orderId]['previous_version'] = $record['version_id'];
             $orderData[$orderId]['previous_total']   = number_format($total, 2, ',', '');
+            $orderData[$orderId]['sales_chanel']     = $salesChanel;
         }
 
         return $orderData;

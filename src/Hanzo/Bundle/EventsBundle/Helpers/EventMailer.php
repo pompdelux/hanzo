@@ -202,6 +202,7 @@ class EventMailer
             ]);
 
             $this->mailer->setTo([$participant->getEmail() => $participant->getFirstName(). ' ' .$participant->getLastName()]);
+            // note, we use "via" because amazon does not allow us to set arbitrary from addresses.
             $this->mailer->setFrom(['events@pompdelux.com' => $this->event->getHost() . ' (via POMPdeLUX)']);
             $this->mailer->setSender('events@pompdelux.com', 'POMPdeLUX', true);
             $this->mailer->setReplyTo($this->event->getEmail(), $this->event->getHost());
@@ -282,6 +283,7 @@ class EventMailer
         ]);
 
         $this->mailer->setTo($participant->getEmail(), $participant->getFirstName(). ' ' .$participant->getLastName());
+        // note, we use "via" because amazon does not allow us to set arbitrary from addresses.
         $this->mailer->setFrom(['events@pompdelux.com' => $this->event->getHost() . ' (via POMPdeLUX)']);
         $this->mailer->setSender('events@pompdelux.com', 'POMPdeLUX', true);
         $this->mailer->setReplyTo($this->event->getEmail(), $this->event->getHost());
@@ -354,6 +356,7 @@ class EventMailer
             ]);
 
             $this->mailer->setTo([$participant->getEmail() => $participant->getFirstName(). ' ' .$participant->getLastName()]);
+            // note, we use "via" because amazon does not allow us to set arbitrary from addresses.
             $this->mailer->setFrom(['events@pompdelux.com' => $this->event->getHost() . ' (via POMPdeLUX)']);
             $this->mailer->setSender('events@pompdelux.com', 'POMPdeLUX', true);
             $this->mailer->setReplyTo($this->event->getEmail(), $this->event->getHost());

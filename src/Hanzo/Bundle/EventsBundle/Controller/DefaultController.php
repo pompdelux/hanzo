@@ -2,7 +2,6 @@
 
 namespace Hanzo\Bundle\EventsBundle\Controller;
 
-use Doctrine\Common\Collections\Criteria;
 use Hanzo\Bundle\AccountBundle\Form\Type\AddressesType;
 use Hanzo\Bundle\AccountBundle\Form\Type\CustomersType;
 use Hanzo\Core\CoreController;
@@ -12,10 +11,13 @@ use Hanzo\Model\AddressesPeer;
 use Hanzo\Model\CountriesPeer;
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersQuery;
+use Hanzo\Model\EventsQuery;
 use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\WishlistsQuery;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+
 
 /**
  * Class DefaultController
@@ -44,6 +46,7 @@ class DefaultController extends CoreController
         $countries = CountriesPeer::getAvailableDomainCountries();
 
         // If order is for the hostess, find her and use the Customer
+        $presetCustomer = false;
         $isHostess = $order->isHostessOrder();
 
         if ($isHostess === true) {
@@ -53,12 +56,23 @@ class DefaultController extends CoreController
 
             if ($event->getCustomersId()) {
                 $customerId = $event->getCustomersId();
+                $presetCustomer = true;
             } else {
                 $isHostess = false;
             }
+        } else {
+            $attributes = $order->getAttributes();
+
+            if (isset($attributes->wishlist, $attributes->wishlist->id)) {
+                $customerId = WishlistsQuery::create()
+                    ->select('customers_id')
+                    ->findOneById($attributes->wishlist->id);
+
+                $presetCustomer = true;
+            }
         }
 
-        if ('POST' == $request->getMethod() || $isHostess) {
+        if ('POST' == $request->getMethod() || $presetCustomer) {
             if ($customerId) {
                 $customer = CustomersQuery::create()
                     ->joinWithAddresses()
@@ -206,7 +220,7 @@ class DefaultController extends CoreController
                     ->findOneByEmail($value);
 
                 if ($customer instanceof Customers) {
-                    $c = new Criteria();
+                    $c = new \Criteria();
                     $c->addAscendingOrderByColumn(
                         sprintf(
                             "FIELD(%s, '%s', '%s')",

@@ -16,7 +16,6 @@ use Hanzo\Model\AddressesPeer;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\OrdersLinesQuery;
-use Hanzo\Model\WishlistsQuery;
 use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
 use Propel;
 use Symfony\Component\Form\FormError;
@@ -670,17 +669,6 @@ class EventsController extends CoreController
                 $order->clearAttributesByKey('is_hostess_order');
             } else {
                 $order->setAttribute('is_hostess_order', 'event', true);
-            }
-
-            $attributes = $order->getAttributes();
-
-            if (isset($attributes->wishlist, $attributes->wishlist->id)) {
-                $customersId = WishlistsQuery::create()
-                    ->select('customers_id')
-                    ->findOneById($attributes->wishlist->id);
-
-                $order->setCustomersId($customersId);
-                $goto = '_checkout';
             }
 
             $order->save();

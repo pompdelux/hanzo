@@ -80,7 +80,7 @@
             </trans-unit>
             <trans-unit id="checkout.shipping_business">
                 <source>checkout.shipping_business</source>
-                <target>Olet valinnut vaihtoehdon "Post Danmark Erhverv". Muista vaihtaa toimitusosoite napsauttamalla "Muuta toimitusosoitetta" (toimitusosoitteen tulee olla tässä lähetystavassa yritysosoite).</target>
+                <target>Olet valinnut vaihtoehdon "Postitoimipaikkatoimitus". Muista vaihtaa toimitusosoite napsauttamalla "Muuta toimitusosoitetta" (toimitusosoitteen tulee olla tässä lähetystavassa yritysosoite).</target>
             </trans-unit>
             <trans-unit id="checkout.shipping_overnightbox">
                 <source>checkout.shipping_overnightbox</source>
