@@ -42,10 +42,11 @@ class Warehouse
      */
     public function __construct(RedisClient $redis, array $warehouses, PropelReplicator $replicator = null)
     {
-        $this->redis = $redis;
+        $this->redis      = $redis;
         $this->basePrefix = $redis->getPrefix();
-        $this->setWarehouses($warehouses);
         $this->replicator = $replicator;
+
+        $this->setWarehouses($warehouses);
 
         // debugging ...
         if (!$replicator instanceof PropelReplicator) {
@@ -106,7 +107,9 @@ class Warehouse
             }
 
             $count = 1;
-            $id = $product['id'];
+            $id    = $product['id'];
+
+            // if not unset it will pollude the data array
             unset ($product['id']);
 
             foreach ($product as $date => $quantity) {

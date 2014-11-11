@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\AdminBundle\Controller;
 
+use Hanzo\Core\Tools;
 use Hanzo\Model\LanguagesQuery;
 use Hanzo\Model\Products;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -1154,6 +1155,8 @@ class ProductsController extends CoreController
         $stock = $this->container->get('stock');
 
         // FIXME: now!!!! this is a major hack, and we need to figure out how to change this !
+        // The "why" is, no is not the same db/locale as the rest, and we need locale to switch
+        // warehouse, and so far the only way is to hardcode it..
         if ('pdldbno1' === $request->getSession()->get('database')) {
             $stock->changeLocation('nb_NO');
         }
@@ -1165,34 +1168,63 @@ class ProductsController extends CoreController
 
         $stock->prime($products);
 
-        $items = [];
+
+        $items       = [];
+        $skus        = [];
+        $skusInStock = [];
+
         foreach ($products as $product) {
+            $current    = '';
+            $sku        = $product->getSku();
+            $skus[$sku] = [
+                'id'         => $product->getId(),
+                'marked_out' => $product->getIsOutOfStock()
+            ];
 
-            $current = '';
-            foreach ($stock->get($product, true) as $level) {
-                if (empty($level['date']) || (!$level['quantity'])) {
-                    $items[] = [
-                        'sku'          => $product->getSku(),
-                        'date'         => '-',
-                        'stock'        => 0,
-                        'reservations' => 0,
-                    ];
-
+            foreach ($stock->get($product, true) as $key => $level) {
+                if ('total' === $key) {
                     continue;
                 }
 
-                $reservations = '-';
-                if ($current != $product->getSku()) {
-                    $current = $product->getSku();
+                $skusInStock[$sku] = $sku;
 
-                    $reservations = $stock->getProductReservations($product->getId());
+                $data = [
+                    'sku'          => $sku,
+                    'date'         => '-',
+                    'stock'        => 0,
+                    'reservations' => 0,
+                    'marked_out'   => ($product->getIsOutOfStock() ? 'Ja' : 'Nej'),
+                ];
+
+                // only show reservations once
+                if ($current != $sku) {
+                    $current = $sku;
+
+                    $data['reservations'] = $stock->getProductReservations($product->getId());
                 }
 
+                if ($level['date']) {
+                    $data['date'] = $level['date'];
+                }
+
+                if ($level['quantity']) {
+                    $data['stock'] = $level['quantity'];
+                }
+
+
+                $items[] = $data;
+            }
+        }
+
+        // we add any products not on stock to show the full stock/reservation "picture" for a given style
+        foreach ($skus as $sku => $product) {
+            if (empty($skusInStock[$sku])) {
                 $items[] = [
-                    'sku'          => $product->getSku(),
-                    'date'         => $level['date'],
-                    'stock'        => $level['quantity'],
-                    'reservations' => $reservations,
+                    'sku'          => $sku,
+                    'date'         => '-',
+                    'stock'        => 0,
+                    'reservations' => $stock->getProductReservations($product['id']),
+                    'marked_out'   => ($product['marked_out'] ? 'Ja' : 'Nej'),
                 ];
             }
         }

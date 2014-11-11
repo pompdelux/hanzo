@@ -178,9 +178,7 @@
                     <a href="{{ image_path(cdn ~ 'size.guide.link'|trans ) }}" class="colorbox sizeguide">{{ 'size.guide.link.text'|trans }}</a>
 
                     <input type="submit" value="{{ "add.to.basket"|trans }}" class="button submit-button">
-                    {% if app.user %}
-                        <button type="button" class="button" data-href="{{ path('_account_wishlist_add_item') }}">{{ "add.product.to.wishlist"|trans }}</button>
-                    {% endif %}
+                    <button type="button" class="button{% if not app.user %} js-require-login{% endif %}" data-href="{{ path('_account_wishlist_add_item') }}">{{ "add.product.to.wishlist"|trans }}</button>
                     <input type="hidden" id="master" name="master" value="{{ product.sku }}">
                 </form>
 

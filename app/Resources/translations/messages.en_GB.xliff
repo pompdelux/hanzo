@@ -137,7 +137,7 @@
             </trans-unit>
             <trans-unit id="store.address">
                 <source>store.address</source>
-                <target>POMPdeLUX ApS • Møgelhøj 8 DK-8520 Lystrup • CVR-nr 29622035 • mail@pompdelux.com • +45 8736 1000</target>
+                <target>POMPdeLUX ApS • Møgelhøj 8 DK-8520 Lystrup • CVR-nr 29622035 • mailcom@POMPdeLUX.com • +45 8736 1000</target>
             </trans-unit>
             <trans-unit id="order.edit.global.notice">
                 <source>order.edit.global.notice</source>
@@ -156,7 +156,7 @@
                 <target><![CDATA[
                     <strong>Customer service</strong><br>
                     Phone.: +45 8736 1000<br>
-                    E-mail: <a href="mailto:mail@pompdelux.com">mail@pompdelux.com</a><br>
+                    E-mail: <a href="mailto:mailcom@POMPdeLUX.com">mailcom@POMPdeLUX.com</a><br>
                     Monday - Thursday: 9 am - 4 pm<br>
                     Friday: 9 am - 2 pm<br>
                     Saturday, Sunday and holidays closed.
@@ -170,7 +170,7 @@
                         <li>Møgelhøj 8</li>
                         <li>DK-8520 Lystrup</li>
                         <li>CVR-nr 29622035</li>
-                        <li><a href="mailto:mail@pompdelux.com">mail@pompdelux.com</a></li>
+                        <li><a href="mailto:mailcom@POMPdeLUX.com">mailcom@POMPdeLUX.com</a></li>
                         <li>+45 8736 1000</li><br>
 						<li>Return of items: POMPdeLUX Aps</li>
                         <li>Grydhøjparken 10</li>

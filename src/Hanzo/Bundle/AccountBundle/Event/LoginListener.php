@@ -2,14 +2,15 @@
 
 namespace Hanzo\Bundle\AccountBundle\Event;
 
+use Hanzo\Model\OrdersPeer;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\Security\Core\SecurityContext;
 
-use Hanzo\Model\OrdersPeer;
-
-use \Criteria;
-use \PropelCollection;
-
+/**
+ * Class LoginListener
+ *
+ * @package Hanzo\Bundle\AccountBundle\Event
+ */
 class LoginListener
 {
     /**
@@ -30,7 +31,7 @@ class LoginListener
     /**
      * Recalculate basket if nessesary.
      *
-     * @param  Event $event
+     * @param Event $event
      */
     public function onSecurityInteractiveLogin(Event $event)
     {
