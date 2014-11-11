@@ -6,21 +6,14 @@ use PropelPDO;
 
 use Hanzo\Core\Hanzo;
 use Hanzo\Model\om\BaseCustomers;
-use Hanzo\Model\CustomersQuery;
 
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Validator\ExecutionContextInterface;
 
 /**
- * Skeleton subclass for representing a row from the 'customers' table.
+ * Class Customers
  *
- *
- *
- * You should add additional methods to this class to meet the
- * application requirements.  This class will only be generated as
- * long as it does not already exist in the output directory.
- *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model
+ * @package Hanzo\Model
  */
 class Customers extends BaseCustomers implements AdvancedUserInterface
 {
@@ -59,56 +52,66 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
     // NICETO: should not be hardcoded
     private $extended = [
         // admin
-        'hd@pompdelux.dk'        => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
-        'jm@pompdelux.dk'        => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
-        'cc@pompdelux.dk'        => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
+        'hd@pompdelux.dk'     => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
+        'jm@pompdelux.dk'     => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
+        'cc@pompdelux.dk'     => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
         // admin (bellcom)
-        'hanzo@bellcom.dk'       => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
-        'hf@bellcom.dk'          => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
-        'mmh@bellcom.dk'         => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
-        'ulrik@bellcom.dk'       => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
+        'hanzo@bellcom.dk'    => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
+        'hf@bellcom.dk'       => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
+        'mmh@bellcom.dk'      => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
+        'ulrik@bellcom.dk'    => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
         // stats
-        'mh@pompdelux.dk'        => ['ROLE_STATS', 'ROLE_EMPLOYEE'],
-        'pd@pompdelux.dk'        => ['ROLE_STATS', 'ROLE_EMPLOYEE'],
+        'mh@pompdelux.dk'     => ['ROLE_STATS', 'ROLE_EMPLOYEE'],
+        'pd@pompdelux.dk'     => ['ROLE_STATS', 'ROLE_EMPLOYEE'],
         // marketing
-        'tj@pompdelux.dk'        => ['ROLE_MARKETING', 'ROLE_EMPLOYEE'],
+        'tj@pompdelux.dk'     => ['ROLE_MARKETING', 'ROLE_EMPLOYEE'],
         // design
-        'design@pompdelux.dk'    => ['ROLE_DESIGN', 'ROLE_EMPLOYEE'],
+        'design@pompdelux.dk' => ['ROLE_DESIGN', 'ROLE_EMPLOYEE'],
         // sales
-        'hp@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
-        'kg@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
-        'mc@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
-        'mlade@pompdelux.dk'     => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
-        'mle@pompdelux.dk'       => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
-        'nj@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
-        'pc@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
-        'sj@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
-        'ls@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
-        'eh@pompdelux.dk'        => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
+        'hp@pompdelux.dk'     => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
+        'kg@pompdelux.dk'     => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
+        'mc@pompdelux.dk'     => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
+        'mlade@pompdelux.dk'  => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
+        'mle@pompdelux.dk'    => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
+        'nj@pompdelux.dk'     => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
+        'pc@pompdelux.dk'     => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
+        'sj@pompdelux.dk'     => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
+        'ls@pompdelux.dk'     => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
+        'eh@pompdelux.dk'     => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
         // customer service
-        'cd@pompdelux.dk'        => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
-        'hb@pompdelux.dk'        => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
-        'hbo@pompdelux.dk'       => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
-        'js@pompdelux.dk'        => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
-        'ln@pompdelux.dk'        => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
-        'ml@pompdelux.dk'        => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
-        'pf@pompdelux.dk'        => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
-        'tt@pompdelux.dk'        => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
-        'vs@pompdelux.dk'        => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
-        'nk@pompdelux.dk'        => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
-        'ep@pompdelux.dk'        => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
-        'am@pompdelux.dk'        => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
-		'lmach@pompdelux.dk'     => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],		
+        'cd@pompdelux.dk'     => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
+        'hb@pompdelux.dk'     => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
+        'hbo@pompdelux.dk'    => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
+        'js@pompdelux.dk'     => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
+        'ln@pompdelux.dk'     => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
+        'ml@pompdelux.dk'     => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
+        'pf@pompdelux.dk'     => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
+        'tt@pompdelux.dk'     => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
+        'vs@pompdelux.dk'     => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
+        'nk@pompdelux.dk'     => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
+        'ep@pompdelux.dk'     => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
+        'am@pompdelux.dk'     => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
+        'lmach@pompdelux.dk'  => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
         // logistics
-        'nh@pompdelux.dk'        => ['ROLE_LOGISTICS', 'ROLE_EMPLOYEE'],
-        'tta@pompdelux.dk'       => ['ROLE_LOGISTICS', 'ROLE_EMPLOYEE'],
+        'nh@pompdelux.dk'     => ['ROLE_LOGISTICS', 'ROLE_EMPLOYEE'],
+        'tta@pompdelux.dk'    => ['ROLE_LOGISTICS', 'ROLE_EMPLOYEE'],
     ];
 
+    /**
+     * login check
+     *
+     * @return boolean
+     */
+    public function isLoggedIn()
+    {
+        return $this->isGranted('IS_AUTHENTICATED_FULLY');
+    }
 
     /**
      * shortcut for access checks on the customer.
      *
-     * @param $role
+     * @param string $role
+     *
      * @return boolean
      */
     public function isGranted($role)
@@ -121,34 +124,19 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
     }
 
     /**
-     * login check
-     *
-     * @return boolean
-     */
-    public function isLoggedIn()
-    {
-        return $this->isGranted('IS_AUTHENTICATED_FULLY');
-    }
-
-
-    /**
-     * get full name
-     */
-     public function getName()
-     {
-         return trim($this->getFirstName().' '.$this->getLastName());
-     }
-
-
-    /**
      * The following methods is needed by the form component.....
      */
 
+    /**
+     * @param \Criteria|null $criteria
+     * @param PropelPDO      $con
+     *
+     * @return Addresses[]|\PropelObjectCollection
+     */
     public function getAddresses($criteria = null, PropelPDO $con = null)
     {
         return $this->getAddressess($criteria, $con);
     }
-
 
     /**
      * @return bool
@@ -158,6 +146,13 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
         return (bool) $this->getName();
     }
 
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return trim($this->getFirstName() . ' ' . $this->getLastName());
+    }
 
     /**
      * validate uniq emails
@@ -196,20 +191,18 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
     /**
      * {@inheritDoc}
      */
-    public function getSalt()
-    {
-        return '';
-    }
-
-
-    /**
-     * {@inheritDoc}
-     */
     public function getUsername()
     {
         return $this->getEmail();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public function getSalt()
+    {
+        return '';
+    }
 
     /**
      * {@inheritDoc}
@@ -222,7 +215,9 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
     /**
      * {@inheritDoc}
      */
-    public function eraseCredentials() {}
+    public function eraseCredentials()
+    {
+    }
 
 
     /**
@@ -263,11 +258,11 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
     /**
      * Validate length of users full name
      *
-     * @param  ExecutionContextInterface $context
+     * @param ExecutionContextInterface $context
      */
     public function isFullNameWithinLimits(ExecutionContextInterface $context)
     {
-        $domain = strtoupper(Hanzo::getInstance()->get('core.domain_key'));
+        $domain    = strtoupper(Hanzo::getInstance()->get('core.domain_key'));
         $maxLength = 30;
 
         if (substr($domain, -2) == 'DK') {
@@ -280,7 +275,7 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
             $maxLength = 25;
         }
 
-        $length = mb_strlen($this->getFirstName().' '.$this->getLastName());
+        $length = mb_strlen($this->getFirstName() . ' ' . $this->getLastName());
         if ($maxLength < $length) {
             $context->addViolationAt('first_name', 'name.max.length', ['{{ limit }}' => $maxLength], $length, $length);
         }
