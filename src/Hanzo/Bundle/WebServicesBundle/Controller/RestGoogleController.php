@@ -173,6 +173,7 @@ class RestGoogleController extends CoreController
                 ->filterByRsvpType(null, \Criteria::ISNOTNULL)
                 ->filterByEventDate(['min' => date('Y-m-d 00:00:01')])
                 ->filterByConsultantsId(array_keys($data))
+                ->filterByIsOpen(true)
                 ->orderByEventDate()
                 ->find();
 
