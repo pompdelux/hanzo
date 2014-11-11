@@ -331,6 +331,16 @@
                 event.preventDefault();
 
                 var $trigger = $(this);
+
+                if ($trigger.hasClass('js-require-login')) {
+                    dialoug.alert(
+                        Translator.trans('require.login.label'),
+                        Translator.trans('wishlist.require.login.text', {'url': base_url+'login?target='+encodeURI(document.location.href)})
+                    );
+
+                    return;
+                }
+
                 var $form = $trigger.closest('form');
                 if ('' == $('.color', $form).val()) {
                     return;
