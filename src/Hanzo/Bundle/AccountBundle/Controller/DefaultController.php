@@ -18,8 +18,8 @@ use Hanzo\Model\CountriesQuery;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\OrdersQuery;
 use Symfony\Component\Form\FormError;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 /**
@@ -206,9 +206,9 @@ class DefaultController extends CoreController
     /**
      * handle password retrival
      *
-     * @param Request  $request
+     * @param Request $request
      *
-     * @return Response object
+     * @return Response
      */
     public function passwordForgottenAction(Request $request)
     {
