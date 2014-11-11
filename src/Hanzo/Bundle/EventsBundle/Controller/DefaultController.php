@@ -2,28 +2,28 @@
 
 namespace Hanzo\Bundle\EventsBundle\Controller;
 
-use Criteria;
-
-use Hanzo\Model\WishlistsQuery;
-use Symfony\Component\Form\FormError;
-use Symfony\Component\HttpFoundation\Request;
-
+use Hanzo\Bundle\AccountBundle\Form\Type\AddressesType;
+use Hanzo\Bundle\AccountBundle\Form\Type\CustomersType;
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Hanzo;
-
-use Hanzo\Model\Customers;
 use Hanzo\Model\Addresses;
 use Hanzo\Model\AddressesPeer;
 use Hanzo\Model\CountriesPeer;
+use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersQuery;
 use Hanzo\Model\EventsQuery;
 use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\WishlistsQuery;
+use Symfony\Component\Form\FormError;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
-use Hanzo\Bundle\AccountBundle\Form\Type\CustomersType;
-use Hanzo\Bundle\AccountBundle\Form\Type\AddressesType;
 
-use Hanzo\Bundle\AccountBundle\NNO\NNO;
-
+/**
+ * Class DefaultController
+ *
+ * @package Hanzo\Bundle\EventsBundle
+ */
 class DefaultController extends CoreController
 {
     /**
@@ -77,13 +77,13 @@ class DefaultController extends CoreController
                 $customer = CustomersQuery::create()
                     ->joinWithAddresses()
                     ->useAddressesQuery()
-                        ->filterByType('payment')
+                    ->filterByType('payment')
                     ->endUse()
                     ->findOneById($customerId);
 
                 if ($customer instanceof Customers) {
-                    $pwd               = $customer->getPassword();
-                    $address           = $customer->getAddresses()->getFirst();
+                    $pwd              = $customer->getPassword();
+                    $address          = $customer->getAddresses()->getFirst();
                     $validationGroups = 'customer_edit';
                 }
             }
@@ -91,7 +91,7 @@ class DefaultController extends CoreController
 
         if (empty($address)) {
             $customer = new Customers();
-            $address = new Addresses();
+            $address  = new Addresses();
 
             if (count($countries) == 1) {
                 $address->setCountry($countries[0]->getLocalName());
@@ -121,7 +121,7 @@ class DefaultController extends CoreController
 
                 if ($email != $formEmail) {
                     $c = CustomersQuery::create()
-                        ->filterById($customer->getId(), Criteria::NOT_EQUAL)
+                        ->filterById($customer->getId(), \Criteria::NOT_EQUAL)
                         ->findOneByEmail($formEmail);
 
                     if ($c instanceof Customers) {
@@ -160,6 +160,7 @@ class DefaultController extends CoreController
                 $address->save();
 
                 $formData = $request->request->get('customers');
+
                 if (isset($formData['newsletter']) && $formData['newsletter']) {
                     $api = $this->get('newsletterapi');
                     $api->subscribe($customer->getEmail(), $api->getListIdAvaliableForDomain());
@@ -199,6 +200,9 @@ class DefaultController extends CoreController
     /**
      * fetchCustomerAction
      *
+     * @param Request $request
+     *
+     * @throws \Exception
      * @return Response
      */
     public function fetchCustomerAction(Request $request)
@@ -211,18 +215,21 @@ class DefaultController extends CoreController
         $data   = [];
 
         switch ($type) {
-          case 'email':
-              $customer = CustomersQuery::create()
-                  ->findOneByEmail($value);
+            case 'email':
+                $customer = CustomersQuery::create()
+                    ->findOneByEmail($value);
 
                 if ($customer instanceof Customers) {
-                    $c = new Criteria();
-                    $c->addAscendingOrderByColumn(sprintf(
-                        "FIELD(%s, '%s', '%s')",
-                        AddressesPeer::TYPE,
-                        'payment',
-                        'shipping'
-                    ));
+                    $c = new \Criteria();
+                    $c->addAscendingOrderByColumn(
+                        sprintf(
+                            "FIELD(%s, '%s', '%s')",
+                            AddressesPeer::TYPE,
+                            'payment',
+                            'shipping'
+                        )
+                    );
+
                     $c->add(AddressesPeer::TYPE, 'payment');
                     $c->setLimit(1);
 
@@ -250,7 +257,7 @@ class DefaultController extends CoreController
             case 'phone':
                 $domainKey = Hanzo::getInstance()->get('core.domain_key');
 
-                // phone number lookyup only in denmark
+                // phone number lookup only in denmark
                 if (!in_array($domainKey, ['DK', 'SalesDK'])) {
                     break;
                 }
