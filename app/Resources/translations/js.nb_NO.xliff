@@ -411,6 +411,14 @@
                 <source>product.added.to.wishlist</source>
                 <target>Produktet er nu lagt på din ønskeliste.</target>
             </trans-unit>
+            <trans-unit id="require.login.label">
+                <source>require.login.label</source>
+                <target>Login påkrævet</target>
+            </trans-unit>
+            <trans-unit id="wishlist.require.login.text">
+                <source>wishlist.require.login.text</source>
+                <target><![CDATA[Du skal være logget ind for at benytte ønskeliste funktionen.<br><br><a href="%url%">» Login her</a><br><br>Bemærk: Du vil blive sendt tilbage til denne side så snart du er logget ind.]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
