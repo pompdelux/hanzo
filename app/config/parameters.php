@@ -7,7 +7,7 @@
  * For currently avaliable vars, check: $container->getParameterBag()->all()
  */
 
-$db_prefix = '';
+$dbPrefix = '';
 $env = explode('_', $container->getParameter('kernel.environment'));
 
 if (empty($env[1])) {
@@ -20,47 +20,35 @@ if (empty($env[1])) {
 if ('dev' != $env[0]) {
     switch ($env[1]) {
         default:
-            $db_prefix = $env[0].'_dk_';
+            $dbPrefix = $env[0].'_'.$lang.'_';
             break;
-        case 'se':
-            $db_prefix = $env[0].'_se_';
+        case 'com':
+            $dbPrefix = $env[0].'_dk_';
             break;
-        case 'no':
-            $db_prefix = $env[0].'_no_';
-            break;
-        case 'de':
-            $db_prefix = $env[0].'_de_';
-            break;
-      // case 'nl':
-      //   $db_prefix = $env[0].'_nl_';
-      //   break;
     }
 }
 
 // ffs this is just not right !!!
-$locale_map = [
-    'com' => 'en_GB',
-    'dk'  => 'da_DK',
-    'de'  => 'de_DE',
-    'fi'  => 'fi_FI',
-    'nl'  => 'nl_NL',
-    'no'  => 'nb_NO',
-    'se'  => 'sv_SE',
-    'at'  => 'de_AT',
-    'ch'  => 'de_CH',
-];
-$container->setParameter('locale', $locale_map[$lang]);
+$locale_map = \Hanzo\Core\Tools::getDomainLocaleMaps();
 
-// setting up assetic version and baseurl, needed to support cdn
+foreach ($locale_map[$lang] as $key => $value) {
+    if (isset($env[2]) && ('consultant' == $env[2]) && ('core.domain_key' == $key)) {
+        $value = 'Sales'.$value;
+    }
+
+    $container->setParameter($key, $value);
+}
+
+// setting up asset version and base url, needed to support cdn
 $container->setParameter('assets_version', 1);
 $container->setParameter('assets_base_url', str_replace('http:', '', $container->getParameter('cdn')));
 
 // workaround for travis-ci and not having a db connection on eg. install
 try {
     $localDbConnection = new PDO(
-        'mysql:host='.$container->getParameter($db_prefix.'database_host').';dbname='.$container->getParameter($db_prefix.'database_name'),
-        $container->getParameter($db_prefix.'database_user'),
-        $container->getParameter($db_prefix.'database_password'),
+        'mysql:host='.$container->getParameter($dbPrefix.'database_host').';dbname='.$container->getParameter($dbPrefix.'database_name'),
+        $container->getParameter($dbPrefix.'database_user'),
+        $container->getParameter($dbPrefix.'database_password'),
         [PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"]
     );
 

@@ -188,7 +188,7 @@
                 <target><![CDATA[
                     <ul>
                         <li><b>Versand</b> ab CHF 7,95</li>
-                        <li><b>Lieferzeit</b> 10 Tage (zzgl. Feiertage)</li>
+                        <li><b>Lieferzeit</b> %expected_delivery_date% (zzgl. Feiertage)</li>
                         <li><b>Umtausch</b> Gratis</li>
                     </ul>
                 ]]></target>
@@ -268,32 +268,13 @@ Wenn Sie das Paket empfangen haben, sollten Sie die Waren überprüfen. Wenn das
             </trans-unit>
             <trans-unit id="return.title">
                 <source>return.title</source>
-                <target>Rücksendung</target>
+                <target>Rückgabe und Umtausch</target>
             </trans-unit>
             <trans-unit id="return.info">
                 <source>return.info</source>
                 <target><![CDATA[
-                    <p>Sie haben bei POMPdeLUX ein 14-tägiges Widerrufsrecht auf alle Waren ab dem Tag des Empfangs der Ware. Im Falle eines Kaufrückzugs müssen Sie uns lediglich darüber informieren. Dies können Sie ganz einfach tun indem Sie den Rücksendeschein ausfüllen welchen Sie auf der Webseite unter „Meine Seite“ finden.<br><br>
-
-<b>SO GEHT&acute;S</b><br>
-Wenn Sie Waren umtauschen oder zurückschicken möchten ist die Postverpackung, in der Sie Ihre Waren erhalten so ausgelegt, dass sie zweimal verwendet werden kann. Wir erstatten daher kein Geld für Rückverpackungen. Es wäre eine große Hilfe, wenn Sie die Ware der Rücksendung in Originalverpackung mit Textiletiketten usw. zurückschicken.
-<br><br>
-Wir erwarten, dass Sie die Waren so schnell wie möglich nach dem Sie uns Bescheid gegeben haben – spätestens nach 14 Tagen, zurückgesendet werden. Bei der Rücksendung sorgen Sie bitte dafür, dass die Waren ordentlich eingepackt sind, da Sie die Verantwortung für das Paket/die Waren haben bis diese bei uns eintreffen. Bewahren Sie also Postquittungen und die Verfolgungsnummer auf.
-<br><br>
-Einen Rücksendeschein finden Sie auf „Meine Seite“. Hier sehen Sie, welche Informationen benötigt werden. Den Rücksendeschein bitte ausfüllen, ausdrucken und dem Retourenpaket beilegen.
-<br><br>
-<b>Bitte beachten:</b> Auf ”Meine Seite“ finden Sie zusätzlich zu dem Rücksendeschein das Rücksendeetikett. Benutzen Sie bitte unbedingt dieses, damit die Rücksendung mit der korrekten Anschrift zurückgeschickt wird und somit an der richtigen Stelle zugestellt wird. Die Postverpackung wird bei der Post oder als Paket aufgegeben
-<br><br>
-<b>Geld zurück Garantie:</b> Wenn Sie die Geld zurück Garantie gebrauchen möchten,  hat das Rücksendeetikett einen Wert von CHF 8,95, der von dem Betrag der retournierten Waren entgegengerechnet wird.
-<br><br>
-<b>RÜCKZAHLUNG</b><br>
-Wir zahlen Ihnen das Geld zurück, so bald wir Ihre Waren erhalten und kontrolliert haben. Der Betrag wird stets auf die Art und Weise zurückgezahlt, wie die Bestellung bezahlt wurde. <br><br>
-Denken Sie dran, dass Sie evtl. nicht den vollen Kaufpreis zurückerhalten evtl. sogar gar nichts, falls wir feststellen, dass Sie die Waren in Gebrauch genommen haben und deren Wert verringert ist. Es ist natürlich erlaubt die Waren anzuprobieren, wie Sie es in einem Geschäft tun würden. 
-<br><br>
-<b>REKLAMATIONEN UND FEHLLIEFERUNGEN</b><br>
-Wenn Sie eine Ware mit Fehlern erhalten haben oder wenn die erhaltene Ware nicht die ist, die auf Ihrer Rechnung steht, dann schicken Sie sie wie oben beschrieben zurück. Wenn Ihre Reklamation unserer Beurteilung nach berechtigt ist, schicken wir Ihnen versandkostenfrei eine neue Ware. Falls die Ware ausverkauft ist, erstatten wir Ihnen den Preis der Ware zurück. <br><br>
-<b>Bitte auch beachten:</b> Bei Rücksendung von einzelnen Artikel möchten wir Sie bitten dennoch den kompletten Rechnungsbetrag innerhalb der 30 Tage zu bezahlen, um einer Mahngebühr zu entgehen. Sie erhalten Ihr Geld bzw. Ihre neuen Artikel in jedem Fall zurück.
-Hinweis: Wir nehmen keine Rücksendungen entgegen, die per Nachname verschickt werden.
+                    <p>Wenn Sie eine Ware umtauschen oder zurückgeben möchten, haben Sie bei POMPdeLUX ein 14-tägiges Rückgaberecht ab dem Tag an dem Sie die Waren erhalten haben. Es ist wichtig, dass die Waren mit Hängeetiketten und im gleichen Zustand wie aus der Originalverpackung, zurückkommen, wenn Sie den Umtausch in eine gleichwertige Ware wünschen oder Ihr Geld zurückhaben möchten. Sie können unter <a href="/de_CH/home/kundendienst/rückgabe-und-umtausch">Rückgabe</a> und <a href="/de_CH/home/kundendienst/umtausch">Umtausch</a> mehr über die Verfahrensweise erfahren. <br><br>
+					Sie können mehr über das Kaufrückzugsrecht in unseren <a href="/de_CH/home/kundendienst/abgs">Allgemeinen Geschäftsbedingungenn</a> lesen.  
 </p>
                 ]]></target>
             </trans-unit>
@@ -304,7 +285,7 @@ Hinweis: Wir nehmen keine Rücksendungen entgegen, die per Nachname verschickt w
                     <ul class="menu">
                         <li><a href="/de_CH/kundendienst/telefonzeiten">Telefonzeiten</a></li>
                         <li><a href="/de_CH/home/kundendienst/faq">FAQ</a></li>
-                        <li><a href="/de_CH/home/kundendienst/rucksendung">Rücksendung</a></li>
+                        <li><a href="/de_CH/home/kundendienst/ruckgabe-umtausch">Rückgabe und Umtausch</a></li>
                         <li><a href="/de_CH/home/kundendienst/umtausch">Umtausch</a></li>
                         <li><a href="/de_CH/home/kundendienst/rucksendeschein">Rücksendeschein</a></li>
                         <li><a href="/de_CH/home/kundendienst/waschtipps">Waschtipps</a></li>

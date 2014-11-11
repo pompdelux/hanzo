@@ -25,20 +25,22 @@ account:
 consignor:
     shipment_server:
         options:
-              actor: 143
-              product_concept_id: 882
-              service_id: ""
-              key: PompDeluxSE
-              to_address:
-                  name: "POMPdeLUX Sverige AB c/o POMPdeLUX"
-                  address_line_1: "Grydhøjparken 10"
-                  postal_code: "8381"
-                  city: "Tilst"
-                  country_iso2: DK
-                  email: mail@pompdelux.se
-                  phone: "+46 8-6117103"
+            actor: 143
+            product_concept_id: 882
+            service_id: ""
+            key: PompDeluxSE
+            to_address:
+                name: "POMPdeLUX Sverige AB c/o POMPdeLUX"
+                address_line_1: "Grydhøjparken 10"
+                postal_code: "8381"
+                city: "Tilst"
+                country_iso2: DK
+                email: mail@pompdelux.se
+                phone: "+46 8-6117103"
 
 google:
     analytics_code:    UA-1793665-3
     conversion_id:     976104979
-    site_verification: "i-GTUV7HLYYWlH1qe3eO9rSythi037P722GF5w4zk_w"
+    site_verification:
+        - "i-GTUV7HLYYWlH1qe3eO9rSythi037P722GF5w4zk_w"
+        - "inngNzXWBVCoW4thluCmoWyhN4tHPinlBtizczbw134" # katrine

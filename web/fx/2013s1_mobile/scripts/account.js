@@ -8,4 +8,12 @@
         event.preventDefault();
         $('#order-status #'+this.href.split('#')[1]).toggle();
     });
+
+    var $asideSlider = $('aside.js-slider');
+    if ($asideSlider.length) {
+        $asideSlider.on('click', 'h3', function() {
+            $('h3 span', $asideSlider).toggleClass('open');
+            $('.container', $asideSlider).first().slideToggle();
+        });
+    }
 })(jQuery, document);

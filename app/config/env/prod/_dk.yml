@@ -5,9 +5,9 @@ framework:
 
 propel:
     dbal:
-        default_connection: default
+        default_connection: pdldbdk1
         connections:
-            default:
+            pdldbdk1:
                 driver:               %database_driver%
                 user:                 %prod_dk_database_user%
                 password:             %prod_dk_database_password%
@@ -80,18 +80,18 @@ account:
 consignor:
     shipment_server:
         options:
-              actor: 146
-              product_concept_id: 94
-              service_id: ""
-              key: PompDeluxDK
-              to_address:
-                  name: "POMPdeLUX ApS"
-                  address_line_1: "Grydhøjparken 10"
-                  postal_code: "8381"
-                  city: "Tilst"
-                  country_iso2: DK
-                  email: mail@pompdelux.dk
-                  phone: "+45 8678 7871"
+            actor: 146
+            product_concept_id: 94
+            service_id: ""
+            key: PompDeluxDK
+            to_address:
+                name: "POMPdeLUX ApS"
+                address_line_1: "Grydhøjparken 10"
+                postal_code: "8381"
+                city: "Tilst"
+                country_iso2: DK
+                email: mail@pompdelux.dk
+                phone: "+45 8678 7871"
 
 google:
     analytics_code: UA-1793665-1
@@ -99,6 +99,7 @@ google:
     site_verification:
         - "UofA3REZ5SFYNzo-zNzIHkhOUDo3qblDAQadaNRk_2s"
         - "V6U4jsJtOJKEOK7J3Hkw9mTz344Yb7FYsNpjbCm3dQg"
+        - "wLHjgqyCGImP2YG1fA_y_rggXUwLHJ1M0ym2Omxj95Q" # katrine
     addwords:
         conversion:
             id: 976104979

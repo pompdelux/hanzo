@@ -42,6 +42,22 @@
                 <source>quickorder.no.products.found</source>
                 <target>Tuotetta ei löydy.</target>
             </trans-unit>
+            <trans-unit id="wishlist.misses.header">
+                <source>wishlist.misses.header</source>
+                <target>Seuraavia tuotteita ei voi lisätä ostoskoriin, koska niitä ei ole enää varastossa.</target>
+            </trans-unit>
+            <trans-unit id="quickorder.wishlist_form.label">
+                <source>quickorder.wishlist_form.label</source>
+                <target>Nouda Ostoslista</target>
+            </trans-unit>
+            <trans-unit id="quickorder.wishlist_form.placeholder">
+                <source>quickorder.wishlist_form.placeholder</source>
+                <target>OSTOSLISTA NRO</target>
+            </trans-unit>
+            <trans-unit id="quickorder.wishlist_form.button_label">
+                <source>quickorder.wishlist_form.button_label</source>
+                <target>Nouda</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

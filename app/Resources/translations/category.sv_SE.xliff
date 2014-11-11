@@ -19,7 +19,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-13" approved="no">
                 <source>headers.category-13</source>
-                <target><![CDATA[<h1>Stickat / Koftor</h1>
+                <target><![CDATA[<h1>Stickat / Cardigans</h1>
                 <p>Under kalla vinterdagar och svala sommarkvällar är det skönt med en varm tröja. POMPdeLUX har både stickade tröjor och koftor i härliga, mjuka material i ett brett urval färger och modeller. Hitta din favorit bland fleecetröjor, koftor, blusar, sweatshirts och jumprar. Våra stickade tröjor och koftor finns i storlekarna 80–152 cm och här finns massor av inspiration att hämta till barnens garderob.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-80" approved="no">
@@ -54,12 +54,12 @@
             </trans-unit>
 			<trans-unit id="headers.category-15" approved="no">
                 <source>headers.category-15</source>
-                <target><![CDATA[<h1>Leggings</h1>
+                <target><![CDATA[<h1>Strumpor / Strumpbyxor / Leggings</h1>
                 <p>Leggings är ett basplagg i ditt barns garderob. POMPdeLUX har leggings i härliga, mjuka material som alla tjejer tycker om att ha på sig. Använd leggings under klänning, kjol eller shorts och glöm inte våra bastoppar som passar perfekt till våra leggings. Våra leggings finns i storlekarna 80–152 cm och här finns massor av inspiration att hämta till barnens garderob.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-82" approved="no">
                 <source>headers.category-82</source>
-                <target><![CDATA[<h1>Strumpor/strumpbyxor</h1>
+                <target><![CDATA[<h1>Strumpor / Strumpbyxor / Leggings</h1>
                 <p>För att fullända ditt barns garderob kan kollektionen kombineras med våra många läckra accessoarer. POMPdeLUX har allt från strumpor och strumpbyxor, badkläder, badbyxor, bikini, baddräkt, hårattiraljer, hängslen och skärp till vantar, mössor och halsdukar. Våra populära tillbehör matchar resten av kollektionen och kan därför kombineras med snygga klänningar, fina koftor och coola byxor. Våra skärp, hängslen, vantar, mössor, halsdukar och hårattiraljer kan bäras av tjejer i alla åldrar och här finns massor av inspiration att hämta till barnens garderob.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-21" approved="no">
@@ -70,7 +70,7 @@
 			<trans-unit id="headers.category-12" approved="no">
                 <source>headers.category-12</source>
                 <target><![CDATA[<h1>Accessories</h1>
-                <p>För att fullända ditt barns garderob kan kollektionen kombineras med våra många läckra accessoarer. POMPdeLUX har allt från strumpor och strumpbyxor, badkläder, badbyxor, bikini, baddräkt, hårattiraljer, hängslen och skärp till vantar, mössor och halsdukar. Våra populära tillbehör matchar resten av kollektionen och kan därför kombineras med snygga klänningar, fina koftor och coola byxor. Våra skärp, hängslen, vantar, mössor, halsdukar och hårattiraljer kan bäras av tjejer i alla åldrar och här finns massor av inspiration att hämta till barnens garderob.</p>]]></target>
+                <p>För att fullända ditt barns garderob kan kollektionen kombineras med våra många läckra accessoarer. POMPdeLUX har allt från strumpor och strumpbyxor, hårattiraljer, hängslen och skärp till vantar, mössor och halsdukar. Våra populära tillbehör matchar resten av kollektionen och kan därför kombineras med snygga klänningar, fina koftor och coola byxor. Våra skärp, hängslen, vantar, mössor, halsdukar och hårattiraljer kan bäras av tjejer i alla åldrar och här finns massor av inspiration att hämta till barnens garderob.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-45" approved="no">
                 <source>headers.category-45</source>
@@ -79,7 +79,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-46" approved="no">
                 <source>headers.category-46</source>
-                <target><![CDATA[<h1>Organic</h1>
+                <target><![CDATA[<h1>Ekologi / GOTS</h1>
                 <p>På POMPdeLUX älskar vi kvalitetskläder och ditt barn ska naturligtvis ha det bästa. Därför är våra underkläder, hipsters, trosor, undertröjor, nattlinnen och pyjamasar GOTS-certifierade. Det innebär att vi arbetar med ekologiska textilier, i vilka minst 95 % av materialet är ekologiskt, och att produktionen sker på ett miljömässigt och socialt ansvarsfullt sätt. Vi garanterar därför sköna material av hög kvalitet för barn i alla åldrar.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-112" approved="no">
@@ -119,7 +119,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-9" approved="no">
                 <source>headers.category-9</source>
-                <target><![CDATA[<h1>Koftor / Jumprar</h1>
+                <target><![CDATA[<h1>Stickat / Cardigans</h1>
                 <p>Under kalla vinterdagar och svala sommarkvällar är det skönt med en varm tröja eller kofta. POMPdeLUX har stickade tröjor, koftor och jumprar i härliga, mjuka material i ett brett urval färger och modeller. Hitta din favorit bland fleecetröjor, koftor, skjortor, sweatshirts, slipovers och jumprar. Våra jumprar och koftor finns i storlekarna 80–152 cm och här finns massor av inspiration att hämta till barnens garderob.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-7" approved="no">
@@ -129,7 +129,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-83" approved="no">
                 <source>headers.category-83</source>
-                <target><![CDATA[<h1>Sweatshirts</h1>
+                <target><![CDATA[<h1>Sweatshirts / Sweatpants</h1>
                 <p>En sweatshirt är tuff på både stora och små killar. På POMPdeLUX hittar du både sweatshirts med tryck, härliga, mjuka fleecetröjor och tuffa sportjackor med blixtlås i urläckra material av hög kvalitet. Hitta din favorit bland många färger och modeller. Våra sweatshirts, sportjackor och fleecetröjor finns i storlekarna 80–152 cm och här finns massor av inspiration att hämta till barnens garderob.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-84" approved="no">
@@ -150,7 +150,7 @@
 			<trans-unit id="headers.category-5" approved="no">
                 <source>headers.category-5</source>
                 <target><![CDATA[<h1>Accessories</h1>
-                <p>För att fullända ditt barns garderob kan kollektionen kombineras med våra många läckra accessoarer. POMPdeLUX har allt från strumpor och strumpbyxor, badkläder, badbyxor, bikini, baddräkt, hårattiraljer, hängslen och skärp till vantar, mössor och halsdukar. Våra populära tillbehör matchar resten av kollektionen och kan därför kombineras med snygga klänningar, fina koftor och coola byxor. Våra skärp, hängslen, vantar, mössor, halsdukar och hårattiraljer kan bäras av tjejer i alla åldrar och här finns massor av inspiration att hämta till barnens garderob.</p>]]></target>
+                <p>För att fullända ditt barns garderob kan kollektionen kombineras med våra många läckra accessoarer. POMPdeLUX har allt från strumpor och strumpbyxor, hårattiraljer, hängslen och skärp till vantar, mössor och halsdukar. Våra populära tillbehör matchar resten av kollektionen och kan därför kombineras med snygga klänningar, fina koftor och coola byxor. Våra skärp, hängslen, vantar, mössor, halsdukar och hårattiraljer kan bäras av tjejer i alla åldrar och här finns massor av inspiration att hämta till barnens garderob.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-43" approved="no">
                 <source>headers.category-43</source>
@@ -159,7 +159,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-44" approved="no">
                 <source>headers.category-44</source>
-                <target><![CDATA[<h1>Organic</h1>
+                <target><![CDATA[<h1>Ekologi / GOTS</h1>
                 <p>På POMPdeLUX älskar vi kvalitetskläder och ditt barn ska naturligtvis ha det bästa. Därför är våra underkläder, hipsters, trosor, undertröjor, nattlinnen och pyjamasar GOTS-certifierade. Det innebär att vi arbetar med ekologiska textilier, i vilka minst 95 % av materialet är ekologiskt, och att produktionen sker på ett miljömässigt och socialt ansvarsfullt sätt. Vi garanterar därför sköna material av hög kvalitet för barn i alla åldrar.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-116" approved="no">
@@ -209,7 +209,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-30" approved="no">
                 <source>headers.category-30</source>
-                <target><![CDATA[<h1>Stickat / Koftor</h1>
+                <target><![CDATA[<h1>Stickat / Cardigans</h1>
                 <p>Under kalla vinterdagar och svala sommarkvällar är det skönt med en varm tröja. POMPdeLUX har både stickade tröjor och koftor i härliga, mjuka material i ett brett urval färger och modeller. Hitta din favorit bland fleecetröjor, koftor, blusar, sweatshirts och jumprar. Våra stickade tröjor och koftor finns i storlekarna 80–152 cm och här finns massor av inspiration att hämta till barnens garderob.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-85" approved="no">
@@ -219,13 +219,13 @@
             </trans-unit>
 			<trans-unit id="headers.category-34" approved="no">
                 <source>headers.category-34</source>
-                <target><![CDATA[<h1>Byxor</h1>
+                <target><![CDATA[<h1>Byxor / Jeans</h1>
                 <p>På POMPdeLUX hittar du de byxor som passar ditt barn bäst. Vi har ett brett urval färger och modeller med allt från jeggings och jeans till byxor i baggy eller slimfit modell. Våra byxor är gjorda i sköna material som sweat och trikå och här finns något för alla tillfällen. Våra byxor, jeggings och jeans finns i storlekarna 80–152 cm och här finns massor av inspiration att hämta till barnens garderob.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-35" approved="no">
                 <source>headers.category-35</source>
-                <target><![CDATA[<h1>Shorts / Kjolar</h1>
-                <p>POMPdeLUX har shorts och kjolar för alla tjejer. Välj mellan flera olika modeller och snygga färger. Lägg märke till de många fina detaljerna med tryck och tyll. Kombinera både shorts och kjolar med underdelar som leggings och strumpbyxor eller överdelar som t-shirtar, stickade tröjor och koftor. Våra shorts och kjolar finns i storlekarna 80–152 cm och här finns massor av inspiration att hämta till barnens garderob.</p>]]></target>
+                <target><![CDATA[<h1>T-shirts</h1>
+                <p>T-shirtar och toppar kan användas året om och är lika fina sommar som vinter. POMPdeLUX har t-shirtar i många olika färger och modeller, så här finns något för både stora och små tjejer. Våra t-shirtar och toppar är tillverkade i sköna, mjuka material med många fina detaljer. Hitta din favorit t-shirt för vardagen eller en fin topp för festliga tillfällen. Våra t-shirtar och toppar finns i storlekarna 80–152 cm och här finns massor av inspiration att hämta till barnens garderob.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-33" approved="no">
                 <source>headers.category-33</source>
@@ -239,7 +239,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-87" approved="no">
                 <source>headers.category-87</source>
-                <target><![CDATA[<h1>Strumpor / strumpbyxor</h1>
+                <target><![CDATA[<h1>Strumpor / Strumpbyxor / Leggings</h1>
                 <p>För att fullända ditt barns garderob kan kollektionen kombineras med våra många läckra accessoarer. POMPdeLUX har allt från strumpor och strumpbyxor, badkläder, badbyxor, bikini, baddräkt, hårattiraljer, hängslen och skärp till vantar, mössor och halsdukar. Våra populära tillbehör matchar resten av kollektionen och kan därför kombineras med snygga klänningar, fina koftor och coola byxor. Våra skärp, hängslen, vantar, mössor, halsdukar och hårattiraljer kan bäras av tjejer i alla åldrar och här finns massor av inspiration att hämta till barnens garderob.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-38" approved="no">
@@ -250,7 +250,7 @@
 			<trans-unit id="headers.category-29" approved="no">
                 <source>headers.category-29</source>
                 <target><![CDATA[<h1>Accessories</h1>
-                <p>För att fullända ditt barns garderob kan kollektionen kombineras med våra många läckra accessoarer. POMPdeLUX har allt från strumpor och strumpbyxor, badkläder, badbyxor, bikini, baddräkt, hårattiraljer, hängslen och skärp till vantar, mössor och halsdukar. Våra populära tillbehör matchar resten av kollektionen och kan därför kombineras med snygga klänningar, fina koftor och coola byxor. Våra skärp, hängslen, vantar, mössor, halsdukar och hårattiraljer kan bäras av tjejer i alla åldrar och här finns massor av inspiration att hämta till barnens garderob.</p>]]></target>
+                <p>För att fullända ditt barns garderob kan kollektionen kombineras med våra många läckra accessoarer. POMPdeLUX har allt från strumpor och strumpbyxor, hårattiraljer, hängslen och skärp till vantar, mössor och halsdukar. Våra populära tillbehör matchar resten av kollektionen och kan därför kombineras med snygga klänningar, fina koftor och coola byxor. Våra skärp, hängslen, vantar, mössor, halsdukar och hårattiraljer kan bäras av tjejer i alla åldrar och här finns massor av inspiration att hämta till barnens garderob.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-49" approved="no">
                 <source>headers.category-49</source>
@@ -259,7 +259,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-50" approved="no">
                 <source>headers.category-50</source>
-                <target><![CDATA[<h1>Organic</h1>
+                <target><![CDATA[<h1>Ekologi / GOTS</h1>
                 <p>På POMPdeLUX älskar vi kvalitetskläder och ditt barn ska naturligtvis ha det bästa. Därför är våra underkläder, hipsters, trosor, undertröjor, nattlinnen och pyjamasar GOTS-certifierade. Det innebär att vi arbetar med ekologiska textilier, i vilka minst 95 % av materialet är ekologiskt, och att produktionen sker på ett miljömässigt och socialt ansvarsfullt sätt. Vi garanterar därför sköna material av hög kvalitet för barn i alla åldrar.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-121" approved="no">
@@ -289,12 +289,12 @@
             </trans-unit>
 			<trans-unit id="headers.category-23" approved="no">
                 <source>headers.category-23</source>
-                <target><![CDATA[<h1>Koftor / Jumprar</h1>
+                <target><![CDATA[<h1>Stickat / Cardigans</h1>
                 <p>Under kalla vinterdagar och svala sommarkvällar är det skönt med en varm tröja eller kofta. POMPdeLUX har stickade tröjor, koftor och jumprar i härliga, mjuka material i ett brett urval färger och modeller. Hitta din favorit bland fleecetröjor, koftor, skjortor, sweatshirts, slipovers och jumprar. Våra jumprar och koftor finns i storlekarna 80–152 cm och här finns massor av inspiration att hämta till barnens garderob.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-88" approved="no">
                 <source>headers.category-88</source>
-                <target><![CDATA[<h1>Sweatshirts</h1>
+                <target><![CDATA[<h1>Sweatshirts /Sweatpants</h1>
                 <p>En sweatshirt är tuff på både stora och små killar. På POMPdeLUX hittar du både sweatshirts med tryck, härliga, mjuka fleecetröjor och tuffa sportjackor med blixtlås i urläckra material av hög kvalitet. Hitta din favorit bland många färger och modeller. Våra sweatshirts, sportjackor och fleecetröjor finns i storlekarna 80–152 cm och här finns massor av inspiration att hämta till barnens garderob.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-89" approved="no">
@@ -325,7 +325,7 @@
 			<trans-unit id="headers.category-22" approved="no">
                 <source>headers.category-22</source>
                 <target><![CDATA[<h1>Accessories</h1>
-                <p>För att fullända ditt barns garderob kan kollektionen kombineras med våra många läckra accessoarer. POMPdeLUX har allt från strumpor och strumpbyxor, badkläder, badbyxor, bikini, baddräkt, hårattiraljer, hängslen och skärp till vantar, mössor och halsdukar. Våra populära tillbehör matchar resten av kollektionen och kan därför kombineras med snygga klänningar, fina koftor och coola byxor. Våra skärp, hängslen, vantar, mössor, halsdukar och hårattiraljer kan bäras av tjejer i alla åldrar och här finns massor av inspiration att hämta till barnens garderob.</p>]]></target>
+                <p>För att fullända ditt barns garderob kan kollektionen kombineras med våra många läckra accessoarer. POMPdeLUX har allt från strumpor och strumpbyxor, hårattiraljer, hängslen och skärp till vantar, mössor och halsdukar. Våra populära tillbehör matchar resten av kollektionen och kan därför kombineras med snygga klänningar, fina koftor och coola byxor. Våra skärp, hängslen, vantar, mössor, halsdukar och hårattiraljer kan bäras av tjejer i alla åldrar och här finns massor av inspiration att hämta till barnens garderob.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-47" approved="no">
                 <source>headers.category-47</source>
@@ -334,7 +334,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-48" approved="no">
                 <source>headers.category-48</source>
-                <target><![CDATA[<h1>Organic</h1>
+                <target><![CDATA[<h1>Ekologi / GOTS</h1>
                 <p>På POMPdeLUX älskar vi kvalitetskläder och ditt barn ska naturligtvis ha det bästa. Därför är våra underkläder, hipsters, trosor, undertröjor, nattlinnen och pyjamasar GOTS-certifierade. Det innebär att vi arbetar med ekologiska textilier, i vilka minst 95 % av materialet är ekologiskt, och att produktionen sker på ett miljömässigt och socialt ansvarsfullt sätt. Vi garanterar därför sköna material av hög kvalitet för barn i alla åldrar.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-123" approved="no">

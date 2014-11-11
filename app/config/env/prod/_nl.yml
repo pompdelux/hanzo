@@ -25,4 +25,6 @@ consignor:
 google:
     analytics_code:    UA-1793665-5
     conversion_id:     976104979
-    site_verification: "OPkXRDSUZqEJM56eo2rk4tApaxiQUjQjHcoXGOk_EIU"
+    site_verification:
+        - "OPkXRDSUZqEJM56eo2rk4tApaxiQUjQjHcoXGOk_EIU"
+        - "gFm5Z12B4-MpnhY-X1JJoQUVVEJcKmCfmpa7EtCMH44" # katrine

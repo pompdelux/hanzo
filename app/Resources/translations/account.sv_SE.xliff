@@ -447,7 +447,7 @@
       <b>Spåra ditt paket</b><br>
       Klicka på ikonen vid sidan av din order om du vill spåra paketet. Sidan Track and Trace öppnas i ett nytt fönster.<br><br>
       <b>Retur, byte och reklamation</b><br>
-      Om du vill returnera en vara klickar du på ikonen vid ordern.<br> 
+      Om du vill returnera en vara klickar du på ikonen vid ordern.<br>
      Returetiketten och retursedeln ligger i två olika pdf-filer och ska skrivas ut var för sig. Om du använder vår returetikett drar vi av SEK 49 från värdet av dina returvaror.<br>
       Om du vill byta en vara eller har fått en vara med fel returnerar du bara varan så skickar vi en ny – naturligtvis helt kostnadsfritt. Om varan är utsåld får du pengarna tillbaka för varan.<br><br>
       <b>Retursedel</b><br>
@@ -556,6 +556,55 @@ Därefter kan du enkelt shoppa vidare.<br></p>
             <trans-unit id="my.account.existing.customer.notice">
                 <source>my.account.existing.customer.notice</source>
                 <target>Välkommen, vi är glada för att se dig igen.</target>
+            </trans-unit>
+            <trans-unit id="wishlist.add.label">
+                <source>wishlist.add.label</source>
+                <target>Min shoppinglista</target>
+            </trans-unit>
+            <trans-unit id="wishlist.add.description">
+                <source>wishlist.add.description</source>
+                <target><![CDATA[
+                    <p>Här kan du skapa en lista med de plagg du vill beställa på ett Home Shopping- eller Öppet hus-evenemang. Shoppinglistan sparas automatiskt.</p>
+                    <ul>
+                        <li>Klicka på ”Min shoppinglista” Din lista får ett unikt nummer som din Shopping Advisor sedan använder.</li>
+                        <li>Lägg till de plagg du vill köpa.</li>
+                        <li>Ge shoppinglistans nummer till din Shopping Advisor så behandlar han/hon din beställning.</li>
+                        <li>Lagerstatus kontrolleras och beställningen genomförs tillsammans med din Shopping Advisor. Därefter får du en beställningsbekräftelse.</li>
+                    </ul>
+                    <p>Obs! Tänk på att beställningen inte är klar förrän din Shopping Advisor har läst in shoppinglistans nummer och du har fått en beställningsbekräftelse. Varor som du lägger till på din shoppinglista reserveras inte. Tyvärr kan det därför hända att en vara är slutsåld.</p>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="wishlist.add.to.list">
+                <source>wishlist.add.to.list</source>
+                <target>Shoppinglista</target>
+            </trans-unit>
+            <trans-unit id="wishlist.placeholder.query">
+                <source>wishlist.placeholder.query</source>
+                <target>Lägg till vara</target>
+            </trans-unit>
+            <trans-unit id="wishlist.query.description">
+                <source>wishlist.query.description</source>
+                <target>Skriv in de tre första bokstäverna i varunamnet och välj önskat plagg från listan.</target>
+            </trans-unit>
+            <trans-unit id="wishlist.select.size">
+                <source>wishlist.select.size</source>
+                <target>Storlek</target>
+            </trans-unit>
+            <trans-unit id="wishlist.select.color">
+                <source>wishlist.select.color</source>
+                <target>Färg</target>
+            </trans-unit>
+            <trans-unit id="wishlist.number">
+                <source>wishlist.number</source>
+                <target><![CDATA[Shoppingliste Nr: <span>%number%</span>]]></target>
+            </trans-unit>
+            <trans-unit id="add.to.wishlist">
+                <source>add.to.wishlist</source>
+                <target>Lägg till i listan</target>
+            </trans-unit>
+            <trans-unit id="wishlist.remove.all.items">
+                <source>wishlist.remove.all.items</source>
+                <target>RENSA LISTAN</target>
             </trans-unit>
         </body>
     </file>

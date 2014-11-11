@@ -3,9 +3,6 @@
 namespace Hanzo\Core;
 
 use Propel;
-use BasePeer;
-
-use Hanzo\Core\Hanzo;
 
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
@@ -15,6 +12,11 @@ use Hanzo\Model\Sequences;
 use Hanzo\Model\SequencesPeer;
 use Hanzo\Model\SequencesQuery;
 
+/**
+ * Class Tools
+ *
+ * @package Hanzo\Core
+ */
 class Tools
 {
     /**
@@ -23,11 +25,12 @@ class Tools
      * @param string  $v
      * @param string  $with
      * @param boolean $lower
+     *
      * @return string
      */
     public static function stripText($v, $with = '-', $lower = true)
     {
-        $url_safe_char_map = array(
+        $urlSafeCharMap = [
             'æ' => 'ae', 'Æ' => 'AE',
             'ø' => 'oe', 'Ø' => 'OE',
             'å' => 'aa', 'Å' => 'AA',
@@ -40,10 +43,10 @@ class Tools
             'ý' => 'y', 'Ý' => 'Y',
             ' ' => '-',
             '/' => '-',
-        );
+        ];
 
-        $search  = array_keys($url_safe_char_map);
-        $replace = array_values($url_safe_char_map);
+        $search  = array_keys($urlSafeCharMap);
+        $replace = array_values($urlSafeCharMap);
 
         $v = str_replace(' ', $with, trim($v));
         $v = str_replace($search, $replace, $v);
@@ -66,7 +69,8 @@ class Tools
     /**
      * better strip tags implementation
      *
-     * @param  string $text
+     * @param string $text
+     *
      * @return string
      */
     public static function stripTags($text)
@@ -82,10 +86,16 @@ class Tools
 
     /**
      * NICETO: not hardcoded
+     *
+     * @param string          $type
+     * @param Orders          $order
+     * @param \PDO|\PropelPDO $conn
+     *
+     * @return string
      */
-    public static function getBccEmailAddress($type, $order)
+    public static function getBccEmailAddress($type, Orders $order, $conn = null)
     {
-        $attributes = $order->getAttributes();
+        $attributes = $order->getAttributes($conn);
 
         $to = '';
         switch ($type) {
@@ -123,8 +133,8 @@ class Tools
                         $to = 'orderdk@pompdelux.com';
                         break;
                 }
-
                 break;
+
             case 'retur':
                 switch ($attributes->global->domain_key) {
                     case 'DE':
@@ -160,6 +170,42 @@ class Tools
                         break;
                 }
                 break;
+
+            case 'rma':
+                switch ($attributes->global->domain_key) {
+                    case 'DE':
+                    case 'SalesDE':
+                        $to = 'rmade@pompdelux.com';
+                        break;
+                    case 'FI':
+                    case 'SalesFI':
+                        $to = 'rmafi@pompdelux.com';
+                        break;
+                    case 'NL':
+                    case 'SalesNL':
+                        $to = 'rmanl@pompdelux.com';
+                        break;
+                    case 'NO':
+                    case 'SalesNO':
+                        $to = 'rmano@pompdelux.com';
+                        break;
+                    case 'SE':
+                    case 'SalesSE':
+                        $to = 'rmase@pompdelux.com';
+                        break;
+                    case 'AT':
+                    case 'SalesAT':
+                        $to = 'rmaat@pompdelux.com';
+                        break;
+                    case 'CH':
+                    case 'SalesCH':
+                        $to = 'rmach@pompdelux.com';
+                        break;
+                    default:
+                        $to = 'rmadk@pompdelux.com';
+                        break;
+                }
+                break;
         }
 
         return $to;
@@ -170,7 +216,8 @@ class Tools
      * Sequence generator, returns next sequesce id of a named sequence.
      * Unknown sequences is created on first request.
      *
-     * @param  string $name the name of the sequence
+     * @param string $name the name of the sequence
+     *
      * @return int
      * @throws \InvalidArgumentException
      */
@@ -191,40 +238,41 @@ class Tools
             $item->setId(1);
         }
 
-        $sequence_id = $item->getId();
+        $sequenceId = $item->getId();
 
         while (true) {
-            $o = OrdersQuery::create()->findOneByPaymentGatewayId($sequence_id, $con);
+            $o = OrdersQuery::create()->findOneByPaymentGatewayId($sequenceId, $con);
             if ($o instanceof Orders) {
-                $sequence_id++;
+                $sequenceId++;
             } else {
                 goto while_end;
             }
         }
         while_end: // yes labeled break...
 
-        $item->setId($sequence_id + 1);
+        $item->setId($sequenceId + 1);
         $item->save($con);
 
         $con->commit();
 
-        return $sequence_id;
+        return $sequenceId;
     }
 
 
     /**
      * Wrapping the getPaymentGatewayId method to auto-generate gateway id's
      *
-     * @param int $gateway_id if specified, this is used over the auto generated one
+     * @param int $gatewayId if specified, this is used over the auto generated one
+     *
      * @return int;
      */
-    public static function getPaymentGatewayId($gateway_id = null)
+    public static function getPaymentGatewayId($gatewayId = null)
     {
-        if (is_null($gateway_id)) {
-            $gateway_id = self::getNextSequenceId('payment gateway');
+        if (is_null($gatewayId)) {
+            $gatewayId = self::getNextSequenceId('payment gateway');
         }
 
-        return $gateway_id;
+        return $gatewayId;
     }
 
 
@@ -234,6 +282,7 @@ class Tools
      * @param mixed   $data  the data to log
      * @param integer $back  how many levels back we dump trace for
      * @param boolean $trace set to true and the log will get a backtrace dump attached
+     *
      * @return mixed
      */
     public static function log($data, $back = 0, $trace = false)
@@ -267,13 +316,13 @@ class Tools
      * - current order state (if any)
      * - current customer id on the order (if there is one)
      *
-     * @param string $msg The message to log
+     * @param string $msg     The message to log
      * @param string $context In which context was the message generated, e.g. __METHOD__
-     * @param array $data Key/value to dump
+     * @param array  $data    Key/value to dump
+     *
      * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    public static function debug( $msg, $context, $data = array())
+     */
+    public static function debug( $msg, $context, $data = [])
     {
         // we do not have access to session data here...
         if (('cli' === PHP_SAPI)) {
@@ -292,9 +341,9 @@ class Tools
         if (!empty($data)) {
             foreach ($data as $key => $value) {
                 if (is_array($value)) {
-                    $value = print_r($value,1);
+                    $value = print_r($value, 1);
                 }
-                $out .= str_pad( $key, 23 ).": ". $value."\n";
+                $out .= str_pad($key, 23).": ". $value."\n";
             }
         }
 
@@ -304,11 +353,12 @@ class Tools
     /**
      * Wrapper for php's money_format function
      *
-     * @see http://dk.php.net/manual/en/function.money-format.php
-     *
      * @param float  $number
-     * @param string $format see php.net for format documentation
+     * @param string $format
+     *
      * @return string
+     *
+     * @see http://dk.php.net/manual/en/function.money-format.php
      */
     public static function moneyFormat($number, $format = '%.2i')
     {
@@ -329,7 +379,7 @@ class Tools
     public static function mapDomainToEnvironment()
     {
         // we use environments to switch domain configurations.
-        $env_map = array(
+        $envMap = [
             'da_dk' => 'dk',
             'de_de' => 'de',
             'en_gb' => 'com',
@@ -339,26 +389,26 @@ class Tools
             'sv_se' => 'se',
             'de_at' => 'at',
             'de_ch' => 'ch',
-        );
+        ];
 
         $path = explode('/', trim(str_replace($_SERVER['SCRIPT_NAME'], '', strtolower($_SERVER['REQUEST_URI'])), '/'));
 
         if (substr($path[0], 0, 9) === '_fragment') {
             // Extract the locale from the _fragment query. Hack to make ESI work on locale.
-            $esi_attributes = [];
+            $esiAttributes = [];
             $query = urldecode($_SERVER['QUERY_STRING']);
-            parse_str($query, $esi_attributes);
+            parse_str($query, $esiAttributes);
 
-            $path[0] = strtolower($esi_attributes['_locale']);
+            $path[0] = strtolower($esiAttributes['_locale']);
         }
         // redirect to splash screen
-        elseif (empty($path[0]) || !isset($env_map[$path[0]])) {
+        elseif (empty($path[0]) || !isset($envMap[$path[0]])) {
             $path[0] = 'da_dk';
         }
         $tld = $path[0];
 
-        if (isset($env_map[$tld])) {
-            $env = $env_map[$tld];
+        if (isset($envMap[$tld])) {
+            $env = $envMap[$tld];
         } else {
             $env = 'dk';
         }
@@ -377,7 +427,7 @@ class Tools
     public static function handleRobots()
     {
         // robots only allowed on the www domain
-        if(($_SERVER['REQUEST_URI'] == '/robots.txt')) {
+        if (($_SERVER['REQUEST_URI'] == '/robots.txt')) {
             header('Content-type: text/plain');
 
             if ((substr($_SERVER['HTTP_HOST'], 0, 4) !== 'www.')) {
@@ -385,14 +435,20 @@ class Tools
             }
 
             die("User-agent: *\nDisallow:\n");
-            #die("User-agent: *\nDisallow: /de_CH/\nDisallow: /de_AT/\n");
+            // die("User-agent: *\nDisallow: /de_CH/\nDisallow: /de_AT/\n");
         }
     }
 
 
+    /**
+     * @param int $size
+     *
+     * @return string
+     */
     public static function humanReadableSize($size)
     {
-        $unit = array('b','kb','mb','gb','tb','pb');
+        $unit = ['b','kb','mb','gb','tb','pb'];
+
         return @round($size/pow(1024, ($i = floor(log($size, 1024)))), 2) . ' ' . $unit[$i];
     }
 
@@ -409,7 +465,7 @@ class Tools
     */
     public static function isMobileRequest()
     {
-        $useragents = array(
+        $userAgents = [
             "iphone",         // Apple iPhone
             "ipod",           // Apple iPod touch
             "aspen",          // iPhone simulator
@@ -422,9 +478,9 @@ class Tools
             "webos",          // Experimental
             "incognito",      // Other iPhone browser
             "webmate"         // Other iPhone browser
-        );
+        ];
 
-        if (preg_match('/('.implode('|', $useragents).')/i', $_SERVER['HTTP_USER_AGENT'], $matches)) {
+        if (preg_match('/('.implode('|', $userAgents).')/i', $_SERVER['HTTP_USER_AGENT'], $matches)) {
             return strtolower($matches[1]);
         }
 
@@ -436,20 +492,21 @@ class Tools
      * build and return "in order edit warning"
      *
      * @param bool $compact
+     *
      * @return string
      */
     public static function getInEditWarning($compact = false)
     {
-        $hanzo = self::getHanzoInstance();
+        $hanzo   = self::getHanzoInstance();
         $session = $hanzo->getSession();
-        $trans = $hanzo->container->get('translator');
-        $router = $hanzo->container->get('router');
+        $trans   = $hanzo->container->get('translator');
+        $router  = $hanzo->container->get('router');
 
-        $params = array(
-            '%history_url%' => $router->generate('_account_show_order', array('order_id' => $session->get('order_id'))),
-            '%order_id%' => $session->get('order_id'),
-            '%stop_url%' => $router->generate('_account', array('stop' => 1)),
-        );
+        $params = [
+            '%history_url%' => $router->generate('_account_show_order', ['order_id' => $session->get('order_id')]),
+            '%order_id%'    => $session->get('order_id'),
+            '%stop_url%'    => $router->generate('_account', ['stop' => 1]),
+        ];
 
         $html = '<div id="in-edit-warning">'.$trans->trans('order.edit.global.notice', $params).'</div>';
 
@@ -467,13 +524,14 @@ class Tools
     /**
      * helper function for setting cookies
      *
-     * @param string  $name      name of the cookie
-     * @param string  $value     value of the cookie
-     * @param integer $ttl       cookie ttl, defaults to session cookie (0)
-     * @param boolean $http_only set to false if cookie is http only (ie. no javascript access)
+     * @param string  $name     name of the cookie
+     * @param string  $value    value of the cookie
+     * @param integer $ttl      cookie ttl, defaults to session cookie (0)
+     * @param boolean $httpOnly set to false if cookie is http only (ie. no javascript access)
+     *
      * @return boolean
      */
-    public static function setCookie($name, $value, $ttl = 0, $http_only = true)
+    public static function setCookie($name, $value, $ttl = 0, $httpOnly = true)
     {
         static $path;
 
@@ -492,7 +550,7 @@ class Tools
             $path .= '/'.self::getHanzoInstance()->container->get('request')->getLocale().'/';
         }
 
-        return setcookie($name, $value, $ttl, $path, $_SERVER['HTTP_HOST'], false, $http_only);
+        return setcookie($name, $value, $ttl, $path, $_SERVER['HTTP_HOST'], false, $httpOnly);
     }
 
 
@@ -529,12 +587,13 @@ class Tools
      */
     public static function isSecure()
     {
-        $is_secure = isset($_SERVER['HTTPS']) && ('ON' == strtoupper($_SERVER['HTTPS']));
-        if (!$is_secure) {
-            $is_secure = isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && ('HTTPS' == strtoupper($_SERVER['HTTP_X_FORWARDED_PROTO']));
+        $isSecure = isset($_SERVER['HTTPS']) && ('ON' == strtoupper($_SERVER['HTTPS']));
+
+        if (!$isSecure) {
+            $isSecure = isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && ('HTTPS' == strtoupper($_SERVER['HTTP_X_FORWARDED_PROTO']));
         }
 
-        return $is_secure;
+        return $isSecure;
     }
 
 
@@ -546,56 +605,90 @@ class Tools
     /**
      * generates a formatted image tag.
      *
-     * @see Functions::image_path()
-     * @param string $src image source
+     * @param string $src    image source
      * @param string $preset the image preset to use - format heightXwidth
-     * @param array $params
-     * @return type
+     * @param array  $params parameters
+     *
+     * @return string
+     *
+     * @see Functions::image_path()
      */
-    public static function fxImageTag($src, $preset = '', array $params = array())
+    public static function fxImageTag($src, $preset = '', array $params = [])
     {
         $src = self::getHanzoInstance()->get('core.cdn') . 'fx/' . $src;
+
         return self::generateImageTag(self::imagePath($src, $preset), $params);
     }
 
-    public static function fxImageUrl($src, $preset = '', array $params = array())
+    /**
+     * @param string $src
+     * @param string $preset
+     * @param array  $params
+     *
+     * @return string
+     */
+    public static function fxImageUrl($src, $preset = '', array $params = [])
     {
         $src = self::getHanzoInstance()->get('core.cdn') . 'fx/' . $src;
+
         return self::imagePath($src, $preset);
     }
 
-    public static function productImageTag($src, $preset = '50x50', array $params = array())
+    /**
+     * @param string $src
+     * @param string $preset
+     * @param array  $params
+     *
+     * @return string
+     */
+    public static function productImageTag($src, $preset = '50x50', array $params = [])
     {
         $dir = 'images/products/thumb/';
-        if($preset === '0x0'){
+        if ($preset === '0x0') {
             $dir = 'images/products/';
         }
         $src = self::getHanzoInstance()->get('core.cdn2') . $dir . $src;
+
         return self::generateImageTag(self::imagePath($src, $preset), $params);
     }
 
-    public static function productImageUrl($src, $preset = '50x50', array $params = array())
+    /**
+     * @param string $src
+     * @param string $preset
+     * @param array  $params
+     *
+     * @return string
+     */
+    public static function productImageUrl($src, $preset = '50x50', array $params = [])
     {
         $dir = 'images/products/thumb/';
-        if($preset === '0x0'){
+        if ($preset === '0x0') {
             $dir = 'images/products/';
         }
         $src = self::getHanzoInstance()->get('core.cdn2') . $dir . $src;
+
         return self::imagePath($src, $preset);
     }
 
-
-    public static function imageTag($src, array $params = array())
+    /**
+     * @param string $src
+     * @param array  $params
+     *
+     * @return string
+     */
+    public static function imageTag($src, array $params = [])
     {
         $src = self::getHanzoInstance()->get('core.cdn') . '' . $src;
+
         return self::generateImageTag(self::imagePath($src), $params);
     }
 
     /**
      * build image path based on source and preset
      *
-     * @param string $src image source
+     * @param string $src    image source
      * @param string $preset the image preset to use - format heightXwidth
+     *
      * @throws \InvalidArgumentException
      * @return string
      */
@@ -607,7 +700,7 @@ class Tools
 
         if ($preset && $preset !== '0x0') {
             $preset .= ',';
-        }else{
+        } else {
             $preset = '';
         }
 
@@ -634,9 +727,10 @@ class Tools
     /**
      * @param string $src
      * @param array  $params
+     *
      * @return string
      */
-    protected static function generateImageTag($src, array $params = array())
+    protected static function generateImageTag($src, array $params = [])
     {
         // title and alt should never be the same...
         // if (empty($params['title']) && !empty($params['alt'])) {
@@ -676,6 +770,7 @@ class Tools
             if ($noscript) {
                 $noscript = '<noscript><img src="' . $src . '"' . str_replace(' lazy', '', $extra) . '></noscript>';
             }
+
             return '<img data-original="' . $src . '"' . $extra . '>'.$noscript;
         }
 
@@ -696,4 +791,129 @@ class Tools
 
         return $hanzo;
     }
+
+
+    /**
+     * Map a domain_key to an AX endpoint
+     *
+     * @param string $key
+     *
+     * @return string
+     */
+    public static function domainKeyToEndpoint($key)
+    {
+        $key      = strtoupper(substr($key, -2));
+        $endPoint = 'DK';
+
+        switch ($key) {
+            case 'AT':
+            case 'CH':
+            case 'DE':
+            case 'FI':
+            case 'NL':
+            case 'NO':
+            case 'SE':
+                $endPoint = $key;
+                break;
+        }
+
+        return $endPoint;
+    }
+
+    /**
+     * Flatten array into 'key.subkey => value' sets
+     *
+     * @param array  $array
+     * @param string $prefix
+     *
+     * @return array
+     */
+    public static function flatten(array $array, $prefix = '')
+    {
+        $result = [];
+        foreach ($array as $key => $value) {
+            if (is_array($value)) {
+                $result = $result + self::flatten($value, $prefix.$key . '.');
+            } else {
+                $result[$prefix.$key] = $value;
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param string $key
+     *
+     * @return string
+     */
+    public static function getLocaleFromDomainKey($key)
+    {
+        $key = strtoupper($key);
+
+        foreach (self::getDomainLocaleMaps() as $data) {
+            if ($key === $data['core.domain_key']) {
+                return $data['locale'];
+            }
+        }
+
+        return 'da_DK';
+    }
+
+    /**
+     * @return array
+     *
+     * @TODO should not be hardcoded!
+     */
+    public static function getDomainLocaleMaps()
+    {
+        return [
+            'at'  => [
+                'locale'           => 'de_AT',
+                'core.domain_key'  => 'AT',
+                'core.language_id' => 8,
+            ],
+            'ch'  => [
+                'locale'           => 'de_CH',
+                'core.domain_key'  => 'CH',
+                'core.language_id' => 9,
+            ],
+            'com' => [
+                'locale'           => 'en_GB',
+                'core.domain_key'  => 'COM',
+                'core.language_id' => 2,
+            ],
+            'dk'  => [
+                'locale'           => 'da_DK',
+                'core.domain_key'  => 'DK',
+                'core.language_id' => 1,
+            ],
+            'de'  => [
+                'locale'           => 'de_DE',
+                'core.domain_key'  => 'DE',
+                'core.language_id' => 7,
+            ],
+            'fi'  => [
+                'locale'           => 'fi_FI',
+                'core.domain_key'  => 'FI',
+                'core.language_id' => 6,
+            ],
+            'nl'  => [
+                'locale'           => 'nl_NL',
+                'core.domain_key'  => 'NL',
+                'core.language_id' => 5,
+            ],
+            'no'  => [
+                'locale'           => 'nb_NO',
+                'core.domain_key'  => 'NO',
+                'core.language_id' => 4,
+            ],
+            'se'  => [
+                'locale'           => 'sv_SE',
+                'core.domain_key'  => 'SE',
+                'core.language_id' => 3,
+            ],
+        ];
+    }
+
 }

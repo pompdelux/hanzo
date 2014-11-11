@@ -85,7 +85,7 @@
                         <li>POMPdeLUX ApS</li>
                         <li>Grydh&oslash;jparken 10, DK-8381 Tilst</li>
                         <li>CVR-nr 29622035</li>
-                        <li>mail@pompdelux.com (+45) 8736 1000</li>
+                        <li>mailcom@POMPdeLUX.com (+45) 8736 1000</li>
                     </ul>
                 ]]></target>
             </trans-unit>
@@ -119,7 +119,14 @@
             </trans-unit>
             <trans-unit id="rma.slip.description">
                 <source>rma.slip.description</source>
-                <target><![CDATA[<p>At POMPdeLUX it is easy to change or return items. The easiest way to do this is by filling out and sending the returns form. You would do us a big favor if you sent the items in their original packaging including labels etc.<br><br>If you are returning a defect item or an incorrectly send item, we refund you the shipping charge.<br><br>If you wish to exchange an item to a different size, colour or another item, the new shipment is free of charge. Please note that the price of the new item may not exceed that of the returned item.<br><br>If the item you wish to exchange for is sold out, we refund you the returned item.<br><br>Any refund will automatically be issued to the credit card used to make the original purchase. <br><b>For more information please visit: <a href="/en_GB/" target="_blank">www.pompdelux.com</a></p>]]></target>
+                <target><![CDATA[<p>At POMPdeLUX it is easy to exchange or return items. The easiest way to do this is to fill in this form and return it with the item/s.<br><br>
+It is important that the item is returned with tags and in the same condition that you received it in if you wish to make an exchange for a similar product or receive a refund of the full amount. <br><br>
+<b>Returns, Exchanges, Complaints</b><br>
+If you wish to return an item, you must pay for shipping costs associated with the return of the goods. We will however refund the postage charges for parcels sent with standard priority through the national post service. <br><br>If you wish to make an exchange for another size, colour, or different product altogether, the costs associated with the return of the item are free provided you use our prepaid return label. Please note that it is only possible to exchange for another item that does not cost more than the original item. <br><br>
+If you wish to return a defective or incorrect item, the return shipping costs will also be refunded as described above. <br><br>
+Refund of Payment
+If you paid by card then your refund will be returned to the card you used when ordering.<br><br>
+For further information, please visit: <a href="/en_GB/" target="_blank">www.pompdelux.com</a></p>]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.activitycode">
                 <source>rma.slip.thead.activitycode</source>

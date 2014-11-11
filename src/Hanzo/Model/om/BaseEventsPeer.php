@@ -9,6 +9,8 @@ use \PDOStatement;
 use \Propel;
 use \PropelException;
 use \PropelPDO;
+use Glorpen\Propel\PropelBundle\Dispatcher\EventDispatcherProxy;
+use Glorpen\Propel\PropelBundle\Events\PeerEvent;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\Events;
 use Hanzo\Model\EventsParticipantsPeer;
@@ -31,13 +33,13 @@ abstract class BaseEventsPeer
     const TM_CLASS = 'Hanzo\\Model\\map\\EventsTableMap';
 
     /** The total number of columns. */
-    const NUM_COLUMNS = 19;
+    const NUM_COLUMNS = 22;
 
     /** The number of lazy-loaded columns. */
     const NUM_LAZY_LOAD_COLUMNS = 0;
 
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-    const NUM_HYDRATE_COLUMNS = 19;
+    const NUM_HYDRATE_COLUMNS = 22;
 
     /** the column name for the id field */
     const ID = 'events.id';
@@ -56,6 +58,9 @@ abstract class BaseEventsPeer
 
     /** the column name for the event_date field */
     const EVENT_DATE = 'events.event_date';
+
+    /** the column name for the event_end_time field */
+    const EVENT_END_TIME = 'events.event_end_time';
 
     /** the column name for the host field */
     const HOST = 'events.host';
@@ -90,6 +95,12 @@ abstract class BaseEventsPeer
     /** the column name for the notify_hostess field */
     const NOTIFY_HOSTESS = 'events.notify_hostess';
 
+    /** the column name for the rsvp_type field */
+    const RSVP_TYPE = 'events.rsvp_type';
+
+    /** the column name for the public_note field */
+    const PUBLIC_NOTE = 'events.public_note';
+
     /** the column name for the created_at field */
     const CREATED_AT = 'events.created_at';
 
@@ -115,12 +126,12 @@ abstract class BaseEventsPeer
      * e.g. EventsPeer::$fieldNames[EventsPeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('Id', 'Code', 'Key', 'ConsultantsId', 'CustomersId', 'EventDate', 'Host', 'AddressLine1', 'AddressLine2', 'PostalCode', 'City', 'Phone', 'Email', 'Description', 'Type', 'IsOpen', 'NotifyHostess', 'CreatedAt', 'UpdatedAt', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'code', 'key', 'consultantsId', 'customersId', 'eventDate', 'host', 'addressLine1', 'addressLine2', 'postalCode', 'city', 'phone', 'email', 'description', 'type', 'isOpen', 'notifyHostess', 'createdAt', 'updatedAt', ),
-        BasePeer::TYPE_COLNAME => array (EventsPeer::ID, EventsPeer::CODE, EventsPeer::KEY, EventsPeer::CONSULTANTS_ID, EventsPeer::CUSTOMERS_ID, EventsPeer::EVENT_DATE, EventsPeer::HOST, EventsPeer::ADDRESS_LINE_1, EventsPeer::ADDRESS_LINE_2, EventsPeer::POSTAL_CODE, EventsPeer::CITY, EventsPeer::PHONE, EventsPeer::EMAIL, EventsPeer::DESCRIPTION, EventsPeer::TYPE, EventsPeer::IS_OPEN, EventsPeer::NOTIFY_HOSTESS, EventsPeer::CREATED_AT, EventsPeer::UPDATED_AT, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'CODE', 'KEY', 'CONSULTANTS_ID', 'CUSTOMERS_ID', 'EVENT_DATE', 'HOST', 'ADDRESS_LINE_1', 'ADDRESS_LINE_2', 'POSTAL_CODE', 'CITY', 'PHONE', 'EMAIL', 'DESCRIPTION', 'TYPE', 'IS_OPEN', 'NOTIFY_HOSTESS', 'CREATED_AT', 'UPDATED_AT', ),
-        BasePeer::TYPE_FIELDNAME => array ('id', 'code', 'key', 'consultants_id', 'customers_id', 'event_date', 'host', 'address_line_1', 'address_line_2', 'postal_code', 'city', 'phone', 'email', 'description', 'type', 'is_open', 'notify_hostess', 'created_at', 'updated_at', ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, )
+        BasePeer::TYPE_PHPNAME => array ('Id', 'Code', 'Key', 'ConsultantsId', 'CustomersId', 'EventDate', 'EventEndTime', 'Host', 'AddressLine1', 'AddressLine2', 'PostalCode', 'City', 'Phone', 'Email', 'Description', 'Type', 'IsOpen', 'NotifyHostess', 'RsvpType', 'PublicNote', 'CreatedAt', 'UpdatedAt', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'code', 'key', 'consultantsId', 'customersId', 'eventDate', 'eventEndTime', 'host', 'addressLine1', 'addressLine2', 'postalCode', 'city', 'phone', 'email', 'description', 'type', 'isOpen', 'notifyHostess', 'rsvpType', 'publicNote', 'createdAt', 'updatedAt', ),
+        BasePeer::TYPE_COLNAME => array (EventsPeer::ID, EventsPeer::CODE, EventsPeer::KEY, EventsPeer::CONSULTANTS_ID, EventsPeer::CUSTOMERS_ID, EventsPeer::EVENT_DATE, EventsPeer::EVENT_END_TIME, EventsPeer::HOST, EventsPeer::ADDRESS_LINE_1, EventsPeer::ADDRESS_LINE_2, EventsPeer::POSTAL_CODE, EventsPeer::CITY, EventsPeer::PHONE, EventsPeer::EMAIL, EventsPeer::DESCRIPTION, EventsPeer::TYPE, EventsPeer::IS_OPEN, EventsPeer::NOTIFY_HOSTESS, EventsPeer::RSVP_TYPE, EventsPeer::PUBLIC_NOTE, EventsPeer::CREATED_AT, EventsPeer::UPDATED_AT, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'CODE', 'KEY', 'CONSULTANTS_ID', 'CUSTOMERS_ID', 'EVENT_DATE', 'EVENT_END_TIME', 'HOST', 'ADDRESS_LINE_1', 'ADDRESS_LINE_2', 'POSTAL_CODE', 'CITY', 'PHONE', 'EMAIL', 'DESCRIPTION', 'TYPE', 'IS_OPEN', 'NOTIFY_HOSTESS', 'RSVP_TYPE', 'PUBLIC_NOTE', 'CREATED_AT', 'UPDATED_AT', ),
+        BasePeer::TYPE_FIELDNAME => array ('id', 'code', 'key', 'consultants_id', 'customers_id', 'event_date', 'event_end_time', 'host', 'address_line_1', 'address_line_2', 'postal_code', 'city', 'phone', 'email', 'description', 'type', 'is_open', 'notify_hostess', 'rsvp_type', 'public_note', 'created_at', 'updated_at', ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, )
     );
 
     /**
@@ -130,12 +141,12 @@ abstract class BaseEventsPeer
      * e.g. EventsPeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Code' => 1, 'Key' => 2, 'ConsultantsId' => 3, 'CustomersId' => 4, 'EventDate' => 5, 'Host' => 6, 'AddressLine1' => 7, 'AddressLine2' => 8, 'PostalCode' => 9, 'City' => 10, 'Phone' => 11, 'Email' => 12, 'Description' => 13, 'Type' => 14, 'IsOpen' => 15, 'NotifyHostess' => 16, 'CreatedAt' => 17, 'UpdatedAt' => 18, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'code' => 1, 'key' => 2, 'consultantsId' => 3, 'customersId' => 4, 'eventDate' => 5, 'host' => 6, 'addressLine1' => 7, 'addressLine2' => 8, 'postalCode' => 9, 'city' => 10, 'phone' => 11, 'email' => 12, 'description' => 13, 'type' => 14, 'isOpen' => 15, 'notifyHostess' => 16, 'createdAt' => 17, 'updatedAt' => 18, ),
-        BasePeer::TYPE_COLNAME => array (EventsPeer::ID => 0, EventsPeer::CODE => 1, EventsPeer::KEY => 2, EventsPeer::CONSULTANTS_ID => 3, EventsPeer::CUSTOMERS_ID => 4, EventsPeer::EVENT_DATE => 5, EventsPeer::HOST => 6, EventsPeer::ADDRESS_LINE_1 => 7, EventsPeer::ADDRESS_LINE_2 => 8, EventsPeer::POSTAL_CODE => 9, EventsPeer::CITY => 10, EventsPeer::PHONE => 11, EventsPeer::EMAIL => 12, EventsPeer::DESCRIPTION => 13, EventsPeer::TYPE => 14, EventsPeer::IS_OPEN => 15, EventsPeer::NOTIFY_HOSTESS => 16, EventsPeer::CREATED_AT => 17, EventsPeer::UPDATED_AT => 18, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'CODE' => 1, 'KEY' => 2, 'CONSULTANTS_ID' => 3, 'CUSTOMERS_ID' => 4, 'EVENT_DATE' => 5, 'HOST' => 6, 'ADDRESS_LINE_1' => 7, 'ADDRESS_LINE_2' => 8, 'POSTAL_CODE' => 9, 'CITY' => 10, 'PHONE' => 11, 'EMAIL' => 12, 'DESCRIPTION' => 13, 'TYPE' => 14, 'IS_OPEN' => 15, 'NOTIFY_HOSTESS' => 16, 'CREATED_AT' => 17, 'UPDATED_AT' => 18, ),
-        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'code' => 1, 'key' => 2, 'consultants_id' => 3, 'customers_id' => 4, 'event_date' => 5, 'host' => 6, 'address_line_1' => 7, 'address_line_2' => 8, 'postal_code' => 9, 'city' => 10, 'phone' => 11, 'email' => 12, 'description' => 13, 'type' => 14, 'is_open' => 15, 'notify_hostess' => 16, 'created_at' => 17, 'updated_at' => 18, ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, )
+        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Code' => 1, 'Key' => 2, 'ConsultantsId' => 3, 'CustomersId' => 4, 'EventDate' => 5, 'EventEndTime' => 6, 'Host' => 7, 'AddressLine1' => 8, 'AddressLine2' => 9, 'PostalCode' => 10, 'City' => 11, 'Phone' => 12, 'Email' => 13, 'Description' => 14, 'Type' => 15, 'IsOpen' => 16, 'NotifyHostess' => 17, 'RsvpType' => 18, 'PublicNote' => 19, 'CreatedAt' => 20, 'UpdatedAt' => 21, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'code' => 1, 'key' => 2, 'consultantsId' => 3, 'customersId' => 4, 'eventDate' => 5, 'eventEndTime' => 6, 'host' => 7, 'addressLine1' => 8, 'addressLine2' => 9, 'postalCode' => 10, 'city' => 11, 'phone' => 12, 'email' => 13, 'description' => 14, 'type' => 15, 'isOpen' => 16, 'notifyHostess' => 17, 'rsvpType' => 18, 'publicNote' => 19, 'createdAt' => 20, 'updatedAt' => 21, ),
+        BasePeer::TYPE_COLNAME => array (EventsPeer::ID => 0, EventsPeer::CODE => 1, EventsPeer::KEY => 2, EventsPeer::CONSULTANTS_ID => 3, EventsPeer::CUSTOMERS_ID => 4, EventsPeer::EVENT_DATE => 5, EventsPeer::EVENT_END_TIME => 6, EventsPeer::HOST => 7, EventsPeer::ADDRESS_LINE_1 => 8, EventsPeer::ADDRESS_LINE_2 => 9, EventsPeer::POSTAL_CODE => 10, EventsPeer::CITY => 11, EventsPeer::PHONE => 12, EventsPeer::EMAIL => 13, EventsPeer::DESCRIPTION => 14, EventsPeer::TYPE => 15, EventsPeer::IS_OPEN => 16, EventsPeer::NOTIFY_HOSTESS => 17, EventsPeer::RSVP_TYPE => 18, EventsPeer::PUBLIC_NOTE => 19, EventsPeer::CREATED_AT => 20, EventsPeer::UPDATED_AT => 21, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'CODE' => 1, 'KEY' => 2, 'CONSULTANTS_ID' => 3, 'CUSTOMERS_ID' => 4, 'EVENT_DATE' => 5, 'EVENT_END_TIME' => 6, 'HOST' => 7, 'ADDRESS_LINE_1' => 8, 'ADDRESS_LINE_2' => 9, 'POSTAL_CODE' => 10, 'CITY' => 11, 'PHONE' => 12, 'EMAIL' => 13, 'DESCRIPTION' => 14, 'TYPE' => 15, 'IS_OPEN' => 16, 'NOTIFY_HOSTESS' => 17, 'RSVP_TYPE' => 18, 'PUBLIC_NOTE' => 19, 'CREATED_AT' => 20, 'UPDATED_AT' => 21, ),
+        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'code' => 1, 'key' => 2, 'consultants_id' => 3, 'customers_id' => 4, 'event_date' => 5, 'event_end_time' => 6, 'host' => 7, 'address_line_1' => 8, 'address_line_2' => 9, 'postal_code' => 10, 'city' => 11, 'phone' => 12, 'email' => 13, 'description' => 14, 'type' => 15, 'is_open' => 16, 'notify_hostess' => 17, 'rsvp_type' => 18, 'public_note' => 19, 'created_at' => 20, 'updated_at' => 21, ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, )
     );
 
     /**
@@ -215,6 +226,7 @@ abstract class BaseEventsPeer
             $criteria->addSelectColumn(EventsPeer::CONSULTANTS_ID);
             $criteria->addSelectColumn(EventsPeer::CUSTOMERS_ID);
             $criteria->addSelectColumn(EventsPeer::EVENT_DATE);
+            $criteria->addSelectColumn(EventsPeer::EVENT_END_TIME);
             $criteria->addSelectColumn(EventsPeer::HOST);
             $criteria->addSelectColumn(EventsPeer::ADDRESS_LINE_1);
             $criteria->addSelectColumn(EventsPeer::ADDRESS_LINE_2);
@@ -226,6 +238,8 @@ abstract class BaseEventsPeer
             $criteria->addSelectColumn(EventsPeer::TYPE);
             $criteria->addSelectColumn(EventsPeer::IS_OPEN);
             $criteria->addSelectColumn(EventsPeer::NOTIFY_HOSTESS);
+            $criteria->addSelectColumn(EventsPeer::RSVP_TYPE);
+            $criteria->addSelectColumn(EventsPeer::PUBLIC_NOTE);
             $criteria->addSelectColumn(EventsPeer::CREATED_AT);
             $criteria->addSelectColumn(EventsPeer::UPDATED_AT);
         } else {
@@ -235,6 +249,7 @@ abstract class BaseEventsPeer
             $criteria->addSelectColumn($alias . '.consultants_id');
             $criteria->addSelectColumn($alias . '.customers_id');
             $criteria->addSelectColumn($alias . '.event_date');
+            $criteria->addSelectColumn($alias . '.event_end_time');
             $criteria->addSelectColumn($alias . '.host');
             $criteria->addSelectColumn($alias . '.address_line_1');
             $criteria->addSelectColumn($alias . '.address_line_2');
@@ -246,6 +261,8 @@ abstract class BaseEventsPeer
             $criteria->addSelectColumn($alias . '.type');
             $criteria->addSelectColumn($alias . '.is_open');
             $criteria->addSelectColumn($alias . '.notify_hostess');
+            $criteria->addSelectColumn($alias . '.rsvp_type');
+            $criteria->addSelectColumn($alias . '.public_note');
             $criteria->addSelectColumn($alias . '.created_at');
             $criteria->addSelectColumn($alias . '.updated_at');
         }
@@ -1429,3 +1446,4 @@ abstract class BaseEventsPeer
 //
 BaseEventsPeer::buildTableMap();
 
+EventDispatcherProxy::trigger(array('construct','peer.construct'), new PeerEvent('Hanzo\Model\om\BaseEventsPeer'));

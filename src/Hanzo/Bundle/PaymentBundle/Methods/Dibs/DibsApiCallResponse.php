@@ -20,9 +20,7 @@ class DibsApiCallResponse
 
     /**
      * __construct
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function __construct( $rawResponse, $function )
     {
         $this->parse( $rawResponse );
@@ -39,9 +37,7 @@ class DibsApiCallResponse
 
     /**
      * isError
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function isError()
     {
         return $this->isError;
@@ -50,9 +46,7 @@ class DibsApiCallResponse
 
     /**
      * parse
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     protected function parse( $rawResponse )
     {
         $rawResponse = trim($rawResponse);
@@ -91,9 +85,7 @@ class DibsApiCallResponse
      * - actioncode: A 2-3 letter/digit code, see "Capture" at http://tech.dibs.dk/10-step-guide/10-step-guide/5-your-own-test/ where for example d02 is returned when card number xxxx100000000002 has been used
      * - status: an id, either an int or DECLINED
      *
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     protected function setStatus( $function )
     {
         if ( !isset($this->data['status']) ) {
@@ -105,9 +97,7 @@ class DibsApiCallResponse
 
     /**
      * debug
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function debug()
     {
         return $this->data;
@@ -115,9 +105,7 @@ class DibsApiCallResponse
 
     /**
      * getStatusCodesAndDescriptionForAction
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     protected function getStatusCodesAndDescriptionForAction( $function )
     {
         switch ($function)

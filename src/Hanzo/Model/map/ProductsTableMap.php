@@ -78,6 +78,7 @@ class ProductsTableMap extends TableMap
         $this->addRelation('ProductsQuantityDiscount', 'Hanzo\\Model\\ProductsQuantityDiscount', RelationMap::ONE_TO_MANY, array('sku' => 'products_master', ), 'CASCADE', null, 'ProductsQuantityDiscounts');
         $this->addRelation('ProductsStock', 'Hanzo\\Model\\ProductsStock', RelationMap::ONE_TO_MANY, array('id' => 'products_id', ), 'CASCADE', null, 'ProductsStocks');
         $this->addRelation('ProductsToCategories', 'Hanzo\\Model\\ProductsToCategories', RelationMap::ONE_TO_MANY, array('id' => 'products_id', ), 'CASCADE', null, 'ProductsToCategoriess');
+        $this->addRelation('WishlistsLines', 'Hanzo\\Model\\WishlistsLines', RelationMap::ONE_TO_MANY, array('id' => 'products_id', ), 'CASCADE', null, 'WishlistsLiness');
         $this->addRelation('OrdersLines', 'Hanzo\\Model\\OrdersLines', RelationMap::ONE_TO_MANY, array('id' => 'products_id', ), 'SET NULL', null, 'OrdersLiness');
         $this->addRelation('RelatedProductsRelatedByMaster', 'Hanzo\\Model\\RelatedProducts', RelationMap::ONE_TO_MANY, array('sku' => 'master', ), 'CASCADE', null, 'RelatedProductssRelatedByMaster');
         $this->addRelation('RelatedProductsRelatedBySku', 'Hanzo\\Model\\RelatedProducts', RelationMap::ONE_TO_MANY, array('sku' => 'sku', ), 'CASCADE', null, 'RelatedProductssRelatedBySku');
@@ -108,6 +109,8 @@ class ProductsTableMap extends TableMap
   'create_column' => 'created_at',
   'update_column' => 'updated_at',
   'disable_updated_at' => 'false',
+),
+            'event' =>  array (
 ),
         );
     } // getBehaviors()

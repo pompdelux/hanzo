@@ -42,6 +42,22 @@
                 <source>quickorder.no.products.found</source>
                 <target>Kunne ikke finne produktet.</target>
             </trans-unit>
+            <trans-unit id="wishlist.misses.header">
+                <source>wishlist.misses.header</source>
+                <target>Følgende produkter kan ikke legges i kurven da de ikke er på lager lenger.</target>
+            </trans-unit>
+            <trans-unit id="quickorder.wishlist_form.label">
+                <source>quickorder.wishlist_form.label</source>
+                <target>Hent Shoppingliste</target>
+            </trans-unit>
+            <trans-unit id="quickorder.wishlist_form.placeholder">
+                <source>quickorder.wishlist_form.placeholder</source>
+                <target>SHOPPINGLISTE NR.</target>
+            </trans-unit>
+            <trans-unit id="quickorder.wishlist_form.button_label">
+                <source>quickorder.wishlist_form.button_label</source>
+                <target>Hent</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

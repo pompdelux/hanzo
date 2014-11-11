@@ -5,13 +5,10 @@ namespace Hanzo\Bundle\PaymentBundle\Methods\Dibs\Type;
 use Exception;
 
 use Hanzo\Core\Hanzo;
-use Hanzo\Core\Tools;
-use Hanzo\Model\Orders;
 use Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface;
 use Hanzo\Bundle\PaymentBundle\BasePaymentApi;
 use Hanzo\Bundle\PaymentBundle\Methods\Dibs\DibsApiCall;
-use Hanzo\Bundle\PaymentBundle\Methods\Dibs\DibsApiCallException;
-
+use Hanzo\Model\Orders;
 use Symfony\Component\HttpFoundation\Request;
 
 class DibsPaymentWindow extends BasePaymentApi implements PaymentMethodApiInterface

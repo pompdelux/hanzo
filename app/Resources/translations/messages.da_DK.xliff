@@ -140,7 +140,7 @@
             </trans-unit>
             <trans-unit id="store.address">
                 <source>store.address</source>
-                <target>POMPdeLUX ApS · Møgelhøj 8 · DK-8520 Lystrup · CVR-nr 29622035 · mail@pompdelux.dk · (+45) 8678 7871</target>
+                <target>POMPdeLUX ApS · Møgelhøj 8 · DK-8520 Lystrup · CVR-nr 29622035 · maildk@POMPdeLUX.com · (+45) 8678 7871</target>
             </trans-unit>
             <trans-unit id="order.edit.global.notice">
                 <source>order.edit.global.notice</source>
@@ -159,7 +159,7 @@
                 <target><![CDATA[
                     <strong>Kundeservice</strong><br>
                     Telefon: (+45) 8678 7871<br>
-                    E-mail: <a href="mailto:mail@pompdelux.dk">mail@pompdelux.dk</a><br>
+                    E-mail: <a href="mailto:maildk@POMPdeLUX.com">maildk@POMPdeLUX.com</a><br>
                     Mandag til torsdag kl. 09 – 16<br>
                     Fredag 9 - 14<br>
                     Lørdag, søndag og helligdage lukket.
@@ -173,7 +173,7 @@
                         <li>Møgelhøj 8</li>
                         <li>DK-8520 Lystrup</li>
                         <li>CVR-nr 29622035</li>
-                        <li><a href="mailto:mail@pompdelux.dk">mail@pompdelux.dk</a></li>
+                        <li><a href="mailto:maildk@POMPdeLUX.com">maildk@POMPdeLUX.com</a></li>
                         <li>(+45) 8678 7871</li><br>
 						<li>Returnering af varer: POMPdeLUX Aps</li>
                         <li>Grydhøjparken 10</li>
@@ -220,7 +220,7 @@
             <trans-unit id="create.account.vilkaar.link">
                 <source>create.account.vilkaar.link</source>
                 <target><![CDATA[
-                    <a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a>
+                    <a href="/da_DK/forside/kundeservice/vilkaar-betingelser" target="_blank">POMPdeLUX vilkår og betingelser.</a>
                 ]]></target>
             </trans-unit>
             <trans-unit id="category.selector.look">
@@ -297,7 +297,7 @@ Hvis du ønsker at ombytte eller returnere en vare, har du hos POMPdeLUX 14 dage
                 <li><a href="/da_DK/forside/kundeservice/returseddel">Returseddel</a></li>
                 <li><a href="/da_DK/forside/kundeservice/vaske-raad">Vaskeråd</a></li>
 				<li><a href="/da_DK/forside/kundeservice/sizeguide">Sizeguide</a></li>
-				<li><a href="/da_DK/forside/kundeservice/vilkaar">Vilkår</a></li>
+				<li><a href="/da_DK/forside/kundeservice/vilkaar-betingelser">Vilkår og betingelser</a></li>
 				<li><a href="/da_DK/forside/kundeservice/om-webshoppen">Om Webshoppen</a></li>
 				<li><a href="/da_DK/forside/kundeservice/fragt-og-levering">Fragt og levering</a></li>
                 </ul>
@@ -382,7 +382,7 @@ Hvis du ønsker at ombytte eller returnere en vare, har du hos POMPdeLUX 14 dage
             </trans-unit>
             <trans-unit id="faceted.show.out.of.stock">
                 <source>faceted.show.out.of.stock</source>
-                <target>Vis også udsolgte vare</target>
+                <target>Vis også udsolgte varer</target>
             </trans-unit>
             <trans-unit id="faceted.reset.filter">
                 <source>faceted.reset.filter</source>

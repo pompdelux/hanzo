@@ -96,8 +96,9 @@ swiftmailer:
 propel:
     dbal:
         driver:     '%database_driver%'
-        options:    {  }
-        attributes: {  }
+        options:    {}
+        attributes: {}
+        classname:  Glorpen\Propel\PropelBundle\Connection\EventPropelPDO
     path:             '%kernel.root_dir%/../vendor/propel'
     phing_path:       '%kernel.root_dir%/../vendor/phing'
     logging:          '%kernel.debug%'
@@ -110,6 +111,9 @@ propel:
         propel.defaultTimeFormat:         "H:i:s"
         propel.defaultDateFormat:         "Y-m-d"
         propel.behavior.geocodable.class: "%kernel.root_dir%.propel.propel-behaviors.GeocodableBehavior.src.GeocodableBehavior"
+        propel.behavior.event.class:      'vendor.glorpen.propel-bundle.Glorpen.Propel.PropelBundle.Behaviors.EventBehavior'
+        propel.behavior.default:          "event"
+
 
 jms_security_extra:
     secure_all_services: false
@@ -185,10 +189,11 @@ google:
     site_verification: ~
     analytics_code:    ~
 
-# @see https://github.com/ekino/EkinoNewRelicBundle
-ekino_new_relic:
-    application_name: Pompdelux
-    api_key:          3909fb3d64adf610708e4fc0aa59fc956a94d03a
+# un: 2014.09.29 - removed to see if new-relics own sf support is better.
+## @see https://github.com/ekino/EkinoNewRelicBundle
+#ekino_new_relic:
+#    application_name: Pompdelux
+#    api_key:          3909fb3d64adf610708e4fc0aa59fc956a94d03a
 
 # @see https://github.com/liip/LiipThemeBundle
 liip_theme:
@@ -231,3 +236,17 @@ consignor:
 bazinga_js_translation:
     locale_fallback: %locale%
     default_domain: js
+
+leezy_pheanstalk:
+    enabled: true
+    pheanstalks:
+        primary:
+            server: %beanstalkd.server%
+            default: true
+
+core:
+    parameters:
+        core:
+            domain_key:  %core.domain_key%
+            language_id: %core.language_id%
+            locale:      %locale%

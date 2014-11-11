@@ -2,46 +2,33 @@
 
 namespace Hanzo\Bundle\CheckoutBundle\Event;
 
-use Propel;
-use PropelCollection;
-
+use Hanzo\Bundle\PaymentBundle\PaymentActionsProxy;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
-
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersLinesQuery;
-use Hanzo\Model\OrdersSyncLogQuery;
-
-use Hanzo\Bundle\AccountBundle\AddressFormatter;
-use Hanzo\Bundle\ServiceBundle\Services\MailService;
-use Hanzo\Bundle\AxBundle\Actions\Out\AxService;
-
-use Symfony\Bundle\FrameworkBundle\Translation\Translator;
-use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class CheckoutListener
 {
-    protected $mailer;
-    protected $ax;
-    protected $translator;
     protected $session;
-    protected $formatter;
+    protected $paymentActions;
 
-    public function __construct(MailService $mailer, AxService $ax, Translator $translator, Session $session, AddressFormatter $formatter)
+    /**
+     * @param Session             $session
+     * @param PaymentActionsProxy $paymentActions
+     */
+    public function __construct(Session $session, PaymentActionsProxy $paymentActions)
     {
-        $this->mailer     = $mailer;
-        $this->ax         = $ax;
-        $this->translator = $translator;
-        $this->session    = $session;
-        $this->formatter  = $formatter;
+        $this->session        = $session;
+        $this->paymentActions = $paymentActions;
     }
 
     /**
      * onPaymentFailed
      *
      * @param FilterOrderEvent $event
-     **/
+     */
     public function onPaymentFailed(FilterOrderEvent $event)
     {
         if ($this->session->has('failed_order_mail_sent')) {
@@ -108,128 +95,13 @@ class CheckoutListener
      * Event is triggered last.
      *
      * @param  FilterOrderEvent $event
-     * @return void
      */
     public function onPaymentCollected(FilterOrderEvent $event)
     {
-        $order   = $event->getOrder();
-        $in_edit = $event->getInEdit();
-
-        // build and send order confirmation.
-        $attributes     = $order->getAttributes();
-        $email          = $order->getEmail();
-        $name           = trim($order->getFirstName() . ' ' . $order->getLastName());
-        $shipping_title = $this->translator->trans('shipping_method.name.' . $order->getDeliveryMethod(), [], 'shipping');
-
-        $shipping_cost = 0.00;
-        $shipping_fee  = 0.00;
-        foreach ($order->getOrderLineShipping() as $line) {
-            switch ($line->getType()) {
-                case 'shipping':
-                    $shipping_cost += $line->getPrice();
-                    break;
-                case 'shipping.fee':
-                    $shipping_fee += $line->getPrice();
-                    break;
-            }
-        }
-
-        $card_type = '';
-        if (isset($attributes->payment->paytype)) {
-            switch (strtoupper($attributes->payment->paytype)) {
-                case 'V-DK':
-                    $card_type = 'VISA/DanKort';
-                    break;
-                case 'DK':
-                    $card_type = 'DanKort';
-                    break;
-                case 'MC':
-                case 'MC(DK)':
-                case 'MC(SE)':
-                    $card_type = 'MasterCard';
-                    break;
-                case 'VISA':
-                case 'VISA(SE)':
-                case 'VISA(DK)':
-                    $card_type ='Visa';
-                    break;
-                case 'ELEC':
-                    $card_type = 'Visa Electron';
-                    break;
-                case 'PENSIO':
-                    if ('IDEALPAYMENT' == strtoupper($attributes->payment->nature)) {
-                        $card_type = 'iDEAL';
-                    }
-                    break;
-            }
-        }
-
-        $company_address = $this->translator->trans('store.address', []);
-        $company_address = str_replace( ' · ', "\n", $company_address );
-
-        $event_id = isset($attributes->global->HomePartyId) ? $attributes->global->HomePartyId : '';
-
-        foreach ($order->getOrdersLiness() as $line) {
-            $line->setProductsSize($line->getPostfixedSize($this->translator));
-        }
-
-        $params = array(
-            'order'            => $order,
-            'payment_address'  => $this->formatter->format($order->getOrderAddress('payment'), 'txt'),
-            'company_address'  => $company_address,
-            'delivery_address' => $this->formatter->format($order->getOrderAddress('shipping'), 'txt'),
-            'customer_id'      => $order->getCustomersId(),
-            'order_date'       => $order->getCreatedAt('Y-m-d'),
-            'payment_method'   => $this->translator->trans('payment.'. $order->getBillingMethod() .'.title', [],'checkout'),
-            'shipping_title'   => $shipping_title,
-            'shipping_cost'    => $shipping_cost,
-            'shipping_fee'     => $shipping_fee,
-            'expected_at'      => $order->getExpectedDeliveryDate( 'd-m-Y' ),
-            'username'         => $order->getCustomers()->getEmail(),
-            'password'         => $order->getCustomers()->getPasswordClear(),
-            'event_id'         => $event_id,
-        );
-
-        $payment_fee = $order->getPaymentFee();
-        if ($payment_fee > 0) {
-            $params['payment_fee'] = $payment_fee;
-        }
-
-        if (!empty($card_type)) {
-            $params['card_type'] = $card_type;
-        }
-
-        if (isset($attributes->payment->transact)) {
-            $params['transaction_id'] = $attributes->payment->transact;
-        }
-
-        if (!is_null($order->getPaymentGatewayId())) {
-            $params['payment_gateway_id'] = $order->getPaymentGatewayId();
-        }
-
-        if (isset($attributes->gift_card->amount)) {
-            $params['gift_card_amount'] = $attributes->gift_card->amount;
-            $params['gift_card_name'] = $attributes->gift_card->text;
-        }
-
-        foreach ($order->getOrdersLiness() as $line) {
-            if ('discount' == $line->getType()) {
-                if (empty($params['hostess_discount'])) {
-                    $params['hostess_discount'] = $line->getPrice();
-                    $params['hostess_discount_title'] = $this->translator->trans($line->getProductsSku(), [], 'checkout');
-                }
-            }
-
-            // or Sku == 91 ?
-            if ($line->getType('payment.fee') && $line->getProductsName() == 'gothia') {
-                $params['gothia_fee'] = $line->getPrice();
-                $params['gothia_fee_title'] = $this->translator->trans('payment.fee.gothia.title', [], 'checkout');
-
-                if (isset($params['payment_fee'])) {
-                    unset($params['payment_fee']);
-                }
-            }
-        }
+        /** @var \Hanzo\Model\Orders $order */
+        $order      = $event->getOrder();
+        $in_edit    = $event->getInEdit();
+        $attributes = $order->getAttributes();
 
         // close event if this is the hostess purchase.
         if ($order->getEventsId() && isset($attributes->event->is_hostess_order)) {
@@ -239,8 +111,7 @@ class CheckoutListener
         }
 
         // Handle payment canceling of old order
-        if ($in_edit && !in_array($order->getBillingMethod(), array('gothia', 'gothiade'))) {
-
+        if ($in_edit && !in_array($order->getBillingMethod(), ['gothia', 'gothiade'])) {
             $currentVersion = $order->getVersionId();
 
             // If the version number is less than 2 there is no previous version
@@ -249,32 +120,23 @@ class CheckoutListener
                 $oldOrder = $order->getOrderAtVersion($oldOrderVersion);
 
                 try {
-                    $oldOrder->cancelPayment();
+                    $this->paymentActions->cancelPayment($oldOrder);
                 } catch (\Exception $e) {
                     Tools::log( 'Could not cancel payment for old order, id: '. $oldOrder->getId() .' error was: '. $e->getMessage());
                 }
             }
         }
-
-        try {
-            $bcc = Tools::getBccEmailAddress('order', $order);
-
-            $this->mailer->setMessage('order.confirmation', $params);
-            $this->mailer->setTo($email, $name);
-            if ($bcc) {
-                $this->mailer->setBcc($bcc);
-            }
-            $this->mailer->send();
-        } catch (\Swift_TransportException $e) {
-            Tools::log($e->getMessage());
-        }
     }
 
 
+    /**
+     * @param  FilterOrderEvent $event
+     * @throws \Exception
+     */
     public function onFinalize(FilterOrderEvent $event)
     {
-        $order    = $event->getOrder();
-        $hanzo    = Hanzo::getInstance();
+        $order = $event->getOrder();
+        $hanzo = Hanzo::getInstance();
 
         // if for some reason a shipping method without data is set, cleanup.
         if ($order->getDeliveryMethod() && ('' == $order->getDeliveryFirstName())) {
@@ -287,12 +149,12 @@ class CheckoutListener
             ;
             $order->setDeliveryMethod(null);
 
-            // ??? maby this is not so safe after all..
+            // ??? maybe this is not so safe after all..
             $order->setBillingMethod(null);
             $order->clearPaymentAttributes();
         }
 
-        // set once, newer touch agian
+        // set once, newer touch again
         $domain_key = $hanzo->get('core.domain_key');
         if (!$order->getInEdit() && (false === strpos($domain_key, 'Sales'))) {
             $order->setAttribute('HomePartyId', 'global', 'WEB ' . $domain_key);

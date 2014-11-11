@@ -9,6 +9,8 @@ use \PDOStatement;
 use \Propel;
 use \PropelException;
 use \PropelPDO;
+use Glorpen\Propel\PropelBundle\Dispatcher\EventDispatcherProxy;
+use Glorpen\Propel\PropelBundle\Events\PeerEvent;
 use Hanzo\Model\Domains;
 use Hanzo\Model\DomainsPeer;
 use Hanzo\Model\DomainsSettingsPeer;
@@ -781,3 +783,4 @@ abstract class BaseDomainsPeer
 //
 BaseDomainsPeer::buildTableMap();
 
+EventDispatcherProxy::trigger(array('construct','peer.construct'), new PeerEvent('Hanzo\Model\om\BaseDomainsPeer'));

@@ -42,6 +42,22 @@
                 <source>quickorder.no.products.found</source>
                 <target>Kan het product niet vinden.</target>
             </trans-unit>
+            <trans-unit id="wishlist.misses.header">
+                <source>wishlist.misses.header</source>
+                <target>De volgende producten kun je niet meer in je winkelmandje doen, want we hebben ze niet meer op voorraad.</target>
+            </trans-unit>
+            <trans-unit id="quickorder.wishlist_form.label">
+                <source>quickorder.wishlist_form.label</source>
+                <target>Haal je Shoppinglijst</target>
+            </trans-unit>
+            <trans-unit id="quickorder.wishlist_form.placeholder">
+                <source>quickorder.wishlist_form.placeholder</source>
+                <target>SHOPPINGLIJST NR. </target>
+            </trans-unit>
+            <trans-unit id="quickorder.wishlist_form.button_label">
+                <source>quickorder.wishlist_form.button_label</source>
+                <target>Halen</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

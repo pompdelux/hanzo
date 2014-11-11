@@ -21,20 +21,23 @@ propel:
 consignor:
     shipment_server:
         options:
-              actor: 205
-              product_concept_id: 1961
-              service_id: ""
-              key: PDLCH
-              to_address:
-                  name: "POMPdeLUX Aps"
-                  address_line_1: "Postfach"
-                  postal_code: "9024"
-                  city: "St. Gallen"
-                  country_iso2: CH
-                  email: mailch@pompdelux.com
-                  phone: "044 201 33 33"
+            actor: 205
+            product_concept_id: 1961
+            service_id: ""
+            key: PDLCH
+            to_address:
+                name: "POMPdeLUX Aps"
+                address_line_1: "Postfach"
+                postal_code: "9024"
+                city: "St. Gallen"
+                country_iso2: CH
+                email: mailch@pompdelux.com
+                phone: "044 201 33 33"
 
 google:
     analytics_code:    UA-1793665-8
     conversion_id:     972329147
-    site_verification: "3fafy3BakvvcWFWLva7D16MtGZfhuqfx5Bt32sjGms4"
+    site_verification:
+        - "3fafy3BakvvcWFWLva7D16MtGZfhuqfx5Bt32sjGms4"
+        - "QSPLT5CPgnZKHXMZ_UlD0FnCBB0VeyCuQT3uV9YW2_s" # Heinrich
+        - "Ge0BAo7GXDHJnjyKgUAwDITI6qgHiUflWHeWSWHUZUs" # Katrine

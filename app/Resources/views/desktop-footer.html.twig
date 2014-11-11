@@ -21,5 +21,4 @@
 
 {{ include('::footer-'~app.request.locale~'.html.twig', ignore_missing = true, with_context = true) }}
 
-{{ render(controller('RetargetingBundle:Default:jsBlock')) }}
 {{ google_tags() }}

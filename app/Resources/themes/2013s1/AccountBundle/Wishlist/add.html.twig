@@ -1,0 +1,113 @@
+{% extends layout %}
+{% block content %}
+
+    <section class="grid_{% if is_mobile_layout %}8{% else %}4{% endif %} alpha omega js-hanzo-module" data-module-name="ProductFinder WishlistBuilder">
+        <h1>{{ 'wishlist.add.to.list'|trans({}, 'account') }}</h1>
+
+        {% if is_mobile_layout == false %}
+            <section class="grid_8 alpha omega wishlist-info-block">
+                {{ include('AccountBundle:Wishlist:info.html.twig') }}
+            </section>
+        {% endif  %}
+
+        <form action="{{ path('_account_wishlist_add_item') }}" class="">
+            <div>
+                <input type="text" name="q" id="form-item-q" placeholder="{{ 'wishlist.placeholder.query'|trans({}, 'account') }}" autocomplete="off" class="master">
+                <label form="form-item-q">{{ 'wishlist.query.description'|trans({}, 'account') }}</label>
+            </div>
+            <div>
+                <select disabled name="size">
+                    <option value="">{{ 'wishlist.select.size'|trans({}, 'account') }}</option>
+                </select>
+            </div>
+            <div>
+                <select disabled name="color">
+                    <option value="">{{ 'wishlist.select.color'|trans({}, 'account') }}</option>
+                </select>
+            </div>
+            <div>
+                <select disabled name="quantity">
+                {% for i in 1..10 %}
+                    <option value="{{ i }}">{{ i }}</option>
+                {% endfor %}
+                </select>
+            </div>
+
+            <input type="hidden" name="master" value="">
+            <input type="hidden" name="product_id" value="">
+            <input type="submit" value="{{ "add.to.wishlist"|trans({}, 'account') }}" class="button submit-button">
+        </form>
+    </section>
+
+    <div class="grid_{% if is_mobile_layout %}8{% else %}4{% endif %} alpha omega list-number">
+        {{ image_tag('fx/images/icons/icons/Hearticon.png') }}
+        {{ 'wishlist.number'|trans({'%number%': wishlist_id}, 'account')|raw }}
+    </div>
+
+    <section class="grid_{% if is_mobile_layout %}8{% else %}4{% endif %} alpha omega js-wishlist-target wishlist-target">
+    {% for product in products %}
+        <article
+                data-product-id="{{ product.id }}"
+                data-quantity="{{ product.quantity }}"
+                data-color="{{ product.color }}"
+                data-size="{{ product.size }}"
+                data-master="{{ product.master }}"
+                data-title="{{ product.title }}"
+                id="js-wishlist-{{ product.id }}">
+            <img src="{{ product.image }}" alt="">
+            <p>
+                {{ product.title }}<br>
+                {{ product.size }}<br>
+                {{ product.color }}<br>
+                <span>{{ product.quantity }}</span> stk<br>
+            </p>
+            <a href="" class="sprite edit js-wishlist-edit-item-trigger"></a>
+            <a href="{{ path('_account_wishlist_remove_item', {'product_id': product.id}) }}" class="sprite delete js-wishlist-delete-item-trigger"></a>
+        </article>
+    {% endfor %}
+
+    </section>
+
+
+    <div class="grid_8 alpha omega wishlist-flush-list">
+        <div class="grid_{% if is_mobile_layout %}8{% else %}4{% endif %} alpha omega">
+            <a href="{{ path('_account_wishlist_remove_all') }}" class="button js-wishlist-flush-list{% if products|length == 0 %} off{% endif %} js-confirm" data-confirm-message="Er du sikker på du vil fjerne alle produkter på listen ?">{{ 'wishlist.remove.all.items'|trans({}, 'account') }}</a>
+        </div>
+    </div>
+
+    <div class="grid_{% if is_mobile_layout %}8{% else %}4{% endif %} alpha omega list-number last{% if products|length == 0 %} off{% endif %}">
+        {{ image_tag('fx/images/icons/icons/Hearticon.png') }}
+        {{ 'wishlist.number'|trans({'%number%': wishlist_id}, 'account')|raw }}
+    </div>
+
+    <article class="footer grid_8 alpha omega ">
+        {{ 'wishlist.footer.description'|trans({}, 'account')|raw }}
+    </article>
+
+<script type="text/html" id="wishlistItemTpl">
+    <article
+            data-product-id="<?= data.id ?>"
+            data-quantity="<?= data.quantity ?>"
+            data-color="<?= data.color ?>"
+            data-size="<?= data.size ?>"
+            data-master="<?= data.master ?>"
+            data-title="<?= data.title ?>"
+            id="js-wishlist-<?= data.id ?>">
+        <img src="<?= data.image ?>" alt="">
+        <p>
+            <?= data.title ?><br>
+            <?= data.size ?><br>
+            <?= data.color ?><br>
+            <span><?= data.quantity ?></span> stk<br>
+        </p>
+        <a href="" class="sprite edit js-wishlist-edit-item-trigger"></a>
+        <a href="{{ path('_homepage') }}account/wishlist/remove-item/<?= data.id ?>" class="sprite delete js-wishlist-delete-item-trigger"></a>
+    </article>
+</script>
+
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ asset('/fx/scripts/typeahead.min.js') }}"></script>
+<script>$(function () {App.init();});</script>
+{% endblock javascript %}

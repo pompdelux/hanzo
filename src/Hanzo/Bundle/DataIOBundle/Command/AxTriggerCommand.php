@@ -32,9 +32,11 @@ class AxTriggerCommand extends ContainerAwareCommand
         $endpoint = $input->getArgument('endpoint');
 
         $output->writeln('Stoc sync trigger initiated for: <info>'.$endpoint.'</info>');
-        $ax = $this->getContainer()->get('ax.out');
 
-        $status = $ax->triggerStockSync($endpoint);
+        $ax = $this->getContainer()->get('ax.out.service.send_stock_sync_trigger');
+        $ax->setEndPoint($endpoint);
+
+        $status = $ax->send();
 
         if (true === $status) {
             $output->writeln('<info>Trigger send, OK.</info>');

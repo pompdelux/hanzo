@@ -398,6 +398,18 @@
                 <source>checkout.confirm.mobile.text</source>
                 <target><![CDATA[Verificér venligst at dit mobilnummer er korrekt.<br><br>Hvis det ikke er kan Post Danmark ikke komme i kontakt dig vedrørende forsendelsen.]]></target>
             </trans-unit>
+            <trans-unit id="wishlist.select.size">
+                <source>wishlist.select.size</source>
+                <target>Größe</target>
+            </trans-unit>
+            <trans-unit id="wishlist.select.color">
+                <source>wishlist.select.color</source>
+                <target>Farbe</target>
+            </trans-unit>
+            <trans-unit id="basket.latest.added">
+                <source>basket.latest.added</source>
+                <target>Soeben hinzugefügt</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

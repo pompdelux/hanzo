@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\AdminBundle\Controller;
 
+use Hanzo\Bundle\AdminBundle\Exporter\EventExporter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -69,7 +70,7 @@ class ConsultantsController extends CoreController
         $paginate = null;
         if ($consultants->haveToPaginate()) {
 
-            $pages = array();
+            $pages = [];
             foreach ($consultants->getLinks(20) as $page) {
                 if ($request->query->has('q')) {
                     $pages[$page] = $router->generate($route, array('pager' => $page, 'q' => $q_clean), TRUE);
@@ -104,7 +105,7 @@ class ConsultantsController extends CoreController
             ->findOne($this->getDbConnection())
         ;
 
-        $consultant_settings_data = array();
+        $consultant_settings_data = [];
         if($consultant_settings instanceof Settings){
             foreach ($consultant_settings as $consultant_setting) {
                 $consultant_settings_data[$consultant_setting->getCKey()] = $consultant_setting->getCValue();
@@ -311,7 +312,7 @@ class ConsultantsController extends CoreController
         $paginate = null;
         if ($events->haveToPaginate()) {
 
-            $pages = array();
+            $pages = [];
             foreach ($events->getLinks(20) as $page) {
                 if ($request->query->has('q')) {
                     $pages[$page] = $router->generate($route, array('pager' => $page, 'q' => $request->query->get('q')), TRUE);
@@ -354,7 +355,7 @@ class ConsultantsController extends CoreController
             if ($this->getFormat() == 'json') {
                 return $this->json_response(array(
                     'status' => TRUE,
-                    'message' => $this->get('translator')->trans('delete.event.success', array(), 'admin'),
+                    'message' => $this->get('translator')->trans('delete.event.success', [], 'admin'),
                 ));
             }
         }
@@ -362,84 +363,33 @@ class ConsultantsController extends CoreController
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
                 'status' => FALSE,
-                'message' => $this->get('translator')->trans('delete.event.failed', array(), 'admin'),
+                'message' => $this->get('translator')->trans('delete.event.failed', [], 'admin'),
             ));
         }
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return Response
+     */
     public function exportAction(Request $request)
     {
+        $startDate = $endDate = null;
 
-        $parser = new \PropelCSVParser();
-        $parser->delimiter = ';';
-        $start = $end = NULL;
         if ($request->query->has('start') && $request->query->has('end')) {
-            $start = $request->query->get('start', null);
-            $end   = $request->query->get('end', null);
-        }
-        $date_filter = array();
-        if($start && $end){
-            $date_filter['min'] = strtotime($start);
-            $date_filter['max'] = strtotime(date("d-m-Y", strtotime($end)) . " +1 day");
-        }else{
-            $date_filter['min'] = strtotime('-1 month', time());
-            $start = $date_filter['min'];
-            $date_filter['max'] = strtotime('Tomorrow');
-            $end = $date_filter['max'];
-
-        }
-        $data = array();
-        $data[0]['consultant'] = 'consultant';
-
-        $consultants = ConsultantsQuery::create()
-            ->joinCustomers()
-            ->useCustomersQuery()
-                ->filterByIsActive(TRUE)
-                ->filterByGroupsId(2) // Consultants
-                ->orderByFirstName()
-            ->endUse()
-            ->find($this->getDbConnection())
-        ;
-
-        $events = EventsQuery::create()
-            ->filterByEventDate($date_filter)
-            ->orderByHost()
-            ->find($this->getDbConnection())
-        ;
-
-        for ($date=strtotime($start); $date <= strtotime($end); $date = strtotime('+1 day', $date)) {
-            $data[0][date('d-m-Y', $date)] = date('d-m-Y', $date); // Header row with visible dates
+            $startDate = $request->query->get('start', null);
+            $endDate   = $request->query->get('end', null);
         }
 
-        foreach ($consultants as $consultant) {
-            $customer_data = $consultant->getCustomers($this->getDbConnection());
-            $data[$consultant->getId()][0] = utf8_decode($customer_data->getFirstName(). ' ' . $customer_data->getLastName());
+        $exporter = new EventExporter($startDate, $endDate);
+        $exporter->setDBConnection($this->getDbConnection());
+        $csvData = $exporter->getDataAsCsv();
 
-            for ($date=strtotime($start); $date <= strtotime($end); $date = strtotime('+1 day', $date)) {
-                $data[$consultant->getId()][date('d-m-Y', $date)] = '-';
-            }
-
-        }
-
-        foreach ($events as $event) {
-            if (!isset($data[$event->getConsultantsId()])) {
-                continue;
-            }
-
-            if ($data[$event->getConsultantsId()][date('d-m-Y', strtotime($event->getEventDate()))] === '-') {
-                $data[$event->getConsultantsId()][date('d-m-Y', strtotime($event->getEventDate()))] = $event->getType();
-            } else {
-                $data[$event->getConsultantsId()][date('d-m-Y', strtotime($event->getEventDate()))] .= "+".$event->getType();
-            }
-        }
-
-        return new Response(
-            $parser->toCSV($data, true, false),
-            200,
-            array(
-                 'Content-Type' => 'text/csv',
-                 'Content-Disposition' => sprintf('attachment; filename="export_' . $start . '_' . $end .'.csv"', 'export_' . $start . '_' . $end .'.csv')
-            )
+        return new Response($csvData, 200, [
+                'Content-Type' => 'text/csv',
+                'Content-Disposition' => sprintf('attachment; filename="export_' . $startDate . '_' . $endDate .'.csv"', 'export_' . $startDate . '_' . $endDate .'.csv')
+            ]
         );
     }
 
@@ -486,7 +436,7 @@ class ConsultantsController extends CoreController
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
                 'status' => TRUE,
-                'message' => $this->get('translator')->trans('save.changes.success', array(), 'admin'),
+                'message' => $this->get('translator')->trans('save.changes.success', [], 'admin'),
             ));
         }
     }
@@ -497,7 +447,7 @@ class ConsultantsController extends CoreController
             ->joinCustomers()
             ->useCustomersQuery()
                 ->filterByEmail('%@bellcom.dk', \Criteria::NOT_LIKE)
-                ->filterByEmail(array('hdkon@pompdelux.dk','mail@pompdelux.dk','hd@pompdelux.dk','kk@pompdelux.dk','sj@pompdelux.dk','ak@pompdelux.dk','test@pompdelux.dk'), \Criteria::NOT_IN)
+                ->filterByEmail(array('hdkon@pompdelux.dk','mail@pompdelux.dk','hd@pompdelux.dk','test@pompdelux.dk'), \Criteria::NOT_IN)
                 ->filterByGroupsId(2)
                 ->filterByIsActive(TRUE)
                 ->orderByFirstName()
@@ -522,7 +472,7 @@ class ConsultantsController extends CoreController
             ->find($this->getDbConnection())
         ;
 
-        $consultants_array = array();
+        $consultants_array = [];
         $cdn = Hanzo::getInstance()->get('core.cdn');
 
         foreach ($consultants as $consultant) {

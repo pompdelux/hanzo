@@ -451,7 +451,7 @@
       <b>Volg je pakketje</b><br>
       Klik op het icoontje naast je bestelling om je pakketje te volgen. De Track and Trace pagina opent in een nieuw venster.<br><br>
       <b>Retourneren, ruilen en reclameren</b><br>
-      Wil je een artikel ruilen, klik dan op het icoontje naast je bestelling. 
+      Wil je een artikel ruilen, klik dan op het icoontje naast je bestelling.
 Het retourlabel en retourformulier zitten in twee afzonderlijke PDF- bestanden en je moet ze afzonderlijk printen. Als je ons retourlabel gebruikt, dan trekken we slechts €7,00 van de waarde van de geretourneerde artikelen af.<br>Retourneer je een artikel omdat je het wilt ruilen of heb je een verkeerd artikel ontvangen, stuur dan het artikel terug en we zullen je een nieuw artikel zenden – voor jou is dit natuurlijk gratis. Is het artikel inmiddels uitverkocht, dan betalen we je de prijs van het artikel terug.<br><br>
       <b>Retourformulier</b><br>
       Kun je het artikel dat je wilt terugsturen niet vinden op het interactieve retourformulier, dan kun je hier op de link klikken en het retourformulier handmatig printen. <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_NL.pdf">» Retourformulier (PDF)</a>
@@ -559,6 +559,55 @@ Hierna kun je gewoon doorgaan met winkelen.<br></p>
             <trans-unit id="my.account.existing.customer.notice">
                 <source>my.account.existing.customer.notice</source>
                 <target>Welkom! Leuk dat je ons weer bezoekt.</target>
+            </trans-unit>
+            <trans-unit id="wishlist.add.label">
+                <source>wishlist.add.label</source>
+                <target>Mijn Shoppinglijst</target>
+            </trans-unit>
+            <trans-unit id="wishlist.add.description">
+                <source>wishlist.add.description</source>
+                <target><![CDATA[
+                    <p>Hier kun je een lijstje opstellen met de stijlen die je tijdens een Home Shopping arrangement of een Open Huis wilt bestellen. Je Shoppinglijst wordt automatisch opgeslagen.</p>
+                    <ul>
+                        <li>Klik op "Mijn shoppinglijst". Je Shoppinglijst krijgt een uniek nummer toebedeeld dat je aan je Shopping Advisor door moet geven.</li>
+                        <li>Voeg de stijlen toe die je wilt kopen.</li>
+                        <li>Laat het nummer van je Shoppinglijst aan je Shopping Advisor zien en de Shopping Advisor zal de bestelling voor je verwerken.</li>
+                        <li>Het systeem controleert de voorraad en samen met je Shopping Advisor plaats je de bestelling en je ontvangt daarna een orderbevestiging.</li>
+                    </ul>
+                    <p>LET OP! Je hebt je bestelling pas geplaatst als je Shopping Advisor het nummer van je shoppinglijst heeft ingevoerd en jij een orderbevestiging hebt ontvangen. De artikelen op je shoppinglijst zijn niet gereserveerd, al heb je ze aan je lijstje toegevoegd. Het kan dus helaas voorkomen dat een artikel uitverkocht is.</p>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="wishlist.add.to.list">
+                <source>wishlist.add.to.list</source>
+                <target>Shoppinglijst</target>
+            </trans-unit>
+            <trans-unit id="wishlist.placeholder.query">
+                <source>wishlist.placeholder.query</source>
+                <target>Voeg een artikel toe</target>
+            </trans-unit>
+            <trans-unit id="wishlist.query.description">
+                <source>wishlist.query.description</source>
+                <target>Typ de eerste drie letters van de naam van de stijl en selecteer dan de stijl op de lijst.</target>
+            </trans-unit>
+            <trans-unit id="wishlist.select.size">
+                <source>wishlist.select.size</source>
+                <target>Maat</target>
+            </trans-unit>
+            <trans-unit id="wishlist.select.color">
+                <source>wishlist.select.color</source>
+                <target>Kleur</target>
+            </trans-unit>
+            <trans-unit id="wishlist.number">
+                <source>wishlist.number</source>
+                <target><![CDATA[Shoppingliste Nr: <span>%number%</span>]]></target>
+            </trans-unit>
+            <trans-unit id="add.to.wishlist">
+                <source>add.to.wishlist</source>
+                <target>Voeg toe aan je lijstje</target>
+            </trans-unit>
+            <trans-unit id="wishlist.remove.all.items">
+                <source>wishlist.remove.all.items</source>
+                <target>WIS JE LIJSTJE</target>
             </trans-unit>
         </body>
     </file>

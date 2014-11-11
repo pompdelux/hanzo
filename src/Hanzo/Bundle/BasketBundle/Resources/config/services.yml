@@ -1,7 +1,0 @@
-parameters:
-#    basket.example.class: Hanzo\Bundle\BasketBundle\Example
-
-services:
-#    basket.example:
-#        class: %basket.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]

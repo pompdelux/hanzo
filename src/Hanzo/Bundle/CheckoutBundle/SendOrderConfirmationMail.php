@@ -13,9 +13,15 @@ namespace Hanzo\Bundle\CheckoutBundle;
 use Hanzo\Core\Tools;
 use Hanzo\Bundle\AccountBundle\AddressFormatter;
 use Hanzo\Bundle\ServiceBundle\Services\MailService;
+use Hanzo\Model\LanguagesQuery;
 use Hanzo\Model\Orders;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 
+/**
+ * Class SendOrderConfirmationMail
+ *
+ * @package Hanzo\Bundle\CheckoutBundle
+ */
 class SendOrderConfirmationMail
 {
     /**
@@ -26,29 +32,44 @@ class SendOrderConfirmationMail
     /**
      * @var \Hanzo\Bundle\ServiceBundle\Services\MailService
      */
-    private $mail_service;
+    private $mailService;
 
     /**
      * @var \Hanzo\Bundle\AccountBundle\AddressFormatter
      */
-    private $address_formatter;
+    private $addressFormatter;
 
     /**
      * @var bool
      */
-    private $is_mail_build = false;
+    private $isMailBuild = false;
+
+    /**
+     * @var null|\PropelPDO
+     */
+    private $dbConn = null;
 
     /**
      * @param Translator       $translator
-     * @param MailService      $mail_service
-     * @param AddressFormatter $address_formatter
+     * @param MailService      $mailService
+     * @param AddressFormatter $addressFormatter
      */
-    public function __construct(Translator $translator, MailService $mail_service, AddressFormatter $address_formatter)
+    public function __construct(Translator $translator, MailService $mailService, AddressFormatter $addressFormatter)
     {
-        $this->translator        = $translator;
-        $this->mail_service      = $mail_service;
-        $this->address_formatter = $address_formatter;
+        $this->translator       = $translator;
+        $this->mailService      = $mailService;
+        $this->addressFormatter = $addressFormatter;
     }
+
+
+    /**
+     * @param \PDO|\PropelPDO $conn
+     */
+    public function setDBConnection($conn)
+    {
+        $this->dbConn = $conn;
+    }
+
 
     /**
      * Send the confirmation mail build with the build() method.
@@ -56,12 +77,12 @@ class SendOrderConfirmationMail
      */
     public function send()
     {
-        if (false === $this->is_mail_build) {
+        if (false === $this->isMailBuild) {
             throw new \BuildException("Confirmation mail must be build before it can be send !");
         }
 
         try {
-            $this->mail_service->send();
+            $this->mailService->send();
         } catch (\Swift_TransportException $e) {
             Tools::log($e->getMessage());
         }
@@ -74,88 +95,97 @@ class SendOrderConfirmationMail
      */
     public function build(Orders $order)
     {
+        $locale = $this->getLocale($order);
+        $order->setDBConnection($this->dbConn);
+
+        // needs locale to be set to the correct locale to have correct currency labels.
+        setlocale(LC_ALL, $locale.'.utf-8', $locale.'.utf8');
+        if ('EUR' == $order->getCurrencyCode()) {
+            setlocale(LC_MONETARY, 'nl_NL.utf8', 'nl_NL.utf-8');
+        }
+
         // build and send order confirmation.
-        $attributes     = $order->getAttributes();
+        $attributes     = $order->getAttributes($this->dbConn);
         $email          = $order->getEmail();
         $name           = trim($order->getFirstName() . ' ' . $order->getLastName());
-        $shipping_title = $this->translator->trans('shipping_method.name.' . $order->getDeliveryMethod(), [], 'shipping');
+        $shippingTitle  = $this->translator->trans('shipping_method.name.' . $order->getDeliveryMethod(), [], 'shipping', $locale);
 
-        $shipping_cost = 0.00;
-        $shipping_fee  = 0.00;
-        foreach ($order->getOrderLineShipping() as $line) {
+        $shippingCost = 0.00;
+        $shippingFee  = 0.00;
+        foreach ($order->getOrderLineShipping($this->dbConn) as $line) {
             switch ($line->getType()) {
                 case 'shipping':
-                    $shipping_cost += $line->getPrice();
+                    $shippingCost += $line->getPrice();
                     break;
                 case 'shipping.fee':
-                    $shipping_fee += $line->getPrice();
+                    $shippingFee += $line->getPrice();
                     break;
             }
         }
 
-        $card_type = '';
+        $cardType = '';
         if (isset($attributes->payment->paytype)) {
             switch (strtoupper($attributes->payment->paytype)) {
                 case 'V-DK':
-                    $card_type = 'VISA/DanKort';
+                    $cardType = 'VISA/DanKort';
                     break;
                 case 'DK':
-                    $card_type = 'DanKort';
+                    $cardType = 'DanKort';
                     break;
                 case 'MC':
                 case 'MC(DK)':
                 case 'MC(SE)':
-                    $card_type = 'MasterCard';
+                    $cardType = 'MasterCard';
                     break;
                 case 'VISA':
                 case 'VISA(SE)':
                 case 'VISA(DK)':
-                    $card_type ='Visa';
+                    $cardType ='Visa';
                     break;
                 case 'ELEC':
-                    $card_type = 'Visa Electron';
+                    $cardType = 'Visa Electron';
                     break;
                 case 'PENSIO':
                     if ('IDEALPAYMENT' == strtoupper($attributes->payment->nature)) {
-                        $card_type = 'iDEAL';
+                        $cardType = 'iDEAL';
                     }
                     break;
             }
         }
 
-        $company_address = $this->translator->trans('store.address', []);
-        $company_address = str_replace( ' · ', "\n", $company_address );
+        $companyAddress = $this->translator->trans('store.address', [], null, $locale);
+        $companyAddress = str_replace(' · ', "\n", $companyAddress);
 
-        $event_id = isset($attributes->global->HomePartyId) ? $attributes->global->HomePartyId : '';
+        $eventId = isset($attributes->global->HomePartyId) ? $attributes->global->HomePartyId : '';
 
-        foreach ($order->getOrdersLiness() as $line) {
+        foreach ($order->getOrdersLiness(null, $this->dbConn) as $line) {
             $line->setProductsSize($line->getPostfixedSize($this->translator));
         }
 
-        $params = array(
+        $params = [
             'order'            => $order,
-            'payment_address'  => $this->address_formatter->format($order->getOrderAddress('payment'), 'txt'),
-            'company_address'  => $company_address,
-            'delivery_address' => $this->address_formatter->format($order->getOrderAddress('shipping'), 'txt'),
+            'payment_address'  => $this->addressFormatter->format($order->getOrderAddress('payment'), 'txt', $locale),
+            'company_address'  => $companyAddress,
+            'delivery_address' => $this->addressFormatter->format($order->getOrderAddress('shipping'), 'txt', $locale),
             'customer_id'      => $order->getCustomersId(),
             'order_date'       => $order->getCreatedAt('Y-m-d'),
-            'payment_method'   => $this->translator->trans('payment.'. $order->getBillingMethod() .'.title', [], 'checkout'),
-            'shipping_title'   => $shipping_title,
-            'shipping_cost'    => $shipping_cost,
-            'shipping_fee'     => $shipping_fee,
-            'expected_at'      => $order->getExpectedDeliveryDate( 'd-m-Y' ),
-            'username'         => $order->getCustomers()->getEmail(),
-            'password'         => $order->getCustomers()->getPasswordClear(),
-            'event_id'         => $event_id,
-        );
+            'payment_method'   => $this->translator->trans('payment.'. $order->getBillingMethod() .'.title', [], 'checkout', $locale),
+            'shipping_title'   => $shippingTitle,
+            'shipping_cost'    => $shippingCost,
+            'shipping_fee'     => $shippingFee,
+            'expected_at'      => $order->getExpectedDeliveryDate('d-m-Y'),
+            'username'         => $order->getCustomers($this->dbConn)->getEmail(),
+            'password'         => $order->getCustomers($this->dbConn)->getPasswordClear(),
+            'event_id'         => $eventId,
+        ];
 
-        $payment_fee = $order->getPaymentFee();
-        if ($payment_fee > 0) {
-            $params['payment_fee'] = $payment_fee;
+        $paymentFee = $order->getPaymentFee();
+        if ($paymentFee > 0) {
+            $params['payment_fee'] = $paymentFee;
         }
 
-        if (!empty($card_type)) {
-            $params['card_type'] = $card_type;
+        if (!empty($cardType)) {
+            $params['card_type'] = $cardType;
         }
 
         if (isset($attributes->payment->transact)) {
@@ -168,21 +198,21 @@ class SendOrderConfirmationMail
 
         if (isset($attributes->gift_card->amount)) {
             $params['gift_card_amount'] = $attributes->gift_card->amount;
-            $params['gift_card_name'] = $attributes->gift_card->text;
+            $params['gift_card_name']   = $attributes->gift_card->text;
         }
 
-        foreach ($order->getOrdersLiness() as $line) {
+        foreach ($order->getOrdersLiness(null, $this->dbConn) as $line) {
             if ('discount' == $line->getType()) {
                 if (empty($params['hostess_discount'])) {
                     $params['hostess_discount'] = $line->getPrice();
-                    $params['hostess_discount_title'] = $this->translator->trans($line->getProductsSku(), [], 'checkout');
+                    $params['hostess_discount_title'] = $this->translator->trans($line->getProductsSku(), [], 'checkout', $locale);
                 }
             }
 
             // or Sku == 91 ?
             if ($line->getType('payment.fee') && $line->getProductsName() == 'gothia') {
                 $params['gothia_fee'] = $line->getPrice();
-                $params['gothia_fee_title'] = $this->translator->trans('payment.fee.gothia.title', [], 'checkout');
+                $params['gothia_fee_title'] = $this->translator->trans('payment.fee.gothia.title', [], 'checkout', $locale);
 
                 if (isset($params['payment_fee'])) {
                     unset($params['payment_fee']);
@@ -190,15 +220,30 @@ class SendOrderConfirmationMail
             }
         }
 
-        $bcc = Tools::getBccEmailAddress('order', $order);
+        $bcc = Tools::getBccEmailAddress('order', $order, $this->dbConn);
 
-        $this->mail_service->setMessage('order.confirmation', $params);
-        $this->mail_service->setTo($email, $name);
+        $this->mailService->setMessage('order.confirmation', $params, $locale, $this->dbConn);
+        $this->mailService->setTo($email, $name);
 
         if ($bcc) {
-            $this->mail_service->setBcc($bcc);
+            $this->mailService->setBcc($bcc);
         }
 
-        $this->is_mail_build = true;
+        $this->isMailBuild = true;
+
+        setlocale(LC_ALL, 'da_DK.utf-8', 'da_DK.utf8');
+    }
+
+    /**
+     * @param Orders $order
+     *
+     * @return mixed
+     * @throws \PropelException
+     */
+    private function getLocale(Orders $order)
+    {
+        return LanguagesQuery::create()
+            ->select('Locale')
+            ->findOneById($order->getLanguagesId(), $this->dbConn);
     }
 }

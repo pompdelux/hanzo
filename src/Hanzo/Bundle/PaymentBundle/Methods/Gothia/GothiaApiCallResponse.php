@@ -2,8 +2,11 @@
 
 namespace Hanzo\Bundle\PaymentBundle\Methods\Gothia;
 
-use Hanzo\Core\Tools;
-
+/**
+ * Class GothiaApiCallResponse
+ *
+ * @package Hanzo\Bundle\PaymentBundle\Methods\Gothia
+ */
 class GothiaApiCallResponse
 {
     /**
@@ -34,50 +37,47 @@ class GothiaApiCallResponse
      **/
     public $transactionId = null;
 
-    public $prettyErrors = array(
+    public $prettyErrors = [
         5000  => 'We are unable to connect to Gothia Invoice service, please try again later.', // System error occured, contact service supplier or try again later
         10004 => 'We couldn\'t find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.', // Customer not found
         10006 => 'We couldn\'t find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.', // Customer not found in external DB
         10036 => 'The reservation was not approved at Gothia Invoice Service. You may have exceeded the limit of reservations at Gothia.', // Reservation is not approved
         10041 => 'Your account information is incorrect. Please check that you have entered the correct bank code and account number.', // InvalidPaymentInfo
-    );
+    ];
+
 
     /**
-     * __construct
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     * @param array  $rawResponse
+     * @param string $function
+     */
     public function __construct($rawResponse, $function)
     {
         $this->parse($rawResponse, $function);
         $this->checkResponseForErrors($rawResponse);
     }
 
+
     /**
-     * isError
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     * @return string
+     */
     public function isError()
     {
         return $this->isError;
     }
 
     /**
-     * setIsError
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     * Set error to true
+     */
     public function setIsError()
     {
         $this->isError = true;
     }
 
+
     /**
-     * parse
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     * @param array  $rawResponse
+     * @param string $function
+     */
     protected function parse($rawResponse, $function)
     {
         switch ($function) {
@@ -179,12 +179,11 @@ class GothiaApiCallResponse
         }
     }
 
+
     /**
-     * checkResponseForErrors
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    private function checkResponseForErrors( $rawResponse )
+     * @param array $rawResponse
+     */
+    private function checkResponseForErrors($rawResponse)
     {
 
         if (is_array($rawResponse)) {

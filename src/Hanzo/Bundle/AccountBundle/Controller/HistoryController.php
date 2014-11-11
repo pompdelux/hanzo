@@ -77,6 +77,7 @@ class HistoryController extends CoreController
         $this->get('event_dispatcher')->dispatch('order.edit.start', $event);
 
         $status = $event->getStatus();
+
         if (false === $status->code) {
             $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans($status->message, ['%order_id%' => $order_id], 'account'));
             return $this->redirect($this->generateUrl('_account'));
@@ -212,16 +213,18 @@ class HistoryController extends CoreController
                 $lastName  = $order->getLastName();
                 $id        = $order->getId();
                 $email     = $order->getEmail();
+                $amount    = Tools::moneyFormat($order->getTotalPrice());
 
-                $order->delete();
+                $this->container->get('hanzo.core.orders_service')->deleteOrder($order);
 
                 // send delete notification
                 $mailer = $this->get('mail_manager');
                 $mailer->setMessage('order.deleted', [
+                    'amount'   => $amount,
                     'name'     => $firstName,
                     'order_id' => $id,
-                    'date' => date('d-m-Y'),
-                    'time' => date('H:i'),
+                    'date'     => date('d-m-Y'),
+                    'time'     => date('H:i'),
                 ]);
 
                 $mailer->setBcc($bcc);

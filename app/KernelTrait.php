@@ -39,14 +39,18 @@ trait KernelTrait
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new Propel\PropelBundle\PropelBundle(),
             new Bazinga\Bundle\JsTranslationBundle\BazingaJsTranslationBundle(),
-            new Ekino\Bundle\NewRelicBundle\EkinoNewRelicBundle(),
+            // un: 2014.09.29 - removed to see if new-relics own sf support is better.
+            // new Ekino\Bundle\NewRelicBundle\EkinoNewRelicBundle(),
             new Liip\ThemeBundle\LiipThemeBundle(),
             new Misd\GuzzleBundle\MisdGuzzleBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             new Pompdelux\PHPRedisBundle\PHPRedisBundle(),
+            new Leezy\PheanstalkBundle\LeezyPheanstalkBundle(),
+            new Glorpen\Propel\PropelBundle\GlorpenPropelBundle(),
             // ------------------------------------------------------
 
             // APP BUNDLES ------------------------------------------
+            new Hanzo\Bundle\CoreBundle\CoreBundle(),
             new Hanzo\Bundle\AccountBundle\AccountBundle(),
             new Hanzo\Bundle\AdminBundle\AdminBundle(),
             new Hanzo\Bundle\BasketBundle\BasketBundle(),

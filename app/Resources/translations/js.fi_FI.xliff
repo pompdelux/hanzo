@@ -80,7 +80,7 @@
             </trans-unit>
             <trans-unit id="checkout.shipping_business">
                 <source>checkout.shipping_business</source>
-                <target>Olet valinnut vaihtoehdon "Post Danmark Erhverv". Muista vaihtaa toimitusosoite napsauttamalla "Muuta toimitusosoitetta" (toimitusosoitteen tulee olla tässä lähetystavassa yritysosoite).</target>
+                <target>Olet valinnut vaihtoehdon "Postitoimipaikkatoimitus". Muista vaihtaa toimitusosoite napsauttamalla "Muuta toimitusosoitetta" (toimitusosoitteen tulee olla tässä lähetystavassa yritysosoite).</target>
             </trans-unit>
             <trans-unit id="checkout.shipping_overnightbox">
                 <source>checkout.shipping_overnightbox</source>
@@ -393,6 +393,18 @@
             <trans-unit id="checkout.confirm.mobile.text" approved="no">
                 <source>checkout.confirm.mobile.text</source>
                 <target><![CDATA[Verificér venligst at dit mobilnummer er korrekt.<br><br>Hvis det ikke er kan Post Danmark ikke komme i kontakt dig vedrørende forsendelsen.]]></target>
+            </trans-unit>
+            <trans-unit id="wishlist.select.size">
+                <source>wishlist.select.size</source>
+                <target>Koko</target>
+            </trans-unit>
+            <trans-unit id="wishlist.select.color">
+                <source>wishlist.select.color</source>
+                <target>Väri</target>
+            </trans-unit>
+            <trans-unit id="basket.latest.added">
+                <source>basket.latest.added</source>
+                <target>Lisätty</target>
             </trans-unit>
         </body>
     </file>

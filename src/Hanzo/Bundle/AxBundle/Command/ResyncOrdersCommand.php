@@ -33,7 +33,7 @@ class ResyncOrdersCommand extends ContainerAwareCommand
         }
 
         $ids     = array_map('trim', $ids);
-        $ax      = $this->getContainer()->get('ax.out');
+        $ax      = $this->getContainer()->get('ax.out.service.wrapper');
         $unknown = 0;
 
         if ($input->hasOption('process-isolation') && !defined('SKIP_SYNC_LOG')) {
@@ -50,7 +50,9 @@ class ResyncOrdersCommand extends ContainerAwareCommand
             $order = OrdersQuery::create()->findOneById($id);
 
             if ($order instanceof Orders) {
-                $ax->sendOrder($order);
+                if ($ax->SyncCustomer($order->getCustomers())) {
+                    $ax->SyncSalesOrder($order);
+                }
             } else {
                 $unknown++;
             }

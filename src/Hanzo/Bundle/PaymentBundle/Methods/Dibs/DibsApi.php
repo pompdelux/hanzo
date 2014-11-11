@@ -2,18 +2,21 @@
 
 namespace Hanzo\Bundle\PaymentBundle\Methods\Dibs;
 
-use Exception;
-
-use Hanzo\Core\Hanzo;
-use Hanzo\Core\Tools;
 use Hanzo\Model\Orders;
-use Hanzo\Bundle\PaymentBundle\BasePaymentApi;
-use Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface;
-use Hanzo\Bundle\PaymentBundle\Methods\Dibs\DibsApiCall;
-use Hanzo\Bundle\PaymentBundle\Methods\Dibs\DibsApiCallException;
-
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class DibsApi
+ * @package Hanzo\Bundle\PaymentBundle\Methods\Dibs
+ *
+ * @method array       buildFormFields(Orders $order)
+ * @method DibsApiCall call()
+ * @method array       checkSettings(array $settings)
+ * @method bool        isActive()
+ * @method void        updateOrderFailed(Request $request, Orders $order)
+ * @method void        updateOrderSuccess(Request $request, Orders $order)
+ * @method void        verifyCallback(Request $callbackRequest, Orders $order)
+ */
 class DibsApi
 {
     /**
@@ -32,10 +35,6 @@ class DibsApi
      */
     protected $service;
 
-    /**
-     * __construct
-     * @return void
-     */
     public function __construct( $parameters, array $settings )
     {
         $this->router = $parameters[0];

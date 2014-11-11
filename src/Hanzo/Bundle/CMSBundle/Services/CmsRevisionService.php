@@ -2,25 +2,28 @@
 
 namespace Hanzo\Bundle\CMSBundle\Services;
 
+use BasePeer;
 use Hanzo\Model\Cms;
 use Hanzo\Model\CmsPeer;
 use Hanzo\Model\CmsRevision;
 use Hanzo\Model\CmsRevisionQuery;
-
-use \PropelPDO;
-use \Propel;
-use \BasePeer;
+use Propel;
+use PropelPDO;
 
 /**
  * CmsRevision Service
+ *
+ * @package Hanzo\Bundle\CMSBundle\Services
  */
 class CmsRevisionService
 {
+    /**
+     * @var \PDO|\PropelPDO
+     */
     protected $con;
 
     /**
      * __construct
-     *
      */
     public function __construct()
     {
@@ -29,6 +32,7 @@ class CmsRevisionService
 
     /**
      * Set Propel Connection.
+     *
      * @param PropelPDO $con
      *
      * @return  CmsRevisionService Return this
@@ -44,11 +48,9 @@ class CmsRevisionService
      * Function to get a certain revision of this page.
      *
      * @param Cms             $cms       The Cms Page
-     * @param int/CmsRevision $timestamp A given timestamp of a revision, or the
-     *                                   actually CmsRevision object
+     * @param int/CmsRevision $timestamp A given timestamp of a revision, or the actually CmsRevision object
      *
-     * @return Cms
-     *    The revision of this Cms
+     * @return Cms The revision of this Cms
      */
     public function getRevision(Cms $cms, $timestamp = null)
     {
@@ -70,7 +72,7 @@ class CmsRevisionService
 
             $cmsRevision = new Cms();
             $cmsRevision->fromArray($revision->getRevision());
-            $cms->fromArray($cmsRevision->toArray(BasePeer::TYPE_PHPNAME, true, array(), true));
+            $cms->fromArray($cmsRevision->toArray(BasePeer::TYPE_PHPNAME, true, [], true));
             foreach ($cms->getCmsI18ns(null, $this->con) as &$translation) {
                 $translation->setNew(false);
 
@@ -99,10 +101,9 @@ class CmsRevisionService
      * Return all revision for this CMS.
      *
      * @param Cms     $cms                    The Cms Page
-     * @param boolean $publishOnDateRevisions Show revisions with a publish
-     *                                        date. Default false.
+     * @param boolean $publishOnDateRevisions Show revisions with a publish date. Default false.
      *
-     * @return CmsRevisionCollection The revisions
+     * @return array The revisions
      */
     public function getRevisions(Cms $cms, $publishOnDateRevisions = false)
     {
@@ -119,7 +120,7 @@ class CmsRevisionService
 
         $revisions = $query->find($this->con);
 
-        $revisionsArray = array();
+        $revisionsArray = [];
 
         foreach ($revisions as $revision) {
             if ($revision instanceof CmsRevision) {
@@ -134,10 +135,9 @@ class CmsRevisionService
 
     /**
      * Save a CMS as a revision.
-     * @param Cms      $cms           The Cms Page
-     * @param int      $timestamp     Save as a certain revision timestamp. Omit to
-     *                                create a new one.
-     * @param DateTime $publishOnDate The date the revision should be published.
+     * @param Cms       $cms           The Cms Page
+     * @param int       $timestamp     Save as a certain revision timestamp. Omit to create a new one.
+     * @param \DateTime $publishOnDate The date the revision should be published.
      *
      * @return CmsRevision the saved revision.
      */
@@ -156,7 +156,7 @@ class CmsRevisionService
             $revision->setId($cms->getId());
         }
         $revision->setPublishOnDate($publishOnDate);
-        $revision->setRevision($cms->toArray(BasePeer::TYPE_PHPNAME, true, array(), true));
+        $revision->setRevision($cms->toArray(BasePeer::TYPE_PHPNAME, true, [], true));
         $revision->save($this->con);
 
         // Cleanup, remove the last one.
@@ -166,6 +166,7 @@ class CmsRevisionService
                 ->filterByPublishOnDate(null)
                 ->orderByCreatedAt()
                 ->findOne($this->con);
+
             $lastRevision->delete($this->con);
         }
 
@@ -200,9 +201,10 @@ class CmsRevisionService
      * Save a Cms from an revision.
      *
      * @param Cms             $cms      The Cms to save.
-     * @param int/CmsRevision $revision The revision to save or timestamp of
-     *                                  revision.
+     * @param int|CmsRevision $revision The revision to save or timestamp of revision.
      *
+     * @throws \Exception
+     * @throws \PropelException
      * @return Cms The updated cms node.
      */
     public function saveCmsFromRevision(Cms $cms, $revision)
@@ -225,7 +227,7 @@ class CmsRevisionService
      * Get the number of revisions a Cms has.
      * @param Cms $cms The Cms Page.
      *
-     * @return int     The number of revisions.
+     * @return int The number of revisions.
      */
     public function getRevisionCount(Cms $cms)
     {
@@ -244,7 +246,7 @@ class CmsRevisionService
     public function getRevisionsToPublish()
     {
         $revisionsToPublish = CmsRevisionQuery::create()
-            ->filterByPublishOnDate(array('max' => time()))
+            ->filterByPublishOnDate(['max' => time()])
             ->orderByPublishOnDate('DESC')
             ->find($this->con);
 

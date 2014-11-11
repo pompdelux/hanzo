@@ -119,7 +119,18 @@
             </trans-unit>
             <trans-unit id="rma.slip.description">
                 <source>rma.slip.description</source>
-                <target><![CDATA[<p>Bei POMPdeLUX k&ouml;nnen Sie Ihre Waren umtauschen oder zur&uuml;ckschicken.<br>Wenn Sie Waren umtauschen oder zur&uuml;ckschicken m&ouml;chten, dann f&uuml;llen Sie bitte diesen R&uuml;cksendeschein aus und legen Sie ihn der R&uuml;cksendung bei.<br><br>Alle Waren m&uuml;ssen in Originalverpackung mit Textiletiketten zur&uuml;ckgeschickt werden.<br><b>Bitte beachten Sie:</b> Auf Meine Seite finden Sie das R&uuml;cksendeetikett. Beim Umtausch ist die R&uuml;cksendung kostenlos. Im Falle von Kaufr&uuml;ckzug hat das R&uuml;cksendeetikett einen Wert EUR 5,95, der von dem Betrag der retournierten Waren entgegengerechnet wird.<br>Das Paket wird zur Post gebracht. Die n&auml;chste Poststelle/Postagentur finden Sie unter <a href="http://www.post.at/" target="_blank">www.post.at</a> unter &bdquo;Filialfinder&ldquo;.<br><br><b>Umtausch in eine andere Gr&ouml;&szlig;e/Farbe/Ware</b><br>Wenn die gew&uuml;nschte Gr&ouml;sse oder Farbe ausverkauft ist, erstatten wir Ihnen den Betrag zur&uuml;ck oder Sie k&ouml;nnen die Ware in eine andere zum selben oder einem niedrigeren Preis umtauschen.<br><br><b>Reklamation</b><br>Wenn die gew&uuml;nschte Gr&ouml;&szlig;e oder Farbe ausverkauft ist, erstatten wir Ihnen den Betrag zur&uuml;ck.<br><br>Bei Kreditkartenbezahlungen wird Ihre R&uuml;ckzahlung auf die Kreditkarte &uuml;berwiesen, die bei der Bestellung verwendet wurde.<br><br>F&uuml;r weitere Informationen sehen Sie bitte unter <a href="/de_AT/" target="_blank">www.pompdelux.at</a><br></p>]]></target>
+                <target><![CDATA[<p>Bei POMPdeLUX ist es einfach, Waren zur&uuml;ckzuschicken. Der einfachste Weg ist, dieser R&uuml;cksendeschein auszuf&uuml;llen und mit zusenden.<br> 
+Es ist wichtig, dass die Ware mit H&auml;ngeetiketten und im gleichen Zustand wie aus der Originalverpackung, zur&uuml;ckkommen, wenn Sie den Umtausch in eine gleichwertige Ware w&uuml;nschen oder Ihr Geld zur&uuml;ck haben m&ouml;chten.<br><br>
+<b>R&uuml;ckgabe, Umtausch, Reklamation</b><br>
+Wenn Sie eine Ware zur&uuml;cksenden m&ouml;chten, verwenden Sie bitte unbedingt unser R&uuml;cksendeetikett, welches Sie auf &quot;Meine Seite&quot; finden. <br><br>
+Wenn Sie eine Ware in eine andere Gr&ouml;sse oder Farbe umtauschen m&ouml;chten, hat das R&uuml;cksendeetikett keinen Wert und der Versand f&uuml;r die R&uuml;cksendung ist somit kostenfrei. Bitte beachten Sie, dass Sie nur in eine andere Ware umtauschen k&ouml;nnen, sofern die neue Ware nicht den Kaufpreis der zur&uuml;ckgesendeten Waren &uuml;bersteigt. <br><br>
+Wenn Sie das Geld zur&uuml;ck haben m&ouml;chten, hat das R&uuml;cksendeetikett einen Wert von EUR 5,95 der von dem Betrag der retournierten Waren entgegengerechnet wird. <br><br>
+Wenn Sie eine Reklamation haben oder eine falsch gelieferte Ware erhalten haben, ist die R&uuml;cksendung dieser ebenfalls kostenlos bei Anwendung unseres R&uuml;cksendeetiketts. <br><br>
+<b>R&uuml;ckzahlung</b><br>
+Bei Kreditkartenzahlung wird der zur&uuml;ckzuzahlende Betrag an Ihre Kreditkarte zur&uuml;ckgezahlt. <br><br>
+Bei PayPal Zahlung wird der zur&uuml;ckzuzahlende Betrag an Ihr PayPal Konto zur&uuml;ckgezahlt.<br><br> 
+Bei Zahlung per Rechnung wenden Sie sich bitte an POMPdeLUX: 01/5350375. <br><br>
+<b>Bitte beachten Sie:</b> Auch wenn Sie auf eine Gutschrift zu Ihren zur&uuml;ckgesendeten Waren erwarten, &uuml;berweisen Sie bitte den kompletten f&auml;lligen Rechnungsbetrag innerhalb von 30 Tagen um einer Mahngeb&uuml;hr zu entgehen. Weitere Informationen erhalten Sie unter <a href="/de_AT/" target="_blank">www.pompdelux.at</a><br></p>]]></target>
             </trans-unit>			
             <trans-unit id="rma.slip.thead.activitycode">
                 <source>rma.slip.thead.activitycode</source>

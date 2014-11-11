@@ -48,6 +48,7 @@ class EventsTableMap extends TableMap
         $this->addForeignKey('consultants_id', 'ConsultantsId', 'INTEGER', 'customers', 'id', true, null, null);
         $this->addForeignKey('customers_id', 'CustomersId', 'INTEGER', 'customers', 'id', true, null, null);
         $this->addColumn('event_date', 'EventDate', 'TIMESTAMP', true, null, null);
+        $this->addColumn('event_end_time', 'EventEndTime', 'TIMESTAMP', false, null, null);
         $this->addColumn('host', 'Host', 'VARCHAR', true, 128, null);
         $this->addColumn('address_line_1', 'AddressLine1', 'VARCHAR', true, 128, null);
         $this->addColumn('address_line_2', 'AddressLine2', 'VARCHAR', false, 128, null);
@@ -59,6 +60,8 @@ class EventsTableMap extends TableMap
         $this->addColumn('type', 'Type', 'VARCHAR', true, 3, 'AR');
         $this->addColumn('is_open', 'IsOpen', 'BOOLEAN', false, 1, null);
         $this->addColumn('notify_hostess', 'NotifyHostess', 'BOOLEAN', true, 1, true);
+        $this->addColumn('rsvp_type', 'RsvpType', 'SMALLINT', false, 1, null);
+        $this->addColumn('public_note', 'PublicNote', 'LONGVARCHAR', false, null, null);
         $this->addColumn('created_at', 'CreatedAt', 'TIMESTAMP', false, null, null);
         $this->addColumn('updated_at', 'UpdatedAt', 'TIMESTAMP', false, null, null);
         // validators
@@ -88,6 +91,8 @@ class EventsTableMap extends TableMap
   'create_column' => 'created_at',
   'update_column' => 'updated_at',
   'disable_updated_at' => 'false',
+),
+            'event' =>  array (
 ),
         );
     } // getBehaviors()

@@ -7,24 +7,29 @@ use Symfony\Component\HttpFoundation\Response;
 
 use Propel;
 
+/**
+ * Class CoreController
+ *
+ * @package Hanzo\Core
+ */
 class CoreController extends Controller
 {
     protected $shares_max_age = null;
     protected $cache;
     protected $request_format;
 
-    protected $accepted_mimetypes = array(
+    protected $accepted_mimetypes = [
         "application/json" => 'json',
-        "text/javascript" => 'json',
-        "text/html" => 'html',
-        "*/*" => 'html'
-    );
+        "text/javascript"  => 'json',
+        "text/html"        => 'html',
+        "*/*"              => 'html'
+    ];
 
     /**
      * Maps language id's of an order to endpoint folders for pdf files, defaults to 'DK'
      * @var array
      */
-    protected $pdf_language_to_code = array(
+    protected $pdf_language_to_code = [
         3 => 'SE',
         4 => 'NO',
         5 => 'NL',
@@ -32,7 +37,7 @@ class CoreController extends Controller
         7 => 'DE',
         8 => 'AT',
         9 => 'CH',
-    );
+    ];
 
 
     /**
@@ -216,9 +221,10 @@ class CoreController extends Controller
     /**
      * Shortcut for AppKernel::setTerminateEvent
      *
-     * @see                      AppKernel::setTerminateEvent
      * @param string $event      event key
      * @param mixed  $parameters parameters to send to the event
+     *
+     * @see                      AppKernel::setTerminateEvent
      */
     public function setTerminateEvent($event, $parameters)
     {
@@ -229,12 +235,16 @@ class CoreController extends Controller
     /**
      * Gets the connection for which database to use
      *
+<<<<<<< HEAD
      * @return Propel connection
+=======
+     * @return \PropelPDO|\PDO
+>>>>>>> master
      */
     public function getDbConnection()
     {
         if ($this->getRequest()->getSession()->get('database')) {
-            return Propel::getConnection( $this->getRequest()->getSession()->get('database') , Propel::CONNECTION_WRITE );
+            return Propel::getConnection($this->getRequest()->getSession()->get('database'), Propel::CONNECTION_WRITE);
         } else {
             return Propel::getConnection();
         }
@@ -244,14 +254,18 @@ class CoreController extends Controller
     /**
      * try to map language ids to folders, this is not a 1-1 match, so we need this little hack.
      *
+<<<<<<< HEAD
      * @param int $language_id
+=======
+     * @param int $languageId
+>>>>>>> master
      *
      * @return string
      */
-    protected function mapLanguageToPdfDir($language_id)
+    protected function mapLanguageToPdfDir($languageId)
     {
-        if (isset($this->pdf_language_to_code[$language_id])) {
-            return $this->pdf_language_to_code[$language_id];
+        if (isset($this->pdf_language_to_code[$languageId])) {
+            return $this->pdf_language_to_code[$languageId];
         }
 
         return 'DK';

@@ -42,6 +42,22 @@
                 <source>quickorder.no.products.found</source>
                 <target>Produkt wurde nicht gefunden.</target>
             </trans-unit>
+            <trans-unit id="wishlist.misses.header">
+                <source>wishlist.misses.header</source>
+                <target>Die folgenden Produkte können nicht dem Warenkorb hinzugefügt werden, da diese leider ausverkauft sind.</target>
+            </trans-unit>
+            <trans-unit id="quickorder.wishlist_form.label">
+                <source>quickorder.wishlist_form.label</source>
+                <target>Shoppingliste öffnen</target>
+            </trans-unit>
+            <trans-unit id="quickorder.wishlist_form.placeholder">
+                <source>quickorder.wishlist_form.placeholder</source>
+                <target>Shoppingliste NR.</target>
+            </trans-unit>
+            <trans-unit id="quickorder.wishlist_form.button_label">
+                <source>quickorder.wishlist_form.button_label</source>
+                <target>Öffnen</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

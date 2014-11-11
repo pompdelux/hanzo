@@ -16,11 +16,11 @@
       </trans-unit>
       <trans-unit id="shipping_method.desc.500">
         <source>shipping_method.desc.500</source>
-        <target>Tilauksesi lähetetään sinua lähimpänä olevaan, Posti noutopisteeseen.</target>
+        <target>Tilauksesi lähetetään sinua lähimpänä olevaan, Postin noutopisteeseen.</target>
       </trans-unit>
       <trans-unit id="shipping_method.label.500">
         <source>shipping_method.label.500</source>
-        <target>Post Danmark Privat %price%</target>
+        <target>Postitoimipaikkatoimitus %price%</target>
       </trans-unit>
       <trans-unit id="shipping_method.name.11">
         <source>shipping_method.name.11</source>
@@ -32,7 +32,7 @@
       </trans-unit>
       <trans-unit id="shipping_method.label.11">
         <source>shipping_method.label.11</source>
-        <target>Post Danmark Erhverv %price%</target>
+        <target>Postitoimipaikkatoimitus %price%</target>
       </trans-unit>
       <trans-unit id="shipping_method.name.12">
         <source>shipping_method.name.12</source>

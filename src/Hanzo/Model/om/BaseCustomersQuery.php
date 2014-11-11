@@ -12,6 +12,8 @@ use \PropelCollection;
 use \PropelException;
 use \PropelObjectCollection;
 use \PropelPDO;
+use Glorpen\Propel\PropelBundle\Dispatcher\EventDispatcherProxy;
+use Glorpen\Propel\PropelBundle\Events\QueryEvent;
 use Hanzo\Model\Addresses;
 use Hanzo\Model\ConsultantNewsletterDrafts;
 use Hanzo\Model\Consultants;
@@ -24,6 +26,7 @@ use Hanzo\Model\Groups;
 use Hanzo\Model\Orders;
 use Hanzo\Model\Wall;
 use Hanzo\Model\WallLikes;
+use Hanzo\Model\Wishlists;
 
 /**
  * @method CustomersQuery orderById($order = Criteria::ASC) Order by the id column
@@ -73,6 +76,10 @@ use Hanzo\Model\WallLikes;
  * @method CustomersQuery leftJoinEventsRelatedByCustomersId($relationAlias = null) Adds a LEFT JOIN clause to the query using the EventsRelatedByCustomersId relation
  * @method CustomersQuery rightJoinEventsRelatedByCustomersId($relationAlias = null) Adds a RIGHT JOIN clause to the query using the EventsRelatedByCustomersId relation
  * @method CustomersQuery innerJoinEventsRelatedByCustomersId($relationAlias = null) Adds a INNER JOIN clause to the query using the EventsRelatedByCustomersId relation
+ *
+ * @method CustomersQuery leftJoinWishlists($relationAlias = null) Adds a LEFT JOIN clause to the query using the Wishlists relation
+ * @method CustomersQuery rightJoinWishlists($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Wishlists relation
+ * @method CustomersQuery innerJoinWishlists($relationAlias = null) Adds a INNER JOIN clause to the query using the Wishlists relation
  *
  * @method CustomersQuery leftJoinOrders($relationAlias = null) Adds a LEFT JOIN clause to the query using the Orders relation
  * @method CustomersQuery rightJoinOrders($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Orders relation
@@ -146,6 +153,7 @@ abstract class BaseCustomersQuery extends ModelCriteria
             $modelName = 'Hanzo\\Model\\Customers';
         }
         parent::__construct($dbName, $modelName, $modelAlias);
+        EventDispatcherProxy::trigger(array('construct','query.construct'), new QueryEvent($this));
     }
 
     /**
@@ -1064,6 +1072,80 @@ abstract class BaseCustomersQuery extends ModelCriteria
     }
 
     /**
+     * Filter the query by a related Wishlists object
+     *
+     * @param   Wishlists|PropelObjectCollection $wishlists  the related object to use as filter
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return                 CustomersQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
+     */
+    public function filterByWishlists($wishlists, $comparison = null)
+    {
+        if ($wishlists instanceof Wishlists) {
+            return $this
+                ->addUsingAlias(CustomersPeer::ID, $wishlists->getCustomersId(), $comparison);
+        } elseif ($wishlists instanceof PropelObjectCollection) {
+            return $this
+                ->useWishlistsQuery()
+                ->filterByPrimaryKeys($wishlists->getPrimaryKeys())
+                ->endUse();
+        } else {
+            throw new PropelException('filterByWishlists() only accepts arguments of type Wishlists or PropelCollection');
+        }
+    }
+
+    /**
+     * Adds a JOIN clause to the query using the Wishlists relation
+     *
+     * @param     string $relationAlias optional alias for the relation
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return CustomersQuery The current query, for fluid interface
+     */
+    public function joinWishlists($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
+    {
+        $tableMap = $this->getTableMap();
+        $relationMap = $tableMap->getRelation('Wishlists');
+
+        // create a ModelJoin object for this join
+        $join = new ModelJoin();
+        $join->setJoinType($joinType);
+        $join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+        if ($previousJoin = $this->getPreviousJoin()) {
+            $join->setPreviousJoin($previousJoin);
+        }
+
+        // add the ModelJoin to the current object
+        if ($relationAlias) {
+            $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+            $this->addJoinObject($join, $relationAlias);
+        } else {
+            $this->addJoinObject($join, 'Wishlists');
+        }
+
+        return $this;
+    }
+
+    /**
+     * Use the Wishlists relation Wishlists object
+     *
+     * @see       useQuery()
+     *
+     * @param     string $relationAlias optional alias for the relation,
+     *                                   to be used as main alias in the secondary query
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return   \Hanzo\Model\WishlistsQuery A secondary query class using the current class as primary query
+     */
+    public function useWishlistsQuery($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
+    {
+        return $this
+            ->joinWishlists($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'Wishlists', '\Hanzo\Model\WishlistsQuery');
+    }
+
+    /**
      * Filter the query by a related Orders object
      *
      * @param   Orders|PropelObjectCollection $orders  the related object to use as filter
@@ -1521,6 +1603,76 @@ abstract class BaseCustomersQuery extends ModelCriteria
         }
 
         return $this;
+    }
+
+    /**
+     * Code to execute before every SELECT statement
+     *
+     * @param     PropelPDO $con The connection object used by the query
+     */
+    protected function basePreSelect(PropelPDO $con)
+    {
+        // event behavior
+        EventDispatcherProxy::trigger('query.select.pre', new QueryEvent($this));
+
+        return $this->preSelect($con);
+    }
+
+    /**
+     * Code to execute before every DELETE statement
+     *
+     * @param     PropelPDO $con The connection object used by the query
+     */
+    protected function basePreDelete(PropelPDO $con)
+    {
+        EventDispatcherProxy::trigger(array('delete.pre','query.delete.pre'), new QueryEvent($this));
+        // event behavior
+        // placeholder, issue #5
+
+        return $this->preDelete($con);
+    }
+
+    /**
+     * Code to execute after every DELETE statement
+     *
+     * @param     int $affectedRows the number of deleted rows
+     * @param     PropelPDO $con The connection object used by the query
+     */
+    protected function basePostDelete($affectedRows, PropelPDO $con)
+    {
+        // event behavior
+        EventDispatcherProxy::trigger(array('delete.post','query.delete.post'), new QueryEvent($this));
+
+        return $this->postDelete($affectedRows, $con);
+    }
+
+    /**
+     * Code to execute before every UPDATE statement
+     *
+     * @param     array $values The associative array of columns and values for the update
+     * @param     PropelPDO $con The connection object used by the query
+     * @param     boolean $forceIndividualSaves If false (default), the resulting call is a BasePeer::doUpdate(), otherwise it is a series of save() calls on all the found objects
+     */
+    protected function basePreUpdate(&$values, PropelPDO $con, $forceIndividualSaves = false)
+    {
+        // event behavior
+        EventDispatcherProxy::trigger(array('update.pre', 'query.update.pre'), new QueryEvent($this));
+
+        return $this->preUpdate($values, $con, $forceIndividualSaves);
+    }
+
+    /**
+     * Code to execute after every UPDATE statement
+     *
+     * @param     int $affectedRows the number of updated rows
+     * @param     PropelPDO $con The connection object used by the query
+     */
+    protected function basePostUpdate($affectedRows, PropelPDO $con)
+    {
+        // event behavior
+        EventDispatcherProxy::trigger(array('update.post', 'query.update.post'), new QueryEvent($this));
+
+        return $this->postUpdate($affectedRows, $con);
     }
 
     // timestampable behavior

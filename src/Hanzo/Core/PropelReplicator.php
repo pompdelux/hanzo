@@ -2,7 +2,11 @@
 
 namespace Hanzo\Core;
 
-
+/**
+ * Class PropelReplicator
+ *
+ * @package Hanzo\Core
+ */
 class PropelReplicator
 {
     /**
@@ -23,18 +27,19 @@ class PropelReplicator
      * Executes a sql statement across all linked databases.
      * The function will return an array of PDOStatement results
      *
-     * @param  string $sql                   The sql query to execute.
-     * @param  array  $parameters            Optional array of PDOStatement::bindValue parameters
-     * @param  array  $use_named_connections Optional array of connection names to use, if set only these named connections will be used.
+     * @param string $sql                 The sql query to execute.
+     * @param array  $parameters          Optional array of PDOStatement::bindValue parameters
+     * @param array  $useNamedConnections Optional array of connection names to use, if set only these named connections will be used.
+     *
      * @return array                         An array of PDOStatement results
      */
-    public function executeQuery($sql, array $parameters = [], array $use_named_connections = [])
+    public function executeQuery($sql, array $parameters = [], array $useNamedConnections = [])
     {
         $results = [];
 
         $connections = $this->connections;
-        if (count($use_named_connections)) {
-            $connections = $use_named_connections;
+        if (count($useNamedConnections)) {
+            $connections = $useNamedConnections;
         }
 
         foreach ($connections as $name) {
@@ -84,6 +89,5 @@ class PropelReplicator
                 }
             }
         }
-
     }
 }

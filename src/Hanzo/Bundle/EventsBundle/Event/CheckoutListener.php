@@ -19,19 +19,38 @@ use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\HttpFoundation\Session\Session;
 
+/**
+ * Class CheckoutListener
+ *
+ * @package Hanzo\Bundle\EventsBundle
+ */
 class CheckoutListener
 {
+    /**
+     * @var MailService
+     */
     protected $mailer;
-    protected $ax;
+
+    /**
+     * @var Translator
+     */
     protected $translator;
 
-    public function __construct(MailService $mailer, AxService $ax, Translator $translator)
+    /**
+     * @param MailService $mailer
+     * @param Translator  $translator
+     */
+    public function __construct(MailService $mailer, Translator $translator)
     {
         $this->mailer     = $mailer;
-        $this->ax         = $ax;
         $this->translator = $translator;
     }
 
+    /**
+     * @param FilterOrderEvent $event
+     *
+     * @throws \Exception
+     */
     public function onFinalize(FilterOrderEvent $event)
     {
         $order = $event->getOrder();
@@ -40,48 +59,45 @@ class CheckoutListener
         // calculate hostess discount if nessesary
         // we do not change event discounts for edits
         if ($order->getEventsId() && (false === $order->getInEdit())) {
-            $customer = $order->getCustomers();
             $hanzo = Hanzo::getInstance();
 
 
             if (isset($attributes->event->is_hostess_order) && !$order->getInEdit()) {
                 $discount = 0;
-                $add_discount = true;
 
                 // make sure all orders are ok
                 define('ACTION_TRIGGER', __METHOD__);
                 $con = Propel::getConnection(null, Propel::CONNECTION_WRITE);
 
                 try {
-                    $cleanup_service = $hanzo->container->get('deadorder_manager');
+                    $cleanupService = $hanzo->container->get('deadorder_manager');
 
                     $orders = OrdersQuery::create()
                         ->filterByEventsId($order->getEventsId())
                         ->filterById($order->getId(), Criteria::NOT_EQUAL)
                         ->filterByBillingMethod('dibs')
-                        ->filterByState(array( 'max' => Orders::STATE_PAYMENT_OK) )
-                        ->find($con)
-                    ;
+                        ->filterByState(['max' => Orders::STATE_PAYMENT_OK])
+                        ->find($con);
 
-                    foreach ($orders as $order_item) {
-                        $status = $cleanup_service->checkOrderForErrors($order_item);
+                    foreach ($orders as $orderItem) {
+                        $status = $cleanupService->checkOrderForErrors($orderItem);
 
                         if (isset($status['is_error'])) {
                             if ($status['is_error'] === true) {
                                 Tools::log($status);
-                                $order_item->delete();
+                                $orderItem->delete();
                             }
                         }
                     }
-                } catch(\Exception $e) {}
+                } catch (\Exception $e) {
+                }
 
                 $orders = OrdersQuery::create()
                     ->filterByEventsId($order->getEventsId())
                     ->filterByState(Orders::STATE_PENDING, Criteria::GREATER_EQUAL)
                     ->_or()
                     ->filterById($order->getId())
-                    ->find($con)
-                ;
+                    ->find($con);
 
                 foreach ($orders as $o) {
                     $total = $o->getTotalProductPrice();
@@ -121,8 +137,8 @@ class CheckoutListener
 
             if ($discount) {
                 $total = $order->getTotalProductPrice();
-                $discount_amount = (($total / 100) * $discount);
-                $order->setDiscountLine('discount.'.$attributes->purchase->type, $discount_amount, $discount);
+                $discountAmount = (($total / 100) * $discount);
+                $order->setDiscountLine('discount.'.$attributes->purchase->type, $discountAmount, $discount);
 
                 if ($attributes->purchase->type != 'private') {
                     $order->removeDiscountLine('discount.private');

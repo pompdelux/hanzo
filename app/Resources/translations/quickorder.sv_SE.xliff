@@ -42,6 +42,22 @@
                 <source>quickorder.no.products.found</source>
                 <target>Kunde inte hitta produkten.</target>
             </trans-unit>
+            <trans-unit id="wishlist.misses.header">
+                <source>wishlist.misses.header</source>
+                <target>Följande produkter kan inte läggas i korgen eftersom de inte längre finns i lager.</target>
+            </trans-unit>
+            <trans-unit id="quickorder.wishlist_form.label">
+                <source>quickorder.wishlist_form.label</source>
+                <target>Hämta shoppinglista</target>
+            </trans-unit>
+            <trans-unit id="quickorder.wishlist_form.placeholder">
+                <source>quickorder.wishlist_form.placeholder</source>
+                <target>SHOPPINGLISTA NR</target>
+            </trans-unit>
+            <trans-unit id="quickorder.wishlist_form.button_label">
+                <source>quickorder.wishlist_form.button_label</source>
+                <target>Hämta</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

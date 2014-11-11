@@ -9,6 +9,8 @@ use \PDOStatement;
 use \Propel;
 use \PropelException;
 use \PropelPDO;
+use Glorpen\Propel\PropelBundle\Dispatcher\EventDispatcherProxy;
+use Glorpen\Propel\PropelBundle\Events\PeerEvent;
 use Hanzo\Model\AddressesPeer;
 use Hanzo\Model\ConsultantsPeer;
 use Hanzo\Model\Customers;
@@ -18,6 +20,7 @@ use Hanzo\Model\GroupsPeer;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\WallLikesPeer;
 use Hanzo\Model\WallPeer;
+use Hanzo\Model\WishlistsPeer;
 use Hanzo\Model\map\CustomersTableMap;
 
 abstract class BaseCustomersPeer
@@ -430,6 +433,9 @@ abstract class BaseCustomersPeer
         // Invalidate objects in AddressesPeer instance pool,
         // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
         AddressesPeer::clearInstancePool();
+        // Invalidate objects in WishlistsPeer instance pool,
+        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
+        WishlistsPeer::clearInstancePool();
         // Invalidate objects in OrdersPeer instance pool,
         // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
         OrdersPeer::clearInstancePool();
@@ -1078,3 +1084,4 @@ abstract class BaseCustomersPeer
 //
 BaseCustomersPeer::buildTableMap();
 
+EventDispatcherProxy::trigger(array('construct','peer.construct'), new PeerEvent('Hanzo\Model\om\BaseCustomersPeer'));

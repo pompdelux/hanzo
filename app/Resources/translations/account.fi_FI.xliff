@@ -449,7 +449,7 @@
       <b>Lähetyksen seuraaminen</b><br>
      Napsauta tilauksen kohdalla olevaa kuvaketta, jos haluat seurata pakettiasi. Track and Trace -sivu avautuu uuteen ikkunaan.<br><br>
       <b>Palautus, vaihto ja reklamaatio</b><br>
-      Jos haluat palauttaa tuotteen, napsauta kuvaketta tilauksen kohdalla<br> 
+      Jos haluat palauttaa tuotteen, napsauta kuvaketta tilauksen kohdalla<br>
       Palautustarra ja palautuslomake ovat omina PDF-tiedostoinaan ja ne molemmat tulee tulostaa. Jos käytät palautustarraamme, on palauttaminen maksutonta. <br>
       Jos palautat tuotteen vaihtoon tai jos olet saanut viallisen tuotteen, voit vain palauttaa tuotteen ja lähetämme sinulle uuden – sinulle ei luonnollisesti aiheudu tästä kustannuksia. Jos tuote on loppuunmyyty, hyvitämme tuotteen ostohinnan.<br><br>
       <b>Palautuslomake</b><br>
@@ -558,6 +558,55 @@ Haluamme kuitenkin varmistaa, että tässä ei ole tapahtunut virhettä. Pyydäm
             <trans-unit id="my.account.existing.customer.notice">
                 <source>my.account.existing.customer.notice</source>
                 <target>Tervetuloa, mukavaa nähdä sinut jälleen!</target>
+            </trans-unit>
+            <trans-unit id="wishlist.add.label">
+                <source>wishlist.add.label</source>
+                <target>Ostoslistani</target>
+            </trans-unit>
+            <trans-unit id="wishlist.add.description">
+                <source>wishlist.add.description</source>
+                <target><![CDATA[
+                    <p>Tässä voit laatia listan niistä tuotteista, joita haluat tilata Home Shopping- tai Avoimet ovet -tilaisuudessa. Ostoslistasi tallennetaan automaattisesti.</p>
+                    <ul>
+                        <li>Valitse "Ostoslistani". Ostoslistasi saa ainutkertaisen numeron, jota Shopping Advisorisi tulee käyttää.</li>
+                        <li>Lisää tuotteet, jotka haluat ostaa.</li>
+                        <li>Näytä Ostoslistan numero Shopping Advisorillesi, joka tekee tilauksen.</li>
+                        <li>Seuraavaksi tarkistetaan varastotilanne ja tehdään tilaus yhdessä Shopping Advisorisi kanssa, minkä jälkeen saat tilausvahvistuksen.</li>
+                    </ul>
+                    <p>HUOM! Huomaa, että tilaus on tehty vasta, kun Shopping Advisorisi on antanut Ostoslistasi numeron ja olet saanut tilausvahvistuksen. Ostoslistan tuotteet eivät ole varattuina, vaikka ne olisi lisätty, joten joissakin tapauksissa ne saattavat valitettavasti olla loppuunmyytyjä.</p>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="wishlist.add.to.list">
+                <source>wishlist.add.to.list</source>
+                <target>Ostoslista</target>
+            </trans-unit>
+            <trans-unit id="wishlist.placeholder.query">
+                <source>wishlist.placeholder.query</source>
+                <target>Lisää tuote</target>
+            </trans-unit>
+            <trans-unit id="wishlist.query.description">
+                <source>wishlist.query.description</source>
+                <target>Anna kolme ensimmäistä kirjainta tuotteen nimestä ja valitse haluamasi tuote listalta.</target>
+            </trans-unit>
+            <trans-unit id="wishlist.select.size">
+                <source>wishlist.select.size</source>
+                <target>Koko</target>
+            </trans-unit>
+            <trans-unit id="wishlist.select.color">
+                <source>wishlist.select.color</source>
+                <target>Väri</target>
+            </trans-unit>
+            <trans-unit id="wishlist.number">
+                <source>wishlist.number</source>
+                <target><![CDATA[Shoppingliste Nr: <span>%number%</span>]]></target>
+            </trans-unit>
+            <trans-unit id="add.to.wishlist">
+                <source>add.to.wishlist</source>
+                <target>Lisää listalle.</target>
+            </trans-unit>
+            <trans-unit id="wishlist.remove.all.items">
+                <source>wishlist.remove.all.items</source>
+                <target>Tyhjennä lista</target>
             </trans-unit>
         </body>
     </file>

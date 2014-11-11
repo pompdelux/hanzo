@@ -2,92 +2,96 @@
 
 namespace Hanzo\Bundle\EventsBundle\Controller;
 
-use Criteria;
-
-use Symfony\Component\Form\FormError;
-use Symfony\Component\HttpFoundation\Request;
-
+use Hanzo\Bundle\AccountBundle\Form\Type\AddressesType;
+use Hanzo\Bundle\AccountBundle\Form\Type\CustomersType;
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Hanzo;
-use Hanzo\Core\Tools;
-
-use Hanzo\Model\Customers;
 use Hanzo\Model\Addresses;
 use Hanzo\Model\AddressesPeer;
 use Hanzo\Model\CountriesPeer;
+use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersQuery;
 use Hanzo\Model\EventsQuery;
-use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\WishlistsQuery;
+use Symfony\Component\Form\FormError;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
-use Hanzo\Bundle\AccountBundle\Form\Type\CustomersType;
-use Hanzo\Bundle\AccountBundle\Form\Type\AddressesType;
 
-use Hanzo\Bundle\AccountBundle\NNO\NNO;
-use Hanzo\Bundle\AccountBundle\NNO\SearchQuestion;
-use Hanzo\Bundle\AccountBundle\NNO\nnoSubscriber;
-use Hanzo\Bundle\AccountBundle\NNO\nnoSubscriberResult;
-
+/**
+ * Class DefaultController
+ *
+ * @package Hanzo\Bundle\EventsBundle
+ */
 class DefaultController extends CoreController
 {
     /**
      * createCustomerAction
      *
      * @param Request $request
+     *
      * @return Response
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function createCustomerAction(Request $request)
     {
-        $consultant = CustomersPeer::getCurrent();
-        $order      = OrdersPeer::getCurrent();
+        $order = OrdersPeer::getCurrent();
 
         // if the customer has been adding stuff to the basket, use that information here.
-        $customer_id = $request->request->get('id');
-
-        $hanzo     = Hanzo::getInstance();
-        $domainKey = $hanzo->get('core.domain_key');
-        $errors    = '';
+        $customerId = $request->request->get('id');
+        $hanzo      = Hanzo::getInstance();
+        $domainKey  = $hanzo->get('core.domain_key');
+        $errors     = '';
 
         $countries = CountriesPeer::getAvailableDomainCountries();
 
         // If order is for the hostess, find her and use the Customer
-        $is_hostess = $order->isHostessOrder();
+        $presetCustomer = false;
+        $isHostess = $order->isHostessOrder();
 
-        if ($is_hostess === true) {
+        if ($isHostess === true) {
             $event = EventsQuery::create()
                 ->filterById($order->getEventsId())
-                ->findOne()
-            ;
+                ->findOne();
 
             if ($event->getCustomersId()) {
-                $customer_id = $event->getCustomersId();
+                $customerId = $event->getCustomersId();
+                $presetCustomer = true;
             } else {
-                $is_hostess = false;
+                $isHostess = false;
+            }
+        } else {
+            $attributes = $order->getAttributes();
+
+            if (isset($attributes->wishlist, $attributes->wishlist->id)) {
+                $customerId = WishlistsQuery::create()
+                    ->select('customers_id')
+                    ->findOneById($attributes->wishlist->id);
+
+                $presetCustomer = true;
             }
         }
 
-        if ('POST' == $request->getMethod() || $is_hostess) {
-            if ($customer_id) {
+        if ('POST' == $request->getMethod() || $presetCustomer) {
+            if ($customerId) {
                 $customer = CustomersQuery::create()
                     ->joinWithAddresses()
                     ->useAddressesQuery()
-                        ->filterByType('payment')
+                    ->filterByType('payment')
                     ->endUse()
-                    ->findOneById($customer_id)
-                ;
+                    ->findOneById($customerId);
 
                 if ($customer instanceof Customers) {
-                    $pwd               = $customer->getPassword();
-                    $address           = $customer->getAddresses()->getFirst();
-                    $validation_groups = 'customer_edit';
+                    $pwd              = $customer->getPassword();
+                    $address          = $customer->getAddresses()->getFirst();
+                    $validationGroups = 'customer_edit';
                 }
             }
         }
 
         if (empty($address)) {
             $customer = new Customers();
-            $address = new Addresses();
+            $address  = new Addresses();
 
             if (count($countries) == 1) {
                 $address->setCountry($countries[0]->getLocalName());
@@ -95,7 +99,7 @@ class DefaultController extends CoreController
             }
 
             $customer->addAddresses($address);
-            $validation_groups = 'customer';
+            $validationGroups = 'customer';
 
         }
 
@@ -104,7 +108,7 @@ class DefaultController extends CoreController
         $form = $this->createForm(
             new CustomersType(true, new AddressesType($countries)),
             $customer,
-            array('validation_groups' => $validation_groups)
+            ['validation_groups' => $validationGroups]
         );
 
         if ('POST' === $request->getMethod()) {
@@ -113,13 +117,13 @@ class DefaultController extends CoreController
 
             // verify that the email is not already in use.
             if (!$customer->isNew() && $email) {
-                $form_email = $data->getEmail();
+                $formEmail = $data->getEmail();
 
-                if ($email != $form_email) {
+                if ($email != $formEmail) {
                     $c = CustomersQuery::create()
-                        ->filterById($customer->getId(), Criteria::NOT_EQUAL)
-                        ->findOneByEmail($form_email)
-                    ;
+                        ->filterById($customer->getId(), \Criteria::NOT_EQUAL)
+                        ->findOneByEmail($formEmail);
+
                     if ($c instanceof Customers) {
                         $form->addError(new FormError('email.exists'));
                     }
@@ -149,14 +153,15 @@ class DefaultController extends CoreController
                     $customer->setPasswordClear($pwd);
                 }
 
-                $address->setFirstName( $customer->getFirstName() );
-                $address->setLastName( $customer->getLastName() );
+                $address->setFirstName($customer->getFirstName());
+                $address->setLastName($customer->getLastName());
 
                 $customer->save();
                 $address->save();
 
                 $formData = $request->request->get('customers');
-                if ( isset($formData['newsletter']) && $formData['newsletter']) {
+
+                if (isset($formData['newsletter']) && $formData['newsletter']) {
                     $api = $this->get('newsletterapi');
                     $api->subscribe($customer->getEmail(), $api->getListIdAvaliableForDomain());
                 }
@@ -183,47 +188,48 @@ class DefaultController extends CoreController
             }
         }
 
-        return $this->render('EventsBundle:Default:create_customer.html.twig', array(
+        return $this->render('EventsBundle:Default:create_customer.html.twig', [
             'page_type'  => 'events-create-customer',
-            'is_hostess' => $is_hostess,
+            'is_hostess' => $isHostess,
             'form'       => $form->createView(),
             'errors'     => $errors,
             'domain_key' => $domainKey,
-        ));
+        ]);
     }
 
     /**
      * fetchCustomerAction
      *
+     * @param Request $request
+     *
+     * @throws \Exception
      * @return Response
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    public function fetchCustomerAction()
+     */
+    public function fetchCustomerAction(Request $request)
     {
-        $request = $this->getRequest();
-        $value   = $request->request->get('value');
-        $type    = strpos($value, '@') ? 'email' : 'phone';
-
-        // hf@bellcom.dk: get phplist ids so the customer can be subscribed
-        $api      = $this->get('newsletterapi');
-        $listId   = $api->getListIdAvaliableForDomain();
-
-        $error = true;
-        $data = array();
+        $value  = $request->request->get('value');
+        $type   = strpos($value, '@') ? 'email' : 'phone';
+        $api    = $this->get('newsletterapi');
+        $listId = $api->getListIdAvaliableForDomain();
+        $error  = true;
+        $data   = [];
 
         switch ($type) {
-          case 'email':
-              $customer = CustomersQuery::create()
-                  ->findOneByEmail($value);
+            case 'email':
+                $customer = CustomersQuery::create()
+                    ->findOneByEmail($value);
 
                 if ($customer instanceof Customers) {
-                    $c = new Criteria();
-                    $c->addAscendingOrderByColumn(sprintf(
-                        "FIELD(%s, '%s', '%s')",
-                        AddressesPeer::TYPE,
-                        'payment',
-                        'shipping'
-                    ));
+                    $c = new \Criteria();
+                    $c->addAscendingOrderByColumn(
+                        sprintf(
+                            "FIELD(%s, '%s', '%s')",
+                            AddressesPeer::TYPE,
+                            'payment',
+                            'shipping'
+                        )
+                    );
+
                     $c->add(AddressesPeer::TYPE, 'payment');
                     $c->setLimit(1);
 
@@ -231,28 +237,28 @@ class DefaultController extends CoreController
                     $address = $address->getFirst();
 
                     if ($address instanceof Addresses) {
-                        $data = array(
-                            'id' => $customer->getId(),
-                            'first_name' => $customer->getFirstName(),
-                            'last_name'  => $customer->getLastName(),
-                            'phone' => $customer->getPhone(),
-                            'email_address' => $customer->getEmail(),
+                        $data = [
+                            'id'             => $customer->getId(),
+                            'first_name'     => $customer->getFirstName(),
+                            'last_name'      => $customer->getLastName(),
+                            'phone'          => $customer->getPhone(),
+                            'email_address'  => $customer->getEmail(),
                             'address_line_1' => $address->getAddressLine1(),
-                            'postal_code' => $address->getPostalCode(),
-                            'city' => $address->getCity(),
-                            'countries_id' => $address->getCountriesId(),
-                            'country' => $address->getCountry(),
-                            'newsletter' => $api->getSubscriptionStateByEmail($customer->getEmail(), $listId),
-                        );
+                            'postal_code'    => $address->getPostalCode(),
+                            'city'           => $address->getCity(),
+                            'countries_id'   => $address->getCountriesId(),
+                            'country'        => $address->getCountry(),
+                            'newsletter'     => $api->getSubscriptionStateByEmail($customer->getEmail(), $listId),
+                        ];
                     }
                 }
                 break;
 
             case 'phone':
-                $domain_key = Hanzo::getInstance()->get('core.domain_key');
+                $domainKey = Hanzo::getInstance()->get('core.domain_key');
 
-                // phone number lookyup only in denmark
-                if (!in_array($domain_key, array('DK', 'SalesDK'))) {
+                // phone number lookup only in denmark
+                if (!in_array($domainKey, ['DK', 'SalesDK'])) {
                     break;
                 }
 
@@ -261,7 +267,7 @@ class DefaultController extends CoreController
                 if (200 == $result->getStatusCode()) {
                     $result = json_decode($result->getContent());
                     if (isset($result->data)) {
-                        $data = array(
+                        $data = [
                             'first_name'     => '',
                             'last_name'      => '',
                             'phone'          => '',
@@ -270,7 +276,7 @@ class DefaultController extends CoreController
                             'city'           => '',
                             'countries_id'   => 58,
                             'country'        => 'Denmark',
-                        );
+                        ];
 
                         $map = [
                             'first_name'  => 'christianname',
@@ -282,7 +288,7 @@ class DefaultController extends CoreController
                         ];
 
                         foreach ($map as $key => $prop) {
-                            if (isset($result->data->number->$prop)){
+                            if (isset($result->data->number->$prop)) {
                                 $data[$key] = $result->data->number->$prop;
                             }
                         }
@@ -292,10 +298,10 @@ class DefaultController extends CoreController
                 break;
         }
 
-        return $this->json_response(array(
+        return $this->json_response([
             'status'  => $error,
             'message' => '',
             'data'    => $data,
-        ));
+        ]);
     }
 }

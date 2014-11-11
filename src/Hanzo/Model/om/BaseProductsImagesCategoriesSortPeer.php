@@ -9,6 +9,8 @@ use \PDOStatement;
 use \Propel;
 use \PropelException;
 use \PropelPDO;
+use Glorpen\Propel\PropelBundle\Dispatcher\EventDispatcherProxy;
+use Glorpen\Propel\PropelBundle\Events\PeerEvent;
 use Hanzo\Model\CategoriesPeer;
 use Hanzo\Model\ProductsImagesCategoriesSort;
 use Hanzo\Model\ProductsImagesCategoriesSortPeer;
@@ -1747,3 +1749,4 @@ abstract class BaseProductsImagesCategoriesSortPeer
 //
 BaseProductsImagesCategoriesSortPeer::buildTableMap();
 
+EventDispatcherProxy::trigger(array('construct','peer.construct'), new PeerEvent('Hanzo\Model\om\BaseProductsImagesCategoriesSortPeer'));

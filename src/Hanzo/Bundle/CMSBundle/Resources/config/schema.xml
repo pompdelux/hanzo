@@ -260,6 +260,7 @@
         <column name="consultants_id" type="INTEGER" required="true"/>
         <column name="customers_id" type="INTEGER" required="true"/>
         <column name="event_date" type="TIMESTAMP" required="true"/>
+        <column name="event_end_time" type="TIMESTAMP" required="false"/>
         <column name="host" type="VARCHAR" size="128" required="true"/>
         <column name="address_line_1" type="VARCHAR" size="128" required="true"/>
         <column name="address_line_2" type="VARCHAR" size="128" required="false"/>
@@ -271,6 +272,8 @@
         <column name="type" type="VARCHAR" size="3" required="true" defaultValue="AR"/>
         <column name="is_open" type="BOOLEAN" size="1" required="false" defaultValue="NULL"/>
         <column name="notify_hostess" type="BOOLEAN" size="1" required="true" defaultValue="true"/>
+        <column name="rsvp_type" type="SMALLINT" size="1" required="false"/>
+        <column name="public_note" type="LONGVARCHAR" defaultValue="null" required="false"/>
         <foreign-key foreignTable="customers" name="fk_events_1">
             <reference local="consultants_id" foreign="id"/>
         </foreign-key>
@@ -531,6 +534,28 @@
         <behavior name="timestampable"/>
     </table>
 
+    <table name="wishlists" allowPkInsert="true">
+        <column name="id" type="VARCHAR" size="5" primaryKey="true" required="true"/>
+        <column name="customers_id" type="INTEGER" required="false"/>
+        <behavior name="timestampable"/>
+        <foreign-key foreignTable="customers" onDelete="CASCADE" onUpdate="CASCADE">
+            <reference local="customers_id" foreign="id"/>
+        </foreign-key>
+    </table>
+
+    <table name="wishlists_lines">
+        <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+        <column name="wishlists_id" type="VARCHAR" size="5" required="true"/>
+        <column name="products_id" type="INTEGER" required="false"/>
+        <column name="quantity" type="INTEGER" required="false"/>
+        <foreign-key foreignTable="wishlists" name="fk_wishlists_lines_1" onDelete="CASCADE">
+            <reference local="wishlists_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="products" name="fk_wishlists_lines_2" onDelete="CASCADE">
+            <reference local="products_id" foreign="id"/>
+        </foreign-key>
+    </table>
+
     <table name="zip_to_city">
         <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
         <column name="zip" type="VARCHAR" size="12" required="true"/>
@@ -671,6 +696,13 @@
         <foreign-key foreignTable="orders" name="fk_orders_lines_3" onDelete="CASCADE">
             <reference local="orders_id" foreign="id"/>
         </foreign-key>
+    </table>
+
+    <table name="orders_to_ax_queue_log">
+        <column name="orders_id" type="INTEGER" required="true" primaryKey="true"/>
+        <column name="queue_id" type="INTEGER" required="true" primaryKey="true"/>
+        <column name="iteration" type="INTEGER" required="true" defaultValue="1"/>
+        <column name="created_at" type="TIMESTAMP" required="true" primaryKey="true"/>
     </table>
 
     <table name="orders_versions">

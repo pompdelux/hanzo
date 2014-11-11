@@ -412,7 +412,10 @@ class MiscExtension extends Twig_Extension
                         $attr['width'] = $block['width'];
                     }
 
-                    $html = Tools::imageTag($block['src'], $attr);
+                    $html = '';
+                    if (!empty($block['src'])) {
+                        $html = Tools::imageTag($block['src'], $attr);
+                    }
 
                     if (!empty($block['href'])) {
                         $params = '';

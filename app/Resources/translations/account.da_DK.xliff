@@ -463,7 +463,7 @@
       <b>Følg din pakke</b><br>
       Klik på ikonet ud for din ordre for at følge din pakke. Track and Trace siden åbner i et nyt vindue.<br><br>
       <b>Returnering, ombytning og reklamation</b><br>
-      Ønsker du at returnere en vare, klikker du på ikonet ud for din ordre nedenfor.<br> 
+      Ønsker du at returnere en vare, klikker du på ikonet ud for din ordre nedenfor.<br>
       Returlabel og returseddel ligger i hver sin PDF, og skal printes hver for sig. Benytter du vores returlabel modregner vi kun DKK 29,- fra værdien af dine returvarer. <br>
       Returnerer du en vare med henblik på ombytning, eller har du modtaget en vare med fejl, returnerer du blot varen og vi sender dig en ny – selvfølgelig uden omkostninger for dig. Er varen udsolgt, tilbagefører vi varens købspris til dig.<br><br>
       <b>Returseddel</b><br>
@@ -568,6 +568,61 @@ Herefter kan du nemt shoppe videre.</p><br>
             <trans-unit id="my.account.existing.customer.notice">
                 <source>my.account.existing.customer.notice</source>
                 <target>Velkommen, vi er glade for at se dig igen!</target>
+            </trans-unit>
+            <trans-unit id="wishlist.add.label">
+                <source>wishlist.add.label</source>
+                <target>Min shoppingliste</target>
+            </trans-unit>
+            <trans-unit id="wishlist.add.description">
+                <source>wishlist.add.description</source>
+                <target><![CDATA[
+                    <p>Her kan du oprette en liste med de styles, du ønsker at bestille ved et Home Shopping arrangement eller Åbent Hus. Din Shoppingliste gemmes automatisk.</p>
+                    <ul>
+                        <li>Tryk på "Min shoppingliste". Din Shoppingliste får et unikt nummer, som din Shopping Advisor skal bruge.</li>
+                        <li>Tilføj de styles du ønsker at købe.</li>
+                        <li>Vis Shoppingliste nummeret til din Shopping Advisor, som behandler din ordre.</li>
+                        <li>Lagerbeholdning tjekkes, ordren gennemføres i samarbejde med din Shopping Advisor og herefter vil du modtage en ordrebekræftelse på din ordre.</li>
+                    </ul>
+                    <p>HUSK! Vær opmærksom på, at du først har afgivet din ordre, når din Shopping Advisor har indlæst dit Shoppingliste nummer, og du har fået en ordrebekræftelse. Varerne på din Shoppingliste er ikke reserveret selvom de er tilføjet, så der kan opstå tilfælde, hvor en vare desværre er udsolgt.</p>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="wishlist.add.to.list">
+                <source>wishlist.add.to.list</source>
+                <target>Shoppingliste</target>
+            </trans-unit>
+            <trans-unit id="wishlist.placeholder.query">
+                <source>wishlist.placeholder.query</source>
+                <target>Tilføj vare</target>
+            </trans-unit>
+            <trans-unit id="wishlist.query.description">
+                <source>wishlist.query.description</source>
+                <target>Indtast de tre første bogstaver i stylens navn og vælg den ønskede style fra listen.</target>
+            </trans-unit>
+            <trans-unit id="wishlist.select.size">
+                <source>wishlist.select.size</source>
+                <target>Størrelse</target>
+            </trans-unit>
+            <trans-unit id="wishlist.select.color">
+                <source>wishlist.select.color</source>
+                <target>Farve</target>
+            </trans-unit>
+            <trans-unit id="wishlist.number">
+                <source>wishlist.number</source>
+                <target><![CDATA[Shoppingliste Nr: <span>%number%</span>]]></target>
+            </trans-unit>
+            <trans-unit id="add.to.wishlist">
+                <source>add.to.wishlist</source>
+                <target>Tilføj til listen</target>
+            </trans-unit>
+            <trans-unit id="wishlist.remove.all.items">
+                <source>wishlist.remove.all.items</source>
+                <target>Ryd listen</target>
+            </trans-unit>
+            <trans-unit id="wishlist.footer.description">
+                <source>wishlist.footer.description</source>
+                <target><![CDATA[
+                    <strong>HUSK!</strong> Vær opmærksom på, at du først har afgivet din ordre, når din Shopping Advisor har indlæst dit Shoppingliste nummer, og du har fået en ordrebekræftelse. Varerne på din Shoppingliste er ikke reserveret selvom de er tilføjet, så der kan opstå tilfælde, hvor en vare desværre er udsolgt.
+                ]]></target>
             </trans-unit>
         </body>
     </file>

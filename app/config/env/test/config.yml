@@ -19,7 +19,7 @@ monolog:
 framework:
     test:            ~
     trusted_proxies: [ %proxy_ip%, 127.0.0.1, 192.168.2.251 ]
-    trusted_hosts:   [ '.*?\.?testpompdelux.com|localhost|192.168.2.251' ]
+    trusted_hosts:   [ '.*?\.?(test|dev)pompdelux.com|localhost|192.168.2.251' ]
     templating:
         assets_base_urls:
             http: [ "%assets_base_url%" ]
@@ -32,7 +32,7 @@ varnish:
 
 ax:
     wsdl: "http://193.89.255.251:8000/DynamicsAxServices.asmx?wsdl"
-    log_requests: true
+    log_requests: false
 
 consignor:
     shipment_server:

@@ -12,6 +12,8 @@ use \PropelCollection;
 use \PropelException;
 use \PropelObjectCollection;
 use \PropelPDO;
+use Glorpen\Propel\PropelBundle\Dispatcher\EventDispatcherProxy;
+use Glorpen\Propel\PropelBundle\Events\QueryEvent;
 use Hanzo\Model\Categories;
 use Hanzo\Model\MannequinImages;
 use Hanzo\Model\OrdersLines;
@@ -29,6 +31,7 @@ use Hanzo\Model\ProductsToCategories;
 use Hanzo\Model\ProductsWashingInstructions;
 use Hanzo\Model\RelatedProducts;
 use Hanzo\Model\SearchProductsTags;
+use Hanzo\Model\WishlistsLines;
 
 /**
  * @method ProductsQuery orderById($order = Criteria::ASC) Order by the id column
@@ -117,6 +120,10 @@ use Hanzo\Model\SearchProductsTags;
  * @method ProductsQuery rightJoinProductsToCategories($relationAlias = null) Adds a RIGHT JOIN clause to the query using the ProductsToCategories relation
  * @method ProductsQuery innerJoinProductsToCategories($relationAlias = null) Adds a INNER JOIN clause to the query using the ProductsToCategories relation
  *
+ * @method ProductsQuery leftJoinWishlistsLines($relationAlias = null) Adds a LEFT JOIN clause to the query using the WishlistsLines relation
+ * @method ProductsQuery rightJoinWishlistsLines($relationAlias = null) Adds a RIGHT JOIN clause to the query using the WishlistsLines relation
+ * @method ProductsQuery innerJoinWishlistsLines($relationAlias = null) Adds a INNER JOIN clause to the query using the WishlistsLines relation
+ *
  * @method ProductsQuery leftJoinOrdersLines($relationAlias = null) Adds a LEFT JOIN clause to the query using the OrdersLines relation
  * @method ProductsQuery rightJoinOrdersLines($relationAlias = null) Adds a RIGHT JOIN clause to the query using the OrdersLines relation
  * @method ProductsQuery innerJoinOrdersLines($relationAlias = null) Adds a INNER JOIN clause to the query using the OrdersLines relation
@@ -195,6 +202,7 @@ abstract class BaseProductsQuery extends ModelCriteria
             $modelName = 'Hanzo\\Model\\Products';
         }
         parent::__construct($dbName, $modelName, $modelAlias);
+        EventDispatcherProxy::trigger(array('construct','query.construct'), new QueryEvent($this));
     }
 
     /**
@@ -1790,6 +1798,80 @@ abstract class BaseProductsQuery extends ModelCriteria
     }
 
     /**
+     * Filter the query by a related WishlistsLines object
+     *
+     * @param   WishlistsLines|PropelObjectCollection $wishlistsLines  the related object to use as filter
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return                 ProductsQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
+     */
+    public function filterByWishlistsLines($wishlistsLines, $comparison = null)
+    {
+        if ($wishlistsLines instanceof WishlistsLines) {
+            return $this
+                ->addUsingAlias(ProductsPeer::ID, $wishlistsLines->getProductsId(), $comparison);
+        } elseif ($wishlistsLines instanceof PropelObjectCollection) {
+            return $this
+                ->useWishlistsLinesQuery()
+                ->filterByPrimaryKeys($wishlistsLines->getPrimaryKeys())
+                ->endUse();
+        } else {
+            throw new PropelException('filterByWishlistsLines() only accepts arguments of type WishlistsLines or PropelCollection');
+        }
+    }
+
+    /**
+     * Adds a JOIN clause to the query using the WishlistsLines relation
+     *
+     * @param     string $relationAlias optional alias for the relation
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return ProductsQuery The current query, for fluid interface
+     */
+    public function joinWishlistsLines($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
+    {
+        $tableMap = $this->getTableMap();
+        $relationMap = $tableMap->getRelation('WishlistsLines');
+
+        // create a ModelJoin object for this join
+        $join = new ModelJoin();
+        $join->setJoinType($joinType);
+        $join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+        if ($previousJoin = $this->getPreviousJoin()) {
+            $join->setPreviousJoin($previousJoin);
+        }
+
+        // add the ModelJoin to the current object
+        if ($relationAlias) {
+            $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+            $this->addJoinObject($join, $relationAlias);
+        } else {
+            $this->addJoinObject($join, 'WishlistsLines');
+        }
+
+        return $this;
+    }
+
+    /**
+     * Use the WishlistsLines relation WishlistsLines object
+     *
+     * @see       useQuery()
+     *
+     * @param     string $relationAlias optional alias for the relation,
+     *                                   to be used as main alias in the secondary query
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return   \Hanzo\Model\WishlistsLinesQuery A secondary query class using the current class as primary query
+     */
+    public function useWishlistsLinesQuery($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
+    {
+        return $this
+            ->joinWishlistsLines($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'WishlistsLines', '\Hanzo\Model\WishlistsLinesQuery');
+    }
+
+    /**
      * Filter the query by a related OrdersLines object
      *
      * @param   OrdersLines|PropelObjectCollection $ordersLines  the related object to use as filter
@@ -2247,6 +2329,76 @@ abstract class BaseProductsQuery extends ModelCriteria
         }
 
         return $this;
+    }
+
+    /**
+     * Code to execute before every SELECT statement
+     *
+     * @param     PropelPDO $con The connection object used by the query
+     */
+    protected function basePreSelect(PropelPDO $con)
+    {
+        // event behavior
+        EventDispatcherProxy::trigger('query.select.pre', new QueryEvent($this));
+
+        return $this->preSelect($con);
+    }
+
+    /**
+     * Code to execute before every DELETE statement
+     *
+     * @param     PropelPDO $con The connection object used by the query
+     */
+    protected function basePreDelete(PropelPDO $con)
+    {
+        EventDispatcherProxy::trigger(array('delete.pre','query.delete.pre'), new QueryEvent($this));
+        // event behavior
+        // placeholder, issue #5
+
+        return $this->preDelete($con);
+    }
+
+    /**
+     * Code to execute after every DELETE statement
+     *
+     * @param     int $affectedRows the number of deleted rows
+     * @param     PropelPDO $con The connection object used by the query
+     */
+    protected function basePostDelete($affectedRows, PropelPDO $con)
+    {
+        // event behavior
+        EventDispatcherProxy::trigger(array('delete.post','query.delete.post'), new QueryEvent($this));
+
+        return $this->postDelete($affectedRows, $con);
+    }
+
+    /**
+     * Code to execute before every UPDATE statement
+     *
+     * @param     array $values The associative array of columns and values for the update
+     * @param     PropelPDO $con The connection object used by the query
+     * @param     boolean $forceIndividualSaves If false (default), the resulting call is a BasePeer::doUpdate(), otherwise it is a series of save() calls on all the found objects
+     */
+    protected function basePreUpdate(&$values, PropelPDO $con, $forceIndividualSaves = false)
+    {
+        // event behavior
+        EventDispatcherProxy::trigger(array('update.pre', 'query.update.pre'), new QueryEvent($this));
+
+        return $this->preUpdate($values, $con, $forceIndividualSaves);
+    }
+
+    /**
+     * Code to execute after every UPDATE statement
+     *
+     * @param     int $affectedRows the number of updated rows
+     * @param     PropelPDO $con The connection object used by the query
+     */
+    protected function basePostUpdate($affectedRows, PropelPDO $con)
+    {
+        // event behavior
+        EventDispatcherProxy::trigger(array('update.post', 'query.update.post'), new QueryEvent($this));
+
+        return $this->postUpdate($affectedRows, $con);
     }
 
     // i18n behavior

@@ -463,7 +463,7 @@
       <b>Das Paket nachverfolgen</b><br>
       Klicken Sie auf das Symbol neben Ihrer Bestellung um das Paket nachzuverfolgen. Die Track & Trace Seite öffnet sich in einem neuen Fenster.<br><br>
       <b>Rücksendung</b><br>
-      Möchten Sie die Ware zurückschicken, dann klicken Sie bitte auf das grüne Symbol neben Ihrer Bestellung.<br> 
+      Möchten Sie die Ware zurückschicken, dann klicken Sie bitte auf das grüne Symbol neben Ihrer Bestellung.<br>
      Bitte beachten: Das Rücksendeetikett und der Rücksendeschein werden einzeln in zwei verschiedenen PDF-Dokumenten geöffnet und müssen einzeln ausgedruckt werden.<br><br>
       <b>Rücksendeschein</b><br>
       Falls Sie die Waren, die Sie zurückschicken möchten nicht im interaktiven Rücksendeschein finden können, klicken Sie auf diesen Link und drucken den Rücksendeschein manuell aus.  <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_AT.pdf">» Rücksendeschein (PDF)</a>
@@ -563,6 +563,55 @@ Um jedoch sicherzustellen, dass dabei keine Fehler aufgetreten sind, möchten wi
             <trans-unit id="my.account.existing.customer.notice">
                 <source>my.account.existing.customer.notice</source>
                 <target>Willkommen, wir freuen uns Sie wiederzusehen!</target>
+            </trans-unit>
+            <trans-unit id="wishlist.add.label">
+                <source>wishlist.add.label</source>
+                <target>Meine Shoppingliste</target>
+            </trans-unit>
+            <trans-unit id="wishlist.add.description">
+                <source>wishlist.add.description</source>
+                <target><![CDATA[
+                    <p>Hier können Sie eine Liste mit den Styles erstellen, welche Sie bei einer Home Shopping Veranstaltung oder bei einem Tag der offenen Tür bestellen möchten. Ihre Shoppingliste wird automatisch gespeichert.</p>
+                    <ul>
+                        <li>Klicken Sie auf ”Meine Shoppingliste”. Ihre Shoppingliste bekommt eine persönliche Nummer zugeordnet, welche Ihr Shopping Advisor eingeben kann.</li>
+                        <li>Fügen Sie die gewünschten Styles hinzu.</li>
+                        <li>Zeigen Sie Ihrem Shopping Advisor die Shoppingliste.</li>
+                        <li>Die Lagerverfügbarkeit wird überprüft, die Bestellung wird in Zusammenarbeit mit Ihrem Shopping Advisor durchgeführt und danach erhalten Sie eine Bestellbestätigung zu Ihrer Bestellung.</li>
+                    </ul>
+                    <p>Bitte beachten: Ihre Bestellung wird erst dann gültig, wenn Ihr Shopping Advisor die Nummer Ihrer Shoppingliste eingegeben hat und Sie Ihre Bestellbestätigung erhalten haben. Die Waren auf Ihrer Shoppingliste werden nicht reserviert, auch wenn diese hinzugefügt wurden. Es kann also vorkommen, dass eine Ware bei Bestelleingabe ausverkauft ist.</p>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="wishlist.add.to.list">
+                <source>wishlist.add.to.list</source>
+                <target>Shoppingliste</target>
+            </trans-unit>
+            <trans-unit id="wishlist.placeholder.query">
+                <source>wishlist.placeholder.query</source>
+                <target>Ware hinzufügen</target>
+            </trans-unit>
+            <trans-unit id="wishlist.query.description">
+                <source>wishlist.query.description</source>
+                <target>Geben Sie die ersten drei Buchstaben des Style-Namen ein, und wählen Sie den gewünschten Style von der Liste aus.</target>
+            </trans-unit>
+            <trans-unit id="wishlist.select.size">
+                <source>wishlist.select.size</source>
+                <target>Größe</target>
+            </trans-unit>
+            <trans-unit id="wishlist.select.color">
+                <source>wishlist.select.color</source>
+                <target>Farbe</target>
+            </trans-unit>
+            <trans-unit id="wishlist.number">
+                <source>wishlist.number</source>
+                <target><![CDATA[Shoppingliste Nr: <span>%number%</span>]]></target>
+            </trans-unit>
+            <trans-unit id="add.to.wishlist">
+                <source>add.to.wishlist</source>
+                <target>Liste hinzufügen</target>
+            </trans-unit>
+            <trans-unit id="wishlist.remove.all.items">
+                <source>wishlist.remove.all.items</source>
+                <target>Liste zurücksetzen</target>
             </trans-unit>
         </body>
     </file>

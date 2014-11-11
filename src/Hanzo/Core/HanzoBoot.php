@@ -84,11 +84,16 @@ class HanzoBoot
 
         $attr->set('_x_device', $device);
 
+        $isMobile = false;
+
         $theme = $container->get('liip_theme.active_theme');
         // set theme to active name + '_mobile' ex: '2013s1_mobile'
         if (preg_match('/^mobile/i', $device) && !preg_match('/mobile/', $theme->getName())) {
             $theme->setName($theme->getName().'_mobile');
+            $isMobile = true;
         }
+
+        $container->get('twig')->addGlobal('is_mobile_layout', $isMobile);
     }
 
 

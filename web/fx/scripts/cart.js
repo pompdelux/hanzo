@@ -295,12 +295,12 @@
           e.preventDefault();
           if ($mega_basket.hasClass('open')) {
             $mega_basket.animate({
-              top: '-' + ($mega_basket.height() + 30 ) + 'px',
+              top: '-' + ($mega_basket.height() + 30 ) + 'px'
             }, 500 );
           }
           else {
             $mega_basket.animate({
-              top: "-6px",
+              top: "-6px"
             }, 500 );
 
             // Set a timeout, so the basket automatically closes.
@@ -308,7 +308,7 @@
               // Only close the basket if the mouse isnt hovering it.
               if (!$('#mega-basket:hover').length) {
                 $mega_basket.animate({
-                  top: '-' + ($(this).height() + 30 ) + 'px',
+                  top: '-' + ($(this).height() + 30 ) + 'px'
                 }, 500 );
                 $mega_basket.toggleClass('open');
               }
@@ -322,7 +322,7 @@
           $(".nano").nanoScroller();
           // Open the mega-basket.
           $mega_basket.animate({
-            top: "-6px",
+            top: "-6px"
           }, 500, 'swing', function() {
             $(".nano").nanoScroller({ scroll: 'bottom' });
           });
@@ -331,7 +331,7 @@
             // Only close the basket if the mouse isnt hovering it.
             if (!$('#mega-basket:hover').length) {
               $mega_basket.animate({
-                top: '-' + ($(this).height() + 30 ) + 'px',
+                top: '-' + ($(this).height() + 30 ) + 'px'
               }, 500 );
               $mega_basket.toggleClass('open');
             }

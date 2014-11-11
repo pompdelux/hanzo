@@ -16,6 +16,7 @@
         "web/fx/scripts/jquerytools/src/scrollable/scrollable.autoscroll.js",
         "web/fx/scripts/jquerytools/src/scrollable/scrollable.navigator.js",
         "web/fx/scripts/jquery.cycle2.min.js",
+        "web/fx/scripts/jquery.color.min.js",
         "web/fx/scripts/jquery.formparams.js",
         "web/fx/scripts/jquery.lazyload.min.js",
         "web/fx/scripts/colorbox/jquery.colorbox-min.js",
@@ -35,7 +36,6 @@
         "web/fx/scripts/main.js",
         "web/fx/scripts/cart.js",
         "web/fx/scripts/checkout.js",
-        "web/fx/scripts/dibs-process.js",
         "web/fx/scripts/gothia.js",
         "web/fx/scripts/events.js",
         "web/fx/scripts/maps.js",
@@ -51,6 +51,9 @@
         "web/fx/scripts/account.js",
         "web/fx/scripts/newsletter.js",
         "web/fx/scripts/events.js",
-        "web/fx/2013s1_mobile/scripts/checkout.js"
+        "web/fx/2013s1_mobile/scripts/checkout.js",
+        "web/fx/scripts/App.js",
+        "web/fx/scripts/App.ProductFinder.js",
+        "web/fx/scripts/App.WishlistBuilder.js"
     ]
 }

@@ -328,6 +328,7 @@ CREATE TABLE `events`
     `consultants_id` INTEGER NOT NULL,
     `customers_id` INTEGER NOT NULL,
     `event_date` DATETIME NOT NULL,
+    `event_end_time` DATETIME,
     `host` VARCHAR(128) NOT NULL,
     `address_line_1` VARCHAR(128) NOT NULL,
     `address_line_2` VARCHAR(128),
@@ -339,6 +340,8 @@ CREATE TABLE `events`
     `type` VARCHAR(3) DEFAULT 'AR' NOT NULL,
     `is_open` TINYINT(1),
     `notify_hostess` TINYINT(1) DEFAULT 1 NOT NULL,
+    `rsvp_type` SMALLINT(1),
+    `public_note` TEXT,
     `created_at` DATETIME,
     `updated_at` DATETIME,
     PRIMARY KEY (`id`),
@@ -728,6 +731,52 @@ CREATE TABLE `settings`
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
+-- wishlists
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `wishlists`;
+
+CREATE TABLE `wishlists`
+(
+    `id` VARCHAR(5) NOT NULL,
+    `customers_id` INTEGER,
+    `created_at` DATETIME,
+    `updated_at` DATETIME,
+    PRIMARY KEY (`id`),
+    INDEX `wishlists_FI_1` (`customers_id`),
+    CONSTRAINT `wishlists_FK_1`
+        FOREIGN KEY (`customers_id`)
+        REFERENCES `customers` (`id`)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
+-- wishlists_lines
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `wishlists_lines`;
+
+CREATE TABLE `wishlists_lines`
+(
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `wishlists_id` VARCHAR(5) NOT NULL,
+    `products_id` INTEGER,
+    `quantity` INTEGER,
+    PRIMARY KEY (`id`),
+    INDEX `FI_wishlists_lines_1` (`wishlists_id`),
+    INDEX `FI_wishlists_lines_2` (`products_id`),
+    CONSTRAINT `fk_wishlists_lines_1`
+        FOREIGN KEY (`wishlists_id`)
+        REFERENCES `wishlists` (`id`)
+        ON DELETE CASCADE,
+    CONSTRAINT `fk_wishlists_lines_2`
+        FOREIGN KEY (`products_id`)
+        REFERENCES `products` (`id`)
+        ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
 -- zip_to_city
 -- ---------------------------------------------------------------------
 
@@ -920,6 +969,21 @@ CREATE TABLE `orders_sync_log`
         FOREIGN KEY (`orders_id`)
         REFERENCES `orders` (`id`)
         ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
+-- orders_to_ax_queue_log
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `orders_to_ax_queue_log`;
+
+CREATE TABLE `orders_to_ax_queue_log`
+(
+    `orders_id` INTEGER NOT NULL,
+    `queue_id` INTEGER NOT NULL,
+    `iteration` INTEGER DEFAULT 1 NOT NULL,
+    `created_at` DATETIME NOT NULL,
+    PRIMARY KEY (`orders_id`,`queue_id`,`created_at`)
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------

@@ -7,9 +7,9 @@
                 <target><![CDATA[<h1>Kleider</h1>
                 <p>POMPdeLUX hat Kleider in vielen verschiedenen Farben und Schnitten. Sie finden sowohl Kleider für Feiern und besondere Anlässe als auch Kleider, die perfekt zum Alltag und zum Spielen passen. Mit Kleidern von POMPdeLUX ist etwas für alle Mädchen da – kleine wie große. Sie wählen einfach das Kleid, das Sie am liebsten mögen. Unsere Kleider gibt es in den Größen 80 cm bis 152 cm und hier gibt es viele Anregungen für die Garderobe Ihrer Kinder zu holen.</p>]]></target>
             </trans-unit>
-             <trans-unit id="headers.category-20" approved="no">
-                <source>headers.category-20</source>
-                <target><![CDATA[<h1>T-shirts / Tops</h1>
+             <trans-unit id="headers.category-35" approved="no">
+                <source>headers.category-35</source>
+                <target><![CDATA[<h1>T-shirts</h1>
                 <p>T-Shirts und Tops kann man das ganze Jahr über verwenden und sind schick im Sommer und im Winter. POMPdeLUX hat T-Shirts in vielen verschiedenen Farben und Modellen. Es ist also etwas für große und kleine Mädchen da. Unsere T-Shirts und Tops sind aus schöner, weicher Qualität und haben viele schicke Details. Finden Sie Ihr Lieblings-T-Shirt für den Alltag oder einen schönen Top für festliche Anlässe. Unsere T-Shirts und Tops gibt es in den Größen 80 cm bis 152 cm und hier gibt es viele Anregungen für die Garderobe Ihrer Kinder zu holen.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-19" approved="no">
@@ -34,7 +34,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-17" approved="no">
                 <source>headers.category-17</source>
-                <target><![CDATA[<h1>Hosen</h1>
+                <target><![CDATA[<h1>Hosen / Jeans</h1>
                 <p>Bei POMPdeLUX finden Sie die Hosen, die am besten zu Ihrem Kind passen. Wir haben eine breite Auswahl an Farben und Modellen – ganz gleich ob Sie Jeggins, Jeans, Baggy oder Slimfit Hosen vorziehen. Unsere Hosen wurden aus schicken Materialien hergestellt von Sweat bis Strickware, und es sind Hosen für alle Anlässe erhältlich. Unsere Hosen, Jeggins und Jeans gibt es in den Größen 80 cm bis 152 cm und hier gibt es viele Anregungen für die Garderobe Ihrer Kinder zu holen.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-79" approved="no">
@@ -54,8 +54,8 @@
             </trans-unit>
 			<trans-unit id="headers.category-15" approved="no">
                 <source>headers.category-15</source>
-                <target><![CDATA[<h1>Leggings</h1>
-                <p>Leggings sind ein fester Bestandteil der Basisgarderobe Ihres Kindes. POMPdeLUX hat Leggings aus schicken, weichen Materialien, die alle Mädchen gerne tragen. Verwenden Sie Leggings unter einem Kleid, Rock oder Shorts und vergessen Sie unsere Basistops nicht, die perfekt zu unseren Leggings passen. Unsere Leggins gibt es in den Größen 80 cm bis 152 cm und hier gibt es viele Anregungen für die Garderobe Ihrer Kinder zu holen.</p>]]></target>
+                <target><![CDATA[<h1>Strümpfe / Strumpfhosen / Leggings</h1>
+                <p>Strümpfe, Strumpfhosen, Leggings sind ein fester Bestandteil der Basisgarderobe Ihres Kindes. POMPdeLUX hat Leggings aus schicken, weichen Materialien, die alle Mädchen gerne tragen. Verwenden Sie Strümpfe, Strumpfhosen, Leggings unter einem Kleid, Rock oder Shorts und vergessen Sie unsere Basistops nicht, die perfekt zu unseren Leggings passen. Unsere Leggins gibt es in den Größen 80 cm bis 152 cm und hier gibt es viele Anregungen für die Garderobe Ihrer Kinder zu holen.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-82" approved="no">
                 <source>headers.category-82</source>
@@ -69,7 +69,7 @@
 			<trans-unit id="headers.category-12" approved="no">
                 <source>headers.category-12</source>
                 <target><![CDATA[<h1>Accessories</h1>
-                <p>Um die Garderobe Ihres Kindes zu vervollständigen, kann die Kollektion mit unseren vielen schönen Accessoires kombiniert werden. POMPdeLUX hat von Strumpfhosen, Leggings, Bikini, Badeanzug und Badehose über Haarschmuck, Hosenträger und Gürtel zu Handschuhen, Mützen und Schals alles da. Unsere beliebten Accessoires passen zur übrigen Kollektion und können daher mit smarten Kleidern, schicken Cardigans und coolen Hosen kombiniert werden. Unsere Gürtel, Hosenträger, Handschuhe, Mützen, Schals und Haarschmuck können von Mädchen jeden Alters verwendet werden und es gibt viele Anregungen für die Garderobe Ihrer Kinder.</p>]]></target>
+                <p>Um die Garderobe Ihres Kindes zu vervollständigen, kann die Kollektion mit unseren vielen schönen Accessoires kombiniert werden. POMPdeLUX hat von Strumpfhosen, Leggings über Haarschmuck, Hosenträger und Gürtel zu Handschuhen, Mützen und Schals alles da. Unsere beliebten Accessoires passen zur übrigen Kollektion und können daher mit smarten Kleidern, schicken Cardigans und coolen Hosen kombiniert werden. Unsere Gürtel, Hosenträger, Handschuhe, Mützen, Schals und Haarschmuck können von Mädchen jeden Alters verwendet werden und es gibt viele Anregungen für die Garderobe Ihrer Kinder.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-45" approved="no">
                 <source>headers.category-45</source>
@@ -78,7 +78,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-46" approved="no">
                 <source>headers.category-46</source>
-                <target><![CDATA[<h1>Organic</h1>
+                <target><![CDATA[<h1>Bio / GOTS</h1>
                 <p>Bei POMPdeLUX lieben wir Qualitätsbekleidung und für Ihr Kind ist selbstverständlich nur das Beste gut genug. Daher sind unsere Unterhosen, Hipsters, Slips, Unterhemden, Nachtkleider und Pyjamas GOTS-zertifiziert. Das heißt, dass wir mit organischen Textilien arbeiten, wovon mindestens 95 % der Materialien ökologisch sind, und dass die Produktion umweltfreundlich und sozial verantwortlich erfolgt. Wir garantieren daher schicke Materialien aus hoher Qualität für Kinder jeden Alters.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-112" approved="no">
@@ -118,13 +118,13 @@
             </trans-unit>
 			<trans-unit id="headers.category-9" approved="no">
                 <source>headers.category-9</source>
-                <target><![CDATA[<h1>Strickjacken / Pullover</h1>
+                <target><![CDATA[<h1>Strick / Strickjacken</h1>
                 <p>An kalten Wintertagen und kühlen Sommerabenden ist es schön mit einem warmen Pulli oder Cardigan. POMPdeLUX hat sowohl Strickpullis, Cardigans als auch Pullover aus schicker, weicher Qualität und Sie finden eine breite Auswahl an Farben und Modellen. Finden Sie Ihr Lieblingsstück aus den Fleecehemden, Cardigans, Blusen, Sweatshirts, Slipovers und Pullovern. Unsere Pullover und Cardigans gibt es in den Größen 80 cm bis 152 cm und hier gibt es viele Anregungen für die Garderobe Ihrer Kinder zu holen.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-83" approved="no">
                 <source>headers.category-83</source>
-                <target><![CDATA[<h1>Sweatshirts</h1>
-                <p>Ein Sweatshirt ist cool für sowohl große als auch kleine Jungen. Bei POMPdeLUX finden Sie Sweatshirts mit Prints, schicke weiche Fleecehemden sowie coole Sportjacken mit Reißverschluss aus den schicksten Materialien aus hoher Qualität. Finden Sie Ihr Lieblingsstück aus den vielen Farben und Modellen. Unsere Sweatshirts, Sportjacken und Fleecehemden gibt es in den Größen 80 cm bis 152 cm und hier gibt es viele Anregungen für die Garderobe Ihrer Kinder zu holen.</p>]]></target>
+                <target><![CDATA[<h1>Sweatshirts / Jogginghosen</h1>
+                <p>Jogginghosen und Sweatshirts sind beliebt! Sie haben die Wahl zwischen schicken weichen Pullis, Jacken, Hosen und Hosenanzügen. Unsere Sweats sind immer von toller Qualität, welche gemütlich für Ihr Kind zum Tragen sind und gleichzeitig einen coolen Look schaffen. Unsere Sweatshirts und Jogginghosen gibt es in Gr. 80-152cm für Mädchen und Jungen.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-7" approved="no">
                 <source>headers.category-7</source>
@@ -158,7 +158,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-44" approved="no">
                 <source>headers.category-44</source>
-                <target><![CDATA[<h1>Organic</h1>
+                <target><![CDATA[<h1>Bio / GOTS</h1>
                 <p>Bei POMPdeLUX lieben wir Qualitätsbekleidung und für Ihr Kind ist selbstverständlich nur das Beste gut genug. Daher sind unsere Unterhosen, Hipsters, Slips, Unterhemden, Nachtkleider und Pyjamas GOTS-zertifiziert. Das heißt, dass wir mit organischen Textilien arbeiten, wovon mindestens 95 % der Materialien ökologisch sind, und dass die Produktion umweltfreundlich und sozial verantwortlich erfolgt. Wir garantieren daher schicke Materialien aus hoher Qualität für Kinder jeden Alters.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-116" approved="no">
@@ -218,11 +218,11 @@
             </trans-unit>
 			<trans-unit id="headers.category-34" approved="no">
                 <source>headers.category-34</source>
-                <target><![CDATA[<h1>Hosen</h1>
+                <target><![CDATA[<h1>Hosen / Jeans</h1>
                 <p>Bei POMPdeLUX finden Sie die Hosen, die am besten zu Ihrem Kind passen. Wir haben eine breite Auswahl an Farben und Modellen – ganz gleich ob Sie Jeggins, Jeans, Baggy oder Slimfit Hosen vorziehen. Unsere Hosen wurden aus schicken Materialien hergestellt von Sweat bis Strickware, und es sind Hosen für alle Anlässe erhältlich. Unsere Hosen, Jeggins und Jeans gibt es in den Größen 80 cm bis 152 cm und hier gibt es viele Anregungen für die Garderobe Ihrer Kinder zu holen.</p>]]></target>
             </trans-unit>
-			<trans-unit id="headers.category-35" approved="no">
-                <source>headers.category-35</source>
+			<trans-unit id="headers.category-86" approved="no">
+                <source>headers.category-86</source>
                 <target><![CDATA[<h1>Shorts / Röcke</h1>
                 <p>POMPdeLUX hat Shorts und Röcke für alle Mädchen. Wählen Sie zwischen vielen verschiedenen Modellen und schicken Farben und bemerken Sie die vielen schönen Details mit Prints und Tüll. Kombinieren Sie sowohl Shorts als auch Röcke mit Unterteilen wie Leggings und Strumpfhosen oder Oberteile wie T-Shirts, Strickpullis und Cardigans. Unsere Shorts und Röcke gibt es in den Größen 80 cm bis 152 cm und hier gibt es viele Anregungen für die Garderobe Ihrer Kinder zu holen.</p>]]></target>
             </trans-unit>
@@ -238,8 +238,8 @@
             </trans-unit>
 			<trans-unit id="headers.category-87" approved="no">
                 <source>headers.category-87</source>
-                <target><![CDATA[<h1>Strümpfe / Strumpfhosen</h1>
-                <p>Um die Garderobe Ihres Kindes zu vervollständigen, kann die Kollektion mit unseren vielen schönen Accessoires kombiniert werden. POMPdeLUX hat von Strumpfhosen, Leggings, Bikini, Badeanzug und Badehose über Haarschmuck, Hosenträger und Gürtel zu Handschuhen, Mützen und Schals alles da. Unsere beliebten Accessoires passen zur übrigen Kollektion und können daher mit smarten Kleidern, schicken Cardigans und coolen Hosen kombiniert werden. Unsere Gürtel, Hosenträger, Handschuhe, Mützen, Schals und Haarschmuck können von Mädchen jeden Alters verwendet werden und es gibt viele Anregungen für die Garderobe Ihrer Kinder.</p>]]></target>
+                <target><![CDATA[<h1>Strümpfe / Strumpfhosen / Leggings</h1>
+                <p>Strümpfe, Strumpfhosen, Leggings sind ein fester Bestandteil der Basisgarderobe Ihres Kindes. POMPdeLUX hat Leggings aus schicken, weichen Materialien, die alle Mädchen gerne tragen. Verwenden Sie Strümpfe, Strumpfhosen, Leggings unter einem Kleid, Rock oder Shorts und vergessen Sie unsere Basistops nicht, die perfekt zu unseren Leggings passen. Unsere Leggins gibt es in den Größen 80 cm bis 152 cm und hier gibt es viele Anregungen für die Garderobe Ihrer Kinder zu holen.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-38" approved="no">
                 <source>headers.category-38</source>
@@ -258,7 +258,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-50" approved="no">
                 <source>headers.category-50</source>
-                <target><![CDATA[<h1>Organic</h1>
+                <target><![CDATA[<h1>Bio / GOTS</h1>
                 <p>Bei POMPdeLUX lieben wir Qualitätsbekleidung und für Ihr Kind ist selbstverständlich nur das Beste gut genug. Daher sind unsere Unterhosen, Hipsters, Slips, Unterhemden, Nachtkleider und Pyjamas GOTS-zertifiziert. Das heißt, dass wir mit organischen Textilien arbeiten, wovon mindestens 95 % der Materialien ökologisch sind, und dass die Produktion umweltfreundlich und sozial verantwortlich erfolgt. Wir garantieren daher schicke Materialien aus hoher Qualität für Kinder jeden Alters.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-121" approved="no">
@@ -283,18 +283,18 @@
             </trans-unit>
 			<trans-unit id="headers.category-26" approved="no">
                 <source>headers.category-26</source>
-                <target><![CDATA[<h1>Hemden-Poloshirts</h1>
+                <target><![CDATA[<h1>Hemden / Poloshirts</h1>
                 <p>Hemden und Polohemden sind smart für alle Jungen. POMPdeLUX stellt viele verschiedene Modelle, Muster und Farben her, die dazu beitragen, die Garderobe von kleinen und großen Jungen zu vervollständigen. Insbesondere fokussieren wir auf die vielen schönen Details wie Brusttaschen, Kragen, Knöpfe und Prints. Finden Sie das Hemd oder Polohemd, das Ihrem Jungen gefällt, und kombinieren Sie es mit einem Pullover, Slipover, Cardigan oder Sweatshirt. Unsere Hemden und Polohemden gibt es in den Größen 80 cm bis 152 cm und hier gibt es viele Anregungen für die Garderobe Ihrer Kinder zu holen.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-23" approved="no">
                 <source>headers.category-23</source>
-                <target><![CDATA[<h1>Strickjacken / Pullover</h1>
+                <target><![CDATA[<h1>Strick / Strickjacken</h1>
                 <p>An kalten Wintertagen und kühlen Sommerabenden ist es schön mit einem warmen Pulli oder Cardigan. POMPdeLUX hat sowohl Strickpullis, Cardigans als auch Pullover aus schicker, weicher Qualität und Sie finden eine breite Auswahl an Farben und Modellen. Finden Sie Ihr Lieblingsstück aus den Fleecehemden, Cardigans, Blusen, Sweatshirts, Slipovers und Pullovern. Unsere Pullover und Cardigans gibt es in den Größen 80 cm bis 152 cm und hier gibt es viele Anregungen für die Garderobe Ihrer Kinder zu holen.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-88" approved="no">
                 <source>headers.category-88</source>
-                <target><![CDATA[<h1>Sweatshirts</h1>
-                <p>Ein Sweatshirt ist cool für sowohl große als auch kleine Jungen. Bei POMPdeLUX finden Sie Sweatshirts mit Prints, schicke weiche Fleecehemden sowie coole Sportjacken mit Reißverschluss aus den schicksten Materialien aus hoher Qualität. Finden Sie Ihr Lieblingsstück aus den vielen Farben und Modellen. Unsere Sweatshirts, Sportjacken und Fleecehemden gibt es in den Größen 80 cm bis 152 cm und hier gibt es viele Anregungen für die Garderobe Ihrer Kinder zu holen.</p>]]></target>
+                <target><![CDATA[<h1>Sweatshirts / Jogginghosen</h1>
+                <p>Jogginghosen und Sweatshirts sind beliebt! Sie haben die Wahl zwischen schicken weichen Pullis, Jacken, Hosen und Hosenanzügen. Unsere Sweats sind immer von toller Qualität, welche gemütlich für Ihr Kind zum Tragen sind und gleichzeitig einen coolen Look schaffen. Unsere Sweatshirts und Jogginghosen gibt es in Gr. 80-152cm für Mädchen und Jungen.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-89" approved="no">
                 <source>headers.category-89</source>
@@ -324,7 +324,7 @@
 			<trans-unit id="headers.category-22" approved="no">
                 <source>headers.category-22</source>
                 <target><![CDATA[<h1>Accessories</h1>
-                <p>Um die Garderobe Ihres Kindes zu vervollständigen, kann die Kollektion mit unseren vielen schönen Accessoires kombiniert werden. POMPdeLUX hat von Strumpfhosen, Leggings, Bikini, Badeanzug und Badehose über Haarschmuck, Hosenträger und Gürtel zu Handschuhen, Mützen und Schals alles da. Unsere beliebten Accessoires passen zur übrigen Kollektion und können daher mit smarten Kleidern, schicken Cardigans und coolen Hosen kombiniert werden. Unsere Gürtel, Hosenträger, Handschuhe, Mützen, Schals und Haarschmuck können von Mädchen jeden Alters verwendet werden und es gibt viele Anregungen für die Garderobe Ihrer Kinder.</p>]]></target>
+                <p>Um die Garderobe Ihres Kindes zu vervollständigen, kann die Kollektion mit unseren vielen schönen Accessoires kombiniert werden. POMPdeLUX hat von Strumpfhosen, Leggings über Haarschmuck, Hosenträger und Gürtel zu Handschuhen, Mützen und Schals alles da. Unsere beliebten Accessoires passen zur übrigen Kollektion und können daher mit smarten Kleidern, schicken Cardigans und coolen Hosen kombiniert werden. Unsere Gürtel, Hosenträger, Handschuhe, Mützen, Schals und Haarschmuck können von Mädchen jeden Alters verwendet werden und es gibt viele Anregungen für die Garderobe Ihrer Kinder.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-47" approved="no">
                 <source>headers.category-47</source>
@@ -333,7 +333,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-48" approved="no">
                 <source>headers.category-48</source>
-                <target><![CDATA[<h1>Organic</h1>
+                <target><![CDATA[<h1>Bio / GOTS</h1>
                 <p>Bei POMPdeLUX lieben wir Qualitätsbekleidung und für Ihr Kind ist selbstverständlich nur das Beste gut genug. Daher sind unsere Unterhosen, Hipsters, Slips, Unterhemden, Nachtkleider und Pyjamas GOTS-zertifiziert. Das heißt, dass wir mit organischen Textilien arbeiten, wovon mindestens 95 % der Materialien ökologisch sind, und dass die Produktion umweltfreundlich und sozial verantwortlich erfolgt. Wir garantieren daher schicke Materialien aus hoher Qualität für Kinder jeden Alters.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-123" approved="no">
@@ -360,6 +360,11 @@
                 <source>headers.category-124</source>
                 <target><![CDATA[<h1>T-Shirt, kurzärmig</h1>
                 <p>T-Shirts kann man das ganze Jahr über verwenden und sind schick im Sommer und im Winter. POMPdeLUX hat T-Shirts in vielen verschiedenen Farben und Modellen. Es ist also etwas für große und kleine Jungen da. Unsere T-Shirts sind aus schöner, weicher Qualität und haben viele schicke Details und Prints. Finden Sie Ihr Lieblings-T-Shirt für den Alltag oder ein cooles Polohemd für festliche Anlässe. Unsere T-Shirts gibt es in den Größen 80 cm bis 152 cm und hier gibt es viele Anregungen für die Garderobe Ihrer Kinder zu holen.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-137" approved="no">
+                <source>headers.category-137</source>
+                <target><![CDATA[<h1>Sweatshirts / Sweatpants</h1>
+                <p>Jogginghosen und Sweatshirts sind beliebt! Sie haben die Wahl zwischen schicken weichen Pullis, Jacken, Hosen und Hosenanzügen. Unsere Sweats sind immer von toller Qualität, welche gemütlich für Ihr Kind zum Tragen sind und gleichzeitig einen coolen Look schaffen. Unsere Sweatshirts und Jogginghosen gibt es in Gr. 80-152cm für Mädchen und Jungen.</p>]]></target>
             </trans-unit>
         </body>
     </file>

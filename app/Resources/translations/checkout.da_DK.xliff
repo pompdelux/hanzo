@@ -30,7 +30,7 @@
           <h2>Kontakt</h2>
           <p>Har du spørgsmål er du velkommen til at kontakte os.</p>
           <p>Telefon (+45) 8678 7871</p>
-          <p>Email: <a href="mailto:mail@pompdelux.dk">mail@pompdelux.dk</a></p>
+          <p>Email: <a href="mailto:maildk@POMPdeLUX.com">maildk@POMPdeLUX.com</a></p>
 
           <h2>Min Side</h2>
           <p>
@@ -424,7 +424,7 @@
       </trans-unit>
       <trans-unit id="coupon" approved="no">
         <source>coupon</source>
-        <target>Rabatskode</target>
+        <target>Rabatkode</target>
       </trans-unit>
       <trans-unit id="coupon.toggle.form" approved="no">
         <source>coupon.toggle.form</source>
