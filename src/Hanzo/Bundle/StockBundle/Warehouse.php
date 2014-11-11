@@ -2,7 +2,7 @@
 
 namespace Hanzo\Bundle\StockBundle;
 
-use Hanzo\Bundle\RedisBundle\Client\Redis as RedisClient;
+use Pompdelux\PHPRedisBundle\Client\PHPRedis;
 use Hanzo\Core\PropelReplicator;
 use Hanzo\Core\Tools;
 
@@ -14,7 +14,7 @@ use Hanzo\Core\Tools;
 class Warehouse
 {
     /**
-     * @var \Hanzo\Bundle\RedisBundle\Client\Redis
+     * @var PHPRedis
      */
     private $redis;
     private $basePrefix;
@@ -36,11 +36,11 @@ class Warehouse
     private $replicator;
 
     /**
-     * @param RedisClient      $redis
+     * @param PHPRedis         $redis
      * @param array            $warehouses
      * @param PropelReplicator $replicator
      */
-    public function __construct(RedisClient $redis, array $warehouses, PropelReplicator $replicator = null)
+    public function __construct(PHPRedis $redis, array $warehouses, PropelReplicator $replicator = null)
     {
         $this->redis      = $redis;
         $this->basePrefix = $redis->getPrefix();

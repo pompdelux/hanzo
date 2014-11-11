@@ -2,12 +2,7 @@
 
 namespace Hanzo\Bundle\ServiceBundle\Services;
 
-use Hanzo\Core\Hanzo;
-use Hanzo\Core\Tools;
-
-use Hanzo\Model\CmsQuery;
-
-use Hanzo\Bundle\RedisBundle\Client\Redis;
+use Pompdelux\PHPRedisBundle\Client\PHPRedis;
 
 /**
  * Class CacheService
@@ -28,8 +23,8 @@ class CacheService
         $this->redis    = $parameters[0];
         $this->settings = $settings;
 
-        if (!$this->redis instanceof Redis) {
-            throw new \InvalidArgumentException('Predis\Client expected as first parameter.');
+        if (!$this->redis instanceof PHPRedis) {
+            throw new \InvalidArgumentException('PHPRedis\Client expected as first parameter.');
         }
     }
 

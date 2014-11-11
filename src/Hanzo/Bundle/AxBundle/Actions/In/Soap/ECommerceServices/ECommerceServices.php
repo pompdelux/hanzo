@@ -635,7 +635,7 @@ class ECommerceServices extends SoapService
         // set sync flag
         if (isset($stock->LastInCycle) && $stock->LastInCycle) {
             $c = $this->hanzo->container;
-            $c->get('redis.permanent')->hset(
+            $c->get('pdl.phpredis.permanent')->hset(
                 'stock.sync.time',
                 strtoupper($c->get('kernel')->getSetting('domain_key')),
                 time()

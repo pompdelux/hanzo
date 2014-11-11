@@ -35,25 +35,25 @@ class UnlockOrdersCommand extends ContainerAwareCommand
     /**
      * executes the job
      *
-     * @param  InputInterface  $input
-     * @param  OutputInterface $output
-     * @return void
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     *
+     * @return null
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         // used in model to track deletes
         define('ACTION_TRIGGER', $this->getName());
 
-        $dry_run = $input->getOption('dry_run');
+        $dryRun      = $input->getOption('dry_run');
+        $container   = $this->getContainer();
+        $cancelCount = $container->get('cleanup_manager')->cancelStaleOrderEdit($container, $dryRun);
 
-        $container = $this->getContainer();
-        $cancel_count = $container->get('cleanup_manager')->cancelStaleOrderEdit($container, $dry_run);
-
-        if ($dry_run) {
-            error_log("\n[".date('Y-m-d H:i:s').'] Would roll back '.$cancel_count.' stale orders.');
+        if ($dryRun) {
+            error_log("\n[".date('Y-m-d H:i:s').'] Would roll back '.$cancelCount.' stale orders.');
         }
 
         $prefix = substr($this->getContainer()->getParameter('locale'), -2);
-        $this->getContainer()->get('redis.permanent')->hset('cron.log', $prefix.':unlock_orders', time());
+        $this->getContainer()->get('pdl.phpredis.permanent')->hset('cron.log', $prefix.':unlock_orders', time());
     }
 }
