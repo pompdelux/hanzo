@@ -8,7 +8,7 @@ use Hanzo\Core\Hanzo;
 use Hanzo\Model\om\BaseCustomers;
 
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
-use Symfony\Component\Validator\ExecutionContextInterface;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * Class Customers
@@ -253,13 +253,21 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
         return true;
     }
 
+    /**
+     * @param ExecutionContextInterface $context
+     */
+    public function passesExtendedValidation(ExecutionContextInterface $context)
+    {
+        $this->isFullNameWithinLimits($context);
+        $this->isValidEmailDomain($context);
+    }
 
     /**
      * Validate length of users full name
      *
      * @param ExecutionContextInterface $context
      */
-    public function isFullNameWithinLimits(ExecutionContextInterface $context)
+    private function isFullNameWithinLimits(ExecutionContextInterface $context)
     {
         $domain    = strtoupper(Hanzo::getInstance()->get('core.domain_key'));
         $maxLength = 30;
@@ -276,7 +284,21 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
 
         $length = mb_strlen($this->getFirstName() . ' ' . $this->getLastName());
         if ($maxLength < $length) {
-            $context->addViolationAt('first_name', 'name.max.length', ['{{ limit }}' => $maxLength], $length, $length);
+            $context->buildViolation('name.max.length', [
+                '{{ limit }}'        => $maxLength,
+                'translation_domain' => 'account'
+            ])->addViolation();
         }
     }
-} // Customers
+
+    /**
+     * @param ExecutionContextInterface $context
+     */
+    private function isValidEmailDomain(ExecutionContextInterface $context)
+    {
+        list(, $domain) = explode('@', $this->getEmail());
+
+        if (preg_match('/[\x80-\xFF]/', $domain)) {
+        }
+    }
+}

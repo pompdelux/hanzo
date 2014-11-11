@@ -97,7 +97,6 @@ Hanzo\Model\Customers:
             - Email:
                 message: email.not.valid
                 groups: [customer, customer_edit]
-                strict: true
         password:
             - NotBlank:
                 message: password.required
@@ -114,7 +113,7 @@ Hanzo\Model\Customers:
                 groups:  [customer]
     constraints:
         - Callback:
-            methods: [isFullNameWithinLimits]
+            methods: [passesExtendedValidation]
             groups:
                 - customer
                 - customer_edit
