@@ -646,7 +646,6 @@ class EventsController extends CoreController
                 ->filterByType('discount')
                 ->find()
                 ->delete();
-            ;
 
             list($id, $code) = explode(':', $request->get('type'));
 
