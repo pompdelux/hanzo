@@ -495,6 +495,10 @@
                 <source>advisor.locater_form.label</source>
                 <target>Ange din ort eller ditt postnummer</target>
             </trans-unit>
+            <trans-unit id="no.open_house.events.near.you" approved="no">
+                <source>no.open_house.events.near.you</source>
+                <target>Der er i øjeblikket ingen Åbenthus arrangementer i nærheden af hvor du bor.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
