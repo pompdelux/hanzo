@@ -76,6 +76,17 @@ form.create {
     display: inline-block;
 }
 
+#body-event {
+    .grid_3.notes {
+        float: right;
+
+        div {
+            width: 90%;
+            float: right;
+        }
+    }
+}
+
 #body-account {
   .legends {
     ul {
