@@ -3,6 +3,7 @@
 namespace Hanzo\Bundle\EventsBundle\Controller;
 
 
+use Hanzo\Bundle\EventsBundle\Form\Type\EventsType;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\CoreController;
 use Hanzo\Model\EventsQuery;
@@ -645,7 +646,6 @@ class EventsController extends CoreController
                 ->filterByType('discount')
                 ->find()
                 ->delete();
-            ;
 
             list($id, $code) = explode(':', $request->get('type'));
 
