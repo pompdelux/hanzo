@@ -140,21 +140,25 @@
 
     <script type="text/html" id="quickOrderItemTpl">
         <tr class="item">
-            <td class="image"><img src="<?= data.img ?>" alt="<?= data.title ?>">
+            <td class="image left"><img src="<?= data.img ?>" alt="<?= data.title ?>">
                 <div class="info" data-product_id="<?= data.latest.id ?>" data-confirmed="" data-master="<?= data.master ?>">
                     <a href="<?= data.base_url ?>product/view/<?= data.latest.master_id ?>" class="title"><?= data.title ?></a>
                     <div class="size">
-                        <label>{{ 'size'|trans({}, 'js') }}:</label>
-                        <span><?= data.size_label ?></span>
+                        <label>{{ 'size'|trans }}:</label>
+                        <span><?= data.size ?></span>
                     </div>
                     <div class="color">
-                        <label>{{ 'color'|trans({}, 'js') }}:</label>
+                        <label>{{ 'color'|trans }}:</label>
                         <span><?= data.color ?></span>
                     </div>
                 </div>
             </td>
-            <td class="right date">
-                <?= data.latest.expected_at ?>
+            <td class="center date">
+                <? if (data.latest.expected_at) { ?>
+                    <?= data.latest.expected_at ?>
+                <? } else { ?>
+                    {{ "on.stock.yes"|trans }}
+                <? } ?>
             </td>
             <td class="right price"><?= data.latest.single_price ?></td>
             <td class="center quantity"><?= data.quantity ?></td>

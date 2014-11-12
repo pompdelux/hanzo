@@ -449,51 +449,51 @@
             </trans-unit>
             <trans-unit id="events.missing.event_end_time" approved="no">
                 <source>events.missing.event_end_time</source>
-                <target>Du skal udfylde slut tidspunktet for åbenhus arrangementer.</target>
+                <target>Ange sluttiden för öppet hus-arrangemanget.</target>
             </trans-unit>
             <trans-unit id="events.missing.rsvp_type" approved="no">
                 <source>events.missing.rsvp_type</source>
-                <target>Vælg svar type</target>
+                <target>Välj svarstyp</target>
             </trans-unit>
             <trans-unit id="events.event_end_time.label" approved="no">
                 <source>events.event_end_time.label</source>
-                <target>Stoptidspunkt</target>
+                <target>Sluttid</target>
             </trans-unit>
             <trans-unit id="events.rsvp_type.label" approved="no">
                 <source>events.rsvp_type.label</source>
-                <target>Svar type</target>
+                <target>Svarstyp</target>
             </trans-unit>
             <trans-unit id="events.rsvp_type.choice.need_to" approved="no">
                 <source>events.rsvp_type.choice.need_to</source>
-                <target>Tilmelding nødvendig</target>
+                <target>Anmälan krävs</target>
             </trans-unit>
             <trans-unit id="events.rsvp_type.choice.nice_to" approved="no">
                 <source>events.rsvp_type.choice.nice_to</source>
-                <target>Tilmelding ikke nødvendig</target>
+                <target>Anmälan krävs ej</target>
             </trans-unit>
             <trans-unit id="events.rsvp_type.choice.sms_email" approved="no">
                 <source>events.rsvp_type.choice.sms_email</source>
-                <target>Tilmelding gerne per mail eller sms</target>
+                <target>Anmäl dig gärna via e-post eller sms</target>
             </trans-unit>
             <trans-unit id="events.public_note.label" approved="no">
                 <source>events.public_note.label</source>
-                <target>Valg fri tekst</target>
+                <target>Valfri text</target>
             </trans-unit>
             <trans-unit id="events.choose.rsvp_type" approved="no">
                 <source>events.choose.rsvp_type</source>
-                <target>Vælg tilmeldings type</target>
+                <target>Välj typ av anmälan</target>
             </trans-unit>
             <trans-unit id="open.house.label" approved="no">
                 <source>open.house.label</source>
-                <target>Åbent hus</target>
+                <target>Öppet hus</target>
             </trans-unit>
             <trans-unit id="sa_search.zip_code.placeholder" approved="no">
                 <source>sa_search.zip_code.placeholder</source>
-                <target>Postnummer eller by</target>
+                <target>Postnummer eller ort</target>
             </trans-unit>
             <trans-unit id="advisor.locater_form.label" approved="no">
                 <source>advisor.locater_form.label</source>
-                <target>Indtast din by eller dit postnummer</target>
+                <target>Ange din ort eller ditt postnummer</target>
             </trans-unit>
         </body>
     </file>
