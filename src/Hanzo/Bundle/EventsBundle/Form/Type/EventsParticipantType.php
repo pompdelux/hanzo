@@ -59,10 +59,10 @@ class EventsParticipantType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'translation_domain' => 'events',
             'data_class'         => 'Hanzo\Model\EventsParticipants',
-        ));
+        ]);
     }
 
     /**
