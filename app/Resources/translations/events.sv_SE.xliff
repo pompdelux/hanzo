@@ -495,6 +495,10 @@
                 <source>advisor.locater_form.label</source>
                 <target>Ange din ort eller ditt postnummer</target>
             </trans-unit>
+            <trans-unit id="events.participants.comment.label" approved="no">
+                <source>events.participants.comment.label</source>
+                <target>Din kommentar</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
