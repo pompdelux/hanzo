@@ -1637,16 +1637,16 @@
         },
         {
             "name": "pompdelux/phpredis-bundle",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pompdelux/phpredis-bundle.git",
-                "reference": "a0822de3d7510099acd347d8be66b361ccc560e6"
+                "reference": "780e434720bd1b890b9d0de50b45c501108b82c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pompdelux/phpredis-bundle/zipball/a0822de3d7510099acd347d8be66b361ccc560e6",
-                "reference": "a0822de3d7510099acd347d8be66b361ccc560e6",
+                "url": "https://api.github.com/repos/pompdelux/phpredis-bundle/zipball/780e434720bd1b890b9d0de50b45c501108b82c3",
+                "reference": "780e434720bd1b890b9d0de50b45c501108b82c3",
                 "shasum": ""
             },
             "require": {
@@ -1676,7 +1676,7 @@
                 "redis",
                 "symfony"
             ],
-            "time": "2014-08-06 06:38:48"
+            "time": "2014-11-11 11:57:04"
         },
         {
             "name": "propel/propel-bundle",
