@@ -16,7 +16,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * Class EventsType
- * 
+ *
  * @package Hanzo\Bundle\EventsBundle\Form\Type
  */
 class EventsParticipantType extends AbstractType
