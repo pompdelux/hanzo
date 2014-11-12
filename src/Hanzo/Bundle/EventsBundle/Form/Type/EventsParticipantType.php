@@ -39,8 +39,12 @@ class EventsParticipantType extends AbstractType
                 'attr'     => ['class' => 'dk']
             ])->add('tell_a_friend', 'checkbox', [
                 'label'    => 'events.participants.tell_a_friend.label',
-                'required' => false
-            ])->add('events_id', 'hidden',  [
+                'required' => false,
+            ])->add('comment', 'textarea', [
+                'label'    => 'events.participants.comment.label',
+                'required' => false,
+                'mapped'   => false,
+            ])->add('events_id', 'hidden', [
                 'required' => false
             ]);
 
