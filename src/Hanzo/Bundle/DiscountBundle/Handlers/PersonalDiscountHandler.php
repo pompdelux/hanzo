@@ -62,19 +62,15 @@ class PersonalDiscountHandler
      */
     public function handle()
     {
-        $discount = 0;
-        $customer = $this->order->getCustomers();
+        $discount   = 0;
+        $customer   = $this->order->getCustomers();
+        $attributes = $this->order->getAttributes();
 
-        // prevent employees from getting stacked discounts
-        if ($customer->getConsultants() instanceof Consultants) {
-            $attributes = $this->order->getAttributes();
-
-            if (isset($attributes->purchase->type) &&
-                ('gift' === $attributes->purchase->type) &&
-                ($this->order->getCustomersId() == CustomersPeer::getCurrent()->getId())
-            ) {
-                return $this->order;
-            }
+        // gift discount set, then we bail - no stacking discounts.
+        if (isset($attributes->purchase->type) &&
+            ('gift' === $attributes->purchase->type)
+        ) {
+            return $this->order;
         }
 
         // apply group and private discounts if discounts is not disabled
