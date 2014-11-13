@@ -23,15 +23,14 @@ use Hanzo\Model\EventsParticipantsQuery;
  */
 class SmsController extends CoreController
 {
-
     // TODO this should not be hardcoded ! but we need to figure out where to store the information...
     protected $appnrMap = [
         1231          => 45,  // dk
         2201          => 47,  // no
         17163         => 358, // fi
         72445         => 46,  // se
-        31625585489   => 31, // nl
-        4915142359909 => 49, // nl
+        31625585489   => 31,  // nl
+        4915142359909 => 49,  // de
     ];
 
     /**
