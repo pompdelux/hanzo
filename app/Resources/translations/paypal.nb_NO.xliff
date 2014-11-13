@@ -2,53 +2,53 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="file.ext">
     <body>
-      <trans-unit id="payment.title" approved="no">
+      <trans-unit id="payment.title">
         <source>payment.title</source>
         <target>PayPal</target>
       </trans-unit>
-      <trans-unit id="paypal.desc" approved="no">
+      <trans-unit id="paypal.desc">
         <source>paypal.desc</source>
         <target>PayPal (Gebyr NOK 21,00)</target>
       </trans-unit>
-      <trans-unit id="failed.heading" approved="no">
+      <trans-unit id="failed.heading">
         <source>failed.heading</source>
         <target>Feil under betalingsprosessen</target>
       </trans-unit>
-      <trans-unit id="failed.description" approved="no">
+      <trans-unit id="failed.description">
         <source>failed.description</source>
         <target>Feil under betaling via PayPal: %message%</target>
       </trans-unit>
-      <trans-unit id="failed.go.back.description" approved="no">
+      <trans-unit id="failed.go.back.description">
         <source>failed.go.back.description</source>
         <target><![CDATA[
           Gå <a href="%back_url%">tilbake</a> til oversikten og velg en annen betalingsmetode.
         ]]></target>
       </trans-unit>
-      <trans-unit id="form.order_id" approved="no">
+      <trans-unit id="form.order_id">
         <source>form.order_id</source>
         <target>Ordre-ID: %order_id%</target>
       </trans-unit>
-      <trans-unit id="form.payment_id" approved="no">
+      <trans-unit id="form.payment_id">
         <source>form.payment_id</source>
         <target>Betalings-ID: %payment_id%</target>
       </trans-unit>
-      <trans-unit id="form.amount" approved="no">
+      <trans-unit id="form.amount">
         <source>form.amount</source>
         <target>Beløp: %amount%</target>
       </trans-unit>
-      <trans-unit id="form.heading" approved="no">
+      <trans-unit id="form.heading">
         <source>form.heading</source>
         <target>Betaling</target>
       </trans-unit>
-      <trans-unit id="form.description" approved="no">
+      <trans-unit id="form.description">
         <source>form.description</source>
         <target>Some payment description</target>
       </trans-unit>
-      <trans-unit id="wait.heading" approved="no">
+      <trans-unit id="wait.heading">
         <source>wait.heading</source>
         <target>Please hold on</target>
       </trans-unit>
-      <trans-unit id="wait.description" approved="no">
+      <trans-unit id="wait.description">
         <source>wait.description</source>
         <target><![CDATA[
           Du blir nå omdirigert tilbake til %server%. Hvis dette av en eller annen grunn ikke skjer, <a href="%url%">så klikk her</a>.
