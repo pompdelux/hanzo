@@ -34,15 +34,15 @@
         <source>block.unsubscribe.submit_button</source>
         <target>Avregistrera</target>
       </trans-unit>
-      <trans-unit id="subscribed.text" approved="no">
+      <trans-unit id="subscribed.text">
         <source>subscribed.text</source>
         <target>Du är nu registrerad till vårt nyhetsbrev.</target>
       </trans-unit>
-      <trans-unit id="unsubscribed.text" approved="no">
+      <trans-unit id="unsubscribed.text">
         <source>unsubscribed.text</source>
         <target>Du har nu blivit avregistrerad från POMPdeLUX nyhetsbrev.</target>
       </trans-unit>
-      <trans-unit id="invalid.email.address" approved="no">
+      <trans-unit id="invalid.email.address">
         <source>invalid.email.address</source>
         <target>Emailadressen är inte giltig.</target>
       </trans-unit>

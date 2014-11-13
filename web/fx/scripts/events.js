@@ -2,7 +2,8 @@
 var calendar = (function ($) {
     var pub = {};
 
-    pub.init = function () {};
+    pub.init = function () {
+    };
 
     return pub;
 })(jQuery);
@@ -14,17 +15,16 @@ var events = (function ($) {
         $('form.invite-form').submit(function (e) {
             // regex source: http://stackoverflow.com/questions/46155/validate-email-address-in-javascript
             var email_regex = RegExp(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-            if (!$('#events_participant_email', $(this)).val() && !$('#events_participant_phone', $(this)).val()) {
+            if (!$('#form_email', $(this)).val() && !$('#form_phone', $(this)).val()) {
                 e.preventDefault();
                 dialoug.notice(Translator.trans('events.error.email.or.phone'), 'error', 3000, $(this));
             }
-            if ($('#events_participant_email', $(this)).val() && !email_regex.test($('#events_participant_email', $(this)).val())) {
+            if ($('#form_email', $(this)).val() && !email_regex.test($('#form_email', $(this)).val())) {
                 e.preventDefault();
                 dialoug.notice(Translator.trans('email.invalid'), 'error', 3000, $(this));
             }
         });
     };
-
     pub.choose_evet_type_init = function () {
         var $select = $('select#sales-type');
         var $hostess = $select.next();
@@ -170,11 +170,11 @@ $('#find-customer-by-phone-form').submit(function (e) {
                 }
             } else {
                 var data = response.data.number;
-                $('#events_host').val(data.christianname + ' ' + data.surname);
-                $('#events_address_line_1').val(data.address);
-                $('#events_postal_code').val(data.zipcode);
-                $('#events_city').val(data.district);
-                $('#events_phone').val(data.phone);
+                $('#form_host').val(data.christianname + ' ' + data.surname);
+                $('#form_address_line_1').val(data.address);
+                $('#form_postal_code').val(data.zipcode);
+                $('#form_city').val(data.district);
+                $('#form_phone').val(data.phone);
             }
 
             $submit.attr('disabled', false);
@@ -201,13 +201,13 @@ $('#find-customer-by-email-form').submit(function (e) {
                     dialoug.alert(Translator.trans('notice'), response.message);
                 }
             } else {
-                $('#events_customers_id').val(response.data.id);
-                $('#events_host').val(response.data.name);
-                $('#events_phone').val(response.data.phone);
-                $('#events_email').val(response.data.email);
-                $('#events_address_line_1').val(response.data.address);
-                $('#events_postal_code').val(response.data.zip);
-                $('#events_city').val(response.data.city);
+                $('#form_customers_id').val(response.data.id);
+                $('#form_host').val(response.data.name);
+                $('#form_phone').val(response.data.phone);
+                $('#form_email').val(response.data.email);
+                $('#form_address_line_1').val(response.data.address);
+                $('#form_postal_code').val(response.data.zip);
+                $('#form_city').val(response.data.city);
             }
 
             $submit.attr('disabled', false);

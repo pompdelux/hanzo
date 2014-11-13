@@ -246,7 +246,7 @@
           <p>Tilauksesi sisältää tuotteen/tuotteita, joita ei ole tällä hetkellä varastossamme. Tilaus pakataan vasta sitten, kun kaikki tuotteet ovat saapuneet varastoomme.</p> <p>Koko tilauksen arvioidaan lähtevän varastoltamme viimeistään: <strong>%date%</strong>.</p>
         ]]></target>
       </trans-unit>
-      <trans-unit id="status.20" approved="no">
+      <trans-unit id="status.20">
         <source>status.20</source>
         <target>Maksu hyväksytty</target>
       </trans-unit>
@@ -306,23 +306,23 @@
         <source>order.state_pre_payment.locked</source>
         <target>Tilaustasi käsitellään. Voit muuttaa tilausta uudelleen vasta maksun hyväksymisen jälkeen.</target>
       </trans-unit>
-      <trans-unit id="discount.private" approved="no">
+      <trans-unit id="discount.private">
         <source>discount.private</source>
         <target>Rabat:</target>
       </trans-unit>
-      <trans-unit id="discount.group" approved="no">
+      <trans-unit id="discount.group">
         <source>discount.group</source>
         <target>Rabat:</target>
       </trans-unit>
-      <trans-unit id="discount.hostess" approved="no">
+      <trans-unit id="discount.hostess">
 	  <source>discount.hostess</source>
         <target>Emännän ale:</target>
       </trans-unit>
-      <trans-unit id="discount.friend" approved="no">
+      <trans-unit id="discount.friend">
         <source>discount.friend</source>
         <target>Rabat:</target>
       </trans-unit>
-      <trans-unit id="discount.gift" approved="no">
+      <trans-unit id="discount.gift">
         <source>discount.gift</source>
         <target>Rabat:</target>
       </trans-unit>
@@ -366,7 +366,7 @@
          <source>gift_card.description</source>
          <target>Tähän voit antaa lahjakorttisi koodin. Jos et käytä lahjakorttiasi kokonaan, voit käyttää lahjakortin koodia uudelleen, kun seuraavan kerran teet ostoksia POMPdeLUXilla.</target>
       </trans-unit>
-      <trans-unit id="address.copy" approved="no">
+      <trans-unit id="address.copy">
          <source>address.copy</source>
          <target>Toimitusosoite on sama kuin maksuosoite</target>
       </trans-unit>
@@ -379,43 +379,43 @@
           POMPdeLUX
           ]]></target>
       </trans-unit>
-      <trans-unit id="basket.header" approved="no">
+      <trans-unit id="basket.header">
         <source>basket.header</source>
         <target><![CDATA[<h1>Ostoskori</h1><p>Tarvitsetko apua? <a href="/fi_FI/koti/asiakaspalvelu/faq">FAQ</a></p>]]></target>
       </trans-unit>
-      <trans-unit id="order.amount.to.low" approved="no">
+      <trans-unit id="order.amount.to.low">
         <source>order.amount.to.low</source>
         <target>Ostosi on pienempi kuin emännän alennuksesi. Lisää ystävällisesti tuotteita ostoskoriisi saadaksesi emännänalennuksesi.</target>
       </trans-unit>
-      <trans-unit id="order.amount.to.low.for.coupon" approved="no">
+      <trans-unit id="order.amount.to.low.for.coupon">
         <source>order.amount.to.low.for.coupon</source>
         <target>Ostosi on valitettavasti alle minimirajan EUR %amount% lunastaaksesi alennuskoodin. Lisää ystävällisesti tuotteita ostoskoriisi saadaksesi alennuksen.</target>
       </trans-unit>
-      <trans-unit id="coupon" approved="no">
+      <trans-unit id="coupon">
         <source>coupon</source>
         <target>Alennuskoodi</target>
       </trans-unit>
-      <trans-unit id="coupon.toggle.form" approved="no">
+      <trans-unit id="coupon.toggle.form">
         <source>coupon.toggle.form</source>
         <target>» Kirjoita alennuskoodi</target>
       </trans-unit>
-      <trans-unit id="coupon.description" approved="no">
+      <trans-unit id="coupon.description">
         <source>coupon.description</source>
         <target>Yhdessä tilauksessa voi käyttää vain yhden alennuskoodin.</target>
       </trans-unit>
-      <trans-unit id="coupon.apply.discount" approved="no">
+      <trans-unit id="coupon.apply.discount">
         <source>coupon.apply.discount</source>
         <target>Tallenna</target>
       </trans-unit>
-      <trans-unit id="coupon.label" approved="no">
+      <trans-unit id="coupon.label">
         <source>coupon.label</source>
         <target>Kirjoita alennuskoodi.</target>
       </trans-unit>
-      <trans-unit id="coupon.invalid.code" approved="no">
+      <trans-unit id="coupon.invalid.code">
         <source>coupon.invalid.code</source>
         <target>Väärä alennuskoodi</target>
       </trans-unit>
-        <trans-unit id="checkout.confirm.terms" approved="no">
+        <trans-unit id="checkout.confirm.terms">
             <source>checkout.confirm.terms</source>
             <target><![CDATA[
                 <label for="js_checkout_confirm_terms">Teen yllä olevan tilauksen ja vahvistan, että olen lukenut</label>

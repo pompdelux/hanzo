@@ -34,15 +34,15 @@
         <source>block.unsubscribe.submit_button</source>
         <target>Unsubscribe</target>
       </trans-unit>
-      <trans-unit id="subscribed.text" approved="no">
+      <trans-unit id="subscribed.text">
         <source>subscribed.text</source>
         <target>You are now subscribed to our newsletter.</target>
       </trans-unit>
-      <trans-unit id="unsubscribed.text" approved="no">
+      <trans-unit id="unsubscribed.text">
         <source>unsubscribed.text</source>
         <target>You have now unsubscribed from POMPdeLUX newsletter.</target>
       </trans-unit>
-      <trans-unit id="invalid.email.address" approved="no">
+      <trans-unit id="invalid.email.address">
         <source>invalid.email.address</source>
         <target>The entered email isnt valid</target>
       </trans-unit>

@@ -38,7 +38,7 @@
                 <source>events.calendar.link</source>
                 <target>Kalender</target>
             </trans-unit>
-            <trans-unit id="events.calendar.link.back.to" approved="no">
+            <trans-unit id="events.calendar.link.back.to">
                 <source>events.calendar.link.back.to</source>
                 <target>Tilbake til kalenderen</target>
             </trans-unit>
@@ -430,69 +430,73 @@
                 <source>event.closed</source>
                 <target>Arrangementet er nu lukket</target>
             </trans-unit>
-            <trans-unit id="events.myevents.header" approved="no">
+            <trans-unit id="events.myevents.header">
                 <source>events.myevents.header</source>
                 <target><![CDATA[<h1>My Events</h1>]]></target>
             </trans-unit>
-            <trans-unit id="events.event.header.text.%date%" approved="no">
+            <trans-unit id="events.event.header.text.%date%">
                 <source>events.event.header.text.%date%</source>
                 <target>Event at %date%:</target>
             </trans-unit>
-            <trans-unit id="events.no.events" approved="no">
+            <trans-unit id="events.no.events">
                 <source>events.no.events</source>
                 <target>Couldn't find any future events for you.</target>
             </trans-unit>
-            <trans-unit id="events.hostess.header.text" approved="no">
+            <trans-unit id="events.hostess.header.text">
                 <source>events.hostess.header.text</source>
                 <target>Kundeopplysninger</target>
             </trans-unit>
-            <trans-unit id="events.missing.event_end_time" approved="no">
+            <trans-unit id="events.missing.event_end_time">
                 <source>events.missing.event_end_time</source>
                 <target>Du skal fylle ut slutt-tidspunktet for åpent hus arrangementer.</target>
             </trans-unit>
-            <trans-unit id="events.missing.rsvp_type" approved="no">
+            <trans-unit id="events.missing.rsvp_type">
                 <source>events.missing.rsvp_type</source>
                 <target>Velg svartype</target>
             </trans-unit>
-            <trans-unit id="events.event_end_time.label" approved="no">
+            <trans-unit id="events.event_end_time.label">
                 <source>events.event_end_time.label</source>
                 <target>Stopptidspunkt</target>
             </trans-unit>
-            <trans-unit id="events.rsvp_type.label" approved="no">
+            <trans-unit id="events.rsvp_type.label">
                 <source>events.rsvp_type.label</source>
                 <target>Svartype</target>
             </trans-unit>
-            <trans-unit id="events.rsvp_type.choice.need_to" approved="no">
+            <trans-unit id="events.rsvp_type.choice.need_to">
                 <source>events.rsvp_type.choice.need_to</source>
                 <target>Påmelding nødvendig</target>
             </trans-unit>
-            <trans-unit id="events.rsvp_type.choice.nice_to" approved="no">
+            <trans-unit id="events.rsvp_type.choice.nice_to">
                 <source>events.rsvp_type.choice.nice_to</source>
                 <target>Påmelding ikke nødvendig</target>
             </trans-unit>
-            <trans-unit id="events.rsvp_type.choice.sms_email" approved="no">
+            <trans-unit id="events.rsvp_type.choice.sms_email">
                 <source>events.rsvp_type.choice.sms_email</source>
                 <target>Påmelding gjerne per e-post eller SMS</target>
             </trans-unit>
-            <trans-unit id="events.public_note.label" approved="no">
+            <trans-unit id="events.public_note.label">
                 <source>events.public_note.label</source>
                 <target>Valgfri tekst</target>
             </trans-unit>
-            <trans-unit id="events.choose.rsvp_type" approved="no">
+            <trans-unit id="events.choose.rsvp_type">
                 <source>events.choose.rsvp_type</source>
                 <target>Velg påmeldingstype</target>
             </trans-unit>
-            <trans-unit id="open.house.label" approved="no">
+            <trans-unit id="open.house.label">
                 <source>open.house.label</source>
                 <target>Åpent hus</target>
             </trans-unit>
-            <trans-unit id="sa_search.zip_code.placeholder" approved="no">
+            <trans-unit id="sa_search.zip_code.placeholder">
                 <source>sa_search.zip_code.placeholder</source>
                 <target>Postnummer eller poststed</target>
             </trans-unit>
-            <trans-unit id="advisor.locater_form.label" approved="no">
+            <trans-unit id="advisor.locater_form.label">
                 <source>advisor.locater_form.label</source>
                 <target>Tast inn poststed eller postnummer</target>
+            </trans-unit>
+            <trans-unit id="no.open_house.events.near.you">
+                <source>no.open_house.events.near.you</source>
+                <target>Det er for øyeblikket ingen Åpent Hus arrangementer i nærheten av der du bor.</target>
             </trans-unit>
        </body>
     </file>

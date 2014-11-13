@@ -38,7 +38,7 @@
                 <source>events.calendar.link</source>
                 <target>Kalender</target>
             </trans-unit>
-            <trans-unit id="events.calendar.link.back.to" approved="no">
+            <trans-unit id="events.calendar.link.back.to">
                 <source>events.calendar.link.back.to</source>
                 <target>Back to calendar</target>
             </trans-unit>
@@ -330,15 +330,15 @@
                 <source>events.participant.rsvp.success</source>
                 <target>Je antwoord is ontvangen.</target>
             </trans-unit>
-            <trans-unit id="event.sms.confirmation.reply" approved="no">
+            <trans-unit id="event.sms.confirmation.reply">
                 <source>event.sms.confirmation.reply</source>
                 <target>Beste %name%. Leuk dat je deelneemt aan het POMPdeLUX Home Shopping arrangement op %event_date% om %event_time% op het volgende adres  %address%, %zip% %city%. Tot ziens! %hostess%</target>
             </trans-unit>
-            <trans-unit id="event.sms.invite" approved="no">
+            <trans-unit id="event.sms.invite">
                 <source>event.sms.invite</source>
                 <target>Beste %name%. %hostess% nodigt je hierbij uit voor het POMPdeLUX Home Shopping arrangement op %event_date% om %event_time%. Het adres is %address%, %zip% %city%. Heb je zin om de nieuwe kinderkledingcollectie te zien, antwoord dan per sms met de tekst "pdl %event_id%".  Hopelijk tot ziens!</target>
             </trans-unit>
-            <trans-unit id="event.sms.reminder" approved="no">
+            <trans-unit id="event.sms.reminder">
                 <source>event.sms.reminder</source>
                 <target>Beste %name% Herinnering: POMPdeLUX Home Shopping arrangement op %event_date% om %event_time%. Adres: %address%, %zip% %city% Hartelijke groet, POMPdeLUX</target>
             </trans-unit>
@@ -366,27 +366,27 @@
                 <source>events.fetch_customer.button</source>
                 <target>Download</target>
             </trans-unit>
-            <trans-unit id="choose.event.type" approved="no">
+            <trans-unit id="choose.event.type">
                 <source>choose.event.type</source>
                 <target>Kies arrangementstype</target>
             </trans-unit>
-            <trans-unit id="event.type.private" approved="no">
+            <trans-unit id="event.type.private">
                 <source>event.type.private</source>
                 <target>Privé order</target>
             </trans-unit>
-            <trans-unit id="event.type.gift" approved="no">
+            <trans-unit id="event.type.gift">
                 <source>event.type.gift</source>
                 <target>Cadeau order</target>
             </trans-unit>
-            <trans-unit id="event.type.friend" approved="no">
+            <trans-unit id="event.type.friend">
                 <source>event.type.friend</source>
                 <target>Vriendinnen order</target>
             </trans-unit>
-            <trans-unit id="event.type.other" approved="no">
+            <trans-unit id="event.type.other">
                 <source>event.type.other</source>
                 <target>Geen arrangement</target>
             </trans-unit>
-            <trans-unit id="hostess.discount" approved="no">
+            <trans-unit id="hostess.discount">
                 <source>hostess.discount</source>
                 <target>Korting gastvrouw</target>
             </trans-unit>
@@ -398,69 +398,73 @@
                 <source>event.closed</source>
                 <target>Arrangement is nu afgesloten</target>
 			</trans-unit>
-            <trans-unit id="events.myevents.header" approved="no">
+            <trans-unit id="events.myevents.header">
                 <source>events.myevents.header</source>
                 <target><![CDATA[<h1>My Events</h1>]]></target>
             </trans-unit>
-            <trans-unit id="events.event.header.text.%date%" approved="no">
+            <trans-unit id="events.event.header.text.%date%">
                 <source>events.event.header.text.%date%</source>
                 <target>Event at %date%:</target>
             </trans-unit>
-            <trans-unit id="events.no.events" approved="no">
+            <trans-unit id="events.no.events">
                 <source>events.no.events</source>
                 <target>Couldn't find any future events for you.</target>
             </trans-unit>
-            <trans-unit id="events.hostess.header.text" approved="no">
+            <trans-unit id="events.hostess.header.text">
                 <source>events.hostess.header.text</source>
                 <target>Klantengegevens</target>
             </trans-unit>
-            <trans-unit id="events.missing.event_end_time" approved="no">
+            <trans-unit id="events.missing.event_end_time">
                 <source>events.missing.event_end_time</source>
                 <target>Vul het eindtijdstip in voor het Open Huis arrangement.</target>
             </trans-unit>
-            <trans-unit id="events.missing.rsvp_type" approved="no">
+            <trans-unit id="events.missing.rsvp_type">
                 <source>events.missing.rsvp_type</source>
                 <target>Kies een soort antwoord</target>
             </trans-unit>
-            <trans-unit id="events.event_end_time.label" approved="no">
+            <trans-unit id="events.event_end_time.label">
                 <source>events.event_end_time.label</source>
                 <target>Eindtijdstip</target>
             </trans-unit>
-            <trans-unit id="events.rsvp_type.label" approved="no">
+            <trans-unit id="events.rsvp_type.label">
                 <source>events.rsvp_type.label</source>
                 <target>Soort antwoord</target>
             </trans-unit>
-            <trans-unit id="events.rsvp_type.choice.need_to" approved="no">
+            <trans-unit id="events.rsvp_type.choice.need_to">
                 <source>events.rsvp_type.choice.need_to</source>
                 <target>Aanmelding verplicht</target>
             </trans-unit>
-            <trans-unit id="events.rsvp_type.choice.nice_to" approved="no">
+            <trans-unit id="events.rsvp_type.choice.nice_to">
                 <source>events.rsvp_type.choice.nice_to</source>
                 <target>Aanmelding niet verplicht</target>
             </trans-unit>
-            <trans-unit id="events.rsvp_type.choice.sms_email" approved="no">
+            <trans-unit id="events.rsvp_type.choice.sms_email">
                 <source>events.rsvp_type.choice.sms_email</source>
                 <target>Aanmelding graag per e-mail of per sms</target>
             </trans-unit>
-            <trans-unit id="events.public_note.label" approved="no">
+            <trans-unit id="events.public_note.label">
                 <source>events.public_note.label</source>
                 <target>Vrije tekst</target>
             </trans-unit>
-            <trans-unit id="events.choose.rsvp_type" approved="no">
+            <trans-unit id="events.choose.rsvp_type">
                 <source>events.choose.rsvp_type</source>
                 <target>Kies soort aanmelding</target>
             </trans-unit>
-			<trans-unit id="open.house.label" approved="no">
+			<trans-unit id="open.house.label">
                 <source>open.house.label</source>
                 <target>Open Huis</target>
             </trans-unit>
-            <trans-unit id="sa_search.zip_code.placeholder" approved="no">
+            <trans-unit id="sa_search.zip_code.placeholder">
                 <source>sa_search.zip_code.placeholder</source>
                 <target>Postcode of woonplaats</target>
             </trans-unit>
-            <trans-unit id="advisor.locater_form.label" approved="no">
+            <trans-unit id="advisor.locater_form.label">
                 <source>advisor.locater_form.label</source>
                 <target>Typ je woonplaats of je postcode</target>
+            </trans-unit>
+            <trans-unit id="no.open_house.events.near.you">
+                <source>no.open_house.events.near.you</source>
+                <target>Er zijn op dit moment geen Open Huis arrangementen bij jou in de buurt.</target>
             </trans-unit>
         </body>
     </file>
