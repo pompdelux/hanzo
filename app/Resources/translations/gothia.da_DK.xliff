@@ -43,7 +43,7 @@ Kontakt venligst arvato Finance A/S Kundeservice: 7027 2795<br>Ved andre godkend
         <source>json.placereservation.error</source>
         <target>Kunne ikke oprette din ordre ved arvato Finance A/S</target>
       </trans-unit>
-      <trans-unit id="json_err90" approved="no">
+      <trans-unit id="json_err90">
         <source>json.order.state_pre_payment.locked</source>
         <target>Din ordre er under betaling. Vent venligst</target>
       </trans-unit>
@@ -72,7 +72,7 @@ Kontakt venligst arvato Finance A/S Kundeservice: 7027 2795<br>Ved andre godkend
         <source>form.submit_step2</source>
         <target>Gå videre</target>
       </trans-unit>
-      <trans-unit id="form_txt30" approved="no">
+      <trans-unit id="form_txt30">
         <source>form.cancel</source>
         <target>Afbryd betaling</target>
       </trans-unit>

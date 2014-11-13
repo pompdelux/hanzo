@@ -43,7 +43,7 @@ Pyydämme teitä ottamaan ystävällisesti yhteyttä arvato Financen asiakaspalv
         <source>json.placereservation.error</source>
         <target>Ei voi perustaa tilausta arvato Finance</target>
       </trans-unit>
-      <trans-unit id="json_err90" approved="no">
+      <trans-unit id="json_err90">
         <source>json.order.state_pre_payment.locked</source>
         <target>Your order is being processed. Please wait.</target>
       </trans-unit>

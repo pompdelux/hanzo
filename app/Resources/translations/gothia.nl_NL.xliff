@@ -43,7 +43,7 @@ Neem graag contact op met Gothia B.V. Klantenservice: 078 – 751 80 22<br>Bij a
         <source>json.placereservation.error</source>
         <target>Kon je order niet met Gothia plaatsen</target>
       </trans-unit>
-      <trans-unit id="json_err90" approved="no">
+      <trans-unit id="json_err90">
         <source>json.order.state_pre_payment.locked</source>
         <target>Je order wordt betaald. Even wachten ajb</target>
       </trans-unit>
@@ -72,7 +72,7 @@ Neem graag contact op met Gothia B.V. Klantenservice: 078 – 751 80 22<br>Bij a
         <source>form.submit_step2</source>
         <target>Ga verder</target>
       </trans-unit>
-      <trans-unit id="form_txt30" approved="no">
+      <trans-unit id="form_txt30">
         <source>form.cancel</source>
         <target>Onderbreek de betaling</target>
       </trans-unit>

@@ -44,7 +44,7 @@
                 <source>json.placereservation.error</source>
                 <target>Sehr geehrter Kunde, die Bezahlarten Rechnung und Lastschrift stehen Ihnen leider nicht zur Verfügung. Dies kann daran liegen, dass Sie an der angegebenen Adresse nicht bekannt sind, mit dieser Bestellung das Kundenlimit überschreiten würden oder über keine ausreichende Bonität verfügen. Bitte prüfen Sie, ob Sie Ihre Personendaten korrekt angegeben haben und wählen Sie ggf. eine andere Bezahlart. Vielen Dank für Ihr Verständnis.</target>
             </trans-unit>
-            <trans-unit id="json_err90" approved="no">
+            <trans-unit id="json_err90">
                 <source>json.order.state_pre_payment.locked</source>
                 <target>Ihre Bestellung wird bezahlt. Bitte warten</target>
             </trans-unit>
@@ -72,7 +72,7 @@
                 <source>form.submit_step2</source>
                 <target>Weiter</target>
             </trans-unit>
-            <trans-unit id="form_txt30" approved="no">
+            <trans-unit id="form_txt30">
                 <source>form.cancel</source>
                 <target>Zahlung abbrechen</target>
             </trans-unit>
@@ -80,19 +80,19 @@
                 <source>social_security_num</source>
                 <target>Geburtstag (TTMMJJJJ):</target>
             </trans-unit>
-            <trans-unit id="bank_account_no" approved="no">
+            <trans-unit id="bank_account_no">
                 <source>bank_account_no</source>
                 <target>IBAN-Nummer</target>
             </trans-unit>
-            <trans-unit id="bank_id" approved="no">
+            <trans-unit id="bank_id">
                 <source>bank_id</source>
                 <target>BIC-Nummer</target>
             </trans-unit>
-            <trans-unit id="json.bank_account_no.to_long" approved="no">
+            <trans-unit id="json.bank_account_no.to_long">
                 <source>json.bank_account_no.to_long</source>
                 <target>The entered IBAN number must be less than 34 characters.</target>
             </trans-unit>
-            <trans-unit id="json.bank_id.to_long" approved="no">
+            <trans-unit id="json.bank_id.to_long">
                 <source>json.bank_id.to_long</source>
                 <target>The entered BIC number must be 11 characters long.</target>
             </trans-unit>
