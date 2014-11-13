@@ -53,6 +53,11 @@ class SoapService
     protected $ordersService;
 
     /**
+     * @var string
+     */
+    protected $productMapping;
+
+    /**
      * @var \Hanzo\Core\Timer
      */
     protected $timer;
@@ -69,8 +74,9 @@ class SoapService
      * @param EventDispatcherInterface $event_dispatcher
      * @param PropelReplicator         $replicator
      * @param OrdersService            $ordersService
+     * @param string                   $productMapping
      */
-    public function __construct(Request $request, LoggerInterface $logger, ServiceLogger $service_logger, EventDispatcherInterface $event_dispatcher, PropelReplicator $replicator, OrdersService $ordersService)
+    public function __construct(Request $request, LoggerInterface $logger, ServiceLogger $service_logger, EventDispatcherInterface $event_dispatcher, PropelReplicator $replicator, OrdersService $ordersService, $productMapping)
     {
         $this->request          = $request;
         $this->logger           = $logger;
@@ -78,6 +84,7 @@ class SoapService
         $this->event_dispatcher = $event_dispatcher;
         $this->replicator       = $replicator;
         $this->ordersService    = $ordersService;
+        $this->productMapping   = $productMapping;
 
         if (method_exists($this, 'boot')) {
             $this->boot();
