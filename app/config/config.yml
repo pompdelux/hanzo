@@ -141,7 +141,7 @@ cms:
             thread: 32
 
 # native redis caching
-redis:
+php_redis:
     class:
         # the "main" cache is for tmp caching
         main:
