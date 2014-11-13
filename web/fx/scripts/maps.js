@@ -59,7 +59,7 @@ var maps = (function ($) {
             $("#geo-zipcode", $this).val("");
         });
 
-        $geoZipForm.on('change', 'select', function() {
+        $geoZipForm.on('change', 'select', function () {
             $geoZipForm.submit();
         });
     };
@@ -140,7 +140,6 @@ var maps = (function ($) {
             }
         }
     };
-
 
     var dataToContainer = function (data) {
         $('#near-you-container div:not(.dialoug-loading), #near-you-container hr').remove();
