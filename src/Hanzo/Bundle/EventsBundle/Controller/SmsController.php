@@ -55,6 +55,7 @@ class SmsController extends CoreController
         if (in_array($appnr, array_keys($this->appnrMap)) &&
             (strtolower(substr($text, 0, 5)) == 'pdl e')
         ) {
+            // we expect the message to be "mediacode event_id[ optional junk]"
             @list($mediacode, $eventId, $junk) = explode(' ', $text, 3);
 
             $eventId = preg_replace('/[^0-9]+/', '', $eventId);
