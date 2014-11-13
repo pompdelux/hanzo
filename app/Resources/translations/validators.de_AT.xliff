@@ -6,23 +6,23 @@
                 <source>email.exists</source>
                 <target>Die E-Mail-Adresse existiert bereits!</target>
             </trans-unit>
-            <trans-unit id="phone.required" approved="no">
+            <trans-unit id="phone.required">
                 <source>phone.required</source>
                 <target>Bitte Telefonnummer ausfüllen</target>
             </trans-unit>
-            <trans-unit id="phone.min.length" approved="no">
+            <trans-unit id="phone.min.length">
                 <source>phone.min.length</source>
                 <target>Eine Telefonnummer besteht aus {{ limit }} Ziffern|Eine Telefonnummer besteht aus {{ limit }} Ziffern</target>
             </trans-unit>
-            <trans-unit id="phone.not.valid" approved="no">
+            <trans-unit id="phone.not.valid">
                 <source>phone.not.valid</source>
                 <target>Die Telefonnummer darf nur aus Ziffern bestehen</target>
             </trans-unit>
-            <trans-unit id="email.required" approved="no">
+            <trans-unit id="email.required">
                 <source>email.required</source>
                 <target>Bitte eine E-Mail-Adresse angeben</target>
             </trans-unit>
-            <trans-unit id="email.invalid.match" approved="no">
+            <trans-unit id="email.invalid.match">
                 <source>email.invalid.match</source>
                 <target>Die beiden E-Mail-Adressen stimmen nicht überein</target>
             </trans-unit>
@@ -30,11 +30,11 @@
                 <source>email.not.valid</source>
                 <target>Bitte in beiden Feldern dieselbe E-Mail-Adresse eingeben.</target>
             </trans-unit>
-            <trans-unit id="address.first_name.required" approved="no">
+            <trans-unit id="address.first_name.required">
                 <source>address.first_name.required</source>
                 <target>Bitte einen Vornamen eingeben</target>
             </trans-unit>
-            <trans-unit id="address.last_name.required" approved="no">
+            <trans-unit id="address.last_name.required">
                 <source>address.last_name.required</source>
                 <target>Bitte einen Nachnamen eingeben</target>
             </trans-unit>
@@ -42,11 +42,11 @@
                 <source>name.max.length</source>
                 <target>Der volle Name kann max. {{ limit }} Zeichen enthalten|Der volle Name kann max. {{ limit }} Zeichen enthalten</target>
             </trans-unit>
-            <trans-unit id="host.required" approved="no">
+            <trans-unit id="host.required">
                 <source>host.required</source>
                 <target>Bitte eine Gastgeberin angeben</target>
             </trans-unit>
-            <trans-unit id="address_line_1.required" approved="no">
+            <trans-unit id="address_line_1.required">
                 <source>address_line_1.required</source>
                 <target>Bitte Adresse ausfüllen|Bitte Adresse ausfüllen</target>
             </trans-unit>
@@ -54,23 +54,23 @@
                 <source>address_line_1.max.length</source>
                 <target>Das Adressfeld kann max. {{ limit }} Zeichen enthalten|Das Adressfeld kann max. {{ limit }} Zeichen enthalten</target>
             </trans-unit>
-            <trans-unit id="postal_code.required" approved="no">
+            <trans-unit id="postal_code.required">
                 <source>postal_code.required</source>
                 <target>Bitte Postleitzahl ausfüllen</target>
             </trans-unit>
-            <trans-unit id="postal_code.length" approved="no">
+            <trans-unit id="postal_code.length">
                 <source>postal_code.length</source>
                 <target>Dit postnummer består af {{ limit }} tal|Dit postnummer består af {{ limit }} tal</target>
             </trans-unit>
-            <trans-unit id="city.required" approved="no">
+            <trans-unit id="city.required">
                 <source>city.required</source>
                 <target>Bitte Stadt ausfüllen|Bitte Stadt ausfüllen</target>
             </trans-unit>
-            <trans-unit id="address.first_name.min.length" approved="no">
+            <trans-unit id="address.first_name.min.length">
                 <source>address.first_name.min.length</source>
                 <target>Der Vorname muss aus mind. {{ limit }} Zeichen bestehen|Der Vorname muss aus mind. {{ limit }} Zeichen bestehen</target>
             </trans-unit>
-            <trans-unit id="address.last_name.min.length" approved="no">
+            <trans-unit id="address.last_name.min.length">
                 <source>address.last_name.min.length</source>
                 <target>Der Nachname muss aus mind. {{ limit }} Zeichen bestehen|Der Nachname muss aus mind. {{ limit }} Zeichen bestehen</target>
             </trans-unit>
@@ -78,7 +78,7 @@
                 <source>password.required</source>
                 <target>Das Passwort muss aus mind. 5 Zeichen bestehen</target>
             </trans-unit>
-            <trans-unit id="password.min.length" approved="no">
+            <trans-unit id="password.min.length">
                 <source>password.min.length</source>
                 <target>Ihr Passwort muss aus mind. {{ limit }} Zeichen bestehen|Ihr Passwort muss aus mind. {{ limit }} Zeichen bestehen</target>
             </trans-unit>

@@ -2,11 +2,11 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
-            <trans-unit id="update" approved="no">
+            <trans-unit id="update">
                 <source>update</source>
                 <target>Uppdatera</target>
             </trans-unit>
-            <trans-unit id="forward" approved="no">
+            <trans-unit id="forward">
                 <source>forward</source>
                 <target>Vidare</target>
             </trans-unit>
@@ -26,7 +26,7 @@
                 <source>ok</source>
                 <target>Ok</target>
             </trans-unit>
-            <trans-unit id="cancel" approved="no">
+            <trans-unit id="cancel">
                 <source>cancel</source>
                 <target>Avbryt</target>
             </trans-unit>
@@ -46,11 +46,11 @@
                 <source>please.wait</source>
                 <target>Vänligen vänta</target>
             </trans-unit>
-            <trans-unit id="action.completed" approved="no">
+            <trans-unit id="action.completed">
                 <source>action.completed</source>
                 <target>Din handling blev utförd</target>
             </trans-unit>
-            <trans-unit id="an.error.occurred" approved="no">
+            <trans-unit id="an.error.occurred">
                 <source>an.error.occurred</source>
                 <target>Det uppstod ett fel</target>
             </trans-unit>
@@ -74,7 +74,7 @@
                 <source>late.delivery</source>
                 <target><![CDATA[<h2 style="color:#A10000">Observera</h2><strong>"%product%"</strong> har vi inte på lager för tillfället.<br>Hela din order förväntas att bli skickad från vårt lager senast <strong>%date%</strong>]]></target>
             </trans-unit>
-            <trans-unit id="not.filled.correctly" approved="no">
+            <trans-unit id="not.filled.correctly">
                 <source>not.filled.correctly</source>
                 <target>Ej korrekt ifyllt</target>
             </trans-unit>
@@ -82,15 +82,15 @@
                 <source>checkout.shipping_business</source>
                 <target></target>
             </trans-unit>
-            <trans-unit id="loading.std" approved="no">
+            <trans-unit id="loading.std">
                 <source>loading.std</source>
                 <target>Läser in ...</target>
             </trans-unit>
-            <trans-unit id="loading.search" approved="no">
+            <trans-unit id="loading.search">
                 <source>loading.search</source>
                 <target>Söker ...</target>
             </trans-unit>
-            <trans-unit id="loading.search.products" approved="no">
+            <trans-unit id="loading.search.products">
                 <source>loading.search.products</source>
                 <target>Hittar produkter ...</target>
             </trans-unit>
@@ -114,7 +114,7 @@
                 <source>email</source>
                 <target>E-mail</target>
             </trans-unit>
-            <trans-unit id="mannequin.empty" approved="no">
+            <trans-unit id="mannequin.empty">
                 <source>mannequin.empty</source>
                 <target>Inga valda produkter</target>
             </trans-unit>
@@ -298,64 +298,64 @@
                 <source>proceed</source>
                 <target>Fortsätt</target>
             </trans-unit>
-            <trans-unit id="checkout.choose.shipping.method" approved="no">
+            <trans-unit id="checkout.choose.shipping.method">
                 <source>checkout.choose.shipping.method</source>
                 <target>Du ska välja en leveransmetod.</target>
             </trans-unit>
-            <trans-unit id="checkout.choose.payment.method" approved="no">
+            <trans-unit id="checkout.choose.payment.method">
                 <source>checkout.choose.payment.method</source>
                 <target>Du ska välja ett betalningssätt.</target>
             </trans-unit>
-            <trans-unit id="checkout.payment.progress.alert.title" approved="no">
+            <trans-unit id="checkout.payment.progress.alert.title">
                 <source>checkout.payment.progress.alert.title</source>
                 <target>Betalningsfönstret hämtas</target>
             </trans-unit>
-            <trans-unit id="checkout.payment.progress.alert.message" approved="no">
+            <trans-unit id="checkout.payment.progress.alert.message">
                 <source>checkout.payment.progress.alert.message</source>
                 <target><![CDATA[Vänligen vänta på att betalningsfönstret hämtas. Det kan ta upp till 30 sekunder. Om det går mer än 30 sekunder, ska du klicka på Avbryt betalning nedan och försöka igen.<br><br>Tack på förhand.<br><br><a href="%url%">» Avbryt betalning</a>
                 ]]></target>
             </trans-unit>
-            <trans-unit id="email.invalid" approved="no">
+            <trans-unit id="email.invalid">
                 <source>email.invalid</source>
                 <target>Ogiltig email</target>
             </trans-unit>
-            <trans-unit id="email.repeat.invalid" approved="no">
+            <trans-unit id="email.repeat.invalid">
                 <source>email.repeat.invalid</source>
                 <target>Email matchar inte</target>
             </trans-unit>
-            <trans-unit id="phone.invalid" approved="no">
+            <trans-unit id="phone.invalid">
                 <source>phone.invalid</source>
                 <target>Ogiltigt telefonnummer. Får endast innehålla siffror och minst 8.</target>
             </trans-unit>
-            <trans-unit id="password.invalid.match" approved="no">
+            <trans-unit id="password.invalid.match">
                 <source>password.invalid.match</source>
                 <target>Lösenord fälten måste matcha.</target>
             </trans-unit>
-            <trans-unit id="password.min.length" approved="no">
+            <trans-unit id="password.min.length">
                 <source>password.min.length</source>
                 <target>Lösenordet måste innehålla minst 5 siffror och/eller bokstäver</target>
             </trans-unit>
-            <trans-unit id="field.required" approved="no">
+            <trans-unit id="field.required">
                 <source>field.required</source>
                 <target>Alla fält med (*) måste fyllas i.</target>
             </trans-unit>
-            <trans-unit id="approve.conditions.required" approved="no">
+            <trans-unit id="approve.conditions.required">
                 <source>approve.conditions.required</source>
                 <target>Du måste godkänna POMPdeLUX villkor.</target>
             </trans-unit>
-            <trans-unit id="more.product.info" approved="no">
+            <trans-unit id="more.product.info">
                 <source>more.product.info</source>
                 <target>Klicka här för att få mer information om %name%.</target>
             </trans-unit>
-            <trans-unit id="more.bundle.info" approved="no">
+            <trans-unit id="more.bundle.info">
                 <source>more.bundle.info</source>
                 <target>Klicka här för att få mer information.</target>
             </trans-unit>
-            <trans-unit id="events.error.email.or.phone" approved="no">
+            <trans-unit id="events.error.email.or.phone">
                 <source>events.error.email.or.phone</source>
                 <target>Email or phone is required.</target>
             </trans-unit>
-			<trans-unit id="form.buy.choose.first" approved="no">
+			<trans-unit id="form.buy.choose.first">
                 <source>form.buy.choose.first</source>
                 <target>Du måste välja storlek och färg först.</target>
             </trans-unit>
@@ -367,19 +367,19 @@
                 <source>rma.product.not.filled.correctly</source>
                 <target>Vid byte av en vara, ska du skriva både storlek och färg.</target>
             </trans-unit>
-            <trans-unit id="checkout.confirm.address.block" approved="no">
+            <trans-unit id="checkout.confirm.address.block">
                 <source>checkout.confirm.address.block</source>
                 <target>Bekräfta att dina adressuppgifter är korrekta.</target>
             </trans-unit>
-            <trans-unit id="maps.choose.correct.location" approved="no">
+            <trans-unit id="maps.choose.correct.location">
                 <source>maps.choose.correct.location</source>
                 <target>Din sökning gav flera resultat. Välj i rullistan nedan.</target>
             </trans-unit>
-            <trans-unit id="checkout.confirm.mobile.title" approved="no">
+            <trans-unit id="checkout.confirm.mobile.title">
                 <source>checkout.confirm.mobile.title</source>
                 <target>Vigtigt</target>
             </trans-unit>
-            <trans-unit id="checkout.confirm.mobile.text" approved="no">
+            <trans-unit id="checkout.confirm.mobile.text">
                 <source>checkout.confirm.mobile.text</source>
                 <target><![CDATA[Verificér venligst at dit mobilnummer er korrekt.<br><br>Hvis det ikke er kan Post Danmark ikke komme i kontakt dig vedrørende forsendelsen.]]></target>
             </trans-unit>

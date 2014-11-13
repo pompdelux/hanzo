@@ -43,7 +43,7 @@ Vänligen kontakta arvato Finance AB kundservice på: 0340-664444<br>I övriga f
         <source>json.placereservation.error</source>
         <target>Kunde inte upprätta din order hos arvato Finance AB</target>
       </trans-unit>
-      <trans-unit id="json_err90" approved="no">
+      <trans-unit id="json_err90">
         <source>json.order.state_pre_payment.locked</source>
         <target>Your order is being processed. Please wait.</target>
       </trans-unit>
@@ -73,7 +73,7 @@ Om du har varit kund hos arvato Finance AB tidigare, finns ditt personnummer spa
         <source>form.submit_step2</source>
         <target>Gå vidare</target>
       </trans-unit>
-      <trans-unit id="form_txt30" approved="no">
+      <trans-unit id="form_txt30">
         <source>form.cancel</source>
         <target>Afbryd betaling</target>
       </trans-unit>

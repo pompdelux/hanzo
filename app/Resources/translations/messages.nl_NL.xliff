@@ -381,7 +381,7 @@ Je kunt meer lezen over het recht van retour in onze <a href="/nl_NL/voorpagina/
                 <source>faceted.reset.filter</source>
                 <target>» Maak nieuwe selectie</target>
             </trans-unit>
-            <trans-unit id="product.quantity.discount" approved="no">
+            <trans-unit id="product.quantity.discount">
                 <source>product.quantity.discount</source>
                 <target>Koop %span% stk. en spaar %discount% pr. stk.</target>
             </trans-unit>
