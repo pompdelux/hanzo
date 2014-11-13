@@ -68,11 +68,7 @@ var maps = (function ($) {
         dialoug.loading('#near-you-container', Translator.trans('loading.std'), 'prepend');
         $('#near-you-container').after('<div id="consultants-map-canvas-2" style="width:100%; height:300px; display:none;"></div>');
 
-        var all = 0;
-        if (near_you_params.all) {
-            all = 1;
-        }
-        var req = '/' + near_you_params.type + '/0/0/' + all;
+        var req = '/' + near_you_params.type + '/0/0';
         $.getJSON(base_url + 'rest/v1/gm/near_you' + req, function (result) {
             dataToContainer(result.data);
 
