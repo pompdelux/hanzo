@@ -115,6 +115,8 @@ class EventExporter
         $data[0]['consultant'] = 'consultant';
 
         $consultants = ConsultantsQuery::create()
+            ->filterByInitials(null, \Criteria::ISNOTNULL)
+            ->filterByInitials('', \Criteria::NOT_EQUAL)
             ->joinCustomers()
             ->useCustomersQuery()
                 ->filterByIsActive(true)
