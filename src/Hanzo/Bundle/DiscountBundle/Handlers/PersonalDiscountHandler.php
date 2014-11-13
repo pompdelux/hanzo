@@ -17,10 +17,15 @@ use Hanzo\Model\Orders;
 use Hanzo\Model\ProductsDomainsPricesPeer;
 use Psr\Log\LoggerInterface;
 
+/**
+ * Class PersonalDiscountHandler
+ *
+ * @package Hanzo\Bundle\DiscountBundle\Handlers
+ */
 class PersonalDiscountHandler
 {
     /**
-     * @var Logger
+     * @var LoggerInterface
      */
     private $logger;
 
@@ -40,7 +45,8 @@ class PersonalDiscountHandler
 
 
     /**
-     * @param  Orders $order
+     * @param Orders $order
+     *
      * @return self
      */
     public function initialize(Orders $order)
@@ -74,12 +80,12 @@ class PersonalDiscountHandler
         // apply group and private discounts if discounts is not disabled
         if (0 == Hanzo::getInstance()->get('webshop.disable_discounts')) {
             if ($customer->getDiscount()) {
-                $discount_label = 'discount.private';
-                $discount = $customer->getDiscount();
+                $discountLabel = 'discount.private';
+                $discount      = $customer->getDiscount();
             } else {
                 if ($customer->getGroups()) {
-                    $discount_label = 'discount.group';
-                    $discount = $customer->getGroups()->getDiscount();
+                    $discountLabel = 'discount.group';
+                    $discount      = $customer->getGroups()->getDiscount();
                 }
             }
         }
@@ -88,17 +94,17 @@ class PersonalDiscountHandler
         if ($discount <> 0.00) {
             $lines = $this->order->getOrdersLiness();
 
-            $product_ids = array();
+            $productIds = [];
             foreach ($lines as $line) {
-                if('product' == $line->getType()) {
-                    $product_ids[] = $line->getProductsId();
+                if ('product' == $line->getType()) {
+                    $productIds[] = $line->getProductsId();
                 }
             }
-            $prices = ProductsDomainsPricesPeer::getProductsPrices($product_ids);
+            $prices = ProductsDomainsPricesPeer::getProductsPrices($productIds);
 
             $total = 0;
             foreach ($lines as $line) {
-                if('product' == $line->getType()) {
+                if ('product' == $line->getType()) {
                     $price = $prices[$line->getProductsId()];
 
                     $line->setPrice($price['normal']['price']);
@@ -113,8 +119,8 @@ class PersonalDiscountHandler
             }
 
             // so far _all_ discounts are handled as % discounts
-            $discount_amount = ($total / 100) * $discount;
-            $this->order->setDiscountLine($discount_label, $discount_amount, $discount);
+            $discountAmount = ($total / 100) * $discount;
+            $this->order->setDiscountLine($discountLabel, $discountAmount, $discount);
         }
 
         return $this->order;
