@@ -259,7 +259,7 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
     public function passesExtendedValidation(ExecutionContextInterface $context)
     {
         $this->isFullNameWithinLimits($context);
-        $this->isValidEmailDomain($context);
+        $this->isValidEmail($context);
     }
 
     /**
@@ -292,13 +292,14 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
     }
 
     /**
+     * Validate emails based on phps internal FILTER_VALIDATE_EMAIL a
+     * Note, we do this to not have to deal with IDN addresses - which swiftmailer does not support.
      * @param ExecutionContextInterface $context
      */
-    private function isValidEmailDomain(ExecutionContextInterface $context)
+    private function isValidEmail(ExecutionContextInterface $context)
     {
-        list(, $domain) = explode('@', $this->getEmail());
-
-        if (preg_match('/[\x80-\xFF]/', $domain)) {
+        if (false === filter_var($this->getEmail(), FILTER_VALIDATE_EMAIL)) {
+            $context->buildViolation('email.not.valid', ['translation_domain' => 'account'])->addViolation();
         }
     }
 }
