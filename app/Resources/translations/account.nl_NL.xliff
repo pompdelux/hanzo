@@ -2,15 +2,15 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
-            <trans-unit id="The presented password is invalid." approved="no">
+            <trans-unit id="The presented password is invalid.">
                 <source>The presented password is invalid.</source>
                 <target>Ongeldig e-mailadres en/of wachtwoord.</target>
             </trans-unit>
-            <trans-unit id="The presented password cannot be empty." approved="no">
+            <trans-unit id="The presented password cannot be empty.">
                 <source>The presented password cannot be empty.</source>
                 <target>Je moet een e-mailadres en/of wachtwoord invullen.</target>
             </trans-unit>
-            <trans-unit id="User account is disabled." approved="no">
+            <trans-unit id="User account is disabled.">
                 <source>User account is disabled.</source>
                 <target>Het gebruikersaccount is buiten gebruik.</target>
             </trans-unit>
@@ -134,7 +134,7 @@
                 <source>Last name</source>
                 <target>Achternaam</target>
             </trans-unit>
-            <trans-unit id="53" approved="no">
+            <trans-unit id="53">
                 <source>Initials</source>
                 <target>Voorletters</target>
             </trans-unit>
@@ -146,7 +146,7 @@
                 <source>Address line 1</source>
                 <target>Adres en huisnummer</target>
             </trans-unit>
-            <trans-unit id="56" approved="no">
+            <trans-unit id="56">
                 <source>Address line 2</source>
                 <target></target>
             </trans-unit>
@@ -162,7 +162,7 @@
                 <source>Password repeated</source>
                 <target>Bevestig het wachtwoord</target>
             </trans-unit>
-            <trans-unit id="password.invalid.match" approved="no">
+            <trans-unit id="password.invalid.match">
                 <source>password.invalid.match</source>
                 <target>Je moet in beide velden hetzelfde wachtwoord invullen.</target>
             </trans-unit>
@@ -170,7 +170,7 @@
                 <source>Email repeated</source>
                 <target>Herhaal het e-mailadres</target>
             </trans-unit>
-            <trans-unit id="email.invalid.match" approved="no">
+            <trans-unit id="email.invalid.match">
                 <source>email.invalid.match</source>
                 <target>Je moet in beide velden hetzelfde e-mailadres invullen.</target>
             </trans-unit>
@@ -178,7 +178,7 @@
                 <source>Country</source>
                 <target>Land</target>
             </trans-unit>
-            <trans-unit id="64" approved="no">
+            <trans-unit id="64">
                 <source>account.created</source>
                 <target>Je account is nu aangemaakt.</target>
             </trans-unit>
@@ -190,7 +190,7 @@
                 <source>create.account</source>
                 <target>Verder</target>
             </trans-unit>
-            <trans-unit id="create.account.header" approved="no">
+            <trans-unit id="create.account.header">
                 <source>create.account.header</source>
                 <target>Welcome - Create your account</target>
             </trans-unit>
@@ -210,11 +210,11 @@
                 <source>create.notice</source>
                 <target><![CDATA[<strong>Ben je al klant?</strong><br> Heb je al een account bij ons, dan moet je inloggen op <a href="%url%">Mijn Pagina</a>.<br><br>]]></target>
             </trans-unit>
-            <trans-unit id="68" approved="no">
+            <trans-unit id="68">
                 <source>nno.title</source>
                 <target>Kopieer je adresgegevens uit De Telefoongids (KPN).</target>
             </trans-unit>
-            <trans-unit id="69" approved="no">
+            <trans-unit id="69">
                 <source>nno.description</source>
                 <target><![CDATA[<b>Ben je een nieuwe klant?</b><br>Typ je telefoonnummer en je adres wordt automatisch ingevuld.]]></target>
             </trans-unit>
@@ -230,19 +230,19 @@
                 <source>create.terms</source>
                 <target>POMPdeLUX Voorwaarden</target>
             </trans-unit>
-            <trans-unit id="74" approved="no">
+            <trans-unit id="74">
                 <source>create.nno.address_found</source>
                 <target>Het adres dat bij het ingetypte telefoonnummer hoort, is in het onderstaande formulier ingevuld.</target>
             </trans-unit>
-            <trans-unit id="75" approved="no">
+            <trans-unit id="75">
                 <source>create.nno.no_address_found</source>
                 <target>Er was geen adres voor het ingetypte telefoonnummer.</target>
             </trans-unit>
-            <trans-unit id="76" approved="no">
+            <trans-unit id="76">
                 <source>The password fields must match.</source>
                 <target>De twee velden met het wachtwoord moeten hetzelfde zijn.</target>
             </trans-unit>
-            <trans-unit id="77" approved="no">
+            <trans-unit id="77">
                 <source>The email fields must match.</source>
                 <target>De twee velden met de e-mailadressen moeten hetzelfde zijn.</target>
             </trans-unit>
@@ -346,47 +346,47 @@
                 <source>address.company_name.required</source>
                 <target>Vermeld je bedrijfsnaam.</target>
             </trans-unit>
-            <trans-unit id="Bad credentials" approved="no">
+            <trans-unit id="Bad credentials">
                 <source>Bad credentials</source>
                 <target>We kunnen je e-mailadres en/of wachtwoord niet vinden.</target>
             </trans-unit>
-            <trans-unit id="update.notice" approved="no">
+            <trans-unit id="update.notice">
                 <source>update.notice</source>
                 <target></target>
             </trans-unit>
-            <trans-unit id="update.password_notice" approved="no">
+            <trans-unit id="update.password_notice">
                 <source>update.password_notice</source>
                 <target>Vul dit alleen in als je je huidige wachtwoord wilt wijzigen.</target>
             </trans-unit>
-            <trans-unit id="history.empty" approved="no">
+            <trans-unit id="history.empty">
                 <source>history.empty</source>
                 <target>Je hebt nog geen orders bij ons geplaatst.</target>
             </trans-unit>
-            <trans-unit id="account.updated" approved="no">
+            <trans-unit id="account.updated">
                 <source>account.updated</source>
                 <target>Je accountgegevens zijn bijgewerkt.</target>
             </trans-unit>
-            <trans-unit id="create.account.error.title" approved="no">
+            <trans-unit id="create.account.error.title">
                 <source>create.account.error.title</source>
                 <target>Er ging iets fout</target>
             </trans-unit>
-            <trans-unit id="create.account.error" approved="no">
+            <trans-unit id="create.account.error">
                 <source>create.account.error</source>
                 <target>Je hebt het formulier verkeerd ingevuld, zie de gegevens hieronder:</target>
             </trans-unit>
-            <trans-unit id="phone.required" approved="no">
+            <trans-unit id="phone.required">
                 <source>phone.required</source>
                 <target>Vermeld je telefoonnummer</target>
             </trans-unit>
-            <trans-unit id="phone.not.valid" approved="no">
+            <trans-unit id="phone.not.valid">
                 <source>phone.not.valid</source>
                 <target>Phone number should only be numbers</target>
             </trans-unit>
-            <trans-unit id="phone.min.length" approved="no">
+            <trans-unit id="phone.min.length">
                 <source>phone.min.length</source>
                 <target>Phone number should be at least 8 digits long</target>
             </trans-unit>
-            <trans-unit id="email.required" approved="no">
+            <trans-unit id="email.required">
                 <source>email.required</source>
                 <target>Vermeld je e-mailadres</target>
             </trans-unit>
@@ -394,7 +394,7 @@
                 <source>password.required</source>
                 <target>Je wachtwoord moet uit minimaal 5 tekens bestaan</target>
             </trans-unit>
-            <trans-unit id="my.account.order.view" approved="no">
+            <trans-unit id="my.account.order.view">
                 <source>my.account.order.view</source>
                 <target>Mijn account - order #%order_id%</target>
             </trans-unit>
@@ -406,7 +406,7 @@
                 <source>address.billing</source>
                 <target>Privé-adres</target>
             </trans-unit>
-            <trans-unit id="password.min.length" approved="no">
+            <trans-unit id="password.min.length">
                 <source>password.min.length</source>
                 <target>Je wachtwoord moet uit minimaal 5 tekens bestaan</target>
             </trans-unit>
@@ -418,7 +418,7 @@
                 <source>login.restricted.other_locale</source>
                 <target><![CDATA[Je profiel is aangemaakt op %site_name%. Je moet daarom de Webshop: <a href="%url%">%site_name%</a> gebruiken.<br>Heb je nog vragen, neem dan contact op met onze Klantenservice.]]></target>
             </trans-unit>
-            <trans-unit id="login.restricted.only.customers" approved="no">
+            <trans-unit id="login.restricted.only.customers">
                 <source>login.restricted.only.customers</source>
                 <target><![CDATA[Je profiel is als Shopping Advisor of werknemer aangemaakt. Gebruik daarom: <a href="%url%">deze login</a>.]]></target>
             </trans-unit>
@@ -426,15 +426,15 @@
                 <source>stop.editing.order</source>
                 <target>Stop wijzigen order</target>
             </trans-unit>
-            <trans-unit id="unable.to.lock.order" approved="no">
+            <trans-unit id="unable.to.lock.order">
                 <source>unable.to.lock.order</source>
                 <target>De order kan op dit moment niet gewijzigd worden. Probeer later graag nog een keer.</target>
             </trans-unit>
-            <trans-unit id="my.account.%name%" approved="no">
+            <trans-unit id="my.account.%name%">
                 <source>my.account.%name%</source>
                 <target>Welkom %name%!</target>
             </trans-unit>
-            <trans-unit id="my.account.description" approved="no">
+            <trans-unit id="my.account.description">
                 <source>my.account.description</source>
                 <target><![CDATA[ <p>
       Op Mijn Pagina kun je je bestelling bewerken en retourlabels en retourformulieren printen. Je kunt ook je gegevens wijzigen en je aan- of afmelden voor onze nieuwsbrief.<br><br>
@@ -459,15 +459,15 @@ Het retourlabel en retourformulier zitten in twee afzonderlijke PDF- bestanden e
       <b>Retourlabel</b><br>
       Klik op het icoontje naast je bestelling om een retourlabel te printen. Als je ons retourlabel gebruikt, dan trekken we slechts €7,00  van de waarde van de geretourneerde artikelen af. Het retourlabel opent in een nieuw venster. </p>  ]]></target>
             </trans-unit>
-            <trans-unit id="newsletter" approved="no">
+            <trans-unit id="newsletter">
                 <source>newsletter</source>
                 <target>Nieuwsbrieven</target>
             </trans-unit>
-            <trans-unit id="my.account.my.events" approved="no">
+            <trans-unit id="my.account.my.events">
                 <source>my.account.my.events</source>
                 <target>Mijn arrangementen</target>
             </trans-unit>
-            <trans-unit id="account.history.see.all.orders" approved="no">
+            <trans-unit id="account.history.see.all.orders">
                 <source>account.history.see.all.orders</source>
                 <target>Bekijk alle orders</target>
             </trans-unit>
@@ -475,23 +475,23 @@ Het retourlabel en retourformulier zitten in twee afzonderlijke PDF- bestanden e
                 <source>Email address</source>
                 <target>E-mailadres</target>
             </trans-unit>
-            <trans-unit id="acc.2" approved="no">
+            <trans-unit id="acc.2">
                 <source>Email address repeated</source>
                 <target>Herhaal het e-mailadres</target>
             </trans-unit>
-            <trans-unit id="acc.3" approved="no">
+            <trans-unit id="acc.3">
                 <source>Pass</source>
                 <target>Optioneel wachtwoord</target>
             </trans-unit>
-            <trans-unit id="acc.4" approved="no">
+            <trans-unit id="acc.4">
                 <source>Pass repeated</source>
                 <target>Herhaal het wachtwoord</target>
             </trans-unit>
-            <trans-unit id="my.account.login.notice" approved="no">
+            <trans-unit id="my.account.login.notice">
                 <source>my.account.login.notice</source>
                 <target><![CDATA[<p>Registreer je hier als klant</p>]]></target>
             </trans-unit>
-            <trans-unit id="my.account.login.text" approved="no">
+            <trans-unit id="my.account.login.text">
                 <source>my.account.login.text</source>
                 <target><![CDATA[<h2>MIJN PAGINA</h2><p>Om je een aantal voordelen bij POMPdeLUX te geven, moet je je eerst registreren als klant. Daarna kun je weer doorgaan met winkelen.<br><br>Dit geeft je onder meer de mogelijkheid om:<br>
 			<ul>
@@ -501,27 +501,27 @@ Het retourlabel en retourformulier zitten in twee afzonderlijke PDF- bestanden e
 			<li>Je eerdere bestellingen te bekijken en je oude facturen te vinden.</li>
           </ul></p>]]></target>
             </trans-unit>
-            <trans-unit id="my.account.login.header" approved="no">
+            <trans-unit id="my.account.login.header">
                 <source>my.account.login.header</source>
                 <target><![CDATA[<h1>Welkom op Mijn Pagina</h1>]]></target>
             </trans-unit>
-            <trans-unit id="my.account.header" approved="no">
+            <trans-unit id="my.account.header">
                 <source>my.account.header</source>
                 <target><![CDATA[<h1>Welkom!</h1>]]></target>
             </trans-unit>
-            <trans-unit id="address.first_name.min.length" approved="no">
+            <trans-unit id="address.first_name.min.length">
                 <source>address.first_name.min.length</source>
                 <target>Je voornaam moet uit minstens 2 tekens bestaan</target>
             </trans-unit>
-            <trans-unit id="address.last_name.min.length" approved="no">
+            <trans-unit id="address.last_name.min.length">
                 <source>address.last_name.min.length</source>
                 <target>Je achternaam moet uit minstens 2 tekens bestaan</target>
             </trans-unit>
-            <trans-unit id="create.pre-notice" approved="no">
+            <trans-unit id="create.pre-notice">
                 <source>create.pre-notice</source>
                 <target><![CDATA[<b>Ben je een nieuwe klant?</b><br>Op deze pagina moet je je persoonlijke gegevens invullen (en <u>niet</u> je bedrijfsgegevens).]]></target>
             </trans-unit>
-            <trans-unit id="order.force.login.description" approved="no">
+            <trans-unit id="order.force.login.description">
                 <source>order.force.login.description</source>
                 <target><![CDATA[
                     <h3>Beste klant,</h3>
@@ -562,40 +562,40 @@ Hierna kun je gewoon doorgaan met winkelen.<br></p>
             </trans-unit>
             <trans-unit id="wishlist.add.label">
                 <source>wishlist.add.label</source>
-                <target>Opret shoppingliste</target>
+                <target>Mijn Shoppinglijst</target>
             </trans-unit>
             <trans-unit id="wishlist.add.description">
                 <source>wishlist.add.description</source>
                 <target><![CDATA[
-                    <p>Her kan du oprette en liste med de styles, du ønsker at bestille ved et Home Shopping arrangement eller Åbent Hus.</p>
+                    <p>Hier kun je een lijstje opstellen met de stijlen die je tijdens een Home Shopping arrangement of een Open Huis wilt bestellen. Je Shoppinglijst wordt automatisch opgeslagen.</p>
                     <ul>
-                        <li>Tryk på "Opret Shoppingliste". Din Shoppingliste får et unikt nummer, som din Shopping Advisor skal bruge.</li>
-                        <li>Tilføj de styles du ønsker at købe.</li>
-                        <li>Vis Shoppingliste nummeret til din Shopping Advisor, som behandler din ordre.</li>
-                        <li>Lagerbeholdning tjekkes, ordren gennemføres i samarbejde med din Shopping Advisor og herefter vil du modtage en ordrebekræftelse på din ordre.</li>
+                        <li>Klik op "Mijn shoppinglijst". Je Shoppinglijst krijgt een uniek nummer toebedeeld dat je aan je Shopping Advisor door moet geven.</li>
+                        <li>Voeg de stijlen toe die je wilt kopen.</li>
+                        <li>Laat het nummer van je Shoppinglijst aan je Shopping Advisor zien en de Shopping Advisor zal de bestelling voor je verwerken.</li>
+                        <li>Het systeem controleert de voorraad en samen met je Shopping Advisor plaats je de bestelling en je ontvangt daarna een orderbevestiging.</li>
                     </ul>
-                    <p>HUSK! Vær opmærksom på, at du først har afgivet din ordre, når din Shopping Advisor har indlæst dit Shoppingliste nummer, og du har fået en odrebekræftelse. Varene på din Shoppingliste er ikke reserveret selvom de er tilføjet, så der kan opstå tilfælde, hvor en vare desværre er udsolgt.</p>
+                    <p>LET OP! Je hebt je bestelling pas geplaatst als je Shopping Advisor het nummer van je shoppinglijst heeft ingevoerd en jij een orderbevestiging hebt ontvangen. De artikelen op je shoppinglijst zijn niet gereserveerd, al heb je ze aan je lijstje toegevoegd. Het kan dus helaas voorkomen dat een artikel uitverkocht is.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="wishlist.add.to.list">
                 <source>wishlist.add.to.list</source>
-                <target>Shoppingliste</target>
+                <target>Shoppinglijst</target>
             </trans-unit>
             <trans-unit id="wishlist.placeholder.query">
                 <source>wishlist.placeholder.query</source>
-                <target>Tilføj vare</target>
+                <target>Voeg een artikel toe</target>
             </trans-unit>
             <trans-unit id="wishlist.query.description">
                 <source>wishlist.query.description</source>
-                <target>Indtast de tre første bogstaver i stylens navn og vælg den ønskede style fra listen.</target>
+                <target>Typ de eerste drie letters van de naam van de stijl en selecteer dan de stijl op de lijst.</target>
             </trans-unit>
             <trans-unit id="wishlist.select.size">
                 <source>wishlist.select.size</source>
-                <target>Størrelse</target>
+                <target>Maat</target>
             </trans-unit>
             <trans-unit id="wishlist.select.color">
                 <source>wishlist.select.color</source>
-                <target>Farve</target>
+                <target>Kleur</target>
             </trans-unit>
             <trans-unit id="wishlist.number">
                 <source>wishlist.number</source>
@@ -603,11 +603,11 @@ Hierna kun je gewoon doorgaan met winkelen.<br></p>
             </trans-unit>
             <trans-unit id="add.to.wishlist">
                 <source>add.to.wishlist</source>
-                <target>Tilføj til listen</target>
+                <target>Voeg toe aan je lijstje</target>
             </trans-unit>
             <trans-unit id="wishlist.remove.all.items">
                 <source>wishlist.remove.all.items</source>
-                <target>Ryd listen</target>
+                <target>WIS JE LIJSTJE</target>
             </trans-unit>
         </body>
     </file>

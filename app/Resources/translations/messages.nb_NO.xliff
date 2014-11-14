@@ -140,7 +140,7 @@
             </trans-unit>
             <trans-unit id="store.address">
                 <source>store.address</source>
-                <target>Administrasjon: POMPdeLUX NO AS c/o Granly Økonomiservice AS • Nordseterveien 14 • NO-1176 Oslo • Org.nr. 994798510 • mail@pompdelux.no • +47 2274 2600</target>
+                <target>Administrasjon: POMPdeLUX NO AS c/o Granly Økonomiservice AS • Nordseterveien 14 • NO-1176 Oslo • Org.nr. 994798510 • mailno@POMPdeLUX.com • +47 2274 2600</target>
             </trans-unit>
             <trans-unit id="order.edit.global.notice">
                 <source>order.edit.global.notice</source>
@@ -162,7 +162,7 @@
                     Fredag kl. 9 - 14<br>
                     Lørdag og søndag stengt.<br>
                     Tlf. nr.: +47 2274 2600 <br>
-                    <a href="mailto:mail@pompdelux.no">mail@pompdelux.no</a>
+                    <a href="mailto:mailno@POMPdeLUX.com">mailno@POMPdeLUX.com</a>
                 ]]></target>
             </trans-unit>
             <trans-unit id="footer.address">
@@ -174,7 +174,7 @@
                         <li>Nordseterveien 14</li>
                         <li>NO-1176 Oslo</li>
                         <li>Org.nr. 994798510</li>
-                        <li>mail@pompdelux.no</li>
+                        <li>mailno@POMPdeLUX.com</li>
                         <li>+47 2274 2600</li>
 						<li>Returnering av varer: POMPdeLUX C/O</li>
                         <li>Postens godssenter</li>
@@ -379,7 +379,7 @@ Du kan lese mer om angrerett under <a href="/nb_NO/forside/kundeservice/vilkar-b
                 <source>faceted.reset.filter</source>
                 <target>» Nullstill filtre</target>
             </trans-unit>
-            <trans-unit id="product.quantity.discount" approved="no">
+            <trans-unit id="product.quantity.discount">
                 <source>product.quantity.discount</source>
                 <target>Køb %span% stk. og spar %discount% pr. stk.</target>
             </trans-unit>

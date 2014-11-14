@@ -5,7 +5,7 @@ services:
     cms.node.deleted.listener:
         class: Hanzo\Bundle\ServiceBundle\Services\CacheService
         arguments:
-            - [@redis.main]
+            - [@pdl.phpredis.main]
             - []
         tags:
             - { name: kernel.event_listener, event: cms.node.deleted, method: clearRedisCache }

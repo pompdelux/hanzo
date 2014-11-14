@@ -13,7 +13,7 @@
                     Prøv om ikke en af kategorierne indeholder det du søger eller benyt søgeformularen herunder.
                 ]]></target>
             </trans-unit>
-            <trans-unit id="404.webshop_closed.description" approved="no">
+            <trans-unit id="404.webshop_closed.description">
                 <source>404.webshop_closed.description</source>
                 <target><![CDATA[
                     Du har forespurgt på noget indhold, som vi ikke har her på siden.<br><br>
@@ -28,7 +28,7 @@
                 <source>500.description</source>
                 <target><![CDATA[
                     <p>Det ser ud til, at der er sket en fejl. Prøv at opdatere siden.</p>
-                    <p>Hvis du fortsat oplever fejl på siden, kan du kontakte kundeservice på telefon (+45) 8678 7871 eller sende os en mail på <a href="mailto:mail@pompdelux.dk">mail@pompdelux.dk</a>. Vi beklager fejlen!</p>
+                    <p>Hvis du fortsat oplever fejl på siden, kan du kontakte kundeservice på telefon (+45) 8678 7871 eller sende os en mail på <a href="mailto:maildk@POMPdeLUX.com">maildk@POMPdeLUX.com</a>. Vi beklager fejlen!</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="403.title">
@@ -39,7 +39,7 @@
                 <source>403.description</source>
                 <target><![CDATA[
                     <p>Du har ikke adgang til at se denne side.</p>
-                    <p>Hvis du fortsat oplever fejl på siden, kan du kontakte kundeservice på telefon (+45) 8678 7871 eller sende os en mail på <a href="mailto:mail@pompdelux.dk">mail@pompdelux.dk</a>. Vi beklager fejlen!</p>
+                    <p>Hvis du fortsat oplever fejl på siden, kan du kontakte kundeservice på telefon (+45) 8678 7871 eller sende os en mail på <a href="mailto:maildk@POMPdeLUX.com">maildk@POMPdeLUX.com</a>. Vi beklager fejlen!</p>
                 ]]></target>
             </trans-unit>
         </body>

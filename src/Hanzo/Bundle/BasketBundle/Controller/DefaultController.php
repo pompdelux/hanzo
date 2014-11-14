@@ -6,26 +6,21 @@ use Hanzo\Bundle\BasketBundle\Event\BasketEvent;
 use Hanzo\Bundle\BasketBundle\Service\InvalidSessionException;
 use Hanzo\Bundle\BasketBundle\Service\OutOfStockException;
 use Hanzo\Bundle\PaymentBundle\Methods\Pensio\InvalidOrderStateException;
-use Hanzo\Model\ProductsI18nQuery;
-use Symfony\Component\HttpFoundation\Request;
-
-use PropelException;
-
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
-
 use Hanzo\Model\Products;
-use Hanzo\Model\ProductsPeer;
-use Hanzo\Model\ProductsQuery;
 use Hanzo\Model\ProductsDomainsPricesPeer;
+use Hanzo\Model\ProductsI18nQuery;
 use Hanzo\Model\ProductsToCategoriesQuery;
-use Hanzo\Model\Orders;
+use Hanzo\Model\ProductsPeer;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\OrdersLinesPeer;
 use Hanzo\Model\OrdersLinesQuery;
 use Hanzo\Model\CategoriesQuery;
+use PropelException;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class DefaultController
@@ -188,7 +183,7 @@ class DefaultController extends CoreController
             $session->getId(),
         ];
 
-        $this->get('redis.main')->del($cacheId);
+        $this->get('pdl.phpredis.main')->del($cacheId);
 
         if ($this->getFormat() == 'json') {
             return $this->json_response($templateData);
@@ -305,7 +300,7 @@ class DefaultController extends CoreController
                 $this->getRequest()->getSession()->getId(),
             ];
 
-            $this->get('redis.main')->del($cacheId);
+            $this->get('pdl.phpredis.main')->del($cacheId);
 
             if ($this->getFormat() == 'json') {
                 return $this->json_response([

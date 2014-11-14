@@ -2,11 +2,9 @@
 
 namespace Hanzo\Bundle\PaymentBundle\Controller;
 
+use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Tools;
-use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
-use Hanzo\Bundle\PaymentBundle\Methods\Dibs\DibsApi;
-use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,7 +18,8 @@ class DibsController extends CoreController
     /**
      * Handles callbacks from DIBS payment service in the payment flow
      *
-     * @param  Request $request
+     * @param Request $request
+     *
      * @return Response
      */
     public function callbackAction(Request $request)
@@ -70,8 +69,9 @@ class DibsController extends CoreController
     public function blockAction()
     {
 Tools::log('YEAH - is used ..., delete log if seen.! <un>');
-        $api         = $this->get('payment.dibsapi');
-        $redis       = $this->get('redis.permanent');
+        $api   = $this->get('payment.dibsapi');
+        $redis = $this->get('pdl.phpredis.permanent');
+
         $dibs_status = $redis->hget('service.status', 'dibs');
         $isJson      = ('json' === $this->getFormat()) ? true : false;
 
@@ -103,8 +103,9 @@ Tools::log('YEAH - is used ..., delete log if seen.! <un>');
     /**
      * Used to see if our migration to the new flow works.
      *
-     * @param  Request  $request
-     * @param  int      $order_id
+     * @param Request  $request
+     * @param int      $order_id
+     *
      * @return Response
      */
     public function processAction(Request $request, $order_id)

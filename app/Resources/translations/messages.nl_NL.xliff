@@ -140,7 +140,7 @@
             </trans-unit>
             <trans-unit id="store.address">
                 <source>store.address</source>
-                <target>POMPdeLUX NL B.V. c/o POMPdeLUX ApS • Møgelhøj 8 DK-8520 Lystrup • BTW 851856147B01 • mail@pompdelux.nl • 085-3001100 (Nederlands en Engels)</target>
+                <target>POMPdeLUX NL B.V. c/o POMPdeLUX ApS • Møgelhøj 8 DK-8520 Lystrup • BTW 851856147B01 • mailnl@POMPdeLUX.com • 085-3001100 (Nederlands en Engels)</target>
             </trans-unit>
             <trans-unit id="order.edit.global.notice">
                 <source>order.edit.global.notice</source>
@@ -160,7 +160,7 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
                 <target><![CDATA[
                     <strong>Klantenservice</strong><br>
                     Telefoon: 085-3001100 (Nederlands en Engels)<br>
-                    E-mail: <a href="mailto:mail@pompdelux.nl">mail@pompdelux.nl</a><br>
+                    E-mail: <a href="mailto:mailnl@POMPdeLUX.com">mailnl@POMPdeLUX.com</a><br>
                     Maandag t/m donderdag 9 - 16<br>
                     Vrijdag 9 - 14<br>
                     Zaterdag en zondag en op Deense feestdagen gesloten.
@@ -174,7 +174,7 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
                         <li>Møgelhøj 8</li>
                         <li>DK-8520 Lystrup</li>
                         <li>BTW 851856147B01</li>
-                        <li><a href="mailto:mail@pompdelux.nl">mail@pompdelux.nl</a></li>
+                        <li><a href="mailto:mailnl@POMPdeLUX.com">mailnl@POMPdeLUX.com</a></li>
                         <li>085-3001100 (Nederlands en Engels)</li><br>
 						<li>Retoursturen van artikelen: POMPdeLUX Aps</li>
                         <li>Grydhøjparken 10</li>
@@ -381,7 +381,7 @@ Je kunt meer lezen over het recht van retour in onze <a href="/nl_NL/voorpagina/
                 <source>faceted.reset.filter</source>
                 <target>» Maak nieuwe selectie</target>
             </trans-unit>
-            <trans-unit id="product.quantity.discount" approved="no">
+            <trans-unit id="product.quantity.discount">
                 <source>product.quantity.discount</source>
                 <target>Koop %span% stk. en spaar %discount% pr. stk.</target>
             </trans-unit>

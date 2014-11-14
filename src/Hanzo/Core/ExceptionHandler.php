@@ -16,12 +16,9 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\Routing\Exception\MethodNotAllowedException;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
-use Predis\Network\ConnectionException as PredisConnectionException;
-
 use Symfony\Component\HttpFoundation\Response;
 
-use Hanzo\Core\Hanzo;
-use Hanzo\Core\Tools;
+use Pompdelux\PHPRedisBundle\Client\PHPRedisCommunicationException;
 
 use Hanzo\Model\CmsI18n;
 use Hanzo\Model\CmsI18nQuery;
@@ -145,7 +142,7 @@ class ExceptionHandler
                     break;
             }
 
-        } elseif ($exception instanceof PredisConnectionException) {
+        } elseif ($exception instanceof PHPRedisCommunicationException) {
             Tools::log('Predis connection failed.');
             $event->setResponse(new Response('', 500));
         }

@@ -30,7 +30,7 @@
           <h2>Kontakt</h2>
           <p>Har du spørgsmål er du velkommen til at kontakte os.</p>
           <p>Telefon (+45) 8678 7871</p>
-          <p>Email: <a href="mailto:mail@pompdelux.dk">mail@pompdelux.dk</a></p>
+          <p>Email: <a href="mailto:maildk@POMPdeLUX.com">maildk@POMPdeLUX.com</a></p>
 
           <h2>Min Side</h2>
           <p>
@@ -269,7 +269,7 @@
           <p>Hele din ordre forventes afsendt fra vores lager senest: <strong>%date%</strong>.</p>
         ]]></target>
       </trans-unit>
-      <trans-unit id="status.20" approved="no">
+      <trans-unit id="status.20">
         <source>status.20</source>
         <target>Betaling godkendt</target>
       </trans-unit>
@@ -397,7 +397,7 @@
          <source>gift_card.description</source>
          <target>Herunder kan du taste din gavekortskode. Bruger du ikke hele beløbet på dit gavekort, kan du anvende gavekortskoden igen, næste gang du handler hos POMPdeLUX.</target>
       </trans-unit>
-      <trans-unit id="address.copy" approved="no">
+      <trans-unit id="address.copy">
          <source>address.copy</source>
          <target>Leveringsaddressen er den samme som Privataddressen</target>
       </trans-unit>
@@ -410,43 +410,43 @@
           POMPdeLUX
           ]]></target>
       </trans-unit>
-      <trans-unit id="basket.header" approved="no">
+      <trans-unit id="basket.header">
         <source>basket.header</source>
         <target><![CDATA[<h1>Din Kurv</h1><p>Brug for hjælp? <a href="/da_DK/forside/kundeservice/faq">FAQ</a></p>]]></target>
       </trans-unit>
-      <trans-unit id="order.amount.to.low" approved="no">
+      <trans-unit id="order.amount.to.low">
         <source>order.amount.to.low</source>
         <target>Dit køb har en mindre værdi end den samlede værtinderabat, du har opnået. Tilføj flere varer til din kurv for at anvende din værtinderabat.</target>
       </trans-unit>
-      <trans-unit id="order.amount.to.low.for.coupon" approved="no">
+      <trans-unit id="order.amount.to.low.for.coupon">
         <source>order.amount.to.low.for.coupon</source>
         <target>Dit køb svarer desværre ikke til minimumsgrænsen på DKK %amount% på din rabatkode. Tilføj flere varer til din kurv for at anvende din rabatkode.</target>
       </trans-unit>
-      <trans-unit id="coupon" approved="no">
+      <trans-unit id="coupon">
         <source>coupon</source>
         <target>Rabatkode</target>
       </trans-unit>
-      <trans-unit id="coupon.toggle.form" approved="no">
+      <trans-unit id="coupon.toggle.form">
         <source>coupon.toggle.form</source>
         <target>» Indtast din rabatkode</target>
       </trans-unit>
-      <trans-unit id="coupon.description" approved="no">
+      <trans-unit id="coupon.description">
         <source>coupon.description</source>
         <target>Der kan kun anvendes én rabatkode pr. ordre</target>
       </trans-unit>
-      <trans-unit id="coupon.apply.discount" approved="no">
+      <trans-unit id="coupon.apply.discount">
         <source>coupon.apply.discount</source>
         <target>Gem</target>
       </trans-unit>
-      <trans-unit id="coupon.label" approved="no">
+      <trans-unit id="coupon.label">
         <source>coupon.label</source>
         <target>Indtast din rabatkode</target>
       </trans-unit>
-      <trans-unit id="coupon.invalid.code" approved="no">
+      <trans-unit id="coupon.invalid.code">
         <source>coupon.invalid.code</source>
         <target>Ugyldig rabatkode</target>
       </trans-unit>
-      <trans-unit id="checkout.confirm.terms" approved="no">
+      <trans-unit id="checkout.confirm.terms">
           <source>checkout.confirm.terms</source>
           <target><![CDATA[
               <label for="js_checkout_confirm_terms">Jeg bestiller hermed overstående og bekræfter, at jeg har læst og accepterer</label>

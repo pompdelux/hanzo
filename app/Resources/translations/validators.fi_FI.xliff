@@ -6,47 +6,47 @@
                 <source>email.exists</source>
                 <target>Sähköpostiosoite on jo olemassa!</target>
             </trans-unit>
-            <trans-unit id="phone.required" approved="no">
+            <trans-unit id="phone.required">
                 <source>phone.required</source>
                 <target>Puhelinnumero on annettava</target>
             </trans-unit>
-            <trans-unit id="phone.min.length" approved="no">
+            <trans-unit id="phone.min.length">
                 <source>phone.min.length</source>
                 <target>Puhelinnumero muodostuu {{ limit }} numerosta|Puhelinnumero muodostuu {{ limit }} numerosta</target>
             </trans-unit>
-            <trans-unit id="phone.not.valid" approved="no">
+            <trans-unit id="phone.not.valid">
                 <source>phone.not.valid</source>
                 <target>Matkapuhelinnumero ilman väliviivaa esim. 0401234567</target>
             </trans-unit>
-            <trans-unit id="email.required" approved="no">
+            <trans-unit id="email.required">
                 <source>email.required</source>
                 <target>Sähköpostiosoite on annettava</target>
             </trans-unit>
-            <trans-unit id="email.invalid.match" approved="no">
+            <trans-unit id="email.invalid.match">
                 <source>email.invalid.match</source>
                 <target>Sähköpostiosoitteet eivät vastaa toisiaan</target>
             </trans-unit>
-            <trans-unit id="email.not.valid" approved="no">
+            <trans-unit id="email.not.valid">
                 <source>email.not.valid</source>
                 <target>Sähköpostiosoitteet eivät vastaa toisiaan</target>
             </trans-unit>
-            <trans-unit id="address.first_name.required" approved="no">
+            <trans-unit id="address.first_name.required">
                 <source>address.first_name.required</source>
                 <target>Etunimi on annettava</target>
             </trans-unit>
-            <trans-unit id="address.last_name.required" approved="no">
+            <trans-unit id="address.last_name.required">
                 <source>address.last_name.required</source>
                 <target>Sukunimi on annettava</target>
             </trans-unit>
             <trans-unit id="name.max.length">
                 <source>name.max.length</source>
-                <target>Koko nimesi voi enintään sisältää {{ limit }} kirjainta|Koko nimesi voi enintään sisältää {{ limit }} kirjainta</target>
+                <target>Koko nimesi voi enintään sisältää {{ limit }} kirjainta</target>
             </trans-unit>
-            <trans-unit id="host.required" approved="no">
+            <trans-unit id="host.required">
                 <source>host.required</source>
                 <target>Du skal angive værtinde</target>
             </trans-unit>
-            <trans-unit id="address_line_1.required" approved="no">
+            <trans-unit id="address_line_1.required">
                 <source>address_line_1.required</source>
                 <target>Du skal udfylde adressen|Du skal udfylde adressen</target>
             </trans-unit>
@@ -54,23 +54,23 @@
                 <source>address_line_1.max.length</source>
                 <target>Osoite linjaan enintään {{ limit }} kirjainta/ numeroa|Osoite linjaan enintään {{ limit }} kirjainta/ numeroa</target>
             </trans-unit>
-            <trans-unit id="postal_code.required" approved="no">
+            <trans-unit id="postal_code.required">
                 <source>postal_code.required</source>
                 <target>Du skal udfylde postnummer</target>
             </trans-unit>
-            <trans-unit id="postal_code.length" approved="no">
+            <trans-unit id="postal_code.length">
                 <source>postal_code.length</source>
                 <target>Postinumeron on oltava {{ limit }} numeroa.|Postinumeron on oltava {{ limit }} numeroa.</target>
             </trans-unit>
-            <trans-unit id="city.required" approved="no">
+            <trans-unit id="city.required">
                 <source>city.required</source>
                 <target>Du skal udfylde by|Du skal udfylde by</target>
             </trans-unit>
-            <trans-unit id="address.first_name.min.length" approved="no">
+            <trans-unit id="address.first_name.min.length">
                 <source>address.first_name.min.length</source>
                 <target>Etunimessä on oltava vähintään {{ limit }} merkkiä|Etunimessä on oltava vähintään {{ limit }} merkkiä</target>
             </trans-unit>
-            <trans-unit id="address.last_name.min.length" approved="no">
+            <trans-unit id="address.last_name.min.length">
                 <source>address.last_name.min.length</source>
                 <target>Sukunimessä on oltava vähintään {{ limit }} merkkiä|Sukunimessä on oltava vähintään {{ limit }} merkkiä</target>
             </trans-unit>
@@ -78,7 +78,7 @@
                 <source>password.required</source>
                 <target>Adgangskode skal være min 5 tegn</target>
             </trans-unit>
-            <trans-unit id="password.min.length" approved="no">
+            <trans-unit id="password.min.length">
                 <source>password.min.length</source>
                 <target>Salasanassa on oltava vähintään {{ limit }} merkkiä|Salasanassa on oltava vähintään {{ limit }} merkkiä</target>
             </trans-unit>

@@ -35,7 +35,6 @@ class ExportEventsCommand extends ContainerAwareCommand
         $startDate = date('Y-m-d');
         $endDate   = date('Y-m-d', strtotime('+84 days'));
 
-        $exporter = new EventExporter($startDate, $endDate);
         $dir = $this->getContainer()->get('kernel')->getRootDir().'/../web/images/arrangementer/';
 
         if (!is_dir($dir)) {
@@ -43,6 +42,7 @@ class ExportEventsCommand extends ContainerAwareCommand
         }
 
         foreach ($connections as $connection) {
+            $exporter = new EventExporter($startDate, $endDate);
             $exporter->setDBConnection(\Propel::getConnection($connection));
             file_put_contents($dir.'arrangement-'.$connection.'.csv', $exporter->getDataAsCsv());
         }

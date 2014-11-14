@@ -1,35 +1,46 @@
 <?php /* vim: set sw=4: */
 namespace Hanzo\Bundle\ServiceBundle;
 
-use Hanzo\Bundle\ServiceBundle\Services;
 use Hanzo\Core\Hanzo;
-use Hanzo\Core\Tools;
+use Symfony\Component\DependencyInjection\Container;
 
-use Hanzo\Model\SettingsQuery;
-
+/**
+ * Class ServiceFactory
+ *
+ * @package Hanzo\Bundle\ServiceBundle
+ */
 class ServiceFactory
 {
     protected $hanzo;
 
+    /**
+     * @param Container $container
+     */
     public function __construct($container)
     {
         $this->hanzo = Hanzo::initialize($container);
     }
 
-    public function get($service, $parameters = NULL, $class = NULL)
+    /**
+     * @param string $service
+     * @param array  $parameters
+     * @param string $class
+     *
+     * @return mixed
+     */
+    public function get($service, $parameters = null, $class = null)
     {
         // figure out where to load the class from.
         if (!empty($class)) {
             $service = $class;
-            $settings_key = preg_replace('/service$/', '', strtolower(basename('/'.str_replace('\\', '/', $class))));
-        }
-        else {
-            $settings_key = strtolower($service);
+            $settingsKey = preg_replace('/service$/', '', strtolower(basename('/'.str_replace('\\', '/', $class))));
+        } else {
+            $settingsKey = strtolower($service);
 
-            $service = ucfirst($settings_key) . 'Service';
+            $service = ucfirst($settingsKey) . 'Service';
             $service =  __NAMESPACE__ . '\\Services\\' . $service;
         }
         // return the instance
-        return new $service($parameters, $this->hanzo->getByNs($settings_key));
+        return new $service($parameters, $this->hanzo->getByNs($settingsKey));
     }
 }

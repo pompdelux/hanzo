@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @see
@@ -15,19 +16,29 @@ use Hanzo\Core\CoreController;
  */
 class SoapController extends CoreController
 {
+    /**
+     * @var
+     */
     protected $request;
 
-    public function indexAction($version, $service_name)
+    /**
+     * @param Request $request
+     * @param         $version
+     * @param         $serviceName
+     *
+     * @throws \Exception
+     */
+    public function indexAction(Request $request, $version, $serviceName)
     {
-        $wsdl = __DIR__ . '/../Services/Soap/' . $service_name . '/' . $service_name . '.wsdl';
+        $wsdl = __DIR__ . '/../Services/Soap/' . $serviceName . '/' . $serviceName . '.wsdl';
 
         if (!is_file($wsdl)) {
             throw new \Exception('Invalid or unknown SOAP service.');
         }
 
-        $service_class = str_replace('Controller', 'Services\Soap', __NAMESPACE__) . "\\{$service_name}\\$service_name";
-        $handler = new $service_class (
-            $this->getRequest(),
+        $serviceClass = str_replace('Controller', 'Services\Soap', __NAMESPACE__) . "\\{$serviceName}\\$serviceName";
+        $handler = new $serviceClass (
+            $request,
             $this->get('Logger'),
             $this->get('event_dispatcher')
         );

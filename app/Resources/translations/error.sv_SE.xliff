@@ -10,7 +10,7 @@
                 <source>404.description</source>
                 <target><![CDATA[Du har sökt efter innehåll som vi inte har på denna sidan. Se om inte en av kategorierna innehåller det du söker, eller använd sökformuläret nedan.]]></target>
             </trans-unit>
-            <trans-unit id="404.webshop_closed.description" approved="no">
+            <trans-unit id="404.webshop_closed.description">
                 <source>404.webshop_closed.description</source>
                 <target><![CDATA[Du har sökt efter innehåll som vi inte har på denna sidan. Se om inte en av kategorierna innehåller det du söker, eller använd sökformuläret nedan.]]></target>
             </trans-unit>
@@ -22,7 +22,7 @@
                 <source>500.description</source>
                 <target><![CDATA[
                     <p>Det har uppstått ett fel. Försök att uppdatera sidan. </p>
-                    <p>Om felet fortsätter, kan du kontakta kundservice på telefon 08-6117103 eller skicka ett mail till oss på <a href="mailto:mail@pompdelux.se">mail@pompdelux.se</a>. Vi beklagar felet!</p>
+                    <p>Om felet fortsätter, kan du kontakta kundservice på telefon 08-6117103 eller skicka ett mail till oss på <a href="mailto:mailse@POMPdeLUX.com">mailse@POMPdeLUX.com</a>. Vi beklagar felet!</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="403.title">
@@ -33,7 +33,7 @@
                 <source>403.description</source>
                 <target><![CDATA[
                     <p>Det har uppstått ett fel. Försök att uppdatera sidan.</p>
-                    <p>Om felet fortsätter, kan du kontakta kundservice på telefon 08-6117103 eller skicka ett mail till oss på <a href="mailto:mail@pompdelux.se">mail@pompdelux.se</a>. Vi beklagar felet!</p>
+                    <p>Om felet fortsätter, kan du kontakta kundservice på telefon 08-6117103 eller skicka ett mail till oss på <a href="mailto:mailse@POMPdeLUX.com">mailse@POMPdeLUX.com</a>. Vi beklagar felet!</p>
                 ]]></target>
             </trans-unit>
         </body>

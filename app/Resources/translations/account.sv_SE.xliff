@@ -10,7 +10,7 @@
                 <source>The presented password cannot be empty.</source>
                 <target>Kan inte hitta E-Mail Address och/eller Password.</target>
             </trans-unit>
-            <trans-unit id="User account is disabled." approved="no">
+            <trans-unit id="User account is disabled.">
                 <source>User account is disabled.</source>
                 <target>Ditt konto är avaktiverat.</target>
             </trans-unit>
@@ -134,7 +134,7 @@
                 <source>Last name</source>
                 <target>Efternamn</target>
             </trans-unit>
-            <trans-unit id="53" approved="no" >
+            <trans-unit id="53" >
                 <source>Initials</source>
                 <target>Initialer</target>
             </trans-unit>
@@ -146,7 +146,7 @@
                 <source>Address line 1</source>
                 <target>Gata</target>
             </trans-unit>
-            <trans-unit id="56" approved="no">
+            <trans-unit id="56">
                 <source>Address line 2</source>
                 <target></target>
             </trans-unit>
@@ -162,7 +162,7 @@
                 <source>Password repeated</source>
                 <target>Bekräfta lösenord</target>
             </trans-unit>
-            <trans-unit id="password.invalid.match" approved="no">
+            <trans-unit id="password.invalid.match">
                 <source>password.invalid.match</source>
                 <target>Du ska skriva samma lösenord i båda fälten.</target>
             </trans-unit>
@@ -170,7 +170,7 @@
                 <source>Email repeated</source>
                 <target>Upprepa e-mailadressen</target>
             </trans-unit>
-            <trans-unit id="email.invalid.match" approved="no">
+            <trans-unit id="email.invalid.match">
                 <source>email.invalid.match</source>
                 <target>Du ska skriva samma lösenord i båda fälten.</target>
             </trans-unit>
@@ -178,7 +178,7 @@
                 <source>Country</source>
                 <target>Land</target>
             </trans-unit>
-            <trans-unit id="64" approved="no">
+            <trans-unit id="64">
                 <source>account.created</source>
                 <target>Ditt konto är nu upprättat.</target>
             </trans-unit>
@@ -206,11 +206,11 @@
                 <source>create.notice</source>
                 <target><![CDATA[<strong>Är du redan kund?</strong><br>Om du redan är kund hos oss, ska du logga in på <a href="%url%">Min Sida</a>.<br><br>]]></target>
             </trans-unit>
-            <trans-unit id="68" approved="no">
+            <trans-unit id="68">
                 <source>nno.title</source>
                 <target>Hent dine adresseoplysninger fra De Gule Sider (TDC).</target>
             </trans-unit>
-            <trans-unit id="69" approved="no">
+            <trans-unit id="69">
                 <source>nno.description</source>
                 <target><![CDATA[<b>Är du ny kund?</b><br>Skriv ditt telefonnummer och få ifylld din adress automatiskt.]]></target>
             </trans-unit>
@@ -226,19 +226,19 @@
                 <source>create.terms</source>
                 <target>POMPdeLUX villkor.</target>
             </trans-unit>
-            <trans-unit id="74" approved="no">
+            <trans-unit id="74">
                 <source>create.nno.address_found</source>
                 <target>Adressen som matchar det skrivna telefonnumret kan ses nedan.</target>
             </trans-unit>
-            <trans-unit id="75" approved="no">
+            <trans-unit id="75">
                 <source>create.nno.no_address_found</source>
                 <target>Det blev inte hittat någon adress på detta telefonnummer.</target>
             </trans-unit>
-            <trans-unit id="76" approved="no">
+            <trans-unit id="76">
                 <source>The password fields must match.</source>
                 <target>Det ska vara samma lösenord i båda fälten.</target>
             </trans-unit>
-            <trans-unit id="77" approved="no">
+            <trans-unit id="77">
                 <source>The email fields must match.</source>
                 <target>Det ska vara samma e-mailadress i båda fälten.</target>
             </trans-unit>
@@ -346,43 +346,43 @@
                 <source>Bad credentials</source>
                 <target>Kan inte hitta "E-Mail Address" och/eller "Password".</target>
             </trans-unit>
-            <trans-unit id="update.notice" approved="no">
+            <trans-unit id="update.notice">
                 <source>update.notice</source>
                 <target></target>
             </trans-unit>
-            <trans-unit id="update.password_notice" approved="no">
+            <trans-unit id="update.password_notice">
                 <source>update.password_notice</source>
                 <target>Ska endast fyllas i om du önskar att ändra ditt nuvarande lösenord.</target>
             </trans-unit>
-            <trans-unit id="history.empty" approved="no">
+            <trans-unit id="history.empty">
                 <source>history.empty</source>
                 <target>Du har inga ordrar hos oss än.</target>
             </trans-unit>
-            <trans-unit id="account.updated" approved="no">
+            <trans-unit id="account.updated">
                 <source>account.updated</source>
                 <target>Dina kontoupplysningar har blivit uppdaterade.</target>
             </trans-unit>
-            <trans-unit id="create.account.error.title" approved="no">
+            <trans-unit id="create.account.error.title">
                 <source>create.account.error.title</source>
                 <target>Det uppstod ett fel</target>
             </trans-unit>
-            <trans-unit id="create.account.error" approved="no">
+            <trans-unit id="create.account.error">
                 <source>create.account.error</source>
                 <target>Du har inte fyllt i formuläret rätt, se detaljer nedan:</target>
             </trans-unit>
-            <trans-unit id="phone.required" approved="no">
+            <trans-unit id="phone.required">
                 <source>phone.required</source>
                 <target>Du måste skriva ditt telefonnummer</target>
             </trans-unit>
-            <trans-unit id="phone.not.valid" approved="no">
+            <trans-unit id="phone.not.valid">
                 <source>phone.not.valid</source>
                 <target>Phone number should only be numbers</target>
             </trans-unit>
-            <trans-unit id="phone.min.length" approved="no">
+            <trans-unit id="phone.min.length">
                 <source>phone.min.length</source>
                 <target>Telefonnumret måste innehålla 8 siffror</target>
             </trans-unit>
-            <trans-unit id="email.required" approved="no">
+            <trans-unit id="email.required">
                 <source>email.required</source>
                 <target>Du måste skriva din e-mailadress</target>
             </trans-unit>
@@ -390,7 +390,7 @@
                 <source>password.required</source>
                 <target>Adgangskode skal være min 5 tegn</target>
             </trans-unit>
-            <trans-unit id="my.account.order.view" approved="no">
+            <trans-unit id="my.account.order.view">
                 <source>my.account.order.view</source>
                 <target>Mitt konto - order #%order_id%</target>
             </trans-unit>
@@ -402,7 +402,7 @@
                 <source>address.billing</source>
                 <target>Fakturaadress </target>
             </trans-unit>
-            <trans-unit id="password.min.length" approved="no">
+            <trans-unit id="password.min.length">
                 <source>password.min.length</source>
                 <target>Ditt lösenord ska bestå av minst 5 tecken</target>
             </trans-unit>
@@ -414,7 +414,7 @@
                 <source>login.restricted.other_locale</source>
                 <target><![CDATA[Din profil har registrerats på %site_name%. Du bör därför använda: <a href="%url%">%site_name%</a> Webshop.<br>Om du har ytterligare frågor är du välkommen att kontakta vår kundservice.]]></target>
             </trans-unit>
-            <trans-unit id="login.restricted.only.customers" approved="no">
+            <trans-unit id="login.restricted.only.customers">
                 <source>login.restricted.only.customers</source>
                 <target><![CDATA[Din profil är registrerad som en Shopping Advisor eller anställd. Du bör därför använda: <a href="%url%">Denna inloggning</a>.]]></target>
             </trans-unit>
@@ -422,15 +422,15 @@
                 <source>stop.editing.order</source>
                 <target>Avsluta orderredigering</target>
             </trans-unit>
-            <trans-unit id="unable.to.lock.order" approved="no">
+            <trans-unit id="unable.to.lock.order">
                 <source>unable.to.lock.order</source>
                 <target>Ordern kan inte redigeras just nu. Försök igen senare. </target>
             </trans-unit>
-            <trans-unit id="my.account.%name%" approved="no">
+            <trans-unit id="my.account.%name%">
                 <source>my.account.%name%</source>
                 <target>Välkommen %name%!</target>
             </trans-unit>
-           <trans-unit id="my.account.description" approved="no">
+           <trans-unit id="my.account.description">
                 <source>my.account.description</source>
                 <target><![CDATA[ <p>
       På Min sida kan du redigera din order och skriva ut returetiketter och retursedlar. Du kan också ändra dina kontoupplysningar och registrera/avregistrera dig till vårt nyhetsbrev. <br><br>
@@ -456,15 +456,15 @@
       <b>Returetikett</b><br>
       Klicka på ikonen vid sidan av ordern om du vill skriva ut en returetikett. Om du använder vår returetikett drar vi av SEK 49 från värdet av dina returvaror. Returetiketten öppnas i ett nytt fönster.</p>  ]]></target>
             </trans-unit>
-            <trans-unit id="newsletter" approved="no">
+            <trans-unit id="newsletter">
                 <source>newsletter</source>
                 <target>Nyhetsbrev</target>
             </trans-unit>
-            <trans-unit id="my.account.my.events" approved="no">
+            <trans-unit id="my.account.my.events">
                 <source>my.account.my.events</source>
                 <target>Mina arrangemang</target>
             </trans-unit>
-            <trans-unit id="account.history.see.all.orders" approved="no">
+            <trans-unit id="account.history.see.all.orders">
                 <source>account.history.see.all.orders</source>
                 <target>Se alla ordrar</target>
             </trans-unit>
@@ -472,23 +472,23 @@
                 <source>Email address</source>
                 <target>E-mailadress</target>
             </trans-unit>
-            <trans-unit id="acc.2" approved="no">
+            <trans-unit id="acc.2">
                 <source>Email address repeated</source>
                 <target>Upprepa e-mailadressen</target>
             </trans-unit>
-            <trans-unit id="acc.3" approved="no">
+            <trans-unit id="acc.3">
                 <source>Pass</source>
                 <target>Valfritt lösenord</target>
             </trans-unit>
-            <trans-unit id="acc.4" approved="no">
+            <trans-unit id="acc.4">
                 <source>Pass repeated</source>
                 <target>Upprepa lösenord</target>
             </trans-unit>
-            <trans-unit id="my.account.login.notice" approved="no">
+            <trans-unit id="my.account.login.notice">
                 <source>my.account.login.notice</source>
                 <target><![CDATA[<p>Upprätta dig som kund här</p>]]></target>
             </trans-unit>
-            <trans-unit id="my.account.login.text" approved="no">
+            <trans-unit id="my.account.login.text">
                 <source>my.account.login.text</source>
                 <target><![CDATA[<h2>MIN SIDA</h2><p>För att få tillgång till fördelarna hos POMPdeLUX, ska du upprätta dig som kund, innan du kan shoppa vidare.<br><br>Det ger dig bland annat möjlighet att:<br>
 			<ul>
@@ -498,27 +498,27 @@
 			<li>Se dina tidigare beställningar och hitta gamla fakturor.</li>
           </ul></p>]]></target>
             </trans-unit>
-            <trans-unit id="my.account.login.header" approved="no">
+            <trans-unit id="my.account.login.header">
                 <source>my.account.login.header</source>
                 <target><![CDATA[<h1>Välkommen till Min Sida</h1>]]></target>
             </trans-unit>
-            <trans-unit id="my.account.header" approved="no">
+            <trans-unit id="my.account.header">
                 <source>my.account.header</source>
                 <target><![CDATA[<h1>Välkommen!</h1>]]></target>
             </trans-unit>
-            <trans-unit id="address.first_name.min.length" approved="no">
+            <trans-unit id="address.first_name.min.length">
                 <source>address.first_name.min.length</source>
                 <target>Ditt förnamn måste innehålla minst 2 bokstäver</target>
             </trans-unit>
-            <trans-unit id="address.last_name.min.length" approved="no">
+            <trans-unit id="address.last_name.min.length">
                 <source>address.last_name.min.length</source>
                 <target>Ditt efternamn måste innehålla minst 2 bokstäver</target>
             </trans-unit>
-            <trans-unit id="create.pre-notice" approved="no">
+            <trans-unit id="create.pre-notice">
                 <source>create.pre-notice</source>
                 <target><![CDATA[<b>Är du ny kund?</b><br>På denna sida ska du skriva dina personliga upplysningar (<u>inte</u> företagsnamn).]]></target>
             </trans-unit>
-            <trans-unit id="order.force.login.description" approved="no">
+            <trans-unit id="order.force.login.description">
                 <source>order.force.login.description</source>
                 <target><![CDATA[
                     <h3>Kära kund</h3>
@@ -559,40 +559,40 @@ Därefter kan du enkelt shoppa vidare.<br></p>
             </trans-unit>
             <trans-unit id="wishlist.add.label">
                 <source>wishlist.add.label</source>
-                <target>Opret shoppingliste</target>
+                <target>Min shoppinglista</target>
             </trans-unit>
             <trans-unit id="wishlist.add.description">
                 <source>wishlist.add.description</source>
                 <target><![CDATA[
-                    <p>Her kan du oprette en liste med de styles, du ønsker at bestille ved et Home Shopping arrangement eller Åbent Hus.</p>
+                    <p>Här kan du skapa en lista med de plagg du vill beställa på ett Home Shopping- eller Öppet hus-evenemang. Shoppinglistan sparas automatiskt.</p>
                     <ul>
-                        <li>Tryk på "Opret Shoppingliste". Din Shoppingliste får et unikt nummer, som din Shopping Advisor skal bruge.</li>
-                        <li>Tilføj de styles du ønsker at købe.</li>
-                        <li>Vis Shoppingliste nummeret til din Shopping Advisor, som behandler din ordre.</li>
-                        <li>Lagerbeholdning tjekkes, ordren gennemføres i samarbejde med din Shopping Advisor og herefter vil du modtage en ordrebekræftelse på din ordre.</li>
+                        <li>Klicka på ”Min shoppinglista” Din lista får ett unikt nummer som din Shopping Advisor sedan använder.</li>
+                        <li>Lägg till de plagg du vill köpa.</li>
+                        <li>Ge shoppinglistans nummer till din Shopping Advisor så behandlar han/hon din beställning.</li>
+                        <li>Lagerstatus kontrolleras och beställningen genomförs tillsammans med din Shopping Advisor. Därefter får du en beställningsbekräftelse.</li>
                     </ul>
-                    <p>HUSK! Vær opmærksom på, at du først har afgivet din ordre, når din Shopping Advisor har indlæst dit Shoppingliste nummer, og du har fået en odrebekræftelse. Varene på din Shoppingliste er ikke reserveret selvom de er tilføjet, så der kan opstå tilfælde, hvor en vare desværre er udsolgt.</p>
+                    <p>Obs! Tänk på att beställningen inte är klar förrän din Shopping Advisor har läst in shoppinglistans nummer och du har fått en beställningsbekräftelse. Varor som du lägger till på din shoppinglista reserveras inte. Tyvärr kan det därför hända att en vara är slutsåld.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="wishlist.add.to.list">
                 <source>wishlist.add.to.list</source>
-                <target>Shoppingliste</target>
+                <target>Shoppinglista</target>
             </trans-unit>
             <trans-unit id="wishlist.placeholder.query">
                 <source>wishlist.placeholder.query</source>
-                <target>Tilføj vare</target>
+                <target>Lägg till vara</target>
             </trans-unit>
             <trans-unit id="wishlist.query.description">
                 <source>wishlist.query.description</source>
-                <target>Indtast de tre første bogstaver i stylens navn og vælg den ønskede style fra listen.</target>
+                <target>Skriv in de tre första bokstäverna i varunamnet och välj önskat plagg från listan.</target>
             </trans-unit>
             <trans-unit id="wishlist.select.size">
                 <source>wishlist.select.size</source>
-                <target>Størrelse</target>
+                <target>Storlek</target>
             </trans-unit>
             <trans-unit id="wishlist.select.color">
                 <source>wishlist.select.color</source>
-                <target>Farve</target>
+                <target>Färg</target>
             </trans-unit>
             <trans-unit id="wishlist.number">
                 <source>wishlist.number</source>
@@ -600,11 +600,11 @@ Därefter kan du enkelt shoppa vidare.<br></p>
             </trans-unit>
             <trans-unit id="add.to.wishlist">
                 <source>add.to.wishlist</source>
-                <target>Tilføj til listen</target>
+                <target>Lägg till i listan</target>
             </trans-unit>
             <trans-unit id="wishlist.remove.all.items">
                 <source>wishlist.remove.all.items</source>
-                <target>Ryd listen</target>
+                <target>RENSA LISTAN</target>
             </trans-unit>
         </body>
     </file>

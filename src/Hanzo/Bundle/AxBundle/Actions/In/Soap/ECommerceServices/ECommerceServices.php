@@ -83,7 +83,11 @@ class ECommerceServices extends SoapService
      */
     public function SyncItem($data)
     {
-        require __DIR__.'/products_id_map.php';
+        // note, this file is generated through admin, and is essential when we need to ensure that all products have
+        // the same id across all databases - without having to make a db-lookup for each one.
+        //
+        // also note that if the product is _not_ found, we let Propel handle autoincrement on the product id.
+        require $this->productMapping;
 
         $errors = [];
         $item = $data->item->InventTable;
@@ -631,7 +635,7 @@ class ECommerceServices extends SoapService
         // set sync flag
         if (isset($stock->LastInCycle) && $stock->LastInCycle) {
             $c = $this->hanzo->container;
-            $c->get('redis.permanent')->hset(
+            $c->get('pdl.phpredis.permanent')->hset(
                 'stock.sync.time',
                 strtoupper($c->get('kernel')->getSetting('domain_key')),
                 time()

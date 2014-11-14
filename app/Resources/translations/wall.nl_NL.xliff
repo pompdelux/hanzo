@@ -2,31 +2,31 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
-            <trans-unit id="pompdewall.header.text" approved="no">
+            <trans-unit id="pompdewall.header.text">
                 <source>pompdewall.header.text</source>
                 <target>POMPdeWALL</target>
             </trans-unit>
-            <trans-unit id="wall.edit.entry.success" approved="no">
+            <trans-unit id="wall.edit.entry.success">
                 <source>wall.edit.entry.success</source>
                 <target>Commentaar is opgedateerd!</target>
             </trans-unit>
-            <trans-unit id="wall.edit.entry.failed" approved="no">
+            <trans-unit id="wall.edit.entry.failed">
                 <source>wall.edit.entry.failed</source>
                 <target>Er ging iets fout. Commentaar wordt niet opgedateerd!</target>
             </trans-unit>
-            <trans-unit id="wall.add.comment.success" approved="no">
+            <trans-unit id="wall.add.comment.success">
                 <source>wall.add.comment.success</source>
                 <target>Commentaar is opgeslagen!</target>
             </trans-unit>
-            <trans-unit id="wall.add.comment.failed" approved="no">
+            <trans-unit id="wall.add.comment.failed">
                 <source>wall.add.comment.failed</source>
                 <target>Er ging iets fout. Commentaar is niet opgeslagen!</target>
             </trans-unit>
-            <trans-unit id="wall.add.entry.success" approved="no">
+            <trans-unit id="wall.add.entry.success">
                 <source>wall.add.entry.success</source>
                 <target>Commentaar is opgeslagen!</target>
             </trans-unit>
-            <trans-unit id="wall.add.entry.failed" approved="no">
+            <trans-unit id="wall.add.entry.failed">
                 <source>wall.add.entry.failed</source>
                 <target>Er ging iets fout. Commentaar is niet opgeslagen!</target>
             </trans-unit>

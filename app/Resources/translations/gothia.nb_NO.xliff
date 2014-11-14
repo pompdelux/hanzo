@@ -43,7 +43,7 @@ Kontakt vennligst arvato Finance AS Kundeservice: 2287 8970<br>Ved andre godkjen
         <source>json.placereservation.error</source>
         <target>Kunne ikke opprette din ordre ved arvato Finance AS</target>
       </trans-unit>
-      <trans-unit id="json_err90" approved="no">
+      <trans-unit id="json_err90">
         <source>json.order.state_pre_payment.locked</source>
         <target>Your order is being processed. Please wait.</target>
       </trans-unit>
@@ -73,7 +73,7 @@ Hvis du har vært kunde hos arvato Finance AS før, er ditt personnummer lagret 
         <source>form.submit_step2</source>
         <target>Gå videre</target>
       </trans-unit>
-      <trans-unit id="form_txt30" approved="no">
+      <trans-unit id="form_txt30">
         <source>form.cancel</source>
         <target>Afbryd betaling</target>
       </trans-unit>

@@ -53,7 +53,7 @@ class CheckJobsCommand extends ContainerAwareCommand
     protected function stockSyncCheck($output)
     {
         $output->writeln('Stock sync checker initialized.</info>');
-        $runs = $this->getContainer()->get('redis.permanent')->hgetall('stock.sync.time');
+        $runs = $this->getContainer()->get('pdl.phpredis.permanent')->hgetall('stock.sync.time');
 
         if (empty($runs)) {
             return;
@@ -71,7 +71,7 @@ class CheckJobsCommand extends ContainerAwareCommand
     protected function cronCheck($output)
     {
         $output->writeln('Dead order cron checker initialized.</info>');
-        $runs = $this->getContainer()->get('redis.permanent')->hgetall('cron.log');
+        $runs = $this->getContainer()->get('pdl.phpredis.permanent')->hgetall('cron.log');
 
         if (empty($runs)) {
             return;

@@ -4,12 +4,13 @@
 
 ## Requirements:
 
-First off, the same requirements as [symfony2](http://symfony.com/doc/2.0/reference/requirements.html), besides this, we have these addons:
+First off, the same requirements as [symfony2](http://symfony.com/doc/current/reference/requirements.html), besides this, we have these addons:
 
 1. [redis](http://redis.io/) must be installed and working
 2. cdn must be setup (this is the same repos as hanzo see docs/vhost.cdn.conf)
 3. Apache or Nginx must be setup up (Apache with mod_rewrite)
-4. PHP modules needed (recommended)
+4. PHP version > 5.5
+5. PHP modules needed
     * Zend OPcache
     * PDO (mysql)
     * Curl
@@ -29,31 +30,30 @@ These are only required on dev servers:
 2. `cd hanzo`
 3. Copy app/config/parameters.ini.dist to app/config/parameters.ini
 	1. Change any settings necessary to connect to your database
-4. Copy app/config/hanzo.yml.dist to app/config/hanzo.yml
-	1. Change cdn and/or other settings
-5. `mysql -u xxx -p yyy hanzo < app/propel/sql/default.sql`
-6. add fixture data, here we have a "clean" and a "full" version, the full version includes testdata.
-	1. `mysql -u xxx -p yyy hanzo < app/propel/fixtures/fixtures.sql`
- 	2. `mysql -u xxx -p yyy hanzo < app/propel/fixtures/fixtures_all.sql`
-7. `php bin/vendors install`
-8. Setup apache, see `dosc/vhost.conf` for an example
-9. Install grunt depenencies
+5. Get at least the _dk database from testpompdelux from @mmh and load that
+	1. the one from live is too big, so don't try ;)
+6. `php bin/vendors install`
+7. Setup apache, see `dosc/vhost.conf` for an example
+8. Install grunt depenencies
  	1. `npm install`
-10. Run `grunt watch` in a shell to keep files up2date
+9. Run `grunt watch` in a shell to keep files up2date
 
 
 ## Configuration:
 
-To access a dev page, the structure is as follows, {locale} is one of the configured locales: `http://yourdomain.tld/app_dev.php/{locale}` or `http://yourdomain.tld/app_test.php/{locale}` prod is never used, well - in production but else...
+Note, to ease the flow, we use `app_dev.php` as "index" on locale dev and `test_dev.php` on test - so you do not use the environment files directly.
 
-At the moment `da_DK`, `sv_SE`, `nb_NO`, `nl_NL`, `en_GB`, `de_DE`, 'de_CH` and `de_AT` is configued.
+To access a dev page, the structure is as follows, {locale} is one of the configured locales: `http://yourdomain.tld/{locale}` or `http://yourdomain.tld/app_test.php/{locale}` prod is never used, well - in production but else...
 
-Please notice, you need to have the utf8 locales for these languages installed (ex: da_DK.utf8) !
+At the moment `da_DK`, `sv_SE`, `nb_NO`, `nl_NL`, `en_GB`, `de_DE`, `de_CH` and `de_AT` is configured.
+
+Please notice, you need to have all the utf8 locales for these languages installed (ex: da_DK.utf8) !
 
 
 ## Misc
 
-Follow the [coding standards](http://symfony.com/doc/current/contributing/code/standards.html) as much as possible.
+* Follow the [coding standards](http://symfony.com/doc/current/contributing/code/standards.html) as much as possible.
+* Use a codesniffer php-cs is recomended.
 
 symfony console:
 
@@ -71,21 +71,32 @@ redis:
 
 - `redis-cli` is the commandline interface for handeling redis related tasks
   redis supports tab-completion
-- flushing the cache: `FLUSHALL`
+- flushing the cache: `FLUSHDB`
+	-  **never ever** use `FLUSHALL`
 - find a key: `KEYS *xx*`
+- list all keys: `KEYS *`
 - help, well: `HELP` or go see the [docs](http://redis.io/documentation), they are great.
 
+Currently we use redis for:
+
+* caching
+	* short term - db: 0, port: 6379
+	* permanent - db: 2, port: 6379
+* sessions - db: 1, port: 6380
+* stock levels - db: 5, port: 6379
+
+On dev we only use one redis server, so here the port number is 6379 (default)
 
 ## Themes
 
 - [Sass](http://sass-lang.com/)
 - [Compass](http://compass-style.org/)
 
-Assets for themes are located under `fx/THEME/`
+Assets for themes are located under `web/fx/THEME/`
 
 ###Create a new theme with compass:
 
-1. `cd fx`
+1. `cd web/fx`
 2. `compass create THEME_NAME --css-dir "css" --javascripts-dir "scripts" --images-dir "images"`
 
 --
@@ -94,7 +105,7 @@ Styles are grouped in seperate `.scss` files. e.g. Payment styles are located in
 
 The directory of a theme will look like this when built with compass (note that compass only generates the `sass` and `css` folders):
 
-- `fx/THEME/`
+- `web/fx/THEME/`
   - `css/`
      - `style.scss`
      - `ie.css`
@@ -116,6 +127,8 @@ Follow the [best practices](http://compass-style.org/help/tutorials/best_practic
 - `style.scss` - Main stylesheet which includes _base and others
   - `payment.scss` - Styles for payment
   - ...
+
+All assets (css and js) are compiled using `grunt`, all assets needed by a theme are added to the file `resources.json` in the theme folder, eks: `app/Resources/themes/2013s1/resources.json`
 
 
 ## Vagrant

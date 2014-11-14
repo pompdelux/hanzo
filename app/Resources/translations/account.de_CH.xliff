@@ -10,7 +10,7 @@
                 <source>The presented password cannot be empty.</source>
                 <target>Das Passwort darf nicht leer sein.</target>
             </trans-unit>
-            <trans-unit id="User account is disabled." approved="no">
+            <trans-unit id="User account is disabled.">
                 <source>User account is disabled.</source>
                 <target>Ihr Konto wurde deaktiviert.</target>
             </trans-unit>
@@ -22,7 +22,7 @@
                 <source>fetch.credit_note</source>
                 <target>Gutschrift als PDF herunterladen</target>
             </trans-unit>
-            <trans-unit id="previous.orders" approved="no">
+            <trans-unit id="previous.orders">
                 <source>previous.orders</source>
                 <target>Frühere Bestellungen</target>
             </trans-unit>
@@ -30,7 +30,7 @@
                 <source>account.details</source>
                 <target>Kontoinformationen anzeigen oder ändern.</target>
             </trans-unit>
-            <trans-unit id="my.account.order.view" approved="no">
+            <trans-unit id="my.account.order.view">
                 <source>my.account.order.view</source>
                 <target>Mein Konto - Bestellnummer #%order_id%</target>
             </trans-unit>
@@ -122,7 +122,7 @@
                 <source>my.account</source>
                 <target>Meine Seite</target>
             </trans-unit>
-            <trans-unit id="my.account.header" approved="no">
+            <trans-unit id="my.account.header">
                 <source>my.account.header</source>
                 <target><![CDATA[<h1>Willkommen!</h1>]]></target>
             </trans-unit>
@@ -206,7 +206,7 @@
                 <source>create.account</source>
                 <target>Weiter</target>
             </trans-unit>
-            <trans-unit id="create.account.header" approved="no">
+            <trans-unit id="create.account.header">
                 <source>create.account.header</source>
                 <target><![CDATA[<h1>Willkommen - Erstellen Sie ein Benutzerkonto</h1>]]></target>
             </trans-unit>
@@ -338,11 +338,11 @@
                 <source>address.last_name.required</source>
                 <target>Bitte Nachnamen ausfüllen</target>
             </trans-unit>
-            <trans-unit id="address.first_name.min.length" approved="no">
+            <trans-unit id="address.first_name.min.length">
                 <source>address.first_name.min.length</source>
                 <target>Der Vorname muss aus mind. 2 Zeichen bestehen</target>
             </trans-unit>
-            <trans-unit id="address.last_name.min.length" approved="no">
+            <trans-unit id="address.last_name.min.length">
                 <source>address.last_name.min.length</source>
                 <target>Der Nachname muss aus mind. 2 Zeichen bestehen</target>
             </trans-unit>
@@ -374,43 +374,43 @@
                 <source>Bad credentials</source>
                 <target>E-Mail-Adresse und/oder Passwort wurde nicht gefunden.</target>
             </trans-unit>
-            <trans-unit id="update.notice" approved="no">
+            <trans-unit id="update.notice">
                 <source>update.notice</source>
                 <target></target>
             </trans-unit>
-            <trans-unit id="update.password_notice" approved="no">
+            <trans-unit id="update.password_notice">
                 <source>update.password_notice</source>
                 <target>Nur ausfüllen, wenn Sie Ihr aktuelles Passwort ändern möchten.</target>
             </trans-unit>
-            <trans-unit id="history.empty" approved="no">
+            <trans-unit id="history.empty">
                 <source>history.empty</source>
                 <target>Ihr Einkaufsverlauf ist leer.</target>
             </trans-unit>
-            <trans-unit id="account.updated" approved="no">
+            <trans-unit id="account.updated">
                 <source>account.updated</source>
                 <target>Ihre Kontoinformationen wurden aktualisiert.</target>
             </trans-unit>
-            <trans-unit id="create.account.error.title" approved="no">
+            <trans-unit id="create.account.error.title">
                 <source>create.account.error.title</source>
                 <target>Es ist ein Fehler aufgetreten</target>
             </trans-unit>
-            <trans-unit id="create.account.error" approved="no">
+            <trans-unit id="create.account.error">
                 <source>create.account.error</source>
                 <target>Sie haben das Formular nicht korrekt ausgefüllt, Details sehen Sie unten:</target>
             </trans-unit>
-            <trans-unit id="phone.required" approved="no">
+            <trans-unit id="phone.required">
                 <source>phone.required</source>
                 <target>Bitte Ihre Telefonnummer angeben</target>
             </trans-unit>
-            <trans-unit id="phone.not.valid" approved="no">
+            <trans-unit id="phone.not.valid">
                 <source>phone.not.valid</source>
                 <target>Die Telefonnummer darf nur Ziffern enthalten</target>
             </trans-unit>
-            <trans-unit id="phone.min.length" approved="no">
+            <trans-unit id="phone.min.length">
                 <source>phone.min.length</source>
                 <target>Ihre Telefonnummer muss aus mind. 8 Zeichen bestehen</target>
             </trans-unit>
-            <trans-unit id="email.required" approved="no">
+            <trans-unit id="email.required">
                 <source>email.required</source>
                 <target>Bitte Ihre E-Mail-Adresse angeben</target>
             </trans-unit>
@@ -418,7 +418,7 @@
                 <source>password.required</source>
                 <target>Das Passwort muss aus mind. 5 Zeichen bestehen</target>
             </trans-unit>
-            <trans-unit id="password.min.length" approved="no">
+            <trans-unit id="password.min.length">
                 <source>password.min.length</source>
                 <target>Ihr Passwort muss aus mind. 5 Zeichen bestehen</target>
             </trans-unit>
@@ -430,7 +430,7 @@
                 <source>login.restricted.other_locale</source>
                 <target><![CDATA[Your profile has been set up in %site_name%. You should therefore use: <a href="%url%">%site_name%</a> webshop.<br>If you have any further questions, please contact our Customer Service.]]></target>
             </trans-unit>
-            <trans-unit id="login.restricted.only.customers" approved="no">
+            <trans-unit id="login.restricted.only.customers">
                 <source>login.restricted.only.customers</source>
                 <target><![CDATA[Your profile is set up to be an consultant or employee. You should therefore use: <a href="%url%">this login form</a>.]]></target>
             </trans-unit>
@@ -438,15 +438,15 @@
                 <source>stop.editing.order</source>
                 <target>Bestellbearbeitung stoppen</target>
             </trans-unit>
-            <trans-unit id="unable.to.lock.order" approved="no">
+            <trans-unit id="unable.to.lock.order">
                 <source>unable.to.lock.order</source>
                 <target>Die Bestellung kann im Augenblick nicht bearbeitet werden. Bitte versuchen Sie es später erneut.</target>
             </trans-unit>
-            <trans-unit id="my.account.%name%" approved="no">
+            <trans-unit id="my.account.%name%">
                 <source>my.account.%name%</source>
                 <target>Willkommen %name%!</target>
             </trans-unit>
-            <trans-unit id="my.account.description" approved="no">
+            <trans-unit id="my.account.description">
                 <source>my.account.description</source>
                 <target><![CDATA[ <p>
       Auf Meine Seite können Sie Ihre Bestellung bearbeiten und das Rücksendeetikett samt Rücksendeschein ausdrucken. Sie haben ebenfalls die Möglichkeit Informationen zu ändern und sich für den Newsletter anzumelden oder ihn abzubestellen<br><br>
@@ -471,7 +471,7 @@
       <b>Rücksendeetikett</b><br>
       Klicken Sie auf das graue Symbol neben Ihrer Bestellung um ein Rücksendeetikett zu erstellen. Das Rücksendeetikett öffnet sich in einem neuen Fenster.</p>  ]]></target>
             </trans-unit>
-            <trans-unit id="newsletter" approved="no">
+            <trans-unit id="newsletter">
                 <source>newsletter</source>
                 <target>Newsletter</target>
             </trans-unit>
@@ -491,18 +491,18 @@
                 <source>Pass repeated</source>
                 <target>Passwort bestätigen</target>
             </trans-unit>
-            <trans-unit id="my.account.my.events" approved="no">
+            <trans-unit id="my.account.my.events">
                 <source>my.account.my.events</source>
                 <target>Meine Veranstaltungen</target>
             </trans-unit>
-            <trans-unit id="account.history.see.all.orders" approved="no">
+            <trans-unit id="account.history.see.all.orders">
                 <source>account.history.see.all.orders</source>
                 <target>Alle Bestellungen anzeigen</target>
             </trans-unit>
-            <trans-unit id="my.account.login.notice" approved="no">
+            <trans-unit id="my.account.login.notice">
                 <source>my.account.login.notice</source>
                 <target><![CDATA[<p>Melden Sie sich hier als Kunde an</p>]]></target>
-            </trans-unit><trans-unit id="my.account.login.text" approved="no">
+            </trans-unit><trans-unit id="my.account.login.text">
                 <source>my.account.login.text</source>
                 <target><![CDATA[<h2>MEINE SEITE</h2><p>Um alle Vorteile bei POMPdeLUX genießen zu können, müssen Sie sich als Kunde anmelden bevor Sie weitershoppen.<br><br>Dies gibt Ihnen unter anderem die Möglichkeit:<br>
 			<ul>
@@ -516,15 +516,15 @@
                 <source>my.account.login.title</source>
                 <target>Meine Seite - Login</target>
             </trans-unit>
-            <trans-unit id="my.account.login.header" approved="no">
+            <trans-unit id="my.account.login.header">
                 <source>my.account.login.header</source>
                 <target><![CDATA[<h1>Willkommen auf Meine Seite</h1>]]></target>
             </trans-unit>
-            <trans-unit id="create.pre-notice" approved="no">
+            <trans-unit id="create.pre-notice">
                 <source>create.pre-notice</source>
                 <target><![CDATA[<b>Sind Sie ein neuer Kunde?</b><br>Auf dieser Seite sollen Sie Ihre privaten Informationen ausfüllen (<u>nicht</u> evtl. Firmeninformationen).]]></target>
             </trans-unit>
-            <trans-unit id="order.force.login.description" approved="no">
+            <trans-unit id="order.force.login.description">
                 <source>order.force.login.description</source>
                 <target><![CDATA[
                     <h3>Liebe/r Kunde/in,</h3>
@@ -565,19 +565,19 @@ Um jedoch sicherzustellen, dass dabei keine Fehler aufgetreten sind, möchten wi
             </trans-unit>
             <trans-unit id="wishlist.add.label">
                 <source>wishlist.add.label</source>
-                <target>Opret shoppingliste</target>
+                <target>Meine Shoppingliste</target>
             </trans-unit>
             <trans-unit id="wishlist.add.description">
                 <source>wishlist.add.description</source>
                 <target><![CDATA[
-                    <p>Her kan du oprette en liste med de styles, du ønsker at bestille ved et Home Shopping arrangement eller Åbent Hus.</p>
+                    <p>Hier können Sie eine Liste mit den Styles erstellen, welche Sie bei einer Home Shopping Veranstaltung oder bei einem Tag der offenen Tür bestellen möchten. Ihre Shoppingliste wird automatisch gespeichert.</p>
                     <ul>
-                        <li>Tryk på "Opret Shoppingliste". Din Shoppingliste får et unikt nummer, som din Shopping Advisor skal bruge.</li>
-                        <li>Tilføj de styles du ønsker at købe.</li>
-                        <li>Vis Shoppingliste nummeret til din Shopping Advisor, som behandler din ordre.</li>
-                        <li>Lagerbeholdning tjekkes, ordren gennemføres i samarbejde med din Shopping Advisor og herefter vil du modtage en ordrebekræftelse på din ordre.</li>
+                        <li>Klicken Sie auf ”Meine Shoppingliste”. Ihre Shoppingliste bekommt eine persönliche Nummer zugeordnet, welche Ihr Shopping Advisor eingeben kann.</li>
+                        <li>Fügen Sie die gewünschten Styles hinzu.</li>
+                        <li>Zeigen Sie Ihrem Shopping Advisor die Shoppingliste.</li>
+                        <li>Die Lagerverfügbarkeit wird überprüft, die Bestellung wird in Zusammenarbeit mit Ihrem Shopping Advisor durchgeführt und danach erhalten Sie eine Bestellbestätigung zu Ihrer Bestellung.</li>
                     </ul>
-                    <p>HUSK! Vær opmærksom på, at du først har afgivet din ordre, når din Shopping Advisor har indlæst dit Shoppingliste nummer, og du har fået en odrebekræftelse. Varene på din Shoppingliste er ikke reserveret selvom de er tilføjet, så der kan opstå tilfælde, hvor en vare desværre er udsolgt.</p>
+                    <p>Bitte beachten: Ihre Bestellung wird erst dann gültig, wenn Ihr Shopping Advisor die Nummer Ihrer Shoppingliste eingegeben hat und Sie Ihre Bestellbestätigung erhalten haben. Die Waren auf Ihrer Shoppingliste werden nicht reserviert, auch wenn diese hinzugefügt wurden. Es kann also vorkommen, dass eine Ware bei Bestelleingabe ausverkauft ist.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="wishlist.add.to.list">
@@ -586,19 +586,19 @@ Um jedoch sicherzustellen, dass dabei keine Fehler aufgetreten sind, möchten wi
             </trans-unit>
             <trans-unit id="wishlist.placeholder.query">
                 <source>wishlist.placeholder.query</source>
-                <target>Tilføj vare</target>
+                <target>Ware hinzufügen</target>
             </trans-unit>
             <trans-unit id="wishlist.query.description">
                 <source>wishlist.query.description</source>
-                <target>Indtast de tre første bogstaver i stylens navn og vælg den ønskede style fra listen.</target>
+                <target>Geben Sie die ersten drei Buchstaben des Style-Namen ein, und wählen Sie den gewünschten Style von der Liste aus.</target>
             </trans-unit>
             <trans-unit id="wishlist.select.size">
                 <source>wishlist.select.size</source>
-                <target>Størrelse</target>
+                <target>Größe</target>
             </trans-unit>
             <trans-unit id="wishlist.select.color">
                 <source>wishlist.select.color</source>
-                <target>Farve</target>
+                <target>Farbe</target>
             </trans-unit>
             <trans-unit id="wishlist.number">
                 <source>wishlist.number</source>
@@ -606,11 +606,11 @@ Um jedoch sicherzustellen, dass dabei keine Fehler aufgetreten sind, möchten wi
             </trans-unit>
             <trans-unit id="add.to.wishlist">
                 <source>add.to.wishlist</source>
-                <target>Tilføj til listen</target>
+                <target>Liste hinzufügen</target>
             </trans-unit>
             <trans-unit id="wishlist.remove.all.items">
                 <source>wishlist.remove.all.items</source>
-                <target>Ryd listen</target>
+                <target>Liste zurücksetzen</target>
             </trans-unit>
         </body>
     </file>

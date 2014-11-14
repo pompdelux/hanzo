@@ -22,7 +22,7 @@
         "jms/di-extra-bundle": "dev-master",
         "propel/propel-bundle": "1.4.*",
         "willdurand/geocoder": "*",
-        "willdurand/js-translation-bundle": "2.*",
+        "willdurand/js-translation-bundle": "2.1.*",
         "mrbase/smesg": "*",
         "ekino/newrelic-bundle": "master-dev",
         "liip/theme-bundle": "dev-master",
@@ -30,6 +30,7 @@
         "misd/guzzle-bundle": "~1.0",
 
         "knplabs/knp-snappy-bundle": "1.1",
+        "pompdelux/phpredis-bundle": "1.*",
         "leezy/pheanstalk-bundle": "2.*",
         "glorpen/propel-bundle": "@dev"
     },

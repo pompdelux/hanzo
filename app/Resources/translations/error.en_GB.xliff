@@ -10,7 +10,7 @@
                 <source>404.description</source>
                 <target><![CDATA[The page you required does not exist.<br><br>Try browsing the categories or use the search box below.]]></target>
             </trans-unit>
-            <trans-unit id="404.webshop_closed.description" approved="no">
+            <trans-unit id="404.webshop_closed.description">
                 <source>404.webshop_closed.description</source>
                 <target><![CDATA[The page you required does not exist.<br><br>Try browsing the categories or use the search box below.]]></target>
             </trans-unit>
@@ -22,7 +22,7 @@
                 <source>500.description</source>
                 <target><![CDATA[
                     <p>An error has occurred. Please try to refresh the page.</p>
-                    <p>If you continue to experience problems, please contact Customer Service on telephone no. +45 8736 1000 or send an e-mail at <a href="mailto:mail@pompdelux.com">mail@pompdelux.com</a>. We apologize for any inconvenience!</p>
+                    <p>If you continue to experience problems, please contact Customer Service on telephone no. +45 8736 1000 or send an e-mail at <a href="mailto:mailcom@POMPdeLUX.com">mailcom@POMPdeLUX.com</a>. We apologize for any inconvenience!</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="403.title">
@@ -33,7 +33,7 @@
                 <source>403.description</source>
                 <target><![CDATA[
                     <p>An error has occurred. Please try to refresh the page.</p>
-                    <p>If you continue to experience problems, please contact Customer Service on telephone no. +45 8736 1000 or send an e-mail at <a href="mailto:mail@pompdelux.com">mail@pompdelux.com</a>. We apologize for any inconvenience!</p>
+                    <p>If you continue to experience problems, please contact Customer Service on telephone no. +45 8736 1000 or send an e-mail at <a href="mailto:mailcom@POMPdeLUX.com">mailcom@POMPdeLUX.com</a>. We apologize for any inconvenience!</p>
                 ]]></target>
             </trans-unit>
         </body>

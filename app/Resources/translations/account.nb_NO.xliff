@@ -2,15 +2,15 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
-            <trans-unit id="The presented password is invalid." approved="no">
+            <trans-unit id="The presented password is invalid.">
                 <source>The presented password is invalid.</source>
                 <target>E-postadresse og/eller passord er ikke tastet inn korrekt.</target>
             </trans-unit>
-            <trans-unit id="The presented password cannot be empty." approved="no">
+            <trans-unit id="The presented password cannot be empty.">
                 <source>The presented password cannot be empty.</source>
                 <target>E-postadresse og/eller passord er ikke tastet inn korrekt.</target>
             </trans-unit>
-            <trans-unit id="User account is disabled." approved="no">
+            <trans-unit id="User account is disabled.">
                 <source>User account is disabled.</source>
                 <target>Din konto er deaktiveret.</target>
             </trans-unit>
@@ -145,7 +145,7 @@
                 <source>Address line 1</source>
                 <target>Gatenavn og nummer</target>
             </trans-unit>
-            <trans-unit id="56" approved="no">
+            <trans-unit id="56">
                 <source>Address line 2</source>
                 <target></target>
             </trans-unit>
@@ -161,7 +161,7 @@
                 <source>Password repeated</source>
                 <target>Passord bekreftes</target>
             </trans-unit>
-            <trans-unit id="password.invalid.match" approved="no">
+            <trans-unit id="password.invalid.match">
                 <source>password.invalid.match</source>
                 <target>Du skal taste inn samme kodeord i begge felt.</target>
             </trans-unit>
@@ -169,7 +169,7 @@
                 <source>Email repeated</source>
                 <target>Gjenta e-postadressen</target>
             </trans-unit>
-            <trans-unit id="email.invalid.match" approved="no">
+            <trans-unit id="email.invalid.match">
                 <source>email.invalid.match</source>
                 <target>Du skal taste inn samme e-postadresse i begge felt.</target>
             </trans-unit>
@@ -177,7 +177,7 @@
                 <source>Country</source>
                 <target>Land</target>
             </trans-unit>
-            <trans-unit id="64" approved="no">
+            <trans-unit id="64">
                 <source>account.created</source>
                 <target>Din konto er nå opprettet.</target>
             </trans-unit>
@@ -189,7 +189,7 @@
                 <source>create.account</source>
                 <target>Neste</target>
             </trans-unit>
-            <trans-unit id="create.account.header" approved="no">
+            <trans-unit id="create.account.header">
                 <source>create.account.header</source>
                 <target>Velkommen - du kan nå opprette din konto</target>
             </trans-unit>
@@ -209,11 +209,11 @@
                 <source>create.notice</source>
                 <target><![CDATA[<strong>Er du allerede kunde?</strong><br>Hvis du allerede har en konto hos oss skal du logge deg inn på <a href="%url%">Min Side</a>.<br><br>]]></target>
             </trans-unit>
-            <trans-unit id="68" approved="no">
+            <trans-unit id="68">
                 <source>nno.title</source>
                 <target>Hent adresseopplysningene dine fra De Gule Sider (TDC).</target>
             </trans-unit>
-            <trans-unit id="69" approved="no">
+            <trans-unit id="69">
                 <source>nno.description</source>
                 <target><![CDATA[<b>Er du ny kunde?</b><br>Tast inn telefonnummer og få fylt ut adressen automatisk.]]></target>
             </trans-unit>
@@ -229,19 +229,19 @@
                 <source>create.terms</source>
                 <target>POMPdeLUX’ vilkår.</target>
             </trans-unit>
-            <trans-unit id="74" approved="no">
+            <trans-unit id="74">
                 <source>create.nno.address_found</source>
                 <target>Adressen som matcher med det inntastede telefonnummeret er satt inn nedenfor.</target>
             </trans-unit>
-            <trans-unit id="75" approved="no">
+            <trans-unit id="75">
                 <source>create.nno.no_address_found</source>
                 <target>Det ble ikke funnet noen adresse på det inntastede telefonnummeret.</target>
             </trans-unit>
-            <trans-unit id="76" approved="no">
+            <trans-unit id="76">
                 <source>The password fields must match.</source>
                 <target>De to feltene med kodeord skal være like.</target>
             </trans-unit>
-            <trans-unit id="77" approved="no">
+            <trans-unit id="77">
                 <source>The email fields must match.</source>
                 <target>De to feltene med e-postadresser skal være like.</target>
             </trans-unit>
@@ -345,47 +345,47 @@
                 <source>address.company_name.required</source>
                 <target>Skriv inn firmanavn.</target>
             </trans-unit>
-            <trans-unit id="Bad credentials" approved="no">
+            <trans-unit id="Bad credentials">
                 <source>Bad credentials</source>
                 <target>Kan ikke finne e-postadressen og/eller passordet.</target>
             </trans-unit>
-            <trans-unit id="update.notice" approved="no">
+            <trans-unit id="update.notice">
                 <source>update.notice</source>
                 <target></target>
             </trans-unit>
-            <trans-unit id="update.password_notice" approved="no">
+            <trans-unit id="update.password_notice">
                 <source>update.password_notice</source>
                 <target>Skal kun fylles ut hvis du ønsker å endre nåværende kodeord.</target>
             </trans-unit>
-            <trans-unit id="history.empty" approved="no">
+            <trans-unit id="history.empty">
                 <source>history.empty</source>
                 <target>Du har enda ikke lagt inn en ordre.</target>
             </trans-unit>
-            <trans-unit id="account.updated" approved="no">
+            <trans-unit id="account.updated">
                 <source>account.updated</source>
                 <target>Dine kontoopplysninger er oppdatert.</target>
             </trans-unit>
-            <trans-unit id="create.account.error.title" approved="no">
+            <trans-unit id="create.account.error.title">
                 <source>create.account.error.title</source>
                 <target>Det oppstod en feil</target>
             </trans-unit>
-            <trans-unit id="create.account.error" approved="no">
+            <trans-unit id="create.account.error">
                 <source>create.account.error</source>
                 <target>Du har ikke fylt ut formularen korrekt, se detaljer nedenfor:</target>
             </trans-unit>
-            <trans-unit id="phone.required" approved="no">
+            <trans-unit id="phone.required">
                 <source>phone.required</source>
                 <target>Du skal angi telefonnummer</target>
             </trans-unit>
-            <trans-unit id="phone.not.valid" approved="no">
+            <trans-unit id="phone.not.valid">
                 <source>phone.not.valid</source>
                 <target>Phone number should only be numbers</target>
             </trans-unit>
-            <trans-unit id="phone.min.length" approved="no">
+            <trans-unit id="phone.min.length">
                 <source>phone.min.length</source>
                 <target>Phone number should be at least 8 digits long</target>
             </trans-unit>
-            <trans-unit id="email.required" approved="no">
+            <trans-unit id="email.required">
                 <source>email.required</source>
                 <target>Du skal angi e-postadresse</target>
             </trans-unit>
@@ -393,7 +393,7 @@
                 <source>password.required</source>
                 <target>Passord skal være på minst 5 tegn</target>
             </trans-unit>
-            <trans-unit id="my.account.order.view" approved="no">
+            <trans-unit id="my.account.order.view">
                 <source>my.account.order.view</source>
                 <target>Min konto - ordre #%order_id%</target>
             </trans-unit>
@@ -405,7 +405,7 @@
                 <source>address.billing</source>
                 <target>Betalingsadresse</target>
             </trans-unit>
-            <trans-unit id="password.min.length" approved="no">
+            <trans-unit id="password.min.length">
                 <source>password.min.length</source>
                 <target>Kodeordet skal bestå av minimum 5 tegn</target>
             </trans-unit>
@@ -417,7 +417,7 @@
                 <source>login.restricted.other_locale</source>
                 <target><![CDATA[Your profile has been set up in %site_name%. You should therefore use: <a href="%url%">%site_name%</a> Webshop.<br>If you have any further questions, please contact our Customer Service.]]></target>
             </trans-unit>
-            <trans-unit id="login.restricted.only.customers" approved="no">
+            <trans-unit id="login.restricted.only.customers">
                 <source>login.restricted.only.customers</source>
                 <target><![CDATA[Your profile is set up to be an consultant or employee. You should therefore use: <a href="%url%">this login form</a>.]]></target>
             </trans-unit>
@@ -425,15 +425,15 @@
                 <source>stop.editing.order</source>
                 <target>Avbryt ordreredigering</target>
             </trans-unit>
-            <trans-unit id="unable.to.lock.order" approved="no">
+            <trans-unit id="unable.to.lock.order">
                 <source>unable.to.lock.order</source>
                 <target>Ordren kan ikke bestilles akkurat nå. Prøv igjen senere.</target>
             </trans-unit>
-            <trans-unit id="my.account.%name%" approved="no">
+            <trans-unit id="my.account.%name%">
                 <source>my.account.%name%</source>
                 <target>Velkommen %name%!</target>
             </trans-unit>
-            <trans-unit id="my.account.description" approved="no">
+            <trans-unit id="my.account.description">
                 <source>my.account.description</source>
                 <target><![CDATA[ <p>
       På Min Side kan du redigere i din ordre og printe ut en returlapp og et returskjema. Du kan også rette i dine opplysninger og melde deg på/av nyhetsbrevet vårt.<br><br>
@@ -459,15 +459,15 @@ Returlapp og returskjema ligger i hver sin PDF-fil, og skal printes hver for seg
       <b>Returlapp</b><br>
       Klikk på ikonet ved din ordre for å få en returlapp. Benytter du vår returlapp, motregner vi kun 69,- NOK fra verdien av dine returvarer. Returlapp åpner i et nytt vindu. </p>  ]]></target>
             </trans-unit>
-            <trans-unit id="newsletter" approved="no">
+            <trans-unit id="newsletter">
                 <source>newsletter</source>
                 <target>Newsletters</target>
             </trans-unit>
-            <trans-unit id="my.account.my.events" approved="no">
+            <trans-unit id="my.account.my.events">
                 <source>my.account.my.events</source>
                 <target>Mine arrangementer</target>
             </trans-unit>
-            <trans-unit id="account.history.see.all.orders" approved="no">
+            <trans-unit id="account.history.see.all.orders">
                 <source>account.history.see.all.orders</source>
                 <target>See all orders</target>
             </trans-unit>
@@ -479,19 +479,19 @@ Returlapp og returskjema ligger i hver sin PDF-fil, og skal printes hver for seg
                 <source>Email address repeated</source>
                 <target>Gjenta e-postadressen</target>
             </trans-unit>
-            <trans-unit id="acc.3" approved="no">
+            <trans-unit id="acc.3">
                 <source>Pass</source>
                 <target>Valgfri passord</target>
             </trans-unit>
-            <trans-unit id="acc.4" approved="no">
+            <trans-unit id="acc.4">
                 <source>Pass repeated</source>
                 <target>Gjenta passord</target>
             </trans-unit>
-            <trans-unit id="my.account.login.notice" approved="no">
+            <trans-unit id="my.account.login.notice">
                 <source>my.account.login.notice</source>
                 <target><![CDATA[<p>Opprett deg som kunde her</p>]]></target>
             </trans-unit>
-            <trans-unit id="my.account.login.text" approved="no">
+            <trans-unit id="my.account.login.text">
                 <source>my.account.login.text</source>
                 <target><![CDATA[<h2>MIN SIDE</h2><p>For at vi kan gi deg de mange fordelene hos POMPdeLUX, skal du opprette deg som kunde før du kan shoppe videre.<br><br>Det gir deg blant annet mulighet for å:<br>
 			<ul>
@@ -501,27 +501,27 @@ Returlapp og returskjema ligger i hver sin PDF-fil, og skal printes hver for seg
 			<li>Se dine tidligere bestillinger og finn gamle fakturaer.</li>
           </ul></p>]]></target>
             </trans-unit>
-            <trans-unit id="my.account.login.header" approved="no">
+            <trans-unit id="my.account.login.header">
                 <source>my.account.login.header</source>
                 <target><![CDATA[<h1>Velkommen til Min Side</h1>]]></target>
             </trans-unit>
-            <trans-unit id="my.account.header" approved="no">
+            <trans-unit id="my.account.header">
                 <source>my.account.header</source>
                 <target><![CDATA[<h1>Velkommen!</h1>]]></target>
             </trans-unit>
-            <trans-unit id="address.first_name.min.length" approved="no">
+            <trans-unit id="address.first_name.min.length">
                 <source>address.first_name.min.length</source>
                 <target>Ditt fornavn må inneholde minst to bokstaver</target>
             </trans-unit>
-            <trans-unit id="address.last_name.min.length" approved="no">
+            <trans-unit id="address.last_name.min.length">
                 <source>address.last_name.min.length</source>
                 <target>Ditt etternavn må inneholde minst to bokstaver</target>
             </trans-unit>
-            <trans-unit id="create.pre-notice" approved="no">
+            <trans-unit id="create.pre-notice">
                 <source>create.pre-notice</source>
                 <target><![CDATA[<b>Er du ny kunde?</b><br>På denne siden skal du fylle ut dine privatopplysninger (og <u>ikke</u> ev. firmaopplysninger).]]></target>
             </trans-unit>
-            <trans-unit id="order.force.login.description" approved="no">
+            <trans-unit id="order.force.login.description">
                 <source>order.force.login.description</source>
                 <target><![CDATA[
                     <h3>Kjære kunde</h3>
@@ -563,19 +563,19 @@ Deretter kan du bare shoppe videre.</p><br>
             </trans-unit>
             <trans-unit id="wishlist.add.label">
                 <source>wishlist.add.label</source>
-                <target>Opret shoppingliste</target>
+                <target>Min Shoppingliste</target>
             </trans-unit>
             <trans-unit id="wishlist.add.description">
                 <source>wishlist.add.description</source>
                 <target><![CDATA[
-                    <p>Her kan du oprette en liste med de styles, du ønsker at bestille ved et Home Shopping arrangement eller Åbent Hus.</p>
+                    <p>Her kan du opprette en liste med styles som du ønsker å bestille ved et Home Shopping arrangement eller Åpent Hus. Din Shoppingliste lagres automatisk.</p>
                     <ul>
-                        <li>Tryk på "Opret Shoppingliste". Din Shoppingliste får et unikt nummer, som din Shopping Advisor skal bruge.</li>
-                        <li>Tilføj de styles du ønsker at købe.</li>
-                        <li>Vis Shoppingliste nummeret til din Shopping Advisor, som behandler din ordre.</li>
-                        <li>Lagerbeholdning tjekkes, ordren gennemføres i samarbejde med din Shopping Advisor og herefter vil du modtage en ordrebekræftelse på din ordre.</li>
+                        <li>Trykk på "Min shoppingliste". Shoppinglisten får et unikt nummer som din Shopping Advisor skal bruke.</li>
+                        <li>Tilføy de styles som du ønsker å kjøpe.</li>
+                        <li>Vis Shoppingliste-nummeret til din Shopping Advisor, som behandler din ordre.</li>
+                        <li>Lagerbeholdningen undersøkes, ordren gjennomføres i samarbeid med din Shopping Advisor og heretter vil du motta en ordrebekreftelse på din ordre.</li>
                     </ul>
-                    <p>HUSK! Vær opmærksom på, at du først har afgivet din ordre, når din Shopping Advisor har indlæst dit Shoppingliste nummer, og du har fået en odrebekræftelse. Varene på din Shoppingliste er ikke reserveret selvom de er tilføjet, så der kan opstå tilfælde, hvor en vare desværre er udsolgt.</p>
+                    <p>HUSK! Vær oppmerksom på at du først har avgitt din ordre når Shopping Advisor har lest inn Shoppingliste-nummeret ditt, og du har fått en ordrebekreftelse. Varene på din Shoppingliste er ikke reservert selv om de er tilføyd. Det kan være at en vare dessverre er utsolgt.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="wishlist.add.to.list">
@@ -584,11 +584,11 @@ Deretter kan du bare shoppe videre.</p><br>
             </trans-unit>
             <trans-unit id="wishlist.placeholder.query">
                 <source>wishlist.placeholder.query</source>
-                <target>Tilføj vare</target>
+                <target>Tilføy vare</target>
             </trans-unit>
             <trans-unit id="wishlist.query.description">
                 <source>wishlist.query.description</source>
-                <target>Indtast de tre første bogstaver i stylens navn og vælg den ønskede style fra listen.</target>
+                <target>Tast inn de tre første bokstavene i stylens navn og velg ønsket style fra listen.</target>
             </trans-unit>
             <trans-unit id="wishlist.select.size">
                 <source>wishlist.select.size</source>
@@ -596,7 +596,7 @@ Deretter kan du bare shoppe videre.</p><br>
             </trans-unit>
             <trans-unit id="wishlist.select.color">
                 <source>wishlist.select.color</source>
-                <target>Farve</target>
+                <target>Farge</target>
             </trans-unit>
             <trans-unit id="wishlist.number">
                 <source>wishlist.number</source>
@@ -604,11 +604,11 @@ Deretter kan du bare shoppe videre.</p><br>
             </trans-unit>
             <trans-unit id="add.to.wishlist">
                 <source>add.to.wishlist</source>
-                <target>Tilføj til listen</target>
+                <target>Tilføy til listen</target>
             </trans-unit>
             <trans-unit id="wishlist.remove.all.items">
                 <source>wishlist.remove.all.items</source>
-                <target>Ryd listen</target>
+                <target>RYDD LISTEN</target>
             </trans-unit>
         </body>
     </file>
