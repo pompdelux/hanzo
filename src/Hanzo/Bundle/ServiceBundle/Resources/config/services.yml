@@ -83,3 +83,4 @@ services:
                 pheanstalk_queue: @ax.pheanstalk_queue
                 orders_service:   @hanzo.core.orders_service
             class:       %deadorder_manager.class%
+
