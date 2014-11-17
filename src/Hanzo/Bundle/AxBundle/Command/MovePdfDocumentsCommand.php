@@ -83,7 +83,7 @@ class MovePdfDocumentsCommand extends ContainerAwareCommand
         foreach ($files as $file) {
             $basename = $file->getBasename('.pdf');
 
-            if (!preg_match('/^[A-Z]{2}_[0-9]+_[0-9]+$/', $basename)) {
+            if (!preg_match('/^[A-Z]{2}_[0-9a-zA-Z]+_[0-9]+$/', $basename)) {
                 $this->failedFiles[] = [
                     'type' => 'invalid file name format',
                     'file' => $file,
