@@ -91,4 +91,16 @@ class PaymentActionsProxy
             throw new \Exception($msg);
         }
     }
+
+    /**
+     * @param string $name
+     *
+     * @return mixed
+     */
+    public function getApiByName($name)
+    {
+        if (isset($this->paymentApis[$name])) {
+            return $this->paymentApis[$name];
+        }
+    }
 }
