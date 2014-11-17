@@ -22,7 +22,7 @@ class DibsApi
     /**
      * @var array
      */
-    protected $settings = array();
+    protected $settings = [];
 
     /**
      * @var Router
@@ -35,7 +35,11 @@ class DibsApi
      */
     protected $service;
 
-    public function __construct( $parameters, array $settings )
+    /**
+     * @param array $parameters
+     * @param array $settings
+     */
+    public function __construct($parameters, array $settings)
     {
         $this->router = $parameters[0];
 
@@ -65,8 +69,9 @@ class DibsApi
     /**
      * wraps all calls so we can initiate the right service type
      *
-     * @param  string $method    Method name
-     * @param  array  $arguments Array of arguments to parse along
+     * @param string $method    Method name
+     * @param array  $arguments Array of arguments to parse along
+     *
      * @return mixed
      */
     public function __call($method, array $arguments = [])
