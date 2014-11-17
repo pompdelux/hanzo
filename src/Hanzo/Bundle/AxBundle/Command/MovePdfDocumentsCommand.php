@@ -130,7 +130,7 @@ class MovePdfDocumentsCommand extends ContainerAwareCommand
                 if (!is_dir($newTartet)) {
                     mkdir($newTartet, 0755, true);
                 }
-                rename($file->getPath(), $newTartet.'/'.$file->getBasename());
+                rename($file->getRealPath(), $newTartet.'/'.$file->getBasename());
             }
         }
 
