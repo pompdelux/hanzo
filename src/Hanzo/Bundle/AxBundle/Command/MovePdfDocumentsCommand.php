@@ -167,7 +167,7 @@ class MovePdfDocumentsCommand extends ContainerAwareCommand
             $output->writeln('<info>File: <comment>"'.$data['file']->getBasename().'"</comment> failed, error was: "'.$data['type'].'" - file moved to "trash"</info>');
 
             if (!$this->dryRun) {
-                rename($data['file']->getPath(), $this->failedDir.'/'.$data['file']->getBasename());
+                rename($data['file']->getRealPath(), $this->failedDir.'/'.$data['file']->getBasename());
             }
         }
     }
