@@ -47,3 +47,5 @@
 
     nno_api_key="delux"
     beanstalkd.server=localhost
+
+    pdfupload_root_dir="/var/www/pompdelux/shared/web/pdfupload"
