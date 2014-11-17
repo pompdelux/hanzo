@@ -10,33 +10,30 @@
 
 namespace Hanzo\Bundle\DataIOBundle\Command;
 
-use Criteria;
-use Propel;
-
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-use Hanzo\Model\Orders;
-use Hanzo\Model\OrdersQuery;
-
+/**
+ * Class CleanOrdersCommand
+ *
+ * @package Hanzo\Bundle\DataIOBundle
+ */
 class CleanOrdersCommand extends ContainerAwareCommand
 {
     protected function configure()
     {
         $this->setName('hanzo:dataio:clean_orders')
             ->setDescription('Delete orders in a stale mode')
-            ->addOption('dry_run', null, InputOption::VALUE_NONE, 'If set, the task will not change any orders')
-        ;
+            ->addOption('dry_run', null, InputOption::VALUE_NONE, 'If set, the task will not change any orders');
     }
 
     /**
      * executes the job
      *
-     * @param  InputInterface  $input
-     * @param  OutputInterface $output
+     * @param InputInterface  $input
+     * @param OutputInterface $output
      *
      * @return null
      */
@@ -47,15 +44,15 @@ class CleanOrdersCommand extends ContainerAwareCommand
 
         $container = $this->getContainer();
 
-        $dry_run = $input->getOption('dry_run');
-        $cleanup_manager = $container->get('cleanup_manager');
+        $dryRun = $input->getOption('dry_run');
+        $cleanupManager = $container->get('cleanup_manager');
 
-        $cancel_count = $cleanup_manager->cancelStaleOrderEdit($container, $dry_run);
-        $delete_count = $cleanup_manager->deleteStaleOrders($dry_run);
+        $cancelCount = $cleanupManager->cancelStaleOrderEdit($container, $dryRun);
+        $deleteCount = $cleanupManager->deleteStaleOrders($dryRun);
 
-        if ($dry_run) {
-            error_log("\n[".date('Y-m-d H:i:s').'] Would roll back '.$cancel_count.' stale orders.');
-            error_log('['.date('Y-m-d H:i:s').'] Would delete '.$delete_count.' stale orders.');
+        if ($dryRun) {
+            error_log("\n[".date('Y-m-d H:i:s').'] Would roll back '.$cancelCount.' stale orders.');
+            error_log('['.date('Y-m-d H:i:s').'] Would delete '.$deleteCount.' stale orders.');
         }
 
         $prefix = substr($this->getContainer()->getParameter('locale'), -2);

@@ -14,10 +14,18 @@ use Hanzo\Core\Tools;
 use Hanzo\Model\CustomersQuery;
 use Hanzo\Model\Orders;
 
+/**
+ * Class PaymentActionsProxy
+ *
+ * @package Hanzo\Bundle\PaymentBundle
+ */
 class PaymentActionsProxy
 {
     private $paymentApis = [];
 
+    /**
+     * @param \SplDoublyLinkedList $services
+     */
     public function __construct(\SplDoublyLinkedList $services)
     {
         foreach ($services as $service) {
@@ -27,7 +35,8 @@ class PaymentActionsProxy
     }
 
     /**
-     * @param  Orders $order
+     * @param Orders $order
+     *
      * @throws \Exception
      */
     public function cancelPayment(Orders $order)
@@ -38,7 +47,7 @@ class PaymentActionsProxy
 
         $paymentMethod = $order->getBillingMethod();
 
-        // hf@bellcom.dk, 12-jun-2012: handle old junk -->>
+        // handle old dibs payment junk
         switch ($paymentMethod)
         {
             case 'DIBS Payment Services (Credit Ca':
@@ -49,7 +58,6 @@ class PaymentActionsProxy
                 $paymentMethod = 'gothia';
                 break;
         }
-        // <<-- hf@bellcom.dk, 12-jun-2012: handle old junk
 
         if (empty($paymentMethod) || !isset($this->paymentApis[$paymentMethod.'api'])) {
             return;

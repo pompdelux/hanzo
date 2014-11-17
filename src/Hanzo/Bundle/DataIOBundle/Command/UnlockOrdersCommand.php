@@ -10,26 +10,23 @@
 
 namespace Hanzo\Bundle\DataIOBundle\Command;
 
-use Criteria;
-use Propel;
-
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-use Hanzo\Model\Orders;
-use Hanzo\Model\OrdersQuery;
-
+/**
+ * Class UnlockOrdersCommand
+ *
+ * @package Hanzo\Bundle\DataIOBundle\Command
+ */
 class UnlockOrdersCommand extends ContainerAwareCommand
 {
     protected function configure()
     {
         $this->setName('hanzo:dataio:unlock_orders')
             ->setDescription('Unlocks orders in a stale edit mode')
-            ->addOption('dry_run', null, InputOption::VALUE_NONE, 'If set, the task will not change any orders')
-        ;
+            ->addOption('dry_run', null, InputOption::VALUE_NONE, 'If set, the task will not change any orders');
     }
 
     /**

@@ -9,6 +9,11 @@ use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\OrdersStateLog;
 use Propel;
 
+/**
+ * Class CleanupService
+ *
+ * @package Hanzo\Bundle\ServiceBundle\Services
+ */
 class CleanupService
 {
     /**
@@ -30,17 +35,18 @@ class CleanupService
     public function __construct($parameters, $settings)
     {
         $this->ordersService = $parameters[0];
-        $this->settings = $settings;
+        $this->settings      = $settings;
     }
 
 
     /**
      * delete orders deemed dead
      *
-     * @param boolean $dry_run testing flag.
+     * @param boolean $dryRun testing flag.
+     *
      * @return int
      */
-    public function deleteStaleOrders($dry_run = false)
+    public function deleteStaleOrders($dryRun = false)
     {
         Propel::setForceMasterConnection(true);
         $orders = OrdersQuery::create()
@@ -52,8 +58,7 @@ class CleanupService
             ->filterByUpdatedAt(date('Y-m-d H:i:s', strtotime('2 hours ago')), Criteria::LESS_THAN)
             ->filterByCreatedAt(date('Y-m-d H:i:s', strtotime('6 month ago')), Criteria::GREATER_THAN)
             ->filterByInEdit(false)
-            ->find()
-        ;
+            ->find();
 
         $count = 0;
         /** @var \Hanzo\Model\Orders $order */
@@ -63,7 +68,7 @@ class CleanupService
             // only delete orders which has no payment info attached
             if (empty($attributes->payment) || empty($attributes->payment->transact)) {
                 $count++;
-                if ($dry_run) {
+                if ($dryRun) {
                     error_log('['.date('Y-m-d H:i:s').'] Order: #'.$order->getId().' will be deleted, state is: '.$order->getState());
                     continue;
                 }
@@ -83,11 +88,12 @@ class CleanupService
     /**
      * cancel order edits, where people abandon their edit session without releasing the edit lock
      *
-     * @param  Container $container service container
-     * @param  boolean   $dry_run   testing flag.
+     * @param Container $container service container
+     * @param boolean   $dryRun    testing flag.
+     *
      * @return int
      */
-    public function cancelStaleOrderEdit($container, $dry_run = false)
+    public function cancelStaleOrderEdit($container, $dryRun = false)
     {
         Propel::setForceMasterConnection(true);
 
@@ -100,13 +106,12 @@ class CleanupService
             ->filterByState(Orders::STATE_PENDING, Criteria::LESS_THAN)
             ->filterByState(Orders::STATE_ERROR_PAYMENT, Criteria::GREATER_THAN)
             ->filterByUpdatedAt(date('Y-m-d H:i:s', strtotime('2 hours ago')), Criteria::LESS_THAN)
-            ->find()
-        ;
+            ->find();
 
         $count = 0;
         foreach ($orders as $order) {
             $count++;
-            if ($dry_run) {
+            if ($dryRun) {
                 error_log('['.date('Y-m-d H:i:s').'] Order: #'.$order->getId().' will be roled back one version and unlocked in AX.');
                 continue;
             }

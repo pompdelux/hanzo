@@ -10,11 +10,15 @@
 namespace Hanzo\Bundle\DataIOBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Class CleanDeadOrdersCommand
+ *
+ * @package Hanzo\Bundle\DataIOBundle
+ */
 class CleanDeadOrdersCommand extends ContainerAwareCommand
 {
     protected function configure()
@@ -22,15 +26,14 @@ class CleanDeadOrdersCommand extends ContainerAwareCommand
         $this->setName('hanzo:dataio:clean_dead_orders')
             ->setDescription('Removes stale and dead orders')
             ->addOption('dryrun', null, InputOption::VALUE_NONE, 'If set, the task will not change any orders')
-            ->addOption('debug', null, InputOption::VALUE_NONE, 'If set, output debugging info')
-        ;
+            ->addOption('debug', null, InputOption::VALUE_NONE, 'If set, output debugging info');
     }
 
     /**
      * executes the job
      *
-     * @param  InputInterface  $input
-     * @param  OutputInterface $output
+     * @param InputInterface  $input
+     * @param OutputInterface $output
      *
      * @return null
      */
@@ -40,17 +43,17 @@ class CleanDeadOrdersCommand extends ContainerAwareCommand
         define('ACTION_TRIGGER', $this->getName());
 
         $dryrun = false;
-        if ( $input->getOption('dryrun') ) {
+        if ($input->getOption('dryrun')) {
             $dryrun = true;
         }
 
         $debug = false;
-        if ( $input->getOption('debug') ) {
+        if ($input->getOption('debug')) {
             $debug = true;
         }
 
         $deadOrderBuster = $this->getContainer()->get('deadorder_manager');
-        $deadOrderBuster->autoCleanup( $dryrun, $debug );
+        $deadOrderBuster->autoCleanup($dryrun, $debug);
 
         $prefix = substr($this->getContainer()->getParameter('locale'), -2);
         $this->getContainer()->get('pdl.phpredis.permanent')->hset('cron.log', $prefix.':clean_dead_orders', time());
