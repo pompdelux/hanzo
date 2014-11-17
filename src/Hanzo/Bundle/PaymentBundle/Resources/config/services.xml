@@ -26,6 +26,13 @@
             <tag name="payment.api" />
         </service>
 
+        <service id="payment.dibsapi.fixer" class="Hanzo\Bundle\PaymentBundle\Methods\Dibs\PaymentFixer">
+            <argument type="service" id="payment.dibsapi" />
+            <argument type="service" id="ax.out.service.wrapper" />
+            <argument type="service" id="ax.pheanstalk_queue" />
+            <argument type="service" id="hanzo.core.orders_service" />
+        </service>
+
         <service id="payment.gothiaapi" class="%payment.gothiaapi.class%" factory-service="service_factory" factory-method="get">
             <argument type="string">gothiaapi</argument>
             <argument type="collection">
