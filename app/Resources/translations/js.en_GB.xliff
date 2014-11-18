@@ -310,6 +310,14 @@
                 <source>basket.latest.added</source>
                 <target>Product added</target>
             </trans-unit>
+			<trans-unit id="quickorder.choose.size">
+                <source>quickorder.choose.size</source>
+                <target>Size</target>
+            </trans-unit>
+            <trans-unit id="quickorder.choose.color">
+                <source>quickorder.choose.color</source>
+                <target>Colour</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
