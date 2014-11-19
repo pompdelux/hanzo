@@ -10,7 +10,7 @@
                 <source>404.description</source>
                 <target><![CDATA[The page you required does not exist.<br><br>Try browsing the categories or use the search box below.]]></target>
             </trans-unit>
-            <trans-unit id="404.webshop_closed.description" approved="no">
+            <trans-unit id="404.webshop_closed.description">
                 <source>404.webshop_closed.description</source>
                 <target><![CDATA[The page you required does not exist.<br><br>Try browsing the categories or use the search box below.]]></target>
             </trans-unit>

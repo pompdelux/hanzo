@@ -10,7 +10,7 @@
                 <source>The presented password cannot be empty.</source>
                 <target>Salasana on annettava.</target>
             </trans-unit>
-            <trans-unit id="User account is disabled." approved="no">
+            <trans-unit id="User account is disabled.">
                 <source>User account is disabled.</source>
                 <target>Käyttäjätili ei ole käytössä.</target>
             </trans-unit>
@@ -22,7 +22,7 @@
                 <source>fetch.credit_note</source>
                 <target>Nouda hyvityslasku pdf-muodossa</target>
             </trans-unit>
-            <trans-unit id="previous.orders" approved="no">
+            <trans-unit id="previous.orders">
                 <source>previous.orders</source>
                 <target>Aikaisemmat tilaukset</target>
             </trans-unit>
@@ -30,7 +30,7 @@
                 <source>account.details</source>
                 <target>Tarkastele tai muuta tilitietoja.</target>
             </trans-unit>
-            <trans-unit id="my.account.order.view" approved="no">
+            <trans-unit id="my.account.order.view">
                 <source>my.account.order.view</source>
                 <target>Oma tili - tilausnumero #%order_id%</target>
             </trans-unit>
@@ -200,7 +200,7 @@
                 <source>create.account</source>
                 <target>Jatka</target>
             </trans-unit>
-            <trans-unit id="create.account.header" approved="no">
+            <trans-unit id="create.account.header">
                 <source>create.account.header</source>
                 <target>Jatka</target>
             </trans-unit>
@@ -360,43 +360,43 @@
                 <source>Bad credentials</source>
                 <target>Sähköpostiosoitetta ja/tai salasanaa ei löydy.</target>
             </trans-unit>
-            <trans-unit id="update.notice" approved="no">
+            <trans-unit id="update.notice">
                 <source>update.notice</source>
                 <target>update.notice</target>
             </trans-unit>
-            <trans-unit id="update.password_notice" approved="no">
+            <trans-unit id="update.password_notice">
                 <source>update.password_notice</source>
                 <target>Täytetään vain, mikäli haluat muuttaa nykyisen salasanasi.</target>
             </trans-unit>
-            <trans-unit id="history.empty" approved="no">
+            <trans-unit id="history.empty">
                 <source>history.empty</source>
                 <target>Ostohistoriasi on tyhjä.</target>
             </trans-unit>
-            <trans-unit id="account.updated" approved="no">
+            <trans-unit id="account.updated">
                 <source>account.updated</source>
                 <target>Tilitietosi on päivitetty.</target>
             </trans-unit>
-            <trans-unit id="create.account.error.title" approved="no">
+            <trans-unit id="create.account.error.title">
                 <source>create.account.error.title</source>
                 <target>Tapahtui virhe</target>
             </trans-unit>
-            <trans-unit id="create.account.error" approved="no">
+            <trans-unit id="create.account.error">
                 <source>create.account.error</source>
                 <target>Lomakkeessa on virheitä, katso tiedot tästä:</target>
             </trans-unit>
-            <trans-unit id="phone.required" approved="no">
+            <trans-unit id="phone.required">
                 <source>phone.required</source>
                 <target>Puhelinnumero on annettava, muista nolla mukaan</target>
             </trans-unit>
-            <trans-unit id="phone.not.valid" approved="no">
+            <trans-unit id="phone.not.valid">
                 <source>phone.not.valid</source>
                 <target>Puhelinnumerossa saa olla vain numeroita</target>
             </trans-unit>
-            <trans-unit id="phone.min.length" approved="no">
+            <trans-unit id="phone.min.length">
                 <source>phone.min.length</source>
                 <target>Puhelinnumerossa on oltava vähintään 8 numeroa</target>
             </trans-unit>
-            <trans-unit id="email.required" approved="no">
+            <trans-unit id="email.required">
                 <source>email.required</source>
                 <target>Sähköpostiosoite on annettava</target>
             </trans-unit>
@@ -404,7 +404,7 @@
                 <source>password.required</source>
                 <target>Salasanassa on oltava vähintään 5 merkkiä</target>
             </trans-unit>
-            <trans-unit id="password.min.length" approved="no">
+            <trans-unit id="password.min.length">
                 <source>password.min.length</source>
                 <target>Koodissa on oltava vähintään 5 merkkiä</target>
             </trans-unit>
@@ -416,7 +416,7 @@
                 <source>login.restricted.other_locale</source>
                 <target><![CDATA[Profiilisi on luotu sivustossa %site_name%. Sinun tulee siten käyttää Verkkokauppaa: <a href="%url%">%site_name%</a>.<br>Jos sinulla on kysyttävää, ota yhteyttä asiakaspalveluumme.]]></target>
             </trans-unit>
-            <trans-unit id="login.restricted.only.customers" approved="no">
+            <trans-unit id="login.restricted.only.customers">
                 <source>login.restricted.only.customers</source>
 <target><![CDATA[Profiiliksesi on luotu Shopping Advisor tai työntekijä. Käytä siksi: <a href="%url%">tätä sisäänkirjautumislomaketta</a>.]]></target>
             </trans-unit>
@@ -424,15 +424,15 @@
                 <source>stop.editing.order</source>
                 <target>Lopeta tilauksen muokkaus</target>
             </trans-unit>
-            <trans-unit id="unable.to.lock.order" approved="no">
+            <trans-unit id="unable.to.lock.order">
                 <source>unable.to.lock.order</source>
                 <target>Tilaustasi ei voi muuttaa juuri nyt. Yritä ystävällisesti myöhemmin uudelleen.</target>
             </trans-unit>
-            <trans-unit id="my.account.%name%" approved="no">
+            <trans-unit id="my.account.%name%">
                 <source>my.account.%name%</source>
                 <target>Tervetuloa %name%!</target>
             </trans-unit>
-           <trans-unit id="my.account.description" approved="no">
+           <trans-unit id="my.account.description">
                 <source>my.account.description</source>
                 <target><![CDATA[ <p>
      Omilla sivuilla voit muokata tilausta, tulostaa palautustarran ja palautuslomakkeen. Voit myös muokata omia tietojasi ja tilata/perua uutiskirjeemme.<br><br>
@@ -458,15 +458,15 @@
       <b>Palautustarra</b><br>
       Napsauta tilauksen kohdalla olevaa kuvaketta, jos haluat palautustarran. Jos käytät palautustarraamme, on palauttaminen maksutonta. Palautustarra avautuu uuteen ikkunaan. </p>  ]]></target>
             </trans-unit>
-            <trans-unit id="newsletter" approved="no">
+            <trans-unit id="newsletter">
                 <source>newsletter</source>
                 <target>Uutiskirjeet</target>
             </trans-unit>
-            <trans-unit id="my.account.my.events" approved="no">
+            <trans-unit id="my.account.my.events">
                 <source>my.account.my.events</source>
                 <target>Tilaisuuteni</target>
             </trans-unit>
-            <trans-unit id="account.history.see.all.orders" approved="no">
+            <trans-unit id="account.history.see.all.orders">
                 <source>account.history.see.all.orders</source>
                 <target>Katso kaikki tilaukset</target>
             </trans-unit>
@@ -486,11 +486,11 @@
                 <source>Pass repeated</source>
                 <target>Anna salasana uudelleen</target>
             </trans-unit>
-            <trans-unit id="my.account.login.notice" approved="no">
+            <trans-unit id="my.account.login.notice">
                 <source>my.account.login.notice</source>
                 <target><![CDATA[<p>Rekisteröidy asiakkaaksi täällä</p>]]></target>
             </trans-unit>
-           <trans-unit id="my.account.login.text" approved="no">
+           <trans-unit id="my.account.login.text">
                 <source>my.account.login.text</source>
                 <target><![CDATA[<h2>OMAT SIVUT</h2><p>Jotta voit nauttia lukuisista POMPdeLUXin tarjoamista eduista, sinun tulee rekisteröityä asiakkaaksi ennen kuin voit jatkaa ostoksiasi.<br><br>Rekisteröityneenä asiakkaana voit muun muassa:<br>
 			<ul>
@@ -500,27 +500,27 @@
 			<li>Tarkastella aiempia tilauksia ja vanhoja laskuja.</li>
           </ul></p>]]></target>
             </trans-unit>
-            <trans-unit id="my.account.login.header" approved="no">
+            <trans-unit id="my.account.login.header">
                 <source>my.account.login.header</source>
                 <target><![CDATA[<h1>Tervetuloa omille sivuille</h1>]]></target>
             </trans-unit>
-            <trans-unit id="my.account.header" approved="no">
+            <trans-unit id="my.account.header">
                 <source>my.account.header</source>
                 <target><![CDATA[<h1>Tervetuloa!</h1>]]></target>
             </trans-unit>
-            <trans-unit id="address.first_name.min.length" approved="no">
+            <trans-unit id="address.first_name.min.length">
                 <source>address.first_name.min.length</source>
                 <target>Etunimessä on oltava vähintään 2 merkkiä</target>
             </trans-unit>
-            <trans-unit id="address.last_name.min.length" approved="no">
+            <trans-unit id="address.last_name.min.length">
                 <source>address.last_name.min.length</source>
                 <target>Sukunimessä on oltava vähintään 2 merkkiä</target>
             </trans-unit>
-            <trans-unit id="create.pre-notice" approved="no">
+            <trans-unit id="create.pre-notice">
                 <source>create.pre-notice</source>
                 <target><![CDATA[<b>Oletko uusi asiakas?</b><br>Anna tällä sivulla henkilötietosi (<u>ei</u> yritystietoja).]]></target>
             </trans-unit>
-            <trans-unit id="order.force.login.description" approved="no">
+            <trans-unit id="order.force.login.description">
                 <source>order.force.login.description</source>
                 <target><![CDATA[
                     <h3>Hyvä asiakas</h3>

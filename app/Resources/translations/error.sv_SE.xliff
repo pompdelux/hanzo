@@ -10,7 +10,7 @@
                 <source>404.description</source>
                 <target><![CDATA[Du har sökt efter innehåll som vi inte har på denna sidan. Se om inte en av kategorierna innehåller det du söker, eller använd sökformuläret nedan.]]></target>
             </trans-unit>
-            <trans-unit id="404.webshop_closed.description" approved="no">
+            <trans-unit id="404.webshop_closed.description">
                 <source>404.webshop_closed.description</source>
                 <target><![CDATA[Du har sökt efter innehåll som vi inte har på denna sidan. Se om inte en av kategorierna innehåller det du söker, eller använd sökformuläret nedan.]]></target>
             </trans-unit>

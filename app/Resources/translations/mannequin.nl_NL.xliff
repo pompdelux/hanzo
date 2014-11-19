@@ -40,23 +40,23 @@
                 <source>no.products.in.category</source>
                 <target>Alle artikelen in deze categorie zijn uitverkocht.</target>
             </trans-unit>
-            <trans-unit id="basket.heading" approved="no">
+            <trans-unit id="basket.heading">
                 <source>basket.heading</source>
                 <target>Kleding van de paspop</target>
             </trans-unit>
-            <trans-unit id="remove.all" approved="no">
+            <trans-unit id="remove.all">
                 <source>remove.all</source>
                 <target>Verwijder alles</target>
             </trans-unit>
-            <trans-unit id="to.basket" approved="no">
+            <trans-unit id="to.basket">
                 <source>to.basket</source>
                 <target>Doe in je mandje</target>
             </trans-unit>
-            <trans-unit id="basket.trigger.on" approved="no">
+            <trans-unit id="basket.trigger.on">
                 <source>basket.trigger.on</source>
                 <target>Laat zien wat de paspop aanheeft</target>
             </trans-unit>
-            <trans-unit id="basket.trigger.off" approved="no">
+            <trans-unit id="basket.trigger.off">
                 <source>basket.trigger.off</source>
                 <target>Verberg</target>
             </trans-unit>

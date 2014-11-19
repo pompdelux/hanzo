@@ -46,11 +46,11 @@
                 <source>please.wait</source>
                 <target>Please wait</target>
             </trans-unit>
-            <trans-unit id="action.completed" approved="no">
+            <trans-unit id="action.completed">
                 <source>action.completed</source>
                 <target>Action completed</target>
             </trans-unit>
-            <trans-unit id="an.error.occurred" approved="no">
+            <trans-unit id="an.error.occurred">
                 <source>an.error.occurred</source>
                 <target>An error occurred</target>
             </trans-unit>
@@ -62,11 +62,11 @@
                 <source>countdown.format</source>
                 <target><![CDATA[{d<}{dn} {dl} {d>} {hn} {hl} {mn} {ml} {sn} {sl}]]></target>
             </trans-unit>
-            <trans-unit id="late.delivery.notice" approved="no">
+            <trans-unit id="late.delivery.notice">
                 <source>late.delivery.notice</source>
                 <target><![CDATA[<p>Your order includes item(s), which we do not have in stock at the moment. Your order will be shipped as soon as all items are available in stock. Your complete order will be shipped from our warehouse at the latest: <strong>%date%</strong>.]]></target>
             </trans-unit>
-            <trans-unit id="delete.from.basket.warning" approved="no">
+            <trans-unit id="delete.from.basket.warning">
                 <source>delete.from.basket.warning</source>
                 <target><![CDATA[Are you shure you want to remove <strong>%product%</strong> from your cart ?]]></target>
             </trans-unit>
@@ -74,23 +74,23 @@
                 <source>late.delivery</source>
                 <target><![CDATA[<h2>Notice</h2><strong>"%product%"</strong> currently not in stock.<br>Your order will be shipped from our warehouse at the latest: <strong>%date%</strong>.]]></target>
             </trans-unit>
-            <trans-unit id="not.filled.correctly" approved="no">
+            <trans-unit id="not.filled.correctly">
                 <source>not.filled.correctly</source>
                 <target>Not filled correctly</target>
             </trans-unit>
-            <trans-unit id="checkout.shipping_business" approved="no">
+            <trans-unit id="checkout.shipping_business">
                 <source>checkout.shipping_business</source>
                 <target></target>
             </trans-unit>
-            <trans-unit id="loading.std" approved="no">
+            <trans-unit id="loading.std">
                 <source>loading.std</source>
                 <target>Loading ...</target>
             </trans-unit>
-            <trans-unit id="loading.search" approved="no">
+            <trans-unit id="loading.search">
                 <source>loading.search</source>
                 <target>Searching ...</target>
             </trans-unit>
-            <trans-unit id="loading.search.products" approved="no">
+            <trans-unit id="loading.search.products">
                 <source>loading.search.products</source>
                 <target>Finding products ...</target>
             </trans-unit>
@@ -126,7 +126,7 @@
                 <source>variant.out.of.stock</source>
                 <target>%name% er desværre udsolgt i %dimensions%</target>
             </trans-unit>
-            <trans-unit id="BC_TEXT_NEWSLETTER_USER_NOT_EXISTS" approved="no">
+            <trans-unit id="BC_TEXT_NEWSLETTER_USER_NOT_EXISTS">
                 <source>BC_TEXT_NEWSLETTER_USER_NOT_EXISTS</source>
                 <target>The email address "%email%" is not subscribed</target>
             </trans-unit>
@@ -194,7 +194,7 @@
                 <source>wall.delete.entry.confirm</source>
                 <target>Er du sikker på du vil slette dette indlæg?</target>
             </trans-unit>
-            <trans-unit id="event.confirm.delete.participant" approved="no">
+            <trans-unit id="event.confirm.delete.participant">
                 <source>event.confirm.delete.participant</source>
                 <target>Er du sikker på, du vil slette denne deltager?</target>
             </trans-unit>
@@ -214,63 +214,63 @@
                 <source>proceed</source>
                 <target>Proceed</target>
             </trans-unit>
-            <trans-unit id="checkout.choose.shipping.method" approved="no">
+            <trans-unit id="checkout.choose.shipping.method">
                 <source>checkout.choose.shipping.method</source>
                 <target></target>
             </trans-unit>
-            <trans-unit id="checkout.choose.payment.method" approved="no">
+            <trans-unit id="checkout.choose.payment.method">
                 <source>checkout.choose.payment.method</source>
                 <target>Please select payment.</target>
             </trans-unit>
-            <trans-unit id="checkout.payment.progress.alert.title" approved="no">
+            <trans-unit id="checkout.payment.progress.alert.title">
                 <source>checkout.payment.progress.alert.title</source>
                 <target>Please wait for the payment window to open</target>
             </trans-unit>
-            <trans-unit id="checkout.payment.progress.alert.message" approved="no">
+            <trans-unit id="checkout.payment.progress.alert.message">
                 <source>checkout.payment.progress.alert.message</source>
                 <target><![CDATA[Please note that it can take up to 30 seconds before the payment window opens. If it takes longer than 30 seconds, just click on “Cancel” and then try again.<br><br>Thank you.<br><br><a href="%url%">» Cancel</a>]]></target>
             </trans-unit>
-            <trans-unit id="email.invalid" approved="no">
+            <trans-unit id="email.invalid">
                 <source>email.invalid</source>
                 <target>Ivalid email</target>
             </trans-unit>
-            <trans-unit id="email.repeat.invalid" approved="no">
+            <trans-unit id="email.repeat.invalid">
                 <source>email.repeat.invalid</source>
                 <target>Email are not the same</target>
             </trans-unit>
-            <trans-unit id="phone.invalid" approved="no">
+            <trans-unit id="phone.invalid">
                 <source>phone.invalid</source>
                 <target>ivalid phonenumber, must only contain digits and at least 8.</target>
             </trans-unit>
-            <trans-unit id="password.invalid.match" approved="no">
+            <trans-unit id="password.invalid.match">
                 <source>password.invalid.match</source>
                 <target>The password fields must match.</target>
             </trans-unit>
-            <trans-unit id="password.min.length" approved="no">
+            <trans-unit id="password.min.length">
                 <source>password.min.length</source>
                 <target>Password must be a minimum of 5 characters long</target>
             </trans-unit>
-            <trans-unit id="field.required" approved="no">
+            <trans-unit id="field.required">
                 <source>field.required</source>
                 <target>All fields with (*) are required.</target>
             </trans-unit>
-            <trans-unit id="approve.conditions.required" approved="no">
+            <trans-unit id="approve.conditions.required">
                 <source>approve.conditions.required</source>
                 <target>You have to approve POMPdeLUX terms and conditions.</target>
             </trans-unit>
-            <trans-unit id="more.product.info" approved="no">
+            <trans-unit id="more.product.info">
                 <source>more.product.info</source>
                 <target>Click for more information about %name%.</target>
             </trans-unit>
-            <trans-unit id="more.bundle.info" approved="no">
+            <trans-unit id="more.bundle.info">
                 <source>more.bundle.info</source>
                 <target>Click for more information.</target>
             </trans-unit>
-            <trans-unit id="events.error.email.or.phone" approved="no">
+            <trans-unit id="events.error.email.or.phone">
                 <source>events.error.email.or.phone</source>
                 <target>Email or phone is required.</target>
             </trans-unit>
-			<trans-unit id="form.buy.choose.first" approved="no">
+			<trans-unit id="form.buy.choose.first">
                 <source>form.buy.choose.first</source>
                 <target>Please choose both size and colour.</target>
             </trans-unit>
@@ -282,19 +282,19 @@
                 <source>rma.product.not.filled.correctly</source>
                 <target>If you wish to exchange an item, please make sure you specify both the new size and colour.</target>
             </trans-unit>
-            <trans-unit id="checkout.confirm.address.block" approved="no">
+            <trans-unit id="checkout.confirm.address.block">
                 <source>checkout.confirm.address.block</source>
                 <target>Confirm that your address details are correct.</target>
             </trans-unit>
-            <trans-unit id="maps.choose.correct.location" approved="no">
+            <trans-unit id="maps.choose.correct.location">
                 <source>maps.choose.correct.location</source>
                 <target>There are too many results for your search. Please select town in drop down menu below.</target>
             </trans-unit>
-            <trans-unit id="checkout.confirm.mobile.title" approved="no">
+            <trans-unit id="checkout.confirm.mobile.title">
                 <source>checkout.confirm.mobile.title</source>
                 <target>Vigtigt</target>
             </trans-unit>
-            <trans-unit id="checkout.confirm.mobile.text" approved="no">
+            <trans-unit id="checkout.confirm.mobile.text">
                 <source>checkout.confirm.mobile.text</source>
                 <target><![CDATA[Verificér venligst at dit mobilnummer er korrekt.<br><br>Hvis det ikke er kan Post Danmark ikke komme i kontakt dig vedrørende forsendelsen.]]></target>
             </trans-unit>
@@ -321,6 +321,13 @@
             <trans-unit id="wishlist.require.login.text">
                 <source>wishlist.require.login.text</source>
                 <target><![CDATA[Du skal være logget ind for at benytte ønskeliste funktionen.<br><br><a href="%url%">» Login her</a><br><br>Bemærk: Du vil blive sendt tilbage til denne side så snart du er logget ind.]]></target>
+			<trans-unit id="quickorder.choose.size">
+                <source>quickorder.choose.size</source>
+                <target>Size</target>
+            </trans-unit>
+            <trans-unit id="quickorder.choose.color">
+                <source>quickorder.choose.color</source>
+                <target>Colour</target>
             </trans-unit>
         </body>
     </file>

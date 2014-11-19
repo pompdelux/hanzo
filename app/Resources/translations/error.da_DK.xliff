@@ -13,7 +13,7 @@
                     Prøv om ikke en af kategorierne indeholder det du søger eller benyt søgeformularen herunder.
                 ]]></target>
             </trans-unit>
-            <trans-unit id="404.webshop_closed.description" approved="no">
+            <trans-unit id="404.webshop_closed.description">
                 <source>404.webshop_closed.description</source>
                 <target><![CDATA[
                     Du har forespurgt på noget indhold, som vi ikke har her på siden.<br><br>

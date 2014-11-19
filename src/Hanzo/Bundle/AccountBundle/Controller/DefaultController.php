@@ -1,15 +1,13 @@
 <?php /* vim: set sw=4: */
 namespace Hanzo\Bundle\AccountBundle\Controller;
 
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\FormError;
-
+use Hanzo\Bundle\AccountBundle\Form\Type\CustomersType;
+use Hanzo\Bundle\AccountBundle\Form\Type\AddressesType;
+use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Core\FormErrors;
-
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\CustomersQuery;
@@ -19,14 +17,23 @@ use Hanzo\Model\CountriesPeer;
 use Hanzo\Model\CountriesQuery;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\OrdersQuery;
+use Symfony\Component\Form\FormError;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
-use Hanzo\Bundle\AccountBundle\Form\Type\CustomersType;
-use Hanzo\Bundle\AccountBundle\Form\Type\AddressesType;
-
-use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
-
+/**
+ * Class DefaultController
+ *
+ * @package Hanzo\Bundle\AccountBundle
+ */
 class DefaultController extends CoreController
 {
+    /**
+     * @param Request $request
+     *
+     * @return Response
+     */
     public function indexAction(Request $request)
     {
         // if we access the account page with an active "edit" we close it.
@@ -35,6 +42,7 @@ class DefaultController extends CoreController
 
             // update/set basket cookie
             Tools::setCookie('basket', '(0) '.Tools::moneyFormat(0.00), 0, false);
+
             return $this->redirect($this->generateUrl('_account'));
         }
 
@@ -47,12 +55,19 @@ class DefaultController extends CoreController
             }
         }
 
-        return $this->render('AccountBundle:Default:index.html.twig', array(
+        return $this->render('AccountBundle:Default:index.html.twig', [
             'page_type' => 'account',
             'user'      => CustomersPeer::getCurrent(),
-        ));
+        ]);
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return Response
+     * @throws \Exception
+     * @throws \PropelException
+     */
     public function createAction(Request $request)
     {
         $hanzo      = Hanzo::getInstance();
@@ -65,7 +80,7 @@ class DefaultController extends CoreController
         $countries = CountriesPeer::getAvailableDomainCountries();
 
         // for .dk, .se, .no and maybe .nl
-        if ( count( $countries ) == 1 ) {
+        if (count($countries) == 1) {
             $addresses->setCountry($countries[0]->getLocalName());
             $addresses->setCountriesId($countries[0]->getId());
         } else {
@@ -80,8 +95,7 @@ class DefaultController extends CoreController
                 if (!empty($geoipResult->city->country->code)) {
                     $c = CountriesQuery::create()
                         ->filterByIso2($geoipResult->city->country->code)
-                        ->findOne()
-                    ;
+                        ->findOne();
 
                     $addresses->setCountry($c->getLocalName());
                     $addresses->setCountriesId($c->getId());
@@ -95,7 +109,7 @@ class DefaultController extends CoreController
         $form = $this->createForm(
             new CustomersType(true, new AddressesType($countries)),
             $customer,
-            array('validation_groups' => 'customer')
+            ['validation_groups' => 'customer']
         );
 
         if ( 'POST' === $request->getMethod() ) {
@@ -131,10 +145,10 @@ class DefaultController extends CoreController
                     $addresses->setCountry($countryById->getName());
                 }
 
-                if ( isset( $formData['newsletter'] )  && $formData['newsletter'] ) {
+                if (isset($formData['newsletter'])  && $formData['newsletter']) {
                     $api = $this->get('newsletterapi');
                     $response = $api->subscribe($customer->getEmail(), $api->getListIdAvaliableForDomain());
-                    if ( is_object($response) && $response->is_error ) {
+                    if (is_object($response) && $response->is_error) {
                         $this->get('session')->getFlashBag()->add('warning', 'account.newsletter.warning');
                     }
                 }
@@ -149,11 +163,11 @@ class DefaultController extends CoreController
 
                 try {
                     $mailer = $this->get('mail_manager');
-                    $mailer->setMessage('account.create', array(
+                    $mailer->setMessage('account.create', [
                         'name'     => $name,
                         'username' => $customer->getEmail(),
                         'password' => $customer->getPasswordClear(),
-                    ));
+                    ]);
 
                     $mailer->setTo($customer->getEmail(), $name);
                     $mailer->send();
@@ -181,19 +195,20 @@ class DefaultController extends CoreController
             }
         }
 
-        return $this->render('AccountBundle:Default:create.html.twig', array(
+        return $this->render('AccountBundle:Default:create.html.twig', [
             'page_type'  => 'create-account',
             'form'       => $form->createView(),
             'errors'     => $errors,
             'domain_key' => $domainKey
-        ));
+        ]);
     }
 
     /**
      * handle password retrival
      *
      * @param Request $request
-     * @return Responce object
+     *
+     * @return Response
      */
     public function passwordForgottenAction(Request $request)
     {
@@ -202,10 +217,10 @@ class DefaultController extends CoreController
         if ('POST' === $request->getMethod()) {
 
             if (false === filter_var($request->request->get('email'), FILTER_VALIDATE_EMAIL)) {
-                return $this->render('AccountBundle:Default:password_forgotten.html.twig', array(
+                return $this->render('AccountBundle:Default:password_forgotten.html.twig', [
                     'page_type' => 'password-forgotten',
                     'message'   => 'password.forgotten.not_found'
-                ));
+                ]);
             }
 
             // find the user by email address
@@ -214,33 +229,35 @@ class DefaultController extends CoreController
                 $name = trim($customer->getFirstName() . ' ' . $customer->getLastName());
 
                 $mailer = $this->get('mail_manager');
-                $mailer->setMessage('password.forgotten', array(
+                $mailer->setMessage('password.forgotten', [
                     'name'     => $name,
                     'username' => $customer->getEmail(),
                     'password' => $customer->getPasswordClear(),
-                ));
+                ]);
 
                 $mailer->setTo($customer->getEmail(), $name);
-                try{
+                try {
                     $mailer->send();
+                } catch (\Exception $e) {
                 }
-                catch (Exception $e) {}
+
                 $message = 'password.forgotten.resend';
             } else {
                 $message = 'password.forgotten.not_found';
             }
         }
 
-        return $this->render('AccountBundle:Default:password_forgotten.html.twig', array(
+        return $this->render('AccountBundle:Default:password_forgotten.html.twig', [
             'page_type' => 'password-forgotten',
             'message'   => $message
-        ));
+        ]);
     }
 
     /**
      * Handles the user edit form.
      *
      * @param Request $request
+     *
      * @return Response object
      */
     public function editAction(Request $request)
@@ -256,9 +273,9 @@ class DefaultController extends CoreController
 
         $errors = '';
         $form = $this->createForm(
-            new CustomersType(false, new AddressesType( $countries )),
+            new CustomersType(false, new AddressesType($countries)),
             $customer,
-            array('validation_groups' => 'customer_edit')
+            ['validation_groups' => 'customer_edit']
         );
 
         if ('POST' === $request->getMethod()) {
@@ -267,15 +284,14 @@ class DefaultController extends CoreController
             if ($form->isValid()) {
                 if (!$customer->getPassword()) {
                     $customer->setPassword(sha1($customer->getPasswordClear()));
-                }
-                else
-                {
+                } else {
                     $customer->setPasswordClear($customer->getPassword());
                     $customer->setPassword(sha1($customer->getPassword()));
                 }
                 $customer->save();
 
                 $this->get('session')->getFlashBag()->add('notice', 'account.updated');
+
                 return $this->redirect($this->generateUrl('_account'));
             } else {
                 $errors = new FormErrors($form, $this->get('translator'), 'account');
@@ -284,14 +300,22 @@ class DefaultController extends CoreController
 
         }
 
-        return $this->render('AccountBundle:Default:edit.html.twig', array(
+        return $this->render('AccountBundle:Default:edit.html.twig', [
             'page_type' => 'edit-account',
             'errors'    => $errors,
             'form'      => $form->createView(),
-        ));
+        ]);
     }
 
-
+    /**
+     * @param Request  $request
+     * @param string   $type
+     * @param int|null $shipping_id
+     *
+     * @return Response
+     * @throws \Exception
+     * @throws \PropelException
+     */
     public function editAddressAction(Request $request, $type = 'payment', $shipping_id = null)
     {
         $translator = $this->get('translator');
@@ -318,8 +342,7 @@ class DefaultController extends CoreController
 
         $address = AddressesQuery::create()
             ->filterByType($type)
-            ->findOneByCustomersId($customer->getId())
-        ;
+            ->findOneByCustomersId($customer->getId());
 
         if (!$address instanceof Addresses) {
             $address = new Addresses();
@@ -329,68 +352,68 @@ class DefaultController extends CoreController
             $address->setLastName($customer->getLastName());
         }
 
-        $validation_group = $type;
+        $validationGroup = $type;
         if ($shipping_id == 11) {
-            $validation_group = 'company_' . $type;
+            $validationGroup = 'company_' . $type;
         } else {
           $address->setCompanyName(null);
         }
 
-        $builder = $this->createFormBuilder($address, array(
-            'validation_groups' => $validation_group
-        ));
+        $builder = $this->createFormBuilder($address, [
+            'validation_groups' => $validationGroup
+        ]);
 
-        $builder->add('type', 'hidden', array('data' => $type));
+        $builder->add('type', 'hidden', ['data' => $type]);
 
         // NICETO: fix the "11" (company spipping) hack
         if (($type == 'shipping') && ($shipping_id == 11)) {
-            $builder->add('company_name', null, array(
-                'label' => 'company.name',
-                'required' => true,
+            $builder->add('company_name', null, [
+                'label'              => 'company.name',
+                'required'           => true,
                 'translation_domain' => 'account'
-            ));
+            ]);
         }
 
-        $builder->add('first_name', null, array('required' => true, 'translation_domain' => 'account'));
-        $builder->add('last_name', null, array('required' => true, 'translation_domain' => 'account'));
-        $builder->add('postal_code', null, array('required' => true, 'translation_domain' => 'account'));
-        $builder->add('city', null, array('required' => true, 'translation_domain' => 'account'));
+        $builder->add('first_name', null, ['required' => true, 'translation_domain' => 'account']);
+        $builder->add('last_name', null, ['required' => true, 'translation_domain' => 'account']);
+        $builder->add('postal_code', null, ['required' => true, 'translation_domain' => 'account']);
+        $builder->add('city', null, ['required' => true, 'translation_domain' => 'account']);
 
         $countries = CountriesPeer::getAvailableDomainCountries(true);
 
         if ('overnightbox' !== $type) {
-            $builder->add('address_line_1', null, array('required' => true, 'translation_domain' => 'account'));
+            $builder->add('address_line_1', null, ['required' => true, 'translation_domain' => 'account']);
 
             if (count($countries) > 1) {
-                $builder->add('countries_id', 'choice', array(
+                $builder->add('countries_id', 'choice', [
                     'empty_value'        => 'choose.country',
                     'choices'            => $countries,
                     'required'           => true,
                     'translation_domain' => 'account'
-                ));
+                ]);
             } else {
-                list($country_id, $country_name) = each($countries);
+                list($countryId, $countryName) = each($countries);
 
-                $address->setCountriesId($country_id);
-                $address->setCountry($country_name);
+                $address->setCountriesId($countryId);
+                $address->setCountry($countryName);
 
-                $builder->add('countries_id', 'hidden', array('data' => $country_id));
-                $builder->add('country', null, array(
+                $builder->add('countries_id', 'hidden', ['data' => $countryId]);
+                $builder->add('country', null, [
                     'read_only'          => true,
                     'translation_domain' => 'account'
-                ));
+                ]);
             }
         } else {
-            list($country_id, $country_name) = each($countries);
-            $address->setCountriesId($country_id);
-            $address->setCountry($country_name);
+            list($countryId, $countryName) = each($countries);
+            $address->setCountriesId($countryId);
+            $address->setCountry($countryName);
 
-            $builder->add('countries_id', 'hidden', array('data' => $country_id));
-            $builder->add('address_line_1', null, array(
+            $builder->add('countries_id', 'hidden', ['data' => $countryId]);
+            $builder->add('address_line_1', null, [
                 'label'              => 'overnightbox.label',
                 'required'           => true,
                 'translation_domain' => 'account'
-            ));
+            ]);
         }
 
         $form = $builder->getForm();
@@ -419,49 +442,49 @@ class DefaultController extends CoreController
                 }
 
                 if ('json' === $this->getFormat()) {
-                    return $this->json_response(array(
+                    return $this->json_response([
                         'status'  => true,
                         'message' => '',
-                        'data'    => array(
+                        'data'    => [
                             'address' => $address->toArray(\BasePeer::TYPE_FIELDNAME)
-                        ),
-                    ));
+                        ],
+                    ]);
                 }
             } else {
                 if ('json' === $this->getFormat()) {
-                    $errors = array();
+                    $errors = [];
                     foreach ($form->getChildren() as $id => $element) {
                         if ($element->hasErrors()) {
                             foreach ($element->getErrors() as $error) {
-                                $errors[$id][] = $translator->trans($error->getMessageTemplate(), array(), 'account');
+                                $errors[$id][] = $translator->trans($error->getMessageTemplate(), [], 'account');
                             }
                         }
                     }
 
                     if (count($errors)) {
-                        return $this->json_response(array(
+                        return $this->json_response([
                             'status'  => false,
-                            'message' => $translator->trans('create.account.error', array(), 'account'),
+                            'message' => $translator->trans('create.account.error', [], 'account'),
                             'data'    => $errors,
-                        ));
+                        ]);
                     }
                 }
             }
         }
 
-        $html = $this->render('AccountBundle:Default:address_form_block.html.twig', array(
+        $html = $this->render('AccountBundle:Default:address_form_block.html.twig', [
             'page_type' => 'edit-address-block',
             'title'     => ($address->isNew() ? 'add.address' : 'edit.address'),
             'form'      => $form->createView(),
             'callback'  => 'postal'
-        ));
+        ]);
 
         if ('json' === $this->getFormat()) {
-            return $this->json_response(array(
+            return $this->json_response([
                 'status'  => true,
                 'message' => '',
-                'data'    => array('html' => $html->getContent()),
-            ));
+                'data'    => ['html' => $html->getContent()],
+            ]);
         }
 
         return $html;
@@ -470,14 +493,15 @@ class DefaultController extends CoreController
     /**
      * used to validate via ajax
      *
-     * @param  string $type
+     * @param string $type
+     *
      * @return Response
      */
     public function checkAction($type)
     {
         $status = true;
         $message = '';
-        $data = array();
+        $data = [];
 
         if ('email' == $type) {
             $customer = CustomersPeer::getCurrent();
@@ -485,23 +509,21 @@ class DefaultController extends CoreController
             $translator = $this->get('translator');
             $account = CustomersQuery::create()
                 ->filterById($customer->getId(), \Criteria::NOT_EQUAL)
-                ->findOneByEmail($this->getRequest()->get('email'))
-            ;
+                ->findOneByEmail($this->getRequest()->get('email'));
 
             if ($account instanceof Customers) {
                 $status  = false;
-                $message = $translator->trans('email.already.in.use', array(), 'account');
-                $data    = array('title' => $translator->trans('create.account.error.title', array(), 'account'));
+                $message = $translator->trans('email.already.in.use', [], 'account');
+                $data    = ['title' => $translator->trans('create.account.error.title', [], 'account')];
             }
         }
 
-
         if ('json' === $this->getFormat()) {
-            return $this->json_response(array(
+            return $this->json_response([
                 'status'  => $status,
                 'message' => $message,
                 'data'    => $data,
-            ));
+            ]);
         }
     }
 
@@ -509,15 +531,19 @@ class DefaultController extends CoreController
      * errorAction
      *
      * @param string $error
+     *
      * @return Response
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function errorAction($error)
     {
-        return $this->render('AccountBundle:Default:error.html.twig', array());
+        return $this->render('AccountBundle:Default:error.html.twig', []);
     }
 
-
+    /**
+     * @param int $order_id
+     *
+     * @return Response
+     */
     public function stopOrderEditAction($order_id)
     {
         if ($order_id) {

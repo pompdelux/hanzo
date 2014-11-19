@@ -5,6 +5,7 @@ namespace Hanzo\Bundle\PaymentBundle\Controller;
 use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Tools;
+use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,23 +27,23 @@ class DibsController extends CoreController
     {
         $api = $this->get('payment.dibsapi');
 
-        $payment_gateway_id = false;
+        $paymentGatewayId = false;
         if ($request->request->has('orderId')) {
-            $payment_gateway_id = $request->request->get('orderId');
+            $paymentGatewayId = $request->request->get('orderId');
         } elseif ($request->request->has('orderid')) {
-            $payment_gateway_id = $request->request->get('orderid');
+            $paymentGatewayId = $request->request->get('orderid');
         }
 
-        if (false === $payment_gateway_id) {
+        if (false === $paymentGatewayId) {
             Tools::log('Dibs callback did not supply a valid payment gateway id POST: '.print_r($_POST, 1).' L: '.$request->getLocale());
 
             return new Response('Failed', 500, ['Content-Type' => 'text/plain']);
         }
 
-        $order = OrdersPeer::retriveByPaymentGatewayId($payment_gateway_id);
+        $order = OrdersPeer::retriveByPaymentGatewayId($paymentGatewayId);
 
         if (!($order instanceof Orders)) {
-            Tools::log('No order matched payment gateway id: "'. $payment_gateway_id .'" POST: '.print_r($_POST, 1).' L: '.$request->getLocale());
+            Tools::log('No order matched payment gateway id: "'. $paymentGatewayId .'" POST: '.print_r($_POST, 1).' L: '.$request->getLocale());
 
             return new Response('Failed', 500, ['Content-Type' => 'text/plain']);
         }
@@ -72,16 +73,16 @@ Tools::log('YEAH - is used ..., delete log if seen.! <un>');
         $api   = $this->get('payment.dibsapi');
         $redis = $this->get('pdl.phpredis.permanent');
 
-        $dibs_status = $redis->hget('service.status', 'dibs');
+        $dibsStatus = $redis->hget('service.status', 'dibs');
         $isJson      = ('json' === $this->getFormat()) ? true : false;
 
-        if (!$api->isActive() || ('DOWN' == $dibs_status)) {
+        if (!$api->isActive() || ('DOWN' == $dibsStatus)) {
             if ($isJson) {
                 return $this->json_response(['status' => false]);
             } else {
 
                 $html = '';
-                if ('DOWN' == $dibs_status) {
+                if ('DOWN' == $dibsStatus) {
                     $html = '<div class="down">'.$this->get('translator')->trans('dibs.down.message', [], 'checkout').'</div>';
                 }
 
