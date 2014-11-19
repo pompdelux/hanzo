@@ -41,6 +41,9 @@ class ExportEventsCommand extends ContainerAwareCommand
             mkdir($dir);
         }
 
+        // now - this sucker is important, if not set we (might) get data from the wrong db!
+        \Propel::disableInstancePooling();
+
         foreach ($connections as $connection) {
             $exporter = new EventExporter($startDate, $endDate);
             $exporter->setDBConnection(\Propel::getConnection($connection));
