@@ -39,7 +39,11 @@ class BasketCleanupCommand extends ContainerAwareCommand
             : false;
 
         $cleaner = $this->getContainer()->get('hanzo.basket.cleanup');
-        $cleaner->setDryRun($dryRun);
+
+        if ($dryRun) {
+            $cleaner->setOutputInterface($output);
+        }
+
         $cleaner->setTrigger($this->getName());
         $cleaner->run();
     }
