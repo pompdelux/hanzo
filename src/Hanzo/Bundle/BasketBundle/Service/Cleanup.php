@@ -15,6 +15,7 @@ use Hanzo\Bundle\PaymentBundle\PaymentActionsProxy;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\OrdersStateLog;
+use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Class Cleanup
@@ -23,9 +24,24 @@ use Hanzo\Model\OrdersStateLog;
  */
 class Cleanup
 {
-    private $dryRun;
+    /**
+     * @var OutputInterface
+     */
+    private $outputInterface;
+
+    /**
+     * @var string
+     */
     private $trigger;
+
+    /**
+     * @var PaymentActionsProxy
+     */
     private $paymentActionsProxy;
+
+    /**
+     * @var AxServiceWrapper
+     */
     private $axServiceWrapper;
 
     /**
@@ -41,11 +57,11 @@ class Cleanup
     }
 
     /**
-     * @param bool $state
+     * @param OutputInterface $outputInterface
      */
-    public function setDryRun($state = false)
+    public function setOutputInterface(OutputInterface $outputInterface)
     {
-        $this->dryRun = (bool) $state;
+        $this->outputInterface = $outputInterface;
     }
 
     /**
@@ -106,7 +122,6 @@ class Cleanup
             ->filterByUpdatedAt(date('Y-m-d H:i:s', strtotime('2 hours ago')), \Criteria::LESS_THAN)
             ->filterByCreatedAt(date('Y-m-d H:i:s', strtotime('6 month ago')), \Criteria::GREATER_THAN)
             ->find();
-
     }
 
 
@@ -119,8 +134,8 @@ class Cleanup
      */
     protected function handleUnknownBillingMethod(Orders $order)
     {
-        if ($this->dryRun) {
-            return error_log('['.date('Y-m-d H:i:s').'] Order: #'.$order->getId().' will be roled back one version and unlocked in AX.');
+        if ($this->outputInterface) {
+            return $this->outputInterface->writeln('Order: #'.$order->getId().' would be roled back one version and unlocked in AX.');
         }
 
         $order->toPreviousVersion();
