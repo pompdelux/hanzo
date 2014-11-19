@@ -321,6 +321,7 @@
             <trans-unit id="wishlist.require.login.text">
                 <source>wishlist.require.login.text</source>
                 <target><![CDATA[Du skal være logget ind for at benytte ønskeliste funktionen.<br><br><a href="%url%">» Login her</a><br><br>Bemærk: Du vil blive sendt tilbage til denne side så snart du er logget ind.]]></target>
+            </trans-unit>
 			<trans-unit id="quickorder.choose.size">
                 <source>quickorder.choose.size</source>
                 <target>Size</target>
