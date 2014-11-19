@@ -2,48 +2,54 @@
 
 namespace Hanzo\Bundle\GoogleBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
-
 use Hanzo\Model\Cms;
-use Hanzo\Model\CmsPeer;
-use Hanzo\Model\CmsQuery;
 use Hanzo\Model\CmsI18n;
 use Hanzo\Model\CmsI18nQuery;
-
+use Hanzo\Model\CmsPeer;
+use Hanzo\Model\CmsQuery;
+use Hanzo\Model\ProductsImagesQuery;
 use Hanzo\Model\ProductsQuery;
 use Hanzo\Model\ProductsToCategoriesQuery;
-use Hanzo\Model\ProductsImagesQuery;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
+
+/**
+ * Class: SitemapController
+ *
+ * @see Controller
+ */
 class SitemapController extends Controller
 {
   protected $locale;
 
-  protected $base_url;
+  protected $baseURL;
 
   protected $request;
 
   /**
+   * @param Request $request
+   *
+   * @Route("/google/sitemap.xml")
+   * @author Henrik Farre <hf@bellcom.dk>
+   *
+   * @return Response
+   *
    * sitemapAction
    * - Most of this is black magic composed from CMSBundle/Controller/MenuController.php and GoogleBundle/Controller/ProductFeedController.php
    *
    * https://support.google.com/webmasters/answer/183668?hl=en&ref_topic=6080646&rd=1
-   *
-   * @Route("/google/sitemap.xml")
-   * @return Symfony\Component\HttpFoundation\Response
-   * @author Henrik Farre <hf@bellcom.dk>
-   **/
+   */
   public function sitemapAction(Request $request)
   {
     $hanzo  = Hanzo::getInstance();
 
-    $this->locale   = $hanzo->get('core.locale');
-    $this->base_url = $request->getBaseUrl();
+    $this->locale   = $request->getLocale();
+    $this->baseURL = $request->getBaseUrl();
     $this->request  = $request;
 
     $cmsPages = $this->getCMS();
@@ -64,7 +70,7 @@ class SitemapController extends Controller
    *
    * @return \PropelObjectCollection
    * @author Henrik Farre <hf@bellcom.dk>
-   **/
+   */
   protected function getProducts()
   {
     return ProductsQuery::create()
@@ -74,8 +80,7 @@ class SitemapController extends Controller
       ->useProductsI18nQuery()
       ->filterByLocale($this->locale)
       ->endUse()
-      ->find()
-      ;
+      ->find();
   }
 
   /**
@@ -83,19 +88,17 @@ class SitemapController extends Controller
    *
    * @return \PropelObjectCollection
    * @author Henrik Farre <hf@bellcom.dk>
-   **/
+   */
   protected function getCMS()
   {
     return CmsQuery::create()
       ->useCmsI18nQuery()
-      ->filterByOnMobile(true)
+        ->filterByOnMobile(true)
       ->endUse()
       ->joinWithI18n($this->locale)
-      // FIXME:
       ->filterByCmsThreadId(20)
       ->orderBySort()
-      ->find()
-      ;
+      ->find();
   }
 
   /**
@@ -108,16 +111,15 @@ class SitemapController extends Controller
    */
   protected function generateProductItems(\PropelObjectCollection $products)
   {
-    $router = $this->get('router');
-    $router_keys = include $this->container->getParameter('kernel.cache_dir').'/category_map.php';
+    $router = $this->container->get('router');
+    $routerKeys = include $this->container->getParameter('kernel.cache_dir').'/category_map.php';
 
     $items = [];
 
-    foreach ($products as $product)
-    {
-      $product_id           = $product->getId();
-      $product_sku          = $product->getTitle();
-      $product_sku_stripped = Tools::stripText($product_sku);
+    foreach ($products as $product) {
+      $productId          = $product->getId();
+      $productSku         = $product->getTitle();
+      $productSkuStripped = Tools::stripText($productSku);
 
       $products2category = ProductsToCategoriesQuery::create()
         ->useProductsQuery()
@@ -128,24 +130,24 @@ class SitemapController extends Controller
       $key = '_' . strtolower($this->locale) . '_' . $products2category->getCategoriesId();
 
       // skip products without routes
-      if (empty($router_keys[$key])) {
+      if (empty($routerKeys[$key])) {
         continue;
       }
 
-      $product_route = $router_keys[$key];
+      $productRoute = $routerKeys[$key];
 
       $params = [
-        'product_id' => $product_id,
-        'title'      => $product_sku_stripped,
+        'productId' => $productId,
+        'title'      => $productSkuStripped,
       ];
 
-      $url = $router->generate($product_route, $params, true);
+      $url = $router->generate($productRoute, $params, true);
 
-      $images_array = $this->getImagesForProduct($product_id);
+      $imagesArray = $this->getImagesForProduct($productId);
 
       $urls = [
         'loc'    => $url,
-        'images' => $images_array,
+        'images' => $imagesArray,
         ];
 
       $items[] = $urls;
@@ -164,20 +166,17 @@ class SitemapController extends Controller
    */
   protected function generateCMSItems(\PropelObjectCollection $cmsPages)
   {
+    $router = $this->container->get('router');
     $items = [];
 
-    foreach ($cmsPages as $record)
-    {
+    foreach ($cmsPages as $record) {
       $type = $record->getType();
 
-      if ( $type != 'page' )
-      {
+      if ( $type != 'page' ) {
         continue;
       }
 
-      // FIXME: prettier way?
-      //$url = $router->generate($record->getTitle());
-      $url = $this->request->getHttpHost() . $this->base_url . '/' . $this->locale . '/' . $record->getPath();
+      $url = $router->generate('page_'.$record->getId(), [], true);
 
       $urls = [
         'loc'    => $url,
@@ -194,30 +193,29 @@ class SitemapController extends Controller
    * getImagesForProduct
    * https://support.google.com/webmasters/answer/178636
    *
-   * @param string $product_id
+   * @param string $productId
    *
    * @return Array
    * @author Henrik Farre <hf@bellcom.dk>
    */
-  protected function getImagesForProduct($product_id)
+  protected function getImagesForProduct($productId)
   {
-    $images_array = [];
+    $imagesArray = [];
 
     $images = ProductsImagesQuery::create()
-      ->filterByProductsId($product_id)
+      ->filterByProductsId($productId)
       ->find();
 
-    foreach ($images as $image)
-    {
+    foreach ($images as $image) {
       $img = $image->getImage();
       // only show "overview" images, there are a limit to how many images google allows pr product.
       if (false === strpos($img, '_overview_')) {
         continue;
       }
 
-      $images_array[] = ['image_loc' => Tools::productImageUrl($img, '0x0')];
+      $imagesArray[] = ['image_loc' => Tools::productImageUrl($img, '0x0')];
     }
 
-    return $images_array;
+    return $imagesArray;
   }
 }
