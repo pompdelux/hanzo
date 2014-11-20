@@ -35,6 +35,10 @@
 
         <service id="hanzo.basket.cleanup" class="Hanzo\Bundle\BasketBundle\Service\Cleanup">
             <argument type="service" id="payment.actions.proxy" />
+            <argument type="service" id="hanzo.basket.cleanup.fallback_handler" />
+        </service>
+
+        <service id="hanzo.basket.cleanup.fallback_handler" class="Hanzo\Bundle\BasketBundle\Service\FallbackCleanupHandler">
             <argument type="service" id="ax.out.service.wrapper" />
         </service>
     </services>

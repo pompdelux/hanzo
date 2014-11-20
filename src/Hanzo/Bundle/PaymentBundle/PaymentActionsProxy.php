@@ -92,6 +92,10 @@ class PaymentActionsProxy
         }
     }
 
+
+
+
+
     /**
      * @param string $name
      *
@@ -102,5 +106,7 @@ class PaymentActionsProxy
         if (isset($this->paymentApis[$name])) {
             return $this->paymentApis[$name];
         }
+
+        return false;
     }
 }

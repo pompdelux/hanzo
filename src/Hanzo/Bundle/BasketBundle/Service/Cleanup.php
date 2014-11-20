@@ -40,20 +40,20 @@ class Cleanup
     private $paymentActionsProxy;
 
     /**
-     * @var AxServiceWrapper
+     * @var FallbackCleanupHandler
      */
-    private $axServiceWrapper;
+    private $fallbackCleanupHandler;
 
     /**
      * constructor
      *
-     * @param PaymentActionsProxy $paymentActionsProxy
-     * @param AxServiceWrapper    $axServiceWrapper
+     * @param PaymentActionsProxy    $paymentActionsProxy
+     * @param FallbackCleanupHandler $fallbackCleanupHandler
      */
-    public function __construct(PaymentActionsProxy $paymentActionsProxy, AxServiceWrapper $axServiceWrapper)
+    public function __construct(PaymentActionsProxy $paymentActionsProxy, FallbackCleanupHandler $fallbackCleanupHandler)
     {
-        $this->paymentActionsProxy = $paymentActionsProxy;
-        $this->axServiceWrapper    = $axServiceWrapper;
+        $this->paymentActionsProxy    = $paymentActionsProxy;
+        $this->fallbackCleanupHandler = $fallbackCleanupHandler;
     }
 
     /**
@@ -62,6 +62,7 @@ class Cleanup
     public function setOutputInterface(OutputInterface $outputInterface)
     {
         $this->outputInterface = $outputInterface;
+        $this->fallbackCleanupHandler->setOutputInterface($outputInterface);
     }
 
     /**
@@ -81,68 +82,53 @@ class Cleanup
             throw new \InvalidArgumentException('You must set a trigger - this is needed to document where deletes come from.');
         }
 
-        // 1. cancel order edits with no activity
         /** @var Orders $order */
-        foreach ($this->findStaleEditOrders() as $order) {
-            $api = strtolower($order->getBillingMethod().'api');
-
-            if ('api' === $api) {
-                $this->handleUnknownBillingMethod($order);
-                continue;
+        foreach ($this->findOrders() as $order) {
+            if ($order->getInEdit()) {
+                $this->handleInEdit($order);
+            } else {
+                $this->handleAbandoned($order);
             }
-
-            $api = $this->paymentActionsProxy->getApiByName($api);
-            if (! $api) {
-                $this->handleUnknownBillingMethod($order);
-                continue;
-            }
-
-            if (!method_exists($api, 'handleStaleOrderEdit')) {
-                $this->handleUnknownBillingMethod($order);
-                continue;
-            }
-
-            $api->handleStaleOrderEdit($order);
         }
-
-        // 2. delete (or resolve) dead orders
-
     }
 
 
     /**
      * @return array|mixed|\PropelObjectCollection
      */
-    protected function findStaleEditOrders()
+    protected function findOrders()
     {
         return OrdersQuery::create()
-            ->filterByInEdit(true)
-            ->filterByState(Orders::STATE_PENDING, \Criteria::LESS_THAN)
-            ->filterByState(Orders::STATE_ERROR_PAYMENT, \Criteria::GREATER_THAN)
+            ->filterByState(['max' => Orders::STATE_PAYMENT_OK])
             ->filterByUpdatedAt(date('Y-m-d H:i:s', strtotime('2 hours ago')), \Criteria::LESS_THAN)
             ->filterByCreatedAt(date('Y-m-d H:i:s', strtotime('6 month ago')), \Criteria::GREATER_THAN)
             ->find();
     }
 
-
     /**
      * @param Orders $order
      *
      * @return mixed
-     * @throws \Exception
-     * @throws \PropelException
      */
-    protected function handleUnknownBillingMethod(Orders $order)
+    protected function handleInEdit(Orders $order)
     {
-        if ($this->outputInterface) {
-            return $this->outputInterface->writeln('Order: #'.$order->getId().' would be roled back one version and unlocked in AX.');
+        $api = $this->paymentActionsProxy->getApiByName(strtolower($order->getBillingMethod().'api'));
+
+        if ((!$api) || (!method_exists($api, 'handleStaleEdits'))) {
+            return $this->fallbackCleanupHandler->handleStaleEdits($order);
         }
 
-        $order->toPreviousVersion();
-        $this->axServiceWrapper->SalesOrderLockUnlock($order, false);
+        return $api->handleStaleEdits($order);
+    }
 
-        $log = new OrdersStateLog();
-        $log->info($order->getId(), Orders::INFO_STATE_EDIT_CANCLED_BY_CLEANUP);
-        $log->save();
+    protected function handleAbandoned(Orders $order)
+    {
+        $api = $this->paymentActionsProxy->getApiByName(strtolower($order->getBillingMethod().'api'));
+
+        if ((!$api) || (!method_exists($api, 'handleAbandoned'))) {
+            return $this->fallbackCleanupHandler->handleAbandoned($order);
+        }
+
+        return $api->handleAbandoned($order);
     }
 }
