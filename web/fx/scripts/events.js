@@ -170,11 +170,11 @@ $('#find-customer-by-phone-form').submit(function (e) {
                 }
             } else {
                 var data = response.data.number;
-                $('#form_host').val(data.christianname + ' ' + data.surname);
-                $('#form_address_line_1').val(data.address);
-                $('#form_postal_code').val(data.zipcode);
-                $('#form_city').val(data.district);
-                $('#form_phone').val(data.phone);
+                $('#events_host').val(data.christianname + ' ' + data.surname);
+                $('#events_address_line_1').val(data.address);
+                $('#events_postal_code').val(data.zipcode);
+                $('#events_city').val(data.district);
+                $('#events_phone').val(data.phone);
             }
 
             $submit.attr('disabled', false);
@@ -201,13 +201,13 @@ $('#find-customer-by-email-form').submit(function (e) {
                     dialoug.alert(Translator.trans('notice'), response.message);
                 }
             } else {
-                $('#form_customers_id').val(response.data.id);
-                $('#form_host').val(response.data.name);
-                $('#form_phone').val(response.data.phone);
-                $('#form_email').val(response.data.email);
-                $('#form_address_line_1').val(response.data.address);
-                $('#form_postal_code').val(response.data.zip);
-                $('#form_city').val(response.data.city);
+                $('#events_customers_id').val(response.data.id);
+                $('#events_host').val(response.data.name);
+                $('#events_phone').val(response.data.phone);
+                $('#events_email').val(response.data.email);
+                $('#events_address_line_1').val(response.data.address);
+                $('#events_postal_code').val(response.data.zip);
+                $('#events_city').val(response.data.city);
             }
 
             $submit.attr('disabled', false);
