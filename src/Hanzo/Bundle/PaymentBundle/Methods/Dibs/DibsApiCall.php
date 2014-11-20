@@ -4,9 +4,13 @@ namespace Hanzo\Bundle\PaymentBundle\Methods\Dibs;
 
 use Hanzo\Model\Customers;
 use Hanzo\Model\Orders;
-
 use Hanzo\Bundle\PaymentBundle\PaymentMethodApiCallInterface;
 
+/**
+ * Class DibsApiCall
+ *
+ * @package Hanzo\Bundle\PaymentBundle\Methods\Dibs
+ */
 class DibsApiCall implements PaymentMethodApiCallInterface
 {
     /**
@@ -27,7 +31,7 @@ class DibsApiCall implements PaymentMethodApiCallInterface
     /**
      * @var array
      */
-    protected $settings = array();
+    protected $settings = [];
 
     /**
      * @var \Hanzo\Bundle\PaymentBundle\Methods\Dibs\Type\FlexWin|\Hanzo\Bundle\PaymentBundle\Methods\Dibs\Type\DibsPaymentWindow
@@ -37,19 +41,22 @@ class DibsApiCall implements PaymentMethodApiCallInterface
     /**
      * __construct
      */
-    private function __construct() {}
+    private function __construct()
+    {
+    }
 
     /**
      * someFunc
      *
-     * @param array $settings
-     * @param DibsApi
+     * @param array   $settings
+     * @param DibsApi $api
+     *
      * @return self
      */
     public static function getInstance(array $settings, $api)
     {
         if (self::$instance === null) {
-            self::$instance = new self;
+            self::$instance = new self();
         }
 
         self::$instance->settings = $settings;
@@ -61,9 +68,10 @@ class DibsApiCall implements PaymentMethodApiCallInterface
     /**
      * Curl wrapper
      *
-     * @param string $function Only the last part of the url, e.g. 'cgi-bin/dostuff.cgi'
-     * @param array $params The data that is send to dibs
-     * @param bool $useAuthHeaders Should extra authorization headers be send in request
+     * @param string $function       Only the last part of the url, e.g. 'cgi-bin/dostuff.cgi'
+     * @param array  $params         The data that is send to dibs
+     * @param bool   $useAuthHeaders Should extra authorization headers be send in request
+     *
      * @return DibsApiCallResponse
      * @throws DibsApiCallException
      */
@@ -71,10 +79,10 @@ class DibsApiCall implements PaymentMethodApiCallInterface
     {
         $ch = curl_init();
 
-        $url = $this->baseUrl . $function;
+        $url = $this->baseUrl.$function;
 
-        curl_setopt($ch, CURLOPT_URL, $url );
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
 
@@ -84,9 +92,9 @@ class DibsApiCall implements PaymentMethodApiCallInterface
             }
 
             $headers = [
-                'Authorization: Basic '. base64_encode($this->settings['api_user'].':'.$this->settings['api_pass'])
+                'Authorization: Basic '.base64_encode($this->settings['api_user'].':'.$this->settings['api_pass']),
             ];
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers );
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         }
 
         $response = curl_exec($ch);
@@ -106,6 +114,7 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      * Query dibs for status om acquirers
      *
      * @param string $acquirer
+     *
      * @return DibsApiCallResponse
      */
     public function status($acquirer = 'all')
@@ -123,7 +132,8 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      * http://tech.dibs.dk/dibs-api/payment-functions/cancelcgi/
      *
      * @param Customers $customer
-     * @param Orders $order
+     * @param Orders    $order
+     *
      * @return DibsApiCallResponse
      * @throws DibsApiCallException
      */
@@ -137,25 +147,26 @@ class DibsApiCall implements PaymentMethodApiCallInterface
 
         $transaction      = $attributes->payment->transact;
         $paymentGatewayId = $order->getPaymentGatewayId();
-        $stringToHash     = 'merchant=' . $this->settings['merchant'] . '&orderid=' . $paymentGatewayId . '&transact=' . $transaction;
+        $stringToHash     = 'merchant='.$this->settings['merchant'].'&orderid='.$paymentGatewayId.'&transact='.$transaction;
 
         $params = [
             'merchant'  => $this->settings['merchant'],
             'transact'  => $transaction,
             'textreply' => 'true',
-            'md5key'    => $this->api->md5keyFromString( $stringToHash ),
+            'md5key'    => $this->api->md5keyFromString($stringToHash),
             'orderid'   => $paymentGatewayId,
         ];
 
-        return $this->call('cgi-adm/cancel.cgi', $params, self::USE_AUTH_HEADERS );
+        return $this->call('cgi-adm/cancel.cgi', $params, self::USE_AUTH_HEADERS);
     }
 
     /**
      * Capture transaction
      * http://tech.dibs.dk/dibs-api/payment-functions/capturecgi/
      *
-     * @param Orders $order
-     * @param int $amount Should be in smallest format, e.g. if you want to capture 175,50 the number should be 17550 (remember the last zero)
+     * @param Orders $order  current order object
+     * @param int    $amount Should be in smallest format, e.g. if you want to capture 175,50 the number should be 17550 (remember the last zero)
+     *
      * @return DibsApiCallResponse
      * @throws DibsApiCallException
      */
@@ -164,13 +175,13 @@ class DibsApiCall implements PaymentMethodApiCallInterface
         $attributes = $order->getAttributes();
 
         if (!isset($attributes->payment->transact)) {
-            throw new DibsApiCallException( 'DIBS api capture action: order contains no transaction id, order id was: '.$order->getId() );
+            throw new DibsApiCallException('DIBS api capture action: order contains no transaction id, order id was: '.$order->getId());
         }
 
         $transaction      = $attributes->payment->transact;
         $paymentGatewayId = $order->getPaymentGatewayId();
         $amount           = $this->api->formatAmount($amount);
-        $stringToHash     = 'merchant='. $this->settings['merchant'] .'&orderid='. $paymentGatewayId.'&transact='.$transaction.'&amount='.$amount;
+        $stringToHash     = 'merchant='.$this->settings['merchant'].'&orderid='.$paymentGatewayId.'&transact='.$transaction.'&amount='.$amount;
 
         $params = [
             'amount'    => $amount,
@@ -189,7 +200,8 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      * http://tech.dibs.dk/dibs-api/payment-functions/refundcgi/
      *
      * @param Orders $order
-     * @param int $amount
+     * @param int    $amount
+     *
      * @return DibsApiCallResponse
      * @throws DibsApiCallException
      */
@@ -205,7 +217,7 @@ class DibsApiCall implements PaymentMethodApiCallInterface
         $paymentGatewayId = $order->getPaymentGatewayId();
         $currency         = $this->api->currencyCodeToNum($order->getCurrencyCode());
         $amount           = $this->api->formatAmount($amount);
-        $stringToHash     = 'merchant=' . $this->settings['merchant'] . '&orderid=' . $paymentGatewayId . '&transact=' . $transaction . '&amount=' . $amount;
+        $stringToHash     = 'merchant='.$this->settings['merchant'].'&orderid='.$paymentGatewayId.'&transact='.$transaction.'&amount='.$amount;
 
         $params = [
             'merchant'  => $this->settings['merchant'],
@@ -226,10 +238,11 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      * Called getStatusByTransid or getStatus in old system
      *
      * @param Orders $order
+     *
      * @return DibsApiCallResponse
      * @throws DibsApiCallException
      */
-    public function payinfo( Orders $order )
+    public function payinfo(Orders $order)
     {
         $attributes  = $order->getAttributes();
         $transaction = $attributes->payment->transact;
@@ -238,7 +251,7 @@ class DibsApiCall implements PaymentMethodApiCallInterface
             throw new DibsApiCallException('DIBS api payinfo action: order contains no transaction id, order id was: '.$order->getId());
         }
 
-        return $this->call( 'cgi-adm/payinfo.cgi', ['transact' => $transaction], self::USE_AUTH_HEADERS);
+        return $this->call('cgi-adm/payinfo.cgi', ['transact' => $transaction], self::USE_AUTH_HEADERS);
     }
 
     /**
@@ -248,6 +261,7 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      * Called getTransStatus or getTransStatusByTransId in old system
      *
      * @param Orders $order
+     *
      * @return DibsApiCallResponse
      * @throws DibsApiCallException
      */
@@ -275,6 +289,7 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      * Called getTransactionDataByTransactionId in old system
      *
      * @param Orders $order
+     *
      * @return DibsApiCallResponse
      * @throws DibsApiCallException
      */
@@ -300,6 +315,7 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      * Called getTransInfo in old system
      *
      * @param Orders $order
+     *
      * @return DibsApiCallResponse
      */
     public function transinfo(Orders $order)
