@@ -120,6 +120,10 @@ class SitemapController extends Controller
                 ->endUse()
                 ->findOne();
 
+            if (!($products2category instanceof \Hanzo\Model\ProductsToCategories)) {
+                continue;
+            }
+
             $key = '_' . strtolower($this->locale) . '_' . $products2category->getCategoriesId();
 
             // skip products without routes
