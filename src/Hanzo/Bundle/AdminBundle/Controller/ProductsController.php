@@ -32,6 +32,8 @@ use Hanzo\Model\RelatedProducts;
 use Hanzo\Model\RelatedProductsQuery;
 
 use Hanzo\Bundle\AdminBundle\Event\FilterCategoryEvent;
+use Hanzo\Bundle\AdminBundle\Exporter\LanguageExporter;
+
 
 /**
  * Class ProductsController
@@ -1273,5 +1275,102 @@ class ProductsController extends CoreController
         $this->container->get('session')->getFlashBag()->add('notice', 'Lageret for "'.$product->getSku().'" er nu nulstillet.');
 
         return $this->redirect($this->generateUrl('admin_products_list', ['range' => $request->query->get('range')]));
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @author Henrik Farre <hf@bellcom.dk>
+     *
+     * @return Response
+     */
+    public function exportLanguagesAction(Request $request)
+    {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+
+        $exporter = new LanguageExporter();
+        $exporter->setDBConnection($this->getDbConnection());
+        $csvData = $exporter->getDataAsCsv();
+
+        return new Response($csvData, 200, [
+                'Content-Type' => 'text/csv',
+                'Content-Disposition' => 'attachment; filename="product_languages.csv"',
+            ]
+        );
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return Response
+     * @author Henrik Farre <hf@bellcom.dk>
+     */
+    public function importLanguagesAction(Request $request)
+    {
+        return $this->render('AdminBundle:Products:import_languages.html.twig');
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return Response
+     * @author Henrik Farre <hf@bellcom.dk>
+     */
+    public function performImportLanguagesAction(Request $request)
+    {
+        $fileTmp   = $request->files->get('language_file');
+        $tmpDir    = sys_get_temp_dir();
+        $fileName  = 'language_file.csv';
+        $inputFile = $tmpDir.'/'.$fileName;
+        $locale    = $request->request->get('import_locale');
+        $errors    = [];
+        $sql       = "UPDATE products_i18n SET title = :title WHERE id = :id AND locale = :locale";
+        $line      = 0;
+
+        $fileTmp->move($tmpDir, $fileName);
+
+        if (is_file($inputFile)) {
+            $conn = $this->getDbConnection();
+            $stmt = $conn->prepare($sql);
+
+            $handle = fopen($inputFile, 'r');
+
+            while (($data = fgetcsv($handle, 2048, ';', '"')) !== false) {
+                $line++;
+
+                if ($line == 1) {
+                    continue;
+                }
+
+                if (empty($data[0]) || empty($data[2])) {
+                    $errors[] = 'Line '.$line.' does not contain the required id and title';
+                    continue;
+                }
+
+                $values = [
+                    'id'     => $data[0],
+                    'title'  => trim($data[2]),
+                    'locale' => $locale,
+                    ];
+
+                $stmt->execute($values);
+            }
+
+            fclose($handle);
+
+            unlink($inputFile);
+        } else {
+            $errors[] = 'Uploaded file was not found';
+        }
+
+        if (!empty($errors)) {
+            $this->get('session')->getFlashBag()->add('warning', 'Some errors happened: '. implode("<br>", $errors));
+        } else {
+            $this->get('session')->getFlashBag()->add('notice', 'OK, file uploade and products updated');
+        }
+
+        return $this->redirect($this->generateUrl('admin_products_language_import'));
     }
 }
