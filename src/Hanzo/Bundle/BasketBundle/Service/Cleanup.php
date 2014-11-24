@@ -10,11 +10,9 @@
 
 namespace Hanzo\Bundle\BasketBundle\Service;
 
-use Hanzo\Bundle\AxBundle\Actions\Out\AxServiceWrapper;
 use Hanzo\Bundle\PaymentBundle\PaymentActionsProxy;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersQuery;
-use Hanzo\Model\OrdersStateLog;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
@@ -118,7 +116,7 @@ class Cleanup
             return $this->fallbackCleanupHandler->handleStaleEdits($order);
         }
 
-        return $api->handleStaleEdits($order);
+        return $api->handleStaleEdits($order, $this->outputInterface);
     }
 
     protected function handleAbandoned(Orders $order)
@@ -129,6 +127,6 @@ class Cleanup
             return $this->fallbackCleanupHandler->handleAbandoned($order);
         }
 
-        return $api->handleAbandoned($order);
+        return $api->handleAbandoned($order, $this->outputInterface);
     }
 }
