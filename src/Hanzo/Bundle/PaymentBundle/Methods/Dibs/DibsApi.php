@@ -128,6 +128,7 @@ class DibsApi
             return;
         }
 
+        $this->fixer->setApi($this);
         $this->fixer->setOutputInterface($outputInterface);
         $this->fixer->resolve($order);
     }
