@@ -191,7 +191,7 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
      * @param Orders  $order               Orders object
      * @param Boolean $usePaymentGatewayId If set to true, we use the payment_gateway_id for lookups, not the transaction id
      *
-     * @return mixed
+     * @return PensioCallResponse|\SimpleXMLElement|null
      * @throws PaymentApiCallException
      */
     public function getPayment(Orders $order, $usePaymentGatewayId = false)
@@ -214,7 +214,7 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
 
         $body = $this->callAPIMethod(
             'payments', [
-                'transaction' => $attributes->payment->transaction_id
+                'transaction_id' => $attributes->payment->transaction_id
             ]
         );
 
@@ -275,11 +275,11 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
 
         return stream_context_create([
             'http' => [
-                'method' => 'POST',
-                'header' => implode("\r\n", $headers),
-                'timeout' => 5,
+                'method'        => 'POST',
+                'header'        => implode("\r\n", $headers),
+                'timeout'       => 5,
                 'ignore_errors' => false,
-                'content' => http_build_query($args),
+                'content'       => http_build_query($args),
             ],
         ]);
     }
@@ -294,7 +294,9 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
      */
     protected function callAPIMethod($method, array $args = [])
     {
-        $result = @file_get_contents($this->baseUrl."/merchant/API/".$method, false, $this->createContext($args));
+        $errorLevel = error_reporting(0);
+        $result = file_get_contents($this->baseUrl."/merchant/API/".$method, false, $this->createContext($args));
+        error_reporting($errorLevel);
 
         $this->serviceLogger->plog($args, ['outgoing', 'payment', 'pensio', $method]);
 
