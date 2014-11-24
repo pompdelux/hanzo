@@ -37,6 +37,7 @@ class DeadOrderService
         58  => 'DKK',
         161 => 'NOK',
         207 => 'SEK',
+        756 => 'CHF',
     ];
 
     /**
