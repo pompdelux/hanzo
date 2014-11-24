@@ -67,4 +67,12 @@ class PensioCallResponse
             'status_is_error'    => $this->isError,
         ];
     }
+
+    /**
+     * @return SimpleXMLElement|string
+     */
+    public function getXml()
+    {
+        return $this->xml;
+    }
 }
