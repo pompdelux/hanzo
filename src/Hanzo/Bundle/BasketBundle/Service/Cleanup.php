@@ -119,6 +119,11 @@ class Cleanup
         return $api->handleStaleEdits($order, $this->outputInterface);
     }
 
+    /**
+     * @param Orders $order
+     *
+     * @return mixed
+     */
     protected function handleAbandoned(Orders $order)
     {
         $api = $this->paymentActionsProxy->getApiByName(strtolower($order->getBillingMethod().'api'));
