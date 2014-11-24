@@ -80,6 +80,10 @@ class Cleanup
             throw new \InvalidArgumentException('You must set a trigger - this is needed to document where deletes come from.');
         }
 
+        if (!defined('ACTION_TRIGGER')) {
+            define('ACTION_TRIGGER', $this->trigger);
+        }
+
         /** @var Orders $order */
         foreach ($this->findOrders() as $order) {
             if ($order->getInEdit()) {
