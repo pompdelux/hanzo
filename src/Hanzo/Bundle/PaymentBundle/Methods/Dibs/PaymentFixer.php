@@ -248,7 +248,7 @@ class PaymentFixer
                 try {
                     $this->dibsApi->call()->cancel($oldOrder->getCustomers(), $oldOrder);
                 } catch (\Exception $e) {
-                    Tools::log('DOS: Could not cancel payment for old order, id: '.$oldOrder->getId().' error was: '.$e->getMessage());
+                    Tools::log('DIBS: Could not cancel payment for old order, id: '.$oldOrder->getId().' error was: '.$e->getMessage());
                 }
             }
 
