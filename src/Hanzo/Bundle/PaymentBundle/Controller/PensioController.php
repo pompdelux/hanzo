@@ -10,35 +10,34 @@
 namespace Hanzo\Bundle\PaymentBundle\Controller;
 
 use Exception;
+use Hanzo\Bundle\PaymentBundle\Methods\Pensio\PensioApi;
+use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
+use Hanzo\Core\Tools;
+use Hanzo\Core\CoreController;
+use Hanzo\Model\Orders;
+use Hanzo\Model\OrdersQuery;
 use Propel;
-
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-use Hanzo\Core\Hanzo;
-use Hanzo\Core\Tools;
-use Hanzo\Core\CoreController;
-
-use Hanzo\Model\Orders;
-use Hanzo\Model\OrdersQuery;
-use Hanzo\Model\OrdersPeer;
-
-use Hanzo\Bundle\PaymentBundle\Methods\Pensio\PensioApi;
-use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
-
+/**
+ * Class PensioController
+ *
+ * @package Hanzo\Bundle\PaymentBundle\Controller
+ */
 class PensioController extends CoreController
 {
 
     /**
      * the form template to hand off to Pensio
      *
-     * @Template("PaymentBundle:Pensio:form.html.twig")
-     * @param  Request $request
+     * @param Request $request
+     *
      * @return Response
      * @throws AccessDeniedException
+     * @Template("PaymentBundle:Pensio:form.html.twig")
      */
     public function formAction(Request $request)
     {
@@ -51,8 +50,7 @@ class PensioController extends CoreController
             ->findOneByPaymentGatewayId(
                 $request->get('shop_orderid'),
                 Propel::getConnection(null, Propel::CONNECTION_WRITE)
-            )
-        ;
+            );
 
         return [
             'order_id' => $order->getId(),
@@ -65,10 +63,11 @@ class PensioController extends CoreController
     /**
      * redirect page
      *
-     * @Template("PaymentBundle:Pensio:wait.html.twig")
-     * @param  Request $request
+     * @param Request $request
+     *
      * @return Response
      * @throws AccessDeniedException
+     * @Template("PaymentBundle:Pensio:wait.html.twig")
      */
     public function waitAction(Request $request)
     {
@@ -102,6 +101,7 @@ class PensioController extends CoreController
      *
      * @param Request $request
      * @param string  $status
+     *
      * @return Response
      * @throws AccessDeniedException
      */
@@ -116,8 +116,8 @@ class PensioController extends CoreController
             ->findOneByPaymentGatewayId(
                 $request->get('shop_orderid'),
                 Propel::getConnection(null, Propel::CONNECTION_WRITE)
-            )
-        ;
+            );
+
         $order->reload(true);
 
         if ($order instanceof Orders) {
@@ -151,42 +151,50 @@ class PensioController extends CoreController
             ]);
         }
 
-        return new Response('FAILED', 500, array('Content-Type' => 'text/plain'));
+        return new Response('FAILED', 500, ['Content-Type' => 'text/plain']);
     }
 
-    public function processAction(Request $request){}
+    /**
+     * @param Request $request
+     */
+    public function processAction(Request $request)
+    {
+        // Skal vidst bare slettes
+    }
 
 
     /**
      * cancelAction
-     * @param  Request $request
+     * @param Request $request
+     *
      * @return Response
      **/
     public function cancelAction(Request $request)
     {
-        return new Response('Ok', 200, array('Content-Type' => 'text/plain'));
+        return new Response('Ok', 200, ['Content-Type' => 'text/plain']);
     }
 
 
     /**
      * Get transaction information on a order id
      *
-     * @param  Request $request
-     * @param  Integer $order_id
+     * @param Request $request
+     * @param Integer $orderId
+     *
      * @return Response
      */
-    public function lookupAction(Request $request, $order_id)
+    public function lookupAction(Request $request, $orderId)
     {
-        $order = OrdersQuery::create()
-            ->findOneById(
-                $order_id, // 19653
-                Propel::getConnection(null, Propel::CONNECTION_WRITE)
-            )
-        ;
+        $order = OrdersQuery::create()->findOneById($orderId);
 
         $api = $this->get('payment.pensioapi');
         $result = $api->call()->getPayment($order, true);
 
-        return new Response('<pre>'.print_r($result,1).'</pre>', 200, array('Content-Type' => 'text/plain'));
+        $transactions = $result->getXml()->xpath('Transaction');
+        if (isset($transactions[0])) {
+            Tools::log($transactions[0]);
+        }
+
+        return new Response('<pre>'.print_r($result, 1).'</pre>', 200, ['Content-Type' => 'text/plain']);
     }
 }

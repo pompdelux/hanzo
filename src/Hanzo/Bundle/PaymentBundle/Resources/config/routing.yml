@@ -103,7 +103,7 @@ _pensio_process:
     requirements:
         _method: POST
 _pensio_order_lookup:
-    pattern:  /pensio/lookup/order/{order_id}
+    pattern:  /pensio/lookup/order/{orderId}
     defaults:
         _controller: PaymentBundle:Pensio:lookup
     requirements:

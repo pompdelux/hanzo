@@ -273,4 +273,35 @@ class PensioApi extends BasePaymentApi
 
         return ['url' => $goto];
     }
+
+
+    /**
+     * Forwards the request to handleStaleEdits() these cleanup
+     * tasks are the same for both stale and dead dibs orders
+     *
+     * @param Orders               $order
+     * @param OutputInterface|null $outputInterface
+     */
+    public function handleAbandoned(Orders $order, $outputInterface = null)
+    {
+        $this->handleStaleEdits($order, $outputInterface);
+    }
+
+    /**
+     * @param Orders               $order
+     * @param OutputInterface|null $outputInterface
+     *
+     * @return mixed
+     */
+    public function handleStaleEdits(Orders $order, $outputInterface = null)
+    {
+        // only cleanup orders with state less than "payment ok"
+        if ($order->getState() > Orders::STATE_PAYMENT_OK) {
+            return;
+        }
+
+        $this->fixer->setApi($this);
+        $this->fixer->setOutputInterface($outputInterface);
+        $this->fixer->resolve($order);
+    }
 }
