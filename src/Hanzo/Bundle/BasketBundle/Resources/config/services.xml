@@ -40,6 +40,7 @@
 
         <service id="hanzo.basket.cleanup.fallback_handler" class="Hanzo\Bundle\BasketBundle\Service\FallbackCleanupHandler">
             <argument type="service" id="ax.out.service.wrapper" />
+            <argument type="service" id="hanzo.core.orders_service" />
         </service>
     </services>
 </container>
