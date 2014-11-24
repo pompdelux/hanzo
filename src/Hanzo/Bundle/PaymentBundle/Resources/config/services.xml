@@ -21,13 +21,13 @@
             <argument type="collection">
                 <argument type="service" id="router" />
                 <argument type="service" id="hanzo.external_service.logger" />
+                <argument type="service" id="payment.dibsapi.fixer" />
             </argument>
             <argument type="string">%payment.dibsapi.class%</argument>
             <tag name="payment.api" />
         </service>
 
         <service id="payment.dibsapi.fixer" class="Hanzo\Bundle\PaymentBundle\Methods\Dibs\PaymentFixer">
-            <argument type="service" id="payment.dibsapi" />
             <argument type="service" id="ax.out.service.wrapper" />
             <argument type="service" id="ax.pheanstalk_queue" />
             <argument type="service" id="hanzo.core.orders_service" />
