@@ -4,16 +4,16 @@ namespace Hanzo\Bundle\PaymentBundle\Methods\Pensio;
 
 use Exception;
 use SimpleXMLElement;
-
 use Hanzo\Model\Orders;
 use Hanzo\Model\LanguagesQuery;
-use Hanzo\Model\Customers;
-
 use Hanzo\Bundle\PaymentBundle\BasePaymentApi;
-use Hanzo\Bundle\PaymentBundle\Methods\Pensio\PensioCallResponse;
-
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class PensioApi
+ *
+ * @package Hanzo\Bundle\PaymentBundle\Methods\Pensio
+ */
 class PensioApi extends BasePaymentApi
 {
     /**
@@ -33,24 +33,26 @@ class PensioApi extends BasePaymentApi
         'api_pass' => '',
     ];
 
+    /**
+     * @var \Symfony\Bundle\FrameworkBundle\Routing\Router
+     */
     protected $router;
 
     /**
      * @var \Hanzo\Core\ServiceLogger
      */
-    public $service_logger;
+    public $serviceLogger;
 
     /**
      * __construct
      *
      * @param array $parameters
      * @param array $settings
-     * @author Ulrik Nielsen <un@bellcom.dk>
      */
     public function __construct($parameters, $settings)
     {
-        $this->router         = $parameters[0];
-        $this->service_logger = $parameters[1];
+        $this->router        = $parameters[0];
+        $this->serviceLogger = $parameters[1];
 
         foreach ($settings as $key => $value) {
             $this->settings[$key] = $value;
@@ -62,7 +64,6 @@ class PensioApi extends BasePaymentApi
         if ($this->settings['active'] && (!$this->settings['terminal'] || !$this->settings['gateway'])) {
             $this->settings['active'] = false;
         }
-
     }
 
     /**
@@ -72,7 +73,7 @@ class PensioApi extends BasePaymentApi
      */
     public function call()
     {
-        return PensioMerchantApi::getInstance($this->settings, $this->service_logger);
+        return PensioMerchantApi::getInstance($this->settings, $this->serviceLogger);
     }
 
     /**
@@ -88,7 +89,8 @@ class PensioApi extends BasePaymentApi
 
     /**
      * getFeeExternalId
-     * @return void
+     *
+     * @return mixed
      */
     public function getFeeExternalId()
     {
@@ -97,6 +99,7 @@ class PensioApi extends BasePaymentApi
 
     /**
      * these must be here or the interface get's angry...
+     *
      * @param Request $request
      * @param Orders  $order
      */
@@ -104,16 +107,22 @@ class PensioApi extends BasePaymentApi
     {
         $this->updateOrderStatus(Orders::STATE_PAYMENT_OK, $request, $order);
     }
+
+    /**
+     * these must be here or the interface get's angry...
+     *
+     * @param Request $request
+     * @param Orders  $order
+     */
     public function updateOrderFailed(Request $request, Orders $order)
     {
         $this->updateOrderStatus(Orders::STATE_ERROR_PAYMENT, $request, $order);
     }
 
-
     /**
      * set order status and attributes based on pament status
      *
-     * @param Integer $status  Status id
+     * @param Integer $status
      * @param Request $request
      * @param Orders  $order
      */
@@ -140,7 +149,7 @@ class PensioApi extends BasePaymentApi
 
         // map out extra information found in the attached xml document - more might be needed
         $xml = simplexml_load_string(urldecode($request->request->get('xml')), 'SimpleXMLElement', LIBXML_NOCDATA);
-        if (isset($xml->Body->Transactions->Transaction->PaymentNatureService) ) {
+        if (isset($xml->Body->Transactions->Transaction->PaymentNatureService)) {
             $map = [
                 'false' => 0,
                 'true'  => 1,
@@ -156,12 +165,12 @@ class PensioApi extends BasePaymentApi
         $order->save();
     }
 
-
     /**
      * validate the callback before processing the order.
      *
-     * @param  Request $request
-     * @param  Orders  $order
+     * @param Request $request
+     * @param Orders  $order
+     *
      * @throws InvalidOrderStateException
      * @throws PaymentFailedException
      * @throws Exception
@@ -169,7 +178,7 @@ class PensioApi extends BasePaymentApi
     public function verifyCallback(Request $request, Orders $order)
     {
         if ($order->getState() != Orders::STATE_PRE_PAYMENT) {
-            throw new InvalidOrderStateException('The order is not in the correct state "'. $order->getState() .'"');
+            throw new InvalidOrderStateException('The order is not in the correct state "'.$order->getState().'"');
         }
 
         if ('succeeded' !== $_POST['status']) {
@@ -184,20 +193,19 @@ class PensioApi extends BasePaymentApi
         }
     }
 
-
     /**
      * Build and return the form used in the checkout flow.
      *
-     * @param  Orders  $order The order object
-     * @param  Request $request
-     * @return string The form used to proceed to the Pensio payment window
+     * @param Orders  $order   The order object
+     * @param Request $request Request object
+     *
+     * @return string  The form used to proceed to the Pensio payment window
      */
     public function getProcessButton(Orders $order, Request $request)
     {
         $language = LanguagesQuery::create()
             ->select('iso2')
-            ->findOneById($order->getLanguagesId()
-        );
+            ->findOneById($order->getLanguagesId());
 
         $cookie = [];
         foreach ($_COOKIE as $key => $value) {
@@ -249,14 +257,15 @@ class PensioApi extends BasePaymentApi
             'content'       => http_build_query($data),
         ]];
 
-        $this->service_logger->plog(array_merge($data, $headers), ['outgoing', 'payment', 'pensio', 'createPaymentRequest']);
+        $this->serviceLogger->plog(array_merge($data, $headers), ['outgoing', 'payment', 'pensio', 'createPaymentRequest']);
 
         $context = stream_context_create($request);
-        $response = trim(file_get_contents('https://'.$this->settings['gateway'].'.pensio.com/merchant/API/createPaymentRequest', FALSE, $context));
+        $response = trim(file_get_contents('https://'.$this->settings['gateway'].'.pensio.com/merchant/API/createPaymentRequest', false, $context));
 
         $goto = 'payment/cancel';
         if ($response && ($xml = new SimpleXMLElement($response))) {
             $code = (string) $xml->Header->ErrorCode;
+
             if (0 == $code) {
                 $goto = (string) $xml->Body->Url;
             }

@@ -2,4 +2,11 @@
 
 namespace Hanzo\Bundle\PaymentBundle\Methods\Pensio;
 
-class InvalidOrderStateException extends \Exception {}
+/**
+ * Class InvalidOrderStateException
+ *
+ * @package Hanzo\Bundle\PaymentBundle\Methods\Pensio
+ */
+class InvalidOrderStateException extends \Exception
+{
+}

@@ -5,21 +5,23 @@ namespace Hanzo\Bundle\PaymentBundle\Methods\Pensio;
 use Exception;
 use Hanzo\Core\ServiceLogger;
 use SimpleXMLElement;
-
-use Hanzo\Core\Tools;
 use Hanzo\Model\Customers;
 use Hanzo\Model\Orders;
-
 use Hanzo\Bundle\PaymentBundle\PaymentApiCallException;
 use Hanzo\Bundle\PaymentBundle\PaymentMethodApiCallInterface;
 
+/**
+ * Class PensioMerchantApi
+ *
+ * @package Hanzo\Bundle\PaymentBundle\Methods\Pensio
+ */
 class PensioMerchantApi implements PaymentMethodApiCallInterface
 {
     /**
      * gateway url
      * @var string
      */
-    protected $base_url = 'https://%s.pensio.com';
+    protected $baseUrl = 'https://%s.pensio.com';
 
     /**
      * connection state
@@ -42,51 +44,54 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
     /**
      * @var \Hanzo\Core\ServiceLogger
      */
-    private $service_logger;
+    private $serviceLogger;
 
     /**
      * construct
      */
-    private function __construct() {}
-
+    private function __construct()
+    {
+    }
 
     /**
      * factory method
      *
-     * @param  array $settings
+     * @param array                     $settings
+     * @param \Hanzo\Core\ServiceLogger $serviceLogger
+     *
      * @return PensioMerchantApi
      */
-    public static function getInstance(array $settings, $service_logger)
+    public static function getInstance(array $settings, $serviceLogger)
     {
         if (!self::$instance) {
-            self::$instance = new self;
+            self::$instance = new self();
         }
 
-        self::$instance->setup($settings, $service_logger);
+        self::$instance->setup($settings, $serviceLogger);
+
         return self::$instance;
     }
-
 
     /**
      * setup object
      *
      * @param array         $settings
-     * @param ServiceLogger $service_logger
+     * @param ServiceLogger $serviceLogger
      */
-    protected function setup(array $settings, ServiceLogger $service_logger)
+    protected function setup(array $settings, ServiceLogger $serviceLogger)
     {
-        $this->settings       = $settings;
-        $this->service_logger = $service_logger;
-        $this->base_url       = sprintf($this->base_url, $this->settings['gateway']);
+        $this->settings      = $settings;
+        $this->serviceLogger = $serviceLogger;
+        $this->baseUrl       = sprintf($this->baseUrl, $this->settings['gateway']);
         $this->connect();
     }
-
 
     /**
      * capture order amount
      *
-     * @param  Orders $order
-     * @param  float $amount
+     * @param Orders $order
+     * @param float  $amount
+     *
      * @return PensioCallResponse
      * @throws PaymentApiCallException
      */
@@ -97,7 +102,7 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
         $attributes = $order->getAttributes();
 
         if (!isset($attributes->payment->transaction_id)) {
-            throw new PaymentApiCallException('Pensio api capture action: order contains no transaction id, order id was: '.$order->getId() );
+            throw new PaymentApiCallException('Pensio api capture action: order contains no transaction id, order id was: '.$order->getId());
         }
 
         return $this->callAPIMethod(
@@ -108,12 +113,12 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
         );
     }
 
-
     /**
      * refund order amount
      *
-     * @param  Orders $order
-     * @param  float  $amount
+     * @param Orders $order
+     * @param float  $amount
+     *
      * @return PensioCallResponse|false
      * @throws PaymentApiCallException
      */
@@ -124,7 +129,7 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
         $attributes = $order->getAttributes();
 
         if (!isset($attributes->payment->transaction_id)) {
-            throw new PaymentApiCallException('Pensio api refund action: order contains no transaction id, order id was: '.$order->getId() );
+            throw new PaymentApiCallException('Pensio api refund action: order contains no transaction id, order id was: '.$order->getId());
         }
 
         $params = ['transaction_id' => $attributes->payment->transaction_id];
@@ -138,12 +143,12 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
         );
     }
 
-
     /**
      * cancel payment
      *
-     * @param  Customers $customer
-     * @param  Orders    $order
+     * @param Customers $customer
+     * @param Orders    $order
+     *
      * @return PensioCallResponse|false
      * @throws PaymentApiCallException
      */
@@ -170,7 +175,7 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
         }
 
         if (!isset($attributes->payment->transaction_id)) {
-            throw new PaymentApiCallException('Pensio api cancel action: order contains no transaction id, order id was: '.$order->getId() );
+            throw new PaymentApiCallException('Pensio api cancel action: order contains no transaction id, order id was: '.$order->getId());
         }
 
         return $this->callAPIMethod(
@@ -180,22 +185,22 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
         );
     }
 
-
     /**
      * get a payment object
      *
-     * @param  Orders  $order                  Orders object
-     * @param  Boolean $use_payment_gateway_id if set to true, we use the payment_gateway_id for lookups, not the transaction id
+     * @param Orders  $order               Orders object
+     * @param Boolean $usePaymentGatewayId If set to true, we use the payment_gateway_id for lookups, not the transaction id
+     *
      * @return mixed
      * @throws PaymentApiCallException
      */
-    public function getPayment(Orders $order, $use_payment_gateway_id = false)
+    public function getPayment(Orders $order, $usePaymentGatewayId = false)
     {
         $this->checkConnection();
 
         $attributes = $order->getAttributes();
 
-        if ($use_payment_gateway_id) {
+        if ($usePaymentGatewayId) {
             return $this->callAPIMethod(
                 'payments', [
                     'shop_orderid' => $order->getPaymentGatewayId()
@@ -204,7 +209,7 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
         }
 
         if (!isset($attributes->payment->transaction_id)) {
-            throw new PaymentApiCallException('Pensio api cancel action: order contains no transaction id, order id was: '.$order->getId() );
+            throw new PaymentApiCallException('Pensio api cancel action: order contains no transaction id, order id was: '.$order->getId());
         }
 
         $body = $this->callAPIMethod(
@@ -219,7 +224,6 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
 
         return null;
     }
-
 
     /**
      * connect, aka setup parameters used and test connection
@@ -243,7 +247,6 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
         }
     }
 
-
     /**
      * connection check
      *
@@ -256,18 +259,18 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
         }
     }
 
-
     /**
      * build the stream context
      *
-     * @param  array  $args
-     * @return ressource
+     * @param array $args
+     *
+     * @return resource
      */
     protected function createContext(array $args)
     {
         $headers = [
             'Authorization: Basic '.base64_encode($this->settings['api_user'].':'.$this->settings['api_pass']),
-            'Content-type: application/x-www-form-urlencoded'
+            'Content-type: application/x-www-form-urlencoded',
         ];
 
         return stream_context_create([
@@ -275,25 +278,25 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
                 'method' => 'POST',
                 'header' => implode("\r\n", $headers),
                 'timeout' => 5,
-                'ignore_errors' => false ,
+                'ignore_errors' => false,
                 'content' => http_build_query($args),
-            ]
+            ],
         ]);
     }
-
 
     /**
      * perform the call agianst pensio
      *
-     * @param  string $method
-     * @param  array  $args
+     * @param string $method
+     * @param array  $args
+     *
      * @return mixed
      */
     protected function callAPIMethod($method, array $args = [])
     {
-        $result = @file_get_contents($this->base_url."/merchant/API/".$method, false, $this->createContext($args));
+        $result = @file_get_contents($this->baseUrl."/merchant/API/".$method, false, $this->createContext($args));
 
-        $this->service_logger->plog($args, ['outgoing', 'payment', 'pensio', $method]);
+        $this->serviceLogger->plog($args, ['outgoing', 'payment', 'pensio', $method]);
 
         if ($result !== false) {
             return new PensioCallResponse($http_response_header, new SimpleXMLElement($result));

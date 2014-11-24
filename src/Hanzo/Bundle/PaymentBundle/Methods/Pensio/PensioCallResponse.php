@@ -4,10 +4,15 @@ namespace Hanzo\Bundle\PaymentBundle\Methods\Pensio;
 
 use SimpleXMLElement;
 
+/**
+ * Class PensioCallResponse
+ *
+ * @package Hanzo\Bundle\PaymentBundle\Methods\Pensio
+ */
 class PensioCallResponse
 {
-    protected $is_error = false;
-    protected $error_message = '';
+    protected $isError = false;
+    protected $errorMessage = '';
     protected $xml = '';
     protected $headers;
 
@@ -22,12 +27,12 @@ class PensioCallResponse
         $this->headers = $headers;
 
         if (((string) $xml->Header->ErrorCode) != '0') {
-            $this->is_error = true;
-            $this->error_message = (string) $xml->Header->ErrorMessage;
+            $this->isError = true;
+            $this->errorMessage = (string) $xml->Header->ErrorMessage;
         } else {
             if (((string) $xml->Body->Result) == 'Error') {
-                $this->is_error = true;
-                $this->error_message = (string) $xml->Body->CardHolderErrorMessage;
+                $this->isError = true;
+                $this->errorMessage = (string) $xml->Body->CardHolderErrorMessage;
             }
         }
 
@@ -42,7 +47,7 @@ class PensioCallResponse
      */
     public function isError()
     {
-        return $this->is_error;
+        return $this->isError;
     }
 
 
@@ -54,12 +59,12 @@ class PensioCallResponse
     public function debug()
     {
         return [
-            'headers' => $this->headers,
-            'raw_response' => $this->xml,
-            'reason' => $this->error_message,
-            'status' => !$this->is_error,
-            'status_description' => $this->error_message,
-            'status_is_error' => $this->is_error,
+            'headers'            => $this->headers,
+            'raw_response'       => $this->xml,
+            'reason'             => $this->errorMessage,
+            'status'             => !$this->isError,
+            'status_description' => $this->errorMessage,
+            'status_is_error'    => $this->isError,
         ];
     }
 }
