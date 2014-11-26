@@ -450,7 +450,7 @@
           <source>checkout.confirm.terms</source>
           <target><![CDATA[
               <label for="js_checkout_confirm_terms">Jeg bestiller hermed overstående og bekræfter, at jeg har læst og accepterer</label>
-              <a href="/da_DK/forside/kundeservice/vilkaar" class="js-external">POMPdeLUX vilkår</a>.
+              <a href="/da_DK/forside/kundeservice/vilkaar-betingelser" class="js-external">POMPdeLUX vilkår</a>.
           ]]></target>
       </trans-unit>
     </body>
