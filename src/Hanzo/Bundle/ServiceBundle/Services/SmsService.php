@@ -99,7 +99,9 @@ class SmsService
         $message = $this->translator->trans('event.sms.invite', $parameters, 'events');
 
         $provider = $this->getProvider();
-        $provider->addMessage($to, utf8_decode($message));
+        $provider->addMessage($to, utf8_decode($message), [
+            'overwrite_appnr' => true
+        ]);
 
         $response = $provider->send();
 
