@@ -1,7 +1,7 @@
 {% if app.request.attributes.has('admin_enabled') %}
     {% set range_filter = {} %}
-    {% if app.request.session.has('active_procuct_range') %}
-        {% set range_filter = {'range': app.request.session.get('active_procuct_range')} %}
+    {% if app.request.session.has('active_product_range') %}
+        {% set range_filter = {'range': app.request.session.get('active_product_range')} %}
     {% endif %}
     <div class="inline-edit-menu">
         <h6 data-toggle-text=" Vis menu" data-toggle-class="fa-toggle-down fa-toggle-right" class="js-toggle-next fa fa-toggle-down"> Skjul menu</h6>
