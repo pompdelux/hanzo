@@ -59,8 +59,8 @@ class Range
      */
     public function getCurrentRange()
     {
-        if ($this->session->has('active_procuct_range')) {
-            return $this->session->get('active_procuct_range');
+        if ($this->session->has('active_product_range')) {
+            return $this->session->get('active_product_range');
         }
 
         return $this->activeRange;
@@ -80,13 +80,13 @@ class Range
 
         $range = SettingsQuery::create()
             ->filterByNs('core')
-            ->filterByCKey('active_procuct_range')
+            ->filterByCKey('active_product_range')
             ->findOne();
 
         if (!$range instanceof Settings) {
             $range = new Settings();
             $range->setNs('core');
-            $range->setCKey('active_procuct_range');
+            $range->setCKey('active_product_range');
         }
 
         $range->setCValue($name);
@@ -102,7 +102,7 @@ class Range
     {
         $name = strtoupper($name);
         $this->validateRange($name);
-        $this->session->set('active_procuct_range', $name);
+        $this->session->set('active_product_range', $name);
     }
 
 
