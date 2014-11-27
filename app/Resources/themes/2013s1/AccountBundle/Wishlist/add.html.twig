@@ -67,9 +67,29 @@
     </section>
 
     <div class="grid_8 alpha omega wishlist-flush-list">
+
         <div class="grid_{% if is_mobile_layout %}8{% else %}4{% endif %} alpha omega">
-            <a href="{{ path('_account_wishlist_remove_all') }}" class="button js-wishlist-flush-list{% if products|length == 0 %} off{% endif %} js-confirm" data-confirm-message="Er du sikker på du vil fjerne alle produkter på listen ?">{{ 'wishlist.remove.all.items'|trans({}, 'account') }}</a>
+            <div class="js-hanzo-module" data-module-name="WishlistMailer">
+                <a href="" class="button js-email-trigger">Send listen til en ven</a><br>
+                <a href="{{ path('_account_wishlist_load', {'listId': wishlist_id}) }}" class="button">{{ 'add.to.basket'|trans }}</a>
+
+                <div id="js-send-wishlist" class="off">
+                    <h4>{{ 'wishlist.send_list.header'|trans({}, 'account') }}</h4>
+                    <p>{{ 'wishlist.send_list.description'|trans({}, 'account') }}</p>
+                    <div class="message off"></div>
+                    <form action="{{ path('_account_wishlist_send') }}" class="send-wishlist">
+                        <input name="to_address" placeholder="{{ 'wishlist.send_list.placeholder'|trans({}, 'account') }}">
+                        <button type="submit" class="button right">{{ 'wishlist.send_list.button_label'|trans({}, 'account') }} <i class="fa fa-arrow-right"></i></button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="align-right">
+                <a href="{{ path('_account_wishlist_remove_all') }}" class="js-wishlist-flush-list{% if products|length == 0 %} off{% endif %} js-confirm" data-confirm-message="Er du sikker på du vil fjerne alle produkter på listen ?">{{ 'wishlist.remove.all.items'|trans({}, 'account') }}</a>
+            </div>
+
         </div>
+
     </div>
 
     <div class="grid_{% if is_mobile_layout %}8{% else %}4{% endif %} alpha omega list-number last{% if products|length == 0 %} off{% endif %}">
@@ -81,20 +101,6 @@
         {{ 'wishlist.footer.description'|trans({}, 'account')|raw }}
     </article>
 
-    <div class="footer grid_8 alpha omega js-hanzo-module" data-module-name="WishlistMailer">
-        <a href="" class="button js-email-trigger"><i class="fa fa-envelope"></i> Send listen til en ven</a>
-        <a href="{{ path('_account_wishlist_load', {'listId': wishlist_id}) }}" class="button">{{ 'add.to.basket'|trans }} <i class="fa fa-share"></i></a>
-
-        <div id="js-send-wishlist" class="off">
-            <h4>{{ 'wishlist.send_list.header'|trans({}, 'account') }}</h4>
-            <p>{{ 'wishlist.send_list.description'|trans({}, 'account') }}</p>
-            <div class="message off"></div>
-            <form action="{{ path('_account_wishlist_send') }}" class="send-wishlist">
-                <input name="to_address" placeholder="{{ 'wishlist.send_list.placeholder'|trans({}, 'account') }}">
-                <button type="submit" class="button right">{{ 'wishlist.send_list.button_label'|trans({}, 'account') }} <i class="fa fa-arrow-right"></i></button>
-            </form>
-        </div>
-    </div>
 
 <script type="text/html" id="wishlistItemTpl">
     <article

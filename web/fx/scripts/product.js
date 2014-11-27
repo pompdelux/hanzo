@@ -327,7 +327,7 @@
                 }
             });
 
-            $(document).on('click', '.buy button', function(event) {
+            $(document).on('click', '.buy .wishlist', function(event) {
                 event.preventDefault();
 
                 var $trigger = $(this);
@@ -346,7 +346,7 @@
                     return;
                 }
 
-                var xhr = $.post($trigger.data('href'), $form.serialize());
+                var xhr = $.post($trigger.prop('href'), $form.serialize());
 
                 xhr.done(function() {
                     dialoug.notice(Translator.trans('product.added.to.wishlist'), 'info', 3000);

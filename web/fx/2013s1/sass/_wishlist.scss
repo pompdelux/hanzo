@@ -160,12 +160,15 @@ aside.js-slider {
     }
 
     .wishlist-flush-list {
-        text-align: right;
         margin-bottom: 10px;
 
         a {
-            margin: 0;
+            margin: 5px 0;
             width: 425px;
+
+            .js-wishlist-flush-list {
+
+            }
         }
     }
 
