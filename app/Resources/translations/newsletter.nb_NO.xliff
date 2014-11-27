@@ -34,15 +34,15 @@
         <source>block.unsubscribe.submit_button</source>
         <target>Avmeld</target>
       </trans-unit>
-      <trans-unit id="subscribed.text" approved="no">
+      <trans-unit id="subscribed.text">
         <source>subscribed.text</source>
         <target>Du abonnerer nå på vårt nyhetsbrev.</target>
       </trans-unit>
-      <trans-unit id="unsubscribed.text" approved="no">
+      <trans-unit id="unsubscribed.text">
         <source>unsubscribed.text</source>
         <target> Du er nå avmeldt POMPdeLUX nyhetsbrev.</target>
       </trans-unit>
-      <trans-unit id="invalid.email.address" approved="no">
+      <trans-unit id="invalid.email.address">
         <source>invalid.email.address</source>
         <target>E-mail-adressen du har tastet inn er ugyldig.</target>
       </trans-unit>
@@ -54,7 +54,7 @@
       </trans-unit>
       <trans-unit id="newsletter.open.text">
         <source>newsletter.open.text</source>
-        <target>MED DEG PÅ TIL NYHETSBREVET OG VINN EN VERDIKUPONG PÅ NOK 3000,-</target>
+        <target>MELD DEG PÅ TIL NYHETSBREVET OG VINN EN VERDIKUPONG PÅ NOK 3000,-</target>
       </trans-unit>
     </body>
   </file>

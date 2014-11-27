@@ -1,8 +1,0 @@
-core:
-  default_tld: com
-  tld_map: { hf : dk }
-  main_menu_thread: 20
-  cdn: http://cdn.hanzo.dk/
-google:
-  maps: "ABQIAAAAUlCtnJfyCpB0HiNZhirLCxRnSy3HMd4FBmfa5RGCpEhkCZ57ohTX_pIptNo67DhWPTPD9hmt17-UBw"
-  analytics: "UA-1793665-1"

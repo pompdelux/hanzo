@@ -8,7 +8,7 @@ use Hanzo\Core\Hanzo;
 use Hanzo\Model\om\BaseCustomers;
 
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
-use Symfony\Component\Validator\ExecutionContextInterface;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * Class Customers
@@ -90,7 +90,6 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
         'vs@pompdelux.dk'     => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
         'nk@pompdelux.dk'     => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
         'ep@pompdelux.dk'     => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
-        'am@pompdelux.dk'     => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
         'lmach@pompdelux.dk'  => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
         // logistics
         'nh@pompdelux.dk'     => ['ROLE_LOGISTICS', 'ROLE_EMPLOYEE'],
@@ -254,13 +253,21 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
         return true;
     }
 
+    /**
+     * @param ExecutionContextInterface $context
+     */
+    public function passesExtendedValidation(ExecutionContextInterface $context)
+    {
+        $this->isFullNameWithinLimits($context);
+        $this->isValidEmail($context);
+    }
 
     /**
      * Validate length of users full name
      *
      * @param ExecutionContextInterface $context
      */
-    public function isFullNameWithinLimits(ExecutionContextInterface $context)
+    private function isFullNameWithinLimits(ExecutionContextInterface $context)
     {
         $domain    = strtoupper(Hanzo::getInstance()->get('core.domain_key'));
         $maxLength = 30;
@@ -277,7 +284,22 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
 
         $length = mb_strlen($this->getFirstName() . ' ' . $this->getLastName());
         if ($maxLength < $length) {
-            $context->addViolationAt('first_name', 'name.max.length', ['{{ limit }}' => $maxLength], $length, $length);
+            $context->buildViolation('name.max.length', [
+                '{{ limit }}'        => $maxLength,
+                'translation_domain' => 'account'
+            ])->addViolation();
         }
     }
-} // Customers
+
+    /**
+     * Validate emails based on phps internal FILTER_VALIDATE_EMAIL a
+     * Note, we do this to not have to deal with IDN addresses - which swiftmailer does not support.
+     * @param ExecutionContextInterface $context
+     */
+    private function isValidEmail(ExecutionContextInterface $context)
+    {
+        if (false === filter_var($this->getEmail(), FILTER_VALIDATE_EMAIL)) {
+            $context->buildViolation('email.not.valid', ['translation_domain' => 'account'])->addViolation();
+        }
+    }
+}

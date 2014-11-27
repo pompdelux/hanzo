@@ -36,7 +36,8 @@ var maps = (function ($) {
                     }
                 }
 
-                var req = '/' + geo_zipcode_params.type + '/' + response.data.postcodes[0].lat + '/' + response.data.postcodes[0].lng;
+                var showAll = ((undefined != near_you_params.all) && near_you_params.all) ? '/1' : '';
+                var req = '/' + geo_zipcode_params.type + '/' + response.data.postcodes[0].lat + '/' + response.data.postcodes[0].lng + showAll;
 
                 $.getJSON(base_url + 'rest/v1/gm/near_you' + req, function (result) {
                     dataToContainer(result.data);
@@ -59,7 +60,7 @@ var maps = (function ($) {
             $("#geo-zipcode", $this).val("");
         });
 
-        $geoZipForm.on('change', 'select', function() {
+        $geoZipForm.on('change', 'select', function () {
             $geoZipForm.submit();
         });
     };
@@ -68,11 +69,9 @@ var maps = (function ($) {
         dialoug.loading('#near-you-container', Translator.trans('loading.std'), 'prepend');
         $('#near-you-container').after('<div id="consultants-map-canvas-2" style="width:100%; height:300px; display:none;"></div>');
 
-        var all = 0;
-        if (near_you_params.all) {
-            all = 1;
-        }
-        var req = '/' + near_you_params.type + '/0/0/' + all;
+        var showAll = ((undefined != near_you_params.all) && near_you_params.all) ? '/1' : '';
+        var req = '/' + near_you_params.type + '/0/0' + showAll;
+
         $.getJSON(base_url + 'rest/v1/gm/near_you' + req, function (result) {
             dataToContainer(result.data);
 
@@ -144,7 +143,6 @@ var maps = (function ($) {
             }
         }
     };
-
 
     var dataToContainer = function (data) {
         $('#near-you-container div:not(.dialoug-loading), #near-you-container hr').remove();

@@ -113,7 +113,7 @@ Hanzo\Model\Customers:
                 groups:  [customer]
     constraints:
         - Callback:
-            methods: [isFullNameWithinLimits]
+            methods: [passesExtendedValidation]
             groups:
                 - customer
                 - customer_edit

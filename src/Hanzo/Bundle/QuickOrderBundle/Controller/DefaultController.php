@@ -32,6 +32,7 @@ class DefaultController extends CoreController
         $router       = $this->get('router');
         $products     = [];
         $deliveryDate = 0;
+        $productRange = $this->container->get('hanzo_product.range')->getCurrentRange();
 
         // product lines- if any
         foreach ($order->getOrdersLiness() as $line) {
@@ -59,8 +60,10 @@ class DefaultController extends CoreController
                 SELECT p.id, p.sku FROM products AS p
                 WHERE p.sku = (
                     SELECT pp.master FROM products AS pp
-                    WHERE pp.id = ".$line['products_id']."
+                    WHERE  pp.id = ".$line['products_id']."
+                    AND    pp.range = '".$productRange."'
                 )
+                AND p.range = '".$productRange."'
             ";
             $master = \Propel::getConnection()
                 ->query($sql)
@@ -109,6 +112,7 @@ class DefaultController extends CoreController
         $products = ProductsQuery::create()
             ->where('products.MASTER IS NULL')
             ->filterByIsOutOfStock(false)
+            ->filterByRange($this->container->get('hanzo_product.range')->getCurrentRange())
             ->useProductsDomainsPricesQuery()
                 ->filterByDomainsId(Hanzo::getInstance()->get('core.domain_id'))
             ->endUse()

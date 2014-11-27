@@ -220,6 +220,13 @@ class RestGoogleController extends CoreController
 
                 unset($data[$consultantId]['info']);
             }
+
+            // only list shopping advisors with actual events.
+            foreach ($data as $cid => $info) {
+                if (empty($info['events'])) {
+                    unset($data[$cid]);
+                }
+            }
         }
 
         $response = [

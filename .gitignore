@@ -9,7 +9,7 @@
 /vendor/*
 /app/config/parameters.ini
 /app/config/parameters.yml
-/app/config/hanzo.yml
+/app/config/products_id_map.php
 /src/Hanzo/Bundle/CMSBundle/Resources/config/cms_routing.yml
 /src/Hanzo/Bundle/BasketBundle/Resources/config/category_map.php
 /.rsync_cache/

@@ -48,7 +48,7 @@ services:
         factory_method:  get
         arguments:
             service:     cache
-            parameters:  [@redis.main]
+            parameters:  [@pdl.phpredis.main]
             class:       %cache_manager.class%
 
     cleanup_manager:

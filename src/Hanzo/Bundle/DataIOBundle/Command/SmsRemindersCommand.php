@@ -32,6 +32,8 @@ class SmsRemindersCommand extends ContainerAwareCommand
      *
      * @param  InputInterface  $input
      * @param  OutputInterface $output
+     *
+     * @return null
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -44,6 +46,6 @@ class SmsRemindersCommand extends ContainerAwareCommand
         $output->writeln('<info>Reminders send.</info>');
 
         $prefix = substr($this->getContainer()->getParameter('locale'), -2);
-        $this->getContainer()->get('redis.permanent')->hset('cron.log', $prefix.':sms_reminders', time());
+        $this->getContainer()->get('pdl.phpredis.permanent')->hset('cron.log', $prefix.':sms_reminders', time());
     }
 }

@@ -38,7 +38,7 @@
                 <source>events.calendar.link</source>
                 <target>Kalender</target>
             </trans-unit>
-            <trans-unit id="events.calendar.link.back.to" approved="no">
+            <trans-unit id="events.calendar.link.back.to">
                 <source>events.calendar.link.back.to</source>
                 <target>Back to calendar</target>
             </trans-unit>
@@ -379,7 +379,7 @@
                 <source>events.create_customer.description.text</source>
                 <target><![CDATA['<b>Existerande kund:</b> Skriv in kundens e-mailadress och klicka på knappen Hämta.]]></target>
             </trans-unit>
-            <trans-unit id="events.fetch_customer.placeholder" approved="no">
+            <trans-unit id="events.fetch_customer.placeholder">
                 <source>events.fetch_customer.placeholder</source>
                 <target>E-mail eller tlf. nr.</target>
             </trans-unit>
@@ -419,81 +419,85 @@
                 <source>event.closed</source>
                 <target>Arrangemanget är stängt</target>
             </trans-unit>
-            <trans-unit id="event.sms.confirmation.reply" approved="no">
+            <trans-unit id="event.sms.confirmation.reply">
                 <source>event.sms.confirmation.reply</source>
                 <target>Hej %name%. Tack för din anmälan till POMPdeLUX Home Shopping arrangemang den %event_date% kl. %event_time% på adressen %address%, %zip% %city%. Jag ser frame mot att träffa dig! %hostess%</target>
             </trans-unit>
-            <trans-unit id="event.sms.invite" approved="no">
+            <trans-unit id="event.sms.invite">
                 <source>event.sms.invite</source>
                 <target>Hej %name%. %hostess% vill gärna bjuda in dig till ett POMPdeLUX Home Shopping arrangemang den %event_date% kl. %event_time% på adressen %address%, %zip% %city%. Om du vill komma och se de fina barnkläderna, ska du svara på detta sms med texten "pdl %event_id%". Jag hoppas vi ses!</target>
             </trans-unit>
-            <trans-unit id="event.sms.reminder" approved="no">
+            <trans-unit id="event.sms.reminder">
                 <source>event.sms.reminder</source>
                 <target>Hej %name% Glöm inte POMPdeLUX Home Shopping arrangemanget den %event_date% kl. %event_time% På adressen: %address%, %zip% %city% Mvh POMPdeLUX</target>
             </trans-unit>
-            <trans-unit id="events.myevents.header" approved="no">
+            <trans-unit id="events.myevents.header">
                 <source>events.myevents.header</source>
                 <target><![CDATA[<h1>My Events</h1>]]></target>
             </trans-unit>
-            <trans-unit id="events.event.header.text.%date%" approved="no">
+            <trans-unit id="events.event.header.text.%date%">
                 <source>events.event.header.text.%date%</source>
                 <target>Event at %date%:</target>
             </trans-unit>
-            <trans-unit id="events.no.events" approved="no">
+            <trans-unit id="events.no.events">
                 <source>events.no.events</source>
                 <target>Couldn't find any future events for you.</target>
             </trans-unit>
-            <trans-unit id="events.hostess.header.text" approved="no">
+            <trans-unit id="events.hostess.header.text">
                 <source>events.hostess.header.text</source>
                 <target>Kundupplysningar</target>
             </trans-unit>
-            <trans-unit id="events.missing.event_end_time" approved="no">
+            <trans-unit id="events.missing.event_end_time">
                 <source>events.missing.event_end_time</source>
-                <target>Du skal udfylde slut tidspunktet for åbenhus arrangementer.</target>
+                <target>Ange sluttiden för öppet hus-arrangemanget.</target>
             </trans-unit>
-            <trans-unit id="events.missing.rsvp_type" approved="no">
+            <trans-unit id="events.missing.rsvp_type">
                 <source>events.missing.rsvp_type</source>
-                <target>Vælg svar type</target>
+                <target>Välj svarstyp</target>
             </trans-unit>
-            <trans-unit id="events.event_end_time.label" approved="no">
+            <trans-unit id="events.event_end_time.label">
                 <source>events.event_end_time.label</source>
-                <target>Stoptidspunkt</target>
+                <target>Sluttid</target>
             </trans-unit>
-            <trans-unit id="events.rsvp_type.label" approved="no">
+            <trans-unit id="events.rsvp_type.label">
                 <source>events.rsvp_type.label</source>
-                <target>Svar type</target>
+                <target>Svarstyp</target>
             </trans-unit>
-            <trans-unit id="events.rsvp_type.choice.need_to" approved="no">
+            <trans-unit id="events.rsvp_type.choice.need_to">
                 <source>events.rsvp_type.choice.need_to</source>
-                <target>Tilmelding nødvendig</target>
+                <target>Anmälan krävs</target>
             </trans-unit>
-            <trans-unit id="events.rsvp_type.choice.nice_to" approved="no">
+            <trans-unit id="events.rsvp_type.choice.nice_to">
                 <source>events.rsvp_type.choice.nice_to</source>
-                <target>Tilmelding ikke nødvendig</target>
+                <target>Anmälan krävs ej</target>
             </trans-unit>
-            <trans-unit id="events.rsvp_type.choice.sms_email" approved="no">
+            <trans-unit id="events.rsvp_type.choice.sms_email">
                 <source>events.rsvp_type.choice.sms_email</source>
-                <target>Tilmelding gerne per mail eller sms</target>
+                <target>Anmäl dig gärna via e-post eller sms</target>
             </trans-unit>
-            <trans-unit id="events.public_note.label" approved="no">
+            <trans-unit id="events.public_note.label">
                 <source>events.public_note.label</source>
-                <target>Valg fri tekst</target>
+                <target>Valfri text</target>
             </trans-unit>
-            <trans-unit id="events.choose.rsvp_type" approved="no">
+            <trans-unit id="events.choose.rsvp_type">
                 <source>events.choose.rsvp_type</source>
-                <target>Vælg tilmeldings type</target>
+                <target>Välj typ av anmälan</target>
             </trans-unit>
-            <trans-unit id="open.house.label" approved="no">
+            <trans-unit id="open.house.label">
                 <source>open.house.label</source>
-                <target>Åbent hus</target>
+                <target>Öppet hus</target>
             </trans-unit>
-            <trans-unit id="sa_search.zip_code.placeholder" approved="no">
+            <trans-unit id="sa_search.zip_code.placeholder">
                 <source>sa_search.zip_code.placeholder</source>
-                <target>Postnummer eller by</target>
+                <target>Postnummer eller ort</target>
             </trans-unit>
-            <trans-unit id="advisor.locater_form.label" approved="no">
+            <trans-unit id="advisor.locater_form.label">
                 <source>advisor.locater_form.label</source>
-                <target>Indtast din by eller dit postnummer</target>
+                <target>Ange din ort eller ditt postnummer</target>
+            </trans-unit>
+            <trans-unit id="no.open_house.events.near.you">
+                <source>no.open_house.events.near.you</source>
+                <target>Just nu finns inga Öppet Hus arrangemang i närheten av där du bor.</target>
             </trans-unit>
         </body>
     </file>

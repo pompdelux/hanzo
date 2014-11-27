@@ -87,7 +87,10 @@ class StockController extends CoreController
     protected function exactProduct($product_id)
     {
         $translator = $this->get('translator');
-        $product    = ProductsQuery::create()->findPk($product_id);
+        $product    = ProductsQuery::create()
+            ->filterByRange($this->container->get('hanzo_product.range')->getCurrentRange())
+            ->findOneById($product_id)
+        ;
 
         if (!$product instanceof Products) {
             return $this->json_response([
@@ -135,6 +138,7 @@ class StockController extends CoreController
 
         $query = ProductsQuery::create()
             ->filterByIsOutOfStock(false)
+            ->filterByRange($this->container->get('hanzo_product.range')->getCurrentRange())
             ->useProductsDomainsPricesQuery()
                 ->filterByDomainsId(Hanzo::getInstance()->get('core.domain_id'))
             ->endUse()

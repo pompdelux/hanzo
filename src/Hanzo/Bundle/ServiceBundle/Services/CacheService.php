@@ -2,25 +2,29 @@
 
 namespace Hanzo\Bundle\ServiceBundle\Services;
 
-use Hanzo\Core\Hanzo;
-use Hanzo\Core\Tools;
+use Pompdelux\PHPRedisBundle\Client\PHPRedis;
 
-use Hanzo\Model\CmsQuery;
-
-use Hanzo\Bundle\RedisBundle\Client\Redis;
-
+/**
+ * Class CacheService
+ *
+ * @package Hanzo\Bundle\ServiceBundle\Services
+ */
 class CacheService
 {
     protected $redis;
     protected $settings;
 
+    /**
+     * @param array $parameters
+     * @param array $settings
+     */
     public function __construct($parameters, $settings)
     {
-        $this->redis = $parameters[0];
+        $this->redis    = $parameters[0];
         $this->settings = $settings;
 
-        if (!$this->redis instanceof Redis) {
-            throw new \InvalidArgumentException('Predis\Client expected as first parameter.');
+        if (!$this->redis instanceof PHPRedis) {
+            throw new \InvalidArgumentException('PHPRedis\Client expected as first parameter.');
         }
     }
 
@@ -35,11 +39,11 @@ class CacheService
 
         // note, this is not optimal, but easy tho...
         // TODO populate list from the settings table
-        $servers = array(
+        $servers = [
             $_SERVER['HTTP_HOST'],
-        );
+        ];
 
-        $status = array();
+        $status = [];
         foreach ($servers as $server) {
             $status[$server] = file_get_contents('http://'.$server.'/cc.php?run=1');
         }

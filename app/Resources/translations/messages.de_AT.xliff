@@ -379,7 +379,7 @@ Paket: Das Paket wird an Ihre Adresse geliefert und kostet EUR 5,95. Wenn Sie zu
                 <source>faceted.reset.filter</source>
                 <target>» Filter zurücksetzen</target>
             </trans-unit>
-            <trans-unit id="product.quantity.discount" approved="no">
+            <trans-unit id="product.quantity.discount">
                 <source>product.quantity.discount</source>
                 <target>Kaufen Sie %span% Stk. und sparen Sie %discount% pro Stk.</target>
             </trans-unit>

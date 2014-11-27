@@ -1,0 +1,42 @@
+{% extends '::adminbase.html.twig' %}
+{% block content %}
+    <div class="jumbotron">
+        <h1>Venligst godkend !</h1>
+
+        <p class="alert alert-danger">{{ message|raw }}</p>
+
+        <form action="{{ path(action) }}" method="post">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="confirm" class="js-confirm-checkbox" value="1"> Ja, jeg acceptere fuldt ud konsekvensen af mine handlinger!
+                </label>
+            </div>
+            <button type="submit" class="btn btn-danger" role="button" disabled>Afsted!</button>
+            <a href="javascript: history.go(-2);" class="btn btn-default btn-lg">aah, la mig komme væk</a>
+
+        {% for name, value in data %}
+            <input type="hidden" name="{{ name }}" value="{{ value }}">
+        {% endfor %}
+        </form>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+<script>
+$('.js-confirm-checkbox').on('change', function() {
+    var $input = $(this);
+    var $button = $('button', $input.closest('form'));
+
+    if ($input.prop('checked')) {
+        $button.prop('disabled', false);
+        $button.addClass('btn-lg');
+    } else {
+        $button.prop('disabled', true);
+        $button.removeClass('btn-lg');
+    }
+});
+$('form').on('submit', function() {
+    dialoug.loading($('button', $(this)));
+});
+</script>
+{% endblock %}
