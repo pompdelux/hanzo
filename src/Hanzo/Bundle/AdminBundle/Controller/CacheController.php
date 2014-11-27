@@ -2,20 +2,27 @@
 
 namespace Hanzo\Bundle\AdminBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
+use Hanzo\Bundle\DataIOBundle\Events;
+use Hanzo\Bundle\DataIOBundle\FilterUpdateEvent;
+use Hanzo\Core\CoreController;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-use Hanzo\Core\Hanzo,
-    Hanzo\Core\Tools,
-    Hanzo\Core\CoreController;
-
-use Hanzo\Bundle\DataIOBundle\Events,
-    Hanzo\Bundle\DataIOBundle\FilterUpdateEvent;
-
+/**
+ * Class CacheController
+ *
+ * @package Hanzo\Bundle\AdminBundle
+ */
 class CacheController extends CoreController
 {
-    public function clearAction($jscss = FALSE, $router = FALSE, $redis = FALSE, $file = FALSE)
+    /**
+     * @param bool $jscss
+     * @param bool $router
+     * @param bool $redis
+     * @param bool $file
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function clearAction($jscss = false, $router = false, $redis = false, $file = false)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
@@ -23,44 +30,42 @@ class CacheController extends CoreController
 
         $cache = $this->get('cache_manager');
 
-        if($jscss)
-        {
-            try{
+        if ($jscss) {
+            try {
                 $event = new FilterUpdateEvent();
                 $dispatcher = $this->get('event_dispatcher');
                 $dispatcher->dispatch(Events::incrementAssetsVersion, $event);
-            }catch(Exception $e){
+            } catch (Exception $e) {
                 if ($this->getFormat() == 'json') {
-                    return $this->json_response(array(
-                        'status' => FALSE,
-                        'message' => $this->get('translator')->trans('cache.clear.failed.' . $e, array(), 'admin'),
-                    ));
+                    return $this->json_response([
+                        'status'  => false,
+                        'message' => $this->get('translator')->trans('cache.clear.failed.' . $e, [], 'admin'),
+                    ]);
                 }
 
                 return $this->response($e);
             }
         }
 
-        if($router)
-        {
-        	$cache->routerBuilder();
+        if ($router) {
+            $cache->routerBuilder();
         }
 
-        if($redis){
-        	$cache->clearRedisCache();
+        if ($redis) {
+            $cache->clearRedisCache();
         }
 
-        if($file){
-        	$cache->clearFileCache();
-		}
+        if ($file) {
+            $cache->clearFileCache();
+        }
 
         if ($this->getFormat() == 'json') {
-            return $this->json_response(array(
-                'status' => TRUE,
-                'message' => $this->get('translator')->trans('cache.cleared', array(), 'admin'),
-            ));
+            return $this->json_response([
+                'status'  => true,
+                'message' => $this->get('translator')->trans('cache.cleared', [], 'admin'),
+            ]);
         }
 
-        return $this->response($this->get('translator')->trans('cache.cleared', array(), 'admin'));
+        return $this->response($this->get('translator')->trans('cache.cleared', [], 'admin'));
     }
 }
