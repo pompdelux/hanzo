@@ -116,6 +116,11 @@ class PensioController extends CoreController
         $order->reload(true);
 
         if ($order instanceof Orders) {
+            $queryParameters = [];
+            if ($order->getInEdit()) {
+                $queryParameters = ['is-edit' => 1];
+            }
+
             $api = $this->get('payment.pensioapi');
 
             try {
@@ -130,7 +135,7 @@ class PensioController extends CoreController
 
             if ('ok' === $status) {
                 // pensio fails when returning a body in the redirect, so we custom build the response header and exit
-                header('Location: '.$this->generateUrl('_checkout_success', [], true), 302);
+                header('Location: '.$this->generateUrl('_checkout_success', $queryParameters, true), 302);
                 exit;
             }
 

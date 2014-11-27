@@ -59,6 +59,11 @@ class PayPalController extends CoreController
                 Propel::getConnection(null, Propel::CONNECTION_WRITE)
             );
 
+        $queryParameters = [];
+        if ($order->getInEdit()) {
+            $queryParameters = ['is-edit' => 1];
+        }
+
         $flashBag = $this->get('session')->getFlashBag();
 
         if ($order instanceof Orders) {
@@ -80,7 +85,7 @@ class PayPalController extends CoreController
             }
 
             if ('ok' === $status) {
-                return $this->redirect($this->generateUrl('_checkout_success'));
+                return $this->redirect($this->generateUrl('_checkout_success', $queryParameters));
             }
 
             $api->updateOrderFailed($request, $order);
@@ -103,7 +108,7 @@ class PayPalController extends CoreController
     /**
      * cancelAction
      *
-     * @return void
+     * @return Response
      */
     public function cancelAction()
     {
