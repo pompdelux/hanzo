@@ -6,29 +6,24 @@
  * Signature: ABXF9ETaMLWYCEmZokD.mXSrk88hA63P3kKKUzqMvoUft615M4awyDCb
  */
 
-
 namespace Hanzo\Bundle\PaymentBundle\Controller;
 
 use Exception;
-use Propel;
-
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
-use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
-
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersQuery;
-use Hanzo\Model\OrdersPeer;
-
 use Hanzo\Bundle\PaymentBundle\Methods\PayPal\PayPalApi;
 use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
+use Propel;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class PayPalController
+ *
+ * @package Hanzo\Bundle\PaymentBundle
+ */
 class PayPalController extends CoreController
 {
     /**
@@ -50,7 +45,11 @@ class PayPalController extends CoreController
      *     checksum
      * ]
      *
-     * @return void
+     * @param Request $request
+     * @param string  $status
+     *
+     * @throws \PropelException
+     * @return Response
      */
     public function callbackAction(Request $request, $status = 'failed')
     {
@@ -58,10 +57,9 @@ class PayPalController extends CoreController
             ->findOneByPaymentGatewayId(
                 $request->query->get('payment_gateway_id'),
                 Propel::getConnection(null, Propel::CONNECTION_WRITE)
-            )
-        ;
+            );
 
-        $flash_bag = $this->get('session')->getFlashBag();
+        $flashBag = $this->get('session')->getFlashBag();
 
         if ($order instanceof Orders) {
             $order->reload(true);
@@ -87,24 +85,28 @@ class PayPalController extends CoreController
 
             $api->updateOrderFailed($request, $order);
 
-            $flash_bag->add('notice', $this->get('translator')->trans($message, [], 'paypal'));
+            $flashBag->add('notice', $this->get('translator')->trans($message, [], 'paypal'));
         } else {
-            $flash_bag->add('notice', $this->get('translator')->trans('order.not.found', [], 'paypal'));
+            $flashBag->add('notice', $this->get('translator')->trans('order.not.found', [], 'paypal'));
         }
 
         return $this->redirect($this->generateUrl('_checkout'));
     }
 
-    public function processAction(Request $request){}
-
+    /**
+     * @param Request $request
+     */
+    public function processAction(Request $request)
+    {
+    }
 
     /**
      * cancelAction
+     *
      * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    public function cancelAction(Request $request)
+     */
+    public function cancelAction()
     {
-        return new Response('Ok', 200, array('Content-Type' => 'text/plain'));
+        return new Response('Ok', 200, ['Content-Type' => 'text/plain']);
     }
 }
