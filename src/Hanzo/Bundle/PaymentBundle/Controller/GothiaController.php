@@ -28,7 +28,7 @@ class GothiaController extends CoreController
 {
     /**
      * blockAction
-     * 
+     *
      * @return Response
      */
     public function blockAction()
