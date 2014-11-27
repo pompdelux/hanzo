@@ -4,13 +4,13 @@
 {% block content %}
 {% for message in app.session.flashbag.get('notice') %}
     <div class="alert alert-success">
-        {{ message|trans({}, 'admin') }}
+        {{ message|trans({}, 'admin')|raw }}
     </div>
 {% endfor %}
 
 {% for message in app.session.flashbag.get('warning') %}
     <div class="alert alert-warning">
-        {{ message|trans({}, 'admin') }}
+        {{ message|trans({}, 'admin')|raw }}
     </div>
 {% endfor %}
 
