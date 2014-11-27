@@ -22,13 +22,14 @@ class ManualPaymentController extends CoreController
     /**
      * callbackAction
      *
+     * @param Request $request
+     *
      * @throws Exception
      * @return Response
      */
-    public function callbackAction()
+    public function callbackAction(Request $request)
     {
-        $api = $this->get('payment.manualpaymentapi');
-        $request = $this->get('request');
+        $api   = $this->get('payment.manualpaymentapi');
         $order = OrdersPeer::getCurrent(true);
 
         $queryParameters = [];
