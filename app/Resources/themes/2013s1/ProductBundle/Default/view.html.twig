@@ -140,7 +140,7 @@
             {% else %}
 
                 <form action="{{ url('basket_add', {}, true) }}" method="post" class="buy">
-                    <div class="options">
+                    <div class="options grid_4 alpha">
                         <h4 class="bordered">{{ 'options.title'|trans }}</h4>
                         <label for="size">
                             <div class="row">
@@ -173,12 +173,14 @@
                                 {% endfor %}
                             </select>
                         </label>
+
+                        <a href="{{ image_path(cdn ~ 'size.guide.link'|trans ) }}" class="colorbox sizeguide">{{ 'size.guide.link.text'|trans }}</a>
                     </div>
 
-                    <a href="{{ image_path(cdn ~ 'size.guide.link'|trans ) }}" class="colorbox sizeguide">{{ 'size.guide.link.text'|trans }}</a>
-
-                    <input type="submit" value="{{ "add.to.basket"|trans }}" class="button submit-button">
-                    <button type="button" class="button{% if not app.user %} js-require-login{% endif %}" data-href="{{ path('_account_wishlist_add_item') }}">{{ "add.product.to.wishlist"|trans }}</button>
+                    <div class="grid_3 omega add-buttons">
+                        <input type="submit" value="{{ "add.to.basket"|trans }}" class="button submit-button">
+                        <a href="{{ path('_account_wishlist_add_item') }}" class="wishlist {% if not app.user %} js-require-login{% endif %}">{{ "add.product.to.wishlist"|trans }}</a>
+                    </div>
                     <input type="hidden" id="master" name="master" value="{{ product.sku }}">
                 </form>
 
