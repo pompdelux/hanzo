@@ -606,29 +606,33 @@ Därefter kan du enkelt shoppa vidare.<br></p>
                 <source>wishlist.remove.all.items</source>
                 <target>RENSA LISTAN</target>
             </trans-unit>
-            <trans-unit id="wishlist.send_list.header">
+            <trans-unit id="wishlist.send_list.header" approved="no">
                 <source>wishlist.send_list.header</source>
                 <target>Send shoppinglisten til en du kender</target>
             </trans-unit>
-            <trans-unit id="wishlist.send_list.description">
+            <trans-unit id="wishlist.send_list.description" approved="no">
                 <source>wishlist.send_list.description</source>
                 <target>jadi jadi jadi ja ... jadi jadi jadi ja ... jadi jadi jadi ja ... jadi jadi jadi ja ...</target>
             </trans-unit>
-            <trans-unit id="wishlist.send_list.placeholder">
+            <trans-unit id="wishlist.send_list.placeholder" approved="no">
                 <source>wishlist.send_list.placeholder</source>
                 <target>Modtager email adresse</target>
             </trans-unit>
-            <trans-unit id="wishlist.send_list.button_label">
+            <trans-unit id="wishlist.send_list.button_label" approved="no">
                 <source>wishlist.send_list.button_label</source>
                 <target>Send</target>
             </trans-unit>
-            <trans-unit id="wishlist.invalid_to_address">
+            <trans-unit id="wishlist.invalid_to_address" approved="no">
                 <source>wishlist.invalid_to_address</source>
                 <target>Ugyldig emailaddresse</target>
             </trans-unit>
-            <trans-unit id="wishlist.send">
+            <trans-unit id="wishlist.send" approved="no">
                 <source>wishlist.send</source>
                 <target>Shoppinglisten er nu sendt.</target>
+            </trans-unit>
+            <trans-unit id="wishlist.all.items.deleted" approved="no">
+                <source>wishlist.all.items.deleted</source>
+                <target>Alle produkterne er nu fjernet fra din shoppingliste.</target>
             </trans-unit>
         </body>
     </file>
