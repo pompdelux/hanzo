@@ -332,15 +332,6 @@
 
                 var $trigger = $(this);
 
-                if ($trigger.hasClass('js-require-login')) {
-                    dialoug.alert(
-                        Translator.trans('require.login.label'),
-                        Translator.trans('wishlist.require.login.text', {'url': base_url+'login?target='+encodeURI(document.location.href)})
-                    );
-
-                    return;
-                }
-
                 var $form = $trigger.closest('form');
                 if ('' == $('.color', $form).val()) {
                     dialoug.notice(Translator.trans('form.buy.choose.first'), 'error', 3000, $form.parent());
@@ -349,7 +340,16 @@
 
                 var xhr = $.post($trigger.prop('href'), $form.serialize());
 
-                xhr.done(function() {
+                xhr.done(function(data) {
+                    if ('string' == jQuery.type(data)) {
+                        dialoug.alert(
+                            Translator.trans('require.login.label'),
+                            Translator.trans('wishlist.require.login.text', {'url': base_url+'login?target='+encodeURI(document.location.href)})
+                        );
+
+                        return;
+                    }
+
                     dialoug.notice(Translator.trans('product.added.to.wishlist'), 'info', 3000);
                 });
 

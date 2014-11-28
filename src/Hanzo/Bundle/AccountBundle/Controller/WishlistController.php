@@ -112,6 +112,13 @@ class WishlistController extends CoreController
      */
     public function addItemAction(Request $request)
     {
+        if (!$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->json_response([
+                'status'  => false,
+                'message' => 'requires.login'
+            ]);
+        }
+
         $list = $this->getWishlist();
         $type = 'add';
 
