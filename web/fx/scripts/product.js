@@ -323,7 +323,7 @@
                         dialoug.error(Translator.trans('notice!'), Translator.trans('an.error.occurred'));
                     });
                 } else {
-                    dialoug.notice(Translator.trans('form.buy.choose.first'), 'error', 3000, $('.button', $form).parent());
+                    dialoug.notice(Translator.trans('form.buy.choose.first'), 'error', 3000, $form.parent());
                 }
             });
 
@@ -343,6 +343,7 @@
 
                 var $form = $trigger.closest('form');
                 if ('' == $('.color', $form).val()) {
+                    dialoug.notice(Translator.trans('form.buy.choose.first'), 'error', 3000, $form.parent());
                     return;
                 }
 
