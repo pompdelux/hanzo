@@ -270,7 +270,7 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
                 <source>return.info</source>
                 <target><![CDATA[
                     <p><b>Recht van retour</b><br>
-Wil je een artikel ruilen of retourneren, dan heb je bij POMPdeLUX 14 dagen recht van retour vanaf de dag dat je het artikel ontvangt. Het is belangrijk dat je het artikel retourneert met het prijskaartje eraan en in dezelfde staat als  je het ontvangen hebt,  wanneer je het wilt ruilen voor een zelfde soort artikel of het volledige aankoopbedrag terugbetaald wilt krijgen. Je kunt meer lezen over hoe je een artikel retourneert of ruilt onder <a href="/nl_NL/voorpagina/klantenservice/retourneren" target="_blank">Retourneren</a> en <a href="/nl_NL/voorpagina/klantenservice/ruilen" target="_blank">Ruilen.</a><br><br> 
+Wil je een artikel ruilen of retourneren, dan heb je bij POMPdeLUX 14 dagen recht van retour vanaf de dag dat je het artikel ontvangt. Het is belangrijk dat je het artikel retourneert met het prijskaartje eraan en in dezelfde staat als  je het ontvangen hebt,  wanneer je het wilt ruilen voor een zelfde soort artikel of het volledige aankoopbedrag terugbetaald wilt krijgen. Je kunt meer lezen over hoe je een artikel retourneert of ruilt onder <a href="/nl_NL/voorpagina/klantenservice/retourneren" target="_blank">Retourneren</a> en <a href="/nl_NL/voorpagina/klantenservice/ruilen" target="_blank">Ruilen.</a><br><br>
 Je kunt meer lezen over het recht van retour in onze <a href="/nl_NL/voorpagina/klantenservice/voorwaarden" target="_blank">Algemene voorwaarden.</a>
 </p>
                 ]]></target>
@@ -384,6 +384,10 @@ Je kunt meer lezen over het recht van retour in onze <a href="/nl_NL/voorpagina/
             <trans-unit id="product.quantity.discount">
                 <source>product.quantity.discount</source>
                 <target>Koop %span% stk. en spaar %discount% pr. stk.</target>
+            </trans-unit>
+            <trans-unit id="add.product.to.wishlist">
+                <source>add.product.to.wishlist</source>
+                <target>Toevoegen aan shoppinglijst</target>
             </trans-unit>
         </body>
     </file>

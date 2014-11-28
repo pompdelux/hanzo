@@ -385,6 +385,10 @@ Du kan läsa mer om ångerrätten under <a href="/sv_SE/forside/kundservice/vill
                 <source>product.quantity.discount</source>
                 <target>Køb %span% stk. og spar %discount% pr. stk.</target>
             </trans-unit>
+            <trans-unit id="add.product.to.wishlist">
+                <source>add.product.to.wishlist</source>
+                <target>Lägg till i shoppinglistan</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
