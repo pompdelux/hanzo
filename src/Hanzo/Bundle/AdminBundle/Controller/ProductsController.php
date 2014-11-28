@@ -1328,6 +1328,7 @@ class ProductsController extends CoreController
         $errors    = [];
         $sql       = "UPDATE products_i18n SET title = :title WHERE id = :id AND locale = :locale";
         $line      = 0;
+        ini_set("auto_detect_line_endings", true);
 
         $fileTmp->move($tmpDir, $fileName);
 
