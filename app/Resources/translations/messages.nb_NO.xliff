@@ -272,7 +272,7 @@
             <trans-unit id="return.info">
                 <source>return.info</source>
                 <target><![CDATA[
-                    <p>Hvis du ønsker å bytte eller returnere en vare, har du hos POMPdeLUX 14 dagers angrerett fra den dagen du mottar varen. Det er viktig at varen returneres med hengemerker og i samme stand som da du mottok den, hvis du ønsker å få byttet den til en tilsvarende vare eller få tilbakebetalt det fulle kjøpsbeløpet. Du kan lese mer om hvordan du skal gjøre hvis du ønsker å returnere eller bytte en vare under <a href="/nb_NO/forside/kundeservice/returnering" target="_blank">Returnering og Bytting.</a> 
+                    <p>Hvis du ønsker å bytte eller returnere en vare, har du hos POMPdeLUX 14 dagers angrerett fra den dagen du mottar varen. Det er viktig at varen returneres med hengemerker og i samme stand som da du mottok den, hvis du ønsker å få byttet den til en tilsvarende vare eller få tilbakebetalt det fulle kjøpsbeløpet. Du kan lese mer om hvordan du skal gjøre hvis du ønsker å returnere eller bytte en vare under <a href="/nb_NO/forside/kundeservice/returnering" target="_blank">Returnering og Bytting.</a>
 Du kan lese mer om angrerett under <a href="/nb_NO/forside/kundeservice/vilkar-betingelser" target="_blank">Vilkår og betingelser.</a>
 </p>
                 ]]></target>
@@ -382,6 +382,10 @@ Du kan lese mer om angrerett under <a href="/nb_NO/forside/kundeservice/vilkar-b
             <trans-unit id="product.quantity.discount">
                 <source>product.quantity.discount</source>
                 <target>Køb %span% stk. og spar %discount% pr. stk.</target>
+            </trans-unit>
+            <trans-unit id="add.product.to.wishlist">
+                <source>add.product.to.wishlist</source>
+                <target>Tilføy shoppingliste</target>
             </trans-unit>
         </body>
     </file>

@@ -377,6 +377,10 @@ Read more about your cancellation rights in our <a href="/en_GB/home/customer-se
                 <source>product.quantity.discount</source>
                 <target>Buy %span% items and save %discount% per item.</target>
             </trans-unit>
+            <trans-unit id="add.product.to.wishlist">
+                <source>add.product.to.wishlist</source>
+                <target>Add to wishlist</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

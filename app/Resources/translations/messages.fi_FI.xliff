@@ -258,8 +258,8 @@
                 <target><![CDATA[
                     <p><b>PERUMISOIKEUS</b><br>
 Jos haluat vaihtaa tai palauttaa tuotteen, sinulla on POMPdeLUXilla 14 päivän katumisoikeus siitä päivästä lähtien, jona vastaanotat tuotteen.<br>
-On tärkeää, että tuote palautetaan tuote- ja hintalappuineen ja samassa kunnossa kuin vastaanottaessasi tuotteen, jos haluat saada tilalle vastaavan tuotteen tai rahasi takaisin.Voit lukea lisää siitä, kuinka sinun tulee toimia, jos haluat palauttaa tai vaihtaa tuotteen kohdista <a href="/fi_FI/koti/asiakaspalvelu/palautukset" target="_blank">Palautus</a> ja <a href="/fi_FI/koti/asiakaspalvelu/vaihtaminen" target="_blank">Vaihto.</a> <br><br> 
-Voit lukea lisää katumisoikeudesta <a href="/fi_FI/koti/asiakaspalvelu/ehdotjavaatimukset" target="_blank">ehdoista ja vaatimuksistamme.</a> 
+On tärkeää, että tuote palautetaan tuote- ja hintalappuineen ja samassa kunnossa kuin vastaanottaessasi tuotteen, jos haluat saada tilalle vastaavan tuotteen tai rahasi takaisin.Voit lukea lisää siitä, kuinka sinun tulee toimia, jos haluat palauttaa tai vaihtaa tuotteen kohdista <a href="/fi_FI/koti/asiakaspalvelu/palautukset" target="_blank">Palautus</a> ja <a href="/fi_FI/koti/asiakaspalvelu/vaihtaminen" target="_blank">Vaihto.</a> <br><br>
+Voit lukea lisää katumisoikeudesta <a href="/fi_FI/koti/asiakaspalvelu/ehdotjavaatimukset" target="_blank">ehdoista ja vaatimuksistamme.</a>
 </p>
                 ]]></target>
             </trans-unit>
@@ -373,6 +373,10 @@ Voit lukea lisää katumisoikeudesta <a href="/fi_FI/koti/asiakaspalvelu/ehdotja
             <trans-unit id="product.quantity.discount">
                 <source>product.quantity.discount</source>
                 <target>Osta %span% kpl. Ja säästä %discount% kpl.</target>
+            </trans-unit>
+            <trans-unit id="add.product.to.wishlist">
+                <source>add.product.to.wishlist</source>
+                <target>Lisää ostoslistalle</target>
             </trans-unit>
         </body>
     </file>
