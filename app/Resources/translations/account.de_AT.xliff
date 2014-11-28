@@ -637,6 +637,10 @@ Um jedoch sicherzustellen, dass dabei keine Fehler aufgetreten sind, möchten wi
                 <source>wishlist.send</source>
                 <target>Shoppinglisten er nu sendt.</target>
             </trans-unit>
+            <trans-unit id="wishlist.all.items.deleted" approved="no">
+                <source>wishlist.all.items.deleted</source>
+                <target>Alle produkterne er nu fjernet fra din shoppingliste.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
