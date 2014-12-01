@@ -50,7 +50,9 @@
     <article>
         {{ parse(page.content) }}
     </article>
-{#
+
+{# fjerne udkommenteringen her for at slå "nyhedsbrevs popup'en" til igen - js triggers finder selv ud af resten.
+
     <div id="newsletterModal" class="type3">
         <div class="inner">
             <div class="wrapper">
@@ -70,6 +72,7 @@
         </div>
     </div>
 #}
+
 {% endif %}
 
 {% endblock %}
