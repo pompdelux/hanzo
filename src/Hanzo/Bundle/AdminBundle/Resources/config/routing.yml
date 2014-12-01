@@ -174,6 +174,21 @@ admin_products:
         category_id: \d+
         subcategory_id: \d+
 
+admin_products_language_export:
+    pattern:  /admin/products/languages.csv
+    defaults:
+        _controller: AdminBundle:Products:exportLanguages
+
+admin_products_language_import:
+    pattern:  /admin/products/languages/import/
+    defaults:
+        _controller: AdminBundle:Products:importLanguages
+
+admin_products_language_perform_import:
+    pattern:  /admin/products/languages/perform_import/
+    defaults:
+        _controller: AdminBundle:Products:performImportLanguages
+
 admin_products_list:
     pattern:  /admin/products/list
     defaults:
