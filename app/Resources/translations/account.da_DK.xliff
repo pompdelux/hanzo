@@ -626,15 +626,15 @@ Herefter kan du nemt shoppe videre.</p><br>
             </trans-unit>
             <trans-unit id="wishlist.send_list.header">
                 <source>wishlist.send_list.header</source>
-                <target>Send shoppinglisten til en du kender</target>
+                <target>Send Shoppinglisten til en du kender</target>
             </trans-unit>
             <trans-unit id="wishlist.send_list.description" approved="no">
                 <source>wishlist.send_list.description</source>
-                <target>jadi jadi jadi ja ... jadi jadi jadi ja ... jadi jadi jadi ja ... jadi jadi jadi ja ...</target>
+                <target>Indtast den e-mail adresse, som du ønsker at sende Shoppinglisten til.</target>
             </trans-unit>
             <trans-unit id="wishlist.send_list.placeholder">
                 <source>wishlist.send_list.placeholder</source>
-                <target>Modtager email adresse</target>
+                <target>Modtagers e-mail adresse</target>
             </trans-unit>
             <trans-unit id="wishlist.send_list.button_label">
                 <source>wishlist.send_list.button_label</source>
