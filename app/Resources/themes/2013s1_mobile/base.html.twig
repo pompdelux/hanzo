@@ -22,8 +22,8 @@
         </ul>
         <ul class="horizontal menu second">
           <li id="mini-basket" class="basket">
-            <span class="sprite"></span>
-            <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" title="{{ "show.basket"|trans }}"> {{ render(controller('BasketBundle:Default:miniBasket')) }} </a>
+            <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" title=""><span class="sprite"></span></a>
+            <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" title="{{ "show.basket"|trans }}" class="total"> {{ render(controller('BasketBundle:Default:miniBasket')) }} </a>
           </li>
         </ul>
       </nav>

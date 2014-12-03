@@ -513,6 +513,26 @@
             });
         };
 
+        /**
+         * Handle color switching in the dropdown.
+         * This triggers a change of both product image and related styles.
+         */
+        $(document).on('change', '.buy .color', function() {
+            var $select = $(this);
+            var currentColor = $('option:selected', $select).val().toLowerCase().replace(/[ |\/]/g, function(value) {
+                if (' ' == value) {
+                    return '-';
+                } else if ('/' == value) {
+                    return '9';
+                }
+            });
+
+            var $swapped = $('.productimage-small a.color-' + currentColor + '.type-overview');
+            product.swapImages($swapped.first());
+            _changeColor(currentColor);
+            product.initZoom();
+        });
+
 
         return pub;
     })(jQuery);
@@ -525,7 +545,7 @@
     product.initPurchase();
     product.initLastSeen();
 
-    // icon toggler
+    // icon toggler.
     $('.productimage-small a').click(function (e) {
         e.preventDefault();
         product.swapImages(this);
