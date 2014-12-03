@@ -6,37 +6,34 @@
  * Password: y2etx3@vz5Jc
  */
 
-
 namespace Hanzo\Bundle\PaymentBundle\Controller;
 
 use Exception;
+use Hanzo\Core\Tools;
+use Hanzo\Core\CoreController;
+use Hanzo\Model\Orders;
+use Hanzo\Model\OrdersQuery;
+use Hanzo\Bundle\PaymentBundle\Methods\Pensio\PensioApi;
+use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
 use Propel;
-
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-use Hanzo\Core\Hanzo;
-use Hanzo\Core\Tools;
-use Hanzo\Core\CoreController;
-
-use Hanzo\Model\Orders;
-use Hanzo\Model\OrdersQuery;
-use Hanzo\Model\OrdersPeer;
-
-use Hanzo\Bundle\PaymentBundle\Methods\Pensio\PensioApi;
-use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
-
+/**
+ * Class PensioController
+ *
+ * @package Hanzo\Bundle\PaymentBundle\Controller
+ */
 class PensioController extends CoreController
 {
-
     /**
      * the form template to hand off to Pensio
      *
+     * @param Request $request
+     *
      * @Template("PaymentBundle:Pensio:form.html.twig")
-     * @param  Request $request
      * @return Response
      * @throws AccessDeniedException
      */
@@ -51,22 +48,21 @@ class PensioController extends CoreController
             ->findOneByPaymentGatewayId(
                 $request->get('shop_orderid'),
                 Propel::getConnection(null, Propel::CONNECTION_WRITE)
-            )
-        ;
+            );
 
         return [
-            'order_id' => $order->getId(),
+            'order_id'   => $order->getId(),
             'payment_id' => $order->getPaymentGatewayId(),
-            'amount' => $order->getTotalPrice()
+            'amount'     => $order->getTotalPrice()
         ];
     }
-
 
     /**
      * redirect page
      *
+     * @param Request $request
+     *
      * @Template("PaymentBundle:Pensio:wait.html.twig")
-     * @param  Request $request
      * @return Response
      * @throws AccessDeniedException
      */
@@ -79,7 +75,6 @@ class PensioController extends CoreController
 
         return [];
     }
-
 
     /**
      * callbackAction
@@ -102,6 +97,7 @@ class PensioController extends CoreController
      *
      * @param Request $request
      * @param string  $status
+     *
      * @return Response
      * @throws AccessDeniedException
      */
@@ -116,11 +112,15 @@ class PensioController extends CoreController
             ->findOneByPaymentGatewayId(
                 $request->get('shop_orderid'),
                 Propel::getConnection(null, Propel::CONNECTION_WRITE)
-            )
-        ;
+            );
         $order->reload(true);
 
         if ($order instanceof Orders) {
+            $queryParameters = [];
+            if ($order->getInEdit()) {
+                $queryParameters = ['is-edit' => 1];
+            }
+
             $api = $this->get('payment.pensioapi');
 
             try {
@@ -135,7 +135,7 @@ class PensioController extends CoreController
 
             if ('ok' === $status) {
                 // pensio fails when returning a body in the redirect, so we custom build the response header and exit
-                header('Location: '.$this->generateUrl('_checkout_success', [], true), 302);
+                header('Location: '.$this->generateUrl('_checkout_success', $queryParameters, true), 302);
                 exit;
             }
 
@@ -151,42 +151,44 @@ class PensioController extends CoreController
             ]);
         }
 
-        return new Response('FAILED', 500, array('Content-Type' => 'text/plain'));
+        return new Response('FAILED', 500, ['Content-Type' => 'text/plain']);
     }
 
-    public function processAction(Request $request){}
-
+    /**
+     * @param Request $request
+     */
+    public function processAction(Request $request)
+    {
+    }
 
     /**
      * cancelAction
-     * @param  Request $request
+     *
      * @return Response
-     **/
-    public function cancelAction(Request $request)
+     */
+    public function cancelAction()
     {
-        return new Response('Ok', 200, array('Content-Type' => 'text/plain'));
+        return new Response('Ok', 200, ['Content-Type' => 'text/plain']);
     }
-
 
     /**
      * Get transaction information on a order id
      *
-     * @param  Request $request
-     * @param  Integer $order_id
+     * @param int $order_id
+     *
      * @return Response
      */
-    public function lookupAction(Request $request, $order_id)
+    public function lookupAction($order_id)
     {
         $order = OrdersQuery::create()
             ->findOneById(
                 $order_id, // 19653
                 Propel::getConnection(null, Propel::CONNECTION_WRITE)
-            )
-        ;
+            );
 
         $api = $this->get('payment.pensioapi');
         $result = $api->call()->getPayment($order, true);
 
-        return new Response('<pre>'.print_r($result,1).'</pre>', 200, array('Content-Type' => 'text/plain'));
+        return new Response('<pre>'.print_r($result, 1).'</pre>', 200, ['Content-Type' => 'text/plain']);
     }
 }

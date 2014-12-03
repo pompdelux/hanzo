@@ -113,10 +113,15 @@ Tools::log('YEAH - is used ..., delete log if seen.! <un>');
     {
         $order = OrdersPeer::retriveByPaymentGatewayId($order_id);
 
+        $queryParameters = [];
+        if ($order->getInEdit()) {
+            $queryParameters = ['is-edit' => 1];
+        }
+
         if (!empty($order) && ($order->getId() !== $this->get('session')->get('order_id'))) {
             Tools::log('Order id mismatch, in url: '.$order_id. ' in session: '. $request->getSession()->get('order_id').' L: '.$request->getLocale());
         }
 
-        return $this->redirect($this->generateUrl('_checkout_success'));
+        return $this->redirect($this->generateUrl('_checkout_success', $queryParameters));
     }
 }
