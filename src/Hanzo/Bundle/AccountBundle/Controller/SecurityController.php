@@ -36,7 +36,8 @@ class SecurityController extends CoreController
 
             default:
                 if ($request->query->has('target')) {
-                    $target = $request->query->get('target');
+                    // yeah, force to https...
+                    $target = str_replace('p:', 'ps:', $request->query->get('target'));
                 } else {
                     if ('consultant' == $this->get('kernel')->getStoreMode()) {
                         $target = $this->container->get('router')->generate('_homepage', [], true);
@@ -53,5 +54,18 @@ class SecurityController extends CoreController
             'error'         => $error,
             'target'        => $target,
         ]);
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function isAuthendicatedAction()
+    {
+        $securityContext = $this->container->get('security.context');
+        if ($securityContext->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->json_response(['status' => true]);
+        }
+
+        return $this->json_response(['status' => false]);
     }
 }

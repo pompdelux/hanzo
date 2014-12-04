@@ -11,6 +11,14 @@ logout:
 login_check:
     path: /login_check
 
+is_authenicated:
+    path: /is-authendicated
+    defaults:
+        _controller: AccountBundle:Security:isAuthendicated
+
+# ----------------
+# account section
+# ----------------
 _account:
     path: /account
     defaults:
