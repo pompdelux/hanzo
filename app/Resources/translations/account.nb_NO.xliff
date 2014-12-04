@@ -610,19 +610,19 @@ Deretter kan du bare shoppe videre.</p><br>
                 <source>wishlist.remove.all.items</source>
                 <target>RYDD LISTEN</target>
             </trans-unit>
-            <trans-unit id="wishlist.send_list.header" approved="no">
+            <trans-unit id="wishlist.send_list.header">
                 <source>wishlist.send_list.header</source>
-                <target>Send shoppinglisten til en du kender</target>
+                <target>Send Shoppinglisten til en du kjenner</target>
             </trans-unit>
-            <trans-unit id="wishlist.send_list.description" approved="no">
+            <trans-unit id="wishlist.send_list.description">
                 <source>wishlist.send_list.description</source>
-                <target>jadi jadi jadi ja ... jadi jadi jadi ja ... jadi jadi jadi ja ... jadi jadi jadi ja ...</target>
+                <target>Tast inn den e-postadressen du ønsker å sende Shoppinglisten til.</target>
             </trans-unit>
-            <trans-unit id="wishlist.send_list.placeholder" approved="no">
+            <trans-unit id="wishlist.send_list.placeholder">
                 <source>wishlist.send_list.placeholder</source>
-                <target>Modtager email adresse</target>
+                <target>Mottakers e-postadresse</target>
             </trans-unit>
-            <trans-unit id="wishlist.send_list.button_label" approved="no">
+            <trans-unit id="wishlist.send_list.button_label">
                 <source>wishlist.send_list.button_label</source>
                 <target>Send</target>
             </trans-unit>
@@ -630,9 +630,9 @@ Deretter kan du bare shoppe videre.</p><br>
                 <source>wishlist.invalid_to_address</source>
                 <target>Ugyldig emailaddresse</target>
             </trans-unit>
-            <trans-unit id="wishlist.send" approved="no">
+            <trans-unit id="wishlist.send">
                 <source>wishlist.send</source>
-                <target>Shoppinglisten er nu sendt.</target>
+                <target>Shoppinglisten er sendt.</target>
             </trans-unit>
             <trans-unit id="wishlist.all.items.deleted" approved="no">
                 <source>wishlist.all.items.deleted</source>
