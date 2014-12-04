@@ -16,7 +16,7 @@
             </trans-unit>
             <trans-unit id="lookup.placeholder">
                 <source>lookup.placeholder</source>
-                <target>Adresse, postnummer</target>
+                <target>Postnummer</target>
             </trans-unit>
             <trans-unit id="point.header">
                 <source>point.header</source>
