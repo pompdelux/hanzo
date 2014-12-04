@@ -397,15 +397,15 @@
             </trans-unit>
             <trans-unit id="product.added.to.wishlist">
                 <source>product.added.to.wishlist</source>
-                <target>Produktet er nu lagt på din ønskeliste.</target>
+                <target>Denna vara har lagts till i din Shoppinglista.</target>
             </trans-unit>
             <trans-unit id="require.login.label">
                 <source>require.login.label</source>
-                <target>Login påkrævet</target>
+                <target>LOGIN KRÄVS</target>
             </trans-unit>
             <trans-unit id="wishlist.require.login.text">
                 <source>wishlist.require.login.text</source>
-                <target><![CDATA[Du skal være logget ind for at benytte ønskeliste funktionen.<br><br><a href="%url%">» Login her</a><br><br>Bemærk: Du vil blive sendt tilbage til denne side så snart du er logget ind.]]></target>
+                <target><![CDATA[Du ska vara inloggad för att använda Shoppinglistan<br><br><a href="%url%">» Logga in här / upprätta login</a><br><br>OBS: När du har loggat in kommer du tillbaka till den här sidan.]]></target>
             </trans-unit>
         </body>
     </file>

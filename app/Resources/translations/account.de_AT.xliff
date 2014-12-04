@@ -615,27 +615,27 @@ Um jedoch sicherzustellen, dass dabei keine Fehler aufgetreten sind, möchten wi
             </trans-unit>
             <trans-unit id="wishlist.send_list.header">
                 <source>wishlist.send_list.header</source>
-                <target>Send shoppinglisten til en du kender</target>
+                <target>Shoppingliste an einen Freund senden</target>
             </trans-unit>
             <trans-unit id="wishlist.send_list.description">
                 <source>wishlist.send_list.description</source>
-                <target>jadi jadi jadi ja ... jadi jadi jadi ja ... jadi jadi jadi ja ... jadi jadi jadi ja ...</target>
+                <target>Geben Sie die Emailadresse der Person ein, an welche Sie die Shoppingliste senden möchten.</target>
             </trans-unit>
             <trans-unit id="wishlist.send_list.placeholder">
                 <source>wishlist.send_list.placeholder</source>
-                <target>Modtager email adresse</target>
+                <target>Emailadresse des Empfängers</target>
             </trans-unit>
             <trans-unit id="wishlist.send_list.button_label">
                 <source>wishlist.send_list.button_label</source>
-                <target>Send</target>
+                <target>Senden</target>
             </trans-unit>
-            <trans-unit id="wishlist.invalid_to_address">
+            <trans-unit id="wishlist.invalid_to_address" approved="no">
                 <source>wishlist.invalid_to_address</source>
                 <target>Ugyldig emailaddresse</target>
             </trans-unit>
             <trans-unit id="wishlist.send">
                 <source>wishlist.send</source>
-                <target>Shoppinglisten er nu sendt.</target>
+                <target>Die Shoppingliste wurde versendet.</target>
             </trans-unit>
             <trans-unit id="wishlist.all.items.deleted" approved="no">
                 <source>wishlist.all.items.deleted</source>

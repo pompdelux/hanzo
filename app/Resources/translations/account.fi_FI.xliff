@@ -608,29 +608,29 @@ Haluamme kuitenkin varmistaa, että tässä ei ole tapahtunut virhettä. Pyydäm
                 <source>wishlist.remove.all.items</source>
                 <target>Tyhjennä lista</target>
             </trans-unit>
-            <trans-unit id="wishlist.send_list.header" approved="no">
+            <trans-unit id="wishlist.send_list.header">
                 <source>wishlist.send_list.header</source>
-                <target>Send shoppinglisten til en du kender</target>
+                <target>Lähetä Ostoslista tutullesi</target>
             </trans-unit>
-            <trans-unit id="wishlist.send_list.description" approved="no">
+            <trans-unit id="wishlist.send_list.description">
                 <source>wishlist.send_list.description</source>
-                <target>jadi jadi jadi ja ... jadi jadi jadi ja ... jadi jadi jadi ja ... jadi jadi jadi ja ...</target>
+                <target>Anna sähköpostiosoite, johon haluat lähettää Ostoslistan.</target>
             </trans-unit>
-            <trans-unit id="wishlist.send_list.placeholder" approved="no">
+            <trans-unit id="wishlist.send_list.placeholder">
                 <source>wishlist.send_list.placeholder</source>
-                <target>Modtager email adresse</target>
+                <target>Vastaanottajan sähköpostiosoite</target>
             </trans-unit>
-            <trans-unit id="wishlist.send_list.button_label" approved="no">
+            <trans-unit id="wishlist.send_list.button_label">
                 <source>wishlist.send_list.button_label</source>
-                <target>Send</target>
+                <target>Lähetä</target>
             </trans-unit>
             <trans-unit id="wishlist.invalid_to_address" approved="no">
                 <source>wishlist.invalid_to_address</source>
                 <target>Ugyldig emailaddresse</target>
             </trans-unit>
-            <trans-unit id="wishlist.send" approved="no">
+            <trans-unit id="wishlist.send">
                 <source>wishlist.send</source>
-                <target>Shoppinglisten er nu sendt.</target>
+                <target>Ostoslista on nyt lähetetty.</target>
             </trans-unit>
             <trans-unit id="wishlist.all.items.deleted" approved="no">
                 <source>wishlist.all.items.deleted</source>
