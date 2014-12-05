@@ -74,13 +74,16 @@ class OnFinalizeOrderEvent
         if ($lines->count()) {
             /** @var \Hanzo\Model\OrdersLines $line */
             $line = $lines->getFirst();
-
             if ($line->getQuantity() == 1) {
                 $line->setPrice(0.00);
             } else {
-                $price = (100 / $line->getQuantity());
-                $line->setPrice($price);
+                $price = $line->getOriginalPrice();
+                $pct   = (100 / $line->getQuantity());
+
+                $line->setPrice($price - ($price / 100 * $pct));
             }
+
+            $line->save();
 
             return;
         }
