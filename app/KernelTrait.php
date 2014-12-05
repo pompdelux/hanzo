@@ -80,6 +80,7 @@ trait KernelTrait
             new Hanzo\Bundle\StockBundle\StockBundle(),
             new Hanzo\Bundle\GoogleBundle\GoogleBundle(),
             new Hanzo\Bundle\ConsignorBundle\ConsignorBundle(),
+            new Hanzo\Bundle\PromotionBundle\PromotionBundle(),
             // ------------------------------------------------------
         ];
 

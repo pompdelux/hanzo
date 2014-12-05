@@ -2,13 +2,11 @@
 
 namespace Hanzo\Bundle\StockBundle;
 
+use Hanzo\Bundle\AdminBundle\Event\FilterCategoryEvent;
 use Hanzo\Core\PropelReplicator;
-use Hanzo\Core\Tools;
 use Hanzo\Model\Products;
 use Hanzo\Model\ProductsQuery;
-
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Hanzo\Bundle\AdminBundle\Event\FilterCategoryEvent;
 
 /**
  * Class Stock
@@ -229,8 +227,8 @@ class Stock
     /**
      * decrease the stock level for a product
      *
-     * @param \Hanzo\Model\Products $product  a product object
-     * @param int                   $quantity the quantity by which to decrease
+     * @param Products|int $product  a Products object or product id
+     * @param int          $quantity the quantity by which to decrease
      *
      * @return mixed, the expected delivery date on success, false otherwise.
      */

@@ -12,6 +12,11 @@ use Hanzo\Model\ProductsQuery;
 use Symfony\Bridge\Monolog\Logger;
 use Hanzo\Bundle\BasketBundle\Event\BasketEvent;
 
+/**
+ * Class BasketListener
+ *
+ * @package Hanzo\Bundle\DiscountBundle\Event
+ */
 class BasketListener
 {
     /**
@@ -22,23 +27,23 @@ class BasketListener
     /**
      * @var \Hanzo\Bundle\DiscountBundle\Handlers\CouponHandler
      */
-    private $coupon_handler;
+    private $couponHandler;
 
     /**
      * @var \Hanzo\Bundle\DiscountBundle\Handlers\QuantityDiscountHandler
      */
-    private $quantity_discount_handler;
+    private $quantityDiscountHandler;
 
     /**
      * @param Logger                  $logger
-     * @param CouponHandler           $coupon_handler
-     * @param QuantityDiscountHandler $quantity_discount_handler
+     * @param CouponHandler           $couponHandler
+     * @param QuantityDiscountHandler $quantityDiscountHandler
      */
-    public function __construct(Logger $logger, CouponHandler $coupon_handler, QuantityDiscountHandler $quantity_discount_handler)
+    public function __construct(Logger $logger, CouponHandler $couponHandler, QuantityDiscountHandler $quantityDiscountHandler)
     {
-        $this->logger                    = $logger;
-        $this->coupon_handler            = $coupon_handler;
-        $this->quantity_discount_handler = $quantity_discount_handler;
+        $this->logger                  = $logger;
+        $this->couponHandler           = $couponHandler;
+        $this->quantityDiscountHandler = $quantityDiscountHandler;
     }
 
     /**
@@ -49,7 +54,7 @@ class BasketListener
         $product = $event->getProduct();
         $order   = $event->getOrder();
 
-        $order = $this->coupon_handler->initialize($order)->handle();
-        $order = $this->quantity_discount_handler->initialize($order, $product)->handle();
+        $order = $this->couponHandler->initialize($order)->handle();
+        $order = $this->quantityDiscountHandler->initialize($order, $product)->handle();
     }
 }

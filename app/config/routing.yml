@@ -1,3 +1,8 @@
+promotion:
+    resource: "@PromotionBundle/Controller/"
+    prefix:   /{_locale}/
+    type:     annotation
+
 stock:
     resource: "@StockBundle/Controller/"
     prefix:   /{_locale}/
