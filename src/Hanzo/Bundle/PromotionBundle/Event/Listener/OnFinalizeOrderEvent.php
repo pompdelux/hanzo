@@ -62,7 +62,7 @@ class OnFinalizeOrderEvent
         if (($date < '201412070000') ||
             ($date > '201412112359')
         ) {
-//            return;
+            return;
         }
 
         // if the promotion gift is already on the order, distribute the discount accordingly
