@@ -3938,12 +3938,16 @@ form.load-wishlist {
 #body-rma .product-table thead input[type=checkbox] {
   display: inline-block;
 }
-#body-rma .product-table .quickorder label, #body-rma .product-table .quickorder input, #body-rma .product-table .quickorder select {
-  display: inline;
+#body-rma .product-table .rma-productreplacement label, #body-rma .product-table .rma-productreplacement input, #body-rma .product-table .rma-productreplacement select {
+  display: block;
   width: auto;
+  float: left;
 }
-#body-rma .product-table .quickorder input[type=submit],
-#body-rma .product-table .quickorder input[type=button] {
+#body-rma .product-table .rma-productreplacement label.off, #body-rma .product-table .rma-productreplacement input.off, #body-rma .product-table .rma-productreplacement select.off {
+  display: none;
+}
+#body-rma .product-table .rma-productreplacement input[type=submit],
+#body-rma .product-table .rma-productreplacement input[type=button] {
   margin-top: 12px;
 }
 #body-rma .product-table td.actions {
