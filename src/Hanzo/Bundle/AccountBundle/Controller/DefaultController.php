@@ -292,6 +292,9 @@ class DefaultController extends CoreController
 
                 $this->get('session')->getFlashBag()->add('notice', 'account.updated');
 
+                // send all edits to ax to prevent issues when dealing with the customer "off line"
+                $this->container->get('ax.pheanstalk_queue')->appendSendDebitor($customer, $this->container->get('kernel')->getSetting('domain_key'));
+
                 return $this->redirect($this->generateUrl('_account'));
             } else {
                 $errors = new FormErrors($form, $this->get('translator'), 'account');
