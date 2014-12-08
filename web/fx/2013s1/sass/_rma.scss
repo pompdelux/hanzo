@@ -2,7 +2,7 @@
 | _rma
 */
 #body-rma {
-    .product-table{
+    .product-table {
         label{
             width: 100%;
             input, select, textarea {
@@ -17,10 +17,15 @@
         thead input[type=checkbox]{
             display: inline-block;
         }
-        .quickorder {
+        .rma-productreplacement {
             label, input, select {
-                display: inline;
+                display: block;
                 width: auto;
+                float: left;
+
+                &.off {
+                    display: none;
+                }
             }
             input[type=submit],
             input[type=button] {
