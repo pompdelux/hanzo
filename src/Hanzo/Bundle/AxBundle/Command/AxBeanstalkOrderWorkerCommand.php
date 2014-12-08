@@ -24,7 +24,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  * Class AxBeanstalkWorkerCommand
  * @package Hanzo\Bundle\AxBundle
  */
-class AxBeanstalkWorkerCommand extends ContainerAwareCommand
+class AxBeanstalkOrderWorkerCommand extends ContainerAwareCommand
 {
     /**
      * @var bool
@@ -128,9 +128,9 @@ class AxBeanstalkWorkerCommand extends ContainerAwareCommand
 
         try {
             if (isset($data['action']) && ('delete' === $data['action'])) {
-                $this->getContainer()->get('ax.out.pheanstalk.send')->delete($data);
+                $this->getContainer()->get('ax.out.pheanstalk.send_order')->delete($data);
             } else {
-                $this->getContainer()->get('ax.out.pheanstalk.send')->send($data);
+                $this->getContainer()->get('ax.out.pheanstalk.send_order')->send($data);
             }
         } catch (\Exception $exception) {
             $this->halt($data, 'AxBeanstalkWorkerCommand: Exception detected: '.$exception->getMessage());

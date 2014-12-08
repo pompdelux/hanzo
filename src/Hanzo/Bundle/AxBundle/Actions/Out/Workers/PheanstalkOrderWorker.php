@@ -26,7 +26,7 @@ use Leezy\PheanstalkBundle\Proxy\PheanstalkProxy;
  *
  * @package Hanzo\Bundle\AxBundle\Actions\Out
  */
-class PheanstalkWorker
+class PheanstalkOrderWorker
 {
     private $pheanstalkProxy;
     private $serviceWrapper;
