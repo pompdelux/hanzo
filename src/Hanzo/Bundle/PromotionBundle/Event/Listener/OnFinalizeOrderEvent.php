@@ -48,7 +48,7 @@ class OnFinalizeOrderEvent
     }
 
     /**
-     * Add a "POMP BIG BAG" (id: 12299) to orders between 7/12 ad 11/12 2014
+     * Add a "POMP BAG" (id: 11032) to orders between 7/12 ad 11/12 2014
      *
      * @param Orders $order
      *
@@ -67,7 +67,7 @@ class OnFinalizeOrderEvent
 
         // if the promotion gift is already on the order, distribute the discount accordingly
         $criteria = new \Criteria();
-        $criteria->add(OrdersLinesPeer::PRODUCTS_ID, 12299);
+        $criteria->add(OrdersLinesPeer::PRODUCTS_ID, 11032);
         $criteria->add(OrdersLinesPeer::TYPE, 'product');
         $lines = $order->getOrdersLiness($criteria, $order->getDBConnection());
 
@@ -89,7 +89,7 @@ class OnFinalizeOrderEvent
         }
 
         $product = ProductsQuery::create()
-            ->findOneById(12299);
+            ->findOneById(11032);
 
         // only apply
         if (false === $this->stock->check($product, 1)) {
@@ -106,7 +106,7 @@ class OnFinalizeOrderEvent
         $line = new OrdersLines();
         $line->setOrdersId($order->getId());
         $line->setProductsId($product->getId());
-        $line->setProductsName('POMP BIG BAG');
+        $line->setProductsName('POMP BAG');
         $line->setProductsSku($product->getSku());
         $line->setProductsColor($product->getColor());
         $line->setProductsSize($product->getSize());
