@@ -88,10 +88,10 @@
                     {{ 'admin.consultant.no'|trans({}, 'admin') }}
                 {% endif %}
                 </td>
-                <th>
+                <td>
                     <a href="{{ path('admin_coupons_edit', {'id' : coupon.id }) }}" class="glyphicon glyphicon-edit" title="{{ 'admin.coupons.edit.link'|trans({}, 'admin') }}"></a>
-                    <a href="{{ path('admin_coupons_delete', {'id' : coupon.id }) }}" class="delete glyphicon glyphicon-remove-circle" title="{{ 'admin.coupons.delete.link'|trans({}, 'admin') }}"></a>
-                </th>
+                    <a href="{{ path('admin_coupons_delete', {'id' : coupon.id }) }}" class="js-delete glyphicon glyphicon-remove-circle" data-confirm-message="Slet rabatkode {{ coupon.code }}?" title="{{ 'admin.coupons.delete.link'|trans({}, 'admin') }}"></a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

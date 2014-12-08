@@ -778,6 +778,15 @@
                     }
                 ]]></target>
             </trans-unit>
+			<trans-unit id="820.settings">
+                <source>820.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "141",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

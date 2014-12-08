@@ -262,7 +262,7 @@
                 dialoug.alert(Translator.trans('notice'), response.message);
               }
             } else {
-              $('#mini-basket a').html(response.data);
+              $('#mini-basket a.total').html(response.data);
               dialoug.slideNotice(response.message, undefined, '.container > header');
             }
             _resetForm();

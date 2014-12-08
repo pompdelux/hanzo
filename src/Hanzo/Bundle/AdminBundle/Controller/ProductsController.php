@@ -1329,6 +1329,8 @@ class ProductsController extends CoreController
         $sql       = "UPDATE products_i18n SET title = :title WHERE id = :id AND locale = :locale";
         $line      = 0;
 
+        ini_set("auto_detect_line_endings", true);
+
         $fileTmp->move($tmpDir, $fileName);
 
         if (is_file($inputFile)) {
@@ -1359,7 +1361,6 @@ class ProductsController extends CoreController
             }
 
             fclose($handle);
-
             unlink($inputFile);
         } else {
             $errors[] = 'Uploaded file was not found';

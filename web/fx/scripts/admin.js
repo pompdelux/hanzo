@@ -1,3 +1,5 @@
+/* jshint strict:false, eqeqeq:false, unused:false */
+/* global dialoug:true, Translator:true, base_url: true */
 (function($) {
   var gui = (function($) {
     var pub = {};
@@ -13,6 +15,32 @@
 
       $('.datetimepicker').datetimepicker({
         dateFormat : "dd-mm-yy"
+      });
+
+      /* hf@bellcom.dk generic delete function, should replace other functions in this file
+       *
+       * Add .js-delete class to a tag with href to the delete controller
+       *
+       * The a tag must be in a tr > td, as this row will be deleted
+       *
+       * if the a tag has data-confirm-message, a confirm dialog will be show with the message
+       *
+       */
+      $('.js-delete').click(function(event) {
+        event.preventDefault();
+        var $elementToDelete = $(this),
+            confirmMsg = $elementToDelete.data('confirm-message');
+
+        if ( confirmMsg.length > 0 ) {
+          dialoug.confirm(Translator.trans('notice'), confirmMsg, function(choice) {
+            if (choice == 'ok') {
+              ajaxDelete($elementToDelete.attr('href'), 'json', $elementToDelete);
+            }
+          });
+        }
+        else {
+          ajaxDelete($elementToDelete.attr('href'), 'json', $elementToDelete);
+        }
       });
 
       /* Cache controller */
@@ -217,7 +245,7 @@
         }
       });
 
-      $('#cms-edit-form')
+      // $('#cms-edit-form');
 
       // Sortable list for products ind a category
       $('ul#product-list-sort').sortable({
@@ -884,6 +912,26 @@
         }
       });
     };
+
+    function ajaxDelete(url, format, $elementToDelete) {
+      return $.ajax({
+        url: url,
+        dataType: format
+      })
+      .done(function(response) {
+        if ( response.status ) {
+          $elementToDelete.closest('tr').fadeOut(function() {
+            $elementToDelete.remove();
+          });
+        }
+        else {
+          dialoug.error(response.message);
+        }
+      })
+      .fail(function() {
+        dialoug.error("Ajax kaldet fejlede");
+      });
+    }
 
     /**
      * animated effect on first menu level

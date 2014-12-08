@@ -466,6 +466,11 @@ class GothiaDEController extends CoreController
             return $this->redirect($this->generateUrl('_checkout_failed'));
         }
 
-        return $this->redirect($this->generateUrl('_checkout_success'));
+        $queryParameters = [];
+        if ($order->getInEdit()) {
+            $queryParameters = ['is-edit' => 1];
+        }
+
+        return $this->redirect($this->generateUrl('_checkout_success', $queryParameters));
     }
 }
