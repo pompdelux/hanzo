@@ -69,6 +69,7 @@
         "web/fx/scripts/oldie.js",
         "web/fx/scripts/App.js",
         "web/fx/scripts/App.ProductFinder.js",
+        "web/fx/scripts/App.RmaBuilder.js",
         "web/fx/scripts/App.WishlistBuilder.js"
     ],
 
@@ -148,6 +149,9 @@
         "web/fx/scripts/search.js",
         "web/fx/scripts/rma.js",
         "web/fx/scripts/jquery.placeholder-enhanced.min.js",
-        "web/fx/scripts/oldie.js"
+        "web/fx/scripts/oldie.js",
+        "web/fx/scripts/App.js",
+        "web/fx/scripts/App.ProductFinder.js",
+        "web/fx/scripts/App.RmaBuilder.js"
     ]
 }
