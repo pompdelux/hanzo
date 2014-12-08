@@ -215,14 +215,17 @@ class PheanstalkWorker
     /**
      * @param int $orderId
      *
-     * @return int
-     * @throws \Exception
+     * @return int|null
      */
     private function removeFromQueueLog($orderId)
     {
-        return OrdersToAxQueueLogQuery::create()
-            ->filterByOrdersId($orderId)
-            ->delete($this->dbConn);
+        try {
+            return OrdersToAxQueueLogQuery::create()
+                ->filterByOrdersId($orderId)
+                ->delete($this->dbConn);
+        } catch (\Exception $e) {
+            Tools::log($e->getMessage());
+        }
     }
 
     /**
