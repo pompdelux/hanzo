@@ -44,7 +44,7 @@ class OnFinalizeOrderEvent
     public function listener(FilterOrderEvent $event)
     {
         $order = $event->getOrder();
-        $this->xmas2104BigBag($order);
+        $this->xmas2104Bag($order);
     }
 
     /**
@@ -54,7 +54,7 @@ class OnFinalizeOrderEvent
      *
      * @return mixed
      */
-    private function xmas2104BigBag(Orders $order)
+    private function xmas2104Bag(Orders $order)
     {
         $date = $order->getCreatedAt('YmdHi');
 
