@@ -2464,6 +2464,11 @@ form.location-locator button.button {
   margin-left: 5px;
   float: none;
 }
+form.location-locator .locator-result-wrapper {
+  height: 200px;
+  overflow-y: scroll;
+  border: 1px solid #7B7577;
+}
 form.location-locator table.locator-result {
   margin-top: 20px;
   width: auto;
