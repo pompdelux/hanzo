@@ -18,12 +18,13 @@ App.register('RmaBuilder', function() {
         $_form        = $('form', $element);
         $_sizeSelect  = $('select[name="size"]', $_form);
         $_colorSelect = $('select[name="color"]', $_form);
-        $_resetButton = $('input.reset', $form);
+        $_resetButton = $('input.reset', $_form);
 
         setupListeners();
     };
 
     var setupListeners = function() {
+        // when products are found update the visibility and focus of the dropdowns
         $_element.on('on-products-found', function(event, data) {
             switch (data.target) {
                 case 'size':
@@ -39,10 +40,13 @@ App.register('RmaBuilder', function() {
             $('input.reset', $_form).show();
         });
 
+        // reset the form when reset is clicked.
         $_resetButton.on('click', function () {
+            $('.rma-productreplacement option:not(":first")', $_form).remove();
             $_sizeSelect.parent().hide();
             $_colorSelect.parent().hide();
-            console.log($('option:not(":first")', $form));
+            $_resetButton.hide();
+            App.ProductFinder.resetForm();
         });
     };
 
