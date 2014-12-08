@@ -1,55 +1,57 @@
 {% for entry in records %}
     {% if loop.first %}
-<table class="locator-result">
-    <thead>
-        <tr>
-            <th colspan="2">{{ 'point.header'|trans({}, 'locator') }}:</th>
-        {% if entry.distance is defined %}
-            <th>{{ 'distance.header'|trans({}, 'locator') }}</th>
-        {% endif %}
-        </tr>
-    </thead>
-    <tbody>
-    {% endif %}
-        <tr>
-            <td valign="top"><input type="radio" class="droppoint-locator" name="{{ service }}_locator" id="{{ service }}_locator_{{ loop.index }}" value="{{ entry.id }}" data-entry='{{ entry|json_encode(constant('JSON_HEX_APOS'))|raw }}'></td>
-            <td>
-                <label for="{{ service }}_locator_{{ loop.index }}">{{ loop.index }}. {{ entry.name }}, {{ entry.address }}, {{ entry.postal_code }} {{ entry.city }}</label>
-    {% if entry.opening_hours is defined %}
-        {% for hour, days in entry.opening_hours %}
-            {% if loop.first %}
-                <table class="opening-hours">
-                    <tr>
-                        <th colspan="2">{{ 'open.hours'|trans([], 'locator') }}</th>
-                    </tr>
+<div class="locator-result-wrapper">
+    <table class="locator-result">
+        <thead>
+            <tr>
+                <th colspan="2">{{ 'point.header'|trans({}, 'locator') }}:</th>
+            {% if entry.distance is defined %}
+                <th>{{ 'distance.header'|trans({}, 'locator') }}</th>
             {% endif %}
-            {% for day in days %}
+            </tr>
+        </thead>
+        <tbody>
+        {% endif %}
+            <tr>
+                <td valign="top"><input type="radio" class="droppoint-locator" name="{{ service }}_locator" id="{{ service }}_locator_{{ loop.index }}" value="{{ entry.id }}" data-entry='{{ entry|json_encode(constant('JSON_HEX_APOS'))|raw }}'></td>
+                <td>
+                    <label for="{{ service }}_locator_{{ loop.index }}">{{ loop.index }}. {{ entry.name }}, {{ entry.address }}, {{ entry.postal_code }} {{ entry.city }}</label>
+        {% if entry.opening_hours is defined %}
+            {% for hour, days in entry.opening_hours %}
                 {% if loop.first %}
-                    <tr>
-                        <td>
-                            {{ day }}
+                    <table class="opening-hours">
+                        <tr>
+                            <th colspan="2">{{ 'open.hours'|trans([], 'locator') }}</th>
+                        </tr>
                 {% endif %}
-                    {% if loop.last %}
-                        {% if loop.length > 1 %}
-                            - {{ day }}
-                        {% endif %}
-                        </td>
-                        <td>{{ hour }}</td>
-                    </tr>
+                {% for day in days %}
+                    {% if loop.first %}
+                        <tr>
+                            <td>
+                                {{ day }}
+                    {% endif %}
+                        {% if loop.last %}
+                            {% if loop.length > 1 %}
+                                - {{ day }}
+                            {% endif %}
+                            </td>
+                            <td>{{ hour }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                {% if loop.last %}
+                    </table>
                 {% endif %}
             {% endfor %}
-            {% if loop.last %}
-                </table>
-            {% endif %}
-        {% endfor %}
-    {% endif %}
-            </td>
-        {% if entry.distance is defined %}
-            <td>{{ 'distance'|trans({'%distance%' : (entry.distance / 1000)|number_format(1) }, 'locator') }}</td>
         {% endif %}
-        </tr>
-    {% if loop.last %}
-    </tbody>
-</table>
+                </td>
+            {% if entry.distance is defined %}
+                <td>{{ 'distance'|trans({'%distance%' : (entry.distance / 1000)|number_format(1) }, 'locator') }}</td>
+            {% endif %}
+            </tr>
+        {% if loop.last %}
+        </tbody>
+    </table>
+</div>
     {% endif %}
 {% endfor %}
