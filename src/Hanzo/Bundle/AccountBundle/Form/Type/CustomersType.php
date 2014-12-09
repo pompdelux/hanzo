@@ -9,20 +9,30 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class CustomersType extends AbstractType
 {
-    protected $is_new;
+    protected $isNew;
     protected $addressType;
 
-    public function __construct($is_new = true, AddressesType $addressType)
+    /**
+     * @param bool          $isNew
+     * @param AddressesType $addressType
+     */
+    public function __construct($isNew = true, AddressesType $addressType)
     {
         $this->addressType = $addressType;
-        $this->is_new      = (boolean) $is_new;
+        $this->isNew       = (boolean) $isNew;
     }
 
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array                $options
+     *
+     * @throws \Exception
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $short_domain_key = substr(Hanzo::getInstance()->get('core.domain_key'), -2);
+        $shortDomainKey = substr(Hanzo::getInstance()->get('core.domain_key'), -2);
 
-        if (in_array($short_domain_key, ['DE'])) {
+        if (in_array($shortDomainKey, ['DE'])) {
             $builder->add('title', 'choice', [
                 'choices'  => [
                     'female' => 'title.female',
@@ -60,11 +70,11 @@ class CustomersType extends AbstractType
             'invalid_message' => 'password.invalid.match',
             'first_name'      => 'pass',
             'second_name'     => 'pass_repeated',
-            'required'        => $this->is_new,
+            'required'        => $this->isNew,
             'options'         => ['attr' => ['autocomplete' => 'off']],
         ]);
 
-        if ($this->is_new) {
+        if ($this->isNew) {
             $attr = [
                 'autocomplete' => 'off',
                 'checked'      => 'checked'
@@ -72,7 +82,7 @@ class CustomersType extends AbstractType
 
             // ugly hack to disable default choice for NL
             // TODO: find a better solution
-            if ('NL' == $short_domain_key) {
+            if ('NL' == $shortDomainKey) {
                 unset($attr['checked']);
             }
 
@@ -92,14 +102,20 @@ class CustomersType extends AbstractType
         }
     }
 
+    /**
+     * @param OptionsResolverInterface $resolver
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'translation_domain' => 'account',
-            'data_class' => 'Hanzo\Model\Customers',
-        ));
+            'data_class'         => 'Hanzo\Model\Customers',
+        ]);
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return 'customers';
