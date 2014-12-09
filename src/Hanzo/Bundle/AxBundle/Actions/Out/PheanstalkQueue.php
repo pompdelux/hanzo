@@ -11,6 +11,7 @@
 namespace Hanzo\Bundle\AxBundle\Actions\Out;
 
 use Hanzo\Core\Tools;
+use Hanzo\Model\Customers;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersToAxQueueLog;
 use Hanzo\Model\OrdersToAxQueueLogPeer;
@@ -142,6 +143,27 @@ class PheanstalkQueue
         return $queueId;
     }
 
+    /**
+     * @param Customers $customer
+     * @param string    $domainKey
+     * @param int       $priority
+     * @param int       $delay
+     *
+     * @return int
+     */
+    public function appendSendDebitor(Customers $customer, $domainKey, $priority = \Pheanstalk_PheanstalkInterface::DEFAULT_PRIORITY, $delay = \Pheanstalk_PheanstalkInterface::DEFAULT_DELAY)
+    {
+        $endPoint = Tools::domainKeyToEndpoint($domainKey);
+
+        $data = json_encode([
+            'customer_id' => $customer->getId(),
+            'iteration'   => 0,
+            'end_point'   => $endPoint,
+            'db_conn'     => 'pdldb' . strtolower($endPoint) . '1',
+        ]);
+
+        return $this->pheanstalk->putInTube('debitor2ax', $data, $priority, $delay);
+    }
 
     /**
      * Check if an order is in the queue.
