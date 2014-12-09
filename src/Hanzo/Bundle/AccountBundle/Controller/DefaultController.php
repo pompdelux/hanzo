@@ -8,6 +8,7 @@ use Hanzo\Core\CoreController;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Core\FormErrors;
+use Hanzo\Model\AddressesPeer;
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\CustomersQuery;
@@ -277,6 +278,11 @@ class DefaultController extends CoreController
             $customer,
             ['validation_groups' => 'customer_edit']
         );
+
+        $c = new \Criteria();
+        $c->add(AddressesPeer::TYPE, 'payment');
+        $addresses = $customer->getAddressess($c);
+        $form->get('addresses')->setData($addresses);
 
         if ('POST' === $request->getMethod()) {
             $form->handleRequest($request);
