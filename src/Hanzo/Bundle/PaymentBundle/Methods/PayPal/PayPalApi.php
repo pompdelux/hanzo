@@ -8,7 +8,7 @@ use Hanzo\Model\Orders;
 use Hanzo\Model\Customers;
 use Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface;
 use Hanzo\Bundle\PaymentBundle\BasePaymentApi;
-
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
