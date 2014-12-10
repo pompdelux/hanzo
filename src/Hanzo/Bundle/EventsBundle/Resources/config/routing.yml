@@ -110,3 +110,20 @@ events_my_events:
     defaults:
         _controller: EventsBundle:Events:myEvents
 
+
+advisor_near_you:
+    pattern: /events/advisor/near_you/{type}/{latitude}/{longitude}/{showAll}
+    defaults:
+        _controller: EventsBundle:Advisor:nearYou
+        version: v1
+        type: 'near'
+        latitude: 0.00
+        longitude: 0.00
+        showAll: 0
+    requirements:
+        type: '(near|hus)'
+
+advisor_consultants_map_data:
+    pattern: /events/advisor/consultants
+    defaults:
+        _controller: EventsBundle:Advisor:consultants
