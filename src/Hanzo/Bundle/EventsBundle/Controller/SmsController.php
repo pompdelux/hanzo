@@ -94,12 +94,10 @@ class SmsController extends CoreController
     public function sendtestAction()
     {
         $p = \Hanzo\Model\EventsParticipantsQuery::create()->findOneById(387);
-        
+
         $p->setPhone('01778800117');
         $p = $this->container->get('sms_manager')->sendEventInvite($p);
-        return $this->response('<pre>'.print_r($p, 1).'</pre>');
 
-        $p = Hanzo::getInstance()->getByNs('sms');
         return $this->response('<pre>'.print_r($p, 1).'</pre>');
 
 
