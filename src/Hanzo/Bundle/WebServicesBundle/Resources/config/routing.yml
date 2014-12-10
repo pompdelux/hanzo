@@ -12,23 +12,6 @@ ws_product_video:
         _controller: WebServicesBundle:RestVideo:get
         version: v1
 
-ws_google_maps_near_you:
-    pattern: /rest/{version}/gm/near_you/{type}/{latitude}/{longitude}/{showAll}
-    defaults:
-        _controller: WebServicesBundle:RestGoogle:nearYou
-        version: v1
-        type: 'near'
-        latitude: 0.00
-        longitude: 0.00
-        showAll: 0
-    requirements:
-        type: '(near|hus)'
-
-ws_google_maps_consultants_map:
-    pattern: /rest/{version}/gm/consultants
-    defaults:
-        _controller: WebServicesBundle:RestGoogle:consultants
-
 ws_soap_test:
     pattern:  /soaptest/
     defaults: { _controller: WebServicesBundle:Soap:test }
