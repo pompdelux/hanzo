@@ -80,6 +80,13 @@ services:
         tags:
             - { name: monolog.logger, channel: 3ps }
 
+    hanzo.statsd:
+        class: Hanzo\Core\StatsD
+        arguments: ['%statsd_dsn%']
+        tags:
+            -   { name: kernel.event_listener, event: kernel.terminate, method: flush, priority: 100 }
+            -   { name: kernel.event_listener, event: console.terminate, method: flush, priority: 100 }
+
 twig:
     debug:            '%kernel.debug%'
     strict_variables: '%kernel.debug%'
