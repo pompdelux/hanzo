@@ -321,11 +321,11 @@
         pub.handleLocationLocatorUpdates = function (response) {
             var $form = $('#address-block form.location-locator');
 
-            $('table.locator-result, div.error', $form).remove();
+            $('.locator-result-wrapper, div.error', $form).remove();
 
             if (response.response.status) {
-                if ($('.locator-result', $form).length) {
-                    $('.locator-result', $form).remove();
+                if ($('.locator-result-wrapper', $form).length) {
+                    $('.locator-result-wrapper', $form).remove();
                 }
 
                 $form.append(response.response.data.html);
@@ -471,9 +471,8 @@
 
         var attachLocationForm = function ($form) {
             $form.on('submit', function (event) {
-
-                if ($('.locator-result', $form).length) {
-                    $('.locator-result', $form).remove();
+                if ($('.locator-result-wrapper', $form).length) {
+                    $('.locator-result-wrapper', $form).remove();
                 }
 
                 event.preventDefault();

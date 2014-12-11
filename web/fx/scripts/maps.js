@@ -39,7 +39,7 @@ var maps = (function ($) {
                 var showAll = ((undefined != near_you_params.all) && near_you_params.all) ? '/1' : '';
                 var req = '/' + geo_zipcode_params.type + '/' + response.data.postcodes[0].lat + '/' + response.data.postcodes[0].lng + showAll;
 
-                $.getJSON(base_url + 'rest/v1/gm/near_you' + req, function (result) {
+                $.getJSON(base_url + 'events/advisor/near_you' + req, function (result) {
                     dataToContainer(result.data);
 
                     if (typeof gm_settings === 'undefined') {
@@ -72,7 +72,7 @@ var maps = (function ($) {
         var showAll = ((undefined != near_you_params.all) && near_you_params.all) ? '/1' : '';
         var req = '/' + near_you_params.type + '/0/0' + showAll;
 
-        $.getJSON(base_url + 'rest/v1/gm/near_you' + req, function (result) {
+        $.getJSON(base_url + 'events/advisor/near_you' + req, function (result) {
             dataToContainer(result.data);
 
             if (typeof gm_settings === 'undefined') {
@@ -85,7 +85,7 @@ var maps = (function ($) {
                 $('#consultants-map-canvas-2').show();
                 google.maps.event.trigger(map, 'resize');
             } else {
-                $.getJSON(base_url + 'rest/v1/gm/consultants', function (consultant_result) {
+                $.getJSON(base_url + 'events/advisor/consultants', function (consultant_result) {
                     populateMap(map, consultant_result.data, true);
                 });
             }
@@ -94,7 +94,7 @@ var maps = (function ($) {
 
     pub.initConsultantsmap = function () {
         var map = getMap('consultants-map-canvas');
-        $.getJSON(base_url + 'rest/v1/gm/consultants', function (result) {
+        $.getJSON(base_url + 'events/advisor/consultants', function (result) {
             populateMap(map, result.data);
         });
     };

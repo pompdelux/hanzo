@@ -3,20 +3,19 @@
 namespace Hanzo\Bundle\PaymentBundle\Methods\PayPal;
 
 use Exception;
-
 use Hanzo\Core\Tools;
 use Hanzo\Model\Orders;
-use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\Customers;
-use Hanzo\Model\CountriesQuery;
-
 use Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface;
 use Hanzo\Bundle\PaymentBundle\BasePaymentApi;
-use Hanzo\Bundle\PaymentBundle\Methods\PayPal\PayPalCallResponse;
-use Hanzo\Bundle\PaymentBundle\Methods\PayPal\PayPalCall;
-
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class PayPalApi
+ *
+ * @package Hanzo\Bundle\PaymentBundle\Methods\PayPal
+ */
 class PayPalApi extends BasePaymentApi implements PaymentMethodApiInterface
 {
     /**
@@ -24,7 +23,7 @@ class PayPalApi extends BasePaymentApi implements PaymentMethodApiInterface
      *
      * @var array
      */
-    protected $settings = array();
+    protected $settings = [];
 
     protected $router;
     protected $translator;
@@ -65,8 +64,8 @@ class PayPalApi extends BasePaymentApi implements PaymentMethodApiInterface
             $this->settings['api_version']   = '97';
         }
 
-        $this->base_url = 'https://api-3t.'.$env.'paypal.com/nvp';
-        $this->settings['base_url'] = $this->base_url;
+        $this->baseUrl = 'https://api-3t.'.$env.'paypal.com/nvp';
+        $this->settings['base_url'] = $this->baseUrl;
         $this->settings['env']      = $env;
     }
 
@@ -84,6 +83,7 @@ class PayPalApi extends BasePaymentApi implements PaymentMethodApiInterface
      *
      * @param Customers $customer
      * @param Orders    $order
+     *
      * @return PayPalCallResponse
      */
     public function cancel(Customers $customer, Orders $order)
@@ -102,6 +102,9 @@ class PayPalApi extends BasePaymentApi implements PaymentMethodApiInterface
         return (isset($this->settings['active'])) ? $this->settings['active'] : false;
     }
 
+    /**
+     * @return bool
+     */
     public function isInTestMode()
     {
         return $this->settings['test'] === 'YES';
@@ -120,7 +123,8 @@ class PayPalApi extends BasePaymentApi implements PaymentMethodApiInterface
      * updateOrderFailed
      *
      * @param Request $request
-     * @param Orders $order
+     * @param Orders  $order
+     *
      * @return Orders
      */
     public function updateOrderFailed(Request $request, Orders $order)
@@ -132,7 +136,8 @@ class PayPalApi extends BasePaymentApi implements PaymentMethodApiInterface
      * updateOrderSuccess
      *
      * @param Request $request
-     * @param Orders $order
+     * @param Orders  $order
+     *
      * @return Orders
      */
     public function updateOrderSuccess(Request $request, Orders $order)
@@ -144,8 +149,9 @@ class PayPalApi extends BasePaymentApi implements PaymentMethodApiInterface
     /**
      * getProcessButton
      *
-     * @param  Orders  $order
-     * @param  Request $request
+     * @param Orders  $order
+     * @param Request $request
+     *
      * @return array
      * @throws \Exception
      */
@@ -159,11 +165,11 @@ class PayPalApi extends BasePaymentApi implements PaymentMethodApiInterface
         ];
 
         $shipping = 0;
-        $shipping_label = '';
+        $shippingLabel = '';
         foreach ($order->getOrderLineShipping() as $line) {
             $shipping += $line->getPrice();
             if ('shipping' === $line->getType()) {
-                $shipping_label = $line->getProductsName();
+                $shippingLabel = $line->getProductsName();
             }
         }
 
@@ -189,7 +195,7 @@ class PayPalApi extends BasePaymentApi implements PaymentMethodApiInterface
         $response = $this->call()->SetExpressCheckout($params);
 
         if ($response->isError()) {
-            Tools::log(print_r($response->debug(),1)."\n\nparams send:\n".print_r($params,1));
+            Tools::log(print_r($response->debug(), 1)."\n\nparams send:\n".print_r($params, 1));
             throw new Exception("No PayPal token !!");
         }
 
@@ -197,6 +203,13 @@ class PayPalApi extends BasePaymentApi implements PaymentMethodApiInterface
     }
 
 
+    /**
+     * @param Request $request
+     * @param Orders  $order
+     *
+     * @return mixed
+     * @throws Exception
+     */
     public function verifyCallback(Request $request, Orders $order)
     {
         $response = $this->call()->GetExpressCheckoutDetails([
@@ -215,8 +228,9 @@ class PayPalApi extends BasePaymentApi implements PaymentMethodApiInterface
     /**
      * process the payment
      *
-     * @param  array  $response Call response
-     * @param  Orders $order
+     * @param array  $response
+     * @param Orders $order
+     *
      * @throws Exception        If DoExpressCheckoutPayment call failes
      * @return boolean
      */
@@ -234,7 +248,7 @@ class PayPalApi extends BasePaymentApi implements PaymentMethodApiInterface
             throw new Exception("Payment could not be completed: ".$response->getError());
         }
 
-        foreach([
+        foreach ([
             'PAYERID'                     => 'PAYERID',
             'PAYMENTINFO_0_TRANSACTIONID' => 'TRANSACTIONID',
             'PAYMENTINFO_0_PAYMENTSTATUS' => 'PAYMENTSTATUS',
@@ -244,7 +258,7 @@ class PayPalApi extends BasePaymentApi implements PaymentMethodApiInterface
             'TOKEN'                       => 'TOKEN',
             'L_LONGMESSAGE0'              => 'MESSAGE',
         ] as $key => $code) {
-            $order->setAttribute($code , 'payment', $response->getResponseVar($key));
+            $order->setAttribute($code, 'payment', $response->getResponseVar($key));
         }
 
         $order->save();
@@ -253,12 +267,18 @@ class PayPalApi extends BasePaymentApi implements PaymentMethodApiInterface
     }
 
 
+    /**
+     * @return LoggerInterface
+     */
     public function getLogger()
     {
         return $this->logger;
     }
 
 
+    /**
+     * @return mixed
+     */
     public function getTranslator()
     {
         return $this->translator;
@@ -268,16 +288,17 @@ class PayPalApi extends BasePaymentApi implements PaymentMethodApiInterface
     /**
      * setOrderState from payment
      *
-     * @param  Integer $state
-     * @param  Request $request
-     * @param  Orders  $order
+     * @param Integer $state
+     * @param Request $request
+     * @param Orders  $order
+     *
      * @return Orders
      */
     protected function setOrderState($state, Request $request, Orders $order)
     {
         $order->setState($state);
         $order->setAttribute('paytype', 'payment', 'paypal');
-        $order->setAttribute('TOKEN',   'payment', $request->query->get('token'));
+        $order->setAttribute('TOKEN', 'payment', $request->query->get('token'));
         $order->setAttribute('PAYERID', 'payment', $request->query->get('PayerID'));
 
         return $order->save();
@@ -287,8 +308,9 @@ class PayPalApi extends BasePaymentApi implements PaymentMethodApiInterface
     /**
      * apply payment details to the params array to send to paypal
      *
-     * @param  array  $params initial
-     * @param  Orders $order
+     * @param array  $params
+     * @param Orders $order
+     *
      * @return array
      */
     protected function paymentDetails($params, $order)
@@ -308,13 +330,18 @@ class PayPalApi extends BasePaymentApi implements PaymentMethodApiInterface
 
         $i=0;
 
-        $payment_fee = 0;
+        $paymentFee = 0;
         foreach ($order->getOrdersLiness() as $line) {
             if ('payment.fee' ===  $line->getType()) {
-                $payment_fee += $line->getPrice();
+                $paymentFee += $line->getPrice();
             }
 
             if ('product' !== $line->getType()) {
+                continue;
+            }
+
+            // ignore products with 100% discount - paypal cannot handle these...
+            if (0.00 == number_format($line->getPrice(), 2, '.', '')) {
                 continue;
             }
 
@@ -333,9 +360,9 @@ class PayPalApi extends BasePaymentApi implements PaymentMethodApiInterface
             $i++;
         }
 
-        if ($payment_fee > 0) {
+        if ($paymentFee > 0) {
             $params['L_PAYMENTREQUEST_0_NAME'.$i]         = $this->translator->trans('payment.fee', [], 'checkout');
-            $params['L_PAYMENTREQUEST_0_AMT'.$i]          = number_format($payment_fee, 2, '.', '');
+            $params['L_PAYMENTREQUEST_0_AMT'.$i]          = number_format($paymentFee, 2, '.', '');
             $params['L_PAYMENTREQUEST_0_QTY'.$i]          = 1;
             $params['L_PAYMENTREQUEST_0_ITEMCATEGORY'.$i] = 'Physical';
             $i++;

@@ -15,11 +15,11 @@ var events = (function ($) {
         $('form.invite-form').submit(function (e) {
             // regex source: http://stackoverflow.com/questions/46155/validate-email-address-in-javascript
             var email_regex = RegExp(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-            if (!$('#form_email', $(this)).val() && !$('#form_phone', $(this)).val()) {
+            if (!$('#events_participant_email', $(this)).val() && !$('#events_participant_phone', $(this)).val()) {
                 e.preventDefault();
                 dialoug.notice(Translator.trans('events.error.email.or.phone'), 'error', 3000, $(this));
             }
-            if ($('#form_email', $(this)).val() && !email_regex.test($('#form_email', $(this)).val())) {
+            if ($('#events_participant_email', $(this)).val() && !email_regex.test($('#events_participant_email', $(this)).val())) {
                 e.preventDefault();
                 dialoug.notice(Translator.trans('email.invalid'), 'error', 3000, $(this));
             }

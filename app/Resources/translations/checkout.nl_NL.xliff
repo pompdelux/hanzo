@@ -246,7 +246,7 @@
       </trans-unit>
       <trans-unit id="button.process">
         <source>button.process</source>
-        <target>Afsluit order en betaal</target>
+        <target>Bestelling goedkeuren en betalen</target>
       </trans-unit>
             <trans-unit id="late.delivery.date.notice">
         <source>late.delivery.date.notice</source>

@@ -396,6 +396,6 @@ class GothiaController extends CoreController
             $queryParameters = ['is-edit' => 1];
         }
 
-        return $this->redirect($this->generateUrl('_checkout_success'. $queryParameters));
+        return $this->redirect($this->generateUrl('_checkout_success', $queryParameters));
     }
 }

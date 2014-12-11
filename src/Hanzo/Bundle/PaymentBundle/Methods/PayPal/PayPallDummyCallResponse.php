@@ -10,18 +10,32 @@
 
 namespace Hanzo\Bundle\PaymentBundle\Methods\PayPal;
 
+/**
+ * Class PayPallDummyCallResponse
+ *
+ * @package Hanzo\Bundle\PaymentBundle\Methods\PayPal
+ */
 class PayPallDummyCallResponse
 {
+    /**
+     * @return bool
+     */
     public function isError()
     {
         return false;
     }
 
+    /**
+     * @return string
+     */
     public function getError()
     {
         return '';
     }
 
+    /**
+     * @return array
+     */
     public function debug()
     {
         return [

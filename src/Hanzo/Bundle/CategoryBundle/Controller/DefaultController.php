@@ -272,7 +272,7 @@ class DefaultController extends CoreController
 
         $color_mapping = [];
         $size_mapping  = [];
-        if ($parent_settings) {
+        if ($parent_settings && isset($parent_settings->colormap, $parent_settings->sizes)) {
             $color_mapping = (array) $parent_settings->colormap;
             $size_mapping  = (array) $parent_settings->sizes;
         }

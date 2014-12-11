@@ -272,7 +272,7 @@
       </trans-unit>
       <trans-unit id="button.process">
         <source>button.process</source>
-        <target>Bestellung abschließen und bezahlen</target>
+        <target>Bestellung bestätigen und bezahlen</target>
       </trans-unit>
       <trans-unit id="late.delivery.date.notice">
         <source>late.delivery.date.notice</source>
