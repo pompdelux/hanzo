@@ -280,6 +280,10 @@ class DefaultController extends CoreController
         // update/set basket cookie
         Tools::setCookie('basket', '(0) '.Tools::moneyFormat(0.00), 0, false);
 
+//        $attributes = $order->getAttributes();
+//        if (isset($attributes->))
+
+
         return $this->render('CheckoutBundle:Default:success.html.twig', [
             'order' => $data,
         ]);
